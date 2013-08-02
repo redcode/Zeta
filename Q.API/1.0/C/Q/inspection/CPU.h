@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v2. */
 #ifndef __Q_inspection_CPU_H__
 #define __Q_inspection_CPU_H__
 
-#pragma mark - Step 1: Identify CPU architecture
+/* Step 1: Identify CPU architecture */
 
 #if	defined(Q_USE_CPU_ARCHITECTURE_X86_64)
 #	define Q_CPU_ARCHITECTURE_NAME x86-64
@@ -174,7 +174,7 @@ Released under the terms of the GNU General Public License v2. */
 
 #endif
 
-#pragma mark - Step 2: Include related headers under inspection mode
+/* Step 2: Include related headers under inspection mode */
 
 #define Q_INSPECTING
 
@@ -189,7 +189,7 @@ Released under the terms of the GNU General Public License v2. */
 
 #undef Q_INSPECTING
 
-#pragma mark - Step 3: Define inspection macros
+/* Step 3: Define inspection macros */
 
 #include <Q/keys/hardware/CPU/architecture.h>
 #include <Q/macros/preprocessor.h>

@@ -128,7 +128,7 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/types/basics.h>
 
-#pragma mark - File Header
+/* MARK: - File Header */
 /*-------------------------------------------------------------------------.
 | The file is identified with the first 8 bytes being 'ZXTape!' plus the   |
 | 'end of file' byte 26 (1Ah). This is followed by two bytes containing    |
@@ -151,7 +151,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8	minor_revision_number;
 ) QTZXHeader;
 
-#pragma mark - Block ID
+/* MARK: - Block ID */
 
 typedef quint8 QTZXID;
 
@@ -181,7 +181,7 @@ typedef quint8 QTZXID;
 #define Q_TZX_BLOCK_ID_CUSTOM_INFORMATION	0x35
 #define Q_TZX_BLOCK_ID_GLUE			0x5A
 
-#pragma mark - ID 10 - Standard Speed Data
+/* MARK: - ID 10 - Standard Speed Data */
 /*----------------------------------------------------------------------------.
 | This block must be replayed with the standard Spectrum ROM timing values    |
 | (see the values in curly brackets in block ID 11). The pilot tone consists  |
@@ -196,7 +196,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXStandardSpeedData;
 
-#pragma mark - ID 11 - Turbo Speed Data
+/* MARK: - ID 11 - Turbo Speed Data */
 /*----------------------------------------------------------------------------.
 | This block is very similar to the normal TAP block but with some additional |
 | info on the timings and other important differences. The same tape encoding |
@@ -218,7 +218,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXTurboSpeedData;
 
-#pragma mark - ID 12 - Pure Tone
+/* MARK: - ID 12 - Pure Tone */
 /*-----------------------------------------------------------------------.
 | This will produce a tone which is basically the same as the pilot tone |
 | the ID 10, ID 11 blocks. You can define how long the pulse is and how  |
@@ -230,7 +230,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint16 pulse_count;
 ) QTZXPureTone;
 
-#pragma mark - ID 13 - Pulse Sequence
+/* MARK: - ID 13 - Pulse Sequence */
 /*-------------------------------------------------------------.
 | This will produce N pulses, each having its own timing.      |
 | Up to 255 pulses can be stored in this block; this is useful |
@@ -242,7 +242,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint16 pulse_duration[];
 ) QTZXPulseSequence;
 
-#pragma mark - ID 14 - Pure Data Block
+/* MARK: - ID 14 - Pure Data Block */
 /*-----------------------------------------------------.
 | This is the same as in the turbo loading data block, |
 | except that it has no pilot or sync pulses.	       |
@@ -257,7 +257,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXPureData;
 
-#pragma mark - ID 15 - Direct Recording
+/* MARK: - ID 15 - Direct Recording */
 /*--------------------------------------------------------------------------.
 | This block is used for tapes which have some parts in a format such that  |
 | the turbo loader block cannot be used. This is not like a VOC file, since |
@@ -280,7 +280,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXDirectRecording;
 
-#pragma mark - ID 18 - CSW Recording
+/* MARK: - ID 18 - CSW Recording */
 /*---------------------------------------------------.
 | This block contains a sequence of raw pulses	     |
 | encoded in CSW format v2 (Compressed Square Wave). |
@@ -298,7 +298,7 @@ typedef Q_STRICT_STRUCTURE (
 #define Q_TZX_CSW_COMPRESSION_TYPE_RLE		1
 #define Q_TZX_CSW_COMPRESSION_TYPE_Z_RLE	2
 
-#pragma mark - ID 19 - Generalized Data Block
+/* MARK: - ID 19 - Generalized Data Block */
 /*----------------------------------------------------------------------------.
 | This block has been specifically developed to represent an extremely wide   |
 | range of data encoding techniques. The basic idea is that each loading      |
@@ -408,7 +408,7 @@ typedef Q_STRICT_STRUCTURE (
    |	    | 11000001b	(C1h) |
    '-------------------------------------------------------------------------- */
 
-#pragma mark - ID 20 - Pause (Silence) or 'Stop the Tape' Command
+/* MARK: - ID 20 - Pause (Silence) or 'Stop the Tape' Command */
 /*-----------------------------------------------------------------------.
 | This will make a silence (low amplitude level (0)) for a given time in |
 | milliseconds. If the value is 0 then the emulator or utility should	 |
@@ -435,12 +435,12 @@ typedef Q_STRICT_STRUCTURE (
 	quint8 name_ascii[];
 ) QTZXGroupStart;
 
-#pragma mark - ID 22 - Group End
+/* MARK: - ID 22 - Group End */
 /*-----------------------------------------------------------.
 | This indicates the end of a group. This block has no body. |
 '-----------------------------------------------------------*/
 
-#pragma mark - ID 23 - Jump to Block
+/* MARK: - ID 23 - Jump to Block */
 /*--------------------------------------------------------------------.
 | This block will enable you to jump from one block to another within |
 | the file. Some examples:					      |
@@ -457,7 +457,7 @@ typedef Q_STRICT_STRUCTURE(
 	quint16 relative_offset;
 ) QTZXJump;
 
-#pragma mark - ID 24 - Loop Start
+/* MARK: - ID 24 - Loop Start */
 /*----------------------------------------------------------------------.
 | If you have a sequence of identical blocks, or of identical groups of |
 | blocks, you can use this block to tell how many times they should be	|
@@ -470,7 +470,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint16 count;
 ) QTZXLoopStart;
 
-#pragma mark - ID 25 - Loop End
+/* MARK: - ID 25 - Loop End */
 /*----------------------------------------------------------------------.
 | This is the same as BASIC's NEXT statement. It means that the utility |
 | should jump back to the start of the loop if it hasn't been run for	|
@@ -479,7 +479,7 @@ typedef Q_STRICT_STRUCTURE (
 | This block has no body.						|
 '----------------------------------------------------------------------*/
 
-#pragma mark - ID 26 - Call Sequence
+/* MARK: - ID 26 - Call Sequence */
 /*---------------------------------------------------------------------------.
 | This block is an analogue of the CALL Subroutine statement. It basically   |
 | executes a sequence of blocks that are somewhere else and then goes back   |
@@ -497,7 +497,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint16 relative_offset[];
 ) QTZXCallSequence;
 
-#pragma mark - ID 27 - Return from Sequence
+/* MARK: - ID 27 - Return from Sequence */
 /*---------------------------------------------------------------------------.
 | This block indicates the end of the Called Sequence. The next block played |
 | will be the block after the last CALL block (or the next Call, if the Call |
@@ -506,7 +506,7 @@ typedef Q_STRICT_STRUCTURE (
 | This block has no body.						     |
 '---------------------------------------------------------------------------*/
 
-#pragma mark - ID 28 - Select block
+/* MARK: - ID 28 - Select block */
 /*-----------------------------------------------------------------------------.
 | This block is useful when the tape consists of two or more separately	       |
 | loadable parts. With this block, you are able to select one of the parts and |
@@ -529,7 +529,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8	description_ascii[];
 ) QTZXSelectItem;
 
-#pragma mark - ID 2A - Stop Tape if in 48K Mode
+/* MARK: - ID 2A - Stop Tape if in 48K Mode */
 /*---------------------------------------------------------------------------.
 | When this block is encountered, the tape will stop ONLY if the machine is  |
 | an 48K Spectrum. This block is to be used for multiloading games that load |
@@ -542,7 +542,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint32 block_size;
 ) QTZXStopIf48K;
 
-#pragma mark - ID 2B - Set Signal Level
+/* MARK: - ID 2B - Set Signal Level */
 /*---------------------------------------------------------------------.
 | This block sets the current signal level to the specified value      |
 | (high or low). It should be used whenever it is necessary to avoid   |
@@ -557,7 +557,7 @@ typedef Q_STRICT_STRUCTURE (
 #define Q_TZX_SIGNAL_LEVEL_LOW	0
 #define Q_TZX_SIGNAL_LEVEL_HIGH	1
 
-#pragma mark - ID 30 - Description Text
+/* MARK: - ID 30 - Description Text */
 /*-----------------------------------------------------------------------------.
 | This is meant to identify parts of the tape, so you know where level 1       |
 | starts, where to rewind to when the game ends, etc. This description is not  |
@@ -575,7 +575,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8 ascii[];
 ) QTZXDescriptionText;
 
-#pragma mark - ID 31 - Message
+/* MARK: - ID 31 - Message */
 /*---------------------------------------------------------------------------.
 | This will enable the emulators to display a message for a given time. This |
 | should not stop the tape and it should not make silence. If the time is 0  |
@@ -596,7 +596,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8 ascii[];
 ) QTZXMessage;
 
-#pragma mark - ID 32 - Archive information
+/* MARK: - ID 32 - Archive information */
 /*-----------------------------------------------------------------------------.
 | Use this block at the beginning of the tape to identify the title of the     |
 | game, author, publisher, year of publication, price (including the	       |
@@ -627,7 +627,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8	text[]; /* QTZXText */
 ) QTZXArchiveInformation;
 
-#pragma mark - ID 33 - Hardware Type
+/* MARK: - ID 33 - Hardware Type */
 /*---------------------------------------------------------------------------.
 | This blocks contains information about the hardware that the programs on   |
 | this tape use. Please include only machines and hardware for which you are |
@@ -658,7 +658,7 @@ typedef Q_STRICT_STRUCTURE (
 	QTZXHardware hardware[];
 ) QTZXHardwareType;
 
-#pragma mark - ID 35 - Custom Information Block
+/* MARK: - ID 35 - Custom Information Block */
 /*-----------------------------------------------------------------------.
 | This block can be used to save any information you want. For example,	 |
 | it might contain some information written by a utility, extra settings |
@@ -671,7 +671,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXCustomInformation;
 
-#pragma mark - ID 5A - "Glue" Block
+/* MARK: - ID 5A - "Glue" Block */
 /*-----------------------------------------------------------------------------.
 | This block is generated when you merge two ZX Tape files together. It is     |
 | here so that you can easily copy the files together and use them. Of course, |
@@ -686,7 +686,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8 data[9];
 ) QTZXGlue;
 
-#pragma mark - Auxiliar pointer macros
+/* MARK: - Auxiliar pointer macros */
 
 #define Q_TZX_STANDARD_SPEED_DATA(p)	((QTZXStandardSpeedData  *)(p))
 #define Q_TZX_TURBO_SPEED_DATA(	  p)	((QTZXTurboSpeedData	 *)(p))

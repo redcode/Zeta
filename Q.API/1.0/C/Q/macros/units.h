@@ -11,12 +11,12 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/constants/numbers.h>
 
-#pragma mark - Angle
+/* MARK: - Angle */
 
 #define Q_DEGREES_TO_RADIANS(degrees)	((degrees) * (Q_PI / 180.0))
 #define Q_RADIANS_TO_DEGREES(radians)	((radians) * (180.0 / Q_PI))
 
-#pragma mark - Time
+/* MARK: - Time */
 
 #define Q_MINUTES_TO_SECONDS(minutes)	((minutes) *     60)
 #define Q_HOURS_TO_SECONDS(    hours)	((hours)   *   3600)
@@ -25,13 +25,13 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SECONDS_TO_MINUTES(seconds)	((seconds) /	 60)
 #define Q_SECONDS_TO_HOURS(  seconds)	((seconds) /   3600)
 
-#pragma mark - Length
+/* MARK: - Length */
 
 #define Q_METERS_TO_FOOTS
 #define Q_METERS_TO_INCHS
 
-#pragma mark - Area
+/* MARK: - Area */
 
-#pragma mark - Weight
+/* MARK: - Weight */
 
 #endif /* __Q_macros_units_H__ */

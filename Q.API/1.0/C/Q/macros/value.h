@@ -11,13 +11,16 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/basics.h>
 
-#pragma mark - Basics
+/* MARK: - Basics */
 
-#define Q_MAXIMUM(a, b)		((a) > (b) ?  (a) : (b))
-#define Q_MINIMUM(a, b)		((a) < (b) ?  (a) : (b))
-#define Q_ABSOLUTE(value)	((a) <  0  ? -(a) : (a))
+#define Q_ABSOLUTE(value)	((a) < 0 ? -(a) : (a))
 
-#pragma mark - Masked Bounded Addition/Subtraction
+/* MARK: - Limits */
+
+#define Q_MAXIMUM(a, b) 	((a) > (b) ? (a) : (b))
+#define Q_MINIMUM(a, b)		((a) < (b) ? (a) : (b))
+
+/* MARK: - Masked Bounded Addition/Subtraction */
 
 #define Q_MBA(value, delta, mask)	(((value) & (mask)) + ((delta) & (mask)) > (mask) \
 						? (mask) : ((value) & (mask)) + ((delta) & (mask)))
@@ -25,7 +28,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MBS(value, delta, mask)	(((value) & (mask)) - ((delta) & (mask)) > (mask) \
 						? 0 : ((value) & (mask)) - ((delta) & (mask)))
 
-#pragma mark - Mirroring
+/* MARK: - Mirroring */
 
 #define Q_UINT16_FROM_UINT8_MIRROR( value)	(((quint16 )(value)) *		0x0101)
 #define Q_UINT32_FROM_UINT8_MIRROR( value)	(((quint32 )(value)) * Q_UINT32(0x01010101))
@@ -96,7 +99,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
-#pragma mark - Reversion
+/* MARK: - Reversion */
 
 #define Q_8BIT_REVERSED_IN_8BIT(  value)	  (value)
 #define	Q_16BIT_REVERSED_IN_8BIT( value)	(((value) <<  8) | ((value) >>  8))
@@ -232,7 +235,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NATURAL_REVERSE	Q_JOIN(Q_, Q_NATURAL_BITS, BIT_REVERSE_IN_8BIT)
 #define Q_INTEGER_REVERSE	Q_JOIN(Q_, Q_INTEGER_BITS, BIT_REVERSE_IN_8BIT)
 
-#pragma mark - Rotation
+/* MARK: - Rotation */
 
 #define Q_8BIT_ROTATED_LEFT(  value, rotation)	(((value) << (rotation)) | ((value) >> ( 8 - (rotation))))
 #define Q_8BIT_ROTATED_RIGHT( value, rotation)	(((value) >> (rotation)) | ((value) << ( 8 - (rotation))))
@@ -264,7 +267,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
-#pragma mark - Shift
+/* MARK: - Shift */
 
 #define Q_32BIT_FROM_8BIT_DCBA(d, c, b, a)	((((quint32)(d)) << 24) | \
 						 (((quint32)(c)) << 16) | \
@@ -289,13 +292,12 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_64BIT_FROM_32BIT_BA(b, a)		((((quint64)(b)) << 32) | \
 						  ((quint64)(a)))
 
-#pragma mark - Translation
+/* MARK: - Translation */
 
 #define Q_8BIT_ENSURE_BIG_ENDIAN(   value)
 #define Q_8BIT_ENSURE_LITTLE_ENDIAN(value)
 #define Q_8BIT_BIG_ENDIAN(	    value)	(value)
 #define Q_8BIT_LITTLE_ENDIAN(	    value)	(value)
-
 
 #if Q_INT16_ENDIANNESS == Q_ENDIANNESS_BIG
 
@@ -342,7 +344,6 @@ Released under the terms of the GNU General Public License v3. */
 #	define Q_64BIT_ENSURE_LITTLE_ENDIAN(value)
 #	define Q_64BIT_BIG_ENDIAN			Q_64BIT_REVERSED_IN_8BIT
 #	define Q_64BIT_LITTLE_ENDIAN(value)		(value)
-
 
 #endif
 

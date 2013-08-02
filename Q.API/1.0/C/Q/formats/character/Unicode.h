@@ -13,7 +13,7 @@ Released under the terms of the GNU General Public License v3. */
 
 typedef quint16 QUnicode;
 
-#pragma mark - Controls and Basic Latin
+/* MARK: - Controls and Basic Latin */
 
 #define Q_UNICODE_NULL				Q_ASCII_NULL
 #define Q_UNICODE_START_OF_HEADING		Q_ASCII_START_OF_HEADING

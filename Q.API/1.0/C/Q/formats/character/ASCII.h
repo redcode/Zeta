@@ -13,7 +13,7 @@ Released under the terms of the GNU General Public License v3. */
 
 typedef quint8 QASCII;
 
-#pragma mark - Controls and Basic Latin
+/* MARK: - Controls and Basic Latin */
 
 #define Q_ASCII_NULL			        0x0000
 #define Q_ASCII_START_OF_HEADING	        0x0001

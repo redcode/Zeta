@@ -13,18 +13,18 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/macros/value.h>
 
 
-#pragma mark - Swapping
+/* MARK: - Swapping */
 
 
 #define Q_IMPLEMENTATION_VALUE_SWAP(type)	\
 						\
 Q_INLINE					\
-void q_##type##_swap(q##type *a, q##type *b)	\
+void q_##type##_swap(void *a, void *b)		\
 	{					\
-	q##type t = *a;				\
+	q##type t = *(q##type *)a;		\
 						\
-	*a = *b;				\
-	*b = t;					\
+	*(q##type *)a = *(q##type *)b;		\
+	*(q##type *)b = t;			\
 	}
 
 
@@ -63,7 +63,7 @@ Q_IMPLEMENTATION_VALUE_SWAP(integer)
 Q_IMPLEMENTATION_VALUE_SWAP(real   )
 
 
-#pragma mark - Reversion
+/* MARK: - Reversion */
 
 
 #define Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(bits, level)		\
@@ -117,8 +117,8 @@ Q_IMPLEMENTATION_VALUE_REVERSED(natural, NATURAL)
 Q_IMPLEMENTATION_VALUE_REVERSED(integer, INTEGER)
 
 #if Q_CHAR_BITS > 8
-	Q_IMPLEMENTATION_VALUE_REVERSION(char, CHAR)
-	Q_IMPLEMENTATION_VALUE_REVERSION(uchar, UCHAR)
+	Q_IMPLEMENTATION_VALUE_REVERSED(char,	CHAR)
+	Q_IMPLEMENTATION_VALUE_REVERSED(uchar, UCHAR)
 #endif
 
 #if Q_IS_AVAILABLE(UINT128) && Q_IS_AVAILABLE(128BIT_REVERSION_MACROS)
@@ -137,7 +137,7 @@ Q_IMPLEMENTATION_VALUE_REVERSED(integer, INTEGER)
 #endif
 
 
-#pragma mark - Rotation
+/* MARK: - Rotation */
 
 
 #define Q_IMPLEMENTATION_VALUE_ROTATED(bits)				\
@@ -165,53 +165,7 @@ Q_IMPLEMENTATION_VALUE_ROTATED(32)
 Q_IMPLEMENTATION_VALUE_ROTATED(64)
 
 
-#pragma mark - Limits
-
-
-#define Q_IMPLEMENTATION_VALUE_LIMITS(type)					\
-										\
-Q_INLINE									\
-q##type q_##type##_minimum(q##type a, q##type b) {return Q_MINIMUM(a, b);}	\
-										\
-Q_INLINE									\
-q##type q_##type##_maximum(q##type a, q##type b) {return Q_MAXIMUM(a, b);}
-
-
-Q_IMPLEMENTATION_VALUE_LIMITS(uchar  )
-Q_IMPLEMENTATION_VALUE_LIMITS(ushort )
-Q_IMPLEMENTATION_VALUE_LIMITS(uint   )
-Q_IMPLEMENTATION_VALUE_LIMITS(ulong  )
-Q_IMPLEMENTATION_VALUE_LIMITS(ullong )
-Q_IMPLEMENTATION_VALUE_LIMITS(char   )
-Q_IMPLEMENTATION_VALUE_LIMITS(short  )
-Q_IMPLEMENTATION_VALUE_LIMITS(int    )
-Q_IMPLEMENTATION_VALUE_LIMITS(long   )
-Q_IMPLEMENTATION_VALUE_LIMITS(llong  )
-Q_IMPLEMENTATION_VALUE_LIMITS(float  )
-Q_IMPLEMENTATION_VALUE_LIMITS(double )
-Q_IMPLEMENTATION_VALUE_LIMITS(ldouble)
-Q_IMPLEMENTATION_VALUE_LIMITS(uint8  )
-Q_IMPLEMENTATION_VALUE_LIMITS(uint16 )
-Q_IMPLEMENTATION_VALUE_LIMITS(uint32 )
-Q_IMPLEMENTATION_VALUE_LIMITS(uint64 )
-Q_IMPLEMENTATION_VALUE_LIMITS(int8   )
-Q_IMPLEMENTATION_VALUE_LIMITS(int16  )
-Q_IMPLEMENTATION_VALUE_LIMITS(int32  )
-Q_IMPLEMENTATION_VALUE_LIMITS(int64  )
-Q_IMPLEMENTATION_VALUE_LIMITS(size   )
-Q_IMPLEMENTATION_VALUE_LIMITS(uintptr)
-Q_IMPLEMENTATION_VALUE_LIMITS(uinttop)
-Q_IMPLEMENTATION_VALUE_LIMITS(uintmax)
-Q_IMPLEMENTATION_VALUE_LIMITS(ssize  )
-Q_IMPLEMENTATION_VALUE_LIMITS(intptr )
-Q_IMPLEMENTATION_VALUE_LIMITS(inttop )
-Q_IMPLEMENTATION_VALUE_LIMITS(intmax )
-Q_IMPLEMENTATION_VALUE_LIMITS(natural)
-Q_IMPLEMENTATION_VALUE_LIMITS(integer)
-Q_IMPLEMENTATION_VALUE_LIMITS(real   )
-
-
-#pragma mark - Endianness
+/* MARK: - Endianness */
 
 
 #define Q_IMPLEMENTATION_VALUE_ENDIAN(type, TYPE, endianness)	\
@@ -468,7 +422,7 @@ q##type q_##type##_##endianness##_endian(q##type value)		\
 #endif
 
 
-#pragma mark - Binary codified decimal
+/* MARK: - Binary codified decimal */
 
 
 Q_INLINE quint32 q_uint32_to_bcd(quint32 value)
@@ -493,6 +447,75 @@ Q_INLINE quint32 q_bcd_to_uint32(quint32 value)
 
 	return result;
 	}
+
+
+/* MARK: - Limits */
+
+
+#define Q_IMPLEMENTATION_VALUE_LIMITS(type)					\
+										\
+Q_INLINE									\
+q##type q_##type##_minimum(q##type a, q##type b) {return Q_MINIMUM(a, b);}	\
+										\
+Q_INLINE									\
+q##type q_##type##_maximum(q##type a, q##type b) {return Q_MAXIMUM(a, b);}	\
+										\
+										\
+Q_INLINE									\
+q##type q_##type##_clamp(q##type value, q##type minimum, q##type maximum)	\
+	{									\
+	return q_##type##_minimum						\
+		(q_##type##_maximum(value, minimum), maximum);			\
+	}									\
+
+
+Q_IMPLEMENTATION_VALUE_LIMITS(uchar  )
+Q_IMPLEMENTATION_VALUE_LIMITS(ushort )
+Q_IMPLEMENTATION_VALUE_LIMITS(uint   )
+Q_IMPLEMENTATION_VALUE_LIMITS(ulong  )
+Q_IMPLEMENTATION_VALUE_LIMITS(ullong )
+Q_IMPLEMENTATION_VALUE_LIMITS(char   )
+Q_IMPLEMENTATION_VALUE_LIMITS(short  )
+Q_IMPLEMENTATION_VALUE_LIMITS(int    )
+Q_IMPLEMENTATION_VALUE_LIMITS(long   )
+Q_IMPLEMENTATION_VALUE_LIMITS(llong  )
+Q_IMPLEMENTATION_VALUE_LIMITS(float  )
+Q_IMPLEMENTATION_VALUE_LIMITS(double )
+Q_IMPLEMENTATION_VALUE_LIMITS(ldouble)
+Q_IMPLEMENTATION_VALUE_LIMITS(uint8  )
+Q_IMPLEMENTATION_VALUE_LIMITS(uint16 )
+Q_IMPLEMENTATION_VALUE_LIMITS(uint32 )
+Q_IMPLEMENTATION_VALUE_LIMITS(uint64 )
+Q_IMPLEMENTATION_VALUE_LIMITS(int8   )
+Q_IMPLEMENTATION_VALUE_LIMITS(int16  )
+Q_IMPLEMENTATION_VALUE_LIMITS(int32  )
+Q_IMPLEMENTATION_VALUE_LIMITS(int64  )
+Q_IMPLEMENTATION_VALUE_LIMITS(size   )
+Q_IMPLEMENTATION_VALUE_LIMITS(uintptr)
+Q_IMPLEMENTATION_VALUE_LIMITS(uinttop)
+Q_IMPLEMENTATION_VALUE_LIMITS(uintmax)
+Q_IMPLEMENTATION_VALUE_LIMITS(ssize  )
+Q_IMPLEMENTATION_VALUE_LIMITS(intptr )
+Q_IMPLEMENTATION_VALUE_LIMITS(inttop )
+Q_IMPLEMENTATION_VALUE_LIMITS(intmax )
+Q_IMPLEMENTATION_VALUE_LIMITS(natural)
+Q_IMPLEMENTATION_VALUE_LIMITS(integer)
+Q_IMPLEMENTATION_VALUE_LIMITS(real   )
+
+
+/* MARK: - Interpolation */
+
+
+#define Q_IMPLEMENTATION_VALUE_INTERPOLATION(type)		\
+								\
+Q_INLINE							\
+q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)	\
+	{return (b * amount) + (a * ((q##type)1 - alpha));}
+
+
+Q_IMPLEMENTATION_VALUE_INTERPOLATION(float  )
+Q_IMPLEMENTATION_VALUE_INTERPOLATION(double )
+Q_IMPLEMENTATION_VALUE_INTERPOLATION(ldouble)
 
 
 #endif /* __Q_functions_value_H__ */

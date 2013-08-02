@@ -12,49 +12,52 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/functions/value.h>
 #include <Q/inspection/language.h>
 
+#ifndef Q_2D_VALUE_EXPORT
+#	define Q_2D_VALUE_EXPORT Q_INLINE
+#endif
+
 #if Q_C_HAS(COMPOUND_LITERAL)
 
-#	define q_3d_uchar(  x, y, z)	((Q3DUChar  ){x, y, z})
-#	define q_3d_ushort( x, y, z)	((Q3DUShort ){x, y, z})
-#	define q_3d_uint(   x, y, z)	((Q3DUInt   ){x, y, z})
-#	define q_3d_ulong(  x, y, z)	((Q3DULong  ){x, y, z})
-#	define q_3d_ullong( x, y, z)	((Q3DULLong ){x, y, z})
-#	define q_3d_char(   x, y, z)	((Q3DChar   ){x, y, z})
-#	define q_3d_short(  x, y, z)	((Q3DShort  ){x, y, z})
-#	define q_3d_int(    x, y, z)	((Q3DInt    ){x, y, z})
-#	define q_3d_long(   x, y, z)	((Q3DLong   ){x, y, z})
-#	define q_3d_llong(  x, y, z)	((Q3DLLong  ){x, y, z})
-#	define q_3d_float(  x, y, z)	((Q3DFloat  ){x, y, z})
-#	define q_3d_double( x, y, z)	((Q3DDouble ){x, y, z})
-#	define q_3d_ldouble(x, y, z)	((Q3DLDouble){x, y, z})
-#	define q_3d_uint8(  x, y, z)	((Q3DUInt8  ){x, y, z})
-#	define q_3d_uint16( x, y, z)	((Q3DUInt16 ){x, y, z})
-#	define q_3d_uint32( x, y, z)	((Q3DUInt32 ){x, y, z})
-#	define q_3d_uint64( x, y, z)	((Q3DUInt64 ){x, y, z})
-#	define q_3d_int8(   x, y, z)	((Q3DInt8   ){x, y, z})
-#	define q_3d_int16(  x, y, z)	((Q3DInt16  ){x, y, z})
-#	define q_3d_int32(  x, y, z)	((Q3DInt32  ){x, y, z})
-#	define q_3d_int64(  x, y, z)	((Q3DInt64  ){x, y, z})
-#	define q_3d_size(   x, y, z)	((Q3DSize   ){x, y, z})
-#	define q_3d_uintptr(x, y, z)	((Q3DUIntPtr){x, y, z})
-#	define q_3d_uinttop(x, y, z)	((Q3DUIntTop){x, y, z})
-#	define q_3d_uintmax(x, y, z)	((Q3DUIntMax){x, y, z})
-#	define q_3d_ssize(  x, y, z)	((Q3DSSize  ){x, y, z})
-#	define q_3d_intptr( x, y, z)	((Q3DIntPtr ){x, y, z})
-#	define q_3d_inttop( x, y, z)	((Q3DIntTop ){x, y, z})
-#	define q_3d_intmax( x, y, z)	((Q3DIntMax ){x, y, z})
-#	define q_3d_natural(x, y, z)	((Q3DNatural){x, y, z})
-#	define q_3d_integer(x, y, z)	((Q3DInteger){x, y, z})
-#	define q_3d_real(   x, y, z)	((Q3DReal   ){x, y, z})
-
+#	define q_3d_uchar(  x, y, z) ((Q3DUChar  ){x, y, z})
+#	define q_3d_ushort( x, y, z) ((Q3DUShort ){x, y, z})
+#	define q_3d_uint(   x, y, z) ((Q3DUInt	 ){x, y, z})
+#	define q_3d_ulong(  x, y, z) ((Q3DULong	 ){x, y, z})
+#	define q_3d_ullong( x, y, z) ((Q3DULLong ){x, y, z})
+#	define q_3d_char(   x, y, z) ((Q3DChar	 ){x, y, z})
+#	define q_3d_short(  x, y, z) ((Q3DShort	 ){x, y, z})
+#	define q_3d_int(    x, y, z) ((Q3DInt	 ){x, y, z})
+#	define q_3d_long(   x, y, z) ((Q3DLong	 ){x, y, z})
+#	define q_3d_llong(  x, y, z) ((Q3DLLong	 ){x, y, z})
+#	define q_3d_float(  x, y, z) ((Q3DFloat	 ){x, y, z})
+#	define q_3d_double( x, y, z) ((Q3DDouble ){x, y, z})
+#	define q_3d_ldouble(x, y, z) ((Q3DLDouble){x, y, z})
+#	define q_3d_uint8(  x, y, z) ((Q3DUInt8	 ){x, y, z})
+#	define q_3d_uint16( x, y, z) ((Q3DUInt16 ){x, y, z})
+#	define q_3d_uint32( x, y, z) ((Q3DUInt32 ){x, y, z})
+#	define q_3d_uint64( x, y, z) ((Q3DUInt64 ){x, y, z})
+#	define q_3d_int8(   x, y, z) ((Q3DInt8	 ){x, y, z})
+#	define q_3d_int16(  x, y, z) ((Q3DInt16	 ){x, y, z})
+#	define q_3d_int32(  x, y, z) ((Q3DInt32	 ){x, y, z})
+#	define q_3d_int64(  x, y, z) ((Q3DInt64	 ){x, y, z})
+#	define q_3d_size(   x, y, z) ((Q3DSize	 ){x, y, z})
+#	define q_3d_uintptr(x, y, z) ((Q3DUIntPtr){x, y, z})
+#	define q_3d_uinttop(x, y, z) ((Q3DUIntTop){x, y, z})
+#	define q_3d_uintmax(x, y, z) ((Q3DUIntMax){x, y, z})
+#	define q_3d_ssize(  x, y, z) ((Q3DSSize	 ){x, y, z})
+#	define q_3d_intptr( x, y, z) ((Q3DIntPtr ){x, y, z})
+#	define q_3d_inttop( x, y, z) ((Q3DIntTop ){x, y, z})
+#	define q_3d_intmax( x, y, z) ((Q3DIntMax ){x, y, z})
+#	define q_3d_natural(x, y, z) ((Q3DNatural){x, y, z})
+#	define q_3d_integer(x, y, z) ((Q3DInteger){x, y, z})
+#	define q_3d_real(   x, y, z) ((Q3DReal	 ){x, y, z})
+						
 #	define Q_3D_VALUE_NEW(Type, type)
 
 #else
 
 #	define Q_3D_VALUE_NEW(Type, type)				\
 									\
-	Q_3D_VALUE_EXPORT						\
-	Q##Type q_3d_##type(q##type x, q##type y, q##type z)		\
+	Q_INLINE Q##Type q_3d_##type(q##type x, q##type y, q##type z)	\
 		{Q##Type magnitude = {x, y, z}; return magnitude;}
 
 #endif

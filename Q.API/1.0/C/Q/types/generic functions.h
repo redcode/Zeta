@@ -1,4 +1,4 @@
-/* Q API - types/handling.h
+/* Q API - types/generic functions.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,12 +6,164 @@
 Copyright © 2006-2012 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_types_handling_H__
-#define __Q_types_handling_H__
+#ifndef __Q_types_generic_functions_H__
+#define __Q_types_generic_functions_H__
 
 #include <Q/types/basics.h>
 
-#pragma mark - Generic handler types
+/* MARK: - General pourpose context access function types */
+
+typedef void	(* QDo)				(void* context);
+typedef void	(* QSwitch)			(void* context, qboolean state);
+
+typedef quint8	(* Q16BitAddressRead8Bit )	(void* context, quint16 address);
+typedef quint16	(* Q16BitAddressRead16Bit)	(void* context, quint16 address);
+typedef quint32 (* Q16BitAddressRead32Bit)	(void* context, quint16 address);
+typedef quint64 (* Q16BitAddressRead64Bit)	(void* context, quint16 address);
+
+typedef void	(* Q16BitAddressWrite8Bit )	(void* context, quint16 address, quint8  value);
+typedef void	(* Q16BitAddressWrite16Bit)	(void* context, quint16 address, quint16 value);
+typedef void	(* Q16BitAddressWrite32Bit)	(void* context, quint16 address, quint32 value);
+typedef void	(* Q16BitAddressWrite64Bit)	(void* context, quint16 address, quint64 value);
+
+typedef quint8	(* Q32BitAddressRead8Bit )	(void* context, quint32 address);
+typedef quint16	(* Q32BitAddressRead16Bit)	(void* context, quint32 address);
+typedef quint32 (* Q32BitAddressRead32Bit)	(void* context, quint32 address);
+typedef quint64 (* Q32BitAddressRead64Bit)	(void* context, quint32 address);
+
+typedef void	(* Q32BitAddressWrite8Bit )	(void* context, quint32 address, quint8  value);
+typedef void	(* Q32BitAddressWrite16Bit)	(void* context, quint32 address, quint16 value);
+typedef void	(* Q32BitAddressWrite32Bit)	(void* context, quint32 address, quint32 value);
+typedef void	(* Q32BitAddressWrite64Bit)	(void* context, quint32 address, quint64 value);
+
+typedef quint8	(* Q64BitAddressRead8Bit )	(void* context, quint32 address);
+typedef quint16	(* Q64BitAddressRead16Bit)	(void* context, quint32 address);
+typedef quint32 (* Q64BitAddressRead32Bit)	(void* context, quint32 address);
+typedef quint64 (* Q64BitAddressRead64Bit)	(void* context, quint32 address);
+
+typedef void	(* Q64BitAddressWrite8Bit )	(void* context, quint32 index, quint8  value);
+typedef void	(* Q64BitAddressWrite16Bit)	(void* context, quint32 index, quint16 value);
+typedef void	(* Q64BitAddressWrite32Bit)	(void* context, quint32 index, quint32 value);
+typedef void	(* Q64BitAddressWrite64Bit)	(void* context, quint32 index, quint64 value);
+
+typedef quint8	(* QRead8Bit )			(void* context);
+typedef quint16	(* QRead16Bit)			(void* context);
+typedef quint32	(* QRead32Bit)			(void* context);
+typedef quint64	(* QRead64Bit)			(void* context);
+
+typedef void	(* QWrite8Bit )			(void* context, quint8	value);
+typedef void	(* QWrite16Bit)			(void* context, quint16 value);
+typedef void	(* QWrite32Bit)			(void* context, quint32 value);
+typedef void	(* QWrite64Bit)			(void* context, quint64 value);
+
+/* MARK: - General pourpose function types */
+
+typedef void		(* QCopy)			(void*	context,
+							 void*	output);
+	
+typedef void		(* QCopyData)			(void*	context,
+							 qsize	data_size,
+							 void*	output);
+
+typedef qsize		(* QCopyAndSize)		(void*	context,
+							 void*	output);
+
+typedef qsize		(* QCopyDataAndSize)		(void*	context,
+							 qsize	data_size,
+							 void*	output);
+
+typedef void		(* QCopyRange)			(void*	context,
+							 QRange	range,
+							 void*	output);
+
+typedef void		(* QCopyRangeData)		(void*	context,
+							 QRange	range,
+							 qsize	data_size,
+							 void*	output);
+
+typedef void		(* QBoundedCopy)		(void*	context_start,
+							 void*	context_end,
+							 void*	output);
+
+typedef void		(* QBoundedCopyData)		(void*	context_start,
+							 void*	context_end,
+							 qsize	data_size,
+							 void*	output);
+
+typedef qsize		(* QBoundedCopyAndSize)		(void*	context_start,
+							 void*	context_end,
+							 void*	output);
+
+typedef qsize		(* QBoundedCopyDataAndSize)	(void*	context_start,
+							 void*	context_end,
+							 qsize	data_size,
+							 void*	output);
+
+typedef void		(* QBoundedCopyRange)		(void*	context_start,
+							 void*	context_end,
+							 void*	context_size,
+							 QRange	range,
+							 void*	output);
+
+typedef void		(* QBoundedCopyRangeData)	(void*	context_start,
+							 void*	context_end,
+							 void*	context_size,
+							 QRange	range,
+							 qsize	data_size,
+							 void*	output);
+
+typedef void		(* QCopyMany)			(void*	context,
+							 quint	count,
+							 void*	output);
+
+typedef void		(* QSkipOne)			(void*	input);
+
+typedef void		(* QSkipMany)			(void*	input,
+							 quint	count);
+
+typedef void		(* QSwapHalves)			(void*	context);
+
+typedef qsize		(* QSize)			(void*	context);
+
+typedef void*		(* QElement)			(void*	context,
+							 qsize	index);
+
+typedef void		(* QSetElement)			(void*	context,
+							 qsize	index,
+							 void*	value);
+
+typedef void		(* QMoveElement)		(void*	context,
+							 qsize	old_index,
+							 qsize	new_index);
+
+typedef qint		(* QCompareElements)		(void*	context,
+							 qsize	a_index,
+							 qsize	b_index);
+
+typedef void		(* QSwapElements)		(void*	context,
+							 qsize	a_index,
+							 qsize	b_index);
+
+typedef qboolean	(* QIsValid)			(void*	context);
+
+typedef qboolean	(* QAreEqual)			(void*	a,
+							 void*	b);
+
+typedef qboolean	(* QAreEqualWithData)		(void*	a,
+							 void*	b,
+							 void*	data);
+
+typedef qint		(* QCompare)			(void*	a,
+							 void*	b);
+
+typedef qint		(* QCompareWithData)		(void*	a,
+							 void*	b,
+							 void*	data);
+
+typedef void		(* QSwap)			(void*	a,
+							 void*	b);
+
+/* MARK: - Generic handler types */
 
 typedef void	(* QHandleUInt8  )			(quint8   value  );
 typedef void	(* QHandleUInt16 )			(quint8   value  );
@@ -123,7 +275,7 @@ typedef void	(* QHandleContextIndexDoubleAndData )	(void* context, qsize index, 
 typedef void	(* QHandleContextIndexLDoubleAndData)	(void* context, qsize index, qldouble value,   void* data);
 typedef void	(* QHandleContextIndexPointerAndData)	(void* context, qsize index, void*    pointer, void* data);
 
-#pragma mark - Generic handler with stop types
+/* MARK: - Generic handler with stop types */
 
 typedef void	(* QHandleUInt8AndStop  )			(quint8   value,   qboolean *stop);
 typedef void	(* QHandleUInt16AndStop )			(quint8   value,   qboolean *stop);
@@ -235,208 +387,154 @@ typedef void	(* QHandleContextIndexDoubleDataAndStop )	(void* context, qsize ind
 typedef void	(* QHandleContextIndexLDoubleDataAndStop)	(void* context, qsize index, qldouble value,   void* data, qboolean *stop);
 typedef void	(* QHandleContextIndexPointerDataAndStop)	(void* context, qsize index, void*    pointer, void* data, qboolean *stop);
 
-#pragma mark - Per type redefinitions
+/* MARK: - Generic validator types */
+
+typedef qboolean	(* QValidateUInt8  )			(quint8   value  );
+typedef qboolean	(* QValidateUInt16 )			(quint8   value  );
+typedef qboolean	(* QValidateUInt32 )			(quint8   value  );
+typedef qboolean	(* QValidateUInt64 )			(quint8   value  );
+typedef qboolean	(* QValidateInt8   )			(qint8	  value  );
+typedef qboolean	(* QValidateInt16  )			(qint8	  value  );
+typedef qboolean	(* QValidateInt32  )			(qint8	  value  );
+typedef qboolean	(* QValidateInt64  )			(qint8	  value  );
+typedef qboolean	(* QValidateFloat  )			(qfloat   value  );
+typedef qboolean	(* QValidateDouble )			(qdouble  value  );
+typedef qboolean	(* QValidateLDouble)			(qldouble value  );
+typedef qboolean	(* QValidatePointer)			(void*	  pointer);
+
+typedef qboolean	(* QValidateUInt8AndData  )		(quint8   value,   void* data);
+typedef qboolean	(* QValidateUInt16AndData )		(quint8   value,   void* data);
+typedef qboolean	(* QValidateUInt32AndData )		(quint8   value,   void* data);
+typedef qboolean	(* QValidateUInt64AndData )		(quint8   value,   void* data);
+typedef qboolean	(* QValidateInt8AndData   )		(qint8	  value,   void* data);
+typedef qboolean	(* QValidateInt16AndData  )		(qint8	  value,   void* data);
+typedef qboolean	(* QValidateInt32AndData  )		(qint8	  value,   void* data);
+typedef qboolean	(* QValidateInt64AndData  )		(qint8	  value,   void* data);
+typedef qboolean	(* QValidateFloatAndData  )		(qfloat   value,   void* data);
+typedef qboolean	(* QValidateDoubleAndData )		(qdouble  value,   void* data);
+typedef qboolean	(* QValidateLDoubleAndData)		(qldouble value,   void* data);
+typedef qboolean	(* QValidatePointerAndData)		(void*	  pointer, void* data);
+
+typedef qboolean	(* QValidateIndex	   )		(qsize index		      );
+typedef qboolean	(* QValidateIndexAndData   )		(qsize index, void*    data   );
+typedef qboolean	(* QValidateIndexAndUInt8  )		(qsize index, quint8   value  );
+typedef qboolean	(* QValidateIndexAndUInt16 )		(qsize index, quint8   value  );
+typedef qboolean	(* QValidateIndexAndUInt32 )		(qsize index, quint8   value  );
+typedef qboolean	(* QValidateIndexAndUInt64 )		(qsize index, quint8   value  );
+typedef qboolean	(* QValidateIndexAndInt8   )		(qsize index, qint8    value  );
+typedef qboolean	(* QValidateIndexAndInt16  )		(qsize index, qint8    value  );
+typedef qboolean	(* QValidateIndexAndInt32  )		(qsize index, qint8    value  );
+typedef qboolean	(* QValidateIndexAndInt64  )		(qsize index, qint8    value  );
+typedef qboolean	(* QValidateIndexAndFloat  )		(qsize index, qfloat   value  );
+typedef qboolean	(* QValidateIndexAndDouble )		(qsize index, qdouble  value  );
+typedef qboolean	(* QValidateIndexAndLDouble)		(qsize index, qldouble value  );
+typedef qboolean	(* QValidateIndexAndPointer)		(qsize index, void*    pointer);
+
+typedef qboolean	(* QValidateIndexUInt8AndData  )	(qsize index, quint8   value,	void* data);
+typedef qboolean	(* QValidateIndexUInt16AndData )	(qsize index, quint8   value,	void* data);
+typedef qboolean	(* QValidateIndexUInt32AndData )	(qsize index, quint8   value,	void* data);
+typedef qboolean	(* QValidateIndexUInt64AndData )	(qsize index, quint8   value,	void* data);
+typedef qboolean	(* QValidateIndexInt8AndData   )	(qsize index, qint8    value,	void* data);
+typedef qboolean	(* QValidateIndexInt16AndData  )	(qsize index, qint8    value,	void* data);
+typedef qboolean	(* QValidateIndexInt32AndData  )	(qsize index, qint8    value,	void* data);
+typedef qboolean	(* QValidateIndexInt64AndData  )	(qsize index, qint8    value,	void* data);
+typedef qboolean	(* QValidateIndexFloatAndData  )	(qsize index, qfloat   value,	void* data);
+typedef qboolean	(* QValidateIndexDoubleAndData )	(qsize index, qdouble  value,	void* data);
+typedef qboolean	(* QValidateIndexLDoubleAndData)	(qsize index, qldouble value,	void* data);
+typedef qboolean	(* QValidateIndexPointerAndData)	(qsize index, void*    pointer, void* data);
+
+typedef qboolean	(* QValidateContextAndUInt8  )		(void* context, quint8	 value	);
+typedef qboolean	(* QValidateContextAndUInt16 )		(void* context, quint8	 value	);
+typedef qboolean	(* QValidateContextAndUInt32 )		(void* context, quint8	 value	);
+typedef qboolean	(* QValidateContextAndUInt64 )		(void* context, quint8	 value	);
+typedef qboolean	(* QValidateContextAndInt8   )		(void* context, qint8	 value	);
+typedef qboolean	(* QValidateContextAndInt16  )		(void* context, qint8	 value	);
+typedef qboolean	(* QValidateContextAndInt32  )		(void* context, qint8	 value	);
+typedef qboolean	(* QValidateContextAndInt64  )		(void* context, qint8	 value	);
+typedef qboolean	(* QValidateContextAndFloat  )		(void* context, qfloat	 value	);
+typedef qboolean	(* QValidateContextAndDouble )		(void* context, qdouble  value	);
+typedef qboolean	(* QValidateContextAndLDouble)		(void* context, qldouble value	);
+typedef qboolean	(* QValidateContextAndPointer)		(void* context, void*	 pointer);
+
+typedef qboolean	(* QValidateContextUInt8AndData  )	(void* context, quint8	 value,   void* data);
+typedef qboolean	(* QValidateContextUInt16AndData )	(void* context, quint8	 value,   void* data);
+typedef qboolean	(* QValidateContextUInt32AndData )	(void* context, quint8	 value,   void* data);
+typedef qboolean	(* QValidateContextUInt64AndData )	(void* context, quint8	 value,   void* data);
+typedef qboolean	(* QValidateContextInt8AndData	 )	(void* context, qint8	 value,   void* data);
+typedef qboolean	(* QValidateContextInt16AndData  )	(void* context, qint8	 value,   void* data);
+typedef qboolean	(* QValidateContextInt32AndData  )	(void* context, qint8	 value,   void* data);
+typedef qboolean	(* QValidateContextInt64AndData  )	(void* context, qint8	 value,   void* data);
+typedef qboolean	(* QValidateContextFloatAndData  )	(void* context, qfloat	 value,   void* data);
+typedef qboolean	(* QValidateContextDoubleAndData )	(void* context, qdouble  value,   void* data);
+typedef qboolean	(* QValidateContextLDoubleAndData)	(void* context, qldouble value,   void* data);
+typedef qboolean	(* QValidateContextPointerAndData)	(void* context, void*	 pointer, void* data);
+
+typedef qboolean	(* QValidateContextAndIndex    )	(void* context, qsize index	       );
+typedef qboolean	(* QValidateContextIndexAndData)	(void* context, qsize index, void* data);
+
+typedef qboolean	(* QValidateContextIndexAndUInt8  )	(void* context, qsize index, quint8   value  );
+typedef qboolean	(* QValidateContextIndexAndUInt16 )	(void* context, qsize index, quint8   value  );
+typedef qboolean	(* QValidateContextIndexAndUInt32 )	(void* context, qsize index, quint8   value  );
+typedef qboolean	(* QValidateContextIndexAndUInt64 )	(void* context, qsize index, quint8   value  );
+typedef qboolean	(* QValidateContextIndexAndInt8   )	(void* context, qsize index, qint8    value  );
+typedef qboolean	(* QValidateContextIndexAndInt16  )	(void* context, qsize index, qint8    value  );
+typedef qboolean	(* QValidateContextIndexAndInt32  )	(void* context, qsize index, qint8    value  );
+typedef qboolean	(* QValidateContextIndexAndInt64  )	(void* context, qsize index, qint8    value  );
+typedef qboolean	(* QValidateContextIndexAndFloat  )	(void* context, qsize index, qfloat   value  );
+typedef qboolean	(* QValidateContextIndexAndDouble )	(void* context, qsize index, qdouble  value  );
+typedef qboolean	(* QValidateContextIndexAndLDouble)	(void* context, qsize index, qldouble value  );
+typedef qboolean	(* QValidateContextIndexAndPointer)	(void* context, qsize index, void*    pointer);
+
+typedef qboolean	(* QValidateContextIndexUInt8AndData  )	(void* context, qsize index, quint8   value,   void* data);
+typedef qboolean	(* QValidateContextIndexUInt16AndData )	(void* context, qsize index, quint8   value,   void* data);
+typedef qboolean	(* QValidateContextIndexUInt32AndData )	(void* context, qsize index, quint8   value,   void* data);
+typedef qboolean	(* QValidateContextIndexUInt64AndData )	(void* context, qsize index, quint8   value,   void* data);
+typedef qboolean	(* QValidateContextIndexInt8AndData   )	(void* context, qsize index, qint8    value,   void* data);
+typedef qboolean	(* QValidateContextIndexInt16AndData  )	(void* context, qsize index, qint8    value,   void* data);
+typedef qboolean	(* QValidateContextIndexInt32AndData  )	(void* context, qsize index, qint8    value,   void* data);
+typedef qboolean	(* QValidateContextIndexInt64AndData  )	(void* context, qsize index, qint8    value,   void* data);
+typedef qboolean	(* QValidateContextIndexFloatAndData  )	(void* context, qsize index, qfloat   value,   void* data);
+typedef qboolean	(* QValidateContextIndexDoubleAndData )	(void* context, qsize index, qdouble  value,   void* data);
+typedef qboolean	(* QValidateContextIndexLDoubleAndData)	(void* context, qsize index, qldouble value,   void* data);
+typedef qboolean	(* QValidateContextIndexPointerAndData)	(void* context, qsize index, void*    pointer, void* data);
+
+
+#if Q_CHAR_BITS == 8
+#elif Q_CHAR_BITS == 16
+#endif
 
 #if Q_SHORT_BITS == 16
-	typedef	QHandleUInt16				QHandleUShort;
-	typedef QHandleInt16				QHandleShort;
-	typedef QHandleUInt16AndData			QHandleUShortAndData;
-	typedef QHandleInt16AndData			QHandleShortAndData;
-	typedef QHandleIndexAndUInt16			QHandleIndexAndUShort;
-	typedef QHandleIndexAndInt16			QHandleIndexAndShort;
-	typedef QHandleIndexUInt16AndData		QHandleIndexUShortAndData;
-	typedef QHandleIndexInt16AndData		QHandleIndexShortAndData;
-	typedef QHandleContextAndUInt16			QHandleContextAndUShort;
-	typedef QHandleContextAndInt16			QHandleContextAndShort;
-	typedef QHandleContextUInt16AndData		QHandleContextUShortAndData;
-	typedef QHandleContextInt16AndData		QHandleContextShortAndData;
-	typedef QHandleContextIndexAndUInt16		QHandleContextIndexAndUShort;
-	typedef QHandleContextIndexAndInt16		QHandleContextIndexAndShort;
-	typedef QHandleContextIndexUInt16AndData	QHandleContextIndexUShortAndData;
-	typedef QHandleContextIndexInt16AndData		QHandleContextIndexShortAndData;
 #elif Q_SHORT_BITS == 32
-	typedef	QHandleUInt32				QHandleUShort;
-	typedef QHandleInt32				QHandleShort;
-	typedef QHandleUInt32AndData			QHandleUShortAndData;
-	typedef QHandleInt32AndData			QHandleShortAndData;
-	typedef QHandleIndexAndUInt32			QHandleIndexAndUShort;
-	typedef QHandleIndexAndInt32			QHandleIndexAndShort;
-	typedef QHandleIndexUInt32AndData		QHandleIndexUShortAndData;
-	typedef QHandleIndexInt32AndData		QHandleIndexShortAndData;
-	typedef QHandleContextAndUInt32			QHandleContextAndUShort;
-	typedef QHandleContextAndInt32			QHandleContextAndShort;
-	typedef QHandleContextUInt32AndData		QHandleContextUShortAndData;
-	typedef QHandleContextInt32AndData		QHandleContextShortAndData;
-	typedef QHandleContextIndexAndUInt32		QHandleContextIndexAndUShort;
-	typedef QHandleContextIndexAndInt32		QHandleContextIndexAndShort;
-	typedef QHandleContextIndexUInt32AndData	QHandleContextIndexUShortAndData;
-	typedef QHandleContextIndexInt32AndData		QHandleContextIndexShortAndData;
 #endif
 
 #if Q_INT_BITS == 16
-	typedef	QHandleUInt16				QHandleUInt;
-	typedef QHandleInt16				QHandleInt;
-	typedef QHandleUInt16AndData			QHandleUIntAndData;
-	typedef QHandleInt16AndData			QHandleIntAndData;
-	typedef QHandleIndexAndUInt16			QHandleIndexAndUInt;
-	typedef QHandleIndexAndInt16			QHandleIndexAndInt;
-	typedef QHandleIndexUInt16AndData		QHandleIndexUIntAndData;
-	typedef QHandleIndexInt16AndData		QHandleIndexIntAndData;
-	typedef QHandleContextAndUInt16			QHandleContextAndUInt;
-	typedef QHandleContextAndInt16			QHandleContextAndInt;
-	typedef QHandleContextUInt16AndData		QHandleContextUIntAndData;
-	typedef QHandleContextInt16AndData		QHandleContextIntAndData;
-	typedef QHandleContextIndexAndUInt16		QHandleContextIndexAndUInt;
-	typedef QHandleContextIndexAndInt16		QHandleContextIndexAndInt;
-	typedef QHandleContextIndexUInt16AndData	QHandleContextIndexUIntAndData;
-	typedef QHandleContextIndexInt16AndData		QHandleContextIndexIntAndData;
 #elif Q_INT_BITS == 32
-	typedef	QHandleUInt32				QHandleUInt;
-	typedef QHandleInt32				QHandleInt;
-	typedef QHandleUInt32AndData			QHandleUIntAndData;
-	typedef QHandleInt32AndData			QHandleIntAndData;
-	typedef QHandleIndexAndUInt32			QHandleIndexAndUInt;
-	typedef QHandleIndexAndInt32			QHandleIndexAndInt;
-	typedef QHandleIndexUInt32AndData		QHandleIndexUIntAndData;
-	typedef QHandleIndexInt32AndData		QHandleIndexIntAndData;
-	typedef QHandleContextAndUInt32			QHandleContextAndUInt;
-	typedef QHandleContextAndInt32			QHandleContextAndInt;
-	typedef QHandleContextUInt32AndData		QHandleContextUIntAndData;
-	typedef QHandleContextInt32AndData		QHandleContextIntAndData;
-	typedef QHandleContextIndexAndUInt32		QHandleContextIndexAndUInt;
-	typedef QHandleContextIndexAndInt32		QHandleContextIndexAndInt;
-	typedef QHandleContextIndexUInt32AndData	QHandleContextIndexUIntAndData;
-	typedef QHandleContextIndexInt32AndData		QHandleContextIndexIntAndData;
 #elif Q_INT_BITS == 64
-	typedef	QHandleUInt64				QHandleUInt;
-	typedef QHandleInt64				QHandleInt;
-	typedef QHandleUInt64AndData			QHandleUIntAndData;
-	typedef QHandleInt64AndData			QHandleIntAndData;
-	typedef QHandleIndexAndUInt64			QHandleIndexAndUInt;
-	typedef QHandleIndexAndInt64			QHandleIndexAndInt;
-	typedef QHandleIndexUInt64AndData		QHandleIndexUIntAndData;
-	typedef QHandleIndexInt64AndData		QHandleIndexIntAndData;
-	typedef QHandleContextAndUInt64			QHandleContextAndUInt;
-	typedef QHandleContextAndInt64			QHandleContextAndInt;
-	typedef QHandleContextUInt64AndData		QHandleContextUIntAndData;
-	typedef QHandleContextInt64AndData		QHandleContextIntAndData;
-	typedef QHandleContextIndexAndUInt64		QHandleContextIndexAndUInt;
-	typedef QHandleContextIndexAndInt64		QHandleContextIndexAndInt;
-	typedef QHandleContextIndexUInt64AndData	QHandleContextIndexUIntAndData;
-	typedef QHandleContextIndexInt64AndData		QHandleContextIndexIntAndData;
 #endif
 
 #if Q_LONG_BITS == 32
-	typedef	QHandleUInt32				QHandleULong;
-	typedef QHandleInt32				QHandleLong;
-	typedef QHandleUInt32AndData			QHandleULongAndData;
-	typedef QHandleInt32AndData			QHandleLongAndData;
-	typedef QHandleIndexAndUInt32			QHandleIndexAndULong;
-	typedef QHandleIndexAndInt32			QHandleIndexAndLong;
-	typedef QHandleIndexUInt32AndData		QHandleIndexULongAndData;
-	typedef QHandleIndexInt32AndData		QHandleIndexLongAndData;
-	typedef QHandleContextAndUInt32			QHandleContextAndULong;
-	typedef QHandleContextAndInt32			QHandleContextAndLong;
-	typedef QHandleContextUInt32AndData		QHandleContextULongAndData;
-	typedef QHandleContextInt32AndData		QHandleContextLongAndData;
-	typedef QHandleContextIndexAndUInt32		QHandleContextIndexAndULong;
-	typedef QHandleContextIndexAndInt32		QHandleContextIndexAndLong;
-	typedef QHandleContextIndexUInt32AndData	QHandleContextIndexULongAndData;
-	typedef QHandleContextIndexInt32AndData		QHandleContextIndexLongAndData;
 #elif Q_LONG_BITS == 64
-	typedef	QHandleUInt64				QHandleULong;
-	typedef QHandleInt64				QHandleLong;
-	typedef QHandleUInt64AndData			QHandleULongAndData;
-	typedef QHandleInt64AndData			QHandleLongAndData;
-	typedef QHandleIndexAndUInt64			QHandleIndexAndULong;
-	typedef QHandleIndexAndInt64			QHandleIndexAndLong;
-	typedef QHandleIndexUInt64AndData		QHandleIndexULongAndData;
-	typedef QHandleIndexInt64AndData		QHandleIndexLongAndData;
-	typedef QHandleContextAndUInt64			QHandleContextAndULong;
-	typedef QHandleContextAndInt64			QHandleContextAndLong;
-	typedef QHandleContextUInt64AndData		QHandleContextULongAndData;
-	typedef QHandleContextInt64AndData		QHandleContextLongAndData;
-	typedef QHandleContextIndexAndUInt64		QHandleContextIndexAndULong;
-	typedef QHandleContextIndexAndInt64		QHandleContextIndexAndLong;
-	typedef QHandleContextIndexUInt64AndData	QHandleContextIndexULongAndData;
-	typedef QHandleContextIndexInt64AndData		QHandleContextIndexLongAndData;
 #endif
 
 #if Q_LLONG_BITS == 32
-	typedef	QHandleUInt32				QHandleULLong;
-	typedef QHandleInt32				QHandleLLong;
-	typedef QHandleUInt32AndData			QHandleULLongAndData;
-	typedef QHandleInt32AndData			QHandleLLongAndData;
-	typedef QHandleIndexAndUInt32			QHandleIndexAndULLong;
-	typedef QHandleIndexAndInt32			QHandleIndexAndLLong;
-	typedef QHandleIndexUInt32AndData		QHandleIndexULLongAndData;
-	typedef QHandleIndexInt32AndData		QHandleIndexLLongAndData;
-	typedef QHandleContextAndUInt32			QHandleContextAndULLong;
-	typedef QHandleContextAndInt32			QHandleContextAndLLong;
-	typedef QHandleContextUInt32AndData		QHandleContextULLongAndData;
-	typedef QHandleContextInt32AndData		QHandleContextLLongAndData;
-	typedef QHandleContextIndexAndUInt32		QHandleContextIndexAndULLong;
-	typedef QHandleContextIndexAndInt32		QHandleContextIndexAndLLong;
-	typedef QHandleContextIndexUInt32AndData	QHandleContextIndexULLongAndData;
-	typedef QHandleContextIndexInt32AndData		QHandleContextIndexLLongAndData;
 #elif Q_LLONG_BITS == 64
-	typedef	QHandleUInt64				QHandleULLong;
-	typedef QHandleInt64				QHandleLLong;
-	typedef QHandleUInt64AndData			QHandleULLongAndData;
-	typedef QHandleInt64AndData			QHandleLLongAndData;
-	typedef QHandleIndexAndUInt64			QHandleIndexAndULLong;
-	typedef QHandleIndexAndInt64			QHandleIndexAndLLong;
-	typedef QHandleIndexUInt64AndData		QHandleIndexULLongAndData;
-	typedef QHandleIndexInt64AndData		QHandleIndexLLongAndData;
-	typedef QHandleContextAndUInt64			QHandleContextAndULLong;
-	typedef QHandleContextAndInt64			QHandleContextAndLLong;
-	typedef QHandleContextUInt64AndData		QHandleContextULLongAndData;
-	typedef QHandleContextInt64AndData		QHandleContextLLongAndData;
-	typedef QHandleContextIndexAndUInt64		QHandleContextIndexAndULLong;
-	typedef QHandleContextIndexAndInt64		QHandleContextIndexAndLLong;
-	typedef QHandleContextIndexUInt64AndData	QHandleContextIndexULLongAndData;
-	typedef QHandleContextIndexInt64AndData		QHandleContextIndexLLongAndData;
 #endif
 
 #if Q_SIZE_BITS == 32
-	typedef	QHandleUInt32				QHandleSize;
-	typedef QHandleInt32				QHandleSSize;
-	typedef QHandleUInt32AndData			QHandleSizeAndData;
-	typedef QHandleInt32AndData			QHandleSSizeAndData;
-	typedef QHandleIndexAndUInt32			QHandleIndexAndSize;
-	typedef QHandleIndexAndInt32			QHandleIndexAndSSize;
-	typedef QHandleIndexUInt32AndData		QHandleIndexSizeAndData;
-	typedef QHandleIndexInt32AndData		QHandleIndexSSizeAndData;
-	typedef QHandleContextAndUInt32			QHandleContextAndSize;
-	typedef QHandleContextAndInt32			QHandleContextAndSSize;
-	typedef QHandleContextUInt32AndData		QHandleContextSizeAndData;
-	typedef QHandleContextInt32AndData		QHandleContextSSizeAndData;
-	typedef QHandleContextIndexAndUInt32		QHandleContextIndexAndSize;
-	typedef QHandleContextIndexAndInt32		QHandleContextIndexAndSSize;
-	typedef QHandleContextIndexUInt32AndData	QHandleContextIndexSizeAndData;
-	typedef QHandleContextIndexInt32AndData		QHandleContextIndexSSizeAndData;
 #elif Q_SIZE_BITS == 64
-	typedef	QHandleUInt64				QHandleSize;
-	typedef QHandleInt64				QHandleSSize;
-	typedef QHandleUInt64AndData			QHandleSizeAndData;
-	typedef QHandleInt64AndData			QHandleSSizeAndData;
-	typedef QHandleIndexAndUInt64			QHandleIndexAndSize;
-	typedef QHandleIndexAndInt64			QHandleIndexAndSSize;
-	typedef QHandleIndexUInt64AndData		QHandleIndexSizeAndData;
-	typedef QHandleIndexInt64AndData		QHandleIndexSSizeAndData;
-	typedef QHandleContextAndUInt64			QHandleContextAndSize;
-	typedef QHandleContextAndInt64			QHandleContextAndSSize;
-	typedef QHandleContextUInt64AndData		QHandleContextSizeAndData;
-	typedef QHandleContextInt64AndData		QHandleContextSSizeAndData;
-	typedef QHandleContextIndexAndUInt64		QHandleContextIndexAndSize;
-	typedef QHandleContextIndexAndInt64		QHandleContextIndexAndSSize;
-	typedef QHandleContextIndexUInt64AndData	QHandleContextIndexSizeAndData;
-	typedef QHandleContextIndexInt64AndData		QHandleContextIndexSSizeAndData;
 #endif
 
-#pragma mark - Indirect handle call type
+#if Q_INTPTR_BITS == 32
+#elif Q_INTPTR_BITS == 64
+#endif
 
-typedef void	(* QCallHandle)	(QFunctionContextAndData* call,
-				 QPointerAndIndex*	  data);
+#if Q_INTTOP_BITS == 32
+#elif Q_INTTOP_BITS == 64
+#elif Q_INTTOP_BITS == 128
+#endif
 
-#endif /* __Q_types_handling_H__ */
+#if Q_INTMAX_BITS == 64
+#elif Q_INTMAX_BITS == 128
+#endif
+
+#endif /* __Q_types_generic_functions_H__ */
