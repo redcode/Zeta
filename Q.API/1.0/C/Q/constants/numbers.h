@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_constants_numbers_H__
 #define __Q_constants_numbers_H__
 
-#pragma mark - Irrational numbers
+/* MARK: - Irrational numbers */
 
 #define Q_ALPHA /* α ~ Feigenbaum's α Constant */		\
 2.50290787509589282228390287321821578638127137672714997733619205\
@@ -175,7 +175,7 @@ Released under the terms of the GNU General Public License v3. */
 1.20205690315959428539973816151144999076498629234049888179227155\
 534183820578631309018645587360933525814619915
 
-#pragma mark - Integer constants 
+/* MARK: - Integer constants */
 
 #define Q_CARMACK_NUMBER	0x5F3759DF
 #define Q_LOMONT_NUMBER		0x5F375A86
