@@ -510,7 +510,7 @@ Q_IMPLEMENTATION_VALUE_LIMITS(real   )
 								\
 Q_INLINE							\
 q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)	\
-	{return (b * amount) + (a * ((q##type)1 - alpha));}
+	{return (b * alpha) + (a * ((q##type)1 - alpha));}
 
 
 Q_IMPLEMENTATION_VALUE_INTERPOLATION(float  )

@@ -52,17 +52,12 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_JOIN_7(a, b, c, d, e, f, g)		Q_JOIN_6_(a, b, c, d, e, f, g)
 #define Q_JOIN_8(a, b, c, d, e, f, g, h)	Q_JOIN_6_(a, b, c, d, e, f, g, h)
 
-#define Q_JOIN_A_B(a, b)			Q_JOIN_2_(a, b) /* Needed only for Q_MERGE(...) */
+#define Q_JOIN_A_B(a, b)			Q_JOIN_2_(a, b) /* Needed only for Q_JOIN(...) */
 
-#define Q_JOIN(...)				Q_STEP	(Q_JOIN_A_B(Q_JOIN_,				  \
-							 Q_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N())))   \
-							(__VA_ARGS__)
-
-/*#define Q_MERGE(...)				Q_STEP(Q_MERGE_2(Q_MERGE_, Q_STEP(Q_ARGUMENT_COUNT(__VA_ARGS__)))) \
-							(__VA_ARGS__)*/
-
-//#define Q_MERGE_FOR(...)			Q_MERGE_2_(Q_MERGE_, Q_ARGUMENT_COUNT(__VA_ARGS__))
-//#define Q_MERGE(...)				Q_MERGE_2(Q_MERGE_, Q_ARGUMENT_COUNT(__VA_ARGS__))(__VA_ARGS__)
+#define Q_JOIN(...)				Q_STEP(Q_JOIN_A_B						\
+							(Q_JOIN_,					\
+							 Q_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N()))	\
+						) (__VA_ARGS__)
 
 #define Q_HEADER(header)			<header>
 

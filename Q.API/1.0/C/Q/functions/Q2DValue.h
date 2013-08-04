@@ -57,8 +57,8 @@ Released under the terms of the GNU General Public License v3. */
 
 #	define Q_2D_VALUE_NEW(Type, type)				\
 									\
-	Q_INLINE Q##Type q_2d_##type(q##type x, q##type y)		\
-		{Q##Type magnitude = {x, y}; return magnitude;}
+	Q_INLINE Q2D##Type q_2d_##type(q##type x, q##type y)		\
+		{Q2D##Type magnitude = {x, y}; return magnitude;}
 
 #endif
 
@@ -99,7 +99,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_IMPLEMENTATION_2D_VALUE(Type, type)					\
 										\
 										\
-Q_2D_NEW(Type, type)								\
+Q_2D_VALUE_NEW(Type, type)							\
 										\
 										\
 Q_2D_VALUE_EXPORT								\
