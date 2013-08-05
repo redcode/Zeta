@@ -415,15 +415,16 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_absolute			q_float_absolute
 #	define q_minimum			q_float_minimum
 #	define q_maximum			q_float_maximum
-#	define q_clamp				q_float_clamp
 #	define q_lerp				q_float_lerp
+#	define q_absolute			q_float_absolute
+#	define q_clamp				q_float_clamp
 
 #	define q_2d				q_2d_float
 #	define q_2d_zero			q_2d_float_zero
-#	define q_2d_are_eauql			q_2d_float_are_equal
+#	define q_2d_are_equal			q_2d_float_are_equal
+#	define q_2d_swap			q_2d_float_swap
 #	define q_2d_contains			q_2d_float_contains
 #	define q_2d_add				q_2d_float_add
 #	define q_2d_subtract			q_2d_float_subtract
@@ -435,16 +436,21 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_2d_maximum			q_2d_float_maximum
 #	define q_2d_middle			q_2d_float_middle
 #	define q_2d_fit				q_2d_float_fit
+#	define q_2d_lerp			q_2d_float_lerp
 #	define q_2d_is_zero			q_2d_float_is_zero
 #	define q_2d_negative			q_2d_float_negative
+#	define q_2d_absolute			q_2d_float_absolute
 #	define q_2d_area			q_2d_float_area
 #	define q_2d_square_length		q_2d_float_square_length
 #	define q_2d_multiply_by_scalar		q_2d_float_multiply_by_scalar
 #	define q_2d_divide_by_scalar		q_2d_float_divide_by_scalar
+#	define q_2d_clamp			q_2d_float_clamp
+#	define q_2d_square_clamp		q_2d_float_square_clamp
 
 #	define q_3d				q_3d_float
 #	define q_3d_zero			q_3d_float_zero
 #	define q_3d_are_equal			q_3d_float_are_equal
+#	define q_3d_swap			q_3d_float_swap
 #	define q_3d_contains			q_3d_float_contains
 #	define q_3d_add				q_3d_float_add
 #	define q_3d_subtract			q_3d_float_subtract
@@ -456,12 +462,16 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_3d_maximum			q_3d_float_maximum
 #	define q_3d_middle			q_3d_float_middle
 #	define q_3d_fit				q_3d_float_fit
+#	define q_3d_lerp			q_3d_float_lerp
 #	define q_3d_is_zero			q_3d_float_is_zero
 #	define q_3d_negative			q_3d_float_negative
+#	define q_3d_absolute			q_3d_float_absolute
 #	define q_3d_volume			q_3d_float_volume
 #	define q_3d_square_length		q_3d_float_square_length
 #	define q_3d_multiply_by_scalar		q_3d_float_multiply_by_scalar
 #	define q_3d_divide_by_scalar		q_3d_float_divide_by_scalar
+#	define q_3d_clamp			q_3d_float_clamp
+#	define q_3d_cube_clamp			q_3d_float_cube_clamp
 #	define q_3d_rotated_as_axes		q_3d_float_rotated_as_axes
 
 #	define q_2d_vector			q_2d_float_vector
@@ -503,15 +513,16 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_absolute			q_ldouble_absolute
 #	define q_minimum			q_ldouble_minimum
 #	define q_maximum			q_ldouble_maximum
-#	define q_clamp				q_ldouble_clamp
 #	define q_lerp				q_ldouble_lerp
+#	define q_absolute			q_ldouble_absolute
+#	define q_clamp				q_ldouble_clamp
 
 #	define q_2d				q_2d_ldouble
 #	define q_2d_zero			q_2d_ldouble_zero
-#	define q_2d_are_eauql			q_2d_ldouble_are_equal
+#	define q_2d_are_equal			q_2d_ldouble_are_equal
+#	define q_2d_swap			q_2d_ldouble_swap
 #	define q_2d_contains			q_2d_ldouble_contains
 #	define q_2d_add				q_2d_ldouble_add
 #	define q_2d_subtract			q_2d_ldouble_subtract
@@ -523,16 +534,21 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_2d_maximum			q_2d_ldouble_maximum
 #	define q_2d_middle			q_2d_ldouble_middle
 #	define q_2d_fit				q_2d_ldouble_fit
+#	define q_2d_lerp			q_2d_ldouble_lerp
 #	define q_2d_is_zero			q_2d_ldouble_is_zero
 #	define q_2d_negative			q_2d_ldouble_negative
+#	define q_2d_absolute			q_2d_ldouble_absolute
 #	define q_2d_area			q_2d_ldouble_area
 #	define q_2d_square_length		q_2d_ldouble_square_length
 #	define q_2d_multiply_by_scalar		q_2d_ldouble_multiply_by_scalar
 #	define q_2d_divide_by_scalar		q_2d_ldouble_divide_by_scalar
+#	define q_2d_clamp			q_2d_ldouble_clamp
+#	define q_2d_square_clamp		q_2d_ldouble_square_clamp
 
 #	define q_3d				q_3d_ldouble
 #	define q_3d_zero			q_3d_ldouble_zero
 #	define q_3d_are_equal			q_3d_ldouble_are_equal
+#	define q_3d_swap			q_3d_ldouble_swap
 #	define q_3d_contains			q_3d_ldouble_contains
 #	define q_3d_add				q_3d_ldouble_add
 #	define q_3d_subtract			q_3d_ldouble_subtract
@@ -544,12 +560,16 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_3d_maximum			q_3d_ldouble_maximum
 #	define q_3d_middle			q_3d_ldouble_middle
 #	define q_3d_fit				q_3d_ldouble_fit
+#	define q_3d_lerp			q_3d_ldouble_lerp
 #	define q_3d_is_zero			q_3d_ldouble_is_zero
 #	define q_3d_negative			q_3d_ldouble_negative
+#	define q_3d_absolute			q_3d_ldouble_absolute
 #	define q_3d_volume			q_3d_ldouble_volume
 #	define q_3d_square_length		q_3d_ldouble_square_length
 #	define q_3d_multiply_by_scalar		q_3d_ldouble_multiply_by_scalar
 #	define q_3d_divide_by_scalar		q_3d_ldouble_divide_by_scalar
+#	define q_3d_clamp			q_3d_ldouble_clamp
+#	define q_3d_cube_clamp			q_3d_ldouble_cube_clamp
 #	define q_3d_rotated_as_axes		q_3d_ldouble_rotated_as_axes
 
 #	define q_2d_vector			q_2d_ldouble_vector
@@ -591,15 +611,16 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 
 #else
 
-#	define q_absolute			q_double_absolute
 #	define q_minimum			q_double_minimum
 #	define q_maximum			q_double_maximum
-#	define q_clamp				q_double_clamp
 #	define q_lerp				q_double_lerp
+#	define q_absolute			q_double_absolute
+#	define q_clamp				q_double_clamp
 
 #	define q_2d				q_2d_double
 #	define q_2d_zero			q_2d_double_zero
-#	define q_2d_are_eauql			q_2d_double_are_equal
+#	define q_2d_are_equal			q_2d_double_are_equal
+#	define q_2d_swap			q_2d_double_swap
 #	define q_2d_contains			q_2d_double_contains
 #	define q_2d_add				q_2d_double_add
 #	define q_2d_subtract			q_2d_double_subtract
@@ -611,16 +632,21 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_2d_maximum			q_2d_double_maximum
 #	define q_2d_middle			q_2d_double_middle
 #	define q_2d_fit				q_2d_double_fit
+#	define q_2d_lerp			q_2d_double_lerp
 #	define q_2d_is_zero			q_2d_double_is_zero
 #	define q_2d_negative			q_2d_double_negative
+#	define q_2d_absolute			q_2d_double_absolute
 #	define q_2d_area			q_2d_double_area
 #	define q_2d_square_length		q_2d_double_square_length
 #	define q_2d_multiply_by_scalar		q_2d_double_multiply_by_scalar
 #	define q_2d_divide_by_scalar		q_2d_double_divide_by_scalar
+#	define q_2d_clamp			q_2d_double_clamp
+#	define q_2d_square_clamp		q_2d_double_square_clamp
 
 #	define q_3d				q_3d_double
 #	define q_3d_zero			q_3d_double_zero
 #	define q_3d_are_equal			q_3d_double_are_equal
+#	define q_3d_swap			q_3d_double_swap
 #	define q_3d_contains			q_3d_double_contains
 #	define q_3d_add				q_3d_double_add
 #	define q_3d_subtract			q_3d_double_subtract
@@ -632,12 +658,16 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_3d_maximum			q_3d_double_maximum
 #	define q_3d_middle			q_3d_double_middle
 #	define q_3d_fit				q_3d_double_fit
+#	define q_3d_lerp			q_3d_double_lerp
 #	define q_3d_is_zero			q_3d_double_is_zero
 #	define q_3d_negative			q_3d_double_negative
+#	define q_3d_absolute			q_3d_double_absolute
 #	define q_3d_volume			q_3d_double_volume
 #	define q_3d_square_length		q_3d_double_square_length
 #	define q_3d_multiply_by_scalar		q_3d_double_multiply_by_scalar
 #	define q_3d_divide_by_scalar		q_3d_double_divide_by_scalar
+#	define q_3d_clamp			q_3d_double_clamp
+#	define q_3d_cube_clamp			q_3d_double_cube_clamp
 #	define q_3d_rotated_as_axes		q_3d_double_rotated_as_axes
 
 #	define q_2d_vector			q_2d_double_vector

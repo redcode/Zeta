@@ -32,6 +32,16 @@ qboolean q_range_are_equal(QRange a, QRange b)
 
 
 Q_RANGE_EXPORT
+void q_range_swap(QRange *a, QRange *b)
+	{
+	QRange t = *a;
+
+	*a = *b;
+	*b = t;
+	}
+
+
+Q_RANGE_EXPORT
 qboolean q_range_contains(QRange a, QRange b)
 	{return b.index >= a.index && b.index + b.size <= a.index + a.size;}
 
@@ -58,16 +68,6 @@ QRange q_range_union(QRange a, QRange b)
 	return q_range
 		(index,
 		 ((a_maximum > b_maximum) ? a_maximum : b_maximum) - index);
-	}
-
-
-Q_RANGE_EXPORT
-void q_range_swap(QRange *a, QRange *b)
-	{
-	QRange t = *a;
-
-	*a = *b;
-	*b = t;
 	}
 
 
