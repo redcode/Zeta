@@ -27,45 +27,60 @@ Released under the terms of the GNU General Public License v2. */
 | size_t	|    32 |    32 |    64 |    64 |    64 |
 '------------------------------------------------------*/
 
-#if	defined(Q_USE_DATA_MODEL_LP32)
+#if defined(Q_USE_DATA_MODEL_LP32)
+
 #	define Q_DATA_MODEL_NAME LP32
 
-#elif	defined(Q_USE_DATA_MODEL_ILP32)
+#elif defined(Q_USE_DATA_MODEL_ILP32)
+
 #	define Q_DATA_MODEL_NAME ILP32
 
-#elif	defined(Q_USE_DATA_MODEL_ILP64)
+#elif defined(Q_USE_DATA_MODEL_ILP64)
+
 #	define Q_DATA_MODEL_NAME ILP64
 
-#elif	defined(Q_USE_DATA_MODEL_LLP64)
+#elif defined(Q_USE_DATA_MODEL_LLP64)
+
 #	define Q_DATA_MODEL_NAME LLP64
 
-#elif	defined(Q_USE_DATA_MODEL_LP64)
+#elif defined(Q_USE_DATA_MODEL_LP64)
+
 #	define Q_DATA_MODEL_NAME LP64
 
 #else
 
 #	if	defined(__LP32__)	|| \
-		defined(_LP32)
+		defined(_LP32_)		|| \
+		defined(_LP32)		|| \
+		defined(LP32)
 
 #		define Q_DATA_MODEL_NAME LP32
 
 #	elif	defined(__ILP32__)	|| \
-		defined(_ILP32)
+		defined(_ILP32_)	|| \
+		defined(_ILP32)		|| \
+		defined(ILP32)
 
 #		define Q_DATA_MODEL_NAME ILP32
 
 #	elif	defined(__ILP64__)	|| \
-		defined(_ILP64)
+		defined(_ILP64_)	|| \
+		defined(_ILP64)		|| \
+		defined(ILP64)
 
 #		define Q_DATA_MODEL_NAME ILP64
 
 #	elif	defined(__LLP64__)	|| \
-		defined(_LLP64)
+		defined(_LLP64_)	|| \
+		defined(_LLP64)		|| \
+		defined(LLP64)
 
 #		define Q_DATA_MODEL_NAME LLP64
 
 #	elif	defined(__LP64__)	|| \
-		defined(_LP64)
+		defined(_LP64_)		|| \
+		defined(_LP64)		|| \
+		defined(LP64)
 
 #		define Q_DATA_MODEL_NAME LP64
 
