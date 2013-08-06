@@ -1383,203 +1383,193 @@ Q_DEFINE_STRICT_UNION (
 
 #endif
 
-#if Q_CPU_INTEGER_ENDIANNESS(64BIT) == Q_ENDIANNESS_BIG
+#if Q_IS_AVAILABLE(UINT128) && Q_IS_AVAILABLE(INT128)
 
-	Q_DEFINE_STRICT_UNION (
-		quint64 uint64_array[2];
-		quint32 uint32_array[4];
-		quint16 uint16_array[8];
-		quint8	uint8_array[16];
+	#if Q_CPU_INTEGER_ENDIANNESS(128BIT) == Q_ENDIANNESS_BIG
 
-		struct {quint64 index1;
-			quint64 index0;
-		} uint64_values;
-
-		struct {quint32 index3;
-			quint32 index2;
-			quint32 index1;
-			quint32 index0;
-		} uint32_values;
-
-		struct {quint16 index7;
-			quint16 index6;
-			quint16 index5;
-			quint16 index4;
-			quint16 index3;
-			quint16 index2;
-			quint16 index1;
-			quint16 index0;
-		} uint16_values;
-
-		struct {quint8 index15;
-			quint8 index14;
-			quint8 index13;
-			quint8 index12;
-			quint8 index11;
-			quint8 index10;
-			quint8 index09;
-			quint8 index08;
-			quint8 index07;
-			quint8 index06;
-			quint8 index05;
-			quint8 index04;
-			quint8 index03;
-			quint8 index02;
-			quint8 index01;
-			quint8 index00;
-		} uint8_values;
-
-		qint64 int64_array[2];
-		qint32 int32_array[4];
-		qint16 int16_array[8];
-		qint8  int8_array[16];
-
-		struct {qint64 index1;
-			qint64 index0;
-		} int64_values;
-
-		struct {qint32 index3;
-			qint32 index2;
-			qint32 index1;
-			qint32 index0;
-		} int32_values;
-
-		struct {qint16 index7;
-			qint16 index6;
-			qint16 index5;
-			qint16 index4;
-			qint16 index3;
-			qint16 index2;
-			qint16 index1;
-			qint16 index0;
-		} int16_values;
-
-		struct {qint8 index15;
-			qint8 index14;
-			qint8 index13;
-			qint8 index12;
-			qint8 index11;
-			qint8 index10;
-			qint8 index09;
-			qint8 index08;
-			qint8 index07;
-			qint8 index06;
-			qint8 index05;
-			qint8 index04;
-			qint8 index03;
-			qint8 index02;
-			qint8 index01;
-			qint8 index00;
-		} int8_values;
-
-#		if Q_IS_AVAILABLE(UINT128)
+		Q_DEFINE_STRICT_UNION (
 			quint128 uint128_value;
-#		endif
+			quint64	 uint64_array[2];
+			quint32	 uint32_array[4];
+			quint16	 uint16_array[8];
+			quint8	 uint8_array[16];
 
-#		if Q_IS_AVAILABLE(INT128)
-			quint128 int128_value;
-#		endif
+			struct {quint64 index1;
+				quint64 index0;
+			} uint64_values;
 
-	) Q128Bit;
+			struct {quint32 index3;
+				quint32 index2;
+				quint32 index1;
+				quint32 index0;
+			} uint32_values;
 
-#elif Q_CPU_INTEGER_ENDIANNESS(64BIT) == Q_ENDIANNESS_LITTLE
+			struct {quint16 index7;
+				quint16 index6;
+				quint16 index5;
+				quint16 index4;
+				quint16 index3;
+				quint16 index2;
+				quint16 index1;
+				quint16 index0;
+			} uint16_values;
 
-	Q_DEFINE_STRICT_UNION (
-		quint64 uint64_array[2];
-		quint32 uint32_array[4];
-		quint16 uint16_array[8];
-		quint8	uint8_array[16];
+			struct {quint8 index15;
+				quint8 index14;
+				quint8 index13;
+				quint8 index12;
+				quint8 index11;
+				quint8 index10;
+				quint8 index09;
+				quint8 index08;
+				quint8 index07;
+				quint8 index06;
+				quint8 index05;
+				quint8 index04;
+				quint8 index03;
+				quint8 index02;
+				quint8 index01;
+				quint8 index00;
+			} uint8_values;
 
-		struct {quint64 index0;
-			quint64 index1;
-		} uint64_values;
+			qint128 int128_value;
+			qint64	int64_array[2];
+			qint32	int32_array[4];
+			qint16	int16_array[8];
+			qint8	int8_array[16];
 
-		struct {quint32 index0;
-			quint32 index1;
-			quint32 index2;
-			quint32 index3;
-		} uint32_values;
+			struct {qint64 index1;
+				qint64 index0;
+			} int64_values;
 
-		struct {quint16 index0;
-			quint16 index1;
-			quint16 index2;
-			quint16 index3;
-			quint16 index4;
-			quint16 index5;
-			quint16 index6;
-			quint16 index7;
-		} uint16_values;
+			struct {qint32 index3;
+				qint32 index2;
+				qint32 index1;
+				qint32 index0;
+			} int32_values;
 
-		struct {quint8 index00;
-			quint8 index01;
-			quint8 index02;
-			quint8 index03;
-			quint8 index04;
-			quint8 index05;
-			quint8 index06;
-			quint8 index07;
-			quint8 index08;
-			quint8 index09;
-			quint8 index10;
-			quint8 index11;
-			quint8 index12;
-			quint8 index13;
-			quint8 index14;
-			quint8 index15;
-		} uint8_values;
+			struct {qint16 index7;
+				qint16 index6;
+				qint16 index5;
+				qint16 index4;
+				qint16 index3;
+				qint16 index2;
+				qint16 index1;
+				qint16 index0;
+			} int16_values;
 
-		qint64 int64_array[2];
-		qint32 int32_array[4];
-		qint16 int16_array[8];
-		qint8  int8_array[16];
+			struct {qint8 index15;
+				qint8 index14;
+				qint8 index13;
+				qint8 index12;
+				qint8 index11;
+				qint8 index10;
+				qint8 index09;
+				qint8 index08;
+				qint8 index07;
+				qint8 index06;
+				qint8 index05;
+				qint8 index04;
+				qint8 index03;
+				qint8 index02;
+				qint8 index01;
+				qint8 index00;
+			} int8_values;
+		) Q128Bit;
 
-		struct {qint64 index0;
-			qint64 index1;
-		} int64_values;
+	#elif Q_CPU_INTEGER_ENDIANNESS(128BIT) == Q_ENDIANNESS_LITTLE
 
-		struct {qint32 index0;
-			qint32 index1;
-			qint32 index2;
-			qint32 index3;
-		} int32_values;
-
-		struct {qint16 index0;
-			qint16 index1;
-			qint16 index2;
-			qint16 index3;
-			qint16 index4;
-			qint16 index5;
-			qint16 index6;
-			qint16 index7;
-		} int16_values;
-
-		struct {qint8 index00;
-			qint8 index01;
-			qint8 index02;
-			qint8 index03;
-			qint8 index04;
-			qint8 index05;
-			qint8 index06;
-			qint8 index07;
-			qint8 index08;
-			qint8 index09;
-			qint8 index10;
-			qint8 index11;
-			qint8 index12;
-			qint8 index13;
-			qint8 index14;
-			qint8 index15;
-		} int8_values;
-
-#		if Q_IS_AVAILABLE(UINT128)
+		Q_DEFINE_STRICT_UNION (
 			quint128 uint128_value;
-#		endif
+			quint64	 uint64_array[2];
+			quint32	 uint32_array[4];
+			quint16	 uint16_array[8];
+			quint8	 uint8_array[16];
 
-#		if Q_IS_AVAILABLE(INT128)
+			struct {quint64 index0;
+				quint64 index1;
+			} uint64_values;
+
+			struct {quint32 index0;
+				quint32 index1;
+				quint32 index2;
+				quint32 index3;
+			} uint32_values;
+
+			struct {quint16 index0;
+				quint16 index1;
+				quint16 index2;
+				quint16 index3;
+				quint16 index4;
+				quint16 index5;
+				quint16 index6;
+				quint16 index7;
+			} uint16_values;
+
+			struct {quint8 index00;
+				quint8 index01;
+				quint8 index02;
+				quint8 index03;
+				quint8 index04;
+				quint8 index05;
+				quint8 index06;
+				quint8 index07;
+				quint8 index08;
+				quint8 index09;
+				quint8 index10;
+				quint8 index11;
+				quint8 index12;
+				quint8 index13;
+				quint8 index14;
+				quint8 index15;
+			} uint8_values;
+
 			quint128 int128_value;
-#		endif
+			qint64	 int64_array[2];
+			qint32	 int32_array[4];
+			qint16	 int16_array[8];
+			qint8	 int8_array[16];
 
-	) Q128Bit;
+			struct {qint64 index0;
+				qint64 index1;
+			} int64_values;
+
+			struct {qint32 index0;
+				qint32 index1;
+				qint32 index2;
+				qint32 index3;
+			} int32_values;
+
+			struct {qint16 index0;
+				qint16 index1;
+				qint16 index2;
+				qint16 index3;
+				qint16 index4;
+				qint16 index5;
+				qint16 index6;
+				qint16 index7;
+			} int16_values;
+
+			struct {qint8 index00;
+				qint8 index01;
+				qint8 index02;
+				qint8 index03;
+				qint8 index04;
+				qint8 index05;
+				qint8 index06;
+				qint8 index07;
+				qint8 index08;
+				qint8 index09;
+				qint8 index10;
+				qint8 index11;
+				qint8 index12;
+				qint8 index13;
+				qint8 index14;
+				qint8 index15;
+			} int8_values;
+		) Q128Bit;
+
+	#endif
 
 #endif
 
