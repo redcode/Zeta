@@ -57,8 +57,8 @@ Released under the terms of the GNU General Public License v3. */
 
 #	define Q_3D_VALUE_NEW(Type, type)				\
 									\
-	Q_INLINE Q##Type q_3d_##type(q##type x, q##type y, q##type z)	\
-		{Q##Type magnitude = {x, y, z}; return magnitude;}
+	Q_INLINE Q3D##Type q_3d_##type(q##type x, q##type y, q##type z)	\
+		{Q3D##Type magnitude = {x, y, z}; return magnitude;}
 
 #endif
 
@@ -119,7 +119,7 @@ void q_##3d_##type##_swap(Q3D##Type *a, Q3D##Type *b)				\
 										\
 Q_3D_VALUE_EXPORT								\
 qboolean q_3d_##type##_contains(Q3D##Type a, Q3D##Type b)			\
-	{return (b.x <= a.x && b.y <= a.y && b.z <= a.z);}			\
+	{return b.x <= a.x && b.y <= a.y && b.z <= a.z;}			\
 										\
 										\
 Q_3D_VALUE_EXPORT								\

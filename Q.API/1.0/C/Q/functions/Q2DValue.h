@@ -119,7 +119,7 @@ void q_##2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)				\
 										\
 Q_2D_VALUE_EXPORT								\
 qboolean q_2d_##type##_contains(Q2D##Type a, Q2D##Type b)			\
-	{return (b.x <= a.x && b.y <= a.y);}					\
+	{return b.x <= a.x && b.y <= a.y;}					\
 										\
 										\
 Q_2D_VALUE_EXPORT								\
