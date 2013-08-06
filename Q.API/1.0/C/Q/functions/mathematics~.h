@@ -163,9 +163,9 @@ Q2D##Type q_2d_##type##_line_segment_center(Q2D##Type##Line segment)	\
 		 (segment.b.y - segment.a.y) / 2.0 + segment.a.y);	\
 	}
 
-Q_IMPLEMENTATION_2D_LINE(Float,   float  )
-Q_IMPLEMENTATION_2D_LINE(Double,  double )
-Q_IMPLEMENTATION_2D_LINE(LDouble, ldouble)
+Q_IMPLEMENTATION_2D_LINE_SEGMENT(Float,   float  )
+Q_IMPLEMENTATION_2D_LINE_SEGMENT(Double,  double )
+Q_IMPLEMENTATION_2D_LINE_SEGMENT(LDouble, ldouble)
 
 
 /* MARK: - 3D Line */
@@ -196,9 +196,9 @@ Q3D##Type q_3d_##type##_line_segment_center(Q3D##Type##Line segment)	\
 		 (segment.b.z - segment.a.z) / 2.0 + segment.a.z);	\
 	}
 
-Q_IMPLEMENTATION_3D_LINE(Float,   float  )
-Q_IMPLEMENTATION_3D_LINE(Double,  double )
-Q_IMPLEMENTATION_3D_LINE(LDouble, ldouble)
+Q_IMPLEMENTATION_3D_LINE_SEGMENT(Float,   float  )
+Q_IMPLEMENTATION_3D_LINE_SEGMENT(Double,  double )
+Q_IMPLEMENTATION_3D_LINE_SEGMENT(LDouble, ldouble)
 
 
 /* MARK: - Rectangle */
@@ -258,8 +258,8 @@ Q_RECTANGLE_EXPORT								\
 Q2D##Type q_##type##_rectangle_center(Q##Type##Rectangle rectangle)		\
 	{									\
 	return q_2d_##type							\
-		(rectangle.point.x + rectangle.size.x / (q##type)2.0,		\
-		 rectangle.point.y + rectangle.size.y / (q##type)2.0);		\
+		(q_##type##_rectangle_middle_x(rectangle),			\
+		 q_##type##_rectangle_middle_y(rectangle));			\
 	}									\
 										\
 										\
@@ -285,12 +285,12 @@ q##type q_##type##_rectangle_maximum_y(Q##Type##Rectangle rectangle)		\
 										\
 Q_RECTANGLE_EXPORT								\
 q##type q_##type##_rectangle_middle_x(Q##Type##Rectangle rectangle)		\
-	{return rectangle.point.x + rectangle.size.x / (q##type)2.0;}		\
+	{return rectangle.point.x + rectangle.size.x * 0.5;}			\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
 q##type q_##type##_rectangle_middle_y(Q##Type##Rectangle rectangle)		\
-	{return rectangle.point.y + rectangle.size.y / (q##type)2.0;}
+	{return rectangle.point.y + rectangle.size.y * 0.5;}
 
 
 Q_IMPLEMENTATION_RECTANGLE(Float,   float  )

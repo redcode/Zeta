@@ -16,7 +16,7 @@ File extensions: ach, archimedes
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	a,	      zero01[ 3];
 	quint8	f,	      zero02[ 3];
 	quint8	b,	      zero03[ 3];

@@ -112,7 +112,7 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 	typedef Q2DDoubleLine		Q2DLine;
 	typedef Q3DDoubleLine		Q3DLine;
 	typedef Q2DDoubleTriangle	Q2DTriangle;
-	typedef Q3DDoubleTriangle	Q3DTriangle;
+	typedef Q3DDoubleTriangle	Q2DTriangle;
 	typedef Q2DDoubleQuadrangle	Q2DQuadrangle;
 	typedef Q3DDoubleQuadrangle	Q3DQuadrangle;
 	typedef QDoubleRectangle	QRectangle;

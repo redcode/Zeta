@@ -144,7 +144,7 @@ Released under the terms of the GNU General Public License v3.
 | blocks, each identified by an ID byte.				   |
 '-------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	QString	signature[7];		/* 'ZXTape!' */
 	quint8	eof_marker;		/* 1Ah	     */
 	quint8	major_revision_number;
@@ -190,7 +190,7 @@ typedef quint8 QTZXID;
 | routines that use the same timings as ROM ones do.			      |
 '----------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 pause;
 	quint16 data_size;
 	quint8	data[];
@@ -205,7 +205,7 @@ typedef Q_STRICT_STRUCTURE (
 | then use the next three blocks to describe it.			      |
 '----------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 pilot_pulse_duration;		/* {2168}	*/
 	quint16 sync_1_pulse_duration;		/* {667}	*/
 	quint16 sync_2_pulse_duration;		/* {735}	*/
@@ -225,7 +225,7 @@ typedef Q_STRICT_STRUCTURE (
 | many pulses are in the tone.						 |
 '-----------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 pulse_t_states;
 	quint16 pulse_count;
 ) QTZXPureTone;
@@ -237,7 +237,7 @@ typedef Q_STRICT_STRUCTURE (
 | for non-standard sync tones used by some protection schemes. |
 '-------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	pulse_count;
 	quint16 pulse_duration[];
 ) QTZXPulseSequence;
@@ -248,7 +248,7 @@ typedef Q_STRICT_STRUCTURE (
 | except that it has no pilot or sync pulses.	       |
 '-----------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 bit_0_pulse_duration;
 	quint16 bit_1_pulse_duration;
 	quint8	last_byte_bit_count;
@@ -272,7 +272,7 @@ typedef Q_STRICT_STRUCTURE (
 | this block if you can not use any other one.				    |
 '--------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 t_states_per_sample;
 	quint16 pause_after_this_block_ms;
 	quint8	last_byte_bit_count;
@@ -286,7 +286,7 @@ typedef Q_STRICT_STRUCTURE (
 | encoded in CSW format v2 (Compressed Square Wave). |
 '---------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint32 block_size;
 	quint16 pause_after_this_block_ms;
 	quint8	sampling_rate[3];
@@ -308,7 +308,7 @@ typedef Q_STRICT_STRUCTURE (
 | bit 0 is represented with 4 pulses and bit 1 with 8 pulses.		      |
 '----------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint32 block_size;
 	quint16 pause_after_this_block_ms;
 	quint32 symbol_count;
@@ -331,7 +331,7 @@ typedef Q_STRICT_STRUCTURE (
 | of pulses (wave).							     |
 '---------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	flags;
 	quint16 pulse_duration[];
 ) QTZXSymbolDefinition;
@@ -351,7 +351,7 @@ typedef Q_STRICT_STRUCTURE (
 | stream in bits is NB * TOTD, or in bytes DS = ceil(NB * TOTD / 8).	       |
 '-----------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	symbol;
 	quint16	repetitions;
 ) QTZXPulseRLE;
@@ -416,7 +416,7 @@ typedef Q_STRICT_STRUCTURE (
 | user or emulator requests it.						 |
 '-----------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE(
+Q_DEFINE_STRICT_STRUCTURE(
 	quint16 duration_ms;
 ) QTZXPause;
 
@@ -430,7 +430,8 @@ typedef Q_STRICT_STRUCTURE(
 | For each group start block, there must be a group end block. Nesting of    |
 | groups is not allowed.						     |
 '---------------------------------------------------------------------------*/
-typedef Q_STRICT_STRUCTURE (
+
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8 name_size;
 	quint8 name_ascii[];
 ) QTZXGroupStart;
@@ -453,7 +454,7 @@ typedef Q_STRICT_STRUCTURE (
 |All blocks are included in the block count!			      |
 '--------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE(
+Q_DEFINE_STRICT_STRUCTURE(
 	quint16 relative_offset;
 ) QTZXJump;
 
@@ -466,7 +467,7 @@ typedef Q_STRICT_STRUCTURE(
 | For simplicity reasons don't nest loop blocks!			|
 '----------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 count;
 ) QTZXLoopStart;
 
@@ -492,7 +493,7 @@ typedef Q_STRICT_STRUCTURE (
 | 'Jump To Block' for reference on the values.				     |
 '---------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 count;
 	quint16 relative_offset[];
 ) QTZXCallSequence;
@@ -517,13 +518,13 @@ typedef Q_STRICT_STRUCTURE (
 | All offsets are relative signed words.				       |
 '-----------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint32	block_size;
 	quint8	selection_count;
 	quint8	selection[]; /* QTZXSelectItem */
 ) QTZXSelect;
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 relative_offset;
 	quint8	description_size;
 	quint8	description_ascii[];
@@ -538,7 +539,7 @@ typedef Q_STRICT_STRUCTURE (
 | This block has no body of its own, but follows the extension rule.	     |
 '---------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint32 block_size;
 ) QTZXStopIf48K;
 
@@ -549,7 +550,7 @@ typedef Q_STRICT_STRUCTURE (
 | any ambiguities, e.g. with custom loaders which are level-sensitive. |
 '---------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint32 block_size;
 	quint8	level;
 ) QTZXSetSignalLevel;
@@ -570,7 +571,7 @@ typedef Q_STRICT_STRUCTURE (
 | Please use 'Archive Information' block for title, authors, publisher, etc.   |
 '-----------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8 size;
 	quint8 ascii[];
 ) QTZXDescriptionText;
@@ -590,7 +591,7 @@ typedef Q_STRICT_STRUCTURE (
 | way they like.							     |
 '---------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8 display_seconds;
 	quint8 size;
 	quint8 ascii[];
@@ -615,13 +616,13 @@ typedef Q_STRICT_STRUCTURE (
 | block, so no need for it here.					       |
 '-----------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8 id;
 	quint8 size;
 	quint8 ascii[];
 ) QTZXText;
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint32 block_size;
 	quint8	text_count;
 	quint8	text[]; /* QTZXText */
@@ -645,7 +646,7 @@ typedef Q_STRICT_STRUCTURE (
 | the end of the format description.					     |
 '---------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE(
+Q_DEFINE_STRICT_STRUCTURE(
 	quint8 type;
 	quint8 id;
 	quint8 compatibility;
@@ -653,7 +654,7 @@ typedef Q_STRICT_STRUCTURE(
 
 #define Q_TZX_HARDWARE_COMPATIBILITY_
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	     count;
 	QTZXHardware hardware[];
 ) QTZXHardwareType;
@@ -665,7 +666,7 @@ typedef Q_STRICT_STRUCTURE (
 | required by a particular emulator, or even poke data.			 |
 '-----------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	ascii_id;
 	quint32	data_size;
 	quint8	data[];
@@ -682,7 +683,8 @@ typedef Q_STRICT_STRUCTURE (
 | preferable to use a utility to join the two files and ensure that they are   |
 | both of the higher version number.					       |
 '-----------------------------------------------------------------------------*/
-typedef Q_STRICT_STRUCTURE (
+
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8 data[9];
 ) QTZXGlue;
 

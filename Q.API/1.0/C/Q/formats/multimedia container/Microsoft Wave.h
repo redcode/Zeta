@@ -11,7 +11,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint32 block_id;		/* 'RIFF' in big endian */
 	quint32 block_size;		/* The size of the entire file minus 8 bytes */
 	quint32 format;			/* 'WAVE' in big endian */

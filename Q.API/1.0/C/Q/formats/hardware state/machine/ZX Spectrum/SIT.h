@@ -17,7 +17,7 @@ File extensions: sit
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 
 	Q16Bit	bc,  de,  hl,  af,  ix,  iy;
 	quint16 sp,  pc;

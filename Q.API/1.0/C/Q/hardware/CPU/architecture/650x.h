@@ -76,7 +76,7 @@ Released under the terms of the GNU General Public License v2.
 	typedef struct {
 		quint16	pc;
 		quint8	sp, s, a, x, y;	
-	} Q_STRICT_SIZE Q6502State;
+	} Q6502State;
 
 #	define Q_6502_STATE(p) ((Q6502State *)(p))
 
@@ -94,7 +94,7 @@ Released under the terms of the GNU General Public License v2.
 #	define Q_6502_STATE_MEMBER_X	x
 #	define Q_6502_STATE_MEMBER_Y	y
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		quint8 opcode;
 		union {	quint16 uint16;
 			quint8	uint8;

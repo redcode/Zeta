@@ -11,7 +11,7 @@ Released under the terms of the GNU General Public License v2. */
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8			ignored_1[11];
 	quint16			bytes_per_sector;
 	quint8			sectors_per_cluster;
@@ -49,7 +49,7 @@ typedef quint8 QFAT12FileAttribute;
 #define Q_FAT_12_FILE_ATTRIBUTE_SUBDIRECTORY	16
 #define Q_FAT_12_FILE_ATTRIBUTE_ARCHIVE		32
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8			file_name[8];
 	quint8			extension[3];
 	QFAT12FileAttribute	attributes;

@@ -11,7 +11,7 @@ Released under the terms of the GNU General Public License v2. */
 
 #include <Q/types/basics.h>
 
-typedef STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	QString	name[21];
 	quint8	layout;
 	quint8	type;

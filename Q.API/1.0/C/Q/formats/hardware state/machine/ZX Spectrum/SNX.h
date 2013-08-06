@@ -17,7 +17,7 @@ File extensions: snx
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 
 ) QSNX;
 

@@ -18,7 +18,7 @@ File extensions: prg
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	file_type;		/* Always 05h	    */
 	quint8	program_name[10];	/* 20h, name[], 20h */
 	quint16	file_sector_count;	/* BIG ENDIAN	    */
@@ -26,7 +26,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8	file_first_sector_sector_index;
 	quint8	sector_allocation_bitmap[195];
 
-	..... TO DO
+	/* ..... TO DO */
 
 ) QPRG;
 

@@ -16,7 +16,7 @@ File extensions: sem
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	signature_size;	/* 5		*/
 	quint8	signature[5];	/* 'SPEC1'	*/
 	quint8	ram[1024 * 48];
@@ -31,12 +31,12 @@ typedef Q_STRICT_STRUCTURE (
 	quint8	im,   zero5;
 ) QSEMSnapshot;
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 address;
 	quint8	value;
 ) QSEMPoke;
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	QSEMSnapshot snapshot;
 	QSEMPoke     poke;	   /* Optional */
 	quint16	     speed_factor; /* Optional (only if poke included) */

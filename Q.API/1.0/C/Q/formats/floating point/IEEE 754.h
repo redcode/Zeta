@@ -11,7 +11,7 @@ Released under the terms of the GNU General Public License v2. */
 
 #include <Q/types/basics.h>
 
-#pragma mark - binary16
+/* MARK: - binary16 */
 
 /*   15  14	10   9		       0
    .---.-----------.---------------------.
@@ -51,7 +51,7 @@ Released under the terms of the GNU General Public License v2. */
 
 #endif
 
-#pragma mark - binary32
+/* MARK: - binary32 */
 
 /*   31  30	      23   22					       0
    .---.-----------------.-----------------------------------------------.
@@ -79,45 +79,45 @@ Released under the terms of the GNU General Public License v2. */
 
 #if Q_CPU_ENDIANNESS_32BIT == Q_ENDIANNESS_BIG
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		quint32 sign:		 1;
 		quint32 exponent:	 8;
 		quint32 mantissa:	23;
 	) QIEEE754Binary32;
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		quint32 sign:		 1;
 		quint32 exponent:	 8;
 		quint32 quiet_nan:	 1;
 		quint32 mantissa:	22;
 	) QIEEE754Binary32NaN;
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		/* To Do */
 	) QIEEE754Decimal32;
 
 #elif
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		quint32 mantissa:	23;
 		quint32 exponent:	 8;
 		quint32 sign:		 1;
 	) QIEEE754Binary32;
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		quint32 mantissa:	22;
 		quint32 quiet_nan:	 1;
 		quint32 exponent:	 8;
 		quint32 sign:		 1;
 	) QIEEE754Binary32NaN;
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		/* To Do */
 	) QIEEE754Decimal32;
 
 #endif
 
-#pragma mark - binary64
+/* MARK: - binary64 */
 
 /*   63  62		    52	 51												       0
    .---.-----------------------.---------------------------------------------------------------------------------------------------------.
@@ -145,14 +145,14 @@ Released under the terms of the GNU General Public License v2. */
 
 #if Q_CPU_ENDIANNESS_64BIT == Q_ENDIANNESS_BIG
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		quint64 negative:	 1;
 		quint64 exponent:	11;
 		quint64 mantissa0:	20;
 		quint64 mantissa1:	32;
 	) QIEEE754Binary64;
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		quint64 negative:	 1;
 		quint64 exponent:	11;
 		quint64 quiet_nan:	 1;
@@ -160,22 +160,22 @@ Released under the terms of the GNU General Public License v2. */
 		quint64 mantissa1:	32;
 	) QIEEE754Binary64NaN;
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		/* To Do */
 	) QIEEE754Decimal64;
 
 #elif Q_CPU_ENDIANNESS_64BIT == Q_ENDIANNESS_LITTLE
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 	) QIEEE754Binary64;
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		/* To Do */
 	) QIEEE754Decimal64;
 
 #endif
 
-#pragma mark - binary128
+/* MARK: - binary128 */
 
 /*  127 126			   112	 111																											       0
    .---.-------------------------------.---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------.
@@ -201,7 +201,7 @@ Released under the terms of the GNU General Public License v2. */
 #define Q_IEEE754_BINARY128_SIGN_OFFSET		127
 #define Q_IEEE754_BINARY128_SIGN_BITS		1
 
-#pragma mark - decimal32
+/* MARK: - decimal32 */
 
 #define Q_IEEE754_DECIMAL32_BITS				32
 #define Q_IEEE754_DECIMAL32_MINIMUM_POSITIVE			1E-95DF
@@ -212,7 +212,7 @@ Released under the terms of the GNU General Public License v2. */
 #define Q_IEEE754_DECIMAL32_EXPONENT_MINIMUM			(-95)
 #define Q_IEEE754_DECIMAL32_EXPONENT_MAXIMUM			96
 
-#pragma mark - decimal64
+/* MARK: - decimal64 */
 
 #define Q_IEEE754_DECIMAL32_BITS				64
 #define Q_IEEE754_DECIMAL64_MINIMUM_POSITIVE			1E-383DD
@@ -223,7 +223,7 @@ Released under the terms of the GNU General Public License v2. */
 #define Q_IEEE754_DECIMAL64_EXPONENT_MINIMUM			(-383)
 #define Q_IEEE754_DECIMAL64_EXPONENT_MAXIMUM			384
 
-#pragma mark - decimal128
+/* MARK: - decimal128 */
 
 #define Q_IEEE754_DECIMAL32_BITS				128
 #define Q_IEEE754_DECIMAL128_MINIMUM_POSITIVE			1E-6143DL

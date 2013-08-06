@@ -18,7 +18,7 @@ File extensions: frz
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	zero1;
 	quint8	port_7ffd_value;
 	Q16Bit	hl_, hl, de_, de, bc_, bc, af_, af;

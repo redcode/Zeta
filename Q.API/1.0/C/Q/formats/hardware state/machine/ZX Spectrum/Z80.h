@@ -12,7 +12,7 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/types/basics.h>
 #include <Q/keys/hardware/machine.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 
 	quint16 af, bc, hl, pc, sp;
 	quint8	i, r;
@@ -40,7 +40,7 @@ typedef Q_STRICT_STRUCTURE (
 
 #define Q_Z80_V1_HEADER(p) ((QZ80v1Header *)(p))
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 
 	quint16 pc;
 	quint8	hardware_mode;
@@ -60,7 +60,7 @@ typedef Q_STRICT_STRUCTURE (
 
 #define Q_Z80_V2_ADDITIONAL_HEADER(p) ((QZ80v2AdditionalHeader *)(p))
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 
 	quint16 low_t_state_counter;
 	quint8	high_t_state_counter;

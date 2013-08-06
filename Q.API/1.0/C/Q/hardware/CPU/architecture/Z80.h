@@ -88,7 +88,7 @@ Released under the terms of the GNU General Public License v2.
 
 #	define Q_Z80_STATE(p) ((QZ80State *)(p))
 
-#	pragma mark - State structure macros (16-bit registers)
+	/* MARK: - State structure macros (16-bit registers) */
 
 #	define Q_Z80_STATE_AF( object)	(object)->af.uint16_value
 #	define Q_Z80_STATE_BC( object)	(object)->bc.uint16_value
@@ -116,7 +116,7 @@ Released under the terms of the GNU General Public License v2.
 #	define Q_Z80_STATE_MEMBER_DE_	de_.uint16_value
 #	define Q_Z80_STATE_MEMBER_HL_	hl_.uint16_value
 
-#	pragma mark - State structure macros (8-bit registers)
+	/* MARK: - State structure macros (8-bit registers) */
 
 #	define Q_Z80_STATE_A(  object)	(object)->af.uint8_values.index1
 #	define Q_Z80_STATE_F(  object)	(object)->af.uint8_values.index0
@@ -164,7 +164,7 @@ Released under the terms of the GNU General Public License v2.
 #	define Q_Z80_STATE_MEMBER_I	i
 #	define Q_Z80_STATE_MEMBER_R	r
 
-#	pragma mark - Macros (Internals)
+	/* MARK: - Macros (Internals) */
 
 #	define Q_Z80_STATE_HALT(object)	(object)->internal.halt
 #	define Q_Z80_STATE_IFF1(object)	(object)->internal.iff1
@@ -184,7 +184,7 @@ Released under the terms of the GNU General Public License v2.
 
 #endif
 
-#pragma mark - Limits and features
+/* MARK: - Limits and features */
 
 #define Q_Z80_MINIMUM_CYCLES_PER_INSTRUCTION	 4
 #define Q_Z80_MINIMUM_INSTRUCTION_SIZE		 1
@@ -201,11 +201,11 @@ Released under the terms of the GNU General Public License v2.
 #define Q_Z80_ADDRESSING_BITS			16
 #define Q_Z80_ENDIANNESS			Q_ENDIANNESS_LITTLE
 
-#pragma mark - Addresses
+/* MARK: - Addresses */
 
 #define Q_Z80_ADDRESS_NMI_POINTER		0x0066
 
-#pragma mark - Values after power on
+/* MARK: - Values after power on */
 
 /*
 #define Q_Z80_PC_VALUE_AFTER_POWER_ON		0x0000
@@ -245,7 +245,7 @@ Released under the terms of the GNU General Public License v2.
 #define Q_Z80_VALUE_AFTER_POWER_ON_IFF2		0
 #define Q_Z80_VALUE_AFTER_POWER_ON_IM		0
 
-#pragma mark - Values after reset
+/* MARK: - Values after reset */
 
 #define Q_Z80_VALUE_AFTER_RESET_PC		Q_Z80_VALUE_AFTER_POWER_ON_PC
 #define Q_Z80_VALUE_AFTER_RESET_SP		Q_Z80_VALUE_AFTER_POWER_ON_SP
@@ -265,7 +265,7 @@ Released under the terms of the GNU General Public License v2.
 #define Q_Z80_VALUE_AFTER_RESET_IFF2		Q_Z80_VALUE_AFTER_POWER_ON_IFF2
 #define Q_Z80_VALUE_AFTER_RESET_IM		Q_Z80_VALUE_AFTER_POWER_ON_IM
 
-#pragma mark - Information for emulation
+/* MARK: - Information for emulation */
 
 #define Q_Z80_RESET_IS_EQUAL_TO_POWER_ON
 

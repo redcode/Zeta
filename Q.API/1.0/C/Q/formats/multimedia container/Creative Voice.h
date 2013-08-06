@@ -11,7 +11,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	identifier[19];		/* 'Creative Voice File' */
 	quint8	eof;			/* 1Ah			 */
 	quint16	header_size;		/* Usually 001Ah	 */
@@ -20,7 +20,7 @@ typedef Q_STRICT_STRUCTURE (
 	quint8	version_validation;	/* must be equal to version + 1234h */
 ) QCreativeVoiceHeader;
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	type;
 	quint16	size;
 ) QCreativeVoiceBlockHeader;
@@ -36,61 +36,61 @@ typedef Q_STRICT_STRUCTURE (
 #define Q_CREATIVE_VOICE_BLOCK_ID_EXTRA_INFORMATION		0x08
 #define Q_CREATIVE_VOICE_BLOCK_ID_SOUND_DATA_IN_NEW_FORMAT	0x09
 
-#pragma mark - ID 0 - Terminator
+/* MARK: - ID 0 - Terminator */
 
 
-#pragma mark - ID 1 - Sound Data
+/* MARK: - ID 1 - Sound Data */
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8 frequency_divisor;
 	quint8 codec_id;
 	quint8 data[];
 ) QCreativeVoiceSoundData;
 
-#pragma mark - ID 2 - Sound Data Continuation
+/* MARK: - ID 2 - Sound Data Continuation */
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8 data[];
 ) QCreativeVoiceSoundDataContinuation;
 
-#pragma mark - ID 3 - Silence
+/* MARK: - ID 3 - Silence */
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 sample_count;
 	quint8	frequency_divisor;
 ) QCreativeVoiceSilence;
 
-#pragma mark - ID 4 - Marker
+/* MARK: - ID 4 - Marker */
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 value;
 ) QCreativeVoiceMarker;
 
-#pragma mark - ID 5 - Text
+/* MARK: - ID 5 - Text */
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8 content[];		/* 0 terminated string */
 ) QCreativeVoiceText;
 
-#pragma mark - ID 6 - Repeat Start
+/* MARK: - ID 6 - Repeat Start */
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 count_minus_1;
 ) QCreativeVoiceRepeatStart;
 
-#pragma mark - ID 7 - Repeat End
+/* MARK: - ID 7 - Repeat End */
 
-#pragma mark - ID 8 - Extra Information
+/* MARK: - ID 8 - Extra Information */
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16	frequency_divisor;
 	quint8	codec_id;
 	quint8	channel_count_minus_1;
 ) QCreativeVoiceExtraInformation;
 
-#pragma mark - ID 9 - Sound Data in New Format
+/* MARK: - ID 9 - Sound Data in New Format */
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 sample_rate;
 	quint8	bits_per_sample;
 	quint8	channel_Count;

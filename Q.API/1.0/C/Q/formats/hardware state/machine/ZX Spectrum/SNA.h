@@ -46,7 +46,7 @@ Released under the terms of the GNU General Public License v3. */
    | practical purposes is the interrupt-enabled flag. Set means enabled.  " |
    '-------------------------------------------------------------------------' */
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 
 	quint8	i;
 	Q16Bit	hl_, de_, bc_, af_;
@@ -98,7 +98,7 @@ typedef Q_STRICT_STRUCTURE (
    | followed by banks 0, 1, 3, 4, 6 and 7.  "				     |
    '-------------------------------------------------------------------------' */
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	i;
 	Q16Bit	hl_, de_, bc_, af_;
 	Q16Bit	hl, de, bc, iy, ix;

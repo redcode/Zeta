@@ -13,7 +13,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #if Q_UINT32_ENDIANNESS == Q_ENDIANNESS_BIG
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		quint8 red;
 		quint8 green;
 		quint8 blue;
@@ -22,7 +22,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #elif Q_UINT32_ENDIANNESS == Q_ENDIANNESS_LITTLE
 
-	typedef Q_STRICT_STRUCTURE (
+	Q_DEFINE_STRICT_STRUCTURE (
 		quint8 alpha;
 		quint8 blue;
 		quint8 green;

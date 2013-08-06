@@ -11,7 +11,7 @@ Released under the terms of the GNU General Public License v2. */
 
 #include <Q/types/basics.h>
 
-#pragma mark - Intel Float80
+/* MARK: - Intel Float80 */
 
 /*   79 78			    64	 63															       0
    .---.-------------------------------.---------------------------------------------------------------------------------------------------------------------------------.
@@ -40,10 +40,9 @@ Released under the terms of the GNU General Public License v2. */
 typedef struct {
 } QIntelFloat80;
 
-#pragma mark - Intel Float96
+/* MARK: - Intel Float96 */
 
 typedef struct {
 } QIntelFloat96;
-
 
 #endif /* __Q_formats_floating_point_Intel_H__ */

@@ -28,7 +28,7 @@ Released under the terms of the GNU General Public License v3.
 #ifndef __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H__
 #define __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H__
 
-#pragma mark - Screen
+/* MARK: - Screen */
 
 /*					---
 	  Invisible Top Border		 | 8
@@ -65,7 +65,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_ZX_SPECTRUM_PLUS_SCREEN_LEFT_BORDER_WIDTH		Q_ZX_SPECTRUM_SCREEN_LEFT_BORDER_WIDTH
 #define Q_ZX_SPECTRUM_PLUS_SCREEN_RIGHT_BORDER_WIDTH		Q_ZX_SPECTRUM_SCREEN_RIGHT_BORDER_WIDTH
 
-#pragma mark - Timmings
+/* MARK: - Timmings */
 
 #define Q_ZX_SPECTRUM_PLUS_Z80_HZ				Q_ZX_SPECTRUM_Z80_HZ
 #define Q_ZX_SPECTRUM_PLUS_CYCLES_PER_FRAME			Q_ZX_SPECTRUM_CYCLES_PER_FRAME
@@ -86,7 +86,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_ZX_SPECTRUM_PLUS_CYCLES_AT_BOTTOM_BORDER		Q_ZX_SPECTRUM_CYCLES_AT_BOTTOM_BORDER
 #define Q_ZX_SPECTRUM_PLUS_CYCLES_AT_LINE			Q_ZX_SPECTRUM_CYCLES_AT_LINE
 
-#pragma mark - Memory
+/* MARK: - Memory */
 
 #define Q_ZX_SPECTRUM_PLUS_MEMORY_SIZE			(1024 * 16 + 1024 * 48)
 #define Q_ZX_SPECTRUM_PLUS_RAM_SIZE			(1024 * 48)

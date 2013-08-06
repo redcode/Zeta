@@ -17,7 +17,7 @@ File extensions: zx
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	rom_tail[132];	/* Last 132 bytes of ROM */
 	quint8	ram[1024 * 48];
 	quint8	zero1[132];

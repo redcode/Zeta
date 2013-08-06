@@ -31,13 +31,13 @@ From the sources of MESS:
 #include <Q/types/basics.h>
 #include <Q/macros/bit field.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	signature[2];		/* 'SP'				*/
 	quint16 ram_size;		/* 1024 * 16 or 1024 * 48	*/
 	quint16 ram_load_address;	/* 1024 * 16			*/
 ) QSPHeader;
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 
 	Q16Bit	bc,  de,  hl,  af,  ix, iy;
 	Q16Bit	bc_, de_, hl_, af_;

@@ -11,7 +11,7 @@ Released under the terms of the GNU General Public License v2. */
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE(
+Q_DEFINE_STRICT_STRUCTURE(
 	QString nes[4];
 	quint8	prg_rom_page_count;
 	quint8	chr_rom_page_count;

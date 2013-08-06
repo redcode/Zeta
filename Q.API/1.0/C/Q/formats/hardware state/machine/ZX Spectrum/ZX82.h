@@ -46,7 +46,7 @@ Released under the terms of the GNU General Public License v3. */
 |   - Appendix C - Example Packer C code (P538).			  |
 '------------------------------------------------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	identifier[4];		/* {'Z', 'X', '8', '2'}				*/
 	quint8	data_type;
 	quint8	data_compressed;	/* boolean					*/
@@ -61,7 +61,7 @@ typedef Q_STRICT_STRUCTURE (
 #define Q_ZX82_DATA_TYPE_CODE		3
 #define Q_ZX82_DATA_TYPE_SNAPSHOT	4
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8 border_color;
 	quint8 im; /* (0 = use I register, 1 = IM 1 and 2 = IM 2) ??? */
 	Q16Bit iy;

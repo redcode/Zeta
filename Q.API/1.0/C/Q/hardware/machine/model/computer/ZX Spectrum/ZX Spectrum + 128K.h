@@ -37,7 +37,7 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/hardware/machine/model/computer/ZX Spectrum/ZX Spectrum.h>
 
-#pragma mark - Screen
+/* MARK: - Screen */
 
 /*					---
 	  Invisible Top Border		 | 7
@@ -74,7 +74,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_ZX_SPECTRUM_PLUS_128K_SCREEN_LEFT_BORDER_WIDTH		Q_ZX_SPECTRUM_SCREEN_LEFT_BORDER_WIDTH
 #define Q_ZX_SPECTRUM_PLUS_128K_SCREEN_RIGHT_BORDER_WIDTH		Q_ZX_SPECTRUM_SCREEN_RIGHT_BORDER_WIDTH
 
-#pragma mark - Timmings
+/* MARK: - Timmings */
 
 #define Q_ZX_SPECTRUM_PLUS_128K_Z80_HZ				3546900
 #define Q_ZX_SPECTRUM_PLUS_128K_PSG_HZ				1773400
@@ -107,7 +107,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_LINE(region, line)	(Q_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_##region  + \
 								 Q_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE * line)
 
-#pragma mark - Memory
+/* MARK: - Memory */
 
 #define Q_ZX_SPECTRUM_PLUS_128K_ROM_SIZE	(1024 *	 32)
 #define Q_ZX_SPECTRUM_PLUS_128K_RAM_SIZE	(1024 * 128)
@@ -116,7 +116,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_ZX_SPECTRUM_FIRMWARE_BASE_ADDRESS	0x0000
 
 
-#pragma mark - I/O Ports
+/* MARK: - I/O Ports */
 
 /* 7FFD - Memory bank switching
    .-----------------.
@@ -135,8 +135,5 @@ typedef Q_STRICT_8BIT_FIELD (
 	quint8 vram	:1,
 	quint8 user	:3
 ) QZXSpectrumPlus128KMemoryBankSwitch;
-
-
-
 
 #endif /* __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H__ */

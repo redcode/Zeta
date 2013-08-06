@@ -12,11 +12,9 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/types/basics.h>
 #include <Q/macros/bit field.h>
 
-#pragma mark - Video
+/* MARK: - Video */
 
-
-
-typedef Q_STRICT_STRUCTURE(
+Q_DEFINE_STRICT_STRUCTURE(
 	quint8 characters[1024 * 6];
 	quint8 attributes[768];
 ) QZXSpectrumVRAM;
@@ -64,7 +62,7 @@ typedef Q_STRICT_8BIT_FIELD (
 #define Q_ZX_SPECTRUM_ATTRIBUTE_SQUARE_WIDTH	8
 #define Q_ZX_SPECTRUM_ATTRIBUTE_SQUARE_HEIGHT	8
 
-#pragma mark - I/O ports
+/* MARK: - I/O ports */
 
 #define Q_ZX_SPECTRUM_IO_PORT_ULA		0x01 /* read only */
 #define Q_ZX_SPECTRUM_IO_PORT_KEMPSTON_JOYSTICK	0x1F /* read only */
@@ -153,7 +151,7 @@ typedef Q_STRICT_8BIT_FIELD (
 
 
 
-#pragma mark - Timings
+/* MARK: - Timings */
 
 
 
@@ -204,7 +202,7 @@ typedef Q_STRICT_8BIT_FIELD (
 
 
 
-#pragma mark - Memory Structure
+/* MARK: - Memory Structure */
 
 /* .-------------------------------------.
    | Type | Location  | Content		 |
@@ -230,7 +228,7 @@ typedef Q_STRICT_8BIT_FIELD (
 
 
 
-#pragma mark - State storage type
+/* MARK: - State storage type */
 
 typedef struct {
 	Q64Bit	 keyboard;

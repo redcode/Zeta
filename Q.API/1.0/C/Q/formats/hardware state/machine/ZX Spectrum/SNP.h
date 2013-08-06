@@ -17,7 +17,7 @@ File extensions: snp
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	ram[1024 * 48];
 	Q16Bit	af;
 	quint8	border_color;
