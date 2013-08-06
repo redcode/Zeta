@@ -226,6 +226,7 @@ Q_IMPLEMENTATION_3D_LINE(LDouble, ldouble, L)
 		q##type size_x,							\
 		q##type size_y							\
 	)									\
+		{								\
 		Q##Type##Rectangle rectangle = {{x, y}, {size_x, size_y}};	\
 		return rectangle;						\
 		}
@@ -323,6 +324,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, L)
 		q##type y,							\
 		q##type radius							\
 	)									\
+		{								\
 		Q##Type##Circle circle = {{x, y}, radius};			\
 		return circle;							\
 		}
@@ -379,6 +381,7 @@ Q_IMPLEMENTATION_CIRCLE(LDouble, ldouble)
 		q##type z,					\
 		q##type radius					\
 	)							\
+		{						\
 		Q##Type##Sphere sphere = {{x, y, z}, radius};	\
 		return sphere;					\
 		}
