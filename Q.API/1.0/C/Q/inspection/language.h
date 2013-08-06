@@ -9,28 +9,38 @@ Released under the terms of the GNU General Public License v2. */
 #ifndef __Q_inspection_language_H__
 #define __Q_inspection_language_H__
 
-#if defined(__STDC__)
-#	if defined(__STDC_VERSION__)
+#include <Q/inspection/compiler.h>
 
-#		if   __STDC_VERSION__ >= 201112L
-#			define Q_C_NAME			C11
-#		elif __STDC_VERSION__ >= 199901L
-#			define Q_C_NAME			C99
-#		elif __STDC_VERSION__ >= 199409L
-#			define Q_C_NAME			C94
+#if defined(Q_COMPILER_C) && defined(Q_COMPILER_C_NAME)
+
+#	define Q_C	Q_COMPILER_C
+#	define Q_C_NAME	Q_COMPILER_C_NAME
+
+#else
+
+#	if defined(__STDC__)
+#		if defined(__STDC_VERSION__)
+#			if   __STDC_VERSION__ >= 201112L
+#				define Q_C_NAME C11
+#			elif __STDC_VERSION__ >= 199901L
+#				define Q_C_NAME C99
+#			elif __STDC_VERSION__ >= 199409L
+#				define Q_C_NAME C94
+#			else
+#				define Q_C_NAME C90
+#			endif
 #		else
-#			define Q_C_NAME			C90
+#			define Q_C_NAME C89
 #		endif
 #	else
-#		define Q_C_NAME				C89
+#		define Q_C_NAME C89 /* KR */
 #	endif
-#else
-#	define Q_C_NAME					K&R
-#endif
 
-#define Q_C_HAS(what) defined(Q_C_HAS_##what)
+#endif
 
 #define Q_LANGUAGE_HEADER <Q/inspection/private/language/Q_C_NAME.h>
 #include Q_LANGUAGE_HEADER
+
+#define Q_C_HAS(what) (defined(Q_C_HAS_##what) || defined(Q_COMPILER_C_HAS_##what))
 
 #endif /* __Q_inspection_language_H__ */

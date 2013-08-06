@@ -91,8 +91,8 @@ Q_IMPLEMENTATION_2D_VECTOR(LDouble, ldouble)
 
 #else
 
-#	define Q_3D_VECTOR_NEW(Type, type)
-
+#	define Q_3D_VECTOR_NEW(Type, type)					\
+										\
 	Q_INLINE Q3D##Type##Vector q_3d_##type##_vector(			\
 		q##type a_x,							\
 		q##type a_y,							\
@@ -153,19 +153,19 @@ Q_IMPLEMENTATION_3D_VECTOR(LDouble, ldouble)
 #define q_2d_ldouble_line_zero		q_2d_ldouble_vector_zero
 #define q_2d_ldouble_line_are_equal	q_2d_ldouble_vector_are_equal
 
-#define Q_IMPLEMENTATION_2D_LINE(Type, type)				\
-									\
-Q_2D_LINE_EXPORT							\
-Q2D##Type q_2d_##type##_line_segment_center(Q2D##Type##Line segment)	\
-	{								\
-	return q_2d_##type						\
-		((segment.b.x - segment.a.x) / 2.0 + segment.a.x,	\
-		 (segment.b.y - segment.a.y) / 2.0 + segment.a.y);	\
+#define Q_IMPLEMENTATION_2D_LINE(Type, type, literal)				\
+										\
+Q_2D_LINE_EXPORT								\
+Q2D##Type q_2d_##type##_line_segment_center(Q2D##Type##Line segment)		\
+	{									\
+	return q_2d_##type							\
+		((segment.b.x - segment.a.x) / 2.0##literal + segment.a.x,	\
+		 (segment.b.y - segment.a.y) / 2.0##literal + segment.a.y);	\
 	}
 
-Q_IMPLEMENTATION_2D_LINE(Float,   float  )
-Q_IMPLEMENTATION_2D_LINE(Double,  double )
-Q_IMPLEMENTATION_2D_LINE(LDouble, ldouble)
+Q_IMPLEMENTATION_2D_LINE(Float,   float,   F)
+Q_IMPLEMENTATION_2D_LINE(Double,  double,   )
+Q_IMPLEMENTATION_2D_LINE(LDouble, ldouble, L)
 
 
 /* MARK: - 3D Line */
@@ -185,20 +185,20 @@ Q_IMPLEMENTATION_2D_LINE(LDouble, ldouble)
 #define q_3d_ldouble_line_zero		q_3d_ldouble_vector_zero
 #define q_3d_ldouble_line_are_equal	q_3d_ldouble_vector_are_equal
 
-#define Q_IMPLEMENTATION_3D_LINE(Type, type)				\
-									\
-Q_3D_LINE_EXPORT							\
-Q3D##Type q_3d_##type##_line_segment_center(Q3D##Type##Line segment)	\
-	{								\
-	return q_3d_##type						\
-		((segment.b.x - segment.a.x) / 2.0 + segment.a.x,	\
-		 (segment.b.y - segment.a.y) / 2.0 + segment.a.y,	\
-		 (segment.b.z - segment.a.z) / 2.0 + segment.a.z);	\
+#define Q_IMPLEMENTATION_3D_LINE(Type, type, literal)				\
+										\
+Q_3D_LINE_EXPORT								\
+Q3D##Type q_3d_##type##_line_segment_center(Q3D##Type##Line segment)		\
+	{									\
+	return q_3d_##type							\
+		((segment.b.x - segment.a.x) / 2.0##literal + segment.a.x,	\
+		 (segment.b.y - segment.a.y) / 2.0##literal + segment.a.y,	\
+		 (segment.b.z - segment.a.z) / 2.0##literal + segment.a.z);	\
 	}
 
-Q_IMPLEMENTATION_3D_LINE(Float,   float  )
-Q_IMPLEMENTATION_3D_LINE(Double,  double )
-Q_IMPLEMENTATION_3D_LINE(LDouble, ldouble)
+Q_IMPLEMENTATION_3D_LINE(Float,   float,   F)
+Q_IMPLEMENTATION_3D_LINE(Double,  double,   )
+Q_IMPLEMENTATION_3D_LINE(LDouble, ldouble, L)
 
 
 /* MARK: - Rectangle */
@@ -237,7 +237,7 @@ Q_IMPLEMENTATION_3D_LINE(LDouble, ldouble)
 #define q_ldouble_rectangle_zero q_ldouble_rectangle(0.0L, 0.0L, 0.0L, 0.0L)
 
 
-#define Q_IMPLEMENTATION_RECTANGLE(Type, type)					\
+#define Q_IMPLEMENTATION_RECTANGLE(Type, type, literal)				\
 										\
 										\
 Q_RECTANGLE_NEW(Type, type)							\
@@ -258,8 +258,8 @@ Q_RECTANGLE_EXPORT								\
 Q2D##Type q_##type##_rectangle_center(Q##Type##Rectangle rectangle)		\
 	{									\
 	return q_2d_##type							\
-		(rectangle.point.x + rectangle.size.x / (q##type)2.0,		\
-		 rectangle.point.y + rectangle.size.y / (q##type)2.0);		\
+		(rectangle.point.x + rectangle.size.x / 2.0##literal,		\
+		 rectangle.point.y + rectangle.size.y / 2.0##literal);		\
 	}									\
 										\
 										\
@@ -285,17 +285,17 @@ q##type q_##type##_rectangle_maximum_y(Q##Type##Rectangle rectangle)		\
 										\
 Q_RECTANGLE_EXPORT								\
 q##type q_##type##_rectangle_middle_x(Q##Type##Rectangle rectangle)		\
-	{return rectangle.point.x + rectangle.size.x / (q##type)2.0;}		\
+	{return rectangle.point.x + rectangle.size.x / 2.0##literal;}		\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
 q##type q_##type##_rectangle_middle_y(Q##Type##Rectangle rectangle)		\
-	{return rectangle.point.y + rectangle.size.y / (q##type)2.0;}
+	{return rectangle.point.y + rectangle.size.y / 2.0##literal;}
 
 
-Q_IMPLEMENTATION_RECTANGLE(Float,   float  )
-Q_IMPLEMENTATION_RECTANGLE(Double,  double )
-Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble)
+Q_IMPLEMENTATION_RECTANGLE(Float,   float,   F)
+Q_IMPLEMENTATION_RECTANGLE(Double,  double,   )
+Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, L)
 #undef Q_RECTANGLE_NEW()
 
 

@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_keys_language_H__
 #define __Q_keys_language_H__
 
-#pragma mark - C
+/* MARK: - C */
 
 #define Q_C_KR		0
 #define Q_C89		1
@@ -25,7 +25,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_STRING_C99	"ISO/IEC 9899:1999 (99)"
 #define Q_STRING_C11	"ISO/IEC 9899:2011 (C11)"
 
-#pragma mark - C++
+/* MARK: - C++ */
 
 #define Q_CPP98		1
 #define Q_CPP03		2

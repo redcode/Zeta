@@ -20,18 +20,18 @@ Released under the terms of the GNU General Public License v3. */
 									\
 Q_INLINE								\
 quint##bits q_uint##bits##_reversed_in_##level##bit(quint##bits value)	\
-	{Q_##bits##BIT_REVERSED_IN_##level_bits##BIT(value);}		\
+	{return Q_##bits##BIT_REVERSED_IN_##level##BIT(value);}		\
 									\
 Q_INLINE								\
 qint##bits q_int##bits##_reversed_in_##level##bit(qint##bits value)	\
-	{Q_##bits##BIT_REVERSED_IN_##level_bits##BIT(value);}
+	{return Q_##bits##BIT_REVERSED_IN_##level##BIT(value);}
 
 
 #define Q_IMPLEMENTATION_VALUE_REVERSED(type, TYPE)	\
 							\
 Q_INLINE						\
 q##type q_##type##_reversed(q##type value)		\
-	{Q_##TYPE##_REVERSED(value);}
+	{return Q_##TYPE##_REVERSED(value);}
 
 
 Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(16,  8)
@@ -512,6 +512,7 @@ q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)	\
 Q_IMPLEMENTATION_REAL_VALUE(float  )
 Q_IMPLEMENTATION_REAL_VALUE(double )
 Q_IMPLEMENTATION_REAL_VALUE(ldouble)
+Q_IMPLEMENTATION_REAL_VALUE(real   )
 
 
 #endif /* __Q_functions_value_H__ */
