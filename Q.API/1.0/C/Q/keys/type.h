@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_keys_type_H__
 #define __Q_keys_type_H__
 
-#pragma mark - Standard C types
+/* MARK: - Standard C types */
 
 #define Q_TYPE_POINTER	 0
 #define Q_TYPE_UCHAR	 1
@@ -26,7 +26,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TYPE_DOUBLE	12
 #define Q_TYPE_LDOUBLE	13
 
-#pragma mark - Non standard types
+/* MARK: - Non standard types */
 
 #define Q_TYPE_UINT8	14
 #define Q_TYPE_UINT16	15
@@ -57,7 +57,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TYPE_INTEGER	40
 #define Q_TYPE_REAL	41
 
-#pragma mark - Last key index
+/* MARK: - Last key index */
 
 #define Q_LAST_KEY_TYPE Q_TYPE_REAL
 

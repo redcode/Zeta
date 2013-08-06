@@ -269,8 +269,6 @@ typedef signed short int			qshort;
 #	define Q_USHORT_ENDIANNESS		Q_UINT16_ENDIANNESS
 #	define Q_USHORT_SIZE			Q_UINT16_SIZE
 #	define Q_USHORT_MAXIMUM			Q_UINT16_MAXIMUM
-#	define Q_2D_USHORT			Q_2D_UINT16
-#	define Q_3D_USHORT			Q_3D_UINT16
 
 	typedef Q2DInt16			Q2DShort;
 	typedef Q3DInt16			Q3DShort;
@@ -281,8 +279,6 @@ typedef signed short int			qshort;
 #	define Q_SHORT_SIZE			Q_INT16_SIZE
 #	define Q_SHORT_MINIMUM			Q_INT16_MINIMUM
 #	define Q_SHORT_MAXIMUM			Q_INT16_MAXIMUM
-#	define Q_2D_SHORT			Q_2D_INT16
-#	define Q_3D_SHORT			Q_3D_INT16
 
 #elif Q_SHORT_BITS == 32
 
@@ -294,8 +290,6 @@ typedef signed short int			qshort;
 #	define Q_USHORT_ENDIANNESS		Q_UINT32_ENDIANNESS
 #	define Q_USHORT_SIZE			Q_UINT32_SIZE
 #	define Q_USHORT_MAXIMUM			Q_UINT32_MAXIMUM
-#	define Q_2D_USHORT			Q_2D_UINT32
-#	define Q_3D_USHORT			Q_3D_UINT32
 
 	typedef Q2DInt32			Q2DShort;
 	typedef Q3DInt32			Q3DShort;
@@ -306,8 +300,6 @@ typedef signed short int			qshort;
 #	define Q_SHORT_SIZE			Q_INT32_SIZE
 #	define Q_SHORT_MINIMUM			Q_INT32_MINIMUM
 #	define Q_SHORT_MAXIMUM			Q_INT32_MAXIMUM
-#	define Q_2D_SHORT			Q_2D_INT32
-#	define Q_3D_SHORT			Q_3D_INT32
 
 #endif
 
@@ -667,7 +659,7 @@ typedef void*					qpointer;
 #define Q_UINTPTR_SIZE				Q_POINTER_SIZE
 #define Q_UINTPTR_MINIMUM			0
 
-#define Q_UINTPTR_TYPE				Q_TYPE_INTPTR
+#define Q_INTPTR_TYPE				Q_TYPE_INTPTR
 #define Q_INTPTR_BITS				Q_POINTER_BITS
 #define Q_INTPTR_SIZE				Q_POINTER_SIZE
 
@@ -1139,7 +1131,7 @@ typedef quint8					QType;
 #define Q_TYPE_BASE_TYPE			Q_UINT8_BASE_TYPE
 #define Q_TYPE_FORMAT				Q_UINT8_FORMAT
 #define Q_TYPE_BITS				Q_UINT8_BITS
-#define Q_TYPE_SIZE				Q_UINT8_SIZE
+#define Q_TYPE_SIZE_				Q_UINT8_SIZE
 
 typedef quint8					QValueFormat;
 #define Q_VALUE_FORMAT_TYPE			Q_UINT8_TYPE
@@ -1721,8 +1713,8 @@ typedef struct {
 #define Q_64BIT(     p) ((Q64Bit     *)(p))
 #define Q_RANGE(     p) ((QRange     *)(p))
 
-#define Q_BASE_AND_INDEX(p)		((QBaseAndIndex		  *)(p))
-#define Q_FUNCTION_CONTEXT_AND_DATA(p)	((QFunctionAndContext	  *)(p))
-#define Q_FUNCTION_CONTEXT_AND_DATA(p)	((QFunctionContextAndData *)(p))
+#define Q_BASE_AND_INDEX(	    p) ((QBaseAndIndex		 *)(p))
+#define Q_FUNCTION_AND_CONTEXT(	    p) ((QFunctionAndContext	 *)(p))
+#define Q_FUNCTION_CONTEXT_AND_DATA(p) ((QFunctionContextAndData *)(p))
 
 #endif /* __Q_types_basics_H__ */

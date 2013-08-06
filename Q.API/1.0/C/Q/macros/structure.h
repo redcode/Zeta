@@ -23,7 +23,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(name, ...)	\
 	Q_STRICT_SIZE_BEGIN				\
-	Q_DEFINE_STRUCTURE_WITH_NAME(name, __VA_ARGS__)
+	Q_DEFINE_STRUCTURE_WITH_NAME(name, __VA_ARGS__)	\
 	Q_STRICT_SIZE_END
 
 #if Q_COMPILER_HAS_FUNCTION(OFFSETOF)
