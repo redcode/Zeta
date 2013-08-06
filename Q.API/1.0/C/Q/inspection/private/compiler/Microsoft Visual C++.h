@@ -47,13 +47,13 @@ Released under the terms of the GNU General Public License v2. */
 #pragma mark - Keywords and attributes
 
 #define Q_ASSEMBLY
-#define Q_THREAD_LOCAL(type, name)				type __thread name
-#define Q_ATTRIBUTE_PRIVATE					__attribute__((visibility("hidden"))) static
-#define Q_ATTRIBUTE_PUBLIC					__attribute__((visibility("default"))
-#define Q_ATTRIBUTE_ALIAS(name)					__attribute__((weak, alias(name)))
-#define Q_ATTRIBUTE_STRICT_SIZE					__attribute__((packed))
-#define Q_ATTRIBUTE_ERROR(message)				__attribute__((error(message)))
-#define Q_ATTRIBUTE_UNAVAILABLE(message)			__attribute__((unavailable(message)))
+#define Q_THREAD_LOCAL(type, variable)				__declspec(thread) type variable
+#define Q_API							__declspec(dllimport)
+#define Q_PRIVATE						static
+#define Q_PUBLIC						__declspec(dllexport)
+#define Q_ALIAS(name)
+#define Q_STRICT_SIZE_BEGIN					__pragma(pack(push, 1))
+#define Q_STRICT_SIZE_END					__pragma(pack(pop))
 
 #define Q_INLINE						static __inline
 

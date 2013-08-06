@@ -11,11 +11,11 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/basics.h>
 
-typedef Q_STRICT_UNION (
+Q_DEFINE_STRICT_UNION (
 	quint32 value;
 ) QIPv4;
 
-typedef Q_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8	version			:4;
 	quint8	header_size		:4;
 	quint8	differenciated_services	:8;

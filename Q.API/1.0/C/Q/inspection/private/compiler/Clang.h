@@ -61,20 +61,16 @@ Released under the terms of the GNU General Public License v2. */
 
 #endif
 
-/* MARK: - Built-in functions (Atomic operations) */
-
-
-
-#pragma mark - Keywords and attributes
+/* MARK: - Keywords and attributes */
 
 #define Q_ASSEMBLY
-#define Q_THREAD_LOCAL(type, name)				type __thread name
-#define Q_ATTRIBUTE_PRIVATE					__attribute__((visibility("hidden"))) static
-#define Q_ATTRIBUTE_PUBLIC					__attribute__((visibility("default"))
-#define Q_ATTRIBUTE_ALIAS(name)					__attribute__((weak, alias(name)))
-#define Q_ATTRIBUTE_STRICT_SIZE					__attribute__((packed))
-#define Q_ATTRIBUTE_ERROR(message)				__attribute__((error(message)))
-#define Q_ATTRIBUTE_UNAVAILABLE(message)			__attribute__((unavailable(message)))
+#define Q_THREAD_LOCAL(type, identifier)			type __thread identifier
+#define Q_API
+#define Q_PRIVATE						__attribute__((visibility("hidden"))) static
+#define Q_PUBLIC						__attribute__((visibility("default"))
+#define Q_ALIAS(name)						__attribute__((weak, alias(name)))
+#define Q_STRICT_SIZE_BEGIN
+#define Q_STRICT_SIZE_END					__attribute__((packed))
 
 #if __GNUC__ >= 4
 #	define Q_INLINE						static __inline__ __attribute__((always_inline))

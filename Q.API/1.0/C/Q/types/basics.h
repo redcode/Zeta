@@ -1172,14 +1172,14 @@ typedef qint8					QOrder;
 
 /* MARK: - Value component access types */
 
-typedef Q_STRICT_UNION (
+Q_DEFINE_STRICT_UNION (
 	quint8	   uint8_value;
 	qint8	   int8_value;
 ) Q8Bit;
 
 #if Q_CPU_INTEGER_ENDIANNESS(16BIT) == Q_ENDIANNESS_BIG
 
-	typedef Q_STRICT_UNION (
+	Q_DEFINE_STRICT_UNION (
 		quint16 uint16_value;
 		quint8	uint8_array[2];
 
@@ -1197,7 +1197,7 @@ typedef Q_STRICT_UNION (
 
 #elif Q_CPU_INTEGER_ENDIANNESS(16BIT) == Q_ENDIANNESS_LITTLE
 
-	typedef Q_STRICT_UNION (
+	Q_DEFINE_STRICT_UNION (
 		quint16 uint16_value;
 		quint8	uint8_array[2];
 
@@ -1217,7 +1217,7 @@ typedef Q_STRICT_UNION (
 
 #if Q_CPU_INTEGER_ENDIANNESS(32BIT) == Q_ENDIANNESS_BIG
 
-	typedef Q_STRICT_UNION (
+	Q_DEFINE_STRICT_UNION (
 		quint32 uint32_value;
 		quint16 uint16_array[2];
 		quint8	uint8_array[4];
@@ -1249,7 +1249,7 @@ typedef Q_STRICT_UNION (
 
 #elif Q_CPU_INTEGER_ENDIANNESS(32BIT) == Q_ENDIANNESS_LITTLE
 
-	typedef Q_STRICT_UNION (
+	Q_DEFINE_STRICT_UNION (
 		quint32 uint32_value;
 		quint16 uint16_array[2];
 		quint8	uint8_array[4];
@@ -1283,7 +1283,7 @@ typedef Q_STRICT_UNION (
 
 #if Q_CPU_INTEGER_ENDIANNESS(64BIT) == Q_ENDIANNESS_BIG
 
-	typedef Q_STRICT_UNION (
+	Q_DEFINE_STRICT_UNION (
 		quint64 uint64_value;
 		quint32 uint32_array[2];
 		quint16 uint16_array[4];
@@ -1337,7 +1337,7 @@ typedef Q_STRICT_UNION (
 
 #elif Q_CPU_INTEGER_ENDIANNESS(64BIT) == Q_ENDIANNESS_LITTLE
 
-	typedef Q_STRICT_UNION (
+	Q_DEFINE_STRICT_UNION (
 		quint64 uint64_value;
 		quint32 uint32_array[2];
 		quint16 uint16_array[4];
@@ -1393,7 +1393,7 @@ typedef Q_STRICT_UNION (
 
 #if Q_CPU_INTEGER_ENDIANNESS(64BIT) == Q_ENDIANNESS_BIG
 
-	typedef Q_STRICT_UNION (
+	Q_DEFINE_STRICT_UNION (
 		quint64 uint64_array[2];
 		quint32 uint32_array[4];
 		quint16 uint16_array[8];
@@ -1492,7 +1492,7 @@ typedef Q_STRICT_UNION (
 
 #elif Q_CPU_INTEGER_ENDIANNESS(64BIT) == Q_ENDIANNESS_LITTLE
 
-	typedef Q_STRICT_UNION (
+	Q_DEFINE_STRICT_UNION (
 		quint64 uint64_array[2];
 		quint32 uint32_array[4];
 		quint16 uint16_array[8];
