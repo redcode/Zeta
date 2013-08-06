@@ -297,7 +297,7 @@ q##type q_##type##_rectangle_middle_y(Q##Type##Rectangle rectangle)		\
 Q_IMPLEMENTATION_RECTANGLE(Float,   float,   F)
 Q_IMPLEMENTATION_RECTANGLE(Double,  double,   )
 Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, L)
-#undef Q_RECTANGLE_NEW()
+#undef Q_RECTANGLE_NEW
 
 
 /* MARK: - Circle */
