@@ -52,7 +52,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_JOIN_7(a, b, c, d, e, f, g)		Q_JOIN_6_(a, b, c, d, e, f, g)
 #define Q_JOIN_8(a, b, c, d, e, f, g, h)	Q_JOIN_6_(a, b, c, d, e, f, g, h)
 
-#define Q_JOIN_N(a)				Q_JOIN_2_(Q_JOIN_, a) /* Needed for Q_JOIN(...) only */
+#define Q_JOIN_N(n)				Q_JOIN_2_(Q_JOIN_, n) /* Needed for Q_JOIN(...) only */
 
 #define Q_JOIN(...)				Q_STEP(Q_JOIN_N(Q_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N()))) \
 							(__VA_ARGS__)
