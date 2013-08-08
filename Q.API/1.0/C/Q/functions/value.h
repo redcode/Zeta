@@ -506,7 +506,7 @@ Q_IMPLEMENTATION_INTEGER_VALUE(real   )
 								\
 Q_INLINE							\
 q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)	\
-	{return (b * alpha) + (a * ((q##type)1 - alpha));}
+	{return a + alpha * (b - a);}
 
 
 Q_IMPLEMENTATION_REAL_VALUE(float  )
