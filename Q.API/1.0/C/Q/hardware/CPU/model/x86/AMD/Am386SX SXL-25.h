@@ -4,7 +4,7 @@
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2009 RedCode Software.
-Released under the terms of the GNU General Public License v2.
+Released under the terms of the GNU General Public License v3.
 
    Encapsulation: Plastic PQFP-100
 

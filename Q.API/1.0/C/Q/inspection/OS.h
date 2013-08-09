@@ -4,7 +4,7 @@
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2010-2013 Manuel Sainz de Baranda y Goñi.
-Released under the terms of the GNU General Public License v2. */
+Released under the terms of the GNU General Public License v3. */
 
 #ifndef __Q_inspection_OS_H__
 #define __Q_inspection_OS_H__

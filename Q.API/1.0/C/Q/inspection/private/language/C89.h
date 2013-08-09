@@ -4,7 +4,7 @@
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2010 RedCode Software.
-Released under the terms of the GNU General Public License v2. */
+Released under the terms of the GNU General Public License v3. */
 
 #ifndef __Q_private_language_H__
 #define __Q_private_language_H__

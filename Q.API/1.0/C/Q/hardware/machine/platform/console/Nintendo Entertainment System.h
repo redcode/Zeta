@@ -4,7 +4,7 @@
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2009 RedCode Software.
-Released under the terms of the GNU General Public License v2.
+Released under the terms of the GNU General Public License v3.
 
  CPU: Ricoh RP2A03 (see <Q/hardware/CPU/RP2A03.h>)
  GPU: Ricoh RP2C02 (see <Q/hardware/GPU/RP2C02.h>)
