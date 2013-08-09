@@ -59,7 +59,8 @@ Released under the terms of the GNU General Public License v2. */
 #	elif	defined(__ILP32__)	|| \
 		defined(_ILP32_)	|| \
 		defined(_ILP32)		|| \
-		defined(ILP32)
+		defined(ILP32)		|| \
+		defined(_WIN32)
 
 #		define Q_DATA_MODEL_NAME ILP32
 
@@ -73,7 +74,8 @@ Released under the terms of the GNU General Public License v2. */
 #	elif	defined(__LLP64__)	|| \
 		defined(_LLP64_)	|| \
 		defined(_LLP64)		|| \
-		defined(LLP64)
+		defined(LLP64)		|| \
+		defined(_WIN64)
 
 #		define Q_DATA_MODEL_NAME LLP64
 
