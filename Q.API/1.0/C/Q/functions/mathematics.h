@@ -685,6 +685,10 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_rectangle_contains_point		q_float_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_float_rectangle_contains_line_segment
 
+#	define q_box					q_float_box
+#	define q_box_zero				q_float_box_zero
+#	define q_box_are_equal				q_float_box_are_equal
+
 #	define q_circle					q_float_cirlce
 #	define q_circle_zero				q_float_circle_zero
 #	define q_circle_are_equal			q_float_circle_are_equal
@@ -790,6 +794,10 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_rectangle_contains_point		q_ldouble_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_ldouble_rectangle_contains_line_segment
 
+#	define q_box					q_ldouble_box
+#	define q_box_zero				q_ldouble_box_zero
+#	define q_box_are_equal				q_ldouble_box_are_equal
+
 #	define q_circle					q_ldouble_cirlce
 #	define q_circle_zero				q_ldouble_circle_zero
 #	define q_circle_are_equal			q_ldouble_circle_are_equal
@@ -894,6 +902,10 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_rectangle_middle_y			q_double_rectangle_middle_y
 #	define q_rectangle_contains_point		q_double_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_double_rectangle_contains_line_segment
+
+#	define q_box					q_double_box
+#	define q_box_zero				q_double_box_zero
+#	define q_box_are_equal				q_double_box_are_equal
 
 #	define q_circle					q_double_cirlce
 #	define q_circle_zero				q_double_circle_zero
