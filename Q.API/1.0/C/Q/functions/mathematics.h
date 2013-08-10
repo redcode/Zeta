@@ -159,13 +159,13 @@ Q_2D_LINE_EXPORT							\
 Q2D##Type q_2d_##type##_line_segment_center(Q2D##Type##Line segment)	\
 	{								\
 	return q_2d_##type						\
-		((segment.b.x - segment.a.x) / 2.0##_ + segment.a.x,	\
-		 (segment.b.y - segment.a.y) / 2.0##_ + segment.a.y);	\
+		((segment.b.x - segment.a.x) / _(2.0) + segment.a.x,	\
+		 (segment.b.y - segment.a.y) / _(2.0) + segment.a.y);	\
 	}
 
-Q_IMPLEMENTATION_2D_LINE(Float,   float,   F)
-Q_IMPLEMENTATION_2D_LINE(Double,  double,   )
-Q_IMPLEMENTATION_2D_LINE(LDouble, ldouble, L)
+Q_IMPLEMENTATION_2D_LINE(Float,   float,   Q_FLOAT  )
+Q_IMPLEMENTATION_2D_LINE(Double,  double,  Q_DOUBLE )
+Q_IMPLEMENTATION_2D_LINE(LDouble, ldouble, Q_LDOUBLE)
 
 
 /* MARK: - 3D Line */
@@ -191,14 +191,14 @@ Q_3D_LINE_EXPORT							\
 Q3D##Type q_3d_##type##_line_segment_center(Q3D##Type##Line segment)	\
 	{								\
 	return q_3d_##type						\
-		((segment.b.x - segment.a.x) / 2.0##_ + segment.a.x,	\
-		 (segment.b.y - segment.a.y) / 2.0##_ + segment.a.y,	\
-		 (segment.b.z - segment.a.z) / 2.0##_ + segment.a.z);	\
+		((segment.b.x - segment.a.x) / _(2.0) + segment.a.x,	\
+		 (segment.b.y - segment.a.y) / _(2.0) + segment.a.y,	\
+		 (segment.b.z - segment.a.z) / _(2.0) + segment.a.z);	\
 	}
 
-Q_IMPLEMENTATION_3D_LINE(Float,   float,   F)
-Q_IMPLEMENTATION_3D_LINE(Double,  double,   )
-Q_IMPLEMENTATION_3D_LINE(LDouble, ldouble, L)
+Q_IMPLEMENTATION_3D_LINE(Float,   float,   Q_FLOAT  )
+Q_IMPLEMENTATION_3D_LINE(Double,  double,  Q_DOUBLE )
+Q_IMPLEMENTATION_3D_LINE(LDouble, ldouble, Q_LDOUBLE)
 
 
 /* MARK: - Rectangle */
@@ -335,8 +335,8 @@ Q##Type##Rectangle q_##type##_rectangle_union(					\
 Q_RECTANGLE_EXPORT								\
 Q##Type##Rectangle q_##type##_rectangle_by_vertices(Q2D##Type a, Q2D##Type b)	\
 	{									\
-	Q2D##Type minimum = q_##type##_2d_minimum_of_magnitudes(a, b);		\
-	Q2D##Type maximum = q_##type##_2d_maximum_of_magnitudes(a, b);		\
+	Q2D##Type minimum = q_2d_##type##_minimum(a, b);			\
+	Q2D##Type maximum = q_2d_##type##_maximum(a, b);			\
 										\
 	return q_##type##_rectangle						\
 		(minimum.x,  minimum.y,						\
@@ -348,8 +348,8 @@ Q_RECTANGLE_EXPORT								\
 Q2D##Type q_##type##_rectangle_center(Q##Type##Rectangle rectangle)		\
 	{									\
 	return q_2d_##type							\
-		(rectangle.point.x + rectangle.size.x / 2.0##_,			\
-		 rectangle.point.y + rectangle.size.y / 2.0##_);		\
+		(rectangle.point.x + rectangle.size.x / _(2.0),			\
+		 rectangle.point.y + rectangle.size.y / _(2.0));		\
 	}									\
 										\
 										\
@@ -375,12 +375,12 @@ q##type q_##type##_rectangle_maximum_y(Q##Type##Rectangle rectangle)		\
 										\
 Q_RECTANGLE_EXPORT								\
 q##type q_##type##_rectangle_middle_x(Q##Type##Rectangle rectangle)		\
-	{return rectangle.point.x + rectangle.size.x / 2.0##_;}			\
+	{return rectangle.point.x + rectangle.size.x / _(2.0);}			\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
 q##type q_##type##_rectangle_middle_y(Q##Type##Rectangle rectangle)		\
-	{return rectangle.point.y + rectangle.size.y / 2.0##_;}			\
+	{return rectangle.point.y + rectangle.size.y / _(2.0);}			\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
@@ -407,10 +407,69 @@ qboolean q_##type##_rectangle_contains_line_segment(				\
 	}
 
 
-Q_IMPLEMENTATION_RECTANGLE(Float,   float,   F)
-Q_IMPLEMENTATION_RECTANGLE(Double,  double,   )
-Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, L)
+Q_IMPLEMENTATION_RECTANGLE(Float,   float,   Q_FLOAT  )
+Q_IMPLEMENTATION_RECTANGLE(Double,  double,  Q_DOUBLE )
+Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #undef Q_RECTANGLE_NEW
+
+
+/* MARK: - Box */
+
+
+#ifndef Q_BOX_EXPORT
+#	define Q_BOX_EXPORT Q_INLINE
+#endif
+
+#if Q_C_HAS(COMPOUND_LITERAL)
+
+#	define q_float_box(  x, y, z, size_x, size_y, size_z) ((QFloatBox  ){{x, y, z}, {size_x, size_y, size_z}})
+#	define q_double_box( x, y, z, size_x, size_y, size_z) ((QDoubleBox ){{x, y, z}, {size_x, size_y, size_z}})
+#	define q_ldouble_box(x, y, z, size_x, size_y, size_z) ((QLDoubleBox){{x, y, z}, {size_x, size_y, size_z}})
+
+#	define Q_BOX_NEW(Type, type)
+
+#else
+
+#	define Q_BOX_NEW(Type, type)						\
+										\
+	Q_INLINE Q##Type##Box q_##type##_box(					\
+		q##type x,							\
+		q##type y,							\
+		q##type z,							\
+		q##type size_x,							\
+		q##type size_y,							\
+		q##type size_z							\
+	)									\
+		{								\
+		Q##Type##Box box = {{x, y, z}, {size_x, size_y, size_z}};	\
+		return box;							\
+		}
+
+#endif
+
+#define q_float_box_zero   q_float_box  (0.0F, 0.0F, 0.0F, 0.0F, 0.0F)
+#define q_double_box_zero  q_double_box (0.0,  0.0,  0.0,  0.0,	 0.0 )
+#define q_ldouble_box_zero q_ldouble_box(0.0L, 0.0L, 0.0L, 0.0L, 0.0L)
+
+
+#define Q_IMPLEMENTATION_BOX(Type, type, _)					\
+										\
+										\
+Q_BOX_NEW(Type, type)								\
+										\
+										\
+Q_BOX_EXPORT									\
+qboolean q_##type##_box_are_equal(Q##Type##Box a, Q##Type##Box b)		\
+	{									\
+	return	q_3d_##type##_are_equal(a.point, b.point) &&			\
+		q_3d_##type##_are_equal(a.size,  b.size );			\
+	}
+
+
+Q_IMPLEMENTATION_BOX(Float,   float,   Q_FLOAT	)
+Q_IMPLEMENTATION_BOX(Double,  double,  Q_DOUBLE	)
+Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
+#undef Q_BOX_NEW
 
 
 /* MARK: - Circle */

@@ -57,6 +57,12 @@ typedef struct {Q2DFloat   point, size;}		QFloatRectangle;
 typedef struct {Q2DDouble  point, size;}		QDoubleRectangle;
 typedef struct {Q2DLDouble point, size;}		QLDoubleRectangle;
 
+/* MARK: - Box */
+
+typedef struct {Q3DFloat   point, size;}		QFloatBox;
+typedef struct {Q3DDouble  point, size;}		QDoubleBox;
+typedef struct {Q3DLDouble point, size;}		QLDoubleBox;
+
 /* MARK: - Circle */
 
 typedef struct {Q2DFloat   point; qfloat   radius;}	QFloatCircle;
@@ -68,6 +74,45 @@ typedef struct {Q2DLDouble point; qldouble radius;}	QLDoubleCircle;
 typedef struct {Q3DFloat   point; qfloat   radius;}	QFloatSphere;
 typedef struct {Q3DDouble  point; qdouble  radius;}	QDoubleSphere;
 typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
+
+/* MARK: - Casts */
+
+#define Q_2D_FLOAT_VECTOR(	p) ((Q2DFloatVector	  *)(p))
+#define Q_2D_DOUBLE_VECTOR(	p) ((Q2DDoubleVector	  *)(p))
+#define Q_2D_LDOUBLE_VECTOR(	p) ((Q2DLDoubleVector	  *)(p))
+#define Q_3D_FLOAT_VECTOR(	p) ((Q3DFloatVector	  *)(p))
+#define Q_3D_DOUBLE_VECTOR(	p) ((Q3DDoubleVector	  *)(p))
+#define Q_3D_LDOUBLE_VECTOR(	p) ((Q3DLDoubleVector	  *)(p))
+#define Q_2D_FLOAT_LINE(	p) ((Q2DFloatLine	  *)(p))
+#define Q_2D_DOUBLE_LINE(	p) ((Q2DDoubleLine	  *)(p))
+#define Q_2D_LDOUBLE_LINE(	p) ((Q2DLDoubleLine	  *)(p))
+#define Q_3D_FLOAT_LINE(	p) ((Q3DFloatLine	  *)(p))
+#define Q_3D_DOUBLE_LINE(	p) ((Q3DDoubleLine	  *)(p))
+#define Q_3D_LDOUBLE_LINE(	p) ((Q3DLDoubleLine	  *)(p))
+#define Q_2D_FLOAT_TRIANGLE(	p) ((Q2DFloatTriangle	  *)(p))
+#define Q_2D_DOUBLE_TRIANGLE(	p) ((Q2DDoubleTriangle	  *)(p))
+#define Q_2D_LDOUBLE_TRIANGLE(	p) ((Q2DLDoubleTriangle	  *)(p))
+#define Q_3D_FLOAT_TRIANGLE(	p) ((Q3DFloatTriangle	  *)(p))
+#define Q_3D_DOUBLE_TRIANGLE(	p) ((Q3DDoubleTriangle	  *)(p))
+#define Q_3D_LDOUBLE_TRIANGLE(	p) ((Q3DLDoubleTriangle	  *)(p))
+#define Q_2D_FLOAT_QUADRANGLE(	p) ((Q2DFloatQuadrangle	  *)(p))
+#define Q_2D_DOUBLE_QUADRANGLE(	p) ((Q2DDoubleQuadrangle  *)(p))
+#define Q_2D_LDOUBLE_QUADRANGLE(p) ((Q2DLDoubleQuadrangle *)(p))
+#define Q_3D_FLOAT_QUADRANGLE(	p) ((Q3DFloatQuadrangle	  *)(p))
+#define Q_3D_DOUBLE_QUADRANGLE(	p) ((Q3DDoubleQuadrangle  *)(p))
+#define Q_3D_LDOUBLE_QUADRANGLE(p) ((Q3DLDoubleQuadrangle *)(p))
+#define Q_FLOAT_RECTANGLE(	p) ((QFloatRectangle	  *)(p))
+#define Q_DOUBLE_RECTANGLE(	p) ((QDoubleRectangle	  *)(p))
+#define Q_LDOUBLE_RECTANGLE(	p) ((QLDoubleRectangle	  *)(p))
+#define Q_FLOAT_BOX(		p) ((QFloatBox		  *)(p))
+#define Q_DOUBLE_BOX(		p) ((QDoubleBox		  *)(p))
+#define Q_LDOUBLE_BOX(		p) ((QLDoubleBox	  *)(p))
+#define Q_FLOAT_CIRCLE(		p) ((QFloatCircle	  *)(p))
+#define Q_DOUBLE_CIRCLE(	p) ((QDoubleCircle	  *)(p))
+#define Q_LDOUBLE_CIRCLE(	p) ((QLDoubleCircle	  *)(p))
+#define Q_FLOAT_SPHERE(		p) ((QFloatSphere	  *)(p))
+#define Q_DOUBLE_SPHERE(	p) ((QDoubleSphere	  *)(p))
+#define Q_LDOUBLE_SPHERE(	p) ((QLDoubleSphere	  *)(p))
 
 /* MARK: - Default real type definitions */
 
@@ -84,8 +129,22 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 	typedef Q2DFloatQuadrangle	Q2DQuadrangle;
 	typedef Q3DFloatQuadrangle	Q3DQuadrangle;
 	typedef QFloatRectangle		QRectangle;
+	typedef QFloatBox		QBox;
 	typedef QFloatCircle		QCircle;
 	typedef QFloatSphere		QSphere;
+
+#	define Q_2D_VECTOR		Q_2D_FLOAT_VECTOR
+#	define Q_3D_VECTOR		Q_3D_FLOAT_VECTOR
+#	define Q_2D_LINE		Q_2D_FLOAT_LINE
+#	define Q_3D_LINE		Q_3D_FLOAT_LINE
+#	define Q_2D_TRIANGLE		Q_2D_FLOAT_TRIANGLE
+#	define Q_3D_TRIANGLE		Q_3D_FLOAT_TRIANGLE
+#	define Q_2D_QUADRANGLE		Q_2D_FLOAT_QUADRANGLE
+#	define Q_3D_QUADRANGLE		Q_3D_FLOAT_QUADRANGLE
+#	define Q_RECTANGLE		Q_FLOAT_RECTANGLE
+#	define Q_BOX			Q_FLOAT_BOX
+#	define Q_CIRCLE			Q_FLOAT_CIRCLE
+#	define Q_SPHERE			Q_FLOAT_SPHERE
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
@@ -100,8 +159,22 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 	typedef Q2DLDoubleQuadrangle	Q2DQuadrangle;
 	typedef Q3DLDoubleQuadrangle	Q3DQuadrangle;
 	typedef QLDoubleRectangle	QRectangle;
+	typedef QLDoubleBox		QBox;
 	typedef QLDoubleCircle		QCircle;
 	typedef QLDoubleSphere		QSphere;
+
+#	define Q_2D_VECTOR		Q_2D_LDOUBLE_VECTOR
+#	define Q_3D_VECTOR		Q_3D_LDOUBLE_VECTOR
+#	define Q_2D_LINE		Q_2D_LDOUBLE_LINE
+#	define Q_3D_LINE		Q_3D_LDOUBLE_LINE
+#	define Q_2D_TRIANGLE		Q_2D_LDOUBLE_TRIANGLE
+#	define Q_3D_TRIANGLE		Q_3D_LDOUBLE_TRIANGLE
+#	define Q_2D_QUADRANGLE		Q_2D_LDOUBLE_QUADRANGLE
+#	define Q_3D_QUADRANGLE		Q_3D_LDOUBLE_QUADRANGLE
+#	define Q_RECTANGLE		Q_LDOUBLE_RECTANGLE
+#	define Q_BOX			Q_LDOUBLE_BOX
+#	define Q_CIRCLE			Q_LDOUBLE_CIRCLE
+#	define Q_SPHERE			Q_LDOUBLE_SPHERE
 
 #else
 
@@ -116,8 +189,22 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 	typedef Q2DDoubleQuadrangle	Q2DQuadrangle;
 	typedef Q3DDoubleQuadrangle	Q3DQuadrangle;
 	typedef QDoubleRectangle	QRectangle;
+	typedef QLDoubleBox		QBox;
 	typedef QDoubleCircle		QCircle;
 	typedef QDoubleSphere		QSphere;
+
+#	define Q_2D_VECTOR		Q_2D_DOUBLE_VECTOR
+#	define Q_3D_VECTOR		Q_3D_DOUBLE_VECTOR
+#	define Q_2D_LINE		Q_2D_DOUBLE_LINE
+#	define Q_3D_LINE		Q_3D_DOUBLE_LINE
+#	define Q_2D_TRIANGLE		Q_2D_DOUBLE_TRIANGLE
+#	define Q_3D_TRIANGLE		Q_3D_DOUBLE_TRIANGLE
+#	define Q_2D_QUADRANGLE		Q_2D_DOUBLE_QUADRANGLE
+#	define Q_3D_QUADRANGLE		Q_3D_DOUBLE_QUADRANGLE
+#	define Q_RECTANGLE		Q_DOUBLE_RECTANGLE
+#	define Q_BOX			Q_DOUBLE_BOX
+#	define Q_CIRCLE			Q_DOUBLE_CIRCLE
+#	define Q_SPHERE			Q_DOUBLE_SPHERE
 
 #endif
 
