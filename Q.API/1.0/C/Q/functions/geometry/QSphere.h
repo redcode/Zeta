@@ -9,47 +9,16 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_functions_geometry_QSphere_H__
 #define __Q_functions_geometry_QSphere_H__
 
-#include <Q/types/geometry.h>
+#include <Q/functions/geometry/constructors.h>
 #include <Q/functions/Q3D.h>
+#include <Q/constants/numbers.h>
 
 #ifndef Q_SPHERE_EXPORT
 #	define Q_SPHERE_EXPORT Q_INLINE
 #endif
 
-#if Q_C_HAS(COMPOUND_LITERAL)
 
-#	define q_float_sphere(	x, y, z, radius) ((QFloatCircle	 ){{x, y, z}, radius})
-#	define q_double_sphere(	x, y, z, radius) ((QDoubleCircle ){{x, y, z}, radius})
-#	define q_ldouble_sphere(x, y, z, radius) ((QLDoubleCircle){{x, y, z}, radius})
-
-#	define Q_SPHERE_NEW(Type, type)
-
-#else
-
-#	define Q_SPHERE_NEW(Type, type)				\
-								\
-	Q_INLINE Q##Type##Sphere q_##type##_sphere(		\
-		q##type x,					\
-		q##type y,					\
-		q##type z,					\
-		q##type radius					\
-	)							\
-		{						\
-		Q##Type##Sphere sphere = {{x, y, z}, radius};	\
-		return sphere;					\
-		}
-
-#endif
-
-#define q_float_sphere_zero   q_float_sphere  (0.0F, 0.0F, 0.0F, 0.0F)
-#define q_double_sphere_zero  q_double_sphere (0.0,  0.0,  0.0,	 0.0 )
-#define q_ldouble_sphere_zero q_ldouble_sphere(0.0L, 0.0L, 0.0L, 0.0L)
-
-
-#define Q_IMPLEMENTATION_SPHERE(Type, type)					\
-										\
-										\
-Q_SPHERE_NEW(Type, type)							\
+#define Q_IMPLEMENTATION_SPHERE(Type, type, _, suffix)				\
 										\
 										\
 Q_SPHERE_EXPORT									\
@@ -57,35 +26,71 @@ qboolean q_##type##_sphere_are_equal(Q##Type##Sphere a, Q##Type##Sphere b)	\
 	{									\
 	return	a.radius == b.radius &&						\
 		q_3d_##type##_are_equal(a.point, b.point);			\
+	}									\
+										\
+										\
+Q_SPHERE_EXPORT									\
+Q##Type##Box q_##type##_sphere_inner_box(Q##Type##Sphere sphere)		\
+	{									\
+	q##type half_size = sphere.radius / Q_JOIN_2(Q_SQUARE_ROOT_3, suffix);	\
+	q##type size = half_size * _(2.0);					\
+										\
+	return q_##type##_box							\
+		(sphere.point.x - half_size,					\
+		 sphere.point.y - half_size,					\
+		 sphere.point.z - half_size,					\
+		 size, size, size);						\
+	}									\
+										\
+										\
+Q_SPHERE_EXPORT									\
+Q##Type##Box q_##type##_sphere_outer_box(Q##Type##Sphere sphere)		\
+	{									\
+	q##type size = sphere.radius * _(2.0);					\
+										\
+	return q_##type##_box							\
+		(sphere.point.x - sphere.radius,				\
+		 sphere.point.y - sphere.radius,				\
+		 sphere.point.z - sphere.radius,				\
+		 size, size, size);						\
+	}									\
+										\
+										\
+Q_SPHERE_EXPORT									\
+qboolean q_##type##_sphere_is_zero(Q##Type##Sphere sphere)			\
+	{									\
+	return	sphere.radius == _(0.0) &&					\
+		q_3d_##type##_is_zero(sphere.point);				\
 	}
 
 
-Q_IMPLEMENTATION_SPHERE(Float,   float  )
-Q_IMPLEMENTATION_SPHERE(Double,  double )
-Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
-#undef Q_SPHERE_NEW
+Q_IMPLEMENTATION_SPHERE(Float,   float,	  Q_FLOAT,   Q_FLOAT_SUFFIX  )
+Q_IMPLEMENTATION_SPHERE(Double,  double,  Q_DOUBLE,  Q_DOUBLE_SUFFIX )
+Q_IMPLEMENTATION_SPHERE(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_SUFFIX)
 
 
 /* MARK: - Default real type definitions */
 
-
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_sphere			q_float_sphere
-#	define q_sphere_zero		q_float_sphere_zero
 #	define q_sphere_are_equal	q_float_sphere_are_equal
+#	define q_sphere_inner_box	q_float_sphere_inner_box
+#	define q_sphere_outer_box	q_float_sphere_outer_box
+#	define q_sphere_is_zero		q_float_sphere_is_zero
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_sphere			q_ldouble_sphere
-#	define q_sphere_zero		q_ldouble_sphere_zero
 #	define q_sphere_are_equal	q_ldouble_sphere_are_equal
+#	define q_sphere_inner_box	q_ldouble_sphere_inner_box
+#	define q_sphere_outer_box	q_ldouble_sphere_outer_box
+#	define q_sphere_is_zero		q_ldouble_sphere_is_zero
 
 #else
 
-#	define q_sphere			q_double_sphere
-#	define q_sphere_zero		q_double_sphere_zero
 #	define q_sphere_are_equal	q_double_sphere_are_equal
+#	define q_sphere_inner_box	q_double_sphere_inner_box
+#	define q_sphere_outer_box	q_double_sphere_outer_box
+#	define q_sphere_is_zero		q_double_sphere_is_zero
 
 #endif
 

@@ -9,52 +9,15 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_functions_geometry_QRectangle_H__
 #define __Q_functions_geometry_QRectangle_H__
 
-#include <Q/types/geometry.h>
+#include <Q/functions/geometry/constructors.h>
 #include <Q/functions/Q2D.h>
 
 #ifndef Q_RECTANGLE_EXPORT
 #	define Q_RECTANGLE_EXPORT Q_INLINE
 #endif
 
-#if Q_C_HAS(COMPOUND_LITERAL)
-
-#	define	q_float_rectangle(  x, y,   size_x, size_y) \
-		((QFloatRectangle){{x, y}, {size_x, size_y}})
-
-#	define	q_double_rectangle(  x, y,   size_x, size_y) \
-		((QDoubleRectangle){{x, y}, {size_x, size_y}})
-
-#	define	q_ldouble_rectangle(  x, y,   size_x, size_y) \
-		((QLDoubleRectangle){{x, y}, {size_x, size_y}})
-
-#	define Q_RECTANGLE_NEW(Type, type)
-
-#else
-
-#	define Q_RECTANGLE_NEW(Type, type)					\
-										\
-	Q_INLINE Q##Type##Rectangle q_##type##_rectangle(			\
-		q##type x,							\
-		q##type y,							\
-		q##type size_x,							\
-		q##type size_y							\
-	)									\
-		{								\
-		Q##Type##Rectangle rectangle = {{x, y}, {size_x, size_y}};	\
-		return rectangle;						\
-		}
-
-#endif
-
-#define q_float_rectangle_zero	 q_float_rectangle  (0.0F, 0.0F, 0.0F, 0.0F)
-#define q_double_rectangle_zero	 q_double_rectangle (0.0,  0.0,  0.0,  0.0 )
-#define q_ldouble_rectangle_zero q_ldouble_rectangle(0.0L, 0.0L, 0.0L, 0.0L)
-
 
 #define Q_IMPLEMENTATION_RECTANGLE(Type, type, _)				\
-										\
-										\
-Q_RECTANGLE_NEW(Type, type)							\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
@@ -195,6 +158,14 @@ q##type q_##type##_rectangle_middle_y(Q##Type##Rectangle rectangle)		\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
+qboolean q_##type##_rectangle_is_zero(Q##Type##Rectangle rectangle)		\
+	{									\
+	return	q_2d_##type##_is_zero(rectangle.point) &&			\
+		q_2d_##type##_is_zero(rectangle.size);				\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
 qboolean q_##type##_rectangle_contains_point(					\
 	Q##Type##Rectangle	rectangle,					\
 	Q2D##Type		point						\
@@ -221,16 +192,12 @@ qboolean q_##type##_rectangle_contains_line_segment(				\
 Q_IMPLEMENTATION_RECTANGLE(Float,   float,   Q_FLOAT  )
 Q_IMPLEMENTATION_RECTANGLE(Double,  double,  Q_DOUBLE )
 Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
-#undef Q_RECTANGLE_NEW
 
 
 /* MARK: - Default real type definitions */
 
-
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_rectangle				q_float_rectangle
-#	define q_rectangle_zero				q_float_rectangle_zero
 #	define q_rectangle_are_equal			q_float_rectangle_are_equal
 #	define q_rectangle_contains			q_float_rectangle_contains
 #	define q_rectangle_collision			q_float_rectangle_collision
@@ -244,13 +211,12 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_maximum_y			q_float_rectangle_maximum_y
 #	define q_rectangle_middle_x			q_float_rectangle_middle_x
 #	define q_rectangle_middle_y			q_float_rectangle_middle_y
+#	define q_rectangle_is_zero			q_float_rectangle_is_zero
 #	define q_rectangle_contains_point		q_float_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_float_rectangle_contains_line_segment
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_rectangle				q_ldouble_rectangle
-#	define q_rectangle_zero				q_ldouble_rectangle_zero
 #	define q_rectangle_are_equal			q_ldouble_rectangle_are_equal
 #	define q_rectangle_contains			q_ldouble_rectangle_contains
 #	define q_rectangle_collision			q_ldouble_rectangle_collision
@@ -264,13 +230,12 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_maximum_y			q_ldouble_rectangle_maximum_y
 #	define q_rectangle_middle_x			q_ldouble_rectangle_middle_x
 #	define q_rectangle_middle_y			q_ldouble_rectangle_middle_y
+#	define q_rectangle_is_zero			q_ldouble_rectangle_is_zero
 #	define q_rectangle_contains_point		q_ldouble_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_ldouble_rectangle_contains_line_segment
 
 #else
 
-#	define q_rectangle				q_double_rectangle
-#	define q_rectangle_zero				q_double_rectangle_zero
 #	define q_rectangle_are_equal			q_double_rectangle_are_equal
 #	define q_rectangle_contains			q_double_rectangle_contains
 #	define q_rectangle_collision			q_double_rectangle_collision
@@ -284,6 +249,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_maximum_y			q_double_rectangle_maximum_y
 #	define q_rectangle_middle_x			q_double_rectangle_middle_x
 #	define q_rectangle_middle_y			q_double_rectangle_middle_y
+#	define q_rectangle_is_zero			q_double_rectangle_is_zero
 #	define q_rectangle_contains_point		q_double_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_double_rectangle_contains_line_segment
 
