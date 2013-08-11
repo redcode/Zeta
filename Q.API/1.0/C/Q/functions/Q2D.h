@@ -1,4 +1,4 @@
-/* Q API - functions/Q2DValue.h
+/* Q API - functions/Q2D.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_functions_Q2DValue_H__
-#define __Q_functions_Q2DValue_H__
+#ifndef __Q_functions_Q2D_H__
+#define __Q_functions_Q2D_H__
 
 #include <Q/functions/value.h>
 #include <Q/inspection/language.h>
@@ -15,10 +15,6 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - Operations for natural, integer and real types */
 
-
-#ifndef Q_2D_VALUE_EXPORT
-#	define Q_2D_VALUE_EXPORT Q_INLINE
-#endif
 
 #if Q_C_HAS(COMPOUND_LITERAL)
 
@@ -55,11 +51,11 @@ Released under the terms of the GNU General Public License v3. */
 #	define q_2d_integer(x, y) ((Q2DInteger){x, y})
 #	define q_2d_real(   x, y) ((Q2DReal   ){x, y})
 
-#	define Q_2D_VALUE_NEW(Type, type)
+#	define Q_2D_NEW(Type, type)
 
 #else
 
-#	define Q_2D_VALUE_NEW(Type, type)				\
+#	define Q_2D_NEW(Type, type)					\
 									\
 	Q_INLINE Q2D##Type q_2d_##type(q##type x, q##type y)		\
 		{Q2D##Type magnitude = {x, y}; return magnitude;}
@@ -100,18 +96,18 @@ Released under the terms of the GNU General Public License v3. */
 #define q_2d_real_zero		q_2d_real   (Q_REAL(0.0), Q_REAL(0.0))
 
 
-#define Q_IMPLEMENTATION_NATURAL_2D_VALUE(Type, type)				\
+#define Q_IMPLEMENTATION_NATURAL_2D(Type, type)					\
 										\
 										\
-Q_2D_VALUE_NEW(Type, type)							\
+Q_2D_NEW(Type, type)								\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 qboolean q_2d_##type##_are_equal(Q2D##Type a, Q2D##Type b)			\
 	{return a.x == b.x && a.y == b.y;}					\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 void q_##2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)				\
 	{									\
 	Q2D##Type t = *a;							\
@@ -121,42 +117,42 @@ void q_##2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)				\
 	}									\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 qboolean q_2d_##type##_contains(Q2D##Type a, Q2D##Type b)			\
 	{return b.x <= a.x && b.y <= a.y;}					\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_add(Q2D##Type a, Q2D##Type b)				\
 	{return q_2d_##type(a.x + b.x, a.y + b.y);}				\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_subtract(Q2D##Type a, Q2D##Type b)			\
 	{return q_2d_##type(a.x - b.x, a.y - b.y);}				\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_multiply(Q2D##Type a, Q2D##Type b)			\
 	{return q_2d_##type(a.x * b.x, a.y * b.y);}				\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_divide(Q2D##Type a, Q2D##Type b)			\
 	{return q_2d_##type(a.x / b.x, a.y / b.y);}				\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 q##type q_2d_##type##_dot_product(Q2D##Type a, Q2D##Type b)			\
 	{return a.x * b.x + a.y * b.y;}						\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 q##type q_2d_##type##_cross_product(Q2D##Type a, Q2D##Type b)			\
 	{return a.x * b.y - a.y * b.x;}						\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_minimum(Q2D##Type a, Q2D##Type b)			\
 	{									\
 	return q_2d_##type							\
@@ -164,7 +160,7 @@ Q2D##Type q_2d_##type##_minimum(Q2D##Type a, Q2D##Type b)			\
 	}									\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_maximum(Q2D##Type a, Q2D##Type b)			\
 	{									\
 	return q_2d_##type							\
@@ -172,7 +168,7 @@ Q2D##Type q_2d_##type##_maximum(Q2D##Type a, Q2D##Type b)			\
 	}									\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_middle(Q2D##Type a, Q2D##Type b)			\
 	{									\
 	return q_2d_##type							\
@@ -180,7 +176,7 @@ Q2D##Type q_2d_##type##_middle(Q2D##Type a, Q2D##Type b)			\
 	}									\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_fit(Q2D##Type a, Q2D##Type b)				\
 	{									\
 	return a.y / a.x > b.y / b.x						\
@@ -189,32 +185,32 @@ Q2D##Type q_2d_##type##_fit(Q2D##Type a, Q2D##Type b)				\
 	}									\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 qboolean q_2d_##type##_is_zero(Q2D##Type magnitude)				\
 	{return magnitude.x == (q##type)0 && magnitude.y == (q##type)0;}	\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 q##type q_2d_##type##_area(Q2D##Type magnitude)					\
 	{return magnitude.x * magnitude.y;}					\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 q##type q_2d_##type##_square_length(Q2D##Type magnitude)			\
 	{return q_2d_##type##_dot_product(magnitude, magnitude);}		\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_multiply_by_scalar(Q2D##Type magnitude, q##type scalar)	\
 	{return q_2d_##type(magnitude.x * scalar, magnitude.y * scalar);}	\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_divide_by_scalar(Q2D##Type magnitude, q##type scalar)	\
 	{return q_2d_##type(magnitude.x / scalar, magnitude.y / scalar);}	\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_clamp(							\
 	Q2D##Type magnitude,							\
 	Q2D##Type minimum,							\
@@ -227,7 +223,7 @@ Q2D##Type q_2d_##type##_clamp(							\
 	}									\
 										\
 										\
-Q_2D_VALUE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_square_clamp(						\
 	Q2D##Type magnitude,							\
 	q##type	  minimum,							\
@@ -240,53 +236,53 @@ Q2D##Type q_2d_##type##_square_clamp(						\
 	}
 
 
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(UChar,   uchar  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(UShort,  ushort )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(UInt,	   uint	  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(ULong,   ulong  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(ULLong,  ullong )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Char,	   char	  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Short,   short  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Int,	   int	  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Long,	   long	  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(LLong,   llong  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Float,   float  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Double,  double )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(LDouble, ldouble)
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(UInt8,   uint8  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(UInt16,  uint16 )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(UInt32,  uint32 )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(UInt64,  uint64 )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Int8,	   int8	  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Int16,   int16  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Int32,   int32  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Int64,   int64  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Size,	   size	  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(UIntPtr, uintptr)
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(UIntTop, uinttop)
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(UIntMax, uintmax)
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(SSize,   ssize  )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(IntPtr,  intptr )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(IntTop,  inttop )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(IntMax,  intmax )
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Natural, natural)
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Integer, integer)
-Q_IMPLEMENTATION_NATURAL_2D_VALUE(Real,	   real	  )
-#undef Q_2D_VALUE_NEW
+Q_IMPLEMENTATION_NATURAL_2D(UChar,   uchar  )
+Q_IMPLEMENTATION_NATURAL_2D(UShort,  ushort )
+Q_IMPLEMENTATION_NATURAL_2D(UInt,    uint   )
+Q_IMPLEMENTATION_NATURAL_2D(ULong,   ulong  )
+Q_IMPLEMENTATION_NATURAL_2D(ULLong,  ullong )
+Q_IMPLEMENTATION_NATURAL_2D(Char,    char   )
+Q_IMPLEMENTATION_NATURAL_2D(Short,   short  )
+Q_IMPLEMENTATION_NATURAL_2D(Int,     int    )
+Q_IMPLEMENTATION_NATURAL_2D(Long,    long   )
+Q_IMPLEMENTATION_NATURAL_2D(LLong,   llong  )
+Q_IMPLEMENTATION_NATURAL_2D(Float,   float  )
+Q_IMPLEMENTATION_NATURAL_2D(Double,  double )
+Q_IMPLEMENTATION_NATURAL_2D(LDouble, ldouble)
+Q_IMPLEMENTATION_NATURAL_2D(UInt8,   uint8  )
+Q_IMPLEMENTATION_NATURAL_2D(UInt16,  uint16 )
+Q_IMPLEMENTATION_NATURAL_2D(UInt32,  uint32 )
+Q_IMPLEMENTATION_NATURAL_2D(UInt64,  uint64 )
+Q_IMPLEMENTATION_NATURAL_2D(Int8,    int8   )
+Q_IMPLEMENTATION_NATURAL_2D(Int16,   int16  )
+Q_IMPLEMENTATION_NATURAL_2D(Int32,   int32  )
+Q_IMPLEMENTATION_NATURAL_2D(Int64,   int64  )
+Q_IMPLEMENTATION_NATURAL_2D(Size,    size   )
+Q_IMPLEMENTATION_NATURAL_2D(UIntPtr, uintptr)
+Q_IMPLEMENTATION_NATURAL_2D(UIntTop, uinttop)
+Q_IMPLEMENTATION_NATURAL_2D(UIntMax, uintmax)
+Q_IMPLEMENTATION_NATURAL_2D(SSize,   ssize  )
+Q_IMPLEMENTATION_NATURAL_2D(IntPtr,  intptr )
+Q_IMPLEMENTATION_NATURAL_2D(IntTop,  inttop )
+Q_IMPLEMENTATION_NATURAL_2D(IntMax,  intmax )
+Q_IMPLEMENTATION_NATURAL_2D(Natural, natural)
+Q_IMPLEMENTATION_NATURAL_2D(Integer, integer)
+Q_IMPLEMENTATION_NATURAL_2D(Real,    real   )
+#undef Q_2D_NEW
 
 
 /* MARK: - Operations for integer and real types */
 
 
-#define Q_IMPLEMENTATION_INTEGER_2D_VALUE(Type, type)		\
+#define Q_IMPLEMENTATION_INTEGER_2D(Type, type)			\
 								\
 								\
-Q_2D_VALUE_EXPORT						\
+Q_INLINE							\
 Q2D##Type q_2d_##type##_negative(Q2D##Type magnitude)		\
 	{return q_2d_##type(-magnitude.x, -magnitude.y);}	\
 								\
 								\
-Q_2D_VALUE_EXPORT						\
+Q_INLINE							\
 Q2D##Type q_2d_##type##_absolute(Q2D##Type magnitude)		\
 	{							\
 	return q_2d_##type					\
@@ -295,32 +291,32 @@ Q2D##Type q_2d_##type##_absolute(Q2D##Type magnitude)		\
 	}
 
 
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Char,	   char	  )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Short,   short  )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Int,	   int	  )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Long,	   long	  )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(LLong,   llong  )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Float,   float  )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Double,  double )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(LDouble, ldouble)
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Int8,	   int8	  )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Int16,   int16  )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Int32,   int32  )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Int64,   int64  )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(SSize,   ssize  )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(IntPtr,  intptr )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(IntTop,  inttop )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(IntMax,  intmax )
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Integer, integer)
-Q_IMPLEMENTATION_INTEGER_2D_VALUE(Real,	   real	  )
+Q_IMPLEMENTATION_INTEGER_2D(Char,    char   )
+Q_IMPLEMENTATION_INTEGER_2D(Short,   short  )
+Q_IMPLEMENTATION_INTEGER_2D(Int,     int    )
+Q_IMPLEMENTATION_INTEGER_2D(Long,    long   )
+Q_IMPLEMENTATION_INTEGER_2D(LLong,   llong  )
+Q_IMPLEMENTATION_INTEGER_2D(Float,   float  )
+Q_IMPLEMENTATION_INTEGER_2D(Double,  double )
+Q_IMPLEMENTATION_INTEGER_2D(LDouble, ldouble)
+Q_IMPLEMENTATION_INTEGER_2D(Int8,    int8   )
+Q_IMPLEMENTATION_INTEGER_2D(Int16,   int16  )
+Q_IMPLEMENTATION_INTEGER_2D(Int32,   int32  )
+Q_IMPLEMENTATION_INTEGER_2D(Int64,   int64  )
+Q_IMPLEMENTATION_INTEGER_2D(SSize,   ssize  )
+Q_IMPLEMENTATION_INTEGER_2D(IntPtr,  intptr )
+Q_IMPLEMENTATION_INTEGER_2D(IntTop,  inttop )
+Q_IMPLEMENTATION_INTEGER_2D(IntMax,  intmax )
+Q_IMPLEMENTATION_INTEGER_2D(Integer, integer)
+Q_IMPLEMENTATION_INTEGER_2D(Real,    real   )
 
 
 /* MARK: - Operations for real types only */
 
 
-#define Q_IMPLEMENTATION_REAL_2D_VALUE(Type, type)			\
+#define Q_IMPLEMENTATION_REAL_2D(Type, type)				\
 									\
-Q_2D_VALUE_EXPORT							\
+Q_INLINE								\
 Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type alpha)	\
 	{								\
 	return q_2d_##type						\
@@ -329,10 +325,10 @@ Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type alpha)	\
 	}
 
 
-Q_IMPLEMENTATION_REAL_2D_VALUE(Float,	float  )
-Q_IMPLEMENTATION_REAL_2D_VALUE(Double,	double )
-Q_IMPLEMENTATION_REAL_2D_VALUE(LDouble,	ldouble)
-Q_IMPLEMENTATION_REAL_2D_VALUE(Real,	real   )
+Q_IMPLEMENTATION_REAL_2D(Float,	  float	 )
+Q_IMPLEMENTATION_REAL_2D(Double,  double )
+Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble)
+Q_IMPLEMENTATION_REAL_2D(Real,	  real	 )
 
 
 /* MARK: - Default real type definitions */
@@ -424,4 +420,4 @@ Q_IMPLEMENTATION_REAL_2D_VALUE(Real,	real   )
 
 #endif
 
-#endif /* __Q_functions_Q2DValue_H__ */
+#endif /* __Q_functions_Q2D_H__ */
