@@ -164,10 +164,7 @@ Q3D##Type q_##type##_box_center(Q##Type##Box box)				\
 										\
 										\
 Q_BOX_EXPORT									\
-qboolean q_##type##_box_contains_point(						\
-	Q##Type##Box	box,							\
-	Q3D##Type	point							\
-)										\
+qboolean q_##type##_box_contains_point(Q##Type##Box box, Q3D##Type point)	\
 	{									\
 	return	point.x >= box.point.x		    &&				\
 		point.y >= box.point.y		    &&				\

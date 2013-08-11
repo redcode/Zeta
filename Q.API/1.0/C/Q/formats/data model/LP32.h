@@ -39,8 +39,21 @@ Released under the terms of the GNU General Public License v2. */
 #define Q_LP32_BASE_TYPE_INT32		Q_TYPE_LONG
 #define Q_LP32_BASE_TYPE_INT64		Q_TYPE_LLONG
 
+#define Q_LP32_SUFFIX_UINT8
+#define Q_LP32_SUFFIX_UINT16
+#define Q_LP32_SUFFIX_UINT32		UL
+#define Q_LP32_SUFFIX_UINT64		ULL
+#define Q_LP32_SUFFIX_INT8
+#define Q_LP32_SUFFIX_INT16
+#define Q_LP32_SUFFIX_INT32		L
+#define Q_LP32_SUFFIX_INT64		LL
+
+#define Q_LP32_LITERAL_UINT8( value)	value
+#define Q_LP32_LITERAL_UINT16(value)	value
 #define Q_LP32_LITERAL_UINT32(value)	value##UL
 #define Q_LP32_LITERAL_UINT64(value)	value##ULL
+#define Q_LP32_LITERAL_INT8(  value)	value
+#define Q_LP32_LITERAL_INT16( value)	value
 #define Q_LP32_LITERAL_INT32( value)	value##L
 #define Q_LP32_LITERAL_INT64( value)	value##LL
 

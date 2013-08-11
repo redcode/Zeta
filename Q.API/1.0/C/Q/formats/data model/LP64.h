@@ -39,8 +39,21 @@ Released under the terms of the GNU General Public License v2. */
 #define Q_LP64_BASE_TYPE_INT32		Q_TYPE_INT
 #define Q_LP64_BASE_TYPE_INT64		Q_TYPE_LONG
 
+#define Q_LP64_SUFFIX_UINT8
+#define Q_LP64_SUFFIX_UINT16
+#define Q_LP64_SUFFIX_UINT32
+#define Q_LP64_SUFFIX_UINT64		UL
+#define Q_LP64_SUFFIX_INT8
+#define Q_LP64_SUFFIX_INT16
+#define Q_LP64_SUFFIX_INT32
+#define Q_LP64_SUFFIX_INT64		L
+
+#define Q_LP64_LITERAL_UINT8( value)	value
+#define Q_LP64_LITERAL_UINT16(value)	value
 #define Q_LP64_LITERAL_UINT32(value)	value
 #define Q_LP64_LITERAL_UINT64(value)	value##UL
+#define Q_LP64_LITERAL_INT8(  value)	value
+#define Q_LP64_LITERAL_INT16( value)	value
 #define Q_LP64_LITERAL_INT32( value)	value
 #define Q_LP64_LITERAL_INT64( value)	value##L
 
