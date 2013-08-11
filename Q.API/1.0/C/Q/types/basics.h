@@ -1073,6 +1073,10 @@ typedef quint8					qboolean;
 #	define Q_REAL_EXPONENT_10_MAXIMUM	Q_FLOAT_EXPONENT_10_MAXIMUM
 #	define Q_REAL_EXPONENT_10_MINIMUM	Q_FLOAT_EXPONENT_10_MINIMUM
 
+	typedef Q2DFloat			Q2D;
+	typedef Q3DFloat			Q3D;
+	typedef Q4DFloat			Q4D;
+
 #elif defined(Q_USE_REAL_LDOUBLE)
 
 	typedef qldouble			qreal;
@@ -1095,6 +1099,10 @@ typedef quint8					qboolean;
 #	define Q_REAL_EXPONENT_10_MAXIMUM	Q_LDOUBLE_EXPONENT_10_MAXIMUM
 #	define Q_REAL_EXPONENT_10_MINIMUM	Q_LDOUBLE_EXPONENT_10_MINIMUM
 
+	typedef Q2DLDouble			Q2D;
+	typedef Q3DLDouble			Q3D;
+	typedef Q4DLDouble			Q4D;
+
 #else
 
 	typedef qdouble				qreal;
@@ -1116,6 +1124,10 @@ typedef quint8					qboolean;
 #	define Q_REAL_EXPONENT_MINIMUM		Q_DOUBLE_EXPONENT_MINIMUM
 #	define Q_REAL_EXPONENT_10_MAXIMUM	Q_DOUBLE_EXPONENT_10_MAXIMUM
 #	define Q_REAL_EXPONENT_10_MINIMUM	Q_DOUBLE_EXPONENT_10_MINIMUM
+
+	typedef Q2DDouble			Q2D;
+	typedef Q3DDouble			Q3D;
+	typedef Q4DDouble			Q4D;
 
 #endif
 
@@ -1631,6 +1643,7 @@ typedef struct {
 #define Q_2D_NATURAL(p) ((Q2DNatural *)(p))
 #define Q_2D_INTEGER(p) ((Q2DInteger *)(p))
 #define Q_2D_REAL(   p) ((Q2DReal    *)(p))
+#define Q_2D(	     p) ((Q2D	     *)(p))
 #define Q_3D_UCHAR(  p) ((Q3DUChar   *)(p))
 #define Q_3D_USHORT( p) ((Q3DUShort  *)(p))
 #define Q_3D_UINT(   p) ((Q3DUInt    *)(p))
@@ -1664,6 +1677,7 @@ typedef struct {
 #define Q_3D_NATURAL(p) ((Q3DNatural *)(p))
 #define Q_3D_INTEGER(p) ((Q3DInteger *)(p))
 #define Q_3D_REAL(   p) ((Q3DReal    *)(p))
+#define Q_3D(	     p) ((Q3D	     *)(p))
 #define Q_4D_UCHAR(  p) ((Q4DUChar   *)(p))
 #define Q_4D_USHORT( p) ((Q4DUShort  *)(p))
 #define Q_4D_UINT(   p) ((Q4DUInt    *)(p))
@@ -1697,6 +1711,7 @@ typedef struct {
 #define Q_4D_NATURAL(p) ((Q4DNatural *)(p))
 #define Q_4D_INTEGER(p) ((Q4DInteger *)(p))
 #define Q_4D_REAL(   p) ((Q4DReal    *)(p))
+#define Q_4D(	     p) ((Q4D	     *)(p))
 #define Q_8BIT(	     p) ((Q8Bit	     *)(p))
 #define Q_16BIT(     p) ((Q16Bit     *)(p))
 #define Q_32BIT(     p) ((Q32Bit     *)(p))

@@ -399,7 +399,7 @@ Q_INLINE quint32 q_bcd_to_uint32(quint32 value)
 	}
 
 
-/* MARK: - Operations for natural, integer and real values */
+/* MARK: - Operations for natural, integer and real types */
 
 
 #define Q_IMPLEMENTATION_NATURAL_VALUE(type)					\
@@ -469,7 +469,7 @@ Q_IMPLEMENTATION_NATURAL_VALUE(real   )
 #define q_pointer_swap q_uintptr_swap
 
 
-/* MARK: - Operations for integer and real numbers */
+/* MARK: - Operations for integer and real types */
 
 
 #define Q_IMPLEMENTATION_INTEGER_VALUE(type, zero)	\
@@ -499,7 +499,7 @@ Q_IMPLEMENTATION_INTEGER_VALUE(integer, Q_INTEGER(0)  )
 Q_IMPLEMENTATION_INTEGER_VALUE(real,	Q_REAL(	  0.0))
 
 
-/* MARK: - Operations for real numbers only */
+/* MARK: - Operations for real types only */
 
 
 #define Q_IMPLEMENTATION_REAL_VALUE(type)			\
@@ -514,5 +514,34 @@ Q_IMPLEMENTATION_REAL_VALUE(double )
 Q_IMPLEMENTATION_REAL_VALUE(ldouble)
 Q_IMPLEMENTATION_REAL_VALUE(real   )
 
+
+/* MARK: - Default real type definitions */
+
+
+#if defined(Q_USE_REAL_FLOAT)
+
+#	define q_minimum	q_float_minimum
+#	define q_maximum	q_float_maximum
+#	define q_lerp		q_float_lerp
+#	define q_absolute	q_float_absolute
+#	define q_clamp		q_float_clamp
+
+#elif defined(Q_USE_REAL_LDOUBLE)
+
+#	define q_minimum	q_ldouble_minimum
+#	define q_maximum	q_ldouble_maximum
+#	define q_lerp		q_ldouble_lerp
+#	define q_absolute	q_ldouble_absolute
+#	define q_clamp		q_ldouble_clamp
+
+#else
+
+#	define q_minimum	q_double_minimum
+#	define q_maximum	q_double_maximum
+#	define q_lerp		q_double_lerp
+#	define q_absolute	q_double_absolute
+#	define q_clamp		q_double_clamp
+
+#endif
 
 #endif /* __Q_functions_value_H__ */

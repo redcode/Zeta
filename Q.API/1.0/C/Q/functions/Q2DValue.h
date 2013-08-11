@@ -12,6 +12,10 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/functions/value.h>
 #include <Q/inspection/language.h>
 
+
+/* MARK: - Operations for natural, integer and real types */
+
+
 #ifndef Q_2D_VALUE_EXPORT
 #	define Q_2D_VALUE_EXPORT Q_INLINE
 #endif
@@ -271,6 +275,9 @@ Q_IMPLEMENTATION_NATURAL_2D_VALUE(Real,	   real	  )
 #undef Q_2D_VALUE_NEW
 
 
+/* MARK: - Operations for integer and real types */
+
+
 #define Q_IMPLEMENTATION_INTEGER_2D_VALUE(Type, type)		\
 								\
 								\
@@ -308,6 +315,9 @@ Q_IMPLEMENTATION_INTEGER_2D_VALUE(Integer, integer)
 Q_IMPLEMENTATION_INTEGER_2D_VALUE(Real,	   real	  )
 
 
+/* MARK: - Operations for real types only */
+
+
 #define Q_IMPLEMENTATION_REAL_2D_VALUE(Type, type)			\
 									\
 Q_2D_VALUE_EXPORT							\
@@ -324,5 +334,94 @@ Q_IMPLEMENTATION_REAL_2D_VALUE(Double,	double )
 Q_IMPLEMENTATION_REAL_2D_VALUE(LDouble,	ldouble)
 Q_IMPLEMENTATION_REAL_2D_VALUE(Real,	real   )
 
+
+/* MARK: - Default real type definitions */
+
+
+#if defined(Q_USE_REAL_FLOAT)
+
+#	define q_2d			q_2d_float
+#	define q_2d_zero		q_2d_float_zero
+#	define q_2d_are_equal		q_2d_float_are_equal
+#	define q_2d_swap		q_2d_float_swap
+#	define q_2d_contains		q_2d_float_contains
+#	define q_2d_add			q_2d_float_add
+#	define q_2d_subtract		q_2d_float_subtract
+#	define q_2d_multiply		q_2d_float_multiply
+#	define q_2d_divide		q_2d_float_divide
+#	define q_2d_dot_product		q_2d_float_dot_product
+#	define q_2d_cross_product	q_2d_float_cross_product
+#	define q_2d_minimum		q_2d_float_minimum
+#	define q_2d_maximum		q_2d_float_maximum
+#	define q_2d_middle		q_2d_float_middle
+#	define q_2d_fit			q_2d_float_fit
+#	define q_2d_lerp		q_2d_float_lerp
+#	define q_2d_is_zero		q_2d_float_is_zero
+#	define q_2d_negative		q_2d_float_negative
+#	define q_2d_absolute		q_2d_float_absolute
+#	define q_2d_area		q_2d_float_area
+#	define q_2d_square_length	q_2d_float_square_length
+#	define q_2d_multiply_by_scalar	q_2d_float_multiply_by_scalar
+#	define q_2d_divide_by_scalar	q_2d_float_divide_by_scalar
+#	define q_2d_clamp		q_2d_float_clamp
+#	define q_2d_square_clamp	q_2d_float_square_clamp
+
+#elif defined(Q_USE_REAL_LDOUBLE)
+
+#	define q_2d			q_2d_ldouble
+#	define q_2d_zero		q_2d_ldouble_zero
+#	define q_2d_are_equal		q_2d_ldouble_are_equal
+#	define q_2d_swap		q_2d_ldouble_swap
+#	define q_2d_contains		q_2d_ldouble_contains
+#	define q_2d_add			q_2d_ldouble_add
+#	define q_2d_subtract		q_2d_ldouble_subtract
+#	define q_2d_multiply		q_2d_ldouble_multiply
+#	define q_2d_divide		q_2d_ldouble_divide
+#	define q_2d_dot_product		q_2d_ldouble_dot_product
+#	define q_2d_cross_product	q_2d_ldouble_cross_product
+#	define q_2d_minimum		q_2d_ldouble_minimum
+#	define q_2d_maximum		q_2d_ldouble_maximum
+#	define q_2d_middle		q_2d_ldouble_middle
+#	define q_2d_fit			q_2d_ldouble_fit
+#	define q_2d_lerp		q_2d_ldouble_lerp
+#	define q_2d_is_zero		q_2d_ldouble_is_zero
+#	define q_2d_negative		q_2d_ldouble_negative
+#	define q_2d_absolute		q_2d_ldouble_absolute
+#	define q_2d_area		q_2d_ldouble_area
+#	define q_2d_square_length	q_2d_ldouble_square_length
+#	define q_2d_multiply_by_scalar	q_2d_ldouble_multiply_by_scalar
+#	define q_2d_divide_by_scalar	q_2d_ldouble_divide_by_scalar
+#	define q_2d_clamp		q_2d_ldouble_clamp
+#	define q_2d_square_clamp	q_2d_ldouble_square_clamp
+
+#else
+
+#	define q_2d			q_2d_double
+#	define q_2d_zero		q_2d_double_zero
+#	define q_2d_are_equal		q_2d_double_are_equal
+#	define q_2d_swap		q_2d_double_swap
+#	define q_2d_contains		q_2d_double_contains
+#	define q_2d_add			q_2d_double_add
+#	define q_2d_subtract		q_2d_double_subtract
+#	define q_2d_multiply		q_2d_double_multiply
+#	define q_2d_divide		q_2d_double_divide
+#	define q_2d_dot_product		q_2d_double_dot_product
+#	define q_2d_cross_product	q_2d_double_cross_product
+#	define q_2d_minimum		q_2d_double_minimum
+#	define q_2d_maximum		q_2d_double_maximum
+#	define q_2d_middle		q_2d_double_middle
+#	define q_2d_fit			q_2d_double_fit
+#	define q_2d_lerp		q_2d_double_lerp
+#	define q_2d_is_zero		q_2d_double_is_zero
+#	define q_2d_negative		q_2d_double_negative
+#	define q_2d_absolute		q_2d_double_absolute
+#	define q_2d_area		q_2d_double_area
+#	define q_2d_square_length	q_2d_double_square_length
+#	define q_2d_multiply_by_scalar	q_2d_double_multiply_by_scalar
+#	define q_2d_divide_by_scalar	q_2d_double_divide_by_scalar
+#	define q_2d_clamp		q_2d_double_clamp
+#	define q_2d_square_clamp	q_2d_double_square_clamp
+
+#endif
 
 #endif /* __Q_functions_Q2DValue_H__ */

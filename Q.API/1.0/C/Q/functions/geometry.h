@@ -1,4 +1,4 @@
-/* Q API - functions/mathematics.h
+/* Q API - functions/geometry.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,10 +6,10 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_functions_mathematics_H__
-#define __Q_functions_mathematics_H__
+#ifndef __Q_functions_geometry_H__
+#define __Q_functions_geometry_H__
 
-#include <Q/types/mathematics.h>
+#include <Q/types/geometry.h>
 #include <Q/functions/Q2DValue.h>
 #include <Q/functions/Q3DValue.h>
 
@@ -261,9 +261,10 @@ qboolean q_##type##_rectangle_contains(						\
 	Q##Type##Rectangle b							\
 )										\
 	{									\
-	return	b.point.x >= a.point.x && b.point.y >= a.point.y &&		\
-		b.point.x +  b.size.x  <= a.point.x +  a.size.x	 &&		\
-		b.point.y +  b.size.y  <= a.point.y +  a.size.y;		\
+	return	b.point.x	     >= a.point.x	     &&			\
+		b.point.y	     >= a.point.y	     &&			\
+		b.point.x + b.size.x <= a.point.x + a.size.x &&			\
+		b.point.y + b.size.y <= a.point.y + a.size.y;			\
 	}									\
 										\
 										\
@@ -273,12 +274,10 @@ qboolean q_##type##_rectangle_collision(					\
 	Q##Type##Rectangle b							\
 )										\
 	{									\
-	return !(								\
-		a.point.x > b.point.x + b.size.x  ||				\
-		a.point.x + a.size.x  < b.point.x ||				\
-		a.point.y > b.point.y + b.size.y  ||				\
-		a.point.y + a.size.y  < b.point.y				\
-	);									\
+	return !(a.point.x > b.point.x + b.size.x  ||				\
+		 a.point.x + a.size.x  < b.point.x ||				\
+		 a.point.y > b.point.y + b.size.y  ||				\
+		 a.point.y + a.size.y  < b.point.y);				\
 	}									\
 										\
 										\
@@ -315,8 +314,7 @@ Q##Type##Rectangle q_##type##_rectangle_union(					\
 	{									\
 	Q##Type##Rectangle rectangle;						\
 										\
-	rectangle.point.x = q_##type##_minimum(a.point.x, b.point.x);		\
-	rectangle.point.y = q_##type##_minimum(a.point.y, b.point.y);		\
+	rectangle.point = q_2d_##type##_minimum(a.point, b.point);		\
 										\
 	rectangle.size.x =							\
 		q_##type##_maximum						\
@@ -463,6 +461,128 @@ qboolean q_##type##_box_are_equal(Q##Type##Box a, Q##Type##Box b)		\
 	{									\
 	return	q_3d_##type##_are_equal(a.point, b.point) &&			\
 		q_3d_##type##_are_equal(a.size,  b.size );			\
+	}									\
+										\
+										\
+Q_BOX_EXPORT									\
+qboolean q_##type##_box_contains(Q##Type##Box a, Q##Type##Box b)		\
+	{									\
+	return	b.point.x	     >= a.point.x	     &&			\
+		b.point.y	     >= a.point.y	     &&			\
+		b.point.z	     >= a.point.z	     &&			\
+		b.point.x + b.size.x <= a.point.x + a.size.x &&			\
+		b.point.y + b.size.y <= a.point.y + a.size.y &&			\
+		b.point.z + b.size.z <= a.point.z + a.size.z;			\
+	}									\
+										\
+										\
+Q_BOX_EXPORT									\
+qboolean q_##type##_box_collision(Q##Type##Box a, Q##Type##Box b)		\
+	{									\
+	return !(a.point.x > b.point.x + b.size.x  ||				\
+		 a.point.x + a.size.x  < b.point.x ||				\
+		 a.point.y > b.point.y + b.size.y  ||				\
+		 a.point.y + a.size.y  < b.point.y ||				\
+		 a.point.z > b.point.z + b.size.z  ||				\
+		 a.point.z + a.size.z  < b.point.z);				\
+	}									\
+										\
+										\
+/*Q_BOX_EXPORT									\
+Q##Type##Box q_##type##_box_intersection(Q##Type##Box a, Q##Type##Box b)	\									\
+	{									\
+	q##type x1 = q_##type##_maximum(a.point.x, b.point.x),			\
+		x2 = q_##type##_minimum						\
+			(a.point.x + a.size.x, b.point.x + b.size.x);		\
+										\
+	if (x1 <= x2)								\
+		{								\
+		q##type y1 = q_##type##_maximum(a.point.y, b.point.y),		\
+										\
+			y2 = q_##type##_minimum					\
+				(a.point.y + a.size.y, b.point.y + b.size.y);	\
+										\
+		if (y1 <= y2)							\
+			return q_##type##_box(x1, y1, x2 - x1, y2 - y1);	\
+		}								\
+										\
+	return q_##type##_box_zero;						\
+	}*/									\
+										\
+										\
+Q_BOX_EXPORT									\
+Q##Type##Box q_##type##_box_union(Q##Type##Box a, Q##Type##Box b)		\
+	{									\
+	Q##Type##Box box;							\
+										\
+	box.point = q_3d_##type##_minimum(a.point, b.point);			\
+										\
+	box.size.x =								\
+		q_##type##_maximum						\
+			(a.point.x + a.size.x, b.point.x + b.size.x)		\
+		- box.point.x;							\
+										\
+	box.size.y =								\
+		q_##type##_maximum						\
+			(a.point.y + a.size.y, b.point.y + b.size.y)		\
+		- box.point.y;							\
+										\
+	box.size.z =								\
+		q_##type##_maximum						\
+			(a.point.z + a.size.z, b.point.z + b.size.z)		\
+		- box.point.z;							\
+										\
+	return box;								\
+	}									\
+										\
+										\
+Q_BOX_EXPORT									\
+Q##Type##Box q_##type##_box_by_vertices(Q3D##Type a, Q3D##Type b)		\
+	{									\
+	Q3D##Type minimum = q_3d_##type##_minimum(a, b);			\
+	Q3D##Type maximum = q_3d_##type##_maximum(a, b);			\
+										\
+	return q_##type##_box							\
+		(minimum.x,  minimum.y, minimum.z,				\
+		 maximum.x - minimum.x,						\
+		 maximum.y - minimum.y,						\
+		 maximum.z - minimum.z);					\
+	}									\
+										\
+										\
+Q_BOX_EXPORT									\
+Q3D##Type q_##type##_box_center(Q##Type##Box box)				\
+	{									\
+	return q_3d_##type							\
+		(box.point.x + box.size.x / _(2.0),				\
+		 box.point.y + box.size.y / _(2.0),				\
+		 box.point.z + box.size.z / _(2.0));				\
+	}									\
+										\
+										\
+Q_BOX_EXPORT									\
+qboolean q_##type##_box_contains_point(						\
+	Q##Type##Box	box,							\
+	Q3D##Type	point							\
+)										\
+	{									\
+	return	point.x >= box.point.x		    &&				\
+		point.y >= box.point.y		    &&				\
+		point.z >= box.point.z		    &&				\
+		point.x <  box.point.x + box.size.x &&				\
+		point.y <  box.point.y + box.size.y &&				\
+		point.z <  box.point.z + box.size.z;				\
+	}									\
+										\
+										\
+Q_BOX_EXPORT									\
+qboolean q_##type##_box_contains_line_segment(					\
+	Q##Type##Box	box,							\
+	Q3D##Type##Line	line_segment						\
+)										\
+	{									\
+	return	q_##type##_box_contains_point(box, line_segment.a) &&		\
+		q_##type##_box_contains_point(box, line_segment.b);		\
 	}
 
 
@@ -590,65 +710,6 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_minimum				q_float_minimum
-#	define q_maximum				q_float_maximum
-#	define q_lerp					q_float_lerp
-#	define q_absolute				q_float_absolute
-#	define q_clamp					q_float_clamp
-
-#	define q_2d					q_2d_float
-#	define q_2d_zero				q_2d_float_zero
-#	define q_2d_are_equal				q_2d_float_are_equal
-#	define q_2d_swap				q_2d_float_swap
-#	define q_2d_contains				q_2d_float_contains
-#	define q_2d_add					q_2d_float_add
-#	define q_2d_subtract				q_2d_float_subtract
-#	define q_2d_multiply				q_2d_float_multiply
-#	define q_2d_divide				q_2d_float_divide
-#	define q_2d_dot_product				q_2d_float_dot_product
-#	define q_2d_cross_product			q_2d_float_cross_product
-#	define q_2d_minimum				q_2d_float_minimum
-#	define q_2d_maximum				q_2d_float_maximum
-#	define q_2d_middle				q_2d_float_middle
-#	define q_2d_fit					q_2d_float_fit
-#	define q_2d_lerp				q_2d_float_lerp
-#	define q_2d_is_zero				q_2d_float_is_zero
-#	define q_2d_negative				q_2d_float_negative
-#	define q_2d_absolute				q_2d_float_absolute
-#	define q_2d_area				q_2d_float_area
-#	define q_2d_square_length			q_2d_float_square_length
-#	define q_2d_multiply_by_scalar			q_2d_float_multiply_by_scalar
-#	define q_2d_divide_by_scalar			q_2d_float_divide_by_scalar
-#	define q_2d_clamp				q_2d_float_clamp
-#	define q_2d_square_clamp			q_2d_float_square_clamp
-
-#	define q_3d					q_3d_float
-#	define q_3d_zero				q_3d_float_zero
-#	define q_3d_are_equal				q_3d_float_are_equal
-#	define q_3d_swap				q_3d_float_swap
-#	define q_3d_contains				q_3d_float_contains
-#	define q_3d_add					q_3d_float_add
-#	define q_3d_subtract				q_3d_float_subtract
-#	define q_3d_multiply				q_3d_float_multiply
-#	define q_3d_divide				q_3d_float_divide
-#	define q_3d_dot_product				q_3d_float_dot_product
-#	define q_3d_cross_product			q_3d_float_cross_product
-#	define q_3d_minimum				q_3d_float_minimum
-#	define q_3d_maximum				q_3d_float_maximum
-#	define q_3d_middle				q_3d_float_middle
-#	define q_3d_fit					q_3d_float_fit
-#	define q_3d_lerp				q_3d_float_lerp
-#	define q_3d_is_zero				q_3d_float_is_zero
-#	define q_3d_negative				q_3d_float_negative
-#	define q_3d_absolute				q_3d_float_absolute
-#	define q_3d_volume				q_3d_float_volume
-#	define q_3d_square_length			q_3d_float_square_length
-#	define q_3d_multiply_by_scalar			q_3d_float_multiply_by_scalar
-#	define q_3d_divide_by_scalar			q_3d_float_divide_by_scalar
-#	define q_3d_clamp				q_3d_float_clamp
-#	define q_3d_cube_clamp				q_3d_float_cube_clamp
-#	define q_3d_rotated_as_axes			q_3d_float_rotated_as_axes
-
 #	define q_2d_vector				q_2d_float_vector
 #	define q_2d_vector_zero				q_2d_float_vector_zero
 #	define q_2d_vector_are_equal			q_2d_float_vector_are_equal
@@ -688,6 +749,13 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_box					q_float_box
 #	define q_box_zero				q_float_box_zero
 #	define q_box_are_equal				q_float_box_are_equal
+#	define q_box_contains				q_float_box_contains
+#	define q_box_collision				q_float_box_collision
+#	define q_box_intersection			q_float_box_intersection
+#	define q_box_union				q_float_box_union
+#	define q_box_center				q_float_box_center
+#	define q_box_contains_point			q_float_box_contains_point
+#	define q_box_contains_line_segment		q_float_box_contains_line_segment
 
 #	define q_circle					q_float_cirlce
 #	define q_circle_zero				q_float_circle_zero
@@ -698,65 +766,6 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_sphere_are_equal			q_float_sphere_are_equal
 
 #elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_minimum				q_ldouble_minimum
-#	define q_maximum				q_ldouble_maximum
-#	define q_lerp					q_ldouble_lerp
-#	define q_absolute				q_ldouble_absolute
-#	define q_clamp					q_ldouble_clamp
-
-#	define q_2d					q_2d_ldouble
-#	define q_2d_zero				q_2d_ldouble_zero
-#	define q_2d_are_equal				q_2d_ldouble_are_equal
-#	define q_2d_swap				q_2d_ldouble_swap
-#	define q_2d_contains				q_2d_ldouble_contains
-#	define q_2d_add					q_2d_ldouble_add
-#	define q_2d_subtract				q_2d_ldouble_subtract
-#	define q_2d_multiply				q_2d_ldouble_multiply
-#	define q_2d_divide				q_2d_ldouble_divide
-#	define q_2d_dot_product				q_2d_ldouble_dot_product
-#	define q_2d_cross_product			q_2d_ldouble_cross_product
-#	define q_2d_minimum				q_2d_ldouble_minimum
-#	define q_2d_maximum				q_2d_ldouble_maximum
-#	define q_2d_middle				q_2d_ldouble_middle
-#	define q_2d_fit					q_2d_ldouble_fit
-#	define q_2d_lerp				q_2d_ldouble_lerp
-#	define q_2d_is_zero				q_2d_ldouble_is_zero
-#	define q_2d_negative				q_2d_ldouble_negative
-#	define q_2d_absolute				q_2d_ldouble_absolute
-#	define q_2d_area				q_2d_ldouble_area
-#	define q_2d_square_length			q_2d_ldouble_square_length
-#	define q_2d_multiply_by_scalar			q_2d_ldouble_multiply_by_scalar
-#	define q_2d_divide_by_scalar			q_2d_ldouble_divide_by_scalar
-#	define q_2d_clamp				q_2d_ldouble_clamp
-#	define q_2d_square_clamp			q_2d_ldouble_square_clamp
-
-#	define q_3d					q_3d_ldouble
-#	define q_3d_zero				q_3d_ldouble_zero
-#	define q_3d_are_equal				q_3d_ldouble_are_equal
-#	define q_3d_swap				q_3d_ldouble_swap
-#	define q_3d_contains				q_3d_ldouble_contains
-#	define q_3d_add					q_3d_ldouble_add
-#	define q_3d_subtract				q_3d_ldouble_subtract
-#	define q_3d_multiply				q_3d_ldouble_multiply
-#	define q_3d_divide				q_3d_ldouble_divide
-#	define q_3d_dot_product				q_3d_ldouble_dot_product
-#	define q_3d_cross_product			q_3d_ldouble_cross_product
-#	define q_3d_minimum				q_3d_ldouble_minimum
-#	define q_3d_maximum				q_3d_ldouble_maximum
-#	define q_3d_middle				q_3d_ldouble_middle
-#	define q_3d_fit					q_3d_ldouble_fit
-#	define q_3d_lerp				q_3d_ldouble_lerp
-#	define q_3d_is_zero				q_3d_ldouble_is_zero
-#	define q_3d_negative				q_3d_ldouble_negative
-#	define q_3d_absolute				q_3d_ldouble_absolute
-#	define q_3d_volume				q_3d_ldouble_volume
-#	define q_3d_square_length			q_3d_ldouble_square_length
-#	define q_3d_multiply_by_scalar			q_3d_ldouble_multiply_by_scalar
-#	define q_3d_divide_by_scalar			q_3d_ldouble_divide_by_scalar
-#	define q_3d_clamp				q_3d_ldouble_clamp
-#	define q_3d_cube_clamp				q_3d_ldouble_cube_clamp
-#	define q_3d_rotated_as_axes			q_3d_ldouble_rotated_as_axes
 
 #	define q_2d_vector				q_2d_ldouble_vector
 #	define q_2d_vector_zero				q_2d_ldouble_vector_zero
@@ -797,6 +806,13 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_box					q_ldouble_box
 #	define q_box_zero				q_ldouble_box_zero
 #	define q_box_are_equal				q_ldouble_box_are_equal
+#	define q_box_contains				q_ldouble_box_contains
+#	define q_box_collision				q_ldouble_box_collision
+#	define q_box_intersection			q_ldouble_box_intersection
+#	define q_box_union				q_ldouble_box_union
+#	define q_box_center				q_ldouble_box_center
+#	define q_box_contains_point			q_ldouble_box_contains_point
+#	define q_box_contains_line_segment		q_ldouble_box_contains_line_segment
 
 #	define q_circle					q_ldouble_cirlce
 #	define q_circle_zero				q_ldouble_circle_zero
@@ -807,65 +823,6 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_sphere_are_equal			q_ldouble_sphere_are_equal
 
 #else
-
-#	define q_minimum				q_double_minimum
-#	define q_maximum				q_double_maximum
-#	define q_lerp					q_double_lerp
-#	define q_absolute				q_double_absolute
-#	define q_clamp					q_double_clamp
-
-#	define q_2d					q_2d_double
-#	define q_2d_zero				q_2d_double_zero
-#	define q_2d_are_equal				q_2d_double_are_equal
-#	define q_2d_swap				q_2d_double_swap
-#	define q_2d_contains				q_2d_double_contains
-#	define q_2d_add					q_2d_double_add
-#	define q_2d_subtract				q_2d_double_subtract
-#	define q_2d_multiply				q_2d_double_multiply
-#	define q_2d_divide				q_2d_double_divide
-#	define q_2d_dot_product				q_2d_double_dot_product
-#	define q_2d_cross_product			q_2d_double_cross_product
-#	define q_2d_minimum				q_2d_double_minimum
-#	define q_2d_maximum				q_2d_double_maximum
-#	define q_2d_middle				q_2d_double_middle
-#	define q_2d_fit					q_2d_double_fit
-#	define q_2d_lerp				q_2d_double_lerp
-#	define q_2d_is_zero				q_2d_double_is_zero
-#	define q_2d_negative				q_2d_double_negative
-#	define q_2d_absolute				q_2d_double_absolute
-#	define q_2d_area				q_2d_double_area
-#	define q_2d_square_length			q_2d_double_square_length
-#	define q_2d_multiply_by_scalar			q_2d_double_multiply_by_scalar
-#	define q_2d_divide_by_scalar			q_2d_double_divide_by_scalar
-#	define q_2d_clamp				q_2d_double_clamp
-#	define q_2d_square_clamp			q_2d_double_square_clamp
-
-#	define q_3d					q_3d_double
-#	define q_3d_zero				q_3d_double_zero
-#	define q_3d_are_equal				q_3d_double_are_equal
-#	define q_3d_swap				q_3d_double_swap
-#	define q_3d_contains				q_3d_double_contains
-#	define q_3d_add					q_3d_double_add
-#	define q_3d_subtract				q_3d_double_subtract
-#	define q_3d_multiply				q_3d_double_multiply
-#	define q_3d_divide				q_3d_double_divide
-#	define q_3d_dot_product				q_3d_double_dot_product
-#	define q_3d_cross_product			q_3d_double_cross_product
-#	define q_3d_minimum				q_3d_double_minimum
-#	define q_3d_maximum				q_3d_double_maximum
-#	define q_3d_middle				q_3d_double_middle
-#	define q_3d_fit					q_3d_double_fit
-#	define q_3d_lerp				q_3d_double_lerp
-#	define q_3d_is_zero				q_3d_double_is_zero
-#	define q_3d_negative				q_3d_double_negative
-#	define q_3d_absolute				q_3d_double_absolute
-#	define q_3d_volume				q_3d_double_volume
-#	define q_3d_square_length			q_3d_double_square_length
-#	define q_3d_multiply_by_scalar			q_3d_double_multiply_by_scalar
-#	define q_3d_divide_by_scalar			q_3d_double_divide_by_scalar
-#	define q_3d_clamp				q_3d_double_clamp
-#	define q_3d_cube_clamp				q_3d_double_cube_clamp
-#	define q_3d_rotated_as_axes			q_3d_double_rotated_as_axes
 
 #	define q_2d_vector				q_2d_double_vector
 #	define q_2d_vector_zero				q_2d_double_vector_zero
@@ -906,6 +863,13 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 #	define q_box					q_double_box
 #	define q_box_zero				q_double_box_zero
 #	define q_box_are_equal				q_double_box_are_equal
+#	define q_box_contains				q_double_box_contains
+#	define q_box_collision				q_double_box_collision
+#	define q_box_intersection			q_double_box_intersection
+#	define q_box_union				q_double_box_union
+#	define q_box_center				q_double_box_center
+#	define q_box_contains_point			q_double_box_contains_point
+#	define q_box_contains_line_segment		q_double_box_contains_line_segment
 
 #	define q_circle					q_double_cirlce
 #	define q_circle_zero				q_double_circle_zero
@@ -917,4 +881,4 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble)
 
 #endif
 
-#endif /* __Q_functions_mathematics_H__ */
+#endif /* __Q_functions_geometry_H__ */

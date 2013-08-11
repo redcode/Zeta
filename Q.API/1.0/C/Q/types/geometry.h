@@ -1,4 +1,4 @@
-/* Q API - types/mathematics.h
+/* Q API - types/geometry.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_types_mathematics_H__
-#define __Q_types_mathematics_H__
+#ifndef __Q_types_geometry_H__
+#define __Q_types_geometry_H__
 
 #include <Q/types/basics.h>
 
@@ -118,8 +118,6 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 
 #if defined(Q_USE_REAL_FLOAT)
 
-	typedef Q2DFloat		Q2D;
-	typedef Q3DFloat		Q3D;
 	typedef Q2DFloatVector		Q2DVector;
 	typedef	Q2DFloatVector		Q3DVector;
 	typedef Q2DFloatLine		Q2DLine;
@@ -148,8 +146,6 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-	typedef Q2DLDouble		Q2D;
-	typedef Q3DLDouble		Q3D;
 	typedef Q2DLDoubleVector	Q2DVector;
 	typedef	Q2DLDoubleVector	Q3DVector;
 	typedef Q2DLDoubleLine		Q2DLine;
@@ -178,8 +174,6 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 
 #else
 
-	typedef Q2DDouble		Q2D;
-	typedef Q3DDouble		Q3D;
 	typedef Q2DLDoubleVector	Q2DVector;
 	typedef	Q2DLDoubleVector	Q3DVector;
 	typedef Q2DDoubleLine		Q2DLine;
@@ -208,4 +202,4 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 
 #endif
 
-#endif /* __Q_types_mathematics_H__ */
+#endif /* __Q_types_geometry_H__ */
