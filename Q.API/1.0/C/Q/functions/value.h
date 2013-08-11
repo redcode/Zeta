@@ -506,7 +506,11 @@ Q_IMPLEMENTATION_INTEGER_VALUE(real,	Q_REAL(	  0.0))
 								\
 Q_INLINE							\
 q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)	\
-	{return a + alpha * (b - a);}
+	{return a + alpha * (b - a);}				\
+								\
+Q_INLINE							\
+q_##type##_is_nan(q##type value)				\
+	{return !(value == value);}
 
 
 Q_IMPLEMENTATION_REAL_VALUE(float  )
@@ -523,6 +527,7 @@ Q_IMPLEMENTATION_REAL_VALUE(real   )
 #	define q_minimum	q_float_minimum
 #	define q_maximum	q_float_maximum
 #	define q_lerp		q_float_lerp
+#	define q_is_nan		q_float_is_nan
 #	define q_absolute	q_float_absolute
 #	define q_clamp		q_float_clamp
 
@@ -531,6 +536,7 @@ Q_IMPLEMENTATION_REAL_VALUE(real   )
 #	define q_minimum	q_ldouble_minimum
 #	define q_maximum	q_ldouble_maximum
 #	define q_lerp		q_ldouble_lerp
+#	define q_is_nan		q_ldouble_is_nan
 #	define q_absolute	q_ldouble_absolute
 #	define q_clamp		q_ldouble_clamp
 
@@ -539,6 +545,7 @@ Q_IMPLEMENTATION_REAL_VALUE(real   )
 #	define q_minimum	q_double_minimum
 #	define q_maximum	q_double_maximum
 #	define q_lerp		q_double_lerp
+#	define q_is_nan		q_double_is_nan
 #	define q_absolute	q_double_absolute
 #	define q_clamp		q_double_clamp
 
