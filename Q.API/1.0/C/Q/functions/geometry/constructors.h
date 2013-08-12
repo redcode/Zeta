@@ -14,9 +14,9 @@ Released under the terms of the GNU General Public License v3. */
 
 #if Q_C_HAS(COMPOUND_LITERAL)
 
-#	define q_2d_float_vector(  a_x, a_y, b_x, b_y) ((Q2DFloatVector  ){a_x, a_y}, {b_x, b_y})
-#	define q_2d_double_vector( a_x, a_y, b_x, b_y) ((Q2DDoubleVector ){a_x, a_y}, {b_x, b_y})
-#	define q_2d_ldouble_vector(a_x, a_y, b_x, b_y) ((Q2DLDoubleVector){a_x, a_y}, {b_x, b_y})
+#	define q_2d_float_vector(  a_x, a_y, b_x, b_y) ((Q2DFloatVector  ){{a_x, a_y}, {b_x, b_y}})
+#	define q_2d_double_vector( a_x, a_y, b_x, b_y) ((Q2DDoubleVector ){{a_x, a_y}, {b_x, b_y}})
+#	define q_2d_ldouble_vector(a_x, a_y, b_x, b_y) ((Q2DLDoubleVector){{a_x, a_y}, {b_x, b_y}})
 
 #	define q_2d_float_line	 q_2d_float_vector
 #	define q_2d_double_line	 q_2d_double_vector
@@ -30,9 +30,9 @@ Released under the terms of the GNU General Public License v3. */
 #	define q_double_rectangle( x, y, size_x, size_y) ((QDoubleRectangle ){{x, y}, {size_x, size_y}})
 #	define q_ldouble_rectangle(x, y, size_x, size_y) ((QLDoubleRectangle){{x, y}, {size_x, size_y}})
 
-#	define q_3d_float_vector(  a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DFloatVector  ){a_x, a_y, a_z}, {b_x, b_y, b_z})
-#	define q_3d_double_vector( a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DDoubleVector ){a_x, a_y, a_z}, {b_x, b_y, b_z})
-#	define q_3d_ldouble_vector(a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DLDoubleVector){a_x, a_y, a_z}, {b_x, b_y, b_z})
+#	define q_3d_float_vector(  a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DFloatVector  ){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#	define q_3d_double_vector( a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DDoubleVector ){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#	define q_3d_ldouble_vector(a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DLDoubleVector){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
 #	define q_3d_float_line	 q_3d_float_vector
 #	define q_3d_double_line	 q_3d_double_vector

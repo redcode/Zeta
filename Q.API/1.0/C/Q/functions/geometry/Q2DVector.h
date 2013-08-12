@@ -25,18 +25,28 @@ qboolean q_2d_##type##_vector_are_equal(			\
 	Q2D##Type##Vector a,					\
 	Q2D##Type##Vector b					\
 )								\
-	{							\
-	return	q_2d_##type##_are_equal(a.a, b.a) &&		\
-		q_2d_##type##_are_equal(a.b, b.b);		\
-	}							\
-								\
-								\
-Q_2D_VECTOR_EXPORT						\
-qboolean q_2d_##type##_vector_is_zero(Q2D##Type##Vector vector)	\
-	{							\
-	return	q_2d_##type##_is_zero(vector.a) &&		\
-		q_2d_##type##_is_zero(vector.b);		\
-	}
+	{								\
+	return	q_2d_##type##_are_equal(a.a, b.a) &&			\
+		q_2d_##type##_are_equal(a.b, b.b);			\
+	}								\
+									\
+									\
+Q_2D_VECTOR_EXPORT							\
+qboolean q_2d_##type##_vector_is_zero(Q2D##Type##Vector vector)		\
+	{								\
+	return	q_2d_##type##_is_zero(vector.a) &&			\
+		q_2d_##type##_is_zero(vector.b);			\
+	}								\
+									\
+									\
+Q_2D_VECTOR_EXPORT							\
+Q2D##Type##Vector q_2d_##type##_vector_reversed(			\
+	Q2D##Type##Vector vector					\
+)									\
+	{								\
+	return q_2d_##type##_vector					\
+		(vector.b.x, vector.b.y, vector.a.x, vector.a.y);	\
+	}								\
 
 
 Q_IMPLEMENTATION_2D_VECTOR(Float,   float  )
@@ -50,16 +60,19 @@ Q_IMPLEMENTATION_2D_VECTOR(LDouble, ldouble)
 
 #	define q_2d_vector_are_equal	q_2d_float_vector_are_equal
 #	define q_2d_vector_is_zero	q_2d_float_vector_is_zero
+#	define q_2d_vector_reversed	q_2d_float_vector_reversed
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
 #	define q_2d_vector_are_equal	q_2d_ldouble_vector_are_equal
 #	define q_2d_vector_is_zero	q_2d_ldouble_vector_is_zero
+#	define q_2d_vector_reversed	q_2d_ldouble_vector_reversed
 
 #else
 
 #	define q_2d_vector_are_equal	q_2d_double_vector_are_equal
 #	define q_2d_vector_is_zero	q_2d_double_vector_is_zero
+#	define q_2d_vector_reversed	q_2d_double_vector_reversed
 
 #endif
 

@@ -17,26 +17,37 @@ Released under the terms of the GNU General Public License v3. */
 #endif
 
 
-#define Q_IMPLEMENTATION_3D_VECTOR(Type, type)			\
-								\
-								\
-Q_3D_VECTOR_EXPORT						\
-qboolean q_3d_##type##_vector_are_equal(			\
-	Q3D##Type##Vector a,					\
-	Q3D##Type##Vector b					\
-)								\
-	{							\
-	return	q_3d_##type##_are_equal(a.a, b.a) &&		\
-		q_3d_##type##_are_equal(a.b, b.b);		\
-	}							\
-								\
-								\
-Q_3D_VECTOR_EXPORT						\
-qboolean q_3d_##type##_vector_is_zero(Q3D##Type##Vector vector)	\
-	{							\
-	return	q_3d_##type##_is_zero(vector.a) &&		\
-		q_3d_##type##_is_zero(vector.b);		\
-	}
+#define Q_IMPLEMENTATION_3D_VECTOR(Type, type)				\
+									\
+									\
+Q_3D_VECTOR_EXPORT							\
+qboolean q_3d_##type##_vector_are_equal(				\
+	Q3D##Type##Vector a,						\
+	Q3D##Type##Vector b						\
+)									\
+	{								\
+	return	q_3d_##type##_are_equal(a.a, b.a) &&			\
+		q_3d_##type##_are_equal(a.b, b.b);			\
+	}								\
+									\
+									\
+Q_3D_VECTOR_EXPORT							\
+qboolean q_3d_##type##_vector_is_zero(Q3D##Type##Vector vector)		\
+	{								\
+	return	q_3d_##type##_is_zero(vector.a) &&			\
+		q_3d_##type##_is_zero(vector.b);			\
+	}								\
+									\
+									\
+Q_3D_VECTOR_EXPORT							\
+Q3D##Type##Vector q_3d_##type##_vector_reversed(			\
+	Q3D##Type##Vector vector					\
+)									\
+	{								\
+	return q_3d_##type##_vector					\
+		(vector.b.x, vector.b.y, vector.b.z,			\
+		 vector.a.x, vector.a.y, vector.a.z);			\
+	}								\
 
 
 Q_IMPLEMENTATION_3D_VECTOR(Float,   float  )
@@ -50,16 +61,19 @@ Q_IMPLEMENTATION_3D_VECTOR(LDouble, ldouble)
 
 #	define q_3d_vector_are_equal	q_3d_float_vector_are_equal
 #	define q_3d_vector_is_zero	q_3d_float_vector_is_zero
+#	define q_3d_vector_reversed	q_3d_float_vector_reversed
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
 #	define q_3d_vector_are_equal	q_3d_ldouble_vector_are_equal
 #	define q_3d_vector_is_zero	q_3d_ldouble_vector_is_zero
+#	define q_3d_vector_reversed	q_3d_ldouble_vector_reversed
 
 #else
 
 #	define q_3d_vector_are_equal	q_3d_double_vector_are_equal
 #	define q_3d_vector_is_zero	q_3d_double_vector_is_zero
+#	define q_3d_vector_reversed	q_3d_double_vector_reversed
 
 #endif
 
