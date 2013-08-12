@@ -1,4 +1,4 @@
-/* Q API - functions/geometry.h
+/* Q API - functions/geometry/Q3DLine.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_functions_geometry_H__
-#define __Q_functions_geometry_H__
+#ifndef __Q_functions_geometry_Q3DLine_H__
+#define __Q_functions_geometry_Q3DLine_H__
 
 #include <Q/functions/geometry/Q3DVector.h>
 
@@ -27,7 +27,14 @@ Released under the terms of the GNU General Public License v3. */
 #define q_3d_line_are_equal		q_3d_vector_are_equal
 #define q_3d_line_is_zero		q_3d_vector_is_zero
 
+
 #define Q_IMPLEMENTATION_3D_LINE(Type, type, _)				\
+									\
+									\
+Q_3D_LINE_EXPORT							\
+Q3D##Type##Line q_3d_##type##_line_reversed(Q3D##Type##Line line)	\
+	{return q_3d_##type##_line(line.b, line.a);}			\
+									\
 									\
 Q_3D_LINE_EXPORT							\
 Q3D##Type q_3d_##type##_line_segment_center(Q3D##Type##Line segment)	\
@@ -36,26 +43,42 @@ Q3D##Type q_3d_##type##_line_segment_center(Q3D##Type##Line segment)	\
 		((segment.b.x - segment.a.x) / _(2.0) + segment.a.x,	\
 		 (segment.b.y - segment.a.y) / _(2.0) + segment.a.y,	\
 		 (segment.b.z - segment.a.z) / _(2.0) + segment.a.z);	\
-	}
+	}								\
+									\
+									\
+Q_3D_LINE_EXPORT							\
+Q3D##Type q_3d_##type##_line_segment_lerp(				\
+	Q3D##Type##Line	segment,					\
+	q##type		alpha						\
+)									\
+	{return q_3d_##type##_lerp(segment.a, segment.b, alpha)}
+
 
 Q_IMPLEMENTATION_3D_LINE(Float,   float,   Q_FLOAT  )
 Q_IMPLEMENTATION_3D_LINE(Double,  double,  Q_DOUBLE )
 Q_IMPLEMENTATION_3D_LINE(LDouble, ldouble, Q_LDOUBLE)
 
+
 /* MARK: - Default real type definitions */
 
 #if defined(Q_USE_REAL_FLOAT)
 
+#	define q_3d_line_reversed	q_3d_float_line_reversed
 #	define q_3d_line_segment_center	q_3d_float_line_segment_center
+#	define q_3d_line_segment_lerp	q_3d_float_line_segment_lerp
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
+#	define q_3d_line_reversed	q_3d_ldouble_line_reversed
 #	define q_3d_line_segment_center	q_3d_ldouble_line_segment_center
+#	define q_3d_line_segment_lerp	q_3d_ldouble_line_segment_lerp
 
 #else
 
+#	define q_3d_line_reversed	q_3d_double_line_reversed
 #	define q_3d_line_segment_center	q_3d_double_line_segment_center
+#	define q_3d_line_segment_lerp	q_3d_double_line_segment_lerp
 
 #endif
 
-#endif /* __Q_functions_geometry_H__ */
+#endif /* __Q_functions_geometry_Q3DLine_H__ */
