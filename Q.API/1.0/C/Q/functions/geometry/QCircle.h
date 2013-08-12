@@ -72,23 +72,23 @@ Q_IMPLEMENTATION_CIRCLE(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_SUFFIX)
 #if defined(Q_USE_REAL_FLOAT)
 
 #	define q_circle_are_equal	q_float_circle_are_equal
+#	define q_circle_is_zero		q_float_circle_is_zero
 #	define q_circle_inner_rectangle	q_float_circle_inner_rectangle
 #	define q_circle_outer_rectangle	q_float_circle_outer_rectangle
-#	define q_circle_is_zero		q_float_circle_is_zero
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
 #	define q_circle_are_equal	q_ldouble_circle_are_equal
+#	define q_circle_is_zero		q_ldouble_circle_is_zero
 #	define q_circle_inner_rectangle	q_ldouble_circle_inner_rectangle
 #	define q_circle_outer_rectangle	q_ldouble_circle_outer_rectangle
-#	define q_circle_is_zero		q_ldouble_circle_is_zero
 
 #else
 
 #	define q_circle_are_equal	q_double_circle_are_equal
+#	define q_circle_is_zero		q_double_circle_is_zero
 #	define q_circle_inner_rectangle	q_double_circle_inner_rectangle
 #	define q_circle_outer_rectangle	q_double_circle_outer_rectangle
-#	define q_circle_is_zero		q_double_circle_is_zero
 
 #endif
 

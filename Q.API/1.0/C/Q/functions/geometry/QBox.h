@@ -115,20 +115,20 @@ Q##Type##Box q_##type##_box_by_vertices(Q3D##Type a, Q3D##Type b)		\
 										\
 										\
 Q_BOX_EXPORT									\
+qboolean q_##type##_box_is_zero(Q##Type##Box box)				\
+	{									\
+	return	q_3d_##type##_is_zero(box.point) &&				\
+		q_3d_##type##_is_zero(box.size);				\
+	}									\
+										\
+										\
+Q_BOX_EXPORT									\
 Q3D##Type q_##type##_box_center(Q##Type##Box box)				\
 	{									\
 	return q_3d_##type							\
 		(box.point.x + box.size.x / _(2.0),				\
 		 box.point.y + box.size.y / _(2.0),				\
 		 box.point.z + box.size.z / _(2.0));				\
-	}									\
-										\
-										\
-Q_BOX_EXPORT									\
-qboolean q_##type##_box_is_zero(Q##Type##Box box)				\
-	{									\
-	return	q_3d_##type##_is_zero(box.point) &&				\
-		q_3d_##type##_is_zero(box.size);				\
 	}									\
 										\
 										\
@@ -169,8 +169,8 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_collision			q_float_box_collision
 #	define q_box_intersection		q_float_box_intersection
 #	define q_box_union			q_float_box_union
-#	define q_box_center			q_float_box_center
 #	define q_box_is_zero			q_float_box_is_zero
+#	define q_box_center			q_float_box_center
 #	define q_box_contains_point		q_float_box_contains_point
 #	define q_box_contains_line_segment	q_float_box_contains_line_segment
 
@@ -181,8 +181,8 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_collision			q_ldouble_box_collision
 #	define q_box_intersection		q_ldouble_box_intersection
 #	define q_box_union			q_ldouble_box_union
-#	define q_box_center			q_ldouble_box_center
 #	define q_box_is_zero			q_ldouble_box_is_zero
+#	define q_box_center			q_ldouble_box_center
 #	define q_box_contains_point		q_ldouble_box_contains_point
 #	define q_box_contains_line_segment	q_ldouble_box_contains_line_segment
 
@@ -193,8 +193,8 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_collision			q_double_box_collision
 #	define q_box_intersection		q_double_box_intersection
 #	define q_box_union			q_double_box_union
-#	define q_box_center			q_double_box_center
 #	define q_box_is_zero			q_double_box_is_zero
+#	define q_box_center			q_double_box_center
 #	define q_box_contains_point		q_double_box_contains_point
 #	define q_box_contains_line_segment	q_double_box_contains_line_segment
 

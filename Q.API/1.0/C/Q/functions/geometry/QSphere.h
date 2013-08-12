@@ -30,6 +30,14 @@ qboolean q_##type##_sphere_are_equal(Q##Type##Sphere a, Q##Type##Sphere b)	\
 										\
 										\
 Q_SPHERE_EXPORT									\
+qboolean q_##type##_sphere_is_zero(Q##Type##Sphere sphere)			\
+	{									\
+	return	sphere.radius == _(0.0) &&					\
+		q_3d_##type##_is_zero(sphere.point);				\
+	}									\
+										\
+										\
+Q_SPHERE_EXPORT									\
 Q##Type##Box q_##type##_sphere_inner_box(Q##Type##Sphere sphere)		\
 	{									\
 	q##type half_size = sphere.radius / Q_JOIN_2(Q_SQUARE_ROOT_3, suffix);	\
@@ -53,14 +61,6 @@ Q##Type##Box q_##type##_sphere_outer_box(Q##Type##Sphere sphere)		\
 		 sphere.point.y - sphere.radius,				\
 		 sphere.point.z - sphere.radius,				\
 		 size, size, size);						\
-	}									\
-										\
-										\
-Q_SPHERE_EXPORT									\
-qboolean q_##type##_sphere_is_zero(Q##Type##Sphere sphere)			\
-	{									\
-	return	sphere.radius == _(0.0) &&					\
-		q_3d_##type##_is_zero(sphere.point);				\
 	}
 
 
@@ -74,23 +74,23 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_SUFFIX)
 #if defined(Q_USE_REAL_FLOAT)
 
 #	define q_sphere_are_equal	q_float_sphere_are_equal
+#	define q_sphere_is_zero		q_float_sphere_is_zero
 #	define q_sphere_inner_box	q_float_sphere_inner_box
 #	define q_sphere_outer_box	q_float_sphere_outer_box
-#	define q_sphere_is_zero		q_float_sphere_is_zero
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
 #	define q_sphere_are_equal	q_ldouble_sphere_are_equal
+#	define q_sphere_is_zero		q_ldouble_sphere_is_zero
 #	define q_sphere_inner_box	q_ldouble_sphere_inner_box
 #	define q_sphere_outer_box	q_ldouble_sphere_outer_box
-#	define q_sphere_is_zero		q_ldouble_sphere_is_zero
 
 #else
 
 #	define q_sphere_are_equal	q_double_sphere_are_equal
+#	define q_sphere_is_zero		q_double_sphere_is_zero
 #	define q_sphere_inner_box	q_double_sphere_inner_box
 #	define q_sphere_outer_box	q_double_sphere_outer_box
-#	define q_sphere_is_zero		q_double_sphere_is_zero
 
 #endif
 

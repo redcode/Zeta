@@ -119,11 +119,10 @@ Q##Type##Rectangle q_##type##_rectangle_by_vertices(Q2D##Type a, Q2D##Type b)	\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
-Q2D##Type q_##type##_rectangle_center(Q##Type##Rectangle rectangle)		\
+qboolean q_##type##_rectangle_is_zero(Q##Type##Rectangle rectangle)		\
 	{									\
-	return q_2d_##type							\
-		(rectangle.point.x + rectangle.size.x / _(2.0),			\
-		 rectangle.point.y + rectangle.size.y / _(2.0));		\
+	return	q_2d_##type##_is_zero(rectangle.point) &&			\
+		q_2d_##type##_is_zero(rectangle.size);				\
 	}									\
 										\
 										\
@@ -158,10 +157,162 @@ q##type q_##type##_rectangle_middle_y(Q##Type##Rectangle rectangle)		\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
-qboolean q_##type##_rectangle_is_zero(Q##Type##Rectangle rectangle)		\
+Q2D##Type q_##type##_rectangle_top_left(Q##Type##Rectangle rectangle)		\
 	{									\
-	return	q_2d_##type##_is_zero(rectangle.point) &&			\
-		q_2d_##type##_is_zero(rectangle.size);				\
+	return q_2d_##type							\
+		(rectangle.point.x,						\
+		 rectangle.point.y + rectangle.size.y);				\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q2D##Type q_##type##_rectangle_top_right(Q##Type##Rectangle rectangle)		\
+	{									\
+	return q_2d_##type							\
+		(rectangle.point.x + rectangle.size.x,				\
+		 rectangle.point.y + rectangle.size.y);				\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q2D##Type q_##type##_rectangle_top_center(Q##Type##Rectangle rectangle)		\
+	{									\
+	return q_2d_##type							\
+		(rectangle.point.x + rectangle.size.x / _(2.0),			\
+		 rectangle.point.y + rectangle.size.y);				\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q2D##Type q_##type##_rectangle_bottom_left(Q##Type##Rectangle rectangle)	\
+	{return rectangle.point;}						\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q2D##Type q_##type##_rectangle_bottom_right(Q##Type##Rectangle rectangle)	\
+	{									\
+	return q_2d_##type							\
+		(rectangle.point.x + rectangle.size.x,				\
+		 rectangle.point.y);						\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q2D##Type q_##type##_rectangle_bottom_center(Q##Type##Rectangle rectangle)	\
+	{									\
+	return q_2d_##type							\
+		(rectangle.point.x + rectangle.size.x / _(2.0),			\
+		 rectangle.point.y);						\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q2D##Type q_##type##_rectangle_center_left(Q##Type##Rectangle rectangle)	\
+	{									\
+	return q_2d_##type							\
+		(rectangle.point.x,						\
+		 rectangle.point.y + rectangle.size.y / _(2.0));		\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q2D##Type q_##type##_rectangle_center_right(Q##Type##Rectangle rectangle)	\
+	{									\
+	return q_2d_##type							\
+		(rectangle.point.x + rectangle.size.x,				\
+		 rectangle.point.y + rectangle.size.y / _(2.0));		\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q2D##Type q_##type##_rectangle_center(Q##Type##Rectangle rectangle)		\
+	{									\
+	return q_2d_##type							\
+		(rectangle.point.x + rectangle.size.x / _(2.0),			\
+		 rectangle.point.y + rectangle.size.y / _(2.0));		\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_top_half(				\
+	Q##Type##Rectangle rectangle						\
+)										\
+	{									\
+	rectangle.point.y += (rectangle.size.y /= _(2.0));			\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_bottom_half(				\
+	Q##Type##Rectangle rectangle						\
+)										\
+	{									\
+	rectangle.size.y /= _(2.0);						\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_left_half(				\
+	Q##Type##Rectangle rectangle						\
+)										\
+	{									\
+	rectangle.size.x /= _(2.0);						\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_right_half(				\
+	Q##Type##Rectangle rectangle						\
+)										\
+	{									\
+	rectangle.point.x += (rectangle.size.x /= _(2.0));			\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_top_left_quarter(			\
+	Q##Type##Rectangle rectangle						\
+)										\
+	{									\
+	rectangle.size.x  /= _(2.0);						\
+	rectangle.point.y += (rectangle.size.y /= _(2.0));			\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_top_right_quarter(			\
+	Q##Type##Rectangle rectangle						\
+)										\
+	{									\
+	rectangle.point.x += (rectangle.size.x /= _(2.0));			\
+	rectangle.point.y += (rectangle.size.y /= _(2.0));			\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_bottom_left_quarter(			\
+	Q##Type##Rectangle rectangle						\
+)										\
+	{									\
+	rectangle.size.x /= _(2.0);						\
+	rectangle.size.y /= _(2.0);						\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_bottom_right_quarter(			\
+	Q##Type##Rectangle rectangle						\
+)										\
+	{									\
+	rectangle.point.x += (rectangle.size.x /= _(2.0));			\
+	rectangle.size.y  /= _(2.0);						\
 	}									\
 										\
 										\
@@ -204,14 +355,30 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_intersection			q_float_rectangle_intersection
 #	define q_rectangle_union			q_float_rectangle_union
 #	define q_rectangle_by_vertices			q_float_rectangle_by_vertices
-#	define q_rectangle_center			q_float_rectangle_center
+#	define q_rectangle_is_zero			q_float_rectangle_is_zero
 #	define q_rectangle_minimum_x			q_float_rectangle_minimum_x
 #	define q_rectangle_minimum_y			q_float_rectangle_minimum_y
 #	define q_rectangle_maximum_x			q_float_rectangle_maximum_x
 #	define q_rectangle_maximum_y			q_float_rectangle_maximum_y
 #	define q_rectangle_middle_x			q_float_rectangle_middle_x
 #	define q_rectangle_middle_y			q_float_rectangle_middle_y
-#	define q_rectangle_is_zero			q_float_rectangle_is_zero
+#	define q_rectangle_top_left			q_float_rectangle_top_left
+#	define q_rectangle_top_right			q_float_rectangle_top_right
+#	define q_rectangle_top_center			q_float_rectangle_top_center
+#	define q_rectangle_bottom_left			q_float_rectangle_bottom_left
+#	define q_rectangle_bottom_right			q_float_rectangle_bottom_right
+#	define q_rectangle_bottom_center		q_float_rectangle_bottom_center
+#	define q_rectangle_center_left			q_float_rectangle_center_left
+#	define q_rectangle_center_right			q_float_rectangle_center_right
+#	define q_rectangle_center			q_float_rectangle_center
+#	define q_rectangle_top_half			q_float_rectangle_top_half
+#	define q_rectangle_bottom_half			q_float_rectangle_bottom_half
+#	define q_rectangle_left_half			q_float_rectangle_left_half
+#	define q_rectangle_right_half			q_float_rectangle_right_half
+#	define q_rectangle_top_left_quarter		q_float_rectangle_top_left_quarter
+#	define q_rectangle_top_right_quarter		q_float_rectangle_top_right_quarter
+#	define q_rectangle_bottom_left_quarter		q_float_rectangle_bottom_left_quarter
+#	define q_rectangle_bottom_right_quarter		q_float_rectangle_bottom_right_quarter
 #	define q_rectangle_contains_point		q_float_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_float_rectangle_contains_line_segment
 
@@ -223,14 +390,30 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_intersection			q_ldouble_rectangle_intersection
 #	define q_rectangle_union			q_ldouble_rectangle_union
 #	define q_rectangle_by_vertices			q_ldouble_rectangle_by_vertices
-#	define q_rectangle_center			q_ldouble_rectangle_center
+#	define q_rectangle_is_zero			q_ldouble_rectangle_is_zero
 #	define q_rectangle_minimum_x			q_ldouble_rectangle_minimum_x
 #	define q_rectangle_minimum_y			q_ldouble_rectangle_minimum_y
 #	define q_rectangle_maximum_x			q_ldouble_rectangle_maximum_x
 #	define q_rectangle_maximum_y			q_ldouble_rectangle_maximum_y
 #	define q_rectangle_middle_x			q_ldouble_rectangle_middle_x
 #	define q_rectangle_middle_y			q_ldouble_rectangle_middle_y
-#	define q_rectangle_is_zero			q_ldouble_rectangle_is_zero
+#	define q_rectangle_top_left			q_ldouble_rectangle_top_left
+#	define q_rectangle_top_right			q_ldouble_rectangle_top_right
+#	define q_rectangle_top_center			q_ldouble_rectangle_top_center
+#	define q_rectangle_bottom_left			q_ldouble_rectangle_bottom_left
+#	define q_rectangle_bottom_right			q_ldouble_rectangle_bottom_right
+#	define q_rectangle_bottom_center		q_ldouble_rectangle_bottom_center
+#	define q_rectangle_center_left			q_ldouble_rectangle_center_left
+#	define q_rectangle_center_right			q_ldouble_rectangle_center_right
+#	define q_rectangle_center			q_ldouble_rectangle_center
+#	define q_rectangle_top_half			q_ldouble_rectangle_top_half
+#	define q_rectangle_bottom_half			q_ldouble_rectangle_bottom_half
+#	define q_rectangle_left_half			q_ldouble_rectangle_left_half
+#	define q_rectangle_right_half			q_ldouble_rectangle_right_half
+#	define q_rectangle_top_left_quarter		q_ldouble_rectangle_top_left_quarter
+#	define q_rectangle_top_right_quarter		q_ldouble_rectangle_top_right_quarter
+#	define q_rectangle_bottom_left_quarter		q_ldouble_rectangle_bottom_left_quarter
+#	define q_rectangle_bottom_right_quarter		q_ldouble_rectangle_bottom_right_quarter
 #	define q_rectangle_contains_point		q_ldouble_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_ldouble_rectangle_contains_line_segment
 
@@ -242,14 +425,30 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_intersection			q_double_rectangle_intersection
 #	define q_rectangle_union			q_double_rectangle_union
 #	define q_rectangle_by_vertices			q_double_rectangle_by_vertices
-#	define q_rectangle_center			q_double_rectangle_center
+#	define q_rectangle_is_zero			q_double_rectangle_is_zero
 #	define q_rectangle_minimum_x			q_double_rectangle_minimum_x
 #	define q_rectangle_minimum_y			q_double_rectangle_minimum_y
 #	define q_rectangle_maximum_x			q_double_rectangle_maximum_x
 #	define q_rectangle_maximum_y			q_double_rectangle_maximum_y
 #	define q_rectangle_middle_x			q_double_rectangle_middle_x
 #	define q_rectangle_middle_y			q_double_rectangle_middle_y
-#	define q_rectangle_is_zero			q_double_rectangle_is_zero
+#	define q_rectangle_top_left			q_double_rectangle_top_left
+#	define q_rectangle_top_right			q_double_rectangle_top_right
+#	define q_rectangle_top_center			q_double_rectangle_top_center
+#	define q_rectangle_bottom_left			q_double_rectangle_bottom_left
+#	define q_rectangle_bottom_right			q_double_rectangle_bottom_right
+#	define q_rectangle_bottom_center		q_double_rectangle_bottom_center
+#	define q_rectangle_center_left			q_double_rectangle_center_left
+#	define q_rectangle_center_right			q_double_rectangle_center_right
+#	define q_rectangle_center			q_double_rectangle_center
+#	define q_rectangle_top_half			q_double_rectangle_top_half
+#	define q_rectangle_bottom_half			q_double_rectangle_bottom_half
+#	define q_rectangle_left_half			q_double_rectangle_left_half
+#	define q_rectangle_right_half			q_double_rectangle_right_half
+#	define q_rectangle_top_left_quarter		q_double_rectangle_top_left_quarter
+#	define q_rectangle_top_right_quarter		q_double_rectangle_top_right_quarter
+#	define q_rectangle_bottom_left_quarter		q_double_rectangle_bottom_left_quarter
+#	define q_rectangle_bottom_right_quarter		q_double_rectangle_bottom_right_quarter
 #	define q_rectangle_contains_point		q_double_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_double_rectangle_contains_line_segment
 
