@@ -206,8 +206,18 @@ qboolean q_3d_##type##_is_zero(Q3D##Type magnitude)				\
 										\
 										\
 Q_INLINE									\
-q##type q_3d_##type##_volume(Q3D##Type magnitude)				\
+q##type q_3d_##type##_inner_sum(Q3D##Type magnitude)				\
+	{return magnitude.x + magnitude.y + magnitude.z;}			\
+										\
+										\
+Q_INLINE									\
+q##type q_3d_##type##_inner_product(Q3D##Type magnitude)			\
 	{return magnitude.x * magnitude.y * magnitude.z;}			\
+										\
+										\
+Q_INLINE									\
+q##type q_3d_##type##_inner_average(Q3D##Type magnitude)			\
+	{return (magnitude.x + magnitude.y + magnitude.z) / (q##type)3;}	\
 										\
 										\
 Q_INLINE									\
@@ -399,7 +409,9 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real	 )
 #	define q_3d_is_zero		q_3d_float_is_zero
 #	define q_3d_negative		q_3d_float_negative
 #	define q_3d_absolute		q_3d_float_absolute
-#	define q_3d_volume		q_3d_float_volume
+#	define q_3d_inner_sum		q_3d_float_inner_sum
+#	define q_3d_inner_product	q_3d_float_inner_product
+#	define q_3d_inner_average	q_3d_float_inner_average
 #	define q_3d_square_length	q_3d_float_square_length
 #	define q_3d_multiply_by_scalar	q_3d_float_multiply_by_scalar
 #	define q_3d_divide_by_scalar	q_3d_float_divide_by_scalar
@@ -428,7 +440,9 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real	 )
 #	define q_3d_is_zero		q_3d_ldouble_is_zero
 #	define q_3d_negative		q_3d_ldouble_negative
 #	define q_3d_absolute		q_3d_ldouble_absolute
-#	define q_3d_volume		q_3d_ldouble_volume
+#	define q_3d_inner_sum		q_3d_ldouble_inner_sum
+#	define q_3d_inner_product	q_3d_ldouble_inner_product
+#	define q_3d_inner_average	q_3d_ldouble_inner_average
 #	define q_3d_square_length	q_3d_ldouble_square_length
 #	define q_3d_multiply_by_scalar	q_3d_ldouble_multiply_by_scalar
 #	define q_3d_divide_by_scalar	q_3d_ldouble_divide_by_scalar
@@ -457,7 +471,9 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real	 )
 #	define q_3d_is_zero		q_3d_double_is_zero
 #	define q_3d_negative		q_3d_double_negative
 #	define q_3d_absolute		q_3d_double_absolute
-#	define q_3d_volume		q_3d_double_volume
+#	define q_3d_inner_sum		q_3d_double_inner_sum
+#	define q_3d_inner_product	q_3d_double_inner_product
+#	define q_3d_inner_average	q_3d_double_inner_average
 #	define q_3d_square_length	q_3d_double_square_length
 #	define q_3d_multiply_by_scalar	q_3d_double_multiply_by_scalar
 #	define q_3d_divide_by_scalar	q_3d_double_divide_by_scalar
