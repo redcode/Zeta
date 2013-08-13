@@ -144,12 +144,17 @@ Q3D##Type q_3d_##type##_divide(Q3D##Type a, Q3D##Type b)			\
 										\
 Q_INLINE									\
 q##type q_3d_##type##_dot_product(Q3D##Type a, Q3D##Type b)			\
-	{return a.x * b.x + a.y * b.y;} /* Terminar */				\
+	{return a.x * b.x + a.y * b.y + a.y * b.y;}				\
 										\
 										\
 Q_INLINE									\
-q##type q_3d_##type##_cross_product(Q3D##Type a, Q3D##Type b)			\
-	{return a.x * b.y - a.y * b.x;}	/* Terminar */				\
+Q3D##Type q_3d_##type##_cross_product(Q3D##Type a, Q3D##Type b)			\
+	{									\
+	return q_3d_##type							\
+		(a.y * b.z - a.z * b.y,						\
+		 a.z * b.x - a.x * b.z,						\
+		 a.x * b.y - a.y * b.x); 					\
+	}									\
 										\
 										\
 Q_INLINE									\
@@ -206,8 +211,12 @@ q##type q_3d_##type##_volume(Q3D##Type magnitude)				\
 										\
 										\
 Q_INLINE									\
-q##type q_3d_##type##_square_length(Q3D##Type magnitude) /* Terminar */		\
-	{return q_3d_##type##_dot_product(magnitude, magnitude);}		\
+q##type q_3d_##type##_square_length(Q3D##Type magnitude)			\
+	{									\
+	return	magnitude.x * magnitude.x +					\
+		magnitude.y * magnitude.y +					\
+		magnitude.y * magnitude.y;					\
+	}									\
 										\
 										\
 Q_INLINE									\

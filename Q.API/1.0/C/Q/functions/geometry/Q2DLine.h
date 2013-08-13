@@ -37,11 +37,7 @@ Released under the terms of the GNU General Public License v3. */
 									\
 Q_2D_LINE_EXPORT							\
 Q2D##Type q_2d_##type##_line_segment_center(Q2D##Type##Line segment)	\
-	{								\
-	return q_2d_##type						\
-		((segment.b.x - segment.a.x) / _(2.0) + segment.a.x,	\
-		 (segment.b.y - segment.a.y) / _(2.0) + segment.a.y);	\
-	}								\
+	{return q_2d_##type##_middle(segment.a, segment.b);}		\
 									\
 									\
 Q_2D_LINE_EXPORT							\

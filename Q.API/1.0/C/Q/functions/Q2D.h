@@ -147,7 +147,7 @@ q##type q_2d_##type##_dot_product(Q2D##Type a, Q2D##Type b)			\
 	{return a.x * b.x + a.y * b.y;}						\
 										\
 										\
-Q_INLINE									\
+Q_INLINE /* Area of the parallelogram between two vectors */			\
 q##type q_2d_##type##_cross_product(Q2D##Type a, Q2D##Type b)			\
 	{return a.x * b.y - a.y * b.x;}						\
 										\
@@ -197,7 +197,7 @@ q##type q_2d_##type##_area(Q2D##Type magnitude)					\
 										\
 Q_INLINE									\
 q##type q_2d_##type##_square_length(Q2D##Type magnitude)			\
-	{return q_2d_##type##_dot_product(magnitude, magnitude);}		\
+	{return magnitude.x * magnitude.x + magnitude.y * magnitude.y;}		\
 										\
 										\
 Q_INLINE									\
