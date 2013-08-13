@@ -324,21 +324,27 @@ Q_IMPLEMENTATION_INTEGER_2D(Real,    real   )
 /* MARK: - Operations for real types only */
 
 
-#define Q_IMPLEMENTATION_REAL_2D(Type, type)				\
-									\
-Q_INLINE								\
-Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type alpha)	\
-	{								\
-	return q_2d_##type						\
-		(q_##type##_lerp(a.x, b.x, alpha),			\
-		 q_##type##_lerp(a.y, b.y, alpha));			\
-	}
+#define Q_IMPLEMENTATION_REAL_2D(Type, type, _)					\
+										\
+										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type alpha)		\
+	{									\
+	return q_2d_##type							\
+		(q_##type##_lerp(a.x, b.x, alpha),				\
+		 q_##type##_lerp(a.y, b.y, alpha));				\
+	}									\
+										\
+										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_reciprocal(Q2D##Type magnitude)				\
+	{return q_2d_##type(_(1.0) / magnitude.x, _(1.0) / magnitude.y);}	\
 
 
-Q_IMPLEMENTATION_REAL_2D(Float,	  float	 )
-Q_IMPLEMENTATION_REAL_2D(Double,  double )
-Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble)
-Q_IMPLEMENTATION_REAL_2D(Real,	  real	 )
+Q_IMPLEMENTATION_REAL_2D(Float,	  float,   Q_FLOAT  )
+Q_IMPLEMENTATION_REAL_2D(Double,  double,  Q_DOUBLE )
+Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE)
+Q_IMPLEMENTATION_REAL_2D(Real,	  real,    Q_REAL   )
 
 
 /* MARK: - Default real type definitions */
@@ -365,6 +371,7 @@ Q_IMPLEMENTATION_REAL_2D(Real,	  real	 )
 #	define q_2d_is_zero		q_2d_float_is_zero
 #	define q_2d_negative		q_2d_float_negative
 #	define q_2d_absolute		q_2d_float_absolute
+#	define q_2d_reciprocal		q_2d_float_reciprocal
 #	define q_2d_inner_sum		q_2d_float_inner_sum
 #	define q_2d_inner_product	q_2d_float_inner_product
 #	define q_2d_inner_average	q_2d_float_inner_average
@@ -395,6 +402,7 @@ Q_IMPLEMENTATION_REAL_2D(Real,	  real	 )
 #	define q_2d_is_zero		q_2d_ldouble_is_zero
 #	define q_2d_negative		q_2d_ldouble_negative
 #	define q_2d_absolute		q_2d_ldouble_absolute
+#	define q_2d_reciprocal		q_2d_ldouble_reciprocal
 #	define q_2d_inner_sum		q_2d_ldouble_inner_sum
 #	define q_2d_inner_product	q_2d_ldouble_inner_product
 #	define q_2d_inner_average	q_2d_ldouble_inner_average
@@ -425,6 +433,7 @@ Q_IMPLEMENTATION_REAL_2D(Real,	  real	 )
 #	define q_2d_is_zero		q_2d_double_is_zero
 #	define q_2d_negative		q_2d_double_negative
 #	define q_2d_absolute		q_2d_double_absolute
+#	define q_2d_reciprocal		q_2d_double_reciprocal
 #	define q_2d_inner_sum		q_2d_double_inner_sum
 #	define q_2d_inner_product	q_2d_double_inner_product
 #	define q_2d_inner_average	q_2d_double_inner_average

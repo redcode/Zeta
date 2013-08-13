@@ -367,7 +367,8 @@ Q_IMPLEMENTATION_INTEGER_3D(Real,    real   )
 /* MARK: - Operations for real types only */
 
 
-#define Q_IMPLEMENTATION_REAL_3D(Type, type)				\
+#define Q_IMPLEMENTATION_REAL_3D(Type, type, _)				\
+									\
 									\
 Q_INLINE								\
 Q3D##Type q_3d_##type##_lerp(Q3D##Type a, Q3D##Type b, q##type alpha)	\
@@ -376,13 +377,23 @@ Q3D##Type q_3d_##type##_lerp(Q3D##Type a, Q3D##Type b, q##type alpha)	\
 		(q_##type##_lerp(a.x, b.x, alpha),			\
 		 q_##type##_lerp(a.y, b.y, alpha),			\
 		 q_##type##_lerp(a.z, b.z, alpha));			\
+	}								\
+									\
+									\
+Q_INLINE								\
+Q3D##Type q_3d_##type##_reciprocal(Q3D##Type magnitude)			\
+	{								\
+	return q_3d_##type						\
+		(_(1.0) / magnitude.x,					\
+		 _(1.0) / magnitude.y,					\
+		 _(1.0) / magnitude.z);					\
 	}
 
 
-Q_IMPLEMENTATION_REAL_3D(Float,	  float	 )
-Q_IMPLEMENTATION_REAL_3D(Double,  double )
-Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble)
-Q_IMPLEMENTATION_REAL_3D(Real,	  real	 )
+Q_IMPLEMENTATION_REAL_3D(Float,	  float,   Q_FLOAT  )
+Q_IMPLEMENTATION_REAL_3D(Double,  double,  Q_DOUBLE )
+Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE)
+Q_IMPLEMENTATION_REAL_3D(Real,	  real,    Q_REAL   )
 
 
 /* MARK: - Default real type definitions */
@@ -409,6 +420,7 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real	 )
 #	define q_3d_is_zero		q_3d_float_is_zero
 #	define q_3d_negative		q_3d_float_negative
 #	define q_3d_absolute		q_3d_float_absolute
+#	define q_3d_reciprocal		q_3d_float_reciprocal
 #	define q_3d_inner_sum		q_3d_float_inner_sum
 #	define q_3d_inner_product	q_3d_float_inner_product
 #	define q_3d_inner_average	q_3d_float_inner_average
@@ -440,6 +452,7 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real	 )
 #	define q_3d_is_zero		q_3d_ldouble_is_zero
 #	define q_3d_negative		q_3d_ldouble_negative
 #	define q_3d_absolute		q_3d_ldouble_absolute
+#	define q_3d_reciprocal		q_3d_ldouble_reciprocal
 #	define q_3d_inner_sum		q_3d_ldouble_inner_sum
 #	define q_3d_inner_product	q_3d_ldouble_inner_product
 #	define q_3d_inner_average	q_3d_ldouble_inner_average
@@ -471,6 +484,7 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real	 )
 #	define q_3d_is_zero		q_3d_double_is_zero
 #	define q_3d_negative		q_3d_double_negative
 #	define q_3d_absolute		q_3d_double_absolute
+#	define q_3d_reciprocal		q_3d_double_reciprocal
 #	define q_3d_inner_sum		q_3d_double_inner_sum
 #	define q_3d_inner_product	q_3d_double_inner_product
 #	define q_3d_inner_average	q_3d_double_inner_average
