@@ -20,7 +20,7 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - Pointer from base + index */
 
-#define Q_BIP(type, base, index) (((type)(base)) + (index))
+#define Q_BIP(type, base, index)	(((type)(base)) + (index))
 
 #define Q_UCHAR_BIP(  base, index)	Q_BIP(quchar   *, base, index)
 #define Q_USHORT_BIP( base, index)	Q_BIP(qushort  *, base, index)
@@ -59,7 +59,7 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - Pointer from base + offset */
 
-#define Q_BOP(type, base, offset) ((type)(((void *)(base)) + (offset)))
+#define Q_BOP(type, base, offset)	((type)(((void *)(base)) + (offset)))
 
 #define Q_UCHAR_BOP(  base, offset)	Q_BOP(quchar   *, base, offset)
 #define Q_USHORT_BOP( base, offset)	Q_BOP(qushort  *, base, offset)
@@ -98,7 +98,7 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - Index from base calculations */
 
-#define Q_INDEX(type, base, pointer)			((qsize)(((quintptr)pointer - (quintptr)base) / sizeof(type)))
-#define Q_BLOCK_INDEX(base, pointer, block_size)	((qsize)(((quintptr)pointer - (quintptr)base) / block_size))
+#define Q_INDEX(type, base, pointer)		 ((qsize)(((quintptr)pointer - (quintptr)base) / sizeof(type)))
+#define Q_BLOCK_INDEX(base, pointer, block_size) ((qsize)(((quintptr)pointer - (quintptr)base) / block_size))
 
 #endif /* __Q_macros_pointer_H__ */

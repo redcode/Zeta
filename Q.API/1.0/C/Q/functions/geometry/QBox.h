@@ -52,26 +52,24 @@ qboolean q_##type##_box_collision(Q##Type##Box a, Q##Type##Box b)		\
 	}									\
 										\
 										\
-/*Q_BOX_EXPORT									\
-Q##Type##Box q_##type##_box_intersection(Q##Type##Box a, Q##Type##Box b)	\									\
+Q_BOX_EXPORT									\
+Q##Type##Box q_##type##_box_intersection(Q##Type##Box a, Q##Type##Box b)	\
 	{									\
-	q##type x1 = q_##type##_maximum(a.point.x, b.point.x),			\
-		x2 = q_##type##_minimum						\
-			(a.point.x + a.size.x, b.point.x + b.size.x);		\
+	q##type x1, x2, y1, y2, z1, z2;						\
 										\
-	if (x1 <= x2)								\
-		{								\
-		q##type y1 = q_##type##_maximum(a.point.y, b.point.y),		\
+	return	(x1 = q_##type##_maximum(a.point.x, b.point.x))	      <=	\
+		(x2 = q_##type##_minimum					\
+			(a.point.x + a.size.x, b.point.x + b.size.x)) &&	\
+		(y1 = q_##type##_maximum(a.point.y, b.point.y))	      <=	\
+		(y2 = q_##type##_minimum					\
+			(a.point.y + a.size.y, b.point.y + b.size.y)) &&	\
+		(z1 = q_##type##_maximum(a.point.z, b.point.z))	      <=	\
+		(z2 = q_##type##_minimum					\
+			(a.point.z + a.size.z, b.point.z + b.size.z))		\
 										\
-			y2 = q_##type##_minimum					\
-				(a.point.y + a.size.y, b.point.y + b.size.y);	\
-										\
-		if (y1 <= y2)							\
-			return q_##type##_box(x1, y1, x2 - x1, y2 - y1);	\
-		}								\
-										\
-	return q_##type##_box_zero;						\
-	}*/									\
+		? q_##type##_box(x1, y1, z1, x2 - x1, y2 - y1, z2 - z1)		\
+		: q_##type##_box_zero;						\
+	}									\
 										\
 										\
 Q_BOX_EXPORT									\
@@ -82,19 +80,16 @@ Q##Type##Box q_##type##_box_union(Q##Type##Box a, Q##Type##Box b)		\
 	box.point = q_3d_##type##_minimum(a.point, b.point);			\
 										\
 	box.size.x =								\
-		q_##type##_maximum						\
-			(a.point.x + a.size.x, b.point.x + b.size.x)		\
-		- box.point.x;							\
+	q_##type##_maximum(a.point.x + a.size.x, b.point.x + b.size.x) -	\
+	box.point.x;								\
 										\
 	box.size.y =								\
-		q_##type##_maximum						\
-			(a.point.y + a.size.y, b.point.y + b.size.y)		\
-		- box.point.y;							\
+	q_##type##_maximum(a.point.y + a.size.y, b.point.y + b.size.y) -	\
+	box.point.y;								\
 										\
 	box.size.z =								\
-		q_##type##_maximum						\
-			(a.point.z + a.size.z, b.point.z + b.size.z)		\
-		- box.point.z;							\
+	q_##type##_maximum(a.point.z + a.size.z, b.point.z + b.size.z) -	\
+	box.point.z;								\
 										\
 	return box;								\
 	}									\

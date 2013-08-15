@@ -9,6 +9,6 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_macros_time_H__
 #define __Q_macros_time_H__
 
-#define Q_GREGORIAN_YEAR_IS_LEAP(year)	!((year) % 100 ? (year) % 4 : (year) % 400)
+#define Q_GREGORIAN_YEAR_IS_LEAP(year) !((year) % 100 ? (year) % 4 : (year) % 400)
 
 #endif /* __Q_macros_time_H__ */

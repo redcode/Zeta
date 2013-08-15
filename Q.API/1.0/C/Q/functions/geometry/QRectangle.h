@@ -63,22 +63,17 @@ Q##Type##Rectangle q_##type##_rectangle_intersection(				\
 	Q##Type##Rectangle b							\
 )										\
 	{									\
-	q##type x1 = q_##type##_maximum(a.point.x, b.point.x),			\
-		x2 = q_##type##_minimum						\
-			(a.point.x + a.size.x, b.point.x + b.size.x);		\
+	q##type x1, x2, y1, y2;							\
 										\
-	if (x1 <= x2)								\
-		{								\
-		q##type y1 = q_##type##_maximum(a.point.y, b.point.y),		\
+	return	(x1 = q_##type##_maximum(a.point.x, b.point.x))	      <=	\
+		(x2 = q_##type##_minimum					\
+			(a.point.x + a.size.x, b.point.x + b.size.x)) &&	\
+		(y1 = q_##type##_maximum(a.point.y, b.point.y))	      <=	\
+		(y2 = q_##type##_minimum					\
+			(a.point.y + a.size.y, b.point.y + b.size.y))		\
 										\
-			y2 = q_##type##_minimum					\
-				(a.point.y + a.size.y, b.point.y + b.size.y);	\
-										\
-		if (y1 <= y2)							\
-			return q_##type##_rectangle(x1, y1, x2 - x1, y2 - y1);	\
-		}								\
-										\
-	return q_##type##_rectangle_zero;					\
+		? q_##type##_rectangle(x1, y1, x2 - x1, y2 - y1)		\
+		: q_##type##_rectangle_zero;					\
 	}									\
 										\
 										\
@@ -93,14 +88,12 @@ Q##Type##Rectangle q_##type##_rectangle_union(					\
 	rectangle.point = q_2d_##type##_minimum(a.point, b.point);		\
 										\
 	rectangle.size.x =							\
-		q_##type##_maximum						\
-			(a.point.x + a.size.x, b.point.x + b.size.x)		\
-		- rectangle.point.x;						\
+	q_##type##_maximum(a.point.x + a.size.x, b.point.x + b.size.x) -	\
+	rectangle.point.x;							\
 										\
 	rectangle.size.y =							\
-		q_##type##_maximum						\
-			(a.point.y + a.size.y, b.point.y + b.size.y)		\
-		- rectangle.point.y;						\
+	q_##type##_maximum(a.point.y + a.size.y, b.point.y + b.size.y) -	\
+	rectangle.point.y;							\
 										\
 	return rectangle;							\
 	}									\
