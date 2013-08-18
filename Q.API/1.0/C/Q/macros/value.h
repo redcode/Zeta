@@ -128,11 +128,11 @@ Released under the terms of the GNU General Public License v3. */
 	| (((value) & Q_UINT64(0xFF000000000000)) >> 40) \
 	| ( (value)				  >> 56) )
 
-#define	Q_64BIT_REVERSED_IN_16BIT(value)		\
-	( ( (value)				<< 48)	\
-	| (((value) & Q_UINT64(0x0000FFFF0000)) << 16)	\
-	| (((value) & Q_UINT64(0xFFFF00000000)) >> 16)	\
-	| ( (value)				>> 48)  )
+#define	Q_64BIT_REVERSED_IN_16BIT(value)	       \
+	( ( (value)				<< 48) \
+	| (((value) & Q_UINT64(0x0000FFFF0000)) << 16) \
+	| (((value) & Q_UINT64(0xFFFF00000000)) >> 16) \
+	| ( (value)				>> 48) )
 
 #define Q_16BIT_REVERSE_IN_8BIT( value) ((value) = Q_16BIT_REVERSED_IN_8BIT( value))
 #define Q_32BIT_REVERSE_IN_8BIT( value) ((value) = Q_32BIT_REVERSED_IN_8BIT( value))

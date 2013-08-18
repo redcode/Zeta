@@ -83,19 +83,19 @@ Q##Type##Rectangle q_##type##_rectangle_union(					\
 	Q##Type##Rectangle b							\
 )										\
 	{									\
-	Q##Type##Rectangle rectangle;						\
+	Q##Type##Rectangle result;						\
 										\
-	rectangle.point = q_2d_##type##_minimum(a.point, b.point);		\
+	result.point = q_2d_##type##_minimum(a.point, b.point);			\
 										\
-	rectangle.size.x =							\
+	result.size.x =								\
 	q_##type##_maximum(a.point.x + a.size.x, b.point.x + b.size.x) -	\
-	rectangle.point.x;							\
+	result.point.x;								\
 										\
-	rectangle.size.y =							\
+	result.size.y =								\
 	q_##type##_maximum(a.point.y + a.size.y, b.point.y + b.size.y) -	\
-	rectangle.point.y;							\
+	result.point.y;								\
 										\
-	return rectangle;							\
+	return result;								\
 	}									\
 										\
 										\
@@ -310,6 +310,20 @@ Q##Type##Rectangle q_##type##_rectangle_bottom_right_quarter(			\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
+Q##Type##Circle q_##type##_rectangle_inner_circle(Q##Type##Rectangle rectangle)	\
+	{									\
+	Q##Type##Circle result;							\
+										\
+	result.point = q_##type##_rectangle_center(rectangle);			\
+										\
+	result.radius =								\
+	q_##type##_minimum(rectangle.size.x, rectangle.size.y) / _(2.0);	\
+										\
+	return result;								\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
 qboolean q_##type##_rectangle_contains_point(					\
 	Q##Type##Rectangle	rectangle,					\
 	Q2D##Type		point						\
@@ -372,6 +386,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_top_right_quarter		q_float_rectangle_top_right_quarter
 #	define q_rectangle_bottom_left_quarter		q_float_rectangle_bottom_left_quarter
 #	define q_rectangle_bottom_right_quarter		q_float_rectangle_bottom_right_quarter
+#	define q_rectangle_inner_circle			q_float_rectangle_inner_circle
 #	define q_rectangle_contains_point		q_float_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_float_rectangle_contains_line_segment
 
@@ -407,6 +422,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_top_right_quarter		q_ldouble_rectangle_top_right_quarter
 #	define q_rectangle_bottom_left_quarter		q_ldouble_rectangle_bottom_left_quarter
 #	define q_rectangle_bottom_right_quarter		q_ldouble_rectangle_bottom_right_quarter
+#	define q_rectangle_inner_circle			q_ldouble_rectangle_inner_circle
 #	define q_rectangle_contains_point		q_ldouble_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_ldouble_rectangle_contains_line_segment
 
@@ -442,6 +458,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_top_right_quarter		q_double_rectangle_top_right_quarter
 #	define q_rectangle_bottom_left_quarter		q_double_rectangle_bottom_left_quarter
 #	define q_rectangle_bottom_right_quarter		q_double_rectangle_bottom_right_quarter
+#	define q_rectangle_inner_circle			q_double_rectangle_inner_circle
 #	define q_rectangle_contains_point		q_double_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_double_rectangle_contains_line_segment
 

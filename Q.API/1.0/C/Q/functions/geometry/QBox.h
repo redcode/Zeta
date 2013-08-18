@@ -75,23 +75,23 @@ Q##Type##Box q_##type##_box_intersection(Q##Type##Box a, Q##Type##Box b)	\
 Q_BOX_EXPORT									\
 Q##Type##Box q_##type##_box_union(Q##Type##Box a, Q##Type##Box b)		\
 	{									\
-	Q##Type##Box box;							\
+	Q##Type##Box result;							\
 										\
-	box.point = q_3d_##type##_minimum(a.point, b.point);			\
+	result.point = q_3d_##type##_minimum(a.point, b.point);			\
 										\
-	box.size.x =								\
+	result.size.x =								\
 	q_##type##_maximum(a.point.x + a.size.x, b.point.x + b.size.x) -	\
-	box.point.x;								\
+	result.point.x;								\
 										\
-	box.size.y =								\
+	result.size.y =								\
 	q_##type##_maximum(a.point.y + a.size.y, b.point.y + b.size.y) -	\
-	box.point.y;								\
+	result.point.y;								\
 										\
-	box.size.z =								\
+	result.size.z =								\
 	q_##type##_maximum(a.point.z + a.size.z, b.point.z + b.size.z) -	\
-	box.point.z;								\
+	result.point.z;								\
 										\
-	return box;								\
+	return result;								\
 	}									\
 										\
 										\
@@ -124,6 +124,22 @@ Q3D##Type q_##type##_box_center(Q##Type##Box box)				\
 		(box.point.x + box.size.x / _(2.0),				\
 		 box.point.y + box.size.y / _(2.0),				\
 		 box.point.z + box.size.z / _(2.0));				\
+	}									\
+										\
+										\
+Q_BOX_EXPORT									\
+Q##Type##Sphere q_##type##_box_inner_sphere(Q##Type##Box box)			\
+	{									\
+	Q##Type##Sphere result;							\
+										\
+	result.point = q_##type##_box_center(box);				\
+										\
+	result.radius =								\
+	q_##type##_minimum							\
+		(q_##type##_minimum(box.size.x, box.size.y), box.size.z)	\
+	/ _(2.0);								\
+										\
+	return result;								\
 	}									\
 										\
 										\
@@ -166,6 +182,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_union			q_float_box_union
 #	define q_box_is_zero			q_float_box_is_zero
 #	define q_box_center			q_float_box_center
+#	define q_box_inner_sphere		q_float_box_inner_sphere
 #	define q_box_contains_point		q_float_box_contains_point
 #	define q_box_contains_line_segment	q_float_box_contains_line_segment
 
@@ -178,6 +195,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_union			q_ldouble_box_union
 #	define q_box_is_zero			q_ldouble_box_is_zero
 #	define q_box_center			q_ldouble_box_center
+#	define q_box_inner_sphere		q_ldouble_box_inner_sphere
 #	define q_box_contains_point		q_ldouble_box_contains_point
 #	define q_box_contains_line_segment	q_ldouble_box_contains_line_segment
 
@@ -190,6 +208,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_union			q_double_box_union
 #	define q_box_is_zero			q_double_box_is_zero
 #	define q_box_center			q_double_box_center
+#	define q_box_inner_sphere		q_double_box_inner_sphere
 #	define q_box_contains_point		q_double_box_contains_point
 #	define q_box_contains_line_segment	q_double_box_contains_line_segment
 
