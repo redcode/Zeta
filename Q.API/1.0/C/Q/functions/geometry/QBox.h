@@ -163,6 +163,21 @@ qboolean q_##type##_box_contains_line_segment(					\
 	{									\
 	return	q_##type##_box_contains_point(box, line_segment.a) &&		\
 		q_##type##_box_contains_point(box, line_segment.b);		\
+	}									\
+										\
+										\
+Q_BOX_EXPORT									\
+qboolean q_##type##_box_contains_sphere(					\
+	Q##Type##Box	box,							\
+	Q##Type##Sphere	sphere							\
+)										\
+	{									\
+	return	sphere.point.x - sphere.radius >= box.point.x		   &&	\
+		sphere.point.y - sphere.radius >= box.point.y		   &&	\
+		sphere.point.z - sphere.radius >= box.point.z		   &&	\
+		sphere.point.x + sphere.radius <  box.point.x + box.size.x &&	\
+		sphere.point.y + sphere.radius <  box.point.y + box.size.y &&	\
+		sphere.point.z + sphere.radius <  box.point.z + box.size.z;	\
 	}
 
 
@@ -185,6 +200,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_inner_sphere		q_float_box_inner_sphere
 #	define q_box_contains_point		q_float_box_contains_point
 #	define q_box_contains_line_segment	q_float_box_contains_line_segment
+#	define q_box_contains_sphere		q_float_box_contains_sphere
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
@@ -198,6 +214,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_inner_sphere		q_ldouble_box_inner_sphere
 #	define q_box_contains_point		q_ldouble_box_contains_point
 #	define q_box_contains_line_segment	q_ldouble_box_contains_line_segment
+#	define q_box_contains_sphere		q_ldouble_box_contains_sphere
 
 #else
 
@@ -211,6 +228,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_inner_sphere		q_double_box_inner_sphere
 #	define q_box_contains_point		q_double_box_contains_point
 #	define q_box_contains_line_segment	q_double_box_contains_line_segment
+#	define q_box_contains_sphere		q_double_box_contains_sphere
 
 #endif
 

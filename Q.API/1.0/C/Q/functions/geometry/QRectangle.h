@@ -344,6 +344,21 @@ qboolean q_##type##_rectangle_contains_line_segment(				\
 	{									\
 	return	q_##type##_rectangle_contains_point(rectangle, line_segment.a)	\
 	    &&	q_##type##_rectangle_contains_point(rectangle, line_segment.b);	\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+qboolean q_##type##_rectangle_contains_circle(					\
+	Q##Type##Rectangle	rectangle,					\
+	Q##Type##Circle		circle						\
+)										\
+	{									\
+	return	circle.point.x - circle.radius >= rectangle.point.x &&		\
+		circle.point.y - circle.radius >= rectangle.point.y &&		\
+		circle.point.x + circle.radius <				\
+		rectangle.point.x + rectangle.size.x		    &&		\
+		circle.point.y + circle.radius <				\
+		rectangle.point.y + rectangle.size.y;				\
 	}
 
 
@@ -389,6 +404,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_inner_circle			q_float_rectangle_inner_circle
 #	define q_rectangle_contains_point		q_float_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_float_rectangle_contains_line_segment
+#	define q_rectangle_contains_circle		q_float_rectangle_contains_circle
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
@@ -425,6 +441,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_inner_circle			q_ldouble_rectangle_inner_circle
 #	define q_rectangle_contains_point		q_ldouble_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_ldouble_rectangle_contains_line_segment
+#	define q_rectangle_contains_circle		q_ldouble_rectangle_contains_circle
 
 #else
 
@@ -461,6 +478,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_inner_circle			q_double_rectangle_inner_circle
 #	define q_rectangle_contains_point		q_double_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_double_rectangle_contains_line_segment
+#	define q_rectangle_contains_circle		q_double_rectangle_contains_circle
 
 #endif
 
