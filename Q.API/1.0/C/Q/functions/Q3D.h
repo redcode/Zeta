@@ -49,7 +49,6 @@ Released under the terms of the GNU General Public License v3. */
 #	define q_3d_intmax( x, y, z) ((Q3DIntMax ){x, y, z})
 #	define q_3d_natural(x, y, z) ((Q3DNatural){x, y, z})
 #	define q_3d_integer(x, y, z) ((Q3DInteger){x, y, z})
-#	define q_3d_real(   x, y, z) ((Q3DReal	 ){x, y, z})
 						
 #	define Q_3D_NEW(Type, type)
 
@@ -93,7 +92,6 @@ Released under the terms of the GNU General Public License v3. */
 #define q_3d_intmax_zero	q_3d_intmax (0, 0, 0)
 #define q_3d_natural_zero	q_3d_natural(0, 0, 0)
 #define q_3d_integer_zero	q_3d_integer(0, 0, 0)
-#define q_3d_real_zero		q_3d_real   (Q_REAL(0.0), Q_REAL(0.0), Q_REAL(0.0))
 
 
 #define Q_IMPLEMENTATION_NATURAL_3D(Type, type)					\

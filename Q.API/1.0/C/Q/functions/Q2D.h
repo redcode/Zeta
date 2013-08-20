@@ -49,7 +49,6 @@ Released under the terms of the GNU General Public License v3. */
 #	define q_2d_intmax( x, y) ((Q2DIntMax ){x, y})
 #	define q_2d_natural(x, y) ((Q2DNatural){x, y})
 #	define q_2d_integer(x, y) ((Q2DInteger){x, y})
-#	define q_2d_real(   x, y) ((Q2DReal   ){x, y})
 
 #	define Q_2D_NEW(Type, type)
 
@@ -93,7 +92,6 @@ Released under the terms of the GNU General Public License v3. */
 #define q_2d_intmax_zero	q_2d_intmax (0, 0)
 #define q_2d_natural_zero	q_2d_natural(0, 0)
 #define q_2d_integer_zero	q_2d_integer(0, 0)
-#define q_2d_real_zero		q_2d_real   (Q_REAL(0.0), Q_REAL(0.0))
 
 
 #define Q_IMPLEMENTATION_NATURAL_2D(Type, type)					\
