@@ -15,21 +15,25 @@ Released under the terms of the GNU General Public License v3. */
 #	define Q_3D_LINE_EXPORT Q_INLINE
 #endif
 
-#define q_3d_float_line_are_equal	q_3d_float_vector_are_equal
-#define q_3d_float_line_is_zero		q_3d_float_vector_is_zero
-#define q_3d_float_line_reversed	q_3d_float_vector_reversed
+#define q_3d_float_line_are_equal		q_3d_float_vector_are_equal
+#define q_3d_float_line_are_perpendicular	q_3d_float_vector_are_perpendicular
+#define q_3d_float_line_is_zero			q_3d_float_vector_is_zero
+#define q_3d_float_line_reversed		q_3d_float_vector_reversed
 
-#define q_3d_double_line_are_equal	q_3d_double_vector_are_equal
-#define q_3d_double_line_is_zero	q_3d_double_vector_is_zero
-#define q_3d_double_line_reversed	q_3d_double_vector_reversed
+#define q_3d_double_line_are_equal		q_3d_double_vector_are_equal
+#define q_3d_double_line_are_perpendicular	q_3d_double_vector_are_perpendicular
+#define q_3d_double_line_is_zero		q_3d_double_vector_is_zero
+#define q_3d_double_line_reversed		q_3d_double_vector_reversed
 
-#define q_3d_ldouble_line_are_equal	q_3d_ldouble_vector_are_equal
-#define q_3d_ldouble_line_is_zero	q_3d_ldouble_vector_is_zero
-#define q_3d_ldouble_line_reversed	q_3d_ldouble_vector_reversed
+#define q_3d_ldouble_line_are_equal		q_3d_ldouble_vector_are_equal
+#define q_3d_ldouble_line_are_perpendicular	q_3d_ldouble_vector_are_perpendicular
+#define q_3d_ldouble_line_is_zero		q_3d_ldouble_vector_is_zero
+#define q_3d_ldouble_line_reversed		q_3d_ldouble_vector_reversed
 
-#define q_3d_line_are_equal		q_3d_vector_are_equal
-#define q_3d_line_is_zero		q_3d_vector_is_zero
-#define q_3d_line_reversed		q_3d_vector_reversed
+#define q_3d_line_are_equal			q_3d_vector_are_equal
+#define q_3d_line_are_perpendicular		q_3d_vector_are_perpendicular
+#define q_3d_line_is_zero			q_3d_vector_is_zero
+#define q_3d_line_reversed			q_3d_vector_reversed
 
 
 #define Q_IMPLEMENTATION_3D_LINE(Type, type, _)				\

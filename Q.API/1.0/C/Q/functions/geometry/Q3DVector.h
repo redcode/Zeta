@@ -32,6 +32,18 @@ qboolean q_3d_##type##_vector_are_equal(				\
 									\
 									\
 Q_3D_VECTOR_EXPORT							\
+qboolean q_3d_##type##_vector_are_perpendicular(			\
+	Q3D##Type##Vector a,						\
+	Q3D##Type##Vector b						\
+)									\
+	{								\
+	return q_3d_##type##_are_perpendicular				\
+		(q_3d_##type##_subtract(a.b, a.a),			\
+		 q_3d_##type##_subtract(b.b, b.a));			\
+	}								\
+									\
+									\
+Q_3D_VECTOR_EXPORT							\
 qboolean q_3d_##type##_vector_is_zero(Q3D##Type##Vector vector)		\
 	{								\
 	return	q_3d_##type##_is_zero(vector.a) &&			\
@@ -59,21 +71,24 @@ Q_IMPLEMENTATION_3D_VECTOR(LDouble, ldouble)
 
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_3d_vector_are_equal	q_3d_float_vector_are_equal
-#	define q_3d_vector_is_zero	q_3d_float_vector_is_zero
-#	define q_3d_vector_reversed	q_3d_float_vector_reversed
+#	define q_3d_vector_are_equal		q_3d_float_vector_are_equal
+#	define q_3d_vector_are_perpendicular	q_3d_float_vector_are_perpendicular
+#	define q_3d_vector_is_zero		q_3d_float_vector_is_zero
+#	define q_3d_vector_reversed		q_3d_float_vector_reversed
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_3d_vector_are_equal	q_3d_ldouble_vector_are_equal
-#	define q_3d_vector_is_zero	q_3d_ldouble_vector_is_zero
-#	define q_3d_vector_reversed	q_3d_ldouble_vector_reversed
+#	define q_3d_vector_are_equal		q_3d_ldouble_vector_are_equal
+#	define q_3d_vector_are_perpendicular	q_3d_ldouble_vector_are_perpendicular
+#	define q_3d_vector_is_zero		q_3d_ldouble_vector_is_zero
+#	define q_3d_vector_reversed		q_3d_ldouble_vector_reversed
 
 #else
 
-#	define q_3d_vector_are_equal	q_3d_double_vector_are_equal
-#	define q_3d_vector_is_zero	q_3d_double_vector_is_zero
-#	define q_3d_vector_reversed	q_3d_double_vector_reversed
+#	define q_3d_vector_are_equal		q_3d_double_vector_are_equal
+#	define q_3d_vector_are_perpendicular	q_3d_double_vector_are_perpendicular
+#	define q_3d_vector_is_zero		q_3d_double_vector_is_zero
+#	define q_3d_vector_reversed		q_3d_double_vector_reversed
 
 #endif
 

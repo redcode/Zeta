@@ -17,17 +17,29 @@ Released under the terms of the GNU General Public License v3. */
 #endif
 
 
-#define Q_IMPLEMENTATION_2D_VECTOR(Type, type)			\
-								\
-								\
-Q_2D_VECTOR_EXPORT						\
-qboolean q_2d_##type##_vector_are_equal(			\
-	Q2D##Type##Vector a,					\
-	Q2D##Type##Vector b					\
-)								\
+#define Q_IMPLEMENTATION_2D_VECTOR(Type, type)				\
+									\
+									\
+Q_2D_VECTOR_EXPORT							\
+qboolean q_2d_##type##_vector_are_equal(				\
+	Q2D##Type##Vector a,						\
+	Q2D##Type##Vector b						\
+)									\
 	{								\
 	return	q_2d_##type##_are_equal(a.a, b.a) &&			\
 		q_2d_##type##_are_equal(a.b, b.b);			\
+	}								\
+									\
+									\
+Q_2D_VECTOR_EXPORT							\
+qboolean q_2d_##type##_vector_are_perpendicular(			\
+	Q2D##Type##Vector a,						\
+	Q2D##Type##Vector b						\
+)									\
+	{								\
+	return q_2d_##type##_are_perpendicular				\
+		(q_2d_##type##_subtract(a.b, a.a),			\
+		 q_2d_##type##_subtract(b.b, b.a));			\
 	}								\
 									\
 									\
@@ -58,21 +70,24 @@ Q_IMPLEMENTATION_2D_VECTOR(LDouble, ldouble)
 
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_2d_vector_are_equal	q_2d_float_vector_are_equal
-#	define q_2d_vector_is_zero	q_2d_float_vector_is_zero
-#	define q_2d_vector_reversed	q_2d_float_vector_reversed
+#	define q_2d_vector_are_equal		q_2d_float_vector_are_equal
+#	define q_2d_vector_are_perpendicular	q_2d_float_vector_are_perpendicular
+#	define q_2d_vector_is_zero		q_2d_float_vector_is_zero
+#	define q_2d_vector_reversed		q_2d_float_vector_reversed
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_2d_vector_are_equal	q_2d_ldouble_vector_are_equal
-#	define q_2d_vector_is_zero	q_2d_ldouble_vector_is_zero
-#	define q_2d_vector_reversed	q_2d_ldouble_vector_reversed
+#	define q_2d_vector_are_equal		q_2d_ldouble_vector_are_equal
+#	define q_2d_vector_are_perpendicular	q_2d_ldouble_vector_are_perpendicular
+#	define q_2d_vector_is_zero		q_2d_ldouble_vector_is_zero
+#	define q_2d_vector_reversed		q_2d_ldouble_vector_reversed
 
 #else
 
-#	define q_2d_vector_are_equal	q_2d_double_vector_are_equal
-#	define q_2d_vector_is_zero	q_2d_double_vector_is_zero
-#	define q_2d_vector_reversed	q_2d_double_vector_reversed
+#	define q_2d_vector_are_equal		q_2d_double_vector_are_equal
+#	define q_2d_vector_are_perpendicular	q_2d_double_vector_are_perpendicular
+#	define q_2d_vector_is_zero		q_2d_double_vector_is_zero
+#	define q_2d_vector_reversed		q_2d_double_vector_reversed
 
 #endif
 
