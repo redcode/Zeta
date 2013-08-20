@@ -100,7 +100,7 @@ Q##Type##Rectangle q_##type##_rectangle_union(					\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_by_vertices(Q2D##Type a, Q2D##Type b)	\
+Q##Type##Rectangle q_##type##_rectangle_from_vertices(Q2D##Type a, Q2D##Type b)	\
 	{									\
 	Q2D##Type minimum = q_2d_##type##_minimum(a, b);			\
 	Q2D##Type maximum = q_2d_##type##_maximum(a, b);			\
@@ -376,7 +376,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_collision			q_float_rectangle_collision
 #	define q_rectangle_intersection			q_float_rectangle_intersection
 #	define q_rectangle_union			q_float_rectangle_union
-#	define q_rectangle_by_vertices			q_float_rectangle_by_vertices
+#	define q_rectangle_from_vertices		q_float_rectangle_from_vertices
 #	define q_rectangle_is_zero			q_float_rectangle_is_zero
 #	define q_rectangle_minimum_x			q_float_rectangle_minimum_x
 #	define q_rectangle_minimum_y			q_float_rectangle_minimum_y
@@ -413,7 +413,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_collision			q_ldouble_rectangle_collision
 #	define q_rectangle_intersection			q_ldouble_rectangle_intersection
 #	define q_rectangle_union			q_ldouble_rectangle_union
-#	define q_rectangle_by_vertices			q_ldouble_rectangle_by_vertices
+#	define q_rectangle_from_vertices		q_ldouble_rectangle_from_vertices
 #	define q_rectangle_is_zero			q_ldouble_rectangle_is_zero
 #	define q_rectangle_minimum_x			q_ldouble_rectangle_minimum_x
 #	define q_rectangle_minimum_y			q_ldouble_rectangle_minimum_y
@@ -450,7 +450,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_collision			q_double_rectangle_collision
 #	define q_rectangle_intersection			q_double_rectangle_intersection
 #	define q_rectangle_union			q_double_rectangle_union
-#	define q_rectangle_by_vertices			q_double_rectangle_by_vertices
+#	define q_rectangle_from_vertices		q_double_rectangle_from_vertices
 #	define q_rectangle_is_zero			q_double_rectangle_is_zero
 #	define q_rectangle_minimum_x			q_double_rectangle_minimum_x
 #	define q_rectangle_minimum_y			q_double_rectangle_minimum_y

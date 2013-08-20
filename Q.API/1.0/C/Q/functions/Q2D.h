@@ -98,7 +98,6 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_IMPLEMENTATION_NATURAL_2D(Type, type)					\
 										\
-										\
 Q_2D_NEW(Type, type)								\
 										\
 										\
@@ -147,7 +146,7 @@ q##type q_2d_##type##_dot_product(Q2D##Type a, Q2D##Type b)			\
 	{return a.x * b.x + a.y * b.y;}						\
 										\
 										\
-Q_INLINE /* Area of the parallelogram between two vectors */			\
+Q_INLINE /* Area of the parallelogram between two vectors (OA and OB) */	\
 q##type q_2d_##type##_cross_product(Q2D##Type a, Q2D##Type b)			\
 	{return a.x * b.y - a.y * b.x;}						\
 										\
@@ -183,6 +182,11 @@ Q2D##Type q_2d_##type##_fit(Q2D##Type a, Q2D##Type b)				\
 		? q_2d_##type(a.x * b.y / a.y, b.y)				\
 		: q_2d_##type(b.x, a.y * b.x / a.x);				\
 	}									\
+										\
+										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_from_scalar(q##type scalar)				\
+	{return q_2d_##type(scalar, scalar);}					\
 										\
 										\
 Q_INLINE									\
@@ -277,7 +281,6 @@ Q_IMPLEMENTATION_NATURAL_2D(IntTop,  inttop )
 Q_IMPLEMENTATION_NATURAL_2D(IntMax,  intmax )
 Q_IMPLEMENTATION_NATURAL_2D(Natural, natural)
 Q_IMPLEMENTATION_NATURAL_2D(Integer, integer)
-Q_IMPLEMENTATION_NATURAL_2D(Real,    real   )
 #undef Q_2D_NEW
 
 
@@ -318,13 +321,20 @@ Q_IMPLEMENTATION_INTEGER_2D(IntPtr,  intptr )
 Q_IMPLEMENTATION_INTEGER_2D(IntTop,  inttop )
 Q_IMPLEMENTATION_INTEGER_2D(IntMax,  intmax )
 Q_IMPLEMENTATION_INTEGER_2D(Integer, integer)
-Q_IMPLEMENTATION_INTEGER_2D(Real,    real   )
 
 
 /* MARK: - Operations for real types only */
 
 
-#define Q_IMPLEMENTATION_REAL_2D(Type, type, _)					\
+#define Q_IMPLEMENTATION_REAL_2D(Type, type, _, epsilon)			\
+										\
+										\
+Q_INLINE									\
+qboolean q_2d_##type##_are_perpendicular(Q2D##Type a, Q2D##Type b)		\
+	{									\
+	return	q_##type##_absolute(q_2d_##type##_dot_product(a, b))		\
+		<= epsilon;							\
+	}									\
 										\
 										\
 Q_INLINE									\
@@ -337,14 +347,21 @@ Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type alpha)		\
 										\
 										\
 Q_INLINE									\
+qboolean q_2d_##type##_is_near_zero(Q2D##Type magnitude)			\
+	{									\
+	return	q_##type##_absolute(magnitude.x) <= epsilon &&			\
+		q_##type##_absolute(magnitude.y) <= epsilon;			\
+	}									\
+										\
+										\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_reciprocal(Q2D##Type magnitude)				\
 	{return q_2d_##type(_(1.0) / magnitude.x, _(1.0) / magnitude.y);}	\
 
 
-Q_IMPLEMENTATION_REAL_2D(Float,	  float,   Q_FLOAT  )
-Q_IMPLEMENTATION_REAL_2D(Double,  double,  Q_DOUBLE )
-Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE)
-Q_IMPLEMENTATION_REAL_2D(Real,	  real,    Q_REAL   )
+Q_IMPLEMENTATION_REAL_2D(Float,	  float,   Q_FLOAT,   Q_FLOAT_EPSILON  )
+Q_IMPLEMENTATION_REAL_2D(Double,  double,  Q_DOUBLE,  Q_DOUBLE_EPSILON )
+Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 
 /* MARK: - Default real type definitions */
@@ -355,6 +372,7 @@ Q_IMPLEMENTATION_REAL_2D(Real,	  real,    Q_REAL   )
 #	define q_2d			q_2d_float
 #	define q_2d_zero		q_2d_float_zero
 #	define q_2d_are_equal		q_2d_float_are_equal
+#	define q_2d_are_perpendicular	q_2d_float_are_perpendicular
 #	define q_2d_swap		q_2d_float_swap
 #	define q_2d_contains		q_2d_float_contains
 #	define q_2d_add			q_2d_float_add
@@ -368,7 +386,9 @@ Q_IMPLEMENTATION_REAL_2D(Real,	  real,    Q_REAL   )
 #	define q_2d_middle		q_2d_float_middle
 #	define q_2d_fit			q_2d_float_fit
 #	define q_2d_lerp		q_2d_float_lerp
+#	define q_2d_from_scalar		q_2d_float_from_scalar
 #	define q_2d_is_zero		q_2d_float_is_zero
+#	define q_2d_is_near_zero	q_2d_float_is_near_zero
 #	define q_2d_negative		q_2d_float_negative
 #	define q_2d_absolute		q_2d_float_absolute
 #	define q_2d_reciprocal		q_2d_float_reciprocal
@@ -386,6 +406,7 @@ Q_IMPLEMENTATION_REAL_2D(Real,	  real,    Q_REAL   )
 #	define q_2d			q_2d_ldouble
 #	define q_2d_zero		q_2d_ldouble_zero
 #	define q_2d_are_equal		q_2d_ldouble_are_equal
+#	define q_2d_are_perpendicular	q_2d_ldouble_are_perpendicular
 #	define q_2d_swap		q_2d_ldouble_swap
 #	define q_2d_contains		q_2d_ldouble_contains
 #	define q_2d_add			q_2d_ldouble_add
@@ -399,7 +420,9 @@ Q_IMPLEMENTATION_REAL_2D(Real,	  real,    Q_REAL   )
 #	define q_2d_middle		q_2d_ldouble_middle
 #	define q_2d_fit			q_2d_ldouble_fit
 #	define q_2d_lerp		q_2d_ldouble_lerp
+#	define q_2d_from_scalar		q_2d_ldouble_from_scalar
 #	define q_2d_is_zero		q_2d_ldouble_is_zero
+#	define q_2d_is_near_zero	q_2d_ldouble_is_near_zero
 #	define q_2d_negative		q_2d_ldouble_negative
 #	define q_2d_absolute		q_2d_ldouble_absolute
 #	define q_2d_reciprocal		q_2d_ldouble_reciprocal
@@ -417,6 +440,7 @@ Q_IMPLEMENTATION_REAL_2D(Real,	  real,    Q_REAL   )
 #	define q_2d			q_2d_double
 #	define q_2d_zero		q_2d_double_zero
 #	define q_2d_are_equal		q_2d_double_are_equal
+#	define q_2d_are_perpendicular	q_2d_double_are_perpendicular
 #	define q_2d_swap		q_2d_double_swap
 #	define q_2d_contains		q_2d_double_contains
 #	define q_2d_add			q_2d_double_add
@@ -430,7 +454,9 @@ Q_IMPLEMENTATION_REAL_2D(Real,	  real,    Q_REAL   )
 #	define q_2d_middle		q_2d_double_middle
 #	define q_2d_fit			q_2d_double_fit
 #	define q_2d_lerp		q_2d_double_lerp
+#	define q_2d_from_scalar		q_2d_double_from_scalar
 #	define q_2d_is_zero		q_2d_double_is_zero
+#	define q_2d_is_near_zero	q_2d_double_is_near_zero
 #	define q_2d_negative		q_2d_double_negative
 #	define q_2d_absolute		q_2d_double_absolute
 #	define q_2d_reciprocal		q_2d_double_reciprocal

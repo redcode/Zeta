@@ -98,7 +98,6 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_IMPLEMENTATION_NATURAL_3D(Type, type)					\
 										\
-										\
 Q_3D_NEW(Type, type)								\
 										\
 										\
@@ -194,6 +193,11 @@ Q3D##Type q_3d_##type##_fit(Q3D##Type a, Q3D##Type b)				\
 		? q_3d_##type(a.x * b.y / a.y, b.y)				\
 		: q_3d_##type(b.x, a.y * b.x / a.x);*/				\
 	} /* Terminar */							\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_3d_##type##_from_scalar(q##type scalar)				\
+	{return q_3d_##type(scalar, scalar, scalar);}				\
 										\
 										\
 Q_INLINE									\
@@ -319,7 +323,6 @@ Q_IMPLEMENTATION_NATURAL_3D(IntTop,  inttop )
 Q_IMPLEMENTATION_NATURAL_3D(IntMax,  intmax )
 Q_IMPLEMENTATION_NATURAL_3D(Natural, natural)
 Q_IMPLEMENTATION_NATURAL_3D(Integer, integer)
-Q_IMPLEMENTATION_NATURAL_3D(Real,    real   )
 #undef Q_3D_NEW
 
 
@@ -361,13 +364,20 @@ Q_IMPLEMENTATION_INTEGER_3D(IntPtr,  intptr )
 Q_IMPLEMENTATION_INTEGER_3D(IntTop,  inttop )
 Q_IMPLEMENTATION_INTEGER_3D(IntMax,  intmax )
 Q_IMPLEMENTATION_INTEGER_3D(Integer, integer)
-Q_IMPLEMENTATION_INTEGER_3D(Real,    real   )
 
 
 /* MARK: - Operations for real types only */
 
 
-#define Q_IMPLEMENTATION_REAL_3D(Type, type, _)				\
+#define Q_IMPLEMENTATION_REAL_3D(Type, type, _, epsilon)		\
+									\
+									\
+Q_INLINE								\
+qboolean q_3d_##type##_are_perpendicular(Q3D##Type a, Q3D##Type b)	\
+	{								\
+	return	q_##type##_absolute(q_3d_##type##_dot_product(a, b))	\
+		<= epsilon;						\
+	}								\
 									\
 									\
 Q_INLINE								\
@@ -381,6 +391,15 @@ Q3D##Type q_3d_##type##_lerp(Q3D##Type a, Q3D##Type b, q##type alpha)	\
 									\
 									\
 Q_INLINE								\
+qboolean q_3d_##type##_is_near_zero(Q3D##Type magnitude)		\
+	{								\
+	return	q_##type##_absolute(magnitude.x) <= epsilon &&		\
+		q_##type##_absolute(magnitude.y) <= epsilon &&		\
+		q_##type##_absolute(magnitude.z) <= epsilon;		\
+	}								\
+									\
+									\
+Q_INLINE								\
 Q3D##Type q_3d_##type##_reciprocal(Q3D##Type magnitude)			\
 	{								\
 	return q_3d_##type						\
@@ -390,10 +409,9 @@ Q3D##Type q_3d_##type##_reciprocal(Q3D##Type magnitude)			\
 	}
 
 
-Q_IMPLEMENTATION_REAL_3D(Float,	  float,   Q_FLOAT  )
-Q_IMPLEMENTATION_REAL_3D(Double,  double,  Q_DOUBLE )
-Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE)
-Q_IMPLEMENTATION_REAL_3D(Real,	  real,    Q_REAL   )
+Q_IMPLEMENTATION_REAL_3D(Float,	  float,   Q_FLOAT,   Q_FLOAT_EPSILON  )
+Q_IMPLEMENTATION_REAL_3D(Double,  double,  Q_DOUBLE,  Q_DOUBLE_EPSILON )
+Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 
 /* MARK: - Default real type definitions */
@@ -404,6 +422,7 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real,    Q_REAL   )
 #	define q_3d			q_3d_float
 #	define q_3d_zero		q_3d_float_zero
 #	define q_3d_are_equal		q_3d_float_are_equal
+#	define q_3d_are_perpendicular	q_3d_float_are_perpendicular
 #	define q_3d_swap		q_3d_float_swap
 #	define q_3d_contains		q_3d_float_contains
 #	define q_3d_add			q_3d_float_add
@@ -417,6 +436,7 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real,    Q_REAL   )
 #	define q_3d_middle		q_3d_float_middle
 #	define q_3d_fit			q_3d_float_fit
 #	define q_3d_lerp		q_3d_float_lerp
+#	define q_3d_from_scalar		q_3d_float_from_scalar
 #	define q_3d_is_zero		q_3d_float_is_zero
 #	define q_3d_negative		q_3d_float_negative
 #	define q_3d_absolute		q_3d_float_absolute
@@ -436,6 +456,7 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real,    Q_REAL   )
 #	define q_3d			q_3d_ldouble
 #	define q_3d_zero		q_3d_ldouble_zero
 #	define q_3d_are_equal		q_3d_ldouble_are_equal
+#	define q_3d_are_perpendicular	q_3d_ldouble_are_perpendicular
 #	define q_3d_swap		q_3d_ldouble_swap
 #	define q_3d_contains		q_3d_ldouble_contains
 #	define q_3d_add			q_3d_ldouble_add
@@ -449,6 +470,7 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real,    Q_REAL   )
 #	define q_3d_middle		q_3d_ldouble_middle
 #	define q_3d_fit			q_3d_ldouble_fit
 #	define q_3d_lerp		q_3d_ldouble_lerp
+#	define q_3d_from_scalar		q_3d_ldouble_from_scalar
 #	define q_3d_is_zero		q_3d_ldouble_is_zero
 #	define q_3d_negative		q_3d_ldouble_negative
 #	define q_3d_absolute		q_3d_ldouble_absolute
@@ -468,6 +490,7 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real,    Q_REAL   )
 #	define q_3d			q_3d_double
 #	define q_3d_zero		q_3d_double_zero
 #	define q_3d_are_equal		q_3d_double_are_equal
+#	define q_3d_are_perpendicular	q_3d_double_are_perpendicular
 #	define q_3d_swap		q_3d_double_swap
 #	define q_3d_contains		q_3d_double_contains
 #	define q_3d_add			q_3d_double_add
@@ -481,6 +504,7 @@ Q_IMPLEMENTATION_REAL_3D(Real,	  real,    Q_REAL   )
 #	define q_3d_middle		q_3d_double_middle
 #	define q_3d_fit			q_3d_double_fit
 #	define q_3d_lerp		q_3d_double_lerp
+#	define q_3d_from_scalar		q_3d_double_from_scalar
 #	define q_3d_is_zero		q_3d_double_is_zero
 #	define q_3d_negative		q_3d_double_negative
 #	define q_3d_absolute		q_3d_double_absolute

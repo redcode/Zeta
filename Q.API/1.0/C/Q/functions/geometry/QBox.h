@@ -96,7 +96,7 @@ Q##Type##Box q_##type##_box_union(Q##Type##Box a, Q##Type##Box b)		\
 										\
 										\
 Q_BOX_EXPORT									\
-Q##Type##Box q_##type##_box_by_vertices(Q3D##Type a, Q3D##Type b)		\
+Q##Type##Box q_##type##_box_from_vertices(Q3D##Type a, Q3D##Type b)		\
 	{									\
 	Q3D##Type minimum = q_3d_##type##_minimum(a, b);			\
 	Q3D##Type maximum = q_3d_##type##_maximum(a, b);			\
@@ -195,6 +195,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_collision			q_float_box_collision
 #	define q_box_intersection		q_float_box_intersection
 #	define q_box_union			q_float_box_union
+#	define q_box_from_vertices		q_float_box_from_vertices
 #	define q_box_is_zero			q_float_box_is_zero
 #	define q_box_center			q_float_box_center
 #	define q_box_inner_sphere		q_float_box_inner_sphere
@@ -209,6 +210,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_collision			q_ldouble_box_collision
 #	define q_box_intersection		q_ldouble_box_intersection
 #	define q_box_union			q_ldouble_box_union
+#	define q_box_from_vertices		q_ldouble_box_from_vertices
 #	define q_box_is_zero			q_ldouble_box_is_zero
 #	define q_box_center			q_ldouble_box_center
 #	define q_box_inner_sphere		q_ldouble_box_inner_sphere
@@ -223,6 +225,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_collision			q_double_box_collision
 #	define q_box_intersection		q_double_box_intersection
 #	define q_box_union			q_double_box_union
+#	define q_box_from_vertices		q_double_box_from_vertices
 #	define q_box_is_zero			q_double_box_is_zero
 #	define q_box_center			q_double_box_center
 #	define q_box_inner_sphere		q_double_box_inner_sphere

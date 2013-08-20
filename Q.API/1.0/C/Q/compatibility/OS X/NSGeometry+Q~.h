@@ -9,8 +9,8 @@ Copyright © 2013 RedCode Software. All rights reserved. */
 #define __Q_compatibility_OS_X_NSGeometry_plus_Q_h
 
 #import <Foundation/NSGeometry.h>
-#import <Q/functions/Q2D.h>
-#import <Q/types/geometry.h>
+#import <Q/functions/Q2DValue.h>
+#import <Q/functions/mathematics.h>
 
 typedef union {
 	Q2D	q;
