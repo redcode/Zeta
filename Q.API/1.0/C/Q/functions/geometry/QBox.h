@@ -43,12 +43,12 @@ qboolean q_##type##_box_contains(Q##Type##Box a, Q##Type##Box b)		\
 Q_BOX_EXPORT									\
 qboolean q_##type##_box_collision(Q##Type##Box a, Q##Type##Box b)		\
 	{									\
-	return !(a.point.x > b.point.x + b.size.x  ||				\
-		 a.point.x + a.size.x  < b.point.x ||				\
-		 a.point.y > b.point.y + b.size.y  ||				\
-		 a.point.y + a.size.y  < b.point.y ||				\
-		 a.point.z > b.point.z + b.size.z  ||				\
-		 a.point.z + a.size.z  < b.point.z);				\
+	return	a.point.x < b.point.x + b.size.x &&				\
+		b.point.x < a.point.x + a.size.x &&				\
+		a.point.y < b.point.y + b.size.y &&				\
+		b.point.y < a.point.y + a.size.y &&				\
+		a.point.z < b.point.z + b.size.z &&				\
+		b.point.z < a.point.z + a.size.z;				\
 	}									\
 										\
 										\

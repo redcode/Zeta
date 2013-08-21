@@ -47,6 +47,11 @@ qboolean q_range_contains(QRange a, QRange b)
 
 
 Q_RANGE_EXPORT
+qboolean q_range_collision(QRange a, QRange b)
+	{return a.index < b.index + b.size && b.index < a.index + a.size;}
+
+
+Q_RANGE_EXPORT
 QRange q_range_intersection(QRange a, QRange b)
 	{
 	qsize	a_maximum = a.index + a.size,
@@ -69,6 +74,11 @@ QRange q_range_union(QRange a, QRange b)
 		(index,
 		 ((a_maximum > b_maximum) ? a_maximum : b_maximum) - index);
 	}
+
+
+Q_RANGE_EXPORT
+QRange q_range_from_indices(qsize a, qsize b)
+	{return a < b ? q_range(a, b - a) : q_range(b, a - b);}
 
 
 Q_RANGE_EXPORT

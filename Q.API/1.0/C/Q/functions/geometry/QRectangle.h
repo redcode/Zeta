@@ -50,10 +50,10 @@ qboolean q_##type##_rectangle_collision(					\
 	Q##Type##Rectangle b							\
 )										\
 	{									\
-	return !(a.point.x > b.point.x + b.size.x  ||				\
-		 a.point.x + a.size.x  < b.point.x ||				\
-		 a.point.y > b.point.y + b.size.y  ||				\
-		 a.point.y + a.size.y  < b.point.y);				\
+	return	a.point.x < b.point.x + b.size.x &&				\
+		b.point.x < a.point.x + a.size.x &&				\
+		a.point.y < b.point.y + b.size.y &&				\
+		b.point.y < a.point.y + a.size.y;				\
 	}									\
 										\
 										\
