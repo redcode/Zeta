@@ -472,31 +472,36 @@ Q_IMPLEMENTATION_NATURAL_VALUE(real   )
 /* MARK: - Operations for integer and real types */
 
 
-#define Q_IMPLEMENTATION_INTEGER_VALUE(type, zero)	\
-							\
-Q_INLINE						\
-q##type q_##type##_absolute(q##type value)		\
-	{return value < zero ? -value : value;}
+#define Q_IMPLEMENTATION_INTEGER_VALUE(type)				\
+									\
+									\
+Q_INLINE								\
+q##type q_##type##_absolute(q##type value)				\
+	{return value < (q##type)0 ? -value : value;}			\
+									\
+									\
+Q_INLINE								\
+q##type q_##type##_sign(q##type value)					\
+	{return value >= (q##type)0 ? (q##type)1 : -(q##type)1;}
 
 
-Q_IMPLEMENTATION_INTEGER_VALUE(char,	Q_CHAR(	  0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(short,	Q_SHORT(  0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(int,	Q_INT(	  0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(long,	Q_LONG(	  0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(llong,	Q_LLONG(  0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(float,		  0.0F)
-Q_IMPLEMENTATION_INTEGER_VALUE(double,		  0.0 )
-Q_IMPLEMENTATION_INTEGER_VALUE(ldouble,		  0.0L)
-Q_IMPLEMENTATION_INTEGER_VALUE(int8,	Q_INT8(	  0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(int16,	Q_INT16(  0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(int32,	Q_INT32(  0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(int64,	Q_INT64(  0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(ssize,	Q_SSIZE(  0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(intptr,	Q_INTPTR( 0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(inttop,	Q_INTTOP( 0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(intmax,	Q_INTMAX( 0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(integer, Q_INTEGER(0)  )
-Q_IMPLEMENTATION_INTEGER_VALUE(real,	Q_REAL(	  0.0))
+Q_IMPLEMENTATION_INTEGER_VALUE(char   )
+Q_IMPLEMENTATION_INTEGER_VALUE(short  )
+Q_IMPLEMENTATION_INTEGER_VALUE(int    )
+Q_IMPLEMENTATION_INTEGER_VALUE(long   )
+Q_IMPLEMENTATION_INTEGER_VALUE(llong  )
+Q_IMPLEMENTATION_INTEGER_VALUE(float  )
+Q_IMPLEMENTATION_INTEGER_VALUE(double )
+Q_IMPLEMENTATION_INTEGER_VALUE(ldouble)
+Q_IMPLEMENTATION_INTEGER_VALUE(int8   )
+Q_IMPLEMENTATION_INTEGER_VALUE(int16  )
+Q_IMPLEMENTATION_INTEGER_VALUE(int32  )
+Q_IMPLEMENTATION_INTEGER_VALUE(int64  )
+Q_IMPLEMENTATION_INTEGER_VALUE(ssize  )
+Q_IMPLEMENTATION_INTEGER_VALUE(intptr )
+Q_IMPLEMENTATION_INTEGER_VALUE(inttop )
+Q_IMPLEMENTATION_INTEGER_VALUE(intmax )
+Q_IMPLEMENTATION_INTEGER_VALUE(integer)
 
 
 /* MARK: - Operations for real types only */
@@ -542,6 +547,7 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE_EPSILON)
 #	define q_is_nan			q_float_is_nan
 #	define q_is_near_zero		q_float_is_near_zero
 #	define q_absolute		q_float_absolute
+#	define q_sign			q_float_sign
 #	define q_clamp			q_float_clamp
 
 #elif defined(Q_USE_REAL_LDOUBLE)
@@ -551,8 +557,9 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE_EPSILON)
 #	define q_maximum		q_ldouble_maximum
 #	define q_lerp			q_ldouble_lerp
 #	define q_is_nan			q_ldouble_is_nan
-#	define q_absolute		q_ldouble_absolute
 #	define q_is_near_zero		q_ldouble_is_near_zero
+#	define q_absolute		q_ldouble_absolute
+#	define q_sign			q_ldouble_sign
 #	define q_clamp			q_ldouble_clamp
 
 #else
@@ -562,8 +569,9 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE_EPSILON)
 #	define q_maximum		q_double_maximum
 #	define q_lerp			q_double_lerp
 #	define q_is_nan			q_double_is_nan
-#	define q_absolute		q_double_absolute
 #	define q_is_near_zero		q_double_is_near_zero
+#	define q_absolute		q_double_absolute
+#	define q_sign			q_double_sign
 #	define q_clamp			q_double_clamp
 
 #endif

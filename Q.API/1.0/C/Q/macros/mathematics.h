@@ -11,5 +11,6 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_NEXT_MULTIPLE(    number, base) ((number) + (base) - ((number) % (base)))
 #define Q_PREVIOUS_MULTIPLE(number, base) ((((number) - 1) / (base)) * (base))
+#define Q_IS_POWER_OF_2(    number	) !((number) & ((number) - 1))
 
 #endif /* __Q_macros_mathematics_H__ */

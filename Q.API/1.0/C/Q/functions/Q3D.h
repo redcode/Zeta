@@ -218,6 +218,24 @@ q##type q_3d_##type##_inner_product(Q3D##Type magnitude)			\
 										\
 										\
 Q_INLINE									\
+q##type q_3d_##type##_inner_minimum(Q3D##Type magnitude)			\
+	{									\
+	return q_##type##_minimum						\
+		(q_##type##_minimum(magnitude.x, magnitude.y),			\
+		 magnitude.z);							\
+	}									\
+										\
+										\
+Q_INLINE									\
+q##type q_3d_##type##_inner_maximum(Q3D##Type magnitude)			\
+	{									\
+	return q_##type##_maximum						\
+		(q_##type##_maximum(magnitude.x, magnitude.y),			\
+		 magnitude.z);							\
+	}									\
+										\
+										\
+Q_INLINE									\
 q##type q_3d_##type##_inner_average(Q3D##Type magnitude)			\
 	{return (magnitude.x + magnitude.y + magnitude.z) / (q##type)3;}	\
 										\
@@ -452,6 +470,8 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_reciprocal		q_3d_float_reciprocal
 #	define q_3d_inner_sum		q_3d_float_inner_sum
 #	define q_3d_inner_product	q_3d_float_inner_product
+#	define q_3d_inner_minimum	q_3d_float_inner_minimum
+#	define q_3d_inner_maximum	q_3d_float_inner_maximum
 #	define q_3d_inner_average	q_3d_float_inner_average
 #	define q_3d_square_length	q_3d_float_square_length
 #	define q_3d_multiply_by_scalar	q_3d_float_multiply_by_scalar
@@ -488,6 +508,8 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_reciprocal		q_3d_ldouble_reciprocal
 #	define q_3d_inner_sum		q_3d_ldouble_inner_sum
 #	define q_3d_inner_product	q_3d_ldouble_inner_product
+#	define q_3d_inner_minimum	q_3d_ldouble_inner_minimum
+#	define q_3d_inner_maximum	q_3d_ldouble_inner_maximum
 #	define q_3d_inner_average	q_3d_ldouble_inner_average
 #	define q_3d_square_length	q_3d_ldouble_square_length
 #	define q_3d_multiply_by_scalar	q_3d_ldouble_multiply_by_scalar
@@ -524,6 +546,8 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_reciprocal		q_3d_double_reciprocal
 #	define q_3d_inner_sum		q_3d_double_inner_sum
 #	define q_3d_inner_product	q_3d_double_inner_product
+#	define q_3d_inner_minimum	q_3d_double_inner_minimum
+#	define q_3d_inner_maximum	q_3d_double_inner_maximum
 #	define q_3d_inner_average	q_3d_double_inner_average
 #	define q_3d_square_length	q_3d_double_square_length
 #	define q_3d_multiply_by_scalar	q_3d_double_multiply_by_scalar

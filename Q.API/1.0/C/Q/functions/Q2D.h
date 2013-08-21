@@ -203,6 +203,16 @@ q##type q_2d_##type##_inner_product(Q2D##Type magnitude)			\
 										\
 										\
 Q_INLINE									\
+q##type q_2d_##type##_inner_minimum(Q2D##Type magnitude)			\
+	{return q_##type##_minimum(magnitude.x, magnitude.y);}			\
+										\
+										\
+Q_INLINE									\
+q##type q_2d_##type##_inner_maximum(Q2D##Type magnitude)			\
+	{return q_##type##_maximum(magnitude.x, magnitude.y);}			\
+										\
+										\
+Q_INLINE									\
 q##type q_2d_##type##_inner_average(Q2D##Type magnitude)			\
 	{return (magnitude.x + magnitude.y) / (q##type)2;}			\
 										\
@@ -401,6 +411,8 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_reciprocal		q_2d_float_reciprocal
 #	define q_2d_inner_sum		q_2d_float_inner_sum
 #	define q_2d_inner_product	q_2d_float_inner_product
+#	define q_2d_inner_minimum	q_2d_float_inner_minimum
+#	define q_2d_inner_maximum	q_2d_float_inner_maximum
 #	define q_2d_inner_average	q_2d_float_inner_average
 #	define q_2d_square_length	q_2d_float_square_length
 #	define q_2d_multiply_by_scalar	q_2d_float_multiply_by_scalar
@@ -436,6 +448,8 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_reciprocal		q_2d_ldouble_reciprocal
 #	define q_2d_inner_sum		q_2d_ldouble_inner_sum
 #	define q_2d_inner_product	q_2d_ldouble_inner_product
+#	define q_2d_inner_minimum	q_2d_ldouble_inner_minimum
+#	define q_2d_inner_maximum	q_2d_ldouble_inner_maximum
 #	define q_2d_inner_average	q_2d_ldouble_inner_average
 #	define q_2d_square_length	q_2d_ldouble_square_length
 #	define q_2d_multiply_by_scalar	q_2d_ldouble_multiply_by_scalar
@@ -471,6 +485,8 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_reciprocal		q_2d_double_reciprocal
 #	define q_2d_inner_sum		q_2d_double_inner_sum
 #	define q_2d_inner_product	q_2d_double_inner_product
+#	define q_2d_inner_minimum	q_2d_double_inner_minimum
+#	define q_2d_inner_maximum	q_2d_double_inner_maximum
 #	define q_2d_inner_average	q_2d_double_inner_average
 #	define q_2d_square_length	q_2d_double_square_length
 #	define q_2d_multiply_by_scalar	q_2d_double_multiply_by_scalar
