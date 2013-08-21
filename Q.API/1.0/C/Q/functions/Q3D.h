@@ -241,7 +241,7 @@ q##type q_3d_##type##_inner_average(Q3D##Type magnitude)			\
 										\
 										\
 Q_INLINE									\
-q##type q_3d_##type##_square_length(Q3D##Type magnitude)			\
+q##type q_3d_##type##_squared_length(Q3D##Type magnitude)			\
 	{									\
 	return	magnitude.x * magnitude.x +					\
 		magnitude.y * magnitude.y +					\
@@ -473,7 +473,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_inner_minimum	q_3d_float_inner_minimum
 #	define q_3d_inner_maximum	q_3d_float_inner_maximum
 #	define q_3d_inner_average	q_3d_float_inner_average
-#	define q_3d_square_length	q_3d_float_square_length
+#	define q_3d_squared_length	q_3d_float_squared_length
 #	define q_3d_multiply_by_scalar	q_3d_float_multiply_by_scalar
 #	define q_3d_divide_by_scalar	q_3d_float_divide_by_scalar
 #	define q_3d_clamp		q_3d_float_clamp
@@ -511,7 +511,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_inner_minimum	q_3d_ldouble_inner_minimum
 #	define q_3d_inner_maximum	q_3d_ldouble_inner_maximum
 #	define q_3d_inner_average	q_3d_ldouble_inner_average
-#	define q_3d_square_length	q_3d_ldouble_square_length
+#	define q_3d_squared_length	q_3d_ldouble_squared_length
 #	define q_3d_multiply_by_scalar	q_3d_ldouble_multiply_by_scalar
 #	define q_3d_divide_by_scalar	q_3d_ldouble_divide_by_scalar
 #	define q_3d_clamp		q_3d_ldouble_clamp
@@ -549,7 +549,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_inner_minimum	q_3d_double_inner_minimum
 #	define q_3d_inner_maximum	q_3d_double_inner_maximum
 #	define q_3d_inner_average	q_3d_double_inner_average
-#	define q_3d_square_length	q_3d_double_square_length
+#	define q_3d_squared_length	q_3d_double_squared_length
 #	define q_3d_multiply_by_scalar	q_3d_double_multiply_by_scalar
 #	define q_3d_divide_by_scalar	q_3d_double_divide_by_scalar
 #	define q_3d_clamp		q_3d_double_clamp
