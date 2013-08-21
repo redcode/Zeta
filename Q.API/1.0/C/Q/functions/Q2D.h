@@ -328,6 +328,14 @@ Q_IMPLEMENTATION_INTEGER_2D(Integer, integer)
 										\
 										\
 Q_INLINE									\
+q_2d_##type##_are_almost_equal(Q2D##Type a, Q2D##Type b)			\
+	{									\
+	return	q_##type##_are_almost_equal(a.x, b.x) &&			\
+		q_##type##_are_almost_equal(a.y, b.y);				\
+	}									\
+										\
+										\
+Q_INLINE									\
 qboolean q_2d_##type##_are_perpendicular(Q2D##Type a, Q2D##Type b)		\
 	{									\
 	return	q_##type##_absolute(q_2d_##type##_dot_product(a, b))		\
@@ -347,8 +355,8 @@ Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type alpha)		\
 Q_INLINE									\
 qboolean q_2d_##type##_is_near_zero(Q2D##Type magnitude)			\
 	{									\
-	return	q_##type##_absolute(magnitude.x) <= epsilon &&			\
-		q_##type##_absolute(magnitude.y) <= epsilon;			\
+	return	q_##type##_is_near_zero(magnitude.x) &&				\
+		q_##type##_is_near_zero(magnitude.y);				\
 	}									\
 										\
 										\
@@ -370,6 +378,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d			q_2d_float
 #	define q_2d_zero		q_2d_float_zero
 #	define q_2d_are_equal		q_2d_float_are_equal
+#	define q_2d_are_almost_equal	q_2d_float_are_almost_equal
 #	define q_2d_are_perpendicular	q_2d_float_are_perpendicular
 #	define q_2d_swap		q_2d_float_swap
 #	define q_2d_contains		q_2d_float_contains
@@ -404,6 +413,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d			q_2d_ldouble
 #	define q_2d_zero		q_2d_ldouble_zero
 #	define q_2d_are_equal		q_2d_ldouble_are_equal
+#	define q_2d_are_almost_equal	q_2d_ldouble_are_almost_equal
 #	define q_2d_are_perpendicular	q_2d_ldouble_are_perpendicular
 #	define q_2d_swap		q_2d_ldouble_swap
 #	define q_2d_contains		q_2d_ldouble_contains
@@ -438,6 +448,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d			q_2d_double
 #	define q_2d_zero		q_2d_double_zero
 #	define q_2d_are_equal		q_2d_double_are_equal
+#	define q_2d_are_almost_equal	q_2d_double_are_almost_equal
 #	define q_2d_are_perpendicular	q_2d_double_are_perpendicular
 #	define q_2d_swap		q_2d_double_swap
 #	define q_2d_contains		q_2d_double_contains

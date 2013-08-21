@@ -371,6 +371,15 @@ Q_IMPLEMENTATION_INTEGER_3D(Integer, integer)
 									\
 									\
 Q_INLINE								\
+q_3d_##type##_are_almost_equal(Q3D##Type a, Q3D##Type b)		\
+	{								\
+	return	q_##type##_are_almost_equal(a.x, b.x) &&		\
+		q_##type##_are_almost_equal(a.y, b.y) &&		\
+		q_##type##_are_almost_equal(a.z, b.z);			\
+	}								\
+									\
+									\
+Q_INLINE								\
 qboolean q_3d_##type##_are_perpendicular(Q3D##Type a, Q3D##Type b)	\
 	{								\
 	return	q_##type##_absolute(q_3d_##type##_dot_product(a, b))	\
@@ -391,9 +400,9 @@ Q3D##Type q_3d_##type##_lerp(Q3D##Type a, Q3D##Type b, q##type alpha)	\
 Q_INLINE								\
 qboolean q_3d_##type##_is_near_zero(Q3D##Type magnitude)		\
 	{								\
-	return	q_##type##_absolute(magnitude.x) <= epsilon &&		\
-		q_##type##_absolute(magnitude.y) <= epsilon &&		\
-		q_##type##_absolute(magnitude.z) <= epsilon;		\
+	return	q_##type##_is_near_zero(magnitude.x) &&			\
+		q_##type##_is_near_zero(magnitude.y) &&			\
+		q_##type##_is_near_zero(magnitude.z);			\
 	}								\
 									\
 									\
@@ -420,6 +429,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d			q_3d_float
 #	define q_3d_zero		q_3d_float_zero
 #	define q_3d_are_equal		q_3d_float_are_equal
+#	define q_3d_are_almost_equal	q_3d_float_are_almost_equal
 #	define q_3d_are_perpendicular	q_3d_float_are_perpendicular
 #	define q_3d_swap		q_3d_float_swap
 #	define q_3d_contains		q_3d_float_contains
@@ -436,6 +446,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_lerp		q_3d_float_lerp
 #	define q_3d_from_scalar		q_3d_float_from_scalar
 #	define q_3d_is_zero		q_3d_float_is_zero
+#	define q_3d_is_near_zero	q_3d_float_is_near_zero
 #	define q_3d_negative		q_3d_float_negative
 #	define q_3d_absolute		q_3d_float_absolute
 #	define q_3d_reciprocal		q_3d_float_reciprocal
@@ -454,6 +465,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d			q_3d_ldouble
 #	define q_3d_zero		q_3d_ldouble_zero
 #	define q_3d_are_equal		q_3d_ldouble_are_equal
+#	define q_3d_are_almost_equal	q_3d_ldouble_are_almost_equal
 #	define q_3d_are_perpendicular	q_3d_ldouble_are_perpendicular
 #	define q_3d_swap		q_3d_ldouble_swap
 #	define q_3d_contains		q_3d_ldouble_contains
@@ -470,6 +482,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_lerp		q_3d_ldouble_lerp
 #	define q_3d_from_scalar		q_3d_ldouble_from_scalar
 #	define q_3d_is_zero		q_3d_ldouble_is_zero
+#	define q_3d_is_near_zero	q_3d_ldouble_is_near_zero
 #	define q_3d_negative		q_3d_ldouble_negative
 #	define q_3d_absolute		q_3d_ldouble_absolute
 #	define q_3d_reciprocal		q_3d_ldouble_reciprocal
@@ -488,6 +501,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d			q_3d_double
 #	define q_3d_zero		q_3d_double_zero
 #	define q_3d_are_equal		q_3d_double_are_equal
+#	define q_3d_are_almost_equal	q_3d_double_are_almost_equal
 #	define q_3d_are_perpendicular	q_3d_double_are_perpendicular
 #	define q_3d_swap		q_3d_double_swap
 #	define q_3d_contains		q_3d_double_contains
@@ -504,6 +518,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_lerp		q_3d_double_lerp
 #	define q_3d_from_scalar		q_3d_double_from_scalar
 #	define q_3d_is_zero		q_3d_double_is_zero
+#	define q_3d_is_near_zero	q_3d_double_is_near_zero
 #	define q_3d_negative		q_3d_double_negative
 #	define q_3d_absolute		q_3d_double_absolute
 #	define q_3d_reciprocal		q_3d_double_reciprocal

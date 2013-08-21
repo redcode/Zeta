@@ -514,6 +514,7 @@ Q_INLINE							\
 q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)	\
 	{return a + alpha * (b - a);}				\
 								\
+								\
 Q_INLINE							\
 q_##type##_is_nan(q##type value)				\
 	{return !(value == value);}				\
