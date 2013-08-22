@@ -149,9 +149,9 @@ qboolean q_##type##_box_contains_point(Q##Type##Box box, Q3D##Type point)	\
 	return	point.x >= box.point.x		    &&				\
 		point.y >= box.point.y		    &&				\
 		point.z >= box.point.z		    &&				\
-		point.x <  box.point.x + box.size.x &&				\
-		point.y <  box.point.y + box.size.y &&				\
-		point.z <  box.point.z + box.size.z;				\
+		point.x <= box.point.x + box.size.x &&				\
+		point.y <= box.point.y + box.size.y &&				\
+		point.z <= box.point.z + box.size.z;				\
 	}									\
 										\
 										\
@@ -175,9 +175,9 @@ qboolean q_##type##_box_contains_sphere(					\
 	return	sphere.point.x - sphere.radius >= box.point.x		   &&	\
 		sphere.point.y - sphere.radius >= box.point.y		   &&	\
 		sphere.point.z - sphere.radius >= box.point.z		   &&	\
-		sphere.point.x + sphere.radius <  box.point.x + box.size.x &&	\
-		sphere.point.y + sphere.radius <  box.point.y + box.size.y &&	\
-		sphere.point.z + sphere.radius <  box.point.z + box.size.z;	\
+		sphere.point.x + sphere.radius <= box.point.x + box.size.x &&	\
+		sphere.point.y + sphere.radius <= box.point.y + box.size.y &&	\
+		sphere.point.z + sphere.radius <= box.point.z + box.size.z;	\
 	}
 
 

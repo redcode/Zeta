@@ -331,8 +331,8 @@ qboolean q_##type##_rectangle_contains_point(					\
 	{									\
 	return	point.x >= rectangle.point.x			&&		\
 		point.y >= rectangle.point.y			&&		\
-		point.x <  rectangle.point.x + rectangle.size.x	&&		\
-		point.y <  rectangle.point.y + rectangle.size.y;		\
+		point.x <= rectangle.point.x + rectangle.size.x	&&		\
+		point.y <= rectangle.point.y + rectangle.size.y;		\
 	}									\
 										\
 										\
@@ -355,9 +355,9 @@ qboolean q_##type##_rectangle_contains_circle(					\
 	{									\
 	return	circle.point.x - circle.radius >= rectangle.point.x &&		\
 		circle.point.y - circle.radius >= rectangle.point.y &&		\
-		circle.point.x + circle.radius <				\
+		circle.point.x + circle.radius <=				\
 		rectangle.point.x + rectangle.size.x		    &&		\
-		circle.point.y + circle.radius <				\
+		circle.point.y + circle.radius <=				\
 		rectangle.point.y + rectangle.size.y;				\
 	}
 
