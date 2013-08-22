@@ -98,6 +98,18 @@ qboolean q_##type##_aabb_contains_line_segment(					\
 										\
 										\
 Q_AABB_EXPORT									\
+qboolean q_##type##_aabb_contains_box(Q##Type##AABB aabb, Q##Type##Box box)	\
+	{									\
+	return	aabb.a.x <= box.point.x		     &&				\
+		aabb.a.y <= box.point.y		     &&				\
+		aabb.a.z <= box.point.z		     &&				\
+		aabb.b.x >= box.point.x + box.size.x &&				\
+		aabb.b.y >= box.point.y + box.size.y &&				\
+		aabb.b.z >= box.point.z + box.size.z;				\
+	}									\
+										\
+										\
+Q_AABB_EXPORT									\
 qboolean q_##type##_aabb_contains_sphere(					\
 	Q##Type##AABB	aabb,							\
 	Q##Type##Sphere sphere							\
@@ -127,6 +139,7 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_union			q_float_aabb_union
 #	define q_aabb_contains_point		q_float_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_float_aabb_contains_line_segment
+#	define q_aabb_contains_box		q_float_aabb_contains_box
 #	define q_aabb_contains_sphere		q_float_aabb_contains_sphere
 
 #elif defined(Q_USE_REAL_LDOUBLE)
@@ -137,6 +150,7 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_union			q_ldouble_aabb_union
 #	define q_aabb_contains_point		q_ldouble_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_ldouble_aabb_contains_line_segment
+#	define q_aabb_contains_box		q_ldouble_aabb_contains_box
 #	define q_aabb_contains_sphere		q_ldouble_aabb_contains_sphere
 
 #else
@@ -147,6 +161,7 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_union			q_double_aabb_union
 #	define q_aabb_contains_point		q_double_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_double_aabb_contains_line_segment
+#	define q_aabb_contains_box		q_double_aabb_contains_box
 #	define q_aabb_contains_sphere		q_double_aabb_contains_sphere
 
 #endif
