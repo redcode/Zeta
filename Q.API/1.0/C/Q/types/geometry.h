@@ -97,9 +97,9 @@ typedef struct {Q3DLDouble point, size;}		QLDoubleBox;
 
 /* MARK: - 3D - Axis-aligned bounding box */
 
-typedef Q3DFloatVector					QFloatAABB;
-typedef Q3DDoubleVector					QDoubleAABB;
-typedef Q3DLDoubleVector				QLDoubleAABB;
+typedef Q3DFloatLine					QFloatAABB;
+typedef Q3DDoubleLine					QDoubleAABB;
+typedef Q3DLDoubleLine					QLDoubleAABB;
 
 /* MARK: - 3D - Oriented bounding box */
 

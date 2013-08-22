@@ -9,19 +9,23 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_functions_geometry_QAABB_H__
 #define __Q_functions_geometry_QAABB_H__
 
-#include <Q/functions/geometry/Q3DVector.h>
+#include <Q/functions/geometry/Q3DLine.h>
 
-#define q_3d_float_aabb_are_equal		q_3d_float_vector_are_equal
-#define q_3d_float_aabb_is_zero			q_3d_float_vector_is_zero
+#define q_float_aabb_are_equal		q_3d_float_vector_are_equal
+#define q_float_aabb_is_zero		q_3d_float_vector_is_zero
+#define q_float_aabb_center		q_3d_float_line_segment_center
 
-#define q_3d_double_aabb_are_equal		q_3d_double_vector_are_equal
-#define q_3d_double_aabb_is_zero		q_3d_double_vector_is_zero
+#define q_double_aabb_are_equal		q_3d_double_vector_are_equal
+#define q_double_aabb_is_zero		q_3d_double_vector_is_zero
+#define q_double_aabb_center		q_3d_double_line_segment_center
 
-#define q_3d_ldouble_aabb_are_equal		q_3d_ldouble_vector_are_equal
-#define q_3d_ldouble_aabb_is_zero		q_3d_ldouble_vector_is_zero
+#define q_ldouble_aabb_are_equal	q_3d_ldouble_vector_are_equal
+#define q_ldouble_aabb_is_zero		q_3d_ldouble_vector_is_zero
+#define q_ldouble_aabb_center		q_3d_ldouble_line_segment_center
 
-#define q_3d_aabb_are_equal			q_3d_vector_are_equal
-#define q_3d_aabb_is_zero			q_3d_vector_is_zero
+#define q_aabb_are_equal		q_3d_vector_are_equal
+#define q_aabb_is_zero			q_3d_vector_is_zero
+#define q_aabb_center			q_3d_line_segment_center
 
 #ifndef Q_AABB_EXPORT
 #	define Q_AABB_EXPORT Q_INLINE
@@ -72,6 +76,48 @@ Q##Type##AABB q_##type##_aabb_union(Q##Type##AABB a, Q##Type##AABB b)		\
 										\
 	result.a = q_3d_##type##_minimum(a.a, b.a);				\
 	result.b = q_3d_##type##_maximum(a.b, b.b);				\
+										\
+	return result;								\
+	}									\
+										\
+										\
+Q_AABB_EXPORT									\
+Q##Type##AABB q_##type##_aabb_from_vertices(Q3D##Type a, Q3D##Type b)		\
+	{									\
+	Q##Type##AABB result;							\
+										\
+	result.a = q_3d_##type##_minimum(a, b);					\
+	result.b = q_3d_##type##_maximum(a, b);					\
+										\
+	return result;								\
+	}									\
+										\
+										\
+Q_AABB_EXPORT									\
+Q3D##Type q_##type##_aabb_size(Q##Type##AABB aabb)				\
+	{return q_3d_##type##_subtract(aabb.b, aabb.a);}			\
+										\
+										\
+Q_AABB_EXPORT									\
+q##type q_##type##_aabb_volume(Q##Type##AABB aabb)				\
+	{									\
+	return q_3d_##type##_inner_product					\
+		(q_3d_##type##_subtract(aabb.b, aabb.a));			\
+	}									\
+										\
+										\
+Q_AABB_EXPORT									\
+Q##Type##Sphere q_##type##_aabb_inner_sphere(Q##Type##AABB aabb)		\
+	{									\
+	Q##Type##Sphere result;							\
+										\
+	result.point = q_##type##_aabb_center(aabb);				\
+										\
+	result.radius =								\
+	q_##type##_minimum							\
+		(q_##type##_minimum(aabb.b.x - aabb.a.x, aabb.b.y - aabb.a.y),	\
+		 aabb.b.z - aabb.a.z)						\
+	/ _(2.0);								\
 										\
 	return result;								\
 	}									\
@@ -137,6 +183,10 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_collision			q_float_aabb_collision
 #	define q_aabb_intersection		q_float_aabb_intersection
 #	define q_aabb_union			q_float_aabb_union
+#	define q_aabb_from_vertices		q_float_aabb_from_vertices
+#	define q_aabb_size			q_float_aabb_size
+#	define q_aabb_volume			q_float_aabb_volume
+#	define q_aabb_inner_sphere		q_float_aabb_inner_sphere
 #	define q_aabb_contains_point		q_float_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_float_aabb_contains_line_segment
 #	define q_aabb_contains_box		q_float_aabb_contains_box
@@ -148,6 +198,10 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_collision			q_ldouble_aabb_collision
 #	define q_aabb_intersection		q_ldouble_aabb_intersection
 #	define q_aabb_union			q_ldouble_aabb_union
+#	define q_aabb_from_vertices		q_ldouble_aabb_from_vertices
+#	define q_aabb_size			q_ldouble_aabb_size
+#	define q_aabb_volume			q_ldouble_aabb_volume
+#	define q_aabb_inner_sphere		q_ldouble_aabb_inner_sphere
 #	define q_aabb_contains_point		q_ldouble_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_ldouble_aabb_contains_line_segment
 #	define q_aabb_contains_box		q_ldouble_aabb_contains_box
@@ -159,6 +213,10 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_collision			q_double_aabb_collision
 #	define q_aabb_intersection		q_double_aabb_intersection
 #	define q_aabb_union			q_double_aabb_union
+#	define q_aabb_from_vertices		q_double_aabb_from_vertices
+#	define q_aabb_size			q_double_aabb_size
+#	define q_aabb_volume			q_double_aabb_volume
+#	define q_aabb_inner_sphere		q_double_aabb_inner_sphere
 #	define q_aabb_contains_point		q_double_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_double_aabb_contains_line_segment
 #	define q_aabb_contains_box		q_double_aabb_contains_box
