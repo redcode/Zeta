@@ -128,13 +128,17 @@ Released under the terms of the GNU General Public License v3. */
 #define q_2d_double_line	 q_2d_double_vector
 #define q_2d_ldouble_line	 q_2d_ldouble_vector
 
+#define q_float_aabr		 q_2d_float_line
+#define q_double_aabr		 q_2d_double_line
+#define q_ldouble_aabr		 q_2d_ldouble_line
+
 #define q_3d_float_line		 q_3d_float_vector
 #define q_3d_double_line	 q_3d_double_vector
 #define q_3d_ldouble_line	 q_3d_ldouble_vector
 
-#define q_float_aabb		 q_3d_float_vector
-#define q_double_aabb		 q_3d_double_vector
-#define q_ldouble_aabb		 q_3d_ldouble_vector
+#define q_float_aabb		 q_3d_float_line
+#define q_double_aabb		 q_3d_double_line
+#define q_ldouble_aabb		 q_3d_ldouble_line
 
 #define q_2d_float_vector_zero	 q_2d_float_vector  (0.0F, 0.0F, 0.0F, 0.0F)
 #define q_2d_double_vector_zero	 q_2d_double_vector (0.0,  0.0,  0.0,  0.0 )
@@ -144,13 +148,17 @@ Released under the terms of the GNU General Public License v3. */
 #define q_2d_double_line_zero	 q_2d_double_vector_zero
 #define q_2d_ldouble_line_zero	 q_2d_ldouble_vector_zero
 
-#define q_float_circle_zero	 q_float_circle  (0.0F, 0.0F, 0.0F)
-#define q_double_circle_zero	 q_double_circle (0.0,	0.0,  0.0 )
-#define q_ldouble_circle_zero	 q_ldouble_circle(0.0L, 0.0L, 0.0L)
-
 #define q_float_rectangle_zero	 q_float_rectangle  (0.0F, 0.0F, 0.0F, 0.0F)
 #define q_double_rectangle_zero	 q_double_rectangle (0.0,  0.0,  0.0,  0.0 )
 #define q_ldouble_rectangle_zero q_ldouble_rectangle(0.0L, 0.0L, 0.0L, 0.0L)
+
+#define q_float_aabr_zero	 q_2d_float_line_zero
+#define q_double_aabr_zero	 q_2d_double_line_zero
+#define q_ldouble_aabr_zero	 q_2d_ldouble_line_zero
+
+#define q_float_circle_zero	 q_float_circle  (0.0F, 0.0F, 0.0F)
+#define q_double_circle_zero	 q_double_circle (0.0,	0.0,  0.0 )
+#define q_ldouble_circle_zero	 q_ldouble_circle(0.0L, 0.0L, 0.0L)
 
 #define q_3d_float_vector_zero	 q_3d_float_vector  (0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F)
 #define q_3d_double_vector_zero	 q_3d_double_vector (0.0,  0.0,  0.0,  0.0,  0.0,  0.0 )
@@ -160,17 +168,17 @@ Released under the terms of the GNU General Public License v3. */
 #define q_3d_double_line_zero	 q_3d_double_vector_zero
 #define q_3d_ldouble_line_zero	 q_3d_ldouble_vector_zero
 
-#define q_float_sphere_zero	 q_float_sphere  (0.0F, 0.0F, 0.0F, 0.0F)
-#define q_double_sphere_zero	 q_double_sphere (0.0,	0.0,  0.0,  0.0 )
-#define q_ldouble_sphere_zero	 q_ldouble_sphere(0.0L, 0.0L, 0.0L, 0.0L)
-
 #define q_float_box_zero	 q_float_box  (0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F)
 #define q_double_box_zero	 q_double_box (0.0,  0.0,  0.0,  0.0,  0.0,  0.0 )
 #define q_ldouble_box_zero	 q_ldouble_box(0.0L, 0.0L, 0.0L, 0.0L, 0.0L, 0.0L)
 
-#define q_float_aabb_zero	 q_3d_float_vector_zero
-#define q_double_aabb_zero	 q_3d_double_vector_zero
-#define q_ldouble_aabb_zero	 q_3d_ldouble_vector_zero
+#define q_float_aabb_zero	 q_3d_float_line_zero
+#define q_double_aabb_zero	 q_3d_double_line_zero
+#define q_ldouble_aabb_zero	 q_3d_ldouble_line_zero
+
+#define q_float_sphere_zero	 q_float_sphere  (0.0F, 0.0F, 0.0F, 0.0F)
+#define q_double_sphere_zero	 q_double_sphere (0.0,	0.0,  0.0,  0.0 )
+#define q_ldouble_sphere_zero	 q_ldouble_sphere(0.0L, 0.0L, 0.0L, 0.0L)
 
 /* MARK: - Default real type definitions */
 
@@ -180,15 +188,15 @@ Released under the terms of the GNU General Public License v3. */
 #	define q_2d_circle	q_2d_float_circle
 #	define q_rectangle	q_float_rectangle
 #	define q_3d_vector	q_3d_float_vector
-#	define q_sphere		q_float_sphere
 #	define q_box		q_float_box
+#	define q_sphere		q_float_sphere
 
 #	define q_2d_vector_zero	q_2d_float_vector_zero
 #	define q_2d_circle_zero	q_2d_float_circle_zero
 #	define q_rectangle_zero	q_float_rectangle_zero
 #	define q_3d_vector_zero	q_3d_float_vector_zero
-#	define q_sphere_zero	q_float_sphere_zero
 #	define q_box_zero	q_float_box_zero
+#	define q_sphere_zero	q_float_sphere_zero
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
@@ -196,15 +204,15 @@ Released under the terms of the GNU General Public License v3. */
 #	define q_2d_circle	q_2d_ldouble_circle
 #	define q_rectangle	q_ldouble_rectangle
 #	define q_3d_vector	q_3d_ldouble_vector
-#	define q_sphere		q_ldouble_sphere
 #	define q_box		q_ldouble_box
+#	define q_sphere		q_ldouble_sphere
 
 #	define q_2d_vector_zero	q_2d_ldouble_vector_zero
 #	define q_2d_circle_zero	q_2d_ldouble_circle_zero
 #	define q_rectangle_zero	q_ldouble_rectangle_zero
 #	define q_3d_vector_zero	q_3d_ldouble_vector_zero
-#	define q_sphere_zero	q_ldouble_sphere_zero
 #	define q_box_zero	q_ldouble_box_zero
+#	define q_sphere_zero	q_ldouble_sphere_zero
 
 #else
 
@@ -212,24 +220,26 @@ Released under the terms of the GNU General Public License v3. */
 #	define q_2d_circle	q_2d_double_circle
 #	define q_rectangle	q_double_rectangle
 #	define q_3d_vector	q_3d_double_vector
-#	define q_sphere		q_double_sphere
 #	define q_box		q_double_box
+#	define q_sphere		q_double_sphere
 
 #	define q_2d_vector_zero	q_2d_double_vector_zero
 #	define q_2d_circle_zero	q_2d_double_circle_zero
 #	define q_rectangle_zero	q_double_rectangle_zero
 #	define q_3d_vector_zero	q_3d_double_vector_zero
-#	define q_sphere_zero	q_double_sphere_zero
 #	define q_box_zero	q_double_box_zero
+#	define q_sphere_zero	q_double_sphere_zero
 
 #endif
 
 #define q_2d_line	q_2d_vector
+#define q_aabr		q_2d_line
 #define q_3d_line	q_3d_vector
-#define q_aabb		q_3d_vector
+#define q_aabb		q_3d_line
 
 #define q_2d_line_zero	q_2d_vector_zero
+#define q_aabr_zero	q_2d_line_zero
 #define q_3d_line_zero	q_3d_vector_zero
-#define q_aabb_zero	q_3d_vector_zero
+#define q_aabb_zero	q_3d_line_zero
 
 #endif /* __Q_functions_geometry_constructors_H__ */

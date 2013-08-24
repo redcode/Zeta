@@ -47,6 +47,18 @@ typedef struct {Q2DFloat   point, size;}		QFloatRectangle;
 typedef struct {Q2DDouble  point, size;}		QDoubleRectangle;
 typedef struct {Q2DLDouble point, size;}		QLDoubleRectangle;
 
+/* MARK: - 2D - Axis-aligned bounding rectangle */
+
+typedef Q2DFloatLine					QFloatAABR;
+typedef Q2DDoubleLine					QDoubleAABR;
+typedef Q2DLDoubleLine					QLDoubleAABR;
+
+/* MARK: - 2D - Oriented bounding rectangle */
+
+typedef struct {}					QFloatOBR;
+typedef struct {}					QDoubleOBR;
+typedef struct {}					QLDoubleOBR;
+
 /* MARK: - 2D - Circle */
 
 typedef struct {Q2DFloat   point; qfloat   radius;}	QFloatCircle;
@@ -133,6 +145,12 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 #define Q_FLOAT_RECTANGLE(	p) ((QFloatRectangle	  *)(p))
 #define Q_DOUBLE_RECTANGLE(	p) ((QDoubleRectangle	  *)(p))
 #define Q_LDOUBLE_RECTANGLE(	p) ((QLDoubleRectangle	  *)(p))
+#define Q_FLOAT_AABR(		p) ((QFloatAABR		  *)(p))
+#define Q_DOUBLE_AABR(		p) ((QDoubleAABR	  *)(p))
+#define Q_LDOUBLE_AABR(		p) ((QLDoubleAABR	  *)(p))
+#define Q_FLOAT_OBR(		p) ((QFloatOBR		  *)(p))
+#define Q_DOUBLE_OBR(		p) ((QDoubleOBR		  *)(p))
+#define Q_LDOUBLE_OBR(		p) ((QLDoubleOBR	  *)(p))
 #define Q_FLOAT_CIRCLE(		p) ((QFloatCircle	  *)(p))
 #define Q_DOUBLE_CIRCLE(	p) ((QDoubleCircle	  *)(p))
 #define Q_LDOUBLE_CIRCLE(	p) ((QLDoubleCircle	  *)(p))
@@ -177,6 +195,8 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 	typedef Q2DFloatTriangle	Q2DTriangle;
 	typedef Q2DFloatQuadrangle	Q2DQuadrangle;
 	typedef QFloatRectangle		QRectangle;
+	typedef QFloatAABR		QAABR;
+	typedef QFloatOBR		QOBR;
 	typedef QFloatCircle		QCircle;
 	typedef	Q3DFloatVector		Q3DVector;
 	typedef Q3DFloatLine		Q3DLine;
@@ -195,6 +215,8 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 #	define Q_2D_TRIANGLE		Q_2D_FLOAT_TRIANGLE
 #	define Q_2D_QUADRANGLE		Q_2D_FLOAT_QUADRANGLE
 #	define Q_RECTANGLE		Q_FLOAT_RECTANGLE
+#	define Q_AABR			Q_FLOAT_AABR
+#	define Q_OBR			Q_FLOAT_OBR
 #	define Q_CIRCLE			Q_FLOAT_CIRCLE
 #	define Q_3D_VECTOR		Q_3D_FLOAT_VECTOR
 #	define Q_3D_LINE		Q_3D_FLOAT_LINE
@@ -215,6 +237,8 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 	typedef Q2DLDoubleTriangle	Q2DTriangle;
 	typedef Q2DLDoubleQuadrangle	Q2DQuadrangle;
 	typedef QLDoubleRectangle	QRectangle;
+	typedef QLDoubleAABR		QAABR;
+	typedef QLDoubleOBR		QOBR;
 	typedef QLDoubleCircle		QCircle;
 	typedef	Q3DLDoubleVector	Q3DVector;
 	typedef Q3DLDoubleLine		Q3DLine;
@@ -233,6 +257,8 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 #	define Q_2D_TRIANGLE		Q_2D_LDOUBLE_TRIANGLE
 #	define Q_2D_QUADRANGLE		Q_2D_LDOUBLE_QUADRANGLE
 #	define Q_RECTANGLE		Q_LDOUBLE_RECTANGLE
+#	define Q_AABR			Q_LDOUBLE_AABR
+#	define Q_OBR			Q_LDOUBLE_OBR
 #	define Q_CIRCLE			Q_LDOUBLE_CIRCLE
 #	define Q_3D_VECTOR		Q_3D_LDOUBLE_VECTOR
 #	define Q_3D_LINE		Q_3D_LDOUBLE_LINE
@@ -253,6 +279,8 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 	typedef Q2DDoubleTriangle	Q2DTriangle;
 	typedef Q2DDoubleQuadrangle	Q2DQuadrangle;
 	typedef QDoubleRectangle	QRectangle;
+	typedef QDoubleAABR		QAABR;
+	typedef QDoubleOBR		QOBR;
 	typedef QDoubleCircle		QCircle;
 	typedef	Q3DDoubleVector		Q3DVector;
 	typedef Q3DDoubleLine		Q3DLine;
@@ -271,6 +299,8 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 #	define Q_2D_TRIANGLE		Q_2D_DOUBLE_TRIANGLE
 #	define Q_2D_QUADRANGLE		Q_2D_DOUBLE_QUADRANGLE
 #	define Q_RECTANGLE		Q_DOUBLE_RECTANGLE
+#	define Q_AABR			Q_DOUBLE_AABR
+#	define Q_OBR			Q_DOUBLE_OBR
 #	define Q_CIRCLE			Q_DOUBLE_CIRCLE
 #	define Q_3D_VECTOR		Q_3D_DOUBLE_VECTOR
 #	define Q_3D_LINE		Q_3D_DOUBLE_LINE
