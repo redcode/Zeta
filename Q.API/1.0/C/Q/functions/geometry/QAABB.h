@@ -11,20 +11,20 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/functions/geometry/Q3DLine.h>
 
-#define q_float_aabb_are_equal		q_3d_float_vector_are_equal
-#define q_float_aabb_is_zero		q_3d_float_vector_is_zero
+#define q_float_aabb_are_equal		q_3d_float_line_are_equal
+#define q_float_aabb_is_zero		q_3d_float_line_is_zero
 #define q_float_aabb_center		q_3d_float_line_segment_center
 
-#define q_double_aabb_are_equal		q_3d_double_vector_are_equal
-#define q_double_aabb_is_zero		q_3d_double_vector_is_zero
+#define q_double_aabb_are_equal		q_3d_double_line_are_equal
+#define q_double_aabb_is_zero		q_3d_double_line_is_zero
 #define q_double_aabb_center		q_3d_double_line_segment_center
 
-#define q_ldouble_aabb_are_equal	q_3d_ldouble_vector_are_equal
-#define q_ldouble_aabb_is_zero		q_3d_ldouble_vector_is_zero
+#define q_ldouble_aabb_are_equal	q_3d_ldouble_line_are_equal
+#define q_ldouble_aabb_is_zero		q_3d_ldouble_line_is_zero
 #define q_ldouble_aabb_center		q_3d_ldouble_line_segment_center
 
-#define q_aabb_are_equal		q_3d_vector_are_equal
-#define q_aabb_is_zero			q_3d_vector_is_zero
+#define q_aabb_are_equal		q_3d_line_are_equal
+#define q_aabb_is_zero			q_3d_line_is_zero
 #define q_aabb_center			q_3d_line_segment_center
 
 #ifndef Q_AABB_EXPORT
@@ -124,6 +124,17 @@ Q##Type##Sphere q_##type##_aabb_inner_sphere(Q##Type##AABB aabb)		\
 										\
 										\
 Q_AABB_EXPORT									\
+Q##Type##Box q_##type##_aabb_to_box(Q##Type##AABB aabb)				\
+	{									\
+	Q##Type##Box result;							\
+										\
+	result.point = aabb.a;							\
+	result.size  = q_3d_##type##_subtract(aabb.b, aabb.a);			\
+	return result;								\
+	}									\
+										\
+										\
+Q_AABB_EXPORT									\
 qboolean q_##type##_aabb_contains_point(Q##Type##AABB aabb, Q3D##Type point)	\
 	{									\
 	return	aabb.a.x <= point.x && point.x <= aabb.a.x &&			\
@@ -187,6 +198,7 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_size			q_float_aabb_size
 #	define q_aabb_volume			q_float_aabb_volume
 #	define q_aabb_inner_sphere		q_float_aabb_inner_sphere
+#	define q_aabb_to_box			q_float_aabb_to_box
 #	define q_aabb_contains_point		q_float_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_float_aabb_contains_line_segment
 #	define q_aabb_contains_box		q_float_aabb_contains_box
@@ -202,6 +214,7 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_size			q_ldouble_aabb_size
 #	define q_aabb_volume			q_ldouble_aabb_volume
 #	define q_aabb_inner_sphere		q_ldouble_aabb_inner_sphere
+#	define q_aabb_to_box			q_ldouble_aabb_to_box
 #	define q_aabb_contains_point		q_ldouble_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_ldouble_aabb_contains_line_segment
 #	define q_aabb_contains_box		q_ldouble_aabb_contains_box
@@ -217,6 +230,7 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_size			q_double_aabb_size
 #	define q_aabb_volume			q_double_aabb_volume
 #	define q_aabb_inner_sphere		q_double_aabb_inner_sphere
+#	define q_aabb_to_box			q_double_aabb_to_box
 #	define q_aabb_contains_point		q_double_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_double_aabb_contains_line_segment
 #	define q_aabb_contains_box		q_double_aabb_contains_box
