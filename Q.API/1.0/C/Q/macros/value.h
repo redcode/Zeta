@@ -144,7 +144,7 @@ Released under the terms of the GNU General Public License v3. */
 #if Q_IS_AVAILABLE(UINT128) && \
     Q_COMPILER_HAS(UINT128_LITERAL)
 
-#	define Q_128BIT_REVERSED_IN_8BIT(value)
+#	define Q_128BIT_REVERSED_IN_8BIT(value)					   \
 		( ( (value)						   << 120) \
 		| (((value) & Q_UINT128(0x00000000000000000000000000FF00)) << 104) \
 		| (((value) & Q_UINT128(0x000000000000000000000000FF0000)) <<  88) \
@@ -162,7 +162,7 @@ Released under the terms of the GNU General Public License v3. */
 		| (((value) & Q_UINT128(0xFF0000000000000000000000000000)) >> 104) \
 		| ( (value)						   >> 120) )
 
-#	define Q_128BIT_REVERSED_IN_16BIT(value)
+#	define Q_128BIT_REVERSED_IN_16BIT(value)				 \
 		( ( (value)						 << 112) \
 		| (((value) & Q_UINT128(0x00000000000000000000FFFF0000)) <<  80) \
 		| (((value) & Q_UINT128(0x0000000000000000FFFF00000000)) <<  48) \
@@ -172,7 +172,7 @@ Released under the terms of the GNU General Public License v3. */
 		| (((value) & Q_UINT128(0xFFFF000000000000000000000000)) >>  80) \
 		| ( (value)						 >> 112) )
 
-#	define Q_128BIT_REVERSED_IN_32BIT(value)
+#	define Q_128BIT_REVERSED_IN_32BIT(value)			    \
 		( ( (value)					     << 96) \
 		| (((value) & Q_UINT128(0x00000000FFFFFFFF00000000)) << 32) \
 		| (((value) & Q_UINT128(0xFFFFFFFF0000000000000000)) >> 32) \
