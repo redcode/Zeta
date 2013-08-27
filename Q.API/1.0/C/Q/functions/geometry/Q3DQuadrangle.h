@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_functions_geometry_Q3DQuadrangle_H__
 #define __Q_functions_geometry_Q3DQuadrangle_H__
 
-#include <Q/types/geometry.h>
+#include <Q/types/mathematics.h>
 #include <Q/functions/Q3D.h>
 
 
