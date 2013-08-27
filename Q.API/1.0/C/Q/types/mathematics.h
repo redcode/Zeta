@@ -1,4 +1,4 @@
-/* Q API - types/geometry.h
+/* Q API - types/mathematics.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_types_geometry_H__
-#define __Q_types_geometry_H__
+#ifndef __Q_types_mathematics_H__
+#define __Q_types_mathematics_H__
 
 #include <Q/types/basics.h>
 
@@ -315,4 +315,4 @@ typedef struct {Q3DLDouble point; qldouble radius;}	QLDoubleSphere;
 
 #endif
 
-#endif /* __Q_types_geometry_H__ */
+#endif /* __Q_types_mathematics_H__ */
