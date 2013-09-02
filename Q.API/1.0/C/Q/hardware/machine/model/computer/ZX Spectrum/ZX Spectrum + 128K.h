@@ -37,9 +37,8 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/hardware/machine/model/computer/ZX Spectrum/ZX Spectrum.h>
 
-/* MARK: - Screen */
-
-/*					---
+/* MARK: - Screen
+					---
 	  Invisible Top Border		 | 7
    .---------------------------------.  ---   ---
    |	   Visible Top Border	     |	 | 48  |

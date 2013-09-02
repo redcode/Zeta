@@ -12,11 +12,11 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/inspection/compiler.h>
 
 #if Q_COMPILER_HAS(VAL)
-	typedef Q_COMPILER_TYPE(VAL)	QVAL;
+	typedef Q_COMPILER_TYPE(VAL) QVAL;
 #else
-	typedef void*			QVAL;
+	typedef void* QVAL;
 #endif
 
-#define Q_VAL(p)			((QVAL *)(p))
+#define Q_VAL(p) ((QVAL *)(p))
 
 #endif /* __Q_types_language_H__ */

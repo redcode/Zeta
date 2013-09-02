@@ -27,7 +27,7 @@ Released under the terms of the GNU General Public License v3. */
 #endif
 
 #ifndef Q_COLOR_EXPORT
-#	define Q_COLOR_EXPORT static Q_INLINE
+#	define Q_COLOR_EXPORT Q_INLINE
 #endif
 
 #pragma mark - RGBA 8 8 8 8

@@ -11,5 +11,14 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/basics.h>
 
+typedef struct {
+} QTypePrototype;
+
+typedef struct {
+} QVariablePrototype;
+
+typedef struct {
+} QFunctionPrototype;
+
 
 #endif /* __Q_types_introspection_H__ */

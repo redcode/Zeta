@@ -13,11 +13,13 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/macros/time.h>
 
 
-Q_INLINE qboolean q_gregorian_year_is_leap(quint64 year)
+Q_INLINE
+qboolean q_gregorian_year_is_leap(quint64 year)
 	{return Q_GREGORIAN_YEAR_IS_LEAP(year);}
 
 
-Q_INLINE quint8 q_gregorian_year_days_in_month(quint64 year, quint8 month)
+Q_INLINE
+quint8 q_gregorian_year_days_in_month(quint64 year, quint8 month)
 	{
 	if (month == 2) return qv_gregorian_year_is_leap(year) ? 29 : 28;
 	if (month == 4 || month == 6 || month == 9 || month == 11) return 30;
