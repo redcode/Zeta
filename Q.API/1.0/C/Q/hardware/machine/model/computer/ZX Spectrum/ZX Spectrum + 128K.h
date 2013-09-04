@@ -25,12 +25,12 @@ Released under the terms of the GNU General Public License v3.
    |									|====|
    '--------------------------------------------------------------------'===='
 
-	 Vendor: Sinclair Research - Investronica
-   Release date: 1985
-	    CPU: Zilog Z80 @ 3.5469 MHz
-	    ROM: 48K
-	    RAM: 128K
-	  Sound: General Instrument AY-3-8912 */
+     Vendor: Sinclair Research - Investronica
+   Released: 1985
+	CPU: Zilog Z80 @ 3.5469 MHz
+	ROM: 48K
+	RAM: 128K
+      Sound: General Instrument AY-3-8912	*/
 
 #ifndef __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H__
 #define __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H__
@@ -113,7 +113,6 @@ Released under the terms of the GNU General Public License v3.
 #define Q_ZX_SPECTRUM_MEMORY_SIZE		(Q_ZX_SPECTRUM_16K_ISSUE_1_ROM_SIZE + Q_ZX_SPECTRUM_16K_ISSUE_1_RAM_SIZE)
 #define Q_ZX_SPECTRUM_FIRMWARE_SIZE		(1024 *  32)
 #define Q_ZX_SPECTRUM_FIRMWARE_BASE_ADDRESS	0x0000
-
 
 /* MARK: - I/O Ports */
 

@@ -4,25 +4,18 @@
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
-Released under the terms of the GNU General Public License v3. */
+Released under the terms of the GNU General Public License v3.
 
-/*-------------------------------------------------------------.
-|	File extensions: .zx82				       |
-| Integer endianness: Big				       |
-|	     Created by: William James			       |
-|		Used by: Speculator '97 (Amiga)		       |
-|							       |
-| IMPORTANT NOTICE: This format is not well known at all,      |
-| so the types and constants here declared can be useless.     |
-| The only documentation I have found is from the SinclairFAQ. |
-'-------------------------------------------------------------*/
-
-#ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZX82_H__
-#define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZX82_H__
-
-#include <Q/types/basics.h>
-
-/*------------------------------------------------------------------------.
+.-------------------------------------------------------------------------.
+| Extensions: .zx82							  |
+| Endianness: Big							  |
+| Created by: William James						  |
+|    Used by: Speculator '97 (Amiga)					  |
+|									  |
+| IMPORTANT NOTICE: This format is not well known at all,		  |
+| so the types and constants here declared can be useless.		  |
+| The only documentation I have found is from the SinclairFAQ.		  |
+|									  |
 | From SinclairFAQ:							  |
 |									  |
 | "  Amiga Speculator has its own file format called ZX82 format because  |
@@ -42,9 +35,14 @@ Released under the terms of the GNU General Public License v3. */
 |									  |
 | See:									  |
 |  Amiga ROM Kernel Reference Manual: Devices (Third Edition)		  |
-|   - Appendix A - IFF Specification (P347)				  |
-|   - Appendix C - Example Packer C code (P538).			  |
+|   - Appendix A - IFF Specification (Page 347)				  |
+|   - Appendix C - Example Packer C code (Page 538)			  |
 '------------------------------------------------------------------------*/
+
+#ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZX82_H__
+#define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZX82_H__
+
+#include <Q/types/basics.h>
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8	identifier[4];		/* {'Z', 'X', '8', '2'}				*/

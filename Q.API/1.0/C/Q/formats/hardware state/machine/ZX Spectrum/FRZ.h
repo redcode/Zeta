@@ -8,10 +8,12 @@ Copyright © Ian Greenway.
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
-File extensions: frz
-     Endianness: Big
-     Created by: CodeBusters
-	Used by: CBSpeccy [Amiga] */
+.------------------------------.
+| Extensions: .frz	       |
+| Endianness: Big	       |
+| Created by: CodeBusters      |
+|    Used by: CBSpeccy [Amiga] |
+'-----------------------------*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_FRZ_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_FRZ_H__

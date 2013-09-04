@@ -6,11 +6,14 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
-File extensions: snp
-     Endianness: Little
-     Created by: Radovan Garabik and Lubomir Salanci
-	Used by: Nuclear ZX [MS-DOS]
- Last known URL: http://korpus.juls.savba.sk/~garabik/old/zx.html */
+.--------------------------------------------------.
+| Extensions: .snp				   |
+| Endianness: Little				   |
+| Created by: Radovan Garabik and Lubomir Salanci  |
+|    Used by: Nuclear ZX [MS-DOS]		   |
+|						   |
+| http://korpus.juls.savba.sk/~garabik/old/zx.html |
+'-------------------------------------------------*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SNP_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SNP_H__

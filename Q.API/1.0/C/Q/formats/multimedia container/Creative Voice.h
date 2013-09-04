@@ -99,6 +99,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	data[];
 ) QCreativeVoiceSoundDataInNewFormat;
 
+/* MARK: - Casts */
 
 #define Q_CREATIVE_VOICE_HEADER(		  p)	((QCreativeVoiceHeader		      *)(p))
 #define Q_CREATIVE_VOICE_BLOCK_HEADER(		  p)	((QCreativeVoiceBlockHeader	      *)(p))

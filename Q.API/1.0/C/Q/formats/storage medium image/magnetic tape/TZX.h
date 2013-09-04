@@ -72,10 +72,10 @@ Released under the terms of the GNU General Public License v3.
 |   the Spectrum ROM saving routines. These values are in decimal.	       |
 |									       |
 | - If there is no pause between two data blocks then the second one should    |
-| follow immediately; not even so much as one T state between them.	       |
+|   follow immediately; not even so much as one T state between them.	       |
 |									       |
 | - This document refers to 'high' and 'low' pulse levels. Whether this is     |
-|   implemented as ear=1 and ear=0 respectively or the other way around is not |
+|   implemented as EAR=1 and EAR=0 respectively or the other way around is not |
 |   important, as long as it is done consistently.			       |
 |									       |
 | - Zeros and ones in 'Direct recording' blocks mean low and high pulse levels |
@@ -88,12 +88,12 @@ Released under the terms of the GNU General Public License v3.
 |									       |
 | - A 'Pause' block consists of a 'low' pulse level of some duration.	       |
 |   To ensure that the last edge produced is properly finished there should be |
-| at least 1ms pause of the opposite level and only after that the pulse       |
-| should go to 'low'. At the end of a 'Pause' block the 'current pulse level'  |
-| is low (note that the first pulse will therefore not immediately produce an  |
-| edge). A 'Pause' block of zero duration is completely ignored, so the	       |
-| 'current pulse level' will NOT change in this case. This also applies to     |
-| 'Data' blocks that have some pause duration included in them.		       |
+|   at least 1ms pause of the opposite level and only after that the pulse     |
+|   should go to 'low'. At the end of a 'Pause' block the 'current pulse       |
+|   level' is low (note that the first pulse will therefore not immediately    |
+|   produce an edge). A 'Pause' block of zero duration is completely ignored,  |
+|   so the 'current pulse level' will NOT change in this case. This also       |
+|   applies to 'Data' blocks that have some pause duration included in them.   |
 |									       |
 | - An emulator should put the 'current pulse level' to 'low' when starting to |
 |   play a TZX file, either from the start or from a certain position. The     |
@@ -108,28 +108,30 @@ Released under the terms of the GNU General Public License v3.
 |   playback when using modern soundcards.				       |
 |									       |
 | - The length of a block is given in the following format: numbers in square  |
-|   brackets [] mean that the value must be read from the offset in the brackets.
-  Other values are normal numbers. Example: [02,03]+0A means: get number (16bit)
-  from offset 02 and add 0A. All numbers are in hexadecimal.
+|   brackets [] mean that the value must be read from the offset in the	       |
+|   brackets. Other values are normal numbers.				       |
+|   Example: [02,03]+0A means: get number (16bit) from offset 02 and add 0A.   |
+|   All numbers are in hexadecimal.					       |
 |									       |
-- General Extension Rule: ALL custom blocks that will be added after version
-  1.10 will have the length of the block in first 4 bytes (long word) after the
-  ID (this length does not include these 4 length bytes). This should enable
-  programs that can only handle older versions to skip that block.
+| - General Extension Rule: ALL custom blocks that will be added after version |
+|   1.10 will have the length of the block in first 4 bytes (long word) after  |
+|   the ID (this length does not include these 4 length bytes). This should    |
+|   enable programs that can only handle older versions to skip that block.    |
 |									       |
-- Just in case:
-  MSB = most significant byte
-  LSB = least significant byte
-  MSb = most significant bit
-  LSb = least significant bit	*/
+| - Just in case:							       |
+|   MSB = most significant byte						       |
+|   LSB = least significant byte					       |
+|   MSb = most significant bit						       |
+|   LSb = least significant bit						       |
+'-----------------------------------------------------------------------------*/
 
 #ifndef __Q_formats_storage_medium_image_tape_TZX_H__
 #define __Q_formats_storage_medium_image_tape_TZX_H__
 
 #include <Q/types/basics.h>
 
-/* MARK: - File Header */
-/*-------------------------------------------------------------------------.
+/* MARK: - File Header
+.--------------------------------------------------------------------------.
 | The file is identified with the first 8 bytes being 'ZXTape!' plus the   |
 | 'end of file' byte 26 (1Ah). This is followed by two bytes containing    |
 | the major and minor version numbers.					   |
@@ -181,8 +183,8 @@ typedef quint8 QTZXID;
 #define Q_TZX_BLOCK_ID_CUSTOM_INFORMATION	0x35
 #define Q_TZX_BLOCK_ID_GLUE			0x5A
 
-/* MARK: - ID 10 - Standard Speed Data */
-/*----------------------------------------------------------------------------.
+/* MARK: - ID 10 - Standard Speed Data
+.-----------------------------------------------------------------------------.
 | This block must be replayed with the standard Spectrum ROM timing values    |
 | (see the values in curly brackets in block ID 11). The pilot tone consists  |
 | in 8063 pulses if the first data byte (flag byte) is < 128, 3223 otherwise. |
@@ -196,8 +198,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXStandardSpeedData;
 
-/* MARK: - ID 11 - Turbo Speed Data */
-/*----------------------------------------------------------------------------.
+/* MARK: - ID 11 - Turbo Speed Data
+.-----------------------------------------------------------------------------.
 | This block is very similar to the normal TAP block but with some additional |
 | info on the timings and other important differences. The same tape encoding |
 | is used as for the standard speed data block. If a block should use some    |
@@ -218,8 +220,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXTurboSpeedData;
 
-/* MARK: - ID 12 - Pure Tone */
-/*-----------------------------------------------------------------------.
+/* MARK: - ID 12 - Pure Tone
+.------------------------------------------------------------------------.
 | This will produce a tone which is basically the same as the pilot tone |
 | the ID 10, ID 11 blocks. You can define how long the pulse is and how  |
 | many pulses are in the tone.						 |
@@ -230,8 +232,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 pulse_count;
 ) QTZXPureTone;
 
-/* MARK: - ID 13 - Pulse Sequence */
-/*-------------------------------------------------------------.
+/* MARK: - ID 13 - Pulse Sequence
+.--------------------------------------------------------------.
 | This will produce N pulses, each having its own timing.      |
 | Up to 255 pulses can be stored in this block; this is useful |
 | for non-standard sync tones used by some protection schemes. |
@@ -242,8 +244,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 pulse_duration[];
 ) QTZXPulseSequence;
 
-/* MARK: - ID 14 - Pure Data Block */
-/*-----------------------------------------------------.
+/* MARK: - ID 14 - Pure Data Block
+.------------------------------------------------------.
 | This is the same as in the turbo loading data block, |
 | except that it has no pilot or sync pulses.	       |
 '-----------------------------------------------------*/
@@ -257,8 +259,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXPureData;
 
-/* MARK: - ID 15 - Direct Recording */
-/*--------------------------------------------------------------------------.
+/* MARK: - ID 15 - Direct Recording
+.---------------------------------------------------------------------------.
 | This block is used for tapes which have some parts in a format such that  |
 | the turbo loader block cannot be used. This is not like a VOC file, since |
 | the information is much more compact. Each sample value is represented by |
@@ -280,8 +282,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXDirectRecording;
 
-/* MARK: - ID 18 - CSW Recording */
-/*---------------------------------------------------.
+/* MARK: - ID 18 - CSW Recording
+.----------------------------------------------------.
 | This block contains a sequence of raw pulses	     |
 | encoded in CSW format v2 (Compressed Square Wave). |
 '---------------------------------------------------*/
@@ -298,8 +300,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 #define Q_TZX_CSW_COMPRESSION_TYPE_RLE		1
 #define Q_TZX_CSW_COMPRESSION_TYPE_Z_RLE	2
 
-/* MARK: - ID 19 - Generalized Data Block */
-/*----------------------------------------------------------------------------.
+/* MARK: - ID 19 - Generalized Data Block
+.-----------------------------------------------------------------------------.
 | This block has been specifically developed to represent an extremely wide   |
 | range of data encoding techniques. The basic idea is that each loading      |
 | component (pilot tone, sync pulses, data) is associated to a specific	      |
@@ -408,8 +410,8 @@ Q_DEFINE_STRICT_STRUCTURE (
    |	    | 11000001b	(C1h) |
    '-------------------------------------------------------------------------- */
 
-/* MARK: - ID 20 - Pause (Silence) or 'Stop the Tape' Command */
-/*-----------------------------------------------------------------------.
+/* MARK: - ID 20 - Pause (Silence) or 'Stop the Tape' Command
+.------------------------------------------------------------------------.
 | This will make a silence (low amplitude level (0)) for a given time in |
 | milliseconds. If the value is 0 then the emulator or utility should	 |
 | (in effect) STOP THE TAPE, i.e. should not continue loading until the	 |
@@ -420,8 +422,8 @@ Q_DEFINE_STRICT_STRUCTURE(
 	quint16 duration_ms;
 ) QTZXPause;
 
-#pragma mark - ID 21 - Group Start
-/*---------------------------------------------------------------------------.
+/* MARK: - ID 21 - Group Start
+.----------------------------------------------------------------------------.
 | This block marks the start of a group of blocks which are to be treated as |
 | one single (composite) block. This is very handy for tapes that use lots   |
 | of subblocks like Bleepload (which may well have over 160 custom loading   |
@@ -436,13 +438,13 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8 name_ascii[];
 ) QTZXGroupStart;
 
-/* MARK: - ID 22 - Group End */
-/*-----------------------------------------------------------.
+/* MARK: - ID 22 - Group End
+.------------------------------------------------------------.
 | This indicates the end of a group. This block has no body. |
 '-----------------------------------------------------------*/
 
-/* MARK: - ID 23 - Jump to Block */
-/*--------------------------------------------------------------------.
+/* MARK: - ID 23 - Jump to Block
+.---------------------------------------------------------------------.
 | This block will enable you to jump from one block to another within |
 | the file. Some examples:					      |
 |								      |
@@ -458,8 +460,8 @@ Q_DEFINE_STRICT_STRUCTURE(
 	quint16 relative_offset;
 ) QTZXJump;
 
-/* MARK: - ID 24 - Loop Start */
-/*----------------------------------------------------------------------.
+/* MARK: - ID 24 - Loop Start
+.-----------------------------------------------------------------------.
 | If you have a sequence of identical blocks, or of identical groups of |
 | blocks, you can use this block to tell how many times they should be	|
 | repeated. This block is the same as the FOR statement in BASIC.	|
@@ -471,8 +473,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 count;
 ) QTZXLoopStart;
 
-/* MARK: - ID 25 - Loop End */
-/*----------------------------------------------------------------------.
+/* MARK: - ID 25 - Loop End
+.-----------------------------------------------------------------------.
 | This is the same as BASIC's NEXT statement. It means that the utility |
 | should jump back to the start of the loop if it hasn't been run for	|
 | the specified number of times.					|
@@ -480,8 +482,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 | This block has no body.						|
 '----------------------------------------------------------------------*/
 
-/* MARK: - ID 26 - Call Sequence */
-/*---------------------------------------------------------------------------.
+/* MARK: - ID 26 - Call Sequence
+.----------------------------------------------------------------------------.
 | This block is an analogue of the CALL Subroutine statement. It basically   |
 | executes a sequence of blocks that are somewhere else and then goes back   |
 | to the next block. Because more than one call can be normally used you can |
@@ -498,8 +500,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 relative_offset[];
 ) QTZXCallSequence;
 
-/* MARK: - ID 27 - Return from Sequence */
-/*---------------------------------------------------------------------------.
+/* MARK: - ID 27 - Return from Sequence
+.----------------------------------------------------------------------------.
 | This block indicates the end of the Called Sequence. The next block played |
 | will be the block after the last CALL block (or the next Call, if the Call |
 | block had multiple calls).						     |
@@ -507,8 +509,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 | This block has no body.						     |
 '---------------------------------------------------------------------------*/
 
-/* MARK: - ID 28 - Select block */
-/*-----------------------------------------------------------------------------.
+/* MARK: - ID 28 - Select block
+.------------------------------------------------------------------------------.
 | This block is useful when the tape consists of two or more separately	       |
 | loadable parts. With this block, you are able to select one of the parts and |
 | the utility/emulator will start loading from that block. For example you can |
@@ -530,8 +532,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	description_ascii[];
 ) QTZXSelectItem;
 
-/* MARK: - ID 2A - Stop Tape if in 48K Mode */
-/*---------------------------------------------------------------------------.
+/* MARK: - ID 2A - Stop Tape if in 48K Mode
+.----------------------------------------------------------------------------.
 | When this block is encountered, the tape will stop ONLY if the machine is  |
 | an 48K Spectrum. This block is to be used for multiloading games that load |
 | one level at a time in 48K mode, but load the entire tape at once if in    |
@@ -543,8 +545,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint32 block_size;
 ) QTZXStopIf48K;
 
-/* MARK: - ID 2B - Set Signal Level */
-/*---------------------------------------------------------------------.
+/* MARK: - ID 2B - Set Signal Level
+.----------------------------------------------------------------------.
 | This block sets the current signal level to the specified value      |
 | (high or low). It should be used whenever it is necessary to avoid   |
 | any ambiguities, e.g. with custom loaders which are level-sensitive. |
@@ -558,8 +560,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 #define Q_TZX_SIGNAL_LEVEL_LOW	0
 #define Q_TZX_SIGNAL_LEVEL_HIGH	1
 
-/* MARK: - ID 30 - Description Text */
-/*-----------------------------------------------------------------------------.
+/* MARK: - ID 30 - Description Text
+.------------------------------------------------------------------------------.
 | This is meant to identify parts of the tape, so you know where level 1       |
 | starts, where to rewind to when the game ends, etc. This description is not  |
 | guaranteed to be shown while the tape is playing, but can be read while      |
@@ -576,8 +578,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8 ascii[];
 ) QTZXDescriptionText;
 
-/* MARK: - ID 31 - Message */
-/*---------------------------------------------------------------------------.
+/* MARK: - ID 31 - Message
+.----------------------------------------------------------------------------.
 | This will enable the emulators to display a message for a given time. This |
 | should not stop the tape and it should not make silence. If the time is 0  |
 | then the emulator should wait for the user to press a key.		     |
@@ -597,8 +599,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8 ascii[];
 ) QTZXMessage;
 
-/* MARK: - ID 32 - Archive information */
-/*-----------------------------------------------------------------------------.
+/* MARK: - ID 32 - Archive information
+.------------------------------------------------------------------------------.
 | Use this block at the beginning of the tape to identify the title of the     |
 | game, author, publisher, year of publication, price (including the	       |
 | currency), type of software (arcade adventure, puzzle, word processor, ...), |
@@ -628,8 +630,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	text[]; /* QTZXText */
 ) QTZXArchiveInformation;
 
-/* MARK: - ID 33 - Hardware Type */
-/*---------------------------------------------------------------------------.
+/* MARK: - ID 33 - Hardware Type
+.----------------------------------------------------------------------------.
 | This blocks contains information about the hardware that the programs on   |
 | this tape use. Please include only machines and hardware for which you are |
 | 100% sure that it either runs (or doesn't run) on or with, or you know it  |
@@ -659,8 +661,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	QTZXHardware hardware[];
 ) QTZXHardwareType;
 
-/* MARK: - ID 35 - Custom Information Block */
-/*-----------------------------------------------------------------------.
+/* MARK: - ID 35 - Custom Information Block
+.------------------------------------------------------------------------.
 | This block can be used to save any information you want. For example,	 |
 | it might contain some information written by a utility, extra settings |
 | required by a particular emulator, or even poke data.			 |
@@ -672,8 +674,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXCustomInformation;
 
-/* MARK: - ID 5A - "Glue" Block */
-/*-----------------------------------------------------------------------------.
+/* MARK: - ID 5A - "Glue" Block
+.------------------------------------------------------------------------------.
 | This block is generated when you merge two ZX Tape files together. It is     |
 | here so that you can easily copy the files together and use them. Of course, |
 | this means that resulting file would be 10 bytes longer than if this block   |
@@ -688,7 +690,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8 data[9];
 ) QTZXGlue;
 
-/* MARK: - Auxiliar pointer macros */
+/* MARK: - Casts */
 
 #define Q_TZX_STANDARD_SPEED_DATA(p)	((QTZXStandardSpeedData  *)(p))
 #define Q_TZX_TURBO_SPEED_DATA(	  p)	((QTZXTurboSpeedData	 *)(p))

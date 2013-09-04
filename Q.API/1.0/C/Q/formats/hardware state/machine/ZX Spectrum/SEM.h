@@ -6,10 +6,12 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
-File extensions: sem
-     Endianness: Little
-     Created by: Bernd Waschke
-	Used by: ZX Spectrum-Emulator (SpecEmu) [MS-DOS] */
+.-----------------------------------------------------.
+| Extensions: .sem				      |
+| Endianness: Little				      |
+| Created by: Bernd Waschke			      |
+|    Used by: ZX Spectrum-Emulator (SpecEmu) [MS-DOS] |
+'----------------------------------------------------*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SEM_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SEM_H__

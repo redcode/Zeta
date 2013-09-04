@@ -6,24 +6,24 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
-File extensions: sp
-     Endianness: Little
-     Created by: Pedro Gimeno Fortea
-	Used by: VGASpec, SPECTRUM [MS-DOS]
- Last known URL: http://www.formauri.es/personal/pgimeno/spec/spec.html
-
-From the sources of MESS:
-
-" There are two kinds of .SP files: 'old' and 'new'.
-
-  The old version is always 49184 bytes long and is created by a leaked copy
-  of the VGASpec emulator.
-
-  Subsequently Pedro Gimeno (the author of VGASpec) renamed it to 'Spectrum'
-  (but it's colloquially known as the 'Spanish Spectrum emulator') and add
-  s header in the snapshot to break backward compatibility: the new format
-  supports both 16K and 48K images and it's 16422 or 49190 bytes long. " */
-
+.----------------------------------------------------------------------------.
+| Extensions: .sp							     |
+| Endianness: Little							     |
+| Created by: Pedro Gimeno Fortea					     |
+|    Used by: VGASpec, SPECTRUM [MS-DOS]				     |
+|									     |
+| http://www.formauri.es/personal/pgimeno/spec/spec.html		     |
+|									     |
+| From the sources of MESS:						     |
+|									     |
+| " There are two kinds of .sp files: 'old' and 'new'.			     |
+| The old version is always 49184 bytes long and is created by a leaked copy |
+| of the VGASpec emulator.						     |
+| Subsequently Pedro Gimeno (the author of VGASpec) renamed it to 'Spectrum' |
+| (but it's colloquially known as the 'Spanish Spectrum emulator') and added |
+| a header in the snapshot to break backward compatibility: the new format   |
+| supports both 16K and 48K images and it's 16422 or 49190 bytes long. "     |
+'---------------------------------------------------------------------------*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SP_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SP_H__

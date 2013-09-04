@@ -9,9 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_constants_chemical_elements_H__
 #define __Q_constants_chemical_elements_H__
 
-/* Periodic Table of the Chemical Elements
-
-       01										    18
+/*     01										    18
      .----.										  .----.
      |1	  |										  |2   |
    1 | H  | 02							   13	14   15   16   17 | He |

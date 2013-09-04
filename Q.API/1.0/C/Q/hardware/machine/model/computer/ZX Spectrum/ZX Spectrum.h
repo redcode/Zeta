@@ -23,19 +23,18 @@ Released under the terms of the GNU General Public License v3.
    |____________________________________________////__|
    (__________________________________________________)
 
-	 Vendor: Sinclair Research
-   Release date: 1982-04-23
-	    CPU: Zilog Z80 @ 3.5 MHz
-	    ROM: 16K
-	    RAM: 16K / 48K
-	  Sound: Internal speaker */
+     Vendor: Sinclair Research
+   Released: 1982-04-23
+	CPU: Zilog Z80 @ 3.5 MHz
+	ROM: 16K
+	RAM: 16K / 48K
+      Sound: Internal speaker	*/
 
 #ifndef __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H__
 #define __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H__
 
-/* MARK: - Screen */
-
-/*					---
+/* MARK: - Screen
+					---
 	  Invisible Top Border		 | 8
    .---------------------------------.  ---   ---
    |	   Visible Top Border	     |	 | 48  |

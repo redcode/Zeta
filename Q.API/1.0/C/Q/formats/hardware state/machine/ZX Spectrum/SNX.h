@@ -6,11 +6,14 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
-File extensions: snx
-     Endianness: Little
-     Created by: Christian Gandler
-	Used by: Specci [ST]
- Last known URL: http://cd.textfiles.com/crawlycrypt1/apps/misc/zx_sp207 */
+.---------------------------------------------------------.
+| Extensions: .snx					  |
+| Endianness: Little					  |
+| Created by: Christian Gandler				  |
+|    Used by: Specci [ST]				  |
+|							  |
+| http://cd.textfiles.com/crawlycrypt1/apps/misc/zx_sp207 |
+'--------------------------------------------------------*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SNX_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SNX_H__

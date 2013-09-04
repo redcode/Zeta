@@ -4,14 +4,14 @@
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
-Released under the terms of the GNU General Public License v3. */
+Released under the terms of the GNU General Public License v3.
 
-/* .-----------------------------------------------------.
-   |	File extensions: .sna, .snap, .snapshot		 |
-   | Integer endianness: Little				 |
-   |	     Created by: Unknown			 |
-   |		Used by: Any decent ZX Spectrum emulator |
-   '-----------------------------------------------------' */
+.---------------------------------------------.
+| Extensions: .sna, .snap, .snapshot	      |
+| Endianness: Little			      |
+| Created by: Unknown			      |
+|    Used by: Any decent ZX Spectrum emulator |
+'--------------------------------------------*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SNA_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SNA_H__

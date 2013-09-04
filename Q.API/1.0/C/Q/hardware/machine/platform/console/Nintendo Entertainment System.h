@@ -1,17 +1,17 @@
-/* Q API - hardware/platform/console/Nintendo Entertainment System.h
+/* Q API - hardware/machine/platform/console/Nintendo Entertainment System.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
-Copyright © 2009 RedCode Software.
+Copyright © 2009 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
  CPU: Ricoh RP2A03 (see <Q/hardware/CPU/RP2A03.h>)
  GPU: Ricoh RP2C02 (see <Q/hardware/GPU/RP2C02.h>)
  APU:							*/
 
-#ifndef __Q_hardware_platform_console_Nintendo_Entertainment_System_H__
-#define __Q_hardware_platform_console_Nintendo_Entertainment_System_H__
+#ifndef __Q_hardware_machine_platform_console_Nintendo_Entertainment_System_H__
+#define __Q_hardware_machine_platform_console_Nintendo_Entertainment_System_H__
 
 #include <Q/types/basics.h>
 #include <Q/macros/bit field.h>
@@ -22,8 +22,8 @@ Released under the terms of the GNU General Public License v3.
 
 #pragma mark - External Memory Structure
 
-/* .---------------------.     .-------------------------------------.
-   | Address     | Size  |     | Content			    |
+/* .----------------------------------------------------------------.
+   | Address     | Size  | Type    | Content			    |
    |-------------+-------+----------------------------------|
    | 0000	 |       | RAM | PPU register: control	    |
    |-------------+-------+-----+----------------------------|
@@ -276,4 +276,4 @@ typedef Q_STRICT_8BIT_FIELD_WITH_3_MEMBERS (
 typedef Q_STRICT_8BIT_FIELD_WITH_2_MEMBERS (
 ) QNESNoiseRegisterD;
 
-#endif /* __Q_hardware_platform_console_Nintendo_Entertainment_System_H__ */
+#endif /* __Q_hardware_machine_platform_console_Nintendo_Entertainment_System_H__ */

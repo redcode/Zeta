@@ -64,11 +64,11 @@ typedef Q_STRICT_8BIT_FIELD (
 
 /* MARK: - I/O ports */
 
-#define Q_ZX_SPECTRUM_IO_PORT_ULA		0x01 /* read only */
-#define Q_ZX_SPECTRUM_IO_PORT_KEMPSTON_JOYSTICK	0x1F /* read only */
-#define Q_ZX_SPECTRUM_IO_PORT_FULLER_JOYSTICK	0x7F /* read only */
-#define Q_ZX_SPECTRUM_IO_PORT_MIKROGEN_JOYSTICK	0xDF /* read only */
-#define Q_ZX_SPECTRUM_IO_PORT_MULTI_IO		0xFE /* read / write */
+#define Q_ZX_SPECTRUM_IO_PORT_ULA		0x01 /* Read */
+#define Q_ZX_SPECTRUM_IO_PORT_KEMPSTON_JOYSTICK	0x1F /* Read */
+#define Q_ZX_SPECTRUM_IO_PORT_FULLER_JOYSTICK	0x7F /* Read */
+#define Q_ZX_SPECTRUM_IO_PORT_MIKROGEN_JOYSTICK	0xDF /* Read */
+#define Q_ZX_SPECTRUM_IO_PORT_MULTI_IO		0xFE /* Read / Write */
 
 #define Q_ZX_SPECTRUM_UNASSIGNED_IO_PORT_INPUT	0xFF
 

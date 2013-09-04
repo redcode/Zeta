@@ -1,4 +1,4 @@
-/* Q API - formats/character/Unicode.h
+/* Q API - formats/character set/Unicode.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,10 +6,10 @@
 Copyright © 2006-2012 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_formats_character_Unicode_H__
-#define __Q_formats_character_Unicode_H__
+#ifndef __Q_formats_character_set_Unicode_H__
+#define __Q_formats_character_set_Unicode_H__
 
-#include <Q/formats/character/ASCII.h>
+#include <Q/formats/character set/ASCII.h>
 
 typedef quint16 QUnicode;
 
@@ -144,4 +144,4 @@ typedef quint16 QUnicode;
 #define Q_UNICODE_TILDE				Q_ASCII_TILDE
 #define Q_UNICODE_DELETE			Q_ASCII_DELETE
 
-#endif /* __Q_formats_character_Unicode_H__ */
+#endif /* __Q_formats_character_set_Unicode_H__ */

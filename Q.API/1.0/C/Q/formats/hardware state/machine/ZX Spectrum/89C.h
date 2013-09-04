@@ -6,10 +6,12 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
-File extensions: 89c
-     Endianness:
-     Created by:
-	Used by: Tezxas */
+.-----------------------.
+| Extensions: .89c	|
+| Endianness:		|
+| Created by:		|
+|    Used by: Tezxas	|
+'----------------------*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_89C_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_89C_H__
