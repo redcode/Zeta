@@ -10,55 +10,51 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_constants_basics_H__
 
 #ifndef NULL
-#	define NULL		((void *)0)
+#	define NULL	 ((void *)0)
 #endif
 
 #ifndef NIL
-#	define NIL		0
+#	define NIL	 0
 #endif
 
 #ifndef TRUE
-#	define TRUE		1
+#	define TRUE	 1
 #endif
 
 #ifndef FALSE
-#	define FALSE		0
-#endif
-
-#ifndef TRUE_OR_FALSE
-#	define TRUE_OR_FALSE	2
+#	define FALSE	 0
 #endif
 
 #ifndef ON
-#	define ON		1
+#	define ON	 1
 #endif
 
 #ifndef OFF
-#	define OFF		0
+#	define OFF	 0
 #endif
 
 #ifndef POSITIVE
-#	define POSITIVE		1
+#	define POSITIVE	 1
 #endif
 
 #ifndef NEGATIVE
-#	define NEGATIVE		-1
+#	define NEGATIVE	-1
 #endif
 
 #ifndef CONTINUE
-#	define CONTINUE		0
+#	define CONTINUE	 0
 #endif
 
 #ifndef BREAK
-#	define BREAK		1
+#	define BREAK	 1
 #endif
 
 #ifndef REQUIRED
-#	define REQUIRED		1
+#	define REQUIRED	 1
 #endif
 
 #ifndef OPTIONAL
-#	define OPTIONAL		0
+#	define OPTIONAL	 0
 #endif
 
 #endif /* __Q_constants_basics_H__ */

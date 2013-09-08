@@ -10,7 +10,7 @@ Copyright © 2013 RedCode Software. All rights reserved. */
 
 #import <Foundation/NSGeometry.h>
 #import <Q/functions/Q2D.h>
-#import <Q/types/geometry.h>
+#import <Q/types/mathematics.h>
 
 typedef union {
 	Q2D	q;

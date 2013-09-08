@@ -13,7 +13,7 @@ Released under the terms of the GNU General Public License v3. */
 
 typedef quint16 QUnicode;
 
-/* MARK: - Controls and Basic Latin */
+/* MARK: - Basic Multilingual Plane */
 
 #define Q_UNICODE_NULL				Q_ASCII_NULL
 #define Q_UNICODE_START_OF_HEADING		Q_ASCII_START_OF_HEADING
@@ -143,5 +143,11 @@ typedef quint16 QUnicode;
 #define Q_UNICODE_RIGHT_CURLY_BRACKET		Q_ASCII_RIGHT_CURLY_BRACKET
 #define Q_UNICODE_TILDE				Q_ASCII_TILDE
 #define Q_UNICODE_DELETE			Q_ASCII_DELETE
+
+/* MARK: - Supplementary Multilingual Plane */
+
+/* MARK: - Supplementary Ideographic Plane */
+
+/* MARK: - Supplement­ary Special-purpose Plane */
 
 #endif /* __Q_formats_character_set_Unicode_H__ */
