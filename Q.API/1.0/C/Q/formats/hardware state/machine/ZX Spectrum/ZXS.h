@@ -9,6 +9,6 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZXS_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZXS_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 #endif /* __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZXS_H__ */

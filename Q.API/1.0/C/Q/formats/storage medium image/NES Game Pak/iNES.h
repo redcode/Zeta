@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_formats_storage_medium_image_NES_Game_Pak_iNES_H__
 #define __Q_formats_storage_medium_image_NES_Game_Pak_iNES_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 Q_DEFINE_STRICT_STRUCTURE(
 	QString nes[4];

@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v2. */
 #ifndef __Q_network_4_TCP_H__
 #define __Q_network_4_TCP_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 typedef Q_STRICT_STRUCTURE (
 	quint16 source_port;

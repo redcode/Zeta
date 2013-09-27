@@ -197,7 +197,7 @@ Released under the terms of the GNU General Public License v3.
 #ifndef __Q_hardware_GPU_Ricoh_RP2C02_H__
 #define __Q_hardware_GPU_Ricoh_RP2C02_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 #include <Q/macros/bits.h>
 
 typedef struct {

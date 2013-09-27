@@ -1,4 +1,4 @@
-/* Q API - types/basics.h
+/* Q API - types/base.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_types_basics_H__
-#define __Q_types_basics_H__
+#ifndef __Q_types_base_H__
+#define __Q_types_base_H__
 
 #include <Q/inspection/CPU.h>
 #include <Q/inspection/data model.h>
@@ -1778,4 +1778,4 @@ typedef struct {
 #define Q_FUNCTION_AND_CONTEXT(	    p) ((QFunctionAndContext	 *)(p))
 #define Q_FUNCTION_CONTEXT_AND_DATA(p) ((QFunctionContextAndData *)(p))
 
-#endif /* __Q_types_basics_H__ */
+#endif /* __Q_types_base_H__ */

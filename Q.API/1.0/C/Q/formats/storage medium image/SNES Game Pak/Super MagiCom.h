@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v2. */
 #ifndef __Q_formats_storage_medium_image_SNES_Game_Pak_Super_MagiCom_H__
 #define __Q_formats_storage_medium_image_SNES_Game_Pak_Super_MagiCom_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 
 #endif /* __Q_formats_storage_medium_image_SNES_Game_Pak_Super_MagiCom_H__ */

@@ -62,7 +62,7 @@ Released under the terms of the GNU General Public License v3.
 #	define Q_CPU_ARCHITECTURE_TOKEN Z80
 #else
 
-#	include <Q/types/basics.h>
+#	include <Q/types/base.h>
 #	include <Q/macros/bit field.h>
 
 #	pragma mark - State storage type

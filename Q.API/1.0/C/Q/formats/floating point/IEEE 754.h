@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v2. */
 #ifndef __Q_formats_floating_point_IEEE_754_H__
 #define __Q_formats_floating_point_IEEE_754_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 /* MARK: - binary16 */
 

@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_constants_map_H__
 #define __Q_constants_map_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 #define Q_SOURCE_BLOCK					 4
 #define Q_SOURCE_8BIT					 5

@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_network_3_IP_H__
 #define __Q_network_3_IP_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 Q_DEFINE_STRICT_UNION (
 	quint32 value;

@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_formats_multimedia_container_Microsoft_Wave_H__
 #define __Q_formats_multimedia_container_Microsoft_Wave_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint32 block_id;		/* 'RIFF' in big endian */

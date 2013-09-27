@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_formats_file_system_BeFS_H__
 #define __Q_formats_file_system_BeFS_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 
 #endif /* __Q_formats_file_system_BeFS_H__ */

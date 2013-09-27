@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_hardware_machine_platform_computer_ZX_Spectrum_H__
 #define __Q_hardware_machine_platform_computer_ZX_Spectrum_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 #include <Q/macros/bit field.h>
 
 /* MARK: - Video */

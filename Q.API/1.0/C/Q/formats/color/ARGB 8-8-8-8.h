@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_formats_color_ARGB_8_8_8_8_H__
 #define __Q_formats_color_ARGB_8_8_8_8_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 
 #endif /* __Q_formats_color_ARGB_8_8_8_8_H__ */

@@ -18,7 +18,7 @@ Released under the terms of the GNU General Public License v3.
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SNP_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SNP_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8	ram[1024 * 48];

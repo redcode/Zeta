@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_inspection_private_OS_H__
 #define __Q_inspection_private_OS_H__
 
-#include <Q/constants/basics.h>
+#include <Q/constants/base.h>
 #include <Q/keys/OS.h>
 
 #define Q_OS				Q_OS_MAC_OS_X

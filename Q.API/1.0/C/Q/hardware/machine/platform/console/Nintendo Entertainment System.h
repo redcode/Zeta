@@ -13,7 +13,7 @@ Released under the terms of the GNU General Public License v3.
 #ifndef __Q_hardware_machine_platform_console_Nintendo_Entertainment_System_H__
 #define __Q_hardware_machine_platform_console_Nintendo_Entertainment_System_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 #include <Q/macros/bit field.h>
 
 #define Q_NES_2A03_HZ		1789773

@@ -1,4 +1,4 @@
-/* Q API - constants/basics.h
+/* Q API - constants/base.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2012 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_constants_basics_H__
-#define __Q_constants_basics_H__
+#ifndef __Q_constants_base_H__
+#define __Q_constants_base_H__
 
 #ifndef NULL
 #	define NULL	 ((void *)0)
@@ -57,4 +57,4 @@ Released under the terms of the GNU General Public License v3. */
 #	define OPTIONAL	 0
 #endif
 
-#endif /* __Q_constants_basics_H__ */
+#endif /* __Q_constants_base_H__ */

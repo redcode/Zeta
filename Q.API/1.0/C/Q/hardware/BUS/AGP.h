@@ -9,7 +9,6 @@ Released under the terms of the GNU General Public License v2. */
 #ifndef __Q_hardware_BUS_AGP_H__
 #define __Q_hardware_BUS_AGP_H__
 
-#include <Q/types/basics.h>
 
 
 #endif /* __Q_hardware_BUS_AGP_H__ */

@@ -9,7 +9,6 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_hardware_device_ZX_Spectrum_ZX_Interface_2_H__
 #define __Q_hardware_device_ZX_Spectrum_ZX_Interface_2_H__
 
-#include <Q/types/basics.h>
 
 
 #endif /* __Q_hardware_device_ZX_Spectrum_ZX_Interface_2_H__ */

@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_hardware_machine_platform_arcade_Neo_Geo_MVS_H__
 #define __Q_hardware_machine_platform_arcade_Neo_Geo_MVS_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 /*	 .--------------------------------------------------.
 	/						     \

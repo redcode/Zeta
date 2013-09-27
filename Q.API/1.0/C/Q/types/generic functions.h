@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_types_generic_functions_H__
 #define __Q_types_generic_functions_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 /* MARK: - General pourpose context access function types */
 

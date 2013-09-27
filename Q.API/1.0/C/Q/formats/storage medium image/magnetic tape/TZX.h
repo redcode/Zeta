@@ -128,7 +128,7 @@ Released under the terms of the GNU General Public License v3.
 #ifndef __Q_formats_storage_medium_image_tape_TZX_H__
 #define __Q_formats_storage_medium_image_tape_TZX_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 /* MARK: - File Header
 .--------------------------------------------------------------------------.

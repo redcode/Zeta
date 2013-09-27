@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_functions_QRange_H__
 #define __Q_functions_QRange_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 #include <Q/inspection/language.h>
 
 #ifndef Q_RANGE_EXPORT

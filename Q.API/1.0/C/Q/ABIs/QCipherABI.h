@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_ABIs_QCipherABI_H__
 #define __Q_ABIs_QCipherABI_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 #define Q_CIPHERING_FEATURE_SEQUENTIAL	1
 #define Q_CIPHERING_FEATURE_INESTABLE	2

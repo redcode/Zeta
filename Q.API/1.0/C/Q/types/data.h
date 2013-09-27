@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_types_data_H__
 #define __Q_types_data_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 #include <Q/macros/node.h>
 
 typedef struct {
