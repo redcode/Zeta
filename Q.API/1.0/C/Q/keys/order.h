@@ -10,7 +10,7 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_keys_order_H__
 
 #define Q_ORDER_DESCENDING		-1
-#define Q_ORDER_NONE			 0
+#define Q_ORDER_EQUAL			 0
 #define Q_ORDER_ASCENDING		 1
 
 #endif /* __Q_keys_order_H__ */

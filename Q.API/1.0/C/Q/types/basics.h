@@ -14,7 +14,6 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/inspection/floating point.h>
 #include <Q/macros/inspection.h>
 #include <Q/macros/structure.h>
-#include <Q/keys/order.h>
 
 /* MARK: - Fixed integer types */
 

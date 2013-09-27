@@ -92,7 +92,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
-#define Q_DATA_MODEL_HEADER		<Q/formats/data model/Q_DATA_MODEL_NAME.h>
+#define Q_DATA_MODEL_HEADER <Q/formats/data model/Q_DATA_MODEL_NAME.h>
 
 #include Q_DATA_MODEL_HEADER
 #include <Q/macros/preprocessor.h>
@@ -100,10 +100,10 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_DATA_MODEL			Q_JOIN_2(Q_DATA_MODEL_, Q_DATA_MODEL_NAME)
 #define Q_DATA_MODEL_STRING		Q_JOIN_2(Q_DATA_MODEL_STRING_, Q_DATA_MODEL_NAME)
-#define Q_DATA_MODEL_BITS(type)		Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _BITS_, type)
-#define Q_DATA_MODEL_TYPE(type)		Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _TYPE_, type)
+#define Q_DATA_MODEL_BITS(     type)	Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _BITS_, type)
+#define Q_DATA_MODEL_TYPE(     type)	Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _TYPE_, type)
 #define Q_DATA_MODEL_BASE_TYPE(type)	Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _BASE_TYPE_, type)
-#define Q_DATA_MODEL_SUFFIX(type)	Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _SUFFIX_, type)
-#define Q_DATA_MODEL_LITERAL(type)	Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _LITERAL_, type)
+#define Q_DATA_MODEL_SUFFIX(   type)	Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _SUFFIX_, type)
+#define Q_DATA_MODEL_LITERAL(  type)	Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _LITERAL_, type)
 
 #endif /* __Q_inspection_data_model_H__ */
