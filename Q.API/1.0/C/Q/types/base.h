@@ -247,7 +247,6 @@ typedef signed char				qchar;
 #	define Q_UCHAR_FORMAT			Q_UINT16_FORMAT
 #	define Q_UCHAR_SIZE			Q_UINT16_SIZE
 #	define Q_UCHAR_MAXIMUM			Q_UINT16_MAXIMUM
-#	define Q_UCHAR_FIXED_TYPE		Q_TYPE_INT16
 
 	typedef Q2DInt16			Q2DChar;
 	typedef Q3DInt16			Q3DChar;
