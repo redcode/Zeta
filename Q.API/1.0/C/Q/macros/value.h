@@ -310,7 +310,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_ENSURE_BIG_ENDIAN(   TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_ENSURE_BIG_ENDIAN   )
 #define Q_ENSURE_LITTLE_ENDIAN(TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_ENSURE_LITTLE_ENDIAN)
-#define Q_UCHAR_BIG_ENDIAN(    TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_BIG_ENDIAN	   )
-#define Q_UCHAR_LITTLE_ENDIAN( TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_LITTLE_ENDIAN	   )
+#define Q_BIG_ENDIAN(	       TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_BIG_ENDIAN	   )
+#define Q_LITTLE_ENDIAN(       TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_LITTLE_ENDIAN	   )
 
 #endif /* __Q_macros_value_H__ */
