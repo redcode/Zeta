@@ -10,7 +10,6 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_functions_QRange_H__
 
 #include <Q/types/base.h>
-#include <Q/inspection/language.h>
 
 #ifndef Q_RANGE_EXPORT
 #	define Q_RANGE_EXPORT Q_INLINE

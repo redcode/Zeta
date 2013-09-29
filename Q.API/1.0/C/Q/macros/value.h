@@ -48,39 +48,37 @@ Released under the terms of the GNU General Public License v3. */
 #		define Q_UINT128_FROM_UINT32_MIRROR(value) (((quint128)(value)) * Q_UINT128(0x00000001000000010000000100000001))
 #		define Q_UINT128_FROM_UINT64_MIRROR(value) (((quint128)(value)) * Q_UINT128(0x00000000000000010000000000000001))
 
-#	else
-#		include <Q/inspection/language.h>
+#		define Q_AVAILABLE_128BIT_MIRRORING_MACROS
 
-#		if Q_C_HAS(COMPOUND_LITERAL)
+#	elif Q_C_HAS(COMPOUND_LITERAL)
 
-#			define Q_UINT128_FROM_UINT8_MIRROR(value)				\
-				(((quint128)value) * ((Q128Bit){				\
-					.uint64_values.index0 = Q_UINT64(0x0101010101010101),	\
-					.uint64_values.index1 = Q_UINT64(0x0101010101010101)	\
-				}).uint128_value)
+#		define Q_UINT128_FROM_UINT8_MIRROR(value)				\
+			(((quint128)value) * ((Q128Bit){				\
+				.uint64_values.index0 = Q_UINT64(0x0101010101010101),	\
+				.uint64_values.index1 = Q_UINT64(0x0101010101010101)	\
+			}).uint128_value)
 
-#			define Q_UINT128_FROM_UINT16_MIRROR(value)				\
-				(((quint128)value) * ((Q128Bit){				\
-					.uint64_values.index0 = Q_UINT64(0x0001000100010001),	\
-					.uint64_values.index1 = Q_UINT64(0x0001000100010001)	\
-				}).uint128_value)
+#		define Q_UINT128_FROM_UINT16_MIRROR(value)				\
+			(((quint128)value) * ((Q128Bit){				\
+				.uint64_values.index0 = Q_UINT64(0x0001000100010001),	\
+				.uint64_values.index1 = Q_UINT64(0x0001000100010001)	\
+			}).uint128_value)
 
-#			define Q_UINT128_FROM_UINT32_MIRROR(value)				\
-				(((quint128)value) * ((Q128Bit){				\
-					.uint64_values.index0 = Q_UINT64(0x0000000100000001),	\
-					.uint64_values.index1 = Q_UINT64(0x0000000100000001)	\
-				}).uint128_value)
+#		define Q_UINT128_FROM_UINT32_MIRROR(value)				\
+			(((quint128)value) * ((Q128Bit){				\
+				.uint64_values.index0 = Q_UINT64(0x0000000100000001),	\
+				.uint64_values.index1 = Q_UINT64(0x0000000100000001)	\
+			}).uint128_value)
 
-#			define Q_UINT128_FROM_UINT64_MIRROR(value)				\
-				(((quint128)value) * ((Q128Bit){				\
-					.uint64_values.index0 = Q_UINT64(0x0000000000000001),	\
-					.uint64_values.index1 = Q_UINT64(0x0000000000000001)	\
-				}).uint128_value)
-#		endif
+#		define Q_UINT128_FROM_UINT64_MIRROR(value)				\
+			(((quint128)value) * ((Q128Bit){				\
+				.uint64_values.index0 = Q_UINT64(0x0000000000000001),	\
+				.uint64_values.index1 = Q_UINT64(0x0000000000000001)	\
+			}).uint128_value)
+
+#		define Q_AVAILABLE_128BIT_MIRRORING_MACROS
 
 #	endif
-
-#	define Q_AVAILABLE_128BIT_MIRRORING_MACROS
 
 #endif
 

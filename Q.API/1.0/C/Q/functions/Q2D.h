@@ -10,7 +10,6 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_functions_Q2D_H__
 
 #include <Q/functions/value.h>
-#include <Q/inspection/language.h>
 
 
 /* MARK: - Operations for natural, integer and real types */

@@ -14,6 +14,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_C		Q_C11
 #define Q_C_STRING	Q_STRING_C11
 
+#define Q_C_HAS_LDOUBLE
 #define Q_C_HAS_COMPOUND_LITERAL
 #define Q_C_HAS_CPP_STYLE_COMMENT
 #define Q_C_HAS_INLINE_FUNCION

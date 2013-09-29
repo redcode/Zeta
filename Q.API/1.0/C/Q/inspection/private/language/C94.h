@@ -14,4 +14,6 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_C		Q_C94
 #define Q_C_STRING	Q_STRING_C94
 
+#define Q_C_HAS_LDOUBLE
+
 #endif /* __Q_private_language_H__ */
