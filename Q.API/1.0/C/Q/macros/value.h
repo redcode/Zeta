@@ -187,8 +187,8 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
-#define Q_REVERSED(TYPE, value)	Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_REVERSED_IN_8BIT)(value)
-#define Q_REVERSE( TYPE, value) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_REVERSE_IN_8BIT )(value)
+#define Q_REVERSED(TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_REVERSED_IN_8BIT)
+#define Q_REVERSE( TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_REVERSE_IN_8BIT )
 
 /* MARK: - Rotation */
 
@@ -308,9 +308,9 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
-#define Q_ENSURE_BIG_ENDIAN(   TYPE, value) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_ENSURE_BIG_ENDIAN   )(value)
-#define Q_ENSURE_LITTLE_ENDIAN(TYPE, value) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_ENSURE_LITTLE_ENDIAN)(value)
-#define Q_UCHAR_BIG_ENDIAN(    TYPE, value) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_BIG_ENDIAN	  )(value)
-#define Q_UCHAR_LITTLE_ENDIAN( TYPE, value) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_LITTLE_ENDIAN	  )(value)
+#define Q_ENSURE_BIG_ENDIAN(   TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_ENSURE_BIG_ENDIAN   )
+#define Q_ENSURE_LITTLE_ENDIAN(TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_ENSURE_LITTLE_ENDIAN)
+#define Q_UCHAR_BIG_ENDIAN(    TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_BIG_ENDIAN	   )
+#define Q_UCHAR_LITTLE_ENDIAN( TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_LITTLE_ENDIAN	   )
 
 #endif /* __Q_macros_value_H__ */
