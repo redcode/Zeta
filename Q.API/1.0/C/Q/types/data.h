@@ -17,6 +17,12 @@ typedef struct {
 	void *data;
 } QArray;
 
+typedef struct {
+	qsize size;
+	void *data;
+	qsize block_size;
+} QBlockArray;
+
 Q_DEFINE_LIST_NODE	 (QListNode	 );
 Q_DEFINE_CHAIN_NODE	 (QChainNode	 );
 Q_DEFINE_TREE_NODE	 (QTreeNode      );
@@ -33,6 +39,7 @@ Q_DEFINE_TREE_NODE	 (QKeyDataTreeNode,	  void *data; quintptr key;);
 Q_DEFINE_BINARY_TREE_NODE(QKeyDataBinaryTreeNode, void *data; quintptr key;);
 
 #define Q_ARRAY(		     p) ((QArray		 *)(p))
+#define Q_BLOCK_ARRAY(		     p) ((QBlockArray		 *)(p))
 #define Q_LIST_NODE(		     p) ((QListNode		 *)(p))
 #define Q_CHAIN_NODE(		     p) ((QChainNode		 *)(p))
 #define Q_TREE_NODE(		     p) ((QTreeNode		 *)(p))
