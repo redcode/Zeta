@@ -168,8 +168,7 @@ typedef struct {qint64 x, y, z, w;}		Q4DInt64;
 #define Q_INT64_Name				Int64
 #define Q_INT64_name				int64
 
-#if Q_CPU_HAS(128BIT_ARITHMETIC) && \
-    Q_COMPILER_HAS_TYPE(UINT128)
+#if Q_CPU_HAS(128BIT_ARITHMETIC) && Q_COMPILER_HAS_TYPE(UINT128)
 
 	typedef Q_COMPILER_TYPE(UINT128)	quint128;
 	typedef struct {quint128 x, y;}		Q2DUInt128;
@@ -200,8 +199,7 @@ typedef struct {qint64 x, y, z, w;}		Q4DInt64;
 
 #endif
 
-#if Q_CPU_HAS(128BIT_ARITHMETIC) && \
-    Q_COMPILER_HAS_TYPE(INT128)
+#if Q_CPU_HAS(128BIT_ARITHMETIC) && Q_COMPILER_HAS_TYPE(INT128)
 
 	typedef Q_COMPILER_TYPE(INT128)		qint128;
 	typedef struct {qint128 x, y;}		Q2DInt128;
@@ -695,9 +693,16 @@ typedef struct {qdouble x, y, z, w;}		Q4DDouble;
 #define Q_DOUBLE_Name				Double
 #define Q_DOUBLE_name				double
 
-#if Q_C_HAS(LDOUBLE)
+#define Q_LDOUBLE_NAME				LDOUBLE
+#define Q_LDOUBLE_Name				LDouble
+#define Q_LDOUBLE_name				ldouble
+
+#if Q_C_HAS(LDOUBLE) && Q_FLOATING_POINT_LDOUBLE_BITS != Q_DOUBLE_BITS
 
 	typedef long double			qldouble;
+	typedef struct {qldouble x, y;}		Q2DLDouble;
+	typedef struct {qldouble x, y, z;}	Q3DLDouble;
+	typedef struct {qldouble x, y, z, w;}	Q4DLDouble;
 #	define Q_LDOUBLE(value)			value##L
 #	define Q_LDOUBLE_SUFFIX			L
 #	define Q_LDOUBLE_BASE_TYPE		Q_TYPE_LDOUBLE
@@ -715,10 +720,16 @@ typedef struct {qdouble x, y, z, w;}		Q4DDouble;
 #	define Q_LDOUBLE_EXPONENT_MINIMUM	Q_FLOATING_POINT_LDOUBLE_EXPONENT_MINIMUM
 #	define Q_LDOUBLE_EXPONENT_10_MAXIMUM	Q_FLOATING_POINT_LDOUBLE_EXPONENT_10_MAXIMUM
 #	define Q_LDOUBLE_EXPONENT_10_MINIMUM	Q_FLOATING_POINT_LDOUBLE_EXPONENT_10_MINIMUM
+#	define Q_LDOUBLE_FIXED_TYPE_NAME	LDOUBLE
+#	define Q_LDOUBLE_FIXED_TYPE_Name	LDouble
+#	define Q_LDOUBLE_FIXED_TYPE_name	ldouble
 
 #else
 
-	typedef double				qldouble;
+	typedef qdouble				qldouble;
+	typedef Q2DDouble			Q2DLDouble;
+	typedef Q3DDouble			Q3DLDouble;
+	typedef Q4DDouble			Q4DLDouble;
 #	define Q_LDOUBLE			Q_DOUBLE
 #	define Q_LDOUBLE_SUFFIX			Q_DOUBLE_SUFFIX
 #	define Q_LDOUBLE_BASE_TYPE		Q_DOUBLE_BASE_TYPE
@@ -736,24 +747,6 @@ typedef struct {qdouble x, y, z, w;}		Q4DDouble;
 #	define Q_LDOUBLE_EXPONENT_MINIMUM	Q_DOUBLE_EXPONENT_MINIMUM
 #	define Q_LDOUBLE_EXPONENT_10_MAXIMUM	Q_DOUBLE_EXPONENT_10_MAXIMUM
 #	define Q_LDOUBLE_EXPONENT_10_MINIMUM	Q_DOUBLE_EXPONENT_10_MINIMUM
-
-#endif
-
-typedef struct {qldouble x, y;}			Q2DLDouble;
-typedef struct {qldouble x, y, z;}		Q3DLDouble;
-typedef struct {qldouble x, y, z, w;}		Q4DLDouble;
-#define Q_LDOUBLE_NAME				LDOUBLE
-#define Q_LDOUBLE_Name				LDouble
-#define Q_LDOUBLE_name				ldouble
-
-#if Q_LDOUBLE_BITS != Q_DOUBLE_BITS
-
-#	define Q_LDOUBLE_FIXED_TYPE_NAME	LDOUBLE
-#	define Q_LDOUBLE_FIXED_TYPE_Name	LDouble
-#	define Q_LDOUBLE_FIXED_TYPE_name	ldouble
-
-#else
-
 #	define Q_LDOUBLE_FIXED_TYPE_NAME	DOUBLE
 #	define Q_LDOUBLE_FIXED_TYPE_Name	Double
 #	define Q_LDOUBLE_FIXED_TYPE_name	double
@@ -990,8 +983,7 @@ typedef void*					qpointer;
 #define Q_INTTOP_Name				IntTop
 #define Q_INTTOP_name				inttop
 
-#if Q_CPU(MAXIMUM_COPY_BITS) == 128 && \
-    Q_IS_AVAILABLE(UINT128)
+#if Q_CPU(MAXIMUM_COPY_BITS) == 128 && Q_IS_AVAILABLE(UINT128)
 
 	typedef quint128			quinttop;
 	typedef Q2DUInt128			Q2DUIntTop;
@@ -1050,8 +1042,7 @@ typedef void*					qpointer;
 
 #endif
 
-#if Q_CPU(MAXIMUM_COPY_BITS) == 128 && \
-    Q_IS_AVAILABLE(INT128)
+#if Q_CPU(MAXIMUM_COPY_BITS) == 128 && Q_IS_AVAILABLE(INT128)
 
 	typedef qint128				qinttop;
 	typedef Q2DInt128			Q2DIntTop;
