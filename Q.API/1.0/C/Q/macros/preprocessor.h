@@ -31,9 +31,9 @@ Released under the terms of the GNU General Public License v3. */
 						15, 14, 13, 12, 11, 10,  9,  8,	\
 						 7,  6,  5,  4,  3,  2,  1,  0
 
-#define Q_STEP(a)				a
+#define Q_SAME(a)				a
 
-#define Q_ARGUMENT_COUNT_(...)			Q_STEP(L_PP_ARG_N(__VA_ARGS__))
+#define Q_ARGUMENT_COUNT_(...)			Q_SAME(L_PP_ARG_N(__VA_ARGS__))
 #define Q_ARGUMENT_COUNT(...)			Q_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N())
 
 #define Q_JOIN_2_(a, b)				a##b
@@ -54,7 +54,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_JOIN_N(n)				Q_JOIN_2_(Q_JOIN_, n) /* Needed for Q_JOIN(...) only */
 
-#define Q_JOIN(...)				Q_STEP(Q_JOIN_N(Q_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N()))) \
+#define Q_JOIN(...)				Q_SAME(Q_JOIN_N(Q_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N()))) \
 							(__VA_ARGS__)
 
 #define Q_HEADER(header)			<header>

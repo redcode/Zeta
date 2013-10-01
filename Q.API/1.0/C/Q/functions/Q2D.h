@@ -337,7 +337,7 @@ Q_IMPLEMENTATION_INTEGER_2D(Integer, integer)
 										\
 										\
 Q_INLINE									\
-q_2d_##type##_are_almost_equal(Q2D##Type a, Q2D##Type b)			\
+qboolean q_2d_##type##_are_almost_equal(Q2D##Type a, Q2D##Type b)		\
 	{									\
 	return	q_##type##_are_almost_equal(a.x, b.x) &&			\
 		q_##type##_are_almost_equal(a.y, b.y);				\

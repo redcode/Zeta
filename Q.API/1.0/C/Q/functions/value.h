@@ -27,13 +27,6 @@ qint##bits q_int##bits##_reversed_in_##level##bit(qint##bits value)	\
 	{return Q_##bits##BIT_REVERSED_IN_##level##BIT(value);}
 
 
-#define Q_IMPLEMENTATION_VALUE_REVERSED(type, TYPE)	\
-							\
-Q_INLINE						\
-q##type q_##type##_reversed(q##type value)		\
-	{return Q_##TYPE##_REVERSED(value);}
-
-
 Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(16,  8)
 Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(32,  8)
 Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(32, 16)
@@ -41,35 +34,14 @@ Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64,  8)
 Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64, 16)
 Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64, 32)
 
-Q_IMPLEMENTATION_VALUE_REVERSED(ushort,	 USHORT	)
-Q_IMPLEMENTATION_VALUE_REVERSED(uint,	 UINT	)
-Q_IMPLEMENTATION_VALUE_REVERSED(ulong,	 ULONG	)
-Q_IMPLEMENTATION_VALUE_REVERSED(ullong,	 ULLONG	)
-Q_IMPLEMENTATION_VALUE_REVERSED(short,	 SHORT	)
-Q_IMPLEMENTATION_VALUE_REVERSED(int,	 INT	)
-Q_IMPLEMENTATION_VALUE_REVERSED(long,	 LONG	)
-Q_IMPLEMENTATION_VALUE_REVERSED(llong,	 LLONG	)
-Q_IMPLEMENTATION_VALUE_REVERSED(uint16,	 UINT16	)
-Q_IMPLEMENTATION_VALUE_REVERSED(uint32,	 UINT32	)
-Q_IMPLEMENTATION_VALUE_REVERSED(uint64,	 UINT64	)
-Q_IMPLEMENTATION_VALUE_REVERSED(int16,	 INT16	)
-Q_IMPLEMENTATION_VALUE_REVERSED(int32,	 INT32	)
-Q_IMPLEMENTATION_VALUE_REVERSED(int64,	 INT64	)
-Q_IMPLEMENTATION_VALUE_REVERSED(size,	 SIZE	)
-Q_IMPLEMENTATION_VALUE_REVERSED(uintptr, UINTPTR)
-Q_IMPLEMENTATION_VALUE_REVERSED(uinttop, UINTTOP)
-Q_IMPLEMENTATION_VALUE_REVERSED(uintmax, UINTMAX)
-Q_IMPLEMENTATION_VALUE_REVERSED(ssize,	 SSIZE	)
-Q_IMPLEMENTATION_VALUE_REVERSED(intptr,	 INTPTR	)
-Q_IMPLEMENTATION_VALUE_REVERSED(inttop,	 INTTOP	)
-Q_IMPLEMENTATION_VALUE_REVERSED(intmax,	 INTMAX	)
-Q_IMPLEMENTATION_VALUE_REVERSED(natural, NATURAL)
-Q_IMPLEMENTATION_VALUE_REVERSED(integer, INTEGER)
-
-#if Q_CHAR_BITS > 8
-	Q_IMPLEMENTATION_VALUE_REVERSED(char,	CHAR)
-	Q_IMPLEMENTATION_VALUE_REVERSED(uchar, UCHAR)
-#endif
+#define q_uint8_reversed	q_uint8_reversed_in_8bit
+#define q_uint16_reversed	q_uint16_reversed_in_8bit
+#define q_uint32_reversed	q_uint32_reversed_in_8bit
+#define q_uint64_reversed	q_uint64_reversed_in_8bit
+#define q_int8_reversed		q_int8_reversed_in_8bit
+#define q_int16_reversed	q_int16_reversed_in_8bit
+#define q_int32_reversed	q_int32_reversed_in_8bit
+#define q_int64_reversed	q_int64_reversed_in_8bit
 
 #if Q_IS_AVAILABLE(UINT128) && Q_IS_AVAILABLE(128BIT_REVERSION_MACROS)
 
@@ -78,13 +50,12 @@ Q_IMPLEMENTATION_VALUE_REVERSED(integer, INTEGER)
 	Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(128, 32)
 	Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(128, 64)
 
-	Q_IMPLEMENTATION_VALUE_REVERSED(uint128, UINT128)
+#	define q_uint128_reversed	q_uint128_reversed_in_8bit
+#	define q_int128_reversed	q_int128_reversed_in_8bit
 
 #endif
 
-#if Q_IS_AVAILABLE(INT128) && Q_IS_AVAILABLE(128BIT_REVERSION_MACROS)
-	Q_IMPLEMENTATION_VALUE_REVERSED(int128, INT128)
-#endif
+#define q_reversed(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _reversed_in_8bit)
 
 
 /* MARK: - Rotation */
@@ -122,90 +93,8 @@ Q_IMPLEMENTATION_VALUE_ROTATED(64)
 								\
 Q_INLINE							\
 q##type q_##type##_##endianness##_endian(q##type value)		\
-	{return Q_##TYPE##_REVERSED(value);}
+	{return Q_REVERSED(TYPE)(value);}
 
-
-#if Q_CHAR_BITS > 8
-#	if Q_CHAR_ENDIANNESS == Q_ENDIANNESS_BIG
-
-#		define q_uchar_big_endian(value) (value)
-#		define	q_char_big_endian(value) (value)
-		Q_IMPLEMENTATION_VALUE_ENDIAN(uchar, UCHAR, little)
-		Q_IMPLEMENTATION_VALUE_ENDIAN( char,  CHAR,  little)
-
-#	elif Q_CHAR_ENDIANNESS == Q_ENDIANNESS_LITTLE
-
-#		define q_uchar_little_endian(value) (value)
-#		define	q_char_little_endian(value) (value)
-		Q_IMPLEMENTATION_VALUE_ENDIAN(uchar, UCHAR, big)
-		Q_IMPLEMENTATION_VALUE_ENDIAN( char,  CHAR, big)
-
-#	endif
-#endif
-
-#if Q_SHORT_ENDIANNESS == Q_ENDIANNESS_BIG
-
-#	define q_ushort_big_endian(value) (value)
-#	define	q_short_big_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(ushort, USHORT, little)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( short,  SHORT, little)
-
-#elif Q_SHORT_ENDIANNESS == Q_ENDIANNESS_LITTLE
-
-#	define q_ushort_little_endian(value) (value)
-#	define	q_short_little_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(ushort, USHORT, big)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( short,  SHORT, big)
-
-#endif
-
-#if Q_INT_ENDIANNESS == Q_ENDIANNESS_BIG
-
-#	define q_uint_big_endian(value) (value)
-#	define	q_int_big_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(uint, UINT, little)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( int,  INT, little)
-
-#elif Q_INT_ENDIANNESS == Q_ENDIANNESS_LITTLE
-
-#	define q_uint_little_endian(value) (value)
-#	define	q_int_little_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(uint, UINT, big)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( int,  INT, big)
-
-#endif
-
-#if Q_LONG_ENDIANNESS == Q_ENDIANNESS_BIG
-
-#	define q_ulong_big_endian(value) (value)
-#	define	q_long_big_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(ulong, ULONG, little)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( long,  LONG, little)
-
-#elif Q_LONG_ENDIANNESS == Q_ENDIANNESS_LITTLE
-
-#	define q_ulong_little_endian(value) (value)
-#	define	q_long_little_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(ulong, ULONG, big)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( long,  LONG, big)
-
-#endif
-
-#if Q_LLONG_ENDIANNESS == Q_ENDIANNESS_BIG
-
-#	define q_ullong_big_endian(value) (value)
-#	define	q_llong_big_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(ullong, ULLONG, little)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( llong,  LLONG, little)
-
-#elif Q_LLONG_ENDIANNESS == Q_ENDIANNESS_LITTLE
-
-#	define q_ullong_little_endian(value) (value)
-#	define	q_llong_little_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(ullong, ULLONG, big)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( llong,  LLONG, big)
-
-#endif
 
 #if Q_INT16_ENDIANNESS == Q_ENDIANNESS_BIG
 
@@ -283,93 +172,8 @@ q##type q_##type##_##endianness##_endian(q##type value)		\
 #	endif
 #endif
 
-#if Q_SIZE_ENDIANNESS == Q_ENDIANNESS_BIG
-
-#	define	q_size_big_endian(value) (value)
-#	define q_ssize_big_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(size,   SIZE, little)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(ssize, SSIZE, little)
-
-#elif Q_SIZE_ENDIANNESS == Q_ENDIANNESS_LITTLE
-
-#	define	q_size_little_endian(value) (value)
-#	define q_ssize_little_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(size,   SIZE, big)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(ssize, SSIZE, big)
-
-#endif
-
-#if Q_INTPTR_ENDIANNESS == Q_ENDIANNESS_BIG
-
-#	define q_uintptr_big_endian(value) (value)
-#	define	q_intptr_big_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(uintptr, UINTPTR, little)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( intptr,  INTPTR, little)
-
-#elif Q_INTPTR_ENDIANNESS == Q_ENDIANNESS_LITTLE
-
-#	define q_uintptr_little_endian(value) (value)
-#	define	q_intptr_little_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(uintptr, UINTPTR, big)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( intptr,  INTPTR, big)
-
-#endif
-
-#if Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_BIG
-
-#	define q_uinttop_big_endian(value) (value)
-#	define	q_inttop_big_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(uinttop, UINTTOP, little)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( inttop,  INTTOP, little)
-
-#elif Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_LITTLE
-
-#	define q_uinttop_little_endian(value) (value)
-#	define	q_inttop_little_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(uinttop, UINTTOP, big)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( inttop,  INTTOP, big)
-
-#endif
-
-#if Q_INTMAX_ENDIANNESS == Q_ENDIANNESS_BIG
-
-#	define q_uintmax_big_endian(value) (value)
-#	define	q_intmax_big_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(uintmax, UINTMAX, little)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( intmax,  INTMAX, little)
-
-#elif Q_INTMAX_ENDIANNESS == Q_ENDIANNESS_LITTLE
-
-#	define q_uintmax_little_endian(value) (value)
-#	define	q_intmax_little_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(uintmax, UINTMAX, big)
-	Q_IMPLEMENTATION_VALUE_ENDIAN( intmax,  INTMAX, big)
-
-#endif
-
-#if Q_NATURAL_ENDIANNESS == Q_ENDIANNESS_BIG
-
-#	define q_natural_big_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(natural, NATURAL, little)
-
-#elif Q_NATURAL_ENDIANNESS == Q_ENDIANNESS_LITTLE
-
-#	define q_natural_little_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(natural, NATURAL, big)
-
-#endif
-
-#if Q_INTEGER_ENDIANNESS == Q_ENDIANNESS_BIG
-
-#	define q_integer_big_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(integer, INTEGER, little)
-
-#elif Q_INTEGER_ENDIANNESS == Q_ENDIANNESS_LITTLE
-
-#	define q_integer_little_endian(value) (value)
-	Q_IMPLEMENTATION_VALUE_ENDIAN(integer, INTEGER, big)
-
-#endif
+#define q_big_endian(	TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _big_endian   )
+#define q_little_endian(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _little_endian)
 
 
 /* MARK: - Binary codified decimal */
@@ -521,13 +325,13 @@ q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)	\
 								\
 								\
 Q_INLINE							\
-q_##type##_is_nan(q##type value)				\
+qboolean q_##type##_is_nan(q##type value)			\
 	{return !(value == value);}				\
 								\
 								\
 Q_INLINE							\
 qboolean q_##type##_is_near_zero(q##type value)			\
-	{q_##type##_absolute(value) <= epsilon;}
+	{return q_##type##_absolute(value) <= epsilon;}
 
 
 Q_IMPLEMENTATION_REAL_VALUE(float,   Q_FLOAT_EPSILON  )

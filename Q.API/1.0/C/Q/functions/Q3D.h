@@ -388,7 +388,7 @@ Q_IMPLEMENTATION_INTEGER_3D(Integer, integer)
 									\
 									\
 Q_INLINE								\
-q_3d_##type##_are_almost_equal(Q3D##Type a, Q3D##Type b)		\
+qboolean q_3d_##type##_are_almost_equal(Q3D##Type a, Q3D##Type b)	\
 	{								\
 	return	q_##type##_are_almost_equal(a.x, b.x) &&		\
 		q_##type##_are_almost_equal(a.y, b.y) &&		\
