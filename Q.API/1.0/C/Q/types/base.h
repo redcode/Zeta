@@ -15,6 +15,7 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/inspection/language.h>
 #include <Q/macros/inspection.h>
 #include <Q/macros/structure.h>
+#include <Q/constants/base.h>
 
 /* MARK: - Fixed integer types */
 

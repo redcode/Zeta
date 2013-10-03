@@ -9,7 +9,6 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_inspection_private_compiler_H__
 #define __Q_inspection_private_compiler_H__
 
-#include <Q/constants/base.h>
 #include <Q/keys/compiler.h>
 #include <Q/keys/bit field.h>
 
