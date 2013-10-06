@@ -327,10 +327,10 @@ q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)		\
 Q_INLINE								\
 q##type q_##type##_smoothstep(q##type a, q##type b, q##type alpha)	\
 	{								\
-	if (alpha <= a) return 0;					\
-	if (alpha >= b) return 1;					\
+	if (alpha <= a) return _(0.0);					\
+	if (alpha >= b) return _(1.0);					\
 	alpha = (alpha - a)/(b - a);					\
-	return alpha * alpha * (3 - 2 * alpha);				\
+	return alpha * alpha * (_(3.0) - _(2.0) * alpha);		\
 	}								\
 									\
 									\
@@ -340,7 +340,9 @@ q##type q_##type##_smootherstep(q##type a, q##type b, q##type alpha)	\
 	if (alpha <= a) return 0;					\
 	if (alpha >= b) return 1;					\
 	alpha = (alpha - a)/(b - a);					\
-	return alpha * alpha * alpha * (alpha * (alpha * 6 - 15) + 10);	\
+									\
+	return	alpha * alpha * alpha *					\
+		(alpha * (alpha * _(6.0) - _(15.0)) + _(10.0));		\
 	}								\
 									\
 									\
