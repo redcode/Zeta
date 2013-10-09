@@ -6,8 +6,8 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_types_base_H__
-#define __Q_types_base_H__
+#ifndef __Q_hardware_BUS_USB_H__
+#define __Q_hardware_BUS_USB_H__
 
 /* MARK: - HID Device Usage Pages */
 
@@ -50,4 +50,4 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_USB_HID_USAGE_PAGE_ARCADE			0x91
 #define Q_USB_HID_USAGE_PAGE_VENDOR_DEFINED_START	0xFF00
 
-#endif /* __Q_types_base_H__ */
+#endif /* __Q_hardware_BUS_USB_H__ */
