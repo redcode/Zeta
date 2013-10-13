@@ -34,11 +34,11 @@ Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64,  8)
 Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64, 16)
 Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64, 32)
 
-#define q_uint8_reversed	q_uint8_reversed_in_8bit
+#define q_uint8_reversed(value)	(value)
 #define q_uint16_reversed	q_uint16_reversed_in_8bit
 #define q_uint32_reversed	q_uint32_reversed_in_8bit
 #define q_uint64_reversed	q_uint64_reversed_in_8bit
-#define q_int8_reversed		q_int8_reversed_in_8bit
+#define q_int8_reversed(value)	(value)
 #define q_int16_reversed	q_int16_reversed_in_8bit
 #define q_int32_reversed	q_int32_reversed_in_8bit
 #define q_int64_reversed	q_int64_reversed_in_8bit
@@ -55,7 +55,7 @@ Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64, 32)
 
 #endif
 
-#define q_reversed(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _reversed_in_8bit)
+#define q_reversed(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _reversed)
 
 
 /* MARK: - Rotation */
