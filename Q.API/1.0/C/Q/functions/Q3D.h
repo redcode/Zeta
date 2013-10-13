@@ -430,6 +430,16 @@ Q3D##Type q_3d_##type##_reciprocal(Q3D##Type magnitude)			\
 		(_(1.0) / magnitude.x,					\
 		 _(1.0) / magnitude.y,					\
 		 _(1.0) / magnitude.z);					\
+	}								\
+									\
+									\
+Q_INLINE								\
+Q3D##Type q_3d_##type##_cube_clamp_01(Q3D##Type magnitude)		\
+	{								\
+	return q_3d_##type						\
+		(q_##type##_clamp_01(magnitude.x),			\
+		 q_##type##_clamp_01(magnitude.y),			\
+		 q_##type##_clamp_01(magnitude.z));			\
 	}
 
 
@@ -477,6 +487,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_divide_by_scalar	q_3d_float_divide_by_scalar
 #	define q_3d_clamp		q_3d_float_clamp
 #	define q_3d_cube_clamp		q_3d_float_cube_clamp
+#	define q_3d_cube_clamp_01	q_3d_float_cube_clamp_01
 #	define q_3d_rotated_as_axes	q_3d_float_rotated_as_axes
 
 #elif defined(Q_USE_REAL_LDOUBLE)
@@ -515,6 +526,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_divide_by_scalar	q_3d_ldouble_divide_by_scalar
 #	define q_3d_clamp		q_3d_ldouble_clamp
 #	define q_3d_cube_clamp		q_3d_ldouble_cube_clamp
+#	define q_3d_cube_clamp_01	q_3d_ldouble_cube_clamp_01
 #	define q_3d_rotated_as_axes	q_3d_ldouble_rotated_as_axes
 
 #else
@@ -553,6 +565,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_divide_by_scalar	q_3d_double_divide_by_scalar
 #	define q_3d_clamp		q_3d_double_clamp
 #	define q_3d_cube_clamp		q_3d_double_cube_clamp
+#	define q_3d_cube_clamp_01	q_3d_double_cube_clamp_01
 #	define q_3d_rotated_as_axes	q_3d_double_rotated_as_axes
 
 #endif

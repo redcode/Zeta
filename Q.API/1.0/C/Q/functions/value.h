@@ -311,49 +311,54 @@ Q_IMPLEMENTATION_INTEGER_VALUE(integer)
 /* MARK: - Operations for real types only */
 
 
-#define Q_IMPLEMENTATION_REAL_VALUE(type, _, epsilon)			\
-									\
-									\
-Q_INLINE								\
-qboolean q_##type##_are_almost_equal(q##type a, q##type b)		\
-	{return q_##type##_absolute(a - b) <= epsilon;}			\
-									\
-									\
-Q_INLINE								\
-q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)		\
-	{return a + alpha * (b - a);}					\
-									\
-									\
-Q_INLINE								\
-q##type q_##type##_smoothstep(q##type a, q##type b, q##type alpha)	\
-	{								\
-	if (alpha <= a) return _(0.0);					\
-	if (alpha >= b) return _(1.0);					\
-	alpha = (alpha - a) / (b - a);					\
-	return alpha * alpha * (_(3.0) - _(2.0) * alpha);		\
-	}								\
-									\
-									\
-Q_INLINE								\
-q##type q_##type##_smootherstep(q##type a, q##type b, q##type alpha)	\
-	{								\
-	if (alpha <= a) return 0;					\
-	if (alpha >= b) return 1;					\
-	alpha = (alpha - a) / (b - a);					\
-									\
-	return	alpha * alpha * alpha *					\
-		(alpha * (alpha * _(6.0) - _(15.0)) + _(10.0));		\
-	}								\
-									\
-									\
-Q_INLINE								\
-qboolean q_##type##_is_nan(q##type value)				\
-	{return !(value == value);}					\
-									\
-									\
-Q_INLINE								\
-qboolean q_##type##_is_near_zero(q##type value)				\
-	{return q_##type##_absolute(value) <= epsilon;}
+#define Q_IMPLEMENTATION_REAL_VALUE(type, _, epsilon)				\
+										\
+										\
+Q_INLINE									\
+qboolean q_##type##_are_almost_equal(q##type a, q##type b)			\
+	{return q_##type##_absolute(a - b) <= epsilon;}				\
+										\
+										\
+Q_INLINE									\
+q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)			\
+	{return a + alpha * (b - a);}						\
+										\
+										\
+Q_INLINE									\
+q##type q_##type##_smoothstep(q##type a, q##type b, q##type alpha)		\
+	{									\
+	if (alpha <= a) return _(0.0);						\
+	if (alpha >= b) return _(1.0);						\
+	alpha = (alpha - a) / (b - a);						\
+	return alpha * alpha * (_(3.0) - _(2.0) * alpha);			\
+	}									\
+										\
+										\
+Q_INLINE									\
+q##type q_##type##_smootherstep(q##type a, q##type b, q##type alpha)		\
+	{									\
+	if (alpha <= a) return 0;						\
+	if (alpha >= b) return 1;						\
+	alpha = (alpha - a) / (b - a);						\
+										\
+	return	alpha * alpha * alpha *						\
+		(alpha * (alpha * _(6.0) - _(15.0)) + _(10.0));			\
+	}									\
+										\
+										\
+Q_INLINE									\
+qboolean q_##type##_is_nan(q##type value)					\
+	{return !(value == value);}						\
+										\
+										\
+Q_INLINE									\
+qboolean q_##type##_is_near_zero(q##type value)					\
+	{return q_##type##_absolute(value) <= epsilon;}				\
+										\
+										\
+Q_INLINE									\
+q##type q_##type##_clamp_01(q##type value)					\
+	{return q_##type##_minimum(q_##type##_maximum(value, _(0.0)), _(1.0));}
 
 
 Q_IMPLEMENTATION_REAL_VALUE(float,   Q_FLOAT,	Q_FLOAT_EPSILON	 )
@@ -377,6 +382,7 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_absolute		q_float_absolute
 #	define q_sign			q_float_sign
 #	define q_clamp			q_float_clamp
+#	define q_clamp_01		q_float_clamp_01
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
@@ -391,6 +397,7 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_absolute		q_ldouble_absolute
 #	define q_sign			q_ldouble_sign
 #	define q_clamp			q_ldouble_clamp
+#	define q_clamp_01		q_ldouble_clamp_01
 
 #else
 
@@ -405,6 +412,7 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_absolute		q_double_absolute
 #	define q_sign			q_double_sign
 #	define q_clamp			q_double_clamp
+#	define q_clamp_01		q_double_clamp_01
 
 #endif
 

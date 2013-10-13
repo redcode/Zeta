@@ -372,6 +372,15 @@ qboolean q_2d_##type##_is_near_zero(Q2D##Type magnitude)			\
 Q_INLINE									\
 Q2D##Type q_2d_##type##_reciprocal(Q2D##Type magnitude)				\
 	{return q_2d_##type(_(1.0) / magnitude.x, _(1.0) / magnitude.y);}	\
+										\
+										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_square_clamp_01(Q2D##Type magnitude)			\
+	{									\
+	return q_2d_##type							\
+		(q_##type##_clamp_01(magnitude.x),				\
+		 q_##type##_clamp_01(magnitude.y));				\
+	}
 
 
 Q_IMPLEMENTATION_REAL_2D(Float,	  float,   Q_FLOAT,   Q_FLOAT_EPSILON  )
@@ -418,6 +427,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_divide_by_scalar	q_2d_float_divide_by_scalar
 #	define q_2d_clamp		q_2d_float_clamp
 #	define q_2d_square_clamp	q_2d_float_square_clamp
+#	define q_2d_square_clamp_01	q_2d_float_square_clamp_01
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
@@ -455,6 +465,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_divide_by_scalar	q_2d_ldouble_divide_by_scalar
 #	define q_2d_clamp		q_2d_ldouble_clamp
 #	define q_2d_square_clamp	q_2d_ldouble_square_clamp
+#	define q_2d_square_clamp_01	q_2d_ldouble_square_clamp_01
 
 #else
 
@@ -492,6 +503,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_divide_by_scalar	q_2d_double_divide_by_scalar
 #	define q_2d_clamp		q_2d_double_clamp
 #	define q_2d_square_clamp	q_2d_double_square_clamp
+#	define q_2d_square_clamp_01	q_2d_double_square_clamp_01
 
 #endif
 
