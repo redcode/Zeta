@@ -17,7 +17,7 @@ Released under the terms of the GNU General Public License v3. */
 									\
 									\
 Q_INLINE								\
-qboolean q_2d_##type##_point_project(					\
+qboolean q_2d_##type##_point_projection(				\
 	Q2D##Type		point,					\
 	Q2D##Type##Rectangle	rectangle				\
 )									\
@@ -37,15 +37,15 @@ Q_IMPLEMENTATION_2D_POINT(LDouble, ldouble)
 
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_2d_point_project	q_2d_float_point_project
+#	define q_2d_point_projection	q_2d_float_point_projection
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_2d_point_project	q_2d_ldouble_point_project
+#	define q_2d_point_projection	q_2d_ldouble_point_projection
 
 #else
 
-#	define q_2d_point_project	q_2d_double_point_project
+#	define q_2d_point_projection	q_2d_double_point_projection
 
 #endif
 

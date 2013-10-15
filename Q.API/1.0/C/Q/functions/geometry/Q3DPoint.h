@@ -17,7 +17,7 @@ Released under the terms of the GNU General Public License v3. */
 							\
 							\
 Q_INLINE						\
-qboolean q_3d_##type##_point_project(			\
+qboolean q_3d_##type##_point_projection(		\
 	Q3D##Type	point,				\
 	Q3D##Type##Box	box				\
 )							\
@@ -38,15 +38,15 @@ Q_IMPLEMENTATION_3D_POINT(LDouble, ldouble)
 
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_3d_point_project	q_3d_float_point_project
+#	define q_3d_point_projection	q_3d_float_point_projection
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_3d_point_project	q_3d_ldouble_point_project
+#	define q_3d_point_projection	q_3d_ldouble_point_projection
 
 #else
 
-#	define q_3d_point_project	q_3d_double_point_project
+#	define q_3d_point_projection	q_3d_double_point_projection
 
 #endif
 
