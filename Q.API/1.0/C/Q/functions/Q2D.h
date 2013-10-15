@@ -192,6 +192,11 @@ qboolean q_2d_##type##_is_zero(Q2D##Type magnitude)				\
 										\
 										\
 Q_INLINE									\
+qboolean q_2d_##type##_inverse(Q2D##Type magnitude)				\
+	{return q_2d_##type(magnitude.y, magnitude.x);}				\
+										\
+										\
+Q_INLINE									\
 q##type q_2d_##type##_inner_sum(Q2D##Type magnitude)				\
 	{return magnitude.x + magnitude.y;}					\
 										\
@@ -417,6 +422,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_negative		q_2d_float_negative
 #	define q_2d_absolute		q_2d_float_absolute
 #	define q_2d_reciprocal		q_2d_float_reciprocal
+#	define q_2d_inverse		q_2d_float_inverse
 #	define q_2d_inner_sum		q_2d_float_inner_sum
 #	define q_2d_inner_product	q_2d_float_inner_product
 #	define q_2d_inner_minimum	q_2d_float_inner_minimum
@@ -455,6 +461,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_negative		q_2d_ldouble_negative
 #	define q_2d_absolute		q_2d_ldouble_absolute
 #	define q_2d_reciprocal		q_2d_ldouble_reciprocal
+#	define q_2d_inverse		q_2d_ldouble_inverse
 #	define q_2d_inner_sum		q_2d_ldouble_inner_sum
 #	define q_2d_inner_product	q_2d_ldouble_inner_product
 #	define q_2d_inner_minimum	q_2d_ldouble_inner_minimum
@@ -493,6 +500,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_negative		q_2d_double_negative
 #	define q_2d_absolute		q_2d_double_absolute
 #	define q_2d_reciprocal		q_2d_double_reciprocal
+#	define q_2d_inverse		q_2d_double_inverse
 #	define q_2d_inner_sum		q_2d_double_inner_sum
 #	define q_2d_inner_product	q_2d_double_inner_product
 #	define q_2d_inner_minimum	q_2d_double_inner_minimum
