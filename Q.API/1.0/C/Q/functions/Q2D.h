@@ -192,7 +192,7 @@ qboolean q_2d_##type##_is_zero(Q2D##Type magnitude)				\
 										\
 										\
 Q_INLINE									\
-qboolean q_2d_##type##_inverse(Q2D##Type magnitude)				\
+Q2D##Type q_2d_##type##_inverse(Q2D##Type magnitude)				\
 	{return q_2d_##type(magnitude.y, magnitude.x);}				\
 										\
 										\
