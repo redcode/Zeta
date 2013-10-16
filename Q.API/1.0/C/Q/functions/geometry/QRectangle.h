@@ -311,6 +311,163 @@ Q##Type##Rectangle q_##type##_rectangle_bottom_right_quarter(			\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_fit_in_top_left(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	Q##Type##Rectangle result;						\
+										\
+	result.size = q_2d_##type##_fit(size, rectangle.size);			\
+	result.point.x = rectangle.point.x;					\
+	result.point.y = rectangle.point.y + rectangle.size.y - result.size.y;	\
+	return result;								\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_fit_in_top_right(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	Q##Type##Rectangle result;						\
+										\
+	result.size = q_2d_##type##_fit(size, rectangle.size);			\
+	result.point.x = rectangle.point.x + rectangle.size.x - result.size.x;	\
+	result.point.y = rectangle.point.y + rectangle.size.y - result.size.y;	\
+	return result;								\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_fit_in_top_center(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	Q##Type##Rectangle result;						\
+										\
+	result.size = q_2d_##type##_fit(size, rectangle.size);			\
+										\
+	result.point.x =							\
+		rectangle.point.x +						\
+		(rectangle.size.x - result.size.x) / _(2.0);			\
+										\
+	result.point.y = rectangle.point.y + rectangle.size.y - result.size.y;	\
+	return result;								\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_left(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	Q##Type##Rectangle result;						\
+										\
+	result.size = q_2d_##type##_fit(size, rectangle.size);			\
+	result.point = rectangle.point;						\
+	return result;								\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_right(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	Q##Type##Rectangle result;						\
+										\
+	result.size = q_2d_##type##_fit(size, rectangle.size);			\
+	result.point.x = rectangle.point.x + rectangle.size.x - result.size.x;	\
+	result.point.y = rectangle.point.y;					\
+	return result;								\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_center(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	Q##Type##Rectangle result;						\
+										\
+	result.size = q_2d_##type##_fit(size, rectangle.size);			\
+										\
+	result.point.x =							\
+		rectangle.point.x +						\
+		(rectangle.size.x - result.size.x) / _(2.0);			\
+										\
+	result.point.y = rectangle.point.y;					\
+	return result;								\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_fit_in_center_left(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	Q##Type##Rectangle result;						\
+										\
+	result.size = q_2d_##type##_fit(size, rectangle.size);			\
+	result.point.x = rectangle.point.x;					\
+										\
+	result.point.y =							\
+		rectangle.point.y +						\
+		(rectangle.size.y - result.size.y) / _(2.0);			\
+										\
+	return result;								\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_fit_in_center_right(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	Q##Type##Rectangle result;						\
+										\
+	result.size = q_2d_##type##_fit(size, rectangle.size);			\
+	result.point.x = rectangle.point.x + rectangle.size.x - result.size.x;	\
+										\
+	result.point.y =							\
+		rectangle.point.y +						\
+		(rectangle.size.y - result.size.y) / _(2.0);			\
+										\
+	return result;								\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_fit_in_center(				\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	Q##Type##Rectangle result;						\
+										\
+	result.size = q_2d_##type##_fit(size, rectangle.size);			\
+										\
+	result.point.x =							\
+		rectangle.point.x +						\
+		(rectangle.size.x - result.size.x) / _(2.0);			\
+										\
+	result.point.y =							\
+		rectangle.point.y +						\
+		(rectangle.size.y - result.size.y) / _(2.0);			\
+										\
+	return result;								\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
 Q##Type##Circle q_##type##_rectangle_inner_circle(Q##Type##Rectangle rectangle)	\
 	{									\
 	Q##Type##Circle result;							\
@@ -426,6 +583,15 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_top_right_quarter		q_float_rectangle_top_right_quarter
 #	define q_rectangle_bottom_left_quarter		q_float_rectangle_bottom_left_quarter
 #	define q_rectangle_bottom_right_quarter		q_float_rectangle_bottom_right_quarter
+#	define q_rectangle_fit_in_top_left		q_float_rectangle_fit_in_top_left
+#	define q_rectangle_fit_in_top_right		q_float_rectangle_fit_in_top_right
+#	define q_rectangle_fit_in_top_center		q_float_rectangle_fit_in_top_center
+#	define q_rectangle_fit_in_bottom_left		q_float_rectangle_fit_in_bottom_left
+#	define q_rectangle_fit_in_bottom_right		q_float_rectangle_fit_in_bottom_right
+#	define q_rectangle_fit_in_bottom_center		q_float_rectangle_fit_in_bottom_center
+#	define q_rectangle_fit_in_center_left		q_float_rectangle_fit_in_center_left
+#	define q_rectangle_fit_in_center_right		q_float_rectangle_fit_in_center_right
+#	define q_rectangle_fit_in_center		q_float_rectangle_fit_in_center
 #	define q_rectangle_inner_circle			q_float_rectangle_inner_circle
 #	define q_rectangle_to_aabr			q_float_rectangle_to_aabr
 #	define q_rectangle_contains_point		q_float_rectangle_contains_point
@@ -465,6 +631,15 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_top_right_quarter		q_ldouble_rectangle_top_right_quarter
 #	define q_rectangle_bottom_left_quarter		q_ldouble_rectangle_bottom_left_quarter
 #	define q_rectangle_bottom_right_quarter		q_ldouble_rectangle_bottom_right_quarter
+#	define q_rectangle_fit_in_top_left		q_ldouble_rectangle_fit_in_top_left
+#	define q_rectangle_fit_in_top_right		q_ldouble_rectangle_fit_in_top_right
+#	define q_rectangle_fit_in_top_center		q_ldouble_rectangle_fit_in_top_center
+#	define q_rectangle_fit_in_bottom_left		q_ldouble_rectangle_fit_in_bottom_left
+#	define q_rectangle_fit_in_bottom_right		q_ldouble_rectangle_fit_in_bottom_right
+#	define q_rectangle_fit_in_bottom_center		q_ldouble_rectangle_fit_in_bottom_center
+#	define q_rectangle_fit_in_center_left		q_ldouble_rectangle_fit_in_center_left
+#	define q_rectangle_fit_in_center_right		q_ldouble_rectangle_fit_in_center_right
+#	define q_rectangle_fit_in_center		q_ldouble_rectangle_fit_in_center
 #	define q_rectangle_inner_circle			q_ldouble_rectangle_inner_circle
 #	define q_rectangle_to_aabr			q_ldouble_rectangle_to_aabr
 #	define q_rectangle_contains_point		q_ldouble_rectangle_contains_point
@@ -504,6 +679,15 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_top_right_quarter		q_double_rectangle_top_right_quarter
 #	define q_rectangle_bottom_left_quarter		q_double_rectangle_bottom_left_quarter
 #	define q_rectangle_bottom_right_quarter		q_double_rectangle_bottom_right_quarter
+#	define q_rectangle_fit_in_top_left		q_double_rectangle_fit_in_top_left
+#	define q_rectangle_fit_in_top_right		q_double_rectangle_fit_in_top_right
+#	define q_rectangle_fit_in_top_center		q_double_rectangle_fit_in_top_center
+#	define q_rectangle_fit_in_bottom_left		q_double_rectangle_fit_in_bottom_left
+#	define q_rectangle_fit_in_bottom_right		q_double_rectangle_fit_in_bottom_right
+#	define q_rectangle_fit_in_bottom_center		q_double_rectangle_fit_in_bottom_center
+#	define q_rectangle_fit_in_center_left		q_double_rectangle_fit_in_center_left
+#	define q_rectangle_fit_in_center_right		q_double_rectangle_fit_in_center_right
+#	define q_rectangle_fit_in_center		q_double_rectangle_fit_in_center
 #	define q_rectangle_inner_circle			q_double_rectangle_inner_circle
 #	define q_rectangle_to_aabr			q_double_rectangle_to_aabr
 #	define q_rectangle_contains_point		q_double_rectangle_contains_point
