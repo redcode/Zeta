@@ -365,11 +365,8 @@ Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_left(			\
 	Q##2D##Type		size						\
 )										\
 	{									\
-	Q##Type##Rectangle result;						\
-										\
-	result.size = q_2d_##type##_fit(size, rectangle.size);			\
-	result.point = rectangle.point;						\
-	return result;								\
+	rectangle.size = q_2d_##type##_fit(size, rectangle.size);		\
+	return rectangle;							\
 	}									\
 										\
 										\

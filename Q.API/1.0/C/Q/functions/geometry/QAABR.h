@@ -220,6 +220,131 @@ Q##Type##AABR q_##type##_aabr_bottom_right_quarter(Q##Type##AABR aabr)		\
 										\
 										\
 Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_fit_in_top_left(					\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	size = q_2d_##type##_fit(size, q_##type##_aabr_size(aabr));		\
+										\
+	return q_##type##_aabr							\
+		(aabr.a.x,	    aabr.b.y - size.y,				\
+		 aabr.a.x + size.x, aabr.b.y);					\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_fit_in_top_right(					\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	aabr.a = q_2d_##type##_subtract						\
+		(aabr.b, q_2d_##type##_fit(size, q_##type##_aabr_size(aabr)));	\
+										\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_fit_in_top_center(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
+										\
+	aabr.a.y = aabr.b.y - (size = q_2d_##type##_fit(size, old_size)).y;	\
+	aabr.b.x = (aabr.a.x += (old_size.x - size.x) / _(2.0)) + size.x;	\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_fit_in_bottom_left(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	aabr.b = q_2d_##type##_add						\
+		(aabr.a, q_2d_##type##_fit(size, q_##type##_aabr_size(aabr)));	\
+										\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_fit_in_bottom_right(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	size = q_2d_##type##_fit(size, q_##type##_aabr_size(aabr));		\
+										\
+	return q_##type##_aabr							\
+		(aabr.b.x - size.x, aabr.a.y,					\
+		 aabr.b.x,	    aabr.a.y + size.y);				\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_fit_in_bottom_center(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
+										\
+	aabr.b.y = aabr.a.y + (size = q_2d_##type##_fit(size, old_size)).y;	\
+	aabr.b.x = (aabr.a.x += (old_size.x - size.x) / _(2.0)) + size.x;	\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_fit_in_center_left(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
+										\
+	aabr.b.x = aabr.a.x + (size = q_2d_##type##_fit(size, old_size)).x;	\
+	aabr.b.y = (aabr.a.y += (old_size.y - size.y) / _(2.0)) + size.y;	\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_fit_in_center_right(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
+										\
+	aabr.a.x = aabr.b.x - (size = q_2d_##type##_fit(size, old_size)).x;	\
+	aabr.b.y = (aabr.a.y += (old_size.y - size.y) / _(2.0)) + size.y;	\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_fit_in_center(					\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
+										\
+	size = q_2d_##type##_fit(size, old_size);				\
+	aabr.b.x = (aabr.a.x += (old_size.x - size.x) / _(2.0)) + size.x;	\
+	aabr.b.y = (aabr.a.y += (old_size.y - size.y) / _(2.0)) + size.y;	\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
 Q##Type##Circle q_##type##_aabr_inner_circle(Q##Type##AABR aabr)		\
 	{									\
 	Q##Type##Circle result;							\
@@ -324,6 +449,15 @@ Q_IMPLEMENTATION_AABR(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabr_top_right_quarter		q_float_aabr_top_right_quarter
 #	define q_aabr_bottom_left_quarter	q_float_aabr_bottom_left_quarter
 #	define q_aabr_bottom_right_quarter	q_float_aabr_bottom_right_quarter
+#	define q_aabr_fit_in_top_left		q_float_aabr_fit_in_top_left
+#	define q_aabr_fit_in_top_right		q_float_aabr_fit_in_top_right
+#	define q_aabr_fit_in_top_center		q_float_aabr_fit_in_top_center
+#	define q_aabr_fit_in_bottom_left	q_float_aabr_fit_in_bottom_left
+#	define q_aabr_fit_in_bottom_right	q_float_aabr_fit_in_bottom_right
+#	define q_aabr_fit_in_bottom_center	q_float_aabr_fit_in_bottom_center
+#	define q_aabr_fit_in_center_left	q_float_aabr_fit_in_center_left
+#	define q_aabr_fit_in_center_right	q_float_aabr_fit_in_center_right
+#	define q_aabr_fit_in_center		q_float_aabr_fit_in_center
 #	define q_aabr_inner_circle		q_float_aabr_inner_circle
 #	define q_aabr_to_rectangle		q_float_aabr_to_rectangle
 #	define q_aabr_contains_point		q_float_aabr_contains_point
@@ -358,6 +492,15 @@ Q_IMPLEMENTATION_AABR(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabr_top_right_quarter		q_ldouble_aabr_top_right_quarter
 #	define q_aabr_bottom_left_quarter	q_ldouble_aabr_bottom_left_quarter
 #	define q_aabr_bottom_right_quarter	q_ldouble_aabr_bottom_right_quarter
+#	define q_aabr_fit_in_top_left		q_ldouble_aabr_fit_in_top_left
+#	define q_aabr_fit_in_top_right		q_ldouble_aabr_fit_in_top_right
+#	define q_aabr_fit_in_top_center		q_ldouble_aabr_fit_in_top_center
+#	define q_aabr_fit_in_bottom_left	q_ldouble_aabr_fit_in_bottom_left
+#	define q_aabr_fit_in_bottom_right	q_ldouble_aabr_fit_in_bottom_right
+#	define q_aabr_fit_in_bottom_center	q_ldouble_aabr_fit_in_bottom_center
+#	define q_aabr_fit_in_center_left	q_ldouble_aabr_fit_in_center_left
+#	define q_aabr_fit_in_center_right	q_ldouble_aabr_fit_in_center_right
+#	define q_aabr_fit_in_center		q_ldouble_aabr_fit_in_center
 #	define q_aabr_inner_circle		q_ldouble_aabr_inner_circle
 #	define q_aabr_to_rectangle		q_ldouble_aabr_to_rectangle
 #	define q_aabr_contains_point		q_ldouble_aabr_contains_point
@@ -392,6 +535,15 @@ Q_IMPLEMENTATION_AABR(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabr_top_right_quarter		q_double_aabr_top_right_quarter
 #	define q_aabr_bottom_left_quarter	q_double_aabr_bottom_left_quarter
 #	define q_aabr_bottom_right_quarter	q_double_aabr_bottom_right_quarter
+#	define q_aabr_fit_in_top_left		q_double_aabr_fit_in_top_left
+#	define q_aabr_fit_in_top_right		q_double_aabr_fit_in_top_right
+#	define q_aabr_fit_in_top_center		q_double_aabr_fit_in_top_center
+#	define q_aabr_fit_in_bottom_left	q_double_aabr_fit_in_bottom_left
+#	define q_aabr_fit_in_bottom_right	q_double_aabr_fit_in_bottom_right
+#	define q_aabr_fit_in_bottom_center	q_double_aabr_fit_in_bottom_center
+#	define q_aabr_fit_in_center_left	q_double_aabr_fit_in_center_left
+#	define q_aabr_fit_in_center_right	q_double_aabr_fit_in_center_right
+#	define q_aabr_fit_in_center		q_double_aabr_fit_in_center
 #	define q_aabr_inner_circle		q_double_aabr_inner_circle
 #	define q_aabr_to_rectangle		q_double_aabr_to_rectangle
 #	define q_aabr_contains_point		q_double_aabr_contains_point
