@@ -9,11 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_functions_QRange_H__
 #define __Q_functions_QRange_H__
 
-#include <Q/types/base.h>
-
-#ifndef Q_RANGE_EXPORT
-#	define Q_RANGE_EXPORT Q_INLINE
-#endif
+#include <Q/functions/value.h>
 
 #if Q_C_HAS(COMPOUND_LITERAL)
 #	define q_range(index, size) ((QRange){index, size})
@@ -25,44 +21,41 @@ Released under the terms of the GNU General Public License v3. */
 #define q_range_zero q_range(0, 0)
 
 
-Q_RANGE_EXPORT
+Q_INLINE
 qboolean q_range_are_equal(QRange a, QRange b)
 	{return a.index == b.index && a.size == b.size;}
 
 
-Q_RANGE_EXPORT
+Q_INLINE
 void q_range_swap(QRange *a, QRange *b)
 	{
 	QRange t = *a;
 
-	*a = *b;
-	*b = t;
+	*a = *b; *b = t;
 	}
 
 
-Q_RANGE_EXPORT
+Q_INLINE
 qboolean q_range_contains(QRange a, QRange b)
 	{return b.index >= a.index && b.index + b.size <= a.index + a.size;}
 
 
-Q_RANGE_EXPORT
+Q_INLINE
 qboolean q_range_collision(QRange a, QRange b)
 	{return a.index < b.index + b.size && b.index < a.index + a.size;}
 
 
-Q_RANGE_EXPORT
+Q_INLINE
 QRange q_range_intersection(QRange a, QRange b)
 	{
-	qsize	a_maximum = a.index + a.size,
-		b_maximum = b.index + b.size,
-		minimum	  = (a_maximum < b_maximum) ? a_maximum : b_maximum,
-		index	  = (a.index   > b.index  ) ? a.index   : b.index;
+	qsize	minimum = q_size_minimum(a.index + a.size, b.index + b.size),
+		index	= (a.index > b.index) ? a.index : b.index;
 
-	return minimum < index ? q_range_zero : q_range(index, minimum - index);
+	return minimum <= index ? q_range_zero : q_range(index, minimum - index);
 	}
 
 
-Q_RANGE_EXPORT
+Q_INLINE
 QRange q_range_union(QRange a, QRange b)
 	{
 	qsize	a_maximum = a.index + a.size,
@@ -75,22 +68,22 @@ QRange q_range_union(QRange a, QRange b)
 	}
 
 
-Q_RANGE_EXPORT
+Q_INLINE
 QRange q_range_from_indices(qsize a, qsize b)
 	{return a < b ? q_range(a, b - a) : q_range(b, a - b);}
 
 
-Q_RANGE_EXPORT
+Q_INLINE
 qboolean q_range_is_zero(QRange range)
 	{return range.index == 0 && range.size == 0;}
 
 
-Q_RANGE_EXPORT
+Q_INLINE
 qsize q_range_end(QRange range)
 	{return range.index + range.size;}
 
 
-Q_RANGE_EXPORT
+Q_INLINE
 qboolean q_range_contains_index(QRange range, qsize index)
 	{return index >= range.index && index < range.index + range.size;}
 
