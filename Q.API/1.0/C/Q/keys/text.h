@@ -9,14 +9,14 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_keys_allocation_H__
 #define __Q_keys_allocation_H__
 
-#define Q_TEXT_ALIGNMENT_CENTER				0
-#define Q_TEXT_ALIGNMENT_LEFT				1
-#define Q_TEXT_ALIGNMENT_RIGHT				2
+#define Q_TEXT_ALIGNMENT_CENTER			 0
+#define Q_TEXT_ALIGNMENT_LEFT			 1
+#define Q_TEXT_ALIGNMENT_RIGHT			 2
 
-#define Q_TEXT_LINE_BREAK_MODE_WORD_WRAP		0
-#define Q_TEXT_LINE_BREAK_MODE_CLIP			1
-#define Q_TEXT_LINE_BREAK_MODE_HEAD_TRUNCATION		2
-#define Q_TEXT_LINE_BREAK_MODE_TAIL_TRUNCATION		3
-#define Q_TEXT_LINE_BREAK_MODE_MIDDLE_TRUNCATION	4
+#define Q_TEXT_LINE_BREAK_MODE_WORD_WRAP	 0
+#define Q_TEXT_LINE_BREAK_MODE_CLIP		 1
+#define Q_TEXT_LINE_BREAK_MODE_HEAD_TRUNCATION	 2
+#define Q_TEXT_LINE_BREAK_MODE_TAIL_TRUNCATION	 3
+#define Q_TEXT_LINE_BREAK_MODE_MIDDLE_TRUNCATION 4
 
 #endif /* __Q_keys_text_H__ */

@@ -9,8 +9,8 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_keys_order_H__
 #define __Q_keys_order_H__
 
-#define Q_ORDER_DESCENDING		-1
-#define Q_ORDER_EQUAL			 0
-#define Q_ORDER_ASCENDING		 1
+#define Q_ORDER_DESCENDING -1
+#define Q_ORDER_EQUAL	    0
+#define Q_ORDER_ASCENDING   1
 
 #endif /* __Q_keys_order_H__ */
