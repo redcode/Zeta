@@ -490,6 +490,32 @@ Q##Type##AABR q_##type##_rectangle_to_aabr(Q##Type##Rectangle rectangle)	\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
+Q2D##Type q_##type##_rectangle_absolute_point_to_normal(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q2D##Type		point						\
+										\
+)										\
+	{									\
+	return q_2d_##type							\
+		((point.x - rectangle.point.x) / rectangle.size.x,		\
+		 (point.y - rectangle.point.y) / rectangle.size.y);		\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q2D##Type q_##type##_rectangle_normal_point_to_absolute(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q2D##Type		point						\
+										\
+)										\
+	{									\
+	return q_2d_##type							\
+		(point.x * rectangle.size.x + rectangle.point.x,		\
+		 point.y * rectangle.size.y + rectangle.point.y);		\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
 qboolean q_##type##_rectangle_contains_point(					\
 	Q##Type##Rectangle	rectangle,					\
 	Q2D##Type		point						\
@@ -591,6 +617,8 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_fit_in_center		q_float_rectangle_fit_in_center
 #	define q_rectangle_inner_circle			q_float_rectangle_inner_circle
 #	define q_rectangle_to_aabr			q_float_rectangle_to_aabr
+#	define q_rectangle_absolute_point_to_normal	q_float_rectangle_absolute_point_to_normal
+#	define q_rectangle_normal_point_to_absolute	q_float_rectangle_normal_point_to_absolute
 #	define q_rectangle_contains_point		q_float_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_float_rectangle_contains_line_segment
 #	define q_rectangle_contains_aabr		q_float_rectangle_contains_aabr
@@ -639,6 +667,8 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_fit_in_center		q_ldouble_rectangle_fit_in_center
 #	define q_rectangle_inner_circle			q_ldouble_rectangle_inner_circle
 #	define q_rectangle_to_aabr			q_ldouble_rectangle_to_aabr
+#	define q_rectangle_absolute_point_to_normal	q_ldouble_rectangle_absolute_point_to_normal
+#	define q_rectangle_normal_point_to_absolute	q_ldouble_rectangle_normal_point_to_absolute
 #	define q_rectangle_contains_point		q_ldouble_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_ldouble_rectangle_contains_line_segment
 #	define q_rectangle_contains_aabr		q_ldouble_rectangle_contains_aabr
@@ -687,6 +717,8 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_fit_in_center		q_double_rectangle_fit_in_center
 #	define q_rectangle_inner_circle			q_double_rectangle_inner_circle
 #	define q_rectangle_to_aabr			q_double_rectangle_to_aabr
+#	define q_rectangle_absolute_point_to_normal	q_double_rectangle_absolute_point_to_normal
+#	define q_rectangle_normal_point_to_absolute	q_double_rectangle_normal_point_to_absolute
 #	define q_rectangle_contains_point		q_double_rectangle_contains_point
 #	define q_rectangle_contains_line_segment	q_double_rectangle_contains_line_segment
 #	define q_rectangle_contains_aabr		q_double_rectangle_contains_aabr

@@ -155,6 +155,34 @@ Q##Type##AABB q_##type##_box_to_aabb(Q##Type##Box box)				\
 										\
 										\
 Q_BOX_EXPORT									\
+Q3D##Type q_##type##_box_absolute_point_to_normal(				\
+	Q##Type##Box	box,							\
+	Q3D##Type	point							\
+										\
+)										\
+	{									\
+	return q_3d_##type							\
+		((point.x - box.point.x) / box.size.x,				\
+		 (point.y - box.point.y) / box.size.y,				\
+		 (point.z - box.point.z) / box.size.z);				\
+	}									\
+										\
+										\
+Q_BOX_EXPORT									\
+Q3D##Type q_##type##_box_normal_point_to_absolute(				\
+	Q##Type##Box	box,							\
+	Q3D##Type	point							\
+										\
+)										\
+	{									\
+	return q_3d_##type							\
+		(point.x * box.size.x + box.point.x,				\
+		 point.y * box.size.y + box.point.y,				\
+		 point.z * box.size.z + box.point.z);				\
+	}									\
+										\
+										\
+Q_BOX_EXPORT									\
 qboolean q_##type##_box_contains_point(Q##Type##Box box, Q3D##Type point)	\
 	{									\
 	return	point.x >= box.point.x		    &&				\
@@ -223,6 +251,8 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_center			q_float_box_center
 #	define q_box_inner_sphere		q_float_box_inner_sphere
 #	define q_box_to_aabb			q_float_box_to_aabb
+#	define q_box_absolute_point_to_normal	q_float_box_absolute_point_to_normal
+#	define q_box_normal_point_to_absolute	q_float_box_normal_point_to_absolute
 #	define q_box_contains_point		q_float_box_contains_point
 #	define q_box_contains_line_segment	q_float_box_contains_line_segment
 #	define q_box_contains_aabb		q_float_box_contains_aabb
@@ -240,6 +270,8 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_center			q_ldouble_box_center
 #	define q_box_inner_sphere		q_ldouble_box_inner_sphere
 #	define q_box_to_aabb			q_ldouble_box_to_aabb
+#	define q_box_absolute_point_to_normal	q_ldouble_box_absolute_point_to_normal
+#	define q_box_normal_point_to_absolute	q_ldouble_box_normal_point_to_absolute
 #	define q_box_contains_point		q_ldouble_box_contains_point
 #	define q_box_contains_line_segment	q_ldouble_box_contains_line_segment
 #	define q_box_contains_aabb		q_ldouble_box_contains_aabb
@@ -257,6 +289,8 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_center			q_double_box_center
 #	define q_box_inner_sphere		q_double_box_inner_sphere
 #	define q_box_to_aabb			q_double_box_to_aabb
+#	define q_box_absolute_point_to_normal	q_double_box_absolute_point_to_normal
+#	define q_box_normal_point_to_absolute	q_double_box_normal_point_to_absolute
 #	define q_box_contains_point		q_double_box_contains_point
 #	define q_box_contains_line_segment	q_double_box_contains_line_segment
 #	define q_box_contains_aabb		q_double_box_contains_aabb
