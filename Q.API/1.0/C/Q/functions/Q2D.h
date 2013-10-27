@@ -385,6 +385,22 @@ qboolean q_2d_##type##_is_near_zero(Q2D##Type magnitude)			\
 										\
 										\
 Q_INLINE									\
+qboolean q_2d_##type##_is_nan(Q2D##Type magnitude)				\
+	{									\
+	return	!(magnitude.x == magnitude.x) &&				\
+		!(magnitude.y == magnitude.y);					\
+	}									\
+										\
+										\
+Q_INLINE									\
+qboolean q_2d_##type##_has_nan(Q2D##Type magnitude)				\
+	{									\
+	return	!(magnitude.x == magnitude.x) ||				\
+		!(magnitude.y == magnitude.y);					\
+	}									\
+										\
+										\
+Q_INLINE									\
 Q2D##Type q_2d_##type##_reciprocal(Q2D##Type magnitude)				\
 	{return q_2d_##type(_(1.0) / magnitude.x, _(1.0) / magnitude.y);}	\
 										\
@@ -429,6 +445,8 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_from_scalar		q_2d_float_from_scalar
 #	define q_2d_is_zero		q_2d_float_is_zero
 #	define q_2d_is_near_zero	q_2d_float_is_near_zero
+#	define q_2d_is_nan		q_2d_float_is_nan
+#	define q_2d_has_nan		q_2d_float_has_nan
 #	define q_2d_negative		q_2d_float_negative
 #	define q_2d_absolute		q_2d_float_absolute
 #	define q_2d_reciprocal		q_2d_float_reciprocal
@@ -470,6 +488,8 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_from_scalar		q_2d_ldouble_from_scalar
 #	define q_2d_is_zero		q_2d_ldouble_is_zero
 #	define q_2d_is_near_zero	q_2d_ldouble_is_near_zero
+#	define q_2d_is_nan		q_2d_ldouble_is_nan
+#	define q_2d_has_nan		q_2d_ldouble_has_nan
 #	define q_2d_negative		q_2d_ldouble_negative
 #	define q_2d_absolute		q_2d_ldouble_absolute
 #	define q_2d_reciprocal		q_2d_ldouble_reciprocal
@@ -511,6 +531,8 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_from_scalar		q_2d_double_from_scalar
 #	define q_2d_is_zero		q_2d_double_is_zero
 #	define q_2d_is_near_zero	q_2d_double_is_near_zero
+#	define q_2d_is_nan		q_2d_double_is_nan
+#	define q_2d_has_nan		q_2d_double_has_nan
 #	define q_2d_negative		q_2d_double_negative
 #	define q_2d_absolute		q_2d_double_absolute
 #	define q_2d_reciprocal		q_2d_double_reciprocal

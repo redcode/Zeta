@@ -444,6 +444,24 @@ qboolean q_3d_##type##_is_near_zero(Q3D##Type magnitude)		\
 									\
 									\
 Q_INLINE								\
+qboolean q_3d_##type##_is_nan(Q3D##Type magnitude)			\
+	{								\
+	return	!(magnitude.x == magnitude.x) &&			\
+		!(magnitude.y == magnitude.y) &&			\
+		!(magnitude.z == magnitude.z);				\
+	}								\
+									\
+									\
+Q_INLINE								\
+qboolean q_3d_##type##_has_nan(Q3D##Type magnitude)			\
+	{								\
+	return	!(magnitude.x == magnitude.x) ||			\
+		!(magnitude.y == magnitude.y) ||			\
+		!(magnitude.z == magnitude.z);				\
+	}								\
+									\
+									\
+Q_INLINE								\
 Q3D##Type q_3d_##type##_reciprocal(Q3D##Type magnitude)			\
 	{								\
 	return q_3d_##type						\
@@ -494,6 +512,8 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_from_scalar		q_3d_float_from_scalar
 #	define q_3d_is_zero		q_3d_float_is_zero
 #	define q_3d_is_near_zero	q_3d_float_is_near_zero
+#	define q_3d_is_nan		q_3d_float_is_nan
+#	define q_3d_has_nan		q_3d_float_has_nan
 #	define q_3d_negative		q_3d_float_negative
 #	define q_3d_absolute		q_3d_float_absolute
 #	define q_3d_reciprocal		q_3d_float_reciprocal
@@ -535,6 +555,8 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_from_scalar		q_3d_ldouble_from_scalar
 #	define q_3d_is_zero		q_3d_ldouble_is_zero
 #	define q_3d_is_near_zero	q_3d_ldouble_is_near_zero
+#	define q_3d_is_nan		q_3d_ldouble_is_nan
+#	define q_3d_has_nan		q_3d_ldouble_has_nan
 #	define q_3d_negative		q_3d_ldouble_negative
 #	define q_3d_absolute		q_3d_ldouble_absolute
 #	define q_3d_reciprocal		q_3d_ldouble_reciprocal
@@ -576,6 +598,8 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_from_scalar		q_3d_double_from_scalar
 #	define q_3d_is_zero		q_3d_double_is_zero
 #	define q_3d_is_near_zero	q_3d_double_is_near_zero
+#	define q_3d_is_nan		q_3d_double_is_nan
+#	define q_3d_has_nan		q_3d_double_has_nan
 #	define q_3d_negative		q_3d_double_negative
 #	define q_3d_absolute		q_3d_double_absolute
 #	define q_3d_reciprocal		q_3d_double_reciprocal
