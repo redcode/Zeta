@@ -25,6 +25,4 @@ Released under the terms of the GNU General Public License v3. */
 #	define COMMA ,
 #endif
 
-#ifndef QUOTES "
-
 #endif /* __Q_macros_language_H__ */
