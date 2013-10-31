@@ -311,6 +311,117 @@ Q##Type##Rectangle q_##type##_rectangle_bottom_right_quarter(			\
 										\
 										\
 Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_align_in_top_left(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	rectangle.point.y += rectangle.size.y - size.y;				\
+	rectangle.size = size;							\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_align_in_top_right(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	rectangle.point.x += rectangle.size.x - size.x;				\
+	rectangle.point.y += rectangle.size.y - size.y;				\
+	rectangle.size = size;							\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_align_in_top_center(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	rectangle.point.x += (rectangle.size.x - size.x) / _(2.0);		\
+	rectangle.point.y +=  rectangle.size.y - size.y;			\
+	rectangle.size = size;							\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_left(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	rectangle.size = size;							\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_right(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	rectangle.point.x += rectangle.size.x - size.x;				\
+	rectangle.size = size;							\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_center(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	rectangle.point.x += (rectangle.size.x - size.x) / _(2.0);		\
+	rectangle.size = size;							\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_align_in_center_left(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	rectangle.point.y += (rectangle.size.y - size.y) / _(2.0);		\
+	rectangle.size = size;							\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_align_in_center_right(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	rectangle.point.x += rectangle.size.x - size.x;				\
+	rectangle.point.y += (rectangle.size.y - size.y) / _(2.0);		\
+	rectangle.size = size;							\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
+Q##Type##Rectangle q_##type##_rectangle_align_in_center(			\
+	Q##Type##Rectangle	rectangle,					\
+	Q##2D##Type		size						\
+)										\
+	{									\
+	rectangle.point.x += (rectangle.size.x - size.x) / _(2.0);		\
+	rectangle.point.y += (rectangle.size.y - size.y) / _(2.0);		\
+	rectangle.size = size;							\
+	return rectangle;							\
+	}									\
+										\
+										\
+Q_RECTANGLE_EXPORT								\
 Q##Type##Rectangle q_##type##_rectangle_fit_in_top_left(			\
 	Q##Type##Rectangle	rectangle,					\
 	Q##2D##Type		size						\
@@ -606,6 +717,15 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_top_right_quarter		q_float_rectangle_top_right_quarter
 #	define q_rectangle_bottom_left_quarter		q_float_rectangle_bottom_left_quarter
 #	define q_rectangle_bottom_right_quarter		q_float_rectangle_bottom_right_quarter
+#	define q_rectangle_align_in_top_left		q_float_rectangle_align_in_top_left
+#	define q_rectangle_align_in_top_right		q_float_rectangle_align_in_top_right
+#	define q_rectangle_align_in_top_center		q_float_rectangle_align_in_top_center
+#	define q_rectangle_align_in_bottom_left		q_float_rectangle_align_in_bottom_left
+#	define q_rectangle_align_in_bottom_right	q_float_rectangle_align_in_bottom_right
+#	define q_rectangle_align_in_bottom_center	q_float_rectangle_align_in_bottom_center
+#	define q_rectangle_align_in_center_left		q_float_rectangle_align_in_center_left
+#	define q_rectangle_align_in_center_right	q_float_rectangle_align_in_center_right
+#	define q_rectangle_align_in_center		q_float_rectangle_align_in_center
 #	define q_rectangle_fit_in_top_left		q_float_rectangle_fit_in_top_left
 #	define q_rectangle_fit_in_top_right		q_float_rectangle_fit_in_top_right
 #	define q_rectangle_fit_in_top_center		q_float_rectangle_fit_in_top_center
@@ -656,6 +776,15 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_top_right_quarter		q_ldouble_rectangle_top_right_quarter
 #	define q_rectangle_bottom_left_quarter		q_ldouble_rectangle_bottom_left_quarter
 #	define q_rectangle_bottom_right_quarter		q_ldouble_rectangle_bottom_right_quarter
+#	define q_rectangle_align_in_top_left		q_ldouble_rectangle_align_in_top_left
+#	define q_rectangle_align_in_top_right		q_ldouble_rectangle_align_in_top_right
+#	define q_rectangle_align_in_top_center		q_ldouble_rectangle_align_in_top_center
+#	define q_rectangle_align_in_bottom_left		q_ldouble_rectangle_align_in_bottom_left
+#	define q_rectangle_align_in_bottom_right	q_ldouble_rectangle_align_in_bottom_right
+#	define q_rectangle_align_in_bottom_center	q_ldouble_rectangle_align_in_bottom_center
+#	define q_rectangle_align_in_center_left		q_ldouble_rectangle_align_in_center_left
+#	define q_rectangle_align_in_center_right	q_ldouble_rectangle_align_in_center_right
+#	define q_rectangle_align_in_center		q_ldouble_rectangle_align_in_center
 #	define q_rectangle_fit_in_top_left		q_ldouble_rectangle_fit_in_top_left
 #	define q_rectangle_fit_in_top_right		q_ldouble_rectangle_fit_in_top_right
 #	define q_rectangle_fit_in_top_center		q_ldouble_rectangle_fit_in_top_center
@@ -706,6 +835,15 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_top_right_quarter		q_double_rectangle_top_right_quarter
 #	define q_rectangle_bottom_left_quarter		q_double_rectangle_bottom_left_quarter
 #	define q_rectangle_bottom_right_quarter		q_double_rectangle_bottom_right_quarter
+#	define q_rectangle_align_in_top_left		q_double_rectangle_align_in_top_left
+#	define q_rectangle_align_in_top_right		q_double_rectangle_align_in_top_right
+#	define q_rectangle_align_in_top_center		q_double_rectangle_align_in_top_center
+#	define q_rectangle_align_in_bottom_left		q_double_rectangle_align_in_bottom_left
+#	define q_rectangle_align_in_bottom_right	q_double_rectangle_align_in_bottom_right
+#	define q_rectangle_align_in_bottom_center	q_double_rectangle_align_in_bottom_center
+#	define q_rectangle_align_in_center_left		q_double_rectangle_align_in_center_left
+#	define q_rectangle_align_in_center_right	q_double_rectangle_align_in_center_right
+#	define q_rectangle_align_in_center		q_double_rectangle_align_in_center
 #	define q_rectangle_fit_in_top_left		q_double_rectangle_fit_in_top_left
 #	define q_rectangle_fit_in_top_right		q_double_rectangle_fit_in_top_right
 #	define q_rectangle_fit_in_top_center		q_double_rectangle_fit_in_top_center
@@ -727,3 +865,4 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #endif
 
 #endif /* __Q_functions_geometry_QRectangle_H__ */
+  
