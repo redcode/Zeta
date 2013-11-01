@@ -146,11 +146,11 @@ Q##Type##Sphere q_##type##_box_inner_sphere(Q##Type##Box box)			\
 Q_BOX_EXPORT									\
 Q##Type##AABB q_##type##_box_to_aabb(Q##Type##Box box)				\
 	{									\
-	Q##Type##AABB result;							\
-										\
-	result.a = box.point;							\
-	result.b = q_3d_##type##_add(box.point, box.size);			\
-	return result;								\
+	return q_##type##_aabb							\
+		(box.point.x,  box.point.y, box.point.z,			\
+		 box.point.x + box.size.x,					\
+		 box.point.y + box.size.y,					\
+		 box.point.z + box.size.z);					\
 	}									\
 										\
 										\

@@ -401,7 +401,7 @@ Q##Type##Rectangle q_##type##_rectangle_align_in_center_right(			\
 	Q##2D##Type		size						\
 )										\
 	{									\
-	rectangle.point.x += rectangle.size.x - size.x;				\
+	rectangle.point.x +=  rectangle.size.x - size.x;			\
 	rectangle.point.y += (rectangle.size.y - size.y) / _(2.0);		\
 	rectangle.size = size;							\
 	return rectangle;							\
@@ -592,11 +592,10 @@ Q##Type##Circle q_##type##_rectangle_inner_circle(Q##Type##Rectangle rectangle)	
 Q_RECTANGLE_EXPORT								\
 Q##Type##AABR q_##type##_rectangle_to_aabr(Q##Type##Rectangle rectangle)	\
 	{									\
-	Q##Type##AABR result;							\
-										\
-	result.a = rectangle.point;						\
-	result.b = q_2d_##type##_add(rectangle.point, rectangle.size);		\
-	return result;								\
+	return q_##type##_aabr							\
+		(rectangle.point.x,  rectangle.point.y,				\
+		 rectangle.point.x + rectangle.size.x,				\
+		 rectangle.point.y + rectangle.size.y);				\
 	}									\
 										\
 										\

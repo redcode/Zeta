@@ -220,6 +220,129 @@ Q##Type##AABR q_##type##_aabr_bottom_right_quarter(Q##Type##AABR aabr)		\
 										\
 										\
 Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_align_in_top_left(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	aabr.a.y = aabr.b.y - size.y;						\
+	aabr.b.x = aabr.a.x + size.x;						\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_align_in_top_right(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	aabr.a.x = aabr.b.x - size.x;						\
+	aabr.a.y = aabr.b.y - size.y;						\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_align_in_top_center(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	aabr.a.y = aabr.b.y - size.y;						\
+										\
+	aabr.b.x =								\
+	(aabr.a.x += (aabr.b.x - aabr.a.x - size.x) / _(2.0)) + size.x;		\
+										\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_align_in_bottom_left(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	aabr.b.x = aabr.a.x + size.x;						\
+	aabr.b.y = aabr.a.y + size.y;						\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_align_in_bottom_right(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	aabr.a.x = aabr.b.x - size.x;						\
+	aabr.b.y = aabr.b.y + size.x;						\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_align_in_bottom_center(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	aabr.b.x =								\
+	(aabr.a.x += (aabr.b.x - aabr.a.x - size.x) / _(2.0)) + size.x;		\
+										\
+	aabr.b.y = aabr.a.y + size.y;						\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_align_in_center_left(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	aabr.b.x = aabr.a.x + size.x;						\
+										\
+	aabr.b.y =								\
+	(aabr.a.y += (aabr.b.y - aabr.a.y - size.y) / _(2.0)) + size.y;		\
+										\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_align_in_center_right(				\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	aabr.a.x = aabr.b.x - size.x;						\
+										\
+	aabr.b.y =								\
+	(aabr.a.y += (aabr.b.y - aabr.a.y - size.y) / _(2.0)) + size.y;		\
+										\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
+Q##Type##AABR q_##type##_aabr_align_in_center(					\
+	Q##Type##AABR	aabr,							\
+	Q##2D##Type	size							\
+)										\
+	{									\
+	aabr.b.x =								\
+	(aabr.a.x += (aabr.b.x - aabr.a.x - size.x) / _(2.0)) + size.x;		\
+										\
+	aabr.b.y =								\
+	(aabr.a.y += (aabr.b.y - aabr.a.y - size.y) / _(2.0)) + size.y;		\
+										\
+	return aabr;								\
+	}									\
+										\
+										\
+Q_AABR_EXPORT									\
 Q##Type##AABR q_##type##_aabr_fit_in_top_left(					\
 	Q##Type##AABR	aabr,							\
 	Q##2D##Type	size							\
@@ -227,9 +350,9 @@ Q##Type##AABR q_##type##_aabr_fit_in_top_left(					\
 	{									\
 	size = q_2d_##type##_fit(size, q_##type##_aabr_size(aabr));		\
 										\
-	return q_##type##_aabr							\
-		(aabr.a.x,	    aabr.b.y - size.y,				\
-		 aabr.a.x + size.x, aabr.b.y);					\
+	aabr.a.y = aabr.b.y - size.y;						\
+	aabr.b.x = aabr.a.x + size.x;						\
+	return aabr;								\
 	}									\
 										\
 										\
@@ -362,11 +485,9 @@ Q##Type##Circle q_##type##_aabr_inner_circle(Q##Type##AABR aabr)		\
 Q_AABR_EXPORT									\
 Q##Type##Rectangle q_##type##_aabr_to_rectangle(Q##Type##AABR aabr)		\
 	{									\
-	Q##Type##Rectangle result;						\
-										\
-	result.point = aabr.a;							\
-	result.size  = q_2d_##type##_subtract(aabr.b, aabr.a);			\
-	return result;								\
+	return q_##type##_rectangle						\
+		(aabr.a.x, aabr.a.y,						\
+		 aabr.b.x - aabr.a.x, aabr.b.y - aabr.a.y);			\
 	}									\
 										\
 										\
