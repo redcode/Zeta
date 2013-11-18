@@ -137,7 +137,7 @@ typedef Q_STRICT_8BIT_FIELD (
    | ,		 = SYMBOL SHIFT + N	|
    | ;		 = SYMBOL SHIFT + O	|
    | "		 = SYMBOL SHIFT + P	|
-   '------------------------------------' */
+   '-----------------------------------*/
 
 typedef Q_STRICT_8BIT_FIELD (
 	quint8 unused	    :3,
