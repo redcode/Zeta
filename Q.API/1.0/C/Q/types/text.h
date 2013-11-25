@@ -13,7 +13,6 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/keys/text.h>
 #include <Q/keys/formats/character set.h>
 
-typedef quint8	QTextAlignment;
 typedef quint8	QTextLineBreakMode;
 typedef quint16 QCharacterSet;
 
