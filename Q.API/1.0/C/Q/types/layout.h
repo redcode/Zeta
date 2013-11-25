@@ -11,6 +11,15 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/base.h>
 
+typedef quint8 QAlignment;
+
+#define Q_ALIGNMENT_TYPE	Q_UINT8_TYPE
+#define Q_ALIGNMENT_FIXED_TYPE	Q_UINT8_FIXED_TYPE
+#define Q_ALIGNMENT_BASE_TYPE	Q_UINT8_BASE_TYPE
+#define Q_ALIGNMENT_FORMAT	Q_UINT8_FORMAT
+#define Q_ALIGNMENT_BITS	Q_UINT8_BITS
+#define Q_ALIGNMENT_SIZE	Q_UINT8_SIZE
+
 typedef quint8 QScaling;
 
 #define Q_SCALING_TYPE		Q_UINT8_TYPE
