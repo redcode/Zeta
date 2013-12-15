@@ -79,9 +79,9 @@ typedef Q3DLDoubleVector				Q3DLDoubleLine;
 
 /* MARK: - 3D - Plane */
 
-typedef struct {Q3DFloat   normal; qfloat   offset}	QFloatPlane;
-typedef struct {Q3DDouble  normal; qdouble  offset}	QDoublePlane;
-typedef struct {Q3DLDouble normal; qldouble offset}	QLDoublePlane;
+typedef struct {Q3DFloat   normal; qfloat   offset;}	QFloatPlane;
+typedef struct {Q3DDouble  normal; qdouble  offset;}	QDoublePlane;
+typedef struct {Q3DLDouble normal; qldouble offset;}	QLDoublePlane;
 
 /* MARK: - 3D - Ray */
 
