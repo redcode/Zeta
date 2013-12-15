@@ -864,3 +864,4 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #endif
 
 #endif /* __Q_functions_geometry_QRectangle_H__ */
+  
