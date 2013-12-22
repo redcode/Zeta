@@ -31,7 +31,7 @@ Released under the terms of the GNU General Public License v3. */
 #		include Q_HEADER(Q_JOIN_2(MODULE_NAME, _HEADER))
 #	endif
 #elif defined(MODULE_HEADER)
-#	include Q_HEADER(MODULE_HEADER)
+#	include MODULE_HEADER
 #endif
 
 #endif /* __Q_macros_module_H__ */
