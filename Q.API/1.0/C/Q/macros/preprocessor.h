@@ -10,6 +10,10 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_macros_preprocessor_H__
 #define __Q_macros_preprocessor_H__
 
+#define Q_SAME(	  whatever)			  whatever
+#define Q_QUOTED_(whatever)			  #whatever
+#define Q_QUOTED( whatever)			  Q_QUOTED_(whatever)
+
 #define L_PP_ARG_N(		 		\
 	 _1,  _2,  _3,	_4,  _5,  _6,  _7,  _8, \
 	 _9, _10, _11, _12, _13, _14, _15, _16, \
@@ -31,10 +35,8 @@ Released under the terms of the GNU General Public License v3. */
 						  15, 14, 13, 12, 11, 10,  9,  8, \
 						   7,  6,  5,  4,  3,  2,  1,  0
 
-#define Q_SAME(a)				  a
-
 #define Q_ARGUMENT_COUNT_(...)			  Q_SAME(L_PP_ARG_N(__VA_ARGS__))
-#define Q_ARGUMENT_COUNT(...)			  Q_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N())
+#define Q_ARGUMENT_COUNT( ...)			  Q_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N())
 
 #define Q_JOIN_2_(a, b)				  a##b
 #define Q_JOIN_3_(a, b, c)			  a##b##c
@@ -73,6 +75,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_JOIN_7_DEFINED(a, b, c, d, e, f, g)	  Q_JOIN_7_DEFINED_(a, b, c, d, e, f, g)
 #define Q_JOIN_8_DEFINED(a, b, c, d, e, f, g, h)  Q_JOIN_8_DEFINED_(a, b, c, d, e, f, g, h)
 
-#define Q_HEADER(header)			  <header>
+#define Q_HEADER(      header)			  <header>
+#define Q_LOCAL_HEADER(header)			  Q_QUOTED(header)
 
 #endif /* __Q_macros_preprocessor_H__ */

@@ -33,17 +33,17 @@ Released under the terms of the GNU General Public License v3.
    .-----------------------------------.
    | F E D C B A 9 8 | 7 6 5 4 3 2 1 0 |
    |-----------------------------------|
-   |		    PC		       |
+   |		    PC		       | Program Counter
    '-----------------------------------|
-		     |	     SP	       |
+		     |	      SP       | Stack Pointer
 		     |-----------------|
-		     |	     S	       |
+		     |	      S	       | Status (flags)
 		     |-----------------|
-		     |	     A	       |
+		     |	      A	       | Accumulator
 		     |-----------------|
-		     |	     X	       |
+		     |	      X	       | X Index
 		     |-----------------|
-		     |	     Y	       |
+		     |	      Y	       | Y Index
 		     '-----------------'
 
    Status (S register):
@@ -93,14 +93,6 @@ Released under the terms of the GNU General Public License v3.
 #	define Q_6502_STATE_MEMBER_A	a
 #	define Q_6502_STATE_MEMBER_X	x
 #	define Q_6502_STATE_MEMBER_Y	y
-
-	Q_DEFINE_STRICT_STRUCTURE (
-		quint8 opcode;
-		union {	quint16 uint16;
-			quint8	uint8;
-			qint8	int8;
-		} data;
-	) Q6502Instruction;
 
 #endif
 
