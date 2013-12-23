@@ -1,4 +1,4 @@
-/* Q API - macros/module.h
+/* Q API - configuration/module.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_macros_module_H__
-#define __Q_macros_module_H__
+#ifndef __Q_configuration_module_H__
+#define __Q_configuration_module_H__
 
 #include <Q/macros/preprocessor.h>
 
@@ -34,4 +34,4 @@ Released under the terms of the GNU General Public License v3. */
 #	include MODULE_HEADER
 #endif
 
-#endif /* __Q_macros_module_H__ */
+#endif /* __Q_configuration_module_H__ */
