@@ -6,9 +6,6 @@
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_configuration_module_H__
-#define __Q_configuration_module_H__
-
 #include <Q/macros/preprocessor.h>
 
 #if Q_JOIN_2_DEFINED(MODULE_NAME, _PREFIX)
@@ -33,5 +30,3 @@ Released under the terms of the GNU General Public License v3. */
 #elif defined(MODULE_HEADER)
 #	include MODULE_HEADER
 #endif
-
-#endif /* __Q_configuration_module_H__ */
