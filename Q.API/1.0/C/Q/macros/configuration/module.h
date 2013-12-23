@@ -18,7 +18,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #define SYMBOL(symbol) Q_JOIN_2(MODULE_PREFIX, symbol)
 
-#if Q_JOIN_2_DEFINED(MODULE_NAME, _USE_PUBLIC_SYMBOLS)
+#if defined(BUILDING_HYBRID_MODULE) || Q_JOIN_2_DEFINED(MODULE_NAME, _USE_PUBLIC_SYMBOLS)
 #	define EXPORTED(type, symbol)	     type SYMBOL(symbol)
 #else
 #	define EXPORTED(type, symbol) static type SYMBOL(symbol)
