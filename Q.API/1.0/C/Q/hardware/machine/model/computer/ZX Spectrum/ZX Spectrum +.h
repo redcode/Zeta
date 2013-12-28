@@ -4,8 +4,9 @@
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2009 Manuel Sainz de Baranda y Goñi.
-Released under the terms of the GNU General Public License v3.
+Released under the terms of the GNU General Public License v3. */
 
+/* MARK: - View
    .-----------------------------............................-----------.
    |  ___. __  __    __ . __						|
    | __\ ||  ||__|__|--|||						|
@@ -87,10 +88,10 @@ Released under the terms of the GNU General Public License v3.
 
 /* MARK: - Memory */
 
-#define Q_ZX_SPECTRUM_PLUS_MEMORY_SIZE			(1024 * 16 + 1024 * 48)
-#define Q_ZX_SPECTRUM_PLUS_RAM_SIZE			(1024 * 48)
-#define Q_ZX_SPECTRUM_PLUS_ROM_SIZE			Q_ZX_SPECTRUM_ROM_SIZE
-#define Q_ZX_SPECTRUM_PLUS_FIRMWARE_SIZE		Q_ZX_SPECTRUM_FIRMWARE_SIZE
-#define Q_ZX_SPECTRUM_PLUS_FIRMWARE_BASE_ADDRESS	Q_ZX_SPECTRUM_FIRMWARE_BASE_ADDRESS
+#define Q_ZX_SPECTRUM_PLUS_MEMORY_SIZE				(1024 * 16 + 1024 * 48)
+#define Q_ZX_SPECTRUM_PLUS_RAM_SIZE				(1024 * 48)
+#define Q_ZX_SPECTRUM_PLUS_ROM_SIZE				Q_ZX_SPECTRUM_ROM_SIZE
+#define Q_ZX_SPECTRUM_PLUS_FIRMWARE_SIZE			Q_ZX_SPECTRUM_FIRMWARE_SIZE
+#define Q_ZX_SPECTRUM_PLUS_FIRMWARE_BASE_ADDRESS		Q_ZX_SPECTRUM_FIRMWARE_BASE_ADDRESS
 
 #endif /* __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H__ */

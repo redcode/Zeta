@@ -35,9 +35,9 @@ Released under the terms of the GNU General Public License v3.
    |-----------------------------------|
    |		    PC		       | Program Counter
    '-----------------------------------|
-		     |	      SP       | Stack Pointer
+		     |	      S	       | Stack Pointer
 		     |-----------------|
-		     |	      S	       | Status (flags)
+		     |	      P	       | Program Status (flags)
 		     |-----------------|
 		     |	      A	       | Accumulator
 		     |-----------------|
@@ -46,7 +46,7 @@ Released under the terms of the GNU General Public License v3.
 		     |	      Y	       | Y Index
 		     '-----------------'
 
-   Status (S register):
+   Status (P register):
    .-----------------.
    | 7 6 5 4 3 2 1 0 |
    | N V - B D I Z C |
@@ -66,7 +66,7 @@ Released under the terms of the GNU General Public License v3.
 #include <Q/keys/endianness.h>
 
 #ifdef Q_INSPECTING
-#	define Q_CPU_ARCHITECTURE_TOKEN 650X
+#	define Q_CPU_ARCHITECTURE_TOKEN M650X
 #else
 
 #	include <Q/types/base.h>
@@ -75,21 +75,21 @@ Released under the terms of the GNU General Public License v3.
 
 	typedef struct {
 		quint16	pc;
-		quint8	sp, s, a, x, y;	
+		quint8	s, p, a, x, y;
 	} Q6502State;
 
 #	define Q_6502_STATE(p) ((Q6502State *)(p))
 
 #	define Q_6502_STATE_PC(object)	(object)->pc
-#	define Q_6502_STATE_SP(object)	(object)->sp
 #	define Q_6502_STATE_S( object)	(object)->s
+#	define Q_6502_STATE_P( object)	(object)->p
 #	define Q_6502_STATE_A( object)	(object)->a
 #	define Q_6502_STATE_X( object)	(object)->x
 #	define Q_6502_STATE_Y( object)	(object)->y
 
 #	define Q_6502_STATE_MEMBER_PC	pc
-#	define Q_6502_STATE_MEMBER_SP	sp
 #	define Q_6502_STATE_MEMBER_S	s
+#	define Q_6502_STATE_MEMBER_P	p
 #	define Q_6502_STATE_MEMBER_A	a
 #	define Q_6502_STATE_MEMBER_X	x
 #	define Q_6502_STATE_MEMBER_Y	y
@@ -107,8 +107,8 @@ Released under the terms of the GNU General Public License v3.
 #pragma mark - Values after power on
 
 #define Q_6502_PC_VALUE_AFTER_POWER_ON	0x0000
-#define Q_6502_SP_VALUE_AFTER_POWER_ON	0x00
 #define Q_6502_S_VALUE_AFTER_POWER_ON	0x00
+#define Q_6502_P_VALUE_AFTER_POWER_ON	0x00
 #define Q_6502_A_VALUE_AFTER_POWER_ON	0x00
 #define Q_6502_X_VALUE_AFTER_POWER_ON	0x00
 #define Q_6502_Y_VALUE_AFTER_POWER_ON	0x00
@@ -116,8 +116,8 @@ Released under the terms of the GNU General Public License v3.
 #pragma mark - Values after reset
 
 #define Q_6502_PC_VALUE_AFTER_RESET	Q_6502_PC_VALUE_AFTER_POWER_ON
-#define Q_6502_SP_VALUE_AFTER_RESET	Q_6502_SP_VALUE_AFTER_POWER_ON
 #define Q_6502_S_VALUE_AFTER_RESET	Q_6502_S_VALUE_AFTER_POWER_ON
+#define Q_6502_P_VALUE_AFTER_RESET	Q_6502_P_VALUE_AFTER_POWER_ON
 #define Q_6502_A_VALUE_AFTER_RESET	Q_6502_A_VALUE_AFTER_POWER_ON
 #define Q_6502_X_VALUE_AFTER_RESET	Q_6502_X_VALUE_AFTER_POWER_ON
 #define Q_6502_Y_VALUE_AFTER_RESET	Q_6502_Y_VALUE_AFTER_POWER_ON

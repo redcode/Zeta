@@ -1,4 +1,4 @@
-/* Q API - hardware/CPU/MC68000.h
+/* Q API - hardware/CPU/model/68k/Motorola/MC68000.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -7,15 +7,15 @@ Copyright © 2009 RedCode Software.
 Released under the terms of the GNU General Public License v2.
 
    	    .----._.----.
-     D4 --1-|    \_/    |-64- D5
-     D3 --2-|		|-63- D6
-     D2 --3-|		|-62- D7
-     D1 --4-|		|-61- D8
-     D0 --5-|		|-60- D9
-     AS --6-|		|-59- D10
-    UDS --7-|		|-58- D11
-    LDS --8-|		|-57- D12
-    R/W --9-|		|-56- D13
+     D4 -01-|    \_/    |-64- D5
+     D3 -02-|		|-63- D6
+     D2 -03-|		|-62- D7
+     D1 -04-|		|-61- D8
+     D0 -05-|		|-60- D9
+     AS -06-|		|-59- D10
+    UDS -07-|		|-58- D11
+    LDS -08-|		|-57- D12
+    R/W -09-|		|-56- D13
   DTACK -10-|		|-55- D14
      BG -11-|		|-54- D15
   BGACK -12-|		|-53- GND
@@ -41,18 +41,19 @@ Released under the terms of the GNU General Public License v2.
      A4 -32-|		|-33- A5
 	    '-----------'		*/
 
-#ifndef __Q_hardware_CPU_MC68000_H__
-#define __Q_hardware_CPU_MC68000_H__
+#ifndef __Q_hardware_CPU_model_68k_Motorola_MC68000_H__
+#define __Q_hardware_CPU_model_68k_Motorola_MC68000_H__
 
-#include <Q/types/basics.h>
+#include <Q/types/base.h>
 
 typedef struct {
-	Q32Bit d0, d1, d2, d3, d4, d5, d7, d7;
-	Q32Bit a0, a1, a2, a3, a4, a5, a6, a7;
 	quint32 pc;
-	quint16 ccr;
+	Q32Bit	d[8];
+	Q32Bit	a[8];
+	quint32 usp2;
+	quint16 sr;
 } QMC68000State;
 
 #define Q_MC68000_STATE(p) ((QMC68000State *)(p))
 
-#endif /* __Q_hardware_CPU_MC68000_H__ */
+#endif /* __Q_hardware_CPU_model_68k_Motorola_MC68000_H__ */

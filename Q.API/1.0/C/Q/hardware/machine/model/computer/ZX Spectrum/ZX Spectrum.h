@@ -6,6 +6,16 @@
 Copyright © 2009 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
+.-------------------------------.
+|   Vendor: Sinclair Research	|
+| Released: 1982-04-23		|
+|      CPU: Zilog Z80 @ 3.5 MHz |
+|      ROM: 16K			|
+|      RAM: 16K / 48K		|
+|    Sound: Internal speaker	|
+'------------------------------*/
+
+/* MARK: - View
    .--------------------------------------------------.
    |  ___. __  __    __ . __                          |
    | __\ ||  ||__|__|--|||                            |
@@ -21,14 +31,7 @@ Released under the terms of the GNU General Public License v3.
    |  _____   _   _   _   _   _   _   _   __   ___////|
    | [SHIFT] [Z] [X] [C] [V] [B] [N] [M] [SS] [SPACE] |
    |____________________________________________////__|
-   (__________________________________________________)
-
-     Vendor: Sinclair Research
-   Released: 1982-04-23
-	CPU: Zilog Z80 @ 3.5 MHz
-	ROM: 16K
-	RAM: 16K / 48K
-      Sound: Internal speaker	*/
+   (__________________________________________________) */
 
 #ifndef __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H__
 #define __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H__
@@ -71,40 +74,40 @@ Released under the terms of the GNU General Public License v3.
 
 /* MARK: - Timmings */
 
-#define Q_ZX_SPECTRUM_Z80_HZ				3500000
-#define Q_ZX_SPECTRUM_CYCLES_PER_FRAME			69888
-#define Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE		224
-#define Q_ZX_SPECTRUM_CYCLES_PER_HBLANK			48
-#define Q_ZX_SPECTRUM_CYCLES_PER_VBLANK			1792
-#define Q_ZX_SPECTRUM_CYCLES_PER_TOP_BORDER_LINE	176
-#define Q_ZX_SPECTRUM_CYCLES_PER_LEFT_BORDER_LINE	24
-#define Q_ZX_SPECTRUM_CYCLES_PER_RIGHT_BORDER_LINE	24
-#define Q_ZX_SPECTRUM_CYCLES_PER_BOTTOM_BORDER_LINE	176
-#define Q_ZX_SPECTRUM_CYCLES_PER_PAPER_LINE		128
-#define Q_ZX_SPECTRUM_CYCLES_PER_INT			32
-#define Q_ZX_SPECTRUM_CYCLES_AT_VBLANK			0
-#define Q_ZX_SPECTRUM_CYCLES_AT_INT			24
-#define Q_ZX_SPECTRUM_CYCLES_AT_INVISIBLE_TOP_BORDER	Q_ZX_SPECTRUM_CYCLES_PER_VBLANK
+#define Q_ZX_SPECTRUM_Z80_HZ					3500000
+#define Q_ZX_SPECTRUM_CYCLES_PER_FRAME				69888
+#define Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE			224
+#define Q_ZX_SPECTRUM_CYCLES_PER_HBLANK				48
+#define Q_ZX_SPECTRUM_CYCLES_PER_VBLANK				1792
+#define Q_ZX_SPECTRUM_CYCLES_PER_TOP_BORDER_LINE		176
+#define Q_ZX_SPECTRUM_CYCLES_PER_LEFT_BORDER_LINE		24
+#define Q_ZX_SPECTRUM_CYCLES_PER_RIGHT_BORDER_LINE		24
+#define Q_ZX_SPECTRUM_CYCLES_PER_BOTTOM_BORDER_LINE		176
+#define Q_ZX_SPECTRUM_CYCLES_PER_PAPER_LINE			128
+#define Q_ZX_SPECTRUM_CYCLES_PER_INT				32
+#define Q_ZX_SPECTRUM_CYCLES_AT_VBLANK				0
+#define Q_ZX_SPECTRUM_CYCLES_AT_INT				24
+#define Q_ZX_SPECTRUM_CYCLES_AT_INVISIBLE_TOP_BORDER		Q_ZX_SPECTRUM_CYCLES_PER_VBLANK
 
-#define Q_ZX_SPECTRUM_CYCLES_AT_VISIBLE_TOP_BORDER	(Q_ZX_SPECTRUM_CYCLES_AT_INVISIBLE_TOP_BORDER	  + \
-							 Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE		  * \
-							 Q_ZX_SPECTRUM_SCREEN_INVISIBLE_TOP_BORDER_HEIGHT)
+#define Q_ZX_SPECTRUM_CYCLES_AT_VISIBLE_TOP_BORDER		(Q_ZX_SPECTRUM_CYCLES_AT_INVISIBLE_TOP_BORDER	  + \
+							 	 Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE		  * \
+							 	 Q_ZX_SPECTRUM_SCREEN_INVISIBLE_TOP_BORDER_HEIGHT)
 
-#define Q_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION		(Q_ZX_SPECTRUM_CYCLES_AT_VISIBLE_TOP_BORDER	+ \
-							 Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE		* \
-							 Q_ZX_SPECTRUM_SCREEN_VISIBLE_TOP_BORDER_HEIGHT)
+#define Q_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION			(Q_ZX_SPECTRUM_CYCLES_AT_VISIBLE_TOP_BORDER	+ \
+							 	 Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE		* \
+							 	 Q_ZX_SPECTRUM_SCREEN_VISIBLE_TOP_BORDER_HEIGHT)
 
-#define Q_ZX_SPECTRUM_CYCLES_AT_BOTTOM_BORDER		(Q_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION + \
-							 Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE    * \
-							 Q_ZX_SPECTRUM_SCREEN_PAPER_HEIGHT)
+#define Q_ZX_SPECTRUM_CYCLES_AT_BOTTOM_BORDER			(Q_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION + \
+							 	 Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE    * \
+							 	 Q_ZX_SPECTRUM_SCREEN_PAPER_HEIGHT)
 
-#define Q_ZX_SPECTRUM_CYCLES_AT_LINE(region, line)	(Q_ZX_SPECTRUM_CYCLES_AT_##region  + \
-							 Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE * line)
+#define Q_ZX_SPECTRUM_CYCLES_AT_LINE(region, line)		(Q_ZX_SPECTRUM_CYCLES_AT_##region  + \
+							 	 Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE * line)
 
 /* MARK: - Memory */
 
-#define Q_ZX_SPECTRUM_ISSUE_1_ROM_SIZE			(1024 * 16)
-#define Q_ZX_SPECTRUM_ISSUE_1_FIRMWARE_SIZE		(1024 * 16)
-#define Q_ZX_SPECTRUM_ISSUE_1_FIRMWARE_BASE_ADDRESS	0x0000
+#define Q_ZX_SPECTRUM_ISSUE_1_ROM_SIZE				(1024 * 16)
+#define Q_ZX_SPECTRUM_ISSUE_1_FIRMWARE_SIZE			(1024 * 16)
+#define Q_ZX_SPECTRUM_ISSUE_1_FIRMWARE_BASE_ADDRESS		0x0000
 
 #endif /* __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H__ */
