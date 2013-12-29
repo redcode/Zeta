@@ -30,17 +30,6 @@ Released under the terms of the GNU General Public License v3. */
 	(((value) & (mask)) - ((delta) & (mask)) > (mask) \
 		? 0 : ((value) & (mask)) - ((delta) & (mask)))
 
-/* MARK: - Casts */
-
-#define Q_8( value) ((quint8 )value)
-#define Q_16(value) ((quint16)value)
-#define Q_32(value) ((quint32)value)
-#define Q_64(value) ((quint64)value)
-
-#if Q_IS_AVAILABLE(UINT128)
-#define Q_128(value) ((quint128)value)
-#endif
-
 /* MARK: - Mirroring */
 
 #define Q_UINT16_FROM_UINT8_MIRROR( value) (((quint16 )(value)) *	   0x0101)
