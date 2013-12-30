@@ -13,7 +13,6 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/keys/hardware/machine.h>
 
 Q_DEFINE_STRICT_STRUCTURE (
-
 	quint16 af, bc, hl, pc, sp;
 	quint8	i, r;
 
@@ -35,13 +34,11 @@ Q_DEFINE_STRICT_STRUCTURE (
 		quint8 video_synchronization	:2;
 		quint8 joystick_type		:2;
 	} bitfield2;
-
 ) QZ80v1Header;
 
 #define Q_Z80_V1_HEADER(p) ((QZ80v1Header *)(p))
 
 Q_DEFINE_STRICT_STRUCTURE (
-
 	quint16 pc;
 	quint8	hardware_mode;
 	quint8	output_state;
@@ -55,13 +52,11 @@ Q_DEFINE_STRICT_STRUCTURE (
 
 	quint8	last_output_to_fffd;
 	quint8	sound_chip_registers;
-
 ) QZ80v2AdditionalHeader;
 
 #define Q_Z80_V2_ADDITIONAL_HEADER(p) ((QZ80v2AdditionalHeader *)(p))
 
 Q_DEFINE_STRICT_STRUCTURE (
-
 	quint16 low_t_state_counter;
 	quint8	high_t_state_counter;
 	quint8	zero[3];
@@ -75,7 +70,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	disciple_inhibitor_button_state;
 	quint8	disciple_inhibitor_button_flag;
 	quint8	last_output_to_1ffd;
-
 ) QZ80v3ExtendedHeader;
 
 #define Q_Z80_V3_EXTENDED_HEADER(p) ((QZ80v3ExtendedHeader *)(p))

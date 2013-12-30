@@ -34,6 +34,8 @@ Q_DEFINE_STRICT_STRUCTURE(
 	quint8	zero_7;
 ) QiNESHeader;
 
+#define Q_INES_HEADER(p) ((QiNESHeader *)(p))
+
 #define Q_INES_MAPPER_NONE			00
 #define Q_INES_MAPPER_NINTENDO_MMC1_CHIPSET	01
 #define Q_INES_MAPPER_PRG_ROM_SWITCH		02

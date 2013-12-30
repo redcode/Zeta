@@ -38,7 +38,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 ) QSPHeader;
 
 Q_DEFINE_STRICT_STRUCTURE (
-
 	Q16Bit	bc,  de,  hl,  af,  ix, iy;
 	Q16Bit	bc_, de_, hl_, af_;
 	quint8	r,   i;
@@ -57,7 +56,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	} status;
 
 	quint8 ram[];
-	
 ) QSPBody;
 
 #define Q_SP_HEADER(p) ((QSPHeader *)(p))

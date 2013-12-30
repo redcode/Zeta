@@ -143,7 +143,7 @@ Released under the terms of the GNU General Public License v3.
 | in the file.								   |
 |									   |
 | Then the main body of the file follows. It consists of a mixture of	   |
-| blocks, each identified by an ID byte.				   |
+| blocks, each preceded and identified by a byte ID.			   |
 '-------------------------------------------------------------------------*/
 
 Q_DEFINE_STRICT_STRUCTURE (
@@ -155,7 +155,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 
 /* MARK: - Block ID */
 
-typedef quint8 QTZXID;
+typedef quint8 QTZXBlockID;
 
 #define Q_TZX_BLOCK_ID_STANDARD_SPEED_DATA	0x10
 #define Q_TZX_BLOCK_ID_TURBO_SPEED_DATA		0x11
@@ -343,22 +343,22 @@ Q_DEFINE_STRICT_STRUCTURE (
 #define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_LOW		2
 #define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_HIGH		3
 
-/*-----------------------------------------------------------------------------.
-| Most commonly, pilot and sync are repetitions of the same pulse, thus they   |
-| are represented using a very simple RLE encoding structure which stores the  |
-| symbol and the number of times it must be repeated.			       |
-|									       |
-| Each symbol in the data stream is represented by a string of NB bits of the  |
-| block data, where NB = ceiling(Log2(ASD)). Thus the length of the whole data |
-| stream in bits is NB * TOTD, or in bytes DS = ceil(NB * TOTD / 8).	       |
-'-----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------.
+| Most commonly, pilot and sync are repetitions of the same pulse, thus they  |
+| are represented using a very simple RLE encoding structure which stores the |
+| symbol and the number of times it must be repeated.			      |
+|									      |
+| Each symbol in the data stream is represented by a string of NB bits of the |
+| block data, where NB = ceil(log2(ASD)). Thus the length of the whole data   |
+| stream in bits is NB * TOTD, or in bytes DS = ceil(NB * TOTD / 8).	      |
+'----------------------------------------------------------------------------*/
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8	symbol;
 	quint16	repetitions;
 ) QTZXPulseRLE;
 
-/* EXAMPLE
+/* MARK: EXAMPLE
 A typical Spectrum's standard loading header can be represented like this:
 
 Offset	   Value			Description
@@ -713,6 +713,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 #define Q_TZX_ARCHIVE_INFORMATION(p)	((QTZXArchiveInformation *)(p))
 #define Q_TZX_HARDWARE_TYPE(	  p)	((QTZXHardwareType	 *)(p))
 #define Q_TZX_CUSTOM_INFORMATION( p)	((QTZXCustomInformation  *)(p))
-#define Q_TZX_GLUE(		  p)	((QTZXGlue		 *)(p))
+#define Q_TZX__GLUE(		  p)	((QTZXGlue		 *)(p))
 
 #endif /* __Q_formats_storage_medium_image_tape_TZX_H__ */
