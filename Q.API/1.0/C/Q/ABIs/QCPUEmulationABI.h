@@ -1,4 +1,4 @@
-/* Q API - Q/ABIs/QVirtualCPUABI.h
+/* Q API - Q/ABIs/QCPUEmulationABI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2009 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_ABIs_QVirtualCPUABI_H__
-#define __Q_ABIs_QVirtualCPUABI_H__
+#ifndef __Q_ABIs_QCPUEmulationABI_H__
+#define __Q_ABIs_QCPUEmulationABI_H__
 
 #include <Q/types/introspection.h>
 
@@ -30,6 +30,6 @@ typedef struct {
 		ACMEContextBitField	bit_fields;
 	} instance;
 
-} QVirtualCPUABI;
+} QCPUEmulationABI;
 
-#endif /* __Q_ABIs_QVirtualCPUABI_H__ */
+#endif /* __Q_ABIs_QCPUEmulationABI_H__ */

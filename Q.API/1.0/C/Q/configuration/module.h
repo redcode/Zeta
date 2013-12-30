@@ -22,11 +22,9 @@ Released under the terms of the GNU General Public License v3. */
 #endif
 
 #if Q_JOIN_2_DEFINED(MODULE_NAME, _HEADER)
-#	if Q_JOIN_2_DEFINED(MODULE_NAME, _USE_LOCAL_HEADER)
-#		include Q_LOCAL_HEADER(Q_JOIN_2(MODULE_NAME, _HEADER))
-#	else
-#		include Q_HEADER(Q_JOIN_2(MODULE_NAME, _HEADER))
-#	endif
+#	include Q_HEADER(Q_JOIN_2(MODULE_NAME, _HEADER))
+#elif Q_JOIN_2_DEFINED(MODULE_NAME, _LOCAL_HEADER)
+#	include Q_LOCAL_HEADER(Q_JOIN_2(MODULE_NAME, _LOCAL_HEADER))
 #elif defined(MODULE_HEADER)
 #	include MODULE_HEADER
 #endif

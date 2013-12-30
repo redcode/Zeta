@@ -101,15 +101,15 @@ Q_DEFINE_STRICT_STRUCTURE (
 
 /* MARK: - Casts */
 
-#define Q_CREATIVE_VOICE_HEADER(		  p)	((QCreativeVoiceHeader		      *)(p))
-#define Q_CREATIVE_VOICE_BLOCK_HEADER(		  p)	((QCreativeVoiceBlockHeader	      *)(p))
-#define Q_CREATIVE_VOICE_SOUND_DATA(		  p)	((QCreativeVoiceSoundData	      *)(p))
-#define Q_CREATIVE_VOICE_SOUND_DATA_CONTINUATION( p)	((QCreativeVoiceSoundDataContinuation *)(p))
-#define Q_CREATIVE_VOICE_SILENCE(		  p)	((QCreativeVoiceSilence		      *)(p))
-#define Q_CREATIVE_VOICE_MARKER(		  p)	((QCreativeVoiceMarker		      *)(p))
-#define Q_CREATIVE_VOICE_TEXT(			  p)	((QCreativeVoiceText		      *)(p))
-#define Q_CREATIVE_VOICE_REPEAT_START(		  p)	((QCreativeVoiceRepeatStart	      *)(p))
-#define Q_CREATIVE_VOICE_EXTRA_INFORMATION(	  p)	((QCreativeVoiceExtraInformation      *)(p))
-#define Q_CREATIVE_VOICE_SOUND_DATA_IN_NEW_FORMAT(p)	((QCreativeVoiceSoundDataInNewFormat  *)(p))
+#define Q_CREATIVE_VOICE_HEADER(		  p) ((QCreativeVoiceHeader		   *)(p))
+#define Q_CREATIVE_VOICE_BLOCK_HEADER(		  p) ((QCreativeVoiceBlockHeader	   *)(p))
+#define Q_CREATIVE_VOICE_SOUND_DATA(		  p) ((QCreativeVoiceSoundData		   *)(p))
+#define Q_CREATIVE_VOICE_SOUND_DATA_CONTINUATION( p) ((QCreativeVoiceSoundDataContinuation *)(p))
+#define Q_CREATIVE_VOICE_SILENCE(		  p) ((QCreativeVoiceSilence		   *)(p))
+#define Q_CREATIVE_VOICE_MARKER(		  p) ((QCreativeVoiceMarker		   *)(p))
+#define Q_CREATIVE_VOICE_TEXT(			  p) ((QCreativeVoiceText		   *)(p))
+#define Q_CREATIVE_VOICE_REPEAT_START(		  p) ((QCreativeVoiceRepeatStart	   *)(p))
+#define Q_CREATIVE_VOICE_EXTRA_INFORMATION(	  p) ((QCreativeVoiceExtraInformation      *)(p))
+#define Q_CREATIVE_VOICE_SOUND_DATA_IN_NEW_FORMAT(p) ((QCreativeVoiceSoundDataInNewFormat  *)(p))
 
 #endif /* __Q_formats_multimedia_container_Creative_Voice_H__ */
