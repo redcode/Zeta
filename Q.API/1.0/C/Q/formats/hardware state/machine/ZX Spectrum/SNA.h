@@ -46,7 +46,6 @@ Released under the terms of the GNU General Public License v3.
 '------------------------------------------------------------------------*/
 
 Q_DEFINE_STRICT_STRUCTURE (
-
 	quint8	i;
 	Q16Bit	hl_, de_, bc_, af_;
 	Q16Bit	hl, de, bc, iy, ix;
@@ -65,7 +64,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	im;
 	quint8	border_color;
 	quint8	ram[1024 * 48];	/* RAM dump [16384-65535] */
-
 ) QSNAv48K;
 
 #define Q_SNA_V48K(p) ((QSNAv48K *)(p))

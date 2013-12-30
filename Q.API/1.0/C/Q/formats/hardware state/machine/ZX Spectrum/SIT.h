@@ -21,7 +21,6 @@ Released under the terms of the GNU General Public License v3.
 #include <Q/types/base.h>
 
 Q_DEFINE_STRICT_STRUCTURE (
-
 	Q16Bit	bc,  de,  hl,  af,  ix,  iy;
 	quint16 sp,  pc;
 	quint8	r,   i;
@@ -31,7 +30,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 
 	/* complete ROM+RAM memory of a standard ZX Spectrum 48K */
 	quint8 memory[1024 * 64];
-
 ) QSIT;
 
 #define Q_SIT(p) ((QSIT *)(p))

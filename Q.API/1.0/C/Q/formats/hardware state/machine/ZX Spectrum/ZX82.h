@@ -53,6 +53,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 program_size;
 ) QZX82Header;
 
+#define Q_ZX82_HEADER(p) ((QZX82Header *)(p))
+
 #define Q_ZX82_DATA_TYPE_BASIC		0
 #define Q_ZX82_DATA_TYPE_NUMERIC	1
 #define Q_ZX82_DATA_TYPE_STRINC		2
@@ -79,7 +81,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	Q16Bit hl;
 ) QZX82SnapshotHeader;
 
-#define Q_ZX82_HEADER(	       p) ((QZX82Header		*)(p))
 #define Q_ZX82_EXTENDED_HEADER(p) ((QZX82ExtendedHeader *)(p))
 
 #endif /* __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZX82_H__ */
