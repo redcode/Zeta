@@ -9,6 +9,13 @@ Copyright © Ramsoft.
 Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
+.---------------------------.
+| Extensions: .tap, .cdt    |
+| Endianness: Little	    |
+| Created by: Tomaz Kac	    |
+|    Used by: Many programs |
+'---------------------------'
+
 .------------------------------------------------------------------------------.
 | Format revision: v1.20 (2006-12-19)					       |
 |									       |
@@ -155,33 +162,38 @@ Q_DEFINE_STRICT_STRUCTURE (
 
 /* MARK: - Block ID */
 
-typedef quint8 QTZXBlockID;
-
 #define Q_TZX_BLOCK_ID_STANDARD_SPEED_DATA	0x10
 #define Q_TZX_BLOCK_ID_TURBO_SPEED_DATA		0x11
 #define Q_TZX_BLOCK_ID_PURE_TONE		0x12
 #define Q_TZX_BLOCK_ID_PULSE_SEQUENCE		0x13
 #define Q_TZX_BLOCK_ID_PURE_DATA		0x14
 #define Q_TZX_BLOCK_ID_DIRECT_RECORDING		0x15
-#define Q_TZX_BLOCK_ID_CSW_RECORDING		0x18
-#define Q_TZX_BLOCK_ID_GENERALIZED_DATA		0x19
+#define Q_TZX_BLOCK_ID_CSW_RECORDING		0x18 /* Added in v1.20 */
+#define Q_TZX_BLOCK_ID_GENERALIZED_DATA		0x19 /* Added in v1.20 */
 #define Q_TZX_BLOCK_ID_PAUSE			0x20
 #define Q_TZX_BLOCK_ID_GROUP_START		0x21
 #define Q_TZX_BLOCK_ID_GROUP_END		0x22
 #define Q_TZX_BLOCK_ID_JUMP			0x23
-#define Q_TZX_BLOCK_ID_LOOP_START		0x24
-#define Q_TZX_BLOCK_ID_LOOP_END			0x25
-#define Q_TZX_BLOCK_ID_CALL_SEQUENCE		0x26
-#define Q_TZX_BLOCK_ID_RETURN_FROM_SEQUENCE	0x27
-#define Q_TZX_BLOCK_ID_SELECT			0x28
+#define Q_TZX_BLOCK_ID_LOOP_START		0x24 /* Added in v1.10 */
+#define Q_TZX_BLOCK_ID_LOOP_END			0x25 /* Added in v1.10 */
+#define Q_TZX_BLOCK_ID_CALL_SEQUENCE		0x26 /* Added in v1.10 */
+#define Q_TZX_BLOCK_ID_RETURN_FROM_SEQUENCE	0x27 /* Added in v1.10 */
+#define Q_TZX_BLOCK_ID_SELECT			0x28 /* Added in v1.10 */
 #define Q_TZX_BLOCK_ID_STOP_IF_48K		0x2A
-#define Q_TZX_BLOCK_ID_SET_SIGNAL_LEVEL		0x2B
+#define Q_TZX_BLOCK_ID_SET_SIGNAL_LEVEL		0x2B /* Added in v1.20 */
 #define Q_TZX_BLOCK_ID_DESCRIPTION_TEXT		0x30
 #define Q_TZX_BLOCK_ID_MESSAGE			0x31
 #define Q_TZX_BLOCK_ID_ARCHIVE_INFORMATION	0x32
 #define Q_TZX_BLOCK_ID_HARDWARE_TYPE		0x33
 #define Q_TZX_BLOCK_ID_CUSTOM_INFORMATION	0x35
 #define Q_TZX_BLOCK_ID_GLUE			0x5A
+
+ /* Deprecated. These should not be used in v1.20 and later. */
+#define Q_TZX_BLOCK_ID_C64_ROM_TYPE_DATA	0x16 /* Added in v1.13, deprecated in v1.20 */
+#define Q_TZX_BLOCK_ID_C64_TURBO_TAPE_DATA	0x17 /* Added in v1.13, deprecated in v1.20 */
+#define Q_TZX_BLOCK_ID_EMULATION_INFORMATION	0x34 /* Deprecated in v1.20 */
+#define Q_TZX_BLOCK_ID_CUSTOM_INFORMATION	0x35 /* Added in v1.01, deprecated in v1.20 */
+#define Q_TZX_BLOCK_ID_SNAPSHOT			0x40 /* Added in v1.10, deprecated in v1.20 */
 
 /* MARK: - ID 10 - Standard Speed Data
 .-----------------------------------------------------------------------------.
@@ -244,7 +256,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 pulse_duration[];
 ) QTZXPulseSequence;
 
-/* MARK: - ID 14 - Pure Data Block
+/* MARK: - ID 14 - Pure Data
 .------------------------------------------------------.
 | This is the same as in the turbo loading data block, |
 | except that it has no pilot or sync pulses.	       |
@@ -282,6 +294,55 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXDirectRecording;
 
+/* MARK: -  ID 16 - C64 ROM Type Data (DEPRECATED)
+.------------------------------------------------------------------------------.
+| This block was created to support the Commodore 64 standard ROM and similar  |
+| tape blocks. It is made so basically anything that uses two or four pulses   |
+| (which are the same in pairs) per bit can be written with it.		       |
+|									       |
+| Some explanation:							       |
+| - A wave consists of 2 pulses. The structure contains the length of 1 pulse. |
+| - The wave MUST always start with the LOW amplitude, since the C64 can only  |
+|   detect the transition HIGH -> LOW.					       |
+| - If some pulse length is 0 then the whole wave must not be present. This    |
+|    applies to DATA too.						       |
+| - The XOR checksum (if it is set to 0 or 1) is a XOR of all bits in the byte |
+|   XOR-ed with the value in this field as the start value.		       |
+| - Finish Byte waves should be played after each byte EXCEPT last one.	       |
+| - Finish Data waves should be ONLY played after last byte of data.	       |
+| - When all the Data has finished there is an optional Trailer Tone, which is |
+|   standard for the Repeated Blocks in C64 ROM Loader.			       |
+|									       |
+| The replay procedure looks like this:					       |
+| - Pilot Tone								       |
+| - Sync waves								       |
+| - Data Bytes (with XOR and/or Finish Byte waves)			       |
+| - Finish Data pulses							       |
+| - Trailing Tone							       |
+'-----------------------------------------------------------------------------*/
+
+Q_DEFINE_STRICT_STRUCTURE (
+	quint32 complete_block_size;
+	/* TO DO */
+) QTZXC64ROMTypeData;
+
+/* MARK: - ID 17 - C64 Turbo Tape Data (DEPRECATED)
+.------------------------------------------------------------------------------.
+| This block is made to support another type of encoding that is commonly used |
+| by the C64. Most of the commercial software uses this type of encoding, i.e. |
+| the pilot tone is not made from one type of wave only, but it is made from   |
+| actual data byte which is repeated many times. As the sync value another,    |
+| different, data byte is sent to signal the start of the data. The data bits  |
+| are made from ONE wave only and there is NO XOR checksum either! Trailing    |
+| byte is played AFTER the DATA has ended.				       |
+'-----------------------------------------------------------------------------*/
+
+Q_DEFINE_STRICT_STRUCTURE (
+	quint32 complete_block_size;
+	/* TO DO */
+) QTZXC64TurboTapeData;
+
+
 /* MARK: - ID 18 - CSW Recording
 .----------------------------------------------------.
 | This block contains a sequence of raw pulses	     |
@@ -300,7 +361,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 #define Q_TZX_CSW_COMPRESSION_TYPE_RLE		1
 #define Q_TZX_CSW_COMPRESSION_TYPE_Z_RLE	2
 
-/* MARK: - ID 19 - Generalized Data Block
+/* MARK: - ID 19 - Generalized Data
 .-----------------------------------------------------------------------------.
 | This block has been specifically developed to represent an extremely wide   |
 | range of data encoding techniques. The basic idea is that each loading      |
@@ -316,7 +377,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint32 symbol_count;
 	quint8	pulses_per_symbol_maximum;
 
-	// TO DO
+	/* TO DO */
 ) QTZXGeneralizedData;
 
 /*---------------------------------------------------------------------------.
@@ -443,7 +504,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 | This indicates the end of a group. This block has no body. |
 '-----------------------------------------------------------*/
 
-/* MARK: - ID 23 - Jump to Block
+/* MARK: - ID 23 - Jump
 .---------------------------------------------------------------------.
 | This block will enable you to jump from one block to another within |
 | the file. Some examples:					      |
@@ -509,7 +570,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 | This block has no body.						     |
 '---------------------------------------------------------------------------*/
 
-/* MARK: - ID 28 - Select block
+/* MARK: - ID 28 - Select
 .------------------------------------------------------------------------------.
 | This block is useful when the tape consists of two or more separately	       |
 | loadable parts. With this block, you are able to select one of the parts and |
@@ -599,7 +660,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8 ascii[];
 ) QTZXMessage;
 
-/* MARK: - ID 32 - Archive information
+/* MARK: - ID 32 - Archive Information
 .------------------------------------------------------------------------------.
 | Use this block at the beginning of the tape to identify the title of the     |
 | game, author, publisher, year of publication, price (including the	       |
@@ -654,14 +715,31 @@ Q_DEFINE_STRICT_STRUCTURE(
 	quint8 compatibility;
 ) QTZXHardware;
 
-#define Q_TZX_HARDWARE_COMPATIBILITY_
+#define Q_TZX_HARDWARE_COMPATIBILITY_COMPATIBLE	  0
+#define Q_TZX_HARDWARE_COMPATIBILITY_NEEDED	  1
+#define Q_TZX_HARDWARE_COMPATIBILITY_UNNEEDED	  2
+#define Q_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE 3
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8	     count;
 	QTZXHardware hardware[];
 ) QTZXHardwareType;
 
-/* MARK: - ID 35 - Custom Information Block
+/* MARK: - ID 34 - Emulation Information (DEPRECATED)
+.------------------------------------------------------------------------------.
+| This is a special block that would normally be generated only by emulators.  |
+| For now it contains information on everything the authors could find that    |
+| other formats support. Please inform them of any additions/corrections since |
+| this is a very important part for emulators.				       |
+| Those bits that are not used by the emulator that stored the info, should be |
+| left at their DEFAULT values.						       |
+'-----------------------------------------------------------------------------*/
+
+Q_DEFINE_STRICT_STRUCTURE (
+	/* TO DO */
+) QTZXEmulationInformation;
+
+/* MARK: - ID 35 - Custom Information
 .------------------------------------------------------------------------.
 | This block can be used to save any information you want. For example,	 |
 | it might contain some information written by a utility, extra settings |
@@ -674,7 +752,27 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	data[];
 ) QTZXCustomInformation;
 
-/* MARK: - ID 5A - "Glue" Block
+/* MARK: - ID 40 - Snapshot (DEPRECATED)
+.------------------------------------------------------------------------------.
+| This would enable one to snapshot the prgram at the start and still have all |
+| the tape blocks in the same file. Only .Z80 and .SNA snapshots are supported |
+| for compatibility reasons!.						       |
+| The emulator should take care of that the snapshot is not taken while the    |
+| actual tape loading is taking place (which doesn't do much sense). When an   |
+| emulator encounters the snapshot block it should load it and then continue   |
+| with the next block.							       |
+'-----------------------------------------------------------------------------*/
+
+Q_DEFINE_STRICT_STRUCTURE (
+	quint8 format;
+	quint8 size[3];
+	quint8 data[];
+) QTZXSnapshot;
+
+#define Q_TZX_SNAPSHOT_FORMAT_Z80 0
+#define Q_TZX_SNAPSHOT_FORMAT_SNA 1
+
+/* MARK: - ID 5A - "Glue"
 .------------------------------------------------------------------------------.
 | This block is generated when you merge two ZX Tape files together. It is     |
 | here so that you can easily copy the files together and use them. Of course, |
@@ -692,27 +790,31 @@ Q_DEFINE_STRICT_STRUCTURE (
 
 /* MARK: - Casts */
 
-#define Q_TZX_STANDARD_SPEED_DATA(p)	((QTZXStandardSpeedData  *)(p))
-#define Q_TZX_TURBO_SPEED_DATA(	  p)	((QTZXTurboSpeedData	 *)(p))
-#define Q_TZX_PURE_TONE(	  p)	((QTZXPureTone		 *)(p))
-#define Q_TZX_PULSE_SEQUENCE(	  p)	((QTZXPulseSequence	 *)(p))
-#define Q_TZX_PURE_DATA(	  p)	((QTZXPureData		 *)(p))
-#define Q_TZX_DIRECT_RECORDING(	  p)	((QTZXDirectRecording	 *)(p))
-#define Q_TZX_CSW_RECORDING(	  p)	((QTZXCSWRecording	 *)(p))
-#define Q_TZX_GENERALIZED_DATA(	  p)	((QTZXGeneralizedData	 *)(p))
-#define Q_TZX_PAUSE(		  p)	((QTZXPause		 *)(p))
-#define Q_TZX_GROUP_START(	  p)	((QTZXGroupStart	 *)(p))
-#define Q_TZX_JUMP(		  p)	((QTZXJump		 *)(p))
-#define Q_TZX_LOOP_START(	  p)	((QTZXLoopStart		 *)(p))
-#define Q_TZX_CALL_SEQUENCE(	  p)	((QTZXCallSequence	 *)(p))
-#define Q_TZX_SELECT(		  p)	((QTZXSelect		 *)(p))
-#define Q_TZX_STOP_IF_48K(	  p)	((QTZXStopIf48K		 *)(p))
-#define Q_TZX_SET_SIGNAL_LEVEL(	  p)	((QTZXSetSignalLevel	 *)(p))
-#define Q_TZX_DESCRIPTION_TEXT(	  p)	((QTZXDescriptionText	 *)(p))
-#define Q_TZX_MESSAGE(		  p)	((QTZXMessage		 *)(p))
-#define Q_TZX_ARCHIVE_INFORMATION(p)	((QTZXArchiveInformation *)(p))
-#define Q_TZX_HARDWARE_TYPE(	  p)	((QTZXHardwareType	 *)(p))
-#define Q_TZX_CUSTOM_INFORMATION( p)	((QTZXCustomInformation  *)(p))
-#define Q_TZX__GLUE(		  p)	((QTZXGlue		 *)(p))
+#define Q_TZX_STANDARD_SPEED_DATA(  p) ((QTZXStandardSpeedData	  *)(p))
+#define Q_TZX_TURBO_SPEED_DATA(	    p) ((QTZXTurboSpeedData	  *)(p))
+#define Q_TZX_PURE_TONE(	    p) ((QTZXPureTone		  *)(p))
+#define Q_TZX_PULSE_SEQUENCE(	    p) ((QTZXPulseSequence	  *)(p))
+#define Q_TZX_PURE_DATA(	    p) ((QTZXPureData		  *)(p))
+#define Q_TZX_DIRECT_RECORDING(	    p) ((QTZXDirectRecording	  *)(p))
+#define Q_TZX_C64_ROM_TYPE_DATA(    p) ((QTZXC64ROMTypeData	  *)(p))
+#define Q_TZX_C64_TURBO_TAPE_DATA(  p) ((QTZXC64TurboTapeData	  *)(p))
+#define Q_TZX_CSW_RECORDING(	    p) ((QTZXCSWRecording	  *)(p))
+#define Q_TZX_GENERALIZED_DATA(	    p) ((QTZXGeneralizedData	  *)(p))
+#define Q_TZX_PAUSE(		    p) ((QTZXPause		  *)(p))
+#define Q_TZX_GROUP_START(	    p) ((QTZXGroupStart		  *)(p))
+#define Q_TZX_JUMP(		    p) ((QTZXJump		  *)(p))
+#define Q_TZX_LOOP_START(	    p) ((QTZXLoopStart		  *)(p))
+#define Q_TZX_CALL_SEQUENCE(	    p) ((QTZXCallSequence	  *)(p))
+#define Q_TZX_SELECT(		    p) ((QTZXSelect		  *)(p))
+#define Q_TZX_STOP_IF_48K(	    p) ((QTZXStopIf48K		  *)(p))
+#define Q_TZX_SET_SIGNAL_LEVEL(	    p) ((QTZXSetSignalLevel	  *)(p))
+#define Q_TZX_DESCRIPTION_TEXT(	    p) ((QTZXDescriptionText	  *)(p))
+#define Q_TZX_MESSAGE(		    p) ((QTZXMessage		  *)(p))
+#define Q_TZX_ARCHIVE_INFORMATION(  p) ((QTZXArchiveInformation	  *)(p))
+#define Q_TZX_HARDWARE_TYPE(	    p) ((QTZXHardwareType	  *)(p))
+#define Q_TZX_EMULATION_INFORMATION(p) ((QTZXEmulationInformation *)(p))
+#define Q_TZX_CUSTOM_INFORMATION(   p) ((QTZXCustomInformation	  *)(p))
+#define Q_TZX_GLUE(		    p) ((QTZXGlue		  *)(p))
+#define Q_TZX_SNAPSHOT(		    p) ((QTZXSnapshot		  *)(p))
 
 #endif /* __Q_formats_storage_medium_image_tape_TZX_H__ */
