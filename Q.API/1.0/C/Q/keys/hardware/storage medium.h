@@ -9,11 +9,11 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_keys_hardware_storage_medium_H__
 #define __Q_keys_hardware_storage_medium_H__
 
-#pragma mark - ROM
+/* MARK: - ROM
 
 #define Q_STORAGE_MEDIUM_ROM
 
-#pragma mark - ROM Cartridges
+/* MARK: - ROM Cartridges */
 
 #define Q_STORAGE_MEDIUM_ATARI_2600_CARTRIDGE
 #define Q_STORAGE_MEDIUM_ATARI_5200_CARTRIDGE
@@ -25,13 +25,13 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_STORAGE_MEDIUM_SNES_GAME_PAK
 #define Q_STORAGE_MEDIUM_GAME_BOY_GAME_PACK
 
-#pragma mark - Magnetic Tapes
+/* MARK: - Magnetic Tapes */
 
 #define Q_STORAGE_MEDIUM_COMPACT_CASSETTE
 #define Q_STORAGE_MEDIUM_ZX_MICRODRIVE
 #define Q_STORAGE_MEDIUM_DAT
 
-#pragma mark - Magnetic Disks
+/* MARK: - Magnetic Disks */
 
 #define Q_STORAGE_MEDIUM_FLOPPY_DISK_8_INCH_IBM_23FD
 #define Q_STORAGE_MEDIUM_FLOPPY_DISK_8_INCH_MEMOREX_650
@@ -48,9 +48,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_STORAGE_MEDIUM_FLOPPY_DISK_3_5_INCH_HD
 #define Q_STORAGE_MEDIUM_FLOPPY_DISK_3_INCH
 
-#pragma mark - Magneto-Optical Discs
+/* MARK: - Magneto-Optical Discs */
 
-#pragma mark - Optical Discs
+/* MARK: - Optical Discs */
 
 #define Q_STORAGE_MEDIUM_CD_ROM_8_CM_180
 #define Q_STORAGE_MEDIUM_CD_ROM_8_CM_550

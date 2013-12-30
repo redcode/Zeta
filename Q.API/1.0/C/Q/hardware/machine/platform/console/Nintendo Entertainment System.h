@@ -20,7 +20,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_NES_SCREEN_WIDTH	256
 #define Q_NES_SCREEN_HEIGHT	240
 
-#pragma mark - External Memory Structure
+/* MARK: - External Memory Structure */
 
 /* .----------------------------------------------------------------.
    | Address     | Size  | Type    | Content			    |
@@ -65,7 +65,7 @@ Released under the terms of the GNU General Public License v3.
    | C000	 |       | ROM      | Upper Bank of Cartridge ROM   |
    '----------------------------------------------------------------' */
 
-#pragma mark - I/O Ports
+/* MARK: - I/O Ports */
 
 #define Q_NES_MMR_PPU_CONTROL		0x2000	/* Write	*/
 #define Q_NES_MMR_PPU_MASK		0x2001	/* Write	*/
@@ -95,7 +95,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_NES_MMR_JOYSTICK_1		0x4016	/* Read / Write */
 #define Q_NES_MMR_JOYSTICK_2		0x4017	/* Read / Write */
 
-#pragma mark - Memory addresses
+/* MARK: - Memory addresses */
 
 #define Q_NES_ADDRESS_PPU_PATTERN_TABLE_0		0x0000
 #define Q_NES_ADDRESS_PPU_PATTERN_TABLE_1		0x1000
@@ -109,7 +109,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_NES_ADDRESS_PPU_SPRITE_PALETTE_2
 #define Q_NES_ADDRESS_PPU_SPRITE_PALETTE_3
 
-#pragma mark - Video
+/* MARK: - Video */
 
 #define Q_NES_PPU_GREYSCALE_MODE_NORMAL_COLOR	0
 #define Q_NES_PPU_GREYSCALE_MODE_AND_ALL_COLORS	1

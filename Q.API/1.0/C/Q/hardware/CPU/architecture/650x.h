@@ -71,7 +71,7 @@ Released under the terms of the GNU General Public License v3.
 
 #	include <Q/types/base.h>
 
-#	pragma mark - State storage type
+	/* MARK: - State storage type */
 
 	typedef struct {
 		quint16	pc;
@@ -96,7 +96,7 @@ Released under the terms of the GNU General Public License v3.
 
 #endif
 
-#pragma mark - Addresses
+/* MARK: - Addresses */
 
 #define Q_6502_ADDRESS_NMI_POINTER	0xFFFA
 #define Q_6502_ADDRESS_RESET_POINTER	0XFFFC
@@ -104,7 +104,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_6502_ADDRESS_BRK_POINTER	0xFFFE
 #define Q_6502_ADDRESS_STACK		0x0100
 
-#pragma mark - Values after power on
+/* MARK: - Values after power on */
 
 #define Q_6502_PC_VALUE_AFTER_POWER_ON	0x0000
 #define Q_6502_S_VALUE_AFTER_POWER_ON	0x00
@@ -113,7 +113,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_6502_X_VALUE_AFTER_POWER_ON	0x00
 #define Q_6502_Y_VALUE_AFTER_POWER_ON	0x00
 
-#pragma mark - Values after reset
+/* MARK: - Values after reset */
 
 #define Q_6502_PC_VALUE_AFTER_RESET	Q_6502_PC_VALUE_AFTER_POWER_ON
 #define Q_6502_S_VALUE_AFTER_RESET	Q_6502_S_VALUE_AFTER_POWER_ON
@@ -122,7 +122,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_6502_X_VALUE_AFTER_RESET	Q_6502_X_VALUE_AFTER_POWER_ON
 #define Q_6502_Y_VALUE_AFTER_RESET	Q_6502_Y_VALUE_AFTER_POWER_ON
 
-#pragma mark - Information for emulation
+/* MARK: - Information for emulation */
 
 #define Q_6502_POWER_ON_IS_EQUAL_TO_RESET TRUE
 

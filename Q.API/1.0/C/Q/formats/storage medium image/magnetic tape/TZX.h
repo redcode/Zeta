@@ -814,7 +814,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 #define Q_TZX_HARDWARE_TYPE(	    p) ((QTZXHardwareType	  *)(p))
 #define Q_TZX_EMULATION_INFORMATION(p) ((QTZXEmulationInformation *)(p))
 #define Q_TZX_CUSTOM_INFORMATION(   p) ((QTZXCustomInformation	  *)(p))
-#define Q_TZX_GLUE(		    p) ((QTZXGlue		  *)(p))
 #define Q_TZX_SNAPSHOT(		    p) ((QTZXSnapshot		  *)(p))
+#define Q_TZX_GLUE(		    p) ((QTZXGlue		  *)(p))
 
 #endif /* __Q_formats_storage_medium_image_tape_TZX_H__ */

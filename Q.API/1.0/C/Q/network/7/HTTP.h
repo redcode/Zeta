@@ -9,17 +9,17 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_network_7_HTTP_H__
 #define __Q_network_7_HTTP_H__
 
-#pragma mark - Ports
+/* MARK: - Ports */
 
 #define Q_HTTP_DEFAULT_SERVER_PORT				80
 
-#pragma mark - Status: Informational
+/* MARK: - Status: Informational */
 
 #define Q_HTTP_STATUS_CONTINUE					100
 #define Q_HTTP_STATUS_SWITCHING_PROTOCOLS			101
 #define Q_HTTP_STATUS_PROCESSING				102 /* WebDAV, RFC 2518 */
 
-#pragma mark - Status: Success
+/* MARK: - Status: Success */
 
 #define Q_HTTP_STATUS_OK					200
 #define Q_HTTP_STATUS_CREATED					201
@@ -32,7 +32,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HTTP_STATUS_ALREADY_REPORTED				208 /* WebDAV, RFC 5842 */
 #define Q_HTTP_STATUS_IM_USED					226 /* RFC 3229 */
 
-#pragma mark - Status: Redirection
+/* MARK: - Status: Redirection */
 
 #define Q_HTTP_STATUS_MULTIPLE_CHOICES				300
 #define Q_HTTP_STATUS_MOVED_PERMANENTLY				301
@@ -44,7 +44,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HTTP_STATUS_TEMPORARY_REDIRECT			307 /* v1.1 */
 #define Q_HTTP_STATUS_PERMANENT_REDIRECT			308 /* Experimental Internet draft */
 
-#pragma mark - Status: Client error
+/* MARK: - Status: Client error */
 
 #define Q_HTTP_STATUS_BAD_REQUEST				400
 #define Q_HTTP_STATUS_UNAUTHORIZED				401
@@ -81,7 +81,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HTTP_STATUS_UNAVAILABLE_FOR_LEGAL_REASONS		451 /* Internet draft */
 #define Q_HTTP_STATUS_CLIENT_CLOSED_REQUEST			499 /* Nginx */
 
-#pragma mark - Status: Server error
+/* MARK: - Status: Server error */
 
 #define Q_HTTP_STATUS_INTERNAL_SERVER_ERROR			500
 #define Q_HTTP_STATUS_NOT_IMPLEMENTED				501

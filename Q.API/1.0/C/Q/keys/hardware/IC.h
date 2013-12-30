@@ -9,8 +9,6 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_keys_hardware_IC_H__
 #define __Q_keys_hardware_IC_H__
 
-#pragma mark - Encapsulation
-
 #define Q_IC_ENCAPSULATION_CERAMIC_PGA_132
 #define Q_IC_ENCAPSULATION_PLASTIC_PQFP_100
 #define Q_IC_ENCAPSULATION_PLASTIC_PQFP_132_ON_PGA_132

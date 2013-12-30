@@ -41,7 +41,7 @@ Released under the terms of the GNU General Public License v3. */
        Actinides '--| Ac | Th | Pa | U  | Np | Pu | Am | Cm | Bk | Cf | Es | Fm | Md | No | Lr |
 		    '--------------------------------------------------------------------------' */
 
-#pragma mark - 1 H
+/* MARK: - 1 H */
 
 #define Q_HYDROGEN_SYMBOL				H
 #define Q_HYDROGEN_ATOMIC_NUMBER			1
@@ -65,7 +65,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HYDROGEN_SHEER_MODULUS
 #define Q_HYDROGEN_POISSON_RATIO
 
-#pragma mark - 2 He
+/* MARK: - 2 He */
 
 #define Q_HELIUM_SYMBOL					He
 #define Q_HELIUM_ATOMIC_NUMBER				2
@@ -89,7 +89,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HELIUM_SHEER_MODULUS
 #define Q_HELIUM_POISSON_RATIO
 
-#pragma mark - 3 Li
+/* MARK: - 3 Li */
 
 #define Q_LITHIUM_SYMBOL				Li
 #define Q_LITHIUM_ATOMIC_NUMBER				3
@@ -113,7 +113,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LITHIUM_SHEER_MODULUS
 #define Q_LITHIUM_POISSON_RATIO
 
-#pragma mark - 4 Be
+/* MARK: - 4 Be */
 
 #define Q_BERYLLIUM_SYMBOL				Be
 #define Q_BERYLLIUM_ATOMIC_NUMBER			4
@@ -137,7 +137,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BERYLLIUM_SHEER_MODULUS
 #define Q_BERYLLIUM_POISSON_RATIO
 
-#pragma mark - 5 B
+/* MARK: - 5 B */
 
 #define Q_BORON_SYMBOL					B
 #define Q_BORON_ATOMIC_NUMBER				5
@@ -161,7 +161,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BORON_SHEER_MODULUS
 #define Q_BORON_POISSON_RATIO
 
-#pragma mark - 6 C
+/* MARK: - 6 C */
 
 #define Q_CARBON_SYMBOL					C
 #define Q_CARBON_ATOMIC_NUMBER				6
@@ -185,7 +185,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CARBON_SHEER_MODULUS
 #define Q_CARBON_POISSON_RATIO
 
-#pragma mark - 7 N
+/* MARK: - 7 N */
 
 #define Q_NITROGEN_SYMBOL				N
 #define Q_NITROGEN_ATOMIC_NUMBER			7
@@ -209,7 +209,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NITROGEN_SHEER_MODULUS
 #define Q_NITROGEN_POISSON_RATIO
 
-#pragma mark - 8 O
+/* MARK: - 8 O */
 
 #define Q_OXYGEN_SYMBOL					O
 #define Q_OXYGEN_ATOMIC_NUMBER				8
@@ -233,7 +233,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_OXYGEN_SHEER_MODULUS
 #define Q_OXYGEN_POISSON_RATIO
 
-#pragma mark - 9 F
+/* MARK: - 9 F */
 
 #define Q_FLUORINE_SYMBOL				F
 #define Q_FLUORINE_ATOMIC_NUMBER			9
@@ -257,7 +257,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_FLUORINE_SHEER_MODULUS
 #define Q_FLUORINE_POISSON_RATIO
 
-#pragma mark - 10 Ne
+/* MARK: - 10 Ne */
 
 #define Q_NEON_SYMBOL					Ne
 #define Q_NEON_ATOMIC_NUMBER				10
@@ -281,7 +281,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NEON_SHEER_MODULUS
 #define Q_NEON_POISSON_RATIO
 
-#pragma mark - 11 Na
+/* MARK: - 11 Na */
 
 #define Q_SODIUM_SYMBOL					Na
 #define Q_SODIUM_ATOMIC_NUMBER				11
@@ -305,7 +305,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SODIUM_SHEER_MODULUS
 #define Q_SODIUM_POISSON_RATIO
 
-#pragma mark - 12 Mg
+/* MARK: - 12 Mg */
 
 #define Q_MAGNESIUM_SYMBOL				Mg
 #define Q_MAGNESIUM_ATOMIC_NUMBER			12
@@ -329,7 +329,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MAGNESIUM_SHEER_MODULUS
 #define Q_MAGNESIUM_POISSON_RATIO
 
-#pragma mark - 13 Al
+/* MARK: - 13 Al */
 
 #define Q_ALUMINIUM_SYMBOL				Al
 #define Q_ALUMINIUM_ATOMIC_NUMBER			13
@@ -353,7 +353,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ALUMINIUM_SHEER_MODULUS
 #define Q_ALUMINIUM_POISSON_RATIO
 
-#pragma mark - 14 Si
+/* MARK: - 14 Si */
 
 #define Q_SILICON_SYMBOL				Si
 #define Q_SILICON_ATOMIC_NUMBER				14
@@ -377,7 +377,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SILICON_SHEER_MODULUS
 #define Q_SILICON_POISSON_RATIO
 
-#pragma mark - 15 P
+/* MARK: - 15 P */
 
 #define Q_PHOSPHORUS_SYMBOL				P
 #define Q_PHOSPHORUS_ATOMIC_NUMBER			15
@@ -401,7 +401,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PHOSPHORUS_SHEER_MODULUS
 #define Q_PHOSPHORUS_POISSON_RATIO
 
-#pragma mark - 16 S
+/* MARK: - 16 S */
 
 #define Q_SULFUR_SYMBOL					S
 #define Q_SULFUR_ATOMIC_NUMBER				16
@@ -425,7 +425,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SULFUR_SHEER_MODULUS
 #define Q_SULFUR_POISSON_RATIO
 
-#pragma mark - 17 Cl
+/* MARK: - 17 Cl */
 
 #define Q_CHLORINE_SYMBOL				Cl
 #define Q_CHLORINE_ATOMIC_NUMBER			17
@@ -449,7 +449,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CHLORINE_SHEER_MODULUS
 #define Q_CHLORINE_POISSON_RATIO
 
-#pragma mark - 18 Ar
+/* MARK: - 18 Ar */
 
 #define Q_ARGON_SYMBOL					Ar
 #define Q_ARGON_ATOMIC_NUMBER				18
@@ -473,7 +473,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ARGON_SHEER_MODULUS
 #define Q_ARGON_POISSON_RATIO
 
-#pragma mark - 19 K
+/* MARK: - 19 K */
 
 #define Q_POTASSIUM_SYMBOL				K
 #define Q_POTASSIUM_ATOMIC_NUMBER			19
@@ -497,7 +497,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_POTASSIUM_SHEER_MODULUS
 #define Q_POTASSIUM_POISSON_RATIO
 
-#pragma mark - 20 Ca
+/* MARK: - 20 Ca */
 
 #define Q_CALCIUM_SYMBOL				Ca
 #define Q_CALCIUM_ATOMIC_NUMBER				20
@@ -521,7 +521,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CALCIUM_SHEER_MODULUS
 #define Q_CALCIUM_POISSON_RATIO
 
-#pragma mark - 21 Sc
+/* MARK: - 21 Sc */
 
 #define Q_SCANDIUM_SYMBOL				Sc
 #define Q_SCANDIUM_ATOMIC_NUMBER			21
@@ -545,7 +545,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SCANDIUM_SHEER_MODULUS
 #define Q_SCANDIUM_POISSON_RATIO
 
-#pragma mark - 22 Ti
+/* MARK: - 22 Ti */
 
 #define Q_TITANIUM_SYMBOL				Ti
 #define Q_TITANIUM_ATOMIC_NUMBER			22
@@ -569,7 +569,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TITANIUM_SHEER_MODULUS
 #define Q_TITANIUM_POISSON_RATIO
 
-#pragma mark - 23 V
+/* MARK: - 23 V */
 
 #define Q_VANADIUM_SYMBOL				V
 #define Q_VANADIUM_ATOMIC_NUMBER			23
@@ -593,7 +593,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_VANADIUM_SHEER_MODULUS
 #define Q_VANADIUM_POISSON_RATIO
 
-#pragma mark - 24 Cr
+/* MARK: - 24 Cr */
 
 #define Q_CHROMIUM_SYMBOL				Cr
 #define Q_CHROMIUM_ATOMIC_NUMBER			24
@@ -617,7 +617,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CHROMIUM_SHEER_MODULUS
 #define Q_CHROMIUM_POISSON_RATIO
 
-#pragma mark - 25 Mn
+/* MARK: - 25 Mn */
 
 #define Q_MANGANESE_SYMBOL				Mn
 #define Q_MANGANESE_ATOMIC_NUMBER			25
@@ -641,7 +641,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MANGANESE_SHEER_MODULUS
 #define Q_MANGANESE_POISSON_RATIO
 
-#pragma mark - 26 Fe
+/* MARK: - 26 Fe */
 
 #define Q_IRON_SYMBOL					Fe
 #define Q_IRON_ATOMIC_NUMBER				26
@@ -665,7 +665,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_IRON_SHEER_MODULUS
 #define Q_IRON_POISSON_RATIO
 
-#pragma mark - 27 Co
+/* MARK: - 27 Co */
 
 #define Q_COBALT_SYMBOL					Co
 #define Q_COBALT_ATOMIC_NUMBER				27
@@ -689,7 +689,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_COBALT_SHEER_MODULUS
 #define Q_COBALT_POISSON_RATIO
 
-#pragma mark - 28 Ni
+/* MARK: - 28 Ni */
 
 #define Q_NICKEL_SYMBOL					Ni
 #define Q_NICKEL_ATOMIC_NUMBER				28
@@ -713,7 +713,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NICKEL_SHEER_MODULUS
 #define Q_NICKEL_POISSON_RATIO
 
-#pragma mark - 29 Cu
+/* MARK: - 29 Cu */
 
 #define Q_COPPER_SYMBOL					Cu
 #define Q_COPPER_ATOMIC_NUMBER				29
@@ -737,7 +737,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_COPPER_SHEER_MODULUS
 #define Q_COPPER_POISSON_RATIO
 
-#pragma mark - 30 Zn
+/* MARK: - 30 Zn */
 
 #define Q_ZINC_SYMBOL					Zn
 #define Q_ZINC_ATOMIC_NUMBER				30
@@ -761,7 +761,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ZINC_SHEER_MODULUS
 #define Q_ZINC_POISSON_RATIO
 
-#pragma mark - 31 Ga
+/* MARK: - 31 Ga */
 
 #define Q_GALLIUM_SYMBOL				Ga
 #define Q_GALLIUM_ATOMIC_NUMBER				31
@@ -785,7 +785,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_GALLIUM_SHEER_MODULUS
 #define Q_GALLIUM_POISSON_RATIO
 
-#pragma mark - 32 Ge
+/* MARK: - 32 Ge */
 
 #define Q_GERMANIUM_SYMBOL				Ge
 #define Q_GERMANIUM_ATOMIC_NUMBER			32
@@ -809,7 +809,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_GERMANIUM_SHEER_MODULUS
 #define Q_GERMANIUM_POISSON_RATIO
 
-#pragma mark - 33 As
+/* MARK: - 33 As */
 
 #define Q_ARSENIC_SYMBOL				As
 #define Q_ARSENIC_ATOMIC_NUMBER				33
@@ -833,7 +833,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ARSENIC_SHEER_MODULUS
 #define Q_ARSENIC_POISSON_RATIO
 
-#pragma mark - 34 Se
+/* MARK: - 34 Se */
 
 #define Q_SELENIUM_SYMBOL				Se
 #define Q_SELENIUM_ATOMIC_NUMBER			34
@@ -857,7 +857,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SELENIUM_SHEER_MODULUS
 #define Q_SELENIUM_POISSON_RATIO
 
-#pragma mark - 35 Br
+/* MARK: - 35 Br */
 
 #define Q_BROMINE_SYMBOL				Br
 #define Q_BROMINE_ATOMIC_NUMBER				35
@@ -881,7 +881,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BROMINE_SHEER_MODULUS
 #define Q_BROMINE_POISSON_RATIO
 
-#pragma mark - 36 Kr
+/* MARK: - 36 Kr */
 
 #define Q_KRYPTON_SYMBOL				Kr
 #define Q_KRYPTON_ATOMIC_NUMBER				36
@@ -905,7 +905,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_KRYPTON_SHEER_MODULUS
 #define Q_KRYPTON_POISSON_RATIO
 
-#pragma mark - 37 Rb
+/* MARK: - 37 Rb */
 
 #define Q_RUBIDIUM_SYMBOL				Rb
 #define Q_RUBIDIUM_ATOMIC_NUMBER			37
@@ -929,7 +929,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RUBIDIUM_SHEER_MODULUS
 #define Q_RUBIDIUM_POISSON_RATIO
 
-#pragma mark - 38 Sr
+/* MARK: - 38 Sr */
 
 #define Q_STRONTIUM_SYMBOL				Sr
 #define Q_STRONTIUM_ATOMIC_NUMBER			38
@@ -953,7 +953,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_STRONTIUM_SHEER_MODULUS
 #define Q_STRONTIUM_POISSON_RATIO
 
-#pragma mark - 39 Y
+/* MARK: - 39 Y */
 
 #define Q_YTTRIUM_SYMBOL				Y
 #define Q_YTTRIUM_ATOMIC_NUMBER				39
@@ -977,7 +977,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_YTTRIUM_SHEER_MODULUS
 #define Q_YTTRIUM_POISSON_RATIO
 
-#pragma mark - 40 Zr
+/* MARK: - 40 Zr */
 
 #define Q_ZIRCONIUM_SYMBOL				Zr
 #define Q_ZIRCONIUM_ATOMIC_NUMBER			40
@@ -1001,7 +1001,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ZIRCONIUM_SHEER_MODULUS
 #define Q_ZIRCONIUM_POISSON_RATIO
 
-#pragma mark - 41 Nb
+/* MARK: - 41 Nb */
 
 #define Q_NIOBIUM_SYMBOL				Nb
 #define Q_NIOBIUM_ATOMIC_NUMBER				41
@@ -1025,7 +1025,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NIOBIUM_SHEER_MODULUS
 #define Q_NIOBIUM_POISSON_RATIO
 
-#pragma mark - 42 Mo
+/* MARK: - 42 Mo */
 
 #define Q_MOLYBDENUM_SYMBOL				Mo
 #define Q_MOLYBDENUM_ATOMIC_NUMBER			42
@@ -1049,7 +1049,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MOLYBDENUM_SHEER_MODULUS
 #define Q_MOLYBDENUM_POISSON_RATIO
 
-#pragma mark - 43 Tc
+/* MARK: - 43 Tc */
 
 #define Q_TECHNETIUM_SYMBOL				Tc
 #define Q_TECHNETIUM_ATOMIC_NUMBER			43
@@ -1073,7 +1073,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TECHNETIUM_SHEER_MODULUS
 #define Q_TECHNETIUM_POISSON_RATIO
 
-#pragma mark - 44 Ru
+/* MARK: - 44 Ru */
 
 #define Q_RUTHENIUM_SYMBOL				Ru
 #define Q_RUTHENIUM_ATOMIC_NUMBER			44
@@ -1097,7 +1097,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RUTHENIUM_SHEER_MODULUS
 #define Q_RUTHENIUM_POISSON_RATIO
 
-#pragma mark - 45 Rh
+/* MARK: - 45 Rh */
 
 #define Q_RHODIUM_SYMBOL				Rh
 #define Q_RHODIUM_ATOMIC_NUMBER				45
@@ -1121,7 +1121,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RHODIUM_SHEER_MODULUS
 #define Q_RHODIUM_POISSON_RATIO
 
-#pragma mark - 46 Pd
+/* MARK: - 46 Pd */
 
 #define Q_PALLADIUM_SYMBOL				Pd
 #define Q_PALLADIUM_ATOMIC_NUMBER			46
@@ -1145,7 +1145,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PALLADIUM_SHEER_MODULUS
 #define Q_PALLADIUM_POISSON_RATIO
 
-#pragma mark - 47 Ag
+/* MARK: - 47 Ag */
 
 #define Q_SILVER_SYMBOL					Ag
 #define Q_SILVER_ATOMIC_NUMBER				47
@@ -1169,7 +1169,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SILVER_SHEER_MODULUS
 #define Q_SILVER_POISSON_RATIO
 
-#pragma mark - 48 Cd
+/* MARK: - 48 Cd */
 
 #define Q_CADMIUM_SYMBOL				Cd
 #define Q_CADMIUM_ATOMIC_NUMBER				48
@@ -1193,7 +1193,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CADMIUM_SHEER_MODULUS
 #define Q_CADMIUM_POISSON_RATIO
 
-#pragma mark - 49 In
+/* MARK: - 49 In */
 
 #define Q_INDIUM_SYMBOL					In
 #define Q_INDIUM_ATOMIC_NUMBER				49
@@ -1217,7 +1217,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_INDIUM_SHEER_MODULUS
 #define Q_INDIUM_POISSON_RATIO
 
-#pragma mark - 50 Sn
+/* MARK: - 50 Sn */
 
 #define Q_TIN_SYMBOL					Sn
 #define Q_TIN_ATOMIC_NUMBER				50
@@ -1241,7 +1241,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TIN_SHEER_MODULUS
 #define Q_TIN_POISSON_RATIO
 
-#pragma mark - 51 Sb
+/* MARK: - 51 Sb */
 
 #define Q_ANTIMONY_SYMBOL				Sb
 #define Q_ANTIMONY_ATOMIC_NUMBER			51
@@ -1265,7 +1265,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ANTIMONY_SHEER_MODULUS
 #define Q_ANTIMONY_POISSON_RATIO
 
-#pragma mark - 52 Te
+/* MARK: - 52 Te */
 
 #define Q_TELLURIUM_SYMBOL				Te
 #define Q_TELLURIUM_ATOMIC_NUMBER			52
@@ -1289,7 +1289,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TELLURIUM_SHEER_MODULUS
 #define Q_TELLURIUM_POISSON_RATIO
 
-#pragma mark - 53 I
+/* MARK: - 53 I */
 
 #define Q_IODINE_SYMBOL					I
 #define Q_IODINE_ATOMIC_NUMBER				53
@@ -1313,7 +1313,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_IODINE_SHEER_MODULUS
 #define Q_IODINE_POISSON_RATIO
 
-#pragma mark - 54 Xe
+/* MARK: - 54 Xe */
 
 #define Q_XENON_SYMBOL					Xe
 #define Q_XENON_ATOMIC_NUMBER				54
@@ -1337,7 +1337,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_XENON_SHEER_MODULUS
 #define Q_XENON_POISSON_RATIO
 
-#pragma mark - 55 Cs
+/* MARK: - 55 Cs */
 
 #define Q_CAESIUM_SYMBOL				Cs
 #define Q_CAESIUM_ATOMIC_NUMBER				55
@@ -1361,7 +1361,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CAESIUM_SHEER_MODULUS
 #define Q_CAESIUM_POISSON_RATIO
 
-#pragma mark - 56 Ba
+/* MARK: - 56 Ba */
 
 #define Q_BARIUM_SYMBOL					Ba
 #define Q_BARIUM_ATOMIC_NUMBER				56
@@ -1385,7 +1385,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BARIUM_SHEER_MODULUS
 #define Q_BARIUM_POISSON_RATIO
 
-#pragma mark - 57 La
+/* MARK: - 57 La */
 
 #define Q_LANTHANUM_SYMBOL				La
 #define Q_LANTHANUM_ATOMIC_NUMBER			57
@@ -1409,7 +1409,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LANTHANUM_SHEER_MODULUS
 #define Q_LANTHANUM_POISSON_RATIO
 
-#pragma mark - 58 Ce
+/* MARK: - 58 Ce */
 
 #define Q_CERIUM_SYMBOL					Ce
 #define Q_CERIUM_ATOMIC_NUMBER				58
@@ -1433,7 +1433,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CERIUM_SHEER_MODULUS
 #define Q_CERIUM_POISSON_RATIO
 
-#pragma mark - 59 Pr
+/* MARK: - 59 Pr */
 
 #define Q_PRASEODYMIUM_SYMBOL				Pr
 #define Q_PRASEODYMIUM_ATOMIC_NUMBER			59
@@ -1457,7 +1457,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PRASEODYMIUM_SHEER_MODULUS
 #define Q_PRASEODYMIUM_POISSON_RATIO
 
-#pragma mark - 60 Nd
+/* MARK: - 60 Nd */
 
 #define Q_NEODYMIUM_SYMBOL				Nd
 #define Q_NEODYMIUM_ATOMIC_NUMBER			60
@@ -1481,7 +1481,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NEODYMIUM_SHEER_MODULUS
 #define Q_NEODYMIUM_POISSON_RATIO
 
-#pragma mark - 61 Pm
+/* MARK: - 61 Pm */
 
 #define Q_PROMETHIUM_SYMBOL				Pm
 #define Q_PROMETHIUM_ATOMIC_NUMBER			61
@@ -1505,7 +1505,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PROMETHIUM_SHEER_MODULUS
 #define Q_PROMETHIUM_POISSON_RATIO
 
-#pragma mark - 62 Sm
+/* MARK: - 62 Sm */
 
 #define Q_SAMARIUM_SYMBOL				Sm
 #define Q_SAMARIUM_ATOMIC_NUMBER			62
@@ -1529,7 +1529,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SAMARIUM_SHEER_MODULUS
 #define Q_SAMARIUM_POISSON_RATIO
 
-#pragma mark - 63 Eu
+/* MARK: - 63 Eu */
 
 #define Q_EUROPIUM_SYMBOL				Eu
 #define Q_EUROPIUM_ATOMIC_NUMBER			63
@@ -1553,7 +1553,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_EUROPIUM_SHEER_MODULUS
 #define Q_EUROPIUM_POISSON_RATIO
 
-#pragma mark - 64 Gd
+/* MARK: - 64 Gd */
 
 #define Q_GADOLINIUM_SYMBOL				Gd
 #define Q_GADOLINIUM_ATOMIC_NUMBER			64
@@ -1577,7 +1577,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_GADOLINIUM_SHEER_MODULUS
 #define Q_GADOLINIUM_POISSON_RATIO
 
-#pragma mark - 65 Tb
+/* MARK: - 65 Tb */
 
 #define Q_TERBIUM_SYMBOL				Tb
 #define Q_TERBIUM_ATOMIC_NUMBER				65
@@ -1601,7 +1601,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TERBIUM_SHEER_MODULUS
 #define Q_TERBIUM_POISSON_RATIO
 
-#pragma mark - 66 Dy
+/* MARK: - 66 Dy */
 
 #define Q_DYSPROSIUM_SYMBOL				Dy
 #define Q_DYSPROSIUM_ATOMIC_NUMBER			66
@@ -1625,7 +1625,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_DYSPROSIUM_SHEER_MODULUS
 #define Q_DYSPROSIUM_POISSON_RATIO
 
-#pragma mark - 67 Ho
+/* MARK: - 67 Ho */
 
 #define Q_HOLMIUM_SYMBOL				Ho
 #define Q_HOLMIUM_ATOMIC_NUMBER				67
@@ -1649,7 +1649,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HOLMIUM_SHEER_MODULUS
 #define Q_HOLMIUM_POISSON_RATIO
 
-#pragma mark - 68 Er
+/* MARK: - 68 Er */
 
 #define Q_ERBIUM_SYMBOL					Er
 #define Q_ERBIUM_ATOMIC_NUMBER				68
@@ -1673,7 +1673,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ERBIUM_SHEER_MODULUS
 #define Q_ERBIUM_POISSON_RATIO
 
-#pragma mark - 69 Tm
+/* MARK: - 69 Tm */
 
 #define Q_THULIUM_SYMBOL				Tm
 #define Q_THULIUM_ATOMIC_NUMBER				69
@@ -1697,7 +1697,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_THULIUM_SHEER_MODULUS
 #define Q_THULIUM_POISSON_RATIO
 
-#pragma mark - 70 Yb
+/* MARK: - 70 Yb */
 
 #define Q_YTTERBIUM_SYMBOL				Yb
 #define Q_YTTERBIUM_ATOMIC_NUMBER			70
@@ -1721,7 +1721,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_YTTERBIUM_SHEER_MODULUS
 #define Q_YTTERBIUM_POISSON_RATIO
 
-#pragma mark - 71 Lu
+/* MARK: - 71 Lu */
 
 #define Q_LUTETIUM_SYMBOL				Lu
 #define Q_LUTETIUM_ATOMIC_NUMBER			71
@@ -1745,7 +1745,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LUTETIUM_SHEER_MODULUS
 #define Q_LUTETIUM_POISSON_RATIO
 
-#pragma mark - 72 Hf
+/* MARK: - 72 Hf */
 
 #define Q_HAFNIUM_SYMBOL				Hf
 #define Q_HAFNIUM_ATOMIC_NUMBER				72
@@ -1769,7 +1769,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HAFNIUM_SHEER_MODULUS
 #define Q_HAFNIUM_POISSON_RATIO
 
-#pragma mark - 73 Ta
+/* MARK: - 73 Ta */
 
 #define Q_TANTALUM_SYMBOL				Ta
 #define Q_TANTALUM_ATOMIC_NUMBER			73
@@ -1793,7 +1793,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TANTALUM_SHEER_MODULUS
 #define Q_TANTALUM_POISSON_RATIO
 
-#pragma mark - 74 W
+/* MARK: - 74 W */
 
 #define Q_WOLFRAM_SYMBOL				W
 #define Q_WOLFRAM_ATOMIC_NUMBER				74
@@ -1839,7 +1839,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TUNGSTEN_SHEER_MODULUS			Q_WOLFRAM_SHEER_MODULUS
 #define Q_TUNGSTEN_POISSON_RATIO			Q_WOLFRAM_POISSON_RATIO
 
-#pragma mark - 75 Re
+/* MARK: - 75 Re */
 
 #define Q_RHENIUM_SYMBOL				Re
 #define Q_RHENIUM_ATOMIC_NUMBER				75
@@ -1863,7 +1863,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RHENIUM_SHEER_MODULUS
 #define Q_RHENIUM_POISSON_RATIO
 
-#pragma mark - 76 Os
+/* MARK: - 76 Os */
 
 #define Q_OSMIUM_SYMBOL					Os
 #define Q_OSMIUM_ATOMIC_NUMBER				76
@@ -1887,7 +1887,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_OSMIUM_SHEER_MODULUS
 #define Q_OSMIUM_POISSON_RATIO
 
-#pragma mark - 77 Ir
+/* MARK: - 77 Ir */
 
 #define Q_IRIDIUM_SYMBOL				Ir
 #define Q_IRIDIUM_ATOMIC_NUMBER				77
@@ -1911,7 +1911,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_IRIDIUM_SHEER_MODULUS
 #define Q_IRIDIUM_POISSON_RATIO
 
-#pragma mark - 78 Pt
+/* MARK: - 78 Pt */
 
 #define Q_PLATINUM_SYMBOL				Pt
 #define Q_PLATINUM_ATOMIC_NUMBER			78
@@ -1935,7 +1935,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PLATINUM_SHEER_MODULUS
 #define Q_PLATINUM_POISSON_RATIO
 
-#pragma mark - 79 Au
+/* MARK: - 79 Au */
 
 #define Q_GOLD_SYMBOL					Au
 #define Q_GOLD_ATOMIC_NUMBER				79
@@ -1959,7 +1959,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_GOLD_SHEER_MODULUS
 #define Q_GOLD_POISSON_RATIO
 
-#pragma mark - 80 Hg
+/* MARK: - 80 Hg */
 
 #define Q_MERCURY_SYMBOL				Hg
 #define Q_MERCURY_ATOMIC_NUMBER				80
@@ -1983,7 +1983,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MERCURY_SHEER_MODULUS
 #define Q_MERCURY_POISSON_RATIO
 
-#pragma mark - 81 Tl
+/* MARK: - 81 Tl */
 
 #define Q_THALLIUM_SYMBOL				Tl
 #define Q_THALLIUM_ATOMIC_NUMBER			81
@@ -2007,7 +2007,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_THALLIUM_SHEER_MODULUS
 #define Q_THALLIUM_POISSON_RATIO
 
-#pragma mark - 82 Pb
+/* MARK: - 82 Pb */
 
 #define Q_LEAD_SYMBOL					Pb
 #define Q_LEAD_ATOMIC_NUMBER				82
@@ -2031,7 +2031,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LEAD_SHEER_MODULUS
 #define Q_LEAD_POISSON_RATIO
 
-#pragma mark - 83 Bi
+/* MARK: - 83 Bi */
 
 #define Q_BISMUTH_SYMBOL				Bi
 #define Q_BISMUTH_ATOMIC_NUMBER				83
@@ -2055,7 +2055,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BISMUTH_SHEER_MODULUS
 #define Q_BISMUTH_POISSON_RATIO
 
-#pragma mark - 84 Po
+/* MARK: - 84 Po */
 
 #define Q_POLONIUM_SYMBOL				Po
 #define Q_POLONIUM_ATOMIC_NUMBER			84
@@ -2079,7 +2079,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_POLONIUM_SHEER_MODULUS
 #define Q_POLONIUM_POISSON_RATIO
 
-#pragma mark - 85 At
+/* MARK: - 85 At */
 
 #define Q_ASTATINE_SYMBOL				At
 #define Q_ASTATINE_ATOMIC_NUMBER			85
@@ -2103,7 +2103,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ASTATINE_SHEER_MODULUS
 #define Q_ASTATINE_POISSON_RATIO
 
-#pragma mark - 86 Rn
+/* MARK: - 86 Rn */
 
 #define Q_RADON_SYMBOL					Rn
 #define Q_RADON_ATOMIC_NUMBER				86
@@ -2127,7 +2127,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RADON_SHEER_MODULUS
 #define Q_RADON_POISSON_RATIO
 
-#pragma mark - 87 Fr
+/* MARK: - 87 Fr */
 
 #define Q_FRANCIUM_SYMBOL				Fr
 #define Q_FRANCIUM_ATOMIC_NUMBER			87
@@ -2151,7 +2151,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_FRANCIUM_SHEER_MODULUS
 #define Q_FRANCIUM_POISSON_RATIO
 
-#pragma mark - 88 Ra
+/* MARK: - 88 Ra */
 
 #define Q_RADIUM_SYMBOL					Ra
 #define Q_RADIUM_ATOMIC_NUMBER				88
@@ -2175,7 +2175,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RADIUM_SHEER_MODULUS
 #define Q_RADIUM_POISSON_RATIO
 
-#pragma mark - 89 Ac
+/* MARK: - 89 Ac */
 
 #define Q_ACTINIUM_SYMBOL				Ac
 #define Q_ACTINIUM_ATOMIC_NUMBER			89
@@ -2199,7 +2199,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ACTINIUM_SHEER_MODULUS
 #define Q_ACTINIUM_POISSON_RATIO
 
-#pragma mark - 90 Th
+/* MARK: - 90 Th */
 
 #define Q_THORIUM_SYMBOL				Th
 #define Q_THORIUM_ATOMIC_NUMBER				90
@@ -2223,7 +2223,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_THORIUM_SHEER_MODULUS
 #define Q_THORIUM_POISSON_RATIO
 
-#pragma mark - 91 Pa
+/* MARK: - 91 Pa */
 
 #define Q_PROTACTINIUM_SYMBOL				Pa
 #define Q_PROTACTINIUM_ATOMIC_NUMBER			91
@@ -2247,7 +2247,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PROTACTINIUM_SHEER_MODULUS
 #define Q_PROTACTINIUM_POISSON_RATIO
 
-#pragma mark - 92 U
+/* MARK: - 92 U */
 
 #define Q_URANIUM_SYMBOL				U
 #define Q_URANIUM_ATOMIC_NUMBER				92
@@ -2271,7 +2271,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_URANIUM_SHEER_MODULUS
 #define Q_URANIUM_POISSON_RATIO
 
-#pragma mark - 93 Np
+/* MARK: - 93 Np */
 
 #define Q_NEPTUNIUM_SYMBOL				Np
 #define Q_NEPTUNIUM_ATOMIC_NUMBER			93
@@ -2295,7 +2295,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NEPTUNIUM_SHEER_MODULUS
 #define Q_NEPTUNIUM_POISSON_RATIO
 
-#pragma mark - 94 Pu
+/* MARK: - 94 Pu */
 
 #define Q_PLUTONIUM_SYMBOL				Pu
 #define Q_PLUTONIUM_ATOMIC_NUMBER			94
@@ -2319,7 +2319,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PLUTONIUM_SHEER_MODULUS
 #define Q_PLUTONIUM_POISSON_RATIO
 
-#pragma mark - 95 Am
+/* MARK: - 95 Am */
 
 #define Q_AMERICIUM_SYMBOL				Am
 #define Q_AMERICIUM_ATOMIC_NUMBER			95
@@ -2343,7 +2343,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_AMERICIUM_SHEER_MODULUS
 #define Q_AMERICIUM_POISSON_RATIO
 
-#pragma mark - 96 Cm
+/* MARK: - 96 Cm */
 
 #define Q_CURIUM_SYMBOL					Cm
 #define Q_CURIUM_ATOMIC_NUMBER				96
@@ -2367,7 +2367,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CURIUM_SHEER_MODULUS
 #define Q_CURIUM_POISSON_RATIO
 
-#pragma mark - 97 Bk
+/* MARK: - 97 Bk */
 
 #define Q_BERKELIUM_SYMBOL				Bk
 #define Q_BERKELIUM_ATOMIC_NUMBER			97
@@ -2391,7 +2391,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BERKELIUM_SHEER_MODULUS
 #define Q_BERKELIUM_POISSON_RATIO
 
-#pragma mark - 98 Cf
+/* MARK: - 98 Cf */
 
 #define Q_CALIFORNIUM_SYMBOL				Cf
 #define Q_CALIFORNIUM_ATOMIC_NUMBER			98
@@ -2415,7 +2415,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CALIFORNIUM_SHEER_MODULUS
 #define Q_CALIFORNIUM_POISSON_RATIO
 
-#pragma mark - 99 Es
+/* MARK: - 99 Es */
 
 #define Q_EINSTEINIUM_SYMBOL				Es
 #define Q_EINSTEINIUM_ATOMIC_NUMBER			99
@@ -2439,7 +2439,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_EINSTEINIUM_SHEER_MODULUS
 #define Q_EINSTEINIUM_POISSON_RATIO
 
-#pragma mark - 100 Fm
+/* MARK: - 100 Fm */
 
 #define Q_FERMIUM_SYMBOL				Fm
 #define Q_FERMIUM_ATOMIC_NUMBER				100
@@ -2463,7 +2463,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_FERMIUM_SHEER_MODULUS
 #define Q_FERMIUM_POISSON_RATIO
 
-#pragma mark - 101 Md
+/* MARK: - 101 Md */
 
 #define Q_MENDELEVIUM_SYMBOL				Md
 #define Q_MENDELEVIUM_ATOMIC_NUMBER			101
@@ -2487,7 +2487,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MENDELEVIUM_SHEER_MODULUS
 #define Q_MENDELEVIUM_POISSON_RATIO
 
-#pragma mark - 102 No
+/* MARK: - 102 No */
 
 #define Q_NOBELIUM_SYMBOL				No
 #define Q_NOBELIUM_ATOMIC_NUMBER			102
@@ -2511,7 +2511,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NOBELIUM_SHEER_MODULUS
 #define Q_NOBELIUM_POISSON_RATIO
 
-#pragma mark - 103 Lr
+/* MARK: - 103 Lr */
 
 #define Q_LAWRENCIUM_SYMBOL				Lr
 #define Q_LAWRENCIUM_ATOMIC_NUMBER			103
@@ -2535,7 +2535,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LAWRENCIUM_SHEER_MODULUS
 #define Q_LAWRENCIUM_POISSON_RATIO
 
-#pragma mark - 104 Rf
+/* MARK: - 104 Rf */
 
 #define Q_RUTHERFORDIUM_SYMBOL				Rf
 #define Q_RUTHERFORDIUM_ATOMIC_NUMBER			104
@@ -2559,7 +2559,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RUTHERFORDIUM_SHEER_MODULUS
 #define Q_RUTHERFORDIUM_POISSON_RATIO
 
-#pragma mark - 105 Db
+/* MARK: - 105 Db */
 
 #define Q_DUBNIUM_SYMBOL				Db
 #define Q_DUBNIUM_ATOMIC_NUMBER				105
@@ -2583,7 +2583,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_DUBNIUM_SHEER_MODULUS
 #define Q_DUBNIUM_POISSON_RATIO
 
-#pragma mark - 106 Sg
+/* MARK: - 106 Sg */
 
 #define Q_SEABORGIUM_SYMBOL				Sg
 #define Q_SEABORGIUM_ATOMIC_NUMBER			106
@@ -2607,7 +2607,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SEABORGIUM_SHEER_MODULUS
 #define Q_SEABORGIUM_POISSON_RATIO
 
-#pragma mark - 107 Bh
+/* MARK: - 107 Bh */
 
 #define Q_BOHRIUM_SYMBOL				Bh
 #define Q_BOHRIUM_ATOMIC_NUMBER				107
@@ -2631,7 +2631,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BOHRIUM_SHEER_MODULUS
 #define Q_BOHRIUM_POISSON_RATIO
 
-#pragma mark - 108 Hs
+/* MARK: - 108 Hs */
 
 #define Q_HASSIUM_SYMBOL				Hs
 #define Q_HASSIUM_ATOMIC_NUMBER				108
@@ -2655,7 +2655,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HASSIUM_SHEER_MODULUS
 #define Q_HASSIUM_POISSON_RATIO
 
-#pragma mark - 109 Mt
+/* MARK: - 109 Mt */
 
 #define Q_MEITNERIUM_SYMBOL				Mt
 #define Q_MEITNERIUM_ATOMIC_NUMBER			109
@@ -2679,7 +2679,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MEITNERIUM_SHEER_MODULUS
 #define Q_MEITNERIUM_POISSON_RATIO
 
-#pragma mark - 110 Ds
+/* MARK: - 110 Ds */
 
 #define Q_DARMSTADTIUM_SYMBOL				Ds
 #define Q_DARMSTADTIUM_ATOMIC_NUMBER			110
@@ -2703,7 +2703,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_DARMSTADTIUM_SHEER_MODULUS
 #define Q_DARMSTADTIUM_POISSON_RATIO
 
-#pragma mark - 111 Rg
+/* MARK: - 111 Rg */
 
 #define Q_ROENTGENIUM_SYMBOL				Rg
 #define Q_ROENTGENIUM_ATOMIC_NUMBER			111
@@ -2727,7 +2727,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ROENTGENIUM_SHEER_MODULUS
 #define Q_ROENTGENIUM_POISSON_RATIO
 
-#pragma mark - 112 Cn
+/* MARK: - 112 Cn */
 
 #define Q_COPERNICIUM_SYMBOL				Cn
 #define Q_COPERNICIUM_ATOMIC_NUMBER			112
@@ -2751,7 +2751,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_COPERNICIUM_SHEER_MODULUS
 #define Q_COPERNICIUM_POISSON_RATIO
 
-#pragma mark - 113 Uut
+/* MARK: - 113 Uut */
 
 #define Q_UNUNTRIUM_SYMBOL				Uut
 #define Q_UNUNTRIUM_ATOMIC_NUMBER			113
@@ -2775,7 +2775,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_UNUNTRIUM_SHEER_MODULUS
 #define Q_UNUNTRIUM_POISSON_RATIO
 
-#pragma mark - 114 Fl
+/* MARK: - 114 Fl */
 
 #define Q_FLEROVIUM_SYMBOL				Fl
 #define Q_FLEROVIUM_ATOMIC_NUMBER			114
@@ -2799,7 +2799,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_FLEROVIUM_SHEER_MODULUS
 #define Q_FLEROVIUM_POISSON_RATIO
 
-#pragma mark - 115 Uup
+/* MARK: - 115 Uup */
 
 #define Q_UNUNPENTIUM_SYMBOL				Uup
 #define Q_UNUNPENTIUM_ATOMIC_NUMBER			115
@@ -2823,7 +2823,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_UNUNPENTIUM_SHEER_MODULUS
 #define Q_UNUNPENTIUM_POISSON_RATIO
 
-#pragma mark - 116 Lv
+/* MARK: - 116 Lv */
 
 #define Q_LIVERMORIUM_SYMBOL				Lv
 #define Q_LIVERMORIUM_ATOMIC_NUMBER			116
@@ -2847,7 +2847,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LIVERMORIUM_SHEER_MODULUS
 #define Q_LIVERMORIUM_POISSON_RATIO
 
-#pragma mark - 117 Uus
+/* MARK: - 117 Uus */
 
 #define Q_UNUNSEPTIUM_SYMBOL				Uus
 #define Q_UNUNSEPTIUM_ATOMIC_NUMBER			117
@@ -2871,7 +2871,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_UNUNSEPTIUM_SHEER_MODULUS
 #define Q_UNUNSEPTIUM_POISSON_RATIO
 
-#pragma mark - 118 Uuo
+/* MARK: - 118 Uuo */
 
 #define Q_UNUNOCTIUM_SYMBOL				Uuo
 #define Q_UNUNOCTIUM_ATOMIC_NUMBER			118

@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_keys_hardware_machine_model_ZX_Spectrum_H__
 #define __Q_keys_hardware_machine_model_ZX_Spectrum_H__
 
-#pragma mark - Official models
+/* MARK: - Official models */
 
 #define Q_MACHINE_SINCLAIR_ZX_SPECTRUM_16K_ISSUE_1		00
 #define Q_MACHINE_SINCLAIR_ZX_SPECTRUM_48K_ISSUE_2		01
@@ -40,7 +40,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MACHINE_STRING_SINCLAIR_ZX_SPECTRUM_PLUS3		"ZX Spectrum +3"
 #define Q_MACHINE_STRING_SINCLAIR_ZX_SPECTRUM_PLUS3_ES		"ZX Spectrum +3 (ES)"
 
-#pragma mark - Official clones
+/* MARK: - Official clones */
 
 #define Q_INVES_SPECTRUM_PLUS					14
 #define Q_MACHINE_TIMEX_SINCLAIR_2068
@@ -50,7 +50,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MACHINE_STRING_TIMEX_COMPUTER_2048
 #define Q_MACHINE_STRING_TIMEX_SINCLAIR_2048
 
-#pragma mark - Unofficial clones
+/* MARK: - Unofficial clones */
 
 #define Q_MACHINE_ATM
 #define Q_MACHINE_AZX_MONSTRUM
@@ -183,6 +183,5 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MACHINE_STRING_TIMS				"TimS"
 #define Q_MACHINE_STRING_UNIPOLBRIT_KOMPUTER_2086	"Unipolbrit Komputer 2086"
 #define Q_MACHINE_STRING_ZX_NEXT			"ZX Next"
-
 
 #endif /* __Q_keys_hardware_machine_model_ZX_Spectrum_H__ */

@@ -30,7 +30,7 @@ Released under the terms of the GNU General Public License v3. */
 #	define Q_COLOR_EXPORT Q_INLINE
 #endif
 
-#pragma mark - RGBA 8 8 8 8
+/* MARK: - RGBA 8 8 8 8 */
 
 Q_COLOR_EXPORT
 quint16 q_rgba_8_8_8_8_to_rgb_5_6_5(quint32 color)
@@ -164,7 +164,7 @@ quint32 q_rgba_8_8_8_8_monochrome(
 
 
 
-#pragma mark - ARGB 8 8 8 8
+/* MARK: - ARGB 8 8 8 8 */
 
 
 

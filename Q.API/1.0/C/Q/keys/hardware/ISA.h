@@ -9,17 +9,17 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_keys_hardware_ISA_H__
 #define __Q_keys_hardware_ISA_H__
 
-#pragma mark - Z80
+/* MARK: - Z80 */
 
 #define Q_ISA_Z80
 
-#pragma mark - 650x
+/* MARK: - 650x */
 
 #define Q_ISA_6502
 
-#pragma mark - M68K
+/* MARK: - M68K */
 
-#pragma mark - x86
+/* MARK: - x86 */
 
 #define Q_ISA_3D_NOW
 #define Q_ISA_3D_NOW_PLUS
@@ -61,7 +61,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ISA_VT_X
 #define Q_ISA_X86_64
 
-#pragma mark - Power
+/* MARK: - Power */
 
 #define Q_ISA_AMAZON
 #define Q_ISA_POWER
@@ -74,8 +74,8 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ISA_POWER8
 #define Q_ISA_POWER_PC
 
-#pragma mark - MIPS
+/* MARK: - MIPS */
 
-#pragma mark - Sparc
+/* MARK: - Sparc */
 
 #endif /* __Q_keys_hardware_ISA_H__ */

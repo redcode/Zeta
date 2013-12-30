@@ -9,8 +9,6 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_network_7_FTP_H__
 #define __Q_network_7_FTP_H__
 
-#pragma mark - Ports
-
 #define Q_FTP_DEFAULT_SERVER_PORT	21
 
 /* Connection Establishment */

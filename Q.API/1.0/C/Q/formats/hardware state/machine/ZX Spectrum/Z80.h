@@ -36,8 +36,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	} bitfield2;
 ) QZ80v1Header;
 
-#define Q_Z80_V1_HEADER(p) ((QZ80v1Header *)(p))
-
 Q_DEFINE_STRICT_STRUCTURE (
 	quint16 pc;
 	quint8	hardware_mode;
@@ -53,8 +51,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	last_output_to_fffd;
 	quint8	sound_chip_registers;
 ) QZ80v2AdditionalHeader;
-
-#define Q_Z80_V2_ADDITIONAL_HEADER(p) ((QZ80v2AdditionalHeader *)(p))
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint16 low_t_state_counter;
@@ -72,6 +68,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	last_output_to_1ffd;
 ) QZ80v3ExtendedHeader;
 
-#define Q_Z80_V3_EXTENDED_HEADER(p) ((QZ80v3ExtendedHeader *)(p))
+#define Q_Z80_V1_HEADER(	   p) ((QZ80v1Header	       *)(p))
+#define Q_Z80_V2_ADDITIONAL_HEADER(p) ((QZ80v2AdditionalHeader *)(p))
+#define Q_Z80_V3_EXTENDED_HEADER(  p) ((QZ80v3ExtendedHeader   *)(p))
 
 #endif /* __Q_formats_hardware_snapshot_machine_ZX_Spectrum_Z80_H__ */
