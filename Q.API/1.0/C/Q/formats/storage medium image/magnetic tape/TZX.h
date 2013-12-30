@@ -143,7 +143,7 @@ Released under the terms of the GNU General Public License v3.
 | in the file.								   |
 |									   |
 | Then the main body of the file follows. It consists of a mixture of	   |
-| blocks, each preceded and identified by a byte ID.			   |
+| blocks, each preceded and identified by an ID byte.			   |
 '-------------------------------------------------------------------------*/
 
 Q_DEFINE_STRICT_STRUCTURE (
