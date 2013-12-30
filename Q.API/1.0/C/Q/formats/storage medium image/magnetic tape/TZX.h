@@ -6,7 +6,7 @@
 Copyright © Tomaz Kac.
 Copyright © Martijn v.d. Heide.
 Copyright © Ramsoft.
-Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
+Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
 .---------------------------.

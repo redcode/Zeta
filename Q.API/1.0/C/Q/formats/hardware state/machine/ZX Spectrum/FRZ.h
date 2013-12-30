@@ -5,7 +5,7 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © Dmitriy Zhivilov.
 Copyright © Ian Greenway.
-Copyright © 2006-2013 Manuel Sainz de Baranda y Goñi.
+Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
 .------------------------------.
