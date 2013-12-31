@@ -18,34 +18,39 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/types/base.h>
 
-typedef quint8 QTAPBlockID;
+Q_DEFINE_STRICT_STRUCTURE (
+	quint16 size;
+	quint8	data[];
+) QTAPBlock;
 
 Q_DEFINE_STRICT_STRUCTURE (
-	quint8	header_id;
+	quint8	type;
 	quint8	file_name[10];
 	quint16	data_size;
-) QTAPHeaderPrefix;
 
-Q_DEFINE_STRICT_STRUCTURE (
-	quint16 autostart_line;
-	quint16 program_size;
-	quint8	checksum;
-) QTAPProgramHeader;
+	union {	struct {quint16 autostart_line;
+			quint16 program_size;
+		} program;
 
-Q_DEFINE_STRICT_STRUCTURE (
-	quint8	unused1;
-	quint8	variable_name;
-	quint16	unused2;
-	quint8	checksum;
-) QTAPDataHeader;
+		struct {quint8	unused1;
+			quint8	variable_name;
+			quint16	unused2;
+		} array;
 
-Q_DEFINE_STRICT_STRUCTURE (
-	quint16 start_address;
-	quint16 unused;
-	quint8	checksum;
-) QTAPScreenHeader;
+		struct {quint16 start_address;
+			quint16 unused;
+		} code_file;
+	} information;
 
-Q_DEFINE_STRICT_STRUCTURE (
-) QTAPDataBlock;
+	quint8 checksum;
+) QTAPBlockHeader;
+
+#define Q_TAP_BLOCK_TYPE_PROGRAM	 0
+#define Q_TAP_BLOCK_TYPE_NUMBER_ARRAY	 1
+#define Q_TAP_BLOCK_TYPE_CHARACTER_ARRAY 2
+#define Q_TAP_BLOCK_TYPE_CODE_FILE	 3
+
+#define Q_TAP_BLOCK(	   p) ((QTAPBlock	*)(p))
+#define Q_TAP_BLOCK_HEADER(p) ((QTAPBlockHeader *)(p))
 
 #endif /* __Q_formats_storage_medium_image_tape_TAP_H__ */

@@ -23,8 +23,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	additional_information[];
 ) QFDIHeader;
 
-#define Q_FDI_HEADER(p) ((QFDIHeader *)(p))
-
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8 cylinder;
 	quint8 head;
@@ -39,8 +37,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 offset;
 ) QFDISectorEntry;
 
-#define Q_DSK_SECTOR_ENTRY(p) ((QFDISectorEntry *)(p))
-
 Q_DEFINE_STRICT_STRUCTURE (
 	quint32		data_offset;
 	quint16		zero; /* Always 0000h */
@@ -48,6 +44,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	QFDISectorEntry sectors_entries[];
 ) QFDITrackHeader;
 
+#define Q_FDI_HEADER(	   p) ((QFDIHeader	*)(p))
+#define Q_DSK_SECTOR_ENTRY(p) ((QFDISectorEntry *)(p))
 #define Q_FDI_TRACK_HEADER(p) ((QFDITrackHeader *)(p))
 
 #endif /* __Q_formats_storage_medium_image_magnetic_disk_FDI_H__ */
