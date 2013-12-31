@@ -7,14 +7,14 @@ Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
    	    .----._.----.
-    VSS -01-|    \_/    |-40- RES
+    Vss -01-|    \_/    |-40- RES
     RDY -02-|		|-39-
         -03-|     _	|-38-
     IRQ -04-|    (_)    |-37-
         -05-|		|-36-
     NMI -06-|		|-35-
    SYNC -07-|		|-34-
-    VCC -08-|		|-33- D0
+    Vcc -08-|		|-33- D0
      A0 -09-|		|-32- D1
      A1 -10-|		|-31- D2
      A2 -11-|    6502   |-30- D3
@@ -26,7 +26,7 @@ Released under the terms of the GNU General Public License v3.
      A8 -17-|    (_)    |-24- A14
      A9 -18-|		|-23- A13
     A10 -19-|		|-22- A12
-    A11 -20-|		|-21- VSS
+    A11 -20-|		|-21- Vss
 	    '-----------'
 
    Registers:

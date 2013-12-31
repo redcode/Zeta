@@ -42,7 +42,7 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - Official clones */
 
-#define Q_INVES_SPECTRUM_PLUS					14
+#define Q_MACHINE_INVES_SPECTRUM_PLUS				14
 #define Q_MACHINE_TIMEX_SINCLAIR_2068
 #define Q_MACHINE_TIMEX_COMPUTER_2048
 #define Q_MACHINE_TIMEX_SINCLAIR_2048
