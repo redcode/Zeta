@@ -29,28 +29,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H__
 #define __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H__
 
-/* MARK: - Screen
-					---
-	  Invisible Top Border		 | 8
-   .---------------------------------.  ---   ---
-   |	   Visible Top Border	     |	 | 48  |
-   |----.-----------------------.----|  ---    |
-   |L   |			|R   |	 |     |
-   |e   |			|i   |	 |     |
-   |f  B|			|g  B|	 |     |
-   |t  o|	  Paper		|h  o|   | 192 | 296
-   |   r|			|t  r|	 |     |
-   |   d|			|   d|	 |     |
-   |   e|			|   e|	 |     |
-   |   r|			|   r|	 |     |
-   |----'-----------------------'----|  ---    |
-   |	      Bottom Border	     |	 | 56  |
-   '---------------------------------'  ---   ---
-
-   |----|-----------------------|----|
-     48		   256		  48
-   |---------------------------------|
-		   352			*/
+/* MARK: - Screen */
 
 #define Q_ZX_SPECTRUM_PLUS_SCREEN_WIDTH				Q_ZX_SPECTRUM_SCREEN_WIDTH
 #define Q_ZX_SPECTRUM_PLUS_SCREEN_HEIGHT			Q_ZX_SPECTRUM_SCREEN_HEIGHT
