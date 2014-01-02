@@ -1,4 +1,4 @@
-/* Q API - hardware/GPU/Ricoh/RP2C02.h
+/* Q API - hardware/GPU/Ricoh/RP2C0x.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

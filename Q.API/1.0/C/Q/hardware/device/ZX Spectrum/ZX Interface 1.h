@@ -9,6 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_hardware_device_ZX_Spectrum_ZX_Interface_1_H__
 #define __Q_hardware_device_ZX_Spectrum_ZX_Interface_1_H__
 
+#define Q_ZX_INTERFACE_IO_PORT
 
 
 #endif /* __Q_hardware_device_ZX_Spectrum_ZX_Interface_1_H__ */
