@@ -112,7 +112,7 @@ Released under the terms of the GNU General Public License v3.
 
 /* MARK: - Memory */
 
-#define Q_ZX_SPECTRUM_PLUS_128K_ROM_SIZE			   (1024 *	 32)
+#define Q_ZX_SPECTRUM_PLUS_128K_ROM_SIZE			   (1024 *  32)
 #define Q_ZX_SPECTRUM_PLUS_128K_RAM_SIZE			   (1024 * 128)
 #define Q_ZX_SPECTRUM_MEMORY_SIZE				   (Q_ZX_SPECTRUM_16K_ISSUE_1_ROM_SIZE + Q_ZX_SPECTRUM_16K_ISSUE_1_RAM_SIZE)
 #define Q_ZX_SPECTRUM_FIRMWARE_SIZE				   (1024 *  32)
