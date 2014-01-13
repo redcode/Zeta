@@ -10,6 +10,7 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_types_layout_H__
 
 #include <Q/types/base.h>
+#include <Q/keys/layout.h>
 
 typedef quint8 QAlignment;
 

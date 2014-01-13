@@ -11,24 +11,27 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/base.h>
 
-typedef void*	(* QAllocate)		(void* context,
-					 qsize size);
+typedef void* (* QAllocate)	 (void* context,
+				  qsize size,
+				  qsize alignment);
 
-typedef void*	(* QAllocateClean)	(void* context,
-					 qsize size);
+typedef void* (* QAllocateClean) (void* context,
+				  qsize size,
+				  qsize alignment);
 
-typedef void*	(* QReallocate)		(void* context,
-					 void* block,
-					 qsize new_size);
+typedef void* (* QReallocate)	 (void* context,
+				  void* block,
+				  qsize new_size,
+				  qsize alignment);
 
-typedef void	(* QDeallocate)		(void* context,
-					 void* block);
+typedef void  (* QDeallocate)	 (void* context,
+				  void* block);
 
 typedef struct {
-	QAllocate	allocate;
-	QAllocateClean	allocate_clean;
-	QReallocate	reallocate;
-	QDeallocate	deallocate;
+	QAllocate      allocate;
+	QAllocateClean allocate_clean;
+	QReallocate    reallocate;
+	QDeallocate    deallocate;
 } QAllocationABI;
 
 #define Q_ALLOCATION_ABI(p) ((QAllocationABI *)(p))
