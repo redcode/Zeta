@@ -8,7 +8,7 @@ Released under the terms of the GNU General Public License v3.
 
 .----------------------------------------------.
 |   Vendor: Sinclair Research - Investronica   |
-| Released: 1985			       |
+| Released: 1985-09			       |
 |      CPU: Zilog Z80 @ 3.5469 MHz	       |
 |      ROM: 48K				       |
 |      RAM: 128K			       |
@@ -41,9 +41,62 @@ Released under the terms of the GNU General Public License v3.
 #include <Q/types/base.h>
 #include <Q/macros/bit field.h>
 
+/* MARK: - Memory
+
+0000 .-----------------.
+     | ROM 0  | ROM 1  | Either ROM may be switched in.
+     |        |        |
+     |        |        |
+     |        |        |
+4000 |--------+--------'
+     | Bank 5 |
+     |        |
+     |        |
+     | screen |
+8000 |--------|
+     | Bank 2 |        Any one of these pages may be switched in.
+     |        |
+     |        |
+     |        |
+C000 |--------+--------------------------------------------------------------.
+     | Bank 0 | Bank 1 | Bank 2 | Bank 3 | Bank 4 | Bank 5 | Bank 6 | Bank 7 |
+     |        |        |(also at|        |        |(also at|        |        |
+     |        |        | 8000)  |        |        | 4000)  |        |        |
+     |        |        |        |        |        | screen |        | screen |
+FFFF '----------------------------------------------------------------------*/
+
+#define Q_ZX_SPECTRUM_PLUS_128K_ROM_SIZE    (1024 *  32)
+#define Q_ZX_SPECTRUM_PLUS_128K_RAM_SIZE    (1024 * 128)
+#define Q_ZX_SPECTRUM_PLUS_128K_MEMORY_SIZE (1024 * (32 + 128))
+
+/* MARK: - I/O Ports */
+
+#define Q_ZX_SPECTRUM_PLUS_128K_IO_PORT_BANK_SWITCH 0x7FFD /* Read / Write */
+#define Q_ZX_SPECTRUM_PLUS_128K_IO_PORT_PSG	    0xFFFD /* Read / Write */
+
+/* 7FFD - Bank Switch
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-\_/-|-|-|-\___/-'
+   |  | | |   '---> user (C000h)
+   |  | | '-------> VRAM
+   |  | '---------> ROM
+   |  '-----------> disable
+   '--------------> unused */
+
+typedef Q_STRICT_8BIT_FIELD (
+	quint8 unused	:2,
+	quint8 disable	:1,
+	quint8 rom	:1,
+	quint8 vram	:1,
+	quint8 user	:3
+) QZXSpectrumPlus128KBankSwitch;
+
+/* FFFD - Read/ Select */
+
 /* MARK: - Screen
 				     ---
-	  Invisible Top Border	      | 7
+       Invisible Top Border	      | 7
 .---------------------------------.  ---   ---
 |	Visible Top Border	  |   | 48  |
 |----.-----------------------.----|  ---    |
@@ -109,35 +162,5 @@ Released under the terms of the GNU General Public License v3.
 
 #define Q_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_LINE(region, line)	   (Q_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_##region  + \
 								    Q_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE * line)
-
-/* MARK: - Memory */
-
-#define Q_ZX_SPECTRUM_PLUS_128K_ROM_SIZE			   (1024 *  32)
-#define Q_ZX_SPECTRUM_PLUS_128K_RAM_SIZE			   (1024 * 128)
-#define Q_ZX_SPECTRUM_MEMORY_SIZE				   (Q_ZX_SPECTRUM_16K_ISSUE_1_ROM_SIZE + Q_ZX_SPECTRUM_16K_ISSUE_1_RAM_SIZE)
-#define Q_ZX_SPECTRUM_FIRMWARE_SIZE				   (1024 *  32)
-#define Q_ZX_SPECTRUM_FIRMWARE_BASE_ADDRESS			   0x0000
-
-/* MARK: - I/O Ports */
-
-/* 7FFD - Memory Bank Switch
-.-----------------.
-| 7 6 5 4 3 2 1 0 |
-'-\_/-|-|-|-\___/-'
-   |  | | |   '---> user (C000h)
-   |  | | '-------> VRAM
-   |  | '---------> ROM
-   |  '-----------> disable
-   '--------------> unused */
-
-typedef Q_STRICT_8BIT_FIELD (
-	quint8 unused	:2,
-	quint8 disable	:1,
-	quint8 rom	:1,
-	quint8 vram	:1,
-	quint8 user	:3
-) QZXSpectrumPlus128KMemoryBankSwitch;
-
-/* FFFD - Read/ Select */
 
 #endif /* __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H__ */

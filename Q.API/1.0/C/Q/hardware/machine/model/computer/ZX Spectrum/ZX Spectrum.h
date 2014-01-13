@@ -16,7 +16,7 @@ Released under the terms of the GNU General Public License v3.
 '-------------------------------'
 
 .--------------------------------------------------.
-|  ___. __  __	  __ . __			   |
+|  ___. __  _	  __ . __			   |
 | __\ ||  ||__|__|--|||				   |
 | ZX Spectrum					   |
 |						   |
@@ -35,9 +35,19 @@ Released under the terms of the GNU General Public License v3.
 #ifndef __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H__
 #define __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H__
 
+/* MARK: - Memory */
+
+#define Q_ZX_SPECTRUM_ROM_SIZE		      (1024 * 16)
+#define Q_ZX_SPECTRUM_16K_ISSUE_1_RAM_SIZE    (1024 * 16)
+#define Q_ZX_SPECTRUM_16K_ISSUE_1_MEMORY_SIZE (1024 * (16 + 16))
+#define Q_ZX_SPECTRUM_48K_ISSUE_2_RAM_SIZE    (1024 * 48)
+#define Q_ZX_SPECTRUM_48K_ISSUE_2_MEMORY_SIZE (1024 * (16 + 48))
+#define Q_ZX_SPECTRUM_48K_ISSUE_3_RAM_SIZE    (1024 * 48)
+#define Q_ZX_SPECTRUM_48K_ISSUE_3_MEMORY_SIZE (1024 * (16 + 48))
+
 /* MARK: - Screen
 				     ---
-	  Invisible Top Border	      | 8
+       Invisible Top Border	      | 8
 .---------------------------------.  ---   ---
 |	Visible Top Border	  |   | 48  |
 |----.-----------------------.----|  ---    |
@@ -73,7 +83,7 @@ Released under the terms of the GNU General Public License v3.
 
 /* MARK: - Timmings */
 
-#define Q_ZX_SPECTRUM_Z80_HZ				 3500000
+#define Q_ZX_SPECTRUM_CPU_HZ				 3500000
 #define Q_ZX_SPECTRUM_CYCLES_PER_FRAME			 69888
 #define Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE		 224
 #define Q_ZX_SPECTRUM_CYCLES_PER_HBLANK			 48
@@ -102,11 +112,5 @@ Released under the terms of the GNU General Public License v3.
 
 #define Q_ZX_SPECTRUM_CYCLES_AT_LINE(region, line)	(Q_ZX_SPECTRUM_CYCLES_AT_##region  + \
 							 Q_ZX_SPECTRUM_CYCLES_PER_SCANLINE * line)
-
-/* MARK: - Memory */
-
-#define Q_ZX_SPECTRUM_ISSUE_1_ROM_SIZE			(1024 * 16)
-#define Q_ZX_SPECTRUM_ISSUE_1_FIRMWARE_SIZE		(1024 * 16)
-#define Q_ZX_SPECTRUM_ISSUE_1_FIRMWARE_BASE_ADDRESS	0x0000
 
 #endif /* __Q_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H__ */

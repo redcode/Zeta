@@ -12,22 +12,13 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/types/base.h>
 
 typedef struct {
+	qsize context_size;
+	qsize result_size;
 
-	QStatus (* initialize)		(void* context);
-
-	void	(* update)		(void* context,
-					 void* block,
-					 qsize block_size);
-
-	QStatus (* finalize)		(void* context);
-
-	void*	(* get_result)		(void* context);
-
-	qsize	(* get_result_size)	(void* context);
-
-	qsize	context_size;
-	qsize	result_size;
-
+	void  (* initialize) (void* context);
+	void  (* update	   ) (void* context, void* block, qsize block_size);
+	void  (* finalize  ) (void* context);
+	void* (* result	   ) (void* context, qsize* result_size);
 } QHashFunctionABI;
 
 #define Q_HASH_FUNCTION_ABI(p) ((QHashFunctionABI *)(p))

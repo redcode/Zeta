@@ -12,11 +12,7 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/types/base.h>
 
 typedef struct {
-	qsize	(* encode	    ) (void*  block, qsize  block_size, void*  output);
-	qsize	(* decode	    ) (void*  block, qsize  block_size, void*  output);
-	qsize	(* encoding_size    ) (void*  block, qsize  block_size);
-	qsize	(* decoding_size    ) (void*  block, qsize  block_size);
-	QStatus (* validate_encoding) (void*  block, qsize  block_size, qsize* error_offset);
+	QStatus (* validate) (void*  block, qsize  block_size, qsize* error_offset);
 
 	qboolean sequential;
 } QDataCodecABI;

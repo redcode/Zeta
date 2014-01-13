@@ -1,8 +1,9 @@
 /* Q API - hardware/machine/platform/console/Nintendo Entertainment System.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+ __ __		  _		   _
+|  \  | _  ____  | |  ___  ____  _| | ___
+|     |(_)|    ||_ _|/ -_)|    |/ _ |/ . \
+|__\__||_||__|_| |_| \___/|__|_|\___|\___/
+ E N T E R T A I N M E N T    S Y S T E M
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
@@ -16,54 +17,53 @@ Released under the terms of the GNU General Public License v3.
 #include <Q/types/base.h>
 #include <Q/macros/bit field.h>
 
-#define Q_NES_2A03_HZ		1789773
+#define Q_NES_6502_HZ		1789773
 #define Q_NES_SCREEN_WIDTH	256
 #define Q_NES_SCREEN_HEIGHT	240
 
-/* MARK: - External Memory Structure */
-
-/* .----------------------------------------------------------------.
-   | Address     | Size  | Type    | Content			    |
-   |-------------+-------+----------------------------------|
-   | 0000	 |       | RAM | PPU register: control	    |
-   |-------------+-------+-----+----------------------------|
-   | 2000	 |     1 | MMR | PPU register: control	    |
-   | 2001	 |     1 | MMR | PPU register: mask	    |
-   | 2002	 |     1 | MMR | PPU register: status	    |
-   | 2003	 |     1 | MMR | PPU register: oam_address  |
-   | 2004	 |     1 | MMR | PPU register: oam_data	    |
-   | 2005	 |     1 | MMR | PPU register: scroll	    |
-   | 2006	 |     1 | MMR | PPU register: address	    |
-   | 2007	 |     1 | MMR | PPU register: data	    |
-   |-------------+-------+-----+-------------------------------|
-   | 4000	 |     1 | MMR | APU register: square_wave_0_a |
-   | 4001	 |     1 | MMR | APU register: square_wave_0_b |
-   | 4002	 |     1 | MMR | APU register: square_wave_0_c |
-   | 4003	 |     1 | MMR | APU register: square_wave_0_d |
-   | 4004	 |     1 | MMR | APU register: square_wave_1_a |
-   | 4005	 |     1 | MMR | APU register: square_wave_1_b |
-   | 4006	 |     1 | MMR | APU register: square_wave_1_c |
-   | 4007	 |     1 | MMR | APU register: square_wave_1_d |
-   | 4008	 |     1 | MMR | APU register: triangle_wave_a |
-   | 4009	 |     1 | MMR | APU register: triangle_wave_b |
-   | 400A	 |     1 | MMR | APU register: triangle_wave_c |
-   | 400B	 |     1 | MMR | APU register: triangle_wave_d |
-   | 400C	 |     1 | MMR | APU register: noise_a	       |
-   | 400D	 |     1 | MMR | APU register: noise_b	       |
-   | 400E	 |     1 | MMR | APU register: noise_c	       |
-   | 400F	 |     1 | MMR | APU register: noise_d	       |
-   |-------------+-------+----------+--------------------------|
-   | 4014	 |     1 | I/O port | DMA			    |
-   | 4016	 |     1 | I/O port | Joystick 1		    |
-   | 4017	 |     1 | I/O port | Joystick 2		    |
-   |-------------+-------+----------+-------------------------------|
-   | 5000	 |       |          | Expansion modules		    |
-   |-------------+-------+----------+-------------------------------|
-   | 6000	 |       | RAM      | Cartridge RAM		    |
-   |-------------+-------+----------+-------------------------------|
-   | 8000	 |       | ROM      | Lower Bank of Cartridge ROM   |
-   | C000	 |       | ROM      | Upper Bank of Cartridge ROM   |
-   '----------------------------------------------------------------' */
+/* MARK: - Memory Structure
+.----------------------------------------------------------------.
+| Address     | Size  | Type    | Content			    |
+|-------------+-------+----------------------------------|
+| 0000	 |       | RAM | PPU register: control	    |
+|-------------+-------+-----+----------------------------|
+| 2000	 |     1 | MMR | PPU register: control	    |
+| 2001	 |     1 | MMR | PPU register: mask	    |
+| 2002	 |     1 | MMR | PPU register: status	    |
+| 2003	 |     1 | MMR | PPU register: oam_address  |
+| 2004	 |     1 | MMR | PPU register: oam_data	    |
+| 2005	 |     1 | MMR | PPU register: scroll	    |
+| 2006	 |     1 | MMR | PPU register: address	    |
+| 2007	 |     1 | MMR | PPU register: data	    |
+|-------------+-------+-----+-------------------------------|
+| 4000	 |     1 | MMR | APU register: square_wave_0_a |
+| 4001	 |     1 | MMR | APU register: square_wave_0_b |
+| 4002	 |     1 | MMR | APU register: square_wave_0_c |
+| 4003	 |     1 | MMR | APU register: square_wave_0_d |
+| 4004	 |     1 | MMR | APU register: square_wave_1_a |
+| 4005	 |     1 | MMR | APU register: square_wave_1_b |
+| 4006	 |     1 | MMR | APU register: square_wave_1_c |
+| 4007	 |     1 | MMR | APU register: square_wave_1_d |
+| 4008	 |     1 | MMR | APU register: triangle_wave_a |
+| 4009	 |     1 | MMR | APU register: triangle_wave_b |
+| 400A	 |     1 | MMR | APU register: triangle_wave_c |
+| 400B	 |     1 | MMR | APU register: triangle_wave_d |
+| 400C	 |     1 | MMR | APU register: noise_a	       |
+| 400D	 |     1 | MMR | APU register: noise_b	       |
+| 400E	 |     1 | MMR | APU register: noise_c	       |
+| 400F	 |     1 | MMR | APU register: noise_d	       |
+|-------------+-------+----------+--------------------------|
+| 4014	 |     1 | I/O port | DMA			    |
+| 4016	 |     1 | I/O port | Joystick 1		    |
+| 4017	 |     1 | I/O port | Joystick 2		    |
+|-------------+-------+----------+-------------------------------|
+| 5000	 |       |          | Expansion modules		    |
+|-------------+-------+----------+-------------------------------|
+| 6000	 |       | RAM      | Cartridge RAM		    |
+|-------------+-------+----------+-------------------------------|
+| 8000	 |       | ROM      | Lower Bank of Cartridge ROM   |
+| C000	 |       | ROM      | Upper Bank of Cartridge ROM   |
+'----------------------------------------------------------------' */
 
 /* MARK: - I/O Ports */
 
@@ -145,68 +145,60 @@ OUT --| O O |-- D3
 
 
 /* Square Wave Register A 
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-\_/-|-|-\_____/-'
-      |  | |    '----> Volume / Envelope decay rate
-      |  | '---------> Envelope decay disable
-      |  '-----------> Length counter clock disable / Envelope decay looping enable
-      '--------------> Duty cycle type (Unused on noise channel)
-*/
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-\_/-|-|-\_____/-'
+   |  | |    '----> Volume / Envelope decay rate
+   |  | '---------> Envelope decay disable
+   |  '-----------> Length counter clock disable / Envelope decay looping enable
+   '--------------> Duty cycle type (Unused on noise channel) */
 
-typedef Q_STRICT_8BIT_FIELD_WITH_4_MEMBERS (
-	quint8 duty_cycle_type:2,
-	quint8 envelope_decay_disable:1,
-	quint8 length_counter_clock_disable:1,
-	quint8 volume:4
-) QNESSquareWaveRegisterA;
+typedef Q_STRICT_8BIT_FIELD (
+	quint8 duty_cycle_type		    :2,
+	quint8 envelope_decay_disable	    :1,
+	quint8 length_counter_clock_disable :1,
+	quint8 volume			    :4
+) QNESSquareWaveA;
 
 /* Square Wave Register B
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-|-\___/-|-\___/-'
-     |   |   |   '---> Right shift amount
-     |   |   '-------> Decrease / Increase (1/0) wavelength
-     |   '-----------> Sweep update rate
-     '---------------> Sweep enable
-*/
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-|-\___/-|-\___/-'
+  |   |   |   '---> Right shift amount
+  |   |   '-------> Decrease / Increase (1/0) wavelength
+  |   '-----------> Sweep update rate
+  '---------------> Sweep enable */
 
-typedef Q_STRICT_8BIT_FIELD_WITH_4_MEMBERS (
-	quint8 sweep_enable:1,
-	quint8 sweep_update_rate:3,
-	quint8 decrease_or_increase_wavelength:1,
-	quint8 right_shift_amount:3
-) QNESSquareWaveRegisterB;
+typedef Q_STRICT_8BIT_FIELD (
+	quint8 sweep_enable		       :1,
+	quint8 sweep_update_rate	       :3,
+	quint8 decrease_or_increase_wavelength :1,
+	quint8 right_shift_amount	       :3
+) QNESSquareWaveB;
 
-/* Square Wave Register C
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 | Eight LSB of wavelength
-   '-----------------'
-*/
+/* Square Wave Register C */
 
-typedef quint8 QNESSquareWaveRegisterC;
+typedef quint8 QNESSquareWaveC;
 
 /* Square Wave Register D
-  .-----------------.
-  | 7 6 5 4 3 2 1 0 |
-  '-\_______/-\___/-'
-	|       '---> 3 MSB of wavelength (Unused on noise channel)
-	'-----------> Length counter load register
-*/
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-\_______/-\___/-'
+      |       '---> 3 MSB of wavelength (Unused on noise channel)
+      '-----------> Length counter load register */
 
-typedef Q_STRICT_8BIT_FIELD_WITH_2_MEMBERS (
-) QNESSquareWaveRegisterD;
+typedef Q_STRICT_8BIT_FIELD (
+) QNESSquareWaveD;
 
 /* Triangle Wave Register A
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-|-\___________/-'
-     |	     '-------> Linear counter load register
-     '---------------> Length counter clock disable / Linear counter start
-*/
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-|-\___________/-'
+  |	  '-------> Linear counter load register
+  '---------------> Length counter clock disable / Linear counter start */
 
-typedef Q_STRICT_8BIT_FIELD_WITH_2_MEMBERS (
-) QNESTriangleWaveRegisterA;
+typedef Q_STRICT_8BIT_FIELD (
+) QNESTriangleWaveA;
 
 /* Triangle Wave Register B
    .-----------------.
@@ -220,31 +212,29 @@ typedef Q_STRICT_8BIT_FIELD_WITH_2_MEMBERS (
    '-----------------'
 */
 
-typedef quint8 QNESTriangleWaveRegisterC;
+typedef quint8 QNESTriangleWaveC;
 
 /* Triangle Wave Register D
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-\_______/-\___/-'
-	 |       '---> 3 MSB of wavelength (Unused on noise channel)
-	 '-----------> Length counter load register
-*/
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-\_______/-\___/-'
+      |       '---> 3 MSB of wavelength (Unused on noise channel)
+      '-----------> Length counter load register */
 
-typedef Q_STRICT_8BIT_FIELD_WITH_2_MEMBERS (
-) QNESTriangleWaveRegisterD;
+typedef Q_STRICT_8BIT_FIELD (
+) QNESTriangleWaveD;
 
 /* Noise Register A
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-\_/-|-|-\_____/-'
-      |  | |	'----> Volume / Envelope decay rate
-      |  | '---------> Envelope decay disable
-      |	 '-----------> Length counter clock disable / Envelope decay looping enable
-      '--------------> Duty cycle type (Unused on noise channel)
-*/
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-\_/-|-|-\_____/-'
+   |  | |    '----> Volume / Envelope decay rate
+   |  | '---------> Envelope decay disable
+   |  '-----------> Length counter clock disable / Envelope decay looping enable
+   '--------------> Duty cycle type (Unused on noise channel) */
 
-typedef Q_STRICT_8BIT_FIELD_WITH_4_MEMBERS (
-) QNESNoiseRegisterA;
+typedef Q_STRICT_8BIT_FIELD (
+) QNESNoiseA;
 
 /* Noise Register B
    .-----------------.
@@ -254,26 +244,24 @@ typedef Q_STRICT_8BIT_FIELD_WITH_4_MEMBERS (
 */
 
 /* Noise Register C
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-|-\___/-\_____/-'
-     |	 |	'----> Playback sample rate
-     |	 '-----------> Unused
-     '---------------> random number type generation
-*/	  
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-|-\___/-\_____/-'
+  |   |	     '----> Playback sample rate
+  |   '-----------> Unused
+  '---------------> random number type generation */	  
 
-typedef Q_STRICT_8BIT_FIELD_WITH_3_MEMBERS (
-) QNESNoiseRegisterC;
+typedef Q_STRICT_8BIT_FIELD (
+) QNESNoiseC;
 
 /* Noise Register D
-  .-----------------.
-  | 7 6 5 4 3 2 1 0 |
-  '-\_______/-\___/-'
-	|       '---> 3 MSB of wavelength (Unused on noise channel)
-	'-----------> Length counter load register
-*/
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-\_______/-\___/-'
+      |       '---> 3 MSB of wavelength (Unused on noise channel)
+      '-----------> Length counter load register */
 
 typedef Q_STRICT_8BIT_FIELD_WITH_2_MEMBERS (
-) QNESNoiseRegisterD;
+) QNESNoiseD;
 
 #endif /* __Q_hardware_machine_platform_console_Nintendo_Entertainment_System_H__ */

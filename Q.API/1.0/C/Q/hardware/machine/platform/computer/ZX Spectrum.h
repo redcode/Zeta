@@ -31,13 +31,8 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ZX_SPECTRUM_ADDRESS_USER_PROGRAMS	  0x5B00
 
 #define Q_ZX_SPECTRUM_VIDEO_RAM_SIZE		  ((1024 * 6) + 768)
-#define Q_ZX_SPECTRUM_VIDEO_CHARACTER_RAM_SIZE	  (1024 * 6)
-#define Q_ZX_SPECTRUM_VIDEO_ATTRIBUTE_RAM_SIZE	  768
-
-Q_DEFINE_STRICT_STRUCTURE (
-	quint8 characters[Q_ZX_SPECTRUM_VIDEO_CHARACTER_RAM_SIZE];
-	quint8 attributes[Q_ZX_SPECTRUM_VIDEO_ATTRIBUTE_RAM_SIZE];
-) QZXSpectrumVRAM;
+#define Q_ZX_SPECTRUM_VIDEO_CHARACTER_RAM_SIZE	   (1024 * 6)
+#define Q_ZX_SPECTRUM_VIDEO_ATTRIBUTE_RAM_SIZE			768
 
 /* MARK: - Video
 
@@ -102,6 +97,11 @@ typedef Q_STRICT_8BIT_FIELD (
 #define Q_ZX_SPECTRUM_ATTRIBUTE_SQUARE_WIDTH  8
 #define Q_ZX_SPECTRUM_ATTRIBUTE_SQUARE_HEIGHT 8
 
+Q_DEFINE_STRICT_STRUCTURE (
+	quint8			  characters[Q_ZX_SPECTRUM_VIDEO_CHARACTER_RAM_SIZE];
+	QZXSpectrumColorAttribute attributes[Q_ZX_SPECTRUM_VIDEO_ATTRIBUTE_RAM_SIZE];
+) QZXSpectrumVRAM;
+
 /* MARK: - I/O ports */
 
 #define Q_ZX_SPECTRUM_IO_PORT_ULA		0x01 /* Read */
@@ -133,21 +133,21 @@ typedef Q_STRICT_8BIT_FIELD (
    | | | .--| ____0___ |   1   |   2   |   3   |   4   |   5   |
    | | | |  |----------+-------+-------+-------+-------+-------|
    | | | |  | ___0____ |   0   |   9   |   8   |   7   |   6   |-------------.
-   | | | |  |----------+-------+-------+-------+-------+-------|	     | R
-   | | | |  | __0_____ |   P   |   O   |   I   |   U   |   Y   |-----------. | E
- N | | | |  |----------+-------+-------+-------+-------+-------|	   | | V
- O | | | |  | _0______ | ENTER |   L   |   K   |   J   |   H   |---------. | | E
- R | | | |  |----------+-------+-------+-------+-------+-------|	 | | | R
- M | | | |  | 0_______ | SPACE | SY/SH |   M   |   N   |   B   |-------. | | | S
- A | | | |  '--------------------------------------------------'       | | | | E
- L | | | |							       | | | | D
-   | | | |  .--------------------------.    .-----------------------.  | | | |
- M | | | |  |  ___. __  __    __ . __  /\  /                        |  | | | | M
- A | | | |  | __\ ||  ||__|__|--|||   / / /                         |  | | | | A
- T | | | |  | ZX Spectrum            / / /                          |  | | | | T
- R | | | |  |                       / / /                           |  | | | | R
- I | | | |  '_=====================/ / /===========================_'  | | | | I
- X | | | |  |´ _   _   _   _   _  / / / _   _   _   _   _          `|  | | | | X
+ N | | | |  |----------+-------+-------+-------+-------+-------|	     | R
+ O | | | |  | __0_____ |   P   |   O   |   I   |   U   |   Y   |-----------. | E
+ R | | | |  |----------+-------+-------+-------+-------+-------|	   | | V
+ M | | | |  | _0______ | ENTER |   L   |   K   |   J   |   H   |---------. | | E
+ A | | | |  |----------+-------+-------+-------+-------+-------|	 | | | R
+ L | | | |  | 0_______ | SPACE | SY/SH |   M   |   N   |   B   |-------. | | | S
+   | | | |  '--------------------------------------------------'       | | | | E
+ M | | | |							       | | | | D
+ A | | | |  .--------------------------.    .-----------------------.  | | | |
+ T | | | |  |  ___. __  _     __ . __  /\  /                        |  | | | | M
+ R | | | |  | __\ ||  ||__|__|--|||   / / /                         |  | | | | A
+ I | | | |  | ZX Spectrum            / / /                          |  | | | | T
+ X | | | |  |                       / / /                           |  | | | | R
+   | | | |  '_=====================/ / /===========================_'  | | | | I
+   | | | |  |´ _   _   _   _   _  / / / _   _   _   _   _          `|  | | | | X
    | | | '--> [1] [2] [3] [4] [5] \/  \[6] [7] [8] [9] [0] <-----------------'
    | | |    |     _   _   _   _   _\   \   _   _   _   _   _        |  | | |
    | | '-------> [Q] [W] [E] [R] [T]\   \ [Y] [U] [I] [O] [P] <------------'
@@ -186,14 +186,51 @@ typedef Q_STRICT_8BIT_FIELD (
 	quint8 border_color :3
 ) QZXSpectrumULAIO;
 
-/* MARK: - Firmware ADC */
+/* MARK: - Firmware ADC
 
-#define Q_ZX_SPECTRUM_ADC_TIMING_PILOT 2168 /* In Z80 T-States */
-#define Q_ZX_SPECTRUM_ADC_TIMING_SYNC1  667
-#define Q_ZX_SPECTRUM_ADC_TIMING_SYNC2  735
-#define Q_ZX_SPECTRUM_ADC_TIMING_DATA0  855
-#define Q_ZX_SPECTRUM_ADC_TIMING_DATA1 1710
-#define Q_ZX_SPECTRUM_ADC_TIMING_TAIL   945
+High   Pulse	   Pulse       Pulse
+       _____	   _____       _____
+      |     |     |	|     |     |
+      |     |     |	|     |     |	  Square wave
+      |     |_____|	|_____|     |_____
+Low	     Pulse	 Pulse	     Pulse
+
+1) Pilot
+ ______________	
+|	       |
+|     2168     |     2168      x 8063 times (if block contains header)
+|	       |______________ x 3223 times (if block contains data)
+
+2) Sync
+ _____
+|     |
+| 667 |  735
+|     |_______
+
+4) Pause
+
+
+		1 second
+_______________________________________
+
+
+
+*/
+
+#define Q_ZX_SPECTRUM_ADC_PULSES_PER_HEADER_PILOT	8064 /* 5 seconds */
+#define Q_ZX_SPECTRUM_ADC_PULSES_PER_DATA_PILOT		3224 /*	2 seconds */
+#define Q_ZX_SPECTRUM_ADC_CYCLES_PER_PILOT_PULSE	2168 /*  807.2 Hz */
+#define Q_ZX_SPECTRUM_ADC_CYCLES_PER_SYNC_HIGH_PULSE	 667 /* 2623.7 Hz */
+#define Q_ZX_SPECTRUM_ADC_CYCLES_PER_SYNC_LOW_PULSE	 735 /* 2381   Hz */
+#define Q_ZX_SPECTRUM_ADC_CYCLES_PER_BIT_0_PULSE	 855 /* 2046.8 Hz */
+#define Q_ZX_SPECTRUM_ADC_CYCLES_PER_BIT_1_PULSE	1710 /* 1023.4 Hz */
+#define Q_ZX_SPECTRUM_ADC_CYCLES_PER_TAIL		 945
+#define Q_ZX_SPECTRUM_ADC_CYCLES_PER_PAUSE	     3500000
+#define Q_ZX_SPECTRUM_ADC_CYCLES_PER_HEADER_PILOT    (Q_ZX_SPECTRUM_ADC_CYCLES_PER_PILOT_PULSE * 8064)
+#define Q_ZX_SPECTRUM_ADC_CYCLES_PER_DATA_PILOT	     (Q_ZX_SPECTRUM_ADC_CYCLES_PER_PILOT_PULSE * 3224)
+
+#define Q_ZX_SPECTRUM_ADC_BLOCK_CONTENT_HEADER   0
+#define Q_ZX_SPECTRUM_ADC_BLOCK_CONTENT_DATA   255
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8	type;
@@ -201,7 +238,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16	data_size;
 
 	union {	struct {quint16 autostart_line;
-			quint16 program_size;
+			quint16 size;
 		} program;
 
 		struct {quint8	unused1;
@@ -212,12 +249,12 @@ Q_DEFINE_STRICT_STRUCTURE (
 		struct {quint16 start_address;
 			quint16 unused;
 		} code_file;
-	} information;
+	} parameters;
 
 	quint8 checksum;
 ) QZXSpectrumADCBlockHeader;
 
-#define Q_ZX_SPECTRUM_FAS_BLOCK_HEADER(p) ((QZXSpectrumADCBlockHeader *)(p))
+#define Q_ZX_SPECTRUM_ADC_BLOCK_HEADER(p) ((QZXSpectrumADCBlockHeader *)(p))
 
 #define Q_ZX_SPECTRUM_ADC_BLOCK_TYPE_PROGRAM	     0
 #define Q_ZX_SPECTRUM_ADC_BLOCK_TYPE_NUMBER_ARRAY    1
