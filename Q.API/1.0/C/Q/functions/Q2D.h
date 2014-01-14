@@ -60,37 +60,37 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
-#define q_2d_uchar_zero		q_2d_uchar  (0, 0)
-#define q_2d_ushort_zero	q_2d_ushort (0, 0)
-#define q_2d_uint_zero		q_2d_uint   (0, 0)
-#define q_2d_ulong_zero		q_2d_ulong  (0, 0)
-#define q_2d_ullong_zero	q_2d_ullong (0, 0)
-#define q_2d_char_zero		q_2d_char   (0, 0)
-#define q_2d_short_zero		q_2d_short  (0, 0)
-#define q_2d_int_zero		q_2d_int    (0, 0)
-#define q_2d_long_zero		q_2d_long   (0, 0)
-#define q_2d_llong_zero		q_2d_llong  (0, 0)
-#define q_2d_float_zero		q_2d_float  (0.0F, 0.0F)
-#define q_2d_double_zero	q_2d_double (0.0,  0.0 )
-#define q_2d_ldouble_zero	q_2d_ldouble(0.0L, 0.0L)
-#define q_2d_uint8_zero		q_2d_uint8  (0, 0)
-#define q_2d_uint16_zero	q_2d_uint16 (0, 0)
-#define q_2d_uint32_zero	q_2d_uint32 (0, 0)
-#define q_2d_uint64_zero	q_2d_uint64 (0, 0)
-#define q_2d_int8_zero		q_2d_int8   (0, 0)
-#define q_2d_int16_zero		q_2d_int16  (0, 0)
-#define q_2d_int32_zero		q_2d_int32  (0, 0)
-#define q_2d_int64_zero		q_2d_int64  (0, 0)
-#define q_2d_size_zero		q_2d_size   (0, 0)
-#define q_2d_uintptr_zero	q_2d_uintptr(0, 0)
-#define q_2d_uinttop_zero	q_2d_uinttop(0, 0)
-#define q_2d_uintmax_zero	q_2d_uintmax(0, 0)
-#define q_2d_ssize_zero		q_2d_ssize  (0, 0)
-#define q_2d_intptr_zero	q_2d_intptr (0, 0)
-#define q_2d_inttop_zero	q_2d_inttop (0, 0)
-#define q_2d_intmax_zero	q_2d_intmax (0, 0)
-#define q_2d_natural_zero	q_2d_natural(0, 0)
-#define q_2d_integer_zero	q_2d_integer(0, 0)
+#define q_2d_uchar_zero   q_2d_uchar  (0, 0)
+#define q_2d_ushort_zero  q_2d_ushort (0, 0)
+#define q_2d_uint_zero	  q_2d_uint   (0, 0)
+#define q_2d_ulong_zero   q_2d_ulong  (0, 0)
+#define q_2d_ullong_zero  q_2d_ullong (0, 0)
+#define q_2d_char_zero	  q_2d_char   (0, 0)
+#define q_2d_short_zero   q_2d_short  (0, 0)
+#define q_2d_int_zero	  q_2d_int    (0, 0)
+#define q_2d_long_zero	  q_2d_long   (0, 0)
+#define q_2d_llong_zero   q_2d_llong  (0, 0)
+#define q_2d_float_zero   q_2d_float  (0.0F, 0.0F)
+#define q_2d_double_zero  q_2d_double (0.0,  0.0 )
+#define q_2d_ldouble_zero q_2d_ldouble(0.0L, 0.0L)
+#define q_2d_uint8_zero   q_2d_uint8  (0, 0)
+#define q_2d_uint16_zero  q_2d_uint16 (0, 0)
+#define q_2d_uint32_zero  q_2d_uint32 (0, 0)
+#define q_2d_uint64_zero  q_2d_uint64 (0, 0)
+#define q_2d_int8_zero	  q_2d_int8   (0, 0)
+#define q_2d_int16_zero   q_2d_int16  (0, 0)
+#define q_2d_int32_zero   q_2d_int32  (0, 0)
+#define q_2d_int64_zero   q_2d_int64  (0, 0)
+#define q_2d_size_zero	  q_2d_size   (0, 0)
+#define q_2d_uintptr_zero q_2d_uintptr(0, 0)
+#define q_2d_uinttop_zero q_2d_uinttop(0, 0)
+#define q_2d_uintmax_zero q_2d_uintmax(0, 0)
+#define q_2d_ssize_zero	  q_2d_ssize  (0, 0)
+#define q_2d_intptr_zero  q_2d_intptr (0, 0)
+#define q_2d_inttop_zero  q_2d_inttop (0, 0)
+#define q_2d_intmax_zero  q_2d_intmax (0, 0)
+#define q_2d_natural_zero q_2d_natural(0, 0)
+#define q_2d_integer_zero q_2d_integer(0, 0)
 
 
 #define Q_IMPLEMENTATION_NATURAL_2D(Type, type)					\
@@ -424,132 +424,132 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_2d			q_2d_float
-#	define q_2d_zero		q_2d_float_zero
-#	define q_2d_are_equal		q_2d_float_are_equal
-#	define q_2d_are_almost_equal	q_2d_float_are_almost_equal
-#	define q_2d_are_perpendicular	q_2d_float_are_perpendicular
-#	define q_2d_swap		q_2d_float_swap
-#	define q_2d_contains		q_2d_float_contains
-#	define q_2d_add			q_2d_float_add
-#	define q_2d_subtract		q_2d_float_subtract
-#	define q_2d_multiply		q_2d_float_multiply
-#	define q_2d_divide		q_2d_float_divide
-#	define q_2d_dot_product		q_2d_float_dot_product
-#	define q_2d_cross_product	q_2d_float_cross_product
-#	define q_2d_minimum		q_2d_float_minimum
-#	define q_2d_maximum		q_2d_float_maximum
-#	define q_2d_middle		q_2d_float_middle
-#	define q_2d_fit			q_2d_float_fit
-#	define q_2d_lerp		q_2d_float_lerp
-#	define q_2d_from_scalar		q_2d_float_from_scalar
-#	define q_2d_is_zero		q_2d_float_is_zero
-#	define q_2d_is_near_zero	q_2d_float_is_near_zero
-#	define q_2d_is_nan		q_2d_float_is_nan
-#	define q_2d_has_nan		q_2d_float_has_nan
-#	define q_2d_negative		q_2d_float_negative
-#	define q_2d_absolute		q_2d_float_absolute
-#	define q_2d_reciprocal		q_2d_float_reciprocal
-#	define q_2d_inverse		q_2d_float_inverse
-#	define q_2d_inner_sum		q_2d_float_inner_sum
-#	define q_2d_inner_product	q_2d_float_inner_product
-#	define q_2d_inner_minimum	q_2d_float_inner_minimum
-#	define q_2d_inner_maximum	q_2d_float_inner_maximum
-#	define q_2d_inner_average	q_2d_float_inner_average
-#	define q_2d_squared_length	q_2d_float_squared_length
-#	define q_2d_add_scalar		q_2d_float_add_scalar
-#	define q_2d_subtract_scalar	q_2d_float_subtract_scalar
-#	define q_2d_multiply_by_scalar	q_2d_float_multiply_by_scalar
-#	define q_2d_divide_by_scalar	q_2d_float_divide_by_scalar
-#	define q_2d_clamp		q_2d_float_clamp
-#	define q_2d_square_clamp	q_2d_float_square_clamp
-#	define q_2d_square_clamp_01	q_2d_float_square_clamp_01
+#	define q_2d		       q_2d_float
+#	define q_2d_zero	       q_2d_float_zero
+#	define q_2d_are_equal	       q_2d_float_are_equal
+#	define q_2d_are_almost_equal   q_2d_float_are_almost_equal
+#	define q_2d_are_perpendicular  q_2d_float_are_perpendicular
+#	define q_2d_swap	       q_2d_float_swap
+#	define q_2d_contains	       q_2d_float_contains
+#	define q_2d_add		       q_2d_float_add
+#	define q_2d_subtract	       q_2d_float_subtract
+#	define q_2d_multiply	       q_2d_float_multiply
+#	define q_2d_divide	       q_2d_float_divide
+#	define q_2d_dot_product        q_2d_float_dot_product
+#	define q_2d_cross_product      q_2d_float_cross_product
+#	define q_2d_minimum	       q_2d_float_minimum
+#	define q_2d_maximum	       q_2d_float_maximum
+#	define q_2d_middle	       q_2d_float_middle
+#	define q_2d_fit		       q_2d_float_fit
+#	define q_2d_lerp	       q_2d_float_lerp
+#	define q_2d_from_scalar        q_2d_float_from_scalar
+#	define q_2d_is_zero	       q_2d_float_is_zero
+#	define q_2d_is_near_zero       q_2d_float_is_near_zero
+#	define q_2d_is_nan	       q_2d_float_is_nan
+#	define q_2d_has_nan	       q_2d_float_has_nan
+#	define q_2d_negative	       q_2d_float_negative
+#	define q_2d_absolute	       q_2d_float_absolute
+#	define q_2d_reciprocal	       q_2d_float_reciprocal
+#	define q_2d_inverse	       q_2d_float_inverse
+#	define q_2d_inner_sum	       q_2d_float_inner_sum
+#	define q_2d_inner_product      q_2d_float_inner_product
+#	define q_2d_inner_minimum      q_2d_float_inner_minimum
+#	define q_2d_inner_maximum      q_2d_float_inner_maximum
+#	define q_2d_inner_average      q_2d_float_inner_average
+#	define q_2d_squared_length     q_2d_float_squared_length
+#	define q_2d_add_scalar	       q_2d_float_add_scalar
+#	define q_2d_subtract_scalar    q_2d_float_subtract_scalar
+#	define q_2d_multiply_by_scalar q_2d_float_multiply_by_scalar
+#	define q_2d_divide_by_scalar   q_2d_float_divide_by_scalar
+#	define q_2d_clamp	       q_2d_float_clamp
+#	define q_2d_square_clamp       q_2d_float_square_clamp
+#	define q_2d_square_clamp_01    q_2d_float_square_clamp_01
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_2d			q_2d_ldouble
-#	define q_2d_zero		q_2d_ldouble_zero
-#	define q_2d_are_equal		q_2d_ldouble_are_equal
-#	define q_2d_are_almost_equal	q_2d_ldouble_are_almost_equal
-#	define q_2d_are_perpendicular	q_2d_ldouble_are_perpendicular
-#	define q_2d_swap		q_2d_ldouble_swap
-#	define q_2d_contains		q_2d_ldouble_contains
-#	define q_2d_add			q_2d_ldouble_add
-#	define q_2d_subtract		q_2d_ldouble_subtract
-#	define q_2d_multiply		q_2d_ldouble_multiply
-#	define q_2d_divide		q_2d_ldouble_divide
-#	define q_2d_dot_product		q_2d_ldouble_dot_product
-#	define q_2d_cross_product	q_2d_ldouble_cross_product
-#	define q_2d_minimum		q_2d_ldouble_minimum
-#	define q_2d_maximum		q_2d_ldouble_maximum
-#	define q_2d_middle		q_2d_ldouble_middle
-#	define q_2d_fit			q_2d_ldouble_fit
-#	define q_2d_lerp		q_2d_ldouble_lerp
-#	define q_2d_from_scalar		q_2d_ldouble_from_scalar
-#	define q_2d_is_zero		q_2d_ldouble_is_zero
-#	define q_2d_is_near_zero	q_2d_ldouble_is_near_zero
-#	define q_2d_is_nan		q_2d_ldouble_is_nan
-#	define q_2d_has_nan		q_2d_ldouble_has_nan
-#	define q_2d_negative		q_2d_ldouble_negative
-#	define q_2d_absolute		q_2d_ldouble_absolute
-#	define q_2d_reciprocal		q_2d_ldouble_reciprocal
-#	define q_2d_inverse		q_2d_ldouble_inverse
-#	define q_2d_inner_sum		q_2d_ldouble_inner_sum
-#	define q_2d_inner_product	q_2d_ldouble_inner_product
-#	define q_2d_inner_minimum	q_2d_ldouble_inner_minimum
-#	define q_2d_inner_maximum	q_2d_ldouble_inner_maximum
-#	define q_2d_inner_average	q_2d_ldouble_inner_average
-#	define q_2d_squared_length	q_2d_ldouble_squared_length
-#	define q_2d_add_scalar		q_2d_ldouble_add_scalar
-#	define q_2d_subtract_scalar	q_2d_ldouble_subtract_scalar
-#	define q_2d_multiply_by_scalar	q_2d_ldouble_multiply_by_scalar
-#	define q_2d_divide_by_scalar	q_2d_ldouble_divide_by_scalar
-#	define q_2d_clamp		q_2d_ldouble_clamp
-#	define q_2d_square_clamp	q_2d_ldouble_square_clamp
-#	define q_2d_square_clamp_01	q_2d_ldouble_square_clamp_01
+#	define q_2d		       q_2d_ldouble
+#	define q_2d_zero	       q_2d_ldouble_zero
+#	define q_2d_are_equal	       q_2d_ldouble_are_equal
+#	define q_2d_are_almost_equal   q_2d_ldouble_are_almost_equal
+#	define q_2d_are_perpendicular  q_2d_ldouble_are_perpendicular
+#	define q_2d_swap	       q_2d_ldouble_swap
+#	define q_2d_contains	       q_2d_ldouble_contains
+#	define q_2d_add		       q_2d_ldouble_add
+#	define q_2d_subtract	       q_2d_ldouble_subtract
+#	define q_2d_multiply	       q_2d_ldouble_multiply
+#	define q_2d_divide	       q_2d_ldouble_divide
+#	define q_2d_dot_product        q_2d_ldouble_dot_product
+#	define q_2d_cross_product      q_2d_ldouble_cross_product
+#	define q_2d_minimum	       q_2d_ldouble_minimum
+#	define q_2d_maximum	       q_2d_ldouble_maximum
+#	define q_2d_middle	       q_2d_ldouble_middle
+#	define q_2d_fit		       q_2d_ldouble_fit
+#	define q_2d_lerp	       q_2d_ldouble_lerp
+#	define q_2d_from_scalar        q_2d_ldouble_from_scalar
+#	define q_2d_is_zero	       q_2d_ldouble_is_zero
+#	define q_2d_is_near_zero       q_2d_ldouble_is_near_zero
+#	define q_2d_is_nan	       q_2d_ldouble_is_nan
+#	define q_2d_has_nan	       q_2d_ldouble_has_nan
+#	define q_2d_negative	       q_2d_ldouble_negative
+#	define q_2d_absolute	       q_2d_ldouble_absolute
+#	define q_2d_reciprocal	       q_2d_ldouble_reciprocal
+#	define q_2d_inverse	       q_2d_ldouble_inverse
+#	define q_2d_inner_sum	       q_2d_ldouble_inner_sum
+#	define q_2d_inner_product      q_2d_ldouble_inner_product
+#	define q_2d_inner_minimum      q_2d_ldouble_inner_minimum
+#	define q_2d_inner_maximum      q_2d_ldouble_inner_maximum
+#	define q_2d_inner_average      q_2d_ldouble_inner_average
+#	define q_2d_squared_length     q_2d_ldouble_squared_length
+#	define q_2d_add_scalar	       q_2d_ldouble_add_scalar
+#	define q_2d_subtract_scalar    q_2d_ldouble_subtract_scalar
+#	define q_2d_multiply_by_scalar q_2d_ldouble_multiply_by_scalar
+#	define q_2d_divide_by_scalar   q_2d_ldouble_divide_by_scalar
+#	define q_2d_clamp	       q_2d_ldouble_clamp
+#	define q_2d_square_clamp       q_2d_ldouble_square_clamp
+#	define q_2d_square_clamp_01    q_2d_ldouble_square_clamp_01
 
 #else
 
-#	define q_2d			q_2d_double
-#	define q_2d_zero		q_2d_double_zero
-#	define q_2d_are_equal		q_2d_double_are_equal
-#	define q_2d_are_almost_equal	q_2d_double_are_almost_equal
-#	define q_2d_are_perpendicular	q_2d_double_are_perpendicular
-#	define q_2d_swap		q_2d_double_swap
-#	define q_2d_contains		q_2d_double_contains
-#	define q_2d_add			q_2d_double_add
-#	define q_2d_subtract		q_2d_double_subtract
-#	define q_2d_multiply		q_2d_double_multiply
-#	define q_2d_divide		q_2d_double_divide
-#	define q_2d_dot_product		q_2d_double_dot_product
-#	define q_2d_cross_product	q_2d_double_cross_product
-#	define q_2d_minimum		q_2d_double_minimum
-#	define q_2d_maximum		q_2d_double_maximum
-#	define q_2d_middle		q_2d_double_middle
-#	define q_2d_fit			q_2d_double_fit
-#	define q_2d_lerp		q_2d_double_lerp
-#	define q_2d_from_scalar		q_2d_double_from_scalar
-#	define q_2d_is_zero		q_2d_double_is_zero
-#	define q_2d_is_near_zero	q_2d_double_is_near_zero
-#	define q_2d_is_nan		q_2d_double_is_nan
-#	define q_2d_has_nan		q_2d_double_has_nan
-#	define q_2d_negative		q_2d_double_negative
-#	define q_2d_absolute		q_2d_double_absolute
-#	define q_2d_reciprocal		q_2d_double_reciprocal
-#	define q_2d_inverse		q_2d_double_inverse
-#	define q_2d_inner_sum		q_2d_double_inner_sum
-#	define q_2d_inner_product	q_2d_double_inner_product
-#	define q_2d_inner_minimum	q_2d_double_inner_minimum
-#	define q_2d_inner_maximum	q_2d_double_inner_maximum
-#	define q_2d_inner_average	q_2d_double_inner_average
-#	define q_2d_squared_length	q_2d_double_squared_length
-#	define q_2d_add_scalar		q_2d_double_add_scalar
-#	define q_2d_subtract_scalar	q_2d_double_subtract_scalar
-#	define q_2d_multiply_by_scalar	q_2d_double_multiply_by_scalar
-#	define q_2d_divide_by_scalar	q_2d_double_divide_by_scalar
-#	define q_2d_clamp		q_2d_double_clamp
-#	define q_2d_square_clamp	q_2d_double_square_clamp
-#	define q_2d_square_clamp_01	q_2d_double_square_clamp_01
+#	define q_2d		       q_2d_double
+#	define q_2d_zero	       q_2d_double_zero
+#	define q_2d_are_equal	       q_2d_double_are_equal
+#	define q_2d_are_almost_equal   q_2d_double_are_almost_equal
+#	define q_2d_are_perpendicular  q_2d_double_are_perpendicular
+#	define q_2d_swap	       q_2d_double_swap
+#	define q_2d_contains	       q_2d_double_contains
+#	define q_2d_add		       q_2d_double_add
+#	define q_2d_subtract	       q_2d_double_subtract
+#	define q_2d_multiply	       q_2d_double_multiply
+#	define q_2d_divide	       q_2d_double_divide
+#	define q_2d_dot_product        q_2d_double_dot_product
+#	define q_2d_cross_product      q_2d_double_cross_product
+#	define q_2d_minimum	       q_2d_double_minimum
+#	define q_2d_maximum	       q_2d_double_maximum
+#	define q_2d_middle	       q_2d_double_middle
+#	define q_2d_fit		       q_2d_double_fit
+#	define q_2d_lerp	       q_2d_double_lerp
+#	define q_2d_from_scalar        q_2d_double_from_scalar
+#	define q_2d_is_zero	       q_2d_double_is_zero
+#	define q_2d_is_near_zero       q_2d_double_is_near_zero
+#	define q_2d_is_nan	       q_2d_double_is_nan
+#	define q_2d_has_nan	       q_2d_double_has_nan
+#	define q_2d_negative	       q_2d_double_negative
+#	define q_2d_absolute	       q_2d_double_absolute
+#	define q_2d_reciprocal	       q_2d_double_reciprocal
+#	define q_2d_inverse	       q_2d_double_inverse
+#	define q_2d_inner_sum	       q_2d_double_inner_sum
+#	define q_2d_inner_product      q_2d_double_inner_product
+#	define q_2d_inner_minimum      q_2d_double_inner_minimum
+#	define q_2d_inner_maximum      q_2d_double_inner_maximum
+#	define q_2d_inner_average      q_2d_double_inner_average
+#	define q_2d_squared_length     q_2d_double_squared_length
+#	define q_2d_add_scalar	       q_2d_double_add_scalar
+#	define q_2d_subtract_scalar    q_2d_double_subtract_scalar
+#	define q_2d_multiply_by_scalar q_2d_double_multiply_by_scalar
+#	define q_2d_divide_by_scalar   q_2d_double_divide_by_scalar
+#	define q_2d_clamp	       q_2d_double_clamp
+#	define q_2d_square_clamp       q_2d_double_square_clamp
+#	define q_2d_square_clamp_01    q_2d_double_square_clamp_01
 
 #endif
 

@@ -371,48 +371,48 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_are_almost_equal	q_float_are_almost_equal
-#	define q_minimum		q_float_minimum
-#	define q_maximum		q_float_maximum
-#	define q_lerp			q_float_lerp
-#	define q_smoothstep		q_float_smoothstep
-#	define q_smootherstep		q_float_smootherstep
-#	define q_is_nan			q_float_is_nan
-#	define q_is_near_zero		q_float_is_near_zero
-#	define q_absolute		q_float_absolute
-#	define q_sign			q_float_sign
-#	define q_clamp			q_float_clamp
-#	define q_clamp_01		q_float_clamp_01
+#	define q_are_almost_equal q_float_are_almost_equal
+#	define q_minimum	  q_float_minimum
+#	define q_maximum	  q_float_maximum
+#	define q_lerp		  q_float_lerp
+#	define q_smoothstep	  q_float_smoothstep
+#	define q_smootherstep	  q_float_smootherstep
+#	define q_is_nan		  q_float_is_nan
+#	define q_is_near_zero	  q_float_is_near_zero
+#	define q_absolute	  q_float_absolute
+#	define q_sign		  q_float_sign
+#	define q_clamp		  q_float_clamp
+#	define q_clamp_01	  q_float_clamp_01
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_are_almost_equal	q_ldouble_are_almost_equal
-#	define q_minimum		q_ldouble_minimum
-#	define q_maximum		q_ldouble_maximum
-#	define q_lerp			q_ldouble_lerp
-#	define q_smoothstep		q_ldouble_smoothstep
-#	define q_smootherstep		q_ldouble_smootherstep
-#	define q_is_nan			q_ldouble_is_nan
-#	define q_is_near_zero		q_ldouble_is_near_zero
-#	define q_absolute		q_ldouble_absolute
-#	define q_sign			q_ldouble_sign
-#	define q_clamp			q_ldouble_clamp
-#	define q_clamp_01		q_ldouble_clamp_01
+#	define q_are_almost_equal q_ldouble_are_almost_equal
+#	define q_minimum	  q_ldouble_minimum
+#	define q_maximum	  q_ldouble_maximum
+#	define q_lerp		  q_ldouble_lerp
+#	define q_smoothstep	  q_ldouble_smoothstep
+#	define q_smootherstep	  q_ldouble_smootherstep
+#	define q_is_nan		  q_ldouble_is_nan
+#	define q_is_near_zero	  q_ldouble_is_near_zero
+#	define q_absolute	  q_ldouble_absolute
+#	define q_sign		  q_ldouble_sign
+#	define q_clamp		  q_ldouble_clamp
+#	define q_clamp_01	  q_ldouble_clamp_01
 
 #else
 
-#	define q_are_almost_equal	q_double_are_almost_equal
-#	define q_minimum		q_double_minimum
-#	define q_maximum		q_double_maximum
-#	define q_lerp			q_double_lerp
-#	define q_smoothstep		q_double_smoothstep
-#	define q_smootherstep		q_double_smootherstep
-#	define q_is_nan			q_double_is_nan
-#	define q_is_near_zero		q_double_is_near_zero
-#	define q_absolute		q_double_absolute
-#	define q_sign			q_double_sign
-#	define q_clamp			q_double_clamp
-#	define q_clamp_01		q_double_clamp_01
+#	define q_are_almost_equal q_double_are_almost_equal
+#	define q_minimum	  q_double_minimum
+#	define q_maximum	  q_double_maximum
+#	define q_lerp		  q_double_lerp
+#	define q_smoothstep	  q_double_smoothstep
+#	define q_smootherstep	  q_double_smootherstep
+#	define q_is_nan		  q_double_is_nan
+#	define q_is_near_zero	  q_double_is_near_zero
+#	define q_absolute	  q_double_absolute
+#	define q_sign		  q_double_sign
+#	define q_clamp		  q_double_clamp
+#	define q_clamp_01	  q_double_clamp_01
 
 #endif
 
