@@ -23,6 +23,10 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_COMPILER_HAS_ALIAS
 
+#if __has_feature(c_atomic) || __has_extension(c_atomic)
+#	define Q_COMPILER_HAS_ATOMIC_OPERATIONS
+#endif
+
 #if __has_extension(blocks)
 #	define Q_COMPILER_HAS_LANGUAGE_EXTENSION_CLOSURE
 #endif
@@ -57,6 +61,10 @@ Released under the terms of the GNU General Public License v3. */
 	 __GNUC__ >  3
 
 #	define Q_COMPILER_FUNCTION_OFFSETOF			__builtin_offsetof
+
+/* MARK: - Built-in functions (Atomic operations) */
+
+
 
 #endif
 
