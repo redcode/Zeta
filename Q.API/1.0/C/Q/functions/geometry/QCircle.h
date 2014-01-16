@@ -10,7 +10,7 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_functions_geometry_QCircle_H__
 
 #include <Q/functions/geometry/constructors.h>
-#include <Q/functions/Q2D.h>
+#include <Q/functions/base/Q2D.h>
 #include <Q/constants/numbers.h>
 
 #ifndef Q_CIRCLE_EXPORT

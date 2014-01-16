@@ -10,7 +10,7 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_functions_geometry_Q2DTriangle_H__
 
 #include <Q/types/mathematics.h>
-#include <Q/functions/Q2D.h>
+#include <Q/functions/base/Q2D.h>
 
 
 /* MARK: - Default real type definitions */

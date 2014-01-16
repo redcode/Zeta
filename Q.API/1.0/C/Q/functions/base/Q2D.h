@@ -1,4 +1,4 @@
-/* Q API - functions/Q2D.h
+/* Q API - functions/base/Q2D.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,10 +6,10 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_functions_Q2D_H__
-#define __Q_functions_Q2D_H__
+#ifndef __Q_functions_base_Q2D_H__
+#define __Q_functions_base_Q2D_H__
 
-#include <Q/functions/value.h>
+#include <Q/functions/base/value.h>
 
 
 /* MARK: - Operations for natural, integer and real types */
@@ -553,4 +553,4 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 #endif
 
-#endif /* __Q_functions_Q2D_H__ */
+#endif /* __Q_functions_base_Q2D_H__ */

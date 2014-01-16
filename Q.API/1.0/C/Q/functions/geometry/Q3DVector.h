@@ -10,7 +10,7 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_functions_geometry_Q3DVector_H__
 
 #include <Q/functions/geometry/constructors.h>
-#include <Q/functions/Q3D.h>
+#include <Q/functions/base/Q3D.h>
 
 #ifndef Q_3D_VECTOR_EXPORT
 #	define Q_3D_VECTOR_EXPORT Q_INLINE

@@ -10,7 +10,7 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_functions_geometry_QSphere_H__
 
 #include <Q/functions/geometry/constructors.h>
-#include <Q/functions/Q3D.h>
+#include <Q/functions/base/Q3D.h>
 #include <Q/constants/numbers.h>
 
 #ifndef Q_SPHERE_EXPORT

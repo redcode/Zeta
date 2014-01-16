@@ -1,4 +1,4 @@
-/* Q API - functions/value.h
+/* Q API - functions/base/value.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_functions_value_H__
-#define __Q_functions_value_H__
+#ifndef __Q_functions_base_value_H__
+#define __Q_functions_base_value_H__
 
 #include <Q/types/base.h>
 #include <Q/macros/value.h>
@@ -416,4 +416,4 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 #endif
 
-#endif /* __Q_functions_value_H__ */
+#endif /* __Q_functions_base_value_H__ */

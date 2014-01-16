@@ -1,4 +1,4 @@
-/* Q API - functions/QRange.h
+/* Q API - functions/base/QRange.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_functions_QRange_H__
-#define __Q_functions_QRange_H__
+#ifndef __Q_functions_base_QRange_H__
+#define __Q_functions_base_QRange_H__
 
 #include <Q/functions/value.h>
 
@@ -88,4 +88,4 @@ qboolean q_range_contains_index(QRange range, qsize index)
 	{return index >= range.index && index < range.index + range.size;}
 
 
-#endif /* __Q_functions_QRange_H__ */
+#endif /* __Q_functions_base_QRange_H__ */
