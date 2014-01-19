@@ -55,7 +55,7 @@ Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64, 32)
 
 #endif
 
-#define q_reversed(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _reversed)
+#define q_value_reversed(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _reversed)
 
 
 /* MARK: - Rotation */
@@ -172,8 +172,8 @@ q##type q_##type##_##endianness##_endian(q##type value)		\
 #	endif
 #endif
 
-#define q_big_endian(	TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _big_endian   )
-#define q_little_endian(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _little_endian)
+#define q_value_big_endian(   TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _big_endian   )
+#define q_value_little_endian(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _little_endian)
 
 
 /* MARK: - Binary codified decimal */
@@ -237,19 +237,6 @@ q##type q_##type##_clamp(q##type value, q##type minimum, q##type maximum)	\
 	}									\
 
 
-Q_IMPLEMENTATION_NATURAL_VALUE(uchar  )
-Q_IMPLEMENTATION_NATURAL_VALUE(ushort )
-Q_IMPLEMENTATION_NATURAL_VALUE(uint   )
-Q_IMPLEMENTATION_NATURAL_VALUE(ulong  )
-Q_IMPLEMENTATION_NATURAL_VALUE(ullong )
-Q_IMPLEMENTATION_NATURAL_VALUE(char   )
-Q_IMPLEMENTATION_NATURAL_VALUE(short  )
-Q_IMPLEMENTATION_NATURAL_VALUE(int    )
-Q_IMPLEMENTATION_NATURAL_VALUE(long   )
-Q_IMPLEMENTATION_NATURAL_VALUE(llong  )
-Q_IMPLEMENTATION_NATURAL_VALUE(float  )
-Q_IMPLEMENTATION_NATURAL_VALUE(double )
-Q_IMPLEMENTATION_NATURAL_VALUE(ldouble)
 Q_IMPLEMENTATION_NATURAL_VALUE(uint8  )
 Q_IMPLEMENTATION_NATURAL_VALUE(uint16 )
 Q_IMPLEMENTATION_NATURAL_VALUE(uint32 )
@@ -258,19 +245,14 @@ Q_IMPLEMENTATION_NATURAL_VALUE(int8   )
 Q_IMPLEMENTATION_NATURAL_VALUE(int16  )
 Q_IMPLEMENTATION_NATURAL_VALUE(int32  )
 Q_IMPLEMENTATION_NATURAL_VALUE(int64  )
-Q_IMPLEMENTATION_NATURAL_VALUE(size   )
-Q_IMPLEMENTATION_NATURAL_VALUE(uintptr)
-Q_IMPLEMENTATION_NATURAL_VALUE(uinttop)
-Q_IMPLEMENTATION_NATURAL_VALUE(uintmax)
-Q_IMPLEMENTATION_NATURAL_VALUE(ssize  )
-Q_IMPLEMENTATION_NATURAL_VALUE(intptr )
-Q_IMPLEMENTATION_NATURAL_VALUE(inttop )
-Q_IMPLEMENTATION_NATURAL_VALUE(intmax )
-Q_IMPLEMENTATION_NATURAL_VALUE(natural)
-Q_IMPLEMENTATION_NATURAL_VALUE(integer)
-Q_IMPLEMENTATION_NATURAL_VALUE(real   )
+Q_IMPLEMENTATION_NATURAL_VALUE(float  )
+Q_IMPLEMENTATION_NATURAL_VALUE(double )
+Q_IMPLEMENTATION_NATURAL_VALUE(ldouble)
 
-#define q_pointer_swap q_uintptr_swap
+#define q_value_swap(   TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _swap   )
+#define q_value_minimum(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _minimum)
+#define q_value_maximum(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _maximum)
+#define q_value_clamp(  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _clamp  )
 
 
 /* MARK: - Operations for integer and real types */
@@ -289,23 +271,17 @@ q##type q_##type##_sign(q##type value)					\
 	{return value >= (q##type)0 ? (q##type)1 : -(q##type)1;}
 
 
-Q_IMPLEMENTATION_INTEGER_VALUE(char   )
-Q_IMPLEMENTATION_INTEGER_VALUE(short  )
-Q_IMPLEMENTATION_INTEGER_VALUE(int    )
-Q_IMPLEMENTATION_INTEGER_VALUE(long   )
-Q_IMPLEMENTATION_INTEGER_VALUE(llong  )
-Q_IMPLEMENTATION_INTEGER_VALUE(float  )
-Q_IMPLEMENTATION_INTEGER_VALUE(double )
-Q_IMPLEMENTATION_INTEGER_VALUE(ldouble)
 Q_IMPLEMENTATION_INTEGER_VALUE(int8   )
 Q_IMPLEMENTATION_INTEGER_VALUE(int16  )
 Q_IMPLEMENTATION_INTEGER_VALUE(int32  )
 Q_IMPLEMENTATION_INTEGER_VALUE(int64  )
 Q_IMPLEMENTATION_INTEGER_VALUE(ssize  )
-Q_IMPLEMENTATION_INTEGER_VALUE(intptr )
-Q_IMPLEMENTATION_INTEGER_VALUE(inttop )
-Q_IMPLEMENTATION_INTEGER_VALUE(intmax )
-Q_IMPLEMENTATION_INTEGER_VALUE(integer)
+Q_IMPLEMENTATION_INTEGER_VALUE(float  )
+Q_IMPLEMENTATION_INTEGER_VALUE(double )
+Q_IMPLEMENTATION_INTEGER_VALUE(ldouble)
+
+#define q_value_absolute(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _absolute)
+#define q_value_sign(	 TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _sign	 )
 
 
 /* MARK: - Operations for real types only */
@@ -415,5 +391,25 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_clamp_01	  q_double_clamp_01
 
 #endif
+
+
+/* MARK: - Atomic operations */
+
+
+#if Q_CPU_IS_CAPABLE_OF(8BIT_ATOMICS)
+#endif
+
+#if Q_CPU_IS_CAPABLE_OF(16BIT_ATOMICS)
+#endif
+
+#if Q_CPU_IS_CAPABLE_OF(32BIT_ATOMICS)
+#endif
+
+#if Q_CPU_IS_CAPABLE_OF(64BIT_ATOMICS)
+#endif
+
+#if Q_IS_AVAILABLE(UINT128) && Q_CPU_IS_CAPABLE_OF(128BIT_ATOMICS)
+#endif
+
 
 #endif /* __Q_functions_base_value_H__ */

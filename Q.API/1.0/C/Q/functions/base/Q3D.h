@@ -17,19 +17,6 @@ Released under the terms of the GNU General Public License v3. */
 
 #if Q_C_HAS(COMPOUND_LITERAL)
 
-#	define q_3d_uchar(  x, y, z) ((Q3DUChar  ){x, y, z})
-#	define q_3d_ushort( x, y, z) ((Q3DUShort ){x, y, z})
-#	define q_3d_uint(   x, y, z) ((Q3DUInt	 ){x, y, z})
-#	define q_3d_ulong(  x, y, z) ((Q3DULong	 ){x, y, z})
-#	define q_3d_ullong( x, y, z) ((Q3DULLong ){x, y, z})
-#	define q_3d_char(   x, y, z) ((Q3DChar	 ){x, y, z})
-#	define q_3d_short(  x, y, z) ((Q3DShort	 ){x, y, z})
-#	define q_3d_int(    x, y, z) ((Q3DInt	 ){x, y, z})
-#	define q_3d_long(   x, y, z) ((Q3DLong	 ){x, y, z})
-#	define q_3d_llong(  x, y, z) ((Q3DLLong	 ){x, y, z})
-#	define q_3d_float(  x, y, z) ((Q3DFloat	 ){x, y, z})
-#	define q_3d_double( x, y, z) ((Q3DDouble ){x, y, z})
-#	define q_3d_ldouble(x, y, z) ((Q3DLDouble){x, y, z})
 #	define q_3d_uint8(  x, y, z) ((Q3DUInt8	 ){x, y, z})
 #	define q_3d_uint16( x, y, z) ((Q3DUInt16 ){x, y, z})
 #	define q_3d_uint32( x, y, z) ((Q3DUInt32 ){x, y, z})
@@ -38,16 +25,9 @@ Released under the terms of the GNU General Public License v3. */
 #	define q_3d_int16(  x, y, z) ((Q3DInt16	 ){x, y, z})
 #	define q_3d_int32(  x, y, z) ((Q3DInt32	 ){x, y, z})
 #	define q_3d_int64(  x, y, z) ((Q3DInt64	 ){x, y, z})
-#	define q_3d_size(   x, y, z) ((Q3DSize	 ){x, y, z})
-#	define q_3d_uintptr(x, y, z) ((Q3DUIntPtr){x, y, z})
-#	define q_3d_uinttop(x, y, z) ((Q3DUIntTop){x, y, z})
-#	define q_3d_uintmax(x, y, z) ((Q3DUIntMax){x, y, z})
-#	define q_3d_ssize(  x, y, z) ((Q3DSSize	 ){x, y, z})
-#	define q_3d_intptr( x, y, z) ((Q3DIntPtr ){x, y, z})
-#	define q_3d_inttop( x, y, z) ((Q3DIntTop ){x, y, z})
-#	define q_3d_intmax( x, y, z) ((Q3DIntMax ){x, y, z})
-#	define q_3d_natural(x, y, z) ((Q3DNatural){x, y, z})
-#	define q_3d_integer(x, y, z) ((Q3DInteger){x, y, z})
+#	define q_3d_float(  x, y, z) ((Q3DFloat	 ){x, y, z})
+#	define q_3d_double( x, y, z) ((Q3DDouble ){x, y, z})
+#	define q_3d_ldouble(x, y, z) ((Q3DLDouble){x, y, z})
 						
 #	define Q_3D_NEW(Type, type)
 
@@ -60,19 +40,6 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
-#define q_3d_uchar_zero   q_3d_uchar  (0, 0, 0)
-#define q_3d_ushort_zero  q_3d_ushort (0, 0, 0)
-#define q_3d_uint_zero	  q_3d_uint   (0, 0, 0)
-#define q_3d_ulong_zero   q_3d_ulong  (0, 0, 0)
-#define q_3d_ullong_zero  q_3d_ullong (0, 0, 0)
-#define q_3d_char_zero	  q_3d_char   (0, 0, 0)
-#define q_3d_short_zero   q_3d_short  (0, 0, 0)
-#define q_3d_int_zero	  q_3d_int    (0, 0, 0)
-#define q_3d_long_zero	  q_3d_long   (0, 0, 0)
-#define q_3d_llong_zero   q_3d_llong  (0, 0, 0)
-#define q_3d_float_zero   q_3d_float  (0.0F, 0.0F, 0.0F)
-#define q_3d_double_zero  q_3d_double (0.0,  0.0,  0.0 )
-#define q_3d_ldouble_zero q_3d_ldouble(0.0L, 0.0L, 0.0L)
 #define q_3d_uint8_zero   q_3d_uint8  (0, 0, 0)
 #define q_3d_uint16_zero  q_3d_uint16 (0, 0, 0)
 #define q_3d_uint32_zero  q_3d_uint32 (0, 0, 0)
@@ -81,16 +48,9 @@ Released under the terms of the GNU General Public License v3. */
 #define q_3d_int16_zero   q_3d_int16  (0, 0, 0)
 #define q_3d_int32_zero   q_3d_int32  (0, 0, 0)
 #define q_3d_int64_zero   q_3d_int64  (0, 0, 0)
-#define q_3d_size_zero	  q_3d_size   (0, 0, 0)
-#define q_3d_uintptr_zero q_3d_uintptr(0, 0, 0)
-#define q_3d_uinttop_zero q_3d_uinttop(0, 0, 0)
-#define q_3d_uintmax_zero q_3d_uintmax(0, 0, 0)
-#define q_3d_ssize_zero   q_3d_ssize  (0, 0, 0)
-#define q_3d_intptr_zero  q_3d_intptr (0, 0, 0)
-#define q_3d_inttop_zero  q_3d_inttop (0, 0, 0)
-#define q_3d_intmax_zero  q_3d_intmax (0, 0, 0)
-#define q_3d_natural_zero q_3d_natural(0, 0, 0)
-#define q_3d_integer_zero q_3d_integer(0, 0, 0)
+#define q_3d_float_zero   q_3d_float  (0.0F, 0.0F, 0.0F)
+#define q_3d_double_zero  q_3d_double (0.0,  0.0,  0.0 )
+#define q_3d_ldouble_zero q_3d_ldouble(0.0L, 0.0L, 0.0L)
 
 
 #define Q_IMPLEMENTATION_NATURAL_3D(Type, type)					\
@@ -235,7 +195,7 @@ q##type q_3d_##type##_inner_maximum(Q3D##Type magnitude)			\
 										\
 										\
 Q_INLINE									\
-q##type q_3d_##type##_inner_average(Q3D##Type magnitude)			\
+q##type q_3d_##type##_inner_middle(Q3D##Type magnitude)				\
 	{return (magnitude.x + magnitude.y + magnitude.z) / (q##type)3;}	\
 										\
 										\
@@ -244,7 +204,7 @@ q##type q_3d_##type##_squared_length(Q3D##Type magnitude)			\
 	{									\
 	return	magnitude.x * magnitude.x +					\
 		magnitude.y * magnitude.y +					\
-		magnitude.y * magnitude.y;					\
+		magnitude.z * magnitude.z;					\
 	}									\
 										\
 										\
@@ -327,19 +287,6 @@ Q3D##Type q_3d_##type##_rotated_as_axes(Q3D##Type magnitude, Q3DInt8 rotation)	\
 	}
 
 
-Q_IMPLEMENTATION_NATURAL_3D(UChar,   uchar  )
-Q_IMPLEMENTATION_NATURAL_3D(UShort,  ushort )
-Q_IMPLEMENTATION_NATURAL_3D(UInt,    uint   )
-Q_IMPLEMENTATION_NATURAL_3D(ULong,   ulong  )
-Q_IMPLEMENTATION_NATURAL_3D(ULLong,  ullong )
-Q_IMPLEMENTATION_NATURAL_3D(Char,    char   )
-Q_IMPLEMENTATION_NATURAL_3D(Short,   short  )
-Q_IMPLEMENTATION_NATURAL_3D(Int,     int    )
-Q_IMPLEMENTATION_NATURAL_3D(Long,    long   )
-Q_IMPLEMENTATION_NATURAL_3D(LLong,   llong  )
-Q_IMPLEMENTATION_NATURAL_3D(Float,   float  )
-Q_IMPLEMENTATION_NATURAL_3D(Double,  double )
-Q_IMPLEMENTATION_NATURAL_3D(LDouble, ldouble)
 Q_IMPLEMENTATION_NATURAL_3D(UInt8,   uint8  )
 Q_IMPLEMENTATION_NATURAL_3D(UInt16,  uint16 )
 Q_IMPLEMENTATION_NATURAL_3D(UInt32,  uint32 )
@@ -348,17 +295,41 @@ Q_IMPLEMENTATION_NATURAL_3D(Int8,    int8   )
 Q_IMPLEMENTATION_NATURAL_3D(Int16,   int16  )
 Q_IMPLEMENTATION_NATURAL_3D(Int32,   int32  )
 Q_IMPLEMENTATION_NATURAL_3D(Int64,   int64  )
-Q_IMPLEMENTATION_NATURAL_3D(Size,    size   )
-Q_IMPLEMENTATION_NATURAL_3D(UIntPtr, uintptr)
-Q_IMPLEMENTATION_NATURAL_3D(UIntTop, uinttop)
-Q_IMPLEMENTATION_NATURAL_3D(UIntMax, uintmax)
-Q_IMPLEMENTATION_NATURAL_3D(SSize,   ssize  )
-Q_IMPLEMENTATION_NATURAL_3D(IntPtr,  intptr )
-Q_IMPLEMENTATION_NATURAL_3D(IntTop,  inttop )
-Q_IMPLEMENTATION_NATURAL_3D(IntMax,  intmax )
-Q_IMPLEMENTATION_NATURAL_3D(Natural, natural)
-Q_IMPLEMENTATION_NATURAL_3D(Integer, integer)
+Q_IMPLEMENTATION_NATURAL_3D(Float,   float  )
+Q_IMPLEMENTATION_NATURAL_3D(Double,  double )
+Q_IMPLEMENTATION_NATURAL_3D(LDouble, ldouble)
 #undef Q_3D_NEW
+
+#define q_3d_value(		      TYPE) Q_JOIN_2(q_3d_, Q_##TYPE##_FIXED_TYPE_name			   )
+#define q_3d_value_zero(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _zero		   )
+#define q_3d_value_are_equal(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _are_equal	   )
+#define q_3d_value_swap(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _swap		   )
+#define q_3d_value_contains(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _contains	   )
+#define q_3d_value_add(		      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _add		   )
+#define q_3d_value_subtract(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _subtract	   )
+#define q_3d_value_multiply(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _multiply	   )
+#define q_3d_value_divide(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _divide		   )
+#define q_3d_value_dot_product(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _dot_product	   )
+#define q_3d_value_cross_product(     TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _cross_product	   )
+#define q_3d_value_minimum(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _minimum	   )
+#define q_3d_value_maximum(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _maximum	   )
+#define q_3d_value_middle(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _middle		   )
+#define q_3d_value_fit(		      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _fit		   )
+#define q_3d_value_from_scalar(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _from_scalar	   )
+#define q_3d_value_is_zero(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _is_zero	   )
+#define q_3d_value_inner_sum(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _inner_sum	   )
+#define q_3d_value_inner_product(     TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _inner_product	   )
+#define q_3d_value_inner_minimum(     TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _inner_minimum	   )
+#define q_3d_value_inner_maximum(     TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _inner_maximum	   )
+#define q_3d_value_inner_middle(      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _inner_middle	   )
+#define q_3d_value_squared_length(    TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _squared_length	   )
+#define q_3d_value_add_scalar(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _add_scalar	   )
+#define q_3d_value_subtract_scalar(   TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_scalar   )
+#define q_3d_value_multiply_by_scalar(TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_by_scalar)
+#define q_3d_value_divide_by_scalar(  TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _divide_by_scalar  )
+#define q_3d_value_clamp(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _clamp		   )
+#define q_3d_value_cube_clamp(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _cube_clamp	   )
+#define q_3d_value_rotated_as_axes(   TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _rotated_as_axes   )
 
 
 /* MARK: - Operations for integer and real types */
@@ -382,23 +353,16 @@ Q3D##Type q_3d_##type##_absolute(Q3D##Type magnitude)			\
 	}
 
 
-Q_IMPLEMENTATION_INTEGER_3D(Char,    char   )
-Q_IMPLEMENTATION_INTEGER_3D(Short,   short  )
-Q_IMPLEMENTATION_INTEGER_3D(Int,     int    )
-Q_IMPLEMENTATION_INTEGER_3D(Long,    long   )
-Q_IMPLEMENTATION_INTEGER_3D(LLong,   llong  )
-Q_IMPLEMENTATION_INTEGER_3D(Float,   float  )
-Q_IMPLEMENTATION_INTEGER_3D(Double,  double )
-Q_IMPLEMENTATION_INTEGER_3D(LDouble, ldouble)
 Q_IMPLEMENTATION_INTEGER_3D(Int8,    int8   )
 Q_IMPLEMENTATION_INTEGER_3D(Int16,   int16  )
 Q_IMPLEMENTATION_INTEGER_3D(Int32,   int32  )
 Q_IMPLEMENTATION_INTEGER_3D(Int64,   int64  )
-Q_IMPLEMENTATION_INTEGER_3D(SSize,   ssize  )
-Q_IMPLEMENTATION_INTEGER_3D(IntPtr,  intptr )
-Q_IMPLEMENTATION_INTEGER_3D(IntTop,  inttop )
-Q_IMPLEMENTATION_INTEGER_3D(IntMax,  intmax )
-Q_IMPLEMENTATION_INTEGER_3D(Integer, integer)
+Q_IMPLEMENTATION_INTEGER_3D(Float,   float  )
+Q_IMPLEMENTATION_INTEGER_3D(Double,  double )
+Q_IMPLEMENTATION_INTEGER_3D(LDouble, ldouble)
+
+#define q_3d_value_negative(TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _negative)
+#define q_3d_value_absolute(TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _absolute)
 
 
 /* MARK: - Operations for real types only */
@@ -521,7 +485,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_inner_product      q_3d_float_inner_product
 #	define q_3d_inner_minimum      q_3d_float_inner_minimum
 #	define q_3d_inner_maximum      q_3d_float_inner_maximum
-#	define q_3d_inner_average      q_3d_float_inner_average
+#	define q_3d_inner_middle       q_3d_float_inner_middle
 #	define q_3d_squared_length     q_3d_float_squared_length
 #	define q_3d_add_scalar	       q_3d_float_add_scalar
 #	define q_3d_subtract_scalar    q_3d_float_subtract_scalar
@@ -564,7 +528,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_inner_product      q_3d_ldouble_inner_product
 #	define q_3d_inner_minimum      q_3d_ldouble_inner_minimum
 #	define q_3d_inner_maximum      q_3d_ldouble_inner_maximum
-#	define q_3d_inner_average      q_3d_ldouble_inner_average
+#	define q_3d_inner_middle       q_3d_ldouble_inner_middle
 #	define q_3d_squared_length     q_3d_ldouble_squared_length
 #	define q_3d_add_scalar	       q_3d_ldouble_add_scalar
 #	define q_3d_subtract_scalar    q_3d_ldouble_subtract_scalar
@@ -607,7 +571,7 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_inner_product      q_3d_double_inner_product
 #	define q_3d_inner_minimum      q_3d_double_inner_minimum
 #	define q_3d_inner_maximum      q_3d_double_inner_maximum
-#	define q_3d_inner_average      q_3d_double_inner_average
+#	define q_3d_inner_middle       q_3d_double_inner_middle
 #	define q_3d_squared_length     q_3d_double_squared_length
 #	define q_3d_add_scalar	       q_3d_double_add_scalar
 #	define q_3d_subtract_scalar    q_3d_double_subtract_scalar

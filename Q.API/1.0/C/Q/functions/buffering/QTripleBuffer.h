@@ -4,7 +4,7 @@
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2012 Remis.
-Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
+Copyright © 2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
 #ifndef __Q_functions_QTripleBuffer_H__
@@ -46,7 +46,7 @@ void* q_triple_buffer_produce(QTripleBuffer *object)
 		flags = object->flags;
 		new_flags = 0x40 | ((flags & 0xC) << 2) | ((flags & 0x30) >> 2) | (flags & 0x3);
 		}
-	while(!__sync_bool_compare_and_swap(&object->flags, flags, new_flags));
+	while (!__sync_bool_compare_and_swap(&object->flags, flags, new_flags));
 
 	return object->slots[(new_flags & 0x30) >> 4];
 	}
