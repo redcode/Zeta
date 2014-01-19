@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_functions_base_QRange_H__
 #define __Q_functions_base_QRange_H__
 
-#include <Q/functions/value.h>
+#include <Q/functions/base/value.h>
 
 #if Q_C_HAS(COMPOUND_LITERAL)
 #	define q_range(index, size) ((QRange){index, size})
