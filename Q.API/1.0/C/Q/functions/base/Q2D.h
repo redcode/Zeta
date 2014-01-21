@@ -9,53 +9,14 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_functions_base_Q2D_H__
 #define __Q_functions_base_Q2D_H__
 
+#include <Q/functions/base/constructors.h>
 #include <Q/functions/base/value.h>
 
 
 /* MARK: - Operations for natural, integer and real types */
 
 
-#if Q_C_HAS(COMPOUND_LITERAL)
-
-#	define q_2d_uint8(  x, y) ((Q2DUInt8  ){x, y})
-#	define q_2d_uint16( x, y) ((Q2DUInt16 ){x, y})
-#	define q_2d_uint32( x, y) ((Q2DUInt32 ){x, y})
-#	define q_2d_uint64( x, y) ((Q2DUInt64 ){x, y})
-#	define q_2d_int8(   x, y) ((Q2DInt8   ){x, y})
-#	define q_2d_int16(  x, y) ((Q2DInt16  ){x, y})
-#	define q_2d_int32(  x, y) ((Q2DInt32  ){x, y})
-#	define q_2d_int64(  x, y) ((Q2DInt64  ){x, y})
-#	define q_2d_float(  x, y) ((Q2DFloat  ){x, y})
-#	define q_2d_double( x, y) ((Q2DDouble ){x, y})
-#	define q_2d_ldouble(x, y) ((Q2DLDouble){x, y})
-
-#	define Q_2D_NEW(Type, type)
-
-#else
-
-#	define Q_2D_NEW(Type, type)				  \
-								  \
-	Q_INLINE Q2D##Type q_2d_##type(q##type x, q##type y)	  \
-		{Q2D##Type magnitude = {x, y}; return magnitude;}
-
-#endif
-
-#define q_2d_uint8_zero   q_2d_uint8  (0, 0)
-#define q_2d_uint16_zero  q_2d_uint16 (0, 0)
-#define q_2d_uint32_zero  q_2d_uint32 (0, 0)
-#define q_2d_uint64_zero  q_2d_uint64 (0, 0)
-#define q_2d_int8_zero	  q_2d_int8   (0, 0)
-#define q_2d_int16_zero   q_2d_int16  (0, 0)
-#define q_2d_int32_zero   q_2d_int32  (0, 0)
-#define q_2d_int64_zero   q_2d_int64  (0, 0)
-#define q_2d_float_zero   q_2d_float  (0.0F, 0.0F)
-#define q_2d_double_zero  q_2d_double (0.0,  0.0 )
-#define q_2d_ldouble_zero q_2d_ldouble(0.0L, 0.0L)
-
-
 #define Q_IMPLEMENTATION_NATURAL_2D(Type, type)					\
-										\
-Q_2D_NEW(Type, type)								\
 										\
 										\
 Q_INLINE									\
@@ -152,11 +113,6 @@ qboolean q_2d_##type##_is_zero(Q2D##Type magnitude)				\
 										\
 										\
 Q_INLINE									\
-Q2D##Type q_2d_##type##_inverse(Q2D##Type magnitude)				\
-	{return q_2d_##type(magnitude.y, magnitude.x);}				\
-										\
-										\
-Q_INLINE									\
 q##type q_2d_##type##_inner_sum(Q2D##Type magnitude)				\
 	{return magnitude.x + magnitude.y;}					\
 										\
@@ -229,7 +185,103 @@ Q2D##Type q_2d_##type##_square_clamp(						\
 	return q_2d_##type							\
 		(q_##type##_clamp(magnitude.x, minimum, maximum),		\
 		 q_##type##_clamp(magnitude.y, minimum, maximum));		\
-	}
+	}									\
+										\
+										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_yx(Q2D##Type magnitude)					\
+	{return q_2d_##type(magnitude.y, magnitude.x);}				\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_xy0(Q2D##Type magnitude)				\
+	{return q_3d_##type(magnitude.x, magnitude.y, (q##type)0);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_xy1(Q2D##Type magnitude)				\
+	{return q_3d_##type(magnitude.x, magnitude.y, (q##type)1);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_xyn(Q2D##Type magnitude, q##type n)			\
+	{return q_3d_##type(magnitude.x, magnitude.y, n);}			\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_x0y(Q2D##Type magnitude)				\
+	{return q_3d_##type(magnitude.x, (q##type)0, magnitude.y);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_x1y(Q2D##Type magnitude)				\
+	{return q_3d_##type(magnitude.x, (q##type)1, magnitude.y);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_xny(Q2D##Type magnitude, q##type n)			\
+	{return q_3d_##type(magnitude.x, n, magnitude.y);}			\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_0xy(Q2D##Type magnitude)				\
+	{return q_3d_##type((q##type)0, magnitude.x, magnitude.y);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_1xy(Q2D##Type magnitude)				\
+	{return q_3d_##type((q##type)1, magnitude.x, magnitude.y);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_nxy(Q2D##Type magnitude, q##type n)			\
+	{return q_3d_##type(n, magnitude.x, magnitude.y);}			\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_yx0(Q2D##Type magnitude)				\
+	{return q_3d_##type(magnitude.y, magnitude.x, (q##type)0);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_yx1(Q2D##Type magnitude)				\
+	{return q_3d_##type(magnitude.y, magnitude.x, (q##type)1);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_yxn(Q2D##Type magnitude, q##type n)			\
+	{return q_3d_##type(magnitude.y, magnitude.x, n);}			\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_y0x(Q2D##Type magnitude)				\
+	{return q_3d_##type(magnitude.y, (q##type)0, magnitude.x);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_y1x(Q2D##Type magnitude)				\
+	{return q_3d_##type(magnitude.y, (q##type)1, magnitude.x);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_ynx(Q2D##Type magnitude, q##type n)			\
+	{return q_3d_##type(magnitude.y, n, magnitude.x);}			\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_0yx(Q2D##Type magnitude)				\
+	{return q_3d_##type((q##type)0, magnitude.y, magnitude.x);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_1yx(Q2D##Type magnitude)				\
+	{return q_3d_##type((q##type)1, magnitude.y, magnitude.x);}		\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_2d_##type##_nyx(Q2D##Type magnitude, q##type n)			\
+	{return q_3d_##type(n, magnitude.y, magnitude.x);}
+
 
 
 Q_IMPLEMENTATION_NATURAL_2D(UInt8,   uint8  )
@@ -243,10 +295,7 @@ Q_IMPLEMENTATION_NATURAL_2D(Int64,   int64  )
 Q_IMPLEMENTATION_NATURAL_2D(Float,   float  )
 Q_IMPLEMENTATION_NATURAL_2D(Double,  double )
 Q_IMPLEMENTATION_NATURAL_2D(LDouble, ldouble)
-#undef Q_2D_NEW
 
-#define q_2d_value(		      TYPE) Q_JOIN_2(q_2d_, Q_##TYPE##_FIXED_TYPE_name			   )
-#define q_2d_value_zero(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _zero		   )
 #define q_2d_value_are_equal(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _are_equal	   )
 #define q_2d_value_swap(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _swap		   )
 #define q_2d_value_contains(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _contains	   )
@@ -262,7 +311,7 @@ Q_IMPLEMENTATION_NATURAL_2D(LDouble, ldouble)
 #define q_2d_value_fit(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _fit		   )
 #define q_2d_value_from_scalar(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _from_scalar	   )
 #define q_2d_value_is_zero(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _is_zero	   )
-#define q_2d_value_inverse(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _inverse	   )
+#define q_2d_value_yx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _yx		   )
 #define q_2d_value_inner_sum(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _inner_sum	   )
 #define q_2d_value_inner_product(     TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _inner_product	   )
 #define q_2d_value_inner_minimum(     TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _inner_minimum	   )
@@ -388,8 +437,6 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_2d		       q_2d_float
-#	define q_2d_zero	       q_2d_float_zero
 #	define q_2d_are_equal	       q_2d_float_are_equal
 #	define q_2d_are_almost_equal   q_2d_float_are_almost_equal
 #	define q_2d_are_perpendicular  q_2d_float_are_perpendicular
@@ -414,7 +461,6 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_negative	       q_2d_float_negative
 #	define q_2d_absolute	       q_2d_float_absolute
 #	define q_2d_reciprocal	       q_2d_float_reciprocal
-#	define q_2d_inverse	       q_2d_float_inverse
 #	define q_2d_inner_sum	       q_2d_float_inner_sum
 #	define q_2d_inner_product      q_2d_float_inner_product
 #	define q_2d_inner_minimum      q_2d_float_inner_minimum
@@ -428,11 +474,28 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_clamp	       q_2d_float_clamp
 #	define q_2d_square_clamp       q_2d_float_square_clamp
 #	define q_2d_square_clamp_01    q_2d_float_square_clamp_01
+#	define q_2d_yx		       q_2d_float_yx
+#	define q_2d_xy0		       q_2d_float_xy0
+#	define q_2d_xy1		       q_2d_float_xy1
+#	define q_2d_xyn		       q_2d_float_xyn
+#	define q_2d_x0y		       q_2d_float_x0y
+#	define q_2d_x1y		       q_2d_float_x1y
+#	define q_2d_xny		       q_2d_float_xny
+#	define q_2d_0xy		       q_2d_float_0xy
+#	define q_2d_1xy		       q_2d_float_1xy
+#	define q_2d_nxy		       q_2d_float_nxy
+#	define q_2d_yx0		       q_2d_float_yx0
+#	define q_2d_yx1		       q_2d_float_yx1
+#	define q_2d_yxn		       q_2d_float_yxn
+#	define q_2d_y0x		       q_2d_float_y0x
+#	define q_2d_y1x		       q_2d_float_y1x
+#	define q_2d_ynx		       q_2d_float_ynx
+#	define q_2d_0yx		       q_2d_float_0yx
+#	define q_2d_1yx		       q_2d_float_1yx
+#	define q_2d_nyx		       q_2d_float_nyx
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_2d		       q_2d_ldouble
-#	define q_2d_zero	       q_2d_ldouble_zero
 #	define q_2d_are_equal	       q_2d_ldouble_are_equal
 #	define q_2d_are_almost_equal   q_2d_ldouble_are_almost_equal
 #	define q_2d_are_perpendicular  q_2d_ldouble_are_perpendicular
@@ -457,7 +520,6 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_negative	       q_2d_ldouble_negative
 #	define q_2d_absolute	       q_2d_ldouble_absolute
 #	define q_2d_reciprocal	       q_2d_ldouble_reciprocal
-#	define q_2d_inverse	       q_2d_ldouble_inverse
 #	define q_2d_inner_sum	       q_2d_ldouble_inner_sum
 #	define q_2d_inner_product      q_2d_ldouble_inner_product
 #	define q_2d_inner_minimum      q_2d_ldouble_inner_minimum
@@ -471,11 +533,28 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_clamp	       q_2d_ldouble_clamp
 #	define q_2d_square_clamp       q_2d_ldouble_square_clamp
 #	define q_2d_square_clamp_01    q_2d_ldouble_square_clamp_01
+#	define q_2d_yx		       q_2d_ldouble_yx
+#	define q_2d_xy0		       q_2d_ldouble_xy0
+#	define q_2d_xy1		       q_2d_ldouble_xy1
+#	define q_2d_xyn		       q_2d_ldouble_xyn
+#	define q_2d_x0y		       q_2d_ldouble_x0y
+#	define q_2d_x1y		       q_2d_ldouble_x1y
+#	define q_2d_xny		       q_2d_ldouble_xny
+#	define q_2d_0xy		       q_2d_ldouble_0xy
+#	define q_2d_1xy		       q_2d_ldouble_1xy
+#	define q_2d_nxy		       q_2d_ldouble_nxy
+#	define q_2d_yx0		       q_2d_ldouble_yx0
+#	define q_2d_yx1		       q_2d_ldouble_yx1
+#	define q_2d_yxn		       q_2d_ldouble_yxn
+#	define q_2d_y0x		       q_2d_ldouble_y0x
+#	define q_2d_y1x		       q_2d_ldouble_y1x
+#	define q_2d_ynx		       q_2d_ldouble_ynx
+#	define q_2d_0yx		       q_2d_ldouble_0yx
+#	define q_2d_1yx		       q_2d_ldouble_1yx
+#	define q_2d_nyx		       q_2d_ldouble_nyx
 
 #else
 
-#	define q_2d		       q_2d_double
-#	define q_2d_zero	       q_2d_double_zero
 #	define q_2d_are_equal	       q_2d_double_are_equal
 #	define q_2d_are_almost_equal   q_2d_double_are_almost_equal
 #	define q_2d_are_perpendicular  q_2d_double_are_perpendicular
@@ -500,7 +579,6 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_negative	       q_2d_double_negative
 #	define q_2d_absolute	       q_2d_double_absolute
 #	define q_2d_reciprocal	       q_2d_double_reciprocal
-#	define q_2d_inverse	       q_2d_double_inverse
 #	define q_2d_inner_sum	       q_2d_double_inner_sum
 #	define q_2d_inner_product      q_2d_double_inner_product
 #	define q_2d_inner_minimum      q_2d_double_inner_minimum
@@ -514,6 +592,25 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_clamp	       q_2d_double_clamp
 #	define q_2d_square_clamp       q_2d_double_square_clamp
 #	define q_2d_square_clamp_01    q_2d_double_square_clamp_01
+#	define q_2d_yx		       q_2d_double_yx
+#	define q_2d_xy0		       q_2d_double_xy0
+#	define q_2d_xy1		       q_2d_double_xy1
+#	define q_2d_xyn		       q_2d_double_xyn
+#	define q_2d_x0y		       q_2d_double_x0y
+#	define q_2d_x1y		       q_2d_double_x1y
+#	define q_2d_xny		       q_2d_double_xny
+#	define q_2d_0xy		       q_2d_double_0xy
+#	define q_2d_1xy		       q_2d_double_1xy
+#	define q_2d_nxy		       q_2d_double_nxy
+#	define q_2d_yx0		       q_2d_double_yx0
+#	define q_2d_yx1		       q_2d_double_yx1
+#	define q_2d_yxn		       q_2d_double_yxn
+#	define q_2d_y0x		       q_2d_double_y0x
+#	define q_2d_y1x		       q_2d_double_y1x
+#	define q_2d_ynx		       q_2d_double_ynx
+#	define q_2d_0yx		       q_2d_double_0yx
+#	define q_2d_1yx		       q_2d_double_1yx
+#	define q_2d_nyx		       q_2d_double_nyx
 
 #endif
 

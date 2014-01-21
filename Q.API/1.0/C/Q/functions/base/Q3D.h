@@ -9,53 +9,14 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_functions_base_Q3D_H__
 #define __Q_functions_base_Q3D_H__
 
+#include <Q/functions/base/constructors.h>
 #include <Q/functions/base/value.h>
 
 
 /* MARK: - Operations for natural, integer and real types */
 
 
-#if Q_C_HAS(COMPOUND_LITERAL)
-
-#	define q_3d_uint8(  x, y, z) ((Q3DUInt8	 ){x, y, z})
-#	define q_3d_uint16( x, y, z) ((Q3DUInt16 ){x, y, z})
-#	define q_3d_uint32( x, y, z) ((Q3DUInt32 ){x, y, z})
-#	define q_3d_uint64( x, y, z) ((Q3DUInt64 ){x, y, z})
-#	define q_3d_int8(   x, y, z) ((Q3DInt8	 ){x, y, z})
-#	define q_3d_int16(  x, y, z) ((Q3DInt16	 ){x, y, z})
-#	define q_3d_int32(  x, y, z) ((Q3DInt32	 ){x, y, z})
-#	define q_3d_int64(  x, y, z) ((Q3DInt64	 ){x, y, z})
-#	define q_3d_float(  x, y, z) ((Q3DFloat	 ){x, y, z})
-#	define q_3d_double( x, y, z) ((Q3DDouble ){x, y, z})
-#	define q_3d_ldouble(x, y, z) ((Q3DLDouble){x, y, z})
-						
-#	define Q_3D_NEW(Type, type)
-
-#else
-
-#	define Q_3D_NEW(Type, type)					\
-									\
-	Q_INLINE Q3D##Type q_3d_##type(q##type x, q##type y, q##type z)	\
-		{Q3D##Type magnitude = {x, y, z}; return magnitude;}
-
-#endif
-
-#define q_3d_uint8_zero   q_3d_uint8  (0, 0, 0)
-#define q_3d_uint16_zero  q_3d_uint16 (0, 0, 0)
-#define q_3d_uint32_zero  q_3d_uint32 (0, 0, 0)
-#define q_3d_uint64_zero  q_3d_uint64 (0, 0, 0)
-#define q_3d_int8_zero	  q_3d_int8   (0, 0, 0)
-#define q_3d_int16_zero   q_3d_int16  (0, 0, 0)
-#define q_3d_int32_zero   q_3d_int32  (0, 0, 0)
-#define q_3d_int64_zero   q_3d_int64  (0, 0, 0)
-#define q_3d_float_zero   q_3d_float  (0.0F, 0.0F, 0.0F)
-#define q_3d_double_zero  q_3d_double (0.0,  0.0,  0.0 )
-#define q_3d_ldouble_zero q_3d_ldouble(0.0L, 0.0L, 0.0L)
-
-
 #define Q_IMPLEMENTATION_NATURAL_3D(Type, type)					\
-										\
-Q_3D_NEW(Type, type)								\
 										\
 										\
 Q_INLINE									\
@@ -298,10 +259,7 @@ Q_IMPLEMENTATION_NATURAL_3D(Int64,   int64  )
 Q_IMPLEMENTATION_NATURAL_3D(Float,   float  )
 Q_IMPLEMENTATION_NATURAL_3D(Double,  double )
 Q_IMPLEMENTATION_NATURAL_3D(LDouble, ldouble)
-#undef Q_3D_NEW
 
-#define q_3d_value(		      TYPE) Q_JOIN_2(q_3d_, Q_##TYPE##_FIXED_TYPE_name			   )
-#define q_3d_value_zero(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _zero		   )
 #define q_3d_value_are_equal(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _are_equal	   )
 #define q_3d_value_swap(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _swap		   )
 #define q_3d_value_contains(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _contains	   )
@@ -455,8 +413,6 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_3d		       q_3d_float
-#	define q_3d_zero	       q_3d_float_zero
 #	define q_3d_are_equal	       q_3d_float_are_equal
 #	define q_3d_are_almost_equal   q_3d_float_are_almost_equal
 #	define q_3d_are_perpendicular  q_3d_float_are_perpendicular
@@ -498,8 +454,6 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_3d		       q_3d_ldouble
-#	define q_3d_zero	       q_3d_ldouble_zero
 #	define q_3d_are_equal	       q_3d_ldouble_are_equal
 #	define q_3d_are_almost_equal   q_3d_ldouble_are_almost_equal
 #	define q_3d_are_perpendicular  q_3d_ldouble_are_perpendicular
@@ -541,8 +495,6 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 #else
 
-#	define q_3d		       q_3d_double
-#	define q_3d_zero	       q_3d_double_zero
 #	define q_3d_are_equal	       q_3d_double_are_equal
 #	define q_3d_are_almost_equal   q_3d_double_are_almost_equal
 #	define q_3d_are_perpendicular  q_3d_double_are_perpendicular

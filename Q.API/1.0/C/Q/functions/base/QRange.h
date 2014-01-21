@@ -9,16 +9,8 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_functions_base_QRange_H__
 #define __Q_functions_base_QRange_H__
 
+#include <Q/functions/base/constructors.h>
 #include <Q/functions/base/value.h>
-
-#if Q_C_HAS(COMPOUND_LITERAL)
-#	define q_range(index, size) ((QRange){index, size})
-#else
-	Q_INLINE QRange q_range(qsize index, qsize size)
-		{QRange range = {index, size}; return range;}
-#endif
-
-#define q_range_zero q_range(0, 0)
 
 
 Q_INLINE
