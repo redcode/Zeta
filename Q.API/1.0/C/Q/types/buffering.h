@@ -16,6 +16,10 @@ typedef struct {
 	volatile quint8 flags;
 } QTripleBuffer;
 
+typedef struct {
+} QRingBuffer;
+
 #define Q_TRIPLE_BUFFER(p) ((QTripleBuffer *)(p))
+#define Q_RING_BUFFER(	p) ((QRingBuffer   *)(p))
 
 #endif /* __Q_types_buffering_H__ */

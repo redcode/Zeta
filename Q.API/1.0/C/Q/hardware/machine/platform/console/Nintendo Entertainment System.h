@@ -3,7 +3,7 @@
 |  \  | _  ____  | |  ___  ____  _| | ___
 |     |(_)|    ||_ _|/ -_)|    |/ _ |/ . \
 |__\__||_||__|_| |_| \___/|__|_|\___|\___/
- E N T E R T A I N M E N T    S Y S T E M
+ ENTERTAINMENT SYSTEM HARDWARE HEADER
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
@@ -130,7 +130,7 @@ Released under the terms of the GNU General Public License v3.
 
 
 
-typedef Q_8BIT_FIELD_OF_4_MEMBERS,
+typedef Q_8BIT_FIELD_WITH_8_MEMBERS (
 
 ) QNESSquareWaveRegisterA;
 

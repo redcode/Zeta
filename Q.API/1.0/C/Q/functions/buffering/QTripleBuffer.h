@@ -1,4 +1,4 @@
-/* Q API - functioms/QTripleBuffer.h
+/* Q API - functioms/buffering/QTripleBuffer.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -7,8 +7,8 @@ Copyright © 2012 Remis.
 Copyright © 2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_functions_QTripleBuffer_H__
-#define __Q_functions_QTripleBuffer_H__
+#ifndef __Q_functions_buffering_QTripleBuffer_H__
+#define __Q_functions_buffering_QTripleBuffer_H__
 
 #include <Q/types/buffering.h>
 
@@ -67,4 +67,4 @@ void *q_triple_buffer_consume(QTripleBuffer *object)
 	}
 
 
-#endif /* __Q_functions_QTripleBuffer_H__ */
+#endif /* __Q_functions_buffering_QTripleBuffer_H__ */
