@@ -17,6 +17,11 @@ typedef struct {
 } QTripleBuffer;
 
 typedef struct {
+	void* data;
+	qsize slot_size;
+	qsize slot_count;
+	qsize consumption_index;
+	qsize production_index;
 } QRingBuffer;
 
 #define Q_TRIPLE_BUFFER(p) ((QTripleBuffer *)(p))
