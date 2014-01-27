@@ -11,6 +11,85 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/buffering.h>
 
+#define q_cpu_relax() asm volatile("pause\n": : :"memory")
+
+Q_INLINE
+void q_ring_buffer_initialize(
+	QRingBuffer* object,
+	void*	     data,
+	qsize	     slot_size,
+	qsize	     slot_count
+)
+	{
+	object->data		  = data;
+	object->slot_size	  = slot_size;
+	object->slot_count	  = slot_count;
+	object->production_index  = 0;
+	object->consumption_index = 0;
+	object->fill_count	  = 0;
+	}
+
+
+Q_INLINE
+void* q_ring_buffer_production_slot(QRingBuffer *object)
+	{
+	return object->slot_count - object->fill_count
+		? object->data + object->production_index * object->slot_size
+		: NULL;
+	}
+
+
+Q_INLINE
+void* q_ring_buffer_consumption_slot(QRingBuffer *object)
+	{
+	return object->fill_count
+		? object->data + object->consumption_index * object->slot_size
+		: NULL;
+	}
+
+
+Q_INLINE
+void* q_ring_buffer_try_produce(QRingBuffer *object)
+	{
+	if (object->slot_count == object->fill_count) return NULL;
+
+	object->production_index = (object->production_index + 1) % object->slot_count;
+	__sync_add_and_fetch(&object->fill_count, 1);
+	return object->data + object->production_index * object->slot_size;
+	}
+
+
+Q_INLINE
+void* q_ring_buffer_try_consume(QRingBuffer *object)
+	{
+	if (!object->fill_count) return NULL;
+
+	object->consumption_index = (object->consumption_index + 1) % object->slot_count;
+	__sync_sub_and_fetch(&object->fill_count, 1);
+	return object->data + object->consumption_index * object->slot_size;
+	}
+
+
+Q_INLINE
+void* q_ring_buffer_produce(QRingBuffer *object)
+	{
+	while (object->slot_count == object->fill_count) q_cpu_relax();
+
+	object->production_index = (object->production_index + 1) % object->slot_count;
+	__sync_add_and_fetch(&object->fill_count, 1);
+	return object->data + object->production_index * object->slot_size;
+	}
+
+
+Q_INLINE
+void* q_ring_buffer_consume(QRingBuffer *object)
+	{
+	if (!object->fill_count) q_cpu_relax();
+
+	object->consumption_index = (object->consumption_index + 1) % object->slot_count;
+	__sync_sub_and_fetch(&object->fill_count, 1);
+	return object->data + object->consumption_index * object->slot_size;
+	}
 
 
 #endif /* __Q_functions_buffering_QRingBuffer_H__ */

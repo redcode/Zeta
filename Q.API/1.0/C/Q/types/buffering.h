@@ -12,16 +12,17 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/types/base.h>
 
 typedef struct {
-	void* slots[3];
+	void *slots[3];
 	volatile quint8 flags;
 } QTripleBuffer;
 
 typedef struct {
-	void* data;
+	void *data;
 	qsize slot_size;
 	qsize slot_count;
 	qsize consumption_index;
 	qsize production_index;
+	volatile qsize fill_count;
 } QRingBuffer;
 
 #define Q_TRIPLE_BUFFER(p) ((QTripleBuffer *)(p))

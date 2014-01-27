@@ -17,24 +17,24 @@ Q_INLINE
 void q_triple_buffer_initialize(
 	QTripleBuffer* object,
 	void*	       data,
-	qsize	       buffer_size
+	qsize	       slot_size
 )
 	{
 	object->slots[0] = data;
-	object->slots[1] = data + buffer_size;
-	object->slots[2] = data + buffer_size * 2;
+	object->slots[1] = data + slot_size;
+	object->slots[2] = data + slot_size * 2;
 	object->flags	 = 6;
 	}
 
 
 Q_INLINE
-void *q_triple_buffer_consumption_slot(QTripleBuffer *object)
-	{return object->slots[object->flags & 3];}
+void *q_triple_buffer_production_slot(QTripleBuffer *object)
+	{return object->slots[(object->flags & 0x30) >> 4];}
 
 
 Q_INLINE
-void *q_triple_buffer_production_slot(QTripleBuffer *object)
-	{return object->slots[(object->flags & 0x30) >> 4];}
+void *q_triple_buffer_consumption_slot(QTripleBuffer *object)
+	{return object->slots[object->flags & 3];}
 
 
 Q_INLINE
