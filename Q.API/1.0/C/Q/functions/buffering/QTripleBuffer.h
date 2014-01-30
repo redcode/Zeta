@@ -11,6 +11,7 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_functions_buffering_QTripleBuffer_H__
 
 #include <Q/types/buffering.h>
+#include <Q/functions/base/value.h>
 
 
 Q_INLINE
@@ -46,7 +47,7 @@ void* q_triple_buffer_produce(QTripleBuffer *object)
 		flags = object->flags;
 		new_flags = 0x40 | ((flags & 0xC) << 2) | ((flags & 0x30) >> 2) | (flags & 0x3);
 		}
-	while (!__sync_bool_compare_and_swap(&object->flags, flags, new_flags));
+	while (!q_uint8_atomic_set_if_equal(&object->flags, flags, new_flags));
 
 	return object->slots[(new_flags & 0x30) >> 4];
 	}
@@ -61,7 +62,7 @@ void *q_triple_buffer_consume(QTripleBuffer *object)
 		if (!((flags = object->flags) & 0x40)) return NULL;
 		new_flags = (flags & 0x30) | ((flags & 0x3) << 2) | ((flags & 0xC) >> 2);
 		}
-	while (!__sync_bool_compare_and_swap(&object->flags, flags, new_flags));
+	while (!q_uint8_atomic_set_if_equal(&object->flags, flags, new_flags));
 
 	return object->slots[new_flags & 3];;
 	}

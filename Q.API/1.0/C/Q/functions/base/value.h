@@ -2576,5 +2576,23 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 #endif
 
+#define q_value_atomic_set_if_equal(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_set_if_equal	   )
+#define q_value_atomic_get_then_increment(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_get_then_increment)
+#define q_value_atomic_get_then_decrement(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_get_then_decrement)
+#define q_value_atomic_get_then_add(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_get_then_add	   )
+#define q_value_atomic_get_then_subtract( TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_get_then_subtract )
+#define q_value_atomic_get_then_and(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_get_then_and	   )
+#define q_value_atomic_get_then_or(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_get_then_or	   )
+#define q_value_atomic_get_then_xor(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_get_then_xor	   )
+#define q_value_atomic_get_then_not(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_get_then_not	   )
+#define q_value_atomic_increment_then_get(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_increment_then_get)
+#define q_value_atomic_decrement_then_get(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_decrement_then_get)
+#define q_value_atomic_add_then_get(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_add_then_get	   )
+#define q_value_atomic_subtract_then_get( TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_subtract_then_get )
+#define q_value_atomic_and_then_get(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_and_then_get	   )
+#define q_value_atomic_or_then_get(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_or_then_get	   )
+#define q_value_atomic_xor_then_get(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_xor_then_get	   )
+#define q_value_atomic_not_then_get(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_not_then_get	   )
+
 
 #endif /* __Q_functions_base_value_H__ */

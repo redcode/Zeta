@@ -10,6 +10,7 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_functions_buffering_QRingBuffer_H__
 
 #include <Q/types/buffering.h>
+#include <Q/functions/base/value.h>
 
 #define q_cpu_relax() asm volatile("pause\n": : :"memory")
 
@@ -54,7 +55,7 @@ void* q_ring_buffer_try_produce(QRingBuffer *object)
 	if (object->slot_count == object->fill_count) return NULL;
 
 	object->production_index = (object->production_index + 1) % object->slot_count;
-	__sync_add_and_fetch(&object->fill_count, 1);
+	q_value_atomic_increment_then_get(SIZE)(&object->fill_count);
 	return object->data + object->production_index * object->slot_size;
 	}
 
@@ -65,7 +66,7 @@ void* q_ring_buffer_try_consume(QRingBuffer *object)
 	if (!object->fill_count) return NULL;
 
 	object->consumption_index = (object->consumption_index + 1) % object->slot_count;
-	__sync_sub_and_fetch(&object->fill_count, 1);
+	q_value_atomic_decrement_then_get(SIZE)(&object->fill_count);
 	return object->data + object->consumption_index * object->slot_size;
 	}
 
@@ -76,7 +77,7 @@ void* q_ring_buffer_produce(QRingBuffer *object)
 	while (object->slot_count == object->fill_count) q_cpu_relax();
 
 	object->production_index = (object->production_index + 1) % object->slot_count;
-	__sync_add_and_fetch(&object->fill_count, 1);
+	q_value_atomic_increment_then_get(SIZE)(&object->fill_count);
 	return object->data + object->production_index * object->slot_size;
 	}
 
@@ -87,7 +88,7 @@ void* q_ring_buffer_consume(QRingBuffer *object)
 	if (!object->fill_count) q_cpu_relax();
 
 	object->consumption_index = (object->consumption_index + 1) % object->slot_count;
-	__sync_sub_and_fetch(&object->fill_count, 1);
+	q_value_atomic_decrement_then_get(SIZE)(&object->fill_count);
 	return object->data + object->consumption_index * object->slot_size;
 	}
 
