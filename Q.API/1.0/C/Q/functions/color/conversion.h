@@ -32,41 +32,101 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - RGBA 8 8 8 8 */
 
-Q_COLOR_EXPORT
-quint16 q_rgba_8_8_8_8_to_rgb_5_6_5(quint32 color)
-	{
-	return	((((color >>  0) & 0xFF) >> 3) << 11) |	// R
-		((((color >>  8) & 0xFF) >> 2) <<  5) |	// G
-		((((color >> 16) & 0xFF) >> 3) <<  0);	// B
-	}
+
+/*
+	argb_8_8_8_8
+	argb_4_4_4_4
+	argb_1_5_5_5
+
+	rgba_8_8_8_8
+	rgba_4_4_4_4
+	rgba_5_5_5_1
+
+	rgb_5_6_5
+	i_8
 
 
-Q_COLOR_EXPORT
-quint16 q_rgba_8_8_8_8_to_rgba_4_4_4_4(quint32 color)
-	{
-	return	((((color >>  0) & 0xFF) >> 4) << 12) |	// R
-		((((color >>  8) & 0xFF) >> 4) <<  8) |	// G
-		((((color >> 16) & 0xFF) >> 4) <<  4) |	// B
-		((((color >> 24) & 0xFF) >> 4) <<  0);	// A
-	}
+*/
+
+#if Q_CPU_ENDIANNESS != Q_CPU_INTEGER_ENDIANNESS(16BIT) || Q_CPU_ENDIANNESS != Q_CPU_ENDIANNESS(32BIT)
+#	error "There is no support for multi-endian CPU in color functions."
+#endif
+
+#if Q_CPU_ENDIANNESS == Q_ENDIANNESS_BIG
+
+	Q_INLINE
+	quint32 q_argb_8_8_8_8_to_rgba_8_8_8_8(quint32 color)
+		{return (color << 8) | (color >> 24);}
 
 
-Q_COLOR_EXPORT
+	Q_INLINE
+	quint32 q_rgba_8_8_8_8_to_argb_8_8_8_8(quint32 color)
+		{return (color >> 8) | (color << 24);}
+
+
+	Q_INLINE
+	quint16 q_rgba_8_8_8_8_to_rgba_4_4_4_4(quint32 color)
+		{
+		return	((color >> 16) & 0xF000) | /* R */
+			((color >> 12) & 0x0F00) | /* G */
+			((color >>  8) & 0x00F0) | /* B */
+			((color >>  4) & 0x000F);  /* A */
+		}
+
+
+	Q_INLINE
+	quint16 q_rgba_8_8_8_8_to_rgba_5_5_5_1(quint32 color)
+		{
+		return	((color >> 16) & 0xF800) | /* R */
+			((color >> 13) & 0x07C0) | /* G */
+			((color >> 10) & 0x003E) | /* B */
+			((color >>  7) & 0x0001);  /* A */
+		}
+
+
+	Q_INLINE
+	quint16 q_rgba_8_8_8_8_to_rgb_5_6_5(quint32 color)
+		{
+		return	((color >> 16) & 0xF800) | /* R */
+			((color >> 13) & 0x07E0) | /* G */
+			((color >> 11) & 0x001F);  /* B */
+		}
+
+
+	Q_INLINE
+	quint8 q_rgba_8_8_8_8_to_i8(quint32 color)
+		{
+		return	((color >> 24) + ((color >> 16) & 255) + ((color >> 8) & 255))
+			/ 3;
+		}
+
+
+
+
+#elif Q_CPU_ENDIANNESS == Q_ENDIANNESS_LITTLE
+
+#endif
+
+
+
+
+
+Q_INLINE
 quint16 q_rgba_8_8_8_8_to_rgba_5_5_5_1(quint32 color)
 	{
-	return	((((color >>  0) & 0xFF) >> 3) << 11) |	// R
-		((((color >>  8) & 0xFF) >> 3) <<  6) |	// G
-		((((color >> 16) & 0xFF) >> 3) <<  1) |	// B
-		((((color >> 24) & 0xFF) >> 7) <<  0);	// A
+	return	((((color >>  0) & 0xFF) >> 3) << 11) |	/* R */
+		((((color >>  8) & 0xFF) >> 3) <<  6) |	/* G */
+		((((color >> 16) & 0xFF) >> 3) <<  1) |	/* B */
+		((((color >> 24) & 0xFF) >> 7) <<  0);	/* A */
 	}
 
 
-Q_COLOR_EXPORT
+Q_INLINE
 quint8 q_rgba_8_8_8_8_to_i_8(quint32 color)
 	{return	(Q_R(color) + Q_G(color) + Q_B(color)) / 3;}
 
 
-Q_COLOR_EXPORT
+Q_INLINE
 quint32 q_rgba_8_8_8_8_plus_rgb(quint32 color, quint32 rgb)
 	{
 	return	Q_MBA(color, rgb, Q_R_MASK) |
