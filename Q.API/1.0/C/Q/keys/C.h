@@ -1,4 +1,4 @@
-/* Q API - keys/language.h
+/* Q API - keys/C.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,10 +6,8 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_keys_language_H__
-#define __Q_keys_language_H__
-
-/* MARK: - C */
+#ifndef __Q_keys_C_H__
+#define __Q_keys_C_H__
 
 #define Q_C_KR		0
 #define Q_C89		1
@@ -25,16 +23,4 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_STRING_C99	"ISO/IEC 9899:1999 (99)"
 #define Q_STRING_C11	"ISO/IEC 9899:2011 (C11)"
 
-/* MARK: - C++ */
-
-#define Q_CPP98		1
-#define Q_CPP03		2
-#define Q_CPPTR1	3
-#define Q_CPP11		4
-
-#define Q_STRING_CPP98	"ISO/IEC 14882:1998 (C++98)"
-#define Q_STRING_CPP03	"ISO/IEC 14882:2003 (C++03)"
-#define Q_STRING_CPPTR1	"ISO/IEC TR 19768:2007 (C++TR1)"
-#define Q_STRING_CPP11	"ISO/IEC 14882:2011 (C++11)"
-
-#endif /* __Q_keys_language_H__ */
+#endif /* __Q_keys_C_H__ */

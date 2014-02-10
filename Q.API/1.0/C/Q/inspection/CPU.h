@@ -11,50 +11,50 @@ Released under the terms of the GNU General Public License v3. */
 
 /* Step 1: Identify CPU architecture */
 
-#if	defined(Q_USE_CPU_ARCHITECTURE_X86_64)
-#	define Q_CPU_ARCHITECTURE_NAME x86-64
+#if defined(Q_USE_CPU_ARCHITECTURE_X86_64)
+#	define Q_CPU_ARCHITECTURE_FILE x86-64
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_X86_32)
-#	define Q_CPU_ARCHITECTURE_NAME x86-32
+#elif defined(Q_USE_CPU_ARCHITECTURE_X86_32)
+#	define Q_CPU_ARCHITECTURE_FILE x86-32
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_POWER_PC_64BIT)
-#	define Q_CPU_ARCHITECTURE_NAME PowerPC 64-bit
+#elif defined(Q_USE_CPU_ARCHITECTURE_POWER_PC_64BIT)
+#	define Q_CPU_ARCHITECTURE_FILE PowerPC 64-bit
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_POWER_PC_32BIT)
-#	define Q_CPU_ARCHITECTURE_NAME PowerPC 32-bit
+#elif defined(Q_USE_CPU_ARCHITECTURE_POWER_PC_32BIT)
+#	define Q_CPU_ARCHITECTURE_FILE PowerPC 32-bit
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_ARM)
-#	define Q_CPU_ARCHITECTURE_NAME ARM
+#elif defined(Q_USE_CPU_ARCHITECTURE_ARM)
+#	define Q_CPU_ARCHITECTURE_FILE ARM
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_68K)
-#	define Q_CPU_ARCHITECTURE_NAME 68K
+#elif defined(Q_USE_CPU_ARCHITECTURE_68K)
+#	define Q_CPU_ARCHITECTURE_FILE 68K
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_ITANIUM)
-#	define Q_CPU_ARCHITECTURE_NAME Itanium
+#elif defined(Q_USE_CPU_ARCHITECTURE_ITANIUM)
+#	define Q_CPU_ARCHITECTURE_FILE Itanium
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_Alpha)
-#	define Q_CPU_ARCHITECTURE_NAME Alpha
+#elif defined(Q_USE_CPU_ARCHITECTURE_Alpha)
+#	define Q_CPU_ARCHITECTURE_FILE Alpha
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_MIPS)
-#	define Q_CPU_ARCHITECTURE_NAME MIPS
+#elif defined(Q_USE_CPU_ARCHITECTURE_MIPS)
+#	define Q_CPU_ARCHITECTURE_FILE MIPS
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_RS_6000)
-#	define Q_CPU_ARCHITECTURE_NAME RS 6000
+#elif defined(Q_USE_CPU_ARCHITECTURE_RS_6000)
+#	define Q_CPU_ARCHITECTURE_FILE RS 6000
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_SPARC)
-#	define Q_CPU_ARCHITECTURE_NAME SPARC
+#elif defined(Q_USE_CPU_ARCHITECTURE_SPARC)
+#	define Q_CPU_ARCHITECTURE_FILE SPARC
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_SUPER_H)
-#	define Q_CPU_ARCHITECTURE_NAME SuperH
+#elif defined(Q_USE_CPU_ARCHITECTURE_SUPER_H)
+#	define Q_CPU_ARCHITECTURE_FILE SuperH
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_SYSTEM_370)
-#	define Q_CPU_ARCHITECTURE_NAME System 370
+#elif defined(Q_USE_CPU_ARCHITECTURE_SYSTEM_370)
+#	define Q_CPU_ARCHITECTURE_FILE System 370
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_SYSTEM_390)
-#	define Q_CPU_ARCHITECTURE_NAME System 390
+#elif defined(Q_USE_CPU_ARCHITECTURE_SYSTEM_390)
+#	define Q_CPU_ARCHITECTURE_FILE System 390
 
-#elif	defined(Q_USE_CPU_ARCHITECTURE_Z_ARCHITECTURE)
-#	define Q_CPU_ARCHITECTURE_NAME z Architecture
+#elif defined(Q_USE_CPU_ARCHITECTURE_Z_ARCHITECTURE)
+#	define Q_CPU_ARCHITECTURE_FILE z Architecture
 
 #else
 
@@ -64,7 +64,7 @@ Released under the terms of the GNU General Public License v3. */
 		defined(__x86_64)	|| \
 		defined(_M_X64)
 
-#		define Q_CPU_ARCHITECTURE_NAME x86-64
+#		define Q_CPU_ARCHITECTURE_FILE x86-64
 
 #	elif	defined(i386)		|| \
 		defined(__i386)		|| \
@@ -79,14 +79,14 @@ Released under the terms of the GNU General Public License v3. */
 		defined(__I86__)	|| \
 		defined(__INTEL__)
 
-#		define Q_CPU_ARCHITECTURE_NAME x86-32
+#		define Q_CPU_ARCHITECTURE_FILE x86-32
 
 #	elif	defined(__powerpc64__)	|| \
 		defined(__ppc64__)	|| \
 		defined(__PPC64__)	|| \
 		defined(__PPU__)
 
-#		define Q_CPU_ARCHITECTURE_NAME PowerPC 64-bit
+#		define Q_CPU_ARCHITECTURE_FILE PowerPC 64-bit
 
 #	elif	defined(__powerpc)	|| \
 		defined(__powerpc__)	|| \
@@ -96,7 +96,7 @@ Released under the terms of the GNU General Public License v3. */
 		defined(_M_PPC)		|| \
 		defined(_ARCH_PPC)
 
-#		define Q_CPU_ARCHITECTURE_NAME PowerPC 32-bit
+#		define Q_CPU_ARCHITECTURE_FILE PowerPC 32-bit
 
 #	elif	defined(__arm__)		|| \
 		defined(__thumb__)		|| \
@@ -104,12 +104,12 @@ Released under the terms of the GNU General Public License v3. */
 		defined(__TARGET_ARCH_THUMB)	|| \
 		defined(_ARM)
 
-#		define Q_CPU_ARCHITECTURE_NAME ARM
+#		define Q_CPU_ARCHITECTURE_FILE ARM
 
 #	elif	defined(__m68k__)	|| \
 		defined(M68000)
 
-#		define Q_CPU_ARCHITECTURE_NAME 68K
+#		define Q_CPU_ARCHITECTURE_FILE 68K
 
 #	elif	defined(__ia64__)	|| \
 		defined(_IA64)		|| \
@@ -117,25 +117,25 @@ Released under the terms of the GNU General Public License v3. */
 		defined(__ia64)		|| \
 		defined(_M_IA64)
 
-#		define Q_CPU_ARCHITECTURE_NAME Itanium
+#		define Q_CPU_ARCHITECTURE_FILE Itanium
 
 #	elif	defined(__alpha__)	|| \
 		defined(__alpha)	|| \
 		defined(_M_ALPHA)
 
-#		define Q_CPU_ARCHITECTURE_NAME Alpha
+#		define Q_CPU_ARCHITECTURE_FILE Alpha
 
 #	elif	defined(__mips__)	|| \
 		defined(mips)		|| \
 		defined(__mips)		|| \
 		defined(__MIPS__)
 
-#		define Q_CPU_ARCHITECTURE_NAME MIPS
+#		define Q_CPU_ARCHITECTURE_FILE MIPS
 
 #	elif	defined(__hppa__)	|| \
 		defined(__hppa)
 
-#		define Q_CPU_ARCHITECTURE_NAME PA-RISC
+#		define Q_CPU_ARCHITECTURE_FILE PA-RISC
 
 #	elif	defined(__THW_RS6000)	|| \
 		defined(_IBMR2)		|| \
@@ -143,30 +143,30 @@ Released under the terms of the GNU General Public License v3. */
 		defined(_ARCH_PWR)	|| \
 		defined(_ARCH_PWR2)
 
-#		define Q_CPU_ARCHITECTURE_NAME RS 6000
+#		define Q_CPU_ARCHITECTURE_FILE RS 6000
 
 #	elif	defined(__sparc__)	|| \
 		defined(__sparc)
 
-#		define Q_CPU_ARCHITECTURE_NAME SPARC
+#		define Q_CPU_ARCHITECTURE_FILE SPARC
 
 #	elif	defined(__sh__)
 
-#		define Q_CPU_ARCHITECTURE_NAME SuperH
+#		define Q_CPU_ARCHITECTURE_FILE SuperH
 
 #	elif	defined(__370__)	|| \
 		defined(__THW_370__)
 
-#		define Q_CPU_ARCHITECTURE_NAME System 370
+#		define Q_CPU_ARCHITECTURE_FILE System 370
 
 #	elif	defined(__s390__)	|| \
 		defined(__s390x__)
 
-#		define Q_CPU_ARCHITECTURE_NAME System 390
+#		define Q_CPU_ARCHITECTURE_FILE System 390
 
 #	elif	defined(__SYSC_ZARCH__)
 
-#		define Q_CPU_ARCHITECTURE_NAME z Architecture
+#		define Q_CPU_ARCHITECTURE_FILE z Architecture
 
 #	else
 #		error "Target Processor architecture not suported."
@@ -178,13 +178,19 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_INSPECTING
 
-#define  Q_CPU_ARCHITECTURE_HEADER <Q/hardware/CPU/architecture/Q_CPU_ARCHITECTURE_NAME.h>
+#define  Q_CPU_ARCHITECTURE_HEADER <Q/hardware/CPU/architecture/Q_CPU_ARCHITECTURE_FILE.h>
 #include Q_CPU_ARCHITECTURE_HEADER
 
 #ifdef Q_CPU_MODEL_HEADER
+
 #	include Q_CPU_MODEL_HEADER
+
 #else
-#	define Q_CPU_MODEL_TOKEN GENERIC_CPU_MODEL
+
+#	define Q_CPU_MODEL_NAME GENERIC_CPU_MODEL
+#	define Q_CPU_MODEL_Name GenericCPUModel
+#	define Q_CPU_MODEL_name generic_cpu_model
+
 #endif
 
 #undef Q_INSPECTING
@@ -194,12 +200,12 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/keys/hardware/CPU/architecture.h>
 #include <Q/macros/preprocessor.h>
 
-#define Q_CPU_ARCHITECTURE_PREFIX		Q_JOIN_3(Q_, Q_CPU_ARCHITECTURE_TOKEN, _)
-#define Q_CPU_ARCHITECTURE			Q_JOIN_2(Q_CPU_ARCHITECTURE_, Q_CPU_ARCHITECTURE_TOKEN)
-#define Q_CPU_ARCHITECTURE_STRING		Q_JOIN_2(Q_CPU_ARCHITECTURE_STRING_, Q_CPU_ARCHITECTURE_TOKEN)
+#define Q_CPU_ARCHITECTURE_PREFIX		Q_JOIN_3(Q_, Q_CPU_ARCHITECTURE_NAME, _)
+#define Q_CPU_ARCHITECTURE			Q_JOIN_2(Q_CPU_ARCHITECTURE_, Q_CPU_ARCHITECTURE_NAME)
+#define Q_CPU_ARCHITECTURE_STRING		Q_JOIN_2(Q_CPU_ARCHITECTURE_STRING_, Q_CPU_ARCHITECTURE_NAME)
 #define Q_CPU_ARCHITECTURE_DEFINED(what)	Q_JOIN_2_DEFINED(Q_CPU_ARCHITECTURE_PREFIX, what)
 
-#define Q_CPU_MODEL_PREFIX			Q_JOIN_3(Q_, Q_CPU_MODEL_TOKEN, _)
+#define Q_CPU_MODEL_PREFIX			Q_JOIN_3(Q_, Q_CPU_MODEL_NAME, _)
 #define Q_CPU_MODEL_DEFINED(what)		Q_JOIN_2_DEFINED(Q_CPU_MODEL_PREFIX, what)
 
 #define Q_CPU_DEFINED(what)			(Q_CPU_ARCHITECTURE_DEFINED(what) || Q_CPU_MODEL_DEFINED(what))
@@ -232,6 +238,6 @@ Released under the terms of the GNU General Public License v3. */
 #	define Q_CPU_INTEGER_ENDIANNESS_128BIT	Q_CPU_ENDIANNESS
 #endif
 
-#define Q_CPU_INTEGER_ENDIANNESS(bits)	Q_CPU_INTEGER_ENDIANNESS_##bits
+#define Q_CPU_INTEGER_ENDIANNESS(bits)		Q_CPU_INTEGER_ENDIANNESS_##bits
 
 #endif /* __Q_inspection_CPU_H__ */

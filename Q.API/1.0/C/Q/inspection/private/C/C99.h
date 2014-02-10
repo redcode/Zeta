@@ -1,4 +1,4 @@
-/* Q API - private/language/C11.h
+/* Q API - private/C/C99.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,19 +6,18 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_private_language_H__
-#define __Q_private_language_H__
+#ifndef __Q_private_C_H__
+#define __Q_private_C_H__
 
-#include <Q/keys/language.h>
+#include <Q/keys/C.h>
 
-#define Q_C		Q_C11
-#define Q_C_STRING	Q_STRING_C11
+#define Q_C	   Q_C99
+#define Q_C_STRING Q_STRING_C99
 
 #define Q_C_HAS_LDOUBLE
 #define Q_C_HAS_COMPOUND_LITERAL
 #define Q_C_HAS_CPP_STYLE_COMMENT
 #define Q_C_HAS_INLINE_FUNCION
 #define Q_C_HAS_VARIABLE_SIZE_ARRAY
-#define Q_C_HAS_ATOMIC_OPERATIONS
 
-#endif /* __Q_private_language_H__ */
+#endif /* __Q_private_C_H__ */

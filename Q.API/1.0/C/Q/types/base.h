@@ -12,7 +12,7 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/inspection/CPU.h>
 #include <Q/inspection/data model.h>
 #include <Q/inspection/floating point.h>
-#include <Q/inspection/language.h>
+#include <Q/inspection/C.h>
 #include <Q/macros/inspection.h>
 #include <Q/macros/structure.h>
 #include <Q/constants/base.h>
@@ -26,8 +26,8 @@ typedef struct {quint8 x, y, z, w;}		Q4DUInt8;
 #define Q_UINT8					Q_DATA_MODEL_LITERAL  (UINT8)
 #define Q_UINT8_SUFFIX				Q_DATA_MODEL_SUFFIX   (UINT8)
 #define Q_UINT8_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(UINT8)
-#define Q_UINT8_FIXED_TYPE			Q_TYPE_UINT8
-#define Q_UINT8_TYPE				Q_TYPE_UINT8
+#define Q_UINT8_FIXED_TYPE			Q_VALUE_TYPE_UINT8
+#define Q_UINT8_TYPE				Q_VALUE_TYPE_UINT8
 #define Q_UINT8_FORMAT				Q_VALUE_FORMAT_8BIT_NATURAL
 #define Q_UINT8_BITS				8
 #define Q_UINT8_SIZE				1
@@ -44,8 +44,8 @@ typedef struct {qint8 x, y, z, w;}		Q4DInt8;
 #define Q_INT8					Q_DATA_MODEL_LITERAL  (INT8)
 #define Q_INT8_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT8)
 #define Q_INT8_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT8)
-#define Q_INT8_FIXED_TYPE			Q_TYPE_INT8
-#define Q_INT8_TYPE				Q_TYPE_INT8
+#define Q_INT8_FIXED_TYPE			Q_VALUE_TYPE_INT8
+#define Q_INT8_TYPE				Q_VALUE_TYPE_INT8
 #define Q_INT8_FORMAT				Q_VALUE_FORMAT_8BIT_INTEGER
 #define Q_INT8_BITS				8
 #define Q_INT8_SIZE				1
@@ -62,8 +62,8 @@ typedef struct {quint16 x, y, z, w;}		Q4DUInt16;
 #define Q_UINT16				Q_DATA_MODEL_LITERAL  (UINT16)
 #define Q_UINT16_SUFFIX				Q_DATA_MODEL_SUFFIX   (UINT16)
 #define Q_UINT16_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(UINT16)
-#define Q_UINT16_FIXED_TYPE			Q_TYPE_UINT16
-#define Q_UINT16_TYPE				Q_TYPE_UINT16
+#define Q_UINT16_FIXED_TYPE			Q_VALUE_TYPE_UINT16
+#define Q_UINT16_TYPE				Q_VALUE_TYPE_UINT16
 #define Q_UINT16_FORMAT				Q_VALUE_FORMAT_16BIT_NATURAL
 #define Q_UINT16_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(16BIT)
 #define Q_UINT16_BITS				16
@@ -81,8 +81,8 @@ typedef struct {qint16 x, y, z, w;}		Q4DInt16;
 #define Q_INT16					Q_DATA_MODEL_LITERAL  (INT16)
 #define Q_INT16_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT16)
 #define Q_INT16_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT16)
-#define Q_INT16_FIXED_TYPE			Q_TYPE_INT16
-#define Q_INT16_TYPE				Q_TYPE_INT16
+#define Q_INT16_FIXED_TYPE			Q_VALUE_TYPE_INT16
+#define Q_INT16_TYPE				Q_VALUE_TYPE_INT16
 #define Q_INT16_FORMAT				Q_VALUE_FORMAT_16BIT_INTEGER
 #define Q_INT16_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(16BIT)
 #define Q_INT16_BITS				16
@@ -100,8 +100,8 @@ typedef struct {quint32 x, y, z, w;}		Q4DUInt32;
 #define Q_UINT32				Q_DATA_MODEL_LITERAL  (UINT32)
 #define Q_UINT32_SUFFIX				Q_DATA_MODEL_SUFFIX   (UINT32)
 #define Q_UINT32_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(UINT32)
-#define Q_UINT32_FIXED_TYPE			Q_TYPE_UINT32
-#define Q_UINT32_TYPE				Q_TYPE_UINT32
+#define Q_UINT32_FIXED_TYPE			Q_VALUE_TYPE_UINT32
+#define Q_UINT32_TYPE				Q_VALUE_TYPE_UINT32
 #define Q_UINT32_FORMAT				Q_VALUE_FORMAT_32BIT_NATURAL
 #define Q_UINT32_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(32BIT)
 #define Q_UINT32_BITS				32
@@ -119,8 +119,8 @@ typedef struct {qint32 x, y, z, w;}		Q4DInt32;
 #define Q_INT32					Q_DATA_MODEL_LITERAL  (INT32)
 #define Q_INT32_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT32)
 #define Q_INT32_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT32)
-#define Q_INT32_FIXED_TYPE			Q_TYPE_INT32
-#define Q_INT32_TYPE				Q_TYPE_INT32
+#define Q_INT32_FIXED_TYPE			Q_VALUE_TYPE_INT32
+#define Q_INT32_TYPE				Q_VALUE_TYPE_INT32
 #define Q_INT32_FORMAT				Q_VALUE_FORMAT_32BIT_INTEGER
 #define Q_INT32_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(32BIT)
 #define Q_INT32_BITS				32
@@ -138,8 +138,8 @@ typedef struct {quint64 x, y, z, w;}		Q4DUInt64;
 #define Q_UINT64				Q_DATA_MODEL_LITERAL  (UINT64)
 #define Q_UINT64_SUFFIX				Q_DATA_MODEL_SUFFIX   (UINT64)
 #define Q_UINT64_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(UINT64)
-#define Q_UINT64_FIXED_TYPE			Q_TYPE_UINT64
-#define Q_UINT64_TYPE				Q_TYPE_UINT64
+#define Q_UINT64_FIXED_TYPE			Q_VALUE_TYPE_UINT64
+#define Q_UINT64_TYPE				Q_VALUE_TYPE_UINT64
 #define Q_UINT64_FORMAT				Q_VALUE_FORMAT_64BIT_NATURAL
 #define Q_UINT64_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(64BIT)
 #define Q_UINT64_BITS				64
@@ -157,8 +157,8 @@ typedef struct {qint64 x, y, z, w;}		Q4DInt64;
 #define Q_INT64					Q_DATA_MODEL_LITERAL  (INT64)
 #define Q_INT64_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT64)
 #define Q_INT64_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT64)
-#define Q_INT64_TYPE				Q_TYPE_INT64
-#define Q_INT64_FIXED_TYPE			Q_TYPE_INT64
+#define Q_INT64_TYPE				Q_VALUE_TYPE_INT64
+#define Q_INT64_FIXED_TYPE			Q_VALUE_TYPE_INT64
 #define Q_INT64_FORMAT				Q_VALUE_FORMAT_64BIT_INTEGER
 #define Q_INT64_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(64BIT)
 #define Q_INT64_BITS				64
@@ -175,9 +175,9 @@ typedef struct {qint64 x, y, z, w;}		Q4DInt64;
 	typedef struct {quint128 x, y;}		Q2DUInt128;
 	typedef struct {quint128 x, y, z;}	Q3DUInt128;
 	typedef struct {quint128 x, y, z, w;}	Q4DUInt128;
-#	define Q_UINT128_BASE_TYPE		Q_TYPE_UINT128
-#	define Q_UINT128_FIXED_TYPE		Q_TYPE_UINT128
-#	define Q_UINT128_TYPE			Q_TYPE_UINT128
+#	define Q_UINT128_BASE_TYPE		Q_VALUE_TYPE_UINT128
+#	define Q_UINT128_FIXED_TYPE		Q_VALUE_TYPE_UINT128
+#	define Q_UINT128_TYPE			Q_VALUE_TYPE_UINT128
 #	define Q_UINT128_FORMAT			Q_VALUE_FORMAT_128BIT_NATURAL
 #	define Q_UINT128_ENDIANNESS		Q_CPU_INTEGER_ENDIANNESS(128BIT)
 #	define Q_UINT128_BITS			128
@@ -206,9 +206,9 @@ typedef struct {qint64 x, y, z, w;}		Q4DInt64;
 	typedef struct {qint128 x, y;}		Q2DInt128;
 	typedef struct {qint128 x, y, z;}	Q3DInt128;
 	typedef struct {qint128 x, y, z, w;}	Q4DInt128;
-#	define Q_INT128_BASE_TYPE		Q_TYPE_INT128
-#	define Q_INT128_FIXED_TYPE		Q_TYPE_INT128
-#	define Q_INT128_TYPE			Q_TYPE_INT128
+#	define Q_INT128_BASE_TYPE		Q_VALUE_TYPE_INT128
+#	define Q_INT128_FIXED_TYPE		Q_VALUE_TYPE_INT128
+#	define Q_INT128_TYPE			Q_VALUE_TYPE_INT128
 #	define Q_INT128_FORMAT			Q_VALUE_FORMAT_128BIT_INTEGER
 #	define Q_INT128_ENDIANNESS		Q_CPU_INTEGER_ENDIANNESS(128BIT)
 #	define Q_INT128_BITS			128
@@ -237,8 +237,8 @@ typedef struct {qint64 x, y, z, w;}		Q4DInt64;
 typedef unsigned char				quchar;
 #define Q_UCHAR(value)				value
 #define Q_UCHAR_SUFFIX
-#define Q_UCHAR_BASE_TYPE			Q_TYPE_UCHAR
-#define Q_UCHAR_TYPE				Q_TYPE_UCHAR
+#define Q_UCHAR_BASE_TYPE			Q_VALUE_TYPE_UCHAR
+#define Q_UCHAR_TYPE				Q_VALUE_TYPE_UCHAR
 #define Q_UCHAR_BITS				Q_DATA_MODEL_BITS(CHAR)
 #define Q_UCHAR_MINIMUM				0
 #define Q_UCHAR_NAME				UCHAR
@@ -248,8 +248,8 @@ typedef unsigned char				quchar;
 typedef signed char				qchar;
 #define Q_CHAR(value)				value
 #define Q_CHAR_SUFFIX
-#define Q_CHAR_BASE_TYPE			Q_TYPE_CHAR
-#define Q_CHAR_TYPE				Q_TYPE_CHAR
+#define Q_CHAR_BASE_TYPE			Q_VALUE_TYPE_CHAR
+#define Q_CHAR_TYPE				Q_VALUE_TYPE_CHAR
 #define Q_CHAR_BITS				Q_UCHAR_BITS
 #define Q_CHAR_NAME				CHAR
 #define Q_CHAR_Name				Char
@@ -260,7 +260,7 @@ typedef signed char				qchar;
 	typedef Q2DUInt8			Q2DUChar;
 	typedef Q3DUInt8			Q3DUChar;
 	typedef Q4DUInt8			Q4DUChar;
-#	define Q_UCHAR_FIXED_TYPE		Q_TYPE_UINT8
+#	define Q_UCHAR_FIXED_TYPE		Q_VALUE_TYPE_UINT8
 #	define Q_UCHAR_FORMAT			Q_UINT8_FORMAT
 #	define Q_UCHAR_SIZE			Q_UINT8_SIZE
 #	define Q_UCHAR_MAXIMUM			Q_UINT8_MAXIMUM
@@ -271,7 +271,7 @@ typedef signed char				qchar;
 	typedef Q2DInt8				Q2DChar;
 	typedef Q3DInt8				Q3DChar;
 	typedef Q4DInt8				Q4DChar;
-#	define Q_CHAR_FIXED_TYPE		Q_TYPE_INT8
+#	define Q_CHAR_FIXED_TYPE		Q_VALUE_TYPE_INT8
 #	define Q_CHAR_FORMAT			Q_INT8_FORMAT
 #	define Q_CHAR_SIZE			Q_INT8_SIZE
 #	define Q_CHAR_MINIMUM			Q_INT8_MINIMUM
@@ -285,7 +285,7 @@ typedef signed char				qchar;
 	typedef Q2DUInt16			Q2DUChar;
 	typedef Q3DUInt16			Q3DUChar;
 	typedef Q4DUInt16			Q4DUChar;
-#	define Q_UCHAR_FIXED_TYPE		Q_TYPE_UINT16
+#	define Q_UCHAR_FIXED_TYPE		Q_VALUE_TYPE_UINT16
 #	define Q_UCHAR_FORMAT			Q_UINT16_FORMAT
 #	define Q_UCHAR_SIZE			Q_UINT16_SIZE
 #	define Q_UCHAR_MAXIMUM			Q_UINT16_MAXIMUM
@@ -296,7 +296,7 @@ typedef signed char				qchar;
 	typedef Q2DInt16			Q2DChar;
 	typedef Q3DInt16			Q3DChar;
 	typedef Q4DInt16			Q4DChar;
-#	define Q_CHAR_FIXED_TYPE		Q_TYPE_INT16
+#	define Q_CHAR_FIXED_TYPE		Q_VALUE_TYPE_INT16
 #	define Q_CHAR_FORMAT			Q_INT16_FORMAT
 #	define Q_CHAR_SIZE			Q_INT16_SIZE
 #	define Q_CHAR_MINIMUM			Q_INT16_MINIMUM
@@ -310,8 +310,8 @@ typedef signed char				qchar;
 typedef unsigned short int			qushort;
 #define Q_USHORT(value)				value
 #define Q_USHORT_SUFFIX
-#define Q_USHORT_BASE_TYPE			Q_TYPE_USHORT
-#define Q_USHORT_TYPE				Q_TYPE_USHORT
+#define Q_USHORT_BASE_TYPE			Q_VALUE_TYPE_USHORT
+#define Q_USHORT_TYPE				Q_VALUE_TYPE_USHORT
 #define Q_USHORT_BITS				Q_DATA_MODEL_BITS(SHORT)
 #define Q_USHORT_MINIMUM			0
 #define Q_USHORT_NAME				USHORT
@@ -321,8 +321,8 @@ typedef unsigned short int			qushort;
 typedef signed short int			qshort;
 #define Q_SHORT(value)				value
 #define Q_SHORT_SUFFIX
-#define Q_SHORT_BASE_TYPE			Q_TYPE_SHORT
-#define Q_SHORT_TYPE				Q_TYPE_SHORT
+#define Q_SHORT_BASE_TYPE			Q_VALUE_TYPE_SHORT
+#define Q_SHORT_TYPE				Q_VALUE_TYPE_SHORT
 #define Q_SHORT_BITS				Q_USHORT_BITS
 #define Q_SHORT_NAME				SHORT
 #define Q_SHORT_Name				Short
@@ -333,7 +333,7 @@ typedef signed short int			qshort;
 	typedef Q2DUInt16			Q2DUShort;
 	typedef Q3DUInt16			Q3DUShort;
 	typedef Q4DUInt16			Q4DUShort;
-#	define Q_USHORT_FIXED_TYPE		Q_TYPE_UINT16
+#	define Q_USHORT_FIXED_TYPE		Q_VALUE_TYPE_UINT16
 #	define Q_USHORT_FORMAT			Q_UINT16_FORMAT
 #	define Q_USHORT_ENDIANNESS		Q_UINT16_ENDIANNESS
 #	define Q_USHORT_SIZE			Q_UINT16_SIZE
@@ -345,7 +345,7 @@ typedef signed short int			qshort;
 	typedef Q2DInt16			Q2DShort;
 	typedef Q3DInt16			Q3DShort;
 	typedef Q4DInt16			Q4DShort;
-#	define Q_SHORT_FIXED_TYPE		Q_TYPE_INT16
+#	define Q_SHORT_FIXED_TYPE		Q_VALUE_TYPE_INT16
 #	define Q_SHORT_FORMAT			Q_INT16_FORMAT
 #	define Q_SHORT_ENDIANNESS		Q_INT16_ENDIANNESS
 #	define Q_SHORT_SIZE			Q_INT16_SIZE
@@ -360,7 +360,7 @@ typedef signed short int			qshort;
 	typedef Q2DUInt32			Q2DUShort;
 	typedef Q3DUInt32			Q3DUShort;
 	typedef Q4DUInt32			Q4DUShort;
-#	define Q_USHORT_FIXED_TYPE		Q_TYPE_UINT32
+#	define Q_USHORT_FIXED_TYPE		Q_VALUE_TYPE_UINT32
 #	define Q_USHORT_FORMAT			Q_UINT32_FORMAT
 #	define Q_USHORT_ENDIANNESS		Q_UINT32_ENDIANNESS
 #	define Q_USHORT_SIZE			Q_UINT32_SIZE
@@ -372,7 +372,7 @@ typedef signed short int			qshort;
 	typedef Q2DInt32			Q2DShort;
 	typedef Q3DInt32			Q3DShort;
 	typedef Q4DInt32			Q4DShort;
-#	define Q_SHORT_FIXED_TYPE		Q_TYPE_INT32
+#	define Q_SHORT_FIXED_TYPE		Q_VALUE_TYPE_INT32
 #	define Q_SHORT_FORMAT			Q_INT32_FORMAT
 #	define Q_SHORT_ENDIANNESS		Q_INT32_ENDIANNESS
 #	define Q_SHORT_SIZE			Q_INT32_SIZE
@@ -387,8 +387,8 @@ typedef signed short int			qshort;
 typedef unsigned int				quint;
 #define Q_UINT(value)				value
 #define Q_UINT_SUFFIX
-#define Q_UINT_BASE_TYPE			Q_TYPE_UINT
-#define Q_UINT_TYPE				Q_TYPE_UINT
+#define Q_UINT_BASE_TYPE			Q_VALUE_TYPE_UINT
+#define Q_UINT_TYPE				Q_VALUE_TYPE_UINT
 #define Q_UINT_BITS				Q_DATA_MODEL_BITS(INT)
 #define Q_UINT_MINIMUM				0
 #define Q_UINT_NAME				UINT
@@ -398,8 +398,8 @@ typedef unsigned int				quint;
 typedef signed int				qint;
 #define Q_INT(value)				value
 #define Q_INT_SUFFIX
-#define Q_INT_BASE_TYPE				Q_TYPE_INT
-#define Q_INT_TYPE				Q_TYPE_INT
+#define Q_INT_BASE_TYPE				Q_VALUE_TYPE_INT
+#define Q_INT_TYPE				Q_VALUE_TYPE_INT
 #define Q_INT_BITS				Q_UINT_BITS
 #define Q_INT_NAME				INT
 #define Q_INT_Name				Int
@@ -410,7 +410,7 @@ typedef signed int				qint;
 	typedef Q2DUInt16			Q2DUInt;
 	typedef Q3DUInt16			Q3DUInt;
 	typedef Q4DUInt16			Q4DUInt;
-#	define Q_UINT_FIXED_TYPE		Q_TYPE_UINT16
+#	define Q_UINT_FIXED_TYPE		Q_VALUE_TYPE_UINT16
 #	define Q_UINT_FORMAT			Q_UINT16_FORMAT
 #	define Q_UINT_ENDIANNESS		Q_UINT16_ENDIANNESS
 #	define Q_UINT_SIZE			Q_UINT16_SIZE
@@ -422,7 +422,7 @@ typedef signed int				qint;
 	typedef Q2DInt16			Q2DInt;
 	typedef Q3DInt16			Q3DInt;
 	typedef Q4DInt16			Q4DInt;
-#	define Q_INT_FIXED_TYPE			Q_TYPE_INT16
+#	define Q_INT_FIXED_TYPE			Q_VALUE_TYPE_INT16
 #	define Q_INT_FORMAT			Q_INT16_FORMAT
 #	define Q_INT_ENDIANNESS			Q_INT16_ENDIANNESS
 #	define Q_INT_SIZE			Q_INT16_SIZE
@@ -437,7 +437,7 @@ typedef signed int				qint;
 	typedef Q2DUInt32			Q2DUInt;
 	typedef Q3DUInt32			Q3DUInt;
 	typedef Q4DUInt32			Q4DUInt;
-#	define Q_UINT_FIXED_TYPE		Q_TYPE_UINT32
+#	define Q_UINT_FIXED_TYPE		Q_VALUE_TYPE_UINT32
 #	define Q_UINT_FORMAT			Q_UINT32_FORMAT
 #	define Q_UINT_ENDIANNESS		Q_UINT32_ENDIANNESS
 #	define Q_UINT_SIZE			Q_UINT32_SIZE
@@ -449,7 +449,7 @@ typedef signed int				qint;
 	typedef Q2DInt32			Q2DInt;
 	typedef Q3DInt32			Q3DInt;
 	typedef Q4DInt32			Q4DInt;
-#	define Q_INT_FIXED_TYPE			Q_TYPE_INT32
+#	define Q_INT_FIXED_TYPE			Q_VALUE_TYPE_INT32
 #	define Q_INT_FORMAT			Q_INT32_FORMAT
 #	define Q_INT_ENDIANNESS			Q_INT32_ENDIANNESS
 #	define Q_INT_SIZE			Q_INT32_SIZE
@@ -464,7 +464,7 @@ typedef signed int				qint;
 	typedef Q2DUInt64			Q2DUInt;
 	typedef Q3DUInt64			Q3DUInt;
 	typedef Q4DUInt64			Q4DUInt;
-#	define Q_UINT_FIXED_TYPE		Q_TYPE_UINT64
+#	define Q_UINT_FIXED_TYPE		Q_VALUE_TYPE_UINT64
 #	define Q_UINT_FORMAT			Q_UINT64_FORMAT
 #	define Q_UINT_ENDIANNESS		Q_UINT64_ENDIANNESS
 #	define Q_UINT_SIZE			Q_UINT64_SIZE
@@ -476,7 +476,7 @@ typedef signed int				qint;
 	typedef Q2DInt64			Q2DInt;
 	typedef Q3DInt64			Q3DInt;
 	typedef Q4DInt64			Q4DInt;
-#	define Q_INT_FIXED_TYPE			Q_TYPE_INT64
+#	define Q_INT_FIXED_TYPE			Q_VALUE_TYPE_INT64
 #	define Q_INT_FORMAT			Q_INT64_FORMAT
 #	define Q_INT_ENDIANNESS			Q_INT64_ENDIANNESS
 #	define Q_INT_SIZE			Q_INT64_SIZE
@@ -491,8 +491,8 @@ typedef signed int				qint;
 typedef unsigned long int			qulong;
 #define Q_ULONG(value)				value##UL
 #define Q_ULONG_SUFFIX				UL
-#define Q_ULONG_BASE_TYPE			Q_TYPE_ULONG
-#define Q_ULONG_TYPE				Q_TYPE_ULONG
+#define Q_ULONG_BASE_TYPE			Q_VALUE_TYPE_ULONG
+#define Q_ULONG_TYPE				Q_VALUE_TYPE_ULONG
 #define Q_ULONG_BITS				Q_DATA_MODEL_BITS(LONG)
 #define Q_ULONG_MINIMUM				0
 #define Q_ULONG_NAME				ULONG
@@ -502,8 +502,8 @@ typedef unsigned long int			qulong;
 typedef signed long int				qlong;
 #define Q_LONG(value)				value##L
 #define Q_LONG_SUFFIX				L
-#define Q_LONG_BASE_TYPE			Q_TYPE_LONG
-#define Q_LONG_TYPE				Q_TYPE_LONG
+#define Q_LONG_BASE_TYPE			Q_VALUE_TYPE_LONG
+#define Q_LONG_TYPE				Q_VALUE_TYPE_LONG
 #define Q_LONG_BITS				Q_ULONG_BITS
 #define Q_LONG_NAME				LONG
 #define Q_LONG_Name				Long
@@ -568,8 +568,8 @@ typedef signed long int				qlong;
 typedef unsigned long long int			qullong;
 #define Q_ULLONG(value)				value##ULL
 #define Q_ULLONG_SUFFIX				ULL
-#define Q_ULLONG_BASE_TYPE			Q_TYPE_ULLONG
-#define Q_ULLONG_TYPE				Q_TYPE_ULLONG
+#define Q_ULLONG_BASE_TYPE			Q_VALUE_TYPE_ULLONG
+#define Q_ULLONG_TYPE				Q_VALUE_TYPE_ULLONG
 #define Q_ULLONG_BITS				Q_DATA_MODEL_BITS(LLONG)
 #define Q_ULLONG_MINIMUM			0
 #define Q_ULLONG_NAME				ULLONG
@@ -579,8 +579,8 @@ typedef unsigned long long int			qullong;
 typedef signed long long int			qllong;
 #define Q_LLONG(value)				value##LL
 #define Q_LLONG_SUFFIX				LL
-#define Q_LLONG_BASE_TYPE			Q_TYPE_LLONG
-#define Q_LLONG_TYPE				Q_TYPE_LLONG
+#define Q_LLONG_BASE_TYPE			Q_VALUE_TYPE_LLONG
+#define Q_LLONG_TYPE				Q_VALUE_TYPE_LLONG
 #define Q_LLONG_BITS				Q_ULLONG_BITS
 #define Q_LLONG_NAME				LLONG
 #define Q_LLONG_Name				LLong
@@ -650,9 +650,9 @@ typedef struct {qfloat x, y, z;}		Q3DFloat;
 typedef struct {qfloat x, y, z, w;}		Q4DFloat;
 #define Q_FLOAT(value)				value##F
 #define Q_FLOAT_SUFFIX				F
-#define Q_FLOAT_BASE_TYPE			Q_TYPE_FLOAT
-#define Q_FLOAT_FIXED_TYPE			Q_TYPE_FLOAT
-#define Q_FLOAT_TYPE				Q_TYPE_FLOAT
+#define Q_FLOAT_BASE_TYPE			Q_VALUE_TYPE_FLOAT
+#define Q_FLOAT_FIXED_TYPE			Q_VALUE_TYPE_FLOAT
+#define Q_FLOAT_TYPE				Q_VALUE_TYPE_FLOAT
 #define Q_FLOAT_FORMAT				Q_FLOATING_POINT_FLOAT_FORMAT
 #define Q_FLOAT_BITS				Q_FLOATING_POINT_FLOAT_BITS
 #define Q_FLOAT_SIZE				(Q_FLOAT_BITS / 8)
@@ -675,9 +675,9 @@ typedef struct {qdouble x, y, z;}		Q3DDouble;
 typedef struct {qdouble x, y, z, w;}		Q4DDouble;
 #define Q_DOUBLE(value)				value
 #define Q_DOUBLE_SUFFIX
-#define Q_DOUBLE_BASE_TYPE			Q_TYPE_DOUBLE
-#define Q_DOUBLE_FIXED_TYPE			Q_TYPE_DOUBLE
-#define Q_DOUBLE_TYPE				Q_TYPE_DOUBLE
+#define Q_DOUBLE_BASE_TYPE			Q_VALUE_TYPE_DOUBLE
+#define Q_DOUBLE_FIXED_TYPE			Q_VALUE_TYPE_DOUBLE
+#define Q_DOUBLE_TYPE				Q_VALUE_TYPE_DOUBLE
 #define Q_DOUBLE_FORMAT				Q_FLOATING_POINT_DOUBLE_FORMAT
 #define Q_DOUBLE_BITS				Q_FLOATING_POINT_DOUBLE_BITS
 #define Q_DOUBLE_SIZE				(Q_DOUBLE_BITS / 8)
@@ -706,9 +706,9 @@ typedef struct {qdouble x, y, z, w;}		Q4DDouble;
 	typedef struct {qldouble x, y, z, w;}	Q4DLDouble;
 #	define Q_LDOUBLE(value)			value##L
 #	define Q_LDOUBLE_SUFFIX			L
-#	define Q_LDOUBLE_BASE_TYPE		Q_TYPE_LDOUBLE
-#	define Q_LDOUBLE_FIXED_TYPE		Q_TYPE_LDOUBLE
-#	define Q_LDOUBLE_TYPE			Q_TYPE_LDOUBLE
+#	define Q_LDOUBLE_BASE_TYPE		Q_VALUE_TYPE_LDOUBLE
+#	define Q_LDOUBLE_FIXED_TYPE		Q_VALUE_TYPE_LDOUBLE
+#	define Q_LDOUBLE_TYPE			Q_VALUE_TYPE_LDOUBLE
 #	define Q_LDOUBLE_FORMAT			Q_FLOATING_POINT_LDOUBLE_FORMAT
 #	define Q_LDOUBLE_BITS			Q_FLOATING_POINT_LDOUBLE_BITS
 #	define Q_LDOUBLE_SIZE			(Q_LDOUBLE_BITS / 8)
@@ -757,7 +757,7 @@ typedef struct {qdouble x, y, z, w;}		Q4DDouble;
 /* MARK: - Size types */
 
 typedef Q_DATA_MODEL_TYPE(SIZE)			qsize;
-#define Q_SIZE_TYPE				Q_TYPE_SIZE
+#define Q_SIZE_TYPE				Q_VALUE_TYPE_SIZE
 #define Q_SIZE_BITS				Q_DATA_MODEL_BITS(SIZE)
 #define Q_SIZE_MINIMUM				0
 #define Q_SIZE_NAME				SIZE
@@ -765,7 +765,7 @@ typedef Q_DATA_MODEL_TYPE(SIZE)			qsize;
 #define Q_SIZE_name				size
 
 typedef Q_DATA_MODEL_TYPE(SSIZE)		qssize;
-#define Q_SSIZE_TYPE				Q_TYPE_SSIZE
+#define Q_SSIZE_TYPE				Q_VALUE_TYPE_SSIZE
 #define Q_SSIZE_BITS				Q_SIZE_BITS
 #define Q_SSIZE_NAME				SSIZE
 #define Q_SSIZE_Name				SSize
@@ -875,10 +875,10 @@ typedef Q_DATA_MODEL_TYPE(SSIZE)		qssize;
 /* MARK: - Pointer types */
 
 typedef void*					qpointer;
-#define Q_POINTER_TYPE				Q_TYPE_POINTER
+#define Q_POINTER_TYPE				Q_VALUE_TYPE_POINTER
 #define Q_POINTER_BITS				Q_DATA_MODEL_BITS(POINTER)
 
-#define Q_UINTPTR_TYPE				Q_TYPE_UINTPTR
+#define Q_UINTPTR_TYPE				Q_VALUE_TYPE_UINTPTR
 #define Q_UINTPTR_BITS				Q_POINTER_BITS
 #define Q_UINTPTR_SIZE				Q_POINTER_SIZE
 #define Q_UINTPTR_MINIMUM			0
@@ -886,7 +886,7 @@ typedef void*					qpointer;
 #define Q_UINTPTR_Name				UIntPtr
 #define Q_UINTPTR_name				uintptr
 
-#define Q_INTPTR_TYPE				Q_TYPE_INTPTR
+#define Q_INTPTR_TYPE				Q_VALUE_TYPE_INTPTR
 #define Q_INTPTR_BITS				Q_POINTER_BITS
 #define Q_INTPTR_SIZE				Q_POINTER_SIZE
 #define Q_INTPTR_NAME				INTPTR
@@ -973,13 +973,13 @@ typedef void*					qpointer;
 
 /* MARK: - CPU top types */
 
-#define Q_UINTTOP_TYPE				Q_TYPE_UINTTOP
+#define Q_UINTTOP_TYPE				Q_VALUE_TYPE_UINTTOP
 #define Q_UINTTOP_MINIMUM			0
 #define Q_UINTTOP_NAME				UINTTOP
 #define Q_UINTTOP_Name				UIntTop
 #define Q_UINTTOP_name				uinttop
 
-#define Q_INTTOP_TYPE				Q_TYPE_INTTOP
+#define Q_INTTOP_TYPE				Q_VALUE_TYPE_INTTOP
 #define Q_INTTOP_NAME				INTTOP
 #define Q_INTTOP_Name				IntTop
 #define Q_INTTOP_name				inttop
@@ -1107,13 +1107,13 @@ typedef void*					qpointer;
 
 /* MARK: - Maximun integer type */
 
-#define Q_UINTMAX_TYPE				Q_TYPE_UINTMAX
+#define Q_UINTMAX_TYPE				Q_VALUE_TYPE_UINTMAX
 #define Q_UINTMAX_MINIMUM			0
 #define Q_UINTMAX_NAME				UINTMAX
 #define Q_UINTMAX_Name				UIntMax
 #define Q_UINTMAX_name				uintmax
 
-#define Q_INTMAX_TYPE				Q_TYPE_INTMAX
+#define Q_INTMAX_TYPE				Q_VALUE_TYPE_INTMAX
 #define Q_INTMAX_NAME				INTMAX
 #define Q_INTMAX_Name				IntMax
 #define Q_INTMAX_name				intmax
@@ -1203,7 +1203,7 @@ typedef void*					qpointer;
 /* MARK: - Boolean type */
 
 typedef quint8					qboolean;
-#define Q_BOOLEAN_TYPE				Q_TYPE_BOOLEAN
+#define Q_BOOLEAN_TYPE				Q_VALUE_TYPE_BOOLEAN
 #define Q_BOOLEAN_BASE_TYPE			Q_UINT8_BASE_TYPE
 #define Q_BOOLEAN_FIXED_TYPE			Q_UINT8_FIXED_TYPE
 #define Q_BOOLEAN_FORMAT			Q_UINT8_FORMAT
@@ -1218,7 +1218,7 @@ typedef quint8					qboolean;
 
 /* MARK: - Default types */
 
-#define Q_NATURAL_TYPE				Q_TYPE_NATURAL
+#define Q_NATURAL_TYPE				Q_VALUE_TYPE_NATURAL
 #define Q_NATURAL_MINIMUM			0
 #define Q_NATURAL_NAME				NATURAL
 #define Q_NATURAL_Name				Natural
@@ -1301,7 +1301,7 @@ typedef quint8					qboolean;
 
 #endif
 
-#define Q_INTEGER_TYPE				Q_TYPE_INTEGER
+#define Q_INTEGER_TYPE				Q_VALUE_TYPE_INTEGER
 #define Q_INTEGER_NAME				INTEGER
 #define Q_INTEGER_Name				Integer
 #define Q_INTEGER_name				integer
@@ -1387,7 +1387,7 @@ typedef quint8					qboolean;
 
 #endif
 
-#define Q_REAL_TYPE				Q_TYPE_REAL
+#define Q_REAL_TYPE				Q_VALUE_TYPE_REAL
 #define Q_REAL_NAME				REAL
 #define Q_REAL_Name				Real
 #define Q_REAL_name				real
@@ -1490,16 +1490,16 @@ typedef char					QString;
 
 /* MARK: - Value encoding types */
 
-typedef quint8					QType;
-#define Q_TYPE_TYPE				Q_UINT8_TYPE
-#define Q_TYPE_FIXED_TYPE			Q_UINT8_FIXED_TYPE
-#define Q_TYPE_BASE_TYPE			Q_UINT8_BASE_TYPE
-#define Q_TYPE_FORMAT				Q_UINT8_FORMAT
-#define Q_TYPE_BITS				Q_UINT8_BITS
-#define Q_TYPE_SIZE_				Q_UINT8_SIZE
-#define Q_TYPE_FIXED_TYPE_NAME			Q_UINT8_NAME
-#define Q_TYPE_FIXED_TYPE_Name			Q_UINT8_Name
-#define Q_TYPE_FIXED_TYPE_name			Q_UINT8_name
+typedef quint8					QValueType;
+#define Q_VALUE_TYPE_TYPE			Q_UINT8_TYPE
+#define Q_VALUE_TYPE_FIXED_TYPE			Q_UINT8_FIXED_TYPE
+#define Q_VALUE_TYPE_BASE_TYPE			Q_UINT8_BASE_TYPE
+#define Q_VALUE_TYPE_FORMAT			Q_UINT8_FORMAT
+#define Q_VALUE_TYPE_BITS			Q_UINT8_BITS
+#define Q_VALUE_TYPE_SIZE_			Q_UINT8_SIZE
+#define Q_VALUE_TYPE_FIXED_TYPE_NAME		Q_UINT8_NAME
+#define Q_VALUE_TYPE_FIXED_TYPE_Name		Q_UINT8_Name
+#define Q_VALUE_TYPE_FIXED_TYPE_name		Q_UINT8_name
 
 typedef quint8					QValueFormat;
 #define Q_VALUE_FORMAT_TYPE			Q_UINT8_TYPE

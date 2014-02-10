@@ -28,24 +28,19 @@ Released under the terms of the GNU General Public License v3. */
 '------------------------------------------------------*/
 
 #if defined(Q_USE_DATA_MODEL_LP32)
-
-#	define Q_DATA_MODEL_NAME LP32
+#	define Q_DATA_MODEL_FILE LP32
 
 #elif defined(Q_USE_DATA_MODEL_ILP32)
-
-#	define Q_DATA_MODEL_NAME ILP32
+#	define Q_DATA_MODEL_FILE ILP32
 
 #elif defined(Q_USE_DATA_MODEL_ILP64)
-
-#	define Q_DATA_MODEL_NAME ILP64
+#	define Q_DATA_MODEL_FILE ILP64
 
 #elif defined(Q_USE_DATA_MODEL_LLP64)
-
-#	define Q_DATA_MODEL_NAME LLP64
+#	define Q_DATA_MODEL_FILE LLP64
 
 #elif defined(Q_USE_DATA_MODEL_LP64)
-
-#	define Q_DATA_MODEL_NAME LP64
+#	define Q_DATA_MODEL_FILE LP64
 
 #else
 
@@ -54,7 +49,7 @@ Released under the terms of the GNU General Public License v3. */
 		defined(_LP32)		|| \
 		defined(LP32)
 
-#		define Q_DATA_MODEL_NAME LP32
+#		define Q_DATA_MODEL_FILE LP32
 
 #	elif	defined(__ILP32__)	|| \
 		defined(_ILP32_)	|| \
@@ -62,14 +57,14 @@ Released under the terms of the GNU General Public License v3. */
 		defined(ILP32)		|| \
 		defined(_WIN32)
 
-#		define Q_DATA_MODEL_NAME ILP32
+#		define Q_DATA_MODEL_FILE ILP32
 
 #	elif	defined(__ILP64__)	|| \
 		defined(_ILP64_)	|| \
 		defined(_ILP64)		|| \
 		defined(ILP64)
 
-#		define Q_DATA_MODEL_NAME ILP64
+#		define Q_DATA_MODEL_FILE ILP64
 
 #	elif	defined(__LLP64__)	|| \
 		defined(_LLP64_)	|| \
@@ -77,24 +72,28 @@ Released under the terms of the GNU General Public License v3. */
 		defined(LLP64)		|| \
 		defined(_WIN64)
 
-#		define Q_DATA_MODEL_NAME LLP64
+#		define Q_DATA_MODEL_FILE LLP64
 
 #	elif	defined(__LP64__)	|| \
 		defined(_LP64_)		|| \
 		defined(_LP64)		|| \
 		defined(LP64)
 
-#		define Q_DATA_MODEL_NAME LP64
+#		define Q_DATA_MODEL_FILE LP64
 
 #	else
-#		define Q_DATA_MODEL_NAME ILP32
+#		define Q_DATA_MODEL_FILE ILP32
 #	endif
 
 #endif
 
-#define Q_DATA_MODEL_HEADER <Q/formats/data model/Q_DATA_MODEL_NAME.h>
+#define Q_INSPECTING
 
+#define  Q_DATA_MODEL_HEADER <Q/formats/data model/Q_DATA_MODEL_FILE.h>
 #include Q_DATA_MODEL_HEADER
+
+#undef Q_INSPECTING
+
 #include <Q/macros/preprocessor.h>
 #include <Q/keys/data model.h>
 

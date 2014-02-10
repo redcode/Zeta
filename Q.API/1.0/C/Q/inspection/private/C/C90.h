@@ -1,4 +1,4 @@
-/* Q API - private/language/C90.h
+/* Q API - private/C/C90.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,14 +6,14 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_private_language_H__
-#define __Q_private_language_H__
+#ifndef __Q_private_C_H__
+#define __Q_private_C_H__
 
-#include <Q/keys/language.h>
+#include <Q/keys/C.h>
 
-#define Q_C		Q_C90
-#define Q_C_STRING	Q_STRING_C90
+#define Q_C	   Q_C90
+#define Q_C_STRING Q_STRING_C90
 
 #define Q_C_HAS_LDOUBLE
 
-#endif /* __Q_private_language_H__ */
+#endif /* __Q_private_C_H__ */

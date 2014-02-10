@@ -9,8 +9,8 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_inspection_private_floating_point_H__
 #define __Q_inspection_private_floating_point_H__
 
-#include <Q/keys/formats/floating point.h>
-#include <Q/keys/formats/value.h>
+#include <Q/keys/floating point.h>
+#include <Q/keys/value.h>
 
 #define Q_FLOATING_POINT				Q_FLOATING_POINT_IEEE_754_LD64
 #define Q_FLOATING_POINT_STRING				Q_FLOATING_POINT_STRING_IEEE_754_LD64

@@ -6,14 +6,10 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_hardware_CPU_architecture_PowerPC_32_bit_H__
-#define __Q_hardware_CPU_architecture_PowerPC_32_bit_H__
+#ifndef __Q_hardware_CPU_architecture_PowerPC_32_bit_Ha__
+#define __Q_hardware_CPU_architecture_PowerPC_32_bit_Ha__
 
 #include <Q/keys/endianness.h>
-
-#ifdef Q_INSPECTING
-#	define Q_CPU_ARCHITECTURE_TOKEN POWER_PC_32BIT
-#endif
 
 #define Q_POWER_PC_32BIT_HAS_MMU
 #define Q_POWER_PC_32BIT_HAS_FPU
@@ -27,4 +23,19 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_POWER_PC_32BIT_ADDRESSING_BITS	32
 #define Q_POWER_PC_32BIT_ENDIANNESS		Q_ENDIANNESS_BIG
 
-#endif /* __Q_hardware_CPU_architecture_PowerPC_32_bit_H__ */
+#endif /* __Q_hardware_CPU_architecture_PowerPC_32_bit_Ha__ */
+
+#ifdef Q_INSPECTING
+
+#	define Q_CPU_ARCHITECTURE_NAME POWER_PC_32BIT
+#	define Q_CPU_ARCHITECTURE_Name PowerPC32Bit
+#	define Q_CPU_ARCHITECTURE_Name power_pc_32bit
+
+#else
+
+#	ifndef __Q_hardware_CPU_architecture_PowerPC_32_bit_Hb__
+#	define __Q_hardware_CPU_architecture_PowerPC_32_bit_Hb__
+
+#	endif /* __Q_hardware_CPU_architecture_PowerPC_32_bit_Hb__ */
+
+#endif

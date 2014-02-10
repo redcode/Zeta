@@ -11,10 +11,28 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/base.h>
 
-typedef struct {
-} QTypePrototype;
+typedef quint8 QVariableType;
 
 typedef struct {
+	QString*     name;
+	QType	     type;
+	QValueFormat format;
+} QValueTypePrototype;
+
+typedef struct {
+	QString*	name;
+	qsize		offset;
+	QVariableType	type;
+	void*		prototype;
+} QStructureMemberPrototype;
+
+typedef struct {
+} QStructureTypePrototype;
+
+typedef struct {
+	QString*      name;
+	QVariableType type;
+	void*	      prototype;
 } QVariablePrototype;
 
 typedef struct {

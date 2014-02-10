@@ -42,7 +42,8 @@ Released under the terms of the GNU General Public License v3. */
 #	define Q_GEOMETRY_CONSTRUCTORS_IMPLEMENTATION(Type, type)		\
 										\
 										\
-	Q_INLINE Q2D##Type##Vector q_2d_##type##_vector(			\
+	Q_INLINE								\
+	Q2D##Type##Vector q_2d_##type##_vector(					\
 		q##type a_x,							\
 		q##type a_y,							\
 		q##type b_x,							\
@@ -54,18 +55,16 @@ Released under the terms of the GNU General Public License v3. */
 		}								\
 										\
 										\
-	Q_INLINE Q##Type##Circle q_##type##_circle(				\
-		q##type x,							\
-		q##type y,							\
-		q##type radius							\
-	)									\
+	Q_INLINE								\
+	Q##Type##Circle q_##type##_circle(q##type x, q##type y, q##type radius)	\
 		{								\
 		Q##Type##Circle circle = {{x, y}, radius};			\
 		return circle;							\
 		}								\
 										\
 										\
-	Q_INLINE Q##Type##Rectangle q_##type##_rectangle(			\
+	Q_INLINE								\
+	Q##Type##Rectangle q_##type##_rectangle(				\
 		q##type x,							\
 		q##type y,							\
 		q##type size_x,							\
@@ -77,7 +76,8 @@ Released under the terms of the GNU General Public License v3. */
 		}								\
 										\
 										\
-	Q_INLINE Q3D##Type##Vector q_3d_##type##_vector(			\
+	Q_INLINE								\
+	Q3D##Type##Vector q_3d_##type##_vector(					\
 		q##type a_x,							\
 		q##type a_y,							\
 		q##type a_z,							\
@@ -91,7 +91,8 @@ Released under the terms of the GNU General Public License v3. */
 		}								\
 										\
 										\
-	Q_INLINE Q##Type##Sphere q_##type##_sphere(				\
+	Q_INLINE								\
+	Q##Type##Sphere q_##type##_sphere(					\
 		q##type x,							\
 		q##type y,							\
 		q##type z,							\
@@ -103,7 +104,8 @@ Released under the terms of the GNU General Public License v3. */
 		}								\
 										\
 										\
-	Q_INLINE Q##Type##Box q_##type##_box(					\
+	Q_INLINE								\
+	Q##Type##Box q_##type##_box(						\
 		q##type x,							\
 		q##type y,							\
 		q##type z,							\

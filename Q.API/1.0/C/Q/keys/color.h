@@ -1,4 +1,4 @@
-/* Q API - keys/formats/color.h
+/* Q API - keys/color.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_keys_formats_color_H__
-#define __Q_keys_formats_color_H__
+#ifndef __Q_keys_color_H__
+#define __Q_keys_color_H__
 
 #define Q_COLOR_FORMAT_A_8		0
 #define Q_COLOR_FORMAT_I_8		1
@@ -21,4 +21,4 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_COLOR_FORMAT_PVRTC2		9
 #define Q_COLOR_FORMAT_PVRTC4		10
 
-#endif /* __Q_keys_formats_color_H__ */
+#endif /* __Q_keys_color_H__ */

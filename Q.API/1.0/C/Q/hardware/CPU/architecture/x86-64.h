@@ -6,14 +6,10 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_hardware_CPU_architecture_x86_64_H__
-#define __Q_hardware_CPU_architecture_x86_64_H__
+#ifndef __Q_hardware_CPU_architecture_x86_64_Ha__
+#define __Q_hardware_CPU_architecture_x86_64_Ha__
 
 #include <Q/keys/endianness.h>
-
-#ifdef Q_INSPECTING
-#	define Q_CPU_ARCHITECTURE_TOKEN X86_64
-#endif
 
 #define Q_X86_64_HAS_MMU
 #define Q_X86_64_HAS_FPU
@@ -32,4 +28,19 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_X86_64_ADDRESSING_BITS		 64
 #define Q_X86_64_ENDIANNESS			Q_ENDIANNESS_LITTLE
 
-#endif /* __Q_hardware_CPU_architecture_x86_64_H__ */
+#endif /* __Q_hardware_CPU_architecture_x86_64_Ha__ */
+
+#ifdef Q_INSPECTING
+
+#	define Q_CPU_ARCHITECTURE_NAME X86_64
+#	define Q_CPU_ARCHITECTURE_Name X8664
+#	define Q_CPU_ARCHITECTURE_name x86_64
+
+#else
+
+#	ifndef __Q_hardware_CPU_architecture_x86_64_Hb__
+#	define __Q_hardware_CPU_architecture_x86_64_Hb__
+
+#	endif /* __Q_hardware_CPU_architecture_x86_64_Hb__ */
+
+#endif

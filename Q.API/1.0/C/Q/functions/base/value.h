@@ -179,7 +179,8 @@ q##type q_##type##_##endianness##_endian(q##type value)		\
 /* MARK: - Binary codified decimal */
 
 
-Q_INLINE quint32 q_uint32_to_bcd(quint32 value)
+Q_INLINE
+quint32 q_uint32_to_bcd(quint32 value)
 	{
 	quint32 result = 0;
 	quint	shift  = 0;
@@ -191,7 +192,8 @@ Q_INLINE quint32 q_uint32_to_bcd(quint32 value)
 	}
 
 
-Q_INLINE quint32 q_bcd_to_uint32(quint32 value)
+Q_INLINE
+quint32 q_bcd_to_uint32(quint32 value)
 	{
 	quint32 result = 0;
 	quint32 scale  = 1;

@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_formats_data_model_ILP64_H__
 #define __Q_formats_data_model_ILP64_H__
 
-#include <Q/keys/type.h>
+#include <Q/keys/value.h>
 
 #define Q_ILP64_BITS_CHAR		 8
 #define Q_ILP64_BITS_SHORT		16
@@ -30,14 +30,14 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ILP64_TYPE_INT64		signed int
 #define Q_ILP64_TYPE_SSIZE		signed long int
 
-#define Q_ILP64_BASE_TYPE_UINT8		Q_TYPE_UCHAR
-#define Q_ILP64_BASE_TYPE_UINT16	Q_TYPE_USHORT
-#define Q_ILP64_BASE_TYPE_UINT32	Q_TYPE_UINT32
-#define Q_ILP64_BASE_TYPE_UINT64	Q_TYPE_UINT
-#define Q_ILP64_BASE_TYPE_INT8		Q_TYPE_CHAR
-#define Q_ILP64_BASE_TYPE_INT16		Q_TYPE_SHORT
-#define Q_ILP64_BASE_TYPE_INT32		Q_TYPE_INT32
-#define Q_ILP64_BASE_TYPE_INT64		Q_TYPE_INT
+#define Q_ILP64_BASE_TYPE_UINT8		Q_VALUE_TYPE_UCHAR
+#define Q_ILP64_BASE_TYPE_UINT16	Q_VALUE_TYPE_USHORT
+#define Q_ILP64_BASE_TYPE_UINT32	Q_VALUE_TYPE_UINT32
+#define Q_ILP64_BASE_TYPE_UINT64	Q_VALUE_TYPE_UINT
+#define Q_ILP64_BASE_TYPE_INT8		Q_VALUE_TYPE_CHAR
+#define Q_ILP64_BASE_TYPE_INT16		Q_VALUE_TYPE_SHORT
+#define Q_ILP64_BASE_TYPE_INT32		Q_VALUE_TYPE_INT32
+#define Q_ILP64_BASE_TYPE_INT64		Q_VALUE_TYPE_INT
 
 #define Q_ILP64_SUFFIX_UINT8
 #define Q_ILP64_SUFFIX_UINT16
@@ -58,3 +58,11 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ILP64_LITERAL_INT64( value)	value
 
 #endif /* __Q_formats_data_model_ILP64_H__ */
+
+#ifdef Q_INSPECTING
+
+#	define Q_DATA_MODEL_NAME ILP64
+#	define Q_DATA_MODEL_Name ILP64
+#	define Q_DATA_MODEL_name ilp64
+
+#endif

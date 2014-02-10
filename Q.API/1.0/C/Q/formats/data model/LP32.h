@@ -9,7 +9,7 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_formats_data_model_LP32_H__
 #define __Q_formats_data_model_LP32_H__
 
-#include <Q/keys/type.h>
+#include <Q/keys/value.h>
 
 #define Q_LP32_BITS_CHAR		 8
 #define Q_LP32_BITS_SHORT		16
@@ -30,14 +30,14 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LP32_TYPE_INT64		signed long long int
 #define Q_LP32_TYPE_SSIZE		signed long int
 
-#define Q_LP32_BASE_TYPE_UINT8		Q_TYPE_UCHAR
-#define Q_LP32_BASE_TYPE_UINT16		Q_TYPE_USHORT
-#define Q_LP32_BASE_TYPE_UINT32		Q_TYPE_ULONG
-#define Q_LP32_BASE_TYPE_UINT64		Q_TYPE_ULLONG
-#define Q_LP32_BASE_TYPE_INT8		Q_TYPE_CHAR
-#define Q_LP32_BASE_TYPE_INT16		Q_TYPE_SHORT
-#define Q_LP32_BASE_TYPE_INT32		Q_TYPE_LONG
-#define Q_LP32_BASE_TYPE_INT64		Q_TYPE_LLONG
+#define Q_LP32_BASE_TYPE_UINT8		Q_VALUE_TYPE_UCHAR
+#define Q_LP32_BASE_TYPE_UINT16		Q_VALUE_TYPE_USHORT
+#define Q_LP32_BASE_TYPE_UINT32		Q_VALUE_TYPE_ULONG
+#define Q_LP32_BASE_TYPE_UINT64		Q_VALUE_TYPE_ULLONG
+#define Q_LP32_BASE_TYPE_INT8		Q_VALUE_TYPE_CHAR
+#define Q_LP32_BASE_TYPE_INT16		Q_VALUE_TYPE_SHORT
+#define Q_LP32_BASE_TYPE_INT32		Q_VALUE_TYPE_LONG
+#define Q_LP32_BASE_TYPE_INT64		Q_VALUE_TYPE_LLONG
 
 #define Q_LP32_SUFFIX_UINT8
 #define Q_LP32_SUFFIX_UINT16
@@ -58,3 +58,11 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LP32_LITERAL_INT64( value)	value##LL
 
 #endif /* __Q_formats_data_model_LP32_H__ */
+
+#ifdef Q_INSPECTING
+
+#	define Q_DATA_MODEL_NAME LP32
+#	define Q_DATA_MODEL_Name LP32
+#	define Q_DATA_MODEL_name lp32
+
+#endif

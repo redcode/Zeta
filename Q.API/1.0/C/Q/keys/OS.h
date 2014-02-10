@@ -38,7 +38,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_OS_QNX			26
 #define Q_OS_RELIANT_UNIX		27
 #define Q_OS_SCO_OPENSERVER		28
-#define Q_OS_QS				29
+#define Q_OS_VENUS			29
 #define Q_OS_SOLARIS			30
 #define Q_OS_SUNOS			31
 #define Q_OS_TRU64_UNIX			32
@@ -79,6 +79,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_OS_STRING_QNX			"QNX"
 #define Q_OS_STRING_RELIANT_UNIX	"Reliant UNIX"
 #define Q_OS_STRING_SCO_OPENSERVER	"SCO OpenServer"
+#define Q_OS_STRING_VENUS		"Venus"
 #define Q_OS_STRING_SOLARIS		"Solaris"
 #define Q_OS_STRING_SUNOS		"SunOS"
 #define Q_OS_STRING_TRU64_UNIX		"Tru64 UNIX"
