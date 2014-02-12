@@ -19,5 +19,6 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_C_HAS_CPP_STYLE_COMMENT
 #define Q_C_HAS_INLINE_FUNCION
 #define Q_C_HAS_VARIABLE_SIZE_ARRAY
+#define Q_C_HAS_VARIADIC_MACRO
 
 #endif /* __Q_private_C_H__ */

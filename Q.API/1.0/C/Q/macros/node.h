@@ -11,60 +11,122 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/macros/structure.h>
 
-#define Q_DEFINE_LIST_NODE(type, ...)	\
-	Q_DEFINE_STRUCTURE_WITH_NAME(	\
-		type,			\
-		type *next;		\
-		__VA_ARGS__		\
-	)
+#if Q_C_HAS(VARIADIC_MACRO)
 
-#define Q_DEFINE_STRICT_LIST_NODE(type, ...)	\
-	Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(	\
-		type,				\
-		type *next;			\
-		__VA_ARGS__			\
-	)
+#	define Q_DEFINE_LIST_NODE(type, ...)				\
+		Q_DEFINE_STRUCTURE_WITH_NAME(				\
+			type,						\
+			type *next;					\
+			__VA_ARGS__					\
+		)
 
-#define Q_DEFINE_CHAIN_NODE(type, ...)	\
-	Q_DEFINE_STRUCTURE_WITH_NAME(	\
-		type,			\
-		type *next, *previous;	\
-		__VA_ARGS__		\
-	)
+#	define Q_DEFINE_STRICT_LIST_NODE(type, ...)			\
+		Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(			\
+			type,						\
+			type *next;					\
+			__VA_ARGS__					\
+		)
 
-#define Q_DEFINE_STRICT_CHAIN_NODE(type, ...)	\
-	Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(	\
-		type,				\
-		type *next, *previous;		\
-		__VA_ARGS__			\
-	)
+#	define Q_DEFINE_CHAIN_NODE(type, ...)				\
+		Q_DEFINE_STRUCTURE_WITH_NAME(				\
+			type,						\
+			type *next, *previous;				\
+			__VA_ARGS__					\
+		)
 
-#define Q_DEFINE_TREE_NODE(type, ...)				\
-	Q_DEFINE_STRUCTURE_WITH_NAME(				\
-		type,						\
-		type *next, *previous, *parent, *children;	\
-		__VA_ARGS__					\
-	)
+#	define Q_DEFINE_STRICT_CHAIN_NODE(type, ...)			\
+		Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(			\
+			type,						\
+			type *next, *previous;				\
+			__VA_ARGS__					\
+		)
 
-#define Q_DEFINE_STRICT_TREE_NODE(type, ...)			\
-	Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(			\
-		type,						\
-		type *next, *previous, *parent, *children;	\
-		__VA_ARGS__					\
-	)
+#	define Q_DEFINE_TREE_NODE(type, ...)				\
+		Q_DEFINE_STRUCTURE_WITH_NAME(				\
+			type,						\
+			type *next, *previous, *parent, *children;	\
+			__VA_ARGS__					\
+		)
 
-#define Q_DEFINE_BINARY_TREE_NODE(type, ...)		\
-	Q_DEFINE_STRUCTURE_WITH_NAME(			\
-		type,					\
-		type *child_a, *child_b, *parent;	\
-		__VA_ARGS__				\
-	)
+#	define Q_DEFINE_STRICT_TREE_NODE(type, ...)			\
+		Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(			\
+			type,						\
+			type *next, *previous, *parent, *children;	\
+			__VA_ARGS__					\
+		)
 
-#define Q_DEFINE_STRICT_BINARY_TREE_NODE(type, ...)	\
-	Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(		\
-		type,					\
-		type *child_a, *child_b, *parent;	\
-		__VA_ARGS__				\
-	)
+#	define Q_DEFINE_BINARY_TREE_NODE(type, ...)			\
+		Q_DEFINE_STRUCTURE_WITH_NAME(				\
+			type,						\
+			type *child_a, *child_b, *parent;		\
+			__VA_ARGS__					\
+		)
+
+#	define Q_DEFINE_STRICT_BINARY_TREE_NODE(type, ...)		\
+		Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(			\
+			type,						\
+			type *child_a, *child_b, *parent;		\
+			__VA_ARGS__					\
+		)
+
+#else
+
+#	define Q_DEFINE_LIST_NODE(type, members)			\
+		Q_DEFINE_STRUCTURE_WITH_NAME(				\
+			type,						\
+			type *next;					\
+			members						\
+		)
+
+#	define Q_DEFINE_STRICT_LIST_NODE(type, members)			\
+		Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(			\
+			type,						\
+			type *next;					\
+			members						\
+		)
+
+#	define Q_DEFINE_CHAIN_NODE(type, members)			\
+		Q_DEFINE_STRUCTURE_WITH_NAME(				\
+			type,						\
+			type *next, *previous;				\
+			members						\
+		)
+
+#	define Q_DEFINE_STRICT_CHAIN_NODE(type, members)		\
+		Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(			\
+			type,						\
+			type *next, *previous;				\
+			members						\
+		)
+
+#	define Q_DEFINE_TREE_NODE(type, members)			\
+		Q_DEFINE_STRUCTURE_WITH_NAME(				\
+			type,						\
+			type *next, *previous, *parent, *children;	\
+			members						\
+		)
+
+#	define Q_DEFINE_STRICT_TREE_NODE(type, members)			\
+		Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(			\
+			type,						\
+			type *next, *previous, *parent, *children;	\
+			members						\
+		)
+
+#	define Q_DEFINE_BINARY_TREE_NODE(type, members)			\
+		Q_DEFINE_STRUCTURE_WITH_NAME(				\
+			type,						\
+			type *child_a, *child_b, *parent;		\
+			members						\
+		)
+
+#	define Q_DEFINE_STRICT_BINARY_TREE_NODE(type, members)		\
+		Q_DEFINE_STRICT_STRUCTURE_WITH_NAME(			\
+			type,						\
+			type *child_a, *child_b, *parent;		\
+			members						\
+		)
+
+#endif
 
 #endif /* __Q_macros_node_H__ */

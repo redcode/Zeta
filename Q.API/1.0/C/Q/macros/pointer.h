@@ -31,4 +31,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_INDEX(type, base, pointer)		 ((qsize)(((quintptr)pointer - (quintptr)base) / sizeof(type)))
 #define Q_BLOCK_INDEX(base, pointer, block_size) ((qsize)(((quintptr)pointer - (quintptr)base) / block_size))
 
+/* MARK: - Value search */
+
+#define Q_SKIP(	   criteria, pointer) while ( Q_IS_##criteria(*pointer)) pointer++
+#define Q_SKIP_NON(criteria, pointer) while (!Q_IS_##criteria(*pointer)) pointer++
+
 #endif /* __Q_macros_pointer_H__ */

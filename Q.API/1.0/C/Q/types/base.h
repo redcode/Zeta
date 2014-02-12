@@ -12,7 +12,6 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/inspection/CPU.h>
 #include <Q/inspection/data model.h>
 #include <Q/inspection/floating point.h>
-#include <Q/inspection/C.h>
 #include <Q/macros/inspection.h>
 #include <Q/macros/structure.h>
 #include <Q/constants/base.h>
@@ -1542,8 +1541,8 @@ typedef qint8					QOrder;
 /* MARK: - Value component access types */
 
 Q_DEFINE_STRICT_UNION (
-	quint8	   uint8_value;
-	qint8	   int8_value;
+	quint8 uint8_value;
+	qint8  int8_value;
 ) Q8Bit;
 
 #if Q_CPU_INTEGER_ENDIANNESS(16BIT) == Q_ENDIANNESS_BIG
@@ -1958,19 +1957,19 @@ typedef struct {
 } QRange;
 
 typedef struct {
-	void *base;
+	void* base;
 	qsize index;
 } QBaseAndIndex;
 
 typedef struct {
-	void *function;
-	void *context;
+	void* function;
+	void* context;
 } QFunctionAndContext;
 
 typedef struct {
-	void *function;
-	void *context;
-	void *data;
+	void* function;
+	void* context;
+	void* data;
 } QFunctionContextAndData;
 
 /* MARK: - Casts */

@@ -13,11 +13,6 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - Intel Float80 */
 
-/*   79 78			    64	 63															       0
-   .---.-------------------------------.---------------------------------------------------------------------------------------------------------------------------------.
-   | S | E E E E E E E E E E E E E E E | M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M |
-   '---'-------------------------------'---------------------------------------------------------------------------------------------------------------------------------' */
-
 #define Q_INTEL_FLOAT80_BITS			80
 #define Q_INTEL_FLOAT80_BIAS			0x3FFF
 #define Q_INTEL_FLOAT80_MINIMUM			3.3621031431120935062627E-4932L

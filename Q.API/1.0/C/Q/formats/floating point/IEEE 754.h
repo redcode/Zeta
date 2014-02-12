@@ -13,11 +13,6 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - binary16 */
 
-/*   15  14	10   9		       0
-   .---.-----------.---------------------.
-   | S | E E E E E | M M M M M M M M M M |
-   '---'-----------'---------------------' */
-
 #define Q_IEEE754_BINARY16_BITS			16
 #define Q_IEEE754_BINARY16_BIAS			0xF
 #define Q_IEEE754_BINARY16_MINIMUM		5.96046448e-08
@@ -52,11 +47,6 @@ Released under the terms of the GNU General Public License v3. */
 #endif
 
 /* MARK: - binary32 */
-
-/*   31  30	      23   22					       0
-   .---.-----------------.-----------------------------------------------.
-   | S | E E E E E E E E | M M M M M M M M M M M M M M M M M M M M M M M |
-   '---'-----------------'-----------------------------------------------' */
 
 #define Q_IEEE754_BINARY32_BITS			32
 #define Q_IEEE754_BINARY32_BIAS			0x7F /* Added to exponent. */
@@ -119,11 +109,6 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - binary64 */
 
-/*   63  62		    52	 51												       0
-   .---.-----------------------.---------------------------------------------------------------------------------------------------------.
-   | S | E E E E E E E E E E E | M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M |
-   '---'-----------------------'---------------------------------------------------------------------------------------------------------' */
-
 #define Q_IEEE754_BINARY64_BITS			64
 #define Q_IEEE754_BINARY64_BIAS			0x3FF /* Added to exponent. */
 #define Q_IEEE754_BINARY64_MINIMUM		2.2250738585072014e-308
@@ -176,11 +161,6 @@ Released under the terms of the GNU General Public License v3. */
 #endif
 
 /* MARK: - binary128 */
-
-/*  127 126			   112	 111																											       0
-   .---.-------------------------------.---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------.
-   | S | E E E E E E E E E E E E E E E | M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M M |
-   '---'-------------------------------'---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------' */
 
 #define Q_IEEE754_BINARY128_BITS		128
 #define Q_IEEE754_BINARY128_BIAS

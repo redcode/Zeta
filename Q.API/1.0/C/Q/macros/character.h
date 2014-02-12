@@ -10,7 +10,7 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_macros_characters_H__
 
 #include <Q/inspection/character set.h>
-#include <Q/macros/skip.h>
+#include <Q/macros/pointer.h>
 
 #define Q_IS_ASCII(c)				((c) >= 0x00 && (c) <= 0x7F)
 #define Q_IS_BLANK(c)				((c) ==  ' ' || (c) == '\t')

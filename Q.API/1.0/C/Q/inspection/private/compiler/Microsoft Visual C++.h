@@ -47,6 +47,6 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_STRICT_SIZE_BEGIN					__pragma(pack(push, 1))
 #define Q_STRICT_SIZE_END					__pragma(pack(pop))
 
-#define Q_INLINE						static __inline
+#define Q_INLINE						static __forceinline
 
 #endif /* __Q_inspection_private_compiler_H__ */

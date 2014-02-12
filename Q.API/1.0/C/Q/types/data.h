@@ -13,13 +13,13 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/macros/node.h>
 
 typedef struct {
+	void* data;
 	qsize size;
-	void *data;
 } QArray;
 
 typedef struct {
+	void* data;
 	qsize size;
-	void *data;
 	qsize block_size;
 } QBlockArray;
 

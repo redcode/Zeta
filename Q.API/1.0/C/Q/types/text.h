@@ -17,8 +17,8 @@ typedef quint8	QTextLineBreakMode;
 typedef quint16 QCharacterSet;
 
 typedef struct {
-	qsize	      size;
 	QString*      data;
+	qsize	      size;
 	qsize	      character_count;
 	QCharacterSet character_set;
 } QText;
