@@ -81,13 +81,4 @@ Released under the terms of the GNU General Public License v3. */
 #	define Q_STRUCTURE_MEMBER_OFFSET(type, member) ((unsigned long)&((type *)(0))->member)
 #endif
 
-#if Q_C_HAS(COMPOUND_LITERAL)
-
-#	define Q_CAST(from_type, to_type, structure) \
-		((union {from_type from; to_type to;}){.from = structure}).to
-
-#	define Q_AVAILABLE_CAST_MACRO
-
-#endif
-
 #endif /* __Q_macros_structure_H__ */
