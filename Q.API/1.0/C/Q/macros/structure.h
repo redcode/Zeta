@@ -83,10 +83,10 @@ Released under the terms of the GNU General Public License v3. */
 
 #if Q_C_HAS(COMPOUND_LITERAL)
 
-#	define Q_STRUCTURE_CAST(from_type, to_type, structure) \
+#	define Q_CAST(from_type, to_type, structure) \
 		((union {from_type from; to_type to;}){.from = structure}).to
 
-#	define Q_AVAILABLE_STRUCTURE_CAST
+#	define Q_AVAILABLE_CAST_MACRO
 
 #endif
 

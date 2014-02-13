@@ -423,7 +423,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_64BIT_ROTATE_LEFT(  value, rotation) ((value) = Q_64BIT_ROTATED_LEFT (value, rotation))
 #define Q_64BIT_ROTATE_RIGHT( value, rotation) ((value) = Q_64BIT_ROTATED_RIGHT(value, rotation))
 
-#if Q_UINT128_IS_AVAILABLE
+#if Q_IS_AVAILABLE(UINT128)
 
 #	define Q_128BIT_ROTATED_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (128 - (rotation))))
 #	define Q_128BIT_ROTATED_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (128 - (rotation))))
