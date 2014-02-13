@@ -33,7 +33,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #	define Q_CPU_ARCHITECTURE_NAME X86_32
 #	define Q_CPU_ARCHITECTURE_Name X8632
-#	define Q_CPU_ARCHITECTURE_name x86_32
+#	define Q_CPU_ARCHITECTURE_Name x86_32
 
 #else
 
