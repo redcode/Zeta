@@ -9,6 +9,8 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_constants_chemical_elements_H__
 #define __Q_constants_chemical_elements_H__
 
+#include <Q/constants/base.h>
+
 /*     01										    18
      .----.										  .----.
      |1	  |										  |2   |
@@ -45,25 +47,36 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_HYDROGEN_SYMBOL				H
 #define Q_HYDROGEN_ATOMIC_NUMBER			1
-#define Q_HYDROGEN_EMPIRICAL_ATOMIC_RADIUS
-#define Q_HYDROGEN_CALCULATED_ATOMIC_RADIUS
-#define Q_HYDROGEN_COBALENT_RADIUS
-#define Q_HYDROGEN_VAN_DER_WAALS_RADIUS
-#define Q_HYDROGEN_ATOMIC_VOLUME
-#define Q_HYDROGEN_CRYSTAL_STRUCTURE
-#define Q_HYDROGEN_MELTING_POINT
-#define Q_HYDROGEN_BOILING_POINT
-#define Q_HYDROGEN_FUSION_HEAT
-#define Q_HYDROGEN_VAPORIZATION_HEAT
-#define Q_HYDROGEN_SPECIFIC_HEAT
-#define Q_HYDROGEN_DENSITY
-#define Q_HYDROGEN_ELECTRICAL_CONDUCTIVITY
-#define Q_HYDROGEN_THERMAL_CONDUCTIVITY
-#define Q_HYDROGEN_ELECTRONEGATIVITY
-#define Q_HYDROGEN_YOUNG_MODULUS
-#define Q_HYDROGEN_BULK_MODULUS
-#define Q_HYDROGEN_SHEER_MODULUS
-#define Q_HYDROGEN_POISSON_RATIO
+
+#define Q_HYDROGEN_ATOMIC_MASS				1.00794
+#define Q_HYDROGEN_MELTING_POINT			14.01	/* K		*/
+#define Q_HYDROGEN_BOILING_POINT			20.28	/* K		*/
+#define Q_HYDROGEN_CRITICAL_PRESSURE_MPA		1.293	/* MPa		*/
+#define Q_HYDROGEN_CRITICAL_TEMPERATURE			32.97	/* K		*/
+#define Q_HYDROGEN_HEAT_OF_FUSION			0.558	/* kJ/mol	*/
+#define Q_HYDROGEN_HEAT_OF_VAPORIZATION			0.452	/* kJ/mol	*/
+#define Q_HYDROGEN_HEAT_OF_COMBUSTION			NAN	/* J/(kg*K)	*/
+#define Q_HYDROGEN_SPECIFIC_HEAT			14300	/* J/(kg*K)	*/
+#define Q_HYDROGEN_ADIABATIC_INDEX			1.4
+#define Q_HYDROGEN_NEEL_POINT				NAN	/* K		*/
+#define Q_HYDROGEN_THERMAL_CONDUCTIVITY			0.1805	/* W/(m*K)	*/
+#define Q_HYDROGEN_THERMAL_EXPANSION			NAN	/* K⁻¹		*/
+
+#define Q_HYDROGEN_MOLAR_VOLUME				0.01121
+#define Q_HYDROGEN_BRINELL_HARDNESS			NAN	/* MPa		*/
+#define Q_HYDROGEN_MOHS_HARDNESS			NAN	/* MPa		*/
+#define Q_HYDROGEN_VICKERS_HARDNESS			NAN	/* MPa		*/
+#define Q_HYDROGEN_BULK_MODULUS				NAN	/* GPa		*/
+#define Q_HYDROGEN_SHEAR_MODULUS			NAN	/* GPa		*/
+#define Q_HYDROGEN_YOUNG_MODULUS			NAN	/* GPa		*/
+#define Q_HYDROGEN_POISSON_RATIO			NAN
+#define Q_HYDROGEN_REACTIVE_INDEX			1.000132
+#define Q_HYDROGEN_SPEED_OF_SOUND			1270	/* m/s		*/
+
+#define Q_HYDROGEN_VALENCE				1
+#define Q_HYDROGEN_ELECTRONEGATIVITY			2.2
+#define Q_HYDROGEN_ELECTRON_AFFINITY			72.8	/* kJ/mol	*/
+#define Q_HYDROGEN_IONIZATION_ENERGIES			1312	/* kJ/mol	*/
 
 /* MARK: - 2 He */
 
