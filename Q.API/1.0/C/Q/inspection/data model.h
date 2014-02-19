@@ -103,5 +103,6 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_DATA_MODEL_TYPE(     type)	Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _TYPE_, type)
 #define Q_DATA_MODEL_BASE_TYPE(type)	Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _BASE_TYPE_, type)
 #define Q_DATA_MODEL_SUFFIX(   type)	Q_JOIN_4(Q_, Q_DATA_MODEL_NAME, _SUFFIX_, type)
+#define Q_DATA_MODEL_LITERAL(  type)	Q_JOIN_2(Q_SUFFIX_, Q_DATA_MODEL_SUFFIX(type))
 
 #endif /* __Q_inspection_data_model_H__ */

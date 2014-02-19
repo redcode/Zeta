@@ -78,4 +78,12 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HEADER(      header)			  <header>
 #define Q_LOCAL_HEADER(header)			  Q_QUOTED(header)
 
+#define Q_PREFIX_0(  literal)			  Q_JOIN_2(0,  literal)
+#define Q_PREFIX_0X( literal)			  Q_JOIN_2(0x, literal)
+#define Q_SUFFIX_F(  literal)			  Q_JOIN_2(literal, F)
+#define Q_SUFFIX_L(  literal)			  Q_JOIN_2(literal, L)
+#define Q_SUFFIX_LL( literal)			  Q_JOIN_2(literal, LL)
+#define Q_SUFFIX_UL( literal)			  Q_JOIN_2(literal, UL)
+#define Q_SUFFIX_ULL(literal)			  Q_JOIN_2(literal, ULL)
+
 #endif /* __Q_macros_preprocessor_H__ */
