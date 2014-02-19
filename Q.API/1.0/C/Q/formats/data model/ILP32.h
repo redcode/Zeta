@@ -48,15 +48,6 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ILP32_SUFFIX_INT32
 #define Q_ILP32_SUFFIX_INT64		LL
 
-#define Q_ILP32_LITERAL_UINT8( value)	value
-#define Q_ILP32_LITERAL_UINT16(value)	value
-#define Q_ILP32_LITERAL_UINT32(value)	value
-#define Q_ILP32_LITERAL_UINT64(value)	value##ULL
-#define Q_ILP32_LITERAL_INT8(  value)	value
-#define Q_ILP32_LITERAL_INT16( value)	value
-#define Q_ILP32_LITERAL_INT32( value)	value
-#define Q_ILP32_LITERAL_INT64( value)	value##LL
-
 #endif /* __Q_formats_data_model_ILP32_H__ */
 
 #ifdef Q_INSPECTING
