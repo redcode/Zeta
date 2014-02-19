@@ -51,7 +51,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HYDROGEN_ATOMIC_MASS				1.00794
 #define Q_HYDROGEN_MELTING_POINT			14.01	/* K		*/
 #define Q_HYDROGEN_BOILING_POINT			20.28	/* K		*/
-#define Q_HYDROGEN_CRITICAL_PRESSURE_MPA		1.293	/* MPa		*/
+#define Q_HYDROGEN_CRITICAL_PRESSURE			1.293	/* MPa		*/
 #define Q_HYDROGEN_CRITICAL_TEMPERATURE			32.97	/* K		*/
 #define Q_HYDROGEN_HEAT_OF_FUSION			0.558	/* kJ/mol	*/
 #define Q_HYDROGEN_HEAT_OF_VAPORIZATION			0.452	/* kJ/mol	*/
