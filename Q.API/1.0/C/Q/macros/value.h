@@ -477,7 +477,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #	define Q_16BIT_ENSURE_BIG_ENDIAN(value)
 #	define Q_16BIT_ENSURE_LITTLE_ENDIAN		Q_16BIT_REVERSE_IN_8BIT
-#	define Q_16BIT_BIG_ENDIAN(value)		(value)
+#	define Q_16BIT_BIG_ENDIAN			Q_SAME
 #	define Q_16BIT_LITTLE_ENDIAN			Q_16BIT_REVERSED_IN_8BIT
 
 #elif Q_INT16_ENDIANNESS == Q_ENDIANNESS_LITTLE
@@ -485,7 +485,7 @@ Released under the terms of the GNU General Public License v3. */
 #	define Q_16BIT_ENSURE_BIG_ENDIAN		Q_16BIT_REVERSE_IN_8BIT
 #	define Q_16BIT_ENSURE_LITTLE_ENDIAN(value)
 #	define Q_16BIT_BIG_ENDIAN			Q_16BIT_REVERSED_IN_8BIT
-#	define Q_16BIT_LITTLE_ENDIAN(value)		(value)
+#	define Q_16BIT_LITTLE_ENDIAN			Q_SAME
 
 #endif
 
@@ -493,7 +493,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #	define Q_32BIT_ENSURE_BIG_ENDIAN(value)
 #	define Q_32BIT_ENSURE_LITTLE_ENDIAN		Q_32BIT_REVERSE_IN_8BIT
-#	define Q_32BIT_BIG_ENDIAN(value)		(value)
+#	define Q_32BIT_BIG_ENDIAN			Q_SAME
 #	define Q_32BIT_LITTLE_ENDIAN			Q_32BIT_REVERSED_IN_8BIT
 
 #elif Q_INT32_ENDIANNESS == Q_ENDIANNESS_LITTLE
@@ -501,7 +501,7 @@ Released under the terms of the GNU General Public License v3. */
 #	define Q_32BIT_ENSURE_BIG_ENDIAN		Q_32BIT_REVERSE_IN_8BIT
 #	define Q_32BIT_ENSURE_LITTLE_ENDIAN(value)
 #	define Q_32BIT_BIG_ENDIAN			Q_32BIT_REVERSED_IN_8BIT
-#	define Q_32BIT_LITTLE_ENDIAN(value)		(value)
+#	define Q_32BIT_LITTLE_ENDIAN			Q_SAME
 
 #endif
 
@@ -509,7 +509,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #	define Q_64BIT_ENSURE_BIG_ENDIAN(value)
 #	define Q_64BIT_ENSURE_LITTLE_ENDIAN		Q_64BIT_REVERSE_IN_8BIT
-#	define Q_64BIT_BIG_ENDIAN(value)		(value)
+#	define Q_64BIT_BIG_ENDIAN			Q_SAME
 #	define Q_64BIT_LITTLE_ENDIAN			Q_64BIT_REVERSED_IN_8BIT
 
 #elif Q_INT64_ENDIANNESS == Q_ENDIANNESS_LITTLE
@@ -517,7 +517,7 @@ Released under the terms of the GNU General Public License v3. */
 #	define Q_64BIT_ENSURE_BIG_ENDIAN		Q_64BIT_REVERSE_IN_8BIT
 #	define Q_64BIT_ENSURE_LITTLE_ENDIAN(value)
 #	define Q_64BIT_BIG_ENDIAN			Q_64BIT_REVERSED_IN_8BIT
-#	define Q_64BIT_LITTLE_ENDIAN(value)		(value)
+#	define Q_64BIT_LITTLE_ENDIAN			Q_SAME
 
 #endif
 
@@ -527,7 +527,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #		define Q_128BIT_ENSURE_BIG_ENDIAN(value)
 #		define Q_128BIT_ENSURE_LITTLE_ENDIAN		Q_128BIT_REVERSE_IN_8BIT
-#		define Q_128BIT_BIG_ENDIAN(value)		(value)
+#		define Q_128BIT_BIG_ENDIAN			Q_SAME
 #		define Q_128BIT_LITTLE_ENDIAN			Q_128BIT_REVERSED_IN_8BIT
 
 #	elif Q_INT128_ENDIANNESS == Q_ENDIANNESS_LITTLE
@@ -535,7 +535,7 @@ Released under the terms of the GNU General Public License v3. */
 #		define Q_128BIT_ENSURE_BIG_ENDIAN		Q_128BIT_REVERSE_IN_8BIT
 #		define Q_128BIT_ENSURE_LITTLE_ENDIAN(value)
 #		define Q_128BIT_BIG_ENDIAN			Q_128BIT_REVERSED_IN_8BIT
-#		define Q_128BIT_LITTLE_ENDIAN(value)		(value)
+#		define Q_128BIT_LITTLE_ENDIAN			Q_SAME
 
 #	endif
 
