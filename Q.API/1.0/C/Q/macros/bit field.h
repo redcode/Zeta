@@ -12,6 +12,7 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/inspection/CPU.h>
 #include <Q/macros/structure.h>
 #include <Q/macros/preprocessor.h>
+#include <Q/macros/arguments.h>
 
 #if	(Q_CPU_ENDIANNESS == Q_ENDIANNESS_LITTLE && Q_COMPILER_LITTLE_ENDIAN_8BIT_FIELD_ENCODING == Q_BIT_FIELD_ENCODING_REVERSED) || \
 	(Q_CPU_ENDIANNESS == Q_ENDIANNESS_BIG	 && Q_COMPILER_BIG_ENDIAN_8BIT_FIELD_ENCODING	 == Q_BIT_FIELD_ENCODING_LITERAL)
@@ -187,9 +188,13 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
-#define Q_STRICT_8BIT_FIELD(...) Q_JOIN_3(Q_STRICT_8BIT_FIELD_WITH_, Q_ARGUMENT_COUNT(__VA_ARGS__), _MEMBERS)(__VA_ARGS__)
-#define Q_8BIT_FIELD(	    ...) Q_JOIN_3(Q_8BIT_FIELD_WITH_,	     Q_ARGUMENT_COUNT(__VA_ARGS__), _MEMBERS)(__VA_ARGS__)
-#define Q_STRICT_BIT_FIELD( ...) Q_JOIN_3(Q_STRICT_BIT_FIELD_WITH_,  Q_ARGUMENT_COUNT(__VA_ARGS__), _MEMBERS)(__VA_ARGS__)
-/*#define Q_BIT_FIELD(	    ...) Q_JOIN(Q_BIT_FIELD_WITH_,	     Q_ARGUMENT_COUNT(__VA_ARGS__), _MEMBERS)(__VA_ARGS__)*/
+#if Q_C_HAS(VARIADIC_MACRO)
+
+#	define Q_STRICT_8BIT_FIELD(...) Q_JOIN_3(Q_STRICT_8BIT_FIELD_WITH_, Q_ARGUMENT_COUNT(__VA_ARGS__), _MEMBERS)(__VA_ARGS__)
+#	define Q_8BIT_FIELD(	    ...) Q_JOIN_3(Q_8BIT_FIELD_WITH_,	     Q_ARGUMENT_COUNT(__VA_ARGS__), _MEMBERS)(__VA_ARGS__)
+#	define Q_STRICT_BIT_FIELD( ...) Q_JOIN_3(Q_STRICT_BIT_FIELD_WITH_,  Q_ARGUMENT_COUNT(__VA_ARGS__), _MEMBERS)(__VA_ARGS__)
+	/*#define Q_BIT_FIELD(	    ...) Q_JOIN(Q_BIT_FIELD_WITH_,	     Q_ARGUMENT_COUNT(__VA_ARGS__), _MEMBERS)(__VA_ARGS__)*/
+
+#endif
 
 #endif /* __Q_macros_bit_field_H__ */
