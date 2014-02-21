@@ -78,10 +78,8 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HEADER(      header)			  <header>
 #define Q_LOCAL_HEADER(header)			  Q_QUOTED(header)
 
-#define Q_PREFIX_				  Q_SAME
 #define Q_PREFIX_0(  literal)			  Q_JOIN_2(0,  literal)
 #define Q_PREFIX_0X( literal)			  Q_JOIN_2(0x, literal)
-#define Q_SUFFIX_				  Q_SAME
 #define Q_SUFFIX_DD( literal)			  Q_JOIN_2(literal, DD)
 #define Q_SUFFIX_DF( literal)			  Q_JOIN_2(literal, DF)
 #define Q_SUFFIX_DL( literal)			  Q_JOIN_2(literal, DL)
