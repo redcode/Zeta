@@ -29,9 +29,14 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_FLOATING_POINT_HEADER_DOUBLE	<Q/formats/floating point/Q_FLOATING_POINT_FILE_DOUBLE.h>
 #define Q_FLOATING_POINT_HEADER_LDOUBLE <Q/formats/floating point/Q_FLOATING_POINT_FILE_LDOUBLE.h>
 
+#define Q_INSPECTING
+
 #include Q_FLOATING_POINT_HEADER_FLOAT
 #include Q_FLOATING_POINT_HEADER_DOUBLE
 #include Q_FLOATING_POINT_HEADER_LDOUBLE
+
+#undef Q_INSPECTING
+
 #include <Q/keys/floating point.h>
 
 #define Q_FLOATING_POINT_TOKEN(		     TYPE) Q_JOIN_2(Q_FLOATING_POINT_TOKEN_, TYPE)
