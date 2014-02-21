@@ -57,12 +57,4 @@ Released under the terms of the GNU General Public License v3. */
 #	define OPTIONAL	 0
 #endif
 
-#ifndef NAN
-#	define NAN	 (0.0 / 0.0)
-#endif
-
-#ifndef INFINITY
-#	define INFINITY	 (1.0 / 0.0)
-#endif
-
 #endif /* __Q_constants_base_H__ */

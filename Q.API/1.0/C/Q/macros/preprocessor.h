@@ -80,6 +80,9 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_PREFIX_0(  literal)			  Q_JOIN_2(0,  literal)
 #define Q_PREFIX_0X( literal)			  Q_JOIN_2(0x, literal)
+#define Q_SUFFIX_DD( literal)			  Q_JOIN_2(literal, DD)
+#define Q_SUFFIX_DF( literal)			  Q_JOIN_2(literal, DF)
+#define Q_SUFFIX_DL( literal)			  Q_JOIN_2(literal, DL)
 #define Q_SUFFIX_F(  literal)			  Q_JOIN_2(literal, F)
 #define Q_SUFFIX_L(  literal)			  Q_JOIN_2(literal, L)
 #define Q_SUFFIX_LL( literal)			  Q_JOIN_2(literal, LL)

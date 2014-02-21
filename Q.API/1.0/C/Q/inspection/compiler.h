@@ -296,13 +296,13 @@ Released under the terms of the GNU General Public License v3. */
 #define  Q_COMPILER_HEADER <Q/inspection/private/compiler/Q_COMPILER_FILE.h>
 #include Q_COMPILER_HEADER
 
-#define Q_COMPILER_HAS(feature)			defined(Q_COMPILER_HAS_##feature)
-#define Q_COMPILER_HAS_EXTENSION(extension)	defined(Q_COMPILER_HAS_EXTENSION_##extension)
-#define Q_COMPILER_HAS_TYPE(type)		defined(Q_COMPILER_TYPE_##type)
-#define Q_COMPILER_HAS_FUNCTION(function)	defined(Q_COMPILER_FUNCTION_##function)
+#define Q_COMPILER_HAS(FEATURE)			defined(Q_COMPILER_HAS_##FEATURE)
+#define Q_COMPILER_HAS_EXTENSION(EXTENSION)	defined(Q_COMPILER_HAS_EXTENSION_##EXTENSION)
+#define Q_COMPILER_HAS_TYPE(TYPE)		defined(Q_COMPILER_TYPE_##TYPE)
+#define Q_COMPILER_HAS_FUNCTION(FUNCTION)	defined(Q_COMPILER_FUNCTION_##FUNCTION)
 
-#define Q_COMPILER_TYPE(type)			Q_COMPILER_TYPE_##type
-#define Q_COMPILER_FUNCTION(function)		Q_COMPILER_FUNCTION_##function
+#define Q_COMPILER_TYPE(TYPE)			Q_COMPILER_TYPE_##TYPE
+#define Q_COMPILER_FUNCTION(FUNCTION)		Q_COMPILER_FUNCTION_##FUNCTION
 
 #if	Q_COMPILER_HAS_TYPE(VAL)		&& \
 	Q_COMPILER_HAS_FUNCTION(VAL_INITIALIZE) && \

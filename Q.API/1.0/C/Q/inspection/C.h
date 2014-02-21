@@ -41,6 +41,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_C_HEADER <Q/inspection/private/C/Q_C_FILE.h>
 #include Q_C_HEADER
 
-#define Q_C_HAS(what) (defined(Q_C_HAS_##what) || defined(Q_COMPILER_C_HAS_##what))
+#define Q_C_HAS(WHAT) (Q_JOIN_2_DEFINED(Q_C_HAS_,	   WHAT) || \
+		       Q_JOIN_2_DEFINED(Q_COMPILER_C_HAS_, WHAT))
 
 #endif /* __Q_inspection_C_H__ */
