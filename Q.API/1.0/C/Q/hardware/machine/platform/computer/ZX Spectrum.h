@@ -78,12 +78,12 @@ Released under the terms of the GNU General Public License v3. */
 			     | 110 = Yellow  |
 			     | 111 = White   |
 			     '--------------*/
-typedef Q_STRICT_8BIT_FIELD (
+typedef Q_STRICT_STRUCTURE (8BIT_FIELD(4) (
 	quint8 flash  :1,
 	quint8 bright :1,
 	quint8 paper  :3,
 	quint8 ink    :3
-) QZXSpectrumColorAttribute;
+)) QZXSpectrumColorAttribute;
 
 #define Q_ZX_SPECTRUM_COLOR_BLACK   0
 #define Q_ZX_SPECTRUM_COLOR_BLUE    1
@@ -179,12 +179,12 @@ Q_DEFINE_STRICT_STRUCTURE (
 | "	      = SYMBOL SHIFT + P     |
 '-----------------------------------*/
 
-typedef Q_STRICT_8BIT_FIELD (
+typedef Q_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
 	quint8 unused	    :3,
 	quint8 mic	    :1,
 	quint8 ear	    :1,
 	quint8 border_color :3
-) QZXSpectrumULAIO;
+)) QZXSpectrumULAIO;
 
 /* MARK: - Firmware ADC
 
@@ -267,10 +267,9 @@ typedef struct {
 	Q64Bit	 keyboard;
 	qboolean flash;
 
-	Q_STRICT_UNION (
-		QZXSpectrumULAIO fields;
+	union {	QZXSpectrumULAIO fields;
 		quint8		 value;
-	) ula_io;
+	} ula_io;
 } QZXSpectrumState;
 
 #endif /* __Q_hardware_machine_platform_computer_ZX_Spectrum_H__ */

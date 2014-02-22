@@ -158,19 +158,17 @@ Released under the terms of the GNU General Public License v3. */
 		/* To Do */
 	) QIEEE754Decimal32;
 
+	Q_DEFINE_STRICT_STRUCTURE (Q_BIT_FIELD(3) (
+		quint64 negative : 1,
+		quint64 exponent :11,
+		quint64 mantissa :52
+	)) QIEEE754Binary64;
+
 	Q_DEFINE_STRICT_STRUCTURE (Q_BIT_FIELD(4) (
 		quint64 negative  : 1,
 		quint64 exponent  :11,
-		quint64 mantissa0 :20,
-		quint64 mantissa1 :32
-	)) QIEEE754Binary64;
-
-	Q_DEFINE_STRICT_STRUCTURE (Q_BIT_FIELD(5) (
-		quint64 negative  : 1,
-		quint64 exponent  :11,
 		quint64 quiet_nan : 1,
-		quint64 mantissa0 :19,
-		quint64 mantissa1 :32
+		quint64 mantissa  :51
 	)) QIEEE754Binary64NaN;
 
 	Q_DEFINE_STRICT_STRUCTURE (
