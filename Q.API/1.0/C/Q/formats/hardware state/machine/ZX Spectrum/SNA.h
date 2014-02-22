@@ -50,11 +50,11 @@ Q_DEFINE_STRICT_STRUCTURE (
 	Q16Bit	hl_, de_, bc_, af_;
 	Q16Bit	hl, de, bc, iy, ix;
 
-	Q_8BIT_FIELD (
+	struct {Q_8BIT_FIELD(3) (
 		quint8 unused1	 :5,
 		quint8 iff2	 :1,
 		quint8 unused2	 :2
-	) interrupt;
+	)} interrupt;
 
 	/*quint8 iff2;*/
 
@@ -99,11 +99,11 @@ Q_DEFINE_STRICT_STRUCTURE (
 	Q16Bit	hl_, de_, bc_, af_;
 	Q16Bit	hl, de, bc, iy, ix;
 
-	Q_8BIT_FIELD (
+	struct {Q_8BIT_FIELD(3) (
 		quint8 unused1	 :5,
 		quint8 iff2	 :1,
 		quint8 unused2	 :2
-	) interrupt;
+	)} interrupt;
 
 	/*quint8 iff2;*/
 

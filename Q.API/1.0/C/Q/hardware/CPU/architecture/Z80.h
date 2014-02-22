@@ -167,15 +167,14 @@ Flags (F register)
 		Q16Bit	af_, bc_, de_, hl_;
 		quint8	i,   r;
 
-		Q_8BIT_FIELD (
-			quint8 halt :1,
-			quint8 irq  :1,
-			quint8 nmi  :1,
-			quint8 iff1 :1,
-			quint8 iff2 :1,
-			quint8 ei   :1,
-			quint8 im   :2
-		) internal;
+		struct {quint8 halt :1;
+			quint8 irq  :1;
+			quint8 nmi  :1;
+			quint8 iff1 :1;
+			quint8 iff2 :1;
+			quint8 ei   :1;
+			quint8 im   :2;
+		} internal;
 	} QZ80State;
 
 #	define Q_Z80_STATE(p) ((QZ80State *)(p))

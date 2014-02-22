@@ -106,6 +106,17 @@ ANALOG CHANNEL A -05-|		 |-24- DA4
 #include <Q/types/base.h>
 #include <Q/macros/bit field.h>
 
+Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(8) (
+	quint8 unused1 :1,
+	quint8 unused2 :1,
+	quint8 unused3 :1,
+	quint8 m       :1,
+	quint8 l3      :1,
+	quint8 l2      :1,
+	quint8 l1      :1,
+	quint8 l0      :1
+)) QAY3891xAmplitude;
+
 Q_DEFINE_STRICT_UNION(
 	quint8 registers[16];
 
@@ -117,7 +128,7 @@ Q_DEFINE_STRICT_UNION(
 		quint8 channel_c_tone_period_coarse_tune;
 		quint8 noise_period;
 
-		Q_8BIT_FIELD (
+		struct {Q_8BIT_FIELD(8) (
 			quint8 iob     :1,
 			quint8 ioa     :1,
 			quint8 noise_c :1,
@@ -126,45 +137,16 @@ Q_DEFINE_STRICT_UNION(
 			quint8 tone_c  :1,
 			quint8 tone_b  :1,
 			quint8 tone_a  :1
-		) enable;
+		)} enable;
 
-		Q_8BIT_FIELD(
-			quint8 unused1 :1,
-			quint8 unused2 :1,
-			quint8 unused3 :1,
-			quint8 m       :1,
-			quint8 l3      :1,
-			quint8 l2      :1,
-			quint8 l1      :1,
-			quint8 l0      :1
-		) channel_a_amplitude;
-
-		Q_8BIT_FIELD(
-			quint8 unused1 :1,
-			quint8 unused2 :1,
-			quint8 unused3 :1,
-			quint8 m       :1,
-			quint8 l3      :1,
-			quint8 l2      :1,
-			quint8 l1      :1,
-			quint8 l0      :1
-		) channel_b_amplitude;
-
-		Q_8BIT_FIELD(
-			quint8 unused1 :1,
-			quint8 unused2 :1,
-			quint8 unused3 :1,
-			quint8 m       :1,
-			quint8 l3      :1,
-			quint8 l2      :1,
-			quint8 l1      :1,
-			quint8 l0      :1
-		) channel_c_amplitude;
+		QAY3891xAmplitude channel_a_amplitude;
+		QAY3891xAmplitude channel_b_amplitude;
+		QAY3891xAmplitude channel_c_amplitude;
 
 		quint8 envelope_period_fine_tune;
 		quint8 envelope_period_coarse_tune;
 
-		Q_8BIT_FIELD(
+		struct {Q_8BIT_FIELD(8) (
 			quint8 unused1 :1,
 			quint8 unused2 :1,
 			quint8 unused3 :1,
@@ -173,7 +155,7 @@ Q_DEFINE_STRICT_UNION(
 			quint8 att     :1,
 			quint8 alt     :1,
 			quint8 hold    :1
-		) envelope_shape_cycle;
+		)} envelope_shape_cycle;
 
 		quint8 io_port_a_data_store;
 		quint8 io_port_b_data_store;

@@ -20,11 +20,11 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - Pointer from base + index */
 
-#define Q_BIP(type, base, index) (((type *)(base)) + (index))
+#define Q_BIP(type, base, index) (((type)(base)) + (index))
 
 /* MARK: - Pointer from base + offset */
 
-#define Q_BOP(type, base, offset) ((type *)(((void *)(base)) + (offset)))
+#define Q_BOP(type, base, offset) ((type)(((void *)(base)) + (offset)))
 
 /* MARK: - Index from base calculations */
 
