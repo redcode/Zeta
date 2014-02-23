@@ -17,13 +17,13 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 bc, hl, pc, sp;
 	quint8	i, r;
 
-	Q_8BIT_FIELD (
+	struct {Q_8BIT_FIELD(5) (
 		quint8 r7			:1,
 		quint8 border_color		:3,
 		quint8 basic_samrom		:1,
 		quint8 data_block_is_compressed :1,
 		quint8 unused			:2
-	) bitfield1;
+	)} bitfield1;
 
 	quint16 de;
 	quint16 bc_, de_, hl_;
@@ -31,13 +31,13 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 iy, ix;
 	quint8 iff1, iff2;
 
-	Q_8BIT_FIELD (
+	struct {Q_8BIT_FIELD(5) (
 		quint8 im			:2,
 		quint8 issue_2_emulation	:1,
 		quint8 int_frequency		:1,
 		quint8 video_synchronization	:2,
 		quint8 joystick_type		:2
-	) bitfield2;
+	)} bitfield2;
 ) QZ80v1Header;
 
 Q_DEFINE_STRICT_STRUCTURE (
@@ -46,12 +46,12 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	output_state;
 	quint8	interface_1_paginated_or_timex_output_state;
 
-	Q_8BIT_FIELD (
+	struct {Q_8BIT_FIELD(4) (
 		quint8 r_register_emulation	  :1,
 		quint8 ldir_instruction_emulation :1,
 		quint8 zero			  :5,
 		quint8 hardware_modification	  :1
-	) bitfield;
+	)} bitfield;
 
 	quint8	last_output_to_fffd;
 	quint8	sound_chip_registers;

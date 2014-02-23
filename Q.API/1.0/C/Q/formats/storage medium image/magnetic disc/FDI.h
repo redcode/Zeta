@@ -28,11 +28,11 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8 head;
 	quint8 size;
 
-	Q_8BIT_FIELD (
+	struct {Q_8BIT_FIELD(3) (
 		quint8 data_deleted: 1,
 		quint8 zero:	     1,
 		quint8 crc_errors:   6
-	) flags;
+	)} flags;
 
 	quint16 offset;
 ) QFDISectorEntry;

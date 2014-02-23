@@ -153,12 +153,12 @@ OUT --| O O |-- D3
    |  '-----------> Length counter clock disable / Envelope decay looping enable
    '--------------> Duty cycle type (Unused on noise channel) */
 
-typedef Q_STRICT_8BIT_FIELD (
+Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
 	quint8 duty_cycle_type		    :2,
 	quint8 envelope_decay_disable	    :1,
 	quint8 length_counter_clock_disable :1,
 	quint8 volume			    :4
-) QNESSquareWaveA;
+)) QNESSquareWaveA;
 
 /* Square Wave Register B
 .-----------------.
@@ -169,12 +169,12 @@ typedef Q_STRICT_8BIT_FIELD (
   |   '-----------> Sweep update rate
   '---------------> Sweep enable */
 
-typedef Q_STRICT_8BIT_FIELD (
+Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
 	quint8 sweep_enable		       :1,
 	quint8 sweep_update_rate	       :3,
 	quint8 decrease_or_increase_wavelength :1,
 	quint8 right_shift_amount	       :3
-) QNESSquareWaveB;
+)) QNESSquareWaveB;
 
 /* Square Wave Register C */
 
@@ -187,7 +187,7 @@ typedef quint8 QNESSquareWaveC;
       |       '---> 3 MSB of wavelength (Unused on noise channel)
       '-----------> Length counter load register */
 
-typedef Q_STRICT_8BIT_FIELD (
+Q_DEFINE_STRICT_STRUCTURE (
 ) QNESSquareWaveD;
 
 /* Triangle Wave Register A
@@ -197,7 +197,7 @@ typedef Q_STRICT_8BIT_FIELD (
   |	  '-------> Linear counter load register
   '---------------> Length counter clock disable / Linear counter start */
 
-typedef Q_STRICT_8BIT_FIELD (
+Q_DEFINE_STRICT_STRUCTURE (
 ) QNESTriangleWaveA;
 
 /* Triangle Wave Register B
@@ -221,7 +221,7 @@ typedef quint8 QNESTriangleWaveC;
       |       '---> 3 MSB of wavelength (Unused on noise channel)
       '-----------> Length counter load register */
 
-typedef Q_STRICT_8BIT_FIELD (
+Q_DEFINE_STRICT_STRUCTURE (
 ) QNESTriangleWaveD;
 
 /* Noise Register A
@@ -233,7 +233,7 @@ typedef Q_STRICT_8BIT_FIELD (
    |  '-----------> Length counter clock disable / Envelope decay looping enable
    '--------------> Duty cycle type (Unused on noise channel) */
 
-typedef Q_STRICT_8BIT_FIELD (
+Q_DEFINE_STRICT_STRUCTURE (
 ) QNESNoiseA;
 
 /* Noise Register B
@@ -251,7 +251,7 @@ typedef Q_STRICT_8BIT_FIELD (
   |   '-----------> Unused
   '---------------> random number type generation */	  
 
-typedef Q_STRICT_8BIT_FIELD (
+Q_DEFINE_STRICT_STRUCTURE (
 ) QNESNoiseC;
 
 /* Noise Register D
@@ -261,7 +261,7 @@ typedef Q_STRICT_8BIT_FIELD (
       |       '---> 3 MSB of wavelength (Unused on noise channel)
       '-----------> Length counter load register */
 
-typedef Q_STRICT_8BIT_FIELD_WITH_2_MEMBERS (
+Q_DEFINE_STRICT_STRUCTURE (
 ) QNESNoiseD;
 
 #endif /* __Q_hardware_machine_platform_console_Nintendo_Entertainment_System_H__ */
