@@ -46,14 +46,15 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	border_color;
 	quint8	zero2;			/* reserved for future use	*/
 
-	struct {quint8 zero	   :2;	/* reserved for internal use	*/
+	struct {Q_8BIT_FIELD(7) (
+		quint8 zero	   :2;	/* reserved for internal use	*/
 		quint8 flash	   :1;	/* boolean			*/
 		quint8 int_pending :1;
 		quint8 im_0	   :1;
 		quint8 iff2	   :1;
 		quint8 im	   :1;
 		quint8 iff1	   :1;
-	} status;
+	)} status;
 
 	quint8 ram[];
 ) QSPBody;
