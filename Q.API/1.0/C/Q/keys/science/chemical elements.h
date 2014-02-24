@@ -1,4 +1,4 @@
-/* Q API - keys/science/chemical elements.h
+/* Q API - keys/science/chemistry.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_keys_science_chemical_elements_H__
-#define __Q_keys_science_chemical_elements_H__
+#ifndef __Q_keys_science_chemistry_H__
+#define __Q_keys_science_chemistry_H__
 
 #define Q_CHEMICAL_ELEMENT_HYDROGEN	   1
 #define Q_CHEMICAL_ELEMENT_HELIUM	   2
@@ -131,4 +131,4 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CHEMICAL_ELEMENT_GAS_PHASE_MONOATOMIC	1
 #define Q_CHEMICAL_ELEMENT_GAS_PHASE_DIATOMIC	2
 
-#endif /* __Q_keys_science_chemical_elements_H__ */
+#endif /* __Q_keys_science_chemistry_H__ */

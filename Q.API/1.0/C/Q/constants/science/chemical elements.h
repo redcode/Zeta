@@ -10,6 +10,9 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_constants_science_chemical_elements_H__
 
 #include <Q/keys/science/chemical elements.h>
+#include <Q/keys/science/electricity.h>
+#include <Q/keys/science/magnetism.h>
+#include <Q/keys/mathematics/geometry.h>
 
 /*     01										    18
      .----.										  .----.
