@@ -1,4 +1,4 @@
-/* Q API - constants/chemical elements.h
+/* Q API - constants/science/chemical elements.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,10 +6,10 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_constants_chemical_elements_H__
-#define __Q_constants_chemical_elements_H__
+#ifndef __Q_constants_science_chemical_elements_H__
+#define __Q_constants_science_chemical_elements_H__
 
-#include <Q/constants/base.h>
+#include <Q/keys/science/chemical elements.h>
 
 /*     01										    18
      .----.										  .----.
@@ -55,21 +55,21 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HYDROGEN_CRITICAL_TEMPERATURE			32.97	/* K		*/
 #define Q_HYDROGEN_HEAT_OF_FUSION			0.558	/* kJ/mol	*/
 #define Q_HYDROGEN_HEAT_OF_VAPORIZATION			0.452	/* kJ/mol	*/
-#define Q_HYDROGEN_HEAT_OF_COMBUSTION			NAN	/* J/(kg*K)	*/
+#define Q_HYDROGEN_HEAT_OF_COMBUSTION			UNKNOWN	/* J/(kg*K)	*/
 #define Q_HYDROGEN_SPECIFIC_HEAT			14300	/* J/(kg*K)	*/
 #define Q_HYDROGEN_ADIABATIC_INDEX			1.4
-#define Q_HYDROGEN_NEEL_POINT				NAN	/* K		*/
+#define Q_HYDROGEN_NEEL_POINT				UNKNOWN	/* K		*/
 #define Q_HYDROGEN_THERMAL_CONDUCTIVITY			0.1805	/* W/(m*K)	*/
-#define Q_HYDROGEN_THERMAL_EXPANSION			NAN	/* K⁻¹		*/
+#define Q_HYDROGEN_THERMAL_EXPANSION			UNKNOWN	/* K⁻¹		*/
 
 #define Q_HYDROGEN_MOLAR_VOLUME				0.01121
-#define Q_HYDROGEN_BRINELL_HARDNESS			NAN	/* MPa		*/
-#define Q_HYDROGEN_MOHS_HARDNESS			NAN	/* MPa		*/
-#define Q_HYDROGEN_VICKERS_HARDNESS			NAN	/* MPa		*/
-#define Q_HYDROGEN_BULK_MODULUS				NAN	/* GPa		*/
-#define Q_HYDROGEN_SHEAR_MODULUS			NAN	/* GPa		*/
-#define Q_HYDROGEN_YOUNG_MODULUS			NAN	/* GPa		*/
-#define Q_HYDROGEN_POISSON_RATIO			NAN
+#define Q_HYDROGEN_BRINELL_HARDNESS			UNKNOWN	/* MPa		*/
+#define Q_HYDROGEN_MOHS_HARDNESS			UNKNOWN	/* MPa		*/
+#define Q_HYDROGEN_VICKERS_HARDNESS			UNKNOWN	/* MPa		*/
+#define Q_HYDROGEN_BULK_MODULUS				UNKNOWN	/* GPa		*/
+#define Q_HYDROGEN_SHEAR_MODULUS			UNKNOWN	/* GPa		*/
+#define Q_HYDROGEN_YOUNG_MODULUS			UNKNOWN	/* GPa		*/
+#define Q_HYDROGEN_POISSON_RATIO			UNKNOWN
 #define Q_HYDROGEN_REACTIVE_INDEX			1.000132
 #define Q_HYDROGEN_SPEED_OF_SOUND			1270	/* m/s		*/
 
@@ -2908,4 +2908,4 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_UNUNOCTIUM_SHEER_MODULUS
 #define Q_UNUNOCTIUM_POISSON_RATIO
 
-#endif /* __Q_constants_chemical_elements_H__ */
+#endif /* __Q_constants_science_chemical_elements_H__ */
