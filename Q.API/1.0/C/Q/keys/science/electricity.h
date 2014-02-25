@@ -13,4 +13,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ELECTRICAL_TYPE_SEMICONDUCTOR 2
 #define Q_ELECTRICAL_TYPE_INSULATOR	3
 
+#define Q_KEY_BITS_ELECTRICAL_TYPE 8
+#define Q_KEY_LAST_ELECTRICAL_TYPE Q_ELECTRICAL_TYPE_INSULATOR
+
 #endif /* __Q_keys_science_electricity_H__ */

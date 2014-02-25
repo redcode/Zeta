@@ -9,8 +9,11 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_keys_access_mode_H__
 #define __Q_keys_access_mode_H__
 
-#define Q_ACCESS_MODE_READING			0
-#define Q_ACCESS_MODE_WRITING			1
-#define Q_ACCESS_MODE_READING_AND_WRITING	2
+#define Q_ACCESS_MODE_READING		  0
+#define Q_ACCESS_MODE_WRITING		  1
+#define Q_ACCESS_MODE_READING_AND_WRITING 2
+
+#define Q_KEY_BITS_ACCESS_MODE 8
+#define Q_KEY_LAST_ACCESS_MODE Q_ACCESS_MODE_READING_AND_WRITING
 
 #endif /* __Q_keys_access_mode_H__ */

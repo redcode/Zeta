@@ -14,4 +14,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MAGNETIC_TYPE_ANTIFERROMAGNETIC 3
 #define Q_MAGNETIC_TYPE_FERROMAGNETIC	  4
 
+#define Q_KEY_BITS_ELECTRICAL_TYPE 8
+#define Q_KEY_LAST_MAGNETIC_TYPE Q_MAGNETIC_TYPE_FERROMAGNETIC
+
 #endif /* __Q_keys_science_magnetism_H__ */

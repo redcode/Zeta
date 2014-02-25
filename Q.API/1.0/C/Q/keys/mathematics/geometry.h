@@ -24,4 +24,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BRAVAIS_LATTICE_CUBIC_I	 13
 #define Q_BRAVAIS_LATTICE_CUBIC_F	 14
 
+#define Q_KEY_BITS_BRAVAIS_LATTICE 8
+#define Q_KEY_LAST_BRAVAIS_LATTICE Q_BRAVAIS_LATTICE_CUBIC_F
+
 #endif /* __Q_keys_mathematics_geometry_H__ */

@@ -15,4 +15,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_VARIABLE_TYPE_POINTER_TO_VALUE     3
 #define Q_VARIABLE_TYPE_POINTER_TO_STRUCTURE 4
 
+#define Q_KEY_BITS_VARIABLE_TYPE 8
+#define Q_KEY_LAST_VARIABLE_TYPE Q_VARIABLE_TYPE_POINTER_TO_STRUCTURE
+
 #endif /* __Q_keys_introspection_H__ */

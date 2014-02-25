@@ -14,6 +14,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_QUOTED_(whatever)			  #whatever
 #define Q_QUOTED( whatever)			  Q_QUOTED_(whatever)
 
+#define Q_HEADER(      header)			  <header>
+#define Q_LOCAL_HEADER(header)			  Q_QUOTED(header)
+
 #define Q_JOIN_2_(a, b)				  a##b
 #define Q_JOIN_3_(a, b, c)			  a##b##c
 #define Q_JOIN_4_(a, b, c, d)			  a##b##c##d
@@ -45,9 +48,6 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_JOIN_6_DEFINED(a, b, c, d, e, f)	  Q_JOIN_6_DEFINED_(a, b, c, d, e, f)
 #define Q_JOIN_7_DEFINED(a, b, c, d, e, f, g)	  Q_JOIN_7_DEFINED_(a, b, c, d, e, f, g)
 #define Q_JOIN_8_DEFINED(a, b, c, d, e, f, g, h)  Q_JOIN_8_DEFINED_(a, b, c, d, e, f, g, h)
-
-#define Q_HEADER(      header)			  <header>
-#define Q_LOCAL_HEADER(header)			  Q_QUOTED(header)
 
 #define Q_PREFIX_				  Q_SAME
 #define Q_PREFIX_0(  literal)			  Q_JOIN_2(0,  literal)

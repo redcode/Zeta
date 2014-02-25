@@ -76,4 +76,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CHARACTER_SET_ISO_2022_KR
 #define Q_CHARACTER_SET_ANSEL
 
+#define Q_KEY_BITS_CHARACTER_SET 8
+#define Q_KEY_LAST_CHARACTER_SET Q_CHARACTER_SET_ANSEL
+
 #endif /* __Q_keys_character_set_H__ */

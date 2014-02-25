@@ -1527,31 +1527,7 @@ typedef quint8					qboolean;
 
 typedef char					QString;
 
-/* MARK: - Value encoding types */
-
-typedef quint8					QValueType;
-#define Q_VALUE_TYPE_TYPE			Q_UINT8_TYPE
-#define Q_VALUE_TYPE_FIXED_TYPE			Q_UINT8_FIXED_TYPE
-#define Q_VALUE_TYPE_BASE_TYPE			Q_UINT8_BASE_TYPE
-#define Q_VALUE_TYPE_FORMAT			Q_UINT8_FORMAT
-#define Q_VALUE_TYPE_BITS			Q_UINT8_BITS
-#define Q_VALUE_TYPE_SIZE_			Q_UINT8_SIZE
-#define Q_VALUE_TYPE_FIXED_TYPE_NAME		Q_UINT8_NAME
-#define Q_VALUE_TYPE_FIXED_TYPE_Name		Q_UINT8_Name
-#define Q_VALUE_TYPE_FIXED_TYPE_name		Q_UINT8_name
-
-typedef quint8					QValueFormat;
-#define Q_VALUE_FORMAT_TYPE			Q_UINT8_TYPE
-#define Q_VALUE_FORMAT_FIXED_TYPE		Q_UINT8_FIXED_TYPE
-#define Q_VALUE_FORMAT_BASE_TYPE		Q_UINT8_BASE_TYPE
-#define Q_VALUE_FORMAT_FORMAT			Q_UINT8_FORMAT
-#define Q_VALUE_FORMAT_BITS			Q_UINT8_BITS
-#define Q_VALUE_FORMAT_SIZE			Q_UINT8_SIZE
-#define Q_VALUE_FORMAT_FIXED_TYPE_NAME		Q_UINT8_NAME
-#define Q_VALUE_FORMAT_FIXED_TYPE_Name		Q_UINT8_Name
-#define Q_VALUE_FORMAT_FIXED_TYPE_name		Q_UINT8_name
-
-/* MARK: - Program status type */
+/* MARK: - Key types */
 
 typedef qint					QStatus;
 #define Q_STATUS_TYPE				Q_INT_TYPE
@@ -1565,8 +1541,6 @@ typedef qint					QStatus;
 #define Q_STATUS_FIXED_TYPE_Name		Q_INT_FIXED_TYPE_Name
 #define Q_STATUS_FIXED_TYPE_name		Q_INT_FIXED_TYPE_name
 
-/* MARK: - Order type */
-
 typedef qint8					QOrder;
 #define Q_ORDER_TYPE				Q_UINT8_TYPE
 #define Q_ORDER_FIXED_TYPE			Q_UINT8_FIXED_TYPE
@@ -1577,6 +1551,13 @@ typedef qint8					QOrder;
 #define Q_ORDER_FIXED_TYPE_NAME			Q_UINT8_NAME
 #define Q_ORDER_FIXED_TYPE_Name			Q_UINT8_Name
 #define Q_ORDER_FIXED_TYPE_name			Q_UINT8_name
+
+#define QKey(		 NAME)			Q_JOIN_2(quint, Q_JOIN_2(Q_KEY_BITS_, NAME))
+#define Q_KEY_FIXED_TYPE(NAME)			Q_JOIN_4(Q_, UINT, Q_JOIN_2(Q_KEY_BITS_, NAME), _FIXED_TYPE)
+#define Q_KEY_BASE_TYPE( NAME)			Q_JOIN_4(Q_, UINT, Q_JOIN_2(Q_KEY_BITS_, NAME), _BASE_TYPE)
+#define Q_KEY_FORMAT(	 NAME)			Q_JOIN_4(Q_, UINT, Q_JOIN_2(Q_KEY_BITS_, NAME), _FORMAT)
+#define Q_KEY_BITS(	 NAME)			Q_JOIN_2(Q_KEY_BITS_, NAME)
+#define Q_KEY_SIZE(	 NAME)			(Q_KEY_BITS(NAME) / 8)
 
 /* MARK: - Value component access types */
 

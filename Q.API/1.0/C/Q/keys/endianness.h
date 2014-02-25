@@ -9,12 +9,13 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_keys_endianness_H__
 #define __Q_keys_endianness_H__
 
-#define Q_ENDIANNESS_MIXED	      0
-#define	Q_ENDIANNESS_LITTLE	   1234
-#define	Q_ENDIANNESS_BIG	   4321
-#define	Q_ENDIANNESS_PDP	   3412
+#define Q_ENDIANNESS_MIXED  1
+#define	Q_ENDIANNESS_LITTLE 2
+#define	Q_ENDIANNESS_BIG    3
+#define	Q_ENDIANNESS_PDP    4
 
-#define Q_LAST_KEY_ENDIANNESS	   Q_ENDIANNESS_PDP
+#define Q_KEY_BITS_ENDIANNESS 8
+#define Q_KEY_LAST_ENDIANNESS Q_ENDIANNESS_PDP
 
 #define Q_ENDIANNESS_STRING_MIXED  "Mixed Endian"
 #define Q_ENDIANNESS_STRING_LITTLE "Little Endian"

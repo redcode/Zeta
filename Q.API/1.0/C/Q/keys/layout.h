@@ -15,4 +15,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SCALING_FILL	 3
 #define Q_SCALING_EXPAND 4
 
+#define Q_KEY_BITS_SCALING 8
+#define Q_KEY_LAST_SCALING Q_SCALING_EXPAND
+
 #endif /* __Q_keys_layout_H__ */
