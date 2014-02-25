@@ -52,6 +52,9 @@ Released under the terms of the GNU General Public License v3. */
 
 #ifdef Q_INSPECTING
 
+#	undef LLP64
+#	undef llp64
+
 #	define Q_DATA_MODEL_NAME LLP64
 #	define Q_DATA_MODEL_Name LLP64
 #	define Q_DATA_MODEL_name llp64

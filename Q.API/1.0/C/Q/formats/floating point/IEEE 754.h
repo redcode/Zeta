@@ -9,8 +9,6 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_formats_floating_point_IEEE_754_Ha__
 #define __Q_formats_floating_point_IEEE_754_Ha__
 
-#include <Q/types/base.h>
-
 /* MARK: - binary16 */
 
 #define Q_IEEE_754_BINARY16_BITS			    16
@@ -136,6 +134,7 @@ Released under the terms of the GNU General Public License v3. */
 #	ifndef __Q_formats_floating_point_IEEE_754_Hb__
 #	define __Q_formats_floating_point_IEEE_754_Hb__
 
+#	include <Q/types/base.h>
 #	include <Q/macros/bit field.h>
 
 	typedef Q_STRICT_STRUCTURE (

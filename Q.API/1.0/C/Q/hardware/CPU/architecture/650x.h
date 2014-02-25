@@ -66,7 +66,7 @@ Status (P register)
 #include <Q/keys/endianness.h>
 
 #ifdef Q_INSPECTING
-#	define Q_CPU_ARCHITECTURE_TOKEN M650X
+
 #else
 
 #	include <Q/types/base.h>

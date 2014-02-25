@@ -1,4 +1,4 @@
-/* Q API - macros/units.h
+/* Q API - macros/unit.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_macros_units_H__
-#define __Q_macros_units_H__
+#ifndef __Q_macros_unit_H__
+#define __Q_macros_unit_H__
 
 #include <Q/constants/numbers.h>
 
@@ -34,4 +34,4 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - Weight */
 
-#endif /* __Q_macros_units_H__ */
+#endif /* __Q_macros_unit_H__ */

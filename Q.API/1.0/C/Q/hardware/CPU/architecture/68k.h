@@ -12,7 +12,7 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/keys/endianness.h>
 
 #ifdef Q_INSPECTING
-#	define Q_CPU_ARCHITECTURE_TOKEN 68K
+
 #endif
 
 #endif /* __Q_hardware_CPU_architecture_68k_H__ */

@@ -11,7 +11,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/inspection/C.h>
 
-#if Q_C_HAS(VARIADIC_MACRO)
+#if !defined(Q_AVOID_VARIADIC_MACROS) && Q_C_HAS(VARIADIC_MACRO)
 
 #	define Q_STRICT_STRUCTURE(...)					\
 		Q_STRICT_SIZE_BEGIN					\

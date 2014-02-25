@@ -32,6 +32,10 @@ Released under the terms of the GNU General Public License v3. */
 
 #ifdef Q_INSPECTING
 
+#	undef X86_64
+#	undef X8664
+#	undef x86_64
+
 #	define Q_CPU_ARCHITECTURE_NAME X86_64
 #	define Q_CPU_ARCHITECTURE_Name X8664
 #	define Q_CPU_ARCHITECTURE_name x86_64

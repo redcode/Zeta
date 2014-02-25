@@ -9,93 +9,79 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_inspection_data_model_H__
 #define __Q_inspection_data_model_H__
 
-/*------------------------------------------------------.
-| Type		|  LP32 | ILP32 | ILP64 | LLP64 |  LP64 |
-|---------------+-------+-------+-------+-------+-------|
-| char		|     8 |     8 |     8 |     8 |     8 |
-|---------------+-------+-------+-------+-------+-------|
-| short int	|    16 |    16 |    16 |    16 |    16 |
-|---------------+-------+-------+-------+-------+-------|
-| int		|    16 |    32 |    64 |    32 |    32 |
-|---------------+-------+-------+-------+-------+-------|
-| long int	|    32 |    32 |    64 |    32 |    64 |
-|---------------+-------+-------+-------+-------+-------|
-| long long int	|    64 |    64 |    64 |    64 |    64 |
-|---------------+-------+-------+-------+-------+-------|
-| pointer	|    32 |    32 |    64 |    64 |    64 |
-|---------------+-------+-------+-------+-------+-------|
-| size_t	|    32 |    32 |    64 |    64 |    64 |
-'------------------------------------------------------*/
+#define Q_INSPECTING
 
 #if defined(Q_USE_DATA_MODEL_LP32)
-#	define Q_DATA_MODEL_FILE LP32
+#	include <Q/formats/data model/LP32.h>
 
 #elif defined(Q_USE_DATA_MODEL_ILP32)
-#	define Q_DATA_MODEL_FILE ILP32
+#	include <Q/formats/data model/ILP32.h>
 
 #elif defined(Q_USE_DATA_MODEL_ILP64)
-#	define Q_DATA_MODEL_FILE ILP64
+#	include <Q/formats/data model/ILP64.h>
 
 #elif defined(Q_USE_DATA_MODEL_LLP64)
-#	define Q_DATA_MODEL_FILE LLP64
+#	include <Q/formats/data model/LLP64.h>
 
 #elif defined(Q_USE_DATA_MODEL_LP64)
-#	define Q_DATA_MODEL_FILE LP64
+#	include <Q/formats/data model/LP64.h>
 
 #else
 
-#	if	defined(__LP32__)	|| \
-		defined(_LP32_)		|| \
-		defined(_LP32)		|| \
-		defined(LP32)
+#	if	defined(__LP32__)  || \
+		defined(__LP32)    || \
+		defined(_LP32_)    || \
+		defined(_LP32)
 
-#		define Q_DATA_MODEL_FILE LP32
+#		include <Q/formats/data model/LP32.h>
 
-#	elif	defined(__ILP32__)	|| \
-		defined(_ILP32_)	|| \
-		defined(_ILP32)		|| \
-		defined(ILP32)		|| \
+#	elif	defined(__ILP32__) || \
+		defined(__ILP32)   || \
+		defined(_ILP32_)   || \
+		defined(_ILP32)    || \
 		defined(_WIN32)
 
-#		define Q_DATA_MODEL_FILE ILP32
+#		include <Q/formats/data model/ILP32.h>
 
-#	elif	defined(__ILP64__)	|| \
-		defined(_ILP64_)	|| \
-		defined(_ILP64)		|| \
-		defined(ILP64)
+#	elif	defined(__ILP64__) || \
+		defined(__ILP64)   || \
+		defined(_ILP64_)   || \
+		defined(_ILP64)
 
-#		define Q_DATA_MODEL_FILE ILP64
+#		include <Q/formats/data model/ILP64.h>
 
-#	elif	defined(__LLP64__)	|| \
-		defined(_LLP64_)	|| \
-		defined(_LLP64)		|| \
-		defined(LLP64)		|| \
+#	elif	defined(__LLP64__) || \
+		defined(__LLP64)   || \
+		defined(_LLP64_)   || \
+		defined(_LLP64)    || \
 		defined(_WIN64)
 
-#		define Q_DATA_MODEL_FILE LLP64
+#		include <Q/formats/data model/LLP64.h>
 
-#	elif	defined(__LP64__)	|| \
-		defined(_LP64_)		|| \
-		defined(_LP64)		|| \
-		defined(LP64)
+#	elif	defined(__LP64__)  || \
+		defined(__LP64)    || \
+		defined(_LP64_)    || \
+		defined(_LP64)
 
-#		define Q_DATA_MODEL_FILE LP64
+#		include <Q/formats/data model/LP64.h>
 
 #	else
-#		define Q_DATA_MODEL_FILE ILP32
+#		include <Q/formats/data model/ILP32.h>
 #	endif
 
 #endif
-
-#define Q_INSPECTING
-
-#define  Q_DATA_MODEL_HEADER <Q/formats/data model/Q_DATA_MODEL_FILE.h>
-#include Q_DATA_MODEL_HEADER
 
 #undef Q_INSPECTING
 
 #include <Q/macros/preprocessor.h>
 #include <Q/keys/data model.h>
+
+#undef Q_
+#undef _BITS_
+#undef _TYPE_
+#undef _BASE_TYPE_
+#undef _SUFFIX_
+#undef SUFFIX_
 
 #define Q_DATA_MODEL		     Q_JOIN_2(Q_DATA_MODEL_, Q_DATA_MODEL_NAME)
 #define Q_DATA_MODEL_STRING	     Q_JOIN_2(Q_DATA_MODEL_STRING_, Q_DATA_MODEL_NAME)

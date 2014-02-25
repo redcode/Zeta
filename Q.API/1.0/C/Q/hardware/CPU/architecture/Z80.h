@@ -147,6 +147,9 @@ Flags (F register)
 
 #ifdef Q_INSPECTING
 
+#	undef Z80
+#	undef z80
+
 #	define Q_CPU_ARCHITECTURE_NAME Z80
 #	define Q_CPU_ARCHITECTURE_Name Z80
 #	define Q_CPU_ARCHITECTURE_name z80

@@ -11,7 +11,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/macros/structure.h>
 
-#if Q_C_HAS(VARIADIC_MACRO)
+#if !defined(Q_AVOID_VARIADIC_MACROS) && Q_C_HAS(VARIADIC_MACRO)
 
 #	define Q_DEFINE_LIST_NODE(type, ...)				\
 		Q_DEFINE_STRUCTURE_WITH_NAME(				\

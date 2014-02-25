@@ -9,52 +9,52 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_inspection_CPU_H__
 #define __Q_inspection_CPU_H__
 
-/* Step 1: Identify CPU architecture */
+#define Q_INSPECTING
 
 #if defined(Q_USE_CPU_ARCHITECTURE_X86_64)
-#	define Q_CPU_ARCHITECTURE_FILE x86-64
+#	include <Q/hardware/CPU/architecture/x86-64.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_X86_32)
-#	define Q_CPU_ARCHITECTURE_FILE x86-32
+#	include <Q/hardware/CPU/architecture/x86-32.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_POWER_PC_64BIT)
-#	define Q_CPU_ARCHITECTURE_FILE PowerPC 64-bit
+#	include <Q/hardware/CPU/architecture/PowerPC 64-bit.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_POWER_PC_32BIT)
-#	define Q_CPU_ARCHITECTURE_FILE PowerPC 32-bit
+#	include <Q/hardware/CPU/architecture/PowerPC 32-bit.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_ARM)
-#	define Q_CPU_ARCHITECTURE_FILE ARM
+#	include <Q/hardware/CPU/architecture/ARM.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_68K)
-#	define Q_CPU_ARCHITECTURE_FILE 68K
+#	include <Q/hardware/CPU/architecture/68K.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_ITANIUM)
-#	define Q_CPU_ARCHITECTURE_FILE Itanium
+#	include <Q/hardware/CPU/architecture/Itanium.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_Alpha)
-#	define Q_CPU_ARCHITECTURE_FILE Alpha
+#	include <Q/hardware/CPU/architecture/Alpha.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_MIPS)
-#	define Q_CPU_ARCHITECTURE_FILE MIPS
+#	include <Q/hardware/CPU/architecture/MIPS.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_RS_6000)
-#	define Q_CPU_ARCHITECTURE_FILE RS 6000
+#	include <Q/hardware/CPU/architecture/RS 6000.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_SPARC)
-#	define Q_CPU_ARCHITECTURE_FILE SPARC
+#	include <Q/hardware/CPU/architecture/SPARC.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_SUPER_H)
-#	define Q_CPU_ARCHITECTURE_FILE SuperH
+#	include <Q/hardware/CPU/architecture/SuperH.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_SYSTEM_370)
-#	define Q_CPU_ARCHITECTURE_FILE System 370
+#	include <Q/hardware/CPU/architecture/System 370.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_SYSTEM_390)
-#	define Q_CPU_ARCHITECTURE_FILE System 390
+#	include <Q/hardware/CPU/architecture/System 390.h>
 
 #elif defined(Q_USE_CPU_ARCHITECTURE_Z_ARCHITECTURE)
-#	define Q_CPU_ARCHITECTURE_FILE z Architecture
+#	include <Q/hardware/CPU/architecture/z Architecture.h>
 
 #else
 
@@ -62,9 +62,10 @@ Released under the terms of the GNU General Public License v3. */
 		defined(__amd64)	|| \
 		defined(__x86_64__)	|| \
 		defined(__x86_64)	|| \
-		defined(_M_X64)
+		defined(_M_X64)		|| \
+		defined(_M_AMD64)
 
-#		define Q_CPU_ARCHITECTURE_FILE x86-64
+#		include <Q/hardware/CPU/architecture/x86-64.h>
 
 #	elif	defined(i386)		|| \
 		defined(__i386)		|| \
@@ -79,14 +80,14 @@ Released under the terms of the GNU General Public License v3. */
 		defined(__I86__)	|| \
 		defined(__INTEL__)
 
-#		define Q_CPU_ARCHITECTURE_FILE x86-32
+#		include <Q/hardware/CPU/architecture/x86-32.h>
 
 #	elif	defined(__powerpc64__)	|| \
 		defined(__ppc64__)	|| \
 		defined(__PPC64__)	|| \
 		defined(__PPU__)
 
-#		define Q_CPU_ARCHITECTURE_FILE PowerPC 64-bit
+#		include <Q/hardware/CPU/architecture/PowerPC 64-bit.h>
 
 #	elif	defined(__powerpc)	|| \
 		defined(__powerpc__)	|| \
@@ -96,7 +97,7 @@ Released under the terms of the GNU General Public License v3. */
 		defined(_M_PPC)		|| \
 		defined(_ARCH_PPC)
 
-#		define Q_CPU_ARCHITECTURE_FILE PowerPC 32-bit
+#		include <Q/hardware/CPU/architecture/PowerPC 32-bit.h>
 
 #	elif	defined(__arm__)		|| \
 		defined(__thumb__)		|| \
@@ -104,12 +105,12 @@ Released under the terms of the GNU General Public License v3. */
 		defined(__TARGET_ARCH_THUMB)	|| \
 		defined(_ARM)
 
-#		define Q_CPU_ARCHITECTURE_FILE ARM
+#		include <Q/hardware/CPU/architecture/ARM.h>
 
 #	elif	defined(__m68k__)	|| \
 		defined(M68000)
 
-#		define Q_CPU_ARCHITECTURE_FILE 68K
+#		include <Q/hardware/CPU/architecture/68K.h>
 
 #	elif	defined(__ia64__)	|| \
 		defined(_IA64)		|| \
@@ -117,25 +118,25 @@ Released under the terms of the GNU General Public License v3. */
 		defined(__ia64)		|| \
 		defined(_M_IA64)
 
-#		define Q_CPU_ARCHITECTURE_FILE Itanium
+#		include <Q/hardware/CPU/architecture/Itanium.h>
 
 #	elif	defined(__alpha__)	|| \
 		defined(__alpha)	|| \
 		defined(_M_ALPHA)
 
-#		define Q_CPU_ARCHITECTURE_FILE Alpha
+#		include <Q/hardware/CPU/architecture/Alpha.h>
 
 #	elif	defined(__mips__)	|| \
 		defined(mips)		|| \
 		defined(__mips)		|| \
 		defined(__MIPS__)
 
-#		define Q_CPU_ARCHITECTURE_FILE MIPS
+#		include <Q/hardware/CPU/architecture/MIPS.h>
 
 #	elif	defined(__hppa__)	|| \
 		defined(__hppa)
 
-#		define Q_CPU_ARCHITECTURE_FILE PA-RISC
+#		include <Q/hardware/CPU/architecture/PA-RISC.h>
 
 #	elif	defined(__THW_RS6000)	|| \
 		defined(_IBMR2)		|| \
@@ -143,43 +144,36 @@ Released under the terms of the GNU General Public License v3. */
 		defined(_ARCH_PWR)	|| \
 		defined(_ARCH_PWR2)
 
-#		define Q_CPU_ARCHITECTURE_FILE RS 6000
+#		include <Q/hardware/CPU/architecture/RS 6000.h>
 
 #	elif	defined(__sparc__)	|| \
 		defined(__sparc)
 
-#		define Q_CPU_ARCHITECTURE_FILE SPARC
+#		include <Q/hardware/CPU/architecture/SPARC.h>
 
 #	elif	defined(__sh__)
 
-#		define Q_CPU_ARCHITECTURE_FILE SuperH
+#		include <Q/hardware/CPU/architecture/SuperH.h>
 
 #	elif	defined(__370__)	|| \
 		defined(__THW_370__)
 
-#		define Q_CPU_ARCHITECTURE_FILE System 370
+#		include <Q/hardware/CPU/architecture/System 370.h>
 
 #	elif	defined(__s390__)	|| \
 		defined(__s390x__)
 
-#		define Q_CPU_ARCHITECTURE_FILE System 390
+#		include <Q/hardware/CPU/architecture/System 390.h>
 
 #	elif	defined(__SYSC_ZARCH__)
 
-#		define Q_CPU_ARCHITECTURE_FILE z Architecture
+#		include <Q/hardware/CPU/architecture/z Architecture.h>
 
 #	else
 #		error "Target Processor architecture not suported."
 #	endif
 
 #endif
-
-/* Step 2: Include related headers under inspection mode */
-
-#define Q_INSPECTING
-
-#define  Q_CPU_ARCHITECTURE_HEADER <Q/hardware/CPU/architecture/Q_CPU_ARCHITECTURE_FILE.h>
-#include Q_CPU_ARCHITECTURE_HEADER
 
 #ifdef Q_CPU_MODEL_HEADER
 
@@ -195,10 +189,14 @@ Released under the terms of the GNU General Public License v3. */
 
 #undef Q_INSPECTING
 
-/* Step 3: Define inspection macros */
-
 #include <Q/keys/hardware/CPU/architecture.h>
 #include <Q/macros/preprocessor.h>
+
+#undef Q_
+#undef _
+#undef HAS_
+#undef IS_CAPABLE_OF_
+#undef ENDIANNESS
 
 #define Q_CPU_ARCHITECTURE_PREFIX		Q_JOIN_3(Q_, Q_CPU_ARCHITECTURE_NAME, _)
 #define Q_CPU_ARCHITECTURE			Q_JOIN_2(Q_CPU_ARCHITECTURE_, Q_CPU_ARCHITECTURE_NAME)

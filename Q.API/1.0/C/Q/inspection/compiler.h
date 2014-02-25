@@ -11,255 +11,255 @@ Released under the terms of the GNU General Public License v3. */
 
 #if defined(__clang__)
 
-#	define Q_COMPILER_FILE Clang
+#	include <Q/inspection/private/compiler/Clang.h>
 
 #elif defined(__GNUC__)
 
-#	define Q_COMPILER_FILE GCC
+#	include <Q/inspection/private/compiler/GCC.h>
 
 #elif defined(_MSC_VER)
 
-#	define Q_COMPILER_FILE Microsoft Visual C++
+#	include <Q/inspection/private/compiler/Microsoft Visual C++.h>
 
 #elif defined(_ACC_)
 
-#	define Q_COMPILER_FILE ACC
+#	include <Q/inspection/private/compiler/ACC.h>
 
 #elif defined(__CMB__)
 
-#	define Q_COMPILER_FILE Altium MicroBlaze C
+#	include <Q/inspection/private/compiler/Altium MicroBlaze C.h>
 
 #elif defined(__CHC__)
 
-#	define Q_COMPILER_FILE Altium C-to-Hardware
+#	include <Q/inspection/private/compiler/Altium C-to-Hardware.h>
 
 #elif defined(__ACK__)
 
-#	define Q_COMPILER_FILE Amsterdam Compiler Kit
+#	include <Q/inspection/private/compiler/Amsterdam Compiler Kit.h>
 
 #elif defined(__CC_ARM)
 
-#	define Q_COMPILER_FILE ARM Compiler
+#	include <Q/inspection/private/compiler/ARM Compiler.h>
 
 #elif defined(AZTEC_C) || defined(__AZTEC_C__)
 
-#	define Q_COMPILER_FILE Aztec C
+#	include <Q/inspection/private/compiler/Aztec C.h>
 
 #elif defined(__BORLANDC__) || defined(__CODEGEARC__)
 
-#	define Q_COMPILER_FILE Borland C++
+#	include <Q/inspection/private/compiler/Borland C++.h>
 
 #elif defined(__CC65__)
 
-#	define Q_COMPILER_FILE CC65
+#	include <Q/inspection/private/compiler/CC65.h>
 
 #elif defined(__COMO__)
 
-#	define Q_COMPILER_FILE Comeau C++ 
+#	include <Q/inspection/private/compiler/Comeau C++.h>
 
 #elif defined(__DECC) || defined(__DECCXX) || defined(__VAXC) || defined(VAXC)
 
-#	define Q_COMPILER_FILE Compaq C - C++
+#	include <Q/inspection/private/compiler/Compaq C - C++.h>
 
 #elif defined(__convexc__)
 
-#	define Q_COMPILER_FILE Convex C
+#	include <Q/inspection/private/compiler/Convex C.h>
 
 #elif defined(_CRAYC)
 
-#	define Q_COMPILER_FILE Cray C
+#	include <Q/inspection/private/compiler/Cray C.h>
 
 #elif defined(__DCC__)
 
-#	define Q_COMPILER_FILE Diab C - C++
+#	include <Q/inspection/private/compiler/Diab C - C++.h>
 
 #elif defined(_DICE)
 
-#	define Q_COMPILER_FILE DICE C
+#	include <Q/inspection/private/compiler/DICE C.h>
 
 #elif defined(__DMC__)
 
-#	define Q_COMPILER_FILE Digital Mars
+#	include <Q/inspection/private/compiler/Digital Mars.h>
 
 #elif defined(__SYSC__)
 
-#	define Q_COMPILER_FILE Dignus Systems - C++
+#	include <Q/inspection/private/compiler/Dignus Systems - C++.h>
 
 #elif defined(__DJGPP__) || defined(__GO32__)
 
-#	define Q_COMPILER_FILE DJGPP
+#	include <Q/inspection/private/compiler/DJGPP.h>
 
 #elif defined(__EDG__)
 
-#	define Q_COMPILER_FILE EDG C++ Frontend
+#	include <Q/inspection/private/compiler/EDG C++ Frontend.h>
 
 #elif defined(__PATHCC__)
 
-#	define Q_COMPILER_FILE EKOPath
+#	include <Q/inspection/private/compiler/EKOPath.h>
 
 #elif defined(__FCC_VERSION)
 
-#	define Q_COMPILER_FILE Fujitsu C++
+#	include <Q/inspection/private/compiler/Fujitsu C++.h>
 
 #elif defined(__ghs__)
 
-#	define Q_COMPILER_FILE Green Hill C - C++
+#	include <Q/inspection/private/compiler/Green Hill C - C++.h>
 
 #elif defined(__HP_aCC)
 
-#	define Q_COMPILER_FILE HP aC++
+#	include <Q/inspection/private/compiler/HP aC++.h>
 
 #elif defined(__HP_cc)
 
-#	define Q_COMPILER_FILE HP ANSI C
+#	include <Q/inspection/private/compiler/HP ANSI C.h>
 
 #elif defined(__IAR_SYSTEMS_ICC__)
 
-#	define Q_COMPILER_FILE IAR C - C++
+#	include <Q/inspection/private/compiler/IAR C - C++.h>
 
 #elif defined(__xlc__) || defined(__xlC__)
 
-#	define Q_COMPILER_FILE IBM XL C - C++
+#	include <Q/inspection/private/compiler/IBM XL C - C++.h>
 
 #elif defined(__IBMC__) || defined(__IBMCPP__)
 
 #	if defined(__COMPILER_VER__)
-#		define Q_COMPILER_FILE IBM z OS C - C++
+#		include <Q/inspection/private/compiler/IBM z OS C - C++.h>
 #	else
-#		define Q_COMPILER_FILE IBM XL C - C++
+#		include <Q/inspection/private/compiler/IBM XL C - C++.h>
 #	endif
 
 #elif defined(__IMAGECRAFT__)
 
-#	define Q_COMPILER_FILE ImageCraft C
+#	include <Q/inspection/private/compiler/ImageCraft C.h>
 
 #elif defined(__INTEL_COMPILER)	|| defined(__ICC) || defined(__ECC) || defined(__ICL)
 
-#	define Q_COMPILER_FILE Intel C - C++
+#	include <Q/inspection/private/compiler/Intel C - C++.h>
 
 #elif defined(__KCC)
 
-#	define Q_COMPILER_FILE KAI C++
+#	include <Q/inspection/private/compiler/KAI C++.h>
 
 #elif defined(__C166__)
 
-#	define Q_COMPILER_FILE KEIL C166
+#	include <Q/inspection/private/compiler/KEIL C166.h>
 
 #elif defined(__C51__) || defined(__CX51__)
 
-#	define Q_COMPILER_FILE KEIL C51
+#	include <Q/inspection/private/compiler/KEIL C51.h>
 
 #elif defined(__CA__) || defined(__KEIL__)
 
-#	define Q_COMPILER_FILE KEIL CARM
+#	include <Q/inspection/private/compiler/KEIL CARM.h>
 
 #elif defined(__LCC__)
 
-#	define Q_COMPILER_FILE LCC
+#	include <Q/inspection/private/compiler/LCC.h>
 
 #elif defined(__HIGHC__)
 
-#	define Q_COMPILER_FILE MetaWare High C - C++
+#	include <Q/inspection/private/compiler/MetaWare High C - C++.h>
 
 #elif defined(__MWERKS__) || defined(__CWCC__)
 
-#	define Q_COMPILER_FILE Metrowerks CodeWarrior
+#	include <Q/inspection/private/compiler/Metrowerks CodeWarrior.h>
 
 #elif defined(_MRI)
 
-#	define Q_COMPILER_FILE Microtec C - C++
+#	include <Q/inspection/private/compiler/Microtec C - C++.h>
 
 #elif defined(__NDPC__) || defined(__NDPX__)
 
-#	define Q_COMPILER_FILE Microway NDP C
+#	include <Q/inspection/private/compiler/Microway NDP C.h>
 
 #elif defined(__MINGW32__) || defined(__MINGW64__)
 
-#	define Q_COMPILER_FILE MinGW
+#	include <Q/inspection/private/compiler/MinGW.h>
 
 #elif defined(__sgi) || defined(sgi)
 
-#	define Q_COMPILER_FILE MIPSpro
+#	include <Q/inspection/private/compiler/MIPSpro.h>
 
 #elif defined(MIRACLE)
 
-#	define Q_COMPILER_FILE Miracle C
+#	include <Q/inspection/private/compiler/Miracle C.h>
 
 #elif defined(__MRC__) || defined(MPW_C) || defined(MPW_CPLUS)
 
-#	define Q_COMPILER_FILE MPW C++
+#	include <Q/inspection/private/compiler/MPW C++.h>
 
 #elif defined(__CC_NORCROFT)
 
-#	define Q_COMPILER_FILE Norcroft C
+#	include <Q/inspection/private/compiler/Norcroft C.h>
 
 #elif defined(__NWCC__)
 
-#	define Q_COMPILER_FILE NWCC
+#	include <Q/inspection/private/compiler/NWCC.h>
 
 #elif defined(__OPEN64__) || defined(__OPENCC__)
 
-#	define Q_COMPILER_FILE Open64
+#	include <Q/inspection/private/compiler/Open64.h>
 
 #elif defined(ORA_PROC)
 
-#	define Q_COMPILER_FILE Oracle Pro C Precompiler
+#	include <Q/inspection/private/compiler/Oracle Pro C Precompiler.h>
 
 #elif defined(__SUNPRO_C) || defined(__SUNPRO_CC)
 
-#	define Q_COMPILER_FILE Oracle Solaris Studio
+#	include <Q/inspection/private/compiler/Oracle Solaris Studio.h>
 
 #elif defined(__PACIFIC__)
 
-#	define Q_COMPILER_FILE Pacific C
+#	include <Q/inspection/private/compiler/Pacific C.h>
 
 #elif defined(_PACC_VER)
 
-#	define Q_COMPILER_FILE Palm C - C++
+#	include <Q/inspection/private/compiler/Palm C - C++.h>
 
 #elif defined(__POCC__)
 
-#	define Q_COMPILER_FILE Pelles C
+#	include <Q/inspection/private/compiler/Pelles C.h>
 
 #elif defined(__PGI)
 
-#	define Q_COMPILER_FILE Portland Group C - C++
+#	include <Q/inspection/private/compiler/Portland Group C - C++.h>
 
 #elif defined(__RENESAS__) || defined(__HITACHI__)
 
-#	define Q_COMPILER_FILE Renesas C - C++
+#	include <Q/inspection/private/compiler/Renesas C - C++.h>
 
 #elif defined(SASC) || defined(__SASC) || defined(__SASC__)
 
-#	define Q_COMPILER_FILE SAS - C
+#	include <Q/inspection/private/compiler/SAS - C.h>
 
 #elif defined(_SCO_DS)
 
-#	define Q_COMPILER_FILE SCO OpenServer
+#	include <Q/inspection/private/compiler/SCO OpenServer.h>
 
 #elif defined(SDCC)
 
-#	define Q_COMPILER_FILE Small Device C Compiler
+#	include <Q/inspection/private/compiler/Small Device C Compiler.h>
 
 #elif defined(__SNC__)
 
-#	define Q_COMPILER_FILE SN Compiler
+#	include <Q/inspection/private/compiler/SN Compiler.h>
 
 #elif defined(__VOSC__)
 
-#	define Q_COMPILER_FILE Stratus VOS C
+#	include <Q/inspection/private/compiler/Stratus VOS C.h>
 
 #elif defined(__SC__)
 
-#	define Q_COMPILER_FILE Symantec C++
+#	include <Q/inspection/private/compiler/Symantec C++.h>
 
 #elif defined(__TenDRA__)
 
-#	define Q_COMPILER_FILE TenDRA C - C++
+#	include <Q/inspection/private/compiler/TenDRA C - C++.h>
 
 #elif defined(__TI_COMPILER_VERSION__)
 
-#	define Q_COMPILER_FILE Texas Instruments C - C++ Compiler
+#	include <Q/inspection/private/compiler/Texas Instruments C - C++ Compiler.h>
 
 /*#elif defined()
 
@@ -267,34 +267,31 @@ Released under the terms of the GNU General Public License v3. */
 
 #elif defined(__TINYC__)
 
-#	define Q_COMPILER_FILE Tiny C
+#	include <Q/inspection/private/compiler/Tiny C.h>
 
 #elif defined(__TURBOC__)
 
-#	define Q_COMPILER_FILE Turbo C - C++
+#	include <Q/inspection/private/compiler/Turbo C - C++.h>
 
 #elif defined(_UCC)
 
-#	define Q_COMPILER_FILE Ultimate C - C++
+#	include <Q/inspection/private/compiler/Ultimate C - C++.h>
 
 #elif defined(__USLC__)
 
-#	define Q_COMPILER_FILE USL C
+#	include <Q/inspection/private/compiler/USL C.h>
 
 #elif defined(__WATCOMC__)
 
-#	define Q_COMPILER_FILE Watcom C++
+#	include <Q/inspection/private/compiler/Watcom C++.h>
 
 #elif defined(__ZTC__)
 
-#	define Q_COMPILER_FILE Zortech C++
+#	include <Q/inspection/private/compiler/Zortech C++.h>
 
 #else
 #	error "Compiler not suported."
 #endif
-
-#define  Q_COMPILER_HEADER <Q/inspection/private/compiler/Q_COMPILER_FILE.h>
-#include Q_COMPILER_HEADER
 
 #define Q_COMPILER_HAS(FEATURE)			defined(Q_COMPILER_HAS_##FEATURE)
 #define Q_COMPILER_HAS_EXTENSION(EXTENSION)	defined(Q_COMPILER_HAS_EXTENSION_##EXTENSION)

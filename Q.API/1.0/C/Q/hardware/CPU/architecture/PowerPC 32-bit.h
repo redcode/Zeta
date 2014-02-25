@@ -27,6 +27,10 @@ Released under the terms of the GNU General Public License v3. */
 
 #ifdef Q_INSPECTING
 
+#	undef POWER_PC_32BIT
+#	undef PowerPC32Bit
+#	undef power_pc_32bit
+
 #	define Q_CPU_ARCHITECTURE_NAME POWER_PC_32BIT
 #	define Q_CPU_ARCHITECTURE_Name PowerPC32Bit
 #	define Q_CPU_ARCHITECTURE_Name power_pc_32bit
