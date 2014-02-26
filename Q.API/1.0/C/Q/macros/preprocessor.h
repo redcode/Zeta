@@ -38,19 +38,19 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SUFFIX_UL( literal)			  Q_SUFFIX_UL_( literal)
 #define Q_SUFFIX_ULL(literal)			  Q_SUFFIX_ULL_(literal)
 
-#define Q_PREFIX_UNDERSCORE_(	    whatever)	  _##whatever
-#define Q_SUFFIX_UNDERSCORE_(	    whatever)	  whatever##_
-#define Q_UNDERSCORE_(		    whatever)	  _##whatever##_
-#define Q_DOUBLE_PREFIX_UNDERSCORE_(whatever)	  __##whatever
-#define Q_DOUBLE_SUFFIX_UNDERSCORE_(whatever)	  whatever##__
-#define Q_DOUBLE_UNDERSCORE_(	    whatever)	  __##whatever##__
+#define Q_UNDERSCORE_(		whatever)	  _##whatever##_
+#define Q_UNDERSCORE_X2_(	whatever)	  __##whatever##__
+#define Q_PREFIX_UNDERSCORE_(	whatever)	  _##whatever
+#define Q_PREFIX_UNDERSCORE_X2_(whatever)	  __##whatever
+#define Q_SUFFIX_UNDERSCORE_(	whatever)	  whatever##_
+#define Q_SUFFIX_UNDERSCORE_X2_(whatever)	  whatever##__
 
-#define Q_PREFIX_UNDERSCORE(	    whatever)	  Q_PREFIX_UNDERSCORE_(       whatever)
-#define Q_SUFFIX_UNDERSCORE(	    whatever)	  Q_SUFFIX_UNDERSCORE_(       whatever)
-#define Q_UNDERSCORE(		    whatever)	  Q_UNDERSCORE_(	      whatever)
-#define Q_DOUBLE_SUFFIX_UNDERSCORE( whatever)	  Q_DOUBLE_SUFFIX_UNDERSCORE_(whatever)
-#define Q_DOUBLE_PREFIX_UNDERSCORE( whatever)	  Q_DOUBLE_PREFIX_UNDERSCORE_(whatever)
-#define Q_DOUBLE_UNDERSCORE(	    whatever)	  Q_DOUBLE_UNDERSCORE_(       whatever)
+#define Q_UNDERSCORE(		whatever)	  Q_UNDERSCORE_(	  whatever)
+#define Q_UNDERSCORE_X2(	whatever)	  Q_UNDERSCORE_X2_(	  whatever)
+#define Q_PREFIX_UNDERSCORE(	whatever)	  Q_PREFIX_UNDERSCORE_(   whatever)
+#define Q_PREFIX_UNDERSCORE_X2( whatever)	  Q_PREFIX_UNDERSCORE_X2_(whatever)
+#define Q_SUFFIX_UNDERSCORE(	whatever)	  Q_SUFFIX_UNDERSCORE_(   whatever)
+#define Q_SUFFIX_UNDERSCORE_X2( whatever)	  Q_SUFFIX_UNDERSCORE_X2_(whatever)
 
 #define Q_HEADER(      header)			  <header>
 #define Q_LOCAL_HEADER(header)			  Q_QUOTED(header)
