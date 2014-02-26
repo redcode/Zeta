@@ -11,35 +11,38 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/inspection/compiler.h>
 
-#if defined(Q_COMPILER_C) && defined(Q_COMPILER_C_FILE)
+#if defined(Q_COMPILER_C)
 
-#	define Q_C	Q_COMPILER_C
-#	define Q_C_FILE	Q_COMPILER_C_FILE
+#	include <Q/macros/preprocessor.h>
+#	define  Q_C Q_COMPILER_C
+
+#	if  defined(Q_COMPILER_C_FILE)
+#		include	Q_HEADER(Q_COMPILER_C_FILE)
+#	elif defined(Q_COMPILER_LOCAL_C_FILE)
+#		include Q_LOCAL_HEADER(Q_COMPILER_LOCAL_C_FILE)
+#	endif
 
 #else
 
 #	if defined(__STDC__)
 #		if defined(__STDC_VERSION__)
 #			if   __STDC_VERSION__ >= 201112L
-#				define Q_C_FILE C11
+#				include <Q/inspection/private/C/C11.h>
 #			elif __STDC_VERSION__ >= 199901L
-#				define Q_C_FILE C99
+#				include <Q/inspection/private/C/C99.h>
 #			elif __STDC_VERSION__ >= 199409L
-#				define Q_C_FILE C94
+#				include <Q/inspection/private/C/C94.h>
 #			else
-#				define Q_C_FILE C90
+#				include <Q/inspection/private/C/C90.h>
 #			endif
 #		else
-#			define Q_C_FILE C89
+#			include <Q/inspection/private/C/C89.h>
 #		endif
 #	else
-#		define Q_C_FILE C89 /* KR */
+#		include <Q/inspection/private/C/C89.h> /* KR */
 #	endif
 
 #endif
-
-#define Q_C_HEADER <Q/inspection/private/C/Q_C_FILE.h>
-#include Q_C_HEADER
 
 #define Q_C_HAS(WHAT) (Q_JOIN_2_DEFINED(Q_C_HAS_,	   WHAT) || \
 		       Q_JOIN_2_DEFINED(Q_COMPILER_C_HAS_, WHAT))

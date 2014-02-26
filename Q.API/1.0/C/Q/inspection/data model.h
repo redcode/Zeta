@@ -76,7 +76,6 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/macros/preprocessor.h>
 #include <Q/keys/data model.h>
 
-#undef Q_
 #undef _BITS_
 #undef _TYPE_
 #undef _BASE_TYPE_

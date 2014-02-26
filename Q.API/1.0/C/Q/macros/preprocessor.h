@@ -14,6 +14,44 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_QUOTED_(whatever)			  #whatever
 #define Q_QUOTED( whatever)			  Q_QUOTED_(whatever)
 
+#define Q_PREFIX_				  Q_SAME
+#define Q_PREFIX_0_(  literal)			  0##literal
+#define Q_PREFIX_0X_( literal)			  0x##literal
+#define Q_SUFFIX_				  Q_SAME
+#define Q_SUFFIX_DD_( literal)			  literal##DD
+#define Q_SUFFIX_DF_( literal)			  literal##DF
+#define Q_SUFFIX_DL_( literal)			  literal##DL
+#define Q_SUFFIX_F_(  literal)			  literal##F
+#define Q_SUFFIX_L_(  literal)			  literal##L
+#define Q_SUFFIX_LL_( literal)			  literal##LL
+#define Q_SUFFIX_UL_( literal)			  literal##UL
+#define Q_SUFFIX_ULL_(literal)			  literal##ULL
+
+#define Q_PREFIX_0(  literal)			  Q_PREFIX_0_(	literal)
+#define Q_PREFIX_0X( literal)			  Q_PREFIX_0X_( literal)
+#define Q_SUFFIX_DD( literal)			  Q_SUFFIX_DD_( literal)
+#define Q_SUFFIX_DF( literal)			  Q_SUFFIX_DF_( literal)
+#define Q_SUFFIX_DL( literal)			  Q_SUFFIX_DL_( literal)
+#define Q_SUFFIX_F(  literal)			  Q_SUFFIX_F_(	literal)
+#define Q_SUFFIX_L(  literal)			  Q_SUFFIX_L_(	literal)
+#define Q_SUFFIX_LL( literal)			  Q_SUFFIX_LL_( literal)
+#define Q_SUFFIX_UL( literal)			  Q_SUFFIX_UL_( literal)
+#define Q_SUFFIX_ULL(literal)			  Q_SUFFIX_ULL_(literal)
+
+#define Q_PREFIX_UNDERSCORE_(	    whatever)	  _##whatever
+#define Q_SUFFIX_UNDERSCORE_(	    whatever)	  whatever##_
+#define Q_UNDERSCORE_(		    whatever)	  _##whatever##_
+#define Q_DOUBLE_PREFIX_UNDERSCORE_(whatever)	  __##whatever
+#define Q_DOUBLE_SUFFIX_UNDERSCORE_(whatever)	  whatever##__
+#define Q_DOUBLE_UNDERSCORE_(	    whatever)	  __##whatever##__
+
+#define Q_PREFIX_UNDERSCORE(	    whatever)	  Q_PREFIX_UNDERSCORE_(       whatever)
+#define Q_SUFFIX_UNDERSCORE(	    whatever)	  Q_SUFFIX_UNDERSCORE_(       whatever)
+#define Q_UNDERSCORE(		    whatever)	  Q_UNDERSCORE_(	      whatever)
+#define Q_DOUBLE_SUFFIX_UNDERSCORE( whatever)	  Q_DOUBLE_SUFFIX_UNDERSCORE_(whatever)
+#define Q_DOUBLE_PREFIX_UNDERSCORE( whatever)	  Q_DOUBLE_PREFIX_UNDERSCORE_(whatever)
+#define Q_DOUBLE_UNDERSCORE(	    whatever)	  Q_DOUBLE_UNDERSCORE_(       whatever)
+
 #define Q_HEADER(      header)			  <header>
 #define Q_LOCAL_HEADER(header)			  Q_QUOTED(header)
 
@@ -48,19 +86,6 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_JOIN_6_DEFINED(a, b, c, d, e, f)	  Q_JOIN_6_DEFINED_(a, b, c, d, e, f)
 #define Q_JOIN_7_DEFINED(a, b, c, d, e, f, g)	  Q_JOIN_7_DEFINED_(a, b, c, d, e, f, g)
 #define Q_JOIN_8_DEFINED(a, b, c, d, e, f, g, h)  Q_JOIN_8_DEFINED_(a, b, c, d, e, f, g, h)
-
-#define Q_PREFIX_				  Q_SAME
-#define Q_PREFIX_0(  literal)			  Q_JOIN_2(0,  literal)
-#define Q_PREFIX_0X( literal)			  Q_JOIN_2(0x, literal)
-#define Q_SUFFIX_				  Q_SAME
-#define Q_SUFFIX_DD( literal)			  Q_JOIN_2(literal, DD)
-#define Q_SUFFIX_DF( literal)			  Q_JOIN_2(literal, DF)
-#define Q_SUFFIX_DL( literal)			  Q_JOIN_2(literal, DL)
-#define Q_SUFFIX_F(  literal)			  Q_JOIN_2(literal, F)
-#define Q_SUFFIX_L(  literal)			  Q_JOIN_2(literal, L)
-#define Q_SUFFIX_LL( literal)			  Q_JOIN_2(literal, LL)
-#define Q_SUFFIX_UL( literal)			  Q_JOIN_2(literal, UL)
-#define Q_SUFFIX_ULL(literal)			  Q_JOIN_2(literal, ULL)
 
 #ifndef Q_AVOID_VARIADIC_MACROS
 

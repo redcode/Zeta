@@ -36,7 +36,6 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/keys/floating point.h>
 
-#undef Q_
 #undef _BITS
 #undef _BIAS
 #undef _MINIMUM
