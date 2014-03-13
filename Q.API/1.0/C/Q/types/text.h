@@ -12,15 +12,13 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/types/base.h>
 #include <Q/keys/text.h>
 #include <Q/keys/formats/character set.h>
-
-typedef quint8	QTextLineBreakMode;
-typedef quint16 QCharacterSet;
+#include <Q/macros/key>
 
 typedef struct {
-	QString*      data;
-	qsize	      size;
-	qsize	      character_count;
-	QCharacterSet character_set;
+	QString*	    data;
+	qsize		    size;
+	qsize		    character_count;
+	QKey(CHARACTER_SET) character_set;
 } QText;
 
 #endif /* __Q_types_text_H__ */
