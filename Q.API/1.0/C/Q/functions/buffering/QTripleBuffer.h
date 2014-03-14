@@ -14,8 +14,7 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/functions/base/value.h>
 
 
-Q_INLINE
-void q_triple_buffer_initialize(
+Q_INLINE void q_triple_buffer_initialize(
 	QTripleBuffer* object,
 	void*	       data,
 	qsize	       slot_size
@@ -28,18 +27,15 @@ void q_triple_buffer_initialize(
 	}
 
 
-Q_INLINE
-void *q_triple_buffer_production_slot(QTripleBuffer *object)
+Q_INLINE void *q_triple_buffer_production_slot(QTripleBuffer *object)
 	{return object->slots[(object->flags & 48) >> 4];}
 
 
-Q_INLINE
-void *q_triple_buffer_consumption_slot(QTripleBuffer *object)
+Q_INLINE void *q_triple_buffer_consumption_slot(QTripleBuffer *object)
 	{return object->slots[object->flags & 3];}
 
 
-Q_INLINE
-void* q_triple_buffer_produce(QTripleBuffer *object)
+Q_INLINE void* q_triple_buffer_produce(QTripleBuffer *object)
 	{
 	quint8 flags, new_flags;
 
@@ -55,8 +51,7 @@ void* q_triple_buffer_produce(QTripleBuffer *object)
 	}
 
 
-Q_INLINE
-void *q_triple_buffer_consume(QTripleBuffer *object)
+Q_INLINE void *q_triple_buffer_consume(QTripleBuffer *object)
 	{
 	quint8 flags, new_flags;
 

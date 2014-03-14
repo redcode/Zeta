@@ -53,21 +53,19 @@ Released under the terms of the GNU General Public License v3. */
 
 #else
 
-#	define Q_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(Type, type)	  \
-									  \
-									  \
-	Q_INLINE							  \
-	Q2D##Type q_2d_##type(q##type x, q##type y)			  \
-		{Q2D##Type magnitude = {x, y}; return magnitude;}	  \
-									  \
-									  \
-	Q_INLINE							  \
-	Q3D##Type q_3d_##type(q##type x, q##type y, q##type z)		  \
-		{Q3D##Type magnitude = {x, y, z}; return magnitude;}	  \
-									  \
-									  \
-	Q_INLINE							  \
-	Q3D##Type q_4d_##type(q##type x, q##type y, q##type z, q##type w) \
+#	define Q_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(Type, type)	  	\
+									  	\
+									  	\
+	Q_INLINE Q2D##Type q_2d_##type(q##type x, q##type y)			\
+		{Q2D##Type magnitude = {x, y}; return magnitude;}	  	\
+									  	\
+									  	\
+	Q_INLINE Q3D##Type q_3d_##type(q##type x, q##type y, q##type z)		\
+		{Q3D##Type magnitude = {x, y, z}; return magnitude;}	  	\
+									  	\
+									  	\
+	Q_INLINE								\
+	Q3D##Type q_4d_##type(q##type x, q##type y, q##type z, q##type w) 	\
 		{Q4D##Type magnitude = {x, y, z, w}; return magnitude;}
 
 

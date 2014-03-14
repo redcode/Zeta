@@ -14,8 +14,8 @@ Released under the terms of the GNU General Public License v3. */
 
 #define q_cpu_relax() asm volatile("pause\n": : :"memory")
 
-Q_INLINE
-void q_ring_buffer_initialize(
+
+Q_INLINE void q_ring_buffer_initialize(
 	QRingBuffer* object,
 	void*	     data,
 	qsize	     slot_size,
@@ -31,8 +31,7 @@ void q_ring_buffer_initialize(
 	}
 
 
-Q_INLINE
-void* q_ring_buffer_production_slot(QRingBuffer *object)
+Q_INLINE void* q_ring_buffer_production_slot(QRingBuffer *object)
 	{
 	return object->slot_count - object->fill_count
 		? object->data + object->production_index * object->slot_size
@@ -40,8 +39,7 @@ void* q_ring_buffer_production_slot(QRingBuffer *object)
 	}
 
 
-Q_INLINE
-void* q_ring_buffer_consumption_slot(QRingBuffer *object)
+Q_INLINE void* q_ring_buffer_consumption_slot(QRingBuffer *object)
 	{
 	return object->fill_count
 		? object->data + object->consumption_index * object->slot_size
@@ -49,8 +47,7 @@ void* q_ring_buffer_consumption_slot(QRingBuffer *object)
 	}
 
 
-Q_INLINE
-void* q_ring_buffer_try_produce(QRingBuffer *object)
+Q_INLINE void* q_ring_buffer_try_produce(QRingBuffer *object)
 	{
 	if (object->slot_count == object->fill_count) return NULL;
 
@@ -62,8 +59,7 @@ void* q_ring_buffer_try_produce(QRingBuffer *object)
 	}
 
 
-Q_INLINE
-void* q_ring_buffer_try_consume(QRingBuffer *object)
+Q_INLINE void* q_ring_buffer_try_consume(QRingBuffer *object)
 	{
 	if (!object->fill_count) return NULL;
 
@@ -75,8 +71,7 @@ void* q_ring_buffer_try_consume(QRingBuffer *object)
 	}
 
 
-Q_INLINE
-void* q_ring_buffer_produce(QRingBuffer *object)
+Q_INLINE void* q_ring_buffer_produce(QRingBuffer *object)
 	{
 	while (object->slot_count == object->fill_count) q_cpu_relax();
 
@@ -88,8 +83,7 @@ void* q_ring_buffer_produce(QRingBuffer *object)
 	}
 
 
-Q_INLINE
-void* q_ring_buffer_consume(QRingBuffer *object)
+Q_INLINE void* q_ring_buffer_consume(QRingBuffer *object)
 	{
 	if (!object->fill_count) q_cpu_relax();
 

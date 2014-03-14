@@ -19,13 +19,11 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_IMPLEMENTATION_NATURAL_2D(Type, type)					\
 										\
 										\
-Q_INLINE									\
-qboolean q_2d_##type##_are_equal(Q2D##Type a, Q2D##Type b)			\
+Q_INLINE qboolean q_2d_##type##_are_equal(Q2D##Type a, Q2D##Type b)		\
 	{return a.x == b.x && a.y == b.y;}					\
 										\
 										\
-Q_INLINE									\
-void q_##2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)				\
+Q_INLINE void q_##2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)			\
 	{									\
 	Q2D##Type t = *a;							\
 										\
@@ -34,67 +32,57 @@ void q_##2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)				\
 	}									\
 										\
 										\
-Q_INLINE									\
-qboolean q_2d_##type##_contains(Q2D##Type a, Q2D##Type b)			\
+Q_INLINE qboolean q_2d_##type##_contains(Q2D##Type a, Q2D##Type b)		\
 	{return b.x <= a.x && b.y <= a.y;}					\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_add(Q2D##Type a, Q2D##Type b)				\
+Q_INLINE Q2D##Type q_2d_##type##_add(Q2D##Type a, Q2D##Type b)			\
 	{return q_2d_##type(a.x + b.x, a.y + b.y);}				\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_subtract(Q2D##Type a, Q2D##Type b)			\
+Q_INLINE Q2D##Type q_2d_##type##_subtract(Q2D##Type a, Q2D##Type b)		\
 	{return q_2d_##type(a.x - b.x, a.y - b.y);}				\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_multiply(Q2D##Type a, Q2D##Type b)			\
+Q_INLINE Q2D##Type q_2d_##type##_multiply(Q2D##Type a, Q2D##Type b)		\
 	{return q_2d_##type(a.x * b.x, a.y * b.y);}				\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_divide(Q2D##Type a, Q2D##Type b)			\
+Q_INLINE Q2D##Type q_2d_##type##_divide(Q2D##Type a, Q2D##Type b)		\
 	{return q_2d_##type(a.x / b.x, a.y / b.y);}				\
 										\
 										\
-Q_INLINE									\
-q##type q_2d_##type##_dot_product(Q2D##Type a, Q2D##Type b)			\
+Q_INLINE q##type q_2d_##type##_dot_product(Q2D##Type a, Q2D##Type b)		\
 	{return a.x * b.x + a.y * b.y;}						\
 										\
 										\
-Q_INLINE /* Area of the parallelogram between two vectors (OA and OB) */	\
-q##type q_2d_##type##_cross_product(Q2D##Type a, Q2D##Type b)			\
+/* Area of the parallelogram between two vectors (OA and OB) */			\
+Q_INLINE q##type q_2d_##type##_cross_product(Q2D##Type a, Q2D##Type b)		\
 	{return a.x * b.y - a.y * b.x;}						\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_minimum(Q2D##Type a, Q2D##Type b)			\
+Q_INLINE Q2D##Type q_2d_##type##_minimum(Q2D##Type a, Q2D##Type b)		\
 	{									\
 	return q_2d_##type							\
 		(q_##type##_minimum(a.x, b.x), q_##type##_minimum(a.y, b.y));	\
 	}									\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_maximum(Q2D##Type a, Q2D##Type b)			\
+Q_INLINE Q2D##Type q_2d_##type##_maximum(Q2D##Type a, Q2D##Type b)		\
 	{									\
 	return q_2d_##type							\
 		(q_##type##_maximum(a.x, b.x), q_##type##_maximum(a.y, b.y));	\
 	}									\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_middle(Q2D##Type a, Q2D##Type b)			\
+Q_INLINE Q2D##Type q_2d_##type##_middle(Q2D##Type a, Q2D##Type b)		\
 	{									\
 	return q_2d_##type							\
 		((a.x + b.x) / (q##type)2, (a.y + b.y) / (q##type)2);		\
 	}									\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_fit(Q2D##Type a, Q2D##Type b)				\
+Q_INLINE Q2D##Type q_2d_##type##_fit(Q2D##Type a, Q2D##Type b)			\
 	{									\
 	return a.y / a.x > b.y / b.x						\
 		? q_2d_##type(a.x * b.y / a.y, b.y)				\
@@ -102,43 +90,35 @@ Q2D##Type q_2d_##type##_fit(Q2D##Type a, Q2D##Type b)				\
 	}									\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_from_scalar(q##type scalar)				\
+Q_INLINE Q2D##Type q_2d_##type##_from_scalar(q##type scalar)			\
 	{return q_2d_##type(scalar, scalar);}					\
 										\
 										\
-Q_INLINE									\
-qboolean q_2d_##type##_is_zero(Q2D##Type magnitude)				\
+Q_INLINE qboolean q_2d_##type##_is_zero(Q2D##Type magnitude)			\
 	{return magnitude.x == (q##type)0 && magnitude.y == (q##type)0;}	\
 										\
 										\
-Q_INLINE									\
-q##type q_2d_##type##_inner_sum(Q2D##Type magnitude)				\
+Q_INLINE q##type q_2d_##type##_inner_sum(Q2D##Type magnitude)			\
 	{return magnitude.x + magnitude.y;}					\
 										\
 										\
-Q_INLINE									\
-q##type q_2d_##type##_inner_product(Q2D##Type magnitude)			\
+Q_INLINE q##type q_2d_##type##_inner_product(Q2D##Type magnitude)		\
 	{return magnitude.x * magnitude.y;}					\
 										\
 										\
-Q_INLINE									\
-q##type q_2d_##type##_inner_minimum(Q2D##Type magnitude)			\
+Q_INLINE q##type q_2d_##type##_inner_minimum(Q2D##Type magnitude)		\
 	{return q_##type##_minimum(magnitude.x, magnitude.y);}			\
 										\
 										\
-Q_INLINE									\
-q##type q_2d_##type##_inner_maximum(Q2D##Type magnitude)			\
+Q_INLINE q##type q_2d_##type##_inner_maximum(Q2D##Type magnitude)		\
 	{return q_##type##_maximum(magnitude.x, magnitude.y);}			\
 										\
 										\
-Q_INLINE									\
-q##type q_2d_##type##_inner_middle(Q2D##Type magnitude)				\
+Q_INLINE q##type q_2d_##type##_inner_middle(Q2D##Type magnitude)		\
 	{return (magnitude.x + magnitude.y) / (q##type)2;}			\
 										\
 										\
-Q_INLINE									\
-q##type q_2d_##type##_squared_length(Q2D##Type magnitude)			\
+Q_INLINE q##type q_2d_##type##_squared_length(Q2D##Type magnitude)		\
 	{return magnitude.x * magnitude.x + magnitude.y * magnitude.y;}		\
 										\
 										\
@@ -162,8 +142,7 @@ Q2D##Type q_2d_##type##_divide_by_scalar(Q2D##Type magnitude, q##type scalar)	\
 	{return q_2d_##type(magnitude.x / scalar, magnitude.y / scalar);}	\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_clamp(							\
+Q_INLINE Q2D##Type q_2d_##type##_clamp(						\
 	Q2D##Type magnitude,							\
 	Q2D##Type minimum,							\
 	Q2D##Type maximum							\
@@ -175,8 +154,7 @@ Q2D##Type q_2d_##type##_clamp(							\
 	}									\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_square_clamp(						\
+Q_INLINE Q2D##Type q_2d_##type##_square_clamp(					\
 	Q2D##Type magnitude,							\
 	q##type	  minimum,							\
 	q##type	  maximum							\
@@ -188,98 +166,79 @@ Q2D##Type q_2d_##type##_square_clamp(						\
 	}									\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_yx(Q2D##Type magnitude)					\
+Q_INLINE Q2D##Type q_2d_##type##_yx(Q2D##Type magnitude)			\
 	{return q_2d_##type(magnitude.y, magnitude.x);}				\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_xy0(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_xy0(Q2D##Type magnitude)			\
 	{return q_3d_##type(magnitude.x, magnitude.y, (q##type)0);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_xy1(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_xy1(Q2D##Type magnitude)			\
 	{return q_3d_##type(magnitude.x, magnitude.y, (q##type)1);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_xyn(Q2D##Type magnitude, q##type n)			\
+Q_INLINE Q3D##Type q_2d_##type##_xyn(Q2D##Type magnitude, q##type n)		\
 	{return q_3d_##type(magnitude.x, magnitude.y, n);}			\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_x0y(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_x0y(Q2D##Type magnitude)			\
 	{return q_3d_##type(magnitude.x, (q##type)0, magnitude.y);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_x1y(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_x1y(Q2D##Type magnitude)			\
 	{return q_3d_##type(magnitude.x, (q##type)1, magnitude.y);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_xny(Q2D##Type magnitude, q##type n)			\
+Q_INLINE Q3D##Type q_2d_##type##_xny(Q2D##Type magnitude, q##type n)		\
 	{return q_3d_##type(magnitude.x, n, magnitude.y);}			\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_0xy(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_0xy(Q2D##Type magnitude)			\
 	{return q_3d_##type((q##type)0, magnitude.x, magnitude.y);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_1xy(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_1xy(Q2D##Type magnitude)			\
 	{return q_3d_##type((q##type)1, magnitude.x, magnitude.y);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_nxy(Q2D##Type magnitude, q##type n)			\
+Q_INLINE Q3D##Type q_2d_##type##_nxy(Q2D##Type magnitude, q##type n)		\
 	{return q_3d_##type(n, magnitude.x, magnitude.y);}			\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_yx0(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_yx0(Q2D##Type magnitude)			\
 	{return q_3d_##type(magnitude.y, magnitude.x, (q##type)0);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_yx1(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_yx1(Q2D##Type magnitude)			\
 	{return q_3d_##type(magnitude.y, magnitude.x, (q##type)1);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_yxn(Q2D##Type magnitude, q##type n)			\
+Q_INLINE Q3D##Type q_2d_##type##_yxn(Q2D##Type magnitude, q##type n)		\
 	{return q_3d_##type(magnitude.y, magnitude.x, n);}			\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_y0x(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_y0x(Q2D##Type magnitude)			\
 	{return q_3d_##type(magnitude.y, (q##type)0, magnitude.x);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_y1x(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_y1x(Q2D##Type magnitude)			\
 	{return q_3d_##type(magnitude.y, (q##type)1, magnitude.x);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_ynx(Q2D##Type magnitude, q##type n)			\
+Q_INLINE Q3D##Type q_2d_##type##_ynx(Q2D##Type magnitude, q##type n)		\
 	{return q_3d_##type(magnitude.y, n, magnitude.x);}			\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_0yx(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_0yx(Q2D##Type magnitude)			\
 	{return q_3d_##type((q##type)0, magnitude.y, magnitude.x);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_1yx(Q2D##Type magnitude)				\
+Q_INLINE Q3D##Type q_2d_##type##_1yx(Q2D##Type magnitude)			\
 	{return q_3d_##type((q##type)1, magnitude.y, magnitude.x);}		\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_2d_##type##_nyx(Q2D##Type magnitude, q##type n)			\
+Q_INLINE Q3D##Type q_2d_##type##_nyx(Q2D##Type magnitude, q##type n)		\
 	{return q_3d_##type(n, magnitude.y, magnitude.x);}
 
 
@@ -338,11 +297,11 @@ Q_IMPLEMENTATION_NATURAL_2D(LDouble, ldouble)
 #define q_2d_value_yx1(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _yx1		   )
 #define q_2d_value_yxn(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _yxn		   )
 #define q_2d_value_y0x(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _y0x		   )
-#define q_2d_value_y1x(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _y1x	   )
-#define q_2d_value_ynx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _ynx	   )
-#define q_2d_value_0yx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _0yx	   )
-#define q_2d_value_1yx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _1yx	   )
-#define q_2d_value_nyx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _nyx	   )
+#define q_2d_value_y1x(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _y1x		   )
+#define q_2d_value_ynx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _ynx		   )
+#define q_2d_value_0yx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _0yx		   )
+#define q_2d_value_1yx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _1yx		   )
+#define q_2d_value_nyx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _nyx		   )
 
 /* MARK: - Operations for integer and real types */
 
@@ -350,13 +309,11 @@ Q_IMPLEMENTATION_NATURAL_2D(LDouble, ldouble)
 #define Q_IMPLEMENTATION_INTEGER_2D(Type, type)			\
 								\
 								\
-Q_INLINE							\
-Q2D##Type q_2d_##type##_negative(Q2D##Type magnitude)		\
+Q_INLINE Q2D##Type q_2d_##type##_negative(Q2D##Type magnitude)	\
 	{return q_2d_##type(-magnitude.x, -magnitude.y);}	\
 								\
 								\
-Q_INLINE							\
-Q2D##Type q_2d_##type##_absolute(Q2D##Type magnitude)		\
+Q_INLINE Q2D##Type q_2d_##type##_absolute(Q2D##Type magnitude)	\
 	{							\
 	return q_2d_##type					\
 		(q_##type##_absolute(magnitude.x),		\
@@ -382,24 +339,21 @@ Q_IMPLEMENTATION_INTEGER_2D(LDouble, ldouble)
 #define Q_IMPLEMENTATION_REAL_2D(Type, type, _, epsilon)			\
 										\
 										\
-Q_INLINE									\
-qboolean q_2d_##type##_are_almost_equal(Q2D##Type a, Q2D##Type b)		\
+Q_INLINE qboolean q_2d_##type##_are_almost_equal(Q2D##Type a, Q2D##Type b)	\
 	{									\
 	return	q_##type##_are_almost_equal(a.x, b.x) &&			\
 		q_##type##_are_almost_equal(a.y, b.y);				\
 	}									\
 										\
 										\
-Q_INLINE									\
-qboolean q_2d_##type##_are_perpendicular(Q2D##Type a, Q2D##Type b)		\
+Q_INLINE qboolean q_2d_##type##_are_perpendicular(Q2D##Type a, Q2D##Type b)	\
 	{									\
 	return	q_##type##_absolute(q_2d_##type##_dot_product(a, b))		\
 		<= epsilon;							\
 	}									\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type alpha)		\
+Q_INLINE Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type alpha)	\
 	{									\
 	return q_2d_##type							\
 		(q_##type##_lerp(a.x, b.x, alpha),				\
@@ -407,37 +361,32 @@ Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type alpha)		\
 	}									\
 										\
 										\
-Q_INLINE									\
-qboolean q_2d_##type##_is_near_zero(Q2D##Type magnitude)			\
+Q_INLINE qboolean q_2d_##type##_is_near_zero(Q2D##Type magnitude)		\
 	{									\
 	return	q_##type##_is_near_zero(magnitude.x) &&				\
 		q_##type##_is_near_zero(magnitude.y);				\
 	}									\
 										\
 										\
-Q_INLINE									\
-qboolean q_2d_##type##_is_nan(Q2D##Type magnitude)				\
+Q_INLINE qboolean q_2d_##type##_is_nan(Q2D##Type magnitude)			\
 	{									\
 	return	!(magnitude.x == magnitude.x) &&				\
 		!(magnitude.y == magnitude.y);					\
 	}									\
 										\
 										\
-Q_INLINE									\
-qboolean q_2d_##type##_has_nan(Q2D##Type magnitude)				\
+Q_INLINE qboolean q_2d_##type##_has_nan(Q2D##Type magnitude)			\
 	{									\
 	return	!(magnitude.x == magnitude.x) ||				\
 		!(magnitude.y == magnitude.y);					\
 	}									\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_reciprocal(Q2D##Type magnitude)				\
+Q_INLINE Q2D##Type q_2d_##type##_reciprocal(Q2D##Type magnitude)		\
 	{return q_2d_##type(_(1.0) / magnitude.x, _(1.0) / magnitude.y);}	\
 										\
 										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_square_clamp_01(Q2D##Type magnitude)			\
+Q_INLINE Q2D##Type q_2d_##type##_square_clamp_01(Q2D##Type magnitude)		\
 	{									\
 	return q_2d_##type							\
 		(q_##type##_clamp_01(magnitude.x),				\

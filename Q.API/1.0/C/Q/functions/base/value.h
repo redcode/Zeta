@@ -16,14 +16,12 @@ Released under the terms of the GNU General Public License v3. */
 /* MARK: - Reversion */
 
 
-#define Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(bits, level)		\
-									\
-Q_INLINE								\
-quint##bits q_uint##bits##_reversed_in_##level##bit(quint##bits value)	\
-	{return Q_##bits##BIT_REVERSED_IN_##level##BIT(value);}		\
-									\
-Q_INLINE								\
-qint##bits q_int##bits##_reversed_in_##level##bit(qint##bits value)	\
+#define Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(bits, level)			\
+										\
+Q_INLINE quint##bits q_uint##bits##_reversed_in_##level##bit(quint##bits value)	\
+	{return Q_##bits##BIT_REVERSED_IN_##level##BIT(value);}			\
+										\
+Q_INLINE qint##bits q_int##bits##_reversed_in_##level##bit(qint##bits value)	\
 	{return Q_##bits##BIT_REVERSED_IN_##level##BIT(value);}
 
 
@@ -61,23 +59,19 @@ Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64, 32)
 /* MARK: - Rotation */
 
 
-#define Q_IMPLEMENTATION_VALUE_ROTATED(bits)				\
-									\
-Q_INLINE								\
-void q_uint##bits##_rotated_left(quint##bits *value, quint rotation)	\
-	{Q_##bits##BIT_ROTATE_LEFT(*value, rotation);}			\
-									\
-Q_INLINE								\
-void q_uint##bits##_rotated_right(quint##bits *value, quint rotation)	\
-	{Q_##bits##BIT_ROTATE_RIGHT(*value, rotation);}			\
-									\
-Q_INLINE								\
-void q_int##bits##_rotated_left(qint##bits *value, quint rotation)	\
-	{Q_##bits##BIT_ROTATE_LEFT(*value, rotation);}			\
-									\
-Q_INLINE								\
-void q_int##bits##_rotated_right(qint##bits *value, quint rotation)	\
-	{Q_##bits##BIT_ROTATE_RIGHT(*value, rotation);}			\
+#define Q_IMPLEMENTATION_VALUE_ROTATED(bits)					\
+										\
+Q_INLINE void q_uint##bits##_rotated_left(quint##bits *value, quint rotation)	\
+	{Q_##bits##BIT_ROTATE_LEFT(*value, rotation);}				\
+										\
+Q_INLINE void q_uint##bits##_rotated_right(quint##bits *value, quint rotation)	\
+	{Q_##bits##BIT_ROTATE_RIGHT(*value, rotation);}				\
+										\
+Q_INLINE void q_int##bits##_rotated_left(qint##bits *value, quint rotation)	\
+	{Q_##bits##BIT_ROTATE_LEFT(*value, rotation);}				\
+										\
+Q_INLINE void q_int##bits##_rotated_right(qint##bits *value, quint rotation)	\
+	{Q_##bits##BIT_ROTATE_RIGHT(*value, rotation);}				\
 
 
 Q_IMPLEMENTATION_VALUE_ROTATED( 8)
@@ -89,10 +83,9 @@ Q_IMPLEMENTATION_VALUE_ROTATED(64)
 /* MARK: - Endianness */
 
 
-#define Q_IMPLEMENTATION_VALUE_ENDIAN(type, TYPE, endianness)	\
-								\
-Q_INLINE							\
-q##type q_##type##_##endianness##_endian(q##type value)		\
+#define Q_IMPLEMENTATION_VALUE_ENDIAN(type, TYPE, endianness)	 \
+								 \
+Q_INLINE q##type q_##type##_##endianness##_endian(q##type value) \
 	{return Q_REVERSED(TYPE)(value);}
 
 
@@ -179,8 +172,7 @@ q##type q_##type##_##endianness##_endian(q##type value)		\
 /* MARK: - Binary codified decimal */
 
 
-Q_INLINE
-quint32 q_uint32_to_bcd(quint32 value)
+Q_INLINE quint32 q_uint32_to_bcd(quint32 value)
 	{
 	quint32 result = 0;
 	quint	shift  = 0;
@@ -192,8 +184,7 @@ quint32 q_uint32_to_bcd(quint32 value)
 	}
 
 
-Q_INLINE
-quint32 q_bcd_to_uint32(quint32 value)
+Q_INLINE quint32 q_bcd_to_uint32(quint32 value)
 	{
 	quint32 result = 0;
 	quint32 scale  = 1;
@@ -211,8 +202,7 @@ quint32 q_bcd_to_uint32(quint32 value)
 #define Q_IMPLEMENTATION_NATURAL_VALUE(type)					\
 										\
 										\
-Q_INLINE									\
-void q_##type##_swap(void *a, void *b)						\
+Q_INLINE void q_##type##_swap(void *a, void *b)					\
 	{									\
 	q##type t = *(q##type *)a;						\
 										\
@@ -221,13 +211,11 @@ void q_##type##_swap(void *a, void *b)						\
 	}									\
 										\
 										\
-Q_INLINE									\
-q##type q_##type##_minimum(q##type a, q##type b)				\
+Q_INLINE q##type q_##type##_minimum(q##type a, q##type b)			\
 	{return Q_MINIMUM(a, b);}						\
 										\
 										\
-Q_INLINE									\
-q##type q_##type##_maximum(q##type a, q##type b)				\
+Q_INLINE q##type q_##type##_maximum(q##type a, q##type b)			\
 	{return Q_MAXIMUM(a, b);}						\
 										\
 										\
@@ -260,16 +248,12 @@ Q_IMPLEMENTATION_NATURAL_VALUE(ldouble)
 /* MARK: - Operations for integer and real types */
 
 
-#define Q_IMPLEMENTATION_INTEGER_VALUE(type)				\
-									\
-									\
-Q_INLINE								\
-q##type q_##type##_absolute(q##type value)				\
-	{return value < (q##type)0 ? -value : value;}			\
-									\
-									\
-Q_INLINE								\
-q##type q_##type##_sign(q##type value)					\
+#define Q_IMPLEMENTATION_INTEGER_VALUE(type)			 \
+								 \
+Q_INLINE q##type q_##type##_absolute(q##type value)		 \
+	{return value < (q##type)0 ? -value : value;}		 \
+								 \
+Q_INLINE q##type q_##type##_sign(q##type value)			 \
 	{return value >= (q##type)0 ? (q##type)1 : -(q##type)1;}
 
 
@@ -292,18 +276,15 @@ Q_IMPLEMENTATION_INTEGER_VALUE(ldouble)
 #define Q_IMPLEMENTATION_REAL_VALUE(type, _, epsilon)				\
 										\
 										\
-Q_INLINE									\
-qboolean q_##type##_are_almost_equal(q##type a, q##type b)			\
+Q_INLINE qboolean q_##type##_are_almost_equal(q##type a, q##type b)		\
 	{return q_##type##_absolute(a - b) <= epsilon;}				\
 										\
 										\
-Q_INLINE									\
-q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)			\
+Q_INLINE q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)		\
 	{return a + alpha * (b - a);}						\
 										\
 										\
-Q_INLINE									\
-q##type q_##type##_smoothstep(q##type a, q##type b, q##type alpha)		\
+Q_INLINE q##type q_##type##_smoothstep(q##type a, q##type b, q##type alpha)	\
 	{									\
 	if (alpha <= a) return _(0.0);						\
 	if (alpha >= b) return _(1.0);						\
@@ -312,8 +293,7 @@ q##type q_##type##_smoothstep(q##type a, q##type b, q##type alpha)		\
 	}									\
 										\
 										\
-Q_INLINE									\
-q##type q_##type##_smootherstep(q##type a, q##type b, q##type alpha)		\
+Q_INLINE q##type q_##type##_smootherstep(q##type a, q##type b, q##type alpha)	\
 	{									\
 	if (alpha <= a) return 0;						\
 	if (alpha >= b) return 1;						\
@@ -324,18 +304,15 @@ q##type q_##type##_smootherstep(q##type a, q##type b, q##type alpha)		\
 	}									\
 										\
 										\
-Q_INLINE									\
-qboolean q_##type##_is_nan(q##type value)					\
+Q_INLINE qboolean q_##type##_is_nan(q##type value)				\
 	{return !(value == value);}						\
 										\
 										\
-Q_INLINE									\
-qboolean q_##type##_is_near_zero(q##type value)					\
+Q_INLINE qboolean q_##type##_is_near_zero(q##type value)			\
 	{return q_##type##_absolute(value) <= epsilon;}				\
 										\
 										\
-Q_INLINE									\
-q##type q_##type##_clamp_01(q##type value)					\
+Q_INLINE q##type q_##type##_clamp_01(q##type value)				\
 	{return q_##type##_minimum(q_##type##_maximum(value, _(0.0)), _(1.0));}
 
 

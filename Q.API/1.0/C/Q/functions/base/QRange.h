@@ -13,13 +13,11 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/functions/base/value.h>
 
 
-Q_INLINE
-qboolean q_range_are_equal(QRange a, QRange b)
+Q_INLINE qboolean q_range_are_equal(QRange a, QRange b)
 	{return a.index == b.index && a.size == b.size;}
 
 
-Q_INLINE
-void q_range_swap(QRange *a, QRange *b)
+Q_INLINE void q_range_swap(QRange *a, QRange *b)
 	{
 	QRange t = *a;
 
@@ -27,18 +25,15 @@ void q_range_swap(QRange *a, QRange *b)
 	}
 
 
-Q_INLINE
-qboolean q_range_contains(QRange a, QRange b)
+Q_INLINE qboolean q_range_contains(QRange a, QRange b)
 	{return b.index >= a.index && b.index + b.size <= a.index + a.size;}
 
 
-Q_INLINE
-qboolean q_range_collision(QRange a, QRange b)
+Q_INLINE qboolean q_range_collision(QRange a, QRange b)
 	{return a.index < b.index + b.size && b.index < a.index + a.size;}
 
 
-Q_INLINE
-QRange q_range_intersection(QRange a, QRange b)
+Q_INLINE QRange q_range_intersection(QRange a, QRange b)
 	{
 	qsize	minimum = q_size_minimum(a.index + a.size, b.index + b.size),
 		index	= (a.index > b.index) ? a.index : b.index;
@@ -47,8 +42,7 @@ QRange q_range_intersection(QRange a, QRange b)
 	}
 
 
-Q_INLINE
-QRange q_range_union(QRange a, QRange b)
+Q_INLINE QRange q_range_union(QRange a, QRange b)
 	{
 	qsize	a_maximum = a.index + a.size,
 		b_maximum = b.index + b.size,
@@ -60,23 +54,19 @@ QRange q_range_union(QRange a, QRange b)
 	}
 
 
-Q_INLINE
-QRange q_range_from_indices(qsize a, qsize b)
+Q_INLINE QRange q_range_from_indices(qsize a, qsize b)
 	{return a < b ? q_range(a, b - a) : q_range(b, a - b);}
 
 
-Q_INLINE
-qboolean q_range_is_zero(QRange range)
+Q_INLINE qboolean q_range_is_zero(QRange range)
 	{return range.index == 0 && range.size == 0;}
 
 
-Q_INLINE
-qsize q_range_end(QRange range)
+Q_INLINE qsize q_range_end(QRange range)
 	{return range.index + range.size;}
 
 
-Q_INLINE
-qboolean q_range_contains_index(QRange range, qsize index)
+Q_INLINE qboolean q_range_contains_index(QRange range, qsize index)
 	{return index >= range.index && index < range.index + range.size;}
 
 
