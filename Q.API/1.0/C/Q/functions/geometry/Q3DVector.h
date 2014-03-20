@@ -12,54 +12,45 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/functions/geometry/constructors.h>
 #include <Q/functions/base/Q3D.h>
 
-#ifndef Q_3D_VECTOR_EXPORT
-#	define Q_3D_VECTOR_EXPORT Q_INLINE
-#endif
 
-
-#define Q_IMPLEMENTATION_3D_VECTOR(Type, type)				\
-									\
-									\
-Q_3D_VECTOR_EXPORT							\
-qboolean q_3d_##type##_vector_are_equal(				\
-	Q3D##Type##Vector a,						\
-	Q3D##Type##Vector b						\
-)									\
-	{								\
-	return	q_3d_##type##_are_equal(a.a, b.a) &&			\
-		q_3d_##type##_are_equal(a.b, b.b);			\
-	}								\
-									\
-									\
-Q_3D_VECTOR_EXPORT							\
-qboolean q_3d_##type##_vector_are_perpendicular(			\
-	Q3D##Type##Vector a,						\
-	Q3D##Type##Vector b						\
-)									\
-	{								\
-	return q_3d_##type##_are_perpendicular				\
-		(q_3d_##type##_subtract(a.b, a.a),			\
-		 q_3d_##type##_subtract(b.b, b.a));			\
-	}								\
-									\
-									\
-Q_3D_VECTOR_EXPORT							\
-qboolean q_3d_##type##_vector_is_zero(Q3D##Type##Vector vector)		\
-	{								\
-	return	q_3d_##type##_is_zero(vector.a) &&			\
-		q_3d_##type##_is_zero(vector.b);			\
-	}								\
-									\
-									\
-Q_3D_VECTOR_EXPORT							\
-Q3D##Type##Vector q_3d_##type##_vector_reversed(			\
-	Q3D##Type##Vector vector					\
-)									\
-	{								\
-	return q_3d_##type##_vector					\
-		(vector.b.x, vector.b.y, vector.b.z,			\
-		 vector.a.x, vector.a.y, vector.a.z);			\
-	}								\
+#define Q_IMPLEMENTATION_3D_VECTOR(Type, type)					\
+										\
+										\
+Q_INLINE qboolean q_3d_##type##_vector_are_equal(				\
+	Q3D##Type##Vector a,							\
+	Q3D##Type##Vector b							\
+)										\
+	{									\
+	return	q_3d_##type##_are_equal(a.a, b.a) &&				\
+		q_3d_##type##_are_equal(a.b, b.b);				\
+	}									\
+										\
+										\
+Q_INLINE qboolean q_3d_##type##_vector_are_perpendicular(			\
+	Q3D##Type##Vector a,							\
+	Q3D##Type##Vector b							\
+)										\
+	{									\
+	return q_3d_##type##_are_perpendicular					\
+		(q_3d_##type##_subtract(a.b, a.a),				\
+		 q_3d_##type##_subtract(b.b, b.a));				\
+	}									\
+										\
+										\
+Q_INLINE qboolean q_3d_##type##_vector_is_zero(Q3D##Type##Vector vector)	\
+	{									\
+	return	q_3d_##type##_is_zero(vector.a) &&				\
+		q_3d_##type##_is_zero(vector.b);				\
+	}									\
+										\
+										\
+Q_INLINE									\
+Q3D##Type##Vector q_3d_##type##_vector_reversed(Q3D##Type##Vector vector)	\
+	{									\
+	return q_3d_##type##_vector						\
+		(vector.b.x, vector.b.y, vector.b.z,				\
+		 vector.a.x, vector.a.y, vector.a.z);				\
+	}									\
 
 
 Q_IMPLEMENTATION_3D_VECTOR(Float,   float  )

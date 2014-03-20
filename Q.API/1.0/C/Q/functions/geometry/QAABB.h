@@ -27,24 +27,18 @@ Released under the terms of the GNU General Public License v3. */
 #define q_aabb_is_zero			q_3d_line_is_zero
 #define q_aabb_center			q_3d_line_segment_center
 
-#ifndef Q_AABB_EXPORT
-#	define Q_AABB_EXPORT Q_INLINE
-#endif
-
 
 #define Q_IMPLEMENTATION_AABB(Type, type, _)					\
 										\
 										\
-Q_AABB_EXPORT									\
-qboolean q_##type##_aabb_contains(Q##Type##AABB a, Q##Type##AABB b)		\
+Q_INLINE qboolean q_##type##_aabb_contains(Q##Type##AABB a, Q##Type##AABB b)	\
 	{									\
 	return	b.a.x >= a.a.x && b.a.y >= a.a.y && b.a.z >= a.a.z &&		\
 		b.b.x <= a.b.x && b.b.y <= a.b.y && b.b.z <= a.b.z;		\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
-qboolean q_##type##_aabb_collision(Q##Type##AABB a, Q##Type##AABB b)		\
+Q_INLINE qboolean q_##type##_aabb_collision(Q##Type##AABB a, Q##Type##AABB b)	\
 	{									\
 	return	a.a.x < b.b.x && b.a.x < a.b.x &&				\
 		a.a.y < b.b.y && b.a.y < a.b.y &&				\
@@ -52,7 +46,7 @@ qboolean q_##type##_aabb_collision(Q##Type##AABB a, Q##Type##AABB b)		\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
+Q_INLINE									\
 Q##Type##AABB q_##type##_aabb_intersection(Q##Type##AABB a, Q##Type##AABB b)	\
 	{									\
 	q##type x1, x2, y1, y2, z1, z2;						\
@@ -69,8 +63,7 @@ Q##Type##AABB q_##type##_aabb_intersection(Q##Type##AABB a, Q##Type##AABB b)	\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
-Q##Type##AABB q_##type##_aabb_union(Q##Type##AABB a, Q##Type##AABB b)		\
+Q_INLINE Q##Type##AABB q_##type##_aabb_union(Q##Type##AABB a, Q##Type##AABB b)	\
 	{									\
 	Q##Type##AABB result;							\
 										\
@@ -81,8 +74,7 @@ Q##Type##AABB q_##type##_aabb_union(Q##Type##AABB a, Q##Type##AABB b)		\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
-Q##Type##AABB q_##type##_aabb_from_vertices(Q3D##Type a, Q3D##Type b)		\
+Q_INLINE Q##Type##AABB q_##type##_aabb_from_vertices(Q3D##Type a, Q3D##Type b)	\
 	{									\
 	Q##Type##AABB result;							\
 										\
@@ -93,21 +85,18 @@ Q##Type##AABB q_##type##_aabb_from_vertices(Q3D##Type a, Q3D##Type b)		\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
-Q3D##Type q_##type##_aabb_size(Q##Type##AABB aabb)				\
+Q_INLINE Q3D##Type q_##type##_aabb_size(Q##Type##AABB aabb)			\
 	{return q_3d_##type##_subtract(aabb.b, aabb.a);}			\
 										\
 										\
-Q_AABB_EXPORT									\
-q##type q_##type##_aabb_volume(Q##Type##AABB aabb)				\
+Q_INLINE q##type q_##type##_aabb_volume(Q##Type##AABB aabb)			\
 	{									\
 	return q_3d_##type##_inner_product					\
 		(q_3d_##type##_subtract(aabb.b, aabb.a));			\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
-Q##Type##Sphere q_##type##_aabb_inner_sphere(Q##Type##AABB aabb)		\
+Q_INLINE Q##Type##Sphere q_##type##_aabb_inner_sphere(Q##Type##AABB aabb)	\
 	{									\
 	Q##Type##Sphere result;							\
 										\
@@ -123,8 +112,7 @@ Q##Type##Sphere q_##type##_aabb_inner_sphere(Q##Type##AABB aabb)		\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
-Q##Type##Box q_##type##_aabb_to_box(Q##Type##AABB aabb)				\
+Q_INLINE Q##Type##Box q_##type##_aabb_to_box(Q##Type##AABB aabb)		\
 	{									\
 	return q_##type##_box							\
 		(aabb.a.x,  aabb.a.y, aabb.a.z,					\
@@ -134,10 +122,9 @@ Q##Type##Box q_##type##_aabb_to_box(Q##Type##AABB aabb)				\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
-Q3D##Type q_##type##_aabb_absolute_point_to_normal(				\
-	Q##Type##AABB	aabb,							\
-	Q3D##Type	point							\
+Q_INLINE Q3D##Type q_##type##_aabb_absolute_point_to_normal(			\
+	Q##Type##AABB aabb,							\
+	Q3D##Type     point							\
 										\
 )										\
 	{									\
@@ -148,10 +135,9 @@ Q3D##Type q_##type##_aabb_absolute_point_to_normal(				\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
-Q3D##Type q_##type##_aabb_normal_point_to_absolute(				\
-	Q##Type##AABB	aabb,							\
-	Q3D##Type	point							\
+Q_INLINE Q3D##Type q_##type##_aabb_normal_point_to_absolute(			\
+	Q##Type##AABB aabb,							\
+	Q3D##Type     point							\
 										\
 )										\
 	{									\
@@ -162,7 +148,7 @@ Q3D##Type q_##type##_aabb_normal_point_to_absolute(				\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
+Q_INLINE									\
 qboolean q_##type##_aabb_contains_point(Q##Type##AABB aabb, Q3D##Type point)	\
 	{									\
 	return	aabb.a.x <= point.x && point.x <= aabb.a.x &&			\
@@ -171,8 +157,7 @@ qboolean q_##type##_aabb_contains_point(Q##Type##AABB aabb, Q3D##Type point)	\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
-qboolean q_##type##_aabb_contains_line_segment(					\
+Q_INLINE qboolean q_##type##_aabb_contains_line_segment(			\
 	Q##Type##AABB	aabb,							\
 	Q3D##Type##Line segment							\
 )										\
@@ -182,7 +167,7 @@ qboolean q_##type##_aabb_contains_line_segment(					\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
+Q_INLINE									\
 qboolean q_##type##_aabb_contains_box(Q##Type##AABB aabb, Q##Type##Box box)	\
 	{									\
 	return	aabb.a.x <= box.point.x		     &&				\
@@ -194,8 +179,7 @@ qboolean q_##type##_aabb_contains_box(Q##Type##AABB aabb, Q##Type##Box box)	\
 	}									\
 										\
 										\
-Q_AABB_EXPORT									\
-qboolean q_##type##_aabb_contains_sphere(					\
+Q_INLINE qboolean q_##type##_aabb_contains_sphere(				\
 	Q##Type##AABB	aabb,							\
 	Q##Type##Sphere sphere							\
 )										\

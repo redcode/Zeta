@@ -13,15 +13,11 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/functions/base/Q2D.h>
 #include <Q/constants/numbers.h>
 
-#ifndef Q_CIRCLE_EXPORT
-#	define Q_CIRCLE_EXPORT Q_INLINE
-#endif
-
 
 #define Q_IMPLEMENTATION_CIRCLE(Type, type, _, suffix)				\
 										\
 										\
-Q_CIRCLE_EXPORT									\
+Q_INLINE									\
 qboolean q_##type##_circle_are_equal(Q##Type##Circle a, Q##Type##Circle b)	\
 	{									\
 	return	a.radius == b.radius &&						\
@@ -29,7 +25,7 @@ qboolean q_##type##_circle_are_equal(Q##Type##Circle a, Q##Type##Circle b)	\
 	}									\
 										\
 										\
-Q_CIRCLE_EXPORT									\
+Q_INLINE									\
 Q##Type##Rectangle q_##type##_circle_inner_rectangle(Q##Type##Circle circle)	\
 	{									\
 	q##type half_size = circle.radius / Q_JOIN_2(Q_SQUARE_ROOT_2, suffix);	\
@@ -42,7 +38,7 @@ Q##Type##Rectangle q_##type##_circle_inner_rectangle(Q##Type##Circle circle)	\
 	}									\
 										\
 										\
-Q_CIRCLE_EXPORT									\
+Q_INLINE									\
 Q##Type##Rectangle q_##type##_circle_outer_rectangle(Q##Type##Circle circle)	\
 	{									\
 	q##type size = circle.radius * _(2.0);					\
@@ -54,8 +50,7 @@ Q##Type##Rectangle q_##type##_circle_outer_rectangle(Q##Type##Circle circle)	\
 	}									\
 										\
 										\
-Q_CIRCLE_EXPORT									\
-qboolean q_##type##_circle_is_zero(Q##Type##Circle circle)			\
+Q_INLINE qboolean q_##type##_circle_is_zero(Q##Type##Circle circle)		\
 	{									\
 	return	circle.radius == _(0.0) &&					\
 		q_2d_##type##_is_zero(circle.point);				\

@@ -31,20 +31,16 @@ Released under the terms of the GNU General Public License v3. */
 #define q_3d_line_is_zero			q_3d_vector_is_zero
 #define q_3d_line_reversed			q_3d_vector_reversed
 
-#ifndef Q_3D_LINE_EXPORT
-#	define Q_3D_LINE_EXPORT Q_INLINE
-#endif
 
 #define Q_IMPLEMENTATION_3D_LINE(Type, type, _)				\
 									\
 									\
-Q_3D_LINE_EXPORT							\
+Q_INLINE								\
 Q3D##Type q_3d_##type##_line_segment_center(Q3D##Type##Line segment)	\
 	{return q_3d_##type##_middle(segment.a, segment.b);}		\
 									\
 									\
-Q_3D_LINE_EXPORT							\
-Q3D##Type q_3d_##type##_line_segment_lerp(				\
+Q_INLINE Q3D##Type q_3d_##type##_line_segment_lerp(			\
 	Q3D##Type##Line	segment,					\
 	q##type		alpha						\
 )									\

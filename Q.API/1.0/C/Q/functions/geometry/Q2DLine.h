@@ -31,16 +31,11 @@ Released under the terms of the GNU General Public License v3. */
 #define q_2d_line_is_zero			q_2d_vector_is_zero
 #define q_2d_line_reversed			q_2d_vector_reversed
 
-#ifndef Q_2D_LINE_EXPORT
-#	define Q_2D_LINE_EXPORT Q_INLINE
-#endif
-
 
 #define Q_IMPLEMENTATION_2D_LINE(Type, type, _)					\
 										\
 										\
-Q_2D_LINE_EXPORT								\
-qboolean q_2d_##type##_line_segment_collision(					\
+Q_INLINE qboolean q_2d_##type##_line_segment_collision(				\
 	Q2D##Type##Line a,							\
 	Q2D##Type##Line b							\
 )										\
@@ -57,13 +52,11 @@ qboolean q_2d_##type##_line_segment_collision(					\
 	}									\
 										\
 										\
-Q_2D_LINE_EXPORT								\
-Q2D##Type q_2d_##type##_line_segment_center(Q2D##Type##Line segment)		\
+Q_INLINE Q2D##Type q_2d_##type##_line_segment_center(Q2D##Type##Line segment)	\
 	{return q_2d_##type##_middle(segment.a, segment.b);}			\
 										\
 										\
-Q_2D_LINE_EXPORT								\
-Q2D##Type q_2d_##type##_line_segment_lerp(					\
+Q_INLINE Q2D##Type q_2d_##type##_line_segment_lerp(				\
 	Q2D##Type##Line	segment,						\
 	q##type		alpha							\
 )										\

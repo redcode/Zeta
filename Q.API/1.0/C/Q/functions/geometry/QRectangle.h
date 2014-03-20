@@ -12,16 +12,11 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/functions/geometry/constructors.h>
 #include <Q/functions/base/Q2D.h>
 
-#ifndef Q_RECTANGLE_EXPORT
-#	define Q_RECTANGLE_EXPORT Q_INLINE
-#endif
-
 
 #define Q_IMPLEMENTATION_RECTANGLE(Type, type, _)				\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-qboolean q_##type##_rectangle_are_equal(					\
+Q_INLINE qboolean q_##type##_rectangle_are_equal(				\
 	Q##Type##Rectangle a,							\
 	Q##Type##Rectangle b							\
 )										\
@@ -31,8 +26,7 @@ qboolean q_##type##_rectangle_are_equal(					\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-qboolean q_##type##_rectangle_contains(						\
+Q_INLINE qboolean q_##type##_rectangle_contains(				\
 	Q##Type##Rectangle a,							\
 	Q##Type##Rectangle b							\
 )										\
@@ -44,8 +38,7 @@ qboolean q_##type##_rectangle_contains(						\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-qboolean q_##type##_rectangle_collision(					\
+Q_INLINE qboolean q_##type##_rectangle_collision(				\
 	Q##Type##Rectangle a,							\
 	Q##Type##Rectangle b							\
 )										\
@@ -57,8 +50,7 @@ qboolean q_##type##_rectangle_collision(					\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_intersection(				\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_intersection(			\
 	Q##Type##Rectangle a,							\
 	Q##Type##Rectangle b							\
 )										\
@@ -77,8 +69,7 @@ Q##Type##Rectangle q_##type##_rectangle_intersection(				\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_union(					\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_union(				\
 	Q##Type##Rectangle a,							\
 	Q##Type##Rectangle b							\
 )										\
@@ -99,7 +90,7 @@ Q##Type##Rectangle q_##type##_rectangle_union(					\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
+Q_INLINE									\
 Q##Type##Rectangle q_##type##_rectangle_from_vertices(Q2D##Type a, Q2D##Type b)	\
 	{									\
 	Q2D##Type minimum = q_2d_##type##_minimum(a, b);			\
@@ -111,46 +102,38 @@ Q##Type##Rectangle q_##type##_rectangle_from_vertices(Q2D##Type a, Q2D##Type b)	
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-qboolean q_##type##_rectangle_is_zero(Q##Type##Rectangle rectangle)		\
+Q_INLINE qboolean q_##type##_rectangle_is_zero(Q##Type##Rectangle rectangle)	\
 	{									\
 	return	q_2d_##type##_is_zero(rectangle.point) &&			\
 		q_2d_##type##_is_zero(rectangle.size);				\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-q##type q_##type##_rectangle_minimum_x(Q##Type##Rectangle rectangle)		\
+Q_INLINE q##type q_##type##_rectangle_minimum_x(Q##Type##Rectangle rectangle)	\
 	{return rectangle.point.x;}						\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-q##type q_##type##_rectangle_minimum_y(Q##Type##Rectangle rectangle)		\
+Q_INLINE q##type q_##type##_rectangle_minimum_y(Q##Type##Rectangle rectangle)	\
 	{return rectangle.point.y;}						\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-q##type q_##type##_rectangle_maximum_x(Q##Type##Rectangle rectangle)		\
+Q_INLINE q##type q_##type##_rectangle_maximum_x(Q##Type##Rectangle rectangle)	\
 	{return rectangle.point.x + rectangle.size.x;}				\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-q##type q_##type##_rectangle_maximum_y(Q##Type##Rectangle rectangle)		\
+Q_INLINE q##type q_##type##_rectangle_maximum_y(Q##Type##Rectangle rectangle)	\
 	{return rectangle.point.y + rectangle.size.y;}				\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-q##type q_##type##_rectangle_middle_x(Q##Type##Rectangle rectangle)		\
+Q_INLINE q##type q_##type##_rectangle_middle_x(Q##Type##Rectangle rectangle)	\
 	{return rectangle.point.x + rectangle.size.x / _(2.0);}			\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-q##type q_##type##_rectangle_middle_y(Q##Type##Rectangle rectangle)		\
+Q_INLINE q##type q_##type##_rectangle_middle_y(Q##Type##Rectangle rectangle)	\
 	{return rectangle.point.y + rectangle.size.y / _(2.0);}			\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q2D##Type q_##type##_rectangle_top_left(Q##Type##Rectangle rectangle)		\
+Q_INLINE Q2D##Type q_##type##_rectangle_top_left(Q##Type##Rectangle rectangle)	\
 	{									\
 	return q_2d_##type							\
 		(rectangle.point.x,						\
@@ -158,8 +141,7 @@ Q2D##Type q_##type##_rectangle_top_left(Q##Type##Rectangle rectangle)		\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q2D##Type q_##type##_rectangle_top_right(Q##Type##Rectangle rectangle)		\
+Q_INLINE Q2D##Type q_##type##_rectangle_top_right(Q##Type##Rectangle rectangle)	\
 	{									\
 	return q_2d_##type							\
 		(rectangle.point.x + rectangle.size.x,				\
@@ -167,7 +149,7 @@ Q2D##Type q_##type##_rectangle_top_right(Q##Type##Rectangle rectangle)		\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_##type##_rectangle_top_center(Q##Type##Rectangle rectangle)		\
 	{									\
 	return q_2d_##type							\
@@ -176,12 +158,12 @@ Q2D##Type q_##type##_rectangle_top_center(Q##Type##Rectangle rectangle)		\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_##type##_rectangle_bottom_left(Q##Type##Rectangle rectangle)	\
 	{return rectangle.point;}						\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_##type##_rectangle_bottom_right(Q##Type##Rectangle rectangle)	\
 	{									\
 	return q_2d_##type							\
@@ -190,7 +172,7 @@ Q2D##Type q_##type##_rectangle_bottom_right(Q##Type##Rectangle rectangle)	\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_##type##_rectangle_bottom_center(Q##Type##Rectangle rectangle)	\
 	{									\
 	return q_2d_##type							\
@@ -199,7 +181,7 @@ Q2D##Type q_##type##_rectangle_bottom_center(Q##Type##Rectangle rectangle)	\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_##type##_rectangle_center_left(Q##Type##Rectangle rectangle)	\
 	{									\
 	return q_2d_##type							\
@@ -208,7 +190,7 @@ Q2D##Type q_##type##_rectangle_center_left(Q##Type##Rectangle rectangle)	\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_##type##_rectangle_center_right(Q##Type##Rectangle rectangle)	\
 	{									\
 	return q_2d_##type							\
@@ -217,8 +199,7 @@ Q2D##Type q_##type##_rectangle_center_right(Q##Type##Rectangle rectangle)	\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q2D##Type q_##type##_rectangle_center(Q##Type##Rectangle rectangle)		\
+Q_INLINE Q2D##Type q_##type##_rectangle_center(Q##Type##Rectangle rectangle)	\
 	{									\
 	return q_2d_##type							\
 		(rectangle.point.x + rectangle.size.x / _(2.0),			\
@@ -226,8 +207,7 @@ Q2D##Type q_##type##_rectangle_center(Q##Type##Rectangle rectangle)		\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_top_half(				\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_top_half(			\
 	Q##Type##Rectangle rectangle						\
 )										\
 	{									\
@@ -236,8 +216,7 @@ Q##Type##Rectangle q_##type##_rectangle_top_half(				\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_bottom_half(				\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_bottom_half(			\
 	Q##Type##Rectangle rectangle						\
 )										\
 	{									\
@@ -246,8 +225,7 @@ Q##Type##Rectangle q_##type##_rectangle_bottom_half(				\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_left_half(				\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_left_half(			\
 	Q##Type##Rectangle rectangle						\
 )										\
 	{									\
@@ -256,8 +234,7 @@ Q##Type##Rectangle q_##type##_rectangle_left_half(				\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_right_half(				\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_right_half(			\
 	Q##Type##Rectangle rectangle						\
 )										\
 	{									\
@@ -266,8 +243,7 @@ Q##Type##Rectangle q_##type##_rectangle_right_half(				\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_top_left_quarter(			\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_top_left_quarter(		\
 	Q##Type##Rectangle rectangle						\
 )										\
 	{									\
@@ -277,8 +253,7 @@ Q##Type##Rectangle q_##type##_rectangle_top_left_quarter(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_top_right_quarter(			\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_top_right_quarter(		\
 	Q##Type##Rectangle rectangle						\
 )										\
 	{									\
@@ -288,8 +263,7 @@ Q##Type##Rectangle q_##type##_rectangle_top_right_quarter(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_bottom_left_quarter(			\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_bottom_left_quarter(		\
 	Q##Type##Rectangle rectangle						\
 )										\
 	{									\
@@ -299,8 +273,7 @@ Q##Type##Rectangle q_##type##_rectangle_bottom_left_quarter(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_bottom_right_quarter(			\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_bottom_right_quarter(		\
 	Q##Type##Rectangle rectangle						\
 )										\
 	{									\
@@ -310,10 +283,9 @@ Q##Type##Rectangle q_##type##_rectangle_bottom_right_quarter(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_align_in_top_left(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_top_left(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	rectangle.point.y += rectangle.size.y - size.y;				\
@@ -322,10 +294,9 @@ Q##Type##Rectangle q_##type##_rectangle_align_in_top_left(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_align_in_top_right(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_top_right(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	rectangle.point.x += rectangle.size.x - size.x;				\
@@ -335,10 +306,9 @@ Q##Type##Rectangle q_##type##_rectangle_align_in_top_right(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_align_in_top_center(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_top_center(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	rectangle.point.x += (rectangle.size.x - size.x) / _(2.0);		\
@@ -348,10 +318,9 @@ Q##Type##Rectangle q_##type##_rectangle_align_in_top_center(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_left(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_left(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	rectangle.size = size;							\
@@ -359,10 +328,9 @@ Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_left(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_right(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_right(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	rectangle.point.x += rectangle.size.x - size.x;				\
@@ -371,10 +339,9 @@ Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_right(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_center(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_center(	\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	rectangle.point.x += (rectangle.size.x - size.x) / _(2.0);		\
@@ -383,10 +350,9 @@ Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_center(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_align_in_center_left(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_center_left(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	rectangle.point.y += (rectangle.size.y - size.y) / _(2.0);		\
@@ -395,10 +361,9 @@ Q##Type##Rectangle q_##type##_rectangle_align_in_center_left(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_align_in_center_right(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_center_right(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	rectangle.point.x +=  rectangle.size.x - size.x;			\
@@ -408,10 +373,9 @@ Q##Type##Rectangle q_##type##_rectangle_align_in_center_right(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_align_in_center(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_center(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	rectangle.point.x += (rectangle.size.x - size.x) / _(2.0);		\
@@ -421,10 +385,9 @@ Q##Type##Rectangle q_##type##_rectangle_align_in_center(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_fit_in_top_left(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_top_left(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	Q##Type##Rectangle result;						\
@@ -436,10 +399,9 @@ Q##Type##Rectangle q_##type##_rectangle_fit_in_top_left(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_fit_in_top_right(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_top_right(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	Q##Type##Rectangle result;						\
@@ -451,10 +413,9 @@ Q##Type##Rectangle q_##type##_rectangle_fit_in_top_right(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_fit_in_top_center(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_top_center(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	Q##Type##Rectangle result;						\
@@ -470,10 +431,9 @@ Q##Type##Rectangle q_##type##_rectangle_fit_in_top_center(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_left(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_left(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	rectangle.size = q_2d_##type##_fit(size, rectangle.size);		\
@@ -481,10 +441,9 @@ Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_left(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_right(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_right(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	Q##Type##Rectangle result;						\
@@ -496,10 +455,9 @@ Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_right(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_center(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_center(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	Q##Type##Rectangle result;						\
@@ -515,10 +473,9 @@ Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_center(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_fit_in_center_left(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_center_left(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	Q##Type##Rectangle result;						\
@@ -534,10 +491,9 @@ Q##Type##Rectangle q_##type##_rectangle_fit_in_center_left(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_fit_in_center_right(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_center_right(		\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	Q##Type##Rectangle result;						\
@@ -553,10 +509,9 @@ Q##Type##Rectangle q_##type##_rectangle_fit_in_center_right(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q##Type##Rectangle q_##type##_rectangle_fit_in_center(				\
-	Q##Type##Rectangle	rectangle,					\
-	Q##2D##Type		size						\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_center(			\
+	Q##Type##Rectangle rectangle,						\
+	Q##2D##Type	   size							\
 )										\
 	{									\
 	Q##Type##Rectangle result;						\
@@ -575,7 +530,7 @@ Q##Type##Rectangle q_##type##_rectangle_fit_in_center(				\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
+Q_INLINE									\
 Q##Type##Circle q_##type##_rectangle_inner_circle(Q##Type##Rectangle rectangle)	\
 	{									\
 	Q##Type##Circle result;							\
@@ -589,7 +544,7 @@ Q##Type##Circle q_##type##_rectangle_inner_circle(Q##Type##Rectangle rectangle)	
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
+Q_INLINE									\
 Q##Type##AABR q_##type##_rectangle_to_aabr(Q##Type##Rectangle rectangle)	\
 	{									\
 	return q_##type##_aabr							\
@@ -599,10 +554,9 @@ Q##Type##AABR q_##type##_rectangle_to_aabr(Q##Type##Rectangle rectangle)	\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-Q2D##Type q_##type##_rectangle_absolute_point_to_normal(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q2D##Type		point						\
+Q_INLINE Q2D##Type q_##type##_rectangle_absolute_point_to_normal(		\
+	Q##Type##Rectangle rectangle,						\
+	Q2D##Type	   point						\
 										\
 )										\
 	{									\
@@ -612,10 +566,10 @@ Q2D##Type q_##type##_rectangle_absolute_point_to_normal(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
+Q_INLINE									\
 Q2D##Type q_##type##_rectangle_normal_point_to_absolute(			\
-	Q##Type##Rectangle	rectangle,					\
-	Q2D##Type		point						\
+	Q##Type##Rectangle rectangle,						\
+	Q2D##Type	   point						\
 										\
 )										\
 	{									\
@@ -625,10 +579,9 @@ Q2D##Type q_##type##_rectangle_normal_point_to_absolute(			\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-qboolean q_##type##_rectangle_contains_point(					\
-	Q##Type##Rectangle	rectangle,					\
-	Q2D##Type		point						\
+Q_INLINE qboolean q_##type##_rectangle_contains_point(				\
+	Q##Type##Rectangle rectangle,						\
+	Q2D##Type	   point						\
 )										\
 	{									\
 	return	point.x >= rectangle.point.x			&&		\
@@ -638,10 +591,9 @@ qboolean q_##type##_rectangle_contains_point(					\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-qboolean q_##type##_rectangle_contains_line_segment(				\
-	Q##Type##Rectangle	rectangle,					\
-	Q2D##Type##Line		line_segment					\
+Q_INLINE qboolean q_##type##_rectangle_contains_line_segment(			\
+	Q##Type##Rectangle rectangle,						\
+	Q2D##Type##Line	   line_segment						\
 )										\
 	{									\
 	return	q_##type##_rectangle_contains_point(rectangle, line_segment.a)	\
@@ -649,10 +601,9 @@ qboolean q_##type##_rectangle_contains_line_segment(				\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-qboolean q_##type##_rectangle_contains_aabr(					\
-	Q##Type##Rectangle	rectangle,					\
-	Q##Type##AABR		aabr						\
+Q_INLINE qboolean q_##type##_rectangle_contains_aabr(				\
+	Q##Type##Rectangle rectangle,						\
+	Q##Type##AABR	   aabr							\
 )										\
 	{									\
 	return	aabr.a.x >= rectangle.point.x			 &&		\
@@ -662,10 +613,9 @@ qboolean q_##type##_rectangle_contains_aabr(					\
 	}									\
 										\
 										\
-Q_RECTANGLE_EXPORT								\
-qboolean q_##type##_rectangle_contains_circle(					\
-	Q##Type##Rectangle	rectangle,					\
-	Q##Type##Circle		circle						\
+Q_INLINE qboolean q_##type##_rectangle_contains_circle(				\
+	Q##Type##Rectangle rectangle,						\
+	Q##Type##Circle	   circle						\
 )										\
 	{									\
 	return	circle.point.x - circle.radius >= rectangle.point.x &&		\

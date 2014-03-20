@@ -12,53 +12,44 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/functions/geometry/constructors.h>
 #include <Q/functions/base/Q2D.h>
 
-#ifndef Q_2D_VECTOR_EXPORT
-#	define Q_2D_VECTOR_EXPORT Q_INLINE
-#endif
 
-
-#define Q_IMPLEMENTATION_2D_VECTOR(Type, type)				\
-									\
-									\
-Q_2D_VECTOR_EXPORT							\
-qboolean q_2d_##type##_vector_are_equal(				\
-	Q2D##Type##Vector a,						\
-	Q2D##Type##Vector b						\
-)									\
-	{								\
-	return	q_2d_##type##_are_equal(a.a, b.a) &&			\
-		q_2d_##type##_are_equal(a.b, b.b);			\
-	}								\
-									\
-									\
-Q_2D_VECTOR_EXPORT							\
-qboolean q_2d_##type##_vector_are_perpendicular(			\
-	Q2D##Type##Vector a,						\
-	Q2D##Type##Vector b						\
-)									\
-	{								\
-	return q_2d_##type##_are_perpendicular				\
-		(q_2d_##type##_subtract(a.b, a.a),			\
-		 q_2d_##type##_subtract(b.b, b.a));			\
-	}								\
-									\
-									\
-Q_2D_VECTOR_EXPORT							\
-qboolean q_2d_##type##_vector_is_zero(Q2D##Type##Vector vector)		\
-	{								\
-	return	q_2d_##type##_is_zero(vector.a) &&			\
-		q_2d_##type##_is_zero(vector.b);			\
-	}								\
-									\
-									\
-Q_2D_VECTOR_EXPORT							\
-Q2D##Type##Vector q_2d_##type##_vector_reversed(			\
-	Q2D##Type##Vector vector					\
-)									\
-	{								\
-	return q_2d_##type##_vector					\
-		(vector.b.x, vector.b.y, vector.a.x, vector.a.y);	\
-	}								\
+#define Q_IMPLEMENTATION_2D_VECTOR(Type, type)					\
+										\
+										\
+Q_INLINE qboolean q_2d_##type##_vector_are_equal(				\
+	Q2D##Type##Vector a,							\
+	Q2D##Type##Vector b							\
+)										\
+	{									\
+	return	q_2d_##type##_are_equal(a.a, b.a) &&				\
+		q_2d_##type##_are_equal(a.b, b.b);				\
+	}									\
+										\
+										\
+Q_INLINE qboolean q_2d_##type##_vector_are_perpendicular(			\
+	Q2D##Type##Vector a,							\
+	Q2D##Type##Vector b							\
+)										\
+	{									\
+	return q_2d_##type##_are_perpendicular					\
+		(q_2d_##type##_subtract(a.b, a.a),				\
+		 q_2d_##type##_subtract(b.b, b.a));				\
+	}									\
+										\
+										\
+Q_INLINE qboolean q_2d_##type##_vector_is_zero(Q2D##Type##Vector vector)	\
+	{									\
+	return	q_2d_##type##_is_zero(vector.a) &&				\
+		q_2d_##type##_is_zero(vector.b);				\
+	}									\
+										\
+										\
+Q_INLINE									\
+Q2D##Type##Vector q_2d_##type##_vector_reversed(Q2D##Type##Vector vector)	\
+	{									\
+	return q_2d_##type##_vector						\
+		(vector.b.x, vector.b.y, vector.a.x, vector.a.y);		\
+	}									\
 
 
 Q_IMPLEMENTATION_2D_VECTOR(Float,   float  )

@@ -27,31 +27,25 @@ Released under the terms of the GNU General Public License v3. */
 #define q_aabr_is_zero			q_2d_line_is_zero
 #define q_aabr_center			q_2d_line_segment_center
 
-#ifndef Q_AABR_EXPORT
-#	define Q_AABR_EXPORT Q_INLINE
-#endif
-
 
 #define Q_IMPLEMENTATION_AABR(Type, type, _)					\
 										\
 										\
-Q_AABR_EXPORT									\
-qboolean q_##type##_aabr_contains(Q##Type##AABR a, Q##Type##AABR b)		\
+Q_INLINE qboolean q_##type##_aabr_contains(Q##Type##AABR a, Q##Type##AABR b)	\
 	{									\
 	return	b.a.x >= a.a.x && b.a.y >= a.a.y &&				\
 		b.b.x <= a.b.x && b.b.y <= a.b.y;				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-qboolean q_##type##_aabr_collision(Q##Type##AABR a, Q##Type##AABR b)		\
+Q_INLINE qboolean q_##type##_aabr_collision(Q##Type##AABR a, Q##Type##AABR b)	\
 	{									\
 	return	a.a.x < b.b.x && b.a.x < a.b.x &&				\
 		a.a.y < b.b.y && b.a.y < a.b.y;					\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
+Q_INLINE									\
 Q##Type##AABR q_##type##_aabr_intersection(Q##Type##AABR a, Q##Type##AABR b)	\
 	{									\
 	q##type x1, x2, y1, y2, z1, z2;						\
@@ -66,8 +60,7 @@ Q##Type##AABR q_##type##_aabr_intersection(Q##Type##AABR a, Q##Type##AABR b)	\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_union(Q##Type##AABR a, Q##Type##AABR b)		\
+Q_INLINE Q##Type##AABR q_##type##_aabr_union(Q##Type##AABR a, Q##Type##AABR b)	\
 	{									\
 	Q##Type##AABR result;							\
 										\
@@ -77,8 +70,7 @@ Q##Type##AABR q_##type##_aabr_union(Q##Type##AABR a, Q##Type##AABR b)		\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_from_vertices(Q2D##Type a, Q2D##Type b)		\
+Q_INLINE Q##Type##AABR q_##type##_aabr_from_vertices(Q2D##Type a, Q2D##Type b)	\
 	{									\
 	Q##Type##AABR result;							\
 										\
@@ -88,103 +80,86 @@ Q##Type##AABR q_##type##_aabr_from_vertices(Q2D##Type a, Q2D##Type b)		\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q2D##Type q_##type##_aabr_size(Q##Type##AABR aabr)				\
+Q_INLINE Q2D##Type q_##type##_aabr_size(Q##Type##AABR aabr)			\
 	{return q_2d_##type##_subtract(aabr.b, aabr.a);}			\
 										\
 										\
-Q_AABR_EXPORT									\
-q##type q_##type##_aabr_area(Q##Type##AABR aabr)				\
+Q_INLINE q##type q_##type##_aabr_area(Q##Type##AABR aabr)			\
 	{									\
 	return q_2d_##type##_inner_product					\
 		(q_2d_##type##_subtract(aabr.b, aabr.a));			\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-q##type q_##type##_aabr_middle_x(Q##Type##AABR aabr)				\
+Q_INLINE q##type q_##type##_aabr_middle_x(Q##Type##AABR aabr)			\
 	{return (aabr.a.x + aabr.b.x) / _(2.0);}				\
 										\
 										\
-Q_AABR_EXPORT									\
-q##type q_##type##_aabr_middle_y(Q##Type##AABR aabr)				\
+Q_INLINE q##type q_##type##_aabr_middle_y(Q##Type##AABR aabr)			\
 	{return (aabr.a.y + aabr.b.y) / _(2.0);}				\
 										\
 										\
-Q_AABR_EXPORT									\
-Q2D##Type q_##type##_aabr_top_left(Q##Type##AABR aabr)				\
+Q_INLINE Q2D##Type q_##type##_aabr_top_left(Q##Type##AABR aabr)			\
 	{return q_2d_##type(aabr.a.x, aabr.b.y);}				\
 										\
 										\
-Q_AABR_EXPORT									\
-Q2D##Type q_##type##_aabr_top_right(Q##Type##AABR aabr)				\
+Q_INLINE Q2D##Type q_##type##_aabr_top_right(Q##Type##AABR aabr)		\
 	{return aabr.b;}							\
 										\
 										\
-Q_AABR_EXPORT									\
-Q2D##Type q_##type##_aabr_top_center(Q##Type##AABR aabr)			\
+Q_INLINE Q2D##Type q_##type##_aabr_top_center(Q##Type##AABR aabr)		\
 	{return q_2d_##type((aabr.a.x + aabr.b.x) / _(2.0), aabr.b.y);}		\
 										\
 										\
-Q_AABR_EXPORT									\
-Q2D##Type q_##type##_aabr_bottom_left(Q##Type##AABR aabr)			\
+Q_INLINE Q2D##Type q_##type##_aabr_bottom_left(Q##Type##AABR aabr)		\
 	{return aabr.a;}							\
 										\
 										\
-Q_AABR_EXPORT									\
-Q2D##Type q_##type##_aabr_bottom_right(Q##Type##AABR aabr)			\
+Q_INLINE Q2D##Type q_##type##_aabr_bottom_right(Q##Type##AABR aabr)		\
 	{return q_2d_##type(aabr.b.x, aabr.a.y);}				\
 										\
 										\
-Q_AABR_EXPORT									\
-Q2D##Type q_##type##_aabr_bottom_center(Q##Type##AABR aabr)			\
+Q_INLINE Q2D##Type q_##type##_aabr_bottom_center(Q##Type##AABR aabr)		\
 	{return q_2d_##type((aabr.a.x + aabr.b.x) / _(2.0), aabr.a.y);}		\
 										\
 										\
-Q_AABR_EXPORT									\
-Q2D##Type q_##type##_aabr_center_left(Q##Type##AABR aabr)			\
+Q_INLINE Q2D##Type q_##type##_aabr_center_left(Q##Type##AABR aabr)		\
 	{return q_2d_##type(aabr.a.x, (aabr.a.y + aabr.b.y) / _(2.0));}		\
 										\
 										\
-Q_AABR_EXPORT									\
-Q2D##Type q_##type##_aabr_center_right(Q##Type##AABR aabr)			\
+Q_INLINE Q2D##Type q_##type##_aabr_center_right(Q##Type##AABR aabr)		\
 	{return q_2d_##type(aabr.b.x, (aabr.a.y + aabr.b.y) / _(2.0));}		\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_top_half(Q##Type##AABR aabr)			\
+Q_INLINE Q##Type##AABR q_##type##_aabr_top_half(Q##Type##AABR aabr)		\
 	{									\
 	aabr.a.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
 	return aabr;								\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_bottom_half(Q##Type##AABR aabr)			\
+Q_INLINE Q##Type##AABR q_##type##_aabr_bottom_half(Q##Type##AABR aabr)		\
 	{									\
 	aabr.b.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
 	return aabr;								\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_left_half(Q##Type##AABR aabr)			\
+Q_INLINE Q##Type##AABR q_##type##_aabr_left_half(Q##Type##AABR aabr)		\
 	{									\
 	aabr.b.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
 	return aabr;								\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_right_half(Q##Type##AABR aabr)			\
+Q_INLINE Q##Type##AABR q_##type##_aabr_right_half(Q##Type##AABR aabr)		\
 	{									\
 	aabr.a.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
 	return aabr;								\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_top_left_quarter(Q##Type##AABR aabr)		\
+Q_INLINE Q##Type##AABR q_##type##_aabr_top_left_quarter(Q##Type##AABR aabr)	\
 	{									\
 	aabr.b.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
 	aabr.a.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
@@ -192,8 +167,7 @@ Q##Type##AABR q_##type##_aabr_top_left_quarter(Q##Type##AABR aabr)		\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_top_right_quarter(Q##Type##AABR aabr)		\
+Q_INLINE Q##Type##AABR q_##type##_aabr_top_right_quarter(Q##Type##AABR aabr)	\
 	{									\
 	aabr.a.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
 	aabr.a.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
@@ -201,8 +175,7 @@ Q##Type##AABR q_##type##_aabr_top_right_quarter(Q##Type##AABR aabr)		\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_bottom_left_quarter(Q##Type##AABR aabr)		\
+Q_INLINE Q##Type##AABR q_##type##_aabr_bottom_left_quarter(Q##Type##AABR aabr)	\
 	{									\
 	aabr.b.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
 	aabr.b.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
@@ -210,8 +183,7 @@ Q##Type##AABR q_##type##_aabr_bottom_left_quarter(Q##Type##AABR aabr)		\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_bottom_right_quarter(Q##Type##AABR aabr)		\
+Q_INLINE Q##Type##AABR q_##type##_aabr_bottom_right_quarter(Q##Type##AABR aabr)	\
 	{									\
 	aabr.a.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
 	aabr.b.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
@@ -219,10 +191,9 @@ Q##Type##AABR q_##type##_aabr_bottom_right_quarter(Q##Type##AABR aabr)		\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_align_in_top_left(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_top_left(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	aabr.a.y = aabr.b.y - size.y;						\
@@ -231,10 +202,9 @@ Q##Type##AABR q_##type##_aabr_align_in_top_left(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_align_in_top_right(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_top_right(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	aabr.a.x = aabr.b.x - size.x;						\
@@ -243,10 +213,9 @@ Q##Type##AABR q_##type##_aabr_align_in_top_right(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_align_in_top_center(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_top_center(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	aabr.a.y = aabr.b.y - size.y;						\
@@ -258,10 +227,9 @@ Q##Type##AABR q_##type##_aabr_align_in_top_center(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_align_in_bottom_left(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_bottom_left(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	aabr.b.x = aabr.a.x + size.x;						\
@@ -270,10 +238,9 @@ Q##Type##AABR q_##type##_aabr_align_in_bottom_left(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_align_in_bottom_right(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_bottom_right(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	aabr.a.x = aabr.b.x - size.x;						\
@@ -282,10 +249,9 @@ Q##Type##AABR q_##type##_aabr_align_in_bottom_right(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_align_in_bottom_center(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_bottom_center(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	aabr.b.x =								\
@@ -296,10 +262,9 @@ Q##Type##AABR q_##type##_aabr_align_in_bottom_center(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_align_in_center_left(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_center_left(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	aabr.b.x = aabr.a.x + size.x;						\
@@ -311,10 +276,9 @@ Q##Type##AABR q_##type##_aabr_align_in_center_left(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_align_in_center_right(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_center_right(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	aabr.a.x = aabr.b.x - size.x;						\
@@ -326,10 +290,9 @@ Q##Type##AABR q_##type##_aabr_align_in_center_right(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_align_in_center(					\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_center(				\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	aabr.b.x =								\
@@ -342,10 +305,9 @@ Q##Type##AABR q_##type##_aabr_align_in_center(					\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_fit_in_top_left(					\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_top_left(				\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	size = q_2d_##type##_fit(size, q_##type##_aabr_size(aabr));		\
@@ -356,10 +318,9 @@ Q##Type##AABR q_##type##_aabr_fit_in_top_left(					\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_fit_in_top_right(					\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_top_right(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	aabr.a = q_2d_##type##_subtract						\
@@ -369,10 +330,9 @@ Q##Type##AABR q_##type##_aabr_fit_in_top_right(					\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_fit_in_top_center(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE ##Type##AABR q_##type##_aabr_fit_in_top_center(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
@@ -383,10 +343,9 @@ Q##Type##AABR q_##type##_aabr_fit_in_top_center(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_fit_in_bottom_left(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_bottom_left(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	aabr.b = q_2d_##type##_add						\
@@ -396,10 +355,9 @@ Q##Type##AABR q_##type##_aabr_fit_in_bottom_left(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_fit_in_bottom_right(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_bottom_right(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	size = q_2d_##type##_fit(size, q_##type##_aabr_size(aabr));		\
@@ -410,10 +368,9 @@ Q##Type##AABR q_##type##_aabr_fit_in_bottom_right(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_fit_in_bottom_center(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_bottom_center(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
@@ -424,10 +381,9 @@ Q##Type##AABR q_##type##_aabr_fit_in_bottom_center(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_fit_in_center_left(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_center_left(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
@@ -438,10 +394,9 @@ Q##Type##AABR q_##type##_aabr_fit_in_center_left(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_fit_in_center_right(				\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_center_right(			\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
@@ -452,10 +407,9 @@ Q##Type##AABR q_##type##_aabr_fit_in_center_right(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##AABR q_##type##_aabr_fit_in_center(					\
-	Q##Type##AABR	aabr,							\
-	Q##2D##Type	size							\
+Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_center(				\
+	Q##Type##AABR aabr,							\
+	Q##2D##Type   size							\
 )										\
 	{									\
 	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
@@ -467,8 +421,7 @@ Q##Type##AABR q_##type##_aabr_fit_in_center(					\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##Circle q_##type##_aabr_inner_circle(Q##Type##AABR aabr)		\
+Q_INLINE Q##Type##Circle q_##type##_aabr_inner_circle(Q##Type##AABR aabr)	\
 	{									\
 	Q##Type##Circle result;							\
 										\
@@ -482,8 +435,7 @@ Q##Type##Circle q_##type##_aabr_inner_circle(Q##Type##AABR aabr)		\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q##Type##Rectangle q_##type##_aabr_to_rectangle(Q##Type##AABR aabr)		\
+Q_INLINE Q##Type##Rectangle q_##type##_aabr_to_rectangle(Q##Type##AABR aabr)	\
 	{									\
 	return q_##type##_rectangle						\
 		(aabr.a.x, aabr.a.y,						\
@@ -491,10 +443,9 @@ Q##Type##Rectangle q_##type##_aabr_to_rectangle(Q##Type##AABR aabr)		\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q2D##Type q_##type##_aabr_absolute_point_to_normal(				\
-	Q##Type##AABR	aabr,							\
-	Q2D##Type	point							\
+Q_INLINE Q2D##Type q_##type##_aabr_absolute_point_to_normal(			\
+	Q##Type##AABR aabr,							\
+	Q2D##Type     point							\
 										\
 )										\
 	{									\
@@ -504,11 +455,9 @@ Q2D##Type q_##type##_aabr_absolute_point_to_normal(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-Q2D##Type q_##type##_aabr_normal_point_to_absolute(				\
-	Q##Type##AABR	aabr,							\
-	Q2D##Type	point							\
-										\
+Q_INLINE Q2D##Type q_##type##_aabr_normal_point_to_absolute(			\
+	Q##Type##AABR aabr,							\
+	Q2D##Type     point							\
 )										\
 	{									\
 	return q_2d_##type							\
@@ -517,7 +466,7 @@ Q2D##Type q_##type##_aabr_normal_point_to_absolute(				\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
+Q_INLINE									\
 qboolean q_##type##_aabr_contains_point(Q##Type##AABR aabr, Q3D##Type point)	\
 	{									\
 	return	aabr.a.x <= point.x && point.x <= aabr.a.x &&			\
@@ -525,8 +474,7 @@ qboolean q_##type##_aabr_contains_point(Q##Type##AABR aabr, Q3D##Type point)	\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-qboolean q_##type##_aabr_contains_line_segment(					\
+Q_INLINE qboolean q_##type##_aabr_contains_line_segment(			\
 	Q##Type##AABR	aabr,							\
 	Q3D##Type##Line segment							\
 )										\
@@ -536,10 +484,9 @@ qboolean q_##type##_aabr_contains_line_segment(					\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-qboolean q_##type##_aabr_contains_rectangle(					\
-	Q##Type##AABR		aabr,						\
-	Q##Type##Rectangle	rectangle					\
+Q_INLINE qboolean q_##type##_aabr_contains_rectangle(				\
+	Q##Type##AABR	   aabr,						\
+	Q##Type##Rectangle rectangle						\
 )										\
 	{									\
 	return	aabr.a.x <= rectangle.point.x			 &&		\
@@ -549,8 +496,7 @@ qboolean q_##type##_aabr_contains_rectangle(					\
 	}									\
 										\
 										\
-Q_AABR_EXPORT									\
-qboolean q_##type##_aabr_contains_circle(					\
+Q_INLINE qboolean q_##type##_aabr_contains_circle(				\
 	Q##Type##AABR	aabr,							\
 	Q##Type##Circle circle							\
 )										\
