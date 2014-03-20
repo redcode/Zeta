@@ -51,6 +51,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HYDROGEN_ATOMIC_NUMBER			1
 #define Q_HYDROGEN_GROUP				1
 #define Q_HYDROGEN_PERIOD				1
+#define Q_HYDROGEN_BLOCK
+#define Q_HYDROGEN_CLASS
+#define Q_HYDROGEN_METAL_STATE
 #define Q_HYDROGEN_SPACE_GROUP_NUMBER			194
 #define Q_HYDROGEN_ATOMIC_MASS				1.00794
 #define Q_HYDROGEN_ATOMIC_RADIUS			53.0
@@ -102,6 +105,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HELIUM_ATOMIC_NUMBER				2
 #define Q_HELIUM_GROUP					18
 #define Q_HELIUM_PERIOD					1
+#define Q_HELIUM_BLOCK
+#define Q_HELIUM_CLASS
+#define Q_HELIUM_METAL_STATE
 #define Q_HELIUM_SPACE_GROUP_NUMBER			225
 #define Q_HELIUM_ATOMIC_MASS				4.002602
 #define Q_HELIUM_ATOMIC_RADIUS				31.0
@@ -153,6 +159,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LITHIUM_ATOMIC_NUMBER				3
 #define Q_LITHIUM_GROUP					1
 #define Q_LITHIUM_PERIOD				2
+#define Q_LITHIUM_BLOCK
+#define Q_LITHIUM_CLASS
+#define Q_LITHIUM_METAL_STATE
 #define Q_LITHIUM_SPACE_GROUP_NUMBER			229
 #define Q_LITHIUM_ATOMIC_MASS				6.941
 #define Q_LITHIUM_ATOMIC_RADIUS				167.0
@@ -178,7 +187,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LITHIUM_THERMAL_EXPANSION			0.000046
 #define Q_LITHIUM_DENSITY				535.0
 #define Q_LITHIUM_LIQUID_DENSITY			512.0
-#define Q_LITHIUM_MOLAR_VOLUME				0.0000130
+#define Q_LITHIUM_MOLAR_VOLUME				0.000013
 #define Q_LITHIUM_BRINELL_HARDNESS			REAL_MISSING
 #define Q_LITHIUM_MOHS_HARDNESS				0.6
 #define Q_LITHIUM_VICKERS_HARDNESS			REAL_MISSING
@@ -196,7 +205,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LITHIUM_CURIE_POINT				REAL_NOT_APPLICABLE
 #define Q_LITHIUM_MASS_MAGNETIC_SUSCEPTIBILITY		2.56e-8 // -8 2.56 10
 #define Q_LITHIUM_MOLAR_MAGNETIC_SUSCEPTIBILITY		1.78e-10 // -10 1.78 10
-#define Q_LITHIUM_VOLUME_MAGNETIC_SUSCEPTIBILITY	0.0000137
+#define Q_LITHIUM_VOLUME_MAGNETIC_SUSCEPTIBILITY	1.37e-5
 
 /* MARK: - 4 - Be */
 
@@ -204,6 +213,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BERYLLIUM_ATOMIC_NUMBER			4
 #define Q_BERYLLIUM_GROUP				2
 #define Q_BERYLLIUM_PERIOD				2
+#define Q_BERYLLIUM_BLOCK
+#define Q_BERYLLIUM_CLASS
+#define Q_BERYLLIUM_METAL_STATE
 #define Q_BERYLLIUM_SPACE_GROUP_NUMBER			194
 #define Q_BERYLLIUM_ATOMIC_MASS				9.012182
 #define Q_BERYLLIUM_ATOMIC_RADIUS			112.0
@@ -247,7 +259,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BERYLLIUM_CURIE_POINT				REAL_NOT_APPLICABLE
 #define Q_BERYLLIUM_MASS_MAGNETIC_SUSCEPTIBILITY	-1.260e-8 // -8 -1.260 10
 #define Q_BERYLLIUM_MOLAR_MAGNETIC_SUSCEPTIBILITY	-1.136e-10 // -10 -1.136 10
-#define Q_BERYLLIUM_VOLUME_MAGNETIC_SUSCEPTIBILITY	-0.00002328
+#define Q_BERYLLIUM_VOLUME_MAGNETIC_SUSCEPTIBILITY	-2.328e-5
 
 /* MARK: - 5 - B */
 
@@ -255,6 +267,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BORON_ATOMIC_NUMBER				5
 #define Q_BORON_GROUP					13
 #define Q_BORON_PERIOD					2
+#define Q_BORON_BLOCK
+#define Q_BORON_CLASS
+#define Q_BORON_METAL_STATE
 #define Q_BORON_SPACE_GROUP_NUMBER			166
 #define Q_BORON_ATOMIC_MASS				10.811
 #define Q_BORON_ATOMIC_RADIUS				87.0
@@ -262,7 +277,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BORON_VAN_DER_WAALS_RADIUS			REAL_MISSING
 #define Q_BORON_DECAY_MODE				KEY_NOT_APPLICABLE
 #define Q_BORON_NEUTRON_CROSS_SECTION			7.6e2 // 2 7.6 10
-#define Q_BORON_NEUTRON_MASS_ABSORPTION			2.400000
+#define Q_BORON_NEUTRON_MASS_ABSORPTION			2.4
 #define Q_BORON_VALENCE					3
 #define Q_BORON_ELECTRONEGATIVITY			2.04
 #define Q_BORON_ELECTRON_AFFINITY			26.7
@@ -298,7 +313,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BORON_CURIE_POINT				REAL_NOT_APPLICABLE
 #define Q_BORON_MASS_MAGNETIC_SUSCEPTIBILITY		-8.70e-9 // -9 -8.70 10
 #define Q_BORON_MOLAR_MAGNETIC_SUSCEPTIBILITY		-9.41e-11 // -11 -9.41 10
-#define Q_BORON_VOLUME_MAGNETIC_SUSCEPTIBILITY		-0.0000214
+#define Q_BORON_VOLUME_MAGNETIC_SUSCEPTIBILITY		-2.14e-5
 
 /* MARK: - 6 - C */
 
@@ -306,6 +321,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CARBON_ATOMIC_NUMBER				6
 #define Q_CARBON_GROUP					14
 #define Q_CARBON_PERIOD					2
+#define Q_CARBON_BLOCK
+#define Q_CARBON_CLASS
+#define Q_CARBON_METAL_STATE
 #define Q_CARBON_SPACE_GROUP_NUMBER			194
 #define Q_CARBON_ATOMIC_MASS				12.0107
 #define Q_CARBON_ATOMIC_RADIUS				67.0
@@ -357,6 +375,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NITROGEN_ATOMIC_NUMBER			7
 #define Q_NITROGEN_GROUP				15
 #define Q_NITROGEN_PERIOD				2
+#define Q_NITROGEN_BLOCK
+#define Q_NITROGEN_CLASS
+#define Q_NITROGEN_METAL_STATE
 #define Q_NITROGEN_SPACE_GROUP_NUMBER			194
 #define Q_NITROGEN_ATOMIC_MASS				14.0067
 #define Q_NITROGEN_ATOMIC_RADIUS			56.0
@@ -408,6 +429,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_OXYGEN_ATOMIC_NUMBER				8
 #define Q_OXYGEN_GROUP					16
 #define Q_OXYGEN_PERIOD					2
+#define Q_OXYGEN_BLOCK
+#define Q_OXYGEN_CLASS
+#define Q_OXYGEN_METAL_STATE
 #define Q_OXYGEN_SPACE_GROUP_NUMBER			12
 #define Q_OXYGEN_ATOMIC_MASS				15.9994
 #define Q_OXYGEN_ATOMIC_RADIUS				48.0
@@ -459,6 +483,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_FLUORINE_ATOMIC_NUMBER			9
 #define Q_FLUORINE_GROUP				17
 #define Q_FLUORINE_PERIOD				2
+#define Q_FLUORINE_BLOCK
+#define Q_FLUORINE_CLASS
+#define Q_FLUORINE_METAL_STATE
 #define Q_FLUORINE_SPACE_GROUP_NUMBER			15
 #define Q_FLUORINE_ATOMIC_MASS				18.9984032
 #define Q_FLUORINE_ATOMIC_RADIUS			42.0
@@ -510,6 +537,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NEON_ATOMIC_NUMBER				10
 #define Q_NEON_GROUP					18
 #define Q_NEON_PERIOD					2
+#define Q_NEON_BLOCK
+#define Q_NEON_CLASS
+#define Q_NEON_METAL_STATE
 #define Q_NEON_SPACE_GROUP_NUMBER			225
 #define Q_NEON_ATOMIC_MASS				20.1791
 #define Q_NEON_ATOMIC_RADIUS				38.0
@@ -561,6 +591,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SODIUM_ATOMIC_NUMBER				11
 #define Q_SODIUM_GROUP					1
 #define Q_SODIUM_PERIOD					3
+#define Q_SODIUM_BLOCK
+#define Q_SODIUM_CLASS
+#define Q_SODIUM_METAL_STATE
 #define Q_SODIUM_SPACE_GROUP_NUMBER			229
 #define Q_SODIUM_ATOMIC_MASS				22.98976928
 #define Q_SODIUM_ATOMIC_RADIUS				190.0
@@ -612,6 +645,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MAGNESIUM_ATOMIC_NUMBER			12
 #define Q_MAGNESIUM_GROUP				2
 #define Q_MAGNESIUM_PERIOD				3
+#define Q_MAGNESIUM_BLOCK
+#define Q_MAGNESIUM_CLASS
+#define Q_MAGNESIUM_METAL_STATE
 #define Q_MAGNESIUM_SPACE_GROUP_NUMBER			194
 #define Q_MAGNESIUM_ATOMIC_MASS				24.3050
 #define Q_MAGNESIUM_ATOMIC_RADIUS			145.0
@@ -663,6 +699,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ALUMINIUM_ATOMIC_NUMBER			13
 #define Q_ALUMINIUM_GROUP				13
 #define Q_ALUMINIUM_PERIOD				3
+#define Q_ALUMINIUM_BLOCK
+#define Q_ALUMINIUM_CLASS
+#define Q_ALUMINIUM_METAL_STATE
 #define Q_ALUMINIUM_SPACE_GROUP_NUMBER			225
 #define Q_ALUMINIUM_ATOMIC_MASS				26.9815386
 #define Q_ALUMINIUM_ATOMIC_RADIUS			118.0
@@ -714,6 +753,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SILICON_ATOMIC_NUMBER				14
 #define Q_SILICON_GROUP					14
 #define Q_SILICON_PERIOD				3
+#define Q_SILICON_BLOCK
+#define Q_SILICON_CLASS
+#define Q_SILICON_METAL_STATE
 #define Q_SILICON_SPACE_GROUP_NUMBER			227
 #define Q_SILICON_ATOMIC_MASS				28.0855
 #define Q_SILICON_ATOMIC_RADIUS				111.0
@@ -765,6 +807,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PHOSPHORUS_ATOMIC_NUMBER			15
 #define Q_PHOSPHORUS_GROUP				15
 #define Q_PHOSPHORUS_PERIOD				3
+#define Q_PHOSPHORUS_BLOCK
+#define Q_PHOSPHORUS_CLASS
+#define Q_PHOSPHORUS_METAL_STATE
 #define Q_PHOSPHORUS_SPACE_GROUP_NUMBER			2
 #define Q_PHOSPHORUS_ATOMIC_MASS			30.973762
 #define Q_PHOSPHORUS_ATOMIC_RADIUS			98.0
@@ -816,6 +861,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SULFUR_ATOMIC_NUMBER				16
 #define Q_SULFUR_GROUP					16
 #define Q_SULFUR_PERIOD					3
+#define Q_SULFUR_BLOCK
+#define Q_SULFUR_CLASS
+#define Q_SULFUR_METAL_STATE
 #define Q_SULFUR_SPACE_GROUP_NUMBER			70
 #define Q_SULFUR_ATOMIC_MASS				32.065
 #define Q_SULFUR_ATOMIC_RADIUS				87.0
@@ -867,6 +915,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CHLORINE_ATOMIC_NUMBER			17
 #define Q_CHLORINE_GROUP				17
 #define Q_CHLORINE_PERIOD				3
+#define Q_CHLORINE_BLOCK
+#define Q_CHLORINE_CLASS
+#define Q_CHLORINE_METAL_STATE
 #define Q_CHLORINE_SPACE_GROUP_NUMBER			64
 #define Q_CHLORINE_ATOMIC_MASS				35.453
 #define Q_CHLORINE_ATOMIC_RADIUS			79.0
@@ -918,6 +969,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ARGON_ATOMIC_NUMBER				18
 #define Q_ARGON_GROUP					18
 #define Q_ARGON_PERIOD					3
+#define Q_ARGON_BLOCK
+#define Q_ARGON_CLASS
+#define Q_ARGON_METAL_STATE
 #define Q_ARGON_SPACE_GROUP_NUMBER			225
 #define Q_ARGON_ATOMIC_MASS				39.948
 #define Q_ARGON_ATOMIC_RADIUS				71.0
@@ -969,6 +1023,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_POTASSIUM_ATOMIC_NUMBER			19
 #define Q_POTASSIUM_GROUP				1
 #define Q_POTASSIUM_PERIOD				4
+#define Q_POTASSIUM_BLOCK
+#define Q_POTASSIUM_CLASS
+#define Q_POTASSIUM_METAL_STATE
 #define Q_POTASSIUM_SPACE_GROUP_NUMBER			229
 #define Q_POTASSIUM_ATOMIC_MASS				39.0983
 #define Q_POTASSIUM_ATOMIC_RADIUS			243.0
@@ -1020,6 +1077,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CALCIUM_ATOMIC_NUMBER				20
 #define Q_CALCIUM_GROUP					2
 #define Q_CALCIUM_PERIOD				4
+#define Q_CALCIUM_BLOCK
+#define Q_CALCIUM_CLASS
+#define Q_CALCIUM_METAL_STATE
 #define Q_CALCIUM_SPACE_GROUP_NUMBER			225
 #define Q_CALCIUM_ATOMIC_MASS				40.078
 #define Q_CALCIUM_ATOMIC_RADIUS				194.0
@@ -1071,6 +1131,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SCANDIUM_ATOMIC_NUMBER			21
 #define Q_SCANDIUM_GROUP				3
 #define Q_SCANDIUM_PERIOD				4
+#define Q_SCANDIUM_BLOCK
+#define Q_SCANDIUM_CLASS
+#define Q_SCANDIUM_METAL_STATE
 #define Q_SCANDIUM_SPACE_GROUP_NUMBER			194
 #define Q_SCANDIUM_ATOMIC_MASS				44.955912
 #define Q_SCANDIUM_ATOMIC_RADIUS			184.0
@@ -1122,6 +1185,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TITANIUM_ATOMIC_NUMBER			22
 #define Q_TITANIUM_GROUP				4
 #define Q_TITANIUM_PERIOD				4
+#define Q_TITANIUM_BLOCK
+#define Q_TITANIUM_CLASS
+#define Q_TITANIUM_METAL_STATE
 #define Q_TITANIUM_SPACE_GROUP_NUMBER			194
 #define Q_TITANIUM_ATOMIC_MASS				47.867
 #define Q_TITANIUM_ATOMIC_RADIUS			176.0
@@ -1173,6 +1239,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_VANADIUM_ATOMIC_NUMBER			23
 #define Q_VANADIUM_GROUP				5
 #define Q_VANADIUM_PERIOD				4
+#define Q_VANADIUM_BLOCK
+#define Q_VANADIUM_CLASS
+#define Q_VANADIUM_METAL_STATE
 #define Q_VANADIUM_SPACE_GROUP_NUMBER			229
 #define Q_VANADIUM_ATOMIC_MASS				50.9415
 #define Q_VANADIUM_ATOMIC_RADIUS			171.0
@@ -1224,6 +1293,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CHROMIUM_ATOMIC_NUMBER			24
 #define Q_CHROMIUM_GROUP				6
 #define Q_CHROMIUM_PERIOD				4
+#define Q_CHROMIUM_BLOCK
+#define Q_CHROMIUM_CLASS
+#define Q_CHROMIUM_METAL_STATE
 #define Q_CHROMIUM_SPACE_GROUP_NUMBER			229
 #define Q_CHROMIUM_ATOMIC_MASS				51.9961
 #define Q_CHROMIUM_ATOMIC_RADIUS			166.0
@@ -1275,6 +1347,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MANGANESE_ATOMIC_NUMBER			25
 #define Q_MANGANESE_GROUP				7
 #define Q_MANGANESE_PERIOD				4
+#define Q_MANGANESE_BLOCK
+#define Q_MANGANESE_CLASS
+#define Q_MANGANESE_METAL_STATE
 #define Q_MANGANESE_SPACE_GROUP_NUMBER			217
 #define Q_MANGANESE_ATOMIC_MASS				54.938045
 #define Q_MANGANESE_ATOMIC_RADIUS			161.0
@@ -1326,6 +1401,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_IRON_ATOMIC_NUMBER				26
 #define Q_IRON_GROUP					8
 #define Q_IRON_PERIOD					4
+#define Q_IRON_BLOCK
+#define Q_IRON_CLASS
+#define Q_IRON_METAL_STATE
 #define Q_IRON_SPACE_GROUP_NUMBER			229
 #define Q_IRON_ATOMIC_MASS				55.845
 #define Q_IRON_ATOMIC_RADIUS				156.0
@@ -1377,6 +1455,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_COBALT_ATOMIC_NUMBER				27
 #define Q_COBALT_GROUP					9
 #define Q_COBALT_PERIOD					4
+#define Q_COBALT_BLOCK
+#define Q_COBALT_CLASS
+#define Q_COBALT_METAL_STATE
 #define Q_COBALT_SPACE_GROUP_NUMBER			194
 #define Q_COBALT_ATOMIC_MASS				58.933195
 #define Q_COBALT_ATOMIC_RADIUS				152.0
@@ -1428,6 +1509,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NICKEL_ATOMIC_NUMBER				28
 #define Q_NICKEL_GROUP					10
 #define Q_NICKEL_PERIOD					4
+#define Q_NICKEL_BLOCK
+#define Q_NICKEL_CLASS
+#define Q_NICKEL_METAL_STATE
 #define Q_NICKEL_SPACE_GROUP_NUMBER			225
 #define Q_NICKEL_ATOMIC_MASS				58.6934
 #define Q_NICKEL_ATOMIC_RADIUS				149.0
@@ -1479,6 +1563,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_COPPER_ATOMIC_NUMBER				29
 #define Q_COPPER_GROUP					11
 #define Q_COPPER_PERIOD					4
+#define Q_COPPER_BLOCK
+#define Q_COPPER_CLASS
+#define Q_COPPER_METAL_STATE
 #define Q_COPPER_SPACE_GROUP_NUMBER			225
 #define Q_COPPER_ATOMIC_MASS				63.546
 #define Q_COPPER_ATOMIC_RADIUS				145.0
@@ -1530,6 +1617,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ZINC_ATOMIC_NUMBER				30
 #define Q_ZINC_GROUP					12
 #define Q_ZINC_PERIOD					4
+#define Q_ZINC_BLOCK
+#define Q_ZINC_CLASS
+#define Q_ZINC_METAL_STATE
 #define Q_ZINC_SPACE_GROUP_NUMBER			194
 #define Q_ZINC_ATOMIC_MASS				65.38
 #define Q_ZINC_ATOMIC_RADIUS				142.0
@@ -1581,6 +1671,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_GALLIUM_ATOMIC_NUMBER				31
 #define Q_GALLIUM_GROUP					13
 #define Q_GALLIUM_PERIOD				4
+#define Q_GALLIUM_BLOCK
+#define Q_GALLIUM_CLASS
+#define Q_GALLIUM_METAL_STATE
 #define Q_GALLIUM_SPACE_GROUP_NUMBER			64
 #define Q_GALLIUM_ATOMIC_MASS				69.723
 #define Q_GALLIUM_ATOMIC_RADIUS				136.0
@@ -1632,6 +1725,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_GERMANIUM_ATOMIC_NUMBER			32
 #define Q_GERMANIUM_GROUP				14
 #define Q_GERMANIUM_PERIOD				4
+#define Q_GERMANIUM_BLOCK
+#define Q_GERMANIUM_CLASS
+#define Q_GERMANIUM_METAL_STATE
 #define Q_GERMANIUM_SPACE_GROUP_NUMBER			225
 #define Q_GERMANIUM_ATOMIC_MASS				72.63
 #define Q_GERMANIUM_ATOMIC_RADIUS			125.0
@@ -1683,6 +1779,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ARSENIC_ATOMIC_NUMBER				33
 #define Q_ARSENIC_GROUP					15
 #define Q_ARSENIC_PERIOD				4
+#define Q_ARSENIC_BLOCK
+#define Q_ARSENIC_CLASS
+#define Q_ARSENIC_METAL_STATE
 #define Q_ARSENIC_SPACE_GROUP_NUMBER			166
 #define Q_ARSENIC_ATOMIC_MASS				74.92160
 #define Q_ARSENIC_ATOMIC_RADIUS				114.0
@@ -1734,6 +1833,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SELENIUM_ATOMIC_NUMBER			34
 #define Q_SELENIUM_GROUP				16
 #define Q_SELENIUM_PERIOD				4
+#define Q_SELENIUM_BLOCK
+#define Q_SELENIUM_CLASS
+#define Q_SELENIUM_METAL_STATE
 #define Q_SELENIUM_SPACE_GROUP_NUMBER			14
 #define Q_SELENIUM_ATOMIC_MASS				78.96
 #define Q_SELENIUM_ATOMIC_RADIUS			103.0
@@ -1785,6 +1887,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BROMINE_ATOMIC_NUMBER				35
 #define Q_BROMINE_GROUP					17
 #define Q_BROMINE_PERIOD				4
+#define Q_BROMINE_BLOCK
+#define Q_BROMINE_CLASS
+#define Q_BROMINE_METAL_STATE
 #define Q_BROMINE_SPACE_GROUP_NUMBER			64
 #define Q_BROMINE_ATOMIC_MASS				79.904
 #define Q_BROMINE_ATOMIC_RADIUS				94.0
@@ -1836,6 +1941,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_KRYPTON_ATOMIC_NUMBER				36
 #define Q_KRYPTON_GROUP					18
 #define Q_KRYPTON_PERIOD				4
+#define Q_KRYPTON_BLOCK
+#define Q_KRYPTON_CLASS
+#define Q_KRYPTON_METAL_STATE
 #define Q_KRYPTON_SPACE_GROUP_NUMBER			225
 #define Q_KRYPTON_ATOMIC_MASS				83.798
 #define Q_KRYPTON_ATOMIC_RADIUS				87.0
@@ -1887,6 +1995,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RUBIDIUM_ATOMIC_NUMBER			37
 #define Q_RUBIDIUM_GROUP				1
 #define Q_RUBIDIUM_PERIOD				5
+#define Q_RUBIDIUM_BLOCK
+#define Q_RUBIDIUM_CLASS
+#define Q_RUBIDIUM_METAL_STATE
 #define Q_RUBIDIUM_SPACE_GROUP_NUMBER			229
 #define Q_RUBIDIUM_ATOMIC_MASS				85.4678
 #define Q_RUBIDIUM_ATOMIC_RADIUS			265.0
@@ -1938,6 +2049,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_STRONTIUM_ATOMIC_NUMBER			38
 #define Q_STRONTIUM_GROUP				2
 #define Q_STRONTIUM_PERIOD				5
+#define Q_STRONTIUM_BLOCK
+#define Q_STRONTIUM_CLASS
+#define Q_STRONTIUM_METAL_STATE
 #define Q_STRONTIUM_SPACE_GROUP_NUMBER			225
 #define Q_STRONTIUM_ATOMIC_MASS				87.62
 #define Q_STRONTIUM_ATOMIC_RADIUS			219.0
@@ -1989,6 +2103,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_YTTRIUM_ATOMIC_NUMBER				39
 #define Q_YTTRIUM_GROUP					3
 #define Q_YTTRIUM_PERIOD				5
+#define Q_YTTRIUM_BLOCK
+#define Q_YTTRIUM_CLASS
+#define Q_YTTRIUM_METAL_STATE
 #define Q_YTTRIUM_SPACE_GROUP_NUMBER			194
 #define Q_YTTRIUM_ATOMIC_MASS				88.90585
 #define Q_YTTRIUM_ATOMIC_RADIUS				212.0
@@ -2040,6 +2157,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ZIRCONIUM_ATOMIC_NUMBER			40
 #define Q_ZIRCONIUM_GROUP				4
 #define Q_ZIRCONIUM_PERIOD				5
+#define Q_ZIRCONIUM_BLOCK
+#define Q_ZIRCONIUM_CLASS
+#define Q_ZIRCONIUM_METAL_STATE
 #define Q_ZIRCONIUM_SPACE_GROUP_NUMBER			194
 #define Q_ZIRCONIUM_ATOMIC_MASS				91.224
 #define Q_ZIRCONIUM_ATOMIC_RADIUS			206.0
@@ -2091,6 +2211,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NIOBIUM_ATOMIC_NUMBER				41
 #define Q_NIOBIUM_GROUP					5
 #define Q_NIOBIUM_PERIOD				5
+#define Q_NIOBIUM_BLOCK
+#define Q_NIOBIUM_CLASS
+#define Q_NIOBIUM_METAL_STATE
 #define Q_NIOBIUM_SPACE_GROUP_NUMBER			229
 #define Q_NIOBIUM_ATOMIC_MASS				92.90638
 #define Q_NIOBIUM_ATOMIC_RADIUS				198.0
@@ -2142,6 +2265,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MOLYBDENUM_ATOMIC_NUMBER			42
 #define Q_MOLYBDENUM_GROUP				6
 #define Q_MOLYBDENUM_PERIOD				5
+#define Q_MOLYBDENUM_BLOCK
+#define Q_MOLYBDENUM_CLASS
+#define Q_MOLYBDENUM_METAL_STATE
 #define Q_MOLYBDENUM_SPACE_GROUP_NUMBER			229
 #define Q_MOLYBDENUM_ATOMIC_MASS			95.96
 #define Q_MOLYBDENUM_ATOMIC_RADIUS			190.0
@@ -2193,6 +2319,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TECHNETIUM_ATOMIC_NUMBER			43
 #define Q_TECHNETIUM_GROUP				7
 #define Q_TECHNETIUM_PERIOD				5
+#define Q_TECHNETIUM_BLOCK
+#define Q_TECHNETIUM_CLASS
+#define Q_TECHNETIUM_METAL_STATE
 #define Q_TECHNETIUM_SPACE_GROUP_NUMBER			194
 #define Q_TECHNETIUM_ATOMIC_MASS			98.0
 #define Q_TECHNETIUM_ATOMIC_RADIUS			183.0
@@ -2244,6 +2373,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RUTHENIUM_ATOMIC_NUMBER			44
 #define Q_RUTHENIUM_GROUP				8
 #define Q_RUTHENIUM_PERIOD				5
+#define Q_RUTHENIUM_BLOCK
+#define Q_RUTHENIUM_CLASS
+#define Q_RUTHENIUM_METAL_STATE
 #define Q_RUTHENIUM_SPACE_GROUP_NUMBER			194
 #define Q_RUTHENIUM_ATOMIC_MASS				101.07
 #define Q_RUTHENIUM_ATOMIC_RADIUS			178.0
@@ -2295,6 +2427,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RHODIUM_ATOMIC_NUMBER				45
 #define Q_RHODIUM_GROUP					9
 #define Q_RHODIUM_PERIOD				5
+#define Q_RHODIUM_BLOCK
+#define Q_RHODIUM_CLASS
+#define Q_RHODIUM_METAL_STATE
 #define Q_RHODIUM_SPACE_GROUP_NUMBER			225
 #define Q_RHODIUM_ATOMIC_MASS				102.90550
 #define Q_RHODIUM_ATOMIC_RADIUS				173.0
@@ -2346,6 +2481,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PALLADIUM_ATOMIC_NUMBER			46
 #define Q_PALLADIUM_GROUP				10
 #define Q_PALLADIUM_PERIOD				5
+#define Q_PALLADIUM_BLOCK
+#define Q_PALLADIUM_CLASS
+#define Q_PALLADIUM_METAL_STATE
 #define Q_PALLADIUM_SPACE_GROUP_NUMBER			225
 #define Q_PALLADIUM_ATOMIC_MASS				106.42
 #define Q_PALLADIUM_ATOMIC_RADIUS			169.0
@@ -2397,6 +2535,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SILVER_ATOMIC_NUMBER				47
 #define Q_SILVER_GROUP					11
 #define Q_SILVER_PERIOD					5
+#define Q_SILVER_BLOCK
+#define Q_SILVER_CLASS
+#define Q_SILVER_METAL_STATE
 #define Q_SILVER_SPACE_GROUP_NUMBER			225
 #define Q_SILVER_ATOMIC_MASS				107.8682
 #define Q_SILVER_ATOMIC_RADIUS				165.0
@@ -2448,6 +2589,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CADMIUM_ATOMIC_NUMBER				48
 #define Q_CADMIUM_GROUP					12
 #define Q_CADMIUM_PERIOD				5
+#define Q_CADMIUM_BLOCK
+#define Q_CADMIUM_CLASS
+#define Q_CADMIUM_METAL_STATE
 #define Q_CADMIUM_SPACE_GROUP_NUMBER			194
 #define Q_CADMIUM_ATOMIC_MASS				112.411
 #define Q_CADMIUM_ATOMIC_RADIUS				161.0
@@ -2499,6 +2643,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_INDIUM_ATOMIC_NUMBER				49
 #define Q_INDIUM_GROUP					13
 #define Q_INDIUM_PERIOD					5
+#define Q_INDIUM_BLOCK
+#define Q_INDIUM_CLASS
+#define Q_INDIUM_METAL_STATE
 #define Q_INDIUM_SPACE_GROUP_NUMBER			139
 #define Q_INDIUM_ATOMIC_MASS				114.818
 #define Q_INDIUM_ATOMIC_RADIUS				156.0
@@ -2550,6 +2697,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TIN_ATOMIC_NUMBER				50
 #define Q_TIN_GROUP					14
 #define Q_TIN_PERIOD					5
+#define Q_TIN_BLOCK
+#define Q_TIN_CLASS
+#define Q_TIN_METAL_STATE
 #define Q_TIN_SPACE_GROUP_NUMBER			141
 #define Q_TIN_ATOMIC_MASS				118.710
 #define Q_TIN_ATOMIC_RADIUS				145.0
@@ -2601,6 +2751,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ANTIMONY_ATOMIC_NUMBER			51
 #define Q_ANTIMONY_GROUP				15
 #define Q_ANTIMONY_PERIOD				5
+#define Q_ANTIMONY_BLOCK
+#define Q_ANTIMONY_CLASS
+#define Q_ANTIMONY_METAL_STATE
 #define Q_ANTIMONY_SPACE_GROUP_NUMBER			166
 #define Q_ANTIMONY_ATOMIC_MASS				121.760
 #define Q_ANTIMONY_ATOMIC_RADIUS			133.0
@@ -2652,6 +2805,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TELLURIUM_ATOMIC_NUMBER			52
 #define Q_TELLURIUM_GROUP				16
 #define Q_TELLURIUM_PERIOD				5
+#define Q_TELLURIUM_BLOCK
+#define Q_TELLURIUM_CLASS
+#define Q_TELLURIUM_METAL_STATE
 #define Q_TELLURIUM_SPACE_GROUP_NUMBER			152
 #define Q_TELLURIUM_ATOMIC_MASS				127.60
 #define Q_TELLURIUM_ATOMIC_RADIUS			123.0
@@ -2703,6 +2859,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_IODINE_ATOMIC_NUMBER				53
 #define Q_IODINE_GROUP					17
 #define Q_IODINE_PERIOD					5
+#define Q_IODINE_BLOCK
+#define Q_IODINE_CLASS
+#define Q_IODINE_METAL_STATE
 #define Q_IODINE_SPACE_GROUP_NUMBER			64
 #define Q_IODINE_ATOMIC_MASS				126.90447
 #define Q_IODINE_ATOMIC_RADIUS				115.0
@@ -2754,6 +2913,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_XENON_ATOMIC_NUMBER				54
 #define Q_XENON_GROUP					18
 #define Q_XENON_PERIOD					5
+#define Q_XENON_BLOCK
+#define Q_XENON_CLASS
+#define Q_XENON_METAL_STATE
 #define Q_XENON_SPACE_GROUP_NUMBER			225
 #define Q_XENON_ATOMIC_MASS				131.293
 #define Q_XENON_ATOMIC_RADIUS				108.0
@@ -2805,6 +2967,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CAESIUM_ATOMIC_NUMBER				55
 #define Q_CAESIUM_GROUP					1
 #define Q_CAESIUM_PERIOD				6
+#define Q_CAESIUM_BLOCK
+#define Q_CAESIUM_CLASS
+#define Q_CAESIUM_METAL_STATE
 #define Q_CAESIUM_SPACE_GROUP_NUMBER			229
 #define Q_CAESIUM_ATOMIC_MASS				132.9054519
 #define Q_CAESIUM_ATOMIC_RADIUS				298.0
@@ -2856,6 +3021,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BARIUM_ATOMIC_NUMBER				56
 #define Q_BARIUM_GROUP					2
 #define Q_BARIUM_PERIOD					6
+#define Q_BARIUM_BLOCK
+#define Q_BARIUM_CLASS
+#define Q_BARIUM_METAL_STATE
 #define Q_BARIUM_SPACE_GROUP_NUMBER			229
 #define Q_BARIUM_ATOMIC_MASS				137.327
 #define Q_BARIUM_ATOMIC_RADIUS				253.0
@@ -2907,6 +3075,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LANTHANUM_ATOMIC_NUMBER			57
 #define Q_LANTHANUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_LANTHANUM_PERIOD				6
+#define Q_LANTHANUM_BLOCK
+#define Q_LANTHANUM_CLASS
+#define Q_LANTHANUM_METAL_STATE
 #define Q_LANTHANUM_SPACE_GROUP_NUMBER			194
 #define Q_LANTHANUM_ATOMIC_MASS				138.90547
 #define Q_LANTHANUM_ATOMIC_RADIUS			REAL_MISSING
@@ -2958,6 +3129,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CERIUM_ATOMIC_NUMBER				58
 #define Q_CERIUM_GROUP					INTEGER_NOT_APPLICABLE
 #define Q_CERIUM_PERIOD					6
+#define Q_CERIUM_BLOCK
+#define Q_CERIUM_CLASS
+#define Q_CERIUM_METAL_STATE
 #define Q_CERIUM_SPACE_GROUP_NUMBER			194
 #define Q_CERIUM_ATOMIC_MASS				140.116
 #define Q_CERIUM_ATOMIC_RADIUS				REAL_MISSING
@@ -3009,6 +3183,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PRASEODYMIUM_ATOMIC_NUMBER			59
 #define Q_PRASEODYMIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_PRASEODYMIUM_PERIOD				6
+#define Q_PRASEODYMIUM_BLOCK
+#define Q_PRASEODYMIUM_CLASS
+#define Q_PRASEODYMIUM_METAL_STATE
 #define Q_PRASEODYMIUM_SPACE_GROUP_NUMBER		194
 #define Q_PRASEODYMIUM_ATOMIC_MASS			140.90765
 #define Q_PRASEODYMIUM_ATOMIC_RADIUS			247.0
@@ -3060,6 +3237,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NEODYMIUM_ATOMIC_NUMBER			60
 #define Q_NEODYMIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_NEODYMIUM_PERIOD				6
+#define Q_NEODYMIUM_BLOCK
+#define Q_NEODYMIUM_CLASS
+#define Q_NEODYMIUM_METAL_STATE
 #define Q_NEODYMIUM_SPACE_GROUP_NUMBER			194
 #define Q_NEODYMIUM_ATOMIC_MASS				144.242
 #define Q_NEODYMIUM_ATOMIC_RADIUS			206.0
@@ -3111,6 +3291,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PROMETHIUM_ATOMIC_NUMBER			61
 #define Q_PROMETHIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_PROMETHIUM_PERIOD				6
+#define Q_PROMETHIUM_BLOCK
+#define Q_PROMETHIUM_CLASS
+#define Q_PROMETHIUM_METAL_STATE
 #define Q_PROMETHIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_PROMETHIUM_ATOMIC_MASS			145.0
 #define Q_PROMETHIUM_ATOMIC_RADIUS			205.0
@@ -3162,6 +3345,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SAMARIUM_ATOMIC_NUMBER			62
 #define Q_SAMARIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_SAMARIUM_PERIOD				6
+#define Q_SAMARIUM_BLOCK
+#define Q_SAMARIUM_CLASS
+#define Q_SAMARIUM_METAL_STATE
 #define Q_SAMARIUM_SPACE_GROUP_NUMBER			166
 #define Q_SAMARIUM_ATOMIC_MASS				150.36
 #define Q_SAMARIUM_ATOMIC_RADIUS			238.0
@@ -3213,6 +3399,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_EUROPIUM_ATOMIC_NUMBER			63
 #define Q_EUROPIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_EUROPIUM_PERIOD				6
+#define Q_EUROPIUM_BLOCK
+#define Q_EUROPIUM_CLASS
+#define Q_EUROPIUM_METAL_STATE
 #define Q_EUROPIUM_SPACE_GROUP_NUMBER			229
 #define Q_EUROPIUM_ATOMIC_MASS				151.964
 #define Q_EUROPIUM_ATOMIC_RADIUS			231.0
@@ -3264,6 +3453,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_GADOLINIUM_ATOMIC_NUMBER			64
 #define Q_GADOLINIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_GADOLINIUM_PERIOD				6
+#define Q_GADOLINIUM_BLOCK
+#define Q_GADOLINIUM_CLASS
+#define Q_GADOLINIUM_METAL_STATE
 #define Q_GADOLINIUM_SPACE_GROUP_NUMBER			194
 #define Q_GADOLINIUM_ATOMIC_MASS			157.25
 #define Q_GADOLINIUM_ATOMIC_RADIUS			233.0
@@ -3315,6 +3507,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TERBIUM_ATOMIC_NUMBER				65
 #define Q_TERBIUM_GROUP					INTEGER_NOT_APPLICABLE
 #define Q_TERBIUM_PERIOD				6
+#define Q_TERBIUM_BLOCK
+#define Q_TERBIUM_CLASS
+#define Q_TERBIUM_METAL_STATE
 #define Q_TERBIUM_SPACE_GROUP_NUMBER			194
 #define Q_TERBIUM_ATOMIC_MASS				158.92535
 #define Q_TERBIUM_ATOMIC_RADIUS				225.0
@@ -3366,6 +3561,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_DYSPROSIUM_ATOMIC_NUMBER			66
 #define Q_DYSPROSIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_DYSPROSIUM_PERIOD				6
+#define Q_DYSPROSIUM_BLOCK
+#define Q_DYSPROSIUM_CLASS
+#define Q_DYSPROSIUM_METAL_STATE
 #define Q_DYSPROSIUM_SPACE_GROUP_NUMBER			194
 #define Q_DYSPROSIUM_ATOMIC_MASS			162.5
 #define Q_DYSPROSIUM_ATOMIC_RADIUS			228.0
@@ -3417,6 +3615,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HOLMIUM_ATOMIC_NUMBER				67
 #define Q_HOLMIUM_GROUP					INTEGER_NOT_APPLICABLE
 #define Q_HOLMIUM_PERIOD				6
+#define Q_HOLMIUM_BLOCK
+#define Q_HOLMIUM_CLASS
+#define Q_HOLMIUM_METAL_STATE
 #define Q_HOLMIUM_SPACE_GROUP_NUMBER			194
 #define Q_HOLMIUM_ATOMIC_MASS				164.93032
 #define Q_HOLMIUM_ATOMIC_RADIUS				226.0
@@ -3468,6 +3669,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ERBIUM_ATOMIC_NUMBER				68
 #define Q_ERBIUM_GROUP					INTEGER_NOT_APPLICABLE
 #define Q_ERBIUM_PERIOD					6
+#define Q_ERBIUM_BLOCK
+#define Q_ERBIUM_CLASS
+#define Q_ERBIUM_METAL_STATE
 #define Q_ERBIUM_SPACE_GROUP_NUMBER			194
 #define Q_ERBIUM_ATOMIC_MASS				167.259
 #define Q_ERBIUM_ATOMIC_RADIUS				226.0
@@ -3519,6 +3723,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_THULIUM_ATOMIC_NUMBER				69
 #define Q_THULIUM_GROUP					INTEGER_NOT_APPLICABLE
 #define Q_THULIUM_PERIOD				6
+#define Q_THULIUM_BLOCK
+#define Q_THULIUM_CLASS
+#define Q_THULIUM_METAL_STATE
 #define Q_THULIUM_SPACE_GROUP_NUMBER			194
 #define Q_THULIUM_ATOMIC_MASS				168.93421
 #define Q_THULIUM_ATOMIC_RADIUS				222.0
@@ -3570,6 +3777,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_YTTERBIUM_ATOMIC_NUMBER			70
 #define Q_YTTERBIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_YTTERBIUM_PERIOD				6
+#define Q_YTTERBIUM_BLOCK
+#define Q_YTTERBIUM_CLASS
+#define Q_YTTERBIUM_METAL_STATE
 #define Q_YTTERBIUM_SPACE_GROUP_NUMBER			225
 #define Q_YTTERBIUM_ATOMIC_MASS				173.054
 #define Q_YTTERBIUM_ATOMIC_RADIUS			222.0
@@ -3621,6 +3831,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LUTETIUM_ATOMIC_NUMBER			71
 #define Q_LUTETIUM_GROUP				3
 #define Q_LUTETIUM_PERIOD				6
+#define Q_LUTETIUM_BLOCK
+#define Q_LUTETIUM_CLASS
+#define Q_LUTETIUM_METAL_STATE
 #define Q_LUTETIUM_SPACE_GROUP_NUMBER			194
 #define Q_LUTETIUM_ATOMIC_MASS				174.9668
 #define Q_LUTETIUM_ATOMIC_RADIUS			217.0
@@ -3672,6 +3885,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HAFNIUM_ATOMIC_NUMBER				72
 #define Q_HAFNIUM_GROUP					4
 #define Q_HAFNIUM_PERIOD				6
+#define Q_HAFNIUM_BLOCK
+#define Q_HAFNIUM_CLASS
+#define Q_HAFNIUM_METAL_STATE
 #define Q_HAFNIUM_SPACE_GROUP_NUMBER			194
 #define Q_HAFNIUM_ATOMIC_MASS				178.49
 #define Q_HAFNIUM_ATOMIC_RADIUS				208.0
@@ -3723,6 +3939,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_TANTALUM_ATOMIC_NUMBER			73
 #define Q_TANTALUM_GROUP				5
 #define Q_TANTALUM_PERIOD				6
+#define Q_TANTALUM_BLOCK
+#define Q_TANTALUM_CLASS
+#define Q_TANTALUM_METAL_STATE
 #define Q_TANTALUM_SPACE_GROUP_NUMBER			229
 #define Q_TANTALUM_ATOMIC_MASS				180.94788
 #define Q_TANTALUM_ATOMIC_RADIUS			2.0e2 // 2 2.0 10
@@ -3774,6 +3993,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_WOLFRAM_ATOMIC_NUMBER				74
 #define Q_WOLFRAM_GROUP					6
 #define Q_WOLFRAM_PERIOD				6
+#define Q_WOLFRAM_BLOCK
+#define Q_WOLFRAM_CLASS
+#define Q_WOLFRAM_METAL_STATE
 #define Q_WOLFRAM_SPACE_GROUP_NUMBER			229
 #define Q_WOLFRAM_ATOMIC_MASS				183.84
 #define Q_WOLFRAM_ATOMIC_RADIUS				193.0
@@ -3825,6 +4047,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RHENIUM_ATOMIC_NUMBER				75
 #define Q_RHENIUM_GROUP					7
 #define Q_RHENIUM_PERIOD				6
+#define Q_RHENIUM_BLOCK
+#define Q_RHENIUM_CLASS
+#define Q_RHENIUM_METAL_STATE
 #define Q_RHENIUM_SPACE_GROUP_NUMBER			194
 #define Q_RHENIUM_ATOMIC_MASS				186.207
 #define Q_RHENIUM_ATOMIC_RADIUS				188.0
@@ -3876,6 +4101,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_OSMIUM_ATOMIC_NUMBER				76
 #define Q_OSMIUM_GROUP					8
 #define Q_OSMIUM_PERIOD					6
+#define Q_OSMIUM_BLOCK
+#define Q_OSMIUM_CLASS
+#define Q_OSMIUM_METAL_STATE
 #define Q_OSMIUM_SPACE_GROUP_NUMBER			194
 #define Q_OSMIUM_ATOMIC_MASS				190.23
 #define Q_OSMIUM_ATOMIC_RADIUS				185.0
@@ -3927,6 +4155,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_IRIDIUM_ATOMIC_NUMBER				77
 #define Q_IRIDIUM_GROUP					9
 #define Q_IRIDIUM_PERIOD				6
+#define Q_IRIDIUM_BLOCK
+#define Q_IRIDIUM_CLASS
+#define Q_IRIDIUM_METAL_STATE
 #define Q_IRIDIUM_SPACE_GROUP_NUMBER			225
 #define Q_IRIDIUM_ATOMIC_MASS				192.217
 #define Q_IRIDIUM_ATOMIC_RADIUS				180.0
@@ -3978,6 +4209,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PLATINUM_ATOMIC_NUMBER			78
 #define Q_PLATINUM_GROUP				10
 #define Q_PLATINUM_PERIOD				6
+#define Q_PLATINUM_BLOCK
+#define Q_PLATINUM_CLASS
+#define Q_PLATINUM_METAL_STATE
 #define Q_PLATINUM_SPACE_GROUP_NUMBER			225
 #define Q_PLATINUM_ATOMIC_MASS				195.084
 #define Q_PLATINUM_ATOMIC_RADIUS			177.0
@@ -4029,6 +4263,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_GOLD_ATOMIC_NUMBER				79
 #define Q_GOLD_GROUP					11
 #define Q_GOLD_PERIOD					6
+#define Q_GOLD_BLOCK
+#define Q_GOLD_CLASS
+#define Q_GOLD_METAL_STATE
 #define Q_GOLD_SPACE_GROUP_NUMBER			225
 #define Q_GOLD_ATOMIC_MASS				196.966569
 #define Q_GOLD_ATOMIC_RADIUS				174.0
@@ -4080,6 +4317,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MERCURY_ATOMIC_NUMBER				80
 #define Q_MERCURY_GROUP					12
 #define Q_MERCURY_PERIOD				6
+#define Q_MERCURY_BLOCK
+#define Q_MERCURY_CLASS
+#define Q_MERCURY_METAL_STATE
 #define Q_MERCURY_SPACE_GROUP_NUMBER			166
 #define Q_MERCURY_ATOMIC_MASS				200.59
 #define Q_MERCURY_ATOMIC_RADIUS				171.0
@@ -4131,6 +4371,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_THALLIUM_ATOMIC_NUMBER			81
 #define Q_THALLIUM_GROUP				13
 #define Q_THALLIUM_PERIOD				6
+#define Q_THALLIUM_BLOCK
+#define Q_THALLIUM_CLASS
+#define Q_THALLIUM_METAL_STATE
 #define Q_THALLIUM_SPACE_GROUP_NUMBER			194
 #define Q_THALLIUM_ATOMIC_MASS				204.3833
 #define Q_THALLIUM_ATOMIC_RADIUS			156.0
@@ -4182,6 +4425,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LEAD_ATOMIC_NUMBER				82
 #define Q_LEAD_GROUP					14
 #define Q_LEAD_PERIOD					6
+#define Q_LEAD_BLOCK
+#define Q_LEAD_CLASS
+#define Q_LEAD_METAL_STATE
 #define Q_LEAD_SPACE_GROUP_NUMBER			225
 #define Q_LEAD_ATOMIC_MASS				207.2
 #define Q_LEAD_ATOMIC_RADIUS				154.0
@@ -4233,6 +4479,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BISMUTH_ATOMIC_NUMBER				83
 #define Q_BISMUTH_GROUP					15
 #define Q_BISMUTH_PERIOD				6
+#define Q_BISMUTH_BLOCK
+#define Q_BISMUTH_CLASS
+#define Q_BISMUTH_METAL_STATE
 #define Q_BISMUTH_SPACE_GROUP_NUMBER			12
 #define Q_BISMUTH_ATOMIC_MASS				208.98040
 #define Q_BISMUTH_ATOMIC_RADIUS				143.0
@@ -4284,6 +4533,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_POLONIUM_ATOMIC_NUMBER			84
 #define Q_POLONIUM_GROUP				16
 #define Q_POLONIUM_PERIOD				6
+#define Q_POLONIUM_BLOCK
+#define Q_POLONIUM_CLASS
+#define Q_POLONIUM_METAL_STATE
 #define Q_POLONIUM_SPACE_GROUP_NUMBER			221
 #define Q_POLONIUM_ATOMIC_MASS				209.0
 #define Q_POLONIUM_ATOMIC_RADIUS			135.0
@@ -4335,6 +4587,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ASTATINE_ATOMIC_NUMBER			85
 #define Q_ASTATINE_GROUP				17
 #define Q_ASTATINE_PERIOD				6
+#define Q_ASTATINE_BLOCK
+#define Q_ASTATINE_CLASS
+#define Q_ASTATINE_METAL_STATE
 #define Q_ASTATINE_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_ASTATINE_ATOMIC_MASS				210.0
 #define Q_ASTATINE_ATOMIC_RADIUS			127.0
@@ -4386,6 +4641,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RADON_ATOMIC_NUMBER				86
 #define Q_RADON_GROUP					18
 #define Q_RADON_PERIOD					6
+#define Q_RADON_BLOCK
+#define Q_RADON_CLASS
+#define Q_RADON_METAL_STATE
 #define Q_RADON_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_RADON_ATOMIC_MASS				222.0
 #define Q_RADON_ATOMIC_RADIUS				120.0
@@ -4437,6 +4695,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_FRANCIUM_ATOMIC_NUMBER			87
 #define Q_FRANCIUM_GROUP				1
 #define Q_FRANCIUM_PERIOD				7
+#define Q_FRANCIUM_BLOCK
+#define Q_FRANCIUM_CLASS
+#define Q_FRANCIUM_METAL_STATE
 #define Q_FRANCIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_FRANCIUM_ATOMIC_MASS				223.0
 #define Q_FRANCIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -4488,6 +4749,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RADIUM_ATOMIC_NUMBER				88
 #define Q_RADIUM_GROUP					2
 #define Q_RADIUM_PERIOD					7
+#define Q_RADIUM_BLOCK
+#define Q_RADIUM_CLASS
+#define Q_RADIUM_METAL_STATE
 #define Q_RADIUM_SPACE_GROUP_NUMBER			229
 #define Q_RADIUM_ATOMIC_MASS				226.0
 #define Q_RADIUM_ATOMIC_RADIUS				REAL_MISSING
@@ -4539,6 +4803,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ACTINIUM_ATOMIC_NUMBER			89
 #define Q_ACTINIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_ACTINIUM_PERIOD				7
+#define Q_ACTINIUM_BLOCK
+#define Q_ACTINIUM_CLASS
+#define Q_ACTINIUM_METAL_STATE
 #define Q_ACTINIUM_SPACE_GROUP_NUMBER			225
 #define Q_ACTINIUM_ATOMIC_MASS				227.0
 #define Q_ACTINIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -4590,6 +4857,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_THORIUM_ATOMIC_NUMBER				90
 #define Q_THORIUM_GROUP					INTEGER_NOT_APPLICABLE
 #define Q_THORIUM_PERIOD				7
+#define Q_THORIUM_BLOCK
+#define Q_THORIUM_CLASS
+#define Q_THORIUM_METAL_STATE
 #define Q_THORIUM_SPACE_GROUP_NUMBER			225
 #define Q_THORIUM_ATOMIC_MASS				232.03806
 #define Q_THORIUM_ATOMIC_RADIUS				REAL_UNKNOWN
@@ -4641,6 +4911,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PROTACTINIUM_ATOMIC_NUMBER			91
 #define Q_PROTACTINIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_PROTACTINIUM_PERIOD				7
+#define Q_PROTACTINIUM_BLOCK
+#define Q_PROTACTINIUM_CLASS
+#define Q_PROTACTINIUM_METAL_STATE
 #define Q_PROTACTINIUM_SPACE_GROUP_NUMBER		139
 #define Q_PROTACTINIUM_ATOMIC_MASS			231.03586
 #define Q_PROTACTINIUM_ATOMIC_RADIUS			REAL_UNKNOWN
@@ -4692,6 +4965,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_URANIUM_ATOMIC_NUMBER				92
 #define Q_URANIUM_GROUP					INTEGER_NOT_APPLICABLE
 #define Q_URANIUM_PERIOD				7
+#define Q_URANIUM_BLOCK
+#define Q_URANIUM_CLASS
+#define Q_URANIUM_METAL_STATE
 #define Q_URANIUM_SPACE_GROUP_NUMBER			63
 #define Q_URANIUM_ATOMIC_MASS				238.02891
 #define Q_URANIUM_ATOMIC_RADIUS				REAL_UNKNOWN
@@ -4743,6 +5019,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NEPTUNIUM_ATOMIC_NUMBER			93
 #define Q_NEPTUNIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_NEPTUNIUM_PERIOD				7
+#define Q_NEPTUNIUM_BLOCK
+#define Q_NEPTUNIUM_CLASS
+#define Q_NEPTUNIUM_METAL_STATE
 #define Q_NEPTUNIUM_SPACE_GROUP_NUMBER			62
 #define Q_NEPTUNIUM_ATOMIC_MASS				237.0
 #define Q_NEPTUNIUM_ATOMIC_RADIUS			REAL_UNKNOWN
@@ -4794,6 +5073,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PLUTONIUM_ATOMIC_NUMBER			94
 #define Q_PLUTONIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_PLUTONIUM_PERIOD				7
+#define Q_PLUTONIUM_BLOCK
+#define Q_PLUTONIUM_CLASS
+#define Q_PLUTONIUM_METAL_STATE
 #define Q_PLUTONIUM_SPACE_GROUP_NUMBER			11
 #define Q_PLUTONIUM_ATOMIC_MASS				244.0
 #define Q_PLUTONIUM_ATOMIC_RADIUS			REAL_UNKNOWN
@@ -4845,6 +5127,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_AMERICIUM_ATOMIC_NUMBER			95
 #define Q_AMERICIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_AMERICIUM_PERIOD				7
+#define Q_AMERICIUM_BLOCK
+#define Q_AMERICIUM_CLASS
+#define Q_AMERICIUM_METAL_STATE
 #define Q_AMERICIUM_SPACE_GROUP_NUMBER			194
 #define Q_AMERICIUM_ATOMIC_MASS				243.0
 #define Q_AMERICIUM_ATOMIC_RADIUS			REAL_UNKNOWN
@@ -4896,6 +5181,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CURIUM_ATOMIC_NUMBER				96
 #define Q_CURIUM_GROUP					INTEGER_NOT_APPLICABLE
 #define Q_CURIUM_PERIOD					7
+#define Q_CURIUM_BLOCK
+#define Q_CURIUM_CLASS
+#define Q_CURIUM_METAL_STATE
 #define Q_CURIUM_SPACE_GROUP_NUMBER			194
 #define Q_CURIUM_ATOMIC_MASS				247.0
 #define Q_CURIUM_ATOMIC_RADIUS				REAL_UNKNOWN
@@ -4947,6 +5235,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BERKELIUM_ATOMIC_NUMBER			97
 #define Q_BERKELIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_BERKELIUM_PERIOD				7
+#define Q_BERKELIUM_BLOCK
+#define Q_BERKELIUM_CLASS
+#define Q_BERKELIUM_METAL_STATE
 #define Q_BERKELIUM_SPACE_GROUP_NUMBER			194
 #define Q_BERKELIUM_ATOMIC_MASS				247.0
 #define Q_BERKELIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -4998,6 +5289,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CALIFORNIUM_ATOMIC_NUMBER			98
 #define Q_CALIFORNIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_CALIFORNIUM_PERIOD				7
+#define Q_CALIFORNIUM_BLOCK
+#define Q_CALIFORNIUM_CLASS
+#define Q_CALIFORNIUM_METAL_STATE
 #define Q_CALIFORNIUM_SPACE_GROUP_NUMBER		194
 #define Q_CALIFORNIUM_ATOMIC_MASS			251.0
 #define Q_CALIFORNIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5049,6 +5343,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_EINSTEINIUM_ATOMIC_NUMBER			99
 #define Q_EINSTEINIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_EINSTEINIUM_PERIOD				7
+#define Q_EINSTEINIUM_BLOCK
+#define Q_EINSTEINIUM_CLASS
+#define Q_EINSTEINIUM_METAL_STATE
 #define Q_EINSTEINIUM_SPACE_GROUP_NUMBER		INTEGER_MISSING
 #define Q_EINSTEINIUM_ATOMIC_MASS			252.0
 #define Q_EINSTEINIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5100,6 +5397,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_FERMIUM_ATOMIC_NUMBER				100
 #define Q_FERMIUM_GROUP					INTEGER_NOT_APPLICABLE
 #define Q_FERMIUM_PERIOD				7
+#define Q_FERMIUM_BLOCK
+#define Q_FERMIUM_CLASS
+#define Q_FERMIUM_METAL_STATE
 #define Q_FERMIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_FERMIUM_ATOMIC_MASS				257.0
 #define Q_FERMIUM_ATOMIC_RADIUS				REAL_MISSING
@@ -5151,6 +5451,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MENDELEVIUM_ATOMIC_NUMBER			101
 #define Q_MENDELEVIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_MENDELEVIUM_PERIOD				7
+#define Q_MENDELEVIUM_BLOCK
+#define Q_MENDELEVIUM_CLASS
+#define Q_MENDELEVIUM_METAL_STATE
 #define Q_MENDELEVIUM_SPACE_GROUP_NUMBER		INTEGER_MISSING
 #define Q_MENDELEVIUM_ATOMIC_MASS			258.0
 #define Q_MENDELEVIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5202,6 +5505,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_NOBELIUM_ATOMIC_NUMBER			102
 #define Q_NOBELIUM_GROUP				INTEGER_NOT_APPLICABLE
 #define Q_NOBELIUM_PERIOD				7
+#define Q_NOBELIUM_BLOCK
+#define Q_NOBELIUM_CLASS
+#define Q_NOBELIUM_METAL_STATE
 #define Q_NOBELIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_NOBELIUM_ATOMIC_MASS				259.0
 #define Q_NOBELIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5253,6 +5559,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LAWRENCIUM_ATOMIC_NUMBER			103
 #define Q_LAWRENCIUM_GROUP				3
 #define Q_LAWRENCIUM_PERIOD				7
+#define Q_LAWRENCIUM_BLOCK
+#define Q_LAWRENCIUM_CLASS
+#define Q_LAWRENCIUM_METAL_STATE
 #define Q_LAWRENCIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_LAWRENCIUM_ATOMIC_MASS			262.0
 #define Q_LAWRENCIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5304,6 +5613,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_RUTHERFORDIUM_ATOMIC_NUMBER			104
 #define Q_RUTHERFORDIUM_GROUP				4
 #define Q_RUTHERFORDIUM_PERIOD				7
+#define Q_RUTHERFORDIUM_BLOCK
+#define Q_RUTHERFORDIUM_CLASS
+#define Q_RUTHERFORDIUM_METAL_STATE
 #define Q_RUTHERFORDIUM_SPACE_GROUP_NUMBER		INTEGER_MISSING
 #define Q_RUTHERFORDIUM_ATOMIC_MASS			265.0
 #define Q_RUTHERFORDIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5355,6 +5667,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_DUBNIUM_ATOMIC_NUMBER				105
 #define Q_DUBNIUM_GROUP					5
 #define Q_DUBNIUM_PERIOD				7
+#define Q_DUBNIUM_BLOCK
+#define Q_DUBNIUM_CLASS
+#define Q_DUBNIUM_METAL_STATE
 #define Q_DUBNIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_DUBNIUM_ATOMIC_MASS				268.0
 #define Q_DUBNIUM_ATOMIC_RADIUS				REAL_MISSING
@@ -5406,6 +5721,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_SEABORGIUM_ATOMIC_NUMBER			106
 #define Q_SEABORGIUM_GROUP				6
 #define Q_SEABORGIUM_PERIOD				7
+#define Q_SEABORGIUM_BLOCK
+#define Q_SEABORGIUM_CLASS
+#define Q_SEABORGIUM_METAL_STATE
 #define Q_SEABORGIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_SEABORGIUM_ATOMIC_MASS			271.0
 #define Q_SEABORGIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5457,6 +5775,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BOHRIUM_ATOMIC_NUMBER				107
 #define Q_BOHRIUM_GROUP					7
 #define Q_BOHRIUM_PERIOD				7
+#define Q_BOHRIUM_BLOCK
+#define Q_BOHRIUM_CLASS
+#define Q_BOHRIUM_METAL_STATE
 #define Q_BOHRIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_BOHRIUM_ATOMIC_MASS				272.0
 #define Q_BOHRIUM_ATOMIC_RADIUS				REAL_MISSING
@@ -5508,6 +5829,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_HASSIUM_ATOMIC_NUMBER				108
 #define Q_HASSIUM_GROUP					8
 #define Q_HASSIUM_PERIOD				7
+#define Q_HASSIUM_BLOCK
+#define Q_HASSIUM_CLASS
+#define Q_HASSIUM_METAL_STATE
 #define Q_HASSIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_HASSIUM_ATOMIC_MASS				270.0
 #define Q_HASSIUM_ATOMIC_RADIUS				REAL_MISSING
@@ -5559,6 +5883,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_MEITNERIUM_ATOMIC_NUMBER			109
 #define Q_MEITNERIUM_GROUP				9
 #define Q_MEITNERIUM_PERIOD				7
+#define Q_MEITNERIUM_BLOCK
+#define Q_MEITNERIUM_CLASS
+#define Q_MEITNERIUM_METAL_STATE
 #define Q_MEITNERIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_MEITNERIUM_ATOMIC_MASS			276.0
 #define Q_MEITNERIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5610,6 +5937,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_DARMSTADTIUM_ATOMIC_NUMBER			110
 #define Q_DARMSTADTIUM_GROUP				10
 #define Q_DARMSTADTIUM_PERIOD				7
+#define Q_DARMSTADTIUM_BLOCK
+#define Q_DARMSTADTIUM_CLASS
+#define Q_DARMSTADTIUM_METAL_STATE
 #define Q_DARMSTADTIUM_SPACE_GROUP_NUMBER		INTEGER_UNKNOWN
 #define Q_DARMSTADTIUM_ATOMIC_MASS			281.0
 #define Q_DARMSTADTIUM_ATOMIC_RADIUS			REAL_UNKNOWN
@@ -5661,6 +5991,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ROENTGENIUM_ATOMIC_NUMBER			111
 #define Q_ROENTGENIUM_GROUP				11
 #define Q_ROENTGENIUM_PERIOD				7
+#define Q_ROENTGENIUM_BLOCK
+#define Q_ROENTGENIUM_CLASS
+#define Q_ROENTGENIUM_METAL_STATE
 #define Q_ROENTGENIUM_SPACE_GROUP_NUMBER		INTEGER_MISSING
 #define Q_ROENTGENIUM_ATOMIC_MASS			280.0
 #define Q_ROENTGENIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5712,6 +6045,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_COPERNICIUM_ATOMIC_NUMBER			112
 #define Q_COPERNICIUM_GROUP				12
 #define Q_COPERNICIUM_PERIOD				7
+#define Q_COPERNICIUM_BLOCK
+#define Q_COPERNICIUM_CLASS
+#define Q_COPERNICIUM_METAL_STATE
 #define Q_COPERNICIUM_SPACE_GROUP_NUMBER		INTEGER_MISSING
 #define Q_COPERNICIUM_ATOMIC_MASS			285.0
 #define Q_COPERNICIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5763,6 +6099,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_UNUNTRIUM_ATOMIC_NUMBER			113
 #define Q_UNUNTRIUM_GROUP				13
 #define Q_UNUNTRIUM_PERIOD				7
+#define Q_UNUNTRIUM_BLOCK
+#define Q_UNUNTRIUM_CLASS
+#define Q_UNUNTRIUM_METAL_STATE
 #define Q_UNUNTRIUM_SPACE_GROUP_NUMBER			INTEGER_UNKNOWN
 #define Q_UNUNTRIUM_ATOMIC_MASS				284.0
 #define Q_UNUNTRIUM_ATOMIC_RADIUS			REAL_UNKNOWN
@@ -5814,6 +6153,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_FLEROVIUM_ATOMIC_NUMBER			114
 #define Q_FLEROVIUM_GROUP				14
 #define Q_FLEROVIUM_PERIOD				7
+#define Q_FLEROVIUM_BLOCK
+#define Q_FLEROVIUM_CLASS
+#define Q_FLEROVIUM_METAL_STATE
 #define Q_FLEROVIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_FLEROVIUM_ATOMIC_MASS				289.0
 #define Q_FLEROVIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5865,6 +6207,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_UNUNPENTIUM_ATOMIC_NUMBER			115
 #define Q_UNUNPENTIUM_GROUP				15
 #define Q_UNUNPENTIUM_PERIOD				7
+#define Q_UNUNPENTIUM_BLOCK
+#define Q_UNUNPENTIUM_CLASS
+#define Q_UNUNPENTIUM_METAL_STATE
 #define Q_UNUNPENTIUM_SPACE_GROUP_NUMBER		INTEGER_MISSING
 #define Q_UNUNPENTIUM_ATOMIC_MASS			288.0
 #define Q_UNUNPENTIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -5916,6 +6261,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_LIVERMORIUM_ATOMIC_NUMBER			116
 #define Q_LIVERMORIUM_GROUP				16
 #define Q_LIVERMORIUM_PERIOD				7
+#define Q_LIVERMORIUM_BLOCK
+#define Q_LIVERMORIUM_CLASS
+#define Q_LIVERMORIUM_METAL_STATE
 #define Q_LIVERMORIUM_SPACE_GROUP_NUMBER		INTEGER_UNKNOWN
 #define Q_LIVERMORIUM_ATOMIC_MASS			293.0
 #define Q_LIVERMORIUM_ATOMIC_RADIUS			REAL_UNKNOWN
@@ -5967,6 +6315,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_UNUNSEPTIUM_ATOMIC_NUMBER			117
 #define Q_UNUNSEPTIUM_GROUP				17
 #define Q_UNUNSEPTIUM_PERIOD				7
+#define Q_UNUNSEPTIUM_BLOCK
+#define Q_UNUNSEPTIUM_CLASS
+#define Q_UNUNSEPTIUM_METAL_STATE
 #define Q_UNUNSEPTIUM_SPACE_GROUP_NUMBER		INTEGER_MISSING
 #define Q_UNUNSEPTIUM_ATOMIC_MASS			294.0
 #define Q_UNUNSEPTIUM_ATOMIC_RADIUS			REAL_MISSING
@@ -6018,6 +6369,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_UNUNOCTIUM_ATOMIC_NUMBER			118
 #define Q_UNUNOCTIUM_GROUP				18
 #define Q_UNUNOCTIUM_PERIOD				7
+#define Q_UNUNOCTIUM_BLOCK
+#define Q_UNUNOCTIUM_CLASS
+#define Q_UNUNOCTIUM_METAL_STATE
 #define Q_UNUNOCTIUM_SPACE_GROUP_NUMBER			INTEGER_MISSING
 #define Q_UNUNOCTIUM_ATOMIC_MASS			294.0
 #define Q_UNUNOCTIUM_ATOMIC_RADIUS			REAL_MISSING
