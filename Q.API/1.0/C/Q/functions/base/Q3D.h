@@ -319,12 +319,22 @@ Q_INLINE qboolean q_3d_##type##_are_perpendicular(Q3D##Type a, Q3D##Type b)	\
 	}									\
 										\
 										\
-Q_INLINE Q3D##Type q_3d_##type##_lerp(Q3D##Type a, Q3D##Type b, q##type alpha)	\
+Q_INLINE Q3D##Type q_3d_##type##_lerp(Q3D##Type a, Q3D##Type b, q##type t)	\
 	{									\
 	return q_3d_##type							\
-		(q_##type##_lerp(a.x, b.x, alpha),				\
-		 q_##type##_lerp(a.y, b.y, alpha),				\
-		 q_##type##_lerp(a.z, b.z, alpha));				\
+		(q_##type##_lerp(a.x, b.x, t),					\
+		 q_##type##_lerp(a.y, b.y, t),					\
+		 q_##type##_lerp(a.z, b.z, t));					\
+	}									\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_3d_##type##_inverse_lerp(Q3D##Type a, Q3D##Type b, q##type t)	\
+	{									\
+	return q_3d_##type							\
+		(q_##type##_inverse_lerp(a.x, b.x, t),				\
+		 q_##type##_inverse_lerp(a.y, b.y, t),				\
+		 q_##type##_inverse_lerp(a.z, b.z, t));				\
 	}									\
 										\
 										\

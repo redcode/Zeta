@@ -280,27 +280,29 @@ Q_INLINE qboolean q_##type##_are_almost_equal(q##type a, q##type b)		\
 	{return q_##type##_absolute(a - b) <= epsilon;}				\
 										\
 										\
-Q_INLINE q##type q_##type##_lerp(q##type a, q##type b, q##type alpha)		\
-	{return a + alpha * (b - a);}						\
+Q_INLINE q##type q_##type##_lerp(q##type a, q##type b, q##type t)		\
+	{return a + t * (b - a);}						\
 										\
 										\
-Q_INLINE q##type q_##type##_smoothstep(q##type a, q##type b, q##type alpha)	\
+Q_INLINE q##type q_##type##_inverse_lerp(q##type a, q##type b, q##type t)	\
+	{return (t - a) / (b - a);}						\
+										\
+										\
+Q_INLINE q##type q_##type##_smoothstep(q##type a, q##type b, q##type t)		\
 	{									\
-	if (alpha <= a) return _(0.0);						\
-	if (alpha >= b) return _(1.0);						\
-	alpha = (alpha - a) / (b - a);						\
-	return alpha * alpha * (_(3.0) - _(2.0) * alpha);			\
+	if (t <= a) return _(0.0);						\
+	if (t >= b) return _(1.0);						\
+	t = (t - a) / (b - a);							\
+	return t * t * (_(3.0) - _(2.0) * t);					\
 	}									\
 										\
 										\
-Q_INLINE q##type q_##type##_smootherstep(q##type a, q##type b, q##type alpha)	\
+Q_INLINE q##type q_##type##_smootherstep(q##type a, q##type b, q##type t)	\
 	{									\
-	if (alpha <= a) return 0;						\
-	if (alpha >= b) return 1;						\
-	alpha = (alpha - a) / (b - a);						\
-										\
-	return	alpha * alpha * alpha *						\
-		(alpha * (alpha * _(6.0) - _(15.0)) + _(10.0));			\
+	if (t <= a) return 0;							\
+	if (t >= b) return 1;							\
+	t = (t - a) / (b - a);							\
+	return t * t * t * (t * (t * _(6.0) - _(15.0)) + _(10.0));		\
 	}									\
 										\
 										\
@@ -330,6 +332,7 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_minimum	  q_float_minimum
 #	define q_maximum	  q_float_maximum
 #	define q_lerp		  q_float_lerp
+#	define q_inverse_lerp	  q_float_inverse_lerp
 #	define q_smoothstep	  q_float_smoothstep
 #	define q_smootherstep	  q_float_smootherstep
 #	define q_is_nan		  q_float_is_nan
@@ -345,6 +348,7 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_minimum	  q_ldouble_minimum
 #	define q_maximum	  q_ldouble_maximum
 #	define q_lerp		  q_ldouble_lerp
+#	define q_inverse_lerp	  q_ldouble_inverse_lerp
 #	define q_smoothstep	  q_ldouble_smoothstep
 #	define q_smootherstep	  q_ldouble_smootherstep
 #	define q_is_nan		  q_ldouble_is_nan
@@ -360,6 +364,7 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_minimum	  q_double_minimum
 #	define q_maximum	  q_double_maximum
 #	define q_lerp		  q_double_lerp
+#	define q_inverse_lerp	  q_double_inverse_lerp
 #	define q_smoothstep	  q_double_smoothstep
 #	define q_smootherstep	  q_double_smootherstep
 #	define q_is_nan		  q_double_is_nan

@@ -353,11 +353,19 @@ Q_INLINE qboolean q_2d_##type##_are_perpendicular(Q2D##Type a, Q2D##Type b)	\
 	}									\
 										\
 										\
-Q_INLINE Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type alpha)	\
+Q_INLINE Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type t)	\
 	{									\
 	return q_2d_##type							\
-		(q_##type##_lerp(a.x, b.x, alpha),				\
-		 q_##type##_lerp(a.y, b.y, alpha));				\
+		(q_##type##_lerp(a.x, b.x, t), q_##type##_lerp(a.y, b.y, t));	\
+	}									\
+										\
+										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_inverse_lerp(Q2D##Type a, Q2D##Type b, q##type t)	\
+	{									\
+	return q_2d_##type							\
+		(q_##type##_inverse_lerp(a.x, b.x, t),				\
+		 q_##type##_inverse_lerp(a.y, b.y, t));				\
 	}									\
 										\
 										\
@@ -420,6 +428,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_middle	       q_2d_float_middle
 #	define q_2d_fit		       q_2d_float_fit
 #	define q_2d_lerp	       q_2d_float_lerp
+#	define q_2d_inverse_lerp       q_2d_float_inverse_lerp
 #	define q_2d_from_scalar        q_2d_float_from_scalar
 #	define q_2d_is_zero	       q_2d_float_is_zero
 #	define q_2d_is_near_zero       q_2d_float_is_near_zero
@@ -479,6 +488,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_middle	       q_2d_ldouble_middle
 #	define q_2d_fit		       q_2d_ldouble_fit
 #	define q_2d_lerp	       q_2d_ldouble_lerp
+#	define q_2d_inverse_lerp       q_2d_ldouble_inverse_lerp
 #	define q_2d_from_scalar        q_2d_ldouble_from_scalar
 #	define q_2d_is_zero	       q_2d_ldouble_is_zero
 #	define q_2d_is_near_zero       q_2d_ldouble_is_near_zero
@@ -538,6 +548,7 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_middle	       q_2d_double_middle
 #	define q_2d_fit		       q_2d_double_fit
 #	define q_2d_lerp	       q_2d_double_lerp
+#	define q_2d_inverse_lerp       q_2d_double_inverse_lerp
 #	define q_2d_from_scalar        q_2d_double_from_scalar
 #	define q_2d_is_zero	       q_2d_double_is_zero
 #	define q_2d_is_near_zero       q_2d_double_is_near_zero
