@@ -299,8 +299,8 @@ Q_INLINE q##type q_##type##_smoothstep(q##type a, q##type b, q##type t)		\
 										\
 Q_INLINE q##type q_##type##_smootherstep(q##type a, q##type b, q##type t)	\
 	{									\
-	if (t <= a) return 0;							\
-	if (t >= b) return 1;							\
+	if (t <= a) return _(0.0);						\
+	if (t >= b) return _(1.0);						\
 	t = (t - a) / (b - a);							\
 	return t * t * t * (t * (t * _(6.0) - _(15.0)) + _(10.0));		\
 	}									\
