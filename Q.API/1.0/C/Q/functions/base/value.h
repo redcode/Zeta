@@ -314,6 +314,13 @@ Q_INLINE qboolean q_##type##_is_near_zero(q##type value)			\
 	{return q_##type##_absolute(value) <= epsilon;}				\
 										\
 										\
+Q_INLINE q##type q_##type##_sign_or_zero(q##type value)				\
+	{									\
+	return q_##type##_absolute(value) <= epsilon				\
+		? _(0.0) : q_##type##_sign(value);				\
+	}									\
+										\
+										\
 Q_INLINE q##type q_##type##_clamp_01(q##type value)				\
 	{return q_##type##_minimum(q_##type##_maximum(value, _(0.0)), _(1.0));}
 
@@ -339,6 +346,7 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_is_near_zero	  q_float_is_near_zero
 #	define q_absolute	  q_float_absolute
 #	define q_sign		  q_float_sign
+#	define q_sign_or_zero	  q_float_sign_or_zero
 #	define q_clamp		  q_float_clamp
 #	define q_clamp_01	  q_float_clamp_01
 
@@ -355,6 +363,7 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_is_near_zero	  q_ldouble_is_near_zero
 #	define q_absolute	  q_ldouble_absolute
 #	define q_sign		  q_ldouble_sign
+#	define q_sign_or_zero	  q_ldouble_sign_or_zero
 #	define q_clamp		  q_ldouble_clamp
 #	define q_clamp_01	  q_ldouble_clamp_01
 
@@ -371,6 +380,7 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_is_near_zero	  q_double_is_near_zero
 #	define q_absolute	  q_double_absolute
 #	define q_sign		  q_double_sign
+#	define q_sign_or_zero	  q_double_sign_or_zero
 #	define q_clamp		  q_double_clamp
 #	define q_clamp_01	  q_double_clamp_01
 
