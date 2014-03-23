@@ -338,27 +338,51 @@ Q3D##Type q_3d_##type##_inverse_lerp(Q3D##Type a, Q3D##Type b, q##type t)	\
 	}									\
 										\
 										\
-Q_INLINE qboolean q_3d_##type##_is_near_zero(Q3D##Type magnitude)		\
+Q_INLINE qboolean q_3d_##type##_is_almost_zero(Q3D##Type magnitude)		\
 	{									\
-	return	q_##type##_is_near_zero(magnitude.x) &&				\
-		q_##type##_is_near_zero(magnitude.y) &&				\
-		q_##type##_is_near_zero(magnitude.z);				\
+	return	q_##type##_is_almost_zero(magnitude.x) &&			\
+		q_##type##_is_almost_zero(magnitude.y) &&			\
+		q_##type##_is_almost_zero(magnitude.z);				\
+	}									\
+										\
+										\
+Q_INLINE qboolean q_3d_##type##_is_finite(Q3D##Type magnitude)			\
+	{									\
+	return	q_##type##_is_finite(magnitude.x) &&				\
+		q_##type##_is_finite(magnitude.y) &&				\
+		q_##type##_is_finite(magnitude.z);				\
+	}									\
+										\
+										\
+Q_INLINE qboolean q_3d_##type##_is_infinity(Q3D##Type magnitude)		\
+	{									\
+	return	q_##type##_is_infinity(magnitude.x) &&				\
+		q_##type##_is_infinity(magnitude.y) &&				\
+		q_##type##_is_infinity(magnitude.z);				\
 	}									\
 										\
 										\
 Q_INLINE qboolean q_3d_##type##_is_nan(Q3D##Type magnitude)			\
 	{									\
-	return	!(magnitude.x == magnitude.x) &&				\
-		!(magnitude.y == magnitude.y) &&				\
-		!(magnitude.z == magnitude.z);					\
+	return	q_##type##_is_nan(magnitude.x) &&				\
+		q_##type##_is_nan(magnitude.y) &&				\
+		q_##type##_is_nan(magnitude.z);					\
+	}									\
+										\
+										\
+Q_INLINE qboolean q_3d_##type##_has_infinity(Q3D##Type magnitude)		\
+	{									\
+	return	q_##type##_is_infinity(magnitude.x) ||				\
+		q_##type##_is_infinity(magnitude.y) ||				\
+		q_##type##_is_infinity(magnitude.z);				\
 	}									\
 										\
 										\
 Q_INLINE qboolean q_3d_##type##_has_nan(Q3D##Type magnitude)			\
 	{									\
-	return	!(magnitude.x == magnitude.x) ||				\
-		!(magnitude.y == magnitude.y) ||				\
-		!(magnitude.z == magnitude.z);					\
+	return	q_##type##_is_nan(magnitude.x) ||				\
+		q_##type##_is_nan(magnitude.y) ||				\
+		q_##type##_is_nan(magnitude.z);					\
 	}									\
 										\
 										\
@@ -407,9 +431,12 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_fit		       q_3d_float_fit
 #	define q_3d_lerp	       q_3d_float_lerp
 #	define q_3d_from_scalar        q_3d_float_from_scalar
-#	define q_3d_is_zero	       q_3d_float_is_zero
-#	define q_3d_is_near_zero       q_3d_float_is_near_zero
+#	define q_3d_is_almost_zero     q_3d_float_is_almost_zero
+#	define q_3d_is_finite	       q_3d_float_is_finite
+#	define q_3d_is_infinity        q_3d_float_is_infinity
 #	define q_3d_is_nan	       q_3d_float_is_nan
+#	define q_3d_is_zero	       q_3d_float_is_zero
+#	define q_3d_has_infinity       q_3d_float_has_infinity
 #	define q_3d_has_nan	       q_3d_float_has_nan
 #	define q_3d_negative	       q_3d_float_negative
 #	define q_3d_absolute	       q_3d_float_absolute
@@ -448,9 +475,12 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_fit		       q_3d_ldouble_fit
 #	define q_3d_lerp	       q_3d_ldouble_lerp
 #	define q_3d_from_scalar        q_3d_ldouble_from_scalar
-#	define q_3d_is_zero	       q_3d_ldouble_is_zero
-#	define q_3d_is_near_zero       q_3d_ldouble_is_near_zero
+#	define q_3d_is_almost_zero     q_3d_ldouble_is_almost_zero
+#	define q_3d_is_finite	       q_3d_ldouble_is_finite
+#	define q_3d_is_infinity        q_3d_ldouble_is_infinity
 #	define q_3d_is_nan	       q_3d_ldouble_is_nan
+#	define q_3d_is_zero	       q_3d_ldouble_is_zero
+#	define q_3d_has_infinity       q_3d_ldouble_has_infinity
 #	define q_3d_has_nan	       q_3d_ldouble_has_nan
 #	define q_3d_negative	       q_3d_ldouble_negative
 #	define q_3d_absolute	       q_3d_ldouble_absolute
@@ -489,9 +519,12 @@ Q_IMPLEMENTATION_REAL_3D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_fit		       q_3d_double_fit
 #	define q_3d_lerp	       q_3d_double_lerp
 #	define q_3d_from_scalar        q_3d_double_from_scalar
-#	define q_3d_is_zero	       q_3d_double_is_zero
-#	define q_3d_is_near_zero       q_3d_double_is_near_zero
+#	define q_3d_is_almost_zero     q_3d_double_is_almost_zero
+#	define q_3d_is_finite	       q_3d_double_is_finite
+#	define q_3d_is_infinity        q_3d_double_is_infinity
 #	define q_3d_is_nan	       q_3d_double_is_nan
+#	define q_3d_is_zero	       q_3d_double_is_zero
+#	define q_3d_has_infinity       q_3d_double_has_infinity
 #	define q_3d_has_nan	       q_3d_double_has_nan
 #	define q_3d_negative	       q_3d_double_negative
 #	define q_3d_absolute	       q_3d_double_absolute

@@ -369,24 +369,45 @@ Q2D##Type q_2d_##type##_inverse_lerp(Q2D##Type a, Q2D##Type b, q##type t)	\
 	}									\
 										\
 										\
-Q_INLINE qboolean q_2d_##type##_is_near_zero(Q2D##Type magnitude)		\
+Q_INLINE qboolean q_2d_##type##_is_almost_zero(Q2D##Type magnitude)		\
 	{									\
-	return	q_##type##_is_near_zero(magnitude.x) &&				\
-		q_##type##_is_near_zero(magnitude.y);				\
+	return	q_##type##_is_almost_zero(magnitude.x) &&			\
+		q_##type##_is_almost_zero(magnitude.y);				\
+	}									\
+										\
+										\
+Q_INLINE qboolean q_2d_##type##_is_finite(Q2D##Type magnitude)			\
+	{									\
+	return	q_##type##_is_finite(magnitude.x) &&				\
+		q_##type##_is_finite(magnitude.y);				\
+	}									\
+										\
+										\
+Q_INLINE qboolean q_2d_##type##_is_infinity(Q2D##Type magnitude)		\
+	{									\
+	return	q_##type##_is_infinity(magnitude.x) &&				\
+		q_##type##_is_infinity(magnitude.y);				\
 	}									\
 										\
 										\
 Q_INLINE qboolean q_2d_##type##_is_nan(Q2D##Type magnitude)			\
 	{									\
-	return	!(magnitude.x == magnitude.x) &&				\
-		!(magnitude.y == magnitude.y);					\
+	return	q_##type##_is_nan(magnitude.x) &&				\
+		q_##type##_is_nan(magnitude.y);					\
+	}									\
+										\
+										\
+Q_INLINE qboolean q_2d_##type##_has_infinity(Q2D##Type magnitude)		\
+	{									\
+	return	q_##type##_is_infinity(magnitude.x) ||				\
+		q_##type##_is_infinity(magnitude.y);				\
 	}									\
 										\
 										\
 Q_INLINE qboolean q_2d_##type##_has_nan(Q2D##Type magnitude)			\
 	{									\
-	return	!(magnitude.x == magnitude.x) ||				\
-		!(magnitude.y == magnitude.y);					\
+	return	q_##type##_is_nan(magnitude.x) ||				\
+		q_##type##_is_nan(magnitude.y);					\
 	}									\
 										\
 										\
@@ -430,9 +451,12 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_lerp	       q_2d_float_lerp
 #	define q_2d_inverse_lerp       q_2d_float_inverse_lerp
 #	define q_2d_from_scalar        q_2d_float_from_scalar
-#	define q_2d_is_zero	       q_2d_float_is_zero
-#	define q_2d_is_near_zero       q_2d_float_is_near_zero
+#	define q_2d_is_almost_zero     q_2d_float_is_almost_zero
+#	define q_2d_is_finite	       q_2d_float_is_finite
+#	define q_2d_is_infinity        q_2d_float_is_infinity
 #	define q_2d_is_nan	       q_2d_float_is_nan
+#	define q_2d_is_zero	       q_2d_float_is_zero
+#	define q_2d_has_infinity       q_2d_float_has_infinity
 #	define q_2d_has_nan	       q_2d_float_has_nan
 #	define q_2d_negative	       q_2d_float_negative
 #	define q_2d_absolute	       q_2d_float_absolute
@@ -490,9 +514,12 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_lerp	       q_2d_ldouble_lerp
 #	define q_2d_inverse_lerp       q_2d_ldouble_inverse_lerp
 #	define q_2d_from_scalar        q_2d_ldouble_from_scalar
-#	define q_2d_is_zero	       q_2d_ldouble_is_zero
-#	define q_2d_is_near_zero       q_2d_ldouble_is_near_zero
+#	define q_2d_is_almost_zero     q_2d_ldouble_is_almost_zero
+#	define q_2d_is_finite	       q_2d_ldouble_is_finite
+#	define q_2d_is_infinity        q_2d_ldouble_is_infinity
 #	define q_2d_is_nan	       q_2d_ldouble_is_nan
+#	define q_2d_is_zero	       q_2d_ldouble_is_zero
+#	define q_2d_has_infinity       q_2d_ldouble_has_infinity
 #	define q_2d_has_nan	       q_2d_ldouble_has_nan
 #	define q_2d_negative	       q_2d_ldouble_negative
 #	define q_2d_absolute	       q_2d_ldouble_absolute
@@ -550,9 +577,12 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_lerp	       q_2d_double_lerp
 #	define q_2d_inverse_lerp       q_2d_double_inverse_lerp
 #	define q_2d_from_scalar        q_2d_double_from_scalar
-#	define q_2d_is_zero	       q_2d_double_is_zero
-#	define q_2d_is_near_zero       q_2d_double_is_near_zero
+#	define q_2d_is_almost_zero     q_2d_double_is_almost_zero
+#	define q_2d_is_finite	       q_2d_double_is_finite
+#	define q_2d_is_infinity        q_2d_double_is_infinity
 #	define q_2d_is_nan	       q_2d_double_is_nan
+#	define q_2d_is_zero	       q_2d_double_is_zero
+#	define q_2d_has_infinity       q_2d_double_has_infinity
 #	define q_2d_has_nan	       q_2d_double_has_nan
 #	define q_2d_negative	       q_2d_double_negative
 #	define q_2d_absolute	       q_2d_double_absolute

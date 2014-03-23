@@ -273,7 +273,7 @@ Q_IMPLEMENTATION_INTEGER_VALUE(ldouble)
 /* MARK: - Operations for real types only */
 
 
-#define Q_IMPLEMENTATION_REAL_VALUE(type, _, epsilon)				\
+#define Q_IMPLEMENTATION_REAL_VALUE(type, _, epsilon, infinity)			\
 										\
 										\
 Q_INLINE qboolean q_##type##_are_almost_equal(q##type a, q##type b)		\
@@ -306,12 +306,20 @@ Q_INLINE q##type q_##type##_smootherstep(q##type a, q##type b, q##type t)	\
 	}									\
 										\
 										\
+Q_INLINE qboolean q_##type##_is_almost_zero(q##type value)			\
+	{return q_##type##_absolute(value) <= epsilon;}				\
+										\
+										\
+Q_INLINE qboolean q_##type##_is_finite(q##type value)				\
+	{return value == value && value != infinity && value != -infinity;}	\
+										\
+										\
+Q_INLINE qboolean q_##type##_is_infinity(q##type value)				\
+	{return value == infinity || value == -infinity;}			\
+										\
+										\
 Q_INLINE qboolean q_##type##_is_nan(q##type value)				\
 	{return !(value == value);}						\
-										\
-										\
-Q_INLINE qboolean q_##type##_is_near_zero(q##type value)			\
-	{return q_##type##_absolute(value) <= epsilon;}				\
 										\
 										\
 Q_INLINE q##type q_##type##_sign_or_zero(q##type value)				\
@@ -325,9 +333,9 @@ Q_INLINE q##type q_##type##_clamp_01(q##type value)				\
 	{return q_##type##_minimum(q_##type##_maximum(value, _(0.0)), _(1.0));}
 
 
-Q_IMPLEMENTATION_REAL_VALUE(float,   Q_FLOAT,	Q_FLOAT_EPSILON	 )
-Q_IMPLEMENTATION_REAL_VALUE(double,  Q_DOUBLE,	Q_DOUBLE_EPSILON )
-Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
+Q_IMPLEMENTATION_REAL_VALUE(float,   Q_FLOAT,	Q_FLOAT_EPSILON,   Q_FLOAT_INFINITY  )
+Q_IMPLEMENTATION_REAL_VALUE(double,  Q_DOUBLE,	Q_DOUBLE_EPSILON,  Q_DOUBLE_INFINITY )
+Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON, Q_LDOUBLE_INFINITY)
 
 
 /* MARK: - Default real type definitions */
@@ -342,8 +350,10 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_inverse_lerp	  q_float_inverse_lerp
 #	define q_smoothstep	  q_float_smoothstep
 #	define q_smootherstep	  q_float_smootherstep
+#	define q_is_almost_zero	  q_float_is_almost_zero
+#	define q_is_finite	  q_float_is_finite
+#	define q_is_infinity	  q_float_is_infinity
 #	define q_is_nan		  q_float_is_nan
-#	define q_is_near_zero	  q_float_is_near_zero
 #	define q_absolute	  q_float_absolute
 #	define q_sign		  q_float_sign
 #	define q_sign_or_zero	  q_float_sign_or_zero
@@ -359,8 +369,10 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_inverse_lerp	  q_ldouble_inverse_lerp
 #	define q_smoothstep	  q_ldouble_smoothstep
 #	define q_smootherstep	  q_ldouble_smootherstep
+#	define q_is_almost_zero	  q_ldouble_is_almost_zero
+#	define q_is_finite	  q_ldouble_is_finite
+#	define q_is_infinity	  q_ldouble_is_infinity
 #	define q_is_nan		  q_ldouble_is_nan
-#	define q_is_near_zero	  q_ldouble_is_near_zero
 #	define q_absolute	  q_ldouble_absolute
 #	define q_sign		  q_ldouble_sign
 #	define q_sign_or_zero	  q_ldouble_sign_or_zero
@@ -376,8 +388,10 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_inverse_lerp	  q_double_inverse_lerp
 #	define q_smoothstep	  q_double_smoothstep
 #	define q_smootherstep	  q_double_smootherstep
+#	define q_is_almost_zero	  q_double_is_almost_zero
+#	define q_is_finite	  q_double_is_finite
+#	define q_is_infinity	  q_double_is_infinity
 #	define q_is_nan		  q_double_is_nan
-#	define q_is_near_zero	  q_double_is_near_zero
 #	define q_absolute	  q_double_absolute
 #	define q_sign		  q_double_sign
 #	define q_sign_or_zero	  q_double_sign_or_zero
