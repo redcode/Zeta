@@ -53,7 +53,7 @@ Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64, 32)
 #define q_int32_reversed  q_int32_reversed_in_8bit
 #define q_int64_reversed  q_int64_reversed_in_8bit
 
-#if Q_IS_AVAILABLE(UINT128) && Q_IS_AVAILABLE(128BIT_REVERSION_MACROS)
+#if Q_IS_AVAILABLE(UINT128)
 
 	Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(128,  1)
 	Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(128,  2)
@@ -1889,5 +1889,6 @@ Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON, Q_LDOUBLE_INF
 #define q_value_atomic_or_then_get(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_or_then_get	   )
 #define q_value_atomic_xor_then_get(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_xor_then_get	   )
 #define q_value_atomic_not_then_get(	  TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _atomic_not_then_get	   )
+
 
 #endif /* __Q_functions_base_value_H__ */
