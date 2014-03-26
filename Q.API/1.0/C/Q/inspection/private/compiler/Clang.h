@@ -44,23 +44,65 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_COMPILER_TYPE_INT128	__int128_t
 #define Q_COMPILER_TYPE_VAL	__builtin_va_list
 
-/* MARK: - Built-in functions (Struture) */
+/* MARK: - Built-in functions - Struture */
 
 #define Q_COMPILER_FUNCTION_OFFSETOF __builtin_offsetof
 
-/* MARK: - Built-in functions (VAL) */
+/* MARK: - Built-in functions - VAL */
 
 #define Q_COMPILER_FUNCTION_VAL_INITIALIZE __builtin_va_start
 #define Q_COMPILER_FUNCTION_VAL_FINALIZE   __builtin_va_end
 #define Q_COMPILER_FUNCTION_VAL_READ	   __builtin_va_arg
 
 #if __has_builtin(__builtin_va_copy)
-#	define Q_COMPILER_FUNCTION_VAL_COPY(object, output)	__builtin_va_copy(output, object)
+#	define Q_COMPILER_FUNCTION_VAL_COPY(object, output) __builtin_va_copy(output, object)
 #endif
 
-/* MARK: - Built-in functions (Atomic operations) */
+/* MARK: - Built-in functions - Floating point */
+
+#if __has_builtin(__builtin_fabsf)
+#	define Q_COMPILER_FUNCTION_FLOAT_ABSOLUTE	__builtin_fabsf
+#endif
+#if __has_builtin(__builtin_ceilf)
+#	define Q_COMPILER_FUNCTION_FLOAT_CEIL		__builtin_ceilf
+#endif
+#if __has_builtin(__builtin_floorf)
+#	define Q_COMPILER_FUNCTION_FLOAT_FLOOR		__builtin_floorf
+#endif
+#if __has_builtin(__builtin_roundf)
+#	define Q_COMPILER_FUNCTION_FLOAT_ROUND		__builtin_roundf
+#endif
+
+#if __has_builtin(__builtin_fabs)
+#	define Q_COMPILER_FUNCTION_DOUBLE_ABSOLUTE	__builtin_fabs
+#endif
+#if __has_builtin(__builtin_ceil)
+#	define Q_COMPILER_FUNCTION_DOUBLE_CEIL		__builtin_ceil
+#endif
+#if __has_builtin(__builtin_floor)
+#	define Q_COMPILER_FUNCTION_DOUBLE_FLOOR		__builtin_floor
+#endif
+#if __has_builtin(__builtin_round)
+#	define Q_COMPILER_FUNCTION_DOUBLE_ROUND		__builtin_round
+#endif
+
+#if __has_builtin(__builtin_fabsl)
+#	define Q_COMPILER_FUNCTION_LDOUBLE_ABSOLUTE	__builtin_fabsl
+#endif
+#if __has_builtin(__builtin_ceill)
+#	define Q_COMPILER_FUNCTION_LDOUBLE_CEIL		__builtin_ceill
+#endif
+#if __has_builtin(__builtin_floorl)
+#	define Q_COMPILER_FUNCTION_LDOUBLE_FLOOR	__builtin_floorl
+#endif
+#if __has_builtin(__builtin_roundl)
+#	define Q_COMPILER_FUNCTION_LDOUBLE_ROUND	__builtin_roundl
+#endif
+
+/* MARK: - Built-in functions - Atomic operations */
 
 #if __has_builtin(__sync_bool_compare_and_swap)
+
 #	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
 #	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_SET_IF_EQUAL __sync_bool_compare_and_swap
 #	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_SET_IF_EQUAL __sync_bool_compare_and_swap
