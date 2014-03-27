@@ -106,6 +106,7 @@ Q_IMPLEMENTATION_VALUE_ROTATED(64)
 #	define q_int16_little_endian  q_int16_reversed
 
 #elif Q_INT16_ENDIANNESS == Q_ENDIANNESS_LITTLE
+
 #	define q_uint16_big_endian    q_uint16_reversed
 #	define q_int16_big_endian     q_int16_reversed
 #	define q_uint16_little_endian Q_SAME
