@@ -913,8 +913,6 @@ typedef Q_DATA_MODEL_TYPE(SSIZE)		qssize;
 
 /* MARK: - Pointer types */
 
-typedef void*					qpointer;
-#define Q_POINTER_TYPE				Q_VALUE_TYPE_POINTER
 #define Q_POINTER_BITS				Q_DATA_MODEL_BITS(POINTER)
 
 #define Q_UINTPTR_TYPE				Q_VALUE_TYPE_UINTPTR
@@ -1321,6 +1319,7 @@ typedef quint8					qboolean;
 #	define Q_NATURAL_FIXED_TYPE_name	Q_UINT64_name
 
 #else
+
 	typedef qulong				qnatural;
 	typedef Q2DULong			Q2DNatural;
 	typedef Q3DULong			Q3DNatural;
@@ -1406,6 +1405,7 @@ typedef quint8					qboolean;
 #	define Q_INTEGER_FIXED_TYPE_name	Q_INT64_name
 
 #else
+
 	typedef qlong				qinteger;
 	typedef Q2DLong				Q2DInteger;
 	typedef Q3DLong				Q3DInteger;
