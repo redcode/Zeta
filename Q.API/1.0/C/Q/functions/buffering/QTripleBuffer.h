@@ -35,7 +35,7 @@ Q_INLINE void *q_triple_buffer_consumption_slot(QTripleBuffer *object)
 	{return object->slots[object->flags & 3];}
 
 
-Q_INLINE void* q_triple_buffer_produce(QTripleBuffer *object)
+Q_INLINE void *q_triple_buffer_produce(QTripleBuffer *object)
 	{
 	quint8 flags, new_flags;
 
