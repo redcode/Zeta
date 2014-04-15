@@ -15,15 +15,15 @@ Released under the terms of the GNU General Public License v3. */
 
 #define SYMBOL(symbol) Q_JOIN_2(MODULE_PREFIX, symbol)
 
-#if defined(BUILDING_HYBRID_MODULE) || Q_JOIN_2_DEFINED(MODULE_NAME, _USE_PUBLIC_SYMBOLS)
+#if defined(BUILDING_HYBRID_MODULE) || (defined Q_JOIN_2(MODULE_NAME, _USE_PUBLIC_SYMBOLS))
 #	define EXPORTED(type, symbol)	     type SYMBOL(symbol)
 #else
 #	define EXPORTED(type, symbol) static type SYMBOL(symbol)
 #endif
 
-#if Q_JOIN_2_DEFINED(MODULE_NAME, _HEADER)
+#if (defined Q_JOIN_2(MODULE_NAME, _HEADER))
 #	include Q_HEADER(Q_JOIN_2(MODULE_NAME, _HEADER))
-#elif Q_JOIN_2_DEFINED(MODULE_NAME, _LOCAL_HEADER)
+#elif (defined Q_JOIN_2(MODULE_NAME, _LOCAL_HEADER))
 #	include Q_LOCAL_HEADER(Q_JOIN_2(MODULE_NAME, _LOCAL_HEADER))
 #elif defined(MODULE_HEADER)
 #	include MODULE_HEADER
