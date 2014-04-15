@@ -44,7 +44,6 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
-#define Q_C_HAS(WHAT) (Q_JOIN_2_DEFINED(Q_C_HAS_,	   WHAT) || \
-		       Q_JOIN_2_DEFINED(Q_COMPILER_C_HAS_, WHAT))
+#define Q_C_HAS(WHAT) ((defined Q_C_HAS_##WHAT) || (defined Q_COMPILER_C_HAS_##WHAT))
 
 #endif /* __Q_inspection_C_H__ */
