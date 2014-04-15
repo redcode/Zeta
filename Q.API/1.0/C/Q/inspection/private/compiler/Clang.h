@@ -19,7 +19,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_COMPILER_VERSION
 #define Q_COMPILER_VERSION_STRING
 
-/* MARK: - Extensions */
+/* MARK: - Features */
 
 #define Q_COMPILER_HAS_ALIAS
 

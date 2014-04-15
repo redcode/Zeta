@@ -9,16 +9,18 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_inspection_floating_point_H__
 #define __Q_inspection_floating_point_H__
 
-#define Q_INSPECTING
-
 #include <Q/inspection/CPU.h>
+#include <Q/inspection/compiler.h>
 
 #if	Q_CPU_ARCHITECTURE == Q_CPU_ARCHITECTURE_X86_32 || \
 	Q_CPU_ARCHITECTURE == Q_CPU_ARCHITECTURE_X86_64
 
+#	define Q_INSPECTING
+
 #	include <Q/formats/floating point/IEEE 754.h>
 #	include <Q/formats/floating point/Intel.h>
 
+#	undef Q_INSPECTING
 #	undef IEEE_754_BINARY32
 #	undef IEEE_754_BINARY64
 
@@ -29,8 +31,6 @@ Released under the terms of the GNU General Public License v3. */
 #else
 
 #endif
-
-#undef Q_INSPECTING
 
 #include <Q/keys/floating point.h>
 
@@ -57,9 +57,9 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_FLOATING_POINT_FORMAT(	     TYPE) Q_JOIN_2(Q_VALUE_FORMAT_, Q_FLOATING_POINT_TOKEN(TYPE))
 #define Q_FLOATING_POINT_BITS(		     TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _BITS)
 #define Q_FLOATING_POINT_BIAS(		     TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _BIAS)
+#define Q_FLOATING_POINT_EPSILON(	     TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _EPSILON)
 #define Q_FLOATING_POINT_MINIMUM(	     TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _MINIMUM)
 #define Q_FLOATING_POINT_MAXIMUM(	     TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _MAXIMUM)
-#define Q_FLOATING_POINT_EPSILON(	     TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _EPSILON)
 #define Q_FLOATING_POINT_DECIMAL_DIGITS(     TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _DECIMAL_DIGITS)
 #define Q_FLOATING_POINT_MANTISSA_OFFSET(    TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _MANTISSA_OFFSET)
 #define Q_FLOATING_POINT_MANTISSA_BITS(      TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _MANTISSA_BITS)

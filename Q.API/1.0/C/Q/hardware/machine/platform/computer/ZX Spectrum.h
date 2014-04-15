@@ -187,35 +187,29 @@ typedef Q_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
 )) QZXSpectrumULAIO;
 
 /* MARK: - Firmware ADC
-
-High   Pulse	   Pulse       Pulse
-       _____	   _____       _____
-      |     |     |	|     |     |
-      |     |     |	|     |     |	  Square wave
-      |     |_____|	|_____|     |_____
-Low	     Pulse	 Pulse	     Pulse
-
-1) Pilot
- ______________	
-|	       |
-|     2168     |     2168      x 8063 times (if block contains header)
-|	       |______________ x 3223 times (if block contains data)
-
-2) Sync
- _____
-|     |
-| 667 |  735
-|     |_______
-
-4) Pause
-
-
-		1 second
-_______________________________________
-
-
-
-*/
+.------------------------------------------------------------------------.
+|									 |
+| High   _____	     _____	 _____					 |
+|       |Pulse|     |Pulse|	|Pulse|       Square wave		 |
+|	|     |_____|	  |_____|     |______				 |
+| Low	       Pulse	   Pulse       Pulse				 |
+|									 |
+| 1) Pilot								 |
+|  ______________							 |
+| |	2168	 |     2168      x 8063 times (if block contains header) |
+| |		 |______________ x 3223 times (if block contains data)	 |
+|									 |
+| 2) Sync								 |
+|  _____								 |
+| | 667 |  735								 |
+| |     |_______							 |
+|									 |
+| 3) Pause								 |
+|									 |
+|	     1 second							 |
+| ______________________________					 |
+|									 |
+'-----------------------------------------------------------------------*/
 
 #define Q_ZX_SPECTRUM_ADC_PULSES_PER_HEADER_PILOT	8064 /* 5 seconds */
 #define Q_ZX_SPECTRUM_ADC_PULSES_PER_DATA_PILOT		3224 /*	2 seconds */

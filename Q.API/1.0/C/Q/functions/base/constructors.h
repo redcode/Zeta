@@ -37,17 +37,17 @@ Released under the terms of the GNU General Public License v3. */
 #	define q_3d_double( x, y, z)	((Q3DDouble ){x, y, z})
 #	define q_3d_ldouble(x, y, z)	((Q3DLDouble){x, y, z})
 
-#	define q_4d_uint8(  x, y, z, w) ((Q3DUInt8  ){x, y, z, w})
-#	define q_4d_uint16( x, y, z, w) ((Q3DUInt16 ){x, y, z, w})
-#	define q_4d_uint32( x, y, z, w) ((Q3DUInt32 ){x, y, z, w})
-#	define q_4d_uint64( x, y, z, w) ((Q3DUInt64 ){x, y, z, w})
-#	define q_4d_int8(   x, y, z, w) ((Q3DInt8   ){x, y, z, w})
-#	define q_4d_int16(  x, y, z, w) ((Q3DInt16  ){x, y, z, w})
-#	define q_4d_int32(  x, y, z, w) ((Q3DInt32  ){x, y, z, w})
-#	define q_4d_int64(  x, y, z, w) ((Q3DInt64  ){x, y, z, w})
-#	define q_4d_float(  x, y, z, w) ((Q3DFloat  ){x, y, z, w})
-#	define q_4d_double( x, y, z, w) ((Q3DDouble ){x, y, z, w})
-#	define q_4d_ldouble(x, y, z, w) ((Q3DLDouble){x, y, z, w})
+#	define q_4d_uint8(  x, y, z, w) ((Q4DUInt8  ){x, y, z, w})
+#	define q_4d_uint16( x, y, z, w) ((Q4DUInt16 ){x, y, z, w})
+#	define q_4d_uint32( x, y, z, w) ((Q4DUInt32 ){x, y, z, w})
+#	define q_4d_uint64( x, y, z, w) ((Q4DUInt64 ){x, y, z, w})
+#	define q_4d_int8(   x, y, z, w) ((Q4DInt8   ){x, y, z, w})
+#	define q_4d_int16(  x, y, z, w) ((Q4DInt16  ){x, y, z, w})
+#	define q_4d_int32(  x, y, z, w) ((Q4DInt32  ){x, y, z, w})
+#	define q_4d_int64(  x, y, z, w) ((Q4DInt64  ){x, y, z, w})
+#	define q_4d_float(  x, y, z, w) ((Q4DFloat  ){x, y, z, w})
+#	define q_4d_double( x, y, z, w) ((Q4DDouble ){x, y, z, w})
+#	define q_4d_ldouble(x, y, z, w) ((Q4DLDouble){x, y, z, w})
 
 #	define q_range(index, size)  ((QRange){index, size})
 
@@ -65,7 +65,7 @@ Released under the terms of the GNU General Public License v3. */
 									  	\
 									  	\
 	Q_INLINE								\
-	Q3D##Type q_4d_##type(q##type x, q##type y, q##type z, q##type w) 	\
+	Q4D##Type q_4d_##type(q##type x, q##type y, q##type z, q##type w) 	\
 		{Q4D##Type magnitude = {x, y, z, w}; return magnitude;}
 
 

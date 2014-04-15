@@ -137,8 +137,8 @@ Released under the terms of the GNU General Public License v3. */
 #	include <Q/types/base.h>
 #	include <Q/macros/bit field.h>
 
-	typedef Q_STRICT_STRUCTURE (
-	) QIEEE754Binary16;
+	/*typedef Q_STRICT_STRUCTURE (
+	) QIEEE754Binary16;*/
 
 	Q_DEFINE_STRICT_STRUCTURE (Q_BIT_FIELD(3) (
 		quint32 sign	 : 1,
@@ -170,9 +170,8 @@ Released under the terms of the GNU General Public License v3. */
 		quint64 mantissa  :51
 	)) QIEEE754Binary64NaN;
 
-	Q_DEFINE_STRICT_STRUCTURE (
-		/* To Do */
-	) QIEEE754Decimal64;
+	/*Q_DEFINE_STRICT_STRUCTURE (
+	) QIEEE754Decimal64;*/
 
 #	endif /* __Q_formats_floating_point_IEEE_754_Hb__ */
 
