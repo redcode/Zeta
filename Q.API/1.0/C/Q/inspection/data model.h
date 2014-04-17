@@ -11,65 +11,60 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_INSPECTING
 
-#if defined(Q_USE_DATA_MODEL_LP32)
-#	include <Q/formats/data model/LP32.h>
-
-#elif defined(Q_USE_DATA_MODEL_ILP32)
-#	include <Q/formats/data model/ILP32.h>
-
-#elif defined(Q_USE_DATA_MODEL_ILP64)
-#	include <Q/formats/data model/ILP64.h>
-
-#elif defined(Q_USE_DATA_MODEL_LLP64)
-#	include <Q/formats/data model/LLP64.h>
-
-#elif defined(Q_USE_DATA_MODEL_LP64)
-#	include <Q/formats/data model/LP64.h>
-
-#else
-
-#	if	defined(__LP32__)  || \
-		defined(__LP32)    || \
-		defined(_LP32_)    || \
-		defined(_LP32)
-
+#	if defined(Q_USE_DATA_MODEL_LP32)
 #		include <Q/formats/data model/LP32.h>
 
-#	elif	defined(__ILP32__) || \
-		defined(__ILP32)   || \
-		defined(_ILP32_)   || \
-		defined(_ILP32)    || \
-		defined(_WIN32)
-
+#	elif defined(Q_USE_DATA_MODEL_ILP32)
 #		include <Q/formats/data model/ILP32.h>
 
-#	elif	defined(__ILP64__) || \
-		defined(__ILP64)   || \
-		defined(_ILP64_)   || \
-		defined(_ILP64)
-
+#	elif defined(Q_USE_DATA_MODEL_ILP64)
 #		include <Q/formats/data model/ILP64.h>
 
-#	elif	defined(__LLP64__) || \
-		defined(__LLP64)   || \
-		defined(_LLP64_)   || \
-		defined(_LLP64)    || \
-		defined(_WIN64)
-
+#	elif defined(Q_USE_DATA_MODEL_LLP64)
 #		include <Q/formats/data model/LLP64.h>
 
-#	elif	defined(__LP64__)  || \
-		defined(__LP64)    || \
-		defined(_LP64_)    || \
-		defined(_LP64)
-
+#	elif defined(Q_USE_DATA_MODEL_LP64)
 #		include <Q/formats/data model/LP64.h>
 
 #	else
-#		include <Q/formats/data model/ILP32.h>
-#	endif
 
-#endif
+#		if	defined(__LP32__)  || \
+			defined(__LP32)    || \
+			defined(_LP32_)    || \
+			defined(_LP32)
+#			include <Q/formats/data model/LP32.h>
+
+#		elif	defined(__ILP32__) || \
+			defined(__ILP32)   || \
+			defined(_ILP32_)   || \
+			defined(_ILP32)    || \
+			defined(_WIN32)
+#			include <Q/formats/data model/ILP32.h>
+
+#		elif	defined(__ILP64__) || \
+			defined(__ILP64)   || \
+			defined(_ILP64_)   || \
+			defined(_ILP64)
+#			include <Q/formats/data model/ILP64.h>
+
+#		elif	defined(__LLP64__) || \
+			defined(__LLP64)   || \
+			defined(_LLP64_)   || \
+			defined(_LLP64)    || \
+			defined(_WIN64)
+#			include <Q/formats/data model/LLP64.h>
+
+#		elif	defined(__LP64__)  || \
+			defined(__LP64)    || \
+			defined(_LP64_)    || \
+			defined(_LP64)
+#			include <Q/formats/data model/LP64.h>
+
+#		else
+#			include <Q/formats/data model/ILP32.h>
+#		endif
+
+#	endif
 
 #undef Q_INSPECTING
 

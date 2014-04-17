@@ -12,25 +12,37 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/inspection/CPU.h>
 #include <Q/inspection/compiler.h>
 
-#if	Q_CPU_ARCHITECTURE == Q_CPU_ARCHITECTURE_X86_32 || \
-	Q_CPU_ARCHITECTURE == Q_CPU_ARCHITECTURE_X86_64
+#define Q_INSPECTING
 
-#	define Q_INSPECTING
+#	if	Q_CPU_ARCHITECTURE == Q_CPU_ARCHITECTURE_X86_32 || \
+		Q_CPU_ARCHITECTURE == Q_CPU_ARCHITECTURE_X86_64
 
-#	include <Q/formats/floating point/IEEE 754.h>
-#	include <Q/formats/floating point/Intel.h>
+#		if Q_COMPILER != Q_COMPILER_MICROSOFT_VISUAL_CPP
 
-#	undef Q_INSPECTING
-#	undef IEEE_754_BINARY32
-#	undef IEEE_754_BINARY64
+#			include <Q/formats/floating point/Microsoft Visual C++.h>
 
-#	define Q_FLOATING_POINT_NAME_FLOAT   IEEE_754_BINARY32
-#	define Q_FLOATING_POINT_NAME_DOUBLE  IEEE_754_BINARY64
-#	define Q_FLOATING_POINT_NAME_LDOUBLE INTEL_FLOAT80
+#			define Q_FLOATING_POINT_NAME_FLOAT   MICROSOFT_VISUAL_CPP_FLOAT
+#			define Q_FLOATING_POINT_NAME_DOUBLE  MICROSOFT_VISUAL_CPP_DOUBLE
+#			define Q_FLOATING_POINT_NAME_LDOUBLE MICROSOFT_VISUAL_CPP_DOUBLE
 
-#else
+#		else
 
-#endif
+#			include <Q/formats/floating point/IEEE 754.h>
+#			include <Q/formats/floating point/Intel.h>
+
+#			undef IEEE_754_BINARY32
+#			undef IEEE_754_BINARY64
+
+#			define Q_FLOATING_POINT_NAME_FLOAT   IEEE_754_BINARY32
+#			define Q_FLOATING_POINT_NAME_DOUBLE  IEEE_754_BINARY64
+#			define Q_FLOATING_POINT_NAME_LDOUBLE INTEL_FLOAT80
+
+#		endif
+
+#	else
+#	endif
+
+#undef Q_INSPECTING
 
 #include <Q/keys/floating point.h>
 
@@ -73,5 +85,17 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_FLOATING_POINT_EXPONENT_10_MAXIMUM(TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _EXPONENT_10_MAXIMUM)
 #define Q_FLOATING_POINT_SIGN_OFFSET(	     TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _SIGN_OFFSET)
 #define Q_FLOATING_POINT_SIGN_BITS(	     TYPE) Q_JOIN_3(Q_, Q_FLOATING_POINT_NAME(TYPE), _SIGN_BITS)
+
+#if Q_COMPILER_HAS_MACRO(INFINITY)
+#	define Q_FLOATING_POINT_INFINITY(TYPE, _) Q_COMPILER_MACRO(INFINITY)(_(Q_FLOATING_POINT_MAXIMUM(TYPE)), _)
+#else
+#	define Q_FLOATING_POINT_INFINITY(TYPE, _) (_(Q_FLOATING_POINT_MAXIMUM(TYPE)) + _(Q_FLOATING_POINT_MAXIMUM(TYPE)))
+#endif
+
+#if Q_COMPILER_HAS_MACRO(NAN)
+#	define Q_FLOATING_POINT_NAN(TYPE, _) Q_COMPILER_MACRO(NAN)(_(Q_FLOATING_POINT_MAXIMUM(TYPE)), _)
+#else
+#	define Q_FLOATING_POINT_NAN(TYPE, _) (Q_FLOATING_POINT_INFINITY(TYPE, _) - Q_FLOATING_POINT_INFINITY(TYPE, _))
+#endif
 
 #endif /* __Q_inspection_floating_point_H__ */
