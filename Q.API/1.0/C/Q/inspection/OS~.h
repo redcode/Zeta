@@ -276,6 +276,9 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
+#define	 Q_OS_HEADER <Q/inspection/private/OS/Q_OS_FILE.h>
+#include Q_OS_HEADER
+
 #define Q_OS_HAS(feature)	defined(Q_OS_HAS_##feature)
 #define Q_OS_IS(what)		defined(Q_OS_IS_##what)
 

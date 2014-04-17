@@ -17,7 +17,7 @@ Released under the terms of the GNU General Public License v3. */
 #	if	Q_CPU_ARCHITECTURE == Q_CPU_ARCHITECTURE_X86_32 || \
 		Q_CPU_ARCHITECTURE == Q_CPU_ARCHITECTURE_X86_64
 
-#		if Q_COMPILER == Q_COMPILER_MICROSOFT_VISUAL_CPP
+#		if Q_COMPILER != Q_COMPILER_MICROSOFT_VISUAL_CPP
 
 #			include <Q/formats/floating point/Microsoft Visual C++.h>
 
