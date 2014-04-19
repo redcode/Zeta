@@ -23,10 +23,10 @@ typedef struct {
 	qsize block_size;
 } QBlockArray;
 
-Q_DEFINE_LIST_NODE	 (QListNode	 );
-Q_DEFINE_CHAIN_NODE	 (QChainNode	 );
-Q_DEFINE_TREE_NODE	 (QTreeNode      );
-Q_DEFINE_BINARY_TREE_NODE(QBinaryTreeNode);
+Q_DEFINE_LIST_NODE	 (QListNode,	  );
+Q_DEFINE_CHAIN_NODE	 (QChainNode,	  );
+Q_DEFINE_TREE_NODE	 (QTreeNode,      );
+Q_DEFINE_BINARY_TREE_NODE(QBinaryTreeNode,);
 
 Q_DEFINE_LIST_NODE	 (QDataListNode,	  void *data;);
 Q_DEFINE_CHAIN_NODE	 (QDataChainNode,	  void *data;);

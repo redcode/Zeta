@@ -12,6 +12,8 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/keys/compiler.h>
 #include <Q/keys/bit field.h>
 
+#define Q_AVOID_VARIADIC_MACROS
+
 /* MARK: - Identification */
 
 #define Q_COMPILER					Q_COMPILER_MICROSOFT_VISUAL_CPP
