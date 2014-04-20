@@ -12,10 +12,26 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/types/data.h>
 
 
-Q_INLINE QListNode *q_list_node_last(QListNode *object)
+Q_INLINE QListNode *q_raw_list_last(QListNode *object)
 	{
 	while (object->next != NULL) object = object->next;
 	return object;
+	}
+
+
+Q_INLINE QListNode *q_raw_list_node(QListNode *object, qsize index)
+	{
+	for (; index; index--) object = object->next;
+	return object;
+	}
+
+
+Q_INLINE qsize *q_raw_list_size(QListNode *object)
+	{
+	qsize size = 0;
+
+	for (; object != NULL; object = object->next) index++;
+	return size;
 	}
 
 

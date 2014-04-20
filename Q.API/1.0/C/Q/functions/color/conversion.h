@@ -54,18 +54,15 @@ Released under the terms of the GNU General Public License v3. */
 
 #if Q_CPU_ENDIANNESS == Q_ENDIANNESS_BIG
 
-	Q_INLINE
-	quint32 q_argb_8_8_8_8_to_rgba_8_8_8_8(quint32 color)
+	Q_INLINE quint32 q_argb_8_8_8_8_to_rgba_8_8_8_8(quint32 color)
 		{return (color << 8) | (color >> 24);}
 
 
-	Q_INLINE
-	quint32 q_rgba_8_8_8_8_to_argb_8_8_8_8(quint32 color)
+	Q_INLINE quint32 q_rgba_8_8_8_8_to_argb_8_8_8_8(quint32 color)
 		{return (color >> 8) | (color << 24);}
 
 
-	Q_INLINE
-	quint16 q_rgba_8_8_8_8_to_rgba_4_4_4_4(quint32 color)
+	Q_INLINE quint16 q_rgba_8_8_8_8_to_rgba_4_4_4_4(quint32 color)
 		{
 		return	((color >> 16) & 0xF000) | /* R */
 			((color >> 12) & 0x0F00) | /* G */
@@ -74,8 +71,7 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
-	Q_INLINE
-	quint16 q_rgba_8_8_8_8_to_rgba_5_5_5_1(quint32 color)
+	Q_INLINE quint16 q_rgba_8_8_8_8_to_rgba_5_5_5_1(quint32 color)
 		{
 		return	((color >> 16) & 0xF800) | /* R */
 			((color >> 13) & 0x07C0) | /* G */
@@ -84,8 +80,7 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
-	Q_INLINE
-	quint16 q_rgba_8_8_8_8_to_rgb_5_6_5(quint32 color)
+	Q_INLINE quint16 q_rgba_8_8_8_8_to_rgb_5_6_5(quint32 color)
 		{
 		return	((color >> 16) & 0xF800) | /* R */
 			((color >> 13) & 0x07E0) | /* G */
@@ -93,8 +88,7 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
-	Q_INLINE
-	quint8 q_rgba_8_8_8_8_to_i8(quint32 color)
+	Q_INLINE quint8 q_rgba_8_8_8_8_to_i8(quint32 color)
 		{
 		return	((color >> 24) + ((color >> 16) & 255) + ((color >> 8) & 255))
 			/ 3;
