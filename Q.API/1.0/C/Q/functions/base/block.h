@@ -63,7 +63,6 @@ Q_INLINE q##type *q_##type##_block_find_different_backwards(		\
 	}
 
 
-
 Q_IMPLEMENTATION_BLOCK_FIND(uint8)
 Q_IMPLEMENTATION_BLOCK_FIND(uint16)
 Q_IMPLEMENTATION_BLOCK_FIND(uint32)
@@ -80,5 +79,6 @@ Q_IMPLEMENTATION_BLOCK_FIND(ldouble)
 #define q_value_block_find_equal_backwards(    TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _block_find_equal_backwards    )
 #define q_value_block_find_different(	       TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _block_find_different	     )
 #define q_value_block_find_different_backwards(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _block_find_different_backwards)
+
 
 #endif /* __Q_functions_base_block_H__ */
