@@ -28,7 +28,7 @@ Q_INLINE void q_tree_node_set_children(QTreeNode *object, QTreeNode *children)
 
 	object->children = node;
 
-	for (; children->next; children != NULL; children = children->next)
+	for (; children != NULL; children = children->next)
 		children->parent = object;
 	}
 
@@ -43,7 +43,7 @@ void q_tree_node_set_aligned_children(QTreeNode *object, QTreeNode *children)
 	}
 
 
-#define q_tree_node_children_count(QTreeNode *object) \
+#define q_tree_node_children_count(object) \
 	q_raw_list_size(Q_LIST_NODE(object->children))
 
 

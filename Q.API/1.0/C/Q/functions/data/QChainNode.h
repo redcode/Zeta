@@ -53,15 +53,15 @@ Q_INLINE QChainNode *q_raw_chain_first(QChainNode *object)
 
 Q_INLINE QChainNode *q_raw_chain_node(QChainNode *object, qsize index)
 	{
-	object = q_chain_node_first(node);
-	return Q_CHAIN_NODE(q_list_node_index(Q_LIST_NODE(node), index));
+	object = q_raw_chain_first(object);
+	return Q_CHAIN_NODE(q_raw_list_node(Q_LIST_NODE(object), index));
 	}
 
 
-Q_INLINE QChainNode *q_raw_chain_size(QChainNode *node)
+Q_INLINE qsize q_raw_chain_size(QChainNode *object)
 	{
-	return	q_chain_node_left_index (node) +
-		q_chain_node_right_index(node) +
+	return	q_chain_node_left_index (object) +
+		q_chain_node_right_index(object) +
 		1;
 	}
 

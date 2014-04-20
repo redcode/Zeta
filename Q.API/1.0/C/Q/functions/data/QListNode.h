@@ -26,11 +26,11 @@ Q_INLINE QListNode *q_raw_list_node(QListNode *object, qsize index)
 	}
 
 
-Q_INLINE qsize *q_raw_list_size(QListNode *object)
+Q_INLINE qsize q_raw_list_size(QListNode *object)
 	{
 	qsize size = 0;
 
-	for (; object != NULL; object = object->next) index++;
+	for (; object != NULL; object = object->next) size++;
 	return size;
 	}
 
