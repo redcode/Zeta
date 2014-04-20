@@ -546,4 +546,8 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_BIG_ENDIAN(	       TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_BIG_ENDIAN	   )
 #define Q_LITTLE_ENDIAN(       TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_LITTLE_ENDIAN	   )
 
+/* MARK: - Structure */
+
+#define Q_VALUE_STRUCTURE(TYPE, value) ((Q_PREFIX_Q(Q_JOIN_2(Q_##TYPE##_BITS, Bit)))value)
+
 #endif /* __Q_macros_value_H__ */

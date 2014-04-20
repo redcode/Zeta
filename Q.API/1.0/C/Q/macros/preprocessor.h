@@ -10,47 +10,49 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_macros_preprocessor_H__
 #define __Q_macros_preprocessor_H__
 
-#define Q_SAME(	  whatever)			  whatever
-#define Q_QUOTED_(whatever)			  #whatever
-#define Q_QUOTED( whatever)			  Q_QUOTED_(whatever)
+#define Q_SAME(	  what)				  what
+#define Q_QUOTED_(what)				  #what
+#define Q_QUOTED( what)				  Q_QUOTED_(what)
 
 #define Q_PREFIX_				  Q_SAME
-#define Q_PREFIX_0_(  literal)			  0##literal
-#define Q_PREFIX_0X_( literal)			  0x##literal
+#define Q_PREFIX_Q_(  what)			  Q##what
+#define Q_PREFIX_0_(  what)			  0##what
+#define Q_PREFIX_0X_( what)			  0x##what
 #define Q_SUFFIX_				  Q_SAME
-#define Q_SUFFIX_DD_( literal)			  literal##DD
-#define Q_SUFFIX_DF_( literal)			  literal##DF
-#define Q_SUFFIX_DL_( literal)			  literal##DL
-#define Q_SUFFIX_F_(  literal)			  literal##F
-#define Q_SUFFIX_L_(  literal)			  literal##L
-#define Q_SUFFIX_LL_( literal)			  literal##LL
-#define Q_SUFFIX_UL_( literal)			  literal##UL
-#define Q_SUFFIX_ULL_(literal)			  literal##ULL
+#define Q_SUFFIX_DD_( what)			  what##DD
+#define Q_SUFFIX_DF_( what)			  what##DF
+#define Q_SUFFIX_DL_( what)			  what##DL
+#define Q_SUFFIX_F_(  what)			  what##F
+#define Q_SUFFIX_L_(  what)			  what##L
+#define Q_SUFFIX_LL_( what)			  what##LL
+#define Q_SUFFIX_UL_( what)			  what##UL
+#define Q_SUFFIX_ULL_(what)			  what##ULL
 
-#define Q_PREFIX_0(  literal)			  Q_PREFIX_0_(	literal)
-#define Q_PREFIX_0X( literal)			  Q_PREFIX_0X_( literal)
-#define Q_SUFFIX_DD( literal)			  Q_SUFFIX_DD_( literal)
-#define Q_SUFFIX_DF( literal)			  Q_SUFFIX_DF_( literal)
-#define Q_SUFFIX_DL( literal)			  Q_SUFFIX_DL_( literal)
-#define Q_SUFFIX_F(  literal)			  Q_SUFFIX_F_(	literal)
-#define Q_SUFFIX_L(  literal)			  Q_SUFFIX_L_(	literal)
-#define Q_SUFFIX_LL( literal)			  Q_SUFFIX_LL_( literal)
-#define Q_SUFFIX_UL( literal)			  Q_SUFFIX_UL_( literal)
-#define Q_SUFFIX_ULL(literal)			  Q_SUFFIX_ULL_(literal)
+#define Q_PREFIX_Q(  what)			  Q_PREFIX_Q_(  what)
+#define Q_PREFIX_0(  what)			  Q_PREFIX_0_(	what)
+#define Q_PREFIX_0X( what)			  Q_PREFIX_0X_( what)
+#define Q_SUFFIX_DD( what)			  Q_SUFFIX_DD_( what)
+#define Q_SUFFIX_DF( what)			  Q_SUFFIX_DF_( what)
+#define Q_SUFFIX_DL( what)			  Q_SUFFIX_DL_( what)
+#define Q_SUFFIX_F(  what)			  Q_SUFFIX_F_(	what)
+#define Q_SUFFIX_L(  what)			  Q_SUFFIX_L_(	what)
+#define Q_SUFFIX_LL( what)			  Q_SUFFIX_LL_( what)
+#define Q_SUFFIX_UL( what)			  Q_SUFFIX_UL_( what)
+#define Q_SUFFIX_ULL(what)			  Q_SUFFIX_ULL_(what)
 
-#define Q_UNDERSCORE_(		whatever)	  _##whatever##_
-#define Q_UNDERSCORE_X2_(	whatever)	  __##whatever##__
-#define Q_PREFIX_UNDERSCORE_(	whatever)	  _##whatever
-#define Q_PREFIX_UNDERSCORE_X2_(whatever)	  __##whatever
-#define Q_SUFFIX_UNDERSCORE_(	whatever)	  whatever##_
-#define Q_SUFFIX_UNDERSCORE_X2_(whatever)	  whatever##__
+#define Q_UNDERSCORE_(		what)		  _##what##_
+#define Q_UNDERSCORE_X2_(	what)		  __##what##__
+#define Q_PREFIX_UNDERSCORE_(	what)		  _##what
+#define Q_PREFIX_UNDERSCORE_X2_(what)		  __##what
+#define Q_SUFFIX_UNDERSCORE_(	what)		  what##_
+#define Q_SUFFIX_UNDERSCORE_X2_(what)		  what##__
 
-#define Q_UNDERSCORE(		whatever)	  Q_UNDERSCORE_(	  whatever)
-#define Q_UNDERSCORE_X2(	whatever)	  Q_UNDERSCORE_X2_(	  whatever)
-#define Q_PREFIX_UNDERSCORE(	whatever)	  Q_PREFIX_UNDERSCORE_(   whatever)
-#define Q_PREFIX_UNDERSCORE_X2( whatever)	  Q_PREFIX_UNDERSCORE_X2_(whatever)
-#define Q_SUFFIX_UNDERSCORE(	whatever)	  Q_SUFFIX_UNDERSCORE_(   whatever)
-#define Q_SUFFIX_UNDERSCORE_X2( whatever)	  Q_SUFFIX_UNDERSCORE_X2_(whatever)
+#define Q_UNDERSCORE(		what)		  Q_UNDERSCORE_(	  what)
+#define Q_UNDERSCORE_X2(	what)		  Q_UNDERSCORE_X2_(	  what)
+#define Q_PREFIX_UNDERSCORE(	what)		  Q_PREFIX_UNDERSCORE_(   what)
+#define Q_PREFIX_UNDERSCORE_X2( what)		  Q_PREFIX_UNDERSCORE_X2_(what)
+#define Q_SUFFIX_UNDERSCORE(	what)		  Q_SUFFIX_UNDERSCORE_(   what)
+#define Q_SUFFIX_UNDERSCORE_X2( what)		  Q_SUFFIX_UNDERSCORE_X2_(what)
 
 #define Q_HEADER(      header)			  <header>
 #define Q_LOCAL_HEADER(header)			  Q_QUOTED(header)
