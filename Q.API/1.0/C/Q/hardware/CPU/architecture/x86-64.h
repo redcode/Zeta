@@ -24,7 +24,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_X86_64_MINIMUM_COPY_BITS		  8
 #define Q_X86_64_MAXIMUM_LOAD_BITS		128
 #define Q_X86_64_MAXIMUM_STORE_BITS		128
-#define Q_X86_64_MAXIMUM_COPY_BITS		128
+#define Q_X86_64_MAXIMUM_COPY_BITS		64
 #define Q_X86_64_ADDRESSING_BITS		 64
 #define Q_X86_64_ENDIANNESS			Q_ENDIANNESS_LITTLE
 

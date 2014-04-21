@@ -1964,12 +1964,72 @@ Q_DEFINE_STRICT_UNION (
 
 #endif
 
-/* MARK: - General purpose types */
+/* MARK: - Range type */
 
-typedef struct {
-	qsize index;
-	qsize size;
-} QRange;
+typedef struct {qsize index, size;} QRange;
+
+/* Pointer cast type for l-value assignment */
+
+Q_DEFINE_STRICT_UNION (
+	quintptr  uintptr_value;
+	void*	  pointer;
+
+	quint8*   uint8_pointer;   Q2DUInt8*   uint8_2d_pointer;   Q3DUInt8*   uint8_3d_pointer;   Q4DUInt8*   uint8_4d_pointer;
+	quint16*  uint16_pointer;  Q2DUInt16*  uint16_2d_pointer;  Q3DUInt16*  uint16_3d_pointer;  Q4DUInt16*  uint16_4d_pointer;
+	quint32*  uint32_pointer;  Q2DUInt32*  uint32_2d_pointer;  Q3DUInt32*  uint32_3d_pointer;  Q4DUInt32*  uint32_4d_pointer;
+	quint64*  uint64_pointer;  Q2DUInt64*  uint64_2d_pointer;  Q3DUInt64*  uint64_3d_pointer;  Q4DUInt64*  uint64_4d_pointer;
+	qint8*	  int8_pointer;    Q2DInt8*    int8_2d_pointer;    Q3DInt8*    int8_3d_pointer;    Q4DInt8*    int8_4d_pointer;
+	qint16*   int16_pointer;   Q2DInt16*   int16_2d_pointer;   Q3DInt16*   int16_3d_pointer;   Q4DInt16*   int16_4d_pointer;
+	qint32*   int32_pointer;   Q2DInt32*   int32_2d_pointer;   Q3DInt32*   int32_3d_pointer;   Q4DInt32*   int32_4d_pointer;
+	qint64*   int64_pointer;   Q2DInt64*   int64_2d_pointer;   Q3DInt64*   int64_3d_pointer;   Q4DInt64*   int64_4d_pointer;
+
+#	if Q_IS_AVAILABLE(UINT128)
+		quint128*   uint128_value;
+		Q2DUInt128* uint128_2d_pointer;
+		Q3DUInt128* uint128_3d_pointer;
+		Q4DUInt128* uint128_4d_pointer;
+#	endif
+
+#	if Q_IS_AVAILABLE(INT128)
+		qint128*   int128_value;
+		Q2DInt128* int128_2d_pointer;
+		Q3DInt128* int128_3d_pointer;
+		Q4DInt128* int128_4d_pointer;
+#	endif
+
+	quchar*   uchar_pointer;   Q2DUChar*   uchar_2d_pointer;   Q3DUChar*   uchar_3d_pointer;   Q4DUChar*   uchar_4d_pointer;
+	qshort*   ushort_pointer;  Q2DUShort*  ushort_2d_pointer;  Q3DUShort*  ushort_3d_pointer;  Q4DUShort*  ushort_4d_pointer;
+	quint*	  uint_pointer;    Q2DUInt*    uint_2d_pointer;    Q3DUInt*    uint_3d_pointer;    Q4DUInt*    uint_4d_pointer;
+	qulong*   ulong_pointer;   Q2DULong*   ulong_2d_pointer;   Q3DULong*   ulong_3d_pointer;   Q4DULong*   ulong_4d_pointer;
+	qullong*  ullong_pointer;  Q2DULLong*  ullong_2d_pointer;  Q3DULLong*  ullong_3d_pointer;  Q4DULLong*  ullong_4d_pointer;
+	qchar*	  char_pointer;    Q2DChar*    char_2d_pointer;    Q3DChar*    char_3d_pointer;    Q4DChar*    char_4d_pointer;
+	qshort*   short_pointer;   Q2DShort*   short_2d_pointer;   Q3DShort*   short_3d_pointer;   Q4DShort*   short_4d_pointer;
+	qint*	  int_pointer;	   Q2DInt*     int_2d_pointer;	   Q3DInt*     int_3d_pointer;	   Q4DInt*     int_4d_pointer;
+	qlong*	  long_pointer;    Q2DLong*    long_2d_pointer;    Q3DLong*    long_3d_pointer;    Q4DLong*    long_4d_pointer;
+	qllong*   llong_pointer;   Q2DLLong*   llong_2d_pointer;   Q3DLLong*   llong_3d_pointer;   Q4DLLong*   llong_4d_pointer;
+	qfloat*   float_pointer;   Q2DFloat*   float_2d_pointer;   Q3DFloat*   float_3d_pointer;   Q4DFloat*   float_4d_pointer;
+	qdouble*  double_pointer;  Q2DDouble*  double_2d_pointer;  Q3DDouble*  double_3d_pointer;  Q4DDouble*  double_4d_pointer;
+	qldouble* ldouble_pointer; Q2DLDouble* ldouble_2d_pointer; Q3DLDouble* ldouble_3d_pointer; Q4DLDouble* ldouble_4d_pointer;
+
+	qsize*	  size_pointer;    Q2DSize*    size_2d_pointer;    Q3DSize*    size_3d_pointer;    Q4DSize*    size_4d_pointer;
+	qssize*   ssize_pointer;   Q2DSSize*   ssize_2d_pointer;   Q3DSSize*   ssize_3d_pointer;   Q4DSSize*   ssize_4d_pointer;
+
+	quintptr* uintptr_pointer; Q2DUIntPtr* uintptr_2d_pointer; Q3DUIntPtr* uintptr_3d_pointer; Q4DUIntPtr* uintptr_4d_pointer;
+	quinttop* uinttop_pointer; Q2DUIntTop* uinttop_2d_pointer; Q3DUIntTop* uinttop_3d_pointer; Q4DUIntTop* uinttop_4d_pointer;
+	quintmax* uintmax_pointer; Q2DUIntMax* uintmax_2d_pointer; Q3DUIntMax* uintmax_3d_pointer; Q4DUIntMax* uintmax_4d_pointer;
+	qintptr*  intptr_pointer;  Q2DIntPtr*  intptr_2d_pointer;  Q3DIntPtr*  intptr_3d_pointer;  Q4DIntPtr*  intptr_4d_pointer;
+	qinttop*  inttop_pointer;  Q2DIntTop*  inttop_2d_pointer;  Q3DIntTop*  inttop_3d_pointer;  Q4DIntTop*  inttop_4d_pointer;
+	qintmax*  intmax_pointer;  Q2DIntMax*  intmax_2d_pointer;  Q3DIntMax*  intmax_3d_pointer;  Q4DIntMax*  intmax_4d_pointer;
+
+	qboolean* boolean_pointer;
+	qnatural* natural_pointer; Q2DNatural* natural_2d_pointer; Q3DNatural* natural_3d_pointer; Q4DNatural* natural_4d_pointer;
+	qinteger* integer_pointer; Q2DInteger* integer_2d_pointer; Q3DInteger* integer_3d_pointer; Q4DInteger* integer_4d_pointer;
+	qreal*	  real_pointer;    Q2DReal*    real_2d_pointer;    Q3DReal*    real_3d_pointer;    Q4DReal*    real_4d_pointer;
+
+	QRange*   range_pointer;
+) QPointer;
+
+/* MARK: - General purpose types */
 
 typedef struct {
 	void* base;
