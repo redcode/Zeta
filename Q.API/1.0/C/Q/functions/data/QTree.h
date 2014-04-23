@@ -12,7 +12,7 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/functions/data/QChain.h>
 
 
-#define q_tree_children_count(object) \
+#define q_tree_child_level_size(object) \
 	q_list_size(Q_LIST_NODE(object->children))
 
 #define q_tree_node(object, index) \
