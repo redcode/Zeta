@@ -2150,6 +2150,11 @@ Q_DEFINE_STRICT_UNION_BEGIN
 	void*	    pointer;
 	quintptr    uintptr_value;
 	QRange*     range_pointer;
+
+#	ifdef Q_PARTIAL_POINTER_UNION
+		Q_PARTIAL_POINTER_UNION
+#	endif
+
 Q_DEFINE_STRICT_UNION_END QPointer;
 
 /* MARK: - General purpose types */
