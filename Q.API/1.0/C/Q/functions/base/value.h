@@ -76,23 +76,30 @@ Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64, 32)
 
 #define Q_IMPLEMENTATION_VALUE_ROTATED(bits)					\
 										\
-Q_INLINE void q_uint##bits##_rotated_left(quint##bits *value, quint rotation)	\
-	{Q_##bits##BIT_ROTATE_LEFT(*value, rotation);}				\
+Q_INLINE									\
+quint##bits q_uint##bits##_rotated_left(quint##bits value, quint rotation)	\
+	{Q_##bits##BIT_ROTATE_LEFT(value, rotation);}				\
 										\
-Q_INLINE void q_uint##bits##_rotated_right(quint##bits *value, quint rotation)	\
-	{Q_##bits##BIT_ROTATE_RIGHT(*value, rotation);}				\
+Q_INLINE									\
+quint##bits q_uint##bits##_rotated_right(quint##bits value, quint rotation)	\
+	{Q_##bits##BIT_ROTATE_RIGHT(value, rotation);}				\
 										\
-Q_INLINE void q_int##bits##_rotated_left(qint##bits *value, quint rotation)	\
-	{Q_##bits##BIT_ROTATE_LEFT(*value, rotation);}				\
+Q_INLINE									\
+qint##bits q_int##bits##_rotated_left(qint##bits value, quint rotation)		\
+	{Q_##bits##BIT_ROTATE_LEFT(value, rotation);}				\
 										\
-Q_INLINE void q_int##bits##_rotated_right(qint##bits *value, quint rotation)	\
-	{Q_##bits##BIT_ROTATE_RIGHT(*value, rotation);}				\
+Q_INLINE									\
+qint##bits q_int##bits##_rotated_right(qint##bits value, quint rotation)	\
+	{Q_##bits##BIT_ROTATE_RIGHT(value, rotation);}				\
 
 
 Q_IMPLEMENTATION_VALUE_ROTATED( 8)
 Q_IMPLEMENTATION_VALUE_ROTATED(16)
 Q_IMPLEMENTATION_VALUE_ROTATED(32)
 Q_IMPLEMENTATION_VALUE_ROTATED(64)
+
+#define q_value_rotated_left( TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _rotated_left )
+#define q_value_rotated_right(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _rotated_right)
 
 
 /* MARK: - Endianness */
