@@ -287,8 +287,8 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_PRIVATE			 __attribute__((visibility("hidden"))) static
 #define Q_PUBLIC			 __attribute__((visibility("default"))
 #define Q_ALIAS(name)			 __attribute__((weak, alias(name)))
-#define Q_STRICT_SIZE_BEGIN
-#define Q_STRICT_SIZE_END		 __attribute__((packed))
+#define Q_BEGIN_STRICT_SIZE
+#define Q_END_STRICT_SIZE		 __attribute__((packed))
 
 #if __GNUC__ >= 4
 #	define Q_INLINE			 static __inline__ __attribute__((always_inline))
