@@ -185,6 +185,84 @@ Q_IMPLEMENTATION_VALUE_ROTATED(64)
 #define q_value_little_endian(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _little_endian)
 
 
+/* MARK: - UIntTop operations */
+
+
+Q_INLINE quinttop q_uinttop_from_uint8_mirror(quint8 value)
+	{return Q_UINTTOP_FROM_UINT8_MIRROR(value);}
+
+Q_INLINE quinttop q_uinttop_from_uint16_mirror(quint16 value)
+	{return Q_UINTTOP_FROM_UINT16_MIRROR(value);}
+
+
+#if Q_INTTOP_ENDIANNESS == Q_INT16_ENDIANNESS
+
+	Q_INLINE quinttop q_uinttop_for_uint16_setting(quint16 value)
+		{return Q_UINTTOP_FROM_UINT16_MIRROR(value);}
+
+#elif	(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_BIG     && \
+	 Q_INT16_ENDIANNESS  == Q_ENDIANNESS_LITTLE) || \
+	(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_LITTLE  && \
+	 Q_INT16_ENDIANNESS  == Q_ENDIANNESS_BIG)
+
+	Q_INLINE quinttop q_uinttop_for_uint16_setting(quint16 value)
+		{return Q_UINTTOP_FROM_UINT16_MIRROR(q_uint16_reversed(value));}
+
+#endif
+
+
+#if Q_INTTOP_BITS > Q_INT32_BITS
+
+	Q_INLINE quinttop q_uinttop_from_uint32_mirror(quint32 value)
+		{return Q_UINTTOP_FROM_UINT32_MIRROR(value);}
+
+#	if Q_INTTOP_ENDIANNESS == Q_INT32_ENDIANNESS
+
+		Q_INLINE quinttop q_uinttop_for_uint32_setting(quint32 value)
+			{return Q_UINTTOP_FROM_UINT32_MIRROR(value);}
+
+#	elif	(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_BIG     && \
+		 Q_INT32_ENDIANNESS  == Q_ENDIANNESS_LITTLE) || \
+		(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_LITTLE  && \
+		 Q_INT32_ENDIANNESS  == Q_ENDIANNESS_BIG)
+
+		Q_INLINE quinttop q_uinttop_for_uint32_setting(quint32 value)
+			{
+			return Q_UINTTOP_FROM_UINT32_MIRROR
+					(q_uint32_reversed(value));
+			}
+
+#	endif
+
+#endif
+
+
+#if Q_INTTOP_BITS > Q_INT64_BITS
+
+	Q_INLINE quinttop q_uinttop_from_uint64_mirror(quint64 value)
+		{return Q_UINTTOP_FROM_UINT64_MIRROR(value);}
+
+#	if Q_INTTOP_ENDIANNESS == Q_INT64_ENDIANNESS
+
+		Q_INLINE quinttop q_uinttop_for_uint64_setting(quint64 value)
+			{return Q_UINTTOP_FROM_UINT64_MIRROR(value);}
+
+#	elif	(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_BIG     && \
+		 Q_INT64_ENDIANNESS  == Q_ENDIANNESS_LITTLE) || \
+		(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_LITTLE  && \
+		 Q_INT64_ENDIANNESS  == Q_ENDIANNESS_BIG)
+
+		Q_INLINE quinttop q_uinttop_for_uint16_setting(quint64 value)
+			{
+			return Q_UINTTOP_FROM_UINT64_MIRROR
+					(q_uint64_reversed(value));
+			}
+
+#	endif
+
+#endif
+
+
 /* MARK: - Binary codified decimal */
 
 
