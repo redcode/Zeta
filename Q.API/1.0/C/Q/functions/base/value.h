@@ -78,19 +78,19 @@ Q_IMPLEMENTATION_VALUE_REVERSED_IN_LEVEL(64, 32)
 										\
 Q_INLINE									\
 quint##bits q_uint##bits##_rotated_left(quint##bits value, quint rotation)	\
-	{Q_##bits##BIT_ROTATE_LEFT(value, rotation);}				\
+	{return Q_##bits##BIT_ROTATE_LEFT(value, rotation);}			\
 										\
 Q_INLINE									\
 quint##bits q_uint##bits##_rotated_right(quint##bits value, quint rotation)	\
-	{Q_##bits##BIT_ROTATE_RIGHT(value, rotation);}				\
+	{return Q_##bits##BIT_ROTATE_RIGHT(value, rotation);}			\
 										\
 Q_INLINE									\
 qint##bits q_int##bits##_rotated_left(qint##bits value, quint rotation)		\
-	{Q_##bits##BIT_ROTATE_LEFT(value, rotation);}				\
+	{return Q_##bits##BIT_ROTATE_LEFT(value, rotation);}			\
 										\
 Q_INLINE									\
 qint##bits q_int##bits##_rotated_right(qint##bits value, quint rotation)	\
-	{Q_##bits##BIT_ROTATE_RIGHT(value, rotation);}				\
+	{return Q_##bits##BIT_ROTATE_RIGHT(value, rotation);}			\
 
 
 Q_IMPLEMENTATION_VALUE_ROTATED( 8)
