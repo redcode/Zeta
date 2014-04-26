@@ -6,14 +6,14 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
-.----------------------------------------.
-| Extensions: .sit			 |
-| Endianness: Little			 |
-| Created by: Pedro M. R. Salas		 |
-|    Used by: Sinclair [MS-DOS]		 |
-|					 |
-| http://www.ugr.es/~pedrom/sinclair.htm |
-'---------------------------------------*/
+.------------------------------------------.
+| Extensions: .sit			   |
+| Endianness: Little			   |
+| Created by: Pedro Manuel Rodríguez Salas |
+|    Used by: Sinclair [MS-DOS]		   |
+|					   |
+| http://www.ugr.es/~pedrom/sinclair.htm   |
+'-----------------------------------------*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SIT_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SIT_H__

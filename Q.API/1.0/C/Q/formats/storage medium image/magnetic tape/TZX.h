@@ -358,8 +358,8 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	csw_data[];
 ) QTZXCSWRecording;
 
-#define Q_TZX_CSW_COMPRESSION_TYPE_RLE		1
-#define Q_TZX_CSW_COMPRESSION_TYPE_Z_RLE	2
+#define Q_TZX_CSW_COMPRESSION_TYPE_RLE	 1
+#define Q_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
 
 /* MARK: - ID 19 - Generalized Data
 .-----------------------------------------------------------------------------.
@@ -399,10 +399,10 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 pulse_duration[];
 ) QTZXSymbolDefinition;
 
-#define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT		0
-#define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT_NEGATIVE	1
-#define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_LOW		2
-#define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_HIGH		3
+#define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT	       0
+#define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT_NEGATIVE 1
+#define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_LOW	       2
+#define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_HIGH	       3
 
 /*----------------------------------------------------------------------------.
 | Most commonly, pilot and sync are repetitions of the same pulse, thus they  |
