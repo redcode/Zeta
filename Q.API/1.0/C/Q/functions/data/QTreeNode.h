@@ -1,4 +1,4 @@
-/* Q API - functions/data/QTree.h
+/* Q API - functions/data/QTreeNode.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_functions_data_QTree_H__
-#define __Q_functions_data_QTree_H__
+#ifndef __Q_functions_data_QTreeNode_H__
+#define __Q_functions_data_QTreeNode_H__
 
 #include <Q/functions/data/QChain.h>
 
@@ -94,10 +94,52 @@ void q_tree_node_move_to_last(QTreeNode *object)
 	}
 
 
-
 Q_INLINE
 void q_tree_node_move_to_index(QTreeNode *object, qsize new_index)
 	{
+	qsize index = 0;
+	QTreeNode *node = object;
+
+	for (; node->previous != NULL; node = node->previous) index++;
+
+	if (new_index < index)
+		{
+		if (new_index < (index >> 1))
+			while (new_index--) node = node->next;
+
+		else	{
+			index -= new_index;
+			for (node = object; index--; node = node->previous);
+			}
+
+		if ((object->previous->next = object->next) != NULL)
+			object->next->previous = object->previous;
+
+		if ((object->previous = node->previous) != NULL)
+			node->previous->next = object;
+
+		else if (object->parent != NULL)
+			object->parent->children = object;
+
+		(object->next = node)->previous = object;
+		}
+
+	else if (new_index > index)
+		{
+		new_index -= index;
+		for (node = object->next; --new_index; node = node->next)
+
+		if ((object->next->previous = object->previous) != NULL)
+			object->previous->next = object->next;
+
+		else if (object->parent != NULL)
+			object->parent->children = object->next;
+
+		if ((object->next = node->next) != NULL)
+			node->next->previous = object;
+
+		(object->previous = node)->next = object;
+		}
 	}
 
 
@@ -105,9 +147,9 @@ void q_tree_node_move_to_index(QTreeNode *object, qsize new_index)
 Q_INLINE
 void q_tree_node_unlink(QTreeNode *object)
 	{
-	if	(object->previous != NULL) object->previous->next = object->next;
+	if (object->previous != NULL) object->previous->next = object->next;
 	else if (object->parent != NULL) object->parent->children = object->next;
-	if	(object->next != NULL) object->next->previous = object->previous;
+	if (object->next != NULL) object->next->previous = object->previous;
 
 	object->previous = NULL;
 	object->next	 = NULL;
@@ -162,12 +204,13 @@ void q_tree_node_insert_child(QTreeNode *object, qsize index, QTreeNode *child)
 		if ((child->next = object->next) != NULL)
 			object->next->previous = child;
 
-		child->previous = object;
-		object->next = child;
+		(child->previous = object)->next = child;
 		}
 
 	else	{
-		child->next = object->children;
+		if ((child->next = object->children) != NULL)
+			object->children->previous = child;
+
 		object->children = child;
 		}
 	}
@@ -193,4 +236,4 @@ qboolean q_tree_node_is_descendant_of_node(QTreeNode *object, QTreeNode *node)
 	}
 
 
-#endif /* __Q_functions_data_QTree_H__ */
+#endif /* __Q_functions_data_QTreeNode_H__ */
