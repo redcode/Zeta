@@ -35,18 +35,20 @@ Q_INLINE qboolean q_range_collision(QRange a, QRange b)
 
 Q_INLINE QRange q_range_intersection(QRange a, QRange b)
 	{
-	qsize	minimum = q_size_minimum(a.index + a.size, b.index + b.size),
-		index	= (a.index > b.index) ? a.index : b.index;
+	qsize index = (a.index > b.index) ? a.index : b.index;
 
-	return minimum <= index ? q_range_zero : q_range(index, minimum - index);
+	qsize minimum = q_value_minimum(SIZE)
+		(a.index + a.size, b.index + b.size);
+
+	return minimum > index ? q_range(index, minimum - index) : q_range_zero;
 	}
 
 
 Q_INLINE QRange q_range_union(QRange a, QRange b)
 	{
-	qsize	a_maximum = a.index + a.size,
-		b_maximum = b.index + b.size,
-		index	  = (a.index < b.index) ? a.index : b.index;
+	qsize	index	  = (a.index < b.index) ? a.index : b.index,
+		a_maximum = a.index + a.size,
+		b_maximum = b.index + b.size;
 
 	return q_range
 		(index,

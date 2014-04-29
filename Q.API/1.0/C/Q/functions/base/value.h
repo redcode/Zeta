@@ -188,75 +188,67 @@ Q_IMPLEMENTATION_VALUE_ROTATED(64)
 /* MARK: - Mirroring */
 
 
-Q_INLINE quinttop q_uinttop_from_uint8_mirror(quint8 value)
-	{return Q_UINTTOP_FROM_UINT8_MIRROR(value);}
-
-Q_INLINE quinttop q_uinttop_from_uint16_mirror(quint16 value)
-	{return Q_UINTTOP_FROM_UINT16_MIRROR(value);}
+Q_INLINE quinttop q_uint8_top_mirror(quint8 value)
+	{return Q_8BIT_TOP_MIRROR(value);}
 
 
-#if Q_INTTOP_ENDIANNESS == Q_INT16_ENDIANNESS
+#if Q_UINTTOP_BITS > 16
 
-#	define q_uinttop_for_uint16_setting q_uinttop_from_uint16_mirror
+	Q_INLINE quinttop q_uint16_top_mirror(quint16 value)
+		{return Q_16BIT_TOP_MIRROR(value);}
 
-#elif	(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_BIG     && \
-	 Q_INT16_ENDIANNESS  == Q_ENDIANNESS_LITTLE) || \
-	(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_LITTLE  && \
-	 Q_INT16_ENDIANNESS  == Q_ENDIANNESS_BIG)
+#	if Q_UINTTOP_ENDIANNESS == Q_UINT16_ENDIANNESS
 
-	Q_INLINE quinttop q_uinttop_for_uint16_setting(quint16 value)
-		{return Q_UINTTOP_FROM_UINT16_MIRROR(q_uint16_reversed(value));}
+#		define q_uint16_top_packet q_uint16_top_mirror
 
+#	elif	(Q_UINTTOP_ENDIANNESS == Q_ENDIANNESS_BIG     && \
+		 Q_UINT16_ENDIANNESS  == Q_ENDIANNESS_LITTLE) || \
+		(Q_UINTTOP_ENDIANNESS == Q_ENDIANNESS_LITTLE  && \
+		 Q_UINT16_ENDIANNESS  == Q_ENDIANNESS_BIG)
+
+		Q_INLINE quinttop q_uint16_top_packet(quint16 value)
+			{return Q_16BIT_TOP_MIRROR(q_uint16_reversed(value));}
+#	endif
 #endif
 
 
-#if Q_INTTOP_BITS > Q_INT32_BITS
+#if Q_UINTTOP_BITS > 32
 
-	Q_INLINE quinttop q_uinttop_from_uint32_mirror(quint32 value)
-		{return Q_UINTTOP_FROM_UINT32_MIRROR(value);}
+	Q_INLINE quinttop q_uint32_top_mirror(quint32 value)
+		{return Q_32BIT_TOP_MIRROR(value);}
 
-#	if Q_INTTOP_ENDIANNESS == Q_INT32_ENDIANNESS
+#	if Q_UINTTOP_ENDIANNESS == Q_UINT32_ENDIANNESS
 
-#		define q_uinttop_for_uint32_setting q_uinttop_from_uint32_mirror
+#		define q_uint32_top_packet q_uint32_top_mirror
 
-#	elif	(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_BIG     && \
-		 Q_INT32_ENDIANNESS  == Q_ENDIANNESS_LITTLE) || \
-		(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_LITTLE  && \
-		 Q_INT32_ENDIANNESS  == Q_ENDIANNESS_BIG)
+#	elif	(Q_UINTTOP_ENDIANNESS == Q_ENDIANNESS_BIG     && \
+		 Q_UINT32_ENDIANNESS  == Q_ENDIANNESS_LITTLE) || \
+		(Q_UINTTOP_ENDIANNESS == Q_ENDIANNESS_LITTLE  && \
+		 Q_UINT32_ENDIANNESS  == Q_ENDIANNESS_BIG)
 
-		Q_INLINE quinttop q_uinttop_for_uint32_setting(quint32 value)
-			{
-			return Q_UINTTOP_FROM_UINT32_MIRROR
-					(q_uint32_reversed(value));
-			}
-
+		Q_INLINE quinttop q_uint32_top_packet(quint32 value)
+			{return Q_32BIT_TOP_MIRROR(q_uint32_reversed(value));}
 #	endif
-
 #endif
 
 
-#if Q_INTTOP_BITS > Q_INT64_BITS
+#if Q_UINTTOP_BITS > 64
 
-	Q_INLINE quinttop q_uinttop_from_uint64_mirror(quint64 value)
-		{return Q_UINTTOP_FROM_UINT64_MIRROR(value);}
+	Q_INLINE quinttop q_uint64_top_mirror(quint64 value)
+		{return Q_64BIT_TOP_MIRROR(value);}
 
-#	if Q_INTTOP_ENDIANNESS == Q_INT64_ENDIANNESS
+#	if Q_UINTTOP_ENDIANNESS == Q_UINT64_ENDIANNESS
 
-#		define q_uinttop_for_uint64_setting q_uinttop_from_uint64_mirror
+#		define q_uint64_top_packet q_uint64_top_mirror
 
-#	elif	(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_BIG     && \
-		 Q_INT64_ENDIANNESS  == Q_ENDIANNESS_LITTLE) || \
-		(Q_INTTOP_ENDIANNESS == Q_ENDIANNESS_LITTLE  && \
-		 Q_INT64_ENDIANNESS  == Q_ENDIANNESS_BIG)
+#	elif	(Q_UINTTOP_ENDIANNESS == Q_ENDIANNESS_BIG     && \
+		 Q_UINT64_ENDIANNESS  == Q_ENDIANNESS_LITTLE) || \
+		(Q_UINTTOP_ENDIANNESS == Q_ENDIANNESS_LITTLE  && \
+		 Q_UINT64_ENDIANNESS  == Q_ENDIANNESS_BIG)
 
-		Q_INLINE quinttop q_uinttop_for_uint16_setting(quint64 value)
-			{
-			return Q_UINTTOP_FROM_UINT64_MIRROR
-					(q_uint64_reversed(value));
-			}
-
+		Q_INLINE quinttop q_uint64_top_packet(quint64 value)
+			{return Q_64BIT_TOP_MIRROR(q_uint64_reversed(value));}
 #	endif
-
 #endif
 
 

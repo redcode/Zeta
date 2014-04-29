@@ -27,8 +27,7 @@ Q_INLINE void q_##2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)			\
 	{									\
 	Q2D##Type t = *a;							\
 										\
-	*a = *b;								\
-	*b = t;									\
+	*a = *b; *b = t;							\
 	}									\
 										\
 										\
