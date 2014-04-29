@@ -38,7 +38,7 @@ Q_CHAIN_EXPORT qsize q_chain_left_index(QChainNode *object)
 	{
 	qsize index = 0;
 
-	for (; object != NULL; object = object->previous) index++;
+	for (; object->previous != NULL; object = object->previous) index++;
 	return index;
 	}
 

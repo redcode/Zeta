@@ -1058,7 +1058,7 @@ typedef Q_DATA_MODEL_TYPE(SSIZE)		qssize;
 #	define Q_UINTTOP_FIXED_TYPE_Name	Q_UINT64_Name
 #	define Q_UINTTOP_FIXED_TYPE_name	Q_UINT64_name
 
-#else
+#elif Q_CPU(MAXIMUM_COPY_BITS) == 32
 
 	typedef quint32				quinttop;
 	typedef Q2DUInt32			Q2DUIntTop;
@@ -1076,6 +1076,25 @@ typedef Q_DATA_MODEL_TYPE(SSIZE)		qssize;
 #	define Q_UINTTOP_FIXED_TYPE_NAME	Q_UINT32_NAME
 #	define Q_UINTTOP_FIXED_TYPE_Name	Q_UINT32_Name
 #	define Q_UINTTOP_FIXED_TYPE_name	Q_UINT32_name
+
+#else
+
+	typedef quint16				quinttop;
+	typedef Q2DUInt16			Q2DUIntTop;
+	typedef Q3DUInt16			Q3DUIntTop;
+	typedef Q4DUInt16			Q4DUIntTop;
+#	define Q_UINTTOP			Q_UINT16
+#	define Q_UINTTOP_SUFFIX			Q_UINT16_SUFFIX
+#	define Q_UINTTOP_BASE_TYPE		Q_UINT16_BASE_TYPE
+#	define Q_UINTTOP_FIXED_TYPE		Q_UINT16_FIXED_TYPE
+#	define Q_UINTTOP_FORMAT			Q_UINT16_FORMAT
+#	define Q_UINTTOP_ENDIANNESS		Q_UINT16_ENDIANNESS
+#	define Q_UINTTOP_BITS			Q_UINT16_BITS
+#	define Q_UINTTOP_SIZE			Q_UINT16_SIZE
+#	define Q_UINTTOP_MAXIMUM		Q_UINT16_MAXIMUM
+#	define Q_UINTTOP_FIXED_TYPE_NAME	Q_UINT16_NAME
+#	define Q_UINTTOP_FIXED_TYPE_Name	Q_UINT16_Name
+#	define Q_UINTTOP_FIXED_TYPE_name	Q_UINT16_name
 
 #endif
 
@@ -1119,7 +1138,7 @@ typedef Q_DATA_MODEL_TYPE(SSIZE)		qssize;
 #	define Q_INTTOP_FIXED_TYPE_Name		Q_INT64_Name
 #	define Q_INTTOP_FIXED_TYPE_name		Q_INT64_name
 
-#else
+#elif Q_CPU(MAXIMUM_COPY_BITS) == 32
 
 	typedef qint32				qinttop;
 	typedef Q2DInt32			Q2DIntTop;
@@ -1138,6 +1157,26 @@ typedef Q_DATA_MODEL_TYPE(SSIZE)		qssize;
 #	define Q_INTTOP_FIXED_TYPE_NAME		Q_INT32_NAME
 #	define Q_INTTOP_FIXED_TYPE_Name		Q_INT32_Name
 #	define Q_INTTOP_FIXED_TYPE_name		Q_INT32_name
+
+#else
+
+	typedef qint16				qinttop;
+	typedef Q2DInt16			Q2DIntTop;
+	typedef Q3DInt16			Q3DIntTop;
+	typedef Q4DInt16			Q4DIntTop;
+#	define Q_INTTOP				Q_INT16
+#	define Q_INTTOP_SUFFIX			Q_INT16_SUFFIX
+#	define Q_INTTOP_BASE_TYPE		Q_INT16_BASE_TYPE
+#	define Q_INTTOP_FIXED_TYPE		Q_INT16_FIXED_TYPE
+#	define Q_INTTOP_FORMAT			Q_INT16_FORMAT
+#	define Q_INTTOP_ENDIANNESS		Q_INT16_ENDIANNESS
+#	define Q_INTTOP_BITS			Q_INT16_BITS
+#	define Q_INTTOP_SIZE			Q_INT16_SIZE
+#	define Q_INTTOP_MINIMUM			Q_INT16_MINIMUM
+#	define Q_INTTOP_MAXIMUM			Q_INT16_MAXIMUM
+#	define Q_INTTOP_FIXED_TYPE_NAME		Q_INT16_NAME
+#	define Q_INTTOP_FIXED_TYPE_Name		Q_INT16_Name
+#	define Q_INTTOP_FIXED_TYPE_name		Q_INT16_name
 
 #endif
 
@@ -2154,7 +2193,6 @@ Q_BEGIN_DEFINE_STRICT_UNION
 #	ifdef Q_PARTIAL_POINTER_UNION
 		Q_PARTIAL_POINTER_UNION
 #	endif
-
 Q_END_DEFINE_STRICT_UNION QPointer;
 
 /* MARK: - General purpose types */
