@@ -30,7 +30,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_ILP64_TYPE_INT64	 signed int
 #define Q_ILP64_TYPE_SSIZE	 signed long int
 
-#define Q_ILP64_BASE_TYPE_UINT8		Q_VALUE_TYPE_UCHAR
+#define Q_ILP64_BASE_TYPE_UINT8  Q_VALUE_TYPE_UCHAR
 #define Q_ILP64_BASE_TYPE_UINT16 Q_VALUE_TYPE_USHORT
 #define Q_ILP64_BASE_TYPE_UINT32 Q_VALUE_TYPE_UINT32
 #define Q_ILP64_BASE_TYPE_UINT64 Q_VALUE_TYPE_UINT
