@@ -1,4 +1,4 @@
-/* Q API - formats/storage medium image/tape/TAP.h
+/* Q API - formats/storage medium image/audio/TAP.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -13,8 +13,8 @@ Released under the terms of the GNU General Public License v3.
 |    Used by: many programs |
 '--------------------------*/
 
-#ifndef __Q_formats_storage_medium_image_tape_TAP_H__
-#define __Q_formats_storage_medium_image_tape_TAP_H__
+#ifndef __Q_formats_storage_medium_image_audio_TAP_H__
+#define __Q_formats_storage_medium_image_audio_TAP_H__
 
 #include <Q/types/base.h>
 
@@ -25,4 +25,4 @@ Q_DEFINE_STRICT_STRUCTURE (
 
 #define Q_TAP_BLOCK(p) ((QTAPBlock *)(p))
 
-#endif /* __Q_formats_storage_medium_image_tape_TAP_H__ */
+#endif /* __Q_formats_storage_medium_image_audio_TAP_H__ */

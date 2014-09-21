@@ -1,4 +1,4 @@
-/* Q API - formats/storage medium image/magnetic disk/FDI.h
+/* Q API - formats/storage medium image/floppy disk/FDI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_formats_storage_medium_image_magnetic_disk_FDI_H__
-#define __Q_formats_storage_medium_image_magnetic_disk_FDI_H__
+#ifndef __Q_formats_storage_medium_image_floppy_disk_FDI_H__
+#define __Q_formats_storage_medium_image_floppy_disk_FDI_H__
 
 #include <Q/types/base.h>
 #include <Q/macros/bit field.h>
@@ -48,4 +48,4 @@ Q_DEFINE_STRICT_STRUCTURE (
 #define Q_DSK_SECTOR_ENTRY(p) ((QFDISectorEntry *)(p))
 #define Q_FDI_TRACK_HEADER(p) ((QFDITrackHeader *)(p))
 
-#endif /* __Q_formats_storage_medium_image_magnetic_disk_FDI_H__ */
+#endif /* __Q_formats_storage_medium_image_floppy_disk_FDI_H__ */

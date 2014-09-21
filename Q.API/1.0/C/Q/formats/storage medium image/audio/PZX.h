@@ -1,4 +1,4 @@
-/* Q API - formats/storage medium image/tape/PZX.h
+/* Q API - formats/storage medium image/audio/PZX.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -14,9 +14,9 @@ Released under the terms of the GNU General Public License v3.
 |    Used by: ZXDS [Nintendo DS], others |
 '---------------------------------------*/
 
-#ifndef __Q_formats_storage_medium_image_tape_PZX_H__
-#define __Q_formats_storage_medium_image_tape_PZX_H__
+#ifndef __Q_formats_storage_medium_image_audio_PZX_H__
+#define __Q_formats_storage_medium_image_audio_PZX_H__
 
 #include <Q/types/base.h>
 
-#endif /* __Q_formats_storage_medium_image_tape_PZX_H__ */
+#endif /* __Q_formats_storage_medium_image_audio_PZX_H__ */

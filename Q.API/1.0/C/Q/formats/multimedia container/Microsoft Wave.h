@@ -28,7 +28,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 
 	struct {quint32 subblock_id;	/* 'data' in big endian */
 		quint32 subblock_size;
-		quint8 samples[];
+		quint8	samples[];
 	} data;
 
 ) QMicrosoftWave;

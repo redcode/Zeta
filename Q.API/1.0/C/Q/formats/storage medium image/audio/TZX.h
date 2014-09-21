@@ -1,4 +1,4 @@
-/* Q API - formats/storage medium image/tape/TZX.h
+/* Q API - formats/storage medium image/audio/TZX.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -132,8 +132,8 @@ Released under the terms of the GNU General Public License v3.
 |   LSb = least significant bit						       |
 '-----------------------------------------------------------------------------*/
 
-#ifndef __Q_formats_storage_medium_image_tape_TZX_H__
-#define __Q_formats_storage_medium_image_tape_TZX_H__
+#ifndef __Q_formats_storage_medium_image_audio_TZX_H__
+#define __Q_formats_storage_medium_image_audio_TZX_H__
 
 #include <Q/types/base.h>
 
@@ -817,4 +817,4 @@ Q_DEFINE_STRICT_STRUCTURE (
 #define Q_TZX_SNAPSHOT(		    p) ((QTZXSnapshot		  *)(p))
 #define Q_TZX_GLUE(		    p) ((QTZXGlue		  *)(p))
 
-#endif /* __Q_formats_storage_medium_image_tape_TZX_H__ */
+#endif /* __Q_formats_storage_medium_image_audio_TZX_H__ */
