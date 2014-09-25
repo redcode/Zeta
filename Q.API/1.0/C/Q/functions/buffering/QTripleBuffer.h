@@ -16,23 +16,23 @@ Released under the terms of the GNU General Public License v3. */
 
 Q_INLINE void q_triple_buffer_initialize(
 	QTripleBuffer* object,
-	void*	       data,
-	qsize	       slot_size
+	void*	       buffers,
+	qsize	       buffer_size
 )
 	{
-	object->slots[0] = data;
-	object->slots[1] = data + slot_size;
-	object->slots[2] = data + slot_size * 2;
-	object->flags	 = 6;
+	object->buffers[0] = buffers;
+	object->buffers[1] = buffers + buffer_size;
+	object->buffers[2] = buffers + buffer_size * 2;
+	object->flags	   = 6;
 	}
 
 
-Q_INLINE void *q_triple_buffer_production_slot(QTripleBuffer *object)
-	{return object->slots[(object->flags & 48) >> 4];}
+Q_INLINE void *q_triple_buffer_production_buffer(QTripleBuffer *object)
+	{return object->buffers[(object->flags & 48) >> 4];}
 
 
-Q_INLINE void *q_triple_buffer_consumption_slot(QTripleBuffer *object)
-	{return object->slots[object->flags & 3];}
+Q_INLINE void *q_triple_buffer_consumption_buffer(QTripleBuffer *object)
+	{return object->buffers[object->flags & 3];}
 
 
 Q_INLINE void *q_triple_buffer_produce(QTripleBuffer *object)
@@ -47,7 +47,7 @@ Q_INLINE void *q_triple_buffer_produce(QTripleBuffer *object)
 		}
 	while (!q_uint8_atomic_set_if_equal(&object->flags, flags, new_flags));
 
-	return object->slots[(new_flags & 48) >> 4];
+	return object->buffers[(new_flags & 48) >> 4];
 	}
 
 
@@ -63,7 +63,7 @@ Q_INLINE void *q_triple_buffer_consume(QTripleBuffer *object)
 		}
 	while (!q_uint8_atomic_set_if_equal(&object->flags, flags, new_flags));
 
-	return object->slots[new_flags & 3];;
+	return object->buffers[new_flags & 3];;
 	}
 
 

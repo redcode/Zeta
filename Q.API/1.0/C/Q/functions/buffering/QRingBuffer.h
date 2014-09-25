@@ -18,44 +18,44 @@ Released under the terms of the GNU General Public License v3. */
 Q_INLINE void q_ring_buffer_initialize(
 	QRingBuffer* object,
 	void*	     data,
-	qsize	     slot_size,
-	qsize	     slot_count
+	qsize	     buffer_size,
+	qsize	     buffer_count
 )
 	{
-	object->data		  = data;
-	object->slot_size	  = slot_size;
-	object->slot_count	  = slot_count;
+	object->buffers		  = buffers;
+	object->buffer_size	  = buffer_size;
+	object->buffer_count	  = buffer_count;
 	object->production_index  = 0;
 	object->consumption_index = 0;
 	object->fill_count	  = 0;
 	}
 
 
-Q_INLINE void *q_ring_buffer_production_slot(QRingBuffer *object)
+Q_INLINE void *q_ring_buffer_production_buffer(QRingBuffer *object)
 	{
-	return object->slot_count - object->fill_count
-		? object->data + object->production_index * object->slot_size
+	return object->buffer_count - object->fill_count
+		? object->buffers + object->production_index * object->buffer_size
 		: NULL;
 	}
 
 
-Q_INLINE void *q_ring_buffer_consumption_slot(QRingBuffer *object)
+Q_INLINE void *q_ring_buffer_consumption_buffer(QRingBuffer *object)
 	{
 	return object->fill_count
-		? object->data + object->consumption_index * object->slot_size
+		? object->data + object->consumption_index * object->buffer_size
 		: NULL;
 	}
 
 
 Q_INLINE void *q_ring_buffer_try_produce(QRingBuffer *object)
 	{
-	if (object->slot_count == object->fill_count) return NULL;
+	if (object->buffer_count == object->fill_count) return NULL;
 
 	object->production_index =
-	(object->production_index + 1) % object->slot_count;
+	(object->production_index + 1) % object->buffer_count;
 
 	q_value_atomic_increment_then_get(SIZE)(&object->fill_count);
-	return object->data + object->production_index * object->slot_size;
+	return object->buffers + object->production_index * object->buffer_size;
 	}
 
 
@@ -64,22 +64,22 @@ Q_INLINE void *q_ring_buffer_try_consume(QRingBuffer *object)
 	if (!object->fill_count) return NULL;
 
 	object->consumption_index =
-	(object->consumption_index + 1) % object->slot_count;
+	(object->consumption_index + 1) % object->buffer_count;
 
 	q_value_atomic_decrement_then_get(SIZE)(&object->fill_count);
-	return object->data + object->consumption_index * object->slot_size;
+	return object->buffers + object->consumption_index * object->buffer_size;
 	}
 
 
 Q_INLINE void *q_ring_buffer_produce(QRingBuffer *object)
 	{
-	while (object->slot_count == object->fill_count) q_cpu_relax();
+	while (object->buffer_count == object->fill_count) q_cpu_relax();
 
 	object->production_index =
-	(object->production_index + 1) % object->slot_count;
+	(object->production_index + 1) % object->buffer_count;
 
 	q_value_atomic_increment_then_get(SIZE)(&object->fill_count);
-	return object->data + object->production_index * object->slot_size;
+	return object->buffers + object->production_index * object->buffer_size;
 	}
 
 
@@ -88,10 +88,10 @@ Q_INLINE void *q_ring_buffer_consume(QRingBuffer *object)
 	if (!object->fill_count) q_cpu_relax();
 
 	object->consumption_index =
-	(object->consumption_index + 1) % object->slot_count;
+	(object->consumption_index + 1) % object->buffer_count;
 
 	q_value_atomic_decrement_then_get(SIZE)(&object->fill_count);
-	return object->data + object->consumption_index * object->slot_size;
+	return object->buffers + object->consumption_index * object->buffer_size;
 	}
 
 
