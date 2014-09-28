@@ -330,7 +330,7 @@ Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_top_right(			\
 	}									\
 										\
 										\
-Q_INLINE ##Type##AABR q_##type##_aabr_fit_in_top_center(			\
+Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_top_center(			\
 	Q##Type##AABR aabr,							\
 	Q##2D##Type   size							\
 )										\
