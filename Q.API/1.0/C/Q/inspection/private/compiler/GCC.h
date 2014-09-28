@@ -17,8 +17,8 @@ Released under the terms of the GNU General Public License v3. */
 
 #define Q_COMPILER		  Q_COMPILER_GCC
 #define Q_COMPILER_STRING	  Q_COMPILER_STRING_GCC
-#define Q_COMPILER_VERSION	  Q_VERSION(__GNUC__, __GNUC_MINOR__, 0)
-#define Q_COMPILER_VERSION_STRING
+#define Q_COMPILER_VERSION	  Q_VERSION(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
+#define Q_COMPILER_VERSION_STRING __VERSION__
 
 /* MARK: - Features */
 
