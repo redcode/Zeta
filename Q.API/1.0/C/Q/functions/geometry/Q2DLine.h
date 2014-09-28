@@ -35,7 +35,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_IMPLEMENTATION_2D_LINE(Type, type, _)					\
 										\
 										\
-Q_INLINE qboolean q_2d_##type##_line_segment_collision(				\
+Q_INLINE qboolean q_2d_##type##_line_segment_collide(				\
 	Q2D##Type##Line a,							\
 	Q2D##Type##Line b							\
 )										\
@@ -72,19 +72,19 @@ Q_IMPLEMENTATION_2D_LINE(LDouble, ldouble, Q_LDOUBLE)
 
 #if defined(Q_USE_REAL_FLOAT)
 
-#	define q_2d_line_segment_collision	q_2d_float_line_segment_collision
+#	define q_2d_line_segment_collide	q_2d_float_line_segment_collide
 #	define q_2d_line_segment_center		q_2d_float_line_segment_center
 #	define q_2d_line_segment_lerp		q_2d_float_line_segment_lerp
 
 #elif defined(Q_USE_REAL_LDOUBLE)
 
-#	define q_2d_line_segment_collision	q_2d_ldouble_line_segment_collision
+#	define q_2d_line_segment_collide	q_2d_ldouble_line_segment_collide
 #	define q_2d_line_segment_center		q_2d_ldouble_line_segment_center
 #	define q_2d_line_segment_lerp		q_2d_ldouble_line_segment_lerp
 
 #else
 
-#	define q_2d_line_segment_collision	q_2d_double_line_segment_collision
+#	define q_2d_line_segment_collide	q_2d_double_line_segment_collide
 #	define q_2d_line_segment_center		q_2d_double_line_segment_center
 #	define q_2d_line_segment_lerp		q_2d_double_line_segment_lerp
 

@@ -29,7 +29,7 @@ Q_INLINE qboolean q_range_contains(QRange a, QRange b)
 	{return b.index >= a.index && b.index + b.size <= a.index + a.size;}
 
 
-Q_INLINE qboolean q_range_collision(QRange a, QRange b)
+Q_INLINE qboolean q_range_collide(QRange a, QRange b)
 	{return a.index < b.index + b.size && b.index < a.index + a.size;}
 
 

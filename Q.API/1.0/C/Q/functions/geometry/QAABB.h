@@ -38,7 +38,7 @@ Q_INLINE qboolean q_##type##_aabb_contains(Q##Type##AABB a, Q##Type##AABB b)	\
 	}									\
 										\
 										\
-Q_INLINE qboolean q_##type##_aabb_collision(Q##Type##AABB a, Q##Type##AABB b)	\
+Q_INLINE qboolean q_##type##_aabb_collide(Q##Type##AABB a, Q##Type##AABB b)	\
 	{									\
 	return	a.a.x < b.b.x && b.a.x < a.b.x &&				\
 		a.a.y < b.b.y && b.a.y < a.b.y &&				\
@@ -203,7 +203,7 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #if defined(Q_USE_REAL_FLOAT)
 
 #	define q_aabb_contains			q_float_aabb_contains
-#	define q_aabb_collision			q_float_aabb_collision
+#	define q_aabb_collide			q_float_aabb_collide
 #	define q_aabb_intersection		q_float_aabb_intersection
 #	define q_aabb_union			q_float_aabb_union
 #	define q_aabb_from_vertices		q_float_aabb_from_vertices
@@ -221,7 +221,7 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #elif defined(Q_USE_REAL_LDOUBLE)
 
 #	define q_aabb_contains			q_ldouble_aabb_contains
-#	define q_aabb_collision			q_ldouble_aabb_collision
+#	define q_aabb_collide			q_ldouble_aabb_collide
 #	define q_aabb_intersection		q_ldouble_aabb_intersection
 #	define q_aabb_union			q_ldouble_aabb_union
 #	define q_aabb_from_vertices		q_ldouble_aabb_from_vertices
@@ -239,7 +239,7 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #else
 
 #	define q_aabb_contains			q_double_aabb_contains
-#	define q_aabb_collision			q_double_aabb_collision
+#	define q_aabb_collide			q_double_aabb_collide
 #	define q_aabb_intersection		q_double_aabb_intersection
 #	define q_aabb_union			q_double_aabb_union
 #	define q_aabb_from_vertices		q_double_aabb_from_vertices

@@ -34,7 +34,7 @@ Q_INLINE qboolean q_##type##_box_contains(Q##Type##Box a, Q##Type##Box b)	\
 	}									\
 										\
 										\
-Q_INLINE qboolean q_##type##_box_collision(Q##Type##Box a, Q##Type##Box b)	\
+Q_INLINE qboolean q_##type##_box_collide(Q##Type##Box a, Q##Type##Box b)	\
 	{									\
 	return	a.point.x < b.point.x + b.size.x &&				\
 		b.point.x < a.point.x + a.size.x &&				\
@@ -226,7 +226,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 
 #	define q_box_are_equal			q_float_box_are_equal
 #	define q_box_contains			q_float_box_contains
-#	define q_box_collision			q_float_box_collision
+#	define q_box_collide			q_float_box_collide
 #	define q_box_intersection		q_float_box_intersection
 #	define q_box_union			q_float_box_union
 #	define q_box_from_vertices		q_float_box_from_vertices
@@ -245,7 +245,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 
 #	define q_box_are_equal			q_ldouble_box_are_equal
 #	define q_box_contains			q_ldouble_box_contains
-#	define q_box_collision			q_ldouble_box_collision
+#	define q_box_collide			q_ldouble_box_collide
 #	define q_box_intersection		q_ldouble_box_intersection
 #	define q_box_union			q_ldouble_box_union
 #	define q_box_from_vertices		q_ldouble_box_from_vertices
@@ -264,7 +264,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 
 #	define q_box_are_equal			q_double_box_are_equal
 #	define q_box_contains			q_double_box_contains
-#	define q_box_collision			q_double_box_collision
+#	define q_box_collide			q_double_box_collide
 #	define q_box_intersection		q_double_box_intersection
 #	define q_box_union			q_double_box_union
 #	define q_box_from_vertices		q_double_box_from_vertices

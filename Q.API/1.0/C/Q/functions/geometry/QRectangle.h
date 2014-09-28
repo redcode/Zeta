@@ -38,7 +38,7 @@ Q_INLINE qboolean q_##type##_rectangle_contains(				\
 	}									\
 										\
 										\
-Q_INLINE qboolean q_##type##_rectangle_collision(				\
+Q_INLINE qboolean q_##type##_rectangle_collide(					\
 	Q##Type##Rectangle a,							\
 	Q##Type##Rectangle b							\
 )										\
@@ -638,7 +638,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 
 #	define q_rectangle_are_equal			q_float_rectangle_are_equal
 #	define q_rectangle_contains			q_float_rectangle_contains
-#	define q_rectangle_collision			q_float_rectangle_collision
+#	define q_rectangle_collide			q_float_rectangle_collide
 #	define q_rectangle_intersection			q_float_rectangle_intersection
 #	define q_rectangle_union			q_float_rectangle_union
 #	define q_rectangle_from_vertices		q_float_rectangle_from_vertices
@@ -697,7 +697,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 
 #	define q_rectangle_are_equal			q_ldouble_rectangle_are_equal
 #	define q_rectangle_contains			q_ldouble_rectangle_contains
-#	define q_rectangle_collision			q_ldouble_rectangle_collision
+#	define q_rectangle_collide			q_ldouble_rectangle_collide
 #	define q_rectangle_intersection			q_ldouble_rectangle_intersection
 #	define q_rectangle_union			q_ldouble_rectangle_union
 #	define q_rectangle_from_vertices		q_ldouble_rectangle_from_vertices
@@ -756,7 +756,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 
 #	define q_rectangle_are_equal			q_double_rectangle_are_equal
 #	define q_rectangle_contains			q_double_rectangle_contains
-#	define q_rectangle_collision			q_double_rectangle_collision
+#	define q_rectangle_collide			q_double_rectangle_collide
 #	define q_rectangle_intersection			q_double_rectangle_intersection
 #	define q_rectangle_union			q_double_rectangle_union
 #	define q_rectangle_from_vertices		q_double_rectangle_from_vertices
