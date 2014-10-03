@@ -47,8 +47,8 @@ typedef struct {qint8 x, y, z, w;}		Q4DInt8;
 #define Q_INT8_FORMAT				Q_VALUE_FORMAT_8BIT_INTEGER
 #define Q_INT8_BITS				8
 #define Q_INT8_SIZE				1
-#define Q_INT8_MINIMUM				-128
-#define Q_INT8_MAXIMUM				 127
+#define Q_INT8_MINIMUM				(-128)
+#define Q_INT8_MAXIMUM				127
 #define Q_INT8_NAME				INT8
 #define Q_INT8_Name				Int8
 #define Q_INT8_name				int8
@@ -85,8 +85,8 @@ typedef struct {qint16 x, y, z, w;}		Q4DInt16;
 #define Q_INT16_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(16BIT)
 #define Q_INT16_BITS				16
 #define Q_INT16_SIZE				2
-#define Q_INT16_MINIMUM				-32768
-#define Q_INT16_MAXIMUM				 32767
+#define Q_INT16_MINIMUM				(-32768)
+#define Q_INT16_MAXIMUM				32767
 #define Q_INT16_NAME				INT16
 #define Q_INT16_Name				Int16
 #define Q_INT16_name				int16
