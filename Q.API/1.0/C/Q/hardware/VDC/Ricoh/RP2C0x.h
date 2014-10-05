@@ -1,4 +1,4 @@
-/* Q API - hardware/VDP/Ricoh/RP2C0x.h
+/* Q API - hardware/VDC/Ricoh/RP2C0x.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -194,8 +194,8 @@ Released under the terms of the GNU General Public License v3.
 
 	    		*/
 
-#ifndef __Q_hardware_VDP_Ricoh_RP2C0x_H__
-#define __Q_hardware_VDP_Ricoh_RP2C0x_H__
+#ifndef __Q_hardware_VDC_Ricoh_RP2C0x_H__
+#define __Q_hardware_VDC_Ricoh_RP2C0x_H__
 
 #include <Q/types/base.h>
 #include <Q/macros/bits.h>
@@ -610,4 +610,4 @@ typedef struct {
 
 
 
-#endif /* __Q_hardware_VDP_Ricoh_RP2C0x_H__ */
+#endif /* __Q_hardware_VDC_Ricoh_RP2C0x_H__ */
