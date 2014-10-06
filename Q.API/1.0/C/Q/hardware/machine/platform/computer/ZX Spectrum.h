@@ -97,6 +97,27 @@ Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
 #define Q_ZX_SPECTRUM_ATTRIBUTE_SQUARE_WIDTH  8
 #define Q_ZX_SPECTRUM_ATTRIBUTE_SQUARE_HEIGHT 8
 
+#define Q_ZX_SPECTRUM_BRIGHT_COLOR_PALETTE(RGB)	 \
+	RGB(0.0, 0.0, 0.0), /* Bright Black   */ \
+	RGB(0.0, 0.0, 0.0), /* Bright Black   */ \
+	RGB(0.0, 0.0, 1.0), /* Bright Blue    */ \
+	RGB(1.0, 0.0, 0.0), /* Bright Red     */ \
+	RGB(1.0, 0.0, 1.0), /* Bright Magenta */ \
+	RGB(0.0, 1.0, 0.0), /* Bright Green   */ \
+	RGB(0.0, 1.0, 1.0), /* Bright Cyan    */ \
+	RGB(1.0, 1.0, 0.0), /* Bright Yellow  */ \
+	RGB(1.0, 1.0, 1.0)  /* Bright White   */
+
+#define Q_ZX_SPECTRUM_BASIC_COLOR_PALETTE(RGB)	   \
+	RGB(0.0,  0.0,	0.0 ), /* Black		*/ \
+	RGB(0.0,  0.0,	0.84), /* Basic Blue	*/ \
+	RGB(0.84, 0.0,	0.0 ), /* Basic Red	*/ \
+	RGB(0.84, 0.0,	0.84), /* Basic Magenta */ \
+	RGB(0.0,  0.84, 0.0 ), /* Basic Green	*/ \
+	RGB(0.0,  0.84, 0.84), /* Basic Cyan	*/ \
+	RGB(0.84, 0.84, 0.0 ), /* Basic Yellow	*/ \
+	RGB(0.84, 0.84, 0.84)  /* Basic White	*/
+
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8			  characters[Q_ZX_SPECTRUM_VIDEO_CHARACTER_RAM_SIZE];
 	QZXSpectrumColorAttribute attributes[Q_ZX_SPECTRUM_VIDEO_ATTRIBUTE_RAM_SIZE];
@@ -112,7 +133,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 
 #define Q_ZX_SPECTRUM_UNASSIGNED_IO_PORT_INPUT	0xFF
 
-/* ULA IO port
+/* MARK: - ULA IO port
 .-----------------.-----------------.
 | 7 6 5 4 3 2 1 0 | 7 6 5 4 3 2 1 0 |
 '-\_____________/-'-\___/-|-|-\___/-'
