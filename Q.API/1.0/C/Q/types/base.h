@@ -2009,7 +2009,7 @@ typedef struct {qsize index, size;} QRange;
 
 /* Pointer cast type for lvalue assignment */
 
-Q_BEGIN_DEFINE_STRICT_UNION
+Q_DEFINE_STRICT_UNION_BEGIN
 	quint8*    uint8_pointer;
 	Q2DUInt8*  uint8_2d_pointer;
 	Q3DUInt8*  uint8_3d_pointer;
@@ -2193,7 +2193,7 @@ Q_BEGIN_DEFINE_STRICT_UNION
 #	ifdef Q_PARTIAL_POINTER_UNION
 		Q_PARTIAL_POINTER_UNION
 #	endif
-Q_END_DEFINE_STRICT_UNION QPointer;
+Q_DEFINE_STRICT_UNION_END QPointer;
 
 /* MARK: - General purpose types */
 

@@ -78,7 +78,7 @@ Released under the terms of the GNU General Public License v3. */
 			     | 110 = Yellow  |
 			     | 111 = White   |
 			     '--------------*/
-typedef Q_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
+Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
 	quint8 flash  :1,
 	quint8 bright :1,
 	quint8 paper  :3,
@@ -179,7 +179,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 | "	      = SYMBOL SHIFT + P     |
 '-----------------------------------*/
 
-typedef Q_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
+Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
 	quint8 unused	    :3,
 	quint8 mic	    :1,
 	quint8 ear	    :1,

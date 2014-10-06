@@ -6,28 +6,28 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
-   	    .----._.----.
-    R/W -01-|    \_/    |-40- VCC
-     D0 -02-|		|-39- ALE
-     D1 -03-|     _	|-38- AD0
-     D2 -04-|    (_)    |-37- AD1
-     D3 -05-|		|-36- AD2
-     D4 -06-|		|-35- AD3
-     D5 -07-|		|-34- AD4
-     D6 -08-|		|-33- AD5
-     D7 -09-|		|-32- AD6
-     A2 -10-|		|-31- AD7
-     A1 -11-|   RP2C02  |-30- A8
-     A0 -12-|		|-29- A9
-    /CS -13-|		|-28- A10
-   EXT0 -14-|		|-27- A11
-   EXT1 -15-|		|-26- A12
-   EXT2 -16-|     _     |-25- A13
-   EXT3 -17-|    (_)    |-24- /R
-    CLK -18-|		|-23- /W
-   /VBL -19-|		|-22- /SYNC
-    VEE -20-|		|-21- VOUT
-	    '-----------'		*/
+	 .----._.----.
+ R/W -01-|    \_/    |-40- VCC
+  D0 -02-|	     |-39- ALE
+  D1 -03-|     _     |-38- AD0
+  D2 -04-|    (_)    |-37- AD1
+  D3 -05-|	     |-36- AD2
+  D4 -06-|	     |-35- AD3
+  D5 -07-|	     |-34- AD4
+  D6 -08-|	     |-33- AD5
+  D7 -09-|	     |-32- AD6
+  A2 -10-|	     |-31- AD7
+  A1 -11-|   RP2C02  |-30- A8
+  A0 -12-|	     |-29- A9
+ /CS -13-|	     |-28- A10
+EXT0 -14-|	     |-27- A11
+EXT1 -15-|	     |-26- A12
+EXT2 -16-|     _     |-25- A13
+EXT3 -17-|    (_)    |-24- /R
+ CLK -18-|	     |-23- /W
+/VBL -19-|	     |-22- /SYNC
+ VEE -20-|	     |-21- VOUT
+	 '-----------'		*/
 
 
 /* .--------------------------.
@@ -46,17 +46,10 @@ Released under the terms of the GNU General Public License v3.
      |	 |   | |			  |
      |	 |   | '--------------------------'
      |	 |   |   |
-     |	 |   |   |    .-----------------.
-     '---|---|---|--->| Stored at 3F00h |
-	 |   |	 |    '-----------------'
-	 |   |	 |
-	 |   |	 |    .----------------------------.
-	 |   '---|--->| The ones with priority = 1 |
-	 |	 |    '----------------------------'
-	 |	 |
-	 |	 |    .----------------------------.
-	 |	 '--->| The ones with priority = 0 |
-	 '----------->'----------------------------'
+     '---|---|---|---> Stored at 3F00h
+	 |   '---|---> The ones with priority = 1
+	 |	 '---> The ones with priority = 0
+	 '----------->
 
 
 
@@ -199,6 +192,7 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/types/base.h>
 #include <Q/macros/bits.h>
+#include <Q/macros/bit field.h>
 
 typedef struct {
 	quint8 y;
@@ -208,7 +202,6 @@ typedef struct {
 } QRP2C0xSprite;
 
 typedef struct {
-
 	/* Registers */
 	quint8 control;		/* Read / Write  */
 	quint8 mask;		/* Read / Write  */
@@ -223,7 +216,7 @@ typedef struct {
 	QRP2C0xSprite oam[64];	/* Not accesible */
 	quint8 palettes[28];	/* Not accesible */
 
-} Q_STRICT_SIZE QRP2C0xState;
+} QRP2C0xState;
 
 #define Q_RP2C0X_STATE_REGISTER_OFFSET_CONTROL		0
 #define Q_RP2C0X_STATE_REGISTER_OFFSET_MASK		1
@@ -244,31 +237,42 @@ typedef struct {
 #define Q_RP2C0X_STATE_REGISTER_SIZE_DATA		1
 
 /* Control Register
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-|-|-|-|-|-|-\_/-'
-     | | | | | |  '--> name_table --------------------------------------.
-     | | | | | '-----> address_increment --------------.		|
-     | | | | '-------> sprite_patten_table ---------.  |		|
-     | | | '---------> background_pattern_table --. |  |		|
-     | | '-----------> use_8x16_sprites --------. | |  |		|
-     | '-------------> mode ------------------. | | |  |		|
-     '---------------> emit_nmi_on_vblank --. | | | |  |		|
-					    | | | | |  |		|
-      .-------------------------------------' | | | |  |		|
-      |		      .-----------------------' | | |  |		|
-      |	  .-----------|-------------------------' | |  |		|
-      |	  |	      |		    .-------------' |  |		|
-      |	  |	      |		    |	.-----------'  |		|
-      |	  |	      |		    |   |	       |		|
-      |	  |	      |		    |   |	       |		|
-      v   v	      v		    v   v	       v		v
-   .---------.  .------------.  .-----------.  .---------------.  .------------.
-   | 0 = NO  |  | 0 = Master |  | 0 = 0000h |  | 0 =  +1 (X++) |  | 00 = 2000h |
-   | 1 = YES |  | 1 = Slave  |  | 1 = 1000h |  | 1 = +32 (Y++) |  | 01 = 2400h |
-   '---------'  '------------'  '-----------'  '---------------'  | 10 = 2800h |
-								  | 11 = 2C00h |
-								  '------------' */
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-|-|-|-|-|-|-\_/-'
+  | | | | | |  '--> name table ---------------------------------------.
+  | | | | | '-----> address increment --------------.		      |
+  | | | | '-------> sprite patten table ---------.  |		      |
+  | | | '---------> background pattern_table --. |  |		      |
+  | | '-----------> use 8x16 sprites --------. | |  |		      |
+  | '-------------> mode ------------------. | | |  |		      |
+  '---------------> emit nmi on vblank --. | | | |  |		      |
+					 | | | | |  |		      |
+   .-------------------------------------' | | | |  |		      |
+   |		    .----------------------' | | |  |		      |
+   |   .------------|------------------------' | |  |		      |
+   |   |	    |		 .-------------' |  |		      |
+   |   |	    |		 |   .-----------'  |		      |
+   |   |	    |		 |   |		    |		      |
+   |   |	    |		 |   |		    |		      |
+   v   v	    v		 v   v		    v		      v
+.---------.  .------------.  .-----------.  .---------------.  .------------.
+| 0 = NO  |  | 0 = Master |  | 0 = 0000h |  | 0 =  +1 (X++) |  | 00 = 2000h |
+| 1 = YES |  | 1 = Slave  |  | 1 = 1000h |  | 1 = +32 (Y++) |  | 01 = 2400h |
+'---------'  '------------'  '-----------'  '---------------'  | 10 = 2800h |
+							       | 11 = 2C00h |
+							       '------------' */
+
+Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(7) (
+	quint8 emit_nmi_on_vblank	:2,
+	quint8 mode			:1,
+	quint8 use_8x16_sprites		:1,
+	quint8 background_pattern_table :1,
+	quint8 sprite_pattern_table	:1,
+	quint8 address_increment	:1,
+	quint8 name_table		:1
+)) RP2C0xControlRegister;
+
 
 #define Q_RP2C0X_CONTROL_OPTION_NAMETABLE_0			0
 #define Q_RP2C0X_CONTROL_OPTION_NAMETABLE_1			1
@@ -285,17 +289,28 @@ typedef struct {
 #define Q_RP2C0X_CONTROL_GET_EMIT_NMI_ON_VBLANK(v)		Q_BIT_7(v)
 
 /* Mask Register
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-|-|-|-|-|-|-|-|-'
-     | | | | | | | '-> use_grayscale
-     | | | | | | '---> disable_background_clipping
-     | | | | | '-----> disable_sprite_clipping
-     | | | | '-------> enable_background
-     | | | '---------> enable_sprites
-     | | '-----------> intensify_red
-     | '-------------> intensify_green
-     '---------------> intensify_blue */
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-|-|-|-|-|-|-|-|-'
+  | | | | | | | '-> use_grayscale
+  | | | | | | '---> disable_background_clipping
+  | | | | | '-----> disable_sprite_clipping
+  | | | | '-------> enable_background
+  | | | '---------> enable_sprites
+  | | '-----------> intensify_red
+  | '-------------> intensify_green
+  '---------------> intensify_blue */
+
+Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(8) (
+	quint8 intensify_blue		   :1,
+	quint8 intensify_green		   :1,
+	quint8 intensify_red		   :1,
+	quint8 enable_sprites		   :1,
+	quint8 enable_background	   :1,
+	quint8 disable_sprite_clipping	   :1,
+	quint8 disable_background_clipping :1,
+	quint8 use_grayscale		   :1
+)) RP2C0xMaskRegister;
 
 #define Q_RP2C0X_MASK_OPTION_USE_GRAYSCALE			  1
 #define Q_RP2C0X_MASK_OPTION_DISABLE_BACKGROUND_CLIPPING	  2
@@ -316,19 +331,26 @@ typedef struct {
 #define Q_RP2C0X_MASK_GET_INTENSIFY_BLUE(v)			Q_BIT_7(v)
 
 /* Status Register
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-|-|-|-\_______/-'
-     | | |     '-----> unused
-     | | '-----------> sprite_overflow
-     | '-------------> sprite_hit
-     '---------------> vblank
-
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-|-|-|-\_______/-'
+  | | |     '-----> unused
+  | | '-----------> sprite_overflow
+  | '-------------> sprite_hit
+  '---------------> vblank
 
    Reading resets the 1st/2nd-write flipflop (used by register scroll and 2006h).
 Reading resets Bit 7, can be used to acknowledge NMIs, Bit 7 is also automatically reset at the end of VBlank, so manual acknowledge is normally not required (unless one wants to free the NMI signal for external NMI inputs).
 
 */
+
+Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
+	quint8 vblank	       :1,
+	quint8 sprite_hit      :1,
+	quint8 sprite_overflow :1,
+	quint8 unused	       :5
+)) RP2C0xStatusRegister;
+
 
 #define Q_RP2C0X_STATUS_GET_SPRITE_OVERFLOW(v)			Q_BIT_5(v)
 #define Q_RP2C0X_STATUS_GET_SPRITE_HIT(v)			Q_BIT_6(v)
@@ -385,66 +407,65 @@ Reading resets Bit 7, can be used to acknowledge NMIs, Bit 7 is also automatical
 #define Q_RP2C0X_SPRITE_GET_VERTICAL_FLIP(p)	((p)->attributes & 1)
 
 /* Palette
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-\_/-\_/-\_____/-'
-      |   |	'----> hue
-      |   '----------> value
-      '--------------> unused (0 when read) */
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-\_/-\_/-\_____/-'
+   |   |     '----> hue
+   |   '----------> value
+   '--------------> unused (0 when read) */
 
 /* Color
-	 .-----------------------------.
-	 | Blue %  | Green % | Red %   |
-   .-----+---------+---------+---------|
-   | 001 |    74.3 |	91.5 |	 123.9 |
-   | 010 |    88.2 |   108.6 |	  79.4 |
-   | 011 |    65.3 |	98   |	 101.9 |
-   | 100 |   127.7 |   102.6 |	  90.5 |
-   | 101 |    97.9 |	90.8 |	 102.3 |
-   | 110 |   100.1 |	98.7 |	  74.1 |  
-   | 111 |    75   |	75   |	  75   |
-   '-----------------------------------' */
+      .-----------------------------.
+      | Blue %  | Green % | Red %   |
+.-----+---------+---------+---------|
+| 001 |    74.3 |    91.5 |   123.9 |
+| 010 |    88.2 |   108.6 |    79.4 |
+| 011 |    65.3 |    98   |   101.9 |
+| 100 |   127.7 |   102.6 |    90.5 |
+| 101 |    97.9 |    90.8 |   102.3 |
+| 110 |   100.1 |    98.7 |    74.1 |
+| 111 |    75   |    75   |    75   |
+'-----------------------------------' */
 
 /* External Memory Structure
-
-   .------------------------------------------------.
-   | Address     | Size  | Content		    |
-   |-------------+-------+--------------------------|
-   | 0000 - 0FFF |  4096 | Pattern table #0	    |
-   | 1000 - 1FFF |  4096 | Pattern table #1	    |
-   |-------------+-------+--------------------------|
-   | 2000 - 23BF |   960 | Name table #0	    |
-   | 23C0 - 23FF |    64 | Attribute table #0	    |
-   | 2400 - 27BF |   960 | Name table #1	    |
-   | 27C0 - 27FF |    64 | Attribute table #1	    |
-   | 2800 - 2BBF |   960 | Name table #2	    |
-   | 2BC0 - 2BFF |    64 | Attribute table #2	    |
-   | 2C00 - 2FBF |   960 | Name table #3	    |
-   | 2FC0 - 2FFF |    64 | Attribute table #3	    |
-   |-------------+-------+--------------------------|
-   | 3000 - 3EFF |  3839 | Name Table Mirror *1	    |
-   |-------------+-------+--------------------------|
-   | 3F00	 |     1 | Default background color |
-   | 3F01 - 3F03 |     2 | Background palette #0    |
-   | 3F04	 |     1 | Unused		    |
-   | 3F05 - 3F07 |     2 | Background palette #1    |
-   | 3F08	 |     1 | Unused		    |
-   | 3F09 - 3F0B |     2 | Background palette #2    |
-   | 3F0C	 |     1 | Unused		    |
-   | 3F0D - 3F0F |     2 | Background palette #3    |
-   |-------------+-------+--------------------------|
-   | 3F10	 |     1 | Mirror of 3F00h	    |
-   | 3F11 - 3F13 |     2 | Sprite palette #0	    |
-   | 3F14	 |     1 | Mirror of 3F04h	    |
-   | 3F15 - 3F17 |     2 | Sprite palette #1	    |
-   | 3F18	 |     1 | Mirror of 3F08h	    |
-   | 3F19 - 3F1B |     2 | Sprite palette #2	    |
-   | 3F1C	 |     1 | Mirror of 3F0Ch	    |
-   | 3F1D - 3F1F |     2 | Sprite palette #3	    |
-   |-------------+-------+--------------------------|
-   | 3F00 - 3FFF |    20 | Palette *2		    |
-   | 4000 - FFFF | 49152 | Mirrors of Above *3	    |
-   '------------------------------------------------'
+.------------------------------------------------.
+| Address     | Size  | Content			 |
+|-------------+-------+--------------------------|
+| 0000 - 0FFF |  4096 | Pattern table #0	 |
+| 1000 - 1FFF |  4096 | Pattern table #1	 |
+|-------------+-------+--------------------------|
+| 2000 - 23BF |   960 | Name table #0		 |
+| 23C0 - 23FF |    64 | Attribute table #0	 |
+| 2400 - 27BF |   960 | Name table #1		 |
+| 27C0 - 27FF |    64 | Attribute table #1	 |
+| 2800 - 2BBF |   960 | Name table #2		 |
+| 2BC0 - 2BFF |    64 | Attribute table #2	 |
+| 2C00 - 2FBF |   960 | Name table #3		 |
+| 2FC0 - 2FFF |    64 | Attribute table #3	 |
+|-------------+-------+--------------------------|
+| 3000 - 3EFF |  3839 | Name Table Mirror *1	 |
+|-------------+-------+--------------------------|
+| 3F00	      |     1 | Default background color |
+| 3F01 - 3F03 |     2 | Background palette #0	 |
+| 3F04	      |     1 | Unused			 |
+| 3F05 - 3F07 |     2 | Background palette #1	 |
+| 3F08	      |     1 | Unused			 |
+| 3F09 - 3F0B |     2 | Background palette #2	 |
+| 3F0C	      |     1 | Unused			 |
+| 3F0D - 3F0F |     2 | Background palette #3	 |
+|-------------+-------+--------------------------|
+| 3F10	      |     1 | Mirror of 3F00h		 |
+| 3F11 - 3F13 |     2 | Sprite palette #0	 |
+| 3F14	      |     1 | Mirror of 3F04h		 |
+| 3F15 - 3F17 |     2 | Sprite palette #1	 |
+| 3F18	      |     1 | Mirror of 3F08h		 |
+| 3F19 - 3F1B |     2 | Sprite palette #2	 |
+| 3F1C	      |     1 | Mirror of 3F0Ch		 |
+| 3F1D - 3F1F |     2 | Sprite palette #3	 |
+|-------------+-------+--------------------------|
+| 3F00 - 3FFF |    20 | Palette *2		 |
+| 4000 - FFFF | 49152 | Mirrors of Above *3	 |
+'------------------------------------------------'
 
 	Pattern Table:
 	

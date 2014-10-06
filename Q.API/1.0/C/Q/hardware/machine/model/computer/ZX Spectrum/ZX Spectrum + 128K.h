@@ -84,7 +84,7 @@ FFFF '----------------------------------------------------------------------*/
    |  '-----------> disable
    '--------------> unused */
 
-Q_DEFINE_STRICT_STRUCTURE(Q_8BIT_FIELD(5) (
+Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(5) (
 	quint8 unused	:2,
 	quint8 disable	:1,
 	quint8 rom	:1,
