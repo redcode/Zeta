@@ -10,7 +10,6 @@ Released under the terms of the GNU General Public License v3. */
 #define __Q_macros_bit_field_H__
 
 #include <Q/inspection/CPU.h>
-#include <Q/macros/structure.h>
 #include <Q/macros/arguments.h>
 
 #if	(Q_CPU_ENDIANNESS			      == Q_ENDIANNESS_LITTLE		&& \

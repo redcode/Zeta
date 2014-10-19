@@ -587,9 +587,9 @@ typedef struct {
 typedef struct {
 } QRP2C0xPatternTable;
 
-
+/*
 typedef struct {
-} QRP2C0xNameTable;
+} QRP2C0xNameTable;*/
 
 
 
@@ -613,10 +613,10 @@ typedef struct {
 
 
 
-
+/*
 typedef struct {
 	
-} QRP2C0xNameTable;
+} QRP2C0xNameTable;*/
 
 
 

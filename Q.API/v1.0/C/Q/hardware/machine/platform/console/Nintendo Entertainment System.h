@@ -1,15 +1,33 @@
 /* Q API - hardware/machine/platform/console/Nintendo Entertainment System.h
- __ __		  _		   _
-|  \  | _  ____  | |  ___  ____  _| | ___
-|     |(_)|    ||_ _|/ -_)|    |/ _ |/ . \
-|__\__||_||__|_| |_| \___/|__|_|\___|\___/
- E N T E R T A I N M E N T    S Y S T E M
+	      __	   __
+  _______ ___/ /______ ___/ /__
+ / __/ -_) _  / __/ _ \ _  / -_)
+/_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
 
- CPU: Ricoh RP2A03 (see <Q/hardware/CPU/RP2A03.h>)
- GPU: Ricoh RP2C02 (see <Q/hardware/GPU/RP2C02.h>)
- APU:							*/
+.--------------------------------------------------
+|  Vendor: Nintendo
+| Released: 1983-07-15 (JP)
+|	    1985-10-18 (US)
+|	    1986-09-01 (DE-DK-FR-NL-NO-SE)
+|	    1997       (AU-IE-IT-NZ-UK)
+|      CPU: Ricoh RP2A03
+|    Video: Ricoh RP2C02 (VCD) (PAL) / RP2C03 (VCD) (NTSC)
+|    Sound:
+'----------------------------------------------------------'
+
+ Front View						 Joystick Connector
+ ___ ___________________________________ ______ _____	       .---.
+|   |					|______|     |	 GND --| O  \
+|   | Nintendo©			 	|      |     |	 CLK --| O O |-- +5V
+|   | ENTERTAINMENT SYSTEM™		|      |     |	 OUT --| O O |-- D3
+|   |___________________________________|______|     |	  D0 --| O O |-- D4
+|_______________________________________|______|_____|	       '-----'
+|   |	 _____	 _____	|		| 1  2 |     |
+ \  | o [POWER] [RESET] |		||\ |\ |    /
+  \ |___________________|		||_||_||   /
+   \____________________________________|______|_*/
 
 #ifndef __Q_hardware_machine_platform_console_Nintendo_Entertainment_System_H__
 #define __Q_hardware_machine_platform_console_Nintendo_Entertainment_System_H__
@@ -36,10 +54,10 @@ Released under the terms of the GNU General Public License v3.
 | 2006	 |     1 | MMR | PPU register: address	    |
 | 2007	 |     1 | MMR | PPU register: data	    |
 |-------------+-------+-----+-------------------------------|
-| 4000	 |     1 | MMR | APU register: square_wave_0_a |
-| 4001	 |     1 | MMR | APU register: square_wave_0_b |
-| 4002	 |     1 | MMR | APU register: square_wave_0_c |
-| 4003	 |     1 | MMR | APU register: square_wave_0_d |
+| 4000	 |     1 | MMR | APU register: APU Square Wave #0 A |
+| 4001	 |     1 | MMR | APU register: APU Square Wave #0 B |
+| 4002	 |     1 | MMR | APU register: APU Square Wave #0 C |
+| 4003	 |     1 | MMR | APU register: APU Square Wave #0 D |
 | 4004	 |     1 | MMR | APU register: square_wave_1_a |
 | 4005	 |     1 | MMR | APU register: square_wave_1_b |
 | 4006	 |     1 | MMR | APU register: square_wave_1_c |
@@ -130,18 +148,15 @@ Released under the terms of the GNU General Public License v3.
 
 
 
-typedef Q_8BIT_FIELD_WITH_8_MEMBERS (
 
-) QNESSquareWaveRegisterA;
+
+/*typedef Q_8BIT_FIELD_WITH_8_MEMBERS (
+
+) QNESSquareWaveRegisterA;*/
 
 
 /*
-      .---.
-GND --| O  \
-CLK --| O O |-- +5V
-OUT --| O O |-- D3
- D0 --| O O |-- D4
-      '-----'		*/
+	*/
 
 
 /* Square Wave Register A 
