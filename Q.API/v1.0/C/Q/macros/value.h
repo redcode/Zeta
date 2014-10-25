@@ -404,8 +404,8 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
-#define Q_REVERSED(TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_REVERSED_IN_8BIT)
-#define Q_REVERSE( TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_REVERSE_IN_8BIT )
+#define Q_VALUE_REVERSED(TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_REVERSED_IN_8BIT)
+#define Q_VALUE_REVERSE( TYPE) Q_JOIN_3(Q_, Q_##TYPE##_BITS, BIT_REVERSE_IN_8BIT )
 
 /* MARK: - Rotation */
 
