@@ -11,25 +11,24 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/data.h>
 #include <Q/keys/introspection.h>
-
-typedef quint8 QVariableType;
+#include <Q/macros/key.h>
 
 typedef struct {
-	QString*	     name;
-	qsize		     count;
-	void*		     description;
-	QVariableType	     type;
+	QString*	    name;
+	qsize		    count;
+	void*		    description;
+	QKey(VARIABLE_TYPE) type;
 } QVariableDescription;
 
 typedef struct {
-	QString*	     type_name;
-	QValueType	     type;
-	QValueFormat	     format;
+	QString*	   type_name;
+	QKey(VALUE_TYPE)   type;
+	QKey(VALUE_FORMAT) format;
 } QValueDescription;
 
 typedef struct {
-	QString*	     type_name;
-	QArray		     members;
+	QString* type_name;
+	QArray   members;
 } QStructureDescription;
 
 typedef struct {
@@ -42,16 +41,16 @@ typedef struct {
 } QFunctionDescription;
 
 typedef struct {
-	QString*   name;
-	qsize	   offset;
-	QValueType type;
+	QString*	 name;
+	qsize		 offset;
+	QKey(VALUE_TYPE) type;
 } QContextValue;
 
 typedef struct {
-	QString*	name;
-	qsize		offset;
-	void*		mask;
-	quint8		container_size;
+	QString* name;
+	qsize	 offset;
+	void*	 mask;
+	quint8	 container_size;
 } QContextBits;
 
 #define Q_VARIABLE_DESCRIPTION(        p) ((QVariableDescription	*)(p))
