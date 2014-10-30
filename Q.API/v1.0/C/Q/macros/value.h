@@ -42,19 +42,15 @@ Released under the terms of the GNU General Public License v3. */
 #if Q_IS_AVAILABLE(UINT128)
 
 #	if Q_COMPILER_HAS(UINT128_LITERAL)
-
 #		define Q_8BIT_128BIT_MIRROR( value) (((quint128)(value)) * Q_UINT128(0x01010101010101010101010101010101))
 #		define Q_16BIT_128BIT_MIRROR(value) (((quint128)(value)) * Q_UINT128(0x00010001000100010001000100010001))
 #		define Q_32BIT_128BIT_MIRROR(value) (((quint128)(value)) * Q_UINT128(0x00000001000000010000000100000001))
 #		define Q_64BIT_128BIT_MIRROR(value) (((quint128)(value)) * Q_UINT128(0x00000000000000010000000000000001))
-
 #	else
-
 #		define Q_8BIT_128BIT_MIRROR( value) (((quint128)(value)) * ((quint128)0x0101010101010101 | ((quint128)0101010101010101 << 64)))
 #		define Q_16BIT_128BIT_MIRROR(value) (((quint128)(value)) * ((quint128)0x0001000100010001 | ((quint128)0001000100010001 << 64)))
 #		define Q_32BIT_128BIT_MIRROR(value) (((quint128)(value)) * ((quint128)0x0000000100000001 | ((quint128)0000000100000001 << 64)))
 #		define Q_64BIT_128BIT_MIRROR(value) (((quint128)(value)) * ((quint128)0x0000000000000001 | ((quint128)0000000000000001 << 64)))
-
 #	endif
 
 #endif

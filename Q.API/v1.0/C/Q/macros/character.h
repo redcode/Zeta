@@ -41,6 +41,7 @@ Released under the terms of the GNU General Public License v3. */
 #	define Q_IS_OCTAL_NUMBER(  c)		((c) == '0' || (c) == '1' || (c) == '2' || \
 						 (c) == '3' || (c) == '4' || (c) == '5' || \
 						 (c) == '6' || (c) == '7')
+
 #	define Q_IS_DECIMAL_NUMBER(c)		((c) == '0' || (c) == '1' || (c) == '2' || \
 						 (c) == '3' || (c) == '4' || (c) == '5' || \
 						 (c) == '6' || (c) == '7' || (c) == '8' || \
@@ -81,17 +82,12 @@ Released under the terms of the GNU General Public License v3. */
 						 (c) == 'Z')
 #endif
 
-#if Q_UPPERCASE_LETTERS_ARE_CONSECUTIVE && \
-    Q_LOWERCASE_LETTERS_ARE_CONSECUTIVE
+#if Q_UPPERCASE_LETTERS_ARE_CONSECUTIVE && Q_LOWERCASE_LETTERS_ARE_CONSECUTIVE
 
 #	if Q_CHARACTER_SET_IS_ASCII
-
 #		define Q_IS_ALPHA(c)		(((c) & 0xDF) >= 'A' && ((c) & 0xDF) <= 'Z')
-
 #	else
-
 #		define Q_IS_ALPHA(c)		(((c) >= 'A' && (c) <= 'Z') || (((c) >= 'a' && (c) <= 'z')))
-
 #	endif
 
 #	define Q_LETTER_TO_LOWERCASE(c)		((c) >= 'A' && (c) <= 'Z' ? (c) - 'A' + 'a' : (c))

@@ -12,15 +12,12 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/types/base.h>
 
 #if Q_IS_AVAILABLE(UINT128)
-
 	typedef quint128 QAttotime;
-
 #else
 	typedef struct {
 		quint64 seconds;
 		quint64 attoseconds;
 	} QAttotime;
-
 #endif
 
 #endif /* __Q_types_time_H__ */

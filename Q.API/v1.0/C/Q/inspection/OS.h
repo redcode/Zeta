@@ -276,7 +276,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #endif
 
-#define Q_OS_HAS(feature)	defined(Q_OS_HAS_##feature)
-#define Q_OS_IS(what)		defined(Q_OS_IS_##what)
+#define Q_OS_HAS(feature) defined(Q_OS_HAS_##feature)
+#define Q_OS_IS(what)	  defined(Q_OS_IS_##what)
 
 #endif /* __Q_inspection_OS_H__ */
