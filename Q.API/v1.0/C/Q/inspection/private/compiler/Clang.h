@@ -11,13 +11,16 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/keys/compiler.h>
 #include <Q/keys/bit field.h>
+#include <Q/macros/version.h>
 
 /* MARK: - Identification */
 
 #define Q_COMPILER		  Q_COMPILER_CLANG
 #define Q_COMPILER_STRING	  Q_COMPILER_STRING_CLANG
-#define Q_COMPILER_VERSION
-#define Q_COMPILER_VERSION_STRING
+#define Q_COMPILER_VERSION	  Q_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
+#define Q_COMPILER_VERSION_STRING __clang_version__
+
+/* __apple_build_version__ */
 
 /* MARK: - Features */
 
