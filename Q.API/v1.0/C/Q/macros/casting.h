@@ -13,7 +13,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #if Q_C_HAS(COMPOUND_LITERAL)
 
-#	define Q_CAST(from_type, to_type, structure) \
+#	define Q_CAST(structure, from_type, to_type) \
 		((union {from_type from; to_type to;}){.from = structure}).to
 
 #	define Q_AVAILABLE_CAST_MACRO
