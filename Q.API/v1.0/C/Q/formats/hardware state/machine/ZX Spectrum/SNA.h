@@ -46,6 +46,12 @@ Released under the terms of the GNU General Public License v3.
 | practical purposes is the interrupt-enabled flag. Set means enabled.	" |
 '------------------------------------------------------------------------*/
 
+#define Q_SNA_V48K_PC_VALUE 0x72
+
+#define Q_SNA_IM_0 0
+#define Q_SNA_IM_1 1
+#define Q_SNA_IM_2 2
+
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8	i;
 	Q16Bit	hl_, de_, bc_, af_;
@@ -68,11 +74,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 ) QSNAv48K;
 
 #define Q_SNA_V48K(p) ((QSNAv48K *)(p))
-
-#define Q_SNA_V48K_PC_VALUE	0x72
-#define Q_SNA_IM_0		0
-#define Q_SNA_IM_1		1
-#define Q_SNA_IM_2		2
 
 /* MARK: - v128K
 .-------------------------------------------------------------------------.
@@ -101,9 +102,9 @@ Q_DEFINE_STRICT_STRUCTURE (
 	Q16Bit	hl, de, bc, iy, ix;
 
 	struct {Q_8BIT_FIELD(3) (
-		quint8 unused1	 :5,
-		quint8 iff2	 :1,
-		quint8 unused2	 :2
+		quint8 unused1 :5,
+		quint8 iff2    :1,
+		quint8 unused2 :2
 	)} interrupt;
 
 	/*quint8 iff2;*/

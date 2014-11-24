@@ -5,13 +5,14 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
-
-.-------------------------------.
-| Extensions: .ach, .archimedes |
-| Endianness: Little		|
-| Created by: Carsten Witt	|
-|    Used by: !Speccy [RISC OS] |
-'------------------------------*/
+ ________________________________
+/\				 \
+\_| Extensions: .ach, .archimedes |
+  | Endianness: Little		  |
+  | Created by: Carsten Witt	  |
+  | Used by:	!Speccy [RISC OS] |
+  |   ____________________________|_
+   \_/____________________________*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ACH_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ACH_H__

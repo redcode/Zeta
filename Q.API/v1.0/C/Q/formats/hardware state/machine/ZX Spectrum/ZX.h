@@ -20,13 +20,24 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/types/base.h>
 
+#define Q_ZX_COLOR_MODE_BW    0
+#define Q_ZX_COLOR_MODE_COLOR 1
+
+#define Q_ZX_SOUND_MODE_SIMPLE	 0
+#define Q_ZX_SOUND_MODE_PITCH	 1
+#define Q_ZX_SOUND_MODE_ROM_ONLY 2
+
+#define Q_ZX_IM_0 -1
+#define Q_ZX_IM_1  0
+#define Q_ZX_IM_2  1
+
 Q_DEFINE_STRICT_STRUCTURE (
-	quint8	rom_tail[132];	/* Last 132 bytes of ROM */
+	quint8	rom_tail[132]; /* Last 132 bytes of ROM */
 	quint8	ram[1024 * 48];
 	quint8	zero1[132];
-	quint16	settings[5];	/* KGB settings, usually = {10, 10, 4, 1, 1} */
+	quint16	settings[5]; /* KGB settings, usually = {10, 10, 4, 1, 1} */
 	quint8	iff;
-	quint8	constants[2];	/* {0, 3} */
+	quint8	constants[2]; /* {0, 3} */
 	quint8	color_mode;
 	quint32	zero2;
 	Q16Bit	bc, bc_, de, de_, hl, hl_, ix, iy;
@@ -39,22 +50,11 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16	zero7, pc;
 	quint16	zero8, sp;
 	quint16 sound_mode;
-	quint16	halt;		/* boolean */
+	quint16	halt; /* boolean */
 	qint16	im;
 	quint8	zero9[10];
 ) QZX;
 
 #define Q_ZX(p) ((QZX *)(p))
-
-#define Q_ZX_COLOR_MODE_BW		 0
-#define Q_ZX_COLOR_MODE_COLOR		 1
-
-#define Q_ZX_SOUND_MODE_SIMPLE		 0
-#define Q_ZX_SOUND_MODE_PITCH		 1
-#define Q_ZX_SOUND_MODE_ROM_ONLY	 2
-
-#define Q_ZX_IM_0			-1
-#define Q_ZX_IM_1			 0
-#define Q_ZX_IM_2			 1
 
 #endif /* __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZX_H__ */

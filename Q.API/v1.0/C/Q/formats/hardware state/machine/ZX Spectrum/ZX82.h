@@ -45,22 +45,20 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/types/base.h>
 
+#define Q_ZX82_DATA_TYPE_BASIC	  0
+#define Q_ZX82_DATA_TYPE_NUMERIC  1
+#define Q_ZX82_DATA_TYPE_STRINC	  2
+#define Q_ZX82_DATA_TYPE_CODE	  3
+#define Q_ZX82_DATA_TYPE_SNAPSHOT 4
+
 Q_DEFINE_STRICT_STRUCTURE (
-	quint8	identifier[4];		/* {'Z', 'X', '8', '2'}				*/
+	quint8	identifier[4];	 /* {'Z', 'X', '8', '2'} */
 	quint8	data_type;
-	quint8	data_compressed;	/* boolean					*/
-	quint16 data_size;		/* File length up to 64k (ELINE-PROG for BASIC) */
-	quint16 start_address;		/* Start address for code (AUTOSTART for BASIC) */
+	quint8	data_compressed; /* boolean */
+	quint16 data_size;	 /* File length up to 64k (ELINE-PROG for BASIC) */
+	quint16 start_address;	 /* Start address for code (AUTOSTART for BASIC) */
 	quint16 program_size;
 ) QZX82Header;
-
-#define Q_ZX82_HEADER(p) ((QZX82Header *)(p))
-
-#define Q_ZX82_DATA_TYPE_BASIC		0
-#define Q_ZX82_DATA_TYPE_NUMERIC	1
-#define Q_ZX82_DATA_TYPE_STRINC		2
-#define Q_ZX82_DATA_TYPE_CODE		3
-#define Q_ZX82_DATA_TYPE_SNAPSHOT	4
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8 border_color;
@@ -82,6 +80,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	Q16Bit hl;
 ) QZX82SnapshotHeader;
 
+#define Q_ZX82_HEADER(	       p) ((QZX82Header		*)(p))
 #define Q_ZX82_EXTENDED_HEADER(p) ((QZX82ExtendedHeader *)(p))
 
 #endif /* __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZX82_H__ */

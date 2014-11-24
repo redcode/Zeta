@@ -33,9 +33,9 @@ Released under the terms of the GNU General Public License v3.
 #include <Q/macros/bit field.h>
 
 Q_DEFINE_STRICT_STRUCTURE (
-	quint8	signature[2];		/* 'SP'				*/
-	quint16 ram_size;		/* 1024 * 16 or 1024 * 48	*/
-	quint16 ram_load_address;	/* 1024 * 16			*/
+	quint8	signature[2];	  /* 'SP' */
+	quint16 ram_size;	  /* 1024 * 16 or 1024 * 48 */
+	quint16 ram_load_address; /* 1024 * 16 */
 ) QSPHeader;
 
 Q_DEFINE_STRICT_STRUCTURE (
@@ -43,13 +43,13 @@ Q_DEFINE_STRICT_STRUCTURE (
 	Q16Bit	bc_, de_, hl_, af_;
 	quint8	r,   i;
 	quint16 sp,  pc;
-	quint16 zero1;			/* reserved for future use	*/
+	quint16 zero1; /* reserved for future use */
 	quint8	border_color;
-	quint8	zero2;			/* reserved for future use	*/
+	quint8	zero2; /* reserved for future use */
 
 	struct {Q_8BIT_FIELD(7) (
-		quint8 zero	   :2;	/* reserved for internal use	*/
-		quint8 flash	   :1;	/* boolean			*/
+		quint8 zero	   :2; /* reserved for internal use */
+		quint8 flash	   :1; /* boolean */
 		quint8 int_pending :1;
 		quint8 im_0	   :1;
 		quint8 iff2	   :1;

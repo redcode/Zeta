@@ -29,7 +29,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	Q16Bit	bc, de, hl;
 	quint16	pc, sp;
 	Q16Bit	ix, iy;
-	quint8	iff2;	/* not used actually */
+	quint8	iff2; /* not used actually */
 	quint8	iff1;
 	quint8	im;
 	quint8	r, i;

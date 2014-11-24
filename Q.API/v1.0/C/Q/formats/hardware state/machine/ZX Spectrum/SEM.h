@@ -5,13 +5,14 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
-
-.-----------------------------------------------------.
-| Extensions: .sem				      |
-| Endianness: Little				      |
-| Created by: Bernd Waschke			      |
-|    Used by: ZX Spectrum-Emulator (SpecEmu) [MS-DOS] |
-'----------------------------------------------------*/
+ ______________________________________________________
+/\						       \
+\_| Extensions: .sem					|
+  | Endianness: Little					|
+  | Created by: Bernd Waschke				|
+  | Used by:	ZX Spectrum-Emulator (SpecEmu) [MS-DOS] |
+  |   __________________________________________________|_
+   \_/__________________________________________________*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SEM_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SEM_H__
@@ -19,8 +20,8 @@ Released under the terms of the GNU General Public License v3.
 #include <Q/types/base.h>
 
 Q_DEFINE_STRICT_STRUCTURE (
-	quint8	signature_size;	/* 5		*/
-	quint8	signature[5];	/* 'SPEC1'	*/
+	quint8	signature_size;	/* 5 */
+	quint8	signature[5];	/* 'SPEC1' */
 	quint8	ram[1024 * 48];
 	Q16Bit	af,   bc,  de,	hl;
 	Q16Bit	af_,  bc_, de_, hl_;

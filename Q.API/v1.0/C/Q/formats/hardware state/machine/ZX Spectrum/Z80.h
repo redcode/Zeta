@@ -40,25 +40,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	)} bitfield2;
 ) QZ80v1Header;
 
-Q_DEFINE_STRICT_STRUCTURE (
-	quint16 pc;
-	quint8	hardware;
-	quint8	output_state;
-	quint8	interface_1_paginated_or_timex_output_state;
-
-	struct {Q_8BIT_FIELD(4) (
-		quint8 r_register_emulation	  :1,
-		quint8 ldir_instruction_emulation :1,
-		quint8 zero			  :5,
-		quint8 hardware_modification	  :1
-	)} bitfield;
-
-	quint8	last_output_to_fffd;
-	quint8	sound_chip_registers;
-) QZ80v2AdditionalHeader;
-
-
-
 #define Q_Z80_HARDWARE_SAM_RAM				 2
 #define Q_Z80_HARDWARE_PENTAGON_128K			 9
 #define Q_Z80_HARDWARE_SCORPION_256K			10
@@ -94,6 +75,23 @@ Q_DEFINE_STRICT_STRUCTURE (
 
 #define Q_Z80_V3_HARDWARE_B_ZX_SPECTRUM_PLUS_2_AND_MGT	3
 #define Q_Z80_V3_HARDWARE_B_ZX_SPECTRUM_PLUS_2		4
+
+Q_DEFINE_STRICT_STRUCTURE (
+	quint16 pc;
+	quint8	hardware;
+	quint8	output_state;
+	quint8	interface_1_paginated_or_timex_output_state;
+
+	struct {Q_8BIT_FIELD(4) (
+		quint8 r_register_emulation	  :1,
+		quint8 ldir_instruction_emulation :1,
+		quint8 zero			  :5,
+		quint8 hardware_modification	  :1
+	)} bitfield;
+
+	quint8	last_output_to_fffd;
+	quint8	sound_chip_registers;
+) QZ80v2AdditionalHeader;
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint16 low_t_state_counter;

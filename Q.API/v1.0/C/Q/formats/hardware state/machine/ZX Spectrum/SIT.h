@@ -5,15 +5,16 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
-
-.------------------------------------------.
-| Extensions: .sit			   |
-| Endianness: Little			   |
-| Created by: Pedro Manuel Rodríguez Salas |
-|    Used by: Sinclair [MS-DOS]		   |
-|					   |
-| http://www.ugr.es/~pedrom/sinclair.htm   |
-'-----------------------------------------*/
+ ___________________________________________
+/\					    \
+\_| Extensions: .sit			     |
+  | Endianness: Little			     |
+  | Created by: Pedro Manuel Rodríguez Salas |
+  | Used by:	Sinclair [MS-DOS]	     |
+  |					     |
+  | http://www.ugr.es/~pedrom/sinclair.htm   |
+  |   _______________________________________|_
+   \_/_______________________________________*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SIT_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SIT_H__

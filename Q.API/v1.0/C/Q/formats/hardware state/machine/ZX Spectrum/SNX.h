@@ -22,7 +22,6 @@ Released under the terms of the GNU General Public License v3.
 #include <Q/types/base.h>
 
 Q_DEFINE_STRICT_STRUCTURE (
-
 ) QSNX;
 
 #define Q_SNX(p) ((QSNX *)(p))
