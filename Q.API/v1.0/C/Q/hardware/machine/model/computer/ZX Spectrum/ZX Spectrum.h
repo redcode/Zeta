@@ -5,15 +5,16 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
-
-.-------------------------------.
-|   Vendor: Sinclair Research	|
-| Released: 1982-04-23		|
-|      CPU: Zilog Z80 @ 3.5 MHz |
-|      ROM: 16K			|
-|      RAM: 16K / 48K		|
-|    Sound: Internal speaker	|
-'-------------------------------'
+ ________________________________
+/\				 \
+\_| Vendor:   Sinclair Research   |
+  | Released: 1982-04-23	  |
+  | CPU:      Zilog Z80 @ 3.5 MHz |
+  | ROM:      16K		  |
+  | RAM:      16K / 48K		  |
+  | Sound:    Internal speaker	  |
+  |   ____________________________|_
+   \_/_____________________________/
 
  __________________________________________________
 |  ___. __  _	  __ . __			   |

@@ -5,17 +5,19 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
-
-.--------------------------------------------------
-|  Vendor: Nintendo
-| Released: 1983-07-15 (JP)
-|	    1985-10-18 (US)
-|	    1986-09-01 (DE-DK-FR-NL-NO-SE)
-|	    1997       (AU-IE-IT-NZ-UK)
-|      CPU: Ricoh RP2A03
-|    Video: Ricoh RP2C02 (VCD) (PAL) / RP2C03 (VCD) (NTSC)
-|    Sound:
-'----------------------------------------------------------'
+ ___________________________________________
+/\					    \
+\_| Vendor:   Nintendo			     |
+  | Released: 1983-07-15 (JP)		     |
+  |	      1985-10-18 (US)		     |
+  |	      1986-09-01 (DE-DK-FR-NL-NO-SE) |
+  |	      1997	 (AU-IE-IT-NZ-UK)    |
+  | CPU:      Ricoh RP2A03		     |
+  | Video:    Ricoh RP2C02 (VCD) (PAL)	     |
+  |           RP2C03 (VCD) (NTSC)	     |
+  | Sound:    NES APU			     |
+  |   _______________________________________|_
+   \_/________________________________________/
 
  Front View						 Joystick Connector
  ___ ___________________________________ ______ _____	       .---.

@@ -8,13 +8,14 @@ Copyright © Martijn v.d. Heide.
 Copyright © Ramsoft.
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
-
-.---------------------------.
-| Extensions: .tap, .cdt    |
-| Endianness: Little	    |
-| Created by: Tomaz Kac	    |
-|    Used by: Many programs |
-'---------------------------'
+ ____________________________
+/\			     \
+\_| Extensions: .tap, .cdt    |
+  | Endianness: Little	      |
+  | Created by: Tomaz Kac     |
+  | Used by:	Many programs |
+  |   ________________________|_
+   \_/_________________________/
 
 .------------------------------------------------------------------------------.
 | Format revision: v1.20 (2006-12-19)					       |

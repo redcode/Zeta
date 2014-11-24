@@ -6,13 +6,14 @@
 Information contributed by Troels Norgaard.
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
-
-.-----------------------------.
-| Extensions: .zx	      |
-| Endianness: Big	      |
-| Created by: KGB support BBS |
-|    Used by: KGB [Amiga]     |
-'----------------------------*/
+ ______________________________
+/\			       \
+\_| Extensions: .zx		|
+  | Endianness: Big		|
+  | Created by: KGB support BBS	|
+  | Used by:	KGB [Amiga]	|
+  |   __________________________|_
+   \_/__________________________*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZX_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_ZX_H__

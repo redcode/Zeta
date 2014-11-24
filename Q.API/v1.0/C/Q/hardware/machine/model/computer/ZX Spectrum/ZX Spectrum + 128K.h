@@ -5,15 +5,16 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
-
-.----------------------------------------------.
-|   Vendor: Sinclair Research - Investronica   |
-| Released: 1985-09			       |
-|      CPU: Zilog Z80 @ 3.5469 MHz	       |
-|      ROM: 48K				       |
-|      RAM: 128K			       |
-|    Sound: General Instrument AY-3-8912 (PSG) |
-'----------------------------------------------'
+ _______________________________________________
+/\						\
+\_| Vendor:   Sinclair Research - Investronica	 |
+  | Released: 1985-09				 |
+  | CPU:      Zilog Z80 @ 3.5469 MHz		 |
+  | ROM:      48K				 |
+  | RAM:      128K				 |
+  | Sound:    General Instrument AY-3-8912 (PSG) |
+  |   ___________________________________________|_
+   \_/____________________________________________/
 
  _____________________________				  ________________
 |  ___. __  __	  __ . __     ''''''''''''''''''''''''''''	     |====|

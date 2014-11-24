@@ -5,13 +5,14 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
-
-.---------------------------.
-| Extensions: .tap	    |
-| Endianness: Little	    |
-| Created by: Unknown	    |
-|    Used by: many programs |
-'--------------------------*/
+ ____________________________
+/\			     \
+\_| Extensions: .tap	      |
+  | Endianness: Little	      |
+  | Created by: Unknown	      |
+  | Used by:	Many programs |
+  |   ________________________|_
+   \_/________________________*/
 
 #ifndef __Q_formats_storage_medium_image_audio_TAP_H__
 #define __Q_formats_storage_medium_image_audio_TAP_H__
