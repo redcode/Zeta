@@ -69,7 +69,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 /* MARK: - ID 5 - Text */
 
 Q_DEFINE_STRICT_STRUCTURE (
-	quint8 content[];		/* 0 terminated string */
+	quint8 content[]; /* 0 terminated string */
 ) QCreativeVoiceText;
 
 /* MARK: - ID 6 - Repeat Start */

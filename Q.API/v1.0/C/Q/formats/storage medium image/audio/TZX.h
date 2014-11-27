@@ -350,6 +350,9 @@ Q_DEFINE_STRICT_STRUCTURE (
 | encoded in CSW format v2 (Compressed Square Wave). |
 '---------------------------------------------------*/
 
+#define Q_TZX_CSW_COMPRESSION_TYPE_RLE	 1
+#define Q_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
+
 Q_DEFINE_STRICT_STRUCTURE (
 	quint32 block_size;
 	quint16 pause_after_this_block_ms;
@@ -358,9 +361,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint32 pulse_count;
 	quint8	csw_data[];
 ) QTZXCSWRecording;
-
-#define Q_TZX_CSW_COMPRESSION_TYPE_RLE	 1
-#define Q_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
 
 /* MARK: - ID 19 - Generalized Data
 .-----------------------------------------------------------------------------.
@@ -395,15 +395,15 @@ Q_DEFINE_STRICT_STRUCTURE (
 | of pulses (wave).							     |
 '---------------------------------------------------------------------------*/
 
-Q_DEFINE_STRICT_STRUCTURE (
-	quint8	flags;
-	quint16 pulse_duration[];
-) QTZXSymbolDefinition;
-
 #define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT	       0
 #define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT_NEGATIVE 1
 #define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_LOW	       2
 #define Q_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_HIGH	       3
+
+Q_DEFINE_STRICT_STRUCTURE (
+	quint8	flags;
+	quint16 pulse_duration[];
+) QTZXSymbolDefinition;
 
 /*----------------------------------------------------------------------------.
 | Most commonly, pilot and sync are repetitions of the same pulse, thus they  |
@@ -614,13 +614,13 @@ Q_DEFINE_STRICT_STRUCTURE (
 | any ambiguities, e.g. with custom loaders which are level-sensitive. |
 '---------------------------------------------------------------------*/
 
+#define Q_TZX_SIGNAL_LEVEL_LOW	0
+#define Q_TZX_SIGNAL_LEVEL_HIGH	1
+
 Q_DEFINE_STRICT_STRUCTURE (
 	quint32 block_size;
 	quint8	level;
 ) QTZXSetSignalLevel;
-
-#define Q_TZX_SIGNAL_LEVEL_LOW	0
-#define Q_TZX_SIGNAL_LEVEL_HIGH	1
 
 /* MARK: - ID 30 - Description Text
 .------------------------------------------------------------------------------.
@@ -710,16 +710,16 @@ Q_DEFINE_STRICT_STRUCTURE (
 | the end of the format description.					     |
 '---------------------------------------------------------------------------*/
 
+#define Q_TZX_HARDWARE_COMPATIBILITY_COMPATIBLE	  0
+#define Q_TZX_HARDWARE_COMPATIBILITY_NEEDED	  1
+#define Q_TZX_HARDWARE_COMPATIBILITY_UNNEEDED	  2
+#define Q_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE 3
+
 Q_DEFINE_STRICT_STRUCTURE(
 	quint8 type;
 	quint8 id;
 	quint8 compatibility;
 ) QTZXHardware;
-
-#define Q_TZX_HARDWARE_COMPATIBILITY_COMPATIBLE	  0
-#define Q_TZX_HARDWARE_COMPATIBILITY_NEEDED	  1
-#define Q_TZX_HARDWARE_COMPATIBILITY_UNNEEDED	  2
-#define Q_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE 3
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8	     count;
@@ -764,14 +764,14 @@ Q_DEFINE_STRICT_STRUCTURE (
 | with the next block.							       |
 '-----------------------------------------------------------------------------*/
 
+#define Q_TZX_SNAPSHOT_FORMAT_Z80 0
+#define Q_TZX_SNAPSHOT_FORMAT_SNA 1
+
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8 format;
 	quint8 size[3];
 	quint8 data[];
 ) QTZXSnapshot;
-
-#define Q_TZX_SNAPSHOT_FORMAT_Z80 0
-#define Q_TZX_SNAPSHOT_FORMAT_SNA 1
 
 /* MARK: - ID 5A - "Glue"
 .------------------------------------------------------------------------------.

@@ -11,6 +11,11 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/base.h>
 
+#define Q_FAT_12_DEFAULT_VOLUME_LABEL	 "NO NAME    "
+#define Q_FAT_12_FILE_SYSTEM_TYPE_FAT_12 "FAT12   "
+#define Q_FAT_12_FILE_SYSTEM_TYPE_FAT_16 "FAT16   "
+#define Q_FAT_12_FILE_SYSTEM_TYPE_FAT	 "FAT     "
+
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8	ignored_1[11];
 	quint16 bytes_per_sector;
@@ -32,10 +37,12 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	file_system_type[8];
 ) QFAT12BootSector;
 
-#define Q_FAT_12_DEFAULT_VOLUME_LABEL	 "NO NAME    "
-#define Q_FAT_12_FILE_SYSTEM_TYPE_FAT_12 "FAT12   "
-#define Q_FAT_12_FILE_SYSTEM_TYPE_FAT_16 "FAT16   "
-#define Q_FAT_12_FILE_SYSTEM_TYPE_FAT	 "FAT     "
+#define Q_FAT_12_FILE_ATTRIBUTE_READ_ONLY     1
+#define Q_FAT_12_FILE_ATTRIBUTE_HIDDEN	      2
+#define Q_FAT_12_FILE_ATTRIBUTE_SYSTEM	      4
+#define Q_FAT_12_FILE_ATTRIBUTE_VOLUME_LABEL  8
+#define Q_FAT_12_FILE_ATTRIBUTE_SUBDIRECTORY 16
+#define Q_FAT_12_FILE_ATTRIBUTE_ARCHIVE	     32
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint8	file_name[8];
@@ -51,13 +58,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16	first_logical_cluster;
 	quint32	file_size;
 ) QFAT12DirectoryEntry;
-
-#define Q_FAT_12_FILE_ATTRIBUTE_READ_ONLY     1
-#define Q_FAT_12_FILE_ATTRIBUTE_HIDDEN	      2
-#define Q_FAT_12_FILE_ATTRIBUTE_SYSTEM	      4
-#define Q_FAT_12_FILE_ATTRIBUTE_VOLUME_LABEL  8
-#define Q_FAT_12_FILE_ATTRIBUTE_SUBDIRECTORY 16
-#define Q_FAT_12_FILE_ATTRIBUTE_ARCHIVE	     32
 
 #define Q_FAT_12_BOOT_SECTOR(	 p) ((QFAT12BootSector	   *)(p))
 #define Q_FAT_12_DIRECTORY_ENTRY(p) ((QFAT12DirectoryEntry *)(p))

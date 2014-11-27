@@ -5,13 +5,14 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
-
-.---------------------------.
-| Extensions: .trd	    |
-| Endianness: Little	    |
-| Created by: Ramsoft	    |
-|    Used by: Many programs |
-'--------------------------*/
+ ____________________________
+/\			     \
+\_| Extensions: .trd	      |
+  | Endianness: Little	      |
+  | Created by: Ramsoft       |
+  | Used by:	Many programs |
+  |   ________________________|_
+   \_/________________________*/
 
 #ifndef __Q_formats_storage_medium_image_floppy_disk_TRD_H__
 #define __Q_formats_storage_medium_image_floppy_disk_TRD_H__

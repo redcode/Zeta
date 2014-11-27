@@ -13,10 +13,10 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - Logic operations */
 
-#define Q_POINTER_AND(pointer, value)	(pointer = (void *)( (quintptr)pointer & (value)));
-#define Q_POINTER_OR( pointer, value)	(pointer = (void *)( (quintptr)pointer | (value)));
-#define Q_POINTER_XOR(pointer, value)	(pointer = (void *)( (quintptr)pointer ^ (value)));
-#define Q_POINTER_NOT(pointer)		(pointer = (void *)(~(quintptr)pointer));
+#define Q_POINTER_AND(pointer, value) (pointer = (void *)( (quintptr)pointer & (value)));
+#define Q_POINTER_OR( pointer, value) (pointer = (void *)( (quintptr)pointer | (value)));
+#define Q_POINTER_XOR(pointer, value) (pointer = (void *)( (quintptr)pointer ^ (value)));
+#define Q_POINTER_NOT(pointer)	      (pointer = (void *)(~(quintptr)pointer));
 
 /* MARK: - Pointer from base + index */
 

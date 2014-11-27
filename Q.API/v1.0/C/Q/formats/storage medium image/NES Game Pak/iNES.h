@@ -5,13 +5,14 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
-
-.------------------------------.
-| Extensions: .nes	       |
-| Endianness: Little	       |
-| Created by: Marat Fayzullin  |
-|    Used by: Any NES emulator |
-'-----------------------------*/
+ _______________________________
+/\				\
+\_| Extensions: .nes		 |
+  | Endianness: Little		 |
+  | Created by: Marat Fayzullin  |
+  | Used by:	Any NES emulator |
+  |   ___________________________|_
+   \_/___________________________*/
 
 #ifndef __Q_formats_storage_medium_image_NES_Game_Pak_iNES_H__
 #define __Q_formats_storage_medium_image_NES_Game_Pak_iNES_H__
@@ -19,26 +20,26 @@ Released under the terms of the GNU General Public License v3.
 #include <Q/types/base.h>
 
 Q_DEFINE_STRICT_STRUCTURE(
-	QString nes[4];
-	quint8	prg_rom_page_count;
-	quint8	chr_rom_page_count;
-	quint8	rom_control_0;
-	quint8	rom_control_1;
-	quint8	nes_rom;
-	quint8	vs_unisystem_rom;
-	quint8	playchoice_rom;
-	quint8	zero_0;
-	quint8	zero_1;
-	quint8	full_compatible_with_ntsc_console;
-	quint8	not_necessarily_full_compatible_with_pal_console;
-	quint8	extra_ram_at_6000h_7fffh;
-	quint8	dont_have_bus_conflicts;
-	quint8	zero_2;
-	quint8	zero_3;
-	quint8	zero_4;
-	quint8	zero_5;	
-	quint8	zero_6;
-	quint8	zero_7;
+	quint8 nes[4];
+	quint8 prg_rom_page_count;
+	quint8 chr_rom_page_count;
+	quint8 rom_control_0;
+	quint8 rom_control_1;
+	quint8 nes_rom;
+	quint8 vs_unisystem_rom;
+	quint8 playchoice_rom;
+	quint8 zero_0;
+	quint8 zero_1;
+	quint8 full_compatible_with_ntsc_console;
+	quint8 not_necessarily_full_compatible_with_pal_console;
+	quint8 extra_ram_at_6000h_7fffh;
+	quint8 dont_have_bus_conflicts;
+	quint8 zero_2;
+	quint8 zero_3;
+	quint8 zero_4;
+	quint8 zero_5;
+	quint8 zero_6;
+	quint8 zero_7;
 ) QiNESHeader;
 
 #define Q_INES_HEADER(p) ((QiNESHeader *)(p))
