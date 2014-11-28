@@ -49,13 +49,13 @@ typedef struct {Q2DFloat   point; qfloat   radius;}	QFloatCircle;
 typedef struct {Q2DDouble  point; qdouble  radius;}	QDoubleCircle;
 typedef struct {Q2DLDouble point; qldouble radius;}	QLDoubleCircle;
 
-typedef Q2DFloatTriangle				QFloatQuadraticBezierCurve
-typedef Q2DDoubleTriangle				QDoubleQuadraticBezierCurve
-typedef Q2DLDoubleTriangle				QLDoubleQuadraticBezierCurve
+typedef Q2DFloatTriangle				QFloatQuadraticBezierCurve;
+typedef Q2DDoubleTriangle				QDoubleQuadraticBezierCurve;
+typedef Q2DLDoubleTriangle				QLDoubleQuadraticBezierCurve;
 
-typedef Q2DFloatQuadrangle				QFloatCubicBezierCurve
-typedef Q2DDoubleQuadrangle				QDoubleCubicBezierCurve
-typedef Q2DLDoubleQuadrangle				QLDoubleCubicBezierCurve
+typedef Q2DFloatQuadrangle				QFloatCubicBezierCurve;
+typedef Q2DDoubleQuadrangle				QDoubleCubicBezierCurve;
+typedef Q2DLDoubleQuadrangle				QLDoubleCubicBezierCurve;
 
 /* MARK: - 3D geometry */
 
