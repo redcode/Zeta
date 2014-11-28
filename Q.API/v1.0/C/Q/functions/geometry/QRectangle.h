@@ -207,6 +207,20 @@ Q_INLINE Q2D##Type q_##type##_rectangle_center(Q##Type##Rectangle rectangle)	\
 	}									\
 										\
 										\
+Q_INLINE Q##Type##Rectangle q_##type##_rectangle_correct(			\
+	Q##Type##Rectangle rectangle						\
+)										\
+	{									\
+	if (rectangle.size.x < _(0.0))						\
+		rectangle.point.x -= (rectangle.size.x = -rectangle.size.x);	\
+										\
+	if (rectangle.size.y < _(0.0))						\
+		rectangle.point.y -= (rectangle.size.y = -rectangle.size.y);	\
+										\
+	return rectangle;							\
+	}									\
+										\
+										\
 Q_INLINE Q##Type##Rectangle q_##type##_rectangle_top_half(			\
 	Q##Type##Rectangle rectangle						\
 )										\
@@ -658,6 +672,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_center_left			q_float_rectangle_center_left
 #	define q_rectangle_center_right			q_float_rectangle_center_right
 #	define q_rectangle_center			q_float_rectangle_center
+#	define q_rectangle_correct			q_float_rectangle_correct
 #	define q_rectangle_top_half			q_float_rectangle_top_half
 #	define q_rectangle_bottom_half			q_float_rectangle_bottom_half
 #	define q_rectangle_left_half			q_float_rectangle_left_half
@@ -717,6 +732,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_center_left			q_ldouble_rectangle_center_left
 #	define q_rectangle_center_right			q_ldouble_rectangle_center_right
 #	define q_rectangle_center			q_ldouble_rectangle_center
+#	define q_rectangle_correct			q_ldouble_rectangle_correct
 #	define q_rectangle_top_half			q_ldouble_rectangle_top_half
 #	define q_rectangle_bottom_half			q_ldouble_rectangle_bottom_half
 #	define q_rectangle_left_half			q_ldouble_rectangle_left_half
@@ -776,6 +792,7 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 #	define q_rectangle_center_left			q_double_rectangle_center_left
 #	define q_rectangle_center_right			q_double_rectangle_center_right
 #	define q_rectangle_center			q_double_rectangle_center
+#	define q_rectangle_correct			q_double_rectangle_correct
 #	define q_rectangle_top_half			q_double_rectangle_top_half
 #	define q_rectangle_bottom_half			q_double_rectangle_bottom_half
 #	define q_rectangle_left_half			q_double_rectangle_left_half

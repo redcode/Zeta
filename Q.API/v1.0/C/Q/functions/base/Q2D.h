@@ -97,6 +97,10 @@ Q_INLINE qboolean q_2d_##type##_is_zero(Q2D##Type magnitude)			\
 	{return magnitude.x == (q##type)0 && magnitude.y == (q##type)0;}	\
 										\
 										\
+Q_INLINE qboolean q_2d_##type##_has_zero(Q2D##Type magnitude)			\
+	{return magnitude.x == (q##type)0 || magnitude.y == (q##type)0;}	\
+										\
+										\
 Q_INLINE q##type q_2d_##type##_inner_sum(Q2D##Type magnitude)			\
 	{return magnitude.x + magnitude.y;}					\
 										\
@@ -269,7 +273,7 @@ Q_IMPLEMENTATION_NATURAL_2D(LDouble, ldouble)
 #define q_2d_value_fit(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _fit		   )
 #define q_2d_value_from_scalar(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _from_scalar	   )
 #define q_2d_value_is_zero(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _is_zero	   )
-#define q_2d_value_yx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _yx		   )
+#define q_2d_value_has_zero(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _has_zero	   )
 #define q_2d_value_inner_sum(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _inner_sum	   )
 #define q_2d_value_inner_product(     TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _inner_product	   )
 #define q_2d_value_inner_minimum(     TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _inner_minimum	   )
@@ -305,18 +309,26 @@ Q_IMPLEMENTATION_NATURAL_2D(LDouble, ldouble)
 /* MARK: - Operations for integer and real types */
 
 
-#define Q_IMPLEMENTATION_INTEGER_2D(Type, type)			\
-								\
-								\
-Q_INLINE Q2D##Type q_2d_##type##_negative(Q2D##Type magnitude)	\
-	{return q_2d_##type(-magnitude.x, -magnitude.y);}	\
-								\
-								\
-Q_INLINE Q2D##Type q_2d_##type##_absolute(Q2D##Type magnitude)	\
-	{							\
-	return q_2d_##type					\
-		(q_##type##_absolute(magnitude.x),		\
-		 q_##type##_absolute(magnitude.y));		\
+#define Q_IMPLEMENTATION_INTEGER_2D(Type, type)				\
+									\
+									\
+Q_INLINE qboolean q_2d_##type##_is_negative(Q2D##Type magnitude)	\
+	{return magnitude.x < (q##type)0 && magnitude.y < (q##type)0;}	\
+									\
+									\
+Q_INLINE qboolean q_2d_##type##_has_negative(Q2D##Type magnitude)	\
+	{return magnitude.x < (q##type)0 || magnitude.y < (q##type)0;}	\
+									\
+									\
+Q_INLINE Q2D##Type q_2d_##type##_negative(Q2D##Type magnitude)		\
+	{return q_2d_##type(-magnitude.x, -magnitude.y);}		\
+									\
+									\
+Q_INLINE Q2D##Type q_2d_##type##_absolute(Q2D##Type magnitude)		\
+	{								\
+	return q_2d_##type						\
+		(q_##type##_absolute(magnitude.x),			\
+		 q_##type##_absolute(magnitude.y));			\
 	}
 
 
@@ -328,8 +340,10 @@ Q_IMPLEMENTATION_INTEGER_2D(Float,   float  )
 Q_IMPLEMENTATION_INTEGER_2D(Double,  double )
 Q_IMPLEMENTATION_INTEGER_2D(LDouble, ldouble)
 
-#define q_2d_value_negative(TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _negative)
-#define q_2d_value_absolute(TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _absolute)
+#define q_2d_value_is_negative( TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _is_negative )
+#define q_2d_value_has_negative(TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _has_negative)
+#define q_2d_value_negative(	TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _negative    )
+#define q_2d_value_absolute(	TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _absolute    )
 
 
 /* MARK: - Operations for real types only */
@@ -368,13 +382,6 @@ Q2D##Type q_2d_##type##_inverse_lerp(Q2D##Type a, Q2D##Type b, q##type t)	\
 	}									\
 										\
 										\
-Q_INLINE qboolean q_2d_##type##_is_almost_zero(Q2D##Type magnitude)		\
-	{									\
-	return	q_##type##_is_almost_zero(magnitude.x) &&			\
-		q_##type##_is_almost_zero(magnitude.y);				\
-	}									\
-										\
-										\
 Q_INLINE qboolean q_2d_##type##_is_finite(Q2D##Type magnitude)			\
 	{									\
 	return	q_##type##_is_finite(magnitude.x) &&				\
@@ -396,6 +403,13 @@ Q_INLINE qboolean q_2d_##type##_is_nan(Q2D##Type magnitude)			\
 	}									\
 										\
 										\
+Q_INLINE qboolean q_2d_##type##_is_almost_zero(Q2D##Type magnitude)		\
+	{									\
+	return	q_##type##_is_almost_zero(magnitude.x) &&			\
+		q_##type##_is_almost_zero(magnitude.y);				\
+	}									\
+										\
+										\
 Q_INLINE qboolean q_2d_##type##_has_infinity(Q2D##Type magnitude)		\
 	{									\
 	return	q_##type##_is_infinity(magnitude.x) ||				\
@@ -407,6 +421,13 @@ Q_INLINE qboolean q_2d_##type##_has_nan(Q2D##Type magnitude)			\
 	{									\
 	return	q_##type##_is_nan(magnitude.x) ||				\
 		q_##type##_is_nan(magnitude.y);					\
+	}									\
+										\
+										\
+Q_INLINE qboolean q_2d_##type##_has_almost_zero(Q2D##Type magnitude)		\
+	{									\
+	return	q_##type##_is_almost_zero(magnitude.x) ||			\
+		q_##type##_is_almost_zero(magnitude.y);				\
 	}									\
 										\
 										\
@@ -450,13 +471,17 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_lerp	       q_2d_float_lerp
 #	define q_2d_inverse_lerp       q_2d_float_inverse_lerp
 #	define q_2d_from_scalar        q_2d_float_from_scalar
-#	define q_2d_is_almost_zero     q_2d_float_is_almost_zero
 #	define q_2d_is_finite	       q_2d_float_is_finite
 #	define q_2d_is_infinity        q_2d_float_is_infinity
 #	define q_2d_is_nan	       q_2d_float_is_nan
+#	define q_2d_is_negative	       q_2d_float_is_negative
 #	define q_2d_is_zero	       q_2d_float_is_zero
+#	define q_2d_is_almost_zero     q_2d_float_is_almost_zero
 #	define q_2d_has_infinity       q_2d_float_has_infinity
 #	define q_2d_has_nan	       q_2d_float_has_nan
+#	define q_2d_has_negative       q_2d_float_has_negative
+#	define q_2d_has_zero           q_2d_float_has_zero
+#	define q_2d_has_almost_zero    q_2d_float_has_almost_zero
 #	define q_2d_negative	       q_2d_float_negative
 #	define q_2d_absolute	       q_2d_float_absolute
 #	define q_2d_reciprocal	       q_2d_float_reciprocal
@@ -513,13 +538,17 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_lerp	       q_2d_ldouble_lerp
 #	define q_2d_inverse_lerp       q_2d_ldouble_inverse_lerp
 #	define q_2d_from_scalar        q_2d_ldouble_from_scalar
-#	define q_2d_is_almost_zero     q_2d_ldouble_is_almost_zero
 #	define q_2d_is_finite	       q_2d_ldouble_is_finite
 #	define q_2d_is_infinity        q_2d_ldouble_is_infinity
 #	define q_2d_is_nan	       q_2d_ldouble_is_nan
+#	define q_2d_is_negative	       q_2d_ldouble_is_negative
 #	define q_2d_is_zero	       q_2d_ldouble_is_zero
+#	define q_2d_is_almost_zero     q_2d_ldouble_is_almost_zero
 #	define q_2d_has_infinity       q_2d_ldouble_has_infinity
 #	define q_2d_has_nan	       q_2d_ldouble_has_nan
+#	define q_2d_has_negative       q_2d_ldouble_has_negative
+#	define q_2d_has_zero           q_2d_ldouble_has_zero
+#	define q_2d_has_almost_zero    q_2d_ldouble_has_almost_zero
 #	define q_2d_negative	       q_2d_ldouble_negative
 #	define q_2d_absolute	       q_2d_ldouble_absolute
 #	define q_2d_reciprocal	       q_2d_ldouble_reciprocal
@@ -576,13 +605,17 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_lerp	       q_2d_double_lerp
 #	define q_2d_inverse_lerp       q_2d_double_inverse_lerp
 #	define q_2d_from_scalar        q_2d_double_from_scalar
-#	define q_2d_is_almost_zero     q_2d_double_is_almost_zero
 #	define q_2d_is_finite	       q_2d_double_is_finite
 #	define q_2d_is_infinity        q_2d_double_is_infinity
 #	define q_2d_is_nan	       q_2d_double_is_nan
+#	define q_2d_is_negative	       q_2d_double_is_negative
 #	define q_2d_is_zero	       q_2d_double_is_zero
+#	define q_2d_is_almost_zero     q_2d_double_is_almost_zero
 #	define q_2d_has_infinity       q_2d_double_has_infinity
 #	define q_2d_has_nan	       q_2d_double_has_nan
+#	define q_2d_has_negative       q_2d_double_has_negative
+#	define q_2d_has_zero           q_2d_double_has_zero
+#	define q_2d_has_almost_zero    q_2d_double_has_almost_zero
 #	define q_2d_negative	       q_2d_double_negative
 #	define q_2d_absolute	       q_2d_double_absolute
 #	define q_2d_reciprocal	       q_2d_double_reciprocal
