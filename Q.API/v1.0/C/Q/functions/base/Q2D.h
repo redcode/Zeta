@@ -39,16 +39,35 @@ Q_INLINE Q2D##Type q_2d_##type##_add(Q2D##Type a, Q2D##Type b)			\
 	{return q_2d_##type(a.x + b.x, a.y + b.y);}				\
 										\
 										\
+Q_INLINE Q2D##Type q_2d_##type##_add_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)	\
+	{return q_2d_##type(a.x + b.x + c.x, a.y + b.y + c.y);}			\
+										\
+										\
 Q_INLINE Q2D##Type q_2d_##type##_subtract(Q2D##Type a, Q2D##Type b)		\
 	{return q_2d_##type(a.x - b.x, a.y - b.y);}				\
+										\
+										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_subtract_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)	\
+	{return q_2d_##type(a.x - b.x - c.x, a.y - b.y - c.y);}			\
 										\
 										\
 Q_INLINE Q2D##Type q_2d_##type##_multiply(Q2D##Type a, Q2D##Type b)		\
 	{return q_2d_##type(a.x * b.x, a.y * b.y);}				\
 										\
 										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_multiply_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)	\
+	{return q_2d_##type(a.x * b.x * c.x, a.y * b.y * c.y);}			\
+										\
+										\
 Q_INLINE Q2D##Type q_2d_##type##_divide(Q2D##Type a, Q2D##Type b)		\
 	{return q_2d_##type(a.x / b.x, a.y / b.y);}				\
+										\
+										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_divide_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)		\
+	{return q_2d_##type(a.x / b.x / c.x, a.y / b.y / c.x);}			\
 										\
 										\
 Q_INLINE q##type q_2d_##type##_dot_product(Q2D##Type a, Q2D##Type b)		\
@@ -262,9 +281,13 @@ Q_IMPLEMENTATION_NATURAL_2D(LDouble, ldouble)
 #define q_2d_value_swap(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _swap		   )
 #define q_2d_value_contains(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _contains	   )
 #define q_2d_value_add(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _add		   )
+#define q_2d_value_add_3(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _add_3		   )
 #define q_2d_value_subtract(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _subtract	   )
+#define q_2d_value_subtract_3(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_3	   )
 #define q_2d_value_multiply(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _multiply	   )
+#define q_2d_value_multiply_3(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_3	   )
 #define q_2d_value_divide(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _divide		   )
+#define q_2d_value_divide_3(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _divide_3	   )
 #define q_2d_value_dot_product(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _dot_product	   )
 #define q_2d_value_cross_product(     TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _cross_product	   )
 #define q_2d_value_minimum(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _minimum	   )
@@ -459,9 +482,13 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_swap	       q_2d_float_swap
 #	define q_2d_contains	       q_2d_float_contains
 #	define q_2d_add		       q_2d_float_add
+#	define q_2d_add_3	       q_2d_float_add_3
 #	define q_2d_subtract	       q_2d_float_subtract
+#	define q_2d_subtract_3	       q_2d_float_subtract_3
 #	define q_2d_multiply	       q_2d_float_multiply
+#	define q_2d_multiply_3	       q_2d_float_multiply_3
 #	define q_2d_divide	       q_2d_float_divide
+#	define q_2d_divide_3	       q_2d_float_divide_3
 #	define q_2d_dot_product        q_2d_float_dot_product
 #	define q_2d_cross_product      q_2d_float_cross_product
 #	define q_2d_minimum	       q_2d_float_minimum
@@ -526,9 +553,13 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_swap	       q_2d_ldouble_swap
 #	define q_2d_contains	       q_2d_ldouble_contains
 #	define q_2d_add		       q_2d_ldouble_add
+#	define q_2d_add_3	       q_2d_ldouble_add_3
 #	define q_2d_subtract	       q_2d_ldouble_subtract
+#	define q_2d_subtract_3	       q_2d_ldouble_subtract_3
 #	define q_2d_multiply	       q_2d_ldouble_multiply
+#	define q_2d_multiply_3	       q_2d_ldouble_multiply_3
 #	define q_2d_divide	       q_2d_ldouble_divide
+#	define q_2d_divide_3	       q_2d_ldouble_divide_3
 #	define q_2d_dot_product        q_2d_ldouble_dot_product
 #	define q_2d_cross_product      q_2d_ldouble_cross_product
 #	define q_2d_minimum	       q_2d_ldouble_minimum
@@ -593,9 +624,13 @@ Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_swap	       q_2d_double_swap
 #	define q_2d_contains	       q_2d_double_contains
 #	define q_2d_add		       q_2d_double_add
+#	define q_2d_add_3	       q_2d_double_add_3
 #	define q_2d_subtract	       q_2d_double_subtract
+#	define q_2d_subtract_3	       q_2d_double_subtract_3
 #	define q_2d_multiply	       q_2d_double_multiply
+#	define q_2d_multiply_3	       q_2d_double_multiply_3
 #	define q_2d_divide	       q_2d_double_divide
+#	define q_2d_divide_3	       q_2d_double_divide_3
 #	define q_2d_dot_product        q_2d_double_dot_product
 #	define q_2d_cross_product      q_2d_double_cross_product
 #	define q_2d_minimum	       q_2d_double_minimum
