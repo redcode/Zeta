@@ -11,34 +11,6 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/types/base.h>
 
-Q_DEFINE_STRICT_STRUCTURE (
-	QString	name[21];
-	quint8	layout;
-	quint8	type;
-	quint8	rom_size;
-	quint8	ram_size;
-	quint8	region;
-	quint8	license;
-	quint8	version;
-	quint16	checksum;
-	quint16	snes_checksum;
-	quint8	unknown1[4];
-	quint8	native_cop_interrupt_rutine_pointer;
-	quint8	native_brk_interrupt_rutine_pointer;
-	quint8	native_abort_interrupt_rutine_pointer;
-	quint8	native_unused;
-	quint8	native_irq_interrupt_rutine_pointer;
-	quint8	unknown2[4];
-	quint8	emulation_cop_interrupt_rutine_pointer;
-	quint8	emulation_unused;
-	quint8	emulation_abort_interrupt_rutine_pointer;
-	quint8	emulation_nmi_interrupt_rutine_pointer;
-	quint8	emulation_reset_interrupt_rutine_pointer;
-	quint8	emulation_irq_or_brk_interrupt_rutine_pointer;
-) QSNESGamePakHeader;
-
-#define Q_SNES_GAME_PAK_HEADER(p) ((QSNESGamePakHeader *)(p))
-
 #define Q_SNES_GAME_PAK_LAYOUT_LO_ROM	   0x20
 #define Q_SNES_GAME_PAK_LAYOUT_HI_ROM	   0x21
 #define Q_SNES_GAME_PAK_LAYOUT_LO_ROM_FAST 0x30
@@ -237,5 +209,33 @@ Q_DEFINE_STRICT_STRUCTURE (
 #define Q_SNES_GAME_PAK_LICENSE_TEC_MAGIK			 244
 #define Q_SNES_GAME_PAK_LICENSE_CYBERSOFT			 249
 #define Q_SNES_GAME_PAK_LICENSE_HUDSON_SOFT			 255
+
+Q_DEFINE_STRICT_STRUCTURE (
+	QString	name[21];
+	quint8	layout;
+	quint8	type;
+	quint8	rom_size;
+	quint8	ram_size;
+	quint8	region;
+	quint8	license;
+	quint8	version;
+	quint16	checksum;
+	quint16	snes_checksum;
+	quint8	unknown1[4];
+	quint8	native_cop_interrupt_rutine_pointer;
+	quint8	native_brk_interrupt_rutine_pointer;
+	quint8	native_abort_interrupt_rutine_pointer;
+	quint8	native_unused;
+	quint8	native_irq_interrupt_rutine_pointer;
+	quint8	unknown2[4];
+	quint8	emulation_cop_interrupt_rutine_pointer;
+	quint8	emulation_unused;
+	quint8	emulation_abort_interrupt_rutine_pointer;
+	quint8	emulation_nmi_interrupt_rutine_pointer;
+	quint8	emulation_reset_interrupt_rutine_pointer;
+	quint8	emulation_irq_or_brk_interrupt_rutine_pointer;
+) QSNESGamePakHeader;
+
+#define Q_SNES_GAME_PAK_HEADER(p) ((QSNESGamePakHeader *)(p))
 
 #endif /* __Q_hardware_storage_medium_ROM_cartridge_SNES_Game_Pak_H__ */

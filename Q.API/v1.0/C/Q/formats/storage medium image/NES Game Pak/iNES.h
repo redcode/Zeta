@@ -19,31 +19,6 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/types/base.h>
 
-Q_DEFINE_STRICT_STRUCTURE(
-	quint8 nes[4];
-	quint8 prg_rom_page_count;
-	quint8 chr_rom_page_count;
-	quint8 rom_control_0;
-	quint8 rom_control_1;
-	quint8 nes_rom;
-	quint8 vs_unisystem_rom;
-	quint8 playchoice_rom;
-	quint8 zero_0;
-	quint8 zero_1;
-	quint8 full_compatible_with_ntsc_console;
-	quint8 not_necessarily_full_compatible_with_pal_console;
-	quint8 extra_ram_at_6000h_7fffh;
-	quint8 dont_have_bus_conflicts;
-	quint8 zero_2;
-	quint8 zero_3;
-	quint8 zero_4;
-	quint8 zero_5;
-	quint8 zero_6;
-	quint8 zero_7;
-) QiNESHeader;
-
-#define Q_INES_HEADER(p) ((QiNESHeader *)(p))
-
 #define Q_INES_MAPPER_NONE			00
 #define Q_INES_MAPPER_NINTENDO_MMC1_CHIPSET	01
 #define Q_INES_MAPPER_PRG_ROM_SWITCH		02
@@ -81,5 +56,25 @@ Q_DEFINE_STRICT_STRUCTURE(
 #define Q_INES_MAPPER_X1_17_CHIPSET		82
 #define Q_INES_MAPPER_CONY_MAPPER		83
 #define Q_INES_MAPPER_PASOFAMI_MAPPER		84
+
+Q_DEFINE_STRICT_STRUCTURE(
+	quint8 nes[4]; /* 4E 45 53 1A ('NES' + MS-DOS EOF) */
+	quint8 prg_rom_page_count;
+	quint8 chr_rom_page_count;
+	quint8 rom_control_0;
+	quint8 rom_control_1;
+	quint8 nes_rom;
+	quint8 vs_unisystem_rom;
+	quint8 playchoice_rom;
+	quint8 zero_0;
+	quint8 zero_1;
+	quint8 full_compatible_with_ntsc_console;
+	quint8 not_necessarily_full_compatible_with_pal_console;
+	quint8 extra_ram_at_6000h_7fffh;
+	quint8 dont_have_bus_conflicts;
+	quint8 zero_2[6];
+) QiNESHeader;
+
+#define Q_INES_HEADER(p) ((QiNESHeader *)(p))
 
 #endif /* __Q_formats_storage_medium_image_NES_Game_Pak_iNES_H__ */

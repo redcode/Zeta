@@ -73,8 +73,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	ram[1024 * 48];	/* RAM dump [16384-65535] */
 ) QSNAv48K;
 
-#define Q_SNA_V48K(p) ((QSNAv48K *)(p))
-
 /* MARK: - v128K
 .-------------------------------------------------------------------------.
 | From SinclairFAQ:							  |
@@ -123,6 +121,9 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	remaining_ram_banks[1024 * 16 * 6];
 ) QSNAv128K;
 
+/* MARK: - Casts */
+
+#define Q_SNA_V48K( p) ((QSNAv48K  *)(p))
 #define Q_SNA_V128K(p) ((QSNAv128K *)(p))
 
 #endif /* __Q_formats_hardware_snapshot_machine_ZX_Spectrum_SNA_H__ */

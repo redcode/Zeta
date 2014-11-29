@@ -78,12 +78,6 @@ Released under the terms of the GNU General Public License v3. */
 			     | 110 = Yellow  |
 			     | 111 = White   |
 			     '--------------*/
-Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
-	quint8 flash  :1,
-	quint8 bright :1,
-	quint8 paper  :3,
-	quint8 ink    :3
-)) QZXSpectrumColorAttribute;
 
 #define Q_ZX_SPECTRUM_COLOR_BLACK   0
 #define Q_ZX_SPECTRUM_COLOR_BLUE    1
@@ -93,6 +87,13 @@ Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
 #define Q_ZX_SPECTRUM_COLOR_CYAN    5
 #define Q_ZX_SPECTRUM_COLOR_YELLOW  6
 #define Q_ZX_SPECTRUM_COLOR_WHITE   7
+
+Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
+	quint8 flash  :1,
+	quint8 bright :1,
+	quint8 paper  :3,
+	quint8 ink    :3
+)) QZXSpectrumColorAttribute;
 
 #define Q_ZX_SPECTRUM_ATTRIBUTE_SQUARE_WIDTH  8
 #define Q_ZX_SPECTRUM_ATTRIBUTE_SQUARE_HEIGHT 8
