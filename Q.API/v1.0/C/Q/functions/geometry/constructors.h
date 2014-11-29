@@ -39,7 +39,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #else
 
-#	define Q_GEOMETRY_CONSTRUCTORS_IMPLEMENTATION(Type, type)		\
+#	define Q_IMPLEMENTATION_GEOMETRY_CONSTRUCTORS(Type, type)		\
 										\
 										\
 	Q_INLINE								\
@@ -119,9 +119,9 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
-	Q_GEOMETRY_CONSTRUCTORS_IMPLEMENTATION(Float,	float  )
-	Q_GEOMETRY_CONSTRUCTORS_IMPLEMENTATION(Double,	double )
-	Q_GEOMETRY_CONSTRUCTORS_IMPLEMENTATION(LDouble, ldouble)
+	Q_IMPLEMENTATION_GEOMETRY_CONSTRUCTORS(Float,	float  )
+	Q_IMPLEMENTATION_GEOMETRY_CONSTRUCTORS(Double,	double )
+	Q_IMPLEMENTATION_GEOMETRY_CONSTRUCTORS(LDouble, ldouble)
 
 #endif
 

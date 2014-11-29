@@ -16,7 +16,7 @@ Released under the terms of the GNU General Public License v3. */
 /* MARK: - Operations for natural, integer and real types */
 
 
-#define Q_IMPLEMENTATION_NATURAL_2D(Type, type)					\
+#define Q_IMPLEMENTATION_2D_NATURAL(Type, type)					\
 										\
 										\
 Q_INLINE qboolean q_2d_##type##_are_equal(Q2D##Type a, Q2D##Type b)		\
@@ -265,17 +265,17 @@ Q_INLINE Q3D##Type q_2d_##type##_nyx(Q2D##Type magnitude, q##type n)		\
 
 
 
-Q_IMPLEMENTATION_NATURAL_2D(UInt8,   uint8  )
-Q_IMPLEMENTATION_NATURAL_2D(UInt16,  uint16 )
-Q_IMPLEMENTATION_NATURAL_2D(UInt32,  uint32 )
-Q_IMPLEMENTATION_NATURAL_2D(UInt64,  uint64 )
-Q_IMPLEMENTATION_NATURAL_2D(Int8,    int8   )
-Q_IMPLEMENTATION_NATURAL_2D(Int16,   int16  )
-Q_IMPLEMENTATION_NATURAL_2D(Int32,   int32  )
-Q_IMPLEMENTATION_NATURAL_2D(Int64,   int64  )
-Q_IMPLEMENTATION_NATURAL_2D(Float,   float  )
-Q_IMPLEMENTATION_NATURAL_2D(Double,  double )
-Q_IMPLEMENTATION_NATURAL_2D(LDouble, ldouble)
+Q_IMPLEMENTATION_2D_NATURAL(UInt8,   uint8  )
+Q_IMPLEMENTATION_2D_NATURAL(UInt16,  uint16 )
+Q_IMPLEMENTATION_2D_NATURAL(UInt32,  uint32 )
+Q_IMPLEMENTATION_2D_NATURAL(UInt64,  uint64 )
+Q_IMPLEMENTATION_2D_NATURAL(Int8,    int8   )
+Q_IMPLEMENTATION_2D_NATURAL(Int16,   int16  )
+Q_IMPLEMENTATION_2D_NATURAL(Int32,   int32  )
+Q_IMPLEMENTATION_2D_NATURAL(Int64,   int64  )
+Q_IMPLEMENTATION_2D_NATURAL(Float,   float  )
+Q_IMPLEMENTATION_2D_NATURAL(Double,  double )
+Q_IMPLEMENTATION_2D_NATURAL(LDouble, ldouble)
 
 #define q_2d_value_are_equal(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _are_equal	   )
 #define q_2d_value_swap(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _swap		   )
@@ -332,7 +332,7 @@ Q_IMPLEMENTATION_NATURAL_2D(LDouble, ldouble)
 /* MARK: - Operations for integer and real types */
 
 
-#define Q_IMPLEMENTATION_INTEGER_2D(Type, type)				\
+#define Q_IMPLEMENTATION_2D_INTEGER(Type, type)				\
 									\
 									\
 Q_INLINE qboolean q_2d_##type##_is_negative(Q2D##Type magnitude)	\
@@ -355,13 +355,13 @@ Q_INLINE Q2D##Type q_2d_##type##_absolute(Q2D##Type magnitude)		\
 	}
 
 
-Q_IMPLEMENTATION_INTEGER_2D(Int8,    int8   )
-Q_IMPLEMENTATION_INTEGER_2D(Int16,   int16  )
-Q_IMPLEMENTATION_INTEGER_2D(Int32,   int32  )
-Q_IMPLEMENTATION_INTEGER_2D(Int64,   int64  )
-Q_IMPLEMENTATION_INTEGER_2D(Float,   float  )
-Q_IMPLEMENTATION_INTEGER_2D(Double,  double )
-Q_IMPLEMENTATION_INTEGER_2D(LDouble, ldouble)
+Q_IMPLEMENTATION_2D_INTEGER(Int8,    int8   )
+Q_IMPLEMENTATION_2D_INTEGER(Int16,   int16  )
+Q_IMPLEMENTATION_2D_INTEGER(Int32,   int32  )
+Q_IMPLEMENTATION_2D_INTEGER(Int64,   int64  )
+Q_IMPLEMENTATION_2D_INTEGER(Float,   float  )
+Q_IMPLEMENTATION_2D_INTEGER(Double,  double )
+Q_IMPLEMENTATION_2D_INTEGER(LDouble, ldouble)
 
 #define q_2d_value_is_negative( TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _is_negative )
 #define q_2d_value_has_negative(TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _has_negative)
@@ -372,7 +372,7 @@ Q_IMPLEMENTATION_INTEGER_2D(LDouble, ldouble)
 /* MARK: - Operations for real types only */
 
 
-#define Q_IMPLEMENTATION_REAL_2D(Type, type, _, epsilon)			\
+#define Q_IMPLEMENTATION_2D_REAL(Type, type, _, epsilon)			\
 										\
 										\
 Q_INLINE qboolean q_2d_##type##_are_almost_equal(Q2D##Type a, Q2D##Type b)	\
@@ -466,9 +466,9 @@ Q_INLINE Q2D##Type q_2d_##type##_square_clamp_01(Q2D##Type magnitude)		\
 	}
 
 
-Q_IMPLEMENTATION_REAL_2D(Float,	  float,   Q_FLOAT,   Q_FLOAT_EPSILON  )
-Q_IMPLEMENTATION_REAL_2D(Double,  double,  Q_DOUBLE,  Q_DOUBLE_EPSILON )
-Q_IMPLEMENTATION_REAL_2D(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
+Q_IMPLEMENTATION_2D_REAL(Float,	  float,   Q_FLOAT,   Q_FLOAT_EPSILON  )
+Q_IMPLEMENTATION_2D_REAL(Double,  double,  Q_DOUBLE,  Q_DOUBLE_EPSILON )
+Q_IMPLEMENTATION_2D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 
 /* MARK: - Default real type definitions */

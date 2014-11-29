@@ -282,7 +282,7 @@ Q_INLINE quint32 q_bcd_to_uint32(quint32 value)
 /* MARK: - Operations for natural, integer and real types */
 
 
-#define Q_IMPLEMENTATION_NATURAL_VALUE(type)					\
+#define Q_IMPLEMENTATION_VALUE_NATURAL(type)					\
 										\
 										\
 Q_INLINE void q_##type##_swap(void *a, void *b)					\
@@ -310,17 +310,17 @@ q##type q_##type##_clamp(q##type value, q##type minimum, q##type maximum)	\
 	}									\
 
 
-Q_IMPLEMENTATION_NATURAL_VALUE(uint8  )
-Q_IMPLEMENTATION_NATURAL_VALUE(uint16 )
-Q_IMPLEMENTATION_NATURAL_VALUE(uint32 )
-Q_IMPLEMENTATION_NATURAL_VALUE(uint64 )
-Q_IMPLEMENTATION_NATURAL_VALUE(int8   )
-Q_IMPLEMENTATION_NATURAL_VALUE(int16  )
-Q_IMPLEMENTATION_NATURAL_VALUE(int32  )
-Q_IMPLEMENTATION_NATURAL_VALUE(int64  )
-Q_IMPLEMENTATION_NATURAL_VALUE(float  )
-Q_IMPLEMENTATION_NATURAL_VALUE(double )
-Q_IMPLEMENTATION_NATURAL_VALUE(ldouble)
+Q_IMPLEMENTATION_VALUE_NATURAL(uint8  )
+Q_IMPLEMENTATION_VALUE_NATURAL(uint16 )
+Q_IMPLEMENTATION_VALUE_NATURAL(uint32 )
+Q_IMPLEMENTATION_VALUE_NATURAL(uint64 )
+Q_IMPLEMENTATION_VALUE_NATURAL(int8   )
+Q_IMPLEMENTATION_VALUE_NATURAL(int16  )
+Q_IMPLEMENTATION_VALUE_NATURAL(int32  )
+Q_IMPLEMENTATION_VALUE_NATURAL(int64  )
+Q_IMPLEMENTATION_VALUE_NATURAL(float  )
+Q_IMPLEMENTATION_VALUE_NATURAL(double )
+Q_IMPLEMENTATION_VALUE_NATURAL(ldouble)
 
 #define q_value_swap(   TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _swap   )
 #define q_value_minimum(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _minimum)
@@ -331,7 +331,7 @@ Q_IMPLEMENTATION_NATURAL_VALUE(ldouble)
 /* MARK: - Operations for integer and real types */
 
 
-#define Q_IMPLEMENTATION_INTEGER_VALUE(type)			 \
+#define Q_IMPLEMENTATION_VALUE_INTEGER(type)			 \
 								 \
 Q_INLINE q##type q_##type##_absolute(q##type value)		 \
 	{return value < (q##type)0 ? -value : value;}		 \
@@ -340,14 +340,14 @@ Q_INLINE q##type q_##type##_sign(q##type value)			 \
 	{return value >= (q##type)0 ? (q##type)1 : -(q##type)1;}
 
 
-Q_IMPLEMENTATION_INTEGER_VALUE(int8   )
-Q_IMPLEMENTATION_INTEGER_VALUE(int16  )
-Q_IMPLEMENTATION_INTEGER_VALUE(int32  )
-Q_IMPLEMENTATION_INTEGER_VALUE(int64  )
-Q_IMPLEMENTATION_INTEGER_VALUE(ssize  )
-Q_IMPLEMENTATION_INTEGER_VALUE(float  )
-Q_IMPLEMENTATION_INTEGER_VALUE(double )
-Q_IMPLEMENTATION_INTEGER_VALUE(ldouble)
+Q_IMPLEMENTATION_VALUE_INTEGER(int8   )
+Q_IMPLEMENTATION_VALUE_INTEGER(int16  )
+Q_IMPLEMENTATION_VALUE_INTEGER(int32  )
+Q_IMPLEMENTATION_VALUE_INTEGER(int64  )
+Q_IMPLEMENTATION_VALUE_INTEGER(ssize  )
+Q_IMPLEMENTATION_VALUE_INTEGER(float  )
+Q_IMPLEMENTATION_VALUE_INTEGER(double )
+Q_IMPLEMENTATION_VALUE_INTEGER(ldouble)
 
 #define q_value_absolute(TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _absolute)
 #define q_value_sign(	 TYPE) Q_JOIN_3(q_, Q_##TYPE##_FIXED_TYPE_name, _sign	 )
@@ -356,7 +356,7 @@ Q_IMPLEMENTATION_INTEGER_VALUE(ldouble)
 /* MARK: - Operations for real types only */
 
 
-#define Q_IMPLEMENTATION_REAL_VALUE(type, _, epsilon, infinity)			\
+#define Q_IMPLEMENTATION_VALUE_REAL(type, _, epsilon, infinity)			\
 										\
 										\
 Q_INLINE qboolean q_##type##_are_almost_equal(q##type a, q##type b)		\
@@ -416,9 +416,9 @@ Q_INLINE q##type q_##type##_clamp_01(q##type value)				\
 	{return q_##type##_minimum(q_##type##_maximum(value, _(0.0)), _(1.0));}
 
 
-Q_IMPLEMENTATION_REAL_VALUE(float,   Q_FLOAT,	Q_FLOAT_EPSILON,   Q_FLOAT_INFINITY  )
-Q_IMPLEMENTATION_REAL_VALUE(double,  Q_DOUBLE,	Q_DOUBLE_EPSILON,  Q_DOUBLE_INFINITY )
-Q_IMPLEMENTATION_REAL_VALUE(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON, Q_LDOUBLE_INFINITY)
+Q_IMPLEMENTATION_VALUE_REAL(float,   Q_FLOAT,	Q_FLOAT_EPSILON,   Q_FLOAT_INFINITY  )
+Q_IMPLEMENTATION_VALUE_REAL(double,  Q_DOUBLE,	Q_DOUBLE_EPSILON,  Q_DOUBLE_INFINITY )
+Q_IMPLEMENTATION_VALUE_REAL(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON, Q_LDOUBLE_INFINITY)
 
 
 /* MARK: - Default real type definitions */
