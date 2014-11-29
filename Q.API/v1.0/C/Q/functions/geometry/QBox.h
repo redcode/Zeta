@@ -116,6 +116,15 @@ Q_INLINE Q3D##Type q_##type##_box_center(Q##Type##Box box)			\
 	}									\
 										\
 										\
+ Q_INLINE Q##Type##Box q_##type##_box_correct(Q##Type##Box box)			\
+	{									\
+	if (box.size.x < _(0.0)) box.point.x -= (box.size.x = -box.size.x);	\
+	if (box.size.y < _(0.0)) box.point.y -= (box.size.y = -box.size.y);	\
+	if (box.size.z < _(0.0)) box.point.z -= (box.size.z = -box.size.z);	\
+ 	return box;								\
+	}									\
+										\
+										\
 Q_INLINE Q##Type##Sphere q_##type##_box_inner_sphere(Q##Type##Box box)		\
 	{									\
 	Q##Type##Sphere result;							\
@@ -232,6 +241,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_from_vertices		q_float_box_from_vertices
 #	define q_box_is_zero			q_float_box_is_zero
 #	define q_box_center			q_float_box_center
+#	define q_box_correct			q_float_box_correct
 #	define q_box_inner_sphere		q_float_box_inner_sphere
 #	define q_box_to_aabb			q_float_box_to_aabb
 #	define q_box_absolute_point_to_normal	q_float_box_absolute_point_to_normal
@@ -251,6 +261,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_from_vertices		q_ldouble_box_from_vertices
 #	define q_box_is_zero			q_ldouble_box_is_zero
 #	define q_box_center			q_ldouble_box_center
+#	define q_box_correct			q_ldouble_box_correct
 #	define q_box_inner_sphere		q_ldouble_box_inner_sphere
 #	define q_box_to_aabb			q_ldouble_box_to_aabb
 #	define q_box_absolute_point_to_normal	q_ldouble_box_absolute_point_to_normal
@@ -270,6 +281,7 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 #	define q_box_from_vertices		q_double_box_from_vertices
 #	define q_box_is_zero			q_double_box_is_zero
 #	define q_box_center			q_double_box_center
+#	define q_box_correct			q_double_box_correct
 #	define q_box_inner_sphere		q_double_box_inner_sphere
 #	define q_box_to_aabb			q_double_box_to_aabb
 #	define q_box_absolute_point_to_normal	q_double_box_absolute_point_to_normal
