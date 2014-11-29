@@ -47,6 +47,20 @@ Q_INLINE Q3D##Type q_3d_##type##_add_3(Q3D##Type a, Q3D##Type b, Q3D##Type c)	\
 	}									\
 										\
 										\
+Q_INLINE Q3D##Type q_3d_##type##_add_4(						\
+	Q3D##Type a,								\
+	Q3D##Type b,								\
+	Q3D##Type c,								\
+	Q3D##Type d								\
+)										\
+	{									\
+	return q_3d_##type							\
+		(a.x + b.x + c.x + d.x,						\
+		 a.y + b.y + c.y + d.y,						\
+		 a.z + b.z + c.z + d.z);					\
+	}									\
+										\
+										\
 Q_INLINE Q3D##Type q_3d_##type##_subtract(Q3D##Type a, Q3D##Type b)		\
 	{return q_3d_##type(a.x - b.x, a.y - b.y, a.z - b.z);}			\
 										\
@@ -56,6 +70,20 @@ Q3D##Type q_3d_##type##_subtract_3(Q3D##Type a, Q3D##Type b, Q3D##Type c)	\
 	{									\
 	return q_3d_##type							\
 		(a.x - b.x - c.x, a.y - b.y - c.y, a.z - b.z - c.z);		\
+	}									\
+										\
+										\
+Q_INLINE Q3D##Type q_3d_##type##_subtract_4(					\
+	Q3D##Type a,								\
+	Q3D##Type b,								\
+	Q3D##Type c,								\
+	Q3D##Type d								\
+)										\
+	{									\
+	return q_3d_##type							\
+		(a.x - b.x - c.x - d.x,						\
+		 a.y - b.y - c.y - d.y,						\
+		 a.z - b.z - c.z - d.z);					\
 	}									\
 										\
 										\
@@ -70,6 +98,20 @@ Q3D##Type q_3d_##type##_multiply_3(Q3D##Type a, Q3D##Type b, Q3D##Type c)	\
 		(a.x * b.x * c.x, a.y * b.y * c.y, a.z * b.z * c.z);}		\
 										\
 										\
+Q_INLINE Q3D##Type q_3d_##type##_multiply_4(					\
+	Q3D##Type a,								\
+	Q3D##Type b,								\
+	Q3D##Type c,								\
+	Q3D##Type d								\
+)										\
+	{									\
+	return q_3d_##type							\
+		(a.x * b.x * c.x * d.x,						\
+		 a.y * b.y * c.y * d.y,						\
+		 a.z * b.z * c.z * d.z);					\
+	}									\
+										\
+										\
 Q_INLINE Q3D##Type q_3d_##type##_divide(Q3D##Type a, Q3D##Type b)		\
 	{return q_3d_##type(a.x / b.x, a.y / b.y, a.z / b.z);}			\
 										\
@@ -79,6 +121,20 @@ Q3D##Type q_3d_##type##_divide_3(Q3D##Type a, Q3D##Type b, Q3D##Type c)		\
 	{									\
 	return q_3d_##type							\
 		(a.x / b.x / c.x, a.y / b.y / c.y, a.z / b.z / c.z);		\
+	}									\
+										\
+										\
+Q_INLINE Q3D##Type q_3d_##type##_divide_4(					\
+	Q3D##Type a,								\
+	Q3D##Type b,								\
+	Q3D##Type c,								\
+	Q3D##Type d								\
+)										\
+	{									\
+	return q_3d_##type							\
+		(a.x / b.x / c.x / d.x,						\
+		 a.y / b.y / c.y / d.y,						\
+		 a.z / b.z / c.z / d.z);					\
 	}									\
 										\
 										\
@@ -280,12 +336,16 @@ Q_IMPLEMENTATION_3D_NATURAL(LDouble, ldouble)
 #define q_3d_value_contains(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _contains	   )
 #define q_3d_value_add(		      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _add		   )
 #define q_3d_value_add_3(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _add_3		   )
+#define q_3d_value_add_4(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _add_4		   )
 #define q_3d_value_subtract(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _subtract	   )
 #define q_3d_value_subtract_3(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_3	   )
+#define q_3d_value_subtract_4(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_4	   )
 #define q_3d_value_multiply(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _multiply	   )
 #define q_3d_value_multiply_3(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_3	   )
+#define q_3d_value_multiply_4(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_4	   )
 #define q_3d_value_divide(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _divide		   )
 #define q_3d_value_divide_3(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _divide_3	   )
+#define q_3d_value_divide_4(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _divide_4	   )
 #define q_3d_value_dot_product(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _dot_product	   )
 #define q_3d_value_cross_product(     TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _cross_product	   )
 #define q_3d_value_minimum(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _minimum	   )
@@ -492,12 +552,16 @@ Q_IMPLEMENTATION_3D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_contains	       q_3d_float_contains
 #	define q_3d_add		       q_3d_float_add
 #	define q_3d_add_3	       q_3d_float_add_3
+#	define q_3d_add_4	       q_3d_float_add_4
 #	define q_3d_subtract	       q_3d_float_subtract
 #	define q_3d_subtract_3	       q_3d_float_subtract_3
+#	define q_3d_subtract_4	       q_3d_float_subtract_4
 #	define q_3d_multiply	       q_3d_float_multiply
 #	define q_3d_multiply_3	       q_3d_float_multiply_3
+#	define q_3d_multiply_4	       q_3d_float_multiply_4
 #	define q_3d_divide	       q_3d_float_divide
 #	define q_3d_divide_3	       q_3d_float_divide_3
+#	define q_3d_divide_4	       q_3d_float_divide_4
 #	define q_3d_dot_product        q_3d_float_dot_product
 #	define q_3d_cross_product      q_3d_float_cross_product
 #	define q_3d_minimum	       q_3d_float_minimum
@@ -544,12 +608,16 @@ Q_IMPLEMENTATION_3D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_contains	       q_3d_ldouble_contains
 #	define q_3d_add		       q_3d_ldouble_add
 #	define q_3d_add_3	       q_3d_ldouble_add_3
+#	define q_3d_add_4	       q_3d_ldouble_add_4
 #	define q_3d_subtract	       q_3d_ldouble_subtract
 #	define q_3d_subtract_3	       q_3d_ldouble_subtract_3
+#	define q_3d_subtract_4	       q_3d_ldouble_subtract_4
 #	define q_3d_multiply	       q_3d_ldouble_multiply
 #	define q_3d_multiply_3	       q_3d_ldouble_multiply_3
+#	define q_3d_multiply_4	       q_3d_ldouble_multiply_4
 #	define q_3d_divide	       q_3d_ldouble_divide
 #	define q_3d_divide_3	       q_3d_ldouble_divide_3
+#	define q_3d_divide_4	       q_3d_ldouble_divide_4
 #	define q_3d_dot_product        q_3d_ldouble_dot_product
 #	define q_3d_cross_product      q_3d_ldouble_cross_product
 #	define q_3d_minimum	       q_3d_ldouble_minimum
@@ -596,12 +664,16 @@ Q_IMPLEMENTATION_3D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_contains	       q_3d_double_contains
 #	define q_3d_add		       q_3d_double_add
 #	define q_3d_add_3	       q_3d_double_add_3
+#	define q_3d_add_4	       q_3d_double_add_4
 #	define q_3d_subtract	       q_3d_double_subtract
 #	define q_3d_subtract_3	       q_3d_double_subtract_3
+#	define q_3d_subtract_4	       q_3d_double_subtract_4
 #	define q_3d_multiply	       q_3d_double_multiply
 #	define q_3d_multiply_3	       q_3d_double_multiply_3
+#	define q_3d_multiply_4	       q_3d_double_multiply_4
 #	define q_3d_divide	       q_3d_double_divide
 #	define q_3d_divide_3	       q_3d_double_divide_3
+#	define q_3d_divide_4	       q_3d_double_divide_4
 #	define q_3d_dot_product        q_3d_double_dot_product
 #	define q_3d_cross_product      q_3d_double_cross_product
 #	define q_3d_minimum	       q_3d_double_minimum
