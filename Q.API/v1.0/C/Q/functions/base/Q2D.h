@@ -52,6 +52,11 @@ Q_INLINE Q2D##Type q_2d_##type##_add_4(						\
 	{return q_2d_##type(a.x + b.x + c.x + d.x, a.y + b.y + c.y + d.y);}	\
 										\
 										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_add_scalar(Q2D##Type magnitude, q##type scalar)		\
+	{return q_2d_##type(magnitude.x + scalar, magnitude.y + scalar);}	\
+										\
+										\
 Q_INLINE Q2D##Type q_2d_##type##_subtract(Q2D##Type a, Q2D##Type b)		\
 	{return q_2d_##type(a.x - b.x, a.y - b.y);}				\
 										\
@@ -68,6 +73,11 @@ Q_INLINE Q2D##Type q_2d_##type##_subtract_4(					\
 	Q2D##Type d								\
 )										\
 	{return q_2d_##type(a.x - b.x - c.x - d.x, a.y - b.y - c.y - d.y);}	\
+										\
+										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_subtract_scalar(Q2D##Type magnitude, q##type scalar)	\
+	{return q_2d_##type(magnitude.x - scalar, magnitude.y - scalar);}	\
 										\
 										\
 Q_INLINE Q2D##Type q_2d_##type##_multiply(Q2D##Type a, Q2D##Type b)		\
@@ -88,6 +98,11 @@ Q_INLINE Q2D##Type q_2d_##type##_multiply_4(					\
 	{return q_2d_##type(a.x * b.x * c.x * d.x, a.y * b.y * c.y * d.y);}	\
 										\
 										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_multiply_by_scalar(Q2D##Type magnitude, q##type scalar)	\
+	{return q_2d_##type(magnitude.x * scalar, magnitude.y * scalar);}	\
+										\
+										\
 Q_INLINE Q2D##Type q_2d_##type##_divide(Q2D##Type a, Q2D##Type b)		\
 	{return q_2d_##type(a.x / b.x, a.y / b.y);}				\
 										\
@@ -104,6 +119,11 @@ Q_INLINE Q2D##Type q_2d_##type##_divide_4(					\
 	Q2D##Type d								\
 )										\
 	{return q_2d_##type(a.x / b.x / c.x / d.x, a.y / b.y / c.y / d.y);}	\
+										\
+										\
+Q_INLINE									\
+Q2D##Type q_2d_##type##_divide_by_scalar(Q2D##Type magnitude, q##type scalar)	\
+	{return q_2d_##type(magnitude.x / scalar, magnitude.y / scalar);}	\
 										\
 										\
 Q_INLINE q##type q_2d_##type##_dot_product(Q2D##Type a, Q2D##Type b)		\
@@ -178,26 +198,6 @@ Q_INLINE q##type q_2d_##type##_inner_middle(Q2D##Type magnitude)		\
 										\
 Q_INLINE q##type q_2d_##type##_squared_length(Q2D##Type magnitude)		\
 	{return magnitude.x * magnitude.x + magnitude.y * magnitude.y;}		\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_add_scalar(Q2D##Type magnitude, q##type scalar)		\
-	{return q_2d_##type(magnitude.x + scalar, magnitude.y + scalar);}	\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_subtract_scalar(Q2D##Type magnitude, q##type scalar)	\
-	{return q_2d_##type(magnitude.x - scalar, magnitude.y - scalar);}	\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_multiply_by_scalar(Q2D##Type magnitude, q##type scalar)	\
-	{return q_2d_##type(magnitude.x * scalar, magnitude.y * scalar);}	\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_divide_by_scalar(Q2D##Type magnitude, q##type scalar)	\
-	{return q_2d_##type(magnitude.x / scalar, magnitude.y / scalar);}	\
 										\
 										\
 Q_INLINE Q2D##Type q_2d_##type##_clamp(						\
@@ -300,7 +300,6 @@ Q_INLINE Q3D##Type q_2d_##type##_nyx(Q2D##Type magnitude, q##type n)		\
 	{return q_3d_##type(n, magnitude.y, magnitude.x);}
 
 
-
 Q_IMPLEMENTATION_2D_NATURAL(UInt8,   uint8  )
 Q_IMPLEMENTATION_2D_NATURAL(UInt16,  uint16 )
 Q_IMPLEMENTATION_2D_NATURAL(UInt32,  uint32 )
@@ -313,22 +312,25 @@ Q_IMPLEMENTATION_2D_NATURAL(Float,   float  )
 Q_IMPLEMENTATION_2D_NATURAL(Double,  double )
 Q_IMPLEMENTATION_2D_NATURAL(LDouble, ldouble)
 
-
 #define q_2d_value_are_equal(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _are_equal	   )
 #define q_2d_value_swap(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _swap		   )
 #define q_2d_value_contains(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _contains	   )
 #define q_2d_value_add(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _add		   )
 #define q_2d_value_add_3(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _add_3		   )
 #define q_2d_value_add_4(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _add_4		   )
+#define q_2d_value_add_scalar(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _add_scalar	   )
 #define q_2d_value_subtract(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _subtract	   )
 #define q_2d_value_subtract_3(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_3	   )
 #define q_2d_value_subtract_4(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_4	   )
+#define q_2d_value_subtract_scalar(   TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_scalar   )
 #define q_2d_value_multiply(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _multiply	   )
 #define q_2d_value_multiply_3(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_3	   )
 #define q_2d_value_multiply_4(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_4	   )
+#define q_2d_value_multiply_by_scalar(TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_by_scalar)
 #define q_2d_value_divide(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _divide		   )
 #define q_2d_value_divide_3(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _divide_3	   )
 #define q_2d_value_divide_4(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _divide_4	   )
+#define q_2d_value_divide_by_scalar(  TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _divide_by_scalar  )
 #define q_2d_value_dot_product(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _dot_product	   )
 #define q_2d_value_cross_product(     TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _cross_product	   )
 #define q_2d_value_minimum(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _minimum	   )
@@ -344,10 +346,6 @@ Q_IMPLEMENTATION_2D_NATURAL(LDouble, ldouble)
 #define q_2d_value_inner_maximum(     TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _inner_maximum	   )
 #define q_2d_value_inner_middle(      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _inner_middle	   )
 #define q_2d_value_squared_length(    TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _squared_length	   )
-#define q_2d_value_add_scalar(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _add_scalar	   )
-#define q_2d_value_subtract_scalar(   TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_scalar   )
-#define q_2d_value_multiply_by_scalar(TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_by_scalar)
-#define q_2d_value_divide_by_scalar(  TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _divide_by_scalar  )
 #define q_2d_value_clamp(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _clamp		   )
 #define q_2d_value_square_clamp(      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _square_clamp	   )
 #define q_2d_value_yx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _yx		   )
@@ -404,7 +402,6 @@ Q_IMPLEMENTATION_2D_INTEGER(Int64,   int64  )
 Q_IMPLEMENTATION_2D_INTEGER(Float,   float  )
 Q_IMPLEMENTATION_2D_INTEGER(Double,  double )
 Q_IMPLEMENTATION_2D_INTEGER(LDouble, ldouble)
-
 
 #define q_2d_value_is_negative( TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _is_negative )
 #define q_2d_value_has_negative(TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _has_negative)
@@ -527,15 +524,19 @@ Q_IMPLEMENTATION_2D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_add		       q_2d_float_add
 #	define q_2d_add_3	       q_2d_float_add_3
 #	define q_2d_add_4	       q_2d_float_add_4
+#	define q_2d_add_scalar	       q_2d_float_add_scalar
 #	define q_2d_subtract	       q_2d_float_subtract
 #	define q_2d_subtract_3	       q_2d_float_subtract_3
 #	define q_2d_subtract_4	       q_2d_float_subtract_4
+#	define q_2d_subtract_scalar    q_2d_float_subtract_scalar
 #	define q_2d_multiply	       q_2d_float_multiply
 #	define q_2d_multiply_3	       q_2d_float_multiply_3
 #	define q_2d_multiply_4	       q_2d_float_multiply_4
+#	define q_2d_multiply_by_scalar q_2d_float_multiply_by_scalar
 #	define q_2d_divide	       q_2d_float_divide
 #	define q_2d_divide_3	       q_2d_float_divide_3
 #	define q_2d_divide_4	       q_2d_float_divide_4
+#	define q_2d_divide_by_scalar   q_2d_float_divide_by_scalar
 #	define q_2d_dot_product        q_2d_float_dot_product
 #	define q_2d_cross_product      q_2d_float_cross_product
 #	define q_2d_minimum	       q_2d_float_minimum
@@ -565,10 +566,6 @@ Q_IMPLEMENTATION_2D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_inner_maximum      q_2d_float_inner_maximum
 #	define q_2d_inner_middle       q_2d_float_inner_middle
 #	define q_2d_squared_length     q_2d_float_squared_length
-#	define q_2d_add_scalar	       q_2d_float_add_scalar
-#	define q_2d_subtract_scalar    q_2d_float_subtract_scalar
-#	define q_2d_multiply_by_scalar q_2d_float_multiply_by_scalar
-#	define q_2d_divide_by_scalar   q_2d_float_divide_by_scalar
 #	define q_2d_clamp	       q_2d_float_clamp
 #	define q_2d_square_clamp       q_2d_float_square_clamp
 #	define q_2d_square_clamp_01    q_2d_float_square_clamp_01
@@ -602,15 +599,19 @@ Q_IMPLEMENTATION_2D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_add		       q_2d_ldouble_add
 #	define q_2d_add_3	       q_2d_ldouble_add_3
 #	define q_2d_add_4	       q_2d_ldouble_add_4
+#	define q_2d_add_scalar	       q_2d_ldouble_add_scalar
 #	define q_2d_subtract	       q_2d_ldouble_subtract
 #	define q_2d_subtract_3	       q_2d_ldouble_subtract_3
 #	define q_2d_subtract_4	       q_2d_ldouble_subtract_4
+#	define q_2d_subtract_scalar    q_2d_ldouble_subtract_scalar
 #	define q_2d_multiply	       q_2d_ldouble_multiply
 #	define q_2d_multiply_3	       q_2d_ldouble_multiply_3
 #	define q_2d_multiply_4	       q_2d_ldouble_multiply_4
+#	define q_2d_multiply_by_scalar q_2d_ldouble_multiply_by_scalar
 #	define q_2d_divide	       q_2d_ldouble_divide
 #	define q_2d_divide_3	       q_2d_ldouble_divide_3
 #	define q_2d_divide_4	       q_2d_ldouble_divide_4
+#	define q_2d_divide_by_scalar   q_2d_ldouble_divide_by_scalar
 #	define q_2d_dot_product        q_2d_ldouble_dot_product
 #	define q_2d_cross_product      q_2d_ldouble_cross_product
 #	define q_2d_minimum	       q_2d_ldouble_minimum
@@ -640,10 +641,6 @@ Q_IMPLEMENTATION_2D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_inner_maximum      q_2d_ldouble_inner_maximum
 #	define q_2d_inner_middle       q_2d_ldouble_inner_middle
 #	define q_2d_squared_length     q_2d_ldouble_squared_length
-#	define q_2d_add_scalar	       q_2d_ldouble_add_scalar
-#	define q_2d_subtract_scalar    q_2d_ldouble_subtract_scalar
-#	define q_2d_multiply_by_scalar q_2d_ldouble_multiply_by_scalar
-#	define q_2d_divide_by_scalar   q_2d_ldouble_divide_by_scalar
 #	define q_2d_clamp	       q_2d_ldouble_clamp
 #	define q_2d_square_clamp       q_2d_ldouble_square_clamp
 #	define q_2d_square_clamp_01    q_2d_ldouble_square_clamp_01
@@ -677,15 +674,19 @@ Q_IMPLEMENTATION_2D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_add		       q_2d_double_add
 #	define q_2d_add_3	       q_2d_double_add_3
 #	define q_2d_add_4	       q_2d_double_add_4
+#	define q_2d_add_scalar	       q_2d_double_add_scalar
 #	define q_2d_subtract	       q_2d_double_subtract
 #	define q_2d_subtract_3	       q_2d_double_subtract_3
 #	define q_2d_subtract_4	       q_2d_double_subtract_4
+#	define q_2d_subtract_scalar    q_2d_double_subtract_scalar
 #	define q_2d_multiply	       q_2d_double_multiply
 #	define q_2d_multiply_3	       q_2d_double_multiply_3
 #	define q_2d_multiply_4	       q_2d_double_multiply_4
+#	define q_2d_multiply_by_scalar q_2d_double_multiply_by_scalar
 #	define q_2d_divide	       q_2d_double_divide
 #	define q_2d_divide_3	       q_2d_double_divide_3
 #	define q_2d_divide_4	       q_2d_double_divide_4
+#	define q_2d_divide_by_scalar   q_2d_double_divide_by_scalar
 #	define q_2d_dot_product        q_2d_double_dot_product
 #	define q_2d_cross_product      q_2d_double_cross_product
 #	define q_2d_minimum	       q_2d_double_minimum
@@ -715,10 +716,6 @@ Q_IMPLEMENTATION_2D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_2d_inner_maximum      q_2d_double_inner_maximum
 #	define q_2d_inner_middle       q_2d_double_inner_middle
 #	define q_2d_squared_length     q_2d_double_squared_length
-#	define q_2d_add_scalar	       q_2d_double_add_scalar
-#	define q_2d_subtract_scalar    q_2d_double_subtract_scalar
-#	define q_2d_multiply_by_scalar q_2d_double_multiply_by_scalar
-#	define q_2d_divide_by_scalar   q_2d_double_divide_by_scalar
 #	define q_2d_clamp	       q_2d_double_clamp
 #	define q_2d_square_clamp       q_2d_double_square_clamp
 #	define q_2d_square_clamp_01    q_2d_double_square_clamp_01

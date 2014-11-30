@@ -44,7 +44,7 @@ typedef struct {
 } QList;	
 
 typedef struct {
-	ChainNode*  first;
+	QChainNode* first;
 	qsize	    size;
 	QChainNode* last;
 } QChain;

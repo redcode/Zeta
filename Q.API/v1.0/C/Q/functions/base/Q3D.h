@@ -61,6 +61,16 @@ Q_INLINE Q3D##Type q_3d_##type##_add_4(						\
 	}									\
 										\
 										\
+Q_INLINE									\
+Q3D##Type q_3d_##type##_add_scalar(Q3D##Type magnitude, q##type scalar)		\
+	{									\
+	return q_3d_##type							\
+		(magnitude.x + scalar,						\
+		 magnitude.y + scalar,						\
+		 magnitude.z + scalar);						\
+	}									\
+										\
+										\
 Q_INLINE Q3D##Type q_3d_##type##_subtract(Q3D##Type a, Q3D##Type b)		\
 	{return q_3d_##type(a.x - b.x, a.y - b.y, a.z - b.z);}			\
 										\
@@ -84,6 +94,16 @@ Q_INLINE Q3D##Type q_3d_##type##_subtract_4(					\
 		(a.x - b.x - c.x - d.x,						\
 		 a.y - b.y - c.y - d.y,						\
 		 a.z - b.z - c.z - d.z);					\
+	}									\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_3d_##type##_subtract_scalar(Q3D##Type magnitude, q##type scalar)	\
+	{									\
+	return q_3d_##type							\
+		(magnitude.x - scalar,						\
+		 magnitude.y - scalar,						\
+		 magnitude.z - scalar);						\
 	}									\
 										\
 										\
@@ -112,6 +132,16 @@ Q_INLINE Q3D##Type q_3d_##type##_multiply_4(					\
 	}									\
 										\
 										\
+Q_INLINE									\
+Q3D##Type q_3d_##type##_multiply_by_scalar(Q3D##Type magnitude, q##type scalar)	\
+	{									\
+	return q_3d_##type							\
+		(magnitude.x * scalar,						\
+		 magnitude.y * scalar,						\
+		 magnitude.z * scalar);						\
+	}									\
+										\
+										\
 Q_INLINE Q3D##Type q_3d_##type##_divide(Q3D##Type a, Q3D##Type b)		\
 	{return q_3d_##type(a.x / b.x, a.y / b.y, a.z / b.z);}			\
 										\
@@ -135,6 +165,16 @@ Q_INLINE Q3D##Type q_3d_##type##_divide_4(					\
 		(a.x / b.x / c.x / d.x,						\
 		 a.y / b.y / c.y / d.y,						\
 		 a.z / b.z / c.z / d.z);					\
+	}									\
+										\
+										\
+Q_INLINE									\
+Q3D##Type q_3d_##type##_divide_by_scalar(Q3D##Type magnitude, q##type scalar)	\
+	{									\
+	return q_3d_##type							\
+		(magnitude.x / scalar,						\
+		 magnitude.y / scalar,						\
+		 magnitude.z / scalar);						\
 	}									\
 										\
 										\
@@ -242,46 +282,6 @@ Q_INLINE q##type q_3d_##type##_squared_length(Q3D##Type magnitude)		\
 	}									\
 										\
 										\
-Q_INLINE									\
-Q3D##Type q_3d_##type##_add_scalar(Q3D##Type magnitude, q##type scalar)		\
-	{									\
-	return q_3d_##type							\
-		(magnitude.x + scalar,						\
-		 magnitude.y + scalar,						\
-		 magnitude.z + scalar);						\
-	}									\
-										\
-										\
-Q_INLINE									\
-Q3D##Type q_3d_##type##_subtract_scalar(Q3D##Type magnitude, q##type scalar)	\
-	{									\
-	return q_3d_##type							\
-		(magnitude.x - scalar,						\
-		 magnitude.y - scalar,						\
-		 magnitude.z - scalar);						\
-	}									\
-										\
-										\
-Q_INLINE									\
-Q3D##Type q_3d_##type##_multiply_by_scalar(Q3D##Type magnitude, q##type scalar)	\
-	{									\
-	return q_3d_##type							\
-		(magnitude.x * scalar,						\
-		 magnitude.y * scalar,						\
-		 magnitude.z * scalar);						\
-	}									\
-										\
-										\
-Q_INLINE									\
-Q3D##Type q_3d_##type##_divide_by_scalar(Q3D##Type magnitude, q##type scalar)	\
-	{									\
-	return q_3d_##type							\
-		(magnitude.x / scalar,						\
-		 magnitude.y / scalar,						\
-		 magnitude.z / scalar);						\
-	}									\
-										\
-										\
 Q_INLINE Q3D##Type q_3d_##type##_clamp(						\
 	Q3D##Type magnitude,							\
 	Q3D##Type minimum,							\
@@ -337,15 +337,19 @@ Q_IMPLEMENTATION_3D_NATURAL(LDouble, ldouble)
 #define q_3d_value_add(		      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _add		   )
 #define q_3d_value_add_3(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _add_3		   )
 #define q_3d_value_add_4(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _add_4		   )
+#define q_3d_value_add_scalar(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _add_scalar	   )
 #define q_3d_value_subtract(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _subtract	   )
 #define q_3d_value_subtract_3(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_3	   )
 #define q_3d_value_subtract_4(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_4	   )
+#define q_3d_value_subtract_scalar(   TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_scalar   )
 #define q_3d_value_multiply(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _multiply	   )
 #define q_3d_value_multiply_3(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_3	   )
 #define q_3d_value_multiply_4(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_4	   )
+#define q_3d_value_multiply_by_scalar(TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_by_scalar)
 #define q_3d_value_divide(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _divide		   )
 #define q_3d_value_divide_3(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _divide_3	   )
 #define q_3d_value_divide_4(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _divide_4	   )
+#define q_3d_value_divide_by_scalar(  TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _divide_by_scalar  )
 #define q_3d_value_dot_product(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _dot_product	   )
 #define q_3d_value_cross_product(     TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _cross_product	   )
 #define q_3d_value_minimum(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _minimum	   )
@@ -361,10 +365,6 @@ Q_IMPLEMENTATION_3D_NATURAL(LDouble, ldouble)
 #define q_3d_value_inner_maximum(     TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _inner_maximum	   )
 #define q_3d_value_inner_middle(      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _inner_middle	   )
 #define q_3d_value_squared_length(    TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _squared_length	   )
-#define q_3d_value_add_scalar(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _add_scalar	   )
-#define q_3d_value_subtract_scalar(   TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _subtract_scalar   )
-#define q_3d_value_multiply_by_scalar(TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _multiply_by_scalar)
-#define q_3d_value_divide_by_scalar(  TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _divide_by_scalar  )
 #define q_3d_value_clamp(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _clamp		   )
 #define q_3d_value_cube_clamp(	      TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _cube_clamp	   )
 #define q_3d_value_rotated_as_axes(   TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _rotated_as_axes   )
@@ -553,15 +553,19 @@ Q_IMPLEMENTATION_3D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_add		       q_3d_float_add
 #	define q_3d_add_3	       q_3d_float_add_3
 #	define q_3d_add_4	       q_3d_float_add_4
+#	define q_3d_add_scalar	       q_3d_float_add_scalar
 #	define q_3d_subtract	       q_3d_float_subtract
 #	define q_3d_subtract_3	       q_3d_float_subtract_3
 #	define q_3d_subtract_4	       q_3d_float_subtract_4
+#	define q_3d_subtract_scalar    q_3d_float_subtract_scalar
 #	define q_3d_multiply	       q_3d_float_multiply
 #	define q_3d_multiply_3	       q_3d_float_multiply_3
 #	define q_3d_multiply_4	       q_3d_float_multiply_4
+#	define q_3d_multiply_by_scalar q_3d_float_multiply_by_scalar
 #	define q_3d_divide	       q_3d_float_divide
 #	define q_3d_divide_3	       q_3d_float_divide_3
 #	define q_3d_divide_4	       q_3d_float_divide_4
+#	define q_3d_divide_by_scalar   q_3d_float_divide_by_scalar
 #	define q_3d_dot_product        q_3d_float_dot_product
 #	define q_3d_cross_product      q_3d_float_cross_product
 #	define q_3d_minimum	       q_3d_float_minimum
@@ -590,10 +594,6 @@ Q_IMPLEMENTATION_3D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_inner_maximum      q_3d_float_inner_maximum
 #	define q_3d_inner_middle       q_3d_float_inner_middle
 #	define q_3d_squared_length     q_3d_float_squared_length
-#	define q_3d_add_scalar	       q_3d_float_add_scalar
-#	define q_3d_subtract_scalar    q_3d_float_subtract_scalar
-#	define q_3d_multiply_by_scalar q_3d_float_multiply_by_scalar
-#	define q_3d_divide_by_scalar   q_3d_float_divide_by_scalar
 #	define q_3d_clamp	       q_3d_float_clamp
 #	define q_3d_cube_clamp	       q_3d_float_cube_clamp
 #	define q_3d_cube_clamp_01      q_3d_float_cube_clamp_01
@@ -609,15 +609,19 @@ Q_IMPLEMENTATION_3D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_add		       q_3d_ldouble_add
 #	define q_3d_add_3	       q_3d_ldouble_add_3
 #	define q_3d_add_4	       q_3d_ldouble_add_4
+#	define q_3d_add_scalar	       q_3d_ldouble_add_scalar
 #	define q_3d_subtract	       q_3d_ldouble_subtract
 #	define q_3d_subtract_3	       q_3d_ldouble_subtract_3
 #	define q_3d_subtract_4	       q_3d_ldouble_subtract_4
+#	define q_3d_subtract_scalar    q_3d_ldouble_subtract_scalar
 #	define q_3d_multiply	       q_3d_ldouble_multiply
 #	define q_3d_multiply_3	       q_3d_ldouble_multiply_3
 #	define q_3d_multiply_4	       q_3d_ldouble_multiply_4
+#	define q_3d_multiply_by_scalar q_3d_ldouble_multiply_by_scalar
 #	define q_3d_divide	       q_3d_ldouble_divide
 #	define q_3d_divide_3	       q_3d_ldouble_divide_3
 #	define q_3d_divide_4	       q_3d_ldouble_divide_4
+#	define q_3d_divide_by_scalar   q_3d_ldouble_divide_by_scalar
 #	define q_3d_dot_product        q_3d_ldouble_dot_product
 #	define q_3d_cross_product      q_3d_ldouble_cross_product
 #	define q_3d_minimum	       q_3d_ldouble_minimum
@@ -646,10 +650,6 @@ Q_IMPLEMENTATION_3D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_inner_maximum      q_3d_ldouble_inner_maximum
 #	define q_3d_inner_middle       q_3d_ldouble_inner_middle
 #	define q_3d_squared_length     q_3d_ldouble_squared_length
-#	define q_3d_add_scalar	       q_3d_ldouble_add_scalar
-#	define q_3d_subtract_scalar    q_3d_ldouble_subtract_scalar
-#	define q_3d_multiply_by_scalar q_3d_ldouble_multiply_by_scalar
-#	define q_3d_divide_by_scalar   q_3d_ldouble_divide_by_scalar
 #	define q_3d_clamp	       q_3d_ldouble_clamp
 #	define q_3d_cube_clamp	       q_3d_ldouble_cube_clamp
 #	define q_3d_cube_clamp_01      q_3d_ldouble_cube_clamp_01
@@ -665,15 +665,19 @@ Q_IMPLEMENTATION_3D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_add		       q_3d_double_add
 #	define q_3d_add_3	       q_3d_double_add_3
 #	define q_3d_add_4	       q_3d_double_add_4
+#	define q_3d_add_scalar	       q_3d_double_add_scalar
 #	define q_3d_subtract	       q_3d_double_subtract
 #	define q_3d_subtract_3	       q_3d_double_subtract_3
 #	define q_3d_subtract_4	       q_3d_double_subtract_4
+#	define q_3d_subtract_scalar    q_3d_double_subtract_scalar
 #	define q_3d_multiply	       q_3d_double_multiply
 #	define q_3d_multiply_3	       q_3d_double_multiply_3
 #	define q_3d_multiply_4	       q_3d_double_multiply_4
+#	define q_3d_multiply_by_scalar q_3d_double_multiply_by_scalar
 #	define q_3d_divide	       q_3d_double_divide
 #	define q_3d_divide_3	       q_3d_double_divide_3
 #	define q_3d_divide_4	       q_3d_double_divide_4
+#	define q_3d_divide_by_scalar   q_3d_double_divide_by_scalar
 #	define q_3d_dot_product        q_3d_double_dot_product
 #	define q_3d_cross_product      q_3d_double_cross_product
 #	define q_3d_minimum	       q_3d_double_minimum
@@ -702,10 +706,6 @@ Q_IMPLEMENTATION_3D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #	define q_3d_inner_maximum      q_3d_double_inner_maximum
 #	define q_3d_inner_middle       q_3d_double_inner_middle
 #	define q_3d_squared_length     q_3d_double_squared_length
-#	define q_3d_add_scalar	       q_3d_double_add_scalar
-#	define q_3d_subtract_scalar    q_3d_double_subtract_scalar
-#	define q_3d_multiply_by_scalar q_3d_double_multiply_by_scalar
-#	define q_3d_divide_by_scalar   q_3d_double_divide_by_scalar
 #	define q_3d_clamp	       q_3d_double_clamp
 #	define q_3d_cube_clamp	       q_3d_double_cube_clamp
 #	define q_3d_cube_clamp_01      q_3d_double_cube_clamp_01
