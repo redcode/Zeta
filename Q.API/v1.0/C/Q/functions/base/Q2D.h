@@ -23,7 +23,7 @@ Q_INLINE qboolean q_2d_##type##_are_equal(Q2D##Type a, Q2D##Type b)		\
 	{return a.x == b.x && a.y == b.y;}					\
 										\
 										\
-Q_INLINE void q_##2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)			\
+Q_INLINE void q_2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)			\
 	{									\
 	Q2D##Type t = *a;							\
 										\
