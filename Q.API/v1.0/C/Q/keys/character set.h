@@ -69,7 +69,7 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_CHARACTER_SET_GB_2312
 #define Q_CHARACTER_SET_GBK
 #define Q_CHARACTER_SET_GB_18030
-#define Q_CHARACTER_SET_BIG_5
+#define Q_CHARACTER_SET_BIG5
 #define Q_CHARACTER_SET_HKSCS
 #define Q_CHARACTER_SET_KS_X_1001
 #define Q_CHARACTER_SET_EUC_KR
