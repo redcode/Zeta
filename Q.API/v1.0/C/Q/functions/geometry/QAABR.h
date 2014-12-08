@@ -443,7 +443,7 @@ Q_INLINE Q##Type##Rectangle q_##type##_aabr_to_rectangle(Q##Type##AABR aabr)	\
 	}									\
 										\
 										\
-Q_INLINE Q2D##Type q_##type##_aabr_absolute_point_to_normal(			\
+Q_INLINE Q2D##Type q_##type##_aabr_absolute_point_to_unit(			\
 	Q##Type##AABR aabr,							\
 	Q2D##Type     point							\
 										\
@@ -455,7 +455,7 @@ Q_INLINE Q2D##Type q_##type##_aabr_absolute_point_to_normal(			\
 	}									\
 										\
 										\
-Q_INLINE Q2D##Type q_##type##_aabr_normal_point_to_absolute(			\
+Q_INLINE Q2D##Type q_##type##_aabr_unit_point_to_absolute(			\
 	Q##Type##AABR aabr,							\
 	Q2D##Type     point							\
 )										\
@@ -562,8 +562,8 @@ Q_IMPLEMENTATION_AABR(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabr_fit_in_center		q_float_aabr_fit_in_center
 #	define q_aabr_inner_circle		q_float_aabr_inner_circle
 #	define q_aabr_to_rectangle		q_float_aabr_to_rectangle
-#	define q_aabr_absolute_point_to_normal	q_float_aabr_absolute_point_to_normal
-#	define q_aabr_normal_point_to_absolute	q_float_aabr_normal_point_to_absolute
+#	define q_aabr_absolute_point_to_unit	q_float_aabr_absolute_point_to_unit
+#	define q_aabr_unit_point_to_absolute	q_float_aabr_unit_point_to_absolute
 #	define q_aabr_contains_point		q_float_aabr_contains_point
 #	define q_aabr_contains_line_segment	q_float_aabr_contains_line_segment
 #	define q_aabr_contains_rectangle	q_float_aabr_contains_rectangle
@@ -616,8 +616,8 @@ Q_IMPLEMENTATION_AABR(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabr_fit_in_center		q_ldouble_aabr_fit_in_center
 #	define q_aabr_inner_circle		q_ldouble_aabr_inner_circle
 #	define q_aabr_to_rectangle		q_ldouble_aabr_to_rectangle
-#	define q_aabr_absolute_point_to_normal	q_ldouble_aabr_absolute_point_to_normal
-#	define q_aabr_normal_point_to_absolute	q_ldouble_aabr_normal_point_to_absolute
+#	define q_aabr_absolute_point_to_unit	q_ldouble_aabr_absolute_point_to_unit
+#	define q_aabr_unit_point_to_absolute	q_ldouble_aabr_unit_point_to_absolute
 #	define q_aabr_contains_point		q_ldouble_aabr_contains_point
 #	define q_aabr_contains_line_segment	q_ldouble_aabr_contains_line_segment
 #	define q_aabr_contains_rectangle	q_ldouble_aabr_contains_rectangle
@@ -670,8 +670,8 @@ Q_IMPLEMENTATION_AABR(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabr_fit_in_center		q_double_aabr_fit_in_center
 #	define q_aabr_inner_circle		q_double_aabr_inner_circle
 #	define q_aabr_to_rectangle		q_double_aabr_to_rectangle
-#	define q_aabr_absolute_point_to_normal	q_double_aabr_absolute_point_to_normal
-#	define q_aabr_normal_point_to_absolute	q_double_aabr_normal_point_to_absolute
+#	define q_aabr_absolute_point_to_unit	q_double_aabr_absolute_point_to_unit
+#	define q_aabr_unit_point_to_absolute	q_double_aabr_unit_point_to_absolute
 #	define q_aabr_contains_point		q_double_aabr_contains_point
 #	define q_aabr_contains_line_segment	q_double_aabr_contains_line_segment
 #	define q_aabr_contains_rectangle	q_double_aabr_contains_rectangle

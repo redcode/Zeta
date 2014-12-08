@@ -122,7 +122,7 @@ Q_INLINE Q##Type##Box q_##type##_aabb_to_box(Q##Type##AABB aabb)		\
 	}									\
 										\
 										\
-Q_INLINE Q3D##Type q_##type##_aabb_absolute_point_to_normal(			\
+Q_INLINE Q3D##Type q_##type##_aabb_absolute_point_to_unit(			\
 	Q##Type##AABB aabb,							\
 	Q3D##Type     point							\
 										\
@@ -135,7 +135,7 @@ Q_INLINE Q3D##Type q_##type##_aabb_absolute_point_to_normal(			\
 	}									\
 										\
 										\
-Q_INLINE Q3D##Type q_##type##_aabb_normal_point_to_absolute(			\
+Q_INLINE Q3D##Type q_##type##_aabb_unit_point_to_absolute(			\
 	Q##Type##AABB aabb,							\
 	Q3D##Type     point							\
 										\
@@ -211,8 +211,8 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_volume			q_float_aabb_volume
 #	define q_aabb_inner_sphere		q_float_aabb_inner_sphere
 #	define q_aabb_to_box			q_float_aabb_to_box
-#	define q_aabb_absolute_point_to_normal	q_float_aabb_absolute_point_to_normal
-#	define q_aabb_normal_point_to_absolute	q_float_aabb_normal_point_to_absolute
+#	define q_aabb_absolute_point_to_unit	q_float_aabb_absolute_point_to_unit
+#	define q_aabb_unit_point_to_absolute	q_float_aabb_unit_point_to_absolute
 #	define q_aabb_contains_point		q_float_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_float_aabb_contains_line_segment
 #	define q_aabb_contains_box		q_float_aabb_contains_box
@@ -229,8 +229,8 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_volume			q_ldouble_aabb_volume
 #	define q_aabb_inner_sphere		q_ldouble_aabb_inner_sphere
 #	define q_aabb_to_box			q_ldouble_aabb_to_box
-#	define q_aabb_absolute_point_to_normal	q_ldouble_aabb_absolute_point_to_normal
-#	define q_aabb_normal_point_to_absolute	q_ldouble_aabb_normal_point_to_absolute
+#	define q_aabb_absolute_point_to_unit	q_ldouble_aabb_absolute_point_to_unit
+#	define q_aabb_unit_point_to_absolute	q_ldouble_aabb_unit_point_to_absolute
 #	define q_aabb_contains_point		q_ldouble_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_ldouble_aabb_contains_line_segment
 #	define q_aabb_contains_box		q_ldouble_aabb_contains_box
@@ -247,8 +247,8 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #	define q_aabb_volume			q_double_aabb_volume
 #	define q_aabb_inner_sphere		q_double_aabb_inner_sphere
 #	define q_aabb_to_box			q_double_aabb_to_box
-#	define q_aabb_absolute_point_to_normal	q_double_aabb_absolute_point_to_normal
-#	define q_aabb_normal_point_to_absolute	q_double_aabb_normal_point_to_absolute
+#	define q_aabb_absolute_point_to_unit	q_double_aabb_absolute_point_to_unit
+#	define q_aabb_unit_point_to_absolute	q_double_aabb_unit_point_to_absolute
 #	define q_aabb_contains_point		q_double_aabb_contains_point
 #	define q_aabb_contains_line_segment	q_double_aabb_contains_line_segment
 #	define q_aabb_contains_box		q_double_aabb_contains_box
