@@ -486,7 +486,7 @@ Released under the terms of the GNU General Public License v3. */
 
 /* MARK: - Integer constants */
 
-#define Q_CARMACK_NUMBER	0x5F3759DF
-#define Q_LOMONT_NUMBER		0x5F375A86
+#define Q_CARMACK_NUMBER 0x5F3759DF
+#define Q_LOMONT_NUMBER	 0x5F375A86
 
 #endif /* __Q_constants_numbers_H__ */
