@@ -43,7 +43,40 @@ Released under the terms of the GNU General Public License v3. */
 		    |----+----+----+----+----+----+----+----+----+----+----+----+----+----|
 		    |90  |91  |92  |93	|94  |95  |96  |97  |98  |99  |100 |101 |102 |103 |
 	Actinides   | Th | Pa | U  | Np | Pu | Am | Cm | Bk | Cf | Es | Fm | Md | No | Lr |
-		    '--------------------------------------------------------------------*/
+		    '---------------------------------------------------------------------'
+
+ ___________________________________________________________________________
+/\									    \
+\_| Atomic Structure		       Bulk physical properties		     |
+  | -----------------------	       ------------------------		     |
+  | Atomic mass:	 u    	       Density:		  		     |
+  | Atomic radius:	 pm	       Density (liquid):  		     |
+  | Covalent radius:	 pm	       Molar volume:	  		     |
+  | Van de Walls radius: pm 	       Brinell hardness: MPa		     |
+  |				       Vickers hardness: MPa		     |
+  | Nuclear properties		       Bulk modulus:	 GPa		     |
+  | ------------------------	       Shear modulus:	 GPa		     |
+  | Neutron cross section: b	       Young's modulus:  GPa		     |
+  |				       Sound speed:	 m/s		     |
+  | Reactivity								     |
+  | --------------------------------   Electrical properties		     |
+  | Electronegativity: Pauling scale   ----------------------------	     |
+  | Electron affinity: kJ/mol	       Electrical conductivity: S/m	     |
+  |				       Electrical resistivity:	Ω·m	     |
+  | Thermal properties		       Superconducting point:	K	     |
+  | ------------------------------					     |
+  | Melting point:	  °C	       Magnetic properties		     |
+  | Boiling point:	  °C	       ------------------------------------- |
+  | Critical pressure:	  MPa	       Mass magnetic susceptibility:  m³/kg  |
+  | Critical temperature: K	       Molar magnetic susceptibility: m³/mol |
+  | Fusion Heat:	  kJ/mol					     |
+  | Vaporization heat:	  kJ/mol					     |
+  | Specific heat:	  J/(kg·K)					     |
+  | Neel point:		  K						     |
+  | Thermal conductivity: W/(m·K)					     |
+  | Thermal expansion:	  K⁻¹						     |
+  |   _______________________________________________________________________|_
+   \_/_______________________________________________________________________*/
 
 /* MARK: - 1 - H */
 
