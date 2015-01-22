@@ -9,7 +9,6 @@ Released under the terms of the GNU General Public License v3. */
 #ifndef __Q_functions_base_value_H__
 #define __Q_functions_base_value_H__
 
-#include <Q/types/base.h>
 #include <Q/macros/value.h>
 
 
