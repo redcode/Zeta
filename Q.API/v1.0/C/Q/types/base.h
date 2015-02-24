@@ -15,7 +15,7 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/macros/structure.h>
 #include <Q/constants/base.h>
 
-/* MARK: - Fixed width integer types */
+/* MARK: - Fixed width natural types */
 
 typedef Q_DATA_MODEL_TYPE(UINT8)		quint8;
 typedef struct {quint8 x, y;}			Q2DUInt8;
@@ -34,24 +34,6 @@ typedef struct {quint8 x, y, z, w;}		Q4DUInt8;
 #define Q_UINT8_NAME				UINT8
 #define Q_UINT8_Name				UInt8
 #define Q_UINT8_name				uint8
-
-typedef Q_DATA_MODEL_TYPE(INT8)			qint8;
-typedef struct {qint8 x, y;}			Q2DInt8;
-typedef struct {qint8 x, y, z;}			Q3DInt8;
-typedef struct {qint8 x, y, z, w;}		Q4DInt8;
-#define Q_INT8					Q_DATA_MODEL_LITERAL  (INT8)
-#define Q_INT8_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT8)
-#define Q_INT8_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT8)
-#define Q_INT8_FIXED_TYPE			Q_VALUE_TYPE_INT8
-#define Q_INT8_TYPE				Q_VALUE_TYPE_INT8
-#define Q_INT8_FORMAT				Q_VALUE_FORMAT_8BIT_INTEGER
-#define Q_INT8_BITS				8
-#define Q_INT8_SIZE				1
-#define Q_INT8_MINIMUM				(-128)
-#define Q_INT8_MAXIMUM				127
-#define Q_INT8_NAME				INT8
-#define Q_INT8_Name				Int8
-#define Q_INT8_name				int8
 
 typedef Q_DATA_MODEL_TYPE(UINT16)		quint16;
 typedef struct {quint16 x, y;}			Q2DUInt16;
@@ -72,25 +54,6 @@ typedef struct {quint16 x, y, z, w;}		Q4DUInt16;
 #define Q_UINT16_Name				UInt16
 #define Q_UINT16_name				uint16
 
-typedef Q_DATA_MODEL_TYPE(INT16)		qint16;
-typedef struct {qint16 x, y;}			Q2DInt16;
-typedef struct {qint16 x, y, z;}		Q3DInt16;
-typedef struct {qint16 x, y, z, w;}		Q4DInt16;
-#define Q_INT16					Q_DATA_MODEL_LITERAL  (INT16)
-#define Q_INT16_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT16)
-#define Q_INT16_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT16)
-#define Q_INT16_FIXED_TYPE			Q_VALUE_TYPE_INT16
-#define Q_INT16_TYPE				Q_VALUE_TYPE_INT16
-#define Q_INT16_FORMAT				Q_VALUE_FORMAT_16BIT_INTEGER
-#define Q_INT16_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(16BIT)
-#define Q_INT16_BITS				16
-#define Q_INT16_SIZE				2
-#define Q_INT16_MINIMUM				(-32768)
-#define Q_INT16_MAXIMUM				32767
-#define Q_INT16_NAME				INT16
-#define Q_INT16_Name				Int16
-#define Q_INT16_name				int16
-
 typedef Q_DATA_MODEL_TYPE(UINT32)		quint32;
 typedef struct {quint32 x, y;}			Q2DUInt32;
 typedef struct {quint32 x, y, z;}		Q3DUInt32;
@@ -110,25 +73,6 @@ typedef struct {quint32 x, y, z, w;}		Q4DUInt32;
 #define Q_UINT32_Name				UInt32
 #define Q_UINT32_name				uint32
 
-typedef Q_DATA_MODEL_TYPE(INT32)		qint32;
-typedef struct {qint32 x, y;}			Q2DInt32;
-typedef struct {qint32 x, y, z;}		Q3DInt32;
-typedef struct {qint32 x, y, z, w;}		Q4DInt32;
-#define Q_INT32					Q_DATA_MODEL_LITERAL  (INT32)
-#define Q_INT32_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT32)
-#define Q_INT32_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT32)
-#define Q_INT32_FIXED_TYPE			Q_VALUE_TYPE_INT32
-#define Q_INT32_TYPE				Q_VALUE_TYPE_INT32
-#define Q_INT32_FORMAT				Q_VALUE_FORMAT_32BIT_INTEGER
-#define Q_INT32_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(32BIT)
-#define Q_INT32_BITS				32
-#define Q_INT32_SIZE				4
-#define Q_INT32_MINIMUM				Q_INT32(-2147483648)
-#define	Q_INT32_MAXIMUM				Q_INT32( 2147483647)
-#define Q_INT32_NAME				INT32
-#define Q_INT32_Name				Int32
-#define Q_INT32_name				int32
-
 typedef Q_DATA_MODEL_TYPE(UINT64)		quint64;
 typedef struct {quint64 x, y;}			Q2DUInt64;
 typedef struct {quint64 x, y, z;}		Q3DUInt64;
@@ -147,25 +91,6 @@ typedef struct {quint64 x, y, z, w;}		Q4DUInt64;
 #define Q_UINT64_NAME				UINT64
 #define Q_UINT64_Name				UInt64
 #define Q_UINT64_name				uint64
-
-typedef Q_DATA_MODEL_TYPE(INT64)		qint64;
-typedef struct {qint64 x, y;}			Q2DInt64;
-typedef struct {qint64 x, y, z;}		Q3DInt64;
-typedef struct {qint64 x, y, z, w;}		Q4DInt64;
-#define Q_INT64					Q_DATA_MODEL_LITERAL  (INT64)
-#define Q_INT64_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT64)
-#define Q_INT64_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT64)
-#define Q_INT64_TYPE				Q_VALUE_TYPE_INT64
-#define Q_INT64_FIXED_TYPE			Q_VALUE_TYPE_INT64
-#define Q_INT64_FORMAT				Q_VALUE_FORMAT_64BIT_INTEGER
-#define Q_INT64_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(64BIT)
-#define Q_INT64_BITS				64
-#define Q_INT64_SIZE				8
-#define Q_INT64_MAXIMUM				Q_INT64(9223372036854775807)
-#define Q_INT64_MINIMUM				(-Q_INT64_MAXIMUM - Q_INT64(1))
-#define Q_INT64_NAME				INT64
-#define Q_INT64_Name				Int64
-#define Q_INT64_name				int64
 
 #if Q_CPU_HAS(128BIT_ARITHMETIC) && Q_COMPILER_HAS_TYPE(INT128)
 
@@ -199,6 +124,96 @@ typedef struct {qint64 x, y, z, w;}		Q4DInt64;
 
 #endif
 
+#define Q_UINTX_LITERAL(   BITS)		Q_PREFIX_Q_UINT(BITS)
+#define Q_UINTX_SUFFIX(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _SUFFIX	  ))
+#define Q_UINTX_BASE_TYPE( BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _BASE_TYPE ))
+#define Q_UINTX_TYPE(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _TYPE	  ))
+#define Q_UINTX_FORMAT(    BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _FORMAT    ))
+#define Q_UINTX_ENDIANNESS(BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _ENDIANNESS))
+#define Q_UINTX_SIZE(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _SIZE	  ))
+#define Q_UINTX_MINIMUM(   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _MINIMUM   ))
+#define Q_UINTX_MAXIMUM(   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _MAXIMUM   ))
+#define Q_UINTX_NAME(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _NAME	  ))
+#define Q_UINTX_Name(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _Name	  ))
+#define Q_UINTX_name(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _name	  ))
+
+/* MARK: - Fixed width integer types */
+
+typedef Q_DATA_MODEL_TYPE(INT8)			qint8;
+typedef struct {qint8 x, y;}			Q2DInt8;
+typedef struct {qint8 x, y, z;}			Q3DInt8;
+typedef struct {qint8 x, y, z, w;}		Q4DInt8;
+#define Q_INT8					Q_DATA_MODEL_LITERAL  (INT8)
+#define Q_INT8_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT8)
+#define Q_INT8_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT8)
+#define Q_INT8_FIXED_TYPE			Q_VALUE_TYPE_INT8
+#define Q_INT8_TYPE				Q_VALUE_TYPE_INT8
+#define Q_INT8_FORMAT				Q_VALUE_FORMAT_8BIT_INTEGER
+#define Q_INT8_BITS				8
+#define Q_INT8_SIZE				1
+#define Q_INT8_MINIMUM				(-128)
+#define Q_INT8_MAXIMUM				127
+#define Q_INT8_NAME				INT8
+#define Q_INT8_Name				Int8
+#define Q_INT8_name				int8
+
+typedef Q_DATA_MODEL_TYPE(INT16)		qint16;
+typedef struct {qint16 x, y;}			Q2DInt16;
+typedef struct {qint16 x, y, z;}		Q3DInt16;
+typedef struct {qint16 x, y, z, w;}		Q4DInt16;
+#define Q_INT16					Q_DATA_MODEL_LITERAL  (INT16)
+#define Q_INT16_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT16)
+#define Q_INT16_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT16)
+#define Q_INT16_FIXED_TYPE			Q_VALUE_TYPE_INT16
+#define Q_INT16_TYPE				Q_VALUE_TYPE_INT16
+#define Q_INT16_FORMAT				Q_VALUE_FORMAT_16BIT_INTEGER
+#define Q_INT16_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(16BIT)
+#define Q_INT16_BITS				16
+#define Q_INT16_SIZE				2
+#define Q_INT16_MINIMUM				(-32768)
+#define Q_INT16_MAXIMUM				32767
+#define Q_INT16_NAME				INT16
+#define Q_INT16_Name				Int16
+#define Q_INT16_name				int16
+
+typedef Q_DATA_MODEL_TYPE(INT32)		qint32;
+typedef struct {qint32 x, y;}			Q2DInt32;
+typedef struct {qint32 x, y, z;}		Q3DInt32;
+typedef struct {qint32 x, y, z, w;}		Q4DInt32;
+#define Q_INT32					Q_DATA_MODEL_LITERAL  (INT32)
+#define Q_INT32_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT32)
+#define Q_INT32_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT32)
+#define Q_INT32_FIXED_TYPE			Q_VALUE_TYPE_INT32
+#define Q_INT32_TYPE				Q_VALUE_TYPE_INT32
+#define Q_INT32_FORMAT				Q_VALUE_FORMAT_32BIT_INTEGER
+#define Q_INT32_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(32BIT)
+#define Q_INT32_BITS				32
+#define Q_INT32_SIZE				4
+#define Q_INT32_MINIMUM				Q_INT32(-2147483648)
+#define	Q_INT32_MAXIMUM				Q_INT32( 2147483647)
+#define Q_INT32_NAME				INT32
+#define Q_INT32_Name				Int32
+#define Q_INT32_name				int32
+
+typedef Q_DATA_MODEL_TYPE(INT64)		qint64;
+typedef struct {qint64 x, y;}			Q2DInt64;
+typedef struct {qint64 x, y, z;}		Q3DInt64;
+typedef struct {qint64 x, y, z, w;}		Q4DInt64;
+#define Q_INT64					Q_DATA_MODEL_LITERAL  (INT64)
+#define Q_INT64_SUFFIX				Q_DATA_MODEL_SUFFIX   (INT64)
+#define Q_INT64_BASE_TYPE			Q_DATA_MODEL_BASE_TYPE(INT64)
+#define Q_INT64_TYPE				Q_VALUE_TYPE_INT64
+#define Q_INT64_FIXED_TYPE			Q_VALUE_TYPE_INT64
+#define Q_INT64_FORMAT				Q_VALUE_FORMAT_64BIT_INTEGER
+#define Q_INT64_ENDIANNESS			Q_CPU_INTEGER_ENDIANNESS(64BIT)
+#define Q_INT64_BITS				64
+#define Q_INT64_SIZE				8
+#define Q_INT64_MAXIMUM				Q_INT64(9223372036854775807)
+#define Q_INT64_MINIMUM				(-Q_INT64_MAXIMUM - Q_INT64(1))
+#define Q_INT64_NAME				INT64
+#define Q_INT64_Name				Int64
+#define Q_INT64_name				int64
+
 #if Q_CPU_HAS(128BIT_ARITHMETIC) && Q_COMPILER_HAS_TYPE(UINT128)
 
 	typedef Q_COMPILER_TYPE(UINT128)	quint128;
@@ -230,19 +245,6 @@ typedef struct {qint64 x, y, z, w;}		Q4DInt64;
 
 #endif
 
-#define Q_UINTX_LITERAL(   BITS)		Q_PREFIX_Q_UINT(BITS)
-#define Q_UINTX_SUFFIX(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _SUFFIX	  ))
-#define Q_UINTX_BASE_TYPE( BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _BASE_TYPE ))
-#define Q_UINTX_TYPE(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _TYPE	  ))
-#define Q_UINTX_FORMAT(    BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _FORMAT    ))
-#define Q_UINTX_ENDIANNESS(BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _ENDIANNESS))
-#define Q_UINTX_SIZE(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _SIZE	  ))
-#define Q_UINTX_MINIMUM(   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _MINIMUM   ))
-#define Q_UINTX_MAXIMUM(   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _MAXIMUM   ))
-#define Q_UINTX_NAME(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _NAME	  ))
-#define Q_UINTX_Name(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _Name	  ))
-#define Q_UINTX_name(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _name	  ))
-
 #define Q_INTX_LITERAL(   BITS)			Q_PREFIX_Q_INT(BITS)
 #define Q_INTX_SUFFIX(	  BITS)			Q_PREFIX_Q_INT(Q_JOIN_2(BITS, _SUFFIX	 ))
 #define Q_INTX_BASE_TYPE( BITS)			Q_PREFIX_Q_INT(Q_JOIN_2(BITS, _BASE_TYPE ))
@@ -256,7 +258,7 @@ typedef struct {qint64 x, y, z, w;}		Q4DInt64;
 #define Q_INTX_Name(	  BITS)			Q_PREFIX_Q_INT(Q_JOIN_2(BITS, _Name	 ))
 #define Q_INTX_name(	  BITS)			Q_PREFIX_Q_INT(Q_JOIN_2(BITS, _name	 ))
 
-/* MARK: - Base integer types */
+/* MARK: - Base natural types */
 
 #define Q_UCHAR_BITS				Q_DATA_MODEL_BITS(CHAR)
 
@@ -279,28 +281,6 @@ typedef Q_JOIN_2(Q4DUInt, Q_UCHAR_BITS)		Q4DUChar;
 #define Q_UCHAR_NAME				UCHAR
 #define Q_UCHAR_Name				UChar
 #define Q_UCHAR_name				uchar
-
-#define Q_CHAR_BITS				Q_DATA_MODEL_BITS(CHAR)
-
-typedef signed char				qchar;
-typedef Q_JOIN_2(Q2DInt, Q_CHAR_BITS)		Q2DChar;
-typedef Q_JOIN_2(Q3DInt, Q_CHAR_BITS)		Q3DChar;
-typedef Q_JOIN_2(Q4DInt, Q_CHAR_BITS)		Q4DChar;
-#define Q_CHAR					Q_SAME
-#define Q_CHAR_SUFFIX
-#define Q_CHAR_BASE_TYPE			Q_VALUE_TYPE_CHAR
-#define Q_CHAR_FIXED_TYPE			Q_INTX_TYPE   (Q_CHAR_BITS)
-#define Q_CHAR_TYPE				Q_VALUE_TYPE_CHAR
-#define Q_CHAR_FORMAT				Q_INTX_FORMAT (Q_CHAR_BITS)
-#define Q_CHAR_SIZE				Q_INTX_SIZE   (Q_CHAR_BITS)
-#define Q_CHAR_MINIMUM				Q_INTX_MINIMUM(Q_CHAR_BITS)
-#define Q_CHAR_MAXIMUM				Q_INTX_MAXIMUM(Q_CHAR_BITS)
-#define Q_CHAR_FIXED_TYPE_NAME			Q_INTX_NAME   (Q_CHAR_BITS)
-#define Q_CHAR_FIXED_TYPE_Name			Q_INTX_Name   (Q_CHAR_BITS)
-#define Q_CHAR_FIXED_TYPE_name			Q_INTX_name   (Q_CHAR_BITS)
-#define Q_CHAR_NAME				UCHAR
-#define Q_CHAR_Name				UChar
-#define Q_CHAR_name				uchar
 
 #define Q_USHORT_BITS				Q_DATA_MODEL_BITS(SHORT)
 
@@ -325,29 +305,6 @@ typedef Q_JOIN_2(Q4DUInt, Q_USHORT_BITS)	Q4DUShort;
 #define Q_USHORT_Name				UShort
 #define Q_USHORT_name				ushort
 
-#define Q_SHORT_BITS				Q_DATA_MODEL_BITS(SHORT)
-
-typedef signed short int			qshort;
-typedef Q_JOIN_2(Q2DInt, Q_SHORT_BITS)		Q2DShort;
-typedef Q_JOIN_2(Q3DInt, Q_SHORT_BITS)		Q3DShort;
-typedef Q_JOIN_2(Q4DInt, Q_SHORT_BITS)		Q4DShort;
-#define Q_SHORT					Q_SAME
-#define Q_SHORT_SUFFIX
-#define Q_SHORT_BASE_TYPE			Q_VALUE_TYPE_SHORT
-#define Q_SHORT_FIXED_TYPE			Q_INTX_TYPE	 (Q_SHORT_BITS)
-#define Q_SHORT_TYPE				Q_VALUE_TYPE_SHORT
-#define Q_SHORT_FORMAT				Q_INTX_FORMAT	 (Q_SHORT_BITS)
-#define Q_SHORT_ENDIANNESS			Q_INTX_ENDIANNESS(Q_SHORT_BITS)
-#define Q_SHORT_SIZE				Q_INTX_SIZE	 (Q_SHORT_BITS)
-#define Q_SHORT_MINIMUM				Q_INTX_MINIMUM	 (Q_SHORT_BITS)
-#define Q_SHORT_MAXIMUM				Q_INTX_MAXIMUM	 (Q_SHORT_BITS)
-#define Q_SHORT_FIXED_TYPE_NAME			Q_INTX_NAME	 (Q_SHORT_BITS)
-#define Q_SHORT_FIXED_TYPE_Name			Q_INTX_Name	 (Q_SHORT_BITS)
-#define Q_SHORT_FIXED_TYPE_name			Q_INTX_name	 (Q_SHORT_BITS)
-#define Q_SHORT_NAME				USHORT
-#define Q_SHORT_Name				UShort
-#define Q_SHORT_name				ushort
-
 #define Q_UINT_BITS				Q_DATA_MODEL_BITS(INT)
 
 typedef unsigned int				quint;
@@ -370,29 +327,6 @@ typedef Q_JOIN_2(Q4DUInt, Q_UINT_BITS)		Q4DUInt;
 #define Q_UINT_NAME				UINT
 #define Q_UINT_Name				UInt
 #define Q_UINT_name				uint
-
-#define Q_INT_BITS				Q_DATA_MODEL_BITS(INT)
-
-typedef signed int				qint;
-typedef Q_JOIN_2(Q2DInt, Q_INT_BITS)		Q2DInt;
-typedef Q_JOIN_2(Q3DInt, Q_INT_BITS)		Q3DInt;
-typedef Q_JOIN_2(Q4DInt, Q_INT_BITS)		Q4DInt;
-#define Q_INT					Q_SAME
-#define Q_INT_SUFFIX
-#define Q_INT_BASE_TYPE				Q_VALUE_TYPE_INT
-#define Q_INT_FIXED_TYPE			Q_INTX_TYPE	 (Q_INT_BITS)
-#define Q_INT_TYPE				Q_VALUE_TYPE_INT
-#define Q_INT_FORMAT				Q_INTX_FORMAT	 (Q_INT_BITS)
-#define Q_INT_ENDIANNESS			Q_INTX_ENDIANNESS(Q_INT_BITS)
-#define Q_INT_SIZE				Q_INTX_SIZE	 (Q_INT_BITS)
-#define Q_INT_MINIMUM				Q_INTX_MINIMUM	 (Q_INT_BITS)
-#define Q_INT_MAXIMUM				Q_INTX_MAXIMUM	 (Q_INT_BITS)
-#define Q_INT_FIXED_TYPE_NAME			Q_INTX_NAME	 (Q_INT_BITS)
-#define Q_INT_FIXED_TYPE_Name			Q_INTX_Name	 (Q_INT_BITS)
-#define Q_INT_FIXED_TYPE_name			Q_INTX_name	 (Q_INT_BITS)
-#define Q_INT_NAME				UINT
-#define Q_INT_Name				UInt
-#define Q_INT_name				uint
 
 #define Q_ULONG_BITS				Q_DATA_MODEL_BITS(LONG)
 
@@ -417,29 +351,6 @@ typedef Q_JOIN_2(Q4DUInt, Q_ULONG_BITS)		Q4DULong;
 #define Q_ULONG_Name				ULong
 #define Q_ULONG_name				ulong
 
-#define Q_LONG_BITS				Q_DATA_MODEL_BITS(LONG)
-
-typedef signed long int				qlong;
-typedef Q_JOIN_2(Q2DInt, Q_LONG_BITS)		Q2DLong;
-typedef Q_JOIN_2(Q3DInt, Q_LONG_BITS)		Q3DLong;
-typedef Q_JOIN_2(Q4DInt, Q_LONG_BITS)		Q4DLong;
-#define Q_LONG					Q_SUFFIX_L
-#define Q_LONG_SUFFIX				L
-#define Q_LONG_BASE_TYPE			Q_VALUE_TYPE_LONG
-#define Q_LONG_FIXED_TYPE			Q_INTX_TYPE	 (Q_LONG_BITS)
-#define Q_LONG_TYPE				Q_VALUE_TYPE_LONG
-#define Q_LONG_FORMAT				Q_INTX_FORMAT	 (Q_LONG_BITS)
-#define Q_LONG_ENDIANNESS			Q_INTX_ENDIANNESS(Q_LONG_BITS)
-#define Q_LONG_SIZE				Q_INTX_SIZE	 (Q_LONG_BITS)
-#define Q_LONG_MINIMUM				Q_INTX_MINIMUM	 (Q_LONG_BITS)
-#define Q_LONG_MAXIMUM				Q_INTX_MAXIMUM	 (Q_LONG_BITS)
-#define Q_LONG_FIXED_TYPE_NAME			Q_INTX_NAME	 (Q_LONG_BITS)
-#define Q_LONG_FIXED_TYPE_Name			Q_INTX_Name	 (Q_LONG_BITS)
-#define Q_LONG_FIXED_TYPE_name			Q_INTX_name	 (Q_LONG_BITS)
-#define Q_LONG_NAME				ULONG
-#define Q_LONG_Name				ULong
-#define Q_LONG_name				ulong
-
 #define Q_ULLONG_BITS				Q_DATA_MODEL_BITS(LLONG)
 
 typedef unsigned long long int			qullong;
@@ -462,6 +373,99 @@ typedef Q_JOIN_2(Q4DUInt, Q_ULLONG_BITS)	Q4DULLong;
 #define Q_ULLONG_NAME				ULLONG
 #define Q_ULLONG_Name				ULLong
 #define Q_ULLONG_name				ullong
+
+/* MARK: - Base integer types */
+
+#define Q_CHAR_BITS				Q_DATA_MODEL_BITS(CHAR)
+
+typedef signed char				qchar;
+typedef Q_JOIN_2(Q2DInt, Q_CHAR_BITS)		Q2DChar;
+typedef Q_JOIN_2(Q3DInt, Q_CHAR_BITS)		Q3DChar;
+typedef Q_JOIN_2(Q4DInt, Q_CHAR_BITS)		Q4DChar;
+#define Q_CHAR					Q_SAME
+#define Q_CHAR_SUFFIX
+#define Q_CHAR_BASE_TYPE			Q_VALUE_TYPE_CHAR
+#define Q_CHAR_FIXED_TYPE			Q_INTX_TYPE   (Q_CHAR_BITS)
+#define Q_CHAR_TYPE				Q_VALUE_TYPE_CHAR
+#define Q_CHAR_FORMAT				Q_INTX_FORMAT (Q_CHAR_BITS)
+#define Q_CHAR_SIZE				Q_INTX_SIZE   (Q_CHAR_BITS)
+#define Q_CHAR_MINIMUM				Q_INTX_MINIMUM(Q_CHAR_BITS)
+#define Q_CHAR_MAXIMUM				Q_INTX_MAXIMUM(Q_CHAR_BITS)
+#define Q_CHAR_FIXED_TYPE_NAME			Q_INTX_NAME   (Q_CHAR_BITS)
+#define Q_CHAR_FIXED_TYPE_Name			Q_INTX_Name   (Q_CHAR_BITS)
+#define Q_CHAR_FIXED_TYPE_name			Q_INTX_name   (Q_CHAR_BITS)
+#define Q_CHAR_NAME				UCHAR
+#define Q_CHAR_Name				UChar
+#define Q_CHAR_name				uchar
+
+#define Q_SHORT_BITS				Q_DATA_MODEL_BITS(SHORT)
+
+typedef signed short int			qshort;
+typedef Q_JOIN_2(Q2DInt, Q_SHORT_BITS)		Q2DShort;
+typedef Q_JOIN_2(Q3DInt, Q_SHORT_BITS)		Q3DShort;
+typedef Q_JOIN_2(Q4DInt, Q_SHORT_BITS)		Q4DShort;
+#define Q_SHORT					Q_SAME
+#define Q_SHORT_SUFFIX
+#define Q_SHORT_BASE_TYPE			Q_VALUE_TYPE_SHORT
+#define Q_SHORT_FIXED_TYPE			Q_INTX_TYPE	 (Q_SHORT_BITS)
+#define Q_SHORT_TYPE				Q_VALUE_TYPE_SHORT
+#define Q_SHORT_FORMAT				Q_INTX_FORMAT	 (Q_SHORT_BITS)
+#define Q_SHORT_ENDIANNESS			Q_INTX_ENDIANNESS(Q_SHORT_BITS)
+#define Q_SHORT_SIZE				Q_INTX_SIZE	 (Q_SHORT_BITS)
+#define Q_SHORT_MINIMUM				Q_INTX_MINIMUM	 (Q_SHORT_BITS)
+#define Q_SHORT_MAXIMUM				Q_INTX_MAXIMUM	 (Q_SHORT_BITS)
+#define Q_SHORT_FIXED_TYPE_NAME			Q_INTX_NAME	 (Q_SHORT_BITS)
+#define Q_SHORT_FIXED_TYPE_Name			Q_INTX_Name	 (Q_SHORT_BITS)
+#define Q_SHORT_FIXED_TYPE_name			Q_INTX_name	 (Q_SHORT_BITS)
+#define Q_SHORT_NAME				USHORT
+#define Q_SHORT_Name				UShort
+#define Q_SHORT_name				ushort
+
+#define Q_INT_BITS				Q_DATA_MODEL_BITS(INT)
+
+typedef signed int				qint;
+typedef Q_JOIN_2(Q2DInt, Q_INT_BITS)		Q2DInt;
+typedef Q_JOIN_2(Q3DInt, Q_INT_BITS)		Q3DInt;
+typedef Q_JOIN_2(Q4DInt, Q_INT_BITS)		Q4DInt;
+#define Q_INT					Q_SAME
+#define Q_INT_SUFFIX
+#define Q_INT_BASE_TYPE				Q_VALUE_TYPE_INT
+#define Q_INT_FIXED_TYPE			Q_INTX_TYPE	 (Q_INT_BITS)
+#define Q_INT_TYPE				Q_VALUE_TYPE_INT
+#define Q_INT_FORMAT				Q_INTX_FORMAT	 (Q_INT_BITS)
+#define Q_INT_ENDIANNESS			Q_INTX_ENDIANNESS(Q_INT_BITS)
+#define Q_INT_SIZE				Q_INTX_SIZE	 (Q_INT_BITS)
+#define Q_INT_MINIMUM				Q_INTX_MINIMUM	 (Q_INT_BITS)
+#define Q_INT_MAXIMUM				Q_INTX_MAXIMUM	 (Q_INT_BITS)
+#define Q_INT_FIXED_TYPE_NAME			Q_INTX_NAME	 (Q_INT_BITS)
+#define Q_INT_FIXED_TYPE_Name			Q_INTX_Name	 (Q_INT_BITS)
+#define Q_INT_FIXED_TYPE_name			Q_INTX_name	 (Q_INT_BITS)
+#define Q_INT_NAME				UINT
+#define Q_INT_Name				UInt
+#define Q_INT_name				uint
+
+#define Q_LONG_BITS				Q_DATA_MODEL_BITS(LONG)
+
+typedef signed long int				qlong;
+typedef Q_JOIN_2(Q2DInt, Q_LONG_BITS)		Q2DLong;
+typedef Q_JOIN_2(Q3DInt, Q_LONG_BITS)		Q3DLong;
+typedef Q_JOIN_2(Q4DInt, Q_LONG_BITS)		Q4DLong;
+#define Q_LONG					Q_SUFFIX_L
+#define Q_LONG_SUFFIX				L
+#define Q_LONG_BASE_TYPE			Q_VALUE_TYPE_LONG
+#define Q_LONG_FIXED_TYPE			Q_INTX_TYPE	 (Q_LONG_BITS)
+#define Q_LONG_TYPE				Q_VALUE_TYPE_LONG
+#define Q_LONG_FORMAT				Q_INTX_FORMAT	 (Q_LONG_BITS)
+#define Q_LONG_ENDIANNESS			Q_INTX_ENDIANNESS(Q_LONG_BITS)
+#define Q_LONG_SIZE				Q_INTX_SIZE	 (Q_LONG_BITS)
+#define Q_LONG_MINIMUM				Q_INTX_MINIMUM	 (Q_LONG_BITS)
+#define Q_LONG_MAXIMUM				Q_INTX_MAXIMUM	 (Q_LONG_BITS)
+#define Q_LONG_FIXED_TYPE_NAME			Q_INTX_NAME	 (Q_LONG_BITS)
+#define Q_LONG_FIXED_TYPE_Name			Q_INTX_Name	 (Q_LONG_BITS)
+#define Q_LONG_FIXED_TYPE_name			Q_INTX_name	 (Q_LONG_BITS)
+#define Q_LONG_NAME				ULONG
+#define Q_LONG_Name				ULong
+#define Q_LONG_name				ulong
 
 #define Q_LLONG_BITS				Q_DATA_MODEL_BITS(LLONG)
 
@@ -740,7 +744,7 @@ typedef Q_JOIN_2(Q4DInt, Q_INTPTR_BITS)		Q4DIntPtr;
 #define Q_INTPTR_Name				UIntPtr
 #define Q_INTPTR_name				uintptr
 
-/* MARK: - CPU top integer types */
+/* MARK: - CPU top natural and integer types */
 
 #if Q_CPU(MAXIMUM_COPY_BITS) == 128 && Q_IS_AVAILABLE(UINT128)
 #	define Q_UINTTOP_BITS			128
@@ -804,7 +808,7 @@ typedef Q_JOIN_2(Q4DInt, Q_INTTOP_BITS)		Q4DIntTop;
 #define Q_INTTOP_Name				UIntTop
 #define Q_INTTOP_name				uinttop
 
-/* MARK: - Maximun integer types */
+/* MARK: - Maximun natural and integer types */
 
 #if Q_IS_AVAILABLE(UINT128)
 #	define Q_UINTMAX_BITS			128
@@ -1479,7 +1483,7 @@ Q_DEFINE_STRICT_UNION (
 
 #endif
 
-/* MARK: - Range type */
+/* MARK: - Range types */
 
 typedef struct {qsize index, size;} QRange;
 
@@ -1708,10 +1712,12 @@ typedef struct {
 #define Q_2D_UINT16( p) ((Q2DUInt16  *)(p))
 #define Q_2D_UINT32( p) ((Q2DUInt32  *)(p))
 #define Q_2D_UINT64( p) ((Q2DUInt64  *)(p))
+#define Q_2D_UINT128(p) ((Q2DUInt128 *)(p))
 #define Q_2D_INT8(   p) ((Q2DInt8    *)(p))
 #define Q_2D_INT16(  p) ((Q2DInt16   *)(p))
 #define Q_2D_INT32(  p) ((Q2DInt32   *)(p))
 #define Q_2D_INT64(  p) ((Q2DInt64   *)(p))
+#define Q_2D_INT128( p) ((Q2DInt128  *)(p))
 #define Q_2D_SIZE(   p) ((Q2DSize    *)(p))
 #define Q_2D_UINTPTR(p) ((Q2DUIntPtr *)(p))
 #define Q_2D_UINTTOP(p) ((Q2DUIntTop *)(p))
@@ -1797,6 +1803,7 @@ typedef struct {
 #define Q_16BIT(     p) ((Q16Bit     *)(p))
 #define Q_32BIT(     p) ((Q32Bit     *)(p))
 #define Q_64BIT(     p) ((Q64Bit     *)(p))
+#define Q_128BIT(    p) ((Q128Bit    *)(p))
 #define Q_RANGE(     p) ((QRange     *)(p))
 
 #define Q_BASE_AND_INDEX(	    p) ((QBaseAndIndex		 *)(p))

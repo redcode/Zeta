@@ -30,7 +30,6 @@ Q_DEFINE_STRICT_STRUCTURE (
 		quint32 subblock_size;
 		quint8	samples[];
 	} data;
-
 ) QMicrosoftWave;
 
 #define Q_MICROSOFT_WAVE(p) ((QMicrosoftWare *)(p))
