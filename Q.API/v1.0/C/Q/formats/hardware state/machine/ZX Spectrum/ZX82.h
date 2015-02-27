@@ -60,25 +60,14 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 program_size;
 ) QZX82Header;
 
-Q_DEFINE_STRICT_STRUCTURE (
-	quint8 border_color;
-	quint8 im; /* (0 = use I register, 1 = IM 1 and 2 = IM 2) ??? */
-	Q16Bit iy;
-	Q16Bit ix;
-	Q16Bit de;
-	Q16Bit bc;
-	Q16Bit hl;
-	Q16Bit af;
-	Q16Bit de_;
-	Q16Bit bc_;
-	Q16Bit hl_;
-	Q16Bit af_;
-	Q16Bit sp;
-	Q16Bit i;
-	Q16Bit r;
+Q_DEFINE_STRICT_STRUCTURE_BEGIN
+	quint8 border_color, im; /* (0 = use I register, 1 = IM 1 and 2 = IM 2) ??? */
+	Q16Bit iy,  ix;
+	Q16Bit de,  bc,  hl,  af;
+	Q16Bit de_, bc_, hl_, af_, sp;
+	Q16Bit i, r;
 	Q16Bit pc;
-	Q16Bit hl;
-) QZX82SnapshotHeader;
+Q_DEFINE_STRICT_STRUCTURE_END QZX82SnapshotHeader;
 
 #define Q_ZX82_HEADER(	       p) ((QZX82Header		*)(p))
 #define Q_ZX82_EXTENDED_HEADER(p) ((QZX82ExtendedHeader *)(p))

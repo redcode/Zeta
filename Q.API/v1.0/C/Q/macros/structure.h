@@ -51,7 +51,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #	define Q_STRICT_UNION(members)					\
 		Q_BEGIN_STRICT_SIZE					\
-		union {__VA_ARGS__}					\
+		union {members}						\
 		Q_END_STRICT_SIZE
 
 #	define Q_DEFINE_STRICT_STRUCTURE(members)			\

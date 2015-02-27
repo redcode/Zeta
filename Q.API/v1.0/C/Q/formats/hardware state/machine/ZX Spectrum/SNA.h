@@ -52,7 +52,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_SNA_IM_1 1
 #define Q_SNA_IM_2 2
 
-Q_DEFINE_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	quint8	i;
 	Q16Bit	hl_, de_, bc_, af_;
 	Q16Bit	hl, de, bc, iy, ix;
@@ -71,7 +71,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	im;
 	quint8	border_color;
 	quint8	ram[1024 * 48];	/* RAM dump [16384-65535] */
-) QSNAv48K;
+Q_DEFINE_STRICT_STRUCTURE_END QSNAv48K;
 
 /* MARK: - v128K
 .-------------------------------------------------------------------------.
@@ -94,7 +94,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 | followed by banks 0, 1, 3, 4, 6 and 7.  "				  |
 '------------------------------------------------------------------------*/
 
-Q_DEFINE_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	quint8	i;
 	Q16Bit	hl_, de_, bc_, af_;
 	Q16Bit	hl, de, bc, iy, ix;
@@ -119,7 +119,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	port_7ffd_value;
 	quint8	tr_dos_rom_paged; /* boolean */
 	quint8	remaining_ram_banks[1024 * 16 * 6];
-) QSNAv128K;
+Q_DEFINE_STRICT_STRUCTURE_END QSNAv128K;
 
 /* MARK: - Casts */
 

@@ -19,7 +19,7 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/types/base.h>
 
-Q_DEFINE_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	quint8	a,	      zero01[ 3];
 	quint8	f,	      zero02[ 3];
 	quint8	b,	      zero03[ 3];
@@ -41,7 +41,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	Q16Bit	ix,	      zero17;
 	Q16Bit	iy,	      zero18;
 	quint8	memory[1024 * 64]; /* Complete ZX Spectrum 48K memory */
-) QACH;
+Q_DEFINE_STRICT_STRUCTURE_END QACH;
 
 #define Q_ACH(p) ((QACH *)(p))
 

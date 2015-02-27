@@ -19,7 +19,7 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/types/base.h>
 
-Q_DEFINE_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	quint8	signature_size;	/* 5 */
 	quint8	signature[5];	/* 'SPEC1' */
 	quint8	ram[1024 * 48];
@@ -32,7 +32,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	iff1, zero3;
 	quint8	iff2, zero4;
 	quint8	im,   zero5;
-) QSEMSnapshot;
+Q_DEFINE_STRICT_STRUCTURE_END QSEMSnapshot;
 
 Q_DEFINE_STRICT_STRUCTURE (
 	quint16 address;

@@ -21,7 +21,7 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/types/base.h>
 
-Q_DEFINE_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	quint8	ram[1024 * 48];
 	Q16Bit	af;
 	quint8	border_color;
@@ -34,7 +34,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	im;
 	quint8	r, i;
 	Q16Bit	af_, bc_, de_, hl_;
-) QSNP;
+Q_DEFINE_STRICT_STRUCTURE_END QSNP;
 
 #define Q_SNP(p) ((QSNP *)(p))
 

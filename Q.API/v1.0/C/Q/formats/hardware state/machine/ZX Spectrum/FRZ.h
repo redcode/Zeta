@@ -21,7 +21,7 @@ Released under the terms of the GNU General Public License v3.
 
 #include <Q/types/base.h>
 
-Q_DEFINE_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	quint8	zero1;
 	quint8	port_7ffd_value;
 	Q16Bit	hl_, hl, de_, de, bc_, bc, af_, af;
@@ -34,10 +34,11 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	im;
 	quint8	zero3[3];
 
-	struct {quint8 unused1 :5;
-		quint8 iff1    :1;
-		quint8 unused2 :2;
-	} interrupt;
+	struct {Q_8BIT_FIELD(3) (
+		quint8 unused1 :5,
+		quint8 iff1    :1,
+		quint8 unused2 :2
+	)} interrupt;
 
 	Q16Bit	iy, ix;
 
@@ -50,7 +51,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 		quint8 bank_6[1024 * 16];
 		quint8 bank_7[1024 * 16];
 	} ram;
-) QFRZ;
+Q_DEFINE_STRICT_STRUCTURE_END QFRZ;
 
 #define Q_FRZ(p) ((QFRZ *)(p))
 

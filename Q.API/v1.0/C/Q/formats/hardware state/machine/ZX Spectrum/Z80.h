@@ -12,7 +12,7 @@ Released under the terms of the GNU General Public License v3. */
 #include <Q/types/base.h>
 #include <Q/macros/bit field.h>
 
-Q_DEFINE_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	quint8	a, f;
 	quint16 bc, hl, pc, sp;
 	quint8	i, r;
@@ -38,7 +38,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 		quint8 video_synchronization	:2,
 		quint8 joystick_type		:2
 	)} bitfield2;
-) QZ80v1Header;
+Q_DEFINE_STRICT_STRUCTURE_END QZ80v1Header;
 
 #define Q_Z80_HARDWARE_SAM_RAM				 2
 #define Q_Z80_HARDWARE_PENTAGON_128K			 9

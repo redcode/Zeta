@@ -31,7 +31,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_ZX_IM_1  0
 #define Q_ZX_IM_2  1
 
-Q_DEFINE_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	quint8	rom_tail[132]; /* Last 132 bytes of ROM */
 	quint8	ram[1024 * 48];
 	quint8	zero1[132];
@@ -53,7 +53,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16	halt; /* boolean */
 	qint16	im;
 	quint8	zero9[10];
-) QZX;
+Q_DEFINE_STRICT_STRUCTURE_END QZX;
 
 #define Q_ZX(p) ((QZX *)(p))
 

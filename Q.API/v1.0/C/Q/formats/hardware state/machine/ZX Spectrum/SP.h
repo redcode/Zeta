@@ -38,7 +38,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint16 ram_load_address; /* 1024 * 16 */
 ) QSPHeader;
 
-Q_DEFINE_STRICT_STRUCTURE (
+Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	Q16Bit	bc,  de,  hl,  af,  ix, iy;
 	Q16Bit	bc_, de_, hl_, af_;
 	quint8	r,   i;
@@ -48,17 +48,17 @@ Q_DEFINE_STRICT_STRUCTURE (
 	quint8	zero2; /* reserved for future use */
 
 	struct {Q_8BIT_FIELD(7) (
-		quint8 zero	   :2; /* reserved for internal use */
-		quint8 flash	   :1; /* boolean */
-		quint8 int_pending :1;
-		quint8 im_0	   :1;
-		quint8 iff2	   :1;
-		quint8 im	   :1;
-		quint8 iff1	   :1;
+		quint8 zero	   :2, /* reserved for internal use */
+		quint8 flash	   :1, /* boolean */
+		quint8 int_pending :1,
+		quint8 im_0	   :1,
+		quint8 iff2	   :1,
+		quint8 im	   :1,
+		quint8 iff1	   :1
 	)} status;
 
 	quint8 ram[];
-) QSPBody;
+Q_DEFINE_STRICT_STRUCTURE_END QSPBody;
 
 #define Q_SP_HEADER(p) ((QSPHeader *)(p))
 #define Q_SP_BODY(  p) ((QSPBody   *)(p))
