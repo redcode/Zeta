@@ -1483,7 +1483,7 @@ Q_DEFINE_STRICT_UNION (
 
 #endif
 
-/* MARK: - Range types */
+/* MARK: - Range type */
 
 typedef struct {qsize index, size;} QRange;
 
@@ -1675,24 +1675,6 @@ Q_DEFINE_STRICT_UNION_BEGIN
 #	endif
 Q_DEFINE_STRICT_UNION_END QPointer;
 
-/* MARK: - General purpose types */
-
-typedef struct {
-	void* base;
-	qsize index;
-} QBaseAndIndex;
-
-typedef struct {
-	void* function;
-	void* context;
-} QFunctionAndContext;
-
-typedef struct {
-	void* function;
-	void* context;
-	void* data;
-} QFunctionContextAndData;
-
 /* MARK: - Casts */
 
 #define Q_2D_UCHAR(  p) ((Q2DUChar   *)(p))
@@ -1805,9 +1787,6 @@ typedef struct {
 #define Q_64BIT(     p) ((Q64Bit     *)(p))
 #define Q_128BIT(    p) ((Q128Bit    *)(p))
 #define Q_RANGE(     p) ((QRange     *)(p))
-
-#define Q_BASE_AND_INDEX(	    p) ((QBaseAndIndex		 *)(p))
-#define Q_FUNCTION_AND_CONTEXT(     p) ((QFunctionAndContext	 *)(p))
-#define Q_FUNCTION_CONTEXT_AND_DATA(p) ((QFunctionContextAndData *)(p))
+#define Q_POINTER(   p) ((QPointer   *)(p))
 
 #endif /* __Q_types_base_H__ */
