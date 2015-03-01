@@ -6,10 +6,8 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_formats_floating_point_Intel_H__
-#define __Q_formats_floating_point_Intel_H__
-
-#include <Q/types/base.h>
+#ifndef __Q_formats_floating_point_Intel_Ha__
+#define __Q_formats_floating_point_Intel_Ha__
 
 /* MARK: - Intel Float80 */
 
@@ -32,12 +30,21 @@ Released under the terms of the GNU General Public License v3. */
 #define Q_INTEL_FLOAT80_SIGN_OFFSET		127
 #define Q_INTEL_FLOAT80_SIGN_BITS		1
 
-typedef struct {
-} QIntelFloat80;
+#endif /* __Q_formats_floating_point_Intel_Ha__ */
 
-/* MARK: - Intel Float96 */
+#ifndef Q_INSPECTING
 
-typedef struct {
-} QIntelFloat96;
+#	ifndef __Q_formats_floating_point_Intel_Hb__
+#	define __Q_formats_floating_point_Intel_Hb__
 
-#endif /* __Q_formats_floating_point_Intel_H__ */
+#	include <Q/types/base.h>
+
+	typedef struct {
+	} QIntelFloat80;
+
+	typedef struct {
+	} QIntelFloat96;
+
+#	endif /* __Q_formats_floating_point_Intel_Hb__ */
+
+#endif
