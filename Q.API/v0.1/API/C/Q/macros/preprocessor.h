@@ -5,7 +5,7 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Copyright © 2006 Laurent Deniau <laurent.deniau@cern.ch>.
-Released under the terms of the GNU General Public License v3. */
+Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef __Q_macros_preprocessor_H__
 #define __Q_macros_preprocessor_H__

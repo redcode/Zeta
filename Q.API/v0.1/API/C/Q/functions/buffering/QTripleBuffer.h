@@ -5,7 +5,7 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2012 Remis.
 Copyright © 2014 Manuel Sainz de Baranda y Goñi.
-Released under the terms of the GNU General Public License v3. */
+Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef __Q_functions_buffering_QTripleBuffer_H__
 #define __Q_functions_buffering_QTripleBuffer_H__
