@@ -487,7 +487,7 @@ Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
 
 typedef struct {
 	quint indexes[32 * 30];
-	quint attributes[]
+	quint attributes[];
 } QRP2C0xNameTable;
 
 

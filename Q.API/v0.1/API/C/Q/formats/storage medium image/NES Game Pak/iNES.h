@@ -18,7 +18,7 @@ Released under the terms of the GNU General Public License v3.
 #define __Q_formats_storage_medium_image_NES_Game_Pak_iNES_H__
 
 #include <Q/types/base.h>
-
+/*
 #define Q_INES_MAPPER_NONE			00
 #define Q_INES_MAPPER_NINTENDO_MMC1_CHIPSET	01
 #define Q_INES_MAPPER_PRG_ROM_SWITCH		02
@@ -55,7 +55,7 @@ Released under the terms of the GNU General Public License v3.
 #define Q_INES_MAPPER_C075_CHIPSET		81
 #define Q_INES_MAPPER_X1_17_CHIPSET		82
 #define Q_INES_MAPPER_CONY_MAPPER		83
-#define Q_INES_MAPPER_PASOFAMI_MAPPER		84
+#define Q_INES_MAPPER_PASOFAMI_MAPPER		84*/
 
 Q_DEFINE_STRICT_STRUCTURE(
 	quint8 nes[4]; /* 4E 45 53 1A ('NES' + MS-DOS EOF) */

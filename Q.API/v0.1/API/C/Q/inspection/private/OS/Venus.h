@@ -1,4 +1,4 @@
-/* Q API - private/OS/Qs.h
+/* Q API - private/OS/Venus.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,14 +6,13 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef __Q_private_Qs_H__
-#define __Q_private_Qs_H__
+#ifndef __Q_private_Venus_H__
+#define __Q_private_Venus_H__
 
-#include <Q/constants/OS.h>
-#include <Q/constants/basic.h>
+#include <Q/keys/OS.h>
 
-#define Q_OS				Q_OS_QS
-#define Q_OS_STRING			Q_OS_STRING_QS
+#define Q_OS				Q_OS_VENUS
+#define Q_OS_STRING			Q_OS_STRING_VENUS
 #define Q_OS_HAS_NETWORKING
 #define Q_OS_HAS_THREAD_LOCAL_STORAGE
 
