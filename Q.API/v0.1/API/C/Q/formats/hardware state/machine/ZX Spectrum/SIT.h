@@ -10,7 +10,7 @@ Released under the terms of the GNU General Public License v3.
 \_| Extensions: .sit			     |
   | Endianness: Little			     |
   | Created by: Pedro Manuel Rodríguez Salas |
-  | Used by:	Sinclair [MS-DOS]	     |
+  | Used by:	SINCLAIR [DOS]		     |
   |					     |
   | http://www.ugr.es/~pedrom/sinclair.htm   |
   |   _______________________________________|_

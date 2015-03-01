@@ -10,7 +10,7 @@ Released under the terms of the GNU General Public License v3.
 \_| Extensions: .sp							       |
   | Endianness: Little							       |
   | Created by: Pedro Gimeno Fortea					       |
-  | Used by:	VGASpec, SPECTRUM [MS-DOS]				       |
+  | Used by:	VGASpec, Spectrum [DOS]					       |
   |									       |
   | http://www.formauri.es/personal/pgimeno/spec/spec.html		       |
   |									       |

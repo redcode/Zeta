@@ -6,16 +6,16 @@
 Copyright © Kevin Phair.
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
- __________________________________
-/\				   \
-\_| Extensions: .prg		    |
-  | Endianness: Little		    |
-  | Created by: Kevin Phair	    |
-  | Used by:	SpecEm [MS-DOS]	    |
-  |				    |
-  | http://code.google.com/p/specem |
-  |   ______________________________|_
-   \_/______________________________*/
+ ______________________________________
+/\				       \
+\_| Extensions: .prg			|
+  | Endianness: Little			|
+  | Created by: Kevin Phair		|
+  | Used by:	Spectrum Emulator [DOS] |
+  |					|
+  | http://code.google.com/p/specem	|
+  |   __________________________________|_
+   \_/__________________________________*/
 
 #ifndef __Q_formats_hardware_snapshot_machine_ZX_Spectrum_PRG_H__
 #define __Q_formats_hardware_snapshot_machine_ZX_Spectrum_PRG_H__
