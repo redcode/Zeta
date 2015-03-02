@@ -6,8 +6,8 @@
 Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Q_formats_data_model_LP64_H__
-#define __Q_formats_data_model_LP64_H__
+#ifndef __Q_formats_data_model_LP64_Ha__
+#define __Q_formats_data_model_LP64_Ha__
 
 #include <Q/keys/value.h>
 
@@ -48,9 +48,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_LP64_SUFFIX_INT32
 #define Q_LP64_SUFFIX_INT64	L
 
-#endif /* __Q_formats_data_model_LP64_H__ */
+#endif /* __Q_formats_data_model_LP64_Ha__ */
 
 #ifdef Q_INSPECTING
+#	ifndef __Q_formats_data_model_LP64_Hb__
+#	define __Q_formats_data_model_LP64_Hb__
 
 #	undef LP64
 #	undef lp64
@@ -59,4 +61,5 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_DATA_MODEL_Name LP64
 #	define Q_DATA_MODEL_name lp64
 
+#	endif /* __Q_formats_data_model_LP64_Hb__ */
 #endif
