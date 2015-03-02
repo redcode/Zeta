@@ -4,7 +4,7 @@
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Information contributed by Troels Norgaard.
-Copyright © 2006-2014 Manuel Sainz de Baranda y Goñi.
+Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3.
  ______________________________
 /\			       \
