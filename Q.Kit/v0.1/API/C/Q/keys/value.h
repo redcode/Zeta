@@ -1,0 +1,85 @@
+/* Q Kit API - keys/value.h
+	      __	   __
+  _______ ___/ /______ ___/ /__
+ / __/ -_) _  / __/ _ \ _  / -_)
+/_/  \__/\_,_/\__/\___/_,_/\__/
+Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
+Released under the terms of the GNU Lesser General Public License v3. */
+
+#ifndef __Q_keys_value_H__
+#define __Q_keys_value_H__
+
+#define Q_VALUE_TYPE_POINTER   0
+#define Q_VALUE_TYPE_UCHAR     1
+#define Q_VALUE_TYPE_USHORT    2
+#define Q_VALUE_TYPE_UINT      3
+#define Q_VALUE_TYPE_ULONG     4
+#define Q_VALUE_TYPE_ULLONG    5
+#define Q_VALUE_TYPE_CHAR      6
+#define Q_VALUE_TYPE_SHORT     7
+#define Q_VALUE_TYPE_INT       8
+#define Q_VALUE_TYPE_LONG      9
+#define Q_VALUE_TYPE_LLONG    10
+#define Q_VALUE_TYPE_FLOAT    11
+#define Q_VALUE_TYPE_DOUBLE   12
+#define Q_VALUE_TYPE_LDOUBLE  13
+#define Q_VALUE_TYPE_UINT8    14
+#define Q_VALUE_TYPE_UINT16   15
+#define Q_VALUE_TYPE_UINT32   16 /* base type in ILP64 data model only */
+#define Q_VALUE_TYPE_UINT64   17
+#define Q_VALUE_TYPE_UINT128  18
+#define Q_VALUE_TYPE_UINT256  19
+#define Q_VALUE_TYPE_UINT512  20
+#define Q_VALUE_TYPE_UINT1024 21
+#define Q_VALUE_TYPE_INT8     22
+#define Q_VALUE_TYPE_INT16    23
+#define Q_VALUE_TYPE_INT32    24 /* base type in ILP64 data model only */
+#define Q_VALUE_TYPE_INT64    25
+#define Q_VALUE_TYPE_INT128   26
+#define Q_VALUE_TYPE_INT256   27
+#define Q_VALUE_TYPE_INT512   28
+#define Q_VALUE_TYPE_INT1024  29
+#define Q_VALUE_TYPE_SIZE     30
+#define Q_VALUE_TYPE_UINTPTR  31
+#define Q_VALUE_TYPE_UINTTOP  32
+#define Q_VALUE_TYPE_UINTMAX  33
+#define Q_VALUE_TYPE_SSIZE    34
+#define Q_VALUE_TYPE_INTPTR   35
+#define Q_VALUE_TYPE_INTTOP   36
+#define Q_VALUE_TYPE_INTMAX   37
+#define Q_VALUE_TYPE_BOOLEAN  38
+#define Q_VALUE_TYPE_NATURAL  39
+#define Q_VALUE_TYPE_INTEGER  40
+#define Q_VALUE_TYPE_REAL     41
+
+#define Q_KEY_BITS_VALUE_TYPE 8
+#define Q_KEY_LAST_VALUE_TYPE Q_VALUE_TYPE_REAL
+
+#define Q_VALUE_FORMAT_8BIT_NATURAL	    0
+#define Q_VALUE_FORMAT_16BIT_NATURAL	    1
+#define Q_VALUE_FORMAT_32BIT_NATURAL	    2
+#define Q_VALUE_FORMAT_64BIT_NATURAL	    3
+#define Q_VALUE_FORMAT_128BIT_NATURAL	    4
+#define Q_VALUE_FORMAT_256BIT_NATURAL	    5
+#define Q_VALUE_FORMAT_512BIT_NATURAL	    6
+#define Q_VALUE_FORMAT_1024BIT_NATURAL	    7
+#define Q_VALUE_FORMAT_8BIT_INTEGER	    8
+#define Q_VALUE_FORMAT_16BIT_INTEGER	    9
+#define Q_VALUE_FORMAT_32BIT_INTEGER	   10
+#define Q_VALUE_FORMAT_64BIT_INTEGER	   11
+#define Q_VALUE_FORMAT_128BIT_INTEGER	   12
+#define Q_VALUE_FORMAT_256BIT_INTEGER	   13
+#define Q_VALUE_FORMAT_512BIT_INTEGER	   14
+#define Q_VALUE_FORMAT_1024BIT_INTEGER	   15
+#define Q_VALUE_FORMAT_IEEE_754_BINARY16   16
+#define Q_VALUE_FORMAT_IEEE_754_BINARY32   17
+#define Q_VALUE_FORMAT_IEEE_754_BINARY64   18
+#define Q_VALUE_FORMAT_IEEE_754_BINARY128  19
+#define Q_VALUE_FORMAT_IEEE_754_DECIMAL32  20
+#define Q_VALUE_FORMAT_IEEE_754_DECIMAL64  21
+#define Q_VALUE_FORMAT_IEEE_754_DECIMAL128 22
+
+#define Q_KEY_BITS_VALUE_FORMAT	8
+#define Q_KEY_LAST_VALUE_FORMAT	Q_VALUE_FORMAT_IEEE_754_DECIMAL12
+
+#endif /* __Q_keys_value_H__ */
