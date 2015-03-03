@@ -1,11 +1,11 @@
-/* Q Kit API - formats/hardware snapshot/machine/ZX Spectrum/ZX.h
+/* Q API - formats/hardware snapshot/machine/ZX Spectrum/ZX.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Information contributed by Troels Norgaard.
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
-Released under the terms of the GNU General Public License v3.
+Released under the terms of the GNU Lesser General Public License v3.
  ______________________________
 /\			       \
 \_| Extensions: .zx		|

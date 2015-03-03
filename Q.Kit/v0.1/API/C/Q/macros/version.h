@@ -1,4 +1,4 @@
-/* Q Kit API - macros/version.h
+/* Q API - macros/version.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

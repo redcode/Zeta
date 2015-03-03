@@ -1,4 +1,4 @@
-/* Q Kit API - Q/network/5/SSH.h
+/* Q API - Q/network/5/SSH.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

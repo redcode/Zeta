@@ -1,4 +1,4 @@
-/* Q Kit API - formats/file system/ADFS.h
+/* Q API - formats/file system/ADFS.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

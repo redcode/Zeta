@@ -1,4 +1,4 @@
-/* Q Kit API - functions/geometry/QBox.h
+/* Q API - functions/geometry/QBox.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

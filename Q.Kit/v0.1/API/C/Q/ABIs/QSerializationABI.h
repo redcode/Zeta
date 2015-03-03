@@ -1,4 +1,4 @@
-/* Q Kit API - ABIs/QSerializationABI.h
+/* Q API - ABIs/QSerializationABI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

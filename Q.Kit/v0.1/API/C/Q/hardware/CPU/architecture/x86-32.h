@@ -1,4 +1,4 @@
-/* Q Kit API - hardware/CPU/architecture/x86-32.h
+/* Q API - hardware/CPU/architecture/x86-32.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

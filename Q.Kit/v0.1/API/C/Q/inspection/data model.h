@@ -1,4 +1,4 @@
-/* Q Kit API - inspection/data model.h
+/* Q API - inspection/data model.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q Kit API - macros/inspection.h
+/* Q API - macros/inspection.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

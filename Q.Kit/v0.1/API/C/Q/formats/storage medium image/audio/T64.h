@@ -1,4 +1,4 @@
-/* Q Kit API - formats/storage medium image/audio/T64.h
+/* Q API - formats/storage medium image/audio/T64.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

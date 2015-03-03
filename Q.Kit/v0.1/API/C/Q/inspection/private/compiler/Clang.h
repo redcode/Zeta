@@ -1,4 +1,4 @@
-/* Q Kit API - inspection/private/compiler/Clang.h
+/* Q API - inspection/private/compiler/Clang.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

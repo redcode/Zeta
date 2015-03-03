@@ -1,4 +1,4 @@
-/* Q Kit API - formats/multimedia container/AU.h
+/* Q API - formats/multimedia container/AU.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

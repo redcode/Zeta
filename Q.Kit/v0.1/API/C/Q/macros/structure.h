@@ -1,4 +1,4 @@
-/* Q Kit API - macros/structure.h
+/* Q API - macros/structure.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q Kit API - formats/hardware snapshot/machine/ZX Spectrum/FRZ.h
+/* Q API - formats/hardware snapshot/machine/ZX Spectrum/FRZ.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,7 +6,7 @@
 Copyright © Dmitriy Zhivilov.
 Copyright © Ian Greenway.
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
-Released under the terms of the GNU General Public License v3.
+Released under the terms of the GNU Lesser General Public License v3.
  _______________________________
 /\				\
 \_| Extensions: .frz		 |

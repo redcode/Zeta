@@ -1,4 +1,4 @@
-/* Q Kit API - functions/base/constructors.h
+/* Q API - functions/base/constructors.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

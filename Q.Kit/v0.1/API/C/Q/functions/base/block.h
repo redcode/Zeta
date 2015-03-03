@@ -1,4 +1,4 @@
-/* Q Kit API - functions/base/block.h
+/* Q API - functions/base/block.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

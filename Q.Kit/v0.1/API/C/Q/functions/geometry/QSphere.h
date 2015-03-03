@@ -1,4 +1,4 @@
-/* Q Kit API - functions/geometry/QSphere.h
+/* Q API - functions/geometry/QSphere.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

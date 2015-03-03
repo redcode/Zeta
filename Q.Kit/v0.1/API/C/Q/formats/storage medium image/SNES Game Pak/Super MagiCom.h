@@ -1,4 +1,4 @@
-/* Q Kit API - formats/storage medium image/SNES Game Pak/Super MagiCom.h
+/* Q API - formats/storage medium image/SNES Game Pak/Super MagiCom.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

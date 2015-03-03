@@ -1,4 +1,4 @@
-/* Q Kit API - Q/ABIs/QCPUEmulationABI.h
+/* Q API - Q/ABIs/QCPUEmulationABI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

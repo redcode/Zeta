@@ -1,4 +1,4 @@
-/* Q Kit API - formats/audio/Impulse Tracker.h
+/* Q API - formats/audio/Impulse Tracker.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q Kit API - constants/units.h
+/* Q API - constants/units.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

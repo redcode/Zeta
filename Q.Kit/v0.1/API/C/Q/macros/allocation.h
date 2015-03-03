@@ -1,4 +1,4 @@
-/* Q Kit API - macros/allocation.h
+/* Q API - macros/allocation.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

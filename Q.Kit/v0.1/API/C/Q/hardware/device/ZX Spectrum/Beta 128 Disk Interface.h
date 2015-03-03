@@ -1,4 +1,4 @@
-/* Q Kit API - hardware/device/ZX Spectrum/Beta 128 Disk Interface.h
+/* Q API - hardware/device/ZX Spectrum/Beta 128 Disk Interface.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

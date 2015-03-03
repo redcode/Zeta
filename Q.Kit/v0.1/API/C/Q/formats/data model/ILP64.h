@@ -1,4 +1,4 @@
-/* Q Kit API - formats/data model/ILP64.h
+/* Q API - formats/data model/ILP64.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

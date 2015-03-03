@@ -1,4 +1,4 @@
-/* Q Kit API - functions/geometry/Q2DLine.h
+/* Q API - functions/geometry/Q2DLine.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

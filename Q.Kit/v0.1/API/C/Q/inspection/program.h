@@ -1,4 +1,4 @@
-/* Q Kit API - inspection/program.h
+/* Q API - inspection/program.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

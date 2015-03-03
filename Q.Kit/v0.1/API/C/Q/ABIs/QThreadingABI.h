@@ -1,4 +1,4 @@
-/* Q Kit API - ABIs/QThreadingABI.h
+/* Q API - ABIs/QThreadingABI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

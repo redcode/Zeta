@@ -1,4 +1,4 @@
-/* Q Kit API - keys/compiler.h
+/* Q API - keys/compiler.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

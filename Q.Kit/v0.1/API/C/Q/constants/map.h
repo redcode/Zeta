@@ -1,4 +1,4 @@
-/* Q Kit API - constants/map.h
+/* Q API - constants/map.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

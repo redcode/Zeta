@@ -1,4 +1,4 @@
-/* Q Kit API - hardware/CPU/architecture/68k.h
+/* Q API - hardware/CPU/architecture/68k.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q Kit API - hardware/machine/model/computer/ZX Spectrum/ZX Spectrum +2.h
+/* Q API - hardware/machine/model/computer/ZX Spectrum/ZX Spectrum +2.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q Kit API - keys/hardware/machine/model/ZX Spectrum.h
+/* Q API - keys/hardware/machine/model/ZX Spectrum.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

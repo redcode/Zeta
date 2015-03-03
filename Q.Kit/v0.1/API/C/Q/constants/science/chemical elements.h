@@ -1,4 +1,4 @@
-/* Q Kit API - constants/science/chemical elements.h
+/* Q API - constants/science/chemical elements.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q Kit API - formats/hardware snapshot/machine/ZX Spectrum/ZXS.h
+/* Q API - formats/hardware snapshot/machine/ZX Spectrum/ZXS.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

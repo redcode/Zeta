@@ -1,4 +1,4 @@
-/* Q Kit API - functions/base/Q3D.h
+/* Q API - functions/base/Q3D.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

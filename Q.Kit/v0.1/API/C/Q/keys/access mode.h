@@ -1,4 +1,4 @@
-/* Q Kit API - keys/access mode.h
+/* Q API - keys/access mode.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

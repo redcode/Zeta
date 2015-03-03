@@ -1,4 +1,4 @@
-/* Q Kit API - ABIs/QWaveCodecABI.h
+/* Q API - ABIs/QWaveCodecABI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

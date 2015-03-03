@@ -1,4 +1,4 @@
-/* Q Kit API - inspection/private/OS/Windows.h
+/* Q API - inspection/private/OS/Windows.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

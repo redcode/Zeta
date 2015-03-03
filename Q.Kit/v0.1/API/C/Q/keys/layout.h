@@ -1,4 +1,4 @@
-/* Q Kit API - keys/layout.h
+/* Q API - keys/layout.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

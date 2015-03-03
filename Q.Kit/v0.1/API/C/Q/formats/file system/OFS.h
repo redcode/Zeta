@@ -1,4 +1,4 @@
-/* Q Kit API - formats/file system/OFS.h
+/* Q API - formats/file system/OFS.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

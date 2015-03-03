@@ -1,4 +1,4 @@
-/* Q Kit API - configuration/autoexport.h
+/* Q API - configuration/autoexport.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

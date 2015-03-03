@@ -1,4 +1,4 @@
-/* Q Kit API - formats/storage medium image/audio/Warajevo TAP.h
+/* Q API - formats/storage medium image/audio/Warajevo TAP.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,7 +6,7 @@
 Copyright © 1993-2006 Zeljko Juric
 Copyright © 1993-2006 Samir Ribic
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
-Released under the terms of the GNU General Public License v3.
+Released under the terms of the GNU Lesser General Public License v3.
  ___________________________________________________________________
 /\								    \
 \_| Extensions: .tap						     |

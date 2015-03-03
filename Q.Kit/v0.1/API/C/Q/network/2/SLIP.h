@@ -1,4 +1,4 @@
-/* Q Kit API - network/2/SLIP.h
+/* Q API - network/2/SLIP.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

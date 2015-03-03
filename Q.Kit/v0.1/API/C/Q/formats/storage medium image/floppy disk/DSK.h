@@ -1,4 +1,4 @@
-/* Q Kit API - formats/storage medium image/floppy disk/DSK.h
+/* Q API - formats/storage medium image/floppy disk/DSK.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

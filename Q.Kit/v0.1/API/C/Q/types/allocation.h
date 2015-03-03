@@ -1,4 +1,4 @@
-/* Q Kit API - types/allocation.h
+/* Q API - types/allocation.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q Kit API - formats/floating point/Microsoft Visual C++.h
+/* Q API - formats/floating point/Microsoft Visual C++.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

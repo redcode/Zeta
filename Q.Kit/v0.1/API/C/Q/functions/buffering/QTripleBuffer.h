@@ -1,4 +1,4 @@
-/* Q Kit API - functioms/buffering/QTripleBuffer.h
+/* Q API - functioms/buffering/QTripleBuffer.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

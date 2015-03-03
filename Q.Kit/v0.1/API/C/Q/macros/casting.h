@@ -1,4 +1,4 @@
-/* Q Kit API - macros/casting.h
+/* Q API - macros/casting.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

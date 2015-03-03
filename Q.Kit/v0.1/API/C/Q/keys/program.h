@@ -1,4 +1,4 @@
-/* Q Kit API - keys/program.h
+/* Q API - keys/program.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

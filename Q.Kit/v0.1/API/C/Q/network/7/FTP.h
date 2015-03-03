@@ -1,4 +1,4 @@
-/* Q Kit API - Q/network/7/FTP.h
+/* Q API - Q/network/7/FTP.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

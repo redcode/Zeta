@@ -1,4 +1,4 @@
-/* Q Kit API - hardware/BUS/ISA.h
+/* Q API - hardware/BUS/ISA.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

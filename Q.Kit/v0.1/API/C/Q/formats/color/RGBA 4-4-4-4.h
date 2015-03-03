@@ -1,4 +1,4 @@
-/* Q Kit API - formats/color/RGBA 4-4-4-4.h
+/* Q API - formats/color/RGBA 4-4-4-4.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
