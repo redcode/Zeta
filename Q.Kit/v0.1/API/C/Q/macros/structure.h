@@ -1,4 +1,4 @@
-/* Q API - macros/structure.h
+/* Q C API - macros/structure.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -9,9 +9,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Q_macros_structure_H__
 #define __Q_macros_structure_H__
 
-#include <Q/inspection/C.h>
+#include <Q/inspection/language.h>
 
-#if !defined(Q_AVOID_VARIADIC_MACROS) && Q_C_HAS(VARIADIC_MACRO)
+#if !defined(Q_AVOID_VARIADIC_MACROS) && Q_LANGUAGE_HAS(VARIADIC_MACRO)
 
 #	define Q_STRICT_STRUCTURE(...)					\
 		Q_BEGIN_STRICT_SIZE					\

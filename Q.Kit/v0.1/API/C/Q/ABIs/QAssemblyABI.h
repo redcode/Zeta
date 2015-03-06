@@ -1,4 +1,4 @@
-/* Q API - ABIs/QAssemblyABI.h
+/* Q C API - ABIs/QAssemblyABI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

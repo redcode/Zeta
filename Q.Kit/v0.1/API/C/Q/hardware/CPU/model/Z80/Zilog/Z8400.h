@@ -1,4 +1,4 @@
-/* Q API - hardware/CPU/Z80/Zilog/Z8400.h
+/* Q C API - hardware/CPU/Z80/Zilog/Z8400.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

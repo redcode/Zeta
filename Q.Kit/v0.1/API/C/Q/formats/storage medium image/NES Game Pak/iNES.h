@@ -1,4 +1,4 @@
-/* Q API - formats/storage medium image/NES Game Pak/iNES.h
+/* Q C API - formats/storage medium image/NES Game Pak/iNES.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 /\				\
 \_| Extensions: .nes		 |
   | Endianness: Little		 |
-  | Created by: Marat Fayzullin  |
+  | Created by: Fayzullin, Marat |
   | Used by:	Any NES emulator |
   |   ___________________________|_
    \_/___________________________*/

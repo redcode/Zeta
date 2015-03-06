@@ -1,4 +1,4 @@
-/* Q API - macros/node.h
+/* Q C API - macros/node.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Q/macros/structure.h>
 
-#if !defined(Q_AVOID_VARIADIC_MACROS) && Q_C_HAS(VARIADIC_MACRO)
+#if !defined(Q_AVOID_VARIADIC_MACROS) && Q_LANGUAGE_HAS(VARIADIC_MACRO)
 
 #	define Q_DEFINE_LIST_NODE(type, ...)				\
 		Q_DEFINE_STRUCTURE_WITH_NAME (type,			\

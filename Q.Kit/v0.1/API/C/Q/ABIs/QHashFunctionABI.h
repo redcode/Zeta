@@ -1,4 +1,4 @@
-/* Q API - ABIs/QHashFunctionABI.h
+/* Q C API - ABIs/QHashFunctionABI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

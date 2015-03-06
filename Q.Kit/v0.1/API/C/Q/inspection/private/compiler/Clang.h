@@ -1,4 +1,4 @@
-/* Q API - inspection/private/compiler/Clang.h
+/* Q C API - inspection/private/compiler/Clang.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -19,6 +19,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_COMPILER_STRING	  Q_COMPILER_STRING_CLANG
 #define Q_COMPILER_VERSION	  Q_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
 #define Q_COMPILER_VERSION_STRING __clang_version__
+
+/*#if Q_COMPILER_VERSION >= Q_VERSION(3, 1, 0)
+#	define Q_COMPILER_HAS_ANONYMOUS_STRUCTURE
+#	define Q_COMPILER_HAS_ANONYMOUS_UNION
+#endif*/
 
 /* __apple_build_version__ */
 

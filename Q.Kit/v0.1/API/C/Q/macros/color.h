@@ -1,4 +1,4 @@
-/* Q API - macros/color.h
+/* Q C API - macros/color.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

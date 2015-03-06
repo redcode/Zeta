@@ -1,4 +1,4 @@
-/* Q API - functions/base/constructors.h
+/* Q C API - functions/base/constructors.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Q/types/base.h>
 
-#if Q_C_HAS(COMPOUND_LITERAL)
+#if Q_LANGUAGE_HAS(COMPOUND_LITERAL)
 
 #	define q_2d_uint8(  x, y)	((Q2DUInt8  ){x, y})
 #	define q_2d_uint16( x, y)	((Q2DUInt16 ){x, y})

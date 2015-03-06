@@ -1,4 +1,4 @@
-/* Q API - hardware/machine/model/computer/ZX Spectrum/ZX Spectrum + 128K.h
+/* Q C API - hardware/machine/model/computer/ZX Spectrum/ZX Spectrum + 128K.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -117,6 +117,7 @@ Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(5) (
 |---------------------------------|
 		352			*/
 
+#define Q_ZX_SPECTRUM_PLUS_128K_SCREEN_FPS			   Q_ZX_SPECTRUM_SCREEN_FPS
 #define Q_ZX_SPECTRUM_PLUS_128K_SCREEN_WIDTH			   Q_ZX_SPECTRUM_SCREEN_WIDTH
 #define Q_ZX_SPECTRUM_PLUS_128K_SCREEN_HEIGHT			   Q_ZX_SPECTRUM_SCREEN_HEIGHT
 #define Q_ZX_SPECTRUM_PLUS_128K_SCREEN_PIXELS			   Q_ZX_SPECTRUM_SCREEN_PIXELS

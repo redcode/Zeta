@@ -1,4 +1,4 @@
-/* Q API - macros/bit field.h
+/* Q C API - macros/bit field.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

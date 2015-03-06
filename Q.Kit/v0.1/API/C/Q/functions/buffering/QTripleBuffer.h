@@ -1,4 +1,4 @@
-/* Q API - functioms/buffering/QTripleBuffer.h
+/* Q C API - functioms/buffering/QTripleBuffer.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -21,8 +21,8 @@ Q_INLINE void q_triple_buffer_initialize(
 )
 	{
 	object->buffers[0] = buffers;
-	object->buffers[1] = buffers + buffer_size;
-	object->buffers[2] = buffers + buffer_size * 2;
+	object->buffers[1] = (quint8 *)buffers + buffer_size;
+	object->buffers[2] = (quint8 *)buffers + buffer_size * 2;
 	object->flags	   = 6;
 	}
 

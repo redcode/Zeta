@@ -1,4 +1,4 @@
-/* Q API - hardware/storage medium/ROM cartridge/NES Game Pak.h
+/* Q C API - hardware/storage medium/ROM cartridge/NES Game Pak.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

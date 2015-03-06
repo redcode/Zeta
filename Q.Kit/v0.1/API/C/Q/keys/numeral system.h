@@ -1,4 +1,4 @@
-/* Q API - keys/numeral system.h
+/* Q C API - keys/numeral system.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

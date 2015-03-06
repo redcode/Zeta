@@ -1,4 +1,4 @@
-/* Q API - functions/base/block.h
+/* Q C API - functions/base/block.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

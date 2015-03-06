@@ -1,4 +1,4 @@
-/* Q API - constants/alignment.h
+/* Q C API - constants/alignment.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q API - hardware/CPU/architecture/Z80.h
+/* Q C API - hardware/CPU/architecture/Z80.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -184,77 +184,77 @@ Flags (F register)
 
 	/* MARK: - State structure macros (16-bit registers) */
 
-#	define Q_Z80_STATE_AF( object)	(object)->af.uint16_value
-#	define Q_Z80_STATE_BC( object)	(object)->bc.uint16_value
-#	define Q_Z80_STATE_DE( object)	(object)->de.uint16_value
-#	define Q_Z80_STATE_HL( object)	(object)->hl.uint16_value
-#	define Q_Z80_STATE_IX( object)	(object)->ix.uint16_value
-#	define Q_Z80_STATE_IY( object)	(object)->iy.uint16_value
+#	define Q_Z80_STATE_AF( object)	(object)->af.value_uint16
+#	define Q_Z80_STATE_BC( object)	(object)->bc.value_uint16
+#	define Q_Z80_STATE_DE( object)	(object)->de.value_uint16
+#	define Q_Z80_STATE_HL( object)	(object)->hl.value_uint16
+#	define Q_Z80_STATE_IX( object)	(object)->ix.value_uint16
+#	define Q_Z80_STATE_IY( object)	(object)->iy.value_uint16
 #	define Q_Z80_STATE_PC( object)	(object)->pc
 #	define Q_Z80_STATE_SP( object)	(object)->sp
-#	define Q_Z80_STATE_AF_(object)	(object)->af_.uint16_value
-#	define Q_Z80_STATE_BC_(object)	(object)->bc_.uint16_value
-#	define Q_Z80_STATE_DE_(object)	(object)->de_.uint16_value
-#	define Q_Z80_STATE_HL_(object)	(object)->hl_.uint16_value
+#	define Q_Z80_STATE_AF_(object)	(object)->af_.value_uint16
+#	define Q_Z80_STATE_BC_(object)	(object)->bc_.value_uint16
+#	define Q_Z80_STATE_DE_(object)	(object)->de_.value_uint16
+#	define Q_Z80_STATE_HL_(object)	(object)->hl_.value_uint16
 
-#	define Q_Z80_STATE_MEMBER_AF	af.uint16_value
-#	define Q_Z80_STATE_MEMBER_BC	bc.uint16_value
-#	define Q_Z80_STATE_MEMBER_DE	de.uint16_value
-#	define Q_Z80_STATE_MEMBER_HL	hl.uint16_value
-#	define Q_Z80_STATE_MEMBER_IX	ix.uint16_value
-#	define Q_Z80_STATE_MEMBER_IY	iy.uint16_value
+#	define Q_Z80_STATE_MEMBER_AF	af.value_uint16
+#	define Q_Z80_STATE_MEMBER_BC	bc.value_uint16
+#	define Q_Z80_STATE_MEMBER_DE	de.value_uint16
+#	define Q_Z80_STATE_MEMBER_HL	hl.value_uint16
+#	define Q_Z80_STATE_MEMBER_IX	ix.value_uint16
+#	define Q_Z80_STATE_MEMBER_IY	iy.value_uint16
 #	define Q_Z80_STATE_MEMBER_PC	pc
 #	define Q_Z80_STATE_MEMBER_SP	sp
-#	define Q_Z80_STATE_MEMBER_AF_	af_.uint16_value
-#	define Q_Z80_STATE_MEMBER_BC_	bc_.uint16_value
-#	define Q_Z80_STATE_MEMBER_DE_	de_.uint16_value
-#	define Q_Z80_STATE_MEMBER_HL_	hl_.uint16_value
+#	define Q_Z80_STATE_MEMBER_AF_	af_.value_uint16
+#	define Q_Z80_STATE_MEMBER_BC_	bc_.value_uint16
+#	define Q_Z80_STATE_MEMBER_DE_	de_.value_uint16
+#	define Q_Z80_STATE_MEMBER_HL_	hl_.value_uint16
 
 	/* MARK: - State structure macros (8-bit registers) */
 
-#	define Q_Z80_STATE_A(  object)	(object)->af.uint8_values.index1
-#	define Q_Z80_STATE_F(  object)	(object)->af.uint8_values.index0
-#	define Q_Z80_STATE_B(  object)	(object)->bc.uint8_values.index1
-#	define Q_Z80_STATE_C(  object)	(object)->bc.uint8_values.index0
-#	define Q_Z80_STATE_D(  object)	(object)->de.uint8_values.index1
-#	define Q_Z80_STATE_E(  object)	(object)->de.uint8_values.index0
-#	define Q_Z80_STATE_H(  object)	(object)->hl.uint8_values.index1
-#	define Q_Z80_STATE_L(  object)	(object)->hl.uint8_values.index0
-#	define Q_Z80_STATE_IXH(object)	(object)->ix.uint8_values.index1
-#	define Q_Z80_STATE_IXL(object)	(object)->ix.uint8_values.index0
-#	define Q_Z80_STATE_IYH(object)	(object)->iy.uint8_values.index1
-#	define Q_Z80_STATE_IYL(object)	(object)->iy.uint8_values.index0
-#	define Q_Z80_STATE_A_( object)	(object)->af_.uint8_values.index1
-#	define Q_Z80_STATE_F_( object)	(object)->af_.uint8_values.index0
-#	define Q_Z80_STATE_B_( object)	(object)->bc_.uint8_values.index1
-#	define Q_Z80_STATE_C_( object)	(object)->bc_.uint8_values.index0
-#	define Q_Z80_STATE_D_( object)	(object)->de_.uint8_values.index1
-#	define Q_Z80_STATE_E_( object)	(object)->de_.uint8_values.index0
-#	define Q_Z80_STATE_H_( object)	(object)->hl_.uint8_values.index1
-#	define Q_Z80_STATE_L_( object)	(object)->hl_.uint8_values.index0
+#	define Q_Z80_STATE_A(  object)	(object)->af.values_uint8.index1
+#	define Q_Z80_STATE_F(  object)	(object)->af.values_uint8.index0
+#	define Q_Z80_STATE_B(  object)	(object)->bc.values_uint8.index1
+#	define Q_Z80_STATE_C(  object)	(object)->bc.values_uint8.index0
+#	define Q_Z80_STATE_D(  object)	(object)->de.values_uint8.index1
+#	define Q_Z80_STATE_E(  object)	(object)->de.values_uint8.index0
+#	define Q_Z80_STATE_H(  object)	(object)->hl.values_uint8.index1
+#	define Q_Z80_STATE_L(  object)	(object)->hl.values_uint8.index0
+#	define Q_Z80_STATE_IXH(object)	(object)->ix.values_uint8.index1
+#	define Q_Z80_STATE_IXL(object)	(object)->ix.values_uint8.index0
+#	define Q_Z80_STATE_IYH(object)	(object)->iy.values_uint8.index1
+#	define Q_Z80_STATE_IYL(object)	(object)->iy.values_uint8.index0
+#	define Q_Z80_STATE_A_( object)	(object)->af_.values_uint8.index1
+#	define Q_Z80_STATE_F_( object)	(object)->af_.values_uint8.index0
+#	define Q_Z80_STATE_B_( object)	(object)->bc_.values_uint8.index1
+#	define Q_Z80_STATE_C_( object)	(object)->bc_.values_uint8.index0
+#	define Q_Z80_STATE_D_( object)	(object)->de_.values_uint8.index1
+#	define Q_Z80_STATE_E_( object)	(object)->de_.values_uint8.index0
+#	define Q_Z80_STATE_H_( object)	(object)->hl_.values_uint8.index1
+#	define Q_Z80_STATE_L_( object)	(object)->hl_.values_uint8.index0
 #	define Q_Z80_STATE_I(  object)	(object)->i
 #	define Q_Z80_STATE_R(  object)	(object)->r
 
-#	define Q_Z80_STATE_MEMBER_A	af.uint8_values.index1
-#	define Q_Z80_STATE_MEMBER_F	af.uint8_values.index0
-#	define Q_Z80_STATE_MEMBER_B	bc.uint8_values.index1
-#	define Q_Z80_STATE_MEMBER_C	bc.uint8_values.index0
-#	define Q_Z80_STATE_MEMBER_D	de.uint8_values.index1
-#	define Q_Z80_STATE_MEMBER_E	de.uint8_values.index0
-#	define Q_Z80_STATE_MEMBER_H	hl.uint8_values.index1
-#	define Q_Z80_STATE_MEMBER_L	hl.uint8_values.index0
-#	define Q_Z80_STATE_MEMBER_IXH	ix.uint8_values.index1
-#	define Q_Z80_STATE_MEMBER_IXL	ix.uint8_values.index0
-#	define Q_Z80_STATE_MEMBER_IYH	iy.uint8_values.index1
-#	define Q_Z80_STATE_MEMBER_IYL	iy.uint8_values.index0
-#	define Q_Z80_STATE_MEMBER_A_	af_.uint8_values.index1
-#	define Q_Z80_STATE_MEMBER_F_	af_.uint8_values.index0
-#	define Q_Z80_STATE_MEMBER_B_	bc_.uint8_values.index1
-#	define Q_Z80_STATE_MEMBER_C_	bc_.uint8_values.index0
-#	define Q_Z80_STATE_MEMBER_D_	de_.uint8_values.index1
-#	define Q_Z80_STATE_MEMBER_E_	de_.uint8_values.index0
-#	define Q_Z80_STATE_MEMBER_H_	hl_.uint8_values.index1
-#	define Q_Z80_STATE_MEMBER_L_	hl_.uint8_values.index0
+#	define Q_Z80_STATE_MEMBER_A	af.values_uint8.index1
+#	define Q_Z80_STATE_MEMBER_F	af.values_uint8.index0
+#	define Q_Z80_STATE_MEMBER_B	bc.values_uint8.index1
+#	define Q_Z80_STATE_MEMBER_C	bc.values_uint8.index0
+#	define Q_Z80_STATE_MEMBER_D	de.values_uint8.index1
+#	define Q_Z80_STATE_MEMBER_E	de.values_uint8.index0
+#	define Q_Z80_STATE_MEMBER_H	hl.values_uint8.index1
+#	define Q_Z80_STATE_MEMBER_L	hl.values_uint8.index0
+#	define Q_Z80_STATE_MEMBER_IXH	ix.values_uint8.index1
+#	define Q_Z80_STATE_MEMBER_IXL	ix.values_uint8.index0
+#	define Q_Z80_STATE_MEMBER_IYH	iy.values_uint8.index1
+#	define Q_Z80_STATE_MEMBER_IYL	iy.values_uint8.index0
+#	define Q_Z80_STATE_MEMBER_A_	af_.values_uint8.index1
+#	define Q_Z80_STATE_MEMBER_F_	af_.values_uint8.index0
+#	define Q_Z80_STATE_MEMBER_B_	bc_.values_uint8.index1
+#	define Q_Z80_STATE_MEMBER_C_	bc_.values_uint8.index0
+#	define Q_Z80_STATE_MEMBER_D_	de_.values_uint8.index1
+#	define Q_Z80_STATE_MEMBER_E_	de_.values_uint8.index0
+#	define Q_Z80_STATE_MEMBER_H_	hl_.values_uint8.index1
+#	define Q_Z80_STATE_MEMBER_L_	hl_.values_uint8.index0
 #	define Q_Z80_STATE_MEMBER_I	i
 #	define Q_Z80_STATE_MEMBER_R	r
 

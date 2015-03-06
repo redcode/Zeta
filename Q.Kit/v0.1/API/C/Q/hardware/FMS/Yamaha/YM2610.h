@@ -1,4 +1,4 @@
-/* Q API - hardware/FMS/Yamaha/YM2610.h
+/* Q C API - hardware/FMS/Yamaha/YM2610.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

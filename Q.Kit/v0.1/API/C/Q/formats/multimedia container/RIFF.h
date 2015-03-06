@@ -1,4 +1,4 @@
-/* Q API - formats/multimedia container/RIFF.h
+/* Q C API - formats/multimedia container/RIFF.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

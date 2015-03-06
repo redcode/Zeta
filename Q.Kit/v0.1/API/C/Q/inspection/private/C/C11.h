@@ -1,4 +1,4 @@
-/* Q API - private/C/C11.h
+/* Q C API - private/C/C11.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -21,5 +21,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_C_HAS_VARIABLE_SIZE_ARRAY
 #define Q_C_HAS_VARIADIC_MACRO
 #define Q_C_HAS_ATOMIC_OPERATIONS
+#define Q_C_HAS_ANONYMOUS_UNION
 
 #endif /* __Q_private_C_H__ */

@@ -1,4 +1,4 @@
-/* Q API - formats/file system/FFS.h
+/* Q C API - formats/file system/FFS.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

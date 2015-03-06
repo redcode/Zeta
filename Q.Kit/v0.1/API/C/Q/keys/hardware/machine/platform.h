@@ -1,4 +1,4 @@
-/* Q API - keys/hardware/platform.h
+/* Q C API - keys/hardware/platform.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

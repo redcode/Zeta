@@ -1,4 +1,4 @@
-/* Q API - functioms/buffering/QRingBuffer.h
+/* Q C API - functioms/buffering/QRingBuffer.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -34,7 +34,7 @@ Q_INLINE void q_ring_buffer_initialize(
 Q_INLINE void *q_ring_buffer_production_buffer(QRingBuffer *object)
 	{
 	return object->buffer_count - object->fill_count
-		? object->buffers + object->production_index * object->buffer_size
+		? (quint8 *)object->buffers + object->production_index * object->buffer_size
 		: NULL;
 	}
 
@@ -42,7 +42,7 @@ Q_INLINE void *q_ring_buffer_production_buffer(QRingBuffer *object)
 Q_INLINE void *q_ring_buffer_consumption_buffer(QRingBuffer *object)
 	{
 	return object->fill_count
-		? object->buffers + object->consumption_index * object->buffer_size
+		? (quint8 *)object->buffers + object->consumption_index * object->buffer_size
 		: NULL;
 	}
 
@@ -55,7 +55,7 @@ Q_INLINE void *q_ring_buffer_try_produce(QRingBuffer *object)
 	(object->production_index + 1) % object->buffer_count;
 
 	q_value_atomic_increment_then_get(SIZE)(&object->fill_count);
-	return object->buffers + object->production_index * object->buffer_size;
+	return (quint8 *)object->buffers + object->production_index * object->buffer_size;
 	}
 
 
@@ -67,7 +67,7 @@ Q_INLINE void *q_ring_buffer_try_consume(QRingBuffer *object)
 	(object->consumption_index + 1) % object->buffer_count;
 
 	q_value_atomic_decrement_then_get(SIZE)(&object->fill_count);
-	return object->buffers + object->consumption_index * object->buffer_size;
+	return (quint8 *)object->buffers + object->consumption_index * object->buffer_size;
 	}
 
 
@@ -79,7 +79,7 @@ Q_INLINE void *q_ring_buffer_produce(QRingBuffer *object)
 	(object->production_index + 1) % object->buffer_count;
 
 	q_value_atomic_increment_then_get(SIZE)(&object->fill_count);
-	return object->buffers + object->production_index * object->buffer_size;
+	return (quint8 *)object->buffers + object->production_index * object->buffer_size;
 	}
 
 
@@ -91,7 +91,7 @@ Q_INLINE void *q_ring_buffer_consume(QRingBuffer *object)
 	(object->consumption_index + 1) % object->buffer_count;
 
 	q_value_atomic_decrement_then_get(SIZE)(&object->fill_count);
-	return object->buffers + object->consumption_index * object->buffer_size;
+	return (quint8 *)object->buffers + object->consumption_index * object->buffer_size;
 	}
 
 

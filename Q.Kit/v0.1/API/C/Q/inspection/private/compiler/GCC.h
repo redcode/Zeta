@@ -1,4 +1,4 @@
-/* Q API - inspection/private/compiler/GCC.h
+/* Q C API - inspection/private/compiler/GCC.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -41,14 +41,30 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Q_COMPILER_VERSION >= Q_VERSION(4, 1, 0)
 
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
+#	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 
+#		define Q_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#		define Q_COMPILER_FUNCTION_INT8_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#	endif
+
+#	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_2
+#		define Q_COMPILER_FUNCTION_UINT16_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#		define Q_COMPILER_FUNCTION_INT16_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#	endif
+
+#	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4
+#		define Q_COMPILER_FUNCTION_UINT32_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#		define Q_COMPILER_FUNCTION_INT32_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#	endif
+
+#	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_8
+#		define Q_COMPILER_FUNCTION_UINT64_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#		define Q_COMPILER_FUNCTION_INT64_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#	endif
+
+#	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_16
+#		define Q_COMPILER_FUNCTION_UINT128_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#		define Q_COMPILER_FUNCTION_INT128_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#	endif
 
 #	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_INCREMENT( pointer) __sync_fetch_and_add(pointer, 1)
 #	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_INCREMENT(pointer) __sync_fetch_and_add(pointer, 1)

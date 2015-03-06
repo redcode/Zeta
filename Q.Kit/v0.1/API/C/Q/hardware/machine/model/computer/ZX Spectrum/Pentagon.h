@@ -1,4 +1,4 @@
-/* Q API - hardware/machine/model/computer/ZX Spectrum/Pentagon.h
+/* Q C API - hardware/machine/model/computer/ZX Spectrum/Pentagon.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

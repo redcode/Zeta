@@ -1,4 +1,4 @@
-/* Q API - types/base.h
+/* Q C API - types/base.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -566,7 +566,7 @@ typedef struct {qdouble x, y, z, w;}		Q4DDouble;
 #define Q_LDOUBLE_Name				LDouble
 #define Q_LDOUBLE_name				ldouble
 
-#if Q_C_HAS(LDOUBLE) && Q_FLOATING_POINT_BITS(LDOUBLE) != Q_DOUBLE_BITS
+#if Q_LANGUAGE_HAS(LDOUBLE) && Q_FLOATING_POINT_BITS(LDOUBLE) != Q_DOUBLE_BITS
 
 	typedef long double			qldouble;
 	typedef struct {qldouble x, y;}		Q2DLDouble;
@@ -690,6 +690,62 @@ typedef Q_JOIN_2(Q4DInt, Q_SSIZE_BITS)		Q4DSSize;
 #define Q_SSIZE_Name				USSize
 #define Q_SSIZE_name				ussize
 
+/* MARK: - Maximun natural and integer types */
+
+#if Q_IS_AVAILABLE(UINT128)
+#	define Q_UINTMAX_BITS			128
+#else
+#	define Q_UINTMAX_BITS			64
+#endif
+
+typedef Q_JOIN_2(quint,   Q_UINTMAX_BITS)	quintmax;
+typedef Q_JOIN_2(Q2DUInt, Q_UINTMAX_BITS)	Q2DUIntMax;
+typedef Q_JOIN_2(Q3DUInt, Q_UINTMAX_BITS)	Q3DUIntMax;
+typedef Q_JOIN_2(Q4DUInt, Q_UINTMAX_BITS)	Q4DUIntMax;
+#define Q_UINTMAX				Q_UINTX_LITERAL   (Q_UINTMAX_BITS)
+#define Q_UINTMAX_SUFFIX			Q_UINTX_SUFFIX	  (Q_UINTMAX_BITS)
+#define Q_UINTMAX_BASE_TYPE			Q_UINTX_BASE_TYPE (Q_UINTMAX_BITS)
+#define Q_UINTMAX_FIXED_TYPE			Q_UINTX_TYPE	  (Q_UINTMAX_BITS)
+#define Q_UINTMAX_TYPE				Q_VALUE_TYPE_UINTMAX
+#define Q_UINTMAX_FORMAT			Q_UINTX_FORMAT	  (Q_UINTMAX_BITS)
+#define Q_UINTMAX_ENDIANNESS			Q_UINTX_ENDIANNESS(Q_UINTMAX_BITS)
+#define Q_UINTMAX_SIZE				Q_UINTX_SIZE	  (Q_UINTMAX_BITS)
+#define Q_UINTMAX_MINIMUM			0
+#define Q_UINTMAX_MAXIMUM			Q_UINTX_MAXIMUM   (Q_UINTMAX_BITS)
+#define Q_UINTMAX_FIXED_TYPE_NAME		Q_UINTX_NAME	  (Q_UINTMAX_BITS)
+#define Q_UINTMAX_FIXED_TYPE_Name		Q_UINTX_Name	  (Q_UINTMAX_BITS)
+#define Q_UINTMAX_FIXED_TYPE_name		Q_UINTX_name	  (Q_UINTMAX_BITS)
+#define Q_UINTMAX_NAME				UINTMAX
+#define Q_UINTMAX_Name				UIntMax
+#define Q_UINTMAX_name				uintmax
+
+#if Q_IS_AVAILABLE(INT128)
+#	define Q_INTMAX_BITS			128
+#else
+#	define Q_INTMAX_BITS			64
+#endif
+
+typedef Q_JOIN_2(qint,	 Q_INTMAX_BITS)		qintmax;
+typedef Q_JOIN_2(Q2DInt, Q_INTMAX_BITS)		Q2DIntMax;
+typedef Q_JOIN_2(Q3DInt, Q_INTMAX_BITS)		Q3DIntMax;
+typedef Q_JOIN_2(Q4DInt, Q_INTMAX_BITS)		Q4DIntMax;
+#define Q_INTMAX				Q_INTX_LITERAL	 (Q_INTMAX_BITS)
+#define Q_INTMAX_SUFFIX				Q_INTX_SUFFIX	 (Q_INTMAX_BITS)
+#define Q_INTMAX_BASE_TYPE			Q_INTX_BASE_TYPE (Q_INTMAX_BITS)
+#define Q_INTMAX_FIXED_TYPE			Q_INTX_TYPE	 (Q_INTMAX_BITS)
+#define Q_INTMAX_TYPE				Q_VALUE_TYPE_INTMAX
+#define Q_INTMAX_FORMAT				Q_INTX_FORMAT	 (Q_INTMAX_BITS)
+#define Q_INTMAX_ENDIANNESS			Q_INTX_ENDIANNESS(Q_INTMAX_BITS)
+#define Q_INTMAX_SIZE				Q_INTX_SIZE	 (Q_INTMAX_BITS)
+#define Q_INTMAX_MINIMUM			Q_INTX_MINIMUM	 (Q_INTMAX_BITS)
+#define Q_INTMAX_MAXIMUM			Q_INTX_MAXIMUM	 (Q_INTMAX_BITS)
+#define Q_INTMAX_FIXED_TYPE_NAME		Q_INTX_NAME	 (Q_INTMAX_BITS)
+#define Q_INTMAX_FIXED_TYPE_Name		Q_INTX_Name	 (Q_INTMAX_BITS)
+#define Q_INTMAX_FIXED_TYPE_name		Q_INTX_name	 (Q_INTMAX_BITS)
+#define Q_INTMAX_NAME				UINTMAX
+#define Q_INTMAX_Name				UIntMax
+#define Q_INTMAX_name				uintmax
+
 /* MARK: - Pointer types */
 
 #define Q_POINTER_BITS				Q_DATA_MODEL_BITS(POINTER)
@@ -807,62 +863,6 @@ typedef Q_JOIN_2(Q4DInt, Q_INTTOP_BITS)		Q4DIntTop;
 #define Q_INTTOP_NAME				UINTTOP
 #define Q_INTTOP_Name				UIntTop
 #define Q_INTTOP_name				uinttop
-
-/* MARK: - Maximun natural and integer types */
-
-#if Q_IS_AVAILABLE(UINT128)
-#	define Q_UINTMAX_BITS			128
-#else
-#	define Q_UINTMAX_BITS			64
-#endif
-
-typedef Q_JOIN_2(quint,   Q_UINTMAX_BITS)	quintmax;
-typedef Q_JOIN_2(Q2DUInt, Q_UINTMAX_BITS)	Q2DUIntMax;
-typedef Q_JOIN_2(Q3DUInt, Q_UINTMAX_BITS)	Q3DUIntMax;
-typedef Q_JOIN_2(Q4DUInt, Q_UINTMAX_BITS)	Q4DUIntMax;
-#define Q_UINTMAX				Q_UINTX_LITERAL   (Q_UINTMAX_BITS)
-#define Q_UINTMAX_SUFFIX			Q_UINTX_SUFFIX	  (Q_UINTMAX_BITS)
-#define Q_UINTMAX_BASE_TYPE			Q_UINTX_BASE_TYPE (Q_UINTMAX_BITS)
-#define Q_UINTMAX_FIXED_TYPE			Q_UINTX_TYPE	  (Q_UINTMAX_BITS)
-#define Q_UINTMAX_TYPE				Q_VALUE_TYPE_UINTMAX
-#define Q_UINTMAX_FORMAT			Q_UINTX_FORMAT	  (Q_UINTMAX_BITS)
-#define Q_UINTMAX_ENDIANNESS			Q_UINTX_ENDIANNESS(Q_UINTMAX_BITS)
-#define Q_UINTMAX_SIZE				Q_UINTX_SIZE	  (Q_UINTMAX_BITS)
-#define Q_UINTMAX_MINIMUM			0
-#define Q_UINTMAX_MAXIMUM			Q_UINTX_MAXIMUM   (Q_UINTMAX_BITS)
-#define Q_UINTMAX_FIXED_TYPE_NAME		Q_UINTX_NAME	  (Q_UINTMAX_BITS)
-#define Q_UINTMAX_FIXED_TYPE_Name		Q_UINTX_Name	  (Q_UINTMAX_BITS)
-#define Q_UINTMAX_FIXED_TYPE_name		Q_UINTX_name	  (Q_UINTMAX_BITS)
-#define Q_UINTMAX_NAME				UINTMAX
-#define Q_UINTMAX_Name				UIntMax
-#define Q_UINTMAX_name				uintmax
-
-#if Q_IS_AVAILABLE(INT128)
-#	define Q_INTMAX_BITS			128
-#else
-#	define Q_INTMAX_BITS			64
-#endif
-
-typedef Q_JOIN_2(qint,	 Q_INTMAX_BITS)		qintmax;
-typedef Q_JOIN_2(Q2DInt, Q_INTMAX_BITS)		Q2DIntMax;
-typedef Q_JOIN_2(Q3DInt, Q_INTMAX_BITS)		Q3DIntMax;
-typedef Q_JOIN_2(Q4DInt, Q_INTMAX_BITS)		Q4DIntMax;
-#define Q_INTMAX				Q_INTX_LITERAL	 (Q_INTMAX_BITS)
-#define Q_INTMAX_SUFFIX				Q_INTX_SUFFIX	 (Q_INTMAX_BITS)
-#define Q_INTMAX_BASE_TYPE			Q_INTX_BASE_TYPE (Q_INTMAX_BITS)
-#define Q_INTMAX_FIXED_TYPE			Q_INTX_TYPE	 (Q_INTMAX_BITS)
-#define Q_INTMAX_TYPE				Q_VALUE_TYPE_INTMAX
-#define Q_INTMAX_FORMAT				Q_INTX_FORMAT	 (Q_INTMAX_BITS)
-#define Q_INTMAX_ENDIANNESS			Q_INTX_ENDIANNESS(Q_INTMAX_BITS)
-#define Q_INTMAX_SIZE				Q_INTX_SIZE	 (Q_INTMAX_BITS)
-#define Q_INTMAX_MINIMUM			Q_INTX_MINIMUM	 (Q_INTMAX_BITS)
-#define Q_INTMAX_MAXIMUM			Q_INTX_MAXIMUM	 (Q_INTMAX_BITS)
-#define Q_INTMAX_FIXED_TYPE_NAME		Q_INTX_NAME	 (Q_INTMAX_BITS)
-#define Q_INTMAX_FIXED_TYPE_Name		Q_INTX_Name	 (Q_INTMAX_BITS)
-#define Q_INTMAX_FIXED_TYPE_name		Q_INTX_name	 (Q_INTMAX_BITS)
-#define Q_INTMAX_NAME				UINTMAX
-#define Q_INTMAX_Name				UIntMax
-#define Q_INTMAX_name				uintmax
 
 /* MARK: - Boolean type */
 
@@ -1074,45 +1074,45 @@ typedef qint8					QOrder;
 
 /* MARK: - Value component access types */
 
+typedef quint8 uint8_value;
+
 Q_DEFINE_STRICT_UNION (
-	quint8 uint8_value;
-	qint8  int8_value;
+	quint8 value_uint8;
+	qint8  value_int8;
 ) Q8Bit;
 
 #if Q_CPU_INTEGER_ENDIANNESS(16BIT) == Q_ENDIANNESS_BIG
 
 	Q_DEFINE_STRICT_UNION (
-		quint16 uint16_value;
-		quint8	uint8_array[2];
+		quint16 value_uint16;
+		qint16	value_int16;
+		quint8	array_uint8[2];
+		qint8	array_int8 [2];
 
 		struct {quint8 index1;
 			quint8 index0;
-		} uint8_values;
-
-		qint16 int16_value;
-		qint8  int8_array[2];
+		} values_uint8;
 
 		struct {qint8 index1;
 			qint8 index0;
-		} int8_values;
+		} values_int8;
 	) Q16Bit;
 
 #elif Q_CPU_INTEGER_ENDIANNESS(16BIT) == Q_ENDIANNESS_LITTLE
 
 	Q_DEFINE_STRICT_UNION (
-		quint16 uint16_value;
-		quint8	uint8_array[2];
+		quint16 value_uint16;
+		qint16	value_int16;
+		quint8	array_uint8[2];
+		qint8	array_int8 [2];
 
 		struct {quint8 index0;
 			quint8 index1;
-		} uint8_values;
-
-		qint16 int16_value;
-		qint8  int8_array[2];
+		} values_uint8;
 
 		struct {qint8 index0;
 			qint8 index1;
-		} int8_values;
+		} values_int8;
 	) Q16Bit;
 
 #endif
@@ -1120,65 +1120,63 @@ Q_DEFINE_STRICT_UNION (
 #if Q_CPU_INTEGER_ENDIANNESS(32BIT) == Q_ENDIANNESS_BIG
 
 	Q_DEFINE_STRICT_UNION (
-		quint32 uint32_value;
-		quint16 uint16_array[2];
-		quint8	uint8_array[4];
+		quint32 value_uint32;
+		qint32	value_int32;
+		quint16 array_uint16[2];
+		quint8	array_uint8 [4];
+		qint16	array_int16 [2];
+		qint8	array_int8  [4];
 
 		struct {quint16 index1;
 			quint16 index0;
-		} uint16_values;
+		} values_uint16;
 
 		struct {quint8 index3;
 			quint8 index2;
 			quint8 index1;
 			quint8 index0;
-		} uint8_values;
-
-		qint32 int32_value;
-		qint16 int16_array[2];
-		qint8  int8_array[4];
+		} values_uint8;
 
 		struct {qint16 index1;
 			qint16 index0;
-		} int16_values;
+		} values_int16;
 
 		struct {qint8 index3;
 			qint8 index2;
 			qint8 index1;
 			qint8 index0;
-		} int8_values;
+		} values_int8;
 	) Q32Bit;
 
 #elif Q_CPU_INTEGER_ENDIANNESS(32BIT) == Q_ENDIANNESS_LITTLE
 
 	Q_DEFINE_STRICT_UNION (
-		quint32 uint32_value;
-		quint16 uint16_array[2];
-		quint8	uint8_array[4];
+		quint32 value_uint32;
+		qint32	value_int32;
+		quint16 array_uint16[2];
+		quint8	array_uint8 [4];
+		qint16	array_int16 [2];
+		qint8	array_int8  [4];
 
 		struct {quint16 index0;
 			quint16 index1;
-		} uint16_values;
+		} values_uint16;
 
 		struct {quint8 index0;
 			quint8 index1;
 			quint8 index2;
 			quint8 index3;
-		} uint8_values;
-
-		qint32 int32_value;
-		qint16 int16_array[2];
-		qint8  int8_array[4];
+		} values_uint8;
 
 		struct {qint16 index0;
 			qint16 index1;
-		} int16_values;
+		} values_int16;
 
 		struct {qint8 index0;
 			qint8 index1;
 			qint8 index2;
 			qint8 index3;
-		} int8_values;
+		} values_int8;
 	) Q32Bit;
 
 #endif
@@ -1186,20 +1184,24 @@ Q_DEFINE_STRICT_UNION (
 #if Q_CPU_INTEGER_ENDIANNESS(64BIT) == Q_ENDIANNESS_BIG
 
 	Q_DEFINE_STRICT_UNION (
-		quint64 uint64_value;
-		quint32 uint32_array[2];
-		quint16 uint16_array[4];
-		quint8	uint8_array[8];
+		quint64 value_uint64;
+		qint64	value_int64;
+		quint32 array_uint32[2];
+		quint16 array_uint16[4];
+		quint8	array_uint8 [8];
+		qint32	array_int32 [2];
+		qint16	array_int16 [4];
+		qint8	array_int8  [8];
 
 		struct {quint32 index1;
 			quint32 index0;
-		} uint32_values;
+		} values_uint32;
 
 		struct {quint16 index3;
 			quint16 index2;
 			quint16 index1;
 			quint16 index0;
-		} uint16_values;
+		} values_uint16;
 
 		struct {quint8 index7;
 			quint8 index6;
@@ -1209,22 +1211,17 @@ Q_DEFINE_STRICT_UNION (
 			quint8 index2;
 			quint8 index1;
 			quint8 index0;
-		} uint8_values;
-
-		qint64 int64_value;
-		qint32 int32_array[2];
-		qint16 int16_array[4];
-		qint8  int8_array[8];
+		} values_uint8;
 
 		struct {qint32 index1;
 			qint32 index0;
-		} int32_values;
+		} values_int32;
 
 		struct {qint16 index3;
 			qint16 index2;
 			qint16 index1;
 			qint16 index0;
-		} int16_values;
+		} values_int16;
 
 		struct {qint8 index7;
 			qint8 index6;
@@ -1234,26 +1231,30 @@ Q_DEFINE_STRICT_UNION (
 			qint8 index2;
 			qint8 index1;
 			qint8 index0;
-		} int8_values;
+		} values_int8;
 	) Q64Bit;
 
 #elif Q_CPU_INTEGER_ENDIANNESS(64BIT) == Q_ENDIANNESS_LITTLE
 
 	Q_DEFINE_STRICT_UNION (
-		quint64 uint64_value;
-		quint32 uint32_array[2];
-		quint16 uint16_array[4];
-		quint8	uint8_array[8];
+		quint64 value_uint64;
+		qint64	value_int64;
+		quint32 array_uint32[2];
+		quint16 array_uint16[4];
+		quint8	array_uint8 [8];
+		qint32	array_int32 [2];
+		qint16	array_int16 [4];
+		qint8	array_int8  [8];
 
 		struct {quint32 index0;
 			quint32 index1;
-		} uint32_values;
+		} values_uint32;
 
 		struct {quint16 index0;
 			quint16 index1;
 			quint16 index2;
 			quint16 index3;
-		} uint16_values;
+		} values_uint16;
 
 		struct {quint8 index0;
 			quint8 index1;
@@ -1263,22 +1264,17 @@ Q_DEFINE_STRICT_UNION (
 			quint8 index5;
 			quint8 index6;
 			quint8 index7;
-		} uint8_values;
-
-		qint64 int64_value;
-		qint32 int32_array[2];
-		qint16 int16_array[4];
-		qint8  int8_array[8];
+		} values_uint8;
 
 		struct {qint32 index0;
 			qint32 index1;
-		} int32_values;
+		} values_int32;
 
 		struct {qint16 index0;
 			qint16 index1;
 			qint16 index2;
 			qint16 index3;
-		} int16_values;
+		} values_int16;
 
 		struct {qint8 index0;
 			qint8 index1;
@@ -1288,7 +1284,7 @@ Q_DEFINE_STRICT_UNION (
 			qint8 index5;
 			qint8 index6;
 			qint8 index7;
-		} int8_values;
+		} values_int8;
 	) Q64Bit;
 
 #endif
@@ -1298,21 +1294,26 @@ Q_DEFINE_STRICT_UNION (
 #	if Q_CPU_INTEGER_ENDIANNESS(128BIT) == Q_ENDIANNESS_BIG
 
 		Q_DEFINE_STRICT_UNION (
-			quint128 uint128_value;
-			quint64	 uint64_array[2];
-			quint32	 uint32_array[4];
-			quint16	 uint16_array[8];
-			quint8	 uint8_array[16];
+			quint128 value_uint128;
+			qint128  value_int128;
+			quint64  array_uint64[2];
+			quint32  array_uint32[4];
+			quint16  array_uint16[8];
+			quint8	 array_uint8[16];
+			qint64	 array_int64[2];
+			qint32	 array_int32[4];
+			qint16	 array_int16[8];
+			qint8	 array_int8[16];
 
 			struct {quint64 index1;
 				quint64 index0;
-			} uint64_values;
+			} values_uint64;
 
 			struct {quint32 index3;
 				quint32 index2;
 				quint32 index1;
 				quint32 index0;
-			} uint32_values;
+			} values_uint32;
 
 			struct {quint16 index7;
 				quint16 index6;
@@ -1322,7 +1323,7 @@ Q_DEFINE_STRICT_UNION (
 				quint16 index2;
 				quint16 index1;
 				quint16 index0;
-			} uint16_values;
+			} values_uint16;
 
 			struct {quint8 index15;
 				quint8 index14;
@@ -1340,23 +1341,17 @@ Q_DEFINE_STRICT_UNION (
 				quint8 index02;
 				quint8 index01;
 				quint8 index00;
-			} uint8_values;
-
-			qint128 int128_value;
-			qint64	int64_array[2];
-			qint32	int32_array[4];
-			qint16	int16_array[8];
-			qint8	int8_array[16];
+			} values_uint8;
 
 			struct {qint64 index1;
 				qint64 index0;
-			} int64_values;
+			} values_int64;
 
 			struct {qint32 index3;
 				qint32 index2;
 				qint32 index1;
 				qint32 index0;
-			} int32_values;
+			} values_int32;
 
 			struct {qint16 index7;
 				qint16 index6;
@@ -1366,7 +1361,7 @@ Q_DEFINE_STRICT_UNION (
 				qint16 index2;
 				qint16 index1;
 				qint16 index0;
-			} int16_values;
+			} values_int16;
 
 			struct {qint8 index15;
 				qint8 index14;
@@ -1384,27 +1379,32 @@ Q_DEFINE_STRICT_UNION (
 				qint8 index02;
 				qint8 index01;
 				qint8 index00;
-			} int8_values;
+			} values_int8;
 		) Q128Bit;
 
 #	elif Q_CPU_INTEGER_ENDIANNESS(128BIT) == Q_ENDIANNESS_LITTLE
 
 		Q_DEFINE_STRICT_UNION (
-			quint128 uint128_value;
-			quint64	 uint64_array[2];
-			quint32	 uint32_array[4];
-			quint16	 uint16_array[8];
-			quint8	 uint8_array[16];
+			quint128 value_uint128;
+			quint128 value_int128;
+			quint64  array_uint64[2];
+			quint32  array_uint32[4];
+			quint16  array_uint16[8];
+			quint8	 array_uint8[16];
+			qint64	 array_int64[2];
+			qint32	 array_int32[4];
+			qint16	 array_int16[8];
+			qint8	 array_int8[16];
 
 			struct {quint64 index0;
 				quint64 index1;
-			} uint64_values;
+			} values_uint64;
 
 			struct {quint32 index0;
 				quint32 index1;
 				quint32 index2;
 				quint32 index3;
-			} uint32_values;
+			} values_uint32;
 
 			struct {quint16 index0;
 				quint16 index1;
@@ -1414,7 +1414,7 @@ Q_DEFINE_STRICT_UNION (
 				quint16 index5;
 				quint16 index6;
 				quint16 index7;
-			} uint16_values;
+			} values_uint16;
 
 			struct {quint8 index00;
 				quint8 index01;
@@ -1432,23 +1432,17 @@ Q_DEFINE_STRICT_UNION (
 				quint8 index13;
 				quint8 index14;
 				quint8 index15;
-			} uint8_values;
-
-			quint128 int128_value;
-			qint64	 int64_array[2];
-			qint32	 int32_array[4];
-			qint16	 int16_array[8];
-			qint8	 int8_array[16];
+			} values_uint8;
 
 			struct {qint64 index0;
 				qint64 index1;
-			} int64_values;
+			} values_int64;
 
 			struct {qint32 index0;
 				qint32 index1;
 				qint32 index2;
 				qint32 index3;
-			} int32_values;
+			} values_int32;
 
 			struct {qint16 index0;
 				qint16 index1;
@@ -1458,7 +1452,7 @@ Q_DEFINE_STRICT_UNION (
 				qint16 index5;
 				qint16 index6;
 				qint16 index7;
-			} int16_values;
+			} values_int16;
 
 			struct {qint8 index00;
 				qint8 index01;
@@ -1476,7 +1470,7 @@ Q_DEFINE_STRICT_UNION (
 				qint8 index13;
 				qint8 index14;
 				qint8 index15;
-			} int8_values;
+			} values_int8;
 		) Q128Bit;
 
 #	endif
@@ -1490,185 +1484,197 @@ typedef struct {qsize index, size;} QRange;
 /* Pointer cast type for lvalue assignment */
 
 Q_DEFINE_STRICT_UNION_BEGIN
-	quint8*    uint8_pointer;
-	Q2DUInt8*  uint8_2d_pointer;
-	Q3DUInt8*  uint8_3d_pointer;
-	Q4DUInt8*  uint8_4d_pointer;
+	quint8*    pointer_uint8;
+	Q2DUInt8*  pointer_2d_uint8;
+	Q3DUInt8*  pointer_3d_uint8;
+	Q4DUInt8*  pointer_4d_uint8;
 
-	quint16*   uint16_pointer;
-	Q2DUInt16* uint16_2d_pointer;
-	Q3DUInt16* uint16_3d_pointer;
-	Q4DUInt16* uint16_4d_pointer;
+	quint16*   pointer_uint16;
+	Q2DUInt16* pointer_2d_uint16;
+	Q3DUInt16* pointer_3d_uint16;
+	Q4DUInt16* pointer_4d_uint16;
 
-	quint32*   uint32_pointer;
-	Q2DUInt32* uint32_2d_pointer;
-	Q3DUInt32* uint32_3d_pointer;
-	Q4DUInt32* uint32_4d_pointer;
+	quint32*   pointer_uint32;
+	Q2DUInt32* pointer_2d_uint32;
+	Q3DUInt32* pointer_3d_uint32;
+	Q4DUInt32* pointer_4d_uint32;
 
-	quint64*   uint64_pointer;
-	Q2DUInt64* uint64_2d_pointer;
-	Q3DUInt64* uint64_3d_pointer;
-	Q4DUInt64* uint64_4d_pointer;
+	quint64*   pointer_uint64;
+	Q2DUInt64* pointer_2d_uint64;
+	Q3DUInt64* pointer_3d_uint64;
+	Q4DUInt64* pointer_4d_uint64;
 
-	qint8*	   int8_pointer;
-	Q2DInt8*   int8_2d_pointer;
-	Q3DInt8*   int8_3d_pointer;
-	Q4DInt8*   int8_4d_pointer;
+	qint8*	   pointer_int8;
+	Q2DInt8*   pointer_2d_int8;
+	Q3DInt8*   pointer_3d_int8;
+	Q4DInt8*   pointer_4d_int8;
 
-	qint16*    int16_pointer;
-	Q2DInt16*  int16_2d_pointer;
-	Q3DInt16*  int16_3d_pointer;
-	Q4DInt16*  int16_4d_pointer;
+	qint16*    pointer_int16;
+	Q2DInt16*  pointer_2d_int16;
+	Q3DInt16*  pointer_3d_int16;
+	Q4DInt16*  pointer_4d_int16;
 
-	qint32*    int32_pointer;
-	Q2DInt32*  int32_2d_pointer;
-	Q3DInt32*  int32_3d_pointer;
-	Q4DInt32*  int32_4d_pointer;
+	qint32*    pointer_int32;
+	Q2DInt32*  pointer_2d_int32;
+	Q3DInt32*  pointer_3d_int32;
+	Q4DInt32*  pointer_4d_int32;
 
-	qint64*    int64_pointer;
-	Q2DInt64*  int64_2d_pointer;
-	Q3DInt64*  int64_3d_pointer;
-	Q4DInt64*  int64_4d_pointer;
+	qint64*    pointer_int64;
+	Q2DInt64*  pointer_2d_int64;
+	Q3DInt64*  pointer_3d_int64;
+	Q4DInt64*  pointer_4d_int64;
 
 #	if Q_IS_AVAILABLE(UINT128)
-		quint128*   uint128_pointer;
-		Q2DUInt128* uint128_2d_pointer;
-		Q3DUInt128* uint128_3d_pointer;
-		Q4DUInt128* uint128_4d_pointer;
+		quint128*   pointer_uint128;
+		Q2DUInt128* pointer_2d_uint128;
+		Q3DUInt128* pointer_3d_uint128;
+		Q4DUInt128* pointer_4d_uint128;
 #	endif
 
 #	if Q_IS_AVAILABLE(INT128)
-		qint128*    int128_pointer;
-		Q2DInt128*  int128_2d_pointer;
-		Q3DInt128*  int128_3d_pointer;
-		Q4DInt128*  int128_4d_pointer;
+		qint128*    pointer_int128;
+		Q2DInt128*  pointer_2d_int128;
+		Q3DInt128*  pointer_3d_int128;
+		Q4DInt128*  pointer_4d_int128;
 #	endif
 
-	quchar*     uchar_pointer;
-	Q2DUChar*   uchar_2d_pointer;
-	Q3DUChar*   uchar_3d_pointer;
-	Q4DUChar*   uchar_4d_pointer;
+	quchar*     pointer_uchar;
+	Q2DUChar*   pointer_2d_uchar;
+	Q3DUChar*   pointer_3d_uchar;
+	Q4DUChar*   pointer_4d_uchar;
 
-	qshort*     ushort_pointer;
-	Q2DUShort*  ushort_2d_pointer;
-	Q3DUShort*  ushort_3d_pointer;
-	Q4DUShort*  ushort_4d_pointer;
+	qshort*     pointer_ushort;
+	Q2DUShort*  pointer_2d_ushort;
+	Q3DUShort*  pointer_3d_ushort;
+	Q4DUShort*  pointer_4d_ushort;
 
-	quint*	    uint_pointer;
-	Q2DUInt*    uint_2d_pointer;
-	Q3DUInt*    uint_3d_pointer;
-	Q4DUInt*    uint_4d_pointer;
+	quint*	    pointer_uint;
+	Q2DUInt*    pointer_2d_uint;
+	Q3DUInt*    pointer_3d_uint;
+	Q4DUInt*    pointer_4d_uint;
 
-	qulong*     ulong_pointer;
-	Q2DULong*   ulong_2d_pointer;
-	Q3DULong*   ulong_3d_pointer;
-	Q4DULong*   ulong_4d_pointer;
+	qulong*     pointer_ulong;
+	Q2DULong*   pointer_2d_ulong;
+	Q3DULong*   pointer_3d_ulong;
+	Q4DULong*   pointer_4d_ulong;
 
-	qullong*    ullong_pointer;
-	Q2DULLong*  ullong_2d_pointer;
-	Q3DULLong*  ullong_3d_pointer;
-	Q4DULLong*  ullong_4d_pointer;
+	qullong*    pointer_ullong;
+	Q2DULLong*  pointer_2d_ullong;
+	Q3DULLong*  pointer_3d_ullong;
+	Q4DULLong*  pointer_4d_ullong;
 
-	qchar*	    char_pointer;
-	Q2DChar*    char_2d_pointer;
-	Q3DChar*    char_3d_pointer;
-	Q4DChar*    char_4d_pointer;
+	qchar*	    pointer_char;
+	Q2DChar*    pointer_2d_char;
+	Q3DChar*    pointer_3d_char;
+	Q4DChar*    pointer_4d_char;
 
-	qshort*     short_pointer;
-	Q2DShort*   short_2d_pointer;
-	Q3DShort*   short_3d_pointer;
-	Q4DShort*   short_4d_pointer;
+	qshort*     pointer_short;
+	Q2DShort*   pointer_2d_short;
+	Q3DShort*   pointer_3d_short;
+	Q4DShort*   pointer_4d_short;
 
-	qint*	    int_pointer;
-	Q2DInt*     int_2d_pointer;
-	Q3DInt*     int_3d_pointer;
-	Q4DInt*     int_4d_pointer;
+	qint*	    pointer_int;
+	Q2DInt*     pointer_2d_int;
+	Q3DInt*     pointer_3d_int;
+	Q4DInt*     pointer_4d_int;
 
-	qlong*	    long_pointer;
-	Q2DLong*    long_2d_pointer;
-	Q3DLong*    long_3d_pointer;
-	Q4DLong*    long_4d_pointer;
+	qlong*	    pointer_long;
+	Q2DLong*    pointer_2d_long;
+	Q3DLong*    pointer_3d_long;
+	Q4DLong*    pointer_4d_long;
 
-	qllong*     llong_pointer;
-	Q2DLLong*   llong_2d_pointer;
-	Q3DLLong*   llong_3d_pointer;
-	Q4DLLong*   llong_4d_pointer;
+	qllong*     pointer_llong;
+	Q2DLLong*   pointer_2d_llong;
+	Q3DLLong*   pointer_3d_llong;
+	Q4DLLong*   pointer_4d_llong;
 
-	qfloat*     float_pointer;
-	Q2DFloat*   float_2d_pointer;
-	Q3DFloat*   float_3d_pointer;
-	Q4DFloat*   float_4d_pointer;
+	qfloat*     pointer_float;
+	Q2DFloat*   pointer_2d_float;
+	Q3DFloat*   pointer_3d_float;
+	Q4DFloat*   pointer_4d_float;
 
-	qdouble*    double_pointer;
-	Q2DDouble*  double_2d_pointer;
-	Q3DDouble*  double_3d_pointer;
-	Q4DDouble*  double_4d_pointer;
+	qdouble*    pointer_double;
+	Q2DDouble*  pointer_2d_double;
+	Q3DDouble*  pointer_3d_double;
+	Q4DDouble*  pointer_4d_double;
 
-	qldouble*   ldouble_pointer;
-	Q2DLDouble* ldouble_2d_pointer;
-	Q3DLDouble* ldouble_3d_pointer;
-	Q4DLDouble* ldouble_4d_pointer;
+	qldouble*   pointer_ldouble;
+	Q2DLDouble* pointer_2d_ldouble;
+	Q3DLDouble* pointer_3d_ldouble;
+	Q4DLDouble* pointer_4d_ldouble;
 
-	qsize*	    size_pointer;
-	Q2DSize*    size_2d_pointer;
-	Q3DSize*    size_3d_pointer;
-	Q4DSize*    size_4d_pointer;
+	qsize*	    pointer_size;
+	Q2DSize*    pointer_2d_size;
+	Q3DSize*    pointer_3d_size;
+	Q4DSize*    pointer_4d_size;
 
-	qssize*     ssize_pointer;
-	Q2DSSize*   ssize_2d_pointer;
-	Q3DSSize*   ssize_3d_pointer;
-	Q4DSSize*   ssize_4d_pointer;
+	qssize*     pointer_ssize;
+	Q2DSSize*   pointer_2d_ssize;
+	Q3DSSize*   pointer_3d_ssize;
+	Q4DSSize*   pointer_4d_ssize;
 
-	quintptr*   uintptr_pointer;
-	Q2DUIntPtr* uintptr_2d_pointer;
-	Q3DUIntPtr* uintptr_3d_pointer;
-	Q4DUIntPtr* uintptr_4d_pointer;
+	quintmax*   pointer_uintmax;
+	Q2DUIntMax* pointer_2d_uintmax;
+	Q3DUIntMax* pointer_3d_uintmax;
+	Q4DUIntMax* pointer_4d_uintmax;
 
-	quinttop*   uinttop_pointer;
-	Q2DUIntTop* uinttop_2d_pointer;
-	Q3DUIntTop* uinttop_3d_pointer;
-	Q4DUIntTop* uinttop_4d_pointer;
+	quintptr*   pointer_uintptr;
+	Q2DUIntPtr* pointer_2d_uintptr;
+	Q3DUIntPtr* pointer_3d_uintptr;
+	Q4DUIntPtr* pointer_4d_uintptr;
 
-	quintmax*   uintmax_pointer;
-	Q2DUIntMax* uintmax_2d_pointer;
-	Q3DUIntMax* uintmax_3d_pointer;
-	Q4DUIntMax* uintmax_4d_pointer;
+	quinttop*   pointer_uinttop;
+	Q2DUIntTop* pointer_2d_uinttop;
+	Q3DUIntTop* pointer_3d_uinttop;
+	Q4DUIntTop* pointer_4d_uinttop;
 
-	qintptr*    intptr_pointer;
-	Q2DIntPtr*  intptr_2d_pointer;
-	Q3DIntPtr*  intptr_3d_pointer;
-	Q4DIntPtr*  intptr_4d_pointer;
+	qintmax*    pointer_intmax;
+	Q2DIntMax*  pointer_2d_intmax;
+	Q3DIntMax*  pointer_3d_intmax;
+	Q4DIntMax*  pointer_4d_intmax;
 
-	qinttop*    inttop_pointer;
-	Q2DIntTop*  inttop_2d_pointer;
-	Q3DIntTop*  inttop_3d_pointer;
-	Q4DIntTop*  inttop_4d_pointer;
+	qintptr*    pointer_intptr;
+	Q2DIntPtr*  pointer_2d_intptr;
+	Q3DIntPtr*  pointer_3d_intptr;
+	Q4DIntPtr*  pointer_4d_intptr;
 
-	qintmax*    intmax_pointer;
-	Q2DIntMax*  intmax_2d_pointer;
-	Q3DIntMax*  intmax_3d_pointer;
-	Q4DIntMax*  intmax_4d_pointer;
+	qinttop*    pointer_inttop;
+	Q2DIntTop*  pointer_2d_inttop;
+	Q3DIntTop*  pointer_3d_inttop;
+	Q4DIntTop*  pointer_4d_inttop;
 
-	qboolean*   boolean_pointer;
+	qboolean*   pointer_boolean;
 
-	qnatural*   natural_pointer;
-	Q2DNatural* natural_2d_pointer;
-	Q3DNatural* natural_3d_pointer;
-	Q4DNatural* natural_4d_pointer;
+	qnatural*   pointer_natural;
+	Q2DNatural* pointer_2d_natural;
+	Q3DNatural* pointer_3d_natural;
+	Q4DNatural* pointer_4d_natural;
 
-	qinteger*   integer_pointer;
-	Q2DInteger* integer_2d_pointer;
-	Q3DInteger* integer_3d_pointer;
-	Q4DInteger* integer_4d_pointer;
+	qinteger*   pointer_integer;
+	Q2DInteger* pointer_2d_integer;
+	Q3DInteger* pointer_3d_integer;
+	Q4DInteger* pointer_4d_integer;
 
-	qreal*	    real_pointer;
-	Q2DReal*    real_2d_pointer;
-	Q3DReal*    real_3d_pointer;
-	Q4DReal*    real_4d_pointer;
+	qreal*	    pointer_real;
+	Q2DReal*    pointer_2d_real;
+	Q3DReal*    pointer_3d_real;
+	Q4DReal*    pointer_4d_real;
 
-	void*	    pointer;
-	quintptr    uintptr_value;
-	QRange*     range_pointer;
+	QStatus*    pointer_status;
+	QOrder*	    pointer_order;
+
+	Q8Bit*	    pointer_8bit;
+	Q16Bit*     pointer_16bit;
+	Q32Bit*     pointer_32bit;
+	Q64Bit*     pointer_64bit;
+
+#	if Q_IS_AVAILABLE(UINT128) && Q_IS_AVAILABLE(INT128)
+		Q128Bit* pointer_128bit;
+#	endif
+
+	void*	 pointer;
+	quintptr value_uintptr;
+	QRange*  pointer_range;
 
 #	ifdef Q_PARTIAL_POINTER_UNION
 		Q_PARTIAL_POINTER_UNION
@@ -1701,14 +1707,13 @@ Q_DEFINE_STRICT_UNION_END QPointer;
 #define Q_2D_INT64(  p) ((Q2DInt64   *)(p))
 #define Q_2D_INT128( p) ((Q2DInt128  *)(p))
 #define Q_2D_SIZE(   p) ((Q2DSize    *)(p))
+#define Q_2D_SSIZE(  p) ((Q2DSSize   *)(p))
 #define Q_2D_UINTPTR(p) ((Q2DUIntPtr *)(p))
 #define Q_2D_UINTTOP(p) ((Q2DUIntTop *)(p))
 #define Q_2D_UINTMAX(p) ((Q2DUIntMax *)(p))
-#define Q_2D_SSIZE(  p) ((Q2DSSize   *)(p))
+#define Q_2D_INTMAX( p) ((Q2DIntMax  *)(p))
 #define Q_2D_INTPTR( p) ((Q2DIntPtr  *)(p))
 #define Q_2D_INTTOP( p) ((Q2DIntTop  *)(p))
-#define Q_2D_INTMIN( p) ((Q2DIntMin  *)(p))
-#define Q_2D_INTMAX( p) ((Q2DIntMax  *)(p))
 #define Q_2D_NATURAL(p) ((Q2DNatural *)(p))
 #define Q_2D_INTEGER(p) ((Q2DInteger *)(p))
 #define Q_2D_REAL(   p) ((Q2DReal    *)(p))
@@ -1735,14 +1740,13 @@ Q_DEFINE_STRICT_UNION_END QPointer;
 #define Q_3D_INT32(  p) ((Q3DInt32   *)(p))
 #define Q_3D_INT64(  p) ((Q3DInt64   *)(p))
 #define Q_3D_SIZE(   p) ((Q3DSize    *)(p))
+#define Q_3D_SSIZE(  p) ((Q3DSSize   *)(p))
+#define Q_3D_UINTMAX(p) ((Q3DUIntMax *)(p))
 #define Q_3D_UINTPTR(p) ((Q3DUIntPtr *)(p))
 #define Q_3D_UINTTOP(p) ((Q3DUIntTop *)(p))
-#define Q_3D_UINTMAX(p) ((Q3DUIntMax *)(p))
-#define Q_3D_SSIZE(  p) ((Q3DSSize   *)(p))
+#define Q_3D_INTMAX( p) ((Q3DIntMax  *)(p))
 #define Q_3D_INTPTR( p) ((Q3DIntPtr  *)(p))
 #define Q_3D_INTTOP( p) ((Q3DIntTop  *)(p))
-#define Q_3D_INTMIN( p) ((Q3DIntMin  *)(p))
-#define Q_3D_INTMAX( p) ((Q3DIntMax  *)(p))
 #define Q_3D_NATURAL(p) ((Q3DNatural *)(p))
 #define Q_3D_INTEGER(p) ((Q3DInteger *)(p))
 #define Q_3D_REAL(   p) ((Q3DReal    *)(p))
@@ -1769,14 +1773,13 @@ Q_DEFINE_STRICT_UNION_END QPointer;
 #define Q_4D_INT32(  p) ((Q4DInt32   *)(p))
 #define Q_4D_INT64(  p) ((Q4DInt64   *)(p))
 #define Q_4D_SIZE(   p) ((Q4DSize    *)(p))
+#define Q_4D_UINTMAX(p) ((Q4DUIntMax *)(p))
 #define Q_4D_UINTPTR(p) ((Q4DUIntPtr *)(p))
 #define Q_4D_UINTTOP(p) ((Q4DUIntTop *)(p))
-#define Q_4D_UINTMAX(p) ((Q4DUIntMax *)(p))
 #define Q_4D_SSIZE(  p) ((Q4DSSize   *)(p))
+#define Q_4D_INTMAX( p) ((Q4DIntMax  *)(p))
 #define Q_4D_INTPTR( p) ((Q4DIntPtr  *)(p))
 #define Q_4D_INTTOP( p) ((Q4DIntTop  *)(p))
-#define Q_4D_INTMIN( p) ((Q4DIntMin  *)(p))
-#define Q_4D_INTMAX( p) ((Q4DIntMax  *)(p))
 #define Q_4D_NATURAL(p) ((Q4DNatural *)(p))
 #define Q_4D_INTEGER(p) ((Q4DInteger *)(p))
 #define Q_4D_REAL(   p) ((Q4DReal    *)(p))

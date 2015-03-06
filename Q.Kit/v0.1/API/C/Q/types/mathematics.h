@@ -1,4 +1,4 @@
-/* Q API - types/mathematics.h
+/* Q C API - types/mathematics.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

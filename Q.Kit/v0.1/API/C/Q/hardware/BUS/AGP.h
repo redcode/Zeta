@@ -1,4 +1,4 @@
-/* Q API - hardware/BUS/AGP.h
+/* Q C API - hardware/BUS/AGP.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

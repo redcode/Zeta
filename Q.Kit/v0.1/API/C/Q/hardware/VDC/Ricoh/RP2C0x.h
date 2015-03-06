@@ -1,4 +1,4 @@
-/* Q API - hardware/VDC/Ricoh/RP2C0x.h
+/* Q C API - hardware/VDC/Ricoh/RP2C0x.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -108,9 +108,6 @@ EXT3 -17-|    (_)    |-24- /R
     |  Color Index  |
     |    (4 bit)    |
     '---------------'
-
-
-
       .------------.
       | Name table |
       '------------'

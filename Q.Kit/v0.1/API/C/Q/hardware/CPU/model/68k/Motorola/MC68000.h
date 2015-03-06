@@ -1,4 +1,4 @@
-/* Q API - hardware/CPU/model/68k/Motorola/MC68000.h
+/* Q C API - hardware/CPU/model/68k/Motorola/MC68000.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q API - Q/network/5/SOCKS.h
+/* Q C API - Q/network/5/SOCKS.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

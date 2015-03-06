@@ -1,4 +1,4 @@
-/* Q API - ABIs/QCompressionABI.h
+/* Q C API - ABIs/QCompressionABI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

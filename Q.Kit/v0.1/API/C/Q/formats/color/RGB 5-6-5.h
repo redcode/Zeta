@@ -1,4 +1,4 @@
-/* Q API - formats/color/RGB 5-6-5.h
+/* Q C API - formats/color/RGB 5-6-5.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

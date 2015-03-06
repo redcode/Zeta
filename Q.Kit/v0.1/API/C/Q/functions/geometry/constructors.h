@@ -1,4 +1,4 @@
-/* Q API - functions/geometry/constructors.h
+/* Q C API - functions/geometry/constructors.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Q/types/mathematics.h>
 
-#if Q_C_HAS(COMPOUND_LITERAL)
+#if Q_LANGUAGE_HAS(COMPOUND_LITERAL)
 
 #	define q_2d_float_vector(  a_x, a_y, b_x, b_y)		 ((Q2DFloatVector  ){{a_x, a_y}, {b_x, b_y}})
 #	define q_2d_double_vector( a_x, a_y, b_x, b_y)		 ((Q2DDoubleVector ){{a_x, a_y}, {b_x, b_y}})

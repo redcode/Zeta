@@ -1,4 +1,4 @@
-/* Q API - keys/science/chemistry.h
+/* Q C API - keys/science/chemistry.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

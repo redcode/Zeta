@@ -1,4 +1,4 @@
-/* Q API - inspection/private/compiler/GCC.h
+/* Q C API - inspection/private/compiler/GCC.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

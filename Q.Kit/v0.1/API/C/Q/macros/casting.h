@@ -1,4 +1,4 @@
-/* Q API - macros/casting.h
+/* Q C API - macros/casting.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -9,9 +9,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Q_macros_casting_H__
 #define __Q_macros_casting_H__
 
-#include <Q/inspection/C.h>
+#include <Q/inspection/language.h>
 
-#if Q_C_HAS(COMPOUND_LITERAL)
+#if Q_LANGUAGE_HAS(COMPOUND_LITERAL) && Q_LANGUAGE_HAS(ANONYMOUS_UNION)
 
 #	define Q_CAST(structure, from_type, to_type) \
 		((union {from_type from; to_type to;}){.from = structure}).to

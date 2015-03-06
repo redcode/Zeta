@@ -1,4 +1,4 @@
-/* Q API - ABIs/QValueCodecABI.h
+/* Q C API - ABIs/QValueCodecABI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

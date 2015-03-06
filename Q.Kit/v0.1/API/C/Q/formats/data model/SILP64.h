@@ -1,4 +1,4 @@
-/* Q API - formats/data model/SILP64.h
+/* Q C API - formats/data model/SILP64.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

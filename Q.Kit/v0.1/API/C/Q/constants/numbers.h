@@ -1,4 +1,4 @@
-/* Q API - constants/numbers.h
+/* Q C API - constants/numbers.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

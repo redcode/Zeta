@@ -1,4 +1,4 @@
-/* Q API - hardware/machine/platform/console/Nintendo Entertainment System.h
+/* Q C API - hardware/machine/platform/console/Nintendo Entertainment System.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -82,8 +82,8 @@ Bottom view
 |   |=====		  ______|  |_____   =====|   |
 |   |=====		 |.-------------.|  =====|   |
 |   |=====		 ||   _______	||  =====|   |
-|  ---------------------- |  |_______|	|'---------  |
-|  ______________________ |_____________||_________  |
+|   --------------------- |  |_______|	|'--------   |
+|   _____________________ |_____________||________   |
 |   |			 |_______________|	 |   |
 |   |			  			 |   |
 |   |  _				      _  |   |
@@ -97,7 +97,8 @@ Bottom view
 #include <Q/types/base.h>
 #include <Q/macros/bit field.h>
 
-#define Q_NES_6502_HZ		1789773
+/* MARK: - Timmings */
+
 #define Q_NES_SCREEN_WIDTH	256
 #define Q_NES_SCREEN_HEIGHT	240
 

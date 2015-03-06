@@ -1,4 +1,4 @@
-/* Q API - formats/storage medium image/floppy disk/FDI.h
+/* Q C API - formats/storage medium image/floppy disk/FDI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

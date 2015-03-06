@@ -1,4 +1,4 @@
-/* Q API - hardware/CPU/x86/Am386SX-20.h
+/* Q C API - hardware/CPU/x86/Am386SX-20.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q API - hardware/GPU/3dfx Interactive/Voodoo Graphics.h
+/* Q C API - hardware/GPU/3dfx Interactive/Voodoo Graphics.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

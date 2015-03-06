@@ -1,4 +1,4 @@
-/* Q API - constants/color.h
+/* Q C API - constants/color.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

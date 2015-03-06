@@ -1,4 +1,4 @@
-/* Q API - hardware/CPU/x86/Am386DX DXL-33.h
+/* Q C API - hardware/CPU/x86/Am386DX DXL-33.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

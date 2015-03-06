@@ -1,4 +1,4 @@
-/* Q API - keys/character set.h
+/* Q C API - keys/character set.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

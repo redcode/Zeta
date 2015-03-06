@@ -1,4 +1,4 @@
-/* Q API - functions/geometry/QAABB.h
+/* Q C API - functions/geometry/QAABB.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

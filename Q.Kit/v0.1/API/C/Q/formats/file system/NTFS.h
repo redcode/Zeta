@@ -1,4 +1,4 @@
-/* Q API - formats/file system/NTFS.h
+/* Q C API - formats/file system/NTFS.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

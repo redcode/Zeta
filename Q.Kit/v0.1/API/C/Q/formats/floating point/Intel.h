@@ -1,4 +1,4 @@
-/* Q API - formats/floating point/Intel.h
+/* Q C API - formats/floating point/Intel.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

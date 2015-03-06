@@ -1,4 +1,4 @@
-/* Q API - formats/hardware snapshot/machine/ZX Spectrum/SNX.h
+/* Q C API - formats/hardware snapshot/machine/ZX Spectrum/SNX.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

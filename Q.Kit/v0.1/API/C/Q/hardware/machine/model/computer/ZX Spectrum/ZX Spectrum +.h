@@ -1,4 +1,4 @@
-/* Q API - hardware/machine/model/computer/ZX Spectrum/ZX Spectrum +.h
+/* Q C API - hardware/machine/model/computer/ZX Spectrum/ZX Spectrum +.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -45,6 +45,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /* MARK: - Screen */
 
+#define Q_ZX_SPECTRUM_PLUS_SCREEN_FPS			      Q_ZX_SPECTRUM_SCREEN_FPS
 #define Q_ZX_SPECTRUM_PLUS_SCREEN_WIDTH			      Q_ZX_SPECTRUM_SCREEN_WIDTH
 #define Q_ZX_SPECTRUM_PLUS_SCREEN_HEIGHT		      Q_ZX_SPECTRUM_SCREEN_HEIGHT
 #define Q_ZX_SPECTRUM_PLUS_SCREEN_PIXELS		      Q_ZX_SPECTRUM_SCREEN_PIXELS

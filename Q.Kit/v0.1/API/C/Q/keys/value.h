@@ -1,4 +1,4 @@
-/* Q API - keys/value.h
+/* Q C API - keys/value.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -40,13 +40,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_VALUE_TYPE_INT512   28
 #define Q_VALUE_TYPE_INT1024  29
 #define Q_VALUE_TYPE_SIZE     30
-#define Q_VALUE_TYPE_UINTPTR  31
-#define Q_VALUE_TYPE_UINTTOP  32
-#define Q_VALUE_TYPE_UINTMAX  33
-#define Q_VALUE_TYPE_SSIZE    34
-#define Q_VALUE_TYPE_INTPTR   35
-#define Q_VALUE_TYPE_INTTOP   36
-#define Q_VALUE_TYPE_INTMAX   37
+#define Q_VALUE_TYPE_SSIZE    31
+#define Q_VALUE_TYPE_UINTMAX  32
+#define Q_VALUE_TYPE_UINTPTR  33
+#define Q_VALUE_TYPE_UINTTOP  34
+#define Q_VALUE_TYPE_INTMAX   35
+#define Q_VALUE_TYPE_INTPTR   36
+#define Q_VALUE_TYPE_INTTOP   37
 #define Q_VALUE_TYPE_BOOLEAN  38
 #define Q_VALUE_TYPE_NATURAL  39
 #define Q_VALUE_TYPE_INTEGER  40

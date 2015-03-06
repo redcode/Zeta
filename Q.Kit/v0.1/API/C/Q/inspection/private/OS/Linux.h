@@ -1,4 +1,4 @@
-/* Q API - inspection/private/OS/Linux.h
+/* Q C API - inspection/private/OS/Linux.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

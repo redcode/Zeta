@@ -1,4 +1,4 @@
-/* Q API - network/2/Ethernet.h
+/* Q C API - network/2/Ethernet.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

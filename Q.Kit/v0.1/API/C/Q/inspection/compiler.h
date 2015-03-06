@@ -1,4 +1,4 @@
-/* Q API - inspection/compiler.h
+/* Q C API - inspection/compiler.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

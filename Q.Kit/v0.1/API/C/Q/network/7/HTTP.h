@@ -1,4 +1,4 @@
-/* Q API - Q/network/7/HTTP.h
+/* Q C API - Q/network/7/HTTP.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
