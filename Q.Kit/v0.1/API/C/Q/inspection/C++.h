@@ -27,6 +27,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if defined(Q_USE_CPP98)
 #	include <Q/inspection/private/C++/C++98.h>
 
+#if defined(Q_USE_CPP89)
+#	include <Q/inspection/private/C++/C++89.h>
+
+#if defined(Q_USE_CPP85)
+#	include <Q/inspection/private/C++/C++85.h>
+
 #elif defined(__cplusplus)
 
 #	if __cplusplus >= 201402L
@@ -39,18 +45,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Q/inspection/private/C++/C++98.h>
 
 #	else
-#		include <Q/inspection/private/C/C89.h>
+#		include <Q/inspection/private/C++/C++85.h>
 #	endif
-#else
-#	define Q_INSPECTING_C
-#	include <Q/inspection/compiler.h>
-#	undef Q_INSPECTING_C
 #endif
 
-#ifndef Q_C
-#	include <Q/inspection/private/C/C89.h>
-#endif
-
-#define Q_C_HAS(WHAT) ((defined Q_C_HAS_##WHAT) || (defined Q_COMPILER_C_HAS_##WHAT))
+#define Q_CPP_HAS(WHAT) (defined Q_CPP_HAS_##WHAT)
 
 #endif /* __Q_inspection_CPP_H__ */

@@ -46,6 +46,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Q/inspection/private/C/C89.h>
 #endif
 
-#define Q_C_HAS(WHAT) ((defined Q_C_HAS_##WHAT) || (defined Q_COMPILER_C_HAS_##WHAT))
+#define Q_C_HAS(WHAT) (defined Q_C_HAS_##WHAT)
 
 #endif /* __Q_inspection_C_H__ */
