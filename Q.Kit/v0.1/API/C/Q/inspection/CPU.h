@@ -57,7 +57,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Q/hardware/CPU/architecture/z Architecture.h>
 
 #	else
-
 #		if	defined(__amd64__)	|| \
 			defined(__amd64)	|| \
 			defined(__x86_64__)	|| \
@@ -156,7 +155,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		else
 #			error "Target Processor architecture not suported."
 #		endif
-
 #	endif
 
 #	ifdef Q_CPU_MODEL_HEADER

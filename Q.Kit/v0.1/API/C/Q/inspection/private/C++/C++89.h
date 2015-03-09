@@ -1,4 +1,4 @@
-/* Q C API - private/C++/C++07 TR1.h
+/* Q C API - private/C++/C++89.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Q/keys/C++.h>
 
-#define Q_CPP	     Q_CPP07_TR1
-#define Q_CPP_STRING Q_CPP_STRING_CPP07_TR1
+#define Q_CPP	     Q_CPP89
+#define Q_CPP_STRING Q_CPP_STRING_CPP89
 
 #endif /* __Q_private_CPP_H__ */
