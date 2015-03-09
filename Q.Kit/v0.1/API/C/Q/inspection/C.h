@@ -1,4 +1,4 @@
-/* Q C API - inspection/language.h
+/* Q C API - inspection/C.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Q_inspection_language_H__
-#define __Q_inspection_language_H__
+#ifndef __Q_inspection_C_H__
+#define __Q_inspection_C_H__
 
 #if defined(Q_USE_C_C11)
 #	include <Q/inspection/private/C/C11.h>
@@ -62,4 +62,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_C_SYMBOLS_END
 #endif
 
-#endif /* __Q_inspection_language_H__ */
+#endif /* __Q_inspection_C_H__ */

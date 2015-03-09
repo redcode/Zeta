@@ -46,7 +46,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_IEEE_754_BINARY32_EXPONENT_BITS		    8
 #define Q_IEEE_754_BINARY32_EXPONENT_RADIX		    2
 #define Q_IEEE_754_BINARY32_EXPONENT_MINIMUM		    -126
-#define Q_IEEE_754_BINARY32_EXPONENT_MAXIMUM		    127
+#define Q_IEEE_754_BINARY32_EXPONENT_MAXIMUM		    127 /* 128 ? */
 #define Q_IEEE_754_BINARY32_EXPONENT_10_MINIMUM		    -45
 #define Q_IEEE_754_BINARY32_EXPONENT_10_MAXIMUM		    39
 #define Q_IEEE_754_BINARY32_SIGN_OFFSET			    31
@@ -129,7 +129,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif /* __Q_formats_floating_point_IEEE_754_Ha__ */
 
-#ifndef Q_INSPECTING
+#ifndef Q_INSPECTING_FLOATING_POINT
 
 #	ifndef __Q_formats_floating_point_IEEE_754_Hb__
 #	define __Q_formats_floating_point_IEEE_754_Hb__

@@ -25,7 +25,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif /* __Q_hardware_CPU_architecture_PowerPC_64_bit_Ha__ */
 
-#ifdef Q_INSPECTING
+#ifdef Q_INSPECTING_CPU_ARCHITECTURE
 
 #	undef POWER_PC_64BIT
 #	undef PowerPC64Bit

@@ -30,7 +30,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif /* __Q_hardware_CPU_architecture_x86_64_Ha__ */
 
-#ifdef Q_INSPECTING
+#ifdef Q_INSPECTING_CPU_ARCHITECTURE
 
 #	undef X86_64
 #	undef X8664

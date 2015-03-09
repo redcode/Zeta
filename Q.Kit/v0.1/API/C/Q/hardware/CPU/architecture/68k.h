@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Q/keys/endianness.h>
 
-#ifdef Q_INSPECTING
+#ifdef Q_INSPECTING_CPU_ARCHITECTURE
 
 #endif
 

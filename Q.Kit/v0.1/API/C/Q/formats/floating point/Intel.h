@@ -32,7 +32,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif /* __Q_formats_floating_point_Intel_Ha__ */
 
-#ifndef Q_INSPECTING
+#ifndef Q_INSPECTING_FLOATING_POINT
 
 #	ifndef __Q_formats_floating_point_Intel_Hb__
 #	define __Q_formats_floating_point_Intel_Hb__

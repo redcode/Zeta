@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Q_inspection_CPU_H__
 #define __Q_inspection_CPU_H__
 
-#define Q_INSPECTING
+#define Q_INSPECTING_CPU_ARCHITECTURE
 
 #	if defined(Q_USE_CPU_ARCHITECTURE_X86_64)
 #		include <Q/hardware/CPU/architecture/x86-64.h>
@@ -167,7 +167,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Q_CPU_MODEL_name generic_cpu_model
 #	endif
 
-#undef Q_INSPECTING
+#undef Q_INSPECTING_CPU_ARCHITECTURE
 
 #include <Q/keys/hardware/CPU/architecture.h>
 #include <Q/macros/preprocessor.h>

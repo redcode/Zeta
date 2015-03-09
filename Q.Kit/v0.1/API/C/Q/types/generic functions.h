@@ -16,6 +16,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 typedef void	(* QDo)			    (void* context);
 typedef void	(* QSwitch)		    (void* context, qboolean state);
 
+typedef void	(* QRead)		    (void* context, void* input );
+typedef void	(* QWrite)		    (void* context, void* output);
+
 typedef quint8	(* Q16BitAddressRead8Bit )  (void* context, quint16 address);
 typedef quint16 (* Q16BitAddressRead16Bit)  (void* context, quint16 address);
 typedef quint32 (* Q16BitAddressRead32Bit)  (void* context, quint16 address);

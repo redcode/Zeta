@@ -29,7 +29,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif /* __Q_hardware_CPU_architecture_x86_32_Ha__ */
 
-#ifdef Q_INSPECTING
+#ifdef Q_INSPECTING_CPU_ARCHITECTURE
 
 #	undef X86_32
 #	undef X8632

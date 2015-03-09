@@ -145,7 +145,7 @@ Flags (F register)
 
 #endif /* __Q_hardware_CPU_architecture_Z80_Ha__ */
 
-#ifdef Q_INSPECTING
+#ifdef Q_INSPECTING_CPU_ARCHITECTURE
 
 #	undef Z80
 #	undef z80

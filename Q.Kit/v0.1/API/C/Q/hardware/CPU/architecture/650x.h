@@ -65,7 +65,7 @@ Status (P register)
 
 #include <Q/keys/endianness.h>
 
-#ifdef Q_INSPECTING
+#ifdef Q_INSPECTING_CPU_ARCHITECTURE
 
 #else
 

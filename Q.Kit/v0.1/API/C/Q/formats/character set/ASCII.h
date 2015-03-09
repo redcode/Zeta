@@ -16,7 +16,7 @@ typedef quint8 QASCII;
 /* MARK: - Controls and Basic Latin */
 
 #define Q_ASCII_NULL			        0x00
-#define Q_ASCII_START_OF_HEADING	        0x01
+#define Q_ASCII_START_OF_HEADER			0x01
 #define Q_ASCII_START_OF_TEXT		        0x02
 #define Q_ASCII_END_OF_TEXT		        0x03
 #define Q_ASCII_END_OF_TRANSMISSION	        0x04

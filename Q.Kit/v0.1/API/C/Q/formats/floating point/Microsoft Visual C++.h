@@ -56,7 +56,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif /* __Q_formats_floating_point_Microsoft_Visual_CPP_Ha__ */
 
-#ifndef Q_INSPECTING
+#ifndef Q_INSPECTING_FLOATING_POINT
 
 #	ifndef __Q_formats_floating_point_Microsoft_Visual_CPP_Hb__
 #	define __Q_formats_floating_point_Microsoft_Visual_CPP_Hb__

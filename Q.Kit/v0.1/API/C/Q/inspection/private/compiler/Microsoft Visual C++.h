@@ -1,4 +1,4 @@
-/* Q C API - inspection/private/compiler/GCC.h
+/* Q C API - inspection/private/compiler/Microsoft Visual C++.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -50,8 +50,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_PRIVATE					static
 #define Q_PUBLIC					__declspec(dllexport)
 #define Q_ALIAS(name)
-#define Q_BEGIN_STRICT_SIZE				__pragma(pack(push, 1))
-#define Q_END_STRICT_SIZE				__pragma(pack(pop))
+#define Q_STRICT_SIZE_BEGIN				__pragma(pack(push, 1))
+#define Q_STRICT_SIZE_END				__pragma(pack(pop))
 
 #define Q_INLINE					static __forceinline
 

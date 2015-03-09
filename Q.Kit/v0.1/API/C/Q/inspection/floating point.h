@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Q/inspection/CPU.h>
 #include <Q/inspection/compiler.h>
 
-#define Q_INSPECTING
+#define Q_INSPECTING_FLOATING_POINT
 
 #	if	Q_CPU_ARCHITECTURE == Q_CPU_ARCHITECTURE_X86_32 || \
 		Q_CPU_ARCHITECTURE == Q_CPU_ARCHITECTURE_X86_64
@@ -42,7 +42,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	else
 #	endif
 
-#undef Q_INSPECTING
+#undef Q_INSPECTING_FLOATING_POINT
 
 #include <Q/keys/floating point.h>
 
