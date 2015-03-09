@@ -372,16 +372,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_COMPILER_FUNCTION_INT64_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
 #endif
 
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_SET
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_SET
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_SET
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_SET
-#	define Q_COMPILER_FUNCTION_UINT128_ATOMIC_GET_THEN_SET
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_SET
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_SET
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_SET
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_SET
-#	define Q_COMPILER_FUNCTION_INT128_ATOMIC_GET_THEN_SET
+#if __has_builtin(__sync_lock_test_and_set)
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_SET   __sync_lock_test_and_set
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_SET  __sync_lock_test_and_set
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_SET  __sync_lock_test_and_set
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_SET  __sync_lock_test_and_set
+#	define Q_COMPILER_FUNCTION_UINT128_ATOMIC_GET_THEN_SET __sync_lock_test_and_set
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_SET    __sync_lock_test_and_set
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_SET   __sync_lock_test_and_set
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_SET   __sync_lock_test_and_set
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_SET   __sync_lock_test_and_set
+#	define Q_COMPILER_FUNCTION_INT128_ATOMIC_GET_THEN_SET  __sync_lock_test_and_set
+#endif
 
 #if __has_builtin(__sync_fetch_and_add)
 #	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_INCREMENT( pointer) __sync_fetch_and_add(pointer, 1)
