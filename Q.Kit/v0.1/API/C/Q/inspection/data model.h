@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Q_inspection_data_model_H__
 #define __Q_inspection_data_model_H__
 
-#define Q_INSPECTING
+#define Q_INSPECTING_DATA_MODEL
 
 #	if defined(Q_USE_DATA_MODEL_LP32)
 #		include <Q/formats/data model/LP32.h>
@@ -27,17 +27,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Q/formats/data model/LP64.h>
 
 #	else
-
-#		if	defined(__LP32__)  || \
-			defined(__LP32)    || \
-			defined(_LP32_)    || \
+#		if	defined(__LP32__) || \
+			defined(__LP32)	  || \
+			defined(_LP32_)	  || \
 			defined(_LP32)
 #			include <Q/formats/data model/LP32.h>
 
 #		elif	defined(__ILP32__) || \
 			defined(__ILP32)   || \
 			defined(_ILP32_)   || \
-			defined(_ILP32)    || \
+			defined(_ILP32)	   || \
 			defined(_WIN32)
 #			include <Q/formats/data model/ILP32.h>
 
@@ -50,23 +49,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		elif	defined(__LLP64__) || \
 			defined(__LLP64)   || \
 			defined(_LLP64_)   || \
-			defined(_LLP64)    || \
+			defined(_LLP64)	   || \
 			defined(_WIN64)
 #			include <Q/formats/data model/LLP64.h>
 
-#		elif	defined(__LP64__)  || \
-			defined(__LP64)    || \
-			defined(_LP64_)    || \
+#		elif	defined(__LP64__) || \
+			defined(__LP64)	  || \
+			defined(_LP64_)	  || \
 			defined(_LP64)
 #			include <Q/formats/data model/LP64.h>
 
 #		else
 #			include <Q/formats/data model/ILP32.h>
 #		endif
-
 #	endif
 
-#undef Q_INSPECTING
+#undef Q_INSPECTING_DATA_MODEL
 
 #include <Q/macros/preprocessor.h>
 #include <Q/keys/data model.h>

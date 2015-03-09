@@ -50,7 +50,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif /* __Q_formats_data_model_LP32_Ha__ */
 
-#ifdef Q_INSPECTING
+#ifdef Q_INSPECTING_DATA_MODEL
 #	ifndef __Q_formats_data_model_LP32_Hb__
 #	define __Q_formats_data_model_LP32_Hb__
 

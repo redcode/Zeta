@@ -57,95 +57,95 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Q/hardware/CPU/architecture/z Architecture.h>
 
 #	else
-#		if	defined(__amd64__)	|| \
-			defined(__amd64)	|| \
-			defined(__x86_64__)	|| \
-			defined(__x86_64)	|| \
-			defined(_M_X64)		|| \
+#		if	defined(__amd64__)  || \
+			defined(__amd64)    || \
+			defined(__x86_64__) || \
+			defined(__x86_64)   || \
+			defined(_M_X64)	    || \
 			defined(_M_AMD64)
 #			include <Q/hardware/CPU/architecture/x86-64.h>
 
-#		elif	defined(i386)		|| \
-			defined(__i386)		|| \
-			defined(__i386__)	|| \
-			defined(__i486__)	|| \
-			defined(__i586__)	|| \
-			defined(__i686__)	|| \
-			defined(_X86_)		|| \
-			defined(__X86__)	|| \
-			defined(_M_IX86)	|| \
-			defined(__THW_INTEL__)	|| \
-			defined(__I86__)	|| \
+#		elif	defined(i386)	       || \
+			defined(__i386)	       || \
+			defined(__i386__)      || \
+			defined(__i486__)      || \
+			defined(__i586__)      || \
+			defined(__i686__)      || \
+			defined(_X86_)	       || \
+			defined(__X86__)       || \
+			defined(_M_IX86)       || \
+			defined(__THW_INTEL__) || \
+			defined(__I86__)       || \
 			defined(__INTEL__)
 #			include <Q/hardware/CPU/architecture/x86-32.h>
 
-#		elif	defined(__powerpc64__)	|| \
-			defined(__ppc64__)	|| \
-			defined(__PPC64__)	|| \
+#		elif	defined(__powerpc64__) || \
+			defined(__ppc64__)     || \
+			defined(__PPC64__)     || \
 			defined(__PPU__)
 #			include <Q/hardware/CPU/architecture/PowerPC 64-bit.h>
 
-#		elif	defined(__powerpc)	|| \
-			defined(__powerpc__)	|| \
-			defined(__POWERPC__)	|| \
-			defined(__ppc__)	|| \
-			defined(__PPC__)	|| \
-			defined(_M_PPC)		|| \
+#		elif	defined(__powerpc)   || \
+			defined(__powerpc__) || \
+			defined(__POWERPC__) || \
+			defined(__ppc__)     || \
+			defined(__PPC__)     || \
+			defined(_M_PPC)	     || \
 			defined(_ARCH_PPC)
 #			include <Q/hardware/CPU/architecture/PowerPC 32-bit.h>
 
-#		elif	defined(__arm__)		|| \
-			defined(__thumb__)		|| \
-			defined(__TARGET_ARCH_ARM)	|| \
-			defined(__TARGET_ARCH_THUMB)	|| \
+#		elif	defined(__arm__)	     || \
+			defined(__thumb__)	     || \
+			defined(__TARGET_ARCH_ARM)   || \
+			defined(__TARGET_ARCH_THUMB) || \
 			defined(_ARM)
 #			include <Q/hardware/CPU/architecture/ARM.h>
 
-#		elif	defined(__m68k__)	|| \
+#		elif	defined(__m68k__) || \
 			defined(M68000)
 #			include <Q/hardware/CPU/architecture/68K.h>
 
-#		elif	defined(__ia64__)	|| \
-			defined(_IA64)		|| \
-			defined(__IA64__)	|| \
-			defined(__ia64)		|| \
+#		elif	defined(__ia64__) || \
+			defined(_IA64)	  || \
+			defined(__IA64__) || \
+			defined(__ia64)	  || \
 			defined(_M_IA64)
 #			include <Q/hardware/CPU/architecture/Itanium.h>
 
-#		elif	defined(__alpha__)	|| \
-			defined(__alpha)	|| \
+#		elif	defined(__alpha__) || \
+			defined(__alpha)   || \
 			defined(_M_ALPHA)
 #			include <Q/hardware/CPU/architecture/Alpha.h>
 
-#		elif	defined(__mips__)	|| \
-			defined(mips)		|| \
-			defined(__mips)		|| \
+#		elif	defined(__mips__) || \
+			defined(mips)	  || \
+			defined(__mips)	  || \
 			defined(__MIPS__)
 #			include <Q/hardware/CPU/architecture/MIPS.h>
 
-#		elif	defined(__hppa__)	|| \
+#		elif	defined(__hppa__) || \
 			defined(__hppa)
 #			include <Q/hardware/CPU/architecture/PA-RISC.h>
 
-#		elif	defined(__THW_RS6000)	|| \
-			defined(_IBMR2)		|| \
-			defined(_POWER)		|| \
-			defined(_ARCH_PWR)	|| \
+#		elif	defined(__THW_RS6000) || \
+			defined(_IBMR2)	      || \
+			defined(_POWER)	      || \
+			defined(_ARCH_PWR)    || \
 			defined(_ARCH_PWR2)
 #			include <Q/hardware/CPU/architecture/RS 6000.h>
 
-#		elif	defined(__sparc__)	|| \
+#		elif	defined(__sparc__) || \
 			defined(__sparc)
 #			include <Q/hardware/CPU/architecture/SPARC.h>
 
 #		elif	defined(__sh__)
 #			include <Q/hardware/CPU/architecture/SuperH.h>
 
-#		elif	defined(__370__)	|| \
+#		elif	defined(__370__) || \
 			defined(__THW_370__)
 #			include <Q/hardware/CPU/architecture/System 370.h>
 
-#		elif	defined(__s390__)	|| \
+#		elif	defined(__s390__) || \
 			defined(__s390x__)
 #			include <Q/hardware/CPU/architecture/System 390.h>
 
@@ -203,8 +203,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_CPU_INTEGER_ENDIANNESS_64BIT	Q_CPU_ENDIANNESS
 #endif
 
-#if !Q_CPU_DEFINED(INTEGER_ENDIANNESS_128BIT) \
-    && Q_CPU_HAS(128BIT_ARITHMETIC)
+#if !Q_CPU_DEFINED(INTEGER_ENDIANNESS_128BIT) && Q_CPU_HAS(128BIT_ARITHMETIC)
 #	define Q_CPU_INTEGER_ENDIANNESS_128BIT	Q_CPU_ENDIANNESS
 #endif
 

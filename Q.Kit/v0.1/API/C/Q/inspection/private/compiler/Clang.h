@@ -27,7 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_COMPILER_BIG_ENDIAN_8BIT_FIELD_ENCODING    Q_BIT_FIELD_ENCODING_LITERAL
 #define Q_COMPILER_BIG_ENDIAN_BIT_FIELD_ENCODING     Q_BIT_FIELD_ENCODING_LITERAL
 
-/* MARK: - Features */
+/* MARK: - C Features */
 
 #ifndef __has_extension
 #	define __has_extension __has_feature /* Compatibility with Clang < v3.0 */
@@ -38,62 +38,52 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Q_COMPILER_HAS_ANONYMOUS_UNION*/
 
 #if __has_extension(c_atomic)
-#	define Q_COMPILER_HAS_ATOMIC_OPERATIONS
+#	define Q_COMPILER_C_HAS_ATOMIC_OPERATIONS
 #endif
 
 #if __has_extension(blocks)
-#	define Q_COMPILER_HAS_CLOSURE
+#	define Q_COMPILER_C_HAS_CLOSURE
 #endif
 
 /*#define Q_COMPILER_HAS_COMPOUND_LITERAL*/
 
 #if __has_extension(c_generic_selections)
-#	define Q_COMPILER_HAS_GENERIC_SELECTION
+#	define Q_COMPILER_C_HAS_GENERIC_SELECTION
 #endif
 
-/* MARK: - Attributes */
+/* MARK: - C Attributes */
 
 #if __has_attribute(alias)
-#	define Q_COMPILER_ATTRIBUTE_ALIAS(name) __attribute__((alias(name)))
+#	define Q_COMPILER_C_ATTRIBUTE_ALIAS(name) __attribute__((alias(name)))
 #endif
 
-/*#define Q_COMPILER_ATTRIBUTE_API*/
-/*#define Q_COMPILER_ATTRIBUTE_API_ALIAS*/
+/*#define Q_COMPILER_C_ATTRIBUTE_API*/
+/*#define Q_COMPILER_C_ATTRIBUTE_API_ALIAS*/
 
 #if __has_attribute(always_inline)
-#	define Q_INLINE static __inline__ __attribute__((always_inline))
+#	define Q_COMPILER_C_ATTRIBUTE_INLINE static __inline__ __attribute__((always_inline))
 #else
-#	define Q_INLINE static __inline__
+#	define Q_COMPILER_C_ATTRIBUTE_INLINE static __inline__
 #endif
 
 #if __has_attribute(visibility)
-#	define Q_COMPILER_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden"))) static
-#	define Q_COMPILER_ATTRIBUTE_PUBLIC  __attribute__((visibility("default"))
+#	define Q_COMPILER_C_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden"))) static
+#	define Q_COMPILER_C_ATTRIBUTE_PUBLIC  __attribute__((visibility("default"))
 #endif
 
 #if __has_attribute(packed)
-#	define Q_STRICT_SIZE_BEGIN
-#	define Q_STRICT_SIZE_END __attribute__((packed))
+#	define Q_COMPILER_C_ATTRIBUTE_STRICT_SIZE_BEGIN
+#	define Q_COMPILER_C_ATTRIBTE_STRICT_SIZE_END __attribute__((packed))
 #endif
 
 #if __has_extension(c_thread_local)
-#	define Q_COMPILER_ATTRIBUTE_THREAD_LOCAL _Thread_local
+#	define Q_COMPILER_C_ATTRIBUTE_THREAD_LOCAL _Thread_local
 #elif __has_extension(tls)
-#	define Q_COMPILER_ATTRIBUTE_THREAD_LOCAL __thread
+#	define Q_COMPILER_C_ATTRIBUTE_THREAD_LOCAL __thread
 #endif
 
 #if __has_attribute(weak)
-#	define Q_COMPILER_ATTRIBUTE_WEAK __attribute__((weak))
-#endif
-
-/* MARK: - Language sections */
-
-#ifdef __cplusplus
-#	define Q_COMPILER_C_SYMBOLS_BEGIN extern "C" {
-#	define Q_COMPILER_C_SYMBOLS_END   }
-#else
-#	define Q_COMPILER_ASSEMBLY_BEGIN
-#	define Q_COMPILER_ASSEMBLY_END
+#	define Q_COMPILER_C_ATTRIBUTE_WEAK __attribute__((weak))
 #endif
 
 /* MARK: - Built-in constants */
@@ -355,227 +345,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Q_COMPILER_TYPE_VAL __builtin_va_list
 
-/* MARK: - Built-in functions - Struture */
+/* MARK: - Built-in functions: Struture */
 
 #define Q_COMPILER_FUNCTION_OFFSETOF __builtin_offsetof
 
-/* MARK: - Built-in functions - VAL */
-
-/*#define Q_COMPILER_FUNCTION_VAL_INITIALIZE*/
-/*#define Q_COMPILER_FUNCTION_VAL_FINALIZE*/
-/*#define Q_COMPILER_FUNCTION_VAL_READ*/
-/*#define Q_COMPILER_FUNCTION_VAL_COPY*/
-
-/* MARK: - Built-in functions - Atomic operations */
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_EQUAL*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_SET_IF_EQUAL*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_SET_IF_EQUAL*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_SET_IF_EQUAL*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_SET_IF_EQUAL*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_SET_IF_EQUAL*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_SET_IF_EQUAL*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_SET_IF_EQUAL*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_SET_IF_EQUAL*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_SET_IF_EQUAL*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_INCREMENT*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_INCREMENT*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_INCREMENT*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_INCREMENT*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_GET_THEN_INCREMENT*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_INCREMENT*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_INCREMENT*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_INCREMENT*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_INCREMENT*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_GET_THEN_INCREMENT*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_ADD*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_ADD*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_ADD*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_ADD*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_GET_THEN_ADD*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_ADD*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_ADD*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_ADD*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_ADD*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_GET_THEN_ADD*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_DECREMENT*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_DECREMENT*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_DECREMENT*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_DECREMENT*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_GET_THEN_DECREMENT*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_DECREMENT*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_DECREMENT*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_DECREMENT*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_DECREMENT*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_GET_THEN_DECREMENT*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_SUBTRACT*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_SUBTRACT*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_SUBTRACT*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_SUBTRACT*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_GET_THEN_SUBTRACT*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_SUBTRACT*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_SUBTRACT*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_SUBTRACT*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_SUBTRACT*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_GET_THEN_SUBTRACT*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_AND*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_AND*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_AND*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_AND*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_GET_THEN_AND*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_AND*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_AND*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_AND*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_AND*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_GET_THEN_AND*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_OR*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_OR*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_OR*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_OR*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_GET_THEN_OR*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_OR*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_OR*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_OR*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_OR*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_GET_THEN_OR*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_XOR*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_XOR*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_XOR*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_XOR*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_GET_THEN_XOR*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_XOR*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_XOR*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_XOR*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_XOR*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_GET_THEN_XOR*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_INCREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_INCREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_INCREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_INCREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_INCREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_INCREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_INCREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_INCREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_INCREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_INCREMENT_THEN_GET*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_ADD_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_ADD_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_ADD_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_ADD_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_ADD_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_ADD_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_ADD_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_ADD_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_ADD_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_ADD_THEN_GET*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_DECREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_DECREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_DECREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_DECREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_DECREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_DECREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_DECREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_DECREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_DECREMENT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_DECREMENT_THEN_GET*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_SUBTRACT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_SUBTRACT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_SUBTRACT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_SUBTRACT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_SUBTRACT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_SUBTRACT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_SUBTRACT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_SUBTRACT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_SUBTRACT_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_SUBTRACT_THEN_GET*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_AND_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_AND_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_AND_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_AND_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_AND_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_AND_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_AND_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_AND_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_AND_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_AND_THEN_GET*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_OR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_OR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_OR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_OR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_OR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_OR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_OR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_OR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_OR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_OR_THEN_GET*/
-
-/*#define Q_COMPILER_FUNCTION_UINT8_ATOMIC_XOR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT16_ATOMIC_XOR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT32_ATOMIC_XOR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT64_ATOMIC_XOR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_UINT128_ATOMIC_XOR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT8_ATOMIC_XOR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT16_ATOMIC_XOR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT32_ATOMIC_XOR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT64_ATOMIC_XOR_THEN_GET*/
-/*#define Q_COMPILER_FUNCTION_INT128_ATOMIC_XOR_THEN_GET*/
-
-
-
-/* MARK: - Identification */
-
-
-
-/*#if Q_COMPILER_VERSION >= Q_VERSION(3, 1, 0)
-#	define Q_COMPILER_HAS_ANONYMOUS_STRUCTURE
-#	define Q_COMPILER_HAS_ANONYMOUS_UNION
-#endif*/
-
-/* __apple_build_version__ */
-
-
-
-
-/* MARK: - Attributes */
-
-
-
-
-
-
-
-
-
-#define Q_COMPILER_ATTRIBUTE_THREAD_LOCAL	      __thread
-
-
-
-
-
-/* MARK: - Built-in types */
-
-
-
-#define Q_COMPILER_TYPE_VAL __builtin_va_list
-
-/* MARK: - Built-in functions - Struture */
-
-#define Q_COMPILER_FUNCTION_OFFSETOF __builtin_offsetof
-
-/* MARK: - Built-in functions - VAL */
+/* MARK: - Built-in functions: VAL */
 
 #define Q_COMPILER_FUNCTION_VAL_INITIALIZE __builtin_va_start
 #define Q_COMPILER_FUNCTION_VAL_FINALIZE   __builtin_va_end
@@ -585,18 +359,29 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_COMPILER_FUNCTION_VAL_COPY(object, output) __builtin_va_copy(output, object)
 #endif
 
-/* MARK: - Built-in functions - Atomic operations */
+/* MARK: - Built-in functions: Atomic operations */
 
 #if __has_builtin(__sync_bool_compare_and_swap)
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_SET_IF_EQUAL		     __sync_bool_compare_and_swap
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_SET_IF_EQUAL __sync_bool_compare_and_swap
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_SET_IF_EQUAL __sync_bool_compare_and_swap
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_SET_IF_EQUAL __sync_bool_compare_and_swap
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_SET_IF_EQUAL   __sync_bool_compare_and_swap
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
 #endif
+
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_SET
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_SET
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_SET
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_SET
+#	define Q_COMPILER_FUNCTION_UINT128_ATOMIC_GET_THEN_SET
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_SET
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_SET
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_SET
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_SET
+#	define Q_COMPILER_FUNCTION_INT128_ATOMIC_GET_THEN_SET
 
 #if __has_builtin(__sync_fetch_and_add)
 #	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_INCREMENT( pointer) __sync_fetch_and_add(pointer, 1)
@@ -607,14 +392,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_INCREMENT( pointer) __sync_fetch_and_add(pointer, 1)
 #	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_INCREMENT( pointer) __sync_fetch_and_add(pointer, 1)
 #	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_INCREMENT( pointer) __sync_fetch_and_add(pointer, 1)
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
+
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_ADD  __sync_fetch_and_add
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_ADD __sync_fetch_and_add
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_ADD __sync_fetch_and_add
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_ADD __sync_fetch_and_add
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_ADD   __sync_fetch_and_add
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_ADD  __sync_fetch_and_add
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_ADD  __sync_fetch_and_add
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_ADD  __sync_fetch_and_add
 #endif
 
 #if __has_builtin(__sync_fetch_and_sub)
@@ -626,47 +412,59 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_DECREMENT( pointer) __sync_fetch_and_sub(pointer, 1)
 #	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_DECREMENT( pointer) __sync_fetch_and_sub(pointer, 1)
 #	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_DECREMENT( pointer) __sync_fetch_and_sub(pointer, 1)
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
+
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_SUBTRACT  __sync_fetch_and_sub
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_SUBTRACT __sync_fetch_and_sub
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_SUBTRACT __sync_fetch_and_sub
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_SUBTRACT __sync_fetch_and_sub
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_SUBTRACT   __sync_fetch_and_sub
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_SUBTRACT  __sync_fetch_and_sub
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_SUBTRACT  __sync_fetch_and_sub
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_SUBTRACT  __sync_fetch_and_sub
 #endif
 
 #if __has_builtin(__sync_fetch_and_and)
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_AND  __sync_fetch_and_and
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_AND __sync_fetch_and_and
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_AND __sync_fetch_and_and
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_AND __sync_fetch_and_and
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_AND   __sync_fetch_and_and
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_AND  __sync_fetch_and_and
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_AND  __sync_fetch_and_and
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_AND  __sync_fetch_and_and
 #endif
 
 #if __has_builtin(__sync_fetch_and_or)
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_OR  __sync_fetch_and_or
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_OR __sync_fetch_and_or
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_OR __sync_fetch_and_or
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_OR __sync_fetch_and_or
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_OR   __sync_fetch_and_or
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_OR  __sync_fetch_and_or
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_OR  __sync_fetch_and_or
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_OR  __sync_fetch_and_or
 #endif
 
 #if __has_builtin(__sync_fetch_and_xor)
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_XOR  __sync_fetch_and_xor
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_XOR __sync_fetch_and_xor
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_XOR __sync_fetch_and_xor
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_XOR __sync_fetch_and_xor
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_XOR   __sync_fetch_and_xor
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_XOR  __sync_fetch_and_xor
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_XOR  __sync_fetch_and_xor
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_XOR  __sync_fetch_and_xor
+#endif
+
+#if __has_builtin(__sync_fetch_and_nand)
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_NAND  __sync_fetch_and_nand
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_NAND __sync_fetch_and_nand
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_NAND __sync_fetch_and_nand
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_NAND __sync_fetch_and_nand
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_NAND   __sync_fetch_and_nand
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_NAND  __sync_fetch_and_nand
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_NAND  __sync_fetch_and_nand
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_NAND  __sync_fetch_and_nand
 #endif
 
 #if __has_builtin(__sync_add_and_fetch)
@@ -678,14 +476,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_COMPILER_FUNCTION_INT16_ATOMIC_INCREMENT_THEN_GET( pointer) __sync_add_and_fetch(pointer, 1)
 #	define Q_COMPILER_FUNCTION_INT32_ATOMIC_INCREMENT_THEN_GET( pointer) __sync_add_and_fetch(pointer, 1)
 #	define Q_COMPILER_FUNCTION_INT64_ATOMIC_INCREMENT_THEN_GET( pointer) __sync_add_and_fetch(pointer, 1)
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
+
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_ADD_THEN_GET  __sync_add_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_ADD_THEN_GET __sync_add_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_ADD_THEN_GET __sync_add_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_ADD_THEN_GET __sync_add_and_fetch
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_ADD_THEN_GET   __sync_add_and_fetch
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_ADD_THEN_GET  __sync_add_and_fetch
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_ADD_THEN_GET  __sync_add_and_fetch
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_ADD_THEN_GET  __sync_add_and_fetch
 #endif
 
 #if __has_builtin(__sync_sub_and_fetch)
@@ -697,47 +496,59 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_COMPILER_FUNCTION_INT16_ATOMIC_DECREMENT_THEN_GET( pointer) __sync_sub_and_fetch(pointer, 1)
 #	define Q_COMPILER_FUNCTION_INT32_ATOMIC_DECREMENT_THEN_GET( pointer) __sync_sub_and_fetch(pointer, 1)
 #	define Q_COMPILER_FUNCTION_INT64_ATOMIC_DECREMENT_THEN_GET( pointer) __sync_sub_and_fetch(pointer, 1)
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
+
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_SUBTRACT_THEN_GET  __sync_sub_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_SUBTRACT_THEN_GET __sync_sub_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_SUBTRACT_THEN_GET __sync_sub_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_SUBTRACT_THEN_GET __sync_sub_and_fetch
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_SUBTRACT_THEN_GET   __sync_sub_and_fetch
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_SUBTRACT_THEN_GET  __sync_sub_and_fetch
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_SUBTRACT_THEN_GET  __sync_sub_and_fetch
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_SUBTRACT_THEN_GET  __sync_sub_and_fetch
 #endif
 
 #if __has_builtin(__sync_and_and_fetch)
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_AND_THEN_GET  __sync_and_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_AND_THEN_GET __sync_and_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_AND_THEN_GET __sync_and_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_AND_THEN_GET __sync_and_and_fetch
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_AND_THEN_GET   __sync_and_and_fetch
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_AND_THEN_GET  __sync_and_and_fetch
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_AND_THEN_GET  __sync_and_and_fetch
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_AND_THEN_GET  __sync_and_and_fetch
 #endif
 
 #if __has_builtin(__sync_or_and_fetch)
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_OR_THEN_GET  __sync_or_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_OR_THEN_GET __sync_or_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_OR_THEN_GET __sync_or_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_OR_THEN_GET __sync_or_and_fetch
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_OR_THEN_GET   __sync_or_and_fetch
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_OR_THEN_GET  __sync_or_and_fetch
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_OR_THEN_GET  __sync_or_and_fetch
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_OR_THEN_GET  __sync_or_and_fetch
 #endif
 
 #if __has_builtin(__sync_xor_and_fetch)
-#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_XOR_THEN_GET  __sync_xor_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_XOR_THEN_GET __sync_xor_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_XOR_THEN_GET __sync_xor_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_XOR_THEN_GET __sync_xor_and_fetch
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_XOR_THEN_GET   __sync_xor_and_fetch
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_XOR_THEN_GET  __sync_xor_and_fetch
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_XOR_THEN_GET  __sync_xor_and_fetch
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_XOR_THEN_GET  __sync_xor_and_fetch
+#endif
+
+#if __has_builtin(__sync_nand_and_fetch)
+#	define Q_COMPILER_FUNCTION_UINT8_ATOMIC_NAND_THEN_GET  __sync_nand_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT16_ATOMIC_NAND_THEN_GET __sync_nand_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT32_ATOMIC_NAND_THEN_GET __sync_nand_and_fetch
+#	define Q_COMPILER_FUNCTION_UINT64_ATOMIC_NAND_THEN_GET __sync_nand_and_fetch
+#	define Q_COMPILER_FUNCTION_INT8_ATOMIC_NAND_THEN_GET   __sync_nand_and_fetch
+#	define Q_COMPILER_FUNCTION_INT16_ATOMIC_NAND_THEN_GET  __sync_nand_and_fetch
+#	define Q_COMPILER_FUNCTION_INT32_ATOMIC_NAND_THEN_GET  __sync_nand_and_fetch
+#	define Q_COMPILER_FUNCTION_INT64_ATOMIC_NAND_THEN_GET  __sync_nand_and_fetch
 #endif
 
 #endif /* __Q_inspection_private_compiler_H__ */
