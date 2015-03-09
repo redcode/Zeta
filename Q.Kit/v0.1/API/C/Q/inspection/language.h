@@ -33,6 +33,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		(defined Q_COMPILER_CPP_HAS_##WHAT) || \
 		(defined Q_COMPILER_OBJECTIVE_C_HAS_##WHAT)
 
+#	define Q_LANGUAGE_HAS_ATTRIBUTE(ATTRIBUTE)		     \
+		(defined Q_C_HAS_ATTRIBUTE##ATTRIBUTE)		  || \
+		(defined Q_CPP_HAS_ATTRIBUTE##ATTRIBUTE)	  || \
+		(defined Q_OBJECTIVE_C_HAS_ATTRIBUTE##ATTRIBUTE)  || \
+		(defined Q_COMPILER_C_HAS_ATTRIBUTE##ATTRIBUTE)	  || \
+		(defined Q_COMPILER_CPP_HAS_ATTRIBUTE##ATTRIBUTE) || \
+		(defined Q_COMPILER_OBJECTIVE_C_HAS_ATTRIBUTE##ATTRIBUTE)
+
 #elif defined(__OBJC__)
 #	define Q_LANGUAGE Q_LANGUAGE_OBJECTIVE_C
 
@@ -41,6 +49,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		(defined Q_OBJECTIVE_C_HAS_##WHAT) || \
 		(defined Q_COMPILER_C_HAS_##WHAT)  || \
 		(defined Q_COMPILER_OBJECTIVE_C_HAS_##WHAT)
+
+#	define Q_LANGUAGE_HAS_ATTRIBUTE(ATTRIBUTE)		    \
+		(defined Q_C_HAS_ATTRIBUTE##ATTRIBUTE)		 || \
+		(defined Q_OBJECTIVE_C_HAS_ATTRIBUTE##ATTRIBUTE) || \
+		(defined Q_COMPILER_C_HAS_ATTRIBUTE##ATTRIBUTE)	 || \
+		(defined Q_COMPILER_OBJECTIVE_C_HAS_ATTRIBUTE##ATTRIBUTE)
 
 #elif defined(__cplusplus)
 #	define Q_LANGUAGE Q_LANGUAGE_CPP
@@ -51,11 +65,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		(defined Q_COMPILER_C_HAS_##WHAT) || \
 		(defined Q_COMPILER_CPP_HAS_##WHAT)
 
+#	define Q_LANGUAGE_HAS_ATTRIBUTE(ATTRIBUTE)		   \
+		(defined Q_C_HAS_ATTRIBUTE##ATTRIBUTE)		|| \
+		(defined Q_CPP_HAS_ATTRIBUTE##ATTRIBUTE)	|| \
+		(defined Q_COMPILER_C_HAS_ATTRIBUTE##ATTRIBUTE)	|| \
+		(defined Q_COMPILER_CPP_HAS_ATTRIBUTE##ATTRIBUTE)
+
 #else
 #	define Q_LANGUAGE Q_LANGUAGE_C
 
-#	define Q_LANGUAGE_HAS(WHAT) \
-		(defined Q_C_HAS_##WHAT) || (defined Q_COMPILER_C_HAS_##WHAT)
+#	define Q_LANGUAGE_HAS(WHAT)	    \
+		(defined Q_C_HAS_##WHAT) || \
+		(defined Q_COMPILER_C_HAS_##WHAT)
+
+#	define Q_LANGUAGE_HAS_ATTRIBUTE(ATTRIBUTE)	  \
+		(defined Q_C_HAS_ATTRIBUTE##ATTRIBUTE) || \
+		(defined Q_COMPILER_C_HAS_ATTRIBUTE##ATTRIBUTE)
 #endif
 
 #endif /* __Q_inspection_language_H__ */
