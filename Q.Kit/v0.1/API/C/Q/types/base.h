@@ -126,7 +126,7 @@ typedef struct {quint64 x, y, z, w;}		Q4DUInt64;
 #	endif
 
 #endif
-	å
+
 #define Q_UINTX_LITERAL(   BITS)		Q_PREFIX_Q_UINT(BITS)
 #define Q_UINTX_SUFFIX(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _SUFFIX	  ))
 #define Q_UINTX_BASE_TYPE( BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _BASE_TYPE ))
@@ -386,10 +386,10 @@ typedef Q_JOIN_2(Q4DUInt, Q_ULONG_BITS)		Q4DULong;
 
 #else
 
-	typedef qlong				qullong;
-	typedef Q2DLong				Q2DULLong;
-	typedef Q3DLong				Q3DULLong;
-	typedef Q4DLong				Q4DULLong;
+	typedef qulong				qullong;
+	typedef Q2DULong			Q2DULLong;
+	typedef Q3DULong			Q3DULLong;
+	typedef Q4DULong			Q4DULLong;
 #	define Q_ULLONG				Q_ULLONG
 #	define Q_ULLONG_SUFFIX			Q_ULLONG_SUFFIX
 #	define Q_ULLONG_BASE_TYPE		Q_ULLONG_BASE_TYPE

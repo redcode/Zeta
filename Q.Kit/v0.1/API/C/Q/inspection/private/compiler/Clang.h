@@ -68,12 +68,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if __has_attribute(visibility)
 #	define Q_COMPILER_C_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden"))) static
-#	define Q_COMPILER_C_ATTRIBUTE_PUBLIC  __attribute__((visibility("default"))
+#	define Q_COMPILER_C_ATTRIBUTE_PUBLIC  __attribute__((visibility("default")))
 #endif
 
 #if __has_attribute(packed)
 #	define Q_COMPILER_C_ATTRIBUTE_STRICT_SIZE_BEGIN
-#	define Q_COMPILER_C_ATTRIBTE_STRICT_SIZE_END __attribute__((packed))
+#	define Q_COMPILER_C_ATTRIBUTE_STRICT_SIZE_END __attribute__((packed))
 #endif
 
 #if __has_extension(c_thread_local)
