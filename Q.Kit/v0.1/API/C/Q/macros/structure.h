@@ -80,10 +80,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_DEFINE_STRICT_UNION_BEGIN	Q_STRICT_SIZE_BEGIN typedef union {
 #define Q_DEFINE_STRICT_UNION_END	} Q_STRICT_SIZE_END
 
-#if Q_COMPILER_HAS_FUNCTION(OFFSETOF)
-#	define Q_STRUCTURE_MEMBER_OFFSET Q_COMPILER_FUNCTION(OFFSETOF)
-#else
-#	define Q_STRUCTURE_MEMBER_OFFSET(type, member) ((unsigned long)&((type *)(0))->member)
-#endif
-
 #endif /* __Q_macros_structure_H__ */

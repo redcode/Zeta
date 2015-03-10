@@ -27,6 +27,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define COMMA ,
 #endif
 
+/* MARK: - Attributes */
+
 #if Q_COMPILER_HAS_C_ATTRIBUTE(STRICT_SIZE_BEGIN)
 #	define Q_STRICT_SIZE_BEGIN Q_COMPILER_C_ATTRIBUTE(STRICT_SIZE_BEGIN)
 #	define Q_STRICT_SIZE_END   Q_COMPILER_C_ATTRIBUTE(STRICT_SIZE_END)
@@ -57,6 +59,26 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_PUBLIC Q_COMPILER_C_ATTRIBUTE(PUBLIC)
 #else
 #	define Q_PUBLIC
+#endif
+
+/* MARK: - Operators */
+
+#if Q_COMPILER_HAS_FUNCTION(OFFSET_OF)
+#	define Q_OFFSET_OF Q_COMPILER_FUNCTION(OFFSET_OF)
+#elif Q_LANGUAGE_HAS_OPERATOR(OFFSET_OF)
+#	define Q_OFFSET_OF offsetof
+#else
+#	define Q_OFFSET_OF(type, member) ((unsigned long)&((type *)(0))->member)
+#endif
+
+/* MARK: - Setions */
+
+#ifdef __cplusplus
+#	define Q_C_SYMBOLS_BEGIN extern "C" {
+#	define Q_C_SYMBOLS_END   }
+#else
+#	define Q_C_SYMBOLS_BEGIN
+#	define Q_C_SYMBOLS_END
 #endif
 
 #endif /* __Q_macros_language_H__ */
