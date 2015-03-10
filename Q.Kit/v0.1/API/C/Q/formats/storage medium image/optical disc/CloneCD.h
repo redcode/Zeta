@@ -1,4 +1,4 @@
-/* Q C API - formats/storage medium image/CD-ROM/CloneCD.h
+/* Q Kit C API - formats/storage medium image/CD-ROM/CloneCD.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

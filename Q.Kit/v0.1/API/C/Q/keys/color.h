@@ -1,4 +1,4 @@
-/* Q C API - keys/color.h
+/* Q Kit C API - keys/color.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

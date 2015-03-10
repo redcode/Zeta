@@ -1,4 +1,4 @@
-/* Q C API - keys/order.h
+/* Q Kit C API - keys/order.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

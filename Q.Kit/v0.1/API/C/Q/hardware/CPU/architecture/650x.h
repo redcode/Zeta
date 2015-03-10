@@ -1,4 +1,4 @@
-/* Q C API - hardware/CPU/architecture/650x.h
+/* Q Kit C API - hardware/CPU/architecture/650x.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

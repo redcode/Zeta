@@ -1,4 +1,4 @@
-/* Q C API - inspection/language.h
+/* Q Kit C API - inspection/language.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -24,63 +24,60 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if defined(__cplusplus) && defined(__OBJC__)
 #	define Q_LANGUAGE Q_LANGUAGE_OBJECTIVE_CPP
-
-#	define Q_LANGUAGE_HAS(WHAT)		       \
-		(defined Q_C_HAS_##WHAT)	    || \
-		(defined Q_CPP_HAS_##WHAT)	    || \
-		(defined Q_OBJECTIVE_C_HAS_##WHAT)  || \
-		(defined Q_COMPILER_C_HAS_##WHAT)   || \
-		(defined Q_COMPILER_CPP_HAS_##WHAT) || \
-		(defined Q_COMPILER_OBJECTIVE_C_HAS_##WHAT)
-
-#	define Q_LANGUAGE_HAS_ATTRIBUTE(ATTRIBUTE)		     \
-		(defined Q_C_HAS_ATTRIBUTE##ATTRIBUTE)		  || \
-		(defined Q_CPP_HAS_ATTRIBUTE##ATTRIBUTE)	  || \
-		(defined Q_OBJECTIVE_C_HAS_ATTRIBUTE##ATTRIBUTE)  || \
-		(defined Q_COMPILER_C_HAS_ATTRIBUTE##ATTRIBUTE)	  || \
-		(defined Q_COMPILER_CPP_HAS_ATTRIBUTE##ATTRIBUTE) || \
-		(defined Q_COMPILER_OBJECTIVE_C_HAS_ATTRIBUTE##ATTRIBUTE)
-
 #elif defined(__OBJC__)
 #	define Q_LANGUAGE Q_LANGUAGE_OBJECTIVE_C
-
-#	define Q_LANGUAGE_HAS(WHAT)		      \
-		(defined Q_C_HAS_##WHAT)	   || \
-		(defined Q_OBJECTIVE_C_HAS_##WHAT) || \
-		(defined Q_COMPILER_C_HAS_##WHAT)  || \
-		(defined Q_COMPILER_OBJECTIVE_C_HAS_##WHAT)
-
-#	define Q_LANGUAGE_HAS_ATTRIBUTE(ATTRIBUTE)		    \
-		(defined Q_C_HAS_ATTRIBUTE##ATTRIBUTE)		 || \
-		(defined Q_OBJECTIVE_C_HAS_ATTRIBUTE##ATTRIBUTE) || \
-		(defined Q_COMPILER_C_HAS_ATTRIBUTE##ATTRIBUTE)	 || \
-		(defined Q_COMPILER_OBJECTIVE_C_HAS_ATTRIBUTE##ATTRIBUTE)
-
 #elif defined(__cplusplus)
 #	define Q_LANGUAGE Q_LANGUAGE_CPP
-
-#	define Q_LANGUAGE_HAS(WHAT)		     \
-		(defined Q_C_HAS_##WHAT)	  || \
-		(defined Q_CPP_HAS_##WHAT)	  || \
-		(defined Q_COMPILER_C_HAS_##WHAT) || \
-		(defined Q_COMPILER_CPP_HAS_##WHAT)
-
-#	define Q_LANGUAGE_HAS_ATTRIBUTE(ATTRIBUTE)		   \
-		(defined Q_C_HAS_ATTRIBUTE##ATTRIBUTE)		|| \
-		(defined Q_CPP_HAS_ATTRIBUTE##ATTRIBUTE)	|| \
-		(defined Q_COMPILER_C_HAS_ATTRIBUTE##ATTRIBUTE)	|| \
-		(defined Q_COMPILER_CPP_HAS_ATTRIBUTE##ATTRIBUTE)
-
 #else
 #	define Q_LANGUAGE Q_LANGUAGE_C
-
-#	define Q_LANGUAGE_HAS(WHAT)	    \
-		(defined Q_C_HAS_##WHAT) || \
-		(defined Q_COMPILER_C_HAS_##WHAT)
-
-#	define Q_LANGUAGE_HAS_ATTRIBUTE(ATTRIBUTE)	  \
-		(defined Q_C_HAS_ATTRIBUTE##ATTRIBUTE) || \
-		(defined Q_COMPILER_C_HAS_ATTRIBUTE##ATTRIBUTE)
 #endif
+
+#define Q_LANGUAGE_HAS(WHAT)		       \
+	(defined Q_C_HAS_##WHAT)	    || \
+	(defined Q_CPP_HAS_##WHAT)	    || \
+	(defined Q_OBJECTIVE_C_HAS_##WHAT)  || \
+	(defined Q_COMPILER_C_HAS_##WHAT)   || \
+	(defined Q_COMPILER_CPP_HAS_##WHAT) || \
+	(defined Q_COMPILER_OBJECTIVE_C_HAS_##WHAT)
+
+#define Q_LANGUAGE_HAS_TYPE(WHICH)		     \
+	(defined Q_C_HAS_TYPE_##WHICH)		  || \
+	(defined Q_CPP_HAS_TYPE_##WHICH)	  || \
+	(defined Q_OBJECTIVE_C_HAS_TYPE_##WHICH)  || \
+	(defined Q_COMPILER_C_HAS_TYPE_##WHICH)	  || \
+	(defined Q_COMPILER_CPP_HAS_TYPE_##WHICH) || \
+	(defined Q_COMPILER_OBJECTIVE_C_HAS_TYPE_##WHICH)
+
+#define Q_LANGUAGE_HAS_TYPE_QUALIFIER(WHICH)		       \
+	(defined Q_C_HAS_TYPE_QUALIFIER_##WHICH)	    || \
+	(defined Q_CPP_HAS_TYPE_QUALIFIER_##WHICH)	    || \
+	(defined Q_OBJECTIVE_C_HAS_TYPE_QUALIFIER_##WHICH)  || \
+	(defined Q_COMPILER_C_HAS_TYPE_QUALIFIER_##WHICH)   || \
+	(defined Q_COMPILER_CPP_HAS_TYPE_QUALIFIER_##WHICH) || \
+	(defined Q_COMPILER_OBJECTIVE_C_HAS_TYPE_QUALIFIER_##WHICH)
+
+#define Q_LANGUAGE_HAS_STORAGE_CLASS(WHICH)		      \
+	(defined Q_C_HAS_STORAGE_CLASS_##WHICH)		   || \
+	(defined Q_CPP_HAS_STORAGE_CLASS_##WHICH)	   || \
+	(defined Q_OBJECTIVE_C_HAS_STORAGE_CLASS_##WHICH)  || \
+	(defined Q_COMPILER_C_HAS_STORAGE_CLASS_##WHICH)   || \
+	(defined Q_COMPILER_CPP_HAS_STORAGE_CLASS_##WHICH) || \
+	(defined Q_COMPILER_OBJECTIVE_C_HAS_STORAGE_CLASS_##WHICH)
+
+#define Q_LANGUAGE_HAS_SPECIFIER(WHICH)		          \
+	(defined Q_C_HAS_SPECIFIER_##WHICH)	       || \
+	(defined Q_CPP_HAS_SPECIFIER_##WHICH)	       || \
+	(defined Q_OBJECTIVE_C_HAS_SPECIFIER_##WHICH)  || \
+	(defined Q_COMPILER_C_HAS_SPECIFIER_##WHICH)   || \
+	(defined Q_COMPILER_CPP_HAS_SPECIFIER_##WHICH) || \
+	(defined Q_COMPILER_OBJECTIVE_C_HAS_SPECIFIER_##WHICH)
+
+#define Q_LANGUAGE_HAS_OPERATOR(WHICH)		         \
+	(defined Q_C_HAS_OPERATOR_##WHICH)	      || \
+	(defined Q_CPP_HAS_OPERATOR_##WHICH)	      || \
+	(defined Q_OBJECTIVE_C_HAS_OPERATOR_##WHICH)  || \
+	(defined Q_COMPILER_C_HAS_OPERATOR_##WHICH)   || \
+	(defined Q_COMPILER_CPP_HAS_OPERATOR_##WHICH) || \
+	(defined Q_COMPILER_OBJECTIVE_C_HAS_OPERATOR_##WHICH)
 
 #endif /* __Q_inspection_language_H__ */

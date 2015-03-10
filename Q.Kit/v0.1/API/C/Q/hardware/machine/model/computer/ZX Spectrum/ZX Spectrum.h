@@ -1,4 +1,4 @@
-/* Q C API - hardware/machine/model/computer/ZX Spectrum/ZX Spectrum.h
+/* Q Kit C API - hardware/machine/model/computer/ZX Spectrum/ZX Spectrum.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -7,7 +7,7 @@ Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
  ________________________________
 /\				 \
-\_| Vendor:   Sinclair Research   |
+\_| Vendor:   Sinclair Research	  |
   | Released: 1982-04-23	  |
   | CPU:      Zilog Z80 @ 3.5 MHz |
   | ROM:      16K		  |
@@ -25,7 +25,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 |/ _   _   _   _   _   _   _   _   _   _	  \|
 | [1] [2] [3] [4] [5] [6] [7] [8] [9] [0]	   |
 |     _   _   _   _   _   _   _   _   _   _	   |
-|    [Q] [W] [E] [R] [T] [Y] [U] [I] [O] [P]      /|
+|    [Q] [W] [E] [R] [T] [Y] [U] [I] [O] [P]	  /|
 |	_   _	_   _	_   _	_   _	_   _____//|
 |      [A] [S] [D] [F] [G] [H] [J] [K] [L] [ENTER]/|
 |  _____   _   _   _   _   _   _   _   __   ___////|

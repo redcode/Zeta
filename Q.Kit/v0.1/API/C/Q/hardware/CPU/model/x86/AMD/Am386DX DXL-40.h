@@ -1,4 +1,4 @@
-/* Q C API - hardware/CPU/x86/Am386DX DXL-40.h
+/* Q Kit C API - hardware/CPU/x86/Am386DX DXL-40.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q C API - functions/base/Q2D.h
+/* Q Kit C API - functions/base/Q2D.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

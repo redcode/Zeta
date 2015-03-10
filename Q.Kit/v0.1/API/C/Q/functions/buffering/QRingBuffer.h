@@ -1,4 +1,4 @@
-/* Q C API - functioms/buffering/QRingBuffer.h
+/* Q Kit C API - functioms/buffering/QRingBuffer.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

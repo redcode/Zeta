@@ -1,4 +1,4 @@
-/* Q C API - functions/assembly/x86/x86-64/value.h
+/* Q Kit C API - functions/assembly/x86/x86-64/value.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

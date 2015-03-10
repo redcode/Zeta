@@ -1,4 +1,4 @@
-/* Q C API - types/text.h
+/* Q Kit C API - types/text.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

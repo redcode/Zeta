@@ -1,4 +1,4 @@
-/* Q C API - hardware/BUS/PCI.h
+/* Q Kit C API - hardware/BUS/PCI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

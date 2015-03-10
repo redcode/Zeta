@@ -1,4 +1,4 @@
-/* Q C API - hardware/device/ZX Spectrum/DISCiPLE.h
+/* Q Kit C API - hardware/device/ZX Spectrum/DISCiPLE.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

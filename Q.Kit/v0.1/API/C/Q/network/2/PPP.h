@@ -1,4 +1,4 @@
-/* Q C API - network/2/PPP.h
+/* Q Kit C API - network/2/PPP.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

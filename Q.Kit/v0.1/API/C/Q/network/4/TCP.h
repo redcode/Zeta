@@ -1,4 +1,4 @@
-/* Q C API - network/4/TCP.h
+/* Q Kit C API - network/4/TCP.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

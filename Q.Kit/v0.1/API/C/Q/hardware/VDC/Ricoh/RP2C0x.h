@@ -1,4 +1,4 @@
-/* Q C API - hardware/VDC/Ricoh/RP2C0x.h
+/* Q Kit C API - hardware/VDC/Ricoh/RP2C0x.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q C API - formats/storage medium image/audio/PZX.h
+/* Q Kit C API - formats/storage medium image/audio/PZX.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

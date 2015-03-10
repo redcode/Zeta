@@ -1,4 +1,4 @@
-/* Q C API - inspection/C.h
+/* Q Kit C API - inspection/C.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -46,6 +46,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Q/inspection/private/C/C89.h>
 #endif
 
-#define Q_C_HAS(WHAT) (defined Q_C_HAS_##WHAT)
+#define Q_C_HAS(	       WHAT ) (defined Q_C_HAS_##WHAT		     )
+#define Q_C_HAS_TYPE(	       WHICH) (defined Q_C_HAS_TYPE_##WHICH	     )
+#define Q_C_HAS_TYPE_QUALIFIER(WHICH) (defined Q_C_HAS_TYPE_QUALIFIER_##WHICH)
+#define Q_C_HAS_STORAGE_CLASS( WHICH) (defined Q_C_HAS_STORAGE_CLASS_##WHICH )
+#define Q_C_HAS_SPECIFIER(     WHICH) (defined Q_C_HAS_SPECIFIER_##WHICH     )
+#define Q_C_HAS_OPERATOR(      WHICH) (defined Q_C_HAS_OPERATOR_##WHICH	     )
 
 #endif /* __Q_inspection_C_H__ */

@@ -1,4 +1,4 @@
-/* Q C API - macros/preprocessor.h
+/* Q Kit C API - macros/preprocessor.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

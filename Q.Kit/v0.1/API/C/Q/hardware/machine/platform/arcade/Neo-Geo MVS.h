@@ -1,4 +1,4 @@
-/* Q C API - hardware/machine/platform/arcade/Neo-Geo MVS.h
+/* Q Kit C API - hardware/machine/platform/arcade/Neo-Geo MVS.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q C API - hardware/machine/model/console/Nintendo Entertainment System/NES-001 (NTSC).h
+/* Q Kit C API - hardware/machine/model/console/Nintendo Entertainment System/NES-001 (NTSC).h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

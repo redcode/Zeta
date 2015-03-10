@@ -1,4 +1,4 @@
-/* Q C API - inspection/character set.h
+/* Q Kit C API - inspection/character set.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

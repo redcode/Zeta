@@ -1,4 +1,4 @@
-/* Q C API - Q/network/5/ADSP.h
+/* Q Kit C API - Q/network/5/ADSP.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

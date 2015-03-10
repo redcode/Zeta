@@ -1,4 +1,4 @@
-/* Q C API - formats/storage medium image/NES Game Pak/iNES.h
+/* Q Kit C API - formats/storage medium image/NES Game Pak/iNES.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

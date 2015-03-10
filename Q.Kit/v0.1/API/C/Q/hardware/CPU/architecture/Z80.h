@@ -1,4 +1,4 @@
-/* Q C API - hardware/CPU/architecture/Z80.h
+/* Q Kit C API - hardware/CPU/architecture/Z80.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

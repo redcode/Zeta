@@ -1,4 +1,4 @@
-/* Q C API - types/base.h
+/* Q Kit C API - types/base.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -110,7 +110,7 @@ typedef struct {quint64 x, y, z, w;}		Q4DUInt64;
 #	define Q_INT128_name			int128
 #	define Q_AVAILABLE_INT128
 
-#	if Q_COMPILER_HAS(INT128_LITERAL)
+#	if Q_COMPILER_HAS_LITERAL(INT128)
 #		define Q_INT128			Q_COMPILER_LITERAL(INT128)
 #		define Q_INT128_SUFFIX		Q_COMPILER_SUFFIX (INT128)
 #		define Q_INT128_MAXIMUM		Q_INT128(170141183460469231731687303715884105727)
@@ -233,7 +233,7 @@ typedef struct {qint64 x, y, z, w;}		Q4DInt64;
 #	define Q_UINT128_name			uint128
 #	define Q_AVAILABLE_UINT128
 
-#	if Q_COMPILER_HAS(UINT128_LITERAL)
+#	if Q_COMPILER_HAS_LITERAL(UINT128)
 #		define Q_UINT128		Q_COMPILER_LITERAL(UINT128)
 #		define Q_UINT128_SUFFIX		Q_COMPILER_SUFFIX (UINT128)
 #		define Q_UINT128_MAXIMUM	Q_UINT128(340282366920938463463374607431768211455)

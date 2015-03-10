@@ -1,4 +1,4 @@
-/* Q C API - keys/floating point.h
+/* Q Kit C API - keys/floating point.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

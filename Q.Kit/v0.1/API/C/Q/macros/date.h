@@ -1,4 +1,4 @@
-/* Q C API - macros/date.h
+/* Q Kit C API - macros/date.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

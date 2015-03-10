@@ -1,4 +1,4 @@
-/* Q C API - hardware/PSG/General Instrument/AY-3-891x.h
+/* Q Kit C API - hardware/PSG/General Instrument/AY-3-891x.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

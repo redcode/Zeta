@@ -1,4 +1,4 @@
-/* Q C API - formats/character set/ASCII.h
+/* Q Kit C API - formats/character set/ASCII.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

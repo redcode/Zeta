@@ -1,4 +1,4 @@
-/* Q C API - types/buffering.h
+/* Q Kit C API - types/buffering.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q C API - macros/arguments.h
+/* Q Kit C API - macros/arguments.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

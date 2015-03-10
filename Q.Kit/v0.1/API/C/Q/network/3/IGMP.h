@@ -1,4 +1,4 @@
-/* Q C API - network/3/IGMP.h
+/* Q Kit C API - network/3/IGMP.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

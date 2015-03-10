@@ -1,4 +1,4 @@
-/* Q C API - macros/mathematics.h
+/* Q Kit C API - macros/mathematics.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

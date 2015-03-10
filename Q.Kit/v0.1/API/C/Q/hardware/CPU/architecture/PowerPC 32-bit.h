@@ -1,4 +1,4 @@
-/* Q C API - hardware/CPU/architecture/PowerPC 32-bit.h
+/* Q Kit C API - hardware/CPU/architecture/PowerPC 32-bit.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

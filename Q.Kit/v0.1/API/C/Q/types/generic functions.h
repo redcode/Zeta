@@ -1,4 +1,4 @@
-/* Q C API - types/generic functions.h
+/* Q Kit C API - types/generic functions.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

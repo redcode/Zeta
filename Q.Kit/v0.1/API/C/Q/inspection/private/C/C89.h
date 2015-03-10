@@ -1,4 +1,4 @@
-/* Q C API - private/C/C89.h
+/* Q Kit C API - private/C/C89.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -12,8 +12,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Q/keys/C.h>
 
 #define Q_C	   Q_C89
-#define Q_C_STRING Q_STRING_C89
+#define Q_C_STRING Q_C_STRING_C89
 
-#define Q_C_HAS_LDOUBLE
+#define Q_C_HAS_ENUMERATION
+
+#define Q_C_HAS_TYPE_LDOUBLE
+
+#define Q_C_HAS_TYPE_QUALIFIER_CONSTANT
+#define Q_C_HAS_TYPE_QUALIFIER_VOLATILE
+
+#define Q_C_HAS_OPERATOR_SIZE_OF
 
 #endif /* __Q_private_C_H__ */

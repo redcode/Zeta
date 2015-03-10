@@ -1,4 +1,4 @@
-/* Q C API - hardware/machine/platform/computer/ZX Spectrum.h
+/* Q Kit C API - hardware/machine/platform/computer/ZX Spectrum.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

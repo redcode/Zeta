@@ -1,4 +1,4 @@
-/* Q C API - formats/audio/MOD.h
+/* Q Kit C API - formats/audio/MOD.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

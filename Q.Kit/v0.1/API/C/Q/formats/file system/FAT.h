@@ -1,4 +1,4 @@
-/* Q C API - formats/file system/FAT.h
+/* Q Kit C API - formats/file system/FAT.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

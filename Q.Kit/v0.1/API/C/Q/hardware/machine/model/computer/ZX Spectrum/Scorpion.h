@@ -1,4 +1,4 @@
-/* Q C API - hardware/machine/model/computer/ZX Spectrum/Scorpion.h
+/* Q Kit C API - hardware/machine/model/computer/ZX Spectrum/Scorpion.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q C API - functions/base/QRange.h
+/* Q Kit C API - functions/base/QRange.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

@@ -1,4 +1,4 @@
-/* Q C API - functions/data/QChain.h
+/* Q Kit C API - functions/data/QChain.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

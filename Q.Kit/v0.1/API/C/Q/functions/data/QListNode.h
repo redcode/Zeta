@@ -1,4 +1,4 @@
-/* Q C API - functions/data/QListNode.h
+/* Q Kit C API - functions/data/QListNode.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

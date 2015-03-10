@@ -1,4 +1,4 @@
-/* Q C API - ABIs/QCipherABI.h
+/* Q Kit C API - ABIs/QCipherABI.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

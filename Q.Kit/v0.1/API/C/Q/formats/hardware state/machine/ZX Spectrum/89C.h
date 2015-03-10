@@ -1,4 +1,4 @@
-/* Q C API - formats/hardware snapshot/machine/ZX Spectrum/89C.h
+/* Q Kit C API - formats/hardware snapshot/machine/ZX Spectrum/89C.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)

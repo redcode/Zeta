@@ -1,4 +1,4 @@
-/* Q C API - keys/hardware/CPU.h
+/* Q Kit C API - keys/hardware/CPU.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
