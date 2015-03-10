@@ -35,12 +35,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_C_HAS_INLINE_FUNCION
 #define Q_C_HAS_INTERMINGLED_DECLARATIONS_AND_CODE
 #define Q_C_HAS_STATIC_ASSERTION
+#define Q_C_HAS_VARIADIC_MACRO
 
 #ifndef __STDC_NO_VLA__
 #	define Q_C_HAS_VLA
 #endif
-
-#define Q_C_HAS_VARIADIC_MACRO
 
 /* MARK: - Types */
 

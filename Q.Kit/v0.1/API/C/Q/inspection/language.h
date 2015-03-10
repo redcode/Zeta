@@ -40,13 +40,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	(defined Q_COMPILER_CPP_HAS_##WHAT) || \
 	(defined Q_COMPILER_OBJECTIVE_C_HAS_##WHAT)
 
-#define Q_LANGUAGE_HAS_TYPE(WHICH)		     \
-	(defined Q_C_HAS_TYPE_##WHICH)		  || \
-	(defined Q_CPP_HAS_TYPE_##WHICH)	  || \
-	(defined Q_OBJECTIVE_C_HAS_TYPE_##WHICH)  || \
-	(defined Q_COMPILER_C_HAS_TYPE_##WHICH)	  || \
-	(defined Q_COMPILER_CPP_HAS_TYPE_##WHICH) || \
-	(defined Q_COMPILER_OBJECTIVE_C_HAS_TYPE_##WHICH)
+#define Q_LANGUAGE_HAS_TYPE(WHICH)		      \
+	!(defined Q_COMPILER_LACKS_TYPE_##WHICH)   &&  \
+	((defined Q_C_HAS_TYPE_##WHICH)		   || \
+	 (defined Q_CPP_HAS_TYPE_##WHICH)	   || \
+	 (defined Q_OBJECTIVE_C_HAS_TYPE_##WHICH)  || \
+	 (defined Q_COMPILER_C_HAS_TYPE_##WHICH)   || \
+	 (defined Q_COMPILER_CPP_HAS_TYPE_##WHICH) || \
+	 (defined Q_COMPILER_OBJECTIVE_C_HAS_TYPE_##WHICH))
 
 #define Q_LANGUAGE_HAS_TYPE_QUALIFIER(WHICH)		       \
 	(defined Q_C_HAS_TYPE_QUALIFIER_##WHICH)	    || \

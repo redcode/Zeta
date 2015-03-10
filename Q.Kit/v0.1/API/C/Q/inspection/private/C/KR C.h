@@ -11,12 +11,29 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Q/keys/C.h>
 
+/* MARK: - Identification */
+
 #define Q_C	   Q_KR_C
 #define Q_C_STRING Q_C_STRING_C89
 
+/* MARK: - Types */
+
 #define Q_C_HAS_LDOUBLE
 
-#define Q_C_TYPE_QUALIFIER_CONSTANT const
-#define Q_C_TYPE_QUALIFIER_VOLATILE volatile
+/* MARK: - Type qualifiers */
+
+#define Q_C_TYPE_QUALIFIER_CONSTANT
+#define Q_C_TYPE_QUALIFIER_VOLATILE
+
+/* MARK: - Storage classes */
+
+#define Q_C_HAS_STORAGE_CLASS_AUTO
+#define Q_C_HAS_STORAGE_CLASS_REGISTER
+#define Q_C_HAS_STORAGE_CLASS_STATIC
+#define Q_C_HAS_STORAGE_CLASS_EXTERN
+
+/* MARK: - Operators */
+
+#define Q_C_HAS_OPERATOR_SIZE_OF
 
 #endif /* __Q_private_C_H__ */

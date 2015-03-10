@@ -92,38 +92,41 @@ typedef struct {quint64 x, y, z, w;}		Q4DUInt64;
 #define Q_UINT64_Name				UInt64
 #define Q_UINT64_name				uint64
 
-#if Q_CPU_HAS(128BIT_ARITHMETIC) && Q_COMPILER_HAS_TYPE(INT128)
+#if Q_CPU_HAS(128BIT_ARITHMETIC) && Q_COMPILER_HAS_TYPE(UINT128)
 
-	typedef Q_COMPILER_TYPE(INT128)		qint128;
-	typedef struct {qint128 x, y;}		Q2DInt128;
-	typedef struct {qint128 x, y, z;}	Q3DInt128;
-	typedef struct {qint128 x, y, z, w;}	Q4DInt128;
-#	define Q_INT128_BASE_TYPE		Q_VALUE_TYPE_INT128
-#	define Q_INT128_FIXED_TYPE		Q_VALUE_TYPE_INT128
-#	define Q_INT128_TYPE			Q_VALUE_TYPE_INT128
-#	define Q_INT128_FORMAT			Q_VALUE_FORMAT_128BIT_INTEGER
-#	define Q_INT128_ENDIANNESS		Q_CPU_INTEGER_ENDIANNESS(128BIT)
-#	define Q_INT128_BITS			128
-#	define Q_INT128_SIZE			16
-#	define Q_INT128_NAME			INT128
-#	define Q_INT128_Name			Int128
-#	define Q_INT128_name			int128
-#	define Q_AVAILABLE_INT128
+	typedef Q_COMPILER_TYPE(UINT128)	quint128;
+	typedef struct {quint128 x, y;}		Q2DUInt128;
+	typedef struct {quint128 x, y, z;}	Q3DUInt128;
+	typedef struct {quint128 x, y, z, w;}	Q4DUInt128;
+#	define Q_UINT128_BASE_TYPE		Q_VALUE_TYPE_UINT128
+#	define Q_UINT128_FIXED_TYPE		Q_VALUE_TYPE_UINT128
+#	define Q_UINT128_TYPE			Q_VALUE_TYPE_UINT128
+#	define Q_UINT128_FORMAT			Q_VALUE_FORMAT_128BIT_NATURAL
+#	define Q_UINT128_ENDIANNESS		Q_CPU_INTEGER_ENDIANNESS(128BIT)
+#	define Q_UINT128_BITS			128
+#	define Q_UINT128_SIZE			16
+#	define Q_UINT128_MINIMUM		0
+#	define Q_UINT128_NAME			UINT128
+#	define Q_UINT128_Name			UInt128
+#	define Q_UINT128_name			uint128
+#	define Q_AVAILABLE_UINT128
 
-#	if Q_COMPILER_HAS_LITERAL(INT128)
-#		define Q_INT128			Q_COMPILER_LITERAL(INT128)
-#		define Q_INT128_SUFFIX		Q_COMPILER_SUFFIX (INT128)
-#		define Q_INT128_MAXIMUM		Q_INT128(170141183460469231731687303715884105727)
-#		define Q_INT128_MINIMUM		(-Q_INT128_MAXIMUM - Q_INT128(1))
+#	if Q_COMPILER_HAS_LITERAL(UINT128)
+#		define Q_UINT128		Q_COMPILER_LITERAL(UINT128)
+#		define Q_UINT128_MAXIMUM	Q_UINT128(340282366920938463463374607431768211455)
 #	else
-#		define Q_INT128			Q_SAME
-#		define Q_INT128_SUFFIX
-#		define Q_INT128_MAXIMUM		0 /* TO BE IMPLEMENTED */
-#		define Q_INT128_MINIMUM		0 /* TO BE IMPLEMENTED */
+#		define Q_UINT128		Q_SAME
+#		define Q_UINT128_MAXIMUM	(((quint128)0) - 1)
+#	endif
+
+#	if Q_COMPILER_HAS_SUFFIX(UINT128)
+#		define Q_UINT128_SUFFIX		Q_COMPILER_SUFFIX(UINT128)
+#	else
+#		define Q_UINT128_SUFFIX
 #	endif
 
 #endif
-
+	å
 #define Q_UINTX_LITERAL(   BITS)		Q_PREFIX_Q_UINT(BITS)
 #define Q_UINTX_SUFFIX(	   BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _SUFFIX	  ))
 #define Q_UINTX_BASE_TYPE( BITS)		Q_PREFIX_Q_UINT(Q_JOIN_2(BITS, _BASE_TYPE ))
@@ -214,33 +217,38 @@ typedef struct {qint64 x, y, z, w;}		Q4DInt64;
 #define Q_INT64_Name				Int64
 #define Q_INT64_name				int64
 
-#if Q_CPU_HAS(128BIT_ARITHMETIC) && Q_COMPILER_HAS_TYPE(UINT128)
+#if Q_CPU_HAS(128BIT_ARITHMETIC) && Q_COMPILER_HAS_TYPE(INT128)
 
-	typedef Q_COMPILER_TYPE(UINT128)	quint128;
-	typedef struct {quint128 x, y;}		Q2DUInt128;
-	typedef struct {quint128 x, y, z;}	Q3DUInt128;
-	typedef struct {quint128 x, y, z, w;}	Q4DUInt128;
-#	define Q_UINT128_BASE_TYPE		Q_VALUE_TYPE_UINT128
-#	define Q_UINT128_FIXED_TYPE		Q_VALUE_TYPE_UINT128
-#	define Q_UINT128_TYPE			Q_VALUE_TYPE_UINT128
-#	define Q_UINT128_FORMAT			Q_VALUE_FORMAT_128BIT_NATURAL
-#	define Q_UINT128_ENDIANNESS		Q_CPU_INTEGER_ENDIANNESS(128BIT)
-#	define Q_UINT128_BITS			128
-#	define Q_UINT128_SIZE			16
-#	define Q_UINT128_MINIMUM		0
-#	define Q_UINT128_NAME			UINT128
-#	define Q_UINT128_Name			UInt128
-#	define Q_UINT128_name			uint128
-#	define Q_AVAILABLE_UINT128
+	typedef Q_COMPILER_TYPE(INT128)		qint128;
+	typedef struct {qint128 x, y;}		Q2DInt128;
+	typedef struct {qint128 x, y, z;}	Q3DInt128;
+	typedef struct {qint128 x, y, z, w;}	Q4DInt128;
+#	define Q_INT128_BASE_TYPE		Q_VALUE_TYPE_INT128
+#	define Q_INT128_FIXED_TYPE		Q_VALUE_TYPE_INT128
+#	define Q_INT128_TYPE			Q_VALUE_TYPE_INT128
+#	define Q_INT128_FORMAT			Q_VALUE_FORMAT_128BIT_INTEGER
+#	define Q_INT128_ENDIANNESS		Q_CPU_INTEGER_ENDIANNESS(128BIT)
+#	define Q_INT128_BITS			128
+#	define Q_INT128_SIZE			16
+#	define Q_INT128_NAME			INT128
+#	define Q_INT128_Name			Int128
+#	define Q_INT128_name			int128
+#	define Q_AVAILABLE_INT128
 
-#	if Q_COMPILER_HAS_LITERAL(UINT128)
-#		define Q_UINT128		Q_COMPILER_LITERAL(UINT128)
-#		define Q_UINT128_SUFFIX		Q_COMPILER_SUFFIX (UINT128)
-#		define Q_UINT128_MAXIMUM	Q_UINT128(340282366920938463463374607431768211455)
+#	if Q_COMPILER_HAS_LITERAL(INT128)
+#		define Q_INT128			Q_COMPILER_LITERAL(INT128)
+#		define Q_INT128_MAXIMUM		Q_INT128(170141183460469231731687303715884105727)
+#		define Q_INT128_MINIMUM		(-Q_INT128_MAXIMUM - Q_INT128(1))
 #	else
-#		define Q_UINT128		Q_SAME
-#		define Q_UINT128_SUFFIX
-#		define Q_UINT128_MAXIMUM	(((quint128)0) - 1)
+#		define Q_INT128			Q_SAME
+#		define Q_INT128_MAXIMUM		0 /* TO BE IMPLEMENTED */
+#		define Q_INT128_MINIMUM		0 /* TO BE IMPLEMENTED */
+#	endif
+
+#	if Q_COMPILER_HAS_SUFFIX(INT128)
+#		define Q_INT128_SUFFIX		Q_COMPILER_SUFFIX(INT128)
+#	else
+#		define Q_INT128_SUFFIX
 #	endif
 
 #endif
@@ -353,7 +361,12 @@ typedef Q_JOIN_2(Q4DUInt, Q_ULONG_BITS)		Q4DULong;
 
 #define Q_ULLONG_BITS				Q_DATA_MODEL_BITS(LLONG)
 
-typedef unsigned long long int			qullong;
+#if Q_LANGUAGE_HAS_TYPE(LLONG)
+	typedef unsigned long long int		qullong;
+#else
+	typedef unsigned long int		qullong;
+#endif
+
 typedef Q_JOIN_2(Q2DUInt, Q_ULLONG_BITS)	Q2DULLong;
 typedef Q_JOIN_2(Q3DUInt, Q_ULLONG_BITS)	Q3DULLong;
 typedef Q_JOIN_2(Q4DUInt, Q_ULLONG_BITS)	Q4DULLong;
@@ -469,7 +482,12 @@ typedef Q_JOIN_2(Q4DInt, Q_LONG_BITS)		Q4DLong;
 
 #define Q_LLONG_BITS				Q_DATA_MODEL_BITS(LLONG)
 
-typedef signed long long int			qllong;
+#if Q_LANGUAGE_HAS_TYPE(LLONG)
+	typedef signed long long int		qllong;
+#else
+	typedef unsigned long int		qllong;
+#endif
+
 typedef Q_JOIN_2(Q2DInt, Q_LLONG_BITS)		Q2DLLong;
 typedef Q_JOIN_2(Q3DInt, Q_LLONG_BITS)		Q3DLLong;
 typedef Q_JOIN_2(Q4DInt, Q_LLONG_BITS)		Q4DLLong;
@@ -566,7 +584,7 @@ typedef struct {qdouble x, y, z, w;}		Q4DDouble;
 #define Q_LDOUBLE_Name				LDouble
 #define Q_LDOUBLE_name				ldouble
 
-#if Q_LANGUAGE_HAS(LDOUBLE) && Q_FLOATING_POINT_BITS(LDOUBLE) != Q_DOUBLE_BITS
+#if Q_LANGUAGE_HAS_TYPE(LDOUBLE) && Q_FLOATING_POINT_BITS(LDOUBLE) != Q_DOUBLE_BITS
 
 	typedef long double			qldouble;
 	typedef struct {qldouble x, y;}		Q2DLDouble;
