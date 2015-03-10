@@ -361,31 +361,53 @@ typedef Q_JOIN_2(Q4DUInt, Q_ULONG_BITS)		Q4DULong;
 
 #define Q_ULLONG_BITS				Q_DATA_MODEL_BITS(LLONG)
 
-#if Q_LANGUAGE_HAS_TYPE(LLONG)
-	typedef unsigned long long int		qullong;
-#else
-	typedef unsigned long int		qullong;
-#endif
+#if Q_LANGUAGE_HAS_TYPE(ULLONG)
 
-typedef Q_JOIN_2(Q2DUInt, Q_ULLONG_BITS)	Q2DULLong;
-typedef Q_JOIN_2(Q3DUInt, Q_ULLONG_BITS)	Q3DULLong;
-typedef Q_JOIN_2(Q4DUInt, Q_ULLONG_BITS)	Q4DULLong;
-#define Q_ULLONG				Q_SUFFIX_ULL
-#define Q_ULLONG_SUFFIX				ULL
-#define Q_ULLONG_BASE_TYPE			Q_VALUE_TYPE_ULLONG
-#define Q_ULLONG_FIXED_TYPE			Q_UINTX_TYPE	  (Q_ULLONG_BITS)
-#define Q_ULLONG_TYPE				Q_VALUE_TYPE_ULLONG
-#define Q_ULLONG_FORMAT				Q_UINTX_FORMAT	  (Q_ULLONG_BITS)
-#define Q_ULLONG_ENDIANNESS			Q_UINTX_ENDIANNESS(Q_ULLONG_BITS)
-#define Q_ULLONG_SIZE				Q_UINTX_SIZE	  (Q_ULLONG_BITS)
-#define Q_ULLONG_MINIMUM			0
-#define Q_ULLONG_MAXIMUM			Q_UINTX_MAXIMUM   (Q_ULLONG_BITS)
-#define Q_ULLONG_FIXED_TYPE_NAME		Q_UINTX_NAME	  (Q_ULLONG_BITS)
-#define Q_ULLONG_FIXED_TYPE_Name		Q_UINTX_Name	  (Q_ULLONG_BITS)
-#define Q_ULLONG_FIXED_TYPE_name		Q_UINTX_name	  (Q_ULLONG_BITS)
-#define Q_ULLONG_NAME				ULLONG
-#define Q_ULLONG_Name				ULLong
-#define Q_ULLONG_name				ullong
+	typedef unsigned long long int		qullong;
+	typedef Q_JOIN_2(Q2DInt, Q_ULLONG_BITS)	Q2DULLong;
+	typedef Q_JOIN_2(Q3DInt, Q_ULLONG_BITS)	Q3DULLong;
+	typedef Q_JOIN_2(Q4DInt, Q_ULLONG_BITS)	Q4DULLong;
+#	define Q_ULLONG				Q_SUFFIX_LL
+#	define Q_ULLONG_SUFFIX			LL
+#	define Q_ULLONG_BASE_TYPE		Q_VALUE_TYPE_ULLONG
+#	define Q_ULLONG_FIXED_TYPE		Q_UINTX_TYPE	  (Q_ULLONG_BITS)
+#	define Q_ULLONG_TYPE			Q_VALUE_TYPE_ULLONG
+#	define Q_ULLONG_FORMAT			Q_UINTX_FORMAT	  (Q_ULLONG_BITS)
+#	define Q_ULLONG_ENDIANNESS		Q_UINTX_ENDIANNESS(Q_ULLONG_BITS)
+#	define Q_ULLONG_SIZE			Q_UINTX_SIZE	  (Q_ULLONG_BITS)
+#	define Q_ULLONG_MINIMUM			Q_UINTX_MINIMUM	  (Q_ULLONG_BITS)
+#	define Q_ULLONG_MAXIMUM			Q_UINTX_MAXIMUM	  (Q_ULLONG_BITS)
+#	define Q_ULLONG_FIXED_TYPE_NAME		Q_UINTX_NAME	  (Q_ULLONG_BITS)
+#	define Q_ULLONG_FIXED_TYPE_Name		Q_UINTX_Name	  (Q_ULLONG_BITS)
+#	define Q_ULLONG_FIXED_TYPE_name		Q_UINTX_name	  (Q_ULLONG_BITS)
+#	define Q_ULLONG_NAME			UULLONG
+#	define Q_ULLONG_Name			UULLong
+#	define Q_ULLONG_name			uullong
+
+#else
+
+	typedef qlong				qullong;
+	typedef Q2DLong				Q2DULLong;
+	typedef Q3DLong				Q3DULLong;
+	typedef Q4DLong				Q4DULLong;
+#	define Q_ULLONG				Q_ULLONG
+#	define Q_ULLONG_SUFFIX			Q_ULLONG_SUFFIX
+#	define Q_ULLONG_BASE_TYPE		Q_ULLONG_BASE_TYPE
+#	define Q_ULLONG_FIXED_TYPE		Q_ULLONG_FIXED_TYPE
+#	define Q_ULLONG_TYPE			Q_ULLONG_TYPE
+#	define Q_ULLONG_FORMAT			Q_ULLONG_FORMAT
+#	define Q_ULLONG_ENDIANNESS		Q_ULLONG_ENDIANNESS
+#	define Q_ULLONG_SIZE			Q_ULLONG_SIZE
+#	define Q_ULLONG_MINIMUM			Q_ULLONG_MINIMUM
+#	define Q_ULLONG_MAXIMUM			Q_ULLONG_MAXIMUM
+#	define Q_ULLONG_FIXED_TYPE_NAME		Q_ULLONG_FIXED_TYPE_NAME
+#	define Q_ULLONG_FIXED_TYPE_Name		Q_ULLONG_FIXED_TYPE_Name
+#	define Q_ULLONG_FIXED_TYPE_name		Q_ULLONG_FIXED_TYPE_name
+#	define Q_ULLONG_NAME			Q_ULLONG_NAME
+#	define Q_ULLONG_Name			Q_ULLONG_Name
+#	define Q_ULLONG_name			Q_ULLONG_name
+
+#endif
 
 /* MARK: - Base integer types */
 
@@ -483,30 +505,52 @@ typedef Q_JOIN_2(Q4DInt, Q_LONG_BITS)		Q4DLong;
 #define Q_LLONG_BITS				Q_DATA_MODEL_BITS(LLONG)
 
 #if Q_LANGUAGE_HAS_TYPE(LLONG)
-	typedef signed long long int		qllong;
-#else
-	typedef unsigned long int		qllong;
-#endif
 
-typedef Q_JOIN_2(Q2DInt, Q_LLONG_BITS)		Q2DLLong;
-typedef Q_JOIN_2(Q3DInt, Q_LLONG_BITS)		Q3DLLong;
-typedef Q_JOIN_2(Q4DInt, Q_LLONG_BITS)		Q4DLLong;
-#define Q_LLONG					Q_SUFFIX_LL
-#define Q_LLONG_SUFFIX				LL
-#define Q_LLONG_BASE_TYPE			Q_VALUE_TYPE_LLONG
-#define Q_LLONG_FIXED_TYPE			Q_INTX_TYPE	 (Q_LLONG_BITS)
-#define Q_LLONG_TYPE				Q_VALUE_TYPE_LLONG
-#define Q_LLONG_FORMAT				Q_INTX_FORMAT	 (Q_LLONG_BITS)
-#define Q_LLONG_ENDIANNESS			Q_INTX_ENDIANNESS(Q_LLONG_BITS)
-#define Q_LLONG_SIZE				Q_INTX_SIZE	 (Q_LLONG_BITS)
-#define Q_LLONG_MINIMUM				Q_INTX_MINIMUM	 (Q_LLONG_BITS)
-#define Q_LLONG_MAXIMUM				Q_INTX_MAXIMUM	 (Q_LLONG_BITS)
-#define Q_LLONG_FIXED_TYPE_NAME			Q_INTX_NAME	 (Q_LLONG_BITS)
-#define Q_LLONG_FIXED_TYPE_Name			Q_INTX_Name	 (Q_LLONG_BITS)
-#define Q_LLONG_FIXED_TYPE_name			Q_INTX_name	 (Q_LLONG_BITS)
-#define Q_LLONG_NAME				ULLONG
-#define Q_LLONG_Name				ULLong
-#define Q_LLONG_name				ullong
+	typedef signed long long int		qllong;
+	typedef Q_JOIN_2(Q2DInt, Q_LLONG_BITS)	Q2DLLong;
+	typedef Q_JOIN_2(Q3DInt, Q_LLONG_BITS)	Q3DLLong;
+	typedef Q_JOIN_2(Q4DInt, Q_LLONG_BITS)	Q4DLLong;
+#	define Q_LLONG				Q_SUFFIX_LL
+#	define Q_LLONG_SUFFIX			LL
+#	define Q_LLONG_BASE_TYPE		Q_VALUE_TYPE_LLONG
+#	define Q_LLONG_FIXED_TYPE		Q_INTX_TYPE	 (Q_LLONG_BITS)
+#	define Q_LLONG_TYPE			Q_VALUE_TYPE_LLONG
+#	define Q_LLONG_FORMAT			Q_INTX_FORMAT	 (Q_LLONG_BITS)
+#	define Q_LLONG_ENDIANNESS		Q_INTX_ENDIANNESS(Q_LLONG_BITS)
+#	define Q_LLONG_SIZE			Q_INTX_SIZE	 (Q_LLONG_BITS)
+#	define Q_LLONG_MINIMUM			Q_INTX_MINIMUM	 (Q_LLONG_BITS)
+#	define Q_LLONG_MAXIMUM			Q_INTX_MAXIMUM	 (Q_LLONG_BITS)
+#	define Q_LLONG_FIXED_TYPE_NAME		Q_INTX_NAME	 (Q_LLONG_BITS)
+#	define Q_LLONG_FIXED_TYPE_Name		Q_INTX_Name	 (Q_LLONG_BITS)
+#	define Q_LLONG_FIXED_TYPE_name		Q_INTX_name	 (Q_LLONG_BITS)
+#	define Q_LLONG_NAME			ULLONG
+#	define Q_LLONG_Name			ULLong
+#	define Q_LLONG_name			ullong
+
+#else
+
+	typedef qlong				qllong;
+	typedef Q2DLong				Q2DLLong;
+	typedef Q3DLong				Q3DLLong;
+	typedef Q4DLong				Q4DLLong;
+#	define Q_LLONG				Q_LLONG
+#	define Q_LLONG_SUFFIX			Q_LLONG_SUFFIX
+#	define Q_LLONG_BASE_TYPE		Q_LLONG_BASE_TYPE
+#	define Q_LLONG_FIXED_TYPE		Q_LLONG_FIXED_TYPE
+#	define Q_LLONG_TYPE			Q_LLONG_TYPE
+#	define Q_LLONG_FORMAT			Q_LLONG_FORMAT
+#	define Q_LLONG_ENDIANNESS		Q_LLONG_ENDIANNESS
+#	define Q_LLONG_SIZE			Q_LLONG_SIZE
+#	define Q_LLONG_MINIMUM			Q_LLONG_MINIMUM
+#	define Q_LLONG_MAXIMUM			Q_LLONG_MAXIMUM
+#	define Q_LLONG_FIXED_TYPE_NAME		Q_LLONG_FIXED_TYPE_NAME
+#	define Q_LLONG_FIXED_TYPE_Name		Q_LLONG_FIXED_TYPE_Name
+#	define Q_LLONG_FIXED_TYPE_name		Q_LLONG_FIXED_TYPE_name
+#	define Q_LLONG_NAME			Q_LLONG_NAME
+#	define Q_LLONG_Name			Q_LLONG_Name
+#	define Q_LLONG_name			Q_LLONG_name
+
+#endif
 
 /* MARK: - Base real types */
 

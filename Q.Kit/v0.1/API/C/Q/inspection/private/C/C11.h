@@ -67,6 +67,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Specifiers */
 
 #define Q_C_HAS_SPECIFIER_ALIGN_AS
+#define Q_C_HAS_SPECIFIER_INLINE
 #define Q_C_HAS_SPECIFIER_NO_RETURN
 
 /* MARK: - Operators */

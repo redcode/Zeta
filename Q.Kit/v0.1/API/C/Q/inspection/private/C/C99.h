@@ -47,6 +47,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_C_HAS_STORAGE_CLASS_STATIC
 #define Q_C_HAS_STORAGE_CLASS_EXTERN
 
+/* MARK: - Specifiers */
+
+#define Q_C_HAS_SPECIFIER_INLINE
+
 /* MARK: - Operators */
 
 #define Q_C_HAS_OPERATOR_SIZE_OF
