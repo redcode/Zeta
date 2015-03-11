@@ -67,6 +67,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_API Q_PUBLIC
 #endif
 
+#if Q_COMPILER_HAS_C_ATTRIBUTE(API_EXPORT)
+#	define Q_API_EXPORT Q_COMPILER_C_ATTRIBUTE(API_EXPORT)
+#else
+#	define Q_API_EXPORT Q_PUBLIC
+#endif
+
 /* MARK: - Operators */
 
 #if Q_COMPILER_HAS_FUNCTION(OFFSET_OF)

@@ -24,13 +24,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(Q_USE_CPP03)
 #	include <Q/inspection/private/C++/C++03.h>
 
-#if defined(Q_USE_CPP98)
+#elif defined(Q_USE_CPP98)
 #	include <Q/inspection/private/C++/C++98.h>
 
-#if defined(Q_USE_CPP89)
+#elif defined(Q_USE_CPP89)
 #	include <Q/inspection/private/C++/C++89.h>
 
-#if defined(Q_USE_CPP85)
+#elif defined(Q_USE_CPP85)
 #	include <Q/inspection/private/C++/C++85.h>
 
 #elif defined(__cplusplus)

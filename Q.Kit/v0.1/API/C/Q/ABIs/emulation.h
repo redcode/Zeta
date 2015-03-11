@@ -68,7 +68,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 typedef struct {
 	quintptr id;
-	qsize	 cycles;
+
+	struct {qsize cycles;
+		/* ... */
+	} context;
 } QEmulatorComponent;
 
 Q_DEFINE_STRICT_STRUCTURE (
