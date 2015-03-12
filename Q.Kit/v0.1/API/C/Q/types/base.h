@@ -1358,14 +1358,14 @@ Q_DEFINE_STRICT_UNION (
 		Q_DEFINE_STRICT_UNION (
 			quint128 value_uint128;
 			qint128  value_int128;
-			quint64  array_uint64[2];
-			quint32  array_uint32[4];
-			quint16  array_uint16[8];
-			quint8	 array_uint8[16];
-			qint64	 array_int64[2];
-			qint32	 array_int32[4];
-			qint16	 array_int16[8];
-			qint8	 array_int8[16];
+			quint64  array_uint64[ 2];
+			quint32  array_uint32[ 4];
+			quint16  array_uint16[ 8];
+			quint8	 array_uint8 [16];
+			qint64	 array_int64 [ 2];
+			qint32	 array_int32 [ 4];
+			qint16	 array_int16 [ 8];
+			qint8	 array_int8  [16];
 
 			struct {quint64 index1;
 				quint64 index0;
@@ -1449,14 +1449,14 @@ Q_DEFINE_STRICT_UNION (
 		Q_DEFINE_STRICT_UNION (
 			quint128 value_uint128;
 			quint128 value_int128;
-			quint64  array_uint64[2];
-			quint32  array_uint32[4];
-			quint16  array_uint16[8];
-			quint8	 array_uint8[16];
-			qint64	 array_int64[2];
-			qint32	 array_int32[4];
-			qint16	 array_int16[8];
-			qint8	 array_int8[16];
+			quint64  array_uint64[ 2];
+			quint32  array_uint32[ 4];
+			quint16  array_uint16[ 8];
+			quint8	 array_uint8 [16];
+			qint64	 array_int64 [ 2];
+			qint32	 array_int32 [ 4];
+			qint16	 array_int16 [ 8];
+			qint8	 array_int8  [16];
 
 			struct {quint64 index0;
 				quint64 index1;
