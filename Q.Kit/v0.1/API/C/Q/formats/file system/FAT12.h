@@ -17,20 +17,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_FAT_12_FILE_SYSTEM_TYPE_FAT	 "FAT     "
 
 Q_DEFINE_STRICT_STRUCTURE (
-	quint8	ignored_1[11];
+	quint8	ignored_0[11];
 	quint16 bytes_per_sector;
 	quint8	sectors_per_cluster;
 	quint16	reserved_sector_count;
 	quint8	fat_count;
 	quint16	directory_entry_maximum;
 	quint16	total_sector_count;
-	quint8	ignored_2;
+	quint8	ignored_1;
 	quint16	sectors_per_fat;
 	quint16	sectors_per_track;
 	quint16	head_count;
-	quint8	ignored_3[4];
+	quint8	ignored_2[4];
 	quint32	fat32_total_sector_count;
-	quint8	ignored_4[2];
+	quint8	ignored_3[2];
 	quint8	boot_signature;
 	quint32	volume_id;
 	quint8	volume_label[11];

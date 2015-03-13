@@ -27,11 +27,11 @@ Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	Q16Bit	af_,  bc_, de_, hl_;
 	quint16 pc,   sp;
 	Q16Bit	ix,   iy;
-	quint8	i,    zero1;
-	quint8	r,    zero2;
-	quint8	iff1, zero3;
-	quint8	iff2, zero4;
-	quint8	im,   zero5;
+	quint8	i,    zero_0;
+	quint8	r,    zero_1;
+	quint8	iff1, zero_2;
+	quint8	iff2, zero_3;
+	quint8	im,   zero_4;
 Q_DEFINE_STRICT_STRUCTURE_END QSEMSnapshot;
 
 Q_DEFINE_STRICT_STRUCTURE (

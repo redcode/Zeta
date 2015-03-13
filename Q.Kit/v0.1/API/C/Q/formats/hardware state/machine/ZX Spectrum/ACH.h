@@ -20,26 +20,26 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Q/types/base.h>
 
 Q_DEFINE_STRICT_STRUCTURE_BEGIN
-	quint8	a,	      zero01[ 3];
-	quint8	f,	      zero02[ 3];
-	quint8	b,	      zero03[ 3];
-	quint8	c,	      zero04[ 3];
-	quint8	d,	      zero05[ 3];
-	quint8	e,	      zero06[ 3];
-	quint8	h,	      zero07[ 3];
-	quint8	l,	      zero08[ 3];
-	quint16 pc,	      zero09[ 3];
-	quint16 sp,	      zero10[53];
-	quint8	r,	      zero11[ 7];
-	quint8	border_color, zero12[ 7];
-	quint8	im,	      zero13[25];
-	quint8	i,  iff2,     zero14[44];
-	quint8	a_, f_,	      zero15[ 2];
-	quint8	b_, c_,	      zero16[ 2];
+	quint8	a,	      zero_00[ 3];
+	quint8	f,	      zero_01[ 3];
+	quint8	b,	      zero_02[ 3];
+	quint8	c,	      zero_03[ 3];
+	quint8	d,	      zero_04[ 3];
+	quint8	e,	      zero_05[ 3];
+	quint8	h,	      zero_06[ 3];
+	quint8	l,	      zero_07[ 3];
+	quint16 pc,	      zero_08[ 3];
+	quint16 sp,	      zero_09[53];
+	quint8	r,	      zero_10[ 7];
+	quint8	border_color, zero_11[ 7];
+	quint8	im,	      zero_12[25];
+	quint8	i,  iff2,     zero_13[44];
+	quint8	a_, f_,	      zero_14[ 2];
+	quint8	b_, c_,	      zero_15[ 2];
 	quint8	d_, e_;
 	quint8	h_, l_;
-	Q16Bit	ix,	      zero17;
-	Q16Bit	iy,	      zero18;
+	Q16Bit	ix,	      zero_16;
+	Q16Bit	iy,	      zero_17;
 	quint8	memory[1024 * 64]; /* Complete ZX Spectrum 48K memory */
 Q_DEFINE_STRICT_STRUCTURE_END QACH;
 

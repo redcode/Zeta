@@ -22,7 +22,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Q/types/base.h>
 
 Q_DEFINE_STRICT_STRUCTURE_BEGIN
-	quint8	zero1;
+	quint8	zero_0;
 	quint8	port_7ffd_value;
 	Q16Bit	hl_, hl, de_, de, bc_, bc, af_, af;
 	quint8	disk_and_t_states[7];
@@ -30,9 +30,9 @@ Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	quint16 pc, sp;
 	quint8	i;
 	quint8	reserved; /* Must be FFh */
-	quint8	zero2;
+	quint8	zero_1;
 	quint8	im;
-	quint8	zero3[3];
+	quint8	zero_2[3];
 
 	struct {Q_8BIT_FIELD(3) (
 		quint8 unused1 :5,

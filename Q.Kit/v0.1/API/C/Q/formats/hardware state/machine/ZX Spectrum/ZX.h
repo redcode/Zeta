@@ -34,25 +34,25 @@ Released under the terms of the GNU Lesser General Public License v3.
 Q_DEFINE_STRICT_STRUCTURE_BEGIN
 	quint8	rom_tail[132]; /* Last 132 bytes of ROM */
 	quint8	ram[1024 * 48];
-	quint8	zero1[132];
+	quint8	zero_0[132];
 	quint16	settings[5]; /* KGB settings, usually = {10, 10, 4, 1, 1} */
 	quint8	iff;
 	quint8	constants[2]; /* {0, 3} */
 	quint8	color_mode;
-	quint32	zero2;
+	quint32	zero_1;
 	Q16Bit	bc, bc_, de, de_, hl, hl_, ix, iy;
 	quint8	i, r;
-	quint8	zero3[3];
-	quint8	a_, zero4;
-	quint8	a,  zero5;
-	quint8	f_, zero6;
+	quint8	zero_2[3];
+	quint8	a_, zero_3;
+	quint8	a,  zero_4;
+	quint8	f_, zero_5;
 	quint8	f;
-	quint16	zero7, pc;
-	quint16	zero8, sp;
+	quint16	zero_6, pc;
+	quint16	zero_7, sp;
 	quint16 sound_mode;
 	quint16	halt; /* boolean */
 	qint16	im;
-	quint8	zero9[10];
+	quint8	zero_8[10];
 Q_DEFINE_STRICT_STRUCTURE_END QZX;
 
 #define Q_ZX(p) ((QZX *)(p))
