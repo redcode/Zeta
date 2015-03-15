@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Q_C
 #	include <Q/keys/C.h>
 
-#	define Q_C	  Q_C11
+#	define Q_C Q_C11
 #	define Q_C_STRING Q_C_STRING_C11
 #endif
 
