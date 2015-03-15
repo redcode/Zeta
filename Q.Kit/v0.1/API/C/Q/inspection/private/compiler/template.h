@@ -27,7 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Q_COMPILER_BIG_ENDIAN_8BIT_FIELD_ENCODING*/
 /*#define Q_COMPILER_BIG_ENDIAN_BIT_FIELD_ENCODING*/
 
-/* MARK: - C Features */
+/* MARK: - C features */
 
 /*#define Q_COMPILER_C_HAS_ANONYMOUS_FUNCTION*/
 /*#define Q_COMPILER_C_HAS_ANONYMOUS_STRUCTURE*/
@@ -38,7 +38,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Q_COMPILER_C_HAS_DESIGNATED_INITIALIZER*/
 /*#define Q_COMPILER_C_HAS_GENERIC_SELECTION*/
 
-/* MARK: - C Attributes */
+/* MARK: - C types */
+
+/*#define Q_COMPILER_C_HAS_LLONG*/
+/*#define Q_COMPILER_C_HAS_LDOUBLE*/
+
+/* MARK: - C attributes */
 
 /*#define Q_COMPILER_C_ATTRIBUTE_ALIAS*/
 /*#define Q_COMPILER_C_ATTRIBUTE_API*/

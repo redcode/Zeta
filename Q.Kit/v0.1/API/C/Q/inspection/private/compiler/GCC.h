@@ -6,38 +6,80 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Q_inspection_private_compiler_H__
-#define __Q_inspection_private_compiler_H__
-
-#include <Q/keys/compiler.h>
-#include <Q/keys/bit field.h>
-#include <Q/macros/version.h>
+#ifndef __Q_inspection_private_compiler_GCC_H__
+#define __Q_inspection_private_compiler_GCC_H__
 
 /* MARK: - Identification */
 
-#define Q_COMPILER		  Q_COMPILER_GCC
-#define Q_COMPILER_STRING	  Q_COMPILER_STRING_GCC
-#define Q_COMPILER_VERSION	  Q_VERSION(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
-#define Q_COMPILER_VERSION_STRING __VERSION__
+#ifndef Q_COMPILER
+#	include <Q/keys/compiler.h>
+#	include <Q/macros/version.h>
 
-/* MARK: - Features */
-
-#define Q_COMPILER_HAS_ALIAS
+#	define Q_COMPILER		  Q_COMPILER_GCC
+#	define Q_COMPILER_STRING	  Q_COMPILER_STRING_GCC
+#	define Q_COMPILER_VERSION	  Q_VERSION(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
+#	define Q_COMPILER_VERSION_STRING __VERSION__
+#endif
 
 /* MARK: - Bit field encoding */
+
+#include <Q/keys/bit field.h>
 
 #define Q_COMPILER_LITTLE_ENDIAN_8BIT_FIELD_ENCODING Q_BIT_FIELD_ENCODING_REVERSED
 #define Q_COMPILER_LITTLE_ENDIAN_BIT_FIELD_ENCODING  Q_BIT_FIELD_ENCODING_REVERSED
 #define Q_COMPILER_BIG_ENDIAN_8BIT_FIELD_ENCODING    Q_BIT_FIELD_ENCODING_LITERAL
 #define Q_COMPILER_BIG_ENDIAN_BIT_FIELD_ENCODING     Q_BIT_FIELD_ENCODING_LITERAL
 
+/* MARK: - C features */
+
+/* MARK: - C types */
+
+#define Q_COMPILER_C_HAS_TYPE_LLONG
+#define Q_COMPILER_C_HAS_TYPE_LDOUBLE
+
+/* MARK: - C attributes */
+
+#define Q_COMPILER_C_ATTRIBUTE_ALIAS(name)	 __attribute__((alias(name)))
+
+#if __GNUC__ >= 4
+#	define Q_COMPILER_C_ATTRIBUTE_INLINE	 static __inline__ __attribute__((always_inline))
+#else
+#	define Q_COMPILER_C_ATTRIBUTE_INLINE	 static __inline__
+#endif
+
+#define Q_COMPILER_C_ATTRIBUTE_THREAD_LOCAL	 __thread
+#define Q_COMPILER_C_ATTRIBUTE_PRIVATE		 __attribute__((visibility("hidden"))) static
+#define Q_COMPILER_C_ATTRIBUTE_PUBLIC		 __attribute__((visibility("default")))
+#define Q_COMPILER_C_ATTRIBUTE_STRICT_SIZE_BEGIN
+#define Q_COMPILER_C_ATTRIBUTE_STRICT_SIZE_END	 __attribute__((packed))
+#define Q_COMPILER_C_ATTRIBUTE_WEAK		 __attribute__((weak))
+
+/* MARK: - Built-in constants */
+
 /* MARK: - Built-in types */
 
-#define Q_COMPILER_TYPE_UINT128 __uint128_t
-#define Q_COMPILER_TYPE_INT128  __int128_t
-#define Q_COMPILER_TYPE_VAL	__builtin_va_list
+#ifdef __SIZEOF_INT128__
+#	define Q_COMPILER_TYPE_UINT128 __uint128_t
+#	define Q_COMPILER_TYPE_INT128  __int128_t
+#endif
 
-/* MARK: - Built-in functions */
+#define Q_COMPILER_TYPE_VAL __builtin_va_list
+
+/* MARK: - Built-in functions: Struture */
+
+#define Q_COMPILER_FUNCTION_OFFSETOF __builtin_offsetof
+
+/* MARK: - Built-in functions: VAL */
+
+#define Q_COMPILER_FUNCTION_VAL_INITIALIZE __builtin_va_start
+#define Q_COMPILER_FUNCTION_VAL_FINALIZE   __builtin_va_end
+#define Q_COMPILER_FUNCTION_VAL_READ	   __builtin_va_arg
+
+#if __STDC_VERSION__ >= 199900L || !defined(__STRICT_ANSI__)
+#	define Q_COMPILER_FUNCTION_VAL_COPY(object, output) __builtin_va_copy(output, object)
+#endif
+
+/* MARK: - Built-in functions: Atomic operations */
 
 #if Q_COMPILER_VERSION >= Q_VERSION(4, 1, 0)
 
@@ -194,40 +236,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-
-#define Q_COMPILER_FUNCTION_VAL_INITIALIZE			__builtin_va_start
-#define Q_COMPILER_FUNCTION_VAL_FINALIZE			__builtin_va_end
-#define Q_COMPILER_FUNCTION_VAL_READ				__builtin_va_arg
-
-#if	__STDC_VERSION__ >= 199900L || \
-	!defined(__STRICT_ANSI__)
-
-#	define Q_COMPILER_FUNCTION_VAL_COPY(object, output)	__builtin_va_copy(output, object)
-
-#endif
-
-#if	(__GNUC__ == 3 && __GNUC_MINOR__ >= 5) || \
-	 __GNUC__ >  3
-
-#	define Q_COMPILER_FUNCTION_OFFSETOF			__builtin_offsetof
-
-#endif
-
-/* MARK: - Keywords and attributes */
-
-#define Q_ASSEMBLY
-#define Q_THREAD_LOCAL(type, identifier)			type __thread identifier
-#define Q_API
-#define Q_PRIVATE						__attribute__((visibility("hidden"))) static
-#define Q_PUBLIC						__attribute__((visibility("default"))
-#define Q_ALIAS(symbol, name)					__attribute__((weak, alias(name))) symbol
-#define Q_STRICT_SIZE_BEGIN
-#define Q_STRICT_SIZE_END					__attribute__((packed))
-
-#if __GNUC__ >= 4
-#	define Q_INLINE						static __inline__ __attribute__((always_inline))
-#else
-#	define Q_INLINE						static __inline__
-#endif
-
-#endif /* __Q_inspection_private_compiler_H__ */
+#endif /* __Q_inspection_private_compiler_GCC_H__ */

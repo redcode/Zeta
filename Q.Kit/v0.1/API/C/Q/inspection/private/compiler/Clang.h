@@ -6,28 +6,31 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Q_inspection_private_compiler_H__
-#define __Q_inspection_private_compiler_H__
-
-#include <Q/keys/compiler.h>
-#include <Q/keys/bit field.h>
-#include <Q/macros/version.h>
+#ifndef __Q_inspection_private_compiler_Clang_H__
+#define __Q_inspection_private_compiler_Clang_H__
 
 /* MARK: - Identification */
 
-#define Q_COMPILER		  Q_COMPILER_CLANG
-#define Q_COMPILER_STRING	  Q_COMPILER_STRING_CLANG
-#define Q_COMPILER_VERSION	  Q_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
-#define Q_COMPILER_VERSION_STRING __clang_version__
+#ifndef Q_COMPILER
+#	include <Q/keys/compiler.h>
+#	include <Q/macros/version.h>
+
+#	define Q_COMPILER		  Q_COMPILER_CLANG
+#	define Q_COMPILER_STRING	  Q_COMPILER_STRING_CLANG
+#	define Q_COMPILER_VERSION	  Q_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
+#	define Q_COMPILER_VERSION_STRING __clang_version__
+#endif
 
 /* MARK: - Bit field encoding */
+
+#include <Q/keys/bit field.h>
 
 #define Q_COMPILER_LITTLE_ENDIAN_8BIT_FIELD_ENCODING Q_BIT_FIELD_ENCODING_REVERSED
 #define Q_COMPILER_LITTLE_ENDIAN_BIT_FIELD_ENCODING  Q_BIT_FIELD_ENCODING_REVERSED
 #define Q_COMPILER_BIG_ENDIAN_8BIT_FIELD_ENCODING    Q_BIT_FIELD_ENCODING_LITERAL
 #define Q_COMPILER_BIG_ENDIAN_BIT_FIELD_ENCODING     Q_BIT_FIELD_ENCODING_LITERAL
 
-/* MARK: - C Features */
+/* MARK: - C features */
 
 #ifndef __has_extension
 #	define __has_extension __has_feature /* Compatibility with Clang < v3.0 */
@@ -51,7 +54,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_COMPILER_C_HAS_GENERIC_SELECTION
 #endif
 
-/* MARK: - C Attributes */
+/* MARK: - C types */
+
+#define Q_COMPILER_C_HAS_TYPE_LLONG
+#define Q_COMPILER_C_HAS_TYPE_LDOUBLE
+
+/* MARK: - C attributes */
 
 #if __has_attribute(alias)
 #	define Q_COMPILER_C_ATTRIBUTE_ALIAS(name) __attribute__((alias(name)))
@@ -540,4 +548,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_COMPILER_FUNCTION_INT64_ATOMIC_NAND_THEN_GET  __sync_nand_and_fetch
 #endif
 
-#endif /* __Q_inspection_private_compiler_H__ */
+#endif /* __Q_inspection_private_compiler_Clang_H__ */

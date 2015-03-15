@@ -6,24 +6,26 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Q_private_C_H__
-#define __Q_private_C_H__
-
-#include <Q/keys/C.h>
+#ifndef __Q_private_C_KR_C_H__
+#define __Q_private_C_KR_C_H__
 
 /* MARK: - Identification */
 
-#define Q_C	   Q_KR_C
-#define Q_C_STRING Q_C_STRING_C89
+#ifndef Q_C
+#	include <Q/keys/C.h>
+
+#	define Q_C	  Q_KR_C
+#	define Q_C_STRING Q_C_STRING_KR_C
+#endif
 
 /* MARK: - Types */
 
-#define Q_C_HAS_LDOUBLE
+#define Q_C_HAS_TYPE_LDOUBLE
 
 /* MARK: - Type qualifiers */
 
-#define Q_C_TYPE_QUALIFIER_CONSTANT
-#define Q_C_TYPE_QUALIFIER_VOLATILE
+#define Q_C_HAS_TYPE_QUALIFIER_CONSTANT
+#define Q_C_HAS_TYPE_QUALIFIER_VOLATILE
 
 /* MARK: - Storage classes */
 
@@ -36,4 +38,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Q_C_HAS_OPERATOR_SIZE_OF
 
-#endif /* __Q_private_C_H__ */
+#endif /* __Q_private_C_KR_C_H__ */

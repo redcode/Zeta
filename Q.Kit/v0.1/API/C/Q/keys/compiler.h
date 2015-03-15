@@ -12,10 +12,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_COMPILER_GCC					0
 #define Q_COMPILER_CLANG				1
 #define Q_COMPILER_MICROSOFT_VISUAL_CPP			2
-#define Q_COMPILER_ACC
-#define Q_COMPILER_ALTIUM_MICROBLAZE_C
-#define Q_COMPILER_ALTIUM_C_TO_HARDWARE
-#define Q_COMPILER_AMSTERDAM_COMPILER_KIT
+#define Q_COMPILER_ACC					3
+#define Q_COMPILER_ALTIUM_MICROBLAZE_C			4
+#define Q_COMPILER_ALTIUM_C_TO_HARDWARE			5
+#define Q_COMPILER_AMSTERDAM_COMPILER_KIT		6
+#define Q_COMPILER_APPLE_LLVM				7
 #define Q_COMPILER_ARM_COMPILER
 #define Q_COMPILER_AZTEC_C
 #define Q_COMPILER_BORLAND_CPP
@@ -86,6 +87,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_COMPILER_STRING_ALTIUM_MICROBLAZE_C			"Altium MicroBlaze C"
 #define Q_COMPILER_STRING_ALTIUM_C_TO_HARDWARE			"Altium C-to-Hardware"
 #define Q_COMPILER_STRING_AMSTERDAM_COMPILER_KIT		"Amsterdam Compiler Kit"
+#define Q_COMPILER_STRING_APPLE_LLVM				"Apple LLVM"
 #define Q_COMPILER_STRING_ARM_COMPILER				"ARM Compiler"
 #define Q_COMPILER_STRING_AZTEC_C				"Aztec C"
 #define Q_COMPILER_STRING_BORLAND_CPP				"Borland C++"

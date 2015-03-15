@@ -10,7 +10,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Q_inspection_compiler_H__
 
 #if defined(__clang__)
-#	include <Q/inspection/private/compiler/Clang.h>
+#	if defined(__apple_build_version__)
+#		include <Q/inspection/private/compiler/Apple LLVM.h>
+#	else
+#		include <Q/inspection/private/compiler/Clang.h>
+#	endif
 
 #elif defined(__GNUC__)
 #	include <Q/inspection/private/compiler/GCC.h>
