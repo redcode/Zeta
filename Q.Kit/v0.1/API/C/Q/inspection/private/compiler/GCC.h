@@ -32,6 +32,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C features */
 
+#ifdef __BLOCKS__
+#	define Q_COMPILER_C_HAS_CLOSURE
+#endif
+
 /* MARK: - C types */
 
 #define Q_COMPILER_C_HAS_TYPE_LLONG
