@@ -133,7 +133,6 @@ typedef struct {Q3DLDouble normal; qldouble offset;}	QLDoublePlane;
 
 #endif
 
-
 /* MARK: - Casts */
 
 #define Q_2D_FLOAT_VECTOR(  p) ((Q2DFloatVector	   *)(p))
