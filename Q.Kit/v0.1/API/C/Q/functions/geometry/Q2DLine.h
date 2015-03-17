@@ -11,28 +11,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Q/functions/geometry/Q2DVector.h>
 
-#define q_2d_float_line_are_equal		q_2d_float_vector_are_equal
-#define q_2d_float_line_are_perpendicular	q_2d_float_vector_are_perpendicular
-#define q_2d_float_line_is_zero			q_2d_float_vector_is_zero
-#define q_2d_float_line_reversed		q_2d_float_vector_reversed
+#define q_2d_float_line_are_equal	    q_2d_float_vector_are_equal
+#define q_2d_float_line_are_perpendicular   q_2d_float_vector_are_perpendicular
+#define q_2d_float_line_is_zero		    q_2d_float_vector_is_zero
+#define q_2d_float_line_reversed	    q_2d_float_vector_reversed
 
-#define q_2d_double_line_are_equal		q_2d_double_vector_are_equal
-#define q_2d_double_line_are_perpendicular	q_2d_double_vector_are_perpendicular
-#define q_2d_double_line_is_zero		q_2d_double_vector_is_zero
-#define q_2d_double_line_reversed		q_2d_double_vector_reversed
+#define q_2d_double_line_are_equal	    q_2d_double_vector_are_equal
+#define q_2d_double_line_are_perpendicular  q_2d_double_vector_are_perpendicular
+#define q_2d_double_line_is_zero	    q_2d_double_vector_is_zero
+#define q_2d_double_line_reversed	    q_2d_double_vector_reversed
 
-#define q_2d_ldouble_line_are_equal		q_2d_ldouble_vector_are_equal
-#define q_2d_ldouble_line_are_perpendicular	q_2d_ldouble_vector_are_perpendicular
-#define q_2d_ldouble_line_is_zero		q_2d_ldouble_vector_is_zero
-#define q_2d_ldouble_line_reversed		q_2d_ldouble_vector_reversed
-
-#define q_2d_line_are_equal			q_2d_vector_are_equal
-#define q_2d_line_are_perpendicular		q_2d_vector_are_perpendicular
-#define q_2d_line_is_zero			q_2d_vector_is_zero
-#define q_2d_line_reversed			q_2d_vector_reversed
+#define q_2d_ldouble_line_are_equal	    q_2d_ldouble_vector_are_equal
+#define q_2d_ldouble_line_are_perpendicular q_2d_ldouble_vector_are_perpendicular
+#define q_2d_ldouble_line_is_zero	    q_2d_ldouble_vector_is_zero
+#define q_2d_ldouble_line_reversed	    q_2d_ldouble_vector_reversed
 
 
-#define Q_IMPLEMENTATION_2D_LINE(Type, type, _)					\
+#define Q_IMPLEMENTATION_2D_LINE_SEGMENT(Type, type, _)				\
 										\
 										\
 Q_INLINE qboolean q_2d_##type##_line_segment_collide(				\
@@ -63,15 +58,20 @@ Q_INLINE Q2D##Type q_2d_##type##_line_segment_lerp(				\
 	{return q_2d_##type##_lerp(segment.a, segment.b, alpha);}
 
 
-Q_IMPLEMENTATION_2D_LINE(Float,   float,   Q_FLOAT  )
-Q_IMPLEMENTATION_2D_LINE(Double,  double,  Q_DOUBLE )
-Q_IMPLEMENTATION_2D_LINE(LDouble, ldouble, Q_LDOUBLE)
+Q_IMPLEMENTATION_2D_LINE_SEGMENT(Float,   float,   Q_FLOAT  )
+Q_IMPLEMENTATION_2D_LINE_SEGMENT(Double,  double,  Q_DOUBLE )
+Q_IMPLEMENTATION_2D_LINE_SEGMENT(LDouble, ldouble, Q_LDOUBLE)
 
 
 /* MARK: - Default real type definitions */
 
-#define q_2d_line_segment_collide Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _line_segment_collide)
-#define q_2d_line_segment_center  Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _line_segment_center )
-#define q_2d_line_segment_lerp	  Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _line_segment_lerp   )
+#define q_2d_line_are_equal	    q_2d_vector_are_equal
+#define q_2d_line_are_perpendicular q_2d_vector_are_perpendicular
+#define q_2d_line_is_zero	    q_2d_vector_is_zero
+#define q_2d_line_reversed	    q_2d_vector_reversed
+
+#define q_2d_line_segment_collide   Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _line_segment_collide)
+#define q_2d_line_segment_center    Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _line_segment_center )
+#define q_2d_line_segment_lerp	    Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _line_segment_lerp	 )
 
 #endif /* __Q_functions_geometry_Q2DLine_H__ */
