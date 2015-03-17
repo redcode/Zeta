@@ -134,36 +134,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Default real type definitions */
 
-#if defined(Q_USE_REAL_FLOAT)
+#define q_2d Q_JOIN_2(q_2d_, Q_REAL_FIXED_TYPE_name)
+#define q_3d Q_JOIN_2(q_3d_, Q_REAL_FIXED_TYPE_name)
+#define q_4d Q_JOIN_2(q_4d_, Q_REAL_FIXED_TYPE_name)
 
-#	define q_2d	 q_2d_float
-#	define q_3d	 q_3d_float
-#	define q_4d	 q_4d_float
-
-#	define q_2d_zero q_2d_float_zero
-#	define q_3d_zero q_3d_float_zero
-#	define q_4d_zero q_4d_float_zero
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_2d	 q_2d_ldouble
-#	define q_3d	 q_3d_ldouble
-#	define q_4d	 q_4d_ldouble
-
-#	define q_2d_zero q_2d_ldouble_zero
-#	define q_3d_zero q_3d_ldouble_zero
-#	define q_4d_zero q_4d_ldouble_zero
-
-#else
-
-#	define q_2d	 q_2d_double
-#	define q_3d	 q_3d_double
-#	define q_4d	 q_4d_double
-
-#	define q_2d_zero q_2d_double_zero
-#	define q_3d_zero q_3d_double_zero
-#	define q_4d_zero q_4d_double_zero
-
-#endif
+#define q_2d_zero Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _zero)
+#define q_3d_zero Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _zero)
+#define q_4d_zero Q_JOIN_3(q_4d_, Q_REAL_FIXED_TYPE_name, _zero)
 
 #endif /* __Q_functions_base_constructors_H__ */

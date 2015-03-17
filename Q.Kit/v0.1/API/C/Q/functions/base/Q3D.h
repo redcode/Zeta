@@ -542,175 +542,58 @@ Q_IMPLEMENTATION_3D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 
 /* MARK: - Default real type definitions */
 
-
-#if defined(Q_USE_REAL_FLOAT)
-
-#	define q_3d_are_equal	       q_3d_float_are_equal
-#	define q_3d_are_almost_equal   q_3d_float_are_almost_equal
-#	define q_3d_are_perpendicular  q_3d_float_are_perpendicular
-#	define q_3d_swap	       q_3d_float_swap
-#	define q_3d_contains	       q_3d_float_contains
-#	define q_3d_add		       q_3d_float_add
-#	define q_3d_add_3	       q_3d_float_add_3
-#	define q_3d_add_4	       q_3d_float_add_4
-#	define q_3d_add_scalar	       q_3d_float_add_scalar
-#	define q_3d_subtract	       q_3d_float_subtract
-#	define q_3d_subtract_3	       q_3d_float_subtract_3
-#	define q_3d_subtract_4	       q_3d_float_subtract_4
-#	define q_3d_subtract_scalar    q_3d_float_subtract_scalar
-#	define q_3d_multiply	       q_3d_float_multiply
-#	define q_3d_multiply_3	       q_3d_float_multiply_3
-#	define q_3d_multiply_4	       q_3d_float_multiply_4
-#	define q_3d_multiply_by_scalar q_3d_float_multiply_by_scalar
-#	define q_3d_divide	       q_3d_float_divide
-#	define q_3d_divide_3	       q_3d_float_divide_3
-#	define q_3d_divide_4	       q_3d_float_divide_4
-#	define q_3d_divide_by_scalar   q_3d_float_divide_by_scalar
-#	define q_3d_dot_product        q_3d_float_dot_product
-#	define q_3d_cross_product      q_3d_float_cross_product
-#	define q_3d_minimum	       q_3d_float_minimum
-#	define q_3d_maximum	       q_3d_float_maximum
-#	define q_3d_middle	       q_3d_float_middle
-#	define q_3d_fit		       q_3d_float_fit
-#	define q_3d_lerp	       q_3d_float_lerp
-#	define q_3d_from_scalar        q_3d_float_from_scalar
-#	define q_3d_is_finite	       q_3d_float_is_finite
-#	define q_3d_is_infinity        q_3d_float_is_infinity
-#	define q_3d_is_nan	       q_3d_float_is_nan
-#	define q_3d_is_negative	       q_3d_float_is_negative
-#	define q_3d_is_zero	       q_3d_float_is_zero
-#	define q_3d_is_almost_zero     q_3d_float_is_almost_zero
-#	define q_3d_has_infinity       q_3d_float_has_infinity
-#	define q_3d_has_nan	       q_3d_float_has_nan
-#	define q_3d_has_negative       q_3d_float_has_negative
-#	define q_3d_has_zero           q_3d_float_has_zero
-#	define q_3d_has_almost_zero    q_3d_float_has_almost_zero
-#	define q_3d_negative	       q_3d_float_negative
-#	define q_3d_absolute	       q_3d_float_absolute
-#	define q_3d_reciprocal	       q_3d_float_reciprocal
-#	define q_3d_inner_sum	       q_3d_float_inner_sum
-#	define q_3d_inner_product      q_3d_float_inner_product
-#	define q_3d_inner_minimum      q_3d_float_inner_minimum
-#	define q_3d_inner_maximum      q_3d_float_inner_maximum
-#	define q_3d_inner_middle       q_3d_float_inner_middle
-#	define q_3d_squared_length     q_3d_float_squared_length
-#	define q_3d_clamp	       q_3d_float_clamp
-#	define q_3d_cube_clamp	       q_3d_float_cube_clamp
-#	define q_3d_cube_clamp_01      q_3d_float_cube_clamp_01
-#	define q_3d_rotated_as_axes    q_3d_float_rotated_as_axes
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_3d_are_equal	       q_3d_ldouble_are_equal
-#	define q_3d_are_almost_equal   q_3d_ldouble_are_almost_equal
-#	define q_3d_are_perpendicular  q_3d_ldouble_are_perpendicular
-#	define q_3d_swap	       q_3d_ldouble_swap
-#	define q_3d_contains	       q_3d_ldouble_contains
-#	define q_3d_add		       q_3d_ldouble_add
-#	define q_3d_add_3	       q_3d_ldouble_add_3
-#	define q_3d_add_4	       q_3d_ldouble_add_4
-#	define q_3d_add_scalar	       q_3d_ldouble_add_scalar
-#	define q_3d_subtract	       q_3d_ldouble_subtract
-#	define q_3d_subtract_3	       q_3d_ldouble_subtract_3
-#	define q_3d_subtract_4	       q_3d_ldouble_subtract_4
-#	define q_3d_subtract_scalar    q_3d_ldouble_subtract_scalar
-#	define q_3d_multiply	       q_3d_ldouble_multiply
-#	define q_3d_multiply_3	       q_3d_ldouble_multiply_3
-#	define q_3d_multiply_4	       q_3d_ldouble_multiply_4
-#	define q_3d_multiply_by_scalar q_3d_ldouble_multiply_by_scalar
-#	define q_3d_divide	       q_3d_ldouble_divide
-#	define q_3d_divide_3	       q_3d_ldouble_divide_3
-#	define q_3d_divide_4	       q_3d_ldouble_divide_4
-#	define q_3d_divide_by_scalar   q_3d_ldouble_divide_by_scalar
-#	define q_3d_dot_product        q_3d_ldouble_dot_product
-#	define q_3d_cross_product      q_3d_ldouble_cross_product
-#	define q_3d_minimum	       q_3d_ldouble_minimum
-#	define q_3d_maximum	       q_3d_ldouble_maximum
-#	define q_3d_middle	       q_3d_ldouble_middle
-#	define q_3d_fit		       q_3d_ldouble_fit
-#	define q_3d_lerp	       q_3d_ldouble_lerp
-#	define q_3d_from_scalar        q_3d_ldouble_from_scalar
-#	define q_3d_is_finite	       q_3d_ldouble_is_finite
-#	define q_3d_is_infinity        q_3d_ldouble_is_infinity
-#	define q_3d_is_nan	       q_3d_ldouble_is_nan
-#	define q_3d_is_negative	       q_3d_ldouble_is_negative
-#	define q_3d_is_zero	       q_3d_ldouble_is_zero
-#	define q_3d_is_almost_zero     q_3d_ldouble_is_almost_zero
-#	define q_3d_has_infinity       q_3d_ldouble_has_infinity
-#	define q_3d_has_nan	       q_3d_ldouble_has_nan
-#	define q_3d_has_negative       q_3d_ldouble_has_negative
-#	define q_3d_has_zero           q_3d_ldouble_has_zero
-#	define q_3d_has_almost_zero    q_3d_ldouble_has_almost_zero
-#	define q_3d_negative	       q_3d_ldouble_negative
-#	define q_3d_absolute	       q_3d_ldouble_absolute
-#	define q_3d_reciprocal	       q_3d_ldouble_reciprocal
-#	define q_3d_inner_sum	       q_3d_ldouble_inner_sum
-#	define q_3d_inner_product      q_3d_ldouble_inner_product
-#	define q_3d_inner_minimum      q_3d_ldouble_inner_minimum
-#	define q_3d_inner_maximum      q_3d_ldouble_inner_maximum
-#	define q_3d_inner_middle       q_3d_ldouble_inner_middle
-#	define q_3d_squared_length     q_3d_ldouble_squared_length
-#	define q_3d_clamp	       q_3d_ldouble_clamp
-#	define q_3d_cube_clamp	       q_3d_ldouble_cube_clamp
-#	define q_3d_cube_clamp_01      q_3d_ldouble_cube_clamp_01
-#	define q_3d_rotated_as_axes    q_3d_ldouble_rotated_as_axes
-
-#else
-
-#	define q_3d_are_equal	       q_3d_double_are_equal
-#	define q_3d_are_almost_equal   q_3d_double_are_almost_equal
-#	define q_3d_are_perpendicular  q_3d_double_are_perpendicular
-#	define q_3d_swap	       q_3d_double_swap
-#	define q_3d_contains	       q_3d_double_contains
-#	define q_3d_add		       q_3d_double_add
-#	define q_3d_add_3	       q_3d_double_add_3
-#	define q_3d_add_4	       q_3d_double_add_4
-#	define q_3d_add_scalar	       q_3d_double_add_scalar
-#	define q_3d_subtract	       q_3d_double_subtract
-#	define q_3d_subtract_3	       q_3d_double_subtract_3
-#	define q_3d_subtract_4	       q_3d_double_subtract_4
-#	define q_3d_subtract_scalar    q_3d_double_subtract_scalar
-#	define q_3d_multiply	       q_3d_double_multiply
-#	define q_3d_multiply_3	       q_3d_double_multiply_3
-#	define q_3d_multiply_4	       q_3d_double_multiply_4
-#	define q_3d_multiply_by_scalar q_3d_double_multiply_by_scalar
-#	define q_3d_divide	       q_3d_double_divide
-#	define q_3d_divide_3	       q_3d_double_divide_3
-#	define q_3d_divide_4	       q_3d_double_divide_4
-#	define q_3d_divide_by_scalar   q_3d_double_divide_by_scalar
-#	define q_3d_dot_product        q_3d_double_dot_product
-#	define q_3d_cross_product      q_3d_double_cross_product
-#	define q_3d_minimum	       q_3d_double_minimum
-#	define q_3d_maximum	       q_3d_double_maximum
-#	define q_3d_middle	       q_3d_double_middle
-#	define q_3d_fit		       q_3d_double_fit
-#	define q_3d_lerp	       q_3d_double_lerp
-#	define q_3d_from_scalar        q_3d_double_from_scalar
-#	define q_3d_is_finite	       q_3d_double_is_finite
-#	define q_3d_is_infinity        q_3d_double_is_infinity
-#	define q_3d_is_nan	       q_3d_double_is_nan
-#	define q_3d_is_negative	       q_3d_double_is_negative
-#	define q_3d_is_zero	       q_3d_double_is_zero
-#	define q_3d_is_almost_zero     q_3d_double_is_almost_zero
-#	define q_3d_has_infinity       q_3d_double_has_infinity
-#	define q_3d_has_nan	       q_3d_double_has_nan
-#	define q_3d_has_negative       q_3d_double_has_negative
-#	define q_3d_has_zero           q_3d_double_has_zero
-#	define q_3d_has_almost_zero    q_3d_double_has_almost_zero
-#	define q_3d_negative	       q_3d_double_negative
-#	define q_3d_absolute	       q_3d_double_absolute
-#	define q_3d_reciprocal	       q_3d_double_reciprocal
-#	define q_3d_inner_sum	       q_3d_double_inner_sum
-#	define q_3d_inner_product      q_3d_double_inner_product
-#	define q_3d_inner_minimum      q_3d_double_inner_minimum
-#	define q_3d_inner_maximum      q_3d_double_inner_maximum
-#	define q_3d_inner_middle       q_3d_double_inner_middle
-#	define q_3d_squared_length     q_3d_double_squared_length
-#	define q_3d_clamp	       q_3d_double_clamp
-#	define q_3d_cube_clamp	       q_3d_double_cube_clamp
-#	define q_3d_cube_clamp_01      q_3d_double_cube_clamp_01
-#	define q_3d_rotated_as_axes    q_3d_double_rotated_as_axes
-
-#endif
+#define q_3d_are_equal		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _are_equal	   )
+#define q_3d_are_almost_equal	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _are_almost_equal  )
+#define q_3d_are_perpendicular	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _are_perpendicular )
+#define q_3d_swap		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _swap		   )
+#define q_3d_contains		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _contains	   )
+#define q_3d_add		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _add		   )
+#define q_3d_add_3		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _add_3		   )
+#define q_3d_add_4		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _add_4		   )
+#define q_3d_add_scalar		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _add_scalar	   )
+#define q_3d_subtract		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _subtract	   )
+#define q_3d_subtract_3		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _subtract_3	   )
+#define q_3d_subtract_4		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _subtract_4	   )
+#define q_3d_subtract_scalar	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _subtract_scalar   )
+#define q_3d_multiply		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _multiply	   )
+#define q_3d_multiply_3		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _multiply_3	   )
+#define q_3d_multiply_4		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _multiply_4	   )
+#define q_3d_multiply_by_scalar	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _multiply_by_scalar)
+#define q_3d_divide		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _divide		   )
+#define q_3d_divide_3		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _divide_3	   )
+#define q_3d_divide_4		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _divide_4	   )
+#define q_3d_divide_by_scalar	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _divide_by_scalar  )
+#define q_3d_dot_product	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _dot_product	   )
+#define q_3d_cross_product	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _cross_product	   )
+#define q_3d_minimum		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _minimum	   )
+#define q_3d_maximum		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _maximum	   )
+#define q_3d_middle		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _middle		   )
+#define q_3d_fit		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _fit		   )
+#define q_3d_lerp		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _lerp		   )
+#define q_3d_from_scalar	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _from_scalar	   )
+#define q_3d_is_finite		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _is_finite	   )
+#define q_3d_is_infinity	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _is_infinity	   )
+#define q_3d_is_nan		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _is_nan		   )
+#define q_3d_is_negative	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _is_negative	   )
+#define q_3d_is_zero		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _is_zero	   )
+#define q_3d_is_almost_zero	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _is_almost_zero	   )
+#define q_3d_has_infinity	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _has_infinity	   )
+#define q_3d_has_nan		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _has_nan	   )
+#define q_3d_has_negative	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _has_negative	   )
+#define q_3d_has_zero		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _has_zero	   )
+#define q_3d_has_almost_zero	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _has_almost_zero   )
+#define q_3d_negative		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _negative	   )
+#define q_3d_absolute		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _absolute	   )
+#define q_3d_reciprocal		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _reciprocal	   )
+#define q_3d_inner_sum		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _inner_sum	   )
+#define q_3d_inner_product	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _inner_product	   )
+#define q_3d_inner_minimum	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _inner_minimum	   )
+#define q_3d_inner_maximum	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _inner_maximum	   )
+#define q_3d_inner_middle	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _inner_middle	   )
+#define q_3d_squared_length	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _squared_length	   )
+#define q_3d_clamp		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _clamp		   )
+#define q_3d_cube_clamp		Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _cube_clamp	   )
+#define q_3d_cube_clamp_01	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _cube_clamp_01	   )
+#define q_3d_rotated_as_axes	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _rotated_as_axes   )
 
 #endif /* __Q_functions_base_Q3D_H__ */

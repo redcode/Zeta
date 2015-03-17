@@ -422,65 +422,22 @@ Q_IMPLEMENTATION_VALUE_REAL(ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON, Q_LDOUBLE_INF
 
 /* MARK: - Default real type definitions */
 
-#if defined(Q_USE_REAL_FLOAT)
-
-#	define q_are_almost_equal q_float_are_almost_equal
-#	define q_minimum	  q_float_minimum
-#	define q_maximum	  q_float_maximum
-#	define q_lerp		  q_float_lerp
-#	define q_inverse_lerp	  q_float_inverse_lerp
-#	define q_smoothstep	  q_float_smoothstep
-#	define q_smootherstep	  q_float_smootherstep
-#	define q_is_almost_zero	  q_float_is_almost_zero
-#	define q_is_finite	  q_float_is_finite
-#	define q_is_infinity	  q_float_is_infinity
-#	define q_is_nan		  q_float_is_nan
-#	define q_absolute	  q_float_absolute
-#	define q_sign		  q_float_sign
-#	define q_sign_or_zero	  q_float_sign_or_zero
-#	define q_clamp		  q_float_clamp
-#	define q_clamp_01	  q_float_clamp_01
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_are_almost_equal q_ldouble_are_almost_equal
-#	define q_minimum	  q_ldouble_minimum
-#	define q_maximum	  q_ldouble_maximum
-#	define q_lerp		  q_ldouble_lerp
-#	define q_inverse_lerp	  q_ldouble_inverse_lerp
-#	define q_smoothstep	  q_ldouble_smoothstep
-#	define q_smootherstep	  q_ldouble_smootherstep
-#	define q_is_almost_zero	  q_ldouble_is_almost_zero
-#	define q_is_finite	  q_ldouble_is_finite
-#	define q_is_infinity	  q_ldouble_is_infinity
-#	define q_is_nan		  q_ldouble_is_nan
-#	define q_absolute	  q_ldouble_absolute
-#	define q_sign		  q_ldouble_sign
-#	define q_sign_or_zero	  q_ldouble_sign_or_zero
-#	define q_clamp		  q_ldouble_clamp
-#	define q_clamp_01	  q_ldouble_clamp_01
-
-#else
-
-#	define q_are_almost_equal q_double_are_almost_equal
-#	define q_minimum	  q_double_minimum
-#	define q_maximum	  q_double_maximum
-#	define q_lerp		  q_double_lerp
-#	define q_inverse_lerp	  q_double_inverse_lerp
-#	define q_smoothstep	  q_double_smoothstep
-#	define q_smootherstep	  q_double_smootherstep
-#	define q_is_almost_zero	  q_double_is_almost_zero
-#	define q_is_finite	  q_double_is_finite
-#	define q_is_infinity	  q_double_is_infinity
-#	define q_is_nan		  q_double_is_nan
-#	define q_absolute	  q_double_absolute
-#	define q_sign		  q_double_sign
-#	define q_sign_or_zero	  q_double_sign_or_zero
-#	define q_clamp		  q_double_clamp
-#	define q_clamp_01	  q_double_clamp_01
-
-#endif
-
+#define q_are_almost_equal Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _almost_equal  )
+#define q_minimum	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _minimum       )
+#define q_maximum	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _maximum       )
+#define q_lerp		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _lerp	       )
+#define q_inverse_lerp	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _inverse_lerp  )
+#define q_smoothstep	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _smoothstep    )
+#define q_smootherstep	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _smootherstep  )
+#define q_is_almost_zero   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _is_almost_zero)
+#define q_is_finite	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _is_finite     )
+#define q_is_infinity	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _is_infinity   )
+#define q_is_nan	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _is_nan	       )
+#define q_absolute	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _absolute      )
+#define q_sign		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _sign	       )
+#define q_sign_or_zero	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _sign_or_zero  )
+#define q_clamp		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _clamp	       )
+#define q_clamp_01	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _clamp_01      )
 
 /* MARK: - Atomic operations */
 
