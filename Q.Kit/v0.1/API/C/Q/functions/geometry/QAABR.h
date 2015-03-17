@@ -515,168 +515,56 @@ Q_IMPLEMENTATION_AABR(LDouble, ldouble, Q_LDOUBLE)
 
 /* MARK: - Default real type definitions */
 
-#if defined(Q_USE_REAL_FLOAT)
-
-#	define q_aabr_contains			q_float_aabr_contains
-#	define q_aabr_collide			q_float_aabr_collide
-#	define q_aabr_intersection		q_float_aabr_intersection
-#	define q_aabr_union			q_float_aabr_union
-#	define q_aabr_from_vertices		q_float_aabr_from_vertices
-#	define q_aabr_size			q_float_aabr_size
-#	define q_aabr_area			q_float_aabr_area
-#	define q_aabr_middle_x			q_float_aabr_middle_x
-#	define q_aabr_middle_y			q_float_aabr_middle_y
-#	define q_aabr_top_left			q_float_aabr_top_left
-#	define q_aabr_top_right			q_float_aabr_top_right
-#	define q_aabr_top_center		q_float_aabr_top_center
-#	define q_aabr_bottom_left		q_float_aabr_bottom_left
-#	define q_aabr_bottom_right		q_float_aabr_bottom_right
-#	define q_aabr_bottom_center		q_float_aabr_bottom_center
-#	define q_aabr_center_left		q_float_aabr_center_left
-#	define q_aabr_center_right		q_float_aabr_center_right
-#	define q_aabr_top_half			q_float_aabr_top_half
-#	define q_aabr_bottom_half		q_float_aabr_bottom_half
-#	define q_aabr_left_half			q_float_aabr_left_half
-#	define q_aabr_right_half		q_float_aabr_right_half
-#	define q_aabr_top_left_quarter		q_float_aabr_top_left_quarter
-#	define q_aabr_top_right_quarter		q_float_aabr_top_right_quarter
-#	define q_aabr_bottom_left_quarter	q_float_aabr_bottom_left_quarter
-#	define q_aabr_bottom_right_quarter	q_float_aabr_bottom_right_quarter
-#	define q_aabr_align_in_top_left		q_float_aabr_align_in_top_left
-#	define q_aabr_align_in_top_right	q_float_aabr_align_in_top_right
-#	define q_aabr_align_in_top_center	q_float_aabr_align_in_top_center
-#	define q_aabr_align_in_bottom_left	q_float_aabr_align_in_bottom_left
-#	define q_aabr_align_in_bottom_right	q_float_aabr_align_in_bottom_right
-#	define q_aabr_align_in_bottom_center	q_float_aabr_align_in_bottom_center
-#	define q_aabr_align_in_center_left	q_float_aabr_align_in_center_left
-#	define q_aabr_align_in_center_right	q_float_aabr_align_in_center_right
-#	define q_aabr_align_in_center		q_float_aabr_align_in_center
-#	define q_aabr_fit_in_top_left		q_float_aabr_fit_in_top_left
-#	define q_aabr_fit_in_top_right		q_float_aabr_fit_in_top_right
-#	define q_aabr_fit_in_top_center		q_float_aabr_fit_in_top_center
-#	define q_aabr_fit_in_bottom_left	q_float_aabr_fit_in_bottom_left
-#	define q_aabr_fit_in_bottom_right	q_float_aabr_fit_in_bottom_right
-#	define q_aabr_fit_in_bottom_center	q_float_aabr_fit_in_bottom_center
-#	define q_aabr_fit_in_center_left	q_float_aabr_fit_in_center_left
-#	define q_aabr_fit_in_center_right	q_float_aabr_fit_in_center_right
-#	define q_aabr_fit_in_center		q_float_aabr_fit_in_center
-#	define q_aabr_inner_circle		q_float_aabr_inner_circle
-#	define q_aabr_to_rectangle		q_float_aabr_to_rectangle
-#	define q_aabr_absolute_point_to_unit	q_float_aabr_absolute_point_to_unit
-#	define q_aabr_unit_point_to_absolute	q_float_aabr_unit_point_to_absolute
-#	define q_aabr_contains_point		q_float_aabr_contains_point
-#	define q_aabr_contains_line_segment	q_float_aabr_contains_line_segment
-#	define q_aabr_contains_rectangle	q_float_aabr_contains_rectangle
-#	define q_aabr_contains_circle		q_float_aabr_contains_circle
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_aabr_contains			q_ldouble_aabr_contains
-#	define q_aabr_collide			q_ldouble_aabr_collide
-#	define q_aabr_intersection		q_ldouble_aabr_intersection
-#	define q_aabr_union			q_ldouble_aabr_union
-#	define q_aabr_from_vertices		q_ldouble_aabr_from_vertices
-#	define q_aabr_size			q_ldouble_aabr_size
-#	define q_aabr_area			q_ldouble_aabr_area
-#	define q_aabr_middle_x			q_ldouble_aabr_middle_x
-#	define q_aabr_middle_y			q_ldouble_aabr_middle_y
-#	define q_aabr_top_left			q_ldouble_aabr_top_left
-#	define q_aabr_top_right			q_ldouble_aabr_top_right
-#	define q_aabr_top_center		q_ldouble_aabr_top_center
-#	define q_aabr_bottom_left		q_ldouble_aabr_bottom_left
-#	define q_aabr_bottom_right		q_ldouble_aabr_bottom_right
-#	define q_aabr_bottom_center		q_ldouble_aabr_bottom_center
-#	define q_aabr_center_left		q_ldouble_aabr_center_left
-#	define q_aabr_center_right		q_ldouble_aabr_center_right
-#	define q_aabr_top_half			q_ldouble_aabr_top_half
-#	define q_aabr_bottom_half		q_ldouble_aabr_bottom_half
-#	define q_aabr_left_half			q_ldouble_aabr_left_half
-#	define q_aabr_right_half		q_ldouble_aabr_right_half
-#	define q_aabr_top_left_quarter		q_ldouble_aabr_top_left_quarter
-#	define q_aabr_top_right_quarter		q_ldouble_aabr_top_right_quarter
-#	define q_aabr_bottom_left_quarter	q_ldouble_aabr_bottom_left_quarter
-#	define q_aabr_bottom_right_quarter	q_ldouble_aabr_bottom_right_quarter
-#	define q_aabr_align_in_top_left		q_ldouble_aabr_align_in_top_left
-#	define q_aabr_align_in_top_right	q_ldouble_aabr_align_in_top_right
-#	define q_aabr_align_in_top_center	q_ldouble_aabr_align_in_top_center
-#	define q_aabr_align_in_bottom_left	q_ldouble_aabr_align_in_bottom_left
-#	define q_aabr_align_in_bottom_right	q_ldouble_aabr_align_in_bottom_right
-#	define q_aabr_align_in_bottom_center	q_ldouble_aabr_align_in_bottom_center
-#	define q_aabr_align_in_center_left	q_ldouble_aabr_align_in_center_left
-#	define q_aabr_align_in_center_right	q_ldouble_aabr_align_in_center_right
-#	define q_aabr_align_in_center		q_ldouble_aabr_align_in_center
-#	define q_aabr_fit_in_top_left		q_ldouble_aabr_fit_in_top_left
-#	define q_aabr_fit_in_top_right		q_ldouble_aabr_fit_in_top_right
-#	define q_aabr_fit_in_top_center		q_ldouble_aabr_fit_in_top_center
-#	define q_aabr_fit_in_bottom_left	q_ldouble_aabr_fit_in_bottom_left
-#	define q_aabr_fit_in_bottom_right	q_ldouble_aabr_fit_in_bottom_right
-#	define q_aabr_fit_in_bottom_center	q_ldouble_aabr_fit_in_bottom_center
-#	define q_aabr_fit_in_center_left	q_ldouble_aabr_fit_in_center_left
-#	define q_aabr_fit_in_center_right	q_ldouble_aabr_fit_in_center_right
-#	define q_aabr_fit_in_center		q_ldouble_aabr_fit_in_center
-#	define q_aabr_inner_circle		q_ldouble_aabr_inner_circle
-#	define q_aabr_to_rectangle		q_ldouble_aabr_to_rectangle
-#	define q_aabr_absolute_point_to_unit	q_ldouble_aabr_absolute_point_to_unit
-#	define q_aabr_unit_point_to_absolute	q_ldouble_aabr_unit_point_to_absolute
-#	define q_aabr_contains_point		q_ldouble_aabr_contains_point
-#	define q_aabr_contains_line_segment	q_ldouble_aabr_contains_line_segment
-#	define q_aabr_contains_rectangle	q_ldouble_aabr_contains_rectangle
-#	define q_aabr_contains_circle		q_ldouble_aabr_contains_circle
-
-#else
-
-#	define q_aabr_contains			q_double_aabr_contains
-#	define q_aabr_collide			q_double_aabr_collide
-#	define q_aabr_intersection		q_double_aabr_intersection
-#	define q_aabr_union			q_double_aabr_union
-#	define q_aabr_from_vertices		q_double_aabr_from_vertices
-#	define q_aabr_size			q_double_aabr_size
-#	define q_aabr_area			q_double_aabr_area
-#	define q_aabr_middle_x			q_double_aabr_middle_x
-#	define q_aabr_middle_y			q_double_aabr_middle_y
-#	define q_aabr_top_left			q_double_aabr_top_left
-#	define q_aabr_top_right			q_double_aabr_top_right
-#	define q_aabr_top_center		q_double_aabr_top_center
-#	define q_aabr_bottom_left		q_double_aabr_bottom_left
-#	define q_aabr_bottom_right		q_double_aabr_bottom_right
-#	define q_aabr_bottom_center		q_double_aabr_bottom_center
-#	define q_aabr_center_left		q_double_aabr_center_left
-#	define q_aabr_center_right		q_double_aabr_center_right
-#	define q_aabr_top_half			q_double_aabr_top_half
-#	define q_aabr_bottom_half		q_double_aabr_bottom_half
-#	define q_aabr_left_half			q_double_aabr_left_half
-#	define q_aabr_right_half		q_double_aabr_right_half
-#	define q_aabr_top_left_quarter		q_double_aabr_top_left_quarter
-#	define q_aabr_top_right_quarter		q_double_aabr_top_right_quarter
-#	define q_aabr_bottom_left_quarter	q_double_aabr_bottom_left_quarter
-#	define q_aabr_bottom_right_quarter	q_double_aabr_bottom_right_quarter
-#	define q_aabr_align_in_top_left		q_double_aabr_align_in_top_left
-#	define q_aabr_align_in_top_right	q_double_aabr_align_in_top_right
-#	define q_aabr_align_in_top_center	q_double_aabr_align_in_top_center
-#	define q_aabr_align_in_bottom_left	q_double_aabr_align_in_bottom_left
-#	define q_aabr_align_in_bottom_right	q_double_aabr_align_in_bottom_right
-#	define q_aabr_align_in_bottom_center	q_double_aabr_align_in_bottom_center
-#	define q_aabr_align_in_center_left	q_double_aabr_align_in_center_left
-#	define q_aabr_align_in_center_right	q_double_aabr_align_in_center_right
-#	define q_aabr_align_in_center		q_double_aabr_align_in_center
-#	define q_aabr_fit_in_top_left		q_double_aabr_fit_in_top_left
-#	define q_aabr_fit_in_top_right		q_double_aabr_fit_in_top_right
-#	define q_aabr_fit_in_top_center		q_double_aabr_fit_in_top_center
-#	define q_aabr_fit_in_bottom_left	q_double_aabr_fit_in_bottom_left
-#	define q_aabr_fit_in_bottom_right	q_double_aabr_fit_in_bottom_right
-#	define q_aabr_fit_in_bottom_center	q_double_aabr_fit_in_bottom_center
-#	define q_aabr_fit_in_center_left	q_double_aabr_fit_in_center_left
-#	define q_aabr_fit_in_center_right	q_double_aabr_fit_in_center_right
-#	define q_aabr_fit_in_center		q_double_aabr_fit_in_center
-#	define q_aabr_inner_circle		q_double_aabr_inner_circle
-#	define q_aabr_to_rectangle		q_double_aabr_to_rectangle
-#	define q_aabr_absolute_point_to_unit	q_double_aabr_absolute_point_to_unit
-#	define q_aabr_unit_point_to_absolute	q_double_aabr_unit_point_to_absolute
-#	define q_aabr_contains_point		q_double_aabr_contains_point
-#	define q_aabr_contains_line_segment	q_double_aabr_contains_line_segment
-#	define q_aabr_contains_rectangle	q_double_aabr_contains_rectangle
-#	define q_aabr_contains_circle		q_double_aabr_contains_circle
-
-#endif
+#define q_aabr_contains		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_contains	       )
+#define q_aabr_collide		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_collide	       )
+#define q_aabr_intersection	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_intersection	       )
+#define q_aabr_union		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_union		       )
+#define q_aabr_from_vertices	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_from_vertices	       )
+#define q_aabr_size		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_size		       )
+#define q_aabr_area		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_area		       )
+#define q_aabr_middle_x		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_middle_x	       )
+#define q_aabr_middle_y		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_middle_y	       )
+#define q_aabr_top_left		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_top_left	       )
+#define q_aabr_top_right	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_top_right	       )
+#define q_aabr_top_center	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_top_center	       )
+#define q_aabr_bottom_left	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_bottom_left	       )
+#define q_aabr_bottom_right	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_bottom_right	       )
+#define q_aabr_bottom_center	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_bottom_center	       )
+#define q_aabr_center_left	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_center_left	       )
+#define q_aabr_center_right	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_center_right	       )
+#define q_aabr_top_half		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_top_half	       )
+#define q_aabr_bottom_half	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_bottom_half	       )
+#define q_aabr_left_half	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_left_half	       )
+#define q_aabr_right_half	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_right_half	       )
+#define q_aabr_top_left_quarter	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_top_left_quarter      )
+#define q_aabr_top_right_quarter      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_top_right_quarter     )
+#define q_aabr_bottom_left_quarter    Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_bottom_left_quarter   )
+#define q_aabr_bottom_right_quarter   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_bottom_right_quarter  )
+#define q_aabr_align_in_top_left      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_align_in_top_left     )
+#define q_aabr_align_in_top_right     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_align_in_top_right    )
+#define q_aabr_align_in_top_center    Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_align_in_top_center   )
+#define q_aabr_align_in_bottom_left   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_align_in_bottom_left  )
+#define q_aabr_align_in_bottom_right  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_align_in_bottom_right )
+#define q_aabr_align_in_bottom_center Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_align_in_bottom_center)
+#define q_aabr_align_in_center_left   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_align_in_center_left  )
+#define q_aabr_align_in_center_right  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_align_in_center_right )
+#define q_aabr_align_in_center	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_align_in_center       )
+#define q_aabr_fit_in_top_left	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_fit_in_top_left       )
+#define q_aabr_fit_in_top_right	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_fit_in_top_right      )
+#define q_aabr_fit_in_top_center      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_fit_in_top_center     )
+#define q_aabr_fit_in_bottom_left     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_fit_in_bottom_left    )
+#define q_aabr_fit_in_bottom_right    Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_fit_in_bottom_right   )
+#define q_aabr_fit_in_bottom_center   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_fit_in_bottom_center  )
+#define q_aabr_fit_in_center_left     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_fit_in_center_left    )
+#define q_aabr_fit_in_center_right    Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_fit_in_center_right   )
+#define q_aabr_fit_in_center	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_fit_in_center	       )
+#define q_aabr_inner_circle	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_inner_circle	       )
+#define q_aabr_to_rectangle	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_to_rectangle	       )
+#define q_aabr_absolute_point_to_unit Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_absolute_point_to_unit)
+#define q_aabr_unit_point_to_absolute Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_unit_point_to_absolute)
+#define q_aabr_contains_point	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_contains_point	       )
+#define q_aabr_contains_line_segment  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_contains_line_segment )
+#define q_aabr_contains_rectangle     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_contains_rectangle    )
+#define q_aabr_contains_circle	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_contains_circle       )
 
 #endif /* __Q_functions_geometry_QAABR_H__ */

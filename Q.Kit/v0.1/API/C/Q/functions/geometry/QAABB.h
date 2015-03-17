@@ -200,60 +200,20 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 
 /* MARK: - Default real type definitions */
 
-#if defined(Q_USE_REAL_FLOAT)
-
-#	define q_aabb_contains			q_float_aabb_contains
-#	define q_aabb_collide			q_float_aabb_collide
-#	define q_aabb_intersection		q_float_aabb_intersection
-#	define q_aabb_union			q_float_aabb_union
-#	define q_aabb_from_vertices		q_float_aabb_from_vertices
-#	define q_aabb_size			q_float_aabb_size
-#	define q_aabb_volume			q_float_aabb_volume
-#	define q_aabb_inner_sphere		q_float_aabb_inner_sphere
-#	define q_aabb_to_box			q_float_aabb_to_box
-#	define q_aabb_absolute_point_to_unit	q_float_aabb_absolute_point_to_unit
-#	define q_aabb_unit_point_to_absolute	q_float_aabb_unit_point_to_absolute
-#	define q_aabb_contains_point		q_float_aabb_contains_point
-#	define q_aabb_contains_line_segment	q_float_aabb_contains_line_segment
-#	define q_aabb_contains_box		q_float_aabb_contains_box
-#	define q_aabb_contains_sphere		q_float_aabb_contains_sphere
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_aabb_contains			q_ldouble_aabb_contains
-#	define q_aabb_collide			q_ldouble_aabb_collide
-#	define q_aabb_intersection		q_ldouble_aabb_intersection
-#	define q_aabb_union			q_ldouble_aabb_union
-#	define q_aabb_from_vertices		q_ldouble_aabb_from_vertices
-#	define q_aabb_size			q_ldouble_aabb_size
-#	define q_aabb_volume			q_ldouble_aabb_volume
-#	define q_aabb_inner_sphere		q_ldouble_aabb_inner_sphere
-#	define q_aabb_to_box			q_ldouble_aabb_to_box
-#	define q_aabb_absolute_point_to_unit	q_ldouble_aabb_absolute_point_to_unit
-#	define q_aabb_unit_point_to_absolute	q_ldouble_aabb_unit_point_to_absolute
-#	define q_aabb_contains_point		q_ldouble_aabb_contains_point
-#	define q_aabb_contains_line_segment	q_ldouble_aabb_contains_line_segment
-#	define q_aabb_contains_box		q_ldouble_aabb_contains_box
-#	define q_aabb_contains_sphere		q_ldouble_aabb_contains_sphere
-
-#else
-
-#	define q_aabb_contains			q_double_aabb_contains
-#	define q_aabb_collide			q_double_aabb_collide
-#	define q_aabb_intersection		q_double_aabb_intersection
-#	define q_aabb_union			q_double_aabb_union
-#	define q_aabb_from_vertices		q_double_aabb_from_vertices
-#	define q_aabb_size			q_double_aabb_size
-#	define q_aabb_volume			q_double_aabb_volume
-#	define q_aabb_inner_sphere		q_double_aabb_inner_sphere
-#	define q_aabb_to_box			q_double_aabb_to_box
-#	define q_aabb_absolute_point_to_unit	q_double_aabb_absolute_point_to_unit
-#	define q_aabb_unit_point_to_absolute	q_double_aabb_unit_point_to_absolute
-#	define q_aabb_contains_point		q_double_aabb_contains_point
-#	define q_aabb_contains_line_segment	q_double_aabb_contains_line_segment
-#	define q_aabb_contains_box		q_double_aabb_contains_box
-#	define q_aabb_contains_sphere		q_double_aabb_contains_sphere
-
-#endif
+#define q_aabb_contains		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_contains	       )
+#define q_aabb_collide		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_collide	       )
+#define q_aabb_intersection	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_intersection	       )
+#define q_aabb_union		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_union		       )
+#define q_aabb_from_vertices	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_from_vertices	       )
+#define q_aabb_size		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_size		       )
+#define q_aabb_volume		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_volume		       )
+#define q_aabb_inner_sphere	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_inner_sphere	       )
+#define q_aabb_to_box		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_to_box		       )
+#define q_aabb_absolute_point_to_unit Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_absolute_point_to_unit)
+#define q_aabb_unit_point_to_absolute Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_unit_point_to_absolute)
+#define q_aabb_contains_point	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_contains_point	       )
+#define q_aabb_contains_line_segment  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_contains_line_segment )
+#define q_aabb_contains_box	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_contains_box	       )
+#define q_aabb_contains_sphere	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_contains_sphere       )
 
 #endif /* __Q_functions_geometry_QAABB_H__ */

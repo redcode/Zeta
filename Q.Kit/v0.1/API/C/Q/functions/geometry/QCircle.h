@@ -64,27 +64,9 @@ Q_IMPLEMENTATION_CIRCLE(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_SUFFIX)
 
 /* MARK: - Default real type definitions */
 
-#if defined(Q_USE_REAL_FLOAT)
-
-#	define q_circle_are_equal	q_float_circle_are_equal
-#	define q_circle_is_zero		q_float_circle_is_zero
-#	define q_circle_inner_rectangle	q_float_circle_inner_rectangle
-#	define q_circle_outer_rectangle	q_float_circle_outer_rectangle
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_circle_are_equal	q_ldouble_circle_are_equal
-#	define q_circle_is_zero		q_ldouble_circle_is_zero
-#	define q_circle_inner_rectangle	q_ldouble_circle_inner_rectangle
-#	define q_circle_outer_rectangle	q_ldouble_circle_outer_rectangle
-
-#else
-
-#	define q_circle_are_equal	q_double_circle_are_equal
-#	define q_circle_is_zero		q_double_circle_is_zero
-#	define q_circle_inner_rectangle	q_double_circle_inner_rectangle
-#	define q_circle_outer_rectangle	q_double_circle_outer_rectangle
-
-#endif
+#define q_circle_are_equal	 Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _circle_are_equal	     )
+#define q_circle_is_zero	 Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _circle_is_zero	     )
+#define q_circle_inner_rectangle Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _circle_inner_rectangle)
+#define q_circle_outer_rectangle Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _circle_outer_rectangle)
 
 #endif /* __Q_functions_geometry_QCircle_H__ */

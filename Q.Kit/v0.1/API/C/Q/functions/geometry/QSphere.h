@@ -64,27 +64,9 @@ Q_IMPLEMENTATION_SPHERE(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_SUFFIX)
 
 /* MARK: - Default real type definitions */
 
-#if defined(Q_USE_REAL_FLOAT)
-
-#	define q_sphere_are_equal	q_float_sphere_are_equal
-#	define q_sphere_is_zero		q_float_sphere_is_zero
-#	define q_sphere_inner_box	q_float_sphere_inner_box
-#	define q_sphere_outer_box	q_float_sphere_outer_box
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_sphere_are_equal	q_ldouble_sphere_are_equal
-#	define q_sphere_is_zero		q_ldouble_sphere_is_zero
-#	define q_sphere_inner_box	q_ldouble_sphere_inner_box
-#	define q_sphere_outer_box	q_ldouble_sphere_outer_box
-
-#else
-
-#	define q_sphere_are_equal	q_double_sphere_are_equal
-#	define q_sphere_is_zero		q_double_sphere_is_zero
-#	define q_sphere_inner_box	q_double_sphere_inner_box
-#	define q_sphere_outer_box	q_double_sphere_outer_box
-
-#endif
+#define q_sphere_are_equal Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _sphere_are_equal)
+#define q_sphere_is_zero   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _sphere_is_zero	 )
+#define q_sphere_inner_box Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _sphere_inner_box)
+#define q_sphere_outer_box Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _sphere_outer_box)
 
 #endif /* __Q_functions_geometry_QSphere_H__ */

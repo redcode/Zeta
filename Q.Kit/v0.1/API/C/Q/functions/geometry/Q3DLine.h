@@ -54,21 +54,7 @@ Q_IMPLEMENTATION_3D_LINE(LDouble, ldouble, Q_LDOUBLE)
 
 /* MARK: - Default real type definitions */
 
-#if defined(Q_USE_REAL_FLOAT)
-
-#	define q_3d_line_segment_center	q_3d_float_line_segment_center
-#	define q_3d_line_segment_lerp	q_3d_float_line_segment_lerp
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_3d_line_segment_center	q_3d_ldouble_line_segment_center
-#	define q_3d_line_segment_lerp	q_3d_ldouble_line_segment_lerp
-
-#else
-
-#	define q_3d_line_segment_center	q_3d_double_line_segment_center
-#	define q_3d_line_segment_lerp	q_3d_double_line_segment_lerp
-
-#endif
+#define q_3d_line_segment_center Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _line_segment_center)
+#define q_3d_line_segment_lerp	 Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _line_segment_lerp  )
 
 #endif /* __Q_functions_geometry_Q3DLine_H__ */

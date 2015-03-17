@@ -59,27 +59,9 @@ Q_IMPLEMENTATION_2D_VECTOR(LDouble, ldouble)
 
 /* MARK: - Default real type definitions */
 
-#if defined(Q_USE_REAL_FLOAT)
-
-#	define q_2d_vector_are_equal		q_2d_float_vector_are_equal
-#	define q_2d_vector_are_perpendicular	q_2d_float_vector_are_perpendicular
-#	define q_2d_vector_is_zero		q_2d_float_vector_is_zero
-#	define q_2d_vector_reversed		q_2d_float_vector_reversed
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_2d_vector_are_equal		q_2d_ldouble_vector_are_equal
-#	define q_2d_vector_are_perpendicular	q_2d_ldouble_vector_are_perpendicular
-#	define q_2d_vector_is_zero		q_2d_ldouble_vector_is_zero
-#	define q_2d_vector_reversed		q_2d_ldouble_vector_reversed
-
-#else
-
-#	define q_2d_vector_are_equal		q_2d_double_vector_are_equal
-#	define q_2d_vector_are_perpendicular	q_2d_double_vector_are_perpendicular
-#	define q_2d_vector_is_zero		q_2d_double_vector_is_zero
-#	define q_2d_vector_reversed		q_2d_double_vector_reversed
-
-#endif
+#define q_2d_vector_are_equal	      Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _vector_are_equal	       )
+#define q_2d_vector_are_perpendicular Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _vector_are_perpendicular)
+#define q_2d_vector_is_zero	      Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _vector_is_zero	       )
+#define q_2d_vector_reversed	      Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _vector_reversed	       )
 
 #endif /* __Q_functions_geometry_Q2DVector_H__ */

@@ -231,66 +231,22 @@ Q_IMPLEMENTATION_BOX(LDouble, ldouble, Q_LDOUBLE)
 
 /* MARK: - Default real type definitions */
 
-#if defined(Q_USE_REAL_FLOAT)
-
-#	define q_box_are_equal			q_float_box_are_equal
-#	define q_box_contains			q_float_box_contains
-#	define q_box_collide			q_float_box_collide
-#	define q_box_intersection		q_float_box_intersection
-#	define q_box_union			q_float_box_union
-#	define q_box_from_vertices		q_float_box_from_vertices
-#	define q_box_is_zero			q_float_box_is_zero
-#	define q_box_center			q_float_box_center
-#	define q_box_correct			q_float_box_correct
-#	define q_box_inner_sphere		q_float_box_inner_sphere
-#	define q_box_to_aabb			q_float_box_to_aabb
-#	define q_box_absolute_point_to_unit	q_float_box_absolute_point_to_unit
-#	define q_box_unit_point_to_absolute	q_float_box_unit_point_to_absolute
-#	define q_box_contains_point		q_float_box_contains_point
-#	define q_box_contains_line_segment	q_float_box_contains_line_segment
-#	define q_box_contains_aabb		q_float_box_contains_aabb
-#	define q_box_contains_sphere		q_float_box_contains_sphere
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_box_are_equal			q_ldouble_box_are_equal
-#	define q_box_contains			q_ldouble_box_contains
-#	define q_box_collide			q_ldouble_box_collide
-#	define q_box_intersection		q_ldouble_box_intersection
-#	define q_box_union			q_ldouble_box_union
-#	define q_box_from_vertices		q_ldouble_box_from_vertices
-#	define q_box_is_zero			q_ldouble_box_is_zero
-#	define q_box_center			q_ldouble_box_center
-#	define q_box_correct			q_ldouble_box_correct
-#	define q_box_inner_sphere		q_ldouble_box_inner_sphere
-#	define q_box_to_aabb			q_ldouble_box_to_aabb
-#	define q_box_absolute_point_to_unit	q_ldouble_box_absolute_point_to_unit
-#	define q_box_unit_point_to_absolute	q_ldouble_box_unit_point_to_absolute
-#	define q_box_contains_point		q_ldouble_box_contains_point
-#	define q_box_contains_line_segment	q_ldouble_box_contains_line_segment
-#	define q_box_contains_aabb		q_ldouble_box_contains_aabb
-#	define q_box_contains_sphere		q_ldouble_box_contains_sphere
-
-#else
-
-#	define q_box_are_equal			q_double_box_are_equal
-#	define q_box_contains			q_double_box_contains
-#	define q_box_collide			q_double_box_collide
-#	define q_box_intersection		q_double_box_intersection
-#	define q_box_union			q_double_box_union
-#	define q_box_from_vertices		q_double_box_from_vertices
-#	define q_box_is_zero			q_double_box_is_zero
-#	define q_box_center			q_double_box_center
-#	define q_box_correct			q_double_box_correct
-#	define q_box_inner_sphere		q_double_box_inner_sphere
-#	define q_box_to_aabb			q_double_box_to_aabb
-#	define q_box_absolute_point_to_unit	q_double_box_absolute_point_to_unit
-#	define q_box_unit_point_to_absolute	q_double_box_unit_point_to_absolute
-#	define q_box_contains_point		q_double_box_contains_point
-#	define q_box_contains_line_segment	q_double_box_contains_line_segment
-#	define q_box_contains_aabb		q_double_box_contains_aabb
-#	define q_box_contains_sphere		q_double_box_contains_sphere
-
-#endif
+#define q_box_are_equal		     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_are_equal	     )
+#define q_box_contains		     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_contains		     )
+#define q_box_collide		     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_collide		     )
+#define q_box_intersection	     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_intersection	     )
+#define q_box_union		     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_union		     )
+#define q_box_from_vertices	     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_from_vertices	     )
+#define q_box_is_zero		     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_is_zero		     )
+#define q_box_center		     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_center		     )
+#define q_box_correct		     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_correct		     )
+#define q_box_inner_sphere	     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_inner_sphere	     )
+#define q_box_to_aabb		     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_to_aabb		     )
+#define q_box_absolute_point_to_unit Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_absolute_point_to_unit)
+#define q_box_unit_point_to_absolute Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_unit_point_to_absolute)
+#define q_box_contains_point	     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_contains_point	     )
+#define q_box_contains_line_segment  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_contains_line_segment )
+#define q_box_contains_aabb	     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_contains_aabb	     )
+#define q_box_contains_sphere	     Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _box_contains_sphere	     )
 
 #endif /* __Q_functions_geometry_QBox_H__ */

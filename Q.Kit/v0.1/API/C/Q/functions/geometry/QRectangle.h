@@ -647,186 +647,62 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 
 /* MARK: - Default real type definitions */
 
-#if defined(Q_USE_REAL_FLOAT)
-
-#	define q_rectangle_are_equal			q_float_rectangle_are_equal
-#	define q_rectangle_contains			q_float_rectangle_contains
-#	define q_rectangle_collide			q_float_rectangle_collide
-#	define q_rectangle_intersection			q_float_rectangle_intersection
-#	define q_rectangle_union			q_float_rectangle_union
-#	define q_rectangle_from_vertices		q_float_rectangle_from_vertices
-#	define q_rectangle_is_zero			q_float_rectangle_is_zero
-#	define q_rectangle_minimum_x			q_float_rectangle_minimum_x
-#	define q_rectangle_minimum_y			q_float_rectangle_minimum_y
-#	define q_rectangle_maximum_x			q_float_rectangle_maximum_x
-#	define q_rectangle_maximum_y			q_float_rectangle_maximum_y
-#	define q_rectangle_middle_x			q_float_rectangle_middle_x
-#	define q_rectangle_middle_y			q_float_rectangle_middle_y
-#	define q_rectangle_top_left			q_float_rectangle_top_left
-#	define q_rectangle_top_right			q_float_rectangle_top_right
-#	define q_rectangle_top_center			q_float_rectangle_top_center
-#	define q_rectangle_bottom_left			q_float_rectangle_bottom_left
-#	define q_rectangle_bottom_right			q_float_rectangle_bottom_right
-#	define q_rectangle_bottom_center		q_float_rectangle_bottom_center
-#	define q_rectangle_center_left			q_float_rectangle_center_left
-#	define q_rectangle_center_right			q_float_rectangle_center_right
-#	define q_rectangle_center			q_float_rectangle_center
-#	define q_rectangle_correct			q_float_rectangle_correct
-#	define q_rectangle_top_half			q_float_rectangle_top_half
-#	define q_rectangle_bottom_half			q_float_rectangle_bottom_half
-#	define q_rectangle_left_half			q_float_rectangle_left_half
-#	define q_rectangle_right_half			q_float_rectangle_right_half
-#	define q_rectangle_top_left_quarter		q_float_rectangle_top_left_quarter
-#	define q_rectangle_top_right_quarter		q_float_rectangle_top_right_quarter
-#	define q_rectangle_bottom_left_quarter		q_float_rectangle_bottom_left_quarter
-#	define q_rectangle_bottom_right_quarter		q_float_rectangle_bottom_right_quarter
-#	define q_rectangle_align_in_top_left		q_float_rectangle_align_in_top_left
-#	define q_rectangle_align_in_top_right		q_float_rectangle_align_in_top_right
-#	define q_rectangle_align_in_top_center		q_float_rectangle_align_in_top_center
-#	define q_rectangle_align_in_bottom_left		q_float_rectangle_align_in_bottom_left
-#	define q_rectangle_align_in_bottom_right	q_float_rectangle_align_in_bottom_right
-#	define q_rectangle_align_in_bottom_center	q_float_rectangle_align_in_bottom_center
-#	define q_rectangle_align_in_center_left		q_float_rectangle_align_in_center_left
-#	define q_rectangle_align_in_center_right	q_float_rectangle_align_in_center_right
-#	define q_rectangle_align_in_center		q_float_rectangle_align_in_center
-#	define q_rectangle_fit_in_top_left		q_float_rectangle_fit_in_top_left
-#	define q_rectangle_fit_in_top_right		q_float_rectangle_fit_in_top_right
-#	define q_rectangle_fit_in_top_center		q_float_rectangle_fit_in_top_center
-#	define q_rectangle_fit_in_bottom_left		q_float_rectangle_fit_in_bottom_left
-#	define q_rectangle_fit_in_bottom_right		q_float_rectangle_fit_in_bottom_right
-#	define q_rectangle_fit_in_bottom_center		q_float_rectangle_fit_in_bottom_center
-#	define q_rectangle_fit_in_center_left		q_float_rectangle_fit_in_center_left
-#	define q_rectangle_fit_in_center_right		q_float_rectangle_fit_in_center_right
-#	define q_rectangle_fit_in_center		q_float_rectangle_fit_in_center
-#	define q_rectangle_inner_circle			q_float_rectangle_inner_circle
-#	define q_rectangle_to_aabr			q_float_rectangle_to_aabr
-#	define q_rectangle_absolute_point_to_unit	q_float_rectangle_absolute_point_to_unit
-#	define q_rectangle_unit_point_to_absolute	q_float_rectangle_unit_point_to_absolute
-#	define q_rectangle_contains_point		q_float_rectangle_contains_point
-#	define q_rectangle_contains_line_segment	q_float_rectangle_contains_line_segment
-#	define q_rectangle_contains_aabr		q_float_rectangle_contains_aabr
-#	define q_rectangle_contains_circle		q_float_rectangle_contains_circle
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_rectangle_are_equal			q_ldouble_rectangle_are_equal
-#	define q_rectangle_contains			q_ldouble_rectangle_contains
-#	define q_rectangle_collide			q_ldouble_rectangle_collide
-#	define q_rectangle_intersection			q_ldouble_rectangle_intersection
-#	define q_rectangle_union			q_ldouble_rectangle_union
-#	define q_rectangle_from_vertices		q_ldouble_rectangle_from_vertices
-#	define q_rectangle_is_zero			q_ldouble_rectangle_is_zero
-#	define q_rectangle_minimum_x			q_ldouble_rectangle_minimum_x
-#	define q_rectangle_minimum_y			q_ldouble_rectangle_minimum_y
-#	define q_rectangle_maximum_x			q_ldouble_rectangle_maximum_x
-#	define q_rectangle_maximum_y			q_ldouble_rectangle_maximum_y
-#	define q_rectangle_middle_x			q_ldouble_rectangle_middle_x
-#	define q_rectangle_middle_y			q_ldouble_rectangle_middle_y
-#	define q_rectangle_top_left			q_ldouble_rectangle_top_left
-#	define q_rectangle_top_right			q_ldouble_rectangle_top_right
-#	define q_rectangle_top_center			q_ldouble_rectangle_top_center
-#	define q_rectangle_bottom_left			q_ldouble_rectangle_bottom_left
-#	define q_rectangle_bottom_right			q_ldouble_rectangle_bottom_right
-#	define q_rectangle_bottom_center		q_ldouble_rectangle_bottom_center
-#	define q_rectangle_center_left			q_ldouble_rectangle_center_left
-#	define q_rectangle_center_right			q_ldouble_rectangle_center_right
-#	define q_rectangle_center			q_ldouble_rectangle_center
-#	define q_rectangle_correct			q_ldouble_rectangle_correct
-#	define q_rectangle_top_half			q_ldouble_rectangle_top_half
-#	define q_rectangle_bottom_half			q_ldouble_rectangle_bottom_half
-#	define q_rectangle_left_half			q_ldouble_rectangle_left_half
-#	define q_rectangle_right_half			q_ldouble_rectangle_right_half
-#	define q_rectangle_top_left_quarter		q_ldouble_rectangle_top_left_quarter
-#	define q_rectangle_top_right_quarter		q_ldouble_rectangle_top_right_quarter
-#	define q_rectangle_bottom_left_quarter		q_ldouble_rectangle_bottom_left_quarter
-#	define q_rectangle_bottom_right_quarter		q_ldouble_rectangle_bottom_right_quarter
-#	define q_rectangle_align_in_top_left		q_ldouble_rectangle_align_in_top_left
-#	define q_rectangle_align_in_top_right		q_ldouble_rectangle_align_in_top_right
-#	define q_rectangle_align_in_top_center		q_ldouble_rectangle_align_in_top_center
-#	define q_rectangle_align_in_bottom_left		q_ldouble_rectangle_align_in_bottom_left
-#	define q_rectangle_align_in_bottom_right	q_ldouble_rectangle_align_in_bottom_right
-#	define q_rectangle_align_in_bottom_center	q_ldouble_rectangle_align_in_bottom_center
-#	define q_rectangle_align_in_center_left		q_ldouble_rectangle_align_in_center_left
-#	define q_rectangle_align_in_center_right	q_ldouble_rectangle_align_in_center_right
-#	define q_rectangle_align_in_center		q_ldouble_rectangle_align_in_center
-#	define q_rectangle_fit_in_top_left		q_ldouble_rectangle_fit_in_top_left
-#	define q_rectangle_fit_in_top_right		q_ldouble_rectangle_fit_in_top_right
-#	define q_rectangle_fit_in_top_center		q_ldouble_rectangle_fit_in_top_center
-#	define q_rectangle_fit_in_bottom_left		q_ldouble_rectangle_fit_in_bottom_left
-#	define q_rectangle_fit_in_bottom_right		q_ldouble_rectangle_fit_in_bottom_right
-#	define q_rectangle_fit_in_bottom_center		q_ldouble_rectangle_fit_in_bottom_center
-#	define q_rectangle_fit_in_center_left		q_ldouble_rectangle_fit_in_center_left
-#	define q_rectangle_fit_in_center_right		q_ldouble_rectangle_fit_in_center_right
-#	define q_rectangle_fit_in_center		q_ldouble_rectangle_fit_in_center
-#	define q_rectangle_inner_circle			q_ldouble_rectangle_inner_circle
-#	define q_rectangle_to_aabr			q_ldouble_rectangle_to_aabr
-#	define q_rectangle_absolute_point_to_unit	q_ldouble_rectangle_absolute_point_to_unit
-#	define q_rectangle_unit_point_to_absolute	q_ldouble_rectangle_unit_point_to_absolute
-#	define q_rectangle_contains_point		q_ldouble_rectangle_contains_point
-#	define q_rectangle_contains_line_segment	q_ldouble_rectangle_contains_line_segment
-#	define q_rectangle_contains_aabr		q_ldouble_rectangle_contains_aabr
-#	define q_rectangle_contains_circle		q_ldouble_rectangle_contains_circle
-
-#else
-
-#	define q_rectangle_are_equal			q_double_rectangle_are_equal
-#	define q_rectangle_contains			q_double_rectangle_contains
-#	define q_rectangle_collide			q_double_rectangle_collide
-#	define q_rectangle_intersection			q_double_rectangle_intersection
-#	define q_rectangle_union			q_double_rectangle_union
-#	define q_rectangle_from_vertices		q_double_rectangle_from_vertices
-#	define q_rectangle_is_zero			q_double_rectangle_is_zero
-#	define q_rectangle_minimum_x			q_double_rectangle_minimum_x
-#	define q_rectangle_minimum_y			q_double_rectangle_minimum_y
-#	define q_rectangle_maximum_x			q_double_rectangle_maximum_x
-#	define q_rectangle_maximum_y			q_double_rectangle_maximum_y
-#	define q_rectangle_middle_x			q_double_rectangle_middle_x
-#	define q_rectangle_middle_y			q_double_rectangle_middle_y
-#	define q_rectangle_top_left			q_double_rectangle_top_left
-#	define q_rectangle_top_right			q_double_rectangle_top_right
-#	define q_rectangle_top_center			q_double_rectangle_top_center
-#	define q_rectangle_bottom_left			q_double_rectangle_bottom_left
-#	define q_rectangle_bottom_right			q_double_rectangle_bottom_right
-#	define q_rectangle_bottom_center		q_double_rectangle_bottom_center
-#	define q_rectangle_center_left			q_double_rectangle_center_left
-#	define q_rectangle_center_right			q_double_rectangle_center_right
-#	define q_rectangle_center			q_double_rectangle_center
-#	define q_rectangle_correct			q_double_rectangle_correct
-#	define q_rectangle_top_half			q_double_rectangle_top_half
-#	define q_rectangle_bottom_half			q_double_rectangle_bottom_half
-#	define q_rectangle_left_half			q_double_rectangle_left_half
-#	define q_rectangle_right_half			q_double_rectangle_right_half
-#	define q_rectangle_top_left_quarter		q_double_rectangle_top_left_quarter
-#	define q_rectangle_top_right_quarter		q_double_rectangle_top_right_quarter
-#	define q_rectangle_bottom_left_quarter		q_double_rectangle_bottom_left_quarter
-#	define q_rectangle_bottom_right_quarter		q_double_rectangle_bottom_right_quarter
-#	define q_rectangle_align_in_top_left		q_double_rectangle_align_in_top_left
-#	define q_rectangle_align_in_top_right		q_double_rectangle_align_in_top_right
-#	define q_rectangle_align_in_top_center		q_double_rectangle_align_in_top_center
-#	define q_rectangle_align_in_bottom_left		q_double_rectangle_align_in_bottom_left
-#	define q_rectangle_align_in_bottom_right	q_double_rectangle_align_in_bottom_right
-#	define q_rectangle_align_in_bottom_center	q_double_rectangle_align_in_bottom_center
-#	define q_rectangle_align_in_center_left		q_double_rectangle_align_in_center_left
-#	define q_rectangle_align_in_center_right	q_double_rectangle_align_in_center_right
-#	define q_rectangle_align_in_center		q_double_rectangle_align_in_center
-#	define q_rectangle_fit_in_top_left		q_double_rectangle_fit_in_top_left
-#	define q_rectangle_fit_in_top_right		q_double_rectangle_fit_in_top_right
-#	define q_rectangle_fit_in_top_center		q_double_rectangle_fit_in_top_center
-#	define q_rectangle_fit_in_bottom_left		q_double_rectangle_fit_in_bottom_left
-#	define q_rectangle_fit_in_bottom_right		q_double_rectangle_fit_in_bottom_right
-#	define q_rectangle_fit_in_bottom_center		q_double_rectangle_fit_in_bottom_center
-#	define q_rectangle_fit_in_center_left		q_double_rectangle_fit_in_center_left
-#	define q_rectangle_fit_in_center_right		q_double_rectangle_fit_in_center_right
-#	define q_rectangle_fit_in_center		q_double_rectangle_fit_in_center
-#	define q_rectangle_inner_circle			q_double_rectangle_inner_circle
-#	define q_rectangle_to_aabr			q_double_rectangle_to_aabr
-#	define q_rectangle_absolute_point_to_unit	q_double_rectangle_absolute_point_to_unit
-#	define q_rectangle_unit_point_to_absolute	q_double_rectangle_unit_point_to_absolute
-#	define q_rectangle_contains_point		q_double_rectangle_contains_point
-#	define q_rectangle_contains_line_segment	q_double_rectangle_contains_line_segment
-#	define q_rectangle_contains_aabr		q_double_rectangle_contains_aabr
-#	define q_rectangle_contains_circle		q_double_rectangle_contains_circle
-
-#endif
+#define q_rectangle_are_equal		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_are_equal		 )
+#define q_rectangle_contains		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_contains		 )
+#define q_rectangle_collide		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_collide		 )
+#define q_rectangle_intersection	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_intersection		 )
+#define q_rectangle_union		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_union		 )
+#define q_rectangle_from_vertices	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_from_vertices	 )
+#define q_rectangle_is_zero		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_is_zero		 )
+#define q_rectangle_minimum_x		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_minimum_x		 )
+#define q_rectangle_minimum_y		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_minimum_y		 )
+#define q_rectangle_maximum_x		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_maximum_x		 )
+#define q_rectangle_maximum_y		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_maximum_y		 )
+#define q_rectangle_middle_x		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_middle_x		 )
+#define q_rectangle_middle_y		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_middle_y		 )
+#define q_rectangle_top_left		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_left		 )
+#define q_rectangle_top_right		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_right		 )
+#define q_rectangle_top_center		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_center		 )
+#define q_rectangle_bottom_left		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_left		 )
+#define q_rectangle_bottom_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_right		 )
+#define q_rectangle_bottom_center	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_center	 )
+#define q_rectangle_center_left		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_center_left		 )
+#define q_rectangle_center_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_center_right		 )
+#define q_rectangle_center		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_center		 )
+#define q_rectangle_correct		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_correct		 )
+#define q_rectangle_top_half		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_half		 )
+#define q_rectangle_bottom_half		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_half		 )
+#define q_rectangle_left_half		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_left_half		 )
+#define q_rectangle_right_half		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_right_half		 )
+#define q_rectangle_top_left_quarter	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_left_quarter	 )
+#define q_rectangle_top_right_quarter	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_right_quarter	 )
+#define q_rectangle_bottom_left_quarter	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_left_quarter	 )
+#define q_rectangle_bottom_right_quarter   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_right_quarter	 )
+#define q_rectangle_align_in_top_left	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_top_left	 )
+#define q_rectangle_align_in_top_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_top_right	 )
+#define q_rectangle_align_in_top_center	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_top_center	 )
+#define q_rectangle_align_in_bottom_left   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_bottom_left	 )
+#define q_rectangle_align_in_bottom_right  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_bottom_right )
+#define q_rectangle_align_in_bottom_center Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_bottom_center)
+#define q_rectangle_align_in_center_left   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_center_left	 )
+#define q_rectangle_align_in_center_right  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_center_right )
+#define q_rectangle_align_in_center	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_center	 )
+#define q_rectangle_fit_in_top_left	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_top_left	 )
+#define q_rectangle_fit_in_top_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_top_right	 )
+#define q_rectangle_fit_in_top_center	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_top_center	 )
+#define q_rectangle_fit_in_bottom_left	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_bottom_left	 )
+#define q_rectangle_fit_in_bottom_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_bottom_right	 )
+#define q_rectangle_fit_in_bottom_center   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_bottom_center	 )
+#define q_rectangle_fit_in_center_left	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_center_left	 )
+#define q_rectangle_fit_in_center_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_center_right	 )
+#define q_rectangle_fit_in_center	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_center	 )
+#define q_rectangle_inner_circle	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_inner_circle		 )
+#define q_rectangle_to_aabr		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_to_aabr		 )
+#define q_rectangle_absolute_point_to_unit Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_absolute_point_to_unit)
+#define q_rectangle_unit_point_to_absolute Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_unit_point_to_absolute)
+#define q_rectangle_contains_point	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_contains_point	 )
+#define q_rectangle_contains_line_segment  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_contains_line_segment )
+#define q_rectangle_contains_aabr	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_contains_aabr	 )
+#define q_rectangle_contains_circle	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_contains_circle	 )
 
 #endif /* __Q_functions_geometry_QRectangle_H__ */
