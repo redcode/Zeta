@@ -11,21 +11,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Q/functions/geometry/Q3DLine.h>
 
-#define q_float_aabb_are_equal		q_3d_float_line_are_equal
-#define q_float_aabb_is_zero		q_3d_float_line_is_zero
-#define q_float_aabb_center		q_3d_float_line_segment_center
+#define q_float_aabb_are_equal	 q_3d_float_line_are_equal
+#define q_float_aabb_is_zero	 q_3d_float_line_is_zero
+#define q_float_aabb_center	 q_3d_float_line_segment_center
 
-#define q_double_aabb_are_equal		q_3d_double_line_are_equal
-#define q_double_aabb_is_zero		q_3d_double_line_is_zero
-#define q_double_aabb_center		q_3d_double_line_segment_center
+#define q_double_aabb_are_equal	 q_3d_double_line_are_equal
+#define q_double_aabb_is_zero	 q_3d_double_line_is_zero
+#define q_double_aabb_center	 q_3d_double_line_segment_center
 
-#define q_ldouble_aabb_are_equal	q_3d_ldouble_line_are_equal
-#define q_ldouble_aabb_is_zero		q_3d_ldouble_line_is_zero
-#define q_ldouble_aabb_center		q_3d_ldouble_line_segment_center
-
-#define q_aabb_are_equal		q_3d_line_are_equal
-#define q_aabb_is_zero			q_3d_line_is_zero
-#define q_aabb_center			q_3d_line_segment_center
+#define q_ldouble_aabb_are_equal q_3d_ldouble_line_are_equal
+#define q_ldouble_aabb_is_zero	 q_3d_ldouble_line_is_zero
+#define q_ldouble_aabb_center	 q_3d_ldouble_line_segment_center
 
 
 #define Q_IMPLEMENTATION_AABB(Type, type, _)					\
@@ -199,6 +195,10 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 
 
 /* MARK: - Default real type definitions */
+
+#define q_aabb_are_equal	      q_3d_line_are_equal
+#define q_aabb_is_zero		      q_3d_line_is_zero
+#define q_aabb_center		      q_3d_line_segment_center
 
 #define q_aabb_contains		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_contains	       )
 #define q_aabb_collide		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_collide	       )

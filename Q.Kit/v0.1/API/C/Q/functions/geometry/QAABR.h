@@ -11,21 +11,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Q/functions/geometry/Q2DLine.h>
 
-#define q_float_aabr_are_equal		q_2d_float_line_are_equal
-#define q_float_aabr_is_zero		q_2d_float_line_is_zero
-#define q_float_aabr_center		q_2d_float_line_segment_center
+#define q_float_aabr_are_equal	 q_2d_float_line_are_equal
+#define q_float_aabr_is_zero	 q_2d_float_line_is_zero
+#define q_float_aabr_center	 q_2d_float_line_segment_center
 
-#define q_double_aabr_are_equal		q_2d_double_line_are_equal
-#define q_double_aabr_is_zero		q_2d_double_line_is_zero
-#define q_double_aabr_center		q_2d_double_line_segment_center
+#define q_double_aabr_are_equal	 q_2d_double_line_are_equal
+#define q_double_aabr_is_zero	 q_2d_double_line_is_zero
+#define q_double_aabr_center	 q_2d_double_line_segment_center
 
-#define q_ldouble_aabr_are_equal	q_2d_ldouble_line_are_equal
-#define q_ldouble_aabr_is_zero		q_2d_ldouble_line_is_zero
-#define q_ldouble_aabr_center		q_2d_ldouble_line_segment_center
-
-#define q_aabr_are_equal		q_2d_line_are_equal
-#define q_aabr_is_zero			q_2d_line_is_zero
-#define q_aabr_center			q_2d_line_segment_center
+#define q_ldouble_aabr_are_equal q_2d_ldouble_line_are_equal
+#define q_ldouble_aabr_is_zero	 q_2d_ldouble_line_is_zero
+#define q_ldouble_aabr_center	 q_2d_ldouble_line_segment_center
 
 
 #define Q_IMPLEMENTATION_AABR(Type, type, _)					\
@@ -514,6 +510,10 @@ Q_IMPLEMENTATION_AABR(LDouble, ldouble, Q_LDOUBLE)
 
 
 /* MARK: - Default real type definitions */
+
+#define q_aabr_are_equal	      q_2d_line_are_equal
+#define q_aabr_is_zero		      q_2d_line_is_zero
+#define q_aabr_center		      q_2d_line_segment_center
 
 #define q_aabr_contains		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_contains	       )
 #define q_aabr_collide		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabr_collide	       )
