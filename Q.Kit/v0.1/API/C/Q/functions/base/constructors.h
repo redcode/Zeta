@@ -123,9 +123,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define q_4d_double_zero  q_4d_double (0.0,  0.0,  0.0,  0.0 )
 #define q_4d_ldouble_zero q_4d_ldouble(0.0L, 0.0L, 0.0L, 0.0L)
 
-#define q_2d_value(	TYPE) Q_JOIN_2(q_2d_, Q_##TYPE##_FIXED_TYPE_name       )
-#define q_3d_value(	TYPE) Q_JOIN_2(q_3d_, Q_##TYPE##_FIXED_TYPE_name       )
-#define q_4d_value(	TYPE) Q_JOIN_2(q_4d_, Q_##TYPE##_FIXED_TYPE_name       )
+#define q_2d_value(	TYPE) Q_JOIN_2(q_2d_, Q_##TYPE##_FIXED_TYPE_name)
+#define q_3d_value(	TYPE) Q_JOIN_2(q_3d_, Q_##TYPE##_FIXED_TYPE_name)
+#define q_4d_value(	TYPE) Q_JOIN_2(q_4d_, Q_##TYPE##_FIXED_TYPE_name)
 #define q_2d_value_zero(TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _zero)
 #define q_3d_value_zero(TYPE) Q_JOIN_3(q_3d_, Q_##TYPE##_FIXED_TYPE_name, _zero)
 #define q_4d_value_zero(TYPE) Q_JOIN_3(q_4d_, Q_##TYPE##_FIXED_TYPE_name, _zero)
@@ -134,10 +134,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Default real type definitions */
 
-#define q_2d Q_JOIN_2(q_2d_, Q_REAL_FIXED_TYPE_name)
-#define q_3d Q_JOIN_2(q_3d_, Q_REAL_FIXED_TYPE_name)
-#define q_4d Q_JOIN_2(q_4d_, Q_REAL_FIXED_TYPE_name)
-
+#define q_2d	  Q_JOIN_2(q_2d_, Q_REAL_FIXED_TYPE_name)
+#define q_3d	  Q_JOIN_2(q_3d_, Q_REAL_FIXED_TYPE_name)
+#define q_4d	  Q_JOIN_2(q_4d_, Q_REAL_FIXED_TYPE_name)
 #define q_2d_zero Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _zero)
 #define q_3d_zero Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _zero)
 #define q_4d_zero Q_JOIN_3(q_4d_, Q_REAL_FIXED_TYPE_name, _zero)
