@@ -183,64 +183,26 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Default real type definitions */
 
-#if defined(Q_USE_REAL_FLOAT)
+#define q_2d_vector Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _vector   )
+#define q_2d_circle Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _circle   )
+#define q_rectangle Q_JOIN_3(q_,    Q_REAL_FIXED_TYPE_name, _rectangle)
+#define q_3d_vector Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _vector   )
+#define q_box	    Q_JOIN_3(q_,    Q_REAL_FIXED_TYPE_name, _box      )
+#define q_sphere    Q_JOIN_3(q_,    Q_REAL_FIXED_TYPE_name, _sphere   )
+#define q_2d_line   q_2d_vector
+#define q_aabr	    q_2d_line
+#define q_3d_line   q_3d_vector
+#define q_aabb	    q_3d_line
 
-#	define q_2d_vector	q_2d_float_vector
-#	define q_2d_circle	q_2d_float_circle
-#	define q_rectangle	q_float_rectangle
-#	define q_3d_vector	q_3d_float_vector
-#	define q_box		q_float_box
-#	define q_sphere		q_float_sphere
-
-#	define q_2d_vector_zero	q_2d_float_vector_zero
-#	define q_2d_circle_zero	q_2d_float_circle_zero
-#	define q_rectangle_zero	q_float_rectangle_zero
-#	define q_3d_vector_zero	q_3d_float_vector_zero
-#	define q_box_zero	q_float_box_zero
-#	define q_sphere_zero	q_float_sphere_zero
-
-#elif defined(Q_USE_REAL_LDOUBLE)
-
-#	define q_2d_vector	q_2d_ldouble_vector
-#	define q_2d_circle	q_2d_ldouble_circle
-#	define q_rectangle	q_ldouble_rectangle
-#	define q_3d_vector	q_3d_ldouble_vector
-#	define q_box		q_ldouble_box
-#	define q_sphere		q_ldouble_sphere
-
-#	define q_2d_vector_zero	q_2d_ldouble_vector_zero
-#	define q_2d_circle_zero	q_2d_ldouble_circle_zero
-#	define q_rectangle_zero	q_ldouble_rectangle_zero
-#	define q_3d_vector_zero	q_3d_ldouble_vector_zero
-#	define q_box_zero	q_ldouble_box_zero
-#	define q_sphere_zero	q_ldouble_sphere_zero
-
-#else
-
-#	define q_2d_vector	q_2d_double_vector
-#	define q_2d_circle	q_2d_double_circle
-#	define q_rectangle	q_double_rectangle
-#	define q_3d_vector	q_3d_double_vector
-#	define q_box		q_double_box
-#	define q_sphere		q_double_sphere
-
-#	define q_2d_vector_zero	q_2d_double_vector_zero
-#	define q_2d_circle_zero	q_2d_double_circle_zero
-#	define q_rectangle_zero	q_double_rectangle_zero
-#	define q_3d_vector_zero	q_3d_double_vector_zero
-#	define q_box_zero	q_double_box_zero
-#	define q_sphere_zero	q_double_sphere_zero
-
-#endif
-
-#define q_2d_line	q_2d_vector
-#define q_aabr		q_2d_line
-#define q_3d_line	q_3d_vector
-#define q_aabb		q_3d_line
-
-#define q_2d_line_zero	q_2d_vector_zero
-#define q_aabr_zero	q_2d_line_zero
-#define q_3d_line_zero	q_3d_vector_zero
-#define q_aabb_zero	q_3d_line_zero
+#define q_2d_vector_zero Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _vector_zero	)
+#define q_2d_circle_zero Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _circle_zero	)
+#define q_rectangle_zero Q_JOIN_3(q_,	 Q_REAL_FIXED_TYPE_name, _rectangle_zero)
+#define q_3d_vector_zero Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _vector_zero	)
+#define q_box_zero	 Q_JOIN_3(q_,	 Q_REAL_FIXED_TYPE_name, _box_zero	)
+#define q_sphere_zero	 Q_JOIN_3(q_,	 Q_REAL_FIXED_TYPE_name, _sphere_zero	)
+#define q_2d_line_zero	 q_2d_vector_zero
+#define q_aabr_zero	 q_2d_line_zero
+#define q_3d_line_zero	 q_3d_vector_zero
+#define q_aabb_zero	 q_3d_line_zero
 
 #endif /* __Q_functions_geometry_constructors_H__ */
