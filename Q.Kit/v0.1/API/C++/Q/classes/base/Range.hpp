@@ -22,8 +22,10 @@ namespace QKit {class Range /*: public QRange*/ {
 
 	inline Range(Size index, Size size) : index(index), size(size) {}
 
+
 	inline Boolean contains(Range range)
 		{return range.index >= index && range.index + range.size <= index + size;}
+
 
 	inline Boolean collides(Range range)
 		{return index < range.index + range.size && range.index < index + size;}
@@ -60,6 +62,7 @@ namespace QKit {class Range /*: public QRange*/ {
 
 	inline Boolean contains_index(Size index)
 		{return index >= this->index && index < this->index + this->size;}
+
 
 };}
 
