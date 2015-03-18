@@ -47,9 +47,7 @@ namespace QKit {class Range /*: public QRange*/ {
 			a_maximum = this->index + this->size,
 			b_maximum = range.index + range.size;
 
-		return Range
-			(index,
-			 ((a_maximum > b_maximum) ? a_maximum : b_maximum) - index);
+		return Range(index, ((a_maximum > b_maximum) ? a_maximum : b_maximum) - index);
 		}
 
 
