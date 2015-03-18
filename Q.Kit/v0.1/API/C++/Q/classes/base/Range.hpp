@@ -57,8 +57,10 @@ namespace QKit {class Range /*: public QRange*/ {
 	inline Boolean is_zero()
 		{return index == 0 && size == 0;}
 
+
 	inline Size end()
 		{return index + size;}
+
 
 	inline Boolean contains_index(Size index)
 		{return index >= this->index && index < this->index + this->size;}
