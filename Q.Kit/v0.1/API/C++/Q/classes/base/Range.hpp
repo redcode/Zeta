@@ -6,11 +6,10 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#include <QKit/types/base>
-
 #ifndef __Q_classes_base_Range_HPP__
 #define __Q_classes_base_Range_HPP__
 
+#include <Q/types/base.hpp>
 #include <Q/functions/base/value.h>
 
 
