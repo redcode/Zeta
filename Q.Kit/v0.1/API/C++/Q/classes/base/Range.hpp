@@ -13,24 +13,30 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Q/functions/base/value.h>
 
 
-namespace QKit {class Range /*: public QRange*/ {
+namespace QKit {class Range : public QRange {
 
 	public:
-	Size index;
-	Size size;
 
-	inline Range(Size index, Size size) : index(index), size(size) {}
-
+	inline Range(Size index, Size size)
+		{this->index = index; this->size = size;}
 
 	inline Boolean contains(Range range)
 		{return range.index >= index && range.index + range.size <= index + size;}
 
-
 	inline Boolean collides(Range range)
 		{return index < range.index + range.size && range.index < index + size;}
 
+	inline Boolean is_zero()
+		{return index == 0 && size == 0;}
 
-	inline Range intersection(Range range)
+	inline Size end()
+		{return index + size;}
+
+	inline Boolean contains_index(Size index)
+		{return index >= this->index && index < this->index + this->size;}
+
+
+	inline Range operator&(Range range)
 		{
 		Size index = (this->index > range.index) ? this->index : range.index;
 
@@ -41,7 +47,7 @@ namespace QKit {class Range /*: public QRange*/ {
 		}
 
 
-	inline Range union_(Range range)
+	inline Range operator|(Range range)
 		{
 		Size	index	  = (this->index < range.index) ? this->index : range.index,
 			a_maximum = this->index + this->size,
@@ -49,18 +55,6 @@ namespace QKit {class Range /*: public QRange*/ {
 
 		return Range(index, ((a_maximum > b_maximum) ? a_maximum : b_maximum) - index);
 		}
-
-
-	inline Boolean is_zero()
-		{return index == 0 && size == 0;}
-
-
-	inline Size end()
-		{return index + size;}
-
-
-	inline Boolean contains_index(Size index)
-		{return index >= this->index && index < this->index + this->size;}
 
 
 };}
