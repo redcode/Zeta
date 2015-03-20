@@ -1,4 +1,4 @@
-/* Q Kit C API - functions/base/Q2D.h
+/* Q Kit C API - functions/base/Q2DValue.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Q_functions_base_Q2D_H__
-#define __Q_functions_base_Q2D_H__
+#ifndef __Q_functions_base_Q2DValue_H__
+#define __Q_functions_base_Q2DValue_H__
 
 #include <Q/functions/base/constructors.h>
 #include <Q/functions/base/value.h>
@@ -586,4 +586,4 @@ Q_IMPLEMENTATION_2D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #define q_2d_1yx		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _1yx		   )
 #define q_2d_nyx		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _nyx		   )
 
-#endif /* __Q_functions_base_Q2D_H__ */
+#endif /* __Q_functions_base_Q2DValue_H__ */

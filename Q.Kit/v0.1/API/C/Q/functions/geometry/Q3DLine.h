@@ -27,19 +27,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define q_3d_ldouble_line_reversed	    q_3d_ldouble_vector_reversed
 
 
-#define Q_IMPLEMENTATION_3D_LINE_SEGMENT(Type, type, _)			\
-									\
-									\
-Q_INLINE								\
-Q3D##Type q_3d_##type##_line_segment_center(Q3D##Type##Line segment)	\
-	{return q_3d_##type##_middle(segment.a, segment.b);}		\
-									\
-									\
-Q_INLINE Q3D##Type q_3d_##type##_line_segment_lerp(			\
-	Q3D##Type##Line	segment,					\
-	q##type		alpha						\
-)									\
-	{return q_3d_##type##_lerp(segment.a, segment.b, alpha);}
+#define Q_IMPLEMENTATION_3D_LINE_SEGMENT(Type, type, _)				\
+										\
+										\
+Q_INLINE Q3D##Type q_3d_##type##_line_segment_center(Q3D##Type##Line object)	\
+	{return q_3d_##type##_middle(object.a, object.b);}			\
+										\
+										\
+Q_INLINE Q3D##Type q_3d_##type##_line_segment_lerp(				\
+	Q3D##Type##Line	object,							\
+	q##type		alpha							\
+)										\
+	{return q_3d_##type##_lerp(object.a, object.b, alpha);}
 
 
 Q_IMPLEMENTATION_3D_LINE_SEGMENT(Float,   float,   Q_FLOAT  )

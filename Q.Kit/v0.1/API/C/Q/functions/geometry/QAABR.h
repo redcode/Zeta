@@ -76,431 +76,435 @@ Q_INLINE Q##Type##AABR q_##type##_aabr_from_vertices(Q2D##Type a, Q2D##Type b)	\
 	}									\
 										\
 										\
-Q_INLINE Q2D##Type q_##type##_aabr_size(Q##Type##AABR aabr)			\
-	{return q_2d_##type##_subtract(aabr.b, aabr.a);}			\
+Q_INLINE Q2D##Type q_##type##_aabr_size(Q##Type##AABR object)			\
+	{return q_2d_##type##_subtract(object.b, object.a);}			\
 										\
 										\
-Q_INLINE q##type q_##type##_aabr_area(Q##Type##AABR aabr)			\
+Q_INLINE q##type q_##type##_aabr_area(Q##Type##AABR object)			\
 	{									\
 	return q_2d_##type##_inner_product					\
-		(q_2d_##type##_subtract(aabr.b, aabr.a));			\
+		(q_2d_##type##_subtract(object.b, object.a));			\
 	}									\
 										\
 										\
-Q_INLINE q##type q_##type##_aabr_middle_x(Q##Type##AABR aabr)			\
-	{return (aabr.a.x + aabr.b.x) / _(2.0);}				\
+Q_INLINE q##type q_##type##_aabr_middle_x(Q##Type##AABR object)			\
+	{return (object.a.x + object.b.x) / _(2.0);}				\
 										\
 										\
-Q_INLINE q##type q_##type##_aabr_middle_y(Q##Type##AABR aabr)			\
-	{return (aabr.a.y + aabr.b.y) / _(2.0);}				\
+Q_INLINE q##type q_##type##_aabr_middle_y(Q##Type##AABR object)			\
+	{return (object.a.y + object.b.y) / _(2.0);}				\
 										\
 										\
-Q_INLINE Q2D##Type q_##type##_aabr_top_left(Q##Type##AABR aabr)			\
-	{return q_2d_##type(aabr.a.x, aabr.b.y);}				\
+Q_INLINE Q2D##Type q_##type##_aabr_top_left(Q##Type##AABR object)		\
+	{return q_2d_##type(object.a.x, object.b.y);}				\
 										\
 										\
-Q_INLINE Q2D##Type q_##type##_aabr_top_right(Q##Type##AABR aabr)		\
-	{return aabr.b;}							\
+Q_INLINE Q2D##Type q_##type##_aabr_top_right(Q##Type##AABR object)		\
+	{return object.b;}							\
 										\
 										\
-Q_INLINE Q2D##Type q_##type##_aabr_top_center(Q##Type##AABR aabr)		\
-	{return q_2d_##type((aabr.a.x + aabr.b.x) / _(2.0), aabr.b.y);}		\
+Q_INLINE Q2D##Type q_##type##_aabr_top_center(Q##Type##AABR object)		\
+	{return q_2d_##type((object.a.x + object.b.x) / _(2.0), object.b.y);}	\
 										\
 										\
-Q_INLINE Q2D##Type q_##type##_aabr_bottom_left(Q##Type##AABR aabr)		\
-	{return aabr.a;}							\
+Q_INLINE Q2D##Type q_##type##_aabr_bottom_left(Q##Type##AABR object)		\
+	{return object.a;}							\
 										\
 										\
-Q_INLINE Q2D##Type q_##type##_aabr_bottom_right(Q##Type##AABR aabr)		\
-	{return q_2d_##type(aabr.b.x, aabr.a.y);}				\
+Q_INLINE Q2D##Type q_##type##_aabr_bottom_right(Q##Type##AABR object)		\
+	{return q_2d_##type(object.b.x, object.a.y);}				\
 										\
 										\
-Q_INLINE Q2D##Type q_##type##_aabr_bottom_center(Q##Type##AABR aabr)		\
-	{return q_2d_##type((aabr.a.x + aabr.b.x) / _(2.0), aabr.a.y);}		\
+Q_INLINE Q2D##Type q_##type##_aabr_bottom_center(Q##Type##AABR object)		\
+	{return q_2d_##type((object.a.x + object.b.x) / _(2.0), object.a.y);}	\
 										\
 										\
-Q_INLINE Q2D##Type q_##type##_aabr_center_left(Q##Type##AABR aabr)		\
-	{return q_2d_##type(aabr.a.x, (aabr.a.y + aabr.b.y) / _(2.0));}		\
+Q_INLINE Q2D##Type q_##type##_aabr_center_left(Q##Type##AABR object)		\
+	{return q_2d_##type(object.a.x, (object.a.y + object.b.y) / _(2.0));}	\
 										\
 										\
-Q_INLINE Q2D##Type q_##type##_aabr_center_right(Q##Type##AABR aabr)		\
-	{return q_2d_##type(aabr.b.x, (aabr.a.y + aabr.b.y) / _(2.0));}		\
+Q_INLINE Q2D##Type q_##type##_aabr_center_right(Q##Type##AABR object)		\
+	{return q_2d_##type(object.b.x, (object.a.y + object.b.y) / _(2.0));}	\
 										\
 										\
-Q_INLINE Q##Type##AABR q_##type##_aabr_top_half(Q##Type##AABR aabr)		\
+Q_INLINE Q##Type##AABR q_##type##_aabr_top_half(Q##Type##AABR object)		\
 	{									\
-	aabr.a.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
-	return aabr;								\
+	object.a.y = (object.a.y + object.b.y) / _(2.0);			\
+	return object;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##AABR q_##type##_aabr_bottom_half(Q##Type##AABR aabr)		\
+Q_INLINE Q##Type##AABR q_##type##_aabr_bottom_half(Q##Type##AABR object)	\
 	{									\
-	aabr.b.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
-	return aabr;								\
+	object.b.y = (object.a.y + object.b.y) / _(2.0);			\
+	return object;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##AABR q_##type##_aabr_left_half(Q##Type##AABR aabr)		\
+Q_INLINE Q##Type##AABR q_##type##_aabr_left_half(Q##Type##AABR object)		\
 	{									\
-	aabr.b.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
-	return aabr;								\
+	object.b.x = (object.a.x + object.b.x) / _(2.0);			\
+	return object;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##AABR q_##type##_aabr_right_half(Q##Type##AABR aabr)		\
+Q_INLINE Q##Type##AABR q_##type##_aabr_right_half(Q##Type##AABR object)		\
 	{									\
-	aabr.a.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
-	return aabr;								\
+	object.a.x = (object.a.x + object.b.x) / _(2.0);			\
+	return object;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##AABR q_##type##_aabr_top_left_quarter(Q##Type##AABR aabr)	\
+Q_INLINE Q##Type##AABR q_##type##_aabr_top_left_quarter(Q##Type##AABR object)	\
 	{									\
-	aabr.b.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
-	aabr.a.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
-	return aabr;								\
+	object.b.x = (object.a.x + object.b.x) / _(2.0);			\
+	object.a.y = (object.a.y + object.b.y) / _(2.0);			\
+	return object;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##AABR q_##type##_aabr_top_right_quarter(Q##Type##AABR aabr)	\
+Q_INLINE Q##Type##AABR q_##type##_aabr_top_right_quarter(Q##Type##AABR object)	\
 	{									\
-	aabr.a.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
-	aabr.a.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
-	return aabr;								\
+	object.a.x = (object.a.x + object.b.x) / _(2.0);			\
+	object.a.y = (object.a.y + object.b.y) / _(2.0);			\
+	return object;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##AABR q_##type##_aabr_bottom_left_quarter(Q##Type##AABR aabr)	\
+Q_INLINE									\
+Q##Type##AABR q_##type##_aabr_bottom_left_quarter(Q##Type##AABR object)		\
 	{									\
-	aabr.b.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
-	aabr.b.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
-	return aabr;								\
+	object.b.x = (object.a.x + object.b.x) / _(2.0);			\
+	object.b.y = (object.a.y + object.b.y) / _(2.0);			\
+	return object;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##AABR q_##type##_aabr_bottom_right_quarter(Q##Type##AABR aabr)	\
+Q_INLINE									\
+Q##Type##AABR q_##type##_aabr_bottom_right_quarter(Q##Type##AABR object)	\
 	{									\
-	aabr.a.x = (aabr.a.x + aabr.b.x) / _(2.0);				\
-	aabr.b.y = (aabr.a.y + aabr.b.y) / _(2.0);				\
-	return aabr;								\
+	object.a.x = (object.a.x + object.b.x) / _(2.0);			\
+	object.b.y = (object.a.y + object.b.y) / _(2.0);			\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_top_left(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	aabr.a.y = aabr.b.y - size.y;						\
-	aabr.b.x = aabr.a.x + size.x;						\
-	return aabr;								\
+	object.a.y = object.b.y - size.y;					\
+	object.b.x = object.a.x + size.x;					\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_top_right(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	aabr.a.x = aabr.b.x - size.x;						\
-	aabr.a.y = aabr.b.y - size.y;						\
-	return aabr;								\
+	object.a.x = object.b.x - size.x;					\
+	object.a.y = object.b.y - size.y;					\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_top_center(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	aabr.a.y = aabr.b.y - size.y;						\
+	object.a.y = object.b.y - size.y;					\
 										\
-	aabr.b.x =								\
-	(aabr.a.x += (aabr.b.x - aabr.a.x - size.x) / _(2.0)) + size.x;		\
+	object.b.x =								\
+	(object.a.x += (object.b.x - object.a.x - size.x) / _(2.0)) + size.x;	\
 										\
-	return aabr;								\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_bottom_left(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	aabr.b.x = aabr.a.x + size.x;						\
-	aabr.b.y = aabr.a.y + size.y;						\
-	return aabr;								\
+	object.b.x = object.a.x + size.x;					\
+	object.b.y = object.a.y + size.y;					\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_bottom_right(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	aabr.a.x = aabr.b.x - size.x;						\
-	aabr.b.y = aabr.b.y + size.x;						\
-	return aabr;								\
+	object.a.x = object.b.x - size.x;					\
+	object.b.y = object.b.y + size.x;					\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_bottom_center(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	aabr.b.x =								\
-	(aabr.a.x += (aabr.b.x - aabr.a.x - size.x) / _(2.0)) + size.x;		\
+	object.b.x =								\
+	(object.a.x += (object.b.x - object.a.x - size.x) / _(2.0)) + size.x;	\
 										\
-	aabr.b.y = aabr.a.y + size.y;						\
-	return aabr;								\
+	object.b.y = object.a.y + size.y;					\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_center_left(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	aabr.b.x = aabr.a.x + size.x;						\
+	object.b.x = object.a.x + size.x;					\
 										\
-	aabr.b.y =								\
-	(aabr.a.y += (aabr.b.y - aabr.a.y - size.y) / _(2.0)) + size.y;		\
+	object.b.y =								\
+	(object.a.y += (object.b.y - object.a.y - size.y) / _(2.0)) + size.y;	\
 										\
-	return aabr;								\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_center_right(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	aabr.a.x = aabr.b.x - size.x;						\
+	object.a.x = object.b.x - size.x;					\
 										\
-	aabr.b.y =								\
-	(aabr.a.y += (aabr.b.y - aabr.a.y - size.y) / _(2.0)) + size.y;		\
+	object.b.y =								\
+	(object.a.y += (object.b.y - object.a.y - size.y) / _(2.0)) + size.y;	\
 										\
-	return aabr;								\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_align_in_center(				\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	aabr.b.x =								\
-	(aabr.a.x += (aabr.b.x - aabr.a.x - size.x) / _(2.0)) + size.x;		\
+	object.b.x =								\
+	(object.a.x += (object.b.x - object.a.x - size.x) / _(2.0)) + size.x;	\
 										\
-	aabr.b.y =								\
-	(aabr.a.y += (aabr.b.y - aabr.a.y - size.y) / _(2.0)) + size.y;		\
+	object.b.y =								\
+	(object.a.y += (object.b.y - object.a.y - size.y) / _(2.0)) + size.y;	\
 										\
-	return aabr;								\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_top_left(				\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	size = q_2d_##type##_fit(size, q_##type##_aabr_size(aabr));		\
+	size = q_2d_##type##_fit(size, q_##type##_aabr_size(object));		\
 										\
-	aabr.a.y = aabr.b.y - size.y;						\
-	aabr.b.x = aabr.a.x + size.x;						\
-	return aabr;								\
+	object.a.y = object.b.y - size.y;					\
+	object.b.x = object.a.x + size.x;					\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_top_right(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	aabr.a = q_2d_##type##_subtract						\
-		(aabr.b, q_2d_##type##_fit(size, q_##type##_aabr_size(aabr)));	\
+	object.a = q_2d_##type##_subtract					\
+		(object.b,							\
+		 q_2d_##type##_fit(size, q_##type##_aabr_size(object)));	\
 										\
-	return aabr;								\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_top_center(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
+	Q##2D##Type old_size = q_##type##_aabr_size(object);			\
 										\
-	aabr.a.y = aabr.b.y - (size = q_2d_##type##_fit(size, old_size)).y;	\
-	aabr.b.x = (aabr.a.x += (old_size.x - size.x) / _(2.0)) + size.x;	\
-	return aabr;								\
+	object.a.y = object.b.y - (size = q_2d_##type##_fit(size, old_size)).y;	\
+	object.b.x = (object.a.x += (old_size.x - size.x) / _(2.0)) + size.x;	\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_bottom_left(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	aabr.b = q_2d_##type##_add						\
-		(aabr.a, q_2d_##type##_fit(size, q_##type##_aabr_size(aabr)));	\
+	object.b = q_2d_##type##_add						\
+		(object.a,							\
+		 q_2d_##type##_fit(size, q_##type##_aabr_size(object)));	\
 										\
-	return aabr;								\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_bottom_right(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	size = q_2d_##type##_fit(size, q_##type##_aabr_size(aabr));		\
+	size = q_2d_##type##_fit(size, q_##type##_aabr_size(object));		\
 										\
 	return q_##type##_aabr							\
-		(aabr.b.x - size.x, aabr.a.y,					\
-		 aabr.b.x,	    aabr.a.y + size.y);				\
+		(object.b.x - size.x, object.a.y,				\
+		 object.b.x,	      object.a.y + size.y);			\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_bottom_center(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
+	Q##2D##Type old_size = q_##type##_aabr_size(object);			\
 										\
-	aabr.b.y = aabr.a.y + (size = q_2d_##type##_fit(size, old_size)).y;	\
-	aabr.b.x = (aabr.a.x += (old_size.x - size.x) / _(2.0)) + size.x;	\
-	return aabr;								\
+	object.b.y = object.a.y + (size = q_2d_##type##_fit(size, old_size)).y;	\
+	object.b.x = (object.a.x += (old_size.x - size.x) / _(2.0)) + size.x;	\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_center_left(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
+	Q##2D##Type old_size = q_##type##_aabr_size(object);			\
 										\
-	aabr.b.x = aabr.a.x + (size = q_2d_##type##_fit(size, old_size)).x;	\
-	aabr.b.y = (aabr.a.y += (old_size.y - size.y) / _(2.0)) + size.y;	\
-	return aabr;								\
+	object.b.x = object.a.x + (size = q_2d_##type##_fit(size, old_size)).x;	\
+	object.b.y = (object.a.y += (old_size.y - size.y) / _(2.0)) + size.y;	\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_center_right(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
+	Q##2D##Type old_size = q_##type##_aabr_size(object);			\
 										\
-	aabr.a.x = aabr.b.x - (size = q_2d_##type##_fit(size, old_size)).x;	\
-	aabr.b.y = (aabr.a.y += (old_size.y - size.y) / _(2.0)) + size.y;	\
-	return aabr;								\
+	object.a.x = object.b.x - (size = q_2d_##type##_fit(size, old_size)).x;	\
+	object.b.y = (object.a.y += (old_size.y - size.y) / _(2.0)) + size.y;	\
+	return object;								\
 	}									\
 										\
 										\
 Q_INLINE Q##Type##AABR q_##type##_aabr_fit_in_center(				\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q##2D##Type   size							\
 )										\
 	{									\
-	Q##2D##Type old_size = q_##type##_aabr_size(aabr);			\
+	Q##2D##Type old_size = q_##type##_aabr_size(object);			\
 										\
 	size = q_2d_##type##_fit(size, old_size);				\
-	aabr.b.x = (aabr.a.x += (old_size.x - size.x) / _(2.0)) + size.x;	\
-	aabr.b.y = (aabr.a.y += (old_size.y - size.y) / _(2.0)) + size.y;	\
-	return aabr;								\
+	object.b.x = (object.a.x += (old_size.x - size.x) / _(2.0)) + size.x;	\
+	object.b.y = (object.a.y += (old_size.y - size.y) / _(2.0)) + size.y;	\
+	return object;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##Circle q_##type##_aabr_inner_circle(Q##Type##AABR aabr)	\
+Q_INLINE Q##Type##Circle q_##type##_aabr_inner_circle(Q##Type##AABR object)	\
 	{									\
 	Q##Type##Circle result;							\
 										\
-	result.point = q_##type##_aabr_center(aabr);				\
+	result.point = q_##type##_aabr_center(object);				\
 										\
 	result.radius =								\
-	q_2d_##type##_inner_minimum(q_2d_##type##_subtract(aabr.b, aabr.a))	\
+	q_2d_##type##_inner_minimum(q_2d_##type##_subtract(object.b, object.a))	\
 	/ _(2.0);								\
 										\
 	return result;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##Rectangle q_##type##_aabr_to_rectangle(Q##Type##AABR aabr)	\
+Q_INLINE Q##Type##Rectangle q_##type##_aabr_to_rectangle(Q##Type##AABR object)	\
 	{									\
 	return q_##type##_rectangle						\
-		(aabr.a.x, aabr.a.y,						\
-		 aabr.b.x - aabr.a.x, aabr.b.y - aabr.a.y);			\
+		(object.a.x, object.a.y,					\
+		 object.b.x - object.a.x, object.b.y - object.a.y);		\
 	}									\
 										\
 										\
 Q_INLINE Q2D##Type q_##type##_aabr_absolute_point_to_unit(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q2D##Type     point							\
 										\
 )										\
 	{									\
 	return q_2d_##type							\
-		((point.x - aabr.a.x) / (aabr.b.x - aabr.a.x),			\
-		 (point.y - aabr.a.y) / (aabr.b.y - aabr.a.y));			\
+		((point.x - object.a.x) / (object.b.x - object.a.x),		\
+		 (point.y - object.a.y) / (object.b.y - object.a.y));		\
 	}									\
 										\
 										\
 Q_INLINE Q2D##Type q_##type##_aabr_unit_point_to_absolute(			\
-	Q##Type##AABR aabr,							\
+	Q##Type##AABR object,							\
 	Q2D##Type     point							\
 )										\
 	{									\
 	return q_2d_##type							\
-		(point.x * (aabr.b.x - aabr.a.x) + aabr.a.x,			\
-		 point.y * (aabr.b.y - aabr.a.y) + aabr.a.y);			\
+		(point.x * (object.b.x - object.a.x) + object.a.x,		\
+		 point.y * (object.b.y - object.a.y) + object.a.y);		\
 	}									\
 										\
 										\
 Q_INLINE									\
-qboolean q_##type##_aabr_contains_point(Q##Type##AABR aabr, Q3D##Type point)	\
+qboolean q_##type##_aabr_contains_point(Q##Type##AABR object, Q3D##Type point)	\
 	{									\
-	return	aabr.a.x <= point.x && point.x <= aabr.a.x &&			\
-		aabr.a.y <= point.y && point.y <= aabr.a.y;			\
+	return	object.a.x <= point.x && point.x <= object.a.x &&		\
+		object.a.y <= point.y && point.y <= object.a.y;			\
 	}									\
 										\
 										\
 Q_INLINE qboolean q_##type##_aabr_contains_line_segment(			\
-	Q##Type##AABR	aabr,							\
+	Q##Type##AABR	object,							\
 	Q3D##Type##Line segment							\
 )										\
 	{									\
-	return	q_##type##_aabr_contains_point(aabr, segment.a) &&		\
-		q_##type##_aabr_contains_point(aabr, segment.b);		\
+	return	q_##type##_aabr_contains_point(object, segment.a) &&		\
+		q_##type##_aabr_contains_point(object, segment.b);		\
 	}									\
 										\
 										\
 Q_INLINE qboolean q_##type##_aabr_contains_rectangle(				\
-	Q##Type##AABR	   aabr,						\
+	Q##Type##AABR	   object,						\
 	Q##Type##Rectangle rectangle						\
 )										\
 	{									\
-	return	aabr.a.x <= rectangle.point.x			 &&		\
-		aabr.a.y <= rectangle.point.y			 &&		\
-		aabr.b.x >= rectangle.point.x + rectangle.size.x &&		\
-		aabr.b.y >= rectangle.point.y + rectangle.size.y;		\
+	return	object.a.x <= rectangle.point.x			   &&		\
+		object.a.y <= rectangle.point.y			   &&		\
+		object.b.x >= rectangle.point.x + rectangle.size.x &&		\
+		object.b.y >= rectangle.point.y + rectangle.size.y;		\
 	}									\
 										\
 										\
 Q_INLINE qboolean q_##type##_aabr_contains_circle(				\
-	Q##Type##AABR	aabr,							\
+	Q##Type##AABR	object,							\
 	Q##Type##Circle circle							\
 )										\
 	{									\
-	return	circle.point.x - circle.radius >= aabr.a.x &&			\
-		circle.point.y - circle.radius >= aabr.a.y &&			\
-		circle.point.x + circle.radius <= aabr.b.x &&			\
-		circle.point.y + circle.radius <= aabr.b.y;			\
+	return	circle.point.x - circle.radius >= object.a.x &&			\
+		circle.point.y - circle.radius >= object.a.y &&			\
+		circle.point.x + circle.radius <= object.b.x &&			\
+		circle.point.y + circle.radius <= object.b.y;			\
 	}
 
 

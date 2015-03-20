@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Q_functions_geometry_Q3DVector_H__
 
 #include <Q/functions/geometry/constructors.h>
-#include <Q/functions/base/Q3D.h>
+#include <Q/functions/base/Q3DValue.h>
 
 
 #define Q_IMPLEMENTATION_3D_VECTOR(Type, type)					\
@@ -37,19 +37,19 @@ Q_INLINE qboolean q_3d_##type##_vector_are_perpendicular(			\
 	}									\
 										\
 										\
-Q_INLINE qboolean q_3d_##type##_vector_is_zero(Q3D##Type##Vector vector)	\
+Q_INLINE qboolean q_3d_##type##_vector_is_zero(Q3D##Type##Vector object)	\
 	{									\
-	return	q_3d_##type##_is_zero(vector.a) &&				\
-		q_3d_##type##_is_zero(vector.b);				\
+	return	q_3d_##type##_is_zero(object.a) &&				\
+		q_3d_##type##_is_zero(object.b);				\
 	}									\
 										\
 										\
 Q_INLINE									\
-Q3D##Type##Vector q_3d_##type##_vector_reversed(Q3D##Type##Vector vector)	\
+Q3D##Type##Vector q_3d_##type##_vector_reversed(Q3D##Type##Vector object)	\
 	{									\
 	return q_3d_##type##_vector						\
-		(vector.b.x, vector.b.y, vector.b.z,				\
-		 vector.a.x, vector.a.y, vector.a.z);				\
+		(object.b.x, object.b.y, object.b.z,				\
+		 object.a.x, object.a.y, object.a.z);				\
 	}									\
 
 

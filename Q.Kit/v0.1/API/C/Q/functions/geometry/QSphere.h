@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Q_functions_geometry_QSphere_H__
 
 #include <Q/functions/geometry/constructors.h>
-#include <Q/functions/base/Q3D.h>
+#include <Q/functions/base/Q3DValue.h>
 #include <Q/constants/numbers.h>
 
 
@@ -25,34 +25,34 @@ qboolean q_##type##_sphere_are_equal(Q##Type##Sphere a, Q##Type##Sphere b)	\
 	}									\
 										\
 										\
-Q_INLINE qboolean q_##type##_sphere_is_zero(Q##Type##Sphere sphere)		\
+Q_INLINE qboolean q_##type##_sphere_is_zero(Q##Type##Sphere object)		\
 	{									\
-	return	sphere.radius == _(0.0) &&					\
-		q_3d_##type##_is_zero(sphere.point);				\
+	return	object.radius == _(0.0) &&					\
+		q_3d_##type##_is_zero(object.point);				\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##Box q_##type##_sphere_inner_box(Q##Type##Sphere sphere)	\
+Q_INLINE Q##Type##Box q_##type##_sphere_inner_box(Q##Type##Sphere object)	\
 	{									\
-	q##type half_size = sphere.radius / Q_JOIN_2(Q_SQUARE_ROOT_3, suffix);	\
+	q##type half_size = object.radius / Q_JOIN_2(Q_SQUARE_ROOT_3, suffix);	\
 	q##type size = half_size * _(2.0);					\
 										\
 	return q_##type##_box							\
-		(sphere.point.x - half_size,					\
-		 sphere.point.y - half_size,					\
-		 sphere.point.z - half_size,					\
+		(object.point.x - half_size,					\
+		 object.point.y - half_size,					\
+		 object.point.z - half_size,					\
 		 size, size, size);						\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##Box q_##type##_sphere_outer_box(Q##Type##Sphere sphere)	\
+Q_INLINE Q##Type##Box q_##type##_sphere_outer_box(Q##Type##Sphere object)	\
 	{									\
-	q##type size = sphere.radius * _(2.0);					\
+	q##type size = object.radius * _(2.0);					\
 										\
 	return q_##type##_box							\
-		(sphere.point.x - sphere.radius,				\
-		 sphere.point.y - sphere.radius,				\
-		 sphere.point.z - sphere.radius,				\
+		(object.point.x - object.radius,				\
+		 object.point.y - object.radius,				\
+		 object.point.z - object.radius,				\
 		 size, size, size);						\
 	}
 

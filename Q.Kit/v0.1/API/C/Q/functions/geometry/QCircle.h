@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Q_functions_geometry_QCircle_H__
 
 #include <Q/functions/geometry/constructors.h>
-#include <Q/functions/base/Q2D.h>
+#include <Q/functions/base/Q2DValue.h>
 #include <Q/constants/numbers.h>
 
 
@@ -26,34 +26,34 @@ qboolean q_##type##_circle_are_equal(Q##Type##Circle a, Q##Type##Circle b)	\
 										\
 										\
 Q_INLINE									\
-Q##Type##Rectangle q_##type##_circle_inner_rectangle(Q##Type##Circle circle)	\
+Q##Type##Rectangle q_##type##_circle_inner_rectangle(Q##Type##Circle object)	\
 	{									\
-	q##type half_size = circle.radius / Q_JOIN_2(Q_SQUARE_ROOT_2, suffix);	\
+	q##type half_size = object.radius / Q_JOIN_2(Q_SQUARE_ROOT_2, suffix);	\
 	q##type size = half_size * _(2.0);					\
 										\
 	return q_##type##_rectangle						\
-		(circle.point.x - half_size,					\
-		 circle.point.y - half_size,					\
+		(object.point.x - half_size,					\
+		 object.point.y - half_size,					\
 		 size, size);							\
 	}									\
 										\
 										\
 Q_INLINE									\
-Q##Type##Rectangle q_##type##_circle_outer_rectangle(Q##Type##Circle circle)	\
+Q##Type##Rectangle q_##type##_circle_outer_rectangle(Q##Type##Circle object)	\
 	{									\
-	q##type size = circle.radius * _(2.0);					\
+	q##type size = object.radius * _(2.0);					\
 										\
 	return q_##type##_rectangle						\
-		(circle.point.x - circle.radius,				\
-		 circle.point.y - circle.radius,				\
+		(object.point.x - object.radius,				\
+		 object.point.y - object.radius,				\
 		 size, size);							\
 	}									\
 										\
 										\
-Q_INLINE qboolean q_##type##_circle_is_zero(Q##Type##Circle circle)		\
+Q_INLINE qboolean q_##type##_circle_is_zero(Q##Type##Circle object)		\
 	{									\
-	return	circle.radius == _(0.0) &&					\
-		q_2d_##type##_is_zero(circle.point);				\
+	return	object.radius == _(0.0) &&					\
+		q_2d_##type##_is_zero(object.point);				\
 	}
 
 

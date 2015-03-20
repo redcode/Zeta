@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Q_functions_geometry_QBox_H__
 
 #include <Q/functions/geometry/constructors.h>
-#include <Q/functions/base/Q3D.h>
+#include <Q/functions/base/Q3DValue.h>
 
 
 #define Q_IMPLEMENTATION_BOX(Type, type, _)					\
@@ -100,127 +100,137 @@ Q_INLINE Q##Type##Box q_##type##_box_from_vertices(Q3D##Type a, Q3D##Type b)	\
 	}									\
 										\
 										\
-Q_INLINE qboolean q_##type##_box_is_zero(Q##Type##Box box)			\
+Q_INLINE qboolean q_##type##_box_is_zero(Q##Type##Box object)			\
 	{									\
-	return	q_3d_##type##_is_zero(box.point) &&				\
-		q_3d_##type##_is_zero(box.size);				\
+	return	q_3d_##type##_is_zero(object.point) &&				\
+		q_3d_##type##_is_zero(object.size);				\
 	}									\
 										\
 										\
-Q_INLINE Q3D##Type q_##type##_box_center(Q##Type##Box box)			\
+Q_INLINE Q3D##Type q_##type##_box_center(Q##Type##Box object)			\
 	{									\
 	return q_3d_##type							\
-		(box.point.x + box.size.x / _(2.0),				\
-		 box.point.y + box.size.y / _(2.0),				\
-		 box.point.z + box.size.z / _(2.0));				\
+		(object.point.x + object.size.x / _(2.0),			\
+		 object.point.y + object.size.y / _(2.0),			\
+		 object.point.z + object.size.z / _(2.0));			\
 	}									\
 										\
 										\
- Q_INLINE Q##Type##Box q_##type##_box_correct(Q##Type##Box box)			\
+ Q_INLINE Q##Type##Box q_##type##_box_correct(Q##Type##Box object)		\
 	{									\
-	if (box.size.x < _(0.0)) box.point.x -= (box.size.x = -box.size.x);	\
-	if (box.size.y < _(0.0)) box.point.y -= (box.size.y = -box.size.y);	\
-	if (box.size.z < _(0.0)) box.point.z -= (box.size.z = -box.size.z);	\
- 	return box;								\
+	if (object.size.x < _(0.0))						\
+		object.point.x -= (object.size.x = -object.size.x);		\
+										\
+	if (object.size.y < _(0.0))						\
+		object.point.y -= (object.size.y = -object.size.y);		\
+										\
+	if (object.size.z < _(0.0))						\
+		object.point.z -= (object.size.z = -object.size.z);		\
+										\
+ 	return object;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##Sphere q_##type##_box_inner_sphere(Q##Type##Box box)		\
+Q_INLINE Q##Type##Sphere q_##type##_box_inner_sphere(Q##Type##Box object)	\
 	{									\
 	Q##Type##Sphere result;							\
 										\
-	result.point = q_##type##_box_center(box);				\
+	result.point = q_##type##_box_center(object);				\
 										\
 	result.radius =								\
 	q_##type##_minimum							\
-		(q_##type##_minimum(box.size.x, box.size.y), box.size.z)	\
+		(q_##type##_minimum(object.size.x, object.size.y),		\
+		 object.size.z)							\
 	/ _(2.0);								\
 										\
 	return result;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##AABB q_##type##_box_to_aabb(Q##Type##Box box)			\
+Q_INLINE Q##Type##AABB q_##type##_box_to_aabb(Q##Type##Box object)		\
 	{									\
 	return q_##type##_aabb							\
-		(box.point.x,  box.point.y, box.point.z,			\
-		 box.point.x + box.size.x,					\
-		 box.point.y + box.size.y,					\
-		 box.point.z + box.size.z);					\
+		(object.point.x,  object.point.y, object.point.z,		\
+		 object.point.x + object.size.x,				\
+		 object.point.y + object.size.y,				\
+		 object.point.z + object.size.z);				\
 	}									\
 										\
 										\
 Q_INLINE Q3D##Type q_##type##_box_absolute_point_to_unit(			\
-	Q##Type##Box	box,							\
-	Q3D##Type	point							\
+	Q##Type##Box object,							\
+	Q3D##Type    point							\
 										\
 )										\
 	{									\
 	return q_3d_##type							\
-		((point.x - box.point.x) / box.size.x,				\
-		 (point.y - box.point.y) / box.size.y,				\
-		 (point.z - box.point.z) / box.size.z);				\
+		((point.x - object.point.x) / object.size.x,			\
+		 (point.y - object.point.y) / object.size.y,			\
+		 (point.z - object.point.z) / object.size.z);			\
 	}									\
 										\
 										\
 Q_INLINE Q3D##Type q_##type##_box_unit_point_to_absolute(			\
-	Q##Type##Box	box,							\
-	Q3D##Type	point							\
+	Q##Type##Box object,							\
+	Q3D##Type    point							\
 										\
 )										\
 	{									\
 	return q_3d_##type							\
-		(point.x * box.size.x + box.point.x,				\
-		 point.y * box.size.y + box.point.y,				\
-		 point.z * box.size.z + box.point.z);				\
+		(point.x * object.size.x + object.point.x,			\
+		 point.y * object.size.y + object.point.y,			\
+		 point.z * object.size.z + object.point.z);			\
 	}									\
 										\
 										\
 Q_INLINE									\
-qboolean q_##type##_box_contains_point(Q##Type##Box box, Q3D##Type point)	\
+qboolean q_##type##_box_contains_point(Q##Type##Box object, Q3D##Type point)	\
 	{									\
-	return	point.x >= box.point.x		    &&				\
-		point.y >= box.point.y		    &&				\
-		point.z >= box.point.z		    &&				\
-		point.x <= box.point.x + box.size.x &&				\
-		point.y <= box.point.y + box.size.y &&				\
-		point.z <= box.point.z + box.size.z;				\
+	return	point.x >= object.point.x		  &&			\
+		point.y >= object.point.y		  &&			\
+		point.z >= object.point.z		  &&			\
+		point.x <= object.point.x + object.size.x &&			\
+		point.y <= object.point.y + object.size.y &&			\
+		point.z <= object.point.z + object.size.z;			\
 	}									\
 										\
 										\
 Q_INLINE qboolean q_##type##_box_contains_line_segment(				\
-	Q##Type##Box	box,							\
+	Q##Type##Box	object,							\
 	Q3D##Type##Line line_segment						\
 )										\
 	{									\
-	return	q_##type##_box_contains_point(box, line_segment.a) &&		\
-		q_##type##_box_contains_point(box, line_segment.b);		\
+	return	q_##type##_box_contains_point(object, line_segment.a) &&	\
+		q_##type##_box_contains_point(object, line_segment.b);		\
 	}									\
 										\
 										\
 Q_INLINE									\
-qboolean q_##type##_box_contains_aabb(Q##Type##Box box, Q##Type##AABB aabb)	\
+qboolean q_##type##_box_contains_aabb(Q##Type##Box object, Q##Type##AABB aabb)	\
 	{									\
-	return	aabb.a.x >= box.point.x		     &&				\
-		aabb.a.y >= box.point.y		     &&				\
-		aabb.a.z >= box.point.z		     &&				\
-		aabb.b.x <= box.point.x + box.size.x &&				\
-		aabb.b.y <= box.point.y + box.size.y &&				\
-		aabb.b.z <= box.point.z + box.size.z;				\
+	return	aabb.a.x >= object.point.x		   &&			\
+		aabb.a.y >= object.point.y		   &&			\
+		aabb.a.z >= object.point.z		   &&			\
+		aabb.b.x <= object.point.x + object.size.x &&			\
+		aabb.b.y <= object.point.y + object.size.y &&			\
+		aabb.b.z <= object.point.z + object.size.z;			\
 	}									\
 										\
 										\
 Q_INLINE qboolean q_##type##_box_contains_sphere(				\
-	Q##Type##Box	box,							\
+	Q##Type##Box	object,							\
 	Q##Type##Sphere sphere							\
 )										\
 	{									\
-	return	sphere.point.x - sphere.radius >= box.point.x		   &&	\
-		sphere.point.y - sphere.radius >= box.point.y		   &&	\
-		sphere.point.z - sphere.radius >= box.point.z		   &&	\
-		sphere.point.x + sphere.radius <= box.point.x + box.size.x &&	\
-		sphere.point.y + sphere.radius <= box.point.y + box.size.y &&	\
-		sphere.point.z + sphere.radius <= box.point.z + box.size.z;	\
+	return	sphere.point.x - sphere.radius >= object.point.x &&		\
+		sphere.point.y - sphere.radius >= object.point.y &&		\
+		sphere.point.z - sphere.radius >= object.point.z &&		\
+		sphere.point.x + sphere.radius <=				\
+		object.point.x + object.size.x			 &&		\
+		sphere.point.y + sphere.radius <=				\
+		object.point.y + object.size.y			 &&		\
+		sphere.point.z + sphere.radius <=				\
+		object.point.z + object.size.z;					\
 	}
 
 

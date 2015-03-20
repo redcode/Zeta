@@ -47,15 +47,15 @@ Q_INLINE qboolean q_2d_##type##_line_segment_collide(				\
 	}									\
 										\
 										\
-Q_INLINE Q2D##Type q_2d_##type##_line_segment_center(Q2D##Type##Line segment)	\
-	{return q_2d_##type##_middle(segment.a, segment.b);}			\
+Q_INLINE Q2D##Type q_2d_##type##_line_segment_center(Q2D##Type##Line object)	\
+	{return q_2d_##type##_middle(object.a, object.b);}			\
 										\
 										\
 Q_INLINE Q2D##Type q_2d_##type##_line_segment_lerp(				\
-	Q2D##Type##Line	segment,						\
+	Q2D##Type##Line	object,							\
 	q##type		alpha							\
 )										\
-	{return q_2d_##type##_lerp(segment.a, segment.b, alpha);}
+	{return q_2d_##type##_lerp(object.a, object.b, alpha);}
 
 
 Q_IMPLEMENTATION_2D_LINE_SEGMENT(Float,   float,   Q_FLOAT  )

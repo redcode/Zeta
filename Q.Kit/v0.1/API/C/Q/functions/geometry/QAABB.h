@@ -81,111 +81,112 @@ Q_INLINE Q##Type##AABB q_##type##_aabb_from_vertices(Q3D##Type a, Q3D##Type b)	\
 	}									\
 										\
 										\
-Q_INLINE Q3D##Type q_##type##_aabb_size(Q##Type##AABB aabb)			\
-	{return q_3d_##type##_subtract(aabb.b, aabb.a);}			\
+Q_INLINE Q3D##Type q_##type##_aabb_size(Q##Type##AABB object)			\
+	{return q_3d_##type##_subtract(object.b, object.a);}			\
 										\
 										\
-Q_INLINE q##type q_##type##_aabb_volume(Q##Type##AABB aabb)			\
+Q_INLINE q##type q_##type##_aabb_volume(Q##Type##AABB object)			\
 	{									\
 	return q_3d_##type##_inner_product					\
-		(q_3d_##type##_subtract(aabb.b, aabb.a));			\
+		(q_3d_##type##_subtract(object.b, object.a));			\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##Sphere q_##type##_aabb_inner_sphere(Q##Type##AABB aabb)	\
+Q_INLINE Q##Type##Sphere q_##type##_aabb_inner_sphere(Q##Type##AABB object)	\
 	{									\
 	Q##Type##Sphere result;							\
 										\
-	result.point = q_##type##_aabb_center(aabb);				\
+	result.point = q_##type##_aabb_center(object);				\
 										\
 	result.radius =								\
 	q_##type##_minimum							\
-		(q_##type##_minimum(aabb.b.x - aabb.a.x, aabb.b.y - aabb.a.y),	\
-		 aabb.b.z - aabb.a.z)						\
+		(q_##type##_minimum						\
+			(object.b.x - object.a.x, object.b.y - object.a.y),	\
+		 object.b.z - object.a.z)					\
 	/ _(2.0);								\
 										\
 	return result;								\
 	}									\
 										\
 										\
-Q_INLINE Q##Type##Box q_##type##_aabb_to_box(Q##Type##AABB aabb)		\
+Q_INLINE Q##Type##Box q_##type##_aabb_to_box(Q##Type##AABB object)		\
 	{									\
 	return q_##type##_box							\
-		(aabb.a.x,  aabb.a.y, aabb.a.z,					\
-		 aabb.b.x - aabb.a.x,						\
-		 aabb.b.y - aabb.a.y,						\
-		 aabb.b.z - aabb.a.z);						\
+		(object.a.x,  object.a.y, object.a.z,				\
+		 object.b.x - object.a.x,					\
+		 object.b.y - object.a.y,					\
+		 object.b.z - object.a.z);					\
 	}									\
 										\
 										\
 Q_INLINE Q3D##Type q_##type##_aabb_absolute_point_to_unit(			\
-	Q##Type##AABB aabb,							\
+	Q##Type##AABB object,							\
 	Q3D##Type     point							\
 										\
 )										\
 	{									\
 	return q_3d_##type							\
-		((point.x - aabb.a.x) / (aabb.b.x - aabb.a.x),			\
-		 (point.y - aabb.a.y) / (aabb.b.y - aabb.a.y),			\
-		 (point.z - aabb.a.z) / (aabb.b.z - aabb.a.z));			\
+		((point.x - object.a.x) / (object.b.x - object.a.x),		\
+		 (point.y - object.a.y) / (object.b.y - object.a.y),		\
+		 (point.z - object.a.z) / (object.b.z - object.a.z));		\
 	}									\
 										\
 										\
 Q_INLINE Q3D##Type q_##type##_aabb_unit_point_to_absolute(			\
-	Q##Type##AABB aabb,							\
+	Q##Type##AABB object,							\
 	Q3D##Type     point							\
 										\
 )										\
 	{									\
 	return q_3d_##type							\
-		(point.x * (aabb.b.x - aabb.a.x) + aabb.a.x,			\
-		 point.y * (aabb.b.y - aabb.a.y) + aabb.a.y,			\
-		 point.z * (aabb.b.z - aabb.a.z) + aabb.a.z);			\
+		(point.x * (object.b.x - object.a.x) + object.a.x,		\
+		 point.y * (object.b.y - object.a.y) + object.a.y,		\
+		 point.z * (object.b.z - object.a.z) + object.a.z);		\
 	}									\
 										\
 										\
 Q_INLINE									\
-qboolean q_##type##_aabb_contains_point(Q##Type##AABB aabb, Q3D##Type point)	\
+qboolean q_##type##_aabb_contains_point(Q##Type##AABB object, Q3D##Type point)	\
 	{									\
-	return	aabb.a.x <= point.x && point.x <= aabb.a.x &&			\
-		aabb.a.y <= point.y && point.y <= aabb.a.y &&			\
-		aabb.a.z <= point.z && point.z <= aabb.a.z;			\
+	return	object.a.x <= point.x && point.x <= object.a.x &&		\
+		object.a.y <= point.y && point.y <= object.a.y &&		\
+		object.a.z <= point.z && point.z <= object.a.z;			\
 	}									\
 										\
 										\
 Q_INLINE qboolean q_##type##_aabb_contains_line_segment(			\
-	Q##Type##AABB	aabb,							\
+	Q##Type##AABB	object,							\
 	Q3D##Type##Line segment							\
 )										\
 	{									\
-	return	q_##type##_aabb_contains_point(aabb, segment.a) &&		\
-		q_##type##_aabb_contains_point(aabb, segment.b);		\
+	return	q_##type##_aabb_contains_point(object, segment.a) &&		\
+		q_##type##_aabb_contains_point(object, segment.b);		\
 	}									\
 										\
 										\
 Q_INLINE									\
-qboolean q_##type##_aabb_contains_box(Q##Type##AABB aabb, Q##Type##Box box)	\
+qboolean q_##type##_aabb_contains_box(Q##Type##AABB object, Q##Type##Box box)	\
 	{									\
-	return	aabb.a.x <= box.point.x		     &&				\
-		aabb.a.y <= box.point.y		     &&				\
-		aabb.a.z <= box.point.z		     &&				\
-		aabb.b.x >= box.point.x + box.size.x &&				\
-		aabb.b.y >= box.point.y + box.size.y &&				\
-		aabb.b.z >= box.point.z + box.size.z;				\
+	return	object.a.x <= box.point.x	       &&			\
+		object.a.y <= box.point.y	       &&			\
+		object.a.z <= box.point.z	       &&			\
+		object.b.x >= box.point.x + box.size.x &&			\
+		object.b.y >= box.point.y + box.size.y &&			\
+		object.b.z >= box.point.z + box.size.z;				\
 	}									\
 										\
 										\
 Q_INLINE qboolean q_##type##_aabb_contains_sphere(				\
-	Q##Type##AABB	aabb,							\
+	Q##Type##AABB	object,							\
 	Q##Type##Sphere sphere							\
 )										\
 	{									\
-	return	sphere.point.x - sphere.radius >= aabb.a.x &&			\
-		sphere.point.y - sphere.radius >= aabb.a.y &&			\
-		sphere.point.z - sphere.radius >= aabb.a.z &&			\
-		sphere.point.x + sphere.radius <= aabb.b.x &&			\
-		sphere.point.y + sphere.radius <= aabb.b.y &&			\
-		sphere.point.z + sphere.radius <= aabb.b.z;			\
+	return	sphere.point.x - sphere.radius >= object.a.x &&			\
+		sphere.point.y - sphere.radius >= object.a.y &&			\
+		sphere.point.z - sphere.radius >= object.a.z &&			\
+		sphere.point.x + sphere.radius <= object.b.x &&			\
+		sphere.point.y + sphere.radius <= object.b.y &&			\
+		sphere.point.z + sphere.radius <= object.b.z;			\
 	}
 
 

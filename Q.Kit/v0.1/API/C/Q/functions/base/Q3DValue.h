@@ -1,4 +1,4 @@
-/* Q Kit C API - functions/base/Q3D.h
+/* Q Kit C API - functions/base/Q3DValue.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Q_functions_base_Q3D_H__
-#define __Q_functions_base_Q3D_H__
+#ifndef __Q_functions_base_Q3DValue_H__
+#define __Q_functions_base_Q3DValue_H__
 
 #include <Q/functions/base/constructors.h>
 #include <Q/functions/base/value.h>
@@ -597,4 +597,4 @@ Q_IMPLEMENTATION_3D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #define q_3d_cube_clamp_01	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _cube_clamp_01	   )
 #define q_3d_rotated_as_axes	Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _rotated_as_axes   )
 
-#endif /* __Q_functions_base_Q3D_H__ */
+#endif /* __Q_functions_base_Q3DValue_H__ */

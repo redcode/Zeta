@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Q_functions_geometry_Q2DVector_H__
 
 #include <Q/functions/geometry/constructors.h>
-#include <Q/functions/base/Q2D.h>
+#include <Q/functions/base/Q2DValue.h>
 
 
 #define Q_IMPLEMENTATION_2D_VECTOR(Type, type)					\
@@ -37,18 +37,18 @@ Q_INLINE qboolean q_2d_##type##_vector_are_perpendicular(			\
 	}									\
 										\
 										\
-Q_INLINE qboolean q_2d_##type##_vector_is_zero(Q2D##Type##Vector vector)	\
+Q_INLINE qboolean q_2d_##type##_vector_is_zero(Q2D##Type##Vector object)	\
 	{									\
-	return	q_2d_##type##_is_zero(vector.a) &&				\
-		q_2d_##type##_is_zero(vector.b);				\
+	return	q_2d_##type##_is_zero(object.a) &&				\
+		q_2d_##type##_is_zero(object.b);				\
 	}									\
 										\
 										\
 Q_INLINE									\
-Q2D##Type##Vector q_2d_##type##_vector_reversed(Q2D##Type##Vector vector)	\
+Q2D##Type##Vector q_2d_##type##_vector_reversed(Q2D##Type##Vector object)	\
 	{									\
 	return q_2d_##type##_vector						\
-		(vector.b.x, vector.b.y, vector.a.x, vector.a.y);		\
+		(object.b.x, object.b.y, object.a.x, object.a.y);		\
 	}									\
 
 
