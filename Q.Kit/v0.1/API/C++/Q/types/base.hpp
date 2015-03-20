@@ -63,4 +63,4 @@ namespace QKit {
 	typedef Int			Status;
 };
 
-#endif /* __Q_types_base_HPP__ */
+#endif // __Q_types_base_HPP__

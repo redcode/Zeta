@@ -50,10 +50,7 @@ Q_INLINE void *q_ring_buffer_consumption_buffer(QRingBuffer *object)
 Q_INLINE void *q_ring_buffer_try_produce(QRingBuffer *object)
 	{
 	if (object->buffer_count == object->fill_count) return NULL;
-
-	object->production_index =
-	(object->production_index + 1) % object->buffer_count;
-
+	object->production_index = (object->production_index + 1) % object->buffer_count;
 	q_value_atomic_increment_then_get(SIZE)(&object->fill_count);
 	return (quint8 *)object->buffers + object->production_index * object->buffer_size;
 	}
@@ -62,10 +59,7 @@ Q_INLINE void *q_ring_buffer_try_produce(QRingBuffer *object)
 Q_INLINE void *q_ring_buffer_try_consume(QRingBuffer *object)
 	{
 	if (!object->fill_count) return NULL;
-
-	object->consumption_index =
-	(object->consumption_index + 1) % object->buffer_count;
-
+	object->consumption_index = (object->consumption_index + 1) % object->buffer_count;
 	q_value_atomic_decrement_then_get(SIZE)(&object->fill_count);
 	return (quint8 *)object->buffers + object->consumption_index * object->buffer_size;
 	}
@@ -74,10 +68,7 @@ Q_INLINE void *q_ring_buffer_try_consume(QRingBuffer *object)
 Q_INLINE void *q_ring_buffer_produce(QRingBuffer *object)
 	{
 	while (object->buffer_count == object->fill_count) q_cpu_relax();
-
-	object->production_index =
-	(object->production_index + 1) % object->buffer_count;
-
+	object->production_index = (object->production_index + 1) % object->buffer_count;
 	q_value_atomic_increment_then_get(SIZE)(&object->fill_count);
 	return (quint8 *)object->buffers + object->production_index * object->buffer_size;
 	}
@@ -86,10 +77,7 @@ Q_INLINE void *q_ring_buffer_produce(QRingBuffer *object)
 Q_INLINE void *q_ring_buffer_consume(QRingBuffer *object)
 	{
 	if (!object->fill_count) q_cpu_relax();
-
-	object->consumption_index =
-	(object->consumption_index + 1) % object->buffer_count;
-
+	object->consumption_index = (object->consumption_index + 1) % object->buffer_count;
 	q_value_atomic_decrement_then_get(SIZE)(&object->fill_count);
 	return (quint8 *)object->buffers + object->consumption_index * object->buffer_size;
 	}

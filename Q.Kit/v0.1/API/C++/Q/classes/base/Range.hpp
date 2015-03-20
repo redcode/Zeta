@@ -16,7 +16,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace QKit {class Range : public QRange {
 
 	public:
-
 	inline Range() {}
 
 	inline Range(Size index, Size size)
@@ -57,7 +56,6 @@ namespace QKit {class Range : public QRange {
 
 		return Range(index, ((a_maximum > b_maximum) ? a_maximum : b_maximum) - index);
 		}
-
 
 };}
 

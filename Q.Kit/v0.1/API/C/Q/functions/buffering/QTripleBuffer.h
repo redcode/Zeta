@@ -41,9 +41,7 @@ Q_INLINE void *q_triple_buffer_produce(QTripleBuffer *object)
 
 	do	{
 		flags = object->flags;
-
-		new_flags =
-		64 | ((flags & 12) << 2) | ((flags & 48) >> 2) | (flags & 3);
+		new_flags = 64 | ((flags & 12) << 2) | ((flags & 48) >> 2) | (flags & 3);
 		}
 	while (!q_uint8_atomic_set_if_equal(&object->flags, flags, new_flags));
 
@@ -57,9 +55,7 @@ Q_INLINE void *q_triple_buffer_consume(QTripleBuffer *object)
 
 	do	{
 		if (!((flags = object->flags) & 64)) return NULL;
-
-		new_flags =
-		(flags & 48) | ((flags & 3) << 2) | ((flags & 12) >> 2);
+		new_flags = (flags & 48) | ((flags & 3) << 2) | ((flags & 12) >> 2);
 		}
 	while (!q_uint8_atomic_set_if_equal(&object->flags, flags, new_flags));
 

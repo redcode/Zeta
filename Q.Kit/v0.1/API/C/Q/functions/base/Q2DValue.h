@@ -16,287 +16,251 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Operations for natural, integer and real types */
 
 
-#define Q_IMPLEMENTATION_2D_NATURAL(Type, type)					\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_are_equal(Q2D##Type a, Q2D##Type b)		\
-	{return a.x == b.x && a.y == b.y;}					\
-										\
-										\
-Q_INLINE void q_2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)			\
-	{									\
-	Q2D##Type t = *a;							\
-										\
-	*a = *b; *b = t;							\
-	}									\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_contains(Q2D##Type a, Q2D##Type b)		\
-	{return b.x <= a.x && b.y <= a.y;}					\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_add(Q2D##Type a, Q2D##Type b)			\
-	{return q_2d_##type(a.x + b.x, a.y + b.y);}				\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_add_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)	\
-	{return q_2d_##type(a.x + b.x + c.x, a.y + b.y + c.y);}			\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_add_4(						\
-	Q2D##Type a,								\
-	Q2D##Type b,								\
-	Q2D##Type c,								\
-	Q2D##Type d								\
-)										\
-	{return q_2d_##type(a.x + b.x + c.x + d.x, a.y + b.y + c.y + d.y);}	\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_add_scalar(Q2D##Type object, q##type scalar)		\
-	{return q_2d_##type(object.x + scalar, object.y + scalar);}		\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_subtract(Q2D##Type a, Q2D##Type b)		\
-	{return q_2d_##type(a.x - b.x, a.y - b.y);}				\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_subtract_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)	\
-	{return q_2d_##type(a.x - b.x - c.x, a.y - b.y - c.y);}			\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_subtract_4(					\
-	Q2D##Type a,								\
-	Q2D##Type b,								\
-	Q2D##Type c,								\
-	Q2D##Type d								\
-)										\
-	{return q_2d_##type(a.x - b.x - c.x - d.x, a.y - b.y - c.y - d.y);}	\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_subtract_scalar(Q2D##Type object, q##type scalar)	\
-	{return q_2d_##type(object.x - scalar, object.y - scalar);}		\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_multiply(Q2D##Type a, Q2D##Type b)		\
-	{return q_2d_##type(a.x * b.x, a.y * b.y);}				\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_multiply_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)	\
-	{return q_2d_##type(a.x * b.x * c.x, a.y * b.y * c.y);}			\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_multiply_4(					\
-	Q2D##Type a,								\
-	Q2D##Type b,								\
-	Q2D##Type c,								\
-	Q2D##Type d								\
-)										\
-	{return q_2d_##type(a.x * b.x * c.x * d.x, a.y * b.y * c.y * d.y);}	\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_multiply_by_scalar(Q2D##Type object, q##type scalar)	\
-	{return q_2d_##type(object.x * scalar, object.y * scalar);}		\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_divide(Q2D##Type a, Q2D##Type b)		\
-	{return q_2d_##type(a.x / b.x, a.y / b.y);}				\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_divide_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)		\
-	{return q_2d_##type(a.x / b.x / c.x, a.y / b.y / c.x);}			\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_divide_4(					\
-	Q2D##Type a,								\
-	Q2D##Type b,								\
-	Q2D##Type c,								\
-	Q2D##Type d								\
-)										\
-	{return q_2d_##type(a.x / b.x / c.x / d.x, a.y / b.y / c.y / d.y);}	\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_divide_by_scalar(Q2D##Type object, q##type scalar)	\
-	{return q_2d_##type(object.x / scalar, object.y / scalar);}		\
-										\
-										\
-Q_INLINE q##type q_2d_##type##_dot_product(Q2D##Type a, Q2D##Type b)		\
-	{return a.x * b.x + a.y * b.y;}						\
-										\
-										\
-/* Area of the parallelogram between two vectors (OA and OB) */			\
-Q_INLINE q##type q_2d_##type##_cross_product(Q2D##Type a, Q2D##Type b)		\
-	{return a.x * b.y - a.y * b.x;}						\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_minimum(Q2D##Type a, Q2D##Type b)		\
-	{									\
-	return q_2d_##type							\
-		(q_##type##_minimum(a.x, b.x), q_##type##_minimum(a.y, b.y));	\
-	}									\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_maximum(Q2D##Type a, Q2D##Type b)		\
-	{									\
-	return q_2d_##type							\
-		(q_##type##_maximum(a.x, b.x), q_##type##_maximum(a.y, b.y));	\
-	}									\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_middle(Q2D##Type a, Q2D##Type b)		\
-	{									\
-	return q_2d_##type							\
-		((a.x + b.x) / (q##type)2, (a.y + b.y) / (q##type)2);		\
-	}									\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_fit(Q2D##Type a, Q2D##Type b)			\
-	{									\
-	return a.y / a.x > b.y / b.x						\
-		? q_2d_##type(a.x * b.y / a.y, b.y)				\
-		: q_2d_##type(b.x, a.y * b.x / a.x);				\
-	}									\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_from_scalar(q##type scalar)			\
-	{return q_2d_##type(scalar, scalar);}					\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_is_zero(Q2D##Type object)			\
-	{return object.x == (q##type)0 && object.y == (q##type)0;}		\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_has_zero(Q2D##Type object)			\
-	{return object.x == (q##type)0 || object.y == (q##type)0;}		\
-										\
-										\
-Q_INLINE q##type q_2d_##type##_inner_sum(Q2D##Type object)			\
-	{return object.x + object.y;}						\
-										\
-										\
-Q_INLINE q##type q_2d_##type##_inner_product(Q2D##Type object)			\
-	{return object.x * object.y;}						\
-										\
-										\
-Q_INLINE q##type q_2d_##type##_inner_minimum(Q2D##Type object)			\
-	{return q_##type##_minimum(object.x, object.y);}			\
-										\
-										\
-Q_INLINE q##type q_2d_##type##_inner_maximum(Q2D##Type object)			\
-	{return q_##type##_maximum(object.x, object.y);}			\
-										\
-										\
-Q_INLINE q##type q_2d_##type##_inner_middle(Q2D##Type object)			\
-	{return (object.x + object.y) / (q##type)2;}				\
-										\
-										\
-Q_INLINE q##type q_2d_##type##_squared_length(Q2D##Type object)			\
-	{return object.x * object.x + object.y * object.y;}			\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_clamp(						\
-	Q2D##Type object,							\
-	Q2D##Type minimum,							\
-	Q2D##Type maximum							\
-)										\
-	{									\
-	return q_2d_##type							\
-		(q_##type##_clamp(object.x, minimum.x, maximum.x),		\
-		 q_##type##_clamp(object.y, minimum.y, maximum.y));		\
-	}									\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_square_clamp(					\
-	Q2D##Type object,							\
-	q##type	  minimum,							\
-	q##type	  maximum							\
-)										\
-	{									\
-	return q_2d_##type							\
-		(q_##type##_clamp(object.x, minimum, maximum),			\
-		 q_##type##_clamp(object.y, minimum, maximum));			\
-	}									\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_yx(Q2D##Type object)				\
-	{return q_2d_##type(object.y, object.x);}				\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_xy0(Q2D##Type object)				\
-	{return q_3d_##type(object.x, object.y, (q##type)0);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_xy1(Q2D##Type object)				\
-	{return q_3d_##type(object.x, object.y, (q##type)1);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_xyn(Q2D##Type object, q##type n)		\
-	{return q_3d_##type(object.x, object.y, n);}				\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_x0y(Q2D##Type object)				\
-	{return q_3d_##type(object.x, (q##type)0, object.y);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_x1y(Q2D##Type object)				\
-	{return q_3d_##type(object.x, (q##type)1, object.y);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_xny(Q2D##Type object, q##type n)		\
-	{return q_3d_##type(object.x, n, object.y);}				\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_0xy(Q2D##Type object)				\
-	{return q_3d_##type((q##type)0, object.x, object.y);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_1xy(Q2D##Type object)				\
-	{return q_3d_##type((q##type)1, object.x, object.y);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_nxy(Q2D##Type object, q##type n)		\
-	{return q_3d_##type(n, object.x, object.y);}				\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_yx0(Q2D##Type object)				\
-	{return q_3d_##type(object.y, object.x, (q##type)0);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_yx1(Q2D##Type object)				\
-	{return q_3d_##type(object.y, object.x, (q##type)1);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_yxn(Q2D##Type object, q##type n)		\
-	{return q_3d_##type(object.y, object.x, n);}				\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_y0x(Q2D##Type object)				\
-	{return q_3d_##type(object.y, (q##type)0, object.x);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_y1x(Q2D##Type object)				\
-	{return q_3d_##type(object.y, (q##type)1, object.x);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_ynx(Q2D##Type object, q##type n)		\
-	{return q_3d_##type(object.y, n, object.x);}				\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_0yx(Q2D##Type object)				\
-	{return q_3d_##type((q##type)0, object.y, object.x);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_1yx(Q2D##Type object)				\
-	{return q_3d_##type((q##type)1, object.y, object.x);}			\
-										\
-										\
-Q_INLINE Q3D##Type q_2d_##type##_nyx(Q2D##Type object, q##type n)		\
+#define Q_IMPLEMENTATION_2D_NATURAL(Type, type)							\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_are_equal(Q2D##Type a, Q2D##Type b)				\
+	{return a.x == b.x && a.y == b.y;}							\
+												\
+												\
+Q_INLINE void q_2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)					\
+	{											\
+	Q2D##Type t = *a;									\
+												\
+	*a = *b; *b = t;									\
+	}											\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_contains(Q2D##Type a, Q2D##Type b)				\
+	{return b.x <= a.x && b.y <= a.y;}							\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_add(Q2D##Type a, Q2D##Type b)					\
+	{return q_2d_##type(a.x + b.x, a.y + b.y);}						\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_add_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)			\
+	{return q_2d_##type(a.x + b.x + c.x, a.y + b.y + c.y);}					\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_add_4(Q2D##Type a, Q2D##Type b, Q2D##Type c, Q2D##Type d)	\
+	{return q_2d_##type(a.x + b.x + c.x + d.x, a.y + b.y + c.y + d.y);}			\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_add_scalar(Q2D##Type object, q##type scalar)			\
+	{return q_2d_##type(object.x + scalar, object.y + scalar);}				\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_subtract(Q2D##Type a, Q2D##Type b)				\
+	{return q_2d_##type(a.x - b.x, a.y - b.y);}						\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_subtract_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)		\
+	{return q_2d_##type(a.x - b.x - c.x, a.y - b.y - c.y);}					\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_subtract_4(Q2D##Type a, Q2D##Type b, Q2D##Type c, Q2D##Type d)	\
+	{return q_2d_##type(a.x - b.x - c.x - d.x, a.y - b.y - c.y - d.y);}			\
+												\
+												\
+Q_INLINE											\
+Q2D##Type q_2d_##type##_subtract_scalar(Q2D##Type object, q##type scalar)			\
+	{return q_2d_##type(object.x - scalar, object.y - scalar);}				\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_multiply(Q2D##Type a, Q2D##Type b)				\
+	{return q_2d_##type(a.x * b.x, a.y * b.y);}						\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_multiply_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)		\
+	{return q_2d_##type(a.x * b.x * c.x, a.y * b.y * c.y);}					\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_multiply_4(Q2D##Type a, Q2D##Type b, Q2D##Type c, Q2D##Type d)	\
+	{return q_2d_##type(a.x * b.x * c.x * d.x, a.y * b.y * c.y * d.y);}			\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_multiply_by_scalar(Q2D##Type object, q##type scalar)		\
+	{return q_2d_##type(object.x * scalar, object.y * scalar);}				\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_divide(Q2D##Type a, Q2D##Type b)				\
+	{return q_2d_##type(a.x / b.x, a.y / b.y);}						\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_divide_3(Q2D##Type a, Q2D##Type b, Q2D##Type c)		\
+	{return q_2d_##type(a.x / b.x / c.x, a.y / b.y / c.x);}					\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_divide_4(Q2D##Type a, Q2D##Type b, Q2D##Type c, Q2D##Type d)	\
+	{return q_2d_##type(a.x / b.x / c.x / d.x, a.y / b.y / c.y / d.y);}			\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_divide_by_scalar(Q2D##Type object, q##type scalar)		\
+	{return q_2d_##type(object.x / scalar, object.y / scalar);}				\
+												\
+												\
+Q_INLINE q##type q_2d_##type##_dot_product(Q2D##Type a, Q2D##Type b)				\
+	{return a.x * b.x + a.y * b.y;}								\
+												\
+												\
+/* Area of the parallelogram between two vectors (OA and OB) */					\
+Q_INLINE q##type q_2d_##type##_cross_product(Q2D##Type a, Q2D##Type b)				\
+	{return a.x * b.y - a.y * b.x;}								\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_minimum(Q2D##Type a, Q2D##Type b)				\
+	{											\
+	return q_2d_##type									\
+		(q_##type##_minimum(a.x, b.x), q_##type##_minimum(a.y, b.y));			\
+	}											\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_maximum(Q2D##Type a, Q2D##Type b)				\
+	{return q_2d_##type(q_##type##_maximum(a.x, b.x), q_##type##_maximum(a.y, b.y));}	\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_middle(Q2D##Type a, Q2D##Type b)				\
+	{return q_2d_##type((a.x + b.x) / (q##type)2, (a.y + b.y) / (q##type)2);}		\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_fit(Q2D##Type a, Q2D##Type b)					\
+	{											\
+	return a.y / a.x > b.y / b.x								\
+		? q_2d_##type(a.x * b.y / a.y, b.y)						\
+		: q_2d_##type(b.x, a.y * b.x / a.x);						\
+	}											\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_from_scalar(q##type scalar)					\
+	{return q_2d_##type(scalar, scalar);}							\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_is_zero(Q2D##Type object)					\
+	{return object.x == (q##type)0 && object.y == (q##type)0;}				\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_has_zero(Q2D##Type object)					\
+	{return object.x == (q##type)0 || object.y == (q##type)0;}				\
+												\
+												\
+Q_INLINE q##type q_2d_##type##_inner_sum(Q2D##Type object)					\
+	{return object.x + object.y;}								\
+												\
+												\
+Q_INLINE q##type q_2d_##type##_inner_product(Q2D##Type object)					\
+	{return object.x * object.y;}								\
+												\
+												\
+Q_INLINE q##type q_2d_##type##_inner_minimum(Q2D##Type object)					\
+	{return q_##type##_minimum(object.x, object.y);}					\
+												\
+												\
+Q_INLINE q##type q_2d_##type##_inner_maximum(Q2D##Type object)					\
+	{return q_##type##_maximum(object.x, object.y);}					\
+												\
+												\
+Q_INLINE q##type q_2d_##type##_inner_middle(Q2D##Type object)					\
+	{return (object.x + object.y) / (q##type)2;}						\
+												\
+												\
+Q_INLINE q##type q_2d_##type##_squared_length(Q2D##Type object)					\
+	{return object.x * object.x + object.y * object.y;}					\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_clamp(Q2D##Type object, Q2D##Type minimum, Q2D##Type maximum)	\
+	{											\
+	return q_2d_##type									\
+		(q_##type##_clamp(object.x, minimum.x, maximum.x),				\
+		 q_##type##_clamp(object.y, minimum.y, maximum.y));				\
+	}											\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_square_clamp(							\
+	Q2D##Type object,									\
+	q##type	  minimum,									\
+	q##type	  maximum									\
+)												\
+	{											\
+	return q_2d_##type									\
+		(q_##type##_clamp(object.x, minimum, maximum),					\
+		 q_##type##_clamp(object.y, minimum, maximum));					\
+	}											\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_yx(Q2D##Type object)						\
+	{return q_2d_##type(object.y, object.x);}						\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_xy0(Q2D##Type object)						\
+	{return q_3d_##type(object.x, object.y, (q##type)0);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_xy1(Q2D##Type object)						\
+	{return q_3d_##type(object.x, object.y, (q##type)1);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_xyn(Q2D##Type object, q##type n)				\
+	{return q_3d_##type(object.x, object.y, n);}						\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_x0y(Q2D##Type object)						\
+	{return q_3d_##type(object.x, (q##type)0, object.y);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_x1y(Q2D##Type object)						\
+	{return q_3d_##type(object.x, (q##type)1, object.y);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_xny(Q2D##Type object, q##type n)				\
+	{return q_3d_##type(object.x, n, object.y);}						\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_0xy(Q2D##Type object)						\
+	{return q_3d_##type((q##type)0, object.x, object.y);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_1xy(Q2D##Type object)						\
+	{return q_3d_##type((q##type)1, object.x, object.y);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_nxy(Q2D##Type object, q##type n)				\
+	{return q_3d_##type(n, object.x, object.y);}						\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_yx0(Q2D##Type object)						\
+	{return q_3d_##type(object.y, object.x, (q##type)0);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_yx1(Q2D##Type object)						\
+	{return q_3d_##type(object.y, object.x, (q##type)1);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_yxn(Q2D##Type object, q##type n)				\
+	{return q_3d_##type(object.y, object.x, n);}						\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_y0x(Q2D##Type object)						\
+	{return q_3d_##type(object.y, (q##type)0, object.x);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_y1x(Q2D##Type object)						\
+	{return q_3d_##type(object.y, (q##type)1, object.x);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_ynx(Q2D##Type object, q##type n)				\
+	{return q_3d_##type(object.y, n, object.x);}						\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_0yx(Q2D##Type object)						\
+	{return q_3d_##type((q##type)0, object.y, object.x);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_1yx(Q2D##Type object)						\
+	{return q_3d_##type((q##type)1, object.y, object.x);}					\
+												\
+												\
+Q_INLINE Q3D##Type q_2d_##type##_nyx(Q2D##Type object, q##type n)				\
 	{return q_3d_##type(n, object.y, object.x);}
 
 
@@ -372,27 +336,23 @@ Q_IMPLEMENTATION_2D_NATURAL(LDouble, ldouble)
 /* MARK: - Operations for integer and real types */
 
 
-#define Q_IMPLEMENTATION_2D_INTEGER(Type, type)			 \
-								 \
-								 \
-Q_INLINE qboolean q_2d_##type##_is_negative(Q2D##Type object)	 \
-	{return object.x < (q##type)0 && object.y < (q##type)0;} \
-								 \
-								 \
-Q_INLINE qboolean q_2d_##type##_has_negative(Q2D##Type object)	 \
-	{return object.x < (q##type)0 || object.y < (q##type)0;} \
-								 \
-								 \
-Q_INLINE Q2D##Type q_2d_##type##_negative(Q2D##Type object)	 \
-	{return q_2d_##type(-object.x, -object.y);}		 \
-								 \
-								 \
-Q_INLINE Q2D##Type q_2d_##type##_absolute(Q2D##Type object)	 \
-	{							 \
-	return q_2d_##type					 \
-		(q_##type##_absolute(object.x),			 \
-		 q_##type##_absolute(object.y));		 \
-	}
+#define Q_IMPLEMENTATION_2D_INTEGER(Type, type)							\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_is_negative(Q2D##Type object)					\
+	{return object.x < (q##type)0 && object.y < (q##type)0;}				\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_has_negative(Q2D##Type object)					\
+	{return object.x < (q##type)0 || object.y < (q##type)0;}				\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_negative(Q2D##Type object)					\
+	{return q_2d_##type(-object.x, -object.y);}						\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_absolute(Q2D##Type object)					\
+	{return q_2d_##type(q_##type##_absolute(object.x), q_##type##_absolute(object.y));}
 
 
 Q_IMPLEMENTATION_2D_INTEGER(Int8,    int8   )
@@ -412,98 +372,81 @@ Q_IMPLEMENTATION_2D_INTEGER(LDouble, ldouble)
 /* MARK: - Operations for real types only */
 
 
-#define Q_IMPLEMENTATION_2D_REAL(Type, type, _, epsilon)			\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_are_almost_equal(Q2D##Type a, Q2D##Type b)	\
-	{									\
-	return	q_##type##_are_almost_equal(a.x, b.x) &&			\
-		q_##type##_are_almost_equal(a.y, b.y);				\
-	}									\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_are_perpendicular(Q2D##Type a, Q2D##Type b)	\
-	{									\
-	return	q_##type##_absolute(q_2d_##type##_dot_product(a, b))		\
-		<= epsilon;							\
-	}									\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type t)	\
-	{									\
-	return q_2d_##type							\
-		(q_##type##_lerp(a.x, b.x, t), q_##type##_lerp(a.y, b.y, t));	\
-	}									\
-										\
-										\
-Q_INLINE									\
-Q2D##Type q_2d_##type##_inverse_lerp(Q2D##Type a, Q2D##Type b, q##type t)	\
-	{									\
-	return q_2d_##type							\
-		(q_##type##_inverse_lerp(a.x, b.x, t),				\
-		 q_##type##_inverse_lerp(a.y, b.y, t));				\
-	}									\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_is_finite(Q2D##Type object)			\
-	{									\
-	return	q_##type##_is_finite(object.x) &&				\
-		q_##type##_is_finite(object.y);					\
-	}									\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_is_infinity(Q2D##Type object)			\
-	{									\
-	return	q_##type##_is_infinity(object.x) &&				\
-		q_##type##_is_infinity(object.y);				\
-	}									\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_is_nan(Q2D##Type object)			\
-	{									\
-	return	q_##type##_is_nan(object.x) &&					\
-		q_##type##_is_nan(object.y);					\
-	}									\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_is_almost_zero(Q2D##Type object)		\
-	{									\
-	return	q_##type##_is_almost_zero(object.x) &&				\
-		q_##type##_is_almost_zero(object.y);				\
-	}									\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_has_infinity(Q2D##Type object)			\
-	{									\
-	return	q_##type##_is_infinity(object.x) ||				\
-		q_##type##_is_infinity(object.y);				\
-	}									\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_has_nan(Q2D##Type object)			\
-	{									\
-	return	q_##type##_is_nan(object.x) ||					\
-		q_##type##_is_nan(object.y);					\
-	}									\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_has_almost_zero(Q2D##Type object)		\
-	{									\
-	return	q_##type##_is_almost_zero(object.x) ||				\
-		q_##type##_is_almost_zero(object.y);				\
-	}									\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_reciprocal(Q2D##Type object)			\
-	{return q_2d_##type(_(1.0) / object.x, _(1.0) / object.y);}		\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_square_clamp_01(Q2D##Type object)		\
-	{									\
-	return q_2d_##type							\
-		(q_##type##_clamp_01(object.x),					\
-		 q_##type##_clamp_01(object.y));				\
-	}
+#define Q_IMPLEMENTATION_2D_REAL(Type, type, _, epsilon)					\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_are_almost_equal(Q2D##Type a, Q2D##Type b)			\
+	{											\
+	return	q_##type##_are_almost_equal(a.x, b.x) &&					\
+		q_##type##_are_almost_equal(a.y, b.y);						\
+	}											\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_are_perpendicular(Q2D##Type a, Q2D##Type b)			\
+	{											\
+	return	q_##type##_absolute(q_2d_##type##_dot_product(a, b))				\
+		<= epsilon;									\
+	}											\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type t)			\
+	{											\
+	return q_2d_##type									\
+		(q_##type##_lerp(a.x, b.x, t), q_##type##_lerp(a.y, b.y, t));			\
+	}											\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_inverse_lerp(Q2D##Type a, Q2D##Type b, q##type t)		\
+	{											\
+	return q_2d_##type									\
+		(q_##type##_inverse_lerp(a.x, b.x, t),						\
+		 q_##type##_inverse_lerp(a.y, b.y, t));						\
+	}											\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_is_finite(Q2D##Type object)					\
+	{return q_##type##_is_finite(object.x) && q_##type##_is_finite(object.y);}		\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_is_infinity(Q2D##Type object)					\
+	{return q_##type##_is_infinity(object.x) && q_##type##_is_infinity(object.y);}		\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_is_nan(Q2D##Type object)					\
+	{return q_##type##_is_nan(object.x) && q_##type##_is_nan(object.y);}			\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_is_almost_zero(Q2D##Type object)				\
+	{											\
+	return	q_##type##_is_almost_zero(object.x) &&						\
+		q_##type##_is_almost_zero(object.y);						\
+	}											\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_has_infinity(Q2D##Type object)					\
+	{											\
+	return	q_##type##_is_infinity(object.x) ||						\
+		q_##type##_is_infinity(object.y);						\
+	}											\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_has_nan(Q2D##Type object)					\
+	{return q_##type##_is_nan(object.x) || q_##type##_is_nan(object.y);}			\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_has_almost_zero(Q2D##Type object)				\
+	{											\
+	return	q_##type##_is_almost_zero(object.x) ||						\
+		q_##type##_is_almost_zero(object.y);						\
+	}											\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_reciprocal(Q2D##Type object)					\
+	{return q_2d_##type(_(1.0) / object.x, _(1.0) / object.y);}				\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_square_clamp_01(Q2D##Type object)				\
+	{return q_2d_##type(q_##type##_clamp_01(object.x), q_##type##_clamp_01(object.y));}
 
 
 Q_IMPLEMENTATION_2D_REAL(Float,	  float,   Q_FLOAT,   Q_FLOAT_EPSILON  )
