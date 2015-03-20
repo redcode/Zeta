@@ -17,6 +17,8 @@ namespace QKit {class Range : public QRange {
 
 	public:
 
+	inline Range() {}
+
 	inline Range(Size index, Size size)
 		{this->index = index; this->size = size;}
 
@@ -36,7 +38,7 @@ namespace QKit {class Range : public QRange {
 		{return index >= this->index && index < this->index + this->size;}
 
 
-	inline Range operator&(Range range)
+	inline Range operator &(Range range)
 		{
 		Size index = (this->index > range.index) ? this->index : range.index;
 
@@ -47,7 +49,7 @@ namespace QKit {class Range : public QRange {
 		}
 
 
-	inline Range operator|(Range range)
+	inline Range operator |(Range range)
 		{
 		Size	index	  = (this->index < range.index) ? this->index : range.index,
 			a_maximum = this->index + this->size,

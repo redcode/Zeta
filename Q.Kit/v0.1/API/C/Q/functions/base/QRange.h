@@ -60,16 +60,16 @@ Q_INLINE QRange q_range_from_indices(qsize a, qsize b)
 	{return a < b ? q_range(a, b - a) : q_range(b, a - b);}
 
 
-Q_INLINE qboolean q_range_is_zero(QRange range)
-	{return range.index == 0 && range.size == 0;}
+Q_INLINE qboolean q_range_is_zero(QRange object)
+	{return object.index == 0 && object.size == 0;}
 
 
-Q_INLINE qsize q_range_end(QRange range)
-	{return range.index + range.size;}
+Q_INLINE qsize q_range_end(QRange object)
+	{return object.index + object.size;}
 
 
-Q_INLINE qboolean q_range_contains_index(QRange range, qsize index)
-	{return index >= range.index && index < range.index + range.size;}
+Q_INLINE qboolean q_range_contains_index(QRange object, qsize index)
+	{return index >= object.index && index < object.index + object.size;}
 
 
 #endif /* __Q_functions_base_QRange_H__ */
