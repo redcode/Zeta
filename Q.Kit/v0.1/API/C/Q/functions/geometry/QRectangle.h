@@ -421,8 +421,7 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_top_center(		\
 	result.size = q_2d_##type##_fit(size, object.size);			\
 										\
 	result.point.x =							\
-		object.point.x +						\
-		(object.size.x - result.size.x) / _(2.0);			\
+	object.point.x + (object.size.x - result.size.x) / _(2.0);		\
 										\
 	result.point.y = object.point.y + object.size.y - result.size.y;	\
 	return result;								\
@@ -463,8 +462,7 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_center(		\
 	result.size = q_2d_##type##_fit(size, object.size);			\
 										\
 	result.point.x =							\
-		object.point.x +						\
-		(object.size.x - result.size.x) / _(2.0);			\
+	object.point.x + (object.size.x - result.size.x) / _(2.0);		\
 										\
 	result.point.y = object.point.y;					\
 	return result;								\
