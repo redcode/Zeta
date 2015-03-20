@@ -10,8 +10,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Q_functions_base_all_H__
 
 #include <Q/functions/base/block.h>
-#include <Q/functions/base/Q2D.h>
-#include <Q/functions/base/Q3D.h>
+#include <Q/functions/base/Q2DValue.h>
+#include <Q/functions/base/Q3DValue.h>
 #include <Q/functions/base/QRange.h>
 
 #endif /* __Q_functions_base_all_H__ */
