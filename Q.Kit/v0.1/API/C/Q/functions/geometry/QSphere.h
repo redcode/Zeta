@@ -14,46 +14,39 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Q/constants/numbers.h>
 
 
-#define Q_IMPLEMENTATION_SPHERE(Type, type, _, suffix)				\
-										\
-										\
-Q_INLINE									\
-qboolean q_##type##_sphere_are_equal(Q##Type##Sphere a, Q##Type##Sphere b)	\
-	{									\
-	return	a.radius == b.radius &&						\
-		q_3d_##type##_are_equal(a.point, b.point);			\
-	}									\
-										\
-										\
-Q_INLINE qboolean q_##type##_sphere_is_zero(Q##Type##Sphere object)		\
-	{									\
-	return	object.radius == _(0.0) &&					\
-		q_3d_##type##_is_zero(object.point);				\
-	}									\
-										\
-										\
-Q_INLINE Q##Type##Box q_##type##_sphere_inner_box(Q##Type##Sphere object)	\
-	{									\
-	q##type half_size = object.radius / Q_JOIN_2(Q_SQUARE_ROOT_3, suffix);	\
-	q##type size = half_size * _(2.0);					\
-										\
-	return q_##type##_box							\
-		(object.point.x - half_size,					\
-		 object.point.y - half_size,					\
-		 object.point.z - half_size,					\
-		 size, size, size);						\
-	}									\
-										\
-										\
-Q_INLINE Q##Type##Box q_##type##_sphere_outer_box(Q##Type##Sphere object)	\
-	{									\
-	q##type size = object.radius * _(2.0);					\
-										\
-	return q_##type##_box							\
-		(object.point.x - object.radius,				\
-		 object.point.y - object.radius,				\
-		 object.point.z - object.radius,				\
-		 size, size, size);						\
+#define Q_IMPLEMENTATION_SPHERE(Type, type, _, suffix)					\
+											\
+											\
+Q_INLINE qboolean q_##type##_sphere_are_equal(Q##Type##Sphere a, Q##Type##Sphere b)	\
+	{return a.radius == b.radius && q_3d_##type##_are_equal(a.point, b.point);}	\
+											\
+											\
+Q_INLINE qboolean q_##type##_sphere_is_zero(Q##Type##Sphere object)			\
+	{return object.radius == _(0.0) && q_3d_##type##_is_zero(object.point);}	\
+											\
+											\
+Q_INLINE Q##Type##Box q_##type##_sphere_inner_box(Q##Type##Sphere object)		\
+	{										\
+	q##type half_size = object.radius / Q_JOIN_2(Q_SQUARE_ROOT_3, suffix);		\
+	q##type size = half_size * _(2.0);						\
+											\
+	return q_##type##_box								\
+		(object.point.x - half_size,						\
+		 object.point.y - half_size,						\
+		 object.point.z - half_size,						\
+		 size, size, size);							\
+	}										\
+											\
+											\
+Q_INLINE Q##Type##Box q_##type##_sphere_outer_box(Q##Type##Sphere object)		\
+	{										\
+	q##type size = object.radius * _(2.0);						\
+											\
+	return q_##type##_box								\
+		(object.point.x - object.radius,					\
+		 object.point.y - object.radius,					\
+		 object.point.z - object.radius,					\
+		 size, size, size);							\
 	}
 
 

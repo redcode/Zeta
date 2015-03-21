@@ -14,47 +14,34 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Q/constants/numbers.h>
 
 
-#define Q_IMPLEMENTATION_CIRCLE(Type, type, _, suffix)				\
-										\
-										\
-Q_INLINE									\
-qboolean q_##type##_circle_are_equal(Q##Type##Circle a, Q##Type##Circle b)	\
-	{									\
-	return	a.radius == b.radius &&						\
-		q_2d_##type##_are_equal(a.point, b.point);			\
-	}									\
-										\
-										\
-Q_INLINE									\
-Q##Type##Rectangle q_##type##_circle_inner_rectangle(Q##Type##Circle object)	\
-	{									\
-	q##type half_size = object.radius / Q_JOIN_2(Q_SQUARE_ROOT_2, suffix);	\
-	q##type size = half_size * _(2.0);					\
-										\
-	return q_##type##_rectangle						\
-		(object.point.x - half_size,					\
-		 object.point.y - half_size,					\
-		 size, size);							\
-	}									\
-										\
-										\
-Q_INLINE									\
-Q##Type##Rectangle q_##type##_circle_outer_rectangle(Q##Type##Circle object)	\
-	{									\
-	q##type size = object.radius * _(2.0);					\
-										\
-	return q_##type##_rectangle						\
-		(object.point.x - object.radius,				\
-		 object.point.y - object.radius,				\
-		 size, size);							\
-	}									\
-										\
-										\
-Q_INLINE qboolean q_##type##_circle_is_zero(Q##Type##Circle object)		\
-	{									\
-	return	object.radius == _(0.0) &&					\
-		q_2d_##type##_is_zero(object.point);				\
-	}
+#define Q_IMPLEMENTATION_CIRCLE(Type, type, _, suffix)						\
+												\
+												\
+Q_INLINE qboolean q_##type##_circle_are_equal(Q##Type##Circle a, Q##Type##Circle b)		\
+	{return a.radius == b.radius && q_2d_##type##_are_equal(a.point, b.point);}		\
+												\
+												\
+Q_INLINE Q##Type##Rectangle q_##type##_circle_inner_rectangle(Q##Type##Circle object)		\
+	{											\
+	q##type half_size = object.radius / Q_JOIN_2(Q_SQUARE_ROOT_2, suffix);			\
+	q##type size = half_size * _(2.0);							\
+												\
+	return q_##type##_rectangle								\
+		(object.point.x - half_size, object.point.y - half_size, size, size);		\
+	}											\
+												\
+												\
+Q_INLINE Q##Type##Rectangle q_##type##_circle_outer_rectangle(Q##Type##Circle object)		\
+	{											\
+	q##type size = object.radius * _(2.0);							\
+												\
+	return q_##type##_rectangle								\
+		(object.point.x - object.radius, object.point.y - object.radius, size, size);	\
+	}											\
+												\
+												\
+Q_INLINE qboolean q_##type##_circle_is_zero(Q##Type##Circle object)				\
+	{return object.radius == _(0.0) && q_2d_##type##_is_zero(object.point);}
 
 
 Q_IMPLEMENTATION_CIRCLE(Float,   float,	  Q_FLOAT,   Q_FLOAT_SUFFIX  )
