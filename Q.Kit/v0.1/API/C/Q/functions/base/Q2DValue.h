@@ -63,8 +63,7 @@ Q_INLINE Q2D##Type q_2d_##type##_subtract_4(Q2D##Type a, Q2D##Type b, Q2D##Type 
 	{return q_2d_##type(a.x - b.x - c.x - d.x, a.y - b.y - c.y - d.y);}			\
 												\
 												\
-Q_INLINE											\
-Q2D##Type q_2d_##type##_subtract_scalar(Q2D##Type object, q##type scalar)			\
+Q_INLINE Q2D##Type q_2d_##type##_subtract_scalar(Q2D##Type object, q##type scalar)		\
 	{return q_2d_##type(object.x - scalar, object.y - scalar);}				\
 												\
 												\
@@ -110,10 +109,7 @@ Q_INLINE q##type q_2d_##type##_cross_product(Q2D##Type a, Q2D##Type b)				\
 												\
 												\
 Q_INLINE Q2D##Type q_2d_##type##_minimum(Q2D##Type a, Q2D##Type b)				\
-	{											\
-	return q_2d_##type									\
-		(q_##type##_minimum(a.x, b.x), q_##type##_minimum(a.y, b.y));			\
-	}											\
+	{return q_2d_##type(q_##type##_minimum(a.x, b.x), q_##type##_minimum(a.y, b.y));}	\
 												\
 												\
 Q_INLINE Q2D##Type q_2d_##type##_maximum(Q2D##Type a, Q2D##Type b)				\
@@ -376,31 +372,21 @@ Q_IMPLEMENTATION_2D_INTEGER(LDouble, ldouble)
 												\
 												\
 Q_INLINE qboolean q_2d_##type##_are_almost_equal(Q2D##Type a, Q2D##Type b)			\
-	{											\
-	return	q_##type##_are_almost_equal(a.x, b.x) &&					\
-		q_##type##_are_almost_equal(a.y, b.y);						\
-	}											\
+	{return q_##type##_are_almost_equal(a.x, b.x) && q_##type##_are_almost_equal(a.y, b.y);}\
 												\
 												\
 Q_INLINE qboolean q_2d_##type##_are_perpendicular(Q2D##Type a, Q2D##Type b)			\
-	{											\
-	return	q_##type##_absolute(q_2d_##type##_dot_product(a, b))				\
-		<= epsilon;									\
-	}											\
+	{return q_##type##_absolute(q_2d_##type##_dot_product(a, b)) <= epsilon;}		\
 												\
 												\
 Q_INLINE Q2D##Type q_2d_##type##_lerp(Q2D##Type a, Q2D##Type b, q##type t)			\
-	{											\
-	return q_2d_##type									\
-		(q_##type##_lerp(a.x, b.x, t), q_##type##_lerp(a.y, b.y, t));			\
-	}											\
+	{return q_2d_##type(q_##type##_lerp(a.x, b.x, t), q_##type##_lerp(a.y, b.y, t));}	\
 												\
 												\
 Q_INLINE Q2D##Type q_2d_##type##_inverse_lerp(Q2D##Type a, Q2D##Type b, q##type t)		\
 	{											\
 	return q_2d_##type									\
-		(q_##type##_inverse_lerp(a.x, b.x, t),						\
-		 q_##type##_inverse_lerp(a.y, b.y, t));						\
+		(q_##type##_inverse_lerp(a.x, b.x, t), q_##type##_inverse_lerp(a.y, b.y, t));	\
 	}											\
 												\
 												\
@@ -417,17 +403,11 @@ Q_INLINE qboolean q_2d_##type##_is_nan(Q2D##Type object)					\
 												\
 												\
 Q_INLINE qboolean q_2d_##type##_is_almost_zero(Q2D##Type object)				\
-	{											\
-	return	q_##type##_is_almost_zero(object.x) &&						\
-		q_##type##_is_almost_zero(object.y);						\
-	}											\
+	{return q_##type##_is_almost_zero(object.x) && q_##type##_is_almost_zero(object.y);}	\
 												\
 												\
 Q_INLINE qboolean q_2d_##type##_has_infinity(Q2D##Type object)					\
-	{											\
-	return	q_##type##_is_infinity(object.x) ||						\
-		q_##type##_is_infinity(object.y);						\
-	}											\
+	{return q_##type##_is_infinity(object.x) || q_##type##_is_infinity(object.y);}		\
 												\
 												\
 Q_INLINE qboolean q_2d_##type##_has_nan(Q2D##Type object)					\
@@ -435,10 +415,7 @@ Q_INLINE qboolean q_2d_##type##_has_nan(Q2D##Type object)					\
 												\
 												\
 Q_INLINE qboolean q_2d_##type##_has_almost_zero(Q2D##Type object)				\
-	{											\
-	return	q_##type##_is_almost_zero(object.x) ||						\
-		q_##type##_is_almost_zero(object.y);						\
-	}											\
+	{return q_##type##_is_almost_zero(object.x) || q_##type##_is_almost_zero(object.y);}	\
 												\
 												\
 Q_INLINE Q2D##Type q_2d_##type##_reciprocal(Q2D##Type object)					\

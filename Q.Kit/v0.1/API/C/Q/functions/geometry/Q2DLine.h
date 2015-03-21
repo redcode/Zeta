@@ -27,34 +27,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define q_2d_ldouble_line_reversed	    q_2d_ldouble_vector_reversed
 
 
-#define Q_IMPLEMENTATION_2D_LINE_SEGMENT(Type, type, _)				\
-										\
-										\
-Q_INLINE qboolean q_2d_##type##_line_segment_collide(				\
-	Q2D##Type##Line a,							\
-	Q2D##Type##Line b							\
-)										\
-	{									\
-	Q2D##Type d  = q_2d_##type##_subtract(b.a, a.a);			\
-	Q2D##Type va = q_2d_##type##_subtract(a.b, a.a);			\
-	Q2D##Type vb = q_2d_##type##_subtract(b.b, b.a);			\
-	q##type	  c  = q_2d_##type##_cross_product(va, vb);			\
-	q##type	  t  = q_2d_##type##_cross_product(d, vb) / c;			\
-	q##type	  u  = q_2d_##type##_cross_product(d, va) / c;			\
-										\
-	return t < _(0.0) || t > _(1.0) || u < _(0.0) || u > _(1.0)		\
-		? FALSE : TRUE;							\
-	}									\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_line_segment_center(Q2D##Type##Line object)	\
-	{return q_2d_##type##_middle(object.a, object.b);}			\
-										\
-										\
-Q_INLINE Q2D##Type q_2d_##type##_line_segment_lerp(				\
-	Q2D##Type##Line	object,							\
-	q##type		alpha							\
-)										\
+#define Q_IMPLEMENTATION_2D_LINE_SEGMENT(Type, type, _)						\
+												\
+												\
+Q_INLINE qboolean q_2d_##type##_line_segment_collide(Q2D##Type##Line a, Q2D##Type##Line b	\
+)												\
+	{											\
+	Q2D##Type d  = q_2d_##type##_subtract(b.a, a.a);					\
+	Q2D##Type va = q_2d_##type##_subtract(a.b, a.a);					\
+	Q2D##Type vb = q_2d_##type##_subtract(b.b, b.a);					\
+	q##type	  c  = q_2d_##type##_cross_product(va, vb);					\
+	q##type	  t  = q_2d_##type##_cross_product(d, vb) / c;					\
+	q##type	  u  = q_2d_##type##_cross_product(d, va) / c;					\
+												\
+	return t < _(0.0) || t > _(1.0) || u < _(0.0) || u > _(1.0) ? FALSE : TRUE;		\
+	}											\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_line_segment_center(Q2D##Type##Line object)			\
+	{return q_2d_##type##_middle(object.a, object.b);}					\
+												\
+												\
+Q_INLINE Q2D##Type q_2d_##type##_line_segment_lerp(Q2D##Type##Line object, q##type alpha)	\
 	{return q_2d_##type##_lerp(object.a, object.b, alpha);}
 
 

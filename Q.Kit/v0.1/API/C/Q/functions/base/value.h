@@ -73,23 +73,19 @@ Q_IMPLEMENTATION_VALUE_REVERSED(64, 32)
 /* MARK: - Rotation */
 
 
-#define Q_IMPLEMENTATION_VALUE_ROTATED(bits)					\
-										\
-Q_INLINE									\
-quint##bits q_uint##bits##_rotated_left(quint##bits value, quint rotation)	\
-	{return Q_##bits##BIT_ROTATE_LEFT(value, rotation);}			\
-										\
-Q_INLINE									\
-quint##bits q_uint##bits##_rotated_right(quint##bits value, quint rotation)	\
-	{return Q_##bits##BIT_ROTATE_RIGHT(value, rotation);}			\
-										\
-Q_INLINE									\
-qint##bits q_int##bits##_rotated_left(qint##bits value, quint rotation)		\
-	{return Q_##bits##BIT_ROTATE_LEFT(value, rotation);}			\
-										\
-Q_INLINE									\
-qint##bits q_int##bits##_rotated_right(qint##bits value, quint rotation)	\
-	{return Q_##bits##BIT_ROTATE_RIGHT(value, rotation);}			\
+#define Q_IMPLEMENTATION_VALUE_ROTATED(bits)						\
+											\
+Q_INLINE quint##bits q_uint##bits##_rotated_left(quint##bits value, quint rotation)	\
+	{return Q_##bits##BIT_ROTATE_LEFT(value, rotation);}				\
+											\
+Q_INLINE quint##bits q_uint##bits##_rotated_right(quint##bits value, quint rotation)	\
+	{return Q_##bits##BIT_ROTATE_RIGHT(value, rotation);}				\
+											\
+Q_INLINE qint##bits q_int##bits##_rotated_left(qint##bits value, quint rotation)	\
+	{return Q_##bits##BIT_ROTATE_LEFT(value, rotation);}				\
+											\
+Q_INLINE qint##bits q_int##bits##_rotated_right(qint##bits value, quint rotation)	\
+	{return Q_##bits##BIT_ROTATE_RIGHT(value, rotation);}				\
 
 
 Q_IMPLEMENTATION_VALUE_ROTATED( 8)
@@ -259,9 +255,7 @@ Q_INLINE quint32 q_uint32_to_bcd(quint32 value)
 	quint32 result = 0;
 	quint	shift  = 0;
 
-	for (; value; value /= 10, shift += 4)
-		result |= (value % 10) << shift;
-
+	for (; value; value /= 10, shift += 4) result |= (value % 10) << shift;
 	return result;
 	}
 
@@ -271,9 +265,7 @@ Q_INLINE quint32 q_bcd_to_uint32(quint32 value)
 	quint32 result = 0;
 	quint32 scale  = 1;
 
-	for (; value; value >>= 4, scale *= 10)
-		result += (value & 0x0F) * scale;
-
+	for (; value; value >>= 4, scale *= 10) result += (value & 0x0F) * scale;
 	return result;
 	}
 
@@ -281,32 +273,28 @@ Q_INLINE quint32 q_bcd_to_uint32(quint32 value)
 /* MARK: - Operations for natural, integer and real types */
 
 
-#define Q_IMPLEMENTATION_VALUE_NATURAL(type)					\
-										\
-										\
-Q_INLINE void q_##type##_swap(void *a, void *b)					\
-	{									\
-	q##type t = *(q##type *)a;						\
-										\
-	*(q##type *)a = *(q##type *)b;						\
-	*(q##type *)b = t;							\
-	}									\
-										\
-										\
-Q_INLINE q##type q_##type##_minimum(q##type a, q##type b)			\
-	{return Q_MINIMUM(a, b);}						\
-										\
-										\
-Q_INLINE q##type q_##type##_maximum(q##type a, q##type b)			\
-	{return Q_MAXIMUM(a, b);}						\
-										\
-										\
-Q_INLINE									\
-q##type q_##type##_clamp(q##type value, q##type minimum, q##type maximum)	\
-	{									\
-	return q_##type##_minimum						\
-		(q_##type##_maximum(value, minimum), maximum);			\
-	}									\
+#define Q_IMPLEMENTATION_VALUE_NATURAL(type)						\
+											\
+											\
+Q_INLINE void q_##type##_swap(void *a, void *b)						\
+	{										\
+	q##type t = *(q##type *)a;							\
+											\
+	*(q##type *)a = *(q##type *)b;							\
+	*(q##type *)b = t;								\
+	}										\
+											\
+											\
+Q_INLINE q##type q_##type##_minimum(q##type a, q##type b)				\
+	{return Q_MINIMUM(a, b);}							\
+											\
+											\
+Q_INLINE q##type q_##type##_maximum(q##type a, q##type b)				\
+	{return Q_MAXIMUM(a, b);}							\
+											\
+											\
+Q_INLINE q##type q_##type##_clamp(q##type value, q##type minimum, q##type maximum)	\
+	{return q_##type##_minimum(q_##type##_maximum(value, minimum), maximum);}
 
 
 Q_IMPLEMENTATION_VALUE_NATURAL(uint8  )
@@ -407,7 +395,8 @@ Q_INLINE qboolean q_##type##_is_nan(q##type value)				\
 Q_INLINE q##type q_##type##_sign_or_zero(q##type value)				\
 	{									\
 	return q_##type##_absolute(value) <= epsilon				\
-		? _(0.0) : q_##type##_sign(value);				\
+		? _(0.0)							\
+		: q_##type##_sign(value);					\
 	}									\
 										\
 										\
