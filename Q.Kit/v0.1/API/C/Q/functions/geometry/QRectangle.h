@@ -404,7 +404,7 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_center(				\
 	{											\
 	Q##Type##Rectangle result;								\
 												\
-	result.size = q_2d_##type##_fit(size, object.size);					\
+	result.size    = q_2d_##type##_fit(size, object.size);					\
 	result.point.x = object.point.x + (object.size.x - result.size.x) / _(2.0);		\
 	result.point.y = object.point.y;							\
 	return result;										\
@@ -446,7 +446,7 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_center(					\
 	{											\
 	Q##Type##Rectangle result;								\
 												\
-	result.size = q_2d_##type##_fit(size, object.size);					\
+	result.size    = q_2d_##type##_fit(size, object.size);					\
 	result.point.x = object.point.x + (object.size.x - result.size.x) / _(2.0);		\
 	result.point.y = object.point.y + (object.size.y - result.size.y) / _(2.0);		\
 	return result;										\
@@ -457,7 +457,7 @@ Q_INLINE Q##Type##Circle q_##type##_rectangle_inner_circle(Q##Type##Rectangle ob
 	{											\
 	Q##Type##Circle result;									\
 												\
-	result.point = q_##type##_rectangle_center(object);					\
+	result.point  = q_##type##_rectangle_center(object);					\
 	result.radius = q_##type##_minimum(object.size.x, object.size.y) / _(2.0);		\
 	return result;										\
 	}											\

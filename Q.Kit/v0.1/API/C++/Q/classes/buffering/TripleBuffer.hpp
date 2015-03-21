@@ -55,7 +55,7 @@ namespace QKit {class TripleBuffer {
 			if (!((flags = this->flags) & 64)) return NULL;
 			new_flags = (flags & 48) | ((flags & 3) << 2) | ((flags & 12) >> 2);
 			}
-			while (!q_uint8_atomic_set_if_equal(&this->flags, flags, new_flags));
+		while (!q_uint8_atomic_set_if_equal(&this->flags, flags, new_flags));
 
 		return this->buffers[new_flags & 3];;
 		}
