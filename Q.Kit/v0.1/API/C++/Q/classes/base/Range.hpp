@@ -21,23 +21,26 @@ namespace QKit {class Range : public QRange {
 	inline Range(Size index, Size size)
 		{this->index = index; this->size = size;}
 
-	inline Boolean contains(Range range)
+	inline Boolean contains(const Range range) const
 		{return range.index >= index && range.index + range.size <= index + size;}
 
-	inline Boolean collides(Range range)
+	inline Boolean collides(const Range range) const
 		{return index < range.index + range.size && range.index < index + size;}
 
-	inline Boolean is_zero()
+	inline Boolean is_zero() const
 		{return index == 0 && size == 0;}
 
-	inline Size end()
+	inline Size end() const
 		{return index + size;}
 
-	inline Boolean contains_index(Size index)
+	inline Boolean contains_index(Size index) const
 		{return index >= this->index && index < this->index + this->size;}
 
+	inline Boolean operator ==(const Range range) const
+		{return index == range.index && size == range.size;}
 
-	inline Range operator &(Range range)
+
+	inline Range operator &(const Range range) const
 		{
 		Size index = (this->index > range.index) ? this->index : range.index;
 
@@ -48,7 +51,29 @@ namespace QKit {class Range : public QRange {
 		}
 
 
-	inline Range operator |(Range range)
+	inline Range &operator &=(const Range range)
+		{
+		Size index = (this->index > range.index) ? this->index : range.index;
+
+		Size minimum = q_value_minimum(SIZE)
+			(this->index + this->size, range.index + range.size);
+
+		if (minimum > index)
+			{
+			this->index = index;
+			this->size  = minimum - index;
+			}
+
+		else	{
+			this->index = 0;
+			this->size  = 0;
+			}
+
+		return *this;
+		}
+
+
+	inline Range operator |(const Range range) const
 		{
 		Size	index	  = (this->index < range.index) ? this->index : range.index,
 			a_maximum = this->index + this->size,
@@ -56,6 +81,18 @@ namespace QKit {class Range : public QRange {
 
 		return Range(index, ((a_maximum > b_maximum) ? a_maximum : b_maximum) - index);
 		}
+
+
+	inline Range &operator |=(const Range range)
+		{
+		Size	a_maximum = this->index + this->size,
+			b_maximum = range.index + range.size;
+
+		if (range.index < this->index) this->index = range.index;
+		this->size = ((a_maximum > b_maximum) ? a_maximum : b_maximum) - this->index;
+		return *this;
+		}
+
 
 };}
 

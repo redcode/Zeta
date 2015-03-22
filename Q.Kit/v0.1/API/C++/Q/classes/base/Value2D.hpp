@@ -10,5 +10,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Q_classes_base_Value2D_HPP__
 
 
-
 #endif // __Q_classes_base_Value2D_HPP__

@@ -66,7 +66,7 @@ Q_INLINE Q3D##Type q_3d_##type##_subtract_3(Q3D##Type a, Q3D##Type b, Q3D##Type 
 	{return q_3d_##type(a.x - b.x - c.x, a.y - b.y - c.y, a.z - b.z - c.z);}		\
 												\
 												\
-Q_INLINE Q3D##Type q_3d_##type##_subtract_4(Q3D##Type a, Q3D##Type b, Q3D##Type c, Q3D##Type d)	\										\
+Q_INLINE Q3D##Type q_3d_##type##_subtract_4(Q3D##Type a, Q3D##Type b, Q3D##Type c, Q3D##Type d)	\
 	{											\
 	return q_3d_##type									\
 		(a.x - b.x - c.x - d.x, a.y - b.y - c.y - d.y, a.z - b.z - c.z - d.z);		\
@@ -204,7 +204,7 @@ Q_INLINE Q3D##Type q_3d_##type##_clamp(Q3D##Type object, Q3D##Type minimum, Q3D#
 	}											\
 												\
 												\
-Q_INLINE Q3D##Type q_3d_##type##_cube_clamp(Q3D##Type object, q##type minimum, q##type maximum)	\										\
+Q_INLINE Q3D##Type q_3d_##type##_cube_clamp(Q3D##Type object, q##type minimum, q##type maximum)	\
 	{											\
 	return q_3d_##type									\
 		(q_##type##_clamp(object.x, minimum, maximum),					\

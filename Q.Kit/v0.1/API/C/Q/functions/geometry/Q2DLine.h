@@ -30,8 +30,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_IMPLEMENTATION_2D_LINE_SEGMENT(Type, type, _)						\
 												\
 												\
-Q_INLINE qboolean q_2d_##type##_line_segment_collide(Q2D##Type##Line a, Q2D##Type##Line b	\
-)												\
+Q_INLINE qboolean q_2d_##type##_line_segment_collide(Q2D##Type##Line a, Q2D##Type##Line b)	\
 	{											\
 	Q2D##Type d  = q_2d_##type##_subtract(b.a, a.a);					\
 	Q2D##Type va = q_2d_##type##_subtract(a.b, a.a);					\

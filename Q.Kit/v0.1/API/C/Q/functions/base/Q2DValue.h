@@ -172,11 +172,7 @@ Q_INLINE Q2D##Type q_2d_##type##_clamp(Q2D##Type object, Q2D##Type minimum, Q2D#
 	}											\
 												\
 												\
-Q_INLINE Q2D##Type q_2d_##type##_square_clamp(							\
-	Q2D##Type object,									\
-	q##type	  minimum,									\
-	q##type	  maximum									\
-)												\
+Q_INLINE Q2D##Type q_2d_##type##_square_clamp(Q2D##Type object,q##type minimum, q##type maximum)\
 	{											\
 	return q_2d_##type									\
 		(q_##type##_clamp(object.x, minimum, maximum),					\
