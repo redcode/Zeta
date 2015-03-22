@@ -382,6 +382,13 @@ Q_INLINE qboolean q_3d_##type##_is_almost_zero(Q3D##Type object)			\
 	}										\
 											\
 											\
+Q_INLINE qboolean q_3d_##type##_has_finite(Q3D##Type object)				\
+	{										\
+	return	q_##type##_is_finite(object.x) ||					\
+		q_##type##_is_finite(object.y) ||					\
+		q_##type##_is_finite(object.z);						\
+	}										\
+											\
 											\
 Q_INLINE qboolean q_3d_##type##_has_infinity(Q3D##Type object)				\
 	{										\
@@ -405,7 +412,6 @@ Q_INLINE qboolean q_3d_##type##_has_almost_zero(Q3D##Type object)			\
 		q_##type##_is_almost_zero(object.y) ||					\
 		q_##type##_is_almost_zero(object.z);					\
 	}										\
-											\
 											\
 											\
 Q_INLINE Q3D##Type q_3d_##type##_reciprocal(Q3D##Type object)				\

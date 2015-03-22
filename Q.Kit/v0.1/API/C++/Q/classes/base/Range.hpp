@@ -39,6 +39,9 @@ namespace QKit {class Range : public QRange {
 	inline Boolean operator ==(const Range range) const
 		{return index == range.index && size == range.size;}
 
+	inline Boolean operator ==(Size number) const
+		{return index == number && size == number;}
+
 
 	inline Range operator &(const Range range) const
 		{

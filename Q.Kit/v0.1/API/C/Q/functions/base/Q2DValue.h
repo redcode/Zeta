@@ -402,6 +402,10 @@ Q_INLINE qboolean q_2d_##type##_is_almost_zero(Q2D##Type object)				\
 	{return q_##type##_is_almost_zero(object.x) && q_##type##_is_almost_zero(object.y);}	\
 												\
 												\
+Q_INLINE qboolean q_2d_##type##_has_finite(Q2D##Type object)					\
+	{return q_##type##_is_finite(object.x) || q_##type##_is_finite(object.y);}		\
+												\
+												\
 Q_INLINE qboolean q_2d_##type##_has_infinity(Q2D##Type object)					\
 	{return q_##type##_is_infinity(object.x) || q_##type##_is_infinity(object.y);}		\
 												\
