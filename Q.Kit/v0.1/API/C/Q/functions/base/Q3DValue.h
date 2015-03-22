@@ -33,7 +33,7 @@ Q_INLINE void q_3d_##type##_swap(Q3D##Type *a, Q3D##Type *b)					\
 												\
 												\
 Q_INLINE qboolean q_3d_##type##_contains(Q3D##Type a, Q3D##Type b)				\
-	{return b.x <= a.x && b.y <= a.y && b.z <= a.z;}					\
+	{return a.x >= b.x && a.y >= b.y && a.z >= b.z;}					\
 												\
 												\
 Q_INLINE Q3D##Type q_3d_##type##_add(Q3D##Type a, Q3D##Type b)					\

@@ -26,7 +26,7 @@ Q_INLINE void q_range_swap(QRange *a, QRange *b)
 
 
 Q_INLINE qboolean q_range_contains(QRange a, QRange b)
-	{return b.index >= a.index && b.index + b.size <= a.index + a.size;}
+	{return a.index <= b.index && a.index + a.size >= b.index + b.size;}
 
 
 Q_INLINE qboolean q_range_collide(QRange a, QRange b)

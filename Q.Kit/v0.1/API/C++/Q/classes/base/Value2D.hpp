@@ -9,5 +9,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Q_classes_base_Value2D_HPP__
 #define __Q_classes_base_Value2D_HPP__
 
+#include <Q/types/base.hpp>
+
+namespace QKit {class Value2D : public Q2D {
+
+
+	inline Boolean operator ==(const Value2D value) const
+		{return x == value.x && y == value.y;}
+
+
+	inline Boolean contains(const Value2D value) const
+		{return x >= value.x && y >= value.y;}
+	
+};}
 
 #endif // __Q_classes_base_Value2D_HPP__

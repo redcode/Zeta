@@ -32,7 +32,7 @@ Q_INLINE void q_2d_##type##_swap(Q2D##Type *a, Q2D##Type *b)					\
 												\
 												\
 Q_INLINE qboolean q_2d_##type##_contains(Q2D##Type a, Q2D##Type b)				\
-	{return b.x <= a.x && b.y <= a.y;}							\
+	{return a.x >= b.x && a.y >= b.y;}							\
 												\
 												\
 Q_INLINE Q2D##Type q_2d_##type##_add(Q2D##Type a, Q2D##Type b)					\
