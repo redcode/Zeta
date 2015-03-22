@@ -109,48 +109,35 @@ namespace QKit {class Value2D : public Q2D {
 
 	// MARK: - Operations for real types only
 
+	static inline Boolean are_almost_equal(const Value2D a, const Value2D b)
+		{return q_are_almost_equal(a.x, b.x) && q_are_almost_equal(a.y, b.y);}
 
-inline Boolean q_2d_##type##_are_almost_equal(Q2D##Type a, Q2D##Type b)			\
-	{return q_##type##_are_almost_equal(a.x, b.x) && q_##type##_are_almost_equal(a.y, b.y);}\
-												\
-												\
-inline Boolean q_2d_##type##_are_perpendicular(Q2D##Type a, Q2D##Type b)			\
-	{return q_##type##_absolute(q_2d_##type##_dot_product(a, b)) <= epsilon;}		\
-												\
-												\
+	static inline Boolean are_perpendicular(const Value2D a, const Value2D b)
+		{return q_absolute(q_2d_dot_product(a, b)) <= Q_EPSILON;}
 
 
+	inline Value2D lerp(const Value2D value, Real t) const
+		{return Value(q_lerp(x, value.x, t), q_lerp(y, value.y, t));}
 
-inline Value2D lerp(Q2D##Type a, Q2D##Type b, q##type t)			\
-	{return q_2d_##type(q_##type##_lerp(a.x, b.x, t), q_##type##_lerp(a.y, b.y, t));}	\
-												\
-												\
-Q_INLINE Q2D##Type q_2d_##type##_inverse_lerp(Q2D##Type a, Q2D##Type b, q##type t)		\
-	{											\
-	return q_2d_##type									\
-		(q_##type##_inverse_lerp(a.x, b.x, t), q_##type##_inverse_lerp(a.y, b.y, t));	\
-	}											\
-												\
-												\
 
+	inline Value2D inverse_lerp(const Value2D value, Real t) const
+		{return Value2D(q_inverse_lerp(a.x, b.x, t), q_inverse_lerp(a.y, b.y, t));}
 
 
 	inline Boolean is_finite() const {return q_is_finite(x) && q_is_finite(y);}
 	inline Boolean is_infinity() const {return q_is_infinity(x) && q_is_infinity(y);}
 	inline Boolean is_nan() const {return q_is_nan(x) && q_is_nan(y);}
 	inline Boolean is_almost_zero() const {return qis_almost_zero(x) && q_is_almost_zero(y);}
+	inline Boolean has_finite() const {return q_is_finite(x) || q_is_finite(y);}
 	inline Boolean has_infinity() const {return q_is_infinity(x) || q_is_infinity(y);}
-
 	inline Boolean has_nan() const {return q_is_nan(x) || q_is_nan(y);}
 	inline Boolean has_almost_zero() const {return q_is_almost_zero(x) || q_is_almost_zero(y);}
 
+	inline Value2D reciprocal() const
+		{return Value2D(1.0 / x, 1.0 / y);}
 
-inline Boolean q_2d_##type##_reciprocal(Q2D##Type object)					\
-	{return q_2d_##type(_(1.0) / object.x, _(1.0) / object.y);}				\
-												\
-												\
-Q_INLINE Q2D##Type q_2d_##type##_square_clamp_01(Q2D##Type object)				\
-	{return q_2d_##type(q_##type##_clamp_01(object.x), q_##type##_clamp_01(object.y));}
+	inline Value2D square_clamp_01() const
+		{return Value2D(q_clamp_01(x), q_clamp_01(y));}
 
 	
 };}
