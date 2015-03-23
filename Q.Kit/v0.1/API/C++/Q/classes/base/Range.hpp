@@ -54,28 +54,6 @@ namespace QKit {class Range : public QRange {
 		}
 
 
-	inline Range &operator &=(Range range)
-		{
-		Size index = (this->index > range.index) ? this->index : range.index;
-
-		Size minimum = q_value_minimum(SIZE)
-			(this->index + this->size, range.index + range.size);
-
-		if (minimum > index)
-			{
-			this->index = index;
-			this->size  = minimum - index;
-			}
-
-		else	{
-			this->index = 0;
-			this->size  = 0;
-			}
-
-		return *this;
-		}
-
-
 	inline Range operator |(Range range) const
 		{
 		Size	index	  = (this->index < range.index) ? this->index : range.index,
@@ -86,16 +64,11 @@ namespace QKit {class Range : public QRange {
 		}
 
 
+	inline Range &operator &=(Range range)
+		{return *this = *this & range;}
+
 	inline Range &operator |=(Range range)
-		{
-		Size	a_maximum = this->index + this->size,
-			b_maximum = range.index + range.size;
-
-		if (range.index < this->index) this->index = range.index;
-		this->size = ((a_maximum > b_maximum) ? a_maximum : b_maximum) - this->index;
-		return *this;
-		}
-
+		{return *this = *this | range;}
 
 };}
 
