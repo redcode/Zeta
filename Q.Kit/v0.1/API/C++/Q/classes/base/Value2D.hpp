@@ -21,42 +21,42 @@ namespace QKit {class Value2D : public Q2D {
 	inline Value2D(Real scalar)
 		{x = scalar; y = scalar;}
 
-	inline Boolean operator ==(const Value2D value) const
+	inline Boolean operator ==(Value2D value) const
 		{return x == value.x && y == value.y;}
 
 	inline Boolean operator ==(Real scalar) const
 		{return x == scalar && y == scalar;}
 
-	inline Value2D operator +(const Value2D value) const {return Value2D(x + value.x, y + value.y);}
-	inline Value2D operator -(const Value2D value) const {return Value2D(x - value.x, y - value.y);}
-	inline Value2D operator *(const Value2D value) const {return Value2D(x * value.x, y * value.y);}
-	inline Value2D operator /(const Value2D value) const {return Value2D(x / value.x, y / value.y);}
+	inline Value2D operator +(Value2D value) const {return Value2D(x + value.x, y + value.y);}
+	inline Value2D operator -(Value2D value) const {return Value2D(x - value.x, y - value.y);}
+	inline Value2D operator *(Value2D value) const {return Value2D(x * value.x, y * value.y);}
+	inline Value2D operator /(Value2D value) const {return Value2D(x / value.x, y / value.y);}
 
 	inline Value2D operator +(Real scalar) const {return Value2D(x + scalar, y + scalar);}
 	inline Value2D operator -(Real scalar) const {return Value2D(x - scalar, y - scalar);}
 	inline Value2D operator *(Real scalar) const {return Value2D(x * scalar, y * scalar);}
 	inline Value2D operator /(Real scalar) const {return Value2D(x / scalar, y / scalar);}
 
-	inline Boolean contains(const Value2D value) const
+	inline Boolean contains(Value2D value) const
 		{return x >= value.x && y >= value.y;}
 
-	inline Real dot_product(const Value2D value) const
+	inline Real dot_product(Value2D value) const
 		{return x * value.x + y * value.y;}
 
-	inline Real cross_product(const Value2D value) const
+	inline Real cross_product(Value2D value) const
 		{return x * value.y - y * value.x;}
 
-	inline Value2D minimum(const Value2D value) const
+	inline Value2D minimum(Value2D value) const
 		{return Value2D(q_minimum(x, value.x), q_minimum(y, value.y));}
 
-	inline Value2D maximum(const Value2D value) const
+	inline Value2D maximum(Value2D value) const
 		{return Value2D(q_maximum(x, value.x), q_maximum(y, value.y));}
 
-	inline Value2D middle(const Value2D value) const
+	inline Value2D middle(Value2D value) const
 		{return Value2D((x + value.x) / 2, (y + value.y) / 2);}
 
 
-	inline Value2D fit(const Value2D value) const
+	inline Value2D fit(Value2D value) const
 		{
 		return y / x > value.y / value.x
 			? Value2D(x * value.y / y, value.y)
@@ -74,7 +74,7 @@ namespace QKit {class Value2D : public Q2D {
 	inline Real    squared_length() const {return x * x + y * y;}
 
 
-	inline Value2D clamp(const Value2D minimum, const Value2D maximum) const
+	inline Value2D clamp(Value2D minimum, Value2D maximum) const
 		{
 		return Value2D
 			(q_clamp(x, minimum.x, maximum.x),
@@ -109,18 +109,18 @@ namespace QKit {class Value2D : public Q2D {
 
 	// MARK: - Operations for real types only
 
-	static inline Boolean are_almost_equal(const Value2D a, const Value2D b)
+	static inline Boolean are_almost_equal(Value2D a, Value2D b)
 		{return q_are_almost_equal(a.x, b.x) && q_are_almost_equal(a.y, b.y);}
 
-	static inline Boolean are_perpendicular(const Value2D a, const Value2D b)
+	static inline Boolean are_perpendicular(Value2D a, Value2D b)
 		{return q_absolute(q_2d_dot_product(a, b)) <= Q_EPSILON;}
 
 
-	inline Value2D lerp(const Value2D value, Real t) const
+	inline Value2D lerp(Value2D value, Real t) const
 		{return Value(q_lerp(x, value.x, t), q_lerp(y, value.y, t));}
 
 
-	inline Value2D inverse_lerp(const Value2D value, Real t) const
+	inline Value2D inverse_lerp(Value2D value, Real t) const
 		{return Value2D(q_inverse_lerp(a.x, b.x, t), q_inverse_lerp(a.y, b.y, t));}
 
 

@@ -16,49 +16,45 @@ Released under the terms of the GNU Lesser General Public License v3. */
 									\
 									\
 Q_INLINE q##type *q_##type##_block_find_equal(				\
-	q##type* block,							\
+	q##type* const block,						\
 	qsize	 block_size,						\
 	q##type  value							\
 )									\
 	{								\
 	while (block_size--) if (*block++ == value) return block;	\
-									\
 	return NULL;							\
 	}								\
 									\
 									\
 Q_INLINE q##type *q_##type##_block_find_equal_backwards(		\
-	q##type* block,							\
+	q##type* const block,						\
 	qsize	 block_size,						\
 	q##type  value							\
 )									\
 	{								\
 	while (block_size--) if (*block-- == value) return block;	\
-									\
 	return NULL;							\
 	}								\
 									\
 									\
 Q_INLINE q##type *q_##type##_block_find_different(			\
-	q##type* block,							\
+	q##type* const block,						\
 	qsize	 block_size,						\
 	q##type  value							\
 )									\
 	{								\
 	while (block_size--) if (*block++ != value) return block;	\
-									\
 	return NULL;							\
 	}								\
 									\
 									\
 Q_INLINE q##type *q_##type##_block_find_different_backwards(		\
-	q##type* block,							\
+	q##type* const block,						\
 	qsize	 block_size,						\
 	q##type  value							\
 )									\
 	{								\
 	while (block_size--) if (*block-- != value) return block;	\
-									\
 	return NULL;							\
 	}
 

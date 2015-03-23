@@ -21,10 +21,10 @@ namespace QKit {class Range : public QRange {
 	inline Range(Size index, Size size)
 		{this->index = index; this->size = size;}
 
-	inline Boolean contains(const Range range) const
+	inline Boolean contains(Range range) const
 		{return range.index >= index && range.index + range.size <= index + size;}
 
-	inline Boolean collides(const Range range) const
+	inline Boolean collides(Range range) const
 		{return index < range.index + range.size && range.index < index + size;}
 
 	inline Boolean is_zero() const
@@ -36,14 +36,14 @@ namespace QKit {class Range : public QRange {
 	inline Boolean contains_index(Size index) const
 		{return index >= this->index && index < this->index + this->size;}
 
-	inline Boolean operator ==(const Range range) const
+	inline Boolean operator ==(Range range) const
 		{return index == range.index && size == range.size;}
 
 	inline Boolean operator ==(Size number) const
 		{return index == number && size == number;}
 
 
-	inline Range operator &(const Range range) const
+	inline Range operator &(Range range) const
 		{
 		Size index = (this->index > range.index) ? this->index : range.index;
 
@@ -54,7 +54,7 @@ namespace QKit {class Range : public QRange {
 		}
 
 
-	inline Range &operator &=(const Range range)
+	inline Range &operator &=(Range range)
 		{
 		Size index = (this->index > range.index) ? this->index : range.index;
 
@@ -76,7 +76,7 @@ namespace QKit {class Range : public QRange {
 		}
 
 
-	inline Range operator |(const Range range) const
+	inline Range operator |(Range range) const
 		{
 		Size	index	  = (this->index < range.index) ? this->index : range.index,
 			a_maximum = this->index + this->size,
@@ -86,7 +86,7 @@ namespace QKit {class Range : public QRange {
 		}
 
 
-	inline Range &operator |=(const Range range)
+	inline Range &operator |=(Range range)
 		{
 		Size	a_maximum = this->index + this->size,
 			b_maximum = range.index + range.size;

@@ -184,72 +184,24 @@ Q_INLINE Q2D##Type q_2d_##type##_yx(Q2D##Type object)						\
 	{return q_2d_##type(object.y, object.x);}						\
 												\
 												\
-Q_INLINE Q3D##Type q_2d_##type##_xy0(Q2D##Type object)						\
-	{return q_3d_##type(object.x, object.y, (q##type)0);}					\
-												\
-												\
-Q_INLINE Q3D##Type q_2d_##type##_xy1(Q2D##Type object)						\
-	{return q_3d_##type(object.x, object.y, (q##type)1);}					\
-												\
-												\
 Q_INLINE Q3D##Type q_2d_##type##_xyn(Q2D##Type object, q##type n)				\
 	{return q_3d_##type(object.x, object.y, n);}						\
-												\
-												\
-Q_INLINE Q3D##Type q_2d_##type##_x0y(Q2D##Type object)						\
-	{return q_3d_##type(object.x, (q##type)0, object.y);}					\
-												\
-												\
-Q_INLINE Q3D##Type q_2d_##type##_x1y(Q2D##Type object)						\
-	{return q_3d_##type(object.x, (q##type)1, object.y);}					\
 												\
 												\
 Q_INLINE Q3D##Type q_2d_##type##_xny(Q2D##Type object, q##type n)				\
 	{return q_3d_##type(object.x, n, object.y);}						\
 												\
 												\
-Q_INLINE Q3D##Type q_2d_##type##_0xy(Q2D##Type object)						\
-	{return q_3d_##type((q##type)0, object.x, object.y);}					\
-												\
-												\
-Q_INLINE Q3D##Type q_2d_##type##_1xy(Q2D##Type object)						\
-	{return q_3d_##type((q##type)1, object.x, object.y);}					\
-												\
-												\
 Q_INLINE Q3D##Type q_2d_##type##_nxy(Q2D##Type object, q##type n)				\
 	{return q_3d_##type(n, object.x, object.y);}						\
-												\
-												\
-Q_INLINE Q3D##Type q_2d_##type##_yx0(Q2D##Type object)						\
-	{return q_3d_##type(object.y, object.x, (q##type)0);}					\
-												\
-												\
-Q_INLINE Q3D##Type q_2d_##type##_yx1(Q2D##Type object)						\
-	{return q_3d_##type(object.y, object.x, (q##type)1);}					\
 												\
 												\
 Q_INLINE Q3D##Type q_2d_##type##_yxn(Q2D##Type object, q##type n)				\
 	{return q_3d_##type(object.y, object.x, n);}						\
 												\
 												\
-Q_INLINE Q3D##Type q_2d_##type##_y0x(Q2D##Type object)						\
-	{return q_3d_##type(object.y, (q##type)0, object.x);}					\
-												\
-												\
-Q_INLINE Q3D##Type q_2d_##type##_y1x(Q2D##Type object)						\
-	{return q_3d_##type(object.y, (q##type)1, object.x);}					\
-												\
-												\
 Q_INLINE Q3D##Type q_2d_##type##_ynx(Q2D##Type object, q##type n)				\
 	{return q_3d_##type(object.y, n, object.x);}						\
-												\
-												\
-Q_INLINE Q3D##Type q_2d_##type##_0yx(Q2D##Type object)						\
-	{return q_3d_##type((q##type)0, object.y, object.x);}					\
-												\
-												\
-Q_INLINE Q3D##Type q_2d_##type##_1yx(Q2D##Type object)						\
-	{return q_3d_##type((q##type)1, object.y, object.x);}					\
 												\
 												\
 Q_INLINE Q3D##Type q_2d_##type##_nyx(Q2D##Type object, q##type n)				\
@@ -305,23 +257,11 @@ Q_IMPLEMENTATION_2D_NATURAL(LDouble, ldouble)
 #define q_2d_value_clamp(	      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _clamp		   )
 #define q_2d_value_square_clamp(      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _square_clamp	   )
 #define q_2d_value_yx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _yx		   )
-#define q_2d_value_xy0(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _xy0		   )
-#define q_2d_value_xy1(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _xy1		   )
 #define q_2d_value_xyn(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _xyn		   )
-#define q_2d_value_x0y(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _x0y		   )
-#define q_2d_value_x1y(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _x1y		   )
 #define q_2d_value_xny(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _xny		   )
-#define q_2d_value_0xy(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _0xy		   )
-#define q_2d_value_1xy(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _1xy		   )
 #define q_2d_value_nxy(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _nxy		   )
-#define q_2d_value_yx0(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _yx0		   )
-#define q_2d_value_yx1(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _yx1		   )
 #define q_2d_value_yxn(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _yxn		   )
-#define q_2d_value_y0x(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _y0x		   )
-#define q_2d_value_y1x(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _y1x		   )
 #define q_2d_value_ynx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _ynx		   )
-#define q_2d_value_0yx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _0yx		   )
-#define q_2d_value_1yx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _1yx		   )
 #define q_2d_value_nyx(		      TYPE) Q_JOIN_3(q_2d_, Q_##TYPE##_FIXED_TYPE_name, _nyx		   )
 
 
@@ -487,23 +427,11 @@ Q_IMPLEMENTATION_2D_REAL(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_EPSILON)
 #define q_2d_square_clamp	Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _square_clamp	   )
 #define q_2d_square_clamp_01	Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _square_clamp_01   )
 #define q_2d_yx			Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _yx		   )
-#define q_2d_xy0		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _xy0		   )
-#define q_2d_xy1		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _xy1		   )
 #define q_2d_xyn		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _xyn		   )
-#define q_2d_x0y		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _x0y		   )
-#define q_2d_x1y		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _x1y		   )
 #define q_2d_xny		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _xny		   )
-#define q_2d_0xy		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _0xy		   )
-#define q_2d_1xy		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _1xy		   )
 #define q_2d_nxy		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _nxy		   )
-#define q_2d_yx0		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _yx0		   )
-#define q_2d_yx1		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _yx1		   )
 #define q_2d_yxn		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _yxn		   )
-#define q_2d_y0x		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _y0x		   )
-#define q_2d_y1x		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _y1x		   )
 #define q_2d_ynx		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _ynx		   )
-#define q_2d_0yx		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _0yx		   )
-#define q_2d_1yx		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _1yx		   )
 #define q_2d_nyx		Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _nyx		   )
 
 #endif /* __Q_functions_base_Q2DValue_H__ */
