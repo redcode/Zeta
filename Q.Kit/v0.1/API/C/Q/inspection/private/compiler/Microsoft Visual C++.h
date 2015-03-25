@@ -46,8 +46,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Q_COMPILER_C_ATTRIBUTE_THREAD_LOCAL	 __declspec(thread)
 #define Q_COMPILER_C_ATTRIBUTE_PRIVATE		 static
-#define Q_COMPILER_C_ATTRIBUTE_PUBLIC		 __declspec(dllexport)
 #define Q_COMPILER_C_ATTRIBUTE_API		 __declspec(dllimport)
+#define Q_COMPILER_C_ATTRIBUTE_API_EXPORT	 __declspec(dllexport)
 #define Q_COMPILER_C_ATTRIBUTE_STRICT_SIZE_BEGIN __pragma(pack(push, 1))
 #define Q_COMPILER_C_ATTRIBUTE_STRICT_SIZE_END	 __pragma(pack(pop))
 

@@ -37,7 +37,7 @@ Q_INLINE qboolean q_##type##_aabr_collide(Q##Type##AABR a, Q##Type##AABR b)			\
 												\
 Q_INLINE Q##Type##AABR q_##type##_aabr_intersection(Q##Type##AABR a, Q##Type##AABR b)		\
 	{											\
-	q##type x1, x2, y1, y2, z1, z2;								\
+	q##type x1, x2, y1, y2;									\
 												\
 	return	(x1 = q_##type##_maximum(a.a.x, b.a.x)) <=					\
 		(x2 = q_##type##_minimum(a.b.x, b.b.x)) &&					\

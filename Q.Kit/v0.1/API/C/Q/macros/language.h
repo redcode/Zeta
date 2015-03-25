@@ -39,7 +39,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Q_COMPILER_HAS_C_ATTRIBUTE(THREAD_LOCAL)
 #	define Q_THREAD_LOCAL Q_COMPILER_C_ATTRIBUTE(THREAD_LOCAL)
-#elif Q_C_HAS_TYPE_QUALIFIER(THREAD_LOCAL)
+#elif Q_LANGUAGE_HAS_TYPE_QUALIFIER(THREAD_LOCAL)
 #	define Q_THREAD_LOCAL _Thread_local
 #endif
 

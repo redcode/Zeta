@@ -89,15 +89,15 @@ Q_DEFINE_STRICT_STRUCTURE (
 ) QEmulatorSlotLinkage;
 
 Q_DEFINE_STRICT_STRUCTURE (
-	qsize		     dependency_count;
-	QEmulatorDependency* dependencies;
-	qsize		     export_count;
-	QEmulatorExport*     exports;
+	qsize			   dependency_count;
+	QEmulatorDependency const* dependencies;
+	qsize			   export_count;
+	QEmulatorExport const*     exports;
 
-	struct {qsize		      size;
-		qsize		      state_offset;
-		qsize		      slot_linkage_count;
-		QEmulatorSlotLinkage* slot_linkages;
+	struct {qsize			    size;
+		qsize			    state_offset;
+		qsize			    slot_linkage_count;
+		QEmulatorSlotLinkage const* slot_linkages;
 	} object;
 ) QCPUEmulatorABI;
 

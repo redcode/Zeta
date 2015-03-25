@@ -9,10 +9,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Q_keys_science_magnetism_H__
 #define __Q_keys_science_magnetism_H__
 
-#define Q_MAGNETIC_TYPE_DIAMAGNETIC	  1
-#define Q_MAGNETIC_TYPE_PARAMAGNETIC	  2
-#define Q_MAGNETIC_TYPE_ANTIFERROMAGNETIC 3
-#define Q_MAGNETIC_TYPE_FERROMAGNETIC	  4
+#define Q_MAGNETIC_TYPE_DIAMAGNETIC	  0
+#define Q_MAGNETIC_TYPE_PARAMAGNETIC	  1
+#define Q_MAGNETIC_TYPE_ANTIFERROMAGNETIC 2
+#define Q_MAGNETIC_TYPE_FERROMAGNETIC	  3
 
 #define Q_KEY_BITS_ELECTRICAL_TYPE 8
 #define Q_KEY_LAST_MAGNETIC_TYPE Q_MAGNETIC_TYPE_FERROMAGNETIC

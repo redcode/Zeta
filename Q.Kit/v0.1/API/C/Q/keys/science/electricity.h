@@ -9,9 +9,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Q_keys_science_electricity_H__
 #define __Q_keys_science_electricity_H__
 
-#define Q_ELECTRICAL_TYPE_CONDUCTOR	1
-#define Q_ELECTRICAL_TYPE_SEMICONDUCTOR 2
-#define Q_ELECTRICAL_TYPE_INSULATOR	3
+#define Q_ELECTRICAL_TYPE_CONDUCTOR	0
+#define Q_ELECTRICAL_TYPE_SEMICONDUCTOR 1
+#define Q_ELECTRICAL_TYPE_INSULATOR	2
 
 #define Q_KEY_BITS_ELECTRICAL_TYPE 8
 #define Q_KEY_LAST_ELECTRICAL_TYPE Q_ELECTRICAL_TYPE_INSULATOR
