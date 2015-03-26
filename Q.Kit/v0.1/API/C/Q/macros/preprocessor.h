@@ -3,6 +3,7 @@
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
+Copyright © 1989 КГБ СССР.
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Copyright © 2006 Laurent Deniau <laurent.deniau@cern.ch>.
 Released under the terms of the GNU Lesser General Public License v3. */
