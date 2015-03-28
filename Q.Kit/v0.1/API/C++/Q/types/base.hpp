@@ -60,6 +60,7 @@ namespace QKit {
 	typedef qinteger		Integer;
 	typedef qreal			Real;
 	typedef qboolean		Boolean;
+
 	typedef Int			Status;
 };
 

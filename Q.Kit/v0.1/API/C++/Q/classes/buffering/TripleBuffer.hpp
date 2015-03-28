@@ -13,8 +13,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Q/types/buffering.h>
 #include <Q/functions/base/value.h>
 
+namespace QKit {class TripleBuffer;}
 
-namespace QKit {class TripleBuffer {
+
+class QKit::TripleBuffer : public QTripleBuffer {
 
 	public:
 	inline TripleBuffer() {}
@@ -60,7 +62,7 @@ namespace QKit {class TripleBuffer {
 		return this->buffers[new_flags & 3];;
 		}
 
-};}
+};
 
 
 #endif // __Q_classes_buffering_TripleBuffer_HPP__

@@ -16,8 +16,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define q_cpu_relax() asm volatile("pause\n": : :"memory")
 #endif
 
+namespace QKit {class RingBuffer;}
 
-namespace QKit {class RingBuffer : public QRingBuffer
+
+class QKit::RingBuffer : public QRingBuffer {
 
 	public:
 	inline RingBuffer() {}
@@ -85,7 +87,7 @@ namespace QKit {class RingBuffer : public QRingBuffer
 		return (UInt8 *)buffers + consumption_index * buffer_size;
 		}
 
-};}
+};
 
 
 #endif // __Q_classes_buffering_RingBuffer_HPP__

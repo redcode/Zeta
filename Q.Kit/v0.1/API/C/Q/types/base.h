@@ -3,7 +3,6 @@
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
-Copyright © 1990 КГБ СССР.
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -1745,7 +1744,7 @@ Q_DEFINE_STRICT_UNION_BEGIN
 Q_DEFINE_STRICT_UNION_END QPointer;
 
 /* MARK: - Casts */
-				
+
 #define Q_2D_UCHAR(  p) ((Q2DUChar   *)(p))
 #define Q_2D_USHORT( p) ((Q2DUShort  *)(p))
 #define Q_2D_UINT(   p) ((Q2DUInt    *)(p))

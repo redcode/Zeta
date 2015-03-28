@@ -13,6 +13,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace QKit {class Value2D : public Q2D {
 
+
+class QKit::Value2D : public Q2D {
+
 	inline Value2D() {}
 
 	inline Value2D(Real x, Real y)
@@ -139,7 +142,8 @@ namespace QKit {class Value2D : public Q2D {
 	inline Value2D square_clamp_01() const
 		{return Value2D(q_clamp_01(x), q_clamp_01(y));}
 
-	
+
 };}
+
 
 #endif // __Q_classes_base_Value2D_HPP__

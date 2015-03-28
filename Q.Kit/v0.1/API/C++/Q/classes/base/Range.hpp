@@ -12,8 +12,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Q/types/base.hpp>
 #include <Q/functions/base/value.h>
 
+namespace QKit {class Range;}
 
-namespace QKit {class Range : public QRange {
+
+class QKit::Range : public QRange {
 
 	public:
 	inline Range() {}
@@ -70,7 +72,7 @@ namespace QKit {class Range : public QRange {
 	inline Range &operator |=(Range range)
 		{return *this = *this | range;}
 
-};}
+};
 
 
 #endif // __Q_classes_base_Range_HPP__
