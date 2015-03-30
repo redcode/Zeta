@@ -16,7 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 									\
 									\
 Q_INLINE q##type *q_##type##_block_find_equal(				\
-	q##type* const block,						\
+	q##type* block,							\
 	qsize	 block_size,						\
 	q##type  value							\
 )									\
@@ -27,7 +27,7 @@ Q_INLINE q##type *q_##type##_block_find_equal(				\
 									\
 									\
 Q_INLINE q##type *q_##type##_block_find_equal_backwards(		\
-	q##type* const block,						\
+	q##type* block,							\
 	qsize	 block_size,						\
 	q##type  value							\
 )									\
@@ -38,7 +38,7 @@ Q_INLINE q##type *q_##type##_block_find_equal_backwards(		\
 									\
 									\
 Q_INLINE q##type *q_##type##_block_find_different(			\
-	q##type* const block,						\
+	q##type* block,							\
 	qsize	 block_size,						\
 	q##type  value							\
 )									\
@@ -49,7 +49,7 @@ Q_INLINE q##type *q_##type##_block_find_different(			\
 									\
 									\
 Q_INLINE q##type *q_##type##_block_find_different_backwards(		\
-	q##type* const block,						\
+	q##type* block,							\
 	qsize	 block_size,						\
 	q##type  value							\
 )									\
