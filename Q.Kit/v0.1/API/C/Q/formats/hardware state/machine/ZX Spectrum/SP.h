@@ -19,7 +19,7 @@ Released under the terms of the GNU Lesser General Public License v3.
   | " There are two kinds of .sp files: 'old' and 'new'.		       |
   | The old version is always 49184 bytes long and is created by a leaked copy |
   | of the VGASpec emulator.						       |
-  | Subsequently Pedro Gimeno (the author of VGASpec) renamed it to 'SPECTRUM' |
+  | Subsequently Pedro Gimeno (the author of VGASpec) renamed it to 'Spectrum' |
   | (but it's colloquially known as the 'Spanish Spectrum emulator') and added |
   | a header in the snapshot to break backward compatibility: the new format   |
   | supports both 16K and 48K images and it's 16422 or 49190 bytes long. "     |

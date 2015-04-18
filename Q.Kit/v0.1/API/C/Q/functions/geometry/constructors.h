@@ -13,71 +13,71 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Q_LANGUAGE_HAS(COMPOUND_LITERAL)
 
-#	define q_2d_float_vector(  a_x, a_y, b_x, b_y)		 ((Q2DFloatVector  ){{a_x, a_y}, {b_x, b_y}})
-#	define q_2d_double_vector( a_x, a_y, b_x, b_y)		 ((Q2DDoubleVector ){{a_x, a_y}, {b_x, b_y}})
-#	define q_2d_ldouble_vector(a_x, a_y, b_x, b_y)		 ((Q2DLDoubleVector){{a_x, a_y}, {b_x, b_y}})
+#	define q_2d_vector_float(  a_x, a_y, b_x, b_y)		 ((Q2DVectorFloat  ){{a_x, a_y}, {b_x, b_y}})
+#	define q_2d_vector_double( a_x, a_y, b_x, b_y)		 ((Q2DVectorDouble ){{a_x, a_y}, {b_x, b_y}})
+#	define q_2d_vector_ldouble(a_x, a_y, b_x, b_y)		 ((Q2DVectorLDouble){{a_x, a_y}, {b_x, b_y}})
 
-#	define q_float_circle(	x, y, radius)			 ((QFloatCircle  ){{x, y}, radius})
-#	define q_double_circle(	x, y, radius)			 ((QDoubleCircle ){{x, y}, radius})
-#	define q_ldouble_circle(x, y, radius)			 ((QLDoubleCircle){{x, y}, radius})
+#	define q_circle_float(	x, y, radius)			 ((QCircleFloat  ){{x, y}, radius})
+#	define q_circle_double(	x, y, radius)			 ((QCircleDouble ){{x, y}, radius})
+#	define q_circle_ldouble(x, y, radius)			 ((QCircleLDouble){{x, y}, radius})
 
-#	define q_float_rectangle(  x, y, size_x, size_y)	 ((QFloatRectangle  ){{x, y}, {size_x, size_y}})
-#	define q_double_rectangle( x, y, size_x, size_y)	 ((QDoubleRectangle ){{x, y}, {size_x, size_y}})
-#	define q_ldouble_rectangle(x, y, size_x, size_y)	 ((QLDoubleRectangle){{x, y}, {size_x, size_y}})
+#	define q_rectangle_float(  x, y, size_x, size_y)	 ((QRectangleFloat  ){{x, y}, {size_x, size_y}})
+#	define q_rectangle_double( x, y, size_x, size_y)	 ((QRectangleDouble ){{x, y}, {size_x, size_y}})
+#	define q_rectangle_ldouble(x, y, size_x, size_y)	 ((QRectangleLDouble){{x, y}, {size_x, size_y}})
 
-#	define q_3d_float_vector(  a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DFloatVector  ){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
-#	define q_3d_double_vector( a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DDoubleVector ){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
-#	define q_3d_ldouble_vector(a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DLDoubleVector){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#	define q_3d_vector_float(  a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DVectorFloat  ){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#	define q_3d_vector_double( a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DVectorDouble ){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#	define q_3d_vector_ldouble(a_x, a_y, a_z, b_x, b_y, b_z) ((Q3DVectorLDouble){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
-#	define q_float_sphere(	x, y, z, radius)		 ((QFloatCircle  ){{x, y, z}, radius})
-#	define q_double_sphere(	x, y, z, radius)		 ((QDoubleCircle ){{x, y, z}, radius})
-#	define q_ldouble_sphere(x, y, z, radius)		 ((QLDoubleCircle){{x, y, z}, radius})
+#	define q_sphere_float(	x, y, z, radius)		 ((QCircleFloat  ){{x, y, z}, radius})
+#	define q_sphere_double(	x, y, z, radius)		 ((QCircleDouble ){{x, y, z}, radius})
+#	define q_sphere_ldouble(x, y, z, radius)		 ((QCircleLDouble){{x, y, z}, radius})
 
-#	define q_float_box(  x, y, z, size_x, size_y, size_z)	 ((QFloatBox  ){{x, y, z}, {size_x, size_y, size_z}})
-#	define q_double_box( x, y, z, size_x, size_y, size_z)	 ((QDoubleBox ){{x, y, z}, {size_x, size_y, size_z}})
-#	define q_ldouble_box(x, y, z, size_x, size_y, size_z)	 ((QLDoubleBox){{x, y, z}, {size_x, size_y, size_z}})
+#	define q_box_float(  x, y, z, size_x, size_y, size_z)	 ((QBoxFloat  ){{x, y, z}, {size_x, size_y, size_z}})
+#	define q_box_double( x, y, z, size_x, size_y, size_z)	 ((QBoxDouble ){{x, y, z}, {size_x, size_y, size_z}})
+#	define q_box_ldouble(x, y, z, size_x, size_y, size_z)	 ((QBoxLDouble){{x, y, z}, {size_x, size_y, size_z}})
 
 #else
 
 #	define Q_IMPLEMENTATION_GEOMETRY_CONSTRUCTORS(Type, type)		\
 										\
 										\
-	Q_INLINE Q2D##Type##Vector q_2d_##type##_vector(			\
+	Q_INLINE Q2DVector##Type q_2dvector_##type(				\
 		q##type a_x,							\
 		q##type a_y,							\
 		q##type b_x,							\
 		q##type b_y							\
 	)									\
 		{								\
-		Q2D##Type##Vector vector = {{a_x, a_y}, {b_x, b_y}};		\
+		Q2DVector##Type vector = {{a_x, a_y}, {b_x, b_y}};		\
 		return vector;							\
 		}								\
 										\
 										\
-	Q_INLINE Q##Type##Circle q_##type##_circle(				\
+	Q_INLINE QCircle##Type q_circle_##type(					\
 		q##type x,							\
 		q##type y,							\
 		q##type radius							\
 	)									\
 		{								\
-		Q##Type##Circle circle = {{x, y}, radius};			\
+		QCircle##Type circle = {{x, y}, radius};			\
 		return circle;							\
 		}								\
 										\
 										\
-	Q_INLINE Q##Type##Rectangle q_##type##_rectangle(			\
+	Q_INLINE QRectangle##Type q_rectangle_##type(				\
 		q##type x,							\
 		q##type y,							\
 		q##type size_x,							\
 		q##type size_y							\
 	)									\
 		{								\
-		Q##Type##Rectangle rectangle = {{x, y}, {size_x, size_y}};	\
+		QRectangle##Type rectangle = {{x, y}, {size_x, size_y}};	\
 		return rectangle;						\
 		}								\
 										\
 										\
-	Q_INLINE Q3D##Type##Vector q_3d_##type##_vector(			\
+	Q_INLINE Q3DVector##Type q_3d_vector_##type(				\
 		q##type a_x,							\
 		q##type a_y,							\
 		q##type a_z,							\
@@ -86,24 +86,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		q##type b_z							\
 	)									\
 		{								\
-		Q3D##Type##Vector vector = {{a_x, a_y, a_z}, {b_x, b_y, b_z}};	\
+		Q3DVector##Type vector = {{a_x, a_y, a_z}, {b_x, b_y, b_z}};	\
 		return vector;							\
 		}								\
 										\
 										\
-	Q_INLINE Q##Type##Sphere q_##type##_sphere(				\
+	Q_INLINE QSphere##Type q_sphere_##type(					\
 		q##type x,							\
 		q##type y,							\
 		q##type z,							\
 		q##type radius							\
 	)									\
 		{								\
-		Q##Type##Sphere sphere = {{x, y, z}, radius};			\
+		QSphere##Type sphere = {{x, y, z}, radius};			\
 		return sphere;							\
 		}								\
 										\
 										\
-	Q_INLINE Q##Type##Box q_##type##_box(					\
+	Q_INLINE QBox##Type q_box_##type(					\
 		q##type x,							\
 		q##type y,							\
 		q##type z,							\
@@ -112,7 +112,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		q##type size_z							\
 	)									\
 		{								\
-		Q##Type##Box box = {{x, y, z}, {size_x, size_y, size_z}};	\
+		QBox##Type box = {{x, y, z}, {size_x, size_y, size_z}};		\
 		return box;							\
 		}
 
@@ -123,80 +123,80 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#define q_2d_float_line	 	 q_2d_float_vector
-#define q_2d_double_line	 q_2d_double_vector
-#define q_2d_ldouble_line	 q_2d_ldouble_vector
+#define q_2d_line_float	 	 q_2d_vector_float
+#define q_2d_line_double	 q_2d_vector_double
+#define q_2d_line_ldouble	 q_2d_vector_ldouble
 
-#define q_float_aabr		 q_2d_float_line
-#define q_double_aabr		 q_2d_double_line
-#define q_ldouble_aabr		 q_2d_ldouble_line
+#define q_aabr_float		 q_2d_line_float
+#define q_aabr_double		 q_2d_line_double
+#define q_aabr_ldouble		 q_2d_line_ldouble
 
-#define q_3d_float_line		 q_3d_float_vector
-#define q_3d_double_line	 q_3d_double_vector
-#define q_3d_ldouble_line	 q_3d_ldouble_vector
+#define q_3d_line_float		 q_3d_vector_float
+#define q_3d_line_double	 q_3d_vector_double
+#define q_3d_line_ldouble	 q_3d_vector_ldouble
 
-#define q_float_aabb		 q_3d_float_line
-#define q_double_aabb		 q_3d_double_line
-#define q_ldouble_aabb		 q_3d_ldouble_line
+#define q_aabb_float		 q_3d_line_float
+#define q_aabb_double		 q_3d_line_double
+#define q_aabb_ldouble		 q_3d_line_ldouble
 
-#define q_2d_float_vector_zero	 q_2d_float_vector  (0.0F, 0.0F, 0.0F, 0.0F)
-#define q_2d_double_vector_zero	 q_2d_double_vector (0.0,  0.0,  0.0,  0.0 )
-#define q_2d_ldouble_vector_zero q_2d_ldouble_vector(0.0L, 0.0L, 0.0L, 0.0L)
+#define q_2d_vector_float_zero	 q_2d_vector_float  (0.0F, 0.0F, 0.0F, 0.0F)
+#define q_2d_vector_double_zero	 q_2d_vector_double (0.0,  0.0,  0.0,  0.0 )
+#define q_2d_vector_ldouble_zero q_2d_vector_ldouble(0.0L, 0.0L, 0.0L, 0.0L)
 
-#define q_2d_float_line_zero	 q_2d_float_vector_zero
-#define q_2d_double_line_zero	 q_2d_double_vector_zero
-#define q_2d_ldouble_line_zero	 q_2d_ldouble_vector_zero
+#define q_2d_line_float_zero	 q_2d_vector_float_zero
+#define q_2d_line_double_zero	 q_2d_vector_double_zero
+#define q_2d_line_ldouble_zero	 q_2d_vector_ldouble_zero
 
-#define q_float_rectangle_zero	 q_float_rectangle  (0.0F, 0.0F, 0.0F, 0.0F)
-#define q_double_rectangle_zero	 q_double_rectangle (0.0,  0.0,  0.0,  0.0 )
-#define q_ldouble_rectangle_zero q_ldouble_rectangle(0.0L, 0.0L, 0.0L, 0.0L)
+#define q_rectangle_float_zero	 q_rectangle_float  (0.0F, 0.0F, 0.0F, 0.0F)
+#define q_rectangle_double_zero	 q_rectangle_double (0.0,  0.0,  0.0,  0.0 )
+#define q_rectangle_ldouble_zero q_rectangle_ldouble(0.0L, 0.0L, 0.0L, 0.0L)
 
-#define q_float_aabr_zero	 q_2d_float_line_zero
-#define q_double_aabr_zero	 q_2d_double_line_zero
-#define q_ldouble_aabr_zero	 q_2d_ldouble_line_zero
+#define q_aabr_float_zero	 q_2d_line_float_zero
+#define q_aabr_double_zero	 q_2d_line_double_zero
+#define q_aabr_ldouble_zero	 q_2d_line_ldouble_zero
 
-#define q_float_circle_zero	 q_float_circle  (0.0F, 0.0F, 0.0F)
-#define q_double_circle_zero	 q_double_circle (0.0,	0.0,  0.0 )
-#define q_ldouble_circle_zero	 q_ldouble_circle(0.0L, 0.0L, 0.0L)
+#define q_circle_float_zero	 q_circle_float  (0.0F, 0.0F, 0.0F)
+#define q_circle_double_zero	 q_circle_double (0.0,	0.0,  0.0 )
+#define q_circle_ldouble_zero	 q_circle_ldouble(0.0L, 0.0L, 0.0L)
 
-#define q_3d_float_vector_zero	 q_3d_float_vector  (0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F)
-#define q_3d_double_vector_zero	 q_3d_double_vector (0.0,  0.0,  0.0,  0.0,  0.0,  0.0 )
-#define q_3d_ldouble_vector_zero q_3d_ldouble_vector(0.0L, 0.0L, 0.0L, 0.0L, 0.0L, 0.0L)
+#define q_3d_vector_float_zero	 q_3d_vector_float  (0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F)
+#define q_3d_vector_double_zero	 q_3d_vector_double (0.0,  0.0,  0.0,  0.0,  0.0,  0.0 )
+#define q_3d_vector_ldouble_zero q_3d_vector_ldouble(0.0L, 0.0L, 0.0L, 0.0L, 0.0L, 0.0L)
 
-#define q_3d_float_line_zero	 q_3d_float_vector_zero
-#define q_3d_double_line_zero	 q_3d_double_vector_zero
-#define q_3d_ldouble_line_zero	 q_3d_ldouble_vector_zero
+#define q_3d_line_float_zero	 q_3d_vector_float_zero
+#define q_3d_line_double_zero	 q_3d_vector_double_zero
+#define q_3d_line_ldouble_zero	 q_3d_vector_ldouble_zero
 
-#define q_float_box_zero	 q_float_box  (0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F)
-#define q_double_box_zero	 q_double_box (0.0,  0.0,  0.0,  0.0,  0.0,  0.0 )
-#define q_ldouble_box_zero	 q_ldouble_box(0.0L, 0.0L, 0.0L, 0.0L, 0.0L, 0.0L)
+#define q_box_float_zero	 q_box_float  (0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F)
+#define q_box_double_zero	 q_box_double (0.0,  0.0,  0.0,  0.0,  0.0,  0.0 )
+#define q_box_ldouble_zero	 q_box_ldouble(0.0L, 0.0L, 0.0L, 0.0L, 0.0L, 0.0L)
 
-#define q_float_aabb_zero	 q_3d_float_line_zero
-#define q_double_aabb_zero	 q_3d_double_line_zero
-#define q_ldouble_aabb_zero	 q_3d_ldouble_line_zero
+#define q_aabb_float_zero	 q_3d_line_float_zero
+#define q_aabb_double_zero	 q_3d_line_double_zero
+#define q_aabb_ldouble_zero	 q_3d_line_ldouble_zero
 
-#define q_float_sphere_zero	 q_float_sphere  (0.0F, 0.0F, 0.0F, 0.0F)
-#define q_double_sphere_zero	 q_double_sphere (0.0,	0.0,  0.0,  0.0 )
-#define q_ldouble_sphere_zero	 q_ldouble_sphere(0.0L, 0.0L, 0.0L, 0.0L)
+#define q_sphere_float_zero	 q_sphere_float  (0.0F, 0.0F, 0.0F, 0.0F)
+#define q_sphere_double_zero	 q_sphere_double (0.0,	0.0,  0.0,  0.0 )
+#define q_sphere_ldouble_zero	 q_sphere_ldouble(0.0L, 0.0L, 0.0L, 0.0L)
 
 /* MARK: - Default real type definitions */
 
-#define q_2d_vector	 Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _vector   )
-#define q_2d_circle	 Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _circle   )
-#define q_rectangle	 Q_JOIN_3(q_,	 Q_REAL_FIXED_TYPE_name, _rectangle)
-#define q_3d_vector	 Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _vector   )
-#define q_box		 Q_JOIN_3(q_,	 Q_REAL_FIXED_TYPE_name, _box	   )
-#define q_sphere	 Q_JOIN_3(q_,	 Q_REAL_FIXED_TYPE_name, _sphere   )
+#define q_2d_vector	 Q_JOIN_2(q_2d_vector_, Q_REAL_FIXED_TYPE_name)
+#define q_2d_circle	 Q_JOIN_2(q_2d_circle_, Q_REAL_FIXED_TYPE_name)
+#define q_rectangle	 Q_JOIN_2(q_rectangle_, Q_REAL_FIXED_TYPE_name)
+#define q_3d_vector	 Q_JOIN_2(q_3d_vector_, Q_REAL_FIXED_TYPE_name)
+#define q_box		 Q_JOIN_2(q_box_,	Q_REAL_FIXED_TYPE_name)
+#define q_sphere	 Q_JOIN_2(q_sphere_,	Q_REAL_FIXED_TYPE_name)
 #define q_2d_line	 q_2d_vector
 #define q_aabr		 q_2d_line
 #define q_3d_line	 q_3d_vector
 #define q_aabb		 q_3d_line
-#define q_2d_vector_zero Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _vector_zero	)
-#define q_2d_circle_zero Q_JOIN_3(q_2d_, Q_REAL_FIXED_TYPE_name, _circle_zero	)
-#define q_rectangle_zero Q_JOIN_3(q_,	 Q_REAL_FIXED_TYPE_name, _rectangle_zero)
-#define q_3d_vector_zero Q_JOIN_3(q_3d_, Q_REAL_FIXED_TYPE_name, _vector_zero	)
-#define q_box_zero	 Q_JOIN_3(q_,	 Q_REAL_FIXED_TYPE_name, _box_zero	)
-#define q_sphere_zero	 Q_JOIN_3(q_,	 Q_REAL_FIXED_TYPE_name, _sphere_zero	)
+#define q_2d_vector_zero Q_JOIN_3(q_2d_vector_, Q_REAL_FIXED_TYPE_name, _zero)
+#define q_2d_circle_zero Q_JOIN_3(q_2d_circle_, Q_REAL_FIXED_TYPE_name, _zero)
+#define q_rectangle_zero Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _zero)
+#define q_3d_vector_zero Q_JOIN_3(q_3d_vector_, Q_REAL_FIXED_TYPE_name, _zero)
+#define q_box_zero	 Q_JOIN_3(q_box_,	Q_REAL_FIXED_TYPE_name, _zero)
+#define q_sphere_zero	 Q_JOIN_3(q_sphere_,	Q_REAL_FIXED_TYPE_name, _zero)
 #define q_2d_line_zero	 q_2d_vector_zero
 #define q_aabr_zero	 q_2d_line_zero
 #define q_3d_line_zero	 q_3d_vector_zero
