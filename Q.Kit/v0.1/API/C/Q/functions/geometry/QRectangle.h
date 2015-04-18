@@ -16,14 +16,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_IMPLEMENTATION_RECTANGLE(Type, type, _)						\
 												\
 												\
-Q_INLINE qboolean q_##type##_rectangle_are_equal(Q##Type##Rectangle a, Q##Type##Rectangle b)	\
+Q_INLINE qboolean q_rectangle_##type##_are_equal(QRectangle##Type a, QRectangle##Type b)	\
 	{											\
 	return	q_2d_##type##_are_equal(a.point, b.point) &&					\
 		q_2d_##type##_are_equal(a.size,  b.size );					\
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_rectangle_contains(Q##Type##Rectangle a, Q##Type##Rectangle b)	\
+Q_INLINE qboolean q_rectangle_##type##_contains(QRectangle##Type a, QRectangle##Type b)		\
 	{											\
 	return	b.point.x	     >= a.point.x	     &&					\
 		b.point.y	     >= a.point.y	     &&					\
@@ -32,7 +32,7 @@ Q_INLINE qboolean q_##type##_rectangle_contains(Q##Type##Rectangle a, Q##Type##R
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_rectangle_collide(Q##Type##Rectangle a, Q##Type##Rectangle b)	\
+Q_INLINE qboolean q_rectangle_##type##_collide(QRectangle##Type a, QRectangle##Type b)		\
 	{											\
 	return	a.point.x < b.point.x + b.size.x &&						\
 		b.point.x < a.point.x + a.size.x &&						\
@@ -41,9 +41,9 @@ Q_INLINE qboolean q_##type##_rectangle_collide(Q##Type##Rectangle a, Q##Type##Re
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_intersection(					\
-	Q##Type##Rectangle a,									\
-	Q##Type##Rectangle b									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_intersection(					\
+	QRectangle##Type a,									\
+	QRectangle##Type b									\
 )												\
 	{											\
 	q##type x1, x2, y1, y2;									\
@@ -53,17 +53,14 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_intersection(					\
 		(y1 = q_##type##_maximum(a.point.y, b.point.y)) <=				\
 		(y2 = q_##type##_minimum(a.point.y + a.size.y, b.point.y + b.size.y))		\
 												\
-		? q_##type##_rectangle(x1, y1, x2 - x1, y2 - y1)				\
-		: q_##type##_rectangle_zero;							\
+		? q_rectangle_##type(x1, y1, x2 - x1, y2 - y1)					\
+		: q_rectangle_##type##_zero;							\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_union(						\
-	Q##Type##Rectangle a,									\
-	Q##Type##Rectangle b									\
-)												\
+Q_INLINE QRectangle##Type q_rectangle_##type##_union(QRectangle##Type a, QRectangle##Type b)	\
 	{											\
-	Q##Type##Rectangle result;								\
+	QRectangle##Type result;								\
 												\
 	result.point = q_2d_##type##_minimum(a.point, b.point);					\
 												\
@@ -77,83 +74,83 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_union(						\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_from_vertices(Q2D##Type a, Q2D##Type b)	\
+Q_INLINE QRectangle##Type q_rectangle_##type##_from_vertices(Q2D##Type a, Q2D##Type b)		\
 	{											\
 	Q2D##Type minimum = q_2d_##type##_minimum(a, b);					\
 	Q2D##Type maximum = q_2d_##type##_maximum(a, b);					\
 												\
-	return q_##type##_rectangle								\
+	return q_rectangle_##type								\
 		(minimum.x,  minimum.y, maximum.x - minimum.x, maximum.y - minimum.y);		\
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_rectangle_is_zero(Q##Type##Rectangle object)			\
+Q_INLINE qboolean q_rectangle_##type##_is_zero(QRectangle##Type object)				\
 	{return q_2d_##type##_is_zero(object.point) && q_2d_##type##_is_zero(object.size);}	\
 												\
 												\
-Q_INLINE q##type q_##type##_rectangle_minimum_x(Q##Type##Rectangle object)			\
+Q_INLINE q##type q_rectangle_##type##_minimum_x(QRectangle##Type object)			\
 	{return object.point.x;}								\
 												\
 												\
-Q_INLINE q##type q_##type##_rectangle_minimum_y(Q##Type##Rectangle object)			\
+Q_INLINE q##type q_rectangle_##type##_minimum_y(QRectangle##Type object)			\
 	{return object.point.y;}								\
 												\
 												\
-Q_INLINE q##type q_##type##_rectangle_maximum_x(Q##Type##Rectangle object)			\
+Q_INLINE q##type q_rectangle_##type##_maximum_x(QRectangle##Type object)			\
 	{return object.point.x + object.size.x;}						\
 												\
 												\
-Q_INLINE q##type q_##type##_rectangle_maximum_y(Q##Type##Rectangle object)			\
+Q_INLINE q##type q_rectangle_##type##_maximum_y(QRectangle##Type object)			\
 	{return object.point.y + object.size.y;}						\
 												\
 												\
-Q_INLINE q##type q_##type##_rectangle_middle_x(Q##Type##Rectangle object)			\
+Q_INLINE q##type q_rectangle_##type##_middle_x(QRectangle##Type object)				\
 	{return object.point.x + object.size.x / _(2.0);}					\
 												\
 												\
-Q_INLINE q##type q_##type##_rectangle_middle_y(Q##Type##Rectangle object)			\
+Q_INLINE q##type q_rectangle_##type##_middle_y(QRectangle##Type object)				\
 	{return object.point.y + object.size.y / _(2.0);}					\
 												\
 												\
-Q_INLINE Q2D##Type q_##type##_rectangle_top_left(Q##Type##Rectangle object)			\
+Q_INLINE Q2D##Type q_rectangle_##type##_top_left(QRectangle##Type object)			\
 	{return q_2d_##type(object.point.x, object.point.y + object.size.y);}			\
 												\
 												\
-Q_INLINE Q2D##Type q_##type##_rectangle_top_right(Q##Type##Rectangle object)			\
+Q_INLINE Q2D##Type q_rectangle_##type##_top_right(QRectangle##Type object)			\
 	{return q_2d_##type(object.point.x + object.size.x, object.point.y + object.size.y);}	\
 												\
 												\
-Q_INLINE Q2D##Type q_##type##_rectangle_top_center(Q##Type##Rectangle object)			\
+Q_INLINE Q2D##Type q_rectangle_##type##_top_center(QRectangle##Type object)			\
 	{											\
 	return q_2d_##type									\
 		(object.point.x + object.size.x / _(2.0), object.point.y + object.size.y);	\
 	}											\
 												\
 												\
-Q_INLINE Q2D##Type q_##type##_rectangle_bottom_left(Q##Type##Rectangle object)			\
+Q_INLINE Q2D##Type q_rectangle_##type##_bottom_left(QRectangle##Type object)			\
 	{return object.point;}									\
 												\
 												\
-Q_INLINE Q2D##Type q_##type##_rectangle_bottom_right(Q##Type##Rectangle object)			\
+Q_INLINE Q2D##Type q_rectangle_##type##_bottom_right(QRectangle##Type object)			\
 	{return q_2d_##type(object.point.x + object.size.x, object.point.y);}			\
 												\
 												\
-Q_INLINE Q2D##Type q_##type##_rectangle_bottom_center(Q##Type##Rectangle object)		\
+Q_INLINE Q2D##Type q_rectangle_##type##_bottom_center(QRectangle##Type object)			\
 	{return q_2d_##type(object.point.x + object.size.x / _(2.0), object.point.y);}		\
 												\
 												\
-Q_INLINE Q2D##Type q_##type##_rectangle_center_left(Q##Type##Rectangle object)			\
+Q_INLINE Q2D##Type q_rectangle_##type##_center_left(QRectangle##Type object)			\
 	{return q_2d_##type(object.point.x, object.point.y + object.size.y / _(2.0));}		\
 												\
 												\
-Q_INLINE Q2D##Type q_##type##_rectangle_center_right(Q##Type##Rectangle object)			\
+Q_INLINE Q2D##Type q_rectangle_##type##_center_right(QRectangle##Type object)			\
 	{											\
 	return q_2d_##type									\
 		(object.point.x + object.size.x, object.point.y + object.size.y / _(2.0));	\
 	}											\
 												\
 												\
-Q_INLINE Q2D##Type q_##type##_rectangle_center(Q##Type##Rectangle object)			\
+Q_INLINE Q2D##Type q_rectangle_##type##_center(QRectangle##Type object)				\
 	{											\
 	return q_2d_##type									\
 		(object.point.x + object.size.x / _(2.0),					\
@@ -161,7 +158,7 @@ Q_INLINE Q2D##Type q_##type##_rectangle_center(Q##Type##Rectangle object)			\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_correct(Q##Type##Rectangle object)		\
+Q_INLINE QRectangle##Type q_rectangle_##type##_correct(QRectangle##Type object)			\
 	{											\
 	if (object.size.x < _(0.0)) object.point.x -= (object.size.x = -object.size.x);		\
 	if (object.size.y < _(0.0)) object.point.y -= (object.size.y = -object.size.y);		\
@@ -169,35 +166,35 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_correct(Q##Type##Rectangle obje
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_top_half(Q##Type##Rectangle object)		\
+Q_INLINE QRectangle##Type q_rectangle_##type##_top_half(QRectangle##Type object)		\
 	{											\
 	object.point.y += (object.size.y /= _(2.0));						\
 	return object;										\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_bottom_half(Q##Type##Rectangle object)		\
+Q_INLINE QRectangle##Type q_rectangle_##type##_bottom_half(QRectangle##Type object)		\
 	{											\
 	object.size.y /= _(2.0);								\
 	return object;										\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_left_half(Q##Type##Rectangle object)		\
+Q_INLINE QRectangle##Type q_rectangle_##type##_left_half(QRectangle##Type object)		\
 	{											\
 	object.size.x /= _(2.0);								\
 	return object;										\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_right_half(Q##Type##Rectangle object)		\
+Q_INLINE QRectangle##Type q_rectangle_##type##_right_half(QRectangle##Type object)		\
 	{											\
 	object.point.x += (object.size.x /= _(2.0));						\
 	return object;										\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_top_left_quarter(Q##Type##Rectangle object)	\
+Q_INLINE QRectangle##Type q_rectangle_##type##_top_left_quarter(QRectangle##Type object)	\
 	{											\
 	object.size.x  /= _(2.0);								\
 	object.point.y += (object.size.y /= _(2.0));						\
@@ -205,7 +202,7 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_top_left_quarter(Q##Type##Recta
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_top_right_quarter(Q##Type##Rectangle object)	\
+Q_INLINE QRectangle##Type q_rectangle_##type##_top_right_quarter(QRectangle##Type object)	\
 	{											\
 	object.point.x += (object.size.x /= _(2.0));						\
 	object.point.y += (object.size.y /= _(2.0));						\
@@ -213,7 +210,7 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_top_right_quarter(Q##Type##Rect
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_bottom_left_quarter(Q##Type##Rectangle object)	\
+Q_INLINE QRectangle##Type q_rectangle_##type##_bottom_left_quarter(QRectangle##Type object)	\
 	{											\
 	object.size.x /= _(2.0);								\
 	object.size.y /= _(2.0);								\
@@ -221,7 +218,7 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_bottom_left_quarter(Q##Type##Re
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_bottom_right_quarter(Q##Type##Rectangle object)\
+Q_INLINE QRectangle##Type q_rectangle_##type##_bottom_right_quarter(QRectangle##Type object)	\
 	{											\
 	object.point.x += (object.size.x /= _(2.0));						\
 	object.size.y  /= _(2.0);								\
@@ -229,9 +226,9 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_bottom_right_quarter(Q##Type##R
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_top_left(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_align_in_top_left(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
 	object.point.y += object.size.y - size.y;						\
@@ -240,9 +237,9 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_top_left(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_top_right(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_align_in_top_right(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
 	object.point.x += object.size.x - size.x;						\
@@ -252,9 +249,9 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_top_right(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_top_center(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_align_in_top_center(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
 	object.point.x += (object.size.x - size.x) / _(2.0);					\
@@ -264,9 +261,9 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_top_center(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_left(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_align_in_bottom_left(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
 	object.size = size;									\
@@ -274,9 +271,9 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_left(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_right(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_align_in_bottom_right(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
 	object.point.x += object.size.x - size.x;						\
@@ -285,9 +282,9 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_right(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_center(			\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_align_in_bottom_center(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
 	object.point.x += (object.size.x - size.x) / _(2.0);					\
@@ -296,9 +293,9 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_bottom_center(			\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_center_left(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_align_in_center_left(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
 	object.point.y += (object.size.y - size.y) / _(2.0);					\
@@ -307,9 +304,9 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_center_left(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_center_right(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_align_in_center_right(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
 	object.point.x +=  object.size.x - size.x;						\
@@ -319,9 +316,9 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_center_right(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_center(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_align_in_center(					\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
 	object.point.x += (object.size.x - size.x) / _(2.0);					\
@@ -331,12 +328,12 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_align_in_center(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_top_left(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_fit_in_top_left(					\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
-	Q##Type##Rectangle result;								\
+	QRectangle##Type result;								\
 												\
 	result.size    = q_2d_##type##_fit(size, object.size);					\
 	result.point.x = object.point.x;							\
@@ -345,12 +342,12 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_top_left(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_top_right(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_fit_in_top_right(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
-	Q##Type##Rectangle result;								\
+	QRectangle##Type result;								\
 												\
 	result.size    = q_2d_##type##_fit(size, object.size);					\
 	result.point.x = object.point.x + object.size.x - result.size.x;			\
@@ -359,12 +356,12 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_top_right(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_top_center(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_fit_in_top_center(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
-	Q##Type##Rectangle result;								\
+	QRectangle##Type result;								\
 												\
 	result.size    = q_2d_##type##_fit(size, object.size);					\
 	result.point.x = object.point.x + (object.size.x - result.size.x) / _(2.0);		\
@@ -373,9 +370,9 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_top_center(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_left(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_fit_in_bottom_left(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
 	object.size = q_2d_##type##_fit(size, object.size);					\
@@ -383,12 +380,12 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_left(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_right(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_fit_in_bottom_right(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
-	Q##Type##Rectangle result;								\
+	QRectangle##Type result;								\
 												\
 	result.size    = q_2d_##type##_fit(size, object.size);					\
 	result.point.x = object.point.x + object.size.x - result.size.x;			\
@@ -397,12 +394,12 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_right(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_center(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_fit_in_bottom_center(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
-	Q##Type##Rectangle result;								\
+	QRectangle##Type result;								\
 												\
 	result.size    = q_2d_##type##_fit(size, object.size);					\
 	result.point.x = object.point.x + (object.size.x - result.size.x) / _(2.0);		\
@@ -411,12 +408,12 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_bottom_center(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_center_left(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_fit_in_center_left(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
-	Q##Type##Rectangle result;								\
+	QRectangle##Type result;								\
 												\
 	result.size    = q_2d_##type##_fit(size, object.size);					\
 	result.point.x = object.point.x;							\
@@ -425,12 +422,12 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_center_left(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_center_right(				\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_fit_in_center_right(				\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
-	Q##Type##Rectangle result;								\
+	QRectangle##Type result;								\
 												\
 	result.size    = q_2d_##type##_fit(size, object.size);					\
 	result.point.x = object.point.x + object.size.x - result.size.x;			\
@@ -439,12 +436,12 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_center_right(				\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_center(					\
-	Q##Type##Rectangle object,								\
-	Q##2D##Type	   size									\
+Q_INLINE QRectangle##Type q_rectangle_##type##_fit_in_center(					\
+	QRectangle##Type object,								\
+	Q2D##Type	 size									\
 )												\
 	{											\
-	Q##Type##Rectangle result;								\
+	QRectangle##Type result;								\
 												\
 	result.size    = q_2d_##type##_fit(size, object.size);					\
 	result.point.x = object.point.x + (object.size.x - result.size.x) / _(2.0);		\
@@ -453,28 +450,28 @@ Q_INLINE Q##Type##Rectangle q_##type##_rectangle_fit_in_center(					\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Circle q_##type##_rectangle_inner_circle(Q##Type##Rectangle object)		\
+Q_INLINE QCircle##Type q_rectangle_##type##_inner_circle(QRectangle##Type object)		\
 	{											\
-	Q##Type##Circle result;									\
+	QCircle##Type result;									\
 												\
-	result.point  = q_##type##_rectangle_center(object);					\
+	result.point  = q_rectangle_##type##_center(object);					\
 	result.radius = q_##type##_minimum(object.size.x, object.size.y) / _(2.0);		\
 	return result;										\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##AABR q_##type##_rectangle_to_aabr(Q##Type##Rectangle object)			\
+Q_INLINE QAABR##Type q_rectangle_##type##_to_aabr(QRectangle##Type object)			\
 	{											\
-	return q_##type##_aabr									\
+	return q_aabr_##type									\
 		(object.point.x,  object.point.y,						\
 		 object.point.x + object.size.x,						\
 		 object.point.y + object.size.y);						\
 	}											\
 												\
 												\
-Q_INLINE Q2D##Type q_##type##_rectangle_absolute_point_to_unit(					\
-	Q##Type##Rectangle object,								\
-	Q2D##Type	   point								\
+Q_INLINE Q2D##Type q_rectangle_##type##_absolute_point_to_unit(					\
+	QRectangle##Type object,								\
+	Q2D##Type	 point									\
 												\
 )												\
 	{											\
@@ -484,9 +481,9 @@ Q_INLINE Q2D##Type q_##type##_rectangle_absolute_point_to_unit(					\
 	}											\
 												\
 												\
-Q_INLINE Q2D##Type q_##type##_rectangle_unit_point_to_absolute(					\
-	Q##Type##Rectangle object,								\
-	Q2D##Type	   point								\
+Q_INLINE Q2D##Type q_rectangle_##type##_unit_point_to_absolute(					\
+	QRectangle##Type object,								\
+	Q2D##Type	 point									\
 												\
 )												\
 	{											\
@@ -496,10 +493,7 @@ Q_INLINE Q2D##Type q_##type##_rectangle_unit_point_to_absolute(					\
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_rectangle_contains_point(						\
-	Q##Type##Rectangle object,								\
-	Q2D##Type	   point								\
-)												\
+Q_INLINE qboolean q_rectangle_##type##_contains_point(QRectangle##Type object, Q2D##Type point)	\
 	{											\
 	return	point.x >= object.point.x		  &&					\
 		point.y >= object.point.y		  &&					\
@@ -508,20 +502,17 @@ Q_INLINE qboolean q_##type##_rectangle_contains_point(						\
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_rectangle_contains_line_segment(					\
-	Q##Type##Rectangle object,								\
-	Q2D##Type##Line	   line_segment								\
+Q_INLINE qboolean q_rectangle_##type##_contains_line_segment(					\
+	QRectangle##Type object,								\
+	Q2DLine##Type	 line_segment								\
 )												\
 	{											\
-	return	q_##type##_rectangle_contains_point(object, line_segment.a) &&			\
-		q_##type##_rectangle_contains_point(object, line_segment.b);			\
+	return	q_rectangle_##type##_contains_point(object, line_segment.a) &&			\
+		q_rectangle_##type##_contains_point(object, line_segment.b);			\
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_rectangle_contains_aabr(						\
-	Q##Type##Rectangle object,								\
-	Q##Type##AABR	   aabr									\
-)												\
+Q_INLINE qboolean q_rectangle_##type##_contains_aabr(QRectangle##Type object, QAABR##Type aabr)	\
 	{											\
 	return	aabr.a.x >= object.point.x		   &&					\
 		aabr.a.y >= object.point.y		   &&					\
@@ -530,9 +521,9 @@ Q_INLINE qboolean q_##type##_rectangle_contains_aabr(						\
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_rectangle_contains_circle(						\
-	Q##Type##Rectangle object,								\
-	Q##Type##Circle	   circle								\
+Q_INLINE qboolean q_rectangle_##type##_contains_circle(						\
+	QRectangle##Type object,								\
+	QCircle##Type	 circle									\
 )												\
 	{											\
 	return	circle.point.x - circle.radius >= object.point.x &&				\
@@ -551,62 +542,62 @@ Q_IMPLEMENTATION_RECTANGLE(LDouble, ldouble, Q_LDOUBLE)
 
 /* MARK: - Default real type definitions */
 
-#define q_rectangle_are_equal		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_are_equal		 )
-#define q_rectangle_contains		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_contains		 )
-#define q_rectangle_collide		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_collide		 )
-#define q_rectangle_intersection	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_intersection		 )
-#define q_rectangle_union		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_union		 )
-#define q_rectangle_from_vertices	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_from_vertices	 )
-#define q_rectangle_is_zero		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_is_zero		 )
-#define q_rectangle_minimum_x		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_minimum_x		 )
-#define q_rectangle_minimum_y		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_minimum_y		 )
-#define q_rectangle_maximum_x		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_maximum_x		 )
-#define q_rectangle_maximum_y		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_maximum_y		 )
-#define q_rectangle_middle_x		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_middle_x		 )
-#define q_rectangle_middle_y		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_middle_y		 )
-#define q_rectangle_top_left		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_left		 )
-#define q_rectangle_top_right		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_right		 )
-#define q_rectangle_top_center		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_center		 )
-#define q_rectangle_bottom_left		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_left		 )
-#define q_rectangle_bottom_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_right		 )
-#define q_rectangle_bottom_center	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_center	 )
-#define q_rectangle_center_left		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_center_left		 )
-#define q_rectangle_center_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_center_right		 )
-#define q_rectangle_center		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_center		 )
-#define q_rectangle_correct		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_correct		 )
-#define q_rectangle_top_half		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_half		 )
-#define q_rectangle_bottom_half		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_half		 )
-#define q_rectangle_left_half		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_left_half		 )
-#define q_rectangle_right_half		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_right_half		 )
-#define q_rectangle_top_left_quarter	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_left_quarter	 )
-#define q_rectangle_top_right_quarter	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_top_right_quarter	 )
-#define q_rectangle_bottom_left_quarter	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_left_quarter	 )
-#define q_rectangle_bottom_right_quarter   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_bottom_right_quarter	 )
-#define q_rectangle_align_in_top_left	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_top_left	 )
-#define q_rectangle_align_in_top_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_top_right	 )
-#define q_rectangle_align_in_top_center	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_top_center	 )
-#define q_rectangle_align_in_bottom_left   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_bottom_left	 )
-#define q_rectangle_align_in_bottom_right  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_bottom_right )
-#define q_rectangle_align_in_bottom_center Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_bottom_center)
-#define q_rectangle_align_in_center_left   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_center_left	 )
-#define q_rectangle_align_in_center_right  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_center_right )
-#define q_rectangle_align_in_center	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_align_in_center	 )
-#define q_rectangle_fit_in_top_left	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_top_left	 )
-#define q_rectangle_fit_in_top_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_top_right	 )
-#define q_rectangle_fit_in_top_center	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_top_center	 )
-#define q_rectangle_fit_in_bottom_left	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_bottom_left	 )
-#define q_rectangle_fit_in_bottom_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_bottom_right	 )
-#define q_rectangle_fit_in_bottom_center   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_bottom_center	 )
-#define q_rectangle_fit_in_center_left	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_center_left	 )
-#define q_rectangle_fit_in_center_right	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_center_right	 )
-#define q_rectangle_fit_in_center	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_fit_in_center	 )
-#define q_rectangle_inner_circle	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_inner_circle		 )
-#define q_rectangle_to_aabr		   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_to_aabr		 )
-#define q_rectangle_absolute_point_to_unit Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_absolute_point_to_unit)
-#define q_rectangle_unit_point_to_absolute Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_unit_point_to_absolute)
-#define q_rectangle_contains_point	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_contains_point	 )
-#define q_rectangle_contains_line_segment  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_contains_line_segment )
-#define q_rectangle_contains_aabr	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_contains_aabr	 )
-#define q_rectangle_contains_circle	   Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _rectangle_contains_circle	 )
+#define q_rectangle_are_equal		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _are_equal		 )
+#define q_rectangle_contains		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _contains		 )
+#define q_rectangle_collide		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _collide		 )
+#define q_rectangle_intersection	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _intersection		 )
+#define q_rectangle_union		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _union		 )
+#define q_rectangle_from_vertices	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _from_vertices	 )
+#define q_rectangle_is_zero		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _is_zero		 )
+#define q_rectangle_minimum_x		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _minimum_x		 )
+#define q_rectangle_minimum_y		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _minimum_y		 )
+#define q_rectangle_maximum_x		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _maximum_x		 )
+#define q_rectangle_maximum_y		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _maximum_y		 )
+#define q_rectangle_middle_x		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _middle_x		 )
+#define q_rectangle_middle_y		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _middle_y		 )
+#define q_rectangle_top_left		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _top_left		 )
+#define q_rectangle_top_right		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _top_right		 )
+#define q_rectangle_top_center		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _top_center		 )
+#define q_rectangle_bottom_left		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _bottom_left		 )
+#define q_rectangle_bottom_right	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _bottom_right		 )
+#define q_rectangle_bottom_center	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _bottom_center	 )
+#define q_rectangle_center_left		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _center_left		 )
+#define q_rectangle_center_right	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _center_right		 )
+#define q_rectangle_center		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _center		 )
+#define q_rectangle_correct		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _correct		 )
+#define q_rectangle_top_half		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _top_half		 )
+#define q_rectangle_bottom_half		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _bottom_half		 )
+#define q_rectangle_left_half		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _left_half		 )
+#define q_rectangle_right_half		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _right_half		 )
+#define q_rectangle_top_left_quarter	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _top_left_quarter	 )
+#define q_rectangle_top_right_quarter	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _top_right_quarter	 )
+#define q_rectangle_bottom_left_quarter	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _bottom_left_quarter	 )
+#define q_rectangle_bottom_right_quarter   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _bottom_right_quarter	 )
+#define q_rectangle_align_in_top_left	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _align_in_top_left	 )
+#define q_rectangle_align_in_top_right	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _align_in_top_right	 )
+#define q_rectangle_align_in_top_center	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _align_in_top_center	 )
+#define q_rectangle_align_in_bottom_left   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _align_in_bottom_left	 )
+#define q_rectangle_align_in_bottom_right  Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _align_in_bottom_right )
+#define q_rectangle_align_in_bottom_center Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _align_in_bottom_center)
+#define q_rectangle_align_in_center_left   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _align_in_center_left	 )
+#define q_rectangle_align_in_center_right  Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _align_in_center_right )
+#define q_rectangle_align_in_center	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _align_in_center	 )
+#define q_rectangle_fit_in_top_left	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _fit_in_top_left	 )
+#define q_rectangle_fit_in_top_right	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _fit_in_top_right	 )
+#define q_rectangle_fit_in_top_center	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _fit_in_top_center	 )
+#define q_rectangle_fit_in_bottom_left	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _fit_in_bottom_left	 )
+#define q_rectangle_fit_in_bottom_right	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _fit_in_bottom_right	 )
+#define q_rectangle_fit_in_bottom_center   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _fit_in_bottom_center	 )
+#define q_rectangle_fit_in_center_left	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _fit_in_center_left	 )
+#define q_rectangle_fit_in_center_right	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _fit_in_center_right	 )
+#define q_rectangle_fit_in_center	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _fit_in_center	 )
+#define q_rectangle_inner_circle	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _inner_circle		 )
+#define q_rectangle_to_aabr		   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _to_aabr		 )
+#define q_rectangle_absolute_point_to_unit Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _absolute_point_to_unit)
+#define q_rectangle_unit_point_to_absolute Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _unit_point_to_absolute)
+#define q_rectangle_contains_point	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _contains_point	 )
+#define q_rectangle_contains_line_segment  Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _contains_line_segment )
+#define q_rectangle_contains_aabr	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _contains_aabr	 )
+#define q_rectangle_contains_circle	   Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _contains_circle	 )
 
 #endif /* __Q_functions_geometry_QRectangle_H__ */
