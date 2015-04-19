@@ -105,7 +105,7 @@ Q_INLINE QSphere##Type q_aabb_##type##_inner_sphere(QAABB##Type object)				\
 Q_INLINE QBox##Type q_aabb_##type##_to_box(QAABB##Type object)					\
 	{											\
 	return q_box_##type									\
-		(object.a.x,		  object.a.y,		   object.a.z,			\
+		(object.a.x, object.a.y, object.a.z,						\
 		 object.b.x - object.a.x, object.b.y - object.a.y, object.b.z - object.a.z);	\
 	}											\
 												\

@@ -34,10 +34,8 @@ Q_INLINE qboolean q_rectangle_##type##_contains(QRectangle##Type a, QRectangle##
 												\
 Q_INLINE qboolean q_rectangle_##type##_collide(QRectangle##Type a, QRectangle##Type b)		\
 	{											\
-	return	a.point.x < b.point.x + b.size.x &&						\
-		b.point.x < a.point.x + a.size.x &&						\
-		a.point.y < b.point.y + b.size.y &&						\
-		b.point.y < a.point.y + a.size.y;						\
+	return	a.point.x < b.point.x + b.size.x && b.point.x < a.point.x + a.size.x &&		\
+		a.point.y < b.point.y + b.size.y && b.point.y < a.point.y + a.size.y;		\
 	}											\
 												\
 												\
@@ -463,9 +461,8 @@ Q_INLINE QCircle##Type q_rectangle_##type##_inner_circle(QRectangle##Type object
 Q_INLINE QAABR##Type q_rectangle_##type##_to_aabr(QRectangle##Type object)			\
 	{											\
 	return q_aabr_##type									\
-		(object.point.x,  object.point.y,						\
-		 object.point.x + object.size.x,						\
-		 object.point.y + object.size.y);						\
+		(object.point.x, object.point.y,						\
+		 object.point.x + object.size.x, object.point.y + object.size.y);		\
 	}											\
 												\
 												\
@@ -526,12 +523,10 @@ Q_INLINE qboolean q_rectangle_##type##_contains_circle(						\
 	QCircle##Type	 circle									\
 )												\
 	{											\
-	return	circle.point.x - circle.radius >= object.point.x &&				\
-		circle.point.y - circle.radius >= object.point.y &&				\
-		circle.point.x + circle.radius <=						\
-		object.point.x + object.size.x			 &&				\
-		circle.point.y + circle.radius <=						\
-		object.point.y + object.size.y;							\
+	return	circle.point.x - circle.radius >= object.point.x		 &&		\
+		circle.point.y - circle.radius >= object.point.y		 &&		\
+		circle.point.x + circle.radius <= object.point.x + object.size.x &&		\
+		circle.point.y + circle.radius <= object.point.y + object.size.y;		\
 	}
 
 

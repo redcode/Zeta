@@ -36,12 +36,9 @@ Q_INLINE qboolean q_box_##type##_contains(QBox##Type a, QBox##Type b)				\
 												\
 Q_INLINE qboolean q_box_##type##_collide(QBox##Type a, QBox##Type b)				\
 	{											\
-	return	a.point.x < b.point.x + b.size.x &&						\
-		b.point.x < a.point.x + a.size.x &&						\
-		a.point.y < b.point.y + b.size.y &&						\
-		b.point.y < a.point.y + a.size.y &&						\
-		a.point.z < b.point.z + b.size.z &&						\
-		b.point.z < a.point.z + a.size.z;						\
+	return	a.point.x < b.point.x + b.size.x && b.point.x < a.point.x + a.size.x &&		\
+		a.point.y < b.point.y + b.size.y && b.point.y < a.point.y + a.size.y &&		\
+		a.point.z < b.point.z + b.size.z && b.point.z < a.point.z + a.size.z;		\
 	}											\
 												\
 												\
