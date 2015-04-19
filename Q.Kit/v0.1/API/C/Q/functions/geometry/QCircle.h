@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Q/constants/numbers.h>
 
 
-#define Q_IMPLEMENTATION_CIRCLE(Type, type, _, suffix)						\
+#define Q_IMPLEMENTATION_CIRCLE(Type, type, _)							\
 												\
 												\
 Q_INLINE qboolean q_circle_##type##_are_equal(QCircle##Type a, QCircle##Type b)			\
@@ -23,7 +23,7 @@ Q_INLINE qboolean q_circle_##type##_are_equal(QCircle##Type a, QCircle##Type b)	
 												\
 Q_INLINE QRectangle##Type q_circle_##type##_inner_rectangle(QCircle##Type object)		\
 	{											\
-	q##type half_size = object.radius / Q_JOIN_2(Q_SQUARE_ROOT_2, suffix);			\
+	q##type half_size = object.radius / _(Q_SQUARE_ROOT_2);					\
 	q##type size = half_size * _(2.0);							\
 												\
 	return q_rectangle_##type								\
@@ -44,9 +44,9 @@ Q_INLINE qboolean q_circle_##type##_is_zero(QCircle##Type object)				\
 	{return object.radius == _(0.0) && q_2d_##type##_is_zero(object.point);}
 
 
-Q_IMPLEMENTATION_CIRCLE(Float,   float,	  Q_FLOAT,   Q_FLOAT_SUFFIX  )
-Q_IMPLEMENTATION_CIRCLE(Double,  double,  Q_DOUBLE,  Q_DOUBLE_SUFFIX )
-Q_IMPLEMENTATION_CIRCLE(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_SUFFIX)
+Q_IMPLEMENTATION_CIRCLE(Float,   float,	  Q_FLOAT  )
+Q_IMPLEMENTATION_CIRCLE(Double,  double,  Q_DOUBLE )
+Q_IMPLEMENTATION_CIRCLE(LDouble, ldouble, Q_LDOUBLE)
 
 
 /* MARK: - Default real type definitions */

@@ -182,7 +182,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Default real type definitions */
 
 #define q_2d_vector	 Q_JOIN_2(q_2d_vector_, Q_REAL_FIXED_TYPE_name)
-#define q_2d_circle	 Q_JOIN_2(q_2d_circle_, Q_REAL_FIXED_TYPE_name)
+#define q_circle	 Q_JOIN_2(q_circle_,	Q_REAL_FIXED_TYPE_name)
 #define q_rectangle	 Q_JOIN_2(q_rectangle_, Q_REAL_FIXED_TYPE_name)
 #define q_3d_vector	 Q_JOIN_2(q_3d_vector_, Q_REAL_FIXED_TYPE_name)
 #define q_box		 Q_JOIN_2(q_box_,	Q_REAL_FIXED_TYPE_name)
@@ -192,7 +192,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define q_3d_line	 q_3d_vector
 #define q_aabb		 q_3d_line
 #define q_2d_vector_zero Q_JOIN_3(q_2d_vector_, Q_REAL_FIXED_TYPE_name, _zero)
-#define q_2d_circle_zero Q_JOIN_3(q_2d_circle_, Q_REAL_FIXED_TYPE_name, _zero)
+#define q_circle_zero	 Q_JOIN_3(q_circle_,	Q_REAL_FIXED_TYPE_name, _zero)
 #define q_rectangle_zero Q_JOIN_3(q_rectangle_, Q_REAL_FIXED_TYPE_name, _zero)
 #define q_3d_vector_zero Q_JOIN_3(q_3d_vector_, Q_REAL_FIXED_TYPE_name, _zero)
 #define q_box_zero	 Q_JOIN_3(q_box_,	Q_REAL_FIXED_TYPE_name, _zero)
