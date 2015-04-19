@@ -17,30 +17,30 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_IMPLEMENTATION_CIRCLE(Type, type, _, suffix)						\
 												\
 												\
-Q_INLINE qboolean q_##type##_circle_are_equal(Q##Type##Circle a, Q##Type##Circle b)		\
+Q_INLINE qboolean q_circle_##type##_are_equal(QCircle##Type a, QCircle##Type b)			\
 	{return a.radius == b.radius && q_2d_##type##_are_equal(a.point, b.point);}		\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_circle_inner_rectangle(Q##Type##Circle object)		\
+Q_INLINE QRectangle##Type q_circle_##type##_inner_rectangle(QCircle##Type object)		\
 	{											\
 	q##type half_size = object.radius / Q_JOIN_2(Q_SQUARE_ROOT_2, suffix);			\
 	q##type size = half_size * _(2.0);							\
 												\
-	return q_##type##_rectangle								\
+	return q_rectangle_##type								\
 		(object.point.x - half_size, object.point.y - half_size, size, size);		\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Rectangle q_##type##_circle_outer_rectangle(Q##Type##Circle object)		\
+Q_INLINE QRectangle##Type q_circle_##type##_outer_rectangle(QCircle##Type object)		\
 	{											\
 	q##type size = object.radius * _(2.0);							\
 												\
-	return q_##type##_rectangle								\
+	return q_rectangle_##type								\
 		(object.point.x - object.radius, object.point.y - object.radius, size, size);	\
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_circle_is_zero(Q##Type##Circle object)				\
+Q_INLINE qboolean q_circle_##type##_is_zero(QCircle##Type object)				\
 	{return object.radius == _(0.0) && q_2d_##type##_is_zero(object.point);}
 
 
@@ -51,9 +51,9 @@ Q_IMPLEMENTATION_CIRCLE(LDouble, ldouble, Q_LDOUBLE, Q_LDOUBLE_SUFFIX)
 
 /* MARK: - Default real type definitions */
 
-#define q_circle_are_equal	 Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _circle_are_equal	     )
-#define q_circle_is_zero	 Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _circle_is_zero	     )
-#define q_circle_inner_rectangle Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _circle_inner_rectangle)
-#define q_circle_outer_rectangle Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _circle_outer_rectangle)
+#define q_circle_are_equal	 Q_JOIN_3(q_circle_, Q_REAL_FIXED_TYPE_name, _are_equal	     )
+#define q_circle_is_zero	 Q_JOIN_3(q_circle_, Q_REAL_FIXED_TYPE_name, _is_zero	     )
+#define q_circle_inner_rectangle Q_JOIN_3(q_circle_, Q_REAL_FIXED_TYPE_name, _inner_rectangle)
+#define q_circle_outer_rectangle Q_JOIN_3(q_circle_, Q_REAL_FIXED_TYPE_name, _outer_rectangle)
 
 #endif /* __Q_functions_geometry_QCircle_H__ */
