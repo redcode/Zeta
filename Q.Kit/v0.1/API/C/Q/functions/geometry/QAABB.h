@@ -11,30 +11,30 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Q/functions/geometry/Q3DLine.h>
 
-#define q_float_aabb_are_equal	 q_3d_float_line_are_equal
-#define q_float_aabb_is_zero	 q_3d_float_line_is_zero
-#define q_float_aabb_center	 q_3d_float_line_segment_center
+#define q_aabb_float_are_equal	 q_3d_line_float_are_equal
+#define q_aabb_float_is_zero	 q_3d_line_float_is_zero
+#define q_aabb_float_center	 q_3d_line_segment_float_center
 
-#define q_double_aabb_are_equal	 q_3d_double_line_are_equal
-#define q_double_aabb_is_zero	 q_3d_double_line_is_zero
-#define q_double_aabb_center	 q_3d_double_line_segment_center
+#define q_aabb_double_are_equal	 q_3d_line_double_are_equal
+#define q_aabb_double_is_zero	 q_3d_line_double_is_zero
+#define q_aabb_double_center	 q_3d_line_segment_double_center
 
-#define q_ldouble_aabb_are_equal q_3d_ldouble_line_are_equal
-#define q_ldouble_aabb_is_zero	 q_3d_ldouble_line_is_zero
-#define q_ldouble_aabb_center	 q_3d_ldouble_line_segment_center
+#define q_aabb_ldouble_are_equal q_3d_line_ldouble_are_equal
+#define q_aabb_ldouble_is_zero	 q_3d_line_ldouble_is_zero
+#define q_aabb_ldouble_center	 q_3d_line_segment_ldouble_center
 
 
 #define Q_IMPLEMENTATION_AABB(Type, type, _)							\
 												\
 												\
-Q_INLINE qboolean q_##type##_aabb_contains(Q##Type##AABB a, Q##Type##AABB b)			\
+Q_INLINE qboolean q_aabb_##type##_contains(QAABB##Type a, QAABB##Type b)			\
 	{											\
 	return	b.a.x >= a.a.x && b.a.y >= a.a.y && b.a.z >= a.a.z &&				\
 		b.b.x <= a.b.x && b.b.y <= a.b.y && b.b.z <= a.b.z;				\
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_aabb_collide(Q##Type##AABB a, Q##Type##AABB b)			\
+Q_INLINE qboolean q_aabb_##type##_collide(QAABB##Type a, QAABB##Type b)				\
 	{											\
 	return	a.a.x < b.b.x && b.a.x < a.b.x &&						\
 		a.a.y < b.b.y && b.a.y < a.b.y &&						\
@@ -42,7 +42,7 @@ Q_INLINE qboolean q_##type##_aabb_collide(Q##Type##AABB a, Q##Type##AABB b)			\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##AABB q_##type##_aabb_intersection(Q##Type##AABB a, Q##Type##AABB b)		\
+Q_INLINE QAABB##Type q_aabb_##type##_intersection(QAABB##Type a, QAABB##Type b)			\
 	{											\
 	q##type x1, x2, y1, y2, z1, z2;								\
 												\
@@ -53,14 +53,14 @@ Q_INLINE Q##Type##AABB q_##type##_aabb_intersection(Q##Type##AABB a, Q##Type##AA
 		(z1 = q_##type##_maximum(a.a.z, b.a.z))	<=					\
 		(z2 = q_##type##_minimum(a.b.z, b.b.z))						\
 												\
-		? q_##type##_aabb(x1, y1, z1, x2, y2, z2)					\
-		: q_##type##_aabb_zero;								\
+		? q_aabb_##type(x1, y1, z1, x2, y2, z2)						\
+		: q_aabb_##type##_zero;								\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##AABB q_##type##_aabb_union(Q##Type##AABB a, Q##Type##AABB b)			\
+Q_INLINE QAABB##Type q_aabb_##type##_union(QAABB##Type a, QAABB##Type b)			\
 	{											\
-	Q##Type##AABB result;									\
+	QAABB##Type result;									\
 												\
 	result.a = q_3d_##type##_minimum(a.a, b.a);						\
 	result.b = q_3d_##type##_maximum(a.b, b.b);						\
@@ -68,9 +68,9 @@ Q_INLINE Q##Type##AABB q_##type##_aabb_union(Q##Type##AABB a, Q##Type##AABB b)		
 	}											\
 												\
 												\
-Q_INLINE Q##Type##AABB q_##type##_aabb_from_vertices(Q3D##Type a, Q3D##Type b)			\
+Q_INLINE QAABB##Type q_aabb_##type##_from_vertices(Q3D##Type a, Q3D##Type b)			\
 	{											\
-	Q##Type##AABB result;									\
+	QAABB##Type result;									\
 												\
 	result.a = q_3d_##type##_minimum(a, b);							\
 	result.b = q_3d_##type##_maximum(a, b);							\
@@ -78,19 +78,19 @@ Q_INLINE Q##Type##AABB q_##type##_aabb_from_vertices(Q3D##Type a, Q3D##Type b)		
 	}											\
 												\
 												\
-Q_INLINE Q3D##Type q_##type##_aabb_size(Q##Type##AABB object)					\
+Q_INLINE Q3D##Type q_aabb_##type##_size(QAABB##Type object)					\
 	{return q_3d_##type##_subtract(object.b, object.a);}					\
 												\
 												\
-Q_INLINE q##type q_##type##_aabb_volume(Q##Type##AABB object)					\
+Q_INLINE q##type q_aabb_##type##_volume(QAABB##Type object)					\
 	{return q_3d_##type##_inner_product(q_3d_##type##_subtract(object.b, object.a));}	\
 												\
 												\
-Q_INLINE Q##Type##Sphere q_##type##_aabb_inner_sphere(Q##Type##AABB object)			\
+Q_INLINE QSphere##Type q_aabb_##type##_inner_sphere(QAABB##Type object)				\
 	{											\
-	Q##Type##Sphere result;									\
+	QSphere##Type result;									\
 												\
-	result.point = q_##type##_aabb_center(object);						\
+	result.point = q_aabb_##type##_center(object);						\
 												\
 	result.radius =										\
 	q_##type##_minimum									\
@@ -102,15 +102,15 @@ Q_INLINE Q##Type##Sphere q_##type##_aabb_inner_sphere(Q##Type##AABB object)			\
 	}											\
 												\
 												\
-Q_INLINE Q##Type##Box q_##type##_aabb_to_box(Q##Type##AABB object)				\
+Q_INLINE QBox##Type q_aabb_##type##_to_box(QAABB##Type object)					\
 	{											\
-	return q_##type##_box									\
+	return q_box_##type									\
 		(object.a.x,		  object.a.y,		   object.a.z,			\
 		 object.b.x - object.a.x, object.b.y - object.a.y, object.b.z - object.a.z);	\
 	}											\
 												\
 												\
-Q_INLINE Q3D##Type q_##type##_aabb_absolute_point_to_unit(Q##Type##AABB object, Q3D##Type point)\
+Q_INLINE Q3D##Type q_aabb_##type##_absolute_point_to_unit(QAABB##Type object, Q3D##Type point)	\
 	{											\
 	return q_3d_##type									\
 		((point.x - object.a.x) / (object.b.x - object.a.x),				\
@@ -119,7 +119,7 @@ Q_INLINE Q3D##Type q_##type##_aabb_absolute_point_to_unit(Q##Type##AABB object, 
 	}											\
 												\
 												\
-Q_INLINE Q3D##Type q_##type##_aabb_unit_point_to_absolute(Q##Type##AABB object, Q3D##Type point)\
+Q_INLINE Q3D##Type q_aabb_##type##_unit_point_to_absolute(QAABB##Type object, Q3D##Type point)	\
 	{											\
 	return q_3d_##type									\
 		(point.x * (object.b.x - object.a.x) + object.a.x,				\
@@ -128,7 +128,7 @@ Q_INLINE Q3D##Type q_##type##_aabb_unit_point_to_absolute(Q##Type##AABB object, 
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_aabb_contains_point(Q##Type##AABB object, Q3D##Type point)		\
+Q_INLINE qboolean q_aabb_##type##_contains_point(QAABB##Type object, Q3D##Type point)		\
 	{											\
 	return	object.a.x <= point.x && point.x <= object.a.x &&				\
 		object.a.y <= point.y && point.y <= object.a.y &&				\
@@ -136,17 +136,17 @@ Q_INLINE qboolean q_##type##_aabb_contains_point(Q##Type##AABB object, Q3D##Type
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_aabb_contains_line_segment(					\
-	Q##Type##AABB	object,									\
-	Q3D##Type##Line segment									\
+Q_INLINE qboolean q_aabb_##type##_contains_line_segment(					\
+	QAABB##Type   object,									\
+	Q3DLine##Type segment									\
 )												\
 	{											\
-	return	q_##type##_aabb_contains_point(object, segment.a) &&				\
-		q_##type##_aabb_contains_point(object, segment.b);				\
+	return	q_aabb_##type##_contains_point(object, segment.a) &&				\
+		q_aabb_##type##_contains_point(object, segment.b);				\
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_aabb_contains_box(Q##Type##AABB object, Q##Type##Box box)		\
+Q_INLINE qboolean q_aabb_##type##_contains_box(QAABB##Type object, QBox##Type box)		\
 	{											\
 	return	object.a.x <= box.point.x	       &&					\
 		object.a.y <= box.point.y	       &&					\
@@ -157,7 +157,7 @@ Q_INLINE qboolean q_##type##_aabb_contains_box(Q##Type##AABB object, Q##Type##Bo
 	}											\
 												\
 												\
-Q_INLINE qboolean q_##type##_aabb_contains_sphere(Q##Type##AABB	object, Q##Type##Sphere sphere)	\
+Q_INLINE qboolean q_aabb_##type##_contains_sphere(QAABB##Type object, QSphere##Type sphere)	\
 	{											\
 	return	sphere.point.x - sphere.radius >= object.a.x &&					\
 		sphere.point.y - sphere.radius >= object.a.y &&					\
@@ -179,20 +179,20 @@ Q_IMPLEMENTATION_AABB(LDouble, ldouble, Q_LDOUBLE)
 #define q_aabb_is_zero		      q_3d_line_is_zero
 #define q_aabb_center		      q_3d_line_segment_center
 
-#define q_aabb_contains		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_contains	       )
-#define q_aabb_collide		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_collide	       )
-#define q_aabb_intersection	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_intersection	       )
-#define q_aabb_union		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_union		       )
-#define q_aabb_from_vertices	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_from_vertices	       )
-#define q_aabb_size		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_size		       )
-#define q_aabb_volume		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_volume		       )
-#define q_aabb_inner_sphere	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_inner_sphere	       )
-#define q_aabb_to_box		      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_to_box		       )
-#define q_aabb_absolute_point_to_unit Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_absolute_point_to_unit)
-#define q_aabb_unit_point_to_absolute Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_unit_point_to_absolute)
-#define q_aabb_contains_point	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_contains_point	       )
-#define q_aabb_contains_line_segment  Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_contains_line_segment )
-#define q_aabb_contains_box	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_contains_box	       )
-#define q_aabb_contains_sphere	      Q_JOIN_3(q_, Q_REAL_FIXED_TYPE_name, _aabb_contains_sphere       )
+#define q_aabb_contains		      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _contains	       )
+#define q_aabb_collide		      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _collide	       )
+#define q_aabb_intersection	      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _intersection	       )
+#define q_aabb_union		      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _union		       )
+#define q_aabb_from_vertices	      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _from_vertices	       )
+#define q_aabb_size		      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _size		       )
+#define q_aabb_volume		      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _volume		       )
+#define q_aabb_inner_sphere	      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _inner_sphere	       )
+#define q_aabb_to_box		      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _to_box		       )
+#define q_aabb_absolute_point_to_unit Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _absolute_point_to_unit)
+#define q_aabb_unit_point_to_absolute Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _unit_point_to_absolute)
+#define q_aabb_contains_point	      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _contains_point	       )
+#define q_aabb_contains_line_segment  Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _contains_line_segment )
+#define q_aabb_contains_box	      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _contains_box	       )
+#define q_aabb_contains_sphere	      Q_JOIN_3(q_aabb_, Q_REAL_FIXED_TYPE_name, _contains_sphere       )
 
 #endif /* __Q_functions_geometry_QAABB_H__ */
