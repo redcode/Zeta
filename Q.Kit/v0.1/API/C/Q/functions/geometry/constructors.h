@@ -42,7 +42,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Q_IMPLEMENTATION_GEOMETRY_CONSTRUCTORS(Type, type)		\
 										\
 										\
-	Q_INLINE Q2DVector##Type q_2dvector_##type(				\
+	Q_INLINE Q2DVector##Type q_2d_vector_##type(				\
 		q##type a_x,							\
 		q##type a_y,							\
 		q##type b_x,							\
