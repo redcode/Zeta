@@ -8,130 +8,121 @@ Copyright © Martijn v.d. Heide.
 Copyright © Ramsoft.
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
- ____________________________
-/\			     \
-\_| Extensions: .tap, .cdt    |
-  | Endianness: Little	      |
-  | Created by: Tomaz Kac     |
-  | Used by:	Many programs |
-  |   ________________________|_
-   \_/_________________________/
-
-.------------------------------------------------------------------------------.
-| Format revision: v1.20 (2006-12-19)					       |
-|									       |
-| 1) Introduction							       |
-| ---------------							       |
-|									       |
-|    TZX is a file format designed to preserve all (hopefully) of the tapes    |
-| with turbo or custom loading routines. Even though some of the newer and     |
-| 'smarter' emulators can find most of the info about the loader from the code |
-| itself, this isn't possible if you want to save the file to tape, or to a    |
-| real Spectrum.							       |
-| And with all this information in the file, the emulators don't have to       |
-| bother with finding out the timings and other things.			       |
-|									       |
-|    This file format is explicitly targeted to the ZX Spectrum compatible     |
-| computers only. Specialized versions of the TZX format have been defined for |
-| other machines too, e.g. the Amstrad CPC and C64, but they are now available |
-| as distinct file formats with other filename extensions.		       |
-|									       |
-|    At the end of this document you can find a description of encoding	       |
-| differences between these machines and a table which displays timings used   |
-| by their respective ROM loading routines (some of them are not official).    |
-| If you know of any other machines that have similar encoding that could be   |
-| represented with this file format then let us know.			       |
-|									       |
-|    If you're looking for TZX files, you can find an extensive collection at  |
-| Martijn van der Heide's 'World of Spectrum': http://www.worldofspectrum.org  |
-|									       |
-|    The format was first started off by Tomaz Kac who was maintainer until    |
-| revision 1.13, and then passed to Martijn v.d. Heide. After that, Ramsoft    |
-| were the maintainers for a brief period during which the v1.20 revision was  |
-| put together. If you have any questions about the format, visit the forums   |
-| at World of Spectrum and ask.						       |
-|									       |
-|    The default format file extension is "TZX" and hopefully this won't have  |
-| to change in the future; for RISC OS the current TAP file type will be used. |
-| Amstrad CPC files should use the extension "CDT" to distinguish them  from   |
-| the ZX Spectrum files, otherwise the inner structure is totally the same.    |
-|									       |
-| 2) Rules and definitions						       |
-| ------------------------						       |
-|									       |
-| - Any value requiring more than one byte is stored in little endian format   |
-|   (i.e. LSB first).							       |
-|									       |
-| - All unused bits should be set to zero.				       |
-|									       |
-| - The timings are given in Z80 clock ticks (T states) unless otherwise       |
-|   stated.								       |
-|   1 T state = (1/3500000)s						       |
-|									       |
-| - All ASCII texts use the ISO 8859-1 (Latin 1) encoding; some of them can    |
-|   have several lines, which should be separated by ASCII code 13 decimal     |
-|   (0Dh).								       |
-|									       |
-| - You might interpret 'full-period' as ----____ or ____----, and	       |
-|   'half-period' as ---- or ____. One 'half-period' will also be referred to  |
-|   as a 'pulse'.							       |
-|									       |
-| - The values in curly brackets {} are the default values that are used in    |
-|   the Spectrum ROM saving routines. These values are in decimal.	       |
-|									       |
-| - If there is no pause between two data blocks then the second one should    |
-|   follow immediately; not even so much as one T state between them.	       |
-|									       |
-| - This document refers to 'high' and 'low' pulse levels. Whether this is     |
-|   implemented as EAR=1 and EAR=0 respectively or the other way around is not |
-|   important, as long as it is done consistently.			       |
-|									       |
-| - Zeros and ones in 'Direct recording' blocks mean low and high pulse levels |
-|   respectively. The 'current pulse level' after playing a Direct Recording   |
-|   block of CSW recording block is the last level played.		       |
-|									       |
-| - The 'current pulse level' after playing the blocks ID 10,11,12,13,14 or 19 |
-|   is the opposite of the last pulse level played, so that a subsequent pulse |
-|   will produce an edge.						       |
-|									       |
-| - A 'Pause' block consists of a 'low' pulse level of some duration.	       |
-|   To ensure that the last edge produced is properly finished there should be |
-|   at least 1ms pause of the opposite level and only after that the pulse     |
-|   should go to 'low'. At the end of a 'Pause' block the 'current pulse       |
-|   level' is low (note that the first pulse will therefore not immediately    |
-|   produce an edge). A 'Pause' block of zero duration is completely ignored,  |
-|   so the 'current pulse level' will NOT change in this case. This also       |
-|   applies to 'Data' blocks that have some pause duration included in them.   |
-|									       |
-| - An emulator should put the 'current pulse level' to 'low' when starting to |
-|   play a TZX file, either from the start or from a certain position. The     |
-|   writer of a TZX file should ensure that the 'current pulse level' is       |
-|   well-defined in every sequence of blocks where this is important, i.e. in  |
-|   any sequence that includes a 'Direct recording' block, or that depends on  |
-|   edges generated by 'Pause' blocks. The recommended way of doing this is to |
-|   include a Pause after each sequence of blocks.			       |
-|									       |
-| - When creating a 'Direct recording' block please stick to the standard      |
-|   sampling frequencies of 22050 or 44100 Hz. This will ensure correct	       |
-|   playback when using modern soundcards.				       |
-|									       |
-| - The length of a block is given in the following format: numbers in square  |
-|   brackets [] mean that the value must be read from the offset in the	       |
-|   brackets. Other values are normal numbers.				       |
-|   Example: [02,03]+0A means: get number (16bit) from offset 02 and add 0A.   |
-|   All numbers are in hexadecimal.					       |
-|									       |
-| - General Extension Rule: ALL custom blocks that will be added after version |
-|   1.10 will have the length of the block in first 4 bytes (long word) after  |
-|   the ID (this length does not include these 4 length bytes). This should    |
-|   enable programs that can only handle older versions to skip that block.    |
-|									       |
-| - Just in case:							       |
-|   MSB = most significant byte						       |
-|   LSB = least significant byte					       |
-|   MSb = most significant bit						       |
-|   LSb = least significant bit						       |
-'-----------------------------------------------------------------------------*/
+ ______________________________________________________________________________
+/\									       \
+\_| Extensions: .tap, .cdt							|
+  | Endianness: Little								|
+  | Created by: Tomaz Kac							|
+  | Used by:	Many programs							|
+  |										|
+  | Format revision: v1.20 (2006-12-19)						|
+  |										|
+  | 1) Introduction								|
+  | ---------------								|
+  |										|
+  |    TZX is a file format designed to preserve all (hopefully) of the tapes	|
+  | with turbo or custom loading routines. Even though some of the newer and	|
+  | 'smarter' emulators can find most of the info about the loader from the	|
+  | code itself, this isn't possible if you want to save the file to tape, or	|
+  | to a real Spectrum.								|
+  | And with all this information in the file, the emulators don't have to      |
+  | bother with finding out the timings and other things.			|
+  |										|
+  |    This file format is explicitly targeted to the ZX Spectrum compatible    |
+  | computers only. Specialized versions of the TZX format have been defined	|
+  | for other machines too, e.g. the Amstrad CPC and C64, but they are now	|
+  | available as distinct file formats with other filename extensions.		|
+  |										|
+  |    At the end of this document you can find a description of encoding	|
+  | differences between these machines and a table which displays timings used	|
+  | by their respective ROM loading routines (some of them are not official).	|
+  | If you know of any other machines that have similar encoding that could be	|
+  | represented with this file format then let us know.				|
+  |										|
+  |    If you're looking for TZX files, you can find an extensive collection at	|
+  | Martijn van der Heide's 'World of Spectrum': http://www.worldofspectrum.org	|
+  |										|
+  |    The format was first started off by Tomaz Kac who was maintainer until	|
+  | revision 1.13, and then passed to Martijn v.d. Heide. After that, Ramsoft	|
+  | were the maintainers for a brief period during which the v1.20 revision was	|
+  | put together. If you have any questions about the format, visit the forums	|
+  | at World of Spectrum and ask.						|
+  |										|
+  |    The default format file extension is "TZX" and hopefully this won't have |
+  | to change in the future. Amstrad CPC files should use the extension "CDT"	|
+  | to distinguish them from the ZX Spectrum files.				|
+  |										|
+  | 2) Rules and definitions							|
+  | ------------------------							|
+  |										|
+  | - Any value requiring more than one byte is stored in little endian format	|
+  |   (i.e. LSB first).								|
+  |										|
+  | - All unused bits should be set to zero.					|
+  |										|
+  | - The timings are given in Z80 clock ticks (T states) unless otherwise	|
+  |   stated.									|
+  |   1 T state = (1 / 3500000) s						|
+  |										|
+  | - All ASCII texts use the ISO 8859-1 (Latin 1) encoding; some of them can	|
+  |   have several lines, which should be separated by ASCII code 13 decimal	|
+  |   (0Dh).									|
+  |										|
+  | - You might interpret 'full-period' as ----____ or ____----, and		|
+  |   'half-period' as ---- or ____. One 'half-period' will also be referred to	|
+  |   as a 'pulse'.								|
+  |										|
+  | - The values in curly brackets {} are the default values that are used in	|
+  |   the Spectrum ROM saving routines. These values are in decimal.		|
+  |										|
+  | - If there is no pause between two data blocks then the second one should	|
+  |   follow immediately; not even so much as one T state between them.		|
+  |										|
+  | - This document refers to 'high' and 'low' pulse levels. Whether this is	|
+  |   implemented as EAR=1 and EAR=0 respectively or the other way around is	|
+  |   not important, as long as it is done consistently.			|
+  |										|
+  | - Zeros and ones in 'Direct recording' blocks mean low and high pulse	|
+  |   levels respectively. The 'current pulse level' after playing a Direct	|
+  |   Recording block of CSW recording block is the last level played.		|
+  |										|
+  | - The 'current pulse level' after playing the blocks ID 10,11,12,13,14 or	|
+  |   19 is the opposite of the last pulse level played, so that a subsequent	|
+  |   pulse will produce an edge.						|
+  |										|
+  | - A 'Pause' block consists of a 'low' pulse level of some duration.		|
+  |   To ensure that the last edge produced is properly finished there should	|
+  |   be at least 1ms pause of the opposite level and only after that the pulse	|
+  |   should go to 'low'. At the end of a 'Pause' block the 'current pulse	|
+  |   level' is low (note that the first pulse will therefore not immediately	|
+  |   produce an edge). A 'Pause' block of zero duration is completely ignored,	|
+  |   so the 'current pulse level' will NOT change in this case. This also	|
+  |   applies to 'Data' blocks that have some pause duration included in them.	|
+  |										|
+  | - An emulator should put the 'current pulse level' to 'low' when starting	|
+  |   to play a TZX file, either from the start or from a certain position. The	|
+  |   writer of a TZX file should ensure that the 'current pulse level' is	|
+  |   well-defined in every sequence of blocks where this is important, i.e. in	|
+  |   any sequence that includes a 'Direct recording' block, or that depends on	|
+  |   edges generated by 'Pause' blocks. The recommended way of doing this is	|
+  |   to include a Pause after each sequence of blocks.				|
+  |										|
+  | - When creating a 'Direct recording' block please stick to the standard	|
+  |   sampling frequencies of 22050 or 44100 Hz. This will ensure correct	|
+  |   playback when using modern soundcards.					|
+  |										|
+  | - The length of a block is given in the following format: numbers in square	|
+  |   brackets [] mean that the value must be read from the offset in the	|
+  |   brackets. Other values are normal numbers.				|
+  |   Example: [02,03]+0A means: get number (16bit) from offset 02 and add 0A.	|
+  |   All numbers are in hexadecimal.						|
+  |										|
+  | - General Extension Rule: ALL custom blocks that will be added after v1.10	|
+  |   will have the length of the block in first 4 bytes (long word) after the	|
+  |   ID (this length does not include these 4 length bytes). This should	|
+  |   enable programs that can only handle older versions to skip that block.   |
+  |   __________________________________________________________________________|_
+   \_/__________________________________________________________________________*/
 
 #ifndef __Q_formats_storage_medium_image_audio_TZX_H__
 #define __Q_formats_storage_medium_image_audio_TZX_H__
