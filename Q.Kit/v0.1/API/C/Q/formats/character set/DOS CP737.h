@@ -266,7 +266,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_DOS_CP737_BLACK_SQUARE					0xFE
 #define Q_DOS_CP737_NO_BREAK_SPACE					0xFF
 
-
 #define Q_ARRAY_CONTENT_DOS_CP737_TO_UNICODE(_)					\
 	_(0000), _(0001), _(0002), _(0003), _(0004), _(0005), _(0006), _(0007), \
 	_(0008), _(0009), _(000A), _(000B), _(000C), _(000D), _(000E), _(000F), \
@@ -300,6 +299,5 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	_(03CB), _(03CE), _(0386), _(0388), _(0389), _(038A), _(038C), _(038E), \
 	_(038F), _(00B1), _(2265), _(2264), _(03AA), _(03AB), _(00F7), _(2248), \
 	_(00B0), _(2219), _(00B7), _(221A), _(207F), _(00B2), _(25A0), _(00A0)
-
 
 #endif /* __Q_formats_character_set_DOS_CP737_H__ */
