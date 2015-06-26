@@ -64,15 +64,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Q_KEYMAP_APPLE_US_KEYPAD_ENTER	  0x4C
 #define Q_KEYMAP_APPLE_US_KEYPAD_MINUS	  0x4E
 #define Q_KEYMAP_APPLE_US_KEYPAD_EQUALS	  0x51
-#define Q_KEYMAP_APPLE_US_Keypad0	  0x52
-#define Q_KEYMAP_APPLE_US_Keypad1	  0x53
-#define Q_KEYMAP_APPLE_US_Keypad2	  0x54
-#define Q_KEYMAP_APPLE_US_Keypad3	  0x55
-#define Q_KEYMAP_APPLE_US_Keypad4	  0x56
-#define Q_KEYMAP_APPLE_US_Keypad5	  0x57
-#define Q_KEYMAP_APPLE_US_Keypad6	  0x58
-#define Q_KEYMAP_APPLE_US_Keypad7	  0x59
-#define Q_KEYMAP_APPLE_US_Keypad8	  0x5B
-#define Q_KEYMAP_APPLE_US_Keypad9	  0x5C
+#define Q_KEYMAP_APPLE_US_KEYPAD_0	  0x52
+#define Q_KEYMAP_APPLE_US_KEYPAD_1	  0x53
+#define Q_KEYMAP_APPLE_US_KEYPAD_2	  0x54
+#define Q_KEYMAP_APPLE_US_KEYPAD_3	  0x55
+#define Q_KEYMAP_APPLE_US_KEYPAD_4	  0x56
+#define Q_KEYMAP_APPLE_US_KEYPAD_5	  0x57
+#define Q_KEYMAP_APPLE_US_KEYPAD_6	  0x58
+#define Q_KEYMAP_APPLE_US_KEYPAD_7	  0x59
+#define Q_KEYMAP_APPLE_US_KEYPAD_8	  0x5B
+#define Q_KEYMAP_APPLE_US_KEYPAD_9	  0x5C
 
 #endif /* __Q_formats_keymap_Apple_US_H__ */
