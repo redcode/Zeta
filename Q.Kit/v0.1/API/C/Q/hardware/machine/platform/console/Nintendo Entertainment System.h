@@ -22,7 +22,7 @@ Released under the terms of the GNU Lesser General Public License v3.
  Front view						 Joystick Connector
  ___ __________________________________ ______ ______	       .---.
 |   |				       |______|      |	 GND --| O  \
-|   | Nintendo©			       |      |      |	 CLK --| O O |-- +5V
+|   | Nintendo®			       |      |      |	 CLK --| O O |-- +5V
 |   | ENTERTAINMENT SYSTEM™	       |      |      |	 OUT --| O O |-- D3
 |   |__________________________________|______|      |	  D0 --| O O |-- D4
 |______________________________________|______|______|	       '-----'
