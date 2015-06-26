@@ -134,7 +134,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 
 #define Q_ZX_SPECTRUM_UNASSIGNED_IO_PORT_INPUT	0xFF
 
-/* MARK: - ULA IO port
+/* MARK: - ULA I/O port
 .-----------------.-----------------.
 | 7 6 5 4 3 2 1 0 | 7 6 5 4 3 2 1 0 |
 '-\_____________/-'-\___/-|-|-\___/-'
@@ -207,6 +207,97 @@ Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(4) (
 	quint8 ear	    :1,
 	quint8 border_color :3
 )) QZXSpectrumULAIO;
+
+/* MARK: - ULA I/O port: input value
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-|-|-\_________/-'
+  | |	   |
+  | |	   '------> Keyboard mask
+  | '-------------> EAR input
+  '---------------> 1 */
+
+#define Q_ZX_SPECTRUM_KEY_MASK_ENTER	    0x10
+#define Q_ZX_SPECTRUM_KEY_MASK_SHIFT	    0x10
+#define Q_ZX_SPECTRUM_KEY_MASK_SPACE	    0x10
+#define Q_ZX_SPECTRUM_KEY_MASK_0	    0x10
+#define Q_ZX_SPECTRUM_KEY_MASK_1	    0x10
+#define Q_ZX_SPECTRUM_KEY_MASK_2	    0x08
+#define Q_ZX_SPECTRUM_KEY_MASK_3	    0x04
+#define Q_ZX_SPECTRUM_KEY_MASK_4	    0x02
+#define Q_ZX_SPECTRUM_KEY_MASK_5	    0x01
+#define Q_ZX_SPECTRUM_KEY_MASK_6	    0x01
+#define Q_ZX_SPECTRUM_KEY_MASK_7	    0x02
+#define Q_ZX_SPECTRUM_KEY_MASK_8	    0x04
+#define Q_ZX_SPECTRUM_KEY_MASK_9	    0x08
+#define Q_ZX_SPECTRUM_KEY_MASK_A	    0x10
+#define Q_ZX_SPECTRUM_KEY_MASK_B	    0x01
+#define Q_ZX_SPECTRUM_KEY_MASK_C	    0x02
+#define Q_ZX_SPECTRUM_KEY_MASK_D	    0x04
+#define Q_ZX_SPECTRUM_KEY_MASK_E	    0x04
+#define Q_ZX_SPECTRUM_KEY_MASK_F	    0x02
+#define Q_ZX_SPECTRUM_KEY_MASK_G	    0x01
+#define Q_ZX_SPECTRUM_KEY_MASK_H	    0x01
+#define Q_ZX_SPECTRUM_KEY_MASK_I	    0x04
+#define Q_ZX_SPECTRUM_KEY_MASK_J	    0x02
+#define Q_ZX_SPECTRUM_KEY_MASK_K	    0x04
+#define Q_ZX_SPECTRUM_KEY_MASK_L	    0x08
+#define Q_ZX_SPECTRUM_KEY_MASK_M	    0x04
+#define Q_ZX_SPECTRUM_KEY_MASK_N	    0x02
+#define Q_ZX_SPECTRUM_KEY_MASK_O	    0x08
+#define Q_ZX_SPECTRUM_KEY_MASK_P	    0x10
+#define Q_ZX_SPECTRUM_KEY_MASK_Q	    0x10
+#define Q_ZX_SPECTRUM_KEY_MASK_R	    0x02
+#define Q_ZX_SPECTRUM_KEY_MASK_S	    0x08
+#define Q_ZX_SPECTRUM_KEY_MASK_T	    0x01
+#define Q_ZX_SPECTRUM_KEY_MASK_U	    0x02
+#define Q_ZX_SPECTRUM_KEY_MASK_V	    0x01
+#define Q_ZX_SPECTRUM_KEY_MASK_W	    0x08
+#define Q_ZX_SPECTRUM_KEY_MASK_X	    0x04
+#define Q_ZX_SPECTRUM_KEY_MASK_Y	    0x01
+#define Q_ZX_SPECTRUM_KEY_MASK_Z	    0x08
+#define Q_ZX_SPECTRUM_KEY_MASK_SYMBOL_SHIFT 0x08
+
+#define Q_ZX_SPECTRUM_KEY_ROW_ENTER	   6
+#define Q_ZX_SPECTRUM_KEY_ROW_SHIFT	   0
+#define Q_ZX_SPECTRUM_KEY_ROW_SPACE	   7
+#define Q_ZX_SPECTRUM_KEY_ROW_0		   3
+#define Q_ZX_SPECTRUM_KEY_ROW_1		   4
+#define Q_ZX_SPECTRUM_KEY_ROW_2		   4
+#define Q_ZX_SPECTRUM_KEY_ROW_3		   4
+#define Q_ZX_SPECTRUM_KEY_ROW_4		   4
+#define Q_ZX_SPECTRUM_KEY_ROW_5		   4
+#define Q_ZX_SPECTRUM_KEY_ROW_6		   3
+#define Q_ZX_SPECTRUM_KEY_ROW_7		   3
+#define Q_ZX_SPECTRUM_KEY_ROW_8		   3
+#define Q_ZX_SPECTRUM_KEY_ROW_9		   3
+#define Q_ZX_SPECTRUM_KEY_ROW_A		   1
+#define Q_ZX_SPECTRUM_KEY_ROW_B		   7
+#define Q_ZX_SPECTRUM_KEY_ROW_C		   0
+#define Q_ZX_SPECTRUM_KEY_ROW_D		   1
+#define Q_ZX_SPECTRUM_KEY_ROW_E		   2
+#define Q_ZX_SPECTRUM_KEY_ROW_F		   1
+#define Q_ZX_SPECTRUM_KEY_ROW_G		   1
+#define Q_ZX_SPECTRUM_KEY_ROW_H		   6
+#define Q_ZX_SPECTRUM_KEY_ROW_I		   5
+#define Q_ZX_SPECTRUM_KEY_ROW_J		   6
+#define Q_ZX_SPECTRUM_KEY_ROW_K		   6
+#define Q_ZX_SPECTRUM_KEY_ROW_L		   6
+#define Q_ZX_SPECTRUM_KEY_ROW_M		   7
+#define Q_ZX_SPECTRUM_KEY_ROW_N		   7
+#define Q_ZX_SPECTRUM_KEY_ROW_O		   5
+#define Q_ZX_SPECTRUM_KEY_ROW_P		   5
+#define Q_ZX_SPECTRUM_KEY_ROW_Q		   2
+#define Q_ZX_SPECTRUM_KEY_ROW_R		   2
+#define Q_ZX_SPECTRUM_KEY_ROW_S		   1
+#define Q_ZX_SPECTRUM_KEY_ROW_T		   2
+#define Q_ZX_SPECTRUM_KEY_ROW_U		   5
+#define Q_ZX_SPECTRUM_KEY_ROW_V		   0
+#define Q_ZX_SPECTRUM_KEY_ROW_W		   2
+#define Q_ZX_SPECTRUM_KEY_ROW_X		   0
+#define Q_ZX_SPECTRUM_KEY_ROW_Y		   5
+#define Q_ZX_SPECTRUM_KEY_ROW_Z		   0
+#define Q_ZX_SPECTRUM_KEY_ROW_SYMBOL_SHIFT 7
 
 /* MARK: - Firmware ADC
 .------------------------------------------------------------------------.
