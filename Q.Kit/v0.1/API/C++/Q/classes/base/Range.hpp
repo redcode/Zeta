@@ -20,26 +20,34 @@ class QKit::Range : public QRange {
 	public:
 	inline Range() {}
 
+
 	inline Range(Size index, Size size)
 		{this->index = index; this->size = size;}
+
 
 	inline Boolean contains(Range range) const
 		{return range.index >= index && range.index + range.size <= index + size;}
 
+
 	inline Boolean collides(Range range) const
 		{return index < range.index + range.size && range.index < index + size;}
+
 
 	inline Boolean is_zero() const
 		{return index == 0 && size == 0;}
 
+
 	inline Size end() const
 		{return index + size;}
+
 
 	inline Boolean contains_index(Size index) const
 		{return index >= this->index && index < this->index + this->size;}
 
+
 	inline Boolean operator ==(Range range) const
 		{return index == range.index && size == range.size;}
+
 
 	inline Boolean operator ==(Size number) const
 		{return index == number && size == number;}
@@ -66,12 +74,8 @@ class QKit::Range : public QRange {
 		}
 
 
-	inline Range &operator &=(Range range)
-		{return *this = *this & range;}
-
-	inline Range &operator |=(Range range)
-		{return *this = *this | range;}
-
+	inline Range &operator &=(Range range) {return *this = *this & range;}
+	inline Range &operator |=(Range range) {return *this = *this | range;}
 };
 
 

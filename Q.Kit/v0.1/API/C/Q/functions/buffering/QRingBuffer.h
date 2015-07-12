@@ -17,7 +17,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 Q_INLINE void q_ring_buffer_initialize(
 	QRingBuffer* object,
-	void*	     const buffers,
+	void const*  buffers,
 	qsize	     buffer_size,
 	qsize	     buffer_count
 )
@@ -31,7 +31,7 @@ Q_INLINE void q_ring_buffer_initialize(
 	}
 
 
-Q_INLINE void *q_ring_buffer_production_buffer(QRingBuffer *const object)
+Q_INLINE void *q_ring_buffer_production_buffer(QRingBuffer const *object)
 	{
 	return object->buffer_count - object->fill_count
 		? (quint8 *)object->buffers + object->production_index * object->buffer_size
@@ -39,7 +39,7 @@ Q_INLINE void *q_ring_buffer_production_buffer(QRingBuffer *const object)
 	}
 
 
-Q_INLINE void *q_ring_buffer_consumption_buffer(QRingBuffer *const object)
+Q_INLINE void *q_ring_buffer_consumption_buffer(QRingBuffer const *object)
 	{
 	return object->fill_count
 		? (quint8 *)object->buffers + object->consumption_index * object->buffer_size

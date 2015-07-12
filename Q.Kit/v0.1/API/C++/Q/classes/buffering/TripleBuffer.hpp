@@ -61,7 +61,6 @@ class QKit::TripleBuffer : public QTripleBuffer {
 
 		return this->buffers[new_flags & 3];;
 		}
-
 };
 
 

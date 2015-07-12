@@ -16,7 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 Q_INLINE void q_triple_buffer_initialize(
 	QTripleBuffer* object,
-	void*	       const buffers,
+	void const*    buffers,
 	qsize	       buffer_size
 )
 	{
@@ -27,11 +27,11 @@ Q_INLINE void q_triple_buffer_initialize(
 	}
 
 
-Q_INLINE void *q_triple_buffer_production_buffer(QTripleBuffer *const object)
+Q_INLINE void *q_triple_buffer_production_buffer(QTripleBuffer const *object)
 	{return object->buffers[(object->flags & 48) >> 4];}
 
 
-Q_INLINE void *q_triple_buffer_consumption_buffer(QTripleBuffer *const object)
+Q_INLINE void *q_triple_buffer_consumption_buffer(QTripleBuffer const *object)
 	{return object->buffers[object->flags & 3];}
 
 

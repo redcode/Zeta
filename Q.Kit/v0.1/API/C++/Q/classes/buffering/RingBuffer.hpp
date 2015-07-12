@@ -86,7 +86,6 @@ class QKit::RingBuffer : public QRingBuffer {
 		q_value_atomic_decrement_then_get(SIZE)(&fill_count);
 		return (UInt8 *)buffers + consumption_index * buffer_size;
 		}
-
 };
 
 
