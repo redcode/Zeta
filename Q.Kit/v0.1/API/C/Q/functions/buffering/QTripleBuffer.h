@@ -20,7 +20,7 @@ Q_INLINE void q_triple_buffer_initialize(
 	qsize	       buffer_size
 )
 	{
-	object->buffers[0] = buffers;
+	object->buffers[0] = (quint8 *)buffers;
 	object->buffers[1] = (quint8 *)buffers + buffer_size;
 	object->buffers[2] = (quint8 *)buffers + buffer_size * 2;
 	object->flags	   = 6;
