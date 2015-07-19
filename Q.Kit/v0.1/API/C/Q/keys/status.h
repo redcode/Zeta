@@ -9,11 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Q_keys_status_H__
 #define __Q_keys_status_H__
 
-#ifdef OK
-#	undef OK
-#endif
-
-#define	OK				  0
+#define	Q_OK				  0
 
 #define Q_UNIMPLEMENTED			  1
 #define Q_END				  2
