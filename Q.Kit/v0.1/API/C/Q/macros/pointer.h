@@ -24,7 +24,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Pointer from base + offset */
 
-#define Q_BOP(type, base, offset) ((type)(((void *)(base)) + (offset)))
+#define Q_BOP(type, base, offset) ((type)(((quint8 *)(base)) + (offset)))
 
 /* MARK: - Index from base calculations */
 
