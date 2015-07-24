@@ -57,7 +57,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Q_INES_MAPPER_CONY_MAPPER		83
 #define Q_INES_MAPPER_PASOFAMI_MAPPER		84*/
 
-Q_DEFINE_STRICT_STRUCTURE(
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8 nes[4]; /* 4E 45 53 1A ('NES' + MS-DOS EOF) */
 	quint8 prg_rom_page_count;
 	quint8 chr_rom_page_count;

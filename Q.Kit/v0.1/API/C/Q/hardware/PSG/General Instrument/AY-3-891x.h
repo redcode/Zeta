@@ -134,7 +134,7 @@ Q_DEFINE_STRICT_STRUCTURE (Q_8BIT_FIELD(8) (
 	quint8 l0      :1
 )) QAY3891xAmplitude;
 
-Q_DEFINE_STRICT_UNION(
+Q_DEFINE_STRICT_UNION (
 	quint8 registers[16];
 
 	struct {quint8 channel_a_tone_period_fine_tune;

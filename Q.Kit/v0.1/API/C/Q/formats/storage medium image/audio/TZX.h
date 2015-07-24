@@ -471,7 +471,7 @@ Offset	   Value			Description
 | user or emulator requests it.						 |
 '-----------------------------------------------------------------------*/
 
-Q_DEFINE_STRICT_STRUCTURE(
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 duration_ms;
 ) QTZXPause;
 
@@ -509,7 +509,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 |All blocks are included in the block count!			      |
 '--------------------------------------------------------------------*/
 
-Q_DEFINE_STRICT_STRUCTURE(
+Q_DEFINE_STRICT_STRUCTURE (
 	quint16 relative_offset;
 ) QTZXJump;
 
@@ -706,7 +706,7 @@ Q_DEFINE_STRICT_STRUCTURE (
 #define Q_TZX_HARDWARE_COMPATIBILITY_UNNEEDED	  2
 #define Q_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE 3
 
-Q_DEFINE_STRICT_STRUCTURE(
+Q_DEFINE_STRICT_STRUCTURE (
 	quint8 type;
 	quint8 id;
 	quint8 compatibility;
