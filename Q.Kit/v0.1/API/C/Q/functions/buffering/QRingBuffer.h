@@ -22,7 +22,7 @@ Q_INLINE void q_ring_buffer_initialize(
 	qsize	     buffer_count
 )
 	{
-	object->buffers		  = buffers;
+	object->buffers		  = (void *)buffers;
 	object->buffer_size	  = buffer_size;
 	object->buffer_count	  = buffer_count;
 	object->production_index  = 0;
