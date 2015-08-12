@@ -76,7 +76,7 @@ Q_INLINE void *q_ring_buffer_produce(QRingBuffer *object)
 
 Q_INLINE void *q_ring_buffer_consume(QRingBuffer *object)
 	{
-	if (!object->fill_count) q_cpu_relax();
+	while (!object->fill_count) q_cpu_relax();
 	object->consumption_index = (object->consumption_index + 1) % object->buffer_count;
 	q_value_atomic_decrement_then_get(SIZE)(&object->fill_count);
 	return (quint8 *)object->buffers + object->consumption_index * object->buffer_size;
