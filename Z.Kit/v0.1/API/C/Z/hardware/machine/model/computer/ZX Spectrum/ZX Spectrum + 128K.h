@@ -85,11 +85,11 @@ FFFF '----------------------------------------------------------------------*/
    '--------------> unused */
 
 Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(5) (
-	quint8 unused	:2,
-	quint8 disable	:1,
-	quint8 rom	:1,
-	quint8 vram	:1,
-	quint8 user	:3
+	zuint8 unused	:2,
+	zuint8 disable	:1,
+	zuint8 rom	:1,
+	zuint8 vram	:1,
+	zuint8 user	:3
 )) ZZXSpectrumPlus128KBankSwitch;
 
 /* FFFD - Read/ Select */
