@@ -93,9 +93,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_JOIN_7_DEFINED(a, b, c, d, e, f, g)	  Z_JOIN_7_DEFINED_(a, b, c, d, e, f, g)
 #define Z_JOIN_8_DEFINED(a, b, c, d, e, f, g, h)  Z_JOIN_8_DEFINED_(a, b, c, d, e, f, g, h)
 
-
-#define Z_JOIN_NYN(a, b, c) a## Z_SAME(b) ##c
-
 #ifndef Z_AVOID_VARIADIC_MACROS
 
 #	define L_PP_ARG_N( \
