@@ -56,9 +56,9 @@ Z_IMPLEMENTATION_2D_LINE_SEGMENT(Double,  double,  Z_DOUBLE )
 Z_IMPLEMENTATION_2D_LINE_SEGMENT(LDouble, ldouble, Z_LDOUBLE)
 
 
-#define Z_JOIN_2d_line_segment_type_collide Z_PASTE_3(z_2d_line_segment_, type, _collide)
-#define Z_JOIN_2d_line_segment_type_center  Z_PASTE_3(z_2d_line_segment_, type, _center )
-#define Z_JOIN_2d_line_segment_type_lerp    Z_PASTE_3(z_2d_line_segment_, type, _lerp	)
+#define Z_JOIN_2d_line_segment_type_collide(type) Z_PASTE_3(z_2d_line_segment_, type, _collide)
+#define Z_JOIN_2d_line_segment_type_center( type) Z_PASTE_3(z_2d_line_segment_, type, _center )
+#define Z_JOIN_2d_line_segment_type_lerp(   type) Z_PASTE_3(z_2d_line_segment_, type, _lerp   )
 
 
 /* MARK: - Default real type definitions */

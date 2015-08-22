@@ -173,26 +173,45 @@ Z_IMPLEMENTATION_AABB(Double,  double,	Z_DOUBLE )
 Z_IMPLEMENTATION_AABB(LDouble, ldouble, Z_LDOUBLE)
 
 
+#define Z_JOIN_aabb_type_contains(		type) Z_PASTE_3(z_aabb_, type, _contains	      )
+#define Z_JOIN_aabb_type_collide(		type) Z_PASTE_3(z_aabb_, type, _collide		      )
+#define Z_JOIN_aabb_type_intersection(		type) Z_PASTE_3(z_aabb_, type, _intersection	      )
+#define Z_JOIN_aabb_type_union(			type) Z_PASTE_3(z_aabb_, type, _union		      )
+#define Z_JOIN_aabb_type_from_vertices(		type) Z_PASTE_3(z_aabb_, type, _from_vertices	      )
+#define Z_JOIN_aabb_type_size(			type) Z_PASTE_3(z_aabb_, type, _size		      )
+#define Z_JOIN_aabb_type_volume(		type) Z_PASTE_3(z_aabb_, type, _volume		      )
+#define Z_JOIN_aabb_type_inner_sphere(		type) Z_PASTE_3(z_aabb_, type, _inner_sphere	      )
+#define Z_JOIN_aabb_type_to_box(		type) Z_PASTE_3(z_aabb_, type, _to_box		      )
+#define Z_JOIN_aabb_type_absolute_point_to_unit(type) Z_PASTE_3(z_aabb_, type, _absolute_point_to_unit)
+#define Z_JOIN_aabb_type_unit_point_to_absolute(type) Z_PASTE_3(z_aabb_, type, _unit_point_to_absolute)
+#define Z_JOIN_aabb_type_contains_point(	type) Z_PASTE_3(z_aabb_, type, _contains_point	      )
+#define Z_JOIN_aabb_type_contains_line_segment(	type) Z_PASTE_3(z_aabb_, type, _contains_line_segment )
+#define Z_JOIN_aabb_type_contains_box(		type) Z_PASTE_3(z_aabb_, type, _contains_box	      )
+#define Z_JOIN_aabb_type_contains_sphere(	type) Z_PASTE_3(z_aabb_, type, _contains_sphere	      )
+
+
 /* MARK: - Default real type definitions */
+
 
 #define z_aabb_are_equal	      z_3d_line_are_equal
 #define z_aabb_is_zero		      z_3d_line_is_zero
 #define z_aabb_center		      z_3d_line_segment_center
 
-#define z_aabb_contains		      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _contains	       )
-#define z_aabb_collide		      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _collide	       )
-#define z_aabb_intersection	      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _intersection	       )
-#define z_aabb_union		      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _union		       )
-#define z_aabb_from_vertices	      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _from_vertices	       )
-#define z_aabb_size		      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _size		       )
-#define z_aabb_volume		      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _volume		       )
-#define z_aabb_inner_sphere	      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _inner_sphere	       )
-#define z_aabb_to_box		      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _to_box		       )
-#define z_aabb_absolute_point_to_unit Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _absolute_point_to_unit)
-#define z_aabb_unit_point_to_absolute Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _unit_point_to_absolute)
-#define z_aabb_contains_point	      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _contains_point	       )
-#define z_aabb_contains_line_segment  Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _contains_line_segment )
-#define z_aabb_contains_box	      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _contains_box	       )
-#define z_aabb_contains_sphere	      Z_JOIN_3(z_aabb_, Z_REAL_FIXED_TYPE_name, _contains_sphere       )
+#define z_aabb_contains		      Z_JOIN_aabb_type_contains		     (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_collide		      Z_JOIN_aabb_type_collide		     (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_intersection	      Z_JOIN_aabb_type_intersection	     (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_union		      Z_JOIN_aabb_type_union		     (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_from_vertices	      Z_JOIN_aabb_type_from_vertices	     (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_size		      Z_JOIN_aabb_type_size		     (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_volume		      Z_JOIN_aabb_type_volume		     (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_inner_sphere	      Z_JOIN_aabb_type_inner_sphere	     (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_to_box		      Z_JOIN_aabb_type_to_box		     (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_absolute_point_to_unit Z_JOIN_aabb_type_absolute_point_to_unit(Z_REAL_FIXED_TYPE_name)
+#define z_aabb_unit_point_to_absolute Z_JOIN_aabb_type_unit_point_to_absolute(Z_REAL_FIXED_TYPE_name)
+#define z_aabb_contains_point	      Z_JOIN_aabb_type_contains_point	     (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_contains_line_segment  Z_JOIN_aabb_type_contains_line_segment (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_contains_box	      Z_JOIN_aabb_type_contains_box	     (Z_REAL_FIXED_TYPE_name)
+#define z_aabb_contains_sphere	      Z_JOIN_aabb_type_contains_sphere	     (Z_REAL_FIXED_TYPE_name)
+
 
 #endif /* __Z_functions_geometry_ZAABB_H__ */
