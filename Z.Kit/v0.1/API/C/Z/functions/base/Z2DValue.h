@@ -346,7 +346,7 @@ Z_IMPLEMENTATION_2D_INTEGER(LDouble, ldouble)
 #define Z_PASTE_2d_type_negative(    type) Z_PASTE_2d_type_negative    (z_2d_, type, _negative	  )
 #define Z_PASTE_2d_type_absolute(    type) Z_PASTE_2d_type_absolute    (z_2d_, type, _absolute	  )
 
-#define z_2d_value_is_negative( TYPE) Z_PASTE_2d_type_is_negative (Z_##TYPE##_FIXED_TYPE_name)
+#define z_2d_value_is_negative(	TYPE) Z_PASTE_2d_type_is_negative (Z_##TYPE##_FIXED_TYPE_name)
 #define z_2d_value_has_negative(TYPE) Z_PASTE_2d_type_has_negative(Z_##TYPE##_FIXED_TYPE_name)
 #define z_2d_value_negative(	TYPE) Z_PASTE_2d_type_negative	  (Z_##TYPE##_FIXED_TYPE_name)
 #define z_2d_value_absolute(	TYPE) Z_PASTE_2d_type_absolute	  (Z_##TYPE##_FIXED_TYPE_name)

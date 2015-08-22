@@ -49,36 +49,36 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define z_4d_double( x, y, z, w) ((Z4DDouble ){x, y, z, w})
 #	define z_4d_ldouble(x, y, z, w) ((Z4DLDouble){x, y, z, w})
 
-#	define z_range(index, size)  ((ZRange){index, size})
+#	define z_range(index, size) ((ZRange){index, size})
 
 #else
 
-#	define Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(Type, type)	  	\
-									  	\
-									  	\
+#	define Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(Type, type)		\
+										\
+										\
 	Z_INLINE Z2D##Type z_2d_##type(z##type x, z##type y)			\
-		{Z2D##Type magnitude = {x, y}; return magnitude;}	  	\
-									  	\
-									  	\
+		{Z2D##Type magnitude = {x, y}; return magnitude;}		\
+										\
+										\
 	Z_INLINE Z3D##Type z_3d_##type(z##type x, z##type y, z##type z)		\
-		{Z3D##Type magnitude = {x, y, z}; return magnitude;}	  	\
-									  	\
-									  	\
+		{Z3D##Type magnitude = {x, y, z}; return magnitude;}		\
+										\
+										\
 	Z_INLINE								\
 	Z4D##Type z_4d_##type(z##type x, z##type y, z##type z, z##type w) 	\
 		{Z4D##Type magnitude = {x, y, z, w}; return magnitude;}
 
 
 	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(UInt8,	 uint8	)
-	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(UInt16,  uint16 )
-	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(UInt32,  uint32 )
-	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(UInt64,  uint64 )
+	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(UInt16,  uint16	)
+	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(UInt32,  uint32	)
+	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(UInt64,  uint64	)
 	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(Int8,	 int8	)
 	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(Int16,	 int16	)
 	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(Int32,	 int32	)
 	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(Int64,	 int64	)
 	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(Float,	 float	)
-	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(Double,  double )
+	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(Double,  double	)
 	Z_MAGNITUDE_CONSTRUCTORS_IMPLEMENTATION(LDouble, ldouble)
 
 
@@ -123,22 +123,29 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define z_4d_double_zero  z_4d_double (0.0,  0.0,  0.0,  0.0 )
 #define z_4d_ldouble_zero z_4d_ldouble(0.0L, 0.0L, 0.0L, 0.0L)
 
-#define z_2d_value(	TYPE) Z_JOIN_2(z_2d_, Z_##TYPE##_FIXED_TYPE_name)
-#define z_3d_value(	TYPE) Z_JOIN_2(z_3d_, Z_##TYPE##_FIXED_TYPE_name)
-#define z_4d_value(	TYPE) Z_JOIN_2(z_4d_, Z_##TYPE##_FIXED_TYPE_name)
-#define z_2d_value_zero(TYPE) Z_JOIN_3(z_2d_, Z_##TYPE##_FIXED_TYPE_name, _zero)
-#define z_3d_value_zero(TYPE) Z_JOIN_3(z_3d_, Z_##TYPE##_FIXED_TYPE_name, _zero)
-#define z_4d_value_zero(TYPE) Z_JOIN_3(z_4d_, Z_##TYPE##_FIXED_TYPE_name, _zero)
+#define Z_PASTE_2d_type(     type) Z_PASTE_2(z_2d_, type)
+#define Z_PASTE_3d_type(     type) Z_PASTE_2(z_3d_, type)
+#define Z_PASTE_4d_type(     type) Z_PASTE_2(z_4d_, type)
+#define Z_PASTE_2d_type_zero(type) Z_PASTE_3(z_2d_, type, _zero)
+#define Z_PASTE_3d_type_zero(type) Z_PASTE_3(z_3d_, type, _zero)
+#define Z_PASTE_4d_type_zero(type) Z_PASTE_3(z_4d_, type, _zero)
+
+#define z_2d_value(	TYPE) Z_PASTE_2d_type	  (Z_##TYPE##_FIXED_TYPE_name)
+#define z_3d_value(	TYPE) Z_PASTE_3d_type	  (Z_##TYPE##_FIXED_TYPE_name)
+#define z_4d_value(	TYPE) Z_PASTE_4d_type	  (Z_##TYPE##_FIXED_TYPE_name)
+#define z_2d_value_zero(TYPE) Z_PASTE_2d_type_zero(Z_##TYPE##_FIXED_TYPE_name)
+#define z_3d_value_zero(TYPE) Z_PASTE_3d_type_zero(Z_##TYPE##_FIXED_TYPE_name)
+#define z_4d_value_zero(TYPE) Z_PASTE_4d_type_zero(Z_##TYPE##_FIXED_TYPE_name)
 
 #define z_range_zero z_range(0, 0)
 
 /* MARK: - Default real type definitions */
 
-#define z_2d	  Z_JOIN_2(z_2d_, Z_REAL_FIXED_TYPE_name)
-#define z_3d	  Z_JOIN_2(z_3d_, Z_REAL_FIXED_TYPE_name)
-#define z_4d	  Z_JOIN_2(z_4d_, Z_REAL_FIXED_TYPE_name)
-#define z_2d_zero Z_JOIN_3(z_2d_, Z_REAL_FIXED_TYPE_name, _zero)
-#define z_3d_zero Z_JOIN_3(z_3d_, Z_REAL_FIXED_TYPE_name, _zero)
-#define z_4d_zero Z_JOIN_3(z_4d_, Z_REAL_FIXED_TYPE_name, _zero)
+#define z_2d	  Z_PASTE_2d_type     (Z_REAL_FIXED_TYPE_name)
+#define z_3d	  Z_PASTE_3d_type     (Z_REAL_FIXED_TYPE_name)
+#define z_4d	  Z_PASTE_4d_type     (Z_REAL_FIXED_TYPE_name)
+#define z_2d_zero Z_PASTE_2d_type_zero(Z_REAL_FIXED_TYPE_name)
+#define z_3d_zero Z_PASTE_3d_type_zero(Z_REAL_FIXED_TYPE_name)
+#define z_4d_zero Z_PASTE_4d_type_zero(Z_REAL_FIXED_TYPE_name)
 
 #endif /* __Z_functions_base_constructors_H__ */

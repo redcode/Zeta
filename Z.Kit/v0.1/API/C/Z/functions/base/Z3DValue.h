@@ -353,7 +353,7 @@ Z_IMPLEMENTATION_3D_INTEGER(LDouble, ldouble)
 #define Z_PASTE_3d_type_negative(    type) Z_PASTE_3(z_3d_, type, _negative    )
 #define Z_PASTE_3d_type_absolute(    type) Z_PASTE_3(z_3d_, type, _absolute    )
 
-#define z_3d_value_is_negative( TYPE) Z_PASTE_3d_type_is_negative (Z_##TYPE##_FIXED_TYPE_name)
+#define z_3d_value_is_negative(	TYPE) Z_PASTE_3d_type_is_negative (Z_##TYPE##_FIXED_TYPE_name)
 #define z_3d_value_has_negative(TYPE) Z_PASTE_3d_type_has_negative(Z_##TYPE##_FIXED_TYPE_name)
 #define z_3d_value_negative(	TYPE) Z_PASTE_3d_type_negative	  (Z_##TYPE##_FIXED_TYPE_name)
 #define z_3d_value_absolute(	TYPE) Z_PASTE_3d_type_absolute	  (Z_##TYPE##_FIXED_TYPE_name)
