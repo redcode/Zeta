@@ -27,7 +27,7 @@ Z_INLINE zboolean z_sphere_##type##_is_zero(ZSphere##Type object)			\
 											\
 Z_INLINE ZBox##Type z_sphere_##type##_inner_box(ZSphere##Type object)			\
 	{										\
-	z##type half_size = object.radius / _(Z_SZUARE_ROOT_3);				\
+	z##type half_size = object.radius / _(Z_SQUARE_ROOT_3);				\
 	z##type size = half_size * _(2.0);						\
 											\
 	return z_box_##type								\
