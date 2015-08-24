@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_functions_geometry_constructors_H__
 
 #include <Z/types/mathematics.h>
+#include <Z/macros/templating.h>
 
 #if Z_LANGUAGE_HAS(COMPOUND_LITERAL)
 

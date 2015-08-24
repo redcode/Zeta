@@ -10,7 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_functions_base_value_H__
 
 #include <Z/macros/value.h>
-#include <Z/macros/templating.h>
 
 
 /* MARK: - Reversion */
