@@ -69,11 +69,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/preprocessor.h>
 #include <Z/keys/data model.h>
 
-
 //#define Z_DATA_MODEL_SUFFIX(   TYPE) Z_JOIN_4(Z_, Z_DATA_MODEL_NAME, _SUFFIX_, TYPE)
-
-
-#define _TYPE_ pfo w29r 32i
 
 #define Z_DATA_MODEL		     Z_PASTE_DATA_MODEL(Z_DATA_MODEL_,)
 #define Z_DATA_MODEL_STRING	     Z_PASTE_DATA_MODEL(Z_DATA_MODEL_STRING_,)
@@ -82,6 +78,5 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_DATA_MODEL_BASE_TYPE(TYPE) Z_PASTE_DATA_MODEL(Z_, _BASE_TYPE_##TYPE)
 #define Z_DATA_MODEL_SUFFIX(   TYPE) Z_PASTE_DATA_MODEL(Z_, _SUFFIX_##TYPE)
 #define Z_DATA_MODEL_LITERAL(  TYPE) Z_PASTE_DATA_MODEL(Z_, _SUFFIX_##TYPE)
-
 
 #endif /* __Z_inspection_data_model_H__ */
