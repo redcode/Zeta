@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_functions_base_value_H__
 
 #include <Z/macros/value.h>
+#include <Z/macros/templating.h>
 
 
 /* MARK: - Reversion */
@@ -67,10 +68,7 @@ Z_IMPLEMENTATION_VALUE_REVERSED(64, 32)
 
 #endif
 
-
-#define Z_JOIN_type_reversed(type) Z_PASTE_3(z_, type, _reversed)
-
-#define z_value_reversed(TYPE) Z_JOIN_type_reversed(Z_##TYPE##_FIXED_TYPE_name)
+#define z_value_reversed(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reversed)
 
 
 /* MARK: - Rotation */
@@ -96,12 +94,8 @@ Z_IMPLEMENTATION_VALUE_ROTATED(16)
 Z_IMPLEMENTATION_VALUE_ROTATED(32)
 Z_IMPLEMENTATION_VALUE_ROTATED(64)
 
-
-#define Z_JOIN_type_rotated_left( type) Z_PASTE_3(z_, type, _rotated_left )
-#define Z_JOIN_type_rotated_right(type) Z_PASTE_3(z_, type, _rotated_right)
-
-#define z_value_rotated_left( TYPE) Z_JOIN_type_rotated_left (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_rotated_right(TYPE) Z_JOIN_type_rotated_right(Z_##TYPE##_FIXED_TYPE_name)
+#define z_value_rotated_left( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_left )
+#define z_value_rotated_right(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_right)
 
 
 /* MARK: - Endianness */
@@ -183,12 +177,8 @@ Z_IMPLEMENTATION_VALUE_ROTATED(64)
 #	endif
 #endif
 
-
-#define Z_JOIN_type_big_endian(	  type) Z_PASTE_3(z_, type, _big_endian	  )
-#define Z_JOIN_type_little_endian(type) Z_PASTE_3(z_, type, _little_endian)
-
-#define z_value_big_endian(   TYPE) Z_JOIN_type_big_endian   (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_little_endian(TYPE) Z_JOIN_type_little_endian(Z_##TYPE##_FIXED_TYPE_name)
+#define z_value_big_endian(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _big_endian   )
+#define z_value_little_endian(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _little_endian)
 
 
 /* MARK: - Mirroring */
@@ -320,16 +310,10 @@ Z_IMPLEMENTATION_VALUE_NATURAL(float  )
 Z_IMPLEMENTATION_VALUE_NATURAL(double )
 Z_IMPLEMENTATION_VALUE_NATURAL(ldouble)
 
-
-#define Z_JOIN_type_swap(   type) Z_PASTE_3(z_, type, _swap   )
-#define Z_JOIN_type_minimum(type) Z_PASTE_3(z_, type, _minimum)
-#define Z_JOIN_type_maximum(type) Z_PASTE_3(z_, type, _maximum)
-#define Z_JOIN_type_clamp(  type) Z_PASTE_3(z_, type, _clamp  )
-
-#define z_value_swap(	TYPE) Z_JOIN_type_swap	 (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_minimum(TYPE) Z_JOIN_type_minimum(Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_maximum(TYPE) Z_JOIN_type_maximum(Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_clamp(	TYPE) Z_JOIN_type_clamp	 (Z_##TYPE##_FIXED_TYPE_name)
+#define z_value_swap(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _swap   )
+#define z_value_minimum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _minimum)
+#define z_value_maximum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _maximum)
+#define z_value_clamp(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp  )
 
 
 /* MARK: - Operations for integer and real types */
@@ -353,12 +337,8 @@ Z_IMPLEMENTATION_VALUE_INTEGER(float  )
 Z_IMPLEMENTATION_VALUE_INTEGER(double )
 Z_IMPLEMENTATION_VALUE_INTEGER(ldouble)
 
-
-#define Z_JOIN_type_absolute(type) Z_PASTE_3(z_, type, _absolute)
-#define Z_JOIN_type_sign(    type) Z_PASTE_3(z_, type, _sign	)
-
-#define z_value_absolute(TYPE) Z_JOIN_type_absolute(Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_sign(	 TYPE) Z_JOIN_type_sign	   (Z_##TYPE##_FIXED_TYPE_name)
+#define z_value_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _absolute)
+#define z_value_sign(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign	 )
 
 
 /* MARK: - Operations for real types only */
@@ -430,38 +410,25 @@ Z_IMPLEMENTATION_VALUE_REAL(double,  Z_DOUBLE,	Z_DOUBLE_EPSILON,  Z_DOUBLE_INFIN
 Z_IMPLEMENTATION_VALUE_REAL(ldouble, Z_LDOUBLE, Z_LDOUBLE_EPSILON, Z_LDOUBLE_INFINITY)
 
 
-#define Z_JOIN_type_are_almost_equal(type) Z_PASTE_3(z_, type, _almost_equal  )
-#define Z_JOIN_type_lerp(	     type) Z_PASTE_3(z_, type, _lerp	      )
-#define Z_JOIN_type_inverse_lerp(    type) Z_PASTE_3(z_, type, _inverse_lerp  )
-#define Z_JOIN_type_smoothstep(      type) Z_PASTE_3(z_, type, _smoothstep    )
-#define Z_JOIN_type_smootherstep(    type) Z_PASTE_3(z_, type, _smootherstep  )
-#define Z_JOIN_type_is_almost_zero(  type) Z_PASTE_3(z_, type, _is_almost_zero)
-#define Z_JOIN_type_is_finite(	     type) Z_PASTE_3(z_, type, _is_finite     )
-#define Z_JOIN_type_is_infinity(     type) Z_PASTE_3(z_, type, _is_infinity   )
-#define Z_JOIN_type_is_nan(	     type) Z_PASTE_3(z_, type, _is_nan	      )
-#define Z_JOIN_type_sign_or_zero(    type) Z_PASTE_3(z_, type, _sign_or_zero  )
-#define Z_JOIN_type_clamp_01(	     type) Z_PASTE_3(z_, type, _clamp_01      )
-
-
 /* MARK: - Default real type definitions */
 
 
-#define z_are_almost_equal Z_JOIN_type_almost_equal  (Z_REAL_FIXED_TYPE_name)
-#define z_minimum	   Z_JOIN_type_minimum	     (Z_REAL_FIXED_TYPE_name)
-#define z_maximum	   Z_JOIN_type_maximum	     (Z_REAL_FIXED_TYPE_name)
-#define z_lerp		   Z_JOIN_type_lerp	     (Z_REAL_FIXED_TYPE_name)
-#define z_inverse_lerp	   Z_JOIN_type_inverse_lerp  (Z_REAL_FIXED_TYPE_name)
-#define z_smoothstep	   Z_JOIN_type_smoothstep    (Z_REAL_FIXED_TYPE_name)
-#define z_smootherstep	   Z_JOIN_type_smootherstep  (Z_REAL_FIXED_TYPE_name)
-#define z_is_almost_zero   Z_JOIN_type_is_almost_zero(Z_REAL_FIXED_TYPE_name)
-#define z_is_finite	   Z_JOIN_type_is_finite     (Z_REAL_FIXED_TYPE_name)
-#define z_is_infinity	   Z_JOIN_type_is_infinity   (Z_REAL_FIXED_TYPE_name)
-#define z_is_nan	   Z_JOIN_type_is_nan	     (Z_REAL_FIXED_TYPE_name)
-#define z_absolute	   Z_JOIN_type_absolute      (Z_REAL_FIXED_TYPE_name)
-#define z_sign		   Z_JOIN_type_sign	     (Z_REAL_FIXED_TYPE_name)
-#define z_sign_or_zero	   Z_JOIN_type_sign_or_zero  (Z_REAL_FIXED_TYPE_name)
-#define z_clamp		   Z_JOIN_type_clamp	     (Z_REAL_FIXED_TYPE_name)
-#define z_clamp_01	   Z_JOIN_type_clamp_01      (Z_REAL_FIXED_TYPE_name)
+#define z_are_almost_equal Z_INSERT_REAL_fixed_type(z_, _almost_equal  )
+#define z_minimum	   Z_INSERT_REAL_fixed_type(z_, _minimum       )
+#define z_maximum	   Z_INSERT_REAL_fixed_type(z_, _maximum       )
+#define z_lerp		   Z_INSERT_REAL_fixed_type(z_, _lerp	       )
+#define z_inverse_lerp	   Z_INSERT_REAL_fixed_type(z_, _inverse_lerp  )
+#define z_smoothstep	   Z_INSERT_REAL_fixed_type(z_, _smoothstep    )
+#define z_smootherstep	   Z_INSERT_REAL_fixed_type(z_, _smootherstep  )
+#define z_is_almost_zero   Z_INSERT_REAL_fixed_type(z_, _is_almost_zero)
+#define z_is_finite	   Z_INSERT_REAL_fixed_type(z_, _is_finite     )
+#define z_is_infinity	   Z_INSERT_REAL_fixed_type(z_, _is_infinity   )
+#define z_is_nan	   Z_INSERT_REAL_fixed_type(z_, _is_nan	       )
+#define z_absolute	   Z_INSERT_REAL_fixed_type(z_, _absolute      )
+#define z_sign		   Z_INSERT_REAL_fixed_type(z_, _sign	       )
+#define z_sign_or_zero	   Z_INSERT_REAL_fixed_type(z_, _sign_or_zero  )
+#define z_clamp		   Z_INSERT_REAL_fixed_type(z_, _clamp	       )
+#define z_clamp_01	   Z_INSERT_REAL_fixed_type(z_, _clamp_01      )
 
 
 /* MARK: - Atomic operations */
@@ -2492,47 +2459,26 @@ Z_IMPLEMENTATION_VALUE_REAL(ldouble, Z_LDOUBLE, Z_LDOUBLE_EPSILON, Z_LDOUBLE_INF
 #endif
 
 
-#define Z_JOIN_type_atomic_set_if_equal(      type) Z_PASTE_3(z_, type, _atomic_set_if_equal	  )
-#define Z_JOIN_type_atomic_get_then_set(      type) Z_PASTE_3(z_, type, _atomic_get_then_set	  )
-#define Z_JOIN_type_atomic_get_then_increment(type) Z_PASTE_3(z_, type, _atomic_get_then_increment)
-#define Z_JOIN_type_atomic_get_then_decrement(type) Z_PASTE_3(z_, type, _atomic_get_then_decrement)
-#define Z_JOIN_type_atomic_get_then_add(      type) Z_PASTE_3(z_, type, _atomic_get_then_add	  )
-#define Z_JOIN_type_atomic_get_then_subtract( type) Z_PASTE_3(z_, type, _atomic_get_then_subtract )
-#define Z_JOIN_type_atomic_get_then_and(      type) Z_PASTE_3(z_, type, _atomic_get_then_and	  )
-#define Z_JOIN_type_atomic_get_then_or(	      type) Z_PASTE_3(z_, type, _atomic_get_then_or	  )
-#define Z_JOIN_type_atomic_get_then_xor(      type) Z_PASTE_3(z_, type, _atomic_get_then_xor	  )
-#define Z_JOIN_type_atomic_get_then_nand(     type) Z_PASTE_3(z_, type, _atomic_get_then_nand	  )
-#define Z_JOIN_type_atomic_get_then_not(      type) Z_PASTE_3(z_, type, _atomic_get_then_not	  )
-#define Z_JOIN_type_atomic_increment_then_get(type) Z_PASTE_3(z_, type, _atomic_increment_then_get)
-#define Z_JOIN_type_atomic_decrement_then_get(type) Z_PASTE_3(z_, type, _atomic_decrement_then_get)
-#define Z_JOIN_type_atomic_add_then_get(      type) Z_PASTE_3(z_, type, _atomic_add_then_get	  )
-#define Z_JOIN_type_atomic_subtract_then_get( type) Z_PASTE_3(z_, type, _atomic_subtract_then_get )
-#define Z_JOIN_type_atomic_and_then_get(      type) Z_PASTE_3(z_, type, _atomic_and_then_get	  )
-#define Z_JOIN_type_atomic_or_then_get(	      type) Z_PASTE_3(z_, type, _atomic_or_then_get	  )
-#define Z_JOIN_type_atomic_xor_then_get(      type) Z_PASTE_3(z_, type, _atomic_xor_then_get	  )
-#define Z_JOIN_type_atomic_nand_then_get(     type) Z_PASTE_3(z_, type, _atomic_nand_then_get	  )
-#define Z_JOIN_type_atomic_not_then_get(      type) Z_PASTE_3(z_, type, _atomic_not_then_get	  )
-
-#define z_value_atomic_set_if_equal(	  TYPE) Z_JOIN_type_atomic_set_if_equal	     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_get_then_set(	  TYPE) Z_JOIN_type_atomic_get_then_set	     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_get_then_increment(TYPE) Z_JOIN_type_atomic_get_then_increment(Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_get_then_decrement(TYPE) Z_JOIN_type_atomic_get_then_decrement(Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_get_then_add(	  TYPE) Z_JOIN_type_atomic_get_then_add	     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_get_then_subtract( TYPE) Z_JOIN_type_atomic_get_then_subtract (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_get_then_and(	  TYPE) Z_JOIN_type_atomic_get_then_and	     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_get_then_or(	  TYPE) Z_JOIN_type_atomic_get_then_or	     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_get_then_xor(	  TYPE) Z_JOIN_type_atomic_get_then_xor	     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_get_then_nand(	  TYPE) Z_JOIN_type_atomic_get_then_nand     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_get_then_not(	  TYPE) Z_JOIN_type_atomic_get_then_not	     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_increment_then_get(TYPE) Z_JOIN_type_atomic_increment_then_get(Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_decrement_then_get(TYPE) Z_JOIN_type_atomic_decrement_then_get(Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_add_then_get(	  TYPE) Z_JOIN_type_atomic_add_then_get	     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_subtract_then_get( TYPE) Z_JOIN_type_atomic_subtract_then_get (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_and_then_get(	  TYPE) Z_JOIN_type_atomic_and_then_get	     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_or_then_get(	  TYPE) Z_JOIN_type_atomic_or_then_get	     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_xor_then_get(	  TYPE) Z_JOIN_type_atomic_xor_then_get	     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_nand_then_get(	  TYPE) Z_JOIN_type_atomic_nand_then_get     (Z_##TYPE##_FIXED_TYPE_name)
-#define z_value_atomic_not_then_get(	  TYPE) Z_JOIN_type_atomic_not_then_get	     (Z_##TYPE##_FIXED_TYPE_name)
+#define z_value_atomic_set_if_equal(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_set_if_equal	   )
+#define z_value_atomic_get_then_set(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_set	   )
+#define z_value_atomic_get_then_increment(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_increment)
+#define z_value_atomic_get_then_decrement(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_decrement)
+#define z_value_atomic_get_then_add(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_add	   )
+#define z_value_atomic_get_then_subtract( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_subtract )
+#define z_value_atomic_get_then_and(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_and	   )
+#define z_value_atomic_get_then_or(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_or	   )
+#define z_value_atomic_get_then_xor(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_xor	   )
+#define z_value_atomic_get_then_nand(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_nand	   )
+#define z_value_atomic_get_then_not(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_not	   )
+#define z_value_atomic_increment_then_get(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_increment_then_get)
+#define z_value_atomic_decrement_then_get(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_decrement_then_get)
+#define z_value_atomic_add_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_add_then_get	   )
+#define z_value_atomic_subtract_then_get( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_subtract_then_get )
+#define z_value_atomic_and_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_and_then_get	   )
+#define z_value_atomic_or_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_or_then_get	   )
+#define z_value_atomic_xor_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_xor_then_get	   )
+#define z_value_atomic_nand_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_nand_then_get	   )
+#define z_value_atomic_not_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_not_then_get	   )
 
 
 #endif /* __Z_functions_base_value_H__ */

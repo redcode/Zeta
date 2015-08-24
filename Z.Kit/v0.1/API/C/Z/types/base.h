@@ -22,7 +22,6 @@ typedef struct {zuint8 x, y;}			Z2DUInt8;
 typedef struct {zuint8 x, y, z;}		Z3DUInt8;
 typedef struct {zuint8 x, y, z, w;}		Z4DUInt8;
 #define Z_UINT8					Z_DATA_MODEL_LITERAL  (UINT8)
-#define Z_UINT8_SUFFIX				Z_DATA_MODEL_SUFFIX   (UINT8)
 #define Z_UINT8_BASE_TYPE			Z_DATA_MODEL_BASE_TYPE(UINT8)
 #define Z_UINT8_FIXED_TYPE			Z_VALUE_TYPE_UINT8
 #define Z_UINT8_TYPE				Z_VALUE_TYPE_UINT8
@@ -40,7 +39,6 @@ typedef struct {zuint16 x, y;}			Z2DUInt16;
 typedef struct {zuint16 x, y, z;}		Z3DUInt16;
 typedef struct {zuint16 x, y, z, w;}		Z4DUInt16;
 #define Z_UINT16				Z_DATA_MODEL_LITERAL  (UINT16)
-#define Z_UINT16_SUFFIX				Z_DATA_MODEL_SUFFIX   (UINT16)
 #define Z_UINT16_BASE_TYPE			Z_DATA_MODEL_BASE_TYPE(UINT16)
 #define Z_UINT16_FIXED_TYPE			Z_VALUE_TYPE_UINT16
 #define Z_UINT16_TYPE				Z_VALUE_TYPE_UINT16
@@ -59,7 +57,6 @@ typedef struct {zuint32 x, y;}			Z2DUInt32;
 typedef struct {zuint32 x, y, z;}		Z3DUInt32;
 typedef struct {zuint32 x, y, z, w;}		Z4DUInt32;
 #define Z_UINT32				Z_DATA_MODEL_LITERAL  (UINT32)
-#define Z_UINT32_SUFFIX				Z_DATA_MODEL_SUFFIX   (UINT32)
 #define Z_UINT32_BASE_TYPE			Z_DATA_MODEL_BASE_TYPE(UINT32)
 #define Z_UINT32_FIXED_TYPE			Z_VALUE_TYPE_UINT32
 #define Z_UINT32_TYPE				Z_VALUE_TYPE_UINT32
@@ -78,7 +75,6 @@ typedef struct {zuint64 x, y;}			Z2DUInt64;
 typedef struct {zuint64 x, y, z;}		Z3DUInt64;
 typedef struct {zuint64 x, y, z, w;}		Z4DUInt64;
 #define Z_UINT64				Z_DATA_MODEL_LITERAL  (UINT64)
-#define Z_UINT64_SUFFIX				Z_DATA_MODEL_SUFFIX   (UINT64)
 #define Z_UINT64_BASE_TYPE			Z_DATA_MODEL_BASE_TYPE(UINT64)
 #define Z_UINT64_FIXED_TYPE			Z_VALUE_TYPE_UINT64
 #define Z_UINT64_TYPE				Z_VALUE_TYPE_UINT64
@@ -94,7 +90,7 @@ typedef struct {zuint64 x, y, z, w;}		Z4DUInt64;
 
 #if Z_CPU_HAS(128BIT_ARITHMETIC) && Z_COMPILER_HAS_TYPE(UINT128)
 
-	typedef Z_COMPILER_TYPE(UINT128)	zuint128;
+	typedef Z_COMPILER_TYPE_UINT128		zuint128;
 	typedef struct {zuint128 x, y;}		Z2DUInt128;
 	typedef struct {zuint128 x, y, z;}	Z3DUInt128;
 	typedef struct {zuint128 x, y, z, w;}	Z4DUInt128;
@@ -119,16 +115,9 @@ typedef struct {zuint64 x, y, z, w;}		Z4DUInt64;
 #		define Z_UINT128_MAXIMUM	(((zuint128)0) - 1)
 #	endif
 
-#	if Z_COMPILER_HAS_SUFFIX(UINT128)
-#		define Z_UINT128_SUFFIX		Z_COMPILER_SUFFIX(UINT128)
-#	else
-#		define Z_UINT128_SUFFIX
-#	endif
-
 #endif
 
 #define Z_UINTX_LITERAL(   BITS)		Z_PREFIX_Z_UINT(BITS)
-#define Z_UINTX_SUFFIX(	   BITS)		Z_PREFIX_Z_UINT(Z_JOIN_2(BITS, _SUFFIX	  ))
 #define Z_UINTX_BASE_TYPE( BITS)		Z_PREFIX_Z_UINT(Z_JOIN_2(BITS, _BASE_TYPE ))
 #define Z_UINTX_TYPE(	   BITS)		Z_PREFIX_Z_UINT(Z_JOIN_2(BITS, _TYPE	  ))
 #define Z_UINTX_FORMAT(	   BITS)		Z_PREFIX_Z_UINT(Z_JOIN_2(BITS, _FORMAT    ))
@@ -147,7 +136,6 @@ typedef struct {zint8 x, y;}			Z2DInt8;
 typedef struct {zint8 x, y, z;}			Z3DInt8;
 typedef struct {zint8 x, y, z, w;}		Z4DInt8;
 #define Z_INT8					Z_DATA_MODEL_LITERAL  (INT8)
-#define Z_INT8_SUFFIX				Z_DATA_MODEL_SUFFIX   (INT8)
 #define Z_INT8_BASE_TYPE			Z_DATA_MODEL_BASE_TYPE(INT8)
 #define Z_INT8_FIXED_TYPE			Z_VALUE_TYPE_INT8
 #define Z_INT8_TYPE				Z_VALUE_TYPE_INT8
@@ -165,7 +153,6 @@ typedef struct {zint16 x, y;}			Z2DInt16;
 typedef struct {zint16 x, y, z;}		Z3DInt16;
 typedef struct {zint16 x, y, z, w;}		Z4DInt16;
 #define Z_INT16					Z_DATA_MODEL_LITERAL  (INT16)
-#define Z_INT16_SUFFIX				Z_DATA_MODEL_SUFFIX   (INT16)
 #define Z_INT16_BASE_TYPE			Z_DATA_MODEL_BASE_TYPE(INT16)
 #define Z_INT16_FIXED_TYPE			Z_VALUE_TYPE_INT16
 #define Z_INT16_TYPE				Z_VALUE_TYPE_INT16
@@ -184,7 +171,6 @@ typedef struct {zint32 x, y;}			Z2DInt32;
 typedef struct {zint32 x, y, z;}		Z3DInt32;
 typedef struct {zint32 x, y, z, w;}		Z4DInt32;
 #define Z_INT32					Z_DATA_MODEL_LITERAL  (INT32)
-#define Z_INT32_SUFFIX				Z_DATA_MODEL_SUFFIX   (INT32)
 #define Z_INT32_BASE_TYPE			Z_DATA_MODEL_BASE_TYPE(INT32)
 #define Z_INT32_FIXED_TYPE			Z_VALUE_TYPE_INT32
 #define Z_INT32_TYPE				Z_VALUE_TYPE_INT32
@@ -203,7 +189,6 @@ typedef struct {zint64 x, y;}			Z2DInt64;
 typedef struct {zint64 x, y, z;}		Z3DInt64;
 typedef struct {zint64 x, y, z, w;}		Z4DInt64;
 #define Z_INT64					Z_DATA_MODEL_LITERAL  (INT64)
-#define Z_INT64_SUFFIX				Z_DATA_MODEL_SUFFIX   (INT64)
 #define Z_INT64_BASE_TYPE			Z_DATA_MODEL_BASE_TYPE(INT64)
 #define Z_INT64_TYPE				Z_VALUE_TYPE_INT64
 #define Z_INT64_FIXED_TYPE			Z_VALUE_TYPE_INT64
@@ -219,7 +204,7 @@ typedef struct {zint64 x, y, z, w;}		Z4DInt64;
 
 #if Z_CPU_HAS(128BIT_ARITHMETIC) && Z_COMPILER_HAS_TYPE(INT128)
 
-	typedef Z_COMPILER_TYPE(INT128)		zint128;
+	typedef Z_COMPILER_TYPE_INT128		zint128;
 	typedef struct {zint128 x, y;}		Z2DInt128;
 	typedef struct {zint128 x, y, z;}	Z3DInt128;
 	typedef struct {zint128 x, y, z, w;}	Z4DInt128;
@@ -245,16 +230,9 @@ typedef struct {zint64 x, y, z, w;}		Z4DInt64;
 #		define Z_INT128_MINIMUM		0 /* TO BE IMPLEMENTED */
 #	endif
 
-#	if Z_COMPILER_HAS_SUFFIX(INT128)
-#		define Z_INT128_SUFFIX		Z_COMPILER_SUFFIX(INT128)
-#	else
-#		define Z_INT128_SUFFIX
-#	endif
-
 #endif
 
 #define Z_INTX_LITERAL(	  BITS)			Z_PREFIX_Z_INT(BITS)
-#define Z_INTX_SUFFIX(	  BITS)			Z_PREFIX_Z_INT(Z_JOIN_2(BITS, _SUFFIX	 ))
 #define Z_INTX_BASE_TYPE( BITS)			Z_PREFIX_Z_INT(Z_JOIN_2(BITS, _BASE_TYPE ))
 #define Z_INTX_TYPE(	  BITS)			Z_PREFIX_Z_INT(Z_JOIN_2(BITS, _FIXED_TYPE))
 #define Z_INTX_FORMAT(	  BITS)			Z_PREFIX_Z_INT(Z_JOIN_2(BITS, _FORMAT	 ))
@@ -275,7 +253,6 @@ typedef Z_JOIN_2(Z2DUInt, Z_UCHAR_BITS)		Z2DUChar;
 typedef Z_JOIN_2(Z3DUInt, Z_UCHAR_BITS)		Z3DUChar;
 typedef Z_JOIN_2(Z4DUInt, Z_UCHAR_BITS)		Z4DUChar;
 #define Z_UCHAR					Z_SAME
-#define Z_UCHAR_SUFFIX
 #define Z_UCHAR_BASE_TYPE			Z_VALUE_TYPE_UCHAR
 #define Z_UCHAR_FIXED_TYPE			Z_UINTX_TYPE   (Z_UCHAR_BITS)
 #define Z_UCHAR_TYPE				Z_VALUE_TYPE_UCHAR
@@ -297,7 +274,6 @@ typedef Z_JOIN_2(Z2DUInt, Z_USHORT_BITS)	Z2DUShort;
 typedef Z_JOIN_2(Z3DUInt, Z_USHORT_BITS)	Z3DUShort;
 typedef Z_JOIN_2(Z4DUInt, Z_USHORT_BITS)	Z4DUShort;
 #define Z_USHORT				Z_SAME
-#define Z_USHORT_SUFFIX
 #define Z_USHORT_BASE_TYPE			Z_VALUE_TYPE_USHORT
 #define Z_USHORT_FIXED_TYPE			Z_UINTX_TYPE	  (Z_USHORT_BITS)
 #define Z_USHORT_TYPE				Z_VALUE_TYPE_USHORT
@@ -320,7 +296,6 @@ typedef Z_JOIN_2(Z2DUInt, Z_UINT_BITS)		Z2DUInt;
 typedef Z_JOIN_2(Z3DUInt, Z_UINT_BITS)		Z3DUInt;
 typedef Z_JOIN_2(Z4DUInt, Z_UINT_BITS)		Z4DUInt;
 #define Z_UINT					Z_SAME
-#define Z_UINT_SUFFIX
 #define Z_UINT_BASE_TYPE			Z_VALUE_TYPE_UINT
 #define Z_UINT_FIXED_TYPE			Z_UINTX_TYPE	  (Z_UINT_BITS)
 #define Z_UINT_TYPE				Z_VALUE_TYPE_UINT
@@ -343,7 +318,6 @@ typedef Z_JOIN_2(Z2DUInt, Z_ULONG_BITS)		Z2DULong;
 typedef Z_JOIN_2(Z3DUInt, Z_ULONG_BITS)		Z3DULong;
 typedef Z_JOIN_2(Z4DUInt, Z_ULONG_BITS)		Z4DULong;
 #define Z_ULONG					Z_SUFFIX_UL
-#define Z_ULONG_SUFFIX				UL
 #define Z_ULONG_BASE_TYPE			Z_VALUE_TYPE_ULONG
 #define Z_ULONG_FIXED_TYPE			Z_UINTX_TYPE	  (Z_ULONG_BITS)
 #define Z_ULONG_TYPE				Z_VALUE_TYPE_ULONG
@@ -368,7 +342,6 @@ typedef Z_JOIN_2(Z4DUInt, Z_ULONG_BITS)		Z4DULong;
 	typedef Z_JOIN_2(Z3DInt, Z_ULLONG_BITS)	Z3DULLong;
 	typedef Z_JOIN_2(Z4DInt, Z_ULLONG_BITS)	Z4DULLong;
 #	define Z_ULLONG				Z_SUFFIX_LL
-#	define Z_ULLONG_SUFFIX			LL
 #	define Z_ULLONG_BASE_TYPE		Z_VALUE_TYPE_ULLONG
 #	define Z_ULLONG_FIXED_TYPE		Z_UINTX_TYPE	  (Z_ULLONG_BITS)
 #	define Z_ULLONG_TYPE			Z_VALUE_TYPE_ULLONG
@@ -391,7 +364,6 @@ typedef Z_JOIN_2(Z4DUInt, Z_ULONG_BITS)		Z4DULong;
 	typedef Z3DULong			Z3DULLong;
 	typedef Z4DULong			Z4DULLong;
 #	define Z_ULLONG				Z_ULLONG
-#	define Z_ULLONG_SUFFIX			Z_ULLONG_SUFFIX
 #	define Z_ULLONG_BASE_TYPE		Z_ULLONG_BASE_TYPE
 #	define Z_ULLONG_FIXED_TYPE		Z_ULLONG_FIXED_TYPE
 #	define Z_ULLONG_TYPE			Z_ULLONG_TYPE
@@ -418,7 +390,6 @@ typedef Z_JOIN_2(Z2DInt, Z_CHAR_BITS)		Z2DChar;
 typedef Z_JOIN_2(Z3DInt, Z_CHAR_BITS)		Z3DChar;
 typedef Z_JOIN_2(Z4DInt, Z_CHAR_BITS)		Z4DChar;
 #define Z_CHAR					Z_SAME
-#define Z_CHAR_SUFFIX
 #define Z_CHAR_BASE_TYPE			Z_VALUE_TYPE_CHAR
 #define Z_CHAR_FIXED_TYPE			Z_INTX_TYPE   (Z_CHAR_BITS)
 #define Z_CHAR_TYPE				Z_VALUE_TYPE_CHAR
@@ -440,7 +411,6 @@ typedef Z_JOIN_2(Z2DInt, Z_SHORT_BITS)		Z2DShort;
 typedef Z_JOIN_2(Z3DInt, Z_SHORT_BITS)		Z3DShort;
 typedef Z_JOIN_2(Z4DInt, Z_SHORT_BITS)		Z4DShort;
 #define Z_SHORT					Z_SAME
-#define Z_SHORT_SUFFIX
 #define Z_SHORT_BASE_TYPE			Z_VALUE_TYPE_SHORT
 #define Z_SHORT_FIXED_TYPE			Z_INTX_TYPE	 (Z_SHORT_BITS)
 #define Z_SHORT_TYPE				Z_VALUE_TYPE_SHORT
@@ -463,7 +433,6 @@ typedef Z_JOIN_2(Z2DInt, Z_INT_BITS)		Z2DInt;
 typedef Z_JOIN_2(Z3DInt, Z_INT_BITS)		Z3DInt;
 typedef Z_JOIN_2(Z4DInt, Z_INT_BITS)		Z4DInt;
 #define Z_INT					Z_SAME
-#define Z_INT_SUFFIX
 #define Z_INT_BASE_TYPE				Z_VALUE_TYPE_INT
 #define Z_INT_FIXED_TYPE			Z_INTX_TYPE	 (Z_INT_BITS)
 #define Z_INT_TYPE				Z_VALUE_TYPE_INT
@@ -486,7 +455,6 @@ typedef Z_JOIN_2(Z2DInt, Z_LONG_BITS)		Z2DLong;
 typedef Z_JOIN_2(Z3DInt, Z_LONG_BITS)		Z3DLong;
 typedef Z_JOIN_2(Z4DInt, Z_LONG_BITS)		Z4DLong;
 #define Z_LONG					Z_SUFFIX_L
-#define Z_LONG_SUFFIX				L
 #define Z_LONG_BASE_TYPE			Z_VALUE_TYPE_LONG
 #define Z_LONG_FIXED_TYPE			Z_INTX_TYPE	 (Z_LONG_BITS)
 #define Z_LONG_TYPE				Z_VALUE_TYPE_LONG
@@ -511,7 +479,6 @@ typedef Z_JOIN_2(Z4DInt, Z_LONG_BITS)		Z4DLong;
 	typedef Z_JOIN_2(Z3DInt, Z_LLONG_BITS)	Z3DLLong;
 	typedef Z_JOIN_2(Z4DInt, Z_LLONG_BITS)	Z4DLLong;
 #	define Z_LLONG				Z_SUFFIX_LL
-#	define Z_LLONG_SUFFIX			LL
 #	define Z_LLONG_BASE_TYPE		Z_VALUE_TYPE_LLONG
 #	define Z_LLONG_FIXED_TYPE		Z_INTX_TYPE	 (Z_LLONG_BITS)
 #	define Z_LLONG_TYPE			Z_VALUE_TYPE_LLONG
@@ -534,7 +501,6 @@ typedef Z_JOIN_2(Z4DInt, Z_LONG_BITS)		Z4DLong;
 	typedef Z3DLong				Z3DLLong;
 	typedef Z4DLong				Z4DLLong;
 #	define Z_LLONG				Z_LLONG
-#	define Z_LLONG_SUFFIX			Z_LLONG_SUFFIX
 #	define Z_LLONG_BASE_TYPE		Z_LLONG_BASE_TYPE
 #	define Z_LLONG_FIXED_TYPE		Z_LLONG_FIXED_TYPE
 #	define Z_LLONG_TYPE			Z_LLONG_TYPE
@@ -559,7 +525,6 @@ typedef struct {zfloat x, y;}			Z2DFloat;
 typedef struct {zfloat x, y, z;}		Z3DFloat;
 typedef struct {zfloat x, y, z, w;}		Z4DFloat;
 #define Z_FLOAT					Z_SUFFIX_F
-#define Z_FLOAT_SUFFIX				F
 #define Z_FLOAT_BASE_TYPE			Z_VALUE_TYPE_FLOAT
 #define Z_FLOAT_FIXED_TYPE			Z_VALUE_TYPE_FLOAT
 #define Z_FLOAT_TYPE				Z_VALUE_TYPE_FLOAT
@@ -594,7 +559,6 @@ typedef struct {zdouble x, y;}			Z2DDouble;
 typedef struct {zdouble x, y, z;}		Z3DDouble;
 typedef struct {zdouble x, y, z, w;}		Z4DDouble;
 #define Z_DOUBLE				Z_SAME
-#define Z_DOUBLE_SUFFIX
 #define Z_DOUBLE_BASE_TYPE			Z_VALUE_TYPE_DOUBLE
 #define Z_DOUBLE_FIXED_TYPE			Z_VALUE_TYPE_DOUBLE
 #define Z_DOUBLE_TYPE				Z_VALUE_TYPE_DOUBLE
@@ -635,7 +599,6 @@ typedef struct {zdouble x, y, z, w;}		Z4DDouble;
 	typedef struct {zldouble x, y, z;}	Z3DLDouble;
 	typedef struct {zldouble x, y, z, w;}	Z4DLDouble;
 #	define Z_LDOUBLE			Z_SUFFIX_L
-#	define Z_LDOUBLE_SUFFIX			L
 #	define Z_LDOUBLE_BASE_TYPE		Z_VALUE_TYPE_LDOUBLE
 #	define Z_LDOUBLE_FIXED_TYPE		Z_VALUE_TYPE_LDOUBLE
 #	define Z_LDOUBLE_TYPE			Z_VALUE_TYPE_LDOUBLE
@@ -672,7 +635,6 @@ typedef struct {zdouble x, y, z, w;}		Z4DDouble;
 	typedef Z3DDouble			Z3DLDouble;
 	typedef Z4DDouble			Z4DLDouble;
 #	define Z_LDOUBLE			Z_DOUBLE
-#	define Z_LDOUBLE_SUFFIX			Z_DOUBLE_SUFFIX
 #	define Z_LDOUBLE_BASE_TYPE		Z_DOUBLE_BASE_TYPE
 #	define Z_LDOUBLE_FIXED_TYPE		Z_DOUBLE_FIXED_TYPE
 #	define Z_LDOUBLE_TYPE			Z_DOUBLE_TYPE
@@ -713,7 +675,6 @@ typedef Z_JOIN_2(Z2DUInt, Z_SIZE_BITS)		Z2DSize;
 typedef Z_JOIN_2(Z3DUInt, Z_SIZE_BITS)		Z3DSize;
 typedef Z_JOIN_2(Z4DUInt, Z_SIZE_BITS)		Z4DSize;
 #define Z_SIZE					Z_UINTX_LITERAL   (Z_SIZE_BITS)
-#define Z_SIZE_SUFFIX				Z_UINTX_SUFFIX	  (Z_SIZE_BITS)
 #define Z_SIZE_BASE_TYPE			Z_UINTX_BASE_TYPE (Z_SIZE_BITS)
 #define Z_SIZE_FIXED_TYPE			Z_UINTX_TYPE	  (Z_SIZE_BITS)
 #define Z_SIZE_TYPE				Z_VALUE_TYPE_SIZE
@@ -736,7 +697,6 @@ typedef Z_JOIN_2(Z2DInt, Z_SSIZE_BITS)		Z2DSSize;
 typedef Z_JOIN_2(Z3DInt, Z_SSIZE_BITS)		Z3DSSize;
 typedef Z_JOIN_2(Z4DInt, Z_SSIZE_BITS)		Z4DSSize;
 #define Z_SSIZE					Z_INTX_LITERAL	 (Z_SSIZE_BITS)
-#define Z_SSIZE_SUFFIX				Z_INTX_SUFFIX	 (Z_SSIZE_BITS)
 #define Z_SSIZE_BASE_TYPE			Z_INTX_BASE_TYPE (Z_SSIZE_BITS)
 #define Z_SSIZE_FIXED_TYPE			Z_INTX_TYPE	 (Z_SSIZE_BITS)
 #define Z_SSIZE_TYPE				Z_VALUE_TYPE_SSIZE
@@ -765,7 +725,6 @@ typedef Z_JOIN_2(Z2DUInt, Z_UINTMAX_BITS)	Z2DUIntMax;
 typedef Z_JOIN_2(Z3DUInt, Z_UINTMAX_BITS)	Z3DUIntMax;
 typedef Z_JOIN_2(Z4DUInt, Z_UINTMAX_BITS)	Z4DUIntMax;
 #define Z_UINTMAX				Z_UINTX_LITERAL   (Z_UINTMAX_BITS)
-#define Z_UINTMAX_SUFFIX			Z_UINTX_SUFFIX	  (Z_UINTMAX_BITS)
 #define Z_UINTMAX_BASE_TYPE			Z_UINTX_BASE_TYPE (Z_UINTMAX_BITS)
 #define Z_UINTMAX_FIXED_TYPE			Z_UINTX_TYPE	  (Z_UINTMAX_BITS)
 #define Z_UINTMAX_TYPE				Z_VALUE_TYPE_UINTMAX
@@ -792,7 +751,6 @@ typedef Z_JOIN_2(Z2DInt, Z_INTMAX_BITS)		Z2DIntMax;
 typedef Z_JOIN_2(Z3DInt, Z_INTMAX_BITS)		Z3DIntMax;
 typedef Z_JOIN_2(Z4DInt, Z_INTMAX_BITS)		Z4DIntMax;
 #define Z_INTMAX				Z_INTX_LITERAL	 (Z_INTMAX_BITS)
-#define Z_INTMAX_SUFFIX				Z_INTX_SUFFIX	 (Z_INTMAX_BITS)
 #define Z_INTMAX_BASE_TYPE			Z_INTX_BASE_TYPE (Z_INTMAX_BITS)
 #define Z_INTMAX_FIXED_TYPE			Z_INTX_TYPE	 (Z_INTMAX_BITS)
 #define Z_INTMAX_TYPE				Z_VALUE_TYPE_INTMAX
@@ -823,7 +781,6 @@ typedef Z_JOIN_2(Z2DUInt, Z_UINTPTR_BITS)	Z2DUIntPtr;
 typedef Z_JOIN_2(Z3DUInt, Z_UINTPTR_BITS)	Z3DUIntPtr;
 typedef Z_JOIN_2(Z4DUInt, Z_UINTPTR_BITS)	Z4DUIntPtr;
 #define Z_UINTPTR				Z_UINTX_LITERAL   (Z_UINTPTR_BITS)
-#define Z_UINTPTR_SUFFIX			Z_UINTX_SUFFIX	  (Z_UINTPTR_BITS)
 #define Z_UINTPTR_BASE_TYPE			Z_UINTX_BASE_TYPE (Z_UINTPTR_BITS)
 #define Z_UINTPTR_FIXED_TYPE			Z_UINTX_TYPE	  (Z_UINTPTR_BITS)
 #define Z_UINTPTR_TYPE				Z_VALUE_TYPE_UINTPTR
@@ -846,7 +803,6 @@ typedef Z_JOIN_2(Z2DInt, Z_INTPTR_BITS)		Z2DIntPtr;
 typedef Z_JOIN_2(Z3DInt, Z_INTPTR_BITS)		Z3DIntPtr;
 typedef Z_JOIN_2(Z4DInt, Z_INTPTR_BITS)		Z4DIntPtr;
 #define Z_INTPTR				Z_INTX_LITERAL	 (Z_INTPTR_BITS)
-#define Z_INTPTR_SUFFIX				Z_INTX_SUFFIX	 (Z_INTPTR_BITS)
 #define Z_INTPTR_BASE_TYPE			Z_INTX_BASE_TYPE (Z_INTPTR_BITS)
 #define Z_INTPTR_FIXED_TYPE			Z_INTX_TYPE	 (Z_INTPTR_BITS)
 #define Z_INTPTR_TYPE				Z_VALUE_TYPE_INTPTR
@@ -879,7 +835,6 @@ typedef Z_JOIN_2(Z2DUInt, Z_UINTTOP_BITS)	Z2DUIntTop;
 typedef Z_JOIN_2(Z3DUInt, Z_UINTTOP_BITS)	Z3DUIntTop;
 typedef Z_JOIN_2(Z4DUInt, Z_UINTTOP_BITS)	Z4DUIntTop;
 #define Z_UINTTOP				Z_UINTX_LITERAL   (Z_UINTTOP_BITS)
-#define Z_UINTTOP_SUFFIX			Z_UINTX_SUFFIX	  (Z_UINTTOP_BITS)
 #define Z_UINTTOP_BASE_TYPE			Z_UINTX_BASE_TYPE (Z_UINTTOP_BITS)
 #define Z_UINTTOP_FIXED_TYPE			Z_UINTX_TYPE	  (Z_UINTTOP_BITS)
 #define Z_UINTTOP_TYPE				Z_VALUE_TYPE_UINTTOP
@@ -910,7 +865,6 @@ typedef Z_JOIN_2(Z2DInt, Z_INTTOP_BITS)		Z2DIntTop;
 typedef Z_JOIN_2(Z3DInt, Z_INTTOP_BITS)		Z3DIntTop;
 typedef Z_JOIN_2(Z4DInt, Z_INTTOP_BITS)		Z4DIntTop;
 #define Z_INTTOP				Z_INTX_LITERAL	 (Z_INTTOP_BITS)
-#define Z_INTTOP_SUFFIX				Z_INTX_SUFFIX	 (Z_INTTOP_BITS)
 #define Z_INTTOP_BASE_TYPE			Z_INTX_BASE_TYPE (Z_INTTOP_BITS)
 #define Z_INTTOP_FIXED_TYPE			Z_INTX_TYPE	 (Z_INTTOP_BITS)
 #define Z_INTTOP_TYPE				Z_VALUE_TYPE_INTTOP
@@ -959,7 +913,6 @@ typedef Z_JOIN_2(Z2DUInt, Z_NATURAL_BITS)	Z2DNatural;
 typedef Z_JOIN_2(Z3DUInt, Z_NATURAL_BITS)	Z3DNatural;
 typedef Z_JOIN_2(Z4DUInt, Z_NATURAL_BITS)	Z4DNatural;
 #define Z_NATURAL				Z_UINTX_LITERAL   (Z_NATURAL_BITS)
-#define Z_NATURAL_SUFFIX			Z_UINTX_SUFFIX	  (Z_NATURAL_BITS)
 #define Z_NATURAL_BASE_TYPE			Z_UINTX_BASE_TYPE (Z_NATURAL_BITS)
 #define Z_NATURAL_FIXED_TYPE			Z_UINTX_TYPE	  (Z_NATURAL_BITS)
 #define Z_NATURAL_TYPE				Z_VALUE_TYPE_NATURAL
@@ -990,7 +943,6 @@ typedef Z_JOIN_2(Z2DInt, Z_INTEGER_BITS)	Z2DInteger;
 typedef Z_JOIN_2(Z3DInt, Z_INTEGER_BITS)	Z3DInteger;
 typedef Z_JOIN_2(Z4DInt, Z_INTEGER_BITS)	Z4DInteger;
 #define Z_INTEGER				Z_INTX_LITERAL	 (Z_INTEGER_BITS)
-#define Z_INTEGER_SUFFIX			Z_INTX_SUFFIX	 (Z_INTEGER_BITS)
 #define Z_INTEGER_BASE_TYPE			Z_INTX_BASE_TYPE (Z_INTEGER_BITS)
 #define Z_INTEGER_FIXED_TYPE			Z_INTX_TYPE	 (Z_INTEGER_BITS)
 #define Z_INTEGER_TYPE				Z_VALUE_TYPE_INTEGER
@@ -1018,7 +970,6 @@ typedef Z_JOIN_2(Z4DInt, Z_INTEGER_BITS)	Z4DInteger;
 	typedef Z3DFloat			Z3DReal;
 	typedef Z4DFloat			Z4DReal;
 #	define Z_REAL				Z_FLOAT
-#	define Z_REAL_SUFFIX			Z_FLOAT_SUFFIX
 #	define Z_REAL_BASE_TYPE			Z_FLOAT_BASE_TYPE
 #	define Z_REAL_FIXED_TYPE		Z_FLOAT_FIXED_TYPE
 #	define Z_REAL_FORMAT			Z_FLOAT_FORMAT
@@ -1048,7 +999,6 @@ typedef Z_JOIN_2(Z4DInt, Z_INTEGER_BITS)	Z4DInteger;
 	typedef Z3DLDouble			Z3DReal;
 	typedef Z4DLDouble			Z4DReal;
 #	define Z_REAL				Z_LDOUBLE
-#	define Z_REAL_SUFFIX			Z_LDOUBLE_SUFFIX
 #	define Z_REAL_BASE_TYPE			Z_LDOUBLE_BASE_TYPE
 #	define Z_REAL_FIXED_TYPE		Z_LDOUBLE_FIXED_TYPE
 #	define Z_REAL_FORMAT			Z_LDOUBLE_FORMAT
@@ -1078,7 +1028,6 @@ typedef Z_JOIN_2(Z4DInt, Z_INTEGER_BITS)	Z4DInteger;
 	typedef Z3DDouble			Z3DReal;
 	typedef Z4DDouble			Z4DReal;
 #	define Z_REAL				Z_DOUBLE
-#	define Z_REAL_SUFFIX			Z_DOUBLE_SUFFIX
 #	define Z_REAL_BASE_TYPE			Z_DOUBLE_BASE_TYPE
 #	define Z_REAL_FIXED_TYPE		Z_DOUBLE_FIXED_TYPE
 #	define Z_REAL_FORMAT			Z_DOUBLE_FORMAT

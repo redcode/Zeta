@@ -49,19 +49,13 @@ Z_IMPLEMENTATION_CIRCLE(Double,  double,  Z_DOUBLE )
 Z_IMPLEMENTATION_CIRCLE(LDouble, ldouble, Z_LDOUBLE)
 
 
-#define Z_JOIN_circle_type_are_equal(	   type) Z_PASTE_3(z_circle_, type, _are_equal	    )
-#define Z_JOIN_circle_type_is_zero(	   type) Z_PASTE_3(z_circle_, type, _is_zero	    )
-#define Z_JOIN_circle_type_inner_rectangle(type) Z_PASTE_3(z_circle_, type, _inner_rectangle)
-#define Z_JOIN_circle_type_outer_rectangle(type) Z_PASTE_3(z_circle_, type, _outer_rectangle)
-
-
 /* MARK: - Default real type definitions */
 
 
-#define z_circle_are_equal	 Z_JOIN_circle_type_are_equal	   (Z_REAL_FIXED_TYPE_name)
-#define z_circle_is_zero	 Z_JOIN_circle_type_is_zero	   (Z_REAL_FIXED_TYPE_name)
-#define z_circle_inner_rectangle Z_JOIN_circle_type_inner_rectangle(Z_REAL_FIXED_TYPE_name)
-#define z_circle_outer_rectangle Z_JOIN_circle_type_outer_rectangle(Z_REAL_FIXED_TYPE_name)
+#define z_circle_are_equal	 Z_INSERT_REAL_fixed_type(z_circle_, _are_equal	     )
+#define z_circle_is_zero	 Z_INSERT_REAL_fixed_type(z_circle_, _is_zero	     )
+#define z_circle_inner_rectangle Z_INSERT_REAL_fixed_type(z_circle_, _inner_rectangle)
+#define z_circle_outer_rectangle Z_INSERT_REAL_fixed_type(z_circle_, _outer_rectangle)
 
 
 #endif /* __Z_functions_geometry_ZCircle_H__ */

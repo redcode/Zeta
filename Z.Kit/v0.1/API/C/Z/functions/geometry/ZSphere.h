@@ -55,19 +55,13 @@ Z_IMPLEMENTATION_SPHERE(Double,  double,  Z_DOUBLE )
 Z_IMPLEMENTATION_SPHERE(LDouble, ldouble, Z_LDOUBLE)
 
 
-#define Z_JOIN_sphere_type_are_equal(type) Z_PASTE_3(z_sphere_, type, _are_equal)
-#define Z_JOIN_sphere_type_is_zero(  type) Z_PASTE_3(z_sphere_, type, _is_zero	)
-#define Z_JOIN_sphere_type_inner_box(type) Z_PASTE_3(z_sphere_, type, _inner_box)
-#define Z_JOIN_sphere_type_outer_box(type) Z_PASTE_3(z_sphere_, type, _outer_box)
-
-
 /* MARK: - Default real type definitions */
 
 
-#define z_sphere_are_equal Z_JOIN_sphere_type_are_equal(Z_REAL_FIXED_TYPE_name)
-#define z_sphere_is_zero   Z_JOIN_sphere_type_is_zero  (Z_REAL_FIXED_TYPE_name)
-#define z_sphere_inner_box Z_JOIN_sphere_type_inner_box(Z_REAL_FIXED_TYPE_name)
-#define z_sphere_outer_box Z_JOIN_sphere_type_outer_box(Z_REAL_FIXED_TYPE_name)
+#define z_sphere_are_equal Z_INSERT_REAL_fixed_type(z_sphere_, _are_equal)
+#define z_sphere_is_zero   Z_INSERT_REAL_fixed_type(z_sphere_, _is_zero	 )
+#define z_sphere_inner_box Z_INSERT_REAL_fixed_type(z_sphere_, _inner_box)
+#define z_sphere_outer_box Z_INSERT_REAL_fixed_type(z_sphere_, _outer_box)
 
 
 #endif /* __Z_functions_geometry_ZSphere_H__ */

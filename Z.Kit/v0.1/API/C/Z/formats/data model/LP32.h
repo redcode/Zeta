@@ -54,12 +54,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	ifndef __Z_formats_data_model_LP32_Hb__
 #	define __Z_formats_data_model_LP32_Hb__
 
-#	undef LP32
-#	undef lp32
-
-#	define Z_DATA_MODEL_NAME LP32
-#	define Z_DATA_MODEL_Name LP32
-#	define Z_DATA_MODEL_name lp32
+#	define Z_PASTE_DATA_MODEL(left, right) left##LP32##right
 
 #	endif /* __Z_formats_data_model_LP32_Hb__ */
 #endif

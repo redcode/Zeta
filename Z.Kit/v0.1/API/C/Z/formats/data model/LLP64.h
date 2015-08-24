@@ -54,12 +54,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	ifndef __Z_formats_data_model_LLP64_Hb__
 #	define __Z_formats_data_model_LLP64_Hb__
 
-#	undef LLP64
-#	undef llp64
-
-#	define Z_DATA_MODEL_NAME LLP64
-#	define Z_DATA_MODEL_Name LLP64
-#	define Z_DATA_MODEL_name llp64
+#	define Z_PASTE_DATA_MODEL(left, right) left##LLP64##right
 
 #	endif /* __Z_formats_data_model_LLP64_Hb__ */
 #endif

@@ -42,11 +42,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_LP64_SUFFIX_UINT8
 #define Z_LP64_SUFFIX_UINT16
 #define Z_LP64_SUFFIX_UINT32
-#define Z_LP64_SUFFIX_UINT64	UL
+#define Z_LP64_SUFFIX_UINT64	Z_SUFFIX_UL
 #define Z_LP64_SUFFIX_INT8
 #define Z_LP64_SUFFIX_INT16
 #define Z_LP64_SUFFIX_INT32
-#define Z_LP64_SUFFIX_INT64	L
+#define Z_LP64_SUFFIX_INT64	Z_SUFFIX_L
 
 #endif /* __Z_formats_data_model_LP64_Ha__ */
 
@@ -54,12 +54,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	ifndef __Z_formats_data_model_LP64_Hb__
 #	define __Z_formats_data_model_LP64_Hb__
 
-#	undef LP64
-#	undef lp64
-
-#	define Z_DATA_MODEL_NAME LP64
-#	define Z_DATA_MODEL_Name LP64
-#	define Z_DATA_MODEL_name lp64
+#	define Z_PASTE_DATA_MODEL(left, right) left##LP64##right
 
 #	endif /* __Z_formats_data_model_LP64_Hb__ */
 #endif

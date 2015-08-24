@@ -43,10 +43,6 @@ Z_IMPLEMENTATION_3D_LINE_SEGMENT(Double,  double,  Z_DOUBLE )
 Z_IMPLEMENTATION_3D_LINE_SEGMENT(LDouble, ldouble, Z_LDOUBLE)
 
 
-#define Z_JOIN_3d_line_segment_type_center(type) Z_PASTE_3(z_3d_line_segment_, type, _center)
-#define Z_JOIN_3d_line_segment_type_lerp(  type) Z_PASTE_3(z_3d_line_segment_, type, _lerp  )
-
-
 /* MARK: - Default real type definitions */
 
 
@@ -55,8 +51,8 @@ Z_IMPLEMENTATION_3D_LINE_SEGMENT(LDouble, ldouble, Z_LDOUBLE)
 #define z_3d_line_is_zero	    z_3d_vector_is_zero
 #define z_3d_line_reversed	    z_3d_vector_reversed
 
-#define z_3d_line_segment_center    Z_JOIN_3d_line_segment_type_center(Z_REAL_FIXED_TYPE_name)
-#define z_3d_line_segment_lerp	    Z_JOIN_3d_line_segment_type_lerp  (Z_REAL_FIXED_TYPE_name)
+#define z_3d_line_segment_center Z_INSERT_REAL_fixed_type(z_3d_line_segment_, _center)
+#define z_3d_line_segment_lerp	 Z_INSERT_REAL_fixed_type(z_3d_line_segment_, _lerp  )
 
 
 #endif /* __Z_functions_geometry_Z3DLine_H__ */

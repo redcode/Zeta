@@ -11,24 +11,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/value.h>
 
-#define Z_ILP64_BITS_CHAR	  8
-#define Z_ILP64_BITS_SHORT	 16
-#define Z_ILP64_BITS_INT	 64
-#define Z_ILP64_BITS_LONG	 64
-#define Z_ILP64_BITS_LLONG	 64
-#define Z_ILP64_BITS_POINTER	 64
-#define Z_ILP64_BITS_SIZE	 64
+#define Z_ILP64_BITS_CHAR     8
+#define Z_ILP64_BITS_SHORT   16
+#define Z_ILP64_BITS_INT     64
+#define Z_ILP64_BITS_LONG    64
+#define Z_ILP64_BITS_LLONG   64
+#define Z_ILP64_BITS_POINTER 64
+#define Z_ILP64_BITS_SIZE    64
 
-#define Z_ILP64_TYPE_UINT8	 unsigned char
-#define Z_ILP64_TYPE_UINT16	 unsigned short int
-#define Z_ILP64_TYPE_UINT32	 unsigned int32
-#define Z_ILP64_TYPE_UINT64	 unsigned int
-#define Z_ILP64_TYPE_SIZE	 unsigned long int
-#define Z_ILP64_TYPE_INT8	 signed char
-#define Z_ILP64_TYPE_INT16	 signed short int
-#define Z_ILP64_TYPE_INT32	 signed int32
-#define Z_ILP64_TYPE_INT64	 signed int
-#define Z_ILP64_TYPE_SSIZE	 signed long int
+#define Z_ILP64_TYPE_UINT8  unsigned char
+#define Z_ILP64_TYPE_UINT16 unsigned short int
+#define Z_ILP64_TYPE_UINT32 unsigned int32
+#define Z_ILP64_TYPE_UINT64 unsigned int
+#define Z_ILP64_TYPE_SIZE   unsigned long int
+#define Z_ILP64_TYPE_INT8   signed char
+#define Z_ILP64_TYPE_INT16  signed short int
+#define Z_ILP64_TYPE_INT32  signed int32
+#define Z_ILP64_TYPE_INT64  signed int
+#define Z_ILP64_TYPE_SSIZE  signed long int
 
 #define Z_ILP64_BASE_TYPE_UINT8  Z_VALUE_TYPE_UCHAR
 #define Z_ILP64_BASE_TYPE_UINT16 Z_VALUE_TYPE_USHORT
@@ -54,12 +54,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	ifndef __Z_formats_data_model_ILP64_Hb__
 #	define __Z_formats_data_model_ILP64_Hb__
 
-#	undef ILP64
-#	undef ilp64
-
-#	define Z_DATA_MODEL_NAME ILP64
-#	define Z_DATA_MODEL_Name ILP64
-#	define Z_DATA_MODEL_name ilp64
+#	define Z_PASTE_DATA_MODEL(left, right) left##ILP64##right
 
 #	endif /* __Z_formats_data_model_ILP64_Hb__ */
 #endif

@@ -44,19 +44,13 @@ Z_IMPLEMENTATION_3D_VECTOR(Double,  double )
 Z_IMPLEMENTATION_3D_VECTOR(LDouble, ldouble)
 
 
-#define Z_JOIN_3d_vector_type_are_equal(	type) Z_PASTE_3(z_3d_vector_, type, _are_equal	      )
-#define Z_JOIN_3d_vector_type_are_perpendicular(type) Z_PASTE_3(z_3d_vector_, type, _are_perpendicular)
-#define Z_JOIN_3d_vector_type_is_zero(		type) Z_PASTE_3(z_3d_vector_, type, _is_zero	      )
-#define Z_JOIN_3d_vector_type_reversed(		type) Z_PASTE_3(z_3d_vector_, type, _reversed	      )
-
-
 /* MARK: - Default real type definitions */
 
 
-#define z_3d_vector_are_equal	      Z_JOIN_3d_vector_type_are_equal	     (Z_REAL_FIXED_TYPE_name)
-#define z_3d_vector_are_perpendicular Z_JOIN_3d_vector_type_are_perpendicular(Z_REAL_FIXED_TYPE_name)
-#define z_3d_vector_is_zero	      Z_JOIN_3d_vector_type_is_zero	     (Z_REAL_FIXED_TYPE_name)
-#define z_3d_vector_reversed	      Z_JOIN_3d_vector_type_reversed	     (Z_REAL_FIXED_TYPE_name)
+#define z_3d_vector_are_equal	      Z_INSERT_REAL_fixed_type(z_3d_vector_, _are_equal	       )
+#define z_3d_vector_are_perpendicular Z_INSERT_REAL_fixed_type(z_3d_vector_, _are_perpendicular)
+#define z_3d_vector_is_zero	      Z_INSERT_REAL_fixed_type(z_3d_vector_, _is_zero	       )
+#define z_3d_vector_reversed	      Z_INSERT_REAL_fixed_type(z_3d_vector_, _reversed	       )
 
 
 #endif /* __Z_functions_geometry_Z3DVector_H__ */
