@@ -11,42 +11,33 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/value.h>
 
-#define Z_SILP64_BITS_CHAR	  8
-#define Z_SILP64_BITS_SHORT	 64
-#define Z_SILP64_BITS_INT	 64
-#define Z_SILP64_BITS_LONG	 64
-#define Z_SILP64_BITS_LLONG	 64
-#define Z_SILP64_BITS_POINTER	 64
-#define Z_SILP64_BITS_SIZE	 64
+#define Z_SILP64_BITS_CHAR    8
+#define Z_SILP64_BITS_SHORT   64
+#define Z_SILP64_BITS_INT     64
+#define Z_SILP64_BITS_LONG    64
+#define Z_SILP64_BITS_LLONG   64
+#define Z_SILP64_BITS_POINTER 64
+#define Z_SILP64_BITS_SIZE    64
 
-#define Z_ILP32_TYPE_UINT8
-#define Z_ILP32_TYPE_UINT16
-#define Z_ILP32_TYPE_UINT32
-#define Z_ILP32_TYPE_UINT64
-#define Z_ILP32_TYPE_SIZE
-#define Z_ILP32_TYPE_INT8
-#define Z_ILP32_TYPE_INT16
-#define Z_ILP32_TYPE_INT32
-#define Z_ILP32_TYPE_INT64
-#define Z_ILP32_TYPE_SSIZE
+#define Z_SILP32_TYPE_UINT8  unsigned char
+#define Z_SILP32_TYPE_UINT16 unsigned short int
+#define Z_SILP32_TYPE_UINT32 unsigned short int
+#define Z_SILP32_TYPE_UINT64 unsigned short int
+#define Z_SILP32_TYPE_SIZE   unsigned short int
+#define Z_SILP32_TYPE_INT8   signed char
+#define Z_SILP32_TYPE_INT16  signed short int
+#define Z_SILP32_TYPE_INT32  signed short int
+#define Z_SILP32_TYPE_INT64  signed short int
+#define Z_SILP32_TYPE_SSIZE  signed short int
 
-#define Z_SILP64_BASE_TYPE_UINT8
-#define Z_SILP64_BASE_TYPE_UINT16
-#define Z_SILP64_BASE_TYPE_UINT32
-#define Z_SILP64_BASE_TYPE_UINT64
-#define Z_SILP64_BASE_TYPE_INT8
-#define Z_SILP64_BASE_TYPE_INT16
-#define Z_SILP64_BASE_TYPE_INT32
-#define Z_SILP64_BASE_TYPE_INT64
-
-#define Z_SILP64_SUFFIX_UINT8
-#define Z_SILP64_SUFFIX_UINT16
-#define Z_SILP64_SUFFIX_UINT32
-#define Z_SILP64_SUFFIX_UINT64
-#define Z_SILP64_SUFFIX_INT8
-#define Z_SILP64_SUFFIX_INT16
-#define Z_SILP64_SUFFIX_INT32
-#define Z_SILP64_SUFFIX_INT64
+#define Z_SILP64_VALUE_TYPE_UINT8  Z_VALUE_TYPE_UCHAR
+#define Z_SILP64_VALUE_TYPE_UINT16 /* ? */
+#define Z_SILP64_VALUE_TYPE_UINT32 /* ? */
+#define Z_SILP64_VALUE_TYPE_UINT64 Z_VALUE_TYPE_USHORT
+#define Z_SILP64_VALUE_TYPE_INT8   Z_VALUE_TYPE_CHAR
+#define Z_SILP64_VALUE_TYPE_INT16  /* ? */
+#define Z_SILP64_VALUE_TYPE_INT32  /* ? */
+#define Z_SILP64_VALUE_TYPE_INT64  Z_VALUE_TYPE_SHORT
 
 #endif /* __Z_formats_data_model_SILP64_Ha__ */
 
@@ -54,12 +45,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	ifndef __Z_formats_data_model_SILP64_Hb__
 #	define __Z_formats_data_model_SILP64_Hb__
 
-#	undef SILP64
-#	undef silp64
+#	define Z_DATA_MODEL	  Z_DATA_MODEL_SILP64
+#	define Z_DATA_MODE_STRING Z_DATA_MODEL_STRING_SILP64
 
-#	define Z_DATA_MODEL_NAME SILP64
-#	define Z_DATA_MODEL_Name SILP64
-#	define Z_DATA_MODEL_name silp64
+#	define Z_DATA_MODEL_SUFFIX_UINT8  Z_SAME
+#	define Z_DATA_MODEL_SUFFIX_UINT16 Z_SAME
+#	define Z_DATA_MODEL_SUFFIX_UINT32 Z_SAME
+#	define Z_DATA_MODEL_SUFFIX_UINT64 Z_SAME
+#	define Z_DATA_MODEL_SUFFIX_INT8	  Z_SAME
+#	define Z_DATA_MODEL_SUFFIX_INT16  Z_SAME
+#	define Z_DATA_MODEL_SUFFIX_INT32  Z_SAME
+#	define Z_DATA_MODEL_SUFFIX_INT64  Z_SAME
+
+#	define Z_PASTE_DATA_MODEL(left, right) left##SILP64##right
+#	define Z_PASTE_data_model(left, right) left##silp64##right
 
 #	endif /* __Z_formats_data_model_SILP64_Hb__ */
 #endif

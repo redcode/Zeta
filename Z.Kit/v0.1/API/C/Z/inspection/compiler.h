@@ -225,7 +225,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/private/compiler/Zortech C++.h>
 
 #else
-#	error "Compiler not suported."
+#	include <Z/inspection/private/compiler/generic.h>
 #endif
 
 #define Z_COMPILER_C_HAS(		WHAT ) (defined Z_COMPILER_C_HAS_##WHAT		       )

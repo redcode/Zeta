@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_types_generic_functions_H__
 #define __Z_types_generic_functions_H__
 
-#include <Z/types/base.h>
+#include <Z/macros/templating.h>
 
 /* MARK: - General pourpose context access function types */
 
@@ -278,14 +278,14 @@ typedef void (* ZHandleContextIndexDoubleAndData ) (void* context, zsize index, 
 typedef void (* ZHandleContextIndexLDoubleAndData) (void* context, zsize index, zldouble value,   void* data);
 typedef void (* ZHandleContextIndexPointerAndData) (void* context, zsize index, void*	 pointer, void* data);
 
-#define ZHandleValue(			TYPE) Z_JOIN_2(ZHandle,		       Z_##TYPE##_FIXED_TYPE_Name	  )
-#define ZHandleValueAndData(		TYPE) Z_JOIN_3(ZHandle,		       Z_##TYPE##_FIXED_TYPE_Name, AndData)
-#define ZHandleIndexAndValue(		TYPE) Z_JOIN_2(ZHandleIndexAnd,	       Z_##TYPE##_FIXED_TYPE_Name	  )
-#define ZHandleIndexValueAndData(	TYPE) Z_JOIN_3(ZHandleIndex,	       Z_##TYPE##_FIXED_TYPE_Name, AndData)
-#define ZHandleContextAndValue(		TYPE) Z_JOIN_2(ZHandleContextAnd,      Z_##TYPE##_FIXED_TYPE_Name	  )
-#define ZHandleContextValueAndData(	TYPE) Z_JOIN_3(ZHandleContext,	       Z_##TYPE##_FIXED_TYPE_Name, AndData)
-#define ZHandleContextIndexAndValue(	TYPE) Z_JOIN_2(ZHandleContextIndexAnd, Z_##TYPE##_FIXED_TYPE_Name	  )
-#define ZHandleContextIndexValueAndData(TYPE) Z_JOIN_3(ZHandleContextIndex,    Z_##TYPE##_FIXED_TYPE_Name, AndData)
+#define ZHandleValue(			TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,			 )
+#define ZHandleValueAndData(		TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		  AndData)
+#define ZHandleIndexAndValue(		TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndexAnd,		 )
+#define ZHandleIndexValueAndData(	TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,		  AndData)
+#define ZHandleContextAndValue(		TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextAnd,		 )
+#define ZHandleContextValueAndData(	TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	  AndData)
+#define ZHandleContextIndexAndValue(	TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndexAnd,	 )
+#define ZHandleContextIndexValueAndData(TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex,    AndData)
 
 /* MARK: - Generic handler with stop types */
 
@@ -399,14 +399,14 @@ typedef void (* ZHandleContextIndexDoubleDataAndStop ) (void* context, zsize ind
 typedef void (* ZHandleContextIndexLDoubleDataAndStop) (void* context, zsize index, zldouble value,   void* data, zboolean *stop);
 typedef void (* ZHandleContextIndexPointerDataAndStop) (void* context, zsize index, void*    pointer, void* data, zboolean *stop);
 
-#define ZHandleValueAndStop(		    TYPE) Z_JOIN_3(ZHandle,		Z_##TYPE##_FIXED_TYPE_Name, AndStop    )
-#define ZHandleValueDataAndStop(	    TYPE) Z_JOIN_3(ZHandle,		Z_##TYPE##_FIXED_TYPE_Name, DataAndStop)
-#define ZHandleIndexValueAndStop(	    TYPE) Z_JOIN_3(ZHandleIndex,	Z_##TYPE##_FIXED_TYPE_Name, AndStop    )
-#define ZHandleIndexValueDataAndStop(	    TYPE) Z_JOIN_3(ZHandleIndex,	Z_##TYPE##_FIXED_TYPE_Name, DataAndStop)
-#define ZHandleContextValueAndStop(	    TYPE) Z_JOIN_3(ZHandleContext,	Z_##TYPE##_FIXED_TYPE_Name, AndStop    )
-#define ZHandleContextValueDataAndStop(	    TYPE) Z_JOIN_3(ZHandleContext,	Z_##TYPE##_FIXED_TYPE_Name, DataAndStop)
-#define ZHandleContextIndexValueAndStop(    TYPE) Z_JOIN_3(ZHandleContextIndex, Z_##TYPE##_FIXED_TYPE_Name, AndStop    )
-#define ZHandleContextIndexValueDataAndStop(TYPE) Z_JOIN_3(ZHandleContextIndex, Z_##TYPE##_FIXED_TYPE_Name, DataAndStop)
+#define ZHandleValueAndStop(		    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		   AndStop    )
+#define ZHandleValueDataAndStop(	    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		   DataAndStop)
+#define ZHandleIndexValueAndStop(	    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,	   AndStop    )
+#define ZHandleIndexValueDataAndStop(	    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,	   DataAndStop)
+#define ZHandleContextValueAndStop(	    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	   AndStop    )
+#define ZHandleContextValueDataAndStop(	    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	   DataAndStop)
+#define ZHandleContextIndexValueAndStop(    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex, AndStop    )
+#define ZHandleContextIndexValueDataAndStop(TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex, DataAndStop)
 
 /* MARK: - Generic validator types */
 
@@ -520,13 +520,13 @@ typedef zboolean (* ZValidateContextIndexDoubleAndData ) (void* context, zsize i
 typedef zboolean (* ZValidateContextIndexLDoubleAndData) (void* context, zsize index, zldouble value,	void* data);
 typedef zboolean (* ZValidateContextIndexPointerAndData) (void* context, zsize index, void*    pointer, void* data);
 
-#define ZValidateValue(			  TYPE) Z_JOIN_2(ZValidate,		   Z_##TYPE##_FIXED_TYPE_Name	      )
-#define ZValidateValueAndData(		  TYPE) Z_JOIN_3(ZValidate,		   Z_##TYPE##_FIXED_TYPE_Name, AndData)
-#define ZValidateIndexAndValue(		  TYPE) Z_JOIN_2(ZValidateIndexAnd,	   Z_##TYPE##_FIXED_TYPE_Name	      )
-#define ZValidateIndexValueAndData(	  TYPE) Z_JOIN_3(ZValidateIndex,	   Z_##TYPE##_FIXED_TYPE_Name, AndData)
-#define ZValidateContextAndValue(	  TYPE) Z_JOIN_2(ZValidateContextAnd,      Z_##TYPE##_FIXED_TYPE_Name	      )
-#define ZValidateContextValueAndData(	  TYPE) Z_JOIN_3(ZValidateContext,	   Z_##TYPE##_FIXED_TYPE_Name, AndData)
-#define ZValidateContextIndexAndValue(	  TYPE) Z_JOIN_2(ZValidateContextIndexAnd, Z_##TYPE##_FIXED_TYPE_Name	      )
-#define ZValidateContextIndexValueAndData(TYPE) Z_JOIN_3(ZValidateContextIndex,    Z_##TYPE##_FIXED_TYPE_Name, AndData)
+#define ZValidateValue(			  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,			     )
+#define ZValidateValueAndData(		  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,		      AndData)
+#define ZValidateIndexAndValue(		  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateIndexAnd,		     )
+#define ZValidateIndexValueAndData(	  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateIndex,	      AndData)
+#define ZValidateContextAndValue(	  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextAnd,	     )
+#define ZValidateContextValueAndData(	  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContext,	      AndData)
+#define ZValidateContextIndexAndValue(	  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextIndexAnd,	     )
+#define ZValidateContextIndexValueAndData(TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextIndex,    AndData)
 
 #endif /* __Z_types_generic_functions_H__ */

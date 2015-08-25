@@ -142,17 +142,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_INSERT_REAL_fixed_type Z_INSERT_double
 #endif
 
-#define Z_INSERT_NUMBER_8(   left, right) left##8##right
-#define Z_INSERT_NUMBER_16(  left, right) left##16##right
-#define Z_INSERT_NUMBER_24(  left, right) left##24##right
-#define Z_INSERT_NUMBER_32(  left, right) left##32##right
-#define Z_INSERT_NUMBER_48(  left, right) left##48##right
-#define Z_INSERT_NUMBER_64(  left, right) left##64##right
-#define Z_INSERT_NUMBER_80(  left, right) left##80##right
-#define Z_INSERT_NUMBER_96(  left, right) left##96##right
-#define Z_INSERT_NUMBER_128( left, right) left##128##right
-#define Z_INSERT_NUMBER_256( left, right) left##256##right
-#define Z_INSERT_NUMBER_512( left, right) left##512##right
-#define Z_INSERT_NUMBER_1024(left, right) left##1024##right
-
 #endif /* __Z_macros_templating_H__ */

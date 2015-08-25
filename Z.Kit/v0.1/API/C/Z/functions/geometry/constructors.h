@@ -182,22 +182,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Default real type definitions */
 
-#define z_2d_vector	 Z_JOIN_2(z_2d_vector_, Z_REAL_FIXED_TYPE_name)
-#define z_circle	 Z_JOIN_2(z_circle_,	Z_REAL_FIXED_TYPE_name)
-#define z_rectangle	 Z_JOIN_2(z_rectangle_, Z_REAL_FIXED_TYPE_name)
-#define z_3d_vector	 Z_JOIN_2(z_3d_vector_, Z_REAL_FIXED_TYPE_name)
-#define z_box		 Z_JOIN_2(z_box_,	Z_REAL_FIXED_TYPE_name)
-#define z_sphere	 Z_JOIN_2(z_sphere_,	Z_REAL_FIXED_TYPE_name)
+#define z_2d_vector	 Z_INSERT_REAL_fixed_type(z_2d_vector_,)
+#define z_circle	 Z_INSERT_REAL_fixed_type(z_circle_,   )
+#define z_rectangle	 Z_INSERT_REAL_fixed_type(z_rectangle_,)
+#define z_3d_vector	 Z_INSERT_REAL_fixed_type(z_3d_vector_,)
+#define z_box		 Z_INSERT_REAL_fixed_type(z_box_,      )
+#define z_sphere	 Z_INSERT_REAL_fixed_type(z_sphere_,   )
 #define z_2d_line	 z_2d_vector
 #define z_aabr		 z_2d_line
 #define z_3d_line	 z_3d_vector
 #define z_aabb		 z_3d_line
-#define z_2d_vector_zero Z_JOIN_3(z_2d_vector_, Z_REAL_FIXED_TYPE_name, _zero)
-#define z_circle_zero	 Z_JOIN_3(z_circle_,	Z_REAL_FIXED_TYPE_name, _zero)
-#define z_rectangle_zero Z_JOIN_3(z_rectangle_, Z_REAL_FIXED_TYPE_name, _zero)
-#define z_3d_vector_zero Z_JOIN_3(z_3d_vector_, Z_REAL_FIXED_TYPE_name, _zero)
-#define z_box_zero	 Z_JOIN_3(z_box_,	Z_REAL_FIXED_TYPE_name, _zero)
-#define z_sphere_zero	 Z_JOIN_3(z_sphere_,	Z_REAL_FIXED_TYPE_name, _zero)
+#define z_2d_vector_zero Z_INSERT_REAL_fixed_type(z_2d_vector_, _zero)
+#define z_circle_zero	 Z_INSERT_REAL_fixed_type(z_circle_,	_zero)
+#define z_rectangle_zero Z_INSERT_REAL_fixed_type(z_rectangle_, _zero)
+#define z_3d_vector_zero Z_INSERT_REAL_fixed_type(z_3d_vector_, _zero)
+#define z_box_zero	 Z_INSERT_REAL_fixed_type(z_box_,	_zero)
+#define z_sphere_zero	 Z_INSERT_REAL_fixed_type(z_sphere_,	_zero)
 #define z_2d_line_zero	 z_2d_vector_zero
 #define z_aabr_zero	 z_2d_line_zero
 #define z_3d_line_zero	 z_3d_vector_zero
