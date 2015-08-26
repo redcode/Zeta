@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_inspection_floating_point_H__
 
 #include <Z/inspection/CPU.h>
-#include <Z/inspection/compiler.h>
+#include <Z/inspection/language.h>
 
 #define Z_INSPECTING_FLOATING_POINT
 
@@ -45,6 +45,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #undef Z_INSPECTING_FLOATING_POINT
 
 #include <Z/keys/floating point.h>
+
+/* EXPONENT_MINIMUM
+El menor número entero negativo tal que FLT_RADIX elevado a la potencia de éste menos 1 es un número normalizado de coma flotante. */
 
 #undef _BITS
 #undef _BIAS
