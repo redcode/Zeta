@@ -69,6 +69,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/preprocessor.h>
 #include <Z/keys/data model.h>
 
+#define Z_DATA_MODEL_HAS_TYPE(WHICH) defined(Z_DATA_MODEL_TYPE_##WHICH)
+
 #define Z_DATA_MODEL_LITERAL(	TYPE) Z_DATA_MODEL_SUFFIX_##TYPE
 #define Z_DATA_MODEL_TYPE(	TYPE) Z_PASTE_DATA_MODEL(Z_, _TYPE_##TYPE)
 #define Z_DATA_MODEL_BITS(	TYPE) Z_PASTE_DATA_MODEL(Z_, _BITS_##TYPE)
