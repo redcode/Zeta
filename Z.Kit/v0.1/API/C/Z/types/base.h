@@ -1211,10 +1211,9 @@ typedef Z4DIntN(Z_INTEGER_BITS)			Z4DInteger;
 #	define Z_REAL_BITS			96
 #elif defined(Z_USE_REAL_FLOAT128) && Z_IS_AVAILABLE(FLOAT128)
 #	define Z_REAL_BITS			128
-#elif define Z_
-#elif defined(Z_USE_REAL_FLOAT) && Z_IS_AVAILABLE(FLOAT16)
+#elif defined(Z_USE_REAL_FLOAT) && defined(Z_FLOAT_BITS)
 #	define Z_REAL_BITS			Z_FLOAT_BITS
-#elif defined(Z_USE_REAL_LDOUBLE)
+#elif defined(Z_USE_REAL_LDOUBLE) && defined(Z_LDOUBLE_BITS)
 #	define Z_REAL_BITS			Z_LDOUBLE_BITS
 #elif defined(Z_DOUBLE_BITS)
 #	define Z_REAL_BITS			Z_DOUBLE_BITS
