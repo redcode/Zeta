@@ -820,6 +820,7 @@ typedef Z4DIntN(Z_LONG_BITS)			Z4DLong;
 #	define Z_FLOAT_SIGN_BITS		Z_FLOATN_SIGN_BITS	    (Z_FLOAT_BITS)
 #	define Z_FLOAT_INFINITY			Z_FLOATN_INFINITY	    (Z_FLOAT_BITS)
 #	define Z_FLOAT_NAN			Z_FLOATN_NAN		    (Z_FLOAT_BITS)
+#	define Z_AVAILABLE_FLOAT
 
 #endif
 
@@ -856,6 +857,7 @@ typedef Z4DIntN(Z_LONG_BITS)			Z4DLong;
 #	define Z_DOUBLE_SIGN_BITS		Z_FLOATN_SIGN_BITS	    (Z_DOUBLE_BITS)
 #	define Z_DOUBLE_INFINITY		Z_FLOATN_INFINITY	    (Z_DOUBLE_BITS)
 #	define Z_DOUBLE_NAN			Z_FLOATN_NAN		    (Z_DOUBLE_BITS)
+#	define Z_AVAILABLE_DOUBLE
 
 #elif Z_COMPILER_HAS_TYPE(FLOAT)
 
@@ -889,6 +891,7 @@ typedef Z4DIntN(Z_LONG_BITS)			Z4DLong;
 #	define Z_DOUBLE_SIGN_BITS		Z_FLOAT_SIGN_BITS
 #	define Z_DOUBLE_INFINITY		Z_FLOAT_INFINITY
 #	define Z_DOUBLE_NAN			Z_FLOAT_NAN
+#	define Z_AVAILABLE_DOUBLE
 
 #endif
 
@@ -925,6 +928,7 @@ typedef Z4DIntN(Z_LONG_BITS)			Z4DLong;
 #	define Z_LDOUBLE_SIGN_BITS		Z_FLOATN_SIGN_BITS	    (Z_LDOUBLE_BITS)
 #	define Z_LDOUBLE_INFINITY		Z_FLOATN_INFINITY	    (Z_LDOUBLE_BITS)
 #	define Z_LDOUBLE_NAN			Z_FLOATN_NAN		    (Z_LDOUBLE_BITS)
+#	define Z_AVAILABLE_LDOUBLE
 
 #elif Z_COMPILER_HAS_TYPE(DOUBLE) || Z_COMPILER_HAS_TYPE(FLOAT)
 
@@ -958,6 +962,7 @@ typedef Z4DIntN(Z_LONG_BITS)			Z4DLong;
 #	define Z_LDOUBLE_SIGN_BITS		Z_DOUBLE_SIGN_BITS
 #	define Z_LDOUBLE_INFINITY		Z_DOUBLE_INFINITY
 #	define Z_LDOUBLE_NAN			Z_DOUBLE_NAN
+#	define Z_AVAILABLE_LDOUBLE
 
 #endif
 
@@ -1250,6 +1255,7 @@ typedef Z4DIntN(Z_INTEGER_BITS)			Z4DInteger;
 #	define Z_REAL_SIGN_BITS			Z_FLOATN_SIGN_BITS	    (Z_REAL_BITS)
 #	define Z_REAL_INFINITY			Z_FLOATN_INFINITY	    (Z_REAL_BITS)
 #	define Z_REAL_NAN			Z_FLOATN_NAN		    (Z_REAL_BITS)
+#	define Z_AVAILABLE_REAL
 
 	typedef Z2DReal				Z2D;
 	typedef Z3DReal				Z3D;
@@ -1284,554 +1290,318 @@ typedef zint8					ZOrder;
 
 /* MARK: - Value component access types */
 
-typedef zuint8 uint8_value;
-
 Z_DEFINE_STRICT_UNION (
 	zuint8 value_uint8;
 	zint8  value_int8;
 ) Z8Bit;
 
-#if Z_CPU_INTEGER_ENDIANNESS(16BIT) == Z_ENDIANNESS_BIG
-
-	Z_DEFINE_STRICT_UNION_BEGIN
-		zuint16 value_uint16;
-		zint16	value_int16;
-		zuint8	array_uint8[2];
-		zint8	array_int8 [2];
-
-		struct {zuint8 index1;
-			zuint8 index0;
-		} values_uint8;
-
-		struct {zint8 index1;
-			zint8 index0;
-		} values_int8;
-
-#		if Z_IS_AVAILABLE(FLOAT16)
-			zfloat16 value_float16;
-#		endif
-	Z_DEFINE_STRICT_UNION_END Z16Bit;
-
-#elif Z_CPU_INTEGER_ENDIANNESS(16BIT) == Z_ENDIANNESS_LITTLE
-
-	Z_DEFINE_STRICT_UNION_BEGIN
-		zuint16 value_uint16;
-		zint16	value_int16;
-		zuint8	array_uint8[2];
-		zint8	array_int8 [2];
-
-		struct {zuint8 index0;
-			zuint8 index1;
-		} values_uint8;
-
-		struct {zint8 index0;
-			zint8 index1;
-		} values_int8;
-
-#		if Z_IS_AVAILABLE(FLOAT16)
-			zfloat16 value_float16;
-#		endif
-	Z_DEFINE_STRICT_UNION_END Z16Bit;
-
-#endif
-
-#if Z_CPU_INTEGER_ENDIANNESS(32BIT) == Z_ENDIANNESS_BIG
-
-	Z_DEFINE_STRICT_UNION_BEGIN
-		zuint32 value_uint32;
-		zint32	value_int32;
-		zuint16 array_uint16[2];
-		zint16	array_int16 [2];
-		zuint8	array_uint8 [4];
-		zint8	array_int8  [4];
-
-		struct {zuint16 index1;
-			zuint16 index0;
-		} values_uint16;
-
-		struct {zint16 index1;
-			zint16 index0;
-		} values_int16;
-
-		struct {zuint8 index3;
-			zuint8 index2;
-			zuint8 index1;
-			zuint8 index0;
-		} values_uint8;
-
-		struct {zint8 index3;
-			zint8 index2;
-			zint8 index1;
-			zint8 index0;
-		} values_int8;
-
-#		if Z_IS_AVAILABLE(FLOAT32)
-			zfloat32 value_float32;
-#		endif
-
-#		if Z_IS_AVAILABLE(FLOAT16)
-			zfloat16 array_float16[2];
-
-			struct {float16 index1;
-				float16 index0;
-			} values_float16;
-#		endif
-	Z_DEFINE_STRICT_UNION_END Z32Bit;
-
-#elif Z_CPU_INTEGER_ENDIANNESS(32BIT) == Z_ENDIANNESS_LITTLE
-
-	Z_DEFINE_STRICT_UNION_BEGIN
-		zuint32 value_uint32;
-		zint32	value_int32;
-		zuint16 array_uint16[2];
-		zint16	array_int16 [2];
-		zuint8	array_uint8 [4];
-		zint8	array_int8  [4];
-
-		struct {zuint16 index0;
-			zuint16 index1;
-		} values_uint16;
-
-		struct {zint16 index0;
-			zint16 index1;
-		} values_int16;
-
-		struct {zuint8 index0;
-			zuint8 index1;
-			zuint8 index2;
-			zuint8 index3;
-		} values_uint8;
-
-		struct {zint8 index0;
-			zint8 index1;
-			zint8 index2;
-			zint8 index3;
-		} values_int8;
-
-#		if Z_IS_AVAILABLE(FLOAT32)
-			zfloat32 value_float32;
-#		endif
-
-#		if Z_IS_AVAILABLE(FLOAT16)
-			zfloat16 array_float16[2];
-
-			struct {float16 index0;
-				float16 index1;
-			} values_float16;
-#		endif
-	Z_DEFINE_STRICT_UNION_END Z32Bit;
-
-#endif
-
-#if Z_CPU_INTEGER_ENDIANNESS(64BIT) == Z_ENDIANNESS_BIG
-
-	Z_DEFINE_STRICT_UNION_BEGIN
-		zuint64 value_uint64;
-		zint64	value_int64;
-		zuint32 array_uint32[2];
-		zint32	array_int32 [2];
-		zuint16 array_uint16[4];
-		zint16	array_int16 [4];
-		zuint8	array_uint8 [8];
-		zint8	array_int8  [8];
-
-		struct {zuint32 index1;
-			zuint32 index0;
-		} values_uint32;
-
-		struct {zint32 index1;
-			zint32 index0;
-		} values_int32;
-
-		struct {zuint16 index3;
-			zuint16 index2;
-			zuint16 index1;
-			zuint16 index0;
-		} values_uint16;
-
-		struct {zint16 index3;
-			zint16 index2;
-			zint16 index1;
-			zint16 index0;
-		} values_int16;
-
-		struct {zuint8 index7;
-			zuint8 index6;
-			zuint8 index5;
-			zuint8 index4;
-			zuint8 index3;
-			zuint8 index2;
-			zuint8 index1;
-			zuint8 index0;
-		} values_uint8;
-
-		struct {zint8 index7;
-			zint8 index6;
-			zint8 index5;
-			zint8 index4;
-			zint8 index3;
-			zint8 index2;
-			zint8 index1;
-			zint8 index0;
-		} values_int8;
-
-#		if Z_IS_AVAILABLE(FLOAT64)
-			zfloat64 value_float64;
-#		endif
-
-#		if Z_IS_AVAILABLE(FLOAT32)
-			zfloat32 array_float32[2];
-
-			struct {float32 index1;
-				float32 index0;
-			} values_float32;
-#		endif
-
-#		if Z_IS_AVAILABLE(FLOAT16)
-			zfloat16 array_float16[4];
-
-			struct {float16 index3;
-				float16 index2;
-				float16 index1;
-				float16 index0;
-			} values_float16;
-#		endif
-	Z_DEFINE_STRICT_UNION_END Z64Bit;
-
-#elif Z_CPU_INTEGER_ENDIANNESS(64BIT) == Z_ENDIANNESS_LITTLE
-
-	Z_DEFINE_STRICT_UNION_BEGIN
-		zuint64 value_uint64;
-		zint64	value_int64;
-		zuint32 array_uint32[2];
-		zint32	array_int32 [2];
-		zuint16 array_uint16[4];
-		zint16	array_int16 [4];
-		zuint8	array_uint8 [8];
-		zint8	array_int8  [8];
-
-		struct {zuint32 index0;
-			zuint32 index1;
-		} values_uint32;
-
-		struct {zint32 index0;
-			zint32 index1;
-		} values_int32;
-
-		struct {zuint16 index0;
-			zuint16 index1;
-			zuint16 index2;
-			zuint16 index3;
-		} values_uint16;
-
-		struct {zint16 index0;
-			zint16 index1;
-			zint16 index2;
-			zint16 index3;
-		} values_int16;
-
-		struct {zuint8 index0;
-			zuint8 index1;
-			zuint8 index2;
-			zuint8 index3;
-			zuint8 index4;
-			zuint8 index5;
-			zuint8 index6;
-			zuint8 index7;
-		} values_uint8;
-
-		struct {zint8 index0;
-			zint8 index1;
-			zint8 index2;
-			zint8 index3;
-			zint8 index4;
-			zint8 index5;
-			zint8 index6;
-			zint8 index7;
-		} values_int8;
-
-#		if Z_IS_AVAILABLE(FLOAT64)
-			zfloat64 value_float64;
-#		endif
-
-#		if Z_IS_AVAILABLE(FLOAT32)
-			zfloat32 array_float32[2];
-
-			struct {float32 index0;
-				float32 index1;
-			} values_float32;
-#		endif
-
-#		if Z_IS_AVAILABLE(FLOAT16)
-			zfloat16 array_float16[4];
-
-			struct {float16 index0;
-				float16 index1;
-				float16 index2;
-				float16 index3;
-			} values_float16;
-#		endif
-	Z_DEFINE_STRICT_UNION_END Z64Bit;
-
-#endif
-
-#if Z_IS_AVAILABLE(UINT128) && Z_IS_AVAILABLE(INT128)
-
-#	if Z_CPU_INTEGER_ENDIANNESS(128BIT) == Z_ENDIANNESS_BIG
-
-		Z_DEFINE_STRICT_UNION_BEGIN
-			zuint128 value_uint128;
-			zint128  value_int128;
-			zuint64  array_uint64[ 2];
-			zint64	 array_int64 [ 2];
-			zuint32  array_uint32[ 4];
-			zint32	 array_int32 [ 4];
-			zuint16  array_uint16[ 8];
-			zint16	 array_int16 [ 8];
-			zuint8	 array_uint8 [16];
-			zint8	 array_int8  [16];
-
-			struct {zuint64 index1;
-				zuint64 index0;
-			} values_uint64;
-
-			struct {zint64 index1;
-				zint64 index0;
-			} values_int64;
-
-			struct {zuint32 index3;
-				zuint32 index2;
-				zuint32 index1;
-				zuint32 index0;
-			} values_uint32;
-
-			struct {zint32 index3;
-				zint32 index2;
-				zint32 index1;
-				zint32 index0;
-			} values_int32;
-
-			struct {zuint16 index7;
-				zuint16 index6;
-				zuint16 index5;
-				zuint16 index4;
-				zuint16 index3;
-				zuint16 index2;
-				zuint16 index1;
-				zuint16 index0;
-			} values_uint16;
-
-			struct {zint16 index7;
-				zint16 index6;
-				zint16 index5;
-				zint16 index4;
-				zint16 index3;
-				zint16 index2;
-				zint16 index1;
-				zint16 index0;
-			} values_int16;
-
-			struct {zuint8 index15;
-				zuint8 index14;
-				zuint8 index13;
-				zuint8 index12;
-				zuint8 index11;
-				zuint8 index10;
-				zuint8 index09;
-				zuint8 index08;
-				zuint8 index07;
-				zuint8 index06;
-				zuint8 index05;
-				zuint8 index04;
-				zuint8 index03;
-				zuint8 index02;
-				zuint8 index01;
-				zuint8 index00;
-			} values_uint8;
-
-			struct {zint8 index15;
-				zint8 index14;
-				zint8 index13;
-				zint8 index12;
-				zint8 index11;
-				zint8 index10;
-				zint8 index09;
-				zint8 index08;
-				zint8 index07;
-				zint8 index06;
-				zint8 index05;
-				zint8 index04;
-				zint8 index03;
-				zint8 index02;
-				zint8 index01;
-				zint8 index00;
-			} values_int8;
-
-#			if Z_IS_AVAILABLE(FLOAT128)
-				zfloat128 value_float128;
-#			endif
-
-#			if Z_IS_AVAILABLE(FLOAT64)
-				zfloat64 array_float64[2];
-
-				struct {float64 index1;
-					float64 index0;
-				} values_float64;
-#			endif
-
-#			if Z_IS_AVAILABLE(FLOAT32)
-				zfloat32 array_float32[4];
-
-				struct {float32 index3;
-					float32 index2;
-					float32 index1;
-					float32 index0;
-				} values_float32;
-#			endif
-
-#			if Z_IS_AVAILABLE(FLOAT16)
-				zfloat16 array_float16[8];
-
-				struct {float16 index7;
-					float16 index6;
-					float16 index5;
-					float16 index4;
-					float16 index3;
-					float16 index2;
-					float16 index1;
-					float16 index0;
-				} values_float16;
-#			endif
-		Z_DEFINE_STRICT_UNION_END Z128Bit;
-
-#	elif Z_CPU_INTEGER_ENDIANNESS(128BIT) == Z_ENDIANNESS_LITTLE
-
-		Z_DEFINE_STRICT_UNION_BEGIN
-			zuint128 value_uint128;
-			zuint128 value_int128;
-			zuint64  array_uint64[ 2];
-			zint64	 array_int64 [ 2];
-			zuint32  array_uint32[ 4];
-			zint32	 array_int32 [ 4];
-			zuint16  array_uint16[ 8];
-			zint16	 array_int16 [ 8];
-			zuint8	 array_uint8 [16];
-			zint8	 array_int8  [16];
-
-			struct {zuint64 index0;
-				zuint64 index1;
-			} values_uint64;
-
-			struct {zint64 index0;
-				zint64 index1;
-			} values_int64;
-
-			struct {zuint32 index0;
-				zuint32 index1;
-				zuint32 index2;
-				zuint32 index3;
-			} values_uint32;
-
-			struct {zint32 index0;
-				zint32 index1;
-				zint32 index2;
-				zint32 index3;
-			} values_int32;
-
-			struct {zuint16 index0;
-				zuint16 index1;
-				zuint16 index2;
-				zuint16 index3;
-				zuint16 index4;
-				zuint16 index5;
-				zuint16 index6;
-				zuint16 index7;
-			} values_uint16;
-
-			struct {zint16 index0;
-				zint16 index1;
-				zint16 index2;
-				zint16 index3;
-				zint16 index4;
-				zint16 index5;
-				zint16 index6;
-				zint16 index7;
-			} values_int16;
-
-			struct {zuint8 index00;
-				zuint8 index01;
-				zuint8 index02;
-				zuint8 index03;
-				zuint8 index04;
-				zuint8 index05;
-				zuint8 index06;
-				zuint8 index07;
-				zuint8 index08;
-				zuint8 index09;
-				zuint8 index10;
-				zuint8 index11;
-				zuint8 index12;
-				zuint8 index13;
-				zuint8 index14;
-				zuint8 index15;
-			} values_uint8;
-
-			struct {zint8 index00;
-				zint8 index01;
-				zint8 index02;
-				zint8 index03;
-				zint8 index04;
-				zint8 index05;
-				zint8 index06;
-				zint8 index07;
-				zint8 index08;
-				zint8 index09;
-				zint8 index10;
-				zint8 index11;
-				zint8 index12;
-				zint8 index13;
-				zint8 index14;
-				zint8 index15;
-			} values_int8;
-
-#			if Z_IS_AVAILABLE(FLOAT128)
-				zfloat128 value_float128;
-#			endif
-
-#			if Z_IS_AVAILABLE(FLOAT64)
-				zfloat64 array_float64[2];
-
-				struct {float64 index0;
-					float64 index1;
-				} values_float64;
-#			endif
-
-#			if Z_IS_AVAILABLE(FLOAT32)
-				zfloat32 array_float32[4];
-
-				struct {float32 index0;
-					float32 index1;
-					float32 index2;
-					float32 index3;
-				} values_float32;
-#			endif
-
-#			if Z_IS_AVAILABLE(FLOAT16)
-				zfloat16 array_float16[8];
-
-				struct {float16 index0;
-					float16 index1;
-					float16 index2;
-					float16 index3;
-					float16 index4;
-					float16 index5;
-					float16 index6;
-					float16 index7;
-				} values_float16;
-#			endif
-		Z_DEFINE_STRICT_UNION_END Z128Bit;
-
+Z_DEFINE_STRICT_UNION_BEGIN
+	zuint16 value_uint16;
+	zint16	value_int16;
+	zuint8	array_uint8[2];
+	zint8	array_int8 [2];
+
+	struct {Z_ENDIANIZED_MEMBERS(2, 16BIT) (
+		zuint8 index1,
+		zuint8 index0
+	)} values_uint8;
+
+	struct {Z_ENDIANIZED_MEMBERS(2, 16BIT) (
+		zint8 index1,
+		zint8 index0
+	)} values_int8;
+
+#	if Z_IS_AVAILABLE(FLOAT16)
+		zfloat16 value_float16;
 #	endif
+Z_DEFINE_STRICT_UNION_END Z16Bit;
+
+Z_DEFINE_STRICT_UNION_BEGIN
+	zuint32 value_uint32;
+	zint32	value_int32;
+	zuint16 array_uint16[2];
+	zint16	array_int16 [2];
+	zuint8	array_uint8 [4];
+	zint8	array_int8  [4];
+
+	struct {Z_ENDIANIZED_MEMBERS(2, 32BIT) (
+		zuint16 index1,
+		zuint16 index0
+	)} values_uint16;
+
+	struct {Z_ENDIANIZED_MEMBERS(2, 32BIT) (
+		zint16 index1,
+		zint16 index0
+	)} values_int16;
+
+	struct {Z_ENDIANIZED_MEMBERS(4, 32BIT) (
+		zuint8 index3,
+		zuint8 index2,
+		zuint8 index1,
+		zuint8 index0
+	)} values_uint8;
+
+	struct {Z_ENDIANIZED_MEMBERS(4, 32BIT) (
+		zint8 index3,
+		zint8 index2,
+		zint8 index1,
+		zint8 index0
+	)} values_int8;
+
+#	if Z_IS_AVAILABLE(FLOAT32)
+		zfloat32 value_float32;
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT16)
+		zfloat16 array_float16[2];
+
+		struct {Z_ENDIANIZED_MEMBERS(2, 32BIT) (
+			float16 index1,
+			float16 index0
+		)} values_float16;
+#	endif
+Z_DEFINE_STRICT_UNION_END Z32Bit;
+
+#if Z_IS_AVAILABLE(UINT64) || Z_IS_AVAILABLE(INT64)
+
+	Z_DEFINE_STRICT_UNION_BEGIN
+		zuint32 array_uint32[2];
+		zint32	array_int32 [2];
+		zuint16 array_uint16[4];
+		zint16	array_int16 [4];
+		zuint8	array_uint8 [8];
+		zint8	array_int8  [8];
+
+		struct {Z_ENDIANIZED_MEMBERS(2, 64BIT) (
+			zuint32 index1,
+			zuint32 index0
+		)} values_uint32;
+
+		struct {Z_ENDIANIZED_MEMBERS(2, 64BIT) (
+			zint32 index1,
+			zint32 index0
+		)} values_int32;
+
+		struct {Z_ENDIANIZED_MEMBERS(4, 64BIT) (
+			zuint16 index3,
+			zuint16 index2,
+			zuint16 index1,
+			zuint16 index0
+		)} values_uint16;
+
+		struct {Z_ENDIANIZED_MEMBERS(4, 64BIT) (
+			zint16 index3,
+			zint16 index2,
+			zint16 index1,
+			zint16 index0
+		)} values_int16;
+
+		struct {Z_ENDIANIZED_MEMBERS(8, 64BIT) (
+			zuint8 index7,
+			zuint8 index6,
+			zuint8 index5,
+			zuint8 index4,
+			zuint8 index3,
+			zuint8 index2,
+			zuint8 index1,
+			zuint8 index0
+		)} values_uint8;
+
+		struct {Z_ENDIANIZED_MEMBERS(8, 64BIT) (
+			zint8 index7,
+			zint8 index6,
+			zint8 index5,
+			zint8 index4,
+			zint8 index3,
+			zint8 index2,
+			zint8 index1,
+			zint8 index0
+		)} values_int8;
+
+#		if Z_IS_AVAILABLE(UINT64)
+			zuint64 value_uint64;
+#		endif
+
+#		if Z_IS_AVAILABLE(INT64)
+			zint64 value_int64;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT64)
+			zfloat64 value_float64;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT32)
+			zfloat32 array_float32[2];
+
+			struct {Z_ENDIANIZED_MEMBERS(2, 64BIT) (
+				float32 index1,
+				float32 index0
+			)} values_float32;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT16)
+			zfloat16 array_float16[4];
+
+			struct {Z_ENDIANIZED_MEMBERS(4, 64BIT) (
+				float16 index3,
+				float16 index2,
+				float16 index1,
+				float16 index0
+			)} values_float16;
+#		endif
+	Z_DEFINE_STRICT_UNION_END Z64Bit;
+
+#endif
+
+#if Z_IS_AVAILABLE(UINT128) || Z_IS_AVAILABLE(INT128)
+
+	Z_DEFINE_STRICT_UNION_BEGIN
+		zuint32	array_uint32[ 4];
+		zint32	array_int32 [ 4];
+		zuint16	array_uint16[ 8];
+		zint16	array_int16 [ 8];
+		zuint8	array_uint8 [16];
+		zint8	array_int8  [16];
+
+		struct {Z_ENDIANIZED_MEMBERS(4, 128BIT) (
+			zuint32 index3,
+			zuint32 index2,
+			zuint32 index1,
+			zuint32 index0
+		)} values_uint32;
+
+		struct {Z_ENDIANIZED_MEMBERS(4, 128BIT) (
+			zint32 index3,
+			zint32 index2,
+			zint32 index1,
+			zint32 index0
+		)} values_int32;
+
+		struct {Z_ENDIANIZED_MEMBERS(8, 128BIT) (
+			zuint16 index7,
+			zuint16 index6,
+			zuint16 index5,
+			zuint16 index4,
+			zuint16 index3,
+			zuint16 index2,
+			zuint16 index1,
+			zuint16 index0
+		)} values_uint16;
+
+		struct {Z_ENDIANIZED_MEMBERS(8, 128BIT) (
+			zint16 index7,
+			zint16 index6,
+			zint16 index5,
+			zint16 index4,
+			zint16 index3,
+			zint16 index2,
+			zint16 index1,
+			zint16 index0
+		)} values_int16;
+
+		struct {Z_ENDIANIZED_MEMBERS(16, 128BIT) (
+			zuint8 index15,
+			zuint8 index14,
+			zuint8 index13,
+			zuint8 index12,
+			zuint8 index11,
+			zuint8 index10,
+			zuint8 index09,
+			zuint8 index08,
+			zuint8 index07,
+			zuint8 index06,
+			zuint8 index05,
+			zuint8 index04,
+			zuint8 index03,
+			zuint8 index02,
+			zuint8 index01,
+			zuint8 index00
+		)} values_uint8;
+
+		struct {Z_ENDIANIZED_MEMBERS(16, 128BIT) (
+			zint8 index15,
+			zint8 index14,
+			zint8 index13,
+			zint8 index12,
+			zint8 index11,
+			zint8 index10,
+			zint8 index09,
+			zint8 index08,
+			zint8 index07,
+			zint8 index06,
+			zint8 index05,
+			zint8 index04,
+			zint8 index03,
+			zint8 index02,
+			zint8 index01,
+			zint8 index00
+		)} values_int8;
+
+#		if Z_IS_AVAILABLE(UINT128)
+			zuint128 value_uint128;
+#		endif
+
+#		if Z_IS_AVAILABLE(INT128)
+			zint128 value_int128;
+#		endif
+
+#		if Z_IS_AVAILABLE(UINT64)
+			zuint64 array_uint64[2];
+
+			struct {Z_ENDIANIZED_MEMBERS(2, 128BIT) (
+				zuint64 index1,
+				zuint64 index0
+			)} values_uint64;
+#		endif
+
+#		if Z_IS_AVAILABLE(INT64)
+			zint64 array_int64[2];
+
+			struct {Z_ENDIANIZED_MEMBERS(2, 128BIT) (
+				zint64 index1,
+				zint64 index0
+			)} values_int64;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT128)
+			zfloat128 value_float128;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT64)
+			zfloat64 array_float64[2];
+
+			struct {Z_ENDIANIZED_MEMBERS(2, 128BIT) (
+				float64 index1,
+				float64 index0
+			)} values_float64;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT32)
+			zfloat32 array_float32[4];
+
+			struct {Z_ENDIANIZED_MEMBERS(4, 128BIT) (
+				float32 index3,
+				float32 index2,
+				float32 index1,
+				float32 index0
+			)} values_float32;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT16)
+			zfloat16 array_float16[8];
+
+			struct {Z_ENDIANIZED_MEMBERS(8, 128BIT) (
+				float16 index7,
+				float16 index6,
+				float16 index5,
+				float16 index4,
+				float16 index3,
+				float16 index2,
+				float16 index1,
+				float16 index0
+			)} values_float16;
+#		endif
+	Z_DEFINE_STRICT_UNION_END Z128Bit;
 
 #endif
 
@@ -2013,20 +1783,26 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	Z3DLLong* pointer_3d_llong;
 	Z4DLLong* pointer_4d_llong;
 
-	zfloat*	  pointer_float;
-	Z2DFloat* pointer_2d_float;
-	Z3DFloat* pointer_3d_float;
-	Z4DFloat* pointer_4d_float;
+#	if Z_IS_AVAILABLE(FLOAT)
+		zfloat*	  pointer_float;
+		Z2DFloat* pointer_2d_float;
+		Z3DFloat* pointer_3d_float;
+		Z4DFloat* pointer_4d_float;
+#	endif
 
-	zdouble*   pointer_double;
-	Z2DDouble* pointer_2d_double;
-	Z3DDouble* pointer_3d_double;
-	Z4DDouble* pointer_4d_double;
+#	if Z_IS_AVAILABLE(DOUBLE)
+		zdouble*   pointer_double;
+		Z2DDouble* pointer_2d_double;
+		Z3DDouble* pointer_3d_double;
+		Z4DDouble* pointer_4d_double;
+#	endif
 
-	zldouble*   pointer_ldouble;
-	Z2DLDouble* pointer_2d_ldouble;
-	Z3DLDouble* pointer_3d_ldouble;
-	Z4DLDouble* pointer_4d_ldouble;
+#	if Z_IS_AVAILABLE(LDOUBLE)
+		zldouble*   pointer_ldouble;
+		Z2DLDouble* pointer_2d_ldouble;
+		Z3DLDouble* pointer_3d_ldouble;
+		Z4DLDouble* pointer_4d_ldouble;
+#	endif
 
 	zsize*	 pointer_size;
 	Z2DSize* pointer_2d_size;
@@ -2080,10 +1856,12 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	Z3DInteger* pointer_3d_integer;
 	Z4DInteger* pointer_4d_integer;
 
-	zreal*	 pointer_real;
-	Z2DReal* pointer_2d_real;
-	Z3DReal* pointer_3d_real;
-	Z4DReal* pointer_4d_real;
+#	if Z_IS_AVAILABLE(REAL)
+		zreal*	 pointer_real;
+		Z2DReal* pointer_2d_real;
+		Z3DReal* pointer_3d_real;
+		Z4DReal* pointer_4d_real;
+#	endif
 
 	ZStatus* pointer_status;
 	ZOrder*	 pointer_order;
@@ -2091,9 +1869,12 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	Z8Bit*	pointer_8bit;
 	Z16Bit* pointer_16bit;
 	Z32Bit* pointer_32bit;
-	Z64Bit* pointer_64bit;
 
-#	if Z_IS_AVAILABLE(UINT128) && Z_IS_AVAILABLE(INT128)
+#	if Z_IS_AVAILABLE(UINT64) || Z_IS_AVAILABLE(INT64)
+		Z64Bit* pointer_64bit;
+#	endif
+
+#	if Z_IS_AVAILABLE(UINT128) || Z_IS_AVAILABLE(INT128)
 		Z128Bit* pointer_128bit;
 #	endif
 
@@ -2108,113 +1889,200 @@ Z_DEFINE_STRICT_UNION_END ZPointer;
 
 /* MARK: - Casts */
 
-#define Z_2D_UCHAR(  p) ((Z2DUChar   *)(p))
-#define Z_2D_USHORT( p) ((Z2DUShort  *)(p))
-#define Z_2D_UINT(   p) ((Z2DUInt    *)(p))
-#define Z_2D_ULONG(  p) ((Z2DULong   *)(p))
-#define Z_2D_ULLONG( p) ((Z2DULLong  *)(p))
-#define Z_2D_CHAR(   p) ((Z2DChar    *)(p))
-#define Z_2D_SHORT(  p) ((Z2DShort   *)(p))
-#define Z_2D_INT(    p) ((Z2DInt     *)(p))
-#define Z_2D_LONG(   p) ((Z2DLong    *)(p))
-#define Z_2D_LLONG(  p) ((Z2DLLong   *)(p))
-#define Z_2D_FLOAT(  p) ((Z2DFloat   *)(p))
-#define Z_2D_DOUBLE( p) ((Z2DDouble  *)(p))
-#define Z_2D_LDOUBLE(p) ((Z2DLDouble *)(p))
-#define Z_2D_UINT8(  p) ((Z2DUInt8   *)(p))
-#define Z_2D_UINT16( p) ((Z2DUInt16  *)(p))
-#define Z_2D_UINT32( p) ((Z2DUInt32  *)(p))
-#define Z_2D_UINT64( p) ((Z2DUInt64  *)(p))
-#define Z_2D_UINT128(p) ((Z2DUInt128 *)(p))
-#define Z_2D_INT8(   p) ((Z2DInt8    *)(p))
-#define Z_2D_INT16(  p) ((Z2DInt16   *)(p))
-#define Z_2D_INT32(  p) ((Z2DInt32   *)(p))
-#define Z_2D_INT64(  p) ((Z2DInt64   *)(p))
-#define Z_2D_INT128( p) ((Z2DInt128  *)(p))
+#define Z_2D_UINT8( p) ((Z2DUInt8  *)(p))
+#define Z_3D_UINT8( p) ((Z3DUInt8  *)(p))
+#define Z_4D_UINT8( p) ((Z4DUInt8  *)(p))
+#define Z_2D_UINT16(p) ((Z2DUInt16 *)(p))
+#define Z_3D_UINT16(p) ((Z3DUInt16 *)(p))
+#define Z_4D_UINT16(p) ((Z4DUInt16 *)(p))
+#define Z_2D_UINT32(p) ((Z2DUInt32 *)(p))
+#define Z_3D_UINT32(p) ((Z3DUInt32 *)(p))
+#define Z_4D_UINT32(p) ((Z4DUInt32 *)(p))
+
+#if Z_IS_AVAILABLE(UINT64)
+#	define Z_2D_UINT64(p) ((Z2DUInt64 *)(p))
+#	define Z_3D_UINT64(p) ((Z3DUInt64 *)(p))
+#	define Z_4D_UINT64(p) ((Z4DUInt64 *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(UINT128)
+#	define Z_2D_UINT128(p) ((Z2DUInt128 *)(p))
+#	define Z_3D_UINT128(p) ((Z3DUInt128 *)(p))
+#	define Z_4D_UINT128(p) ((Z4DUInt128 *)(p))
+#endif
+
+#define Z_2D_INT8( p) ((Z2DInt8	 *)(p))
+#define Z_3D_INT8( p) ((Z3DInt8	 *)(p))
+#define Z_4D_INT8( p) ((Z4DInt8	 *)(p))
+#define Z_2D_INT16(p) ((Z2DInt16 *)(p))
+#define Z_3D_INT16(p) ((Z3DInt16 *)(p))
+#define Z_4D_INT16(p) ((Z4DInt16 *)(p))
+#define Z_2D_INT32(p) ((Z2DInt32 *)(p))
+#define Z_3D_INT32(p) ((Z3DInt32 *)(p))
+#define Z_4D_INT32(p) ((Z4DInt32 *)(p))
+
+#if Z_IS_AVAILABLE(INT64)
+#	define Z_2D_INT64(p) ((Z2DInt64 *)(p))
+#	define Z_3D_INT64(p) ((Z3DInt64 *)(p))
+#	define Z_4D_INT64(p) ((Z4DInt64 *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(INT128)
+#	define Z_2D_INT128(p) ((Z2DInt128 *)(p))
+#	define Z_3D_INT128(p) ((Z3DInt128 *)(p))
+#	define Z_4D_INT128(p) ((Z4DInt128 *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT16)
+#	define Z_2D_FLOAT16(p) ((Z2DFloat16 *)(p))
+#	define Z_3D_FLOAT16(p) ((Z3DFloat16 *)(p))
+#	define Z_4D_FLOAT16(p) ((Z4DFloat16 *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT32)
+#	define Z_2D_FLOAT32(p) ((Z2DFloat32 *)(p))
+#	define Z_3D_FLOAT32(p) ((Z3DFloat32 *)(p))
+#	define Z_4D_FLOAT32(p) ((Z4DFloat32 *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT48)
+#	define Z_2D_FLOAT48(p) ((Z2DFloat48 *)(p))
+#	define Z_3D_FLOAT48(p) ((Z3DFloat48 *)(p))
+#	define Z_4D_FLOAT48(p) ((Z4DFloat48 *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT64)
+#	define Z_2D_FLOAT64(p) ((Z2DFloat64 *)(p))
+#	define Z_3D_FLOAT64(p) ((Z3DFloat64 *)(p))
+#	define Z_4D_FLOAT64(p) ((Z4DFloat64 *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT72)
+#	define Z_2D_FLOAT72(p) ((Z2DFloat72 *)(p))
+#	define Z_3D_FLOAT72(p) ((Z3DFloat72 *)(p))
+#	define Z_4D_FLOAT72(p) ((Z4DFloat72 *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT80)
+#	define Z_2D_FLOAT80(p) ((Z2DFloat80 *)(p))
+#	define Z_3D_FLOAT80(p) ((Z3DFloat80 *)(p))
+#	define Z_4D_FLOAT80(p) ((Z4DFloat80 *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT96)
+#	define Z_2D_FLOAT96(p) ((Z2DFloat96 *)(p))
+#	define Z_3D_FLOAT96(p) ((Z3DFloat96 *)(p))
+#	define Z_4D_FLOAT96(p) ((Z4DFloat96 *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT128)
+#	define Z_2D_FLOAT128(p) ((Z2DFloat128 *)(p))
+#	define Z_3D_FLOAT128(p) ((Z3DFloat128 *)(p))
+#	define Z_4D_FLOAT128(p) ((Z4DFloat128 *)(p))
+#endif
+
+#define Z_2D_UCHAR( p) ((Z2DUChar  *)(p))
+#define Z_3D_UCHAR( p) ((Z3DUChar  *)(p))
+#define Z_4D_UCHAR( p) ((Z4DUChar  *)(p))
+#define Z_2D_USHORT(p) ((Z2DUShort *)(p))
+#define Z_3D_USHORT(p) ((Z3DUShort *)(p))
+#define Z_4D_USHORT(p) ((Z4DUShort *)(p))
+#define Z_2D_UINT(  p) ((Z2DUInt   *)(p))
+#define Z_3D_UINT(  p) ((Z3DUInt   *)(p))
+#define Z_4D_UINT(  p) ((Z4DUInt   *)(p))
+#define Z_2D_ULONG( p) ((Z2DULong  *)(p))
+#define Z_3D_ULONG( p) ((Z3DULong  *)(p))
+#define Z_4D_ULONG( p) ((Z4DULong  *)(p))
+#define Z_2D_ULLONG(p) ((Z2DULLong *)(p))
+#define Z_3D_ULLON( p) ((Z3DULLong *)(p))
+#define Z_4D_ULLON( p) ((Z4DULLong *)(p))
+#define Z_2D_CHAR(  p) ((Z2DChar   *)(p))
+#define Z_3D_CHAR(  p) ((Z3DChar   *)(p))
+#define Z_4D_CHAR(  p) ((Z4DChar   *)(p))
+#define Z_2D_SHORT( p) ((Z2DShort  *)(p))
+#define Z_3D_SHORT( p) ((Z3DShort  *)(p))
+#define Z_4D_SHORT( p) ((Z4DShort  *)(p))
+#define Z_2D_INT(   p) ((Z2DInt	   *)(p))
+#define Z_3D_INT(   p) ((Z3DInt	   *)(p))
+#define Z_4D_INT(   p) ((Z4DInt	   *)(p))
+#define Z_2D_LONG(  p) ((Z2DLong   *)(p))
+#define Z_3D_LONG(  p) ((Z3DLong   *)(p))
+#define Z_4D_LONG(  p) ((Z4DLong   *)(p))
+#define Z_2D_LLONG( p) ((Z2DLLong  *)(p))
+#define Z_3D_LLON(  p) ((Z3DLLong  *)(p))
+#define Z_4D_LLON(  p) ((Z4DLLong  *)(p))
+
+#if Z_IS_AVAILABLE(FLOAT)
+#	define Z_2D_FLOAT(p) ((Z2DFloat *)(p))
+#	define Z_3D_FLOAT(p) ((Z3DFloat *)(p))
+#	define Z_4D_FLOAT(p) ((Z4DFloat *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(DOUBLE)
+#	define Z_2D_DOUBLE(p) ((Z2DDouble *)(p))
+#	define Z_3D_DOUBLE(p) ((Z3DDouble *)(p))
+#	define Z_4D_DOUBLE(p) ((Z4DDouble *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(LDOUBLE)
+#	define Z_2D_LDOUBLE(p) ((Z2DLDouble *)(p))
+#	define Z_3D_LDOUBLE(p) ((Z3DLDouble *)(p))
+#	define Z_4D_LDOUBLE(p) ((Z4DLDouble *)(p))
+#endif
+
 #define Z_2D_SIZE(   p) ((Z2DSize    *)(p))
-#define Z_2D_SSIZE(  p) ((Z2DSSize   *)(p))
-#define Z_2D_UINTPTR(p) ((Z2DUIntPtr *)(p))
-#define Z_2D_UINTTOP(p) ((Z2DUIntTop *)(p))
-#define Z_2D_UINTMAX(p) ((Z2DUIntMax *)(p))
-#define Z_2D_INTMAX( p) ((Z2DIntMax  *)(p))
-#define Z_2D_INTPTR( p) ((Z2DIntPtr  *)(p))
-#define Z_2D_INTTOP( p) ((Z2DIntTop  *)(p))
-#define Z_2D_NATURAL(p) ((Z2DNatural *)(p))
-#define Z_2D_INTEGER(p) ((Z2DInteger *)(p))
-#define Z_2D_REAL(   p) ((Z2DReal    *)(p))
-#define Z_2D(	     p) ((Z2D	     *)(p))
-#define Z_3D_UCHAR(  p) ((Z3DUChar   *)(p))
-#define Z_3D_USHORT( p) ((Z3DUShort  *)(p))
-#define Z_3D_UINT(   p) ((Z3DUInt    *)(p))
-#define Z_3D_ULONG(  p) ((Z3DULong   *)(p))
-#define Z_3D_ULLON(  p) ((Z3DULLong  *)(p))
-#define Z_3D_CHAR(   p) ((Z3DChar    *)(p))
-#define Z_3D_SHORT(  p) ((Z3DShort   *)(p))
-#define Z_3D_INT(    p) ((Z3DInt     *)(p))
-#define Z_3D_LONG(   p) ((Z3DLong    *)(p))
-#define Z_3D_LLON(   p) ((Z3DLLong   *)(p))
-#define Z_3D_FLOAT(  p) ((Z3DFloat   *)(p))
-#define Z_3D_DOUBLE( p) ((Z3DDouble  *)(p))
-#define Z_3D_LDOUBLE(p) ((Z3DLDouble *)(p))
-#define Z_3D_UINT8(  p) ((Z3DUInt8   *)(p))
-#define Z_3D_UINT16( p) ((Z3DUInt16  *)(p))
-#define Z_3D_UINT32( p) ((Z3DUInt32  *)(p))
-#define Z_3D_UINT64( p) ((Z3DUInt64  *)(p))
-#define Z_3D_INT8(   p) ((Z3DInt8    *)(p))
-#define Z_3D_INT16(  p) ((Z3DInt16   *)(p))
-#define Z_3D_INT32(  p) ((Z3DInt32   *)(p))
-#define Z_3D_INT64(  p) ((Z3DInt64   *)(p))
 #define Z_3D_SIZE(   p) ((Z3DSize    *)(p))
-#define Z_3D_SSIZE(  p) ((Z3DSSize   *)(p))
-#define Z_3D_UINTMAX(p) ((Z3DUIntMax *)(p))
-#define Z_3D_UINTPTR(p) ((Z3DUIntPtr *)(p))
-#define Z_3D_UINTTOP(p) ((Z3DUIntTop *)(p))
-#define Z_3D_INTMAX( p) ((Z3DIntMax  *)(p))
-#define Z_3D_INTPTR( p) ((Z3DIntPtr  *)(p))
-#define Z_3D_INTTOP( p) ((Z3DIntTop  *)(p))
-#define Z_3D_NATURAL(p) ((Z3DNatural *)(p))
-#define Z_3D_INTEGER(p) ((Z3DInteger *)(p))
-#define Z_3D_REAL(   p) ((Z3DReal    *)(p))
-#define Z_3D(	     p) ((Z3D	     *)(p))
-#define Z_4D_UCHAR(  p) ((Z4DUChar   *)(p))
-#define Z_4D_USHORT( p) ((Z4DUShort  *)(p))
-#define Z_4D_UINT(   p) ((Z4DUInt    *)(p))
-#define Z_4D_ULONG(  p) ((Z4DULong   *)(p))
-#define Z_4D_ULLON(  p) ((Z4DULLong  *)(p))
-#define Z_4D_CHAR(   p) ((Z4DChar    *)(p))
-#define Z_4D_SHORT(  p) ((Z4DShort   *)(p))
-#define Z_4D_INT(    p) ((Z4DInt     *)(p))
-#define Z_4D_LONG(   p) ((Z4DLong    *)(p))
-#define Z_4D_LLON(   p) ((Z4DLLong   *)(p))
-#define Z_4D_FLOAT(  p) ((Z4DFloat   *)(p))
-#define Z_4D_DOUBLE( p) ((Z4DDouble  *)(p))
-#define Z_4D_LDOUBLE(p) ((Z4DLDouble *)(p))
-#define Z_4D_UINT8(  p) ((Z4DUInt8   *)(p))
-#define Z_4D_UINT16( p) ((Z4DUInt16  *)(p))
-#define Z_4D_UINT32( p) ((Z4DUInt32  *)(p))
-#define Z_4D_UINT64( p) ((Z4DUInt64  *)(p))
-#define Z_4D_INT8(   p) ((Z4DInt8    *)(p))
-#define Z_4D_INT16(  p) ((Z4DInt16   *)(p))
-#define Z_4D_INT32(  p) ((Z4DInt32   *)(p))
-#define Z_4D_INT64(  p) ((Z4DInt64   *)(p))
 #define Z_4D_SIZE(   p) ((Z4DSize    *)(p))
-#define Z_4D_UINTMAX(p) ((Z4DUIntMax *)(p))
-#define Z_4D_UINTPTR(p) ((Z4DUIntPtr *)(p))
-#define Z_4D_UINTTOP(p) ((Z4DUIntTop *)(p))
+#define Z_2D_SSIZE(  p) ((Z2DSSize   *)(p))
+#define Z_3D_SSIZE(  p) ((Z3DSSize   *)(p))
 #define Z_4D_SSIZE(  p) ((Z4DSSize   *)(p))
+#define Z_2D_UINTMAX(p) ((Z2DUIntMax *)(p))
+#define Z_3D_UINTMAX(p) ((Z3DUIntMax *)(p))
+#define Z_4D_UINTMAX(p) ((Z4DUIntMax *)(p))
+#define Z_2D_UINTPTR(p) ((Z2DUIntPtr *)(p))
+#define Z_3D_UINTPTR(p) ((Z3DUIntPtr *)(p))
+#define Z_4D_UINTPTR(p) ((Z4DUIntPtr *)(p))
+#define Z_2D_UINTTOP(p) ((Z2DUIntTop *)(p))
+#define Z_3D_UINTTOP(p) ((Z3DUIntTop *)(p))
+#define Z_4D_UINTTOP(p) ((Z4DUIntTop *)(p))
+#define Z_2D_INTMAX( p) ((Z2DIntMax  *)(p))
+#define Z_3D_INTMAX( p) ((Z3DIntMax  *)(p))
 #define Z_4D_INTMAX( p) ((Z4DIntMax  *)(p))
+#define Z_2D_INTPTR( p) ((Z2DIntPtr  *)(p))
+#define Z_3D_INTPTR( p) ((Z3DIntPtr  *)(p))
 #define Z_4D_INTPTR( p) ((Z4DIntPtr  *)(p))
+#define Z_2D_INTTOP( p) ((Z2DIntTop  *)(p))
+#define Z_3D_INTTOP( p) ((Z3DIntTop  *)(p))
 #define Z_4D_INTTOP( p) ((Z4DIntTop  *)(p))
+#define Z_2D_NATURAL(p) ((Z2DNatural *)(p))
+#define Z_3D_NATURAL(p) ((Z3DNatural *)(p))
 #define Z_4D_NATURAL(p) ((Z4DNatural *)(p))
+#define Z_2D_INTEGER(p) ((Z2DInteger *)(p))
+#define Z_3D_INTEGER(p) ((Z3DInteger *)(p))
 #define Z_4D_INTEGER(p) ((Z4DInteger *)(p))
-#define Z_4D_REAL(   p) ((Z4DReal    *)(p))
-#define Z_4D(	     p) ((Z4D	     *)(p))
-#define Z_8BIT(	     p) ((Z8Bit	     *)(p))
-#define Z_16BIT(     p) ((Z16Bit     *)(p))
-#define Z_32BIT(     p) ((Z32Bit     *)(p))
-#define Z_64BIT(     p) ((Z64Bit     *)(p))
-#define Z_128BIT(    p) ((Z128Bit    *)(p))
-#define Z_RANGE(     p) ((ZRange     *)(p))
-#define Z_POINTER(   p) ((ZPointer   *)(p))
+
+#if Z_IS_AVAILABLE(REAL)
+#	define Z_2D_REAL(p) ((Z2DReal *)(p))
+#	define Z_3D_REAL(p) ((Z3DReal *)(p))
+#	define Z_4D_REAL(p) ((Z4DReal *)(p))
+#	define Z_2D(	 p) ((Z2D     *)(p))
+#	define Z_3D(	 p) ((Z3D     *)(p))
+#	define Z_4D(	 p) ((Z4D     *)(p))
+#endif
+
+#define Z_8BIT(	p) ((Z8Bit  *)(p))
+#define Z_16BIT(p) ((Z16Bit *)(p))
+#define Z_32BIT(p) ((Z32Bit *)(p))
+
+#if Z_IS_AVAILABLE(UINT64) || Z_IS_AVAILABLE(INT64)
+#	define Z_64BIT(p) ((Z64Bit *)(p))
+#endif
+
+#if Z_IS_AVAILABLE(UINT128) || Z_IS_AVAILABLE(INT128)
+#	define Z_128BIT(p) ((Z128Bit *)(p))
+#endif
+
+#define Z_RANGE(  p) ((ZRange	*)(p))
+#define Z_POINTER(p) ((ZPointer *)(p))
 
 #endif /* __Z_types_base_H__ */

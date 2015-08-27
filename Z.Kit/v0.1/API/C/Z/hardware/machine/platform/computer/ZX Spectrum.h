@@ -10,7 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_hardware_machine_platform_computer_ZX_Spectrum_H__
 
 #include <Z/types/base.h>
-#include <Z/macros/bit field.h>
 
 /* MARK: - Memory Structure
 .-------------------------------------.

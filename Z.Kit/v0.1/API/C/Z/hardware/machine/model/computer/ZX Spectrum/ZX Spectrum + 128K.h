@@ -39,7 +39,6 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #include <Z/hardware/machine/model/computer/ZX Spectrum/ZX Spectrum.h>
 #include <Z/types/base.h>
-#include <Z/macros/bit field.h>
 
 /* MARK: - Memory
 

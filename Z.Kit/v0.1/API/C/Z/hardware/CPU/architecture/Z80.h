@@ -160,7 +160,6 @@ Flags (F register)
 #	define __Z_hardware_CPU_architecture_Z80_Hb__
 
 #	include <Z/types/base.h>
-#	include <Z/macros/bit field.h>
 
 #	pragma mark - State storage type
 

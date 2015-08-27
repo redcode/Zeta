@@ -46,27 +46,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/floating point.h>
 
-/* EXPONENT_MINIMUM
-El menor número entero negativo tal que FLT_RADIX elevado a la potencia de éste menos 1 es un número normalizado de coma flotante. */
-
-#undef _BITS
-#undef _BIAS
-#undef _MINIMUM
-#undef _MAXIMUM
-#undef _EPSILON
-#undef _DECIMAL_DIGITS
-#undef _MANTISSA_OFFSET
-#undef _MANTISSA_BITS
-#undef _MANTISSA_DIGITS
-#undef _EXPONENT_OFFSET
-#undef _EXPONENT_BITS
-#undef _EXPONENT_RADIX
-#undef _EXPONENT_MINIMUM
-#undef _EXPONENT_MAXIMUM
-#undef _EXPONENT_10_MINIMUM
-#undef _EXPONENT_10_MAXIMUM
-#undef _SIGN_OFFSET
-#undef _SIGN_BITS
 
 #define Z_FLOATING_POINT_NAME(		     TYPE) Z_JOIN_2(Z_FLOATING_POINT_NAME_, TYPE)
 #define Z_FLOATING_POINT_FORMAT(	     TYPE) Z_JOIN_2(Z_VALUE_FORMAT_, Z_FLOATING_POINT_NAME(TYPE))

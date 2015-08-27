@@ -10,7 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_formats_storage_medium_image_floppy_disk_FDI_H__
 
 #include <Z/types/base.h>
-#include <Z/macros/bit field.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	signature[3]; /* 'FDI' */

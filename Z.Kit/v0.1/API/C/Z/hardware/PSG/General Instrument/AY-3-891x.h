@@ -104,7 +104,6 @@ ANALOG CHANNEL A -05-|		 |-24- DA4
 #define __Z_hardware_PSG_General_Instrument_AY_3_891x_H__
 
 #include <Z/types/base.h>
-#include <Z/macros/bit field.h>
 
 #define Z_AY_3_891X_CHANNEL_A_TONE_PERIOD_FINE_TUNE	 0
 #define Z_AY_3_891X_CHANNEL_A_TONE_PERIOD_COARSE_TUNE	 1

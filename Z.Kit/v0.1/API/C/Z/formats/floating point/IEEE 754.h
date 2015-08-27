@@ -165,25 +165,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define __Z_formats_floating_point_IEEE_754_Hc__
 
 #	include <Z/types/base.h>
-#	include <Z/macros/bit field.h>
 
 	typedef Z_STRICT_STRUCTURE (
-		zuint16 sign	 : 1;
-		zuint16 exponent : 5;
-		zuint16 mantissa :10;
+		zuint16 sign	    : 1;
+		zuint16 exponent    : 5;
+		zuint16 significand :10;
 	) ZIEEE754Binary16;
 
 	Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(3) (
-		zuint32 sign	 : 1,
-		zuint32 exponent : 8,
-		zuint32 mantissa :23
+		zuint32 sign	    : 1,
+		zuint32 exponent    : 8,
+		zuint32 significand :23
 	)) ZIEEE754Binary32;
 
 	Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(4) (
-		zuint32 sign	  : 1,
-		zuint32 exponent  : 8,
-		zuint32 quiet_nan : 1,
-		zuint32 mantissa  :22
+		zuint32 sign	    : 1,
+		zuint32 exponent    : 8,
+		zuint32 quiet_nan   : 1,
+		zuint32 significand :22
 	)) ZIEEE754Binary32NaN;
 
 	Z_DEFINE_STRICT_STRUCTURE (
@@ -191,16 +190,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	) ZIEEE754Decimal32;
 
 	Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(3) (
-		zuint64 negative : 1,
-		zuint64 exponent :11,
-		zuint64 mantissa :52
+		zuint64 negative    : 1,
+		zuint64 exponent    :11,
+		zuint64 significand :52
 	)) ZIEEE754Binary64;
 
 	Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(4) (
-		zuint64 negative  : 1,
-		zuint64 exponent  :11,
-		zuint64 quiet_nan : 1,
-		zuint64 mantissa  :51
+		zuint64 negative    : 1,
+		zuint64 exponent    :11,
+		zuint64 quiet_nan   : 1,
+		zuint64 significand :51
 	)) ZIEEE754Binary64NaN;
 
 	Z_DEFINE_STRICT_STRUCTURE (

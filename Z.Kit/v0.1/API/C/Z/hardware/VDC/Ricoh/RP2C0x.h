@@ -189,7 +189,6 @@ EXT3 -17-|    (_)    |-24- /R
 
 #include <Z/types/base.h>
 #include <Z/macros/bits.h>
-#include <Z/macros/bit field.h>
 
 typedef struct {
 	zuint8 y;

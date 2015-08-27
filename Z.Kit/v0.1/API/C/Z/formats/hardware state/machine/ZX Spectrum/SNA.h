@@ -18,7 +18,6 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SNA_H__
 
 #include <Z/types/base.h>
-#include <Z/macros/bit field.h>
 
 /* MARK: - v48K
 .-------------------------------------------------------------------------.

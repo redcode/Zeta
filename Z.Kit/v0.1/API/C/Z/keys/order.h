@@ -13,4 +13,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ORDER_EQUAL	    0
 #define Z_ORDER_ASCENDING   1
 
+#define Z_ORDER_NORMAL   Z_ORDER_ASCENDING
+#define Z_ORDER_REVERSED Z_ORDER_DESCENDING
+#define Z_ORDER_UNKNOWN  Z_ORDER_EQUAL
+
 #endif /* __Z_keys_order_H__ */

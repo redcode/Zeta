@@ -10,7 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_inspection_private_template_H__
 
 #include <Z/keys/compiler.h>
-#include <Z/keys/bit field.h>
 #include <Z/macros/version.h>
 
 /* MARK: - Identification */

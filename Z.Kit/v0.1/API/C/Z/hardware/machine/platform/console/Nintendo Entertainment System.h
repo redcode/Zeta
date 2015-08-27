@@ -95,7 +95,6 @@ Bottom view
 #define __Z_hardware_machine_platform_console_Nintendo_Entertainment_System_H__
 
 #include <Z/types/base.h>
-#include <Z/macros/bit field.h>
 
 /* MARK: - Timmings */
 
