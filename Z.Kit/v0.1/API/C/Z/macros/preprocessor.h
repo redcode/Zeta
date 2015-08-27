@@ -95,6 +95,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_NUMBER_32(  left, right) left##32##right
 #define Z_INSERT_NUMBER_48(  left, right) left##48##right
 #define Z_INSERT_NUMBER_64(  left, right) left##64##right
+#define Z_INSERT_NUMBER_72(  left, right) left##72##right
 #define Z_INSERT_NUMBER_80(  left, right) left##80##right
 #define Z_INSERT_NUMBER_96(  left, right) left##96##right
 #define Z_INSERT_NUMBER_128( left, right) left##128##right
