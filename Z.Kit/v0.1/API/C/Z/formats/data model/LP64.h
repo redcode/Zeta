@@ -57,8 +57,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_SUFFIX_INT32  Z_SAME
 #	define Z_DATA_MODEL_SUFFIX_INT64  Z_SUFFIX_L
 
-#	define Z_PASTE_DATA_MODEL(left, right) left##LP64##right
-#	define Z_PASTE_data_model(left, right) left##lp64##right
+#	define Z_INSERT_DATA_MODEL(left, right) left##LP64##right
+#	define Z_INSERT_data_model(left, right) left##lp64##right
 
 #	endif /* __Z_formats_data_model_LP64_Hb__ */
 #endif
