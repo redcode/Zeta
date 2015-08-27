@@ -217,7 +217,7 @@ typedef struct {zint32 x, y, z, w;}		Z4DInt32;
 #define Z2DIntN(	       bits)		Z_JOIN_2(Z2DInt,	   bits)
 #define Z3DIntN(	       bits)		Z_JOIN_2(Z3DInt,	   bits)
 #define Z4DIntN(	       bits)		Z_JOIN_2(Z4DInt,	   bits)
-#define Z_INTN(	       bits)		Z_JOIN_2(Z_INSERT_NUMBER_, bits)(Z_INT,			)
+#define Z_INTN(		       bits)		Z_JOIN_2(Z_INSERT_NUMBER_, bits)(Z_INT,			)
 #define Z_INTN_BASE_VALUE_TYPE(bits)		Z_JOIN_2(Z_INSERT_NUMBER_, bits)(Z_INT, _BASE_VALUE_TYPE)
 #define Z_INTN_VALUE_TYPE(     bits)		Z_JOIN_2(Z_INSERT_NUMBER_, bits)(Z_INT, _VALUE_TYPE	)
 #define Z_INTN_VALUE_FORMAT(   bits)		Z_JOIN_2(Z_INSERT_NUMBER_, bits)(Z_INT, _VALUE_FORMAT	)
@@ -1211,6 +1211,7 @@ typedef Z4DIntN(Z_INTEGER_BITS)			Z4DInteger;
 #	define Z_REAL_BITS			96
 #elif defined(Z_USE_REAL_FLOAT128) && Z_IS_AVAILABLE(FLOAT128)
 #	define Z_REAL_BITS			128
+#elif define Z_
 #elif defined(Z_USE_REAL_FLOAT) && Z_IS_AVAILABLE(FLOAT16)
 #	define Z_REAL_BITS			Z_FLOAT_BITS
 #elif defined(Z_USE_REAL_LDOUBLE)
@@ -1293,7 +1294,7 @@ Z_DEFINE_STRICT_UNION (
 
 #if Z_CPU_INTEGER_ENDIANNESS(16BIT) == Z_ENDIANNESS_BIG
 
-	Z_DEFINE_STRICT_UNION (
+	Z_DEFINE_STRICT_UNION_BEGIN
 		zuint16 value_uint16;
 		zint16	value_int16;
 		zuint8	array_uint8[2];
@@ -1306,11 +1307,15 @@ Z_DEFINE_STRICT_UNION (
 		struct {zint8 index1;
 			zint8 index0;
 		} values_int8;
-	) Z16Bit;
+
+#		if Z_IS_AVAILABLE(FLOAT16)
+			zfloat16 value_float16;
+#		endif
+	Z_DEFINE_STRICT_UNION_END Z16Bit;
 
 #elif Z_CPU_INTEGER_ENDIANNESS(16BIT) == Z_ENDIANNESS_LITTLE
 
-	Z_DEFINE_STRICT_UNION (
+	Z_DEFINE_STRICT_UNION_BEGIN
 		zuint16 value_uint16;
 		zint16	value_int16;
 		zuint8	array_uint8[2];
@@ -1323,23 +1328,31 @@ Z_DEFINE_STRICT_UNION (
 		struct {zint8 index0;
 			zint8 index1;
 		} values_int8;
-	) Z16Bit;
+
+#		if Z_IS_AVAILABLE(FLOAT16)
+			zfloat16 value_float16;
+#		endif
+	Z_DEFINE_STRICT_UNION_END Z16Bit;
 
 #endif
 
 #if Z_CPU_INTEGER_ENDIANNESS(32BIT) == Z_ENDIANNESS_BIG
 
-	Z_DEFINE_STRICT_UNION (
+	Z_DEFINE_STRICT_UNION_BEGIN
 		zuint32 value_uint32;
 		zint32	value_int32;
 		zuint16 array_uint16[2];
-		zuint8	array_uint8 [4];
 		zint16	array_int16 [2];
+		zuint8	array_uint8 [4];
 		zint8	array_int8  [4];
 
 		struct {zuint16 index1;
 			zuint16 index0;
 		} values_uint16;
+
+		struct {zint16 index1;
+			zint16 index0;
+		} values_int16;
 
 		struct {zuint8 index3;
 			zuint8 index2;
@@ -1347,30 +1360,42 @@ Z_DEFINE_STRICT_UNION (
 			zuint8 index0;
 		} values_uint8;
 
-		struct {zint16 index1;
-			zint16 index0;
-		} values_int16;
-
 		struct {zint8 index3;
 			zint8 index2;
 			zint8 index1;
 			zint8 index0;
 		} values_int8;
-	) Z32Bit;
+
+#		if Z_IS_AVAILABLE(FLOAT32)
+			zfloat32 value_float32;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT16)
+			zfloat16 array_float16[2];
+
+			struct {float16 index1;
+				float16 index0;
+			} values_float16;
+#		endif
+	Z_DEFINE_STRICT_UNION_END Z32Bit;
 
 #elif Z_CPU_INTEGER_ENDIANNESS(32BIT) == Z_ENDIANNESS_LITTLE
 
-	Z_DEFINE_STRICT_UNION (
+	Z_DEFINE_STRICT_UNION_BEGIN
 		zuint32 value_uint32;
 		zint32	value_int32;
 		zuint16 array_uint16[2];
-		zuint8	array_uint8 [4];
 		zint16	array_int16 [2];
+		zuint8	array_uint8 [4];
 		zint8	array_int8  [4];
 
 		struct {zuint16 index0;
 			zuint16 index1;
 		} values_uint16;
+
+		struct {zint16 index0;
+			zint16 index1;
+		} values_int16;
 
 		struct {zuint8 index0;
 			zuint8 index1;
@@ -1378,40 +1403,58 @@ Z_DEFINE_STRICT_UNION (
 			zuint8 index3;
 		} values_uint8;
 
-		struct {zint16 index0;
-			zint16 index1;
-		} values_int16;
-
 		struct {zint8 index0;
 			zint8 index1;
 			zint8 index2;
 			zint8 index3;
 		} values_int8;
-	) Z32Bit;
+
+#		if Z_IS_AVAILABLE(FLOAT32)
+			zfloat32 value_float32;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT16)
+			zfloat16 array_float16[2];
+
+			struct {float16 index0;
+				float16 index1;
+			} values_float16;
+#		endif
+	Z_DEFINE_STRICT_UNION_END Z32Bit;
 
 #endif
 
 #if Z_CPU_INTEGER_ENDIANNESS(64BIT) == Z_ENDIANNESS_BIG
 
-	Z_DEFINE_STRICT_UNION (
+	Z_DEFINE_STRICT_UNION_BEGIN
 		zuint64 value_uint64;
 		zint64	value_int64;
 		zuint32 array_uint32[2];
-		zuint16 array_uint16[4];
-		zuint8	array_uint8 [8];
 		zint32	array_int32 [2];
+		zuint16 array_uint16[4];
 		zint16	array_int16 [4];
+		zuint8	array_uint8 [8];
 		zint8	array_int8  [8];
 
 		struct {zuint32 index1;
 			zuint32 index0;
 		} values_uint32;
 
+		struct {zint32 index1;
+			zint32 index0;
+		} values_int32;
+
 		struct {zuint16 index3;
 			zuint16 index2;
 			zuint16 index1;
 			zuint16 index0;
 		} values_uint16;
+
+		struct {zint16 index3;
+			zint16 index2;
+			zint16 index1;
+			zint16 index0;
+		} values_int16;
 
 		struct {zuint8 index7;
 			zuint8 index6;
@@ -1423,16 +1466,6 @@ Z_DEFINE_STRICT_UNION (
 			zuint8 index0;
 		} values_uint8;
 
-		struct {zint32 index1;
-			zint32 index0;
-		} values_int32;
-
-		struct {zint16 index3;
-			zint16 index2;
-			zint16 index1;
-			zint16 index0;
-		} values_int16;
-
 		struct {zint8 index7;
 			zint8 index6;
 			zint8 index5;
@@ -1442,29 +1475,61 @@ Z_DEFINE_STRICT_UNION (
 			zint8 index1;
 			zint8 index0;
 		} values_int8;
-	) Z64Bit;
+
+#		if Z_IS_AVAILABLE(FLOAT64)
+			zfloat64 value_float64;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT32)
+			zfloat32 array_float32[2];
+
+			struct {float32 index1;
+				float32 index0;
+			} values_float32;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT16)
+			zfloat16 array_float16[4];
+
+			struct {float16 index3;
+				float16 index2;
+				float16 index1;
+				float16 index0;
+			} values_float16;
+#		endif
+	Z_DEFINE_STRICT_UNION_END Z64Bit;
 
 #elif Z_CPU_INTEGER_ENDIANNESS(64BIT) == Z_ENDIANNESS_LITTLE
 
-	Z_DEFINE_STRICT_UNION (
+	Z_DEFINE_STRICT_UNION_BEGIN
 		zuint64 value_uint64;
 		zint64	value_int64;
 		zuint32 array_uint32[2];
-		zuint16 array_uint16[4];
-		zuint8	array_uint8 [8];
 		zint32	array_int32 [2];
+		zuint16 array_uint16[4];
 		zint16	array_int16 [4];
+		zuint8	array_uint8 [8];
 		zint8	array_int8  [8];
 
 		struct {zuint32 index0;
 			zuint32 index1;
 		} values_uint32;
 
+		struct {zint32 index0;
+			zint32 index1;
+		} values_int32;
+
 		struct {zuint16 index0;
 			zuint16 index1;
 			zuint16 index2;
 			zuint16 index3;
 		} values_uint16;
+
+		struct {zint16 index0;
+			zint16 index1;
+			zint16 index2;
+			zint16 index3;
+		} values_int16;
 
 		struct {zuint8 index0;
 			zuint8 index1;
@@ -1476,16 +1541,6 @@ Z_DEFINE_STRICT_UNION (
 			zuint8 index7;
 		} values_uint8;
 
-		struct {zint32 index0;
-			zint32 index1;
-		} values_int32;
-
-		struct {zint16 index0;
-			zint16 index1;
-			zint16 index2;
-			zint16 index3;
-		} values_int16;
-
 		struct {zint8 index0;
 			zint8 index1;
 			zint8 index2;
@@ -1495,7 +1550,29 @@ Z_DEFINE_STRICT_UNION (
 			zint8 index6;
 			zint8 index7;
 		} values_int8;
-	) Z64Bit;
+
+#		if Z_IS_AVAILABLE(FLOAT64)
+			zfloat64 value_float64;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT32)
+			zfloat32 array_float32[2];
+
+			struct {float32 index0;
+				float32 index1;
+			} values_float32;
+#		endif
+
+#		if Z_IS_AVAILABLE(FLOAT16)
+			zfloat16 array_float16[4];
+
+			struct {float16 index0;
+				float16 index1;
+				float16 index2;
+				float16 index3;
+			} values_float16;
+#		endif
+	Z_DEFINE_STRICT_UNION_END Z64Bit;
 
 #endif
 
@@ -1503,27 +1580,37 @@ Z_DEFINE_STRICT_UNION (
 
 #	if Z_CPU_INTEGER_ENDIANNESS(128BIT) == Z_ENDIANNESS_BIG
 
-		Z_DEFINE_STRICT_UNION (
+		Z_DEFINE_STRICT_UNION_BEGIN
 			zuint128 value_uint128;
 			zint128  value_int128;
 			zuint64  array_uint64[ 2];
-			zuint32  array_uint32[ 4];
-			zuint16  array_uint16[ 8];
-			zuint8	 array_uint8 [16];
 			zint64	 array_int64 [ 2];
+			zuint32  array_uint32[ 4];
 			zint32	 array_int32 [ 4];
+			zuint16  array_uint16[ 8];
 			zint16	 array_int16 [ 8];
+			zuint8	 array_uint8 [16];
 			zint8	 array_int8  [16];
 
 			struct {zuint64 index1;
 				zuint64 index0;
 			} values_uint64;
 
+			struct {zint64 index1;
+				zint64 index0;
+			} values_int64;
+
 			struct {zuint32 index3;
 				zuint32 index2;
 				zuint32 index1;
 				zuint32 index0;
 			} values_uint32;
+
+			struct {zint32 index3;
+				zint32 index2;
+				zint32 index1;
+				zint32 index0;
+			} values_int32;
 
 			struct {zuint16 index7;
 				zuint16 index6;
@@ -1534,6 +1621,16 @@ Z_DEFINE_STRICT_UNION (
 				zuint16 index1;
 				zuint16 index0;
 			} values_uint16;
+
+			struct {zint16 index7;
+				zint16 index6;
+				zint16 index5;
+				zint16 index4;
+				zint16 index3;
+				zint16 index2;
+				zint16 index1;
+				zint16 index0;
+			} values_int16;
 
 			struct {zuint8 index15;
 				zuint8 index14;
@@ -1553,26 +1650,6 @@ Z_DEFINE_STRICT_UNION (
 				zuint8 index00;
 			} values_uint8;
 
-			struct {zint64 index1;
-				zint64 index0;
-			} values_int64;
-
-			struct {zint32 index3;
-				zint32 index2;
-				zint32 index1;
-				zint32 index0;
-			} values_int32;
-
-			struct {zint16 index7;
-				zint16 index6;
-				zint16 index5;
-				zint16 index4;
-				zint16 index3;
-				zint16 index2;
-				zint16 index1;
-				zint16 index0;
-			} values_int16;
-
 			struct {zint8 index15;
 				zint8 index14;
 				zint8 index13;
@@ -1590,31 +1667,77 @@ Z_DEFINE_STRICT_UNION (
 				zint8 index01;
 				zint8 index00;
 			} values_int8;
-		) Z128Bit;
+
+#			if Z_IS_AVAILABLE(FLOAT128)
+				zfloat128 value_float128;
+#			endif
+
+#			if Z_IS_AVAILABLE(FLOAT64)
+				zfloat64 array_float64[2];
+
+				struct {float64 index1;
+					float64 index0;
+				} values_float64;
+#			endif
+
+#			if Z_IS_AVAILABLE(FLOAT32)
+				zfloat32 array_float32[4];
+
+				struct {float32 index3;
+					float32 index2;
+					float32 index1;
+					float32 index0;
+				} values_float32;
+#			endif
+
+#			if Z_IS_AVAILABLE(FLOAT16)
+				zfloat16 array_float16[8];
+
+				struct {float16 index7;
+					float16 index6;
+					float16 index5;
+					float16 index4;
+					float16 index3;
+					float16 index2;
+					float16 index1;
+					float16 index0;
+				} values_float16;
+#			endif
+		Z_DEFINE_STRICT_UNION_END Z128Bit;
 
 #	elif Z_CPU_INTEGER_ENDIANNESS(128BIT) == Z_ENDIANNESS_LITTLE
 
-		Z_DEFINE_STRICT_UNION (
+		Z_DEFINE_STRICT_UNION_BEGIN
 			zuint128 value_uint128;
 			zuint128 value_int128;
 			zuint64  array_uint64[ 2];
-			zuint32  array_uint32[ 4];
-			zuint16  array_uint16[ 8];
-			zuint8	 array_uint8 [16];
 			zint64	 array_int64 [ 2];
+			zuint32  array_uint32[ 4];
 			zint32	 array_int32 [ 4];
+			zuint16  array_uint16[ 8];
 			zint16	 array_int16 [ 8];
+			zuint8	 array_uint8 [16];
 			zint8	 array_int8  [16];
 
 			struct {zuint64 index0;
 				zuint64 index1;
 			} values_uint64;
 
+			struct {zint64 index0;
+				zint64 index1;
+			} values_int64;
+
 			struct {zuint32 index0;
 				zuint32 index1;
 				zuint32 index2;
 				zuint32 index3;
 			} values_uint32;
+
+			struct {zint32 index0;
+				zint32 index1;
+				zint32 index2;
+				zint32 index3;
+			} values_int32;
 
 			struct {zuint16 index0;
 				zuint16 index1;
@@ -1625,6 +1748,16 @@ Z_DEFINE_STRICT_UNION (
 				zuint16 index6;
 				zuint16 index7;
 			} values_uint16;
+
+			struct {zint16 index0;
+				zint16 index1;
+				zint16 index2;
+				zint16 index3;
+				zint16 index4;
+				zint16 index5;
+				zint16 index6;
+				zint16 index7;
+			} values_int16;
 
 			struct {zuint8 index00;
 				zuint8 index01;
@@ -1644,26 +1777,6 @@ Z_DEFINE_STRICT_UNION (
 				zuint8 index15;
 			} values_uint8;
 
-			struct {zint64 index0;
-				zint64 index1;
-			} values_int64;
-
-			struct {zint32 index0;
-				zint32 index1;
-				zint32 index2;
-				zint32 index3;
-			} values_int32;
-
-			struct {zint16 index0;
-				zint16 index1;
-				zint16 index2;
-				zint16 index3;
-				zint16 index4;
-				zint16 index5;
-				zint16 index6;
-				zint16 index7;
-			} values_int16;
-
 			struct {zint8 index00;
 				zint8 index01;
 				zint8 index02;
@@ -1681,7 +1794,43 @@ Z_DEFINE_STRICT_UNION (
 				zint8 index14;
 				zint8 index15;
 			} values_int8;
-		) Z128Bit;
+
+#			if Z_IS_AVAILABLE(FLOAT128)
+				zfloat128 value_float128;
+#			endif
+
+#			if Z_IS_AVAILABLE(FLOAT64)
+				zfloat64 array_float64[2];
+
+				struct {float64 index0;
+					float64 index1;
+				} values_float64;
+#			endif
+
+#			if Z_IS_AVAILABLE(FLOAT32)
+				zfloat32 array_float32[4];
+
+				struct {float32 index0;
+					float32 index1;
+					float32 index2;
+					float32 index3;
+				} values_float32;
+#			endif
+
+#			if Z_IS_AVAILABLE(FLOAT16)
+				zfloat16 array_float16[8];
+
+				struct {float16 index0;
+					float16 index1;
+					float16 index2;
+					float16 index3;
+					float16 index4;
+					float16 index5;
+					float16 index6;
+					float16 index7;
+				} values_float16;
+#			endif
+		Z_DEFINE_STRICT_UNION_END Z128Bit;
 
 #	endif
 
@@ -1750,6 +1899,33 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		Z2DInt128*  pointer_2d_int128;
 		Z3DInt128*  pointer_3d_int128;
 		Z4DInt128*  pointer_4d_int128;
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT16)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT24)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT32)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT48)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT64)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT72)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT80)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT96)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT128)
 #	endif
 
 	zuchar*	    pointer_uchar;
