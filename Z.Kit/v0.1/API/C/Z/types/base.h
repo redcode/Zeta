@@ -1842,10 +1842,10 @@ typedef struct {zsize index, size;} ZRange;
 /* Pointer cast type for lvalue assignment */
 
 Z_DEFINE_STRICT_UNION_BEGIN
-	zuint8*	   pointer_uint8;
-	Z2DUInt8*  pointer_2d_uint8;
-	Z3DUInt8*  pointer_3d_uint8;
-	Z4DUInt8*  pointer_4d_uint8;
+	zuint8*   pointer_uint8;
+	Z2DUInt8* pointer_2d_uint8;
+	Z3DUInt8* pointer_3d_uint8;
+	Z4DUInt8* pointer_4d_uint8;
 
 	zuint16*   pointer_uint16;
 	Z2DUInt16* pointer_2d_uint16;
@@ -1871,136 +1871,172 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		Z4DUInt128* pointer_4d_uint128;
 #	endif
 
-	zint8*	   pointer_int8;
-	Z2DInt8*   pointer_2d_int8;
-	Z3DInt8*   pointer_3d_int8;
-	Z4DInt8*   pointer_4d_int8;
+	zint8*	 pointer_int8;
+	Z2DInt8* pointer_2d_int8;
+	Z3DInt8* pointer_3d_int8;
+	Z4DInt8* pointer_4d_int8;
 
-	zint16*	   pointer_int16;
-	Z2DInt16*  pointer_2d_int16;
-	Z3DInt16*  pointer_3d_int16;
-	Z4DInt16*  pointer_4d_int16;
+	zint16*	  pointer_int16;
+	Z2DInt16* pointer_2d_int16;
+	Z3DInt16* pointer_3d_int16;
+	Z4DInt16* pointer_4d_int16;
 
-	zint32*	   pointer_int32;
-	Z2DInt32*  pointer_2d_int32;
-	Z3DInt32*  pointer_3d_int32;
-	Z4DInt32*  pointer_4d_int32;
+	zint32*	  pointer_int32;
+	Z2DInt32* pointer_2d_int32;
+	Z3DInt32* pointer_3d_int32;
+	Z4DInt32* pointer_4d_int32;
 
 #	if Z_IS_AVAILABLE(INT64)
-		zint64*	   pointer_int64;
-		Z2DInt64*  pointer_2d_int64;
-		Z3DInt64*  pointer_3d_int64;
-		Z4DInt64*  pointer_4d_int64;
+		zint64*	  pointer_int64;
+		Z2DInt64* pointer_2d_int64;
+		Z3DInt64* pointer_3d_int64;
+		Z4DInt64* pointer_4d_int64;
 #	endif
 
 #	if Z_IS_AVAILABLE(INT128)
-		zint128*    pointer_int128;
-		Z2DInt128*  pointer_2d_int128;
-		Z3DInt128*  pointer_3d_int128;
-		Z4DInt128*  pointer_4d_int128;
+		zint128*   pointer_int128;
+		Z2DInt128* pointer_2d_int128;
+		Z3DInt128* pointer_3d_int128;
+		Z4DInt128* pointer_4d_int128;
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT16)
+		zfloat16*   pointer_float16;
+		Z2DFloat16* pointer_2d_float16;
+		Z3DFloat16* pointer_3d_float16;
+		Z4DFloat16* pointer_4d_float16;
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT24)
+		zfloat24*   pointer_float24;
+		Z2DFloat24* pointer_2d_float24;
+		Z3DFloat24* pointer_3d_float24;
+		Z4DFloat24* pointer_4d_float24;
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT32)
+		zfloat32*   pointer_float32;
+		Z2DFloat32* pointer_2d_float32;
+		Z3DFloat32* pointer_3d_float32;
+		Z4DFloat32* pointer_4d_float32;
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT48)
+		zfloat48*   pointer_float48;
+		Z2DFloat48* pointer_2d_float48;
+		Z3DFloat48* pointer_3d_float48;
+		Z4DFloat48* pointer_4d_float48;
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT64)
+		zfloat64*   pointer_float64;
+		Z2DFloat64* pointer_2d_float64;
+		Z3DFloat64* pointer_3d_float64;
+		Z4DFloat64* pointer_4d_float64;
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT72)
+		zfloat72*   pointer_float72;
+		Z2DFloat72* pointer_2d_float72;
+		Z3DFloat72* pointer_3d_float72;
+		Z4DFloat72* pointer_4d_float72;
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT80)
+		zfloat80*   pointer_float80;
+		Z2DFloat80* pointer_2d_float80;
+		Z3DFloat80* pointer_3d_float80;
+		Z4DFloat80* pointer_4d_float80;
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT96)
+		zfloat96*   pointer_float96;
+		Z2DFloat96* pointer_2d_float96;
+		Z3DFloat96* pointer_3d_float96;
+		Z4DFloat96* pointer_4d_float96;
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT128)
+		zfloat128*   pointer_float128;
+		Z2DFloat128* pointer_2d_float128;
+		Z3DFloat128* pointer_3d_float128;
+		Z4DFloat128* pointer_4d_float128;
 #	endif
 
-	zuchar*	    pointer_uchar;
-	Z2DUChar*   pointer_2d_uchar;
-	Z3DUChar*   pointer_3d_uchar;
-	Z4DUChar*   pointer_4d_uchar;
+	zuchar*	  pointer_uchar;
+	Z2DUChar* pointer_2d_uchar;
+	Z3DUChar* pointer_3d_uchar;
+	Z4DUChar* pointer_4d_uchar;
 
-	zshort*	    pointer_ushort;
-	Z2DUShort*  pointer_2d_ushort;
-	Z3DUShort*  pointer_3d_ushort;
-	Z4DUShort*  pointer_4d_ushort;
+	zshort*	   pointer_ushort;
+	Z2DUShort* pointer_2d_ushort;
+	Z3DUShort* pointer_3d_ushort;
+	Z4DUShort* pointer_4d_ushort;
 
-	zuint*	    pointer_uint;
-	Z2DUInt*    pointer_2d_uint;
-	Z3DUInt*    pointer_3d_uint;
-	Z4DUInt*    pointer_4d_uint;
+	zuint*	 pointer_uint;
+	Z2DUInt* pointer_2d_uint;
+	Z3DUInt* pointer_3d_uint;
+	Z4DUInt* pointer_4d_uint;
 
-	zulong*	    pointer_ulong;
-	Z2DULong*   pointer_2d_ulong;
-	Z3DULong*   pointer_3d_ulong;
-	Z4DULong*   pointer_4d_ulong;
+	zulong*	  pointer_ulong;
+	Z2DULong* pointer_2d_ulong;
+	Z3DULong* pointer_3d_ulong;
+	Z4DULong* pointer_4d_ulong;
 
-	zullong*    pointer_ullong;
-	Z2DULLong*  pointer_2d_ullong;
-	Z3DULLong*  pointer_3d_ullong;
-	Z4DULLong*  pointer_4d_ullong;
+	zullong*   pointer_ullong;
+	Z2DULLong* pointer_2d_ullong;
+	Z3DULLong* pointer_3d_ullong;
+	Z4DULLong* pointer_4d_ullong;
 
-	zchar*	    pointer_char;
-	Z2DChar*    pointer_2d_char;
-	Z3DChar*    pointer_3d_char;
-	Z4DChar*    pointer_4d_char;
+	zchar*	 pointer_char;
+	Z2DChar* pointer_2d_char;
+	Z3DChar* pointer_3d_char;
+	Z4DChar* pointer_4d_char;
 
-	zshort*	    pointer_short;
-	Z2DShort*   pointer_2d_short;
-	Z3DShort*   pointer_3d_short;
-	Z4DShort*   pointer_4d_short;
+	zshort*	  pointer_short;
+	Z2DShort* pointer_2d_short;
+	Z3DShort* pointer_3d_short;
+	Z4DShort* pointer_4d_short;
 
-	zint*	    pointer_int;
-	Z2DInt*     pointer_2d_int;
-	Z3DInt*     pointer_3d_int;
-	Z4DInt*     pointer_4d_int;
+	zint*	pointer_int;
+	Z2DInt* pointer_2d_int;
+	Z3DInt* pointer_3d_int;
+	Z4DInt* pointer_4d_int;
 
-	zlong*	    pointer_long;
-	Z2DLong*    pointer_2d_long;
-	Z3DLong*    pointer_3d_long;
-	Z4DLong*    pointer_4d_long;
+	zlong*	 pointer_long;
+	Z2DLong* pointer_2d_long;
+	Z3DLong* pointer_3d_long;
+	Z4DLong* pointer_4d_long;
 
-	zllong*	    pointer_llong;
-	Z2DLLong*   pointer_2d_llong;
-	Z3DLLong*   pointer_3d_llong;
-	Z4DLLong*   pointer_4d_llong;
+	zllong*	  pointer_llong;
+	Z2DLLong* pointer_2d_llong;
+	Z3DLLong* pointer_3d_llong;
+	Z4DLLong* pointer_4d_llong;
 
-	zfloat*	    pointer_float;
-	Z2DFloat*   pointer_2d_float;
-	Z3DFloat*   pointer_3d_float;
-	Z4DFloat*   pointer_4d_float;
+	zfloat*	  pointer_float;
+	Z2DFloat* pointer_2d_float;
+	Z3DFloat* pointer_3d_float;
+	Z4DFloat* pointer_4d_float;
 
-	zdouble*    pointer_double;
-	Z2DDouble*  pointer_2d_double;
-	Z3DDouble*  pointer_3d_double;
-	Z4DDouble*  pointer_4d_double;
+	zdouble*   pointer_double;
+	Z2DDouble* pointer_2d_double;
+	Z3DDouble* pointer_3d_double;
+	Z4DDouble* pointer_4d_double;
 
 	zldouble*   pointer_ldouble;
 	Z2DLDouble* pointer_2d_ldouble;
 	Z3DLDouble* pointer_3d_ldouble;
 	Z4DLDouble* pointer_4d_ldouble;
 
-	zsize*	    pointer_size;
-	Z2DSize*    pointer_2d_size;
-	Z3DSize*    pointer_3d_size;
-	Z4DSize*    pointer_4d_size;
+	zsize*	 pointer_size;
+	Z2DSize* pointer_2d_size;
+	Z3DSize* pointer_3d_size;
+	Z4DSize* pointer_4d_size;
 
-	zssize*	    pointer_ssize;
-	Z2DSSize*   pointer_2d_ssize;
-	Z3DSSize*   pointer_3d_ssize;
-	Z4DSSize*   pointer_4d_ssize;
+	zssize*	  pointer_ssize;
+	Z2DSSize* pointer_2d_ssize;
+	Z3DSSize* pointer_3d_ssize;
+	Z4DSSize* pointer_4d_ssize;
 
 	zuintmax*   pointer_uintmax;
 	Z2DUIntMax* pointer_2d_uintmax;
@@ -2017,22 +2053,22 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	Z3DUIntTop* pointer_3d_uinttop;
 	Z4DUIntTop* pointer_4d_uinttop;
 
-	zintmax*    pointer_intmax;
-	Z2DIntMax*  pointer_2d_intmax;
-	Z3DIntMax*  pointer_3d_intmax;
-	Z4DIntMax*  pointer_4d_intmax;
+	zintmax*   pointer_intmax;
+	Z2DIntMax* pointer_2d_intmax;
+	Z3DIntMax* pointer_3d_intmax;
+	Z4DIntMax* pointer_4d_intmax;
 
-	zintptr*    pointer_intptr;
-	Z2DIntPtr*  pointer_2d_intptr;
-	Z3DIntPtr*  pointer_3d_intptr;
-	Z4DIntPtr*  pointer_4d_intptr;
+	zintptr*   pointer_intptr;
+	Z2DIntPtr* pointer_2d_intptr;
+	Z3DIntPtr* pointer_3d_intptr;
+	Z4DIntPtr* pointer_4d_intptr;
 
-	zinttop*    pointer_inttop;
-	Z2DIntTop*  pointer_2d_inttop;
-	Z3DIntTop*  pointer_3d_inttop;
-	Z4DIntTop*  pointer_4d_inttop;
+	zinttop*   pointer_inttop;
+	Z2DIntTop* pointer_2d_inttop;
+	Z3DIntTop* pointer_3d_inttop;
+	Z4DIntTop* pointer_4d_inttop;
 
-	zboolean*   pointer_boolean;
+	zboolean* pointer_boolean;
 
 	znatural*   pointer_natural;
 	Z2DNatural* pointer_2d_natural;
@@ -2044,18 +2080,18 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	Z3DInteger* pointer_3d_integer;
 	Z4DInteger* pointer_4d_integer;
 
-	zreal*	    pointer_real;
-	Z2DReal*    pointer_2d_real;
-	Z3DReal*    pointer_3d_real;
-	Z4DReal*    pointer_4d_real;
+	zreal*	 pointer_real;
+	Z2DReal* pointer_2d_real;
+	Z3DReal* pointer_3d_real;
+	Z4DReal* pointer_4d_real;
 
-	ZStatus*    pointer_status;
-	ZOrder*	    pointer_order;
+	ZStatus* pointer_status;
+	ZOrder*	 pointer_order;
 
-	Z8Bit*	    pointer_8bit;
-	Z16Bit*     pointer_16bit;
-	Z32Bit*     pointer_32bit;
-	Z64Bit*     pointer_64bit;
+	Z8Bit*	pointer_8bit;
+	Z16Bit* pointer_16bit;
+	Z32Bit* pointer_32bit;
+	Z64Bit* pointer_64bit;
 
 #	if Z_IS_AVAILABLE(UINT128) && Z_IS_AVAILABLE(INT128)
 		Z128Bit* pointer_128bit;
