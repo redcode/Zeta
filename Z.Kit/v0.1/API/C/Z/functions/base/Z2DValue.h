@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/value.h>
 
 
-/* MARK: - Operations for natural, integer and real types */
+/* MARK: - Template for natural, integer and real types */
 
 
 #define Z_IMPLEMENTATION_2D_NATURAL(Type, type)							\
@@ -208,18 +208,6 @@ Z_INLINE Z3D##Type z_2d_##type##_nyx(Z2D##Type object, z##type n)				\
 	{return z_3d_##type(n, object.y, object.x);}
 
 
-Z_IMPLEMENTATION_2D_NATURAL(UInt8,   uint8  )
-Z_IMPLEMENTATION_2D_NATURAL(UInt16,  uint16 )
-Z_IMPLEMENTATION_2D_NATURAL(UInt32,  uint32 )
-Z_IMPLEMENTATION_2D_NATURAL(UInt64,  uint64 )
-Z_IMPLEMENTATION_2D_NATURAL(Int8,    int8   )
-Z_IMPLEMENTATION_2D_NATURAL(Int16,   int16  )
-Z_IMPLEMENTATION_2D_NATURAL(Int32,   int32  )
-Z_IMPLEMENTATION_2D_NATURAL(Int64,   int64  )
-Z_IMPLEMENTATION_2D_NATURAL(Float,   float  )
-Z_IMPLEMENTATION_2D_NATURAL(Double,  double )
-Z_IMPLEMENTATION_2D_NATURAL(LDouble, ldouble)
-
 #define z_2d_value_are_equal(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _are_equal	   )
 #define z_2d_value_swap(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _swap		   )
 #define z_2d_value_contains(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _contains	   )
@@ -265,7 +253,7 @@ Z_IMPLEMENTATION_2D_NATURAL(LDouble, ldouble)
 #define z_2d_value_nyx(		      TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _nyx		   )
 
 
-/* MARK: - Operations for integer and real types */
+/* MARK: - Template for integer and real types */
 
 
 #define Z_IMPLEMENTATION_2D_INTEGER(Type, type)							\
@@ -287,13 +275,6 @@ Z_INLINE Z2D##Type z_2d_##type##_absolute(Z2D##Type object)					\
 	{return z_2d_##type(z_##type##_absolute(object.x), z_##type##_absolute(object.y));}
 
 
-Z_IMPLEMENTATION_2D_INTEGER(Int8,    int8   )
-Z_IMPLEMENTATION_2D_INTEGER(Int16,   int16  )
-Z_IMPLEMENTATION_2D_INTEGER(Int32,   int32  )
-Z_IMPLEMENTATION_2D_INTEGER(Int64,   int64  )
-Z_IMPLEMENTATION_2D_INTEGER(Float,   float  )
-Z_IMPLEMENTATION_2D_INTEGER(Double,  double )
-Z_IMPLEMENTATION_2D_INTEGER(LDouble, ldouble)
 
 #define z_2d_value_is_negative(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _is_negative )
 #define z_2d_value_has_negative(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _has_negative)
@@ -301,7 +282,7 @@ Z_IMPLEMENTATION_2D_INTEGER(LDouble, ldouble)
 #define z_2d_value_absolute(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _absolute    )
 
 
-/* MARK: - Operations for real types only */
+/* MARK: - Template for real types only */
 
 
 #define Z_IMPLEMENTATION_2D_REAL(Type, type, _, epsilon)					\
@@ -366,9 +347,91 @@ Z_INLINE Z2D##Type z_2d_##type##_square_clamp_01(Z2D##Type object)				\
 	{return z_2d_##type(z_##type##_clamp_01(object.x), z_##type##_clamp_01(object.y));}
 
 
-Z_IMPLEMENTATION_2D_REAL(Float,	  float,   Z_FLOAT,   Z_FLOAT_EPSILON  )
-Z_IMPLEMENTATION_2D_REAL(Double,  double,  Z_DOUBLE,  Z_DOUBLE_EPSILON )
-Z_IMPLEMENTATION_2D_REAL(LDouble, ldouble, Z_LDOUBLE, Z_LDOUBLE_EPSILON)
+/* MARK: - Implementations */
+
+
+Z_IMPLEMENTATION_2D_NATURAL(UInt8,  uint8 )
+Z_IMPLEMENTATION_2D_NATURAL(UInt16, uint16)
+Z_IMPLEMENTATION_2D_NATURAL(UInt32, uint32)
+
+#if Z_IS_AVAILABLE(UINT64)
+	Z_IMPLEMENTATION_2D_NATURAL(UInt64, uint64)
+#endif
+
+#if Z_IS_AVAILABLE(UINT128)
+	Z_IMPLEMENTATION_2D_NATURAL(UInt128, uint128)
+#endif
+
+Z_IMPLEMENTATION_2D_NATURAL(Int8,  int8	)
+Z_IMPLEMENTATION_2D_INTEGER(Int8,  int8	)
+Z_IMPLEMENTATION_2D_NATURAL(Int16, int16)
+Z_IMPLEMENTATION_2D_INTEGER(Int16, int16)
+Z_IMPLEMENTATION_2D_NATURAL(Int32, int32)
+Z_IMPLEMENTATION_2D_INTEGER(Int32, int32)
+
+#if Z_IS_AVAILABLE(INT64)
+	Z_IMPLEMENTATION_2D_NATURAL(Int64, int64)
+	Z_IMPLEMENTATION_2D_INTEGER(Int64, int64)
+#endif
+
+#if Z_IS_AVAILABLE(INT128)
+	Z_IMPLEMENTATION_2D_NATURAL(Int128, int128)
+	Z_IMPLEMENTATION_2D_INTEGER(Int128, int128)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT16)
+	Z_IMPLEMENTATION_2D_NATURAL(Float16, float16)
+	Z_IMPLEMENTATION_2D_INTEGER(Float16, float16)
+	Z_IMPLEMENTATION_2D_REAL   (Float16, float16, Z_FLOAT16, Z_FLOAT16_EPSILON)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT24)
+	Z_IMPLEMENTATION_2D_NATURAL(Float24, float24)
+	Z_IMPLEMENTATION_2D_INTEGER(Float24, float24)
+	Z_IMPLEMENTATION_2D_REAL   (Float24, float24, Z_FLOAT24, Z_FLOAT24_EPSILON)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT32)
+	Z_IMPLEMENTATION_2D_NATURAL(Float32, float32)
+	Z_IMPLEMENTATION_2D_INTEGER(Float32, float32)
+	Z_IMPLEMENTATION_2D_REAL   (Float32, float32, Z_FLOAT32, Z_FLOAT32_EPSILON)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT48)
+	Z_IMPLEMENTATION_2D_NATURAL(Float48, float48)
+	Z_IMPLEMENTATION_2D_INTEGER(Float48, float48)
+	Z_IMPLEMENTATION_2D_REAL   (Float48, float48, Z_FLOAT48, Z_FLOAT48_EPSILON)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT64)
+	Z_IMPLEMENTATION_2D_NATURAL(Float64, float64)
+	Z_IMPLEMENTATION_2D_INTEGER(Float64, float64)
+	Z_IMPLEMENTATION_2D_REAL   (Float64, float64, Z_FLOAT64, Z_FLOAT64_EPSILON)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT72)
+	Z_IMPLEMENTATION_2D_NATURAL(Float72, float72)
+	Z_IMPLEMENTATION_2D_INTEGER(Float72, float72)
+	Z_IMPLEMENTATION_2D_REAL   (Float72, float72, Z_FLOAT72, Z_FLOAT72_EPSILON)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT80)
+	Z_IMPLEMENTATION_2D_NATURAL(Float80, float80)
+	Z_IMPLEMENTATION_2D_INTEGER(Float80, float80)
+	Z_IMPLEMENTATION_2D_REAL   (Float80, float80, Z_FLOAT80, Z_FLOAT80_EPSILON)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT96)
+	Z_IMPLEMENTATION_2D_NATURAL(Float96, float96)
+	Z_IMPLEMENTATION_2D_INTEGER(Float96, float96)
+	Z_IMPLEMENTATION_2D_REAL   (Float96, float96, Z_FLOAT96, Z_FLOAT96_EPSILON)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT128)
+	Z_IMPLEMENTATION_2D_NATURAL(Float128, float128)
+	Z_IMPLEMENTATION_2D_INTEGER(Float128, float128)
+	Z_IMPLEMENTATION_2D_REAL   (Float128, float128, Z_FLOAT128, Z_FLOAT128_EPSILON)
+#endif
 
 
 /* MARK: - Default real type definitions */
