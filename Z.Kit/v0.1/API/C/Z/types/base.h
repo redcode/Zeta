@@ -13,6 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/data model.h>
 #include <Z/macros/inspection.h>
 #include <Z/macros/structure.h>
+#include <Z/macros/members.h>
 #include <Z/constants/base.h>
 
 /* MARK: - Fixed size natural types */

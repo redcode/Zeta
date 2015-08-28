@@ -17,12 +17,12 @@ typedef struct {
 } ZTripleBuffer;
 
 typedef struct {
-	void*		buffers;
-	zsize		buffer_size;
-	zsize		buffer_count;
-	zsize		consumption_index;
-	zsize		production_index;
-	volatile zsize	fill_count;
+	void*	       buffers;
+	zsize	       buffer_size;
+	zsize	       buffer_count;
+	zsize	       consumption_index;
+	zsize	       production_index;
+	volatile zsize fill_count;
 } ZRingBuffer;
 
 #define Z_TRIPLE_BUFFER(p) ((ZTripleBuffer *)(p))
