@@ -271,10 +271,10 @@ Z_INLINE zuint32 z_bcd_to_uint32(zuint32 value)
 	}
 
 
-/* MARK: - Operations for natural, integer and real types */
+/* MARK: - Template for natural, integer and real types */
 
 
-#define Z_IMPLEMENTATION_VALUE_NATURAL(type)						\
+#define Z_IMPLEMENTATION_NATURAL(type)							\
 											\
 											\
 Z_INLINE void z_##type##_swap(void *a, void *b)						\
@@ -298,28 +298,16 @@ Z_INLINE z##type z_##type##_clamp(z##type value, z##type minimum, z##type maximu
 	{return z_##type##_minimum(z_##type##_maximum(value, minimum), maximum);}
 
 
-Z_IMPLEMENTATION_VALUE_NATURAL(uint8  )
-Z_IMPLEMENTATION_VALUE_NATURAL(uint16 )
-Z_IMPLEMENTATION_VALUE_NATURAL(uint32 )
-Z_IMPLEMENTATION_VALUE_NATURAL(uint64 )
-Z_IMPLEMENTATION_VALUE_NATURAL(int8   )
-Z_IMPLEMENTATION_VALUE_NATURAL(int16  )
-Z_IMPLEMENTATION_VALUE_NATURAL(int32  )
-Z_IMPLEMENTATION_VALUE_NATURAL(int64  )
-Z_IMPLEMENTATION_VALUE_NATURAL(float  )
-Z_IMPLEMENTATION_VALUE_NATURAL(double )
-Z_IMPLEMENTATION_VALUE_NATURAL(ldouble)
-
 #define z_value_swap(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _swap   )
 #define z_value_minimum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _minimum)
 #define z_value_maximum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _maximum)
 #define z_value_clamp(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp  )
 
 
-/* MARK: - Operations for integer and real types */
+/* MARK: - Template for integer and real types */
 
 
-#define Z_IMPLEMENTATION_VALUE_INTEGER(type)			 \
+#define Z_IMPLEMENTATION_INTEGER(type)				 \
 								 \
 Z_INLINE z##type z_##type##_absolute(z##type value)		 \
 	{return value < (z##type)0 ? -value : value;}		 \
@@ -328,23 +316,14 @@ Z_INLINE z##type z_##type##_sign(z##type value)			 \
 	{return value >= (z##type)0 ? (z##type)1 : -(z##type)1;}
 
 
-Z_IMPLEMENTATION_VALUE_INTEGER(int8   )
-Z_IMPLEMENTATION_VALUE_INTEGER(int16  )
-Z_IMPLEMENTATION_VALUE_INTEGER(int32  )
-Z_IMPLEMENTATION_VALUE_INTEGER(int64  )
-Z_IMPLEMENTATION_VALUE_INTEGER(ssize  )
-Z_IMPLEMENTATION_VALUE_INTEGER(float  )
-Z_IMPLEMENTATION_VALUE_INTEGER(double )
-Z_IMPLEMENTATION_VALUE_INTEGER(ldouble)
-
 #define z_value_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _absolute)
 #define z_value_sign(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign	 )
 
 
-/* MARK: - Operations for real types only */
+/* MARK: - Template for real types only */
 
 
-#define Z_IMPLEMENTATION_VALUE_REAL(type, _, epsilon, infinity)			\
+#define Z_IMPLEMENTATION_REAL(type, _, epsilon, infinity)			\
 										\
 										\
 Z_INLINE zboolean z_##type##_are_almost_equal(z##type a, z##type b)		\
@@ -405,9 +384,109 @@ Z_INLINE z##type z_##type##_clamp_01(z##type value)				\
 	{return z_##type##_minimum(z_##type##_maximum(value, _(0.0)), _(1.0));}
 
 
-Z_IMPLEMENTATION_VALUE_REAL(float,   Z_FLOAT,	Z_FLOAT_EPSILON,   Z_FLOAT_INFINITY  )
-Z_IMPLEMENTATION_VALUE_REAL(double,  Z_DOUBLE,	Z_DOUBLE_EPSILON,  Z_DOUBLE_INFINITY )
-Z_IMPLEMENTATION_VALUE_REAL(ldouble, Z_LDOUBLE, Z_LDOUBLE_EPSILON, Z_LDOUBLE_INFINITY)
+/* MARK: - Implementations */
+
+
+Z_IMPLEMENTATION_NATURAL(UInt8,	 uint8 )
+Z_IMPLEMENTATION_NATURAL(UInt16, uint16)
+Z_IMPLEMENTATION_NATURAL(UInt32, uint32)
+
+#if Z_IS_AVAILABLE(UINT64)
+	Z_IMPLEMENTATION_NATURAL(UInt64, uint64)
+#endif
+
+#if Z_IS_AVAILABLE(UINT128)
+	Z_IMPLEMENTATION_NATURAL(UInt128, uint128)
+#endif
+
+Z_IMPLEMENTATION_NATURAL(Int8,	int8 )
+Z_IMPLEMENTATION_INTEGER(Int8,	int8 )
+Z_IMPLEMENTATION_NATURAL(Int16, int16)
+Z_IMPLEMENTATION_INTEGER(Int16, int16)
+Z_IMPLEMENTATION_NATURAL(Int32, int32)
+Z_IMPLEMENTATION_INTEGER(Int32, int32)
+
+#if Z_IS_AVAILABLE(INT64)
+	Z_IMPLEMENTATION_NATURAL(Int64, int64)
+	Z_IMPLEMENTATION_INTEGER(Int64, int64)
+#endif
+
+#if Z_IS_AVAILABLE(INT128)
+	Z_IMPLEMENTATION_NATURAL(Int128, int128)
+	Z_IMPLEMENTATION_INTEGER(Int128, int128)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT16)
+	Z_IMPLEMENTATION_NATURAL(Float16, float16)
+	Z_IMPLEMENTATION_INTEGER(Float16, float16)
+
+	Z_IMPLEMENTATION_REAL
+		(Float16, float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT24)
+	Z_IMPLEMENTATION_NATURAL(Float24, float24)
+	Z_IMPLEMENTATION_INTEGER(Float24, float24)
+
+	Z_IMPLEMENTATION_REAL
+		(Float24, float24, Z_FLOAT24, Z_FLOAT24_EPSILON, Z_FLOAT24_INFINITY)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT32)
+	Z_IMPLEMENTATION_NATURAL(Float32, float32)
+	Z_IMPLEMENTATION_INTEGER(Float32, float32)
+
+	Z_IMPLEMENTATION_REAL
+		(Float32, float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT48)
+	Z_IMPLEMENTATION_NATURAL(Float48, float48)
+	Z_IMPLEMENTATION_INTEGER(Float48, float48)
+
+	Z_IMPLEMENTATION_REAL
+		(Float48, float48, Z_FLOAT48, Z_FLOAT48_EPSILON, Z_FLOAT48_INFINITY)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT64)
+	Z_IMPLEMENTATION_NATURAL(Float64, float64)
+	Z_IMPLEMENTATION_INTEGER(Float64, float64)
+
+	Z_IMPLEMENTATION_REAL
+		(Float64, float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT72)
+	Z_IMPLEMENTATION_NATURAL(Float72, float72)
+	Z_IMPLEMENTATION_INTEGER(Float72, float72)
+
+	Z_IMPLEMENTATION_REAL
+		(Float72, float72, Z_FLOAT72, Z_FLOAT72_EPSILON, Z_FLOAT72_INFINITY)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT80)
+	Z_IMPLEMENTATION_NATURAL(Float80, float80)
+	Z_IMPLEMENTATION_INTEGER(Float80, float80)
+
+	Z_IMPLEMENTATION_REAL
+		(Float80, float80, Z_FLOAT80, Z_FLOAT80_EPSILON, Z_FLOAT80_INFINITY)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT96)
+	Z_IMPLEMENTATION_NATURAL(Float96, float96)
+	Z_IMPLEMENTATION_INTEGER(Float96, float96)
+
+	Z_IMPLEMENTATION_REAL
+		(Float96, float96, Z_FLOAT96, Z_FLOAT96_EPSILON, Z_FLOAT96_INFINITY)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT128)
+	Z_IMPLEMENTATION_NATURAL(Float128, float128)
+	Z_IMPLEMENTATION_INTEGER(Float128, float128)
+
+	Z_IMPLEMENTATION_REAL
+		(Float128, float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
+#endif
 
 
 /* MARK: - Default real type definitions */
