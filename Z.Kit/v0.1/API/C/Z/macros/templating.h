@@ -43,15 +43,33 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_Int128(left, right) left##Int128##right
 #define Z_INSERT_int128(left, right) left##int128##right
 
-#define Z_INSERT_FLOAT(	 left, right) left##FLOAT##right
-#define Z_INSERT_Float(	 left, right) left##Float##right
-#define Z_INSERT_float(	 left, right) left##float##right
-#define Z_INSERT_DOUBLE( left, right) left##DOUBLE##right
-#define Z_INSERT_Double( left, right) left##Double##right
-#define Z_INSERT_double( left, right) left##double##right
-#define Z_INSERT_LDOUBLE(left, right) left##LDOUBLE##right
-#define Z_INSERT_LDouble(left, right) left##LDouble##right
-#define Z_INSERT_ldouble(left, right) left##ldouble##right
+#define Z_INSERT_FLOAT16( left, right) left##FLOAT16##right
+#define Z_INSERT_Float16( left, right) left##Float16##right
+#define Z_INSERT_float16( left, right) left##float16##right
+#define Z_INSERT_FLOAT24( left, right) left##FLOAT24##right
+#define Z_INSERT_Float24( left, right) left##Float24##right
+#define Z_INSERT_float24( left, right) left##float24##right
+#define Z_INSERT_FLOAT32( left, right) left##FLOAT32##right
+#define Z_INSERT_Float32( left, right) left##Float32##right
+#define Z_INSERT_float32( left, right) left##float32##right
+#define Z_INSERT_FLOAT48( left, right) left##FLOAT48##right
+#define Z_INSERT_Float48( left, right) left##Float48##right
+#define Z_INSERT_float48( left, right) left##float48##right
+#define Z_INSERT_FLOAT64( left, right) left##FLOAT64##right
+#define Z_INSERT_Float64( left, right) left##Float64##right
+#define Z_INSERT_float64( left, right) left##float64##right
+#define Z_INSERT_FLOAT72( left, right) left##FLOAT72##right
+#define Z_INSERT_Float72( left, right) left##Float72##right
+#define Z_INSERT_float72( left, right) left##float72##right
+#define Z_INSERT_FLOAT80( left, right) left##FLOAT80##right
+#define Z_INSERT_Float80( left, right) left##Float80##right
+#define Z_INSERT_float80( left, right) left##float80##right
+#define Z_INSERT_FLOAT96( left, right) left##FLOAT96##right
+#define Z_INSERT_Float96( left, right) left##Float96##right
+#define Z_INSERT_float96( left, right) left##float96##right
+#define Z_INSERT_FLOAT128(left, right) left##FLOAT128##right
+#define Z_INSERT_Float128(left, right) left##Float128##right
+#define Z_INSERT_float128(left, right) left##float128##right
 
 #define Z_INSERT_UCHAR_FIXED_TYPE   Z_JOIN_2(Z_INSERT_UINT, Z_UCHAR_BITS )
 #define Z_INSERT_UCHAR_FixedType    Z_JOIN_2(Z_INSERT_UInt, Z_UCHAR_BITS )
@@ -85,19 +103,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_LLONG_FixedType  Z_JOIN_2(Z_INSERT_Int, Z_LLONG_BITS)
 #define Z_INSERT_LLONG_fixed_type Z_JOIN_2(Z_INSERT_int, Z_LLONG_BITS)
 
-#define Z_INSERT_FLOAT_FIXED_TYPE   Z_INSERT_FLOAT
-#define Z_INSERT_FLOAT_FixedType    Z_INSERT_Float
-#define Z_INSERT_FLOAT_fixed_type   Z_INSERT_float
-#define Z_INSERT_DOUBLE_FIXED_TYPE  Z_INSERT_DOUBLE
-#define Z_INSERT_DOUBLE_FixedType   Z_INSERT_Double
-#define Z_INSERT_DOUBLE_fixed_type  Z_INSERT_double
-#define Z_INSERT_LDOUBLE_FIXED_TYPE Z_INSERT_LDOUBLE
-#define Z_INSERT_LDOUBLE_FixedType  Z_INSERT_LDouble
-#define Z_INSERT_LDOUBLE_fixed_type Z_INSERT_ldouble
+#define Z_INSERT_FLOAT_FIXED_TYPE   Z_JOIN_2(Z_INSERT_FLOAT,   Z_FLOAT_BITS  )
+#define Z_INSERT_FLOAT_FixedType    Z_JOIN_2(Z_INSERT_Float,   Z_FLOAT_BITS  )
+#define Z_INSERT_FLOAT_fixed_type   Z_JOIN_2(Z_INSERT_float,   Z_FLOAT_BITS  )
+#define Z_INSERT_DOUBLE_FIXED_TYPE  Z_JOIN_2(Z_INSERT_DOUBLE,  Z_DOUBLE_BITS )
+#define Z_INSERT_DOUBLE_FixedType   Z_JOIN_2(Z_INSERT_Double,  Z_DOUBLE_BITS )
+#define Z_INSERT_DOUBLE_fixed_type  Z_JOIN_2(Z_INSERT_double,  Z_DOUBLE_BITS )
+#define Z_INSERT_LDOUBLE_FIXED_TYPE Z_JOIN_2(Z_INSERT_LDOUBLE, Z_LDOUBLE_BITS)
+#define Z_INSERT_LDOUBLE_FixedType  Z_JOIN_2(Z_INSERT_LDouble, Z_LDOUBLE_BITS)
+#define Z_INSERT_LDOUBLE_fixed_type Z_JOIN_2(Z_INSERT_ldouble, Z_LDOUBLE_BITS)
 
-#define Z_INSERT_SIZE_FIXED_TYPE    Z_JOIN_2(Z_INSERT_UINT, Z_SIZE_BITS	  )
-#define Z_INSERT_SIZE_FixedType	    Z_JOIN_2(Z_INSERT_UInt, Z_SIZE_BITS	  )
-#define Z_INSERT_SIZE_fixed_type    Z_JOIN_2(Z_INSERT_uint, Z_SIZE_BITS	  )
+#define Z_INSERT_SIZE_FIXED_TYPE  Z_JOIN_2(Z_INSERT_UINT, Z_SIZE_BITS)
+#define Z_INSERT_SIZE_FixedType	  Z_JOIN_2(Z_INSERT_UInt, Z_SIZE_BITS)
+#define Z_INSERT_SIZE_fixed_type  Z_JOIN_2(Z_INSERT_uint, Z_SIZE_BITS)
+#define Z_INSERT_SSIZE_FIXED_TYPE Z_JOIN_2(Z_INSERT_INT, Z_SSIZE_BITS)
+#define Z_INSERT_SSIZE_FixedType  Z_JOIN_2(Z_INSERT_Int, Z_SSIZE_BITS)
+#define Z_INSERT_SSIZE_fixed_type Z_JOIN_2(Z_INSERT_int, Z_SSIZE_BITS)
+
 #define Z_INSERT_UINTMAX_FIXED_TYPE Z_JOIN_2(Z_INSERT_UINT, Z_UINTMAX_BITS)
 #define Z_INSERT_UINTMAX_FixedType  Z_JOIN_2(Z_INSERT_UInt, Z_UINTMAX_BITS)
 #define Z_INSERT_UINTMAX_fixed_type Z_JOIN_2(Z_INSERT_uint, Z_UINTMAX_BITS)
@@ -108,9 +130,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_UINTTOP_FixedType  Z_JOIN_2(Z_INSERT_UInt, Z_UINTTOP_BITS)
 #define Z_INSERT_UINTTOP_fixed_type Z_JOIN_2(Z_INSERT_uint, Z_UINTTOP_BITS)
 
-#define Z_INSERT_SSIZE_FIXED_TYPE   Z_JOIN_2(Z_INSERT_INT, Z_SSIZE_BITS	)
-#define Z_INSERT_SSIZE_FixedType    Z_JOIN_2(Z_INSERT_Int, Z_SSIZE_BITS	)
-#define Z_INSERT_SSIZE_fixed_type   Z_JOIN_2(Z_INSERT_int, Z_SSIZE_BITS	)
 #define Z_INSERT_INTMAX_FIXED_TYPE  Z_JOIN_2(Z_INSERT_INT, Z_INTMAX_BITS)
 #define Z_INSERT_INTMAX_FixedType   Z_JOIN_2(Z_INSERT_Int, Z_INTMAX_BITS)
 #define Z_INSERT_INTMAX_fixed_type  Z_JOIN_2(Z_INSERT_int, Z_INTMAX_BITS)
@@ -121,25 +140,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_INTTOP_FixedType   Z_JOIN_2(Z_INSERT_Int, Z_INTTOP_BITS)
 #define Z_INSERT_INTTOP_fixed_type  Z_JOIN_2(Z_INSERT_int, Z_INTTOP_BITS)
 
-#define Z_INSERT_NATURAL_FIXED_TYPE Z_JOIN_2(Z_INSERT_INT, Z_NATURAL_BITS)
-#define Z_INSERT_NATURAL_FixedType  Z_JOIN_2(Z_INSERT_Int, Z_NATURAL_BITS)
-#define Z_INSERT_NATURAL_fixed_type Z_JOIN_2(Z_INSERT_int, Z_NATURAL_BITS)
-#define Z_INSERT_INTEGER_FIXED_TYPE Z_JOIN_2(Z_INSERT_INT, Z_INTEGER_BITS)
-#define Z_INSERT_INTEGER_FixedType  Z_JOIN_2(Z_INSERT_Int, Z_INTEGER_BITS)
-#define Z_INSERT_INTEGER_fixed_type Z_JOIN_2(Z_INSERT_int, Z_INTEGER_BITS)
-
-#if defined(Z_USE_REAL_FLOAT)
-#	define Z_INSERT_REAL_FIXED_TYPE Z_INSERT_FLOAT
-#	define Z_INSERT_REAL_FixedType	Z_INSERT_Float
-#	define Z_INSERT_REAL_fixed_type Z_INSERT_float
-#elif defined(Z_USE_REAL_LDOUBLE)
-#	define Z_INSERT_REAL_FIXED_TYPE Z_INSERT_LDOUBLE
-#	define Z_INSERT_REAL_FixedType	Z_INSERT_LDouble
-#	define Z_INSERT_REAL_fixed_type Z_INSERT_ldouble
-#else
-#	define Z_INSERT_REAL_FIXED_TYPE Z_INSERT_DOUBLE
-#	define Z_INSERT_REAL_FixedType	Z_INSERT_Double
-#	define Z_INSERT_REAL_fixed_type Z_INSERT_double
-#endif
+#define Z_INSERT_NATURAL_FIXED_TYPE Z_JOIN_2(Z_INSERT_UINT,  Z_NATURAL_BITS)
+#define Z_INSERT_NATURAL_FixedType  Z_JOIN_2(Z_INSERT_UInt,  Z_NATURAL_BITS)
+#define Z_INSERT_NATURAL_fixed_type Z_JOIN_2(Z_INSERT_uint,  Z_NATURAL_BITS)
+#define Z_INSERT_INTEGER_FIXED_TYPE Z_JOIN_2(Z_INSERT_INT,   Z_INTEGER_BITS)
+#define Z_INSERT_INTEGER_FixedType  Z_JOIN_2(Z_INSERT_Int,   Z_INTEGER_BITS)
+#define Z_INSERT_INTEGER_fixed_type Z_JOIN_2(Z_INSERT_int,   Z_INTEGER_BITS)
+#define Z_INSERT_REAL_FIXED_TYPE    Z_JOIN_2(Z_INSERT_FLOAT, Z_REAL_BITS   )
+#define Z_INSERT_REAL_FixedType	    Z_JOIN_2(Z_INSERT_Float, Z_REAL_BITS   )
+#define Z_INSERT_REAL_fixed_type    Z_JOIN_2(Z_INSERT_float, Z_REAL_BITS   )
 
 #endif /* __Z_macros_templating_H__ */
