@@ -42,6 +42,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif /* __Z_formats_data_model_SILP64_Ha__ */
 
 #ifdef Z_INSPECTING_DATA_MODEL
+
 #	ifndef __Z_formats_data_model_SILP64_Hb__
 #	define __Z_formats_data_model_SILP64_Hb__
 
@@ -60,5 +61,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_PASTE_DATA_MODEL(left, right) left##SILP64##right
 #	define Z_PASTE_data_model(left, right) left##silp64##right
 
+#	define Z_DEFINED_INSERT_DATA_MODEL(left, right) \
+		(defined left##SILP64##right)
+
 #	endif /* __Z_formats_data_model_SILP64_Hb__ */
+
 #endif

@@ -42,6 +42,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif /* __Z_formats_data_model_LLP64_Ha__ */
 
 #ifdef Z_INSPECTING_DATA_MODEL
+
 #	ifndef __Z_formats_data_model_LLP64_Hb__
 #	define __Z_formats_data_model_LLP64_Hb__
 
@@ -60,5 +61,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_INSERT_DATA_MODEL(left, right) left##LLP64##right
 #	define Z_INSERT_data_model(left, right) left##llp64##right
 
+#	define Z_DEFINED_INSERT_DATA_MODEL(left, right) \
+		(defined left##LLP64##right)
+
 #	endif /* __Z_formats_data_model_LLP64_Hb__ */
+
 #endif

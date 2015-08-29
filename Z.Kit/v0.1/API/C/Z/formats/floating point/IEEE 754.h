@@ -18,7 +18,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_IEEE_754_BINARY16_MAXIMUM			    65504.0		// OK
 #define Z_IEEE_754_BINARY16_NORMALIZED_MINIMUM		    6.10351562e-05	// OK
 #define Z_IEEE_754_BINARY16_DECIMAL_DIGITS		    3
-							    2
+							    //2
 #define Z_IEEE_754_BINARY16_SIGNIFICAND_OFFSET		    0			// OK
 #define Z_IEEE_754_BINARY16_SIGNIFICAND_BITS		    10			// OK
 #define Z_IEEE_754_BINARY16_SIGNIFICAND_DIGITS		    11			// OK
@@ -142,27 +142,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif /* __Z_formats_floating_point_IEEE_754_Ha__ */
 
-#ifdef Z_INSPECTING_FLOATING_POINT
+#ifndef Z_INSPECTING_FLOATING_POINT
 
 #	ifndef __Z_formats_floating_point_IEEE_754_Hb__
 #	define __Z_formats_floating_point_IEEE_754_Hb__
-
-#	define Z_INSERT_FLOATING_POINT_FLOAT(  left, right) left##IEEE_754_BINARY32##right
-#	define Z_INSERT_FloatingPointFloat(    left, right) left##IEEE754Binary32##right
-#	define Z_INSERT_floating_point_float(  left, right) left##ieee_754_binary32##right
-#	define Z_INSERT_FLOATING_POINT_DOUBLE( left, right) left##IEEE_754_BINARY64##right
-#	define Z_INSERT_FloatingPointDouble(   left, right) left##IEEE754Binary64##right
-#	define Z_INSERT_floating_point_double( left, right) left##ieee_754_binary64##right
-#	define Z_INSERT_FLOATING_POINT_LDOUBLE(left, right) left##IEEE_754_BINARY128##right
-#	define Z_INSERT_FloatingPointLDouble(  left, right) left##IEEE754Binary128##right
-#	define Z_INSERT_floating_point_ldouble(left, right) left##ieee_754_binary128##right
-
-#	endif /* __Z_formats_floating_point_IEEE_754_Hb__ */
-
-#else
-
-#	ifndef __Z_formats_floating_point_IEEE_754_Hc__
-#	define __Z_formats_floating_point_IEEE_754_Hc__
 
 #	include <Z/types/base.h>
 
@@ -218,6 +201,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		/* TO DO */
 	) ZIEEE754Decimal128;
 
-#	endif /* __Z_formats_floating_point_IEEE_754_Hc__ */
+#	endif /* __Z_formats_floating_point_IEEE_754_Hb__ */
 
 #endif
