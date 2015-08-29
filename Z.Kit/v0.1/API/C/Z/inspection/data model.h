@@ -9,6 +9,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_data_model_H__
 #define __Z_inspection_data_model_H__
 
+#include <Z/keys/data model.h>
+#include <Z/macros/preprocessor.h>
+
 #define Z_INSPECTING_DATA_MODEL
 
 #	if defined(Z_USE_DATA_MODEL_LP32)
@@ -65,9 +68,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 #undef Z_INSPECTING_DATA_MODEL
-
-#include <Z/macros/preprocessor.h>
-#include <Z/keys/data model.h>
 
 #define Z_DATA_MODEL_LITERAL(	TYPE) Z_DATA_MODEL_SUFFIX_##TYPE
 #define Z_DATA_MODEL_TYPE(	TYPE) Z_INSERT_DATA_MODEL(Z_, _TYPE_##TYPE)

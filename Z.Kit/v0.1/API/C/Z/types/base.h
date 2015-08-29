@@ -84,7 +84,7 @@ typedef struct {zuint32 x, y, z, w;}		Z4DUInt32;
 
 #if Z_COMPILER_HAS_TYPE(UINT128)
 
-	typedef Z_COMPILER_TYPE_UINT128		zuint128;
+	typedef Z_COMPILER_TYPE(UINT128)	zuint128;
 	typedef struct {zuint128 x, y;}		Z2DUInt128;
 	typedef struct {zuint128 x, y, z;}	Z3DUInt128;
 	typedef struct {zuint128 x, y, z, w;}	Z4DUInt128;
@@ -189,7 +189,7 @@ typedef struct {zint32 x, y, z, w;}		Z4DInt32;
 
 #if Z_COMPILER_HAS_TYPE(INT128)
 
-	typedef Z_COMPILER_TYPE_INT128		zint128;
+	typedef Z_COMPILER_TYPE(INT128)		zint128;
 	typedef struct {zint128 x, y;}		Z2DInt128;
 	typedef struct {zint128 x, y, z;}	Z3DInt128;
 	typedef struct {zint128 x, y, z, w;}	Z4DInt128;
@@ -788,7 +788,7 @@ typedef Z4DIntN(Z_LONG_BITS)			Z4DLong;
 
 /* MARK: - Base real types */
 
-#if Z_COMPILER_HAS_TYPE(FLOAT)
+#if Z_LANGUAGE_HAS_TYPE(FLOAT)
 
 #	define Z_FLOAT_BITS			Z_FLOATING_POINT_BITS(FLOAT)
 
@@ -825,7 +825,7 @@ typedef Z4DIntN(Z_LONG_BITS)			Z4DLong;
 
 #endif
 
-#if Z_COMPILER_HAS_TYPE(DOUBLE)
+#if Z_LANGUAGE_HAS_TYPE(DOUBLE)
 
 #	define Z_DOUBLE_BITS			Z_FLOATING_POINT_BITS(DOUBLE)
 
@@ -860,7 +860,7 @@ typedef Z4DIntN(Z_LONG_BITS)			Z4DLong;
 #	define Z_DOUBLE_NAN			Z_FLOATN_NAN		    (Z_DOUBLE_BITS)
 #	define Z_AVAILABLE_DOUBLE
 
-#elif Z_COMPILER_HAS_TYPE(FLOAT)
+#elif Z_LANGUAGE_HAS_TYPE(FLOAT)
 
 	typedef zfloat				zdouble;
 	typedef Z2DFloat			Z2DDouble;
@@ -896,7 +896,7 @@ typedef Z4DIntN(Z_LONG_BITS)			Z4DLong;
 
 #endif
 
-#if Z_COMPILER_HAS_TYPE(LDOUBLE)
+#if Z_LANGUAGE_HAS_TYPE(LDOUBLE)
 
 #	define Z_LDOUBLE_BITS			Z_FLOATING_POINT_BITS(LDOUBLE)
 
@@ -931,7 +931,7 @@ typedef Z4DIntN(Z_LONG_BITS)			Z4DLong;
 #	define Z_LDOUBLE_NAN			Z_FLOATN_NAN		    (Z_LDOUBLE_BITS)
 #	define Z_AVAILABLE_LDOUBLE
 
-#elif Z_COMPILER_HAS_TYPE(DOUBLE) || Z_COMPILER_HAS_TYPE(FLOAT)
+#elif Z_LANGUAGE_HAS_TYPE(DOUBLE) || Z_LANGUAGE_HAS_TYPE(FLOAT)
 
 	typedef zdouble				zldouble;
 	typedef Z2DDouble			Z2DLDouble;
@@ -1357,8 +1357,8 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zfloat16 array_float16[2];
 
 		struct {Z_ENDIANIZED_MEMBERS(2, 32BIT) (
-			float16 index1,
-			float16 index0
+			zfloat16 index1,
+			zfloat16 index0
 		)} values_float16;
 #	endif
 Z_DEFINE_STRICT_UNION_END Z32Bit;
@@ -1435,8 +1435,8 @@ Z_DEFINE_STRICT_UNION_END Z32Bit;
 			zfloat32 array_float32[2];
 
 			struct {Z_ENDIANIZED_MEMBERS(2, 64BIT) (
-				float32 index1,
-				float32 index0
+				zfloat32 index1,
+				zfloat32 index0
 			)} values_float32;
 #		endif
 
@@ -1444,10 +1444,10 @@ Z_DEFINE_STRICT_UNION_END Z32Bit;
 			zfloat16 array_float16[4];
 
 			struct {Z_ENDIANIZED_MEMBERS(4, 64BIT) (
-				float16 index3,
-				float16 index2,
-				float16 index1,
-				float16 index0
+				zfloat16 index3,
+				zfloat16 index2,
+				zfloat16 index1,
+				zfloat16 index0
 			)} values_float16;
 #		endif
 	Z_DEFINE_STRICT_UNION_END Z64Bit;
@@ -1572,8 +1572,8 @@ Z_DEFINE_STRICT_UNION_END Z32Bit;
 			zfloat64 array_float64[2];
 
 			struct {Z_ENDIANIZED_MEMBERS(2, 128BIT) (
-				float64 index1,
-				float64 index0
+				zfloat64 index1,
+				zfloat64 index0
 			)} values_float64;
 #		endif
 
@@ -1581,10 +1581,10 @@ Z_DEFINE_STRICT_UNION_END Z32Bit;
 			zfloat32 array_float32[4];
 
 			struct {Z_ENDIANIZED_MEMBERS(4, 128BIT) (
-				float32 index3,
-				float32 index2,
-				float32 index1,
-				float32 index0
+				zfloat32 index3,
+				zfloat32 index2,
+				zfloat32 index1,
+				zfloat32 index0
 			)} values_float32;
 #		endif
 
@@ -1592,14 +1592,14 @@ Z_DEFINE_STRICT_UNION_END Z32Bit;
 			zfloat16 array_float16[8];
 
 			struct {Z_ENDIANIZED_MEMBERS(8, 128BIT) (
-				float16 index7,
-				float16 index6,
-				float16 index5,
-				float16 index4,
-				float16 index3,
-				float16 index2,
-				float16 index1,
-				float16 index0
+				zfloat16 index7,
+				zfloat16 index6,
+				zfloat16 index5,
+				zfloat16 index4,
+				zfloat16 index3,
+				zfloat16 index2,
+				zfloat16 index1,
+				zfloat16 index0
 			)} values_float16;
 #		endif
 	Z_DEFINE_STRICT_UNION_END Z128Bit;

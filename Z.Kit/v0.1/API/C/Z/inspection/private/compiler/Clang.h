@@ -21,7 +21,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_VERSION_STRING __clang_version__
 #endif
 
-/* MARK: - Bit field encoding */
+/* MARK: - Bit field order */
 
 #include <Z/keys/order.h>
 
@@ -57,6 +57,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - C types */
 
 #define Z_COMPILER_C_HAS_TYPE_LLONG
+#define Z_COMPILER_C_HAS_TYPE_LDOUBLE
+#define Z_COMPILER_C_HAS_TYPE_FLOAT
+#define Z_COMPILER_C_HAS_TYPE_DOUBLE
 #define Z_COMPILER_C_HAS_TYPE_LDOUBLE
 
 /* MARK: - C attributes */

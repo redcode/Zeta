@@ -57,69 +57,69 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/hardware/CPU/architecture/z Architecture.h>
 
 #	else
-#		if	defined(__amd64__)  || \
-			defined(__amd64)    || \
+#		if	defined(__amd64__ ) || \
+			defined(__amd64	  ) || \
 			defined(__x86_64__) || \
-			defined(__x86_64)   || \
-			defined(_M_X64)	    || \
-			defined(_M_AMD64)
+			defined(__x86_64  ) || \
+			defined(_M_X64	  ) || \
+			defined(_M_AMD64  )
 #			include <Z/hardware/CPU/architecture/x86-64.h>
 
-#		elif	defined(i386)	       || \
-			defined(__i386)	       || \
-			defined(__i386__)      || \
-			defined(__i486__)      || \
-			defined(__i586__)      || \
-			defined(__i686__)      || \
-			defined(_X86_)	       || \
-			defined(__X86__)       || \
-			defined(_M_IX86)       || \
+#		elif	defined(i386	     ) || \
+			defined(__i386	     ) || \
+			defined(__i386__     ) || \
+			defined(__i486__     ) || \
+			defined(__i586__     ) || \
+			defined(__i686__     ) || \
+			defined(_X86_	     ) || \
+			defined(__X86__	     ) || \
+			defined(_M_IX86	     ) || \
 			defined(__THW_INTEL__) || \
-			defined(__I86__)       || \
-			defined(__INTEL__)
+			defined(__I86__	     ) || \
+			defined(__INTEL__    )
 #			include <Z/hardware/CPU/architecture/x86-32.h>
 
 #		elif	defined(__powerpc64__) || \
-			defined(__ppc64__)     || \
-			defined(__PPC64__)     || \
-			defined(__PPU__)
+			defined(__ppc64__    ) || \
+			defined(__PPC64__    ) || \
+			defined(__PPU__	     )
 #			include <Z/hardware/CPU/architecture/PowerPC 64-bit.h>
 
-#		elif	defined(__powerpc)   || \
+#		elif	defined(__powerpc  ) || \
 			defined(__powerpc__) || \
 			defined(__POWERPC__) || \
-			defined(__ppc__)     || \
-			defined(__PPC__)     || \
-			defined(_M_PPC)	     || \
-			defined(_ARCH_PPC)
+			defined(__ppc__	   ) || \
+			defined(__PPC__	   ) || \
+			defined(_M_PPC	   ) || \
+			defined(_ARCH_PPC  )
 #			include <Z/hardware/CPU/architecture/PowerPC 32-bit.h>
 
-#		elif	defined(__arm__)	     || \
-			defined(__thumb__)	     || \
-			defined(__TARGET_ARCH_ARM)   || \
+#		elif	defined(__arm__		   ) || \
+			defined(__thumb__	   ) || \
+			defined(__TARGET_ARCH_ARM  ) || \
 			defined(__TARGET_ARCH_THUMB) || \
-			defined(_ARM)
+			defined(_ARM		   )
 #			include <Z/hardware/CPU/architecture/ARM.h>
 
 #		elif	defined(__m68k__) || \
-			defined(M68000)
+			defined(M68000	)
 #			include <Z/hardware/CPU/architecture/68K.h>
 
 #		elif	defined(__ia64__) || \
-			defined(_IA64)	  || \
+			defined(_IA64	) || \
 			defined(__IA64__) || \
-			defined(__ia64)	  || \
-			defined(_M_IA64)
+			defined(__ia64	) || \
+			defined(_M_IA64	)
 #			include <Z/hardware/CPU/architecture/Itanium.h>
 
 #		elif	defined(__alpha__) || \
-			defined(__alpha)   || \
-			defined(_M_ALPHA)
+			defined(__alpha	 ) || \
+			defined(_M_ALPHA )
 #			include <Z/hardware/CPU/architecture/Alpha.h>
 
 #		elif	defined(__mips__) || \
-			defined(mips)	  || \
-			defined(__mips)	  || \
+			defined(mips	) || \
+			defined(__mips	) || \
 			defined(__MIPS__)
 #			include <Z/hardware/CPU/architecture/MIPS.h>
 
@@ -128,24 +128,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			include <Z/hardware/CPU/architecture/PA-RISC.h>
 
 #		elif	defined(__THW_RS6000) || \
-			defined(_IBMR2)	      || \
-			defined(_POWER)	      || \
-			defined(_ARCH_PWR)    || \
-			defined(_ARCH_PWR2)
+			defined(_IBMR2	    ) || \
+			defined(_POWER	    ) || \
+			defined(_ARCH_PWR   ) || \
+			defined(_ARCH_PWR2  )
 #			include <Z/hardware/CPU/architecture/RS 6000.h>
 
 #		elif	defined(__sparc__) || \
-			defined(__sparc)
+			defined(__sparc	 )
 #			include <Z/hardware/CPU/architecture/SPARC.h>
 
 #		elif	defined(__sh__)
 #			include <Z/hardware/CPU/architecture/SuperH.h>
 
-#		elif	defined(__370__) || \
+#		elif	defined(__370__	   ) || \
 			defined(__THW_370__)
 #			include <Z/hardware/CPU/architecture/System 370.h>
 
-#		elif	defined(__s390__) || \
+#		elif	defined(__s390__ ) || \
 			defined(__s390x__)
 #			include <Z/hardware/CPU/architecture/System 390.h>
 

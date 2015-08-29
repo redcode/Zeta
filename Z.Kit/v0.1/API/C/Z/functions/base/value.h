@@ -384,6 +384,19 @@ Z_INLINE z##type z_##type##_clamp_01(z##type value)				\
 	{return z_##type##_minimum(z_##type##_maximum(value, _(0.0)), _(1.0));}
 
 
+#define z_value_are_almost_equal(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _are_almost_equal)
+#define z_value_lerp(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _lerp		 )
+#define z_value_inverse_lerp(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _inverse_lerp	 )
+#define z_value_smoothstep(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _smoothstep	 )
+#define z_value_smootherstep(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _smootherstep	 )
+#define z_value_is_almost_zero(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_almost_zero	 )
+#define z_value_is_finite(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_finite	 )
+#define z_value_is_infinity(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_infinity	 )
+#define z_value_is_nan(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_nan		 )
+#define z_value_sign_or_zero(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign_or_zero	 )
+#define z_value_clamp_01(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp_01	 )
+
+
 /* MARK: - Implementations */
 
 
@@ -492,22 +505,22 @@ Z_IMPLEMENTATION_INTEGER(Int32, int32)
 /* MARK: - Default real type definitions */
 
 
-#define z_are_almost_equal Z_INSERT_REAL_fixed_type(z_, _almost_equal  )
-#define z_minimum	   Z_INSERT_REAL_fixed_type(z_, _minimum       )
-#define z_maximum	   Z_INSERT_REAL_fixed_type(z_, _maximum       )
-#define z_lerp		   Z_INSERT_REAL_fixed_type(z_, _lerp	       )
-#define z_inverse_lerp	   Z_INSERT_REAL_fixed_type(z_, _inverse_lerp  )
-#define z_smoothstep	   Z_INSERT_REAL_fixed_type(z_, _smoothstep    )
-#define z_smootherstep	   Z_INSERT_REAL_fixed_type(z_, _smootherstep  )
-#define z_is_almost_zero   Z_INSERT_REAL_fixed_type(z_, _is_almost_zero)
-#define z_is_finite	   Z_INSERT_REAL_fixed_type(z_, _is_finite     )
-#define z_is_infinity	   Z_INSERT_REAL_fixed_type(z_, _is_infinity   )
-#define z_is_nan	   Z_INSERT_REAL_fixed_type(z_, _is_nan	       )
-#define z_absolute	   Z_INSERT_REAL_fixed_type(z_, _absolute      )
-#define z_sign		   Z_INSERT_REAL_fixed_type(z_, _sign	       )
-#define z_sign_or_zero	   Z_INSERT_REAL_fixed_type(z_, _sign_or_zero  )
-#define z_clamp		   Z_INSERT_REAL_fixed_type(z_, _clamp	       )
-#define z_clamp_01	   Z_INSERT_REAL_fixed_type(z_, _clamp_01      )
+#define z_are_almost_equal z_value_are_almost_equal(REAL)
+#define z_minimum	   z_value_minimum	   (REAL)
+#define z_maximum	   z_value_maximum	   (REAL)
+#define z_lerp		   z_value_lerp		   (REAL)
+#define z_inverse_lerp	   z_value_inverse_lerp	   (REAL)
+#define z_smoothstep	   z_value_smoothstep	   (REAL)
+#define z_smootherstep	   z_value_smootherstep	   (REAL)
+#define z_is_almost_zero   z_value_is_almost_zero  (REAL)
+#define z_is_finite	   z_value_is_finite	   (REAL)
+#define z_is_infinity	   z_value_is_infinity	   (REAL)
+#define z_is_nan	   z_value_is_nan	   (REAL)
+#define z_absolute	   z_value_absolute	   (REAL)
+#define z_sign		   z_value_sign		   (REAL)
+#define z_sign_or_zero	   z_value_sign_or_zero	   (REAL)
+#define z_clamp		   z_value_clamp	   (REAL)
+#define z_clamp_01	   z_value_clamp_01	   (REAL)
 
 
 /* MARK: - Atomic operations */
