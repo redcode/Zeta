@@ -13,7 +13,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/Z2DValue.h>
 
 
-#define Z_IMPLEMENTATION_2D_VECTOR(Type, type)							\
+/* MARK: - Template */
+
+
+#define Z_TEMPLATE_2D_VECTOR(Type, type)							\
 												\
 												\
 Z_INLINE zboolean z_2d_vector_##type##_are_equal(Z2DVector##Type a, Z2DVector##Type b)		\
@@ -41,43 +44,43 @@ Z_INLINE Z2DVector##Type z_2d_vector_##type##_reversed(Z2DVector##Type object)		
 #define z_2d_vector_type_reversed(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_vector_, _reversed	      )
 
 
-
+/* MARK: - Implementations */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)
-	Z_IMPLEMENTATION_2D_VECTOR(Float16, float16)
+	Z_TEMPLATE_2D_VECTOR(Float16, float16)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-	Z_IMPLEMENTATION_2D_VECTOR(Float24, float24)
+	Z_TEMPLATE_2D_VECTOR(Float24, float24)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-	Z_IMPLEMENTATION_2D_VECTOR(Float32, float32)
+	Z_TEMPLATE_2D_VECTOR(Float32, float32)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-	Z_IMPLEMENTATION_2D_VECTOR(Float48, float48)
+	Z_TEMPLATE_2D_VECTOR(Float48, float48)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-	Z_IMPLEMENTATION_2D_VECTOR(Float64, float64)
+	Z_TEMPLATE_2D_VECTOR(Float64, float64)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-	Z_IMPLEMENTATION_2D_VECTOR(Float72, float72)
+	Z_TEMPLATE_2D_VECTOR(Float72, float72)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-	Z_IMPLEMENTATION_2D_VECTOR(Float80, float80)
+	Z_TEMPLATE_2D_VECTOR(Float80, float80)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-	Z_IMPLEMENTATION_2D_VECTOR(Float96, float96)
+	Z_TEMPLATE_2D_VECTOR(Float96, float96)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-	Z_IMPLEMENTATION_2D_VECTOR(Float128, float128)
+	Z_TEMPLATE_2D_VECTOR(Float128, float128)
 #endif
 
 

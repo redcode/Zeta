@@ -13,7 +13,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/Z3DValue.h>
 
 
-#define Z_IMPLEMENTATION_BOX(Type, type, _)							\
+/* MARK: - Template */
+
+
+#define Z_TEMPLATE_BOX(Type, type, _)								\
 												\
 												\
 Z_INLINE zboolean z_box_##type##_are_equal(ZBox##Type a, ZBox##Type b)				\
@@ -101,7 +104,7 @@ Z_INLINE Z3D##Type z_box_##type##_center(ZBox##Type object)					\
 	}											\
 												\
 												\
- Z_INLINE ZBox##Type z_box_##type##_correct(ZBox##Type object)					\
+Z_INLINE ZBox##Type z_box_##type##_correct(ZBox##Type object)					\
 	{											\
 	if (object.size.x < _(0.0)) object.point.x -= (object.size.x = -object.size.x);		\
 	if (object.size.y < _(0.0)) object.point.y -= (object.size.y = -object.size.y);		\
@@ -195,31 +198,85 @@ Z_INLINE zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Typ
 	}
 
 
-Z_IMPLEMENTATION_BOX(Float,   float,   Z_FLOAT	)
-Z_IMPLEMENTATION_BOX(Double,  double,  Z_DOUBLE	)
-Z_IMPLEMENTATION_BOX(LDouble, ldouble, Z_LDOUBLE)
+#define z_box_type_are_equal(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _are_equal		    )
+#define z_box_type_contains(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _contains		    )
+#define z_box_type_collide(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _collide		    )
+#define z_box_type_intersection(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _intersection	    )
+#define z_box_type_union(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _union		    )
+#define z_box_type_from_vertices(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _from_vertices	    )
+#define z_box_type_is_zero(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _is_zero		    )
+#define z_box_type_center(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _center		    )
+#define z_box_type_correct(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _correct		    )
+#define z_box_type_inner_sphere(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _inner_sphere	    )
+#define z_box_type_to_aabb(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _to_aabb		    )
+#define z_box_type_absolute_point_to_unit(TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _absolute_point_to_unit)
+#define z_box_type_unit_point_to_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _unit_point_to_absolute)
+#define z_box_type_contains_point(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _contains_point	    )
+#define z_box_type_contains_line_segment( TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _contains_line_segment )
+#define z_box_type_contains_aabb(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _contains_aabb	    )
+#define z_box_type_contains_sphere(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _contains_sphere	    )
+
+
+/* MARK: - Implementations */
+
+
+#if Z_IS_AVAILABLE(FLOAT16)
+	Z_TEMPLATE_BOX(Float16, float16, Z_FLOAT16)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT24)
+	Z_TEMPLATE_BOX(Float24, float24, Z_FLOAT24)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT32)
+	Z_TEMPLATE_BOX(Float32, float32, Z_FLOAT32)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT48)
+	Z_TEMPLATE_BOX(Float48, float48, Z_FLOAT48)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT64)
+	Z_TEMPLATE_BOX(Float64, float64, Z_FLOAT64)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT72)
+	Z_TEMPLATE_BOX(Float72, float72, Z_FLOAT72)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT80)
+	Z_TEMPLATE_BOX(Float80, float80, Z_FLOAT80)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT96)
+	Z_TEMPLATE_BOX(Float96, float96, Z_FLOAT96)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT128)
+	Z_TEMPLATE_BOX(Float128, float128, Z_FLOAT128)
+#endif
 
 
 /* MARK: - Default real type definitions */
 
 
-#define z_box_are_equal		     Z_INSERT_REAL_fixed_type(z_box_, _are_equal	     )
-#define z_box_contains		     Z_INSERT_REAL_fixed_type(z_box_, _contains		     )
-#define z_box_collide		     Z_INSERT_REAL_fixed_type(z_box_, _collide		     )
-#define z_box_intersection	     Z_INSERT_REAL_fixed_type(z_box_, _intersection	     )
-#define z_box_union		     Z_INSERT_REAL_fixed_type(z_box_, _union		     )
-#define z_box_from_vertices	     Z_INSERT_REAL_fixed_type(z_box_, _from_vertices	     )
-#define z_box_is_zero		     Z_INSERT_REAL_fixed_type(z_box_, _is_zero		     )
-#define z_box_center		     Z_INSERT_REAL_fixed_type(z_box_, _center		     )
-#define z_box_correct		     Z_INSERT_REAL_fixed_type(z_box_, _correct		     )
-#define z_box_inner_sphere	     Z_INSERT_REAL_fixed_type(z_box_, _inner_sphere	     )
-#define z_box_to_aabb		     Z_INSERT_REAL_fixed_type(z_box_, _to_aabb		     )
-#define z_box_absolute_point_to_unit Z_INSERT_REAL_fixed_type(z_box_, _absolute_point_to_unit)
-#define z_box_unit_point_to_absolute Z_INSERT_REAL_fixed_type(z_box_, _unit_point_to_absolute)
-#define z_box_contains_point	     Z_INSERT_REAL_fixed_type(z_box_, _contains_point	     )
-#define z_box_contains_line_segment  Z_INSERT_REAL_fixed_type(z_box_, _contains_line_segment )
-#define z_box_contains_aabb	     Z_INSERT_REAL_fixed_type(z_box_, _contains_aabb	     )
-#define z_box_contains_sphere	     Z_INSERT_REAL_fixed_type(z_box_, _contains_sphere	     )
+#define z_box_are_equal		     z_box_type_are_equal	      (REAL)
+#define z_box_contains		     z_box_type_contains	      (REAL)
+#define z_box_collide		     z_box_type_collide		      (REAL)
+#define z_box_intersection	     z_box_type_intersection	      (REAL)
+#define z_box_union		     z_box_type_union		      (REAL)
+#define z_box_from_vertices	     z_box_type_from_vertices	      (REAL)
+#define z_box_is_zero		     z_box_type_is_zero		      (REAL)
+#define z_box_center		     z_box_type_center		      (REAL)
+#define z_box_correct		     z_box_type_correct		      (REAL)
+#define z_box_inner_sphere	     z_box_type_inner_sphere	      (REAL)
+#define z_box_to_aabb		     z_box_type_to_aabb		      (REAL)
+#define z_box_absolute_point_to_unit z_box_type_absolute_point_to_unit(REAL)
+#define z_box_unit_point_to_absolute z_box_type_unit_point_to_absolute(REAL)
+#define z_box_contains_point	     z_box_type_contains_point	      (REAL)
+#define z_box_contains_line_segment  z_box_type_contains_line_segment (REAL)
+#define z_box_contains_aabb	     z_box_type_contains_aabb	      (REAL)
+#define z_box_contains_sphere	     z_box_type_contains_sphere	      (REAL)
 
 
 #endif /* __Z_functions_geometry_ZBox_H__ */

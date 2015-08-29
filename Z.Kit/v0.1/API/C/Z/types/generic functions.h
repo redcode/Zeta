@@ -278,14 +278,14 @@ typedef void (* ZHandleContextIndexDoubleAndData ) (void* context, zsize index, 
 typedef void (* ZHandleContextIndexLDoubleAndData) (void* context, zsize index, zldouble value,   void* data);
 typedef void (* ZHandleContextIndexPointerAndData) (void* context, zsize index, void*	 pointer, void* data);
 
-#define ZHandleValue(			TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,			 )
-#define ZHandleValueAndData(		TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		  AndData)
-#define ZHandleIndexAndValue(		TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndexAnd,		 )
-#define ZHandleIndexValueAndData(	TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,		  AndData)
-#define ZHandleContextAndValue(		TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextAnd,		 )
-#define ZHandleContextValueAndData(	TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	  AndData)
-#define ZHandleContextIndexAndValue(	TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndexAnd,	 )
-#define ZHandleContextIndexValueAndData(TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex,    AndData)
+#define ZHandleType(		       TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,			)
+#define ZHandleTypeAndData(	       TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		 AndData)
+#define ZHandleIndexAndType(	       TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndexAnd,		)
+#define ZHandleIndexTypeAndData(       TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,		 AndData)
+#define ZHandleContextAndType(	       TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextAnd,		)
+#define ZHandleContextTypeAndData(     TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	 AndData)
+#define ZHandleContextIndexAndType(    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndexAnd,	)
+#define ZHandleContextIndexTypeAndData(TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex,    AndData)
 
 /* MARK: - Generic handler with stop types */
 
@@ -399,14 +399,14 @@ typedef void (* ZHandleContextIndexDoubleDataAndStop ) (void* context, zsize ind
 typedef void (* ZHandleContextIndexLDoubleDataAndStop) (void* context, zsize index, zldouble value,   void* data, zboolean *stop);
 typedef void (* ZHandleContextIndexPointerDataAndStop) (void* context, zsize index, void*    pointer, void* data, zboolean *stop);
 
-#define ZHandleValueAndStop(		    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		   AndStop    )
-#define ZHandleValueDataAndStop(	    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		   DataAndStop)
-#define ZHandleIndexValueAndStop(	    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,	   AndStop    )
-#define ZHandleIndexValueDataAndStop(	    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,	   DataAndStop)
-#define ZHandleContextValueAndStop(	    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	   AndStop    )
-#define ZHandleContextValueDataAndStop(	    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	   DataAndStop)
-#define ZHandleContextIndexValueAndStop(    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex, AndStop    )
-#define ZHandleContextIndexValueDataAndStop(TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex, DataAndStop)
+#define ZHandleTypeAndStop(		   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		  AndStop    )
+#define ZHandleTypeDataAndStop(		   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		  DataAndStop)
+#define ZHandleIndexTypeAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,	  AndStop    )
+#define ZHandleIndexTypeDataAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,	  DataAndStop)
+#define ZHandleContextTypeAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	  AndStop    )
+#define ZHandleContextTypeDataAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	  DataAndStop)
+#define ZHandleContextIndexTypeAndStop(    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex, AndStop    )
+#define ZHandleContextIndexTypeDataAndStop(TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex, DataAndStop)
 
 /* MARK: - Generic validator types */
 
@@ -520,13 +520,13 @@ typedef zboolean (* ZValidateContextIndexDoubleAndData ) (void* context, zsize i
 typedef zboolean (* ZValidateContextIndexLDoubleAndData) (void* context, zsize index, zldouble value,	void* data);
 typedef zboolean (* ZValidateContextIndexPointerAndData) (void* context, zsize index, void*    pointer, void* data);
 
-#define ZValidateValue(			  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,			     )
-#define ZValidateValueAndData(		  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,		      AndData)
-#define ZValidateIndexAndValue(		  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateIndexAnd,		     )
-#define ZValidateIndexValueAndData(	  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateIndex,	      AndData)
-#define ZValidateContextAndValue(	  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextAnd,	     )
-#define ZValidateContextValueAndData(	  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContext,	      AndData)
-#define ZValidateContextIndexAndValue(	  TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextIndexAnd,	     )
-#define ZValidateContextIndexValueAndData(TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextIndex,    AndData)
+#define ZValidateType(			 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,			    )
+#define ZValidateTypeAndData(		 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,		     AndData)
+#define ZValidateIndexAndType(		 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateIndexAnd,		    )
+#define ZValidateIndexTypeAndData(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateIndex,	     AndData)
+#define ZValidateContextAndType(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextAnd,		    )
+#define ZValidateContextTypeAndData(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContext,	     AndData)
+#define ZValidateContextIndexAndType(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextIndexAnd,	    )
+#define ZValidateContextIndexTypeAndData(TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextIndex,    AndData)
 
 #endif /* __Z_types_generic_functions_H__ */
