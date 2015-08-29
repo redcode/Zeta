@@ -14,7 +14,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/constants/numbers.h>
 
 
-#define Z_IMPLEMENTATION_SPHERE(Type, type, _)						\
+/* MARK: - Template */
+
+
+#define Z_TEMPLATE_SPHERE(Type, type, _)						\
 											\
 											\
 Z_INLINE zboolean z_sphere_##type##_are_equal(ZSphere##Type a, ZSphere##Type b)		\
@@ -50,18 +53,59 @@ Z_INLINE ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 	}
 
 
-Z_IMPLEMENTATION_SPHERE(Float,   float,	  Z_FLOAT  )
-Z_IMPLEMENTATION_SPHERE(Double,  double,  Z_DOUBLE )
-Z_IMPLEMENTATION_SPHERE(LDouble, ldouble, Z_LDOUBLE)
+#define z_sphere_type_are_equal(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _are_equal)
+#define z_sphere_type_is_zero(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _is_zero	)
+#define z_sphere_type_inner_box(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _inner_box)
+#define z_sphere_type_outer_box(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _outer_box)
+
+
+/* MARK: - Implementations */
+
+
+#if Z_IS_AVAILABLE(FLOAT16)
+	Z_TEMPLATE_SPHERE(Float16, float16, Z_FLOAT16)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT24)
+	Z_TEMPLATE_SPHERE(Float24, float24, Z_FLOAT24)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT32)
+	Z_TEMPLATE_SPHERE(Float32, float32, Z_FLOAT32)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT48)
+	Z_TEMPLATE_SPHERE(Float48, float48, Z_FLOAT48)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT64)
+	Z_TEMPLATE_SPHERE(Float64, float64, Z_FLOAT64)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT72)
+	Z_TEMPLATE_SPHERE(Float72, float72, Z_FLOAT72)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT80)
+	Z_TEMPLATE_SPHERE(Float80, float80, Z_FLOAT80)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT96)
+	Z_TEMPLATE_SPHERE(Float96, float96, Z_FLOAT96)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT128)
+	Z_TEMPLATE_SPHERE(Float128, float128, Z_FLOAT128)
+#endif
 
 
 /* MARK: - Default real type definitions */
 
 
-#define z_sphere_are_equal Z_INSERT_REAL_fixed_type(z_sphere_, _are_equal)
-#define z_sphere_is_zero   Z_INSERT_REAL_fixed_type(z_sphere_, _is_zero	 )
-#define z_sphere_inner_box Z_INSERT_REAL_fixed_type(z_sphere_, _inner_box)
-#define z_sphere_outer_box Z_INSERT_REAL_fixed_type(z_sphere_, _outer_box)
+#define z_sphere_are_equal z_sphere_type_are_equal(REAL)
+#define z_sphere_is_zero   z_sphere_type_is_zero  (REAL)
+#define z_sphere_inner_box z_sphere_type_inner_box(REAL)
+#define z_sphere_outer_box z_sphere_type_outer_box(REAL)
 
 
 #endif /* __Z_functions_geometry_ZSphere_H__ */

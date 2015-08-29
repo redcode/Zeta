@@ -24,6 +24,10 @@ Z_INLINE zboolean z_circle_##type##_are_equal(ZCircle##Type a, ZCircle##Type b)	
 	{return a.radius == b.radius && z_2d_##type##_are_equal(a.point, b.point);}		\
 												\
 												\
+Z_INLINE zboolean z_circle_##type##_is_zero(ZCircle##Type object)				\
+	{return object.radius == _(0.0) && z_2d_##type##_is_zero(object.point);}		\
+												\
+												\
 Z_INLINE ZRectangle##Type z_circle_##type##_inner_rectangle(ZCircle##Type object)		\
 	{											\
 	z##type half_size = object.radius / _(Z_SQUARE_ROOT_2);					\
@@ -40,17 +44,13 @@ Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object
 												\
 	return z_rectangle_##type								\
 		(object.point.x - object.radius, object.point.y - object.radius, size, size);	\
-	}											\
-												\
-												\
-Z_INLINE zboolean z_circle_##type##_is_zero(ZCircle##Type object)				\
-	{return object.radius == _(0.0) && z_2d_##type##_is_zero(object.point);}
+	}
 
 
 #define z_circle_type_are_equal(      TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _are_equal	    )
+#define z_circle_type_is_zero(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _is_zero	    )
 #define z_circle_type_inner_rectangle(TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _inner_rectangle)
 #define z_circle_type_outer_rectangle(TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _outer_rectangle)
-#define z_circle_type_is_zero(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _is_zero	    )
 
 
 /* MARK: - Implementations */
@@ -96,10 +96,10 @@ Z_INLINE zboolean z_circle_##type##_is_zero(ZCircle##Type object)				\
 /* MARK: - Default real type definitions */
 
 
-#define z_circle_are_equal	 Z_INSERT_REAL_fixed_type(z_circle_, _are_equal	     )
-#define z_circle_is_zero	 Z_INSERT_REAL_fixed_type(z_circle_, _is_zero	     )
-#define z_circle_inner_rectangle Z_INSERT_REAL_fixed_type(z_circle_, _inner_rectangle)
-#define z_circle_outer_rectangle Z_INSERT_REAL_fixed_type(z_circle_, _outer_rectangle)
+#define z_circle_are_equal	 z_circle_type_are_equal      (REAL)
+#define z_circle_is_zero	 z_circle_type_is_zero	      (REAL)
+#define z_circle_inner_rectangle z_circle_type_inner_rectangle(REAL)
+#define z_circle_outer_rectangle z_circle_type_outer_rectangle(REAL)
 
 
 #endif /* __Z_functions_geometry_ZCircle_H__ */
