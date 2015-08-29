@@ -51,6 +51,14 @@ Z_INLINE Z2D##Type z_2d_line_segment_##type##_lerp(Z2DLine##Type object, z##type
 	{return z_2d_##type##_lerp(object.a, object.b, alpha);}
 
 
+
+
+z_2d_line_segment_##type##_collide(Z2DLine##Type a, Z2DLine##Type b)	\
+z_2d_line_segment_##type##_center(Z2DLine##Type object)		\
+z_2d_line_segment_##type##_lerp(Z2DLine##Type object, z##type alpha)	\
+
+
+
 Z_IMPLEMENTATION_2D_LINE_SEGMENT(Float,   float,   Z_FLOAT  )
 Z_IMPLEMENTATION_2D_LINE_SEGMENT(Double,  double,  Z_DOUBLE )
 Z_IMPLEMENTATION_2D_LINE_SEGMENT(LDouble, ldouble, Z_LDOUBLE)

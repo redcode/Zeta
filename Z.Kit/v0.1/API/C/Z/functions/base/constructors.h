@@ -123,22 +123,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define z_4d_double_zero  z_4d_double (0.0,  0.0,  0.0,  0.0 )
 #define z_4d_ldouble_zero z_4d_ldouble(0.0L, 0.0L, 0.0L, 0.0L)
 
-#define z_2d_value(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_,)
-#define z_3d_value(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_,)
-#define z_4d_value(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_4d_,)
-#define z_2d_value_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _zero)
-#define z_3d_value_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _zero)
-#define z_4d_value_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_4d_, _zero)
+#define z_2d_type(     TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_,)
+#define z_3d_type(     TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_,)
+#define z_4d_type(     TYPE) Z_INSERT_##TYPE##_fixed_type(z_4d_,)
+#define z_2d_type_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _zero)
+#define z_3d_type_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _zero)
+#define z_4d_type_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_4d_, _zero)
 
 #define z_range_zero z_range(0, 0)
 
 /* MARK: - Default real type definitions */
 
-#define z_2d	  z_2d_value	 (REAL)
-#define z_3d	  z_3d_value	 (REAL)
-#define z_4d	  z_4d_value	 (REAL)
-#define z_2d_zero z_2d_value_zero(REAL)
-#define z_3d_zero z_3d_value_zero(REAL)
-#define z_4d_zero z_4d_value_zero(REAL)
+#define z_2d	  z_2d_type	(REAL)
+#define z_3d	  z_3d_type	(REAL)
+#define z_4d	  z_4d_type	(REAL)
+#define z_2d_zero z_2d_type_zero(REAL)
+#define z_3d_zero z_3d_type_zero(REAL)
+#define z_4d_zero z_4d_type_zero(REAL)
 
 #endif /* __Z_functions_base_constructors_H__ */

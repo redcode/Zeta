@@ -35,18 +35,59 @@ Z_INLINE Z2DVector##Type z_2d_vector_##type##_reversed(Z2DVector##Type object)		
 	{return z_2d_vector_##type(object.b.x, object.b.y, object.a.x, object.a.y);}
 
 
-Z_IMPLEMENTATION_2D_VECTOR(Float,   float  )
-Z_IMPLEMENTATION_2D_VECTOR(Double,  double )
-Z_IMPLEMENTATION_2D_VECTOR(LDouble, ldouble)
+#define z_2d_vector_type_are_equal(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_vector_, _are_equal	      )
+#define z_2d_vector_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_vector_, _are_perpendicular)
+#define z_2d_vector_type_is_zero(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_vector_, _is_zero	      )
+#define z_2d_vector_type_reversed(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_vector_, _reversed	      )
+
+
+
+
+
+#if Z_IS_AVAILABLE(FLOAT16)
+	Z_IMPLEMENTATION_2D_VECTOR(Float16, float16)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT24)
+	Z_IMPLEMENTATION_2D_VECTOR(Float24, float24)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT32)
+	Z_IMPLEMENTATION_2D_VECTOR(Float32, float32)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT48)
+	Z_IMPLEMENTATION_2D_VECTOR(Float48, float48)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT64)
+	Z_IMPLEMENTATION_2D_VECTOR(Float64, float64)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT72)
+	Z_IMPLEMENTATION_2D_VECTOR(Float72, float72)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT80)
+	Z_IMPLEMENTATION_2D_VECTOR(Float80, float80)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT96)
+	Z_IMPLEMENTATION_2D_VECTOR(Float96, float96)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT128)
+	Z_IMPLEMENTATION_2D_VECTOR(Float128, float128)
+#endif
 
 
 /* MARK: - Default real type definitions */
 
 
-#define z_2d_vector_are_equal	      Z_INSERT_REAL_fixed_type(z_2d_vector_, _are_equal	       )
-#define z_2d_vector_are_perpendicular Z_INSERT_REAL_fixed_type(z_2d_vector_, _are_perpendicular)
-#define z_2d_vector_is_zero	      Z_INSERT_REAL_fixed_type(z_2d_vector_, _is_zero	       )
-#define z_2d_vector_reversed	      Z_INSERT_REAL_fixed_type(z_2d_vector_, _reversed	       )
+#define z_2d_vector_are_equal	      z_2d_vector_type_are_equal	(REAL)
+#define z_2d_vector_are_perpendicular z_2d_vector_type_are_perpendicular(REAL)
+#define z_2d_vector_is_zero	      z_2d_vector_type_is_zero		(REAL)
+#define z_2d_vector_reversed	      z_2d_vector_type_reversed		(REAL)
 
 
 #endif /* __Z_functions_geometry_Z2DVector_H__ */

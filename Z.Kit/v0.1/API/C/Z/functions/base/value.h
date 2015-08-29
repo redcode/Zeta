@@ -16,7 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Reversion */
 
 
-#define Z_IMPLEMENTATION_VALUE_REVERSED(bits, level)				\
+#define Z_TEMPLATE_VALUE_REVERSED(bits, level)				\
 										\
 Z_INLINE zuint##bits z_uint##bits##_reversed_in_##level##bit(zuint##bits value)	\
 	{return Z_##bits##BIT_REVERSED_IN_##level##BIT(value);}			\
@@ -25,24 +25,24 @@ Z_INLINE zint##bits z_int##bits##_reversed_in_##level##bit(zint##bits value)	\
 	{return Z_##bits##BIT_REVERSED_IN_##level##BIT(value);}
 
 
-Z_IMPLEMENTATION_VALUE_REVERSED( 8,  1)
-Z_IMPLEMENTATION_VALUE_REVERSED( 8,  2)
-Z_IMPLEMENTATION_VALUE_REVERSED( 8,  4)
-Z_IMPLEMENTATION_VALUE_REVERSED(16,  1)
-Z_IMPLEMENTATION_VALUE_REVERSED(16,  2)
-Z_IMPLEMENTATION_VALUE_REVERSED(16,  4)
-Z_IMPLEMENTATION_VALUE_REVERSED(16,  8)
-Z_IMPLEMENTATION_VALUE_REVERSED(32,  1)
-Z_IMPLEMENTATION_VALUE_REVERSED(32,  2)
-Z_IMPLEMENTATION_VALUE_REVERSED(32,  4)
-Z_IMPLEMENTATION_VALUE_REVERSED(32,  8)
-Z_IMPLEMENTATION_VALUE_REVERSED(32, 16)
-Z_IMPLEMENTATION_VALUE_REVERSED(64,  1)
-Z_IMPLEMENTATION_VALUE_REVERSED(64,  2)
-Z_IMPLEMENTATION_VALUE_REVERSED(64,  4)
-Z_IMPLEMENTATION_VALUE_REVERSED(64,  8)
-Z_IMPLEMENTATION_VALUE_REVERSED(64, 16)
-Z_IMPLEMENTATION_VALUE_REVERSED(64, 32)
+Z_TEMPLATE_VALUE_REVERSED( 8,  1)
+Z_TEMPLATE_VALUE_REVERSED( 8,  2)
+Z_TEMPLATE_VALUE_REVERSED( 8,  4)
+Z_TEMPLATE_VALUE_REVERSED(16,  1)
+Z_TEMPLATE_VALUE_REVERSED(16,  2)
+Z_TEMPLATE_VALUE_REVERSED(16,  4)
+Z_TEMPLATE_VALUE_REVERSED(16,  8)
+Z_TEMPLATE_VALUE_REVERSED(32,  1)
+Z_TEMPLATE_VALUE_REVERSED(32,  2)
+Z_TEMPLATE_VALUE_REVERSED(32,  4)
+Z_TEMPLATE_VALUE_REVERSED(32,  8)
+Z_TEMPLATE_VALUE_REVERSED(32, 16)
+Z_TEMPLATE_VALUE_REVERSED(64,  1)
+Z_TEMPLATE_VALUE_REVERSED(64,  2)
+Z_TEMPLATE_VALUE_REVERSED(64,  4)
+Z_TEMPLATE_VALUE_REVERSED(64,  8)
+Z_TEMPLATE_VALUE_REVERSED(64, 16)
+Z_TEMPLATE_VALUE_REVERSED(64, 32)
 
 #define z_uint8_reversed  Z_SAME
 #define z_uint16_reversed z_uint16_reversed_in_8bit
@@ -55,26 +55,26 @@ Z_IMPLEMENTATION_VALUE_REVERSED(64, 32)
 
 #if Z_IS_AVAILABLE(UINT128)
 
-	Z_IMPLEMENTATION_VALUE_REVERSED(128,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSED(128,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSED(128,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSED(128,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSED(128, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSED(128, 32)
-	Z_IMPLEMENTATION_VALUE_REVERSED(128, 64)
+	Z_TEMPLATE_VALUE_REVERSED(128,  1)
+	Z_TEMPLATE_VALUE_REVERSED(128,  2)
+	Z_TEMPLATE_VALUE_REVERSED(128,  4)
+	Z_TEMPLATE_VALUE_REVERSED(128,  8)
+	Z_TEMPLATE_VALUE_REVERSED(128, 16)
+	Z_TEMPLATE_VALUE_REVERSED(128, 32)
+	Z_TEMPLATE_VALUE_REVERSED(128, 64)
 
 #	define z_uint128_reversed z_uint128_reversed_in_8bit
 #	define z_int128_reversed  z_int128_reversed_in_8bit
 
 #endif
 
-#define z_value_reversed(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reversed)
+#define z_type_reversed(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reversed)
 
 
 /* MARK: - Rotation */
 
 
-#define Z_IMPLEMENTATION_VALUE_ROTATED(bits)						\
+#define Z_TEMPLATE_VALUE_ROTATED(bits)						\
 											\
 Z_INLINE zuint##bits z_uint##bits##_rotated_left(zuint##bits value, zuint rotation)	\
 	{return Z_##bits##BIT_ROTATE_LEFT(value, rotation);}				\
@@ -89,13 +89,13 @@ Z_INLINE zint##bits z_int##bits##_rotated_right(zint##bits value, zuint rotation
 	{return Z_##bits##BIT_ROTATE_RIGHT(value, rotation);}				\
 
 
-Z_IMPLEMENTATION_VALUE_ROTATED( 8)
-Z_IMPLEMENTATION_VALUE_ROTATED(16)
-Z_IMPLEMENTATION_VALUE_ROTATED(32)
-Z_IMPLEMENTATION_VALUE_ROTATED(64)
+Z_TEMPLATE_VALUE_ROTATED( 8)
+Z_TEMPLATE_VALUE_ROTATED(16)
+Z_TEMPLATE_VALUE_ROTATED(32)
+Z_TEMPLATE_VALUE_ROTATED(64)
 
-#define z_value_rotated_left( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_left )
-#define z_value_rotated_right(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_right)
+#define z_type_rotated_left( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_left )
+#define z_type_rotated_right(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_right)
 
 
 /* MARK: - Endianness */
@@ -177,8 +177,8 @@ Z_IMPLEMENTATION_VALUE_ROTATED(64)
 #	endif
 #endif
 
-#define z_value_big_endian(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _big_endian   )
-#define z_value_little_endian(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _little_endian)
+#define z_type_big_endian(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _big_endian	  )
+#define z_type_little_endian(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _little_endian)
 
 
 /* MARK: - Mirroring */
@@ -274,7 +274,7 @@ Z_INLINE zuint32 z_bcd_to_uint32(zuint32 value)
 /* MARK: - Template for natural, integer and real types */
 
 
-#define Z_IMPLEMENTATION_NATURAL(type)							\
+#define Z_TEMPLATE_NATURAL(type)							\
 											\
 											\
 Z_INLINE void z_##type##_swap(void *a, void *b)						\
@@ -298,16 +298,16 @@ Z_INLINE z##type z_##type##_clamp(z##type value, z##type minimum, z##type maximu
 	{return z_##type##_minimum(z_##type##_maximum(value, minimum), maximum);}
 
 
-#define z_value_swap(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _swap   )
-#define z_value_minimum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _minimum)
-#define z_value_maximum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _maximum)
-#define z_value_clamp(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp  )
+#define z_type_swap(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _swap   )
+#define z_type_minimum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _minimum)
+#define z_type_maximum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _maximum)
+#define z_type_clamp(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp  )
 
 
 /* MARK: - Template for integer and real types */
 
 
-#define Z_IMPLEMENTATION_INTEGER(type)				 \
+#define Z_TEMPLATE_INTEGER(type)				 \
 								 \
 Z_INLINE z##type z_##type##_absolute(z##type value)		 \
 	{return value < (z##type)0 ? -value : value;}		 \
@@ -316,14 +316,14 @@ Z_INLINE z##type z_##type##_sign(z##type value)			 \
 	{return value >= (z##type)0 ? (z##type)1 : -(z##type)1;}
 
 
-#define z_value_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _absolute)
-#define z_value_sign(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign	 )
+#define z_type_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _absolute)
+#define z_type_sign(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign	)
 
 
 /* MARK: - Template for real types only */
 
 
-#define Z_IMPLEMENTATION_REAL(type, _, epsilon, infinity)			\
+#define Z_TEMPLATE_REAL(type, _, epsilon, infinity)				\
 										\
 										\
 Z_INLINE zboolean z_##type##_are_almost_equal(z##type a, z##type b)		\
@@ -384,120 +384,120 @@ Z_INLINE z##type z_##type##_clamp_01(z##type value)				\
 	{return z_##type##_minimum(z_##type##_maximum(value, _(0.0)), _(1.0));}
 
 
-#define z_value_are_almost_equal(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _are_almost_equal)
-#define z_value_lerp(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _lerp		 )
-#define z_value_inverse_lerp(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _inverse_lerp	 )
-#define z_value_smoothstep(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _smoothstep	 )
-#define z_value_smootherstep(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _smootherstep	 )
-#define z_value_is_almost_zero(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_almost_zero	 )
-#define z_value_is_finite(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_finite	 )
-#define z_value_is_infinity(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_infinity	 )
-#define z_value_is_nan(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_nan		 )
-#define z_value_sign_or_zero(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign_or_zero	 )
-#define z_value_clamp_01(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp_01	 )
+#define z_type_are_almost_equal(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _are_almost_equal)
+#define z_type_lerp(		TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _lerp		)
+#define z_type_inverse_lerp(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _inverse_lerp	)
+#define z_type_smoothstep(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _smoothstep	)
+#define z_type_smootherstep(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _smootherstep	)
+#define z_type_is_almost_zero(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_almost_zero	)
+#define z_type_is_finite(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_finite	)
+#define z_type_is_infinity(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_infinity	)
+#define z_type_is_nan(		TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_nan		)
+#define z_type_sign_or_zero(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign_or_zero	)
+#define z_type_clamp_01(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp_01	)
 
 
 /* MARK: - Implementations */
 
 
-Z_IMPLEMENTATION_NATURAL(UInt8,	 uint8 )
-Z_IMPLEMENTATION_NATURAL(UInt16, uint16)
-Z_IMPLEMENTATION_NATURAL(UInt32, uint32)
+Z_TEMPLATE_NATURAL(UInt8,  uint8 )
+Z_TEMPLATE_NATURAL(UInt16, uint16)
+Z_TEMPLATE_NATURAL(UInt32, uint32)
 
 #if Z_IS_AVAILABLE(UINT64)
-	Z_IMPLEMENTATION_NATURAL(UInt64, uint64)
+	Z_TEMPLATE_NATURAL(UInt64, uint64)
 #endif
 
 #if Z_IS_AVAILABLE(UINT128)
-	Z_IMPLEMENTATION_NATURAL(UInt128, uint128)
+	Z_TEMPLATE_NATURAL(UInt128, uint128)
 #endif
 
-Z_IMPLEMENTATION_NATURAL(Int8,	int8 )
-Z_IMPLEMENTATION_INTEGER(Int8,	int8 )
-Z_IMPLEMENTATION_NATURAL(Int16, int16)
-Z_IMPLEMENTATION_INTEGER(Int16, int16)
-Z_IMPLEMENTATION_NATURAL(Int32, int32)
-Z_IMPLEMENTATION_INTEGER(Int32, int32)
+Z_TEMPLATE_NATURAL(Int8,  int8 )
+Z_TEMPLATE_INTEGER(Int8,  int8 )
+Z_TEMPLATE_NATURAL(Int16, int16)
+Z_TEMPLATE_INTEGER(Int16, int16)
+Z_TEMPLATE_NATURAL(Int32, int32)
+Z_TEMPLATE_INTEGER(Int32, int32)
 
 #if Z_IS_AVAILABLE(INT64)
-	Z_IMPLEMENTATION_NATURAL(Int64, int64)
-	Z_IMPLEMENTATION_INTEGER(Int64, int64)
+	Z_TEMPLATE_NATURAL(Int64, int64)
+	Z_TEMPLATE_INTEGER(Int64, int64)
 #endif
 
 #if Z_IS_AVAILABLE(INT128)
-	Z_IMPLEMENTATION_NATURAL(Int128, int128)
-	Z_IMPLEMENTATION_INTEGER(Int128, int128)
+	Z_TEMPLATE_NATURAL(Int128, int128)
+	Z_TEMPLATE_INTEGER(Int128, int128)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT16)
-	Z_IMPLEMENTATION_NATURAL(Float16, float16)
-	Z_IMPLEMENTATION_INTEGER(Float16, float16)
+	Z_TEMPLATE_NATURAL(Float16, float16)
+	Z_TEMPLATE_INTEGER(Float16, float16)
 
-	Z_IMPLEMENTATION_REAL
+	Z_TEMPLATE_REAL
 		(Float16, float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-	Z_IMPLEMENTATION_NATURAL(Float24, float24)
-	Z_IMPLEMENTATION_INTEGER(Float24, float24)
+	Z_TEMPLATE_NATURAL(Float24, float24)
+	Z_TEMPLATE_INTEGER(Float24, float24)
 
-	Z_IMPLEMENTATION_REAL
+	Z_TEMPLATE_REAL
 		(Float24, float24, Z_FLOAT24, Z_FLOAT24_EPSILON, Z_FLOAT24_INFINITY)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-	Z_IMPLEMENTATION_NATURAL(Float32, float32)
-	Z_IMPLEMENTATION_INTEGER(Float32, float32)
+	Z_TEMPLATE_NATURAL(Float32, float32)
+	Z_TEMPLATE_INTEGER(Float32, float32)
 
-	Z_IMPLEMENTATION_REAL
+	Z_TEMPLATE_REAL
 		(Float32, float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-	Z_IMPLEMENTATION_NATURAL(Float48, float48)
-	Z_IMPLEMENTATION_INTEGER(Float48, float48)
+	Z_TEMPLATE_NATURAL(Float48, float48)
+	Z_TEMPLATE_INTEGER(Float48, float48)
 
-	Z_IMPLEMENTATION_REAL
+	Z_TEMPLATE_REAL
 		(Float48, float48, Z_FLOAT48, Z_FLOAT48_EPSILON, Z_FLOAT48_INFINITY)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-	Z_IMPLEMENTATION_NATURAL(Float64, float64)
-	Z_IMPLEMENTATION_INTEGER(Float64, float64)
+	Z_TEMPLATE_NATURAL(Float64, float64)
+	Z_TEMPLATE_INTEGER(Float64, float64)
 
-	Z_IMPLEMENTATION_REAL
+	Z_TEMPLATE_REAL
 		(Float64, float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-	Z_IMPLEMENTATION_NATURAL(Float72, float72)
-	Z_IMPLEMENTATION_INTEGER(Float72, float72)
+	Z_TEMPLATE_NATURAL(Float72, float72)
+	Z_TEMPLATE_INTEGER(Float72, float72)
 
-	Z_IMPLEMENTATION_REAL
+	Z_TEMPLATE_REAL
 		(Float72, float72, Z_FLOAT72, Z_FLOAT72_EPSILON, Z_FLOAT72_INFINITY)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-	Z_IMPLEMENTATION_NATURAL(Float80, float80)
-	Z_IMPLEMENTATION_INTEGER(Float80, float80)
+	Z_TEMPLATE_NATURAL(Float80, float80)
+	Z_TEMPLATE_INTEGER(Float80, float80)
 
-	Z_IMPLEMENTATION_REAL
+	Z_TEMPLATE_REAL
 		(Float80, float80, Z_FLOAT80, Z_FLOAT80_EPSILON, Z_FLOAT80_INFINITY)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-	Z_IMPLEMENTATION_NATURAL(Float96, float96)
-	Z_IMPLEMENTATION_INTEGER(Float96, float96)
+	Z_TEMPLATE_NATURAL(Float96, float96)
+	Z_TEMPLATE_INTEGER(Float96, float96)
 
-	Z_IMPLEMENTATION_REAL
+	Z_TEMPLATE_REAL
 		(Float96, float96, Z_FLOAT96, Z_FLOAT96_EPSILON, Z_FLOAT96_INFINITY)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-	Z_IMPLEMENTATION_NATURAL(Float128, float128)
-	Z_IMPLEMENTATION_INTEGER(Float128, float128)
+	Z_TEMPLATE_NATURAL(Float128, float128)
+	Z_TEMPLATE_INTEGER(Float128, float128)
 
-	Z_IMPLEMENTATION_REAL
+	Z_TEMPLATE_REAL
 		(Float128, float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
 #endif
 
@@ -505,22 +505,22 @@ Z_IMPLEMENTATION_INTEGER(Int32, int32)
 /* MARK: - Default real type definitions */
 
 
-#define z_are_almost_equal z_value_are_almost_equal(REAL)
-#define z_minimum	   z_value_minimum	   (REAL)
-#define z_maximum	   z_value_maximum	   (REAL)
-#define z_lerp		   z_value_lerp		   (REAL)
-#define z_inverse_lerp	   z_value_inverse_lerp	   (REAL)
-#define z_smoothstep	   z_value_smoothstep	   (REAL)
-#define z_smootherstep	   z_value_smootherstep	   (REAL)
-#define z_is_almost_zero   z_value_is_almost_zero  (REAL)
-#define z_is_finite	   z_value_is_finite	   (REAL)
-#define z_is_infinity	   z_value_is_infinity	   (REAL)
-#define z_is_nan	   z_value_is_nan	   (REAL)
-#define z_absolute	   z_value_absolute	   (REAL)
-#define z_sign		   z_value_sign		   (REAL)
-#define z_sign_or_zero	   z_value_sign_or_zero	   (REAL)
-#define z_clamp		   z_value_clamp	   (REAL)
-#define z_clamp_01	   z_value_clamp_01	   (REAL)
+#define z_are_almost_equal z_type_are_almost_equal(REAL)
+#define z_minimum	   z_type_minimum	  (REAL)
+#define z_maximum	   z_type_maximum	  (REAL)
+#define z_lerp		   z_type_lerp		  (REAL)
+#define z_inverse_lerp	   z_type_inverse_lerp	  (REAL)
+#define z_smoothstep	   z_type_smoothstep	  (REAL)
+#define z_smootherstep	   z_type_smootherstep	  (REAL)
+#define z_is_almost_zero   z_type_is_almost_zero  (REAL)
+#define z_is_finite	   z_type_is_finite	  (REAL)
+#define z_is_infinity	   z_type_is_infinity	  (REAL)
+#define z_is_nan	   z_type_is_nan	  (REAL)
+#define z_absolute	   z_type_absolute	  (REAL)
+#define z_sign		   z_type_sign		  (REAL)
+#define z_sign_or_zero	   z_type_sign_or_zero	  (REAL)
+#define z_clamp		   z_type_clamp		  (REAL)
+#define z_clamp_01	   z_type_clamp_01	  (REAL)
 
 
 /* MARK: - Atomic operations */
@@ -2551,26 +2551,26 @@ Z_IMPLEMENTATION_INTEGER(Int32, int32)
 #endif
 
 
-#define z_value_atomic_set_if_equal(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_set_if_equal	   )
-#define z_value_atomic_get_then_set(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_set	   )
-#define z_value_atomic_get_then_increment(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_increment)
-#define z_value_atomic_get_then_decrement(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_decrement)
-#define z_value_atomic_get_then_add(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_add	   )
-#define z_value_atomic_get_then_subtract( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_subtract )
-#define z_value_atomic_get_then_and(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_and	   )
-#define z_value_atomic_get_then_or(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_or	   )
-#define z_value_atomic_get_then_xor(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_xor	   )
-#define z_value_atomic_get_then_nand(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_nand	   )
-#define z_value_atomic_get_then_not(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_not	   )
-#define z_value_atomic_increment_then_get(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_increment_then_get)
-#define z_value_atomic_decrement_then_get(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_decrement_then_get)
-#define z_value_atomic_add_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_add_then_get	   )
-#define z_value_atomic_subtract_then_get( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_subtract_then_get )
-#define z_value_atomic_and_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_and_then_get	   )
-#define z_value_atomic_or_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_or_then_get	   )
-#define z_value_atomic_xor_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_xor_then_get	   )
-#define z_value_atomic_nand_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_nand_then_get	   )
-#define z_value_atomic_not_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_not_then_get	   )
+#define z_type_atomic_set_if_equal(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_set_if_equal	  )
+#define z_type_atomic_get_then_set(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_set	  )
+#define z_type_atomic_get_then_increment(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_increment)
+#define z_type_atomic_get_then_decrement(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_decrement)
+#define z_type_atomic_get_then_add(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_add	  )
+#define z_type_atomic_get_then_subtract( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_subtract )
+#define z_type_atomic_get_then_and(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_and	  )
+#define z_type_atomic_get_then_or(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_or	  )
+#define z_type_atomic_get_then_xor(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_xor	  )
+#define z_type_atomic_get_then_nand(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_nand	  )
+#define z_type_atomic_get_then_not(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_not	  )
+#define z_type_atomic_increment_then_get(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_increment_then_get)
+#define z_type_atomic_decrement_then_get(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_decrement_then_get)
+#define z_type_atomic_add_then_get(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_add_then_get	  )
+#define z_type_atomic_subtract_then_get( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_subtract_then_get )
+#define z_type_atomic_and_then_get(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_and_then_get	  )
+#define z_type_atomic_or_then_get(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_or_then_get	  )
+#define z_type_atomic_xor_then_get(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_xor_then_get	  )
+#define z_type_atomic_nand_then_get(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_nand_then_get	  )
+#define z_type_atomic_not_then_get(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_not_then_get	  )
 
 
 #endif /* __Z_functions_base_value_H__ */
