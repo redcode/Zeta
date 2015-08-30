@@ -16,57 +16,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Reversion */
 
 
-#define Z_TEMPLATE_VALUE_REVERSED(bits, level)				\
-										\
-Z_INLINE zuint##bits z_uint##bits##_reversed_in_##level##bit(zuint##bits value)	\
-	{return Z_##bits##BIT_REVERSED_IN_##level##BIT(value);}			\
-										\
-Z_INLINE zint##bits z_int##bits##_reversed_in_##level##bit(zint##bits value)	\
+#define Z_TEMPLATE_VALUE_REVERSED(type, bits, level)			\
+									\
+Z_INLINE z##type z_##type##_reversed_in_##level##bit(z##type value)	\
 	{return Z_##bits##BIT_REVERSED_IN_##level##BIT(value);}
 
-
-Z_TEMPLATE_VALUE_REVERSED( 8,  1)
-Z_TEMPLATE_VALUE_REVERSED( 8,  2)
-Z_TEMPLATE_VALUE_REVERSED( 8,  4)
-Z_TEMPLATE_VALUE_REVERSED(16,  1)
-Z_TEMPLATE_VALUE_REVERSED(16,  2)
-Z_TEMPLATE_VALUE_REVERSED(16,  4)
-Z_TEMPLATE_VALUE_REVERSED(16,  8)
-Z_TEMPLATE_VALUE_REVERSED(32,  1)
-Z_TEMPLATE_VALUE_REVERSED(32,  2)
-Z_TEMPLATE_VALUE_REVERSED(32,  4)
-Z_TEMPLATE_VALUE_REVERSED(32,  8)
-Z_TEMPLATE_VALUE_REVERSED(32, 16)
-Z_TEMPLATE_VALUE_REVERSED(64,  1)
-Z_TEMPLATE_VALUE_REVERSED(64,  2)
-Z_TEMPLATE_VALUE_REVERSED(64,  4)
-Z_TEMPLATE_VALUE_REVERSED(64,  8)
-Z_TEMPLATE_VALUE_REVERSED(64, 16)
-Z_TEMPLATE_VALUE_REVERSED(64, 32)
-
-#define z_uint8_reversed  Z_SAME
-#define z_uint16_reversed z_uint16_reversed_in_8bit
-#define z_uint32_reversed z_uint32_reversed_in_8bit
-#define z_uint64_reversed z_uint64_reversed_in_8bit
-#define z_int8_reversed   Z_SAME
-#define z_int16_reversed  z_int16_reversed_in_8bit
-#define z_int32_reversed  z_int32_reversed_in_8bit
-#define z_int64_reversed  z_int64_reversed_in_8bit
-
-#if Z_IS_AVAILABLE(UINT128)
-
-	Z_TEMPLATE_VALUE_REVERSED(128,  1)
-	Z_TEMPLATE_VALUE_REVERSED(128,  2)
-	Z_TEMPLATE_VALUE_REVERSED(128,  4)
-	Z_TEMPLATE_VALUE_REVERSED(128,  8)
-	Z_TEMPLATE_VALUE_REVERSED(128, 16)
-	Z_TEMPLATE_VALUE_REVERSED(128, 32)
-	Z_TEMPLATE_VALUE_REVERSED(128, 64)
-
-#	define z_uint128_reversed z_uint128_reversed_in_8bit
-#	define z_int128_reversed  z_int128_reversed_in_8bit
-
-#endif
 
 #define z_type_reversed(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reversed)
 
@@ -74,25 +28,16 @@ Z_TEMPLATE_VALUE_REVERSED(64, 32)
 /* MARK: - Rotation */
 
 
-#define Z_TEMPLATE_VALUE_ROTATED(bits)							\
-											\
-Z_INLINE zuint##bits z_uint##bits##_rotated_left(zuint##bits value, zuint rotation)	\
-	{return Z_##bits##BIT_ROTATE_LEFT(value, rotation);}				\
-											\
-Z_INLINE zuint##bits z_uint##bits##_rotated_right(zuint##bits value, zuint rotation)	\
-	{return Z_##bits##BIT_ROTATE_RIGHT(value, rotation);}				\
-											\
-Z_INLINE zint##bits z_int##bits##_rotated_left(zint##bits value, zuint rotation)	\
-	{return Z_##bits##BIT_ROTATE_LEFT(value, rotation);}				\
-											\
-Z_INLINE zint##bits z_int##bits##_rotated_right(zint##bits value, zuint rotation)	\
-	{return Z_##bits##BIT_ROTATE_RIGHT(value, rotation);}				\
+#define Z_TEMPLATE_VALUE_ROTATED(type, bits)				 \
+									 \
+Z_INLINE z##type z_##type##_rotated_left(z##type value, zuint rotation)	 \
+	{return Z_##bits##BIT_ROTATE_LEFT(value, rotation);}		 \
+									 \
+Z_INLINE z##type z_##type##_rotated_right(z##type value, zuint rotation) \
+	{return Z_##bits##BIT_ROTATE_RIGHT(value, rotation);}
 
 
-Z_TEMPLATE_VALUE_ROTATED( 8)
-Z_TEMPLATE_VALUE_ROTATED(16)
-Z_TEMPLATE_VALUE_ROTATED(32)
-Z_TEMPLATE_VALUE_ROTATED(64)
+
 
 #define z_type_rotated_left( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_left )
 #define z_type_rotated_right(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_right)
@@ -399,34 +344,119 @@ Z_INLINE z##type z_##type##_clamp_01(z##type value)				\
 
 /* MARK: - Implementations */
 
+Z_TEMPLATE_NATURAL	 (uint8)
+Z_TEMPLATE_VALUE_ROTATED (uint8, 8)
+Z_TEMPLATE_VALUE_REVERSED(uint8, 8, 1)
+Z_TEMPLATE_VALUE_REVERSED(uint8, 8, 2)
+Z_TEMPLATE_VALUE_REVERSED(uint8, 8, 4)
 
-Z_TEMPLATE_NATURAL(uint8 )
-Z_TEMPLATE_NATURAL(uint16)
-Z_TEMPLATE_NATURAL(uint32)
+#define z_uint8_reversed Z_SAME
+
+Z_TEMPLATE_NATURAL	 (uint16)
+Z_TEMPLATE_VALUE_ROTATED (uint16, 16)
+Z_TEMPLATE_VALUE_REVERSED(uint16, 16, 1)
+Z_TEMPLATE_VALUE_REVERSED(uint16, 16, 2)
+Z_TEMPLATE_VALUE_REVERSED(uint16, 16, 4)
+Z_TEMPLATE_VALUE_REVERSED(uint16, 16, 8)
+
+#define z_uint16_reversed z_uint16_reversed_in_8bit
+
+Z_TEMPLATE_NATURAL	 (uint32)
+Z_TEMPLATE_VALUE_ROTATED (uint32, 32)
+Z_TEMPLATE_VALUE_REVERSED(uint32, 32,  1)
+Z_TEMPLATE_VALUE_REVERSED(uint32, 32,  2)
+Z_TEMPLATE_VALUE_REVERSED(uint32, 32,  4)
+Z_TEMPLATE_VALUE_REVERSED(uint32, 32,  8)
+Z_TEMPLATE_VALUE_REVERSED(uint32, 32, 16)
+
+#define z_uint32_reversed z_uint32_reversed_in_8bit
 
 #if Z_IS_AVAILABLE(UINT64)
-	Z_TEMPLATE_NATURAL(uint64)
+	Z_TEMPLATE_NATURAL	 (uint64)
+	Z_TEMPLATE_VALUE_ROTATED (uint64, 64)
+	Z_TEMPLATE_VALUE_REVERSED(uint64, 64,  1)
+	Z_TEMPLATE_VALUE_REVERSED(uint64, 64,  2)
+	Z_TEMPLATE_VALUE_REVERSED(uint64, 64,  4)
+	Z_TEMPLATE_VALUE_REVERSED(uint64, 64,  8)
+	Z_TEMPLATE_VALUE_REVERSED(uint64, 64, 16)
+	Z_TEMPLATE_VALUE_REVERSED(uint64, 64, 32)
+
+#	define z_uint64_reversed z_uint64_reversed_in_8bit
 #endif
 
 #if Z_IS_AVAILABLE(UINT128)
-	Z_TEMPLATE_NATURAL(uint128)
+	Z_TEMPLATE_NATURAL	 (uint128)
+	Z_TEMPLATE_VALUE_ROTATED (uint128, 128)
+	Z_TEMPLATE_VALUE_REVERSED(uint128, 128,  1)
+	Z_TEMPLATE_VALUE_REVERSED(uint128, 128,  2)
+	Z_TEMPLATE_VALUE_REVERSED(uint128, 128,  4)
+	Z_TEMPLATE_VALUE_REVERSED(uint128, 128,  8)
+	Z_TEMPLATE_VALUE_REVERSED(uint128, 128, 16)
+	Z_TEMPLATE_VALUE_REVERSED(uint128, 128, 32)
+	Z_TEMPLATE_VALUE_REVERSED(uint128, 128, 64)
+
+#	define z_uint128_reversed z_uint128_reversed_in_8bit
 #endif
 
-Z_TEMPLATE_NATURAL(int8 )
-Z_TEMPLATE_INTEGER(int8 )
-Z_TEMPLATE_NATURAL(int16)
-Z_TEMPLATE_INTEGER(int16)
-Z_TEMPLATE_NATURAL(int32)
-Z_TEMPLATE_INTEGER(int32)
+Z_TEMPLATE_NATURAL	 (int8)
+Z_TEMPLATE_INTEGER	 (int8)
+Z_TEMPLATE_VALUE_ROTATED (int8, 8)
+Z_TEMPLATE_VALUE_REVERSED(int8, 8, 1)
+Z_TEMPLATE_VALUE_REVERSED(int8, 8, 2)
+Z_TEMPLATE_VALUE_REVERSED(int8, 8, 4)
+
+#define z_int8_reversed Z_SAME
+
+
+Z_TEMPLATE_NATURAL	 (int16)
+Z_TEMPLATE_INTEGER	 (int16)
+Z_TEMPLATE_VALUE_ROTATED (int16, 16)
+Z_TEMPLATE_VALUE_REVERSED(int16, 16, 1)
+Z_TEMPLATE_VALUE_REVERSED(int16, 16, 2)
+Z_TEMPLATE_VALUE_REVERSED(int16, 16, 4)
+Z_TEMPLATE_VALUE_REVERSED(int16, 16, 8)
+
+#define z_int16_reversed z_int16_reversed_in_8bit
+
+
+Z_TEMPLATE_NATURAL	 (int32)
+Z_TEMPLATE_INTEGER	 (int32)
+Z_TEMPLATE_VALUE_ROTATED (int32, 32)
+Z_TEMPLATE_VALUE_REVERSED(int32, 32,  1)
+Z_TEMPLATE_VALUE_REVERSED(int32, 32,  2)
+Z_TEMPLATE_VALUE_REVERSED(int32, 32,  4)
+Z_TEMPLATE_VALUE_REVERSED(int32, 32,  8)
+Z_TEMPLATE_VALUE_REVERSED(int32, 32, 16)
+
+#define z_int32_reversed z_int32_reversed_in_8bit
 
 #if Z_IS_AVAILABLE(INT64)
-	Z_TEMPLATE_NATURAL(int64)
-	Z_TEMPLATE_INTEGER(int64)
+	Z_TEMPLATE_NATURAL	 (int64)
+	Z_TEMPLATE_INTEGER	 (int64)
+	Z_TEMPLATE_VALUE_ROTATED (int64, 64)
+	Z_TEMPLATE_VALUE_REVERSED(int64, 64,  1)
+	Z_TEMPLATE_VALUE_REVERSED(int64, 64,  2)
+	Z_TEMPLATE_VALUE_REVERSED(int64, 64,  4)
+	Z_TEMPLATE_VALUE_REVERSED(int64, 64,  8)
+	Z_TEMPLATE_VALUE_REVERSED(int64, 64, 16)
+	Z_TEMPLATE_VALUE_REVERSED(int64, 64, 32)
+
+#	define z_int64_reversed z_int64_reversed_in_8bit
 #endif
 
 #if Z_IS_AVAILABLE(INT128)
-	Z_TEMPLATE_NATURAL(int128)
-	Z_TEMPLATE_INTEGER(int128)
+	Z_TEMPLATE_NATURAL	 (int128)
+	Z_TEMPLATE_INTEGER	 (int128)
+	Z_TEMPLATE_VALUE_ROTATED (int128, 128)
+	Z_TEMPLATE_VALUE_REVERSED(int128, 128,	1)
+	Z_TEMPLATE_VALUE_REVERSED(int128, 128,	2)
+	Z_TEMPLATE_VALUE_REVERSED(int128, 128,	4)
+	Z_TEMPLATE_VALUE_REVERSED(int128, 128,	8)
+	Z_TEMPLATE_VALUE_REVERSED(int128, 128, 16)
+	Z_TEMPLATE_VALUE_REVERSED(int128, 128, 32)
+	Z_TEMPLATE_VALUE_REVERSED(int128, 128, 64)
+
+#	define z_int128_reversed z_int128_reversed_in_8bit
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT16)
