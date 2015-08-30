@@ -11,20 +11,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/functions/geometry/Z2DLine.h>
 
-#define z_aabr_float_are_equal	 z_2d_line_float_are_equal
-#define z_aabr_float_is_zero	 z_2d_line_float_is_zero
-#define z_aabr_float_center	 z_2d_line_segment_float_center
 
-#define z_aabr_double_are_equal	 z_2d_line_double_are_equal
-#define z_aabr_double_is_zero	 z_2d_line_double_is_zero
-#define z_aabr_double_center	 z_2d_line_segment_double_center
-
-#define z_aabr_ldouble_are_equal z_2d_line_ldouble_are_equal
-#define z_aabr_ldouble_is_zero	 z_2d_line_ldouble_is_zero
-#define z_aabr_ldouble_center	 z_2d_line_segment_ldouble_center
+/* MARK: - Template */
 
 
-#define Z_IMPLEMENTATION_AABR(Type, type, _)							\
+#define Z_TEMPLATE_AABR(Type, type, _)								\
 												\
 												\
 Z_INLINE zboolean z_aabr_##type##_contains(ZAABR##Type a, ZAABR##Type b)			\
@@ -409,9 +400,151 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 	}
 
 
-Z_IMPLEMENTATION_AABR(Float,   float,	Z_FLOAT  )
-Z_IMPLEMENTATION_AABR(Double,  double,	Z_DOUBLE )
-Z_IMPLEMENTATION_AABR(LDouble, ldouble, Z_LDOUBLE)
+#define z_aabr_type_contains(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _contains	      )
+#define z_aabr_type_collide(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _collide		      )
+#define z_aabr_type_intersection(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _intersection	      )
+#define z_aabr_type_union(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _union		      )
+#define z_aabr_type_from_vertices(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _from_vertices	      )
+#define z_aabr_type_size(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _size		      )
+#define z_aabr_type_area(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _area		      )
+#define z_aabr_type_middle_x(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _middle_x	      )
+#define z_aabr_type_middle_y(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _middle_y	      )
+#define z_aabr_type_top_left(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _top_left	      )
+#define z_aabr_type_top_right(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _top_right	      )
+#define z_aabr_type_top_center(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _top_center	      )
+#define z_aabr_type_bottom_left(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _bottom_left	      )
+#define z_aabr_type_bottom_right(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _bottom_right	      )
+#define z_aabr_type_bottom_center(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _bottom_center	      )
+#define z_aabr_type_center_left(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _center_left	      )
+#define z_aabr_type_center_right(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _center_right	      )
+#define z_aabr_type_top_half(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _top_half	      )
+#define z_aabr_type_bottom_half(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _bottom_half	      )
+#define z_aabr_type_left_half(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _left_half	      )
+#define z_aabr_type_right_half(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _right_half	      )
+#define z_aabr_type_top_left_quarter(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _top_left_quarter      )
+#define z_aabr_type_top_right_quarter(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _top_right_quarter     )
+#define z_aabr_type_bottom_left_quarter(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _bottom_left_quarter   )
+#define z_aabr_type_bottom_right_quarter(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _bottom_right_quarter  )
+#define z_aabr_type_align_in_top_left(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _align_in_top_left     )
+#define z_aabr_type_align_in_top_right(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _align_in_top_right    )
+#define z_aabr_type_align_in_top_center(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _align_in_top_center   )
+#define z_aabr_type_align_in_bottom_left(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _align_in_bottom_left  )
+#define z_aabr_type_align_in_bottom_right( TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _align_in_bottom_right )
+#define z_aabr_type_align_in_bottom_center(TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _align_in_bottom_center)
+#define z_aabr_type_align_in_center_left(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _align_in_center_left  )
+#define z_aabr_type_align_in_center_right( TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _align_in_center_right )
+#define z_aabr_type_align_in_center(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _align_in_center	      )
+#define z_aabr_type_fit_in_top_left(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _fit_in_top_left	      )
+#define z_aabr_type_fit_in_top_right(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _fit_in_top_right      )
+#define z_aabr_type_fit_in_top_center(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _fit_in_top_center     )
+#define z_aabr_type_fit_in_bottom_left(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _fit_in_bottom_left    )
+#define z_aabr_type_fit_in_bottom_right(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _fit_in_bottom_right   )
+#define z_aabr_type_fit_in_bottom_center(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _fit_in_bottom_center  )
+#define z_aabr_type_fit_in_center_left(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _fit_in_center_left    )
+#define z_aabr_type_fit_in_center_right(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _fit_in_center_right   )
+#define z_aabr_type_fit_in_center(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _fit_in_center	      )
+#define z_aabr_type_inner_circle(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _inner_circle	      )
+#define z_aabr_type_to_rectangle(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _to_rectangle	      )
+#define z_aabr_type_absolute_point_to_unit(TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _absolute_point_to_unit)
+#define z_aabr_type_unit_point_to_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _unit_point_to_absolute)
+#define z_aabr_type_contains_point(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _contains_point	      )
+#define z_aabr_type_contains_line_segment( TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _contains_line_segment )
+#define z_aabr_type_contains_rectangle(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _contains_rectangle    )
+#define z_aabr_type_contains_circle(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _contains_circle	      )
+
+
+/* MARK: - Implementations */
+
+
+#if Z_IS_AVAILABLE(FLOAT16)
+
+#	define z_aabr_float16_are_equal	z_2d_line_float16_are_equal
+#	define z_aabr_float16_is_zero	z_2d_line_float16_is_zero
+#	define z_aabr_float16_center	z_2d_line_segment_float16_center
+
+	Z_TEMPLATE_AABR(Float16, float16, Z_FLOAT16)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT24)
+
+#	define z_aabr_float24_are_equal	z_2d_line_float24_are_equal
+#	define z_aabr_float24_is_zero	z_2d_line_float24_is_zero
+#	define z_aabr_float24_center	z_2d_line_segment_float24_center
+
+	Z_TEMPLATE_AABR(Float24, float24, Z_FLOAT24)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT32)
+
+#	define z_aabr_float32_are_equal	z_2d_line_float32_are_equal
+#	define z_aabr_float32_is_zero	z_2d_line_float32_is_zero
+#	define z_aabr_float32_center	z_2d_line_segment_float32_center
+
+	Z_TEMPLATE_AABR(Float32, float32, Z_FLOAT32)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT48)
+
+#	define z_aabr_float48_are_equal	z_2d_line_float48_are_equal
+#	define z_aabr_float48_is_zero	z_2d_line_float48_is_zero
+#	define z_aabr_float48_center	z_2d_line_segment_float48_center
+
+	Z_TEMPLATE_AABR(Float48, float48, Z_FLOAT48)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT64)
+
+#	define z_aabr_float64_are_equal	z_2d_line_float64_are_equal
+#	define z_aabr_float64_is_zero	z_2d_line_float64_is_zero
+#	define z_aabr_float64_center	z_2d_line_segment_float64_center
+
+	Z_TEMPLATE_AABR(Float64, float64, Z_FLOAT64)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT72)
+
+#	define z_aabr_float72_are_equal	z_2d_line_float72_are_equal
+#	define z_aabr_float72_is_zero	z_2d_line_float72_is_zero
+#	define z_aabr_float72_center	z_2d_line_segment_float72_center
+
+	Z_TEMPLATE_AABR(Float72, float72, Z_FLOAT72)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT80)
+
+#	define z_aabr_float80_are_equal	z_2d_line_float80_are_equal
+#	define z_aabr_float80_is_zero	z_2d_line_float80_is_zero
+#	define z_aabr_float80_center	z_2d_line_segment_float80_center
+
+	Z_TEMPLATE_AABR(Float80, float80, Z_FLOAT80)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT96)
+
+#	define z_aabr_float96_are_equal	z_2d_line_float96_are_equal
+#	define z_aabr_float96_is_zero	z_2d_line_float96_is_zero
+#	define z_aabr_float96_center	z_2d_line_segment_float96_center
+
+	Z_TEMPLATE_AABR(Float96, float96, Z_FLOAT96)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT128)
+
+#	define z_aabr_float128_are_equal z_2d_line_float128_are_equal
+#	define z_aabr_float128_is_zero	 z_2d_line_float128_is_zero
+#	define z_aabr_float128_center	 z_2d_line_segment_float128_center
+
+	Z_TEMPLATE_AABR(Float128, float128, Z_FLOAT128)
+
+#endif
 
 
 /* MARK: - Default real type definitions */
@@ -421,57 +554,57 @@ Z_IMPLEMENTATION_AABR(LDouble, ldouble, Z_LDOUBLE)
 #define z_aabr_is_zero	 z_2d_line_is_zero
 #define z_aabr_center	 z_2d_line_segment_center
 
-#define z_aabr_contains		      Z_INSERT_REAL_fixed_type(z_aabr_, _contains	       )
-#define z_aabr_collide		      Z_INSERT_REAL_fixed_type(z_aabr_, _collide	       )
-#define z_aabr_intersection	      Z_INSERT_REAL_fixed_type(z_aabr_, _intersection	       )
-#define z_aabr_union		      Z_INSERT_REAL_fixed_type(z_aabr_, _union		       )
-#define z_aabr_from_vertices	      Z_INSERT_REAL_fixed_type(z_aabr_, _from_vertices	       )
-#define z_aabr_size		      Z_INSERT_REAL_fixed_type(z_aabr_, _size		       )
-#define z_aabr_area		      Z_INSERT_REAL_fixed_type(z_aabr_, _area		       )
-#define z_aabr_middle_x		      Z_INSERT_REAL_fixed_type(z_aabr_, _middle_x	       )
-#define z_aabr_middle_y		      Z_INSERT_REAL_fixed_type(z_aabr_, _middle_y	       )
-#define z_aabr_top_left		      Z_INSERT_REAL_fixed_type(z_aabr_, _top_left	       )
-#define z_aabr_top_right	      Z_INSERT_REAL_fixed_type(z_aabr_, _top_right	       )
-#define z_aabr_top_center	      Z_INSERT_REAL_fixed_type(z_aabr_, _top_center	       )
-#define z_aabr_bottom_left	      Z_INSERT_REAL_fixed_type(z_aabr_, _bottom_left	       )
-#define z_aabr_bottom_right	      Z_INSERT_REAL_fixed_type(z_aabr_, _bottom_right	       )
-#define z_aabr_bottom_center	      Z_INSERT_REAL_fixed_type(z_aabr_, _bottom_center	       )
-#define z_aabr_center_left	      Z_INSERT_REAL_fixed_type(z_aabr_, _center_left	       )
-#define z_aabr_center_right	      Z_INSERT_REAL_fixed_type(z_aabr_, _center_right	       )
-#define z_aabr_top_half		      Z_INSERT_REAL_fixed_type(z_aabr_, _top_half	       )
-#define z_aabr_bottom_half	      Z_INSERT_REAL_fixed_type(z_aabr_, _bottom_half	       )
-#define z_aabr_left_half	      Z_INSERT_REAL_fixed_type(z_aabr_, _left_half	       )
-#define z_aabr_right_half	      Z_INSERT_REAL_fixed_type(z_aabr_, _right_half	       )
-#define z_aabr_top_left_quarter	      Z_INSERT_REAL_fixed_type(z_aabr_, _top_left_quarter      )
-#define z_aabr_top_right_quarter      Z_INSERT_REAL_fixed_type(z_aabr_, _top_right_quarter     )
-#define z_aabr_bottom_left_quarter    Z_INSERT_REAL_fixed_type(z_aabr_, _bottom_left_quarter   )
-#define z_aabr_bottom_right_quarter   Z_INSERT_REAL_fixed_type(z_aabr_, _bottom_right_quarter  )
-#define z_aabr_align_in_top_left      Z_INSERT_REAL_fixed_type(z_aabr_, _align_in_top_left     )
-#define z_aabr_align_in_top_right     Z_INSERT_REAL_fixed_type(z_aabr_, _align_in_top_right    )
-#define z_aabr_align_in_top_center    Z_INSERT_REAL_fixed_type(z_aabr_, _align_in_top_center   )
-#define z_aabr_align_in_bottom_left   Z_INSERT_REAL_fixed_type(z_aabr_, _align_in_bottom_left  )
-#define z_aabr_align_in_bottom_right  Z_INSERT_REAL_fixed_type(z_aabr_, _align_in_bottom_right )
-#define z_aabr_align_in_bottom_center Z_INSERT_REAL_fixed_type(z_aabr_, _align_in_bottom_center)
-#define z_aabr_align_in_center_left   Z_INSERT_REAL_fixed_type(z_aabr_, _align_in_center_left  )
-#define z_aabr_align_in_center_right  Z_INSERT_REAL_fixed_type(z_aabr_, _align_in_center_right )
-#define z_aabr_align_in_center	      Z_INSERT_REAL_fixed_type(z_aabr_, _align_in_center       )
-#define z_aabr_fit_in_top_left	      Z_INSERT_REAL_fixed_type(z_aabr_, _fit_in_top_left       )
-#define z_aabr_fit_in_top_right	      Z_INSERT_REAL_fixed_type(z_aabr_, _fit_in_top_right      )
-#define z_aabr_fit_in_top_center      Z_INSERT_REAL_fixed_type(z_aabr_, _fit_in_top_center     )
-#define z_aabr_fit_in_bottom_left     Z_INSERT_REAL_fixed_type(z_aabr_, _fit_in_bottom_left    )
-#define z_aabr_fit_in_bottom_right    Z_INSERT_REAL_fixed_type(z_aabr_, _fit_in_bottom_right   )
-#define z_aabr_fit_in_bottom_center   Z_INSERT_REAL_fixed_type(z_aabr_, _fit_in_bottom_center  )
-#define z_aabr_fit_in_center_left     Z_INSERT_REAL_fixed_type(z_aabr_, _fit_in_center_left    )
-#define z_aabr_fit_in_center_right    Z_INSERT_REAL_fixed_type(z_aabr_, _fit_in_center_right   )
-#define z_aabr_fit_in_center	      Z_INSERT_REAL_fixed_type(z_aabr_, _fit_in_center	       )
-#define z_aabr_inner_circle	      Z_INSERT_REAL_fixed_type(z_aabr_, _inner_circle	       )
-#define z_aabr_to_rectangle	      Z_INSERT_REAL_fixed_type(z_aabr_, _to_rectangle	       )
-#define z_aabr_absolute_point_to_unit Z_INSERT_REAL_fixed_type(z_aabr_, _absolute_point_to_unit)
-#define z_aabr_unit_point_to_absolute Z_INSERT_REAL_fixed_type(z_aabr_, _unit_point_to_absolute)
-#define z_aabr_contains_point	      Z_INSERT_REAL_fixed_type(z_aabr_, _contains_point	       )
-#define z_aabr_contains_line_segment  Z_INSERT_REAL_fixed_type(z_aabr_, _contains_line_segment )
-#define z_aabr_contains_rectangle     Z_INSERT_REAL_fixed_type(z_aabr_, _contains_rectangle    )
-#define z_aabr_contains_circle	      Z_INSERT_REAL_fixed_type(z_aabr_, _contains_circle       )
+#define z_aabr_contains		      z_aabr_type_contains		(REAL)
+#define z_aabr_collide		      z_aabr_type_collide		(REAL)
+#define z_aabr_intersection	      z_aabr_type_intersection		(REAL)
+#define z_aabr_union		      z_aabr_type_union			(REAL)
+#define z_aabr_from_vertices	      z_aabr_type_from_vertices		(REAL)
+#define z_aabr_size		      z_aabr_type_size			(REAL)
+#define z_aabr_area		      z_aabr_type_area			(REAL)
+#define z_aabr_middle_x		      z_aabr_type_middle_x		(REAL)
+#define z_aabr_middle_y		      z_aabr_type_middle_y		(REAL)
+#define z_aabr_top_left		      z_aabr_type_top_left		(REAL)
+#define z_aabr_top_right	      z_aabr_type_top_right		(REAL)
+#define z_aabr_top_center	      z_aabr_type_top_center		(REAL)
+#define z_aabr_bottom_left	      z_aabr_type_bottom_left		(REAL)
+#define z_aabr_bottom_right	      z_aabr_type_bottom_right		(REAL)
+#define z_aabr_bottom_center	      z_aabr_type_bottom_center		(REAL)
+#define z_aabr_center_left	      z_aabr_type_center_left		(REAL)
+#define z_aabr_center_right	      z_aabr_type_center_right		(REAL)
+#define z_aabr_top_half		      z_aabr_type_top_half		(REAL)
+#define z_aabr_bottom_half	      z_aabr_type_bottom_half		(REAL)
+#define z_aabr_left_half	      z_aabr_type_left_half		(REAL)
+#define z_aabr_right_half	      z_aabr_type_right_half		(REAL)
+#define z_aabr_top_left_quarter	      z_aabr_type_top_left_quarter	(REAL)
+#define z_aabr_top_right_quarter      z_aabr_type_top_right_quarter	(REAL)
+#define z_aabr_bottom_left_quarter    z_aabr_type_bottom_left_quarter	(REAL)
+#define z_aabr_bottom_right_quarter   z_aabr_type_bottom_right_quarter	(REAL)
+#define z_aabr_align_in_top_left      z_aabr_type_align_in_top_left	(REAL)
+#define z_aabr_align_in_top_right     z_aabr_type_align_in_top_right	(REAL)
+#define z_aabr_align_in_top_center    z_aabr_type_align_in_top_center	(REAL)
+#define z_aabr_align_in_bottom_left   z_aabr_type_align_in_bottom_left	(REAL)
+#define z_aabr_align_in_bottom_right  z_aabr_type_align_in_bottom_right	(REAL)
+#define z_aabr_align_in_bottom_center z_aabr_type_align_in_bottom_center(REAL)
+#define z_aabr_align_in_center_left   z_aabr_type_align_in_center_left	(REAL)
+#define z_aabr_align_in_center_right  z_aabr_type_align_in_center_right	(REAL)
+#define z_aabr_align_in_center	      z_aabr_type_align_in_center	(REAL)
+#define z_aabr_fit_in_top_left	      z_aabr_type_fit_in_top_left	(REAL)
+#define z_aabr_fit_in_top_right	      z_aabr_type_fit_in_top_right	(REAL)
+#define z_aabr_fit_in_top_center      z_aabr_type_fit_in_top_center	(REAL)
+#define z_aabr_fit_in_bottom_left     z_aabr_type_fit_in_bottom_left	(REAL)
+#define z_aabr_fit_in_bottom_right    z_aabr_type_fit_in_bottom_right	(REAL)
+#define z_aabr_fit_in_bottom_center   z_aabr_type_fit_in_bottom_center	(REAL)
+#define z_aabr_fit_in_center_left     z_aabr_type_fit_in_center_left	(REAL)
+#define z_aabr_fit_in_center_right    z_aabr_type_fit_in_center_right	(REAL)
+#define z_aabr_fit_in_center	      z_aabr_type_fit_in_center		(REAL)
+#define z_aabr_inner_circle	      z_aabr_type_inner_circle		(REAL)
+#define z_aabr_to_rectangle	      z_aabr_type_to_rectangle		(REAL)
+#define z_aabr_absolute_point_to_unit z_aabr_type_absolute_point_to_unit(REAL)
+#define z_aabr_unit_point_to_absolute z_aabr_type_unit_point_to_absolute(REAL)
+#define z_aabr_contains_point	      z_aabr_type_contains_point	(REAL)
+#define z_aabr_contains_line_segment  z_aabr_type_contains_line_segment	(REAL)
+#define z_aabr_contains_rectangle     z_aabr_type_contains_rectangle	(REAL)
+#define z_aabr_contains_circle	      z_aabr_type_contains_circle	(REAL)
 
 
 #endif /* __Z_functions_geometry_ZAABR_H__ */

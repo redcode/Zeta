@@ -11,20 +11,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/functions/geometry/Z3DLine.h>
 
-#define z_aabb_float_are_equal	 z_3d_line_float_are_equal
-#define z_aabb_float_is_zero	 z_3d_line_float_is_zero
-#define z_aabb_float_center	 z_3d_line_segment_float_center
 
-#define z_aabb_double_are_equal	 z_3d_line_double_are_equal
-#define z_aabb_double_is_zero	 z_3d_line_double_is_zero
-#define z_aabb_double_center	 z_3d_line_segment_double_center
-
-#define z_aabb_ldouble_are_equal z_3d_line_ldouble_are_equal
-#define z_aabb_ldouble_is_zero	 z_3d_line_ldouble_is_zero
-#define z_aabb_ldouble_center	 z_3d_line_segment_ldouble_center
+/* MARK: - Template */
 
 
-#define Z_IMPLEMENTATION_AABB(Type, type, _)							\
+#define Z_TEMPLATE_AABB(Type, type, _)								\
 												\
 												\
 Z_INLINE zboolean z_aabb_##type##_contains(ZAABB##Type a, ZAABB##Type b)			\
@@ -168,9 +159,115 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 	}
 
 
-Z_IMPLEMENTATION_AABB(Float,   float,	Z_FLOAT	 )
-Z_IMPLEMENTATION_AABB(Double,  double,	Z_DOUBLE )
-Z_IMPLEMENTATION_AABB(LDouble, ldouble, Z_LDOUBLE)
+#define z_aabb_type_contains(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains	      )
+#define z_aabb_type_collide(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _collide		      )
+#define z_aabb_type_intersection(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _intersection	      )
+#define z_aabb_type_union(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _union		      )
+#define z_aabb_type_from_vertices(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _from_vertices	      )
+#define z_aabb_type_size(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _size		      )
+#define z_aabb_type_volume(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _volume		      )
+#define z_aabb_type_inner_sphere(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _inner_sphere	      )
+#define z_aabb_type_to_box(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _to_box		      )
+#define z_aabb_type_absolute_point_to_unit(TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _absolute_point_to_unit)
+#define z_aabb_type_unit_point_to_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _unit_point_to_absolute)
+#define z_aabb_type_contains_point(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_point	      )
+#define z_aabb_type_contains_line_segment( TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_line_segment )
+#define z_aabb_type_contains_box(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_box	      )
+#define z_aabb_type_contains_sphere(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_sphere	      )
+
+
+/* MARK: - Implementations */
+
+
+#if Z_IS_AVAILABLE(FLOAT16)
+
+#	define z_aabb_float16_are_equal	z_3d_line_float16_are_equal
+#	define z_aabb_float16_is_zero	z_3d_line_float16_is_zero
+#	define z_aabb_float16_center	z_3d_line_segment_float16_center
+
+	Z_TEMPLATE_AABB(Float16, float16, Z_FLOAT16)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT24)
+
+#	define z_aabb_float24_are_equal	z_3d_line_float24_are_equal
+#	define z_aabb_float24_is_zero	z_3d_line_float24_is_zero
+#	define z_aabb_float24_center	z_3d_line_segment_float24_center
+
+	Z_TEMPLATE_AABB(Float24, float24, Z_FLOAT24)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT32)
+
+#	define z_aabb_float32_are_equal	z_3d_line_float32_are_equal
+#	define z_aabb_float32_is_zero	z_3d_line_float32_is_zero
+#	define z_aabb_float32_center	z_3d_line_segment_float32_center
+
+	Z_TEMPLATE_AABB(Float32, float32, Z_FLOAT32)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT48)
+
+#	define z_aabb_float48_are_equal	z_3d_line_float48_are_equal
+#	define z_aabb_float48_is_zero	z_3d_line_float48_is_zero
+#	define z_aabb_float48_center	z_3d_line_segment_float48_center
+
+	Z_TEMPLATE_AABB(Float48, float48, Z_FLOAT48)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT64)
+
+#	define z_aabb_float64_are_equal	z_3d_line_float64_are_equal
+#	define z_aabb_float64_is_zero	z_3d_line_float64_is_zero
+#	define z_aabb_float64_center	z_3d_line_segment_float64_center
+
+	Z_TEMPLATE_AABB(Float64, float64, Z_FLOAT64)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT72)
+
+#	define z_aabb_float72_are_equal	z_3d_line_float72_are_equal
+#	define z_aabb_float72_is_zero	z_3d_line_float72_is_zero
+#	define z_aabb_float72_center	z_3d_line_segment_float72_center
+
+	Z_TEMPLATE_AABB(Float72, float72, Z_FLOAT72)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT80)
+
+#	define z_aabb_float80_are_equal	z_3d_line_float80_are_equal
+#	define z_aabb_float80_is_zero	z_3d_line_float80_is_zero
+#	define z_aabb_float80_center	z_3d_line_segment_float80_center
+
+	Z_TEMPLATE_AABB(Float80, float80, Z_FLOAT80)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT96)
+
+#	define z_aabb_float96_are_equal	z_3d_line_float96_are_equal
+#	define z_aabb_float96_is_zero	z_3d_line_float96_is_zero
+#	define z_aabb_float96_center	z_3d_line_segment_float96_center
+
+	Z_TEMPLATE_AABB(Float96, float96, Z_FLOAT96)
+
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT128)
+
+#	define z_aabb_float128_are_equal z_3d_line_float128_are_equal
+#	define z_aabb_float128_is_zero	 z_3d_line_float128_is_zero
+#	define z_aabb_float128_center	 z_3d_line_segment_float128_center
+
+	Z_TEMPLATE_AABB(Float128, float128, Z_FLOAT128)
+
+#endif
 
 
 /* MARK: - Default real type definitions */
@@ -180,21 +277,21 @@ Z_IMPLEMENTATION_AABB(LDouble, ldouble, Z_LDOUBLE)
 #define z_aabb_is_zero	 z_3d_line_is_zero
 #define z_aabb_center	 z_3d_line_segment_center
 
-#define z_aabb_contains		      Z_INSERT_REAL_fixed_type(z_aabb_, _contains	       )
-#define z_aabb_collide		      Z_INSERT_REAL_fixed_type(z_aabb_, _collide	       )
-#define z_aabb_intersection	      Z_INSERT_REAL_fixed_type(z_aabb_, _intersection	       )
-#define z_aabb_union		      Z_INSERT_REAL_fixed_type(z_aabb_, _union		       )
-#define z_aabb_from_vertices	      Z_INSERT_REAL_fixed_type(z_aabb_, _from_vertices	       )
-#define z_aabb_size		      Z_INSERT_REAL_fixed_type(z_aabb_, _size		       )
-#define z_aabb_volume		      Z_INSERT_REAL_fixed_type(z_aabb_, _volume		       )
-#define z_aabb_inner_sphere	      Z_INSERT_REAL_fixed_type(z_aabb_, _inner_sphere	       )
-#define z_aabb_to_box		      Z_INSERT_REAL_fixed_type(z_aabb_, _to_box		       )
-#define z_aabb_absolute_point_to_unit Z_INSERT_REAL_fixed_type(z_aabb_, _absolute_point_to_unit)
-#define z_aabb_unit_point_to_absolute Z_INSERT_REAL_fixed_type(z_aabb_, _unit_point_to_absolute)
-#define z_aabb_contains_point	      Z_INSERT_REAL_fixed_type(z_aabb_, _contains_point	       )
-#define z_aabb_contains_line_segment  Z_INSERT_REAL_fixed_type(z_aabb_, _contains_line_segment )
-#define z_aabb_contains_box	      Z_INSERT_REAL_fixed_type(z_aabb_, _contains_box	       )
-#define z_aabb_contains_sphere	      Z_INSERT_REAL_fixed_type(z_aabb_, _contains_sphere       )
+#define z_aabb_contains		      z_aabb_type_contains		(REAL)
+#define z_aabb_collide		      z_aabb_type_collide		(REAL)
+#define z_aabb_intersection	      z_aabb_type_intersection		(REAL)
+#define z_aabb_union		      z_aabb_type_union			(REAL)
+#define z_aabb_from_vertices	      z_aabb_type_from_vertices		(REAL)
+#define z_aabb_size		      z_aabb_type_size			(REAL)
+#define z_aabb_volume		      z_aabb_type_volume		(REAL)
+#define z_aabb_inner_sphere	      z_aabb_type_inner_sphere		(REAL)
+#define z_aabb_to_box		      z_aabb_type_to_box		(REAL)
+#define z_aabb_absolute_point_to_unit z_aabb_type_absolute_point_to_unit(REAL)
+#define z_aabb_unit_point_to_absolute z_aabb_type_unit_point_to_absolute(REAL)
+#define z_aabb_contains_point	      z_aabb_type_contains_point	(REAL)
+#define z_aabb_contains_line_segment  z_aabb_type_contains_line_segment	(REAL)
+#define z_aabb_contains_box	      z_aabb_type_contains_box		(REAL)
+#define z_aabb_contains_sphere	      z_aabb_type_contains_sphere	(REAL)
 
 
 #endif /* __Z_functions_geometry_ZAABB_H__ */
