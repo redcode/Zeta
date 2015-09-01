@@ -11,6 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/macros/templating.h>
 
+
 #if Z_LANGUAGE_HAS(COMPOUND_LITERAL)
 
 #	define z_2d_uint8(x, y)	      ((Z2DUInt8){x, y})
@@ -131,6 +132,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z4D##Type z_4d_##type(z##type x, z##type y, z##type z, z##type w) 	\
 		{Z4D##Type magnitude = {x, y, z, w}; return magnitude;}
 
+
 	Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(UInt8,  uint8	)
 	Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(UInt16, uint16)
 	Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(UInt32, uint32)
@@ -191,10 +193,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Float128, float128)
 #	endif
 
+
 	Z_INLINE ZRange z_range(zsize index, zsize size)
 		{ZRange range = {index, size}; return range;}
 
 #endif
+
 
 #define z_2d_uint8_zero z_2d_uint8(0, 0)
 #define z_3d_uint8_zero z_3d_uint8(0, 0, 0)

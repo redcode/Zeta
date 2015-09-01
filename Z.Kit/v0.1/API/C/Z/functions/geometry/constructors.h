@@ -14,33 +14,207 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(COMPOUND_LITERAL)
 
-#	define z_2d_vector_float(  a_x, a_y, b_x, b_y)		 ((Z2DVectorFloat  ){{a_x, a_y}, {b_x, b_y}})
-#	define z_2d_vector_double( a_x, a_y, b_x, b_y)		 ((Z2DVectorDouble ){{a_x, a_y}, {b_x, b_y}})
-#	define z_2d_vector_ldouble(a_x, a_y, b_x, b_y)		 ((Z2DVectorLDouble){{a_x, a_y}, {b_x, b_y}})
+#	if Z_IS_AVAILABLE(FLOAT16)
 
-#	define z_circle_float(	x, y, radius)			 ((ZCircleFloat  ){{x, y}, radius})
-#	define z_circle_double(	x, y, radius)			 ((ZCircleDouble ){{x, y}, radius})
-#	define z_circle_ldouble(x, y, radius)			 ((ZCircleLDouble){{x, y}, radius})
+#		define z_2d_vector_float16(a_x, a_y, b_x, b_y) \
+			((Z2DVectorFloat16){{a_x, a_y}, {b_x, b_y}})
 
-#	define z_rectangle_float(  x, y, size_x, size_y)	 ((ZRectangleFloat  ){{x, y}, {size_x, size_y}})
-#	define z_rectangle_double( x, y, size_x, size_y)	 ((ZRectangleDouble ){{x, y}, {size_x, size_y}})
-#	define z_rectangle_ldouble(x, y, size_x, size_y)	 ((ZRectangleLDouble){{x, y}, {size_x, size_y}})
+#		define z_3d_vector_float16(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DVectorFloat16){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
-#	define z_3d_vector_float(  a_x, a_y, a_z, b_x, b_y, b_z) ((Z3DVectorFloat  ){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
-#	define z_3d_vector_double( a_x, a_y, a_z, b_x, b_y, b_z) ((Z3DVectorDouble ){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
-#	define z_3d_vector_ldouble(a_x, a_y, a_z, b_x, b_y, b_z) ((Z3DVectorLDouble){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#		define z_rectangle_float(x, y, size_x, size_y) \
+			((ZRectangleFloat16){{x, y}, {size_x, size_y}})
 
-#	define z_sphere_float(	x, y, z, radius)		 ((ZCircleFloat  ){{x, y, z}, radius})
-#	define z_sphere_double(	x, y, z, radius)		 ((ZCircleDouble ){{x, y, z}, radius})
-#	define z_sphere_ldouble(x, y, z, radius)		 ((ZCircleLDouble){{x, y, z}, radius})
+#		define z_box_float16(x, y, z, size_x, size_y, size_z) \
+			((ZBoxFloat16){{x, y, z}, {size_x, size_y, size_z}})
 
-#	define z_box_float(  x, y, z, size_x, size_y, size_z)	 ((ZBoxFloat  ){{x, y, z}, {size_x, size_y, size_z}})
-#	define z_box_double( x, y, z, size_x, size_y, size_z)	 ((ZBoxDouble ){{x, y, z}, {size_x, size_y, size_z}})
-#	define z_box_ldouble(x, y, z, size_x, size_y, size_z)	 ((ZBoxLDouble){{x, y, z}, {size_x, size_y, size_z}})
+#		define z_circle_float16(x, y, radius) \
+			((ZCircleFloat16){{x, y}, radius})
+
+#		define z_sphere_float16(x, y, z, radius) \
+			((ZCircleFloat16){{x, y, z}, radius})
+
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT24)
+
+#		define z_2d_vector_float24(a_x, a_y, b_x, b_y) \
+			((Z2DVectorFloat24){{a_x, a_y}, {b_x, b_y}})
+
+#		define z_3d_vector_float24(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DVectorFloat24){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+
+#		define z_rectangle_float(x, y, size_x, size_y) \
+			((ZRectangleFloat24){{x, y}, {size_x, size_y}})
+
+#		define z_box_float24(x, y, z, size_x, size_y, size_z) \
+			((ZBoxFloat24){{x, y, z}, {size_x, size_y, size_z}})
+
+#		define z_circle_float24(x, y, radius) \
+			((ZCircleFloat24){{x, y}, radius})
+
+#		define z_sphere_float24(x, y, z, radius) \
+			((ZCircleFloat24){{x, y, z}, radius})
+
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT32)
+
+#		define z_2d_vector_float32(a_x, a_y, b_x, b_y) \
+			((Z2DVectorFloat32){{a_x, a_y}, {b_x, b_y}})
+
+#		define z_3d_vector_float32(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DVectorFloat32){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+
+#		define z_rectangle_float(x, y, size_x, size_y) \
+			((ZRectangleFloat32){{x, y}, {size_x, size_y}})
+
+#		define z_box_float32(x, y, z, size_x, size_y, size_z) \
+			((ZBoxFloat32){{x, y, z}, {size_x, size_y, size_z}})
+
+#		define z_circle_float32(x, y, radius) \
+			((ZCircleFloat32){{x, y}, radius})
+
+#		define z_sphere_float32(x, y, z, radius) \
+			((ZCircleFloat32){{x, y, z}, radius})
+
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT48)
+
+#		define z_2d_vector_float48(a_x, a_y, b_x, b_y) \
+			((Z2DVectorFloat48){{a_x, a_y}, {b_x, b_y}})
+
+#		define z_3d_vector_float48(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DVectorFloat48){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+
+#		define z_rectangle_float(x, y, size_x, size_y) \
+			((ZRectangleFloat48){{x, y}, {size_x, size_y}})
+
+#		define z_box_float48(x, y, z, size_x, size_y, size_z) \
+			((ZBoxFloat48){{x, y, z}, {size_x, size_y, size_z}})
+
+#		define z_circle_float48(x, y, radius) \
+			((ZCircleFloat48){{x, y}, radius})
+
+#		define z_sphere_float48(x, y, z, radius) \
+			((ZCircleFloat48){{x, y, z}, radius})
+
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT64)
+
+#		define z_2d_vector_float64(a_x, a_y, b_x, b_y) \
+			((Z2DVectorFloat64){{a_x, a_y}, {b_x, b_y}})
+
+#		define z_3d_vector_float64(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DVectorFloat64){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+
+#		define z_rectangle_float(x, y, size_x, size_y) \
+			((ZRectangleFloat64){{x, y}, {size_x, size_y}})
+
+#		define z_box_float64(x, y, z, size_x, size_y, size_z) \
+			((ZBoxFloat64){{x, y, z}, {size_x, size_y, size_z}})
+
+#		define z_circle_float64(x, y, radius) \
+			((ZCircleFloat64){{x, y}, radius})
+
+#		define z_sphere_float64(x, y, z, radius) \
+			((ZCircleFloat64){{x, y, z}, radius})
+
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT72)
+
+#		define z_2d_vector_float72(a_x, a_y, b_x, b_y) \
+			((Z2DVectorFloat72){{a_x, a_y}, {b_x, b_y}})
+
+#		define z_3d_vector_float72(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DVectorFloat72){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+
+#		define z_rectangle_float(x, y, size_x, size_y) \
+			((ZRectangleFloat72){{x, y}, {size_x, size_y}})
+
+#		define z_box_float72(x, y, z, size_x, size_y, size_z) \
+			((ZBoxFloat72){{x, y, z}, {size_x, size_y, size_z}})
+
+#		define z_circle_float72(x, y, radius) \
+			((ZCircleFloat72){{x, y}, radius})
+
+#		define z_sphere_float72(x, y, z, radius) \
+			((ZCircleFloat72){{x, y, z}, radius})
+
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT80)
+
+#		define z_2d_vector_float80(a_x, a_y, b_x, b_y) \
+			((Z2DVectorFloat80){{a_x, a_y}, {b_x, b_y}})
+
+#		define z_3d_vector_float80(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DVectorFloat80){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+
+#		define z_rectangle_float(x, y, size_x, size_y) \
+			((ZRectangleFloat80){{x, y}, {size_x, size_y}})
+
+#		define z_box_float80(x, y, z, size_x, size_y, size_z) \
+			((ZBoxFloat80){{x, y, z}, {size_x, size_y, size_z}})
+
+#		define z_circle_float80(x, y, radius) \
+			((ZCircleFloat80){{x, y}, radius})
+
+#		define z_sphere_float80(x, y, z, radius) \
+			((ZCircleFloat80){{x, y, z}, radius})
+
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT96)
+
+#		define z_2d_vector_float96(a_x, a_y, b_x, b_y) \
+			((Z2DVectorFloat96){{a_x, a_y}, {b_x, b_y}})
+
+#		define z_3d_vector_float96(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DVectorFloat96){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+
+#		define z_rectangle_float(x, y, size_x, size_y) \
+			((ZRectangleFloat96){{x, y}, {size_x, size_y}})
+
+#		define z_box_float96(x, y, z, size_x, size_y, size_z) \
+			((ZBoxFloat96){{x, y, z}, {size_x, size_y, size_z}})
+
+#		define z_circle_float96(x, y, radius) \
+			((ZCircleFloat96){{x, y}, radius})
+
+#		define z_sphere_float96(x, y, z, radius) \
+			((ZCircleFloat96){{x, y, z}, radius})
+
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT128)
+
+#		define z_2d_vector_float128(a_x, a_y, b_x, b_y) \
+			((Z2DVectorFloat128){{a_x, a_y}, {b_x, b_y}})
+
+#		define z_3d_vector_float128(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DVectorFloat128){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+
+#		define z_rectangle_float(x, y, size_x, size_y) \
+			((ZRectangleFloat128){{x, y}, {size_x, size_y}})
+
+#		define z_box_float128(x, y, z, size_x, size_y, size_z) \
+			((ZBoxFloat128){{x, y, z}, {size_x, size_y, size_z}})
+
+#		define z_circle_float128(x, y, radius) \
+			((ZCircleFloat128){{x, y}, radius})
+
+#		define z_sphere_float128(x, y, z, radius) \
+			((ZCircleFloat128){{x, y, z}, radius})
+
+#	endif
 
 #else
 
-#	define Z_IMPLEMENTATION_GEOMETRY_CONSTRUCTORS(Type, type)		\
+#	define Z_TEMPLATE_GEOMETRY_CONSTRUCTORS(Type, type)			\
 										\
 										\
 	Z_INLINE Z2DVector##Type z_2d_vector_##type(				\
@@ -52,29 +226,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		{								\
 		Z2DVector##Type vector = {{a_x, a_y}, {b_x, b_y}};		\
 		return vector;							\
-		}								\
-										\
-										\
-	Z_INLINE ZCircle##Type z_circle_##type(					\
-		z##type x,							\
-		z##type y,							\
-		z##type radius							\
-	)									\
-		{								\
-		ZCircle##Type circle = {{x, y}, radius};			\
-		return circle;							\
-		}								\
-										\
-										\
-	Z_INLINE ZRectangle##Type z_rectangle_##type(				\
-		z##type x,							\
-		z##type y,							\
-		z##type size_x,							\
-		z##type size_y							\
-	)									\
-		{								\
-		ZRectangle##Type rectangle = {{x, y}, {size_x, size_y}};	\
-		return rectangle;						\
 		}								\
 										\
 										\
@@ -92,15 +243,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		}								\
 										\
 										\
-	Z_INLINE ZSphere##Type z_sphere_##type(					\
+	Z_INLINE ZRectangle##Type z_rectangle_##type(				\
 		z##type x,							\
 		z##type y,							\
-		z##type z,							\
-		z##type radius							\
+		z##type size_x,							\
+		z##type size_y							\
 	)									\
 		{								\
-		ZSphere##Type sphere = {{x, y, z}, radius};			\
-		return sphere;							\
+		ZRectangle##Type rectangle = {{x, y}, {size_x, size_y}};	\
+		return rectangle;						\
 		}								\
 										\
 										\
@@ -115,12 +266,63 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		{								\
 		ZBox##Type box = {{x, y, z}, {size_x, size_y, size_z}};		\
 		return box;							\
+		}								\
+										\
+										\
+	Z_INLINE ZCircle##Type z_circle_##type(					\
+		z##type x,							\
+		z##type y,							\
+		z##type radius							\
+	)									\
+		{								\
+		ZCircle##Type circle = {{x, y}, radius};			\
+		return circle;							\
+		}								\
+										\
+										\
+	Z_INLINE ZSphere##Type z_sphere_##type(					\
+		z##type x,							\
+		z##type y,							\
+		z##type z,							\
+		z##type radius							\
+	)									\
+		{								\
+		ZSphere##Type sphere = {{x, y, z}, radius};			\
+		return sphere;							\
 		}
 
 
-	Z_IMPLEMENTATION_GEOMETRY_CONSTRUCTORS(Float,	float  )
-	Z_IMPLEMENTATION_GEOMETRY_CONSTRUCTORS(Double,	double )
-	Z_IMPLEMENTATION_GEOMETRY_CONSTRUCTORS(LDouble, ldouble)
+#	if Z_IS_AVAILABLE(FLOAT16)
+		Z_TEMPLATE_GEOMETRY_CONSTRUCTORS(Float16, float16)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT32)
+		Z_TEMPLATE_GEOMETRY_CONSTRUCTORS(Float32, float32)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT48)
+		Z_TEMPLATE_GEOMETRY_CONSTRUCTORS(Float48, float48)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT64)
+		Z_TEMPLATE_GEOMETRY_CONSTRUCTORS(Float64, float64)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT72)
+		Z_TEMPLATE_GEOMETRY_CONSTRUCTORS(Float72, float72)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT80)
+		Z_TEMPLATE_GEOMETRY_CONSTRUCTORS(Float80, float80)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT96)
+		Z_TEMPLATE_GEOMETRY_CONSTRUCTORS(Float96, float96)
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT128)
+		Z_TEMPLATE_GEOMETRY_CONSTRUCTORS(Float128, float128)
+#	endif
 
 #endif
 
@@ -182,22 +384,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Default real type definitions */
 
-#define z_2d_vector	 Z_INSERT_REAL_fixed_type(z_2d_vector_,)
-#define z_circle	 Z_INSERT_REAL_fixed_type(z_circle_,   )
-#define z_rectangle	 Z_INSERT_REAL_fixed_type(z_rectangle_,)
-#define z_3d_vector	 Z_INSERT_REAL_fixed_type(z_3d_vector_,)
-#define z_box		 Z_INSERT_REAL_fixed_type(z_box_,      )
-#define z_sphere	 Z_INSERT_REAL_fixed_type(z_sphere_,   )
+#define z_2d_vector	 z_2d_vector_type(REAL)
+#define z_3d_vector	 z_3d_vector_type(REAL)
+#define z_rectangle	 z_rectangle_type(REAL)
+#define z_box		 z_box_type	 (REAL)
+#define z_circle	 z_circle_type	 (REAL)
+#define z_sphere	 z_sphere_type	 (REAL)
 #define z_2d_line	 z_2d_vector
 #define z_aabr		 z_2d_line
 #define z_3d_line	 z_3d_vector
 #define z_aabb		 z_3d_line
-#define z_2d_vector_zero Z_INSERT_REAL_fixed_type(z_2d_vector_, _zero)
-#define z_circle_zero	 Z_INSERT_REAL_fixed_type(z_circle_,	_zero)
-#define z_rectangle_zero Z_INSERT_REAL_fixed_type(z_rectangle_, _zero)
-#define z_3d_vector_zero Z_INSERT_REAL_fixed_type(z_3d_vector_, _zero)
-#define z_box_zero	 Z_INSERT_REAL_fixed_type(z_box_,	_zero)
-#define z_sphere_zero	 Z_INSERT_REAL_fixed_type(z_sphere_,	_zero)
+#define z_2d_vector_zero z_2d_vector_type_zero(REAL)
+#define z_circle_zero	 z_circle_type_zero   (REAL)
+#define z_rectangle_zero z_rectangle_type_zero(REAL)
+#define z_3d_vector_zero z_3d_vector_type_zero(REAL)
+#define z_box_zero	 z_box_type_zero      (REAL)
+#define z_sphere_zero	 z_sphere_type_zero   (REAL)
 #define z_2d_line_zero	 z_2d_vector_zero
 #define z_aabr_zero	 z_2d_line_zero
 #define z_3d_line_zero	 z_3d_vector_zero
