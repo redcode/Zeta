@@ -32,6 +32,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	/* ..... TO DO */
 ) ZPRG;
 
-#define Z_PRG(p) ((ZPRG *)(p))
-
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_PRG_H__ */

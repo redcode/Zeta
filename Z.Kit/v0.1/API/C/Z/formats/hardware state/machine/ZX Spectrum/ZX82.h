@@ -69,7 +69,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	Z16Bit pc;
 Z_DEFINE_STRICT_STRUCTURE_END ZZX82SnapshotHeader;
 
-#define Z_ZX82_HEADER(	       p) ((ZZX82Header		*)(p))
-#define Z_ZX82_EXTENDED_HEADER(p) ((ZZX82ExtendedHeader *)(p))
-
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_ZX82_H__ */

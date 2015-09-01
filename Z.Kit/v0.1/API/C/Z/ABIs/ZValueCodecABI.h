@@ -78,6 +78,4 @@ typedef struct {
 	ZEncodeInt64	encode_int64,
 } ZValueCodecABI;
 
-#define Z_VALUE_CODEC_ABI(p) ((ZValueCodecABI *)(p))
-
 #endif /* __Z_ABIs_ZValueCodecABI_H__ */

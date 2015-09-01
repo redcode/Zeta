@@ -99,17 +99,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	data[];
 ) ZCreativeVoiceSoundDataInNewFormat;
 
-/* MARK: - Casts */
-
-#define Z_CREATIVE_VOICE_HEADER(		  p) ((ZCreativeVoiceHeader		   *)(p))
-#define Z_CREATIVE_VOICE_BLOCK_HEADER(		  p) ((ZCreativeVoiceBlockHeader	   *)(p))
-#define Z_CREATIVE_VOICE_SOUND_DATA(		  p) ((ZCreativeVoiceSoundData		   *)(p))
-#define Z_CREATIVE_VOICE_SOUND_DATA_CONTINUATION( p) ((ZCreativeVoiceSoundDataContinuation *)(p))
-#define Z_CREATIVE_VOICE_SILENCE(		  p) ((ZCreativeVoiceSilence		   *)(p))
-#define Z_CREATIVE_VOICE_MARKER(		  p) ((ZCreativeVoiceMarker		   *)(p))
-#define Z_CREATIVE_VOICE_TEXT(			  p) ((ZCreativeVoiceText		   *)(p))
-#define Z_CREATIVE_VOICE_REPEAT_START(		  p) ((ZCreativeVoiceRepeatStart	   *)(p))
-#define Z_CREATIVE_VOICE_EXTRA_INFORMATION(	  p) ((ZCreativeVoiceExtraInformation      *)(p))
-#define Z_CREATIVE_VOICE_SOUND_DATA_IN_NEW_FORMAT(p) ((ZCreativeVoiceSoundDataInNewFormat  *)(p))
-
 #endif /* __Z_formats_multimedia_container_Creative_Voice_H__ */

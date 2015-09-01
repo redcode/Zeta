@@ -25,6 +25,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	zero[24];
 ) ZUNIFHeader;
 
-#define Z_UNIF_HEADER(p) ((ZUNIFHeader *)(p))
-
 #endif /* __Z_formats_storage_medium_image_NES_Game_Pak_UNIF_H__ */

@@ -25,8 +25,6 @@ typedef struct {
 	} status;
 } ZDataWaveCodecContext;
 
-#define Z_DATA_WAVE_CODEC_CONTEXT(p) ((ZDataWaveCodecContext *)(p))
-
 #define Z_DATA_WAVE_CONTENT_SILENCE		0
 #define Z_DATA_WAVE_CONTENT_CONTROL_SEQUENCE	1
 #define Z_DATA_WAVE_CONTENT_DATA_BLOCK		2
@@ -38,7 +36,5 @@ typedef struct {
 	zsize encoding_context_size;
 	zsize decoding_context_size;
 } ZDataWaveCodecABI;
-
-#define Z_DATA_WAVE_CODEC_ABI(p) ((ZDataWaveCodecABI *)(p))
 
 #endif /* __Z_ABIs_ZDataWaveCodecABI_H__ */

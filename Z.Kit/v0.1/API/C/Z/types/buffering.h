@@ -25,7 +25,4 @@ typedef struct {
 	volatile zsize fill_count;
 } ZRingBuffer;
 
-#define Z_TRIPLE_BUFFER(p) ((ZTripleBuffer *)(p))
-#define Z_RING_BUFFER(	p) ((ZRingBuffer   *)(p))
-
 #endif /* __Z_types_buffering_H__ */

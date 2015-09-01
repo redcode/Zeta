@@ -54,6 +54,4 @@ typedef struct {
 	zuint16 sr;
 } ZMC68000State;
 
-#define Z_MC68000_STATE(p) ((ZMC68000State *)(p))
-
 #endif /* __Z_hardware_CPU_model_68k_Motorola_MC68000_H__ */

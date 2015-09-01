@@ -104,12 +104,6 @@ Z_DEFINE_STRICT_STRUCTURE (
 typedef struct {
 } ZMachineEmulatorABI;
 
-#define Z_EMULATOR_COMPONENT(	p) ((ZEmulatorComponent   *)(p))
-#define Z_EMULATOR_DEPENDENCY(	p) ((ZEmulatorDependency  *)(p))
-#define Z_EMULATOR_EXPORT(	p) ((ZEmulatorExport	  *)(p))
-#define Z_EMULATOR_SLOT_LINKAGE(p) ((ZEmulatorSlotLinkage *)(p))
-#define Z_EMULATOR_ABI(		p) ((ZCPUEmulatorABI	  *)(p))
-
 typedef zsize (* ZMachineEmulatorRunOneFrame) (void *object);
 typedef zsize (* ZEmulatorRun		   ) (void* object, zsize    cycles	);
 typedef void  (* ZEmulatorPower		   ) (void* object, zboolean power_state);

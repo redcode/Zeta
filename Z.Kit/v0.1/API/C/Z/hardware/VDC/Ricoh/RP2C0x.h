@@ -588,9 +588,6 @@ typedef struct {
 } ZRP2C0xNameTable;*/
 
 
-
-#define Z_RP2C0X_PATTERN(p) ((ZRP2C0xPattern *)(p))
-
 #define Z_RP2C0X_TILE_GET_PIXEL(tile, index) \
 	(tile[(index) / 8] >> (7 - ((index) % 8)) & 1)
 

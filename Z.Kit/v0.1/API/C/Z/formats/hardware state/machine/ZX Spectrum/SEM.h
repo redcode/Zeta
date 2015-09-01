@@ -45,8 +45,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16	     speed_factor; /* Optional (only if poke included) */
 ) ZSEM;
 
-#define Z_SEM_SNAPSHOT(p) ((ZSEMSnapshot *)(p))
-#define Z_SEM_POKE(    p) ((ZSEMPoke	 *)(p))
-#define Z_SEM(	       p) ((ZSEM	 *)(p))
-
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SEM_H__ */

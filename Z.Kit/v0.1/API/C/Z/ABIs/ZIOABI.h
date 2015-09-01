@@ -19,6 +19,4 @@ typedef struct {
 	ZWrite	write;
 } ZIOABI;
 
-#define Z_IO_ABI(p) ((ZIOABI *)(p))
-
 #endif /* __Z_ABIs_ZIOABI_H__ */

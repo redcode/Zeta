@@ -15,6 +15,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 ) ZNESGamePakHeader;
 
-#define Z_NES_GAME_PAK_HEADER(p) ((ZNESGamePakHeader *)(p))
-
 #endif /* __Z_hardware_storage_medium_ROM_cartridge_NES_Game_Pak_H__ */

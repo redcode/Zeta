@@ -59,9 +59,6 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8 ram[];
 Z_DEFINE_STRICT_STRUCTURE_END ZSPBody;
 
-#define Z_SP_HEADER(p) ((ZSPHeader *)(p))
-#define Z_SP_BODY(  p) ((ZSPBody   *)(p))
-
 #define Z_SP_BODY_IM(p) (Z_SP_BODY(p)->im_0 ? 0 : ((p)->im ? 2 : 1))
 
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SP_H__ */

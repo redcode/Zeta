@@ -55,6 +55,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8	zero_8[10];
 Z_DEFINE_STRICT_STRUCTURE_END ZZX;
 
-#define Z_ZX(p) ((ZZX *)(p))
-
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_ZX_H__ */

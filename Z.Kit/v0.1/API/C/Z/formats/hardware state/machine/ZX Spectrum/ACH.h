@@ -43,6 +43,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8	memory[1024 * 64]; /* Complete ZX Spectrum 48K memory */
 Z_DEFINE_STRICT_STRUCTURE_END ZACH;
 
-#define Z_ACH(p) ((ZACH *)(p))
-
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_ACH_H__ */

@@ -120,9 +120,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8	remaining_ram_banks[1024 * 16 * 6];
 Z_DEFINE_STRICT_STRUCTURE_END ZSNAv128K;
 
-/* MARK: - Casts */
-
-#define Z_SNA_V48K( p) ((ZSNAv48K  *)(p))
-#define Z_SNA_V128K(p) ((ZSNAv128K *)(p))
-
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SNA_H__ */

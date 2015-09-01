@@ -43,8 +43,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	ZFDISectorEntry sectors_entries[];
 ) ZFDITrackHeader;
 
-#define Z_FDI_HEADER(	   p) ((ZFDIHeader	*)(p))
-#define Z_DSK_SECTOR_ENTRY(p) ((ZFDISectorEntry *)(p))
-#define Z_FDI_TRACK_HEADER(p) ((ZFDITrackHeader *)(p))
-
 #endif /* __Z_formats_storage_medium_image_floppy_disk_FDI_H__ */

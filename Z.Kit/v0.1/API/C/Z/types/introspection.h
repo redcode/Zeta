@@ -53,10 +53,4 @@ typedef struct {
 	zuint8	 container_size;
 } ZContextBits;
 
-#define Z_VARIABLE_DESCRIPTION(        p) ((ZVariableDescription	*)(p))
-#define Z_VALUE_DESCRIPTION(	       p) ((ZValueDescription		*)(p))
-#define Z_STRUCTURE_DESCRIPTION(       p) ((ZStructureDescription	*)(p))
-#define Z_STRUCTURE_MEMBER_DESCRIPTION(p) ((ZStructureMemberDescription *)(p))
-#define Z_CONTEXT_VALUE(	       p) ((ZCOntextValue		*)(p))
-
 #endif /* __Z_types_introspection_H__ */

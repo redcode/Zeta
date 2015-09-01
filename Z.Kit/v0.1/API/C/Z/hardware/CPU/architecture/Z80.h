@@ -179,8 +179,6 @@ Flags (F register)
 		} internal;
 	} ZZ80State;
 
-#	define Z_Z80_STATE(p) ((ZZ80State *)(p))
-
 	/* MARK: - State structure macros (16-bit registers) */
 
 #	define Z_Z80_STATE_AF( object)	(object)->af.value_uint16

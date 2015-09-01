@@ -59,7 +59,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint32	file_size;
 ) ZFAT12DirectoryEntry;
 
-#define Z_FAT_12_BOOT_SECTOR(	 p) ((ZFAT12BootSector	   *)(p))
-#define Z_FAT_12_DIRECTORY_ENTRY(p) ((ZFAT12DirectoryEntry *)(p))
-
 #endif /* __Z_formats_file_system_FAT12_H__ */

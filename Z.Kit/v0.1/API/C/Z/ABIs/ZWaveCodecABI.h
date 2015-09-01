@@ -35,6 +35,4 @@ typedef struct {
 	zsize decoding_context_size;
 } ZWaveCodecABI;
 
-#define Z_WAVE_CODEC_ABI(p) ((ZWaveCodecABI *)(p))
-
 #endif /* __Z_ABIs_ZWaveCodecABI_H__ */

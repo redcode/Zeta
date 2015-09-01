@@ -780,33 +780,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 data[9];
 ) ZTZXGlue;
 
-/* MARK: - Casts */
-
-#define Z_TZX_STANDARD_SPEED_DATA(  p) ((ZTZXStandardSpeedData	  *)(p))
-#define Z_TZX_TURBO_SPEED_DATA(	    p) ((ZTZXTurboSpeedData	  *)(p))
-#define Z_TZX_PURE_TONE(	    p) ((ZTZXPureTone		  *)(p))
-#define Z_TZX_PULSE_SEQUENCE(	    p) ((ZTZXPulseSequence	  *)(p))
-#define Z_TZX_PURE_DATA(	    p) ((ZTZXPureData		  *)(p))
-#define Z_TZX_DIRECT_RECORDING(	    p) ((ZTZXDirectRecording	  *)(p))
-#define Z_TZX_C64_ROM_TYPE_DATA(    p) ((ZTZXC64ROMTypeData	  *)(p))
-#define Z_TZX_C64_TURBO_TAPE_DATA(  p) ((ZTZXC64TurboTapeData	  *)(p))
-#define Z_TZX_CSW_RECORDING(	    p) ((ZTZXCSWRecording	  *)(p))
-#define Z_TZX_GENERALIZED_DATA(	    p) ((ZTZXGeneralizedData	  *)(p))
-#define Z_TZX_PAUSE(		    p) ((ZTZXPause		  *)(p))
-#define Z_TZX_GROUP_START(	    p) ((ZTZXGroupStart		  *)(p))
-#define Z_TZX_JUMP(		    p) ((ZTZXJump		  *)(p))
-#define Z_TZX_LOOP_START(	    p) ((ZTZXLoopStart		  *)(p))
-#define Z_TZX_CALL_SEQUENCE(	    p) ((ZTZXCallSequence	  *)(p))
-#define Z_TZX_SELECT(		    p) ((ZTZXSelect		  *)(p))
-#define Z_TZX_STOP_IF_48K(	    p) ((ZTZXStopIf48K		  *)(p))
-#define Z_TZX_SET_SIGNAL_LEVEL(	    p) ((ZTZXSetSignalLevel	  *)(p))
-#define Z_TZX_DESCRIPTION_TEXT(	    p) ((ZTZXDescriptionText	  *)(p))
-#define Z_TZX_MESSAGE(		    p) ((ZTZXMessage		  *)(p))
-#define Z_TZX_ARCHIVE_INFORMATION(  p) ((ZTZXArchiveInformation	  *)(p))
-#define Z_TZX_HARDWARE_TYPE(	    p) ((ZTZXHardwareType	  *)(p))
-#define Z_TZX_EMULATION_INFORMATION(p) ((ZTZXEmulationInformation *)(p))
-#define Z_TZX_CUSTOM_INFORMATION(   p) ((ZTZXCustomInformation	  *)(p))
-#define Z_TZX_SNAPSHOT(		    p) ((ZTZXSnapshot		  *)(p))
-#define Z_TZX_GLUE(		    p) ((ZTZXGlue		  *)(p))
-
 #endif /* __Z_formats_storage_medium_image_audio_TZX_H__ */

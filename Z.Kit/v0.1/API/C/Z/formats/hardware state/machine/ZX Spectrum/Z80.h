@@ -108,8 +108,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	last_output_to_1ffd;
 ) ZZ80v3ExtendedHeader;
 
-#define Z_Z80_V1_HEADER(	   p) ((ZZ80v1Header	       *)(p))
-#define Z_Z80_V2_ADDITIONAL_HEADER(p) ((ZZ80v2AdditionalHeader *)(p))
-#define Z_Z80_V3_EXTENDED_HEADER(  p) ((ZZ80v3ExtendedHeader   *)(p))
-
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_Z80_H__ */

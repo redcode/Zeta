@@ -24,6 +24,4 @@ Released under the terms of the GNU Lesser General Public License v3.
 Z_DEFINE_STRICT_STRUCTURE (
 ) ZSNX;
 
-#define Z_SNX(p) ((ZSNX *)(p))
-
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SNX_H__ */

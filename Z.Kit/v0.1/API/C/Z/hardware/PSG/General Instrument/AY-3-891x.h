@@ -178,6 +178,4 @@ Z_DEFINE_STRICT_UNION (
 	} values;
 ) ZAY3891xState;
 
-#define Z_AY_3_891X_STATE(p) ((ZAY3891xState *)(p))
-
 #endif /* __Z_hardware_PSG_General_Instrument_AY_3_891x_H__ */

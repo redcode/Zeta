@@ -21,6 +21,4 @@ typedef struct {
 	void* (* result	   ) (void* context, zsize* result_size);
 } ZHashFunctionABI;
 
-#define Z_HASH_FUNCTION_ABI(p) ((ZHashFunctionABI *)(p))
-
 #endif /* __Z_ABIs_ZHashFunctionABI_H__ */

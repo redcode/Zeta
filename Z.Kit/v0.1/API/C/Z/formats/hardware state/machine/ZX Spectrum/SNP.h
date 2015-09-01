@@ -36,6 +36,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	Z16Bit	af_, bc_, de_, hl_;
 Z_DEFINE_STRICT_STRUCTURE_END ZSNP;
 
-#define Z_SNP(p) ((ZSNP *)(p))
-
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SNP_H__ */

@@ -236,6 +236,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	emulation_irq_or_brk_interrupt_rutine_pointer;
 ) ZSNESGamePakHeader;
 
-#define Z_SNES_GAME_PAK_HEADER(p) ((ZSNESGamePakHeader *)(p))
-
 #endif /* __Z_hardware_storage_medium_ROM_cartridge_SNES_Game_Pak_H__ */

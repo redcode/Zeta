@@ -24,6 +24,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	data[];
 ) ZTAPBlock;
 
-#define Z_TAP_BLOCK(p) ((ZTAPBlock *)(p))
-
 #endif /* __Z_formats_storage_medium_image_audio_TAP_H__ */

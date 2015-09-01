@@ -75,6 +75,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 zero_2[6];
 ) ZiNESHeader;
 
-#define Z_INES_HEADER(p) ((ZiNESHeader *)(p))
-
 #endif /* __Z_formats_storage_medium_image_NES_Game_Pak_iNES_H__ */

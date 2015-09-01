@@ -18,6 +18,4 @@ typedef struct {
 	void (* did_write ) (void* lock);
 } ZLockingABI;
 
-#define Z_LOCKING_ABI(p) ((ZLockingABI *)(p))
-
 #endif /* __Z_ABIs_ZLockingABI_H__ */

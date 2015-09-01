@@ -17,6 +17,4 @@ typedef struct {
 	zboolean sequential;
 } ZDataCodecABI;
 
-#define Z_DATA_CODEC_ABI(p) ((ZDataCodecABI *)(p))
-
 #endif /* __Z_ABIs_ZDataCodecABI_H__ */

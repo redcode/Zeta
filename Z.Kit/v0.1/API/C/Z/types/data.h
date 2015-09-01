@@ -64,22 +64,4 @@ typedef struct {
 	ZTreeNode* node;
 } ZTreeCursor;
 
-/* MARK: - Casts */
-
-#define Z_ARRAY(		p) ((ZArray		 *)(p))
-#define Z_BLOCK_ARRAY(		p) ((ZBlockArray	 *)(p))
-#define Z_LIST_NODE(		p) ((ZListNode		 *)(p))
-#define Z_CHAIN_NODE(		p) ((ZChainNode		 *)(p))
-#define Z_BINARY_TREE_NODE(	p) ((ZBinaryTreeNode	 *)(p))
-#define Z_TREE_NODE(		p) ((ZTreeNode		 *)(p))
-#define Z_DATA_LIST_NODE(	p) ((ZDataListNode	 *)(p))
-#define Z_DATA_CHAIN_NODE(	p) ((ZDataChainNode	 *)(p))
-#define Z_DATA_BINARY_TREE_NODE(p) ((ZDataBinaryTreeNode *)(p))
-#define Z_DATA_TREE_NODE(	p) ((ZDataTreeNode	 *)(p))
-#define Z_LIST(			p) ((ZList		 *)(p))
-#define Z_CHAIN(		p) ((ZChain		 *)(p))
-#define Z_BINARY_TREE(		p) ((ZBinaryTree	 *)(p))
-#define Z_TREE(			p) ((ZTree		 *)(p))
-#define Z_TREE_CURSOR(		p) ((ZTreeCursor	 *)(p))
-
 #endif /* __Z_types_data_H__ */

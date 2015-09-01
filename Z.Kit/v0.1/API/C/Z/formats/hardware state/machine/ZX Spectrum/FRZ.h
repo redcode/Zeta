@@ -53,6 +53,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	} ram;
 Z_DEFINE_STRICT_STRUCTURE_END ZFRZ;
 
-#define Z_FRZ(p) ((ZFRZ *)(p))
-
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_FRZ_H__ */

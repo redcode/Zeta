@@ -81,7 +81,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 
-			/*
+
 
 #if Z_COMPILER_HAS_MACRO(INFINITY)
 #	define Z_FLOATING_POINT_INFINITY(TYPE, _) Z_COMPILER_MACRO(INFINITY)(_(Z_FLOATING_POINT_MAXIMUM(TYPE)), _)
@@ -93,6 +93,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_FLOATING_POINT_NAN(TYPE, _) Z_COMPILER_MACRO(NAN)(_(Z_FLOATING_POINT_MAXIMUM(TYPE)), _)
 #else
 #	define Z_FLOATING_POINT_NAN(TYPE, _) (Z_FLOATING_POINT_INFINITY(TYPE, _) - Z_FLOATING_POINT_INFINITY(TYPE, _))
-#endif*/
+#endif
 
 #endif /* __Z_inspection_floating_point_H__ */

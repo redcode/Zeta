@@ -78,8 +78,6 @@ Status (P register)
 		zuint8	s, p, a, x, y;
 	} Z6502State;
 
-#	define Z_6502_STATE(p) ((Z6502State *)(p))
-
 #	define Z_6502_STATE_PC(object) (object)->pc
 #	define Z_6502_STATE_S( object) (object)->s
 #	define Z_6502_STATE_P( object) (object)->p

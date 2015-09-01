@@ -88,6 +88,4 @@ typedef struct {
 
 } ZAssemblyABI;
 
-#define Z_ASSEMBLY_ABI(p) ((ZAssemblyABI *)(p))
-
 #endif /* __Z_ABIs_ZAssemblyABI_H__ */

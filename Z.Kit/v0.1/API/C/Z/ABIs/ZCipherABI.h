@@ -45,6 +45,4 @@ typedef struct {
 	zuint8	features;
 } ZCipherABI;
 
-#define Z_CIPHER_ABI(p) ((ZCipherABI *)(p))
-
 #endif /* __Z_ABIs_ZCipheringABI_H__ */

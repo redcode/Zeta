@@ -34,6 +34,4 @@ typedef struct {
 	ZDeallocate    deallocate;
 } ZAllocationABI;
 
-#define Z_ALLOCATION_ABI(p) ((ZAllocationABI *)(p))
-
 #endif /* __Z_ABIs_ZAllocationABI_H__ */

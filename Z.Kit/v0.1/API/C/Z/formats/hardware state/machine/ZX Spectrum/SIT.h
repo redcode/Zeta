@@ -33,6 +33,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8 memory[1024 * 64];
 Z_DEFINE_STRICT_STRUCTURE_END ZSIT;
 
-#define Z_SIT(p) ((ZSIT *)(p))
-
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SIT_H__ */
