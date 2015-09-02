@@ -22,7 +22,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define z_3d_vector_float16(a_x, a_y, a_z, b_x, b_y, b_z) \
 			((Z3DVectorFloat16){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
-#		define z_rectangle_float(x, y, size_x, size_y) \
+#		define z_rectangle_float16(x, y, size_x, size_y) \
 			((ZRectangleFloat16){{x, y}, {size_x, size_y}})
 
 #		define z_box_float16(x, y, z, size_x, size_y, size_z) \
@@ -44,7 +44,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define z_3d_vector_float24(a_x, a_y, a_z, b_x, b_y, b_z) \
 			((Z3DVectorFloat24){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
-#		define z_rectangle_float(x, y, size_x, size_y) \
+#		define z_rectangle_float24(x, y, size_x, size_y) \
 			((ZRectangleFloat24){{x, y}, {size_x, size_y}})
 
 #		define z_box_float24(x, y, z, size_x, size_y, size_z) \
@@ -66,7 +66,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define z_3d_vector_float32(a_x, a_y, a_z, b_x, b_y, b_z) \
 			((Z3DVectorFloat32){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
-#		define z_rectangle_float(x, y, size_x, size_y) \
+#		define z_rectangle_float32(x, y, size_x, size_y) \
 			((ZRectangleFloat32){{x, y}, {size_x, size_y}})
 
 #		define z_box_float32(x, y, z, size_x, size_y, size_z) \
@@ -88,7 +88,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define z_3d_vector_float48(a_x, a_y, a_z, b_x, b_y, b_z) \
 			((Z3DVectorFloat48){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
-#		define z_rectangle_float(x, y, size_x, size_y) \
+#		define z_rectangle_float48(x, y, size_x, size_y) \
 			((ZRectangleFloat48){{x, y}, {size_x, size_y}})
 
 #		define z_box_float48(x, y, z, size_x, size_y, size_z) \
@@ -110,7 +110,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define z_3d_vector_float64(a_x, a_y, a_z, b_x, b_y, b_z) \
 			((Z3DVectorFloat64){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
-#		define z_rectangle_float(x, y, size_x, size_y) \
+#		define z_rectangle_float64(x, y, size_x, size_y) \
 			((ZRectangleFloat64){{x, y}, {size_x, size_y}})
 
 #		define z_box_float64(x, y, z, size_x, size_y, size_z) \
@@ -132,7 +132,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define z_3d_vector_float72(a_x, a_y, a_z, b_x, b_y, b_z) \
 			((Z3DVectorFloat72){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
-#		define z_rectangle_float(x, y, size_x, size_y) \
+#		define z_rectangle_float72(x, y, size_x, size_y) \
 			((ZRectangleFloat72){{x, y}, {size_x, size_y}})
 
 #		define z_box_float72(x, y, z, size_x, size_y, size_z) \
@@ -154,7 +154,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define z_3d_vector_float80(a_x, a_y, a_z, b_x, b_y, b_z) \
 			((Z3DVectorFloat80){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
-#		define z_rectangle_float(x, y, size_x, size_y) \
+#		define z_rectangle_float80(x, y, size_x, size_y) \
 			((ZRectangleFloat80){{x, y}, {size_x, size_y}})
 
 #		define z_box_float80(x, y, z, size_x, size_y, size_z) \
@@ -176,7 +176,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define z_3d_vector_float96(a_x, a_y, a_z, b_x, b_y, b_z) \
 			((Z3DVectorFloat96){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
-#		define z_rectangle_float(x, y, size_x, size_y) \
+#		define z_rectangle_float96(x, y, size_x, size_y) \
 			((ZRectangleFloat96){{x, y}, {size_x, size_y}})
 
 #		define z_box_float96(x, y, z, size_x, size_y, size_z) \
@@ -198,7 +198,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define z_3d_vector_float128(a_x, a_y, a_z, b_x, b_y, b_z) \
 			((Z3DVectorFloat128){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
-#		define z_rectangle_float(x, y, size_x, size_y) \
+#		define z_rectangle_float128(x, y, size_x, size_y) \
 			((ZRectangleFloat128){{x, y}, {size_x, size_y}})
 
 #		define z_box_float128(x, y, z, size_x, size_y, size_z) \
