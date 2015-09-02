@@ -249,57 +249,57 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT16)
-#	define z_2d_float16_zero z_2d_float16(Z_FLOAT16(0.0), Z_FLOAT16(0.0))
-#	define z_3d_float16_zero z_3d_float16(Z_FLOAT16(0.0), Z_FLOAT16(0.0), Z_FLOAT16(0.0))
-#	define z_4d_float16_zero z_4d_float16(Z_FLOAT16(0.0), Z_FLOAT16(0.0), Z_FLOAT16(0.0), Z_FLOAT16(0.0))
+#	define z_2d_float16_zero z_2d_float16(0.0, 0.0)
+#	define z_3d_float16_zero z_3d_float16(0.0, 0.0, 0.0)
+#	define z_4d_float16_zero z_4d_float16(0.0, 0.0, 0.0, 0.0)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-#	define z_2d_float24_zero z_2d_float24(Z_FLOAT24(0.0), Z_FLOAT24(0.0))
-#	define z_3d_float24_zero z_3d_float24(Z_FLOAT24(0.0), Z_FLOAT24(0.0), Z_FLOAT24(0.0))
-#	define z_4d_float24_zero z_4d_float24(Z_FLOAT24(0.0), Z_FLOAT24(0.0), Z_FLOAT24(0.0), Z_FLOAT24(0.0))
+#	define z_2d_float24_zero z_2d_float24(0.0, 0.0)
+#	define z_3d_float24_zero z_3d_float24(0.0, 0.0, 0.0)
+#	define z_4d_float24_zero z_4d_float24(0.0, 0.0, 0.0, 0.0)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-#	define z_2d_float32_zero z_2d_float32(Z_FLOAT32(0.0), Z_FLOAT32(0.0))
-#	define z_3d_float32_zero z_3d_float32(Z_FLOAT32(0.0), Z_FLOAT32(0.0), Z_FLOAT32(0.0))
-#	define z_4d_float32_zero z_4d_float32(Z_FLOAT32(0.0), Z_FLOAT32(0.0), Z_FLOAT32(0.0), Z_FLOAT32(0.0))
+#	define z_2d_float32_zero z_2d_float32(0.0, 0.0)
+#	define z_3d_float32_zero z_3d_float32(0.0, 0.0, 0.0)
+#	define z_4d_float32_zero z_4d_float32(0.0, 0.0, 0.0, 0.0)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-#	define z_2d_float48_zero z_2d_float48(Z_FLOAT48(0.0), Z_FLOAT48(0.0))
-#	define z_3d_float48_zero z_3d_float48(Z_FLOAT48(0.0), Z_FLOAT48(0.0), Z_FLOAT48(0.0))
-#	define z_4d_float48_zero z_4d_float48(Z_FLOAT48(0.0), Z_FLOAT48(0.0), Z_FLOAT48(0.0), Z_FLOAT48(0.0))
+#	define z_2d_float48_zero z_2d_float48(0.0, 0.0)
+#	define z_3d_float48_zero z_3d_float48(0.0, 0.0, 0.0)
+#	define z_4d_float48_zero z_4d_float48(0.0, 0.0, 0.0, 0.0)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-#	define z_2d_float64_zero z_2d_float64(Z_FLOAT64(0.0), Z_FLOAT64(0.0))
-#	define z_3d_float64_zero z_3d_float64(Z_FLOAT64(0.0), Z_FLOAT64(0.0), Z_FLOAT64(0.0))
-#	define z_4d_float64_zero z_4d_float64(Z_FLOAT64(0.0), Z_FLOAT64(0.0), Z_FLOAT64(0.0), Z_FLOAT64(0.0))
+#	define z_2d_float64_zero z_2d_float64(0.0, 0.0)
+#	define z_3d_float64_zero z_3d_float64(0.0, 0.0, 0.0)
+#	define z_4d_float64_zero z_4d_float64(0.0, 0.0, 0.0, 0.0)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-#	define z_2d_float72_zero z_2d_float72(Z_FLOAT72(0.0), Z_FLOAT72(0.0))
-#	define z_3d_float72_zero z_3d_float72(Z_FLOAT72(0.0), Z_FLOAT72(0.0), Z_FLOAT72(0.0))
-#	define z_4d_float72_zero z_4d_float72(Z_FLOAT72(0.0), Z_FLOAT72(0.0), Z_FLOAT72(0.0), Z_FLOAT72(0.0))
+#	define z_2d_float72_zero z_2d_float72(0.0, 0.0)
+#	define z_3d_float72_zero z_3d_float72(0.0, 0.0, 0.0)
+#	define z_4d_float72_zero z_4d_float72(0.0, 0.0, 0.0, 0.0)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-#	define z_2d_float80_zero z_2d_float80(Z_FLOAT80(0.0), Z_FLOAT80(0.0))
-#	define z_3d_float80_zero z_3d_float80(Z_FLOAT80(0.0), Z_FLOAT80(0.0), Z_FLOAT80(0.0))
-#	define z_4d_float80_zero z_4d_float80(Z_FLOAT80(0.0), Z_FLOAT80(0.0), Z_FLOAT80(0.0), Z_FLOAT80(0.0))
+#	define z_2d_float80_zero z_2d_float80(0.0, 0.0)
+#	define z_3d_float80_zero z_3d_float80(0.0, 0.0, 0.0)
+#	define z_4d_float80_zero z_4d_float80(0.0, 0.0, 0.0, 0.0)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-#	define z_2d_float96_zero z_2d_float96(Z_FLOAT96(0.0), Z_FLOAT96(0.0))
-#	define z_3d_float96_zero z_3d_float96(Z_FLOAT96(0.0), Z_FLOAT96(0.0), Z_FLOAT96(0.0))
-#	define z_4d_float96_zero z_4d_float96(Z_FLOAT96(0.0), Z_FLOAT96(0.0), Z_FLOAT96(0.0), Z_FLOAT96(0.0))
+#	define z_2d_float96_zero z_2d_float96(0.0, 0.0)
+#	define z_3d_float96_zero z_3d_float96(0.0, 0.0, 0.0)
+#	define z_4d_float96_zero z_4d_float96(0.0, 0.0, 0.0, 0.0)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-#	define z_2d_float128_zero z_2d_float128(Z_FLOAT128(0.0), Z_FLOAT128(0.0))
-#	define z_3d_float128_zero z_3d_float128(Z_FLOAT128(0.0), Z_FLOAT128(0.0), Z_FLOAT128(0.0))
-#	define z_4d_float128_zero z_4d_float128(Z_FLOAT128(0.0), Z_FLOAT128(0.0), Z_FLOAT128(0.0), Z_FLOAT128(0.0))
+#	define z_2d_float128_zero z_2d_float128(0.0, 0.0)
+#	define z_3d_float128_zero z_3d_float128(0.0, 0.0, 0.0)
+#	define z_4d_float128_zero z_4d_float128(0.0, 0.0, 0.0, 0.0)
 #endif
 
 #define z_2d_type(     TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_,)
