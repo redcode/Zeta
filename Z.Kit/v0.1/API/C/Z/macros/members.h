@@ -13,9 +13,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/CPU.h>
 #include <Z/macros/arguments.h>
 
-#if	(Z_CPU_ENDIANNESS			   == Z_ENDIANNESS_LITTLE && \
+#if	(Z_CPU_INTEGER_ENDIANNESS(8BIT)		   == Z_ENDIANNESS_LITTLE && \
 	 Z_COMPILER_LITTLE_ENDIAN_8BIT_FIELD_ORDER == Z_ORDER_REVERSED)	  || \
-	(Z_CPU_ENDIANNESS			   == Z_ENDIANNESS_BIG	  && \
+	(Z_CPU_INTEGER_ENDIANNESS(8BIT)		   == Z_ENDIANNESS_BIG	  && \
 	 Z_COMPILER_BIG_ENDIAN_8BIT_FIELD_ORDER	   == Z_ORDER_NORMAL)
 
 #	define Z_8BIT_FIELD(member_count) Z_MEMBERIZE_REVERSED_##member_count
@@ -34,6 +34,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_BIT_FIELD(member_count) Z_MEMBERIZE_##member_count
 #endif
 
-#define Z_ENDIANIZED_MEMBERS(member_count, BITS) Z_MEMBERIZE_REVERSED_##member_count
+#if Z_CPU_INTEGER_ENDIANNESS(16BIT) == Z_ENDIANNESS_BIG
+#	define Z_16BIT_ENDIANIZED_MEMBERS(member_count) Z_MEMBERIZE_##member_count
+#elif Z_CPU_INTEGER_ENDIANNESS(16BIT) == Z_ENDIANNESS_LITTLE
+#	define Z_16BIT_ENDIANIZED_MEMBERS(member_count) Z_MEMBERIZE_REVERSED_##member_count
+#endif
+
+#if Z_CPU_INTEGER_ENDIANNESS(32BIT) == Z_ENDIANNESS_BIG
+#	define Z_32BIT_ENDIANIZED_MEMBERS(member_count) Z_MEMBERIZE_##member_count
+#elif Z_CPU_INTEGER_ENDIANNESS(32BIT) == Z_ENDIANNESS_LITTLE
+#	define Z_32BIT_ENDIANIZED_MEMBERS(member_count) Z_MEMBERIZE_REVERSED_##member_count
+#endif
+
+#if Z_CPU_INTEGER_ENDIANNESS(64BIT) == Z_ENDIANNESS_BIG
+#	define Z_64BIT_ENDIANIZED_MEMBERS(member_count) Z_MEMBERIZE_##member_count
+#elif Z_CPU_INTEGER_ENDIANNESS(64BIT) == Z_ENDIANNESS_LITTLE
+#	define Z_64BIT_ENDIANIZED_MEMBERS(member_count) Z_MEMBERIZE_REVERSED_##member_count
+#endif
+
+#if Z_CPU_INTEGER_ENDIANNESS(128BIT) == Z_ENDIANNESS_BIG
+#	define Z_128BIT_ENDIANIZED_MEMBERS(member_count) Z_MEMBERIZE_##member_count
+#elif Z_CPU_INTEGER_ENDIANNESS(128BIT) == Z_ENDIANNESS_LITTLE
+#	define Z_128BIT_ENDIANIZED_MEMBERS(member_count) Z_MEMBERIZE_REVERSED_##member_count
+#endif
 
 #endif /* __Z_macros_members_H__ */
