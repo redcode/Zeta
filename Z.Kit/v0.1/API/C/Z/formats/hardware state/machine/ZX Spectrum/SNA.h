@@ -47,10 +47,6 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #define Z_SNA_V48K_PC_VALUE 0x72
 
-#define Z_SNA_IM_0 0
-#define Z_SNA_IM_1 1
-#define Z_SNA_IM_2 2
-
 Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8	i;
 	Z16Bit	hl_, de_, bc_, af_;
@@ -71,6 +67,10 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8	border_color;
 	zuint8	ram[1024 * 48];	/* RAM dump [16384-65535] */
 Z_DEFINE_STRICT_STRUCTURE_END ZSNAv48K;
+
+#define Z_SNA_IM_0 0
+#define Z_SNA_IM_1 1
+#define Z_SNA_IM_2 2
 
 /* MARK: - v128K
 .-------------------------------------------------------------------------.

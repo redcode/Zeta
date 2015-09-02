@@ -18,6 +18,25 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define __Z_formats_storage_medium_image_NES_Game_Pak_iNES_H__
 
 #include <Z/types/base.h>
+
+Z_DEFINE_STRICT_STRUCTURE (
+	zuint8 nes[4]; /* 4E 45 53 1A ('NES' + MS-DOS EOF) */
+	zuint8 prg_rom_page_count;
+	zuint8 chr_rom_page_count;
+	zuint8 rom_control_0;
+	zuint8 rom_control_1;
+	zuint8 nes_rom;
+	zuint8 vs_unisystem_rom;
+	zuint8 playchoice_rom;
+	zuint8 zero_0;
+	zuint8 zero_1;
+	zuint8 full_compatible_with_ntsc_console;
+	zuint8 not_necessarily_full_compatible_with_pal_console;
+	zuint8 extra_ram_at_6000h_7fffh;
+	zuint8 dont_have_bus_conflicts;
+	zuint8 zero_2[6];
+) ZiNESHeader;
+
 /*
 #define Z_INES_MAPPER_NONE			00
 #define Z_INES_MAPPER_NINTENDO_MMC1_CHIPSET	01
@@ -56,23 +75,5 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_INES_MAPPER_X1_17_CHIPSET		82
 #define Z_INES_MAPPER_CONY_MAPPER		83
 #define Z_INES_MAPPER_PASOFAMI_MAPPER		84*/
-
-Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 nes[4]; /* 4E 45 53 1A ('NES' + MS-DOS EOF) */
-	zuint8 prg_rom_page_count;
-	zuint8 chr_rom_page_count;
-	zuint8 rom_control_0;
-	zuint8 rom_control_1;
-	zuint8 nes_rom;
-	zuint8 vs_unisystem_rom;
-	zuint8 playchoice_rom;
-	zuint8 zero_0;
-	zuint8 zero_1;
-	zuint8 full_compatible_with_ntsc_console;
-	zuint8 not_necessarily_full_compatible_with_pal_console;
-	zuint8 extra_ram_at_6000h_7fffh;
-	zuint8 dont_have_bus_conflicts;
-	zuint8 zero_2[6];
-) ZiNESHeader;
 
 #endif /* __Z_formats_storage_medium_image_NES_Game_Pak_iNES_H__ */

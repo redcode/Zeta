@@ -11,11 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-#define Z_FAT_12_DEFAULT_VOLUME_LABEL	 "NO NAME    "
-#define Z_FAT_12_FILE_SYSTEM_TYPE_FAT_12 "FAT12   "
-#define Z_FAT_12_FILE_SYSTEM_TYPE_FAT_16 "FAT16   "
-#define Z_FAT_12_FILE_SYSTEM_TYPE_FAT	 "FAT     "
-
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	ignored_0[11];
 	zuint16 bytes_per_sector;
@@ -37,12 +32,10 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	file_system_type[8];
 ) ZFAT12BootSector;
 
-#define Z_FAT_12_FILE_ATTRIBUTE_READ_ONLY     1
-#define Z_FAT_12_FILE_ATTRIBUTE_HIDDEN	      2
-#define Z_FAT_12_FILE_ATTRIBUTE_SYSTEM	      4
-#define Z_FAT_12_FILE_ATTRIBUTE_VOLUME_LABEL  8
-#define Z_FAT_12_FILE_ATTRIBUTE_SUBDIRECTORY 16
-#define Z_FAT_12_FILE_ATTRIBUTE_ARCHIVE	     32
+#define Z_FAT_12_DEFAULT_VOLUME_LABEL	 "NO NAME    "
+#define Z_FAT_12_FILE_SYSTEM_TYPE_FAT_12 "FAT12   "
+#define Z_FAT_12_FILE_SYSTEM_TYPE_FAT_16 "FAT16   "
+#define Z_FAT_12_FILE_SYSTEM_TYPE_FAT	 "FAT     "
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	file_name[8];
@@ -58,5 +51,12 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16	first_logical_cluster;
 	zuint32	file_size;
 ) ZFAT12DirectoryEntry;
+
+#define Z_FAT_12_FILE_ATTRIBUTE_READ_ONLY     1
+#define Z_FAT_12_FILE_ATTRIBUTE_HIDDEN	      2
+#define Z_FAT_12_FILE_ATTRIBUTE_SYSTEM	      4
+#define Z_FAT_12_FILE_ATTRIBUTE_VOLUME_LABEL  8
+#define Z_FAT_12_FILE_ATTRIBUTE_SUBDIRECTORY 16
+#define Z_FAT_12_FILE_ATTRIBUTE_ARCHIVE	     32
 
 #endif /* __Z_formats_file_system_FAT12_H__ */

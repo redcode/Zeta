@@ -20,17 +20,6 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #include <Z/types/base.h>
 
-#define Z_ZX_COLOR_MODE_BW    0
-#define Z_ZX_COLOR_MODE_COLOR 1
-
-#define Z_ZX_SOUND_MODE_SIMPLE	 0
-#define Z_ZX_SOUND_MODE_PITCH	 1
-#define Z_ZX_SOUND_MODE_ROM_ONLY 2
-
-#define Z_ZX_IM_0 -1
-#define Z_ZX_IM_1  0
-#define Z_ZX_IM_2  1
-
 Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8	rom_tail[132]; /* Last 132 bytes of ROM */
 	zuint8	ram[1024 * 48];
@@ -54,5 +43,16 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zint16	im;
 	zuint8	zero_8[10];
 Z_DEFINE_STRICT_STRUCTURE_END ZZX;
+
+#define Z_ZX_COLOR_MODE_BW    0
+#define Z_ZX_COLOR_MODE_COLOR 1
+
+#define Z_ZX_SOUND_MODE_SIMPLE	 0
+#define Z_ZX_SOUND_MODE_PITCH	 1
+#define Z_ZX_SOUND_MODE_ROM_ONLY 2
+
+#define Z_ZX_IM_0 -1
+#define Z_ZX_IM_1  0
+#define Z_ZX_IM_2  1
 
 #endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_ZX_H__ */

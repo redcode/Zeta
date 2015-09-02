@@ -341,9 +341,6 @@ Z_DEFINE_STRICT_STRUCTURE (
 | encoded in CSW format v2 (Compressed Square Wave). |
 '---------------------------------------------------*/
 
-#define Z_TZX_CSW_COMPRESSION_TYPE_RLE	 1
-#define Z_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
-
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
 	zuint16 pause_after_this_block_ms;
@@ -352,6 +349,9 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 pulse_count;
 	zuint8	csw_data[];
 ) ZTZXCSWRecording;
+
+#define Z_TZX_CSW_COMPRESSION_TYPE_RLE	 1
+#define Z_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
 
 /* MARK: - ID 19 - Generalized Data
 .-----------------------------------------------------------------------------.
@@ -386,15 +386,15 @@ Z_DEFINE_STRICT_STRUCTURE (
 | of pulses (wave).							     |
 '---------------------------------------------------------------------------*/
 
-#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT	       0
-#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT_NEGATIVE 1
-#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_LOW	       2
-#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_HIGH	       3
-
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	flags;
 	zuint16 pulse_duration[];
 ) ZTZXSymbolDefinition;
+
+#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT	       0
+#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT_NEGATIVE 1
+#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_LOW	       2
+#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_HIGH	       3
 
 /*----------------------------------------------------------------------------.
 | Most commonly, pilot and sync are repetitions of the same pulse, thus they  |
@@ -605,13 +605,13 @@ Z_DEFINE_STRICT_STRUCTURE (
 | any ambiguities, e.g. with custom loaders which are level-sensitive. |
 '---------------------------------------------------------------------*/
 
-#define Z_TZX_SIGNAL_LEVEL_LOW	0
-#define Z_TZX_SIGNAL_LEVEL_HIGH	1
-
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
 	zuint8	level;
 ) ZTZXSetSignalLevel;
+
+#define Z_TZX_SIGNAL_LEVEL_LOW	0
+#define Z_TZX_SIGNAL_LEVEL_HIGH	1
 
 /* MARK: - ID 30 - Description Text
 .------------------------------------------------------------------------------.
@@ -701,16 +701,16 @@ Z_DEFINE_STRICT_STRUCTURE (
 | the end of the format description.					     |
 '---------------------------------------------------------------------------*/
 
-#define Z_TZX_HARDWARE_COMPATIBILITY_COMPATIBLE	  0
-#define Z_TZX_HARDWARE_COMPATIBILITY_NEEDED	  1
-#define Z_TZX_HARDWARE_COMPATIBILITY_UNNEEDED	  2
-#define Z_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE 3
-
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 type;
 	zuint8 id;
 	zuint8 compatibility;
 ) ZTZXHardware;
+
+#define Z_TZX_HARDWARE_COMPATIBILITY_COMPATIBLE	  0
+#define Z_TZX_HARDWARE_COMPATIBILITY_NEEDED	  1
+#define Z_TZX_HARDWARE_COMPATIBILITY_UNNEEDED	  2
+#define Z_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE 3
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	     count;
@@ -755,14 +755,14 @@ Z_DEFINE_STRICT_STRUCTURE (
 | with the next block.							       |
 '-----------------------------------------------------------------------------*/
 
-#define Z_TZX_SNAPSHOT_FORMAT_Z80 0
-#define Z_TZX_SNAPSHOT_FORMAT_SNA 1
-
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 format;
 	zuint8 size[3];
 	zuint8 data[];
 ) ZTZXSnapshot;
+
+#define Z_TZX_SNAPSHOT_FORMAT_Z80 0
+#define Z_TZX_SNAPSHOT_FORMAT_SNA 1
 
 /* MARK: - ID 5A - "Glue"
 .------------------------------------------------------------------------------.

@@ -34,6 +34,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_BIT_FIELD(member_count) Z_MEMBERIZE_##member_count
 #endif
 
-#define Z_ENDIANIZED_MEMBERS(member_count, BITS) Z_MEMBERIZE_##member_count
+#define Z_ENDIANIZED_MEMBERS(member_count, BITS) Z_MEMBERIZE_REVERSED_##member_count
 
 #endif /* __Z_macros_members_H__ */

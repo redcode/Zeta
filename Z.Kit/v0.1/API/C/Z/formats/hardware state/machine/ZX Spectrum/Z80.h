@@ -39,6 +39,23 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	)} bitfield2;
 Z_DEFINE_STRICT_STRUCTURE_END ZZ80v1Header;
 
+Z_DEFINE_STRICT_STRUCTURE (
+	zuint16 pc;
+	zuint8	hardware;
+	zuint8	output_state;
+	zuint8	interface_1_paginated_or_timex_output_state;
+
+	struct {Z_8BIT_FIELD(4) (
+		zuint8 r_register_emulation	  :1,
+		zuint8 ldir_instruction_emulation :1,
+		zuint8 zero			  :5,
+		zuint8 hardware_modification	  :1
+	)} bitfield;
+
+	zuint8 last_output_to_fffd;
+	zuint8 sound_chip_registers;
+) ZZ80v2AdditionalHeader;
+
 #define Z_Z80_HARDWARE_SAM_RAM				 2
 #define Z_Z80_HARDWARE_PENTAGON_128K			 9
 #define Z_Z80_HARDWARE_SCORPION_256K			10
@@ -74,23 +91,6 @@ Z_DEFINE_STRICT_STRUCTURE_END ZZ80v1Header;
 
 #define Z_Z80_V3_HARDWARE_B_ZX_SPECTRUM_PLUS_2_AND_MGT	3
 #define Z_Z80_V3_HARDWARE_B_ZX_SPECTRUM_PLUS_2		4
-
-Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 pc;
-	zuint8	hardware;
-	zuint8	output_state;
-	zuint8	interface_1_paginated_or_timex_output_state;
-
-	struct {Z_8BIT_FIELD(4) (
-		zuint8 r_register_emulation	  :1,
-		zuint8 ldir_instruction_emulation :1,
-		zuint8 zero			  :5,
-		zuint8 hardware_modification	  :1
-	)} bitfield;
-
-	zuint8 last_output_to_fffd;
-	zuint8 sound_chip_registers;
-) ZZ80v2AdditionalHeader;
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 low_t_state_counter;

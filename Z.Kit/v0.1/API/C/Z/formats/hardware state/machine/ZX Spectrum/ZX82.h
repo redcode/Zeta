@@ -45,12 +45,6 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #include <Z/types/base.h>
 
-#define Z_ZX82_DATA_TYPE_BASIC	  0
-#define Z_ZX82_DATA_TYPE_NUMERIC  1
-#define Z_ZX82_DATA_TYPE_STRINC	  2
-#define Z_ZX82_DATA_TYPE_CODE	  3
-#define Z_ZX82_DATA_TYPE_SNAPSHOT 4
-
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	identifier[4];	 /* {'Z', 'X', '8', '2'} */
 	zuint8	data_type;
@@ -59,6 +53,12 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 start_address;	 /* Start address for code (AUTOSTART for BASIC) */
 	zuint16 program_size;
 ) ZZX82Header;
+
+#define Z_ZX82_DATA_TYPE_BASIC	  0
+#define Z_ZX82_DATA_TYPE_NUMERIC  1
+#define Z_ZX82_DATA_TYPE_STRINC	  2
+#define Z_ZX82_DATA_TYPE_CODE	  3
+#define Z_ZX82_DATA_TYPE_SNAPSHOT 4
 
 Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8 border_color, im; /* (0 = use I register, 1 = IM 1 and 2 = IM 2) ??? */

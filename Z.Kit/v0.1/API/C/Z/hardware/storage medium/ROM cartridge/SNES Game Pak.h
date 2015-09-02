@@ -11,6 +11,32 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
+Z_DEFINE_STRICT_STRUCTURE (
+	zuint8	name[21];
+	zuint8	layout;
+	zuint8	type;
+	zuint8	rom_size;
+	zuint8	ram_size;
+	zuint8	region;
+	zuint8	license;
+	zuint8	version;
+	zuint16	checksum;
+	zuint16	snes_checksum;
+	zuint8	unknown1[4];
+	zuint8	native_cop_interrupt_rutine_pointer;
+	zuint8	native_brk_interrupt_rutine_pointer;
+	zuint8	native_abort_interrupt_rutine_pointer;
+	zuint8	native_unused;
+	zuint8	native_irq_interrupt_rutine_pointer;
+	zuint8	unknown2[4];
+	zuint8	emulation_cop_interrupt_rutine_pointer;
+	zuint8	emulation_unused;
+	zuint8	emulation_abort_interrupt_rutine_pointer;
+	zuint8	emulation_nmi_interrupt_rutine_pointer;
+	zuint8	emulation_reset_interrupt_rutine_pointer;
+	zuint8	emulation_irq_or_brk_interrupt_rutine_pointer;
+) ZSNESGamePakHeader;
+
 #define Z_SNES_GAME_PAK_LAYOUT_LO_ROM	   0x20
 #define Z_SNES_GAME_PAK_LAYOUT_HI_ROM	   0x21
 #define Z_SNES_GAME_PAK_LAYOUT_LO_ROM_FAST 0x30
@@ -209,31 +235,5 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_SNES_GAME_PAK_LICENSE_TEC_MAGIK			 244
 #define Z_SNES_GAME_PAK_LICENSE_CYBERSOFT			 249
 #define Z_SNES_GAME_PAK_LICENSE_HUDSON_SOFT			 255
-
-Z_DEFINE_STRICT_STRUCTURE (
-	zuint8	name[21];
-	zuint8	layout;
-	zuint8	type;
-	zuint8	rom_size;
-	zuint8	ram_size;
-	zuint8	region;
-	zuint8	license;
-	zuint8	version;
-	zuint16	checksum;
-	zuint16	snes_checksum;
-	zuint8	unknown1[4];
-	zuint8	native_cop_interrupt_rutine_pointer;
-	zuint8	native_brk_interrupt_rutine_pointer;
-	zuint8	native_abort_interrupt_rutine_pointer;
-	zuint8	native_unused;
-	zuint8	native_irq_interrupt_rutine_pointer;
-	zuint8	unknown2[4];
-	zuint8	emulation_cop_interrupt_rutine_pointer;
-	zuint8	emulation_unused;
-	zuint8	emulation_abort_interrupt_rutine_pointer;
-	zuint8	emulation_nmi_interrupt_rutine_pointer;
-	zuint8	emulation_reset_interrupt_rutine_pointer;
-	zuint8	emulation_irq_or_brk_interrupt_rutine_pointer;
-) ZSNESGamePakHeader;
 
 #endif /* __Z_hardware_storage_medium_ROM_cartridge_SNES_Game_Pak_H__ */
