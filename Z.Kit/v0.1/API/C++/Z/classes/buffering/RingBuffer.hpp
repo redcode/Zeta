@@ -75,7 +75,7 @@ class ZKit::RingBuffer : public ZRingBuffer {
 		while (buffer_count == fill_count) z_cpu_relax();
 		production_index = (production_index + 1) % buffer_count;
 		z_value_atomic_increment_then_get(SIZE)(&fill_count);
-		return (zuint8 *)buffers + production_index * buffer_size;
+		return (UInt8 *)buffers + production_index * buffer_size;
 		}
 
 

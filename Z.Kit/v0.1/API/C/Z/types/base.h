@@ -1862,6 +1862,7 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		Z4DReal* pointer_4d_real;
 #	endif
 
+	ZString* pointer_string;
 	ZStatus* pointer_status;
 	ZOrder*	 pointer_order;
 
@@ -1879,6 +1880,7 @@ Z_DEFINE_STRICT_UNION_BEGIN
 
 	void*	 pointer;
 	zuintptr value_uintptr;
+	zintptr	 value_intptr;
 	ZRange*	 pointer_range;
 
 #	ifdef Z_PARTIAL_POINTER_UNION
