@@ -16,8 +16,8 @@ Released under the terms of the GNU Lesser General Public License v3.
   |   _______________________________________________________________|_
    \_/_______________________________________________________________*/
 
-#ifndef __Z_formats_storage_medium_image_audio_TAP_H__
-#define __Z_formats_storage_medium_image_audio_TAP_H__
+#ifndef __Z_formats_storage_medium_image_audio_Warajevo_TAP_H__
+#define __Z_formats_storage_medium_image_audio_Warajevo_TAP_H__
 
 #include <Z/types/base.h>
 
@@ -33,4 +33,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 data_size;
 ) ZWarajevoTAPBlockHeader;
 
-#endif /* __Z_formats_storage_medium_image_audio_TAP_H__ */
+#endif /* __Z_formats_storage_medium_image_audio_Warajevo_TAP_H__ */

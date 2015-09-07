@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/hardware snapshot/machine/ZX Spectrum/SIT.h
+/* Z Kit C API - formats/snapshot/machine/ZX Spectrum/SIT.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -16,8 +16,8 @@ Released under the terms of the GNU Lesser General Public License v3.
   |   _______________________________________|_
    \_/_______________________________________*/
 
-#ifndef __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SIT_H__
-#define __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SIT_H__
+#ifndef __Z_formats_snapshot_machine_ZX_Spectrum_SIT_H__
+#define __Z_formats_snapshot_machine_ZX_Spectrum_SIT_H__
 
 #include <Z/types/base.h>
 
@@ -33,4 +33,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8 memory[1024 * 64];
 Z_DEFINE_STRICT_STRUCTURE_END ZSIT;
 
-#endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SIT_H__ */
+#endif /* __Z_formats_snapshot_machine_ZX_Spectrum_SIT_H__ */

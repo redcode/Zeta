@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/hardware snapshot/machine/ZX Spectrum/ZX.h
+/* Z Kit C API - formats/snapshot/machine/ZX Spectrum/ZX.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -15,8 +15,8 @@ Released under the terms of the GNU Lesser General Public License v3.
   |   __________________________|_
    \_/__________________________*/
 
-#ifndef __Z_formats_hardware_snapshot_machine_ZX_Spectrum_ZX_H__
-#define __Z_formats_hardware_snapshot_machine_ZX_Spectrum_ZX_H__
+#ifndef __Z_formats_snapshot_machine_ZX_Spectrum_ZX_H__
+#define __Z_formats_snapshot_machine_ZX_Spectrum_ZX_H__
 
 #include <Z/types/base.h>
 
@@ -55,4 +55,4 @@ Z_DEFINE_STRICT_STRUCTURE_END ZZX;
 #define Z_ZX_IM_1  0
 #define Z_ZX_IM_2  1
 
-#endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_ZX_H__ */
+#endif /* __Z_formats_snapshot_machine_ZX_Spectrum_ZX_H__ */

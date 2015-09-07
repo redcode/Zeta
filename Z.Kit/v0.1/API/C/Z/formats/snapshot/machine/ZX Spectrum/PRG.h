@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/hardware snapshot/machine/ZX Spectrum/PRG.h
+/* Z Kit C API - formats/snapshot/machine/ZX Spectrum/PRG.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -17,8 +17,8 @@ Released under the terms of the GNU Lesser General Public License v3.
   |   __________________________________|_
    \_/__________________________________*/
 
-#ifndef __Z_formats_hardware_snapshot_machine_ZX_Spectrum_PRG_H__
-#define __Z_formats_hardware_snapshot_machine_ZX_Spectrum_PRG_H__
+#ifndef __Z_formats_snapshot_machine_ZX_Spectrum_PRG_H__
+#define __Z_formats_snapshot_machine_ZX_Spectrum_PRG_H__
 
 #include <Z/types/base.h>
 
@@ -32,4 +32,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	/* ..... TO DO */
 ) ZPRG;
 
-#endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_PRG_H__ */
+#endif /* __Z_formats_snapshot_machine_ZX_Spectrum_PRG_H__ */

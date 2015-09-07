@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/hardware snapshot/machine/ZX Spectrum/SEM.h
+/* Z Kit C API - formats/snapshot/machine/ZX Spectrum/SEM.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -14,8 +14,8 @@ Released under the terms of the GNU Lesser General Public License v3.
   |   __________________________________________________|_
    \_/__________________________________________________*/
 
-#ifndef __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SEM_H__
-#define __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SEM_H__
+#ifndef __Z_formats_snapshot_machine_ZX_Spectrum_SEM_H__
+#define __Z_formats_snapshot_machine_ZX_Spectrum_SEM_H__
 
 #include <Z/types/base.h>
 
@@ -45,4 +45,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16	     speed_factor; /* Optional (only if poke included) */
 ) ZSEM;
 
-#endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_SEM_H__ */
+#endif /* __Z_formats_snapshot_machine_ZX_Spectrum_SEM_H__ */

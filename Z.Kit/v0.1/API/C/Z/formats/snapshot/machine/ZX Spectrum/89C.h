@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/hardware snapshot/machine/ZX Spectrum/89C.h
+/* Z Kit C API - formats/snapshot/machine/ZX Spectrum/89C.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3.
   |   _________________|_
    \_/_________________*/
 
-#ifndef __Z_formats_hardware_snapshot_machine_ZX_Spectrum_89C_H__
-#define __Z_formats_hardware_snapshot_machine_ZX_Spectrum_89C_H__
+#ifndef __Z_formats_snapshot_machine_ZX_Spectrum_89C_H__
+#define __Z_formats_snapshot_machine_ZX_Spectrum_89C_H__
 
-#endif /* __Z_formats_hardware_snapshot_machine_ZX_Spectrum_89C_H__ */
+#endif /* __Z_formats_snapshot_machine_ZX_Spectrum_89C_H__ */
