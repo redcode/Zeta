@@ -168,36 +168,36 @@ typedef void	 (* ZSwap)		     (void*  a,
 
 /* MARK: - Generic handler types */
 
-typedef void (* ZHandleUInt8  )			   (zuint8   value  );
-typedef void (* ZHandleUInt16 )			   (zuint16  value  );
-typedef void (* ZHandleUInt32 )			   (zuint32  value  );
-typedef void (* ZHandleUInt64 )			   (zuint64  value  );
-typedef void (* ZHandleInt8   )			   (zint8    value  );
-typedef void (* ZHandleInt16  )			   (zint16   value  );
-typedef void (* ZHandleInt32  )			   (zint32   value  );
-typedef void (* ZHandleInt64  )			   (zint64   value  );
-typedef void (* ZHandleFloat  )			   (zfloat   value  );
-typedef void (* ZHandleDouble )			   (zdouble  value  );
-typedef void (* ZHandleLDouble)			   (zldouble value  );
-typedef void (* ZHandlePointer)			   (void*    pointer);
 
-typedef void (* ZHandleUInt8AndData  )		   (zuint8   value,   void* data);
-typedef void (* ZHandleUInt16AndData )		   (zuint16  value,   void* data);
-typedef void (* ZHandleUInt32AndData )		   (zuint32  value,   void* data);
-typedef void (* ZHandleUInt64AndData )		   (zuint64  value,   void* data);
-typedef void (* ZHandleInt8AndData   )		   (zint8    value,   void* data);
-typedef void (* ZHandleInt16AndData  )		   (zint16   value,   void* data);
-typedef void (* ZHandleInt32AndData  )		   (zint32   value,   void* data);
-typedef void (* ZHandleInt64AndData  )		   (zint64   value,   void* data);
-typedef void (* ZHandleFloatAndData  )		   (zfloat   value,   void* data);
-typedef void (* ZHandleDoubleAndData )		   (zdouble  value,   void* data);
-typedef void (* ZHandleLDoubleAndData)		   (zldouble value,   void* data);
-typedef void (* ZHandlePointerAndData)		   (void*    pointer, void* data);
+typedef void (* ZHandleUInt16 )	(zuint16  value  );
+typedef void (* ZHandleUInt32 )	(zuint32  value  );
+typedef void (* ZHandleUInt64 )	(zuint64  value  );
+typedef void (* ZHandleInt8   )	(zint8    value  );
+typedef void (* ZHandleInt16  )	(zint16   value  );
+typedef void (* ZHandleInt32  )	(zint32   value  );
+typedef void (* ZHandleInt64  )	(zint64   value  );
+typedef void (* ZHandleFloat  )	(zfloat   value  );
+typedef void (* ZHandleDouble )	(zdouble  value  );
+typedef void (* ZHandleLDouble)	(zldouble value  );
+typedef void (* ZHandlePointer) (void*    pointer);
+
+
+typedef void (* ZHandleUInt16AndData ) (zuint16  value,   void* data);
+typedef void (* ZHandleUInt32AndData ) (zuint32  value,   void* data);
+typedef void (* ZHandleUInt64AndData ) (zuint64  value,   void* data);
+typedef void (* ZHandleInt8AndData   ) (zint8    value,   void* data);
+typedef void (* ZHandleInt16AndData  ) (zint16   value,   void* data);
+typedef void (* ZHandleInt32AndData  ) (zint32   value,   void* data);
+typedef void (* ZHandleInt64AndData  ) (zint64   value,   void* data);
+typedef void (* ZHandleFloatAndData  ) (zfloat   value,   void* data);
+typedef void (* ZHandleDoubleAndData ) (zdouble  value,   void* data);
+typedef void (* ZHandleLDoubleAndData) (zldouble value,   void* data);
+typedef void (* ZHandlePointerAndData) (void*    pointer, void* data);
 
 typedef void (* ZHandleIndex	   )		   (zsize index		   );
 typedef void (* ZHandleIndexAndData)		   (zsize index, void *data);
 
-typedef void (* ZHandleIndexAndUInt8  )		   (zsize index, zuint8   value  );
+
 typedef void (* ZHandleIndexAndUInt16 )		   (zsize index, zuint16  value  );
 typedef void (* ZHandleIndexAndUInt32 )		   (zsize index, zuint32  value  );
 typedef void (* ZHandleIndexAndUInt64 )		   (zsize index, zuint64  value  );
@@ -210,7 +210,7 @@ typedef void (* ZHandleIndexAndDouble )		   (zsize index, zdouble  value  );
 typedef void (* ZHandleIndexAndLDouble)		   (zsize index, zldouble value  );
 typedef void (* ZHandleIndexAndPointer)		   (zsize index, void*    pointer);
 
-typedef void (* ZHandleIndexUInt8AndData  )	   (zsize index, zuint8   value,   void* data);
+
 typedef void (* ZHandleIndexUInt16AndData )	   (zsize index, zuint16  value,   void* data);
 typedef void (* ZHandleIndexUInt32AndData )	   (zsize index, zuint32  value,   void* data);
 typedef void (* ZHandleIndexUInt64AndData )	   (zsize index, zuint64  value,   void* data);
@@ -223,7 +223,7 @@ typedef void (* ZHandleIndexDoubleAndData )	   (zsize index, zdouble  value,   v
 typedef void (* ZHandleIndexLDoubleAndData)	   (zsize index, zldouble value,   void* data);
 typedef void (* ZHandleIndexPointerAndData)	   (zsize index, void*    pointer, void* data);
 
-typedef void (* ZHandleContextAndUInt8	)	   (void* context, zuint8   value  );
+
 typedef void (* ZHandleContextAndUInt16	)	   (void* context, zuint16  value  );
 typedef void (* ZHandleContextAndUInt32	)	   (void* context, zuint32  value  );
 typedef void (* ZHandleContextAndUInt64	)	   (void* context, zuint64  value  );
@@ -236,7 +236,7 @@ typedef void (* ZHandleContextAndDouble	)	   (void* context, zdouble  value  );
 typedef void (* ZHandleContextAndLDouble)	   (void* context, zldouble value  );
 typedef void (* ZHandleContextAndPointer)	   (void* context, void*    pointer);
 
-typedef void (* ZHandleContextUInt8AndData  )	   (void* context, zuint8   value,   void* data);
+
 typedef void (* ZHandleContextUInt16AndData )	   (void* context, zuint16  value,   void* data);
 typedef void (* ZHandleContextUInt32AndData )	   (void* context, zuint32  value,   void* data);
 typedef void (* ZHandleContextUInt64AndData )	   (void* context, zuint64  value,   void* data);
@@ -252,7 +252,7 @@ typedef void (* ZHandleContextPointerAndData)	   (void* context, void*    pointe
 typedef void (* ZHandleContextAndIndex	  )	   (void* context, zsize index		  );
 typedef void (* ZHandleContextIndexAndData)	   (void* context, zsize index, void* data);
 
-typedef void (* ZHandleContextIndexAndUInt8  )	   (void* context, zsize index, zuint8	 value	);
+
 typedef void (* ZHandleContextIndexAndUInt16 )	   (void* context, zsize index, zuint16	 value	);
 typedef void (* ZHandleContextIndexAndUInt32 )	   (void* context, zsize index, zuint32	 value	);
 typedef void (* ZHandleContextIndexAndUInt64 )	   (void* context, zsize index, zuint64	 value	);
@@ -265,7 +265,7 @@ typedef void (* ZHandleContextIndexAndDouble )	   (void* context, zsize index, z
 typedef void (* ZHandleContextIndexAndLDouble)	   (void* context, zsize index, zldouble value	);
 typedef void (* ZHandleContextIndexAndPointer)	   (void* context, zsize index, void*	 pointer);
 
-typedef void (* ZHandleContextIndexUInt8AndData	 ) (void* context, zsize index, zuint8	 value,   void* data);
+
 typedef void (* ZHandleContextIndexUInt16AndData ) (void* context, zsize index, zuint16	 value,   void* data);
 typedef void (* ZHandleContextIndexUInt32AndData ) (void* context, zsize index, zuint32	 value,   void* data);
 typedef void (* ZHandleContextIndexUInt64AndData ) (void* context, zsize index, zuint64	 value,   void* data);
@@ -278,18 +278,102 @@ typedef void (* ZHandleContextIndexDoubleAndData ) (void* context, zsize index, 
 typedef void (* ZHandleContextIndexLDoubleAndData) (void* context, zsize index, zldouble value,   void* data);
 typedef void (* ZHandleContextIndexPointerAndData) (void* context, zsize index, void*	 pointer, void* data);
 
-#define ZHandleType(		       TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,			)
-#define ZHandleTypeAndData(	       TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		 AndData)
-#define ZHandleIndexAndType(	       TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndexAnd,		)
-#define ZHandleIndexTypeAndData(       TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,		 AndData)
-#define ZHandleContextAndType(	       TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextAnd,		)
-#define ZHandleContextTypeAndData(     TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	 AndData)
-#define ZHandleContextIndexAndType(    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndexAnd,	)
-#define ZHandleContextIndexTypeAndData(TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex,    AndData)
+
 
 /* MARK: - Generic handler with stop types */
 
-typedef void (* ZHandleUInt8AndStop  )		       (zuint8	 value,   zboolean *stop);
+typedef void (* ZHandleUInt8			   ) (				  zuint8 value				  );
+typedef void (* ZHandleUInt8AndData		   ) (				  zuint8 value, void* data		  );
+typedef void (* ZHandleIndexAndUInt8		   ) (		     zsize index, zuint8 value				  );
+typedef void (* ZHandleIndexUInt8AndData	   ) (		     zsize index, zuint8 value, void* data		  );
+typedef void (* ZHandleContextAndUInt8		   ) (void* context,		  zuint8 value				  );
+typedef void (* ZHandleContextUInt8AndData	   ) (void* context,		  zuint8 value, void* data		  );
+typedef void (* ZHandleContextIndexAndUInt8	   ) (void* context, zsize index, zuint8 value				  );
+typedef void (* ZHandleContextIndexUInt8AndData	   ) (void* context, zsize index, zuint8 value, void* data		  );
+typedef void (* ZHandleUInt8AndStop		   ) (				  zuint8 value,		    zboolean *stop);
+typedef void (* ZHandleUInt8DataAndStop		   ) (				  zuint8 value, void* data, zboolean *stop);
+typedef void (* ZHandleIndexUInt8AndStop	   ) (		     zsize index, zuint8 value,		    zboolean *stop);
+typedef void (* ZHandleIndexUInt8DataAndStop	   ) (		     zsize index, zuint8 value, void* data, zboolean *stop);
+typedef void (* ZHandleContextUInt8AndStop	   ) (void* context,		  zuint8 value,		    zboolean *stop);
+typedef void (* ZHandleContextUInt8DataAndStop	   ) (void* context,		  zuint8 value, void* data, zboolean *stop);
+typedef void (* ZHandleContextIndexUInt8AndStop	   ) (void* context, zsize index, zuint8 value,		    zboolean *stop);
+typedef void (* ZHandleContextIndexUInt8DataAndStop) (void* context, zsize index, zuint8 value, void* data, zboolean *stop);
+
+typedef zboolean (* ZValidateUInt8		     ) (			    zuint8 value	    );
+typedef zboolean (* ZValidateUInt8AndData	     ) (			    zuint8 value, void* data);
+typedef zboolean (* ZValidateIndexAndUInt8	     ) (	       zsize index, zuint8 value	    );
+typedef zboolean (* ZValidateIndexUInt8AndData	     ) (	       zsize index, zuint8 value, void* data);
+typedef zboolean (* ZValidateContextAndUInt8	     ) (void* context,		    zuint8 value	    );
+typedef zboolean (* ZValidateContextUInt8AndData     ) (void* context,		    zuint8 value, void* data);
+typedef zboolean (* ZValidateContextIndexAndUInt8    ) (void* context, zsize index, zuint8 value	    );
+typedef zboolean (* ZValidateContextIndexUInt8AndData) (void* context, zsize index, zuint8 value, void* data);
+
+
+#if Z_IS_AVAILABLE(UINT64)
+#endif
+
+#if Z_IS_AVAILABLE(UINT128)
+#endif
+
+#if Z_IS_AVAILABLE(INT64)
+#endif
+
+#if Z_IS_AVAILABLE(INT128)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT16)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT24)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT32)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT48)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT64)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT72)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT80)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT96)
+#endif
+
+#if Z_IS_AVAILABLE(FLOAT128)
+#endif
+
+#define ZHandleType(			   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,				)
+#define ZHandleTypeAndData(		   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		     AndData	)
+#define ZHandleIndexAndType(		   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndexAnd,			)
+#define ZHandleIndexTypeAndData(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,	     AndData	)
+#define ZHandleContextAndType(		   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextAnd,			)
+#define ZHandleContextTypeAndData(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	     AndData	)
+#define ZHandleContextIndexAndType(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndexAnd,		)
+#define ZHandleContextIndexTypeAndData(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex,    AndData	)
+#define ZHandleTypeAndStop(		   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		     AndStop    )
+#define ZHandleTypeDataAndStop(		   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		     DataAndStop)
+#define ZHandleIndexTypeAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,	     AndStop    )
+#define ZHandleIndexTypeDataAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,	     DataAndStop)
+#define ZHandleContextTypeAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	     AndStop    )
+#define ZHandleContextTypeDataAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	     DataAndStop)
+#define ZHandleContextIndexTypeAndStop(    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex,    AndStop    )
+#define ZHandleContextIndexTypeDataAndStop(TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex,    DataAndStop)
+
+#define ZValidateType(			 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,			    )
+#define ZValidateTypeAndData(		 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,		     AndData)
+#define ZValidateIndexAndType(		 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateIndexAnd,		    )
+#define ZValidateIndexTypeAndData(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateIndex,	     AndData)
+#define ZValidateContextAndType(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextAnd,		    )
+#define ZValidateContextTypeAndData(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContext,	     AndData)
+#define ZValidateContextIndexAndType(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextIndexAnd,	    )
+#define ZValidateContextIndexTypeAndData(TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextIndex,    AndData)
+
 typedef void (* ZHandleUInt16AndStop )		       (zuint16	 value,   zboolean *stop);
 typedef void (* ZHandleUInt32AndStop )		       (zuint32	 value,   zboolean *stop);
 typedef void (* ZHandleUInt64AndStop )		       (zuint64	 value,   zboolean *stop);
@@ -302,7 +386,7 @@ typedef void (* ZHandleDoubleAndStop )		       (zdouble	 value,   zboolean *stop
 typedef void (* ZHandleLDoubleAndStop)		       (zldouble value,   zboolean *stop);
 typedef void (* ZHandlePointerAndStop)		       (void*	 pointer, zboolean *stop);
 
-typedef void (* ZHandleUInt8DataAndStop	 )	       (zuint8	 value,   void* data, zboolean *stop);
+
 typedef void (* ZHandleUInt16DataAndStop )	       (zuint16	 value,   void* data, zboolean *stop);
 typedef void (* ZHandleUInt32DataAndStop )	       (zuint32	 value,   void* data, zboolean *stop);
 typedef void (* ZHandleUInt64DataAndStop )	       (zuint64	 value,   void* data, zboolean *stop);
@@ -318,7 +402,7 @@ typedef void (* ZHandlePointerDataAndStop)	       (void*	 pointer, void* data, z
 typedef void (* ZHandleIndexAndStop    )	       (zsize index,		 zboolean *stop);
 typedef void (* ZHandleIndexDataAndStop)	       (zsize index, void *data, zboolean *stop);
 
-typedef void (* ZHandleIndexUInt8AndStop  )	       (zsize index, zuint8   value,   zboolean *stop);
+
 typedef void (* ZHandleIndexUInt16AndStop )	       (zsize index, zuint16  value,   zboolean *stop);
 typedef void (* ZHandleIndexUInt32AndStop )	       (zsize index, zuint32  value,   zboolean *stop);
 typedef void (* ZHandleIndexUInt64AndStop )	       (zsize index, zuint64  value,   zboolean *stop);
@@ -331,7 +415,7 @@ typedef void (* ZHandleIndexDoubleAndStop )	       (zsize index, zdouble  value,
 typedef void (* ZHandleIndexLDoubleAndStop)	       (zsize index, zldouble value,   zboolean *stop);
 typedef void (* ZHandleIndexPointerAndStop)	       (zsize index, void*    pointer, zboolean *stop);
 
-typedef void (* ZHandleIndexUInt8DataAndStop  )	       (zsize index, zuint8   value,   void* data, zboolean *stop);
+
 typedef void (* ZHandleIndexUInt16DataAndStop )	       (zsize index, zuint16  value,   void* data, zboolean *stop);
 typedef void (* ZHandleIndexUInt32DataAndStop )	       (zsize index, zuint32  value,   void* data, zboolean *stop);
 typedef void (* ZHandleIndexUInt64DataAndStop )	       (zsize index, zuint64  value,   void* data, zboolean *stop);
@@ -344,7 +428,7 @@ typedef void (* ZHandleIndexDoubleDataAndStop )	       (zsize index, zdouble  va
 typedef void (* ZHandleIndexLDoubleDataAndStop)	       (zsize index, zldouble value,   void* data, zboolean *stop);
 typedef void (* ZHandleIndexPointerDataAndStop)	       (zsize index, void*    pointer, void* data, zboolean *stop);
 
-typedef void (* ZHandleContextUInt8AndStop  )	       (void* context, zuint8	value,	 zboolean *stop);
+
 typedef void (* ZHandleContextUInt16AndStop )	       (void* context, zuint16	value,	 zboolean *stop);
 typedef void (* ZHandleContextUInt32AndStop )	       (void* context, zuint32	value,	 zboolean *stop);
 typedef void (* ZHandleContextUInt64AndStop )	       (void* context, zuint64	value,	 zboolean *stop);
@@ -357,7 +441,7 @@ typedef void (* ZHandleContextDoubleAndStop )	       (void* context, zdouble  va
 typedef void (* ZHandleContextLDoubleAndStop)	       (void* context, zldouble value,	 zboolean *stop);
 typedef void (* ZHandleContextPointerAndStop)	       (void* context, void*	pointer, zboolean *stop);
 
-typedef void (* ZHandleContextUInt8DataAndStop	)      (void* context, zuint8	value,	 void* data, zboolean *stop);
+
 typedef void (* ZHandleContextUInt16DataAndStop	)      (void* context, zuint16	value,	 void* data, zboolean *stop);
 typedef void (* ZHandleContextUInt32DataAndStop	)      (void* context, zuint32	value,	 void* data, zboolean *stop);
 typedef void (* ZHandleContextUInt64DataAndStop	)      (void* context, zuint64	value,	 void* data, zboolean *stop);
@@ -373,7 +457,7 @@ typedef void (* ZHandleContextPointerDataAndStop)      (void* context, void*	poi
 typedef void (* ZHandleContextIndexAndStop    )	       (void* context, zsize index,		zboolean *stop);
 typedef void (* ZHandleContextIndexDataAndStop)	       (void* context, zsize index, void* data, zboolean *stop);
 
-typedef void (* ZHandleContextIndexUInt8AndStop	 )     (void* context, zsize index, zuint8   value,   zboolean *stop);
+
 typedef void (* ZHandleContextIndexUInt16AndStop )     (void* context, zsize index, zuint16  value,   zboolean *stop);
 typedef void (* ZHandleContextIndexUInt32AndStop )     (void* context, zsize index, zuint32  value,   zboolean *stop);
 typedef void (* ZHandleContextIndexUInt64AndStop )     (void* context, zsize index, zuint64  value,   zboolean *stop);
@@ -386,7 +470,7 @@ typedef void (* ZHandleContextIndexDoubleAndStop )     (void* context, zsize ind
 typedef void (* ZHandleContextIndexLDoubleAndStop)     (void* context, zsize index, zldouble value,   zboolean *stop);
 typedef void (* ZHandleContextIndexPointerAndStop)     (void* context, zsize index, void*    pointer, zboolean *stop);
 
-typedef void (* ZHandleContextIndexUInt8DataAndStop  ) (void* context, zsize index, zuint8   value,   void* data, zboolean *stop);
+
 typedef void (* ZHandleContextIndexUInt16DataAndStop ) (void* context, zsize index, zuint16  value,   void* data, zboolean *stop);
 typedef void (* ZHandleContextIndexUInt32DataAndStop ) (void* context, zsize index, zuint32  value,   void* data, zboolean *stop);
 typedef void (* ZHandleContextIndexUInt64DataAndStop ) (void* context, zsize index, zuint64  value,   void* data, zboolean *stop);
@@ -399,18 +483,11 @@ typedef void (* ZHandleContextIndexDoubleDataAndStop ) (void* context, zsize ind
 typedef void (* ZHandleContextIndexLDoubleDataAndStop) (void* context, zsize index, zldouble value,   void* data, zboolean *stop);
 typedef void (* ZHandleContextIndexPointerDataAndStop) (void* context, zsize index, void*    pointer, void* data, zboolean *stop);
 
-#define ZHandleTypeAndStop(		   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		  AndStop    )
-#define ZHandleTypeDataAndStop(		   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandle,		  DataAndStop)
-#define ZHandleIndexTypeAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,	  AndStop    )
-#define ZHandleIndexTypeDataAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleIndex,	  DataAndStop)
-#define ZHandleContextTypeAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	  AndStop    )
-#define ZHandleContextTypeDataAndStop(	   TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContext,	  DataAndStop)
-#define ZHandleContextIndexTypeAndStop(    TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex, AndStop    )
-#define ZHandleContextIndexTypeDataAndStop(TYPE) Z_INSERT_##TYPE##_FixedType(ZHandleContextIndex, DataAndStop)
+
 
 /* MARK: - Generic validator types */
 
-typedef zboolean (* ZValidateUInt8  )			 (zuint8   value  );
+
 typedef zboolean (* ZValidateUInt16 )			 (zuint16  value  );
 typedef zboolean (* ZValidateUInt32 )			 (zuint32  value  );
 typedef zboolean (* ZValidateUInt64 )			 (zuint64  value  );
@@ -423,7 +500,7 @@ typedef zboolean (* ZValidateDouble )			 (zdouble  value  );
 typedef zboolean (* ZValidateLDouble)			 (zldouble value  );
 typedef zboolean (* ZValidatePointer)			 (void*    pointer);
 
-typedef zboolean (* ZValidateUInt8AndData  )		 (zuint8   value,   void* data);
+
 typedef zboolean (* ZValidateUInt16AndData )		 (zuint16  value,   void* data);
 typedef zboolean (* ZValidateUInt32AndData )		 (zuint32  value,   void* data);
 typedef zboolean (* ZValidateUInt64AndData )		 (zuint64  value,   void* data);
@@ -439,7 +516,7 @@ typedef zboolean (* ZValidatePointerAndData)		 (void*    pointer, void* data);
 typedef zboolean (* ZValidateIndex	    )		 (zsize index		 );
 typedef zboolean (* ZValidateIndexAndData   )		 (zsize index, void* data);
 
-typedef zboolean (* ZValidateIndexAndUInt8  )		 (zsize index, zuint8	value  );
+
 typedef zboolean (* ZValidateIndexAndUInt16 )		 (zsize index, zuint16	value  );
 typedef zboolean (* ZValidateIndexAndUInt32 )		 (zsize index, zuint32	value  );
 typedef zboolean (* ZValidateIndexAndUInt64 )		 (zsize index, zuint64	value  );
@@ -452,7 +529,7 @@ typedef zboolean (* ZValidateIndexAndDouble )		 (zsize index, zdouble	value  );
 typedef zboolean (* ZValidateIndexAndLDouble)		 (zsize index, zldouble value  );
 typedef zboolean (* ZValidateIndexAndPointer)		 (zsize index, void*	pointer);
 
-typedef zboolean (* ZValidateIndexUInt8AndData	)	 (zsize index, zuint8	value,	 void* data);
+
 typedef zboolean (* ZValidateIndexUInt16AndData	)	 (zsize index, zuint16	value,	 void* data);
 typedef zboolean (* ZValidateIndexUInt32AndData	)	 (zsize index, zuint32	value,	 void* data);
 typedef zboolean (* ZValidateIndexUInt64AndData	)	 (zsize index, zuint64	value,	 void* data);
@@ -465,7 +542,7 @@ typedef zboolean (* ZValidateIndexDoubleAndData	)	 (zsize index, zdouble	value,	
 typedef zboolean (* ZValidateIndexLDoubleAndData)	 (zsize index, zldouble value,	 void* data);
 typedef zboolean (* ZValidateIndexPointerAndData)	 (zsize index, void*	pointer, void* data);
 
-typedef zboolean (* ZValidateContextAndUInt8  )		 (void* context, zuint8	  value  );
+
 typedef zboolean (* ZValidateContextAndUInt16 )		 (void* context, zuint16  value  );
 typedef zboolean (* ZValidateContextAndUInt32 )		 (void* context, zuint32  value  );
 typedef zboolean (* ZValidateContextAndUInt64 )		 (void* context, zuint64  value  );
@@ -478,7 +555,7 @@ typedef zboolean (* ZValidateContextAndDouble )		 (void* context, zdouble  value
 typedef zboolean (* ZValidateContextAndLDouble)		 (void* context, zldouble value  );
 typedef zboolean (* ZValidateContextAndPointer)		 (void* context, void*	  pointer);
 
-typedef zboolean (* ZValidateContextUInt8AndData  )	 (void* context, zuint8	  value,   void* data);
+
 typedef zboolean (* ZValidateContextUInt16AndData )	 (void* context, zuint16  value,   void* data);
 typedef zboolean (* ZValidateContextUInt32AndData )	 (void* context, zuint32  value,   void* data);
 typedef zboolean (* ZValidateContextUInt64AndData )	 (void* context, zuint64  value,   void* data);
@@ -494,7 +571,7 @@ typedef zboolean (* ZValidateContextPointerAndData)	 (void* context, void*	  poi
 typedef zboolean (* ZValidateContextAndIndex	)	 (void* context, zsize index		);
 typedef zboolean (* ZValidateContextIndexAndData)	 (void* context, zsize index, void* data);
 
-typedef zboolean (* ZValidateContextIndexAndUInt8  )	 (void* context, zsize index, zuint8   value  );
+
 typedef zboolean (* ZValidateContextIndexAndUInt16 )	 (void* context, zsize index, zuint16  value  );
 typedef zboolean (* ZValidateContextIndexAndUInt32 )	 (void* context, zsize index, zuint32  value  );
 typedef zboolean (* ZValidateContextIndexAndUInt64 )	 (void* context, zsize index, zuint64  value  );
@@ -507,7 +584,7 @@ typedef zboolean (* ZValidateContextIndexAndDouble )	 (void* context, zsize inde
 typedef zboolean (* ZValidateContextIndexAndLDouble)	 (void* context, zsize index, zldouble value  );
 typedef zboolean (* ZValidateContextIndexAndPointer)	 (void* context, zsize index, void*    pointer);
 
-typedef zboolean (* ZValidateContextIndexUInt8AndData  ) (void* context, zsize index, zuint8   value,	void* data);
+
 typedef zboolean (* ZValidateContextIndexUInt16AndData ) (void* context, zsize index, zuint16  value,	void* data);
 typedef zboolean (* ZValidateContextIndexUInt32AndData ) (void* context, zsize index, zuint32  value,	void* data);
 typedef zboolean (* ZValidateContextIndexUInt64AndData ) (void* context, zsize index, zuint64  value,	void* data);
@@ -520,13 +597,6 @@ typedef zboolean (* ZValidateContextIndexDoubleAndData ) (void* context, zsize i
 typedef zboolean (* ZValidateContextIndexLDoubleAndData) (void* context, zsize index, zldouble value,	void* data);
 typedef zboolean (* ZValidateContextIndexPointerAndData) (void* context, zsize index, void*    pointer, void* data);
 
-#define ZValidateType(			 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,			    )
-#define ZValidateTypeAndData(		 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,		     AndData)
-#define ZValidateIndexAndType(		 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateIndexAnd,		    )
-#define ZValidateIndexTypeAndData(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateIndex,	     AndData)
-#define ZValidateContextAndType(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextAnd,		    )
-#define ZValidateContextTypeAndData(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContext,	     AndData)
-#define ZValidateContextIndexAndType(	 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextIndexAnd,	    )
-#define ZValidateContextIndexTypeAndData(TYPE) Z_INSERT_##TYPE##_FixedType(ZValidateContextIndex,    AndData)
+
 
 #endif /* __Z_types_generic_functions_H__ */

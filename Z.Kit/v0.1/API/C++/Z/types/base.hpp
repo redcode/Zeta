@@ -12,10 +12,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.h>
 
 namespace ZKit {
+
 	typedef zuint8			UInt8;
 	typedef zuint16			UInt16;
 	typedef zuint32			UInt32;
-	typedef zuint64			UInt64;
+
+#	if Z_IS_AVAILABLE(UINT64)
+		typedef zuint64		UInt64;
+#	endif
 
 #	if Z_IS_AVAILABLE(UINT128)
 		typedef zuint128	UInt128;
@@ -24,34 +28,82 @@ namespace ZKit {
 	typedef zint8			Int8;
 	typedef zint16			Int16;
 	typedef zint32			Int32;
-	typedef zint64			Int64;
+
+#	if Z_IS_AVAILABLE(INT64)
+		typedef zint64		Int64;
+#	endif
 
 #	if Z_IS_AVAILABLE(INT128)
 		typedef zint128		Int128;
 #	endif
 
-	typedef unsigned char		UChar;
-	typedef unsigned short int	UShort;
-	typedef unsigned int		UInt;
-	typedef unsigned long int	ULong;
-	typedef unsigned long long int	ULLong;
+#	if Z_IS_AVAILABLE(FLOAT16)
+		typedef zfloat16	Float16;
+#	endif
 
-	typedef signed char		Char;
-	typedef signed short int	Short;
-	typedef signed int		Int;
-	typedef signed long int		Long;
-	typedef signed long long int	LLong;
+#	if Z_IS_AVAILABLE(FLOAT24)
+		typedef zfloat24	Float24;
+#	endif
 
-	typedef float			Float;
-	typedef double			Double;
-	typedef long double		LDouble;
+#	if Z_IS_AVAILABLE(FLOAT32)
+		typedef zfloat32	Float32;
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT48)
+		typedef zfloat48	Float48;
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT64)
+		typedef zfloat64	Float64;
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT72)
+		typedef zfloat72	Float72;
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT80)
+		typedef zfloat80	Float80;
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT96)
+		typedef zfloat96	Float96;
+#	endif
+
+#	if Z_IS_AVAILABLE(FLOAT128)
+		typedef zfloat128	Float128;
+#	endif
+
+	typedef zuchar			UChar;
+	typedef zushort			UShort;
+	typedef zuint			UInt;
+	typedef zulong			ULong;
+	typedef zullong			ULLong;
+
+	typedef zchar			Char;
+	typedef zshort			Short;
+	typedef zint			Int;
+	typedef zlong			Long;
+	typedef zllong			LLong;
+
+#	if Z_IS_AVAILABLE(FLOAT)
+		typedef zfloat		Float;
+#	endif
+
+#	if Z_IS_AVAILABLE(DOUBLE)
+		typedef zdouble		Double;
+#	endif
+
+#	if Z_IS_AVAILABLE(LDOUBLE)
+		typedef zldouble	LDouble;
+#	endif
 
 	typedef zsize			Size;
+	typedef zssize			SSize;
+
 	typedef zuintmax		UIntMax;
 	typedef zuintptr		UIntPtr;
 	typedef zuinttop		UIntTop;
 
-	typedef zssize			SSize;
 	typedef zintmax			IntMax;
 	typedef zintptr			IntPtr;
 	typedef zinttop			IntTop;
@@ -61,7 +113,11 @@ namespace ZKit {
 	typedef zreal			Real;
 	typedef zboolean		Boolean;
 
-	typedef Int			Status;
+	typedef ZStatus			Status;
+	typedef ZOrder			Order;
+
+	typedef ZPointer		Pointer;
+
 };
 
 #endif // __Z_types_base_HPP__

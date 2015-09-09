@@ -13,9 +13,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace ZKit {class Value2D : public Z2D {
 
-
-class ZKit::Value2D : public Z2D {
-
 	inline Value2D() {}
 
 	inline Value2D(Real x, Real y)
