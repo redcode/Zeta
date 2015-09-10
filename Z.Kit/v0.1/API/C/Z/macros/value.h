@@ -44,9 +44,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_8BIT_REVERSED_IN_4BIT(value) (((value) << 4) | ((value) >> 4))
 
-#define Z_8BIT_REVERSE_IN_1BIT(value) ((value) = Z_8BIT_REVERSED_IN_1BIT (value))
-#define Z_8BIT_REVERSE_IN_2BIT(value) ((value) = Z_8BIT_REVERSED_IN_1BIT (value))
-#define Z_8BIT_REVERSE_IN_4BIT(value) ((value) = Z_8BIT_REVERSED_IN_1BIT (value))
+#define Z_8BIT_REVERSE_IN_1BIT(value) ((value) = Z_8BIT_REVERSED_IN_1BIT(value))
+#define Z_8BIT_REVERSE_IN_2BIT(value) ((value) = Z_8BIT_REVERSED_IN_2BIT(value))
+#define Z_8BIT_REVERSE_IN_4BIT(value) ((value) = Z_8BIT_REVERSED_IN_4BIT(value))
 
 #define Z_8BIT_ROTATED_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (8 - (rotation))))
 #define Z_8BIT_ROTATED_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (8 - (rotation))))
@@ -473,13 +473,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_128BIT_REVERSED_IN_64BIT(value) (((value) << 64) | ((value) >> 64))
 
-#	define Z_128BIT_REVERSE_IN_1BIT(  value) ((value) = Z_128BIT_REVERSED_IN_1BIT( value))
-#	define Z_128BIT_REVERSE_IN_2BIT(  value) ((value) = Z_128BIT_REVERSED_IN_2BIT( value))
-#	define Z_128BIT_REVERSE_IN_4BIT(  value) ((value) = Z_128BIT_REVERSED_IN_4BIT( value))
-#	define Z_128BIT_REVERSE_IN_8BIT(  value) ((value) = Z_128BIT_REVERSED_IN_8BIT( value))
-#	define Z_128BIT_REVERSE_IN_16BIT( value) ((value) = Z_128BIT_REVERSED_IN_16BIT(value))
-#	define Z_128BIT_REVERSE_IN_32BIT( value) ((value) = Z_128BIT_REVERSED_IN_32BIT(value))
-#	define Z_128BIT_REVERSE_IN_64BIT( value) ((value) = Z_128BIT_REVERSED_IN_64BIT(value))
+#	define Z_128BIT_REVERSE_IN_1BIT( value) ((value) = Z_128BIT_REVERSED_IN_1BIT( value))
+#	define Z_128BIT_REVERSE_IN_2BIT( value) ((value) = Z_128BIT_REVERSED_IN_2BIT( value))
+#	define Z_128BIT_REVERSE_IN_4BIT( value) ((value) = Z_128BIT_REVERSED_IN_4BIT( value))
+#	define Z_128BIT_REVERSE_IN_8BIT( value) ((value) = Z_128BIT_REVERSED_IN_8BIT( value))
+#	define Z_128BIT_REVERSE_IN_16BIT(value) ((value) = Z_128BIT_REVERSED_IN_16BIT(value))
+#	define Z_128BIT_REVERSE_IN_32BIT(value) ((value) = Z_128BIT_REVERSED_IN_32BIT(value))
+#	define Z_128BIT_REVERSE_IN_64BIT(value) ((value) = Z_128BIT_REVERSED_IN_64BIT(value))
 
 #	define Z_128BIT_ROTATED_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (128 - (rotation))))
 #	define Z_128BIT_ROTATED_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (128 - (rotation))))

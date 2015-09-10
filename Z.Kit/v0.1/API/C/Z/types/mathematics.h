@@ -9,11 +9,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_types_mathematics_H__
 #define __Z_types_mathematics_H__
 
-#include <Z/types/base.h>
 #include <Z/macros/templating.h>
 
 #if Z_IS_AVAILABLE(FLOAT16)
-
 	typedef struct {Z2DFloat16 a, b;}			Z2DVectorFloat16;
 	typedef struct {Z3DFloat16 a, b;}			Z3DVectorFloat16;
 	typedef Z2DVectorFloat16				Z2DLineFloat16;
@@ -27,11 +25,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	typedef struct {Z2DFloat16 point; zfloat16 radius;}	ZCircleFloat16;
 	typedef struct {Z3DFloat16 point; zfloat16 radius;}	ZSphereFloat16;
 	typedef struct {Z3DFloat16 normal; zfloat16 offset;}	ZPlaneFloat16;
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-
 	typedef struct {Z2DFloat24 a, b;}			Z2DVectorFloat24;
 	typedef struct {Z3DFloat24 a, b;}			Z3DVectorFloat24;
 	typedef Z2DVectorFloat24				Z2DLineFloat24;
@@ -45,11 +41,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	typedef struct {Z2DFloat24 point; zfloat24 radius;}	ZCircleFloat24;
 	typedef struct {Z3DFloat24 point; zfloat24 radius;}	ZSphereFloat24;
 	typedef struct {Z3DFloat24 normal; zfloat24 offset;}	ZPlaneFloat24;
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-
 	typedef struct {Z2DFloat32 a, b;}			Z2DVectorFloat32;
 	typedef struct {Z3DFloat32 a, b;}			Z3DVectorFloat32;
 	typedef Z2DVectorFloat32				Z2DLineFloat32;
@@ -63,11 +57,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	typedef struct {Z2DFloat32 point; zfloat32 radius;}	ZCircleFloat32;
 	typedef struct {Z3DFloat32 point; zfloat32 radius;}	ZSphereFloat32;
 	typedef struct {Z3DFloat32 normal; zfloat32 offset;}	ZPlaneFloat32;
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-
 	typedef struct {Z2DFloat48 a, b;}			Z2DVectorFloat48;
 	typedef struct {Z3DFloat48 a, b;}			Z3DVectorFloat48;
 	typedef Z2DVectorFloat48				Z2DLineFloat48;
@@ -81,11 +73,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	typedef struct {Z2DFloat48 point; zfloat48 radius;}	ZCircleFloat48;
 	typedef struct {Z3DFloat48 point; zfloat48 radius;}	ZSphereFloat48;
 	typedef struct {Z3DFloat48 normal; zfloat48 offset;}	ZPlaneFloat48;
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-
 	typedef struct {Z2DFloat64 a, b;}			Z2DVectorFloat64;
 	typedef struct {Z3DFloat64 a, b;}			Z3DVectorFloat64;
 	typedef Z2DVectorFloat64				Z2DLineFloat64;
@@ -99,11 +89,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	typedef struct {Z2DFloat64 point; zfloat64 radius;}	ZCircleFloat64;
 	typedef struct {Z3DFloat64 point; zfloat64 radius;}	ZSphereFloat64;
 	typedef struct {Z3DFloat64 normal; zfloat64 offset;}	ZPlaneFloat64;
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-
 	typedef struct {Z2DFloat72 a, b;}			Z2DVectorFloat72;
 	typedef struct {Z3DFloat72 a, b;}			Z3DVectorFloat72;
 	typedef Z2DVectorFloat72				Z2DLineFloat72;
@@ -117,11 +105,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	typedef struct {Z2DFloat72 point; zfloat72 radius;}	ZCircleFloat72;
 	typedef struct {Z3DFloat72 point; zfloat72 radius;}	ZSphereFloat72;
 	typedef struct {Z3DFloat72 normal; zfloat72 offset;}	ZPlaneFloat72;
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-
 	typedef struct {Z2DFloat80 a, b;}			Z2DVectorFloat80;
 	typedef struct {Z3DFloat80 a, b;}			Z3DVectorFloat80;
 	typedef Z2DVectorFloat80				Z2DLineFloat80;
@@ -135,11 +121,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	typedef struct {Z2DFloat80 point; zfloat80 radius;}	ZCircleFloat80;
 	typedef struct {Z3DFloat80 point; zfloat80 radius;}	ZSphereFloat80;
 	typedef struct {Z3DFloat80 normal; zfloat80 offset;}	ZPlaneFloat80;
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-
 	typedef struct {Z2DFloat96 a, b;}			Z2DVectorFloat96;
 	typedef struct {Z3DFloat96 a, b;}			Z3DVectorFloat96;
 	typedef Z2DVectorFloat96				Z2DLineFloat96;
@@ -153,11 +137,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	typedef struct {Z2DFloat96 point; zfloat96 radius;}	ZCircleFloat96;
 	typedef struct {Z3DFloat96 point; zfloat96 radius;}	ZSphereFloat96;
 	typedef struct {Z3DFloat96 normal; zfloat96 offset;}	ZPlaneFloat96;
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-
 	typedef struct {Z2DFloat128 a, b;}			Z2DVectorFloat128;
 	typedef struct {Z3DFloat128 a, b;}			Z3DVectorFloat128;
 	typedef Z2DVectorFloat128				Z2DLineFloat128;
@@ -171,7 +153,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	typedef struct {Z2DFloat128 point; zfloat128 radius;}	ZCircleFloat128;
 	typedef struct {Z3DFloat128 point; zfloat128 radius;}	ZSphereFloat128;
 	typedef struct {Z3DFloat128 normal; zfloat128 offset;}	ZPlaneFloat128;
-
 #endif
 
 #define Z2DVectorType( TYPE) Z_INSERT_##TYPE##_FixedType(Z2DVector, )
