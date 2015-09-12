@@ -96,4 +96,15 @@ typedef int (* ZCompareInt32WithData) (zuint32 a, zuint32 b, void *data);
 #define ZCompareType(	     TYPE) Z_INSERT_##TYPE##_FixedType(ZCompare,	 )
 #define ZCompareTypeWithData(TYPE) Z_INSERT_##TYPE##_FixedType(ZCompare, WithData)
 
+typedef int (* ZCompare8Bit	     ) (Z8Bit	a, Z8Bit   b		);
+typedef int (* ZCompare8BitWithData  ) (Z8Bit	a, Z8Bit   b, void *data);
+typedef int (* ZCompare16Bit	     ) (Z16Bit	a, Z16Bit  b		);
+typedef int (* ZCompare16BitWithData ) (Z16Bit	a, Z16Bit  b, void *data);
+typedef int (* ZCompare32Bit	     ) (Z32Bit	a, Z32Bit  b		);
+typedef int (* ZCompare32BitWithData ) (Z32Bit	a, Z32Bit  b, void *data);
+typedef int (* ZCompare64Bit	     ) (Z64Bit	a, Z64Bit  b		);
+typedef int (* ZCompare64BitWithData ) (Z64Bit	a, Z64Bit  b, void *data);
+typedef int (* ZCompare128Bit	     ) (Z128Bit a, Z128Bit b		);
+typedef int (* ZCompare128BitWithData) (Z128Bit a, Z128Bit b, void *data);
+
 #endif /* __Z_types_handling_H__ */
