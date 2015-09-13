@@ -20,7 +20,13 @@ namespace ZKit {
 	template <typename T> class Value2D;
 }
 
-template <typename T> class ZKit::Value2D : public ZKit::TypeSelectors::Value2D<T>::V {
+template <typename T> class
+#ifdef __ZMathematics_base_Value2D_HPP__
+	ZKit::BaseValue2D
+#else
+	ZKit::Value2D
+#endif
+: public ZKit::TypeSelectors::Value2D<T>::type {
 
 	public:
 
