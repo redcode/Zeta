@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/base/Range.hpp
+/* Z Kit C++ API - macros/templating.hpp
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
