@@ -32,17 +32,22 @@ template <typename T> class
 
 	inline Value2D() {}
 
-	inline Value2D(T x, T y)
-		{this->x = x; this->y = y;}
+
+	inline Value2D(T _x, T _y)
+		{this->x = _x; this->y = _y;}
+
 
 	inline Value2D(T scalar)
 		{this->x = scalar; this->y = scalar;}
 
-	inline Boolean operator ==(Value2D<T> value) const
-		{return this->x == value.x && this->y == value.y;}
 
-	inline Boolean operator ==(T scalar) const
-		{return this->x == scalar && this->y == scalar;}
+	inline Boolean operator ==(Value2D<T> value) const {return this->x == value.x && this->y == value.y;}
+	inline Boolean operator <=(Value2D<T> value) const {return this->x <= value.x && this->y <= value.y;}
+	inline Boolean operator >=(Value2D<T> value) const {return this->x >= value.x && this->y >= value.y;}
+
+	inline Boolean operator ==(T scalar) const {return this->x == scalar && this->y == scalar;}
+	inline Boolean operator <=(T scalar) const {return this->x <= scalar && this->y <= scalar;}
+	inline Boolean operator >=(T scalar) const {return this->x >= scalar && this->y >= scalar;}
 
 	inline Value2D<T> operator +(Value2D<T> value) const {return Value2D<T>(this->x + value.x, this->y + value.y);}
 	inline Value2D<T> operator -(Value2D<T> value) const {return Value2D<T>(this->x - value.x, this->y - value.y);}
@@ -54,43 +59,61 @@ template <typename T> class
 	inline Value2D<T> operator *(T scalar) const {return Value2D<T>(this->x * scalar, this->y * scalar);}
 	inline Value2D<T> operator /(T scalar) const {return Value2D<T>(this->x / scalar, this->y / scalar);}
 
-	inline Boolean contains(Value2D value) const
+	inline Value2D<T> operator +=(Value2D<T> value) {return *this = *this + value;}
+	inline Value2D<T> operator -=(Value2D<T> value) {return *this = *this - value;}
+	inline Value2D<T> operator *=(Value2D<T> value) {return *this = *this * value;}
+	inline Value2D<T> operator /=(Value2D<T> value) {return *this = *this / value;}
+
+	inline Value2D<T> operator +=(T scalar) {return *this = *this + scalar;}
+	inline Value2D<T> operator -=(T scalar) {return *this = *this - scalar;}
+	inline Value2D<T> operator *=(T scalar) {return *this = *this * scalar;}
+	inline Value2D<T> operator /=(T scalar) {return *this = *this / scalar;}
+
+	inline T operator [](int index) {return ((T *)this)[index];}
+
+
+	inline Boolean contains(Value2D<T> value) const
 		{return this->x >= value.x && this->y >= value.y;}
 
-	inline T dot_product(Value2D value) const
+
+	inline T dot_product(Value2D<T> value) const
 		{return this->x * value.x + this->y * value.y;}
 
-	inline T cross_product(Value2D value) const
+
+	inline T cross_product(Value2D<T> value) const
 		{return this->x * value.y - this->y * value.x;}
-/*
-	inline Value2D minimum(Value2D value) const
-		{return Value2D(z_minimum(x, value.x), z_minimum(y, value.y));}
-
-	inline Value2D maximum(Value2D value) const
-		{return Value2D(z_maximum(x, value.x), z_maximum(y, value.y));}
-
-	inline Value2D middle(Value2D value) const
-		{return Value2D((x + value.x) / 2, (y + value.y) / 2);}
 
 
-	inline Value2D fit(Value2D value) const
+	inline Value2D<T> minimum(Value2D value) const
+		{return Value2D(Z_MINIMUM(this->x, value.x), Z_MINIMUM(this->y, value.y));}
+
+
+	inline Value2D<T> maximum(Value2D value) const
+		{return Value2D(Z_MAXIMUM(this->x, value.x), Z_MAXIMUM(this->y, value.y));}
+
+
+	inline Value2D<T> middle(Value2D value) const
+		{return Value2D((this->x + value.x) / T(2), (this->y + value.y) / T(2));}
+
+
+	inline Value2D<T> fit(Value2D<T> value) const
 		{
-		return y / x > value.y / value.x
-			? Value2D(x * value.y / y, value.y)
-			: Value2D(value.x, y * value.x / x);
+		return this->y / this->x > value.y / value.x
+			? Value2D<T>(this->x * value.y / this->y, value.y)
+			: Value2D<T>(value.x, this->y * value.x / this->x);
 		}
 
 
-	inline Boolean is_zero	     () const {return x == 0 && y == 0;}
-	inline Boolean has_zero	     () const {return x == 0 || y == 0;}
-	inline Real    inner_sum     () const {return x + y;}
-	inline Real    inner_product () const {return x * y;}
-	inline Real    inner_minimum () const {return z_minimum(x, y);}
-	inline Real    inner_maximum () const {return z_maximum(x, y);}
-	inline Real    inner_middle  () const {return (x + y) / 2;}
-	inline Real    squared_length() const {return x * x + y * y;}
+	inline Boolean is_zero	     () const {return this->x == T(0) && this->y == T(0);}
+	inline Boolean has_zero	     () const {return this->x == T(0) || this->y == T(0);}
+	inline T       inner_sum     () const {return this->x + this->y;}
+	inline T       inner_product () const {return this->x * this->y;}
+	inline T       inner_minimum () const {return Z_MINIMUM(this->x, this->y);}
+	inline T       inner_maximum () const {return Z_MAXIMUM(this->x, this->y);}
+	inline T       inner_middle  () const {return (this->x + this->y) / T(2);}
+	inline T       squared_length() const {return this->x * this->x + this->y * this->y;}
 
-
+/*
 	inline Value2D clamp(Value2D minimum, Value2D maximum) const
 		{
 		return Value2D
