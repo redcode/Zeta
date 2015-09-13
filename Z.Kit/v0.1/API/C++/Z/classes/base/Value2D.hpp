@@ -16,11 +16,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z2DType(TYPE) Z_INSERT_##TYPE##_FixedType(Z2D,)
 
 namespace ZKit {
-	ZMetaTypeSelectorRealOnly(TypeSelector2D, Z2DType)
+	ZTypeSelectorNaturalIntegerAndReal(Value2D, Z2DType)
 	template <typename T> class Value2D;
 }
 
-template <typename T> class ZKit::Value2D : public ZKit::TypeSelector2D<T>::V {
+template <typename T> class ZKit::Value2D : public ZKit::TypeSelectors::Value2D<T>::V {
 
 	public:
 
