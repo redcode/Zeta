@@ -10,42 +10,53 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_classes_base_Value2D_HPP__
 
 #include <Z/types/base.hpp>
+#include <Z/functions/geometry/ZRectangle.h>
+#include <Z/macros/templating.hpp>
 
-namespace ZKit {class Value2D : public Z2D {
+#define Z2DType(TYPE) Z_INSERT_##TYPE##_FixedType(Z2D,)
+
+namespace ZKit {
+	ZMetaTypeSelectorRealOnly(TypeSelector2D, Z2DType)
+	template <typename T> class Value2D;
+}
+
+template <typename T> class ZKit::Value2D : public ZKit::TypeSelector2D<T>::V {
+
+	public:
 
 	inline Value2D() {}
 
-	inline Value2D(Real x, Real y)
+	inline Value2D(T x, T y)
 		{this->x = x; this->y = y;}
 
-	inline Value2D(Real scalar)
-		{x = scalar; y = scalar;}
+	inline Value2D(T scalar)
+		{this->x = scalar; this->y = scalar;}
 
-	inline Boolean operator ==(Value2D value) const
-		{return x == value.x && y == value.y;}
+	inline Boolean operator ==(Value2D<T> value) const
+		{return this->x == value.x && this->y == value.y;}
 
-	inline Boolean operator ==(Real scalar) const
-		{return x == scalar && y == scalar;}
+	inline Boolean operator ==(T scalar) const
+		{return this->x == scalar && this->y == scalar;}
 
-	inline Value2D operator +(Value2D value) const {return Value2D(x + value.x, y + value.y);}
-	inline Value2D operator -(Value2D value) const {return Value2D(x - value.x, y - value.y);}
-	inline Value2D operator *(Value2D value) const {return Value2D(x * value.x, y * value.y);}
-	inline Value2D operator /(Value2D value) const {return Value2D(x / value.x, y / value.y);}
+	inline Value2D<T> operator +(Value2D<T> value) const {return Value2D<T>(this->x + value.x, this->y + value.y);}
+	inline Value2D<T> operator -(Value2D<T> value) const {return Value2D<T>(this->x - value.x, this->y - value.y);}
+	inline Value2D<T> operator *(Value2D<T> value) const {return Value2D<T>(this->x * value.x, this->y * value.y);}
+	inline Value2D<T> operator /(Value2D<T> value) const {return Value2D<T>(this->x / value.x, this->y / value.y);}
 
-	inline Value2D operator +(Real scalar) const {return Value2D(x + scalar, y + scalar);}
-	inline Value2D operator -(Real scalar) const {return Value2D(x - scalar, y - scalar);}
-	inline Value2D operator *(Real scalar) const {return Value2D(x * scalar, y * scalar);}
-	inline Value2D operator /(Real scalar) const {return Value2D(x / scalar, y / scalar);}
+	inline Value2D<T> operator +(T scalar) const {return Value2D<T>(this->x + scalar, this->y + scalar);}
+	inline Value2D<T> operator -(T scalar) const {return Value2D<T>(this->x - scalar, this->y - scalar);}
+	inline Value2D<T> operator *(T scalar) const {return Value2D<T>(this->x * scalar, this->y * scalar);}
+	inline Value2D<T> operator /(T scalar) const {return Value2D<T>(this->x / scalar, this->y / scalar);}
 
 	inline Boolean contains(Value2D value) const
-		{return x >= value.x && y >= value.y;}
+		{return this->x >= value.x && this->y >= value.y;}
 
-	inline Real dot_product(Value2D value) const
-		{return x * value.x + y * value.y;}
+	inline T dot_product(Value2D value) const
+		{return this->x * value.x + this->y * value.y;}
 
-	inline Real cross_product(Value2D value) const
-		{return x * value.y - y * value.x;}
-
+	inline T cross_product(Value2D value) const
+		{return this->x * value.y - this->y * value.x;}
+/*
 	inline Value2D minimum(Value2D value) const
 		{return Value2D(z_minimum(x, value.x), z_minimum(y, value.y));}
 
@@ -91,13 +102,6 @@ namespace ZKit {class Value2D : public Z2D {
 
 
 	inline Value2D yx()	   const {return Value2D(y, x);}
-	inline Value3D xyn(Real n) const {return Value3D(x, y, n);}
- 	inline Value3D xny(Real n) const {return Value3D(x, n, y);}
- 	inline Value3D nxy(Real n) const {return Value3D(n, x, y);}
-	inline Value3D yxn(Real n) const {return Value3D(y, x, n);}
-	inline Value3D ynx(Real n) const {return Value3D(y, n, x);}
-	inline Value3D nyx(Real n) const {return Value3D(n, y, x);}
-
 
 	// MARK: - Operations for integer and real types
 
@@ -137,7 +141,7 @@ namespace ZKit {class Value2D : public Z2D {
 		{return Value2D(1.0 / x, 1.0 / y);}
 
 	inline Value2D square_clamp_01() const
-		{return Value2D(z_clamp_01(x), z_clamp_01(y));}
+		{return Value2D(z_clamp_01(x), z_clamp_01(y));}*/
 
 
 };
