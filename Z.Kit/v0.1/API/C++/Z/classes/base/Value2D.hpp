@@ -9,9 +9,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_Value2D_HPP__
 #define __Z_classes_base_Value2D_HPP__
 
-#include <Z/types/base.hpp>
-#include <Z/functions/geometry/ZRectangle.h>
+#include <Z/traits/Type.hpp>
 #include <Z/macros/templating.hpp>
+#include <Z/macros/templating.h>
+#include <Z/functions/base/value.hpp>
+#include <type_traits>
 
 #define Z2DType(TYPE) Z_INSERT_##TYPE##_FixedType(Z2D,)
 
@@ -27,19 +29,11 @@ template <typename T> class
 	ZKit::Value2D
 #endif
 : public ZKit::TypeSelectors::Value2D<T>::type {
-
 	public:
 
 	inline Value2D() {}
-
-
-	inline Value2D(T _x, T _y)
-		{this->x = _x; this->y = _y;}
-
-
-	inline Value2D(T scalar)
-		{this->x = scalar; this->y = scalar;}
-
+	inline Value2D(T x, T y) {this->x = x; this->y = y;}
+	inline Value2D(T scalar) {this->x = scalar; this->y = scalar;}
 
 	inline Boolean operator ==(Value2D<T> value) const {return this->x == value.x && this->y == value.y;}
 	inline Boolean operator <=(Value2D<T> value) const {return this->x <= value.x && this->y <= value.y;}
@@ -71,29 +65,22 @@ template <typename T> class
 
 	inline T operator [](int index) {return ((T *)this)[index];}
 
+	inline Boolean contains(Value2D<T> value) const {return this->x >= value.x && this->y >= value.y;}
 
-	inline Boolean contains(Value2D<T> value) const
-		{return this->x >= value.x && this->y >= value.y;}
-
-
-	inline T dot_product(Value2D<T> value) const
-		{return this->x * value.x + this->y * value.y;}
-
-
-	inline T cross_product(Value2D<T> value) const
-		{return this->x * value.y - this->y * value.x;}
+	inline T dot_product  (Value2D<T> value) const {return this->x * value.x + this->y * value.y;}
+	inline T cross_product(Value2D<T> value) const {return this->x * value.y - this->y * value.x;}
 
 
 	inline Value2D<T> minimum(Value2D value) const
-		{return Value2D(Z_MINIMUM(this->x, value.x), Z_MINIMUM(this->y, value.y));}
+		{return Value2D<T>(minimum(this->x, value.x), minimum(this->y, value.y));}
 
 
 	inline Value2D<T> maximum(Value2D value) const
-		{return Value2D(Z_MAXIMUM(this->x, value.x), Z_MAXIMUM(this->y, value.y));}
+		{return Value2D<T>(maximum(this->x, value.x), maximum(this->y, value.y));}
 
 
 	inline Value2D<T> middle(Value2D value) const
-		{return Value2D((this->x + value.x) / T(2), (this->y + value.y) / T(2));}
+		{return Value2D<T>((this->x + value.x) / T(2), (this->y + value.y) / T(2));}
 
 
 	inline Value2D<T> fit(Value2D<T> value) const
@@ -104,14 +91,19 @@ template <typename T> class
 		}
 
 
-	inline Boolean is_zero	     () const {return this->x == T(0) && this->y == T(0);}
-	inline Boolean has_zero	     () const {return this->x == T(0) || this->y == T(0);}
-	inline T       inner_sum     () const {return this->x + this->y;}
-	inline T       inner_product () const {return this->x * this->y;}
-	inline T       inner_minimum () const {return Z_MINIMUM(this->x, this->y);}
-	inline T       inner_maximum () const {return Z_MAXIMUM(this->x, this->y);}
-	inline T       inner_middle  () const {return (this->x + this->y) / T(2);}
-	inline T       squared_length() const {return this->x * this->x + this->y * this->y;}
+	inline Boolean is_zero () const {return this->x == T(0) && this->y == T(0);}
+	inline Boolean has_zero() const {return this->x == T(0) || this->y == T(0);}
+
+	inline T inner_sum     () const {return this->x + this->y;}
+	inline T inner_product () const {return this->x * this->y;}
+	inline T inner_minimum () const {return minimum(this->x, this->y);}
+	inline T inner_maximum () const {return maximum(this->x, this->y);}
+	inline T inner_middle  () const {return (this->x + this->y) / T(2);}
+	inline T squared_length() const {return this->x * this->x + this->y * this->y;}
+
+
+	typename std::enable_if<Type<T>::is_real, Real>::type clamp_01()
+		{return 0.4;}
 
 /*
 	inline Value2D clamp(Value2D minimum, Value2D maximum) const
