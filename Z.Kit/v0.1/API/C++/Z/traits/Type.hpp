@@ -314,4 +314,4 @@ namespace ZKit {
 	template <> struct Type<const volatile long double> : public Type<volatile long double> {enum {is_const	   = true};};
 }
 
-#endif // __Z_classes_base_Range_HPP__
+#endif // __Z_traits_Type_HPP__
