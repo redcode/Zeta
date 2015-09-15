@@ -13,8 +13,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(COMPOUND_LITERAL) && Z_LANGUAGE_HAS(ANONYMOUS_UNION)
 
-#	define Z_CAST(from_type, to_type, structure) \
-		((union {from_type from; to_type to;}){.from = structure}).to
+#	define Z_CAST(to_type, from_type, structure) \
+		((union {to_type to; from_type from;}){.from = structure}).to
 
 #	define Z_AVAILABLE_CAST_MACRO
 

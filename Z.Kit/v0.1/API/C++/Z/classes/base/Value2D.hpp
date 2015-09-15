@@ -13,7 +13,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/templating.hpp>
 #include <Z/macros/templating.h>
 #include <Z/functions/base/value.hpp>
-#include <type_traits>
 
 #define Z2DType(TYPE) Z_INSERT_##TYPE##_FixedType(Z2D,)
 
@@ -102,8 +101,8 @@ template <typename T> class
 	inline T squared_length() const {return this->x * this->x + this->y * this->y;}
 
 
-	typename std::enable_if<Type<T>::is_real, Real>::type clamp_01()
-		{return 0.4;}
+	/*typename std::enable_if<Type<T>::is_real, Real>::type clamp_01()
+		{return 0.4;}*/
 
 /*
 	inline Value2D clamp(Value2D minimum, Value2D maximum) const

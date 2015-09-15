@@ -1,4 +1,4 @@
-/* Z Kit C++ API - macros/templating.hpp
+/* Z Kit C++ API - traits/Type.hpp
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
