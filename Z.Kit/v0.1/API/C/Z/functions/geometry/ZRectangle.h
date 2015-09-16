@@ -49,9 +49,9 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_intersection(					\
 	{											\
 	z##type x1, x2, y1, y2;									\
 												\
-	return	(x1 = z_##type##_maximum(a.point.x, b.point.x)) <=				\
+	return	(x1 = z_##type##_maximum(a.point.x,	       b.point.x)) <=			\
 		(x2 = z_##type##_minimum(a.point.x + a.size.x, b.point.x + b.size.x)) &&	\
-		(y1 = z_##type##_maximum(a.point.y, b.point.y)) <=				\
+		(y1 = z_##type##_maximum(a.point.y,	       b.point.y)) <=			\
 		(y2 = z_##type##_minimum(a.point.y + a.size.y, b.point.y + b.size.y))		\
 												\
 		? z_rectangle_##type(x1, y1, x2 - x1, y2 - y1)					\

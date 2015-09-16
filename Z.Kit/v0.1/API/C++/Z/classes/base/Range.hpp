@@ -10,26 +10,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_classes_base_Range_HPP__
 
 #include <Z/types/base.hpp>
-#include <Z/functions/base/value.h>
+#include <Z/macros/super.hpp>
+#include <Z/functions/base/value.hpp>
+
 
 namespace ZKit {class Range;}
 
 
 class ZKit::Range : public ZRange {
-
 	public:
+	typedef ZRange Base;
+	typedef ZRange Super;
+
+
 	inline Range() {}
+	inline Range(Size index, Size size) {this->index = index; this->size = size;}
+	inline Range(Base range) {*z_base = range;}
 
-
-	inline Range(Size index, Size size)
-		{this->index = index; this->size = size;}
-
-
-	inline Boolean contains(Range range) const
+	inline Boolean contains(Base range) const
 		{return range.index >= index && range.index + range.size <= index + size;}
 
 
-	inline Boolean collides(Range range) const
+	inline Boolean collides(Base range) const
 		{return index < range.index + range.size && range.index < index + size;}
 
 
@@ -45,7 +47,7 @@ class ZKit::Range : public ZRange {
 		{return index >= this->index && index < this->index + this->size;}
 
 
-	inline Boolean operator ==(Range range) const
+	inline Boolean operator ==(Base range) const
 		{return index == range.index && size == range.size;}
 
 
@@ -53,18 +55,16 @@ class ZKit::Range : public ZRange {
 		{return index == number && size == number;}
 
 
-	inline Range operator &(Range range) const
+	inline Range operator &(Base range) const
 		{
 		Size index = (this->index > range.index) ? this->index : range.index;
-
-		Size minimum = z_value_minimum(SIZE)
-			(this->index + this->size, range.index + range.size);
+		Size minimum = minimum<Size>(this->index + this->size, range.index + range.size);
 
 		return minimum > index ? Range(index, minimum - index) : Range(0, 0);
 		}
 
 
-	inline Range operator |(Range range) const
+	inline Range operator |(Base range) const
 		{
 		Size	index	  = (this->index < range.index) ? this->index : range.index,
 			a_maximum = this->index + this->size,
@@ -74,8 +74,8 @@ class ZKit::Range : public ZRange {
 		}
 
 
-	inline Range &operator &=(Range range) {return *this = *this & range;}
-	inline Range &operator |=(Range range) {return *this = *this | range;}
+	inline Range &operator &=(Base range) {return *this = *this & range;}
+	inline Range &operator |=(Base range) {return *this = *this | range;}
 };
 
 

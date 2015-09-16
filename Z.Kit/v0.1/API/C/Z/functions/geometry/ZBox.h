@@ -49,11 +49,11 @@ Z_INLINE ZBox##Type z_box_##type##_intersection(ZBox##Type a, ZBox##Type b)			\
 	{											\
 	z##type x1, x2, y1, y2, z1, z2;								\
 												\
-	return	(x1 = z_##type##_maximum(a.point.x, b.point.x)) <=				\
+	return	(x1 = z_##type##_maximum(a.point.x,	       b.point.x)) <=			\
 		(x2 = z_##type##_minimum(a.point.x + a.size.x, b.point.x + b.size.x)) &&	\
-		(y1 = z_##type##_maximum(a.point.y, b.point.y)) <=				\
+		(y1 = z_##type##_maximum(a.point.y,	       b.point.y)) <=			\
 		(y2 = z_##type##_minimum(a.point.y + a.size.y, b.point.y + b.size.y)) &&	\
-		(z1 = z_##type##_maximum(a.point.z, b.point.z)) <=				\
+		(z1 = z_##type##_maximum(a.point.z,	       b.point.z)) <=			\
 		(z2 = z_##type##_minimum(a.point.z + a.size.z, b.point.z + b.size.z))		\
 												\
 		? z_box_##type(x1, y1, z1, x2 - x1, y2 - y1, z2 - z1)				\

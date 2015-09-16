@@ -10,14 +10,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_classes_base_Value2D_HPP__
 
 #include <Z/traits/Type.hpp>
-#include <Z/macros/templating.hpp>
+#include <Z/macros/trait.hpp>
+#include <Z/macros/super.hpp>
 #include <Z/macros/templating.h>
 #include <Z/functions/base/value.hpp>
-
+#include <stdio.h>
 #define Z2DType(TYPE) Z_INSERT_##TYPE##_FixedType(Z2D,)
 
 namespace ZKit {
-	ZTypeSelectorNaturalIntegerAndReal(Value2D, Z2DType)
+	namespace BaseTypeSelectors {ZDefineTypeSelector(Value2D, Z2DType)};
 	template <typename T> class Value2D;
 };
 
@@ -27,15 +28,20 @@ template <typename T> class
 #else
 	ZKit::Value2D
 #endif
-: public ZKit::TypeSelectors::Value2D<T>::type {
+: public ZKit::BaseTypeSelectors::Value2D<T>::type {
 	public:
 
-	typedef typename TypeSelectors::Value2D<T>::type Base;
+	typedef typename BaseTypeSelectors::Value2D<T>::type Base;
+	typedef typename BaseTypeSelectors::Value2D<T>::type Super;
+	typedef		 T				     Value;
 
-	inline Value2D()	   {}
-	inline Value2D(T x, T y)   {this->x = x;       this->y = y;}
-	inline Value2D(T scalar)   {this->x = scalar;  this->y = scalar;}
-	inline Value2D(Base value) {this->x = value.x; this->y = value.y;}
+	inline Base  base () {return *z_base ;}
+	inline Super super() {return *z_super;}
+
+	inline Value2D<T>() {}
+	inline Value2D<T>(T x, T y) {this->x = x; this->y = y;}
+	inline Value2D<T>(T scalar) {this->x = scalar; this->y = scalar;}
+	inline Value2D<T>(Base value) {*z_base = value;}
 
 	inline Boolean operator ==(Base value) const {return this->x == value.x && this->y == value.y;}
 	inline Boolean operator <=(Base value) const {return this->x <= value.x && this->y <= value.y;}
@@ -74,11 +80,11 @@ template <typename T> class
 
 
 	inline Value2D<T> minimum(Base value) const
-		{return Value2D<T>(minimum(this->x, value.x), minimum(this->y, value.y));}
+		{return Value2D<T>(ZKit::minimum<T>(this->x, value.x), ZKit::minimum<T>(this->y, value.y));}
 
 
 	inline Value2D<T> maximum(Base value) const
-		{return Value2D<T>(maximum(this->x, value.x), maximum(this->y, value.y));}
+		{return Value2D<T>(ZKit::maximum<T>(this->x, value.x), ZKit::maximum<T>(this->y, value.y));}
 
 
 	inline Value2D<T> middle(Base value) const
@@ -98,8 +104,8 @@ template <typename T> class
 
 	inline T inner_sum     () const {return this->x + this->y;}
 	inline T inner_product () const {return this->x * this->y;}
-	inline T inner_minimum () const {return minimum(this->x, this->y);}
-	inline T inner_maximum () const {return maximum(this->x, this->y);}
+	inline T inner_minimum () const {return ZKit::minimum<T>(this->x, this->y);}
+	inline T inner_maximum () const {return ZKit::maximum<T>(this->x, this->y);}
 	inline T inner_middle  () const {return (this->x + this->y) / T(2);}
 	inline T squared_length() const {return this->x * this->x + this->y * this->y;}
 

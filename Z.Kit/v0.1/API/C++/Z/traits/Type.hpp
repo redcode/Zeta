@@ -85,7 +85,7 @@ namespace ZKit {
 	};
 
 	template <> struct Type<const	       unsigned short int> : public Type<	  unsigned short int> {enum {is_const	 = true};};
-	template <> struct Type<volatile       unsigned short int> : public Type<	  unsigned short int> {enum {is_volatile = true};};
+	template <> struct Type<      volatile unsigned short int> : public Type<	  unsigned short int> {enum {is_volatile = true};};
 	template <> struct Type<const volatile unsigned short int> : public Type<volatile unsigned short int> {enum {is_const	 = true};};
 
 	template <> struct Type<unsigned int> : public Abstract::Type::Natural {
@@ -133,7 +133,7 @@ namespace ZKit {
 	};
 
 	template <> struct Type<const	       unsigned long long int> : public Type<	      unsigned long long int> {enum {is_const	 = true};};
-	template <> struct Type<volatile       unsigned long long int> : public Type<	      unsigned long long int> {enum {is_volatile = true};};
+	template <> struct Type<      volatile unsigned long long int> : public Type<	      unsigned long long int> {enum {is_volatile = true};};
 	template <> struct Type<const volatile unsigned long long int> : public Type<volatile unsigned long long int> {enum {is_const	 = true};};
 
 	template <> struct Type<signed char> : public Abstract::Type::Integer {
@@ -169,7 +169,7 @@ namespace ZKit {
 	};
 
 	template <> struct Type<const	       signed short int> : public Type<	  	signed short int> {enum {is_const    = true};};
-	template <> struct Type<volatile       signed short int> : public Type<	  	signed short int> {enum {is_volatile = true};};
+	template <> struct Type<      volatile signed short int> : public Type<	  	signed short int> {enum {is_volatile = true};};
 	template <> struct Type<const volatile signed short int> : public Type<volatile	signed short int> {enum {is_const    = true};};
 
 	template <> struct Type<signed int> : public Abstract::Type::Integer {
@@ -223,7 +223,7 @@ namespace ZKit {
 	};
 
 	template <> struct Type<const	       signed long long int> : public Type<	    signed long long int> {enum {is_const    = true};};
-	template <> struct Type<volatile       signed long long int> : public Type<	    signed long long int> {enum {is_volatile = true};};
+	template <> struct Type<      volatile signed long long int> : public Type<	    signed long long int> {enum {is_volatile = true};};
 	template <> struct Type<const volatile signed long long int> : public Type<volatile signed long long int> {enum {is_const    = true};};
 
 	template <> struct Type<float> : public Abstract::Type::Real {
@@ -252,7 +252,7 @@ namespace ZKit {
 	};
 
 	template <> struct Type<const	       float> : public Type<	     float> {enum {is_const    = true};};
-	template <> struct Type<volatile       float> : public Type<	     float> {enum {is_volatile = true};};
+	template <> struct Type<      volatile float> : public Type<	     float> {enum {is_volatile = true};};
 	template <> struct Type<const volatile float> : public Type<volatile float> {enum {is_const    = true};};
 
 	template <> struct Type<double> : public Abstract::Type::Real {
@@ -281,7 +281,7 @@ namespace ZKit {
 	};
 
 	template <> struct Type<const	       double> : public Type<	      double> {enum {is_const	 = true};};
-	template <> struct Type<volatile       double> : public Type<	      double> {enum {is_volatile = true};};
+	template <> struct Type<      volatile double> : public Type<	      double> {enum {is_volatile = true};};
 	template <> struct Type<const volatile double> : public Type<volatile double> {enum {is_const	 = true};};
 
 	template <> struct Type<long double> : public Abstract::Type::Real {
@@ -310,7 +310,7 @@ namespace ZKit {
 	};
 
 	template <> struct Type<const	       long double> : public Type<	   long double> {enum {is_const	   = true};};
-	template <> struct Type<volatile       long double> : public Type<	   long double> {enum {is_volatile = true};};
+	template <> struct Type<      volatile long double> : public Type<	   long double> {enum {is_volatile = true};};
 	template <> struct Type<const volatile long double> : public Type<volatile long double> {enum {is_const	   = true};};
 }
 
