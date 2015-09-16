@@ -14,9 +14,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/super.hpp>
 
 namespace ZKit {
-	namespace BaseTypeSelectors {ZDefineTypeSelectorReal(Rectangle, ZRectangleType)};
+	namespace Selectors {namespace BaseType {
+		ZDefineTypeSelectorReal(Rectangle, ZRectangleType)
+	}}
+
 	template <typename T> class Rectangle;
-};
+}
 
 template <typename T> class
 #ifdef __ZMathematics_geometry_Rectangle_HPP__
@@ -26,11 +29,11 @@ template <typename T> class
 #endif
 	public:
 
-	typedef typename BaseTypeSelectors::Rectangle<T>::type Base;  // Not actual but compatible
-	typedef typename BaseTypeSelectors::Rectangle<T>::type Super; // Not actual but compatible
-	typedef		 Value2D<T>			       Content;
-	typedef typename Value2D<T>::Base		       ContentBase;
-	typedef		 T				       Value;
+	typedef typename Selectors::BaseType::Rectangle<T>::type Base;  // Not actual but compatible
+	typedef typename Selectors::BaseType::Rectangle<T>::type Super; // Not actual but compatible
+	typedef		 Value2D<T>				 Content;
+	typedef typename Value2D<T>::Base			 ContentBase;
+	typedef		 T					 Value;
 
 	Value2D<T> point, size;
 
@@ -104,6 +107,9 @@ template <typename T> class
 
 		return result;
 		}*/
+
+
+	inline T operator [](int index) {return ((T *)this)[index];}
 
 
 	inline Boolean containts(Rectangle<T> rectangle)

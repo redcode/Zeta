@@ -18,7 +18,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z2DType(TYPE) Z_INSERT_##TYPE##_FixedType(Z2D,)
 
 namespace ZKit {
-	namespace BaseTypeSelectors {ZDefineTypeSelector(Value2D, Z2DType)};
+	namespace Selectors {namespace BaseType {
+		ZDefineTypeSelector(Value2D, Z2DType)
+	}}
+
 	template <typename T> class Value2D;
 };
 
@@ -28,12 +31,12 @@ template <typename T> class
 #else
 	ZKit::Value2D
 #endif
-: public ZKit::BaseTypeSelectors::Value2D<T>::type {
+: public ZKit::Selectors::BaseType::Value2D<T>::type {
 	public:
 
-	typedef typename BaseTypeSelectors::Value2D<T>::type Base;
-	typedef typename BaseTypeSelectors::Value2D<T>::type Super;
-	typedef		 T				     Value;
+	typedef typename Selectors::BaseType::Value2D<T>::type Base;
+	typedef typename Selectors::BaseType::Value2D<T>::type Super;
+	typedef		 T				       Value;
 
 	inline Base  base () {return *z_base ;}
 	inline Super super() {return *z_super;}
