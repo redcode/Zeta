@@ -82,7 +82,7 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_from_vertices(Z2D##Type a, Z2D##T
 	return z_rectangle_##type								\
 		(minimum.x,  minimum.y,								\
 		 z_##type##_maximum(a.x, b.x) - minimum.x,					\
-		 z_##type##_maximum(a.x, b.x) - minimum.y);					\
+		 z_##type##_maximum(a.y, b.y) - minimum.y);					\
 	}											\
 												\
 												\
