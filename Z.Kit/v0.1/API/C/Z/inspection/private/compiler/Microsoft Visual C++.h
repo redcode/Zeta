@@ -43,7 +43,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_COMPILER_C_ATTRIBUTE_ALIAS(name)
 #define Z_COMPILER_C_ATTRIBUTE_INLINE		 static __forceinline
-
 #define Z_COMPILER_C_ATTRIBUTE_THREAD_LOCAL	 __declspec(thread)
 #define Z_COMPILER_C_ATTRIBUTE_PRIVATE		 static
 #define Z_COMPILER_C_ATTRIBUTE_API		 __declspec(dllimport)

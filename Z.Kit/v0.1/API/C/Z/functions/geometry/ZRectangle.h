@@ -78,10 +78,11 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_union(ZRectangle##Type a, ZRectan
 Z_INLINE ZRectangle##Type z_rectangle_##type##_from_vertices(Z2D##Type a, Z2D##Type b)		\
 	{											\
 	Z2D##Type minimum = z_2d_##type##_minimum(a, b);					\
-	Z2D##Type maximum = z_2d_##type##_maximum(a, b);					\
 												\
 	return z_rectangle_##type								\
-		(minimum.x,  minimum.y, maximum.x - minimum.x, maximum.y - minimum.y);		\
+		(minimum.x,  minimum.y,								\
+		 z_##type##_maximum(a.x, b.x) - minimum.x,					\
+		 z_##type##_maximum(a.x, b.x) - minimum.y);					\
 	}											\
 												\
 												\
@@ -472,7 +473,6 @@ Z_INLINE ZAABR##Type z_rectangle_##type##_to_aabr(ZRectangle##Type object)			\
 Z_INLINE Z2D##Type z_rectangle_##type##_absolute_point_to_unit(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 point									\
-												\
 )												\
 	{											\
 	return z_2d_##type									\
@@ -484,7 +484,6 @@ Z_INLINE Z2D##Type z_rectangle_##type##_absolute_point_to_unit(					\
 Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 point									\
-												\
 )												\
 	{											\
 	return z_2d_##type									\

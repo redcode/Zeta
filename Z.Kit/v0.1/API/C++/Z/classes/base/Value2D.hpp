@@ -44,30 +44,47 @@ template <typename T> class
 	inline Value2D<T>() {}
 	inline Value2D<T>(T x, T y) {this->x = x; this->y = y;}
 	inline Value2D<T>(T scalar) {this->x = scalar; this->y = scalar;}
+	inline Value2D<T>(T *data)  {this->x = data[0]; this->y = data[1];}
 	inline Value2D<T>(Base value) {*z_base = value;}
 
-	inline Boolean operator ==(Base value) const {return this->x == value.x && this->y == value.y;}
-	inline Boolean operator <=(Base value) const {return this->x <= value.x && this->y <= value.y;}
-	inline Boolean operator >=(Base value) const {return this->x >= value.x && this->y >= value.y;}
+	static inline Value2D<T> zero() {return Value2D<T>(T(0), T(0));}
+	static inline Value2D<T> one () {return Value2D<T>(T(1), T(1));}
+
+
+	static inline Value2D<T> minimum(Value2D<T> a, Value2D<T> b)
+		{return Value2D<T>(ZKit::minimum<T>(a.x, b.x), ZKit::minimum<T>(a.y, b.y));}
+
+
+	static inline Value2D<T> maximum(Value2D<T> a, Value2D<T> b)
+		{return Value2D<T>(ZKit::maximum<T>(a.x, b.x), ZKit::maximum<T>(a.y, b.y));}
+
+
+	static inline Value2D<T> middle(Value2D<T> a, Value2D<T> b)
+		{return Value2D<T>((a.x + b.x) / T(2), (a.y + b.y) / T(2));}
+
+
+	inline Boolean operator ==(Value2D<T> value) const {return this->x == value.x && this->y == value.y;}
+	inline Boolean operator <=(Value2D<T> value) const {return this->x <= value.x && this->y <= value.y;}
+	inline Boolean operator >=(Value2D<T> value) const {return this->x >= value.x && this->y >= value.y;}
 
 	inline Boolean operator ==(T scalar) const {return this->x == scalar && this->y == scalar;}
 	inline Boolean operator <=(T scalar) const {return this->x <= scalar && this->y <= scalar;}
 	inline Boolean operator >=(T scalar) const {return this->x >= scalar && this->y >= scalar;}
 
-	inline Value2D<T> operator +(Base value) const {return Value2D<T>(this->x + value.x, this->y + value.y);}
-	inline Value2D<T> operator -(Base value) const {return Value2D<T>(this->x - value.x, this->y - value.y);}
-	inline Value2D<T> operator *(Base value) const {return Value2D<T>(this->x * value.x, this->y * value.y);}
-	inline Value2D<T> operator /(Base value) const {return Value2D<T>(this->x / value.x, this->y / value.y);}
+	inline Value2D<T> operator +(Value2D<T> value) const {return Value2D<T>(this->x + value.x, this->y + value.y);}
+	inline Value2D<T> operator -(Value2D<T> value) const {return Value2D<T>(this->x - value.x, this->y - value.y);}
+	inline Value2D<T> operator *(Value2D<T> value) const {return Value2D<T>(this->x * value.x, this->y * value.y);}
+	inline Value2D<T> operator /(Value2D<T> value) const {return Value2D<T>(this->x / value.x, this->y / value.y);}
 
 	inline Value2D<T> operator +(T scalar) const {return Value2D<T>(this->x + scalar, this->y + scalar);}
 	inline Value2D<T> operator -(T scalar) const {return Value2D<T>(this->x - scalar, this->y - scalar);}
 	inline Value2D<T> operator *(T scalar) const {return Value2D<T>(this->x * scalar, this->y * scalar);}
 	inline Value2D<T> operator /(T scalar) const {return Value2D<T>(this->x / scalar, this->y / scalar);}
 
-	inline Value2D<T> operator +=(Base value) {return *this = *this + value;}
-	inline Value2D<T> operator -=(Base value) {return *this = *this - value;}
-	inline Value2D<T> operator *=(Base value) {return *this = *this * value;}
-	inline Value2D<T> operator /=(Base value) {return *this = *this / value;}
+	inline Value2D<T> operator +=(Value2D<T> value) {return *this = *this + value;}
+	inline Value2D<T> operator -=(Value2D<T> value) {return *this = *this - value;}
+	inline Value2D<T> operator *=(Value2D<T> value) {return *this = *this * value;}
+	inline Value2D<T> operator /=(Value2D<T> value) {return *this = *this / value;}
 
 	inline Value2D<T> operator +=(T scalar) {return *this = *this + scalar;}
 	inline Value2D<T> operator -=(T scalar) {return *this = *this - scalar;}
@@ -76,25 +93,25 @@ template <typename T> class
 
 	inline T operator [](int index) {return ((T *)this)[index];}
 
-	inline Boolean contains(Base value) const {return this->x >= value.x && this->y >= value.y;}
+	inline Boolean contains(Value2D<T> value) const {return this->x >= value.x && this->y >= value.y;}
 
-	inline T dot_product  (Base value) const {return this->x * value.x + this->y * value.y;}
-	inline T cross_product(Base value) const {return this->x * value.y - this->y * value.x;}
+	inline T dot_product  (Value2D<T> value) const {return this->x * value.x + this->y * value.y;}
+	inline T cross_product(Value2D<T> value) const {return this->x * value.y - this->y * value.x;}
 
 
-	inline Value2D<T> minimum(Base value) const
+	inline Value2D<T> minimum(Value2D<T> value) const
 		{return Value2D<T>(ZKit::minimum<T>(this->x, value.x), ZKit::minimum<T>(this->y, value.y));}
 
 
-	inline Value2D<T> maximum(Base value) const
+	inline Value2D<T> maximum(Value2D<T> value) const
 		{return Value2D<T>(ZKit::maximum<T>(this->x, value.x), ZKit::maximum<T>(this->y, value.y));}
 
 
-	inline Value2D<T> middle(Base value) const
+	inline Value2D<T> middle(Value2D<T> value) const
 		{return Value2D<T>((this->x + value.x) / T(2), (this->y + value.y) / T(2));}
 
 
-	inline Value2D<T> fit(Base value) const
+	inline Value2D<T> fit(Value2D<T> value) const
 		{
 		return this->y / this->x > value.y / value.x
 			? Value2D<T>(this->x * value.y / this->y, value.y)

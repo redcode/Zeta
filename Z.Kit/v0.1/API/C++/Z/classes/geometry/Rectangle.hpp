@@ -40,10 +40,10 @@ template <typename T> class
 	inline Rectangle<T>() {}
 
 
-	inline Rectangle<T>(ContentBase point, ContentBase size)
+	inline Rectangle<T>(Value2D<T> point, Value2D<T> size)
 		{
 		this->point = point;
-		this->size = size;
+		this->size  = size;
 		}
 
 
@@ -51,31 +51,40 @@ template <typename T> class
 		{
 		point.x = x;
 		point.y = y;
-		size.x = size_x;
-		size.y = size_y;
+		size.x	= size_x;
+		size.y	= size_y;
 		}
 
 
-	inline Rectangle<T>(T x, T y, ContentBase size)
+	inline Rectangle<T>(T x, T y, Value2D<T> size)
 		{
-		point.x = x;
-		point.y = y;
-		this->size;
+		point.x	   = x;
+		point.y	   = y;
+		this->size = size;
 		}
 
 
-	inline Rectangle<T>(ContentBase point, T size_x, T size_y)
+	inline Rectangle<T>(Value2D<T> point, T size_x, T size_y)
 		{
 		this->point = point;
-		size.x = size_x;
-		size.y = size_y;
+		size.x	    = size_x;
+		size.y	    = size_y;
+		}
+
+
+	static inline Rectangle<T> from_vertices(Value2D<T> a, Value2D<T> b)
+		{
+		Value2D<T> minimum = Value2D<T>::minimum(a, b);
+		Value2D<T> maximum = Value2D<T>::maximum(a, b);
+
+		return Rectangle<T>(minimum, maximum - minimum);
 		}
 
 
 	inline Boolean operator ==(Rectangle<T> rectangle) const
 		{
-		return	this->point.x == rectangle.point.x && this->point.y == rectangle.point.y &&
-			this->size.x  == rectangle.size.x  && this->size.y  == rectangle.size.y;
+		return	point.x == rectangle.point.x && point.y == rectangle.point.y &&
+			size.x	== rectangle.size.x  && size.y	== rectangle.size.y;
 		}
 
 
@@ -83,51 +92,262 @@ template <typename T> class
 		{
 		T x1, x2, y1, y2;
 
-		return	(x1 = maximum<T>(this->point.x,		       rectangle.point.x)) <=
-			(x2 = minimum<T>(this->point.x + this->size.x, rectangle.point.x + rectangle.size.x)) &&
-			(y1 = maximum<T>(this->point.y,		       rectangle.point.y)) <=
-			(y2 = minimum<T>(this->point.y + this->size.y, rectangle.point.y + rectangle.size.y))
+		return	(x1 = maximum<T>(point.x,	   rectangle.point.x)) <=
+			(x2 = minimum<T>(point.x + size.x, rectangle.point.x + rectangle.size.x)) &&
+			(y1 = maximum<T>(point.y,	   rectangle.point.y)) <=
+			(y2 = minimum<T>(point.y + size.y, rectangle.point.y + rectangle.size.y))
 
 			? Rectangle<T>(x1, y1, x2 - x1, y2 - y1)
 			: Rectangle<T>(0, 0, 0, 0);
 		}
 
-		/*
+
 	inline Rectangle<T> operator |(Rectangle<T> rectangle) const
 		{
-			Rectangle<T>()
+		Rectangle<T> result;
 
-		ZRectangle##Type result;
-		result.point = z_2d_##type##_minimum(a.point, b.point);
-
-		result.size = (this->point + this->size).maximum(b.point + b.size) - result.point;
-
-		result.size.x =	maximum<T>(this->point.x + this->size.x, b.point.x + b.size.x) - result.point.x;
-		result.size.y = maximum<T>(this->point.y + this->size.y, b.point.y + b.size.y) - result.point.y;
+		result.point = point.minimum(rectangle.point);
+		result.size  = (point + size).maximum(rectangle.point + rectangle.size) - result.point;
 
 		return result;
+		}
+
+
+	inline T operator [](int index) const {return ((T *)this)[index];}
+
+
+	inline Boolean containts(Rectangle<T> rectangle) const
+		{
+		return	rectangle.point.x		     >= point.x		 &&
+			rectangle.point.y		     >= point.y		 &&
+			rectangle.point.x + rectangle.size.x <= point.x + size.x &&
+			rectangle.point.y + rectangle.size.y <= point.y + size.y;
+		}
+
+
+	inline Boolean collides(Rectangle<T> rectangle) const
+		{
+		return	point.x		 < rectangle.point.x + rectangle.size.x &&
+			point.x + size.x > rectangle.point.x &&
+			point.y		 < rectangle.point.y + rectangle.size.y &&
+			point.y + size.y > rectangle.point.y;
+		}
+
+
+	inline Boolean is_zero() const {return point.is_zero() && size.is_zero();}
+
+
+	inline T minimum_x() const {return point.x;}
+	inline T minimum_y() const {return point.y;}
+	inline T maximum_x() const {return point.x + size.x;}
+	inline T maximum_y() const {return point.y + size.y;}
+	inline T middle_x () const {return point.x + size.x / T(2);}
+	inline T middle_y () const {return point.y + size.y / T(2);}
+
+	inline Value2D<T> top_left     () const {return Value2D<T>(point.x, point.y + size.y);}
+	inline Value2D<T> top_right    () const {return point + size;}
+	inline Value2D<T> top_center   () const {return Value2D<T>(point.x + size.x / T(2), point.y + size.y);}
+	inline Value2D<T> bottom_left  () const {return point;}
+	inline Value2D<T> bottom_right () const {return Value2D<T>(point.x + size.x, point.y);}
+	inline Value2D<T> bottom_center() const {return Value2D<T>(point.x + size.x / T(2), point.y);}
+	inline Value2D<T> center_left  () const {return Value2D<T>(point.x, point.y + size.y / T(2));}
+	inline Value2D<T> center_right () const {return Value2D<T>(point.x + size.x, point.y + size.y / T(2));}
+	inline Value2D<T> center       () const {return point + size / T(2);}
+
+
+	inline Rectangle<T> correct()
+		{
+		if (object.size.x < T(0)) object.point.x -= (object.size.x = -object.size.x);
+		if (object.size.y < T(0)) object.point.y -= (object.size.y = -object.size.y);
+		return object;
+		}
+
+
+	inline Rectangle<T> top_half   () const {return Rectangle<T>(point.x, point.y + size.y / T(2), size.x, size.y / T(2));}
+	inline Rectangle<T> bottom_half() const {return Rectangle<T>(point, size.x, size.y / T(2));}
+	inline Rectangle<T> left_half  () const {return Rectangle<T>(point, size.x / T(2), size.y);}
+	inline Rectangle<T> right_half () const {return Rectangle<T>(point.x + size.x / T(2), point.y, size.x / T(2), size.y);}
+
+	inline Rectangle<T> top_left_quarter	() const {return Rectangle<T>(point.x, point.y + size.y / T(2), size / T(2);}
+	inline Rectangle<T> top_right_quarter	() const {return Rectangle<T>(point + size / T(2), size / T(2));}
+	inline Rectangle<T> bottom_left_quarter	() const {return Rectangle<T>(point, size / T(2));}
+	inline Rectangle<T> bottom_right_quarter() const {return Rectangle<T>(point.x + size.x / T(2), point.y, size / T(2));}
+
+
+	inline Rectangle<T> align_in_top_left(Value2D<T> size) const
+		{Rectangle<T>(this->point.x, this->point.y + this->size.y - size.y, size);}
+
+
+	inline Rectangle<T> align_in_top_right(Value2D<T> size) const
+		{Rectangle<T>(this->point + this->size - size, size);}
+
+
+	inline Rectangle<T> align_in_top_center(Value2D<T> size) const
+		{
+		Rectangle<T>
+			(this->point.x + (this->size.x - size.x) / T(2),
+			 this->point.y +  this->size.y - size.y,
+			 size);
+		 }
+
+
+	inline Rectangle<T> align_in_bottom_left(Value2D<T> size) const
+		{return Rectangle<T>(this->point, size);}
+
+
+	inline Rectangle<T> align_in_bottom_right(Value2D<T> size) const
+		{return Rectangle<T>(this->point.x + this->size.x - size.x, this->point.y, size);}
+
+
+	inline Rectangle<T> align_in_bottom_center(Value2D<T> size) const
+		{return Rectangle<T>(this->point.x + (this->size.x - size.x) / T(2), this->point.y, size);}
+
+
+	inline Rectangle<T> align_in_center_left(Value2D<T> size) const
+		{return Rectangle<T>(this->point.x, this->point.y + (this->size.y - size.y) / T(2), size);}
+
+
+	inline Rectangle<T> align_in_center_right(Value2D<T> size) const
+		{
+		return Rectangle<T>
+			(this->point.x +  this->size.x - size.x,
+			 this->point.y + (this->size.y - size.y) / T(2),
+			 size);
+		}
+
+
+	inline Rectangle<T> align_in_center(Value2D<T> size) const
+		{return Rectangle<T>(this->point + (this->size - size) / T(2), size);}
+
+
+	inline Rectangle<T> fit_in_top_left(Value2D<T> size) const
+		{
+		size = size.fit(this->size);
+		return Rectangle<T>(this->point.x, this->point.y + this->size.y - size.y, size);
+		}
+
+
+	inline Rectangle<T> fit_in_top_right(Value2D<T> size) const
+		{
+		size = size.fit(this->size);
+		return Rectangle<T>(this->point + this->size - size, size);
+		}
+
+
+	inline Rectangle<T> fit_in_top_center(Value2D<T> size) const
+		{
+		size = size.fit(this->size);
+
+		return Rectangle<T>
+			(this->point.x + (this->size.x - size.x) / T(2),
+			 this->point.y +  this->size.y - size.y,
+			 size);
+		}
+
+
+	inline Rectangle<T> fit_in_bottom_left(Value2D<T> size) const
+		{return Value2D<T>(this->point, size.fit(this->size));}
+
+
+	inline Rectangle<T> fit_in_bottom_right(Value2D<T> size) const
+		{
+		size = size.fit(this->size);
+		return Rectangle<T>(this->point.x + this->size.x - size.x, this->point.y, size);
+		}
+
+
+	inline Rectangle<T> fit_in_bottom_center(Value2D<T> size) const
+		{
+		size = size.fit(this->size);
+		return Rectangle<T>(this->point.x + (this->size.x - size.x) / T(2), this->point.y, size);
+		}
+
+
+	inline Rectangle<T> fit_in_center_left(Value2D<T> size) const
+		{
+		size = size.fit(this->size);
+		return Rectangle<T>(this->point.x, this->point.y + (this->size.y - size.y) / T(2), size);
+		}
+
+
+	inline Rectangle<T> fit_in_center_right(Value2D<T> size) const
+		{
+		size = size.fit(this->size);
+
+		return Rectangle<T>
+			(this->point.x +  this->size.x - size.x,
+			 this->point.y + (this->size.y - size.y) / T(2),
+			 size);
+		 }
+
+
+	inline Rectangle<T> fit_in_center(Value2D<T> size) const
+		{
+		size = size.fit(this->size);
+		return Rectangle<T>(this->point + (this->size - size) / T(2), size);
+		}
+
+		/*
+	Z_INLINE ZCircle##Type inner_circle(ZRectangle##Type object) const
+		{
+		ZCircle##Type result;
+
+		result.point  = z_rectangle_##type##_center(object);
+		result.radius = z_##type##_minimum(object.size.x, object.size.y) / _(2.0);
+		return result;
+		}
+
+
+	Z_INLINE ZAABR##Type to_aabr(ZRectangle##Type object) const
+		{
+		return z_aabr_##type
+			(object.point.x, object.point.y,
+			 object.point.x + object.size.x, object.point.y + object.size.y);
 		}*/
 
 
-	inline T operator [](int index) {return ((T *)this)[index];}
+	inline Value2D<T> absolute_point_to_unit(Value2D<T> point) {return (point - this->point) / this->size;}
+	inline Value2D<T> unit_point_to_absolute(Value2D<T> point) {return point * this->size + this->point;}
 
 
-	inline Boolean containts(Rectangle<T> rectangle)
+	inline Boolean contains_point(Value2D<T> point) const
 		{
-		return	rectangle.point.x		     >= this->point.x		     &&
-			rectangle.point.y		     >= this->point.y		     &&
-			rectangle.point.x + rectangle.size.x <= this->point.x + this->size.x &&
-			rectangle.point.y + rectangle.size.y <= this->point.y + this->size.y;
+		return	point >= this->point			  &&
+			point.x <= object.point.x + object.size.x &&
+			point.y <= object.point.y + object.size.y;
 		}
 
 
-	inline Boolean collides(Rectangle<T> rectangle)
+/*	inline Boolean contains_line_segment(
+		ZRectangle##Type object,
+		Z2DLine##Type	 line_segment
+	) const
 		{
-		return	this->point.x		     < rectangle.point.x + rectangle.size.x &&
-			this->point.x + this->size.x > rectangle.point.x &&
-			this->point.y		     < rectangle.point.y + rectangle.size.y &&
-			this->point.y + this->size.y > rectangle.point.y;
+		return	z_rectangle_##type##_contains_point(object, line_segment.a) &&
+			z_rectangle_##type##_contains_point(object, line_segment.b);
 		}
+
+
+	inline Boolean contains_aabr(ZRectangle##Type object, ZAABR##Type aabr) const
+		{
+		return	aabr.a.x >= object.point.x		   &&
+			aabr.a.y >= object.point.y		   &&
+			aabr.b.x <= object.point.x + object.size.x &&
+			aabr.b.y <= object.point.y + object.size.y;
+		}
+
+
+	inline Boolean contains_circle(
+		ZRectangle##Type object,
+		ZCircle##Type	 circle
+	) const
+		{
+		return	circle.point.x - circle.radius >= object.point.x		 &&
+			circle.point.y - circle.radius >= object.point.y		 &&
+			circle.point.x + circle.radius <= object.point.x + object.size.x &&
+			circle.point.y + circle.radius <= object.point.y + object.size.y;
+		}*/
+
 
 
 };

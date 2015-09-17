@@ -87,7 +87,9 @@ Z_INLINE ZBox##Type z_box_##type##_from_vertices(Z3D##Type a, Z3D##Type b)			\
 												\
 	return z_box_##type									\
 		(minimum.x,  minimum.y, minimum.z,						\
-		 maximum.x - minimum.x, maximum.y - minimum.y, maximum.z - minimum.z);		\
+		 z_##type##_maximum(a.x, b.x) - minimum.x,					\
+		 z_##type##_maximum(a.y, b.y) - minimum.y,					\
+		 z_##type##_maximum(a.z, b.z) - minimum.z);					\
 	}											\
 												\
 												\
