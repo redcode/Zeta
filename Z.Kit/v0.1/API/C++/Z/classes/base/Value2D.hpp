@@ -10,20 +10,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_classes_base_Value2D_HPP__
 
 #include <Z/traits/Type.hpp>
-#include <Z/macros/trait.hpp>
+#include <Z/macros/type selector.hpp>
 #include <Z/macros/super.hpp>
 #include <Z/macros/templating.h>
+#include <Z/traits/conditionals.hpp>
 #include <Z/functions/base/value.hpp>
 #include <stdio.h>
 #define Z2DType(TYPE) Z_INSERT_##TYPE##_FixedType(Z2D,)
 
 namespace ZKit {
 	namespace Selectors {namespace BaseType {
-		ZDefineTypeSelector(Value2D, Z2DType)
+		Z_TYPE_SELECTOR(Value2D, Z2DType)
 	}}
 
 	template <typename T> class Value2D;
-};
+}
 
 template <typename T> class
 #ifdef __ZMathematics_base_Value2D_HPP__
@@ -41,10 +42,12 @@ template <typename T> class
 	inline Base  base () {return *z_base ;}
 	inline Super super() {return *z_super;}
 
-	inline Value2D<T>() {}
-	inline Value2D<T>(T x, T y) {this->x = x; this->y = y;}
-	inline Value2D<T>(T scalar) {this->x = scalar; this->y = scalar;}
-	inline Value2D<T>(T *data)  {this->x = data[0]; this->y = data[1];}
+	// MARK: - Constructors
+
+	inline Value2D<T>()	      {}
+	inline Value2D<T>(T x, T y)   {this->x = x; this->y = y;}
+	inline Value2D<T>(T scalar)   {this->x = scalar; this->y = scalar;}
+	inline Value2D<T>(void *data) {*this = *(Value2D<T> *)data;}
 	inline Value2D<T>(Base value) {*z_base = value;}
 
 	static inline Value2D<T> zero() {return Value2D<T>(T(0), T(0));}
@@ -62,6 +65,8 @@ template <typename T> class
 	static inline Value2D<T> middle(Value2D<T> a, Value2D<T> b)
 		{return Value2D<T>((a.x + b.x) / T(2), (a.y + b.y) / T(2));}
 
+
+	// MARK: - Operators
 
 	inline Boolean operator ==(Value2D<T> value) const {return this->x == value.x && this->y == value.y;}
 	inline Boolean operator <=(Value2D<T> value) const {return this->x <= value.x && this->y <= value.y;}
@@ -130,29 +135,26 @@ template <typename T> class
 	inline T squared_length() const {return this->x * this->x + this->y * this->y;}
 
 
-	/*typename std::enable_if<Type<T>::is_real, Real>::type clamp_01()
-		{return 0.4;}*/
-
-/*
-	inline Value2D clamp(Value2D minimum, Value2D maximum) const
+	inline Value2D<T> clamp(Value2D<T> minimum, Value2D<T> maximum) const
 		{
 		return Value2D
-			(z_clamp(x, minimum.x, maximum.x),
-			 z_clamp(y, minimum.y, maximum.y));
+			(ZKit::clamp<T>(this->x, minimum.x, maximum.x),
+			 ZKit::clamp<T>(this->y, minimum.y, maximum.y));
 		}
 
 
-	inline Value2D square_clamp(Real minimum, Real maximum) const
+	inline Value2D<T> square_clamp(T minimum, T maximum) const
 		{
-		return Value2D
-			(z_clamp(x, minimum, maximum),
-			 z_clamp(y, minimum, maximum));
+		return Value2D<T>
+			(ZKit::clamp<T>(this->x, minimum, maximum),
+			 ZKit::clamp<T>(this->y, minimum, maximum));
 		}
 
 
-	inline Value2D yx()	   const {return Value2D(y, x);}
+	inline Value2D<T> yx() const {return Value2D<T>(this->y, this->x);}
 
-	// MARK: - Operations for integer and real types
+
+/*	// MARK: - Operations for integer and real types
 
 	inline Boolean is_negative () const {return x < 0 && y < 0;}
 	inline Boolean has_negative() const {return x < 0 || y < 0;}

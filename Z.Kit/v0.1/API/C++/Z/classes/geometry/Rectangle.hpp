@@ -15,7 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace ZKit {
 	namespace Selectors {namespace BaseType {
-		ZDefineTypeSelectorReal(Rectangle, ZRectangleType)
+		Z_TYPE_SELECTOR_REAL(Rectangle, ZRectangleType)
 	}}
 
 	template <typename T> class Rectangle;
@@ -36,6 +36,9 @@ template <typename T> class
 	typedef		 T					 Value;
 
 	Value2D<T> point, size;
+
+
+	// MARK: - Constructors
 
 	inline Rectangle<T>() {}
 
@@ -70,6 +73,9 @@ template <typename T> class
 		size.x	    = size_x;
 		size.y	    = size_y;
 		}
+
+
+	inline Rectangle<T>(void *data) {*this = *(Rectangle<T> *)data;}
 
 
 	static inline Rectangle<T> from_vertices(Value2D<T> a, Value2D<T> b)
@@ -154,13 +160,13 @@ template <typename T> class
 	inline Value2D<T> center_right () const {return Value2D<T>(point.x + size.x, point.y + size.y / T(2));}
 	inline Value2D<T> center       () const {return point + size / T(2);}
 
-
+	/*
 	inline Rectangle<T> correct()
 		{
-		if (object.size.x < T(0)) object.point.x -= (object.size.x = -object.size.x);
+		if ((object.size.x < T(0)) object.point.x -= (object.size.x = -object.size.x);
 		if (object.size.y < T(0)) object.point.y -= (object.size.y = -object.size.y);
 		return object;
-		}
+		}*/
 
 
 	inline Rectangle<T> top_half   () const {return Rectangle<T>(point.x, point.y + size.y / T(2), size.x, size.y / T(2));}
@@ -168,7 +174,7 @@ template <typename T> class
 	inline Rectangle<T> left_half  () const {return Rectangle<T>(point, size.x / T(2), size.y);}
 	inline Rectangle<T> right_half () const {return Rectangle<T>(point.x + size.x / T(2), point.y, size.x / T(2), size.y);}
 
-	inline Rectangle<T> top_left_quarter	() const {return Rectangle<T>(point.x, point.y + size.y / T(2), size / T(2);}
+	inline Rectangle<T> top_left_quarter	() const {return Rectangle<T>(point.x, point.y + size.y / T(2), size / T(2));}
 	inline Rectangle<T> top_right_quarter	() const {return Rectangle<T>(point + size / T(2), size / T(2));}
 	inline Rectangle<T> bottom_left_quarter	() const {return Rectangle<T>(point, size / T(2));}
 	inline Rectangle<T> bottom_right_quarter() const {return Rectangle<T>(point.x + size.x / T(2), point.y, size / T(2));}
@@ -288,7 +294,7 @@ template <typename T> class
 		}
 
 		/*
-	Z_INLINE ZCircle##Type inner_circle(ZRectangle##Type object) const
+	inline ZCircle##Type inner_circle(ZRectangle##Type object) const
 		{
 		ZCircle##Type result;
 
@@ -298,7 +304,7 @@ template <typename T> class
 		}
 
 
-	Z_INLINE ZAABR##Type to_aabr(ZRectangle##Type object) const
+	inline ZAABR##Type to_aabr(ZRectangle##Type object) const
 		{
 		return z_aabr_##type
 			(object.point.x, object.point.y,
@@ -306,15 +312,15 @@ template <typename T> class
 		}*/
 
 
-	inline Value2D<T> absolute_point_to_unit(Value2D<T> point) {return (point - this->point) / this->size;}
-	inline Value2D<T> unit_point_to_absolute(Value2D<T> point) {return point * this->size + this->point;}
+	inline Value2D<T> absolute_point_to_unit(Value2D<T> point) const {return (point - this->point) / this->size;}
+	inline Value2D<T> unit_point_to_absolute(Value2D<T> point) const {return point * this->size + this->point;}
 
 
 	inline Boolean contains_point(Value2D<T> point) const
 		{
-		return	point >= this->point			  &&
-			point.x <= object.point.x + object.size.x &&
-			point.y <= object.point.y + object.size.y;
+		return	point	>= this->point			&&
+			point.x <= this->point.x + this->size.x &&
+			point.y <= this->point.y + this->size.y;
 		}
 
 
