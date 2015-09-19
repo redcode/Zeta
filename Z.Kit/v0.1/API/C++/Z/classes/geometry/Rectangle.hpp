@@ -11,7 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/classes/base/Value2D.hpp>
 #include <Z/types/mathematics.h>
-#include <Z/macros/super.hpp>
 
 namespace ZKit {
 	namespace Selectors {namespace BaseType {
