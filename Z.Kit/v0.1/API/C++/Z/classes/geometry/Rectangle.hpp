@@ -20,7 +20,7 @@ namespace ZKit {
 	template <typename T> class Rectangle;
 }
 
-template <typename T> class
+template <typename T> struct
 #ifdef __ZMathematics_geometry_Rectangle_HPP__
 	ZKit::BaseRectangle {
 #else

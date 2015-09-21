@@ -15,10 +15,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 namespace ZKit {
-
-	// MARK: - Functions for natural, integer and real types
-
-
 	template <typename T> inline void swap(T *a, T *b) {T t = *a; *a = *b; *b = t;}
 	template <typename T> inline T maximum(T a, T b) {return a > b ? a : b;}
 	template <typename T> inline T minimum(T a, T b) {return a < b ? a : b;}
@@ -29,9 +25,6 @@ namespace ZKit {
 		{return ZKit::minimum(ZKit::maximum(value, minimum), maximum);}
 
 
-	// MARK: - Functions for integer and real types
-
-
 	template <typename T>
 	inline typename enable_if<Type<T>::is_signed, T>::type
 	absolute(T value) {return value < T(0) ? -value : value;}
@@ -40,9 +33,6 @@ namespace ZKit {
 	template <typename T>
 	inline typename enable_if<Type<T>::is_signed, T>::type
 	sign(T value) {return value >= T(0) ? T(1) : -T(1);}
-
-
-	// MARK: - Functions for real types only
 
 
 	template <typename T>

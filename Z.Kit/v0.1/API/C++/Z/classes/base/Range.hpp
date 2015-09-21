@@ -26,11 +26,12 @@ class ZKit::Range : public ZRange {
 	inline Range(Size index, Size size) {this->index = index; this->size = size;}
 	inline Range(Base range) {*z_base = range;}
 
-	inline Boolean contains(Base range) const
+
+	inline Boolean contains(Range range) const
 		{return range.index >= index && range.index + range.size <= index + size;}
 
 
-	inline Boolean collides(Base range) const
+	inline Boolean collides(Range range) const
 		{return index < range.index + range.size && range.index < index + size;}
 
 
@@ -46,7 +47,7 @@ class ZKit::Range : public ZRange {
 		{return index >= this->index && index < this->index + this->size;}
 
 
-	inline Boolean operator ==(Base range) const
+	inline Boolean operator ==(Range range) const
 		{return index == range.index && size == range.size;}
 
 
@@ -54,16 +55,16 @@ class ZKit::Range : public ZRange {
 		{return index == number && size == number;}
 
 
-	inline Range operator &(Base range) const
+	inline Range operator &(Range range) const
 		{
 		Size index = (this->index > range.index) ? this->index : range.index;
-		Size minimum = minimum<Size>(this->index + this->size, range.index + range.size);
+		Size minimum = ZKit::minimum<Size>(this->index + this->size, range.index + range.size);
 
 		return minimum > index ? Range(index, minimum - index) : Range(0, 0);
 		}
 
 
-	inline Range operator |(Base range) const
+	inline Range operator |(Range range) const
 		{
 		Size	index	  = (this->index < range.index) ? this->index : range.index,
 			a_maximum = this->index + this->size,
@@ -73,8 +74,8 @@ class ZKit::Range : public ZRange {
 		}
 
 
-	inline Range &operator &=(Base range) {return *this = *this & range;}
-	inline Range &operator |=(Base range) {return *this = *this | range;}
+	inline Range &operator &=(Range range) {return *this = *this & range;}
+	inline Range &operator |=(Range range) {return *this = *this | range;}
 };
 
 

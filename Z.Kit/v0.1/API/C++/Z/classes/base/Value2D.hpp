@@ -25,7 +25,7 @@ namespace ZKit {
 }
 
 
-template <typename T> class
+template <typename T> struct
 #ifdef __ZMathematics_base_Value2D_HPP__
 	ZKit::BaseValue2D
 #else
@@ -197,7 +197,7 @@ template <typename T> class
 
 	template <typename TT = T>
 	inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type lerp(Value2D<T> value, T t) const
-		{return Value2D<T>(ZKit::lerp<T>(this->x, value.x, t), ZKit::lerp(this->y, value.y, t));}
+		{return Value2D<T>(ZKit::lerp<T>(this->x, value.x, t), ZKit::lerp<T>(this->y, value.y, t));}
 
 
 	template <typename TT = T>

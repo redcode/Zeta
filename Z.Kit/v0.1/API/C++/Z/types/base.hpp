@@ -12,7 +12,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.h>
 
 namespace ZKit {
-
 	typedef zuint8			UInt8;
 	typedef zuint16			UInt16;
 	typedef zuint32			UInt32;
@@ -117,7 +116,6 @@ namespace ZKit {
 	typedef ZOrder			Order;
 
 	typedef ZPointer		Pointer;
-
 };
 
 #endif // __Z_types_base_HPP__
