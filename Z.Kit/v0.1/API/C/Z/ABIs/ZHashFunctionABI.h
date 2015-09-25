@@ -11,14 +11,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-typedef struct {
-	zsize context_size;
-	zsize result_size;
+void  (* ZHashFunctionInitialize) (void* context);
 
-	void  (* initialize) (void* context);
-	void  (* update	   ) (void* context, void* block, zsize block_size);
-	void  (* finalize  ) (void* context);
-	void* (* result	   ) (void* context, zsize* result_size);
+void  (* ZHashFunctionUpdate)	  (void* context,
+				   void* block,
+				   zsize block_size);
+
+void  (* ZHashFunctionFinalize)	  (void* context);
+
+void* (* ZHashFunctionResult)	  (void*  context,
+				   zsize* result_size);
+
+typedef struct {
+	ZHashFunctionInitialize initialize;
+	ZHashFunctionUpdate	update;
+	ZHashFunctionFinalize	finalize;
+	ZHashFunctionResult	result;
+	zsize			context_size;
+	zsize			result_size;
 } ZHashFunctionABI;
 
 #endif /* __Z_ABIs_ZHashFunctionABI_H__ */
