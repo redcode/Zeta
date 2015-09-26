@@ -20,12 +20,12 @@ typedef void (* ZCipherInitialize)	   (void*	context,
 
 typedef void  (* ZCipherProcess)	   (void*	context,
 					    void const* block,
-					    zsize	block_size, /* In words */
+					    zsize	block_size,
 					    void*	output);
 
 typedef zsize (* ZCipherProcessOutputSize) (void*	context,
 					    void const* block,
-					    zsize	block_size); /* In words */
+					    zsize	block_size);
 
 typedef struct {
 	ZCipherInitialize	 initialize;
