@@ -105,9 +105,9 @@ typedef struct {
 } ZMachineEmulatorABI;
 
 typedef zsize (* ZMachineEmulatorRunOneFrame) (void *object);
-typedef zsize (* ZEmulatorRun		   ) (void* object, zsize    cycles	);
-typedef void  (* ZEmulatorPower		   ) (void* object, zboolean power_state);
-typedef void  (* ZEmulatorAfterStateReaded ) (void* object, void*    state	);
-typedef void  (* ZEmulatorAfterStateWritten) (void* object);
+typedef zsize (* ZEmulatorRun		    ) (void* object, zsize    cycles	 );
+typedef void  (* ZEmulatorPower		    ) (void* object, zboolean power_state);
+typedef void  (* ZEmulatorAfterStateReaded  ) (void* object, void*    state	 );
+typedef void  (* ZEmulatorAfterStateWritten ) (void* object);
 
 #endif /* __Z_ABIs_emulation_H__ */

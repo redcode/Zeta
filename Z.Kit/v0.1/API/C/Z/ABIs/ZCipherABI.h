@@ -14,18 +14,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CIPHERING_FEATURE_SEZUENTIAL	1
 #define Z_CIPHERING_FEATURE_INESTABLE	2
 
-typedef void (* ZCipherInitialize)	   (void*   context,
-					    zuint8* key,
-					    zsize   key_size);
+typedef void (* ZCipherInitialize)	   (void*	context,
+					    void const* key,
+					    zsize	key_size);
 
-typedef void  (* ZCipherProcess)	   (void*   context,
-					    void*   block,
-					    zsize   block_size,
-					    void*   output);
+typedef void  (* ZCipherProcess)	   (void*	context,
+					    void const* block,
+					    zsize	block_size, /* In words */
+					    void*	output);
 
-typedef zsize (* ZCipherProcessOutputSize) (void*   context,
-					    void*   block,
-					    zsize   block_size);
+typedef zsize (* ZCipherProcessOutputSize) (void*	context,
+					    void const* block,
+					    zsize	block_size); /* In words */
 
 typedef struct {
 	ZCipherInitialize	 initialize;
