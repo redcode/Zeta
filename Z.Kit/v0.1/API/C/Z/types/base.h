@@ -593,7 +593,7 @@ typedef unsigned char				zuchar;
 typedef Z2DUIntN(Z_UCHAR_BITS)			Z2DUChar;
 typedef Z3DUIntN(Z_UCHAR_BITS)			Z3DUChar;
 typedef Z4DUIntN(Z_UCHAR_BITS)			Z4DUChar;
-#define Z_UCHAR					Z_SAME
+#define Z_UCHAR					Z_SUFFIX_U
 #define Z_UCHAR_BASE_VALUE_TYPE			Z_VALUE_TYPE_UCHAR
 #define Z_UCHAR_FIXED_VALUE_TYPE		Z_UINTN_VALUE_TYPE  (Z_UCHAR_BITS)
 #define Z_UCHAR_VALUE_TYPE			Z_VALUE_TYPE_UCHAR
@@ -608,7 +608,7 @@ typedef unsigned short int			zushort;
 typedef Z2DUIntN(Z_USHORT_BITS)			Z2DUShort;
 typedef Z3DUIntN(Z_USHORT_BITS)			Z3DUShort;
 typedef Z4DUIntN(Z_USHORT_BITS)			Z4DUShort;
-#define Z_USHORT				Z_SAME
+#define Z_USHORT				Z_SUFFIX_U
 #define Z_USHORT_BASE_VALUE_TYPE		Z_VALUE_TYPE_USHORT
 #define Z_USHORT_FIXED_VALUE_TYPE		Z_UINTN_VALUE_TYPE  (Z_USHORT_BITS)
 #define Z_USHORT_VALUE_TYPE			Z_VALUE_TYPE_USHORT
@@ -624,7 +624,7 @@ typedef unsigned int				zuint;
 typedef Z2DUIntN(Z_UINT_BITS)			Z2DUInt;
 typedef Z3DUIntN(Z_UINT_BITS)			Z3DUInt;
 typedef Z4DUIntN(Z_UINT_BITS)			Z4DUInt;
-#define Z_UINT					Z_SAME
+#define Z_UINT					Z_SUFFIX_U
 #define Z_UINT_BASE_VALUE_TYPE			Z_VALUE_TYPE_UINT
 #define Z_UINT_FIXED_VALUE_TYPE			Z_UINTN_VALUE_TYPE  (Z_UINT_BITS)
 #define Z_UINT_VALUE_TYPE			Z_VALUE_TYPE_UINT

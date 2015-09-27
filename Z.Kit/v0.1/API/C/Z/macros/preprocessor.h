@@ -25,6 +25,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_SUFFIX_F_(  what) what##F
 #define Z_SUFFIX_L_(  what) what##L
 #define Z_SUFFIX_LL_( what) what##LL
+#define Z_SUFFIX_U_(  what) what##U
 #define Z_SUFFIX_UL_( what) what##UL
 #define Z_SUFFIX_ULL_(what) what##ULL
 
@@ -37,6 +38,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_SUFFIX_F(  what) Z_SUFFIX_F_	(what)
 #define Z_SUFFIX_L(  what) Z_SUFFIX_L_	(what)
 #define Z_SUFFIX_LL( what) Z_SUFFIX_LL_	(what)
+#define Z_SUFFIX_U(  what) Z_SUFFIX_U_	(what)
 #define Z_SUFFIX_UL( what) Z_SUFFIX_UL_	(what)
 #define Z_SUFFIX_ULL(what) Z_SUFFIX_ULL_(what)
 
