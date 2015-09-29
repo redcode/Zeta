@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CIPHERING_FEATURE_SEZUENTIAL	1
 #define Z_CIPHERING_FEATURE_INESTABLE	2
 
-typedef void (* ZCipherInitialize)	   (void*	context,
+typedef void  (* ZCipherInitialize)	   (void*	context,
 					    void const* key,
 					    zsize	key_size);
 
