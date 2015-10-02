@@ -34,8 +34,9 @@ typedef struct {
 	ZCipherProcessOutputSize enciphering_size;
 	ZCipherProcessOutputSize deciphering_size;
 	zsize			 context_size;
-	zsize			 minimum_key_size;
-	zsize			 maximum_key_size;
+	zsize			 key_minimum_size;
+	zsize			 key_maximum_size;
+	zsize			 key_word_size;
 	zsize			 word_size;
 	zsize			 ratio[2];
 	zuint8			 features;
