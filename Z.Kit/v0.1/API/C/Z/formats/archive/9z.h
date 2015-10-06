@@ -27,15 +27,15 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) Z9zHeader;
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint64 size;
-
 	struct {Z_BIT_FIELD(16) (
 		zuint16 directory	  :1;
 		zuint16 link		  :1;
-		zuint16 creation_time	  :1; /* attoseconds since Epoch */
-		zuint16 modification_time :1; /* attoseconds since Epoch */
+		zuint16 creation_time	  :1; /* Attoseconds since Epoch */
+		zuint16 modification_time :1; /* Attoseconds since Epoch */
+		zuint16 attotime	  :1;
 		zuint16 compression	  :1;
 		zuint16 cipher		  :1;
+		zuint16 hash		  :1;
 	)} flags;
 ) Z9zItemHeader;
 
