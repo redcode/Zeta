@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 typedef struct {
 	void*		buffers[3];
-	volatile zuint8 flags;
+	zuint8 volatile flags;
 } ZTripleBuffer;
 
 typedef struct {
@@ -22,7 +22,7 @@ typedef struct {
 	zsize	       buffer_count;
 	zsize	       consumption_index;
 	zsize	       production_index;
-	volatile zsize fill_count;
+	zsize volatile fill_count;
 } ZRingBuffer;
 
 #endif /* __Z_types_buffering_H__ */
