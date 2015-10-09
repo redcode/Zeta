@@ -51,7 +51,7 @@ template <typename T> struct
 	inline Value2D<T>(Base value) {*z_base = value;}
 
 	static inline Value2D<T> zero() {return Value2D<T>(T(0), T(0));}
-	static inline Value2D<T> one () {return Value2D<T>(T(1), T(1));}
+	static inline Value2D<T> unit() {return Value2D<T>(T(1), T(1));}
 
 
 	static inline Value2D<T> minimum(Value2D<T> a, Value2D<T> b)
