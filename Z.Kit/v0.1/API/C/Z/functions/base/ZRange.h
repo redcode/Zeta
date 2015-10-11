@@ -36,7 +36,7 @@ Z_INLINE zboolean z_range_collide(ZRange a, ZRange b)
 Z_INLINE ZRange z_range_intersection(ZRange a, ZRange b)
 	{
 	zsize index   = (a.index > b.index) ? a.index : b.index;
-	zsize minimum = z_value_minimum(SIZE)(a.index + a.size, b.index + b.size);
+	zsize minimum = z_type_minimum(SIZE)(a.index + a.size, b.index + b.size);
 
 	return minimum > index ? z_range(index, minimum - index) : z_range_zero;
 	}
