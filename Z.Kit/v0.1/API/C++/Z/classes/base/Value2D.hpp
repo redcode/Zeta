@@ -50,6 +50,20 @@ template <typename T> struct
 	inline Value2D<T>(void *data) {*this = *(Value2D<T> *)data;}
 	inline Value2D<T>(Base value) {*z_base = value;}
 
+#	ifdef Z_USE_CG_GEOMETRY_TYPES
+		inline Value2D<T>(CGSize size)	 {this->x = size.width; this->y = size.height;}
+		inline Value2D<T>(CGPoint point) {this->x = point.x; this->y = point.y;}
+#	endif
+
+#	if	defined(Z_USE_NS_GEOMETRY_TYPES)		      && \
+		(!defined(Z_USE_CG_GEOMETRY_TYPES)		      || \
+		 (!defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
+		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES))
+
+		inline Value2D<T>(NSSize size)	 {this->x = size.width; this->y = size.height;}
+		inline Value2D<T>(NSPoint point) {this->x = point.x; this->y = point.y;}
+#	endif
+
 	static inline Value2D<T> zero() {return Value2D<T>(T(0), T(0));}
 	static inline Value2D<T> unit() {return Value2D<T>(T(1), T(1));}
 

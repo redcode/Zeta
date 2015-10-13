@@ -10,29 +10,33 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_ABIs_ZWaveCodecABI_H__
 
 #include <Z/types/base.h>
-
-typedef zuint8 ZWaveCodecCommand;
+#include <Z/macros/key.h>
+#include <Z/keys/value.h>
 
 #define Z_WAVE_CODEC_STATE_CAN_DISCARD_INPUT
 #define Z_WAVE_CODEC_STATE_CAN_DISCARD_OUTPUT
 
+#define Z_KEY_BITS_WAVE_CODEC_STATE 8
+#define Z_KEY_LAST_WAVE_CODEC_STATE Z_WAVE_CODEC_STATE_CAN_DISCARD_OUTPUT
+
 typedef struct {
-	void*		input;
-	void*		output;
-	zuint32		resolution;
-	zuint16		channel_count;
-	ZType		sample_fixed_type;
-	ZWaveCodecState state;
-	ZStatus		status;
+	void*		       input;
+	void*		       output;
+	zuint32		       resolution;
+	zuint16		       channel_count;
+	ZKey(VALUE_TYPE)       sample_fixed_type;
+	ZKey(WAVE_CODEC_STATE) state;
+	ZStatus		       status;
 } ZWaveCodecSC;
 
+typedef zsize (* ZWaveCodecEncode)(ZWaveCodecSC* sc, zsize sample_count);
+typedef ZWaveCodecEncode ZWaveCodecDecode;
 
 typedef struct {
-	zsize	(* encode) (ZWaveCodecSC* sc, zsize sample_count);
-	zsize	(* decode) (ZWaveCodecSC* sc, zsize sample_count);
-
-	zsize encoding_context_size;
-	zsize decoding_context_size;
+	ZWaveCodecEncode encode;
+	ZWaveCodecDecode decode;
+	zsize		 encoding_context_size;
+	zsize		 decoding_context_size;
 } ZWaveCodecABI;
 
 #endif /* __Z_ABIs_ZWaveCodecABI_H__ */

@@ -74,7 +74,71 @@ template <typename T> struct
 		}
 
 
-	inline Rectangle<T>(void *data) {*this = *(Rectangle<T> *)data;}
+	inline Rectangle<T>(T point, T size)
+		{
+		this->point.x = point;
+		this->point.y = point;
+		this->size.x  = size;
+		this->size.y  = size;
+		}
+
+
+	inline Rectangle<T>(T point, Value2D<T> size)
+		{
+		this->point.x = point;
+		this->point.y = point;
+		this->size    = size;
+		}
+
+
+	inline Rectangle<T>(Value2D<T> point, T size)
+		{
+		this->point  = point;
+		this->size.x = size;
+		this->size.y = size;
+		}
+
+
+	inline Rectangle<T>(T scalar)
+		{
+		point.x = scalar;
+		point.y = scalar;
+		size.x	= scalar;
+		size.y	= scalar;
+		}
+
+
+	inline Rectangle<T>(void *data)	    {*this = *(Rectangle<T> *)data;}
+	inline Rectangle<T>(Base rectangle) {(*(Base *)this) = rectangle;}
+
+
+#	ifdef Z_USE_CG_GEOMETRY_TYPES
+
+		inline Rectangle<T>(CGRect rectangle)
+			{
+			point.x = rectangle.origin.x;
+			point.y = rectangle.origin.y;
+			size.x	= rectangle.size.width;
+			size.y	= rectangle.size.height;
+			}
+
+#	endif
+
+
+#	if	defined(Z_USE_NS_GEOMETRY_TYPES)		      && \
+		(!defined(Z_USE_CG_GEOMETRY_TYPES)		      || \
+		 (!defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
+		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES))
+
+		inline Rectangle<T>(NSRect rectangle)
+			{
+			point.x = rectangle.origin.x;
+			point.y = rectangle.origin.y;
+			size.x	= rectangle.size.width;
+			size.y	= rectangle.size.height;
+			}
+
+#	endif
 
 
 	static inline Rectangle<T> from_vertices(Value2D<T> a, Value2D<T> b)
