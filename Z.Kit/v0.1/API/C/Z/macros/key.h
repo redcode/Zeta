@@ -9,25 +9,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_macros_key_H__
 #define __Z_macros_key_H__
 
-#undef UINT
-#undef _FIXED_TYPE
-#undef _BASE_TYPE
-#undef _FORMAT
-#undef _NAME
-#undef _Name
-#undef _name
-
 #include <Z/types/base.h>
 
-#define ZKey(		      NAME) Z_JOIN_2(zuint, Z_KEY_BITS_##NAME)
-#define Z_KEY_TYPE(	      NAME) Z_JOIN_4(Z_, UINT, Z_KEY_BITS_##NAME, _FIXED_TYPE)
-#define Z_KEY_FIXED_TYPE(     NAME) Z_JOIN_4(Z_, UINT, Z_KEY_BITS_##NAME, _FIXED_TYPE)
-#define Z_KEY_BASE_TYPE(      NAME) Z_JOIN_4(Z_, UINT, Z_KEY_BITS_##NAME, _BASE_TYPE)
-#define Z_KEY_FORMAT(	      NAME) Z_JOIN_4(Z_, UINT, Z_KEY_BITS_##NAME, _FORMAT)
-#define Z_KEY_BITS(	      NAME) Z_KEY_BITS_##NAME
-#define Z_KEY_SIZE(	      NAME) (Z_KEY_BITS_##NAME / 8)
-#define Z_KEY_FIXED_TYPE_NAME(NAME) Z_JOIN_4(Z_, UINT, Z_KEY_BITS_##NAME, _NAME)
-#define Z_KEY_FIXED_TYPE_Name(NAME) Z_JOIN_4(Z_, UINT, Z_KEY_BITS_##NAME, _Name)
-#define Z_KEY_FIXED_TYPE_name(NAME) Z_JOIN_4(Z_, UINT, Z_KEY_BITS_##NAME, _name)
+#define ZKey(		       NAME) zuintN		    (Z_KEY_BITS_##NAME)
+#define Z_KEY_BASE_VALUE_TYPE( NAME) Z_UINTN_BASE_VALUE_TYPE(Z_KEY_BITS_##NAME)
+#define Z_KEY_FIXED_VALUE_TYPE(NAME) Z_UINTN_VALUE_TYPE	    (Z_KEY_BITS_##NAME)
+#define Z_KEY_VALUE_TYPE(      NAME) Z_UINTN_VALUE_TYPE	    (Z_KEY_BITS_##NAME)
+#define Z_KEY_VALUE_FORMAT(    NAME) Z_UINTN_VALUE_FORMAT   (Z_KEY_BITS_##NAME)
+#define Z_KEY_BITS(	       NAME) Z_KEY_BITS_##NAME
+#define Z_KEY_SIZE(	       NAME) Z_UINTN_SIZE	    (Z_KEY_BITS_##NAME)
 
 #endif /* __Z_macros_key_H__ */

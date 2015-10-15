@@ -450,6 +450,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_VALUE_FORMAT_IEEE_754_DECIMAL128 22
 
 #define Z_KEY_BITS_VALUE_FORMAT	8
-#define Z_KEY_LAST_VALUE_FORMAT	Z_VALUE_FORMAT_IEEE_754_DECIMAL12
+#define Z_KEY_LAST_VALUE_FORMAT	Z_VALUE_FORMAT_IEEE_754_DECIMAL128
 
 #endif /* __Z_keys_value_H__ */
