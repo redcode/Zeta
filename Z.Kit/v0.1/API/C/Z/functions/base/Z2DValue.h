@@ -362,7 +362,7 @@ Z_INLINE Z2D##Type z_2d_##type##_square_clamp_01(Z2D##Type object)				\
 #define z_2d_type_square_clamp_01(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _square_clamp_01	)
 
 
-/* MARK: - Implementations */
+/* MARK: - Template implementations */
 
 
 Z_TEMPLATE_2D_NATURAL(UInt8,  uint8 )

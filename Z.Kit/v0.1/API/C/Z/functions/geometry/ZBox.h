@@ -219,7 +219,7 @@ Z_INLINE zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Typ
 #define z_box_type_contains_sphere(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _contains_sphere	    )
 
 
-/* MARK: - Implementations */
+/* MARK: - Template implementations */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)

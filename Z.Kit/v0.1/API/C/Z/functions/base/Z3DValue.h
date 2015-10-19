@@ -423,7 +423,7 @@ Z_INLINE Z3D##Type z_3d_##type##_cube_clamp_01(Z3D##Type object)			\
 #define z_3d_type_cube_clamp_01(    VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _cube_clamp_01	 )
 
 
-/* MARK: - Implementations */
+/* MARK: - Template implementations */
 
 
 Z_TEMPLATE_3D_NATURAL(UInt8,  uint8 )

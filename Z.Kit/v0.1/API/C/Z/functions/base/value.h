@@ -526,6 +526,150 @@ Z_INLINE zuinttop z_uint8_top_mirror(zuint8 value)
 #endif
 
 
+/* MARK: - Overflow */
+
+
+Z_INLINE zboolean z_uint8_addition_overflow(zuint8 a, zuint8 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_uint8_subtraction_overflow(zuint8 a, zuint8 b)
+	{return b > a;}
+
+
+Z_INLINE zboolean z_uint8_multiplication_overflow(zuint8 a, zuint8 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_uint16_addition_overflow(zuint16 a, zuint16 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_uint16_subtraction_overflow(zuint16 a, zuint16 b)
+	{return b > a;}
+
+
+Z_INLINE zboolean z_uint16_multiplication_overflow(zuint16 a, zuint16 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_uint32_addition_overflow(zuint32 a, zuint32 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_uint32_subtraction_overflow(zuint32 a, zuint32 b)
+	{return b > a;}
+
+
+Z_INLINE zboolean z_uint32_multiplication_overflow(zuint32 a, zuint32 b)
+	{return FALSE;}
+
+
+#if Z_IS_AVAILABLE(UINT64)
+
+	Z_INLINE zboolean z_uint64_addition_overflow(zuint64 a, zuint64 b)
+		{return FALSE;}
+
+
+	Z_INLINE zboolean z_uint64_subtraction_overflow(zuint64 a, zuint64 b)
+		{return b > a;}
+
+
+	Z_INLINE zboolean z_uint64_multiplication_overflow(zuint64 a, zuint64 b)
+		{return FALSE;}
+
+#endif
+
+
+#if Z_IS_AVAILABLE(UINT128)
+
+	Z_INLINE zboolean z_uint128_addition_overflow(zuint128 a, zuint128 b)
+		{return FALSE;}
+
+
+	Z_INLINE zboolean z_uint128_subtraction_overflow(zuint128 a, zuint128 b)
+		{return b > a;}
+
+
+	Z_INLINE zboolean z_uint128_multiplication_overflow(zuint128 a, zuint128 b)
+		{return FALSE;}
+
+#endif
+
+
+Z_INLINE zboolean z_int8_addition_overflow(zuint8 a, zuint8 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_int8_subtraction_overflow(zuint8 a, zuint8 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_int8_multiplication_overflow(zuint8 a, zuint8 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_int16_addition_overflow(zuint16 a, zuint16 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_int16_subtraction_overflow(zuint16 a, zuint16 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_int16_multiplication_overflow(zuint16 a, zuint16 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_int32_addition_overflow(zuint32 a, zuint32 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_int32_subtraction_overflow(zuint32 a, zuint32 b)
+	{return FALSE;}
+
+
+Z_INLINE zboolean z_int32_multiplication_overflow(zuint32 a, zuint32 b)
+	{return FALSE;}
+
+
+#if Z_IS_AVAILABLE(INT64)
+
+	Z_INLINE zboolean z_int64_addition_overflow(zint64 a, zint64 b)
+		{return FALSE;}
+
+
+	Z_INLINE zboolean z_int64_subtraction_overflow(zint64 a, zint64 b)
+		{return FALSE;}
+
+
+	Z_INLINE zboolean z_int64_multiplication_overflow(zint64 a, zint64 b)
+		{return FALSE;}
+
+#endif
+
+
+#if Z_IS_AVAILABLE(INT128)
+
+	Z_INLINE zboolean z_int128_addition_overflow(zint128 a, zint128 b)
+		{return FALSE;}
+
+
+	Z_INLINE zboolean z_int128_subtraction_overflow(zint128 a, zint128 b)
+		{return FALSE;}
+
+
+	Z_INLINE zboolean z_int128_multiplication_overflow(zint128 a, zint128 b)
+		{return FALSE;}
+
+#endif
+
+
+#define z_type_addition_overflow(      TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflow   )
+#define z_type_subtraction_overflow(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _subtraction_overflow)
+#define z_type_multiplication_overflow(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflow   )
+
+
 /* MARK: - Binary codified decimal */
 
 

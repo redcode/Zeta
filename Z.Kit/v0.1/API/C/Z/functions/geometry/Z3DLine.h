@@ -30,7 +30,7 @@ Z_INLINE Z3D##Type z_3d_line_segment_##type##_lerp(Z3DLine##Type object, z##type
 #define z_3d_line_segment_type_lerp(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_segment_, _lerp  )
 
 
-/* MARK: - Implementations */
+/* MARK: - Template implementations */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)

@@ -48,7 +48,7 @@ Z_INLINE Z3DVector##Type z_3d_vector_##type##_reversed(Z3DVector##Type object)		
 #define z_3d_vector_type_reversed(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_vector_, _reversed	      )
 
 
-/* MARK: - Implementations */
+/* MARK: - Template implementations */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)

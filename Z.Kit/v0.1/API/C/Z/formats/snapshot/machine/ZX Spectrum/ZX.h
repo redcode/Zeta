@@ -1,9 +1,10 @@
 /* Z Kit C API - formats/snapshot/machine/ZX Spectrum/ZX.h
+
+Information contributed by Troels Norgaard.
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
-Information contributed by Troels Norgaard.
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
  ______________________________

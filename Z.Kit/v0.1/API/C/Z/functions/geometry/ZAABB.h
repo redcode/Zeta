@@ -176,7 +176,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #define z_aabb_type_contains_sphere(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_sphere	      )
 
 
-/* MARK: - Implementations */
+/* MARK: - Template implementations */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)

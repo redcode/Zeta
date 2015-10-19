@@ -44,7 +44,7 @@ Z_INLINE Z2DVector##Type z_2d_vector_##type##_reversed(Z2DVector##Type object)		
 #define z_2d_vector_type_reversed(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_vector_, _reversed	      )
 
 
-/* MARK: - Implementations */
+/* MARK: - Template implementations */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)

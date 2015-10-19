@@ -591,7 +591,7 @@ Z_INLINE zboolean z_rectangle_##type##_contains_circle(						\
 #define z_rectangle_type_contains_circle(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _contains_circle	)
 
 
-/* MARK: - Implementations */
+/* MARK: - Template implementations */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)

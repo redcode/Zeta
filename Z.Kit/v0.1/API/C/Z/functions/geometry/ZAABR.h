@@ -453,7 +453,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #define z_aabr_type_contains_circle(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _contains_circle	      )
 
 
-/* MARK: - Implementations */
+/* MARK: - Template implementations */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)

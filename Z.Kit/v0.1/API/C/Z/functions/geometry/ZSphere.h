@@ -59,7 +59,7 @@ Z_INLINE ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 #define z_sphere_type_outer_box(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _outer_box)
 
 
-/* MARK: - Implementations */
+/* MARK: - Template implementations */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)

@@ -53,7 +53,7 @@ Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object
 #define z_circle_type_outer_rectangle(TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _outer_rectangle)
 
 
-/* MARK: - Implementations */
+/* MARK: - Template implementations */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)
