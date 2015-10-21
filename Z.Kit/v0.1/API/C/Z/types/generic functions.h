@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_types_generic_functions_H__
 #define __Z_types_generic_functions_H__
 
-#include <Z/macros/templating.h>
+#include <Z/types/base.h>
 
 /* MARK: - General pourpose context access function types */
 
