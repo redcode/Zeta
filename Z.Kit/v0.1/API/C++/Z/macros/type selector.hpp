@@ -44,8 +44,8 @@ template <> struct name<signed int	      > {typedef type_macro(INT	  ) type;}; \
 template <> struct name<signed long int	      > {typedef type_macro(LONG  ) type;}; \
 template <> struct name<signed long long int  > {typedef type_macro(LONG  ) type;}; \
 
-#define Z_TYPE_SELECTOR_SIGNED(name, type_macro)				    \
-template <typename T> struct name {};						    \
+#define Z_TYPE_SELECTOR_SIGNED(name, type_macro)				     \
+template <typename T> struct name {};						     \
 template <> struct name<signed char	      > {typedef type_macro(CHAR   ) type;}; \
 template <> struct name<signed short int      > {typedef type_macro(SHORT  ) type;}; \
 template <> struct name<signed int	      > {typedef type_macro(INT	   ) type;}; \
