@@ -185,7 +185,7 @@ template <typename T> struct
 	inline T operator [](int index) const {return ((T *)this)[index];}
 
 
-	inline Boolean containts(Rectangle<T> rectangle) const
+	inline Boolean contains(Rectangle<T> rectangle) const
 		{
 		return	rectangle.point.x		     >= point.x		 &&
 			rectangle.point.y		     >= point.y		 &&
