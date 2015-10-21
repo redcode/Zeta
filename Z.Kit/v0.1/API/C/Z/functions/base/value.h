@@ -530,7 +530,7 @@ Z_INLINE zuinttop z_uint8_top_mirror(zuint8 value)
 
 
 Z_INLINE zboolean z_uint8_addition_overflow(zuint8 a, zuint8 b)
-	{return FALSE;}
+	{return (zuint16)a + (zuint16)b > Z_UINT8_MAXIMUM;}
 
 
 Z_INLINE zboolean z_uint8_subtraction_overflow(zuint8 a, zuint8 b)
@@ -538,11 +538,11 @@ Z_INLINE zboolean z_uint8_subtraction_overflow(zuint8 a, zuint8 b)
 
 
 Z_INLINE zboolean z_uint8_multiplication_overflow(zuint8 a, zuint8 b)
-	{return FALSE;}
+	{return (zuint16)a * (zuint16)b > Z_UINT8_MAXIMUM;}
 
 
 Z_INLINE zboolean z_uint16_addition_overflow(zuint16 a, zuint16 b)
-	{return FALSE;}
+	{return (zuint32)a + (zuint32)b > Z_UINT16_MAXIMUM;}
 
 
 Z_INLINE zboolean z_uint16_subtraction_overflow(zuint16 a, zuint16 b)
@@ -550,7 +550,7 @@ Z_INLINE zboolean z_uint16_subtraction_overflow(zuint16 a, zuint16 b)
 
 
 Z_INLINE zboolean z_uint16_multiplication_overflow(zuint16 a, zuint16 b)
-	{return FALSE;}
+	{return (zuint32)a * (zuint32)b > Z_UINT16_MAXIMUM;}
 
 
 Z_INLINE zboolean z_uint32_addition_overflow(zuint32 a, zuint32 b)
