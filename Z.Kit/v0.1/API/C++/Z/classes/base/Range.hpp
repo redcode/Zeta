@@ -17,10 +17,11 @@ namespace ZKit {class Range;}
 
 
 class ZKit::Range : public ZRange {
+
 	public:
+
 	typedef ZRange Base;
 	typedef ZRange Super;
-
 
 	inline Range() {}
 	inline Range(Size index, Size size) {this->index = index; this->size = size;}

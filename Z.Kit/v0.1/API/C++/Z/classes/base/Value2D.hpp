@@ -17,25 +17,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z2DType(TYPE) Z_INSERT_##TYPE##_FixedType(Z2D,)
 
 namespace ZKit {
-	namespace Selectors {namespace BaseType {
-		Z_TYPE_SELECTOR(Value2D, Z2DType)
-	}}
-
+	namespace Selectors {Z_TYPE_SELECTOR(Value2D, Z2DType)}
 	template <typename T> class Value2D;
 }
 
 
-template <typename T> struct
-#ifdef __ZMathematics_base_Value2D_HPP__
-	ZKit::BaseValue2D
-#else
-	ZKit::Value2D
-#endif
-: public ZKit::Selectors::BaseType::Value2D<T>::type {
+template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>::type {
+
 	public:
-	typedef typename Selectors::BaseType::Value2D<T>::type Base;
-	typedef typename Selectors::BaseType::Value2D<T>::type Super;
-	typedef		 T				       Value;
+
+	typedef typename Selectors::Value2D<T>::type Base;
+	typedef typename Selectors::Value2D<T>::type Super;
+	typedef		 T			     Value;
 
 	inline Base  base () {return *z_base ;}
 	inline Super super() {return *z_super;}
@@ -116,6 +109,10 @@ template <typename T> struct
 	inline Value2D<T> operator /=(T scalar) {return *this = *this / scalar;}
 
 	inline T operator [](int index) {return ((T *)this)[index];}
+
+
+	// MARK: - Operations for natural, integer and real types
+
 
 	inline Boolean contains(Value2D<T> value) const {return this->x >= value.x && this->y >= value.y;}
 
@@ -198,7 +195,6 @@ template <typename T> struct
 
 	// MARK: - Operations for real types only
 
-
 	template <typename TT = T>
 	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_almost_equal(Value2D<T> value) const
 		{return are_almost_equal<T>(this->x, value.x) && are_almost_equal<T>(this->y, value.y);}
@@ -271,7 +267,11 @@ template <typename T> struct
 	template <typename TT = T>
 	inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type clamp_01() const
 		{return Value2D<T>(clamp_01<T>(this->x), clamp_01<T>(this->y));}
+
+
+#ifndef Z_DECLARING_PARTIAL_VALUE_2D
 };
+#endif
 
 
 #endif // __Z_classes_base_Value2D_HPP__

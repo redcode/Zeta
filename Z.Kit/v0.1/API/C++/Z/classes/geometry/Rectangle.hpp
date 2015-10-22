@@ -13,31 +13,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/mathematics.h>
 
 namespace ZKit {
-	namespace Selectors {namespace BaseType {
-		Z_TYPE_SELECTOR_REAL(Rectangle, ZRectangleType)
-	}}
-
+	namespace Selectors {Z_TYPE_SELECTOR_REAL(Rectangle, ZRectangleType)}
 	template <typename T> class Rectangle;
 }
 
-template <typename T> struct
-#ifdef __ZMathematics_geometry_Rectangle_HPP__
-	ZKit::BaseRectangle {
-#else
-	ZKit::Rectangle {
-#endif
+template <typename T> struct ZKit::Rectangle {
+
 	public:
 
-	typedef typename Selectors::BaseType::Rectangle<T>::type Base;  // Not actual but compatible
-	typedef typename Selectors::BaseType::Rectangle<T>::type Super; // Not actual but compatible
-	typedef		 Value2D<T>				 Content;
-	typedef typename Value2D<T>::Base			 ContentBase;
-	typedef		 T					 Value;
+	typedef typename Selectors::Rectangle<T>::type Base;  // Not actual but compatible
+	typedef typename Selectors::Rectangle<T>::type Super; // Not actual but compatible
+	typedef		 Value2D<T>		       Content;
+	typedef typename Value2D<T>::Base	       ContentBase;
+	typedef		 T			       Value;
 
 	Value2D<T> point, size;
 
 
 	// MARK: - Constructors
+
 
 	inline Rectangle<T>() {}
 
@@ -150,6 +144,9 @@ template <typename T> struct
 		}
 
 
+	// MARK: - Operators
+
+
 	inline Boolean operator ==(Rectangle<T> rectangle) const
 		{
 		return	point.x == rectangle.point.x && point.y == rectangle.point.y &&
@@ -183,6 +180,9 @@ template <typename T> struct
 
 
 	inline T operator [](int index) const {return ((T *)this)[index];}
+
+
+	// MARK: - WIP
 
 
 	inline Boolean contains(Rectangle<T> rectangle) const
@@ -417,8 +417,8 @@ template <typename T> struct
 			circle.point.y + circle.radius <= object.point.y + object.size.y;
 		}*/
 
-
-
+#ifndef Z_DECLARING_PARTIAL_RECTANGLE
 };
+#endif
 
 #endif // __Z_classes_geometry_Rectangle_HPP__
