@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_macros_node_H__
 #define __Z_macros_node_H__
 
-#include <Z/macros/structure.h>
+#include <Z/types/base.h>
 
 #if !defined(Z_AVOID_VARIADIC_MACROS) && Z_LANGUAGE_HAS(VARIADIC_MACRO)
 
@@ -51,13 +51,51 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_DEFINE_BINARY_TREE_NODE(type, ...)			\
 		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
-			type *child_a, *child_b, *parent;		\
+			type *children[2], *parent;			\
 			__VA_ARGS__					\
 		)
 
 #	define Z_DEFINE_STRICT_BINARY_TREE_NODE(type, ...)		\
 		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
-			type *child_a, *child_b, *parent;		\
+			type *children[2], *parent;			\
+			__VA_ARGS__					\
+		)
+
+#	define Z_DEFINE_RB_TREE_NODE(type, ...)				\
+		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
+			type *children[2], *parent;			\
+			zuint8 color;					\
+			__VA_ARGS__					\
+		)
+
+#	define Z_DEFINE_STRICT_RB_TREE_NODE(type, ...)			\
+		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
+			type *children[2], *parent;			\
+			zuint8 color;					\
+			__VA_ARGS__					\
+		)
+
+#	define Z_DEFINE_QUADTREE_NODE(type, ...)			\
+		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
+			type *parent, *children[4];			\
+			__VA_ARGS__					\
+		)
+
+#	define Z_DEFINE_STRICT_QUADTREE_NODE(type, ...)			\
+		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
+			type *parent, *children[4];			\
+			__VA_ARGS__					\
+		)
+
+#	define Z_DEFINE_OCTREE_NODE(type, ...)				\
+		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
+			type *parent, *children[8];			\
+			__VA_ARGS__					\
+		)
+
+#	define Z_DEFINE_STRICT_OCTREE_NODE(type, ...)			\
+		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
+			type *parent, *children[8];			\
 			__VA_ARGS__					\
 		)
 
@@ -109,17 +147,59 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_DEFINE_BINARY_TREE_NODE(type, members)			\
 		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
-			type *child_a;					\
-			type *child_b;					\
+			type *children[2];				\
 			type *parent;					\
 			members						\
 		)
 
 #	define Z_DEFINE_STRICT_BINARY_TREE_NODE(type, members)		\
 		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
-			type *child_a;					\
-			type *child_b;					\
+			type *children[2];				\
 			type *parent;					\
+			members						\
+		)
+
+#	define Z_DEFINE_RB_TREE_NODE(type, members)			\
+		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
+			type *children[2];				\
+			type *parent;					\
+			zuint8 color;					\
+			members						\
+		)
+
+#	define Z_DEFINE_STRICT_RB_TREE_NODE(type, members)		\
+		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
+			type *children[2];				\
+			type *parent;					\
+			zuint8 color;					\
+			members						\
+		)
+
+#	define Z_DEFINE_QUADTREE_NODE(type, members)			\
+		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
+			type *parent;					\
+			type *children[4];				\
+			members						\
+		)
+
+#	define Z_DEFINE_STRICT_QUADTREE_NODE(type, members)		\
+		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
+			type *parent;					\
+			type *children[4];				\
+			members						\
+		)
+
+#	define Z_DEFINE_OCTREE_NODE(type, members)			\
+		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
+			type *parent;					\
+			type *children[8];				\
+			members						\
+		)
+
+#	define Z_DEFINE_STRICT_OCTREE_NODE(type, members)		\
+		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
+			type *parent;					\
+			type *children[8];				\
 			members						\
 		)
 

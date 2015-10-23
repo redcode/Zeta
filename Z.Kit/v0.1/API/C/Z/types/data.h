@@ -29,13 +29,21 @@ typedef struct {
 
 Z_DEFINE_LIST_NODE	 (ZListNode,	  );
 Z_DEFINE_CHAIN_NODE	 (ZChainNode,	  );
-Z_DEFINE_BINARY_TREE_NODE(ZBinaryTreeNode,);
 Z_DEFINE_TREE_NODE	 (ZTreeNode,	  );
+Z_DEFINE_BINARY_TREE_NODE(ZBinaryTreeNode,);
+Z_DEFINE_RB_TREE_NODE	 (ZRBTreeNode,	  );
+Z_DEFINE_QUADTREE_NODE	 (ZQuadtreeNode,  );
+Z_DEFINE_OCTREE_NODE	 (ZOctreeNode,	  );
 
-Z_DEFINE_LIST_NODE	 (ZDataListNode,       void* data;);
-Z_DEFINE_CHAIN_NODE	 (ZDataChainNode,      void* data;);
-Z_DEFINE_BINARY_TREE_NODE(ZDataBinaryTreeNode, void* data;);
-Z_DEFINE_TREE_NODE	 (ZDataTreeNode,       void* data;);
+Z_DEFINE_LIST_NODE	 (ZListNodeWithData,       void* data;);
+Z_DEFINE_CHAIN_NODE	 (ZChainNodeWithData,      void* data;);
+Z_DEFINE_TREE_NODE	 (ZTreeNodeWithData,       void* data;);
+Z_DEFINE_BINARY_TREE_NODE(ZBinaryTreeNodeWithData, void* data;);
+Z_DEFINE_RB_TREE_NODE	 (ZRBTreeNodeWithData,	   void* data;);
+Z_DEFINE_QUADTREE_NODE	 (ZQuadtreeNodeWithData,   void* data;);
+Z_DEFINE_OCTREE_NODE	 (ZOctreeNodeWithData,	   void* data;);
+
+/* MARK: - Node containers */
 
 typedef struct {
 	ZListNode* first;
@@ -48,20 +56,5 @@ typedef struct {
 	zsize	    size;
 	ZChainNode* last;
 } ZChain;
-
-typedef struct {
-	ZBinaryTreeNode* root;
-	zsize		 size;
-} ZBinaryTree;
-
-typedef struct {
-	ZTreeNode* root;
-	zsize	   size;
-} ZTree;
-
-typedef struct {
-	ZTree*	   tree;
-	ZTreeNode* node;
-} ZTreeCursor;
 
 #endif /* __Z_types_data_H__ */
