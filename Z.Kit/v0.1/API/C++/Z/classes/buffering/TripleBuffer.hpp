@@ -24,6 +24,10 @@ class ZKit::TripleBuffer : public ZTripleBuffer {
 
 
 	inline TripleBuffer(void *buffers, Size buffer_size)
+		{initialize(buffers, buffer_size);}
+
+
+	inline void initialize(void *buffers, Size buffer_size)
 		{
 		this->buffers[0] = buffers;
 		this->buffers[1] = (UInt8 *)buffers + buffer_size;

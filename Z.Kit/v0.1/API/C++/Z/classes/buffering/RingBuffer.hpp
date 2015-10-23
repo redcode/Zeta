@@ -26,6 +26,10 @@ class ZKit::RingBuffer : public ZRingBuffer {
 
 
 	inline RingBuffer(void *buffers, Size buffer_size, Size buffer_count)
+		{initialize(buffers, buffer_size, buffer_count);}
+
+
+	inline void initialize(void *buffers, Size buffer_size, Size buffer_count)
 		{
 		this->buffers		= buffers;
 		this->buffer_size	= buffer_size;
@@ -56,7 +60,7 @@ class ZKit::RingBuffer : public ZRingBuffer {
 		{
 		if (buffer_count == fill_count) return NULL;
 		production_index = (production_index + 1) % buffer_count;
-		z_value_atomic_increment_then_get(SIZE)(&fill_count);
+		z_type_atomic_increment_then_get(SIZE)(&fill_count);
 		return (UInt8 *)buffers + production_index * buffer_size;
 		}
 
@@ -65,7 +69,7 @@ class ZKit::RingBuffer : public ZRingBuffer {
 		{
 		if (!fill_count) return NULL;
 		consumption_index = (consumption_index + 1) % buffer_count;
-		z_value_atomic_decrement_then_get(SIZE)(&fill_count);
+		z_type_atomic_decrement_then_get(SIZE)(&fill_count);
 		return (UInt8 *)buffers + consumption_index * buffer_size;
 		}
 
@@ -74,7 +78,7 @@ class ZKit::RingBuffer : public ZRingBuffer {
 		{
 		while (buffer_count == fill_count) z_cpu_relax();
 		production_index = (production_index + 1) % buffer_count;
-		z_value_atomic_increment_then_get(SIZE)(&fill_count);
+		z_type_atomic_increment_then_get(SIZE)(&fill_count);
 		return (UInt8 *)buffers + production_index * buffer_size;
 		}
 
@@ -83,7 +87,7 @@ class ZKit::RingBuffer : public ZRingBuffer {
 		{
 		if (!fill_count) z_cpu_relax();
 		consumption_index = (consumption_index + 1) % buffer_count;
-		z_value_atomic_decrement_then_get(SIZE)(&fill_count);
+		z_type_atomic_decrement_then_get(SIZE)(&fill_count);
 		return (UInt8 *)buffers + consumption_index * buffer_size;
 		}
 };
