@@ -11,6 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_buffering_TripleBuffer_HPP__
 #define __Z_classes_buffering_TripleBuffer_HPP__
 
+#include <Z/types/base.hpp>
 #include <Z/types/buffering.h>
 #include <Z/functions/base/value.h>
 
