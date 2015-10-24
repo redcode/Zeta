@@ -51,26 +51,26 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_DEFINE_BINARY_TREE_NODE(type, ...)			\
 		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
-			type *children[2], *parent;			\
+			type *parent, *children[2];			\
 			__VA_ARGS__					\
 		)
 
 #	define Z_DEFINE_STRICT_BINARY_TREE_NODE(type, ...)		\
 		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
-			type *children[2], *parent;			\
+			type *parent, *children[2];			\
 			__VA_ARGS__					\
 		)
 
 #	define Z_DEFINE_RB_TREE_NODE(type, ...)				\
 		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
-			type *children[2], *parent;			\
+			type *parent, *children[2];			\
 			zuint8 color;					\
 			__VA_ARGS__					\
 		)
 
 #	define Z_DEFINE_STRICT_RB_TREE_NODE(type, ...)			\
 		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
-			type *children[2], *parent;			\
+			type *parent, *children[2];			\
 			zuint8 color;					\
 			__VA_ARGS__					\
 		)
@@ -96,6 +96,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DEFINE_STRICT_OCTREE_NODE(type, ...)			\
 		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
 			type *parent, *children[8];			\
+			__VA_ARGS__					\
+		)
+
+#	define Z_DEFINE_ARRAY_TREE_NODE(type, ...)			\
+		Z_DEFINE_STRUCTURE_WITH_NAME(type,			\
+			type *parent;					\
+									\
+			struct {type* data;				\
+				zsize size;				\
+			} children;					\
+									\
+			__VA_ARGS__					\
+		)
+
+#	define Z_DEFINE_STRICT_ARRAY_TREE_NODE(type, ...)		\
+		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME(type,		\
+			type *parent;					\
+									\
+			struct {type* data;				\
+				zsize size;				\
+			} children;					\
+									\
 			__VA_ARGS__					\
 		)
 
@@ -147,30 +169,30 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_DEFINE_BINARY_TREE_NODE(type, members)			\
 		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
-			type *children[2];				\
 			type *parent;					\
+			type *children[2];				\
 			members						\
 		)
 
 #	define Z_DEFINE_STRICT_BINARY_TREE_NODE(type, members)		\
 		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
-			type *children[2];				\
 			type *parent;					\
+			type *children[2];				\
 			members						\
 		)
 
 #	define Z_DEFINE_RB_TREE_NODE(type, members)			\
 		Z_DEFINE_STRUCTURE_WITH_NAME (type,			\
-			type *children[2];				\
 			type *parent;					\
+			type *children[2];				\
 			zuint8 color;					\
 			members						\
 		)
 
 #	define Z_DEFINE_STRICT_RB_TREE_NODE(type, members)		\
 		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
-			type *children[2];				\
 			type *parent;					\
+			type *children[2];				\
 			zuint8 color;					\
 			members						\
 		)
@@ -200,6 +222,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME (type,		\
 			type *parent;					\
 			type *children[8];				\
+			members						\
+		)
+
+#	define Z_DEFINE_ARRAY_TREE_NODE(type, members)			\
+		Z_DEFINE_STRUCTURE_WITH_NAME(type,			\
+			type *parent;					\
+									\
+			struct {type* data;				\
+				zsize size;				\
+			} children;					\
+									\
+			members						\
+		)
+
+#	define Z_DEFINE_STRICT_ARRAY_TREE_NODE(type, members)		\
+		Z_DEFINE_STRICT_STRUCTURE_WITH_NAME(type,		\
+			type *parent;					\
+									\
+			struct {type* data;				\
+				zsize size;				\
+			} children;					\
+									\
 			members						\
 		)
 

@@ -15,8 +15,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Arrays */
 
 typedef struct {
-	void* data;
-	zsize size;
+	ZPointer data;
+	zsize	 size;
 } ZArray;
 
 typedef struct {
@@ -34,6 +34,7 @@ Z_DEFINE_BINARY_TREE_NODE(ZBinaryTreeNode,);
 Z_DEFINE_RB_TREE_NODE	 (ZRBTreeNode,	  );
 Z_DEFINE_QUADTREE_NODE	 (ZQuadtreeNode,  );
 Z_DEFINE_OCTREE_NODE	 (ZOctreeNode,	  );
+Z_DEFINE_ARRAY_TREE_NODE (ZArrayTreeNode, );
 
 Z_DEFINE_LIST_NODE	 (ZListNodeWithData,       void* data;);
 Z_DEFINE_CHAIN_NODE	 (ZChainNodeWithData,      void* data;);
@@ -42,6 +43,7 @@ Z_DEFINE_BINARY_TREE_NODE(ZBinaryTreeNodeWithData, void* data;);
 Z_DEFINE_RB_TREE_NODE	 (ZRBTreeNodeWithData,	   void* data;);
 Z_DEFINE_QUADTREE_NODE	 (ZQuadtreeNodeWithData,   void* data;);
 Z_DEFINE_OCTREE_NODE	 (ZOctreeNodeWithData,	   void* data;);
+Z_DEFINE_ARRAY_TREE_NODE (ZArrayTreeNodeWithData,  void* data;);
 
 /* MARK: - Node containers */
 
