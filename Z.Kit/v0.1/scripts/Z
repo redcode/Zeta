@@ -8,15 +8,13 @@
 # Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 # Released under the terms of the GNU Lesser General Public License v3. */
 
-macros = {
-	'BUILD_TIME' => "#{`date +%s`}"
-}
-
 output = []
 
 ARGV.uniq.each do |name|
-	value = macros[name]
-	output << "-D#{name}=" + value.strip if !value.nil?
+	case name
+	when 'BUILD_TIME'
+		output << "-DZ_BUILD_TIME=#{`date +%s`.strip}"
+	end
 end
 
 print output.join(' ')
