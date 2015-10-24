@@ -9,7 +9,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_types_data_H__
 #define __Z_types_data_H__
 
-#include <Z/types/base.h>
 #include <Z/macros/node.h>
 
 /* MARK: - Arrays */
