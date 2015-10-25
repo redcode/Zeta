@@ -15,7 +15,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace ZKit {class Range;}
 
-
 class ZKit::Range : public ZRange {
 
 	public:
@@ -78,6 +77,5 @@ class ZKit::Range : public ZRange {
 	inline Range &operator &=(Range range) {return *this = *this & range;}
 	inline Range &operator |=(Range range) {return *this = *this | range;}
 };
-
 
 #endif // __Z_classes_base_Range_HPP__

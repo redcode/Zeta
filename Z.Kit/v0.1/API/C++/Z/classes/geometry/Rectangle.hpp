@@ -417,6 +417,7 @@ template <typename T> struct ZKit::Rectangle {
 			circle.point.y + circle.radius <= object.point.y + object.size.y;
 		}*/
 
+
 #ifndef Z_DECLARING_PARTIAL_RECTANGLE
 };
 #endif

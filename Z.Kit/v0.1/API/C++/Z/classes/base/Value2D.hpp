@@ -21,7 +21,6 @@ namespace ZKit {
 	template <typename T> class Value2D;
 }
 
-
 template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>::type {
 
 	public:
@@ -195,6 +194,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 
 	// MARK: - Operations for real types only
 
+
 	template <typename TT = T>
 	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_almost_equal(Value2D<T> value) const
 		{return are_almost_equal<T>(this->x, value.x) && are_almost_equal<T>(this->y, value.y);}
@@ -272,6 +272,5 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 #ifndef Z_DECLARING_PARTIAL_VALUE_2D
 };
 #endif
-
 
 #endif // __Z_classes_base_Value2D_HPP__
