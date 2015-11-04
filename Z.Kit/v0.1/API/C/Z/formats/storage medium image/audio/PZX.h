@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .pzx			   |
   | Endianness: Little			   |
   | Created by: Patrik Rak		   |
-  | Used by:	ZXDS [Nintendo DS], others |
+  |    Used by: ZXDS [Nintendo DS], others |
   |   _____________________________________|_
    \_/_____________________________________*/
 

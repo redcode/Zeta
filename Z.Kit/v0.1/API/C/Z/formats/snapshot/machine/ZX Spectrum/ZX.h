@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .zx		|
   | Endianness: Big		|
   | Created by: KGB support BBS	|
-  | Used by:	KGB [Amiga]	|
+  |    Used by: KGB [Amiga]	|
   |   __________________________|_
    \_/__________________________*/
 

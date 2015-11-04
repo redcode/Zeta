@@ -45,7 +45,7 @@ typedef struct {zuint16 x, y, z, w;}		Z4DUInt16;
 #define Z_UINT16_BITS				16
 #define Z_UINT16_SIZE				2
 #define Z_UINT16_MINIMUM			0
-#define Z_UINT16_MAXIMUM			65535
+#define Z_UINT16_MAXIMUM			Z_UINT16(65535)
 
 typedef Z_DATA_MODEL_TYPE(UINT32)		zuint32;
 typedef struct {zuint32 x, y;}			Z2DUInt32;
@@ -149,8 +149,8 @@ typedef struct {zint16 x, y, z, w;}		Z4DInt16;
 #define Z_INT16_ENDIANNESS			Z_CPU_INTEGER_ENDIANNESS(16BIT)
 #define Z_INT16_BITS				16
 #define Z_INT16_SIZE				2
-#define Z_INT16_MINIMUM				(-32768)
-#define Z_INT16_MAXIMUM				32767
+#define Z_INT16_MINIMUM				Z_INT16(-32768)
+#define Z_INT16_MAXIMUM				Z_INT16( 32767)
 
 typedef Z_DATA_MODEL_TYPE(INT32)		zint32;
 typedef struct {zint32 x, y;}			Z2DInt32;
@@ -1872,8 +1872,8 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	zintptr	 value_intptr;
 	ZRange*	 pointer_range;
 
-#	ifdef Z_PARTIAL_POINTER_UNION
-		Z_PARTIAL_POINTER_UNION
+#	ifdef Z_PARTIAL_POINTER_UNION_MEMBERS
+		Z_PARTIAL_POINTER_UNION_MEMBERS
 #	endif
 Z_DEFINE_STRICT_UNION_END ZPointer;
 

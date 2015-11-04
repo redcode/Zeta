@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .89c   |
   | Endianness:	       |
   | Created by:	       |
-  | Used by:	Tezxas |
+  |    Used by: Tezxas |
   |   _________________|_
    \_/_________________*/
 

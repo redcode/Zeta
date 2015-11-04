@@ -11,13 +11,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-#if Z_IS_AVAILABLE(UINT128)
-	typedef zuint128 ZAttotime;
-#else
-	typedef struct {
-		zuint64 seconds;
-		zuint64 attoseconds;
-	} ZAttotime;
-#endif
+typedef struct {
+	Z128bit	seconds;
+	Z64Bit	attoseconds;
+} ZAttotime;
+
+typedef struct {
+	Z128bit seconds;
+	zuint32 nanoseconds;
+} ZNanotime;
 
 #endif /* __Z_types_time_H__ */

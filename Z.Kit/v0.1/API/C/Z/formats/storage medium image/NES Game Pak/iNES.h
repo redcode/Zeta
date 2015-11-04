@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .nes		 |
   | Endianness: Little		 |
   | Created by: Fayzullin, Marat |
-  | Used by:	Any NES emulator |
+  |    Used by: Any NES emulator |
   |   ___________________________|_
    \_/___________________________*/
 

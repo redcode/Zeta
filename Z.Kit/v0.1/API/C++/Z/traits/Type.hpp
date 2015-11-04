@@ -12,31 +12,42 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.h>
 
 namespace ZKit {
+
+	// MARK: - Abstract
+
 	namespace Abstract {namespace Type {
 		struct Base {
-			enum {	is_class    = false,
-				is_const    = false,
-				is_volatile = false,
-				is_exact    = false,
-				is_integer  = false,
-				is_function = false,
-				is_natural  = false,
-				is_pointer  = false,
-				is_real	    = false,
-				is_signed   = false,
-				is_union    = false,
-				is_value    = false,
-				is_void	    = false
+			enum {	is_arithmetic	  = false,
+				is_array	  = false,
+				is_class	  = false,
+				is_const	  = false,
+				is_enum		  = false,
+				is_exact	  = false,
+				is_integer	  = false,
+				is_function	  = false,
+				is_member_pointer = false,
+				is_natural	  = false,
+				is_pointer	  = false,
+				is_reference	  = false,
+				is_real		  = false,
+				is_signed	  = false,
+				is_union	  = false,
+				is_value	  = false,
+				is_void		  = false,
+				is_volatile	  = false
 			};
 		};
 
-		struct Value : public Base {enum {is_value = true};};
+		struct Value : public Base {
+			enum {	is_value      = true,
+				is_arithmetic = true
+			};
+		};
 
 		struct Natural : public Value {
 			enum {	is_exact   = true,
 				is_natural = true,
 			};
-
 			enum {minimum = 0};
 		};
 
@@ -48,15 +59,80 @@ namespace ZKit {
 		};
 
 		struct Real : public Value {
-			enum {	is_real	   = true,
-				is_signed  = true
+			enum {	is_real   = true,
+				is_signed = true
 			};
 		};
+
+		struct Char {
+			typedef		       unsigned char unsigned_base_type;
+			typedef const	       unsigned char const_unsigned_type;
+			typedef	      volatile unsigned char volatile_unsigned_type;
+			typedef const volatile unsigned char const_volatile_unsigned_type;
+			typedef		      	 signed char signed_base_type;
+			typedef const	      	 signed char const_signed_type;
+			typedef	      volatile	 signed char volatile_signed_type;
+			typedef const volatile	 signed char const_volatile_signed_type;	
+		};
+
+		struct Short {
+			typedef		       unsigned short int unsigned_base_type;
+			typedef const	       unsigned short int const_unsigned_type;
+			typedef	      volatile unsigned short int volatile_unsigned_type;
+			typedef const volatile unsigned short int const_volatile_unsigned_type;
+			typedef		      	 signed short int signed_base_type;
+			typedef const	      	 signed short int const_signed_type;
+			typedef	      volatile	 signed short int volatile_signed_type;
+			typedef const volatile	 signed short int const_volatile_signed_type;	
+		};
+
+		struct Int {
+			typedef		       unsigned int unsigned_base_type;
+			typedef const	       unsigned int const_unsigned_type;
+			typedef	      volatile unsigned int volatile_unsigned_type;
+			typedef const volatile unsigned int const_volatile_unsigned_type;
+			typedef		      	 signed int signed_base_type;
+			typedef const	      	 signed int const_signed_type;
+			typedef	      volatile	 signed int volatile_signed_type;
+			typedef const volatile	 signed int const_volatile_signed_type;	
+		};
+
+		struct Long {
+			typedef		       unsigned long int unsigned_base_type;
+			typedef const	       unsigned long int const_unsigned_type;
+			typedef	      volatile unsigned long int volatile_unsigned_type;
+			typedef const volatile unsigned long int const_volatile_unsigned_type;
+			typedef		      	 signed long int signed_base_type;
+			typedef const	      	 signed long int const_signed_type;
+			typedef	      volatile	 signed long int volatile_signed_type;
+			typedef const volatile	 signed long int const_volatile_signed_type;	
+		};
+
+		struct LLong {
+			typedef		       unsigned long long int unsigned_base_type;
+			typedef const	       unsigned long long int const_unsigned_type;
+			typedef	      volatile unsigned long long int volatile_unsigned_type;
+			typedef const volatile unsigned long long int const_volatile_unsigned_type;
+			typedef		      	 signed long long int signed_base_type;
+			typedef const	      	 signed long long int const_signed_type;
+			typedef	      volatile	 signed long long int volatile_signed_type;
+			typedef const volatile	 signed long long int const_volatile_signed_type;	
+		};
+
 	}}
 
-	template <typename T> struct Type {};
+	template <typename T> struct Type : public Abstract::Type::Base {};
 
-	template <> struct Type<unsigned char> : public Abstract::Type::Natural {
+	// MARK: - void
+
+	template <> struct Type<void> : public Abstract::Type::Base {
+		enum {is_void = true};
+	};
+
+	// MARK: - Numbers
+
+	template <> struct Type<unsigned char>
+	: public Abstract::Type::Natural, public Abstract::Type::Char {
 		enum {	bits = Z_UCHAR_BITS,
 			size = Z_UCHAR_SIZE
 		};
@@ -68,11 +144,8 @@ namespace ZKit {
 		typedef const volatile unsigned char const_volatile_type;
 	};
 
-	template <> struct Type<const	       unsigned char> : public Type<	     unsigned char> {enum {is_const    = true};};
-	template <> struct Type<      volatile unsigned char> : public Type<	     unsigned char> {enum {is_volatile = true};};
-	template <> struct Type<const volatile unsigned char> : public Type<volatile unsigned char> {enum {is_const    = true};};
-
-	template <> struct Type<unsigned short int> : public Abstract::Type::Natural {
+	template <> struct Type<unsigned short int>
+	: public Abstract::Type::Natural, public Abstract::Type::Short {
 		enum {	bits = Z_USHORT_BITS,
 			size = Z_USHORT_SIZE
 		};
@@ -84,11 +157,8 @@ namespace ZKit {
 		typedef const volatile unsigned short int const_volatile_type;
 	};
 
-	template <> struct Type<const	       unsigned short int> : public Type<	  unsigned short int> {enum {is_const	 = true};};
-	template <> struct Type<      volatile unsigned short int> : public Type<	  unsigned short int> {enum {is_volatile = true};};
-	template <> struct Type<const volatile unsigned short int> : public Type<volatile unsigned short int> {enum {is_const	 = true};};
-
-	template <> struct Type<unsigned int> : public Abstract::Type::Natural {
+	template <> struct Type<unsigned int>
+	: public Abstract::Type::Natural, public Abstract::Type::Int {
 		enum {	bits = Z_UINT_BITS,
 			size = Z_UINT_SIZE
 		};
@@ -100,11 +170,8 @@ namespace ZKit {
 		typedef const volatile unsigned int const_volatile_type;
 	};
 
-	template <> struct Type<const	       unsigned int> : public Type<	    unsigned int> {enum {is_const    = true};};
-	template <> struct Type<      volatile unsigned int> : public Type<	    unsigned int> {enum {is_volatile = true};};
-	template <> struct Type<const volatile unsigned int> : public Type<volatile unsigned int> {enum {is_const    = true};};
-
-	template <> struct Type<unsigned long int> : public Abstract::Type::Natural {
+	template <> struct Type<unsigned long int>
+	: public Abstract::Type::Natural, public Abstract::Type::Long {
 		enum {	bits = Z_ULONG_BITS,
 			size = Z_ULONG_SIZE
 		};
@@ -116,11 +183,8 @@ namespace ZKit {
 		typedef const volatile unsigned long int const_volatile_type;
 	};
 
-	template <> struct Type<const	       unsigned long int> : public Type<	 unsigned long int> {enum {is_const    = true};};
-	template <> struct Type<      volatile unsigned long int> : public Type<	 unsigned long int> {enum {is_volatile = true};};
-	template <> struct Type<const volatile unsigned long int> : public Type<volatile unsigned long int> {enum {is_const    = true};};
-
-	template <> struct Type<unsigned long long int> : public Abstract::Type::Natural {
+	template <> struct Type<unsigned long long int>
+	: public Abstract::Type::Natural, public Abstract::Type::LLong {
 		enum {	bits = Z_ULLONG_BITS,
 			size = Z_ULLONG_SIZE
 		};
@@ -132,11 +196,8 @@ namespace ZKit {
 		typedef const volatile unsigned long long int const_volatile_type;
 	};
 
-	template <> struct Type<const	       unsigned long long int> : public Type<	      unsigned long long int> {enum {is_const	 = true};};
-	template <> struct Type<      volatile unsigned long long int> : public Type<	      unsigned long long int> {enum {is_volatile = true};};
-	template <> struct Type<const volatile unsigned long long int> : public Type<volatile unsigned long long int> {enum {is_const	 = true};};
-
-	template <> struct Type<signed char> : public Abstract::Type::Integer {
+	template <> struct Type<signed char>
+	: public Abstract::Type::Integer, public Abstract::Type::Char {
 		enum {	bits = Z_CHAR_BITS,
 			size = Z_CHAR_SIZE
 		};
@@ -150,11 +211,8 @@ namespace ZKit {
 		typedef const volatile signed char const_volatile_type;
 	};
 
-	template <> struct Type<const	       signed char> : public Type<	   signed char> {enum {is_const	   = true};};
-	template <> struct Type<      volatile signed char> : public Type<	   signed char> {enum {is_volatile = true};};
-	template <> struct Type<const volatile signed char> : public Type<volatile signed char> {enum {is_const	   = true};};
-
-	template <> struct Type<signed short int> : public Abstract::Type::Integer {
+	template <> struct Type<signed short int>
+	: public Abstract::Type::Integer, public Abstract::Type::Short {
 		enum {	bits = Z_SHORT_BITS,
 			size = Z_SHORT_SIZE
 		};
@@ -168,11 +226,8 @@ namespace ZKit {
 		typedef const volatile signed short int const_volatile_type;
 	};
 
-	template <> struct Type<const	       signed short int> : public Type<	  	signed short int> {enum {is_const    = true};};
-	template <> struct Type<      volatile signed short int> : public Type<	  	signed short int> {enum {is_volatile = true};};
-	template <> struct Type<const volatile signed short int> : public Type<volatile	signed short int> {enum {is_const    = true};};
-
-	template <> struct Type<signed int> : public Abstract::Type::Integer {
+	template <> struct Type<signed int>
+	: public Abstract::Type::Integer, public Abstract::Type::Int {
 		enum {	bits = Z_INT_BITS,
 			size = Z_INT_SIZE
 		};
@@ -186,11 +241,8 @@ namespace ZKit {
 		typedef const volatile signed int const_volatile_type;
 	};
 
-	template <> struct Type<const	       signed int> : public Type<	  signed int> {enum {is_const	 = true};};
-	template <> struct Type<      volatile signed int> : public Type<	  signed int> {enum {is_volatile = true};};
-	template <> struct Type<const volatile signed int> : public Type<volatile signed int> {enum {is_const	 = true};};
-
-	template <> struct Type<signed long int> : public Abstract::Type::Integer {
+	template <> struct Type<signed long int>
+	: public Abstract::Type::Integer, public Abstract::Type::Long {
 		enum {	bits = Z_LONG_BITS,
 			size = Z_LONG_SIZE
 		};
@@ -204,11 +256,8 @@ namespace ZKit {
 		typedef const volatile signed long int const_volatile_type;
 	};
 
-	template <> struct Type<const	       signed long int> : public Type<	       signed long int> {enum {is_const	   = true};};
-	template <> struct Type<      volatile signed long int> : public Type<	       signed long int> {enum {is_volatile = true};};
-	template <> struct Type<const volatile signed long int> : public Type<volatile signed long int> {enum {is_const	   = true};};
-
-	template <> struct Type<signed long long int> : public Abstract::Type::Integer {
+	template <> struct Type<signed long long int>
+	: public Abstract::Type::Integer, public Abstract::Type::LLong {
 		enum {	bits = Z_LLONG_BITS,
 			size = Z_LLONG_SIZE
 		};
@@ -221,10 +270,6 @@ namespace ZKit {
 		typedef	      volatile signed long long int volatile_type;
 		typedef const volatile signed long long int const_volatile_type;
 	};
-
-	template <> struct Type<const	       signed long long int> : public Type<	    signed long long int> {enum {is_const    = true};};
-	template <> struct Type<      volatile signed long long int> : public Type<	    signed long long int> {enum {is_volatile = true};};
-	template <> struct Type<const volatile signed long long int> : public Type<volatile signed long long int> {enum {is_const    = true};};
 
 	template <> struct Type<float> : public Abstract::Type::Real {
 		enum {	bits		    = Z_FLOAT_BITS,
@@ -251,10 +296,6 @@ namespace ZKit {
 		typedef const volatile float const_volatile_type;
 	};
 
-	template <> struct Type<const	       float> : public Type<	     float> {enum {is_const    = true};};
-	template <> struct Type<      volatile float> : public Type<	     float> {enum {is_volatile = true};};
-	template <> struct Type<const volatile float> : public Type<volatile float> {enum {is_const    = true};};
-
 	template <> struct Type<double> : public Abstract::Type::Real {
 		enum {	bits		    = Z_DOUBLE_BITS,
 			size		    = Z_DOUBLE_SIZE,
@@ -279,10 +320,6 @@ namespace ZKit {
 		typedef	      volatile double volatile_type;
 		typedef const volatile double const_volatile_type;
 	};
-
-	template <> struct Type<const	       double> : public Type<	      double> {enum {is_const	 = true};};
-	template <> struct Type<      volatile double> : public Type<	      double> {enum {is_volatile = true};};
-	template <> struct Type<const volatile double> : public Type<volatile double> {enum {is_const	 = true};};
 
 	template <> struct Type<long double> : public Abstract::Type::Real {
 		enum {	bits		    = Z_LDOUBLE_BITS,
@@ -309,9 +346,52 @@ namespace ZKit {
 		typedef const volatile long double const_volatile_type;
 	};
 
-	template <> struct Type<const	       long double> : public Type<	   long double> {enum {is_const	   = true};};
-	template <> struct Type<      volatile long double> : public Type<	   long double> {enum {is_volatile = true};};
-	template <> struct Type<const volatile long double> : public Type<volatile long double> {enum {is_const	   = true};};
+	template <typename T> struct Type<const		 T> : public Type<	T> {enum {is_const    = true};};
+	template <typename T> struct Type<	volatile T> : public Type<	T> {enum {is_volatile = true};};
+	template <typename T> struct Type<const volatile T> : public Type<const T> {enum {is_volatile = true};};
+
+	//template <> struct Type<enum> : public Abstract::Type::Base {enum {is_enum = true};};
+
+	// MARK: - Pointers
+
+	template <typename T> struct Type<T*> : public Abstract::Type::Base {
+		enum {is_pointer = true};
+
+		typedef T pointed_type;
+	};
+
+	template <typename T> struct Type<T&> : public Abstract::Type::Base {
+		enum {is_reference = true};
+
+		typedef T referenced_type;
+	};
+
+	// MARK: - Arrays
+
+	template<typename T> struct Type<T[]> : public Abstract::Type::Base {
+		enum {is_array = true};
+
+		typedef		       T base_type;
+		typedef const	       T const_type;
+		typedef volatile       T volatile_type;
+		typedef const volatile T const_volatile_type;
+	};
+
+	template<typename T> struct Type<const		T[]> : public Type<	 T[]> {enum {is_const	 = true};};
+	template<typename T> struct Type<      volatile T[]> : public Type<	 T[]> {enum {is_volatile = true};};
+	template<typename T> struct Type<const volatile T[]> : public Type<const T[]> {enum {is_volatile = true};};
+
+ 	template<typename T, zsize N> struct Type<		 T[N]> : public Type<		    T[]> {};
+	template<typename T, zsize N> struct Type<const		 T[N]> : public Type<const	    T[]> {};
+	template<typename T, zsize N> struct Type<	volatile T[N]> : public Type<	   volatile T[]> {};
+	template<typename T, zsize N> struct Type<const volatile T[N]> : public Type<const volatile T[]> {};
+
+
+	// MARK: - Structures
+
+	/*template <typename T, class U> struct Type<T U::*> : public Abstract::Type::Base {
+		enum {is_member_pointer = true};
+	};*/
 }
 
 #endif // __Z_traits_Type_HPP__

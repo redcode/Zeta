@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .tap, .cdt							|
   | Endianness: Little								|
   | Created by: Tomaz Kac							|
-  | Used by:	Many programs							|
+  |    Used by: Many programs							|
   |										|
   | Format revision: v1.20 (2006-12-19)						|
   |										|
@@ -287,7 +287,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	data[];
 ) ZTZXDirectRecording;
 
-/* MARK: -  ID 16 - C64 ROM Type Data (DEPRECATED)
+/* MARK: -  ID 16 - C64 ROM Type Data (Added in v1.13, deprecated in v1.20)
 .------------------------------------------------------------------------------.
 | This block was created to support the Commodore 64 standard ROM and similar  |
 | tape blocks. It is made so basically anything that uses two or four pulses   |
@@ -319,7 +319,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	/* TO DO */
 ) ZTZXC64ROMTypeData;
 
-/* MARK: - ID 17 - C64 Turbo Tape Data (DEPRECATED)
+/* MARK: - ID 17 - C64 Turbo Tape Data (Added in v1.13, deprecated in v1.20)
 .------------------------------------------------------------------------------.
 | This block is made to support another type of encoding that is commonly used |
 | by the C64. Most of the commercial software uses this type of encoding, i.e. |
@@ -336,7 +336,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXC64TurboTapeData;
 
 
-/* MARK: - ID 18 - CSW Recording
+/* MARK: - ID 18 - CSW Recording (Added in v1.20)
 .----------------------------------------------------.
 | This block contains a sequence of raw pulses	     |
 | encoded in CSW format v2 (Compressed Square Wave). |
@@ -354,7 +354,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_CSW_COMPRESSION_TYPE_RLE	 1
 #define Z_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
 
-/* MARK: - ID 19 - Generalized Data
+/* MARK: - ID 19 - Generalized Data (Added in v1.20)
 .-----------------------------------------------------------------------------.
 | This block has been specifically developed to represent an extremely wide   |
 | range of data encoding techniques. The basic idea is that each loading      |
@@ -514,7 +514,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 relative_offset;
 ) ZTZXJump;
 
-/* MARK: - ID 24 - Loop Start
+/* MARK: - ID 24 - Loop Start (Added in v1.10)
 .-----------------------------------------------------------------------.
 | If you have a sequence of identical blocks, or of identical groups of |
 | blocks, you can use this block to tell how many times they should be	|
@@ -527,7 +527,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 count;
 ) ZTZXLoopStart;
 
-/* MARK: - ID 25 - Loop End
+/* MARK: - ID 25 - Loop End (Added in v1.10)
 .-----------------------------------------------------------------------.
 | This is the same as BASIC's NEXT statement. It means that the utility |
 | should jump back to the start of the loop if it hasn't been run for	|
@@ -536,7 +536,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 | This block has no body.						|
 '----------------------------------------------------------------------*/
 
-/* MARK: - ID 26 - Call Sequence
+/* MARK: - ID 26 - Call Sequence (Added in v1.10)
 .----------------------------------------------------------------------------.
 | This block is an analogue of the CALL Subroutine statement. It basically   |
 | executes a sequence of blocks that are somewhere else and then goes back   |
@@ -554,7 +554,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 relative_offset[];
 ) ZTZXCallSequence;
 
-/* MARK: - ID 27 - Return from Sequence
+/* MARK: - ID 27 - Return from Sequence (Added in v1.10)
 .----------------------------------------------------------------------------.
 | This block indicates the end of the Called Sequence. The next block played |
 | will be the block after the last CALL block (or the next Call, if the Call |
@@ -563,7 +563,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 | This block has no body.						     |
 '---------------------------------------------------------------------------*/
 
-/* MARK: - ID 28 - Select
+/* MARK: - ID 28 - Select (Added in v1.10)
 .------------------------------------------------------------------------------.
 | This block is useful when the tape consists of two or more separately	       |
 | loadable parts. With this block, you are able to select one of the parts and |
@@ -599,7 +599,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
 ) ZTZXStopIf48K;
 
-/* MARK: - ID 2B - Set Signal Level
+/* MARK: - ID 2B - Set Signal Level (Added in v1.20)
 .----------------------------------------------------------------------.
 | This block sets the current signal level to the specified value      |
 | (high or low). It should be used whenever it is necessary to avoid   |
@@ -718,7 +718,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	ZTZXHardware hardware[];
 ) ZTZXHardwareType;
 
-/* MARK: - ID 34 - Emulation Information (DEPRECATED)
+/* MARK: - ID 34 - Emulation Information (Deprecated in v1.20)
 .------------------------------------------------------------------------------.
 | This is a special block that would normally be generated only by emulators.  |
 | For now it contains information on everything the authors could find that    |
@@ -732,7 +732,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	/* TO DO */
 ) ZTZXEmulationInformation;
 
-/* MARK: - ID 35 - Custom Information
+/* MARK: - ID 35 - Custom Information (Added in v1.01, deprecated in v1.20)
 .------------------------------------------------------------------------.
 | This block can be used to save any information you want. For example,	 |
 | it might contain some information written by a utility, extra settings |
@@ -745,7 +745,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	data[];
 ) ZTZXCustomInformation;
 
-/* MARK: - ID 40 - Snapshot (DEPRECATED)
+/* MARK: - ID 40 - Snapshot (Added in v1.10, deprecated in v1.20)
 .------------------------------------------------------------------------------.
 | This would enable one to snapshot the prgram at the start and still have all |
 | the tape blocks in the same file. Only .Z80 and .SNA snapshots are supported |

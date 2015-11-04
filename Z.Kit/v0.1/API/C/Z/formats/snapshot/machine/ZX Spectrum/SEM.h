@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .sem					|
   | Endianness: Little					|
   | Created by: Bernd Waschke				|
-  | Used by:	ZX Spectrum-Emulator (SpecEmu) [MS-DOS] |
+  |    Used by: ZX Spectrum-Emulator (SpecEmu) [MS-DOS] |
   |   __________________________________________________|_
    \_/__________________________________________________*/
 

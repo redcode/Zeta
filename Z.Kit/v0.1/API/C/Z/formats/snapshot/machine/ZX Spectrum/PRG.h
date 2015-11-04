@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .prg			|
   | Endianness: Little			|
   | Created by: Kevin Phair		|
-  | Used by:	Spectrum Emulator [DOS] |
+  |    Used by: Spectrum Emulator [DOS] |
   |					|
   | http://code.google.com/p/specem	|
   |   __________________________________|_

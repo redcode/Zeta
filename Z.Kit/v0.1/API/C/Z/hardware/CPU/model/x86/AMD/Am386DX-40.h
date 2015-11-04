@@ -6,25 +6,23 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
-   Encapsulation: Plastic PQFP-132 on PGA-132
-
-   .-----------------------------.   .-----------------------------.
-   |				 |   | o o o o o o o o o o o o o o |
-   |	/\_|||||||||||||||_/\	 |   | o o o o o o o o o o o o o o |
-   |	\  '-------------'  /	 |   | o o o o o o o o o o o o o o |
-   |   ==|  _____          |==	 |   | o o o		     o o o |
-   |   ==|  \__  |ADVANCED |==	 |   | o o o		     o o o |
-   |   ==|  /|_| |MICRO    |==	 |   | o o o		     o o o |
-   |   ==| |___/\|DEVICES  |==	 |   | o o o		     o o o |
-   |   ==| Am386™DX-40     |==	 |   | o o o		     o o o |
-   |   ==| NG80386DX-40    |==	 |   | o o o		     o o o |
-   |   ==| D 312NJG8       |==	 |   | o o o		     o o o |
-   |   ==| (m) AMD         |==	 |   | o o o		     o o o |
-   |	/ .---------------. \	 |   | o o o o o o o o o o o o o o |
-   |	\/|||||||||||||||||\/	 |   | o o o o o o o o o o o o o o |
-   |				 |   | o o o o o o o o o o o o o o |
-    '----------------------------'    '----------------------------'
-		Front				   Back			*/
+	      Top			     Bottom
+.-----------------------------.  .-----------------------------.
+|			      |  | o o o o o o o o o o o o o o |
+|    /\_|||||||||||||||_/\    |  | o o o o o o o o o o o o o o |
+|    \  '-------------'  /    |  | o o o o o o o o o o o o o o |
+|   ==|  _____		|==   |  | o o o		 o o o |
+|   ==|  \__  |ADVANCED	|==   |  | o o o		 o o o |
+|   ==|  /|_| |MICRO	|==   |  | o o o		 o o o |
+|   ==| |___/\|DEVICES	|==   |  | o o o		 o o o |
+|   ==| Am386™DX-40	|==   |  | o o o		 o o o |
+|   ==| NG80386DX-40	|==   |  | o o o		 o o o |
+|   ==| D 312NJG8	|==   |  | o o o		 o o o |
+|   ==| (m) AMD		|==   |  | o o o		 o o o |
+|    / .---------------. \    |  | o o o o o o o o o o o o o o |
+|    \/|||||||||||||||||\/    |  | o o o o o o o o o o o o o o |
+|			      |  | o o o o o o o o o o o o o o |
+ '----------------------------'   '----------------------------' */
 
 #ifndef __Z_hardware_CPU_x86_Am386DX_40_H__
 #define __Z_hardware_CPU_x86_Am386DX_40_H__

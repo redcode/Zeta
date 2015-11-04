@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_inspection_private_OS_H__
-#define __Z_inspection_private_OS_H__
+#ifndef __Z_inspection_private_OS_Mac_OS_X_H__
+#define __Z_inspection_private_OS_Mac_OS_X_H__
 
 #include <Z/keys/OS.h>
 
@@ -19,6 +19,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_HAS_POSIX_THREADING
 #define Z_OS_HAS_NETWORKING
 
-#define Z_SYSTEM_TOKEN POSIX
+#define Z_OS_PATH_SLASH_CHARACTER '/'
+#define Z_OS_PATH_SLASH_STRING	  "/"
 
-#endif /* __Z_inspection_private_OS_H__ */
+#endif /* __Z_inspection_private_OS_Mac_OS_X_H__ */

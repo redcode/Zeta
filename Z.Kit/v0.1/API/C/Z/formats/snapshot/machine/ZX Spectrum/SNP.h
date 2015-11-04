@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .snp				     |
   | Endianness: Little				     |
   | Created by: Radovan Garabik - Lubomir Salanci    |
-  | Used by:	Nuclear ZX [DOS]		     |
+  |    Used by: Nuclear ZX [DOS]		     |
   |						     |
   | http://korpus.juls.savba.sk/~garabik/old/zx.html |
   |   _______________________________________________|_

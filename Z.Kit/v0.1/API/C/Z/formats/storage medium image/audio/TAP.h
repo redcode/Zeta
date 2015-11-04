@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .tap	      |
   | Endianness: Little	      |
   | Created by: Unknown	      |
-  | Used by:	Many programs |
+  |    Used by: Many programs |
   |   ________________________|_
    \_/________________________*/
 

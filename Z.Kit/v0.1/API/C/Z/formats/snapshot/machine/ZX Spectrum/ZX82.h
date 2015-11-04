@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .zx82							    |
   | Endianness: Big							    |
   | Created by: William James						    |
-  | Used by:	Speculator '97 [Amiga]					    |
+  |    Used by: Speculator '97 [Amiga]					    |
   |									    |
   | IMPORTANT NOTICE: This format is not well known at all,		    |
   | so the types and constants here declared can be useless.		    |

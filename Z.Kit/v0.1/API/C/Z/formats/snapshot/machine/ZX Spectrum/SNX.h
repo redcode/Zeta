@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .snx					    |
   | Endianness: Little					    |
   | Created by: Christian Gandler			    |
-  | Used by:	Specci [ST]				    |
+  |    Used by: Specci [ST]				    |
   |							    |
   | http://cd.textfiles.com/crawlycrypt1/apps/misc/zx_sp207 |
   |   ______________________________________________________|_

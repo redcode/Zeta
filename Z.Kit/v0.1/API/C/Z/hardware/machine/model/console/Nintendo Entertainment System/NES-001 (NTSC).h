@@ -7,12 +7,12 @@ Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
  ____________________________________
 /\				     \
-\_| Vendor:   Nintendo		      |
+\_|   Vendor: Nintendo		      |
   | Released: 1985-10-18 (US)	      |
   |	      1986	 (CA)	      |
-  | CPU:      Ricoh RP2A03 @ 1.79 MHz |
-  | Video:    Ricoh RP2C03 (VCD)      |
-  | Sound:    NES APU		      |
+  |	 CPU: Ricoh RP2A03 @ 1.79 MHz |
+  |    Video: Ricoh RP2C03 (VCD)      |
+  |    Sound: NES APU		      |
   |   ________________________________|_
    \_/________________________________*/
 

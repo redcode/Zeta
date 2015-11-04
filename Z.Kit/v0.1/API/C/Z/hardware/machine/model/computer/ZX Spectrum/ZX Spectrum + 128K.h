@@ -7,12 +7,12 @@ Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
  _______________________________________________
 /\						\
-\_| Vendor:   Sinclair Research - Investronica	 |
+\_|   Vendor: Sinclair Research - Investronica	 |
   | Released: 1985-09				 |
-  | CPU:      Zilog Z80 @ 3.5469 MHz		 |
-  | ROM:      48K				 |
-  | RAM:      128K				 |
-  | Sound:    General Instrument AY-3-8912 (PSG) |
+  |	 CPU: Zilog Z80 @ 3.5469 MHz		 |
+  |	 ROM: 48K				 |
+  |	 RAM: 128K				 |
+  |    Sound: General Instrument AY-3-8912 (PSG) |
   |   ___________________________________________|_
    \_/____________________________________________/
 
@@ -132,7 +132,7 @@ Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(5) (
 
 /* MARK: - Timmings */
 
-#define Z_ZX_SPECTRUM_PLUS_128K_Z80_HZ			       3546900
+#define Z_ZX_SPECTRUM_PLUS_128K_CPU_HZ			       3546900
 #define Z_ZX_SPECTRUM_PLUS_128K_PSG_HZ			       1773400
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_FRAME	       70908
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE	       228

@@ -44,11 +44,11 @@ Top view						Bottom view
 
 Controller	 | |					Controller Connector
  ________________|_|_________________________________	      .---.
-|						     |	GND --| O  \
-|  ________________________________________________  |	CLK --| O O |-- +5V
-| |		    |_____________|		   | |	OUT --| O O |-- D3
-| |	  ___	     _____________		   | |	 D0 --| O O |-- D4
-| |	 |   |	    |_____________|    Nintendo    | |	      '-----'
+|						     |	GND ->| O  \
+|  ________________________________________________  |	CLK ->| O O |<- +5V
+| |		    |_____________|		   | |	OUT ->| O O |<- D3
+| |	  ___	     _____________		   | |	 D0 ->| O O |<- D4
+| |	 |   |	    |_____________|   Nintendo®    | |	      '-----'
 | |   ___| | |___    _____________		   | |
 | |  | __ ,-. __ |  |SELECT__START|   ___   ___    | |
 | |  |___ `-' ___|   _____________   |,-.| |,-.|   | |
@@ -64,8 +64,8 @@ Controller	 | |					Controller Connector
 
 /* MARK: - Timmings */
 
-#define Z_NES_SCREEN_WIDTH	256
-#define Z_NES_SCREEN_HEIGHT	240
+#define Z_NES_SCREEN_WIDTH  256
+#define Z_NES_SCREEN_HEIGHT 240
 
 /* MARK: - Memory Structure
 .----------------------------------------------------------------.

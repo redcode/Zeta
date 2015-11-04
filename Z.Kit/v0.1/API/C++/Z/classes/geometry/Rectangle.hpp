@@ -14,12 +14,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace ZKit {
 	namespace Selectors {Z_TYPE_SELECTOR_REAL(Rectangle, ZRectangleType)}
-	template <typename T> class Rectangle;
+	template <typename T> struct Rectangle;
 }
 
-template <typename T> struct ZKit::Rectangle {
 
-	public:
+template <typename T> struct ZKit::Rectangle {
 
 	typedef typename Selectors::Rectangle<T>::type Base;  // Not actual but compatible
 	typedef typename Selectors::Rectangle<T>::type Super; // Not actual but compatible
@@ -417,9 +416,9 @@ template <typename T> struct ZKit::Rectangle {
 			circle.point.y + circle.radius <= object.point.y + object.size.y;
 		}*/
 
-
 #ifndef Z_DECLARING_PARTIAL_RECTANGLE
 };
 #endif
+
 
 #endif // __Z_classes_geometry_Rectangle_HPP__

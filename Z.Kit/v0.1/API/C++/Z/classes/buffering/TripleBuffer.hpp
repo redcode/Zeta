@@ -15,12 +15,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/buffering.h>
 #include <Z/functions/base/value.h>
 
-namespace ZKit {class TripleBuffer;}
+namespace ZKit {struct TripleBuffer;}
 
 
-class ZKit::TripleBuffer : public ZTripleBuffer {
+struct ZKit::TripleBuffer : public ZTripleBuffer {
 
-	public:
 	inline TripleBuffer() {}
 
 

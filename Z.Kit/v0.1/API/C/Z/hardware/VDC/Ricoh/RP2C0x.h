@@ -354,18 +354,18 @@ Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
 
 /* Sprite
 
-   Y Coordinate
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-----------------'
+Y Coordinate
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-----------------'
 
-   Tile Index
-   .-----------------.
-   | 7 6 5 4 3 2 1 0 |
-   '-\___________/-|-'
-	   |	   |
-	   |	   '-> patern_table
-	   '---------> pattern_index
+Tile Index
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-\___________/-|-'
+	|	|
+	|	'-> patern_table
+	'---------> pattern_index
 
    Attributes
    .-----------------.

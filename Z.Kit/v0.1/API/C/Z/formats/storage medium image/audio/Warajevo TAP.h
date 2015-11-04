@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .tap						     |
   | Endianness: Little						     |
   | Created by: Zeljko Juric - Samir Ribic (aka Megaribi)	     |
-  | Used by:	Warajevo [MS-DOS] and some old ZX Spectrum emulators |
+  |    Used by: Warajevo [MS-DOS] and some old ZX Spectrum emulators |
   |   _______________________________________________________________|_
    \_/_______________________________________________________________*/
 

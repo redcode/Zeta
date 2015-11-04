@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .ach, .archimedes |
   | Endianness: Little		  |
   | Created by: Carsten Witt	  |
-  | Used by:	!Speccy [RISC OS] |
+  |    Used by: !Speccy [RISC OS] |
   |   ____________________________|_
    \_/____________________________*/
 

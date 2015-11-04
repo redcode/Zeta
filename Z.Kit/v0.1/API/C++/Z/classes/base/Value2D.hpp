@@ -14,16 +14,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/templating.h>
 #include <Z/functions/base/value.hpp>
 
+#ifdef Z_USE_CG_GEOMETRY_TYPES
+#	include <CoreGraphics/CGGeometry.h>
+#endif
+
+#if defined(Z_USE_NS_GEOMETRY_TYPES) && defined(Z_OBJECTIVE_C)
+#	import <Foundation/NSGeometry.h>
+#endif
+
 #define Z2DType(TYPE) Z_INSERT_##TYPE##_FixedType(Z2D,)
 
 namespace ZKit {
 	namespace Selectors {Z_TYPE_SELECTOR(Value2D, Z2DType)}
-	template <typename T> class Value2D;
+	template <typename T> struct Value2D;
 }
 
-template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>::type {
 
-	public:
+template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>::type {
 
 	typedef typename Selectors::Value2D<T>::type Base;
 	typedef typename Selectors::Value2D<T>::type Super;
@@ -268,9 +275,9 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type clamp_01() const
 		{return Value2D<T>(clamp_01<T>(this->x), clamp_01<T>(this->y));}
 
-
 #ifndef Z_DECLARING_PARTIAL_VALUE_2D
 };
 #endif
+
 
 #endif // __Z_classes_base_Value2D_HPP__

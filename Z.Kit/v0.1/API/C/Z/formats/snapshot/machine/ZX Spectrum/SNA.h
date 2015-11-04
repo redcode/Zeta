@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .sna, .snap, .snapshot		|
   | Endianness: Little				|
   | Created by: Unknown				|
-  | Used by:	Any decent ZX Spectrum emulator |
+  |    Used by: Any decent ZX Spectrum emulator |
   |   __________________________________________|_
    \_/__________________________________________*/
 

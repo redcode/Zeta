@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 \_| Extensions: .frz		 |
   | Endianness: Big		 |
   | Created by: CodeBusters	 |
-  | Used by:	CBSpeccy [Amiga] |
+  |    Used by: CBSpeccy [Amiga] |
   |   ___________________________|_
    \_/___________________________*/
 

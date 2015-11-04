@@ -6,12 +6,14 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_private_CPP_H__
-#define __Z_private_CPP_H__
+#ifndef __Z_private_CPP_CPP89_H__
+#define __Z_private_CPP_CPP89_H__
 
-#include <Z/keys/C++.h>
+#ifndef Z_CPP
+#	include <Z/keys/C++.h>
 
-#define Z_CPP	     Z_CPP89
-#define Z_CPP_STRING Z_CPP_STRING_CPP89
+#	define Z_CPP	    Z_CPP89
+#	define Z_CPP_STRING Z_CPP_STRING_CPP89
+#endif
 
-#endif /* __Z_private_CPP_H__ */
+#endif /* __Z_private_CPP_CPP89_H__ */

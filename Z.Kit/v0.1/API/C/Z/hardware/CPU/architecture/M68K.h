@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/CPU/architecture/68k.h
+/* Z Kit C API - hardware/CPU/architecture/M68K.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_hardware_CPU_architecture_68k_H__
-#define __Z_hardware_CPU_architecture_68k_H__
+#ifndef __Z_hardware_CPU_architecture_M68K_H__
+#define __Z_hardware_CPU_architecture_M68K_H__
 
 #include <Z/keys/endianness.h>
 
@@ -15,4 +15,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif /* __Z_hardware_CPU_architecture_68k_H__ */
+#endif /* __Z_hardware_CPU_architecture_M68K_H__ */

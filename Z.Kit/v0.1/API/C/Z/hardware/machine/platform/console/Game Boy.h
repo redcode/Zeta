@@ -5,18 +5,15 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
- ___________________________________________
-/\					    \
-\_| Vendor:   Nintendo			     |
-  | Released: 1989-04-21 (JP)		     |
-  |	      1989-07-31 (North America)     |
-  |	      1986-09-01 (Europe)	     |
-  | CPU:      Sharp LR35902 @ 4.19 MHz	     |
-  | Video:    Ricoh RP2C02 (VCD) (PAL)	     |
-  |           RP2C03 (VCD) (NTSC)	     |
-  | Sound:    NES APU			     |
-  |   _______________________________________|_
-   \_/________________________________________/
+ _______________________________________
+/\					\
+\_|   Vendor: Nintendo			 |
+  | Released: 1989-04-21 (JP)		 |
+  |	      1989-07-31 (North America) |
+  |	      1990-09-28 (Europe)	 |
+  |	 CPU: Sharp LR35902 @ 4.19 MHz	 |
+  |   ___________________________________|_
+   \_/____________________________________/
 
 Front view		Back view
  _n__________________	 __________________n_

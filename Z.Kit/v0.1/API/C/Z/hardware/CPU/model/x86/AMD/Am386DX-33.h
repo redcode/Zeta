@@ -6,25 +6,23 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
-   Encapsulation: Ceramic PGA-132
-
-   .-----------------------------.   .-----------------------------.
-   |   _____			 |   | o o o o o o o o o o o o o o |
-   |   \__  |ADVANCED		 |   | o o o o o o o o o o o o o o |
-   |   /|_| |MICRO		 |   | o o o o o o o o o o o o o o |
-   |  |___/\|DEVICES		 |   | o o o .-------------. o o o |
-   |  Am386™DX-33		 |   | o o o |             | o o o |
-   |  A80386DX-33		 |   | o o o |  MALAYSIA   | o o o |
-   |  B 11ON99A			 |   | o o o |  9109CP W   | o o o |
-   |  (m) AMD			 |   | o o o |  5983	   | o o o |
-   |				 |   | o o o |             | o o o |
-   |				 |   | o o o |             | o o o |
-   |				 |   | o o o '-------------' o o o |
-   |				 |   | o o o o o o o o o o o o o o |
-   |				 |   | o o o o o o o o o o o o o o |
-   |  23936			 |   | o o o o o o o o o o o o o o |
-    '----------------------------'    '----------------------------'
-		Front				   Back			*/
+	      Top			     Bottom
+.-----------------------------.  .-----------------------------.
+|   _____		      |  | o o o o o o o o o o o o o o |
+|   \__  |ADVANCED	      |  | o o o o o o o o o o o o o o |
+|   /|_| |MICRO		      |  | o o o o o o o o o o o o o o |
+|  |___/\|DEVICES	      |  | o o o .-------------. o o o |
+|  Am386™DX-33		      |  | o o o |	       | o o o |
+|  A80386DX-33		      |  | o o o |  MALAYSIA   | o o o |
+|  B 11ON99A		      |  | o o o |  9109CP W   | o o o |
+|  (m) AMD		      |  | o o o |  5983       | o o o |
+|			      |  | o o o |	       | o o o |
+|			      |  | o o o |	       | o o o |
+|			      |  | o o o '-------------' o o o |
+|			      |  | o o o o o o o o o o o o o o |
+|			      |  | o o o o o o o o o o o o o o |
+|  23936		      |  | o o o o o o o o o o o o o o |
+ '----------------------------'   '----------------------------' */
 
 #ifndef __Z_hardware_CPU_x86_Am386DX_33_H__
 #define __Z_hardware_CPU_x86_Am386DX_33_H__

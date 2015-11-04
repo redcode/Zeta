@@ -83,7 +83,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_OFFSET_OF(type, member) ((unsigned long)&((type *)(0))->member)
 #endif
 
-/* MARK: - Setions */
+/* MARK: - Sections */
 
 #ifdef __cplusplus
 #	define Z_C_SYMBOLS_BEGIN extern "C" {

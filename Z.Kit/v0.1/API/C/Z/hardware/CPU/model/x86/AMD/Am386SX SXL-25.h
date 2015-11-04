@@ -6,21 +6,19 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
-   Encapsulation: Plastic PQFP-100
-
-    /\_|||||||||||||||||_/\
-    \  '---------------'  /
-   ==|  _____		 |==
-   ==|  \__  |ADVANCED	 |==
-   ==|  /|_| |MICRO	 |==
-   ==| |___/\|DEVICES	 |==
-   ==| Am386™SX/SXL-25	 |==
-   ==| NG80386SXL-25	 |==
-   ==| NG80386SX-25	 |==
-   ==| B 1386VE7	 |==
-   ==|	 (m) AMD	 |==
-    / .-----------------. \
-    \/|||||||||||||||||||\/	*/
+ /\_|||||||||||||||||_/\
+ \  '---------------'  /
+==|  _____	      |==
+==|  \__  |ADVANCED   |==
+==|  /|_| |MICRO      |==
+==| |___/\|DEVICES    |==
+==| Am386™SX/SXL-25   |==
+==| NG80386SXL-25     |==
+==| NG80386SX-25      |==
+==| B 1386VE7	      |==
+==|   (m) AMD	      |==
+ / .-----------------. \
+ \/|||||||||||||||||||\/ */
 
 #ifndef __Z_hardware_CPU_x86_Am386SX_SXL_25_H__
 #define __Z_hardware_CPU_x86_Am386SX_SXL_25_H__

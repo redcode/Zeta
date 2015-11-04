@@ -28,7 +28,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/private/C++/C++98.h>
 
 #elif defined(Z_USE_CPP89)
-#	include <Z/inspection/private/C++/C++89.h>
+#	include <Z/inspection/private/C++/C++89.h> /* C++ v2.0 */
 
 #elif defined(Z_USE_CPP85)
 #	include <Z/inspection/private/C++/C++85.h>

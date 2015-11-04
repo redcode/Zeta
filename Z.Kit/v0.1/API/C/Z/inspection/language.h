@@ -16,7 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/C++.h>
 #endif
 
-#ifdef __OBJC__
+#if defined(__OBJC__) || defined(__OBJC2__)
 #	include <Z/inspection/Objective-C.h>
 #endif
 

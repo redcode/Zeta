@@ -13,19 +13,26 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/super.hpp>
 #include <Z/functions/base/value.hpp>
 
-namespace ZKit {class Range;}
+#if defined(Z_USE_NS_GEOMETRY_TYPES) && defined(Z_OBJECTIVE_C)
+#	import <Foundation/NSRange.h>
+#endif
 
-class ZKit::Range : public ZRange {
+namespace ZKit {struct Range;}
 
-	public:
+
+struct ZKit::Range : public ZRange {
 
 	typedef ZRange Base;
 	typedef ZRange Super;
 
 	inline Range() {}
+	inline Range(Size size) {this->index = 0; this->size = size;}
 	inline Range(Size index, Size size) {this->index = index; this->size = size;}
 	inline Range(Base range) {*z_base = range;}
 
+#	ifdef Z_USE_NS_GEOMETRY_TYPES
+		inline Range(NSRange range) {index = range.location; size = range.length;}
+#	endif
 
 	inline Boolean contains(Range range) const
 		{return range.index >= index && range.index + range.size <= index + size;}
@@ -77,5 +84,6 @@ class ZKit::Range : public ZRange {
 	inline Range &operator &=(Range range) {return *this = *this & range;}
 	inline Range &operator |=(Range range) {return *this = *this | range;}
 };
+
 
 #endif // __Z_classes_base_Range_HPP__

@@ -6,21 +6,19 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
-   Encapsulation: Plastic PQFP-100
-
-    /\_|||||||||||||||||_/\
-    \  '---------------'  /
-   ==|  _____		 |==
-   ==|  \__  |ADVANCED	 |==
-   ==|  /|_| |MICRO	 |==
-   ==| |___/\|DEVICES	 |==
-   ==| Am386™SX/SXL-33	 |==
-   ==| NG80386SXL-33	 |==
-   ==| NG80386SX-33	 |==
-   ==| C 224A3J5	 |==
-   ==|	 (m) AMD	 |==
-    / .-----------------. \
-    \/|||||||||||||||||||\/	*/
+ /\_|||||||||||||||||_/\
+ \  '---------------'  /
+==|  _____	      |==
+==|  \__  |ADVANCED   |==
+==|  /|_| |MICRO      |==
+==| |___/\|DEVICES    |==
+==| Am386™SX/SXL-33   |==
+==| NG80386SXL-33     |==
+==| NG80386SX-33      |==
+==| C 224A3J5	      |==
+==|   (m) AMD	      |==
+ / .-----------------. \
+ \/|||||||||||||||||||\/ */
 
 #ifndef __Z_hardware_CPU_x86_Am386SX_SXL_33_H__
 #define __Z_hardware_CPU_x86_Am386SX_SXL_33_H__
