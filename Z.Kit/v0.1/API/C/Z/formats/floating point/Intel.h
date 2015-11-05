@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_formats_floating_point_Intel_Ha__
-#define __Z_formats_floating_point_Intel_Ha__
+#ifndef __Z_formats_floating_point_Intel_H__
+#define __Z_formats_floating_point_Intel_H__
 
 /* MARK: - Intel Float80 */
 
@@ -30,23 +30,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INTEL_FLOAT80_SIGN_OFFSET		79		// OK
 #define Z_INTEL_FLOAT80_SIGN_BITS		1		// OK
 
-#endif /* __Z_formats_floating_point_Intel_Ha__ */
+#endif /* __Z_formats_floating_point_Intel_H__ */
 
 #ifdef Z_INSPECTING_FLOATING_POINT
 
-#	ifndef __Z_formats_floating_point_Intel_Hb__
-#	define __Z_formats_floating_point_Intel_Hb__
+#	ifndef __Z_formats_floating_point_Intel_H__INSPECTION
+#	define __Z_formats_floating_point_Intel_H__INSPECTION
 
 #	define Z_INSERT_FLOATING_POINT(left, right) left##IEEE754##right
 #	define Z_INSERT_FloatingPoint( left, right) left##IEEE754##right
 #	define Z_INSERT_floating_point(left, right) left##ieee754##right
 
-#	endif /* __Z_formats_floating_point_Intel_Hb__ */
+#	endif /* __Z_formats_floating_point_Intel_H__INSPECTION */
 
 #else
 
-#	ifndef __Z_formats_floating_point_Intel_Hc__
-#	define __Z_formats_floating_point_Intel_Hc__
+#	ifndef __Z_formats_floating_point_Intel_H__NO_INSPECTION
+#	define __Z_formats_floating_point_Intel_H__NO_INSPECTION
 
 #	include <Z/types/base.h>
 
@@ -56,6 +56,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	typedef struct {
 	} ZIntelFloat96;
 
-#	endif /* __Z_formats_floating_point_Intel_Hc__ */
+#	endif /* __Z_formats_floating_point_Intel_H__NO_INSPECTION */
 
 #endif

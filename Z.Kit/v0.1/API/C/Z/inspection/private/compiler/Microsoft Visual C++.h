@@ -16,8 +16,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_COMPILER
 #	include <Z/keys/compiler.h>
 
-#	define Z_COMPILER				Z_COMPILER_MICROSOFT_VISUAL_CPP
-#	define Z_COMPILER_STRING			Z_COMPILER_STRING_MICROSOFT_VISUAL_CPP
+#	define Z_COMPILER		 Z_COMPILER_MICROSOFT_VISUAL_CPP
+#	define Z_COMPILER_STRING	 Z_COMPILER_STRING_MICROSOFT_VISUAL_CPP
 #	define Z_COMPILER_VERSION
 #	define Z_COMPILER_VERSION_STRING
 #endif

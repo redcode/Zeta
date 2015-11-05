@@ -11,14 +11,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-typedef struct {
-	Z128bit	seconds;
-	Z64Bit	attoseconds;
-} ZAttotime;
+Z_DEFINE_STRICT_STRUCTURE (Z_32BIT_ENDIANIZED_MEMBERS(2) (
+	Z128Bit	seconds,
+	Z64Bit	attoseconds
+)) ZAttotime;
 
-typedef struct {
-	Z128bit seconds;
-	zuint32 nanoseconds;
-} ZNanotime;
+Z_DEFINE_STRICT_STRUCTURE (Z_32BIT_ENDIANIZED_MEMBERS(2) (
+	Z128Bit seconds,
+	zuint32 nanoseconds
+)) ZNanotime;
 
 #endif /* __Z_types_time_H__ */

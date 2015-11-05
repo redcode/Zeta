@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_hardware_CPU_architecture_x86_32_Ha__
-#define __Z_hardware_CPU_architecture_x86_32_Ha__
+#ifndef __Z_hardware_CPU_architecture_x86_32_H__
+#define __Z_hardware_CPU_architecture_x86_32_H__
 
 #include <Z/keys/endianness.h>
 
@@ -18,32 +18,37 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_X86_32_IS_CAPABLE_OF_16BIT_ATOMICS
 #define Z_X86_32_IS_CAPABLE_OF_32BIT_ATOMICS
 #define Z_X86_32_IS_CAPABLE_OF_64BIT_ATOMICS
-#define Z_X86_32_MINIMUM_LOAD_BITS		 8
-#define Z_X86_32_MINIMUM_STORE_BITS		 8
-#define Z_X86_32_MINIMUM_COPY_BITS		 8
-#define Z_X86_32_MAXIMUM_LOAD_BITS		64
-#define Z_X86_32_MAXIMUM_STORE_BITS		64
-#define Z_X86_32_MAXIMUM_COPY_BITS		64
-#define Z_X86_32_ADDRESSING_BITS		32
-#define Z_X86_32_ENDIANNESS			Z_ENDIANNESS_LITTLE
 
-#endif /* __Z_hardware_CPU_architecture_x86_32_Ha__ */
+#define Z_X86_32_MINIMUM_LOAD_BITS   8
+#define Z_X86_32_MINIMUM_STORE_BITS  8
+#define Z_X86_32_MINIMUM_COPY_BITS   8
+#define Z_X86_32_MAXIMUM_LOAD_BITS  64
+#define Z_X86_32_MAXIMUM_STORE_BITS 64
+#define Z_X86_32_MAXIMUM_COPY_BITS  64
+#define Z_X86_32_ADDRESSING_BITS    32
+#define Z_X86_32_ENDIANNESS	    Z_ENDIANNESS_LITTLE
+
+#endif /* __Z_hardware_CPU_architecture_x86_32_H__ */
 
 #ifdef Z_INSPECTING_CPU_ARCHITECTURE
 
-#	undef X86_32
-#	undef X8632
-#	undef x86_32
+#	ifndef __Z_hardware_CPU_architecture_x86_32_H__INSPECTION
+#	define __Z_hardware_CPU_architecture_x86_32_H__INSPECTION
 
-#	define Z_CPU_ARCHITECTURE_NAME X86_32
-#	define Z_CPU_ARCHITECTURE_Name X8632
-#	define Z_CPU_ARCHITECTURE_name x86_32
+#	define Z_INSERT_CPU_ARCHITECTURE(left, right) left##X86_32##right
+#	define Z_INSERT_CPUArchitecture( left, right) left##X8632##right
+#	define Z_INSERT_cpu_architecture(left, right) left##x86_32##right
+
+#	define Z_IS_DEFINED_INSERT_CPU_ARCHITECTURE(left, right) \
+		(defined left##X86_32##right)
+
+#	endif /* __Z_hardware_CPU_architecture_x86_32_H__INSPECTION */
 
 #else
 
-#	ifndef __Z_hardware_CPU_architecture_x86_32_Hb__
-#	define __Z_hardware_CPU_architecture_x86_32_Hb__
+#	ifndef __Z_hardware_CPU_architecture_x86_32_H__NO_INSPECTION
+#	define __Z_hardware_CPU_architecture_x86_32_H__NO_INSPECTION
 
-#	endif /* __Z_hardware_CPU_architecture_x86_32_Hb__ */
+#	endif /* __Z_hardware_CPU_architecture_x86_32_H__NO_INSPECTION */
 
 #endif

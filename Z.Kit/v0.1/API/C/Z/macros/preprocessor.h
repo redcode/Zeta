@@ -75,22 +75,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_JOIN_7(a, b, c, d, e, f, g)	 Z_PASTE_7(a, b, c, d, e, f, g)
 #define Z_JOIN_8(a, b, c, d, e, f, g, h) Z_PASTE_8(a, b, c, d, e, f, g, h)
 
-#define Z_JOIN_2_DEFINED_(a, b)			  (defined a##b)
-#define Z_JOIN_3_DEFINED_(a, b, c)		  (defined a##b##c)
-#define Z_JOIN_4_DEFINED_(a, b, c, d)		  (defined a##b##c##d)
-#define Z_JOIN_5_DEFINED_(a, b, c, d, e)	  (defined a##b##c##d##e)
-#define Z_JOIN_6_DEFINED_(a, b, c, d, e, f)	  (defined a##b##c##d##e##f)
-#define Z_JOIN_7_DEFINED_(a, b, c, d, e, f, g)	  (defined a##b##c##d##e##f##g)
-#define Z_JOIN_8_DEFINED_(a, b, c, d, e, f, g, h) (defined a##b##c##d##e##f##g##h)
-
-#define Z_JOIN_2_DEFINED(a, b)			 Z_JOIN_2_DEFINED_(a, b)
-#define Z_JOIN_3_DEFINED(a, b, c)		 Z_JOIN_3_DEFINED_(a, b, c)
-#define Z_JOIN_4_DEFINED(a, b, c, d)		 Z_JOIN_4_DEFINED_(a, b, c, d)
-#define Z_JOIN_5_DEFINED(a, b, c, d, e)		 Z_JOIN_5_DEFINED_(a, b, c, d, e)
-#define Z_JOIN_6_DEFINED(a, b, c, d, e, f)	 Z_JOIN_6_DEFINED_(a, b, c, d, e, f)
-#define Z_JOIN_7_DEFINED(a, b, c, d, e, f, g)	 Z_JOIN_7_DEFINED_(a, b, c, d, e, f, g)
-#define Z_JOIN_8_DEFINED(a, b, c, d, e, f, g, h) Z_JOIN_8_DEFINED_(a, b, c, d, e, f, g, h)
-
 #define Z_INSERT_NUMBER_8(   left, right) left##8##right
 #define Z_INSERT_NUMBER_16(  left, right) left##16##right
 #define Z_INSERT_NUMBER_24(  left, right) left##24##right

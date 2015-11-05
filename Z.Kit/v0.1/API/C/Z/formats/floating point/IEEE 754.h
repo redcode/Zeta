@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_formats_floating_point_IEEE_754_Ha__
-#define __Z_formats_floating_point_IEEE_754_Ha__
+#ifndef __Z_formats_floating_point_IEEE_754_H__
+#define __Z_formats_floating_point_IEEE_754_H__
 
 /* MARK: - binary16 */
 
@@ -140,12 +140,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_IEEE_754_DECIMAL128_SIGN_OFFSET		    127			// OK
 #define Z_IEEE_754_DECIMAL128_SIGN_BITS			    1			// OK
 
-#endif /* __Z_formats_floating_point_IEEE_754_Ha__ */
+#endif /* __Z_formats_floating_point_IEEE_754_H__ */
 
 #ifndef Z_INSPECTING_FLOATING_POINT
 
-#	ifndef __Z_formats_floating_point_IEEE_754_Hb__
-#	define __Z_formats_floating_point_IEEE_754_Hb__
+#	ifndef __Z_formats_floating_point_IEEE_754_H__NO_INSPECTION
+#	define __Z_formats_floating_point_IEEE_754_H__NO_INSPECTION
 
 #	include <Z/types/base.h>
 
@@ -201,6 +201,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		/* TO DO */
 	) ZIEEE754Decimal128;
 
-#	endif /* __Z_formats_floating_point_IEEE_754_Hb__ */
+#	endif /* __Z_formats_floating_point_IEEE_754_H__NO_INSPECTION */
 
 #endif
