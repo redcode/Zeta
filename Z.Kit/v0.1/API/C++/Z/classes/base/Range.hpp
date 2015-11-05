@@ -28,17 +28,17 @@ struct ZKit::Range : public ZRange {
 	inline Range() {}
 	inline Range(Size size) {this->index = 0; this->size = size;}
 	inline Range(Size index, Size size) {this->index = index; this->size = size;}
-	inline Range(Base range) {*z_base = range;}
+	inline Range(const Base &range) {*z_base = range;}
 
 #	ifdef Z_USE_NS_GEOMETRY_TYPES
-		inline Range(NSRange range) {index = range.location; size = range.length;}
+		inline Range(const NSRange &range) {index = range.location; size = range.length;}
 #	endif
 
-	inline Boolean contains(Range range) const
+	inline Boolean contains(const Range &range) const
 		{return range.index >= index && range.index + range.size <= index + size;}
 
 
-	inline Boolean collides(Range range) const
+	inline Boolean collides(const Range &range) const
 		{return index < range.index + range.size && range.index < index + size;}
 
 
@@ -54,7 +54,7 @@ struct ZKit::Range : public ZRange {
 		{return index >= this->index && index < this->index + this->size;}
 
 
-	inline Boolean operator ==(Range range) const
+	inline Boolean operator ==(const Range &range) const
 		{return index == range.index && size == range.size;}
 
 
@@ -62,7 +62,7 @@ struct ZKit::Range : public ZRange {
 		{return index == number && size == number;}
 
 
-	inline Range operator &(Range range) const
+	inline Range operator &(const Range &range) const
 		{
 		Size index = (this->index > range.index) ? this->index : range.index;
 		Size minimum = ZKit::minimum<Size>(this->index + this->size, range.index + range.size);
@@ -71,7 +71,7 @@ struct ZKit::Range : public ZRange {
 		}
 
 
-	inline Range operator |(Range range) const
+	inline Range operator |(const Range &range) const
 		{
 		Size	index	  = (this->index < range.index) ? this->index : range.index,
 			a_maximum = this->index + this->size,

@@ -40,7 +40,7 @@ struct ZKit::RingBuffer : public ZRingBuffer {
 		}
 
 
-	inline void *production_buffer()
+	inline void *production_buffer() const
 		{
 		return buffer_count - fill_count
 			? (UInt8 *)buffers + production_index * buffer_size
@@ -48,7 +48,7 @@ struct ZKit::RingBuffer : public ZRingBuffer {
 		}
 
 
-	inline void *consumption_buffer()
+	inline void *consumption_buffer() const
 		{
 		return fill_count
 			? (UInt8 *)buffers + consumption_index * buffer_size

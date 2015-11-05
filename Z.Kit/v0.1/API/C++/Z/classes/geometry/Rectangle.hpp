@@ -35,7 +35,7 @@ template <typename T> struct ZKit::Rectangle {
 	inline Rectangle<T>() {}
 
 
-	inline Rectangle<T>(Value2D<T> point, Value2D<T> size)
+	inline Rectangle<T>(const Value2D<T> &point, const Value2D<T> &size)
 		{
 		this->point = point;
 		this->size  = size;
@@ -51,7 +51,7 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
-	inline Rectangle<T>(T x, T y, Value2D<T> size)
+	inline Rectangle<T>(T x, T y, const Value2D<T> &size)
 		{
 		point.x	   = x;
 		point.y	   = y;
@@ -59,7 +59,7 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
-	inline Rectangle<T>(Value2D<T> point, T size_x, T size_y)
+	inline Rectangle<T>(const Value2D<T> &point, T size_x, T size_y)
 		{
 		this->point = point;
 		size.x	    = size_x;
@@ -76,7 +76,7 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
-	inline Rectangle<T>(T point, Value2D<T> size)
+	inline Rectangle<T>(T point, const Value2D<T> &size)
 		{
 		this->point.x = point;
 		this->point.y = point;
@@ -84,7 +84,7 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
-	inline Rectangle<T>(Value2D<T> point, T size)
+	inline Rectangle<T>(const Value2D<T> &point, T size)
 		{
 		this->point  = point;
 		this->size.x = size;
@@ -101,13 +101,13 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
-	inline Rectangle<T>(void *data)	    {*this = *(Rectangle<T> *)data;}
-	inline Rectangle<T>(Base rectangle) {(*(Base *)this) = rectangle;}
+	inline Rectangle<T>(void *data) {*this = *(Rectangle<T> *)data;}
+	inline Rectangle<T>(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
 
 #	ifdef Z_USE_CG_GEOMETRY_TYPES
 
-		inline Rectangle<T>(CGRect rectangle)
+		inline Rectangle<T>(const CGRect &rectangle)
 			{
 			point.x = rectangle.origin.x;
 			point.y = rectangle.origin.y;
@@ -123,7 +123,7 @@ template <typename T> struct ZKit::Rectangle {
 		 (!defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES))
 
-		inline Rectangle<T>(NSRect rectangle)
+		inline Rectangle<T>(const NSRect &rectangle)
 			{
 			point.x = rectangle.origin.x;
 			point.y = rectangle.origin.y;
@@ -134,7 +134,7 @@ template <typename T> struct ZKit::Rectangle {
 #	endif
 
 
-	static inline Rectangle<T> from_vertices(Value2D<T> a, Value2D<T> b)
+	static inline Rectangle<T> from_vertices(const Value2D<T> &a, const Value2D<T> &b)
 		{
 		Value2D<T> minimum = Value2D<T>::minimum(a, b);
 		Value2D<T> maximum = Value2D<T>::maximum(a, b);
@@ -146,14 +146,14 @@ template <typename T> struct ZKit::Rectangle {
 	// MARK: - Operators
 
 
-	inline Boolean operator ==(Rectangle<T> rectangle) const
+	inline Boolean operator ==(const Rectangle<T> &rectangle) const
 		{
 		return	point.x == rectangle.point.x && point.y == rectangle.point.y &&
 			size.x	== rectangle.size.x  && size.y	== rectangle.size.y;
 		}
 
 
-	inline Rectangle<T> operator &(Rectangle<T> rectangle) const
+	inline Rectangle<T> operator &(const Rectangle<T> &rectangle) const
 		{
 		T x1, x2, y1, y2;
 
@@ -167,7 +167,7 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
-	inline Rectangle<T> operator |(Rectangle<T> rectangle) const
+	inline Rectangle<T> operator |(const Rectangle<T> &rectangle) const
 		{
 		Rectangle<T> result;
 
@@ -178,13 +178,14 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
-	inline T operator [](int index) const {return ((T *)this)[index];}
+	inline T  operator[](int index) const {return ((T *)this)[index];}
+	inline T &operator[](int index)	      {return ((T *)this)[index];}
 
 
 	// MARK: - WIP
 
 
-	inline Boolean contains(Rectangle<T> rectangle) const
+	inline Boolean contains(const Rectangle<T> &rectangle) const
 		{
 		return	rectangle.point.x		     >= point.x		 &&
 			rectangle.point.y		     >= point.y		 &&
@@ -193,7 +194,7 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
-	inline Boolean collides(Rectangle<T> rectangle) const
+	inline Boolean collides(const Rectangle<T> &rectangle) const
 		{
 		return	point.x		 < rectangle.point.x + rectangle.size.x &&
 			point.x + size.x > rectangle.point.x &&
@@ -242,15 +243,15 @@ template <typename T> struct ZKit::Rectangle {
 	inline Rectangle<T> bottom_right_quarter() const {return Rectangle<T>(point.x + size.x / T(2), point.y, size / T(2));}
 
 
-	inline Rectangle<T> align_in_top_left(Value2D<T> size) const
+	inline Rectangle<T> align_in_top_left(const Value2D<T> &size) const
 		{Rectangle<T>(this->point.x, this->point.y + this->size.y - size.y, size);}
 
 
-	inline Rectangle<T> align_in_top_right(Value2D<T> size) const
+	inline Rectangle<T> align_in_top_right(const Value2D<T> &size) const
 		{Rectangle<T>(this->point + this->size - size, size);}
 
 
-	inline Rectangle<T> align_in_top_center(Value2D<T> size) const
+	inline Rectangle<T> align_in_top_center(const Value2D<T> &size) const
 		{
 		Rectangle<T>
 			(this->point.x + (this->size.x - size.x) / T(2),
@@ -259,23 +260,23 @@ template <typename T> struct ZKit::Rectangle {
 		 }
 
 
-	inline Rectangle<T> align_in_bottom_left(Value2D<T> size) const
+	inline Rectangle<T> align_in_bottom_left(const Value2D<T> &size) const
 		{return Rectangle<T>(this->point, size);}
 
 
-	inline Rectangle<T> align_in_bottom_right(Value2D<T> size) const
+	inline Rectangle<T> align_in_bottom_right(const Value2D<T> &size) const
 		{return Rectangle<T>(this->point.x + this->size.x - size.x, this->point.y, size);}
 
 
-	inline Rectangle<T> align_in_bottom_center(Value2D<T> size) const
+	inline Rectangle<T> align_in_bottom_center(const Value2D<T> &size) const
 		{return Rectangle<T>(this->point.x + (this->size.x - size.x) / T(2), this->point.y, size);}
 
 
-	inline Rectangle<T> align_in_center_left(Value2D<T> size) const
+	inline Rectangle<T> align_in_center_left(const Value2D<T> &size) const
 		{return Rectangle<T>(this->point.x, this->point.y + (this->size.y - size.y) / T(2), size);}
 
 
-	inline Rectangle<T> align_in_center_right(Value2D<T> size) const
+	inline Rectangle<T> align_in_center_right(const Value2D<T> &size) const
 		{
 		return Rectangle<T>
 			(this->point.x +  this->size.x - size.x,
@@ -284,25 +285,25 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
-	inline Rectangle<T> align_in_center(Value2D<T> size) const
+	inline Rectangle<T> align_in_center(const Value2D<T> &size) const
 		{return Rectangle<T>(this->point + (this->size - size) / T(2), size);}
 
 
-	inline Rectangle<T> fit_in_top_left(Value2D<T> size) const
+	inline Rectangle<T> fit_in_top_left(const Value2D<T> &size) const
 		{
 		size = size.fit(this->size);
 		return Rectangle<T>(this->point.x, this->point.y + this->size.y - size.y, size);
 		}
 
 
-	inline Rectangle<T> fit_in_top_right(Value2D<T> size) const
+	inline Rectangle<T> fit_in_top_right(const Value2D<T> &size) const
 		{
 		size = size.fit(this->size);
 		return Rectangle<T>(this->point + this->size - size, size);
 		}
 
 
-	inline Rectangle<T> fit_in_top_center(Value2D<T> size) const
+	inline Rectangle<T> fit_in_top_center(const Value2D<T> &size) const
 		{
 		size = size.fit(this->size);
 
@@ -313,32 +314,32 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
-	inline Rectangle<T> fit_in_bottom_left(Value2D<T> size) const
+	inline Rectangle<T> fit_in_bottom_left(const Value2D<T> &size) const
 		{return Value2D<T>(this->point, size.fit(this->size));}
 
 
-	inline Rectangle<T> fit_in_bottom_right(Value2D<T> size) const
+	inline Rectangle<T> fit_in_bottom_right(const Value2D<T> &size) const
 		{
 		size = size.fit(this->size);
 		return Rectangle<T>(this->point.x + this->size.x - size.x, this->point.y, size);
 		}
 
 
-	inline Rectangle<T> fit_in_bottom_center(Value2D<T> size) const
+	inline Rectangle<T> fit_in_bottom_center(const Value2D<T> &size) const
 		{
 		size = size.fit(this->size);
 		return Rectangle<T>(this->point.x + (this->size.x - size.x) / T(2), this->point.y, size);
 		}
 
 
-	inline Rectangle<T> fit_in_center_left(Value2D<T> size) const
+	inline Rectangle<T> fit_in_center_left(const Value2D<T> &size) const
 		{
 		size = size.fit(this->size);
 		return Rectangle<T>(this->point.x, this->point.y + (this->size.y - size.y) / T(2), size);
 		}
 
 
-	inline Rectangle<T> fit_in_center_right(Value2D<T> size) const
+	inline Rectangle<T> fit_in_center_right(const Value2D<T> &size) const
 		{
 		size = size.fit(this->size);
 
@@ -349,7 +350,7 @@ template <typename T> struct ZKit::Rectangle {
 		 }
 
 
-	inline Rectangle<T> fit_in_center(Value2D<T> size) const
+	inline Rectangle<T> fit_in_center(const Value2D<T> &size) const
 		{
 		size = size.fit(this->size);
 		return Rectangle<T>(this->point + (this->size - size) / T(2), size);
@@ -374,11 +375,11 @@ template <typename T> struct ZKit::Rectangle {
 		}*/
 
 
-	inline Value2D<T> absolute_point_to_unit(Value2D<T> point) const {return (point - this->point) / this->size;}
-	inline Value2D<T> unit_point_to_absolute(Value2D<T> point) const {return point * this->size + this->point;}
+	inline Value2D<T> absolute_point_to_unit(const Value2D<T> &point) const {return (point - this->point) / this->size;}
+	inline Value2D<T> unit_point_to_absolute(const Value2D<T> &point) const {return point * this->size + this->point;}
 
 
-	inline Boolean contains_point(Value2D<T> point) const
+	inline Boolean contains_point(const Value2D<T> &point) const
 		{
 		return	point	>= this->point			&&
 			point.x <= this->point.x + this->size.x &&

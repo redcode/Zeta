@@ -36,8 +36,8 @@ struct ZKit::TripleBuffer : public ZTripleBuffer {
 		}
 
 
-	inline void *production_buffer()  {return buffers[(flags & 48) >> 4];}
-	inline void *consumption_buffer() {return buffers[flags & 3];}
+	inline void *production_buffer () const {return buffers[(flags & 48) >> 4];}
+	inline void *consumption_buffer() const {return buffers[flags & 3];}
 
 
 	inline void *produce()

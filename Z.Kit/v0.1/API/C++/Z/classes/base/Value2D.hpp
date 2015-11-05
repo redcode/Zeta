@@ -43,15 +43,15 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	// MARK: - Constructors
 
 
-	inline Value2D<T>()	      {}
-	inline Value2D<T>(T x, T y)   {this->x = x; this->y = y;}
-	inline Value2D<T>(T scalar)   {this->x = scalar; this->y = scalar;}
-	inline Value2D<T>(void *data) {*this = *(Value2D<T> *)data;}
-	inline Value2D<T>(Base value) {*z_base = value;}
+	inline Value2D<T>()		     {}
+	inline Value2D<T>(T x, T y)	     {this->x = x; this->y = y;}
+	inline Value2D<T>(T scalar)	     {this->x = scalar; this->y = scalar;}
+	inline Value2D<T>(void *data)	     {*this = *(Value2D<T> *)data;}
+	inline Value2D<T>(const Base &value) {*z_base = value;}
 
 #	ifdef Z_USE_CG_GEOMETRY_TYPES
-		inline Value2D<T>(CGSize size)	 {this->x = size.width; this->y = size.height;}
-		inline Value2D<T>(CGPoint point) {this->x = point.x; this->y = point.y;}
+		inline Value2D<T>(const CGSize	&size)	{this->x = size.width; this->y = size.height;}
+		inline Value2D<T>(const CGPoint &point) {this->x = point.x; this->y = point.y;}
 #	endif
 
 #	if	defined(Z_USE_NS_GEOMETRY_TYPES)		      && \
@@ -59,34 +59,34 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 		 (!defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES))
 
-		inline Value2D<T>(NSSize size)	 {this->x = size.width; this->y = size.height;}
-		inline Value2D<T>(NSPoint point) {this->x = point.x; this->y = point.y;}
+		inline Value2D<T>(const NSSize	&size)	{this->x = size.width; this->y = size.height;}
+		inline Value2D<T>(const NSPoint &point) {this->x = point.x; this->y = point.y;}
 #	endif
 
 	static inline Value2D<T> zero() {return Value2D<T>(T(0), T(0));}
 	static inline Value2D<T> unit() {return Value2D<T>(T(1), T(1));}
 
 
-	static inline Value2D<T> minimum(Value2D<T> a, Value2D<T> b)
+	static inline Value2D<T> minimum(const Value2D<T> &a, const Value2D<T> &b)
 		{return Value2D<T>(ZKit::minimum<T>(a.x, b.x), ZKit::minimum<T>(a.y, b.y));}
 
 
-	static inline Value2D<T> maximum(Value2D<T> a, Value2D<T> b)
+	static inline Value2D<T> maximum(const Value2D<T> &a, const Value2D<T> &b)
 		{return Value2D<T>(ZKit::maximum<T>(a.x, b.x), ZKit::maximum<T>(a.y, b.y));}
 
 
-	static inline Value2D<T> middle(Value2D<T> a, Value2D<T> b)
+	static inline Value2D<T> middle(const Value2D<T> &a, const Value2D<T> &b)
 		{return Value2D<T>((a.x + b.x) / T(2), (a.y + b.y) / T(2));}
 
 
 	// MARK: - Operators
 
 
-	inline Boolean operator ==(Value2D<T> value) const {return this->x == value.x && this->y == value.y;}
-	inline Boolean operator <=(Value2D<T> value) const {return this->x <= value.x && this->y <= value.y;}
-	inline Boolean operator >=(Value2D<T> value) const {return this->x >= value.x && this->y >= value.y;}
-	inline Boolean operator  >(Value2D<T> value) const {return this->x >  value.x && this->y >  value.y;}
-	inline Boolean operator  <(Value2D<T> value) const {return this->x <  value.x && this->y <  value.y;}
+	inline Boolean operator ==(const Value2D<T> &value) const {return this->x == value.x && this->y == value.y;}
+	inline Boolean operator <=(const Value2D<T> &value) const {return this->x <= value.x && this->y <= value.y;}
+	inline Boolean operator >=(const Value2D<T> &value) const {return this->x >= value.x && this->y >= value.y;}
+	inline Boolean operator  >(const Value2D<T> &value) const {return this->x >  value.x && this->y >  value.y;}
+	inline Boolean operator  <(const Value2D<T> &value) const {return this->x <  value.x && this->y <  value.y;}
 
 	inline Boolean operator ==(T scalar) const {return this->x == scalar && this->y == scalar;}
 	inline Boolean operator <=(T scalar) const {return this->x <= scalar && this->y <= scalar;}
@@ -94,51 +94,52 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	inline Boolean operator  >(T scalar) const {return this->x >  scalar && this->y >  scalar;}
 	inline Boolean operator  <(T scalar) const {return this->x <  scalar && this->y <  scalar;}
 
-	inline Value2D<T> operator +(Value2D<T> value) const {return Value2D<T>(this->x + value.x, this->y + value.y);}
-	inline Value2D<T> operator -(Value2D<T> value) const {return Value2D<T>(this->x - value.x, this->y - value.y);}
-	inline Value2D<T> operator *(Value2D<T> value) const {return Value2D<T>(this->x * value.x, this->y * value.y);}
-	inline Value2D<T> operator /(Value2D<T> value) const {return Value2D<T>(this->x / value.x, this->y / value.y);}
+	inline Value2D<T> operator +(const Value2D<T> &value) const {return Value2D<T>(this->x + value.x, this->y + value.y);}
+	inline Value2D<T> operator -(const Value2D<T> &value) const {return Value2D<T>(this->x - value.x, this->y - value.y);}
+	inline Value2D<T> operator *(const Value2D<T> &value) const {return Value2D<T>(this->x * value.x, this->y * value.y);}
+	inline Value2D<T> operator /(const Value2D<T> &value) const {return Value2D<T>(this->x / value.x, this->y / value.y);}
 
 	inline Value2D<T> operator +(T scalar) const {return Value2D<T>(this->x + scalar, this->y + scalar);}
 	inline Value2D<T> operator -(T scalar) const {return Value2D<T>(this->x - scalar, this->y - scalar);}
 	inline Value2D<T> operator *(T scalar) const {return Value2D<T>(this->x * scalar, this->y * scalar);}
 	inline Value2D<T> operator /(T scalar) const {return Value2D<T>(this->x / scalar, this->y / scalar);}
 
-	inline Value2D<T> operator +=(Value2D<T> value) {return *this = *this + value;}
-	inline Value2D<T> operator -=(Value2D<T> value) {return *this = *this - value;}
-	inline Value2D<T> operator *=(Value2D<T> value) {return *this = *this * value;}
-	inline Value2D<T> operator /=(Value2D<T> value) {return *this = *this / value;}
+	inline Value2D<T> &operator +=(const Value2D<T> &value) {return *this = *this + value;}
+	inline Value2D<T> &operator -=(const Value2D<T> &value) {return *this = *this - value;}
+	inline Value2D<T> &operator *=(const Value2D<T> &value) {return *this = *this * value;}
+	inline Value2D<T> &operator /=(const Value2D<T> &value) {return *this = *this / value;}
 
-	inline Value2D<T> operator +=(T scalar) {return *this = *this + scalar;}
-	inline Value2D<T> operator -=(T scalar) {return *this = *this - scalar;}
-	inline Value2D<T> operator *=(T scalar) {return *this = *this * scalar;}
-	inline Value2D<T> operator /=(T scalar) {return *this = *this / scalar;}
+	inline Value2D<T> &operator +=(T scalar) {return *this = *this + scalar;}
+	inline Value2D<T> &operator -=(T scalar) {return *this = *this - scalar;}
+	inline Value2D<T> &operator *=(T scalar) {return *this = *this * scalar;}
+	inline Value2D<T> &operator /=(T scalar) {return *this = *this / scalar;}
 
-	inline T operator [](int index) {return ((T *)this)[index];}
+	inline T  operator[](int index) const {return ((T *)this)[index];}
+	inline T &operator[](int index)	      {return ((T *)this)[index];}
 
 
 	// MARK: - Operations for natural, integer and real types
 
 
-	inline Boolean contains(Value2D<T> value) const {return this->x >= value.x && this->y >= value.y;}
+	inline Boolean contains(const Value2D<T> &value) const {return this->x >= value.x && this->y >= value.y;}
 
-	inline T dot_product  (Value2D<T> value) const {return this->x * value.x + this->y * value.y;}
-	inline T cross_product(Value2D<T> value) const {return this->x * value.y - this->y * value.x;}
+	inline T dot_product  (const Value2D<T> &value) const {return this->x * value.x + this->y * value.y;}
+	inline T cross_product(const Value2D<T> &value) const {return this->x * value.y - this->y * value.x;}
 
 
-	inline Value2D<T> minimum(Value2D<T> value) const
+	inline Value2D<T> minimum(const Value2D<T> &value) const
 		{return Value2D<T>(ZKit::minimum<T>(this->x, value.x), ZKit::minimum<T>(this->y, value.y));}
 
 
-	inline Value2D<T> maximum(Value2D<T> value) const
+	inline Value2D<T> maximum(const Value2D<T> &value) const
 		{return Value2D<T>(ZKit::maximum<T>(this->x, value.x), ZKit::maximum<T>(this->y, value.y));}
 
 
-	inline Value2D<T> middle(Value2D<T> value) const
+	inline Value2D<T> middle(const Value2D<T> &value) const
 		{return Value2D<T>((this->x + value.x) / T(2), (this->y + value.y) / T(2));}
 
 
-	inline Value2D<T> fit(Value2D<T> value) const
+	inline Value2D<T> fit(const Value2D<T> &value) const
 		{
 		return this->y / this->x > value.y / value.x
 			? Value2D<T>(this->x * value.y / this->y, value.y)
@@ -157,7 +158,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	inline T squared_length() const {return this->x * this->x + this->y * this->y;}
 
 
-	inline Value2D<T> clamp(Value2D<T> minimum, Value2D<T> maximum) const
+	inline Value2D<T> clamp(const Value2D<T> &minimum, const Value2D<T> &maximum) const
 		{
 		return Value2D
 			(ZKit::clamp<T>(this->x, minimum.x, maximum.x),
@@ -203,22 +204,22 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 
 
 	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_almost_equal(Value2D<T> value) const
+	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_almost_equal(const Value2D<T> &value) const
 		{return are_almost_equal<T>(this->x, value.x) && are_almost_equal<T>(this->y, value.y);}
 
 
 	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_perpendicular(Value2D<T> value) const
+	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_perpendicular(const Value2D<T> &value) const
 		{return ZKit::absolute<T>(dot_product(value)) <= Type<T>::epsilon;}
 
 
 	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type lerp(Value2D<T> value, T t) const
+	inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type lerp(const Value2D<T> &value, T t) const
 		{return Value2D<T>(ZKit::lerp<T>(this->x, value.x, t), ZKit::lerp<T>(this->y, value.y, t));}
 
 
 	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type inverse_lerp(Value2D<T> value, T t) const
+	inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type inverse_lerp(const Value2D<T> &value, T t) const
 		{
 		return Value2D<T>
 			(ZKit::inverse_lerp<T>(this->x, value.x, t),
