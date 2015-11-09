@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
- /\_|||||||||||||||||_/\
- \  '---------------'  /
+ /\ ||||||||||||||||| /\
+ \ '-----------------' /
 ==|  _____	      |==
 ==|  \__  |ADVANCED   |==
 ==|  /|_| |MICRO      |==
@@ -18,7 +18,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 ==| C 224A3J5	      |==
 ==|   (m) AMD	      |==
  / .-----------------. \
- \/|||||||||||||||||||\/ */
+ \/ ||||||||||||||||| \/ */
 
 #ifndef __Z_hardware_CPU_x86_Am386SX_SXL_33_H__
 #define __Z_hardware_CPU_x86_Am386SX_SXL_33_H__

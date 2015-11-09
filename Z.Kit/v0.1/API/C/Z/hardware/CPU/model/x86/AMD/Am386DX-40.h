@@ -9,8 +9,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 	      Top			     Bottom
 .-----------------------------.  .-----------------------------.
 |			      |  | o o o o o o o o o o o o o o |
-|    /\_|||||||||||||||_/\    |  | o o o o o o o o o o o o o o |
-|    \  '-------------'  /    |  | o o o o o o o o o o o o o o |
+|    /\ ||||||||||||||| /\    |  | o o o o o o o o o o o o o o |
+|    \ '---------------' /    |  | o o o o o o o o o o o o o o |
 |   ==|  _____		|==   |  | o o o		 o o o |
 |   ==|  \__  |ADVANCED	|==   |  | o o o		 o o o |
 |   ==|  /|_| |MICRO	|==   |  | o o o		 o o o |
@@ -20,7 +20,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 |   ==| D 312NJG8	|==   |  | o o o		 o o o |
 |   ==| (m) AMD		|==   |  | o o o		 o o o |
 |    / .---------------. \    |  | o o o o o o o o o o o o o o |
-|    \/|||||||||||||||||\/    |  | o o o o o o o o o o o o o o |
+|    \/ ||||||||||||||| \/    |  | o o o o o o o o o o o o o o |
 |			      |  | o o o o o o o o o o o o o o |
  '----------------------------'   '----------------------------' */
 
