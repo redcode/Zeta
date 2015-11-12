@@ -25,8 +25,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_EMULATOR_ACTION_RUN			2
 #define Z_EMULATOR_ACTION_RUN_ONE_SCANLINE
 #define Z_EMULATOR_ACTION_RUN_ONE_FRAME
-#define Z_EMULATOR_ACTION_AFTER_STATE_READED	3
-#define Z_EMULATOR_ACTION_AFTER_STATE_WRITTEN	4
+#define Z_EMULATOR_ACTION_WILL_READ_STATE	3
+#define Z_EMULATOR_ACTION_DID_WRITE_STATE	4
 #define Z_EMULATOR_ACTION_HALT			8
 #define Z_EMULATOR_ACTION_NMI			4
 #define Z_EMULATOR_ACTION_INT			5
@@ -77,10 +77,12 @@ typedef struct {
 Z_DEFINE_STRICT_STRUCTURE (
 ) ZEmulatorDependency;
 
+typedef ZDo ZEmulatorFunction;
+
 Z_DEFINE_STRICT_STRUCTURE (
 	ZKey(EMULATOR_ACTION) key;
-	ZDo		      action;
-) ZEmulatorExport;
+	ZEmulatorFunction     function;
+) ZEmulatorFunctionExport;
 
 Z_DEFINE_STRICT_STRUCTURE (
 	ZKey(EMULATOR_OBJECT) object_key;
@@ -89,25 +91,25 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZEmulatorSlotLinkage;
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zsize			   dependency_count;
-	ZEmulatorDependency const* dependencies;
-	zsize			   export_count;
-	ZEmulatorExport const*     exports;
-
-	struct {zsize			    size;
-		zsize			    state_offset;
-		zsize			    slot_linkage_count;
-		ZEmulatorSlotLinkage const* slot_linkages;
-	} object;
+	zsize			       dependency_count;
+	ZEmulatorDependency const*     dependencies;
+	zsize			       function_export_count;
+	ZEmulatorFunctionExport const* function_exports;
+	zsize			       instance_size;
+	zsize			       instance_state_offset;
+	zsize			       instance_state_size;
+	zsize			       instance_slot_linkage_count;
+	ZEmulatorSlotLinkage const*    instance_slot_linkages;
 ) ZCPUEmulatorABI;
 
 typedef struct {
 } ZMachineEmulatorABI;
 
-typedef zsize (* ZMachineEmulatorRunOneFrame) (void *object);
+typedef zsize (* ZMachineEmulatorRunOneFrame) (void* object);
 typedef zsize (* ZEmulatorRun		    ) (void* object, zsize    cycles	 );
 typedef void  (* ZEmulatorPower		    ) (void* object, zboolean power_state);
-typedef void  (* ZEmulatorAfterStateReaded  ) (void* object, void*    state	 );
-typedef void  (* ZEmulatorAfterStateWritten ) (void* object);
+
+typedef ZDo ZEmulatorWillReadState;
+typedef ZDo ZEmulatorDidWriteState;
 
 #endif /* __Z_ABIs_emulation_H__ */
