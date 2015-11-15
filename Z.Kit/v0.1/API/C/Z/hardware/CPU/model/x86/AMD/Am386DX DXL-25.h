@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/CPU/x86/Am386DX DXL-25.h
+/* Z Kit C API - hardware/CPU/model/x86/Am386DX DXL-25.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -24,8 +24,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |  23936		      |  | o o o o o o o o o o o o o o |
  '----------------------------'   '----------------------------' */
 
-#ifndef __Z_hardware_CPU_x86_Am386DX_DXL_25_H__
-#define __Z_hardware_CPU_x86_Am386DX_DXL_25_H__
+#ifndef __Z_hardware_CPU_model_x86_Am386DX_DXL_25_H__
+#define __Z_hardware_CPU_model_x86_Am386DX_DXL_25_H__
 
 #include <Z/keys/hardware/IC.h>
 
@@ -38,4 +38,4 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_AM386DX_DXL_25_VOLTAGE		5.0 /* V  */
 #define Z_AM386DX_DXL_25_ENCAPSULATION		Z_IC_ENCAPSULATION_CERAMIC_PGA_132
 
-#endif /* __Z_hardware_CPU_x86_Am386DX_DXL_25_H__ */
+#endif /* __Z_hardware_CPU_model_x86_Am386DX_DXL_25_H__ */

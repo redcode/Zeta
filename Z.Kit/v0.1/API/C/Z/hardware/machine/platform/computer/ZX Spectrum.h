@@ -225,28 +225,7 @@ Z_DEFINE_STRICT_STRUCTURE (
    |        |  _____   _   _   _   _  /\  / _   _   _   __   ___////|  |
    '--------> [SHIFT] [Z] [X] [C] [V]/ / / [B] [N] [M] [SS] [SPACE] <--'
             |_______________________/ / /_____________________////__|
-            (_______________________\/  \___________________________)
-
-.------------------------------------.
-|	     Special keys	     |
-|------------------------------------|
-| DELETE      = SHIFT + 0	     |
-| EDIT	      = SHIFT + 1	     |
-| CAPS LOCK   = SHIFT + 2	     |
-| TRUE VIDEO  = SHIFT + 3	     |
-| INV VIDEO   = SHIFT + 4	     |
-| ↑	      = SHIFT + 7	     |
-| ↓	      = SHIFT + 6	     |
-| →	      = SHIFT + 5	     |
-| ←	      = SHIFT + 8	     |
-| GRAPH	      = SHIFT + 9	     |
-| BREAK	      = SHIFT + SPACE	     |
-| EXTEND MODE = SHIFT + SYMBOL SHIFT |
-| .	      = SYMBOL SHIFT + M     |
-| ,	      = SYMBOL SHIFT + N     |
-| ;	      = SYMBOL SHIFT + O     |
-| "	      = SYMBOL SHIFT + P     |
-'-----------------------------------*/
+            (_______________________\/  \___________________________) */
 
 Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
 	zuint8 unused	    :3,
@@ -254,56 +233,6 @@ Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
 	zuint8 ear	    :1,
 	zuint8 border_color :3
 )) ZZXSpectrumULAIO;
-
-/* MARK: - ULA I/O port: input value
-.-----------------.
-| 7 6 5 4 3 2 1 0 |
-'-|-|-\_________/-'
-  | |	   |
-  | |	   '------> Keyboard mask
-  | '-------------> EAR input
-  '---------------> 1 */
-
-#define Z_ZX_SPECTRUM_KEY_MASK_ENTER	    0x0F
-#define Z_ZX_SPECTRUM_KEY_MASK_SHIFT	    0x0F
-#define Z_ZX_SPECTRUM_KEY_MASK_SPACE	    0x0F
-#define Z_ZX_SPECTRUM_KEY_MASK_0	    0x0F
-#define Z_ZX_SPECTRUM_KEY_MASK_1	    0x0F
-#define Z_ZX_SPECTRUM_KEY_MASK_2	    0x17
-#define Z_ZX_SPECTRUM_KEY_MASK_3	    0x1B
-#define Z_ZX_SPECTRUM_KEY_MASK_4	    0x1D
-#define Z_ZX_SPECTRUM_KEY_MASK_5	    0x1E
-#define Z_ZX_SPECTRUM_KEY_MASK_6	    0x1E
-#define Z_ZX_SPECTRUM_KEY_MASK_7	    0x1D
-#define Z_ZX_SPECTRUM_KEY_MASK_8	    0x1B
-#define Z_ZX_SPECTRUM_KEY_MASK_9	    0x17
-#define Z_ZX_SPECTRUM_KEY_MASK_A	    0x0F
-#define Z_ZX_SPECTRUM_KEY_MASK_B	    0x1E
-#define Z_ZX_SPECTRUM_KEY_MASK_C	    0x1D
-#define Z_ZX_SPECTRUM_KEY_MASK_D	    0x1B
-#define Z_ZX_SPECTRUM_KEY_MASK_E	    0x1B
-#define Z_ZX_SPECTRUM_KEY_MASK_F	    0x1D
-#define Z_ZX_SPECTRUM_KEY_MASK_G	    0x1E
-#define Z_ZX_SPECTRUM_KEY_MASK_H	    0x1E
-#define Z_ZX_SPECTRUM_KEY_MASK_I	    0x1B
-#define Z_ZX_SPECTRUM_KEY_MASK_J	    0x1D
-#define Z_ZX_SPECTRUM_KEY_MASK_K	    0x1B
-#define Z_ZX_SPECTRUM_KEY_MASK_L	    0x17
-#define Z_ZX_SPECTRUM_KEY_MASK_M	    0x1B
-#define Z_ZX_SPECTRUM_KEY_MASK_N	    0x1D
-#define Z_ZX_SPECTRUM_KEY_MASK_O	    0x17
-#define Z_ZX_SPECTRUM_KEY_MASK_P	    0x0F
-#define Z_ZX_SPECTRUM_KEY_MASK_Q	    0x0F
-#define Z_ZX_SPECTRUM_KEY_MASK_R	    0x1D
-#define Z_ZX_SPECTRUM_KEY_MASK_S	    0x17
-#define Z_ZX_SPECTRUM_KEY_MASK_T	    0x1E
-#define Z_ZX_SPECTRUM_KEY_MASK_U	    0x1D
-#define Z_ZX_SPECTRUM_KEY_MASK_V	    0x1E
-#define Z_ZX_SPECTRUM_KEY_MASK_W	    0x17
-#define Z_ZX_SPECTRUM_KEY_MASK_X	    0x1B
-#define Z_ZX_SPECTRUM_KEY_MASK_Y	    0x1E
-#define Z_ZX_SPECTRUM_KEY_MASK_Z	    0x17
-#define Z_ZX_SPECTRUM_KEY_MASK_SYMBOL_SHIFT 0x17
 
 #define Z_ZX_SPECTRUM_KEY_ROW_ENTER	   6
 #define Z_ZX_SPECTRUM_KEY_ROW_SHIFT	   0
@@ -345,6 +274,83 @@ Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
 #define Z_ZX_SPECTRUM_KEY_ROW_Y		   5
 #define Z_ZX_SPECTRUM_KEY_ROW_Z		   0
 #define Z_ZX_SPECTRUM_KEY_ROW_SYMBOL_SHIFT 7
+
+/* MARK: - ULA I/O port: input value
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-|-|-\_________/-'
+  | |	   |
+  | |	   '------> Key mask
+  | '-------------> EAR input
+  '---------------> 1
+
+.------------------------------------.
+|	     Special keys	     |
+|------------------------------------|
+| DELETE      = SHIFT + 0	     |
+| EDIT	      = SHIFT + 1	     |
+| CAPS LOCK   = SHIFT + 2	     |
+| TRUE VIDEO  = SHIFT + 3	     |
+| INV VIDEO   = SHIFT + 4	     |
+| ↑	      = SHIFT + 7	     |
+| ↓	      = SHIFT + 6	     |
+| →	      = SHIFT + 5	     |
+| ←	      = SHIFT + 8	     |
+| GRAPH	      = SHIFT + 9	     |
+| BREAK	      = SHIFT + SPACE	     |
+| EXTEND MODE = SHIFT + SYMBOL SHIFT |
+| .	      = SYMBOL SHIFT + M     |
+| ,	      = SYMBOL SHIFT + N     |
+| ;	      = SYMBOL SHIFT + O     |
+| "	      = SYMBOL SHIFT + P     |
+'-----------------------------------*/
+
+Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(3) (
+	zuint8 one	:3,
+	zuint8 ear	:1,
+	zuint8 key_mask :6
+)) ZZXSpectrumULAIO;
+
+#define Z_ZX_SPECTRUM_KEY_MASK_ENTER	    0x0F
+#define Z_ZX_SPECTRUM_KEY_MASK_SHIFT	    0x0F
+#define Z_ZX_SPECTRUM_KEY_MASK_SPACE	    0x0F
+#define Z_ZX_SPECTRUM_KEY_MASK_0	    0x0F
+#define Z_ZX_SPECTRUM_KEY_MASK_1	    0x0F
+#define Z_ZX_SPECTRUM_KEY_MASK_2	    0x17
+#define Z_ZX_SPECTRUM_KEY_MASK_3	    0x1B
+#define Z_ZX_SPECTRUM_KEY_MASK_4	    0x1D
+#define Z_ZX_SPECTRUM_KEY_MASK_5	    0x1E
+#define Z_ZX_SPECTRUM_KEY_MASK_6	    0x1E
+#define Z_ZX_SPECTRUM_KEY_MASK_7	    0x1D
+#define Z_ZX_SPECTRUM_KEY_MASK_8	    0x1B
+#define Z_ZX_SPECTRUM_KEY_MASK_9	    0x17
+#define Z_ZX_SPECTRUM_KEY_MASK_A	    0x0F
+#define Z_ZX_SPECTRUM_KEY_MASK_B	    0x1E
+#define Z_ZX_SPECTRUM_KEY_MASK_C	    0x1D
+#define Z_ZX_SPECTRUM_KEY_MASK_D	    0x1B
+#define Z_ZX_SPECTRUM_KEY_MASK_E	    0x1B
+#define Z_ZX_SPECTRUM_KEY_MASK_F	    0x1D
+#define Z_ZX_SPECTRUM_KEY_MASK_G	    0x1E
+#define Z_ZX_SPECTRUM_KEY_MASK_H	    0x1E
+#define Z_ZX_SPECTRUM_KEY_MASK_I	    0x1B
+#define Z_ZX_SPECTRUM_KEY_MASK_J	    0x1D
+#define Z_ZX_SPECTRUM_KEY_MASK_K	    0x1B
+#define Z_ZX_SPECTRUM_KEY_MASK_L	    0x17
+#define Z_ZX_SPECTRUM_KEY_MASK_M	    0x1B
+#define Z_ZX_SPECTRUM_KEY_MASK_N	    0x1D
+#define Z_ZX_SPECTRUM_KEY_MASK_O	    0x17
+#define Z_ZX_SPECTRUM_KEY_MASK_P	    0x0F
+#define Z_ZX_SPECTRUM_KEY_MASK_Q	    0x0F
+#define Z_ZX_SPECTRUM_KEY_MASK_R	    0x1D
+#define Z_ZX_SPECTRUM_KEY_MASK_S	    0x17
+#define Z_ZX_SPECTRUM_KEY_MASK_T	    0x1E
+#define Z_ZX_SPECTRUM_KEY_MASK_U	    0x1D
+#define Z_ZX_SPECTRUM_KEY_MASK_V	    0x1E
+#define Z_ZX_SPECTRUM_KEY_MASK_W	    0x17
+#define Z_ZX_SPECTRUM_KEY_MASK_X	    0x1B
+#define Z_ZX_SPECTRUM_KEY_MASK_Y	    0x1E
+#define Z_ZX_SPECTRUM_KEY_MASK_Z	    0x17
+#define Z_ZX_SPECTRUM_KEY_MASK_SYMBOL_SHIFT 0x17
 
 /* MARK: - Firmware ADC
 .------------------------------------------------------------------------.

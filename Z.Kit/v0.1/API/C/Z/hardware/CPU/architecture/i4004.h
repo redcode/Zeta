@@ -49,12 +49,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	/* MARK: - State storage type */
 
 	typedef struct {
-		zuint8	registers[8];
-		zuint8	acc;
-		zuint8	cy;
-		zuint8	dp;
-		zuint16 cp;
-		zuint16	return_stack[4];
+		zuint16	stack[4];
+		zuint8  pc;
+		zuint8	p[8];
+		zuint8	a;
+		zuint8	c;
+
 	} Zi4004State;
 
 	/* MARK: - State structure macros */

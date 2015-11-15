@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/snapshot/machine/ZX Spectrum/SP.h
+/* Z Kit C API - formats/snapshot/machine/computer/ZX Spectrum/SP.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -26,8 +26,8 @@ Released under the terms of the GNU Lesser General Public License v3.
   |   _________________________________________________________________________|_
    \_/_________________________________________________________________________*/
 
-#ifndef __Z_formats_snapshot_machine_ZX_Spectrum_SP_H__
-#define __Z_formats_snapshot_machine_ZX_Spectrum_SP_H__
+#ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H__
+#define __Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H__
 
 #include <Z/types/base.h>
 
@@ -61,4 +61,4 @@ Z_DEFINE_STRICT_STRUCTURE_END ZSPBody;
 
 #define Z_SP_BODY_IM(p) (Z_SP_BODY(p)->im_0 ? 0 : ((p)->im ? 2 : 1))
 
-#endif /* __Z_formats_snapshot_machine_ZX_Spectrum_SP_H__ */
+#endif /* __Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H__ */

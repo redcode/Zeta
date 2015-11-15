@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/snapshot/machine/ZX Spectrum/FRZ.h
+/* Z Kit C API - formats/snapshot/machine/computer/ZX Spectrum/FRZ.h
 
 Copyright © Dmitriy Zhivilov.
 Copyright © Ian Greenway.
@@ -17,8 +17,8 @@ Released under the terms of the GNU Lesser General Public License v3.
   |   ___________________________|_
    \_/___________________________*/
 
-#ifndef __Z_formats_snapshot_machine_ZX_Spectrum_FRZ_H__
-#define __Z_formats_snapshot_machine_ZX_Spectrum_FRZ_H__
+#ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H__
+#define __Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H__
 
 #include <Z/types/base.h>
 
@@ -54,4 +54,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	} ram;
 Z_DEFINE_STRICT_STRUCTURE_END ZFRZ;
 
-#endif /* __Z_formats_snapshot_machine_ZX_Spectrum_FRZ_H__ */
+#endif /* __Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H__ */

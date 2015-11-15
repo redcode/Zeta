@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/CPU/Z80/Zilog/Z8400.h
+/* Z Kit C API - hardware/CPU/model/Z80/Zilog/Z8400.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -29,8 +29,8 @@ MREQ -19-|	     |-22- WR
 IORQ -20-|	     |-21- RD
 	 '-----------'		  */
 
-#ifndef __Z_hardware_CPU_Z80_Zilog_Z8400_H__
-#define __Z_hardware_CPU_Z80_Zilog_Z8400_H__
+#ifndef __Z_hardware_CPU_model_Z80_Zilog_Z8400_H__
+#define __Z_hardware_CPU_model_Z80_Zilog_Z8400_H__
 
 
-#endif /* __Z_hardware_CPU_Z80_Zilog_Z8400_H__ */
+#endif /* __Z_hardware_CPU_model_Z80_Zilog_Z8400_H__ */

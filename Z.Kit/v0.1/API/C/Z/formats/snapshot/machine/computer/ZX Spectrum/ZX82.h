@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/snapshot/machine/ZX Spectrum/ZX82.h
+/* Z Kit C API - formats/snapshot/machine/computer/ZX Spectrum/ZX82.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -40,8 +40,8 @@ Released under the terms of the GNU Lesser General Public License v3.
   |   ______________________________________________________________________|_
    \_/______________________________________________________________________*/
 
-#ifndef __Z_formats_snapshot_machine_ZX_Spectrum_ZX82_H__
-#define __Z_formats_snapshot_machine_ZX_Spectrum_ZX82_H__
+#ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H__
+#define __Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H__
 
 #include <Z/types/base.h>
 
@@ -69,4 +69,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	Z16Bit pc;
 Z_DEFINE_STRICT_STRUCTURE_END ZZX82SnapshotHeader;
 
-#endif /* __Z_formats_snapshot_machine_ZX_Spectrum_ZX82_H__ */
+#endif /* __Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H__ */
