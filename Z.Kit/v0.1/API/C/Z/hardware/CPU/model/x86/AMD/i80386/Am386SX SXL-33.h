@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/CPU/model/x86/Am386SX SXL-33.h
+/* Z Kit C API - hardware/CPU/model/x86/AMD/i80386/Am386SX SXL-33.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -20,8 +20,8 @@ Released under the terms of the GNU Lesser General Public License v3.
  / .-----------------. \
  \/ ||||||||||||||||| \/ */
 
-#ifndef __Z_hardware_CPU_model_x86_Am386SX_SXL_33_H__
-#define __Z_hardware_CPU_model_x86_Am386SX_SXL_33_H__
+#ifndef __Z_hardware_CPU_model_x86_AMD_i80386_Am386SX_SXL_33_H__
+#define __Z_hardware_CPU_model_x86_AMD_i80386_Am386SX_SXL_33_H__
 
 #include <Z/keys/hardware/IC.h>
 
@@ -34,4 +34,4 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_AM386SX_SXL_33_VOLTAGE		5.0 /* V  */
 #define Z_AM386SX_SXL_33_ENCAPSULATION		Z_IC_ENCAPSULATION_PLASTIC_PQFP_100
 
-#endif /* __Z_hardware_CPU_model_x86_Am386SX_SXL_33_H__ */
+#endif /* __Z_hardware_CPU_model_x86_AMD_i80386_Am386SX_SXL_33_H__ */
