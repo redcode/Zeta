@@ -102,7 +102,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 31 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
    '-----------------------------------------------------------------------------------------------'
 
-/* Color Attribute
+Color Attribute
 .-----------------.
 | 7 6 5 4 3 2 1 0 |
 '-|-|-\___/-\___/-'
@@ -309,7 +309,7 @@ Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(3) (
 	zuint8 one	:3,
 	zuint8 ear	:1,
 	zuint8 key_mask :6
-)) ZZXSpectrumULAIO;
+)) ZZXSpectrumULAInput;
 
 #define Z_ZX_SPECTRUM_KEY_MASK_ENTER	    0x0F
 #define Z_ZX_SPECTRUM_KEY_MASK_SHIFT	    0x0F
