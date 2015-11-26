@@ -9,10 +9,39 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_functions_geometry_Z2DLine_H__
 #define __Z_functions_geometry_Z2DLine_H__
 
-#include <Z/functions/geometry/Z2DVector.h>
+#include <Z/functions/geometry/constructors.h>
+#include <Z/functions/base/Z2DValue.h>
 
 
-/* MARK: - Template */
+/* MARK: - Templates */
+
+
+#define Z_TEMPLATE_2D_LINE(Type, type)							 \
+											 \
+											 \
+Z_INLINE zboolean z_2d_line_##type##_are_equal(Z2DLine##Type a, Z2DLine##Type b)	 \
+	{return z_2d_##type##_are_equal(a.a, b.a) && z_2d_##type##_are_equal(a.b, b.b);} \
+											 \
+											 \
+Z_INLINE zboolean z_2d_line_##type##_are_perpendicular(Z2DLine##Type a, Z2DLine##Type b) \
+	{										 \
+	return z_2d_##type##_are_perpendicular						 \
+		(z_2d_##type##_subtract(a.b, a.a), z_2d_##type##_subtract(b.b, b.a));	 \
+	}										 \
+											 \
+											 \
+Z_INLINE zboolean z_2d_line_##type##_is_zero(Z2DLine##Type object)			 \
+	{return z_2d_##type##_is_zero(object.a) && z_2d_##type##_is_zero(object.b);}	 \
+											 \
+											 \
+Z_INLINE Z2DVector##Type z_2d_vector_##type##_reversed(Z2DLine##Type object)		 \
+	{return z_2d_line_##type(object.b.x, object.b.y, object.a.x, object.a.y);}
+
+
+#define z_2d_line_type_are_equal(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _are_equal	  )
+#define z_2d_line_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _are_perpendicular)
+#define z_2d_line_type_is_zero(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _is_zero	  )
+#define z_2d_line_type_reversed(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _reversed	  )
 
 
 #define Z_TEMPLATE_2D_LINE_SEGMENT(Type, type, _)					\
@@ -48,116 +77,61 @@ Z_INLINE Z2D##Type z_2d_line_segment_##type##_lerp(Z2DLine##Type object, z##type
 
 
 #if Z_IS_AVAILABLE(FLOAT16)
-
-#	define z_2d_line_float16_are_equal	   z_2d_vector_float16_are_equal
-#	define z_2d_line_float16_are_perpendicular z_2d_vector_float16_are_perpendicular
-#	define z_2d_line_float16_is_zero	   z_2d_vector_float16_is_zero
-#	define z_2d_line_float16_reversed	   z_2d_vector_float16_reversed
-
+	Z_TEMPLATE_2D_LINE	  (Float16, float16)
 	Z_TEMPLATE_2D_LINE_SEGMENT(Float16, float16, Z_FLOAT16)
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-
-#	define z_2d_line_float24_are_equal	   z_2d_vector_float24_are_equal
-#	define z_2d_line_float24_are_perpendicular z_2d_vector_float24_are_perpendicular
-#	define z_2d_line_float24_is_zero	   z_2d_vector_float24_is_zero
-#	define z_2d_line_float24_reversed	   z_2d_vector_float24_reversed
-
+	Z_TEMPLATE_2D_LINE	  (Float24, float24)
 	Z_TEMPLATE_2D_LINE_SEGMENT(Float24, float24, Z_FLOAT24)
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-
-#	define z_2d_line_float32_are_equal	   z_2d_vector_float32_are_equal
-#	define z_2d_line_float32_are_perpendicular z_2d_vector_float32_are_perpendicular
-#	define z_2d_line_float32_is_zero	   z_2d_vector_float32_is_zero
-#	define z_2d_line_float32_reversed	   z_2d_vector_float32_reversed
-
+	Z_TEMPLATE_2D_LINE	  (Float32, float32)
 	Z_TEMPLATE_2D_LINE_SEGMENT(Float32, float32, Z_FLOAT32)
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-
-#	define z_2d_line_float48_are_equal	   z_2d_vector_float48_are_equal
-#	define z_2d_line_float48_are_perpendicular z_2d_vector_float48_are_perpendicular
-#	define z_2d_line_float48_is_zero	   z_2d_vector_float48_is_zero
-#	define z_2d_line_float48_reversed	   z_2d_vector_float48_reversed
-
+	Z_TEMPLATE_2D_LINE	  (Float48, float48)
 	Z_TEMPLATE_2D_LINE_SEGMENT(Float48, float48, Z_FLOAT48)
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-
-#	define z_2d_line_float64_are_equal	   z_2d_vector_float64_are_equal
-#	define z_2d_line_float64_are_perpendicular z_2d_vector_float64_are_perpendicular
-#	define z_2d_line_float64_is_zero	   z_2d_vector_float64_is_zero
-#	define z_2d_line_float64_reversed	   z_2d_vector_float64_reversed
-
+	Z_TEMPLATE_2D_LINE	  (Float64, float64)
 	Z_TEMPLATE_2D_LINE_SEGMENT(Float64, float64, Z_FLOAT64)
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-
-#	define z_2d_line_float72_are_equal	   z_2d_vector_float72_are_equal
-#	define z_2d_line_float72_are_perpendicular z_2d_vector_float72_are_perpendicular
-#	define z_2d_line_float72_is_zero	   z_2d_vector_float72_is_zero
-#	define z_2d_line_float72_reversed	   z_2d_vector_float72_reversed
-
+	Z_TEMPLATE_2D_LINE	  (Float72, float72)
 	Z_TEMPLATE_2D_LINE_SEGMENT(Float72, float72, Z_FLOAT72)
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-
-#	define z_2d_line_float80_are_equal	   z_2d_vector_float80_are_equal
-#	define z_2d_line_float80_are_perpendicular z_2d_vector_float80_are_perpendicular
-#	define z_2d_line_float80_is_zero	   z_2d_vector_float80_is_zero
-#	define z_2d_line_float80_reversed	   z_2d_vector_float80_reversed
-
+	Z_TEMPLATE_2D_LINE	  (Float80, float80)
 	Z_TEMPLATE_2D_LINE_SEGMENT(Float80, float80, Z_FLOAT80)
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-
-#	define z_2d_line_float96_are_equal	   z_2d_vector_float96_are_equal
-#	define z_2d_line_float96_are_perpendicular z_2d_vector_float96_are_perpendicular
-#	define z_2d_line_float96_is_zero	   z_2d_vector_float96_is_zero
-#	define z_2d_line_float96_reversed	   z_2d_vector_float96_reversed
-
+	Z_TEMPLATE_2D_LINE	  (Float96, float96)
 	Z_TEMPLATE_2D_LINE_SEGMENT(Float96, float96, Z_FLOAT96)
-
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-
-#	define z_2d_line_float128_are_equal	    z_2d_vector_float128_are_equal
-#	define z_2d_line_float128_are_perpendicular z_2d_vector_float128_are_perpendicular
-#	define z_2d_line_float128_is_zero	    z_2d_vector_float128_is_zero
-#	define z_2d_line_float128_reversed	    z_2d_vector_float128_reversed
-
+	Z_TEMPLATE_2D_LINE	  (Float128, float128)
 	Z_TEMPLATE_2D_LINE_SEGMENT(Float128, float128, Z_FLOAT128)
-
 #endif
 
 
 /* MARK: - Default real type definitions */
 
 
-#define z_2d_line_are_equal	    z_2d_vector_are_equal
-#define z_2d_line_are_perpendicular z_2d_vector_are_perpendicular
-#define z_2d_line_is_zero	    z_2d_vector_is_zero
-#define z_2d_line_reversed	    z_2d_vector_reversed
-
-#define z_2d_line_segment_collide z_2d_line_segment_type_collide(REAL)
-#define z_2d_line_segment_center  z_2d_line_segment_type_center	(REAL)
-#define z_2d_line_segment_lerp	  z_2d_line_segment_type_lerp	(REAL)
+#define z_2d_line_are_equal	    z_2d_line_type_are_equal	    (REAL)
+#define z_2d_line_are_perpendicular z_2d_line_type_are_perpendicular(REAL)
+#define z_2d_line_is_zero	    z_2d_line_type_is_zero	    (REAL)
+#define z_2d_line_reversed	    z_2d_line_type_reversed	    (REAL)
+#define z_2d_line_segment_collide   z_2d_line_segment_type_collide  (REAL)
+#define z_2d_line_segment_center    z_2d_line_segment_type_center   (REAL)
+#define z_2d_line_segment_lerp	    z_2d_line_segment_type_lerp	    (REAL)
 
 
 #endif /* __Z_functions_geometry_Z2DLine_H__ */

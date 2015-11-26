@@ -15,11 +15,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_IS_AVAILABLE(FLOAT16)
 
-#		define z_2d_vector_float16(a_x, a_y, b_x, b_y) \
-			((Z2DVectorFloat16){{a_x, a_y}, {b_x, b_y}})
+#		define z_2d_line_float16(a_x, a_y, b_x, b_y) \
+			((Z2DLineFloat16){{a_x, a_y}, {b_x, b_y}})
 
-#		define z_3d_vector_float16(a_x, a_y, a_z, b_x, b_y, b_z) \
-			((Z3DVectorFloat16){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#		define z_3d_line_float16(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DLineFloat16){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
 #		define z_rectangle_float16(x, y, size_x, size_y) \
 			((ZRectangleFloat16){{x, y}, {size_x, size_y}})
@@ -37,11 +37,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_IS_AVAILABLE(FLOAT24)
 
-#		define z_2d_vector_float24(a_x, a_y, b_x, b_y) \
-			((Z2DVectorFloat24){{a_x, a_y}, {b_x, b_y}})
+#		define z_2d_line_float24(a_x, a_y, b_x, b_y) \
+			((Z2DLineFloat24){{a_x, a_y}, {b_x, b_y}})
 
-#		define z_3d_vector_float24(a_x, a_y, a_z, b_x, b_y, b_z) \
-			((Z3DVectorFloat24){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#		define z_3d_line_float24(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DLineFloat24){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
 #		define z_rectangle_float24(x, y, size_x, size_y) \
 			((ZRectangleFloat24){{x, y}, {size_x, size_y}})
@@ -59,11 +59,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_IS_AVAILABLE(FLOAT32)
 
-#		define z_2d_vector_float32(a_x, a_y, b_x, b_y) \
-			((Z2DVectorFloat32){{a_x, a_y}, {b_x, b_y}})
+#		define z_2d_line_float32(a_x, a_y, b_x, b_y) \
+			((Z2DLineFloat32){{a_x, a_y}, {b_x, b_y}})
 
-#		define z_3d_vector_float32(a_x, a_y, a_z, b_x, b_y, b_z) \
-			((Z3DVectorFloat32){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#		define z_3d_line_float32(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DLineFloat32){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
 #		define z_rectangle_float32(x, y, size_x, size_y) \
 			((ZRectangleFloat32){{x, y}, {size_x, size_y}})
@@ -81,11 +81,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_IS_AVAILABLE(FLOAT48)
 
-#		define z_2d_vector_float48(a_x, a_y, b_x, b_y) \
-			((Z2DVectorFloat48){{a_x, a_y}, {b_x, b_y}})
+#		define z_2d_line_float48(a_x, a_y, b_x, b_y) \
+			((Z2DLineFloat48){{a_x, a_y}, {b_x, b_y}})
 
-#		define z_3d_vector_float48(a_x, a_y, a_z, b_x, b_y, b_z) \
-			((Z3DVectorFloat48){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#		define z_3d_line_float48(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DLineFloat48){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
 #		define z_rectangle_float48(x, y, size_x, size_y) \
 			((ZRectangleFloat48){{x, y}, {size_x, size_y}})
@@ -103,11 +103,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_IS_AVAILABLE(FLOAT64)
 
-#		define z_2d_vector_float64(a_x, a_y, b_x, b_y) \
-			((Z2DVectorFloat64){{a_x, a_y}, {b_x, b_y}})
+#		define z_2d_line_float64(a_x, a_y, b_x, b_y) \
+			((Z2DLineFloat64){{a_x, a_y}, {b_x, b_y}})
 
-#		define z_3d_vector_float64(a_x, a_y, a_z, b_x, b_y, b_z) \
-			((Z3DVectorFloat64){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#		define z_3d_line_float64(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DLineFloat64){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
 #		define z_rectangle_float64(x, y, size_x, size_y) \
 			((ZRectangleFloat64){{x, y}, {size_x, size_y}})
@@ -125,11 +125,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_IS_AVAILABLE(FLOAT72)
 
-#		define z_2d_vector_float72(a_x, a_y, b_x, b_y) \
-			((Z2DVectorFloat72){{a_x, a_y}, {b_x, b_y}})
+#		define z_2d_line_float72(a_x, a_y, b_x, b_y) \
+			((Z2DLineFloat72){{a_x, a_y}, {b_x, b_y}})
 
-#		define z_3d_vector_float72(a_x, a_y, a_z, b_x, b_y, b_z) \
-			((Z3DVectorFloat72){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#		define z_3d_line_float72(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DLineFloat72){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
 #		define z_rectangle_float72(x, y, size_x, size_y) \
 			((ZRectangleFloat72){{x, y}, {size_x, size_y}})
@@ -147,11 +147,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_IS_AVAILABLE(FLOAT80)
 
-#		define z_2d_vector_float80(a_x, a_y, b_x, b_y) \
-			((Z2DVectorFloat80){{a_x, a_y}, {b_x, b_y}})
+#		define z_2d_line_float80(a_x, a_y, b_x, b_y) \
+			((Z2DLineFloat80){{a_x, a_y}, {b_x, b_y}})
 
-#		define z_3d_vector_float80(a_x, a_y, a_z, b_x, b_y, b_z) \
-			((Z3DVectorFloat80){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#		define z_3d_line_float80(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DLineFloat80){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
 #		define z_rectangle_float80(x, y, size_x, size_y) \
 			((ZRectangleFloat80){{x, y}, {size_x, size_y}})
@@ -169,11 +169,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_IS_AVAILABLE(FLOAT96)
 
-#		define z_2d_vector_float96(a_x, a_y, b_x, b_y) \
-			((Z2DVectorFloat96){{a_x, a_y}, {b_x, b_y}})
+#		define z_2d_line_float96(a_x, a_y, b_x, b_y) \
+			((Z2DLineFloat96){{a_x, a_y}, {b_x, b_y}})
 
-#		define z_3d_vector_float96(a_x, a_y, a_z, b_x, b_y, b_z) \
-			((Z3DVectorFloat96){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#		define z_3d_line_float96(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DLineFloat96){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
 #		define z_rectangle_float96(x, y, size_x, size_y) \
 			((ZRectangleFloat96){{x, y}, {size_x, size_y}})
@@ -191,11 +191,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_IS_AVAILABLE(FLOAT128)
 
-#		define z_2d_vector_float128(a_x, a_y, b_x, b_y) \
-			((Z2DVectorFloat128){{a_x, a_y}, {b_x, b_y}})
+#		define z_2d_line_float128(a_x, a_y, b_x, b_y) \
+			((Z2DLineFloat128){{a_x, a_y}, {b_x, b_y}})
 
-#		define z_3d_vector_float128(a_x, a_y, a_z, b_x, b_y, b_z) \
-			((Z3DVectorFloat128){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
+#		define z_3d_line_float128(a_x, a_y, a_z, b_x, b_y, b_z) \
+			((Z3DLineFloat128){{a_x, a_y, a_z}, {b_x, b_y, b_z}})
 
 #		define z_rectangle_float128(x, y, size_x, size_y) \
 			((ZRectangleFloat128){{x, y}, {size_x, size_y}})
@@ -216,19 +216,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TEMPLATE_GEOMETRY_CONSTRUCTORS(Type, type)			\
 										\
 										\
-	Z_INLINE Z2DVector##Type z_2d_vector_##type(				\
+	Z_INLINE Z2DLine##Type z_2d_line_##type(				\
 		z##type a_x,							\
 		z##type a_y,							\
 		z##type b_x,							\
 		z##type b_y							\
 	)									\
 		{								\
-		Z2DVector##Type vector = {{a_x, a_y}, {b_x, b_y}};		\
-		return vector;							\
+		Z2DLine##Type line = {{a_x, a_y}, {b_x, b_y}};			\
+		return line;							\
 		}								\
 										\
 										\
-	Z_INLINE Z3DVector##Type z_3d_vector_##type(				\
+	Z_INLINE Z3DLine##Type z_3d_line_##type(				\
 		z##type a_x,							\
 		z##type a_y,							\
 		z##type a_z,							\
@@ -237,8 +237,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		z##type b_z							\
 	)									\
 		{								\
-		Z3DVector##Type vector = {{a_x, a_y, a_z}, {b_x, b_y, b_z}};	\
-		return vector;							\
+		Z3DLine##Type line = {{a_x, a_y, a_z}, {b_x, b_y, b_z}};	\
+		return line;							\
 		}								\
 										\
 										\
@@ -327,16 +327,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_IS_AVAILABLE(FLOAT16)
 
-#	define z_2d_line_float16 z_2d_vector_float16
-#	define z_3d_line_float16 z_3d_vector_float16
-#	define z_aabr_float16	 z_2d_line_float16
-#	define z_aabb_float16	 z_3d_line_float16
+#	define z_aabr_float16 z_2d_line_float16
+#	define z_aabb_float16 z_3d_line_float16
 
-#	define z_2d_vector_float16_zero z_2d_vector_float16(0.0, 0.0, 0.0, 0.0)
-#	define z_3d_vector_float16_zero z_3d_vector_float16(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-#	define z_2d_line_float16_zero	z_2d_vector_float16_zero
-#	define z_3d_line_float16_zero	z_3d_vector_float16_zero
-#	define z_rectangle_float16_zero z_rectangle_float16(0.0, 0.0, 0.0, 0.0)
+#	define z_2d_line_float16_zero	z_2d_line_float16  (0.0, 0.0, 0.0, 0.0)
+#	define z_3d_line_float16_zero	z_3d_line_float16  (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+#	define z_rectangle_float16_zero	z_rectangle_float16(0.0, 0.0, 0.0, 0.0)
 #	define z_box_float16_zero	z_box_float16	   (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_aabr_float16_zero	z_2d_line_float16_zero
 #	define z_aabb_float16_zero	z_3d_line_float16_zero
@@ -347,16 +343,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_IS_AVAILABLE(FLOAT24)
 
-#	define z_2d_line_float24 z_2d_vector_float24
-#	define z_3d_line_float24 z_3d_vector_float24
-#	define z_aabr_float24	 z_2d_line_float24
-#	define z_aabb_float24	 z_3d_line_float24
+#	define z_aabr_float24 z_2d_line_float24
+#	define z_aabb_float24 z_3d_line_float24
 
-#	define z_2d_vector_float24_zero z_2d_vector_float24(0.0, 0.0, 0.0, 0.0)
-#	define z_3d_vector_float24_zero z_3d_vector_float24(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-#	define z_2d_line_float24_zero	z_2d_vector_float24_zero
-#	define z_3d_line_float24_zero	z_3d_vector_float24_zero
-#	define z_rectangle_float24_zero z_rectangle_float24(0.0, 0.0, 0.0, 0.0)
+#	define z_2d_line_float24_zero	z_2d_line_float24  (0.0, 0.0, 0.0, 0.0)
+#	define z_3d_line_float24_zero	z_3d_line_float24  (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+#	define z_rectangle_float24_zero	z_rectangle_float24(0.0, 0.0, 0.0, 0.0)
 #	define z_box_float24_zero	z_box_float24	   (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_aabr_float24_zero	z_2d_line_float24_zero
 #	define z_aabb_float24_zero	z_3d_line_float24_zero
@@ -367,16 +359,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_IS_AVAILABLE(FLOAT32)
 
-#	define z_2d_line_float32 z_2d_vector_float32
-#	define z_3d_line_float32 z_3d_vector_float32
-#	define z_aabr_float32	 z_2d_line_float32
-#	define z_aabb_float32	 z_3d_line_float32
+#	define z_aabr_float32 z_2d_line_float32
+#	define z_aabb_float32 z_3d_line_float32
 
-#	define z_2d_vector_float32_zero z_2d_vector_float32(0.0, 0.0, 0.0, 0.0)
-#	define z_3d_vector_float32_zero z_3d_vector_float32(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-#	define z_2d_line_float32_zero	z_2d_vector_float32_zero
-#	define z_3d_line_float32_zero	z_3d_vector_float32_zero
-#	define z_rectangle_float32_zero z_rectangle_float32(0.0, 0.0, 0.0, 0.0)
+#	define z_2d_line_float32_zero	z_2d_line_float32  (0.0, 0.0, 0.0, 0.0)
+#	define z_3d_line_float32_zero	z_3d_line_float32  (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+#	define z_rectangle_float32_zero	z_rectangle_float32(0.0, 0.0, 0.0, 0.0)
 #	define z_box_float32_zero	z_box_float32	   (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_aabr_float32_zero	z_2d_line_float32_zero
 #	define z_aabb_float32_zero	z_3d_line_float32_zero
@@ -387,16 +375,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_IS_AVAILABLE(FLOAT48)
 
-#	define z_2d_line_float48 z_2d_vector_float48
-#	define z_3d_line_float48 z_3d_vector_float48
-#	define z_aabr_float48	 z_2d_line_float48
-#	define z_aabb_float48	 z_3d_line_float48
+#	define z_aabr_float48 z_2d_line_float48
+#	define z_aabb_float48 z_3d_line_float48
 
-#	define z_2d_vector_float48_zero z_2d_vector_float48(0.0, 0.0, 0.0, 0.0)
-#	define z_3d_vector_float48_zero z_3d_vector_float48(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-#	define z_2d_line_float48_zero	z_2d_vector_float48_zero
-#	define z_3d_line_float48_zero	z_3d_vector_float48_zero
-#	define z_rectangle_float48_zero z_rectangle_float48(0.0, 0.0, 0.0, 0.0)
+#	define z_2d_line_float48_zero	z_2d_line_float48  (0.0, 0.0, 0.0, 0.0)
+#	define z_3d_line_float48_zero	z_3d_line_float48  (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+#	define z_rectangle_float48_zero	z_rectangle_float48(0.0, 0.0, 0.0, 0.0)
 #	define z_box_float48_zero	z_box_float48	   (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_aabr_float48_zero	z_2d_line_float48_zero
 #	define z_aabb_float48_zero	z_3d_line_float48_zero
@@ -407,16 +391,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_IS_AVAILABLE(FLOAT64)
 
-#	define z_2d_line_float64 z_2d_vector_float64
-#	define z_3d_line_float64 z_3d_vector_float64
-#	define z_aabr_float64	 z_2d_line_float64
-#	define z_aabb_float64	 z_3d_line_float64
+#	define z_aabr_float64 z_2d_line_float64
+#	define z_aabb_float64 z_3d_line_float64
 
-#	define z_2d_vector_float64_zero z_2d_vector_float64(0.0, 0.0, 0.0, 0.0)
-#	define z_3d_vector_float64_zero z_3d_vector_float64(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-#	define z_2d_line_float64_zero	z_2d_vector_float64_zero
-#	define z_3d_line_float64_zero	z_3d_vector_float64_zero
-#	define z_rectangle_float64_zero z_rectangle_float64(0.0, 0.0, 0.0, 0.0)
+#	define z_2d_line_float64_zero	z_2d_line_float64  (0.0, 0.0, 0.0, 0.0)
+#	define z_3d_line_float64_zero	z_3d_line_float64  (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+#	define z_rectangle_float64_zero	z_rectangle_float64(0.0, 0.0, 0.0, 0.0)
 #	define z_box_float64_zero	z_box_float64	   (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_aabr_float64_zero	z_2d_line_float64_zero
 #	define z_aabb_float64_zero	z_3d_line_float64_zero
@@ -427,16 +407,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_IS_AVAILABLE(FLOAT72)
 
-#	define z_2d_line_float72 z_2d_vector_float72
-#	define z_3d_line_float72 z_3d_vector_float72
-#	define z_aabr_float72	 z_2d_line_float72
-#	define z_aabb_float72	 z_3d_line_float72
+#	define z_aabr_float72 z_2d_line_float72
+#	define z_aabb_float72 z_3d_line_float72
 
-#	define z_2d_vector_float72_zero z_2d_vector_float72(0.0, 0.0, 0.0, 0.0)
-#	define z_3d_vector_float72_zero z_3d_vector_float72(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-#	define z_2d_line_float72_zero	z_2d_vector_float72_zero
-#	define z_3d_line_float72_zero	z_3d_vector_float72_zero
-#	define z_rectangle_float72_zero z_rectangle_float72(0.0, 0.0, 0.0, 0.0)
+#	define z_2d_line_float72_zero	z_2d_line_float72  (0.0, 0.0, 0.0, 0.0)
+#	define z_3d_line_float72_zero	z_3d_line_float72  (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+#	define z_rectangle_float72_zero	z_rectangle_float72(0.0, 0.0, 0.0, 0.0)
 #	define z_box_float72_zero	z_box_float72	   (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_aabr_float72_zero	z_2d_line_float72_zero
 #	define z_aabb_float72_zero	z_3d_line_float72_zero
@@ -447,15 +423,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_IS_AVAILABLE(FLOAT80)
 
-#	define z_2d_line_float80 z_2d_vector_float80
-#	define z_3d_line_float80 z_3d_vector_float80
-#	define z_aabr_float80	 z_2d_line_float80
-#	define z_aabb_float80	 z_3d_line_float80
+#	define z_aabr_float80 z_2d_line_float80
+#	define z_aabb_float80 z_3d_line_float80
 
-#	define z_2d_vector_float80_zero z_2d_vector_float80(0.0, 0.0, 0.0, 0.0)
-#	define z_3d_vector_float80_zero z_3d_vector_float80(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-#	define z_2d_line_float80_zero	z_2d_vector_float80_zero
-#	define z_3d_line_float80_zero	z_3d_vector_float80_zero
+#	define z_2d_line_float80_zero z_2d_line_float80(0.0, 0.0, 0.0, 0.0)
+#	define z_3d_line_float80_zero z_3d_line_float80(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_rectangle_float80_zero z_rectangle_float80(0.0, 0.0, 0.0, 0.0)
 #	define z_box_float80_zero	z_box_float80	   (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_aabr_float80_zero	z_2d_line_float80_zero
@@ -467,15 +439,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_IS_AVAILABLE(FLOAT96)
 
-#	define z_2d_line_float96 z_2d_vector_float96
-#	define z_3d_line_float96 z_3d_vector_float96
-#	define z_aabr_float96	 z_2d_line_float96
-#	define z_aabb_float96	 z_3d_line_float96
+#	define z_aabr_float96 z_2d_line_float96
+#	define z_aabb_float96 z_3d_line_float96
 
-#	define z_2d_vector_float96_zero z_2d_vector_float96(0.0, 0.0, 0.0, 0.0)
-#	define z_3d_vector_float96_zero z_3d_vector_float96(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-#	define z_2d_line_float96_zero	z_2d_vector_float96_zero
-#	define z_3d_line_float96_zero	z_3d_vector_float96_zero
+#	define z_2d_line_float96_zero	z_2d_line_float96  (0.0, 0.0, 0.0, 0.0)
+#	define z_3d_line_float96_zero	z_3d_line_float96  (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_rectangle_float96_zero z_rectangle_float96(0.0, 0.0, 0.0, 0.0)
 #	define z_box_float96_zero	z_box_float96	   (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_aabr_float96_zero	z_2d_line_float96_zero
@@ -487,15 +455,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_IS_AVAILABLE(FLOAT128)
 
-#	define z_2d_line_float128 z_2d_vector_float128
-#	define z_3d_line_float128 z_3d_vector_float128
-#	define z_aabr_float128	  z_2d_line_float128
-#	define z_aabb_float128	  z_3d_line_float128
+#	define z_aabr_float128 z_2d_line_float128
+#	define z_aabb_float128 z_3d_line_float128
 
-#	define z_2d_vector_float128_zero z_2d_vector_float128(0.0, 0.0, 0.0, 0.0)
-#	define z_3d_vector_float128_zero z_3d_vector_float128(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-#	define z_2d_line_float128_zero	 z_2d_vector_float128_zero
-#	define z_3d_line_float128_zero	 z_3d_vector_float128_zero
+#	define z_2d_line_float128_zero	 z_2d_line_float128  (0.0, 0.0, 0.0, 0.0)
+#	define z_3d_line_float128_zero	 z_3d_line_float128  (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_rectangle_float128_zero z_rectangle_float128(0.0, 0.0, 0.0, 0.0)
 #	define z_box_float128_zero	 z_box_float128	     (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_aabr_float128_zero	 z_2d_line_float128_zero
@@ -505,8 +469,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#define z_2d_vector_type(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_vector_,)
-#define z_3d_vector_type(TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_vector_,)
 #define z_2d_line_type(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_,	 )
 #define z_3d_line_type(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_,	 )
 #define z_rectangle_type(TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_,)
@@ -516,8 +478,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define z_circle_type(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_,	 )
 #define z_sphere_type(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_,	 )
 
-#define z_2d_vector_type_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_vector_, _zero)
-#define z_3d_vector_type_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_vector_, _zero)
 #define z_2d_line_type_zero(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_,   _zero)
 #define z_3d_line_type_zero(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_,   _zero)
 #define z_rectangle_type_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _zero)
@@ -529,26 +489,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Default real type definitions */
 
-#define z_2d_vector	 z_2d_vector_type(REAL)
-#define z_3d_vector	 z_3d_vector_type(REAL)
-#define z_2d_line	 z_2d_vector
-#define z_3d_line	 z_3d_vector
-#define z_rectangle	 z_rectangle_type(REAL)
-#define z_box		 z_box_type	 (REAL)
-#define z_aabr		 z_2d_line
-#define z_aabb		 z_3d_line
-#define z_circle	 z_circle_type	 (REAL)
-#define z_sphere	 z_sphere_type	 (REAL)
-
-#define z_2d_vector_zero z_2d_vector_type_zero(REAL)
-#define z_3d_vector_zero z_3d_vector_type_zero(REAL)
-#define z_2d_line_zero	 z_2d_vector_zero
-#define z_3d_line_zero	 z_3d_vector_zero
+#define z_2d_line	 z_2d_line_type	      (REAL)
+#define z_2d_line_zero	 z_2d_line_type_zero  (REAL)
+#define z_3d_line	 z_3d_line_type	      (REAL)
+#define z_3d_line_zero	 z_3d_line_type_zero  (REAL)
+#define z_rectangle	 z_rectangle_type     (REAL)
 #define z_rectangle_zero z_rectangle_type_zero(REAL)
+#define z_box		 z_box_type	      (REAL)
 #define z_box_zero	 z_box_type_zero      (REAL)
+#define z_aabr		 z_2d_line
 #define z_aabr_zero	 z_2d_line_zero
+#define z_aabb		 z_3d_line
 #define z_aabb_zero	 z_3d_line_zero
+#define z_circle	 z_circle_type	      (REAL)
 #define z_circle_zero	 z_circle_type_zero   (REAL)
+#define z_sphere	 z_sphere_type	      (REAL)
 #define z_sphere_zero	 z_sphere_type_zero   (REAL)
 
 #endif /* __Z_functions_geometry_constructors_H__ */

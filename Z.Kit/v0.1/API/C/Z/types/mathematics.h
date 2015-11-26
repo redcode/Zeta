@@ -12,10 +12,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/templating.h>
 
 #if Z_IS_AVAILABLE(FLOAT16)
-	typedef struct {Z2DFloat16 a, b;}			Z2DVectorFloat16;
-	typedef struct {Z3DFloat16 a, b;}			Z3DVectorFloat16;
-	typedef Z2DVectorFloat16				Z2DLineFloat16;
-	typedef Z3DVectorFloat16				Z3DLineFloat16;
+	typedef struct {Z2DFloat16 a, b;}			Z2DLineFloat16;
+	typedef struct {Z3DFloat16 a, b;}			Z3DLineFloat16;
 	typedef struct {Z2DFloat16 point; zfloat16 angle;}	Z2DRayFloat16;
 	typedef struct {Z3DFloat16 point; zfloat16 angle;}	Z3DRayFloat16;
 	typedef struct {Z2DFloat16 point, size;}		ZRectangleFloat16;
@@ -28,10 +26,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-	typedef struct {Z2DFloat24 a, b;}			Z2DVectorFloat24;
-	typedef struct {Z3DFloat24 a, b;}			Z3DVectorFloat24;
-	typedef Z2DVectorFloat24				Z2DLineFloat24;
-	typedef Z3DVectorFloat24				Z3DLineFloat24;
+	typedef struct {Z2DFloat24 a, b;}			Z2DLineFloat24;
+	typedef struct {Z3DFloat24 a, b;}			Z3DLineFloat24;
 	typedef struct {Z2DFloat24 point; zfloat24 angle;}	Z2DRayFloat24;
 	typedef struct {Z3DFloat24 point; zfloat24 angle;}	Z3DRayFloat24;
 	typedef struct {Z2DFloat24 point, size;}		ZRectangleFloat24;
@@ -44,10 +40,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-	typedef struct {Z2DFloat32 a, b;}			Z2DVectorFloat32;
-	typedef struct {Z3DFloat32 a, b;}			Z3DVectorFloat32;
-	typedef Z2DVectorFloat32				Z2DLineFloat32;
-	typedef Z3DVectorFloat32				Z3DLineFloat32;
+	typedef struct {Z2DFloat32 a, b;}			Z2DLineFloat32;
+	typedef struct {Z3DFloat32 a, b;}			Z3DLineFloat32;
 	typedef struct {Z2DFloat32 point; zfloat32 angle;}	Z2DRayFloat32;
 	typedef struct {Z3DFloat32 point; zfloat32 angle;}	Z3DRayFloat32;
 	typedef struct {Z2DFloat32 point, size;}		ZRectangleFloat32;
@@ -60,10 +54,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-	typedef struct {Z2DFloat48 a, b;}			Z2DVectorFloat48;
-	typedef struct {Z3DFloat48 a, b;}			Z3DVectorFloat48;
-	typedef Z2DVectorFloat48				Z2DLineFloat48;
-	typedef Z3DVectorFloat48				Z3DLineFloat48;
+	typedef struct {Z2DFloat48 a, b;}			Z2DLineFloat48;
+	typedef struct {Z3DFloat48 a, b;}			Z3DLineFloat48;
 	typedef struct {Z2DFloat48 point; zfloat48 angle;}	Z2DRayFloat48;
 	typedef struct {Z3DFloat48 point; zfloat48 angle;}	Z3DRayFloat48;
 	typedef struct {Z2DFloat48 point, size;}		ZRectangleFloat48;
@@ -76,10 +68,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-	typedef struct {Z2DFloat64 a, b;}			Z2DVectorFloat64;
-	typedef struct {Z3DFloat64 a, b;}			Z3DVectorFloat64;
-	typedef Z2DVectorFloat64				Z2DLineFloat64;
-	typedef Z3DVectorFloat64				Z3DLineFloat64;
+	typedef struct {Z2DFloat64 a, b;}			Z2DLineFloat64;
+	typedef struct {Z3DFloat64 a, b;}			Z3DLineFloat64;
 	typedef struct {Z2DFloat64 point; zfloat64 angle;}	Z2DRayFloat64;
 	typedef struct {Z3DFloat64 point; zfloat64 angle;}	Z3DRayFloat64;
 	typedef struct {Z2DFloat64 point, size;}		ZRectangleFloat64;
@@ -92,10 +82,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-	typedef struct {Z2DFloat72 a, b;}			Z2DVectorFloat72;
-	typedef struct {Z3DFloat72 a, b;}			Z3DVectorFloat72;
-	typedef Z2DVectorFloat72				Z2DLineFloat72;
-	typedef Z3DVectorFloat72				Z3DLineFloat72;
+	typedef struct {Z2DFloat72 a, b;}			Z2DLineFloat72;
+	typedef struct {Z3DFloat72 a, b;}			Z3DLineFloat72;
 	typedef struct {Z2DFloat72 point; zfloat72 angle;}	Z2DRayFloat72;
 	typedef struct {Z3DFloat72 point; zfloat72 angle;}	Z3DRayFloat72;
 	typedef struct {Z2DFloat72 point, size;}		ZRectangleFloat72;
@@ -108,10 +96,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-	typedef struct {Z2DFloat80 a, b;}			Z2DVectorFloat80;
-	typedef struct {Z3DFloat80 a, b;}			Z3DVectorFloat80;
-	typedef Z2DVectorFloat80				Z2DLineFloat80;
-	typedef Z3DVectorFloat80				Z3DLineFloat80;
+	typedef struct {Z2DFloat80 a, b;}			Z2DLineFloat80;
+	typedef struct {Z3DFloat80 a, b;}			Z3DLineFloat80;
 	typedef struct {Z2DFloat80 point; zfloat80 angle;}	Z2DRayFloat80;
 	typedef struct {Z3DFloat80 point; zfloat80 angle;}	Z3DRayFloat80;
 	typedef struct {Z2DFloat80 point, size;}		ZRectangleFloat80;
@@ -124,10 +110,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-	typedef struct {Z2DFloat96 a, b;}			Z2DVectorFloat96;
-	typedef struct {Z3DFloat96 a, b;}			Z3DVectorFloat96;
-	typedef Z2DVectorFloat96				Z2DLineFloat96;
-	typedef Z3DVectorFloat96				Z3DLineFloat96;
+	typedef struct {Z2DFloat96 a, b;}			Z2DLineFloat96;
+	typedef struct {Z3DFloat96 a, b;}			Z3DLineFloat96;
 	typedef struct {Z2DFloat96 point; zfloat96 angle;}	Z2DRayFloat96;
 	typedef struct {Z3DFloat96 point; zfloat96 angle;}	Z3DRayFloat96;
 	typedef struct {Z2DFloat96 point, size;}		ZRectangleFloat96;
@@ -140,10 +124,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-	typedef struct {Z2DFloat128 a, b;}			Z2DVectorFloat128;
-	typedef struct {Z3DFloat128 a, b;}			Z3DVectorFloat128;
-	typedef Z2DVectorFloat128				Z2DLineFloat128;
-	typedef Z3DVectorFloat128				Z3DLineFloat128;
+	typedef struct {Z2DFloat128 a, b;}			Z2DLineFloat128;
+	typedef struct {Z3DFloat128 a, b;}			Z3DLineFloat128;
 	typedef struct {Z2DFloat128 point; zfloat128 angle;}	Z2DRayFloat128;
 	typedef struct {Z3DFloat128 point; zfloat128 angle;}	Z3DRayFloat128;
 	typedef struct {Z2DFloat128 point, size;}		ZRectangleFloat128;
@@ -155,8 +137,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	typedef struct {Z3DFloat128 normal; zfloat128 offset;}	ZPlaneFloat128;
 #endif
 
-#define Z2DVectorType( TYPE) Z_INSERT_##TYPE##_FixedType(Z2DVector, )
-#define Z3DVectorType( TYPE) Z_INSERT_##TYPE##_FixedType(Z3DVector, )
 #define Z2DLineType(   TYPE) Z_INSERT_##TYPE##_FixedType(Z2DLine,   )
 #define Z3DLineType(   TYPE) Z_INSERT_##TYPE##_FixedType(Z3DLine,   )
 #define Z2DRayType(    TYPE) Z_INSERT_##TYPE##_FixedType(Z2DRay,    )
@@ -171,8 +151,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Default real type definitions */
 
-typedef Z2DVectorType (REAL) Z2DVector;
-typedef Z3DVectorType (REAL) Z3DVector;
 typedef Z2DLineType   (REAL) Z2DLine;
 typedef Z3DLineType   (REAL) Z3DLine;
 typedef Z2DRayType    (REAL) Z2DRay;

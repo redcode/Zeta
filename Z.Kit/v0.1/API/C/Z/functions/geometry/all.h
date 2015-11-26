@@ -9,11 +9,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_functions_geometry_all_H__
 #define __Z_functions_geometry_all_H__
 
-#include <Z/functions/geometry/Z2DVector.h>
 #include <Z/functions/geometry/ZAABR.h>
 #include <Z/functions/geometry/ZRectangle.h>
 #include <Z/functions/geometry/ZCircle.h>
-#include <Z/functions/geometry/Z3DVector.h>
 #include <Z/functions/geometry/ZAABB.h>
 #include <Z/functions/geometry/ZBox.h>
 #include <Z/functions/geometry/ZSphere.h>
