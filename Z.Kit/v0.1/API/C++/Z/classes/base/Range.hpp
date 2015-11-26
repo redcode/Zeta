@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/super.hpp>
 #include <Z/functions/base/value.hpp>
 
-#if defined(Z_USE_NS_GEOMETRY_TYPES) && defined(Z_OBJECTIVE_C)
+#if defined(Z_USE_NS_RANGE_TYPE) && defined(Z_OBJECTIVE_C)
 #	import <Foundation/NSRange.h>
 #endif
 
@@ -30,7 +30,7 @@ struct ZKit::Range : public ZRange {
 	inline Range(Size index, Size size) {this->index = index; this->size = size;}
 	inline Range(const Base &range) {*z_base = range;}
 
-#	ifdef Z_USE_NS_GEOMETRY_TYPES
+#	ifdef Z_USE_NS_RANGE_TYPE
 		inline Range(const NSRange &range) {index = range.location; size = range.length;}
 #	endif
 
