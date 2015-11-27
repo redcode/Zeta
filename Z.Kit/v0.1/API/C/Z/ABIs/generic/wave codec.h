@@ -1,4 +1,4 @@
-/* Z Kit C API - ABIs/ZWaveCodecABI.h
+/* Z Kit C API - ABIs/generic/wave codec.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_ABIs_ZWaveCodecABI_H__
-#define __Z_ABIs_ZWaveCodecABI_H__
+#ifndef __Z_ABIs_generic_wave_codec_H__
+#define __Z_ABIs_generic_wave_codec_H__
 
 #include <Z/types/base.h>
 #include <Z/macros/key.h>
@@ -39,4 +39,4 @@ typedef struct {
 	zsize		 decoding_context_size;
 } ZWaveCodecABI;
 
-#endif /* __Z_ABIs_ZWaveCodecABI_H__ */
+#endif /* __Z_ABIs_generic_wave_codec_H__ */

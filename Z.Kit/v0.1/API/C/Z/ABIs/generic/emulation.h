@@ -1,4 +1,4 @@
-/* Z Kit C API - ABIs/emulation.h
+/* Z Kit C API - ABIs/generic/emulation.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_ABIs_emulation_H__
-#define __Z_ABIs_emulation_H__
+#ifndef __Z_ABIs_generic_emulation_H__
+#define __Z_ABIs_generic_emulation_H__
 
 #include <Z/types/generic functions.h>
 #include <Z/macros/key.h>
@@ -112,4 +112,4 @@ typedef void  (* ZEmulatorPower		    ) (void* object, zboolean power_state);
 typedef ZDo ZEmulatorWillReadState;
 typedef ZDo ZEmulatorDidWriteState;
 
-#endif /* __Z_ABIs_emulation_H__ */
+#endif /* __Z_ABIs_generic_emulation_H__ */
