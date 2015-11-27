@@ -77,7 +77,7 @@ typedef struct {
 Z_DEFINE_STRICT_STRUCTURE (
 ) ZEmulatorDependency;
 
-typedef ZDo ZEmulatorFunction;
+typedef ZContextDo ZEmulatorFunction;
 
 Z_DEFINE_STRICT_STRUCTURE (
 	ZKey(EMULATOR_ACTION) key;
@@ -109,7 +109,7 @@ typedef zsize (* ZMachineEmulatorRunOneFrame) (void* object);
 typedef zsize (* ZEmulatorRun		    ) (void* object, zsize    cycles	 );
 typedef void  (* ZEmulatorPower		    ) (void* object, zboolean power_state);
 
-typedef ZDo ZEmulatorWillReadState;
-typedef ZDo ZEmulatorDidWriteState;
+typedef ZContextDo ZEmulatorWillReadState;
+typedef ZContextDo ZEmulatorDidWriteState;
 
 #endif /* __Z_ABIs_generic_emulation_H__ */
