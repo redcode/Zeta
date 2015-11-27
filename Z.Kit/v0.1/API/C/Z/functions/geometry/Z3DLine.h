@@ -35,7 +35,7 @@ Z_INLINE zboolean z_3d_line_##type##_is_zero(Z3DLine##Type object)			  \
 	{return z_3d_##type##_is_zero(object.a) && z_3d_##type##_is_zero(object.b);}	  \
 											  \
 											  \
-Z_INLINE Z3DVector##Type z_3d_line_##type##_reversed(Z3DLine##Type object)		  \
+Z_INLINE Z3DLine##Type z_3d_line_##type##_reversed(Z3DLine##Type object)		  \
 	{										  \
 	return z_3d_line_##type								  \
 		(object.b.x, object.b.y, object.b.z, object.a.x, object.a.y, object.a.z); \
@@ -67,47 +67,47 @@ Z_INLINE Z3D##Type z_3d_line_segment_##type##_lerp(Z3DLine##Type object, z##type
 
 
 #if Z_IS_AVAILABLE(FLOAT16)
-	Z_TEMPLATE_3D_VECTOR	  (Float16, float16)
+	Z_TEMPLATE_3D_LINE	  (Float16, float16)
 	Z_TEMPLATE_3D_LINE_SEGMENT(Float16, float16)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-	Z_TEMPLATE_3D_VECTOR	  (Float24, float24)
+	Z_TEMPLATE_3D_LINE	  (Float24, float24)
 	Z_TEMPLATE_3D_LINE_SEGMENT(Float24, float24)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-	Z_TEMPLATE_3D_VECTOR	  (Float32, float32)
+	Z_TEMPLATE_3D_LINE	  (Float32, float32)
 	Z_TEMPLATE_3D_LINE_SEGMENT(Float32, float32)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-	Z_TEMPLATE_3D_VECTOR	  (Float48, float48)
+	Z_TEMPLATE_3D_LINE	  (Float48, float48)
 	Z_TEMPLATE_3D_LINE_SEGMENT(Float48, float48)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-	Z_TEMPLATE_3D_VECTOR	  (Float64, float64)
+	Z_TEMPLATE_3D_LINE	  (Float64, float64)
 	Z_TEMPLATE_3D_LINE_SEGMENT(Float64, float64)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-	Z_TEMPLATE_3D_VECTOR	  (Float72, float72)
+	Z_TEMPLATE_3D_LINE	  (Float72, float72)
 	Z_TEMPLATE_3D_LINE_SEGMENT(Float72, float72)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-	Z_TEMPLATE_3D_VECTOR	  (Float80, float80)
+	Z_TEMPLATE_3D_LINE	  (Float80, float80)
 	Z_TEMPLATE_3D_LINE_SEGMENT(Float80, float80)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-	Z_TEMPLATE_3D_VECTOR	  (Float96, float96)
+	Z_TEMPLATE_3D_LINE	  (Float96, float96)
 	Z_TEMPLATE_3D_LINE_SEGMENT(Float96, float96)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-	Z_TEMPLATE_3D_VECTOR	  (Float128, float128)
+	Z_TEMPLATE_3D_LINE	  (Float128, float128)
 	Z_TEMPLATE_3D_LINE_SEGMENT(Float128, float128)
 #endif
 

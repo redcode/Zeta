@@ -34,7 +34,7 @@ Z_INLINE zboolean z_2d_line_##type##_is_zero(Z2DLine##Type object)			 \
 	{return z_2d_##type##_is_zero(object.a) && z_2d_##type##_is_zero(object.b);}	 \
 											 \
 											 \
-Z_INLINE Z2DVector##Type z_2d_vector_##type##_reversed(Z2DLine##Type object)		 \
+Z_INLINE Z2DLine##Type z_2d_line_##type##_reversed(Z2DLine##Type object)		 \
 	{return z_2d_line_##type(object.b.x, object.b.y, object.a.x, object.a.y);}
 
 
