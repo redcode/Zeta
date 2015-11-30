@@ -46,6 +46,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__CC65__)
 #	include <Z/inspection/private/compiler/CC65.h>
 
+#elif defined(__MWERKS__) || defined(__CWCC__)
+#	include <Z/inspection/private/compiler/CodeWarrior.h>
+
 #elif defined(__COMO__)
 #	include <Z/inspection/private/compiler/Comeau C++.h>
 
@@ -136,9 +139,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif defined(__HIGHC__)
 #	include <Z/inspection/private/compiler/MetaWare High C - C++.h>
-
-#elif defined(__MWERKS__) || defined(__CWCC__)
-#	include <Z/inspection/private/compiler/Metrowerks CodeWarrior.h>
 
 #elif defined(_MRI)
 #	include <Z/inspection/private/compiler/Microtec C - C++.h>

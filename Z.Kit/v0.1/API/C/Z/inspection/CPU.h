@@ -81,17 +81,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/hardware/CPU/architecture/z Architecture.h>
 
 #	else
-#		if	defined(__amd64__ ) || /* GCC, Oracle Solaris Studio */ \
-			defined(__amd64	  ) || /* GCC, Oracle Solaris Studio */ \
-			defined(__x86_64__) || /* GCC, Oracle Solaris Studio */ \
+#		if	defined(__amd64	  ) || /* GCC, Oracle Solaris Studio */ \
+			defined(__amd64__ ) || /* GCC, Oracle Solaris Studio */ \
 			defined(__x86_64  ) || /* GCC, Oracle Solaris Studio */ \
+			defined(__x86_64__) || /* GCC, Oracle Solaris Studio */ \
 			defined(_M_AMD64  ) || /* Visual C++		     */ \
 			defined(_M_X64	  )    /* Visual C++		     */
 
 #			include <Z/hardware/CPU/architecture/x86-64.h>
 
-#		elif	defined(__386__	       ) || /* Watcom C/C++		      */ \
-			defined(__386	       ) || /* Diab C/C++		      */ \
+#		elif	defined(__386	       ) || /* Diab C/C++		      */ \
+			defined(__386__	       ) || /* Watcom C/C++		      */ \
 			defined(__i386	       ) || /* GCC, Stratus VOS C, Sun Studio */ \
 			defined(__i386__       ) || /* GCC			      */ \
 			defined(__i486__       ) || /* GCC			      */ \
@@ -99,7 +99,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(__i686__       ) || /* GCC			      */ \
 			defined(__I86__	       ) || /* Digital Mars		      */ \
 			defined(__IA32__       ) || /* Stratus VOS C		      */ \
-			defined(__INTEL__      ) || /* Metrowerks CodeWarrior	      */ \
+			defined(__INTEL__      ) || /* CodeWarrior		      */ \
 			defined(__THW_INTEL__  ) || /* IBM XL C/C++		      */ \
 			defined(__X86__	       ) || /* Watcom C/C++		      */ \
 			defined(__WINDOWS_386__) || /* Watcom C/C++		      */ \
@@ -115,20 +115,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			include <Z/hardware/CPU/architecture/x86-16.h>
 
-#		elif	defined(__powerpc64__) || \
-			defined(__ppc64__    ) || \
-			defined(__PPC64__    ) || \
-			defined(__PPU__	     )
+#		elif	defined(__powerpc64__) || /* GCC	       */ \
+			defined(__ppc64__    ) || /* GCC	       */ \
+			defined(__PPC64__    ) || /* GCC	       */ \
+			defined(_ARCH_PPC64  ) || /* GCC, IBM XL C/C++ */
+			defined(_XENON	     )
 
 #			include <Z/hardware/CPU/architecture/PowerPC 64-bit.h>
 
-#		elif	defined(__powerpc  ) || \
-			defined(__powerpc__) || \
-			defined(__ppc__	   ) || \
-			defined(__POWERPC__) || \
-			defined(__PPC__	   ) || \
-			defined(_M_PPC	   ) || \
-			defined(_ARCH_PPC  )
+#		elif	defined(__powerpc      ) || /* GCC	    */ \
+			defined(__powerpc__    ) || /* GCC	    */ \
+			defined(__ppc	       ) || /* Diab C/C++   */ \
+			defined(__ppc__	       ) || /* GCC	    */ \
+			defined(__POWERPC__    ) || /* GCC	    */ \
+			defined(__PPC__	       ) || /* GCC	    */ \
+			defined(__PPCGECKO__   ) || /* CodeWarrior  */ \
+			defined(__PPCBROADWAY__) || /* CodeWarrior  */ \
+			defined(_ARCH_PPC      ) || /* IBM XL C/C++ */ \
+			defined(_M_PPC	       )    /* Visual C++   */
 
 #			include <Z/hardware/CPU/architecture/PowerPC 32-bit.h>
 
@@ -181,10 +185,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			include <Z/hardware/CPU/architecture/Itanium.h>
 
-#		elif	defined(__mips__) || /* GCC		       */ \
-			defined(__mips	) || /* GCC, MIPSpro	       */ \
-			defined(__MIPS__) || /* Metrowerks CodeWarrior */ \
-			defined(mips	)    /* GCC		       */
+#		elif	defined(__mips__) || /* GCC	     */ \
+			defined(__mips	) || /* GCC, MIPSpro */ \
+			defined(__MIPS__) || /* CodeWarrior  */ \
+			defined(mips	)    /* GCC	     */
 
 #			include <Z/hardware/CPU/architecture/MIPS.h>
 

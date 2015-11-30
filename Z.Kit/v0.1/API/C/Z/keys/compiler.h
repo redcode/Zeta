@@ -22,36 +22,36 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_AZTEC_C			    10
 #define Z_COMPILER_BORLAND_CPP			    11
 #define Z_COMPILER_CC65				    12
-#define Z_COMPILER_COMEAU_CPP			    13
-#define Z_COMPILER_COMPAQ_C_CPP			    14
-#define Z_COMPILER_COMPCERT			    15
-#define Z_COMPILER_CONVEX_C			    16
-#define Z_COMPILER_COVERITY_C_CPP_STATIC_ANALYZER   17
-#define Z_COMPILER_CRAY_C			    18
-#define Z_COMPILER_DIAB_C_CPP			    19
-#define Z_COMPILER_DICE_C			    20
-#define Z_COMPILER_DIGITAL_MARS			    21
-#define Z_COMPILER_DIGNUS_SYSTEMS_C		    22
+#define Z_COMPILER_CODE_WARRIOR			    13
+#define Z_COMPILER_COMEAU_CPP			    14
+#define Z_COMPILER_COMPAQ_C_CPP			    15
+#define Z_COMPILER_COMPCERT			    16
+#define Z_COMPILER_CONVEX_C			    17
+#define Z_COMPILER_COVERITY_C_CPP_STATIC_ANALYZER   18
+#define Z_COMPILER_CRAY_C			    19
+#define Z_COMPILER_DIAB_C_CPP			    20
+#define Z_COMPILER_DICE_C			    21
+#define Z_COMPILER_DIGITAL_MARS			    22
+#define Z_COMPILER_DIGNUS_SYSTEMS_C		    23
 #define Z_COMPILER_DIGNUS_SYSTEMS_CPP		    Z_COMPILER_DIGNUS_SYSTEMS_CPP
-#define Z_COMPILER_DJGPP			    23
-#define Z_COMPILER_EDG_CPP_FRONTEND		    24
-#define Z_COMPILER_EKOPATH			    25
-#define Z_COMPILER_FUJITSU_CPP			    26
-#define Z_COMPILER_GREEN_HILL_C_CPP		    27
-#define Z_COMPILER_HP_ACPP			    28
-#define Z_COMPILER_HP_ANSI_C			    29
-#define Z_COMPILER_IAR_C_CPP			    30
-#define Z_COMPILER_IBM_XL_C_CPP			    31
-#define Z_COMPILER_IBM_Z_OS_C_CPP		    32
-#define Z_COMPILER_IMAGECRAFT_C			    33
-#define Z_COMPILER_INTEL_C_CPP			    34
-#define Z_COMPILER_KAI_CPP			    35
-#define Z_COMPILER_KEIL_C166			    36
-#define Z_COMPILER_KEIL_C51			    37
-#define Z_COMPILER_KEIL_CARM			    38
-#define Z_COMPILER_LCC				    39
-#define Z_COMPILER_METAWARE_HIGH_C_CPP		    40
-#define Z_COMPILER_METROWERKS_CODEWARRIOR	    41
+#define Z_COMPILER_DJGPP			    24
+#define Z_COMPILER_EDG_CPP_FRONTEND		    25
+#define Z_COMPILER_EKOPATH			    26
+#define Z_COMPILER_FUJITSU_CPP			    27
+#define Z_COMPILER_GREEN_HILL_C_CPP		    28
+#define Z_COMPILER_HP_ACPP			    29
+#define Z_COMPILER_HP_ANSI_C			    30
+#define Z_COMPILER_IAR_C_CPP			    31
+#define Z_COMPILER_IBM_XL_C_CPP			    32
+#define Z_COMPILER_IBM_Z_OS_C_CPP		    33
+#define Z_COMPILER_IMAGECRAFT_C			    34
+#define Z_COMPILER_INTEL_C_CPP			    35
+#define Z_COMPILER_KAI_CPP			    36
+#define Z_COMPILER_KEIL_C166			    37
+#define Z_COMPILER_KEIL_C51			    38
+#define Z_COMPILER_KEIL_CARM			    39
+#define Z_COMPILER_LCC				    40
+#define Z_COMPILER_METAWARE_HIGH_C_CPP		    41
 #define Z_COMPILER_MICROTEC_C_CPP		    42
 #define Z_COMPILER_MICROWAY_NDP_C		    43
 #define Z_COMPILER_MINGW			    44
@@ -102,6 +102,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_STRING_AZTEC_C			   "Aztec C"
 #define Z_COMPILER_STRING_BORLAND_CPP			   "Borland C++"
 #define Z_COMPILER_STRING_CC65				   "CC65"
+#define Z_COMPILER_STRING_CODE_WARRIOR			   "CodeWarrior"
 #define Z_COMPILER_STRING_COMEAU_CPP			   "Comeau C++ "
 #define Z_COMPILER_STRING_COMPAQ_C_CPP			   "Compaq C/C++"
 #define Z_COMPILER_STRING_COMPCERT			   "CompCert"
@@ -131,7 +132,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_STRING_KEIL_CARM			   "KEIL CARM" /* Discontinued – Replaced by ARM RealView C/C++ Compiler */
 #define Z_COMPILER_STRING_LCC				   "LLC"
 #define Z_COMPILER_STRING_METAWARE_HIGH_C_CPP		   "MetaWare High C/C++"
-#define Z_COMPILER_STRING_METROWERKS_CODEWARRIOR	   "Metrowerks CodeWarrior"
 #define Z_COMPILER_STRING_MICROTEC_C_CPP		   "Microtec C/C++"
 #define Z_COMPILER_STRING_MICROWAY_NDP_C		   "Microway NDP C"
 #define Z_COMPILER_STRING_MINGW				   "MinGW"
