@@ -126,6 +126,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(Z_USE_OS_MVS)
 #	include <Z/inspection/private/OS/MVS.h>
 
+#elif defined(Z_USE_OS_NETWARE)
+#	include <Z/inspection/private/OS/NetWare.h>
+
 #elif defined(Z_USE_OS_NON_STOP_OS)
 #	include <Z/inspection/private/OS/NonStop OS.h>
 
@@ -243,8 +246,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			include <Z/inspection/private/OS/Mac OS X.h>
 #		endif
 
-#	elif defined(_WIN16)	|| defined(_WIN32)	|| defined(_WIN64) || \
-	     defined(__WIN32__)	|| defined(__TOS_WIN__)	|| defined(__WINDOWS__)
+#	elif	defined(__NT__	       ) || /* Watcom C/C++ */ \
+	      	defined(_WIN16	       ) ||		       \
+		defined(_WIN32	       ) ||		       \
+		defined(_WIN64	       ) ||		       \
+		defined(__WIN32__      ) ||		       \
+		defined(__TOS_WIN__    ) ||		       \
+		defined(__WINDOWS__    ) || /* Watcom C/C++ */ \
+		defined(__WINDOWS_386__)    /* Watcom C/C++ */
+
 #		include <Z/inspection/private/OS/Windows.h>
 
 #	elif defined(_AIX) || defined(__TOS_AIX__)
@@ -331,11 +341,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#	elif defined()
 #		include <Z/inspection/private/OS/MPE-XL.h>*/
 
-#	elif defined(__DOS__) || defined(__MSDOS__) || defined(_MSDOS) || defined(MSDOS)
+#	elif	defined(__DOS__	 ) ||			 \
+		defined(__MSDOS__) || /* Watcom C/C++ */ \
+		defined(_MSDOS	 ) || /* Watcom C/C++ */ \
+		defined(MSDOS	 )
+
 #		include <Z/inspection/private/OS/MS-DOS.h>
 
 /*#	elif defined()
 #		include <Z/inspection/private/OS/MVS.h>*/
+
+#	elif defined(__netware__    ) || /* GCC (NetWare coss-compiler) */ \
+	     defined(__NETWARE_386__)	 /* Watcom C/C++		*/
+#		include <Z/inspection/private/OS/NetWare.h>
 
 #	elif defined(__TANDEM)
 #		include <Z/inspection/private/OS/NonStop OS.h>
@@ -343,7 +361,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif defined(__nucleus__)
 #		include <Z/inspection/private/OS/Nucleus RTOS.h>
 
-#	elif defined(__OS2__) || defined(_OS2) || defined(__TOS_OS2__) || defined(OS2)
+#	elif	defined(__OS2__	   ) || /* Watcom C/C++ */ \
+		defined(_OS2	   ) ||			   \
+		defined(__TOS_OS2__) ||			   \
+		defined(OS2	   )
+
 #		include <Z/inspection/private/OS/OS-2.h>
 
 #	elif defined(__OS9000) || defined(_OSK)
@@ -364,7 +386,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif defined(EPLAN9)
 #		include <Z/inspection/private/OS/Plan 9.h>
 
-#	elif defined(__QNX__) || defined(__QNXNTO__)
+#	elif	defined(__QNX__   ) || /* Watcom C/C++ */ \
+		defined(__QNXNTO__)
+
 #		include <Z/inspection/private/OS/QNX.h>
 
 #	elif defined(_SCO_DS) || defined(M_I386) || defined(M_XENIX)

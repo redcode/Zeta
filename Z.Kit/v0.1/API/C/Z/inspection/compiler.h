@@ -16,9 +16,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/inspection/private/compiler/Clang.h>
 #	endif
 
-#elif defined(__GNUC__)
-#	include <Z/inspection/private/compiler/GCC.h>
-
 #elif defined(_MSC_VER)
 #	include <Z/inspection/private/compiler/Microsoft Visual C++.h>
 
@@ -33,6 +30,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif defined(__ACK__)
 #	include <Z/inspection/private/compiler/Amsterdam Compiler Kit.h>
+
+#elif defined(__ARMCC__)
+#	include <Z/inspection/private/compiler/ARM C - C++ Compiler.h>
 
 #elif defined(__CC_ARM)
 #	include <Z/inspection/private/compiler/ARM Compiler.h>
@@ -52,8 +52,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__DECC) || defined(__DECCXX) || defined(__VAXC) || defined(VAXC)
 #	include <Z/inspection/private/compiler/Compaq C - C++.h>
 
+#elif defined(__COMPCERT__)
+#	include <Z/inspection/private/compiler/CompCert.h>
+
 #elif defined(__convexc__)
 #	include <Z/inspection/private/compiler/Convex C.h>
+
+#elif defined(__COVERITY__)
+#	include <Z/inspection/private/compiler/Coverity C - C++ Static Analyzer.h>
 
 #elif defined(_CRAYC)
 #	include <Z/inspection/private/compiler/Cray C.h>
@@ -68,7 +74,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/private/compiler/Digital Mars.h>
 
 #elif defined(__SYSC__)
-#	include <Z/inspection/private/compiler/Dignus Systems - C++.h>
+#	include <Z/inspection/private/compiler/Dignus Systems C - C++.h>
 
 #elif defined(__DJGPP__) || defined(__GO32__)
 #	include <Z/inspection/private/compiler/DJGPP.h>
@@ -90,6 +96,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif defined(__HP_cc)
 #	include <Z/inspection/private/compiler/HP ANSI C.h>
+
+#elif defined(__HP_aCC)
+#	include <Z/inspection/private/compiler/HP aC++.h>
 
 #elif defined(__IAR_SYSTEMS_ICC__)
 #	include <Z/inspection/private/compiler/IAR C - C++.h>
@@ -200,7 +209,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__TenDRA__)
 #	include <Z/inspection/private/compiler/TenDRA C - C++.h>
 
-#elif defined(__TI_COMPILER_VERSION__)
+#elif defined(__TI_COMPILER_VERSION__) || defined(_TMS320C6X)
 #	include <Z/inspection/private/compiler/Texas Instruments C - C++ Compiler.h>
 
 /*#elif defined()
@@ -218,11 +227,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__USLC__)
 #	include <Z/inspection/private/compiler/USL C.h>
 
+#elif defined(__VBCC__)
+#	include <Z/inspection/private/compiler/VBCC.h>
+
 #elif defined(__WATCOMC__)
-#	include <Z/inspection/private/compiler/Watcom C++.h>
+#	include <Z/inspection/private/compiler/Watcom C - C++.h>
 
 #elif defined(__ZTC__)
 #	include <Z/inspection/private/compiler/Zortech C++.h>
+
+#elif defined(__GNUC__)
+#	include <Z/inspection/private/compiler/GCC.h>
 
 #else
 #	include <Z/inspection/private/compiler/generic.h>

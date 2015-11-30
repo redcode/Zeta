@@ -1603,7 +1603,7 @@ Z_DEFINE_STRICT_UNION_END Z128Bit;
 
 typedef struct {zsize index, size;} ZRange;
 
-/* Pointer cast type for lvalue assignment */
+/* MARK: - Pointer cast type for lvalue assignment */
 
 Z_DEFINE_STRICT_UNION_BEGIN
 	zuint8*   pointer_uint8;

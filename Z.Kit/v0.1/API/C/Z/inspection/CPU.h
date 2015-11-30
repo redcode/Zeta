@@ -17,6 +17,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif defined(Z_USE_CPU_ARCHITECTURE_X86_32)
 #		include <Z/hardware/CPU/architecture/x86-32.h>
 
+#	elif defined(Z_USE_CPU_ARCHITECTURE_X86_16)
+#		include <Z/hardware/CPU/architecture/x86-16.h>
+
 #	elif defined(Z_USE_CPU_ARCHITECTURE_POWER_PC_64BIT)
 #		include <Z/hardware/CPU/architecture/PowerPC 64-bit.h>
 
@@ -26,17 +29,35 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif defined(Z_USE_CPU_ARCHITECTURE_ARM)
 #		include <Z/hardware/CPU/architecture/ARM.h>
 
+#	elif defined(Z_USE_CPU_ARCHITECTURE_AARCH_64)
+#		include <Z/hardware/CPU/architecture/AArch64.h>
+
 #	elif defined(Z_USE_CPU_ARCHITECTURE_68K)
 #		include <Z/hardware/CPU/architecture/68K.h>
-
-#	elif defined(Z_USE_CPU_ARCHITECTURE_ITANIUM)
-#		include <Z/hardware/CPU/architecture/Itanium.h>
 
 #	elif defined(Z_USE_CPU_ARCHITECTURE_Alpha)
 #		include <Z/hardware/CPU/architecture/Alpha.h>
 
+#	elif defined(Z_USE_CPU_ARCHITECTURE_BLACKFIN)
+#		include <Z/hardware/CPU/architecture/Blackfin.h>
+
+#	elif defined(Z_USE_CPU_ARCHITECTURE_CONVEX)
+#		include <Z/hardware/CPU/architecture/Convex.h>
+
+#	elif defined(Z_USE_CPU_ARCHITECTURE_EPIPHANY)
+#		include <Z/hardware/CPU/architecture/Epiphany.h>
+
+#	elif defined(Z_USE_CPU_ARCHITECTURE_ITANIUM)
+#		include <Z/hardware/CPU/architecture/Itanium.h>
+
 #	elif defined(Z_USE_CPU_ARCHITECTURE_MIPS)
 #		include <Z/hardware/CPU/architecture/MIPS.h>
+
+#	elif defined(Z_USE_CPU_ARCHITECTURE_PA_RISC)
+#		include <Z/hardware/CPU/architecture/PA-RISC.h>
+
+#	elif defined(Z_USE_CPU_ARCHITECTURE_PYRAMID_9810)
+#		include <Z/hardware/CPU/architecture/Pyramid 9810.h>
 
 #	elif defined(Z_USE_CPU_ARCHITECTURE_RS_6000)
 #		include <Z/hardware/CPU/architecture/RS 6000.h>
@@ -53,103 +74,168 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif defined(Z_USE_CPU_ARCHITECTURE_SYSTEM_390)
 #		include <Z/hardware/CPU/architecture/System 390.h>
 
+#	elif defined(Z_USE_CPU_ARCHITECTURE_TMS320)
+#		include <Z/hardware/CPU/architecture/TMS320.h>
+
 #	elif defined(Z_USE_CPU_ARCHITECTURE_Z_ARCHITECTURE)
 #		include <Z/hardware/CPU/architecture/z Architecture.h>
 
 #	else
-#		if	defined(__amd64__ ) || \
-			defined(__amd64	  ) || \
-			defined(__x86_64__) || \
-			defined(__x86_64  ) || \
-			defined(_M_X64	  ) || \
-			defined(_M_AMD64  )
+#		if	defined(__amd64__ ) || /* GCC, Oracle Solaris Studio */ \
+			defined(__amd64	  ) || /* GCC, Oracle Solaris Studio */ \
+			defined(__x86_64__) || /* GCC, Oracle Solaris Studio */ \
+			defined(__x86_64  ) || /* GCC, Oracle Solaris Studio */ \
+			defined(_M_AMD64  ) || /* Microsoft Visual C++	     */ \
+			defined(_M_X64	  )    /* Microsoft Visual C++	     */
+
 #			include <Z/hardware/CPU/architecture/x86-64.h>
 
-#		elif	defined(i386	     ) || \
-			defined(__i386	     ) || \
-			defined(__i386__     ) || \
-			defined(__i486__     ) || \
-			defined(__i586__     ) || \
-			defined(__i686__     ) || \
-			defined(_X86_	     ) || \
-			defined(__X86__	     ) || \
-			defined(_M_IX86	     ) || \
-			defined(__THW_INTEL__) || \
-			defined(__I86__	     ) || \
-			defined(__INTEL__    )
+#		elif	defined(__386__	       ) || /* Watcom C/C++ */ \
+			defined(__i386	       ) || /* GCC	    */ \
+			defined(__i386__       ) || /* GCC	    */ \
+			defined(__i486__       ) || /* GCC	    */ \
+			defined(__i586__       ) || /* GCC	    */ \
+			defined(__i686__       ) || /* GCC	    */ \
+			defined(__I86__	       ) ||		       \
+			defined(__INTEL__      ) ||		       \
+			defined(__THW_INTEL__  ) ||		       \
+			defined(__WINDOWS_386__) || /* Watcom C/C++ */ \
+			defined(__X86__	       ) ||		       \
+			defined(_M_IX86	       ) || /* Watcom C/C++ */ \
+			defined(_X86_	       ) ||		       \
+			defined(i386	       ) || /* GCC	    */ \
+			defined(M_I386	       )    /* Watcom C/C++ */
+
 #			include <Z/hardware/CPU/architecture/x86-32.h>
+
+#		elif	defined(M_I86) /* Watcom C/C++ */
+
+#			include <Z/hardware/CPU/architecture/x86-16.h>
 
 #		elif	defined(__powerpc64__) || \
 			defined(__ppc64__    ) || \
 			defined(__PPC64__    ) || \
 			defined(__PPU__	     )
+
 #			include <Z/hardware/CPU/architecture/PowerPC 64-bit.h>
 
 #		elif	defined(__powerpc  ) || \
 			defined(__powerpc__) || \
-			defined(__POWERPC__) || \
 			defined(__ppc__	   ) || \
+			defined(__POWERPC__) || \
 			defined(__PPC__	   ) || \
 			defined(_M_PPC	   ) || \
 			defined(_ARCH_PPC  )
+
 #			include <Z/hardware/CPU/architecture/PowerPC 32-bit.h>
 
-#		elif	defined(__arm__		   ) || \
-			defined(__thumb__	   ) || \
-			defined(__TARGET_ARCH_ARM  ) || \
-			defined(__TARGET_ARCH_THUMB) || \
-			defined(_ARM		   )
+#		elif	defined(__arm__		   ) || /* GCC, ARM C/C++ Compiler */ \
+			defined(__arm		   ) || /* Diab C/C++		   */ \
+			defined(__thumb__	   ) || /* GCC, ARM C/C++ Compiler */ \
+			defined(__TARGET_ARCH_ARM  ) || /* ARM C/C++ Compiler	   */ \
+			defined(__TARGET_ARCH_THUMB) || /* ARM C/C++ Compiler	   */ \
+			defined(_ARM		   ) || /* ImageCraft C		   */ \
+			defined(_M_ARM		   ) || /* Microsoft Visual C++	   */ \
+			defined(_M_ARMT		   )	/* Microsoft Visual C++	   */
+
 #			include <Z/hardware/CPU/architecture/ARM.h>
 
-#		elif	defined(__m68k__) || \
-			defined(M68000	)
+#		elif	defined(__aarch64__) /* GCC */
+
+#			include <Z/hardware/CPU/architecture/AArch64.h>
+
+#		elif	defined(__m68k__ ) || /* GCC	       */ \
+			defined(__MC68K__) || /* Stratus VOS C */ \
+			defined(M68000	 )    /* SAS/C	       */
+
 #			include <Z/hardware/CPU/architecture/68K.h>
 
-#		elif	defined(__ia64__) || \
-			defined(_IA64	) || \
-			defined(__IA64__) || \
-			defined(__ia64	) || \
-			defined(_M_IA64	)
-#			include <Z/hardware/CPU/architecture/Itanium.h>
+#		elif	defined(__alpha__) || /* GCC		      */ \
+			defined(__alpha	 ) || /* DEC C (?)	      */ \
+			defined(_M_ALPHA )    /* Microsoft Visual C++ */
 
-#		elif	defined(__alpha__) || \
-			defined(__alpha	 ) || \
-			defined(_M_ALPHA )
 #			include <Z/hardware/CPU/architecture/Alpha.h>
 
-#		elif	defined(__mips__) || \
-			defined(mips	) || \
-			defined(__mips	) || \
-			defined(__MIPS__)
+#		elif	defined(__bfin	) || /* GCC */ \
+			defined(__BFIN__)    /* GCC */
+
+#			include <Z/hardware/CPU/architecture/Blackfin.h>
+
+#		elif	defined(__convex__) /* GCC */
+
+#			include <Z/hardware/CPU/architecture/Convex.h>
+
+#		elif	defined(__epiphany__)
+
+#			include <Z/hardware/CPU/architecture/Epiphany.h>
+
+#		elif	defined(__ia64__   ) || /* GCC				     */ \
+			defined(__ia64	   ) || /* HP aC++			     */ \
+			defined(__itanium__) || /* Intel C/C++			     */ \
+			defined(__IA64__   ) || /* GCC				     */ \
+			defined(_IA64	   ) || /* GCC				     */ \
+			defined(_M_IA64	   )    /* Intel C/C++, Microsoft Visual C++ */
+
+#			include <Z/hardware/CPU/architecture/Itanium.h>
+
+#		elif	defined(__mips__) || /* GCC		       */ \
+			defined(__mips	) || /* GCC, MIPSpro	       */ \
+			defined(__MIPS__) || /* Metrowerks CodeWarrior */ \
+			defined(mips	)    /* GCC		       */
+
 #			include <Z/hardware/CPU/architecture/MIPS.h>
 
-#		elif	defined(__hppa__) || \
-			defined(__hppa)
+#		elif	defined(__hppa__) || /* GCC	      */ \
+			defined(__hppa	) ||			 \
+			defined(__HPPA__)    /* Stratus VOS C */
+
 #			include <Z/hardware/CPU/architecture/PA-RISC.h>
 
-#		elif	defined(__THW_RS6000) || \
-			defined(_IBMR2	    ) || \
-			defined(_POWER	    ) || \
-			defined(_ARCH_PWR   ) || \
-			defined(_ARCH_PWR2  )
+#		elif	defined(pyr)
+
+#			include <Z/hardware/CPU/architecture/Pyramid 9810.h>
+
+#		elif	defined(__THW_RS6000) || /* IBM XL C/C++ */ \
+			defined(_ARCH_PWR   ) ||		    \
+			defined(_ARCH_PWR2  ) ||		    \
+			defined(_ARCH_PWR3  ) ||		    \
+			defined(_ARCH_PWR4  ) ||		    \
+			defined(_IBMR2	    ) ||		    \
+			defined(_POWER	    )
+
 #			include <Z/hardware/CPU/architecture/RS 6000.h>
 
-#		elif	defined(__sparc__) || \
-			defined(__sparc	 )
+#		elif	defined(__sparc__) || /* GCC	    */ \
+			defined(__sparc	 )    /* Sun Studio */
+
 #			include <Z/hardware/CPU/architecture/SPARC.h>
 
-#		elif	defined(__sh__)
+#		elif	defined(__sh__) /* GCC */
+
 #			include <Z/hardware/CPU/architecture/SuperH.h>
 
-#		elif	defined(__370__	   ) || \
-			defined(__THW_370__)
+#		elif	defined(__370__	   ) || /* IBM XL C/C++ */ \
+			defined(__THW_370__)	/* IBM XL C/C++ */
+
 #			include <Z/hardware/CPU/architecture/System 370.h>
 
-#		elif	defined(__s390__ ) || \
-			defined(__s390x__)
+#		elif	defined(__s390__ ) /* GCC */
+
 #			include <Z/hardware/CPU/architecture/System 390.h>
 
-#		elif	defined(__SYSC_ZARCH__)
+#		elif	defined(__TMS320C2000__) || \
+			defined(__TMS320C55X__ ) || \
+			defined(__TMS320C6X__  ) || \
+			defined(_TMS320C2XX    ) || \
+			defined(_TMS320C5X     ) || \
+			defined(_TMS320C6X     )
+
+#			include <Z/hardware/CPU/architecture/TMS320.h>
+
+#		elif	defined(__s390x__     ) || /* GCC	       */
+			defined(__zarch__     ) || /* Clang	       */
+			defined(__SYSC_ZARCH__)    /* Dignus Systems/C */
+
 #			include <Z/hardware/CPU/architecture/z Architecture.h>
 
 #		else
