@@ -34,19 +34,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(__LP32	) || \
 			defined(_LP32_	) || \
 			defined(_LP32	)
+
 #			include <Z/formats/data model/LP32.h>
 
-#		elif	defined(__ILP32__) || \
-			defined(__ILP32	 ) || \
-			defined(_ILP32_	 ) || \
-			defined(_ILP32	 ) || \
+#		elif	defined(__ILP32__) || /* GCC		     */ \
+			defined(__ILP32	 ) ||				\
+			defined(_ILP32_	 ) ||				\
+			defined(_ILP32	 ) || /* HP aC++, Sun Studio */ \
 			defined(_WIN32	 )
+
 #			include <Z/formats/data model/ILP32.h>
 
 #		elif	defined(__ILP64__) || \
 			defined(__ILP64	 ) || \
 			defined(_ILP64_	 ) || \
 			defined(_ILP64)
+
 #			include <Z/formats/data model/ILP64.h>
 
 #		elif	defined(__LLP64__) || \
@@ -54,12 +57,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(_LLP64_	 ) || \
 			defined(_LLP64	 ) || \
 			defined(_WIN64	 )
+
 #			include <Z/formats/data model/LLP64.h>
 
-#		elif	defined(__LP64__) || \
-			defined(__LP64	) || \
-			defined(_LP64_	) || \
-			defined(_LP64	)
+#		elif	defined(__LP64__) || /* GCC		    */ \
+			defined(__LP64	) ||			       \
+			defined(_LP64_	) ||			       \
+			defined(_LP64	)    /* HP aC++, Sun Studio */ \
+
 #			include <Z/formats/data model/LP64.h>
 
 #		else
