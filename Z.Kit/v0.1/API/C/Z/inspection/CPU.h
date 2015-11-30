@@ -85,30 +85,33 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(__amd64	  ) || /* GCC, Oracle Solaris Studio */ \
 			defined(__x86_64__) || /* GCC, Oracle Solaris Studio */ \
 			defined(__x86_64  ) || /* GCC, Oracle Solaris Studio */ \
-			defined(_M_AMD64  ) || /* Microsoft Visual C++	     */ \
-			defined(_M_X64	  )    /* Microsoft Visual C++	     */
+			defined(_M_AMD64  ) || /* Visual C++		     */ \
+			defined(_M_X64	  )    /* Visual C++		     */
 
 #			include <Z/hardware/CPU/architecture/x86-64.h>
 
-#		elif	defined(__386__	       ) || /* Watcom C/C++ */ \
-			defined(__i386	       ) || /* GCC	    */ \
-			defined(__i386__       ) || /* GCC	    */ \
-			defined(__i486__       ) || /* GCC	    */ \
-			defined(__i586__       ) || /* GCC	    */ \
-			defined(__i686__       ) || /* GCC	    */ \
-			defined(__I86__	       ) ||		       \
-			defined(__INTEL__      ) ||		       \
-			defined(__THW_INTEL__  ) ||		       \
-			defined(__WINDOWS_386__) || /* Watcom C/C++ */ \
-			defined(__X86__	       ) ||		       \
-			defined(_M_IX86	       ) || /* Watcom C/C++ */ \
-			defined(_X86_	       ) ||		       \
-			defined(i386	       ) || /* GCC	    */ \
-			defined(M_I386	       )    /* Watcom C/C++ */
+#		elif	defined(__386__	       ) || /* Watcom C/C++		      */ \
+			defined(__386	       ) || /* Diab C/C++		      */ \
+			defined(__i386	       ) || /* GCC, Stratus VOS C, Sun Studio */ \
+			defined(__i386__       ) || /* GCC			      */ \
+			defined(__i486__       ) || /* GCC			      */ \
+			defined(__i586__       ) || /* GCC			      */ \
+			defined(__i686__       ) || /* GCC			      */ \
+			defined(__I86__	       ) || /* Digital Mars		      */ \
+			defined(__IA32__       ) || /* Stratus VOS C		      */ \
+			defined(__INTEL__      ) || /* Metrowerks CodeWarrior	      */ \
+			defined(__THW_INTEL__  ) || /* IBM XL C/C++		      */ \
+			defined(__X86__	       ) || /* Watcom C/C++		      */ \
+			defined(__WINDOWS_386__) || /* Watcom C/C++		      */ \
+			defined(_M_IX86	       ) || /* Digital Mars, Intel C/C++,	 \
+						       Visual C++, Watcom C/C++	      */ \
+			defined(_X86_	       ) || /* MinGW			      */ \
+			defined(i386	       ) || /* GCC			      */ \
+			defined(M_I386	       )    /* Watcom C/C++		      */
 
 #			include <Z/hardware/CPU/architecture/x86-32.h>
 
-#		elif	defined(M_I86) /* Watcom C/C++ */
+#		elif	defined(M_I86) /* Digital Mars, Visual C++, Watcom C/C++ */
 
 #			include <Z/hardware/CPU/architecture/x86-16.h>
 
@@ -135,8 +138,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(__TARGET_ARCH_ARM  ) || /* ARM C/C++ Compiler	   */ \
 			defined(__TARGET_ARCH_THUMB) || /* ARM C/C++ Compiler	   */ \
 			defined(_ARM		   ) || /* ImageCraft C		   */ \
-			defined(_M_ARM		   ) || /* Microsoft Visual C++	   */ \
-			defined(_M_ARMT		   )	/* Microsoft Visual C++	   */
+			defined(_M_ARM		   ) || /* Visual C++		   */ \
+			defined(_M_ARMT		   )	/* Visual C++		   */
 
 #			include <Z/hardware/CPU/architecture/ARM.h>
 
@@ -150,9 +153,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			include <Z/hardware/CPU/architecture/68K.h>
 
-#		elif	defined(__alpha__) || /* GCC		      */ \
-			defined(__alpha	 ) || /* DEC C (?)	      */ \
-			defined(_M_ALPHA )    /* Microsoft Visual C++ */
+#		elif	defined(__alpha__) || /* GCC	    */ \
+			defined(__alpha	 ) || /* DEC C (?)  */ \
+			defined(_M_ALPHA )    /* Visual C++ */
 
 #			include <Z/hardware/CPU/architecture/Alpha.h>
 
@@ -169,12 +172,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			include <Z/hardware/CPU/architecture/Epiphany.h>
 
-#		elif	defined(__ia64__   ) || /* GCC				     */ \
-			defined(__ia64	   ) || /* HP aC++			     */ \
-			defined(__itanium__) || /* Intel C/C++			     */ \
-			defined(__IA64__   ) || /* GCC				     */ \
-			defined(_IA64	   ) || /* GCC				     */ \
-			defined(_M_IA64	   )    /* Intel C/C++, Microsoft Visual C++ */
+#		elif	defined(__ia64__   ) || /* GCC			   */ \
+			defined(__ia64	   ) || /* HP aC++		   */ \
+			defined(__itanium__) || /* Intel C/C++		   */ \
+			defined(__IA64__   ) || /* GCC			   */ \
+			defined(_IA64	   ) || /* GCC			   */ \
+			defined(_M_IA64	   )    /* Intel C/C++, Visual C++ */
 
 #			include <Z/hardware/CPU/architecture/Itanium.h>
 

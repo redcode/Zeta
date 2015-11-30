@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/private/compiler/Microsoft Visual C++.h
+/* Z Kit C API - inspection/private/compiler/Visual C++.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_inspection_private_compiler_Microsoft_Visual_CPP_H__
-#define __Z_inspection_private_compiler_Microsoft_Visual_CPP_H__
+#ifndef __Z_inspection_private_compiler_Visual_CPP_H__
+#define __Z_inspection_private_compiler_Visual_CPP_H__
 
 #define Z_AVOID_VARIADIC_MACROS
 
@@ -16,8 +16,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_COMPILER
 #	include <Z/keys/compiler.h>
 
-#	define Z_COMPILER		 Z_COMPILER_MICROSOFT_VISUAL_CPP
-#	define Z_COMPILER_STRING	 Z_COMPILER_STRING_MICROSOFT_VISUAL_CPP
+#	define Z_COMPILER		 Z_COMPILER_VISUAL_CPP
+#	define Z_COMPILER_STRING	 Z_COMPILER_STRING_VISUAL_CPP
 #	define Z_COMPILER_VERSION
 #	define Z_COMPILER_VERSION_STRING
 #endif
@@ -52,7 +52,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Specific constants */
 
-#define Z_COMPILER_CONSTANT_FLOAT_MAXIMUM 3.402823466e+38
+/*#define Z_COMPILER_CONSTANT_FLOAT_MAXIMUM 3.402823466e+38*/
 
 /* MARK: - Built-in constants */
 
@@ -64,4 +64,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in functions: Atomic operations */
 
-#endif /* __Z_inspection_private_compiler_Microsoft_Visual_CPP_H__ */
+#endif /* __Z_inspection_private_compiler_Visual_CPP_H__ */

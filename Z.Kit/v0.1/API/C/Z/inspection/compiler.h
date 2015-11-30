@@ -17,7 +17,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 #elif defined(_MSC_VER)
-#	include <Z/inspection/private/compiler/Microsoft Visual C++.h>
+#	include <Z/inspection/private/compiler/Visual C++.h>
 
 #elif defined(_ACC_)
 #	include <Z/inspection/private/compiler/ACC.h>

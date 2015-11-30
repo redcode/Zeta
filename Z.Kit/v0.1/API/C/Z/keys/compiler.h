@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_COMPILER_GCC				    0
 #define Z_COMPILER_CLANG			    1
-#define Z_COMPILER_MICROSOFT_VISUAL_CPP		    2
+#define Z_COMPILER_VISUAL_CPP			    2
 #define Z_COMPILER_ACC				    3
 #define Z_COMPILER_ALTIUM_MICROBLAZE_C		    4
 #define Z_COMPILER_ALTIUM_C_TO_HARDWARE		    5
@@ -91,7 +91,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_COMPILER_STRING_GCC				   "GCC"
 #define Z_COMPILER_STRING_CLANG				   "Clang"
-#define Z_COMPILER_STRING_MICROSOFT_VISUAL_CPP		   "Microsoft Visual C++"
+#define Z_COMPILER_STRING_VISUAL_CPP			   "Visual C++"
 #define Z_COMPILER_STRING_ACC				   "ACC"
 #define Z_COMPILER_STRING_ALTIUM_MICROBLAZE_C		   "Altium MicroBlaze C"
 #define Z_COMPILER_STRING_ALTIUM_C_TO_HARDWARE		   "Altium C-to-Hardware"
