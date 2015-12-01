@@ -222,7 +222,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/private/OS/z-VSE.h>
 
 #else
-
 #	if	defined(__Venus__)
 
 #		include <Z/inspection/private/OS/Venus.h>
@@ -570,7 +569,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/inspection/private/OS/z-VSE.h>*/
 
 #	endif
-
 #endif
 
 #define Z_OS_HAS(feature) defined(Z_OS_HAS_##feature)
