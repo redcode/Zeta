@@ -41,53 +41,55 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_GREEN_HILL_C_CPP		    28
 #define Z_COMPILER_HP_ACPP			    29
 #define Z_COMPILER_HP_ANSI_C			    30
-#define Z_COMPILER_IAR_C_CPP			    31
-#define Z_COMPILER_IBM_XL_C_CPP			    32
-#define Z_COMPILER_IBM_Z_OS_C_CPP		    33
-#define Z_COMPILER_IMAGECRAFT_C			    34
-#define Z_COMPILER_INTEL_C_CPP			    35
-#define Z_COMPILER_KAI_CPP			    36
-#define Z_COMPILER_KEIL_C166			    37
-#define Z_COMPILER_KEIL_C51			    38
-#define Z_COMPILER_KEIL_CARM			    39
-#define Z_COMPILER_LCC				    40
-#define Z_COMPILER_METAWARE_HIGH_C_CPP		    41
-#define Z_COMPILER_MICROTEC_C_CPP		    42
-#define Z_COMPILER_MICROWAY_NDP_C		    43
-#define Z_COMPILER_MINGW			    44
-#define Z_COMPILER_MIPS_PRO			    45
-#define Z_COMPILER_MIRACLE_C			    46
-#define Z_COMPILER_MPW_CPP			    47
-#define Z_COMPILER_NORCROFT_C			    48
-#define Z_COMPILER_NWCC				    49
-#define Z_COMPILER_OPEN64			    50
-#define Z_COMPILER_ORACLE_PRO_C_PRECOMPILER	    51
-#define Z_COMPILER_ORACLE_SOLARIS_STUDIO	    52
+#define Z_COMPILER_HP_UPC			    31
+#define Z_COMPILER_IAR_C_CPP			    32
+#define Z_COMPILER_IBM_XL_C_CPP			    33
+#define Z_COMPILER_VISUAL_AGE_CPP		    Z_COMPILER_IBM_XL_C_CPP
+#define Z_COMPILER_IBM_Z_OS_C_CPP		    34
+#define Z_COMPILER_IMAGECRAFT_C			    35
+#define Z_COMPILER_INTEL_CPP			    36
+#define Z_COMPILER_KAI_CPP			    37
+#define Z_COMPILER_KEIL_C166			    38
+#define Z_COMPILER_KEIL_C51			    39
+#define Z_COMPILER_KEIL_CARM			    40
+#define Z_COMPILER_LCC				    41
+#define Z_COMPILER_METAWARE_HIGH_C_CPP		    42
+#define Z_COMPILER_MICROTEC_C_CPP		    43
+#define Z_COMPILER_MICROWAY_NDP_C		    44
+#define Z_COMPILER_MINGW			    45
+#define Z_COMPILER_MIPS_PRO			    46
+#define Z_COMPILER_MIRACLE_C			    47
+#define Z_COMPILER_MPW_CPP			    48
+#define Z_COMPILER_NORCROFT_C			    49
+#define Z_COMPILER_NWCC				    50
+#define Z_COMPILER_OPEN64			    51
+#define Z_COMPILER_ORACLE_PRO_C_PRECOMPILER	    52
+#define Z_COMPILER_ORACLE_SOLARIS_STUDIO	    53
 #define Z_COMPILER_SUN_STUDIO			    Z_COMPILER_ORACLE_SOLARIS_STUDIO
 #define Z_COMPILER_SUN_WORK_SHOP		    Z_COMPILER_ORACLE_SOLARIS_STUDIO
 #define Z_COMPILER_FORTE_DEVELOPER		    Z_COMPILER_ORACLE_SOLARIS_STUDIO
 #define Z_COMPILER_SUN_PRO_COMPILERS		    Z_COMPILER_ORACLE_SOLARIS_STUDIO
-#define Z_COMPILER_PACIFIC_C			    53
-#define Z_COMPILER_PALM_C_CPP			    54
-#define Z_COMPILER_PELLES_C			    55
-#define Z_COMPILER_PORTLAND_GROUP_C_CPP		    56
-#define Z_COMPILER_RENESAS_C_CPP		    57
-#define Z_COMPILER_SAS_C			    58
-#define Z_COMPILER_SCO_OPEN_SERVER		    59
-#define Z_COMPILER_SMALL_DEVICE_C_COMPILER	    60
-#define Z_COMPILER_SN_COMPILER			    61
-#define Z_COMPILER_STRATUS_VOS_C		    62
-#define Z_COMPILER_SYMANTEC_CPP			    63
-#define Z_COMPILER_TENDRA_C_CPP			    64
-#define Z_COMPILER_TEXAS_INSTRUMENTS_C_CPP_COMPILER 65
-#define Z_COMPILER_THINK_C			    66
-#define Z_COMPILER_TINY_C			    67
-#define Z_COMPILER_TURBO_C_CPP			    68
-#define Z_COMPILER_ULTIMATE_C_CPP		    69
-#define Z_COMPILER_USL_C			    70
-#define Z_COMPILER_VBCC				    71
-#define Z_COMPILER_WATCOM_C_CPP			    72
-#define Z_COMPILER_ZORTECH_CPP			    73
+#define Z_COMPILER_PACIFIC_C			    54
+#define Z_COMPILER_PALM_C_CPP			    55
+#define Z_COMPILER_PELLES_C			    56
+#define Z_COMPILER_PGI_C_CPP			    57
+#define Z_COMPILER_RENESAS_C_CPP		    58
+#define Z_COMPILER_SAS_C			    59
+#define Z_COMPILER_SCO_OPEN_SERVER		    60
+#define Z_COMPILER_SMALL_DEVICE_C_COMPILER	    61
+#define Z_COMPILER_SN_COMPILER			    62
+#define Z_COMPILER_STRATUS_VOS_C		    63
+#define Z_COMPILER_SYMANTEC_CPP			    64
+#define Z_COMPILER_TENDRA_C_CPP			    65
+#define Z_COMPILER_TEXAS_INSTRUMENTS_C_CPP_COMPILER 66
+#define Z_COMPILER_THINK_C			    67
+#define Z_COMPILER_TINY_C			    68
+#define Z_COMPILER_TURBO_C_CPP			    69
+#define Z_COMPILER_ULTIMATE_C_CPP		    70
+#define Z_COMPILER_USL_C			    71
+#define Z_COMPILER_VBCC				    72
+#define Z_COMPILER_WATCOM_C_CPP			    73
+#define Z_COMPILER_ZORTECH_CPP			    74
 
 #define Z_COMPILER_STRING_GCC				   "GCC"
 #define Z_COMPILER_STRING_CLANG				   "Clang"
@@ -121,11 +123,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_STRING_GREEN_HILL_C_CPP		   "Green Hill C/C++"
 #define Z_COMPILER_STRING_HP_ACPP			   "HP aC++"
 #define Z_COMPILER_STRING_HP_ANSI_C			   "HP ANSI C"
+#define Z_COMPILER_STRING_HP_UPC			   "HP UPC"
 #define Z_COMPILER_STRING_IAR_C_CPP			   "IAR C/C++"
 #define Z_COMPILER_STRING_IBM_XL_C_CPP			   "IBM XL C/C++"
+#define Z_COMPILER_STRING_VISUAL_AGE_CPP		   "VisualAge C++" /* Renamed to IBM XL C/C++ */
 #define Z_COMPILER_STRING_IBM_Z_OS_C_CPP		   "IBM z/OS C/C++"
 #define Z_COMPILER_STRING_IMAGECRAFT_C			   "ImageCraft C"
-#define Z_COMPILER_STRING_INTEL_C_CPP			   "Intel C/C++"
+#define Z_COMPILER_STRING_INTEL_CPP			   "Intel C++"
 #define Z_COMPILER_STRING_KAI_CPP			   "KAI C++"
 #define Z_COMPILER_STRING_KEIL_C166			   "KEIL C166"
 #define Z_COMPILER_STRING_KEIL_C51			   "KEIL C51"
@@ -150,7 +154,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_STRING_PACIFIC_C			   "Pacific C"
 #define Z_COMPILER_STRING_PALM_C_CPP			   "Palm C/C++"
 #define Z_COMPILER_STRING_PELLES_C			   "Pelles C"
-#define Z_COMPILER_STRING_PORTLAND_GROUP_C_CPP		   "Portland Group C/C++"
+#define Z_COMPILER_STRING_PGI_C_CPP			   "PGI C/C++"
 #define Z_COMPILER_STRING_RENESAS_C_CPP			   "Renesas C/C++"
 #define Z_COMPILER_STRING_SAS_C				   "SAS/C"
 #define Z_COMPILER_STRING_SCO_OPEN_SERVER		   "SCO OpenServer"

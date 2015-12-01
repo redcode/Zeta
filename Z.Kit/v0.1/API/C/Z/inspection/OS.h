@@ -129,6 +129,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(Z_USE_OS_NETWARE)
 #	include <Z/inspection/private/OS/NetWare.h>
 
+#elif defined(Z_USE_OS_NEXTSTEP)
+#	include <Z/inspection/private/OS/NeXTSTEP.h>
+
 #elif defined(Z_USE_OS_NON_STOP_OS)
 #	include <Z/inspection/private/OS/NonStop OS.h>
 
@@ -159,8 +162,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(Z_USE_OS_QNX)
 #	include <Z/inspection/private/OS/QNX.h>
 
-#elif defined(Z_USE_OS_SCO_UNIX_SYSTEM_V) || defined(Z_USE_OS_OPEN_DESKTOP) || \
-      defined(Z_USE_OS_SCO_UNIX)	  || defined(Z_USE_OS_SCO_OPEN_SERVER)
+#elif	defined(Z_USE_OS_SCO_UNIX_SYSTEM_V) || defined(Z_USE_OS_OPEN_DESKTOP) || \
+	defined(Z_USE_OS_SCO_UNIX)	    || defined(Z_USE_OS_SCO_OPEN_SERVER)
+
 #	include <Z/inspection/private/OS/SCO UNIX System V.h>
 
 #elif defined(Z_USE_OS_SINIX) || defined(Z_USE_OS_RELIANT_UNIX)
@@ -219,25 +223,37 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #else
 
-#	if defined(__Venus__)
+#	if	defined(__Venus__)
+
 #		include <Z/inspection/private/OS/Venus.h>
 
-#	elif defined(__linux__) || defined(__linux) || defined(linux)
+#	elif	defined(__gnu_linux) || /* Clang, GCC, Intel C++, Oracle Solaris Studio				 */ \
+	      	defined(__linux	   ) || /* Clang, GCC, Intel C++, Oracle Solaris Studio, PGI C/C++, IBM XL C/C++ */ \
+		defined(__linux__  ) || /* Clang, GCC, Intel C++, Oracle Solaris Studio, PGI C/C++, IBM XL C/C++ */ \
+		defined(linux	   )	/* Clang, GCC, Intel C++, Oracle Solaris Studio, PGI C/C++		 */
+
 #		include <Z/inspection/private/OS/Linux.h>
 
-#	elif defined(__ANDROID__)
+#	elif	defined(__ANDROID__)
+
 #		include <Z/inspection/private/OS/Android.h>
 
-#	elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
+#	elif	defined(__FreeBSD__	  ) || /* Clang, GCC */ \
+		defined(__FreeBSD_kernel__)
+
 #		include <Z/inspection/private/OS/FreeBSD.h>
 
-#	elif defined(__NetBSD__)
+#	elif	defined(__NetBSD__) /* Clang, GCC */
+
 #		include <Z/inspection/private/OS/NetBSD.h>
 
-#	elif defined(__OpenBSD__)
+#	elif	defined(__OpenBSD__) /* Clang, GCC */
+
 #		include <Z/inspection/private/OS/OpenBSD.h>
 
-#	elif defined(__APPLE__)	&& defined(__MACH__)
+#	elif	(defined(__APPLE__) && /* Apple LLVM, Clang, GCC, Intel C++, PGI C/C++ */ \
+		 defined(__MACH__))    /* Apple LLVM, Clang, GCC, Intel C++, PGI C/C++ */
+
 #		include <TargetConditionals.h>
 
 #		if TARGET_OS_IPHONE
@@ -246,99 +262,147 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			include <Z/inspection/private/OS/Mac OS X.h>
 #		endif
 
-#	elif	defined(__NT__	       ) || /* Watcom C/C++ */ \
-	      	defined(_WIN16	       ) ||		       \
-		defined(_WIN32	       ) ||		       \
-		defined(_WIN64	       ) ||		       \
-		defined(__WIN32__      ) ||		       \
-		defined(__TOS_WIN__    ) ||		       \
-		defined(__WINDOWS__    ) || /* Watcom C/C++ */ \
-		defined(__WINDOWS_386__)    /* Watcom C/C++ */
+#	elif	defined(__NT__	       ) || /* Watcom C/C++				    */ \
+		defined(__TOS_WIN__    ) || /* IBM XL C/C++				    */ \
+		defined(__WIN32	       ) || /* Clang, GCC, PGI C/C++			    */ \
+		defined(__WIN32__      ) || /* Borland C++, Clang, GCC, PGI C/C++	    */ \
+		defined(__WIN64	       ) || /* Clang, GCC, PGI C/C++			    */ \
+		defined(__WIN64__      ) || /* Clang, GCC, PGI C/C++			    */ \
+		defined(__WINDOWS__    ) || /* Watcom C/C++				    */ \
+		defined(__WINDOWS_386__) || /* Watcom C/C++				    */ \
+		defined(__WINNT	       ) || /* Clang, GCC				    */ \
+		defined(__WINNT__      ) || /* Clang, GCC				    */ \
+	      	defined(_WIN16	       ) || /* Visual C++				    */ \
+		defined(_WIN32	       ) || /* Clang, GCC, Intel C++, PGI C/C++, Visual C++ */ \
+		defined(_WIN64	       ) || /* Clang, GCC, Intel C++, PGI C/C++, Visual C++ */ \
+		defined(WIN32	       ) || /* Clang, GCC				    */ \
+		defined(WIN64	       ) || /* Clang, GCC				    */ \
+		defined(WINNT	       )    /* Clang, GCC				    */
 
 #		include <Z/inspection/private/OS/Windows.h>
 
-#	elif defined(_AIX) || defined(__TOS_AIX__)
+#	elif	defined(_AIX	   ) || /* GCC, IBM XL C/C++ */ \
+		defined(__TOS_AIX__)	/* IBM XL C/C++	     */
+
 #		include <Z/inspection/private/OS/AIX.h>
 
-#	elif defined(__amigaos__) || defined(AMIGA)
+#	elif	defined(__amigaos__) || /* GCC */ \
+		defined(AMIGA	   )
+
 #		include <Z/inspection/private/OS/AmigaOS.h>
 
-#	elif defined(aegis)
+#	elif	defined(aegis)
+
 #		include <Z/inspection/private/OS/AEGIS.h>
 
-#	elif defined(apollo)
+#	elif	defined(apollo)
+
 #		include <Z/inspection/private/OS/Domain-OS.h>
 
-/*#	elif defined()
+/*#	elif	defined()
+
 #		include <Z/inspection/private/OS/Bada.h>*/
 
-#	elif defined(__BEOS__)
+#	elif	defined(__BEOS__)
+
 #		include <Z/inspection/private/OS/BeOS.h>
 
-#	elif defined(__bg__) || defined(__THW_BLUEGENE__)
+#	elif	defined(__bg__		) || /* GCC, IBM XL C/C++ */ \
+		defined(__THW_BLUEGENE__)    /* IBM XL C/C++	  */
+
 #		include <Z/inspection/private/OS/Blue Gene.h>
 
-#	elif defined(__bsdi__)
+#	elif	defined(__bsdi__)
+
 #		include <Z/inspection/private/OS/BSD-386.h>
 
-#	elif defined(__convex__)
+#	elif	defined(__convex__)
+
 #		include <Z/inspection/private/OS/ConvexOS.h>
 
-#	elif defined(pyr)
+#	elif	defined(pyr)
+
 #		include <Z/inspection/private/OS/DC-OSx.h>
 
-#	elif defined(__osf__) || defined(__osf)
+#	elif	defined(__osf__) || \
+		defined(__osf  )
+
 #		include <Z/inspection/private/OS/DEC OSF-1.h>
 
-#	elif defined(__DGUX__) || defined(__dgux__) || defined(DGUX)
+#	elif	defined(__dgux__) || \
+		defined(__DGUX__) || \
+		defined(DGUX	)
+
 #		include <Z/inspection/private/OS/DG-UX.h>
 
-#	elif defined(__DragonFly__)
+#	elif	defined(__DragonFly__) /* Clang */
+
 #		include <Z/inspection/private/OS/DragonFly BSD.h>
 
-/*#	elif defined()
+/*#	elif	defined()
+
 #		include <Z/inspection/private/OS/DYNIX.h>*/
 
-#	elif defined(_SEQUENT_)	|| defined(sequent)
+#	elif	defined(_SEQUENT_) || \
+		defined(sequent	 )
+
 #		include <Z/inspection/private/OS/DYNIX-ptx.h>
 
-#	elif defined(__ECOS)
+#	elif	defined(__ECOS)
+
 #		include <Z/inspection/private/OS/eCos.h>
 
-#	elif defined(__gnu_hurd__) /*|| defined(__GNU__)*/
+#	elif	defined(__gnu_hurd__) /*|| defined(__GNU__)*/
+
 #		include <Z/inspection/private/OS/GNU Hurd.h>
 
-#	elif defined(__hiuxmpp)
+#	elif	defined(__hiuxmpp)
+
 #		include <Z/inspection/private/OS/HI-UX MPP.h>
 
-#	elif defined(__hpux) || defined(_hpux) || defined(hpux)
+#	elif	defined(__hpux) || /* GCC, HP aC++, HP ANSI C */ \
+		defined(_hpux ) || /* HP UPC		      */ \
+		defined(hpux  )	   /* GCC		      */
+
 #		include <Z/inspection/private/OS/HP-UX.h>
 
-#	elif defined(__INTEGRITY)
+#	elif	defined(__INTEGRITY)
+
 #		include <Z/inspection/private/OS/INTEGRITY.h>
 
-#	elif defined(__sgi) || defined(sgi)
+#	elif	defined(__sgi) || \
+		defined(sgi  )
+
 #		include <Z/inspection/private/OS/IRIX.h>
 
-#	elif defined(__Lynx__)
+#	elif	defined(__Lynx__)
+
 #		include <Z/inspection/private/OS/LynxOS.h>
 
-#	elif defined(Macintosh) || defined(macintosh)
+#	elif	defined(Macintosh) || \
+		defined(macintosh)
+
 #		include <Z/inspection/private/OS/Mac OS.h>
 
-#	elif defined(__minix)
+#	elif	defined(__minix)
+
 #		include <Z/inspection/private/OS/MINIX.h>
 
-#	elif defined(__MORPHOS__)
+#	elif	defined(__MORPHOS__)
+
 #		include <Z/inspection/private/OS/MorphOS.h>
 
-/*#	elif defined()
+/*#	elif	defined()
+
 #		include <Z/inspection/private/OS/MPE.h>*/
 
-#	elif defined(__mpexl) || defined(mpeix)
+#	elif	defined(__mpexl) || \
+		defined(mpeix  )
+
 #		include <Z/inspection/private/OS/MPE-iX.h>
 
-/*#	elif defined()
+/*#	elif	defined()
+
 #		include <Z/inspection/private/OS/MPE-XL.h>*/
 
 #	elif	defined(__DOS__	 ) ||			 \
@@ -348,42 +412,57 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		include <Z/inspection/private/OS/MS-DOS.h>
 
-/*#	elif defined()
+/*#	elif	defined()
+
 #		include <Z/inspection/private/OS/MVS.h>*/
 
-#	elif defined(__netware__    ) || /* GCC (NetWare coss-compiler) */ \
-	     defined(__NETWARE_386__)	 /* Watcom C/C++		*/
+#	elif	defined(__netware__    ) || /* GCC (NetWare coss-compiler) */ \
+		defined(__NETWARE_386__)    /* Watcom C/C++		   */
+
 #		include <Z/inspection/private/OS/NetWare.h>
 
-#	elif defined(__TANDEM)
+ /*#	 elif	defined()
+
+#		include <Z/inspection/private/OS/NeXTSTEP.h>*/
+
+#	elif	defined(__TANDEM)
+
 #		include <Z/inspection/private/OS/NonStop OS.h>
 
-#	elif defined(__nucleus__)
+#	elif	defined(__nucleus__)
+
 #		include <Z/inspection/private/OS/Nucleus RTOS.h>
 
-#	elif	defined(__OS2__	   ) || /* Watcom C/C++ */ \
+#	elif	defined(__OS2__	   ) || /* Watcom C/C++	 */ \
+		defined(__TOS_OS2__) ||	/* VisualAge C++ */ \
 		defined(_OS2	   ) ||			   \
-		defined(__TOS_OS2__) ||			   \
 		defined(OS2	   )
 
 #		include <Z/inspection/private/OS/OS-2.h>
 
-#	elif defined(__OS9000) || defined(_OSK)
+#	elif	defined(__OS9000) || /* Ultimate C/C++ */ \
+		defined(_OSK	)    /* Ultimate C/C++ */
+
 #		include <Z/inspection/private/OS/OS-9.h>
 
-/*#	elif defined()
+/*#	elif	defined()
+
 #		include <Z/inspection/private/OS/OS-360.h>*/
 
-/*#	elif defined()
+/*#	elif	defined()
+
 #		include <Z/inspection/private/OS/OS-390.h>*/
 
-#	elif defined(__OS400__)
+#	elif	defined(__OS400__)
+
 #		include <Z/inspection/private/OS/OS-400.h>
 
-#	elif defined(__palmos__)
+#	elif	defined(__palmos__) /* GCC */
+
 #		include <Z/inspection/private/OS/Palm OS.h>
 
-#	elif defined(EPLAN9)
+#	elif	defined(EPLAN9)
+
 #		include <Z/inspection/private/OS/Plan 9.h>
 
 #	elif	defined(__QNX__   ) || /* Watcom C/C++ */ \
@@ -391,61 +470,103 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		include <Z/inspection/private/OS/QNX.h>
 
-#	elif defined(_SCO_DS) || defined(M_I386) || defined(M_XENIX)
+#	elif	defined(_SCO_DS) ||		  \
+		defined(M_I386 ) || /* GCC (?) */ \
+		defined(M_XENIX)    /* GCC     */
+
 #		include <Z/inspection/private/OS/SCO UNIX System V.h>
 
-#	elif defined(sinux)
+#	elif	defined(sinux)
+
 #		include <Z/inspection/private/OS/SINIX.h>
 
-#	elif defined(__sun) || defined(sun)
-#		include <Z/inspection/private/OS/SunOS.h>
+#	elif	defined(__sun  ) || /* Clang, GCC, Oracle Solaris Studio */ \
+		defined(__sun__) || /* Clang, GCC			 */ \
+		defined(__SunOS) || /* Oracle Solaris Studio		 */ \
+		defined(sun    )    /* Clang, GCC, Oracle Solaris Studio */
 
-#	elif defined(__SYLLABLE__)
+#		if	defined(__svr4__) || /* Clang, GCC			  */ \
+			defined(__SVR4)	     /* Clang, GCC, Oracle Solaris Studio */
+
+#			include <Z/inspection/private/OS/Solaris.h>
+#		else
+#			include <Z/inspection/private/OS/SunOS.h>
+#		endif
+
+#	elif	defined(__SYLLABLE__)
+
 #		include <Z/inspection/private/OS/Syllable.h>
 
-#	elif defined(__SYMBIAN32__)
+#	elif	defined(__SYMBIAN32__)
+
 #		include <Z/inspection/private/OS/Symbian.h>
 
-#	elif defined(__ultrix__) || defined(__ultrix) || defined(ultrix) /* "unix & vax"? */
+#	elif	defined(__ultrix__) || \
+		defined(__ultrix  ) || \
+		defined(ultrix	  ) /* "unix & vax"? */
+
 #		include <Z/inspection/private/OS/ULTRIX.h>
 
-#	elif defined(_UNICOS)
+#	elif	defined(_UNICOS)
+
 #		include <Z/inspection/private/OS/UNICOS.h>
 
-#	elif defined(__crayx1) || defined(_CRAY)
+#	elif	defined(__crayx1) || \
+		defined(_CRAY	)
+
 #		include <Z/inspection/private/OS/UNICOS-mp.h>
 
-#	elif defined(_UNIXWARE7) || defined(sco)
+#	elif	defined(_UNIXWARE7) || \
+		defined(sco	  )
+
 #		include <Z/inspection/private/OS/UnixWare.h>
 
-#	elif defined(UTS)
+#	elif	defined(UTS)
+
 #		include <Z/inspection/private/OS/UTS.h>
 
-#	elif defined(__VMS) || defined(VMS)
+#	elif	defined(__VMS) || \
+		defined(VMS  )
+
 #		include <Z/inspection/private/OS/VMS.h>
 
-#	elif defined(__VOS__)
+#	elif	defined(__VOS__)
+
 #		include <Z/inspection/private/OS/VOS.h>
 
-#	elif defined(__VXWORKS__) || defined(__vxworks)
+#	elif	defined(__vxworks  ) || /* Diab C/C++, GCC */ \
+		defined(__VXWORKS__)	/* Diab C/C++, GCC */
+
 #		include <Z/inspection/private/OS/VxWorks.h>
 
-#	elif defined(_WIN32_WCE)
+#	elif	defined(_WIN32_WCE	      ) || /* Visual C++ */ \
+		defined(WIN32_PLATFORM_HPC2000) || /* Visual C++ */ \
+		defined(WIN32_PLATFORM_HPCPRO ) || /* Visual C++ */ \
+		defined(WIN32_PLATFORM_PSPC   ) || /* Visual C++ */ \
+		defined(WIN32_PLATFORM_WFSP   )	   /* Visual C++ */
+
 #		include <Z/inspection/private/OS/Windows CE.h>
 
-/*#	elif defined()
+/*#	elif	defined()
+
 #		include <Z/inspection/private/OS/Xenix.h>*/
 
-#	defined(__MVS__) || defined(__HOS_MVS__) || defined(__TOS_MVS__)
+#	elif	defined(__MVS__	   ) || \
+		defined(__HOS_MVS__) || \
+		defined(__TOS_MVS__)
+
 #		include <Z/inspection/private/OS/z-OS.h>
 
-/*#	elif defined()
+/*#	elif	defined()
+
 #		include <Z/inspection/private/OS/z-TPF.h>*/
 
-/*#	elif defined()
+/*#	elif	defined()
+
 #		include <Z/inspection/private/OS/z-VM.h>*/
 
-/*#	elif defined()
+/*#	elif	defined()
+
 #		include <Z/inspection/private/OS/z-VSE.h>*/
 
 #	endif

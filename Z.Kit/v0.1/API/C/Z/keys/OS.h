@@ -53,45 +53,46 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_MVS	       35 /* IBM */
 #define Z_OS_NET_BSD	       36
 #define Z_OS_NETWARE	       37
-#define Z_OS_NON_STOP_OS       38 /* Tandem Computers */
-#define Z_OS_NUCLEUS_RTOS      39
-#define Z_OS_OPEN_BSD	       40
-#define Z_OS_OS_2	       41
-#define Z_OS_OS_9	       42 /* Microware Systems Corporation */
-#define Z_OS_OS_360	       43 /* IBM */
-#define Z_OS_OS_390	       44 /* IBM */
-#define Z_OS_OS_400	       45
+#define Z_OS_NEXTSTEP	       38
+#define Z_OS_NON_STOP_OS       39 /* Tandem Computers */
+#define Z_OS_NUCLEUS_RTOS      40
+#define Z_OS_OPEN_BSD	       41
+#define Z_OS_OS_2	       42
+#define Z_OS_OS_9	       43 /* Microware Systems Corporation */
+#define Z_OS_OS_360	       44 /* IBM */
+#define Z_OS_OS_390	       45 /* IBM */
+#define Z_OS_OS_400	       46
 #define Z_OS_I5_OS	       Z_OS_OS_400
 #define Z_OS_IBM_I	       Z_OS_OS_400
-#define Z_OS_PALM_OS	       46
-#define Z_OS_PLAN_9	       47
-#define Z_OS_QNX	       48
-#define Z_OS_SCO_UNIX_SYSTEM_V 49
+#define Z_OS_PALM_OS	       47
+#define Z_OS_PLAN_9	       48
+#define Z_OS_QNX	       49
+#define Z_OS_SCO_UNIX_SYSTEM_V 50
 #define Z_OS_OPEN_DESKTOP      Z_OS_SCO_UNIX_SYSTEM_V
 #define Z_OS_SCO_UNIX	       Z_OS_SCO_UNIX_SYSTEM_V
 #define Z_OS_SCO_OPEN_SERVER   Z_OS_SCO_UNIX_SYSTEM_V
-#define Z_OS_SINIX	       50 /* Siemens Nixdorf Informationssysteme */
+#define Z_OS_SINIX	       51 /* Siemens Nixdorf Informationssysteme */
 #define Z_OS_RELIANT_UNIX      Z_OS_SINIX /* Fujitsu Siemens Computers */
-#define Z_OS_SUN_OS	       51
-#define Z_OS_SOLARIS	       Z_OS_SUN_OS
-#define Z_OS_SYLLABLE	       52
-#define Z_OS_SYMBIAN	       53
-#define Z_OS_ULTRIX	       54
-#define Z_OS_UNICOS	       55
-#define Z_OS_UNICOS_MP	       56
-#define Z_OS_UNIX_WARE	       57
+#define Z_OS_SOLARIS	       52
+#define Z_OS_SUN_OS	       53
+#define Z_OS_SYLLABLE	       54
+#define Z_OS_SYMBIAN	       55
+#define Z_OS_ULTRIX	       56
+#define Z_OS_UNICOS	       57
+#define Z_OS_UNICOS_MP	       58
+#define Z_OS_UNIX_WARE	       59
 #define Z_OS_OPEN_UNIX	       Z_OS_UNIX_WARE
-#define Z_OS_UTS	       58 /* Amdahl Corporation */
-#define Z_OS_VMS	       59
-#define Z_OS_VOS	       60 /* Stratus Technologies */
-#define Z_OS_VX_WORKS	       61
-#define Z_OS_WINDOWS	       62 /* Microsoft */
-#define Z_OS_WINDOWS_CE	       63 /* Microsoft */
-#define Z_OS_XENIX	       64
-#define Z_OS_Z_OS	       65 /* IBM */
-#define Z_OS_Z_TPF	       66 /* IBM */
-#define Z_OS_Z_VM	       67 /* IBM */
-#define Z_OS_Z_VSE	       68 /* IBM */
+#define Z_OS_UTS	       60 /* Amdahl Corporation */
+#define Z_OS_VMS	       61
+#define Z_OS_VOS	       62 /* Stratus Technologies */
+#define Z_OS_VX_WORKS	       63
+#define Z_OS_WINDOWS	       64 /* Microsoft */
+#define Z_OS_WINDOWS_CE	       65 /* Microsoft */
+#define Z_OS_XENIX	       66
+#define Z_OS_Z_OS	       67 /* IBM */
+#define Z_OS_Z_TPF	       68 /* IBM */
+#define Z_OS_Z_VM	       69 /* IBM */
+#define Z_OS_Z_VSE	       70 /* IBM */
 
 #define Z_OS_STRING_VENUS	      "Venus"
 #define Z_OS_STRING_AIX		      "AIX"
@@ -137,6 +138,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_STRING_MVS		      "MVS"
 #define Z_OS_STRING_NET_BSD	      "NetBSD"
 #define Z_OS_STRING_NETWARE	      "NetWare"
+#define Z_OS_STRING_NEXTSTEP	      "NeXTSTEP"
 #define Z_OS_STRING_NON_STOP_OS	      "NonStop OS"
 #define Z_OS_STRING_NUCLEUS_RTOS      "Nucleus RTOS"
 #define Z_OS_STRING_OPEN_BSD	      "OpenBSD"
@@ -156,8 +158,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_STRING_SCO_OPEN_SERVER   "SCO OpenServer"
 #define Z_OS_STRING_SINIX	      "SINIX"
 #define Z_OS_STRING_RELIANT_UNIX      "Reliant UNIX"
-#define Z_OS_STRING_SUN_OS	      "SunOS"
 #define Z_OS_STRING_SOLARIS	      "Solaris"
+#define Z_OS_STRING_SUN_OS	      "SunOS"
 #define Z_OS_STRING_SYLLABLE	      "Syllable"
 #define Z_OS_STRING_SYMBIAN	      "Symbian"
 #define Z_OS_STRING_ULTRIX	      "ULTRIX"

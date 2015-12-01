@@ -103,7 +103,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(__THW_INTEL__  ) || /* IBM XL C/C++		      */ \
 			defined(__X86__	       ) || /* Watcom C/C++		      */ \
 			defined(__WINDOWS_386__) || /* Watcom C/C++		      */ \
-			defined(_M_IX86	       ) || /* Digital Mars, Intel C/C++,	 \
+			defined(_M_IX86	       ) || /* Digital Mars, Intel C++,		 \
 						       Visual C++, Watcom C/C++	      */ \
 			defined(_X86_	       ) || /* MinGW			      */ \
 			defined(i386	       ) || /* GCC			      */ \
@@ -176,12 +176,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			include <Z/hardware/CPU/architecture/Epiphany.h>
 
-#		elif	defined(__ia64__   ) || /* GCC			   */ \
-			defined(__ia64	   ) || /* HP aC++		   */ \
-			defined(__itanium__) || /* Intel C/C++		   */ \
-			defined(__IA64__   ) || /* GCC			   */ \
-			defined(_IA64	   ) || /* GCC			   */ \
-			defined(_M_IA64	   )    /* Intel C/C++, Visual C++ */
+#		elif	defined(__ia64__   ) || /* GCC			 */ \
+			defined(__ia64	   ) || /* HP aC++		 */ \
+			defined(__itanium__) || /* Intel C++		 */ \
+			defined(__IA64__   ) || /* GCC			 */ \
+			defined(_IA64	   ) || /* GCC			 */ \
+			defined(_M_IA64	   )    /* Intel C++, Visual C++ */
 
 #			include <Z/hardware/CPU/architecture/Itanium.h>
 

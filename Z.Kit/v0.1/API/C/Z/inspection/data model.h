@@ -41,7 +41,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(__ILP32	 ) ||				\
 			defined(_ILP32_	 ) ||				\
 			defined(_ILP32	 ) || /* HP aC++, Sun Studio */ \
-			defined(_WIN32	 )
+			defined(_WIN32	 )    /* Visual C++	     */
 
 #			include <Z/formats/data model/ILP32.h>
 
@@ -56,7 +56,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(__LLP64	 ) || \
 			defined(_LLP64_	 ) || \
 			defined(_LLP64	 ) || \
-			defined(_WIN64	 )
+			defined(_WIN64	 )    /* Visual C++ */
 
 #			include <Z/formats/data model/LLP64.h>
 

@@ -120,7 +120,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/private/compiler/ImageCraft C.h>
 
 #elif defined(__INTEL_COMPILER)	|| defined(__ICC) || defined(__ECC) || defined(__ICL)
-#	include <Z/inspection/private/compiler/Intel C - C++.h>
+#	include <Z/inspection/private/compiler/Intel C++.h>
 
 #elif defined(__KCC)
 #	include <Z/inspection/private/compiler/KAI C++.h>
@@ -183,7 +183,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/private/compiler/Pelles C.h>
 
 #elif defined(__PGI)
-#	include <Z/inspection/private/compiler/Portland Group C - C++.h>
+#	include <Z/inspection/private/compiler/PGI C - C++.h>
 
 #elif defined(__RENESAS__) || defined(__HITACHI__)
 #	include <Z/inspection/private/compiler/Renesas C - C++.h>
