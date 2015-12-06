@@ -5,16 +5,15 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
- ___________________________________________________
-/\						    \
-\_| Extensions: .snp				     |
-  | Endianness: Little				     |
-  | Created by: Radovan Garabik - Lubomir Salanci    |
-  |    Used by: Nuclear ZX [DOS]		     |
-  |						     |
-  | http://korpus.juls.savba.sk/~garabik/old/zx.html |
-  |   _______________________________________________|_
-   \_/_______________________________________________*/
+
+.--------------------------------------------------.
+| Extensions: snp				   |
+| Endianness: Little				   |
+| Created by: Radovan Garabik - Lubomir Salanci	   |
+|    Used by: Nuclear ZX [DOS]			   |
+|						   |
+| http://korpus.juls.savba.sk/~garabik/old/zx.html |
+'-------------------------------------------------*/
 
 #ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H__
 #define __Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H__

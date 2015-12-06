@@ -7,16 +7,15 @@ Copyright © Kevin Phair.
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
- ______________________________________
-/\				       \
-\_| Extensions: .prg			|
-  | Endianness: Little			|
-  | Created by: Kevin Phair		|
-  |    Used by: Spectrum Emulator [DOS] |
-  |					|
-  | http://code.google.com/p/specem	|
-  |   __________________________________|_
-   \_/__________________________________*/
+
+.-------------------------------------.
+| Extensions: prg		      |
+| Endianness: Little		      |
+| Created by: Kevin Phair	      |
+|    Used by: Spectrum Emulator [DOS] |
+|				      |
+| http://code.google.com/p/specem     |
+'------------------------------------*/
 
 #ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H__
 #define __Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H__

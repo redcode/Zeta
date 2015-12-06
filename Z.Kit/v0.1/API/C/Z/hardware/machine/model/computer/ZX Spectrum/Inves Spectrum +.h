@@ -5,16 +5,15 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
- _______________________________________________
-/\						\
-\_|   Vendor: Investronica			 |
-  | Released: 1986				 |
-  |	 CPU: Zilog Z80-A @ 3.5469 MHz		 |
-  |	 ROM: 48K				 |
-  |	 RAM: 128K				 |
-  |    Sound: General Instrument AY-3-8912 (PSG) |
-  |   ___________________________________________|_
-   \_/____________________________________________/
+
+.----------------------------------------------.
+|   Vendor: Investronica		       |
+| Released: 1986			       |
+|      CPU: Zilog Z80-A @ 3.5469 MHz	       |
+|      ROM: 48K				       |
+|      RAM: 128K			       |
+|    Sound: General Instrument AY-3-8912 (PSG) |
+'----------------------------------------------'
 
  _____________________________				  ___________
 |    .	 _    _  __	      ''''''''''''''''''''''''''''	     |

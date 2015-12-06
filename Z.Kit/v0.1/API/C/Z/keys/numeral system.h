@@ -15,10 +15,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_NUMERAL_SYSTEM_ARABIC_HEXADECIMAL		3
 #define Z_NUMERAL_SYSTEM_ROMAN				4
 
-#define Z_NUMERAL_SYSTEM_STRING_ARABIC_BINARY		"Arabic Binary"
-#define Z_NUMERAL_SYSTEM_STRING_ARABIC_OCTAL		"Arabic Octal"
-#define Z_NUMERAL_SYSTEM_STRING_ARABIC_DECIMAL		"Arabic Decimal"
-#define Z_NUMERAL_SYSTEM_STRING_ARABIC_HEXADECIMAL	"Arabic Hexadecimal"
-#define Z_NUMERAL_SYSTEM_STRING_ROMAN			"Roman"
-
 #endif /* __Z_keys_numeral_system_H__ */

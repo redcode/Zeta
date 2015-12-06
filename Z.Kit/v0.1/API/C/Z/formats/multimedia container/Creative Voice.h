@@ -12,12 +12,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8	identifier[19];		/* 'Creative Voice File' */
-	zuint8	eof;			/* 1Ah			 */
-	zuint16	header_size;		/* Usually 001Ah	 */
-	zuint8	major_version_number;	/* Usually 01h		 */
-	zuint8	minor_version_number;	/* Usually 0Ah or 14h	 */
-	zuint8	version_validation;	/* must be equal to version + 1234h */
+	zuint8	identifier[19];	      /* 'Creative Voice File'		  */
+	zuint8	eof;		      /* 1Ah				  */
+	zuint16	header_size;	      /* Usually 001Ah			  */
+	zuint8	major_version_number; /* Usually 01h			  */
+	zuint8	minor_version_number; /* Usually 0Ah or 14h		  */
+	zuint8	version_validation;   /* must be equal to version + 1234h */
 ) ZCreativeVoiceHeader;
 
 Z_DEFINE_STRICT_STRUCTURE (

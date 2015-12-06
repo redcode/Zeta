@@ -8,14 +8,13 @@ Copyright © 1993-2006 Samir Ribic
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
- ___________________________________________________________________
-/\								    \
-\_| Extensions: .tap						     |
-  | Endianness: Little						     |
-  | Created by: Zeljko Juric - Samir Ribic (aka Megaribi)	     |
-  |    Used by: Warajevo [MS-DOS] and some old ZX Spectrum emulators |
-  |   _______________________________________________________________|_
-   \_/_______________________________________________________________*/
+
+.------------------------------------------------------------------.
+| Extensions: tap						   |
+| Endianness: Little						   |
+| Created by: Zeljko Juric - Samir Ribic (aka Megaribi)		   |
+|    Used by: Warajevo [MS-DOS] and some old ZX Spectrum emulators |
+'-----------------------------------------------------------------*/
 
 #ifndef __Z_formats_storage_medium_image_audio_Warajevo_TAP_H__
 #define __Z_formats_storage_medium_image_audio_Warajevo_TAP_H__

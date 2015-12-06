@@ -5,40 +5,39 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
- __________________________________________________________________________
-/\									   \
-\_| Extensions: .zx82							    |
-  | Endianness: Big							    |
-  | Created by: William James						    |
-  |    Used by: Speculator '97 [Amiga]					    |
-  |									    |
-  | IMPORTANT NOTICE: This format is not well known at all,		    |
-  | so the types and constants here declared can be useless.		    |
-  | The only documentation I have found is from the SinclairFAQ.	    |
-  |									    |
-  | From SinclairFAQ:							    |
-  |									    |
-  | "  Amiga Speculator has its own file format called ZX82 format because  |
-  | it contains a file identifier in the first four bytes consisting of the |
-  | ASCII characters "ZX82". The format has a 12 byte header which contains |
-  | the normal Spectrum type file information like length, type, start etc. |
-  | as well as a compression flag which is set if the file is byte run	    |
-  | compressed.								    |
-  |									    |
-  |   The 'data_type' field is derived from the MGT disciple directory	    |
-  | MGT_Type-1, so further file types may be supported in this way in the   |
-  | future.								    |
-  |									    |
-  |   The compression used is the standard byte run compression as used by  |
-  | ILBM IFF files. The whole 48K data block is compressed as if it were    |
-  | one long row.  "							    |
-  |									    |
-  | See:								    |
-  |  Amiga ROM Kernel Reference Manual: Devices (Third Edition)		    |
-  |   - Appendix A - IFF Specification (Page 347)			    |
-  |   - Appendix C - Example Packer C code (Page 538)			    |
-  |   ______________________________________________________________________|_
-   \_/______________________________________________________________________*/
+
+.-------------------------------------------------------------------------.
+| Extensions: zx82							  |
+| Endianness: Big							  |
+| Created by: William James						  |
+|    Used by: Speculator '97 [Amiga]					  |
+|									  |
+| IMPORTANT NOTICE: This format is not well known at all,		  |
+| so the types and constants here declared can be useless.		  |
+| The only documentation I have found is from the SinclairFAQ.		  |
+|									  |
+| From SinclairFAQ:							  |
+|									  |
+| "  Amiga Speculator has its own file format called ZX82 format because  |
+| it contains a file identifier in the first four bytes consisting of the |
+| ASCII characters "ZX82". The format has a 12 byte header which contains |
+| the normal Spectrum type file information like length, type, start etc. |
+| as well as a compression flag which is set if the file is byte run	  |
+| compressed.								  |
+|									  |
+|   The 'data_type' field is derived from the MGT disciple directory	  |
+| MGT_Type-1, so further file types may be supported in this way in the	  |
+| future.								  |
+|									  |
+|   The compression used is the standard byte run compression as used by  |
+| ILBM IFF files. The whole 48K data block is compressed as if it were	  |
+| one long row.  "							  |
+|									  |
+| See:									  |
+|  Amiga ROM Kernel Reference Manual: Devices (Third Edition)		  |
+|   - Appendix A - IFF Specification (Page 347)				  |
+|   - Appendix C - Example Packer C code (Page 538)			  |
+'------------------------------------------------------------------------*/
 
 #ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H__
 #define __Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H__

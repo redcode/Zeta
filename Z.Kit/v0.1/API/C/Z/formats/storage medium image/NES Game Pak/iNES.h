@@ -5,14 +5,13 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
- _______________________________
-/\				\
-\_| Extensions: .nes		 |
-  | Endianness: Little		 |
-  | Created by: Fayzullin, Marat |
-  |    Used by: Any NES emulator |
-  |   ___________________________|_
-   \_/___________________________*/
+
+.------------------------------.
+| Extensions: nes	       |
+| Endianness: Little	       |
+| Created by: Fayzullin, Marat |
+|    Used by: Any NES emulator |
+'-----------------------------*/
 
 #ifndef __Z_formats_storage_medium_image_NES_Game_Pak_iNES_H__
 #define __Z_formats_storage_medium_image_NES_Game_Pak_iNES_H__

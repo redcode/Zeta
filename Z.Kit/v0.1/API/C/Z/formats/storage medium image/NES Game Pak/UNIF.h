@@ -5,14 +5,13 @@
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
- _________________________________________
-/\					  \
-\_| Extensions: .unf .unif		   |
-  | Endianness:	Little			   |
-  | Created by: Carmel-Veilleux, Tennessee |
-  |    Used by:				   |
-  |   _____________________________________|_
-   \_/_____________________________________*/
+
+.----------------------------------------.
+| Extensions: unf, unif			 |
+| Endianness:	Little			 |
+| Created by: Carmel-Veilleux, Tennessee |
+|    Used by:				 |
+'---------------------------------------*/
 
 #ifndef __Z_formats_storage_medium_image_NES_Game_Pak_UNIF_H__
 #define __Z_formats_storage_medium_image_NES_Game_Pak_UNIF_H__
