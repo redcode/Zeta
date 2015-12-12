@@ -15,27 +15,27 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Template for natural, integer and real types */
 
 
-#define Z_TEMPLATE_NATURAL(type)							\
-											\
-											\
-Z_INLINE void z_##type##_swap(void *a, void *b)						\
-	{										\
-	z##type t = *(z##type *)a;							\
-											\
-	*(z##type *)a = *(z##type *)b;							\
-	*(z##type *)b = t;								\
-	}										\
-											\
-											\
-Z_INLINE z##type z_##type##_minimum(z##type a, z##type b)				\
-	{return Z_MINIMUM(a, b);}							\
-											\
-											\
-Z_INLINE z##type z_##type##_maximum(z##type a, z##type b)				\
-	{return Z_MAXIMUM(a, b);}							\
-											\
-											\
-Z_INLINE z##type z_##type##_clamp(z##type value, z##type minimum, z##type maximum)	\
+#define Z_TEMPLATE_NATURAL(type)						   \
+										   \
+										   \
+Z_INLINE void z_##type##_swap(void *a, void *b)					   \
+	{									   \
+	z##type t = *(z##type *)a;						   \
+										   \
+	*(z##type *)a = *(z##type *)b;						   \
+	*(z##type *)b = t;							   \
+	}									   \
+										   \
+										   \
+Z_INLINE z##type z_##type##_minimum(z##type a, z##type b)			   \
+	{return Z_MINIMUM(a, b);}						   \
+										   \
+										   \
+Z_INLINE z##type z_##type##_maximum(z##type a, z##type b)			   \
+	{return Z_MAXIMUM(a, b);}						   \
+										   \
+										   \
+Z_INLINE z##type z_##type##_clamp(z##type value, z##type minimum, z##type maximum) \
 	{return z_##type##_minimum(z_##type##_maximum(value, minimum), maximum);}
 
 
@@ -150,9 +150,9 @@ Z_INLINE z##type z_##type##_rotated_right(z##type value, zuint rotation) \
 	{return Z_##bits##BIT_ROTATE_RIGHT(value, rotation);}
 
 
-#define Z_TEMPLATE_VALUE_REVERSED(type, bits, level)			\
-									\
-Z_INLINE z##type z_##type##_reversed_in_##level##bit(z##type value)	\
+#define Z_TEMPLATE_VALUE_REVERSED(type, bits, level)		    \
+								    \
+Z_INLINE z##type z_##type##_reversed_in_##level##bit(z##type value) \
 	{return Z_##bits##BIT_REVERSED_IN_##level##BIT(value);}
 
 
