@@ -1,4 +1,4 @@
-/* Z Kit C API - functions/geometry/constructors.h
+/* Z Kit C API - functions/mathematics/geometry/constructors.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_geometry_constructors_H__
-#define __Z_functions_geometry_constructors_H__
+#ifndef __Z_functions_mathematics_geometry_constructors_H__
+#define __Z_functions_mathematics_geometry_constructors_H__
 
 #include <Z/types/mathematics.h>
 
@@ -506,4 +506,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define z_sphere	 z_sphere_type	      (REAL)
 #define z_sphere_zero	 z_sphere_type_zero   (REAL)
 
-#endif /* __Z_functions_geometry_constructors_H__ */
+#endif /* __Z_functions_mathematics_geometry_constructors_H__ */

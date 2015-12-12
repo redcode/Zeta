@@ -1,4 +1,4 @@
-/* Z Kit C API - functions/geometry/ZAABB.h
+/* Z Kit C API - functions/mathematics/geometry/ZAABB.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,10 +6,10 @@
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_geometry_ZAABB_H__
-#define __Z_functions_geometry_ZAABB_H__
+#ifndef __Z_functions_mathematics_geometry_ZAABB_H__
+#define __Z_functions_mathematics_geometry_ZAABB_H__
 
-#include <Z/functions/geometry/Z3DLine.h>
+#include <Z/functions/mathematics/geometry/Z3DLine.h>
 
 
 /* MARK: - Template */
@@ -294,4 +294,4 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #define z_aabb_contains_sphere	      z_aabb_type_contains_sphere	(REAL)
 
 
-#endif /* __Z_functions_geometry_ZAABB_H__ */
+#endif /* __Z_functions_mathematics_geometry_ZAABB_H__ */

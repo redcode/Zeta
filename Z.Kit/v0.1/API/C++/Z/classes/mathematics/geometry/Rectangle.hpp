@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/geometry/Rectangle.hpp
+/* Z Kit C++ API - classes/mathematics/geometry/Rectangle.hpp
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_classes_geometry_Rectangle_HPP__
-#define __Z_classes_geometry_Rectangle_HPP__
+#ifndef __Z_classes_mathematics_geometry_Rectangle_HPP__
+#define __Z_classes_mathematics_geometry_Rectangle_HPP__
 
 #include <Z/classes/base/Value2D.hpp>
 #include <Z/types/mathematics.h>
@@ -422,4 +422,4 @@ template <typename T> struct ZKit::Rectangle {
 #endif
 
 
-#endif // __Z_classes_geometry_Rectangle_HPP__
+#endif // __Z_classes_mathematics_geometry_Rectangle_HPP__

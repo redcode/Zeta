@@ -1,4 +1,4 @@
-/* Z Kit C API - functions/geometry/ZBox.h
+/* Z Kit C API - functions/mathematics/geometry/ZBox.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,10 +6,10 @@
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_geometry_ZBox_H__
-#define __Z_functions_geometry_ZBox_H__
+#ifndef __Z_functions_mathematics_geometry_ZBox_H__
+#define __Z_functions_mathematics_geometry_ZBox_H__
 
-#include <Z/functions/geometry/constructors.h>
+#include <Z/functions/mathematics/geometry/constructors.h>
 #include <Z/functions/base/Z3DValue.h>
 
 
@@ -281,4 +281,4 @@ Z_INLINE zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Typ
 #define z_box_contains_sphere	     z_box_type_contains_sphere	      (REAL)
 
 
-#endif /* __Z_functions_geometry_ZBox_H__ */
+#endif /* __Z_functions_mathematics_geometry_ZBox_H__ */
