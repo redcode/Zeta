@@ -294,6 +294,10 @@ namespace ZKit {
 		typedef const	       float const_type;
 		typedef	      volatile float volatile_type;
 		typedef const volatile float const_volatile_type;
+
+		static constexpr float epsilon = Z_FLOAT_EPSILON;
+		static constexpr float minimum = Z_FLOAT_MINIMUM;
+		static constexpr float maximum = Z_FLOAT_MAXIMUM;
 	};
 
 	template <> struct Type<double> : public Abstract::Type::Real {
@@ -319,6 +323,10 @@ namespace ZKit {
 		typedef const	       double const_type;
 		typedef	      volatile double volatile_type;
 		typedef const volatile double const_volatile_type;
+
+		static constexpr double epsilon = Z_DOUBLE_EPSILON;
+		static constexpr double minimum = Z_DOUBLE_MINIMUM;
+		static constexpr double maximum = Z_DOUBLE_MAXIMUM;
 	};
 
 	template <> struct Type<long double> : public Abstract::Type::Real {
@@ -344,6 +352,10 @@ namespace ZKit {
 		typedef const	       long double const_type;
 		typedef	      volatile long double volatile_type;
 		typedef const volatile long double const_volatile_type;
+
+		static constexpr long double epsilon = Z_LDOUBLE_EPSILON;
+		static constexpr long double minimum = Z_LDOUBLE_MINIMUM;
+		static constexpr long double maximum = Z_LDOUBLE_MAXIMUM;
 	};
 
 	template <typename T> struct Type<const		 T> : public Type<	T> {enum {is_const    = true};};
