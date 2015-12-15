@@ -23,6 +23,7 @@ namespace ZKit {
 				is_class	  = false,
 				is_callable	  = false,
 				is_const	  = false,
+				is_const_volatile = false,
 				is_enum		  = false,
 				is_exact	  = false,
 				is_integer	  = false,
@@ -129,8 +130,9 @@ namespace ZKit {
 		template <class C> struct Volatile : C {enum {is_volatile = true};};
 
 		template <class C> struct ConstVolatile : C {
-			enum {	is_const    = true,
-				is_volatile = true
+			enum {	is_const	  = true,
+				is_volatile	  = true,
+				is_const_volatile = true
 			};
 		};
 	}}
@@ -416,6 +418,8 @@ namespace ZKit {
 		enum {	is_callable = true,
 			is_function = true
 		};
+
+		typedef R return_type;
 	};
 
 	template <class R, class... A> struct Type<R(A...) const	 > : Mixins::Type::Const	<Type<R(A...)> > {};
@@ -436,9 +440,9 @@ namespace ZKit {
 
 	template <class R, class... A> struct Type<R(A..., ...)> : public Type<R(A...)> {enum {is_variadic = true};};
 
-	template <class R, class... A> struct Type<R(A..., ...) const	      > : Mixins::Type::Const	     <Type<R(A...)> > {};
-	template <class R, class... A> struct Type<R(A..., ...)	      volatile> : Mixins::Type::Volatile     <Type<R(A...)> > {};
-	template <class R, class... A> struct Type<R(A..., ...) const volatile> : Mixins::Type::ConstVolatile<Type<R(A...)> > {};
+	template <class R, class... A> struct Type<R(A..., ...) const	      > : Mixins::Type::Const	     <Type<R(A..., ...)> > {};
+	template <class R, class... A> struct Type<R(A..., ...)	      volatile> : Mixins::Type::Volatile     <Type<R(A..., ...)> > {};
+	template <class R, class... A> struct Type<R(A..., ...) const volatile> : Mixins::Type::ConstVolatile<Type<R(A..., ...)> > {};
  
 	template <class R, class... A> struct Type<R(A..., ...) &> : Type<R(A..., ...)> {};
 
