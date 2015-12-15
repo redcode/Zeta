@@ -34,7 +34,7 @@ namespace ZKit {
 				is_real		  = false,
 				is_signed	  = false,
 				is_union	  = false,
-				is_value	  = false,
+				is_number	  = false,
 				is_variadic	  = false,
 				is_void		  = false,
 				is_volatile	  = false
@@ -42,7 +42,7 @@ namespace ZKit {
 		};
 
 		struct Number : Base {
-			enum {	is_value      = true,
+			enum {	is_number     = true,
 				is_arithmetic = true
 			};
 		};
