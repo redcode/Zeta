@@ -124,9 +124,15 @@ namespace ZKit {
 	}}
 
 	namespace Mixins {namespace Type {
-		template <class C> struct Const		: C {enum {is_const    = true};};
-		template <class C> struct Volatile	: C {enum {is_volatile = true};};
-		template <class C> struct ConstVolatile : C {enum {is_volatile = true};};
+
+		template <class C> struct Const	   : C {enum {is_const    = true};};
+		template <class C> struct Volatile : C {enum {is_volatile = true};};
+
+		template <class C> struct ConstVolatile : C {
+			enum {	is_const    = true,
+				is_volatile = true
+			};
+		};
 	}}
 
 
