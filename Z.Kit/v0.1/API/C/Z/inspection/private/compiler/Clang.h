@@ -77,6 +77,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_ATTRIBUTE_INLINE static __inline__
 #endif
 
+#if __has_attribute(sentinel)
+#	define Z_COMPILER_C_ATTRIBUTE_NULL_TERMINATED __attribute__((sentinel))
+#endif
+
 #if __has_attribute(visibility)
 #	define Z_COMPILER_C_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden"))) static
 #	define Z_COMPILER_C_ATTRIBUTE_PUBLIC  __attribute__((visibility("default")))

@@ -46,12 +46,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C attributes */
 
-#define Z_COMPILER_C_ATTRIBUTE_ALIAS(name)	 __attribute__((alias(name)))
+#define Z_COMPILER_C_ATTRIBUTE_ALIAS(name) __attribute__((alias(name)))
 
-#if __GNUC__ >= 4
-#	define Z_COMPILER_C_ATTRIBUTE_INLINE	 static __inline__ __attribute__((always_inline))
+#if Z_COMPILER_VERSION >= Z_VERSION(4, 0, 0)
+#	define Z_COMPILER_C_ATTRIBUTE_INLINE	      static __inline__ __attribute__((always_inline))
+#	define Z_COMPILER_C_ATTRIBUTE_NULL_TERMINATED __attribute__((sentinel))
 #else
-#	define Z_COMPILER_C_ATTRIBUTE_INLINE	 static __inline__
+#	define Z_COMPILER_C_ATTRIBUTE_INLINE static __inline__
 #endif
 
 #define Z_COMPILER_C_ATTRIBUTE_THREAD_LOCAL	 __thread
@@ -124,14 +125,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_INCREMENT( pointer) __sync_fetch_and_add(pointer, 1)
 #	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_INCREMENT( pointer) __sync_fetch_and_add(pointer, 1)
 
-#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
-#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_ADD		     __sync_fetch_and_add
+#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_ADD  __sync_fetch_and_add
+#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_ADD __sync_fetch_and_add
+#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_ADD __sync_fetch_and_add
+#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_ADD __sync_fetch_and_add
+#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_ADD   __sync_fetch_and_add
+#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_ADD  __sync_fetch_and_add
+#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_ADD  __sync_fetch_and_add
+#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_ADD  __sync_fetch_and_add
 
 #	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_DECREMENT( pointer) __sync_fetch_and_sub(pointer, 1)
 #	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_DECREMENT(pointer) __sync_fetch_and_sub(pointer, 1)
@@ -142,41 +143,41 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_DECREMENT( pointer) __sync_fetch_and_sub(pointer, 1)
 #	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_DECREMENT( pointer) __sync_fetch_and_sub(pointer, 1)
 
-#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
-#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_SUBTRACT	     __sync_fetch_and_sub
+#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_SUBTRACT  __sync_fetch_and_sub
+#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_SUBTRACT __sync_fetch_and_sub
+#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_SUBTRACT __sync_fetch_and_sub
+#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_SUBTRACT __sync_fetch_and_sub
+#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_SUBTRACT   __sync_fetch_and_sub
+#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_SUBTRACT  __sync_fetch_and_sub
+#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_SUBTRACT  __sync_fetch_and_sub
+#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_SUBTRACT  __sync_fetch_and_sub
 
-#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
-#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_AND		     __sync_fetch_and_and
+#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_AND  __sync_fetch_and_and
+#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_AND __sync_fetch_and_and
+#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_AND __sync_fetch_and_and
+#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_AND __sync_fetch_and_and
+#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_AND   __sync_fetch_and_and
+#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_AND  __sync_fetch_and_and
+#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_AND  __sync_fetch_and_and
+#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_AND  __sync_fetch_and_and
 
-#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
-#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_OR		     __sync_fetch_and_or
+#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_OR  __sync_fetch_and_or
+#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_OR __sync_fetch_and_or
+#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_OR __sync_fetch_and_or
+#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_OR __sync_fetch_and_or
+#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_OR   __sync_fetch_and_or
+#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_OR  __sync_fetch_and_or
+#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_OR  __sync_fetch_and_or
+#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_OR  __sync_fetch_and_or
 
-#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
-#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_XOR		     __sync_fetch_and_xor
+#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_XOR  __sync_fetch_and_xor
+#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_XOR __sync_fetch_and_xor
+#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_THEN_XOR __sync_fetch_and_xor
+#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_THEN_XOR __sync_fetch_and_xor
+#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_GET_THEN_XOR   __sync_fetch_and_xor
+#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_GET_THEN_XOR  __sync_fetch_and_xor
+#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_GET_THEN_XOR  __sync_fetch_and_xor
+#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_GET_THEN_XOR  __sync_fetch_and_xor
 
 #	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_INCREMENT_THEN_GET( pointer) __sync_add_and_fetch(pointer, 1)
 #	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_INCREMENT_THEN_GET(pointer) __sync_add_and_fetch(pointer, 1)
@@ -187,14 +188,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_FUNCTION_INT32_ATOMIC_INCREMENT_THEN_GET( pointer) __sync_add_and_fetch(pointer, 1)
 #	define Z_COMPILER_FUNCTION_INT64_ATOMIC_INCREMENT_THEN_GET( pointer) __sync_add_and_fetch(pointer, 1)
 
-#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
-#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_ADD_THEN_GET		     __sync_add_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_ADD_THEN_GET  __sync_add_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_ADD_THEN_GET __sync_add_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_ADD_THEN_GET __sync_add_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_ADD_THEN_GET __sync_add_and_fetch
+#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_ADD_THEN_GET   __sync_add_and_fetch
+#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_ADD_THEN_GET  __sync_add_and_fetch
+#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_ADD_THEN_GET  __sync_add_and_fetch
+#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_ADD_THEN_GET  __sync_add_and_fetch
 
 #	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_DECREMENT_THEN_GET( pointer) __sync_sub_and_fetch(pointer, 1)
 #	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_DECREMENT_THEN_GET(pointer) __sync_sub_and_fetch(pointer, 1)
@@ -205,41 +206,41 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_FUNCTION_INT32_ATOMIC_DECREMENT_THEN_GET( pointer) __sync_sub_and_fetch(pointer, 1)
 #	define Z_COMPILER_FUNCTION_INT64_ATOMIC_DECREMENT_THEN_GET( pointer) __sync_sub_and_fetch(pointer, 1)
 
-#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
-#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_SUBTRACT_THEN_GET	     __sync_sub_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_SUBTRACT_THEN_GET  __sync_sub_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_SUBTRACT_THEN_GET __sync_sub_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_SUBTRACT_THEN_GET __sync_sub_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_SUBTRACT_THEN_GET __sync_sub_and_fetch
+#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_SUBTRACT_THEN_GET   __sync_sub_and_fetch
+#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_SUBTRACT_THEN_GET  __sync_sub_and_fetch
+#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_SUBTRACT_THEN_GET  __sync_sub_and_fetch
+#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_SUBTRACT_THEN_GET  __sync_sub_and_fetch
 
-#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
-#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_AND_THEN_GET		     __sync_and_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_AND_THEN_GET  __sync_and_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_AND_THEN_GET __sync_and_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_AND_THEN_GET __sync_and_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_AND_THEN_GET __sync_and_and_fetch
+#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_AND_THEN_GET   __sync_and_and_fetch
+#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_AND_THEN_GET  __sync_and_and_fetch
+#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_AND_THEN_GET  __sync_and_and_fetch
+#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_AND_THEN_GET  __sync_and_and_fetch
 
-#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
-#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_OR_THEN_GET		     __sync_or_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_OR_THEN_GET  __sync_or_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_OR_THEN_GET __sync_or_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_OR_THEN_GET __sync_or_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_OR_THEN_GET __sync_or_and_fetch
+#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_OR_THEN_GET   __sync_or_and_fetch
+#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_OR_THEN_GET  __sync_or_and_fetch
+#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_OR_THEN_GET  __sync_or_and_fetch
+#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_OR_THEN_GET  __sync_or_and_fetch
 
-#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
-#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_XOR_THEN_GET		     __sync_xor_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_XOR_THEN_GET  __sync_xor_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_XOR_THEN_GET __sync_xor_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_XOR_THEN_GET __sync_xor_and_fetch
+#	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_XOR_THEN_GET __sync_xor_and_fetch
+#	define Z_COMPILER_FUNCTION_INT8_ATOMIC_XOR_THEN_GET   __sync_xor_and_fetch
+#	define Z_COMPILER_FUNCTION_INT16_ATOMIC_XOR_THEN_GET  __sync_xor_and_fetch
+#	define Z_COMPILER_FUNCTION_INT32_ATOMIC_XOR_THEN_GET  __sync_xor_and_fetch
+#	define Z_COMPILER_FUNCTION_INT64_ATOMIC_XOR_THEN_GET  __sync_xor_and_fetch
 
 #endif
 

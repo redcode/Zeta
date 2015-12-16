@@ -49,6 +49,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_INLINE inline
 #endif
 
+#if Z_COMPILER_HAS_C_ATTRIBUTE(NULL_TERMINATED)
+#	define Z_NULL_TERMINATED Z_COMPILER_C_ATTRIBUTE(NULL_TERMINATED)
+#else
+#	define Z_NULL_TERMINATED
+#endif
+
 #if Z_COMPILER_HAS_C_ATTRIBUTE(PRIVATE)
 #	define Z_PRIVATE Z_COMPILER_C_ATTRIBUTE(PRIVATE)
 #else
