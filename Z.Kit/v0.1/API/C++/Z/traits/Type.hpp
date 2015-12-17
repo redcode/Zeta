@@ -31,12 +31,13 @@ namespace ZKit {
 				is_function	     = false,
 				is_member_pointer    = false,
 				is_natural	     = false,
+				is_number	     = false,
 				is_pointer	     = false,
 				is_reference	     = false,
 				is_real		     = false,
 				is_signed	     = false,
 				is_union	     = false,
-				is_number	     = false,
+				is_value	     = false,
 				is_variadic	     = false,
 				is_variadic_function = false,
 				is_void		     = false,
@@ -45,8 +46,9 @@ namespace ZKit {
 		};
 
 		struct Number : Base {
-			enum {	is_number     = true,
-				is_arithmetic = true
+			enum {	is_arithmetic = true,
+				is_number     = true,
+				is_value      = true
 			};
 		};
 
@@ -269,7 +271,9 @@ namespace ZKit {
 		};
 
 		template <typename T> struct Pointer : Base {
-			enum {is_pointer = true};
+			enum {	is_pointer = true,
+				is_value   = true
+			};
 
 			typedef T* type;
 			typedef T  pointee_type;
