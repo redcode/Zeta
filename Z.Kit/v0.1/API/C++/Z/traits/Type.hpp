@@ -18,28 +18,29 @@ namespace ZKit {
 	namespace Abstract {namespace Type {
 
 		struct Base {
-			enum {	is_arithmetic	  = false,
-				is_array	  = false,
-				is_class	  = false,
-				is_callable	  = false,
-				is_const	  = false,
-				is_const_volatile = false,
-				is_enum		  = false,
-				is_exact	  = false,
-				is_integer	  = false,
-				is_flexible_array = false,
-				is_function	  = false,
-				is_member_pointer = false,
-				is_natural	  = false,
-				is_pointer	  = false,
-				is_reference	  = false,
-				is_real		  = false,
-				is_signed	  = false,
-				is_union	  = false,
-				is_number	  = false,
-				is_variadic	  = false,
-				is_void		  = false,
-				is_volatile	  = false
+			enum {	is_arithmetic	     = false,
+				is_array	     = false,
+				is_class	     = false,
+				is_callable	     = false,
+				is_const	     = false,
+				is_const_volatile    = false,
+				is_enum		     = false,
+				is_exact	     = false,
+				is_integer	     = false,
+				is_flexible_array    = false,
+				is_function	     = false,
+				is_member_pointer    = false,
+				is_natural	     = false,
+				is_pointer	     = false,
+				is_reference	     = false,
+				is_real		     = false,
+				is_signed	     = false,
+				is_union	     = false,
+				is_number	     = false,
+				is_variadic	     = false,
+				is_variadic_function = false,
+				is_void		     = false,
+				is_volatile	     = false
 			};
 		};
 
@@ -271,7 +272,7 @@ namespace ZKit {
 			enum {is_pointer = true};
 
 			typedef T* type;
-			typedef T  pointed_type;
+			typedef T  pointee_type;
 		};
 
 		template <typename T, zsize N> struct Array : Base {
@@ -290,18 +291,29 @@ namespace ZKit {
 			typedef T type[];
 			typedef T element_type;
 		};
-		/*
-		template <class R> struct Function<R> : Base {
+
+		template <class R, class... A> struct Function : Base {
 			enum {	is_callable = true,
 				is_function = true
 			};
+			enum {arity = sizeof...(A)};
+
+			typedef R type		     (A...);
+			typedef R type_const	     (A...) const;
+			typedef R type_volatile	     (A...)	  volatile;
+			typedef R type_const_volatile(A...) const volatile;
 
 			typedef R return_type;
 		};
 
-		template <class R> struct VariadicFunction<R> : Function<R> {
+		template <class R, class... A> struct VariadicFunction : Function<R, A...> {
 			enum {is_variadic = true};
-		};*/
+
+			typedef R type		     (A..., ...);
+			typedef R type_const	     (A..., ...) const;
+			typedef R type_volatile	     (A..., ...)       volatile;
+			typedef R type_const_volatile(A..., ...) const volatile;
+		};
 	}}
 
 	// MARK: - Mixins
@@ -310,7 +322,7 @@ namespace ZKit {
 
 		template <class C> struct Unqualified : C {
 			typedef const	       typename C::type add_const;
-			typedef volatile       typename C::type add_volatile;
+			typedef	      volatile typename C::type add_volatile;
 			typedef const volatile typename C::type add_const_volatile;
 			typedef		       typename C::type remove_const;
 			typedef		       typename C::type remove_volatile;
@@ -321,9 +333,7 @@ namespace ZKit {
 			enum {is_const = true};
 
 			typedef const	       typename C::type type;
-			typedef const	       typename C::type add_const;
 			typedef const volatile typename C::type add_volatile;
-			typedef		       typename C::type remove_const;
 			typedef const	       typename C::type remove_volatile;
 		};
 
@@ -332,9 +342,7 @@ namespace ZKit {
 
 			typedef	      volatile typename C::type type;
 			typedef const volatile typename C::type add_const;
-			typedef	      volatile typename C::type add_volatile;
 			typedef	      volatile typename C::type remove_const;
-			typedef		       typename C::type remove_volatile;
 		};
 
 		template <class C> struct ConstVolatile : Unqualified<C> {
@@ -360,6 +368,44 @@ namespace ZKit {
 
 		template <class C> struct ConstVolatileArray : ConstVolatile<C> {
 			typedef const volatile typename C::element_type element_type;
+		};
+
+		template <class C> struct UnqualifiedFunction : C {
+			typedef typename C::type_const		add_const;
+			typedef typename C::type_volatile	add_volatile;
+			typedef typename C::type_const_volatile add_const_volatile;
+			typedef typename C::type		remove_const;
+			typedef typename C::type		remove_volatile;
+			typedef typename C::type		remove_const_volatile;
+		};
+
+		template <class C> struct ConstFunction : UnqualifiedFunction<C> {
+			enum {is_const = true};
+
+			typedef typename C::type_const		type;
+			typedef typename C::type_const_volatile add_volatile;
+			typedef typename C::type_const		remove_volatile;
+		};
+
+		template <class C> struct VolatileFunction : UnqualifiedFunction<C> {
+			enum {is_volatile = true};
+
+			typedef typename C::type_volatile	type;
+			typedef typename C::type_const_volatile add_const;
+			typedef typename C::type_volatile	remove_const;
+		};
+
+		template <class C> struct ConstVolatileFunction : UnqualifiedFunction<C> {
+			enum {	is_const	  = true,
+				is_volatile	  = true,
+				is_const_volatile = true
+			};
+
+			typedef typename C::type_const_volatile type;
+			typedef typename C::type_const_volatile add_const;
+			typedef typename C::type_const_volatile add_volatile;
+			typedef typename C::type_volatile	remove_const;
+			typedef typename C::type_const		remove_volatile;
 		};
 	}}
 
@@ -435,47 +481,41 @@ namespace ZKit {
 
 	// MARK: - Functions
 
-	template <class R, class... A> struct Type<R(A...)> : Abstract::Type::Base {
-		enum {	is_callable = true,
-			is_function = true
-		};
+	template <class R, class... A> struct Type<R(A...)> : Mixins::Type::UnqualifiedFunction<Abstract::Type::Function<R, A...> > {};
 
-		typedef R return_type;
-	};
-
-	template <class R, class... A> struct Type<R(A...) const	 > : Mixins::Type::Const	<Type<R(A...)> > {};
-	template <class R, class... A> struct Type<R(A...)	 volatile> : Mixins::Type::Volatile     <Type<R(A...)> > {};
-	template <class R, class... A> struct Type<R(A...) const volatile> : Mixins::Type::ConstVolatile<Type<R(A...)> > {};
+	template <class R, class... A> struct Type<R(A...) const	 > : Mixins::Type::ConstFunction	<Type<R(A...)> > {};
+	template <class R, class... A> struct Type<R(A...)	 volatile> : Mixins::Type::VolatileFunction     <Type<R(A...)> > {};
+	template <class R, class... A> struct Type<R(A...) const volatile> : Mixins::Type::ConstVolatileFunction<Type<R(A...)> > {};
 
 	template <class R, class... A> struct Type<R(A...) &> : Type<R(A...)> {};
 
-	template <class R, class... A> struct Type<R(A...) const	  &> : Mixins::Type::Const	  <Type<R(A...) &> > {};
-	template <class R, class... A> struct Type<R(A...)	 volatile &> : Mixins::Type::Volatile	  <Type<R(A...) &> > {};
-	template <class R, class... A> struct Type<R(A...) const volatile &> : Mixins::Type::ConstVolatile<Type<R(A...) &> > {};
+	template <class R, class... A> struct Type<R(A...) const	  &> : Mixins::Type::ConstFunction	  <Type<R(A...) &> > {};
+	template <class R, class... A> struct Type<R(A...)	 volatile &> : Mixins::Type::VolatileFunction	  <Type<R(A...) &> > {};
+	template <class R, class... A> struct Type<R(A...) const volatile &> : Mixins::Type::ConstVolatileFunction<Type<R(A...) &> > {};
 
 	template <class R, class... A> struct Type<R(A...) &&> : Type<R(A...)> {};
 
-	template <class R, class... A> struct Type<R(A...) const	  &&> : Mixins::Type::Const	   <Type<R(A...) &&> > {};
-	template <class R, class... A> struct Type<R(A...)	 volatile &&> : Mixins::Type::Volatile	   <Type<R(A...) &&> > {};
-	template <class R, class... A> struct Type<R(A...) const volatile &&> : Mixins::Type::ConstVolatile<Type<R(A...) &&> > {};
+	template <class R, class... A> struct Type<R(A...) const	  &&> : Mixins::Type::ConstFunction	   <Type<R(A...) &&> > {};
+	template <class R, class... A> struct Type<R(A...)	 volatile &&> : Mixins::Type::VolatileFunction	   <Type<R(A...) &&> > {};
+	template <class R, class... A> struct Type<R(A...) const volatile &&> : Mixins::Type::ConstVolatileFunction<Type<R(A...) &&> > {};
 
-	template <class R, class... A> struct Type<R(A..., ...)> : public Type<R(A...)> {enum {is_variadic = true};};
+	template <class R, class... A> struct Type<R(A..., ...)> : Mixins::Type::UnqualifiedFunction<Abstract::Type::VariadicFunction<R, A...> > {};
 
-	template <class R, class... A> struct Type<R(A..., ...) const	      > : Mixins::Type::Const	     <Type<R(A..., ...)> > {};
-	template <class R, class... A> struct Type<R(A..., ...)	      volatile> : Mixins::Type::Volatile     <Type<R(A..., ...)> > {};
-	template <class R, class... A> struct Type<R(A..., ...) const volatile> : Mixins::Type::ConstVolatile<Type<R(A..., ...)> > {};
+	template <class R, class... A> struct Type<R(A..., ...) const	      > : Mixins::Type::ConstFunction	     <Type<R(A..., ...)> > {};
+	template <class R, class... A> struct Type<R(A..., ...)	      volatile> : Mixins::Type::VolatileFunction     <Type<R(A..., ...)> > {};
+	template <class R, class... A> struct Type<R(A..., ...) const volatile> : Mixins::Type::ConstVolatileFunction<Type<R(A..., ...)> > {};
  
 	template <class R, class... A> struct Type<R(A..., ...) &> : Type<R(A..., ...)> {};
 
-	template <class R, class... A> struct Type<R(A..., ...) const	       & > : Mixins::Type::Const	<Type<R(A..., ...) &> > {};
-	template <class R, class... A> struct Type<R(A..., ...)	      volatile & > : Mixins::Type::Volatile	<Type<R(A..., ...) &> > {};
-	template <class R, class... A> struct Type<R(A..., ...) const volatile & > : Mixins::Type::ConstVolatile<Type<R(A..., ...) &> > {};
+	template <class R, class... A> struct Type<R(A..., ...) const	       & > : Mixins::Type::ConstFunction	<Type<R(A..., ...) &> > {};
+	template <class R, class... A> struct Type<R(A..., ...)	      volatile & > : Mixins::Type::VolatileFunction	<Type<R(A..., ...) &> > {};
+	template <class R, class... A> struct Type<R(A..., ...) const volatile & > : Mixins::Type::ConstVolatileFunction<Type<R(A..., ...) &> > {};
 
 	template <class R, class... A> struct Type<R(A..., ...) &&> : Type<R(A..., ...)> {};
 
-	template <class R, class... A> struct Type<R(A..., ...) const	       &&> : Mixins::Type::Const	<Type<R(A..., ...) &&> > {};
-	template <class R, class... A> struct Type<R(A..., ...)	      volatile &&> : Mixins::Type::Volatile	<Type<R(A..., ...) &&> > {};
-	template <class R, class... A> struct Type<R(A..., ...) const volatile &&> : Mixins::Type::ConstVolatile<Type<R(A..., ...) &&> > {};
+	template <class R, class... A> struct Type<R(A..., ...) const	       &&> : Mixins::Type::ConstFunction	<Type<R(A..., ...) &&> > {};
+	template <class R, class... A> struct Type<R(A..., ...)	      volatile &&> : Mixins::Type::VolatileFunction	<Type<R(A..., ...) &&> > {};
+	template <class R, class... A> struct Type<R(A..., ...) const volatile &&> : Mixins::Type::ConstVolatileFunction<Type<R(A..., ...) &&> > {};
 }
 
 #endif // __Z_traits_Type_HPP__
