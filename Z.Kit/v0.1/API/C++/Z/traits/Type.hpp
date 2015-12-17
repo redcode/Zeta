@@ -27,6 +27,7 @@ namespace ZKit {
 				is_enum		  = false,
 				is_exact	  = false,
 				is_integer	  = false,
+				is_flexible_array = false,
 				is_function	  = false,
 				is_member_pointer = false,
 				is_natural	  = false,
@@ -68,75 +69,299 @@ namespace ZKit {
 			};
 		};
 
-		struct Char {
-			typedef		       unsigned char base_unsigned_type;
-			typedef const	       unsigned char const_unsigned_type;
-			typedef	      volatile unsigned char volatile_unsigned_type;
-			typedef const volatile unsigned char const_volatile_unsigned_type;
-			typedef		      	 signed char base_signed_type;
-			typedef const	      	 signed char const_signed_type;
-			typedef	      volatile	 signed char volatile_signed_type;
-			typedef const volatile	 signed char const_volatile_signed_type;	
+		struct UChar : Natural {
+			enum {	bits = Z_UCHAR_BITS,
+				size = Z_UCHAR_SIZE
+			};
+			enum {maximum = Z_UCHAR_MAXIMUM};
+
+			typedef unsigned char type;
+			typedef unsigned char to_unsigned;
+			typedef signed   char to_signed;
 		};
 
-		struct Short {
-			typedef		       unsigned short int base_unsigned_type;
-			typedef const	       unsigned short int const_unsigned_type;
-			typedef	      volatile unsigned short int volatile_unsigned_type;
-			typedef const volatile unsigned short int const_volatile_unsigned_type;
-			typedef		      	 signed short int base_signed_type;
-			typedef const	      	 signed short int const_signed_type;
-			typedef	      volatile	 signed short int volatile_signed_type;
-			typedef const volatile	 signed short int const_volatile_signed_type;	
+		struct UShort : Natural {
+			enum {	bits = Z_USHORT_BITS,
+				size = Z_USHORT_SIZE
+			};
+			enum {maximum = Z_USHORT_MAXIMUM};
+
+			typedef unsigned short int type;
+			typedef unsigned short int to_unsigned;
+			typedef signed	 short int to_signed;
 		};
 
-		struct Int {
-			typedef		       unsigned int base_unsigned_type;
-			typedef const	       unsigned int const_unsigned_type;
-			typedef	      volatile unsigned int volatile_unsigned_type;
-			typedef const volatile unsigned int const_volatile_unsigned_type;
-			typedef		      	 signed int base_signed_type;
-			typedef const	      	 signed int const_signed_type;
-			typedef	      volatile	 signed int volatile_signed_type;
-			typedef const volatile	 signed int const_volatile_signed_type;	
+		struct UInt : Natural {
+			enum {	bits = Z_UINT_BITS,
+				size = Z_UINT_SIZE
+			};
+			enum {maximum = Z_UINT_MAXIMUM};
+
+			typedef unsigned int type;
+			typedef unsigned int to_unsigned;
+			typedef signed	 int to_signed;
 		};
 
-		struct Long {
-			typedef		       unsigned long int base_unsigned_type;
-			typedef const	       unsigned long int const_unsigned_type;
-			typedef	      volatile unsigned long int volatile_unsigned_type;
-			typedef const volatile unsigned long int const_volatile_unsigned_type;
-			typedef		      	 signed long int base_signed_type;
-			typedef const	      	 signed long int const_signed_type;
-			typedef	      volatile	 signed long int volatile_signed_type;
-			typedef const volatile	 signed long int const_volatile_signed_type;	
+		struct ULong : Natural {
+			enum {	bits = Z_ULONG_BITS,
+				size = Z_ULONG_SIZE
+			};
+			enum {maximum = Z_ULONG_MAXIMUM};
+
+			typedef unsigned long int type;
+			typedef unsigned long int to_unsigned;
+			typedef signed	 long int to_signed;
 		};
 
-		struct LLong {
-			typedef		       unsigned long long int base_unsigned_type;
-			typedef const	       unsigned long long int const_unsigned_type;
-			typedef	      volatile unsigned long long int volatile_unsigned_type;
-			typedef const volatile unsigned long long int const_volatile_unsigned_type;
-			typedef		      	 signed long long int base_signed_type;
-			typedef const	      	 signed long long int const_signed_type;
-			typedef	      volatile	 signed long long int volatile_signed_type;
-			typedef const volatile	 signed long long int const_volatile_signed_type;	
+		struct ULLong : Natural {
+			enum {	bits = Z_ULLONG_BITS,
+				size = Z_ULLONG_SIZE
+			};
+			enum {maximum = Z_ULLONG_MAXIMUM};
+
+			typedef unsigned long long int type;
+			typedef unsigned long long int to_unsigned;
+			typedef signed	 long long int to_signed;
 		};
+
+		struct Char : Integer {
+			enum {	bits = Z_CHAR_BITS,
+				size = Z_CHAR_SIZE
+			};
+			enum {	minimum = Z_CHAR_MINIMUM,
+				maximum = Z_CHAR_MAXIMUM
+			};
+
+			typedef signed	 char type;
+			typedef unsigned char to_unsigned;
+			typedef signed	 char to_signed;
+		};
+
+		struct Short : Integer {
+			enum {	bits = Z_SHORT_BITS,
+				size = Z_SHORT_SIZE
+			};
+			enum {	minimum = Z_SHORT_MINIMUM,
+				maximum = Z_SHORT_MAXIMUM
+			};
+
+			typedef signed	 short int type;
+			typedef unsigned short int to_unsigned;
+			typedef signed	 short int to_signed;
+		};
+
+		struct Int : Integer {
+			enum {	bits = Z_INT_BITS,
+				size = Z_INT_SIZE
+			};
+			enum {	minimum = Z_INT_MINIMUM,
+				maximum = Z_INT_MAXIMUM
+			};
+
+			typedef signed	 int type;
+			typedef unsigned int to_unsigned;
+			typedef signed	 int to_signed;
+		};
+
+		struct Long : Integer {
+			enum {	bits = Z_LONG_BITS,
+				size = Z_LONG_SIZE
+			};
+			enum {	minimum = Z_LONG_MINIMUM,
+				maximum = Z_LONG_MAXIMUM
+			};
+
+			typedef signed	 long int type;
+			typedef unsigned long int to_unsigned;
+			typedef signed	 long int to_signed;
+		};
+
+		struct LLong : Integer {
+			enum {	bits = Z_LLONG_BITS,
+				size = Z_LLONG_SIZE
+			};
+			enum {	minimum = Z_LLONG_MINIMUM,
+				maximum = Z_LLONG_MAXIMUM
+			};
+
+			typedef signed	 long long int type;
+			typedef unsigned long long int to_unsigned;
+			typedef signed	 long long int to_signed;
+		};
+
+		struct Float : Real {
+			enum {	bits		    = Z_FLOAT_BITS,
+				size		    = Z_FLOAT_SIZE,
+				bias		    = Z_FLOAT_BIAS,
+				decimal_digits	    = Z_FLOAT_DECIMAL_DIGITS,
+				significand_offset  = Z_FLOAT_SIGNIFICAND_OFFSET,
+				significand_bits    = Z_FLOAT_SIGNIFICAND_BITS,
+				significand_digits  = Z_FLOAT_SIGNIFICAND_DIGITS,
+				exponent_offset	    = Z_FLOAT_EXPONENT_OFFSET,
+				exponent_bits	    = Z_FLOAT_EXPONENT_BITS,
+				exponent_radix	    = Z_FLOAT_EXPONENT_RADIX,
+				exponent_minimum    = Z_FLOAT_EXPONENT_MINIMUM,
+				exponent_maximum    = Z_FLOAT_EXPONENT_MAXIMUM,
+				exponent_10_minimum = Z_FLOAT_EXPONENT_10_MINIMUM,
+				exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM,
+				sign_offset	    = Z_FLOAT_SIGN_OFFSET,
+				sign_bits	    = Z_FLOAT_SIGN_BITS
+			};
+
+			static constexpr float epsilon = Z_FLOAT_EPSILON;
+			static constexpr float minimum = Z_FLOAT_MINIMUM;
+			static constexpr float maximum = Z_FLOAT_MAXIMUM;
+
+			typedef float type;
+		};
+
+		struct Double : Real {
+			enum {	bits		    = Z_DOUBLE_BITS,
+				size		    = Z_DOUBLE_SIZE,
+				bias		    = Z_DOUBLE_BIAS,
+				decimal_digits	    = Z_DOUBLE_DECIMAL_DIGITS,
+				significand_offset  = Z_DOUBLE_SIGNIFICAND_OFFSET,
+				significand_bits    = Z_DOUBLE_SIGNIFICAND_BITS,
+				significand_digits  = Z_DOUBLE_SIGNIFICAND_DIGITS,
+				exponent_offset	    = Z_DOUBLE_EXPONENT_OFFSET,
+				exponent_bits	    = Z_DOUBLE_EXPONENT_BITS,
+				exponent_radix	    = Z_DOUBLE_EXPONENT_RADIX,
+				exponent_minimum    = Z_DOUBLE_EXPONENT_MINIMUM,
+				exponent_maximum    = Z_DOUBLE_EXPONENT_MAXIMUM,
+				exponent_10_minimum = Z_DOUBLE_EXPONENT_10_MINIMUM,
+				exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM,
+				sign_offset	    = Z_DOUBLE_SIGN_OFFSET,
+				sign_bits	    = Z_DOUBLE_SIGN_BITS
+			};
+
+			static constexpr double epsilon = Z_DOUBLE_EPSILON;
+			static constexpr double minimum = Z_DOUBLE_MINIMUM;
+			static constexpr double maximum = Z_DOUBLE_MAXIMUM;
+
+			typedef double type;
+		};
+
+		struct LDouble : Real {
+			enum {	bits		    = Z_LDOUBLE_BITS,
+				size		    = Z_LDOUBLE_SIZE,
+				bias		    = Z_LDOUBLE_BIAS,
+				decimal_digits	    = Z_LDOUBLE_DECIMAL_DIGITS,
+				significand_offset  = Z_LDOUBLE_SIGNIFICAND_OFFSET,
+				significand_bits    = Z_LDOUBLE_SIGNIFICAND_BITS,
+				significand_digits  = Z_LDOUBLE_SIGNIFICAND_DIGITS,
+				exponent_offset	    = Z_LDOUBLE_EXPONENT_OFFSET,
+				exponent_bits	    = Z_LDOUBLE_EXPONENT_BITS,
+				exponent_radix	    = Z_LDOUBLE_EXPONENT_RADIX,
+				exponent_minimum    = Z_LDOUBLE_EXPONENT_MINIMUM,
+				exponent_maximum    = Z_LDOUBLE_EXPONENT_MAXIMUM,
+				exponent_10_minimum = Z_LDOUBLE_EXPONENT_10_MINIMUM,
+				exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM,
+				sign_offset	    = Z_LDOUBLE_SIGN_OFFSET,
+				sign_bits	    = Z_LDOUBLE_SIGN_BITS
+			};
+
+			static constexpr long double epsilon = Z_LDOUBLE_EPSILON;
+			static constexpr long double minimum = Z_LDOUBLE_MINIMUM;
+			static constexpr long double maximum = Z_LDOUBLE_MAXIMUM;
+
+			typedef long double type;
+		};
+
+		template <typename T> struct Pointer : Base {
+			enum {is_pointer = true};
+
+			typedef T* type;
+			typedef T  pointed_type;
+		};
+
+		template <typename T, zsize N> struct Array : Base {
+			enum {is_array = true};
+			enum {element_count = N};
+
+			typedef T type[N];
+			typedef T element_type;
+		};
+
+		template <typename T> struct FlexibleArray : Base {
+			enum {	is_array	  = true,
+				is_flexible_array = true,
+			};
+
+			typedef T type[];
+			typedef T element_type;
+		};
+		/*
+		template <class R> struct Function<R> : Base {
+			enum {	is_callable = true,
+				is_function = true
+			};
+
+			typedef R return_type;
+		};
+
+		template <class R> struct VariadicFunction<R> : Function<R> {
+			enum {is_variadic = true};
+		};*/
 	}}
+
+	// MARK: - Mixins
 
 	namespace Mixins {namespace Type {
 
-		template <class C> struct Const	   : C {enum {is_const    = true};};
-		template <class C> struct Volatile : C {enum {is_volatile = true};};
+		template <class C> struct Unqualified : C {
+			typedef const	       typename C::type add_const;
+			typedef volatile       typename C::type add_volatile;
+			typedef const volatile typename C::type add_const_volatile;
+			typedef		       typename C::type remove_const;
+			typedef		       typename C::type remove_volatile;
+			typedef		       typename C::type remove_const_volatile;
+		};
 
-		template <class C> struct ConstVolatile : C {
+		template <class C> struct Const : Unqualified<C> {
+			enum {is_const = true};
+
+			typedef const	       typename C::type type;
+			typedef const	       typename C::type add_const;
+			typedef const volatile typename C::type add_volatile;
+			typedef		       typename C::type remove_const;
+			typedef const	       typename C::type remove_volatile;
+		};
+
+		template <class C> struct Volatile : Unqualified<C> {
+			enum {is_volatile = true};
+
+			typedef	      volatile typename C::type type;
+			typedef const volatile typename C::type add_const;
+			typedef	      volatile typename C::type add_volatile;
+			typedef	      volatile typename C::type remove_const;
+			typedef		       typename C::type remove_volatile;
+		};
+
+		template <class C> struct ConstVolatile : Unqualified<C> {
 			enum {	is_const	  = true,
 				is_volatile	  = true,
 				is_const_volatile = true
 			};
+
+			typedef const volatile typename C::type type;
+			typedef const volatile typename C::type add_const;
+			typedef const volatile typename C::type add_volatile;
+			typedef	      volatile typename C::type remove_const;
+			typedef const	       typename C::type remove_volatile;
+		};
+
+		template <class C> struct ConstArray : Const<C> {
+			typedef const typename C::element_type element_type;
+		};
+
+		template <class C> struct VolatileArray : Volatile<C> {
+			typedef volatile typename C::element_type element_type;
+		};
+
+		template <class C> struct ConstVolatileArray : ConstVolatile<C> {
+			typedef const volatile typename C::element_type element_type;
 		};
 	}}
-
 
 	template <typename T> struct Type : Abstract::Type::Base {};
 
@@ -146,274 +371,70 @@ namespace ZKit {
 
 	// MARK: - Numbers
 
-	template <> struct Type<unsigned char> : Abstract::Type::Natural, Abstract::Type::Char {
-		enum {	bits = Z_UCHAR_BITS,
-			size = Z_UCHAR_SIZE
-		};
-		enum {maximum = Z_UCHAR_MAXIMUM};
+	template <> struct Type<unsigned char	      > : Mixins::Type::Unqualified<Abstract::Type::UChar  > {};
+	template <> struct Type<unsigned short int    > : Mixins::Type::Unqualified<Abstract::Type::UShort > {};
+	template <> struct Type<unsigned int	      > : Mixins::Type::Unqualified<Abstract::Type::UInt   > {};
+	template <> struct Type<unsigned long int     > : Mixins::Type::Unqualified<Abstract::Type::ULong  > {};
+	template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong > {};
+	template <> struct Type<signed char	      > : Mixins::Type::Unqualified<Abstract::Type::Char   > {};
+	template <> struct Type<signed short int      > : Mixins::Type::Unqualified<Abstract::Type::Short  > {};
+	template <> struct Type<signed int	      > : Mixins::Type::Unqualified<Abstract::Type::Int	   > {};
+	template <> struct Type<signed long int	      > : Mixins::Type::Unqualified<Abstract::Type::Long   > {};
+	template <> struct Type<signed long long int  > : Mixins::Type::Unqualified<Abstract::Type::LLong  > {};
+	template <> struct Type<float		      > : Mixins::Type::Unqualified<Abstract::Type::Float  > {};
+	template <> struct Type<double		      > : Mixins::Type::Unqualified<Abstract::Type::Double > {};
+	template <> struct Type<long double	      > : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
 
-		typedef		       unsigned char base_type;
-		typedef const	       unsigned char const_type;
-		typedef	      volatile unsigned char volatile_type;
-		typedef const volatile unsigned char const_volatile_type;
+	template <typename T> struct Type<const T> : Mixins::Type::Const<Type<T> > {
+		typedef const typename Type<T>::to_unsigned to_unsigned;
+		typedef const typename Type<T>::to_signed   to_signed;
 	};
 
-	template <> struct Type<unsigned short int> : Abstract::Type::Natural, Abstract::Type::Short {
-		enum {	bits = Z_USHORT_BITS,
-			size = Z_USHORT_SIZE
-		};
-		enum {maximum = Z_USHORT_MAXIMUM};
-
-		typedef		       unsigned short int base_type;
-		typedef const	       unsigned short int const_type;
-		typedef	      volatile unsigned short int volatile_type;
-		typedef const volatile unsigned short int const_volatile_type;
+	template <typename T> struct Type<volatile T> : Mixins::Type::Volatile<Type<T> > {
+		typedef volatile typename Type<T>::to_unsigned to_unsigned;
+		typedef volatile typename Type<T>::to_signed   to_signed;
 	};
 
-	template <> struct Type<unsigned int> : Abstract::Type::Natural, Abstract::Type::Int {
-		enum {	bits = Z_UINT_BITS,
-			size = Z_UINT_SIZE
-		};
-		enum {maximum = Z_UINT_MAXIMUM};
-
-		typedef		       unsigned int base_type;
-		typedef const	       unsigned int const_type;
-		typedef	      volatile unsigned int volatile_type;
-		typedef const volatile unsigned int const_volatile_type;
+	template <typename T> struct Type<const volatile T> : Mixins::Type::ConstVolatile<Type<T> > {
+		typedef const volatile typename Type<T>::to_unsigned to_unsigned;
+		typedef const volatile typename Type<T>::to_signed   to_signed;
 	};
-
-	template <> struct Type<unsigned long int> : Abstract::Type::Natural, Abstract::Type::Long {
-		enum {	bits = Z_ULONG_BITS,
-			size = Z_ULONG_SIZE
-		};
-		enum {maximum = Z_ULONG_MAXIMUM};
-
-		typedef		       unsigned long int base_type;
-		typedef const	       unsigned long int const_type;
-		typedef	      volatile unsigned long int volatile_type;
-		typedef const volatile unsigned long int const_volatile_type;
-	};
-
-	template <> struct Type<unsigned long long int>	: Abstract::Type::Natural, Abstract::Type::LLong {
-		enum {	bits = Z_ULLONG_BITS,
-			size = Z_ULLONG_SIZE
-		};
-		enum {maximum = Z_ULLONG_MAXIMUM};
-
-		typedef		       unsigned long long int base_type;
-		typedef const	       unsigned long long int const_type;
-		typedef	      volatile unsigned long long int volatile_type;
-		typedef const volatile unsigned long long int const_volatile_type;
-	};
-
-	template <> struct Type<signed char> : Abstract::Type::Integer, Abstract::Type::Char {
-		enum {	bits = Z_CHAR_BITS,
-			size = Z_CHAR_SIZE
-		};
-		enum {	minimum = Z_CHAR_MINIMUM,
-			maximum = Z_CHAR_MAXIMUM
-		};
-
-		typedef		       signed char base_type;
-		typedef const	       signed char const_type;
-		typedef	      volatile signed char volatile_type;
-		typedef const volatile signed char const_volatile_type;
-	};
-
-	template <> struct Type<signed short int> : Abstract::Type::Integer, Abstract::Type::Short {
-		enum {	bits = Z_SHORT_BITS,
-			size = Z_SHORT_SIZE
-		};
-		enum {	minimum = Z_SHORT_MINIMUM,
-			maximum = Z_SHORT_MAXIMUM
-		};
-
-		typedef		       signed short int base_type;
-		typedef const	       signed short int const_type;
-		typedef	      volatile signed short int volatile_type;
-		typedef const volatile signed short int const_volatile_type;
-	};
-
-	template <> struct Type<signed int> : Abstract::Type::Integer, Abstract::Type::Int {
-		enum {	bits = Z_INT_BITS,
-			size = Z_INT_SIZE
-		};
-		enum {	minimum = Z_INT_MINIMUM,
-			maximum = Z_INT_MAXIMUM
-		};
-
-		typedef		       signed int base_type;
-		typedef const	       signed int const_type;
-		typedef	      volatile signed int volatile_type;
-		typedef const volatile signed int const_volatile_type;
-	};
-
-	template <> struct Type<signed long int> : Abstract::Type::Integer, Abstract::Type::Long {
-		enum {	bits = Z_LONG_BITS,
-			size = Z_LONG_SIZE
-		};
-		enum {	minimum = Z_LONG_MINIMUM,
-			maximum = Z_LONG_MAXIMUM
-		};
-
-		typedef		       signed long int base_type;
-		typedef const	       signed long int const_type;
-		typedef	      volatile signed long int volatile_type;
-		typedef const volatile signed long int const_volatile_type;
-	};
-
-	template <> struct Type<signed long long int> : Abstract::Type::Integer, Abstract::Type::LLong {
-		enum {	bits = Z_LLONG_BITS,
-			size = Z_LLONG_SIZE
-		};
-		enum {	minimum = Z_LLONG_MINIMUM,
-			maximum = Z_LLONG_MAXIMUM
-		};
-
-		typedef		       signed long long int base_type;
-		typedef const	       signed long long int const_type;
-		typedef	      volatile signed long long int volatile_type;
-		typedef const volatile signed long long int const_volatile_type;
-	};
-
-	template <> struct Type<float> : Abstract::Type::Real {
-		enum {	bits		    = Z_FLOAT_BITS,
-			size		    = Z_FLOAT_SIZE,
-			bias		    = Z_FLOAT_BIAS,
-			decimal_digits	    = Z_FLOAT_DECIMAL_DIGITS,
-			significand_offset  = Z_FLOAT_SIGNIFICAND_OFFSET,
-			significand_bits    = Z_FLOAT_SIGNIFICAND_BITS,
-			significand_digits  = Z_FLOAT_SIGNIFICAND_DIGITS,
-			exponent_offset	    = Z_FLOAT_EXPONENT_OFFSET,
-			exponent_bits	    = Z_FLOAT_EXPONENT_BITS,
-			exponent_radix	    = Z_FLOAT_EXPONENT_RADIX,
-			exponent_minimum    = Z_FLOAT_EXPONENT_MINIMUM,
-			exponent_maximum    = Z_FLOAT_EXPONENT_MAXIMUM,
-			exponent_10_minimum = Z_FLOAT_EXPONENT_10_MINIMUM,
-			exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM,
-			sign_offset	    = Z_FLOAT_SIGN_OFFSET,
-			sign_bits	    = Z_FLOAT_SIGN_BITS
-		};
-
-		typedef		       float base_type;
-		typedef const	       float const_type;
-		typedef	      volatile float volatile_type;
-		typedef const volatile float const_volatile_type;
-
-		static constexpr float epsilon = Z_FLOAT_EPSILON;
-		static constexpr float minimum = Z_FLOAT_MINIMUM;
-		static constexpr float maximum = Z_FLOAT_MAXIMUM;
-	};
-
-	template <> struct Type<double> : Abstract::Type::Real {
-		enum {	bits		    = Z_DOUBLE_BITS,
-			size		    = Z_DOUBLE_SIZE,
-			bias		    = Z_DOUBLE_BIAS,
-			decimal_digits	    = Z_DOUBLE_DECIMAL_DIGITS,
-			significand_offset  = Z_DOUBLE_SIGNIFICAND_OFFSET,
-			significand_bits    = Z_DOUBLE_SIGNIFICAND_BITS,
-			significand_digits  = Z_DOUBLE_SIGNIFICAND_DIGITS,
-			exponent_offset	    = Z_DOUBLE_EXPONENT_OFFSET,
-			exponent_bits	    = Z_DOUBLE_EXPONENT_BITS,
-			exponent_radix	    = Z_DOUBLE_EXPONENT_RADIX,
-			exponent_minimum    = Z_DOUBLE_EXPONENT_MINIMUM,
-			exponent_maximum    = Z_DOUBLE_EXPONENT_MAXIMUM,
-			exponent_10_minimum = Z_DOUBLE_EXPONENT_10_MINIMUM,
-			exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM,
-			sign_offset	    = Z_DOUBLE_SIGN_OFFSET,
-			sign_bits	    = Z_DOUBLE_SIGN_BITS
-		};
-
-		typedef		       double base_type;
-		typedef const	       double const_type;
-		typedef	      volatile double volatile_type;
-		typedef const volatile double const_volatile_type;
-
-		static constexpr double epsilon = Z_DOUBLE_EPSILON;
-		static constexpr double minimum = Z_DOUBLE_MINIMUM;
-		static constexpr double maximum = Z_DOUBLE_MAXIMUM;
-	};
-
-	template <> struct Type<long double> : Abstract::Type::Real {
-		enum {	bits		    = Z_LDOUBLE_BITS,
-			size		    = Z_LDOUBLE_SIZE,
-			bias		    = Z_LDOUBLE_BIAS,
-			decimal_digits	    = Z_LDOUBLE_DECIMAL_DIGITS,
-			significand_offset  = Z_LDOUBLE_SIGNIFICAND_OFFSET,
-			significand_bits    = Z_LDOUBLE_SIGNIFICAND_BITS,
-			significand_digits  = Z_LDOUBLE_SIGNIFICAND_DIGITS,
-			exponent_offset	    = Z_LDOUBLE_EXPONENT_OFFSET,
-			exponent_bits	    = Z_LDOUBLE_EXPONENT_BITS,
-			exponent_radix	    = Z_LDOUBLE_EXPONENT_RADIX,
-			exponent_minimum    = Z_LDOUBLE_EXPONENT_MINIMUM,
-			exponent_maximum    = Z_LDOUBLE_EXPONENT_MAXIMUM,
-			exponent_10_minimum = Z_LDOUBLE_EXPONENT_10_MINIMUM,
-			exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM,
-			sign_offset	    = Z_LDOUBLE_SIGN_OFFSET,
-			sign_bits	    = Z_LDOUBLE_SIGN_BITS
-		};
-
-		typedef		       long double base_type;
-		typedef const	       long double const_type;
-		typedef	      volatile long double volatile_type;
-		typedef const volatile long double const_volatile_type;
-
-		static constexpr long double epsilon = Z_LDOUBLE_EPSILON;
-		static constexpr long double minimum = Z_LDOUBLE_MINIMUM;
-		static constexpr long double maximum = Z_LDOUBLE_MAXIMUM;
-	};
-
-	template <typename T> struct Type<const		 T> : Mixins::Type::Const	 <Type<T> > {};
-	template <typename T> struct Type<	volatile T> : Mixins::Type::Volatile	 <Type<T> > {};
-	template <typename T> struct Type<const volatile T> : Mixins::Type::ConstVolatile<Type<T> > {};
-
-	//template <> struct Type<enum> : public Abstract::Type::Base {enum {is_enum = true};};
 
 	// MARK: - Pointers
 
-	template <typename T> struct Type<T*> : Abstract::Type::Base {
-		enum {is_pointer = true};
+	template <typename T> struct Type<T*> : Mixins::Type::Unqualified<Abstract::Type::Pointer<T> > {};
 
-		typedef T pointed_type;
-	};
+	template <typename T> struct Type<T* const	   > : Mixins::Type::Const	  <Type<T*> > {};
+	template <typename T> struct Type<T*	   volatile> : Mixins::Type::Volatile	  <Type<T*> > {};
+	template <typename T> struct Type<T* const volatile> : Mixins::Type::ConstVolatile<Type<T*> > {};
 
 	// MARK: - References
 
 	template <typename T> struct Type<T&> : Abstract::Type::Base {
 		enum {is_reference = true};
 
-		typedef T referenced_type;
+		typedef T& type;
+		typedef T  referenced_type;
 	};
 
 	// MARK: - Arrays
 
-	template <typename T> struct Type<T[]> : Abstract::Type::Base {
-		enum {is_array = true};
+ 	template <typename T, zsize N> struct Type<T[N]> : Mixins::Type::Unqualified<Abstract::Type::Array<T, N> > {};
 
-		typedef		       T base_contained_type;
-		typedef const	       T const_contained_type;
-		typedef	      volatile T volatile_contained_type;
-		typedef const volatile T const_volatile_contained_type;
-	};
+	template <typename T, zsize N> struct Type<const	  T[N]> : Mixins::Type::ConstArray	  <Type<T[N]> > {};
+	template <typename T, zsize N> struct Type<	 volatile T[N]> : Mixins::Type::VolatileArray	  <Type<T[N]> > {};
+	template <typename T, zsize N> struct Type<const volatile T[N]> : Mixins::Type::ConstVolatileArray<Type<T[N]> > {};
 
-	template <typename T> struct Type<const		 T[]> : Mixins::Type::Const	   <Type<T[]> > {};
-	template <typename T> struct Type<      volatile T[]> : Mixins::Type::Volatile	   <Type<T[]> > {};
-	template <typename T> struct Type<const volatile T[]> : Mixins::Type::ConstVolatile<Type<T[]> > {};
+	// MARK: - Flexible arrays
 
- 	template <typename T, zsize N> struct Type<		  T[N]> : Type<		      T[]> {};
-	template <typename T, zsize N> struct Type<const	  T[N]> : Type<const	      T[]> {};
-	template <typename T, zsize N> struct Type<	 volatile T[N]> : Type<	     volatile T[]> {};
-	template <typename T, zsize N> struct Type<const volatile T[N]> : Type<const volatile T[]> {};
+	template <typename T> struct Type<T[]> : Mixins::Type::Unqualified<Abstract::Type::FlexibleArray<T> > {};
 
-
-	// MARK: - Structures
-
-	/*template <typename T, class U> struct Type<T U::*> : public Abstract::Type::Base {
-		enum {is_member_pointer = true};
-	};*/
+	template <typename T> struct Type<const		 T[]> : Mixins::Type::ConstArray	<Type<T[]> > {};
+	template <typename T> struct Type<	volatile T[]> : Mixins::Type::VolatileArray	<Type<T[]> > {};
+	template <typename T> struct Type<const volatile T[]> : Mixins::Type::ConstVolatileArray<Type<T[]> > {};
 
 	// MARK: - Functions
- 
+
 	template <class R, class... A> struct Type<R(A...)> : Abstract::Type::Base {
 		enum {	is_callable = true,
 			is_function = true
