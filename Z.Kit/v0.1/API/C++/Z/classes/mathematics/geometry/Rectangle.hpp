@@ -34,46 +34,16 @@ template <typename T> struct ZKit::Rectangle {
 
 	inline Rectangle<T>() {}
 
-
-	inline Rectangle<T>(const Value2D<T> &point, const Value2D<T> &size)
-	: point(point), size(size) {}
-
-
-	inline Rectangle<T>(const Value2D<T> &point, T size_x, T size_y)
-	: point(point), size(size_x, size_y) {}
-
-
-	inline Rectangle<T>(const Value2D<T> &point, T size)
-	: point(point), size(size) {}
-
-
-	inline Rectangle<T>(T x, T y, const Value2D<T> &size)
-	: point(x, y), size(size) {}
-
-
-	inline Rectangle<T>(T x, T y, T size_x, T size_y)
-	: point(x, y), size(size_x, size_y) {}
-
-
-	inline Rectangle<T>(T x, T y, T size)
-	: point(x, y), size(size) {}
-
-
-	inline Rectangle<T>(T point, const Value2D<T> &size)
-	: point(point), size(size) {}
-
-
-	inline Rectangle<T>(const Value2D<T> &size)
-	: point(T(0)), size(size) {}
-
-
-	inline Rectangle<T>(T size_x, T size_y)
-	: point(T(0)), size(size_x, size_y) {}
-
-
-	inline Rectangle<T>(T size)
-	: point(T(0)), size(size) {}
-
+	inline Rectangle<T>(const Value2D<T> &point, const Value2D<T> &size) : point(point), size(size)		  {}
+	inline Rectangle<T>(const Value2D<T> &point, T size_x, T size_y)     : point(point), size(size_x, size_y) {}
+	inline Rectangle<T>(const Value2D<T> &point, T size)		     : point(point), size(size)		  {}
+	inline Rectangle<T>(T x, T y, const Value2D<T> &size)		     : point(x, y),  size(size)		  {}
+	inline Rectangle<T>(T x, T y, T size_x, T size_y)		     : point(x, y),  size(size_x, size_y) {}
+	inline Rectangle<T>(T x, T y, T size)				     : point(x, y),  size(size)		  {}
+	inline Rectangle<T>(T point, const Value2D<T> &size)		     : point(point), size(size)		  {}
+	inline Rectangle<T>(const Value2D<T> &size)			     : point(T(0)),  size(size)		  {}
+	inline Rectangle<T>(T size_x, T size_y)				     : point(T(0)),  size(size_x, size_y) {}
+	inline Rectangle<T>(T size)					     : point(T(0)),  size(size)		  {}
 
 	inline Rectangle<T>(void *data) {*this = *(Rectangle<T> *)data;}
 	inline Rectangle<T>(const Base &rectangle) {(*(Base *)this) = rectangle;}
@@ -101,9 +71,8 @@ template <typename T> struct ZKit::Rectangle {
 	static inline Rectangle<T> from_vertices(const Value2D<T> &a, const Value2D<T> &b)
 		{
 		Value2D<T> minimum = Value2D<T>::minimum(a, b);
-		Value2D<T> maximum = Value2D<T>::maximum(a, b);
 
-		return Rectangle<T>(minimum, maximum - minimum);
+		return Rectangle<T>(minimum, Value2D<T>::maximum(a, b) - minimum);
 		}
 
 
@@ -197,13 +166,13 @@ template <typename T> struct ZKit::Rectangle {
 
 
 	inline Rectangle<T> top_half   () const {return Rectangle<T>(point.x, point.y + size.y / T(2), size.x, size.y / T(2));}
-	inline Rectangle<T> bottom_half() const {return Rectangle<T>(point, size.x, size.y / T(2));}
-	inline Rectangle<T> left_half  () const {return Rectangle<T>(point, size.x / T(2), size.y);}
+	inline Rectangle<T> bottom_half() const {return Rectangle<T>(point,			       size.x, size.y / T(2));}
+	inline Rectangle<T> left_half  () const {return Rectangle<T>(point,			       size.x / T(2), size.y);}
 	inline Rectangle<T> right_half () const {return Rectangle<T>(point.x + size.x / T(2), point.y, size.x / T(2), size.y);}
 
 	inline Rectangle<T> top_left_quarter	() const {return Rectangle<T>(point.x, point.y + size.y / T(2), size / T(2));}
-	inline Rectangle<T> top_right_quarter	() const {return Rectangle<T>(point + size / T(2), size / T(2));}
-	inline Rectangle<T> bottom_left_quarter	() const {return Rectangle<T>(point, size / T(2));}
+	inline Rectangle<T> top_right_quarter	() const {return Rectangle<T>(point + size / T(2),		size / T(2));}
+	inline Rectangle<T> bottom_left_quarter	() const {return Rectangle<T>(point,				size / T(2));}
 	inline Rectangle<T> bottom_right_quarter() const {return Rectangle<T>(point.x + size.x / T(2), point.y, size / T(2));}
 
 
