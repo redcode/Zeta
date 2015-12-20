@@ -44,14 +44,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS
 #endif
 
-#if __has_extension(blocks)
-#	define Z_COMPILER_C_HAS_CLOSURE
-#endif
-
 /*#define Z_COMPILER_HAS_COMPOUND_LITERAL*/
 
 #if __has_extension(c_generic_selections)
 #	define Z_COMPILER_C_HAS_GENERIC_SELECTION
+#endif
+
+#if __has_extension(blocks)
+#	define Z_COMPILER_C_HAS_LAMBDA
 #endif
 
 /* MARK: - C types */

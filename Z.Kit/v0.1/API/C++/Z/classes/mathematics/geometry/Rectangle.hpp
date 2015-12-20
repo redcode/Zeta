@@ -36,69 +36,43 @@ template <typename T> struct ZKit::Rectangle {
 
 
 	inline Rectangle<T>(const Value2D<T> &point, const Value2D<T> &size)
-		{
-		this->point = point;
-		this->size  = size;
-		}
-
-
-	inline Rectangle<T>(T x, T y, T size_x, T size_y)
-		{
-		point.x = x;
-		point.y = y;
-		size.x	= size_x;
-		size.y	= size_y;
-		}
-
-
-	inline Rectangle<T>(T x, T y, const Value2D<T> &size)
-		{
-		point.x	   = x;
-		point.y	   = y;
-		this->size = size;
-		}
+	: point(point), size(size) {}
 
 
 	inline Rectangle<T>(const Value2D<T> &point, T size_x, T size_y)
-		{
-		this->point = point;
-		size.x	    = size_x;
-		size.y	    = size_y;
-		}
-
-
-	inline Rectangle<T>(T point, T size)
-		{
-		this->point.x = point;
-		this->point.y = point;
-		this->size.x  = size;
-		this->size.y  = size;
-		}
-
-
-	inline Rectangle<T>(T point, const Value2D<T> &size)
-		{
-		this->point.x = point;
-		this->point.y = point;
-		this->size    = size;
-		}
+	: point(point), size(size_x, size_y) {}
 
 
 	inline Rectangle<T>(const Value2D<T> &point, T size)
-		{
-		this->point  = point;
-		this->size.x = size;
-		this->size.y = size;
-		}
+	: point(point), size(size) {}
 
 
-	inline Rectangle<T>(T scalar)
-		{
-		point.x = scalar;
-		point.y = scalar;
-		size.x	= scalar;
-		size.y	= scalar;
-		}
+	inline Rectangle<T>(T x, T y, const Value2D<T> &size)
+	: point(x, y), size(size) {}
+
+
+	inline Rectangle<T>(T x, T y, T size_x, T size_y)
+	: point(x, y), size(size_x, size_y) {}
+
+
+	inline Rectangle<T>(T x, T y, T size)
+	: point(x, y), size(size) {}
+
+
+	inline Rectangle<T>(T point, const Value2D<T> &size)
+	: point(point), size(size) {}
+
+
+	inline Rectangle<T>(const Value2D<T> &size)
+	: point(T(0)), size(size) {}
+
+
+	inline Rectangle<T>(T size_x, T size_y)
+	: point(T(0)), size(size_x, size_y) {}
+
+
+	inline Rectangle<T>(T size)
+	: point(T(0)), size(size) {}
 
 
 	inline Rectangle<T>(void *data) {*this = *(Rectangle<T> *)data;}
@@ -108,12 +82,7 @@ template <typename T> struct ZKit::Rectangle {
 #	ifdef Z_USE_CG_GEOMETRY_TYPES
 
 		inline Rectangle<T>(const CGRect &rectangle)
-			{
-			point.x = rectangle.origin.x;
-			point.y = rectangle.origin.y;
-			size.x	= rectangle.size.width;
-			size.y	= rectangle.size.height;
-			}
+		: point(rectangle.origin), size(rectangle.size) {}
 
 #	endif
 
@@ -124,12 +93,7 @@ template <typename T> struct ZKit::Rectangle {
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES))
 
 		inline Rectangle<T>(const NSRect &rectangle)
-			{
-			point.x = rectangle.origin.x;
-			point.y = rectangle.origin.y;
-			size.x	= rectangle.size.width;
-			size.y	= rectangle.size.height;
-			}
+		: point(rectangle.origin), size(rectangle.size) {}
 
 #	endif
 
@@ -163,7 +127,7 @@ template <typename T> struct ZKit::Rectangle {
 			(y2 = minimum<T>(point.y + size.y, rectangle.point.y + rectangle.size.y))
 
 			? Rectangle<T>(x1, y1, x2 - x1, y2 - y1)
-			: Rectangle<T>(0, 0, 0, 0);
+			: Rectangle<T>(0);
 		}
 
 

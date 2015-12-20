@@ -185,7 +185,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_BLOCK_ID_CUSTOM_INFORMATION	0x35 /* Added in v1.01, deprecated in v1.20 */
 #define Z_TZX_BLOCK_ID_SNAPSHOT			0x40 /* Added in v1.10, deprecated in v1.20 */
 
-/* MARK: - ID 10 - Standard Speed Data
+/* MARK: - ID 10h - Standard Speed Data
 .-----------------------------------------------------------------------------.
 | This block must be replayed with the standard Spectrum ROM timing values    |
 | (see the values in curly brackets in block ID 11). The pilot tone consists  |
@@ -200,7 +200,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	data[];
 ) ZTZXStandardSpeedData;
 
-/* MARK: - ID 11 - Turbo Speed Data
+/* MARK: - ID 11h - Turbo Speed Data
 .-----------------------------------------------------------------------------.
 | This block is very similar to the normal TAP block but with some additional |
 | info on the timings and other important differences. The same tape encoding |
@@ -222,7 +222,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	data[];
 ) ZTZXTurboSpeedData;
 
-/* MARK: - ID 12 - Pure Tone
+/* MARK: - ID 12h - Pure Tone
 .------------------------------------------------------------------------.
 | This will produce a tone which is basically the same as the pilot tone |
 | the ID 10, ID 11 blocks. You can define how long the pulse is and how  |
@@ -234,7 +234,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 pulse_count;
 ) ZTZXPureTone;
 
-/* MARK: - ID 13 - Pulse Sequence
+/* MARK: - ID 13h - Pulse Sequence
 .--------------------------------------------------------------.
 | This will produce N pulses, each having its own timing.      |
 | Up to 255 pulses can be stored in this block; this is useful |
@@ -246,7 +246,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 pulse_duration[];
 ) ZTZXPulseSequence;
 
-/* MARK: - ID 14 - Pure Data
+/* MARK: - ID 14h - Pure Data
 .------------------------------------------------------.
 | This is the same as in the turbo loading data block, |
 | except that it has no pilot or sync pulses.	       |
@@ -261,7 +261,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	data[];
 ) ZTZXPureData;
 
-/* MARK: - ID 15 - Direct Recording
+/* MARK: - ID 15h - Direct Recording
 .---------------------------------------------------------------------------.
 | This block is used for tapes which have some parts in a format such that  |
 | the turbo loader block cannot be used. This is not like a VOC file, since |
@@ -284,7 +284,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	data[];
 ) ZTZXDirectRecording;
 
-/* MARK: -  ID 16 - C64 ROM Type Data (Added in v1.13, deprecated in v1.20)
+/* MARK: - ID 16h - C64 ROM Type Data (Added in v1.13, deprecated in v1.20)
 .------------------------------------------------------------------------------.
 | This block was created to support the Commodore 64 standard ROM and similar  |
 | tape blocks. It is made so basically anything that uses two or four pulses   |
@@ -316,7 +316,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	/* TO DO */
 ) ZTZXC64ROMTypeData;
 
-/* MARK: - ID 17 - C64 Turbo Tape Data (Added in v1.13, deprecated in v1.20)
+/* MARK: - ID 17h - C64 Turbo Tape Data (Added in v1.13, deprecated in v1.20)
 .------------------------------------------------------------------------------.
 | This block is made to support another type of encoding that is commonly used |
 | by the C64. Most of the commercial software uses this type of encoding, i.e. |
@@ -333,7 +333,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXC64TurboTapeData;
 
 
-/* MARK: - ID 18 - CSW Recording (Added in v1.20)
+/* MARK: - ID 18h - CSW Recording (Added in v1.20)
 .----------------------------------------------------.
 | This block contains a sequence of raw pulses	     |
 | encoded in CSW format v2 (Compressed Square Wave). |
@@ -351,7 +351,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_CSW_COMPRESSION_TYPE_RLE	 1
 #define Z_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
 
-/* MARK: - ID 19 - Generalized Data (Added in v1.20)
+/* MARK: - ID 19h - Generalized Data (Added in v1.20)
 .-----------------------------------------------------------------------------.
 | This block has been specifically developed to represent an extremely wide   |
 | range of data encoding techniques. The basic idea is that each loading      |
@@ -461,7 +461,7 @@ Offset	   Value			Description
 |    | 11000001b (C1h) |- Checksum				      |
 '--------------------------------------------------------------------*/
 
-/* MARK: - ID 20 - Pause (Silence) or 'Stop the Tape' Command
+/* MARK: - ID 20h - Pause (Silence) or 'Stop the Tape' Command
 .------------------------------------------------------------------------.
 | This will make a silence (low amplitude level (0)) for a given time in |
 | milliseconds. If the value is 0 then the emulator or utility should	 |
@@ -473,7 +473,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 duration_ms;
 ) ZTZXPause;
 
-/* MARK: - ID 21 - Group Start
+/* MARK: - ID 21h - Group Start
 .----------------------------------------------------------------------------.
 | This block marks the start of a group of blocks which are to be treated as |
 | one single (composite) block. This is very handy for tapes that use lots   |
@@ -489,12 +489,12 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 name_ascii[];
 ) ZTZXGroupStart;
 
-/* MARK: - ID 22 - Group End
+/* MARK: - ID 22h - Group End
 .------------------------------------------------------------.
 | This indicates the end of a group. This block has no body. |
 '-----------------------------------------------------------*/
 
-/* MARK: - ID 23 - Jump
+/* MARK: - ID 23h - Jump
 .---------------------------------------------------------------------.
 | This block will enable you to jump from one block to another within |
 | the file. Some examples:					      |
@@ -511,7 +511,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 relative_offset;
 ) ZTZXJump;
 
-/* MARK: - ID 24 - Loop Start (Added in v1.10)
+/* MARK: - ID 24h - Loop Start (Added in v1.10)
 .-----------------------------------------------------------------------.
 | If you have a sequence of identical blocks, or of identical groups of |
 | blocks, you can use this block to tell how many times they should be	|
@@ -524,7 +524,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 count;
 ) ZTZXLoopStart;
 
-/* MARK: - ID 25 - Loop End (Added in v1.10)
+/* MARK: - ID 25h - Loop End (Added in v1.10)
 .-----------------------------------------------------------------------.
 | This is the same as BASIC's NEXT statement. It means that the utility |
 | should jump back to the start of the loop if it hasn't been run for	|
@@ -533,7 +533,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 | This block has no body.						|
 '----------------------------------------------------------------------*/
 
-/* MARK: - ID 26 - Call Sequence (Added in v1.10)
+/* MARK: - ID 26h - Call Sequence (Added in v1.10)
 .----------------------------------------------------------------------------.
 | This block is an analogue of the CALL Subroutine statement. It basically   |
 | executes a sequence of blocks that are somewhere else and then goes back   |
@@ -551,7 +551,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 relative_offset[];
 ) ZTZXCallSequence;
 
-/* MARK: - ID 27 - Return from Sequence (Added in v1.10)
+/* MARK: - ID 27h - Return from Sequence (Added in v1.10)
 .----------------------------------------------------------------------------.
 | This block indicates the end of the Called Sequence. The next block played |
 | will be the block after the last CALL block (or the next Call, if the Call |
@@ -560,7 +560,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 | This block has no body.						     |
 '---------------------------------------------------------------------------*/
 
-/* MARK: - ID 28 - Select (Added in v1.10)
+/* MARK: - ID 28h - Select (Added in v1.10)
 .------------------------------------------------------------------------------.
 | This block is useful when the tape consists of two or more separately	       |
 | loadable parts. With this block, you are able to select one of the parts and |
@@ -583,7 +583,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	description_ascii[];
 ) ZTZXSelectItem;
 
-/* MARK: - ID 2A - Stop Tape if in 48K Mode
+/* MARK: - ID 2Ah - Stop Tape if in 48K Mode
 .----------------------------------------------------------------------------.
 | When this block is encountered, the tape will stop ONLY if the machine is  |
 | an 48K Spectrum. This block is to be used for multiloading games that load |
@@ -596,7 +596,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
 ) ZTZXStopIf48K;
 
-/* MARK: - ID 2B - Set Signal Level (Added in v1.20)
+/* MARK: - ID 2Bh - Set Signal Level (Added in v1.20)
 .----------------------------------------------------------------------.
 | This block sets the current signal level to the specified value      |
 | (high or low). It should be used whenever it is necessary to avoid   |
@@ -611,7 +611,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_SIGNAL_LEVEL_LOW	0
 #define Z_TZX_SIGNAL_LEVEL_HIGH	1
 
-/* MARK: - ID 30 - Description Text
+/* MARK: - ID 30h - Description Text
 .------------------------------------------------------------------------------.
 | This is meant to identify parts of the tape, so you know where level 1       |
 | starts, where to rewind to when the game ends, etc. This description is not  |
@@ -629,7 +629,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 ascii[];
 ) ZTZXDescriptionText;
 
-/* MARK: - ID 31 - Message
+/* MARK: - ID 31h - Message
 .----------------------------------------------------------------------------.
 | This will enable the emulators to display a message for a given time. This |
 | should not stop the tape and it should not make silence. If the time is 0  |
@@ -650,7 +650,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 ascii[];
 ) ZTZXMessage;
 
-/* MARK: - ID 32 - Archive Information
+/* MARK: - ID 32h - Archive Information
 .------------------------------------------------------------------------------.
 | Use this block at the beginning of the tape to identify the title of the     |
 | game, author, publisher, year of publication, price (including the	       |
@@ -681,7 +681,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	text[]; /* ZTZXText */
 ) ZTZXArchiveInformation;
 
-/* MARK: - ID 33 - Hardware Type
+/* MARK: - ID 33h - Hardware Type
 .----------------------------------------------------------------------------.
 | This blocks contains information about the hardware that the programs on   |
 | this tape use. Please include only machines and hardware for which you are |
@@ -715,7 +715,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	ZTZXHardware hardware[];
 ) ZTZXHardwareType;
 
-/* MARK: - ID 34 - Emulation Information (Deprecated in v1.20)
+/* MARK: - ID 34h - Emulation Information (Deprecated in v1.20)
 .------------------------------------------------------------------------------.
 | This is a special block that would normally be generated only by emulators.  |
 | For now it contains information on everything the authors could find that    |
@@ -729,7 +729,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	/* TO DO */
 ) ZTZXEmulationInformation;
 
-/* MARK: - ID 35 - Custom Information (Added in v1.01, deprecated in v1.20)
+/* MARK: - ID 35h - Custom Information (Added in v1.01, deprecated in v1.20)
 .------------------------------------------------------------------------.
 | This block can be used to save any information you want. For example,	 |
 | it might contain some information written by a utility, extra settings |
@@ -742,7 +742,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	data[];
 ) ZTZXCustomInformation;
 
-/* MARK: - ID 40 - Snapshot (Added in v1.10, deprecated in v1.20)
+/* MARK: - ID 40h - Snapshot (Added in v1.10, deprecated in v1.20)
 .------------------------------------------------------------------------------.
 | This would enable one to snapshot the prgram at the start and still have all |
 | the tape blocks in the same file. Only .Z80 and .SNA snapshots are supported |
@@ -762,7 +762,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_SNAPSHOT_FORMAT_Z80 0
 #define Z_TZX_SNAPSHOT_FORMAT_SNA 1
 
-/* MARK: - ID 5A - "Glue"
+/* MARK: - ID 5Ah - "Glue"
 .------------------------------------------------------------------------------.
 | This block is generated when you merge two ZX Tape files together. It is     |
 | here so that you can easily copy the files together and use them. Of course, |

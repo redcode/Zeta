@@ -33,7 +33,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - C features */
 
 #ifdef __BLOCKS__
-#	define Z_COMPILER_C_HAS_CLOSURE
+#	define Z_COMPILER_C_HAS_LAMBDA
 #endif
 
 /* MARK: - C types */

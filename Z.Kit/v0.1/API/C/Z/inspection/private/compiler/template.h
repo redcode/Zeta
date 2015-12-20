@@ -32,10 +32,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE*/
 /*#define Z_COMPILER_C_HAS_ANONYMOUS_UNION*/
 /*#define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS*/
-/*#define Z_COMPILER_C_HAS_CLOSURE*/
 /*#define Z_COMPILER_C_HAS_COMPOUND_LITERAL*/
 /*#define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER*/
 /*#define Z_COMPILER_C_HAS_GENERIC_SELECTION*/
+/*#define Z_COMPILER_C_HAS_LAMBDA*/
 
 /* MARK: - C types */
 
