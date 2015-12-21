@@ -24,8 +24,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Features */
 
-#define Z_C_HAS_ANONYMOUS_UNION
 #define Z_C_HAS_ANONYMOUS_STRUCTURE
+#define Z_C_HAS_ANONYMOUS_UNION
 
 #ifndef __STDC_NO_ATOMICS__
 #	define Z_C_HAS_ATOMIC_OPERATIONS

@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_traits_Type_HPP__
 
 #include <Z/types/base.h>
+#include <Z/macros/language.hpp>
 
 namespace ZKit {
 
@@ -211,9 +212,9 @@ namespace ZKit {
 				sign_bits	    = Z_FLOAT_SIGN_BITS
 			};
 
-			static constexpr float epsilon = Z_FLOAT_EPSILON;
-			static constexpr float minimum = Z_FLOAT_MINIMUM;
-			static constexpr float maximum = Z_FLOAT_MAXIMUM;
+			static inline Z_CONSTANT_EXPRESSION float epsilon() {return Z_FLOAT_EPSILON;}
+			static inline Z_CONSTANT_EXPRESSION float minimum() {return Z_FLOAT_MINIMUM;}
+			static inline Z_CONSTANT_EXPRESSION float maximum() {return Z_FLOAT_MAXIMUM;}
 
 			typedef float type;
 		};
@@ -237,9 +238,9 @@ namespace ZKit {
 				sign_bits	    = Z_DOUBLE_SIGN_BITS
 			};
 
-			static constexpr double epsilon = Z_DOUBLE_EPSILON;
-			static constexpr double minimum = Z_DOUBLE_MINIMUM;
-			static constexpr double maximum = Z_DOUBLE_MAXIMUM;
+			static inline Z_CONSTANT_EXPRESSION double epsilon() {return Z_DOUBLE_EPSILON;}
+			static inline Z_CONSTANT_EXPRESSION double minimum() {return Z_DOUBLE_MINIMUM;}
+			static inline Z_CONSTANT_EXPRESSION double maximum() {return Z_DOUBLE_MAXIMUM;}
 
 			typedef double type;
 		};
@@ -263,9 +264,9 @@ namespace ZKit {
 				sign_bits	    = Z_LDOUBLE_SIGN_BITS
 			};
 
-			static constexpr long double epsilon = Z_LDOUBLE_EPSILON;
-			static constexpr long double minimum = Z_LDOUBLE_MINIMUM;
-			static constexpr long double maximum = Z_LDOUBLE_MAXIMUM;
+			static inline Z_CONSTANT_EXPRESSION long double epsilon() {return Z_LDOUBLE_EPSILON;}
+			static inline Z_CONSTANT_EXPRESSION long double minimum() {return Z_LDOUBLE_MINIMUM;}
+			static inline Z_CONSTANT_EXPRESSION long double maximum() {return Z_LDOUBLE_MAXIMUM;}
 
 			typedef long double type;
 		};

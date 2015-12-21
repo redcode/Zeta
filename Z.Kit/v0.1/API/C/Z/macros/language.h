@@ -49,6 +49,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_INLINE inline
 #endif
 
+#if Z_COMPILER_HAS_C_ATTRIBUTE(NO_RETURN)
+#	define Z_NO_RETURN Z_COMPILER_C_ATTRIBUTE(NO_RETURN)
+#elif Z_LANGUAGE_HAS_SPECIFIER(NO_RETURN)
+#	define Z_INLINE _Noreturn
+#endif
+
 #if Z_COMPILER_HAS_C_ATTRIBUTE(NULL_TERMINATED)
 #	define Z_NULL_TERMINATED Z_COMPILER_C_ATTRIBUTE(NULL_TERMINATED)
 #else

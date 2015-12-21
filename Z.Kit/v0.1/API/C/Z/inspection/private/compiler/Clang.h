@@ -36,33 +36,83 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define __has_extension __has_feature /* Compatibility with Clang < v3.0 */
 #endif
 
-/*#define Z_COMPILER_HAS_ANONYMOUS_FUNCTION*/
-/*#define Z_COMPILER_HAS_ANONYMOUS_STRUCTURE*/
-/*#define Z_COMPILER_HAS_ANONYMOUS_UNION*/
+/*#define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE*/
+/*#define Z_COMPILER_C_HAS_ANONYMOUS_UNION*/
 
-#if __has_extension(c_atomic)
+#if __has_feature(c_atomic) || __has_extension(c_atomic)
 #	define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS
 #endif
 
-/*#define Z_COMPILER_HAS_COMPOUND_LITERAL*/
+#if __has_extension(blocks)
+#	define Z_COMPILER_C_HAS_CLOSURE
+#endif
 
-#if __has_extension(c_generic_selections)
+/*#define Z_COMPILER_C_HAS_COMPOUND_LITERAL*/
+/*#define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT*/
+/*#define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER*/
+/*#define Z_COMPILER_C_HAS_DIGRAPH*/
+/*#define Z_COMPILER_C_HAS_ENUMERATION*/
+/*#define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER*/
+
+#if __has_feature(c_generic_selections) || __has_extension(c_generic_selections)
 #	define Z_COMPILER_C_HAS_GENERIC_SELECTION
 #endif
 
-#if __has_extension(blocks)
-#	define Z_COMPILER_C_HAS_LAMBDA
+/*#define Z_COMPILER_C_HAS_INLINE_FUNCION*/
+/*#define Z_COMPILER_C_HAS_INTERMINGLED_DECLARATIONS_AND_CODE*/
+
+#if __has_feature(c_static_assert) || __has_extension(c_static_assert)
+#	define Z_COMPILER_C_HAS_STATIC_ASSERTION
 #endif
+
+/*#define Z_COMPILER_C_HAS_VARIADIC_MACRO*/
+/*#define Z_COMPILER_C_HAS_VLA*/
 
 /* MARK: - C types */
 
 #define Z_COMPILER_C_HAS_TYPE_LLONG
-#define Z_COMPILER_C_HAS_TYPE_LDOUBLE
 #define Z_COMPILER_C_HAS_TYPE_FLOAT
 #define Z_COMPILER_C_HAS_TYPE_DOUBLE
 #define Z_COMPILER_C_HAS_TYPE_LDOUBLE
 
+/* MARK: - Type qualifiers */
+
+/*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC*/
+#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_CONSTANT
+#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_VOLATILE
+/*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT*/
+
+/* MARK: - Storage classes */
+
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_EXTERN
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_REGISTER
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_STATIC
+
+#if __has_feature(c_thread_local) || __has_extension(c_thread_local)
+#	define Z_COMPILER_C_HAS_STORATE_CLASS_THREAD_LOCAL
+#endif
+
+/* MARK: - Specifiers */
+
+#if __has_feature(c_alignas) || __has_extension(c_alignas)
+#	define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS
+#endif
+
+/*#define Z_COMPILER_C_HAS_SPECIFIER_INLINE*/
+/*#define Z_COMPILER_C_HAS_SPECIFIER_NO_RETURN*/
+
+/* MARK: - Operators */
+
+#if __has_feature(c_alignof) || __has_extension(c_alignof)
+#	define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF
+#endif
+
+#define Z_COMPILER_C_HAS_OPERATOR_SIZE_OF
+
 /* MARK: - C attributes */
+
+/*#define Z_COMPILER_C_ATTRIBUTE_ALIAS*/
 
 #if __has_attribute(alias)
 #	define Z_COMPILER_C_ATTRIBUTE_ALIAS(name) __attribute__((alias(name)))
@@ -70,11 +120,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /*#define Z_COMPILER_C_ATTRIBUTE_API*/
 /*#define Z_COMPILER_C_ATTRIBUTE_API_ALIAS*/
+/*#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT*/
+/*#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT_ALIAS*/
 
 #if __has_attribute(always_inline)
 #	define Z_COMPILER_C_ATTRIBUTE_INLINE static __inline__ __attribute__((always_inline))
 #else
 #	define Z_COMPILER_C_ATTRIBUTE_INLINE static __inline__
+#endif
+
+#if __has_attribute(noreturn)
+#	define Z_COMPILER_C_ATTRIBUTE_NO_RETURN __attribute__((noreturn))
 #endif
 
 #if __has_attribute(sentinel)

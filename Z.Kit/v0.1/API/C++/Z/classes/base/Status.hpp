@@ -67,9 +67,9 @@ struct ZKit::Status {
 		unreachable	     = Z_ERROR_UNREACHABLE
 	}
 
-	ZStatus value;
+	ZStatus code;
 
-	inline Status(ZStatus code) : value(code) {};
+	inline Status(ZStatus code) : code(code) {};
 };
 
 

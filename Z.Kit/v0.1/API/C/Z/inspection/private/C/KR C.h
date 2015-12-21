@@ -30,9 +30,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Storage classes */
 
 #define Z_C_HAS_STORAGE_CLASS_AUTO
+#define Z_C_HAS_STORAGE_CLASS_EXTERN
 #define Z_C_HAS_STORAGE_CLASS_REGISTER
 #define Z_C_HAS_STORAGE_CLASS_STATIC
-#define Z_C_HAS_STORAGE_CLASS_EXTERN
 
 /* MARK: - Operators */
 

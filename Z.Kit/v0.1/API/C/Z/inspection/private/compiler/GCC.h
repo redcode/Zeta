@@ -32,21 +32,68 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C features */
 
+/*#define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE*/
+/*#define Z_COMPILER_C_HAS_ANONYMOUS_UNION*/
+/*#define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS*/
+
 #ifdef __BLOCKS__
-#	define Z_COMPILER_C_HAS_LAMBDA
+#	define Z_COMPILER_C_HAS_CLOSURE
 #endif
+
+/*#define Z_COMPILER_C_HAS_COMPOUND_LITERAL*/
+/*#define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT*/
+/*#define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER*/
+/*#define Z_COMPILER_C_HAS_DIGRAPH*/
+/*#define Z_COMPILER_C_HAS_ENUMERATION*/
+/*#define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER*/
+/*#define Z_COMPILER_C_HAS_GENERIC_SELECTION*/
+/*#define Z_COMPILER_C_HAS_INLINE_FUNCION*/
+/*#define Z_COMPILER_C_HAS_INTERMINGLED_DECLARATIONS_AND_CODE*/
+/*#define Z_COMPILER_C_HAS_STATIC_ASSERTION*/
+/*#define Z_COMPILER_C_HAS_VARIADIC_MACRO*/
+/*#define Z_COMPILER_C_HAS_VLA*/
 
 /* MARK: - C types */
 
 #define Z_COMPILER_C_HAS_TYPE_LLONG
-#define Z_COMPILER_C_HAS_TYPE_LDOUBLE
 #define Z_COMPILER_C_HAS_TYPE_FLOAT
 #define Z_COMPILER_C_HAS_TYPE_DOUBLE
 #define Z_COMPILER_C_HAS_TYPE_LDOUBLE
 
+/* MARK: - Type qualifiers */
+
+/*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC*/
+#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_CONSTANT
+#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_VOLATILE
+/*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT*/
+
+/* MARK: - Storage classes */
+
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_EXTERN
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_REGISTER
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_STATIC
+/*#define Z_COMPILER_C_HAS_STORATE_CLASS_THREAD_LOCAL*/
+
+/* MARK: - Specifiers */
+
+/*#define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS*/
+/*#define Z_COMPILER_C_HAS_SPECIFIER_INLINE*/
+/*#define Z_COMPILER_C_HAS_SPECIFIER_NO_RETURN*/
+
+/* MARK: - Operators */
+
+/*#define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF*/
+#define Z_COMPILER_C_HAS_OPERATOR_SIZE_OF
+
 /* MARK: - C attributes */
 
 #define Z_COMPILER_C_ATTRIBUTE_ALIAS(name) __attribute__((alias(name)))
+
+/*#define Z_COMPILER_C_ATTRIBUTE_API*/
+/*#define Z_COMPILER_C_ATTRIBUTE_API_ALIAS*/
+/*#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT*/
+/*#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT_ALIAS*/
 
 #if Z_COMPILER_VERSION >= Z_VERSION(4, 0, 0)
 #	define Z_COMPILER_C_ATTRIBUTE_INLINE	      static __inline__ __attribute__((always_inline))
@@ -55,11 +102,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_ATTRIBUTE_INLINE static __inline__
 #endif
 
-#define Z_COMPILER_C_ATTRIBUTE_THREAD_LOCAL	 __thread
+#define Z_COMPILER_C_ATTRIBUTE_NO_RETURN __attribute__((noreturn))
+
+/*#define Z_COMPILER_C_ATTRIBUTE_NULL_TERMINATED*/
+
 #define Z_COMPILER_C_ATTRIBUTE_PRIVATE		 __attribute__((visibility("hidden"))) static
 #define Z_COMPILER_C_ATTRIBUTE_PUBLIC		 __attribute__((visibility("default")))
 #define Z_COMPILER_C_ATTRIBUTE_STRICT_SIZE_BEGIN
 #define Z_COMPILER_C_ATTRIBUTE_STRICT_SIZE_END	 __attribute__((packed))
+#define Z_COMPILER_C_ATTRIBUTE_THREAD_LOCAL	 __thread
 #define Z_COMPILER_C_ATTRIBUTE_WEAK		 __attribute__((weak))
 
 /* MARK: - Built-in constants */

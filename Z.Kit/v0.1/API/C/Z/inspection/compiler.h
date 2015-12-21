@@ -274,9 +274,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_HAS_MACRO(		     WHICH) (defined Z_COMPILER_MACRO_##WHICH		     )
 #define Z_COMPILER_HAS_FUNCTION(	     WHICH) (defined Z_COMPILER_FUNCTION_##WHICH	     )
 
-#define Z_COMPILER_HAS_TYPE(WHICH)								\
-	(!(defined Z_COMPILER_LACKS_TYPE_##WHICH) &&						\
-	 ((defined Z_COMPILER_TYPE_##WHICH) || (defined Z_COMPILER_CPP_HAS_TYPE_##WHICH) ||	\
+#define Z_COMPILER_HAS_TYPE(WHICH)							    \
+	(!(defined Z_COMPILER_LACKS_TYPE_##WHICH) &&					    \
+	 ((defined Z_COMPILER_TYPE_##WHICH) || (defined Z_COMPILER_CPP_HAS_TYPE_##WHICH) || \
 	  (defined Z_COMPILER_C_HAS_TYPE_##WHICH) || (defined Z_OBJECTIVE_C_HAS_TYPE_##WHICH)))
 
 #define Z_COMPILER_C_ATTRIBUTE(		 WHICH) Z_COMPILER_C_ATTRIBUTE_##WHICH
