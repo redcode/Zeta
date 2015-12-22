@@ -48,14 +48,10 @@ template <typename T> struct ZKit::Rectangle {
 	inline Rectangle<T>(void *data) {*this = *(Rectangle<T> *)data;}
 	inline Rectangle<T>(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
-
 #	ifdef Z_USE_CG_GEOMETRY_TYPES
-
 		inline Rectangle<T>(const CGRect &rectangle)
 		: point(rectangle.origin), size(rectangle.size) {}
-
 #	endif
-
 
 #	if	defined(Z_USE_NS_GEOMETRY_TYPES)		      && \
 		(!defined(Z_USE_CG_GEOMETRY_TYPES)		      || \
@@ -64,7 +60,6 @@ template <typename T> struct ZKit::Rectangle {
 
 		inline Rectangle<T>(const NSRect &rectangle)
 		: point(rectangle.origin), size(rectangle.size) {}
-
 #	endif
 
 
@@ -242,15 +237,27 @@ template <typename T> struct ZKit::Rectangle {
 
 
 	inline Rectangle<T> align_in_bottom_right(const Value2D<T> &size) const
-		{return Rectangle<T>(this->point.x + this->size.x - size.x, this->point.y, size);}
+		{
+		return Rectangle<T>
+			(this->point.x + this->size.x - size.x,
+			 this->point.y,
+			 size);}
 
 
 	inline Rectangle<T> align_in_bottom_center(const Value2D<T> &size) const
-		{return Rectangle<T>(this->point.x + (this->size.x - size.x) / T(2), this->point.y, size);}
+		{
+		return Rectangle<T>
+			(this->point.x + (this->size.x - size.x) / T(2),
+			 this->point.y,
+			 size);}
 
 
 	inline Rectangle<T> align_in_center_left(const Value2D<T> &size) const
-		{return Rectangle<T>(this->point.x, this->point.y + (this->size.y - size.y) / T(2), size);}
+		{
+		return Rectangle<T>
+			(this->point.x,
+			 this->point.y + (this->size.y - size.y) / T(2),
+			 size);}
 
 
 	inline Rectangle<T> align_in_center_right(const Value2D<T> &size) const

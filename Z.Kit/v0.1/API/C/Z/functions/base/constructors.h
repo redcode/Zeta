@@ -13,28 +13,33 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(COMPOUND_LITERAL)
 
-#	define z_2d_uint8(x, y)	      ((Z2DUInt8){x, y})
-#	define z_3d_uint8(x, y, z)    ((Z3DUInt8){x, y, z})
-#	define z_4d_uint8(x, y, z, w) ((Z4DUInt8){x, y, z, w})
+#	define z_2d_uint8(x, y)		  ((Z2DUInt8){x, y})
+#	define z_3d_uint8(x, y, z)	  ((Z3DUInt8){x, y, z})
+#	define z_4d_uint8(x, y, z, w)	  ((Z4DUInt8){x, y, z, w})
+#	define z_range_uint8(index, size) ((ZRangeUInt8){index, size})
 
-#	define z_2d_uint16(x, y)       ((Z2DUInt16){x, y})
-#	define z_3d_uint16(x, y, z)    ((Z3DUInt16){x, y, z})
-#	define z_4d_uint16(x, y, z, w) ((Z4DUInt16){x, y, z, w})
+#	define z_2d_uint16(x, y)	   ((Z2DUInt16){x, y})
+#	define z_3d_uint16(x, y, z)	   ((Z3DUInt16){x, y, z})
+#	define z_4d_uint16(x, y, z, w)	   ((Z4DUInt16){x, y, z, w})
+#	define z_range_uint16(index, size) ((ZRangeUInt16){index, size})
 
-#	define z_2d_uint32(x, y)       ((Z2DUInt32){x, y})
-#	define z_3d_uint32(x, y, z)    ((Z3DUInt32){x, y, z})
-#	define z_4d_uint32(x, y, z, w) ((Z4DUInt32){x, y, z, w})
+#	define z_2d_uint32(x, y)	   ((Z2DUInt32){x, y})
+#	define z_3d_uint32(x, y, z)	   ((Z3DUInt32){x, y, z})
+#	define z_4d_uint32(x, y, z, w)	   ((Z4DUInt32){x, y, z, w})
+#	define z_range_uint32(index, size) ((ZRangeUInt32){index, size})
 
 #	if Z_IS_AVAILABLE(UINT64)
-#		define z_2d_uint64(x, y)       ((Z2DUInt64){x, y})
-#		define z_3d_uint64(x, y, z)    ((Z3DUInt64){x, y, z})
-#		define z_4d_uint64(x, y, z, w) ((Z4DUInt64){x, y, z, w})
+#		define z_2d_uint64(x, y)	   ((Z2DUInt64){x, y})
+#		define z_3d_uint64(x, y, z)	   ((Z3DUInt64){x, y, z})
+#		define z_4d_uint64(x, y, z, w)	   ((Z4DUInt64){x, y, z, w})
+#		define z_range_uint64(index, size) ((ZRangeUInt64){index, size})
 #	endif
 
 #	if Z_IS_AVAILABLE(UINT128)
-#		define z_2d_uint128(x, y)	((Z2DUInt128 ){x, y})
-#		define z_3d_uint128(x, y, z)	((Z3DUInt128 ){x, y, z})
-#		define z_4d_uint128(x, y, z, w)	((Z4DUInt128 ){x, y, z, w})
+#		define z_2d_uint128(x, y)	    ((Z2DUInt128 ){x, y})
+#		define z_3d_uint128(x, y, z)	    ((Z3DUInt128 ){x, y, z})
+#		define z_4d_uint128(x, y, z, w)	    ((Z4DUInt128 ){x, y, z, w})
+#		define z_range_uint128(index, size) ((ZRangeUInt128){index, size})
 #	endif
 
 #	define z_2d_int8(x, y)	     ((Z2DInt8){x, y})
@@ -119,106 +124,119 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #else
 
-#	define Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Type, type)			\
-										\
-	Z_INLINE Z2D##Type z_2d_##type(z##type x, z##type y)			\
-		{Z2D##Type magnitude = {x, y}; return magnitude;}		\
-										\
-	Z_INLINE Z3D##Type z_3d_##type(z##type x, z##type y, z##type z)		\
-		{Z3D##Type magnitude = {x, y, z}; return magnitude;}		\
-										\
-	Z_INLINE								\
-	Z4D##Type z_4d_##type(z##type x, z##type y, z##type z, z##type w) 	\
+#	define Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Type, type)		  \
+									  \
+	Z_INLINE Z2D##Type z_2d_##type(z##type x, z##type y)		  \
+		{Z2D##Type magnitude = {x, y}; return magnitude;}	  \
+									  \
+	Z_INLINE Z3D##Type z_3d_##type(z##type x, z##type y, z##type z)	  \
+		{Z3D##Type magnitude = {x, y, z}; return magnitude;}	  \
+									  \
+	Z_INLINE							  \
+	Z4D##Type z_4d_##type(z##type x, z##type y, z##type z, z##type w) \
 		{Z4D##Type magnitude = {x, y, z, w}; return magnitude;}
 
 
-	Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(UInt8,  uint8	)
-	Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(UInt16, uint16)
-	Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(UInt32, uint32)
+#	define Z_TEMPLATE_RANGE_CONSTRUCTOR(Type, type)		 \
+								 \
+	ZRange##Type z_range_##type(z##type index, z##type size) \
+		{ZRange##Type range = {index, size}; return range;}
+
+
+	Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(UInt8,	 uint8 )
+	Z_TEMPLATE_RANGE_CONSTRUCTOR	(UInt8,	 uint8 )
+	Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(UInt16, uint16)
+	Z_TEMPLATE_RANGE_CONSTRUCTOR	(UInt16, uint16)
+	Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(UInt32, uint32)
+	Z_TEMPLATE_RANGE_CONSTRUCTOR	(UInt32, uint32)
 
 #	if Z_IS_AVAILABLE(UINT64)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(UInt64, uint64)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(UInt64, uint64)
+		Z_TEMPLATE_RANGE_CONSTRUCTOR	(UInt64, uint64)
 #	endif
 
 #	if Z_IS_AVAILABLE(UINT128)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(UInt128, uint128)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(UInt128, uint128)
+		Z_TEMPLATE_RANGE_CONSTRUCTOR	(UInt128, uint128)
 #	endif
 
-	Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Int8,	 int8 )
-	Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Int16, int16)
-	Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Int32, int32)
+	Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Int8,	int8 )
+	Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Int16, int16)
+	Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Int32, int32)
 
 #	if Z_IS_AVAILABLE(INT64)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Int64, int64)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Int64, int64)
 #	endif
 
 #	if Z_IS_AVAILABLE(INT128)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Int128, int128)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Int128, int128)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT16)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Float16, float64)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Float16, float64)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT24)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Float24, float24)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Float24, float24)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT32)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Float32, float32)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Float32, float32)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT48)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Float48, float48)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Float48, float48)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT64)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Float64, float64)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Float64, float64)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT72)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Float72, float72)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Float72, float72)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT80)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Float80, float80)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Float80, float80)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT96)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Float96, float96)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Float96, float96)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT128)
-		Z_TEMPLATE_MAGNITUDE_CONSTRUCTORS(Float128, float128)
+		Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Float128, float128)
 #	endif
-
-	Z_INLINE ZRange z_range(zsize index, zsize size)
-		{ZRange range = {index, size}; return range;}
 
 #endif
 
-#define z_2d_uint8_zero z_2d_uint8(0, 0)
-#define z_3d_uint8_zero z_3d_uint8(0, 0, 0)
-#define z_4d_uint8_zero z_4d_uint8(0, 0, 0, 0)
+#define z_2d_uint8_zero	   z_2d_uint8(0, 0)
+#define z_3d_uint8_zero	   z_3d_uint8(0, 0, 0)
+#define z_4d_uint8_zero	   z_4d_uint8(0, 0, 0, 0)
+#define z_range_uint8_zero z_range_uint8(0, 0)
 
-#define z_2d_uint16_zero z_2d_uint16(0, 0)
-#define z_3d_uint16_zero z_3d_uint16(0, 0, 0)
-#define z_4d_uint16_zero z_4d_uint16(0, 0, 0, 0)
+#define z_2d_uint16_zero    z_2d_uint16(0, 0)
+#define z_3d_uint16_zero    z_3d_uint16(0, 0, 0)
+#define z_4d_uint16_zero    z_4d_uint16(0, 0, 0, 0)
+#define z_range_uint16_zero z_range_uint16(0, 0)
 
-#define z_2d_uint32_zero z_2d_uint32(0, 0)
-#define z_3d_uint32_zero z_3d_uint32(0, 0, 0)
-#define z_4d_uint32_zero z_4d_uint32(0, 0, 0, 0)
+#define z_2d_uint32_zero    z_2d_uint32(0, 0)
+#define z_3d_uint32_zero    z_3d_uint32(0, 0, 0)
+#define z_4d_uint32_zero    z_4d_uint32(0, 0, 0, 0)
+#define z_range_uint32_zero z_range_uint32(0, 0)
 
 #if Z_IS_AVAILABLE(UINT64)
-#	define z_2d_uint64_zero z_2d_uint64(0, 0)
-#	define z_3d_uint64_zero z_3d_uint64(0, 0, 0)
-#	define z_4d_uint64_zero z_4d_uint64(0, 0, 0, 0)
+#	define z_2d_uint64_zero	   z_2d_uint64(0, 0)
+#	define z_3d_uint64_zero	   z_3d_uint64(0, 0, 0)
+#	define z_4d_uint64_zero	   z_4d_uint64(0, 0, 0, 0)
+#	define z_range_uint64_zero z_range_uint64(0, 0)
 #endif
 
 #if Z_IS_AVAILABLE(UINT128)
-#	define z_2d_uint128_zero z_2d_uint128(0, 0)
-#	define z_3d_uint128_zero z_3d_uint128(0, 0, 0)
-#	define z_4d_uint128_zero z_4d_uint128(0, 0, 0, 0)
+#	define z_2d_uint128_zero    z_2d_uint128(0, 0)
+#	define z_3d_uint128_zero    z_3d_uint128(0, 0, 0)
+#	define z_4d_uint128_zero    z_4d_uint128(0, 0, 0, 0)
+#	define z_range_uint128_zero z_range_uint128(0, 0)
 #endif
 
 #define z_2d_int8_zero z_2d_int8(0, 0)
@@ -306,7 +324,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define z_3d_type_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _zero)
 #define z_4d_type_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_4d_, _zero)
 
-#define z_range_zero z_range(0, 0)
+#define z_range_type(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_,)
+#define z_range_type_zero(TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _zero)
 
 /* MARK: - Default real type definitions */
 
@@ -316,5 +335,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define z_2d_zero z_2d_type_zero(REAL)
 #define z_3d_zero z_3d_type_zero(REAL)
 #define z_4d_zero z_4d_type_zero(REAL)
+
+#define z_range	     z_range_type     (SIZE)
+#define z_range_zero z_range_type_zero(SIZE)
 
 #endif /* __Z_functions_base_constructors_H__ */

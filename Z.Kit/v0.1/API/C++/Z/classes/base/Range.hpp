@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_Range_HPP__
 #define __Z_classes_base_Range_HPP__
 
-#include <Z/types/base.hpp>
+#include <Z/macros/type selector.hpp>
 #include <Z/macros/super.hpp>
 #include <Z/functions/base/value.hpp>
 
@@ -17,72 +17,85 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	import <Foundation/NSRange.h>
 #endif
 
-namespace ZKit {struct Range;}
+namespace ZKit {
+	namespace Selectors {Z_TYPE_SELECTOR_NATURAL(Range, ZRangeType)}
+	template <typename T> struct Range;
+}
 
 
-struct ZKit::Range : public ZRange {
+template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::type {
 
 	typedef ZRange Base;
 	typedef ZRange Super;
 
-	inline Range() {}
-	inline Range(Size size) {this->index = 0; this->size = size;}
-	inline Range(Size index, Size size) {this->index = index; this->size = size;}
-	inline Range(const Base &range) {*z_base = range;}
+	inline Range<T>() {}
+	inline Range<T>(T size) {this->index = 0; this->size = size;}
+	inline Range<T>(T index, T size) {this->index = index; this->size = size;}
+	inline Range<T>(void *data) {*this = *(Range<T> *)data;}
+	inline Range<T>(const Base &range) {*z_base = range;}
 
 #	ifdef Z_USE_NS_RANGE_TYPE
-		inline Range(const NSRange &range) {index = range.location; size = range.length;}
+		inline Range<T>(const NSRange &range)
+			{this->index = range.location; this->size = range.length;}
 #	endif
 
-	inline Boolean contains(const Range &range) const
-		{return range.index >= index && range.index + range.size <= index + size;}
+
+	inline Boolean operator ==(const Range<T> &range) const
+		{return this->index == range.index && this->size == range.size;}
 
 
-	inline Boolean collides(const Range &range) const
-		{return index < range.index + range.size && range.index < index + size;}
+	inline Boolean operator ==(T number) const
+		{return this->index == number && this->size == number;}
+
+
+	inline Range<T> operator &(const Range<T> &range) const
+		{
+		T index = (this->index > range.index) ? this->index : range.index;
+		T end	= ZKit::minimum<T>(this->index + this->size, range.index + range.size);
+
+		return end > index ? Range(index, end - index) : Range<T>(0, 0);
+		}
+
+
+	inline Range<T> operator |(const Range<T> &range) const
+		{
+		T	index = (this->index < range.index) ? this->index : range.index,
+			a_end = this->index + this->size,
+			b_end = range.index + range.size;
+
+		return Range<T>(index, ((a_end > b_end) ? a_end : b_end) - index);
+		}
+
+
+	inline Range<T> &operator &=(const Range<T> &range) {return *this = *this & range;}
+	inline Range<T> &operator |=(const Range<T> &range) {return *this = *this | range;}
+
+
+	inline Boolean contains(const Range<T> &range) const
+		{
+		return	range.index >= this->index &&
+			range.index + range.size <= this->index + this->size;
+		}
+
+
+	inline Boolean contains(T index) const
+		{return this->index >= this->index && this->index < this->index + this->size;}
+
+
+	inline Boolean collides(const Range<T> &range) const
+		{
+		return	this->index < range.index + range.size &&
+			range.index < this->index + this->size;
+		}
 
 
 	inline Boolean is_zero() const
-		{return index == 0 && size == 0;}
+		{return this->index == 0 && this->size == 0;}
 
 
-	inline Size end() const
-		{return index + size;}
+	inline T end() const
+		{return this->index + this->size;}
 
-
-	inline Boolean contains_index(Size index) const
-		{return index >= this->index && index < this->index + this->size;}
-
-
-	inline Boolean operator ==(const Range &range) const
-		{return index == range.index && size == range.size;}
-
-
-	inline Boolean operator ==(Size number) const
-		{return index == number && size == number;}
-
-
-	inline Range operator &(const Range &range) const
-		{
-		Size index = (this->index > range.index) ? this->index : range.index;
-		Size minimum = ZKit::minimum<Size>(this->index + this->size, range.index + range.size);
-
-		return minimum > index ? Range(index, minimum - index) : Range(0, 0);
-		}
-
-
-	inline Range operator |(const Range &range) const
-		{
-		Size	index	  = (this->index < range.index) ? this->index : range.index,
-			a_maximum = this->index + this->size,
-			b_maximum = range.index + range.size;
-
-		return Range(index, ((a_maximum > b_maximum) ? a_maximum : b_maximum) - index);
-		}
-
-
-	inline Range &operator &=(Range range) {return *this = *this & range;}
-	inline Range &operator |=(Range range) {return *this = *this | range;}
 };
 
 

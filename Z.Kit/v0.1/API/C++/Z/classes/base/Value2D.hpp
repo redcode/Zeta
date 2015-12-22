@@ -11,7 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/macros/type selector.hpp>
 #include <Z/macros/super.hpp>
-#include <Z/macros/templating.h>
 #include <Z/functions/base/value.hpp>
 
 #ifdef Z_USE_CG_GEOMETRY_TYPES
@@ -119,18 +118,32 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	// MARK: - Operations for natural, integer and real types
 
 
-	inline Boolean contains(const Value2D<T> &value) const {return this->x >= value.x && this->y >= value.y;}
+	inline Boolean contains(const Value2D<T> &value) const
+		{return this->x >= value.x && this->y >= value.y;}
 
-	inline T dot_product  (const Value2D<T> &value) const {return this->x * value.x + this->y * value.y;}
-	inline T cross_product(const Value2D<T> &value) const {return this->x * value.y - this->y * value.x;}
+
+	inline T dot_product(const Value2D<T> &value) const
+		{return this->x * value.x + this->y * value.y;}
+
+
+	inline T cross_product(const Value2D<T> &value) const
+		{return this->x * value.y - this->y * value.x;}
 
 
 	inline Value2D<T> minimum(const Value2D<T> &value) const
-		{return Value2D<T>(ZKit::minimum<T>(this->x, value.x), ZKit::minimum<T>(this->y, value.y));}
+		{
+		return Value2D<T>
+			(ZKit::minimum<T>(this->x, value.x),
+			 ZKit::minimum<T>(this->y, value.y));
+		 }
 
 
 	inline Value2D<T> maximum(const Value2D<T> &value) const
-		{return Value2D<T>(ZKit::maximum<T>(this->x, value.x), ZKit::maximum<T>(this->y, value.y));}
+		{
+		return Value2D<T>
+			(ZKit::maximum<T>(this->x, value.x),
+			 ZKit::maximum<T>(this->y, value.y));
+		 }
 
 
 	inline Value2D<T> middle(const Value2D<T> &value) const
@@ -172,52 +185,60 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 		}
 
 
-	inline Value2D<T> yx() const {return Value2D<T>(this->y, this->x);}
+	inline Value2D<T> yx() const
+		{return Value2D<T>(this->y, this->x);}
 
 
 	// MARK: - Operations for integer and real types
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_signed, Boolean>::type is_negative() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_signed, Boolean>::type
+	is_negative() const
 		{return this->x < T(0) && this->y < T(0);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_signed, Boolean>::type has_negative() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_signed, Boolean>::type
+	has_negative() const
 		{return this->x < T(0) || this->y < T(0);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_signed, Value2D<T> >::type negative() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_signed, Value2D<T> >::type
+	negative() const
 		{return Value2D<T>(-this->x, -this->y);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_signed, Value2D<T> >::type absolute() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_signed, Value2D<T> >::type
+	absolute() const
 		{return Value2D<T>(ZKit::absolute<T>(this->x), ZKit::absolute<T>(this->y));}
 
 
 	// MARK: - Operations for real types only
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_almost_equal(const Value2D<T> &value) const
-		{return are_almost_equal<T>(this->x, value.x) && are_almost_equal<T>(this->y, value.y);}
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Boolean>::type
+	is_almost_equal(const Value2D<T> &value) const
+		{
+		return	are_almost_equal<T>(this->x, value.x) &&
+			are_almost_equal<T>(this->y, value.y);
+		}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_perpendicular(const Value2D<T> &value) const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Boolean>::type
+	is_perpendicular(const Value2D<T> &value) const
 		{return ZKit::absolute<T>(dot_product(value)) <= Type<T>::epsilon;}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type lerp(const Value2D<T> &value, T t) const
-		{return Value2D<T>(ZKit::lerp<T>(this->x, value.x, t), ZKit::lerp<T>(this->y, value.y, t));}
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type
+	lerp(const Value2D<T> &value, T t) const
+		{
+		return Value2D<T>
+			(ZKit::lerp<T>(this->x, value.x, t),
+			ZKit::lerp<T>(this->y, value.y, t));
+		}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type inverse_lerp(const Value2D<T> &value, T t) const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type
+	inverse_lerp(const Value2D<T> &value, T t) const
 		{
 		return Value2D<T>
 			(ZKit::inverse_lerp<T>(this->x, value.x, t),
@@ -225,53 +246,53 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 		 }
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_finite() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Boolean>::type
+	is_finite() const
 		{return ZKit::is_finite<T>(this->x) && ZKit::is_finite<T>(this->y);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_infinity() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Boolean>::type
+	is_infinity() const
 		{return ZKit::is_infinity<T>(this->x) && ZKit::is_infinity<T>(this->y);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_nan() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Boolean>::type
+	is_nan() const
 		{return ZKit::is_nan<T>(this->x) && ZKit::is_nan<T>(this->y);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type is_almost_zero() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Boolean>::type
+	is_almost_zero() const
 		{return ZKit::is_almost_zero<T>(this->x) && ZKit::is_almost_zero<T>(this->y);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type has_finite() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Boolean>::type
+	has_finite() const
 		{return ZKit::is_finite<T>(this->x) || ZKit::is_finite<T>(this->y);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type has_infinity() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Boolean>::type
+	has_infinity() const
 		{return ZKit::is_infinity<T>(this->x) || ZKit::is_infinity<T>(this->y);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type has_nan() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Boolean>::type
+	has_nan() const
 		{return ZKit::is_nan<T>(this->x) || ZKit::is_nan<T>(this->y);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Boolean>::type has_almost_zero() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Boolean>::type
+	has_almost_zero() const
 		{return is_almost_zero<T>(this->x) || is_almost_zero<T>(this->y);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type reciprocal() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type
+	reciprocal() const
 		{return Value2D<T>(T(1.0) / this->x, T(1.0) / this->y);}
 
 
-	template <typename TT = T>
-	inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type clamp_01() const
+	template <typename TT = T> inline typename enable_if<Type<TT>::is_real, Value2D<T> >::type
+	clamp_01() const
 		{return Value2D<T>(clamp_01<T>(this->x), clamp_01<T>(this->y));}
 
 #ifndef Z_DECLARING_PARTIAL_VALUE_2D

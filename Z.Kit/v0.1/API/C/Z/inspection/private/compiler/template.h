@@ -97,8 +97,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C++ specifiers */
 
-/*#define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION*/
-/*#define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION*/
+/*#define Z_COMPILER_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION*/
+/*#define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION*/
+/*#define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE*/
 
 /* MARK: - C++ operators */
 

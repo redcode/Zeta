@@ -16,6 +16,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_STRING Z_CPP_STRING_CPP11
 #endif
 
+/* MARK: - Features */
+
+#define Z_CPP_HAS_VARIADIC_TEMPLATE
+
 /* MARK: - Specifiers */
 
 #define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION
