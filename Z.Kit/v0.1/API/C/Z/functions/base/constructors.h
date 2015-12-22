@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_functions_base_constructors_H__
 #define __Z_functions_base_constructors_H__
 
-#include <Z/macros/templating.h>
+#include <Z/types/base.h>
 
 #if Z_LANGUAGE_HAS(COMPOUND_LITERAL)
 

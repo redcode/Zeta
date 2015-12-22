@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_types_handling_H__
 #define __Z_types_handling_H__
 
-#include <Z/macros/templating.h>
+#include <Z/types/base.h>
 
 typedef void (* ZHandleIndex		      ) (		zsize index			       );
 typedef void (* ZHandleIndexAndData	      ) (		zsize index, void *data		       );

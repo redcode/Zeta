@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_types_validation_H__
 #define __Z_types_validation_H__
 
-#include <Z/macros/templating.h>
+#include <Z/types/base.h>
 
 typedef zboolean (* ZValidateIndex		) (		  zsize index		 );
 typedef zboolean (* ZValidateIndexAndData	) (		  zsize index, void *data);

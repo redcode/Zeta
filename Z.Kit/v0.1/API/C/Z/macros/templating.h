@@ -9,8 +9,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_macros_templating_H__
 #define __Z_macros_templating_H__
 
-#include <Z/types/base.h>
-
 #define Z_INSERT_UINT8(	 left, right) left##UINT8##right
 #define Z_INSERT_UInt8(	 left, right) left##UInt8##right
 #define Z_INSERT_uint8(	 left, right) left##uint8##right
@@ -173,5 +171,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_REAL_FIXED_TYPE    Z_JOIN_2(Z_INSERT_FLOAT,   Z_REAL_BITS   )
 #define Z_INSERT_REAL_FixedType	    Z_JOIN_2(Z_INSERT_Float,   Z_REAL_BITS   )
 #define Z_INSERT_REAL_fixed_type    Z_JOIN_2(Z_INSERT_float,   Z_REAL_BITS   )
+
+#ifndef __Z_types_base_H__
+#	include <Z/types/base.h>
+#endif
 
 #endif /* __Z_macros_templating_H__ */

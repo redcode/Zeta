@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_types_mathematics_H__
 #define __Z_types_mathematics_H__
 
-#include <Z/macros/templating.h>
+#include <Z/types/base.h>
 
 #if Z_IS_AVAILABLE(FLOAT16)
 	typedef struct {Z2DFloat16 a, b;}			Z2DLineFloat16;

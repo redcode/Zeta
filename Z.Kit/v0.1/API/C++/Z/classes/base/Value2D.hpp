@@ -22,8 +22,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	import <Foundation/NSGeometry.h>
 #endif
 
-#define Z2DType(TYPE) Z_INSERT_##TYPE##_FixedType(Z2D,)
-
 namespace ZKit {
 	namespace Selectors {Z_TYPE_SELECTOR(Value2D, Z2DType)}
 	template <typename T> struct Value2D;

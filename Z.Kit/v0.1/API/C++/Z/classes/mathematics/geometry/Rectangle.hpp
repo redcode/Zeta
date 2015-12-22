@@ -146,15 +146,38 @@ template <typename T> struct ZKit::Rectangle {
 	inline T middle_x () const {return point.x + size.x / T(2);}
 	inline T middle_y () const {return point.y + size.y / T(2);}
 
-	inline Value2D<T> top_left     () const {return Value2D<T>(point.x, point.y + size.y);}
-	inline Value2D<T> top_right    () const {return point + size;}
-	inline Value2D<T> top_center   () const {return Value2D<T>(point.x + size.x / T(2), point.y + size.y);}
-	inline Value2D<T> bottom_left  () const {return point;}
-	inline Value2D<T> bottom_right () const {return Value2D<T>(point.x + size.x, point.y);}
-	inline Value2D<T> bottom_center() const {return Value2D<T>(point.x + size.x / T(2), point.y);}
-	inline Value2D<T> center_left  () const {return Value2D<T>(point.x, point.y + size.y / T(2));}
-	inline Value2D<T> center_right () const {return Value2D<T>(point.x + size.x, point.y + size.y / T(2));}
-	inline Value2D<T> center       () const {return point + size / T(2);}
+
+	inline Value2D<T> top_left() const
+		{return Value2D<T>(point.x, point.y + size.y);}
+
+	inline Value2D<T> top_right() const
+		{return point + size;}
+
+
+	inline Value2D<T> top_center() const
+		{return Value2D<T>(point.x + size.x / T(2), point.y + size.y);}
+
+
+	inline Value2D<T> bottom_left() const
+		{return point;}
+
+
+	inline Value2D<T> bottom_right() const
+		{return Value2D<T>(point.x + size.x, point.y);}
+
+
+	inline Value2D<T> bottom_center() const
+		{return Value2D<T>(point.x + size.x / T(2), point.y);}
+
+	inline Value2D<T> center_left() const
+		{return Value2D<T>(point.x, point.y + size.y / T(2));}
+
+
+	inline Value2D<T> center_right() const
+		{return Value2D<T>(point.x + size.x, point.y + size.y / T(2));}
+
+	inline Value2D<T> center() const
+		{return point + size / T(2);}
 
 	/*
 	inline Rectangle<T> correct()
@@ -165,15 +188,36 @@ template <typename T> struct ZKit::Rectangle {
 		}*/
 
 
-	inline Rectangle<T> top_half   () const {return Rectangle<T>(point.x, point.y + size.y / T(2), size.x, size.y / T(2));}
-	inline Rectangle<T> bottom_half() const {return Rectangle<T>(point,			       size.x, size.y / T(2));}
-	inline Rectangle<T> left_half  () const {return Rectangle<T>(point,			       size.x / T(2), size.y);}
-	inline Rectangle<T> right_half () const {return Rectangle<T>(point.x + size.x / T(2), point.y, size.x / T(2), size.y);}
+	inline Rectangle<T> top_half() const
+		{return Rectangle<T>(point.x, point.y + size.y / T(2), size.x, size.y / T(2));}
 
-	inline Rectangle<T> top_left_quarter	() const {return Rectangle<T>(point.x, point.y + size.y / T(2), size / T(2));}
-	inline Rectangle<T> top_right_quarter	() const {return Rectangle<T>(point + size / T(2),		size / T(2));}
-	inline Rectangle<T> bottom_left_quarter	() const {return Rectangle<T>(point,				size / T(2));}
-	inline Rectangle<T> bottom_right_quarter() const {return Rectangle<T>(point.x + size.x / T(2), point.y, size / T(2));}
+
+	inline Rectangle<T> bottom_half() const
+		{return Rectangle<T>(point, size.x, size.y / T(2));}
+
+
+	inline Rectangle<T> left_half() const
+		{return Rectangle<T>(point, size.x / T(2), size.y);}
+
+
+	inline Rectangle<T> right_half() const
+		{return Rectangle<T>(point.x + size.x / T(2), point.y, size.x / T(2), size.y);}
+
+
+	inline Rectangle<T> top_left_quarter() const
+		{return Rectangle<T>(point.x, point.y + size.y / T(2), size / T(2));}
+
+
+	inline Rectangle<T> top_right_quarter() const
+		{return Rectangle<T>(point + size / T(2), size / T(2));}
+
+
+	inline Rectangle<T> bottom_left_quarter() const
+		{return Rectangle<T>(point, size / T(2));}
+
+
+	inline Rectangle<T> bottom_right_quarter() const
+		{return Rectangle<T>(point.x + size.x / T(2), point.y, size / T(2));}
 
 
 	inline Rectangle<T> align_in_top_left(const Value2D<T> &size) const
@@ -308,8 +352,12 @@ template <typename T> struct ZKit::Rectangle {
 		}*/
 
 
-	inline Value2D<T> absolute_point_to_unit(const Value2D<T> &point) const {return (point - this->point) / this->size;}
-	inline Value2D<T> unit_point_to_absolute(const Value2D<T> &point) const {return point * this->size + this->point;}
+	inline Value2D<T> absolute_point_to_unit(const Value2D<T> &point) const
+		{return (point - this->point) / this->size;}
+
+
+	inline Value2D<T> unit_point_to_absolute(const Value2D<T> &point) const
+		{return point * this->size + this->point;}
 
 
 	inline Boolean contains_point(const Value2D<T> &point) const

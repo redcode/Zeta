@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_types_comparison_H__
 #define __Z_types_comparison_H__
 
-#include <Z/macros/templating.h>
+#include <Z/types/base.h>
 
 typedef int (* ZCompare	       ) (void *a, void *b	      );
 typedef int (* ZCompareWithData) (void *a, void *b, void *data);
