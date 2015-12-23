@@ -52,7 +52,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_HAS_C_ATTRIBUTE(NO_RETURN)
 #	define Z_NO_RETURN Z_COMPILER_C_ATTRIBUTE(NO_RETURN)
 #elif Z_LANGUAGE_HAS_SPECIFIER(NO_RETURN)
-#	define Z_INLINE _Noreturn
+#	define Z_NO_RETURN _Noreturn
+#else
+#	define Z_NO_RETURN
 #endif
 
 #if Z_COMPILER_HAS_C_ATTRIBUTE(NULL_TERMINATED)
@@ -63,8 +65,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_COMPILER_HAS_C_ATTRIBUTE(PRIVATE)
 #	define Z_PRIVATE Z_COMPILER_C_ATTRIBUTE(PRIVATE)
-#else
+#elif Z_LANGUAGE_HAS_STORAGE_CLASS(STATIC)
 #	define Z_PRIVATE static
+#else
+#	define Z_PRIVATE
 #endif
 
 #if Z_COMPILER_HAS_C_ATTRIBUTE(PUBLIC)
