@@ -135,9 +135,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		{Z4D##Type magnitude = {x, y, z, w}; return magnitude;}
 
 
-#	define Z_TEMPLATE_RANGE_CONSTRUCTOR(Type, type)		 \
-								 \
-	ZRange##Type z_range_##type(z##type index, z##type size) \
+#	define Z_TEMPLATE_RANGE_CONSTRUCTOR(Type, type)			  \
+									  \
+	Z_INLINE ZRange##Type z_range_##type(z##type index, z##type size) \
 		{ZRange##Type range = {index, size}; return range;}
 
 

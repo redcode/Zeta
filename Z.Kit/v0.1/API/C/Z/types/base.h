@@ -943,7 +943,7 @@ typedef ztype  (SIZE)				zsize;
 typedef Z2DType(SIZE)				Z2DSize;
 typedef Z3DType(SIZE)				Z3DSize;
 typedef Z4DType(SIZE)				Z4DSize;
-#define Z_SIZE					Z_UINTN		      (SIZE)
+#define Z_SIZE					Z_TYPE		      (SIZE)
 #define Z_SIZE_BASE_VALUE_TYPE			Z_TYPE_BASE_VALUE_TYPE(SIZE)
 #define Z_SIZE_FIXED_VALUE_TYPE			Z_TYPE_VALUE_TYPE     (SIZE)
 #define Z_SIZE_VALUE_TYPE			Z_VALUE_TYPE_SIZE
@@ -959,7 +959,7 @@ typedef ztype  (SSIZE)				zssize;
 typedef Z2DType(SSIZE)				Z2DSSize;
 typedef Z3DType(SSIZE)				Z3DSSize;
 typedef Z4DType(SSIZE)				Z4DSSize;
-#define Z_SSIZE					Z_INTN		      (SSIZE)
+#define Z_SSIZE					Z_TYPE		      (SSIZE)
 #define Z_SSIZE_BASE_VALUE_TYPE			Z_TYPE_BASE_VALUE_TYPE(SSIZE)
 #define Z_SSIZE_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (SSIZE)
 #define Z_SSIZE_VALUE_TYPE			Z_VALUE_TYPE_SSIZE
@@ -981,7 +981,7 @@ typedef ztype  (UINTMAX)			zuintmax;
 typedef Z2DType(UINTMAX)			Z2DUIntMax;
 typedef Z3DType(UINTMAX)			Z3DUIntMax;
 typedef Z4DType(UINTMAX)			Z4DUIntMax;
-#define Z_UINTMAX				Z_UINTN		      (UINTMAX)
+#define Z_UINTMAX				Z_TYPE		      (UINTMAX)
 #define Z_UINTMAX_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE(UINTMAX)
 #define Z_UINTMAX_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (UINTMAX)
 #define Z_UINTMAX_VALUE_TYPE			Z_VALUE_TYPE_UINTMAX
@@ -1001,7 +1001,7 @@ typedef ztype  (INTMAX)				zintmax;
 typedef Z2DType(INTMAX)				Z2DIntMax;
 typedef Z3DType(INTMAX)				Z3DIntMax;
 typedef Z4DType(INTMAX)				Z4DIntMax;
-#define Z_INTMAX				Z_INTN		      (INTMAX)
+#define Z_INTMAX				Z_TYPE		      (INTMAX)
 #define Z_INTMAX_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE(INTMAX)
 #define Z_INTMAX_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (INTMAX)
 #define Z_INTMAX_VALUE_TYPE			Z_VALUE_TYPE_INTMAX
@@ -1025,7 +1025,7 @@ typedef ztype  (UINTPTR)			zuintptr;
 typedef Z2DType(UINTPTR)			Z2DUIntPtr;
 typedef Z3DType(UINTPTR)			Z3DUIntPtr;
 typedef Z4DType(UINTPTR)			Z4DUIntPtr;
-#define Z_UINTPTR				Z_UINTN		      (UINTPTR)
+#define Z_UINTPTR				Z_TYPE		      (UINTPTR)
 #define Z_UINTPTR_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE(UINTPTR)
 #define Z_UINTPTR_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (UINTPTR)
 #define Z_UINTPTR_VALUE_TYPE			Z_VALUE_TYPE_UINTPTR
@@ -1041,7 +1041,7 @@ typedef ztype  (INTPTR)				zintptr;
 typedef Z2DType(INTPTR)				Z2DIntPtr;
 typedef Z3DType(INTPTR)				Z3DIntPtr;
 typedef Z4DType(INTPTR)				Z4DIntPtr;
-#define Z_INTPTR				Z_INTN		      (INTPTR)
+#define Z_INTPTR				Z_TYPE		      (INTPTR)
 #define Z_INTPTR_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE(INTPTR)
 #define Z_INTPTR_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (INTPTR)
 #define Z_INTPTR_VALUE_TYPE			Z_VALUE_TYPE_INTPTR
@@ -1067,7 +1067,7 @@ typedef ztype  (UINTTOP)			zuinttop;
 typedef Z2DType(UINTTOP)			Z2DUIntTop;
 typedef Z3DType(UINTTOP)			Z3DUIntTop;
 typedef Z4DType(UINTTOP)			Z4DUIntTop;
-#define Z_UINTTOP				Z_UINTN		      (UINTTOP)
+#define Z_UINTTOP				Z_TYPE		      (UINTTOP)
 #define Z_UINTTOP_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE(UINTTOP)
 #define Z_UINTTOP_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (UINTTOP)
 #define Z_UINTTOP_VALUE_TYPE			Z_VALUE_TYPE_UINTTOP
@@ -1091,7 +1091,7 @@ typedef ztype  (INTTOP)				zinttop;
 typedef Z2DType(INTTOP)				Z2DIntTop;
 typedef Z3DType(INTTOP)				Z3DIntTop;
 typedef Z4DType(INTTOP)				Z4DIntTop;
-#define Z_INTTOP				Z_INTN		      (INTTOP)
+#define Z_INTTOP				Z_TYPE		      (INTTOP)
 #define Z_INTTOP_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE(INTTOP)
 #define Z_INTTOP_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (INTTOP)
 #define Z_INTTOP_VALUE_TYPE			Z_VALUE_TYPE_INTTOP
@@ -1129,7 +1129,7 @@ typedef ztype  (NATURAL)			znatural;
 typedef Z2DType(NATURAL)			Z2DNatural;
 typedef Z3DType(NATURAL)			Z3DNatural;
 typedef Z4DType(NATURAL)			Z4DNatural;
-#define Z_NATURAL				Z_UINTN		      (NATURAL)
+#define Z_NATURAL				Z_TYPE		      (NATURAL)
 #define Z_NATURAL_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE(NATURAL)
 #define Z_NATURAL_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (NATURAL)
 #define Z_NATURAL_VALUE_TYPE			Z_VALUE_TYPE_NATURAL
@@ -1155,7 +1155,7 @@ typedef ztype  (INTEGER)			zinteger;
 typedef Z2DType(INTEGER)			Z2DInteger;
 typedef Z3DType(INTEGER)			Z3DInteger;
 typedef Z4DType(INTEGER)			Z4DInteger;
-#define Z_INTEGER				Z_INTN		      (INTEGER)
+#define Z_INTEGER				Z_TYPE		      (INTEGER)
 #define Z_INTEGER_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE(INTEGER)
 #define Z_INTEGER_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (INTEGER)
 #define Z_INTEGER_VALUE_TYPE			Z_VALUE_TYPE_INTEGER
@@ -1197,7 +1197,7 @@ typedef Z4DType(INTEGER)			Z4DInteger;
 	typedef Z2DType(REAL)			Z2DReal;
 	typedef Z3DType(REAL)			Z3DReal;
 	typedef Z4DType(REAL)			Z4DReal;
-#	define Z_REAL				Z_FLOATN		  (REAL)
+#	define Z_REAL				Z_TYPE			  (REAL)
 #	define Z_REAL_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE	  (REAL)
 #	define Z_REAL_FIXED_VALUE_TYPE		Z_TYPE_FIXED_VALUE_TYPE	  (REAL)
 #	define Z_REAL_VALUE_TYPE		Z_VALUE_TYPE_REAL
