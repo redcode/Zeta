@@ -120,8 +120,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define z_4d_float128(x, y, z, w) ((Z4DFloat128){x, y, z, w})
 #	endif
 
-#	define z_range(index, size) ((ZRange){index, size})
-
 #else
 
 #	define Z_TEMPLATE_ND_VALUE_CONSTRUCTORS(Type, type)		  \
