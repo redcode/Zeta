@@ -33,9 +33,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		typedef union {__VA_ARGS__}				\
 		Z_STRICT_SIZE_END
 
-#	define Z_DEFINE_STRUCTURE_WITH_NAME(name, ...)			\
-		typedef struct name name;				\
-		struct name {__VA_ARGS__}
+#	ifdef __cplusplus
+#		define Z_DEFINE_STRUCTURE_WITH_NAME(name, ...)		\
+			typedef struct name {__VA_ARGS__} name;
+#	else
+#		define Z_DEFINE_STRUCTURE_WITH_NAME(name, ...)		\
+			typedef struct name name;			\
+			struct name {__VA_ARGS__}
+#	endif
 
 #	define Z_DEFINE_STRICT_STRUCTURE_WITH_NAME(name, ...)		\
 		Z_STRICT_SIZE_BEGIN					\
@@ -64,9 +69,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		typedef union {members}					\
 		Z_STRICT_SIZE_END
 
-#	define Z_DEFINE_STRUCTURE_WITH_NAME(name, members)		\
-		typedef struct name name;				\
-		struct name {members}
+#	ifdef __cplusplus
+#		define Z_DEFINE_STRUCTURE_WITH_NAME(name, members)	\
+			typedef struct name {members} name;
+#	else
+#		define Z_DEFINE_STRUCTURE_WITH_NAME(name, ...)		\
+			typedef struct name name;			\
+			struct name {members}
+#	endif
 
 #	define Z_DEFINE_STRICT_STRUCTURE_WITH_NAME(name, members)	\
 		Z_STRICT_SIZE_BEGIN					\
