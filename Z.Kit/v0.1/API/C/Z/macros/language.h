@@ -27,15 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define COMMA ,
 #endif
 
-/* MARK: - Attributes */
-
-#if Z_COMPILER_HAS_C_ATTRIBUTE(STRICT_SIZE_BEGIN)
-#	define Z_STRICT_SIZE_BEGIN Z_COMPILER_C_ATTRIBUTE(STRICT_SIZE_BEGIN)
-#	define Z_STRICT_SIZE_END   Z_COMPILER_C_ATTRIBUTE(STRICT_SIZE_END)
-#else
-#	define Z_STRICT_SIZE_BEGIN
-#	define Z_STRICT_SIZE_END
-#endif
+/* MARK: - Type qualifiers */
 
 #if Z_COMPILER_HAS_C_ATTRIBUTE(THREAD_LOCAL)
 #	define Z_THREAD_LOCAL Z_COMPILER_C_ATTRIBUTE(THREAD_LOCAL)
@@ -43,25 +35,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_THREAD_LOCAL _Thread_local
 #endif
 
-#if Z_COMPILER_HAS_C_ATTRIBUTE(INLINE)
-#	define Z_INLINE Z_COMPILER_C_ATTRIBUTE(INLINE)
-#elif Z_LANGUAGE_HAS_SPECIFIER(INLINE)
-#	define Z_INLINE inline
-#endif
-
-#if Z_COMPILER_HAS_C_ATTRIBUTE(NO_RETURN)
-#	define Z_NO_RETURN Z_COMPILER_C_ATTRIBUTE(NO_RETURN)
-#elif Z_LANGUAGE_HAS_SPECIFIER(NO_RETURN)
-#	define Z_NO_RETURN _Noreturn
-#else
-#	define Z_NO_RETURN
-#endif
-
-#if Z_COMPILER_HAS_C_ATTRIBUTE(NULL_TERMINATED)
-#	define Z_NULL_TERMINATED Z_COMPILER_C_ATTRIBUTE(NULL_TERMINATED)
-#else
-#	define Z_NULL_TERMINATED
-#endif
+/* MARK: - Storage classes */
 
 #if Z_COMPILER_HAS_C_ATTRIBUTE(PRIVATE)
 #	define Z_PRIVATE Z_COMPILER_C_ATTRIBUTE(PRIVATE)
@@ -89,6 +63,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_API_EXPORT Z_PUBLIC
 #endif
 
+/* MARK: - Specifiers */
+
+#if Z_COMPILER_HAS_C_ATTRIBUTE(INLINE)
+#	define Z_INLINE Z_COMPILER_C_ATTRIBUTE(INLINE)
+#elif Z_LANGUAGE_HAS_SPECIFIER(INLINE)
+#	define Z_INLINE inline
+#endif
+
+#if Z_COMPILER_HAS_C_ATTRIBUTE(NO_RETURN)
+#	define Z_NO_RETURN Z_COMPILER_C_ATTRIBUTE(NO_RETURN)
+#elif Z_LANGUAGE_HAS_SPECIFIER(NO_RETURN)
+#	define Z_NO_RETURN _Noreturn
+#else
+#	define Z_NO_RETURN
+#endif
+
 /* MARK: - Operators */
 
 #if Z_COMPILER_HAS_FUNCTION(OFFSET_OF)
@@ -97,6 +87,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_OFFSET_OF offsetof
 #else
 #	define Z_OFFSET_OF(type, member) ((unsigned long)&((type *)(0))->member)
+#endif
+
+/* MARK: - Attributes */
+
+#if Z_COMPILER_HAS_C_ATTRIBUTE(STRICT_SIZE_BEGIN)
+#	define Z_STRICT_SIZE_BEGIN Z_COMPILER_C_ATTRIBUTE(STRICT_SIZE_BEGIN)
+#	define Z_STRICT_SIZE_END   Z_COMPILER_C_ATTRIBUTE(STRICT_SIZE_END)
+#else
+#	define Z_STRICT_SIZE_BEGIN
+#	define Z_STRICT_SIZE_END
+#endif
+
+#if Z_COMPILER_HAS_C_ATTRIBUTE(NULL_TERMINATED)
+#	define Z_NULL_TERMINATED Z_COMPILER_C_ATTRIBUTE(NULL_TERMINATED)
+#else
+#	define Z_NULL_TERMINATED
 #endif
 
 /* MARK: - Sections */

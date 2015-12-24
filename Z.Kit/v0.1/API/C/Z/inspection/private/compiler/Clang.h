@@ -418,7 +418,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in functions: Struture */
 
-#define Z_COMPILER_FUNCTION_OFFSETOF __builtin_offsetof
+#define Z_COMPILER_FUNCTION_OFFSET_OF __builtin_offsetof
 
 /* MARK: - Built-in functions: VAL */
 

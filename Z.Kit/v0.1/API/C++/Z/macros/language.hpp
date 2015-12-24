@@ -11,6 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/macros/language.h>
 
+/* MARK: - Specifiers */
+
 #if Z_LANGUAGE_HAS_SPECIFIER(CONSTANT_EXPRESSION)
 #	define Z_CONSTANT_EXPRESSION constexpr
 #else 
@@ -21,6 +23,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_NO_EXCEPTION noexcept
 #else
 #	define Z_NO_EXCEPTION throw()
+#endif
+
+/* MARK: - Functions */
+
+#if Z_COMPILER_HAS_FUNCTION(CLASS_MEMBER_OFFSET)
+#	define Z_CLASS_MEMBER_OFFSET Z_COMPILER_FUNCTION(CLASS_MEMBER_OFFSET)
+#else
+#	define Z_CLASS_MEMBER_OFFSET(type, member) ((unsigned long)&((type *)(0))->member)
 #endif
 
 #endif // __Z_macros_language_HPP__
