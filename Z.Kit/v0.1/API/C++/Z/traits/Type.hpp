@@ -297,21 +297,21 @@ namespace ZKit {
 			typedef T element_type;
 		};
 
-#		if Z_LANGUAGE_HAS(VARIADIC_TEMPLATE)
-			template <class R, class... A> struct Function : Base {
-				enum {	is_callable = true,
-					is_function = true
-				};
-				enum {arity = sizeof...(A)};
-
-				typedef R type		     (A...);
-				typedef R type_const	     (A...) const;
-				typedef R type_volatile	     (A...)	  volatile;
-				typedef R type_const_volatile(A...) const volatile;
-
-				typedef R return_type;
+		template <class R, class... A> struct Function : Base {
+			enum {	is_callable = true,
+				is_function = true
 			};
+			enum {arity = sizeof...(A)};
 
+			typedef R type		     (A...);
+			typedef R type_const	     (A...) const;
+			typedef R type_volatile	     (A...)	  volatile;
+			typedef R type_const_volatile(A...) const volatile;
+
+			typedef R return_type;
+		};
+
+#		if Z_LANGUAGE_HAS(VARIADIC_TEMPLATE)
 			template <class R, class... A> struct VariadicFunction : Function<R, A...> {
 				enum {is_variadic = true};
 
