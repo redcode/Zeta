@@ -152,20 +152,8 @@ Z_TEMPLATE_VALUE_ROTATED_PREFIX(type##_rotated_right)(z##type value, zuint rotat
 	{return Z_##bits##BIT_ROTATE_RIGHT(value, rotation);}
 
 
-#ifndef Z_TEMPLATE_VALUE_ROTATED_SPECIFIER
-#	define Z_TEMPLATE_VALUE_ROTATED_SPECIFIER Z_INLINE
-#endif
-
-#ifndef Z_TEMPLATE_VALUE_ROTATED_PREFIX
-#	define Z_TEMPLATE_VALUE_ROTATED_PREFIX Z_PREFIX_z_
-
-#	define z_type_rotated_left( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_left )
-#	define z_type_rotated_right(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_right)
-#endif
-
-#ifndef Z_TEMPLATE_VALUE_ROTATED_ALLOW_INTEGER
-#	define Z_TEMPLATE_VALUE_ROTATED_ALLOW_INTEGER Z_ALLOW
-#endif
+#define z_type_rotated_left( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_left )
+#define z_type_rotated_right(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_right)
 
 
 /* MARK: - Template for reversion operations */
@@ -178,23 +166,35 @@ Z_TEMPLATE_VALUE_REVERSED_PREFIX(type##_reversed_in_##level##bit)(z##type value)
 	{return Z_##bits##BIT_REVERSED_IN_##level##BIT(value);}
 
 
+#define z_type_reversed(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reversed)
+
+
+/* MARK: - Implementations */
+
+
+#ifndef Z_TEMPLATE_VALUE_ROTATED_SPECIFIER
+#	define Z_TEMPLATE_VALUE_ROTATED_SPECIFIER Z_INLINE
+#endif
+
+#ifndef Z_TEMPLATE_VALUE_ROTATED_PREFIX
+#	define Z_TEMPLATE_VALUE_ROTATED_PREFIX Z_PREFIX_z_
+#endif
+
+#ifndef Z_TEMPLATE_VALUE_ROTATED_ALLOW_INTEGER
+#	define Z_TEMPLATE_VALUE_ROTATED_ALLOW_INTEGER Z_ALLOW
+#endif
+
 #ifndef Z_TEMPLATE_VALUE_REVERSED_SPECIFIER
 #	define Z_TEMPLATE_VALUE_REVERSED_SPECIFIER Z_INLINE
 #endif
 
 #ifndef Z_TEMPLATE_VALUE_REVERSED_PREFIX
 #	define Z_TEMPLATE_VALUE_REVERSED_PREFIX Z_PREFIX_z_
-
-#	define z_type_reversed(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reversed)
 #endif
 
 #ifndef Z_TEMPLATE_VALUE_REVERSED_ALLOW_INTEGER
 #	define Z_TEMPLATE_VALUE_REVERSED_ALLOW_INTEGER Z_ALLOW
 #endif
-
-
-/* MARK: - Implementations */
-
 
 Z_TEMPLATE_NATURAL	 (uint8)
 Z_TEMPLATE_VALUE_ROTATED (uint8, 8)
