@@ -60,7 +60,4 @@ typedef struct {
 	ZChainNode* last;
 } ZChain;
 
-typedef struct {
-} ZHash;
-
 #endif /* __Z_types_data_H__ */
