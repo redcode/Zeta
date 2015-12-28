@@ -1,4 +1,4 @@
-/* Z Kit C API - functions/mathematics/geometry/ZAABR.h
+/* Z Kit C API - functions/mathematics/geometry/euclidean/ZAABR.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,10 +6,10 @@
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_mathematics_geometry_ZAABR_H__
-#define __Z_functions_mathematics_geometry_ZAABR_H__
+#ifndef __Z_functions_mathematics_geometry_euclidean_ZAABR_H__
+#define __Z_functions_mathematics_geometry_euclidean_ZAABR_H__
 
-#include <Z/functions/mathematics/geometry/Z2DLine.h>
+#include <Z/functions/mathematics/geometry/euclidean/Z2DLine.h>
 
 
 /* MARK: - Template */
@@ -607,4 +607,4 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #define z_aabr_contains_circle	      z_aabr_type_contains_circle	(REAL)
 
 
-#endif /* __Z_functions_mathematics_geometry_ZAABR_H__ */
+#endif /* __Z_functions_mathematics_geometry_euclidean_ZAABR_H__ */

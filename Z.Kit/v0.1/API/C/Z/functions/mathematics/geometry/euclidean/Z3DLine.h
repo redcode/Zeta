@@ -1,4 +1,4 @@
-/* Z Kit C API - functions/mathematics/geometry/Z3DLine.h
+/* Z Kit C API - functions/mathematics/geometry/euclidean/Z3DLine.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,10 +6,10 @@
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_mathematics_geometry_Z3DLine_H__
-#define __Z_functions_mathematics_geometry_Z3DLine_H__
+#ifndef __Z_functions_mathematics_geometry_euclidean_Z3DLine_H__
+#define __Z_functions_mathematics_geometry_euclidean_Z3DLine_H__
 
-#include <Z/functions/mathematics/geometry/constructors.h>
+#include <Z/functions/mathematics/geometry/euclidean/constructors.h>
 #include <Z/functions/base/Z3DValue.h>
 
 
@@ -123,4 +123,4 @@ Z_INLINE Z3D##Type z_3d_line_segment_##type##_lerp(Z3DLine##Type object, z##type
 #define z_3d_line_segment_lerp	    z_3d_line_segment_type_lerp	    (REAL)
 
 
-#endif /* __Z_functions_mathematics_geometry_Z3DLine_H__ */
+#endif /* __Z_functions_mathematics_geometry_euclidean_Z3DLine_H__ */

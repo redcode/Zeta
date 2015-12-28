@@ -1,4 +1,4 @@
-/* Z Kit C API - functions/mathematics/geometry/constructors.h
+/* Z Kit C API - functions/mathematics/geometry/euclidean/constructors.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -6,8 +6,8 @@
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_mathematics_geometry_constructors_H__
-#define __Z_functions_mathematics_geometry_constructors_H__
+#ifndef __Z_functions_mathematics_geometry_euclidean_constructors_H__
+#define __Z_functions_mathematics_geometry_euclidean_constructors_H__
 
 #include <Z/types/mathematics.h>
 
@@ -213,81 +213,81 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #else
 
-#	define Z_TEMPLATE_GEOMETRY_CONSTRUCTORS(Type, type)			\
-										\
-										\
-	Z_INLINE Z2DLine##Type z_2d_line_##type(				\
-		z##type a_x,							\
-		z##type a_y,							\
-		z##type b_x,							\
-		z##type b_y							\
-	)									\
-		{								\
-		Z2DLine##Type line = {{a_x, a_y}, {b_x, b_y}};			\
-		return line;							\
-		}								\
-										\
-										\
-	Z_INLINE Z3DLine##Type z_3d_line_##type(				\
-		z##type a_x,							\
-		z##type a_y,							\
-		z##type a_z,							\
-		z##type b_x,							\
-		z##type b_y,							\
-		z##type b_z							\
-	)									\
-		{								\
-		Z3DLine##Type line = {{a_x, a_y, a_z}, {b_x, b_y, b_z}};	\
-		return line;							\
-		}								\
-										\
-										\
-	Z_INLINE ZRectangle##Type z_rectangle_##type(				\
-		z##type x,							\
-		z##type y,							\
-		z##type size_x,							\
-		z##type size_y							\
-	)									\
-		{								\
-		ZRectangle##Type rectangle = {{x, y}, {size_x, size_y}};	\
-		return rectangle;						\
-		}								\
-										\
-										\
-	Z_INLINE ZBox##Type z_box_##type(					\
-		z##type x,							\
-		z##type y,							\
-		z##type z,							\
-		z##type size_x,							\
-		z##type size_y,							\
-		z##type size_z							\
-	)									\
-		{								\
-		ZBox##Type box = {{x, y, z}, {size_x, size_y, size_z}};		\
-		return box;							\
-		}								\
-										\
-										\
-	Z_INLINE ZCircle##Type z_circle_##type(					\
-		z##type x,							\
-		z##type y,							\
-		z##type radius							\
-	)									\
-		{								\
-		ZCircle##Type circle = {{x, y}, radius};			\
-		return circle;							\
-		}								\
-										\
-										\
-	Z_INLINE ZSphere##Type z_sphere_##type(					\
-		z##type x,							\
-		z##type y,							\
-		z##type z,							\
-		z##type radius							\
-	)									\
-		{								\
-		ZSphere##Type sphere = {{x, y, z}, radius};			\
-		return sphere;							\
+#	define Z_TEMPLATE_GEOMETRY_EUCLIDEAN_CONSTRUCTORS(Type, type)	 \
+									 \
+									 \
+	Z_INLINE Z2DLine##Type z_2d_line_##type(			 \
+		z##type a_x,						 \
+		z##type a_y,						 \
+		z##type b_x,						 \
+		z##type b_y						 \
+	)								 \
+		{							 \
+		Z2DLine##Type line = {{a_x, a_y}, {b_x, b_y}};		 \
+		return line;						 \
+		}							 \
+									 \
+									 \
+	Z_INLINE Z3DLine##Type z_3d_line_##type(			 \
+		z##type a_x,						 \
+		z##type a_y,						 \
+		z##type a_z,						 \
+		z##type b_x,						 \
+		z##type b_y,						 \
+		z##type b_z						 \
+	)								 \
+		{							 \
+		Z3DLine##Type line = {{a_x, a_y, a_z}, {b_x, b_y, b_z}}; \
+		return line;						 \
+		}							 \
+									 \
+									 \
+	Z_INLINE ZRectangle##Type z_rectangle_##type(			 \
+		z##type x,						 \
+		z##type y,						 \
+		z##type size_x,						 \
+		z##type size_y						 \
+	)								 \
+		{							 \
+		ZRectangle##Type rectangle = {{x, y}, {size_x, size_y}}; \
+		return rectangle;					 \
+		}							 \
+									 \
+									 \
+	Z_INLINE ZBox##Type z_box_##type(				 \
+		z##type x,						 \
+		z##type y,						 \
+		z##type z,						 \
+		z##type size_x,						 \
+		z##type size_y,						 \
+		z##type size_z						 \
+	)								 \
+		{							 \
+		ZBox##Type box = {{x, y, z}, {size_x, size_y, size_z}};	 \
+		return box;						 \
+		}							 \
+									 \
+									 \
+	Z_INLINE ZCircle##Type z_circle_##type(				 \
+		z##type x,						 \
+		z##type y,						 \
+		z##type radius						 \
+	)								 \
+		{							 \
+		ZCircle##Type circle = {{x, y}, radius};		 \
+		return circle;						 \
+		}							 \
+									 \
+									 \
+	Z_INLINE ZSphere##Type z_sphere_##type(				 \
+		z##type x,						 \
+		z##type y,						 \
+		z##type z,						 \
+		z##type radius						 \
+	)								 \
+		{							 \
+		ZSphere##Type sphere = {{x, y, z}, radius};		 \
+		return sphere;						 \
 		}
 
 
@@ -506,4 +506,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define z_sphere	 z_sphere_type	      (REAL)
 #define z_sphere_zero	 z_sphere_type_zero   (REAL)
 
-#endif /* __Z_functions_mathematics_geometry_constructors_H__ */
+#endif /* __Z_functions_mathematics_geometry_euclidean_constructors_H__ */

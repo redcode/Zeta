@@ -24,7 +24,7 @@ typedef struct {
 	zsize block_size;
 } ZBlockArray;
 
-/* MARK: - Nodes */
+/* MARK: - Abstract nodes */
 
 Z_DEFINE_LIST_NODE	 (ZListNode,,	   );
 Z_DEFINE_CHAIN_NODE	 (ZChainNode,,	   );
@@ -35,14 +35,16 @@ Z_DEFINE_QUADTREE_NODE	 (ZQuadtreeNode,,  );
 Z_DEFINE_OCTREE_NODE	 (ZOctreeNode,,	   );
 Z_DEFINE_ARRAY_TREE_NODE (ZArrayTreeNode,, );
 
-Z_DEFINE_LIST_NODE	 (ZListNodeWithData,,       void* data;);
-Z_DEFINE_CHAIN_NODE	 (ZChainNodeWithData,,      void* data;);
-Z_DEFINE_TREE_NODE	 (ZTreeNodeWithData,,       void* data;);
-Z_DEFINE_BINARY_TREE_NODE(ZBinaryTreeNodeWithData,, void* data;);
-Z_DEFINE_RB_TREE_NODE	 (ZRBTreeNodeWithData,,	    void* data;);
-Z_DEFINE_QUADTREE_NODE	 (ZQuadtreeNodeWithData,,   void* data;);
-Z_DEFINE_OCTREE_NODE	 (ZOctreeNodeWithData,,	    void* data;);
-Z_DEFINE_ARRAY_TREE_NODE (ZArrayTreeNodeWithData,,  void* data;);
+/* MARK: - Nodes */
+
+Z_DEFINE_LIST_NODE	 (ZListNodeWithData,,	    ZPointer data;);
+Z_DEFINE_CHAIN_NODE	 (ZChainNodeWithData,,	    ZPointer data;);
+Z_DEFINE_TREE_NODE	 (ZTreeNodeWithData,,	    ZPointer data;);
+Z_DEFINE_BINARY_TREE_NODE(ZBinaryTreeNodeWithData,, ZPointer data;);
+Z_DEFINE_RB_TREE_NODE	 (ZRBTreeNodeWithData,,	    ZPointer data;);
+Z_DEFINE_QUADTREE_NODE	 (ZQuadtreeNodeWithData,,   ZPointer data;);
+Z_DEFINE_OCTREE_NODE	 (ZOctreeNodeWithData,,	    ZPointer data;);
+Z_DEFINE_ARRAY_TREE_NODE (ZArrayTreeNodeWithData,,  ZPointer data;);
 
 /* MARK: - Node containers */
 
@@ -57,5 +59,8 @@ typedef struct {
 	zsize	    size;
 	ZChainNode* last;
 } ZChain;
+
+typedef struct {
+} ZHash;
 
 #endif /* __Z_types_data_H__ */
