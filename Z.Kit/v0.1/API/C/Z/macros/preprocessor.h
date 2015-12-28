@@ -10,37 +10,45 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_macros_preprocessor_H__
 #define __Z_macros_preprocessor_H__
 
-#define Z_SAME(	  what) what
+#define Z_ALLOW(  what) what
+#define Z_AVOID(  what)
 #define Z_QUOTED_(what) #what
 #define Z_QUOTED( what) Z_QUOTED_(what)
+#define Z_SAME(	  what) what
 
-#define Z_PREFIX_	    Z_SAME
-#define Z_PREFIX_0_(  what) 0##what
-#define Z_PREFIX_0x_( what) 0x##what
-#define Z_PREFIX_Z_(  what) Z##what
-#define Z_SUFFIX_	    Z_SAME
-#define Z_SUFFIX_DD_( what) what##DD
-#define Z_SUFFIX_DF_( what) what##DF
-#define Z_SUFFIX_DL_( what) what##DL
-#define Z_SUFFIX_F_(  what) what##F
-#define Z_SUFFIX_L_(  what) what##L
-#define Z_SUFFIX_LL_( what) what##LL
-#define Z_SUFFIX_U_(  what) what##U
-#define Z_SUFFIX_UL_( what) what##UL
-#define Z_SUFFIX_ULL_(what) what##ULL
+#define Z_EXPAND_PREFIX_0(  what) 0##what
+#define Z_EXPAND_PREFIX_0x( what) 0x##what
+#define Z_EXPAND_PREFIX_Z(  what) Z##what
+#define Z_EXPAND_PREFIX_Z_( what) Z_##what
+#define Z_EXPAND_PREFIX_z(  what) z##what
+#define Z_EXPAND_PREFIX_z_( what) z_##what
+#define Z_EXPAND_SUFFIX_DD( what) what##DD
+#define Z_EXPAND_SUFFIX_DF( what) what##DF
+#define Z_EXPAND_SUFFIX_DL( what) what##DL
+#define Z_EXPAND_SUFFIX_F(  what) what##F
+#define Z_EXPAND_SUFFIX_L(  what) what##L
+#define Z_EXPAND_SUFFIX_LL( what) what##LL
+#define Z_EXPAND_SUFFIX_U(  what) what##U
+#define Z_EXPAND_SUFFIX_UL( what) what##UL
+#define Z_EXPAND_SUFFIX_ULL(what) what##ULL
 
-#define Z_PREFIX_0(  what) Z_PREFIX_0_	(what)
-#define Z_PREFIX_0x( what) Z_PREFIX_0x_	(what)
-#define Z_PREFIX_Z(  what) Z_PREFIX_Z_	(what)
-#define Z_SUFFIX_DD( what) Z_SUFFIX_DD_	(what)
-#define Z_SUFFIX_DF( what) Z_SUFFIX_DF_	(what)
-#define Z_SUFFIX_DL( what) Z_SUFFIX_DL_	(what)
-#define Z_SUFFIX_F(  what) Z_SUFFIX_F_	(what)
-#define Z_SUFFIX_L(  what) Z_SUFFIX_L_	(what)
-#define Z_SUFFIX_LL( what) Z_SUFFIX_LL_	(what)
-#define Z_SUFFIX_U(  what) Z_SUFFIX_U_	(what)
-#define Z_SUFFIX_UL( what) Z_SUFFIX_UL_	(what)
-#define Z_SUFFIX_ULL(what) Z_SUFFIX_ULL_(what)
+#define Z_PREFIX_	   Z_SAME
+#define Z_PREFIX_0(  what) Z_EXPAND_PREFIX_0	(what)
+#define Z_PREFIX_0x( what) Z_EXPAND_PREFIX_0x	(what)
+#define Z_PREFIX_Z(  what) Z_EXPAND_PREFIX_Z	(what)
+#define Z_PREFIX_Z_( what) Z_EXPAND_PREFIX_Z_	(what)
+#define Z_PREFIX_z(  what) Z_EXPAND_PREFIX_z	(what)
+#define Z_PREFIX_z_( what) Z_EXPAND_PREFIX_z_	(what)
+#define Z_SUFFIX_	   Z_SAME
+#define Z_SUFFIX_DD( what) Z_EXPAND_SUFFIX_DD	(what)
+#define Z_SUFFIX_DF( what) Z_EXPAND_SUFFIX_DF	(what)
+#define Z_SUFFIX_DL( what) Z_EXPAND_SUFFIX_DL	(what)
+#define Z_SUFFIX_F(  what) Z_EXPAND_SUFFIX_F	(what)
+#define Z_SUFFIX_L(  what) Z_EXPAND_SUFFIX_L	(what)
+#define Z_SUFFIX_LL( what) Z_EXPAND_SUFFIX_LL	(what)
+#define Z_SUFFIX_U(  what) Z_EXPAND_SUFFIX_U	(what)
+#define Z_SUFFIX_UL( what) Z_EXPAND_SUFFIX_UL	(what)
+#define Z_SUFFIX_ULL(what) Z_EXPAND_SUFFIX_ULL(what)
 
 #define Z_UNDERSCORE_(		what) _##what##_
 #define Z_UNDERSCORE_X2_(	what) __##what##__
@@ -115,7 +123,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_ARGUMENT_COUNT_(...) Z_SAME(L_PP_ARG_N(__VA_ARGS__))
 #	define Z_ARGUMENT_COUNT( ...) Z_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N())
-#	define Z_JOIN_N(	 n  ) Z_JOIN_2_(Z_JOIN_, n) /* Needed for Z_JOIN(...) only */
+#	define Z_JOIN_N(	 n  ) Z_PASTE_2(Z_JOIN_, n) /* Needed for Z_JOIN(...) only */
 #	define Z_JOIN(		 ...) Z_SAME(Z_JOIN_N(Z_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N())))(__VA_ARGS__)
 
 #endif
