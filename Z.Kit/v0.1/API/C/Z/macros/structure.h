@@ -35,7 +35,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	ifdef __cplusplus
 #		define Z_DEFINE_STRUCTURE_WITH_NAME(name, ...)		\
-			typedef struct name {__VA_ARGS__} name;
+			typedef struct name {__VA_ARGS__} name
 #	else
 #		define Z_DEFINE_STRUCTURE_WITH_NAME(name, ...)		\
 			typedef struct name name;			\
@@ -71,7 +71,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	ifdef __cplusplus
 #		define Z_DEFINE_STRUCTURE_WITH_NAME(name, members)	\
-			typedef struct name {members} name;
+			typedef struct name {members} name
 #	else
 #		define Z_DEFINE_STRUCTURE_WITH_NAME(name, ...)		\
 			typedef struct name name;			\

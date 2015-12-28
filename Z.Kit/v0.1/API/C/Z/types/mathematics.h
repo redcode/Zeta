@@ -11,6 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
+/* Geometry */
+
 #if Z_IS_AVAILABLE(FLOAT16)
 	typedef struct {Z2DFloat16 a, b;}			Z2DLineFloat16;
 	typedef struct {Z3DFloat16 a, b;}			Z3DLineFloat16;
@@ -148,6 +150,26 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define ZCircleType(   TYPE) Z_INSERT_##TYPE##_FixedType(ZCircle,   )
 #define ZSphereType(   TYPE) Z_INSERT_##TYPE##_FixedType(ZSphere,   )
 #define ZPlaneType(    TYPE) Z_INSERT_##TYPE##_FixedType(ZPlane,    )
+
+/* Set theory */
+
+typedef struct ZSet ZSet;
+
+Z_DEFINE_STRUCTURE_WITH_NAME (ZSetNode,
+	ZSetNode* x_next;
+	ZSetNode* x_previous;
+	ZSetNode* y_next;
+	ZSetNode* y_previous;
+	ZSet*	  set;
+	ZPointer  element;
+);
+
+struct ZSet {
+	ZSetNode* first;
+	zsize	  size;
+	ZSetNode* last;
+	zsize	  element_y_offset;
+};
 
 /* MARK: - Default real type definitions */
 

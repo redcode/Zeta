@@ -341,7 +341,7 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 		/*
-	inline ZCircle##Type inner_circle(ZRectangle##Type object) const
+	inline Circle<T> inner_circle() const
 		{
 		ZCircle##Type result;
 
@@ -375,34 +375,23 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
-/*	inline Boolean contains_line_segment(
-		ZRectangle##Type object,
-		Z2DLine##Type	 line_segment
-	) const
+/*	inline Boolean contains_line_segment(const Z2DLine##Type &line_segment) const
+		{return contains_point(segment.a) && contains_point(segment.b);}
+
+
+	inline Boolean contains_aabr(const ZAABR##Type &aabr) const
 		{
-		return	z_rectangle_##type##_contains_point(object, line_segment.a) &&
-			z_rectangle_##type##_contains_point(object, line_segment.b);
+		return	aabr.a.x >= point.x	     && aabr.a.y >= point.y &&
+			aabr.b.x <= point.x + size.x && aabr.b.y <= point.y + size.y;
 		}
 
 
-	inline Boolean contains_aabr(ZRectangle##Type object, ZAABR##Type aabr) const
+	inline Boolean contains_circle(const ZCircle##Type &circle) const
 		{
-		return	aabr.a.x >= object.point.x		   &&
-			aabr.a.y >= object.point.y		   &&
-			aabr.b.x <= object.point.x + object.size.x &&
-			aabr.b.y <= object.point.y + object.size.y;
-		}
-
-
-	inline Boolean contains_circle(
-		ZRectangle##Type object,
-		ZCircle##Type	 circle
-	) const
-		{
-		return	circle.point.x - circle.radius >= object.point.x		 &&
-			circle.point.y - circle.radius >= object.point.y		 &&
-			circle.point.x + circle.radius <= object.point.x + object.size.x &&
-			circle.point.y + circle.radius <= object.point.y + object.size.y;
+		return	circle.point.x - circle.radius >= point.x		  &&
+			circle.point.y - circle.radius >= point.y		  &&
+			circle.point.x + circle.radius <= point.x + object.size.x &&
+			circle.point.y + circle.radius <= point.y + object.size.y;
 		}*/
 
 #ifndef Z_DECLARING_PARTIAL_RECTANGLE
