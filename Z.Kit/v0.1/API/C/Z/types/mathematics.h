@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-/* Euclidean geometry */
+/* MARK: - Euclidean geometry */
 
 #if Z_IS_AVAILABLE(FLOAT16)
 	typedef struct {Z2DFloat16 a, b;}			Z2DLineFloat16;
@@ -151,7 +151,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define ZSphereType(   TYPE) Z_INSERT_##TYPE##_FixedType(ZSphere,   )
 #define ZPlaneType(    TYPE) Z_INSERT_##TYPE##_FixedType(ZPlane,    )
 
-/* Set theory */
+/* MARK: - Set theory */
 
 typedef struct ZSet ZSet;
 
