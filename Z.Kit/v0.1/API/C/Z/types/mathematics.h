@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-/* Geometry */
+/* Euclidean geometry */
 
 #if Z_IS_AVAILABLE(FLOAT16)
 	typedef struct {Z2DFloat16 a, b;}			Z2DLineFloat16;
