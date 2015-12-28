@@ -29,14 +29,13 @@ typedef struct {
 	ZStatus		       status;
 } ZWaveCodecSC;
 
-typedef zsize (* ZWaveCodecEncode)(ZWaveCodecSC* sc, zsize sample_count);
-typedef ZWaveCodecEncode ZWaveCodecDecode;
+typedef zsize (* ZWaveCodecProcess)(ZWaveCodecSC *sc, zsize sample_count);
 
 typedef struct {
-	ZWaveCodecEncode encode;
-	ZWaveCodecDecode decode;
-	zsize		 encoding_context_size;
-	zsize		 decoding_context_size;
+	ZWaveCodecProcess encode;
+	ZWaveCodecProcess decode;
+	zsize		  encoding_context_size;
+	zsize		  decoding_context_size;
 } ZWaveCodecABI;
 
 #endif /* __Z_ABIs_generic_wave_codec_H__ */

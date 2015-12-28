@@ -11,16 +11,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-void  (* ZHashFunctionInitialize) (void* context);
+void  (* ZHashFunctionInitialize) (void*       context);
 
-void  (* ZHashFunctionUpdate)	  (void* context,
-				   void* block,
-				   zsize block_size);
+void  (* ZHashFunctionUpdate)	  (void*       context,
+				   void*       block,
+				   zsize       block_size);
 
-void  (* ZHashFunctionFinalize)	  (void* context);
+void  (* ZHashFunctionFinalize)	  (void*       context);
 
-void* (* ZHashFunctionResult)	  (void*  context,
-				   zsize* result_size);
+void* (* ZHashFunctionResult)	  (void const* context,
+				   zsize*      result_size);
 
 typedef struct {
 	ZHashFunctionInitialize initialize;

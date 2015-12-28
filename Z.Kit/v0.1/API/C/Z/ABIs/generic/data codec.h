@@ -11,14 +11,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-typedef struct {
-	zsize	(* encode	    ) (void*  block, zsize  block_size, void*  output);
-	zsize	(* decode	    ) (void*  block, zsize  block_size, void*  output);
-	zsize	(* encoding_size    ) (void*  block, zsize  block_size);
-	zsize	(* decoding_size    ) (void*  block, zsize  block_size);
-	ZStatus (* validate_encoding) (void*  block, zsize  block_size, zsize* error_offset);
+typedef zsize	(* ZDataCodecProcess)	 (void const* block,
+					  zsize	      block_size,
+					  void*	      output);
 
-	zboolean sequential;
+typedef zsize	(* ZDataCodecOutputSize) (void const* block,
+					  zsize	      block_size);
+
+typedef ZStatus (* ZDataCodecValidate)	 (void const* block,
+					  zsize	      block_size,
+					  zsize*      error_offset);
+
+typedef struct {
+	ZDataCodecProcess    encode;
+	ZDataCodecProcess    decode;
+	ZDataCodecOutputSize encoding_size;
+	ZDataCodecOutputSize decoding_size;
+	ZDataCodecValidate   validate_encoding;
+	zboolean	     sequential;
 } ZDataCodecABI;
 
 #endif /* __Z_ABIs_generic_data_codec_H__ */
