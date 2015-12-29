@@ -14,7 +14,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Euclidean geometry */
 
 #define Z_TEMPLATE_EUCLIDEAN_GEOMETRY_TYPES(Type, type)		     \
-								     \
 typedef struct {Z2D##Type a, b;}		   Z2DLine##Type;    \
 typedef struct {Z3D##Type a, b;}		   Z3DLine##Type;    \
 typedef struct {Z2D##Type point; z##type angle;}   Z2DRay##Type;     \
