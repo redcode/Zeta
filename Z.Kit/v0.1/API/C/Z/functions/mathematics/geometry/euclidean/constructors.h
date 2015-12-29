@@ -213,7 +213,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #else
 
-#	define Z_TEMPLATE_GEOMETRY_EUCLIDEAN_CONSTRUCTORS(Type, type)	 \
+#	define Z_TEMPLATE_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Type, type)	 \
 									 \
 									 \
 	Z_INLINE Z2DLine##Type z_2d_line_##type(			 \

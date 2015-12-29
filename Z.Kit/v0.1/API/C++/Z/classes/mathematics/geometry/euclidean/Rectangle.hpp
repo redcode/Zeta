@@ -122,6 +122,14 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
+	inline Boolean contains(const Value2D<T> &point) const
+		{
+		return	point	>= this->point			&&
+			point.x <= this->point.x + this->size.x &&
+			point.y <= this->point.y + this->size.y;
+		}
+
+
 	inline Boolean collides(const Rectangle<T> &rectangle) const
 		{
 		return	point.x		 < rectangle.point.x + rectangle.size.x &&
@@ -365,14 +373,6 @@ template <typename T> struct ZKit::Rectangle {
 
 	inline Value2D<T> unit_point_to_absolute(const Value2D<T> &point) const
 		{return point * this->size + this->point;}
-
-
-	inline Boolean contains_point(const Value2D<T> &point) const
-		{
-		return	point	>= this->point			&&
-			point.x <= this->point.x + this->size.x &&
-			point.y <= this->point.y + this->size.y;
-		}
 
 
 /*	inline Boolean contains_line_segment(const Z2DLine##Type &line_segment) const
