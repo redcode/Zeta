@@ -11,27 +11,27 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 
-
-template <class T> struct Shared {
-	T*   data;
-	Size retain_count;
-
-	Shared<T>()
-		{
-		data = nullptr;
-		retain_count = 0;
-		}
-
-	Shared<T>(T*) {}
-	Shared<T>(T&) {}
-	Shared<T>(Shared<T>*) {}
-	Shared<T>(Shared<T>&) {}
+namespace ZKit{
+	namespace Abstract {struct Shared;}
+	template <typename T> struct Shared;
+}
 
 
-	~Shared()
-		{
-		}
+struct ZKit::Abstract::Shared {
+	void *___object;
+	void (* ___deallocate)(void *object);
+	zsize ___retain_count;
 
+	inline ~Shared() {if (!retain_count) ___deallocate(___object);}
+};
+
+
+template <typename T> struct ZKit::Shared : ZKit::Abstract::Shared {
+
+	inline static void deallocate(T *object) {delete object;}
+
+	inline Shared<T>() {}
+	inline Shared<T>(const Shared &other) {}
 };
 
 

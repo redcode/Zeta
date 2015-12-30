@@ -18,6 +18,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Features */
 
+#define Z_CPP_HAS_REFERENCE_QUALIFIED_FUNCTION
+#define Z_CPP_HAS_REFERENCE_QUALIFIED_MEMBER_FUNCTION
 #define Z_CPP_HAS_VARIADIC_TEMPLATE
 
 /* MARK: - Specifiers */
