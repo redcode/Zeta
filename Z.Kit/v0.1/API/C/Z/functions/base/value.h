@@ -1533,8 +1533,6 @@ Z_INLINE zuint32 z_bcd_to_uint32(zuint32 value)
 #	define z_int32_atomic_not_then_get Z_COMPILER_FUNCTION(INT32_ATOMIC_NOT_THEN_GET)
 #endif
 
-#endif
-
 #if Z_IS_AVAILABLE(UINT64)
 
 #	if Z_SHOULD_USE_COMPILER_FUNCTION(UINT64_ATOMIC_SET_IF_EQUAL)
