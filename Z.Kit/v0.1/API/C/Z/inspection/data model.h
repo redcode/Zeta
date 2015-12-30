@@ -11,22 +11,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/data model.h>
 #include <Z/macros/preprocessor.h>
+#include <Z/macros/inspection.h>
 
 #define Z_INSPECTING_DATA_MODEL
 
-#	if defined(Z_USE_DATA_MODEL_LP32)
+#	if Z_MUST_USE(DATA_MODEL_LP32)
 #		include <Z/formats/data model/LP32.h>
 
-#	elif defined(Z_USE_DATA_MODEL_ILP32)
+#	elif Z_MUST_USE(DATA_MODEL_ILP32)
 #		include <Z/formats/data model/ILP32.h>
 
-#	elif defined(Z_USE_DATA_MODEL_ILP64)
+#	elif Z_MUST_USE(DATA_MODEL_ILP64)
 #		include <Z/formats/data model/ILP64.h>
 
-#	elif defined(Z_USE_DATA_MODEL_LLP64)
+#	elif Z_MUST_USE(DATA_MODEL_LLP64)
 #		include <Z/formats/data model/LLP64.h>
 
-#	elif defined(Z_USE_DATA_MODEL_LP64)
+#	elif Z_MUST_USE(DATA_MODEL_LP64)
 #		include <Z/formats/data model/LP64.h>
 
 #	else

@@ -9,75 +9,77 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_CPU_H__
 #define __Z_inspection_CPU_H__
 
+#include <Z/macros/inspection.h>
+
 #define Z_INSPECTING_CPU_ARCHITECTURE
 
-#	if defined(Z_USE_CPU_ARCHITECTURE_X86_64)
+#	if Z_MUST_USE(CPU_ARCHITECTURE_X86_64)
 #		include <Z/hardware/CPU/architecture/x86-64.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_X86_32)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_X86_32)
 #		include <Z/hardware/CPU/architecture/x86-32.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_X86_16)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_X86_16)
 #		include <Z/hardware/CPU/architecture/x86-16.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_POWER_PC_64BIT)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_POWER_PC_64BIT)
 #		include <Z/hardware/CPU/architecture/PowerPC 64-bit.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_POWER_PC_32BIT)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_POWER_PC_32BIT)
 #		include <Z/hardware/CPU/architecture/PowerPC 32-bit.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_ARM)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_ARM)
 #		include <Z/hardware/CPU/architecture/ARM.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_AARCH_64)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_AARCH_64)
 #		include <Z/hardware/CPU/architecture/AArch64.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_68K)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_68K)
 #		include <Z/hardware/CPU/architecture/68K.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_Alpha)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_Alpha)
 #		include <Z/hardware/CPU/architecture/Alpha.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_BLACKFIN)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_BLACKFIN)
 #		include <Z/hardware/CPU/architecture/Blackfin.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_CONVEX)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_CONVEX)
 #		include <Z/hardware/CPU/architecture/Convex.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_EPIPHANY)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_EPIPHANY)
 #		include <Z/hardware/CPU/architecture/Epiphany.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_ITANIUM)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_ITANIUM)
 #		include <Z/hardware/CPU/architecture/Itanium.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_MIPS)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_MIPS)
 #		include <Z/hardware/CPU/architecture/MIPS.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_PA_RISC)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_PA_RISC)
 #		include <Z/hardware/CPU/architecture/PA-RISC.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_PYRAMID_9810)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_PYRAMID_9810)
 #		include <Z/hardware/CPU/architecture/Pyramid 9810.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_RS_6000)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_RS_6000)
 #		include <Z/hardware/CPU/architecture/RS 6000.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_SPARC)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_SPARC)
 #		include <Z/hardware/CPU/architecture/SPARC.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_SUPER_H)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_SUPER_H)
 #		include <Z/hardware/CPU/architecture/SuperH.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_SYSTEM_370)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_SYSTEM_370)
 #		include <Z/hardware/CPU/architecture/System 370.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_SYSTEM_390)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_SYSTEM_390)
 #		include <Z/hardware/CPU/architecture/System 390.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_TMS320)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_TMS320)
 #		include <Z/hardware/CPU/architecture/TMS320.h>
 
-#	elif defined(Z_USE_CPU_ARCHITECTURE_Z_ARCHITECTURE)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_Z_ARCHITECTURE)
 #		include <Z/hardware/CPU/architecture/z Architecture.h>
 
 #	else
@@ -271,7 +273,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_IS_DEFINED_CPU_MODEL(WHAT) 0
 #endif
 
-#define Z_IS_DEFINED_CPU_ARCHITECTURE(WHAT) Z_IS_DEFINED_INSERT_CPU_ARCHITECTURE(Z_, _##WHAT)
+#define Z_IS_DEFINED_CPU_ARCHITECTURE(WHAT) Z_DEFINED_INSERT_CPU_ARCHITECTURE(Z_, _##WHAT)
 
 #define Z_CPU_ARCHITECTURE	  Z_INSERT_CPU_ARCHITECTURE(Z_CPU_ARCHITECTURE_,)
 #define Z_CPU_ARCHITECTURE_STRING Z_INSERT_CPU_ARCHITECTURE(Z_CPU_ARCHITECTURE_STRING_,)
@@ -312,12 +314,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_CPU_INTEGER_ENDIANNESS(BITS) Z_CPU_INTEGER_ENDIANNESS_##BITS
 
-#define Z_CPU_HAS(WHAT)			       \
-	(Z_IS_DEFINED_CPU_MODEL(HAS_##WHAT) || \
+#define Z_CPU_HAS(WHAT) \
+	(Z_IS_DEFINED_CPU_MODEL	      (HAS_##WHAT) || \
 	 Z_IS_DEFINED_CPU_ARCHITECTURE(HAS_##WHAT))
 
-#define Z_CPU_IS_CAPABLE_OF(WHAT)			 \
-	(Z_IS_DEFINED_CPU_MODEL(IS_CAPABLE_OF_##WHAT) || \
+#define Z_CPU_IS_CAPABLE_OF(WHAT) \
+	(Z_IS_DEFINED_CPU_MODEL	      (IS_CAPABLE_OF_##WHAT) || \
 	 Z_IS_DEFINED_CPU_ARCHITECTURE(IS_CAPABLE_OF_##WHAT))
 
 #endif /* __Z_inspection_CPU_H__ */

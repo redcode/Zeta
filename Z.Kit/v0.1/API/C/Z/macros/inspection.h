@@ -69,6 +69,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	 (defined Z_AVAILABLE_##E) || (defined Z_AVAILABLE_##F) || \
 	 (defined Z_AVAILABLE_##G) || (defined Z_AVAILABLE_##H))
 
-#define Z_USE(WHAT) (defined Z_USE_##WHAT)
+#define Z_MUST_USE(WHAT) (defined Z_USE_##WHAT)
+
+#define Z_SHOULD_USE_COMPILER_FUNCTION(WHICH) \
+	(!Z_IS_AVAILABLE(ASSEMBLY_##WHICH) && (defined Z_COMPILER_FUNCTION_##WHICH))
 
 #endif /* __Z_macros_inspection_H__ */

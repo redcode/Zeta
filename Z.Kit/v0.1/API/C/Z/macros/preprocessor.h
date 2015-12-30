@@ -22,6 +22,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_EXPAND_PREFIX_Z_( what) Z_##what
 #define Z_EXPAND_PREFIX_z(  what) z##what
 #define Z_EXPAND_PREFIX_z_( what) z_##what
+#define Z_EXPAND_PREFIX_zb_(what) zb_##what
 #define Z_EXPAND_SUFFIX_DD( what) what##DD
 #define Z_EXPAND_SUFFIX_DF( what) what##DF
 #define Z_EXPAND_SUFFIX_DL( what) what##DL
@@ -39,6 +40,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PREFIX_Z_( what) Z_EXPAND_PREFIX_Z_	(what)
 #define Z_PREFIX_z(  what) Z_EXPAND_PREFIX_z	(what)
 #define Z_PREFIX_z_( what) Z_EXPAND_PREFIX_z_	(what)
+#define Z_PREFIX_zb_(what) Z_EXPAND_PREFIX_zb_	(what)
 #define Z_SUFFIX_	   Z_SAME
 #define Z_SUFFIX_DD( what) Z_EXPAND_SUFFIX_DD	(what)
 #define Z_SUFFIX_DF( what) Z_EXPAND_SUFFIX_DF	(what)
