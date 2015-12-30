@@ -9,19 +9,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_C_H__
 #define __Z_inspection_C_H__
 
-#if defined(Z_USE_C11)
+#include <Z/macros/inspection.h>
+
+#if Z_MUST_USE(C11)
 #	include <Z/inspection/private/C/C11.h>
 
-#elif defined(Z_USE_C99)
+#elif Z_MUST_USE(C99)
 #	include <Z/inspection/private/C/C99.h>
 
-#elif defined(Z_USE_C94)
+#elif Z_MUST_USE(C94)
 #	include <Z/inspection/private/C/C94.h>
 
-#elif defined(Z_USE_C90)
+#elif Z_MUST_USE(C90)
 #	include <Z/inspection/private/C/C90.h>
 
-#elif defined(Z_USE_C89)
+#elif Z_MUST_USE(C89)
 #	include <Z/inspection/private/C/C89.h>
 
 #elif defined(__STDC__)

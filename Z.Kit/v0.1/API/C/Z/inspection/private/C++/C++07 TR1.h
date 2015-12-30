@@ -16,4 +16,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_STRING Z_CPP_STRING_CPP07_TR1
 #endif
 
+/* MARK: - Inherited */
+
+#include <Z/inspection/private/C++/C++03.h>
+
 #endif /* __Z_private_CPP_CPP07_TR1_H__ */

@@ -16,6 +16,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_STRING Z_CPP_STRING_CPP11
 #endif
 
+/* MARK: - Inherited */
+
+#include <Z/inspection/private/C++/C++07 TR1.h>
+
 /* MARK: - Features */
 
 #define Z_CPP_HAS_REFERENCE_QUALIFIED_FUNCTION
