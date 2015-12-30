@@ -1029,7 +1029,7 @@ Z_INLINE zuint32 z_bcd_to_uint32(zuint32 value)
 	}
 
 
-/* MARK: - 8-bit atomic operations
+/* MARK: - Atomic operations
 .--------------------------------------------------------------------------------------------------.
 | z<type> z_<type>_atomic_set_if_equal	    (z<type> *value, z<type> old_value, z<type> new_value) |
 | z<type> z_<type>_atomic_get_then_set	    (z<type> *value, z<type> other_value)		   |
