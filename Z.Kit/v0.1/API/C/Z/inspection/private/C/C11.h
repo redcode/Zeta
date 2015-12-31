@@ -41,20 +41,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Type qualifiers */
 
 #ifndef __STDC_NO_ATOMICS__
-#	define Z_C_HAS_TYPE_QUALIFIER_ATOMIC
+#	define Z_C_HAS_TYPE_QUALIFIER_ATOMIC /* _Atomic */
 #endif
 
 /* MARK: - Storage classes */
 
-#define Z_C_HAS_STORATE_CLASS_THREAD_LOCAL
+#define Z_C_HAS_STORATE_CLASS_THREAD_LOCAL /* _Thread_local */
 
 /* MARK: - Specifiers */
 
-#define Z_C_HAS_SPECIFIER_ALIGN_AS
-#define Z_C_HAS_SPECIFIER_NO_RETURN
+#ifndef __STDC_NO_ATOMICS__
+#	define Z_C_HAS_SPECIFIER_ATOMIC /* _Atomic() */
+#endif
+
+#define Z_C_HAS_SPECIFIER_ALIGN_AS  /* _Alignas() */
+#define Z_C_HAS_SPECIFIER_NO_RETURN /* _Noreturn  */
 
 /* MARK: - Operators */
 
-#define Z_C_HAS_OPERATOR_ALIGN_OF
+#define Z_C_HAS_OPERATOR_ALIGN_OF /* alignof() */
 
 #endif /* __Z_private_C_C11_H__ */

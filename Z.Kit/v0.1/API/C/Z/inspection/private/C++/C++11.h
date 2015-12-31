@@ -22,17 +22,27 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Features */
 
+#define Z_CPP_HAS_EXPRESSION_SFINAE
+#define Z_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER
 #define Z_CPP_HAS_REFERENCE_QUALIFIED_FUNCTION
 #define Z_CPP_HAS_REFERENCE_QUALIFIED_MEMBER_FUNCTION
+#define Z_CPP_HAS_STATIC_CONSTANT_DATA_MEMBER_INITIALIZER
+#define Z_CPP_HAS_RVALUE_REFERENCE
 #define Z_CPP_HAS_VARIADIC_TEMPLATE
 
 /* MARK: - Specifiers */
 
-#define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION
-#define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION
+#define Z_CPP_HAS_SPECIFIER_AUTO		/* auto	     */
+#define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION	/* constexpr */
+#define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION	/* noexcept  */
+#define Z_CPP_HAS_SPECIFIER_DECLARE_TYPE	/* decltype  */
 
 /* MARK: - Operators */
 
-#define Z_CPP_HAS_OPERATOR_NO_EXCEPTION
+#define Z_CPP_HAS_OPERATOR_NO_EXCEPTION /* noexcept */
+
+/* MARK: - Literals */
+
+#define Z_CPP_HAS_LITERAL_NULL_POINTER /* nullptr */
 
 #endif /* __Z_private_CPP_CPP11_H__ */

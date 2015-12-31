@@ -11,16 +11,31 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/traits/Same.hpp>
 
+#define Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(prefix)			     \
+									     \
+template <bool, typename T> struct prefix##enable_if {};		     \
+									     \
+template <typename T> struct prefix##enable_if<false, T> : Same<> {};	     \
+template <typename T> struct prefix##enable_if<true,  T> {typedef T type;};  \
+									     \
+template <bool, typename T> struct prefix##disable_if {};		     \
+									     \
+template <typename T> struct prefix##disable_if<false, T> {typedef T type;}; \
+template <typename T> struct prefix##disable_if<true,  T> : Same<> {};
+
 namespace ZKit {
-	template <bool, typename T> struct enable_if {};
+#	if Z_LANGUAGE_HAS(EXPRESSION_SFINAE)
+		template <bool, typename T = void> struct enable_if {};
+		template <typename T> struct enable_if<true, T> {typedef T type;};
 
-	template <typename T> struct enable_if<false, T> : Same<> {};
-	template <typename T> struct enable_if<true,  T> {typedef T type;};
+		template <bool, typename T = void> struct disable_if {};
+		template <typename T> struct disable_if<false, T> {typedef T type;};
 
-	template <bool, typename T> struct disable_if {};
-
-	template <typename T> struct disable_if<false, T> {typedef T type;};
-	template <typename T> struct disable_if<true,  T> : Same<> {};
+		Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(safer_)
+#	else
+		Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF()
+		Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(safer_)
+#	endif
 }
 
 #endif // __Z_traits_conditionals_HPP__

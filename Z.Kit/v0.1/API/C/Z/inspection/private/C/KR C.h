@@ -20,22 +20,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Types */
 
-#define Z_C_HAS_TYPE_LDOUBLE
+#define Z_C_HAS_TYPE_LDOUBLE /* long double */
 
 /* MARK: - Type qualifiers */
 
-#define Z_C_HAS_TYPE_QUALIFIER_CONSTANT
-#define Z_C_HAS_TYPE_QUALIFIER_VOLATILE
+#define Z_C_HAS_TYPE_QUALIFIER_CONSTANT /* const    */
+#define Z_C_HAS_TYPE_QUALIFIER_VOLATILE /* volatile */
 
 /* MARK: - Storage classes */
 
-#define Z_C_HAS_STORAGE_CLASS_AUTO
-#define Z_C_HAS_STORAGE_CLASS_EXTERN
-#define Z_C_HAS_STORAGE_CLASS_REGISTER
-#define Z_C_HAS_STORAGE_CLASS_STATIC
+#define Z_C_HAS_STORAGE_CLASS_AUTO     /* auto	   */
+#define Z_C_HAS_STORAGE_CLASS_EXTERN   /* extern   */
+#define Z_C_HAS_STORAGE_CLASS_REGISTER /* register */
+#define Z_C_HAS_STORAGE_CLASS_STATIC   /* static   */
 
 /* MARK: - Operators */
 
-#define Z_C_HAS_OPERATOR_SIZE_OF
+#define Z_C_HAS_OPERATOR_SIZE_OF /* sizeof() */
 
 #endif /* __Z_private_C_KR_C_H__ */

@@ -35,14 +35,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Types */
 
-#define Z_C_HAS_TYPE_LLONG
+#define Z_C_HAS_TYPE_LLONG /* [signed | unsigned] long long [int] */
 
 /* MARK: - Type qualifiers */
 
-#define Z_C_HAS_TYPE_QUALIFIER_RESTRICT
+#define Z_C_HAS_TYPE_QUALIFIER_RESTRICT /* restrict */
 
 /* MARK: - Specifiers */
 
-#define Z_C_HAS_SPECIFIER_INLINE
+#define Z_C_HAS_SPECIFIER_INLINE /* inline */
 
 #endif /* __Z_private_C_C99_H__ */
