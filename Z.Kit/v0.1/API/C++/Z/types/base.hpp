@@ -116,8 +116,6 @@ namespace ZKit {
 	typedef ZStatus			Status;
 	typedef ZOrder			Order;
 
-	typedef ZString			String;
-
 	typedef ZPointer		Pointer;
 };
 
