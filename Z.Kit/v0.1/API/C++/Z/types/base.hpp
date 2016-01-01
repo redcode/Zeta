@@ -107,13 +107,16 @@ namespace ZKit {
 	typedef zintptr			IntPtr;
 	typedef zinttop			IntTop;
 
+	typedef zboolean		Boolean;
+	typedef zcharacter		Character;
 	typedef znatural		Natural;
 	typedef zinteger		Integer;
 	typedef zreal			Real;
-	typedef zboolean		Boolean;
 
 	typedef ZStatus			Status;
 	typedef ZOrder			Order;
+
+	typedef ZString			String;
 
 	typedef ZPointer		Pointer;
 };

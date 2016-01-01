@@ -1014,10 +1014,6 @@ typedef Z4DType(INTMAX)				Z4DIntMax;
 
 #define Z_POINTER_BITS				Z_DATA_MODEL_BITS(POINTER)
 
-#define Z_POINTER_VALUE_TYPE			Z_VALUE_TYPE_POINTER
-#define Z_POINTER_VALUE_FORMAT			Z_TYPE_VALUE_FORMAT(Z_POINTER_BITS)
-#define Z_POINTER_SIZE				Z_TYPE_SIZE	   (Z_POINTER_BITS)
-
 #define Z_UINTPTR_BITS				Z_POINTER_BITS
 
 typedef ztype  (UINTPTR)			zuintptr;
@@ -1049,6 +1045,8 @@ typedef Z4DType(INTPTR)				Z4DIntPtr;
 #define Z_INTPTR_SIZE				Z_TYPE_SIZE	      (INTPTR)
 #define Z_INTPTR_MINIMUM			Z_TYPE_MINIMUM	      (INTPTR)
 #define Z_INTPTR_MAXIMUM			Z_TYPE_MAXIMUM	      (INTPTR)
+
+#define Z_POINTER_SIZE				Z_UINTPTR_SIZE
 
 /* MARK: - Optimum maximum size types */
 
@@ -1100,7 +1098,7 @@ typedef Z4DType(INTTOP)				Z4DIntTop;
 #define Z_INTTOP_MINIMUM			Z_TYPE_MINIMUM	      (INTTOP)
 #define Z_INTTOP_MAXIMUM			Z_TYPE_MAXIMUM	      (INTTOP)
 
-/* MARK: - Boolean type */
+/* MARK: - Default types */
 
 typedef zuint8					zboolean;
 #define Z_BOOLEAN_BASE_VALUE_TYPE		Z_UINT8_BASE_VALUE_TYPE
@@ -1110,7 +1108,22 @@ typedef zuint8					zboolean;
 #define Z_BOOLEAN_BITS				Z_UINT8_BITS
 #define Z_BOOLEAN_SIZE				Z_UINT8_SIZE
 
-/* MARK: - Default types */
+#if ('\0' - 1) > 0
+#	define Z_CHARACTER_BITS			Z_UCHAR_BITS
+#else
+#	define Z_CHARACTER_BITS			Z_CHAR_BITS
+#endif
+
+typedef char					zcharacter;
+typedef zcharacter				ZString;
+#define Z_CHARACTER				Z_TYPE		      (CHARACTER)
+#define Z_CHARACTER_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE(CHARACTER)
+#define Z_CHARACTER_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (CHARACTER)
+#define Z_CHARACTER_VALUE_TYPE			Z_VALUE_TYPE_CHARACTER
+#define Z_CHARACTER_VALUE_FORMAT		Z_TYPE_VALUE_FORMAT   (CHARACTER)
+#define Z_CHARACTER_SIZE			Z_TYPE_SIZE	      (CHARACTER)
+#define Z_CHARACTER_MINIMUM			Z_TYPE_MINIMUM	      (CHARACTER)
+#define Z_CHARACTER_MAXIMUM			Z_TYPE_MAXIMUM	      (CHARACTER)
 
 #if defined(Z_USE_NATURAL_UINT16)
 #	define Z_NATURAL_BITS			16
@@ -1229,30 +1242,13 @@ typedef Z4DType(INTEGER)			Z4DInteger;
 
 #endif
 
-/* MARK: - Standard C string character */
+/* MARK: - Order type */
 
-typedef char					ZString;
+typedef zint8					ZOrder;
 
 /* MARK: - Status type */
 
 typedef zint					ZStatus;
-#define Z_STATUS_TYPE				Z_INT_TYPE
-#define Z_STATUS_FIXED_VALUE_TYPE		Z_INT_FIXED_VALUE_TYPE
-#define Z_STATUS_BASE_VALUE_TYPE		Z_INT_BASE_VALUE_TYPE
-#define Z_STATUS_VALUE_FORMAT			Z_INT_VALUE_FORMAT
-#define Z_STATUS_ENDIANNESS			Z_INT_ENDIANNESS
-#define Z_STATUS_BITS				Z_INT_BITS
-#define Z_STATUS_SIZE				Z_INT_SIZE
-
-/* MARK: - Order type */
-
-typedef zint8					ZOrder;
-#define Z_ORDER_TYPE				Z_UINT8_TYPE
-#define Z_ORDER_FIXED_VALUE_TYPE		Z_UINT8_FIXED_VALUE_TYPE
-#define Z_ORDER_BASE_VALUE_TYPE			Z_UINT8_BASE_VALUE_TYPE
-#define Z_ORDER_VALUE_FORMAT			Z_UINT8_VALUE_FORMAT
-#define Z_ORDER_BITS				Z_UINT8_BITS
-#define Z_ORDER_SIZE				Z_UINT8_SIZE
 
 /* MARK: - Range types */
 
@@ -1848,6 +1844,9 @@ Z_DEFINE_STRICT_UNION_BEGIN
 
 	zboolean* pointer_boolean;
 
+	zcharacter* pointer_character;
+	ZString*    pointer_string;
+
 	znatural*      pointer_natural;
 	Z2DNatural*    pointer_2d_natural;
 	Z3DNatural*    pointer_3d_natural;
@@ -1866,10 +1865,11 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		Z4DReal* pointer_4d_real;
 #	endif
 
-	ZString* pointer_string;
+	ZOrder* pointer_order;
+
 	ZStatus* pointer_status;
-	ZOrder*	 pointer_order;
-	ZRange*	 pointer_range;
+
+	ZRange* pointer_range;
 
 	Z8Bit*	 pointer_8bit;
 	Z16Bit*  pointer_16bit;

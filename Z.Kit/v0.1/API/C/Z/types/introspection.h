@@ -27,8 +27,8 @@ typedef struct {
 } ZValueDescription;
 
 typedef struct {
-	ZString* type_name;
-	ZArray   members;
+	ZString*    type_name;
+	ZArray	    members;
 } ZStructureDescription;
 
 typedef struct {

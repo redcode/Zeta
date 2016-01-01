@@ -15,7 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/key>
 
 typedef struct {
-	ZString*	    data;
+	void*		    data;
 	zsize		    size;
 	zsize		    character_count;
 	ZKey(CHARACTER_SET) character_set;
