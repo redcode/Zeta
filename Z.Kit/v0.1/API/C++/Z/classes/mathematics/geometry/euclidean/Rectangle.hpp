@@ -82,6 +82,13 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
+	inline Boolean operator !=(const Rectangle<T> &rectangle) const
+		{
+		return	point.x != rectangle.point.x || point.y != rectangle.point.y ||
+			size.x	!= rectangle.size.x  || size.y	!= rectangle.size.y;
+		}
+
+
 	inline Rectangle<T> operator &(const Rectangle<T> &rectangle) const
 		{
 		T x1, x2, y1, y2;
