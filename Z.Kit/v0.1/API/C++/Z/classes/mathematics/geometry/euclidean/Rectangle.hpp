@@ -48,15 +48,16 @@ template <typename T> struct ZKit::Rectangle {
 	inline Rectangle<T>(void *data) {*this = *(Rectangle<T> *)data;}
 	inline Rectangle<T>(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
-#	ifdef Z_USE_CG_GEOMETRY_TYPES
+#	if Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)
 		inline Rectangle<T>(const CGRect &rectangle)
 		: point(rectangle.origin), size(rectangle.size) {}
 #	endif
 
-#	if	defined(Z_USE_NS_GEOMETRY_TYPES)		      && \
-		(!defined(Z_USE_CG_GEOMETRY_TYPES)		      || \
-		 (!defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
-		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES))
+#	if	Z_MUST_USE(INTEROPERABILITY_WITH_NS_GEOMETRY)	     && \
+		defined(Z_OBJECTIVE_C)				     && \
+		(!Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)	     || \
+		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
+		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
 		inline Rectangle<T>(const NSRect &rectangle)
 		: point(rectangle.origin), size(rectangle.size) {}
@@ -182,8 +183,8 @@ template <typename T> struct ZKit::Rectangle {
 	inline Value2D<T> center() const
 		{return point + size / T(2);}
 
-	/*
-	inline Rectangle<T> correct()
+
+	/* inline Rectangle<T> correct()
 		{
 		if ((object.size.x < T(0)) object.point.x -= (object.size.x = -object.size.x);
 		if (object.size.y < T(0)) object.point.y -= (object.size.y = -object.size.y);

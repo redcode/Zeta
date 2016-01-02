@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/super.hpp>
 #include <Z/functions/base/value.hpp>
 
-#if defined(Z_USE_NS_RANGE_TYPE) && defined(Z_OBJECTIVE_C)
+#if Z_MUST_USE(INTEROPERABILITY_WITH_NS_RANGE) && defined(Z_OBJECTIVE_C)
 #	import <Foundation/NSRange.h>
 #endif
 
@@ -34,7 +34,7 @@ template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::typ
 	inline Range<T>(void *data) {*this = *(Range<T> *)data;}
 	inline Range<T>(const Base &range) {*z_base = range;}
 
-#	ifdef Z_USE_NS_RANGE_TYPE
+#	if Z_MUST_USE(INTEROPERABILITY_WITH_NS_RANGE) && defined(Z_OBJECTIVE_C)
 		inline Range<T>(const NSRange &range)
 			{this->index = range.location; this->size = range.length;}
 #	endif
