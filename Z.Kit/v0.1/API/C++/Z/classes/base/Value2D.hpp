@@ -81,12 +81,14 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 
 
 	inline Boolean operator ==(const Value2D<T> &value) const {return this->x == value.x && this->y == value.y;}
+	inline Boolean operator !=(const Value2D<T> &value) const {return this->x != value.x || this->y != value.y;}
 	inline Boolean operator <=(const Value2D<T> &value) const {return this->x <= value.x && this->y <= value.y;}
 	inline Boolean operator >=(const Value2D<T> &value) const {return this->x >= value.x && this->y >= value.y;}
 	inline Boolean operator  >(const Value2D<T> &value) const {return this->x >  value.x && this->y >  value.y;}
 	inline Boolean operator  <(const Value2D<T> &value) const {return this->x <  value.x && this->y <  value.y;}
 
 	inline Boolean operator ==(T scalar) const {return this->x == scalar && this->y == scalar;}
+	inline Boolean operator !=(T scalar) const {return this->x != scalar || this->y != scalar;}
 	inline Boolean operator <=(T scalar) const {return this->x <= scalar && this->y <= scalar;}
 	inline Boolean operator >=(T scalar) const {return this->x >= scalar && this->y >= scalar;}
 	inline Boolean operator  >(T scalar) const {return this->x >  scalar && this->y >  scalar;}

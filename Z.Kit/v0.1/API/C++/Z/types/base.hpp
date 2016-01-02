@@ -113,7 +113,6 @@ namespace ZKit {
 	typedef zinteger		Integer;
 	typedef zreal			Real;
 
-	typedef ZStatus			Status;
 	typedef ZOrder			Order;
 
 	typedef ZPointer		Pointer;

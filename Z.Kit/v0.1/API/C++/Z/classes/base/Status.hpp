@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_classes_base_Status_HPP__
 
 #include <Z/types/base.hpp>
+#include <Z/keys/status.h>
 
 namespace ZKit {struct Status;}
 
@@ -65,11 +66,19 @@ struct ZKit::Status {
 		too_small	     = Z_ERROR_TOO_SMALL,
 		unauthorized	     = Z_ERROR_UNAUTHORIZED,
 		unreachable	     = Z_ERROR_UNREACHABLE
-	}
+	};
 
 	ZStatus code;
 
-	inline Status(ZStatus code) : code(code) {};
+	inline Status() {}
+	inline Status(ZStatus code) : code(code) {}
+
+	inline Boolean operator ==(Status status) const	 {return code == status.code;}
+	inline Boolean operator !=(Status status) const	 {return code != status.code;}
+	inline Boolean operator ==(ZStatus status) const {return code == status;}
+	inline Boolean operator !=(ZStatus status) const {return code != status;}
+
+	inline Boolean is_error() {code < 0;}
 };
 
 

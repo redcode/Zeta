@@ -44,8 +44,16 @@ template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::typ
 		{return this->index == range.index && this->size == range.size;}
 
 
+	inline Boolean operator !=(const Range<T> &range) const
+		{return this->index != range.index || this->size != range.size;}
+
+
 	inline Boolean operator ==(T number) const
 		{return this->index == number && this->size == number;}
+
+
+	inline Boolean operator !=(T number) const
+		{return this->index != number || this->size != number;}
 
 
 	inline Range<T> operator &(const Range<T> &range) const
