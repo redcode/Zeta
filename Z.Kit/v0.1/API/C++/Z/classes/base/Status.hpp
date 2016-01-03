@@ -73,8 +73,10 @@ struct ZKit::Status {
 	inline Status() {}
 	inline Status(ZStatus code) : code(code) {}
 
-	inline Boolean operator ==(Status status) const	 {return code == status.code;}
-	inline Boolean operator !=(Status status) const	 {return code != status.code;}
+	inline operator Boolean() const {return !!code;}
+
+	inline Boolean operator ==(Status status)  const {return code == status.code;}
+	inline Boolean operator !=(Status status)  const {return code != status.code;}
 	inline Boolean operator ==(ZStatus status) const {return code == status;}
 	inline Boolean operator !=(ZStatus status) const {return code != status;}
 
