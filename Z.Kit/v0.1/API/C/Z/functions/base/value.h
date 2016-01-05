@@ -147,7 +147,7 @@ export z##type prefix##type##_reversed_in_##level##bit(z##type value) \
 	{return Z_##bits##BIT_REVERSED_IN_##level##BIT(value);}
 
 
-#define z_type_reversed(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reversed)
+#define z_type_reversed(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reversed_in_8bit)
 
 
 #define Z_TEMPLATE_VALUE_ROTATED(export, prefix, type, bits)		   \

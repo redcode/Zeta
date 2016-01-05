@@ -107,4 +107,7 @@ typedef int (* ZCompare64BitWithData )(Z64Bit  a, Z64Bit  b, void *data);
 typedef int (* ZCompare128Bit	     )(Z128Bit a, Z128Bit b	       );
 typedef int (* ZCompare128BitWithData)(Z128Bit a, Z128Bit b, void *data);
 
+typedef int (* ZComparePointer	      )(ZPointer a, ZPointer b		  );
+typedef int (* ZComparePointerWithData)(ZPointer a, ZPointer b, void *data);
+
 #endif /* __Z_types_handling_H__ */
