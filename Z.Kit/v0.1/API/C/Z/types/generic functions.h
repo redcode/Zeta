@@ -11,55 +11,57 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-/* MARK: - General purpose context access function types */
+/* MARK: - General purpose function types for operations over contexts */
 
-typedef void (* ZContextDo    )(void* context);
-typedef void (* ZContextSwitch)(void* context, zboolean state);
-typedef void (* ZContextRead  )(void* context, void* input );
-typedef void (* ZContextWrite )(void* context, void* output);
+typedef void	(* ZContextDo		  )(void *context);
+typedef void	(* ZContextSwitch	  )(void *context, zboolean state);
+typedef void	(* ZContextRead		  )(void *context, void *input );
+typedef void	(* ZContextWrite	  )(void *context, void *output);
+typedef int	(* ZContextCompare	  )(void const *a, void const *b);
+typedef int	(* ZContextCompareWithData)(void const *a, void const *b, void *data);
+typedef void	(* ZContextSize		  )(void const *context);
+typedef ZStatus (* ZContextSetSize	  )(void *context, zsize size);
+typedef void	(* ZContextCopy		  )(void const *context, void* output);
 
-typedef zuint8	(* ZContextRead8Bit  )(void* context);
-typedef zuint16 (* ZContextRead16Bit )(void* context);
-typedef zuint32 (* ZContextRead32Bit )(void* context);
-typedef void	(* ZContextWrite8Bit )(void* context, zuint8  value);
-typedef void	(* ZContextWrite16Bit)(void* context, zuint16 value);
-typedef void	(* ZContextWrite32Bit)(void* context, zuint32 value);
-						
-typedef zuint8	(* ZContext16BitAddressRead8Bit	 )(void* context, zuint16 address);
-typedef zuint16 (* ZContext16BitAddressRead16Bit )(void* context, zuint16 address);
-typedef zuint32 (* ZContext16BitAddressRead32Bit )(void* context, zuint16 address);
-typedef zuint8	(* ZContext32BitAddressRead8Bit	 )(void* context, zuint32 address);
-typedef zuint16 (* ZContext32BitAddressRead16Bit )(void* context, zuint32 address);
-typedef zuint32 (* ZContext32BitAddressRead32Bit )(void* context, zuint32 address);
-typedef void	(* ZContext16BitAddressWrite8Bit )(void* context, zuint16 address, zuint8  value);
-typedef void	(* ZContext16BitAddressWrite16Bit)(void* context, zuint16 address, zuint16 value);
-typedef void	(* ZContext16BitAddressWrite32Bit)(void* context, zuint16 address, zuint32 value);
-typedef void	(* ZContext32BitAddressWrite8Bit )(void* context, zuint32 address, zuint8  value);
-typedef void	(* ZContext32BitAddressWrite16Bit)(void* context, zuint32 address, zuint16 value);
-typedef void	(* ZContext32BitAddressWrite32Bit)(void* context, zuint32 address, zuint32 value);
+typedef zuint8	(* ZContextRead8Bit  )(void *context);
+typedef zuint16 (* ZContextRead16Bit )(void *context);
+typedef zuint32 (* ZContextRead32Bit )(void *context);
+typedef void	(* ZContextWrite8Bit )(void *context, zuint8  value);
+typedef void	(* ZContextWrite16Bit)(void *context, zuint16 value);
+typedef void	(* ZContextWrite32Bit)(void *context, zuint32 value);
+
+typedef zuint8	(* ZContext16BitAddressRead8Bit	 )(void *context, zuint16 address);
+typedef zuint16 (* ZContext16BitAddressRead16Bit )(void *context, zuint16 address);
+typedef zuint32 (* ZContext16BitAddressRead32Bit )(void *context, zuint16 address);
+typedef zuint8	(* ZContext32BitAddressRead8Bit	 )(void *context, zuint32 address);
+typedef zuint16 (* ZContext32BitAddressRead16Bit )(void *context, zuint32 address);
+typedef zuint32 (* ZContext32BitAddressRead32Bit )(void *context, zuint32 address);
+typedef void	(* ZContext16BitAddressWrite8Bit )(void *context, zuint16 address, zuint8  value);
+typedef void	(* ZContext16BitAddressWrite16Bit)(void *context, zuint16 address, zuint16 value);
+typedef void	(* ZContext16BitAddressWrite32Bit)(void *context, zuint16 address, zuint32 value);
+typedef void	(* ZContext32BitAddressWrite8Bit )(void *context, zuint32 address, zuint8  value);
+typedef void	(* ZContext32BitAddressWrite16Bit)(void *context, zuint32 address, zuint16 value);
+typedef void	(* ZContext32BitAddressWrite32Bit)(void *context, zuint32 address, zuint32 value);
 
 #if Z_IS_AVAILABLE(UINT64)
-	typedef zuint64 (* ZContextRead64Bit )(void* context);
-	typedef void	(* ZContextWrite64Bit)(void* context, zuint64 value);
+	typedef zuint64 (* ZContextRead64Bit )(void *context);
+	typedef void	(* ZContextWrite64Bit)(void *context, zuint64 value);
 
-	typedef zuint64 (* ZContext16BitAddressRead64Bit )(void* context, zuint16 address);
-	typedef zuint64 (* ZContext32BitAddressRead64Bit )(void* context, zuint32 address);
-	typedef zuint8	(* ZContext64BitAddressRead8Bit	 )(void* context, zuint64 address);
-	typedef zuint16 (* ZContext64BitAddressRead16Bit )(void* context, zuint64 address);
-	typedef zuint32 (* ZContext64BitAddressRead32Bit )(void* context, zuint64 address);
-	typedef zuint64 (* ZContext64BitAddressRead64Bit )(void* context, zuint64 address);
-	typedef void	(* ZContext16BitAddressWrite64Bit)(void* context, zuint16 address, zuint64 value);
-	typedef void	(* ZContext32BitAddressWrite64Bit)(void* context, zuint32 address, zuint64 value);
-	typedef void	(* ZContext64BitAddressWrite8Bit )(void* context, zuint64 address, zuint8  value);
-	typedef void	(* ZContext64BitAddressWrite16Bit)(void* context, zuint64 address, zuint16 value);
-	typedef void	(* ZContext64BitAddressWrite32Bit)(void* context, zuint64 address, zuint32 value);
-	typedef void	(* ZContext64BitAddressWrite64Bit)(void* context, zuint64 address, zuint64 value);
+	typedef zuint64 (* ZContext16BitAddressRead64Bit )(void *context, zuint16 address);
+	typedef zuint64 (* ZContext32BitAddressRead64Bit )(void *context, zuint32 address);
+	typedef zuint8	(* ZContext64BitAddressRead8Bit	 )(void *context, zuint64 address);
+	typedef zuint16 (* ZContext64BitAddressRead16Bit )(void *context, zuint64 address);
+	typedef zuint32 (* ZContext64BitAddressRead32Bit )(void *context, zuint64 address);
+	typedef zuint64 (* ZContext64BitAddressRead64Bit )(void *context, zuint64 address);
+	typedef void	(* ZContext16BitAddressWrite64Bit)(void *context, zuint16 address, zuint64 value);
+	typedef void	(* ZContext32BitAddressWrite64Bit)(void *context, zuint32 address, zuint64 value);
+	typedef void	(* ZContext64BitAddressWrite8Bit )(void *context, zuint64 address, zuint8  value);
+	typedef void	(* ZContext64BitAddressWrite16Bit)(void *context, zuint64 address, zuint16 value);
+	typedef void	(* ZContext64BitAddressWrite32Bit)(void *context, zuint64 address, zuint32 value);
+	typedef void	(* ZContext64BitAddressWrite64Bit)(void *context, zuint64 address, zuint64 value);
 #endif
 
 /* MARK: - General purpose comparison, handling and validation function types */
-
-typedef int (* ZCompare	       )(void *a, void *b	     );
-typedef int (* ZCompareWithData)(void *a, void *b, void *data);
 
 typedef void (* ZHandleContextAndIndex	      )(void *context, zsize index			      );
 typedef void (* ZHandleContextIndexAndStop    )(void *context, zsize index,		zboolean *stop);
@@ -77,7 +79,7 @@ typedef zboolean (* ZValidateIndexAndData	)(		 zsize index, void *data);
 
 #define Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Type, pointer_type, value)							\
 															\
-typedef int (* ZCompare##Type	       )(pointer_type a, pointer_type b		   );					\
+typedef int (* ZCompare##Type	       )(pointer_type a, pointer_type b);						\
 typedef int (* ZCompare##Type##WithData)(pointer_type a, pointer_type b, void *data);					\
 															\
 typedef void (* ZHandleContextIndexAnd##Type	      )(void *context, zsize index, value			     ); \
