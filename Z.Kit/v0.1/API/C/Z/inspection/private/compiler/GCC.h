@@ -128,7 +128,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_COMPILER_MACRO_OFFSETOF __builtin_offsetof
 
-/* MARK: - Built-in macros: VAL */
+/* MARK: - Built-in macros: VAL
+.------------------------------------------------------------------------------.
+| GCC has a BIG __BUG__ which breaks the CDECL calling convention on x86-32.   |
+| This makes necessary to always use the GCC's internal built-in macros for    |
+| dealing with variable argument lists.					       |
+|									       |
+| Unfortunately, the GCC maintainers are very stubborn and don't want to admit |
+| they are wrong. As far as it is known, they will not fix this because they   |
+| have a stupid sense of superiority in the knowing of the C standards.	       |
+|									       |
+| Read the complete story:						       |
+| https://gcc.gnu.org/bugzilla/show_bug.cgi?id=45249			       |
+|									       |
+| This should not be a problem, after all the built-in macros work well, but   |
+| some versions of GCC create dependencies with the C standard library under   |
+| certain conditions if they are used. The way to fix this is to use  the      |
+| "-fno-builtin" option to make GCC, paradoxically, generate true built-ins.   |
+'-----------------------------------------------------------------------------*/
 
 #define Z_COMPILER_MACRO_VAL_INITIALIZE	__builtin_va_start
 #define Z_COMPILER_MACRO_VAL_FINALIZE	__builtin_va_end
@@ -143,28 +160,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_VERSION >= Z_VERSION(4, 1, 0)
 
 #	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 
-#		define Z_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
-#		define Z_COMPILER_FUNCTION_INT8_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#		define Z_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_EQUAL __sync_bool_compare_and_swap
+#		define Z_COMPILER_FUNCTION_INT8_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
 #	endif
 
 #	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_2
-#		define Z_COMPILER_FUNCTION_UINT16_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
-#		define Z_COMPILER_FUNCTION_INT16_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#		define Z_COMPILER_FUNCTION_UINT16_ATOMIC_SET_IF_EQUAL __sync_bool_compare_and_swap
+#		define Z_COMPILER_FUNCTION_INT16_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
 #	endif
 
 #	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4
-#		define Z_COMPILER_FUNCTION_UINT32_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
-#		define Z_COMPILER_FUNCTION_INT32_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#		define Z_COMPILER_FUNCTION_UINT32_ATOMIC_SET_IF_EQUAL __sync_bool_compare_and_swap
+#		define Z_COMPILER_FUNCTION_INT32_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
 #	endif
 
 #	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_8
-#		define Z_COMPILER_FUNCTION_UINT64_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
-#		define Z_COMPILER_FUNCTION_INT64_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#		define Z_COMPILER_FUNCTION_UINT64_ATOMIC_SET_IF_EQUAL __sync_bool_compare_and_swap
+#		define Z_COMPILER_FUNCTION_INT64_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
 #	endif
 
 #	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_16
-#		define Z_COMPILER_FUNCTION_UINT128_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
-#		define Z_COMPILER_FUNCTION_INT128_ATOMIC_SET_IF_EQUAL	     __sync_bool_compare_and_swap
+#		define Z_COMPILER_FUNCTION_UINT128_ATOMIC_SET_IF_EQUAL __sync_bool_compare_and_swap
+#		define Z_COMPILER_FUNCTION_INT128_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
 #	endif
 
 #	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_INCREMENT( pointer) __sync_fetch_and_add(pointer, 1)

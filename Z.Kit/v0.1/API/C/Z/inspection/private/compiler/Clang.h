@@ -420,7 +420,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_COMPILER_MACRO_OFFSET_OF __builtin_offsetof
 
-/* MARK: - Built-in macros: VAL */
+/* MARK: - Built-in macros: VAL
+.-----------------------------------------------------------------.
+| Please, read the comments for this section in the GCC's header. |
+'----------------------------------------------------------------*/
 
 #define Z_COMPILER_MACRO_VAL_INITIALIZE __builtin_va_start
 #define Z_COMPILER_MACRO_VAL_FINALIZE   __builtin_va_end
