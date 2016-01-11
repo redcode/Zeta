@@ -81,8 +81,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Operators */
 
-#if Z_COMPILER_HAS_FUNCTION(OFFSET_OF)
-#	define Z_OFFSET_OF Z_COMPILER_FUNCTION(OFFSET_OF)
+#if Z_COMPILER_HAS_MACRO(OFFSET_OF)
+#	define Z_OFFSET_OF Z_COMPILER_MACRO(OFFSET_OF)
 #elif Z_LANGUAGE_HAS_OPERATOR(OFFSET_OF)
 #	define Z_OFFSET_OF offsetof
 #else
@@ -104,6 +104,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #else
 #	define Z_NULL_TERMINATED
 #endif
+
+#define Z_OUT
+#define Z_INOUT
 
 /* MARK: - Sections */
 

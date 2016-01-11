@@ -124,18 +124,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_COMPILER_TYPE_VAL __builtin_va_list
 
-/* MARK: - Built-in functions: Struture */
+/* MARK: - Built-in macros: Struture */
 
-#define Z_COMPILER_FUNCTION_OFFSETOF __builtin_offsetof
+#define Z_COMPILER_MACRO_OFFSETOF __builtin_offsetof
 
-/* MARK: - Built-in functions: VAL */
+/* MARK: - Built-in macros: VAL */
 
-#define Z_COMPILER_FUNCTION_VAL_INITIALIZE __builtin_va_start
-#define Z_COMPILER_FUNCTION_VAL_FINALIZE   __builtin_va_end
-#define Z_COMPILER_FUNCTION_VAL_READ	   __builtin_va_arg
+#define Z_COMPILER_MACRO_VAL_INITIALIZE	__builtin_va_start
+#define Z_COMPILER_MACRO_VAL_FINALIZE	__builtin_va_end
+#define Z_COMPILER_MACRO_VAL_READ	__builtin_va_arg
 
 #if __STDC_VERSION__ >= 199900L || !defined(__STRICT_ANSI__)
-#	define Z_COMPILER_FUNCTION_VAL_COPY(object, output) __builtin_va_copy(output, object)
+#	define Z_COMPILER_MACRO_VAL_COPY(object, output) __builtin_va_copy(output, object)
 #endif
 
 /* MARK: - Built-in functions: Atomic operations */

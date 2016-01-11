@@ -142,7 +142,6 @@ Z_INLINE z##type z_##type##_clamp_01(z##type value)				\
 
 
 #define Z_TEMPLATE_VALUE_REVERSED(export, prefix, type, bits, level)  \
-								      \
 export z##type prefix##type##_reversed_in_##level##bit(z##type value) \
 	{return Z_##bits##BIT_REVERSED_IN_##level##BIT(value);}
 

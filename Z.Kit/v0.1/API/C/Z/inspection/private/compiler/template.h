@@ -284,14 +284,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TYPE_INTMAX*/
 /*#define Z_COMPILER_TYPE_INTPTR*/
 /*#define Z_COMPILER_TYPE_INTTOP*/
-
 /*#define Z_COMPILER_TYPE_VAL*/
 
-/* MARK: - Built-in functions: Struture */
+/* MARK: - Built-in macros: Struture */
 
 /*#define Z_COMPILER_FUNCTION_OFFSETOF*/
 
-/* MARK: - Built-in functions: VAL */
+/* MARK: - Built-in macros: VAL */
 
 /*#define Z_COMPILER_FUNCTION_VAL_INITIALIZE*/
 /*#define Z_COMPILER_FUNCTION_VAL_FINALIZE*/

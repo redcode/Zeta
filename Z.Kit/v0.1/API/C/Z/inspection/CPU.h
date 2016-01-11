@@ -28,11 +28,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_MUST_USE(CPU_ARCHITECTURE_POWER_PC_32BIT)
 #		include <Z/hardware/CPU/architecture/PowerPC 32-bit.h>
 
-#	elif Z_MUST_USE(CPU_ARCHITECTURE_ARM)
-#		include <Z/hardware/CPU/architecture/ARM.h>
-
 #	elif Z_MUST_USE(CPU_ARCHITECTURE_AARCH_64)
 #		include <Z/hardware/CPU/architecture/AArch64.h>
+
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_ARM)
+#		include <Z/hardware/CPU/architecture/ARM.h>
 
 #	elif Z_MUST_USE(CPU_ARCHITECTURE_68K)
 #		include <Z/hardware/CPU/architecture/68K.h>
@@ -48,6 +48,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	elif Z_MUST_USE(CPU_ARCHITECTURE_EPIPHANY)
 #		include <Z/hardware/CPU/architecture/Epiphany.h>
+
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_H8_300)
+#		include <Z/hardware/CPU/architecture/H8-300.h>
 
 #	elif Z_MUST_USE(CPU_ARCHITECTURE_ITANIUM)
 #		include <Z/hardware/CPU/architecture/Itanium.h>
@@ -134,9 +137,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(__PPCGECKO__   ) || /* CodeWarrior  */ \
 			defined(__PPCBROADWAY__) || /* CodeWarrior  */ \
 			defined(_ARCH_PPC      ) || /* IBM XL C/C++ */ \
-			defined(_M_PPC	       )    /* Visual C++   */
+			defined(_M_PPC	       ) || /* Visual C++   */ \
+			defined(_M_MPPC	       )    /* Visual C++   */
 
 #			include <Z/hardware/CPU/architecture/PowerPC 32-bit.h>
+
+#		elif	defined(__aarch64__) /* GCC */
+
+#			include <Z/hardware/CPU/architecture/AArch64.h>
 
 #		elif	defined(__arm__		   ) || /* GCC, ARM C/C++ Compiler */ \
 			defined(__arm		   ) || /* Diab C/C++		   */ \
@@ -148,10 +156,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(_M_ARMT		   )	/* Visual C++		   */
 
 #			include <Z/hardware/CPU/architecture/ARM.h>
-
-#		elif	defined(__aarch64__) /* GCC */
-
-#			include <Z/hardware/CPU/architecture/AArch64.h>
 
 #		elif	defined(__m68k__ ) || /* GCC	       */ \
 			defined(__MC68K__) || /* Stratus VOS C */ \
@@ -187,10 +191,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			include <Z/hardware/CPU/architecture/Itanium.h>
 
-#		elif	defined(__mips__) || /* GCC	     */ \
-			defined(__mips	) || /* GCC, MIPSpro */ \
-			defined(__MIPS__) || /* CodeWarrior  */ \
-			defined(mips	)    /* GCC	     */
+#		elif	defined(__H8300__) /* GCC? */
+
+#			include <Z/hardware/CPU/architecture/H8-300.h>
+
+#		elif	defined(__mips__ ) || /* GCC	      */ \
+			defined(__mips	 ) || /* GCC, MIPSpro */ \
+			defined(__MIPS__ ) || /* CodeWarrior  */ \
+			defined(_M_MRX000) || /* Visual C++   */ \
+			defined(mips	 )    /* GCC	      */
 
 #			include <Z/hardware/CPU/architecture/MIPS.h>
 
