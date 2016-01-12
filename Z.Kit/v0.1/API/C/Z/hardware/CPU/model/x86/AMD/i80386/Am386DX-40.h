@@ -27,8 +27,6 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef __Z_hardware_CPU_model_x86_AMD_i80386_Am386DX_40_H__
 #define __Z_hardware_CPU_model_x86_AMD_i80386_Am386DX_40_H__
 
-#include <Z/keys/hardware/IC.h>
-
 #define Z_AM386DX_40_CORE_HZ		40000000
 #define Z_AM386DX_40_FSB_HZ		40000000
 #define Z_AM386DX_40_DATA_BUS_BITS	32
@@ -36,6 +34,5 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_AM386DX_40_TRANSISTOR_COUNT	275000
 #define Z_AM386DX_40_CIRCUIT_SIZE	1.5 /* µm */
 #define Z_AM386DX_40_VOLTAGE		5.0 /* V  */
-#define Z_AM386DX_40_ENCAPSULATION	Z_IC_ENCAPSULATION_PLASTIC_PQFP_132_ON_PGA_132
 
 #endif /* __Z_hardware_CPU_model_x86_AMD_i80386_Am386DX_40_H__ */

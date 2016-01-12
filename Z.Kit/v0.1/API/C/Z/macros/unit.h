@@ -9,6 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_macros_unit_H__
 #define __Z_macros_unit_H__
 
+#include <Z/constants/units.h>
 #include <Z/constants/numbers.h>
 
 /* MARK: - Angle */

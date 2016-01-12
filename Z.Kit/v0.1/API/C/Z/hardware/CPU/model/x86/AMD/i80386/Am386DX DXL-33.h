@@ -27,8 +27,6 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef __Z_hardware_CPU_model_x86_AMD_i80386_Am386DX_DXL_33_H__
 #define __Z_hardware_CPU_model_x86_AMD_i80386_Am386DX_DXL_33_H__
 
-#include <Z/keys/hardware/IC.h>
-
 #define Z_AM386DX_DXL_33_CORE_HZ		33000000
 #define Z_AM386DX_DXL_33_FSB_HZ			33000000
 #define Z_AM386DX_DXL_33_DATA_BUS_BITS		32
@@ -36,6 +34,5 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_AM386DX_DXL_33_TRANSISTOR_COUNT	275000
 #define Z_AM386DX_DXL_33_CIRCUIT_SIZE		1.5 /* µm */
 #define Z_AM386DX_DXL_33_VOLTAGE		5.0 /* V  */
-#define Z_AM386DX_DXL_33_ENCAPSULATION		Z_IC_ENCAPSULATION_CERAMIC_PGA_132
 
 #endif /* __Z_hardware_CPU_model_x86_AMD_i80386_Am386DX_DXL_33_H__ */

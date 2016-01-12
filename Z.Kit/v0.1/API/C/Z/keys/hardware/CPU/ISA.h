@@ -21,58 +21,58 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - x86 */
 
-#define Z_ISA_3D_NOW
-#define Z_ISA_3D_NOW_PLUS
-#define Z_ISA_8086_8088
-#define Z_ISA_8087
-#define Z_ISA_80186_80188
-#define Z_ISA_80286
-#define Z_ISA_80287
-#define Z_ISA_80386
-#define Z_ISA_80387
-#define Z_ISA_80486
-#define Z_ISA_AES
-#define Z_ISA_AMD
-#define Z_ISA_AMD_V
-#define Z_ISA_AVX
-#define Z_ISA_CLMUL
-#define Z_ISA_CYRIX
-#define Z_ISA_EMMI
-#define Z_ISA_EMMX
-#define Z_ISA_FMA3
-#define Z_ISA_FMA4
-#define Z_ISA_GEODE_GX
-#define Z_ISA_MMX_PLUS
-#define Z_ISA_PAD_LOCK
-#define Z_ISA_PENTIUM
-#define Z_ISA_PENTIUM_MMX
-#define Z_ISA_K6_2
-#define Z_ISA_PENTIUM_PRO
-#define Z_ISA_SSE
-#define Z_ISA_SSE2
-#define Z_ISA_SSE3
-#define Z_ISA_SSSE3
-#define Z_ISA_SSE4_1
-#define Z_ISA_SSE4_2
-#define Z_ISA_SSE4A
-#define Z_ISA_SSE5
-#define Z_ISA_SSM
-#define Z_ISA_SVM
-#define Z_ISA_VT_X
-#define Z_ISA_X86_64
+#define Z_X86_ISA_3D_NOW
+#define Z_X86_ISA_3D_NOW_PLUS
+#define Z_X86_ISA_8086_8088
+#define Z_X86_ISA_8087
+#define Z_X86_ISA_80186_80188
+#define Z_X86_ISA_80286
+#define Z_X86_ISA_80287
+#define Z_X86_ISA_80386
+#define Z_X86_ISA_80387
+#define Z_X86_ISA_80486
+#define Z_X86_ISA_AES
+#define Z_X86_ISA_AMD
+#define Z_X86_ISA_AMD_V
+#define Z_X86_ISA_AVX
+#define Z_X86_ISA_CLMUL
+#define Z_X86_ISA_CYRIX
+#define Z_X86_ISA_EMMI
+#define Z_X86_ISA_EMMX
+#define Z_X86_ISA_FMA3
+#define Z_X86_ISA_FMA4
+#define Z_X86_ISA_GEODE_GX
+#define Z_X86_ISA_MMX_PLUS
+#define Z_X86_ISA_PAD_LOCK
+#define Z_X86_ISA_PENTIUM
+#define Z_X86_ISA_PENTIUM_MMX
+#define Z_X86_ISA_K6_2
+#define Z_X86_ISA_PENTIUM_PRO
+#define Z_X86_ISA_SSE
+#define Z_X86_ISA_SSE2
+#define Z_X86_ISA_SSE3
+#define Z_X86_ISA_SSSE3
+#define Z_X86_ISA_SSE4_1
+#define Z_X86_ISA_SSE4_2
+#define Z_X86_ISA_SSE4A
+#define Z_X86_ISA_SSE5
+#define Z_X86_ISA_SSM
+#define Z_X86_ISA_SVM
+#define Z_X86_ISA_VT_X
+#define Z_X86_ISA_X86_64
 
 /* MARK: - Power */
 
-#define Z_ISA_AMAZON
-#define Z_ISA_POWER
-#define Z_ISA_POWER2
-#define Z_ISA_POWER3
-#define Z_ISA_POWER4
-#define Z_ISA_POWER5
-#define Z_ISA_POWER6
-#define Z_ISA_POWER7
-#define Z_ISA_POWER8
-#define Z_ISA_POWER_PC
+#define Z_POWER_ISA_AMAZON
+#define Z_POWER_ISA_POWER
+#define Z_POWER_ISA_POWER2
+#define Z_POWER_ISA_POWER3
+#define Z_POWER_ISA_POWER4
+#define Z_POWER_ISA_POWER5
+#define Z_POWER_ISA_POWER6
+#define Z_POWER_ISA_POWER7
+#define Z_POWER_ISA_POWER8
+#define Z_POWER_ISA_POWER_PC
 
 /* MARK: - MIPS */
 

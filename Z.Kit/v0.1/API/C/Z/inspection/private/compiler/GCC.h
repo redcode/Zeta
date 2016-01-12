@@ -136,7 +136,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 |									       |
 | Unfortunately, the GCC maintainers are very stubborn and don't want to admit |
 | they are wrong. As far as it is known, they will not fix this because they   |
-| have a stupid sense of superiority in the knowing of the C standards.	       |
+| have a stupid sense of superiority in the knowledge of the C standards.      |
 |									       |
 | Read the complete story:						       |
 | https://gcc.gnu.org/bugzilla/show_bug.cgi?id=45249			       |

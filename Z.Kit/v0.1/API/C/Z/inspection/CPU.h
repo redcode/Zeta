@@ -34,9 +34,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_MUST_USE(CPU_ARCHITECTURE_ARM)
 #		include <Z/hardware/CPU/architecture/ARM.h>
 
-#	elif Z_MUST_USE(CPU_ARCHITECTURE_68K)
-#		include <Z/hardware/CPU/architecture/68K.h>
-
 #	elif Z_MUST_USE(CPU_ARCHITECTURE_Alpha)
 #		include <Z/hardware/CPU/architecture/Alpha.h>
 
@@ -54,6 +51,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	elif Z_MUST_USE(CPU_ARCHITECTURE_ITANIUM)
 #		include <Z/hardware/CPU/architecture/Itanium.h>
+
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_M68K)
+#		include <Z/hardware/CPU/architecture/M68K.h>
 
 #	elif Z_MUST_USE(CPU_ARCHITECTURE_MIPS)
 #		include <Z/hardware/CPU/architecture/MIPS.h>
@@ -157,12 +157,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			include <Z/hardware/CPU/architecture/ARM.h>
 
-#		elif	defined(__m68k__ ) || /* GCC	       */ \
-			defined(__MC68K__) || /* Stratus VOS C */ \
-			defined(M68000	 )    /* SAS/C	       */
-
-#			include <Z/hardware/CPU/architecture/68K.h>
-
 #		elif	defined(__alpha__) || /* GCC	    */ \
 			defined(__alpha	 ) || /* DEC C (?)  */ \
 			defined(_M_ALPHA )    /* Visual C++ */
@@ -194,6 +188,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		elif	defined(__H8300__) /* GCC? */
 
 #			include <Z/hardware/CPU/architecture/H8-300.h>
+
+#		elif	defined(__m68k__ ) || /* GCC	       */ \
+			defined(__MC68K__) || /* Stratus VOS C */ \
+			defined(M68000	 )    /* SAS/C	       */
+
+#			include <Z/hardware/CPU/architecture/68K.h>
 
 #		elif	defined(__mips__ ) || /* GCC	      */ \
 			defined(__mips	 ) || /* GCC, MIPSpro */ \
