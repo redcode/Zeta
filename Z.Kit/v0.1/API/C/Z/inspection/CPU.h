@@ -193,7 +193,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(__MC68K__) || /* Stratus VOS C */ \
 			defined(M68000	 )    /* SAS/C	       */
 
-#			include <Z/hardware/CPU/architecture/68K.h>
+#			include <Z/hardware/CPU/architecture/M68K.h>
 
 #		elif	defined(__mips__ ) || /* GCC	      */ \
 			defined(__mips	 ) || /* GCC, MIPSpro */ \
