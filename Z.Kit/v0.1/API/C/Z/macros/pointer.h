@@ -31,9 +31,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INDEX(type, base, pointer)		 ((zsize)(((zuintptr)pointer - (zuintptr)base) / sizeof(type)))
 #define Z_BLOCK_INDEX(base, pointer, block_size) ((zsize)(((zuintptr)pointer - (zuintptr)base) / block_size))
 
-/* MARK: - Value search */
-
-#define Z_SKIP(	   criteria, pointer) while ( Z_IS_##criteria(*pointer)) pointer++
-#define Z_SKIP_NON(criteria, pointer) while (!Z_IS_##criteria(*pointer)) pointer++
-
 #endif /* __Z_macros_pointer_H__ */

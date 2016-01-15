@@ -9,13 +9,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_character_set_H__
 #define __Z_inspection_character_set_H__
 
-#define Z_DIGITS_ARE_CONSECUTIVE				    \
+#define Z_CHARACTER_SET_DIGITS_ARE_CONSECUTIVE			    \
 	(  ('0' < '9')						    \
 	&& ('0' + 1 == '1') && ('1' + 1 == '2') && ('2' + 1 == '3') \
 	&& ('3' + 1 == '4') && ('4' + 1 == '5') && ('5' + 1 == '6') \
 	&& ('6' + 1 == '7') && ('7' + 1 == '8') && ('8' + 1 == '9'))
 
-#define Z_UPPERCASE_LETTERS_ARE_CONSECUTIVE			    \
+#define Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE	    \
 	(  ('A' < 'Z')						    \
 	&& ('A' + 1 == 'B') && ('B' + 1 == 'C') && ('C' + 1 == 'D') \
 	&& ('D' + 1 == 'E') && ('E' + 1 == 'F') && ('F' + 1 == 'G') \
@@ -27,7 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	&& ('V' + 1 == 'W') && ('W' + 1 == 'X') && ('X' + 1 == 'Y') \
 	&& ('Y' + 1 == 'Z'))
 
-#define Z_LOWERCASE_LETTERS_ARE_CONSECUTIVE			    \
+#define Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE	    \
 	(  ('a' < 'z')						    \
 	&& ('a' + 1 == 'b') && ('b' + 1 == 'c') && ('c' + 1 == 'd') \
 	&& ('d' + 1 == 'e') && ('e' + 1 == 'f') && ('f' + 1 == 'g') \

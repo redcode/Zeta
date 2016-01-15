@@ -32,13 +32,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - 8-bit operations */
 
-#define Z_8BIT_REVERSED_IN_1BIT(value)				     \
+#define Z_8BIT_REVERSED_IN_1BIT(value) \
 	( ((value) << 7)	     |  ((value) >> 7)		   | \
 	 (((value) << 5) & (1 << 6)) | (((value) >> 5) & (1 << 1)) | \
 	 (((value) << 3) & (1 << 5)) | (((value) >> 3) & (1 << 2)) | \
 	 (((value) << 1) & (1 << 4)) | (((value) >> 1) & (1 << 3)) )
 
-#define Z_8BIT_REVERSED_IN_2BIT(value)				     \
+#define Z_8BIT_REVERSED_IN_2BIT(value) \
 	( ((value) << 6)	     |  ((value) >> 6)		   | \
 	 (((value) << 2) & (3 << 4)) | (((value) >> 2) & (3 << 2)) )
 
@@ -63,7 +63,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_8BIT_16BIT_MIRROR(value) (((zuint16)(value)) * 0x0101)
 
-#define Z_16BIT_REVERSED_IN_1BIT(value)					\
+#define Z_16BIT_REVERSED_IN_1BIT(value) \
 	( ((value) << 15)	       |  ((value) >> 15)	      | \
 	 (((value) << 13) & (1 << 14)) | (((value) >> 13) & (1 << 1)) | \
 	 (((value) << 11) & (1 << 13)) | (((value) >> 11) & (1 << 2)) | \
@@ -73,13 +73,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	 (((value) <<  3) & (1 <<  9)) | (((value) >>  3) & (1 << 6)) | \
 	 (((value) <<  1) & (1 <<  8)) | (((value) >>  1) & (1 << 7)) )
 
-#define Z_16BIT_REVERSED_IN_2BIT(value)					\
+#define Z_16BIT_REVERSED_IN_2BIT(value) \
 	( ((value) << 14)	       |  ((value) >> 14)	      | \
 	 (((value) << 10) & (3 << 12)) | (((value) >> 10) & (3 << 2)) | \
 	 (((value) <<  6) & (3 << 10)) | (((value) >>  6) & (3 << 4)) | \
 	 (((value) <<  2) & (3 <<  8)) | (((value) >>  2) & (3 << 6)) )
 
-#define Z_16BIT_REVERSED_IN_4BIT(value)					\
+#define Z_16BIT_REVERSED_IN_4BIT(value) \
 	( ((value) << 12)	       |  ((value) >> 12)	      | \
 	 (((value) <<  4) & (15 << 8)) | (((value) >> 4) & (15 << 4)) )
 
