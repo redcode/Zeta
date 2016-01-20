@@ -48,29 +48,6 @@ template <typename T> struct ZKit::Rectangle {
 	inline Rectangle<T>(void *data) {*this = *(Rectangle<T> *)data;}
 	inline Rectangle<T>(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
-#	if Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)
-		inline Rectangle<T>(const CGRect &rectangle)
-		: point(rectangle.origin), size(rectangle.size) {}
-#	endif
-
-#	if	Z_MUST_USE(INTEROPERABILITY_WITH_NS_GEOMETRY)	     && \
-		defined(Z_OBJECTIVE_C)				     && \
-		(!Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)	     || \
-		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
-		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
-
-		inline Rectangle<T>(const NSRect &rectangle)
-		: point(rectangle.origin), size(rectangle.size) {}
-#	endif
-
-
-	static inline Rectangle<T> from_vertices(const Value2D<T> &a, const Value2D<T> &b)
-		{
-		Value2D<T> minimum = Value2D<T>::minimum(a, b);
-
-		return Rectangle<T>(minimum, Value2D<T>::maximum(a, b) - minimum);
-		}
-
 
 	// MARK: - Operators
 
@@ -116,6 +93,52 @@ template <typename T> struct ZKit::Rectangle {
 
 	inline T  operator[](int index) const {return ((T *)this)[index];}
 	inline T &operator[](int index)	      {return ((T *)this)[index];}
+
+	inline operator Base() {return *z_base;}
+
+
+	// MARK: - Interoperability
+
+
+#	if Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)
+
+		inline Rectangle<T>(const CGRect &rectangle)
+		: point(rectangle.origin), size(rectangle.size) {}
+
+
+		inline operator CGRect() const
+			{
+			CGRect result = {{point.x, point.y}, {size.x, size.y}};
+			return result;
+			}
+
+#	endif
+
+#	if	Z_MUST_USE(INTEROPERABILITY_WITH_NS_GEOMETRY)	     && \
+		defined(Z_OBJECTIVE_C)				     && \
+		(!Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)	     || \
+		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
+		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
+
+		inline Rectangle<T>(const NSRect &rectangle)
+		: point(rectangle.origin), size(rectangle.size) {}
+
+
+		inline operator NSRect() const
+			{
+			NSRect result = {{point.x, point.y}, {size.x, size.y}};
+			return result;
+			}
+
+#	endif
+
+
+	static inline Rectangle<T> from_vertices(const Value2D<T> &a, const Value2D<T> &b)
+		{
+		Value2D<T> minimum = Value2D<T>::minimum(a, b);
+
+		return Rectangle<T>(minimum, Value2D<T>::maximum(a, b) - minimum);
+		}
 
 
 	// MARK: - WIP

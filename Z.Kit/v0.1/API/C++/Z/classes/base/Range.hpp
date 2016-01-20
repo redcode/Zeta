@@ -34,11 +34,6 @@ template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::typ
 	inline Range<T>(void *data) {*this = *(Range<T> *)data;}
 	inline Range<T>(const Base &range) {*z_base = range;}
 
-#	if Z_MUST_USE(INTEROPERABILITY_WITH_NS_RANGE) && defined(Z_OBJECTIVE_C)
-		inline Range<T>(const NSRange &range)
-			{this->index = range.location; this->size = range.length;}
-#	endif
-
 
 	inline Boolean operator ==(const Range<T> &range) const
 		{return this->index == range.index && this->size == range.size;}
@@ -77,6 +72,21 @@ template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::typ
 
 	inline Range<T> &operator &=(const Range<T> &range) {return *this = *this & range;}
 	inline Range<T> &operator |=(const Range<T> &range) {return *this = *this | range;}
+
+
+#	if Z_MUST_USE(INTEROPERABILITY_WITH_NS_RANGE) && defined(Z_OBJECTIVE_C)
+
+		inline Range<T>(const NSRange &range)
+			{this->index = range.location; this->size = range.length;}
+
+
+		inline operator NSRange() const
+			{
+			NSRange result = {this->index, this->size};
+			return result;
+			}
+
+#	endif
 
 
 	inline Boolean contains(const Range<T> &range) const

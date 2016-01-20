@@ -33,9 +33,6 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	typedef typename Selectors::Value2D<T>::type Super;
 	typedef		 T			     Value;
 
-	inline Base  base () {return *z_base ;}
-	inline Super super() {return *z_super;}
-
 
 	// MARK: - Constructors
 
@@ -47,20 +44,9 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	inline Value2D<T>(void *data)	     {*this = *(Value2D<T> *)data;}
 	inline Value2D<T>(const Base &value) {*z_base = value;}
 
-#	if Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)
-		inline Value2D<T>(const CGSize	&size)	{this->x = size.width; this->y = size.height;}
-		inline Value2D<T>(const CGPoint &point) {this->x = point.x; this->y = point.y;}
-#	endif
 
-#	if	Z_MUST_USE(INTEROPERABILITY_WITH_NS_GEOMETRY)	     && \
-		defined(Z_OBJECTIVE_C)				     && \
-		(!Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)	     || \
-		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
-		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
+	// MARK: - Static functions
 
-		inline Value2D<T>(const NSSize	&size)	{this->x = size.width; this->y = size.height;}
-		inline Value2D<T>(const NSPoint &point) {this->x = point.x; this->y = point.y;}
-#	endif
 
 	static inline Value2D<T> zero() {return Value2D<T>(T(0), T(0));}
 	static inline Value2D<T> unit() {return Value2D<T>(T(1), T(1));}
@@ -117,6 +103,32 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 
 	inline T  operator[](int index) const {return ((T *)this)[index];}
 	inline T &operator[](int index)	      {return ((T *)this)[index];}
+
+
+	// MARK: - Interoperability
+
+
+#	if Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)
+
+		inline Value2D<T>(const CGSize	&size)	{this->x = size.width; this->y = size.height;}
+		inline Value2D<T>(const CGPoint &point) {this->x = point.x; this->y = point.y;}
+
+		inline operator CGSize() const {CGSize result = {this->x, this->y}; return result;}
+
+#	endif
+
+#	if	Z_MUST_USE(INTEROPERABILITY_WITH_NS_GEOMETRY)	     && \
+		defined(Z_OBJECTIVE_C)				     && \
+		(!Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)	     || \
+		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
+		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
+
+		inline Value2D<T>(const NSSize	&size)	{this->x = size.width; this->y = size.height;}
+		inline Value2D<T>(const NSPoint &point) {this->x = point.x; this->y = point.y;}
+
+		inline operator NSSize() const {NSSize result = {this->x, this->y}; return result;}
+
+#	endif
 
 
 	// MARK: - Operations for natural, integer and real types
