@@ -108,7 +108,11 @@ template <typename T> struct ZKit::Rectangle {
 
 		inline operator CGRect() const
 			{
-			CGRect result = {{point.x, point.y}, {size.x, size.y}};
+			CGRect result = {
+				{CGFloat(point.x), CGFloat(point.y)},
+				{CGFloat(size.x),  CGFloat(size.y)}
+			};
+
 			return result;
 			}
 
@@ -126,7 +130,11 @@ template <typename T> struct ZKit::Rectangle {
 
 		inline operator NSRect() const
 			{
-			NSRect result = {{point.x, point.y}, {size.x, size.y}};
+			NSRect result = {
+				{CGFloat(point.x), CGFloat(point.y)},
+				{CGFloat(size.x),  CGFloat(size.y)}
+			};
+
 			return result;
 			}
 

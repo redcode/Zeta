@@ -82,7 +82,7 @@ template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::typ
 
 		inline operator NSRange() const
 			{
-			NSRange result = {this->index, this->size};
+			NSRange result = {NSUInteger(this->index), NSUInteger(this->size)};
 			return result;
 			}
 

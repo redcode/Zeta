@@ -110,10 +110,22 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 
 #	if Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)
 
-		inline Value2D<T>(const CGSize	&size)	{this->x = size.width; this->y = size.height;}
 		inline Value2D<T>(const CGPoint &point) {this->x = point.x; this->y = point.y;}
+		inline Value2D<T>(const CGSize	&size)	{this->x = size.width; this->y = size.height;}
 
-		inline operator CGSize() const {CGSize result = {this->x, this->y}; return result;}
+
+		inline operator CGPoint() const
+			{
+			CGPoint result = {CGFloat(this->x), CGFloat(this->y)};
+			return result;
+			}
+
+
+		inline operator CGSize() const
+			{
+			CGSize result = {CGFloat(this->x), CGFloat(this->y)};
+			return result;
+			}
 
 #	endif
 
@@ -126,7 +138,19 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 		inline Value2D<T>(const NSSize	&size)	{this->x = size.width; this->y = size.height;}
 		inline Value2D<T>(const NSPoint &point) {this->x = point.x; this->y = point.y;}
 
-		inline operator NSSize() const {NSSize result = {this->x, this->y}; return result;}
+
+		inline operator NSPoint() const
+			{
+			NSPoint result = {CGFloat(this->x), CGFloat(this->y)};
+			return result;
+			}
+
+
+		inline operator NSSize() const
+			{
+			NSSize result = {CGFloat(this->x), CGFloat(this->y)};
+			return result;
+			}
 
 #	endif
 
