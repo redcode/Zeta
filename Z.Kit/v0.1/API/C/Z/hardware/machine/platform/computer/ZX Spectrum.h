@@ -306,7 +306,7 @@ Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
 '-----------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(3) (
-	zuint8 one	:3,
+	zuint8 one	:1,
 	zuint8 ear	:1,
 	zuint8 key_mask :6
 )) ZZXSpectrumULAInput;

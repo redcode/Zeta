@@ -123,7 +123,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		elif	defined(__powerpc64__) || /* GCC	       */ \
 			defined(__ppc64__    ) || /* GCC	       */ \
 			defined(__PPC64__    ) || /* GCC	       */ \
-			defined(_ARCH_PPC64  ) || /* GCC, IBM XL C/C++ */
+			defined(_ARCH_PPC64  ) || /* GCC, IBM XL C/C++ */ \
 			defined(_XENON	     )
 
 #			include <Z/hardware/CPU/architecture/PowerPC 64-bit.h>
@@ -250,8 +250,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			include <Z/hardware/CPU/architecture/TMS320.h>
 
-#		elif	defined(__s390x__     ) || /* GCC	       */
-			defined(__zarch__     ) || /* Clang	       */
+#		elif	defined(__s390x__     ) || /* GCC	       */ \
+			defined(__zarch__     ) || /* Clang	       */ \
 			defined(__SYSC_ZARCH__)    /* Dignus Systems/C */
 
 #			include <Z/hardware/CPU/architecture/z Architecture.h>
