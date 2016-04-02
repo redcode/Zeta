@@ -17,10 +17,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 #endif
 
-#ifndef NIL
-#	define NIL 0
-#endif
-
 #ifndef TRUE
 #	define TRUE 1
 #endif
