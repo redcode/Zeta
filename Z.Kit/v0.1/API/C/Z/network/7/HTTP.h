@@ -54,7 +54,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_HTTP_STATUS_METHOD_NOT_ALLOWED			405
 #define Z_HTTP_STATUS_NOT_ACCEPTABLE				406
 #define Z_HTTP_STATUS_PROXY_AUTHENTICATION_REQUIRED		407
-#define Z_HTTP_STATUS_REQUEST_TIMEOUT				408
+#define Z_HTTP_STATUS_REQUEST_TIME_OUT				408
 #define Z_HTTP_STATUS_CONFLICT					409
 #define Z_HTTP_STATUS_GONE					410
 #define Z_HTTP_STATUS_LENGTH_REQUIRED				411
@@ -87,7 +87,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_HTTP_STATUS_NOT_IMPLEMENTED				501
 #define Z_HTTP_STATUS_BAD_GATEWAY				502
 #define Z_HTTP_STATUS_SERVICE_UNAVAILABLE			503
-#define Z_HTTP_STATUS_GATEWAY_TIMEOUT				504
+#define Z_HTTP_STATUS_GATEWAY_TIME_OUT				504
 #define Z_HTTP_STATUS_HTTP_VERSION_NOT_SUPPORTED		505
 #define Z_HTTP_STATUS_VARIANT_ALSO_NEGOTIATES			506 /* RFC 2295 */
 #define Z_HTTP_STATUS_INSUFICIENT_STORAGE			507 /* WebDAV, RFC 4918 */
@@ -95,7 +95,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_HTTP_STATUS_BANDWIDTH_LIMIT_EXCEEDED			509 /* Apache bw/limited extension */
 #define Z_HTTP_STATUS_NOT_EXTENDED				510 /* RFC 2774 */
 #define Z_HTTP_STATUS_NETWORK_AUTHENTICATION_REQUIRED		511 /* RFC 6585 */
-#define Z_HTTP_STATUS_NETWORK_READ_TIMEOUT_ERROR		598 /* Microsoft HTTP proxies */
-#define Z_HTTP_STATUS_NETWOTK_CONNECT_TIMEOUT_ERROR		599 /* Microsoft HTTP proxies */
+#define Z_HTTP_STATUS_NETWORK_READ_TIME_OUT_ERROR		598 /* Microsoft HTTP proxies */
+#define Z_HTTP_STATUS_NETWORK_CONNECT_TIME_OUT_ERROR		599 /* Microsoft HTTP proxies */
 
 #endif /* __Z_network_7_HTTP_H__ */
