@@ -320,6 +320,10 @@ Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, uint16, 16)
 #endif
 
 
+Z_INLINE zuint8 z_uint16_minimum_storage_size(zuint16 value)
+	{return value >> 8 ? 2 : 1;}
+
+
 #if Z_UINTTOP_BITS > 16
 
 	Z_INLINE zuinttop z_uint16_top_mirror(zuint16 value)
@@ -340,48 +344,39 @@ Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, uint16, 16)
 #endif
 
 
-Z_INLINE
-zboolean z_uint16_addition_overflow(zuint16 a, zuint16 b)
+Z_INLINE zboolean z_uint16_addition_overflow(zuint16 a, zuint16 b)
 	{return (zuint32)a + (zuint32)b > Z_UINT16_MAXIMUM;}
 
 
-Z_INLINE
-zboolean z_uint16_addition_overflow_3(zuint16 a, zuint16 b, zuint16 c)
+Z_INLINE zboolean z_uint16_addition_overflow_3(zuint16 a, zuint16 b, zuint16 c)
 	{return (zuint32)a + (zuint32)b + (zuint32)c > Z_UINT16_MAXIMUM;}
 
 
-Z_INLINE
-zboolean z_uint16_addition_overflow_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
+Z_INLINE zboolean z_uint16_addition_overflow_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
 	{return (zuint32)a + (zuint32)b + (zuint32)c + (zuint32)d > Z_UINT16_MAXIMUM;}
 
 
-Z_INLINE
-zboolean z_uint16_subtraction_overflow(zuint16 a, zuint16 b)
+Z_INLINE zboolean z_uint16_subtraction_overflow(zuint16 a, zuint16 b)
 	{return b > a;}
 
 
-Z_INLINE
-zboolean z_uint16_subtraction_overflow_3(zuint16 a, zuint16 b, zuint16 c)
+Z_INLINE zboolean z_uint16_subtraction_overflow_3(zuint16 a, zuint16 b, zuint16 c)
 	{return FALSE;}
 
 
-Z_INLINE
-zboolean z_uint16_subtraction_overflow_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
+Z_INLINE zboolean z_uint16_subtraction_overflow_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
 	{return FALSE;}
 
 
-Z_INLINE
-zboolean z_uint16_multiplication_overflow(zuint16 a, zuint16 b)
+Z_INLINE zboolean z_uint16_multiplication_overflow(zuint16 a, zuint16 b)
 	{return (zuint32)a * (zuint32)b > Z_UINT16_MAXIMUM;}
 
 
-Z_INLINE
-zboolean z_uint16_multiplication_overflow_3(zuint16 a, zuint16 b, zuint16 c)
+Z_INLINE zboolean z_uint16_multiplication_overflow_3(zuint16 a, zuint16 b, zuint16 c)
 	{return FALSE;}
 
 
-Z_INLINE
-zboolean z_uint16_multiplication_overflow_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
+Z_INLINE zboolean z_uint16_multiplication_overflow_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
 	{return FALSE;}
 
 
@@ -492,6 +487,15 @@ Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, uint32, 32)
 #endif
 
 
+Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
+	{
+	if ((value >> 24)) return 4;
+	if ((value >> 16)) return 3;
+	if ((value >>  8)) return 2;
+			   return 1;
+	}
+
+
 #if Z_UINTTOP_BITS > 32
 
 	Z_INLINE zuinttop z_uint32_top_mirror(zuint32 value)
@@ -512,48 +516,39 @@ Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, uint32, 32)
 #endif
 
 
-Z_INLINE
-zboolean z_uint32_addition_overflow(zuint32 a, zuint32 b)
+Z_INLINE zboolean z_uint32_addition_overflow(zuint32 a, zuint32 b)
 	{return FALSE;}
 
 
-Z_INLINE
-zboolean z_uint32_addition_overflow_3(zuint32 a, zuint32 b, zuint32 c)
+Z_INLINE zboolean z_uint32_addition_overflow_3(zuint32 a, zuint32 b, zuint32 c)
 	{return FALSE;}
 
 
-Z_INLINE
-zboolean z_uint32_addition_overflow_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
+Z_INLINE zboolean z_uint32_addition_overflow_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
 	{return FALSE;}
 
 
-Z_INLINE
-zboolean z_uint32_subtraction_overflow(zuint32 a, zuint32 b)
+Z_INLINE zboolean z_uint32_subtraction_overflow(zuint32 a, zuint32 b)
 	{return b > a;}
 
 
-Z_INLINE
-zboolean z_uint32_subtraction_overflow_3(zuint32 a, zuint32 b, zuint32 c)
+Z_INLINE zboolean z_uint32_subtraction_overflow_3(zuint32 a, zuint32 b, zuint32 c)
 	{return FALSE;}
 
 
-Z_INLINE
-zboolean z_uint32_subtraction_overflow_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
+Z_INLINE zboolean z_uint32_subtraction_overflow_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
 	{return FALSE;}
 
 
-Z_INLINE
-zboolean z_uint32_multiplication_overflow(zuint32 a, zuint32 b)
+Z_INLINE zboolean z_uint32_multiplication_overflow(zuint32 a, zuint32 b)
 	{return FALSE;}
 
 
-Z_INLINE
-zboolean z_uint32_multiplication_overflow_3(zuint32 a, zuint32 b, zuint32 c)
+Z_INLINE zboolean z_uint32_multiplication_overflow_3(zuint32 a, zuint32 b, zuint32 c)
 	{return FALSE;}
 
 
-Z_INLINE
-zboolean z_uint32_multiplication_overflow_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
+Z_INLINE zboolean z_uint32_multiplication_overflow_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
 	{return FALSE;}
 
 
@@ -665,6 +660,19 @@ zboolean z_uint32_multiplication_overflow_4(zuint32 a, zuint32 b, zuint32 c, zui
 #		define z_uint64_little_endian Z_SAME
 
 #	endif
+
+
+	Z_INLINE zuint8 z_uint64_minimum_storage_size(zuint64 value)
+		{
+		if ((value >> 56)) return 8;
+		if ((value >> 48)) return 7;
+		if ((value >> 40)) return 6;
+		if ((value >> 32)) return 5;
+		if ((value >> 24)) return 4;
+		if ((value >> 16)) return 3;
+		if ((value >>  8)) return 2;
+				   return 1;
+		}
 
 
 #	if Z_UINTTOP_BITS > 64
@@ -842,6 +850,27 @@ zboolean z_uint32_multiplication_overflow_4(zuint32 a, zuint32 b, zuint32 c, zui
 #		define z_uint128_little_endian Z_SAME
 
 #	endif
+
+
+	Z_INLINE zuint8 z_uint128_minimum_storage_size(zuint128 value)
+		{
+		if ((value >> 120)) return 16;
+		if ((value >> 112)) return 15;
+		if ((value >> 104)) return 14;
+		if ((value >>  96)) return 13;
+		if ((value >>  88)) return 12;
+		if ((value >>  80)) return 11;
+		if ((value >>  72)) return 10;
+		if ((value >>  64)) return  9;
+		if ((value >>  56)) return  8;
+		if ((value >>  48)) return  7;
+		if ((value >>  40)) return  6;
+		if ((value >>  32)) return  5;
+		if ((value >>  24)) return  4;
+		if ((value >>  16)) return  3;
+		if ((value >>	8)) return  2;
+				    return  1;
+		}		
 
 
 	Z_INLINE
@@ -1828,6 +1857,7 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 #define z_type_big_endian(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _big_endian		  )
 #define z_type_little_endian(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _little_endian		  )
+#define z_type_minimum_storage_size(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _minimum_storage_size	  )
 #define z_type_addition_overflow(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflow	  )
 #define z_type_addition_overflow_3(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflow_3	  )
 #define z_type_addition_overflow_4(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflow_4	  )
