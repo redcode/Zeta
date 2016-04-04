@@ -85,6 +85,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
+#define Z_STRICT_STRUCTURE_BEGIN Z_STRICT_SIZE_BEGIN struct {
+#define Z_STRICT_STRUCTURE_END	 } Z_STRICT_SIZE_END
+#define Z_STRICT_UNION_BEGIN	 Z_STRICT_SIZE_BEGIN union {
+#define Z_STRICT_UNION_END	 } Z_STRICT_SIZE_END
+
 #define Z_DEFINE_STRICT_STRUCTURE_BEGIN Z_STRICT_SIZE_BEGIN typedef struct {
 #define Z_DEFINE_STRICT_STRUCTURE_END	} Z_STRICT_SIZE_END
 #define Z_DEFINE_STRICT_UNION_BEGIN	Z_STRICT_SIZE_BEGIN typedef union {
