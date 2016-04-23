@@ -11,8 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-#define Z_CIPHERING_FEATURE_SEQUENTIAL	1
-#define Z_CIPHERING_FEATURE_INESTABLE	2
+#define Z_CIPHER_FEATURE_SEQUENTIAL 1
 
 typedef ZStatus (* ZCipherTestKey)    (void const* key,
 				       zsize	   key_size);
