@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-#define Z_CIPHERING_FEATURE_SECUENTIAL	1
+#define Z_CIPHERING_FEATURE_SEQUENTIAL	1
 #define Z_CIPHERING_FEATURE_INESTABLE	2
 
 typedef ZStatus (* ZCipherTestKey)    (void const* key,
@@ -41,8 +41,8 @@ typedef struct {
 	zsize		  key_minimum_size;
 	zsize		  key_maximum_size;
 	zsize		  key_word_size;
-	zsize		  deciphered_word_size;
-	zsize		  enciphered_word_size;
+	zsize		  enciphering_word_size;
+	zsize		  deciphering_word_size;
 	zuint8		  features;
 } ZCipherABI;
 
