@@ -51,16 +51,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_PUBLIC
 #endif
 
+#if Z_COMPILER_HAS_C_ATTRIBUTE(WEAK)
+#	define Z_WEAK Z_COMPILER_C_ATTRIBUTE(WEAK)
+#else
+#	define Z_WEAK
+#endif
+
 #if Z_COMPILER_HAS_C_ATTRIBUTE(API)
 #	define Z_API Z_COMPILER_C_ATTRIBUTE(API)
 #else
-#	define Z_API Z_PUBLIC
+#	define Z_API
 #endif
 
 #if Z_COMPILER_HAS_C_ATTRIBUTE(API_EXPORT)
 #	define Z_API_EXPORT Z_COMPILER_C_ATTRIBUTE(API_EXPORT)
 #else
 #	define Z_API_EXPORT Z_PUBLIC
+#endif
+
+#if Z_COMPILER_HAS_C_ATTRIBUTE(API_WEAK_EXPORT)
+#	define Z_API_WEAK_EXPORT Z_COMPILER_C_ATTRIBUTE(API_WEAK_EXPORT)
+#else
+#	define Z_API_WEAK_EXPORT Z_API_EXPORT Z_WEAK
 #endif
 
 /* MARK: - Specifiers */
