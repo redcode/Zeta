@@ -69,9 +69,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	 (defined Z_AVAILABLE_##E) || (defined Z_AVAILABLE_##F) || \
 	 (defined Z_AVAILABLE_##G) || (defined Z_AVAILABLE_##H))
 
-#define Z_MUST_USE(WHAT) (defined Z_USE_##WHAT)
-
+#define Z_MUST_USE(		WHAT) (defined Z_USE_##WHAT)
 #define Z_MUST_USE_IF_AVAILABLE(WHAT) ((defined Z_USE_##WHAT) && (defined Z_AVAILABLE_##WHAT))
+#define Z_MUST_SUPPORT(		WHAT) (defined Z_SUPPORT_##WHAT)
 
 #define Z_SHOULD_USE_COMPILER_FUNCTION(WHICH) \
 	(!Z_IS_AVAILABLE(ASSEMBLY_##WHICH) && (defined Z_COMPILER_FUNCTION_##WHICH))

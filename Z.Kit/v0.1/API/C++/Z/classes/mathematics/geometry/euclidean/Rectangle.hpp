@@ -100,7 +100,7 @@ template <typename T> struct ZKit::Rectangle {
 	// MARK: - Interoperability
 
 
-#	if Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)
+#	if Z_MUST_SUPPORT(CG_GEOMETRY)
 
 		inline Rectangle<T>(const CGRect &rectangle)
 		: point(rectangle.origin), size(rectangle.size) {}
@@ -118,10 +118,9 @@ template <typename T> struct ZKit::Rectangle {
 
 #	endif
 
-#	if	Z_MUST_USE(INTEROPERABILITY_WITH_NS_GEOMETRY)	     && \
-		defined(Z_OBJECTIVE_C)				     && \
-		(!Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)	     || \
-		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
+#	if	Z_MUST_SUPPORT(NS_GEOMETRY) && defined(Z_OBJECTIVE_C) && \
+		(!Z_MUST_SUPPORT(CG_GEOMETRY)			      || \
+		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)  || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
 		inline Rectangle<T>(const NSRect &rectangle)

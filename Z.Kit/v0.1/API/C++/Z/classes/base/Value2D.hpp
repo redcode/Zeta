@@ -13,11 +13,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/super.hpp>
 #include <Z/functions/base/value.hpp>
 
-#if Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)
+#if Z_MUST_SUPPORT(CG_GEOMETRY)
 #	include <CoreGraphics/CGGeometry.h>
 #endif
 
-#if Z_MUST_USE(INTEROPERABILITY_WITH_NS_GEOMETRY) && defined(Z_OBJECTIVE_C)
+#if Z_MUST_SUPPORT(NS_GEOMETRY) && defined(Z_OBJECTIVE_C)
 #	import <Foundation/NSGeometry.h>
 #endif
 
@@ -108,7 +108,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	// MARK: - Interoperability
 
 
-#	if Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)
+#	if Z_MUST_SUPPORT(CG_GEOMETRY)
 
 		inline Value2D<T>(const CGPoint &point) {this->x = point.x; this->y = point.y;}
 		inline Value2D<T>(const CGSize	&size)	{this->x = size.width; this->y = size.height;}
@@ -129,10 +129,9 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 
 #	endif
 
-#	if	Z_MUST_USE(INTEROPERABILITY_WITH_NS_GEOMETRY)	     && \
-		defined(Z_OBJECTIVE_C)				     && \
-		(!Z_MUST_USE(INTEROPERABILITY_WITH_CG_GEOMETRY)	     || \
-		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
+#	if	Z_MUST_SUPPORT(NS_GEOMETRY) && defined(Z_OBJECTIVE_C) && \
+		(!Z_MUST_SUPPORT(CG_GEOMETRY)			      || \
+		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)  || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
 		inline Value2D<T>(const NSSize	&size)	{this->x = size.width; this->y = size.height;}
