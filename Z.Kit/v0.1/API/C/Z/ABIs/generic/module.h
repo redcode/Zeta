@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_ABIs_generic_module_H__
 
 #include <Z/types/base.h>
+#include <Z/macros/version.h>
 
 typedef struct {
 	zcharacter const* identifier;
