@@ -94,6 +94,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_C_ATTRIBUTE_API_ALIAS*/
 /*#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT*/
 /*#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT_ALIAS*/
+/*#define Z_COMPILER_C_ATTRIBUTE_API_WEAK_EXPORT*/
 
 #if Z_COMPILER_VERSION >= Z_VERSION(4, 0, 0)
 #	define Z_COMPILER_C_ATTRIBUTE_INLINE	      static __inline__ __attribute__((always_inline))

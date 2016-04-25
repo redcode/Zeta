@@ -112,8 +112,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C attributes */
 
-/*#define Z_COMPILER_C_ATTRIBUTE_ALIAS*/
-
 #if __has_attribute(alias)
 #	define Z_COMPILER_C_ATTRIBUTE_ALIAS(name) __attribute__((alias(name)))
 #endif
@@ -122,6 +120,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_C_ATTRIBUTE_API_ALIAS*/
 /*#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT*/
 /*#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT_ALIAS*/
+/*#define Z_COMPILER_C_ATTRIBUTE_API_WEAK_EXPORT*/
 
 #if __has_attribute(always_inline)
 #	define Z_COMPILER_C_ATTRIBUTE_INLINE static __inline__ __attribute__((always_inline))
