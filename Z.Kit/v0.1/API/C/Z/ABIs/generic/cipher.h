@@ -36,7 +36,7 @@ typedef struct {
 	ZCipherProcess	  decipher;
 	ZCipherOutputSize enciphering_size;
 	ZCipherOutputSize deciphering_size;
-	zsize		  context_size;
+	zsize		  instance_size;
 	zsize		  key_minimum_size;
 	zsize		  key_maximum_size;
 	zsize		  key_word_size;
