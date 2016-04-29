@@ -141,37 +141,37 @@ Z_INLINE z##type z_##type##_clamp_01(z##type value)				\
 /* MARK: - Templates for bit operations */
 
 
-#define Z_TEMPLATE_VALUE_REVERSED(export, prefix, type, bits, level)  \
-export z##type prefix##type##_reversed_in_##level##bit(z##type value) \
-	{return Z_##bits##BIT_REVERSED_IN_##level##BIT(value);}
+#define Z_TEMPLATE_VALUE_REVERSE(export, prefix, type, bits, level)  \
+export z##type prefix##type##_reverse_in_##level##bit(z##type value) \
+	{return Z_##bits##BIT_REVERSE_IN_##level##BIT(value);}
 
 
-#define z_type_reversed(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reversed_in_8bit)
+#define z_type_reverse(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reverse_in_8bit)
 
 
-#define Z_TEMPLATE_VALUE_ROTATED(export, prefix, type, bits)		   \
+#define Z_TEMPLATE_VALUE_ROTATE(export, prefix, type, bits)		   \
 									   \
-export z##type prefix##type##_rotated_left(z##type value, zuint rotation)  \
+export z##type prefix##type##_rotate_left(z##type value, zuint rotation)  \
 	{return Z_##bits##BIT_ROTATE_LEFT(value, rotation);}		   \
 									   \
-export z##type prefix##type##_rotated_right(z##type value, zuint rotation) \
+export z##type prefix##type##_rotate_right(z##type value, zuint rotation) \
 	{return Z_##bits##BIT_ROTATE_RIGHT(value, rotation);}
 
 
-#define z_type_rotated_left( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_left )
-#define z_type_rotated_right(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotated_right)
+#define z_type_rotate_left( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotate_left )
+#define z_type_rotate_right(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotate_right)
 
 
 /* MARK: - uint8 */
 
 
 Z_TEMPLATE_NATURAL(uint8)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint8, 8, 1)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint8, 8, 2)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint8, 8, 4)
-Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, uint8, 8)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 1)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 2)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 4)
+Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, uint8, 8)
 
-#define z_uint8_reversed Z_SAME
+#define z_uint8_reverse Z_SAME
 
 
 Z_INLINE zuinttop z_uint8_top_mirror(zuint8 value)
@@ -299,22 +299,22 @@ Z_INLINE zboolean z_uint8_multiplication_overflow_4(zuint8 a, zuint8 b, zuint8 c
 
 
 Z_TEMPLATE_NATURAL(uint16)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint16, 16, 1)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint16, 16, 2)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint16, 16, 4)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint16, 16, 8)
-Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, uint16, 16)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 1)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 2)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 4)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 8)
+Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, uint16, 16)
 
-#define z_uint16_reversed z_uint16_reversed_in_8bit
+#define z_uint16_reverse z_uint16_reverse_in_8bit
 
 #if Z_UINT16_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #	define z_uint16_big_endian    Z_SAME
-#	define z_uint16_little_endian z_uint16_reversed
+#	define z_uint16_little_endian z_uint16_reverse
 
 #elif Z_UINT16_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#	define z_uint16_big_endian    z_uint16_reversed
+#	define z_uint16_big_endian    z_uint16_reverse
 #	define z_uint16_little_endian Z_SAME
 
 #endif
@@ -339,7 +339,7 @@ Z_INLINE zuint8 z_uint16_minimum_storage_size(zuint16 value)
 		 Z_UINT16_ENDIANNESS  == Z_ENDIANNESS_BIG)
 
 		Z_INLINE zuinttop z_uint16_top_packet(zuint16 value)
-			{return Z_16BIT_TOP_MIRROR(z_uint16_reversed(value));}
+			{return Z_16BIT_TOP_MIRROR(z_uint16_reverse(value));}
 #	endif
 #endif
 
@@ -465,23 +465,23 @@ Z_INLINE zboolean z_uint16_multiplication_overflow_4(zuint16 a, zuint16 b, zuint
 
 
 Z_TEMPLATE_NATURAL(uint32)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint32, 32,  1)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint32, 32,  2)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint32, 32,  4)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint32, 32,  8)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint32, 32, 16)
-Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, uint32, 32)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  1)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  2)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  4)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  8)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint32, 32, 16)
+Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, uint32, 32)
 
-#define z_uint32_reversed z_uint32_reversed_in_8bit
+#define z_uint32_reverse z_uint32_reverse_in_8bit
 
 #if Z_UINT32_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #	define z_uint32_big_endian    Z_SAME
-#	define z_uint32_little_endian z_uint32_reversed
+#	define z_uint32_little_endian z_uint32_reverse
 
 #elif Z_UINT32_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#	define z_uint32_big_endian    z_uint32_reversed
+#	define z_uint32_big_endian    z_uint32_reverse
 #	define z_uint32_little_endian Z_SAME
 
 #endif
@@ -511,7 +511,7 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 		 Z_UINT32_ENDIANNESS  == Z_ENDIANNESS_BIG)
 
 		Z_INLINE zuinttop z_uint32_top_packet(zuint32 value)
-			{return Z_32BIT_TOP_MIRROR(z_uint32_reversed(value));}
+			{return Z_32BIT_TOP_MIRROR(z_uint32_reverse(value));}
 #	endif
 #endif
 
@@ -639,24 +639,24 @@ Z_INLINE zboolean z_uint32_multiplication_overflow_4(zuint32 a, zuint32 b, zuint
 #if Z_IS_AVAILABLE(UINT64)
 
 	Z_TEMPLATE_NATURAL(uint64)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint64, 64,  1)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint64, 64,  2)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint64, 64,  4)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint64, 64,  8)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint64, 64, 16)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint64, 64, 32)
-	Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, uint64, 64)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  1)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  2)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  4)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  8)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64, 16)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64, 32)
+	Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, uint64, 64)
 
-#	define z_uint64_reversed z_uint64_reversed_in_8bit
+#	define z_uint64_reverse z_uint64_reverse_in_8bit
 
 #	if Z_UINT64_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #		define z_uint64_big_endian    Z_SAME
-#		define z_uint64_little_endian z_uint64_reversed
+#		define z_uint64_little_endian z_uint64_reverse
 
 #	elif Z_UINT64_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#		define z_uint64_big_endian    z_uint64_reversed
+#		define z_uint64_big_endian    z_uint64_reverse
 #		define z_uint64_little_endian Z_SAME
 
 #	endif
@@ -690,7 +690,7 @@ Z_INLINE zboolean z_uint32_multiplication_overflow_4(zuint32 a, zuint32 b, zuint
 			 Z_UINT64_ENDIANNESS  == Z_ENDIANNESS_BIG)
 	
 			Z_INLINE zuinttop z_uint64_top_packet(zuint64 value)
-				{return Z_64BIT_TOP_MIRROR(z_uint64_reversed(value));}
+				{return Z_64BIT_TOP_MIRROR(z_uint64_reverse(value));}
 #		endif
 #	endif
 
@@ -828,25 +828,25 @@ Z_INLINE zboolean z_uint32_multiplication_overflow_4(zuint32 a, zuint32 b, zuint
 #if Z_IS_AVAILABLE(UINT128)
 
 	Z_TEMPLATE_NATURAL(uint128)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint128, 128,  1)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint128, 128,  2)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint128, 128,  4)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint128, 128,  8)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint128, 128, 16)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint128, 128, 32)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, uint128, 128, 64)
-	Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, uint128, 128)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  1)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  2)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  4)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  8)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 16)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 32)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 64)
+	Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, uint128, 128)
 
-#	define z_uint128_reversed z_uint128_reversed_in_8bit
+#	define z_uint128_reverse z_uint128_reverse_in_8bit
 
 #	if Z_UINT128_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #		define z_uint128_big_endian    Z_SAME
-#		define z_uint128_little_endian z_uint128_reversed
+#		define z_uint128_little_endian z_uint128_reverse
 
 #	elif Z_UINT128_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#		define z_uint128_big_endian    z_uint128_reversed
+#		define z_uint128_big_endian    z_uint128_reverse
 #		define z_uint128_little_endian Z_SAME
 
 #	endif
@@ -1006,12 +1006,12 @@ Z_INLINE zboolean z_uint32_multiplication_overflow_4(zuint32 a, zuint32 b, zuint
 
 Z_TEMPLATE_NATURAL(int8)
 Z_TEMPLATE_INTEGER(int8)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int8, 8, 1)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int8, 8, 2)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int8, 8, 4)
-Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, int8, 8)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 1)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 2)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 4)
+Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, int8, 8)
 
-#define z_int8_reversed Z_SAME
+#define z_int8_reverse Z_SAME
 
 
 Z_INLINE
@@ -1145,22 +1145,22 @@ zboolean z_int8_multiplication_overflow_4(zint8 a, zint8 b, zint8 c, zint8 d)
 
 Z_TEMPLATE_NATURAL(int16)
 Z_TEMPLATE_INTEGER(int16)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int16, 16, 1)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int16, 16, 2)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int16, 16, 4)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int16, 16, 8)
-Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, int16, 16)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 1)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 2)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 4)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 8)
+Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, int16, 16)
 
-#define z_int16_reversed z_int16_reversed_in_8bit
+#define z_int16_reverse z_int16_reverse_in_8bit
 
 #if Z_INT16_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #	define z_int16_big_endian     Z_SAME
-#	define z_int16_little_endian  z_int16_reversed
+#	define z_int16_little_endian  z_int16_reverse
 
 #elif Z_INT16_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#	define z_int16_big_endian     z_int16_reversed
+#	define z_int16_big_endian     z_int16_reverse
 #	define z_int16_little_endian  Z_SAME
 
 #endif
@@ -1297,23 +1297,23 @@ zboolean z_int16_multiplication_overflow_4(zint16 a, zint16 b, zint16 c, zint16 
 
 Z_TEMPLATE_NATURAL(int32)
 Z_TEMPLATE_INTEGER(int32)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int32, 32,  1)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int32, 32,  2)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int32, 32,  4)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int32, 32,  8)
-Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int32, 32, 16)
-Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, int32, 32)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  1)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  2)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  4)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  8)
+Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int32, 32, 16)
+Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, int32, 32)
 
-#define z_int32_reversed z_int32_reversed_in_8bit
+#define z_int32_reverse z_int32_reverse_in_8bit
 
 #if Z_INT32_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #	define z_int32_big_endian     Z_SAME
-#	define z_int32_little_endian  z_int32_reversed
+#	define z_int32_little_endian  z_int32_reverse
 
 #elif Z_INT32_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#	define z_int32_big_endian     z_int32_reversed
+#	define z_int32_big_endian     z_int32_reverse
 #	define z_int32_little_endian  Z_SAME
 
 #endif
@@ -1452,24 +1452,24 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 	Z_TEMPLATE_NATURAL(int64)
 	Z_TEMPLATE_INTEGER(int64)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int64, 64,  1)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int64, 64,  2)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int64, 64,  4)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int64, 64,  8)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int64, 64, 16)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int64, 64, 32)
-	Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, int64, 64)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  1)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  2)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  4)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  8)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64, 16)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64, 32)
+	Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, int64, 64)
 
-#	define z_int64_reversed z_int64_reversed_in_8bit
+#	define z_int64_reverse z_int64_reverse_in_8bit
 
 #	if Z_INT64_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #		define z_int64_big_endian    Z_SAME
-#		define z_int64_little_endian z_int64_reversed
+#		define z_int64_little_endian z_int64_reverse
 
 #	elif Z_INT64_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#		define z_int64_big_endian    z_int64_reversed
+#		define z_int64_big_endian    z_int64_reverse
 #		define z_int64_little_endian Z_SAME
 
 #	endif
@@ -1610,25 +1610,25 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 	Z_TEMPLATE_NATURAL(int128)
 	Z_TEMPLATE_INTEGER(int128)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int128, 128,  1)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int128, 128,  2)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int128, 128,  4)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int128, 128,  8)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int128, 128, 16)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int128, 128, 32)
-	Z_TEMPLATE_VALUE_REVERSED(Z_INLINE, z_, int128, 128, 64)
-	Z_TEMPLATE_VALUE_ROTATED (Z_INLINE, z_, int128, 128)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  1)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  2)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  4)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  8)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 16)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 32)
+	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 64)
+	Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, int128, 128)
 
-#	define z_int128_reversed z_int128_reversed_in_8bit
+#	define z_int128_reverse z_int128_reverse_in_8bit
 
 #	if Z_INT128_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #		define z_int128_big_endian     Z_SAME
-#		define z_int128_little_endian  z_int128_reversed
+#		define z_int128_little_endian  z_int128_reverse
 
 #	elif Z_INT128_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#		define z_int128_big_endian     z_int128_reversed
+#		define z_int128_big_endian     z_int128_reverse
 #		define z_int128_little_endian  Z_SAME
 
 #	endif

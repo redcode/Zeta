@@ -213,7 +213,7 @@ Z_INLINE Z3D##Type z_3d_##type##_cube_clamp(Z3D##Type object, z##type minimum, z
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_rotated_as_axes(Z3D##Type object, Z3DInt8 rotation)		\
+Z_INLINE Z3D##Type z_3d_##type##_rotate_as_axes(Z3D##Type object, Z3DInt8 rotation)		\
 	{											\
 	if ((rotation.x % 4) & 1) z_##type##_swap(&object.y, &object.z);			\
 	if ((rotation.y % 4) & 1) z_##type##_swap(&object.x, &object.z);			\
@@ -258,7 +258,7 @@ Z_INLINE Z3D##Type z_3d_##type##_rotated_as_axes(Z3D##Type object, Z3DInt8 rotat
 #define z_3d_type_squared_length(    TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _squared_length	  )
 #define z_3d_type_clamp(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _clamp		  )
 #define z_3d_type_cube_clamp(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _cube_clamp	  )
-#define z_3d_type_rotated_as_axes(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _rotated_as_axes	  )
+#define z_3d_type_rotate_as_axes(    TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _rotate_as_axes	  )
 
 
 /* MARK: - Template for integer and real types */
@@ -567,7 +567,7 @@ Z_TEMPLATE_3D_INTEGER(Int32, int32)
 #define z_3d_clamp		z_3d_type_clamp		    (REAL)
 #define z_3d_cube_clamp		z_3d_type_cube_clamp	    (REAL)
 #define z_3d_cube_clamp_01	z_3d_type_cube_clamp_01	    (REAL)
-#define z_3d_rotated_as_axes	z_3d_type_rotated_as_axes   (REAL)
+#define z_3d_rotate_as_axes	z_3d_type_rotate_as_axes    (REAL)
 
 
 #endif /* __Z_functions_base_Z3DValue_H__ */

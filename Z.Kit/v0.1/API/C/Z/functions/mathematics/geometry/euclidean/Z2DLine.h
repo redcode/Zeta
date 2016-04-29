@@ -34,14 +34,14 @@ Z_INLINE zboolean z_2d_line_##type##_is_zero(Z2DLine##Type object)			 \
 	{return z_2d_##type##_is_zero(object.a) && z_2d_##type##_is_zero(object.b);}	 \
 											 \
 											 \
-Z_INLINE Z2DLine##Type z_2d_line_##type##_reversed(Z2DLine##Type object)		 \
+Z_INLINE Z2DLine##Type z_2d_line_##type##_reverse(Z2DLine##Type object)			 \
 	{return z_2d_line_##type(object.b.x, object.b.y, object.a.x, object.a.y);}
 
 
 #define z_2d_line_type_are_equal(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _are_equal	  )
 #define z_2d_line_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _are_perpendicular)
 #define z_2d_line_type_is_zero(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _is_zero	  )
-#define z_2d_line_type_reversed(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _reversed	  )
+#define z_2d_line_type_reverse(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _reverse	  )
 
 
 #define Z_TEMPLATE_2D_LINE_SEGMENT(Type, type, _)					\
@@ -128,7 +128,7 @@ Z_INLINE Z2D##Type z_2d_line_segment_##type##_lerp(Z2DLine##Type object, z##type
 #define z_2d_line_are_equal	    z_2d_line_type_are_equal	    (REAL)
 #define z_2d_line_are_perpendicular z_2d_line_type_are_perpendicular(REAL)
 #define z_2d_line_is_zero	    z_2d_line_type_is_zero	    (REAL)
-#define z_2d_line_reversed	    z_2d_line_type_reversed	    (REAL)
+#define z_2d_line_reverse	    z_2d_line_type_reverse	    (REAL)
 #define z_2d_line_segment_collide   z_2d_line_segment_type_collide  (REAL)
 #define z_2d_line_segment_center    z_2d_line_segment_type_center   (REAL)
 #define z_2d_line_segment_lerp	    z_2d_line_segment_type_lerp	    (REAL)

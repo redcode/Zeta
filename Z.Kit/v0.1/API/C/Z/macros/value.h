@@ -32,27 +32,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - 8-bit operations */
 
-#define Z_8BIT_REVERSED_IN_1BIT(value) \
+#define Z_8BIT_REVERSE_IN_1BIT(value) \
 	( ((value) << 7)	     |  ((value) >> 7)		   | \
 	 (((value) << 5) & (1 << 6)) | (((value) >> 5) & (1 << 1)) | \
 	 (((value) << 3) & (1 << 5)) | (((value) >> 3) & (1 << 2)) | \
 	 (((value) << 1) & (1 << 4)) | (((value) >> 1) & (1 << 3)) )
 
-#define Z_8BIT_REVERSED_IN_2BIT(value) \
+#define Z_8BIT_REVERSE_IN_2BIT(value) \
 	( ((value) << 6)	     |  ((value) >> 6)		   | \
 	 (((value) << 2) & (3 << 4)) | (((value) >> 2) & (3 << 2)) )
 
-#define Z_8BIT_REVERSED_IN_4BIT(value) (((value) << 4) | ((value) >> 4))
+#define Z_8BIT_REVERSE_IN_4BIT(value) (((value) << 4) | ((value) >> 4))
 
-#define Z_8BIT_REVERSE_IN_1BIT(value) ((value) = Z_8BIT_REVERSED_IN_1BIT(value))
-#define Z_8BIT_REVERSE_IN_2BIT(value) ((value) = Z_8BIT_REVERSED_IN_2BIT(value))
-#define Z_8BIT_REVERSE_IN_4BIT(value) ((value) = Z_8BIT_REVERSED_IN_4BIT(value))
-
-#define Z_8BIT_ROTATED_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (8 - (rotation))))
-#define Z_8BIT_ROTATED_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (8 - (rotation))))
-
-#define Z_8BIT_ROTATE_LEFT( value, rotation) ((value) = Z_8BIT_ROTATED_LEFT (value, rotation))
-#define Z_8BIT_ROTATE_RIGHT(value, rotation) ((value) = Z_8BIT_ROTATED_RIGHT(value, rotation))
+#define Z_8BIT_ROTATE_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (8 - (rotation))))
+#define Z_8BIT_ROTATE_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (8 - (rotation))))
 
 #define Z_8BIT_ENSURE_BIG_ENDIAN(   value)
 #define Z_8BIT_ENSURE_LITTLE_ENDIAN(value)
@@ -63,7 +56,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_8BIT_16BIT_MIRROR(value) (((zuint16)(value)) * 0x0101)
 
-#define Z_16BIT_REVERSED_IN_1BIT(value) \
+#define Z_16BIT_REVERSE_IN_1BIT(value) \
 	( ((value) << 15)	       |  ((value) >> 15)	      | \
 	 (((value) << 13) & (1 << 14)) | (((value) >> 13) & (1 << 1)) | \
 	 (((value) << 11) & (1 << 13)) | (((value) >> 11) & (1 << 2)) | \
@@ -73,41 +66,33 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	 (((value) <<  3) & (1 <<  9)) | (((value) >>  3) & (1 << 6)) | \
 	 (((value) <<  1) & (1 <<  8)) | (((value) >>  1) & (1 << 7)) )
 
-#define Z_16BIT_REVERSED_IN_2BIT(value) \
+#define Z_16BIT_REVERSE_IN_2BIT(value) \
 	( ((value) << 14)	       |  ((value) >> 14)	      | \
 	 (((value) << 10) & (3 << 12)) | (((value) >> 10) & (3 << 2)) | \
 	 (((value) <<  6) & (3 << 10)) | (((value) >>  6) & (3 << 4)) | \
 	 (((value) <<  2) & (3 <<  8)) | (((value) >>  2) & (3 << 6)) )
 
-#define Z_16BIT_REVERSED_IN_4BIT(value) \
+#define Z_16BIT_REVERSE_IN_4BIT(value) \
 	( ((value) << 12)	       |  ((value) >> 12)	      | \
 	 (((value) <<  4) & (15 << 8)) | (((value) >> 4) & (15 << 4)) )
 
-#define Z_16BIT_REVERSED_IN_8BIT(value) (((value) << 8) | ((value) >> 8))
+#define Z_16BIT_REVERSE_IN_8BIT(value) (((value) << 8) | ((value) >> 8))
 
-#define Z_16BIT_REVERSE_IN_1BIT(value) ((value) = Z_16BIT_REVERSED_IN_1BIT(value))
-#define Z_16BIT_REVERSE_IN_2BIT(value) ((value) = Z_16BIT_REVERSED_IN_2BIT(value))
-#define Z_16BIT_REVERSE_IN_4BIT(value) ((value) = Z_16BIT_REVERSED_IN_4BIT(value))
-#define Z_16BIT_REVERSE_IN_8BIT(value) ((value) = Z_16BIT_REVERSED_IN_8BIT(value))
-
-#define Z_16BIT_ROTATED_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (16 - (rotation))))
-#define Z_16BIT_ROTATED_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (16 - (rotation))))
-
-#define Z_16BIT_ROTATE_LEFT( value, rotation) ((value) = Z_8BIT_ROTATED_LEFT  (value, rotation))
-#define Z_16BIT_ROTATE_RIGHT(value, rotation) ((value) = Z_16BIT_ROTATED_RIGHT(value, rotation))
+#define Z_16BIT_ROTATE_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (16 - (rotation))))
+#define Z_16BIT_ROTATE_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (16 - (rotation))))
 
 #if Z_INT16_ENDIANNESS == Z_ENDIANNESS_BIG
 
-#	define Z_16BIT_ENSURE_BIG_ENDIAN(value)
-#	define Z_16BIT_ENSURE_LITTLE_ENDIAN	   Z_16BIT_REVERSE_IN_8BIT
+#	define Z_16BIT_ENSURE_BIG_ENDIAN(   value)
+#	define Z_16BIT_ENSURE_LITTLE_ENDIAN(value) ((value) = Z_16BIT_REVERSE_IN_8BIT(value))
 #	define Z_16BIT_BIG_ENDIAN		   Z_SAME
-#	define Z_16BIT_LITTLE_ENDIAN		   Z_16BIT_REVERSED_IN_8BIT
+#	define Z_16BIT_LITTLE_ENDIAN		   Z_16BIT_REVERSE_IN_8BIT
 
 #elif Z_INT16_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#	define Z_16BIT_ENSURE_BIG_ENDIAN	   Z_16BIT_REVERSE_IN_8BIT
+#	define Z_16BIT_ENSURE_BIG_ENDIAN(   value) ((value) = Z_16BIT_REVERSE_IN_8BIT(value))
 #	define Z_16BIT_ENSURE_LITTLE_ENDIAN(value)
-#	define Z_16BIT_BIG_ENDIAN		   Z_16BIT_REVERSED_IN_8BIT
+#	define Z_16BIT_BIG_ENDIAN		   Z_16BIT_REVERSE_IN_8BIT
 #	define Z_16BIT_LITTLE_ENDIAN		   Z_SAME
 
 #endif
@@ -117,7 +102,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_8BIT_32BIT_MIRROR( value) (((zuint32)(value)) * Z_UINT32(0x01010101))
 #define Z_16BIT_32BIT_MIRROR(value) (((zuint32)(value)) * Z_UINT32(0x00010001))
 
-#define Z_32BIT_REVERSED_IN_1BIT(value) \
+#define Z_32BIT_REVERSE_IN_1BIT(value) \
 	( ((value) << 31)			|  ((value) >> 31)			 | \
 	 (((value) << 29) & ((zuint32)1 << 30)) | (((value) >> 29) & ((zuint32)1 <<  1)) | \
 	 (((value) << 27) & ((zuint32)1 << 29)) | (((value) >> 27) & ((zuint32)1 <<  2)) | \
@@ -135,7 +120,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	 (((value) <<  3) & ((zuint32)1 << 17)) | (((value) >>  3) & ((zuint32)1 << 14)) | \
 	 (((value) <<  1) & ((zuint32)1 << 16)) | (((value) >>  1) & ((zuint32)1 << 15)) )
 
-#define Z_32BIT_REVERSED_IN_2BIT(value) \
+#define Z_32BIT_REVERSE_IN_2BIT(value) \
 	( ((value) << 30)			|  ((value) >> 30)			 | \
 	 (((value) << 26) & ((zuint32)3 << 28)) | (((value) >> 26) & ((zuint32)3 <<  2)) | \
 	 (((value) << 22) & ((zuint32)3 << 26)) | (((value) >> 22) & ((zuint32)3 <<  4)) | \
@@ -145,29 +130,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	 (((value) <<  6) & ((zuint32)3 << 18)) | (((value) >>	6) & ((zuint32)3 << 12)) | \
 	 (((value) <<  2) & ((zuint32)3 << 16)) | (((value) >>	2) & ((zuint32)3 << 14)) )
 
-#define Z_32BIT_REVERSED_IN_4BIT(value) \
+#define Z_32BIT_REVERSE_IN_4BIT(value) \
 	( ((value) << 28)			 |  ((value) >> 28)			   | \
 	 (((value) << 20) & ((zuint32)15 << 24)) | (((value) >> 20) & ((zuint32)15 <<  4)) | \
 	 (((value) << 12) & ((zuint32)15 << 20)) | (((value) >> 12) & ((zuint32)15 <<  8)) | \
 	 (((value) <<  4) & ((zuint32)15 << 16)) | (((value) >>  4) & ((zuint32)15 << 12)) )
 
-#define Z_32BIT_REVERSED_IN_8BIT(value) \
+#define Z_32BIT_REVERSE_IN_8BIT(value) \
 	( ((value) << 24)			  |  ((value) >> 24)			    | \
 	 (((value) <<  8) & ((zuint32)255 << 16)) | (((value) >>  8) & ((zuint32)255 << 8)) )
 
-#define Z_32BIT_REVERSED_IN_16BIT(value) (((value) << 16) | ((value) >> 16))
+#define Z_32BIT_REVERSE_IN_16BIT(value) (((value) << 16) | ((value) >> 16))
 
-#define Z_32BIT_REVERSE_IN_1BIT( value) ((value) = Z_32BIT_REVERSED_IN_1BIT( value))
-#define Z_32BIT_REVERSE_IN_2BIT( value) ((value) = Z_32BIT_REVERSED_IN_2BIT( value))
-#define Z_32BIT_REVERSE_IN_4BIT( value) ((value) = Z_32BIT_REVERSED_IN_4BIT( value))
-#define Z_32BIT_REVERSE_IN_8BIT( value) ((value) = Z_32BIT_REVERSED_IN_8BIT( value))
-#define Z_32BIT_REVERSE_IN_16BIT(value) ((value) = Z_32BIT_REVERSED_IN_16BIT(value))
-
-#define Z_32BIT_ROTATED_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (32 - (rotation))))
-#define Z_32BIT_ROTATED_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (32 - (rotation))))
-
-#define Z_32BIT_ROTATE_LEFT( value, rotation) ((value) = Z_32BIT_ROTATED_LEFT (value, rotation))
-#define Z_32BIT_ROTATE_RIGHT(value, rotation) ((value) = Z_32BIT_ROTATED_RIGHT(value, rotation))
+#define Z_32BIT_ROTATE_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (32 - (rotation))))
+#define Z_32BIT_ROTATE_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (32 - (rotation))))
 
 #define Z_32BIT_FROM_8BIT_DCBA(d, c, b, a) \
 	((((zuint32)(d)) << 24) | (((zuint32)(c)) << 16) | \
@@ -188,16 +164,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_INT32_ENDIANNESS == Z_ENDIANNESS_BIG
 
-#	define Z_32BIT_ENSURE_BIG_ENDIAN(value)
-#	define Z_32BIT_ENSURE_LITTLE_ENDIAN	   Z_32BIT_REVERSE_IN_8BIT
+#	define Z_32BIT_ENSURE_BIG_ENDIAN(   value)
+#	define Z_32BIT_ENSURE_LITTLE_ENDIAN(value) ((value) = Z_32BIT_REVERSE_IN_8BIT(value))
 #	define Z_32BIT_BIG_ENDIAN		   Z_SAME
-#	define Z_32BIT_LITTLE_ENDIAN		   Z_32BIT_REVERSED_IN_8BIT
+#	define Z_32BIT_LITTLE_ENDIAN		   Z_32BIT_REVERSE_IN_8BIT
 
 #elif Z_INT32_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#	define Z_32BIT_ENSURE_BIG_ENDIAN	   Z_32BIT_REVERSE_IN_8BIT
+#	define Z_32BIT_ENSURE_BIG_ENDIAN(   value) ((value) = Z_32BIT_REVERSE_IN_8BIT(value))
 #	define Z_32BIT_ENSURE_LITTLE_ENDIAN(value)
-#	define Z_32BIT_BIG_ENDIAN		   Z_32BIT_REVERSED_IN_8BIT
+#	define Z_32BIT_BIG_ENDIAN		   Z_32BIT_REVERSE_IN_8BIT
 #	define Z_32BIT_LITTLE_ENDIAN		   Z_SAME
 
 #endif
@@ -210,7 +186,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_16BIT_64BIT_MIRROR(value) (((zuint64)(value)) * Z_UINT64(0x0001000100010001))
 #	define Z_32BIT_64BIT_MIRROR(value) (((zuint64)(value)) * Z_UINT64(0x0000000100000001))
 
-#	define Z_64BIT_REVERSED_IN_1BIT(value) \
+#	define Z_64BIT_REVERSE_IN_1BIT(value) \
 		( ((value) << 63)			|  ((value) >> 63)			 | \
 		 (((value) << 61) & ((zuint64)1 << 62)) | (((value) >> 61) & ((zuint64)1 <<  1)) | \
 		 (((value) << 59) & ((zuint64)1 << 61)) | (((value) >> 59) & ((zuint64)1 <<  2)) | \
@@ -244,7 +220,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		 (((value) <<  3) & ((zuint64)1 << 33)) | (((value) >>	3) & ((zuint64)1 << 30)) | \
 		 (((value) <<  1) & ((zuint64)1 << 32)) | (((value) >>	1) & ((zuint64)1 << 31)) )
 
-#	define Z_64BIT_REVERSED_IN_2BIT(value) \
+#	define Z_64BIT_REVERSE_IN_2BIT(value) \
 		( ((value) << 62)			|  ((value) >> 62)			 | \
 		 (((value) << 58) & ((zuint64)3 << 60)) | (((value) >> 58) & ((zuint64)3 <<  2)) | \
 		 (((value) << 54) & ((zuint64)3 << 58)) | (((value) >> 54) & ((zuint64)3 <<  4)) | \
@@ -262,7 +238,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		 (((value) <<  6) & ((zuint64)3 << 34)) | (((value) >>	6) & ((zuint64)3 << 28)) | \
 		 (((value) <<  2) & ((zuint64)3 << 32)) | (((value) >>	2) & ((zuint64)3 << 30)) )
 
-#	define Z_64BIT_REVERSED_IN_4BIT(value) \
+#	define Z_64BIT_REVERSE_IN_4BIT(value) \
 		( ((value) << 60)			 |  ((value) >> 60)			   | \
 		 (((value) << 52) & ((zuint64)15 << 56)) | (((value) >> 52) & ((zuint64)15 <<  4)) | \
 		 (((value) << 44) & ((zuint64)15 << 52)) | (((value) >> 44) & ((zuint64)15 <<  8)) | \
@@ -272,45 +248,35 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		 (((value) << 12) & ((zuint64)15 << 36)) | (((value) >> 12) & ((zuint64)15 << 24)) | \
 		 (((value) <<  4) & ((zuint64)15 << 32)) | (((value) >>  4) & ((zuint64)15 << 28)) )
 
-#	define Z_64BIT_REVERSED_IN_8BIT(value) \
+#	define Z_64BIT_REVERSE_IN_8BIT(value) \
 		( ((value) << 56)			  |  ((value) >> 56)			     | \
 		 (((value) << 40) & ((zuint64)255 << 48)) | (((value) >> 40) & ((zuint64)255 <<  8)) | \
 		 (((value) << 24) & ((zuint64)255 << 40)) | (((value) >> 24) & ((zuint64)255 << 16)) | \
 		 (((value) <<  8) & ((zuint64)255 << 32)) | (((value) >>  8) & ((zuint64)255 << 24)) )
 
-#	define Z_64BIT_REVERSED_IN_16BIT(value) \
+#	define Z_64BIT_REVERSE_IN_16BIT(value) \
 		( ((value) << 48)			    |  ((value) >> 48)				 | \
 		 (((value) << 16) & ((zuint64)65535 << 32)) | (((value) >> 16) & ((zuint64)65535 << 16)) )
 
-#	define Z_64BIT_REVERSED_IN_32BIT(value) (((value) << 32) | ((value) >> 32))
+#	define Z_64BIT_REVERSE_IN_32BIT(value) (((value) << 32) | ((value) >> 32))
 
-#	define Z_64BIT_REVERSE_IN_1BIT( value) ((value) = Z_64BIT_REVERSED_IN_1BIT( value))
-#	define Z_64BIT_REVERSE_IN_2BIT( value) ((value) = Z_64BIT_REVERSED_IN_2BIT( value))
-#	define Z_64BIT_REVERSE_IN_4BIT( value) ((value) = Z_64BIT_REVERSED_IN_4BIT( value))
-#	define Z_64BIT_REVERSE_IN_8BIT( value) ((value) = Z_64BIT_REVERSED_IN_8BIT( value))
-#	define Z_64BIT_REVERSE_IN_16BIT(value) ((value) = Z_64BIT_REVERSED_IN_16BIT(value))
-#	define Z_64BIT_REVERSE_IN_32BIT(value) ((value) = Z_64BIT_REVERSED_IN_32BIT(value))
-
-#	define Z_64BIT_ROTATED_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (64 - (rotation))))
-#	define Z_64BIT_ROTATED_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (64 - (rotation))))
-
-#	define Z_64BIT_ROTATE_LEFT( value, rotation) ((value) = Z_64BIT_ROTATED_LEFT (value, rotation))
-#	define Z_64BIT_ROTATE_RIGHT(value, rotation) ((value) = Z_64BIT_ROTATED_RIGHT(value, rotation))
+#	define Z_64BIT_ROTATE_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (64 - (rotation))))
+#	define Z_64BIT_ROTATE_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (64 - (rotation))))
 
 #	define Z_64BIT_FROM_32BIT_BA(b, a) ((((zuint64)(b)) << 32) | ((zuint64)(a)))
 
 #	if Z_INT64_ENDIANNESS == Z_ENDIANNESS_BIG
 
-#		define Z_64BIT_ENSURE_BIG_ENDIAN(value)
-#		define Z_64BIT_ENSURE_LITTLE_ENDIAN	   Z_64BIT_REVERSE_IN_8BIT
+#		define Z_64BIT_ENSURE_BIG_ENDIAN(   value)
+#		define Z_64BIT_ENSURE_LITTLE_ENDIAN(value) ((value) = Z_64BIT_REVERSE_IN_8BIT(value))
 #		define Z_64BIT_BIG_ENDIAN		   Z_SAME
-#		define Z_64BIT_LITTLE_ENDIAN		   Z_64BIT_REVERSED_IN_8BIT
+#		define Z_64BIT_LITTLE_ENDIAN		   Z_64BIT_REVERSE_IN_8BIT
 
 #	elif Z_INT64_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#		define Z_64BIT_ENSURE_BIG_ENDIAN	   Z_64BIT_REVERSE_IN_8BIT
+#		define Z_64BIT_ENSURE_BIG_ENDIAN(   value) ((value) = Z_64BIT_REVERSE_IN_8BIT(value))
 #		define Z_64BIT_ENSURE_LITTLE_ENDIAN(value)
-#		define Z_64BIT_BIG_ENDIAN		   Z_64BIT_REVERSED_IN_8BIT
+#		define Z_64BIT_BIG_ENDIAN		   Z_64BIT_REVERSE_IN_8BIT
 #		define Z_64BIT_LITTLE_ENDIAN		   Z_SAME
 
 #	endif
@@ -333,7 +299,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_64BIT_128BIT_MIRROR(value) (((zuint128)(value)) * ((zuint128)0x0000000000000001 | ((zuint128)0000000000000001 << 64)))
 #	endif
 
-#	define Z_128BIT_REVERSED_IN_1BIT(value) \
+#	define Z_128BIT_REVERSE_IN_1BIT(value) \
 		( ((value) << 127)			   |  ((value) >> 127)			      | \
 		 (((value) << 125) & ((zuint128)1 << 126)) | (((value) >> 125) & ((zuint128)1 <<  1)) | \
 		 (((value) << 123) & ((zuint128)1 << 125)) | (((value) >> 123) & ((zuint128)1 <<  2)) | \
@@ -399,7 +365,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		 (((value) <<	3) & ((zuint128)1 <<  65)) | (((value) >>   3) & ((zuint128)1 << 62)) | \
 		 (((value) <<	1) & ((zuint128)1 <<  64)) | (((value) >>   1) & ((zuint128)1 << 63)) )
 
-#	define Z_128BIT_REVERSED_IN_2BIT(value) \
+#	define Z_128BIT_REVERSE_IN_2BIT(value) \
 		( ((value) << 126)			   |  ((value) >> 126)			      | \
 		 (((value) << 122) & ((zuint128)3 << 124)) | (((value) >> 122) & ((zuint128)3 <<  2)) | \
 		 (((value) << 118) & ((zuint128)3 << 122)) | (((value) >> 118) & ((zuint128)3 <<  4)) | \
@@ -433,7 +399,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		 (((value) <<	6) & ((zuint128)3 <<  66)) | (((value) >>   6) & ((zuint128)3 << 60)) | \
 		 (((value) <<	2) & ((zuint128)3 <<  64)) | (((value) >>   2) & ((zuint128)3 << 62)) )
 
-#	define Z_128BIT_REVERSED_IN_4BIT(value) \
+#	define Z_128BIT_REVERSE_IN_4BIT(value) \
 		( ((value) << 124)			    |  ((value) >> 124)				| \
 		 (((value) << 116) & ((zuint128)15 << 120)) | (((value) >> 116) & ((zuint128)15 <<  4)) | \
 		 (((value) << 108) & ((zuint128)15 << 116)) | (((value) >> 108) & ((zuint128)15 <<  8)) | \
@@ -451,7 +417,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		 (((value) <<  12) & ((zuint128)15 <<  68)) | (((value) >>  12) & ((zuint128)15 << 56)) | \
 		 (((value) <<	4) & ((zuint128)15 <<  64)) | (((value) >>   4) & ((zuint128)15 << 60)) )
 
-#	define Z_128BIT_REVERSED_IN_8BIT(value) \
+#	define Z_128BIT_REVERSE_IN_8BIT(value) \
 		( ((value) << 120)			     |	((value) >> 120)			  | \
 		 (((value) << 104) & ((zuint128)255 << 112)) | (((value) >> 104) & ((zuint128)255 <<  8)) | \
 		 (((value) <<  88) & ((zuint128)255 << 104)) | (((value) >>  88) & ((zuint128)255 << 16)) | \
@@ -461,44 +427,33 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		 (((value) <<  24) & ((zuint128)255 <<	72)) | (((value) >>  24) & ((zuint128)255 << 48)) | \
 		 (((value) <<	8) & ((zuint128)255 <<	64)) | (((value) >>   8) & ((zuint128)255 << 56)) )
 
-#	define Z_128BIT_REVERSED_IN_16BIT(value) \
+#	define Z_128BIT_REVERSE_IN_16BIT(value) \
 		( ((value) << 112)			      |  ((value) >> 112)			     | \
 		 (((value) <<  80) & ((zuint128)65535 << 96)) | (((value) >>  80) & ((zuint128)65535 << 16)) | \
 		 (((value) <<  48) & ((zuint128)65535 << 80)) | (((value) >>  48) & ((zuint128)65535 << 32)) | \
 		 (((value) <<  16) & ((zuint128)65535 << 64)) | (((value) >>  16) & ((zuint128)65535 << 48)) )
 
-#	define Z_128BIT_REVERSED_IN_32BIT(value) \
+#	define Z_128BIT_REVERSE_IN_32BIT(value) \
 		( ((value) << 96)				  |  ((value) >> 96)				     | \
 		 (((value) << 32) & ((zuint128)4294967295 << 64)) | (((value) >> 32) & ((zuint128)4294967295 << 32)) )
 
-#	define Z_128BIT_REVERSED_IN_64BIT(value) (((value) << 64) | ((value) >> 64))
+#	define Z_128BIT_REVERSE_IN_64BIT(value) (((value) << 64) | ((value) >> 64))
 
-#	define Z_128BIT_REVERSE_IN_1BIT( value) ((value) = Z_128BIT_REVERSED_IN_1BIT( value))
-#	define Z_128BIT_REVERSE_IN_2BIT( value) ((value) = Z_128BIT_REVERSED_IN_2BIT( value))
-#	define Z_128BIT_REVERSE_IN_4BIT( value) ((value) = Z_128BIT_REVERSED_IN_4BIT( value))
-#	define Z_128BIT_REVERSE_IN_8BIT( value) ((value) = Z_128BIT_REVERSED_IN_8BIT( value))
-#	define Z_128BIT_REVERSE_IN_16BIT(value) ((value) = Z_128BIT_REVERSED_IN_16BIT(value))
-#	define Z_128BIT_REVERSE_IN_32BIT(value) ((value) = Z_128BIT_REVERSED_IN_32BIT(value))
-#	define Z_128BIT_REVERSE_IN_64BIT(value) ((value) = Z_128BIT_REVERSED_IN_64BIT(value))
-
-#	define Z_128BIT_ROTATED_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (128 - (rotation))))
-#	define Z_128BIT_ROTATED_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (128 - (rotation))))
-
-#	define Z_128BIT_ROTATE_LEFT( value, rotation) ((value) = Z_128BIT_ROTATED_LEFT (value, rotation))
-#	define Z_128BIT_ROTATE_RIGHT(value, rotation) ((value) = Z_128BIT_ROTATED_RIGHT(value, rotation))
+#	define Z_128BIT_ROTATE_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (128 - (rotation))))
+#	define Z_128BIT_ROTATE_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (128 - (rotation))))
 
 #	if Z_INT128_ENDIANNESS == Z_ENDIANNESS_BIG
 
-#		define Z_128BIT_ENSURE_BIG_ENDIAN(value)
-#		define Z_128BIT_ENSURE_LITTLE_ENDIAN	    Z_128BIT_REVERSE_IN_8BIT
+#		define Z_128BIT_ENSURE_BIG_ENDIAN(   value)
+#		define Z_128BIT_ENSURE_LITTLE_ENDIAN(value) ((value) = Z_128BIT_REVERSE_IN_8BIT(value))
 #		define Z_128BIT_BIG_ENDIAN		    Z_SAME
-#		define Z_128BIT_LITTLE_ENDIAN		    Z_128BIT_REVERSED_IN_8BIT
+#		define Z_128BIT_LITTLE_ENDIAN		    Z_128BIT_REVERSE_IN_8BIT
 
 #	elif Z_INT128_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#		define Z_128BIT_ENSURE_BIG_ENDIAN	    Z_128BIT_REVERSE_IN_8BIT
+#		define Z_128BIT_ENSURE_BIG_ENDIAN(   value) ((value) = Z_128BIT_REVERSE_IN_8BIT(value))
 #		define Z_128BIT_ENSURE_LITTLE_ENDIAN(value)
-#		define Z_128BIT_BIG_ENDIAN		    Z_128BIT_REVERSED_IN_8BIT
+#		define Z_128BIT_BIG_ENDIAN		    Z_128BIT_REVERSE_IN_8BIT
 #		define Z_128BIT_LITTLE_ENDIAN		    Z_SAME
 
 #	endif
@@ -533,7 +488,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Macro selectors */
 
-#define Z_TYPE_REVERSED(	    TYPE) Z_INSERT_##TYPE##_BITS(Z_, BIT_REVERSED_IN_8BIT    )
 #define Z_TYPE_REVERSE(		    TYPE) Z_INSERT_##TYPE##_BITS(Z_, BIT_REVERSE_IN_8BIT     )
 #define Z_TYPE_ENSURE_BIG_ENDIAN(   TYPE) Z_INSERT_##TYPE##_BITS(Z_, BIT_ENSURE_BIG_ENDIAN   )
 #define Z_TYPE_ENSURE_LITTLE_ENDIAN(TYPE) Z_INSERT_##TYPE##_BITS(Z_, BIT_ENSURE_LITTLE_ENDIAN)
