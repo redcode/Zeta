@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 typedef struct {
 	zcharacter const* identifier;
-	zxharacter const* name;
+	zcharacter const* name;
 	zuint64		  version;
 	zcharacter const* information;
 	void const*	  abi;
