@@ -37,7 +37,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		elif __STDC_VERSION__ >= 199409L
 #			include <Z/inspection/private/C/C94.h>
-
 #		else
 #			include <Z/inspection/private/C/C90.h>
 #		endif

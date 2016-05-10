@@ -36,8 +36,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define __has_extension __has_feature /* Compatibility with Clang < v3.0 */
 #endif
 
-/*#define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE*/
-/*#define Z_COMPILER_C_HAS_ANONYMOUS_UNION*/
+#if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
+#	define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE
+#	define Z_COMPILER_C_HAS_ANONYMOUS_UNION
+#endif
 
 #if __has_feature(c_atomic) || __has_extension(c_atomic)
 #	define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS
@@ -47,7 +49,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_CLOSURE
 #endif
 
-/*#define Z_COMPILER_C_HAS_COMPOUND_LITERAL*/
+#define Z_COMPILER_C_HAS_COMPOUND_LITERAL /* TODO: is this always supported? */
+
 /*#define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT*/
 /*#define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER*/
 /*#define Z_COMPILER_C_HAS_DIGRAPH*/
