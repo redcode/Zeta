@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_keys_OS_H__
 #define __Z_keys_OS_H__
 
-#define Z_OS_VENUS	       0
+#define Z_OS_NUX	       0
 #define Z_OS_AIX	       1 /* IBM */
 #define Z_OS_ANDROID	       2
 #define Z_OS_AMIGA_OS	       3
@@ -94,7 +94,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_Z_VM	       69 /* IBM */
 #define Z_OS_Z_VSE	       70 /* IBM */
 
-#define Z_OS_STRING_VENUS	      "Venus"
+#define Z_OS_STRING_VENUS	      "Nux"
 #define Z_OS_STRING_AIX		      "AIX"
 #define Z_OS_STRING_ANDROID	      "Android"
 #define Z_OS_STRING_AMIGA_OS	      "AmigaOS"

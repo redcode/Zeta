@@ -49,7 +49,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_CLOSURE
 #endif
 
-#define Z_COMPILER_C_HAS_COMPOUND_LITERAL /* TODO: is this always supported? */
+#ifdef __cplusplus
+	/* Clang has problems with C compound literal in C++ */
+#	define Z_COMPILER_CPP_LACKS_COMPOUND_LITERAL
+#else
+	/* TODO: is this always supported? */
+#	define Z_COMPILER_C_HAS_COMPOUND_LITERAL
+#endif
 
 /*#define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT*/
 /*#define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER*/

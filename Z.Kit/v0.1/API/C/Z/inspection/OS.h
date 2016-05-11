@@ -11,8 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/macros/inspection.h>
 
-#if Z_MUST_USE(OS_VENUS)
-#	include <Z/inspection/private/OS/Venus.h>
+#if Z_MUST_USE(OS_NUX)
+#	include <Z/inspection/private/OS/Nux.h>
 
 #elif Z_MUST_USE(OS_LINUX)
 #	include <Z/inspection/private/OS/Linux.h>
@@ -224,9 +224,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/private/OS/z-VSE.h>
 
 #else
-#	if	defined(__Venus__)
+#	if	defined(__Nux__)
 
-#		include <Z/inspection/private/OS/Venus.h>
+#		include <Z/inspection/private/OS/Nux.h>
 
 #	elif	defined(__gnu_linux) || /* Clang, GCC, Intel C++, Oracle Solaris Studio				 */ \
 	      	defined(__linux	   ) || /* Clang, GCC, Intel C++, Oracle Solaris Studio, PGI C/C++, IBM XL C/C++ */ \
