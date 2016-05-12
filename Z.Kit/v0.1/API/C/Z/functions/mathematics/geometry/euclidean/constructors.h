@@ -534,8 +534,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define z_aabr_float80 z_2d_line_float80
 #	define z_aabb_float80 z_3d_line_float80
 
-#	define z_2d_line_float80_zero z_2d_line_float80(0.0, 0.0, 0.0, 0.0)
-#	define z_3d_line_float80_zero z_3d_line_float80(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+#	define z_2d_line_float80_zero	z_2d_line_float80  (0.0, 0.0, 0.0, 0.0)
+#	define z_3d_line_float80_zero	z_3d_line_float80  (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_rectangle_float80_zero z_rectangle_float80(0.0, 0.0, 0.0, 0.0)
 #	define z_box_float80_zero	z_box_float80	   (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 #	define z_aabr_float80_zero	z_2d_line_float80_zero
