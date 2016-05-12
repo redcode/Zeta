@@ -39,23 +39,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
 #	define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE
 #	define Z_COMPILER_C_HAS_ANONYMOUS_UNION
+#else
+#	define Z_COMPILER_C_LACKS_ANONYMOUS_STRUCTURE
+#	define Z_COMPILER_C_LACS_ANONYMOUS_UNION
 #endif
 
 #if __has_feature(c_atomic) || __has_extension(c_atomic)
 #	define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS
+#else
+#	define Z_COMPILER_C_LACKS_ATOMIC_OPERATIONS
 #endif
 
 #if __has_extension(blocks)
 #	define Z_COMPILER_C_HAS_CLOSURE
+#else
+#	define Z_COMPILER_C_LACKS_CLOSURE
 #endif
 
-#ifdef __cplusplus
-	/* Clang has problems with C compound literal in C++ */
-#	define Z_COMPILER_CPP_LACKS_COMPOUND_LITERAL
-#else
-	/* TODO: is this always supported? */
-#	define Z_COMPILER_C_HAS_COMPOUND_LITERAL
-#endif
+#define Z_COMPILER_C_HAS_COMPOUND_LITERAL /* TODO: is this always supported? */
 
 /*#define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT*/
 /*#define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER*/
@@ -65,6 +66,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if __has_feature(c_generic_selections) || __has_extension(c_generic_selections)
 #	define Z_COMPILER_C_HAS_GENERIC_SELECTION
+#else
+#	define Z_COMPILER_C_LACKS_GENERIC_SELECTION
 #endif
 
 /*#define Z_COMPILER_C_HAS_INLINE_FUNCION*/
@@ -72,6 +75,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if __has_feature(c_static_assert) || __has_extension(c_static_assert)
 #	define Z_COMPILER_C_HAS_STATIC_ASSERTION
+#else
+#	define Z_COMPILER_C_LACKS_STATIC_ASSERTION
 #endif
 
 /*#define Z_COMPILER_C_HAS_VARIADIC_MACRO*/

@@ -13,111 +13,111 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(COMPOUND_LITERAL)
 
-#	define z_2d_uint8(x, y)		  ((Z2DUInt8){x, y})
-#	define z_3d_uint8(x, y, z)	  ((Z3DUInt8){x, y, z})
-#	define z_4d_uint8(x, y, z, w)	  ((Z4DUInt8){x, y, z, w})
-#	define z_range_uint8(index, size) ((ZRangeUInt8){index, size})
+#	define z_2d_uint8(x, y)		  ((Z2DUInt8){(zuint8)(x), (zuint8)(y)})
+#	define z_3d_uint8(x, y, z)	  ((Z3DUInt8){(zuint8)(x), (zuint8)(y), (zuint8)(z)})
+#	define z_4d_uint8(x, y, z, w)	  ((Z4DUInt8){(zuint8)(x), (zuint8)(y), (zuint8)(z), (zuint8)(w)})
+#	define z_range_uint8(index, size) ((ZRangeUInt8){(zuint8)(index), (zuint8)(size)})
 
-#	define z_2d_uint16(x, y)	   ((Z2DUInt16){x, y})
-#	define z_3d_uint16(x, y, z)	   ((Z3DUInt16){x, y, z})
-#	define z_4d_uint16(x, y, z, w)	   ((Z4DUInt16){x, y, z, w})
-#	define z_range_uint16(index, size) ((ZRangeUInt16){index, size})
+#	define z_2d_uint16(x, y)	   ((Z2DUInt16){(zuint16)(x), (zuint16)(y)})
+#	define z_3d_uint16(x, y, z)	   ((Z3DUInt16){(zuint16)(x), (zuint16)(y), (zuint16)(z)})
+#	define z_4d_uint16(x, y, z, w)	   ((Z4DUInt16){(zuint16)(x), (zuint16)(y), (zuint16)(z), (zuint16)(w)})
+#	define z_range_uint16(index, size) ((ZRangeUInt16){(zuint16)(index), (zuint16)(size)})
 
-#	define z_2d_uint32(x, y)	   ((Z2DUInt32){x, y})
-#	define z_3d_uint32(x, y, z)	   ((Z3DUInt32){x, y, z})
-#	define z_4d_uint32(x, y, z, w)	   ((Z4DUInt32){x, y, z, w})
-#	define z_range_uint32(index, size) ((ZRangeUInt32){index, size})
+#	define z_2d_uint32(x, y)	   ((Z2DUInt32){(zuint32)(x), (zuint32)(y)})
+#	define z_3d_uint32(x, y, z)	   ((Z3DUInt32){(zuint32)(x), (zuint32)(y), (zuint32)(z)})
+#	define z_4d_uint32(x, y, z, w)	   ((Z4DUInt32){(zuint32)(x), (zuint32)(y), (zuint32)(z), (zuint32)(w)})
+#	define z_range_uint32(index, size) ((ZRangeUInt32){(zuint32)(index), (zuint32)(size)})
 
 #	if Z_IS_AVAILABLE(UINT64)
-#		define z_2d_uint64(x, y)	   ((Z2DUInt64){x, y})
-#		define z_3d_uint64(x, y, z)	   ((Z3DUInt64){x, y, z})
-#		define z_4d_uint64(x, y, z, w)	   ((Z4DUInt64){x, y, z, w})
-#		define z_range_uint64(index, size) ((ZRangeUInt64){index, size})
+#		define z_2d_uint64(x, y)	   ((Z2DUInt64){(zuint32)(x), (zuint64)(y)})
+#		define z_3d_uint64(x, y, z)	   ((Z3DUInt64){(zuint64)(x), (zuint64)(y), (zuint64)(z)})
+#		define z_4d_uint64(x, y, z, w)	   ((Z4DUInt64){(zuint64)(x), (zuint64)(y), (zuint64)(z), (zuint64)(w)})
+#		define z_range_uint64(index, size) ((ZRangeUInt64){(zuint64)(index), (zuint64)(size)})
 #	endif
 
 #	if Z_IS_AVAILABLE(UINT128)
-#		define z_2d_uint128(x, y)	    ((Z2DUInt128 ){x, y})
-#		define z_3d_uint128(x, y, z)	    ((Z3DUInt128 ){x, y, z})
-#		define z_4d_uint128(x, y, z, w)	    ((Z4DUInt128 ){x, y, z, w})
-#		define z_range_uint128(index, size) ((ZRangeUInt128){index, size})
+#		define z_2d_uint128(x, y)	    ((Z2DUInt128 ){(zuint128)(x), (zuint128)(y)})
+#		define z_3d_uint128(x, y, z)	    ((Z3DUInt128 ){(zuint128)(x), (zuint128)(y), (zuint128)(z)})
+#		define z_4d_uint128(x, y, z, w)	    ((Z4DUInt128 ){(zuint128)(x), (zuint128)(y), (zuint128)(z), (zuint128)(w)})
+#		define z_range_uint128(index, size) ((ZRangeUInt128){(zuint128)(index), (zuint128)(size)})
 #	endif
 
-#	define z_2d_int8(x, y)	     ((Z2DInt8){x, y})
-#	define z_3d_int8(x, y, z)    ((Z3DInt8){x, y, z})
-#	define z_4d_int8(x, y, z, w) ((Z4DInt8){x, y, z, w})
+#	define z_2d_int8(x, y)	     ((Z2DInt8){(zint8)(x), (zint8)(y)})
+#	define z_3d_int8(x, y, z)    ((Z3DInt8){(zint8)(x), (zint8)(y), (zint8)(z)})
+#	define z_4d_int8(x, y, z, w) ((Z4DInt8){(zint8)(x), (zint8)(y), (zint8)(z), (zint8)(w)})
 
-#	define z_2d_int16(x, y)	      ((Z2DInt16){x, y})
-#	define z_3d_int16(x, y, z)    ((Z3DInt16){x, y, z})
-#	define z_4d_int16(x, y, z, w) ((Z4DInt16){x, y, z, w})
+#	define z_2d_int16(x, y)	      ((Z2DInt16){(zint16)(x), (zint16)(y)})
+#	define z_3d_int16(x, y, z)    ((Z3DInt16){(zint16)(x), (zint16)(y), (zint16)(z)})
+#	define z_4d_int16(x, y, z, w) ((Z4DInt16){(zint16)(x), (zint16)(y), (zint16)(z), (zint16)(w)})
 
-#	define z_2d_int32(x, y)	      ((Z2DInt32){x, y})
-#	define z_3d_int32(x, y, z)    ((Z3DInt32){x, y, z})
-#	define z_4d_int32(x, y, z, w) ((Z4DInt32){x, y, z, w})
+#	define z_2d_int32(x, y)	      ((Z2DInt32){(zint32)(x), (zint32)(y)})
+#	define z_3d_int32(x, y, z)    ((Z3DInt32){(zint32)(x), (zint32)(y), (zint32)(z)})
+#	define z_4d_int32(x, y, z, w) ((Z4DInt32){(zint32)(x), (zint32)(y), (zint32)(z), (zint32)(w)})
 
 #	if Z_IS_AVAILABLE(INT64)
-#		define z_2d_int64(x, y)	      ((Z2DInt64){x, y})
-#		define z_3d_int64(x, y, z)    ((Z3DInt64){x, y, z})
-#		define z_4d_int64(x, y, z, w) ((Z4DInt64){x, y, z, w})
+#		define z_2d_int64(x, y)	      ((Z2DInt64){(zint64)(x), (zint64)(y)})
+#		define z_3d_int64(x, y, z)    ((Z3DInt64){(zint64)(x), (zint64)(y), (zint64)(z)})
+#		define z_4d_int64(x, y, z, w) ((Z4DInt64){(zint64)(x), (zint64)(y), (zint64)(z), (zint64)(w)})
 #	endif
 
 #	if Z_IS_AVAILABLE(INT128)
-#		define z_2d_int128(x, y)       ((Z2DInt128){x, y})
-#		define z_3d_int128(x, y, z)    ((Z3DInt128){x, y, z})
-#		define z_4d_int128(x, y, z, w) ((Z4DInt128){x, y, z, w})
+#		define z_2d_int128(x, y)       ((Z2DInt128){(zint128)(x), (zint128)(y)})
+#		define z_3d_int128(x, y, z)    ((Z3DInt128){(zint128)(x), (zint128)(y), (zint128)(z)})
+#		define z_4d_int128(x, y, z, w) ((Z4DInt128){(zint128)(x), (zint128)(y), (zint128)(z), (zint128)(w)})
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT16)
-#		define z_2d_float16(x, y)	((Z2DFloat16){x, y})
-#		define z_3d_float16(x, y, z)	((Z3DFloat16){x, y, z})
-#		define z_4d_float16(x, y, z, w)	((Z4DFloat16){x, y, z, w})
+#		define z_2d_float16(x, y)	((Z2DFloat16){(zfloat16)(x), (zfloat16)(y)})
+#		define z_3d_float16(x, y, z)	((Z3DFloat16){(zfloat16)(x), (zfloat16)(y), (zfloat16)(z)})
+#		define z_4d_float16(x, y, z, w)	((Z4DFloat16){(zfloat16)(x), (zfloat16)(y), (zfloat16)(z), (zfloat16)(w)})
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT24)
-#		define z_2d_float24(x, y)	((Z2DFloat24){x, y})
-#		define z_3d_float24(x, y, z)	((Z3DFloat24){x, y, z})
-#		define z_4d_float24(x, y, z, w)	((Z4DFloat24){x, y, z, w})
+#		define z_2d_float24(x, y)	((Z2DFloat24){(zfloat24)(x), (zfloat24)(y)})
+#		define z_3d_float24(x, y, z)	((Z3DFloat24){(zfloat24)(x), (zfloat24)(y), (zfloat24)(z)})
+#		define z_4d_float24(x, y, z, w)	((Z4DFloat24){(zfloat24)(x), (zfloat24)(y), (zfloat24)(z), (zfloat24)(w)})
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT32)
-#		define z_2d_float32(x, y)	((Z2DFloat32){x, y})
-#		define z_3d_float32(x, y, z)	((Z3DFloat32){x, y, z})
-#		define z_4d_float32(x, y, z, w)	((Z4DFloat32){x, y, z, w})
+#		define z_2d_float32(x, y)	((Z2DFloat32){(zfloat32)(x), (zfloat32)(y)})
+#		define z_3d_float32(x, y, z)	((Z3DFloat32){(zfloat32)(x), (zfloat32)(y), (zfloat32)(z)})
+#		define z_4d_float32(x, y, z, w)	((Z4DFloat32){(zfloat32)(x), (zfloat32)(y), (zfloat32)(z), (zfloat32)(w)})
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT48)
-#		define z_2d_float48(x, y)	((Z2DFloat48){x, y})
-#		define z_3d_float48(x, y, z)	((Z3DFloat48){x, y, z})
-#		define z_4d_float48(x, y, z, w)	((Z4DFloat48){x, y, z, w})
+#		define z_2d_float48(x, y)	((Z2DFloat48){(zfloat48)(x), (zfloat48)(y)})
+#		define z_3d_float48(x, y, z)	((Z3DFloat48){(zfloat48)(x), (zfloat48)(y), (zfloat48)(z)})
+#		define z_4d_float48(x, y, z, w)	((Z4DFloat48){(zfloat48)(x), (zfloat48)(y), (zfloat48)(z), (zfloat48)(w)})
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT64)
-#		define z_2d_float64(x, y)	((Z2DFloat64){x, y})
-#		define z_3d_float64(x, y, z)	((Z3DFloat64){x, y, z})
-#		define z_4d_float64(x, y, z, w)	((Z4DFloat64){x, y, z, w})
+#		define z_2d_float64(x, y)	((Z2DFloat64){(zfloat64)(x), (zfloat64)(y)})
+#		define z_3d_float64(x, y, z)	((Z3DFloat64){(zfloat64)(x), (zfloat64)(y), (zfloat64)(z)})
+#		define z_4d_float64(x, y, z, w)	((Z4DFloat64){(zfloat64)(x), (zfloat64)(y), (zfloat64)(z), (zfloat64)(w)})
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT72)
-#		define z_2d_float72(x, y)	((Z2DFloat72){x, y})
-#		define z_3d_float72(x, y, z)	((Z3DFloat72){x, y, z})
-#		define z_4d_float72(x, y, z, w)	((Z4DFloat72){x, y, z, w})
+#		define z_2d_float72(x, y)	((Z2DFloat72){(zfloat72)(x), (zfloat72)(y)})
+#		define z_3d_float72(x, y, z)	((Z3DFloat72){(zfloat72)(x), (zfloat72)(y), (zfloat72)(z)})
+#		define z_4d_float72(x, y, z, w)	((Z4DFloat72){(zfloat72)(x), (zfloat72)(y), (zfloat72)(z), (zfloat72)(w)})
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT80)
-#		define z_2d_float80(x, y)	((Z2DFloat80){x, y})
-#		define z_3d_float80(x, y, z)	((Z3DFloat80){x, y, z})
-#		define z_4d_float80(x, y, z, w)	((Z4DFloat80){x, y, z, w})
+#		define z_2d_float80(x, y)	((Z2DFloat80){(zfloat80)(x), (zfloat80)(y)})
+#		define z_3d_float80(x, y, z)	((Z3DFloat80){(zfloat80)(x), (zfloat80)(y), (zfloat80)(z)})
+#		define z_4d_float80(x, y, z, w)	((Z4DFloat80){(zfloat80)(x), (zfloat80)(y), (zfloat80)(z), (zfloat80)(w)})
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT96)
-#		define z_2d_float96(x, y)	((Z2DFloat96){x, y})
-#		define z_3d_float96(x, y, z)	((Z3DFloat96){x, y, z})
-#		define z_4d_float96(x, y, z, w)	((Z4DFloat96){x, y, z, w})
+#		define z_2d_float96(x, y)	((Z2DFloat96){(zfloat96)(x), (zfloat96)(y)})
+#		define z_3d_float96(x, y, z)	((Z3DFloat96){(zfloat96)(x), (zfloat96)(y), (zfloat96)(z)})
+#		define z_4d_float96(x, y, z, w)	((Z4DFloat96){(zfloat96)(x), (zfloat96)(y), (zfloat96)(z), (zfloat96)(w)})
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT128)
-#		define z_2d_float128(x, y)	 ((Z2DFloat128){x, y})
-#		define z_3d_float128(x, y, z)	 ((Z3DFloat128){x, y, z})
-#		define z_4d_float128(x, y, z, w) ((Z4DFloat128){x, y, z, w})
+#		define z_2d_float128(x, y)	 ((Z2DFloat128){(zfloat128)(x), (zfloat128)(y)})
+#		define z_3d_float128(x, y, z)	 ((Z3DFloat128){(zfloat128)(x), (zfloat128)(y), (zfloat128)(z)})
+#		define z_4d_float128(x, y, z, w) ((Z4DFloat128){(zfloat128)(x), (zfloat128)(y), (zfloat128)(z), (zfloat128)(w)})
 #	endif
 
 #else
