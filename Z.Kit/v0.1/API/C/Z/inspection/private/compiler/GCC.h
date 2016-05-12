@@ -35,12 +35,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0) /* TODO: is this correct? */
 #	define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE
 #	define Z_COMPILER_C_HAS_ANONYMOUS_UNION
+#else
+#	define Z_COMPILER_C_LACKS_ANONYMOUS_STRUCTURE
+#	define Z_COMPILER_C_LACS_ANONYMOUS_UNION
 #endif
 
 /*#define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS*/
 
 #ifdef __BLOCKS__
 #	define Z_COMPILER_C_HAS_CLOSURE
+#else
+#	define Z_COMPILER_C_LACKS_CLOSURE
 #endif
 
 #define Z_COMPILER_C_HAS_COMPOUND_LITERAL /* TODO: is this always supported? */
