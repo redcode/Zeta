@@ -89,14 +89,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_TYPE_DOUBLE
 #define Z_COMPILER_C_HAS_TYPE_LDOUBLE
 
-/* MARK: - Type qualifiers */
+/* MARK: - C type qualifiers */
 
 /*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC*/
 #define Z_COMPILER_C_HAS_TYPE_QUALIFIER_CONSTANT
 #define Z_COMPILER_C_HAS_TYPE_QUALIFIER_VOLATILE
 /*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT*/
 
-/* MARK: - Storage classes */
+/* MARK: - C storage classes */
 
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_EXTERN
@@ -107,7 +107,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_STORATE_CLASS_THREAD_LOCAL
 #endif
 
-/* MARK: - Specifiers */
+/* MARK: - C specifiers */
 
 #if __has_feature(c_alignas) || __has_extension(c_alignas)
 #	define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS
@@ -116,7 +116,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_C_HAS_SPECIFIER_INLINE*/
 /*#define Z_COMPILER_C_HAS_SPECIFIER_NO_RETURN*/
 
-/* MARK: - Operators */
+/* MARK: - C operators */
 
 #if __has_feature(c_alignof) || __has_extension(c_alignof)
 #	define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF

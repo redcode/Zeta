@@ -13,8 +13,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/C.h>
 #include <Z/inspection/compiler.h>
 
-/* MARK: - Objective-C++ */
-
 #if defined(__cplusplus) && (defined(__OBJC__) || defined(__OBJC2__))
 
 #	include <Z/inspection/C++.h>
@@ -22,129 +20,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_LANGUAGE Z_LANGUAGE_OBJECTIVE_CPP
 
-#	define Z_LANGUAGE_HAS(WHAT)				   \
-		(!(defined Z_COMPILER_C_LACKS_##WHAT)		&& \
-		 !(defined Z_COMPILER_CPP_LACKS_##WHAT)		&& \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_##WHAT) && \
-		 ((defined Z_C_HAS_##WHAT)			|| \
-		  (defined Z_CPP_HAS_##WHAT)			|| \
-		  (defined Z_OBJECTIVE_C_HAS_##WHAT)		|| \
-		  (defined Z_COMPILER_C_HAS_##WHAT)		|| \
-		  (defined Z_COMPILER_CPP_HAS_##WHAT)		|| \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_##WHAT)))
-
-#	define Z_LANGUAGE_HAS_TYPE(WHICH)				 \
-		(!(defined Z_COMPILER_C_LACKS_TYPE_##WHICH)	      && \
-		 !(defined Z_COMPILER_CPP_LACKS_TYPE_##WHICH)	      && \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_TYPE_##WHICH) && \
-		 ((defined Z_C_HAS_TYPE_##WHICH)		      || \
-		  (defined Z_CPP_HAS_TYPE_##WHICH)		      || \
-		  (defined Z_OBJECTIVE_C_HAS_TYPE_##WHICH)	      || \
-		  (defined Z_COMPILER_C_HAS_TYPE_##WHICH)	      || \
-		  (defined Z_COMPILER_CPP_HAS_TYPE_##WHICH)	      || \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_TYPE_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_TYPE_QUALIFIER(WHICH)				   \
-		(!(defined Z_COMPILER_C_LACKS_TYPE_QUALIFIER_##WHICH)		&& \
-		 !(defined Z_COMPILER_CPP_LACKS_TYPE_QUALIFIER_##WHICH)		&& \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_TYPE_QUALIFIER_##WHICH)	&& \
-		 ((defined Z_C_HAS_TYPE_QUALIFIER_##WHICH)			|| \
-		  (defined Z_CPP_HAS_TYPE_QUALIFIER_##WHICH)			|| \
-		  (defined Z_OBJECTIVE_C_HAS_TYPE_QUALIFIER_##WHICH)		|| \
-		  (defined Z_COMPILER_C_HAS_TYPE_QUALIFIER_##WHICH)		|| \
-		  (defined Z_COMPILER_CPP_HAS_TYPE_QUALIFIER_##WHICH)		|| \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_TYPE_QUALIFIER_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_STORAGE_CLASS(WHICH)				  \
-		(!(defined Z_COMPILER_C_LACKS_STORAGE_CLASS_##WHICH)	       && \
-		 !(defined Z_COMPILER_CPP_LACKS_STORAGE_CLASS_##WHICH)	       && \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_STORAGE_CLASS_##WHICH) && \
-		 ((defined Z_C_HAS_STORAGE_CLASS_##WHICH)		       || \
-		  (defined Z_CPP_HAS_STORAGE_CLASS_##WHICH)		       || \
-		  (defined Z_OBJECTIVE_C_HAS_STORAGE_CLASS_##WHICH)	       || \
-		  (defined Z_COMPILER_C_HAS_STORAGE_CLASS_##WHICH)	       || \
-		  (defined Z_COMPILER_CPP_HAS_STORAGE_CLASS_##WHICH)	       || \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_STORAGE_CLASS_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_SPECIFIER(WHICH)				      \
-		(!(defined Z_COMPILER_C_LACKS_SPECIFIER_##WHICH)	   && \
-		 !(defined Z_COMPILER_CPP_LACKS_SPECIFIER_##WHICH)	   && \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_SPECIFIER_##WHICH) && \
-		 ((defined Z_C_HAS_SPECIFIER_##WHICH)			   || \
-		  (defined Z_CPP_HAS_SPECIFIER_##WHICH)			   || \
-		  (defined Z_OBJECTIVE_C_HAS_SPECIFIER_##WHICH)		   || \
-		  (defined Z_COMPILER_C_HAS_SPECIFIER_##WHICH)		   || \
-		  (defined Z_COMPILER_CPP_HAS_SPECIFIER_##WHICH)	   || \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_SPECIFIER_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_OPERATOR(WHICH)				     \
-		(!(defined Z_COMPILER_C_LACKS_OPERATOR_##WHICH)		  && \
-		 !(defined Z_COMPILER_CPP_LACKS_OPERATOR_##WHICH)	  && \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_OPERATOR_##WHICH) && \
-		 ((defined Z_C_HAS_OPERATOR_##WHICH)			  || \
-		  (defined Z_CPP_HAS_OPERATOR_##WHICH)			  || \
-		  (defined Z_OBJECTIVE_C_HAS_OPERATOR_##WHICH)		  || \
-		  (defined Z_COMPILER_C_HAS_OPERATOR_##WHICH)		  || \
-		  (defined Z_COMPILER_CPP_HAS_OPERATOR_##WHICH)		  || \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_OPERATOR_##WHICH)))
-
-/* MARK: - Objective-C */
-
 #elif defined(__OBJC__) || defined(__OBJC2__)
 
 #	include <Z/inspection/Objective-C.h>
 
 #	define Z_LANGUAGE Z_LANGUAGE_OBJECTIVE_C
-
-#	define Z_LANGUAGE_HAS(WHAT)				   \
-		(!(defined Z_COMPILER_C_LACKS_##WHAT)		&& \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_##WHAT) && \
-		 ((defined Z_C_HAS_##WHAT)			|| \
-		  (defined Z_OBJECTIVE_C_HAS_##WHAT)		|| \
-		  (defined Z_COMPILER_C_HAS_##WHAT)		|| \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_##WHAT)))
-
-#	define Z_LANGUAGE_HAS_TYPE(WHICH)				 \
-		(!(defined Z_COMPILER_C_LACKS_TYPE_##WHICH)	      && \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_TYPE_##WHICH) && \
-		 ((defined Z_C_HAS_TYPE_##WHICH)		      || \
-		  (defined Z_OBJECTIVE_C_HAS_TYPE_##WHICH)	      || \
-		  (defined Z_COMPILER_C_HAS_TYPE_##WHICH)	      || \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_TYPE_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_TYPE_QUALIFIER(WHICH)				   \
-		(!(defined Z_COMPILER_C_LACKS_TYPE_QUALIFIER_##WHICH)		&& \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_TYPE_QUALIFIER_##WHICH) && \
-		 ((defined Z_C_HAS_TYPE_QUALIFIER_##WHICH)			|| \
-		  (defined Z_OBJECTIVE_C_HAS_TYPE_QUALIFIER_##WHICH)		|| \
-		  (defined Z_COMPILER_C_HAS_TYPE_QUALIFIER_##WHICH)		|| \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_TYPE_QUALIFIER_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_STORAGE_CLASS(WHICH)				  \
-		(!(defined Z_COMPILER_C_LACKS_STORAGE_CLASS_##WHICH)	       && \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_STORAGE_CLASS_##WHICH) && \
-		 ((defined Z_C_HAS_STORAGE_CLASS_##WHICH)		       || \
-		  (defined Z_OBJECTIVE_C_HAS_STORAGE_CLASS_##WHICH)	       || \
-		  (defined Z_COMPILER_C_HAS_STORAGE_CLASS_##WHICH)	       || \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_STORAGE_CLASS_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_SPECIFIER(WHICH)				      \
-		(!(defined Z_COMPILER_C_LACKS_SPECIFIER_##WHICH)	   && \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_SPECIFIER_##WHICH) && \
-		 ((defined Z_C_HAS_SPECIFIER_##WHICH)			   || \
-		  (defined Z_OBJECTIVE_C_HAS_SPECIFIER_##WHICH)		   || \
-		  (defined Z_COMPILER_C_HAS_SPECIFIER_##WHICH)		   || \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_SPECIFIER_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_OPERATOR(WHICH)				     \
-		(!(defined Z_COMPILER_C_LACKS_OPERATOR_##WHICH)		  && \
-		 !(defined Z_COMPILER_OBJECTIVE_C_LACKS_OPERATOR_##WHICH) && \
-		 ((defined Z_C_HAS_OPERATOR_##WHICH)			  || \
-		  (defined Z_OBJECTIVE_C_HAS_OPERATOR_##WHICH)		  || \
-		  (defined Z_COMPILER_C_HAS_OPERATOR_##WHICH)		  || \
-		  (defined Z_COMPILER_OBJECTIVE_C_HAS_OPERATOR_##WHICH)))
-
-/* MARK: - C++ */
 
 #elif defined(__cplusplus)
 
@@ -152,90 +32,38 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_LANGUAGE Z_LANGUAGE_CPP
 
-#	define Z_LANGUAGE_HAS(WHAT)			   \
-		(!(defined Z_COMPILER_C_LACKS_##WHAT)	&& \
-		 !(defined Z_COMPILER_CPP_LACKS_##WHAT) && \
-		 ((defined Z_C_HAS_##WHAT)		|| \
-		  (defined Z_CPP_HAS_##WHAT)		|| \
-		  (defined Z_COMPILER_C_HAS_##WHAT)	|| \
-		  (defined Z_COMPILER_CPP_HAS_##WHAT)))
-
-#	define Z_LANGUAGE_HAS_TYPE(WHICH)			 \
-		(!(defined Z_COMPILER_C_LACKS_TYPE_##WHICH)   && \
-		 !(defined Z_COMPILER_CPP_LACKS_TYPE_##WHICH) && \
-		 ((defined Z_C_HAS_TYPE_##WHICH)	      || \
-		  (defined Z_CPP_HAS_TYPE_##WHICH)	      || \
-		  (defined Z_COMPILER_C_HAS_TYPE_##WHICH)     || \
-		  (defined Z_COMPILER_CPP_HAS_TYPE_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_TYPE_QUALIFIER(WHICH)			   \
-		(!(defined Z_COMPILER_C_LACKS_TYPE_QUALIFIER_##WHICH)	&& \
-		 !(defined Z_COMPILER_CPP_LACKS_TYPE_QUALIFIER_##WHICH) && \
-		 ((defined Z_C_HAS_TYPE_QUALIFIER_##WHICH)		|| \
-		  (defined Z_CPP_HAS_TYPE_QUALIFIER_##WHICH)		|| \
-		  (defined Z_COMPILER_C_HAS_TYPE_QUALIFIER_##WHICH)	|| \
-		  (defined Z_COMPILER_CPP_HAS_TYPE_QUALIFIER_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_STORAGE_CLASS(WHICH)			  \
-		(!(defined Z_COMPILER_C_LACKS_STORAGE_CLASS_##WHICH)   && \
-		 !(defined Z_COMPILER_CPP_LACKS_STORAGE_CLASS_##WHICH) && \
-		 ((defined Z_C_HAS_STORAGE_CLASS_##WHICH)	       || \
-		  (defined Z_CPP_HAS_STORAGE_CLASS_##WHICH)	       || \
-		  (defined Z_COMPILER_C_HAS_STORAGE_CLASS_##WHICH)     || \
-		  (defined Z_COMPILER_CPP_HAS_STORAGE_CLASS_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_SPECIFIER(WHICH)			      \
-		(!(defined Z_COMPILER_C_LACKS_SPECIFIER_##WHICH)   && \
-		 !(defined Z_COMPILER_CPP_LACKS_SPECIFIER_##WHICH) && \
-		 ((defined Z_C_HAS_SPECIFIER_##WHICH)		   || \
-		  (defined Z_CPP_HAS_SPECIFIER_##WHICH)		   || \
-		  (defined Z_COMPILER_C_HAS_SPECIFIER_##WHICH)	   || \
-		  (defined Z_COMPILER_CPP_HAS_SPECIFIER_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_OPERATOR(WHICH)			     \
-		(!(defined Z_COMPILER_C_LACKS_OPERATOR_##WHICH)	  && \
-		 !(defined Z_COMPILER_CPP_LACKS_OPERATOR_##WHICH) && \
-		 ((defined Z_C_HAS_OPERATOR_##WHICH)		  || \
-		  (defined Z_CPP_HAS_OPERATOR_##WHICH)		  || \
-		  (defined Z_COMPILER_C_HAS_OPERATOR_##WHICH)	  || \
-		  (defined Z_COMPILER_CPP_HAS_OPERATOR_##WHICH)))
-
-/* MARK: - C */
-
 #else
-
 #	define Z_LANGUAGE Z_LANGUAGE_C
-
-#	define Z_LANGUAGE_HAS(WHAT)			 \
-		(!(defined Z_COMPILER_C_LACKS_##WHAT) && \
-		 ((defined Z_C_HAS_##WHAT)	      || \
-		  (defined Z_COMPILER_C_HAS_##WHAT)))
-
-#	define Z_LANGUAGE_HAS_TYPE(WHICH)		       \
-		(!(defined Z_COMPILER_C_LACKS_TYPE_##WHICH) && \
-		 ((defined Z_C_HAS_TYPE_##WHICH)	    || \
-		  (defined Z_COMPILER_C_HAS_TYPE_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_TYPE_QUALIFIER(WHICH)			 \
-		(!(defined Z_COMPILER_C_LACKS_TYPE_QUALIFIER_##WHICH) && \
-		 ((defined Z_C_HAS_TYPE_QUALIFIER_##WHICH)	      || \
-		  (defined Z_COMPILER_C_HAS_TYPE_QUALIFIER_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_STORAGE_CLASS(WHICH)			\
-		(!(defined Z_COMPILER_C_LACKS_STORAGE_CLASS_##WHICH) && \
-		 ((defined Z_C_HAS_STORAGE_CLASS_##WHICH)	     || \
-		  (defined Z_COMPILER_C_HAS_STORAGE_CLASS_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_SPECIFIER(WHICH)			    \
-		(!(defined Z_COMPILER_C_LACKS_SPECIFIER_##WHICH) && \
-		 ((defined Z_C_HAS_SPECIFIER_##WHICH)		 || \
-		  (defined Z_COMPILER_C_HAS_SPECIFIER_##WHICH)))
-
-#	define Z_LANGUAGE_HAS_OPERATOR(WHICH)			   \
-		(!(defined Z_COMPILER_C_LACKS_OPERATOR_##WHICH) && \
-		 ((defined Z_C_HAS_OPERATOR_##WHICH)		|| \
-		  (defined Z_COMPILER_C_HAS_OPERATOR_##WHICH)))
-
 #endif
+
+#define Z_LANGUAGE_HAS(LANGUAGE, WHAT)			    \
+	(!(defined Z_COMPILER_##LANGUAGE##_LACKS_##WHAT) && \
+	 ((defined Z_COMPILER_##LANGUAGE##_HAS_##WHAT)	 || \
+	  (defined Z_##LANGUAGE##_HAS_##WHAT)))
+
+#define Z_LANGUAGE_HAS_TYPE(LANGUAGE, TYPE)			 \
+	(!(defined Z_COMPILER_##LANGUAGE##_LACKS_TYPE_##TYPE) && \
+	 ((defined Z_COMPILER_##LANGUAGE##_HAS_TYPE_##TYPE)  || \
+	  (defined Z_##LANGUAGE##_HAS_SPECIFIER_##TYPE)))
+
+#define Z_LANGUAGE_HAS_TYPE_QUALIFIER(LANGUAGE, TYPE_QUALIFIER)			     \
+	(!(defined Z_COMPILER_##LANGUAGE##_LACKS_TYPE_QUALIFIER_##TYPE_QUALIFIER) && \
+	 ((defined Z_COMPILER_##LANGUAGE##_HAS_TYPE_QUALIFIER_##TYPE_QUALIFIER)	  || \
+	  (defined Z_##LANGUAGE##_HAS_TYPE_QUALIFIER_##TYPE_QUALIFIER)))
+
+#define Z_LANGUAGE_HAS_STORAGE_CLASS(LANGUAGE, STORAGE_CLASS)			   \
+	(!(defined Z_COMPILER_##LANGUAGE##_LACKS_STORAGE_CLASS_##STORAGE_CLASS) && \
+	 ((defined Z_COMPILER_##LANGUAGE##_HAS_STORAGE_CLASS_##STORAGE_CLASS)	|| \
+	  (defined Z_##LANGUAGE##_HAS_STORAGE_CLASS_##STORAGE_CLASS)))
+
+#define Z_LANGUAGE_HAS_SPECIFIER(LANGUAGE, SPECIFIER)			   \
+	(!(defined Z_COMPILER_##LANGUAGE##_LACKS_SPECIFIER_##SPECIFIER) && \
+	 ((defined Z_COMPILER_##LANGUAGE##_HAS_SPECIFIER_##SPECIFIER)	|| \
+	  (defined Z_##LANGUAGE##_HAS_SPECIFIER_##SPECIFIER)))
+
+#define Z_LANGUAGE_HAS_OPERATOR(LANGUAGE, OPERATOR)			 \
+	(!(defined Z_COMPILER_##LANGUAGE##_LACKS_OPERATOR_##OPERATOR) && \
+	 ((defined Z_COMPILER_##LANGUAGE##_HAS_OPERATOR_##OPERATOR)   || \
+	  (defined Z_##LANGUAGE##_HAS_OPERATOR_##OPERATOR)))
 
 #endif /* __Z_inspection_language_H__ */

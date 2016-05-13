@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-#if Z_LANGUAGE_HAS(COMPOUND_LITERAL) && Z_LANGUAGE_HAS(ANONYMOUS_UNION)
+#if Z_LANGUAGE_HAS(C, COMPOUND_LITERAL) && Z_LANGUAGE_HAS(C, ANONYMOUS_UNION)
 
 #	define Z_CAST(to_type, from_type, structure) \
 		((union {to_type to; from_type from;}){.from = structure}).to

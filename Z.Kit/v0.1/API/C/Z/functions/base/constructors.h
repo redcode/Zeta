@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-#if Z_LANGUAGE_HAS(COMPOUND_LITERAL)
+#if Z_LANGUAGE_HAS(C, COMPOUND_LITERAL)
 
 #	define z_2d_uint8(x, y)		  ((Z2DUInt8){(zuint8)(x), (zuint8)(y)})
 #	define z_3d_uint8(x, y, z)	  ((Z3DUInt8){(zuint8)(x), (zuint8)(y), (zuint8)(z)})

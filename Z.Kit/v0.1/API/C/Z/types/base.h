@@ -618,7 +618,7 @@ typedef Z4DType(ULONG)				Z4DULong;
 #define Z_ULONG_MINIMUM				Z_TYPE_MINIMUM	   (ULONG)
 #define Z_ULONG_MAXIMUM				Z_TYPE_MAXIMUM	   (ULONG)
 
-#if Z_LANGUAGE_HAS_TYPE(ULLONG)
+#if Z_LANGUAGE_HAS_TYPE(C, ULLONG)
 
 #	define Z_ULLONG_BITS			Z_DATA_MODEL_BITS(LLONG)
 
@@ -718,7 +718,7 @@ typedef Z4DType(LONG)				Z4DLong;
 #define Z_LONG_MINIMUM				Z_TYPE_MINIMUM	   (LONG)
 #define Z_LONG_MAXIMUM				Z_TYPE_MAXIMUM	   (LONG)
 
-#if Z_LANGUAGE_HAS_TYPE(LLONG)
+#if Z_LANGUAGE_HAS_TYPE(C, LLONG)
 
 #	define Z_LLONG_BITS			Z_DATA_MODEL_BITS(LLONG)
 
@@ -755,7 +755,7 @@ typedef Z4DType(LONG)				Z4DLong;
 
 #endif
 
-#if Z_LANGUAGE_HAS_TYPE(FLOAT)
+#if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
 
 #	define Z_FLOAT_BITS			Z_FLOATING_POINT_BITS(FLOAT)
 
@@ -792,7 +792,7 @@ typedef Z4DType(LONG)				Z4DLong;
 
 #endif
 
-#if Z_LANGUAGE_HAS_TYPE(DOUBLE)
+#if Z_LANGUAGE_HAS_TYPE(C, DOUBLE)
 
 #	define Z_DOUBLE_BITS			Z_FLOATING_POINT_BITS(DOUBLE)
 
@@ -827,7 +827,7 @@ typedef Z4DType(LONG)				Z4DLong;
 #	define Z_DOUBLE_NAN			Z_TYPE_NAN		  (DOUBLE)
 #	define Z_AVAILABLE_DOUBLE
 
-#elif Z_LANGUAGE_HAS_TYPE(FLOAT)
+#elif Z_LANGUAGE_HAS_TYPE(C, FLOAT)
 
 	typedef zfloat				zdouble;
 	typedef Z2DFloat			Z2DDouble;
@@ -863,7 +863,7 @@ typedef Z4DType(LONG)				Z4DLong;
 
 #endif
 
-#if Z_LANGUAGE_HAS_TYPE(LDOUBLE)
+#if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE)
 
 #	define Z_LDOUBLE_BITS			Z_FLOATING_POINT_BITS(LDOUBLE)
 
@@ -898,7 +898,7 @@ typedef Z4DType(LONG)				Z4DLong;
 #	define Z_LDOUBLE_NAN			Z_TYPE_NAN		  (LDOUBLE)
 #	define Z_AVAILABLE_LDOUBLE
 
-#elif Z_LANGUAGE_HAS_TYPE(DOUBLE) || Z_LANGUAGE_HAS_TYPE(FLOAT)
+#elif Z_LANGUAGE_HAS_TYPE(C, DOUBLE) || Z_LANGUAGE_HAS_TYPE(C, FLOAT)
 
 	typedef zdouble				zldouble;
 	typedef Z2DDouble			Z2DLDouble;
@@ -1271,7 +1271,7 @@ typedef ZRangeType(USHORT)			ZRangeUShort;
 typedef ZRangeType(UINT	 )			ZRangeUInt;
 typedef ZRangeType(ULONG )			ZRangeULong;
 
-#if Z_LANGUAGE_HAS_TYPE(LLONG)
+#if Z_LANGUAGE_HAS_TYPE(C, LLONG)
 	typedef ZRangeType(ULLONG)		ZRangeULLong;
 #else
 	typedef ZRangeULLong			ZRangeULLong

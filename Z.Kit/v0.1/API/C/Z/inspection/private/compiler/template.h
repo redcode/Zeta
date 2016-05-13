@@ -52,14 +52,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_C_HAS_TYPE_DOUBLE*/
 /*#define Z_COMPILER_C_HAS_TYPE_LDOUBLE*/
 
-/* MARK: - Type qualifiers */
+/* MARK: - C type qualifiers */
 
 /*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC*/
 /*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_CONSTANT*/
 /*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_VOLATILE*/
 /*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT*/
 
-/* MARK: - Storage classes */
+/* MARK: - C storage classes */
 
 /*#define Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO*/
 /*#define Z_COMPILER_C_HAS_STORAGE_CLASS_EXTERN*/
@@ -67,13 +67,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_C_HAS_STORAGE_CLASS_STATIC*/
 /*#define Z_COMPILER_C_HAS_STORATE_CLASS_THREAD_LOCAL*/
 
-/* MARK: - Specifiers */
+/* MARK: - C specifiers */
 
 /*#define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS*/
 /*#define Z_COMPILER_C_HAS_SPECIFIER_INLINE*/
 /*#define Z_COMPILER_C_HAS_SPECIFIER_NO_RETURN*/
 
-/* MARK: - Operators */
+/* MARK: - C operators */
 
 /*#define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF*/
 /*#define Z_COMPILER_C_HAS_OPERATOR_SIZE_OF*/
@@ -287,9 +287,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TYPE_INTTOP*/
 /*#define Z_COMPILER_TYPE_VAL*/
 
+/* MARK: - Built-in literals */
+
+/* MARK: - Built-in suffixes */
+
 /* MARK: - Built-in macros: Struture */
 
-/*#define Z_COMPILER_FUNCTION_OFFSETOF*/
+/*#define Z_COMPILER_FUNCTION_OFFSET_OF*/
 
 /* MARK: - Built-in macros: VAL */
 
@@ -300,16 +304,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in functions: Atomic operations */
 
-/*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_EZUAL*/
-/*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_SET_IF_EZUAL*/
-/*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_SET_IF_EZUAL*/
-/*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_SET_IF_EZUAL*/
-/*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_SET_IF_EZUAL*/
-/*#define Z_COMPILER_FUNCTION_INT8_ATOMIC_SET_IF_EZUAL*/
-/*#define Z_COMPILER_FUNCTION_INT16_ATOMIC_SET_IF_EZUAL*/
-/*#define Z_COMPILER_FUNCTION_INT32_ATOMIC_SET_IF_EZUAL*/
-/*#define Z_COMPILER_FUNCTION_INT64_ATOMIC_SET_IF_EZUAL*/
-/*#define Z_COMPILER_FUNCTION_INT128_ATOMIC_SET_IF_EZUAL*/
+/*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_AQUAL*/
+/*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_SET_IF_AQUAL*/
+/*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_SET_IF_AQUAL*/
+/*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_SET_IF_AQUAL*/
+/*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_SET_IF_AQUAL*/
+/*#define Z_COMPILER_FUNCTION_INT8_ATOMIC_SET_IF_AQUAL*/
+/*#define Z_COMPILER_FUNCTION_INT16_ATOMIC_SET_IF_AQUAL*/
+/*#define Z_COMPILER_FUNCTION_INT32_ATOMIC_SET_IF_AQUAL*/
+/*#define Z_COMPILER_FUNCTION_INT64_ATOMIC_SET_IF_AQUAL*/
+/*#define Z_COMPILER_FUNCTION_INT128_ATOMIC_SET_IF_AQUAL*/
 
 /*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_THEN_SET*/
 /*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_THEN_SET*/
