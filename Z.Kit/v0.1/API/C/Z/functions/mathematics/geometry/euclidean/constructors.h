@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/mathematics.h>
 
-#if Z_LANGUAGE_HAS(COMPOUND_LITERAL)
+#if Z_LANGUAGE_HAS(C, COMPOUND_LITERAL)
 
 #	if Z_IS_AVAILABLE(FLOAT16)
 

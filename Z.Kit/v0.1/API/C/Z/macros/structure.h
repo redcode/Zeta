@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/macros/language.h>
 
-#if !defined(Z_AVOID_VARIADIC_MACROS) && Z_LANGUAGE_HAS(VARIADIC_MACRO)
+#if !defined(Z_AVOID_VARIADIC_MACROS) && Z_LANGUAGE_HAS(C, VARIADIC_MACRO)
 
 #	define Z_STRICT_STRUCTURE(...)					\
 		Z_STRICT_SIZE_BEGIN					\

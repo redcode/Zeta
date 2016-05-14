@@ -297,7 +297,7 @@ namespace ZKit {
 			typedef T element_type;
 		};
 
-#		if Z_LANGUAGE_HAS(VARIADIC_TEMPLATE)
+#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 			template <class R, class... A> struct Function : Base {
 				enum {	is_callable = true,
@@ -490,7 +490,7 @@ namespace ZKit {
 
 	// MARK: - Functions
 
-#	if Z_LANGUAGE_HAS(VARIADIC_TEMPLATE)
+#	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 		template <class R, class... A> struct Type<R(A...)> : Mixins::Type::UnqualifiedFunction<Abstract::Type::Function<R, A...> > {};
 
@@ -504,7 +504,7 @@ namespace ZKit {
 		template <class R, class... A> struct Type<R(A..., ...)	      volatile> : Mixins::Type::VolatileFunction     <Type<R(A..., ...)> > {};
 		template <class R, class... A> struct Type<R(A..., ...) const volatile> : Mixins::Type::ConstVolatileFunction<Type<R(A..., ...)> > {};
 
-#		if Z_LANGUAGE_HAS(REFERENCE_QUALIFIED_FUNCTION)
+#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_FUNCTION)
 
 			template <class R, class... A> struct Type<R(A...) &> : Type<R(A...)> {};
 

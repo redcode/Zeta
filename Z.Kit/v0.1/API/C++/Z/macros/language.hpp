@@ -13,24 +13,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Specifiers */
 
-#if Z_LANGUAGE_HAS_SPECIFIER(CONSTANT_EXPRESSION)
+#if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
 #	define Z_CONSTANT_EXPRESSION constexpr
 #else 
 #	define Z_CONSTANT_EXPRESSION
 #endif
 
-#if Z_LANGUAGE_HAS_SPECIFIER(NO_EXCEPTION)
+#if Z_LANGUAGE_HAS_SPECIFIER(CPP, NO_EXCEPTION)
 #	define Z_NO_EXCEPTION noexcept
 #else
 #	define Z_NO_EXCEPTION throw()
 #endif
 
 /* MARK: - Functions */
-
+/*
 #if Z_COMPILER_HAS_FUNCTION(CLASS_MEMBER_OFFSET)
 #	define Z_CLASS_MEMBER_OFFSET Z_COMPILER_FUNCTION(CLASS_MEMBER_OFFSET)
 #else
 #	define Z_CLASS_MEMBER_OFFSET(type, member) ((unsigned long)&((type *)(0))->member)
-#endif
+#endif*/
 
 #endif // __Z_macros_language_HPP__

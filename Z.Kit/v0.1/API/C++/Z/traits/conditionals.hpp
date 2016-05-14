@@ -24,7 +24,7 @@ template <typename T> struct prefix##disable_if<false, T> {typedef T type;}; \
 template <typename T> struct prefix##disable_if<true,  T> : TypeOrVoid<> {};
 
 namespace ZKit {
-#	if Z_LANGUAGE_HAS(EXPRESSION_SFINAE)
+#	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 		template <bool, typename T = void> struct enable_if {};
 		template <typename T> struct enable_if<true, T> {typedef T type;};
 

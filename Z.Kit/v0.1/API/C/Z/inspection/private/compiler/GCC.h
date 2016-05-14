@@ -35,12 +35,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0) /* TODO: is this correct? */
 #	define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE
 #	define Z_COMPILER_C_HAS_ANONYMOUS_UNION
+#else
+#	define Z_COMPILER_C_LACKS_ANONYMOUS_STRUCTURE
+#	define Z_COMPILER_C_LACS_ANONYMOUS_UNION
 #endif
 
 /*#define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS*/
 
 #ifdef __BLOCKS__
 #	define Z_COMPILER_C_HAS_CLOSURE
+#else
+#	define Z_COMPILER_C_LACKS_CLOSURE
 #endif
 
 #define Z_COMPILER_C_HAS_COMPOUND_LITERAL /* TODO: is this always supported? */
@@ -64,14 +69,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_TYPE_DOUBLE
 #define Z_COMPILER_C_HAS_TYPE_LDOUBLE
 
-/* MARK: - Type qualifiers */
+/* MARK: - C type qualifiers */
 
 /*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC*/
 #define Z_COMPILER_C_HAS_TYPE_QUALIFIER_CONSTANT
 #define Z_COMPILER_C_HAS_TYPE_QUALIFIER_VOLATILE
 /*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT*/
 
-/* MARK: - Storage classes */
+/* MARK: - C storage classes */
 
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_EXTERN
@@ -79,13 +84,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_STATIC
 /*#define Z_COMPILER_C_HAS_STORATE_CLASS_THREAD_LOCAL*/
 
-/* MARK: - Specifiers */
+/* MARK: - C specifiers */
 
 /*#define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS*/
 /*#define Z_COMPILER_C_HAS_SPECIFIER_INLINE*/
 /*#define Z_COMPILER_C_HAS_SPECIFIER_NO_RETURN*/
 
-/* MARK: - Operators */
+/* MARK: - C operators */
 
 /*#define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF*/
 #define Z_COMPILER_C_HAS_OPERATOR_SIZE_OF
@@ -131,7 +136,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in macros: Struture */
 
-#define Z_COMPILER_MACRO_OFFSETOF __builtin_offsetof
+#define Z_COMPILER_MACRO_OFFSET_OF __builtin_offsetof
 
 /* MARK: - Built-in macros: VAL
 .------------------------------------------------------------------------------.
