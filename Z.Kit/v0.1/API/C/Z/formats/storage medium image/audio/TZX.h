@@ -10,7 +10,7 @@ Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
 .-------------------------------------------------------------------------------.
-| Extensions: tap, cdt								|
+| Extensions: tzx, cdt								|
 | Endianness: Little								|
 | Created by: Tomaz Kac								|
 |    Used by: Many programs							|
