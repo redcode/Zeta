@@ -271,6 +271,23 @@ namespace ZKit {
 			typedef long double type;
 		};
 
+#		if ('\0' - 1) > 0
+			struct Character : Natural {
+#		else
+			struct Character : Integer {
+#		endif
+			enum {	bits = Z_CHARACTER_BITS,
+				size = Z_CHARACTER_SIZE
+			};
+			enum {	minimum = Z_CHARACTER_MINIMUM,
+				maximum = Z_CHARACTER_MAXIMUM
+			};
+
+			typedef char	      type;
+			typedef unsigned char to_unsigned;
+			typedef signed   char to_signed;
+		};
+
 		template <typename T> struct Pointer : Base {
 			enum {	is_pointer = true,
 				is_value   = true
@@ -426,19 +443,20 @@ namespace ZKit {
 
 	// MARK: - Numbers
 
-	template <> struct Type<unsigned char	      > : Mixins::Type::Unqualified<Abstract::Type::UChar  > {};
-	template <> struct Type<unsigned short int    > : Mixins::Type::Unqualified<Abstract::Type::UShort > {};
-	template <> struct Type<unsigned int	      > : Mixins::Type::Unqualified<Abstract::Type::UInt   > {};
-	template <> struct Type<unsigned long int     > : Mixins::Type::Unqualified<Abstract::Type::ULong  > {};
-	template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong > {};
-	template <> struct Type<signed char	      > : Mixins::Type::Unqualified<Abstract::Type::Char   > {};
-	template <> struct Type<signed short int      > : Mixins::Type::Unqualified<Abstract::Type::Short  > {};
-	template <> struct Type<signed int	      > : Mixins::Type::Unqualified<Abstract::Type::Int	   > {};
-	template <> struct Type<signed long int	      > : Mixins::Type::Unqualified<Abstract::Type::Long   > {};
-	template <> struct Type<signed long long int  > : Mixins::Type::Unqualified<Abstract::Type::LLong  > {};
-	template <> struct Type<float		      > : Mixins::Type::Unqualified<Abstract::Type::Float  > {};
-	template <> struct Type<double		      > : Mixins::Type::Unqualified<Abstract::Type::Double > {};
-	template <> struct Type<long double	      > : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
+	template <> struct Type<unsigned char	      > : Mixins::Type::Unqualified<Abstract::Type::UChar    > {};
+	template <> struct Type<unsigned short int    > : Mixins::Type::Unqualified<Abstract::Type::UShort   > {};
+	template <> struct Type<unsigned int	      > : Mixins::Type::Unqualified<Abstract::Type::UInt     > {};
+	template <> struct Type<unsigned long int     > : Mixins::Type::Unqualified<Abstract::Type::ULong    > {};
+	template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong   > {};
+	template <> struct Type<signed char	      > : Mixins::Type::Unqualified<Abstract::Type::Char     > {};
+	template <> struct Type<signed short int      > : Mixins::Type::Unqualified<Abstract::Type::Short    > {};
+	template <> struct Type<signed int	      > : Mixins::Type::Unqualified<Abstract::Type::Int	     > {};
+	template <> struct Type<signed long int	      > : Mixins::Type::Unqualified<Abstract::Type::Long     > {};
+	template <> struct Type<signed long long int  > : Mixins::Type::Unqualified<Abstract::Type::LLong    > {};
+	template <> struct Type<float		      > : Mixins::Type::Unqualified<Abstract::Type::Float    > {};
+	template <> struct Type<double		      > : Mixins::Type::Unqualified<Abstract::Type::Double   > {};
+	template <> struct Type<long double	      > : Mixins::Type::Unqualified<Abstract::Type::LDouble  > {};
+	template <> struct Type<char		      > : Mixins::Type::Unqualified<Abstract::Type::Character> {}:
 
 	template <typename T> struct Type<const T> : Mixins::Type::Const<Type<T> > {
 		typedef const typename Type<T>::to_unsigned to_unsigned;
