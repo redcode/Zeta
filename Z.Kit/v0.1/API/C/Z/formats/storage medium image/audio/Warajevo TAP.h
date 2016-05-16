@@ -1,10 +1,10 @@
 /* Z Kit C API - formats/storage medium image/audio/Warajevo TAP.h
+Copyright © 1993-2006 Zeljko Juric.
+Copyright © 1993-2006 Samir Ribic.
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
-Copyright © 1993-2006 Zeljko Juric
-Copyright © 1993-2006 Samir Ribic
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
