@@ -228,7 +228,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 		{return Value2D<T>(this->y, this->x);}
 
 
-	inline void vertex_array(T *array)
+	inline void to_vertex_array(T *array)
 		{
 		array[0] = T(0);
 		array[1] = T(0);
@@ -241,7 +241,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 		}
 
 
-	inline void vertex_array(Value2D<T> delta, T *array)
+	inline void to_vertex_array(Value2D<T> delta, T *array)
 		{
 		array[0] = delta.x;
 		array[1] = delta.y;
