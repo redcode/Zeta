@@ -456,7 +456,7 @@ namespace ZKit {
 	template <> struct Type<float		      > : Mixins::Type::Unqualified<Abstract::Type::Float    > {};
 	template <> struct Type<double		      > : Mixins::Type::Unqualified<Abstract::Type::Double   > {};
 	template <> struct Type<long double	      > : Mixins::Type::Unqualified<Abstract::Type::LDouble  > {};
-	template <> struct Type<char		      > : Mixins::Type::Unqualified<Abstract::Type::Character> {}:
+	template <> struct Type<char		      > : Mixins::Type::Unqualified<Abstract::Type::Character> {};
 
 	template <typename T> struct Type<const T> : Mixins::Type::Const<Type<T> > {
 		typedef const typename Type<T>::to_unsigned to_unsigned;
