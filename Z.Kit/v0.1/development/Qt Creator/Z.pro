@@ -23,7 +23,6 @@ HEADERS += \
 	"$$H/constants/units.h" \
 	"$$H/formats/archive/7z.h" \
 	"$$H/formats/archive/7zX.h" \
-	"$$H/formats/archive/9z.h" \
 	"$$H/formats/archive/ACE.h" \
 	"$$H/formats/archive/AFA.h" \
 	"$$H/formats/archive/ALZip.h" \
