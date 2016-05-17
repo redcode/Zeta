@@ -21,13 +21,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/formats/floating point/IEEE 754.h>
 #		include <Z/formats/floating point/Intel.h>
 
-#		define Z_FLOATING_POINT_TYPE_FLOAT32  float
-#		define Z_FLOATING_POINT_TYPE_FLOAT64  double
-#		define Z_FLOATING_POINT_TYPE_FLOAT128 long double
+#		if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
+#			define Z_FLOATING_POINT_TYPE_FLOAT32	float
+#			define Z_FLOATING_POINT_LITERAL_FLOAT32 Z_SUFFIX_F
+#		endif
 
-#		define Z_FLOATING_POINT_LITERAL_FLOAT32	 Z_SUFFIX_F
-#		define Z_FLOATING_POINT_LITERAL_FLOAT64	 Z_SAME
-#		define Z_FLOATING_POINT_LITERAL_FLOAT128 Z_SUFFIX_L
+#		if Z_LANGUAGE_HAS_TYPE(C, DOUBLE)
+#			define Z_FLOATING_POINT_TYPE_FLOAT64	double
+#			define Z_FLOATING_POINT_LITERAL_FLOAT64 Z_SAME
+#		endif
+
+#		if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE)
+#			define Z_FLOATING_POINT_TYPE_FLOAT128	 long double
+#			define Z_FLOATING_POINT_LITERAL_FLOAT128 Z_SUFFIX_L
+#		endif
 
 #		define Z_FLOATING_POINT_BITS_FLOAT   32
 #		define Z_FLOATING_POINT_BITS_DOUBLE  64

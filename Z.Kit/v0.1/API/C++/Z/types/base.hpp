@@ -111,7 +111,10 @@ namespace ZKit {
 	typedef zcharacter		Character;
 	typedef znatural		Natural;
 	typedef zinteger		Integer;
-	typedef zreal			Real;
+
+#	if Z_IS_AVAILABLE(REAL)
+		typedef zreal		Real;
+#	endif
 
 	typedef ZOrder			Order;
 

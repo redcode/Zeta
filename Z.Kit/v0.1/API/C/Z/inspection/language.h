@@ -43,8 +43,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_LANGUAGE_HAS_TYPE(LANGUAGE, TYPE)			 \
 	(!(defined Z_COMPILER_##LANGUAGE##_LACKS_TYPE_##TYPE) && \
-	 ((defined Z_COMPILER_##LANGUAGE##_HAS_TYPE_##TYPE)  || \
-	  (defined Z_##LANGUAGE##_HAS_SPECIFIER_##TYPE)))
+	 ((defined Z_COMPILER_##LANGUAGE##_HAS_TYPE_##TYPE)   || \
+	  (defined Z_##LANGUAGE##_HAS_TYPE_##TYPE)))
 
 #define Z_LANGUAGE_HAS_TYPE_QUALIFIER(LANGUAGE, TYPE_QUALIFIER)			     \
 	(!(defined Z_COMPILER_##LANGUAGE##_LACKS_TYPE_QUALIFIER_##TYPE_QUALIFIER) && \

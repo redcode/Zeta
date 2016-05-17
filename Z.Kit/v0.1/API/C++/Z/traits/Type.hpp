@@ -193,83 +193,94 @@ namespace ZKit {
 			typedef signed	 long long int to_signed;
 		};
 
-		struct Float : Real {
-			enum {	bits		    = Z_FLOAT_BITS,
-				size		    = Z_FLOAT_SIZE,
-				bias		    = Z_FLOAT_BIAS,
-				decimal_digits	    = Z_FLOAT_DECIMAL_DIGITS,
-				significand_offset  = Z_FLOAT_SIGNIFICAND_OFFSET,
-				significand_bits    = Z_FLOAT_SIGNIFICAND_BITS,
-				significand_digits  = Z_FLOAT_SIGNIFICAND_DIGITS,
-				exponent_offset	    = Z_FLOAT_EXPONENT_OFFSET,
-				exponent_bits	    = Z_FLOAT_EXPONENT_BITS,
-				exponent_radix	    = Z_FLOAT_EXPONENT_RADIX,
-				exponent_minimum    = Z_FLOAT_EXPONENT_MINIMUM,
-				exponent_maximum    = Z_FLOAT_EXPONENT_MAXIMUM,
-				exponent_10_minimum = Z_FLOAT_EXPONENT_10_MINIMUM,
-				exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM,
-				sign_offset	    = Z_FLOAT_SIGN_OFFSET,
-				sign_bits	    = Z_FLOAT_SIGN_BITS
+#		if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
+
+			struct Float : Real {
+				enum {	bits		    = Z_FLOAT_BITS,
+					size		    = Z_FLOAT_SIZE,
+					bias		    = Z_FLOAT_BIAS,
+					decimal_digits	    = Z_FLOAT_DECIMAL_DIGITS,
+					significand_offset  = Z_FLOAT_SIGNIFICAND_OFFSET,
+					significand_bits    = Z_FLOAT_SIGNIFICAND_BITS,
+					significand_digits  = Z_FLOAT_SIGNIFICAND_DIGITS,
+					exponent_offset	    = Z_FLOAT_EXPONENT_OFFSET,
+					exponent_bits	    = Z_FLOAT_EXPONENT_BITS,
+					exponent_radix	    = Z_FLOAT_EXPONENT_RADIX,
+					exponent_minimum    = Z_FLOAT_EXPONENT_MINIMUM,
+					exponent_maximum    = Z_FLOAT_EXPONENT_MAXIMUM,
+					exponent_10_minimum = Z_FLOAT_EXPONENT_10_MINIMUM,
+					exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM,
+					sign_offset	    = Z_FLOAT_SIGN_OFFSET,
+					sign_bits	    = Z_FLOAT_SIGN_BITS
+				};
+
+				static inline Z_CONSTANT_EXPRESSION float epsilon() {return Z_FLOAT_EPSILON;}
+				static inline Z_CONSTANT_EXPRESSION float minimum() {return Z_FLOAT_MINIMUM;}
+				static inline Z_CONSTANT_EXPRESSION float maximum() {return Z_FLOAT_MAXIMUM;}
+
+				typedef float type;
 			};
 
-			static inline Z_CONSTANT_EXPRESSION float epsilon() {return Z_FLOAT_EPSILON;}
-			static inline Z_CONSTANT_EXPRESSION float minimum() {return Z_FLOAT_MINIMUM;}
-			static inline Z_CONSTANT_EXPRESSION float maximum() {return Z_FLOAT_MAXIMUM;}
+#		endif
 
-			typedef float type;
-		};
+#		if Z_LANGUAGE_HAS_TYPE(C, DOUBLE)
 
-		struct Double : Real {
-			enum {	bits		    = Z_DOUBLE_BITS,
-				size		    = Z_DOUBLE_SIZE,
-				bias		    = Z_DOUBLE_BIAS,
-				decimal_digits	    = Z_DOUBLE_DECIMAL_DIGITS,
-				significand_offset  = Z_DOUBLE_SIGNIFICAND_OFFSET,
-				significand_bits    = Z_DOUBLE_SIGNIFICAND_BITS,
-				significand_digits  = Z_DOUBLE_SIGNIFICAND_DIGITS,
-				exponent_offset	    = Z_DOUBLE_EXPONENT_OFFSET,
-				exponent_bits	    = Z_DOUBLE_EXPONENT_BITS,
-				exponent_radix	    = Z_DOUBLE_EXPONENT_RADIX,
-				exponent_minimum    = Z_DOUBLE_EXPONENT_MINIMUM,
-				exponent_maximum    = Z_DOUBLE_EXPONENT_MAXIMUM,
-				exponent_10_minimum = Z_DOUBLE_EXPONENT_10_MINIMUM,
-				exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM,
-				sign_offset	    = Z_DOUBLE_SIGN_OFFSET,
-				sign_bits	    = Z_DOUBLE_SIGN_BITS
+			struct Double : Real {
+				enum {	bits		    = Z_DOUBLE_BITS,
+					size		    = Z_DOUBLE_SIZE,
+					bias		    = Z_DOUBLE_BIAS,
+					decimal_digits	    = Z_DOUBLE_DECIMAL_DIGITS,
+					significand_offset  = Z_DOUBLE_SIGNIFICAND_OFFSET,
+					significand_bits    = Z_DOUBLE_SIGNIFICAND_BITS,
+					significand_digits  = Z_DOUBLE_SIGNIFICAND_DIGITS,
+					exponent_offset	    = Z_DOUBLE_EXPONENT_OFFSET,
+					exponent_bits	    = Z_DOUBLE_EXPONENT_BITS,
+					exponent_radix	    = Z_DOUBLE_EXPONENT_RADIX,
+					exponent_minimum    = Z_DOUBLE_EXPONENT_MINIMUM,
+					exponent_maximum    = Z_DOUBLE_EXPONENT_MAXIMUM,
+					exponent_10_minimum = Z_DOUBLE_EXPONENT_10_MINIMUM,
+					exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM,
+					sign_offset	    = Z_DOUBLE_SIGN_OFFSET,
+					sign_bits	    = Z_DOUBLE_SIGN_BITS
+				};
+
+				static inline Z_CONSTANT_EXPRESSION double epsilon() {return Z_DOUBLE_EPSILON;}
+				static inline Z_CONSTANT_EXPRESSION double minimum() {return Z_DOUBLE_MINIMUM;}
+				static inline Z_CONSTANT_EXPRESSION double maximum() {return Z_DOUBLE_MAXIMUM;}
+
+				typedef double type;
 			};
 
-			static inline Z_CONSTANT_EXPRESSION double epsilon() {return Z_DOUBLE_EPSILON;}
-			static inline Z_CONSTANT_EXPRESSION double minimum() {return Z_DOUBLE_MINIMUM;}
-			static inline Z_CONSTANT_EXPRESSION double maximum() {return Z_DOUBLE_MAXIMUM;}
+#		endif
 
-			typedef double type;
-		};
+#		if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE)
 
-		struct LDouble : Real {
-			enum {	bits		    = Z_LDOUBLE_BITS,
-				size		    = Z_LDOUBLE_SIZE,
-				bias		    = Z_LDOUBLE_BIAS,
-				decimal_digits	    = Z_LDOUBLE_DECIMAL_DIGITS,
-				significand_offset  = Z_LDOUBLE_SIGNIFICAND_OFFSET,
-				significand_bits    = Z_LDOUBLE_SIGNIFICAND_BITS,
-				significand_digits  = Z_LDOUBLE_SIGNIFICAND_DIGITS,
-				exponent_offset	    = Z_LDOUBLE_EXPONENT_OFFSET,
-				exponent_bits	    = Z_LDOUBLE_EXPONENT_BITS,
-				exponent_radix	    = Z_LDOUBLE_EXPONENT_RADIX,
-				exponent_minimum    = Z_LDOUBLE_EXPONENT_MINIMUM,
-				exponent_maximum    = Z_LDOUBLE_EXPONENT_MAXIMUM,
-				exponent_10_minimum = Z_LDOUBLE_EXPONENT_10_MINIMUM,
-				exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM,
-				sign_offset	    = Z_LDOUBLE_SIGN_OFFSET,
-				sign_bits	    = Z_LDOUBLE_SIGN_BITS
+			struct LDouble : Real {
+				enum {	bits		    = Z_LDOUBLE_BITS,
+					size		    = Z_LDOUBLE_SIZE,
+					bias		    = Z_LDOUBLE_BIAS,
+					decimal_digits	    = Z_LDOUBLE_DECIMAL_DIGITS,
+					significand_offset  = Z_LDOUBLE_SIGNIFICAND_OFFSET,
+					significand_bits    = Z_LDOUBLE_SIGNIFICAND_BITS,
+					significand_digits  = Z_LDOUBLE_SIGNIFICAND_DIGITS,
+					exponent_offset	    = Z_LDOUBLE_EXPONENT_OFFSET,
+					exponent_bits	    = Z_LDOUBLE_EXPONENT_BITS,
+					exponent_radix	    = Z_LDOUBLE_EXPONENT_RADIX,
+					exponent_minimum    = Z_LDOUBLE_EXPONENT_MINIMUM,
+					exponent_maximum    = Z_LDOUBLE_EXPONENT_MAXIMUM,
+					exponent_10_minimum = Z_LDOUBLE_EXPONENT_10_MINIMUM,
+					exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM,
+					sign_offset	    = Z_LDOUBLE_SIGN_OFFSET,
+					sign_bits	    = Z_LDOUBLE_SIGN_BITS
+				};
+
+				static inline Z_CONSTANT_EXPRESSION long double epsilon() {return Z_LDOUBLE_EPSILON;}
+				static inline Z_CONSTANT_EXPRESSION long double minimum() {return Z_LDOUBLE_MINIMUM;}
+				static inline Z_CONSTANT_EXPRESSION long double maximum() {return Z_LDOUBLE_MAXIMUM;}
+
+				typedef long double type;
 			};
-
-			static inline Z_CONSTANT_EXPRESSION long double epsilon() {return Z_LDOUBLE_EPSILON;}
-			static inline Z_CONSTANT_EXPRESSION long double minimum() {return Z_LDOUBLE_MINIMUM;}
-			static inline Z_CONSTANT_EXPRESSION long double maximum() {return Z_LDOUBLE_MAXIMUM;}
-
-			typedef long double type;
-		};
+#		endif
 
 #		if ('\0' - 1) > 0
 			struct Character : Natural {
@@ -443,6 +454,7 @@ namespace ZKit {
 
 	// MARK: - Numbers
 
+	template <> struct Type<char		      > : Mixins::Type::Unqualified<Abstract::Type::Character> {};
 	template <> struct Type<unsigned char	      > : Mixins::Type::Unqualified<Abstract::Type::UChar    > {};
 	template <> struct Type<unsigned short int    > : Mixins::Type::Unqualified<Abstract::Type::UShort   > {};
 	template <> struct Type<unsigned int	      > : Mixins::Type::Unqualified<Abstract::Type::UInt     > {};
@@ -453,10 +465,18 @@ namespace ZKit {
 	template <> struct Type<signed int	      > : Mixins::Type::Unqualified<Abstract::Type::Int	     > {};
 	template <> struct Type<signed long int	      > : Mixins::Type::Unqualified<Abstract::Type::Long     > {};
 	template <> struct Type<signed long long int  > : Mixins::Type::Unqualified<Abstract::Type::LLong    > {};
-	template <> struct Type<float		      > : Mixins::Type::Unqualified<Abstract::Type::Float    > {};
-	template <> struct Type<double		      > : Mixins::Type::Unqualified<Abstract::Type::Double   > {};
-	template <> struct Type<long double	      > : Mixins::Type::Unqualified<Abstract::Type::LDouble  > {};
-	template <> struct Type<char		      > : Mixins::Type::Unqualified<Abstract::Type::Character> {};
+
+#	if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
+		template <> struct Type<float> : Mixins::Type::Unqualified<Abstract::Type::Float> {};
+#	endif
+
+#	if Z_LANGUAGE_HAS_TYPE(C, DOUBLE)
+		template <> struct Type<double> : Mixins::Type::Unqualified<Abstract::Type::Double> {};
+#	endif
+
+#	if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE)
+		template <> struct Type<long double> : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
+#	endif
 
 	template <typename T> struct Type<const T> : Mixins::Type::Const<Type<T> > {
 		typedef const typename Type<T>::to_unsigned to_unsigned;
