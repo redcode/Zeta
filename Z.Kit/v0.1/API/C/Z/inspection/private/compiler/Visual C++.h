@@ -39,7 +39,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_TYPE_FLOAT
 #define Z_COMPILER_C_HAS_TYPE_DOUBLE
 /*#define Z_COMPILER_C_HAS_TYPE_LDOUBLE*/
-#define Z_COMPILER_LACKS_TYPE_LDOUBLE
+#define Z_COMPILER_C_LACKS_TYPE_LDOUBLE
 
 /* MARK: - C attributes */
 
