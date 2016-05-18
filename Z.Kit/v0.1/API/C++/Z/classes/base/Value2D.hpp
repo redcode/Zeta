@@ -37,8 +37,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	// MARK: - Constructors
 
 
-	inline Value2D<T>() {}
-
+	inline Value2D<T>()		     {}
 	inline Value2D<T>(T x, T y)	     {this->x = x; this->y = y;}
 	inline Value2D<T>(T scalar)	     {this->x = scalar; this->y = scalar;}
 	inline Value2D<T>(void *data)	     {*this = *(Value2D<T> *)data;}
@@ -65,6 +64,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 
 
 	// MARK: - Operators
+
 
 	inline operator Boolean() const {return this->x != T(0) && this->y != T(0);}
 	inline operator Base   () const {return *z_base;}

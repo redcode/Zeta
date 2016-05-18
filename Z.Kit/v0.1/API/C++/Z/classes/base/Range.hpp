@@ -29,10 +29,10 @@ template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::typ
 	typedef typename Selectors::Range<T>::type Super;
 	typedef		 T			   Value;
 
-	inline Range<T>() {}
-	inline Range<T>(T size) {this->index = 0; this->size = size;}
-	inline Range<T>(T index, T size) {this->index = index; this->size = size;}
-	inline Range<T>(void *data) {*this = *(Range<T> *)data;}
+	inline Range<T>()		   {}
+	inline Range<T>(T size)		   {this->index = 0; this->size = size;}
+	inline Range<T>(T index, T size)   {this->index = index; this->size = size;}
+	inline Range<T>(void *data)	   {*this = *(Range<T> *)data;}
 	inline Range<T>(const Base &range) {*z_base = range;}
 
 	inline operator Boolean() const {return this->index && this->size;}
