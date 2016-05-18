@@ -25,14 +25,18 @@ namespace ZKit {
 
 template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::type {
 
-	typedef ZRange Base;
-	typedef ZRange Super;
+	typedef typename Selectors::Range<T>::type Base;
+	typedef typename Selectors::Range<T>::type Super;
+	typedef		 T			   Value;
 
 	inline Range<T>() {}
 	inline Range<T>(T size) {this->index = 0; this->size = size;}
 	inline Range<T>(T index, T size) {this->index = index; this->size = size;}
 	inline Range<T>(void *data) {*this = *(Range<T> *)data;}
 	inline Range<T>(const Base &range) {*z_base = range;}
+
+	inline operator Boolean() const {return this->index && this->size;}
+	inline operator Base   () const {return *z_base;}
 
 
 	inline Boolean operator ==(const Range<T> &range) const
@@ -108,7 +112,7 @@ template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::typ
 
 
 	inline Boolean is_zero() const
-		{return this->index == 0 && this->size == 0;}
+		{return !this->index && !this->size;}
 
 
 	inline T end() const
