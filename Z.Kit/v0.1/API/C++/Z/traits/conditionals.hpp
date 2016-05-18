@@ -11,30 +11,30 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/traits/TypeOrVoid.hpp>
 
-#define Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(prefix)			     \
-									     \
-template <bool, typename T> struct prefix##enable_if {};		     \
-									     \
-template <typename T> struct prefix##enable_if<false, T> : TypeOrVoid<> {};  \
-template <typename T> struct prefix##enable_if<true,  T> {typedef T type;};  \
-									     \
-template <bool, typename T> struct prefix##disable_if {};		     \
-									     \
-template <typename T> struct prefix##disable_if<false, T> {typedef T type;}; \
-template <typename T> struct prefix##disable_if<true,  T> : TypeOrVoid<> {};
+#define Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(Prefix)			    \
+									    \
+template <bool, typename T> struct Prefix##EnableIf {};			    \
+									    \
+template <typename T> struct Prefix##EnableIf<false, T> : TypeOrVoid<> {};  \
+template <typename T> struct Prefix##EnableIf<true,  T> {typedef T type;};  \
+									    \
+template <bool, typename T> struct Prefix##DisableIf {};		    \
+									    \
+template <typename T> struct Prefix##DisableIf<false, T> {typedef T type;}; \
+template <typename T> struct Prefix##DisableIf<true,  T> : TypeOrVoid<> {};
 
 namespace ZKit {
 #	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-		template <bool, typename T = void> struct enable_if {};
-		template <typename T> struct enable_if<true, T> {typedef T type;};
+		template <bool, typename T = void> struct EnableIf {};
+		template <typename T> struct EnableIf<true, T> {typedef T type;};
 
-		template <bool, typename T = void> struct disable_if {};
-		template <typename T> struct disable_if<false, T> {typedef T type;};
+		template <bool, typename T = void> struct DisableIf {};
+		template <typename T> struct DisableIf<false, T> {typedef T type;};
 
-		Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(safer_)
+		Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(Safer)
 #	else
 		Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF()
-		Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(safer_)
+		Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(Safer)
 #	endif
 }
 

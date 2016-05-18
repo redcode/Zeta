@@ -26,32 +26,32 @@ namespace ZKit {
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_signed, T>::type
+	inline typename EnableIf<Type<T>::is_signed, T>::type
 	absolute(T value) {return value < T(0) ? -value : value;}
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_signed, T>::type
+	inline typename EnableIf<Type<T>::is_signed, T>::type
 	sign(T value) {return value >= T(0) ? T(1) : -T(1);}
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_real, Boolean>::type
+	inline typename EnableIf<Type<T>::is_real, Boolean>::type
 	are_almost_equal(T a, T b) {return absolute(a - b) <= Type<T>::epsilon;}
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_real, T>::type lerp(T a, T b, T t)
+	inline typename EnableIf<Type<T>::is_real, T>::type lerp(T a, T b, T t)
 		{return a + t * (b - a);}
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_real, T>::type inverse_lerp(T a, T b, T t)
+	inline typename EnableIf<Type<T>::is_real, T>::type inverse_lerp(T a, T b, T t)
 		{return (t - a) / (b - a);}
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_real, T>::type smoothstep(T a, T b, T t)
+	inline typename EnableIf<Type<T>::is_real, T>::type smoothstep(T a, T b, T t)
 		{
 		if (t <= a) return T(0.0);
 		if (t >= b) return T(1.0);
@@ -61,7 +61,7 @@ namespace ZKit {
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_real, T>::type smootherstep(T a, T b, T t)
+	inline typename EnableIf<Type<T>::is_real, T>::type smootherstep(T a, T b, T t)
 		{
 		if (t <= a) return T(0.0);
 		if (t >= b) return T(1.0);
@@ -71,27 +71,27 @@ namespace ZKit {
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_real, Boolean>::type is_almost_zero(T value)
+	inline typename EnableIf<Type<T>::is_real, Boolean>::type is_almost_zero(T value)
 		{return absolute<T>(value) <= Type<T>::epsilon;}
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_real, Boolean>::type is_finite(T value)
+	inline typename EnableIf<Type<T>::is_real, Boolean>::type is_finite(T value)
 		{return value == value && value != Type<T>::infinity && value != -Type<T>::infinity;}
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_real, Boolean>::type is_infinity(T value)
+	inline typename EnableIf<Type<T>::is_real, Boolean>::type is_infinity(T value)
 		{return value == Type<T>::infinity || value == -Type<T>::infinity;}
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_real, Boolean>::type is_nan(T value)
+	inline typename EnableIf<Type<T>::is_real, Boolean>::type is_nan(T value)
 		{return !(value == value);}
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_real, T>::type sign_or_zero(T value)
+	inline typename EnableIf<Type<T>::is_real, T>::type sign_or_zero(T value)
 		{
 		return absolute<T>(value) <= Type<T>::epsilon
 			? T(0.0)
@@ -100,7 +100,7 @@ namespace ZKit {
 
 
 	template <typename T>
-	inline typename enable_if<Type<T>::is_real, T>::type clamp_01(T value)
+	inline typename EnableIf<Type<T>::is_real, T>::type clamp_01(T value)
 		{return minimum<T>(maximum<T>(value, T(0.0)), T(1.0));}
 }
 

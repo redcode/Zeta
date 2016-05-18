@@ -248,22 +248,22 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	// MARK: - Operations for integer and real types
 
 
-	inline typename safer_enable_if<Type<T>::is_signed, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_signed, Boolean>::type
 	is_negative() const
 		{return this->x < T(0) && this->y < T(0);}
 
 
-	inline typename safer_enable_if<Type<T>::is_signed, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_signed, Boolean>::type
 	has_negative() const
 		{return this->x < T(0) || this->y < T(0);}
 
 
-	inline typename safer_enable_if<Type<T>::is_signed, Value2D<T> >::type
+	inline typename SaferEnableIf<Type<T>::is_signed, Value2D<T> >::type
 	negative() const
 		{return Value2D<T>(-this->x, -this->y);}
 
 
-	inline typename safer_enable_if<Type<T>::is_signed, Value2D<T> >::type
+	inline typename SaferEnableIf<Type<T>::is_signed, Value2D<T> >::type
 	absolute() const
 		{return Value2D<T>(ZKit::absolute<T>(this->x), ZKit::absolute<T>(this->y));}
 
@@ -271,7 +271,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	// MARK: - Operations for real types only
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_almost_equal(const Value2D<T> &value) const
 		{
 		return	ZKit::are_almost_equal<T>(this->x, value.x) &&
@@ -279,12 +279,12 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 		}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_perpendicular(const Value2D<T> &value) const
 		{return ZKit::absolute<T>(dot_product(value)) <= Type<T>::epsilon();}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Value2D<T> >::type
+	inline typename SaferEnableIf<Type<T>::is_real, Value2D<T> >::type
 	lerp(const Value2D<T> &value, T t) const
 		{
 		return Value2D<T>
@@ -293,7 +293,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 		}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Value2D<T> >::type
+	inline typename SaferEnableIf<Type<T>::is_real, Value2D<T> >::type
 	inverse_lerp(const Value2D<T> &value, T t) const
 		{
 		return Value2D<T>
@@ -302,52 +302,52 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 		 }
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_finite() const
 		{return ZKit::is_finite<T>(this->x) && ZKit::is_finite<T>(this->y);}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_infinity() const
 		{return ZKit::is_infinity<T>(this->x) && ZKit::is_infinity<T>(this->y);}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_nan() const
 		{return ZKit::is_nan<T>(this->x) && ZKit::is_nan<T>(this->y);}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_almost_zero() const
 		{return ZKit::is_almost_zero<T>(this->x) && ZKit::is_almost_zero<T>(this->y);}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_finite() const
 		{return ZKit::is_finite<T>(this->x) || ZKit::is_finite<T>(this->y);}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_infinity() const
 		{return ZKit::is_infinity<T>(this->x) || ZKit::is_infinity<T>(this->y);}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_nan() const
 		{return ZKit::is_nan<T>(this->x) || ZKit::is_nan<T>(this->y);}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Boolean>::type
+	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_almost_zero() const
 		{return ZKit::is_almost_zero<T>(this->x) || ZKit::is_almost_zero<T>(this->y);}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Value2D<T> >::type
+	inline typename SaferEnableIf<Type<T>::is_real, Value2D<T> >::type
 	reciprocal() const
 		{return Value2D<T>(T(1.0) / this->x, T(1.0) / this->y);}
 
 
-	inline typename safer_enable_if<Type<T>::is_real, Value2D<T> >::type
+	inline typename SaferEnableIf<Type<T>::is_real, Value2D<T> >::type
 	clamp_01() const
 		{return Value2D<T>(ZKit::clamp_01<T>(this->x), ZKit::clamp_01<T>(this->y));}
 
