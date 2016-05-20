@@ -66,7 +66,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	// MARK: - Operators
 
 
-	inline operator Boolean() const {return this->x != T(0) && this->y != T(0);}
+	inline operator Boolean() const {return this->x != T(0) || this->y != T(0);}
 	inline operator Base   () const {return *z_base;}
 
 	inline Boolean operator ==(const Value2D<T> &value) const {return this->x == value.x && this->y == value.y;}

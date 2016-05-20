@@ -52,6 +52,10 @@ template <typename T> struct ZKit::Rectangle {
 	// MARK: - Operators
 
 
+	inline operator Boolean() const {return this->point || this->size;}
+	inline operator Base   () const {return *z_base;}
+
+
 	inline Boolean operator ==(const Rectangle<T> &rectangle) const
 		{
 		return	point.x == rectangle.point.x && point.y == rectangle.point.y &&
@@ -93,8 +97,6 @@ template <typename T> struct ZKit::Rectangle {
 
 	inline T  operator[](int index) const {return ((T *)this)[index];}
 	inline T &operator[](int index)	      {return ((T *)this)[index];}
-
-	inline operator Base() {return *z_base;}
 
 
 	// MARK: - Interoperability

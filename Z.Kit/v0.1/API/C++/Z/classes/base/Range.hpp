@@ -35,7 +35,7 @@ template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::typ
 	inline Range<T>(void *data)	   {*this = *(Range<T> *)data;}
 	inline Range<T>(const Base &range) {*z_base = range;}
 
-	inline operator Boolean() const {return this->index && this->size;}
+	inline operator Boolean() const {return this->index || this->size;}
 	inline operator Base   () const {return *z_base;}
 
 
