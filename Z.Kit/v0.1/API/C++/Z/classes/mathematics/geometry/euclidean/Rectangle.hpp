@@ -95,6 +95,26 @@ template <typename T> struct ZKit::Rectangle {
 		}
 
 
+	inline Rectangle<T> operator +(const Value2D<T> &value) const {return Rectangle<T>(point, size + value);}
+	inline Rectangle<T> operator -(const Value2D<T> &value) const {return Rectangle<T>(point, size - value);}
+	inline Rectangle<T> operator *(const Value2D<T> &value) const {return Rectangle<T>(point, size * value);}
+	inline Rectangle<T> operator /(const Value2D<T> &value) const {return Rectangle<T>(point, size / value);}
+
+	inline Rectangle<T> operator +(T scalar) const {return Value2D<T>(point, size + scalar);}
+	inline Rectangle<T> operator -(T scalar) const {return Value2D<T>(point, size - scalar);}
+	inline Rectangle<T> operator *(T scalar) const {return Value2D<T>(point, size * scalar);}
+	inline Rectangle<T> operator /(T scalar) const {return Value2D<T>(point, size / scalar);}
+
+	inline Rectangle<T> &operator +=(const Value2D<T> &value) {return *this = *this + value;}
+	inline Rectangle<T> &operator -=(const Value2D<T> &value) {return *this = *this - value;}
+	inline Rectangle<T> &operator *=(const Value2D<T> &value) {return *this = *this * value;}
+	inline Rectangle<T> &operator /=(const Value2D<T> &value) {return *this = *this / value;}
+
+	inline Rectangle<T> &operator +=(T scalar) {return *this = *this + scalar;}
+	inline Rectangle<T> &operator -=(T scalar) {return *this = *this - scalar;}
+	inline Rectangle<T> &operator *=(T scalar) {return *this = *this * scalar;}
+	inline Rectangle<T> &operator /=(T scalar) {return *this = *this / scalar;}
+
 	inline T  operator[](int index) const {return ((T *)this)[index];}
 	inline T &operator[](int index)	      {return ((T *)this)[index];}
 
