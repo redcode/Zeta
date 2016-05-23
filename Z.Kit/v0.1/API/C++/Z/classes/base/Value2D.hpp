@@ -76,6 +76,16 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	inline Boolean operator  >(const Value2D<T> &value) const {return this->x >  value.x && this->y >  value.y;}
 	inline Boolean operator  <(const Value2D<T> &value) const {return this->x <  value.x && this->y <  value.y;}
 
+	inline Value2D<T> operator +(const Value2D<T> &value) const {return Value2D<T>(this->x + value.x, this->y + value.y);}
+	inline Value2D<T> operator -(const Value2D<T> &value) const {return Value2D<T>(this->x - value.x, this->y - value.y);}
+	inline Value2D<T> operator *(const Value2D<T> &value) const {return Value2D<T>(this->x * value.x, this->y * value.y);}
+	inline Value2D<T> operator /(const Value2D<T> &value) const {return Value2D<T>(this->x / value.x, this->y / value.y);}
+
+	inline Value2D<T> &operator +=(const Value2D<T> &value) {return *this = *this + value;}
+	inline Value2D<T> &operator -=(const Value2D<T> &value) {return *this = *this - value;}
+	inline Value2D<T> &operator *=(const Value2D<T> &value) {return *this = *this * value;}
+	inline Value2D<T> &operator /=(const Value2D<T> &value) {return *this = *this / value;}
+
 	inline Boolean operator ==(T scalar) const {return this->x == scalar && this->y == scalar;}
 	inline Boolean operator !=(T scalar) const {return this->x != scalar || this->y != scalar;}
 	inline Boolean operator <=(T scalar) const {return this->x <= scalar && this->y <= scalar;}
@@ -83,20 +93,10 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	inline Boolean operator  >(T scalar) const {return this->x >  scalar && this->y >  scalar;}
 	inline Boolean operator  <(T scalar) const {return this->x <  scalar && this->y <  scalar;}
 
-	inline Value2D<T> operator +(const Value2D<T> &value) const {return Value2D<T>(this->x + value.x, this->y + value.y);}
-	inline Value2D<T> operator -(const Value2D<T> &value) const {return Value2D<T>(this->x - value.x, this->y - value.y);}
-	inline Value2D<T> operator *(const Value2D<T> &value) const {return Value2D<T>(this->x * value.x, this->y * value.y);}
-	inline Value2D<T> operator /(const Value2D<T> &value) const {return Value2D<T>(this->x / value.x, this->y / value.y);}
-
 	inline Value2D<T> operator +(T scalar) const {return Value2D<T>(this->x + scalar, this->y + scalar);}
 	inline Value2D<T> operator -(T scalar) const {return Value2D<T>(this->x - scalar, this->y - scalar);}
 	inline Value2D<T> operator *(T scalar) const {return Value2D<T>(this->x * scalar, this->y * scalar);}
 	inline Value2D<T> operator /(T scalar) const {return Value2D<T>(this->x / scalar, this->y / scalar);}
-
-	inline Value2D<T> &operator +=(const Value2D<T> &value) {return *this = *this + value;}
-	inline Value2D<T> &operator -=(const Value2D<T> &value) {return *this = *this - value;}
-	inline Value2D<T> &operator *=(const Value2D<T> &value) {return *this = *this * value;}
-	inline Value2D<T> &operator /=(const Value2D<T> &value) {return *this = *this / value;}
 
 	inline Value2D<T> &operator +=(T scalar) {return *this = *this + scalar;}
 	inline Value2D<T> &operator -=(T scalar) {return *this = *this - scalar;}
