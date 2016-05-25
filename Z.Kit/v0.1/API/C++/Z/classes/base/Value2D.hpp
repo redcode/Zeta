@@ -47,8 +47,8 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	// MARK: - Static functions
 
 
-	static inline Value2D<T> zero() {return Value2D<T>(T(0), T(0));}
-	static inline Value2D<T> unit() {return Value2D<T>(T(1), T(1));}
+	static inline Value2D<T> zero() {return Value2D<T>(T(0));}
+	static inline Value2D<T> unit() {return Value2D<T>(T(1));}
 
 
 	static inline Value2D<T> minimum(const Value2D<T> &a, const Value2D<T> &b)

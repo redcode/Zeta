@@ -49,6 +49,13 @@ template <typename T> struct ZKit::Rectangle {
 	inline Rectangle<T>(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
 
+	// MARK: - Static functions
+
+
+	static inline Rectangle<T> zero() {return Rectangle<T>(T(0));}
+	static inline Rectangle<T> unit() {return Rectangle<T>(T(1));}
+
+
 	// MARK: - Operators
 
 
