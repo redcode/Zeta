@@ -206,12 +206,13 @@ namespace ZKit {
 					exponent_offset	    = Z_FLOAT_EXPONENT_OFFSET,
 					exponent_bits	    = Z_FLOAT_EXPONENT_BITS,
 					exponent_radix	    = Z_FLOAT_EXPONENT_RADIX,
-					exponent_minimum    = Z_FLOAT_EXPONENT_MINIMUM,
-					exponent_maximum    = Z_FLOAT_EXPONENT_MAXIMUM,
-					exponent_10_minimum = Z_FLOAT_EXPONENT_10_MINIMUM,
-					exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM,
 					sign_offset	    = Z_FLOAT_SIGN_OFFSET,
 					sign_bits	    = Z_FLOAT_SIGN_BITS
+				};
+				enum {	exponent_minimum    = Z_FLOAT_EXPONENT_MINIMUM,
+					exponent_maximum    = Z_FLOAT_EXPONENT_MAXIMUM,
+					exponent_10_minimum = Z_FLOAT_EXPONENT_10_MINIMUM,
+					exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM
 				};
 
 				static inline Z_CONSTANT_EXPRESSION float epsilon() {return Z_FLOAT_EPSILON;}
@@ -236,13 +237,14 @@ namespace ZKit {
 					exponent_offset	    = Z_DOUBLE_EXPONENT_OFFSET,
 					exponent_bits	    = Z_DOUBLE_EXPONENT_BITS,
 					exponent_radix	    = Z_DOUBLE_EXPONENT_RADIX,
-					exponent_minimum    = Z_DOUBLE_EXPONENT_MINIMUM,
-					exponent_maximum    = Z_DOUBLE_EXPONENT_MAXIMUM,
-					exponent_10_minimum = Z_DOUBLE_EXPONENT_10_MINIMUM,
-					exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM,
 					sign_offset	    = Z_DOUBLE_SIGN_OFFSET,
 					sign_bits	    = Z_DOUBLE_SIGN_BITS
 				};
+				enum {	exponent_minimum    = Z_DOUBLE_EXPONENT_MINIMUM,
+					exponent_maximum    = Z_DOUBLE_EXPONENT_MAXIMUM,
+					exponent_10_minimum = Z_DOUBLE_EXPONENT_10_MINIMUM,
+					exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM
+				}
 
 				static inline Z_CONSTANT_EXPRESSION double epsilon() {return Z_DOUBLE_EPSILON;}
 				static inline Z_CONSTANT_EXPRESSION double minimum() {return Z_DOUBLE_MINIMUM;}
@@ -266,13 +268,14 @@ namespace ZKit {
 					exponent_offset	    = Z_LDOUBLE_EXPONENT_OFFSET,
 					exponent_bits	    = Z_LDOUBLE_EXPONENT_BITS,
 					exponent_radix	    = Z_LDOUBLE_EXPONENT_RADIX,
-					exponent_minimum    = Z_LDOUBLE_EXPONENT_MINIMUM,
-					exponent_maximum    = Z_LDOUBLE_EXPONENT_MAXIMUM,
-					exponent_10_minimum = Z_LDOUBLE_EXPONENT_10_MINIMUM,
-					exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM,
 					sign_offset	    = Z_LDOUBLE_SIGN_OFFSET,
 					sign_bits	    = Z_LDOUBLE_SIGN_BITS
 				};
+				enum {	exponent_minimum    = Z_LDOUBLE_EXPONENT_MINIMUM,
+					exponent_maximum    = Z_LDOUBLE_EXPONENT_MAXIMUM,
+					exponent_10_minimum = Z_LDOUBLE_EXPONENT_10_MINIMUM,
+					exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM
+				}
 
 				static inline Z_CONSTANT_EXPRESSION long double epsilon() {return Z_LDOUBLE_EPSILON;}
 				static inline Z_CONSTANT_EXPRESSION long double minimum() {return Z_LDOUBLE_MINIMUM;}

@@ -11,16 +11,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-typedef zsize	(* ZDataCodecProcess)	 (void const* block,
-					  zsize	      block_size,
-					  void*	      output);
+typedef zsize	(* ZDataCodecProcess)	(void const* block,
+					 zsize	      block_size,
+					 void*	      output);
 
-typedef zsize	(* ZDataCodecOutputSize) (void const* block,
-					  zsize	      block_size);
+typedef zsize	(* ZDataCodecOutputSize)(void const* block,
+					 zsize	      block_size);
 
-typedef ZStatus (* ZDataCodecValidate)	 (void const* block,
-					  zsize	      block_size,
-					  zsize*      error_offset);
+typedef ZStatus (* ZDataCodecValidate)	(void const* block,
+					 zsize	      block_size,
+					 zsize*      error_offset);
 
 typedef struct {
 	ZDataCodecProcess    encode;

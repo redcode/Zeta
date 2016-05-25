@@ -11,21 +11,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-typedef void* (* ZAllocate)	 (void* context,
-				  zsize size,
-				  zsize alignment);
+typedef void* (* ZAllocate)	(void* context,
+				 zsize size,
+				 zsize alignment);
 
-typedef void* (* ZAllocateClean) (void* context,
-				  zsize size,
-				  zsize alignment);
+typedef void* (* ZAllocateClean)(void* context,
+				 zsize size,
+				 zsize alignment);
 
-typedef void* (* ZReallocate)	 (void* context,
-				  void* block,
-				  zsize new_size,
-				  zsize alignment);
+typedef void* (* ZReallocate)	(void* context,
+				 void* block,
+				 zsize new_size,
+				 zsize alignment);
 
-typedef void  (* ZDeallocate)	 (void* context,
-				  void* block);
+typedef void  (* ZDeallocate)	(void* context,
+				 void* block);
 
 typedef struct {
 	ZAllocate      allocate;

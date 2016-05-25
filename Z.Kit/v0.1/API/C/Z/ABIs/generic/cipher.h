@@ -13,21 +13,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_CIPHER_FEATURE_SEQUENTIAL 1
 
-typedef ZStatus (* ZCipherTestKey)    (void const* key,
-				       zsize	   key_size);
+typedef ZStatus (* ZCipherTestKey)   (void const* key,
+				      zsize	   key_size);
 
-typedef void	(* ZCipherSetKey)     (void*	   context,
-				       void const* key,
-				       zsize	   key_size);
+typedef void	(* ZCipherSetKey)    (void*	   context,
+				      void const* key,
+				      zsize	   key_size);
 
-typedef void	(* ZCipherProcess)    (void*	   context,
-				       void const* block,
-				       zsize	   block_size,
-				       void*	   output);
+typedef void	(* ZCipherProcess)   (void*	   context,
+				      void const* block,
+				      zsize	   block_size,
+				      void*	   output);
 
-typedef zsize	(* ZCipherOutputSize) (void*	   context,
-				       void const* block,
-				       zsize	   block_size);
+typedef zsize	(* ZCipherOutputSize)(void*	   context,
+				      void const* block,
+				      zsize	   block_size);
 
 typedef struct {
 	ZCipherTestKey	  test_key;
