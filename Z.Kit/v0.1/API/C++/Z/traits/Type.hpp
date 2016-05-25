@@ -244,7 +244,7 @@ namespace ZKit {
 					exponent_maximum    = Z_DOUBLE_EXPONENT_MAXIMUM,
 					exponent_10_minimum = Z_DOUBLE_EXPONENT_10_MINIMUM,
 					exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM
-				}
+				};
 
 				static inline Z_CONSTANT_EXPRESSION double epsilon() {return Z_DOUBLE_EPSILON;}
 				static inline Z_CONSTANT_EXPRESSION double minimum() {return Z_DOUBLE_MINIMUM;}
@@ -275,7 +275,7 @@ namespace ZKit {
 					exponent_maximum    = Z_LDOUBLE_EXPONENT_MAXIMUM,
 					exponent_10_minimum = Z_LDOUBLE_EXPONENT_10_MINIMUM,
 					exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM
-				}
+				};
 
 				static inline Z_CONSTANT_EXPRESSION long double epsilon() {return Z_LDOUBLE_EPSILON;}
 				static inline Z_CONSTANT_EXPRESSION long double minimum() {return Z_LDOUBLE_MINIMUM;}
