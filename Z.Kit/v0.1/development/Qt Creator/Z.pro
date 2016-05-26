@@ -292,9 +292,6 @@ HEADERS += \
 	"$$H/functions/color/ZRGBA5551.h" \
 	"$$H/functions/color/ZRGBA8888.h" \
 	"$$H/functions/color/conversion.h" \
-	"$$H/functions/data/ZChainNode.h" \
-	"$$H/functions/data/ZListNode.h" \
-	"$$H/functions/data/ZTreeNode.h" \
 	"$$H/functions/mathematics/geometry/euclidean/Z2DLine.h" \
 	"$$H/functions/mathematics/geometry/euclidean/Z3DLine.h" \
 	"$$H/functions/mathematics/geometry/euclidean/ZAABB.h" \

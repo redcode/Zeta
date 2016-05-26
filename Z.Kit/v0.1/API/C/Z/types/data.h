@@ -49,15 +49,15 @@ Z_DEFINE_ARRAY_TREE_NODE (ZArrayTreeNodeWithData,,  ZPointer data;);
 /* MARK: - Node containers */
 
 typedef struct {
-	ZListNode* first;
+	ZListNode* first_node;
 	zsize	   size;
-	ZListNode* last;
+	ZListNode* last_node;
 } ZList;	
 
 typedef struct {
-	ZChainNode* first;
+	ZChainNode* first_node;
 	zsize	    size;
-	ZChainNode* last;
+	ZChainNode* last_node;
 } ZChain;
 
 #endif /* __Z_types_data_H__ */

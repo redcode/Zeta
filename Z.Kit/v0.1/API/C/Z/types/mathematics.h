@@ -76,22 +76,28 @@ typedef struct {Z3D##Type normal; z##type offset;} ZPlane##Type;
 
 /* MARK: - Set theory */
 
-typedef struct ZSet ZSet;
+typedef struct ZSet	   ZSet;
+typedef struct ZSetElement ZSetElement;
 
 Z_DEFINE_STRUCTURE_WITH_NAME (ZSetNode,
-	ZSetNode* x_next;
-	ZSetNode* x_previous;
-	ZSetNode* y_next;
-	ZSetNode* y_previous;
-	ZSet*	  set;
-	ZPointer  element;
+	ZSetNode*    x_next;
+	ZSetNode*    x_previous;
+	ZSetNode*    y_next;
+	ZSetNode*    y_previous;
+	ZSet*	     set;
+	ZSetElement* element;
 );
 
 struct ZSet {
-	ZSetNode* first;
+	ZSetNode* first_node;
 	zsize	  size;
-	ZSetNode* last;
-	zsize	  element_y_offset;
+	ZSetNode* last_node;
+};
+
+struct ZSetElement {
+	ZSetNode* first_node;
+	zsize	  group_count;
+	ZSetNode* last_node;
 };
 
 /* MARK: - Default real type definitions */
