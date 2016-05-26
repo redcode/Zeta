@@ -96,7 +96,7 @@ struct ZSet {
 
 struct ZSetElement {
 	ZSetNode* first_node;
-	zsize	  group_count;
+	zsize	  set_count;
 	ZSetNode* last_node;
 };
 
