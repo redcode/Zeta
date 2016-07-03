@@ -6067,7 +6067,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - 113 - Uut */
 
-#define Z_NIHONIUM_SYMBOL				Uut
+#define Z_NIHONIUM_SYMBOL				Nh
 #define Z_NIHONIUM_ATOMIC_NUMBER			113
 #define Z_NIHONIUM_GROUP				13
 #define Z_NIHONIUM_PERIOD				7
@@ -6173,7 +6173,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - 115 - Uup */
 
-#define Z_MOSCOVIUM_SYMBOL				Uup
+#define Z_MOSCOVIUM_SYMBOL				Mc
 #define Z_MOSCOVIUM_ATOMIC_NUMBER			115
 #define Z_MOSCOVIUM_GROUP				15
 #define Z_MOSCOVIUM_PERIOD				7
@@ -6279,7 +6279,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - 117 - Uus */
 
-#define Z_TENNESSINE_SYMBOL				Uus
+#define Z_TENNESSINE_SYMBOL				Ts
 #define Z_TENNESSINE_ATOMIC_NUMBER			117
 #define Z_TENNESSINE_GROUP				17
 #define Z_TENNESSINE_PERIOD				7
@@ -6332,7 +6332,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - 118 - Uuo */
 
-#define Z_OGANESSON_SYMBOL				Uuo
+#define Z_OGANESSON_SYMBOL				Og
 #define Z_OGANESSON_ATOMIC_NUMBER			118
 #define Z_OGANESSON_GROUP				18
 #define Z_OGANESSON_PERIOD				7
