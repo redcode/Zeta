@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_TypeOrVoid_HPP__
 #define __Z_traits_TypeOrVoid_HPP__
 
-namespace ZKit {
+namespace Zeta {
 	template <typename T = void> struct TypeOrVoid {typedef T type;};
 }
 

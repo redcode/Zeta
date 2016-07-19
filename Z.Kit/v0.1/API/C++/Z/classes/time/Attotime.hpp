@@ -12,10 +12,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/time.h>
 #include <Z/types/base.hpp>
 
-namespace ZKit {struct Attotime;}
+namespace Zeta {struct Attotime;}
 
 
-struct ZKit::Attotime : public ZAttotime {
+struct Zeta::Attotime : public ZAttotime {
 };
 
 

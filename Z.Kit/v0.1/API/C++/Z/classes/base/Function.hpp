@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/traits/Type.hpp>
 
 
-namespace ZKit {template <typename T> struct Function {
+namespace Zeta {template <typename T> struct Function {
 
 	typedef T type;
 	typedef typename Type<T>::return_type return_type;

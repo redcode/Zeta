@@ -12,13 +12,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/classes/base/Value2D.hpp>
 #include <Z/types/mathematics.h>
 
-namespace ZKit {
+namespace Zeta {
 	namespace Selectors {Z_TYPE_SELECTOR_REAL(Rectangle, ZRectangleType)}
 	template <typename T> struct Rectangle;
 }
 
 
-template <typename T> struct ZKit::Rectangle {
+template <typename T> struct Zeta::Rectangle {
 
 	typedef typename Selectors::Rectangle<T>::type Base;  // Not actual but compatible
 	typedef typename Selectors::Rectangle<T>::type Super; // Not actual but compatible

@@ -11,13 +11,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 
-namespace ZKit{
+namespace Zeta{
 	namespace Abstract {struct Shared;}
 	template <typename T> struct Shared;
 }
 
 
-struct ZKit::Abstract::Shared {
+struct Zeta::Abstract::Shared {
 	void *___object;
 	void (* ___deallocate)(void *object);
 	zsize ___retain_count;
@@ -26,7 +26,7 @@ struct ZKit::Abstract::Shared {
 };
 
 
-template <typename T> struct ZKit::Shared : ZKit::Abstract::Shared {
+template <typename T> struct Zeta::Shared : Zeta::Abstract::Shared {
 
 	inline static void deallocate(T *object) {delete object;}
 

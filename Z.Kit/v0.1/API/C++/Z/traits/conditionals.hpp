@@ -23,7 +23,7 @@ template <bool, typename T> struct Prefix##DisableIf {};		    \
 template <typename T> struct Prefix##DisableIf<false, T> {typedef T type;}; \
 template <typename T> struct Prefix##DisableIf<true,  T> : TypeOrVoid<> {};
 
-namespace ZKit {
+namespace Zeta {
 #	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 		template <bool, typename T = void> struct EnableIf {};
 		template <typename T> struct EnableIf<true, T> {typedef T type;};

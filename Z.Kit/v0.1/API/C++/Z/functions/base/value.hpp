@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/traits/conditionals.hpp>
 
 
-namespace ZKit {
+namespace Zeta {
 	template <typename T> inline void swap(T *a, T *b) {T t = *a; *a = *b; *b = t;}
 	template <typename T> inline T maximum(T a, T b) {return a > b ? a : b;}
 	template <typename T> inline T minimum(T a, T b) {return a < b ? a : b;}
@@ -22,7 +22,7 @@ namespace ZKit {
 
 	template <typename T>
 	Z_INLINE T clamp(T value, T minimum, T maximum)
-		{return ZKit::minimum(ZKit::maximum(value, minimum), maximum);}
+		{return Zeta::minimum(Zeta::maximum(value, minimum), maximum);}
 
 
 	template <typename T>

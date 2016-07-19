@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_mathematics_HPP__
 #define __Z_traits_mathematics_HPP__
 
-namespace ZKit {
+namespace Zeta {
 	template <int N> struct Factorial	    {enum {value = N * Factorial<N - 1>::value};};
 	template <>	 struct Factorial<0>	    {enum {value = 1};};
 	template <int N> struct TriangularNumber    {enum {value = N + TriangularNumber<N - 1>::value};};

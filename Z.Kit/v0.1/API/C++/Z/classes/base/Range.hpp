@@ -17,13 +17,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	import <Foundation/NSRange.h>
 #endif
 
-namespace ZKit {
+namespace Zeta {
 	namespace Selectors {Z_TYPE_SELECTOR_NATURAL(Range, ZRangeType)}
 	template <typename T> struct Range;
 }
 
 
-template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::type {
+template <typename T> struct Zeta::Range : public Zeta::Selectors::Range<T>::type {
 
 	typedef typename Selectors::Range<T>::type Base;
 	typedef typename Selectors::Range<T>::type Super;
@@ -58,7 +58,7 @@ template <typename T> struct ZKit::Range : public ZKit::Selectors::Range<T>::typ
 	inline Range<T> operator &(const Range<T> &range) const
 		{
 		T index = (this->index > range.index) ? this->index : range.index;
-		T end	= ZKit::minimum<T>(this->index + this->size, range.index + range.size);
+		T end	= Zeta::minimum<T>(this->index + this->size, range.index + range.size);
 
 		return end > index ? Range(index, end - index) : Range<T>(0, 0);
 		}

@@ -17,10 +17,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define z_cpu_relax() asm volatile("pause\n": : :"memory")
 #endif
 
-namespace ZKit {struct RingBuffer;}
+namespace Zeta {struct RingBuffer;}
 
 
-struct ZKit::RingBuffer : public ZRingBuffer {
+struct Zeta::RingBuffer : public ZRingBuffer {
 
 	inline RingBuffer() {}
 

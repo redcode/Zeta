@@ -12,10 +12,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.hpp>
 #include <Z/keys/status.h>
 
-namespace ZKit {struct Status;}
+namespace Zeta {struct Status;}
 
 
-struct ZKit::Status {
+struct Zeta::Status {
 
 	enum {	OK	      = Z_OK,
 		END	      = Z_END,

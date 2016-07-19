@@ -21,13 +21,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	import <Foundation/NSGeometry.h>
 #endif
 
-namespace ZKit {
+namespace Zeta {
 	namespace Selectors {Z_TYPE_SELECTOR(Value2D, Z2DType)}
 	template <typename T> struct Value2D;
 }
 
 
-template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>::type {
+template <typename T> struct Zeta::Value2D : public Zeta::Selectors::Value2D<T>::type {
 
 	typedef typename Selectors::Value2D<T>::type Base;
 	typedef typename Selectors::Value2D<T>::type Super;
@@ -52,11 +52,11 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 
 
 	static inline Value2D<T> minimum(const Value2D<T> &a, const Value2D<T> &b)
-		{return Value2D<T>(ZKit::minimum<T>(a.x, b.x), ZKit::minimum<T>(a.y, b.y));}
+		{return Value2D<T>(Zeta::minimum<T>(a.x, b.x), Zeta::minimum<T>(a.y, b.y));}
 
 
 	static inline Value2D<T> maximum(const Value2D<T> &a, const Value2D<T> &b)
-		{return Value2D<T>(ZKit::maximum<T>(a.x, b.x), ZKit::maximum<T>(a.y, b.y));}
+		{return Value2D<T>(Zeta::maximum<T>(a.x, b.x), Zeta::maximum<T>(a.y, b.y));}
 
 
 	static inline Value2D<T> middle(const Value2D<T> &a, const Value2D<T> &b)
@@ -174,16 +174,16 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	inline Value2D<T> minimum(const Value2D<T> &value) const
 		{
 		return Value2D<T>
-			(ZKit::minimum<T>(this->x, value.x),
-			 ZKit::minimum<T>(this->y, value.y));
+			(Zeta::minimum<T>(this->x, value.x),
+			 Zeta::minimum<T>(this->y, value.y));
 		 }
 
 
 	inline Value2D<T> maximum(const Value2D<T> &value) const
 		{
 		return Value2D<T>
-			(ZKit::maximum<T>(this->x, value.x),
-			 ZKit::maximum<T>(this->y, value.y));
+			(Zeta::maximum<T>(this->x, value.x),
+			 Zeta::maximum<T>(this->y, value.y));
 		 }
 
 
@@ -204,8 +204,8 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 
 	inline T inner_sum     () const {return this->x + this->y;}
 	inline T inner_product () const {return this->x * this->y;}
-	inline T inner_minimum () const {return ZKit::minimum<T>(this->x, this->y);}
-	inline T inner_maximum () const {return ZKit::maximum<T>(this->x, this->y);}
+	inline T inner_minimum () const {return Zeta::minimum<T>(this->x, this->y);}
+	inline T inner_maximum () const {return Zeta::maximum<T>(this->x, this->y);}
 	inline T inner_middle  () const {return (this->x + this->y) / T(2);}
 	inline T squared_length() const {return this->x * this->x + this->y * this->y;}
 
@@ -213,16 +213,16 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	inline Value2D<T> clamp(const Value2D<T> &minimum, const Value2D<T> &maximum) const
 		{
 		return Value2D
-			(ZKit::clamp<T>(this->x, minimum.x, maximum.x),
-			 ZKit::clamp<T>(this->y, minimum.y, maximum.y));
+			(Zeta::clamp<T>(this->x, minimum.x, maximum.x),
+			 Zeta::clamp<T>(this->y, minimum.y, maximum.y));
 		}
 
 
 	inline Value2D<T> clamp(T minimum, T maximum) const
 		{
 		return Value2D<T>
-			(ZKit::clamp<T>(this->x, minimum, maximum),
-			 ZKit::clamp<T>(this->y, minimum, maximum));
+			(Zeta::clamp<T>(this->x, minimum, maximum),
+			 Zeta::clamp<T>(this->y, minimum, maximum));
 		}
 
 
@@ -267,7 +267,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 
 	inline typename SaferEnableIf<Type<T>::is_signed, Value2D<T> >::type
 	absolute() const
-		{return Value2D<T>(ZKit::absolute<T>(this->x), ZKit::absolute<T>(this->y));}
+		{return Value2D<T>(Zeta::absolute<T>(this->x), Zeta::absolute<T>(this->y));}
 
 
 	// MARK: - Operations for real types only
@@ -276,22 +276,22 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_almost_equal(const Value2D<T> &value) const
 		{
-		return	ZKit::are_almost_equal<T>(this->x, value.x) &&
-			ZKit::are_almost_equal<T>(this->y, value.y);
+		return	Zeta::are_almost_equal<T>(this->x, value.x) &&
+			Zeta::are_almost_equal<T>(this->y, value.y);
 		}
 
 
 	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_perpendicular(const Value2D<T> &value) const
-		{return ZKit::absolute<T>(dot_product(value)) <= Type<T>::epsilon();}
+		{return Zeta::absolute<T>(dot_product(value)) <= Type<T>::epsilon();}
 
 
 	inline typename SaferEnableIf<Type<T>::is_real, Value2D<T> >::type
 	lerp(const Value2D<T> &value, T t) const
 		{
 		return Value2D<T>
-			(ZKit::lerp<T>(this->x, value.x, t),
-			 ZKit::lerp<T>(this->y, value.y, t));
+			(Zeta::lerp<T>(this->x, value.x, t),
+			 Zeta::lerp<T>(this->y, value.y, t));
 		}
 
 
@@ -299,49 +299,49 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 	inverse_lerp(const Value2D<T> &value, T t) const
 		{
 		return Value2D<T>
-			(ZKit::inverse_lerp<T>(this->x, value.x, t),
-			 ZKit::inverse_lerp<T>(this->y, value.y, t));
+			(Zeta::inverse_lerp<T>(this->x, value.x, t),
+			 Zeta::inverse_lerp<T>(this->y, value.y, t));
 		 }
 
 
 	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_finite() const
-		{return ZKit::is_finite<T>(this->x) && ZKit::is_finite<T>(this->y);}
+		{return Zeta::is_finite<T>(this->x) && Zeta::is_finite<T>(this->y);}
 
 
 	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_infinity() const
-		{return ZKit::is_infinity<T>(this->x) && ZKit::is_infinity<T>(this->y);}
+		{return Zeta::is_infinity<T>(this->x) && Zeta::is_infinity<T>(this->y);}
 
 
 	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_nan() const
-		{return ZKit::is_nan<T>(this->x) && ZKit::is_nan<T>(this->y);}
+		{return Zeta::is_nan<T>(this->x) && Zeta::is_nan<T>(this->y);}
 
 
 	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_almost_zero() const
-		{return ZKit::is_almost_zero<T>(this->x) && ZKit::is_almost_zero<T>(this->y);}
+		{return Zeta::is_almost_zero<T>(this->x) && Zeta::is_almost_zero<T>(this->y);}
 
 
 	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_finite() const
-		{return ZKit::is_finite<T>(this->x) || ZKit::is_finite<T>(this->y);}
+		{return Zeta::is_finite<T>(this->x) || Zeta::is_finite<T>(this->y);}
 
 
 	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_infinity() const
-		{return ZKit::is_infinity<T>(this->x) || ZKit::is_infinity<T>(this->y);}
+		{return Zeta::is_infinity<T>(this->x) || Zeta::is_infinity<T>(this->y);}
 
 
 	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_nan() const
-		{return ZKit::is_nan<T>(this->x) || ZKit::is_nan<T>(this->y);}
+		{return Zeta::is_nan<T>(this->x) || Zeta::is_nan<T>(this->y);}
 
 
 	inline typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_almost_zero() const
-		{return ZKit::is_almost_zero<T>(this->x) || ZKit::is_almost_zero<T>(this->y);}
+		{return Zeta::is_almost_zero<T>(this->x) || Zeta::is_almost_zero<T>(this->y);}
 
 
 	inline typename SaferEnableIf<Type<T>::is_real, Value2D<T> >::type
@@ -351,7 +351,7 @@ template <typename T> struct ZKit::Value2D : public ZKit::Selectors::Value2D<T>:
 
 	inline typename SaferEnableIf<Type<T>::is_real, Value2D<T> >::type
 	clamp_01() const
-		{return Value2D<T>(ZKit::clamp_01<T>(this->x), ZKit::clamp_01<T>(this->y));}
+		{return Value2D<T>(Zeta::clamp_01<T>(this->x), Zeta::clamp_01<T>(this->y));}
 
 #ifndef Z_DECLARING_PARTIAL_VALUE_2D
 };

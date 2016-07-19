@@ -12,10 +12,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/time.h>
 #include <Z/types/base.hpp>
 
-namespace ZKit {struct Nanotime;}
+namespace Zeta {struct Nanotime;}
 
 
-struct ZKit::Nanotime : public ZNanotime {
+struct Zeta::Nanotime : public ZNanotime {
 };
 
 

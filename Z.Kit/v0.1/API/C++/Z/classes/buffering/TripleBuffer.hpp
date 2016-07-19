@@ -14,10 +14,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/buffering.h>
 #include <Z/functions/base/value.h>
 
-namespace ZKit {struct TripleBuffer;}
+namespace Zeta {struct TripleBuffer;}
 
 
-struct ZKit::TripleBuffer : public ZTripleBuffer {
+struct Zeta::TripleBuffer : public ZTripleBuffer {
 
 	inline TripleBuffer() {}
 
