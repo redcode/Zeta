@@ -223,6 +223,7 @@ template <typename T> struct Zeta::Rectangle {
 	inline Value2D<T> top_left() const
 		{return Value2D<T>(point.x, point.y + size.y);}
 
+
 	inline Value2D<T> top_right() const
 		{return point + size;}
 
@@ -242,12 +243,14 @@ template <typename T> struct Zeta::Rectangle {
 	inline Value2D<T> bottom_center() const
 		{return Value2D<T>(point.x + size.x / T(2), point.y);}
 
+
 	inline Value2D<T> center_left() const
 		{return Value2D<T>(point.x, point.y + size.y / T(2));}
 
 
 	inline Value2D<T> center_right() const
 		{return Value2D<T>(point.x + size.x, point.y + size.y / T(2));}
+
 
 	inline Value2D<T> center() const
 		{return point + size / T(2);}
@@ -353,26 +356,29 @@ template <typename T> struct Zeta::Rectangle {
 
 	inline Rectangle<T> fit_in_top_left(const Value2D<T> &size) const
 		{
-		size = size.fit(this->size);
-		return Rectangle<T>(this->point.x, this->point.y + this->size.y - size.y, size);
+		Value2D<T> fitting_size = size.fit(this->size);
+
+		return Rectangle<T>
+			(this->point.x, this->point.y + this->size.y - fitting_size.y,
+			 fitting_size);
 		}
 
 
 	inline Rectangle<T> fit_in_top_right(const Value2D<T> &size) const
 		{
-		size = size.fit(this->size);
-		return Rectangle<T>(this->point + this->size - size, size);
+		Value2D<T> fitting_size = size.fit(this->size);
+		return Rectangle<T>(this->point + this->size - fitting_size, fitting_size);
 		}
 
 
 	inline Rectangle<T> fit_in_top_center(const Value2D<T> &size) const
 		{
-		size = size.fit(this->size);
+		Value2D<T> fitting_size = size.fit(this->size);
 
 		return Rectangle<T>
-			(this->point.x + (this->size.x - size.x) / T(2),
-			 this->point.y +  this->size.y - size.y,
-			 size);
+			(this->point.x + (this->size.x - fitting_size.x) / T(2),
+			 this->point.y +  this->size.y - fitting_size.y,
+			 fitting_size);
 		}
 
 
@@ -382,40 +388,52 @@ template <typename T> struct Zeta::Rectangle {
 
 	inline Rectangle<T> fit_in_bottom_right(const Value2D<T> &size) const
 		{
-		size = size.fit(this->size);
-		return Rectangle<T>(this->point.x + this->size.x - size.x, this->point.y, size);
+		Value2D<T> fitting_size = size.fit(this->size);
+
+		return Rectangle<T>
+			(this->point.x + this->size.x - fitting_size.x, this->point.y,
+			 fitting_size);
 		}
 
 
 	inline Rectangle<T> fit_in_bottom_center(const Value2D<T> &size) const
 		{
-		size = size.fit(this->size);
-		return Rectangle<T>(this->point.x + (this->size.x - size.x) / T(2), this->point.y, size);
+		Value2D<T> fitting_size = size.fit(this->size);
+
+		return Rectangle<T>
+			(this->point.x + (this->size.x - fitting_size.x) / T(2), this->point.y,
+			 fitting_size);
 		}
 
 
 	inline Rectangle<T> fit_in_center_left(const Value2D<T> &size) const
 		{
-		size = size.fit(this->size);
-		return Rectangle<T>(this->point.x, this->point.y + (this->size.y - size.y) / T(2), size);
+		Value2D<T> fitting_size = size.fit(this->size);
+
+		return Rectangle<T>
+			(this->point.x, this->point.y + (this->size.y - fitting_size.y) / T(2),
+			 fitting_size);
 		}
 
 
 	inline Rectangle<T> fit_in_center_right(const Value2D<T> &size) const
 		{
-		size = size.fit(this->size);
+		Value2D<T> fitting_size = size.fit(this->size);
 
 		return Rectangle<T>
-			(this->point.x +  this->size.x - size.x,
-			 this->point.y + (this->size.y - size.y) / T(2),
-			 size);
+			(this->point.x +  this->size.x - fitting_size.x,
+			 this->point.y + (this->size.y - fitting_size.y) / T(2),
+			 fitting_size);
 		 }
 
 
 	inline Rectangle<T> fit_in_center(const Value2D<T> &size) const
 		{
-		size = size.fit(this->size);
-		return Rectangle<T>(this->point + (this->size - size) / T(2), size);
+		Value2D<T> fitting_size = size.fit(this->size);
+
+		return Rectangle<T>
+			(this->point + (this->size - fitting_size) / T(2),
+			 fitting_size);
 		}
 
 		/*
