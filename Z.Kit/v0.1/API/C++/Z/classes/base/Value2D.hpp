@@ -230,7 +230,7 @@ template <typename T> struct Zeta::Value2D : public Zeta::Selectors::Value2D<T>:
 		{return Value2D<T>(this->y, this->x);}
 
 
-	inline void to_vertex_array(T *array)
+	inline void to_vertex_array(T *array) const
 		{
 		array[0] = array[1] = array[2] = array[7] = T(0);
 		array[3] = array[5] = this->y;
@@ -238,7 +238,7 @@ template <typename T> struct Zeta::Value2D : public Zeta::Selectors::Value2D<T>:
 		}
 
 
-	inline void to_vertex_array(Value2D<T> delta, T *array)
+	inline void to_vertex_array(Value2D<T> delta, T *array) const
 		{
 		array[0] = array[2] = delta.x;
 		array[1] = array[7] = delta.y;
