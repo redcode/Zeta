@@ -134,9 +134,8 @@ template <typename T> struct Zeta::Rectangle {
 
 #	if Z_MUST_SUPPORT(CG_GEOMETRY)
 
-		inline Rectangle<T>(const CGRect &rectangle) : point(rectangle.origin), size(rectangle.size) {}
-		inline Rectangle<T>(const CGPoint &point)    : point(T(0),		size(point)	     {}
-		inline Rectangle<T>(const CGSize &size)	     : point(T(0)),		size(size)	     {}
+		inline Rectangle<T>(const CGRect &rectangle)
+		: point(rectangle.origin), size(rectangle.size) {}
 
 
 		inline operator CGRect() const
@@ -156,9 +155,8 @@ template <typename T> struct Zeta::Rectangle {
 		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)  || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
-		inline Rectangle<T>(const NSRect &rectangle) : point(rectangle.origin), size(rectangle.size) {}
-		inline Rectangle<T>(const NSPoint &point)    : point(T(0),		size(point)	     {}
-		inline Rectangle<T>(const NSSize &size)	     : point(T(0)),		size(size)	     {}
+		inline Rectangle<T>(const NSRect &rectangle)
+		: point(rectangle.origin), size(rectangle.size) {}
 
 
 		inline operator NSRect() const
