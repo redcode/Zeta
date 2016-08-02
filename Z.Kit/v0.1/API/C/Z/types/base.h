@@ -1115,7 +1115,6 @@ typedef zuint8					zboolean;
 #endif
 
 typedef char					zcharacter;
-typedef zcharacter				ZString;
 #define Z_CHARACTER				Z_TYPE		      (CHARACTER)
 #define Z_CHARACTER_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE(CHARACTER)
 #define Z_CHARACTER_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (CHARACTER)
@@ -1845,7 +1844,6 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	zboolean* pointer_boolean;
 
 	zcharacter* pointer_character;
-	ZString*    pointer_string;
 
 	znatural*      pointer_natural;
 	Z2DNatural*    pointer_2d_natural;
