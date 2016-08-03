@@ -34,6 +34,7 @@ namespace Zeta {
 				is_natural	     = false,
 				is_number	     = false,
 				is_pointer	     = false,
+				is_qualified	     = false,
 				is_real		     = false,
 				is_reference	     = false,
 				is_signed	     = false,
@@ -369,7 +370,11 @@ namespace Zeta {
 			typedef		       typename C::type remove_const_volatile;
 		};
 
-		template <class C> struct Const : Unqualified<C> {
+		template <class C> struct Qualified : Unqualified<C> {
+			enum {is_qualified = true};
+		};
+
+		template <class C> struct Const : Qualified<C> {
 			enum {is_const = true};
 
 			typedef const	       typename C::type type;
@@ -377,7 +382,7 @@ namespace Zeta {
 			typedef const	       typename C::type remove_volatile;
 		};
 
-		template <class C> struct Volatile : Unqualified<C> {
+		template <class C> struct Volatile : Qualified<C> {
 			enum {is_volatile = true};
 
 			typedef	      volatile typename C::type type;
@@ -385,7 +390,7 @@ namespace Zeta {
 			typedef	      volatile typename C::type remove_const;
 		};
 
-		template <class C> struct ConstVolatile : Unqualified<C> {
+		template <class C> struct ConstVolatile : Qualified<C> {
 			enum {	is_const	  = true,
 				is_volatile	  = true,
 				is_const_volatile = true
@@ -419,7 +424,11 @@ namespace Zeta {
 			typedef typename C::type		remove_const_volatile;
 		};
 
-		template <class C> struct ConstFunction : UnqualifiedFunction<C> {
+		template <class C> struct QualifiedFunction : UnqualifiedFunction<C> {
+			enum {is_qualified = true};
+		};
+
+		template <class C> struct ConstFunction : QualifiedFunction<C> {
 			enum {is_const = true};
 
 			typedef typename C::type_const		type;
@@ -427,7 +436,7 @@ namespace Zeta {
 			typedef typename C::type_const		remove_volatile;
 		};
 
-		template <class C> struct VolatileFunction : UnqualifiedFunction<C> {
+		template <class C> struct VolatileFunction : QualifiedFunction<C> {
 			enum {is_volatile = true};
 
 			typedef typename C::type_volatile	type;
@@ -435,7 +444,7 @@ namespace Zeta {
 			typedef typename C::type_volatile	remove_const;
 		};
 
-		template <class C> struct ConstVolatileFunction : UnqualifiedFunction<C> {
+		template <class C> struct ConstVolatileFunction : QualifiedFunction<C> {
 			enum {	is_const	  = true,
 				is_volatile	  = true,
 				is_const_volatile = true

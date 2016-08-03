@@ -77,7 +77,7 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Rectangle<T> operator &(const Rectangle<T> &rectangle) const
+	inline Rectangle<T> operator &(const Rectangle<T> &rectangle) const // Intersection
 		{
 		T x1, x2, y1, y2;
 
@@ -91,7 +91,7 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Rectangle<T> operator |(const Rectangle<T> &rectangle) const
+	inline Rectangle<T> operator |(const Rectangle<T> &rectangle) const // Union
 		{
 		Rectangle<T> result;
 
