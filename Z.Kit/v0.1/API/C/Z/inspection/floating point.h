@@ -45,7 +45,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_PREPEND_FLOATING_POINT_FLOAT128(RIGHT) Z_INTEL_FLOAT80##RIGHT
 #		endif
 
-#	elif	Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_ARM
+#	elif	Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_A_ARCH_32
 
 #		include <Z/formats/floating point/IEEE 754.h>
 

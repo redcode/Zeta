@@ -28,11 +28,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_MUST_USE(CPU_ARCHITECTURE_POWER_PC_32BIT)
 #		include <Z/hardware/CPU/architecture/PowerPC 32-bit.h>
 
-#	elif Z_MUST_USE(CPU_ARCHITECTURE_AARCH_64)
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_A_ARCH_64)
 #		include <Z/hardware/CPU/architecture/AArch64.h>
 
-#	elif Z_MUST_USE(CPU_ARCHITECTURE_ARM)
-#		include <Z/hardware/CPU/architecture/ARM.h>
+#	elif Z_MUST_USE(CPU_ARCHITECTURE_A_ARCH_32)
+#		include <Z/hardware/CPU/architecture/AArch32.h>
 
 #	elif Z_MUST_USE(CPU_ARCHITECTURE_Alpha)
 #		include <Z/hardware/CPU/architecture/Alpha.h>
@@ -155,7 +155,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(_M_ARM		   ) || /* Visual C++		   */ \
 			defined(_M_ARMT		   )	/* Visual C++		   */
 
-#			include <Z/hardware/CPU/architecture/ARM.h>
+#			include <Z/hardware/CPU/architecture/AArch32.h>
 
 #		elif	defined(__alpha__) || /* GCC	    */ \
 			defined(__alpha	 ) || /* DEC C (?)  */ \
