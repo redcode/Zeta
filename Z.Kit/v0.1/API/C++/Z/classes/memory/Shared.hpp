@@ -11,56 +11,79 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_classes_memory_Shared_HPP__
 
 #include <Z/types/base.hpp>
+#include <Z/macros/pointer.h>
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-	namespace Zeta {template <typename T> struct Shared;}
+	namespace Zeta {
+
+		template <typename T> struct Shared {
+
+			struct Container {
+				Size owner_count;
+				T object;
+
+				inline Container() : owner_count(0) {}
+
+				template <class ...A>
+				inline Container(A... arguments) : owner_count(0), object(arguments...) {}
+			};
+
+			Container *container;
 
 
-	template <typename T> struct Zeta::Shared {
+			template <class ...A> static Shared<T> create(A...arguments)
+				{
+				Shared<T> shared;
+				shared.container = new Container(arguments...);
+				shared.container->owner_count = 1;
+				return shared;
+				}
 
-		struct Container {
-			Size owner_count;
-			T object;
 
-			inline Container() : owner_count(0) {}
+			inline Shared<T>() : container(nullptr) {}
 
-			template <typename ...A>
-			inline Container(A... args) : owner_count(0), object(args...) {}
+
+			inline Shared<T>(const Shared<T> &shared)
+				{if ((container = shared.container)) container->owner_count++;}
+
+
+			inline Shared<T>(Container *container)
+				{if ((this->container = container)) container->owner_count++;}
+
+
+			inline Shared<T>(void *object)
+				{
+				if (object)
+					(container =
+					 Z_BOP(Container *, object, -Z_OFFSET_OF(Container, object)))
+						->owner_count++;
+				}
+
+
+			inline ~Shared<T>()
+				{if (container && !--container->owner_count) delete container;}
+
+
+			inline T* operator->()	  {return &container->object;}
+			inline T* get()		  {return &container->object;}
+			inline Size owner_count() {return container->owner_count;}
 		};
 
-		Container *container;
+
+		template <typename T, class ...A> T *new_shared(A...arguments)
+			{return &(new typename Shared<T>::Container(arguments...))->object;}
 
 
-		template <typename ...A> static Shared<T> create(A...args)
+		template <typename T> void delete_shared(T *object)
 			{
-			Shared<T> shared;
-			shared.container = new Container(args...);
-			shared.container->owner_count = 1;
-			return shared;
+			delete Z_BOP
+				(typename Shared<T>::Container *, object,
+				 -Z_OFFSET_OF(typename Shared<T>::Container, object));
 			}
 
 
-		inline Shared<T>() : container(nullptr) {}
-
-
-		inline Shared<T>(const Shared<T> &shared)
-			{if ((container = shared.container)) container->owner_count++;}
-
-
-		inline Shared<T>(Shared<T>::Container *shared_container)
-			{if ((container = shared_container)) container->owner_count++;}
-
-
-		inline ~Shared<T>()
-			{if (container && !--container->owner_count) delete container;}
-
-
-		inline T* operator->()	  {return &container->object;}
-		inline T* get()		  {return &container->object;}
-		inline Size owner_count() {return container->owner_count;}
-	};
-
+	}
 
 #endif
 
