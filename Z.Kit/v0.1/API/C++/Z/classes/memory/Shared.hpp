@@ -4,6 +4,7 @@
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
+Copyright © 2016 r-lyeh.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef __Z_classes_memory_Shared_HPP__
@@ -11,28 +12,56 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 
-namespace Zeta{
-	namespace Abstract {struct Shared;}
-	template <typename T> struct Shared;
-}
+#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+
+	namespace Zeta {template <typename T> struct Shared;}
 
 
-struct Zeta::Abstract::Shared {
-	void *___object;
-	void (* ___deallocate)(void *object);
-	zsize ___retain_count;
+	template <typename T> struct Zeta::Shared {
 
-	inline ~Shared() {if (!retain_count) ___deallocate(___object);}
-};
+		struct Container {
+			Size owner_count;
+			T object;
+
+			inline Container() : owner_count(0) {}
+
+			template <typename ...A>
+			inline Container(A... args) : owner_count(0), object(args...) {}
+		};
+
+		Container *container;
 
 
-template <typename T> struct Zeta::Shared : Zeta::Abstract::Shared {
+		template <typename ...A> static Shared<T> create(A...args)
+			{
+			Shared<T> shared;
+			shared.container = new Container(args...);
+			shared.container->owner_count = 1;
+			return shared;
+			}
 
-	inline static void deallocate(T *object) {delete object;}
 
-	inline Shared<T>() {}
-	inline Shared<T>(const Shared &other) {}
-};
+		inline Shared<T>() : container(nullptr) {}
 
+
+		inline Shared<T>(const Shared<T> &shared)
+			{if ((container = shared.container)) container->owner_count++;}
+
+
+		inline Shared<T>(Shared<T>::Container *shared_container)
+			{if ((container = shared_container)) container->owner_count++;}
+
+
+		inline ~Shared<T>()
+			{if (container && !--container->owner_count) delete container;}
+
+
+		inline T* operator->()	  {return &container->object;}
+		inline T* get()		  {return &container->object;}
+		inline Size owner_count() {return container->owner_count;}
+	};
+
+
+#endif
 
 #endif // __Z_classes_memory_Shared_HPP__
