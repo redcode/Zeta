@@ -53,5 +53,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_HAS_STORAGE_CLASS( WHICH) (defined Z_C_HAS_STORAGE_CLASS_##WHICH )
 #define Z_C_HAS_SPECIFIER(     WHICH) (defined Z_C_HAS_SPECIFIER_##WHICH     )
 #define Z_C_HAS_OPERATOR(      WHICH) (defined Z_C_HAS_OPERATOR_##WHICH	     )
+#define Z_C_HAS_LITERAL(       WHICH) (defined Z_C_HAS_LITERAL_##WHICH	     )
 
 #endif /* __Z_inspection_C_H__ */

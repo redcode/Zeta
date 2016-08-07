@@ -66,4 +66,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	 ((defined Z_COMPILER_##LANGUAGE##_HAS_OPERATOR_##OPERATOR)   || \
 	  (defined Z_##LANGUAGE##_HAS_OPERATOR_##OPERATOR)))
 
+#define Z_LANGUAGE_HAS_LITERAL(LANGUAGE, LITERAL)			\
+	(!(defined Z_COMPILER_##LANGUAGE##_LACKS_LITERAL_##OPERATOR) && \
+	 ((defined Z_COMPILER_##LANGUAGE##_HAS_LITERAL_##OPERATOR)   || \
+	  (defined Z_##LANGUAGE##_HAS_LITERAL_##OPERATOR)))
+
 #endif /* __Z_inspection_language_H__ */

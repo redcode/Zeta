@@ -33,6 +33,7 @@ namespace Zeta {
 				is_member_pointer    = false,
 				is_natural	     = false,
 				is_number	     = false,
+				is_null_pointer	     = false,
 				is_pointer	     = false,
 				is_qualified	     = false,
 				is_real		     = false,
@@ -54,16 +55,17 @@ namespace Zeta {
 			};
 		};
 
-		struct Natural : Number {
-			enum {	is_exact   = true,
-				is_natural = true,
-			};
+		struct Exact : Number {
+			enum {is_exact = true};
+		};
+
+		struct Natural : Exact {
+			enum {is_natural = true};
 			enum {minimum = 0};
 		};
 
-		struct Integer : Number {
-			enum {	is_exact   = true,
-				is_integer = true,
+		struct Integer : Exact {
+			enum {	is_integer = true,
 				is_signed  = true
 			};
 		};
@@ -338,9 +340,9 @@ namespace Zeta {
 				enum {arity = sizeof...(A)};
 
 				typedef R type		     (A...);
-				typedef R type_const	     (A...) const;
-				typedef R type_volatile	     (A...)	  volatile;
-				typedef R type_const_volatile(A...) const volatile;
+				typedef R const_type	     (A...) const;
+				typedef R volatile_type	     (A...)	  volatile;
+				typedef R const_volatile_type(A...) const volatile;
 
 				typedef R return_type;
 			};
@@ -349,9 +351,9 @@ namespace Zeta {
 				enum {is_variadic = true};
 
 				typedef R type		     (A..., ...);
-				typedef R type_const	     (A..., ...) const;
-				typedef R type_volatile	     (A..., ...)       volatile;
-				typedef R type_const_volatile(A..., ...) const volatile;
+				typedef R const_type	     (A..., ...) const;
+				typedef R volatile_type	     (A..., ...)       volatile;
+				typedef R const_volatile_type(A..., ...) const volatile;
 			};
 
 #		endif
@@ -361,7 +363,12 @@ namespace Zeta {
 
 	namespace Mixins {namespace Type {
 
+		// MARK: - Unqualified
+
 		template <class C> struct Unqualified : C {
+			typedef const	       typename C::type const_type;
+			typedef	      volatile typename C::type volatile_type;
+			typedef const volatile typename C::type const_volatile_type;
 			typedef const	       typename C::type add_const;
 			typedef	      volatile typename C::type add_volatile;
 			typedef const volatile typename C::type add_const_volatile;
@@ -370,9 +377,26 @@ namespace Zeta {
 			typedef		       typename C::type remove_const_volatile;
 		};
 
+		template <class C> struct UnqualifiedFunction : C {
+			typedef typename C::type_const		add_const;
+			typedef typename C::type_volatile	add_volatile;
+			typedef typename C::type_const_volatile add_const_volatile;
+			typedef typename C::type		remove_const;
+			typedef typename C::type		remove_volatile;
+			typedef typename C::type		remove_const_volatile;
+		};
+
+		// MARK: - Qualified
+
 		template <class C> struct Qualified : Unqualified<C> {
 			enum {is_qualified = true};
 		};
+
+		template <class C> struct QualifiedFunction : UnqualifiedFunction<C> {
+			enum {is_qualified = true};
+		};
+
+		// MARK: - const
 
 		template <class C> struct Const : Qualified<C> {
 			enum {is_const = true};
@@ -382,6 +406,25 @@ namespace Zeta {
 			typedef const	       typename C::type remove_volatile;
 		};
 
+		template <class C> struct ConstExact : Const<C> {
+			typedef const typename C::to_unsigned to_unsigned;
+			typedef const typename C::to_signed   to_signed;
+		};
+
+		template <class C> struct ConstArray : Const<C> {
+			typedef const typename C::element_type element_type;
+		};
+
+		template <class C> struct ConstFunction : QualifiedFunction<C> {
+			enum {is_const = true};
+
+			typedef typename C::type_const		type;
+			typedef typename C::type_const_volatile add_volatile;
+			typedef typename C::type_const		remove_volatile;
+		};
+
+		// MARK: - volatile
+
 		template <class C> struct Volatile : Qualified<C> {
 			enum {is_volatile = true};
 
@@ -389,6 +432,25 @@ namespace Zeta {
 			typedef const volatile typename C::type add_const;
 			typedef	      volatile typename C::type remove_const;
 		};
+
+		template <class C> struct VolatileExact : Volatile<C> {
+			typedef volatile typename C::to_unsigned to_unsigned;
+			typedef volatile typename C::to_signed	 to_signed;
+		};
+
+		template <class C> struct VolatileArray : Volatile<C> {
+			typedef volatile typename C::element_type element_type;
+		};
+
+		template <class C> struct VolatileFunction : QualifiedFunction<C> {
+			enum {is_volatile = true};
+
+			typedef typename C::type_volatile	type;
+			typedef typename C::type_const_volatile add_const;
+			typedef typename C::type_volatile	remove_const;
+		};
+
+		// MARK: - const volatile
 
 		template <class C> struct ConstVolatile : Qualified<C> {
 			enum {	is_const	  = true,
@@ -403,45 +465,13 @@ namespace Zeta {
 			typedef const	       typename C::type remove_volatile;
 		};
 
-		template <class C> struct ConstArray : Const<C> {
-			typedef const typename C::element_type element_type;
-		};
-
-		template <class C> struct VolatileArray : Volatile<C> {
-			typedef volatile typename C::element_type element_type;
+		template <class C> struct ConstVolatileExact : ConstVolatile<C> {
+			typedef const volatile typename C::to_unsigned to_unsigned;
+			typedef const volatile typename C::to_signed   to_signed;
 		};
 
 		template <class C> struct ConstVolatileArray : ConstVolatile<C> {
 			typedef const volatile typename C::element_type element_type;
-		};
-
-		template <class C> struct UnqualifiedFunction : C {
-			typedef typename C::type_const		add_const;
-			typedef typename C::type_volatile	add_volatile;
-			typedef typename C::type_const_volatile add_const_volatile;
-			typedef typename C::type		remove_const;
-			typedef typename C::type		remove_volatile;
-			typedef typename C::type		remove_const_volatile;
-		};
-
-		template <class C> struct QualifiedFunction : UnqualifiedFunction<C> {
-			enum {is_qualified = true};
-		};
-
-		template <class C> struct ConstFunction : QualifiedFunction<C> {
-			enum {is_const = true};
-
-			typedef typename C::type_const		type;
-			typedef typename C::type_const_volatile add_volatile;
-			typedef typename C::type_const		remove_volatile;
-		};
-
-		template <class C> struct VolatileFunction : QualifiedFunction<C> {
-			enum {is_volatile = true};
-
-			typedef typename C::type_volatile	type;
-			typedef typename C::type_const_volatile add_const;
-			typedef typename C::type_volatile	remove_const;
 		};
 
 		template <class C> struct ConstVolatileFunction : QualifiedFunction<C> {
@@ -466,52 +496,88 @@ namespace Zeta {
 
 	// MARK: - Numbers
 
-	template <> struct Type<char		      > : Mixins::Type::Unqualified<Abstract::Type::Character> {};
-	template <> struct Type<unsigned char	      > : Mixins::Type::Unqualified<Abstract::Type::UChar    > {};
-	template <> struct Type<unsigned short int    > : Mixins::Type::Unqualified<Abstract::Type::UShort   > {};
-	template <> struct Type<unsigned int	      > : Mixins::Type::Unqualified<Abstract::Type::UInt     > {};
-	template <> struct Type<unsigned long int     > : Mixins::Type::Unqualified<Abstract::Type::ULong    > {};
-	template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong   > {};
-	template <> struct Type<signed char	      > : Mixins::Type::Unqualified<Abstract::Type::Char     > {};
-	template <> struct Type<signed short int      > : Mixins::Type::Unqualified<Abstract::Type::Short    > {};
-	template <> struct Type<signed int	      > : Mixins::Type::Unqualified<Abstract::Type::Int	     > {};
-	template <> struct Type<signed long int	      > : Mixins::Type::Unqualified<Abstract::Type::Long     > {};
-	template <> struct Type<signed long long int  > : Mixins::Type::Unqualified<Abstract::Type::LLong    > {};
+	template <> struct Type<	       char> : Mixins::Type::Unqualified       <Abstract::Type::Character> {};
+	template <> struct Type<const	       char> : Mixins::Type::ConstExact	       <Abstract::Type::Character> {};
+	template <> struct Type<      volatile char> : Mixins::Type::VolatileExact     <Abstract::Type::Character> {};
+	template <> struct Type<const volatile char> : Mixins::Type::ConstVolatileExact<Abstract::Type::Character> {};
+
+	template <> struct Type<	       unsigned char> : Mixins::Type::Unqualified	<Abstract::Type::UChar> {};
+	template <> struct Type<const	       unsigned char> : Mixins::Type::ConstExact	<Abstract::Type::UChar> {};
+	template <> struct Type<      volatile unsigned char> : Mixins::Type::VolatileExact	<Abstract::Type::UChar> {};
+	template <> struct Type<const volatile unsigned char> : Mixins::Type::ConstVolatileExact<Abstract::Type::UChar> {};
+
+	template <> struct Type<	       unsigned short int> : Mixins::Type::Unqualified	     <Abstract::Type::UShort> {};
+	template <> struct Type<const	       unsigned short int> : Mixins::Type::ConstExact	     <Abstract::Type::UShort> {};
+	template <> struct Type<      volatile unsigned short int> : Mixins::Type::VolatileExact     <Abstract::Type::UShort> {};
+	template <> struct Type<const volatile unsigned short int> : Mixins::Type::ConstVolatileExact<Abstract::Type::UShort> {};
+
+	template <> struct Type<	       unsigned int> : Mixins::Type::Unqualified       <Abstract::Type::UInt> {};
+	template <> struct Type<const	       unsigned int> : Mixins::Type::ConstExact	       <Abstract::Type::UInt> {};
+	template <> struct Type<      volatile unsigned int> : Mixins::Type::VolatileExact     <Abstract::Type::UInt> {};
+	template <> struct Type<const volatile unsigned int> : Mixins::Type::ConstVolatileExact<Abstract::Type::UInt> {};
+
+	template <> struct Type<	       unsigned long int> : Mixins::Type::Unqualified	    <Abstract::Type::ULong> {};
+	template <> struct Type<const	       unsigned long int> : Mixins::Type::ConstExact	    <Abstract::Type::ULong> {};
+	template <> struct Type<      volatile unsigned long int> : Mixins::Type::VolatileExact	    <Abstract::Type::ULong> {};
+	template <> struct Type<const volatile unsigned long int> : Mixins::Type::ConstVolatileExact<Abstract::Type::ULong> {};
+
+	template <> struct Type<	       unsigned long long int> : Mixins::Type::Unqualified	 <Abstract::Type::ULLong> {};
+	template <> struct Type<const	       unsigned long long int> : Mixins::Type::ConstExact	 <Abstract::Type::ULLong> {};
+	template <> struct Type<      volatile unsigned long long int> : Mixins::Type::VolatileExact	 <Abstract::Type::ULLong> {};
+	template <> struct Type<const volatile unsigned long long int> : Mixins::Type::ConstVolatileExact<Abstract::Type::ULLong> {};
+
+	template <> struct Type<	       signed char> : Mixins::Type::Unqualified	      <Abstract::Type::Char> {};
+	template <> struct Type<const	       signed char> : Mixins::Type::ConstExact	      <Abstract::Type::Char> {};
+	template <> struct Type<      volatile signed char> : Mixins::Type::VolatileExact     <Abstract::Type::Char> {};
+	template <> struct Type<const volatile signed char> : Mixins::Type::ConstVolatileExact<Abstract::Type::Char> {};
+
+	template <> struct Type<	       signed short int> : Mixins::Type::Unqualified	   <Abstract::Type::Short> {};
+	template <> struct Type<const	       signed short int> : Mixins::Type::ConstExact	   <Abstract::Type::Short> {};
+	template <> struct Type<      volatile signed short int> : Mixins::Type::VolatileExact	   <Abstract::Type::Short> {};
+	template <> struct Type<const volatile signed short int> : Mixins::Type::ConstVolatileExact<Abstract::Type::Short> {};
+
+	template <> struct Type<	       signed int> : Mixins::Type::Unqualified	     <Abstract::Type::Int> {};
+	template <> struct Type<const	       signed int> : Mixins::Type::ConstExact	     <Abstract::Type::Int> {};
+	template <> struct Type<      volatile signed int> : Mixins::Type::VolatileExact     <Abstract::Type::Int> {};
+	template <> struct Type<const volatile signed int> : Mixins::Type::ConstVolatileExact<Abstract::Type::Int> {};
+
+	template <> struct Type<	       signed long int> : Mixins::Type::Unqualified	  <Abstract::Type::Long> {};
+	template <> struct Type<const	       signed long int> : Mixins::Type::ConstExact	  <Abstract::Type::Long> {};
+	template <> struct Type<      volatile signed long int> : Mixins::Type::VolatileExact	  <Abstract::Type::Long> {};
+	template <> struct Type<const volatile signed long int> : Mixins::Type::ConstVolatileExact<Abstract::Type::Long> {};
+
+	template <> struct Type<	       signed long long int> : Mixins::Type::Unqualified       <Abstract::Type::LLong> {};
+	template <> struct Type<const	       signed long long int> : Mixins::Type::ConstExact	       <Abstract::Type::LLong> {};
+	template <> struct Type<      volatile signed long long int> : Mixins::Type::VolatileExact     <Abstract::Type::LLong> {};
+	template <> struct Type<const volatile signed long long int> : Mixins::Type::ConstVolatileExact<Abstract::Type::LLong> {};
 
 #	if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
-		template <> struct Type<float> : Mixins::Type::Unqualified<Abstract::Type::Float> {};
+		template <> struct Type<	       float> : Mixins::Type::Unqualified  <Abstract::Type::Float> {};
+		template <> struct Type<const	       float> : Mixins::Type::Const	   <Abstract::Type::Float> {};
+		template <> struct Type<      volatile float> : Mixins::Type::Volatile	   <Abstract::Type::Float> {};
+		template <> struct Type<const volatile float> : Mixins::Type::ConstVolatile<Abstract::Type::Float> {};
 #	endif
 
 #	if Z_LANGUAGE_HAS_TYPE(C, DOUBLE)
-		template <> struct Type<double> : Mixins::Type::Unqualified<Abstract::Type::Double> {};
+		template <> struct Type<	       double> : Mixins::Type::Unqualified  <Abstract::Type::Double> {};
+		template <> struct Type<const	       double> : Mixins::Type::Const	    <Abstract::Type::Double> {};
+		template <> struct Type<      volatile double> : Mixins::Type::Volatile	    <Abstract::Type::Double> {};
+		template <> struct Type<const volatile double> : Mixins::Type::ConstVolatile<Abstract::Type::Double> {};
 #	endif
 
 #	if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE)
-		template <> struct Type<long double> : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
+		template <> struct Type<	       long double> : Mixins::Type::Unqualified	 <Abstract::Type::LDouble> {};
+		template <> struct Type<const	       long double> : Mixins::Type::Const	 <Abstract::Type::LDouble> {};
+		template <> struct Type<      volatile long double> : Mixins::Type::Volatile	 <Abstract::Type::LDouble> {};
+		template <> struct Type<const volatile long double> : Mixins::Type::ConstVolatile<Abstract::Type::LDouble> {};
 #	endif
-
-	template <typename T> struct Type<const T> : Mixins::Type::Const<Type<T> > {
-		typedef const typename Type<T>::to_unsigned to_unsigned;
-		typedef const typename Type<T>::to_signed   to_signed;
-	};
-
-	template <typename T> struct Type<volatile T> : Mixins::Type::Volatile<Type<T> > {
-		typedef volatile typename Type<T>::to_unsigned to_unsigned;
-		typedef volatile typename Type<T>::to_signed   to_signed;
-	};
-
-	template <typename T> struct Type<const volatile T> : Mixins::Type::ConstVolatile<Type<T> > {
-		typedef const volatile typename Type<T>::to_unsigned to_unsigned;
-		typedef const volatile typename Type<T>::to_signed   to_signed;
-	};
 
 	// MARK: - Pointers
 
-	template <typename T> struct Type<T*> : Mixins::Type::Unqualified<Abstract::Type::Pointer<T> > {};
-
-	template <typename T> struct Type<T* const	   > : Mixins::Type::Const	  <Type<T*> > {};
-	template <typename T> struct Type<T*	   volatile> : Mixins::Type::Volatile	  <Type<T*> > {};
-	template <typename T> struct Type<T* const volatile> : Mixins::Type::ConstVolatile<Type<T*> > {};
+	template <typename T> struct Type<T*		   > : Mixins::Type::Unqualified  <Abstract::Type::Pointer<T> > {};
+	template <typename T> struct Type<T* const	   > : Mixins::Type::Const	  <Abstract::Type::Pointer<T> > {};
+	template <typename T> struct Type<T*	   volatile> : Mixins::Type::Volatile	  <Abstract::Type::Pointer<T> > {};
+	template <typename T> struct Type<T* const volatile> : Mixins::Type::ConstVolatile<Abstract::Type::Pointer<T> > {};
 
 	// MARK: - References
 

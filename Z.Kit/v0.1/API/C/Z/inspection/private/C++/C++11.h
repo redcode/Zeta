@@ -35,7 +35,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_SPECIFIER_AUTO		/* auto	     */
 #define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION	/* constexpr */
 #define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION	/* noexcept  */
-#define Z_CPP_HAS_SPECIFIER_DECLARE_TYPE	/* decltype  */
+#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE	/* decltype  */
 
 /* MARK: - Operators */
 
