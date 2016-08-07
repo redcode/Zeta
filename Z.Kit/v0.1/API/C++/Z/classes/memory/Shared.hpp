@@ -12,6 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 #include <Z/macros/pointer.h>
+#include <stdio.h>
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
@@ -27,6 +28,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 				template <class ...A>
 				inline Container(A... arguments) : owner_count(0), object(arguments...) {}
+				inline ~Container()
+					{printf("~Container()\n");}
 			};
 
 			Container *container;
@@ -71,17 +74,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 
 
-		template <typename T, class ...A> T *new_shared(A...arguments)
-			{return &(new typename Shared<T>::Container(arguments...))->object;}
+		template <typename T, class ...A> Z_INLINE T *new_shared(A...arguments)
+			{
+			typename Shared<T>::Container *container =
+			new typename Shared<T>::Container(arguments...);
+
+			container->owner_count = 1;
+			return &container->object;
+			}
 
 
-		template <typename T> void delete_shared(T *object)
+		template <typename T> Z_INLINE void delete_shared(T *object)
 			{
 			delete Z_BOP
 				(typename Shared<T>::Container *, object,
 				 -Z_OFFSET_OF(typename Shared<T>::Container, object));
 			}
-
 
 	}
 
