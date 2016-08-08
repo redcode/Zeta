@@ -11,6 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 #include <Z/macros/language.hpp>
+#include <Z/traits/SelectType.hpp>
 
 namespace Zeta {
 
@@ -30,6 +31,7 @@ namespace Zeta {
 				is_integer	     = false,
 				is_flexible_array    = false,
 				is_function	     = false,
+				is_fundamental	     = false,
 				is_member_pointer    = false,
 				is_natural	     = false,
 				is_number	     = false,
@@ -48,10 +50,19 @@ namespace Zeta {
 			};
 		};
 
+		struct Void : Base {
+			enum {	is_fundamental = true,
+				is_void	       = true
+			};	
+
+			typedef void type;
+		};
+
 		struct Number : Base {
-			enum {	is_arithmetic = true,
-				is_number     = true,
-				is_value      = true
+			enum {	is_arithmetic  = true,
+				is_fundamental = true,
+				is_number      = true,
+				is_value       = true
 			};
 		};
 
@@ -74,6 +85,23 @@ namespace Zeta {
 			enum {	is_real   = true,
 				is_signed = true
 			};
+		};
+
+#		if ('\0' - 1) > 0
+			struct Character : Natural {
+#		else
+			struct Character : Integer {
+#		endif
+			enum {	bits = Z_CHARACTER_BITS,
+				size = Z_CHARACTER_SIZE
+			};
+			enum {	minimum = Z_CHARACTER_MINIMUM,
+				maximum = Z_CHARACTER_MAXIMUM
+			};
+
+			typedef char	      type;
+			typedef unsigned char to_unsigned;
+			typedef signed   char to_signed;
 		};
 
 		struct UChar : Natural {
@@ -286,24 +314,20 @@ namespace Zeta {
 
 				typedef long double type;
 			};
+
 #		endif
 
-#		if ('\0' - 1) > 0
-			struct Character : Natural {
-#		else
-			struct Character : Integer {
-#		endif
-			enum {	bits = Z_CHARACTER_BITS,
-				size = Z_CHARACTER_SIZE
-			};
-			enum {	minimum = Z_CHARACTER_MINIMUM,
-				maximum = Z_CHARACTER_MAXIMUM
+#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+
+			struct NullPointer : Base {
+				enum {	is_fundamental	= true,
+					is_null_pointer = true
+				};	
+
+				typedef decltype(nullptr) type;
 			};
 
-			typedef char	      type;
-			typedef unsigned char to_unsigned;
-			typedef signed   char to_signed;
-		};
+#		endif
 
 		template <typename T> struct Pointer : Base {
 			enum {	is_pointer = true,
@@ -492,92 +516,43 @@ namespace Zeta {
 
 	// MARK: - void
 
-	template <> struct Type<void> : Abstract::Type::Base {enum {is_void = true};};
+	template <> struct Type<void> : Mixins::Type::Unqualified<Abstract::Type::Void> {};
 
 	// MARK: - Numbers
 
-	template <> struct Type<	       char> : Mixins::Type::Unqualified       <Abstract::Type::Character> {};
-	template <> struct Type<const	       char> : Mixins::Type::ConstExact	       <Abstract::Type::Character> {};
-	template <> struct Type<      volatile char> : Mixins::Type::VolatileExact     <Abstract::Type::Character> {};
-	template <> struct Type<const volatile char> : Mixins::Type::ConstVolatileExact<Abstract::Type::Character> {};
-
-	template <> struct Type<	       unsigned char> : Mixins::Type::Unqualified	<Abstract::Type::UChar> {};
-	template <> struct Type<const	       unsigned char> : Mixins::Type::ConstExact	<Abstract::Type::UChar> {};
-	template <> struct Type<      volatile unsigned char> : Mixins::Type::VolatileExact	<Abstract::Type::UChar> {};
-	template <> struct Type<const volatile unsigned char> : Mixins::Type::ConstVolatileExact<Abstract::Type::UChar> {};
-
-	template <> struct Type<	       unsigned short int> : Mixins::Type::Unqualified	     <Abstract::Type::UShort> {};
-	template <> struct Type<const	       unsigned short int> : Mixins::Type::ConstExact	     <Abstract::Type::UShort> {};
-	template <> struct Type<      volatile unsigned short int> : Mixins::Type::VolatileExact     <Abstract::Type::UShort> {};
-	template <> struct Type<const volatile unsigned short int> : Mixins::Type::ConstVolatileExact<Abstract::Type::UShort> {};
-
-	template <> struct Type<	       unsigned int> : Mixins::Type::Unqualified       <Abstract::Type::UInt> {};
-	template <> struct Type<const	       unsigned int> : Mixins::Type::ConstExact	       <Abstract::Type::UInt> {};
-	template <> struct Type<      volatile unsigned int> : Mixins::Type::VolatileExact     <Abstract::Type::UInt> {};
-	template <> struct Type<const volatile unsigned int> : Mixins::Type::ConstVolatileExact<Abstract::Type::UInt> {};
-
-	template <> struct Type<	       unsigned long int> : Mixins::Type::Unqualified	    <Abstract::Type::ULong> {};
-	template <> struct Type<const	       unsigned long int> : Mixins::Type::ConstExact	    <Abstract::Type::ULong> {};
-	template <> struct Type<      volatile unsigned long int> : Mixins::Type::VolatileExact	    <Abstract::Type::ULong> {};
-	template <> struct Type<const volatile unsigned long int> : Mixins::Type::ConstVolatileExact<Abstract::Type::ULong> {};
-
-	template <> struct Type<	       unsigned long long int> : Mixins::Type::Unqualified	 <Abstract::Type::ULLong> {};
-	template <> struct Type<const	       unsigned long long int> : Mixins::Type::ConstExact	 <Abstract::Type::ULLong> {};
-	template <> struct Type<      volatile unsigned long long int> : Mixins::Type::VolatileExact	 <Abstract::Type::ULLong> {};
-	template <> struct Type<const volatile unsigned long long int> : Mixins::Type::ConstVolatileExact<Abstract::Type::ULLong> {};
-
-	template <> struct Type<	       signed char> : Mixins::Type::Unqualified	      <Abstract::Type::Char> {};
-	template <> struct Type<const	       signed char> : Mixins::Type::ConstExact	      <Abstract::Type::Char> {};
-	template <> struct Type<      volatile signed char> : Mixins::Type::VolatileExact     <Abstract::Type::Char> {};
-	template <> struct Type<const volatile signed char> : Mixins::Type::ConstVolatileExact<Abstract::Type::Char> {};
-
-	template <> struct Type<	       signed short int> : Mixins::Type::Unqualified	   <Abstract::Type::Short> {};
-	template <> struct Type<const	       signed short int> : Mixins::Type::ConstExact	   <Abstract::Type::Short> {};
-	template <> struct Type<      volatile signed short int> : Mixins::Type::VolatileExact	   <Abstract::Type::Short> {};
-	template <> struct Type<const volatile signed short int> : Mixins::Type::ConstVolatileExact<Abstract::Type::Short> {};
-
-	template <> struct Type<	       signed int> : Mixins::Type::Unqualified	     <Abstract::Type::Int> {};
-	template <> struct Type<const	       signed int> : Mixins::Type::ConstExact	     <Abstract::Type::Int> {};
-	template <> struct Type<      volatile signed int> : Mixins::Type::VolatileExact     <Abstract::Type::Int> {};
-	template <> struct Type<const volatile signed int> : Mixins::Type::ConstVolatileExact<Abstract::Type::Int> {};
-
-	template <> struct Type<	       signed long int> : Mixins::Type::Unqualified	  <Abstract::Type::Long> {};
-	template <> struct Type<const	       signed long int> : Mixins::Type::ConstExact	  <Abstract::Type::Long> {};
-	template <> struct Type<      volatile signed long int> : Mixins::Type::VolatileExact	  <Abstract::Type::Long> {};
-	template <> struct Type<const volatile signed long int> : Mixins::Type::ConstVolatileExact<Abstract::Type::Long> {};
-
-	template <> struct Type<	       signed long long int> : Mixins::Type::Unqualified       <Abstract::Type::LLong> {};
-	template <> struct Type<const	       signed long long int> : Mixins::Type::ConstExact	       <Abstract::Type::LLong> {};
-	template <> struct Type<      volatile signed long long int> : Mixins::Type::VolatileExact     <Abstract::Type::LLong> {};
-	template <> struct Type<const volatile signed long long int> : Mixins::Type::ConstVolatileExact<Abstract::Type::LLong> {};
+	template <> struct Type<char		      > : Mixins::Type::Unqualified<Abstract::Type::Character> {};
+	template <> struct Type<unsigned char	      > : Mixins::Type::Unqualified<Abstract::Type::UChar    > {};
+	template <> struct Type<unsigned short int    > : Mixins::Type::Unqualified<Abstract::Type::UShort   > {};
+	template <> struct Type<unsigned int	      > : Mixins::Type::Unqualified<Abstract::Type::UInt     > {};
+	template <> struct Type<unsigned long int     > : Mixins::Type::Unqualified<Abstract::Type::ULong    > {};
+	template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong   > {};
+	template <> struct Type<signed char	      > : Mixins::Type::Unqualified<Abstract::Type::Char     > {};
+	template <> struct Type<signed short int      > : Mixins::Type::Unqualified<Abstract::Type::Short    > {};
+	template <> struct Type<signed int	      > : Mixins::Type::Unqualified<Abstract::Type::Int	     > {};
+	template <> struct Type<signed long int	      > : Mixins::Type::Unqualified<Abstract::Type::Long     > {};
+	template <> struct Type<signed long long int  > : Mixins::Type::Unqualified<Abstract::Type::LLong    > {};
 
 #	if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
-		template <> struct Type<	       float> : Mixins::Type::Unqualified  <Abstract::Type::Float> {};
-		template <> struct Type<const	       float> : Mixins::Type::Const	   <Abstract::Type::Float> {};
-		template <> struct Type<      volatile float> : Mixins::Type::Volatile	   <Abstract::Type::Float> {};
-		template <> struct Type<const volatile float> : Mixins::Type::ConstVolatile<Abstract::Type::Float> {};
+		template <> struct Type<float> : Mixins::Type::Unqualified<Abstract::Type::Float> {};
 #	endif
 
 #	if Z_LANGUAGE_HAS_TYPE(C, DOUBLE)
-		template <> struct Type<	       double> : Mixins::Type::Unqualified  <Abstract::Type::Double> {};
-		template <> struct Type<const	       double> : Mixins::Type::Const	    <Abstract::Type::Double> {};
-		template <> struct Type<      volatile double> : Mixins::Type::Volatile	    <Abstract::Type::Double> {};
-		template <> struct Type<const volatile double> : Mixins::Type::ConstVolatile<Abstract::Type::Double> {};
+		template <> struct Type<double> : Mixins::Type::Unqualified<Abstract::Type::Double> {};
 #	endif
 
 #	if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE)
-		template <> struct Type<	       long double> : Mixins::Type::Unqualified	 <Abstract::Type::LDouble> {};
-		template <> struct Type<const	       long double> : Mixins::Type::Const	 <Abstract::Type::LDouble> {};
-		template <> struct Type<      volatile long double> : Mixins::Type::Volatile	 <Abstract::Type::LDouble> {};
-		template <> struct Type<const volatile long double> : Mixins::Type::ConstVolatile<Abstract::Type::LDouble> {};
+		template <> struct Type<long double> : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
 #	endif
 
 	// MARK: - Pointers
 
-	template <typename T> struct Type<T*		   > : Mixins::Type::Unqualified  <Abstract::Type::Pointer<T> > {};
-	template <typename T> struct Type<T* const	   > : Mixins::Type::Const	  <Abstract::Type::Pointer<T> > {};
-	template <typename T> struct Type<T*	   volatile> : Mixins::Type::Volatile	  <Abstract::Type::Pointer<T> > {};
-	template <typename T> struct Type<T* const volatile> : Mixins::Type::ConstVolatile<Abstract::Type::Pointer<T> > {};
+	template <typename T> struct Type<T*> : Mixins::Type::Unqualified  <Abstract::Type::Pointer<T> > {};
+
+	// MARK: - Null pointer type
+
+#	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+		template <> struct Type<decltype(nullptr)> : Mixins::Type::Unqualified<Abstract::Type::NullPointer> {};
+#	endif
 
 	// MARK: - References
 
@@ -649,6 +624,18 @@ namespace Zeta {
 #		endif
 
 #	endif
+
+	// MARK: - Generic qualified types
+
+	template <typename T> struct Type<const T>
+	: SelectType<Type<T>::is_exact, Mixins::Type::ConstExact<Type<T> >, Mixins::Type::Const<Type<T> > >::type {};
+
+	template <typename T> struct Type<volatile T>
+	: SelectType<Type<T>::is_exact, Mixins::Type::VolatileExact<Type<T> >, Mixins::Type::Volatile<Type<T> > >::type {};
+
+	template <typename T> struct Type<const volatile T>
+	: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatileExact<Type<T> >, Mixins::Type::ConstVolatile<Type<T> > >::type {};
+
 }
 
 #endif // __Z_traits_Type_HPP__
