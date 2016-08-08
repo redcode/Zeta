@@ -628,13 +628,13 @@ namespace Zeta {
 	// MARK: - Generic qualified types
 
 	template <typename T> struct Type<const T>
-	: SelectType<Type<T>::is_exact, Mixins::Type::ConstExact<Type<T> >, Mixins::Type::Const<Type<T> > >::type {};
+	: SelectType<Type<T>::is_exact, Mixins::Type::Const<Type<T> >, Mixins::Type::ConstExact<Type<T> > >::type {};
 
 	template <typename T> struct Type<volatile T>
-	: SelectType<Type<T>::is_exact, Mixins::Type::VolatileExact<Type<T> >, Mixins::Type::Volatile<Type<T> > >::type {};
+	: SelectType<Type<T>::is_exact, Mixins::Type::Volatile<Type<T> >, Mixins::Type::VolatileExact<Type<T> > >::type {};
 
 	template <typename T> struct Type<const volatile T>
-	: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatileExact<Type<T> >, Mixins::Type::ConstVolatile<Type<T> > >::type {};
+	: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatile<Type<T> >, Mixins::Type::ConstVolatileExact<Type<T> > >::type {};
 
 }
 
