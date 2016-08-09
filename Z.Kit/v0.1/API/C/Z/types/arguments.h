@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_types_arguments_H__
 #define __Z_types_arguments_H__
 
-#include <Z/types/base.h>
+#include <Z/inspection/compiler.h>
 
 #if Z_COMPILER_HAS(VAL)
 	typedef Z_COMPILER_TYPE(VAL) ZVAL;
