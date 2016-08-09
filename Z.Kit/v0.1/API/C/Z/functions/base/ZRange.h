@@ -13,10 +13,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/value.h>
 
 
-/* MARK: - Template for natural types only */
+/* MARK: - Implementation for natural types only */
 
 
-#define Z_TEMPLATE_RANGE(Type, type)							 \
+#define Z_IMPLEMENTATION_RANGE(Type, type)						 \
 											 \
 											 \
 Z_INLINE zboolean z_range_##type##_are_equal(ZRange##Type a, ZRange##Type b)		 \
@@ -86,23 +86,23 @@ Z_INLINE zboolean z_range_##type##_contains_index(ZRange##Type object, z##type i
 #define z_range_type_contains_index(TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _contains_index)
 
 
-/* MARK: - Template implementations */
+/* MARK: - Implementation expansions */
 
 
-Z_TEMPLATE_RANGE(UInt8,  uint8 )
-Z_TEMPLATE_RANGE(UInt16, uint16)
-Z_TEMPLATE_RANGE(UInt32, uint32)
+Z_IMPLEMENTATION_RANGE(UInt8,  uint8 )
+Z_IMPLEMENTATION_RANGE(UInt16, uint16)
+Z_IMPLEMENTATION_RANGE(UInt32, uint32)
 
 #if Z_IS_AVAILABLE(UINT64)
-	Z_TEMPLATE_RANGE(UInt64, uint64)
+	Z_IMPLEMENTATION_RANGE(UInt64, uint64)
 #endif
 
 #if Z_IS_AVAILABLE(UINT128)
-	Z_TEMPLATE_RANGE(UInt128, uint128)
+	Z_IMPLEMENTATION_RANGE(UInt128, uint128)
 #endif
 
 
-/* MARK: - Default object size type definitions */
+/* MARK: - Default type definitions */
 
 
 #define z_range_are_equal      z_range_type_are_equal	  (SIZE)

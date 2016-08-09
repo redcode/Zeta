@@ -13,10 +13,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Logic operations */
 
-#define Z_POINTER_AND(pointer, value) (pointer = (void *)( (zuintptr)pointer & (value)));
-#define Z_POINTER_OR( pointer, value) (pointer = (void *)( (zuintptr)pointer | (value)));
-#define Z_POINTER_XOR(pointer, value) (pointer = (void *)( (zuintptr)pointer ^ (value)));
-#define Z_POINTER_NOT(pointer)	      (pointer = (void *)(~(zuintptr)pointer));
+#define Z_POINTER_AND(pointer, value) ((void *)( (zuintptr)pointer & (value)));
+#define Z_POINTER_OR( pointer, value) ((void *)( (zuintptr)pointer | (value)));
+#define Z_POINTER_XOR(pointer, value) ((void *)( (zuintptr)pointer ^ (value)));
+#define Z_POINTER_NOT(pointer)	      ((void *)(~(zuintptr)pointer));
 
 /* MARK: - Pointer from base + index */
 

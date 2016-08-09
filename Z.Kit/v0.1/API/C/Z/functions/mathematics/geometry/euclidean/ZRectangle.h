@@ -13,10 +13,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/Z2DValue.h>
 
 
-/* MARK: - Template */
+/* MARK: - Implementation */
 
 
-#define Z_TEMPLATE_RECTANGLE(Type, type, _)							\
+#define Z_IMPLEMENTATION_RECTANGLE(Type, type, _)						\
 												\
 												\
 Z_INLINE zboolean z_rectangle_##type##_are_equal(ZRectangle##Type a, ZRectangle##Type b)	\
@@ -591,43 +591,43 @@ Z_INLINE zboolean z_rectangle_##type##_contains_circle(						\
 #define z_rectangle_type_contains_circle(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _contains_circle	)
 
 
-/* MARK: - Template implementations */
+/* MARK: - Implementation expansions */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)
-	Z_TEMPLATE_RECTANGLE(Float16, float16, Z_FLOAT16)
+	Z_IMPLEMENTATION_RECTANGLE(Float16, float16, Z_FLOAT16)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-	Z_TEMPLATE_RECTANGLE(Float24, float24, Z_FLOAT24)
+	Z_IMPLEMENTATION_RECTANGLE(Float24, float24, Z_FLOAT24)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-	Z_TEMPLATE_RECTANGLE(Float32, float32, Z_FLOAT32)
+	Z_IMPLEMENTATION_RECTANGLE(Float32, float32, Z_FLOAT32)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-	Z_TEMPLATE_RECTANGLE(Float48, float48, Z_FLOAT48)
+	Z_IMPLEMENTATION_RECTANGLE(Float48, float48, Z_FLOAT48)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-	Z_TEMPLATE_RECTANGLE(Float64, float64, Z_FLOAT64)
+	Z_IMPLEMENTATION_RECTANGLE(Float64, float64, Z_FLOAT64)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-	Z_TEMPLATE_RECTANGLE(Float72, float72, Z_FLOAT72)
+	Z_IMPLEMENTATION_RECTANGLE(Float72, float72, Z_FLOAT72)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-	Z_TEMPLATE_RECTANGLE(Float80, float80, Z_FLOAT80)
+	Z_IMPLEMENTATION_RECTANGLE(Float80, float80, Z_FLOAT80)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-	Z_TEMPLATE_RECTANGLE(Float96, float96, Z_FLOAT96)
+	Z_IMPLEMENTATION_RECTANGLE(Float96, float96, Z_FLOAT96)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-	Z_TEMPLATE_RECTANGLE(Float128, float128, Z_FLOAT128)
+	Z_IMPLEMENTATION_RECTANGLE(Float128, float128, Z_FLOAT128)
 #endif
 
 

@@ -13,10 +13,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/Z3DValue.h>
 
 
-/* MARK: - Template */
+/* MARK: - Implementation */
 
 
-#define Z_TEMPLATE_BOX(Type, type, _)								\
+#define Z_IMPLEMENTATION_BOX(Type, type, _)							\
 												\
 												\
 Z_INLINE zboolean z_box_##type##_are_equal(ZBox##Type a, ZBox##Type b)				\
@@ -219,43 +219,43 @@ Z_INLINE zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Typ
 #define z_box_type_contains_sphere(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _contains_sphere	    )
 
 
-/* MARK: - Template implementations */
+/* MARK: - Implementation expansions */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)
-	Z_TEMPLATE_BOX(Float16, float16, Z_FLOAT16)
+	Z_IMPLEMENTATION_BOX(Float16, float16, Z_FLOAT16)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-	Z_TEMPLATE_BOX(Float24, float24, Z_FLOAT24)
+	Z_IMPLEMENTATION_BOX(Float24, float24, Z_FLOAT24)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-	Z_TEMPLATE_BOX(Float32, float32, Z_FLOAT32)
+	Z_IMPLEMENTATION_BOX(Float32, float32, Z_FLOAT32)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-	Z_TEMPLATE_BOX(Float48, float48, Z_FLOAT48)
+	Z_IMPLEMENTATION_BOX(Float48, float48, Z_FLOAT48)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-	Z_TEMPLATE_BOX(Float64, float64, Z_FLOAT64)
+	Z_IMPLEMENTATION_BOX(Float64, float64, Z_FLOAT64)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-	Z_TEMPLATE_BOX(Float72, float72, Z_FLOAT72)
+	Z_IMPLEMENTATION_BOX(Float72, float72, Z_FLOAT72)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-	Z_TEMPLATE_BOX(Float80, float80, Z_FLOAT80)
+	Z_IMPLEMENTATION_BOX(Float80, float80, Z_FLOAT80)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-	Z_TEMPLATE_BOX(Float96, float96, Z_FLOAT96)
+	Z_IMPLEMENTATION_BOX(Float96, float96, Z_FLOAT96)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-	Z_TEMPLATE_BOX(Float128, float128, Z_FLOAT128)
+	Z_IMPLEMENTATION_BOX(Float128, float128, Z_FLOAT128)
 #endif
 
 

@@ -12,10 +12,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/mathematics/geometry/euclidean/Z3DLine.h>
 
 
-/* MARK: - Template */
+/* MARK: - Implementation */
 
 
-#define Z_TEMPLATE_AABB(Type, type, _)								\
+#define Z_IMPLEMENTATION_AABB(Type, type, _)							\
 												\
 												\
 Z_INLINE zboolean z_aabb_##type##_contains(ZAABB##Type a, ZAABB##Type b)			\
@@ -176,7 +176,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #define z_aabb_type_contains_sphere(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_sphere	      )
 
 
-/* MARK: - Template implementations */
+/* MARK: - Implementation expansions */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)
@@ -185,7 +185,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #	define z_aabb_float16_is_zero	z_3d_line_float16_is_zero
 #	define z_aabb_float16_center	z_3d_line_segment_float16_center
 
-	Z_TEMPLATE_AABB(Float16, float16, Z_FLOAT16)
+	Z_IMPLEMENTATION_AABB(Float16, float16, Z_FLOAT16)
 
 #endif
 
@@ -195,7 +195,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #	define z_aabb_float24_is_zero	z_3d_line_float24_is_zero
 #	define z_aabb_float24_center	z_3d_line_segment_float24_center
 
-	Z_TEMPLATE_AABB(Float24, float24, Z_FLOAT24)
+	Z_IMPLEMENTATION_AABB(Float24, float24, Z_FLOAT24)
 
 #endif
 
@@ -205,7 +205,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #	define z_aabb_float32_is_zero	z_3d_line_float32_is_zero
 #	define z_aabb_float32_center	z_3d_line_segment_float32_center
 
-	Z_TEMPLATE_AABB(Float32, float32, Z_FLOAT32)
+	Z_IMPLEMENTATION_AABB(Float32, float32, Z_FLOAT32)
 
 #endif
 
@@ -215,7 +215,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #	define z_aabb_float48_is_zero	z_3d_line_float48_is_zero
 #	define z_aabb_float48_center	z_3d_line_segment_float48_center
 
-	Z_TEMPLATE_AABB(Float48, float48, Z_FLOAT48)
+	Z_IMPLEMENTATION_AABB(Float48, float48, Z_FLOAT48)
 
 #endif
 
@@ -225,7 +225,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #	define z_aabb_float64_is_zero	z_3d_line_float64_is_zero
 #	define z_aabb_float64_center	z_3d_line_segment_float64_center
 
-	Z_TEMPLATE_AABB(Float64, float64, Z_FLOAT64)
+	Z_IMPLEMENTATION_AABB(Float64, float64, Z_FLOAT64)
 
 #endif
 
@@ -235,7 +235,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #	define z_aabb_float72_is_zero	z_3d_line_float72_is_zero
 #	define z_aabb_float72_center	z_3d_line_segment_float72_center
 
-	Z_TEMPLATE_AABB(Float72, float72, Z_FLOAT72)
+	Z_IMPLEMENTATION_AABB(Float72, float72, Z_FLOAT72)
 
 #endif
 
@@ -245,7 +245,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #	define z_aabb_float80_is_zero	z_3d_line_float80_is_zero
 #	define z_aabb_float80_center	z_3d_line_segment_float80_center
 
-	Z_TEMPLATE_AABB(Float80, float80, Z_FLOAT80)
+	Z_IMPLEMENTATION_AABB(Float80, float80, Z_FLOAT80)
 
 #endif
 
@@ -255,7 +255,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #	define z_aabb_float96_is_zero	z_3d_line_float96_is_zero
 #	define z_aabb_float96_center	z_3d_line_segment_float96_center
 
-	Z_TEMPLATE_AABB(Float96, float96, Z_FLOAT96)
+	Z_IMPLEMENTATION_AABB(Float96, float96, Z_FLOAT96)
 
 #endif
 
@@ -265,7 +265,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 #	define z_aabb_float128_is_zero	 z_3d_line_float128_is_zero
 #	define z_aabb_float128_center	 z_3d_line_segment_float128_center
 
-	Z_TEMPLATE_AABB(Float128, float128, Z_FLOAT128)
+	Z_IMPLEMENTATION_AABB(Float128, float128, Z_FLOAT128)
 
 #endif
 

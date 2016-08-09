@@ -42,7 +42,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				}
 
 
-			inline Shared<T>() : owned(nullptr) {}
+			inline Shared<T>() : owned(NULL) {}
 
 
 			inline Shared<T>(const Shared<T> &shared)
@@ -77,9 +77,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				}
 
 
-			inline T* operator->()	  {return &owned->object;}
-			inline T* get()		  {return &owned->object;}
-			inline Size owner_count() {return owned->owner_count;}
+			inline Boolean operator ==(const Shared<T> &shared) const {return owned == shared.owned;}
+			inline Boolean operator !=(const Shared<T> &shared) const {return owned != shared.owned;}
+			inline T*      operator ->()			    const {return &owned->object;}
+
+			inline T*   get	       () const {return &owned->object;}
+			inline Size owner_count() const {return owned->owner_count;}
 		};
 
 
@@ -99,7 +102,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <typename T, class ...A>
 		Z_INLINE Shared<T> shared_make(A&&...arguments)
 			{return Shared<T>::make(arguments...);}
-
 	}
 
 #endif

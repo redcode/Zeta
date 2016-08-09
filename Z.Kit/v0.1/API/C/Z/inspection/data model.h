@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_inspection_data_model_H__
 
 #include <Z/keys/data model.h>
-#include <Z/macros/preprocessor.h>
+#include <Z/macros/pasting.h>
 #include <Z/macros/inspection.h>
 
 #define Z_INSPECTING_DATA_MODEL

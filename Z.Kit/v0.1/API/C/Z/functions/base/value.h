@@ -12,10 +12,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/value.h>
 
 
-/* MARK: - Template for natural, integer and real types */
+/* MARK: - Implementation for natural, integer and real types */
 
 
-#define Z_TEMPLATE_NATURAL(type)						   \
+#define Z_IMPLEMENTATION_NATURAL(type)						   \
 										   \
 										   \
 Z_INLINE void z_##type##_swap(void *a, void *b)					   \
@@ -45,10 +45,10 @@ Z_INLINE z##type z_##type##_clamp(z##type value, z##type minimum, z##type maximu
 #define z_type_clamp(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp  )
 
 
-/* MARK: - Template for integer and real types */
+/* MARK: - Implementation for integer and real types */
 
 
-#define Z_TEMPLATE_INTEGER(type)				 \
+#define Z_IMPLEMENTATION_INTEGER(type)				 \
 								 \
 Z_INLINE z##type z_##type##_absolute(z##type value)		 \
 	{return value < (z##type)0 ? -value : value;}		 \
@@ -61,10 +61,10 @@ Z_INLINE z##type z_##type##_sign(z##type value)			 \
 #define z_type_sign(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign	)
 
 
-/* MARK: - Template for real types only */
+/* MARK: - Implementation for real types only */
 
 
-#define Z_TEMPLATE_REAL(type, _, epsilon, infinity)				\
+#define Z_IMPLEMENTATION_REAL(type, _, epsilon, infinity)			\
 										\
 										\
 Z_INLINE zboolean z_##type##_are_almost_equal(z##type a, z##type b)		\
@@ -138,10 +138,10 @@ Z_INLINE z##type z_##type##_clamp_01(z##type value)				\
 #define z_type_clamp_01(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp_01	)
 
 
-/* MARK: - Templates for bit operations */
+/* MARK: - Implementations for bit operations */
 
 
-#define Z_TEMPLATE_VALUE_REVERSE(export, prefix, type, bits, level)  \
+#define Z_IMPLEMENTATION_VALUE_REVERSE(export, prefix, type, bits, level)  \
 export z##type prefix##type##_reverse_in_##level##bit(z##type value) \
 	{return Z_##bits##BIT_REVERSE_IN_##level##BIT(value);}
 
@@ -149,7 +149,7 @@ export z##type prefix##type##_reverse_in_##level##bit(z##type value) \
 #define z_type_reverse(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reverse_in_8bit)
 
 
-#define Z_TEMPLATE_VALUE_ROTATE(export, prefix, type, bits)		   \
+#define Z_IMPLEMENTATION_VALUE_ROTATE(export, prefix, type, bits)		   \
 									   \
 export z##type prefix##type##_rotate_left(z##type value, zuint rotation)  \
 	{return Z_##bits##BIT_ROTATE_LEFT(value, rotation);}		   \
@@ -165,11 +165,11 @@ export z##type prefix##type##_rotate_right(z##type value, zuint rotation) \
 /* MARK: - uint8 */
 
 
-Z_TEMPLATE_NATURAL(uint8)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 1)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 2)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 4)
-Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, uint8, 8)
+Z_IMPLEMENTATION_NATURAL(uint8)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 4)
+Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, uint8, 8)
 
 #define z_uint8_reverse Z_SAME
 
@@ -298,12 +298,12 @@ Z_INLINE zboolean z_uint8_multiplication_overflow_4(zuint8 a, zuint8 b, zuint8 c
 /* MARK: - uint16 */
 
 
-Z_TEMPLATE_NATURAL(uint16)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 1)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 2)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 4)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 8)
-Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, uint16, 16)
+Z_IMPLEMENTATION_NATURAL(uint16)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 4)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 8)
+Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, uint16, 16)
 
 #define z_uint16_reverse z_uint16_reverse_in_8bit
 
@@ -464,13 +464,13 @@ Z_INLINE zboolean z_uint16_multiplication_overflow_4(zuint16 a, zuint16 b, zuint
 /* MARK: - uint32 */
 
 
-Z_TEMPLATE_NATURAL(uint32)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  1)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  2)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  4)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  8)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint32, 32, 16)
-Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, uint32, 32)
+Z_IMPLEMENTATION_NATURAL(uint32)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  1)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  2)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  4)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  8)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint32, 32, 16)
+Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, uint32, 32)
 
 #define z_uint32_reverse z_uint32_reverse_in_8bit
 
@@ -638,14 +638,14 @@ Z_INLINE zboolean z_uint32_multiplication_overflow_4(zuint32 a, zuint32 b, zuint
 
 #if Z_IS_AVAILABLE(UINT64)
 
-	Z_TEMPLATE_NATURAL(uint64)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  1)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  2)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  4)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  8)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64, 16)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint64, 64, 32)
-	Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, uint64, 64)
+	Z_IMPLEMENTATION_NATURAL(uint64)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64, 32)
+	Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, uint64, 64)
 
 #	define z_uint64_reverse z_uint64_reverse_in_8bit
 
@@ -827,15 +827,15 @@ Z_INLINE zboolean z_uint32_multiplication_overflow_4(zuint32 a, zuint32 b, zuint
 
 #if Z_IS_AVAILABLE(UINT128)
 
-	Z_TEMPLATE_NATURAL(uint128)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  1)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  2)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  4)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  8)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 16)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 32)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 64)
-	Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, uint128, 128)
+	Z_IMPLEMENTATION_NATURAL(uint128)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 32)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 64)
+	Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, uint128, 128)
 
 #	define z_uint128_reverse z_uint128_reverse_in_8bit
 
@@ -1004,12 +1004,12 @@ Z_INLINE zboolean z_uint32_multiplication_overflow_4(zuint32 a, zuint32 b, zuint
 /* MARK: - int8 */
 
 
-Z_TEMPLATE_NATURAL(int8)
-Z_TEMPLATE_INTEGER(int8)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 1)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 2)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 4)
-Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, int8, 8)
+Z_IMPLEMENTATION_NATURAL(int8)
+Z_IMPLEMENTATION_INTEGER(int8)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 4)
+Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, int8, 8)
 
 #define z_int8_reverse Z_SAME
 
@@ -1143,13 +1143,13 @@ zboolean z_int8_multiplication_overflow_4(zint8 a, zint8 b, zint8 c, zint8 d)
 /* MARK: - int16 */
 
 
-Z_TEMPLATE_NATURAL(int16)
-Z_TEMPLATE_INTEGER(int16)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 1)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 2)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 4)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 8)
-Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, int16, 16)
+Z_IMPLEMENTATION_NATURAL(int16)
+Z_IMPLEMENTATION_INTEGER(int16)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 4)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 8)
+Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, int16, 16)
 
 #define z_int16_reverse z_int16_reverse_in_8bit
 
@@ -1295,14 +1295,14 @@ zboolean z_int16_multiplication_overflow_4(zint16 a, zint16 b, zint16 c, zint16 
 /* MARK: - int32 */
 
 
-Z_TEMPLATE_NATURAL(int32)
-Z_TEMPLATE_INTEGER(int32)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  1)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  2)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  4)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  8)
-Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int32, 32, 16)
-Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, int32, 32)
+Z_IMPLEMENTATION_NATURAL(int32)
+Z_IMPLEMENTATION_INTEGER(int32)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  1)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  2)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  4)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  8)
+Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int32, 32, 16)
+Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, int32, 32)
 
 #define z_int32_reverse z_int32_reverse_in_8bit
 
@@ -1450,15 +1450,15 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 #if Z_IS_AVAILABLE(INT64)
 
-	Z_TEMPLATE_NATURAL(int64)
-	Z_TEMPLATE_INTEGER(int64)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  1)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  2)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  4)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  8)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64, 16)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int64, 64, 32)
-	Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, int64, 64)
+	Z_IMPLEMENTATION_NATURAL(int64)
+	Z_IMPLEMENTATION_INTEGER(int64)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64, 32)
+	Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, int64, 64)
 
 #	define z_int64_reverse z_int64_reverse_in_8bit
 
@@ -1608,16 +1608,16 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 #if Z_IS_AVAILABLE(INT128)
 
-	Z_TEMPLATE_NATURAL(int128)
-	Z_TEMPLATE_INTEGER(int128)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  1)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  2)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  4)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  8)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 16)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 32)
-	Z_TEMPLATE_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 64)
-	Z_TEMPLATE_VALUE_ROTATE (Z_INLINE, z_, int128, 128)
+	Z_IMPLEMENTATION_NATURAL(int128)
+	Z_IMPLEMENTATION_INTEGER(int128)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 32)
+	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 64)
+	Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, int128, 128)
 
 #	define z_int128_reverse z_int128_reverse_in_8bit
 
@@ -1766,9 +1766,9 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 
 #if Z_IS_AVAILABLE(FLOAT16)
-	Z_TEMPLATE_NATURAL(float16)
-	Z_TEMPLATE_INTEGER(float16)
-	Z_TEMPLATE_REAL(float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
+	Z_IMPLEMENTATION_NATURAL(float16)
+	Z_IMPLEMENTATION_INTEGER(float16)
+	Z_IMPLEMENTATION_REAL(float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
 #endif
 
 
@@ -1776,9 +1776,9 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 
 #if Z_IS_AVAILABLE(FLOAT24)
-	Z_TEMPLATE_NATURAL(float24)
-	Z_TEMPLATE_INTEGER(float24)
-	Z_TEMPLATE_REAL(float24, Z_FLOAT24, Z_FLOAT24_EPSILON, Z_FLOAT24_INFINITY)
+	Z_IMPLEMENTATION_NATURAL(float24)
+	Z_IMPLEMENTATION_INTEGER(float24)
+	Z_IMPLEMENTATION_REAL(float24, Z_FLOAT24, Z_FLOAT24_EPSILON, Z_FLOAT24_INFINITY)
 #endif
 
 
@@ -1786,17 +1786,17 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 
 #if Z_IS_AVAILABLE(FLOAT32)
-	Z_TEMPLATE_NATURAL(float32)
-	Z_TEMPLATE_INTEGER(float32)
-	Z_TEMPLATE_REAL(float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
+	Z_IMPLEMENTATION_NATURAL(float32)
+	Z_IMPLEMENTATION_INTEGER(float32)
+	Z_IMPLEMENTATION_REAL(float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
 #endif
 
 /* MARK: - float48 */
 
 #if Z_IS_AVAILABLE(FLOAT48)
-	Z_TEMPLATE_NATURAL(float48)
-	Z_TEMPLATE_INTEGER(float48)
-	Z_TEMPLATE_REAL(float48, Z_FLOAT48, Z_FLOAT48_EPSILON, Z_FLOAT48_INFINITY)
+	Z_IMPLEMENTATION_NATURAL(float48)
+	Z_IMPLEMENTATION_INTEGER(float48)
+	Z_IMPLEMENTATION_REAL(float48, Z_FLOAT48, Z_FLOAT48_EPSILON, Z_FLOAT48_INFINITY)
 #endif
 
 
@@ -1804,9 +1804,9 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 
 #if Z_IS_AVAILABLE(FLOAT64)
-	Z_TEMPLATE_NATURAL(float64)
-	Z_TEMPLATE_INTEGER(float64)
-	Z_TEMPLATE_REAL(float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
+	Z_IMPLEMENTATION_NATURAL(float64)
+	Z_IMPLEMENTATION_INTEGER(float64)
+	Z_IMPLEMENTATION_REAL(float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
 #endif
 
 
@@ -1814,9 +1814,9 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 
 #if Z_IS_AVAILABLE(FLOAT72)
-	Z_TEMPLATE_NATURAL(float72)
-	Z_TEMPLATE_INTEGER(float72)
-	Z_TEMPLATE_REAL(float72, Z_FLOAT72, Z_FLOAT72_EPSILON, Z_FLOAT72_INFINITY)
+	Z_IMPLEMENTATION_NATURAL(float72)
+	Z_IMPLEMENTATION_INTEGER(float72)
+	Z_IMPLEMENTATION_REAL(float72, Z_FLOAT72, Z_FLOAT72_EPSILON, Z_FLOAT72_INFINITY)
 #endif
 
 
@@ -1824,9 +1824,9 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 
 #if Z_IS_AVAILABLE(FLOAT80)
-	Z_TEMPLATE_NATURAL(float80)
-	Z_TEMPLATE_INTEGER(float80)
-	Z_TEMPLATE_REAL(float80, Z_FLOAT80, Z_FLOAT80_EPSILON, Z_FLOAT80_INFINITY)
+	Z_IMPLEMENTATION_NATURAL(float80)
+	Z_IMPLEMENTATION_INTEGER(float80)
+	Z_IMPLEMENTATION_REAL(float80, Z_FLOAT80, Z_FLOAT80_EPSILON, Z_FLOAT80_INFINITY)
 #endif
 
 
@@ -1834,11 +1834,9 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 
 #if Z_IS_AVAILABLE(FLOAT96)
-
-	Z_TEMPLATE_NATURAL(float96)
-	Z_TEMPLATE_INTEGER(float96)
-	Z_TEMPLATE_REAL(float96, Z_FLOAT96, Z_FLOAT96_EPSILON, Z_FLOAT96_INFINITY)
-
+	Z_IMPLEMENTATION_NATURAL(float96)
+	Z_IMPLEMENTATION_INTEGER(float96)
+	Z_IMPLEMENTATION_REAL(float96, Z_FLOAT96, Z_FLOAT96_EPSILON, Z_FLOAT96_INFINITY)
 #endif
 
 
@@ -1846,9 +1844,9 @@ zboolean z_int32_multiplication_overflow_4(zint32 a, zint32 b, zint32 c, zint32 
 
 
 #if Z_IS_AVAILABLE(FLOAT128)
-	Z_TEMPLATE_NATURAL(float128)
-	Z_TEMPLATE_INTEGER(float128)
-	Z_TEMPLATE_REAL(float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
+	Z_IMPLEMENTATION_NATURAL(float128)
+	Z_IMPLEMENTATION_INTEGER(float128)
+	Z_IMPLEMENTATION_REAL(float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
 #endif
 
 

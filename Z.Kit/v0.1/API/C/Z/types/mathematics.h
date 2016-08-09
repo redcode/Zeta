@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Euclidean geometry */
 
-#define Z_TEMPLATE_EUCLIDEAN_GEOMETRY_TYPES(Type, type)		     \
+#define Z_TYPES_EUCLIDEAN_GEOMETRY(Type, type)			     \
 typedef struct {Z2D##Type a, b;}		   Z2DLine##Type;    \
 typedef struct {Z3D##Type a, b;}		   Z3DLine##Type;    \
 typedef struct {Z2D##Type point; z##type angle;}   Z2DRay##Type;     \
@@ -39,39 +39,39 @@ typedef struct {Z3D##Type normal; z##type offset;} ZPlane##Type;
 #define ZPlaneType(    TYPE) Z_INSERT_##TYPE##_FixedType(ZPlane,    )
 
 #if Z_IS_AVAILABLE(FLOAT16)
-	Z_TEMPLATE_EUCLIDEAN_GEOMETRY_TYPES(Float16, float16)
+	Z_TYPES_EUCLIDEAN_GEOMETRY(Float16, float16)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-	Z_TEMPLATE_EUCLIDEAN_GEOMETRY_TYPES(Float24, float24)
+	Z_TYPES_EUCLIDEAN_GEOMETRY(Float24, float24)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-	Z_TEMPLATE_EUCLIDEAN_GEOMETRY_TYPES(Float32, float32)
+	Z_TYPES_EUCLIDEAN_GEOMETRY(Float32, float32)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-	Z_TEMPLATE_EUCLIDEAN_GEOMETRY_TYPES(Float48, float48)
+	Z_TYPES_EUCLIDEAN_GEOMETRY(Float48, float48)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-	Z_TEMPLATE_EUCLIDEAN_GEOMETRY_TYPES(Float64, float64)
+	Z_TYPES_EUCLIDEAN_GEOMETRY(Float64, float64)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-	Z_TEMPLATE_EUCLIDEAN_GEOMETRY_TYPES(Float72, float72)
+	Z_TYPES_EUCLIDEAN_GEOMETRY(Float72, float72)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-	Z_TEMPLATE_EUCLIDEAN_GEOMETRY_TYPES(Float80, float80)
+	Z_TYPES_EUCLIDEAN_GEOMETRY(Float80, float80)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-	Z_TEMPLATE_EUCLIDEAN_GEOMETRY_TYPES(Float96, float96)
+	Z_TYPES_EUCLIDEAN_GEOMETRY(Float96, float96)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-	Z_TEMPLATE_EUCLIDEAN_GEOMETRY_TYPES(Float128, float128)
+	Z_TYPES_EUCLIDEAN_GEOMETRY(Float128, float128)
 #endif
 
 /* MARK: - Set theory */

@@ -14,10 +14,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/constants/numbers.h>
 
 
-/* MARK: - Template */
+/* MARK: - Implementation */
 
 
-#define Z_TEMPLATE_CIRCLE(Type, type, _)							\
+#define Z_IMPLEMENTATION_CIRCLE(Type, type, _)							\
 												\
 												\
 Z_INLINE zboolean z_circle_##type##_are_equal(ZCircle##Type a, ZCircle##Type b)			\
@@ -53,43 +53,43 @@ Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object
 #define z_circle_type_outer_rectangle(TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _outer_rectangle)
 
 
-/* MARK: - Template implementations */
+/* MARK: - Implementation expansions */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)
-	Z_TEMPLATE_CIRCLE(Float16, float16, Z_FLOAT16)
+	Z_IMPLEMENTATION_CIRCLE(Float16, float16, Z_FLOAT16)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-	Z_TEMPLATE_CIRCLE(Float24, float24, Z_FLOAT24)
+	Z_IMPLEMENTATION_CIRCLE(Float24, float24, Z_FLOAT24)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-	Z_TEMPLATE_CIRCLE(Float32, float32, Z_FLOAT32)
+	Z_IMPLEMENTATION_CIRCLE(Float32, float32, Z_FLOAT32)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-	Z_TEMPLATE_CIRCLE(Float48, float48, Z_FLOAT48)
+	Z_IMPLEMENTATION_CIRCLE(Float48, float48, Z_FLOAT48)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-	Z_TEMPLATE_CIRCLE(Float64, float64, Z_FLOAT64)
+	Z_IMPLEMENTATION_CIRCLE(Float64, float64, Z_FLOAT64)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-	Z_TEMPLATE_CIRCLE(Float72, float72, Z_FLOAT72)
+	Z_IMPLEMENTATION_CIRCLE(Float72, float72, Z_FLOAT72)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-	Z_TEMPLATE_CIRCLE(Float80, float80, Z_FLOAT80)
+	Z_IMPLEMENTATION_CIRCLE(Float80, float80, Z_FLOAT80)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-	Z_TEMPLATE_CIRCLE(Float96, float96, Z_FLOAT96)
+	Z_IMPLEMENTATION_CIRCLE(Float96, float96, Z_FLOAT96)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-	Z_TEMPLATE_CIRCLE(Float128, float128, Z_FLOAT128)
+	Z_IMPLEMENTATION_CIRCLE(Float128, float128, Z_FLOAT128)
 #endif
 
 

@@ -1,4 +1,4 @@
-/* Z Kit C++ API - macros/type selector.hpp
+ /* Z Kit C++ API - macros/type selector.hpp
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -8,6 +8,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef __Z_macros_type_selector_HPP__
 #define __Z_macros_type_selector_HPP__
+
+template <typename T> struct NumberTypeIndex {};
+template <> struct NumberTypeIndex<unsigned char	 > {enum {value = 0};};
+template <> struct NumberTypeIndex<unsigned short int    > {enum {value = 1};};
+template <> struct NumberTypeIndex<unsigned int		 > {enum {value = 2};};
+template <> struct NumberTypeIndex<unsigned long int	 > {enum {value = 3};};
+template <> struct NumberTypeIndex<unsigned long long int> {enum {value = 4};};
+template <> struct NumberTypeIndex<signed char		 > {enum {value = 5};};
+template <> struct NumberTypeIndex<signed short int	 > {enum {value = 6};};
+template <> struct NumberTypeIndex<signed int		 > {enum {value = 7};};
+template <> struct NumberTypeIndex<signed long int	 > {enum {value = 8};};
+template <> struct NumberTypeIndex<signed long long int	 > {enum {value = 9};};
+template <> struct NumberTypeIndex<float		 > {enum {value = 10};};
+template <> struct NumberTypeIndex<double		 > {enum {value = 11};};
+template <> struct NumberTypeIndex<long double		 > {enum {value = 12};};
+
+
 
 #define Z_TYPE_SELECTOR_NATURAL(name, type_macro)				    \
 template <typename T> struct name {};						    \

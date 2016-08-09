@@ -77,7 +77,7 @@ typedef zboolean (* ZValidateContextIndexAndData)(void *context, zsize index, vo
 typedef zboolean (* ZValidateIndex		)(		 zsize index		);
 typedef zboolean (* ZValidateIndexAndData	)(		 zsize index, void *data);
 
-#define Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Type, pointer_type, value)							\
+#define Z_TYPES_GENERIC_FUNCTIONS(Type, pointer_type, value)								\
 															\
 typedef int (* ZCompare##Type	       )(pointer_type a, pointer_type b);						\
 typedef int (* ZCompare##Type##WithData)(pointer_type a, pointer_type b, void *data);					\
@@ -137,67 +137,67 @@ typedef zboolean (* ZValidate##Type##AndData		)(			      value, void *data);
 #define ZValidateType(			 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,			    )
 #define ZValidateTypeAndData(		 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,		     AndData)
 
-Z_TEMPLATE_GENERIC_FUNCTION_TYPES(UInt8,  zuint8*,  zuint8  value)
-Z_TEMPLATE_GENERIC_FUNCTION_TYPES(UInt16, zuint16*, zuint16 value)
-Z_TEMPLATE_GENERIC_FUNCTION_TYPES(UInt32, zuint32*, zuint32 value)
+Z_TYPES_GENERIC_FUNCTIONS(UInt8,  zuint8*,  zuint8  value)
+Z_TYPES_GENERIC_FUNCTIONS(UInt16, zuint16*, zuint16 value)
+Z_TYPES_GENERIC_FUNCTIONS(UInt32, zuint32*, zuint32 value)
 
 #if Z_IS_AVAILABLE(UINT64)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(UInt64, zuint64*, zuint64 value)
+	Z_TYPES_GENERIC_FUNCTIONS(UInt64, zuint64*, zuint64 value)
 #endif
 
 #if Z_IS_AVAILABLE(UINT128)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(UInt128, zuint128*, zuint128 value)
+	Z_TYPES_GENERIC_FUNCTIONS(UInt128, zuint128*, zuint128 value)
 #endif
 
-Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Int8,  zint8*,  zint8  value)
-Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Int16, zint16*, zint16 value)
-Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Int32, zint32*, zint32 value)
+Z_TYPES_GENERIC_FUNCTIONS(Int8,  zint8*,  zint8  value)
+Z_TYPES_GENERIC_FUNCTIONS(Int16, zint16*, zint16 value)
+Z_TYPES_GENERIC_FUNCTIONS(Int32, zint32*, zint32 value)
 
 #if Z_IS_AVAILABLE(INT64)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Int64, zint64*, zint64 value)
+	Z_TYPES_GENERIC_FUNCTIONS(Int64, zint64*, zint64 value)
 #endif
 
 #if Z_IS_AVAILABLE(INT128)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Int128, zint128*, zint128 value)
+	Z_TYPES_GENERIC_FUNCTIONS(Int128, zint128*, zint128 value)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT16)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Float16, zfloat16*, zfloat16 value)
+	Z_TYPES_GENERIC_FUNCTIONS(Float16, zfloat16*, zfloat16 value)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Float24, zfloat24*, zfloat24 value)
+	Z_TYPES_GENERIC_FUNCTIONS(Float24, zfloat24*, zfloat24 value)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Float32, zfloat32*, zfloat32 value)
+	Z_TYPES_GENERIC_FUNCTIONS(Float32, zfloat32*, zfloat32 value)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Float48, zfloat48*, zfloat48 value)
+	Z_TYPES_GENERIC_FUNCTIONS(Float48, zfloat48*, zfloat48 value)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Float64, zfloat64*, zfloat64 value)
+	Z_TYPES_GENERIC_FUNCTIONS(Float64, zfloat64*, zfloat64 value)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Float72, zfloat72*, zfloat72 value)
+	Z_TYPES_GENERIC_FUNCTIONS(Float72, zfloat72*, zfloat72 value)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Float80, zfloat80*, zfloat80 value)
+	Z_TYPES_GENERIC_FUNCTIONS(Float80, zfloat80*, zfloat80 value)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Float96, zfloat96*, zfloat96 value)
+	Z_TYPES_GENERIC_FUNCTIONS(Float96, zfloat96*, zfloat96 value)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-	Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Float128, zfloat128*, zfloat128 value)
+	Z_TYPES_GENERIC_FUNCTIONS(Float128, zfloat128*, zfloat128 value)
 #endif
 
-Z_TEMPLATE_GENERIC_FUNCTION_TYPES(Pointer, ZPointer, void *pointer)
+Z_TYPES_GENERIC_FUNCTIONS(Pointer, ZPointer, void *pointer)
 
 typedef int (* ZCompare8Bit	     )(Z8Bit   a, Z8Bit   b	       );
 typedef int (* ZCompare8BitWithData  )(Z8Bit   a, Z8Bit   b, void *data);

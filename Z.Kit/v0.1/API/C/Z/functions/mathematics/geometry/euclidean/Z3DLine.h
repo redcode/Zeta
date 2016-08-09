@@ -13,10 +13,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/Z3DValue.h>
 
 
-/* MARK: - Templates */
+/* MARK: - Implementations */
 
 
-#define Z_TEMPLATE_3D_LINE(Type, type)							  \
+#define Z_IMPLEMENTATION_3D_LINE(Type, type)						  \
 											  \
 											  \
 Z_INLINE zboolean z_3d_line_##type##_are_equal(Z3DLine##Type a, Z3DLine##Type b)	  \
@@ -48,7 +48,7 @@ Z_INLINE Z3DLine##Type z_3d_line_##type##_reverse(Z3DLine##Type object)			  \
 #define z_3d_line_type_reverse(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_, _reverse	  )
 
 
-#define Z_TEMPLATE_3D_LINE_SEGMENT(Type, type)						\
+#define Z_IMPLEMENTATION_3D_LINE_SEGMENT(Type, type)					\
 											\
 											\
 Z_INLINE Z3D##Type z_3d_line_segment_##type##_center(Z3DLine##Type object)		\
@@ -63,52 +63,52 @@ Z_INLINE Z3D##Type z_3d_line_segment_##type##_lerp(Z3DLine##Type object, z##type
 #define z_3d_line_segment_type_lerp(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_segment_, _lerp  )
 
 
-/* MARK: - Template implementations */
+/* MARK: - Implementation expansions */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)
-	Z_TEMPLATE_3D_LINE	  (Float16, float16)
-	Z_TEMPLATE_3D_LINE_SEGMENT(Float16, float16)
+	Z_IMPLEMENTATION_3D_LINE	(Float16, float16)
+	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float16, float16)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT24)
-	Z_TEMPLATE_3D_LINE	  (Float24, float24)
-	Z_TEMPLATE_3D_LINE_SEGMENT(Float24, float24)
+	Z_IMPLEMENTATION_3D_LINE	(Float24, float24)
+	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float24, float24)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT32)
-	Z_TEMPLATE_3D_LINE	  (Float32, float32)
-	Z_TEMPLATE_3D_LINE_SEGMENT(Float32, float32)
+	Z_IMPLEMENTATION_3D_LINE	(Float32, float32)
+	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float32, float32)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT48)
-	Z_TEMPLATE_3D_LINE	  (Float48, float48)
-	Z_TEMPLATE_3D_LINE_SEGMENT(Float48, float48)
+	Z_IMPLEMENTATION_3D_LINE	(Float48, float48)
+	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float48, float48)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT64)
-	Z_TEMPLATE_3D_LINE	  (Float64, float64)
-	Z_TEMPLATE_3D_LINE_SEGMENT(Float64, float64)
+	Z_IMPLEMENTATION_3D_LINE	(Float64, float64)
+	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float64, float64)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT72)
-	Z_TEMPLATE_3D_LINE	  (Float72, float72)
-	Z_TEMPLATE_3D_LINE_SEGMENT(Float72, float72)
+	Z_IMPLEMENTATION_3D_LINE	(Float72, float72)
+	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float72, float72)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT80)
-	Z_TEMPLATE_3D_LINE	  (Float80, float80)
-	Z_TEMPLATE_3D_LINE_SEGMENT(Float80, float80)
+	Z_IMPLEMENTATION_3D_LINE	(Float80, float80)
+	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float80, float80)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT96)
-	Z_TEMPLATE_3D_LINE	  (Float96, float96)
-	Z_TEMPLATE_3D_LINE_SEGMENT(Float96, float96)
+	Z_IMPLEMENTATION_3D_LINE	(Float96, float96)
+	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float96, float96)
 #endif
 
 #if Z_IS_AVAILABLE(FLOAT128)
-	Z_TEMPLATE_3D_LINE	  (Float128, float128)
-	Z_TEMPLATE_3D_LINE_SEGMENT(Float128, float128)
+	Z_IMPLEMENTATION_3D_LINE	(Float128, float128)
+	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float128, float128)
 #endif
 
 

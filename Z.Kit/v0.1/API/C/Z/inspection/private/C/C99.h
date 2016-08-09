@@ -35,7 +35,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Types */
 
-#define Z_C_HAS_TYPE_LLONG /* [signed | unsigned] long long [int] */
+#define Z_C_HAS_TYPE_ULLONG /* unsigned long long [int] */
+#define Z_C_HAS_TYPE_LLONG  /* [signed] long long [int] */
 
 /* MARK: - Type qualifiers */
 

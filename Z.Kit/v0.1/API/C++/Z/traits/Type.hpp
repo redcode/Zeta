@@ -137,6 +137,8 @@ namespace Zeta {
 			typedef signed	 int to_signed;
 		};
 
+
+
 		struct ULong : Natural {
 			enum {	bits = Z_ULONG_BITS,
 				size = Z_ULONG_SIZE
@@ -145,19 +147,27 @@ namespace Zeta {
 
 			typedef unsigned long int type;
 			typedef unsigned long int to_unsigned;
-			typedef signed	 long int to_signed;
+			typedef signed long int to_signed;
+
 		};
 
-		struct ULLong : Natural {
-			enum {	bits = Z_ULLONG_BITS,
-				size = Z_ULLONG_SIZE
+#		if Z_LANGUAGE_HAS_TYPE(C, ULLONG)
+
+			struct ULLong : Natural {
+				enum {	bits = Z_ULLONG_BITS,
+					size = Z_ULLONG_SIZE
+				};
+				enum {maximum = Z_ULLONG_MAXIMUM};
+
+				typedef unsigned long long int type;
+				typedef unsigned long long int to_unsigned;
+
+#				if Z_LANGUAGE_HAS_TYPE(C, LLONG)
+					typedef signed long long int to_signed;
+#				endif
 			};
-			enum {maximum = Z_ULLONG_MAXIMUM};
 
-			typedef unsigned long long int type;
-			typedef unsigned long long int to_unsigned;
-			typedef signed	 long long int to_signed;
-		};
+#		endif
 
 		struct Char : Integer {
 			enum {	bits = Z_CHAR_BITS,
@@ -211,18 +221,25 @@ namespace Zeta {
 			typedef signed	 long int to_signed;
 		};
 
-		struct LLong : Integer {
-			enum {	bits = Z_LLONG_BITS,
-				size = Z_LLONG_SIZE
-			};
-			enum {	minimum = Z_LLONG_MINIMUM,
-				maximum = Z_LLONG_MAXIMUM
+#		if Z_LANGUAGE_HAS_TYPE(C, LLONG)
+
+			struct LLong : Integer {
+				enum {	bits = Z_LLONG_BITS,
+					size = Z_LLONG_SIZE
+				};
+				enum {	minimum = Z_LLONG_MINIMUM,
+					maximum = Z_LLONG_MAXIMUM
+				};
+
+				typedef signed long long int type;
+				typedef signed long long int to_signed;
+
+#				if Z_LANGUAGE_HAS_TYPE(C, ULLONG)
+					typedef unsigned long long int to_unsigned;
+#				endif
 			};
 
-			typedef signed	 long long int type;
-			typedef unsigned long long int to_unsigned;
-			typedef signed	 long long int to_signed;
-		};
+#		endif
 
 #		if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
 
@@ -520,17 +537,25 @@ namespace Zeta {
 
 	// MARK: - Numbers
 
-	template <> struct Type<char		      > : Mixins::Type::Unqualified<Abstract::Type::Character> {};
-	template <> struct Type<unsigned char	      > : Mixins::Type::Unqualified<Abstract::Type::UChar    > {};
-	template <> struct Type<unsigned short int    > : Mixins::Type::Unqualified<Abstract::Type::UShort   > {};
-	template <> struct Type<unsigned int	      > : Mixins::Type::Unqualified<Abstract::Type::UInt     > {};
-	template <> struct Type<unsigned long int     > : Mixins::Type::Unqualified<Abstract::Type::ULong    > {};
-	template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong   > {};
-	template <> struct Type<signed char	      > : Mixins::Type::Unqualified<Abstract::Type::Char     > {};
-	template <> struct Type<signed short int      > : Mixins::Type::Unqualified<Abstract::Type::Short    > {};
-	template <> struct Type<signed int	      > : Mixins::Type::Unqualified<Abstract::Type::Int	     > {};
-	template <> struct Type<signed long int	      > : Mixins::Type::Unqualified<Abstract::Type::Long     > {};
-	template <> struct Type<signed long long int  > : Mixins::Type::Unqualified<Abstract::Type::LLong    > {};
+	template <> struct Type<char> : Mixins::Type::Unqualified<Abstract::Type::Character> {};
+
+	template <> struct Type<unsigned char	  > : Mixins::Type::Unqualified<Abstract::Type::UChar > {};
+	template <> struct Type<unsigned short int> : Mixins::Type::Unqualified<Abstract::Type::UShort> {};
+	template <> struct Type<unsigned int	  > : Mixins::Type::Unqualified<Abstract::Type::UInt  > {};
+	template <> struct Type<unsigned long int > : Mixins::Type::Unqualified<Abstract::Type::ULong > {};
+
+#	if Z_LANGUAGE_HAS_TYPE(C, ULLONG)
+		template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong> {};
+#	endif
+
+	template <> struct Type<signed char	> : Mixins::Type::Unqualified<Abstract::Type::Char > {};
+	template <> struct Type<signed short int> : Mixins::Type::Unqualified<Abstract::Type::Short> {};
+	template <> struct Type<signed int	> : Mixins::Type::Unqualified<Abstract::Type::Int  > {};
+	template <> struct Type<signed long int	> : Mixins::Type::Unqualified<Abstract::Type::Long > {};
+
+#	if Z_LANGUAGE_HAS_TYPE(C, LLONG)
+		template <> struct Type<signed long long int> : Mixins::Type::Unqualified<Abstract::Type::LLong > {};
+#	endif
 
 #	if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
 		template <> struct Type<float> : Mixins::Type::Unqualified<Abstract::Type::Float> {};
@@ -635,7 +660,6 @@ namespace Zeta {
 
 	template <typename T> struct Type<const volatile T>
 	: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatile<Type<T> >, Mixins::Type::ConstVolatileExact<Type<T> > >::type {};
-
 }
 
 #endif // __Z_traits_Type_HPP__

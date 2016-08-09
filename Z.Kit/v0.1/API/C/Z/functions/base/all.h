@@ -9,6 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_functions_base_all_H__
 #define __Z_functions_base_all_H__
 
+#include <Z/functions/base/character.h>
 #include <Z/functions/base/Z2DValue.h>
 #include <Z/functions/base/Z3DValue.h>
 #include <Z/functions/base/ZRange.h>

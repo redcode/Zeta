@@ -321,114 +321,87 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #else
 
-#	define Z_TEMPLATE_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Type, type)	 \
-									 \
-									 \
-	Z_INLINE Z2DLine##Type z_2d_line_##type(			 \
-		z##type a_x,						 \
-		z##type a_y,						 \
-		z##type b_x,						 \
-		z##type b_y						 \
-	)								 \
-		{							 \
-		Z2DLine##Type line = {{a_x, a_y}, {b_x, b_y}};		 \
-		return line;						 \
-		}							 \
-									 \
-									 \
-	Z_INLINE Z3DLine##Type z_3d_line_##type(			 \
-		z##type a_x,						 \
-		z##type a_y,						 \
-		z##type a_z,						 \
-		z##type b_x,						 \
-		z##type b_y,						 \
-		z##type b_z						 \
-	)								 \
-		{							 \
-		Z3DLine##Type line = {{a_x, a_y, a_z}, {b_x, b_y, b_z}}; \
-		return line;						 \
-		}							 \
-									 \
-									 \
-	Z_INLINE ZRectangle##Type z_rectangle_##type(			 \
-		z##type x,						 \
-		z##type y,						 \
-		z##type size_x,						 \
-		z##type size_y						 \
-	)								 \
-		{							 \
-		ZRectangle##Type rectangle = {{x, y}, {size_x, size_y}}; \
-		return rectangle;					 \
-		}							 \
-									 \
-									 \
-	Z_INLINE ZBox##Type z_box_##type(				 \
-		z##type x,						 \
-		z##type y,						 \
-		z##type z,						 \
-		z##type size_x,						 \
-		z##type size_y,						 \
-		z##type size_z						 \
-	)								 \
-		{							 \
-		ZBox##Type box = {{x, y, z}, {size_x, size_y, size_z}};	 \
-		return box;						 \
-		}							 \
-									 \
-									 \
-	Z_INLINE ZCircle##Type z_circle_##type(				 \
-		z##type x,						 \
-		z##type y,						 \
-		z##type radius						 \
-	)								 \
-		{							 \
-		ZCircle##Type circle = {{x, y}, radius};		 \
-		return circle;						 \
-		}							 \
-									 \
-									 \
-	Z_INLINE ZSphere##Type z_sphere_##type(				 \
-		z##type x,						 \
-		z##type y,						 \
-		z##type z,						 \
-		z##type radius						 \
-	)								 \
-		{							 \
-		ZSphere##Type sphere = {{x, y, z}, radius};		 \
-		return sphere;						 \
-		}
+#	define Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Type, type)			\
+												\
+												\
+	Z_INLINE Z2DLine##Type z_2d_line_##type(						\
+		z##type a_x,									\
+		z##type a_y,									\
+		z##type b_x,									\
+		z##type b_y									\
+	)											\
+		{Z2DLine##Type object = {{a_x, a_y}, {b_x, b_y}}; return object;}		\
+												\
+												\
+	Z_INLINE Z3DLine##Type z_3d_line_##type(						\
+		z##type a_x,									\
+		z##type a_y,									\
+		z##type a_z,									\
+		z##type b_x,									\
+		z##type b_y,									\
+		z##type b_z									\
+	)											\
+		{Z3DLine##Type object = {{a_x, a_y, a_z}, {b_x, b_y, b_z}}; return object;}	\
+												\
+												\
+	Z_INLINE ZRectangle##Type z_rectangle_##type(						\
+		z##type x,									\
+		z##type y,									\
+		z##type size_x,									\
+		z##type size_y									\
+	)											\
+		{ZRectangle##Type object = {{x, y}, {size_x, size_y}}; return object;}		\
+												\
+												\
+	Z_INLINE ZBox##Type z_box_##type(							\
+		z##type x,									\
+		z##type y,									\
+		z##type z,									\
+		z##type size_x,									\
+		z##type size_y,									\
+		z##type size_z									\
+	)											\
+		{ZBox##Type object = {{x, y, z}, {size_x, size_y, size_z}}; return object;}	\
+												\
+												\
+	Z_INLINE ZCircle##Type z_circle_##type(z##type x, z##type y, z##type radius)		\
+		{ZCircle##Type object = {{x, y}, radius}; return object;}			\
+												\
+												\
+	Z_INLINE ZSphere##Type z_sphere_##type(z##type x, z##type y, z##type z, z##type radius)	\
+		{ZSphere##Type object = {{x, y, z}, radius}; return object;}
 
 
 #	if Z_IS_AVAILABLE(FLOAT16)
-		Z_TEMPLATE_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float16, float16)
+		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float16, float16)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT32)
-		Z_TEMPLATE_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float32, float32)
+		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float32, float32)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT48)
-		Z_TEMPLATE_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float48, float48)
+		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float48, float48)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT64)
-		Z_TEMPLATE_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float64, float64)
+		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float64, float64)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT72)
-		Z_TEMPLATE_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float72, float72)
+		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float72, float72)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT80)
-		Z_TEMPLATE_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float80, float80)
+		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float80, float80)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT96)
-		Z_TEMPLATE_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float96, float96)
+		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float96, float96)
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT128)
-		Z_TEMPLATE_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float128, float128)
+		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float128, float128)
 #	endif
 
 #endif

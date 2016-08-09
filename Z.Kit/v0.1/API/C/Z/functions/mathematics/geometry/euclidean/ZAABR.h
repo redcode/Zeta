@@ -12,10 +12,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/mathematics/geometry/euclidean/Z2DLine.h>
 
 
-/* MARK: - Template */
+/* MARK: - Implementation */
 
 
-#define Z_TEMPLATE_AABR(Type, type, _)								\
+#define Z_IMPLEMENTATION_AABR(Type, type, _)							\
 												\
 												\
 Z_INLINE zboolean z_aabr_##type##_contains(ZAABR##Type a, ZAABR##Type b)			\
@@ -453,7 +453,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #define z_aabr_type_contains_circle(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _contains_circle	      )
 
 
-/* MARK: - Template implementations */
+/* MARK: - Implementation expansions */
 
 
 #if Z_IS_AVAILABLE(FLOAT16)
@@ -462,7 +462,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #	define z_aabr_float16_is_zero	z_2d_line_float16_is_zero
 #	define z_aabr_float16_center	z_2d_line_segment_float16_center
 
-	Z_TEMPLATE_AABR(Float16, float16, Z_FLOAT16)
+	Z_IMPLEMENTATION_AABR(Float16, float16, Z_FLOAT16)
 
 #endif
 
@@ -472,7 +472,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #	define z_aabr_float24_is_zero	z_2d_line_float24_is_zero
 #	define z_aabr_float24_center	z_2d_line_segment_float24_center
 
-	Z_TEMPLATE_AABR(Float24, float24, Z_FLOAT24)
+	Z_IMPLEMENTATION_AABR(Float24, float24, Z_FLOAT24)
 
 #endif
 
@@ -482,7 +482,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #	define z_aabr_float32_is_zero	z_2d_line_float32_is_zero
 #	define z_aabr_float32_center	z_2d_line_segment_float32_center
 
-	Z_TEMPLATE_AABR(Float32, float32, Z_FLOAT32)
+	Z_IMPLEMENTATION_AABR(Float32, float32, Z_FLOAT32)
 
 #endif
 
@@ -492,7 +492,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #	define z_aabr_float48_is_zero	z_2d_line_float48_is_zero
 #	define z_aabr_float48_center	z_2d_line_segment_float48_center
 
-	Z_TEMPLATE_AABR(Float48, float48, Z_FLOAT48)
+	Z_IMPLEMENTATION_AABR(Float48, float48, Z_FLOAT48)
 
 #endif
 
@@ -502,7 +502,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #	define z_aabr_float64_is_zero	z_2d_line_float64_is_zero
 #	define z_aabr_float64_center	z_2d_line_segment_float64_center
 
-	Z_TEMPLATE_AABR(Float64, float64, Z_FLOAT64)
+	Z_IMPLEMENTATION_AABR(Float64, float64, Z_FLOAT64)
 
 #endif
 
@@ -512,7 +512,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #	define z_aabr_float72_is_zero	z_2d_line_float72_is_zero
 #	define z_aabr_float72_center	z_2d_line_segment_float72_center
 
-	Z_TEMPLATE_AABR(Float72, float72, Z_FLOAT72)
+	Z_IMPLEMENTATION_AABR(Float72, float72, Z_FLOAT72)
 
 #endif
 
@@ -522,7 +522,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #	define z_aabr_float80_is_zero	z_2d_line_float80_is_zero
 #	define z_aabr_float80_center	z_2d_line_segment_float80_center
 
-	Z_TEMPLATE_AABR(Float80, float80, Z_FLOAT80)
+	Z_IMPLEMENTATION_AABR(Float80, float80, Z_FLOAT80)
 
 #endif
 
@@ -532,7 +532,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #	define z_aabr_float96_is_zero	z_2d_line_float96_is_zero
 #	define z_aabr_float96_center	z_2d_line_segment_float96_center
 
-	Z_TEMPLATE_AABR(Float96, float96, Z_FLOAT96)
+	Z_IMPLEMENTATION_AABR(Float96, float96, Z_FLOAT96)
 
 #endif
 
@@ -542,7 +542,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 #	define z_aabr_float128_is_zero	 z_2d_line_float128_is_zero
 #	define z_aabr_float128_center	 z_2d_line_segment_float128_center
 
-	Z_TEMPLATE_AABR(Float128, float128, Z_FLOAT128)
+	Z_IMPLEMENTATION_AABR(Float128, float128, Z_FLOAT128)
 
 #endif
 

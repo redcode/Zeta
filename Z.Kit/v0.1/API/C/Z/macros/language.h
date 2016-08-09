@@ -11,22 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-#ifndef AND
-#	define AND &&
-#endif
-
-#ifndef OR
-#	define OR ||
-#endif
-
-#ifndef DOT
-#	define DOT .
-#endif
-
-#ifndef COMMA
-#	define COMMA ,
-#endif
-
 /* MARK: - C type qualifiers */
 
 /* MARK: - C storage classes */
