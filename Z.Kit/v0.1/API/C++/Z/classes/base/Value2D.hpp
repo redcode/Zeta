@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_Value2D_HPP__
 #define __Z_classes_base_Value2D_HPP__
 
-#include <Z/macros/type selector.hpp>
+#include <Z/macros/type selection.hpp>
 #include <Z/macros/super.hpp>
 #include <Z/functions/base/value.hpp>
 

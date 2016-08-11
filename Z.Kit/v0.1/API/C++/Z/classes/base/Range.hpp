@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_Range_HPP__
 #define __Z_classes_base_Range_HPP__
 
-#include <Z/macros/type selector.hpp>
+#include <Z/macros/type selection.hpp>
 #include <Z/macros/super.hpp>
 #include <Z/functions/base/value.hpp>
 
@@ -17,17 +17,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	import <Foundation/NSRange.h>
 #endif
 
-namespace Zeta {
-	namespace Selectors {Z_TYPE_SELECTOR_NATURAL(Range, ZRangeType)}
-	template <typename T> struct Range;
-}
+namespace Zeta {template <typename T> struct Range;}
 
 
-template <typename T> struct Zeta::Range : public Zeta::Selectors::Range<T>::type {
+template <typename T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 
-	typedef typename Selectors::Range<T>::type Base;
-	typedef typename Selectors::Range<T>::type Super;
-	typedef		 T			   Value;
+	typedef typename ZNaturalType(ZRange, T) Base;
+	typedef typename ZNaturalType(ZRange, T) Super;
+	typedef		 T			 Value;
 
 	inline Range<T>()		   {}
 	inline Range<T>(T size)		   {this->index = 0; this->size = size;}

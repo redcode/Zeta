@@ -1110,8 +1110,10 @@ typedef zuint8					zboolean;
 
 #if ('\0' - 1) > 0
 #	define Z_CHARACTER_BITS			Z_UCHAR_BITS
+#	define Z_CHARACTER_IS_SIGNED		FALSE
 #else
 #	define Z_CHARACTER_BITS			Z_CHAR_BITS
+#	define Z_CHARACTER_IS_SIGNED		TRUE
 #endif
 
 typedef char					zcharacter;
@@ -1270,10 +1272,10 @@ typedef ZRangeType(USHORT)			ZRangeUShort;
 typedef ZRangeType(UINT	 )			ZRangeUInt;
 typedef ZRangeType(ULONG )			ZRangeULong;
 
-#if Z_LANGUAGE_HAS_TYPE(C, LLONG)
+#if Z_LANGUAGE_HAS_TYPE(C, ULLONG)
 	typedef ZRangeType(ULLONG)		ZRangeULLong;
 #else
-	typedef ZRangeULLong			ZRangeULLong
+	typedef ZRangeULong			ZRangeULLong;
 #endif
 
 typedef ZRangeType(SIZE	  )			ZRangeSize;

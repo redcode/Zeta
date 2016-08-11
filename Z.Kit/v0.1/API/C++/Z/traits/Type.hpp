@@ -87,10 +87,10 @@ namespace Zeta {
 			};
 		};
 
-#		if ('\0' - 1) > 0
-			struct Character : Natural {
-#		else
+#		if Z_CHARACTER_IS_SIGNED
 			struct Character : Integer {
+#		else
+			struct Character : Natural {
 #		endif
 			enum {	bits = Z_CHARACTER_BITS,
 				size = Z_CHARACTER_SIZE
