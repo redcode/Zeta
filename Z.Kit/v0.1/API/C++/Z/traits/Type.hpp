@@ -151,7 +151,7 @@ namespace Zeta {
 
 		};
 
-#		if Z_LANGUAGE_HAS_TYPE(C, ULLONG)
+#		if Z_IS_AVAILABLE(ULLONG)
 
 			struct ULLong : Natural {
 				enum {	bits = Z_ULLONG_BITS,
@@ -162,7 +162,7 @@ namespace Zeta {
 				typedef unsigned long long int type;
 				typedef unsigned long long int to_unsigned;
 
-#				if Z_LANGUAGE_HAS_TYPE(C, LLONG)
+#				if Z_IS_AVAILABLE(LLONG)
 					typedef signed long long int to_signed;
 #				endif
 			};
@@ -221,7 +221,7 @@ namespace Zeta {
 			typedef signed	 long int to_signed;
 		};
 
-#		if Z_LANGUAGE_HAS_TYPE(C, LLONG)
+#		if Z_IS_AVAILABLE(LLONG)
 
 			struct LLong : Integer {
 				enum {	bits = Z_LLONG_BITS,
@@ -234,14 +234,14 @@ namespace Zeta {
 				typedef signed long long int type;
 				typedef signed long long int to_signed;
 
-#				if Z_LANGUAGE_HAS_TYPE(C, ULLONG)
+#				if Z_IS_AVAILABLE(ULLONG)
 					typedef unsigned long long int to_unsigned;
 #				endif
 			};
 
 #		endif
 
-#		if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
+#		if Z_IS_AVAILABLE(FLOAT)
 
 			struct Float : Real {
 				enum {	bits		    = Z_FLOAT_BITS,
@@ -272,7 +272,7 @@ namespace Zeta {
 
 #		endif
 
-#		if Z_LANGUAGE_HAS_TYPE(C, DOUBLE)
+#		if Z_IS_AVAILABLE(DOUBLE)
 
 			struct Double : Real {
 				enum {	bits		    = Z_DOUBLE_BITS,
@@ -303,7 +303,7 @@ namespace Zeta {
 
 #		endif
 
-#		if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE)
+#		if Z_IS_AVAILABLE(LDOUBLE)
 
 			struct LDouble : Real {
 				enum {	bits		    = Z_LDOUBLE_BITS,
@@ -544,7 +544,7 @@ namespace Zeta {
 	template <> struct Type<unsigned int	  > : Mixins::Type::Unqualified<Abstract::Type::UInt  > {};
 	template <> struct Type<unsigned long int > : Mixins::Type::Unqualified<Abstract::Type::ULong > {};
 
-#	if Z_LANGUAGE_HAS_TYPE(C, ULLONG)
+#	if Z_IS_AVAILABLE(ULLONG)
 		template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong> {};
 #	endif
 
@@ -553,19 +553,19 @@ namespace Zeta {
 	template <> struct Type<signed int	> : Mixins::Type::Unqualified<Abstract::Type::Int  > {};
 	template <> struct Type<signed long int	> : Mixins::Type::Unqualified<Abstract::Type::Long > {};
 
-#	if Z_LANGUAGE_HAS_TYPE(C, LLONG)
+#	if Z_IS_AVAILABLE(LLONG)
 		template <> struct Type<signed long long int> : Mixins::Type::Unqualified<Abstract::Type::LLong > {};
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
+#	if Z_IS_AVAILABLE(FLOAT)
 		template <> struct Type<float> : Mixins::Type::Unqualified<Abstract::Type::Float> {};
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(C, DOUBLE)
+#	if Z_IS_AVAILABLE(DOUBLE)
 		template <> struct Type<double> : Mixins::Type::Unqualified<Abstract::Type::Double> {};
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE)
+#	if Z_IS_AVAILABLE(LDOUBLE)
 		template <> struct Type<long double> : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
 #	endif
 

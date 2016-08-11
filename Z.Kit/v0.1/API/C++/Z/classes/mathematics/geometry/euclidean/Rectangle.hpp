@@ -12,19 +12,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/classes/base/Value2D.hpp>
 #include <Z/types/mathematics.h>
 
-namespace Zeta {
-	namespace Selectors {Z_TYPE_SELECTOR_REAL(Rectangle, ZRectangleType)}
-	template <typename T> struct Rectangle;
-}
+namespace Zeta {template <typename T> struct Rectangle;}
 
 
 template <typename T> struct Zeta::Rectangle {
 
-	typedef typename Selectors::Rectangle<T>::type Base;  // Not actual but compatible
-	typedef typename Selectors::Rectangle<T>::type Super; // Not actual but compatible
-	typedef		 Value2D<T>		       Content;
-	typedef typename Value2D<T>::Base	       ContentBase;
-	typedef		 T			       Value;
+	typedef typename ZRealType(ZRectangle, T) Base;  // Not actual but compatible
+	typedef typename ZRealType(ZRectangle, T) Super; // Not actual but compatible
+	typedef		 Value2D<T>		  Content;
+	typedef typename Value2D<T>::Base	  ContentBase;
+	typedef		 T			  Value;
 
 	Value2D<T> point, size;
 

@@ -27,6 +27,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_IF_UINT128_IS_AVAILABLE_ELSE(what, else_what) else_what
 #endif
 
+#if Z_IS_AVAILABLE(INT64)
+#	define Z_IF_INT64_IS_AVAILABLE(what) what
+#	define Z_IF_INT64_IS_AVAILABLE_ELSE(what, else_what) what
+#else
+#	define Z_IF_INT64_IS_AVAILABLE(what)
+#	define Z_IF_INT64_IS_AVAILABLE_ELSE(what, else_what) else_what
+#endif
+
+#if Z_IS_AVAILABLE(INT128)
+#	define Z_IF_INT128_IS_AVAILABLE(what) what
+#	define Z_IF_INT128_IS_AVAILABLE_ELSE(what, else_what) what
+#else
+#	define Z_IF_INT128_IS_AVAILABLE(what)
+#	define Z_IF_INT128_IS_AVAILABLE_ELSE(what, else_what) else_what
+#endif
+
 #if Z_IS_AVAILABLE(FLOAT16)
 #	define Z_IF_FLOAT16_IS_AVAILABLE(what) what
 #	define Z_IF_FLOAT16_IS_AVAILABLE_ELSE(what, else_what) what

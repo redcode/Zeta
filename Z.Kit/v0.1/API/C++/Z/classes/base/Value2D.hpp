@@ -21,17 +21,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	import <Foundation/NSGeometry.h>
 #endif
 
-namespace Zeta {
-	namespace Selectors {Z_TYPE_SELECTOR(Value2D, Z2DType)}
-	template <typename T> struct Value2D;
-}
+namespace Zeta {template <typename T> struct Value2D;}
 
 
-template <typename T> struct Zeta::Value2D : public Zeta::Selectors::Value2D<T>::type {
+template <typename T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 
-	typedef typename Selectors::Value2D<T>::type Base;
-	typedef typename Selectors::Value2D<T>::type Super;
-	typedef		 T			     Value;
+	typedef typename ZNumberType(Z2D, T) Base;
+	typedef typename ZNumberType(Z2D, T) Super;
+	typedef		 T		     Value;
 
 
 	// MARK: - Constructors

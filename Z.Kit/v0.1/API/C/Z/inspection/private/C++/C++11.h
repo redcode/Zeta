@@ -30,6 +30,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_RVALUE_REFERENCE
 #define Z_CPP_HAS_VARIADIC_TEMPLATE
 
+/* MARK: - Types */
+
+#define Z_CPP_HAS_TYPE_ULLONG /* unsigned long long [int] */
+#define Z_CPP_HAS_TYPE_LLONG  /* [signed] long long [int] */
+
 /* MARK: - Specifiers */
 
 #define Z_CPP_HAS_SPECIFIER_AUTO		/* auto	     */
