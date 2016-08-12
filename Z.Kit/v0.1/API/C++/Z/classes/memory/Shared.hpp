@@ -13,78 +13,81 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.hpp>
 #include <Z/macros/pointer.h>
 
+
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-	namespace Zeta {
+	namespace Zeta {struct Shared;}
 
-		template <typename T> struct Shared {
+	template <typename T> struct Zeta::Shared {
 
-			struct Owned {
-				Size owner_count;
-				T object;
+		struct Owned {
+			Size owner_count;
+			T object;
 
-				inline Owned() : owner_count(0) {}
-
-				template <class ...A>
-				inline Owned(A&&... arguments) : owner_count(0), object(arguments...) {}
-			};
-
-			Owned *owned;
-
+			inline Owned() : owner_count(0) {}
 
 			template <class ...A>
-			static Shared<T> make(A&&...arguments)
-				{
-				Shared<T> shared;
-				shared.owned = new Owned(arguments...);
-				shared.owned->owner_count = 1;
-				return shared;
-				}
-
-
-			inline Shared<T>() : owned(NULL) {}
-
-
-			inline Shared<T>(const Shared<T> &shared)
-				{if ((owned = shared.owned)) owned->owner_count++;}
-
-
-			inline Shared<T>(Owned *owned)
-				{if ((this->owned = owned)) owned->owner_count++;}
-
-
-			inline Shared<T>(void *object)
-				{
-				if (object)
-					(owned = Z_BOP(Owned *, object, -Z_OFFSET_OF(Owned, object)))
-						->owner_count++;
-				}
-
-
-			inline ~Shared<T>()
-				{if (owned && !--owned->owner_count) delete owned;}
-
-
-			inline Shared<T> &operator =(const Shared<T> &shared)
-				{
-				if (owned != shared.owned)
-					{
-					if (owned && !--owned->owner_count) delete owned;
-					if ((owned = shared.owned)) owned->owner_count++;
-					}
-
-				return *this;
-				}
-
-
-			inline Boolean operator ==(const Shared<T> &shared) const {return owned == shared.owned;}
-			inline Boolean operator !=(const Shared<T> &shared) const {return owned != shared.owned;}
-			inline T*      operator ->()			    const {return &owned->object;}
-
-			inline T*   get	       () const {return &owned->object;}
-			inline Size owner_count() const {return owned->owner_count;}
+			inline Owned(A&&... arguments) : owner_count(0), object(arguments...) {}
 		};
 
+		Owned *owned;
+
+
+		template <class ...A>
+		static Shared<T> make(A&&...arguments)
+			{
+			Shared<T> shared;
+			shared.owned = new Owned(arguments...);
+			shared.owned->owner_count = 1;
+			return shared;
+			}
+
+
+		inline Shared<T>() : owned(NULL) {}
+
+
+		inline Shared<T>(const Shared<T> &shared)
+			{if ((owned = shared.owned)) owned->owner_count++;}
+
+
+		inline Shared<T>(Owned *owned)
+			{if ((this->owned = owned)) owned->owner_count++;}
+
+
+		inline Shared<T>(void *object)
+			{
+			if (object)
+				(owned = Z_BOP(Owned *, object, -Z_OFFSET_OF(Owned, object)))
+					->owner_count++;
+			}
+
+
+		inline ~Shared<T>()
+			{if (owned && !--owned->owner_count) delete owned;}
+
+
+		inline Shared<T> &operator =(const Shared<T> &shared)
+			{
+			if (owned != shared.owned)
+				{
+				if (owned && !--owned->owner_count) delete owned;
+				if ((owned = shared.owned)) owned->owner_count++;
+				}
+
+			return *this;
+			}
+
+
+		inline Boolean operator ==(const Shared<T> &shared) const {return owned == shared.owned;}
+		inline Boolean operator !=(const Shared<T> &shared) const {return owned != shared.owned;}
+		inline T*      operator ->()			    const {return &owned->object;}
+
+		inline T*   get	       () const {return &owned->object;}
+		inline Size owner_count() const {return owned->owner_count;}
+	};
+
+
+	namespace Zeta {
 
 		template <typename T, class ...A>
 		Z_INLINE T *owned_new(A&&...arguments)
@@ -105,5 +108,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	}
 
 #endif
+
 
 #endif // __Z_classes_memory_Shared_HPP__

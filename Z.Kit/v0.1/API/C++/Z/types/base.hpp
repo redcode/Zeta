@@ -76,13 +76,19 @@ namespace Zeta {
 	typedef zushort			UShort;
 	typedef zuint			UInt;
 	typedef zulong			ULong;
-	typedef zullong			ULLong;
+
+#	if Z_IS_AVAILABLE(ULLONG)
+		typedef zullong		ULLong;
+#	endif
 
 	typedef zchar			Char;
 	typedef zshort			Short;
 	typedef zint			Int;
 	typedef zlong			Long;
-	typedef zllong			LLong;
+
+#	if Z_IS_AVAILABLE(LLONG)
+		typedef zllong		LLong;
+#	endif
 
 #	if Z_IS_AVAILABLE(FLOAT)
 		typedef zfloat		Float;
