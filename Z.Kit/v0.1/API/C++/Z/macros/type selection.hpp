@@ -26,7 +26,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define ZExactType(Name, T) Zeta::SelectType<			       \
 		Zeta::Type<T>::is_exact				       \
 			? Zeta::Logarithm2<Zeta::Type<T>::size>::value \
-			  + (Zeta::Type<T>::is_signed ? 5 : 0),	       \
+			  + (Zeta::Type<T>::is_signed ? 5 : 0)	       \
 			: 31,					       \
 	Z_ENUMERATE_FIXED_NATURAL_TYPES(Name##UInt, void),	       \
 	Z_ENUMERATE_FIXED_INTEGER_TYPES(Name##Int,  void)	       \
