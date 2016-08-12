@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {
 
-	template <int,
+	template <unsigned int,
 		class C00,	  class C01 = void, class C02 = void, class C03 = void,
 		class C04 = void, class C05 = void, class C06 = void, class C07 = void,
 		class C08 = void, class C09 = void, class C10 = void, class C11 = void,
