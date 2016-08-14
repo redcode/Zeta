@@ -99,7 +99,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			{
 			delete Z_BOP
 				(typename Shared<T>::Owned *, object,
-				 -Z_OFFSET_OF(typename Shared<T>::Owned, object));}
+				 -Z_OFFSET_OF(typename Shared<T>::Owned, object));
+			}
 
 
 		template <typename T, class ...A>
