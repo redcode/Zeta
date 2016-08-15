@@ -11,6 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_classes_memory_Shared_HPP__
 
 #include <Z/types/base.hpp>
+#include <Z/macros/language.hpp>
 #include <Z/macros/pointer.h>
 
 
@@ -24,17 +25,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Size owner_count;
 			T object;
 
-			inline Owned() : owner_count(0) {}
+			Z_INLINE_MEMBER Owned() : owner_count(0) {}
 
 			template <class ...A>
-			inline Owned(A&&... arguments) : owner_count(0), object(arguments...) {}
+			Z_INLINE_MEMBER Owned(A&&... arguments) : owner_count(0), object(arguments...) {}
 		};
 
 		Owned *owned;
 
 
 		template <class ...A>
-		static Shared<T> make(A&&...arguments)
+		static Z_INLINE_MEMBER Shared<T> make(A&&...arguments)
 			{
 			Shared<T> shared;
 			shared.owned = new Owned(arguments...);
@@ -43,18 +44,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			}
 
 
-		inline Shared<T>() : owned(NULL) {}
+		Z_INLINE_MEMBER Shared<T>() : owned(NULL) {}
 
 
-		inline Shared<T>(const Shared<T> &shared)
+		Z_INLINE_MEMBER Shared<T>(const Shared<T> &shared)
 			{if ((owned = shared.owned)) owned->owner_count++;}
 
 
-		inline Shared<T>(Owned *owned)
+		Z_INLINE_MEMBER Shared<T>(Owned *owned)
 			{if ((this->owned = owned)) owned->owner_count++;}
 
 
-		inline Shared<T>(void *object)
+		Z_INLINE_MEMBER Shared<T>(void *object)
 			{
 			if (object)
 				(owned = Z_BOP(Owned *, object, -Z_OFFSET_OF(Owned, object)))
@@ -62,11 +63,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			}
 
 
-		inline ~Shared<T>()
+		Z_INLINE_MEMBER ~Shared<T>()
 			{if (owned && !--owned->owner_count) delete owned;}
 
 
-		inline Shared<T> &operator =(const Shared<T> &shared)
+		Z_INLINE_MEMBER Shared<T> &operator =(const Shared<T> &shared)
 			{
 			if (owned != shared.owned)
 				{
@@ -78,12 +79,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			}
 
 
-		inline Boolean operator ==(const Shared<T> &shared) const {return owned == shared.owned;}
-		inline Boolean operator !=(const Shared<T> &shared) const {return owned != shared.owned;}
-		inline T*      operator ->()			    const {return &owned->object;}
+		Z_INLINE_MEMBER Boolean operator ==(const Shared<T> &shared) const {return owned == shared.owned;}
+		Z_INLINE_MEMBER Boolean operator !=(const Shared<T> &shared) const {return owned != shared.owned;}
+		Z_INLINE_MEMBER T*	operator ->()			     const {return &owned->object;}
 
-		inline T*   get	       () const {return &owned->object;}
-		inline Size owner_count() const {return owned->owner_count;}
+		Z_INLINE_MEMBER T*   get	() const {return &owned->object;}
+		Z_INLINE_MEMBER Size owner_count() const {return owned->owner_count;}
 	};
 
 

@@ -26,33 +26,33 @@ template <typename T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 	typedef typename ZNaturalType(ZRange, T) Super;
 	typedef		 T			 Value;
 
-	inline Range<T>()		   {}
-	inline Range<T>(T size)		   {this->index = 0; this->size = size;}
-	inline Range<T>(T index, T size)   {this->index = index; this->size = size;}
-	inline Range<T>(void *data)	   {*this = *(Range<T> *)data;}
-	inline Range<T>(const Base &range) {*z_base = range;}
+	Z_INLINE_MEMBER Range<T>()		    {}
+	Z_INLINE_MEMBER Range<T>(T size)	    {this->index = 0; this->size = size;}
+	Z_INLINE_MEMBER Range<T>(T index, T size)   {this->index = index; this->size = size;}
+	Z_INLINE_MEMBER Range<T>(void *data)	    {*this = *(Range<T> *)data;}
+	Z_INLINE_MEMBER Range<T>(const Base &range) {*z_base = range;}
 
-	inline operator Boolean() const {return this->index || this->size;}
-	inline operator Base   () const {return *z_base;}
+	Z_INLINE_MEMBER operator Boolean() const {return this->index || this->size;}
+	Z_INLINE_MEMBER operator Base	() const {return *z_base;}
 
 
-	inline Boolean operator ==(const Range<T> &range) const
+	Z_INLINE_MEMBER Boolean operator ==(const Range<T> &range) const
 		{return this->index == range.index && this->size == range.size;}
 
 
-	inline Boolean operator !=(const Range<T> &range) const
+	Z_INLINE_MEMBER Boolean operator !=(const Range<T> &range) const
 		{return this->index != range.index || this->size != range.size;}
 
 
-	inline Boolean operator ==(T number) const
+	Z_INLINE_MEMBER Boolean operator ==(T number) const
 		{return this->index == number && this->size == number;}
 
 
-	inline Boolean operator !=(T number) const
+	Z_INLINE_MEMBER Boolean operator !=(T number) const
 		{return this->index != number || this->size != number;}
 
 
-	inline Range<T> operator &(const Range<T> &range) const
+	Z_INLINE_MEMBER Range<T> operator &(const Range<T> &range) const
 		{
 		T index = (this->index > range.index) ? this->index : range.index;
 		T end	= Zeta::minimum<T>(this->index + this->size, range.index + range.size);
@@ -61,7 +61,7 @@ template <typename T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 		}
 
 
-	inline Range<T> operator |(const Range<T> &range) const
+	Z_INLINE_MEMBER Range<T> operator |(const Range<T> &range) const
 		{
 		T	index = (this->index < range.index) ? this->index : range.index,
 			a_end = this->index + this->size,
@@ -71,17 +71,17 @@ template <typename T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 		}
 
 
-	inline Range<T> &operator &=(const Range<T> &range) {return *this = *this & range;}
-	inline Range<T> &operator |=(const Range<T> &range) {return *this = *this | range;}
+	Z_INLINE_MEMBER Range<T> &operator &=(const Range<T> &range) {return *this = *this & range;}
+	Z_INLINE_MEMBER Range<T> &operator |=(const Range<T> &range) {return *this = *this | range;}
 
 
 #	if Z_MUST_SUPPORT(NS_RANGE) && defined(Z_OBJECTIVE_C)
 
-		inline Range<T>(const NSRange &range)
+		Z_INLINE_MEMBER Range<T>(const NSRange &range)
 			{this->index = range.location; this->size = range.length;}
 
 
-		inline operator NSRange() const
+		Z_INLINE_MEMBER operator NSRange() const
 			{
 			NSRange result = {NSUInteger(this->index), NSUInteger(this->size)};
 			return result;
@@ -90,29 +90,29 @@ template <typename T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 #	endif
 
 
-	inline Boolean contains(const Range<T> &range) const
+	Z_INLINE_MEMBER Boolean contains(const Range<T> &range) const
 		{
 		return	range.index >= this->index &&
 			range.index + range.size <= this->index + this->size;
 		}
 
 
-	inline Boolean contains(T index) const
+	Z_INLINE_MEMBER Boolean contains(T index) const
 		{return this->index >= this->index && this->index < this->index + this->size;}
 
 
-	inline Boolean collides(const Range<T> &range) const
+	Z_INLINE_MEMBER Boolean collides(const Range<T> &range) const
 		{
 		return	this->index < range.index + range.size &&
 			range.index < this->index + this->size;
 		}
 
 
-	inline Boolean is_zero() const
+	Z_INLINE_MEMBER Boolean is_zero() const
 		{return !this->index && !this->size;}
 
 
-	inline T end() const
+	Z_INLINE_MEMBER T end() const
 		{return this->index + this->size;}
 
 };

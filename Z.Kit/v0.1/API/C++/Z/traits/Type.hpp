@@ -13,6 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/language.hpp>
 #include <Z/traits/SelectType.hpp>
 
+
 namespace Zeta {
 
 	// MARK: - Abstract
@@ -50,17 +51,18 @@ namespace Zeta {
 			};
 		};
 
-		struct Void : Base {
-			enum {	is_fundamental = true,
-				is_void	       = true
-			};	
+		struct Fundamental : Base {
+			enum {is_fundamental = true};
+		};
+
+		struct Void : Fundamental {
+			enum {is_void = true};	
 
 			typedef void type;
 		};
 
-		struct Number : Base {
+		struct Number : Fundamental {
 			enum {	is_arithmetic  = true,
-				is_fundamental = true,
 				is_number      = true,
 				is_value       = true
 			};
@@ -136,8 +138,6 @@ namespace Zeta {
 			typedef unsigned int to_unsigned;
 			typedef signed	 int to_signed;
 		};
-
-
 
 		struct ULong : Natural {
 			enum {	bits = Z_ULONG_BITS,
@@ -263,9 +263,9 @@ namespace Zeta {
 					exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM
 				};
 
-				static inline Z_CONSTANT_EXPRESSION float epsilon() {return Z_FLOAT_EPSILON;}
-				static inline Z_CONSTANT_EXPRESSION float minimum() {return Z_FLOAT_MINIMUM;}
-				static inline Z_CONSTANT_EXPRESSION float maximum() {return Z_FLOAT_MAXIMUM;}
+				static Z_CONSTANT_EXPRESSION const float epsilon = Z_FLOAT_EPSILON;
+				static Z_CONSTANT_EXPRESSION const float minimum = Z_FLOAT_MINIMUM;
+				static Z_CONSTANT_EXPRESSION const float maximum = Z_FLOAT_MAXIMUM;
 
 				typedef float type;
 			};
@@ -419,9 +419,9 @@ namespace Zeta {
 		};
 
 		template <class C> struct UnqualifiedFunction : C {
-			typedef typename C::type_const		add_const;
-			typedef typename C::type_volatile	add_volatile;
-			typedef typename C::type_const_volatile add_const_volatile;
+			typedef typename C::const_type		add_const;
+			typedef typename C::volatile_type	add_volatile;
+			typedef typename C::const_volatile_type add_const_volatile;
 			typedef typename C::type		remove_const;
 			typedef typename C::type		remove_volatile;
 			typedef typename C::type		remove_const_volatile;
@@ -459,9 +459,9 @@ namespace Zeta {
 		template <class C> struct ConstFunction : QualifiedFunction<C> {
 			enum {is_const = true};
 
-			typedef typename C::type_const		type;
-			typedef typename C::type_const_volatile add_volatile;
-			typedef typename C::type_const		remove_volatile;
+			typedef typename C::const_type		type;
+			typedef typename C::const_volatile_type add_volatile;
+			typedef typename C::const_type		remove_volatile;
 		};
 
 		// MARK: - volatile
@@ -486,9 +486,9 @@ namespace Zeta {
 		template <class C> struct VolatileFunction : QualifiedFunction<C> {
 			enum {is_volatile = true};
 
-			typedef typename C::type_volatile	type;
-			typedef typename C::type_const_volatile add_const;
-			typedef typename C::type_volatile	remove_const;
+			typedef typename C::volatile_type	type;
+			typedef typename C::const_volatile_type add_const;
+			typedef typename C::volatile_type	remove_const;
 		};
 
 		// MARK: - const volatile
@@ -521,145 +521,166 @@ namespace Zeta {
 				is_const_volatile = true
 			};
 
-			typedef typename C::type_const_volatile type;
-			typedef typename C::type_const_volatile add_const;
-			typedef typename C::type_const_volatile add_volatile;
-			typedef typename C::type_volatile	remove_const;
-			typedef typename C::type_const		remove_volatile;
+			typedef typename C::const_volatile_type type;
+			typedef typename C::const_volatile_type add_const;
+			typedef typename C::const_volatile_type add_volatile;
+			typedef typename C::volatile_type	remove_const;
+			typedef typename C::const_type		remove_volatile;
 		};
 	}}
 
-	template <typename T> struct Type : Abstract::Type::Base {};
+	namespace Concrete {
+		template <typename T> struct Type : Abstract::Type::Base {};
 
-	// MARK: - void
+		// MARK: - void
 
-	template <> struct Type<void> : Mixins::Type::Unqualified<Abstract::Type::Void> {};
+		template <> struct Type<void> : Mixins::Type::Unqualified<Abstract::Type::Void> {};
 
-	// MARK: - Numbers
+		// MARK: - Numbers
 
-	template <> struct Type<char> : Mixins::Type::Unqualified<Abstract::Type::Character> {};
+		template <> struct Type<char> : Mixins::Type::Unqualified<Abstract::Type::Character> {};
 
-	template <> struct Type<unsigned char	  > : Mixins::Type::Unqualified<Abstract::Type::UChar > {};
-	template <> struct Type<unsigned short int> : Mixins::Type::Unqualified<Abstract::Type::UShort> {};
-	template <> struct Type<unsigned int	  > : Mixins::Type::Unqualified<Abstract::Type::UInt  > {};
-	template <> struct Type<unsigned long int > : Mixins::Type::Unqualified<Abstract::Type::ULong > {};
+		template <> struct Type<unsigned char	  > : Mixins::Type::Unqualified<Abstract::Type::UChar > {};
+		template <> struct Type<unsigned short int> : Mixins::Type::Unqualified<Abstract::Type::UShort> {};
+		template <> struct Type<unsigned int	  > : Mixins::Type::Unqualified<Abstract::Type::UInt  > {};
+		template <> struct Type<unsigned long int > : Mixins::Type::Unqualified<Abstract::Type::ULong > {};
 
-#	if Z_IS_AVAILABLE(ULLONG)
-		template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong> {};
-#	endif
+#		if Z_IS_AVAILABLE(ULLONG)
+			template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong> {};
+#		endif
 
-	template <> struct Type<signed char	> : Mixins::Type::Unqualified<Abstract::Type::Char > {};
-	template <> struct Type<signed short int> : Mixins::Type::Unqualified<Abstract::Type::Short> {};
-	template <> struct Type<signed int	> : Mixins::Type::Unqualified<Abstract::Type::Int  > {};
-	template <> struct Type<signed long int	> : Mixins::Type::Unqualified<Abstract::Type::Long > {};
+		template <> struct Type<signed char	> : Mixins::Type::Unqualified<Abstract::Type::Char > {};
+		template <> struct Type<signed short int> : Mixins::Type::Unqualified<Abstract::Type::Short> {};
+		template <> struct Type<signed int	> : Mixins::Type::Unqualified<Abstract::Type::Int  > {};
+		template <> struct Type<signed long int	> : Mixins::Type::Unqualified<Abstract::Type::Long > {};
 
-#	if Z_IS_AVAILABLE(LLONG)
-		template <> struct Type<signed long long int> : Mixins::Type::Unqualified<Abstract::Type::LLong > {};
-#	endif
+#		if Z_IS_AVAILABLE(LLONG)
+			template <> struct Type<signed long long int> : Mixins::Type::Unqualified<Abstract::Type::LLong > {};
+#		endif
 
-#	if Z_IS_AVAILABLE(FLOAT)
-		template <> struct Type<float> : Mixins::Type::Unqualified<Abstract::Type::Float> {};
-#	endif
+#		if Z_IS_AVAILABLE(FLOAT)
+			template <> struct Type<float> : Mixins::Type::Unqualified<Abstract::Type::Float> {};
+#		endif
 
-#	if Z_IS_AVAILABLE(DOUBLE)
-		template <> struct Type<double> : Mixins::Type::Unqualified<Abstract::Type::Double> {};
-#	endif
+#		if Z_IS_AVAILABLE(DOUBLE)
+			template <> struct Type<double> : Mixins::Type::Unqualified<Abstract::Type::Double> {};
+#		endif
 
-#	if Z_IS_AVAILABLE(LDOUBLE)
-		template <> struct Type<long double> : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
-#	endif
+#		if Z_IS_AVAILABLE(LDOUBLE)
+			template <> struct Type<long double> : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
+#		endif
 
-	// MARK: - Pointers
+		// MARK: - Pointers
 
-	template <typename T> struct Type<T*> : Mixins::Type::Unqualified  <Abstract::Type::Pointer<T> > {};
+		template <typename T> struct Type<T*> : Mixins::Type::Unqualified  <Abstract::Type::Pointer<T> > {};
 
-	// MARK: - Null pointer type
+		// MARK: - Null pointer type
 
-#	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
-		template <> struct Type<decltype(nullptr)> : Mixins::Type::Unqualified<Abstract::Type::NullPointer> {};
-#	endif
+#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+			template <> struct Type<decltype(nullptr)> : Mixins::Type::Unqualified<Abstract::Type::NullPointer> {};
+#		endif
 
-	// MARK: - References
+		// MARK: - References
 
-	template <typename T> struct Type<T&> : Abstract::Type::Base {
-		enum {is_reference = true};
+		template <typename T> struct Type<T&> : Abstract::Type::Base {
+			enum {is_reference = true};
 
-		typedef T& type;
-		typedef T  referenced_type;
-	};
+			typedef T& type;
+			typedef T  referenced_type;
+		};
 
-	// MARK: - Arrays
+		// MARK: - Arrays
 
- 	template <typename T, zsize N> struct Type<T[N]> : Mixins::Type::Unqualified<Abstract::Type::Array<T, N> > {};
+		template <typename T, zsize N> struct Type<T[N]> : Mixins::Type::Unqualified<Abstract::Type::Array<T, N> > {};
 
-	template <typename T, zsize N> struct Type<const	  T[N]> : Mixins::Type::ConstArray	  <Type<T[N]> > {};
-	template <typename T, zsize N> struct Type<	 volatile T[N]> : Mixins::Type::VolatileArray	  <Type<T[N]> > {};
-	template <typename T, zsize N> struct Type<const volatile T[N]> : Mixins::Type::ConstVolatileArray<Type<T[N]> > {};
+		template <typename T, zsize N> struct Type<const	  T[N]> : Mixins::Type::ConstArray	  <Type<T[N]> > {};
+		template <typename T, zsize N> struct Type<	 volatile T[N]> : Mixins::Type::VolatileArray	  <Type<T[N]> > {};
+		template <typename T, zsize N> struct Type<const volatile T[N]> : Mixins::Type::ConstVolatileArray<Type<T[N]> > {};
 
-	// MARK: - Flexible arrays
+		// MARK: - Flexible arrays
 
-	template <typename T> struct Type<T[]> : Mixins::Type::Unqualified<Abstract::Type::FlexibleArray<T> > {};
+		template <typename T> struct Type<T[]> : Mixins::Type::Unqualified<Abstract::Type::FlexibleArray<T> > {};
 
-	template <typename T> struct Type<const		 T[]> : Mixins::Type::ConstArray	<Type<T[]> > {};
-	template <typename T> struct Type<	volatile T[]> : Mixins::Type::VolatileArray	<Type<T[]> > {};
-	template <typename T> struct Type<const volatile T[]> : Mixins::Type::ConstVolatileArray<Type<T[]> > {};
+		template <typename T> struct Type<const		 T[]> : Mixins::Type::ConstArray	<Type<T[]> > {};
+		template <typename T> struct Type<	volatile T[]> : Mixins::Type::VolatileArray	<Type<T[]> > {};
+		template <typename T> struct Type<const volatile T[]> : Mixins::Type::ConstVolatileArray<Type<T[]> > {};
 
-	// MARK: - Functions
+		// MARK: - Functions
 
-#	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-		template <class R, class... A> struct Type<R(A...)> : Mixins::Type::UnqualifiedFunction<Abstract::Type::Function<R, A...> > {};
+			template <class R, class... A> struct Type<R(A...)> : Mixins::Type::UnqualifiedFunction<Abstract::Type::Function<R, A...> > {};
 
-		template <class R, class... A> struct Type<R(A...) const	 > : Mixins::Type::ConstFunction	<Type<R(A...)> > {};
-		template <class R, class... A> struct Type<R(A...)	 volatile> : Mixins::Type::VolatileFunction     <Type<R(A...)> > {};
-		template <class R, class... A> struct Type<R(A...) const volatile> : Mixins::Type::ConstVolatileFunction<Type<R(A...)> > {};
+			template <class R, class... A> struct Type<R(A...) const	 > : Mixins::Type::ConstFunction	<Type<R(A...)> > {};
+			template <class R, class... A> struct Type<R(A...)	 volatile> : Mixins::Type::VolatileFunction     <Type<R(A...)> > {};
+			template <class R, class... A> struct Type<R(A...) const volatile> : Mixins::Type::ConstVolatileFunction<Type<R(A...)> > {};
 
-		template <class R, class... A> struct Type<R(A..., ...)> : Mixins::Type::UnqualifiedFunction<Abstract::Type::VariadicFunction<R, A...> > {};
+			template <class R, class... A> struct Type<R(A..., ...)> : Mixins::Type::UnqualifiedFunction<Abstract::Type::VariadicFunction<R, A...> > {};
 
-		template <class R, class... A> struct Type<R(A..., ...) const	      > : Mixins::Type::ConstFunction	     <Type<R(A..., ...)> > {};
-		template <class R, class... A> struct Type<R(A..., ...)	      volatile> : Mixins::Type::VolatileFunction     <Type<R(A..., ...)> > {};
-		template <class R, class... A> struct Type<R(A..., ...) const volatile> : Mixins::Type::ConstVolatileFunction<Type<R(A..., ...)> > {};
+			template <class R, class... A> struct Type<R(A..., ...) const	      > : Mixins::Type::ConstFunction	     <Type<R(A..., ...)> > {};
+			template <class R, class... A> struct Type<R(A..., ...)	      volatile> : Mixins::Type::VolatileFunction     <Type<R(A..., ...)> > {};
+			template <class R, class... A> struct Type<R(A..., ...) const volatile> : Mixins::Type::ConstVolatileFunction<Type<R(A..., ...)> > {};
 
-#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_FUNCTION)
+#			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_FUNCTION)
 
-			template <class R, class... A> struct Type<R(A...) &> : Type<R(A...)> {};
+				template <class R, class... A> struct Type<R(A...) &> : Type<R(A...)> {};
 
-			template <class R, class... A> struct Type<R(A...) const	  &> : Mixins::Type::ConstFunction	  <Type<R(A...) &> > {};
-			template <class R, class... A> struct Type<R(A...)	 volatile &> : Mixins::Type::VolatileFunction	  <Type<R(A...) &> > {};
-			template <class R, class... A> struct Type<R(A...) const volatile &> : Mixins::Type::ConstVolatileFunction<Type<R(A...) &> > {};
+				template <class R, class... A> struct Type<R(A...) const	  &> : Mixins::Type::ConstFunction	  <Type<R(A...) &> > {};
+				template <class R, class... A> struct Type<R(A...)	 volatile &> : Mixins::Type::VolatileFunction	  <Type<R(A...) &> > {};
+				template <class R, class... A> struct Type<R(A...) const volatile &> : Mixins::Type::ConstVolatileFunction<Type<R(A...) &> > {};
 
-			template <class R, class... A> struct Type<R(A...) &&> : Type<R(A...)> {};
+				template <class R, class... A> struct Type<R(A...) &&> : Type<R(A...)> {};
 
-			template <class R, class... A> struct Type<R(A...) const	  &&> : Mixins::Type::ConstFunction	   <Type<R(A...) &&> > {};
-			template <class R, class... A> struct Type<R(A...)	 volatile &&> : Mixins::Type::VolatileFunction	   <Type<R(A...) &&> > {};
-			template <class R, class... A> struct Type<R(A...) const volatile &&> : Mixins::Type::ConstVolatileFunction<Type<R(A...) &&> > {};
+				template <class R, class... A> struct Type<R(A...) const	  &&> : Mixins::Type::ConstFunction	   <Type<R(A...) &&> > {};
+				template <class R, class... A> struct Type<R(A...)	 volatile &&> : Mixins::Type::VolatileFunction	   <Type<R(A...) &&> > {};
+				template <class R, class... A> struct Type<R(A...) const volatile &&> : Mixins::Type::ConstVolatileFunction<Type<R(A...) &&> > {};
 
-			template <class R, class... A> struct Type<R(A..., ...) &> : Type<R(A..., ...)> {};
+				template <class R, class... A> struct Type<R(A..., ...) &> : Type<R(A..., ...)> {};
 
-			template <class R, class... A> struct Type<R(A..., ...) const	       & > : Mixins::Type::ConstFunction	<Type<R(A..., ...) &> > {};
-			template <class R, class... A> struct Type<R(A..., ...)	      volatile & > : Mixins::Type::VolatileFunction	<Type<R(A..., ...) &> > {};
-			template <class R, class... A> struct Type<R(A..., ...) const volatile & > : Mixins::Type::ConstVolatileFunction<Type<R(A..., ...) &> > {};
+				template <class R, class... A> struct Type<R(A..., ...) const	       & > : Mixins::Type::ConstFunction	<Type<R(A..., ...) &> > {};
+				template <class R, class... A> struct Type<R(A..., ...)	      volatile & > : Mixins::Type::VolatileFunction	<Type<R(A..., ...) &> > {};
+				template <class R, class... A> struct Type<R(A..., ...) const volatile & > : Mixins::Type::ConstVolatileFunction<Type<R(A..., ...) &> > {};
 
-			template <class R, class... A> struct Type<R(A..., ...) &&> : Type<R(A..., ...)> {};
+				template <class R, class... A> struct Type<R(A..., ...) &&> : Type<R(A..., ...)> {};
 
-			template <class R, class... A> struct Type<R(A..., ...) const	       &&> : Mixins::Type::ConstFunction	<Type<R(A..., ...) &&> > {};
-			template <class R, class... A> struct Type<R(A..., ...)	      volatile &&> : Mixins::Type::VolatileFunction	<Type<R(A..., ...) &&> > {};
-			template <class R, class... A> struct Type<R(A..., ...) const volatile &&> : Mixins::Type::ConstVolatileFunction<Type<R(A..., ...) &&> > {};
+				template <class R, class... A> struct Type<R(A..., ...) const	       &&> : Mixins::Type::ConstFunction	<Type<R(A..., ...) &&> > {};
+				template <class R, class... A> struct Type<R(A..., ...)	      volatile &&> : Mixins::Type::VolatileFunction	<Type<R(A..., ...) &&> > {};
+				template <class R, class... A> struct Type<R(A..., ...) const volatile &&> : Mixins::Type::ConstVolatileFunction<Type<R(A..., ...) &&> > {};
+
+#			endif
 
 #		endif
 
-#	endif
+		// MARK: - Generic qualified types
 
-	// MARK: - Generic qualified types
+		template <typename T> struct Type<const T>
+		: SelectType<Type<T>::is_exact, Mixins::Type::Const<Type<T> >, Mixins::Type::ConstExact<Type<T> > >::type {};
 
-	template <typename T> struct Type<const T>
-	: SelectType<Type<T>::is_exact, Mixins::Type::Const<Type<T> >, Mixins::Type::ConstExact<Type<T> > >::type {};
+		template <typename T> struct Type<volatile T>
+		: SelectType<Type<T>::is_exact, Mixins::Type::Volatile<Type<T> >, Mixins::Type::VolatileExact<Type<T> > >::type {};
 
-	template <typename T> struct Type<volatile T>
-	: SelectType<Type<T>::is_exact, Mixins::Type::Volatile<Type<T> >, Mixins::Type::VolatileExact<Type<T> > >::type {};
+		template <typename T> struct Type<const volatile T>
+		: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatile<Type<T> >, Mixins::Type::ConstVolatileExact<Type<T> > >::type {};
+	}
 
-	template <typename T> struct Type<const volatile T>
-	: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatile<Type<T> >, Mixins::Type::ConstVolatileExact<Type<T> > >::type {};
+
+	template <typename T> struct Type : Concrete::Type<T> {
+
+#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
+
+			static inline Z_CONSTANT_EXPRESSION const Character *to_string()
+				{
+				const Character *signature = "_";
+				int a = 4;
+				//Character string[a] = {};
+
+
+				return signature;
+				}
+#		endif
+	};
+
 }
+
 
 #endif // __Z_traits_Type_HPP__

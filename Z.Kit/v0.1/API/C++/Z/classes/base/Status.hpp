@@ -9,8 +9,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_Status_HPP__
 #define __Z_classes_base_Status_HPP__
 
-#include <Z/types/base.hpp>
 #include <Z/keys/status.h>
+#include <Z/types/base.hpp>
+#include <Z/macros/language.hpp>
 
 namespace Zeta {struct Status;}
 
@@ -76,18 +77,18 @@ struct Zeta::Status {
 
 	ZStatus code;
 
-	inline Status() {}
-	inline Status(ZStatus code) : code(code) {}
+	Z_INLINE_MEMBER Status() {}
+	Z_INLINE_MEMBER Status(ZStatus code) : code(code) {}
 
-	inline operator Boolean() const {return !!code;}
-	inline operator ZStatus() const {return code;}
+	Z_INLINE_MEMBER operator Boolean() const {return !!code;}
+	Z_INLINE_MEMBER operator ZStatus() const {return code;}
 
-	inline Boolean operator ==(Status status)  const {return code == status.code;}
-	inline Boolean operator !=(Status status)  const {return code != status.code;}
-	inline Boolean operator ==(ZStatus status) const {return code == status;}
-	inline Boolean operator !=(ZStatus status) const {return code != status;}
+	Z_INLINE_MEMBER Boolean operator ==(Status  status) const {return code == status.code;}
+	Z_INLINE_MEMBER Boolean operator !=(Status  status) const {return code != status.code;}
+	Z_INLINE_MEMBER Boolean operator ==(ZStatus status) const {return code == status;}
+	Z_INLINE_MEMBER Boolean operator !=(ZStatus status) const {return code != status;}
 
-	inline Boolean is_error() {return code < 0;}
+	Z_INLINE_MEMBER Boolean is_error() {return code < 0;}
 };
 
 

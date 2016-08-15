@@ -11,9 +11,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-/* MARK: - C type qualifiers */
+/* MARK: - Type qualifiers */
 
-/* MARK: - C storage classes */
+/* MARK: - Storage classes */
 
 #if Z_COMPILER_C_HAS_ATTRIBUTE(THREAD_LOCAL)
 #	define Z_THREAD_LOCAL Z_COMPILER_C_ATTRIBUTE(THREAD_LOCAL)
@@ -21,7 +21,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_THREAD_LOCAL _Thread_local
 #endif
 
-/* MARK: - C specifiers */
+/* MARK: - Specifiers */
 
 #if Z_COMPILER_C_HAS_ATTRIBUTE(INLINE)
 #	define Z_INLINE Z_COMPILER_C_ATTRIBUTE(INLINE)
@@ -37,7 +37,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_NO_RETURN
 #endif
 
-/* MARK: - C attributes */
+/* MARK: - Attributes */
 
 #if Z_COMPILER_C_HAS_ATTRIBUTE(NULL_TERMINATED)
 #	define Z_NULL_TERMINATED Z_COMPILER_C_ATTRIBUTE(NULL_TERMINATED)

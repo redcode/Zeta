@@ -1655,11 +1655,13 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	Z4DULong*    pointer_4d_ulong;
 	ZRangeULong* pointer_range_ulong;
 
-	zullong*      pointer_ullong;
-	Z2DULLong*    pointer_2d_ullong;
-	Z3DULLong*    pointer_3d_ullong;
-	Z4DULLong*    pointer_4d_ullong;
-	ZRangeULLong* pointer_range_ullong;
+#	if Z_IS_AVAILABLE(ULLONG)
+		zullong*      pointer_ullong;
+		Z2DULLong*    pointer_2d_ullong;
+		Z3DULLong*    pointer_3d_ullong;
+		Z4DULLong*    pointer_4d_ullong;
+		ZRangeULLong* pointer_range_ullong;
+#	endif
 
 	zchar*	 pointer_char;
 	Z2DChar* pointer_2d_char;
@@ -1681,10 +1683,12 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	Z3DLong* pointer_3d_long;
 	Z4DLong* pointer_4d_long;
 
-	zllong*	  pointer_llong;
-	Z2DLLong* pointer_2d_llong;
-	Z3DLLong* pointer_3d_llong;
-	Z4DLLong* pointer_4d_llong;
+#	if Z_IS_AVAILABLE(LLONG)
+		zllong*	  pointer_llong;
+		Z2DLLong* pointer_2d_llong;
+		Z3DLLong* pointer_3d_llong;
+		Z4DLLong* pointer_4d_llong;
+#	endif
 
 #	if Z_IS_AVAILABLE(FLOAT)
 		zfloat*	  pointer_float;

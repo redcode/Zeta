@@ -64,8 +64,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C types */
 
-//#define Z_COMPILER_C_HAS_TYPE_LLONG
-//#define Z_COMPILER_C_HAS_TYPE_ULLONG
+#define Z_COMPILER_C_HAS_TYPE_LLONG  /* TODO: "and as an extension GCC supports them in C90 mode and in C++" */
+#define Z_COMPILER_C_HAS_TYPE_ULLONG
 #define Z_COMPILER_C_HAS_TYPE_FLOAT
 #define Z_COMPILER_C_HAS_TYPE_DOUBLE
 #define Z_COMPILER_C_HAS_TYPE_LDOUBLE

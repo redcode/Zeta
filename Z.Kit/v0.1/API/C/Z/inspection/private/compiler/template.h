@@ -96,11 +96,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_C_ATTRIBUTE_THREAD_LOCAL*/
 /*#define Z_COMPILER_C_ATTRIBUTE_WEAK*/
 
+/* MARK: - C++ features */
+
+/*#define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE*/
+
 /* MARK: - C++ specifiers */
 
 /*#define Z_COMPILER_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION*/
 /*#define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION*/
-/*#define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE*/
 
 /* MARK: - C++ operators */
 

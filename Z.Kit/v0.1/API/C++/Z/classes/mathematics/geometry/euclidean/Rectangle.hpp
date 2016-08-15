@@ -29,52 +29,53 @@ template <typename T> struct Zeta::Rectangle {
 	// MARK: - Constructors
 
 
-	inline Rectangle<T>() {}
+	Z_INLINE_MEMBER Rectangle<T>() {}
 
-	inline Rectangle<T>(const Value2D<T> &point, const Value2D<T> &size) : point(point), size(size)		  {}
-	inline Rectangle<T>(const Value2D<T> &point, T size_x, T size_y)     : point(point), size(size_x, size_y) {}
-	inline Rectangle<T>(const Value2D<T> &point, T size)		     : point(point), size(size)		  {}
-	inline Rectangle<T>(T x, T y, const Value2D<T> &size)		     : point(x, y),  size(size)		  {}
-	inline Rectangle<T>(T x, T y, T size_x, T size_y)		     : point(x, y),  size(size_x, size_y) {}
-	inline Rectangle<T>(T x, T y, T size)				     : point(x, y),  size(size)		  {}
-	inline Rectangle<T>(T point, const Value2D<T> &size)		     : point(point), size(size)		  {}
-	inline Rectangle<T>(const Value2D<T> &size)			     : point(T(0)),  size(size)		  {}
-	inline Rectangle<T>(T size_x, T size_y)				     : point(T(0)),  size(size_x, size_y) {}
-	inline Rectangle<T>(T size)					     : point(T(0)),  size(size)		  {}
+	Z_INLINE_MEMBER Rectangle<T>(const Value2D<T> &point, const Value2D<T> &size) : point(point), size(size)	   {}
+	Z_INLINE_MEMBER Rectangle<T>(const Value2D<T> &point, T size_x, T size_y)     : point(point), size(size_x, size_y) {}
+	Z_INLINE_MEMBER Rectangle<T>(const Value2D<T> &point, T size)		      : point(point), size(size)	   {}
+	Z_INLINE_MEMBER Rectangle<T>(T x, T y, const Value2D<T> &size)		      : point(x, y),  size(size)	   {}
+	Z_INLINE_MEMBER Rectangle<T>(T x, T y, T size_x, T size_y)		      : point(x, y),  size(size_x, size_y) {}
+	Z_INLINE_MEMBER Rectangle<T>(T x, T y, T size)				      : point(x, y),  size(size)	   {}
+	Z_INLINE_MEMBER Rectangle<T>(T point, const Value2D<T> &size)		      : point(point), size(size)	   {}
+	Z_INLINE_MEMBER Rectangle<T>(const Value2D<T> &size)			      : point(T(0)),  size(size)	   {}
+	Z_INLINE_MEMBER Rectangle<T>(T size_x, T size_y)			      : point(T(0)),  size(size_x, size_y) {}
+	Z_INLINE_MEMBER Rectangle<T>(T size)					      : point(T(0)),  size(size)	   {}
 
-	inline Rectangle<T>(void *data) {*this = *(Rectangle<T> *)data;}
-	inline Rectangle<T>(const Base &rectangle) {(*(Base *)this) = rectangle;}
+	Z_INLINE_MEMBER Rectangle<T>(void *data) {*this = *(Rectangle<T> *)data;}
+	Z_INLINE_MEMBER Rectangle<T>(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
 
 	// MARK: - Static functions
 
 
-	static inline Rectangle<T> zero() {return Rectangle<T>(T(0));}
-	static inline Rectangle<T> unit() {return Rectangle<T>(T(1));}
+	static Z_INLINE_MEMBER Rectangle<T> zero() {return Rectangle<T>(T(0));}
+	static Z_INLINE_MEMBER Rectangle<T> unit() {return Rectangle<T>(T(1));}
 
 
 	// MARK: - Operators
 
 
-	inline operator Boolean() const {return this->point || this->size;}
-	inline operator Base   () const {return *z_base;}
+	Z_INLINE_MEMBER operator Boolean() const {return this->point || this->size;}
+	Z_INLINE_MEMBER operator Base   () const {return *z_base;}
 
 
-	inline Boolean operator ==(const Rectangle<T> &rectangle) const
+	Z_INLINE_MEMBER Boolean operator ==(const Rectangle<T> &rectangle) const
 		{
 		return	point.x == rectangle.point.x && point.y == rectangle.point.y &&
 			size.x	== rectangle.size.x  && size.y	== rectangle.size.y;
 		}
 
 
-	inline Boolean operator !=(const Rectangle<T> &rectangle) const
+	Z_INLINE_MEMBER Boolean operator !=(const Rectangle<T> &rectangle) const
 		{
 		return	point.x != rectangle.point.x || point.y != rectangle.point.y ||
 			size.x	!= rectangle.size.x  || size.y	!= rectangle.size.y;
 		}
 
 
-	inline Rectangle<T> operator &(const Rectangle<T> &rectangle) const // Intersection
+	// Intersection
+	Z_INLINE_MEMBER Rectangle<T> operator &(const Rectangle<T> &rectangle) const
 		{
 		T x1, x2, y1, y2;
 
@@ -88,7 +89,8 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Rectangle<T> operator |(const Rectangle<T> &rectangle) const // Union
+	// Union
+	Z_INLINE_MEMBER Rectangle<T> operator |(const Rectangle<T> &rectangle) const
 		{
 		Rectangle<T> result;
 
@@ -99,31 +101,31 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Rectangle<T> &operator &=(const Rectangle<T> &rectangle) {return *this = *this & rectangle;}
-	inline Rectangle<T> &operator |=(const Rectangle<T> &rectangle) {return *this = *this | rectangle;}
+	Z_INLINE_MEMBER Rectangle<T> &operator &=(const Rectangle<T> &rectangle) {return *this = *this & rectangle;}
+	Z_INLINE_MEMBER Rectangle<T> &operator |=(const Rectangle<T> &rectangle) {return *this = *this | rectangle;}
 
-	inline Rectangle<T> operator +(const Value2D<T> &value) const {return Rectangle<T>(point, size + value);}
-	inline Rectangle<T> operator -(const Value2D<T> &value) const {return Rectangle<T>(point, size - value);}
-	inline Rectangle<T> operator *(const Value2D<T> &value) const {return Rectangle<T>(point, size * value);}
-	inline Rectangle<T> operator /(const Value2D<T> &value) const {return Rectangle<T>(point, size / value);}
+	Z_INLINE_MEMBER Rectangle<T> operator +(const Value2D<T> &value) const {return Rectangle<T>(point, size + value);}
+	Z_INLINE_MEMBER Rectangle<T> operator -(const Value2D<T> &value) const {return Rectangle<T>(point, size - value);}
+	Z_INLINE_MEMBER Rectangle<T> operator *(const Value2D<T> &value) const {return Rectangle<T>(point, size * value);}
+	Z_INLINE_MEMBER Rectangle<T> operator /(const Value2D<T> &value) const {return Rectangle<T>(point, size / value);}
 
-	inline Rectangle<T> &operator +=(const Value2D<T> &value) {return *this = *this + value;}
-	inline Rectangle<T> &operator -=(const Value2D<T> &value) {return *this = *this - value;}
-	inline Rectangle<T> &operator *=(const Value2D<T> &value) {return *this = *this * value;}
-	inline Rectangle<T> &operator /=(const Value2D<T> &value) {return *this = *this / value;}
+	Z_INLINE_MEMBER Rectangle<T> &operator +=(const Value2D<T> &value) {return *this = *this + value;}
+	Z_INLINE_MEMBER Rectangle<T> &operator -=(const Value2D<T> &value) {return *this = *this - value;}
+	Z_INLINE_MEMBER Rectangle<T> &operator *=(const Value2D<T> &value) {return *this = *this * value;}
+	Z_INLINE_MEMBER Rectangle<T> &operator /=(const Value2D<T> &value) {return *this = *this / value;}
 
-	inline Rectangle<T> operator +(T scalar) const {return Value2D<T>(point, size + scalar);}
-	inline Rectangle<T> operator -(T scalar) const {return Value2D<T>(point, size - scalar);}
-	inline Rectangle<T> operator *(T scalar) const {return Value2D<T>(point, size * scalar);}
-	inline Rectangle<T> operator /(T scalar) const {return Value2D<T>(point, size / scalar);}
+	Z_INLINE_MEMBER Rectangle<T> operator +(T scalar) const {return Value2D<T>(point, size + scalar);}
+	Z_INLINE_MEMBER Rectangle<T> operator -(T scalar) const {return Value2D<T>(point, size - scalar);}
+	Z_INLINE_MEMBER Rectangle<T> operator *(T scalar) const {return Value2D<T>(point, size * scalar);}
+	Z_INLINE_MEMBER Rectangle<T> operator /(T scalar) const {return Value2D<T>(point, size / scalar);}
 
-	inline Rectangle<T> &operator +=(T scalar) {return *this = *this + scalar;}
-	inline Rectangle<T> &operator -=(T scalar) {return *this = *this - scalar;}
-	inline Rectangle<T> &operator *=(T scalar) {return *this = *this * scalar;}
-	inline Rectangle<T> &operator /=(T scalar) {return *this = *this / scalar;}
+	Z_INLINE_MEMBER Rectangle<T> &operator +=(T scalar) {return *this = *this + scalar;}
+	Z_INLINE_MEMBER Rectangle<T> &operator -=(T scalar) {return *this = *this - scalar;}
+	Z_INLINE_MEMBER Rectangle<T> &operator *=(T scalar) {return *this = *this * scalar;}
+	Z_INLINE_MEMBER Rectangle<T> &operator /=(T scalar) {return *this = *this / scalar;}
 
-	inline T  operator[](int index) const {return ((T *)this)[index];}
-	inline T &operator[](int index)	      {return ((T *)this)[index];}
+	Z_INLINE_MEMBER T  operator[](int index) const {return ((T *)this)[index];}
+	Z_INLINE_MEMBER T &operator[](int index)	      {return ((T *)this)[index];}
 
 
 	// MARK: - Interoperability
@@ -131,11 +133,11 @@ template <typename T> struct Zeta::Rectangle {
 
 #	if Z_MUST_SUPPORT(CG_GEOMETRY)
 
-		inline Rectangle<T>(const CGRect &rectangle)
+		Z_INLINE_MEMBER Rectangle<T>(const CGRect &rectangle)
 		: point(rectangle.origin), size(rectangle.size) {}
 
 
-		inline operator CGRect() const
+		Z_INLINE_MEMBER operator CGRect() const
 			{
 			CGRect result = {
 				{CGFloat(point.x), CGFloat(point.y)},
@@ -152,11 +154,11 @@ template <typename T> struct Zeta::Rectangle {
 		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)  || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
-		inline Rectangle<T>(const NSRect &rectangle)
+		Z_INLINE_MEMBER Rectangle<T>(const NSRect &rectangle)
 		: point(rectangle.origin), size(rectangle.size) {}
 
 
-		inline operator NSRect() const
+		Z_INLINE_MEMBER operator NSRect() const
 			{
 			NSRect result = {
 				{CGFloat(point.x), CGFloat(point.y)},
@@ -169,7 +171,7 @@ template <typename T> struct Zeta::Rectangle {
 #	endif
 
 
-	static inline Rectangle<T> from_vertices(const Value2D<T> &a, const Value2D<T> &b)
+	static Z_INLINE_MEMBER Rectangle<T> from_vertices(const Value2D<T> &a, const Value2D<T> &b)
 		{
 		Value2D<T> minimum = Value2D<T>::minimum(a, b);
 
@@ -180,7 +182,7 @@ template <typename T> struct Zeta::Rectangle {
 	// MARK: - WIP
 
 
-	inline Boolean contains(const Rectangle<T> &rectangle) const
+	Z_INLINE_MEMBER Boolean contains(const Rectangle<T> &rectangle) const
 		{
 		return	rectangle.point.x		     >= point.x		 &&
 			rectangle.point.y		     >= point.y		 &&
@@ -189,7 +191,7 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Boolean contains(const Value2D<T> &point) const
+	Z_INLINE_MEMBER Boolean contains(const Value2D<T> &point) const
 		{
 		return	point	>= this->point			&&
 			point.x <= this->point.x + this->size.x &&
@@ -197,7 +199,7 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Boolean collides(const Rectangle<T> &rectangle) const
+	Z_INLINE_MEMBER Boolean collides(const Rectangle<T> &rectangle) const
 		{
 		return	point.x		 < rectangle.point.x + rectangle.size.x &&
 			point.x + size.x > rectangle.point.x &&
@@ -206,51 +208,25 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Boolean is_zero() const {return point.is_zero() && size.is_zero();}
+	Z_INLINE_MEMBER Boolean is_zero() const {return point.is_zero() && size.is_zero();}
 
 
-	inline T minimum_x() const {return point.x;}
-	inline T minimum_y() const {return point.y;}
-	inline T maximum_x() const {return point.x + size.x;}
-	inline T maximum_y() const {return point.y + size.y;}
-	inline T middle_x () const {return point.x + size.x / T(2);}
-	inline T middle_y () const {return point.y + size.y / T(2);}
+	Z_INLINE_MEMBER T minimum_x() const {return point.x;}
+	Z_INLINE_MEMBER T minimum_y() const {return point.y;}
+	Z_INLINE_MEMBER T maximum_x() const {return point.x + size.x;}
+	Z_INLINE_MEMBER T maximum_y() const {return point.y + size.y;}
+	Z_INLINE_MEMBER T middle_x () const {return point.x + size.x / T(2);}
+	Z_INLINE_MEMBER T middle_y () const {return point.y + size.y / T(2);}
 
-
-	inline Value2D<T> top_left() const
-		{return Value2D<T>(point.x, point.y + size.y);}
-
-
-	inline Value2D<T> top_right() const
-		{return point + size;}
-
-
-	inline Value2D<T> top_center() const
-		{return Value2D<T>(point.x + size.x / T(2), point.y + size.y);}
-
-
-	inline Value2D<T> bottom_left() const
-		{return point;}
-
-
-	inline Value2D<T> bottom_right() const
-		{return Value2D<T>(point.x + size.x, point.y);}
-
-
-	inline Value2D<T> bottom_center() const
-		{return Value2D<T>(point.x + size.x / T(2), point.y);}
-
-
-	inline Value2D<T> center_left() const
-		{return Value2D<T>(point.x, point.y + size.y / T(2));}
-
-
-	inline Value2D<T> center_right() const
-		{return Value2D<T>(point.x + size.x, point.y + size.y / T(2));}
-
-
-	inline Value2D<T> center() const
-		{return point + size / T(2);}
+	Z_INLINE_MEMBER Value2D<T> top_left	() const {return Value2D<T>(point.x, point.y + size.y);}
+	Z_INLINE_MEMBER Value2D<T> top_right	() const {return point + size;}
+	Z_INLINE_MEMBER Value2D<T> top_center	() const {return Value2D<T>(point.x + size.x / T(2), point.y + size.y);}
+	Z_INLINE_MEMBER Value2D<T> bottom_left	() const {return point;}
+	Z_INLINE_MEMBER Value2D<T> bottom_right	() const {return Value2D<T>(point.x + size.x, point.y);}
+	Z_INLINE_MEMBER Value2D<T> bottom_center() const {return Value2D<T>(point.x + size.x / T(2), point.y);}
+	Z_INLINE_MEMBER Value2D<T> center_left	() const {return Value2D<T>(point.x, point.y + size.y / T(2));}
+	Z_INLINE_MEMBER Value2D<T> center_right	() const {return Value2D<T>(point.x + size.x, point.y + size.y / T(2));}
+	Z_INLINE_MEMBER Value2D<T> center	() const {return point + size / T(2);}
 
 
 	/* inline Rectangle<T> correct()
@@ -261,47 +237,47 @@ template <typename T> struct Zeta::Rectangle {
 		}*/
 
 
-	inline Rectangle<T> top_half() const
+	Z_INLINE_MEMBER Rectangle<T> top_half() const
 		{return Rectangle<T>(point.x, point.y + size.y / T(2), size.x, size.y / T(2));}
 
 
-	inline Rectangle<T> bottom_half() const
+	Z_INLINE_MEMBER Rectangle<T> bottom_half() const
 		{return Rectangle<T>(point, size.x, size.y / T(2));}
 
 
-	inline Rectangle<T> left_half() const
+	Z_INLINE_MEMBER Rectangle<T> left_half() const
 		{return Rectangle<T>(point, size.x / T(2), size.y);}
 
 
-	inline Rectangle<T> right_half() const
+	Z_INLINE_MEMBER Rectangle<T> right_half() const
 		{return Rectangle<T>(point.x + size.x / T(2), point.y, size.x / T(2), size.y);}
 
 
-	inline Rectangle<T> top_left_quarter() const
+	Z_INLINE_MEMBER Rectangle<T> top_left_quarter() const
 		{return Rectangle<T>(point.x, point.y + size.y / T(2), size / T(2));}
 
 
-	inline Rectangle<T> top_right_quarter() const
+	Z_INLINE_MEMBER Rectangle<T> top_right_quarter() const
 		{return Rectangle<T>(point + size / T(2), size / T(2));}
 
 
-	inline Rectangle<T> bottom_left_quarter() const
+	Z_INLINE_MEMBER Rectangle<T> bottom_left_quarter() const
 		{return Rectangle<T>(point, size / T(2));}
 
 
-	inline Rectangle<T> bottom_right_quarter() const
+	Z_INLINE_MEMBER Rectangle<T> bottom_right_quarter() const
 		{return Rectangle<T>(point.x + size.x / T(2), point.y, size / T(2));}
 
 
-	inline Rectangle<T> align_in_top_left(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> align_in_top_left(const Value2D<T> &size) const
 		{Rectangle<T>(this->point.x, this->point.y + this->size.y - size.y, size);}
 
 
-	inline Rectangle<T> align_in_top_right(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> align_in_top_right(const Value2D<T> &size) const
 		{Rectangle<T>(this->point + this->size - size, size);}
 
 
-	inline Rectangle<T> align_in_top_center(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> align_in_top_center(const Value2D<T> &size) const
 		{
 		Rectangle<T>
 			(this->point.x + (this->size.x - size.x) / T(2),
@@ -310,11 +286,11 @@ template <typename T> struct Zeta::Rectangle {
 		 }
 
 
-	inline Rectangle<T> align_in_bottom_left(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> align_in_bottom_left(const Value2D<T> &size) const
 		{return Rectangle<T>(this->point, size);}
 
 
-	inline Rectangle<T> align_in_bottom_right(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> align_in_bottom_right(const Value2D<T> &size) const
 		{
 		return Rectangle<T>
 			(this->point.x + this->size.x - size.x,
@@ -322,7 +298,7 @@ template <typename T> struct Zeta::Rectangle {
 			 size);}
 
 
-	inline Rectangle<T> align_in_bottom_center(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> align_in_bottom_center(const Value2D<T> &size) const
 		{
 		return Rectangle<T>
 			(this->point.x + (this->size.x - size.x) / T(2),
@@ -330,7 +306,7 @@ template <typename T> struct Zeta::Rectangle {
 			 size);}
 
 
-	inline Rectangle<T> align_in_center_left(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> align_in_center_left(const Value2D<T> &size) const
 		{
 		return Rectangle<T>
 			(this->point.x,
@@ -338,7 +314,7 @@ template <typename T> struct Zeta::Rectangle {
 			 size);}
 
 
-	inline Rectangle<T> align_in_center_right(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> align_in_center_right(const Value2D<T> &size) const
 		{
 		return Rectangle<T>
 			(this->point.x +  this->size.x - size.x,
@@ -347,11 +323,11 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Rectangle<T> align_in_center(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> align_in_center(const Value2D<T> &size) const
 		{return Rectangle<T>(this->point + (this->size - size) / T(2), size);}
 
 
-	inline Rectangle<T> fit_in_top_left(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> fit_in_top_left(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -361,14 +337,14 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Rectangle<T> fit_in_top_right(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> fit_in_top_right(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 		return Rectangle<T>(this->point + this->size - fitting_size, fitting_size);
 		}
 
 
-	inline Rectangle<T> fit_in_top_center(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> fit_in_top_center(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -379,11 +355,11 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Rectangle<T> fit_in_bottom_left(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> fit_in_bottom_left(const Value2D<T> &size) const
 		{return Value2D<T>(this->point, size.fit(this->size));}
 
 
-	inline Rectangle<T> fit_in_bottom_right(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> fit_in_bottom_right(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -393,7 +369,7 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Rectangle<T> fit_in_bottom_center(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> fit_in_bottom_center(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -403,7 +379,7 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Rectangle<T> fit_in_center_left(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> fit_in_center_left(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -413,7 +389,7 @@ template <typename T> struct Zeta::Rectangle {
 		}
 
 
-	inline Rectangle<T> fit_in_center_right(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> fit_in_center_right(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -424,7 +400,7 @@ template <typename T> struct Zeta::Rectangle {
 		 }
 
 
-	inline Rectangle<T> fit_in_center(const Value2D<T> &size) const
+	Z_INLINE_MEMBER Rectangle<T> fit_in_center(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -452,11 +428,11 @@ template <typename T> struct Zeta::Rectangle {
 		}*/
 
 
-	inline Value2D<T> absolute_point_to_unit(const Value2D<T> &point) const
+	Z_INLINE_MEMBER Value2D<T> absolute_point_to_unit(const Value2D<T> &point) const
 		{return (point - this->point) / this->size;}
 
 
-	inline Value2D<T> unit_point_to_absolute(const Value2D<T> &point) const
+	Z_INLINE_MEMBER Value2D<T> unit_point_to_absolute(const Value2D<T> &point) const
 		{return point * this->size + this->point;}
 
 

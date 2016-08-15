@@ -21,6 +21,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_VERSION_STRING __clang_version__
 #endif
 
+#ifndef __has_extension
+#	define __has_extension __has_feature /* Compatibility with Clang < v3.0 */
+#endif
+
 /* MARK: - Bit field order */
 
 #include <Z/keys/order.h>
@@ -31,10 +35,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_BIG_ENDIAN_BIT_FIELD_ORDER     Z_ORDER_NORMAL
 
 /* MARK: - C features */
-
-#ifndef __has_extension
-#	define __has_extension __has_feature /* Compatibility with Clang < v3.0 */
-#endif
 
 #if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
 #	define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE
@@ -84,8 +84,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C types */
 
-//#define Z_COMPILER_C_HAS_TYPE_LLONG
-//#define Z_COMPILER_C_HAS_TYPE_ULLONG
+#define Z_COMPILER_C_HAS_TYPE_LLONG
+#define Z_COMPILER_C_HAS_TYPE_ULLONG
 #define Z_COMPILER_C_HAS_TYPE_FLOAT
 #define Z_COMPILER_C_HAS_TYPE_DOUBLE
 #define Z_COMPILER_C_HAS_TYPE_LDOUBLE
@@ -169,6 +169,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if __has_attribute(weak)
 #	define Z_COMPILER_C_ATTRIBUTE_WEAK __attribute__((weak))
+#endif
+
+/* MARK: - C++ attributes */
+
+#if __has_attribute(always_inline)
+#	define Z_COMPILER_CPP_ATTRIBUTE_INLINE_MEMBER __inline__ __attribute__((always_inline))
+#else
+#	define Z_COMPILER_CPP_ATTRIBUTE_INLINE_MEMBER __inline__
 #endif
 
 /* MARK: - Built-in constants */

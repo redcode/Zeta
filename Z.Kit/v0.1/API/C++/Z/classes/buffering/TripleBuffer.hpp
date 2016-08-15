@@ -12,6 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 #include <Z/types/buffering.h>
+#include <Z/macros/language.hpp>
 #include <Z/functions/base/value.h>
 
 namespace Zeta {struct TripleBuffer;}
@@ -19,14 +20,14 @@ namespace Zeta {struct TripleBuffer;}
 
 struct Zeta::TripleBuffer : public ZTripleBuffer {
 
-	inline TripleBuffer() {}
+	Z_INLINE_MEMBER TripleBuffer() {}
 
 
-	inline TripleBuffer(void *buffers, Size buffer_size)
+	Z_INLINE_MEMBER TripleBuffer(void *buffers, Size buffer_size)
 		{initialize(buffers, buffer_size);}
 
 
-	inline void initialize(void *buffers, Size buffer_size)
+	Z_INLINE_MEMBER void initialize(void *buffers, Size buffer_size)
 		{
 		this->buffers[0] = buffers;
 		this->buffers[1] = (UInt8 *)buffers + buffer_size;
@@ -35,11 +36,11 @@ struct Zeta::TripleBuffer : public ZTripleBuffer {
 		}
 
 
-	inline void *production_buffer () const {return buffers[(flags & 48) >> 4];}
-	inline void *consumption_buffer() const {return buffers[flags & 3];}
+	Z_INLINE_MEMBER void *production_buffer () const {return buffers[(flags & 48) >> 4];}
+	Z_INLINE_MEMBER void *consumption_buffer() const {return buffers[flags & 3];}
 
 
-	inline void *produce()
+	Z_INLINE_MEMBER void *produce()
 		{
 		UInt8 flags, new_flags;
 
@@ -53,7 +54,7 @@ struct Zeta::TripleBuffer : public ZTripleBuffer {
 		}
 
 
-	inline void *consume()
+	Z_INLINE_MEMBER void *consume()
 		{
 		UInt8 flags, new_flags;
 
