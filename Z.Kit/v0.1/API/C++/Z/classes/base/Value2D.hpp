@@ -44,10 +44,6 @@ template <typename T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 	// MARK: - Static functions
 
 
-	static Z_INLINE_MEMBER Value2D<T> zero() {return Value2D<T>(T(0));}
-	static Z_INLINE_MEMBER Value2D<T> unit() {return Value2D<T>(T(1));}
-
-
 	static Z_INLINE_MEMBER Value2D<T> minimum(const Value2D<T> &a, const Value2D<T> &b)
 		{return Value2D<T>(Zeta::minimum<T>(a.x, b.x), Zeta::minimum<T>(a.y, b.y));}
 

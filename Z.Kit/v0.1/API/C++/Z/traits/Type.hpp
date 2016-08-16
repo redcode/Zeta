@@ -13,7 +13,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/language.hpp>
 #include <Z/traits/SelectType.hpp>
 
-
 namespace Zeta {
 
 	// MARK: - Abstract
@@ -263,9 +262,9 @@ namespace Zeta {
 					exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM
 				};
 
-				static Z_CONSTANT_EXPRESSION const float epsilon = Z_FLOAT_EPSILON;
-				static Z_CONSTANT_EXPRESSION const float minimum = Z_FLOAT_MINIMUM;
-				static Z_CONSTANT_EXPRESSION const float maximum = Z_FLOAT_MAXIMUM;
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float epsilon() {return Z_FLOAT_EPSILON;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float minimum() {return Z_FLOAT_MINIMUM;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float maximum() {return Z_FLOAT_MAXIMUM;}
 
 				typedef float type;
 			};
@@ -294,9 +293,9 @@ namespace Zeta {
 					exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM
 				};
 
-				static inline Z_CONSTANT_EXPRESSION double epsilon() {return Z_DOUBLE_EPSILON;}
-				static inline Z_CONSTANT_EXPRESSION double minimum() {return Z_DOUBLE_MINIMUM;}
-				static inline Z_CONSTANT_EXPRESSION double maximum() {return Z_DOUBLE_MAXIMUM;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double epsilon() {return Z_DOUBLE_EPSILON;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double minimum() {return Z_DOUBLE_MINIMUM;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double maximum() {return Z_DOUBLE_MAXIMUM;}
 
 				typedef double type;
 			};
@@ -325,9 +324,9 @@ namespace Zeta {
 					exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM
 				};
 
-				static inline Z_CONSTANT_EXPRESSION long double epsilon() {return Z_LDOUBLE_EPSILON;}
-				static inline Z_CONSTANT_EXPRESSION long double minimum() {return Z_LDOUBLE_MINIMUM;}
-				static inline Z_CONSTANT_EXPRESSION long double maximum() {return Z_LDOUBLE_MAXIMUM;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double epsilon() {return Z_LDOUBLE_EPSILON;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double minimum() {return Z_LDOUBLE_MINIMUM;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double maximum() {return Z_LDOUBLE_MAXIMUM;}
 
 				typedef long double type;
 			};
@@ -663,24 +662,10 @@ namespace Zeta {
 		: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatile<Type<T> >, Mixins::Type::ConstVolatileExact<Type<T> > >::type {};
 	}
 
-
 	template <typename T> struct Type : Concrete::Type<T> {
-
-#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
-
-			static inline Z_CONSTANT_EXPRESSION const Character *to_string()
-				{
-				const Character *signature = "_";
-				int a = 4;
-				//Character string[a] = {};
-
-
-				return signature;
-				}
-#		endif
+		// TODO: constexpr functions
 	};
 
 }
-
 
 #endif // __Z_traits_Type_HPP__

@@ -46,13 +46,6 @@ template <typename T> struct Zeta::Rectangle {
 	Z_INLINE_MEMBER Rectangle<T>(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
 
-	// MARK: - Static functions
-
-
-	static Z_INLINE_MEMBER Rectangle<T> zero() {return Rectangle<T>(T(0));}
-	static Z_INLINE_MEMBER Rectangle<T> unit() {return Rectangle<T>(T(1));}
-
-
 	// MARK: - Operators
 
 
