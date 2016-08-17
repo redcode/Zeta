@@ -74,7 +74,7 @@ template <typename T> struct Zeta::Shared {
 	Z_INLINE_MEMBER Boolean operator !=(const Shared<T> &shared) const {return owned != shared.owned;}
 	Z_INLINE_MEMBER T*	operator ->()			     const {return owned->object;}
 
-	Z_INLINE_MEMBER T*   get	() const {return owned->object;}
+	Z_INLINE_MEMBER T*   get	() const {return owned ? owned->object : NULL;}
 	Z_INLINE_MEMBER Size owner_count() const {return owned->owner_count;}
 };
 
