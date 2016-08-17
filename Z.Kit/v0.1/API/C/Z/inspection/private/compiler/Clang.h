@@ -171,12 +171,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_ATTRIBUTE_WEAK __attribute__((weak))
 #endif
 
-/* MARK: - C++ attributes */
+#if defined(__cplusplus)
 
-#if __has_attribute(always_inline)
-#	define Z_COMPILER_CPP_ATTRIBUTE_INLINE_MEMBER __inline__ __attribute__((always_inline))
-#else
-#	define Z_COMPILER_CPP_ATTRIBUTE_INLINE_MEMBER __inline__
+	/* MARK: - C++ attributes */
+
+#	if __has_attribute(always_inline)
+#		define Z_COMPILER_CPP_ATTRIBUTE_INLINE_MEMBER __inline__ __attribute__((always_inline))
+#	else
+#		define Z_COMPILER_CPP_ATTRIBUTE_INLINE_MEMBER __inline__
+#	endif
+
 #endif
 
 /* MARK: - Built-in constants */

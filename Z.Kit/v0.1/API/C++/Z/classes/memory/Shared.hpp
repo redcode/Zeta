@@ -65,7 +65,6 @@ template <typename T> struct Zeta::Shared {
 			}
 
 		owned = object ? new Owned(object) : NULL;
-
 		return *this;
 		}
 
