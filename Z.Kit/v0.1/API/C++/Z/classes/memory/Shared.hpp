@@ -13,10 +13,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.hpp>
 #include <Z/macros/language.hpp>
 
-namespace Zeta {template <typename T> struct Shared;}
+namespace Zeta {template <class T> struct Shared;}
 
 
-template <typename T> struct Zeta::Shared {
+template <class T> struct Zeta::Shared {
 
 	struct Owned {
 		Size owner_count;
@@ -68,7 +68,7 @@ template <typename T> struct Zeta::Shared {
 		return *this;
 		}
 
-	Z_INLINE_MEMBER operator Boolean() const {return Boolean(!!UIntPtr(this->owned));}
+	Z_INLINE_MEMBER operator Boolean() const {return owned != NULL;}
 
 	Z_INLINE_MEMBER Boolean operator ==(const Shared<T> &shared) const {return owned == shared.owned;}
 	Z_INLINE_MEMBER Boolean operator !=(const Shared<T> &shared) const {return owned != shared.owned;}

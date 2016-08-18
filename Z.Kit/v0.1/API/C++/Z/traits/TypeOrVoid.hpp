@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_traits_TypeOrVoid_HPP__
 
 namespace Zeta {
-	template <typename T = void> struct TypeOrVoid {typedef T type;};
+	template <class T = void> struct TypeOrVoid {typedef T type;};
 }
 
 #endif // __Z_traits_TypeOrVoid_HPP__

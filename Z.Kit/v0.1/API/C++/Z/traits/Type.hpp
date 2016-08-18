@@ -345,7 +345,7 @@ namespace Zeta {
 
 #		endif
 
-		template <typename T> struct Pointer : Base {
+		template <class T> struct Pointer : Base {
 			enum {	is_pointer = true,
 				is_value   = true
 			};
@@ -354,7 +354,7 @@ namespace Zeta {
 			typedef T  pointee_type;
 		};
 
-		template <typename T, zsize N> struct Array : Base {
+		template <class T, zsize N> struct Array : Base {
 			enum {is_array = true};
 			enum {element_count = N};
 
@@ -362,7 +362,7 @@ namespace Zeta {
 			typedef T element_type;
 		};
 
-		template <typename T> struct FlexibleArray : Base {
+		template <class T> struct FlexibleArray : Base {
 			enum {	is_array	  = true,
 				is_flexible_array = true,
 			};
@@ -529,7 +529,7 @@ namespace Zeta {
 	}}
 
 	namespace Concrete {
-		template <typename T> struct Type : Abstract::Type::Base {};
+		template <class T> struct Type : Abstract::Type::Base {};
 
 		// MARK: - void
 
@@ -571,7 +571,7 @@ namespace Zeta {
 
 		// MARK: - Pointers
 
-		template <typename T> struct Type<T*> : Mixins::Type::Unqualified  <Abstract::Type::Pointer<T> > {};
+		template <class T> struct Type<T*> : Mixins::Type::Unqualified  <Abstract::Type::Pointer<T> > {};
 
 		// MARK: - Null pointer type
 
@@ -581,7 +581,7 @@ namespace Zeta {
 
 		// MARK: - References
 
-		template <typename T> struct Type<T&> : Abstract::Type::Base {
+		template <class T> struct Type<T&> : Abstract::Type::Base {
 			enum {is_reference = true};
 
 			typedef T& type;
@@ -590,19 +590,19 @@ namespace Zeta {
 
 		// MARK: - Arrays
 
-		template <typename T, zsize N> struct Type<T[N]> : Mixins::Type::Unqualified<Abstract::Type::Array<T, N> > {};
+		template <class T, zsize N> struct Type<T[N]> : Mixins::Type::Unqualified<Abstract::Type::Array<T, N> > {};
 
-		template <typename T, zsize N> struct Type<const	  T[N]> : Mixins::Type::ConstArray	  <Type<T[N]> > {};
-		template <typename T, zsize N> struct Type<	 volatile T[N]> : Mixins::Type::VolatileArray	  <Type<T[N]> > {};
-		template <typename T, zsize N> struct Type<const volatile T[N]> : Mixins::Type::ConstVolatileArray<Type<T[N]> > {};
+		template <class T, zsize N> struct Type<const	       T[N]> : Mixins::Type::ConstArray	       <Type<T[N]> > {};
+		template <class T, zsize N> struct Type<      volatile T[N]> : Mixins::Type::VolatileArray     <Type<T[N]> > {};
+		template <class T, zsize N> struct Type<const volatile T[N]> : Mixins::Type::ConstVolatileArray<Type<T[N]> > {};
 
 		// MARK: - Flexible arrays
 
-		template <typename T> struct Type<T[]> : Mixins::Type::Unqualified<Abstract::Type::FlexibleArray<T> > {};
+		template <class T> struct Type<T[]> : Mixins::Type::Unqualified<Abstract::Type::FlexibleArray<T> > {};
 
-		template <typename T> struct Type<const		 T[]> : Mixins::Type::ConstArray	<Type<T[]> > {};
-		template <typename T> struct Type<	volatile T[]> : Mixins::Type::VolatileArray	<Type<T[]> > {};
-		template <typename T> struct Type<const volatile T[]> : Mixins::Type::ConstVolatileArray<Type<T[]> > {};
+		template <class T> struct Type<const	      T[]> : Mixins::Type::ConstArray	     <Type<T[]> > {};
+		template <class T> struct Type<	     volatile T[]> : Mixins::Type::VolatileArray     <Type<T[]> > {};
+		template <class T> struct Type<const volatile T[]> : Mixins::Type::ConstVolatileArray<Type<T[]> > {};
 
 		// MARK: - Functions
 
@@ -652,17 +652,17 @@ namespace Zeta {
 
 		// MARK: - Generic qualified types
 
-		template <typename T> struct Type<const T>
+		template <class T> struct Type<const T>
 		: SelectType<Type<T>::is_exact, Mixins::Type::Const<Type<T> >, Mixins::Type::ConstExact<Type<T> > >::type {};
 
-		template <typename T> struct Type<volatile T>
+		template <class T> struct Type<volatile T>
 		: SelectType<Type<T>::is_exact, Mixins::Type::Volatile<Type<T> >, Mixins::Type::VolatileExact<Type<T> > >::type {};
 
-		template <typename T> struct Type<const volatile T>
+		template <class T> struct Type<const volatile T>
 		: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatile<Type<T> >, Mixins::Type::ConstVolatileExact<Type<T> > >::type {};
 	}
 
-	template <typename T> struct Type : Concrete::Type<T> {
+	template <class T> struct Type : Concrete::Type<T> {
 		// TODO: constexpr functions
 	};
 

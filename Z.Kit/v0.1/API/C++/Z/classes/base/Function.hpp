@@ -13,17 +13,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/traits/Type.hpp>
 
 
-namespace Zeta {template <typename T> struct Function {
+namespace Zeta {
+	template <typename> class Function;
 
-	typedef T type;
-	typedef typename Type<T>::return_type return_type;
-
-	/*T *function;
-
-	inline Function(T function) : function(function) {}
-
-	return_type operator()(...) {}*/
-
+	template <typename R, typename... A> class Function<R(A...)> {
+	};
 };}
 
 #endif // __Z_classes_base_Function_HPP__

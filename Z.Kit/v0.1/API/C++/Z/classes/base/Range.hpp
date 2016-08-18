@@ -17,10 +17,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	import <Foundation/NSRange.h>
 #endif
 
-namespace Zeta {template <typename T> struct Range;}
+namespace Zeta {template <class T> struct Range;}
 
 
-template <typename T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
+template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 
 	typedef typename ZNaturalType(ZRange, T) Base;
 	typedef typename ZNaturalType(ZRange, T) Super;

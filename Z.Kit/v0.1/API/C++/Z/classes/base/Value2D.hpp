@@ -21,10 +21,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	import <Foundation/NSGeometry.h>
 #endif
 
-namespace Zeta {template <typename T> struct Value2D;}
+namespace Zeta {template <class T> struct Value2D;}
 
 
-template <typename T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
+template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 
 	typedef typename ZNumberType(Z2D, T) Base;
 	typedef typename ZNumberType(Z2D, T) Super;

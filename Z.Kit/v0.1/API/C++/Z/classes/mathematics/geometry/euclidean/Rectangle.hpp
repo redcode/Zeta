@@ -12,10 +12,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/classes/base/Value2D.hpp>
 #include <Z/types/mathematics.h>
 
-namespace Zeta {template <typename T> struct Rectangle;}
+namespace Zeta {template <class T> struct Rectangle;}
 
 
-template <typename T> struct Zeta::Rectangle {
+template <class T> struct Zeta::Rectangle {
 
 	typedef typename ZRealType(ZRectangle, T) Base;  // Not actual but compatible
 	typedef typename ZRealType(ZRectangle, T) Super; // Not actual but compatible

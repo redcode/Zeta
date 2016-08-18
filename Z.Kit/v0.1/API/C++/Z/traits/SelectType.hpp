@@ -14,20 +14,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {
 
 	template <unsigned int,
-		class C00,	  class C01 = void, class C02 = void, class C03 = void,
-		class C04 = void, class C05 = void, class C06 = void, class C07 = void,
-		class C08 = void, class C09 = void, class C10 = void, class C11 = void,
-		class C12 = void, class C13 = void, class C14 = void, class C15 = void,
-		class C16 = void, class C17 = void, class C18 = void, class C19 = void,
-		class C20 = void, class C21 = void, class C22 = void, class C23 = void,
-		class C24 = void, class C25 = void, class C26 = void, class C27 = void,
-		class C28 = void, class C29 = void, class C30 = void, class C31 = void
+		class T00,	  class T01 = void, class T02 = void, class T03 = void,
+		class T04 = void, class T05 = void, class T06 = void, class T07 = void,
+		class T08 = void, class T09 = void, class T10 = void, class T11 = void,
+		class T12 = void, class T13 = void, class T14 = void, class T15 = void,
+		class T16 = void, class T17 = void, class T18 = void, class T19 = void,
+		class T20 = void, class T21 = void, class T22 = void, class T23 = void,
+		class T24 = void, class T25 = void, class T26 = void, class T27 = void,
+		class T28 = void, class T29 = void, class T30 = void, class T31 = void
 	> struct SelectType {};
 
 #	define Z_TEMPLATE_SPECIALIZATION(type_count, index)		       \
-	template <Z_ENUMERATE_APPENDING_INDEX(type_count, class C)>	       \
-	struct SelectType<index, Z_ENUMERATE_APPENDING_INDEX(type_count, C)> { \
-		typedef C##index type;					       \
+	template <Z_ENUMERATE_APPENDING_INDEX(type_count, class T)>	       \
+	struct SelectType<index, Z_ENUMERATE_APPENDING_INDEX(type_count, T)> { \
+		typedef T##index type;					       \
 	};
 
 #	define Z_TEMPLATE_SPECIALIZATION_GROUP(type_count) \

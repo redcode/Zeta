@@ -11,25 +11,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/traits/TypeOrVoid.hpp>
 
-#define Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(Prefix)			    \
-									    \
-template <bool, typename T> struct Prefix##EnableIf {};			    \
-									    \
-template <typename T> struct Prefix##EnableIf<false, T> : TypeOrVoid<> {};  \
-template <typename T> struct Prefix##EnableIf<true,  T> {typedef T type;};  \
-									    \
-template <bool, typename T> struct Prefix##DisableIf {};		    \
-									    \
-template <typename T> struct Prefix##DisableIf<false, T> {typedef T type;}; \
-template <typename T> struct Prefix##DisableIf<true,  T> : TypeOrVoid<> {};
+#define Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(Prefix)			 \
+									 \
+template <bool, class T> struct Prefix##EnableIf {};			 \
+									 \
+template <class T> struct Prefix##EnableIf<false, T> : TypeOrVoid<> {};  \
+template <class T> struct Prefix##EnableIf<true,  T> {typedef T type;};  \
+									 \
+template <bool, class T> struct Prefix##DisableIf {};			 \
+									 \
+template <class T> struct Prefix##DisableIf<false, T> {typedef T type;}; \
+template <class T> struct Prefix##DisableIf<true,  T> : TypeOrVoid<> {};
 
 namespace Zeta {
 #	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-		template <bool, typename T = void> struct EnableIf {};
-		template <typename T> struct EnableIf<true, T> {typedef T type;};
+		template <bool, class T = void> struct EnableIf {};
+		template <class T> struct EnableIf<true, T> {typedef T type;};
 
-		template <bool, typename T = void> struct DisableIf {};
-		template <typename T> struct DisableIf<false, T> {typedef T type;};
+		template <bool, class T = void> struct DisableIf {};
+		template <class T> struct DisableIf<false, T> {typedef T type;};
 
 		Z_TEMPLATE_SAFER_ENABLE_DISABLE_IF(Safer)
 #	else
