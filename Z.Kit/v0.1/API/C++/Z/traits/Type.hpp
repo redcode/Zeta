@@ -19,7 +19,7 @@ namespace Zeta {
 
 	namespace Abstract {namespace Type {
 
-		struct Base {
+		struct Invalid {
 			enum {	is_arithmetic	     = false,
 				is_array	     = false,
 				is_callable	     = false,
@@ -43,6 +43,7 @@ namespace Zeta {
 				is_reference	     = false,
 				is_signed	     = false,
 				is_union	     = false,
+				is_valid	     = false,
 				is_value	     = false,
 				is_variadic	     = false,
 				is_variadic_function = false,
@@ -51,16 +52,32 @@ namespace Zeta {
 			};
 
 			enum {	arity	      = 0,
-				element_count = 0,
+				element_count = 0
 			};
 
-			typedef void element_type;
-			typedef void pointee_type;
-			typedef void referenced_type;
-			typedef void return_type;
+			typedef Invalid type;
+			typedef Invalid element_type;
+			typedef Invalid pointee_type;
+			typedef Invalid referenced_type;
+			typedef Invalid return_type;
+			typedef Invalid to_signed;
+			typedef Invalid to_unsigned;
+			typedef Invalid to_const;
+			typedef Invalid to_volatile;
+			typedef Invalid to_const_volatile;
+			typedef Invalid add_const;
+			typedef Invalid add_volatile;
+			typedef Invalid add_const_volatile;
+			typedef Invalid remove_const;
+			typedef Invalid remove_volatile;
+			typedef Invalid remove_const_volatile;
 		};
 
-		struct Fundamental : Base {
+		struct Valid : Invalid {
+			enum {is_valid = true};
+		};
+
+		struct Fundamental : Valid {
 			enum {is_fundamental = true};
 		};
 
@@ -277,6 +294,7 @@ namespace Zeta {
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float maximum() {return Z_FLOAT_MAXIMUM;}
 
 				typedef float type;
+				typedef float to_signed;
 			};
 
 #		endif
@@ -308,6 +326,7 @@ namespace Zeta {
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double maximum() {return Z_DOUBLE_MAXIMUM;}
 
 				typedef double type;
+				typedef double to_signed;
 			};
 
 #		endif
@@ -339,13 +358,14 @@ namespace Zeta {
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double maximum() {return Z_LDOUBLE_MAXIMUM;}
 
 				typedef long double type;
+				typedef long double to_signed;
 			};
 
 #		endif
 
 #		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
 
-			struct NullPointer : Base {
+			struct NullPointer : Valid {
 				enum {	is_fundamental	= true,
 					is_null_pointer = true
 				};	
@@ -355,7 +375,7 @@ namespace Zeta {
 
 #		endif
 
-		template <class T> struct Pointer : Base {
+		template <class T> struct Pointer : Valid {
 			enum {	is_pointer = true,
 				is_value   = true
 			};
@@ -364,7 +384,7 @@ namespace Zeta {
 			typedef T  pointee_type;
 		};
 
-		template <class T, zsize N> struct Array : Base {
+		template <class T, zsize N> struct Array : Valid {
 			enum {is_array = true};
 			enum {element_count = N};
 
@@ -372,7 +392,7 @@ namespace Zeta {
 			typedef T element_type;
 		};
 
-		template <class T> struct FlexibleArray : Base {
+		template <class T> struct FlexibleArray : Valid {
 			enum {	is_array	  = true,
 				is_flexible_array = true,
 			};
@@ -383,16 +403,16 @@ namespace Zeta {
 
 #		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-			template <class R, class... A> struct Function : Base {
+			template <class R, class... A> struct Function : Valid {
 				enum {	is_callable = true,
 					is_function = true
 				};
 				enum {arity = sizeof...(A)};
 
-				typedef R type		     (A...);
-				typedef R const_type	     (A...) const;
-				typedef R volatile_type	     (A...)	  volatile;
-				typedef R const_volatile_type(A...) const volatile;
+				typedef R type		   (A...);
+				typedef R to_const	   (A...) const;
+				typedef R to_volatile	   (A...)	volatile;
+				typedef R to_const_volatile(A...) const volatile;
 
 				typedef R return_type;
 			};
@@ -400,10 +420,10 @@ namespace Zeta {
 			template <class R, class... A> struct VariadicFunction : Function<R, A...> {
 				enum {is_variadic = true};
 
-				typedef R type		     (A..., ...);
-				typedef R const_type	     (A..., ...) const;
-				typedef R volatile_type	     (A..., ...)       volatile;
-				typedef R const_volatile_type(A..., ...) const volatile;
+				typedef R type		   (A..., ...);
+				typedef R to_const	   (A..., ...) const;
+				typedef R to_volatile	   (A..., ...)	     volatile;
+				typedef R to_const_volatile(A..., ...) const volatile;
 			};
 
 #		endif
@@ -416,9 +436,9 @@ namespace Zeta {
 		// MARK: - Unqualified
 
 		template <class C> struct Unqualified : C {
-			typedef const	       typename C::type const_type;
-			typedef	      volatile typename C::type volatile_type;
-			typedef const volatile typename C::type const_volatile_type;
+			typedef const	       typename C::type to_const;
+			typedef	      volatile typename C::type to_volatile;
+			typedef const volatile typename C::type to_const_volatile;
 			typedef const	       typename C::type add_const;
 			typedef	      volatile typename C::type add_volatile;
 			typedef const volatile typename C::type add_const_volatile;
@@ -428,12 +448,12 @@ namespace Zeta {
 		};
 
 		template <class C> struct UnqualifiedFunction : C {
-			typedef typename C::const_type		add_const;
-			typedef typename C::volatile_type	add_volatile;
-			typedef typename C::const_volatile_type add_const_volatile;
-			typedef typename C::type		remove_const;
-			typedef typename C::type		remove_volatile;
-			typedef typename C::type		remove_const_volatile;
+			typedef typename C::to_const	      add_const;
+			typedef typename C::to_volatile	      add_volatile;
+			typedef typename C::to_const_volatile add_const_volatile;
+			typedef typename C::type	      remove_const;
+			typedef typename C::type	      remove_volatile;
+			typedef typename C::type	      remove_const_volatile;
 		};
 
 		// MARK: - Qualified
@@ -468,9 +488,9 @@ namespace Zeta {
 		template <class C> struct ConstFunction : QualifiedFunction<C> {
 			enum {is_const = true};
 
-			typedef typename C::const_type		type;
-			typedef typename C::const_volatile_type add_volatile;
-			typedef typename C::const_type		remove_volatile;
+			typedef typename C::to_const	      type;
+			typedef typename C::to_const_volatile add_volatile;
+			typedef typename C::to_const	      remove_volatile;
 		};
 
 		// MARK: - volatile
@@ -495,9 +515,9 @@ namespace Zeta {
 		template <class C> struct VolatileFunction : QualifiedFunction<C> {
 			enum {is_volatile = true};
 
-			typedef typename C::volatile_type	type;
-			typedef typename C::const_volatile_type add_const;
-			typedef typename C::volatile_type	remove_const;
+			typedef typename C::to_volatile	      type;
+			typedef typename C::to_const_volatile add_const;
+			typedef typename C::to_volatile	      remove_const;
 		};
 
 		// MARK: - const volatile
@@ -530,16 +550,16 @@ namespace Zeta {
 				is_const_volatile = true
 			};
 
-			typedef typename C::const_volatile_type type;
-			typedef typename C::const_volatile_type add_const;
-			typedef typename C::const_volatile_type add_volatile;
-			typedef typename C::volatile_type	remove_const;
-			typedef typename C::const_type		remove_volatile;
+			typedef typename C::to_const_volatile type;
+			typedef typename C::to_const_volatile add_const;
+			typedef typename C::to_const_volatile add_volatile;
+			typedef typename C::to_volatile	      remove_const;
+			typedef typename C::to_const	      remove_volatile;
 		};
 	}}
 
 	namespace Concrete {
-		template <class T> struct Type : Abstract::Type::Base {};
+		template <class T> struct Type : Abstract::Type::Valid {};
 
 		// MARK: - void
 
@@ -595,7 +615,7 @@ namespace Zeta {
 
 		// MARK: - References
 
-		template <class T> struct Type<T&> : Abstract::Type::Base {
+		template <class T> struct Type<T&> : Abstract::Type::Valid {
 			enum {is_reference = true};
 
 			typedef T& type;
@@ -664,7 +684,7 @@ namespace Zeta {
 
 #		endif
 
-		// MARK: - Generic qualified types
+		// MARK: - Generic specializations for qualified types
 
 		template <class T> struct Type<const T>
 		: SelectType<Type<T>::is_exact, Mixins::Type::Const<Type<T> >, Mixins::Type::ConstExact<Type<T> > >::type {};
@@ -676,7 +696,7 @@ namespace Zeta {
 		: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatile<Type<T> >, Mixins::Type::ConstVolatileExact<Type<T> > >::type {};
 	}
 
-	template <class T> struct Type : public Concrete::Type<T> {
+	template <class T> struct Type : Concrete::Type<T> {
 		typedef T* add_pointer;
 		typedef T& add_reference;
 
@@ -684,6 +704,10 @@ namespace Zeta {
 		// TODO: constexpr functions
 	};
 
+	template <> struct Type<	       Abstract::Type::Invalid> : Abstract::Type::Invalid {};
+	template <> struct Type<const	       Abstract::Type::Invalid> : Abstract::Type::Invalid {};
+	template <> struct Type<      volatile Abstract::Type::Invalid> : Abstract::Type::Invalid {};
+	template <> struct Type<const volatile Abstract::Type::Invalid> : Abstract::Type::Invalid {};
 }
 
 #endif // __Z_traits_Type_HPP__
