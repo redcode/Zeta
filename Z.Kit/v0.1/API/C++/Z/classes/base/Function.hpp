@@ -11,8 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 #include <Z/traits/Type.hpp>
-#include <functional>
-#include <memory>
 
 
 namespace Zeta {
@@ -20,7 +18,6 @@ namespace Zeta {
 	template <class, Size maximum_size = 1024> class Function;
 
 	template <class R, class... A, Size maximum_size> class Function<R(A...), maximum_size> {
-
 	};
 }
 
