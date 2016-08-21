@@ -34,26 +34,26 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 	// MARK: - Constructors
 
 
-	Z_INLINE_MEMBER Value2D<T>()		      {}
-	Z_INLINE_MEMBER Value2D<T>(T x, T y)	      {this->x = x; this->y = y;}
-	Z_INLINE_MEMBER Value2D<T>(T scalar)	      {this->x = scalar; this->y = scalar;}
-	Z_INLINE_MEMBER Value2D<T>(void *data)	      {*this = *(Value2D<T> *)data;}
-	Z_INLINE_MEMBER Value2D<T>(const Base &value) {*z_base = value;}
+	Z_INLINE_MEMBER Value2D()		   {}
+	Z_INLINE_MEMBER Value2D(T x, T y)	   {this->x = x; this->y = y;}
+	Z_INLINE_MEMBER Value2D(T scalar)	   {this->x = scalar; this->y = scalar;}
+	Z_INLINE_MEMBER Value2D(void *data)	   {*this = *(Value2D<T> *)data;}
+	Z_INLINE_MEMBER Value2D(const Base &value) {*z_base = value;}
 
 
 	// MARK: - Static functions
 
 
-	static Z_INLINE_MEMBER Value2D<T> minimum(const Value2D<T> &a, const Value2D<T> &b)
-		{return Value2D<T>(Zeta::minimum<T>(a.x, b.x), Zeta::minimum<T>(a.y, b.y));}
+	static Z_INLINE_MEMBER Value2D minimum(const Value2D &a, const Value2D &b)
+		{return Value2D(Zeta::minimum<T>(a.x, b.x), Zeta::minimum<T>(a.y, b.y));}
 
 
-	static Z_INLINE_MEMBER Value2D<T> maximum(const Value2D<T> &a, const Value2D<T> &b)
-		{return Value2D<T>(Zeta::maximum<T>(a.x, b.x), Zeta::maximum<T>(a.y, b.y));}
+	static Z_INLINE_MEMBER Value2D maximum(const Value2D &a, const Value2D &b)
+		{return Value2D(Zeta::maximum<T>(a.x, b.x), Zeta::maximum<T>(a.y, b.y));}
 
 
-	static Z_INLINE_MEMBER Value2D<T> middle(const Value2D<T> &a, const Value2D<T> &b)
-		{return Value2D<T>((a.x + b.x) / T(2), (a.y + b.y) / T(2));}
+	static Z_INLINE_MEMBER Value2D middle(const Value2D &a, const Value2D &b)
+		{return Value2D((a.x + b.x) / T(2), (a.y + b.y) / T(2));}
 
 
 	// MARK: - Operators
@@ -62,22 +62,22 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 	Z_INLINE_MEMBER operator Boolean() const {return this->x != T(0) || this->y != T(0);}
 	Z_INLINE_MEMBER operator Base	() const {return *z_base;}
 
-	Z_INLINE_MEMBER Boolean operator ==(const Value2D<T> &value) const {return this->x == value.x && this->y == value.y;}
-	Z_INLINE_MEMBER Boolean operator !=(const Value2D<T> &value) const {return this->x != value.x || this->y != value.y;}
-	Z_INLINE_MEMBER Boolean operator <=(const Value2D<T> &value) const {return this->x <= value.x && this->y <= value.y;}
-	Z_INLINE_MEMBER Boolean operator >=(const Value2D<T> &value) const {return this->x >= value.x && this->y >= value.y;}
-	Z_INLINE_MEMBER Boolean operator  >(const Value2D<T> &value) const {return this->x >  value.x && this->y >  value.y;}
-	Z_INLINE_MEMBER Boolean operator  <(const Value2D<T> &value) const {return this->x <  value.x && this->y <  value.y;}
+	Z_INLINE_MEMBER Boolean operator ==(const Value2D &value) const {return this->x == value.x && this->y == value.y;}
+	Z_INLINE_MEMBER Boolean operator !=(const Value2D &value) const {return this->x != value.x || this->y != value.y;}
+	Z_INLINE_MEMBER Boolean operator <=(const Value2D &value) const {return this->x <= value.x && this->y <= value.y;}
+	Z_INLINE_MEMBER Boolean operator >=(const Value2D &value) const {return this->x >= value.x && this->y >= value.y;}
+	Z_INLINE_MEMBER Boolean operator  >(const Value2D &value) const {return this->x >  value.x && this->y >  value.y;}
+	Z_INLINE_MEMBER Boolean operator  <(const Value2D &value) const {return this->x <  value.x && this->y <  value.y;}
 
-	Z_INLINE_MEMBER Value2D<T> operator +(const Value2D<T> &value) const {return Value2D<T>(this->x + value.x, this->y + value.y);}
-	Z_INLINE_MEMBER Value2D<T> operator -(const Value2D<T> &value) const {return Value2D<T>(this->x - value.x, this->y - value.y);}
-	Z_INLINE_MEMBER Value2D<T> operator *(const Value2D<T> &value) const {return Value2D<T>(this->x * value.x, this->y * value.y);}
-	Z_INLINE_MEMBER Value2D<T> operator /(const Value2D<T> &value) const {return Value2D<T>(this->x / value.x, this->y / value.y);}
+	Z_INLINE_MEMBER Value2D operator +(const Value2D &value) const {return Value2D(this->x + value.x, this->y + value.y);}
+	Z_INLINE_MEMBER Value2D operator -(const Value2D &value) const {return Value2D(this->x - value.x, this->y - value.y);}
+	Z_INLINE_MEMBER Value2D operator *(const Value2D &value) const {return Value2D(this->x * value.x, this->y * value.y);}
+	Z_INLINE_MEMBER Value2D operator /(const Value2D &value) const {return Value2D(this->x / value.x, this->y / value.y);}
 
-	Z_INLINE_MEMBER Value2D<T> &operator +=(const Value2D<T> &value) {return *this = *this + value;}
-	Z_INLINE_MEMBER Value2D<T> &operator -=(const Value2D<T> &value) {return *this = *this - value;}
-	Z_INLINE_MEMBER Value2D<T> &operator *=(const Value2D<T> &value) {return *this = *this * value;}
-	Z_INLINE_MEMBER Value2D<T> &operator /=(const Value2D<T> &value) {return *this = *this / value;}
+	Z_INLINE_MEMBER Value2D &operator +=(const Value2D &value) {return *this = *this + value;}
+	Z_INLINE_MEMBER Value2D &operator -=(const Value2D &value) {return *this = *this - value;}
+	Z_INLINE_MEMBER Value2D &operator *=(const Value2D &value) {return *this = *this * value;}
+	Z_INLINE_MEMBER Value2D &operator /=(const Value2D &value) {return *this = *this / value;}
 
 	Z_INLINE_MEMBER Boolean operator ==(T scalar) const {return this->x == scalar && this->y == scalar;}
 	Z_INLINE_MEMBER Boolean operator !=(T scalar) const {return this->x != scalar || this->y != scalar;}
@@ -86,15 +86,15 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 	Z_INLINE_MEMBER Boolean operator  >(T scalar) const {return this->x >  scalar && this->y >  scalar;}
 	Z_INLINE_MEMBER Boolean operator  <(T scalar) const {return this->x <  scalar && this->y <  scalar;}
 
-	Z_INLINE_MEMBER Value2D<T> operator +(T scalar) const {return Value2D<T>(this->x + scalar, this->y + scalar);}
-	Z_INLINE_MEMBER Value2D<T> operator -(T scalar) const {return Value2D<T>(this->x - scalar, this->y - scalar);}
-	Z_INLINE_MEMBER Value2D<T> operator *(T scalar) const {return Value2D<T>(this->x * scalar, this->y * scalar);}
-	Z_INLINE_MEMBER Value2D<T> operator /(T scalar) const {return Value2D<T>(this->x / scalar, this->y / scalar);}
+	Z_INLINE_MEMBER Value2D operator +(T scalar) const {return Value2D(this->x + scalar, this->y + scalar);}
+	Z_INLINE_MEMBER Value2D operator -(T scalar) const {return Value2D(this->x - scalar, this->y - scalar);}
+	Z_INLINE_MEMBER Value2D operator *(T scalar) const {return Value2D(this->x * scalar, this->y * scalar);}
+	Z_INLINE_MEMBER Value2D operator /(T scalar) const {return Value2D(this->x / scalar, this->y / scalar);}
 
-	Z_INLINE_MEMBER Value2D<T> &operator +=(T scalar) {return *this = *this + scalar;}
-	Z_INLINE_MEMBER Value2D<T> &operator -=(T scalar) {return *this = *this - scalar;}
-	Z_INLINE_MEMBER Value2D<T> &operator *=(T scalar) {return *this = *this * scalar;}
-	Z_INLINE_MEMBER Value2D<T> &operator /=(T scalar) {return *this = *this / scalar;}
+	Z_INLINE_MEMBER Value2D &operator +=(T scalar) {return *this = *this + scalar;}
+	Z_INLINE_MEMBER Value2D &operator -=(T scalar) {return *this = *this - scalar;}
+	Z_INLINE_MEMBER Value2D &operator *=(T scalar) {return *this = *this * scalar;}
+	Z_INLINE_MEMBER Value2D &operator /=(T scalar) {return *this = *this / scalar;}
 
 	Z_INLINE_MEMBER T  operator[](int index) const {return ((T *)this)[index];}
 	Z_INLINE_MEMBER T &operator[](int index)       {return ((T *)this)[index];}
@@ -105,8 +105,8 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 
 #	if Z_MUST_SUPPORT(CG_GEOMETRY)
 
-		Z_INLINE_MEMBER Value2D<T>(const CGPoint &point) {this->x = point.x; this->y = point.y;}
-		Z_INLINE_MEMBER Value2D<T>(const CGSize	 &size)	 {this->x = size.width; this->y = size.height;}
+		Z_INLINE_MEMBER Value2D(const CGPoint &point) {this->x = point.x;    this->y = point.y;	   }
+		Z_INLINE_MEMBER Value2D(const CGSize  &size ) {this->x = size.width; this->y = size.height;}
 
 
 		Z_INLINE_MEMBER operator CGPoint() const
@@ -129,8 +129,8 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)  || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
-		Z_INLINE_MEMBER Value2D<T>(const NSSize	&size)	{this->x = size.width; this->y = size.height;}
-		Z_INLINE_MEMBER Value2D<T>(const NSPoint &point) {this->x = point.x; this->y = point.y;}
+		Z_INLINE_MEMBER Value2D(const NSSize  &size ) {this->x = size.width; this->y = size.height;}
+		Z_INLINE_MEMBER Value2D(const NSPoint &point) {this->x = point.x;    this->y = point.y;	   }
 
 
 		Z_INLINE_MEMBER operator NSPoint() const
@@ -152,43 +152,43 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 	// MARK: - Operations for natural, integer and real types
 
 
-	Z_INLINE_MEMBER Boolean contains(const Value2D<T> &value) const
+	Z_INLINE_MEMBER Boolean contains(const Value2D &value) const
 		{return this->x >= value.x && this->y >= value.y;}
 
 
-	Z_INLINE_MEMBER T dot_product(const Value2D<T> &value) const
+	Z_INLINE_MEMBER T dot_product(const Value2D &value) const
 		{return this->x * value.x + this->y * value.y;}
 
 
-	Z_INLINE_MEMBER T cross_product(const Value2D<T> &value) const
+	Z_INLINE_MEMBER T cross_product(const Value2D &value) const
 		{return this->x * value.y - this->y * value.x;}
 
 
-	Z_INLINE_MEMBER Value2D<T> minimum(const Value2D<T> &value) const
+	Z_INLINE_MEMBER Value2D minimum(const Value2D &value) const
 		{
-		return Value2D<T>
+		return Value2D
 			(Zeta::minimum<T>(this->x, value.x),
 			 Zeta::minimum<T>(this->y, value.y));
 		 }
 
 
-	Z_INLINE_MEMBER Value2D<T> maximum(const Value2D<T> &value) const
+	Z_INLINE_MEMBER Value2D maximum(const Value2D &value) const
 		{
-		return Value2D<T>
+		return Value2D
 			(Zeta::maximum<T>(this->x, value.x),
 			 Zeta::maximum<T>(this->y, value.y));
 		 }
 
 
-	Z_INLINE_MEMBER Value2D<T> middle(const Value2D<T> &value) const
-		{return Value2D<T>((this->x + value.x) / T(2), (this->y + value.y) / T(2));}
+	Z_INLINE_MEMBER Value2D middle(const Value2D &value) const
+		{return Value2D((this->x + value.x) / T(2), (this->y + value.y) / T(2));}
 
 
-	Z_INLINE_MEMBER Value2D<T> fit(const Value2D<T> &value) const
+	Z_INLINE_MEMBER Value2D fit(const Value2D &value) const
 		{
 		return this->y / this->x > value.y / value.x
-			? Value2D<T>(this->x * value.y / this->y, value.y)
-			: Value2D<T>(value.x, this->y * value.x / this->x);
+			? Value2D(this->x * value.y / this->y, value.y)
+			: Value2D(value.x, this->y * value.x / this->x);
 		}
 
 
@@ -203,7 +203,7 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 	Z_INLINE_MEMBER T squared_length() const {return this->x * this->x + this->y * this->y;}
 
 
-	Z_INLINE_MEMBER Value2D<T> clamp(const Value2D<T> &minimum, const Value2D<T> &maximum) const
+	Z_INLINE_MEMBER Value2D clamp(const Value2D &minimum, const Value2D &maximum) const
 		{
 		return Value2D
 			(Zeta::clamp<T>(this->x, minimum.x, maximum.x),
@@ -211,16 +211,16 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		}
 
 
-	Z_INLINE_MEMBER Value2D<T> clamp(T minimum, T maximum) const
+	Z_INLINE_MEMBER Value2D clamp(T minimum, T maximum) const
 		{
-		return Value2D<T>
+		return Value2D
 			(Zeta::clamp<T>(this->x, minimum, maximum),
 			 Zeta::clamp<T>(this->y, minimum, maximum));
 		}
 
 
-	Z_INLINE_MEMBER Value2D<T> yx() const
-		{return Value2D<T>(this->y, this->x);}
+	Z_INLINE_MEMBER Value2D yx() const
+		{return Value2D(this->y, this->x);}
 
 
 	Z_INLINE_MEMBER void to_vertex_array(T *array) const
@@ -231,7 +231,7 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		}
 
 
-	Z_INLINE_MEMBER void to_vertex_array(Value2D<T> delta, T *array) const
+	Z_INLINE_MEMBER void to_vertex_array(Value2D delta, T *array) const
 		{
 		array[0] = array[2] = delta.x;
 		array[1] = array[7] = delta.y;
@@ -253,21 +253,21 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		{return this->x < T(0) || this->y < T(0);}
 
 
-	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_signed, Value2D<T> >::type
+	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_signed, Value2D>::type
 	negative() const
-		{return Value2D<T>(-this->x, -this->y);}
+		{return Value2D(-this->x, -this->y);}
 
 
-	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_signed, Value2D<T> >::type
+	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_signed, Value2D>::type
 	absolute() const
-		{return Value2D<T>(Zeta::absolute<T>(this->x), Zeta::absolute<T>(this->y));}
+		{return Value2D(Zeta::absolute<T>(this->x), Zeta::absolute<T>(this->y));}
 
 
 	// MARK: - Operations for real types only
 
 
 	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_almost_equal(const Value2D<T> &value) const
+	is_almost_equal(const Value2D &value) const
 		{
 		return	Zeta::are_almost_equal<T>(this->x, value.x) &&
 			Zeta::are_almost_equal<T>(this->y, value.y);
@@ -275,23 +275,23 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 
 
 	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_perpendicular(const Value2D<T> &value) const
+	is_perpendicular(const Value2D &value) const
 		{return Zeta::absolute<T>(dot_product(value)) <= Type<T>::epsilon();}
 
 
-	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Value2D<T> >::type
-	lerp(const Value2D<T> &value, T t) const
+	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Value2D>::type
+	lerp(const Value2D &value, T t) const
 		{
-		return Value2D<T>
+		return Value2D
 			(Zeta::lerp<T>(this->x, value.x, t),
 			 Zeta::lerp<T>(this->y, value.y, t));
 		}
 
 
-	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Value2D<T> >::type
-	inverse_lerp(const Value2D<T> &value, T t) const
+	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Value2D>::type
+	inverse_lerp(const Value2D &value, T t) const
 		{
-		return Value2D<T>
+		return Value2D
 			(Zeta::inverse_lerp<T>(this->x, value.x, t),
 			 Zeta::inverse_lerp<T>(this->y, value.y, t));
 		 }
@@ -337,14 +337,14 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		{return Zeta::is_almost_zero<T>(this->x) || Zeta::is_almost_zero<T>(this->y);}
 
 
-	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Value2D<T> >::type
+	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Value2D>::type
 	reciprocal() const
-		{return Value2D<T>(T(1.0) / this->x, T(1.0) / this->y);}
+		{return Value2D(T(1.0) / this->x, T(1.0) / this->y);}
 
 
-	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Value2D<T> >::type
+	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Value2D>::type
 	clamp_01() const
-		{return Value2D<T>(Zeta::clamp_01<T>(this->x), Zeta::clamp_01<T>(this->y));}
+		{return Value2D(Zeta::clamp_01<T>(this->x), Zeta::clamp_01<T>(this->y));}
 
 #ifndef Z_DECLARING_PARTIAL_VALUE_2D
 };

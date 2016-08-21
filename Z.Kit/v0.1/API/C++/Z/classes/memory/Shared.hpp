@@ -29,22 +29,22 @@ template <class T> struct Zeta::Shared {
 	Owned *owned;
 
 
-	Z_INLINE_MEMBER Shared<T>() : owned(NULL) {}
+	Z_INLINE_MEMBER Shared() : owned(NULL) {}
 
 
-	Z_INLINE_MEMBER Shared<T>(const Shared<T> &shared)
+	Z_INLINE_MEMBER Shared(const Shared &shared)
 		{if ((owned = shared.owned)) owned->owner_count++;}
 
 
-	Z_INLINE_MEMBER Shared<T>(T *object)
+	Z_INLINE_MEMBER Shared(T *object)
 		{owned = object ? new Owned(object) : NULL;}
 
 
-	Z_INLINE_MEMBER ~Shared<T>()
+	Z_INLINE_MEMBER ~Shared()
 		{if (owned && !--owned->owner_count) delete owned;}
 
 
-	Z_INLINE_MEMBER Shared<T> &operator =(const Shared<T> &shared)
+	Z_INLINE_MEMBER Shared &operator =(const Shared &shared)
 		{
 		if (owned != shared.owned)
 			{
@@ -56,7 +56,7 @@ template <class T> struct Zeta::Shared {
 		}
 
 
-	Z_INLINE_MEMBER Shared<T> &operator =(T *object)
+	Z_INLINE_MEMBER Shared &operator =(T *object)
 		{
 		if (owned)
 			{
@@ -70,9 +70,9 @@ template <class T> struct Zeta::Shared {
 
 	Z_INLINE_MEMBER operator Boolean() const {return owned != NULL;}
 
-	Z_INLINE_MEMBER Boolean operator ==(const Shared<T> &shared) const {return owned == shared.owned;}
-	Z_INLINE_MEMBER Boolean operator !=(const Shared<T> &shared) const {return owned != shared.owned;}
-	Z_INLINE_MEMBER T*	operator ->()			     const {return owned->object;}
+	Z_INLINE_MEMBER Boolean operator ==(const Shared &shared) const {return owned == shared.owned;}
+	Z_INLINE_MEMBER Boolean operator !=(const Shared &shared) const {return owned != shared.owned;}
+	Z_INLINE_MEMBER T*	operator ->()			  const {return owned->object;}
 
 	Z_INLINE_MEMBER T*   get	() const {return owned ? owned->object : NULL;}
 	Z_INLINE_MEMBER Size owner_count() const {return owned->owner_count;}

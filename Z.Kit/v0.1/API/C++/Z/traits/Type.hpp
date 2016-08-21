@@ -31,6 +31,7 @@ namespace Zeta {
 				is_integer	     = false,
 				is_flexible_array    = false,
 				is_function	     = false,
+				is_function_pointer  = false,
 				is_fundamental	     = false,
 				is_member_pointer    = false,
 				is_natural	     = false,
@@ -48,6 +49,15 @@ namespace Zeta {
 				is_void		     = false,
 				is_volatile	     = false
 			};
+
+			enum {	arity	      = 0,
+				element_count = 0,
+			};
+
+			typedef void element_type;
+			typedef void pointee_type;
+			typedef void referenced_type;
+			typedef void return_type;
 		};
 
 		struct Fundamental : Base {
@@ -146,7 +156,7 @@ namespace Zeta {
 
 			typedef unsigned long int type;
 			typedef unsigned long int to_unsigned;
-			typedef signed long int to_signed;
+			typedef signed	 long int to_signed;
 
 		};
 
@@ -571,7 +581,11 @@ namespace Zeta {
 
 		// MARK: - Pointers
 
-		template <class T> struct Type<T*> : Mixins::Type::Unqualified  <Abstract::Type::Pointer<T> > {};
+		template <class T> struct Type<T*> : Mixins::Type::Unqualified<Abstract::Type::Pointer<T> > {
+			enum {	is_function_pointer = Type<T>::is_function,
+				is_callable	    = is_function_pointer
+			};
+		};
 
 		// MARK: - Null pointer type
 
@@ -653,16 +667,20 @@ namespace Zeta {
 		// MARK: - Generic qualified types
 
 		template <class T> struct Type<const T>
-		: SelectType<Type<T>::is_exact, Mixins::Type::Const<Type<T> >, Mixins::Type::ConstExact<Type<T> > >::type {};
+		: public SelectType<Type<T>::is_exact, Mixins::Type::Const<Type<T> >, Mixins::Type::ConstExact<Type<T> > >::type {};
 
 		template <class T> struct Type<volatile T>
-		: SelectType<Type<T>::is_exact, Mixins::Type::Volatile<Type<T> >, Mixins::Type::VolatileExact<Type<T> > >::type {};
+		: public SelectType<Type<T>::is_exact, Mixins::Type::Volatile<Type<T> >, Mixins::Type::VolatileExact<Type<T> > >::type {};
 
 		template <class T> struct Type<const volatile T>
-		: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatile<Type<T> >, Mixins::Type::ConstVolatileExact<Type<T> > >::type {};
+		: public SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatile<Type<T> >, Mixins::Type::ConstVolatileExact<Type<T> > >::type {};
 	}
 
-	template <class T> struct Type : Concrete::Type<T> {
+	template <class T> struct Type : public Concrete::Type<T> {
+		typedef T* add_pointer;
+		typedef T& add_reference;
+
+
 		// TODO: constexpr functions
 	};
 

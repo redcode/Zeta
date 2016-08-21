@@ -26,21 +26,21 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 	typedef typename ZNaturalType(ZRange, T) Super;
 	typedef		 T			 Value;
 
-	Z_INLINE_MEMBER Range<T>()		    {}
-	Z_INLINE_MEMBER Range<T>(T size)	    {this->index = 0; this->size = size;}
-	Z_INLINE_MEMBER Range<T>(T index, T size)   {this->index = index; this->size = size;}
-	Z_INLINE_MEMBER Range<T>(void *data)	    {*this = *(Range<T> *)data;}
-	Z_INLINE_MEMBER Range<T>(const Base &range) {*z_base = range;}
+	Z_INLINE_MEMBER Range()			 {}
+	Z_INLINE_MEMBER Range(T size)		 {this->index = 0; this->size = size;}
+	Z_INLINE_MEMBER Range(T index, T size)   {this->index = index; this->size = size;}
+	Z_INLINE_MEMBER Range(void *data)	 {*this = *(Range *)data;}
+	Z_INLINE_MEMBER Range(const Base &range) {*z_base = range;}
 
 	Z_INLINE_MEMBER operator Boolean() const {return this->index || this->size;}
 	Z_INLINE_MEMBER operator Base	() const {return *z_base;}
 
 
-	Z_INLINE_MEMBER Boolean operator ==(const Range<T> &range) const
+	Z_INLINE_MEMBER Boolean operator ==(const Range &range) const
 		{return this->index == range.index && this->size == range.size;}
 
 
-	Z_INLINE_MEMBER Boolean operator !=(const Range<T> &range) const
+	Z_INLINE_MEMBER Boolean operator !=(const Range &range) const
 		{return this->index != range.index || this->size != range.size;}
 
 
@@ -52,32 +52,32 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 		{return this->index != number || this->size != number;}
 
 
-	Z_INLINE_MEMBER Range<T> operator &(const Range<T> &range) const
+	Z_INLINE_MEMBER Range operator &(const Range &range) const
 		{
 		T index = (this->index > range.index) ? this->index : range.index;
 		T end	= Zeta::minimum<T>(this->index + this->size, range.index + range.size);
 
-		return end > index ? Range(index, end - index) : Range<T>(0, 0);
+		return end > index ? Range(index, end - index) : Range(0, 0);
 		}
 
 
-	Z_INLINE_MEMBER Range<T> operator |(const Range<T> &range) const
+	Z_INLINE_MEMBER Range operator |(const Range &range) const
 		{
 		T	index = (this->index < range.index) ? this->index : range.index,
 			a_end = this->index + this->size,
 			b_end = range.index + range.size;
 
-		return Range<T>(index, ((a_end > b_end) ? a_end : b_end) - index);
+		return Range(index, ((a_end > b_end) ? a_end : b_end) - index);
 		}
 
 
-	Z_INLINE_MEMBER Range<T> &operator &=(const Range<T> &range) {return *this = *this & range;}
-	Z_INLINE_MEMBER Range<T> &operator |=(const Range<T> &range) {return *this = *this | range;}
+	Z_INLINE_MEMBER Range &operator &=(const Range &range) {return *this = *this & range;}
+	Z_INLINE_MEMBER Range &operator |=(const Range &range) {return *this = *this | range;}
 
 
 #	if Z_MUST_SUPPORT(NS_RANGE) && defined(Z_OBJECTIVE_C)
 
-		Z_INLINE_MEMBER Range<T>(const NSRange &range)
+		Z_INLINE_MEMBER Range(const NSRange &range)
 			{this->index = range.location; this->size = range.length;}
 
 
@@ -90,7 +90,7 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 #	endif
 
 
-	Z_INLINE_MEMBER Boolean contains(const Range<T> &range) const
+	Z_INLINE_MEMBER Boolean contains(const Range &range) const
 		{
 		return	range.index >= this->index &&
 			range.index + range.size <= this->index + this->size;
@@ -101,7 +101,7 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 		{return this->index >= this->index && this->index < this->index + this->size;}
 
 
-	Z_INLINE_MEMBER Boolean collides(const Range<T> &range) const
+	Z_INLINE_MEMBER Boolean collides(const Range &range) const
 		{
 		return	this->index < range.index + range.size &&
 			range.index < this->index + this->size;

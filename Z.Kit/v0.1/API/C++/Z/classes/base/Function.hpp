@@ -11,13 +11,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 #include <Z/traits/Type.hpp>
+#include <functional>
+#include <memory>
 
 
 namespace Zeta {
-	template <typename> class Function;
 
-	template <typename R, typename... A> class Function<R(A...)> {
+	template <class, Size maximum_size = 1024> class Function;
+
+	template <class R, class... A, Size maximum_size> class Function<R(A...), maximum_size> {
+
 	};
-};}
+}
 
 #endif // __Z_classes_base_Function_HPP__
