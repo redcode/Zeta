@@ -33,6 +33,7 @@ namespace Zeta {
 				is_function		     = false,
 				is_function_pointer	     = false,
 				is_function_reference	     = false,
+				is_function_lvalue_reference = false,
 				is_function_rvalue_reference = false,
 				is_fundamental		     = false,
 				is_member_pointer	     = false,
@@ -44,6 +45,7 @@ namespace Zeta {
 				is_qualified		     = false,
 				is_real			     = false,
 				is_reference		     = false,
+				is_lvalue_reference	     = false,
 				is_rvalue_reference	     = false,
 				is_scalar		     = false,
 				is_signed		     = false,
@@ -56,6 +58,20 @@ namespace Zeta {
 				is_volatile		     = false
 			};
 
+			enum {	is_constructible		   = false,
+				is_copy_constructible		   = false,
+				is_default_constructible	   = false,
+				is_move_constructible		   = false,
+				is_trivially_constructible	   = false,
+				is_trivially_copy_constructible	   = false,
+				is_trivially_default_constructible = false,
+				is_trivially_move_constructible	   = false,
+				is_nothrow_constructible	   = false,
+				is_nothrow_copy_constructible	   = false,
+				is_nothrow_default_constructible   = false,
+				is_nothrow_move_constructible	   = false
+			};
+
 			enum {	arity	      = 0,
 				element_count = 0
 			};
@@ -65,26 +81,28 @@ namespace Zeta {
 			typedef Invalid pointee_type;
 			typedef Invalid referenced_type;
 			typedef Invalid return_type;
+
 			typedef Invalid to_signed;
 			typedef Invalid to_unsigned;
 			typedef Invalid to_const;
 			typedef Invalid to_volatile;
 			typedef Invalid to_const_volatile;
 			typedef Invalid to_pointer;
-			typedef Invalid to_reference;
+			typedef Invalid to_lvalue_reference;
 			typedef Invalid to_rvalue_reference;
+
 			typedef Invalid add_const;
 			typedef Invalid add_volatile;
 			typedef Invalid add_const_volatile;
 			typedef Invalid add_pointer;
-			typedef Invalid add_reference;
+			typedef Invalid add_lvalue_reference;
 			typedef Invalid add_rvalue_reference;
+
 			typedef Invalid remove_const;
 			typedef Invalid remove_volatile;
 			typedef Invalid remove_const_volatile;
 			typedef Invalid remove_pointer;
 			typedef Invalid remove_reference;
-			typedef Invalid remove_rvalue_reference;
 		};
 
 		struct Valid : Invalid {
@@ -405,15 +423,19 @@ namespace Zeta {
 		template <class T> struct Reference : Valid {
 			enum {is_reference = true};
 
-			typedef T& type;
-			typedef T  referenced_type;
+			typedef T referenced_type;
 		};
 
-		template <class T> struct RValueReference : Valid {
+		template <class T> struct LValueReference : Reference<T> {
+			enum {is_lvalue_reference = true};
+
+			typedef T& type;
+		};
+
+		template <class T> struct RValueReference : Reference<T> {
 			enum {is_rvalue_reference = true};
 
 			typedef T&& type;
-			typedef T   referenced_type;
 		};
 
 		template <class T, zsize N> struct Array : Valid {
@@ -593,12 +615,11 @@ namespace Zeta {
 
 		template <class C> struct Value : C {
 			typedef typename C::type* to_pointer;
-			typedef typename C::type& to_reference;
+			typedef typename C::type& to_lvalue_reference;
 			typedef typename C::type* add_pointer;
-			typedef typename C::type& add_reference;
+			typedef typename C::type& add_lvalue_reference;
 			typedef typename C::type  remove_pointer;
 			typedef typename C::type  remove_reference;
-			typedef typename C::type  remove_rvalue_reference;
 
 #			if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
 				typedef typename C::type&& to_rvalue_reference;
@@ -610,12 +631,11 @@ namespace Zeta {
 
 		template <class C> struct Pointer : C {
 			typedef typename C::type	  to_pointer;
-			typedef typename C::pointee_type& to_reference;
+			typedef typename C::pointee_type& to_lvalue_reference;
 			typedef typename C::type*	  add_pointer;
-			typedef typename C::type&	  add_reference;
+			typedef typename C::type&	  add_lvalue_reference;
 			typedef typename C::pointee_type  remove_pointer;
 			typedef typename C::type	  remove_reference;
-			typedef typename C::type	  remove_rvalue_reference;
 
 #			if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
 				typedef typename C::pointee_type&& to_rvalue_reference;
@@ -626,26 +646,35 @@ namespace Zeta {
 		// MARK: - Reference
 
 		template <class C> struct Reference : C {
+			typedef Abstract::Type::Invalid to_const;
+			typedef Abstract::Type::Invalid to_volatile;
+			typedef Abstract::Type::Invalid to_const_volatile;
+			typedef Abstract::Type::Invalid add_const;
+			typedef Abstract::Type::Invalid add_volatile;
+			typedef Abstract::Type::Invalid add_const_volatile;
+
+			typedef typename C::referenced_type remove_reference;
+		};
+
+		// MARK: - L-value Reference
+
+		template <class C> struct LValueReference : Reference<C> {
 			typedef typename C::referenced_type* to_pointer;
-			typedef typename C::type	     to_reference;
+			typedef typename C::type	     to_lvalue_reference;
 			typedef typename C::type	     remove_pointer;
-			typedef typename C::referenced_type  remove_reference;
-			typedef typename C::type	     remove_rvalue_reference;
 
 #			if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
 				typedef typename C::referenced_type&& to_rvalue_reference;
 #			endif
 		};
 
-		// MARK: - R-Value Reference
+		// MARK: - R-value Reference
 
-		template <class C> struct RValueReference : C {
+		template <class C> struct RValueReference : Reference<C> {
 			typedef typename C::referenced_type* to_pointer;
-			typedef typename C::referenced_type& to_reference;
+			typedef typename C::referenced_type& to_lvalue_reference;
 			typedef typename C::type	     to_rvalue_reference;
 			typedef typename C::type	     remove_pointer;
-			typedef typename C::type	     remove_reference;
-			typedef typename C::referenced_type  remove_rvalue_reference;
 		};
 	}}}
 
@@ -706,17 +735,19 @@ namespace Zeta {
 
 		// MARK: - References
 
-		template <class T> struct Type<T&> : Mixins::Type::Unqualified<Abstract::Type::Reference<T> > {
-			enum {	is_function_reference = Type<T>::is_function,
-				is_callable	      = is_function_reference
+		template <class T> struct Type<T&> : Mixins::Type::Unqualified<Abstract::Type::LValueReference<T> > {
+			enum {	is_function_reference	     = Type<T>::is_function,
+				is_function_lvalue_reference = is_function_reference,
+				is_callable		     = is_function_reference
 			};
 		};
 
 		// MARK: - R-Value references
 
 		template <class T> struct Type<T&&> : Mixins::Type::Unqualified<Abstract::Type::RValueReference<T> > {
-			enum {	is_function_rvalue_reference = Type<T>::is_function,
-				is_callable		     = is_function_rvalue_reference
+			enum {	is_function_reference	     = Type<T>::is_function,
+				is_function_rvalue_reference = is_function_reference,
+				is_callable		     = is_function_reference
 			};
 		};
 
@@ -795,10 +826,10 @@ namespace Zeta {
 	}
 
 	template <class T> struct Type : SelectType <
-		Partials::Type<T>::is_pointer ? 1 : (Partials::Type<T>::is_rvalue_reference ? 3 : (Partials::Type<T>::is_reference ? 2 : 0)),
+		Partials::Type<T>::is_pointer ? 1 : (Partials::Type<T>::is_rvalue_reference ? 3 : (Partials::Type<T>::is_lvalue_reference ? 2 : 0)),
 		Partials::Mixins::Type::Value	       <Partials::Type<T> >,
 		Partials::Mixins::Type::Pointer	       <Partials::Type<T> >,
-		Partials::Mixins::Type::Reference      <Partials::Type<T> >,
+		Partials::Mixins::Type::LValueReference<Partials::Type<T> >,
 		Partials::Mixins::Type::RValueReference<Partials::Type<T> >
 	>::type {
 		// TODO: constexpr functions
