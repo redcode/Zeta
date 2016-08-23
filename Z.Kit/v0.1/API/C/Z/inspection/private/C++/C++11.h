@@ -32,7 +32,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_STATIC_CONSTANT_DATA_MEMBER_INITIALIZER
 #define Z_CPP_HAS_STRONGLY_TYPED_ENUMERATION			 /* N2347 */
 #define Z_CPP_HAS_TRAILING_RETURN_TYPE				 /* N2541 */
-#define Z_CPP_HAS_VARIADIC_TEMPLATE				 /* N2242(v0.9), N2555(v1.0) */
+#define Z_CPP_HAS_VARIADIC_TEMPLATE				 /* N2242(v0.9) */
+#define Z_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS		 /* N2555(v1.0) */
 
 /* MARK: - Types */
 
@@ -41,11 +42,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Specifiers */
 
-#define Z_CPP_HAS_SPECIFIER_ALIGN_AS		/* N2341:		     alignas()		  */
-#define Z_CPP_HAS_SPECIFIER_AUTO		/* N1984(v1.0):		     auto		  */
-#define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION	/* N2235:		     constexpr		  */
-#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE	/* N2343(v1.0), N3276(v1.1): decltype()		  */
-#define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION	/* N3050:		     noexcept, noexcept() */
+#define Z_CPP_HAS_SPECIFIER_ALIGN_AS			    /* N2341:	    alignas()		 */
+#define Z_CPP_HAS_SPECIFIER_AUTO			    /* N1984(v1.0): auto		 */
+#define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION		    /* N2235:	    constexpr		 */
+#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE		    /* N2343(v1.0): decltype()		 */
+#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN /* N3276(v1.1): decltype()		 */
+#define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION		    /* N3050:	    noexcept, noexcept() */
 
 /* MARK: - Operators */
 

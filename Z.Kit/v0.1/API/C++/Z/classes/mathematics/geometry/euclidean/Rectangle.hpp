@@ -276,7 +276,7 @@ template <class T> struct Zeta::Rectangle {
 			(this->point.x + (this->size.x - size.x) / T(2),
 			 this->point.y +  this->size.y - size.y,
 			 size);
-		 }
+		}
 
 
 	Z_INLINE_MEMBER Rectangle align_in_bottom_left(const Value2D<T> &size) const
@@ -378,7 +378,7 @@ template <class T> struct Zeta::Rectangle {
 			(this->point.x +  this->size.x - fitting_size.x,
 			 this->point.y + (this->size.y - fitting_size.y) / T(2),
 			 fitting_size);
-		 }
+		}
 
 
 	Z_INLINE_MEMBER Rectangle fit_in_center(const Value2D<T> &size) const

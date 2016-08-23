@@ -68,6 +68,7 @@ template <class T> struct Zeta::Shared {
 		return *this;
 		}
 
+
 	Z_INLINE_MEMBER operator Boolean() const {return owned != NULL;}
 
 	Z_INLINE_MEMBER Boolean operator ==(const Shared &shared) const {return owned == shared.owned;}

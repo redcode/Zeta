@@ -243,8 +243,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __has_feature(cxx_variadic_templates) || __has_extension(cxx_variadic_templates)
 #		define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE
+#		define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS
 #	else
 #		define Z_COMPILER_CPP_LACKS_VARIADIC_TEMPLATE
+#		define Z_COMPILER_CPP_LACKS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS
 #	endif
 
 	#define Z_COMPILER_CPP_HAS_TYPE_ULLONG
@@ -272,6 +274,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE
 #	else
 #		define Z_COMPILER_CPP_LACKS_SPECIFIER_DECLARED_TYPE
+#	endif
+
+#	if __has_feature(cxx_decltype_incomplete_return_types) || __has_extension(cxx_decltype_incomplete_return_types)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN
+#	else
+#		define Z_COMPILER_CPP_LACKS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN
 #	endif
 
 #	if __has_feature(cxx_noexcept) || __has_extension(cxx_noexcept)

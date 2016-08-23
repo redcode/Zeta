@@ -169,7 +169,7 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		return Value2D
 			(Zeta::minimum<T>(this->x, value.x),
 			 Zeta::minimum<T>(this->y, value.y));
-		 }
+		}
 
 
 	Z_INLINE_MEMBER Value2D maximum(const Value2D &value) const
@@ -177,7 +177,7 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		return Value2D
 			(Zeta::maximum<T>(this->x, value.x),
 			 Zeta::maximum<T>(this->y, value.y));
-		 }
+		}
 
 
 	Z_INLINE_MEMBER Value2D middle(const Value2D &value) const
@@ -294,7 +294,7 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		return Value2D
 			(Zeta::inverse_lerp<T>(this->x, value.x, t),
 			 Zeta::inverse_lerp<T>(this->y, value.y, t));
-		 }
+		}
 
 
 	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Boolean>::type
