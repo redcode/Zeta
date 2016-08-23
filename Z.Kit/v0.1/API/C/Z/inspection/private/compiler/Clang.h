@@ -34,7 +34,50 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_BIG_ENDIAN_8BIT_FIELD_ORDER    Z_ORDER_NORMAL
 #define Z_COMPILER_BIG_ENDIAN_BIT_FIELD_ORDER     Z_ORDER_NORMAL
 
-/* MARK: - C features */
+/* MARK: - K&R C support */
+
+#define Z_COMPILER_C_HAS_TYPE_FLOAT
+#define Z_COMPILER_C_HAS_TYPE_DOUBLE
+#define Z_COMPILER_C_HAS_TYPE_LDOUBLE
+
+#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_CONSTANT
+#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_VOLATILE
+
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_EXTERN
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_REGISTER
+#define Z_COMPILER_C_HAS_STORAGE_CLASS_STATIC
+
+#define Z_COMPILER_C_HAS_OPERATOR_SIZE_OF
+
+/* MARK: - C89 support */
+
+#define Z_COMPILER_C_HAS_ENUMERATION
+
+/* MARK: - C90 support */
+
+/* MARK: - C94 support */
+
+#define Z_COMPILER_C_HAS_DIGRAPH
+
+/* MARK: - C99 support */
+
+#define Z_COMPILER_C_HAS_COMPOUND_LITERAL /* TODO: is this always supported? */
+#define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT
+#define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER
+/*#define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER*/
+#define Z_COMPILER_C_HAS_INLINE_FUNCION
+/*#define Z_COMPILER_C_HAS_INTERMINGLED_DECLARATIONS_AND_CODE*/
+#define Z_COMPILER_C_HAS_VARIADIC_MACRO
+/*#define Z_COMPILER_C_HAS_VLA*/
+
+#define Z_COMPILER_C_HAS_TYPE_ULLONG
+#define Z_COMPILER_C_HAS_TYPE_LLONG
+
+#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT
+#define Z_COMPILER_C_HAS_SPECIFIER_INLINE
+
+/* MARK: - C11 support */
 
 #if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
 #	define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE
@@ -50,28 +93,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_LACKS_ATOMIC_OPERATIONS
 #endif
 
-#if __has_extension(blocks)
-#	define Z_COMPILER_C_HAS_CLOSURE
-#else
-#	define Z_COMPILER_C_LACKS_CLOSURE
-#endif
-
-#define Z_COMPILER_C_HAS_COMPOUND_LITERAL /* TODO: is this always supported? */
-
-/*#define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT*/
-/*#define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER*/
-/*#define Z_COMPILER_C_HAS_DIGRAPH*/
-/*#define Z_COMPILER_C_HAS_ENUMERATION*/
-/*#define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER*/
-
 #if __has_feature(c_generic_selections) || __has_extension(c_generic_selections)
 #	define Z_COMPILER_C_HAS_GENERIC_SELECTION
 #else
 #	define Z_COMPILER_C_LACKS_GENERIC_SELECTION
 #endif
-
-/*#define Z_COMPILER_C_HAS_INLINE_FUNCION*/
-/*#define Z_COMPILER_C_HAS_INTERMINGLED_DECLARATIONS_AND_CODE*/
 
 #if __has_feature(c_static_assert) || __has_extension(c_static_assert)
 #	define Z_COMPILER_C_HAS_STATIC_ASSERTION
@@ -79,51 +105,43 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_LACKS_STATIC_ASSERTION
 #endif
 
-/*#define Z_COMPILER_C_HAS_VARIADIC_MACRO*/
-/*#define Z_COMPILER_C_HAS_VLA*/
-
-/* MARK: - C types */
-
-#define Z_COMPILER_C_HAS_TYPE_LLONG
-#define Z_COMPILER_C_HAS_TYPE_ULLONG
-#define Z_COMPILER_C_HAS_TYPE_FLOAT
-#define Z_COMPILER_C_HAS_TYPE_DOUBLE
-#define Z_COMPILER_C_HAS_TYPE_LDOUBLE
-
-/* MARK: - C type qualifiers */
-
-/*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC*/
-#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_CONSTANT
-#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_VOLATILE
-/*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT*/
-
-/* MARK: - C storage classes */
-
-#define Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO
-#define Z_COMPILER_C_HAS_STORAGE_CLASS_EXTERN
-#define Z_COMPILER_C_HAS_STORAGE_CLASS_REGISTER
-#define Z_COMPILER_C_HAS_STORAGE_CLASS_STATIC
+#if __has_feature(c_atomic) || __has_extension(c_atomic)
+#	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC
+#else
+#	define Z_COMPILER_C_LACKS_TYPE_QUALIFIER_ATOMIC
+#endif
 
 #if __has_feature(c_thread_local) || __has_extension(c_thread_local)
 #	define Z_COMPILER_C_HAS_STORATE_CLASS_THREAD_LOCAL
+#else
+#	define Z_COMPILER_C_LACKS_STORATE_CLASS_THREAD_LOCAL
 #endif
 
-/* MARK: - C specifiers */
+#if __has_feature(c_atomic) || __has_extension(c_atomic)
+#	define Z_COMPILER_C_HAS_SPECIFIER_ATOMIC
+#else
+#	define Z_COMPILER_C_LACKS_SPECIFIER_ATOMIC
+#endif
 
 #if __has_feature(c_alignas) || __has_extension(c_alignas)
 #	define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS
+#else
+#	define Z_COMPILER_C_LACKS_SPECIFIER_ALIGN_AS
 #endif
 
-/*#define Z_COMPILER_C_HAS_SPECIFIER_INLINE*/
 /*#define Z_COMPILER_C_HAS_SPECIFIER_NO_RETURN*/
-
-/* MARK: - C operators */
 
 #if __has_feature(c_alignof) || __has_extension(c_alignof)
 #	define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF
 #endif
 
-#define Z_COMPILER_C_HAS_OPERATOR_SIZE_OF
+/* MARK: - Apple C extensions support */
+
+#if __has_extension(blocks)
+#	define Z_COMPILER_C_HAS_CLOSURE
+#else
+#	define Z_COMPILER_C_HAS_CLOSURE
+#endif
 
 /* MARK: - C attributes */
 
@@ -161,7 +179,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_ATTRIBUTE_STRICT_SIZE_END __attribute__((packed))
 #endif
 
-#if __has_extension(c_thread_local)
+#if __has_feature(c_thread_local) || __has_extension(c_thread_local)
 #	define Z_COMPILER_C_ATTRIBUTE_THREAD_LOCAL _Thread_local
 #elif __has_extension(tls)
 #	define Z_COMPILER_C_ATTRIBUTE_THREAD_LOCAL __thread
@@ -172,6 +190,113 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if defined(__cplusplus)
+
+	/* MARK: - C++11 support */
+
+#	define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR
+
+	/*#define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE*/
+
+#	if __has_feature(cxx_generalized_initializers)
+#		define Z_COMPILER_CPP_HAS_INITIALIZER_LIST
+#	else
+#		define Z_COMPILER_CPP_LACKS_INITIALIZER_LIST
+#	endif
+
+#	if __has_feature(cxx_nonstatic_member_init)
+#		define Z_COMPILER_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER
+#	else
+#		define Z_COMPILER_CPP_LACKS_NON_STATIC_DATA_MEMBER_INITIALIZER
+#	endif
+
+#	if __has_feature(cxx_lambdas) || __has_extension(cxx_lambdas)
+#		define Z_COMPILER_CPP_HAS_LAMBDA
+#	else
+#		define Z_COMPILER_CPP_LACKS_LAMBDA
+#	endif
+
+#	if __has_feature(cxx_reference_qualified_functions) || __has_extension(cxx_reference_qualified_functions)
+#		define Z_COMPILER_CPP_HAS_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION
+#	else
+#		define Z_COMPILER_CPP_HAS_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION
+#	endif
+
+#	if __has_feature(cxx_rvalue_references) || __has_extension(cxx_rvalue_references)
+#		define Z_COMPILER_CPP_HAS_RVALUE_REFERENCE
+#	else
+#		define Z_COMPILER_CPP_LACKS_RVALUE_REFERENCE
+#	endif
+
+	/*#define Z_COMPILER_CPP_HAS_STATIC_CONSTANT_DATA_MEMBER_INITIALIZER*/
+
+#	if __has_feature(cxx_strong_enums) || __has_extension(cxx_strong_enums)
+#		define Z_COMPILER_CPP_HAS_STRONGLY_TYPED_ENUMERATION
+#	else
+#		define Z_COMPILER_CPP_LACKS_STRONGLY_TYPED_ENUMERATION
+#	endif
+
+#	if __has_feature(cxx_trailing_return) || __has_extension(cxx_trailing_return)
+#		define Z_COMPILER_CPP_HAS_TRAILING_RETURN_TYPE
+#	else
+#		define Z_COMPILER_CPP_HAS_TRAILING_RETURN_TYPE
+#	endif
+
+#	if __has_feature(cxx_variadic_templates) || __has_extension(cxx_variadic_templates)
+#		define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE
+#	else
+#		define Z_COMPILER_CPP_LACKS_VARIADIC_TEMPLATE
+#	endif
+
+	#define Z_COMPILER_CPP_HAS_TYPE_ULLONG
+	#define Z_COMPILER_CPP_HAS_TYPE_LLONG
+
+#	if __has_feature(cxx_alignas) || __has_extension(cxx_alignas)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_ALIGN_AS
+#	else
+#		define Z_COMPILER_CPP_LACKS_SPECIFIER_ALIGN_AS
+#	endif
+
+#	if __has_feature(cxx_auto_type) || __has_extension(cxx_auto_type)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_AUTO
+#	else
+#		define Z_COMPILER_CPP_LACKS_SPECIFIER_AUTO
+#	endif
+
+#	if __has_feature(cxx_constexpr)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION
+#	else
+#		define Z_COMPILER_CPP_LACKS_SPECIFIER_CONSTANT_EXPRESSION
+#	endif
+
+#	if __has_feature(cxx_decltype) || __has_extension(cxx_decltype)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE
+#	else
+#		define Z_COMPILER_CPP_LACKS_SPECIFIER_DECLARED_TYPE
+#	endif
+
+#	if __has_feature(cxx_noexcept) || __has_extension(cxx_noexcept)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION
+#	else
+#		define Z_COMPILER_CPP_LACKS_SPECIFIER_NO_EXCEPTION
+#	endif
+
+#	if __has_feature(cxx_alignof) || __has_extension(cxx_alignof)
+#		define Z_COMPILER_CPP_HAS_OPERATOR_ALIGN_OF
+#	else
+#		define Z_COMPILER_CPP_LACKS_OPERATOR_ALIGN_OF
+#	endif
+
+#	if __has_feature(cxx_noexcept) || __has_extension(cxx_noexcept)
+#		define Z_COMPILER_CPP_HAS_OPERATOR_NO_EXCEPTION
+#	else
+#		define Z_COMPILER_CPP_LACKS_OPERATOR_NO_EXCEPTION
+#	endif
+
+#	if __has_feature(cxx_nullptr) || __has_extension(cxx_nullptr)
+#		define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER
+#	else
+#		define Z_COMPILER_CPP_LACKS_LITERAL_NULL_POINTER
+#	endif
 
 	/* MARK: - C++ attributes */
 

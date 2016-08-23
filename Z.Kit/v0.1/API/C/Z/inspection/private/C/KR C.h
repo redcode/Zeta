@@ -20,6 +20,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Types */
 
+#define Z_C_HAS_TYPE_FLOAT
+#define Z_C_HAS_TYPE_DOUBLE
 #define Z_C_HAS_TYPE_LDOUBLE /* long double */
 
 /* MARK: - Type qualifiers */
