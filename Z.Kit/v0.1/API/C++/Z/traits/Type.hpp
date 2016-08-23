@@ -149,11 +149,7 @@ namespace Zeta {
 			};
 		};
 
-#		if Z_CHARACTER_IS_SIGNED
-			struct Character : Integer {
-#		else
-			struct Character : Natural {
-#		endif
+		struct Character : SelectType<Z_CHARACTER_IS_SIGNED, Natural, Integer>::type {
 			enum {	bits = Z_CHARACTER_BITS,
 				size = Z_CHARACTER_SIZE
 			};
