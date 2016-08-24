@@ -553,6 +553,40 @@ typedef struct {zint32 x, y, z, w;}		Z4DInt32;
 #define Z_TYPE_INFINITY(	   TYPE)	Z_INSERT_##TYPE##_FIXED_TYPE(Z_, _INFINITY	     )
 #define Z_TYPE_NAN(		   TYPE)	Z_INSERT_##TYPE##_FIXED_TYPE(Z_, _NAN		     )
 
+/* MARK: - Default fixed size types */
+
+#if Z_IS_AVAILABLE(UINT64)
+
+	typedef zuint64				zdint64;
+#	define Z_DINT64				Z_UINT64
+#	define Z_DINT64_IS_SIGNED		FALSE
+#	define Z_AVAILABLE_DINT64
+
+#elif Z_IS_AVAILABLE(INT64)
+
+	typedef zint64				zdint64;
+#	define Z_DINT64				Z_INT64
+#	define Z_DINT64_IS_SIGNED		TRUE
+#	define Z_AVAILABLE_DINT64
+
+#endif
+
+#if Z_IS_AVAILABLE(UINT128)
+
+	typedef zuint128			zdint128;
+#	define Z_DINT128			Z_UINT128
+#	define Z_DINT128_IS_SIGNED		FALSE
+#	define Z_AVAILABLE_DINT128
+
+#elif Z_IS_AVAILABLE(INT128)
+
+	typedef zint128				zdint128;
+#	define Z_DINT128			Z_INT128
+#	define Z_DINT128_IS_SIGNED		TRUE
+#	define Z_AVAILABLE_DINT128
+
+#endif
+
 /* MARK: - Standard base types */
 
 #define Z_UCHAR_BITS				Z_DATA_MODEL_BITS(CHAR)
@@ -1329,6 +1363,10 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint64 value_int64;
 #	endif
 
+#	if Z_IS_AVAILABLE(DINT64)
+		zdint64 value_dint64;
+#	endif
+
 #	if Z_IS_AVAILABLE(FLOAT64)
 		zfloat64 value_float64;
 #	endif
@@ -1444,6 +1482,10 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint128 value_int128;
 #	endif
 
+#	if Z_IS_AVAILABLE(DINT128)
+		zdint128 value_dint128;
+#	endif
+
 #	if Z_IS_AVAILABLE(UINT64)
 		zuint64 array_uint64[2];
 
@@ -1460,6 +1502,15 @@ Z_DEFINE_STRICT_UNION_BEGIN
 			zint64 index1,
 			zint64 index0
 		)} values_int64;
+#	endif
+
+#	if Z_IS_AVAILABLE(DINT64)
+		zdint64 array_dint64[2];
+
+		struct {Z_128BIT_ENDIANIZED_MEMBERS(2) (
+			zdint64 index1,
+			zdint64 index0
+		)} values_dint64;
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT128)
@@ -1566,6 +1617,14 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		Z2DInt128* pointer_2d_int128;
 		Z3DInt128* pointer_3d_int128;
 		Z4DInt128* pointer_4d_int128;
+#	endif
+
+#	if Z_IS_AVAILABLE(DINT64)
+		zdint64* pointer_dint64;
+#	endif
+
+#	if Z_IS_AVAILABLE(DINT128)
+		zdint128* pointer_dint128;
 #	endif
 
 #	if Z_IS_AVAILABLE(FLOAT16)
