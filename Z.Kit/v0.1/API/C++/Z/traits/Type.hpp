@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.h>
 #include <Z/macros/language.hpp>
 #include <Z/traits/SelectType.hpp>
-
+#include <limits>
 namespace Zeta {
 
 	// MARK: - Abstract
@@ -403,11 +403,11 @@ namespace Zeta {
 					exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM
 				};
 
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float epsilon () {return Z_FLOAT_EPSILON; }
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float minimum () {return Z_FLOAT_MINIMUM; }
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float maximum () {return Z_FLOAT_MAXIMUM; }
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float infinity() {return Z_FLOAT_INFINITY;}
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float nan	   () {return Z_FLOAT_NAN;     }
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float epsilon () {return Z_FLOAT_EPSILON;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float minimum () {return Z_FLOAT_MINIMUM;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float maximum () {return Z_FLOAT_MAXIMUM;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float nan	   () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}
 
 				typedef float type;
 				typedef float to_signed;
@@ -437,11 +437,11 @@ namespace Zeta {
 					exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM
 				};
 
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double epsilon () {return Z_DOUBLE_EPSILON; }
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double minimum () {return Z_DOUBLE_MINIMUM; }
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double maximum () {return Z_DOUBLE_MAXIMUM; }
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double infinity() {return Z_DOUBLE_INFINITY;}
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double nan	    () {return Z_DOUBLE_NAN;	 }
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double epsilon () {return Z_DOUBLE_EPSILON;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double minimum () {return Z_DOUBLE_MINIMUM;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double maximum () {return Z_DOUBLE_MAXIMUM;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double nan	    () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}
 
 				typedef double type;
 				typedef double to_signed;
@@ -471,11 +471,11 @@ namespace Zeta {
 					exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM
 				};
 
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double epsilon () {return Z_LDOUBLE_EPSILON; }
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double minimum () {return Z_LDOUBLE_MINIMUM; }
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double maximum () {return Z_LDOUBLE_MAXIMUM; }
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double infinity() {return Z_LDOUBLE_INFINITY;}
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double nan	 () {return Z_LDOUBLE_NAN;     }
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double epsilon () {return Z_LDOUBLE_EPSILON;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double minimum () {return Z_LDOUBLE_MINIMUM;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double maximum () {return Z_LDOUBLE_MAXIMUM;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
+				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double nan	 () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;     }
 
 				typedef long double type;
 				typedef long double to_signed;

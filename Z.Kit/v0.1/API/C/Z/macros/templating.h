@@ -9,6 +9,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_macros_templating_H__
 #define __Z_macros_templating_H__
 
+#include <Z/macros/pasting.h>
+
 #define Z_INSERT_UINT8(	 left, right) left##UINT8##right
 #define Z_INSERT_UInt8(	 left, right) left##UInt8##right
 #define Z_INSERT_uint8(	 left, right) left##uint8##right

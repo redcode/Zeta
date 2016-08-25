@@ -276,7 +276,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #undef Z_INSPECTING_CPU_ARCHITECTURE
 
 #include <Z/keys/hardware/CPU/architecture.h>
-#include <Z/macros/pasting.h>
 
 #ifndef Z_CPU_MODEL_HEADER
 #	define Z_IS_DEFINED_CPU_MODEL(WHAT) 0

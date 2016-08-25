@@ -68,7 +68,6 @@ typedef struct {zuint32 x, y, z, w;}		Z4DUInt32;
 	typedef struct {zuint64 x, y;}		Z2DUInt64;
 	typedef struct {zuint64 x, y, z;}	Z3DUInt64;
 	typedef struct {zuint64 x, y, z, w;}	Z4DUInt64;
-#	define Z_UINT64				Z_DATA_MODEL_LITERAL   (UINT64)
 #	define Z_UINT64_BASE_VALUE_TYPE		Z_DATA_MODEL_VALUE_TYPE(UINT64)
 #	define Z_UINT64_FIXED_VALUE_TYPE	Z_VALUE_TYPE_UINT64
 #	define Z_UINT64_VALUE_TYPE		Z_VALUE_TYPE_UINT64
@@ -77,18 +76,25 @@ typedef struct {zuint32 x, y, z, w;}		Z4DUInt32;
 #	define Z_UINT64_BITS			64
 #	define Z_UINT64_SIZE			8
 #	define Z_UINT64_MINIMUM			0
-#	define Z_UINT64_MAXIMUM			Z_UINT64(18446744073709551615)
 #	define Z_AVAILABLE_UINT64
+
+#	if Z_DATA_MODEL_HAS_LITERAL(UINT64)
+#		define Z_UINT64			Z_DATA_MODEL_LITERAL(UINT64)
+#		define Z_UINT64_MAXIMUM		Z_UINT64(18446744073709551615)
+#	else
+#		define Z_UINT64			Z_SAME
+#		define Z_UINT64_MAXIMUM		(((zuint64)0) - 1)
+#	endif
 
 #endif
 
-#if Z_COMPILER_HAS_TYPE(UINT128)
+#if Z_DATA_MODEL_HAS_TYPE(UINT128)
 
-	typedef Z_COMPILER_TYPE(UINT128)	zuint128;
+	typedef Z_DATA_MODEL_TYPE(UINT128)	zuint128;
 	typedef struct {zuint128 x, y;}		Z2DUInt128;
 	typedef struct {zuint128 x, y, z;}	Z3DUInt128;
 	typedef struct {zuint128 x, y, z, w;}	Z4DUInt128;
-#	define Z_UINT128_BASE_VALUE_TYPE	Z_VALUE_TYPE_UINT128
+#	define Z_UINT128_BASE_VALUE_TYPE	Z_DATA_MODEL_VALUE_TYPE(UINT128)
 #	define Z_UINT128_FIXED_VALUE_TYPE	Z_VALUE_TYPE_UINT128
 #	define Z_UINT128_VALUE_TYPE		Z_VALUE_TYPE_UINT128
 #	define Z_UINT128_VALUE_FORMAT		Z_VALUE_FORMAT_128BIT_NATURAL
@@ -98,8 +104,8 @@ typedef struct {zuint32 x, y, z, w;}		Z4DUInt32;
 #	define Z_UINT128_MINIMUM		0
 #	define Z_AVAILABLE_UINT128
 
-#	if Z_COMPILER_HAS_LITERAL(UINT128)
-#		define Z_UINT128		Z_COMPILER_LITERAL(UINT128)
+#	if Z_DATA_MODEL_HAS_LITERAL(UINT128)
+#		define Z_UINT128		Z_DATA_MODEL_LITERAL(UINT128)
 #		define Z_UINT128_MAXIMUM	Z_UINT128(340282366920938463463374607431768211455)
 #	else
 #		define Z_UINT128		Z_SAME
@@ -158,7 +164,6 @@ typedef struct {zint32 x, y, z, w;}		Z4DInt32;
 	typedef struct {zint64 x, y;}		Z2DInt64;
 	typedef struct {zint64 x, y, z;}	Z3DInt64;
 	typedef struct {zint64 x, y, z, w;}	Z4DInt64;
-#	define Z_INT64				Z_DATA_MODEL_LITERAL   (INT64)
 #	define Z_INT64_BASE_VALUE_TYPE		Z_DATA_MODEL_VALUE_TYPE(INT64)
 #	define Z_INT64_FIXED_VALUE_TYPE		Z_VALUE_TYPE_INT64
 #	define Z_INT64_VALUE_TYPE		Z_VALUE_TYPE_INT64
@@ -166,19 +171,27 @@ typedef struct {zint32 x, y, z, w;}		Z4DInt32;
 #	define Z_INT64_ENDIANNESS		Z_CPU_INTEGER_ENDIANNESS(64BIT)
 #	define Z_INT64_BITS			64
 #	define Z_INT64_SIZE			8
-#	define Z_INT64_MAXIMUM			Z_INT64(9223372036854775807)
-#	define Z_INT64_MINIMUM			(-Z_INT64_MAXIMUM - Z_INT64(1))
 #	define Z_AVAILABLE_INT64
+
+#	if Z_DATA_MODEL_HAS_LITERAL(INT128)
+#		define Z_INT64			Z_DATA_MODEL_LITERAL(INT64)
+#		define Z_INT64_MAXIMUM		Z_INT64(9223372036854775807)
+#		define Z_INT64_MINIMUM		(-Z_INT64_MAXIMUM - Z_INT64(1))
+#	else
+#		define Z_INT64			Z_SAME
+#		define Z_INT64_MAXIMUM		0 /* TO BE IMPLEMENTED */
+#		define Z_INT64_MINIMUM		0 /* TO BE IMPLEMENTED */
+#	endif
 
 #endif
 
-#if Z_COMPILER_HAS_TYPE(INT128)
+#if Z_DATA_MODEL_HAS_TYPE(INT128)
 
-	typedef Z_COMPILER_TYPE(INT128)		zint128;
+	typedef Z_DATA_MODEL_TYPE(INT128)	zint128;
 	typedef struct {zint128 x, y;}		Z2DInt128;
 	typedef struct {zint128 x, y, z;}	Z3DInt128;
 	typedef struct {zint128 x, y, z, w;}	Z4DInt128;
-#	define Z_INT128_BASE_VALUE_TYPE		Z_VALUE_TYPE_INT128
+#	define Z_INT128_BASE_VALUE_TYPE		Z_DATA_MODEL_VALUE_TYPE(INT128)
 #	define Z_INT128_FIXED_VALUE_TYPE	Z_VALUE_TYPE_INT128
 #	define Z_INT128_VALUE_TYPE		Z_VALUE_TYPE_INT128
 #	define Z_INT128_VALUE_FORMAT		Z_VALUE_FORMAT_128BIT_INTEGER
@@ -187,8 +200,8 @@ typedef struct {zint32 x, y, z, w;}		Z4DInt32;
 #	define Z_INT128_SIZE			16
 #	define Z_AVAILABLE_INT128
 
-#	if Z_COMPILER_HAS_LITERAL(INT128)
-#		define Z_INT128			Z_COMPILER_LITERAL(INT128)
+#	if Z_DATA_MODEL_HAS_LITERAL(INT128)
+#		define Z_INT128			Z_DATA_MODEL_LITERAL(INT128)
 #		define Z_INT128_MAXIMUM		Z_INT128(170141183460469231731687303715884105727)
 #		define Z_INT128_MINIMUM		(-Z_INT128_MAXIMUM - Z_INT128(1))
 #	else
@@ -589,7 +602,7 @@ typedef struct {zint32 x, y, z, w;}		Z4DInt32;
 
 /* MARK: - Standard base types */
 
-#define Z_UCHAR_BITS				Z_DATA_MODEL_BITS(CHAR)
+#define Z_UCHAR_BITS				Z_DATA_MODEL_BITS(UCHAR)
 
 typedef unsigned char				zuchar;
 typedef Z2DType(UCHAR)				Z2DUChar;
@@ -604,7 +617,7 @@ typedef Z4DType(UCHAR)				Z4DUChar;
 #define Z_UCHAR_MINIMUM				Z_TYPE_MINIMUM	   (UCHAR)
 #define Z_UCHAR_MAXIMUM				Z_TYPE_MAXIMUM	   (UCHAR)
 
-#define Z_USHORT_BITS				Z_DATA_MODEL_BITS(SHORT)
+#define Z_USHORT_BITS				Z_DATA_MODEL_BITS(USHORT)
 
 typedef unsigned short int			zushort;
 typedef Z2DType(USHORT)				Z2DUShort;
@@ -620,7 +633,7 @@ typedef Z4DType(USHORT)				Z4DUShort;
 #define Z_USHORT_MINIMUM			Z_TYPE_MINIMUM	   (USHORT)
 #define Z_USHORT_MAXIMUM			Z_TYPE_MAXIMUM	   (USHORT)
 
-#define Z_UINT_BITS				Z_DATA_MODEL_BITS(INT)
+#define Z_UINT_BITS				Z_DATA_MODEL_BITS(UINT)
 
 typedef unsigned int				zuint;
 typedef Z2DType(UINT)				Z2DUInt;
@@ -636,7 +649,7 @@ typedef Z4DType(UINT)				Z4DUInt;
 #define Z_UINT_MINIMUM				Z_TYPE_MINIMUM	   (UINT)
 #define Z_UINT_MAXIMUM				Z_TYPE_MAXIMUM	   (UINT)
 
-#define Z_ULONG_BITS				Z_DATA_MODEL_BITS(LONG)
+#define Z_ULONG_BITS				Z_DATA_MODEL_BITS(ULONG)
 
 typedef unsigned long int			zulong;
 typedef Z2DType(ULONG)				Z2DULong;
@@ -654,7 +667,7 @@ typedef Z4DType(ULONG)				Z4DULong;
 
 #if Z_LANGUAGE_HAS_TYPE(C, ULLONG) || Z_LANGUAGE_HAS_TYPE(CPP, ULLONG)
 
-#	define Z_ULLONG_BITS			Z_DATA_MODEL_BITS(LLONG)
+#	define Z_ULLONG_BITS			Z_DATA_MODEL_BITS(ULLONG)
 
 	typedef unsigned long long int		zullong;
 	typedef Z2DType(ULLONG)			Z2DULLong;
@@ -886,7 +899,7 @@ typedef Z4DType(SIZE)				Z4DSize;
 #define Z_SIZE_MINIMUM				Z_TYPE_MINIMUM	      (SIZE)
 #define Z_SIZE_MAXIMUM				Z_TYPE_MAXIMUM	      (SIZE)
 
-#define Z_SSIZE_BITS				Z_SIZE_BITS
+#define Z_SSIZE_BITS				Z_DATA_MODEL_BITS(SSIZE)
 
 typedef ztype  (SSIZE)				zssize;
 typedef Z2DType(SSIZE)				Z2DSSize;

@@ -143,7 +143,7 @@ Flags (F register):
 
 #define Z_Z80_RESET_IS_EQUAL_TO_POWER_ON
 
-#endif /* __Z_hardware_CPU_architecture_Z80_Ha__ */
+#endif /* __Z_hardware_CPU_architecture_Z80_H__ */
 
 
 #ifdef Z_INSPECTING_CPU_ARCHITECTURE
