@@ -429,29 +429,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if __has_builtin(__builtin_huge_valf)
-#	define Z_COMPILER_CONSTANT_FLOAT32_INFINITY __builtin_huge_valf()
-#	define Z_COMPILER_CONSTANT_FLOAT_INFINITY   Z_COMPILER_CONSTANT_FLOAT32_INFINITY
+#	define Z_COMPILER_CONSTANT_FLOAT_INFINITY __builtin_huge_valf()
 #elif __has_builtin(__builtin_inff)
-#	define Z_COMPILER_CONSTANT_FLOAT32_INFINITY __builtin_inff()
-#	define Z_COMPILER_CONSTANT_FLOAT_INFINITY   Z_COMPILER_CONSTANT_FLOAT32_INFINITY
+#	define Z_COMPILER_CONSTANT_FLOAT_INFINITY __builtin_inff()
 #endif
 
 #if __has_builtin(__builtin_nanf)
-#	define Z_COMPILER_CONSTANT_FLOAT32_NAN __builtin_nanf("")
-#	define Z_COMPILER_CONSTANT_FLOAT_NAN   Z_COMPILER_CONSTANT_FLOAT32_NAN
+#	define Z_COMPILER_CONSTANT_FLOAT_NAN __builtin_nanf("")
 #endif
 
 #if __has_builtin(__builtin_huge_val)
-#	define Z_COMPILER_CONSTANT_FLOAT64_INFINITY __builtin_huge_val()
-#	define Z_COMPILER_CONSTANT_DOUBLE_INFINITY  Z_COMPILER_CONSTANT_FLOAT64_INFINITY
+#	define Z_COMPILER_CONSTANT_DOUBLE_INFINITY __builtin_huge_val()
 #elif __has_builtin(__builtin_inf)
-#	define Z_COMPILER_CONSTANT_FLOAT64_INFINITY __builtin_inf()
-#	define Z_COMPILER_CONSTANT_DOUBLE_INFINITY  Z_COMPILER_CONSTANT_FLOAT64_INFINITY
+#	define Z_COMPILER_CONSTANT_DOUBLE_INFINITY __builtin_inf()
 #endif
 
 #if __has_builtin(__builtin_nan)
-#	define Z_COMPILER_CONSTANT_FLOAT64_NAN __builtin_nan("")
-#	define Z_COMPILER_CONSTANT_DOUBLE_NAN  Z_COMPILER_CONSTANT_FLOAT64_NAN
+#	define Z_COMPILER_CONSTANT_DOUBLE_NAN __builtin_nan("")
 #endif
 
 #if __has_builtin(__builtin_huge_vall)
