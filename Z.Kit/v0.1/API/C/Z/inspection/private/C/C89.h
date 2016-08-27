@@ -25,5 +25,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Features */
 
 #define Z_C_HAS_ENUMERATION
+#define Z_C_HAS_VOID_POINTER
+
+/* MARK: - Types */
+
+#define Z_C_HAS_TYPE_LDOUBLE /* long double */
+
+/* MARK: - Type qualifiers */
+
+#define Z_C_HAS_TYPE_QUALIFIER_CONSTANT /* const    */
+#define Z_C_HAS_TYPE_QUALIFIER_VOLATILE /* volatile */
 
 #endif /* __Z_private_C_C89_H__ */

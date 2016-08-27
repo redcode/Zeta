@@ -88,31 +88,31 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	else
 #		if	defined(__amd64	  ) || /* Clang, GCC, Oracle Solaris Studio */ \
 			defined(__amd64__ ) || /* Clang, GCC, Oracle Solaris Studio */ \
-			defined(__x86_64  ) || /* GCC, Oracle Solaris Studio	    */ \
-			defined(__x86_64__) || /* GCC, Oracle Solaris Studio	    */ \
-			defined(_M_AMD64  ) || /* Visual C++			    */ \
-			defined(_M_X64	  )    /* Visual C++			    */
+			defined(__x86_64  ) || /* Clang, GCC, Oracle Solaris Studio */ \
+			defined(__x86_64__) || /* Clang, GCC, Oracle Solaris Studio */ \
+			defined(_M_AMD64  ) || /* Clang, Visual C++		    */ \
+			defined(_M_X64	  )    /* Clang, Visual C++		    */
 
 #			include <Z/hardware/CPU/architecture/x86-64.h>
 
-#		elif	defined(__386	       ) || /* Diab C/C++		      */ \
-			defined(__386__	       ) || /* Watcom C/C++		      */ \
-			defined(__i386	       ) || /* GCC, Stratus VOS C, Sun Studio */ \
-			defined(__i386__       ) || /* GCC			      */ \
-			defined(__i486__       ) || /* GCC			      */ \
-			defined(__i586__       ) || /* GCC			      */ \
-			defined(__i686__       ) || /* GCC			      */ \
-			defined(__I86__	       ) || /* Digital Mars		      */ \
-			defined(__IA32__       ) || /* Stratus VOS C		      */ \
-			defined(__INTEL__      ) || /* CodeWarrior		      */ \
-			defined(__THW_INTEL__  ) || /* IBM XL C/C++		      */ \
-			defined(__X86__	       ) || /* Watcom C/C++		      */ \
-			defined(__WINDOWS_386__) || /* Watcom C/C++		      */ \
-			defined(_M_IX86	       ) || /* Digital Mars, Intel C++,		 \
-						       Visual C++, Watcom C/C++	      */ \
-			defined(_X86_	       ) || /* MinGW			      */ \
-			defined(i386	       ) || /* GCC			      */ \
-			defined(M_I386	       )    /* Watcom C/C++		      */
+#		elif	defined(__386	       ) || /* Diab C/C++			     */ \
+			defined(__386__	       ) || /* Watcom C/C++			     */ \
+			defined(__i386	       ) || /* Clang, GCC, Stratus VOS C, Sun Studio */ \
+			defined(__i386__       ) || /* Clang, GCC			     */ \
+			defined(__i486__       ) || /* GCC				     */ \
+			defined(__i586__       ) || /* GCC				     */ \
+			defined(__i686__       ) || /* GCC				     */ \
+			defined(__I86__	       ) || /* Digital Mars			     */ \
+			defined(__IA32__       ) || /* Stratus VOS C			     */ \
+			defined(__INTEL__      ) || /* CodeWarrior			     */ \
+			defined(__THW_INTEL__  ) || /* IBM XL C/C++			     */ \
+			defined(__X86__	       ) || /* Watcom C/C++			     */ \
+			defined(__WINDOWS_386__) || /* Watcom C/C++			     */ \
+			defined(_M_IX86	       ) || /* Clang, Digital Mars, Intel C++,		\
+						       Visual C++, Watcom C/C++		     */ \
+			defined(_X86_	       ) || /* MinGW				     */ \
+			defined(i386	       ) || /* Clang, GCC			     */ \
+			defined(M_I386	       )    /* Watcom C/C++			     */
 
 #			include <Z/hardware/CPU/architecture/x86-32.h>
 

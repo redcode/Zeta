@@ -22,12 +22,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_C_HAS_TYPE_FLOAT
 #define Z_C_HAS_TYPE_DOUBLE
-#define Z_C_HAS_TYPE_LDOUBLE /* long double */
-
-/* MARK: - Type qualifiers */
-
-#define Z_C_HAS_TYPE_QUALIFIER_CONSTANT /* const    */
-#define Z_C_HAS_TYPE_QUALIFIER_VOLATILE /* volatile */
 
 /* MARK: - Storage classes */
 
