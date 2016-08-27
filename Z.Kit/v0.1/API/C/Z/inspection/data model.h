@@ -31,11 +31,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_MUST_USE(DATA_MODEL_LP64)
 #		include <Z/formats/data model/LP64.h>
 
+#	elif Z_MUST_USE(DATA_MODEL_SILP64)
+#		include <Z/formats/data model/SILP64.h>
+
 #	else
 #		if	defined(__LP32__) || \
 			defined(__LP32	) || \
 			defined(_LP32_	) || \
-			defined(_LP32	)
+			defined(_LP32	) || \
+			(defined(Z_COMPILER_DATA_MODEL) && \
+			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_LP32)
 
 #			include <Z/formats/data model/LP32.h>
 
@@ -43,31 +48,44 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			defined(__ILP32	 ) ||				       \
 			defined(_ILP32_	 ) ||				       \
 			defined(_ILP32	 ) || /* Clang, HP aC++, Sun Studio */ \
-			defined(_WIN32	 )    /* Visual C++		    */
+			defined(_WIN32	 ) || /* Visual C++		    */ \
+			(defined(Z_COMPILER_DATA_MODEL) && \
+			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_ILP32)
 
 #			include <Z/formats/data model/ILP32.h>
 
 #		elif	defined(__ILP64__) || \
 			defined(__ILP64	 ) || \
 			defined(_ILP64_	 ) || \
-			defined(_ILP64)
+			defined(_ILP64	 ) || \
+			(defined(Z_COMPILER_DATA_MODEL) && \
+			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_ILP64)
 
 #			include <Z/formats/data model/ILP64.h>
 
-#		elif	defined(__LLP64__) || \
-			defined(__LLP64	 ) || \
-			defined(_LLP64_	 ) || \
-			defined(_LLP64	 ) || \
-			defined(_WIN64	 )    /* Visual C++ */
+#		elif	defined(__LLP64__) ||		       \
+			defined(__LLP64	 ) ||		       \
+			defined(_LLP64_	 ) ||		       \
+			defined(_LLP64	 ) ||		       \
+			defined(_WIN64	 ) || /* Visual C++ */ \
+			(defined(Z_COMPILER_DATA_MODEL) && \
+			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_LLP64)
 
 #			include <Z/formats/data model/LLP64.h>
 
 #		elif	defined(__LP64__) || /* Clang, GCC		   */ \
 			defined(__LP64	) ||				      \
 			defined(_LP64_	) ||				      \
-			defined(_LP64	)    /* Clang, HP aC++, Sun Studio */ \
+			defined(_LP64	) || /* Clang, HP aC++, Sun Studio */ \
+			(defined(Z_COMPILER_DATA_MODEL) && \
+			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_LP64)
 
 #			include <Z/formats/data model/LP64.h>
+
+#		elif	(defined(Z_COMPILER_DATA_MODEL) && \
+			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_SILP64)
+
+#			include <Z/formats/data model/SILP64.h>
 
 #		else
 #			include <Z/formats/data model/ILP32.h>

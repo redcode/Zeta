@@ -86,12 +86,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/hardware/CPU/architecture/z Architecture.h>
 
 #	else
-#		if	defined(__amd64	  ) || /* GCC, Oracle Solaris Studio */ \
-			defined(__amd64__ ) || /* GCC, Oracle Solaris Studio */ \
-			defined(__x86_64  ) || /* GCC, Oracle Solaris Studio */ \
-			defined(__x86_64__) || /* GCC, Oracle Solaris Studio */ \
-			defined(_M_AMD64  ) || /* Visual C++		     */ \
-			defined(_M_X64	  )    /* Visual C++		     */
+#		if	defined(__amd64	  ) || /* Clang, GCC, Oracle Solaris Studio */ \
+			defined(__amd64__ ) || /* Clang, GCC, Oracle Solaris Studio */ \
+			defined(__x86_64  ) || /* GCC, Oracle Solaris Studio	    */ \
+			defined(__x86_64__) || /* GCC, Oracle Solaris Studio	    */ \
+			defined(_M_AMD64  ) || /* Visual C++			    */ \
+			defined(_M_X64	  )    /* Visual C++			    */
 
 #			include <Z/hardware/CPU/architecture/x86-64.h>
 

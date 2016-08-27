@@ -26,9 +26,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_EXPAND_SUFFIX_F(  what) what##F
 #define Z_EXPAND_SUFFIX_L(  what) what##L
 #define Z_EXPAND_SUFFIX_LL( what) what##LL
+#define Z_EXPAND_SUFFIX_Q(  what) what##Q
 #define Z_EXPAND_SUFFIX_U(  what) what##U
 #define Z_EXPAND_SUFFIX_UL( what) what##UL
 #define Z_EXPAND_SUFFIX_ULL(what) what##ULL
+#define Z_EXPAND_SUFFIX_W(  what) what##W
 
 #define Z_PREFIX_	   Z_SAME
 #define Z_PREFIX_0(  what) Z_EXPAND_PREFIX_0  (what)
@@ -45,9 +47,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_SUFFIX_F(  what) Z_EXPAND_SUFFIX_F  (what)
 #define Z_SUFFIX_L(  what) Z_EXPAND_SUFFIX_L  (what)
 #define Z_SUFFIX_LL( what) Z_EXPAND_SUFFIX_LL (what)
+#define Z_SUFFIX_Q(  what) Z_EXPAND_SUFFIX_Q  (what)
 #define Z_SUFFIX_U(  what) Z_EXPAND_SUFFIX_U  (what)
 #define Z_SUFFIX_UL( what) Z_EXPAND_SUFFIX_UL (what)
 #define Z_SUFFIX_ULL(what) Z_EXPAND_SUFFIX_ULL(what)
+#define Z_SUFFIX_W(  what) Z_EXPAND_SUFFIX_W  (what)
 
 #define Z_UNDERSCORE_(		what) _##what##_
 #define Z_UNDERSCORE_X2_(	what) __##what##__
