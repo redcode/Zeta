@@ -16,81 +16,72 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_INSPECTING_DATA_MODEL
 
-#	if Z_MUST_USE(DATA_MODEL_LP32)
-#		include <Z/formats/data model/LP32.h>
+#if Z_MUST_USE(DATA_MODEL_LP32)
+#	include <Z/formats/data model/LP32.h>
 
-#	elif Z_MUST_USE(DATA_MODEL_ILP32)
-#		include <Z/formats/data model/ILP32.h>
+#elif Z_MUST_USE(DATA_MODEL_ILP32)
+#	include <Z/formats/data model/ILP32.h>
 
-#	elif Z_MUST_USE(DATA_MODEL_ILP64)
-#		include <Z/formats/data model/ILP64.h>
+#elif Z_MUST_USE(DATA_MODEL_ILP64)
+#	include <Z/formats/data model/ILP64.h>
 
-#	elif Z_MUST_USE(DATA_MODEL_LLP64)
-#		include <Z/formats/data model/LLP64.h>
+#elif Z_MUST_USE(DATA_MODEL_LLP64)
+#	include <Z/formats/data model/LLP64.h>
 
-#	elif Z_MUST_USE(DATA_MODEL_LP64)
-#		include <Z/formats/data model/LP64.h>
+#elif Z_MUST_USE(DATA_MODEL_LP64)
+#	include <Z/formats/data model/LP64.h>
 
-#	elif Z_MUST_USE(DATA_MODEL_SILP64)
-#		include <Z/formats/data model/SILP64.h>
+#elif Z_MUST_USE(DATA_MODEL_SILP64)
+#	include <Z/formats/data model/SILP64.h>
 
-#	else
-#		if	defined(__LP32__) || \
-			defined(__LP32	) || \
-			defined(_LP32_	) || \
-			defined(_LP32	) || \
-			(defined(Z_COMPILER_DATA_MODEL) && \
-			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_LP32)
+#elif	defined(__LP32__) || \
+	defined(__LP32	) || \
+	defined(_LP32_	) || \
+	defined(_LP32	) || \
+	(Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_LP32)
 
-#			include <Z/formats/data model/LP32.h>
+#	include <Z/formats/data model/LP32.h>
 
-#		elif	defined(__ILP32__) || /* Clang, GCC		    */ \
-			defined(__ILP32	 ) ||				       \
-			defined(_ILP32_	 ) ||				       \
-			defined(_ILP32	 ) || /* Clang, HP aC++, Sun Studio */ \
-			defined(_WIN32	 ) || /* Visual C++		    */ \
-			(defined(Z_COMPILER_DATA_MODEL) && \
-			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_ILP32)
+#elif	defined(__ILP32__) || /* Clang, GCC		    */ \
+	defined(__ILP32	 ) ||				       \
+	defined(_ILP32_	 ) ||				       \
+	defined(_ILP32	 ) || /* Clang, HP aC++, Sun Studio */ \
+	defined(_WIN32	 ) || /* Visual C++		    */ \
+	(Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_ILP32)
 
-#			include <Z/formats/data model/ILP32.h>
+#	include <Z/formats/data model/ILP32.h>
 
-#		elif	defined(__ILP64__) || \
-			defined(__ILP64	 ) || \
-			defined(_ILP64_	 ) || \
-			defined(_ILP64	 ) || \
-			(defined(Z_COMPILER_DATA_MODEL) && \
-			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_ILP64)
+#elif	defined(__ILP64__) || \
+	defined(__ILP64	 ) || \
+	defined(_ILP64_	 ) || \
+	defined(_ILP64	 ) || \
+	(Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_ILP64)
 
-#			include <Z/formats/data model/ILP64.h>
+#	include <Z/formats/data model/ILP64.h>
 
-#		elif	defined(__LLP64__) ||		       \
-			defined(__LLP64	 ) ||		       \
-			defined(_LLP64_	 ) ||		       \
-			defined(_LLP64	 ) ||		       \
-			defined(_WIN64	 ) || /* Visual C++ */ \
-			(defined(Z_COMPILER_DATA_MODEL) && \
-			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_LLP64)
+#elif	defined(__LLP64__) ||		       \
+	defined(__LLP64	 ) ||		       \
+	defined(_LLP64_	 ) ||		       \
+	defined(_LLP64	 ) ||		       \
+	defined(_WIN64	 ) || /* Visual C++ */ \
+	(Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_LLP64)
 
-#			include <Z/formats/data model/LLP64.h>
+#	include <Z/formats/data model/LLP64.h>
 
-#		elif	defined(__LP64__) || /* Clang, GCC		   */ \
-			defined(__LP64	) ||				      \
-			defined(_LP64_	) ||				      \
-			defined(_LP64	) || /* Clang, HP aC++, Sun Studio */ \
-			(defined(Z_COMPILER_DATA_MODEL) && \
-			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_LP64)
+#elif	defined(__LP64__) || /* Clang, GCC		   */ \
+	defined(__LP64	) ||				      \
+	defined(_LP64_	) ||				      \
+	defined(_LP64	) || /* Clang, HP aC++, Sun Studio */ \
+	(Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_LP64)
 
-#			include <Z/formats/data model/LP64.h>
+#	include <Z/formats/data model/LP64.h>
 
-#		elif	(defined(Z_COMPILER_DATA_MODEL) && \
-			 Z_COMPILER_DATA_MODEL == Z_DATA_MODEL_SILP64)
+#elif (Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_SILP64)
+#	include <Z/formats/data model/SILP64.h>
 
-#			include <Z/formats/data model/SILP64.h>
-
-#		else
-#			include <Z/formats/data model/ILP32.h>
-#		endif
-#	endif
+#else
+#	include <Z/formats/data model/ILP32.h>
+#endif
 
 #undef Z_INSPECTING_DATA_MODEL
 

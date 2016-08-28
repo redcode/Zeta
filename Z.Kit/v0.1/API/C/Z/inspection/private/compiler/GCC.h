@@ -25,10 +25,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/order.h>
 
-#define Z_COMPILER_LITTLE_ENDIAN_8BIT_FIELD_ORDER Z_ORDER_REVERSED
-#define Z_COMPILER_LITTLE_ENDIAN_BIT_FIELD_ORDER  Z_ORDER_REVERSED
-#define Z_COMPILER_BIG_ENDIAN_8BIT_FIELD_ORDER    Z_ORDER_NORMAL
-#define Z_COMPILER_BIG_ENDIAN_BIT_FIELD_ORDER     Z_ORDER_NORMAL
+#define Z_COMPILER_KEY_LITTLE_ENDIAN_8BIT_FIELD_ORDER Z_ORDER_REVERSED
+#define Z_COMPILER_KEY_LITTLE_ENDIAN_BIT_FIELD_ORDER  Z_ORDER_REVERSED
+#define Z_COMPILER_KEY_BIG_ENDIAN_8BIT_FIELD_ORDER    Z_ORDER_NORMAL
+#define Z_COMPILER_KEY_BIG_ENDIAN_BIT_FIELD_ORDER     Z_ORDER_NORMAL
 
 /* MARK: - C features */
 
@@ -154,7 +154,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 |									       |
 | This should not be a problem, after all the built-in macros work well, but   |
 | some versions of GCC create dependencies with the C standard library under   |
-| certain conditions if they are used. The way to fix this is to use  the      |
+| certain conditions if they are used. The way to fix this is to use the       |
 | "-fno-builtin" option to make GCC, paradoxically, generate true built-ins.   |
 '-----------------------------------------------------------------------------*/
 

@@ -30,14 +30,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Data model */
 
-/*#define Z_COMPILER_DATA_MODEL*/
+/*#define Z_COMPILER_KEY_DATA_MODEL*/
 
 /* MARK: - Bit field order */
 
-#define Z_COMPILER_LITTLE_ENDIAN_8BIT_FIELD_ORDER Z_ORDER_REVERSED
-#define Z_COMPILER_LITTLE_ENDIAN_BIT_FIELD_ORDER  Z_ORDER_REVERSED
-#define Z_COMPILER_BIG_ENDIAN_8BIT_FIELD_ORDER    Z_ORDER_NORMAL
-#define Z_COMPILER_BIG_ENDIAN_BIT_FIELD_ORDER     Z_ORDER_NORMAL
+#define Z_COMPILER_KEY_LITTLE_ENDIAN_8BIT_FIELD_ORDER Z_ORDER_REVERSED
+#define Z_COMPILER_KEY_LITTLE_ENDIAN_BIT_FIELD_ORDER  Z_ORDER_REVERSED
+#define Z_COMPILER_KEY_BIG_ENDIAN_8BIT_FIELD_ORDER    Z_ORDER_NORMAL
+#define Z_COMPILER_KEY_BIG_ENDIAN_BIT_FIELD_ORDER     Z_ORDER_NORMAL
 
 /* MARK: - K&R C support */
 
@@ -491,6 +491,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TYPE_INT8*/
 /*#define Z_COMPILER_TYPE_INT16*/
 /*#define Z_COMPILER_TYPE_INT32*/
+/*#define Z_COMPILER_TYPE_INT64*/
 
 #ifdef __SIZEOF_INT128__
 #	define Z_COMPILER_TYPE_UINT128 __uint128_t
@@ -499,14 +500,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /*#define Z_COMPILER_TYPE_FLOAT16*/
 /*#define Z_COMPILER_TYPE_FLOAT24*/
-#define Z_COMPILER_TYPE_FLOAT32 __float32
+/*#define Z_COMPILER_TYPE_FLOAT32*/
 /*#define Z_COMPILER_TYPE_FLOAT48*/
-#define Z_COMPILER_TYPE_FLOAT64 __float64
+/*#define Z_COMPILER_TYPE_FLOAT64*/
 /*#define Z_COMPILER_TYPE_FLOAT72*/
-
-#define Z_COMPILER_TYPE_FLOAT80	__float80
+/*#define Z_COMPILER_TYPE_FLOAT80*/
 /*#define Z_COMPILER_TYPE_FLOAT96*/
-#define Z_COMPILER_TYPE_FLOAT128 __float128
+/*#define Z_COMPILER_TYPE_FLOAT128*/
 
 #define Z_COMPILER_TYPE_VAL __builtin_va_list
 
@@ -521,6 +521,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_LITERAL_INT8*/
 /*#define Z_COMPILER_LITERAL_INT16*/
 /*#define Z_COMPILER_LITERAL_INT32*/
+/*#define Z_COMPILER_LITERAL_INT64*/
 /*#define Z_COMPILER_LITERAL_INT128*/
 
 /*#define Z_COMPILER_LITERAL_FLOAT16*/

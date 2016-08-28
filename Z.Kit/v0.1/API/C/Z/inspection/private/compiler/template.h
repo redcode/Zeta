@@ -21,14 +21,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Data model */
 
-/*#define Z_COMPILER_DATA_MODEL*/
+/*#define Z_COMPILER_KEY_DATA_MODEL*/
 
 /* MARK: - Bit field encoding */
 
-/*#define Z_COMPILER_LITTLE_ENDIAN_8BIT_FIELD_ENCODING*/
-/*#define Z_COMPILER_LITTLE_ENDIAN_BIT_FIELD_ENCODING*/
-/*#define Z_COMPILER_BIG_ENDIAN_8BIT_FIELD_ENCODING*/
-/*#define Z_COMPILER_BIG_ENDIAN_BIT_FIELD_ENCODING*/
+/*#define Z_COMPILER_KEY_LITTLE_ENDIAN_8BIT_FIELD_ENCODING*/
+/*#define Z_COMPILER_KEY_LITTLE_ENDIAN_BIT_FIELD_ENCODING*/
+/*#define Z_COMPILER_KEY_BIG_ENDIAN_8BIT_FIELD_ENCODING*/
+/*#define Z_COMPILER_KEY_BIG_ENDIAN_BIT_FIELD_ENCODING*/
 
 /* MARK: - K&R C support */
 
@@ -246,6 +246,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TYPE_INT8*/
 /*#define Z_COMPILER_TYPE_INT16*/
 /*#define Z_COMPILER_TYPE_INT32*/
+/*#define Z_COMPILER_TYPE_INT64*/
 /*#define Z_COMPILER_TYPE_INT128*/
 
 /*#define Z_COMPILER_TYPE_FLOAT16*/
@@ -271,6 +272,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_LITERAL_INT8*/
 /*#define Z_COMPILER_LITERAL_INT16*/
 /*#define Z_COMPILER_LITERAL_INT32*/
+/*#define Z_COMPILER_LITERAL_INT64*/
 /*#define Z_COMPILER_LITERAL_INT128*/
 
 /*#define Z_COMPILER_LITERAL_FLOAT16*/
