@@ -829,7 +829,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_VALUE_FORMAT_INTEL_FLOAT96	   3081
 #define Z_VALUE_FORMAT_INTEL_FLOAT128	   3082
 
-#define Z_KEY_BITS_VALUE_FORMAT	8
-#define Z_KEY_LAST_VALUE_FORMAT	Z_VALUE_FORMAT_IEEE_754_DECIMAL128
+#define Z_KEY_BITS_VALUE_FORMAT	16
+#define Z_KEY_LAST_VALUE_FORMAT	Z_VALUE_FORMAT_INTEL_FLOAT128
 
 #endif /* __Z_keys_value_H__ */
