@@ -57,6 +57,7 @@ Flags (F register):
 #define __Z_hardware_CPU_architecture_Z80_H__
 
 #include <Z/keys/endianness.h>
+#include <Z/keys/value.h>
 
 /* MARK: - Limits and features */
 
@@ -73,7 +74,8 @@ Flags (F register):
 #define Z_Z80_ADDRESS_BUS_BITS		     16
 #define Z_Z80_DATA_BUS_BITS		     8
 #define Z_Z80_ADDRESSING_BITS		     16
-#define Z_Z80_ENDIANNESS		     Z_ENDIANNESS_LITTLE
+#define Z_Z80_INTEGER_ENDIANNESS	     Z_ENDIANNESS_LITTLE
+#define Z_Z80_INTEGER_FORMAT		     Z_INTEGER_FORMAT_2S_COMPLEMENT
 
 /* MARK: - Addresses */
 

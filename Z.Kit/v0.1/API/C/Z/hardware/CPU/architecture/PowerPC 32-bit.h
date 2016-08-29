@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_hardware_CPU_architecture_PowerPC_32_bit_H__
 
 #include <Z/keys/endianness.h>
+#include <Z/keys/value.h>
 
 #define Z_POWER_PC_32BIT_HAS_MMU
 #define Z_POWER_PC_32BIT_HAS_FPU
@@ -22,7 +23,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_POWER_PC_32BIT_MAXIMUM_STORE_BITS 32
 #define Z_POWER_PC_32BIT_MAXIMUM_COPY_BITS  32
 #define Z_POWER_PC_32BIT_ADDRESSING_BITS    32
-#define Z_POWER_PC_32BIT_ENDIANNESS	    Z_ENDIANNESS_BIG
+#define Z_POWER_PC_32BIT_INTEGER_ENDIANNESS Z_ENDIANNESS_BIG
+#define Z_POWER_PC_32BIT_INTEGER_FORMAT	    Z_INTEGER_FORMAT_2S_COMPLEMENT
 
 #endif /* __Z_hardware_CPU_architecture_PowerPC_32_bit_H__ */
 

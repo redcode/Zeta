@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_hardware_CPU_architecture_AArch32_H__
 
 #include <Z/keys/endianness.h>
+#include <Z/keys/value.h>
 
 #define Z_A_ARCH_32_HAS_MMU
 #define Z_A_ARCH_32_HAS_FPU
@@ -27,7 +28,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_A_ARCH_32_MAXIMUM_STORE_BITS	     512
 #define Z_A_ARCH_32_MAXIMUM_COPY_BITS	     512
 #define Z_A_ARCH_32_ADDRESSING_BITS	     32
-#define Z_A_ARCH_32_ENDIANNESS		     Z_ENDIANNESS_LITTLE /* Z_ENDIANNESS_MIXED */
+#define Z_A_ARCH_32_INTEGER_ENDIANNESS	     Z_ENDIANNESS_LITTLE /* Z_ENDIANNESS_MIXED */
+#define Z_A_ARCH_32_INTEGER_FORMAT	     Z_INTEGER_FORMAT_2S_COMPLEMENT
 
 #endif /* __Z_hardware_CPU_architecture_AArch32_H__ */
 

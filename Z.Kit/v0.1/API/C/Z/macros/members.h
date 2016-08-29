@@ -75,10 +75,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_MEMBERIZE_REVERSED_31(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31     )	    a31; a30; a29; a28; a27; a26; a25; a24; a23; a22; a21; a20; a19; a18; a17; a16; a15; a14; a13; a12; a11; a10; a9; a8; a7; a6; a5; a4; a3; a2; a1;
 #define Z_MEMBERIZE_REVERSED_32(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32) a32; a31; a30; a29; a28; a27; a26; a25; a24; a23; a22; a21; a20; a19; a18; a17; a16; a15; a14; a13; a12; a11; a10; a9; a8; a7; a6; a5; a4; a3; a2; a1;
 
-#if	(Z_CPU_ENDIANNESS			   == Z_ENDIANNESS_LITTLE && \
-	 Z_COMPILER_LITTLE_ENDIAN_8BIT_FIELD_ORDER == Z_ORDER_REVERSED)	  || \
-	(Z_CPU_ENDIANNESS			   == Z_ENDIANNESS_BIG	  && \
-	 Z_COMPILER_BIG_ENDIAN_8BIT_FIELD_ORDER	   == Z_ORDER_NORMAL)
+#if	(Z_CPU(INTEGER_ENDIANNESS)			== Z_ENDIANNESS_LITTLE && \
+	 Z_COMPILER_KEY(LITTLE_ENDIAN_8BIT_FIELD_ORDER) == Z_ORDER_REVERSED)   || \
+	(Z_CPU(INTEGER_ENDIANNESS)			== Z_ENDIANNESS_BIG    && \
+	 Z_COMPILER_KEY(BIG_ENDIAN_8BIT_FIELD_ORDER)	== Z_ORDER_NORMAL)
 
 #	define Z_8BIT_FIELD(member_count) Z_MEMBERIZE_REVERSED_##member_count
 
@@ -86,10 +86,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_8BIT_FIELD(member_count) Z_MEMBERIZE_##member_count
 #endif
 
-#if	(Z_CPU_ENDIANNESS			  == Z_ENDIANNESS_LITTLE && \
-	 Z_COMPILER_LITTLE_ENDIAN_BIT_FIELD_ORDER == Z_ORDER_REVERSED)	 || \
-	(Z_CPU_ENDIANNESS			  == Z_ENDIANNESS_BIG	 && \
-	 Z_COMPILER_BIG_ENDIAN_BIT_FIELD_ORDER	  == Z_ORDER_NORMAL)
+#if	(Z_CPU(INTEGER_ENDIANNESS)		       == Z_ENDIANNESS_LITTLE && \
+	 Z_COMPILER_KEY(LITTLE_ENDIAN_BIT_FIELD_ORDER) == Z_ORDER_REVERSED)   || \
+	(Z_CPU(INTEGER_ENDIANNESS)		       == Z_ENDIANNESS_BIG    && \
+	 Z_COMPILER_KEY(BIG_ENDIAN_BIT_FIELD_ORDER)    == Z_ORDER_NORMAL)
 
 #	define Z_BIT_FIELD(member_count) Z_MEMBERIZE_REVERSED_##member_count
 #else

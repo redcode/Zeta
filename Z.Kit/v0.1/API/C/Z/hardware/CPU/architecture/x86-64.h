@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_hardware_CPU_architecture_x86_64_H__
 
 #include <Z/keys/endianness.h>
+#include <Z/keys/value.h>
 
 #define Z_X86_64_HAS_MMU
 #define Z_X86_64_HAS_FPU
@@ -20,14 +21,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_X86_64_IS_CAPABLE_OF_32BIT_ATOMICS
 #define Z_X86_64_IS_CAPABLE_OF_64BIT_ATOMICS
 
-#define Z_X86_64_MINIMUM_LOAD_BITS    8
-#define Z_X86_64_MINIMUM_STORE_BITS   8
-#define Z_X86_64_MINIMUM_COPY_BITS    8
+#define Z_X86_64_MINIMUM_LOAD_BITS  8
+#define Z_X86_64_MINIMUM_STORE_BITS 8
+#define Z_X86_64_MINIMUM_COPY_BITS  8
 #define Z_X86_64_MAXIMUM_LOAD_BITS  128
 #define Z_X86_64_MAXIMUM_STORE_BITS 128
-#define Z_X86_64_MAXIMUM_COPY_BITS   64
-#define Z_X86_64_ADDRESSING_BITS     64
-#define Z_X86_64_ENDIANNESS	    Z_ENDIANNESS_LITTLE
+#define Z_X86_64_MAXIMUM_COPY_BITS  64
+#define Z_X86_64_ADDRESSING_BITS    64
+#define Z_X86_64_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
+#define Z_X86_64_INTEGER_FORMAT	    Z_INTEGER_FORMAT_2S_COMPLEMENT
 
 #endif /* __Z_hardware_CPU_architecture_x86_64_H__ */
 
