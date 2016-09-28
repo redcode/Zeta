@@ -1,58 +1,79 @@
 /* Z Kit C API - inspection/C.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef __Z_inspection_C_H__
 #define __Z_inspection_C_H__
 
-#include <Z/macros/inspection.h>
+#include <Z/constants/base.h>
+#include <Z/keys/C.h>
 
-#if Z_MUST_USE(C11)
-#	include <Z/inspection/private/C/C11.h>
-
-#elif Z_MUST_USE(C99)
-#	include <Z/inspection/private/C/C99.h>
-
-#elif Z_MUST_USE(C94)
-#	include <Z/inspection/private/C/C94.h>
-
-#elif Z_MUST_USE(C90)
-#	include <Z/inspection/private/C/C90.h>
-
-#elif Z_MUST_USE(C89)
-#	include <Z/inspection/private/C/C89.h>
-
-#elif defined(__STDC__)
-#	if defined(__STDC_VERSION__)
-
-#		if __STDC_VERSION__ >= 201112L
-#			include <Z/inspection/private/C/C11.h>
-
-#		elif __STDC_VERSION__ >= 199901L
-#			include <Z/inspection/private/C/C99.h>
-
-#		elif __STDC_VERSION__ >= 199409L
-#			include <Z/inspection/private/C/C94.h>
-#		else
-#			include <Z/inspection/private/C/C90.h>
-#		endif
+#ifndef Z_C
+#	if !defined(__STDC__)
+#		define Z_C Z_KR_C
+#	elif !defined(__STDC_VERSION__)
+#		define Z_C Z_89
+#	elif __STDC_VERSION__ >= 201112L
+#		define Z_C Z_C11
+#	elif __STDC_VERSION__ >= 199901L
+#		define Z_C Z_99
+#	elif __STDC_VERSION__ >= 199409L
+#		define Z_C Z_C94
 #	else
-#		include <Z/inspection/private/C/C89.h>
+#		define Z_C Z_C90
 #	endif
-#else
-#	include <Z/inspection/private/C/C89.h>
 #endif
 
-#define Z_C_HAS(	       WHAT ) (defined Z_C_HAS_##WHAT		     )
-#define Z_C_HAS_TYPE(	       WHICH) (defined Z_C_HAS_TYPE_##WHICH	     )
-#define Z_C_HAS_TYPE_QUALIFIER(WHICH) (defined Z_C_HAS_TYPE_QUALIFIER_##WHICH)
-#define Z_C_HAS_STORAGE_CLASS( WHICH) (defined Z_C_HAS_STORAGE_CLASS_##WHICH )
-#define Z_C_HAS_SPECIFIER(     WHICH) (defined Z_C_HAS_SPECIFIER_##WHICH     )
-#define Z_C_HAS_OPERATOR(      WHICH) (defined Z_C_HAS_OPERATOR_##WHICH	     )
-#define Z_C_HAS_LITERAL(       WHICH) (defined Z_C_HAS_LITERAL_##WHICH	     )
+#if Z_C == Z_C11
+
+#	include <Z/inspection/C/modules/C11.h>
+
+#	define Z_C_STRING Z_C_STRING_C11
+
+#elif Z_C == Z_C99
+
+#	include <Z/inspection/C/modules/C99.h>
+
+#	define Z_C_STRING Z_C_STRING_C99
+
+#elif Z_C == Z_C94
+
+#	include <Z/inspection/C/modules/C94.h>
+
+#	define Z_C_STRING Z_C_STRING_C94
+
+#elif Z_C == Z_C90
+
+#	include <Z/inspection/C/modules/C90.h>
+
+#	define Z_C_STRING Z_C_STRING_C90
+
+#elif Z_C == Z_C89
+
+#	include <Z/inspection/C/modules/C89.h>
+
+#	define Z_C_STRING Z_C_STRING_C89
+
+#elif Z_C == Z_KR_C
+
+#	include <Z/inspection/C/modules/KR C.h>
+
+#	define Z_C_STRING Z_C_STRING_KR_C
+
+#endif
+
+#include <Z/inspection/C/completion.h>
+
+#define Z_C_HAS(	       WHAT ) Z_C_HAS_##WHAT
+#define Z_C_HAS_TYPE(	       WHICH) Z_C_HAS_TYPE_##WHICH
+#define Z_C_HAS_TYPE_QUALIFIER(WHICH) Z_C_HAS_TYPE_QUALIFIER_##WHICH
+#define Z_C_HAS_STORAGE_CLASS( WHICH) Z_C_HAS_STORAGE_CLASS_##WHICH
+#define Z_C_HAS_SPECIFIER(     WHICH) Z_C_HAS_SPECIFIER_##WHICH
+#define Z_C_HAS_OPERATOR(      WHICH) Z_C_HAS_OPERATOR_##WHICH
+#define Z_C_HAS_LITERAL(       WHICH) Z_C_HAS_LITERAL_##WHICH
 
 #endif /* __Z_inspection_C_H__ */

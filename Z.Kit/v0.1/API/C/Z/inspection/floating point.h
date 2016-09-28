@@ -1,8 +1,8 @@
 /* Z Kit C API - inspection/floating point.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -48,6 +48,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
+/* TODO */
 
 #	if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE)
 #		define Z_FLOATING_POINT_BITS_LDOUBLE	128

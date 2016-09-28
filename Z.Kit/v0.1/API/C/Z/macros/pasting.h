@@ -1,8 +1,8 @@
 /* Z Kit C API - macros/pasting.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -125,5 +125,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_NUMBER_256( left, right) left##256##right
 #define Z_INSERT_NUMBER_512( left, right) left##512##right
 #define Z_INSERT_NUMBER_1024(left, right) left##1024##right
+
+#define Z_TERNARY_INSERT_1(left, right, a, b) left##a##right
+#define Z_TERNARY_INSERT_0(left, right, a, b) left##b##right
+
+#define Z_TERNARY_INSERT(condition) Z_JOIN_2(Z_TERNARY_INSERT_, condition)
 
 #endif /* __Z_macros_pasting_H__ */

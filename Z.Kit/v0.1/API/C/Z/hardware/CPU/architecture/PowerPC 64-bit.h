@@ -1,8 +1,8 @@
 /* Z Kit C API - hardware/CPU/architecture/PowerPC 64-bit.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -30,13 +30,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	ifndef __Z_hardware_CPU_architecture_PowerPC_64_bit_H__INSPECTION
 #	define __Z_hardware_CPU_architecture_PowerPC_64_bit_H__INSPECTION
-
-#	define Z_INSERT_CPU_ARCHITECTURE(left, right) left##POWER_PC_64BIT##right
-#	define Z_INSERT_CPUArchitecture( left, right) left##PowerPC64Bit##right
-#	define Z_INSERT_cpu_architecture(left, right) left##power_pc_64bit##right
-
-#	define Z_IS_DEFINED_INSERT_CPU_ARCHITECTURE(left, right) \
-		(defined left##POWER_PC_64BIT##right)
 
 #	endif /* __Z_hardware_CPU_architecture_PowerPC_64_bit_H__INSPECTION */
 

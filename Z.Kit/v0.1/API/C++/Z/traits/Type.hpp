@@ -1,8 +1,8 @@
 /* Z Kit C++ API - traits/Type.hpp
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -207,7 +207,7 @@ namespace Zeta {
 
 		};
 
-#		if Z_IS_AVAILABLE(ULLONG)
+#		ifdef Z_ULLONG
 
 			struct ULLong : Natural {
 				enum {	bits = Z_ULLONG_BITS,
@@ -218,14 +218,14 @@ namespace Zeta {
 				typedef unsigned long long int type;
 				typedef unsigned long long int to_unsigned;
 
-#				if Z_IS_AVAILABLE(LLONG)
+#				ifdef Z_LLONG
 					typedef signed long long int to_signed;
 #				endif
 			};
 
 #		endif
 
-#		if	Z_IS_AVAILABLE(UINT64)				&& \
+#		if	defined(Z_UINT64)				&& \
 			Z_UINT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULLONG && \
 			Z_UINT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULONG
 
@@ -238,14 +238,14 @@ namespace Zeta {
 				typedef zuint64 type;
 				typedef zuint64 to_unsigned;
 
-#				if Z_IS_AVAILABLE(INT64)
+#				ifdef Z_INT64
 					typedef zint64 to_signed;
 #				endif
 			};
 
 #		endif
 
-#		if	Z_IS_AVAILABLE(UINT128)				 && \
+#		if	defined(Z_UINT128)				 && \
 			Z_UINT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULLONG && \
 			Z_UINT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULONG
 
@@ -258,7 +258,7 @@ namespace Zeta {
 				typedef zuint128 type;
 				typedef zuint128 to_unsigned;
 
-#				if Z_IS_AVAILABLE(INT128)
+#				ifdef Z_INT128
 					typedef zint128 to_signed;
 #				endif
 			};
@@ -317,7 +317,7 @@ namespace Zeta {
 			typedef signed	 long int to_signed;
 		};
 
-#		if Z_IS_AVAILABLE(LLONG)
+#		ifdef Z_LLONG
 
 			struct LLong : Integer {
 				enum {	bits = Z_LLONG_BITS,
@@ -330,14 +330,14 @@ namespace Zeta {
 				typedef signed long long int type;
 				typedef signed long long int to_signed;
 
-#				if Z_IS_AVAILABLE(ULLONG)
+#				ifdef Z_ULLONG
 					typedef unsigned long long int to_unsigned;
 #				endif
 			};
 
 #		endif
 
-#		if	Z_IS_AVAILABLE(INT64)			      && \
+#		if	defined(Z_INT64)			      && \
 			Z_INT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_LLONG && \
 			Z_INT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_LONG
 
@@ -352,14 +352,14 @@ namespace Zeta {
 				typedef zint64 type;
 				typedef zint64 to_signed;
 
-#				if Z_IS_AVAILABLE(UINT64)
+#				ifdef Z_UINT64
 					typedef zuint64 to_unsigned;
 #				endif
 			};
 
 #		endif
 
-#		if	Z_IS_AVAILABLE(INT128)			       && \
+#		if	defined(Z_INT128)			       && \
 			Z_INT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_LLONG && \
 			Z_INT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_LONG
 
@@ -374,14 +374,14 @@ namespace Zeta {
 				typedef zint128 type;
 				typedef zint128 to_signed;
 
-#				if Z_IS_AVAILABLE(UINT128)
+#				ifdef Z_UINT128
 					typedef zuint128 to_unsigned;
 #				endif
 			};
 
 #		endif
 
-#		if Z_IS_AVAILABLE(FLOAT)
+#		ifdef Z_FLOAT
 
 			struct Float : Real {
 				enum {	bits		    = Z_FLOAT_BITS,
@@ -406,8 +406,8 @@ namespace Zeta {
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float epsilon () {return Z_FLOAT_EPSILON;}
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float minimum () {return Z_FLOAT_MINIMUM;}
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float maximum () {return Z_FLOAT_MAXIMUM;}
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float nan	   () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}
+				//static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
+				//static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION float nan	   () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}
 
 				typedef float type;
 				typedef float to_signed;
@@ -415,7 +415,7 @@ namespace Zeta {
 
 #		endif
 
-#		if Z_IS_AVAILABLE(DOUBLE)
+#		ifdef Z_DOUBLE
 
 			struct Double : Real {
 				enum {	bits		    = Z_DOUBLE_BITS,
@@ -440,8 +440,8 @@ namespace Zeta {
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double epsilon () {return Z_DOUBLE_EPSILON;}
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double minimum () {return Z_DOUBLE_MINIMUM;}
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double maximum () {return Z_DOUBLE_MAXIMUM;}
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double nan	    () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}
+				//static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
+				//static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION double nan	    () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}
 
 				typedef double type;
 				typedef double to_signed;
@@ -449,7 +449,7 @@ namespace Zeta {
 
 #		endif
 
-#		if Z_IS_AVAILABLE(LDOUBLE)
+#		ifdef Z_LDOUBLE
 
 			struct LDouble : Real {
 				enum {	bits		    = Z_LDOUBLE_BITS,
@@ -474,8 +474,8 @@ namespace Zeta {
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double epsilon () {return Z_LDOUBLE_EPSILON;}
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double minimum () {return Z_LDOUBLE_MINIMUM;}
 				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double maximum () {return Z_LDOUBLE_MAXIMUM;}
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
-				static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double nan	 () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;     }
+				//static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
+				//static Z_INLINE_MEMBER Z_CONSTANT_EXPRESSION long double nan	 () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;     }
 
 				typedef long double type;
 				typedef long double to_signed;
@@ -780,18 +780,18 @@ namespace Zeta {
 		template <> struct Type<unsigned int	  > : Mixins::Type::Unqualified<Abstract::Type::UInt  > {};
 		template <> struct Type<unsigned long int > : Mixins::Type::Unqualified<Abstract::Type::ULong > {};
 
-#		if Z_IS_AVAILABLE(ULLONG)
+#		ifdef Z_ULLONG
 			template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong> {};
 #		endif
 
-#		if	Z_IS_AVAILABLE(UINT64)				&& \
+#		if	defined(Z_UINT64)				&& \
 			Z_UINT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULLONG && \
 			Z_UINT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULONG
 
 			template <> struct Type<zuint64> : Mixins::Type::Unqualified<Abstract::Type::UInt64> {};
 #		endif
 
-#		if	Z_IS_AVAILABLE(UINT128)				 && \
+#		if	defined(Z_UINT128)				 && \
 			Z_UINT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULLONG && \
 			Z_UINT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULONG
 
@@ -803,33 +803,33 @@ namespace Zeta {
 		template <> struct Type<signed int	> : Mixins::Type::Unqualified<Abstract::Type::Int  > {};
 		template <> struct Type<signed long int	> : Mixins::Type::Unqualified<Abstract::Type::Long > {};
 
-#		if Z_IS_AVAILABLE(LLONG)
+#		ifdef Z_LLONG
 			template <> struct Type<signed long long int> : Mixins::Type::Unqualified<Abstract::Type::LLong > {};
 #		endif
 
-#		if	Z_IS_AVAILABLE(INT64)			      && \
+#		if	defined(Z_INT64)			      && \
 			Z_INT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_LLONG && \
 			Z_INT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_LONG
 
 			template <> struct Type<zint64> : Mixins::Type::Unqualified<Abstract::Type::Int64> {};
 #		endif
 
-#		if	Z_IS_AVAILABLE(INT128)			       && \
+#		if	defined(Z_INT128)			       && \
 			Z_INT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_LLONG && \
 			Z_INT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_LONG
 
 			template <> struct Type<zint128> : Mixins::Type::Unqualified<Abstract::Type::Int128> {};
 #		endif
 
-#		if Z_IS_AVAILABLE(FLOAT)
+#		ifdef Z_FLOAT
 			template <> struct Type<float> : Mixins::Type::Unqualified<Abstract::Type::Float> {};
 #		endif
 
-#		if Z_IS_AVAILABLE(DOUBLE)
+#		ifdef Z_DOUBLE
 			template <> struct Type<double> : Mixins::Type::Unqualified<Abstract::Type::Double> {};
 #		endif
 
-#		if Z_IS_AVAILABLE(LDOUBLE)
+#		ifdef Z_LDOUBLE
 			template <> struct Type<long double> : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
 #		endif
 

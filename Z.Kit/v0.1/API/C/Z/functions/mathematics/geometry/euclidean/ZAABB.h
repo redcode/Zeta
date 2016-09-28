@@ -1,8 +1,8 @@
 /* Z Kit C API - functions/mathematics/geometry/euclidean/ZAABB.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -179,7 +179,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 /* MARK: - Implementation expansions */
 
 
-#if Z_IS_AVAILABLE(FLOAT16)
+#ifdef Z_FLOAT16
 
 #	define z_aabb_float16_are_equal	z_3d_line_float16_are_equal
 #	define z_aabb_float16_is_zero	z_3d_line_float16_is_zero
@@ -189,7 +189,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT24)
+#ifdef Z_FLOAT24
 
 #	define z_aabb_float24_are_equal	z_3d_line_float24_are_equal
 #	define z_aabb_float24_is_zero	z_3d_line_float24_is_zero
@@ -199,7 +199,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT32)
+#ifdef Z_FLOAT32
 
 #	define z_aabb_float32_are_equal	z_3d_line_float32_are_equal
 #	define z_aabb_float32_is_zero	z_3d_line_float32_is_zero
@@ -209,7 +209,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT48)
+#ifdef Z_FLOAT48
 
 #	define z_aabb_float48_are_equal	z_3d_line_float48_are_equal
 #	define z_aabb_float48_is_zero	z_3d_line_float48_is_zero
@@ -219,7 +219,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT64)
+#ifdef Z_FLOAT64
 
 #	define z_aabb_float64_are_equal	z_3d_line_float64_are_equal
 #	define z_aabb_float64_is_zero	z_3d_line_float64_is_zero
@@ -229,7 +229,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT72)
+#ifdef Z_FLOAT72
 
 #	define z_aabb_float72_are_equal	z_3d_line_float72_are_equal
 #	define z_aabb_float72_is_zero	z_3d_line_float72_is_zero
@@ -239,7 +239,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT80)
+#ifdef Z_FLOAT80
 
 #	define z_aabb_float80_are_equal	z_3d_line_float80_are_equal
 #	define z_aabb_float80_is_zero	z_3d_line_float80_is_zero
@@ -249,7 +249,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT96)
+#ifdef Z_FLOAT96
 
 #	define z_aabb_float96_are_equal	z_3d_line_float96_are_equal
 #	define z_aabb_float96_is_zero	z_3d_line_float96_is_zero
@@ -259,7 +259,7 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT128)
+#ifdef Z_FLOAT128
 
 #	define z_aabb_float128_are_equal z_3d_line_float128_are_equal
 #	define z_aabb_float128_is_zero	 z_3d_line_float128_is_zero
@@ -273,25 +273,29 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 /* MARK: - Default real type definitions */
 
 
-#define z_aabb_are_equal z_3d_line_are_equal
-#define z_aabb_is_zero	 z_3d_line_is_zero
-#define z_aabb_center	 z_3d_line_segment_center
+#ifdef Z_REAL
 
-#define z_aabb_contains		      z_aabb_type_contains		(REAL)
-#define z_aabb_collide		      z_aabb_type_collide		(REAL)
-#define z_aabb_intersection	      z_aabb_type_intersection		(REAL)
-#define z_aabb_union		      z_aabb_type_union			(REAL)
-#define z_aabb_from_vertices	      z_aabb_type_from_vertices		(REAL)
-#define z_aabb_size		      z_aabb_type_size			(REAL)
-#define z_aabb_volume		      z_aabb_type_volume		(REAL)
-#define z_aabb_inner_sphere	      z_aabb_type_inner_sphere		(REAL)
-#define z_aabb_to_box		      z_aabb_type_to_box		(REAL)
-#define z_aabb_absolute_point_to_unit z_aabb_type_absolute_point_to_unit(REAL)
-#define z_aabb_unit_point_to_absolute z_aabb_type_unit_point_to_absolute(REAL)
-#define z_aabb_contains_point	      z_aabb_type_contains_point	(REAL)
-#define z_aabb_contains_line_segment  z_aabb_type_contains_line_segment	(REAL)
-#define z_aabb_contains_box	      z_aabb_type_contains_box		(REAL)
-#define z_aabb_contains_sphere	      z_aabb_type_contains_sphere	(REAL)
+#	define z_aabb_are_equal z_3d_line_are_equal
+#	define z_aabb_is_zero	z_3d_line_is_zero
+#	define z_aabb_center	z_3d_line_segment_center
+
+#	define z_aabb_contains		     z_aabb_type_contains	       (REAL)
+#	define z_aabb_collide		     z_aabb_type_collide	       (REAL)
+#	define z_aabb_intersection	     z_aabb_type_intersection	       (REAL)
+#	define z_aabb_union		     z_aabb_type_union		       (REAL)
+#	define z_aabb_from_vertices	     z_aabb_type_from_vertices	       (REAL)
+#	define z_aabb_size		     z_aabb_type_size		       (REAL)
+#	define z_aabb_volume		     z_aabb_type_volume		       (REAL)
+#	define z_aabb_inner_sphere	     z_aabb_type_inner_sphere	       (REAL)
+#	define z_aabb_to_box		     z_aabb_type_to_box		       (REAL)
+#	define z_aabb_absolute_point_to_unit z_aabb_type_absolute_point_to_unit(REAL)
+#	define z_aabb_unit_point_to_absolute z_aabb_type_unit_point_to_absolute(REAL)
+#	define z_aabb_contains_point	     z_aabb_type_contains_point	       (REAL)
+#	define z_aabb_contains_line_segment  z_aabb_type_contains_line_segment (REAL)
+#	define z_aabb_contains_box	     z_aabb_type_contains_box	       (REAL)
+#	define z_aabb_contains_sphere	     z_aabb_type_contains_sphere       (REAL)
+
+#endif
 
 
 #endif /* __Z_functions_mathematics_geometry_euclidean_ZAABB_H__ */

@@ -1,8 +1,8 @@
 /* Z Kit C API - formats/snapshot/machine/computer/ZX Spectrum/SP.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -45,7 +45,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8	border_color;
 	zuint8	zero2; /* reserved for future use */
 
-	struct {Z_8BIT_FIELD(7) (
+	struct {Z_BIT_FIELD(8, 7) (
 		zuint8 zero	   :2, /* reserved for internal use */
 		zuint8 flash	   :1, /* boolean */
 		zuint8 int_pending :1,

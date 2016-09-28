@@ -1,8 +1,8 @@
 /* Z Kit C API - functions/base/Z3DValue.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -430,11 +430,11 @@ Z_IMPLEMENTATION_3D_NATURAL(UInt8,  uint8 )
 Z_IMPLEMENTATION_3D_NATURAL(UInt16, uint16)
 Z_IMPLEMENTATION_3D_NATURAL(UInt32, uint32)
 
-#if Z_IS_AVAILABLE(UINT64)
+#ifdef Z_UINT64
 	Z_IMPLEMENTATION_3D_NATURAL(UInt64, uint64)
 #endif
 
-#if Z_IS_AVAILABLE(UINT128)
+#ifdef Z_UINT128
 	Z_IMPLEMENTATION_3D_NATURAL(UInt128, uint128)
 #endif
 
@@ -445,65 +445,65 @@ Z_IMPLEMENTATION_3D_INTEGER(Int16, int16)
 Z_IMPLEMENTATION_3D_NATURAL(Int32, int32)
 Z_IMPLEMENTATION_3D_INTEGER(Int32, int32)
 
-#if Z_IS_AVAILABLE(INT64)
+#ifdef Z_INT64
 	Z_IMPLEMENTATION_3D_NATURAL(Int64, int64)
 	Z_IMPLEMENTATION_3D_INTEGER(Int64, int64)
 #endif
 
-#if Z_IS_AVAILABLE(INT128)
+#ifdef Z_INT128
 	Z_IMPLEMENTATION_3D_NATURAL(Int128, int128)
 	Z_IMPLEMENTATION_3D_INTEGER(Int128, int128)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT16)
+#ifdef Z_FLOAT16
 	Z_IMPLEMENTATION_3D_NATURAL(Float16, float16)
 	Z_IMPLEMENTATION_3D_INTEGER(Float16, float16)
 	Z_IMPLEMENTATION_3D_REAL   (Float16, float16, Z_FLOAT16, Z_FLOAT16_EPSILON)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT24)
+#ifdef Z_FLOAT24
 	Z_IMPLEMENTATION_3D_NATURAL(Float24, float24)
 	Z_IMPLEMENTATION_3D_INTEGER(Float24, float24)
 	Z_IMPLEMENTATION_3D_REAL   (Float24, float24, Z_FLOAT24, Z_FLOAT24_EPSILON)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT32)
+#ifdef Z_FLOAT32
 	Z_IMPLEMENTATION_3D_NATURAL(Float32, float32)
 	Z_IMPLEMENTATION_3D_INTEGER(Float32, float32)
 	Z_IMPLEMENTATION_3D_REAL   (Float32, float32, Z_FLOAT32, Z_FLOAT32_EPSILON)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT48)
+#ifdef Z_FLOAT48
 	Z_IMPLEMENTATION_3D_NATURAL(Float48, float48)
 	Z_IMPLEMENTATION_3D_INTEGER(Float48, float48)
 	Z_IMPLEMENTATION_3D_REAL   (Float48, float48, Z_FLOAT48, Z_FLOAT48_EPSILON)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT64)
+#ifdef Z_FLOAT64
 	Z_IMPLEMENTATION_3D_NATURAL(Float64, float64)
 	Z_IMPLEMENTATION_3D_INTEGER(Float64, float64)
 	Z_IMPLEMENTATION_3D_REAL   (Float64, float64, Z_FLOAT64, Z_FLOAT64_EPSILON)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT72)
+#ifdef Z_FLOAT72
 	Z_IMPLEMENTATION_3D_NATURAL(Float72, float72)
 	Z_IMPLEMENTATION_3D_INTEGER(Float72, float72)
 	Z_IMPLEMENTATION_3D_REAL   (Float72, float72, Z_FLOAT72, Z_FLOAT72_EPSILON)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT80)
+#ifdef Z_FLOAT80
 	Z_IMPLEMENTATION_3D_NATURAL(Float80, float80)
 	Z_IMPLEMENTATION_3D_INTEGER(Float80, float80)
 	Z_IMPLEMENTATION_3D_REAL   (Float80, float80, Z_FLOAT80, Z_FLOAT80_EPSILON)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT96)
+#ifdef Z_FLOAT96
 	Z_IMPLEMENTATION_3D_NATURAL(Float96, float96)
 	Z_IMPLEMENTATION_3D_INTEGER(Float96, float96)
 	Z_IMPLEMENTATION_3D_REAL   (Float96, float96, Z_FLOAT96, Z_FLOAT96_EPSILON)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT128)
+#ifdef Z_FLOAT128
 	Z_IMPLEMENTATION_3D_NATURAL(Float128, float128)
 	Z_IMPLEMENTATION_3D_INTEGER(Float128, float128)
 	Z_IMPLEMENTATION_3D_REAL   (Float128, float128, Z_FLOAT128, Z_FLOAT128_EPSILON)
@@ -513,61 +513,63 @@ Z_IMPLEMENTATION_3D_INTEGER(Int32, int32)
 /* MARK: - Default real type definitions */
 
 
-#define z_3d_are_equal		z_3d_type_are_equal	    (REAL)
-#define z_3d_are_almost_equal	z_3d_type_are_almost_equal  (REAL)
-#define z_3d_are_perpendicular	z_3d_type_are_perpendicular (REAL)
-#define z_3d_swap		z_3d_type_swap		    (REAL)
-#define z_3d_contains		z_3d_type_contains	    (REAL)
-#define z_3d_add		z_3d_type_add		    (REAL)
-#define z_3d_add_3		z_3d_type_add_3		    (REAL)
-#define z_3d_add_4		z_3d_type_add_4		    (REAL)
-#define z_3d_add_scalar		z_3d_type_add_scalar	    (REAL)
-#define z_3d_subtract		z_3d_type_subtract	    (REAL)
-#define z_3d_subtract_3		z_3d_type_subtract_3	    (REAL)
-#define z_3d_subtract_4		z_3d_type_subtract_4	    (REAL)
-#define z_3d_subtract_scalar	z_3d_type_subtract_scalar   (REAL)
-#define z_3d_multiply		z_3d_type_multiply	    (REAL)
-#define z_3d_multiply_3		z_3d_type_multiply_3	    (REAL)
-#define z_3d_multiply_4		z_3d_type_multiply_4	    (REAL)
-#define z_3d_multiply_by_scalar	z_3d_type_multiply_by_scalar(REAL)
-#define z_3d_divide		z_3d_type_divide	    (REAL)
-#define z_3d_divide_3		z_3d_type_divide_3	    (REAL)
-#define z_3d_divide_4		z_3d_type_divide_4	    (REAL)
-#define z_3d_divide_by_scalar	z_3d_type_divide_by_scalar  (REAL)
-#define z_3d_dot_product	z_3d_type_dot_product	    (REAL)
-#define z_3d_cross_product	z_3d_type_cross_product	    (REAL)
-#define z_3d_minimum		z_3d_type_minimum	    (REAL)
-#define z_3d_maximum		z_3d_type_maximum	    (REAL)
-#define z_3d_middle		z_3d_type_middle	    (REAL)
-#define z_3d_fit		z_3d_type_fit		    (REAL)
-#define z_3d_lerp		z_3d_type_lerp		    (REAL)
-#define z_3d_inverse_lerp	z_3d_type_inverse_lerp	    (REAL)
-#define z_3d_from_scalar	z_3d_type_from_scalar	    (REAL)
-#define z_3d_is_finite		z_3d_type_is_finite	    (REAL)
-#define z_3d_is_infinity	z_3d_type_is_infinity	    (REAL)
-#define z_3d_is_nan		z_3d_type_is_nan	    (REAL)
-#define z_3d_is_negative	z_3d_type_is_negative	    (REAL)
-#define z_3d_is_zero		z_3d_type_is_zero	    (REAL)
-#define z_3d_is_almost_zero	z_3d_type_is_almost_zero    (REAL)
-#define z_3d_has_finite		z_3d_type_has_finite	    (REAL)
-#define z_3d_has_infinity	z_3d_type_has_infinity	    (REAL)
-#define z_3d_has_nan		z_3d_type_has_nan	    (REAL)
-#define z_3d_has_negative	z_3d_type_has_negative	    (REAL)
-#define z_3d_has_zero		z_3d_type_has_zero	    (REAL)
-#define z_3d_has_almost_zero	z_3d_type_has_almost_zero   (REAL)
-#define z_3d_negative		z_3d_type_negative	    (REAL)
-#define z_3d_absolute		z_3d_type_absolute	    (REAL)
-#define z_3d_reciprocal		z_3d_type_reciprocal	    (REAL)
-#define z_3d_inner_sum		z_3d_type_inner_sum	    (REAL)
-#define z_3d_inner_product	z_3d_type_inner_product     (REAL)
-#define z_3d_inner_minimum	z_3d_type_inner_minimum     (REAL)
-#define z_3d_inner_maximum	z_3d_type_inner_maximum     (REAL)
-#define z_3d_inner_middle	z_3d_type_inner_middle	    (REAL)
-#define z_3d_squared_length	z_3d_type_squared_length    (REAL)
-#define z_3d_clamp		z_3d_type_clamp		    (REAL)
-#define z_3d_cube_clamp		z_3d_type_cube_clamp	    (REAL)
-#define z_3d_cube_clamp_01	z_3d_type_cube_clamp_01	    (REAL)
-#define z_3d_rotate_as_axes	z_3d_type_rotate_as_axes    (REAL)
+#ifdef Z_REAL
+#	define z_3d_are_equal	       z_3d_type_are_equal	   (REAL)
+#	define z_3d_are_almost_equal   z_3d_type_are_almost_equal  (REAL)
+#	define z_3d_are_perpendicular  z_3d_type_are_perpendicular (REAL)
+#	define z_3d_swap	       z_3d_type_swap		   (REAL)
+#	define z_3d_contains	       z_3d_type_contains	   (REAL)
+#	define z_3d_add		       z_3d_type_add		   (REAL)
+#	define z_3d_add_3	       z_3d_type_add_3		   (REAL)
+#	define z_3d_add_4	       z_3d_type_add_4		   (REAL)
+#	define z_3d_add_scalar	       z_3d_type_add_scalar	   (REAL)
+#	define z_3d_subtract	       z_3d_type_subtract	   (REAL)
+#	define z_3d_subtract_3	       z_3d_type_subtract_3	   (REAL)
+#	define z_3d_subtract_4	       z_3d_type_subtract_4	   (REAL)
+#	define z_3d_subtract_scalar    z_3d_type_subtract_scalar   (REAL)
+#	define z_3d_multiply	       z_3d_type_multiply	   (REAL)
+#	define z_3d_multiply_3	       z_3d_type_multiply_3	   (REAL)
+#	define z_3d_multiply_4	       z_3d_type_multiply_4	   (REAL)
+#	define z_3d_multiply_by_scalar z_3d_type_multiply_by_scalar(REAL)
+#	define z_3d_divide	       z_3d_type_divide		   (REAL)
+#	define z_3d_divide_3	       z_3d_type_divide_3	   (REAL)
+#	define z_3d_divide_4	       z_3d_type_divide_4	   (REAL)
+#	define z_3d_divide_by_scalar   z_3d_type_divide_by_scalar  (REAL)
+#	define z_3d_dot_product        z_3d_type_dot_product	   (REAL)
+#	define z_3d_cross_product      z_3d_type_cross_product	   (REAL)
+#	define z_3d_minimum	       z_3d_type_minimum	   (REAL)
+#	define z_3d_maximum	       z_3d_type_maximum	   (REAL)
+#	define z_3d_middle	       z_3d_type_middle		   (REAL)
+#	define z_3d_fit		       z_3d_type_fit		   (REAL)
+#	define z_3d_lerp	       z_3d_type_lerp		   (REAL)
+#	define z_3d_inverse_lerp       z_3d_type_inverse_lerp	   (REAL)
+#	define z_3d_from_scalar        z_3d_type_from_scalar	   (REAL)
+#	define z_3d_is_finite	       z_3d_type_is_finite	   (REAL)
+#	define z_3d_is_infinity        z_3d_type_is_infinity	   (REAL)
+#	define z_3d_is_nan	       z_3d_type_is_nan		   (REAL)
+#	define z_3d_is_negative        z_3d_type_is_negative	   (REAL)
+#	define z_3d_is_zero	       z_3d_type_is_zero	   (REAL)
+#	define z_3d_is_almost_zero     z_3d_type_is_almost_zero	   (REAL)
+#	define z_3d_has_finite	       z_3d_type_has_finite	   (REAL)
+#	define z_3d_has_infinity       z_3d_type_has_infinity	   (REAL)
+#	define z_3d_has_nan	       z_3d_type_has_nan	   (REAL)
+#	define z_3d_has_negative       z_3d_type_has_negative	   (REAL)
+#	define z_3d_has_zero	       z_3d_type_has_zero	   (REAL)
+#	define z_3d_has_almost_zero    z_3d_type_has_almost_zero   (REAL)
+#	define z_3d_negative	       z_3d_type_negative	   (REAL)
+#	define z_3d_absolute	       z_3d_type_absolute	   (REAL)
+#	define z_3d_reciprocal	       z_3d_type_reciprocal	   (REAL)
+#	define z_3d_inner_sum	       z_3d_type_inner_sum	   (REAL)
+#	define z_3d_inner_product      z_3d_type_inner_product	   (REAL)
+#	define z_3d_inner_minimum      z_3d_type_inner_minimum	   (REAL)
+#	define z_3d_inner_maximum      z_3d_type_inner_maximum	   (REAL)
+#	define z_3d_inner_middle       z_3d_type_inner_middle	   (REAL)
+#	define z_3d_squared_length     z_3d_type_squared_length    (REAL)
+#	define z_3d_clamp	       z_3d_type_clamp		   (REAL)
+#	define z_3d_cube_clamp	       z_3d_type_cube_clamp	   (REAL)
+#	define z_3d_cube_clamp_01      z_3d_type_cube_clamp_01	   (REAL)
+#	define z_3d_rotate_as_axes     z_3d_type_rotate_as_axes	   (REAL)
+#endif
 
 
 #endif /* __Z_functions_base_Z3DValue_H__ */

@@ -1,8 +1,8 @@
 /* Z Kit C++ API - classes/base/Value2D.hpp
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -13,11 +13,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/super.hpp>
 #include <Z/functions/base/value.hpp>
 
-#if Z_MUST_SUPPORT(CG_GEOMETRY)
+#ifdef Z_USE_CG_GEOMETRY
 #	include <CoreGraphics/CGGeometry.h>
 #endif
 
-#if Z_MUST_SUPPORT(NS_GEOMETRY) && defined(Z_OBJECTIVE_C)
+#if defined(Z_USE_NS_GEOMETRY) && Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP
 #	import <Foundation/NSGeometry.h>
 #endif
 
@@ -103,7 +103,7 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 	// MARK: - Interoperability
 
 
-#	if Z_MUST_SUPPORT(CG_GEOMETRY)
+#	ifdef Z_USE_CG_GEOMETRY
 
 		Z_INLINE_MEMBER Value2D(const CGPoint &point) {this->x = point.x;    this->y = point.y;	   }
 		Z_INLINE_MEMBER Value2D(const CGSize  &size ) {this->x = size.width; this->y = size.height;}
@@ -124,9 +124,10 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 
 #	endif
 
-#	if	Z_MUST_SUPPORT(NS_GEOMETRY) && defined(Z_OBJECTIVE_C) && \
-		(!Z_MUST_SUPPORT(CG_GEOMETRY)			      || \
-		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)  || \
+#	if	defined(Z_USE_NS_GEOMETRY)			     && \
+		Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP		     && \
+		(!defined(Z_USE_CG_GEOMETRY)			     || \
+		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
 		Z_INLINE_MEMBER Value2D(const NSSize  &size ) {this->x = size.width; this->y = size.height;}

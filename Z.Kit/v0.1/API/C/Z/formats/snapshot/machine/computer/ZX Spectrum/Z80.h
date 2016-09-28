@@ -1,8 +1,8 @@
 /* Z Kit C API - formats/snapshot/machine/computer/ZX Spectrum/Z80.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -16,7 +16,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint16 bc, hl, pc, sp;
 	zuint8	i, r;
 
-	struct {Z_8BIT_FIELD(5) (
+	struct {Z_BIT_FIELD(8, 5) (
 		zuint8 r7			:1,
 		zuint8 border_color		:3,
 		zuint8 basic_samrom		:1,
@@ -30,7 +30,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint16 iy, ix;
 	zuint8 iff1, iff2;
 
-	struct {Z_8BIT_FIELD(5) (
+	struct {Z_BIT_FIELD(8, 5) (
 		zuint8 im			:2,
 		zuint8 issue_2_emulation	:1,
 		zuint8 int_frequency		:1,
@@ -45,7 +45,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	output_state;
 	zuint8	interface_1_paginated_or_timex_output_state;
 
-	struct {Z_8BIT_FIELD(4) (
+	struct {Z_BIT_FIELD(8, 4) (
 		zuint8 r_register_emulation	  :1,
 		zuint8 ldir_instruction_emulation :1,
 		zuint8 zero			  :5,

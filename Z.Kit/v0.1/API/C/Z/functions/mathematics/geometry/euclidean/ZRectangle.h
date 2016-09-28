@@ -1,8 +1,8 @@
 /* Z Kit C API - functions/mathematics/geometry/euclidean/ZRectangle.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -594,39 +594,39 @@ Z_INLINE zboolean z_rectangle_##type##_contains_circle(						\
 /* MARK: - Implementation expansions */
 
 
-#if Z_IS_AVAILABLE(FLOAT16)
+#ifdef Z_FLOAT16
 	Z_IMPLEMENTATION_RECTANGLE(Float16, float16, Z_FLOAT16)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT24)
+#ifdef Z_FLOAT24
 	Z_IMPLEMENTATION_RECTANGLE(Float24, float24, Z_FLOAT24)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT32)
+#ifdef Z_FLOAT32
 	Z_IMPLEMENTATION_RECTANGLE(Float32, float32, Z_FLOAT32)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT48)
+#ifdef Z_FLOAT48
 	Z_IMPLEMENTATION_RECTANGLE(Float48, float48, Z_FLOAT48)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT64)
+#ifdef Z_FLOAT64
 	Z_IMPLEMENTATION_RECTANGLE(Float64, float64, Z_FLOAT64)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT72)
+#ifdef Z_FLOAT72
 	Z_IMPLEMENTATION_RECTANGLE(Float72, float72, Z_FLOAT72)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT80)
+#ifdef Z_FLOAT80
 	Z_IMPLEMENTATION_RECTANGLE(Float80, float80, Z_FLOAT80)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT96)
+#ifdef Z_FLOAT96
 	Z_IMPLEMENTATION_RECTANGLE(Float96, float96, Z_FLOAT96)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT128)
+#ifdef Z_FLOAT128
 	Z_IMPLEMENTATION_RECTANGLE(Float128, float128, Z_FLOAT128)
 #endif
 
@@ -634,63 +634,65 @@ Z_INLINE zboolean z_rectangle_##type##_contains_circle(						\
 /* MARK: - Default real type definitions */
 
 
-#define z_rectangle_are_equal		   z_rectangle_type_are_equal		  (REAL)
-#define z_rectangle_contains		   z_rectangle_type_contains		  (REAL)
-#define z_rectangle_collide		   z_rectangle_type_collide		  (REAL)
-#define z_rectangle_intersection	   z_rectangle_type_intersection	  (REAL)
-#define z_rectangle_union		   z_rectangle_type_union		  (REAL)
-#define z_rectangle_from_vertices	   z_rectangle_type_from_vertices	  (REAL)
-#define z_rectangle_is_zero		   z_rectangle_type_is_zero		  (REAL)
-#define z_rectangle_minimum_x		   z_rectangle_type_minimum_x		  (REAL)
-#define z_rectangle_minimum_y		   z_rectangle_type_minimum_y		  (REAL)
-#define z_rectangle_maximum_x		   z_rectangle_type_maximum_x		  (REAL)
-#define z_rectangle_maximum_y		   z_rectangle_type_maximum_y		  (REAL)
-#define z_rectangle_middle_x		   z_rectangle_type_middle_x		  (REAL)
-#define z_rectangle_middle_y		   z_rectangle_type_middle_y		  (REAL)
-#define z_rectangle_top_left		   z_rectangle_type_top_left		  (REAL)
-#define z_rectangle_top_right		   z_rectangle_type_top_right		  (REAL)
-#define z_rectangle_top_center		   z_rectangle_type_top_center		  (REAL)
-#define z_rectangle_bottom_left		   z_rectangle_type_bottom_left		  (REAL)
-#define z_rectangle_bottom_right	   z_rectangle_type_bottom_right	  (REAL)
-#define z_rectangle_bottom_center	   z_rectangle_type_bottom_center	  (REAL)
-#define z_rectangle_center_left		   z_rectangle_type_center_left		  (REAL)
-#define z_rectangle_center_right	   z_rectangle_type_center_right	  (REAL)
-#define z_rectangle_center		   z_rectangle_type_center		  (REAL)
-#define z_rectangle_correct		   z_rectangle_type_correct		  (REAL)
-#define z_rectangle_top_half		   z_rectangle_type_top_half		  (REAL)
-#define z_rectangle_bottom_half		   z_rectangle_type_bottom_half		  (REAL)
-#define z_rectangle_left_half		   z_rectangle_type_left_half		  (REAL)
-#define z_rectangle_right_half		   z_rectangle_type_right_half		  (REAL)
-#define z_rectangle_top_left_quarter	   z_rectangle_type_top_left_quarter	  (REAL)
-#define z_rectangle_top_right_quarter	   z_rectangle_type_top_right_quarter	  (REAL)
-#define z_rectangle_bottom_left_quarter	   z_rectangle_type_bottom_left_quarter	  (REAL)
-#define z_rectangle_bottom_right_quarter   z_rectangle_type_bottom_right_quarter  (REAL)
-#define z_rectangle_align_in_top_left	   z_rectangle_type_align_in_top_left	  (REAL)
-#define z_rectangle_align_in_top_right	   z_rectangle_type_align_in_top_right	  (REAL)
-#define z_rectangle_align_in_top_center	   z_rectangle_type_align_in_top_center	  (REAL)
-#define z_rectangle_align_in_bottom_left   z_rectangle_type_align_in_bottom_left  (REAL)
-#define z_rectangle_align_in_bottom_right  z_rectangle_type_align_in_bottom_right (REAL)
-#define z_rectangle_align_in_bottom_center z_rectangle_type_align_in_bottom_center(REAL)
-#define z_rectangle_align_in_center_left   z_rectangle_type_align_in_center_left  (REAL)
-#define z_rectangle_align_in_center_right  z_rectangle_type_align_in_center_right (REAL)
-#define z_rectangle_align_in_center	   z_rectangle_type_align_in_center	  (REAL)
-#define z_rectangle_fit_in_top_left	   z_rectangle_type_fit_in_top_left	  (REAL)
-#define z_rectangle_fit_in_top_right	   z_rectangle_type_fit_in_top_right	  (REAL)
-#define z_rectangle_fit_in_top_center	   z_rectangle_type_fit_in_top_center	  (REAL)
-#define z_rectangle_fit_in_bottom_left	   z_rectangle_type_fit_in_bottom_left	  (REAL)
-#define z_rectangle_fit_in_bottom_right	   z_rectangle_type_fit_in_bottom_right	  (REAL)
-#define z_rectangle_fit_in_bottom_center   z_rectangle_type_fit_in_bottom_center  (REAL)
-#define z_rectangle_fit_in_center_left	   z_rectangle_type_fit_in_center_left	  (REAL)
-#define z_rectangle_fit_in_center_right	   z_rectangle_type_fit_in_center_right	  (REAL)
-#define z_rectangle_fit_in_center	   z_rectangle_type_fit_in_center	  (REAL)
-#define z_rectangle_inner_circle	   z_rectangle_type_inner_circle	  (REAL)
-#define z_rectangle_to_aabr		   z_rectangle_type_to_aabr		  (REAL)
-#define z_rectangle_absolute_point_to_unit z_rectangle_type_absolute_point_to_unit(REAL)
-#define z_rectangle_unit_point_to_absolute z_rectangle_type_unit_point_to_absolute(REAL)
-#define z_rectangle_contains_point	   z_rectangle_type_contains_point	  (REAL)
-#define z_rectangle_contains_line_segment  z_rectangle_type_contains_line_segment (REAL)
-#define z_rectangle_contains_aabr	   z_rectangle_type_contains_aabr	  (REAL)
-#define z_rectangle_contains_circle	   z_rectangle_type_contains_circle	  (REAL)
+#ifdef Z_REAL
+#	define z_rectangle_are_equal		  z_rectangle_type_are_equal		 (REAL)
+#	define z_rectangle_contains		  z_rectangle_type_contains		 (REAL)
+#	define z_rectangle_collide		  z_rectangle_type_collide		 (REAL)
+#	define z_rectangle_intersection		  z_rectangle_type_intersection		 (REAL)
+#	define z_rectangle_union		  z_rectangle_type_union		 (REAL)
+#	define z_rectangle_from_vertices	  z_rectangle_type_from_vertices	 (REAL)
+#	define z_rectangle_is_zero		  z_rectangle_type_is_zero		 (REAL)
+#	define z_rectangle_minimum_x		  z_rectangle_type_minimum_x		 (REAL)
+#	define z_rectangle_minimum_y		  z_rectangle_type_minimum_y		 (REAL)
+#	define z_rectangle_maximum_x		  z_rectangle_type_maximum_x		 (REAL)
+#	define z_rectangle_maximum_y		  z_rectangle_type_maximum_y		 (REAL)
+#	define z_rectangle_middle_x		  z_rectangle_type_middle_x		 (REAL)
+#	define z_rectangle_middle_y		  z_rectangle_type_middle_y		 (REAL)
+#	define z_rectangle_top_left		  z_rectangle_type_top_left		 (REAL)
+#	define z_rectangle_top_right		  z_rectangle_type_top_right		 (REAL)
+#	define z_rectangle_top_center		  z_rectangle_type_top_center		 (REAL)
+#	define z_rectangle_bottom_left		  z_rectangle_type_bottom_left		 (REAL)
+#	define z_rectangle_bottom_right		  z_rectangle_type_bottom_right		 (REAL)
+#	define z_rectangle_bottom_center	  z_rectangle_type_bottom_center	 (REAL)
+#	define z_rectangle_center_left		  z_rectangle_type_center_left		 (REAL)
+#	define z_rectangle_center_right		  z_rectangle_type_center_right		 (REAL)
+#	define z_rectangle_center		  z_rectangle_type_center		 (REAL)
+#	define z_rectangle_correct		  z_rectangle_type_correct		 (REAL)
+#	define z_rectangle_top_half		  z_rectangle_type_top_half		 (REAL)
+#	define z_rectangle_bottom_half		  z_rectangle_type_bottom_half		 (REAL)
+#	define z_rectangle_left_half		  z_rectangle_type_left_half		 (REAL)
+#	define z_rectangle_right_half		  z_rectangle_type_right_half		 (REAL)
+#	define z_rectangle_top_left_quarter	  z_rectangle_type_top_left_quarter	 (REAL)
+#	define z_rectangle_top_right_quarter	  z_rectangle_type_top_right_quarter	 (REAL)
+#	define z_rectangle_bottom_left_quarter	  z_rectangle_type_bottom_left_quarter	 (REAL)
+#	define z_rectangle_bottom_right_quarter   z_rectangle_type_bottom_right_quarter  (REAL)
+#	define z_rectangle_align_in_top_left	  z_rectangle_type_align_in_top_left	 (REAL)
+#	define z_rectangle_align_in_top_right	  z_rectangle_type_align_in_top_right	 (REAL)
+#	define z_rectangle_align_in_top_center	  z_rectangle_type_align_in_top_center	 (REAL)
+#	define z_rectangle_align_in_bottom_left   z_rectangle_type_align_in_bottom_left  (REAL)
+#	define z_rectangle_align_in_bottom_right  z_rectangle_type_align_in_bottom_right (REAL)
+#	define z_rectangle_align_in_bottom_center z_rectangle_type_align_in_bottom_center(REAL)
+#	define z_rectangle_align_in_center_left   z_rectangle_type_align_in_center_left  (REAL)
+#	define z_rectangle_align_in_center_right  z_rectangle_type_align_in_center_right (REAL)
+#	define z_rectangle_align_in_center	  z_rectangle_type_align_in_center	 (REAL)
+#	define z_rectangle_fit_in_top_left	  z_rectangle_type_fit_in_top_left	 (REAL)
+#	define z_rectangle_fit_in_top_right	  z_rectangle_type_fit_in_top_right	 (REAL)
+#	define z_rectangle_fit_in_top_center	  z_rectangle_type_fit_in_top_center	 (REAL)
+#	define z_rectangle_fit_in_bottom_left	  z_rectangle_type_fit_in_bottom_left	 (REAL)
+#	define z_rectangle_fit_in_bottom_right	  z_rectangle_type_fit_in_bottom_right	 (REAL)
+#	define z_rectangle_fit_in_bottom_center   z_rectangle_type_fit_in_bottom_center  (REAL)
+#	define z_rectangle_fit_in_center_left	  z_rectangle_type_fit_in_center_left	 (REAL)
+#	define z_rectangle_fit_in_center_right	  z_rectangle_type_fit_in_center_right	 (REAL)
+#	define z_rectangle_fit_in_center	  z_rectangle_type_fit_in_center	 (REAL)
+#	define z_rectangle_inner_circle		  z_rectangle_type_inner_circle		 (REAL)
+#	define z_rectangle_to_aabr		  z_rectangle_type_to_aabr		 (REAL)
+#	define z_rectangle_absolute_point_to_unit z_rectangle_type_absolute_point_to_unit(REAL)
+#	define z_rectangle_unit_point_to_absolute z_rectangle_type_unit_point_to_absolute(REAL)
+#	define z_rectangle_contains_point	  z_rectangle_type_contains_point	 (REAL)
+#	define z_rectangle_contains_line_segment  z_rectangle_type_contains_line_segment (REAL)
+#	define z_rectangle_contains_aabr	  z_rectangle_type_contains_aabr	 (REAL)
+#	define z_rectangle_contains_circle	  z_rectangle_type_contains_circle	 (REAL)
+#endif
 
 
 #endif /* __Z_functions_mathematics_geometry_euclidean_ZRectangle_H__ */

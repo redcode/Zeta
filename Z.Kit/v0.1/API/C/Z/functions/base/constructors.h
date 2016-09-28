@@ -1,8 +1,8 @@
 /* Z Kit C API - functions/base/constructors.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -28,14 +28,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define z_4d_uint32(x, y, z, w)	   ((Z4DUInt32){(zuint32)(x), (zuint32)(y), (zuint32)(z), (zuint32)(w)})
 #	define z_range_uint32(index, size) ((ZRangeUInt32){(zuint32)(index), (zuint32)(size)})
 
-#	if Z_IS_AVAILABLE(UINT64)
+#	ifdef Z_UINT64
 #		define z_2d_uint64(x, y)	   ((Z2DUInt64){(zuint32)(x), (zuint64)(y)})
 #		define z_3d_uint64(x, y, z)	   ((Z3DUInt64){(zuint64)(x), (zuint64)(y), (zuint64)(z)})
 #		define z_4d_uint64(x, y, z, w)	   ((Z4DUInt64){(zuint64)(x), (zuint64)(y), (zuint64)(z), (zuint64)(w)})
 #		define z_range_uint64(index, size) ((ZRangeUInt64){(zuint64)(index), (zuint64)(size)})
 #	endif
 
-#	if Z_IS_AVAILABLE(UINT128)
+#	ifdef Z_UINT128
 #		define z_2d_uint128(x, y)	    ((Z2DUInt128 ){(zuint128)(x), (zuint128)(y)})
 #		define z_3d_uint128(x, y, z)	    ((Z3DUInt128 ){(zuint128)(x), (zuint128)(y), (zuint128)(z)})
 #		define z_4d_uint128(x, y, z, w)	    ((Z4DUInt128 ){(zuint128)(x), (zuint128)(y), (zuint128)(z), (zuint128)(w)})
@@ -54,67 +54,67 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define z_3d_int32(x, y, z)    ((Z3DInt32){(zint32)(x), (zint32)(y), (zint32)(z)})
 #	define z_4d_int32(x, y, z, w) ((Z4DInt32){(zint32)(x), (zint32)(y), (zint32)(z), (zint32)(w)})
 
-#	if Z_IS_AVAILABLE(INT64)
+#	ifdef Z_INT64
 #		define z_2d_int64(x, y)	      ((Z2DInt64){(zint64)(x), (zint64)(y)})
 #		define z_3d_int64(x, y, z)    ((Z3DInt64){(zint64)(x), (zint64)(y), (zint64)(z)})
 #		define z_4d_int64(x, y, z, w) ((Z4DInt64){(zint64)(x), (zint64)(y), (zint64)(z), (zint64)(w)})
 #	endif
 
-#	if Z_IS_AVAILABLE(INT128)
+#	ifdef Z_INT128
 #		define z_2d_int128(x, y)       ((Z2DInt128){(zint128)(x), (zint128)(y)})
 #		define z_3d_int128(x, y, z)    ((Z3DInt128){(zint128)(x), (zint128)(y), (zint128)(z)})
 #		define z_4d_int128(x, y, z, w) ((Z4DInt128){(zint128)(x), (zint128)(y), (zint128)(z), (zint128)(w)})
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT16)
+#	ifdef Z_FLOAT16
 #		define z_2d_float16(x, y)	((Z2DFloat16){(zfloat16)(x), (zfloat16)(y)})
 #		define z_3d_float16(x, y, z)	((Z3DFloat16){(zfloat16)(x), (zfloat16)(y), (zfloat16)(z)})
 #		define z_4d_float16(x, y, z, w)	((Z4DFloat16){(zfloat16)(x), (zfloat16)(y), (zfloat16)(z), (zfloat16)(w)})
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT24)
+#	ifdef Z_FLOAT24
 #		define z_2d_float24(x, y)	((Z2DFloat24){(zfloat24)(x), (zfloat24)(y)})
 #		define z_3d_float24(x, y, z)	((Z3DFloat24){(zfloat24)(x), (zfloat24)(y), (zfloat24)(z)})
 #		define z_4d_float24(x, y, z, w)	((Z4DFloat24){(zfloat24)(x), (zfloat24)(y), (zfloat24)(z), (zfloat24)(w)})
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT32)
+#	ifdef Z_FLOAT32
 #		define z_2d_float32(x, y)	((Z2DFloat32){(zfloat32)(x), (zfloat32)(y)})
 #		define z_3d_float32(x, y, z)	((Z3DFloat32){(zfloat32)(x), (zfloat32)(y), (zfloat32)(z)})
 #		define z_4d_float32(x, y, z, w)	((Z4DFloat32){(zfloat32)(x), (zfloat32)(y), (zfloat32)(z), (zfloat32)(w)})
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT48)
+#	ifdef Z_FLOAT48
 #		define z_2d_float48(x, y)	((Z2DFloat48){(zfloat48)(x), (zfloat48)(y)})
 #		define z_3d_float48(x, y, z)	((Z3DFloat48){(zfloat48)(x), (zfloat48)(y), (zfloat48)(z)})
 #		define z_4d_float48(x, y, z, w)	((Z4DFloat48){(zfloat48)(x), (zfloat48)(y), (zfloat48)(z), (zfloat48)(w)})
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT64)
+#	ifdef Z_FLOAT64
 #		define z_2d_float64(x, y)	((Z2DFloat64){(zfloat64)(x), (zfloat64)(y)})
 #		define z_3d_float64(x, y, z)	((Z3DFloat64){(zfloat64)(x), (zfloat64)(y), (zfloat64)(z)})
 #		define z_4d_float64(x, y, z, w)	((Z4DFloat64){(zfloat64)(x), (zfloat64)(y), (zfloat64)(z), (zfloat64)(w)})
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT72)
+#	ifdef Z_FLOAT72
 #		define z_2d_float72(x, y)	((Z2DFloat72){(zfloat72)(x), (zfloat72)(y)})
 #		define z_3d_float72(x, y, z)	((Z3DFloat72){(zfloat72)(x), (zfloat72)(y), (zfloat72)(z)})
 #		define z_4d_float72(x, y, z, w)	((Z4DFloat72){(zfloat72)(x), (zfloat72)(y), (zfloat72)(z), (zfloat72)(w)})
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT80)
+#	ifdef Z_FLOAT80
 #		define z_2d_float80(x, y)	((Z2DFloat80){(zfloat80)(x), (zfloat80)(y)})
 #		define z_3d_float80(x, y, z)	((Z3DFloat80){(zfloat80)(x), (zfloat80)(y), (zfloat80)(z)})
 #		define z_4d_float80(x, y, z, w)	((Z4DFloat80){(zfloat80)(x), (zfloat80)(y), (zfloat80)(z), (zfloat80)(w)})
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT96)
+#	ifdef Z_FLOAT96
 #		define z_2d_float96(x, y)	((Z2DFloat96){(zfloat96)(x), (zfloat96)(y)})
 #		define z_3d_float96(x, y, z)	((Z3DFloat96){(zfloat96)(x), (zfloat96)(y), (zfloat96)(z)})
 #		define z_4d_float96(x, y, z, w)	((Z4DFloat96){(zfloat96)(x), (zfloat96)(y), (zfloat96)(z), (zfloat96)(w)})
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT128)
+#	ifdef Z_FLOAT128
 #		define z_2d_float128(x, y)	 ((Z2DFloat128){(zfloat128)(x), (zfloat128)(y)})
 #		define z_3d_float128(x, y, z)	 ((Z3DFloat128){(zfloat128)(x), (zfloat128)(y), (zfloat128)(z)})
 #		define z_4d_float128(x, y, z, w) ((Z4DFloat128){(zfloat128)(x), (zfloat128)(y), (zfloat128)(z), (zfloat128)(w)})
@@ -148,12 +148,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(UInt32, uint32)
 	Z_IMPLEMENTATION_RANGE_CONSTRUCTOR    (UInt32, uint32)
 
-#	if Z_IS_AVAILABLE(UINT64)
+#	ifdef Z_UINT64
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(UInt64, uint64)
 		Z_IMPLEMENTATION_RANGE_CONSTRUCTOR    (UInt64, uint64)
 #	endif
 
-#	if Z_IS_AVAILABLE(UINT128)
+#	ifdef Z_UINT128
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(UInt128, uint128)
 		Z_IMPLEMENTATION_RANGE_CONSTRUCTOR    (UInt128, uint128)
 #	endif
@@ -162,47 +162,47 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Int16, int16)
 	Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Int32, int32)
 
-#	if Z_IS_AVAILABLE(INT64)
+#	ifdef Z_INT64
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Int64, int64)
 #	endif
 
-#	if Z_IS_AVAILABLE(INT128)
+#	ifdef Z_INT128
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Int128, int128)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT16)
+#	ifdef Z_FLOAT16
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float16, float64)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT24)
+#	ifdef Z_FLOAT24
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float24, float24)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT32)
+#	ifdef Z_FLOAT32
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float32, float32)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT48)
+#	ifdef Z_FLOAT48
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float48, float48)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT64)
+#	ifdef Z_FLOAT64
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float64, float64)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT72)
+#	ifdef Z_FLOAT72
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float72, float72)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT80)
+#	ifdef Z_FLOAT80
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float80, float80)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT96)
+#	ifdef Z_FLOAT96
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float96, float96)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT128)
+#	ifdef Z_FLOAT128
 		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float128, float128)
 #	endif
 
@@ -223,14 +223,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define z_4d_uint32_zero    z_4d_uint32(0, 0, 0, 0)
 #define z_range_uint32_zero z_range_uint32(0, 0)
 
-#if Z_IS_AVAILABLE(UINT64)
+#ifdef Z_UINT64
 #	define z_2d_uint64_zero	   z_2d_uint64(0, 0)
 #	define z_3d_uint64_zero	   z_3d_uint64(0, 0, 0)
 #	define z_4d_uint64_zero	   z_4d_uint64(0, 0, 0, 0)
 #	define z_range_uint64_zero z_range_uint64(0, 0)
 #endif
 
-#if Z_IS_AVAILABLE(UINT128)
+#ifdef Z_UINT128
 #	define z_2d_uint128_zero    z_2d_uint128(0, 0)
 #	define z_3d_uint128_zero    z_3d_uint128(0, 0, 0)
 #	define z_4d_uint128_zero    z_4d_uint128(0, 0, 0, 0)
@@ -249,67 +249,67 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define z_3d_int32_zero z_3d_int32(0, 0, 0)
 #define z_4d_int32_zero z_4d_int32(0, 0, 0, 0)
 
-#if Z_IS_AVAILABLE(INT64)
+#ifdef Z_INT64
 #	define z_2d_int64_zero z_2d_int64(0, 0)
 #	define z_3d_int64_zero z_3d_int64(0, 0, 0)
 #	define z_4d_int64_zero z_4d_int64(0, 0, 0, 0)
 #endif
 
-#if Z_IS_AVAILABLE(INT128)
+#ifdef Z_INT128
 #	define z_2d_int128_zero z_2d_int128(0, 0)
 #	define z_3d_int128_zero z_3d_int128(0, 0, 0)
 #	define z_4d_int128_zero z_4d_int128(0, 0, 0, 0)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT16)
+#ifdef Z_FLOAT16
 #	define z_2d_float16_zero z_2d_float16(0.0, 0.0)
 #	define z_3d_float16_zero z_3d_float16(0.0, 0.0, 0.0)
 #	define z_4d_float16_zero z_4d_float16(0.0, 0.0, 0.0, 0.0)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT24)
+#ifdef Z_FLOAT24
 #	define z_2d_float24_zero z_2d_float24(0.0, 0.0)
 #	define z_3d_float24_zero z_3d_float24(0.0, 0.0, 0.0)
 #	define z_4d_float24_zero z_4d_float24(0.0, 0.0, 0.0, 0.0)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT32)
+#ifdef Z_FLOAT32
 #	define z_2d_float32_zero z_2d_float32(0.0, 0.0)
 #	define z_3d_float32_zero z_3d_float32(0.0, 0.0, 0.0)
 #	define z_4d_float32_zero z_4d_float32(0.0, 0.0, 0.0, 0.0)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT48)
+#ifdef Z_FLOAT48
 #	define z_2d_float48_zero z_2d_float48(0.0, 0.0)
 #	define z_3d_float48_zero z_3d_float48(0.0, 0.0, 0.0)
 #	define z_4d_float48_zero z_4d_float48(0.0, 0.0, 0.0, 0.0)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT64)
+#ifdef Z_FLOAT64
 #	define z_2d_float64_zero z_2d_float64(0.0, 0.0)
 #	define z_3d_float64_zero z_3d_float64(0.0, 0.0, 0.0)
 #	define z_4d_float64_zero z_4d_float64(0.0, 0.0, 0.0, 0.0)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT72)
+#ifdef Z_FLOAT72
 #	define z_2d_float72_zero z_2d_float72(0.0, 0.0)
 #	define z_3d_float72_zero z_3d_float72(0.0, 0.0, 0.0)
 #	define z_4d_float72_zero z_4d_float72(0.0, 0.0, 0.0, 0.0)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT80)
+#ifdef Z_FLOAT80
 #	define z_2d_float80_zero z_2d_float80(0.0, 0.0)
 #	define z_3d_float80_zero z_3d_float80(0.0, 0.0, 0.0)
 #	define z_4d_float80_zero z_4d_float80(0.0, 0.0, 0.0, 0.0)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT96)
+#ifdef Z_FLOAT96
 #	define z_2d_float96_zero z_2d_float96(0.0, 0.0)
 #	define z_3d_float96_zero z_3d_float96(0.0, 0.0, 0.0)
 #	define z_4d_float96_zero z_4d_float96(0.0, 0.0, 0.0, 0.0)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT128)
+#ifdef Z_FLOAT128
 #	define z_2d_float128_zero z_2d_float128(0.0, 0.0)
 #	define z_3d_float128_zero z_3d_float128(0.0, 0.0, 0.0)
 #	define z_4d_float128_zero z_4d_float128(0.0, 0.0, 0.0, 0.0)
@@ -327,12 +327,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Default real type definitions */
 
-#define z_2d	  z_2d_type	(REAL)
-#define z_3d	  z_3d_type	(REAL)
-#define z_4d	  z_4d_type	(REAL)
-#define z_2d_zero z_2d_type_zero(REAL)
-#define z_3d_zero z_3d_type_zero(REAL)
-#define z_4d_zero z_4d_type_zero(REAL)
+#ifdef Z_REAL
+#	define z_2d	 z_2d_type     (REAL)
+#	define z_3d	 z_3d_type     (REAL)
+#	define z_4d	 z_4d_type     (REAL)
+#	define z_2d_zero z_2d_type_zero(REAL)
+#	define z_3d_zero z_3d_type_zero(REAL)
+#	define z_4d_zero z_4d_type_zero(REAL)
+#endif
 
 #define z_range	     z_range_type     (SIZE)
 #define z_range_zero z_range_type_zero(SIZE)

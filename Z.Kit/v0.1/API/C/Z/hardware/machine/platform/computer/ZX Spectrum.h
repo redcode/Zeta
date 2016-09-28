@@ -1,8 +1,8 @@
 /* Z Kit C API - hardware/machine/platform/computer/ZX Spectrum.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -135,7 +135,7 @@ Color Attribute
 #define Z_ZX_SPECTRUM_COLOR_YELLOW  6
 #define Z_ZX_SPECTRUM_COLOR_WHITE   7
 
-Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
+Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 4) (
 	zuint8 flash  :1,
 	zuint8 bright :1,
 	zuint8 paper  :3,
@@ -210,13 +210,14 @@ Z_DEFINE_STRICT_STRUCTURE (
  L | | | |  | 0_______ | SPACE | SY/SH |   M   |   N   |   B   |-------. | | | S
    | | | |  '--------------------------------------------------'       | | | | E
  M | | | |							       | | | | D
- A | | | |   ___________________________    ________________________   | | | |
- T | | | |  |  ___. __  _     __ . __  /\  /			    |  | | | | M
- R | | | |  | __\ ||  ||__|__|--|||   / / /			    |  | | | | A
- I | | | |  | ZX Spectrum	     / / /			    |  | | | | T
- X | | | |  |			    / / /			    |  | | | | R
-   | | | |  ' =====================/ / /=========================== |  | | | | I
-   | | | |  |/ _   _   _   _   _  / / / _   _   _   _   _          \|  | | | | X
+ A | | | |   ____________________________    _______________________   | | | |
+ T | | | |  |  ___. __  _     __ . __	/\  /			    |  | | | | M
+ R | | | |  | __\ ||  ||__|__|--|||    / / /			    |  | | | | A
+ I | | | |  | ZX Spectrum	      / / /			    |  | | | | T
+ X | | | |  |			     / / /			    |  | | | | R
+   | | | |  | ______________________/ / /__________________________ |  | | | | I
+   | | | |  |/_____________________/ / /___________________________\|  | | | | I
+   | | | |  |  _   _   _   _   _  / / / _   _   _   _   _	    |  | | | | X
    | | | '--> [1] [2] [3] [4] [5] \/  \[6] [7] [8] [9] [0] <-----------------'
    | | |    |	  _   _   _   _   _\   \   _   _   _   _   _        |  | | |
    | | '-------> [Q] [W] [E] [R] [T]\	\ [Y] [U] [I] [O] [P] <------------'
@@ -227,7 +228,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	    |_______________________/ / /_____________________////__|
 	    (_______________________\/	\___________________________) */
 
-Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
+Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 4) (
 	zuint8 unused	    :3,
 	zuint8 mic	    :1,
 	zuint8 ear	    :1,
@@ -305,7 +306,7 @@ Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
 | "	      = SYMBOL SHIFT + P     |
 '-----------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(3) (
+Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 3) (
 	zuint8 one	:1,
 	zuint8 ear	:1,
 	zuint8 key_mask :6

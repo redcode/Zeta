@@ -1,8 +1,8 @@
 /* Z Kit C API - hardware/CPU/architecture/PowerPC 32-bit.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -12,10 +12,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/keys/endianness.h>
 #include <Z/keys/value.h>
 
-#define Z_POWER_PC_32BIT_HAS_MMU
-#define Z_POWER_PC_32BIT_HAS_FPU
-#define Z_POWER_PC_32BIT_HAS_32BIT_ARITHMETIC
-
 #define Z_POWER_PC_32BIT_MINIMUM_LOAD_BITS   8
 #define Z_POWER_PC_32BIT_MINIMUM_STORE_BITS  8
 #define Z_POWER_PC_32BIT_MINIMUM_COPY_BITS   8
@@ -23,8 +19,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_POWER_PC_32BIT_MAXIMUM_STORE_BITS 32
 #define Z_POWER_PC_32BIT_MAXIMUM_COPY_BITS  32
 #define Z_POWER_PC_32BIT_ADDRESSING_BITS    32
-#define Z_POWER_PC_32BIT_INTEGER_ENDIANNESS Z_ENDIANNESS_BIG
-#define Z_POWER_PC_32BIT_INTEGER_FORMAT	    Z_INTEGER_FORMAT_2S_COMPLEMENT
 
 #endif /* __Z_hardware_CPU_architecture_PowerPC_32_bit_H__ */
 
@@ -32,13 +26,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	ifndef __Z_hardware_CPU_architecture_PowerPC_32_bit_H__INSPECTION
 #	define __Z_hardware_CPU_architecture_PowerPC_32_bit_H__INSPECTION
-
-#	define Z_INSERT_CPU_ARCHITECTURE(left, right) left##POWER_PC_32BIT##right
-#	define Z_INSERT_CPUArchitecture( left, right) left##PowerPC32Bit##right
-#	define Z_INSERT_cpu_architecture(left, right) left##power_pc_32bit##right
-
-#	define Z_IS_DEFINED_INSERT_CPU_ARCHITECTURE(left, right) \
-		(defined left##POWER_PC_32BIT##right)
 
 #	endif /* __Z_hardware_CPU_architecture_PowerPC_32_bit_H__INSPECTION */
 

@@ -1,8 +1,8 @@
 /* Z Kit C++ API - types/base.hpp
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -16,11 +16,11 @@ namespace Zeta {
 	typedef zuint16			UInt16;
 	typedef zuint32			UInt32;
 
-#	if Z_IS_AVAILABLE(UINT64)
+#	ifdef Z_UINT64
 		typedef zuint64		UInt64;
 #	endif
 
-#	if Z_IS_AVAILABLE(UINT128)
+#	ifdef Z_UINT128
 		typedef zuint128	UInt128;
 #	endif
 
@@ -28,47 +28,47 @@ namespace Zeta {
 	typedef zint16			Int16;
 	typedef zint32			Int32;
 
-#	if Z_IS_AVAILABLE(INT64)
+#	ifdef Z_INT64
 		typedef zint64		Int64;
 #	endif
 
-#	if Z_IS_AVAILABLE(INT128)
+#	ifdef Z_INT128
 		typedef zint128		Int128;
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT16)
+#	ifdef Z_FLOAT16
 		typedef zfloat16	Float16;
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT24)
+#	ifdef Z_FLOAT24
 		typedef zfloat24	Float24;
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT32)
+#	ifdef Z_FLOAT32
 		typedef zfloat32	Float32;
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT48)
+#	ifdef Z_FLOAT48
 		typedef zfloat48	Float48;
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT64)
+#	ifdef Z_FLOAT64
 		typedef zfloat64	Float64;
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT72)
+#	ifdef Z_FLOAT72
 		typedef zfloat72	Float72;
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT80)
+#	ifdef Z_FLOAT80
 		typedef zfloat80	Float80;
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT96)
+#	ifdef Z_FLOAT96
 		typedef zfloat96	Float96;
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT128)
+#	ifdef Z_FLOAT128
 		typedef zfloat128	Float128;
 #	endif
 
@@ -77,7 +77,7 @@ namespace Zeta {
 	typedef zuint			UInt;
 	typedef zulong			ULong;
 
-#	if Z_IS_AVAILABLE(ULLONG)
+#	ifdef Z_ULLONG
 		typedef zullong		ULLong;
 #	endif
 
@@ -86,19 +86,19 @@ namespace Zeta {
 	typedef zint			Int;
 	typedef zlong			Long;
 
-#	if Z_IS_AVAILABLE(LLONG)
+#	ifdef Z_LLONG
 		typedef zllong		LLong;
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT)
+#	ifdef Z_FLOAT
 		typedef zfloat		Float;
 #	endif
 
-#	if Z_IS_AVAILABLE(DOUBLE)
+#	ifdef Z_DOUBLE
 		typedef zdouble		Double;
 #	endif
 
-#	if Z_IS_AVAILABLE(LDOUBLE)
+#	ifdef Z_LDOUBLE
 		typedef zldouble	LDouble;
 #	endif
 
@@ -118,7 +118,7 @@ namespace Zeta {
 	typedef znatural		Natural;
 	typedef zinteger		Integer;
 
-#	if Z_IS_AVAILABLE(REAL)
+#	ifdef Z_REAL
 		typedef zreal		Real;
 #	endif
 

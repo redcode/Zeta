@@ -1,8 +1,8 @@
 /* Z Kit C API - macros/variadic.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Copyright © 2006 Laurent Deniau <laurent.deniau@cern.ch>.
 Released under the terms of the GNU Lesser General Public License v3. */
@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-#if Z_LANGUAGE_HAS(C, VARIADIC_MACRO) && !defined(Z_AVOID_VARIADIC_MACROS)
+#if !defined(Z_AVOID_VARIADIC_MACROS) && Z_LANGUAGE_HAS(C, VARIADIC_MACRO)
 
 #	include <Z/macros/pasting.h>
 

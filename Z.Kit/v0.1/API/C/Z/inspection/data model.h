@@ -1,100 +1,122 @@
 /* Z Kit C API - inspection/data model.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef __Z_inspection_data_model_H__
 #define __Z_inspection_data_model_H__
 
-#include <Z/keys/data model.h>
+#include <Z/constants/base.h>
 #include <Z/keys/value.h>
 #include <Z/inspection/language.h>
 #include <Z/macros/pasting.h>
 
-#define Z_INSPECTING_DATA_MODEL
+#ifndef Z_DATA_MODEL
 
-#if Z_MUST_USE(DATA_MODEL_LP32)
-#	include <Z/formats/data model/LP32.h>
+#	if Z_COMPILER_HAS_VARIABLE(DATA_MODEL)
 
-#elif Z_MUST_USE(DATA_MODEL_ILP32)
-#	include <Z/formats/data model/ILP32.h>
+#		define Z_DATA_MODEL Z_COMPILER_VARIABLE(DATA_MODEL)
 
-#elif Z_MUST_USE(DATA_MODEL_ILP64)
-#	include <Z/formats/data model/ILP64.h>
+#	elif	defined(__ILP32__) || /* Clang, GCC		    */ \
+		defined(__ILP32	 ) ||				       \
+		defined(_ILP32_	 ) ||				       \
+		defined(_ILP32	 )    /* Clang, HP aC++, Sun Studio */
 
-#elif Z_MUST_USE(DATA_MODEL_LLP64)
-#	include <Z/formats/data model/LLP64.h>
+#		define Z_DATA_MODEL Z_DATA_MODEL_ILP32
 
-#elif Z_MUST_USE(DATA_MODEL_LP64)
-#	include <Z/formats/data model/LP64.h>
+#	elif	defined(__ILP64__) || \
+		defined(__ILP64	 ) || \
+		defined(_ILP64_	 ) || \
+		defined(_ILP64	 )
 
-#elif Z_MUST_USE(DATA_MODEL_SILP64)
-#	include <Z/formats/data model/SILP64.h>
+#		define Z_DATA_MODEL Z_DATA_MODEL_ILP64
 
-#elif	defined(__LP32__) || \
-	defined(__LP32	) || \
-	defined(_LP32_	) || \
-	defined(_LP32	) || \
-	(Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_LP32)
+#	elif	defined(__LLP64__) || \
+		defined(__LLP64	 ) || \
+		defined(_LLP64_	 ) || \
+		defined(_LLP64	 )
 
-#	include <Z/formats/data model/LP32.h>
+#		define Z_DATA_MODEL Z_DATA_MODEL_LLP64
 
-#elif	defined(__ILP32__) || /* Clang, GCC		    */ \
-	defined(__ILP32	 ) ||				       \
-	defined(_ILP32_	 ) ||				       \
-	defined(_ILP32	 ) || /* Clang, HP aC++, Sun Studio */ \
-	defined(_WIN32	 ) || /* Visual C++		    */ \
-	(Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_ILP32)
+#	elif	defined(__LP32__) || /* Clang */ \
+		defined(__LP32	) || \
+		defined(_LP32_	) || \
+		defined(_LP32	)
 
-#	include <Z/formats/data model/ILP32.h>
+#		define Z_DATA_MODEL Z_DATA_MODEL_LP32
 
-#elif	defined(__ILP64__) || \
-	defined(__ILP64	 ) || \
-	defined(_ILP64_	 ) || \
-	defined(_ILP64	 ) || \
-	(Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_ILP64)
+#	elif	defined(__LP64__) || /* Clang, GCC		   */ \
+		defined(__LP64	) ||				      \
+		defined(_LP64_	) ||				      \
+		defined(_LP64	)    /* Clang, HP aC++, Sun Studio */ \
 
-#	include <Z/formats/data model/ILP64.h>
+#		define Z_DATA_MODEL Z_DATA_MODEL_LP64
 
-#elif	defined(__LLP64__) ||		       \
-	defined(__LLP64	 ) ||		       \
-	defined(_LLP64_	 ) ||		       \
-	defined(_LLP64	 ) ||		       \
-	defined(_WIN64	 ) || /* Visual C++ */ \
-	(Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_LLP64)
-
-#	include <Z/formats/data model/LLP64.h>
-
-#elif	defined(__LP64__) || /* Clang, GCC		   */ \
-	defined(__LP64	) ||				      \
-	defined(_LP64_	) ||				      \
-	defined(_LP64	) || /* Clang, HP aC++, Sun Studio */ \
-	(Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_LP64)
-
-#	include <Z/formats/data model/LP64.h>
-
-#elif (Z_COMPILER_HAS_KEY(DATA_MODEL) && Z_COMPILER_KEY(DATA_MODEL) == Z_DATA_MODEL_SILP64)
-#	include <Z/formats/data model/SILP64.h>
-
-#else
-#	include <Z/formats/data model/ILP32.h>
+#	else
+#		define Z_DATA_MODEL Z_DATA_MODEL_ILP32
+#	endif
 #endif
 
-#undef Z_INSPECTING_DATA_MODEL
+#if Z_DATA_MODEL == Z_DATA_MODEL_ILP32
 
-#define Z_DATA_MODEL		       Z_INSERT_DATA_MODEL(Z_DATA_MODEL_,       )
+#	include <Z/formats/data model/ILP32.h>
+
+#	define Z_INSERT_DATA_MODEL(left, right) left##ILP32##right
+#	define Z_INSERT_data_model(left, right) left##ilp32##right
+
+#elif Z_DATA_MODEL == Z_DATA_MODEL_ILP64
+
+#	include <Z/formats/data model/ILP64.h>
+
+#	define Z_INSERT_DATA_MODEL(left, right) left##ILP64##right
+#	define Z_INSERT_data_model(left, right) left##ilp64##right
+
+#elif Z_DATA_MODEL == Z_DATA_MODEL_LLP64
+
+#	include <Z/formats/data model/LLP64.h>
+
+#	define Z_INSERT_DATA_MODEL(left, right) left##LLP64##right
+#	define Z_INSERT_data_model(left, right) left##llp64##right
+
+
+#elif Z_DATA_MODEL == Z_DATA_MODEL_LP32
+
+#	include <Z/formats/data model/LP32.h>
+
+#	define Z_INSERT_DATA_MODEL(left, right) left##LP32##right
+#	define Z_INSERT_data_model(left, right) left##lp32##right
+
+#elif Z_DATA_MODEL == Z_DATA_MODEL_LP64
+
+#	include <Z/formats/data model/LP64.h>
+
+#	define Z_INSERT_DATA_MODEL(left, right) left##LP64##right
+#	define Z_INSERT_data_model(left, right) left##lp64##right
+
+#elif Z_DATA_MODEL == Z_DATA_MODEL_SILP64
+
+#	include <Z/formats/data model/SILP64.h>
+
+#	define Z_PASTE_DATA_MODEL(left, right) left##SILP64##right
+#	define Z_PASTE_data_model(left, right) left##silp64##right
+
+#endif
+
 #define Z_DATA_MODEL_STRING	       Z_INSERT_DATA_MODEL(Z_DATA_MODEL_STRING_,)
-#define Z_DATA_MODEL_HAS_TYPE(	 TYPE) (defined Z_DATA_MODEL_TYPE_##TYPE)
-#define Z_DATA_MODEL_HAS_LITERAL(TYPE) (defined Z_DATA_MODEL_LITERAL_##TYPE)
+#define Z_DATA_MODEL_HAS_TYPE(	 TYPE) Z_DATA_MODEL_HAS_TYPE_##TYPE
+#define Z_DATA_MODEL_HAS_LITERAL(TYPE) Z_DATA_MODEL_HAS_LITERAL_##TYPE
 #define Z_DATA_MODEL_TYPE(	 TYPE) Z_DATA_MODEL_TYPE_##TYPE
 #define Z_DATA_MODEL_LITERAL(	 TYPE) Z_DATA_MODEL_LITERAL_##TYPE
 #define Z_DATA_MODEL_VALUE_TYPE( TYPE) Z_DATA_MODEL_VALUE_TYPE_##TYPE
 #define Z_DATA_MODEL_BITS(	 TYPE) Z_INSERT_DATA_MODEL(Z_, _BITS_##TYPE)
 
 /* MARK: - uint8 */
+
+#define Z_DATA_MODEL_HAS_TYPE_UINT8    TRUE
+#define Z_DATA_MODEL_HAS_LITERAL_UINT8 TRUE
 
 #if Z_DATA_MODEL_BITS(UCHAR) == 8
 
@@ -122,6 +144,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 /* MARK: - uint16 */
+
+#define Z_DATA_MODEL_HAS_TYPE_UINT16	TRUE
+#define Z_DATA_MODEL_HAS_LITERAL_UINT16 TRUE
 
 #if Z_DATA_MODEL_BITS(UCHAR) == 16
 
@@ -156,6 +181,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - uint32 */
 
+#define Z_DATA_MODEL_HAS_TYPE_UINT32	TRUE
+#define Z_DATA_MODEL_HAS_LITERAL_UINT32 TRUE
+
 #if Z_DATA_MODEL_BITS(USHORT) == 32
 
 #	define Z_DATA_MODEL_TYPE_UINT32	      unsigned short int
@@ -189,6 +217,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - uint64 */
 
+#define Z_DATA_MODEL_HAS_TYPE_UINT64	TRUE
+#define Z_DATA_MODEL_HAS_LITERAL_UINT64 TRUE
+
 #if Z_DATA_MODEL_BITS(UINT) == 64
 
 #	define Z_DATA_MODEL_TYPE_UINT64	      unsigned int
@@ -214,11 +245,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_COMPILER_HAS_LITERAL(UINT64)
 #		define Z_DATA_MODEL_LITERAL_UINT64 Z_COMPILER_LITERAL(UINT64)
+#	else
+#		undef  Z_DATA_MODEL_HAS_LITERAL_UINT64
+#		define Z_DATA_MODEL_HAS_LITERAL_UINT64 FALSE
 #	endif
 
+#else
+#	undef  Z_DATA_MODEL_HAS_TYPE_UINT64
+#	define Z_DATA_MODEL_HAS_TYPE_UINT64    FALSE
+#	undef  Z_DATA_MODEL_HAS_LITERAL_UINT64
+#	define Z_DATA_MODEL_HAS_LITERAL_UINT64 FALSE
 #endif
 
 /* MARK: - uint128 */
+
+#define Z_DATA_MODEL_HAS_TYPE_UINT128 TRUE
 
 #if Z_DATA_MODEL_BITS(ULLONG) == 128 && (Z_LANGUAGE_HAS_TYPE(C, ULLONG) || Z_LANGUAGE_HAS_TYPE(CPP, ULLONG))
 
@@ -233,11 +274,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_COMPILER_HAS_LITERAL(UINT128)
 #		define Z_DATA_MODEL_LITERAL_UINT128 Z_COMPILER_LITERAL(UINT128)
+#	else
+#		undef  Z_DATA_MODEL_HAS_LITERAL_UINT128
+#		define Z_DATA_MODEL_HAS_LITERAL_UINT128 FALSE
 #	endif
 
+#else
+#	undef  Z_DATA_MODEL_HAS_TYPE_UINT128
+#	define Z_DATA_MODEL_HAS_TYPE_UINT128	FALSE
+#	undef  Z_DATA_MODEL_HAS_LITERAL_UINT128
+#	define Z_DATA_MODEL_HAS_LITERAL_UINT128	FALSE
 #endif
 
 /* MARK: - int8 */
+
+#define Z_DATA_MODEL_HAS_TYPE_INT8    TRUE
+#define Z_DATA_MODEL_HAS_LITERAL_INT8 TRUE
 
 #if Z_DATA_MODEL_BITS(CHAR) == 8
 
@@ -265,6 +317,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 /* MARK: - int16 */
+
+#define Z_DATA_MODEL_HAS_TYPE_INT16    TRUE
+#define Z_DATA_MODEL_HAS_LITERAL_INT16 TRUE
 
 #if Z_DATA_MODEL_BITS(CHAR) == 16
 
@@ -299,6 +354,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - int32 */
 
+#define Z_DATA_MODEL_HAS_TYPE_INT32    TRUE
+#define Z_DATA_MODEL_HAS_LITERAL_INT32 TRUE
+
 #if Z_DATA_MODEL_BITS(SHORT) == 32
 
 #	define Z_DATA_MODEL_TYPE_INT32	     signed short int
@@ -332,6 +390,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - int64 */
 
+#define Z_DATA_MODEL_HAS_TYPE_INT64    TRUE
+#define Z_DATA_MODEL_HAS_LITERAL_INT64 TRUE
+
 #if Z_DATA_MODEL_BITS(INT) == 64
 
 #	define Z_DATA_MODEL_TYPE_INT64	     signed int
@@ -357,11 +418,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_COMPILER_HAS_LITERAL(INT64)
 #		define Z_DATA_MODEL_LITERAL_INT64 Z_COMPILER_LITERAL(INT64)
+#	else
+#		undef  Z_DATA_MODEL_HAS_LITERAL_INT64
+#		define Z_DATA_MODEL_HAS_LITERAL_INT64 FALSE
 #	endif
 
+#else
+#	undef  Z_DATA_MODEL_HAS_TYPE_INT64
+#	define Z_DATA_MODEL_HAS_TYPE_INT64    FALSE
+#	undef  Z_DATA_MODEL_HAS_LITERAL_INT64
+#	define Z_DATA_MODEL_HAS_LITERAL_INT64 FALSE
 #endif
 
 /* MARK: - int128 */
+
+#define Z_DATA_MODEL_HAS_TYPE_INT128	TRUE
+#define Z_DATA_MODEL_HAS_LITERAL_INT128 TRUE
 
 #if Z_DATA_MODEL_BITS(LLONG) == 128 && (Z_LANGUAGE_HAS_TYPE(C, LLONG) || Z_LANGUAGE_HAS_TYPE(CPP, LLONG))
 
@@ -376,8 +448,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_COMPILER_HAS_LITERAL(INT128)
 #		define Z_DATA_MODEL_LITERAL_INT128 Z_COMPILER_LITERAL(INT128)
+#	else
+#		undef  Z_DATA_MODEL_HAS_LITERAL_INT128
+#		define Z_DATA_MODEL_HAS_LITERAL_INT128 FALSE
 #	endif
 
+#else
+#	undef  Z_DATA_MODEL_HAS_TYPE_INT128
+#	define Z_DATA_MODEL_HAS_TYPE_INT128    FALSE
+#	undef  Z_DATA_MODEL_HAS_LITERAL_INT128
+#	define Z_DATA_MODEL_HAS_LITERAL_INT128 FALSE
 #endif
 
 #endif /* __Z_inspection_data_model_H__ */

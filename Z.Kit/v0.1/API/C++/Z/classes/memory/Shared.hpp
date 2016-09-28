@@ -1,8 +1,8 @@
 /* Z Kit C++ API - classes/memory/Shared.hpp
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Copyright © 2016 r-lyeh.
 Released under the terms of the GNU Lesser General Public License v3. */
@@ -20,10 +20,10 @@ template <class T> struct Zeta::Shared {
 
 	struct Owned {
 		Size owner_count;
-		T*   object;
+		T*   data;
 
-		Z_INLINE_MEMBER Owned(T *object) : owner_count(1), object(object) {}
-		Z_INLINE_MEMBER ~Owned() {delete object;}
+		Z_INLINE_MEMBER Owned(T *object) : owner_count(1), data(data) {}
+		Z_INLINE_MEMBER ~Owned() {delete data;}
 	};
 
 	Owned *owned;
@@ -73,9 +73,9 @@ template <class T> struct Zeta::Shared {
 
 	Z_INLINE_MEMBER Boolean operator ==(const Shared &shared) const {return owned == shared.owned;}
 	Z_INLINE_MEMBER Boolean operator !=(const Shared &shared) const {return owned != shared.owned;}
-	Z_INLINE_MEMBER T*	operator ->()			  const {return owned->object;}
+	Z_INLINE_MEMBER T*	operator ->()			  const {return owned->data;}
 
-	Z_INLINE_MEMBER T*   get	() const {return owned ? owned->object : NULL;}
+	Z_INLINE_MEMBER T*   get	() const {return owned ? owned->data : NULL;}
 	Z_INLINE_MEMBER Size owner_count() const {return owned->owner_count;}
 };
 

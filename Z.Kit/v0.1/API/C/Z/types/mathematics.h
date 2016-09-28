@@ -1,8 +1,8 @@
 /* Z Kit C API - types/mathematics.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -38,39 +38,39 @@ typedef struct {Z3D##Type normal; z##type offset;} ZPlane##Type;
 #define ZSphereType(   TYPE) Z_INSERT_##TYPE##_FixedType(ZSphere,   )
 #define ZPlaneType(    TYPE) Z_INSERT_##TYPE##_FixedType(ZPlane,    )
 
-#if Z_IS_AVAILABLE(FLOAT16)
+#ifdef Z_FLOAT16
 	Z_TYPES_EUCLIDEAN_GEOMETRY(Float16, float16)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT24)
+#ifdef Z_FLOAT24
 	Z_TYPES_EUCLIDEAN_GEOMETRY(Float24, float24)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT32)
+#ifdef Z_FLOAT32
 	Z_TYPES_EUCLIDEAN_GEOMETRY(Float32, float32)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT48)
+#ifdef Z_FLOAT48
 	Z_TYPES_EUCLIDEAN_GEOMETRY(Float48, float48)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT64)
+#ifdef Z_FLOAT64
 	Z_TYPES_EUCLIDEAN_GEOMETRY(Float64, float64)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT72)
+#ifdef Z_FLOAT72
 	Z_TYPES_EUCLIDEAN_GEOMETRY(Float72, float72)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT80)
+#ifdef Z_FLOAT80
 	Z_TYPES_EUCLIDEAN_GEOMETRY(Float80, float80)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT96)
+#ifdef Z_FLOAT96
 	Z_TYPES_EUCLIDEAN_GEOMETRY(Float96, float96)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT128)
+#ifdef Z_FLOAT128
 	Z_TYPES_EUCLIDEAN_GEOMETRY(Float128, float128)
 #endif
 
@@ -102,16 +102,18 @@ struct ZSetElement {
 
 /* MARK: - Default real type definitions */
 
-typedef Z2DLineType   (REAL) Z2DLine;
-typedef Z3DLineType   (REAL) Z3DLine;
-typedef Z2DRayType    (REAL) Z2DRay;
-typedef Z3DRayType    (REAL) Z3DRay;
-typedef ZRectangleType(REAL) ZRectangle;
-typedef ZBoxType      (REAL) ZBox;
-typedef ZAABRType     (REAL) ZAABR;
-typedef ZAABBType     (REAL) ZAABB;
-typedef ZCircleType   (REAL) ZCircle;
-typedef ZSphereType   (REAL) ZSphere;
-typedef ZPlaneType    (REAL) ZPlane;
+#ifdef Z_REAL
+	typedef Z2DLineType   (REAL) Z2DLine;
+	typedef Z3DLineType   (REAL) Z3DLine;
+	typedef Z2DRayType    (REAL) Z2DRay;
+	typedef Z3DRayType    (REAL) Z3DRay;
+	typedef ZRectangleType(REAL) ZRectangle;
+	typedef ZBoxType      (REAL) ZBox;
+	typedef ZAABRType     (REAL) ZAABR;
+	typedef ZAABBType     (REAL) ZAABB;
+	typedef ZCircleType   (REAL) ZCircle;
+	typedef ZSphereType   (REAL) ZSphere;
+	typedef ZPlaneType    (REAL) ZPlane;
+#endif
 
 #endif /* __Z_types_mathematics_H__ */

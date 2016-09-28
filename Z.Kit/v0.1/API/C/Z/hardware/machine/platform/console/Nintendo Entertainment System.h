@@ -1,10 +1,19 @@
 /* Z Kit C API - hardware/machine/platform/console/Nintendo Entertainment System.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
+
+.-------------------------------------------.
+|   Vendor: Nintendo			    |
+| Released: 1983-07-15 (JP)		    |
+|	    1985-10-18 (KR - North America) |
+|	    1986-09-01 (Europe)		    |
+|	    1986       (CA)		    |
+|	    1987       (Australasia)	    |
+'-------------------------------------------'
 
 Front view						Back view
  ___ __________________________________ ______ ______	 ____________________________________________________
@@ -203,7 +212,7 @@ Controller	 | |					Controller Connector
    |  '-----------> Length counter clock disable / Envelope decay looping enable
    '--------------> Duty cycle type (Unused on noise channel) */
 
-Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
+Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 4) (
 	zuint8 duty_cycle_type		    :2,
 	zuint8 envelope_decay_disable	    :1,
 	zuint8 length_counter_clock_disable :1,
@@ -219,7 +228,7 @@ Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
   |   '-----------> Sweep update rate
   '---------------> Sweep enable */
 
-Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
+Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 4) (
 	zuint8 sweep_enable		       :1,
 	zuint8 sweep_update_rate	       :3,
 	zuint8 decrease_or_increase_wavelength :1,

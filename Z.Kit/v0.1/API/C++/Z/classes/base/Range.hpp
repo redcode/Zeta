@@ -1,8 +1,8 @@
 /* Z Kit C++ API - classes/base/Range.hpp
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/super.hpp>
 #include <Z/functions/base/value.hpp>
 
-#if Z_MUST_SUPPORT(NS_RANGE) && defined(Z_OBJECTIVE_C)
+#if defined(Z_USE_NS_RANGE) && Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP
 #	import <Foundation/NSRange.h>
 #endif
 
@@ -75,7 +75,7 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 	Z_INLINE_MEMBER Range &operator |=(const Range &range) {return *this = *this | range;}
 
 
-#	if Z_MUST_SUPPORT(NS_RANGE) && defined(Z_OBJECTIVE_C)
+#	if defined(Z_USE_NS_RANGE) && Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP
 
 		Z_INLINE_MEMBER Range(const NSRange &range)
 			{this->index = range.location; this->size = range.length;}

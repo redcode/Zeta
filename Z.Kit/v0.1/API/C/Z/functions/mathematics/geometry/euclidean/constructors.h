@@ -1,8 +1,8 @@
 /* Z Kit C API - functions/mathematics/geometry/euclidean/constructors.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(C, COMPOUND_LITERAL)
 
-#	if Z_IS_AVAILABLE(FLOAT16)
+#	ifdef Z_FLOAT16
 
 #		define z_2d_line_float16(a_x, a_y, b_x, b_y) ((Z2DLineFloat16){		  \
 			{(zfloat16)(a_x), (zfloat16)(a_y)},				  \
@@ -47,7 +47,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT24)
+#	ifdef Z_FLOAT24
 
 #		define z_2d_line_float24(a_x, a_y, b_x, b_y) ((Z2DLineFloat24){		  \
 			{(zfloat24)(a_x), (zfloat24)(a_y)},				  \
@@ -81,7 +81,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT32)
+#	ifdef Z_FLOAT32
 
 #		define z_2d_line_float32(a_x, a_y, b_x, b_y) ((Z2DLineFloat32){		  \
 			{(zfloat32)(a_x), (zfloat32)(a_y)},				  \
@@ -115,7 +115,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT48)
+#	ifdef Z_FLOAT48
 
 #		define z_2d_line_float48(a_x, a_y, b_x, b_y) ((Z2DLineFloat48){		  \
 			{(zfloat48)(a_x), (zfloat48)(a_y)},				  \
@@ -149,7 +149,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT64)
+#	ifdef Z_FLOAT64
 
 #		define z_2d_line_float64(a_x, a_y, b_x, b_y) ((Z2DLineFloat64){		  \
 			{(zfloat64)(a_x), (zfloat64)(a_y)},				  \
@@ -183,7 +183,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT72)
+#	ifdef Z_FLOAT72
 
 #		define z_2d_line_float72(a_x, a_y, b_x, b_y) ((Z2DLineFloat72){		  \
 			{(zfloat72)(a_x), (zfloat72)(a_y)},				  \
@@ -217,7 +217,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT80)
+#	ifdef Z_FLOAT80
 
 #		define z_2d_line_float80(a_x, a_y, b_x, b_y) ((Z2DLineFloat80){		  \
 			{(zfloat80)(a_x), (zfloat80)(a_y)},				  \
@@ -251,7 +251,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT96)
+#	ifdef Z_FLOAT96
 
 #		define z_2d_line_float96(a_x, a_y, b_x, b_y) ((Z2DLineFloat96){		  \
 			{(zfloat96)(a_x), (zfloat96)(a_y)},				  \
@@ -285,7 +285,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT128)
+#	ifdef Z_FLOAT128
 
 #		define z_2d_line_float128(a_x, a_y, b_x, b_y) ((Z2DLineFloat128){	    \
 			{(zfloat128)(a_x), (zfloat128)(a_y)},				    \
@@ -372,41 +372,41 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		{ZSphere##Type object = {{x, y, z}, radius}; return object;}
 
 
-#	if Z_IS_AVAILABLE(FLOAT16)
+#	ifdef Z_FLOAT16
 		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float16, float16)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT32)
+#	ifdef Z_FLOAT32
 		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float32, float32)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT48)
+#	ifdef Z_FLOAT48
 		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float48, float48)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT64)
+#	ifdef Z_FLOAT64
 		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float64, float64)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT72)
+#	ifdef Z_FLOAT72
 		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float72, float72)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT80)
+#	ifdef Z_FLOAT80
 		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float80, float80)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT96)
+#	ifdef Z_FLOAT96
 		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float96, float96)
 #	endif
 
-#	if Z_IS_AVAILABLE(FLOAT128)
+#	ifdef Z_FLOAT128
 		Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS(Float128, float128)
 #	endif
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT16)
+#ifdef Z_FLOAT16
 
 #	define z_aabr_float16 z_2d_line_float16
 #	define z_aabb_float16 z_3d_line_float16
@@ -422,7 +422,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT24)
+#ifdef Z_FLOAT24
 
 #	define z_aabr_float24 z_2d_line_float24
 #	define z_aabb_float24 z_3d_line_float24
@@ -438,7 +438,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT32)
+#ifdef Z_FLOAT32
 
 #	define z_aabr_float32 z_2d_line_float32
 #	define z_aabb_float32 z_3d_line_float32
@@ -454,7 +454,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT48)
+#ifdef Z_FLOAT48
 
 #	define z_aabr_float48 z_2d_line_float48
 #	define z_aabb_float48 z_3d_line_float48
@@ -470,7 +470,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT64)
+#ifdef Z_FLOAT64
 
 #	define z_aabr_float64 z_2d_line_float64
 #	define z_aabb_float64 z_3d_line_float64
@@ -486,7 +486,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT72)
+#ifdef Z_FLOAT72
 
 #	define z_aabr_float72 z_2d_line_float72
 #	define z_aabb_float72 z_3d_line_float72
@@ -502,7 +502,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT80)
+#ifdef Z_FLOAT80
 
 #	define z_aabr_float80 z_2d_line_float80
 #	define z_aabb_float80 z_3d_line_float80
@@ -518,7 +518,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT96)
+#ifdef Z_FLOAT96
 
 #	define z_aabr_float96 z_2d_line_float96
 #	define z_aabb_float96 z_3d_line_float96
@@ -534,7 +534,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT128)
+#ifdef Z_FLOAT128
 
 #	define z_aabr_float128 z_2d_line_float128
 #	define z_aabb_float128 z_3d_line_float128
@@ -570,21 +570,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Default real type definitions */
 
-#define z_2d_line	 z_2d_line_type	      (REAL)
-#define z_2d_line_zero	 z_2d_line_type_zero  (REAL)
-#define z_3d_line	 z_3d_line_type	      (REAL)
-#define z_3d_line_zero	 z_3d_line_type_zero  (REAL)
-#define z_rectangle	 z_rectangle_type     (REAL)
-#define z_rectangle_zero z_rectangle_type_zero(REAL)
-#define z_box		 z_box_type	      (REAL)
-#define z_box_zero	 z_box_type_zero      (REAL)
-#define z_aabr		 z_2d_line
-#define z_aabr_zero	 z_2d_line_zero
-#define z_aabb		 z_3d_line
-#define z_aabb_zero	 z_3d_line_zero
-#define z_circle	 z_circle_type	      (REAL)
-#define z_circle_zero	 z_circle_type_zero   (REAL)
-#define z_sphere	 z_sphere_type	      (REAL)
-#define z_sphere_zero	 z_sphere_type_zero   (REAL)
+#ifdef Z_REAL
+#	define z_2d_line	z_2d_line_type	     (REAL)
+#	define z_2d_line_zero	z_2d_line_type_zero  (REAL)
+#	define z_3d_line	z_3d_line_type	     (REAL)
+#	define z_3d_line_zero	z_3d_line_type_zero  (REAL)
+#	define z_rectangle	z_rectangle_type     (REAL)
+#	define z_rectangle_zero	z_rectangle_type_zero(REAL)
+#	define z_box		z_box_type	     (REAL)
+#	define z_box_zero	z_box_type_zero	     (REAL)
+#	define z_aabr		z_2d_line
+#	define z_aabr_zero	z_2d_line_zero
+#	define z_aabb		z_3d_line
+#	define z_aabb_zero	z_3d_line_zero
+#	define z_circle		z_circle_type	     (REAL)
+#	define z_circle_zero	z_circle_type_zero   (REAL)
+#	define z_sphere		z_sphere_type	     (REAL)
+#	define z_sphere_zero	z_sphere_type_zero   (REAL)
+#endif
 
 #endif /* __Z_functions_mathematics_geometry_euclidean_constructors_H__ */

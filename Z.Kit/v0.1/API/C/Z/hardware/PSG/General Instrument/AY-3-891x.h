@@ -1,8 +1,8 @@
 /* Z Kit C API - hardware/PSG/General Instrument/AY-3-891x.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -105,7 +105,7 @@ ANALOG CHANNEL A -05-|		 |-24- DA4
 
 #include <Z/types/base.h>
 
-Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(8) (
+Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 8) (
 	zuint8 unused1 :1,
 	zuint8 unused2 :1,
 	zuint8 unused3 :1,
@@ -127,7 +127,7 @@ Z_DEFINE_STRICT_UNION (
 		zuint8 channel_c_tone_period_coarse_tune;
 		zuint8 noise_period;
 
-		struct {Z_8BIT_FIELD(8) (
+		struct {Z_BIT_FIELD(8, 8) (
 			zuint8 iob     :1,
 			zuint8 ioa     :1,
 			zuint8 noise_c :1,
@@ -145,7 +145,7 @@ Z_DEFINE_STRICT_UNION (
 		zuint8 envelope_period_fine_tune;
 		zuint8 envelope_period_coarse_tune;
 
-		struct {Z_8BIT_FIELD(8) (
+		struct {Z_BIT_FIELD(8, 8) (
 			zuint8 unused1 :1,
 			zuint8 unused2 :1,
 			zuint8 unused3 :1,

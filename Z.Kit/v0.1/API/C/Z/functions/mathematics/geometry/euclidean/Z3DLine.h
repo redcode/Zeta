@@ -1,8 +1,8 @@
 /* Z Kit C API - functions/mathematics/geometry/euclidean/Z3DLine.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -66,47 +66,47 @@ Z_INLINE Z3D##Type z_3d_line_segment_##type##_lerp(Z3DLine##Type object, z##type
 /* MARK: - Implementation expansions */
 
 
-#if Z_IS_AVAILABLE(FLOAT16)
+#ifdef Z_FLOAT16
 	Z_IMPLEMENTATION_3D_LINE	(Float16, float16)
 	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float16, float16)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT24)
+#ifdef Z_FLOAT24
 	Z_IMPLEMENTATION_3D_LINE	(Float24, float24)
 	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float24, float24)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT32)
+#ifdef Z_FLOAT32
 	Z_IMPLEMENTATION_3D_LINE	(Float32, float32)
 	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float32, float32)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT48)
+#ifdef Z_FLOAT48
 	Z_IMPLEMENTATION_3D_LINE	(Float48, float48)
 	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float48, float48)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT64)
+#ifdef Z_FLOAT64
 	Z_IMPLEMENTATION_3D_LINE	(Float64, float64)
 	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float64, float64)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT72)
+#ifdef Z_FLOAT72
 	Z_IMPLEMENTATION_3D_LINE	(Float72, float72)
 	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float72, float72)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT80)
+#ifdef Z_FLOAT80
 	Z_IMPLEMENTATION_3D_LINE	(Float80, float80)
 	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float80, float80)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT96)
+#ifdef Z_FLOAT96
 	Z_IMPLEMENTATION_3D_LINE	(Float96, float96)
 	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float96, float96)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT128)
+#ifdef Z_FLOAT128
 	Z_IMPLEMENTATION_3D_LINE	(Float128, float128)
 	Z_IMPLEMENTATION_3D_LINE_SEGMENT(Float128, float128)
 #endif
@@ -115,12 +115,14 @@ Z_INLINE Z3D##Type z_3d_line_segment_##type##_lerp(Z3DLine##Type object, z##type
 /* MARK: - Default real type definitions */
 
 
-#define z_3d_line_are_equal	    z_3d_line_type_are_equal	    (REAL)
-#define z_3d_line_are_perpendicular z_3d_line_type_are_perpendicular(REAL)
-#define z_3d_line_is_zero	    z_3d_line_type_is_zero	    (REAL)
-#define z_3d_line_reverse	    z_3d_line_type_reverse	    (REAL)
-#define z_3d_line_segment_center    z_3d_line_segment_type_center   (REAL)
-#define z_3d_line_segment_lerp	    z_3d_line_segment_type_lerp	    (REAL)
+#ifdef Z_REAL
+#	define z_3d_line_are_equal	   z_3d_line_type_are_equal	   (REAL)
+#	define z_3d_line_are_perpendicular z_3d_line_type_are_perpendicular(REAL)
+#	define z_3d_line_is_zero	   z_3d_line_type_is_zero	   (REAL)
+#	define z_3d_line_reverse	   z_3d_line_type_reverse	   (REAL)
+#	define z_3d_line_segment_center	   z_3d_line_segment_type_center   (REAL)
+#	define z_3d_line_segment_lerp	   z_3d_line_segment_type_lerp	   (REAL)
+#endif
 
 
 #endif /* __Z_functions_mathematics_geometry_euclidean_Z3DLine_H__ */

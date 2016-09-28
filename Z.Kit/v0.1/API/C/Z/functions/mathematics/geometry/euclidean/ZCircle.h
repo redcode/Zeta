@@ -1,8 +1,8 @@
 /* Z Kit C API - functions/mathematics/geometry/euclidean/ZCircle.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -56,39 +56,39 @@ Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object
 /* MARK: - Implementation expansions */
 
 
-#if Z_IS_AVAILABLE(FLOAT16)
+#ifdef Z_FLOAT16
 	Z_IMPLEMENTATION_CIRCLE(Float16, float16, Z_FLOAT16)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT24)
+#ifdef Z_FLOAT24
 	Z_IMPLEMENTATION_CIRCLE(Float24, float24, Z_FLOAT24)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT32)
+#ifdef Z_FLOAT32
 	Z_IMPLEMENTATION_CIRCLE(Float32, float32, Z_FLOAT32)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT48)
+#ifdef Z_FLOAT48
 	Z_IMPLEMENTATION_CIRCLE(Float48, float48, Z_FLOAT48)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT64)
+#ifdef Z_FLOAT64
 	Z_IMPLEMENTATION_CIRCLE(Float64, float64, Z_FLOAT64)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT72)
+#ifdef Z_FLOAT72
 	Z_IMPLEMENTATION_CIRCLE(Float72, float72, Z_FLOAT72)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT80)
+#ifdef Z_FLOAT80
 	Z_IMPLEMENTATION_CIRCLE(Float80, float80, Z_FLOAT80)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT96)
+#ifdef Z_FLOAT96
 	Z_IMPLEMENTATION_CIRCLE(Float96, float96, Z_FLOAT96)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT128)
+#ifdef Z_FLOAT128
 	Z_IMPLEMENTATION_CIRCLE(Float128, float128, Z_FLOAT128)
 #endif
 
@@ -96,10 +96,12 @@ Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object
 /* MARK: - Default real type definitions */
 
 
-#define z_circle_are_equal	 z_circle_type_are_equal      (REAL)
-#define z_circle_is_zero	 z_circle_type_is_zero	      (REAL)
-#define z_circle_inner_rectangle z_circle_type_inner_rectangle(REAL)
-#define z_circle_outer_rectangle z_circle_type_outer_rectangle(REAL)
+#ifdef Z_REAL
+#	define z_circle_are_equal	z_circle_type_are_equal	     (REAL)
+#	define z_circle_is_zero		z_circle_type_is_zero	     (REAL)
+#	define z_circle_inner_rectangle z_circle_type_inner_rectangle(REAL)
+#	define z_circle_outer_rectangle z_circle_type_outer_rectangle(REAL)
+#endif
 
 
 #endif /* __Z_functions_mathematics_geometry_euclidean_ZCircle_H__ */

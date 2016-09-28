@@ -1,8 +1,8 @@
 /* Z Kit C API - hardware/VDC/Ricoh/RP2C0x.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -259,7 +259,7 @@ typedef struct {
 							       | 11 = 2C00h |
 							       '------------' */
 
-Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(7) (
+Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 7) (
 	zuint8 emit_nmi_on_vblank	:2,
 	zuint8 mode			:1,
 	zuint8 use_8x16_sprites		:1,
@@ -297,7 +297,7 @@ Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(7) (
   | '-------------> intensify_green
   '---------------> intensify_blue */
 
-Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(8) (
+Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 8) (
 	zuint8 intensify_blue		   :1,
 	zuint8 intensify_green		   :1,
 	zuint8 intensify_red		   :1,
@@ -340,7 +340,7 @@ Reading resets Bit 7, can be used to acknowledge NMIs, Bit 7 is also automatical
 
 */
 
-Z_DEFINE_STRICT_STRUCTURE (Z_8BIT_FIELD(4) (
+Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 4) (
 	zuint8 vblank	       :1,
 	zuint8 sprite_hit      :1,
 	zuint8 sprite_overflow :1,

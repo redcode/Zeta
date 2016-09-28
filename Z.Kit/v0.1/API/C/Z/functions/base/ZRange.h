@@ -1,8 +1,8 @@
 /* Z Kit C API - functions/base/ZRange.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -93,11 +93,11 @@ Z_IMPLEMENTATION_RANGE(UInt8,  uint8 )
 Z_IMPLEMENTATION_RANGE(UInt16, uint16)
 Z_IMPLEMENTATION_RANGE(UInt32, uint32)
 
-#if Z_IS_AVAILABLE(UINT64)
+#ifdef Z_UINT64
 	Z_IMPLEMENTATION_RANGE(UInt64, uint64)
 #endif
 
-#if Z_IS_AVAILABLE(UINT128)
+#ifdef Z_UINT128
 	Z_IMPLEMENTATION_RANGE(UInt128, uint128)
 #endif
 

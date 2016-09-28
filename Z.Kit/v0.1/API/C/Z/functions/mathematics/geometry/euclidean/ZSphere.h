@@ -1,8 +1,8 @@
 /* Z Kit C API - functions/mathematics/geometry/euclidean/ZSphere.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -62,39 +62,39 @@ Z_INLINE ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 /* MARK: - Implementation expansions */
 
 
-#if Z_IS_AVAILABLE(FLOAT16)
+#ifdef Z_FLOAT16
 	Z_IMPLEMENTATION_SPHERE(Float16, float16, Z_FLOAT16)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT24)
+#ifdef Z_FLOAT24
 	Z_IMPLEMENTATION_SPHERE(Float24, float24, Z_FLOAT24)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT32)
+#ifdef Z_FLOAT32
 	Z_IMPLEMENTATION_SPHERE(Float32, float32, Z_FLOAT32)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT48)
+#ifdef Z_FLOAT48
 	Z_IMPLEMENTATION_SPHERE(Float48, float48, Z_FLOAT48)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT64)
+#ifdef Z_FLOAT64
 	Z_IMPLEMENTATION_SPHERE(Float64, float64, Z_FLOAT64)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT72)
+#ifdef Z_FLOAT72
 	Z_IMPLEMENTATION_SPHERE(Float72, float72, Z_FLOAT72)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT80)
+#ifdef Z_FLOAT80
 	Z_IMPLEMENTATION_SPHERE(Float80, float80, Z_FLOAT80)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT96)
+#ifdef Z_FLOAT96
 	Z_IMPLEMENTATION_SPHERE(Float96, float96, Z_FLOAT96)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT128)
+#ifdef Z_FLOAT128
 	Z_IMPLEMENTATION_SPHERE(Float128, float128, Z_FLOAT128)
 #endif
 
@@ -102,10 +102,12 @@ Z_INLINE ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 /* MARK: - Default real type definitions */
 
 
-#define z_sphere_are_equal z_sphere_type_are_equal(REAL)
-#define z_sphere_is_zero   z_sphere_type_is_zero  (REAL)
-#define z_sphere_inner_box z_sphere_type_inner_box(REAL)
-#define z_sphere_outer_box z_sphere_type_outer_box(REAL)
+#ifdef Z_REAL
+#	define z_sphere_are_equal z_sphere_type_are_equal(REAL)
+#	define z_sphere_is_zero   z_sphere_type_is_zero  (REAL)
+#	define z_sphere_inner_box z_sphere_type_inner_box(REAL)
+#	define z_sphere_outer_box z_sphere_type_outer_box(REAL)
+#endif
 
 
 #endif /* __Z_functions_mathematics_geometry_euclidean_ZSphere_H__ */

@@ -1,8 +1,8 @@
 /* Z Kit C API - formats/storage medium image/floppy disk/FDI.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -27,7 +27,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 head;
 	zuint8 size;
 
-	struct {Z_8BIT_FIELD(3) (
+	struct {Z_BIT_FIELD(8, 3) (
 		zuint8 data_deleted: 1,
 		zuint8 zero:	     1,
 		zuint8 crc_errors:   6

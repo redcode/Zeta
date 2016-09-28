@@ -1,8 +1,8 @@
 /* Z Kit C API - macros/value.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -14,8 +14,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Basics */
 
 #define Z_ABSOLUTE(value) ((a) < 0 ? -(a) : (a))
-
-/* MARK: - Limits */
 
 #define Z_MAXIMUM(a, b) ((a) > (b) ? (a) : (b))
 #define Z_MINIMUM(a, b) ((a) < (b) ? (a) : (b))
@@ -180,7 +178,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - 64-bit operations */
 
-#if Z_IS_AVAILABLE(DINT64)
+#ifdef Z_DINT64
 
 #	define Z_8BIT_64BIT_MIRROR( value) (((zdint64)(value)) * Z_DINT64(0x0101010101010101))
 #	define Z_16BIT_64BIT_MIRROR(value) (((zdint64)(value)) * Z_DINT64(0x0001000100010001))
@@ -285,7 +283,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - 128-bit operations */
 
-#if Z_IS_AVAILABLE(DINT128)
+#ifdef Z_DINT128
 
 #	if Z_DATA_MODEL_HAS_LITERAL(UINT128) || Z_DATA_MODEL_HAS_LITERAL(INT128)
 #		define Z_8BIT_128BIT_MIRROR( value) (((zdint128)(value)) * Z_DINT128(0x01010101010101010101010101010101))

@@ -1,8 +1,8 @@
 /* Z Kit C API - formats/snapshot/machine/computer/ZX Spectrum/SNA.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -51,7 +51,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	Z16Bit	hl_, de_, bc_, af_;
 	Z16Bit	hl, de, bc, iy, ix;
 
-	struct {Z_8BIT_FIELD(3) (
+	struct {Z_BIT_FIELD(8, 3) (
 		zuint8 unused_0 :5,
 		zuint8 iff2	:1,
 		zuint8 unused_1 :2
@@ -97,7 +97,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	Z16Bit	hl_, de_, bc_, af_;
 	Z16Bit	hl, de, bc, iy, ix;
 
-	struct {Z_8BIT_FIELD(3) (
+	struct {Z_BIT_FIELD(8, 3) (
 		zuint8 unused_0 :5,
 		zuint8 iff2	:1,
 		zuint8 unused_1 :2

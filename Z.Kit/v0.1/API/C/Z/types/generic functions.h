@@ -1,8 +1,8 @@
 /* Z Kit C API - types/generic functions.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -43,22 +43,22 @@ typedef void	(* ZContext32BitAddressWrite8Bit )(void *context, zuint32 address, 
 typedef void	(* ZContext32BitAddressWrite16Bit)(void *context, zuint32 address, zuint16 value);
 typedef void	(* ZContext32BitAddressWrite32Bit)(void *context, zuint32 address, zuint32 value);
 
-#if Z_IS_AVAILABLE(UINT64)
-	typedef zuint64 (* ZContextRead64Bit )(void *context);
-	typedef void	(* ZContextWrite64Bit)(void *context, zuint64 value);
+#ifdef Z_DINT64
+	typedef zdint64 (* ZContextRead64Bit )(void *context);
+	typedef void	(* ZContextWrite64Bit)(void *context, zdint64 value);
 
-	typedef zuint64 (* ZContext16BitAddressRead64Bit )(void *context, zuint16 address);
-	typedef zuint64 (* ZContext32BitAddressRead64Bit )(void *context, zuint32 address);
-	typedef zuint8	(* ZContext64BitAddressRead8Bit	 )(void *context, zuint64 address);
-	typedef zuint16 (* ZContext64BitAddressRead16Bit )(void *context, zuint64 address);
-	typedef zuint32 (* ZContext64BitAddressRead32Bit )(void *context, zuint64 address);
-	typedef zuint64 (* ZContext64BitAddressRead64Bit )(void *context, zuint64 address);
-	typedef void	(* ZContext16BitAddressWrite64Bit)(void *context, zuint16 address, zuint64 value);
-	typedef void	(* ZContext32BitAddressWrite64Bit)(void *context, zuint32 address, zuint64 value);
-	typedef void	(* ZContext64BitAddressWrite8Bit )(void *context, zuint64 address, zuint8  value);
-	typedef void	(* ZContext64BitAddressWrite16Bit)(void *context, zuint64 address, zuint16 value);
-	typedef void	(* ZContext64BitAddressWrite32Bit)(void *context, zuint64 address, zuint32 value);
-	typedef void	(* ZContext64BitAddressWrite64Bit)(void *context, zuint64 address, zuint64 value);
+	typedef zdint64 (* ZContext16BitAddressRead64Bit )(void *context, zuint16 address);
+	typedef zdint64 (* ZContext32BitAddressRead64Bit )(void *context, zuint32 address);
+	typedef zuint8	(* ZContext64BitAddressRead8Bit	 )(void *context, zdint64 address);
+	typedef zuint16 (* ZContext64BitAddressRead16Bit )(void *context, zdint64 address);
+	typedef zuint32 (* ZContext64BitAddressRead32Bit )(void *context, zdint64 address);
+	typedef zdint64 (* ZContext64BitAddressRead64Bit )(void *context, zdint64 address);
+	typedef void	(* ZContext16BitAddressWrite64Bit)(void *context, zuint16 address, zdint64 value);
+	typedef void	(* ZContext32BitAddressWrite64Bit)(void *context, zuint32 address, zdint64 value);
+	typedef void	(* ZContext64BitAddressWrite8Bit )(void *context, zdint64 address, zuint8  value);
+	typedef void	(* ZContext64BitAddressWrite16Bit)(void *context, zdint64 address, zuint16 value);
+	typedef void	(* ZContext64BitAddressWrite32Bit)(void *context, zdint64 address, zuint32 value);
+	typedef void	(* ZContext64BitAddressWrite64Bit)(void *context, zdint64 address, zdint64 value);
 #endif
 
 /* MARK: - General purpose comparison, handling and validation function types */
@@ -141,11 +141,11 @@ Z_TYPES_GENERIC_FUNCTIONS(UInt8,  zuint8*,  zuint8  value)
 Z_TYPES_GENERIC_FUNCTIONS(UInt16, zuint16*, zuint16 value)
 Z_TYPES_GENERIC_FUNCTIONS(UInt32, zuint32*, zuint32 value)
 
-#if Z_IS_AVAILABLE(UINT64)
+#ifdef Z_UINT64
 	Z_TYPES_GENERIC_FUNCTIONS(UInt64, zuint64*, zuint64 value)
 #endif
 
-#if Z_IS_AVAILABLE(UINT128)
+#ifdef Z_UINT128
 	Z_TYPES_GENERIC_FUNCTIONS(UInt128, zuint128*, zuint128 value)
 #endif
 
@@ -153,47 +153,47 @@ Z_TYPES_GENERIC_FUNCTIONS(Int8,  zint8*,  zint8  value)
 Z_TYPES_GENERIC_FUNCTIONS(Int16, zint16*, zint16 value)
 Z_TYPES_GENERIC_FUNCTIONS(Int32, zint32*, zint32 value)
 
-#if Z_IS_AVAILABLE(INT64)
+#ifdef Z_INT64
 	Z_TYPES_GENERIC_FUNCTIONS(Int64, zint64*, zint64 value)
 #endif
 
-#if Z_IS_AVAILABLE(INT128)
+#ifdef Z_INT128
 	Z_TYPES_GENERIC_FUNCTIONS(Int128, zint128*, zint128 value)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT16)
+#ifdef Z_FLOAT16
 	Z_TYPES_GENERIC_FUNCTIONS(Float16, zfloat16*, zfloat16 value)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT24)
+#ifdef Z_FLOAT24
 	Z_TYPES_GENERIC_FUNCTIONS(Float24, zfloat24*, zfloat24 value)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT32)
+#ifdef Z_FLOAT32
 	Z_TYPES_GENERIC_FUNCTIONS(Float32, zfloat32*, zfloat32 value)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT48)
+#ifdef Z_FLOAT48
 	Z_TYPES_GENERIC_FUNCTIONS(Float48, zfloat48*, zfloat48 value)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT64)
+#ifdef Z_FLOAT64
 	Z_TYPES_GENERIC_FUNCTIONS(Float64, zfloat64*, zfloat64 value)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT72)
+#ifdef Z_FLOAT72
 	Z_TYPES_GENERIC_FUNCTIONS(Float72, zfloat72*, zfloat72 value)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT80)
+#ifdef Z_FLOAT80
 	Z_TYPES_GENERIC_FUNCTIONS(Float80, zfloat80*, zfloat80 value)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT96)
+#ifdef Z_FLOAT96
 	Z_TYPES_GENERIC_FUNCTIONS(Float96, zfloat96*, zfloat96 value)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT128)
+#ifdef Z_FLOAT128
 	Z_TYPES_GENERIC_FUNCTIONS(Float128, zfloat128*, zfloat128 value)
 #endif
 

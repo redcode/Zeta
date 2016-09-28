@@ -1,8 +1,8 @@
 /* Z Kit C API - functions/mathematics/geometry/euclidean/ZBox.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -222,39 +222,39 @@ Z_INLINE zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Typ
 /* MARK: - Implementation expansions */
 
 
-#if Z_IS_AVAILABLE(FLOAT16)
+#ifdef Z_FLOAT16
 	Z_IMPLEMENTATION_BOX(Float16, float16, Z_FLOAT16)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT24)
+#ifdef Z_FLOAT24
 	Z_IMPLEMENTATION_BOX(Float24, float24, Z_FLOAT24)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT32)
+#ifdef Z_FLOAT32
 	Z_IMPLEMENTATION_BOX(Float32, float32, Z_FLOAT32)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT48)
+#ifdef Z_FLOAT48
 	Z_IMPLEMENTATION_BOX(Float48, float48, Z_FLOAT48)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT64)
+#ifdef Z_FLOAT64
 	Z_IMPLEMENTATION_BOX(Float64, float64, Z_FLOAT64)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT72)
+#ifdef Z_FLOAT72
 	Z_IMPLEMENTATION_BOX(Float72, float72, Z_FLOAT72)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT80)
+#ifdef Z_FLOAT80
 	Z_IMPLEMENTATION_BOX(Float80, float80, Z_FLOAT80)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT96)
+#ifdef Z_FLOAT96
 	Z_IMPLEMENTATION_BOX(Float96, float96, Z_FLOAT96)
 #endif
 
-#if Z_IS_AVAILABLE(FLOAT128)
+#ifdef Z_FLOAT128
 	Z_IMPLEMENTATION_BOX(Float128, float128, Z_FLOAT128)
 #endif
 
@@ -262,23 +262,25 @@ Z_INLINE zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Typ
 /* MARK: - Default real type definitions */
 
 
-#define z_box_are_equal		     z_box_type_are_equal	      (REAL)
-#define z_box_contains		     z_box_type_contains	      (REAL)
-#define z_box_collide		     z_box_type_collide		      (REAL)
-#define z_box_intersection	     z_box_type_intersection	      (REAL)
-#define z_box_union		     z_box_type_union		      (REAL)
-#define z_box_from_vertices	     z_box_type_from_vertices	      (REAL)
-#define z_box_is_zero		     z_box_type_is_zero		      (REAL)
-#define z_box_center		     z_box_type_center		      (REAL)
-#define z_box_correct		     z_box_type_correct		      (REAL)
-#define z_box_inner_sphere	     z_box_type_inner_sphere	      (REAL)
-#define z_box_to_aabb		     z_box_type_to_aabb		      (REAL)
-#define z_box_absolute_point_to_unit z_box_type_absolute_point_to_unit(REAL)
-#define z_box_unit_point_to_absolute z_box_type_unit_point_to_absolute(REAL)
-#define z_box_contains_point	     z_box_type_contains_point	      (REAL)
-#define z_box_contains_line_segment  z_box_type_contains_line_segment (REAL)
-#define z_box_contains_aabb	     z_box_type_contains_aabb	      (REAL)
-#define z_box_contains_sphere	     z_box_type_contains_sphere	      (REAL)
+#ifdef Z_REAL
+#	define z_box_are_equal		    z_box_type_are_equal	     (REAL)
+#	define z_box_contains		    z_box_type_contains		     (REAL)
+#	define z_box_collide		    z_box_type_collide		     (REAL)
+#	define z_box_intersection	    z_box_type_intersection	     (REAL)
+#	define z_box_union		    z_box_type_union		     (REAL)
+#	define z_box_from_vertices	    z_box_type_from_vertices	     (REAL)
+#	define z_box_is_zero		    z_box_type_is_zero		     (REAL)
+#	define z_box_center		    z_box_type_center		     (REAL)
+#	define z_box_correct		    z_box_type_correct		     (REAL)
+#	define z_box_inner_sphere	    z_box_type_inner_sphere	     (REAL)
+#	define z_box_to_aabb		    z_box_type_to_aabb		     (REAL)
+#	define z_box_absolute_point_to_unit z_box_type_absolute_point_to_unit(REAL)
+#	define z_box_unit_point_to_absolute z_box_type_unit_point_to_absolute(REAL)
+#	define z_box_contains_point	    z_box_type_contains_point	     (REAL)
+#	define z_box_contains_line_segment  z_box_type_contains_line_segment (REAL)
+#	define z_box_contains_aabb	    z_box_type_contains_aabb	     (REAL)
+#	define z_box_contains_sphere	    z_box_type_contains_sphere	     (REAL)
+#endif
 
 
 #endif /* __Z_functions_mathematics_geometry_euclidean_ZBox_H__ */

@@ -1,8 +1,8 @@
 /* Z Kit C++ API - classes/mathematics/geometry/euclidean/Rectangle.hpp
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -124,7 +124,7 @@ template <class T> struct Zeta::Rectangle {
 	// MARK: - Interoperability
 
 
-#	if Z_MUST_SUPPORT(CG_GEOMETRY)
+#	ifdef Z_USE_CG_GEOMETRY
 
 		Z_INLINE_MEMBER Rectangle(const CGRect &rectangle)
 		: point(rectangle.origin), size(rectangle.size) {}
@@ -142,9 +142,10 @@ template <class T> struct Zeta::Rectangle {
 
 #	endif
 
-#	if	Z_MUST_SUPPORT(NS_GEOMETRY) && defined(Z_OBJECTIVE_C) && \
-		(!Z_MUST_SUPPORT(CG_GEOMETRY)			      || \
-		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)  || \
+#	if	defined(Z_USE_NS_GEOMETRY)			     && \
+		Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP		     && \
+		(!defined(Z_USE_CG_GEOMETRY)			     || \
+		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
 		Z_INLINE_MEMBER Rectangle(const NSRect &rectangle)

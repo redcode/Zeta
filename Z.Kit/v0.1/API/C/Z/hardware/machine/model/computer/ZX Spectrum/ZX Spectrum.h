@@ -1,8 +1,8 @@
 /* Z Kit C API - hardware/machine/model/computer/ZX Spectrum/ZX Spectrum.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -20,8 +20,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 | __\ ||  ||__|__|--|||				   |
 | ZX Spectrum					   |
 |						   |
-| ================================================ |
-|/ _   _   _   _   _   _   _   _   _   _	  \|
+| ________________________________________________ |
+|/________________________________________________\|
+|  _   _   _   _   _   _   _   _   _   _	   |
 | [1] [2] [3] [4] [5] [6] [7] [8] [9] [0]	   |
 |     _   _   _   _   _   _   _   _   _   _	   |
 |    [Q] [W] [E] [R] [T] [Y] [U] [I] [O] [P]	  /|

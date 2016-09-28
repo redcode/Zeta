@@ -1,8 +1,8 @@
 /* Z Kit C API - macros/language.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
+	      ___
+ _____	____ /	/______
+/_   /_/  -_)  __/  _ /
+ /____/\___/\__/ \__,_/
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -25,8 +25,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_COMPILER_C_HAS_ATTRIBUTE(INLINE)
 #	define Z_INLINE Z_COMPILER_C_ATTRIBUTE(INLINE)
-#elif Z_LANGUAGE_HAS_SPECIFIER(C, INLINE)
-#	define Z_INLINE inline
+
+#elif (Z_LANGUAGE_HAS_SPECIFIER(C, INLINE) || Z_LANGUAGE_HAS_SPECIFIER(CPP, INLINE))
+
+#	if Z_LANGUAGE_HAS_STORAGE_CLASS(C, STATIC)
+#		define Z_INLINE static inline
+#	else
+#		define Z_INLINE inline
+#	endif
+
 #endif
 
 #if Z_COMPILER_C_HAS_ATTRIBUTE(NO_RETURN)
@@ -45,7 +52,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_NULL_TERMINATED
 #endif
 
-#if Z_COMPILER_C_HAS_ATTRIBUTE(STRICT_SIZE_BEGIN)
+#if Z_COMPILER_C_HAS_ATTRIBUTE(STRICT_SIZE_BEGIN) && Z_COMPILER_C_HAS_ATTRIBUTE(STRICT_SIZE_END)
 #	define Z_STRICT_SIZE_BEGIN Z_COMPILER_C_ATTRIBUTE(STRICT_SIZE_BEGIN)
 #	define Z_STRICT_SIZE_END   Z_COMPILER_C_ATTRIBUTE(STRICT_SIZE_END)
 #else
