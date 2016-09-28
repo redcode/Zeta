@@ -9,21 +9,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_modules_compiler_GCC_H__
 #define __Z_inspection_modules_compiler_GCC_H__
 
+#include <Z/keys/compiler.h>
+#include <Z/macros/version.h>
+#include <Z/keys/order.h>
+
 /* MARK: - Identification */
 
-#ifndef Z_COMPILER
-#	include <Z/keys/compiler.h>
-#	include <Z/macros/version.h>
-
-#	define Z_COMPILER		  Z_COMPILER_GCC
-#	define Z_COMPILER_STRING	  Z_COMPILER_STRING_GCC
-#	define Z_COMPILER_VERSION	  Z_VERSION(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
-#	define Z_COMPILER_VERSION_STRING __VERSION__
-#endif
+#define Z_COMPILER		  Z_COMPILER_GCC
+#define Z_COMPILER_STRING	  Z_COMPILER_STRING_GCC
+#define Z_COMPILER_VERSION	  Z_VERSION(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
+#define Z_COMPILER_VERSION_STRING __VERSION__
 
 /* MARK: - Bit field order */
-
-#include <Z/keys/order.h>
 
 /* MARK: - OS */
 

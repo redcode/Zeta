@@ -15,8 +15,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	include <Z/inspection/compiler.h>
 
-#	if Z_COMPILER_HAS_VARIABLE(CPU_ARCHITECTURE)
-#		define Z_CPU_ARCHITECTURE Z_COMPILER_VARIABLE(CPU_ARCHITECTURE)
+#	if Z_COMPILER_HAS_KEY(CPU_ARCHITECTURE)
+#		define Z_CPU_ARCHITECTURE Z_COMPILER_KEY(CPU_ARCHITECTURE)
 #	else
 #		include <Z/inspection/CPU/detection.h>
 #	endif
@@ -129,10 +129,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'----------------------------------------------------------*/
 #	if Z_CPU_ARCHITECTURE_INTEGER_ENDIANNESS == Z_ENDIANNESS_MIXED
 
-#		if Z_COMPILER_HAS_VARIABLE(INTEGER_ENDIANNESS)
-#			define Z_CPU_INTEGER_ENDIANNESS(bits) Z_COMPILER_VARIABLE(INTEGER_ENDIANNESS)
+#		if Z_COMPILER_HAS_KEY(INTEGER_ENDIANNESS)
+#			define Z_CPU_INTEGER_ENDIANNESS(bits) Z_COMPILER_KEY(INTEGER_ENDIANNESS)
 #		else
-#			define Z_CPU_INTEGER_ENDIANNESS(bits) Z_COMPILER_VARIABLE(INTEGER_ENDIANNESS_##bits##BIT)
+#			define Z_CPU_INTEGER_ENDIANNESS(bits) Z_COMPILER_KEY(INTEGER_ENDIANNESS_##bits##BIT)
 #		endif
 
 	/*------------------------------------------------------------------.

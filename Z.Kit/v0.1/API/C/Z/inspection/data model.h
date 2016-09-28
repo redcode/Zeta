@@ -16,9 +16,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_DATA_MODEL
 
-#	if Z_COMPILER_HAS_VARIABLE(DATA_MODEL)
+#	if Z_COMPILER_HAS_KEY(DATA_MODEL)
 
-#		define Z_DATA_MODEL Z_COMPILER_VARIABLE(DATA_MODEL)
+#		define Z_DATA_MODEL Z_COMPILER_KEY(DATA_MODEL)
 
 #	elif	defined(__ILP32__) || /* Clang, GCC		    */ \
 		defined(__ILP32	 ) ||				       \

@@ -533,7 +533,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SUPER_H
 
-#elif	/*-------------------------------------.							\
+#elif	/*-------------------------------------.				\
 	| Dignus Systems/C, Dignus Systems/C++ |				\
 	'-------------------------------------*/				\
 	defined(__SYSC_ZARCH__) ||						\

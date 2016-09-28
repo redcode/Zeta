@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_hardware_CPU_architecture_i4004_H__
 #define __Z_hardware_CPU_architecture_i4004_H__
 
-#include <Z/keys/endianness.h>
+#include <Z/types/base.h>
 
 /* MARK: - Addresses */
 
@@ -23,27 +23,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Information for emulation */
 
 
+/* MARK: - State storage type */
+
+typedef struct {
+	zuint16	stack[4];
+	zuint8  pc;
+	zuint8	p[8];
+	zuint8	a;
+	zuint8	c;
+} Zi4004State;
+
+/* MARK: - State structure macros */
+
 #endif /* __Z_hardware_CPU_architecture_i4004_H__ */
-
-#ifndef Z_INSPECTING_CPU_ARCHITECTURE
-
-#	ifndef __Z_hardware_CPU_architecture_i4004_H__NO_INSPECTION
-#	define __Z_hardware_CPU_architecture_i4004_H__NO_INSPECTION
-
-#	include <Z/types/base.h>
-
-	/* MARK: - State storage type */
-
-	typedef struct {
-		zuint16	stack[4];
-		zuint8  pc;
-		zuint8	p[8];
-		zuint8	a;
-		zuint8	c;
-	} Zi4004State;
-
-	/* MARK: - State structure macros */
-
-#	endif /* __Z_hardware_CPU_architecture_i4004_H__NO_INSPECTION */
-
-#endif

@@ -16,8 +16,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	include <Z/inspection/compiler.h>
 
-#	if Z_COMPILER_HAS_VARIABLE(OS)
-#		define Z_OS Z_COMPILER_VARIABLE(OS)
+#	if Z_COMPILER_HAS_KEY(OS)
+#		define Z_OS Z_COMPILER_KEY(OS)
 #	else
 #		include <Z/inspection/OS/detection.h>
 #	endif

@@ -17,9 +17,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_BITS_ENDIANNESS 8
 #define Z_KEY_LAST_ENDIANNESS Z_ENDIANNESS_MIXED
 
-#define Z_ENDIANNESS_STRING_MIXED  "Mixed Endian"
-#define Z_ENDIANNESS_STRING_LITTLE "Little Endian"
 #define Z_ENDIANNESS_STRING_BIG	   "Big Endian"
+#define Z_ENDIANNESS_STRING_LITTLE "Little Endian"
 #define Z_ENDIANNESS_STRING_PDP	   "PDP Endian"
+#define Z_ENDIANNESS_STRING_MIXED  "Mixed Endian"
 
 #endif /* __Z_keys_endianness_H__ */
