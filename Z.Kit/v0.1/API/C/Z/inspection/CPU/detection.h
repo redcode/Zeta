@@ -144,7 +144,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'--------------------------------------------------------------*/	\
 	defined(_M_ARM64)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_A_ARCH_64
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH64
 
 #elif	/*-------------------.							\
 	| ARM C/C++ Compiler |							\
@@ -191,7 +191,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------*/								\
 	defined(_M_THUMB)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_A_ARCH_32
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH32
 
 #elif	/*----------.								\
 	| DEC C (?) |								\
@@ -420,7 +420,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-----------------------------*/					\
 	defined(_ARCH_PPC64)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWER_PC_64BIT
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_64BIT
 
 #elif	/*-----------.								\
 	| Clang, GCC |								\
@@ -467,7 +467,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-----------*/								\
 	defined(_M_PPC)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWER_PC_32BIT
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_32BIT
 
 #elif	/*------.								\
 	| Clang |								\
@@ -524,14 +524,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'----*/									\
 	defined(__SH5__) && __SH5__ == 64
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SUPER_H_5
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SUPERH_5
 
 #elif	/*----.									\
 	| GCC |									\
 	'----*/									\
 	defined(__sh__)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SUPER_H
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SUPERH
 
 #elif	/*-------------------------------------.				\
 	| Dignus Systems/C, Dignus Systems/C++ |				\

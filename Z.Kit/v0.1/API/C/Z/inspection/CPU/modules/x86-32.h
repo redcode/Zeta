@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/completions/CPU/x86-32.h
+/* Z Kit C API - inspection/modules/CPU/x86-32.h
 	      ___
  _____	____ /	/______
 /_   /_/  -_)  __/  _ /

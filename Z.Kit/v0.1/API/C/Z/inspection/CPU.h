@@ -31,10 +31,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_6502
 #	include <Z/inspection/CPU/modules/6502.h>
 
-#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_A_ARCH_32
+#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_AARCH32
 #	include <Z/inspection/CPU/modules/AArch32.h>
 
-#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_A_ARCH_64
+#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_AARCH64
 #	include <Z/inspection/CPU/modules/AArch64.h>
 
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_ALPHA
@@ -82,10 +82,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_PA_RISC_2
 #	include <Z/inspection/CPU/modules/PA-RISC 2.0.h>
 
-#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_POWER_PC_32BIT
+#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_POWERPC_32BIT
 #	include <Z/inspection/CPU/modules/PowerPC 32-bit.h>
 
-#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_POWER_PC_64BIT
+#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_POWERPC_64BIT
 #	include <Z/inspection/CPU/modules/PowerPC 64-bit.h>
 
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_SPARC
@@ -94,10 +94,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_SPARC_V9
 #	include <Z/inspection/CPU/modules/SPARC V9.h>
 
-#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_SUPER_H
+#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_SUPERH
 #	include <Z/inspection/CPU/modules/SuperH.h>
 
-#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_SUPER_H_5
+#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_SUPERH_5
 #	include <Z/inspection/CPU/modules/SuperH 5.h>
 
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_16

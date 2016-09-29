@@ -59,7 +59,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__arm64	   ) || \
 	defined(__arm64__  )
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_A_ARCH_64
+#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH64
 
 #elif	defined(__arm__	 ) || \
 	defined(__arm	 ) || \
@@ -70,7 +70,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_M_ARMT	 ) || \
 	defined(_M_THUMB )
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_A_ARCH_32
+#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH32
 
 #elif	defined(__HEXAGON_ARCH__) \
 	defined(__QDSP6_ARCH__	) \
@@ -106,7 +106,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__ppc64__    ) || \
 	defined(_ARCH_PPC64  )
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWER_PC_64BIT
+#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_64BIT
 
 #elif	defined(__POWERPC__) || \
 	defined(__PPC__	   ) || \
@@ -114,7 +114,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__ppc__	   ) || \
 	defined(_ARCH_PPC  )
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWER_PC_32BIT
+#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_32BIT
 
 #elif	defined(__arch64__  ) || \
 	defined(__sparc_v9__) || \
