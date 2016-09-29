@@ -982,11 +982,11 @@ typedef Z4DType(INTPTR)				Z4DIntPtr;
 
 /* MARK: - Optimum maximum size types */
 
-#if Z_CPU_VARIABLE(MAXIMUM_COPY_BITS) >= 128 && defined(Z_UINT128)
+#if Z_CPU_BITS(TOP_INTEGER) >= 128 && defined(Z_UINT128)
 #	define Z_UINTTOP_BITS			128
-#elif Z_CPU_VARIABLE(MAXIMUM_COPY_BITS) >= 64 && defined(Z_UINT64)
+#elif Z_CPU_BITS(TOP_INTEGER) >= 64 && defined(Z_UINT64)
 #	define Z_UINTTOP_BITS			64
-#elif Z_CPU_VARIABLE(MAXIMUM_COPY_BITS) == 32
+#elif Z_CPU_BITS(TOP_INTEGER) == 32
 #	define Z_UINTTOP_BITS			32
 #else
 #	define Z_UINTTOP_BITS			16
@@ -1006,11 +1006,11 @@ typedef Z4DType(UINTTOP)			Z4DUIntTop;
 #define Z_UINTTOP_MINIMUM			Z_TYPE_MINIMUM	      (UINTTOP)
 #define Z_UINTTOP_MAXIMUM			Z_TYPE_MAXIMUM	      (UINTTOP)
 
-#if Z_CPU_VARIABLE(MAXIMUM_COPY_BITS) >= 128 && defined(Z_INT128)
+#if Z_CPU_BITS(TOP_INTEGER) >= 128 && defined(Z_INT128)
 #	define Z_INTTOP_BITS			128
-#elif Z_CPU_VARIABLE(MAXIMUM_COPY_BITS) >= 64 && defined(Z_INT64)
+#elif Z_CPU_BITS(TOP_INTEGER) >= 64 && defined(Z_INT64)
 #	define Z_INTTOP_BITS			64
-#elif Z_CPU_VARIABLE(MAXIMUM_COPY_BITS) == 32
+#elif Z_CPU_BITS(TOP_INTEGER) == 32
 #	define Z_INTTOP_BITS			32
 #else
 #	define Z_INTTOP_BITS			16

@@ -38,13 +38,13 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /* MARK: - Memory */
 
-#define Z_ZX_SPECTRUM_ROM_SIZE		      (1024 * 16)
-#define Z_ZX_SPECTRUM_16K_ISSUE_1_RAM_SIZE    (1024 * 16)
-#define Z_ZX_SPECTRUM_16K_ISSUE_1_MEMORY_SIZE (1024 * (16 + 16))
-#define Z_ZX_SPECTRUM_48K_ISSUE_2_RAM_SIZE    (1024 * 48)
-#define Z_ZX_SPECTRUM_48K_ISSUE_2_MEMORY_SIZE (1024 * (16 + 48))
-#define Z_ZX_SPECTRUM_48K_ISSUE_3_RAM_SIZE    (1024 * 48)
-#define Z_ZX_SPECTRUM_48K_ISSUE_3_MEMORY_SIZE (1024 * (16 + 48))
+#define Z_ZX_SPECTRUM_SIZE_ROM		      (1024 * 16)
+#define Z_ZX_SPECTRUM_16K_ISSUE_1_SIZE_RAM    (1024 * 16)
+#define Z_ZX_SPECTRUM_16K_ISSUE_1_SIZE_MEMORY (1024 * (16 + 16))
+#define Z_ZX_SPECTRUM_48K_ISSUE_2_SIZE_RAM    (1024 * 48)
+#define Z_ZX_SPECTRUM_48K_ISSUE_2_SIZE_MEMORY (1024 * (16 + 48))
+#define Z_ZX_SPECTRUM_48K_ISSUE_3_SIZE_RAM    (1024 * 48)
+#define Z_ZX_SPECTRUM_48K_ISSUE_3_SIZE_MEMORY (1024 * (16 + 48))
 
 /* MARK: - Screen
 				     ---

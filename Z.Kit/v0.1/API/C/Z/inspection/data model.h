@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_data_model_H__
 #define __Z_inspection_data_model_H__
 
-#include <Z/constants/base.h>
+#include <Z/keys/data model.h>
 #include <Z/keys/value.h>
 #include <Z/inspection/language.h>
 #include <Z/macros/pasting.h>

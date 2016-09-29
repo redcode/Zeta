@@ -36,9 +36,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef __Z_hardware_machine_model_ZX_Spectrum_Inves_Spectrum_Plus_H__
 #define __Z_hardware_machine_model_ZX_Spectrum_Inves_Spectrum_Plus_H__
 
-#define Z_INVES_SPECTRUM_PLUS_MEMORY_SIZE	    (1024 * 16 + 1024 * 48)
+#define Z_INVES_SPECTRUM_PLUS_SIZE_MEMORY	    (1024 * 16 + 1024 * 48)
 #define Z_INVES_SPECTRUM_PLUS_FIRMWARE_BASE_ADDRESS 0
-#define Z_INVES_SPECTRUM_PLUS_FIRMWARE_SIZE	    (1024 * 16)
+#define Z_INVES_SPECTRUM_PLUS_SIZE_FIRMWARE	    (1024 * 16)
 
 /* MARK: - Timmings */
 

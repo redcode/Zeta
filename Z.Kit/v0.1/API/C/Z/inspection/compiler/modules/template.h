@@ -25,7 +25,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Endianness */
 
-/*#define Z_COMPIER_INTEGER_ENDIANNESS*/
+/*#define Z_COMPIER_INTEGER_ENDIANNESS_ALL*/
 /*#define Z_COMPIER_INTEGER_ENDIANNESS_8BIT*/
 /*#define Z_COMPIER_INTEGER_ENDIANNESS_16BIT*/
 /*#define Z_COMPIER_INTEGER_ENDIANNESS_32BIT*/
@@ -38,7 +38,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Bit field order */
 
-/*#define Z_COMPILER_BIT_FIELD_ORDER*/
+/*#define Z_COMPILER_BIT_FIELD_ORDER_ALL*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_8BIT*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_16BIT*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_32BIT*/

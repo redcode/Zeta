@@ -9,6 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_compiler_H__
 #define __Z_inspection_compiler_H__
 
+#include <Z/constants/base.h>
 #include <Z/keys/compiler.h>
 
 #if defined(__clang__)

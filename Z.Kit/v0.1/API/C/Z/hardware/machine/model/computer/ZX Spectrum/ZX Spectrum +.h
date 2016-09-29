@@ -38,9 +38,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /* MARK: - Memory */
 
-#define Z_ZX_SPECTRUM_PLUS_RAM_SIZE    (1024 * 48)
-#define Z_ZX_SPECTRUM_PLUS_ROM_SIZE    Z_ZX_SPECTRUM_ROM_SIZE
-#define Z_ZX_SPECTRUM_PLUS_MEMORY_SIZE (1024 * (16 + 48))
+#define Z_ZX_SPECTRUM_PLUS_SIZE_RAM    (1024 * 48)
+#define Z_ZX_SPECTRUM_PLUS_SIZE_ROM    Z_ZX_SPECTRUM_SIZE_ROM
+#define Z_ZX_SPECTRUM_PLUS_SIZE_MEMORY (1024 * (16 + 48))
 
 /* MARK: - Screen */
 

@@ -63,9 +63,9 @@ C000 |--------+--------------------------------------------------------------.
      |        |        |        |        |        | screen |        | screen |
 FFFF '----------------------------------------------------------------------*/
 
-#define Z_ZX_SPECTRUM_PLUS_128K_ROM_SIZE    (1024 *  32)
-#define Z_ZX_SPECTRUM_PLUS_128K_RAM_SIZE    (1024 * 128)
-#define Z_ZX_SPECTRUM_PLUS_128K_MEMORY_SIZE (1024 * (32 + 128))
+#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_ROM    (1024 *  32)
+#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_RAM    (1024 * 128)
+#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_MEMORY (1024 * (32 + 128))
 
 /* MARK: - I/O Ports */
 

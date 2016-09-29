@@ -13,174 +13,293 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_CPUArchitecture( left, right) left##X8664##right
 #define Z_INSERT_cpu_architecture(left, right) left##x86_64##right
 
-#define Z_CPU_ARCHITECTURE_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
-#define Z_CPU_ARCHITECTURE_INTEGER_FORMAT     Z_INTEGER_FORMAT_2S_COMPLEMENT
+#define Z_CPU_INTEGER_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
+#define Z_CPU_INTEGER_FORMAT_ALL     Z_INTEGER_FORMAT_2S_COMPLEMENT
 
-#define Z_CPU_MINIMUM_LOAD_BITS  8
-#define Z_CPU_MINIMUM_STORE_BITS 8
-#define Z_CPU_MINIMUM_COPY_BITS  8
-#define Z_CPU_MAXIMUM_LOAD_BITS  64
-#define Z_CPU_MAXIMUM_STORE_BITS 64
-#define Z_CPU_MAXIMUM_COPY_BITS  64
-#define Z_CPU_ADDRESSING_BITS    64
+#define Z_CPU_HAS_MMU TRUE
+#define Z_CPU_HAS_FPU TRUE
 
-#define Z_CPU_ARCHITECTURE_HAS_MMU TRUE
-#define Z_CPU_ARCHITECTURE_HAS_FPU TRUE
+#define Z_CPU_BITS_TOP_INTEGER 64
+#define Z_CPU_BITS_ADDRESSING  64
 
-#ifndef Z_CPU_HAS_ISA_3D_NOW
+
+/*#if	defined(__3dNOW__)
+
+#	define Z_CPU_HAS_ISA_3D_NOW TRUE
+#else
 #	define Z_CPU_HAS_ISA_3D_NOW FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_3D_NOW_PLUS
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_3D_NOW_PLUS TRUE
+#else
 #	define Z_CPU_HAS_ISA_3D_NOW_PLUS FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_8086_8088
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_8086_8088 TRUE
+#else
 #	define Z_CPU_HAS_ISA_8086_8088 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_8087
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_8087 TRUE
+#else
 #	define Z_CPU_HAS_ISA_8087 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_80186_80188
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_80186_80188 TRUE
+#else
 #	define Z_CPU_HAS_ISA_80186_80188 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_80286
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_80286 TRUE
+#else
 #	define Z_CPU_HAS_ISA_80286 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_80287
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_80287 TRUE
+#else
 #	define Z_CPU_HAS_ISA_80287 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_80386
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_80386 TRUE
+#else
 #	define Z_CPU_HAS_ISA_80386 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_80387
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_80387 TRUE
+#else
 #	define Z_CPU_HAS_ISA_80387 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_80486
+#if	defined(__i486	) || \
+	defined(__i486__)
+
+#	define Z_CPU_HAS_ISA_80486 TRUE
+#else
 #	define Z_CPU_HAS_ISA_80486 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_AES
+#if	defined(__AES__)
+
+#	define Z_CPU_HAS_ISA_AES TRUE
+#else
 #	define Z_CPU_HAS_ISA_AES FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_AMD
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_AMD TRUE
+#else
 #	define Z_CPU_HAS_ISA_AMD FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_AMD_V
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_AMD_V TRUE
+#else
 #	define Z_CPU_HAS_ISA_AMD_V FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_AVX
+#if	defined(__AVX__)
+
+#	define Z_CPU_HAS_ISA_AVX TRUE
+#else
 #	define Z_CPU_HAS_ISA_AVX FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_CLMUL
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_CLMUL TRUE
+#else
 #	define Z_CPU_HAS_ISA_CLMUL FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_CYRIX
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_CYRIX TRUE
+#else
 #	define Z_CPU_HAS_ISA_CYRIX FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_EMMI
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_EMMI TRUE
+#else
 #	define Z_CPU_HAS_ISA_EMMI FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_EMMX
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_EMMX TRUE
+#else
 #	define Z_CPU_HAS_ISA_EMMX FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_FMA3
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_FMA3 TRUE
+#else
 #	define Z_CPU_HAS_ISA_FMA3 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_FMA4
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_FMA4 TRUE
+#else
 #	define Z_CPU_HAS_ISA_FMA4 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_GEODE_GX
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_GEODE_GX TRUE
+#else
 #	define Z_CPU_HAS_ISA_GEODE_GX FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_MMX_PLUS
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_MMX_PLUS TRUE
+#else
 #	define Z_CPU_HAS_ISA_MMX_PLUS FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_PAD_LOCK
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_PAD_LOCK TRUE
+#else
 #	define Z_CPU_HAS_ISA_PAD_LOCK FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_PENTIUM
+#if	defined(__i586) || \
+	defined(__i586__) || \
+	defined(__pentium) || \
+	defined(__pentium__)
+
+#	define Z_CPU_HAS_ISA_PENTIUM TRUE
+#else
 #	define Z_CPU_HAS_ISA_PENTIUM FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_PENTIUM_MMX
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_PENTIUM_MMX TRUE
+#else
 #	define Z_CPU_HAS_ISA_PENTIUM_MMX FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_K6_2
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_K6_2 TRUE
+#else
 #	define Z_CPU_HAS_ISA_K6_2 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_PENTIUM_PRO
+#if	defined(__i686) || \
+	defined(__i686__) || \
+	defined(__pentiumpro) || \
+	defined(__pentiumpro__) || \
+
+#	define Z_CPU_HAS_ISA_PENTIUM_PRO TRUE
+#else
 #	define Z_CPU_HAS_ISA_PENTIUM_PRO FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_SSE
+#if	defined(__SSE__)
+
+#	define Z_CPU_HAS_ISA_SSE TRUE
+#else
 #	define Z_CPU_HAS_ISA_SSE FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_SSE2
+#if	defined(__SSE2__)
+
+#	define Z_CPU_HAS_ISA_SSE2 TRUE
+#else
 #	define Z_CPU_HAS_ISA_SSE2 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_SSE3
+#if	defined(__SSE3__)
+
+#	define Z_CPU_HAS_ISA_SSE3 TRUE
+#else
 #	define Z_CPU_HAS_ISA_SSE3 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_SSSE3
+#if	defined(__SSSE3__)
+
+#	define Z_CPU_HAS_ISA_SSSE3 TRUE
+#else
 #	define Z_CPU_HAS_ISA_SSSE3 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_SSE4_1
+#if	defined(__SSE4_1__)
+
+#	define Z_CPU_HAS_ISA_SSE4_1 TRUE
+#else
 #	define Z_CPU_HAS_ISA_SSE4_1 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_SSE4_2
+#if	defined(__SSE4_2__)
+
+#	define Z_CPU_HAS_ISA_SSE4_2 TRUE
+#else
 #	define Z_CPU_HAS_ISA_SSE4_2 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_SSE4A
+#if	defined(__SSE4A__)
+
+#	define Z_CPU_HAS_ISA_SSE4A TRUE
+#else
 #	define Z_CPU_HAS_ISA_SSE4A FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_SSE5
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_SSE5 TRUE
+#else
 #	define Z_CPU_HAS_ISA_SSE5 FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_SSM
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_SSM TRUE
+#else
 #	define Z_CPU_HAS_ISA_SSM FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_SVM
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_SVM TRUE
+#else
 #	define Z_CPU_HAS_ISA_SVM FALSE
 #endif
 
-#ifndef Z_CPU_HAS_ISA_VT_X
+#if	defined()
+
+#	define Z_CPU_HAS_ISA_VT_X TRUE
+#else
 #	define Z_CPU_HAS_ISA_VT_X FALSE
 #endif
 
 #ifndef Z_CPU_HAS_ISA_X86_64
+#	define Z_CPU_HAS_ISA_X86_64 TRUE
+#else
 #	define Z_CPU_HAS_ISA_X86_64 FALSE
-#endif
+#endif*/
 
 #endif /* __Z_inspection_CPU_modules_x86_64_H__ */

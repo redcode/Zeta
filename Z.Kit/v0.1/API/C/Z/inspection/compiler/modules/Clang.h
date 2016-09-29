@@ -9,10 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_compiler_modules_Clang_H__
 #define __Z_inspection_compiler_modules_Clang_H__
 
-#include <Z/constants/base.h>
 #include <Z/keys/endianness.h>
-#include <Z/keys/order.h>
-#include <Z/keys/data model.h>
 
 /* MARK: - Identification */
 
@@ -151,13 +148,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifdef __BYTE_ORDER__
 
 #	if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-#		define Z_COMPILER_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
+#		define Z_COMPILER_INTEGER_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
 
 #	elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
-#		define Z_COMPILER_INTEGER_ENDIANNESS Z_ENDIANNESS_BIG
+#		define Z_COMPILER_INTEGER_ENDIANNESS_ALL Z_ENDIANNESS_BIG
 
 #	elif __BYTE_ORDER__ == __ORDER_PDP_ENDIAN__
-#		define Z_COMPILER_INTEGER_ENDIANNESS Z_ENDIANNESS_PDP
+#		define Z_COMPILER_INTEGER_ENDIANNESS_ALL Z_ENDIANNESS_PDP
 #	endif
 
 #elif	defined(__AARCH64EL__	 ) || \
@@ -169,7 +166,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_LITTLE_ENDIAN	 ) || \
 	defined(_MIPSEL		 )
 
-#	define Z_COMPILER_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
+#	define Z_COMPILER_INTEGER_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
 
 #elif	defined(__AARCH_BIG_ENDIAN) || \
 	defined(__AARCH64EB__	  ) || \
@@ -180,7 +177,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_BIG_ENDIAN	  ) || \
 	defined(_MIPSEB		  )
 
-#	define Z_COMPILER_INTEGER_ENDIANNESS Z_ENDIANNESS_BIG
+#	define Z_COMPILER_INTEGER_ENDIANNESS_ALL Z_ENDIANNESS_BIG
 
 #endif
 
@@ -281,12 +278,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Bit field order */
 
-#ifdef Z_COMPILER_INTEGER_ENDIANNESS
+#ifdef Z_COMPILER_INTEGER_ENDIANNESS_ALL
 
-#	if Z_COMPILER_INTEGER_ENDIANNESS == Z_ENDIANNESS_LITTLE
-#		define Z_COMPILER_BIT_FIELD_ORDER Z_ORDER_REVERSED
+#	if Z_COMPILER_INTEGER_ENDIANNESS_ALL == Z_ENDIANNESS_LITTLE
+#		define Z_COMPILER_BIT_FIELD_ORDER_ALL Z_ORDER_REVERSED
 #	else
-#		define Z_COMPILER_BIT_FIELD_ORDER Z_ORDER_NORMAL
+#		define Z_COMPILER_BIT_FIELD_ORDER_ALL Z_ORDER_NORMAL
 #	endif
 
 #endif
