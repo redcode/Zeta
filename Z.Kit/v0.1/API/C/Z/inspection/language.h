@@ -10,8 +10,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_inspection_language_H__
 
 #include <Z/keys/language.h>
-#include <Z/inspection/C.h>
 #include <Z/inspection/compiler.h>
+#include <Z/inspection/C.h>
 
 #if defined(__cplusplus) && (defined(__OBJC__) || defined(__OBJC2__))
 
