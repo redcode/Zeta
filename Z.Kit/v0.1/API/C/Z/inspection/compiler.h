@@ -298,7 +298,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_COMPILER_HAS_MACRO(VAL_FINALIZE  ) && \
 	Z_COMPILER_HAS_MACRO(VAL_READ	   )
 
-#	define Z_COMPILER_HAS_VAL
+#	define Z_COMPILER_HAS_VAL TRUE
+#else
+#	define Z_COMPILER_HAS_VAL FALSE
 #endif
 
 #endif /* __Z_inspection_compiler_H__ */

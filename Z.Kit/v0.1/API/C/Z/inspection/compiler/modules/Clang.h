@@ -9,8 +9,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_compiler_modules_Clang_H__
 #define __Z_inspection_compiler_modules_Clang_H__
 
-#include <Z/keys/endianness.h>
-
 /* MARK: - Identification */
 
 #ifndef Z_COMPILER
@@ -136,25 +134,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__zarch__)
 	/*----------------------------------------------------------.
 	| __s390__ is omitted in order to avoid conflicts with a    |
-	| hypothetical future support for the ESA/370 architecture. |
+	| hypothetical future support for the ESA/390 architecture. |
 	'----------------------------------------------------------*/
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_Z_ARCHITECTURE
 
 #endif
 
-/* MARK: - Endianness */
+/* MARK: - Endianness and bit field order */
 
 #ifdef __BYTE_ORDER__
 
 #	if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
 #		define Z_COMPILER_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
+#		define Z_COMPILER_BIT_FIELD_ORDER    Z_ORDER_REVERSED
 
 #	elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
 #		define Z_COMPILER_INTEGER_ENDIANNESS Z_ENDIANNESS_BIG
+#		define Z_COMPILER_BIT_FIELD_ORDER    Z_ORDER_NORMAL
 
 #	elif __BYTE_ORDER__ == __ORDER_PDP_ENDIAN__
 #		define Z_COMPILER_INTEGER_ENDIANNESS Z_ENDIANNESS_PDP
+#		define Z_COMPILER_BIT_FIELD_ORDER    Z_ORDER_NORMAL
 #	endif
 
 #elif	defined(__AARCH64EL__	 ) || \
@@ -167,6 +168,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_MIPSEL		 )
 
 #	define Z_COMPILER_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
+#	define Z_COMPILER_BIT_FIELD_ORDER    Z_ORDER_REVERSED
 
 #elif	defined(__AARCH_BIG_ENDIAN) || \
 	defined(__AARCH64EB__	  ) || \
@@ -178,7 +180,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_MIPSEB		  )
 
 #	define Z_COMPILER_INTEGER_ENDIANNESS Z_ENDIANNESS_BIG
-
+#	define Z_COMPILER_BIT_FIELD_ORDER    Z_ORDER_NORMAL
 #endif
 
 /*#define Z_COMPIER_INTEGER_ENDIANNESS_8BIT*/
@@ -186,6 +188,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPIER_INTEGER_ENDIANNESS_32BIT*/
 /*#define Z_COMPIER_INTEGER_ENDIANNESS_64BIT*/
 /*#define Z_COMPIER_INTEGER_ENDIANNESS_128BIT*/
+
+/*#define Z_COMPILER_BIT_FIELD_ORDER_8BIT*/
+/*#define Z_COMPILER_BIT_FIELD_ORDER_16BIT*/
+/*#define Z_COMPILER_BIT_FIELD_ORDER_32BIT*/
+/*#define Z_COMPILER_BIT_FIELD_ORDER_64BIT*/
+/*#define Z_COMPILER_BIT_FIELD_ORDER_128BIT*/
 
 /* MARK: - OS
 .--------------------------------------------------.
@@ -275,24 +283,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_OS Z_OS_SOLARIS
 
 #endif
-
-/* MARK: - Bit field order */
-
-#ifdef Z_COMPILER_INTEGER_ENDIANNESS
-
-#	if Z_COMPILER_INTEGER_ENDIANNESS == Z_ENDIANNESS_LITTLE
-#		define Z_COMPILER_BIT_FIELD_ORDER Z_ORDER_REVERSED
-#	else
-#		define Z_COMPILER_BIT_FIELD_ORDER Z_ORDER_NORMAL
-#	endif
-
-#endif
-
-/*#define Z_COMPILER_BIT_FIELD_ORDER_8BIT*/
-/*#define Z_COMPILER_BIT_FIELD_ORDER_16BIT*/
-/*#define Z_COMPILER_BIT_FIELD_ORDER_32BIT*/
-/*#define Z_COMPILER_BIT_FIELD_ORDER_64BIT*/
-/*#define Z_COMPILER_BIT_FIELD_ORDER_128BIT*/
 
 /* MARK: - Data model */
 

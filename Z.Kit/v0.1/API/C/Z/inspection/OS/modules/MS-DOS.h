@@ -11,7 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/OS.h>
 
-#define Z_OS	    Z_OS_MS_DOS
 #define Z_OS_STRING Z_OS_STRING_MS_DOS
 
 #define Z_OS_PATH_SLASH_CHARACTER '\\'

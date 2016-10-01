@@ -33,43 +33,36 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/formats/data model/ILP32.h>
 
 #	define Z_INSERT_DATA_MODEL(left, right) left##ILP32##right
-#	define Z_INSERT_data_model(left, right) left##ilp32##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_ILP64
 
 #	include <Z/formats/data model/ILP64.h>
 
 #	define Z_INSERT_DATA_MODEL(left, right) left##ILP64##right
-#	define Z_INSERT_data_model(left, right) left##ilp64##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LLP64
 
 #	include <Z/formats/data model/LLP64.h>
 
 #	define Z_INSERT_DATA_MODEL(left, right) left##LLP64##right
-#	define Z_INSERT_data_model(left, right) left##llp64##right
-
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LP32
 
 #	include <Z/formats/data model/LP32.h>
 
 #	define Z_INSERT_DATA_MODEL(left, right) left##LP32##right
-#	define Z_INSERT_data_model(left, right) left##lp32##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LP64
 
 #	include <Z/formats/data model/LP64.h>
 
 #	define Z_INSERT_DATA_MODEL(left, right) left##LP64##right
-#	define Z_INSERT_data_model(left, right) left##lp64##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_SILP64
 
 #	include <Z/formats/data model/SILP64.h>
 
 #	define Z_PASTE_DATA_MODEL(left, right) left##SILP64##right
-#	define Z_PASTE_data_model(left, right) left##silp64##right
 
 #endif
 

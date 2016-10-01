@@ -12,7 +12,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/constants/base.h>
 #include <Z/keys/OS.h>
 
-#define Z_OS	    Z_OS_MAC_OS_X
 #define Z_OS_STRING Z_OS_STRING_MAC_OS_X
 
 #define Z_OS_HAS_POSIX_THREADING TRUE
