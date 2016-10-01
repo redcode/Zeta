@@ -16,9 +16,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_DATA_MODEL
 
-#	if Z_COMPILER_HAS_KEY(DATA_MODEL)
+#	if Z_COMPILER_HAS(DATA_MODEL)
 
-#		define Z_DATA_MODEL Z_COMPILER_KEY(DATA_MODEL)
+#		define Z_DATA_MODEL Z_COMPILER_DATA_MODEL
 
 #	elif	defined(__ILP32__) || /* Clang, GCC		    */ \
 		defined(__ILP32	 ) ||				       \
@@ -305,7 +305,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #else
 
-#	define Z_DATA_MODEL_TYPE_INT8	    Z_COMPILER_TYPE   (INT8)
+#	define Z_DATA_MODEL_TYPE_INT8	    Z_COMPILER_TYPE(INT8)
 #	define Z_DATA_MODEL_VALUE_TYPE_INT8 Z_VALUE_TYPE_INT8
 
 #	if Z_COMPILER_HAS_LITERAL(INT8)

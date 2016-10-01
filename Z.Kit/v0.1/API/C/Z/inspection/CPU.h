@@ -12,14 +12,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/keys/hardware/CPU/architecture.h>
 #include <Z/keys/endianness.h>
 #include <Z/keys/value.h>
+#include <Z/inspection/language.h>
 
-#ifdef Z_CPU_ARCHITECTURE
-#	include <Z/constants/base.h>
-#else
-#	include <Z/inspection/compiler.h>
-
-#	if Z_COMPILER_HAS_KEY(CPU_ARCHITECTURE)
-#		define Z_CPU_ARCHITECTURE Z_COMPILER_KEY(CPU_ARCHITECTURE)
+#ifndef Z_CPU_ARCHITECTURE
+#	if Z_COMPILER_HAS(CPU_ARCHITECTURE)
+#		define Z_CPU_ARCHITECTURE Z_COMPILER_CPU_ARCHITECTURE
 #	else
 #		include <Z/inspection/CPU/detection.h>
 #	endif
@@ -123,40 +120,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/CPU/completion.h>
 
 #define Z_CPU_ARCHITECTURE_STRING Z_INSERT_CPU_ARCHITECTURE(Z_CPU_ARCHITECTURE_STRING_,)
-#define Z_CPU_HAS(    WHAT )	  Z_CPU_HAS_##WHAT
-#define Z_CPU_HAS_ISA(WHICH)	  Z_CPU_HAS_ISA_##WHICH
-#define Z_CPU_BITS(   WHAT )	  Z_CPU_BITS_##WHAT
 
-#ifdef Z_CPU_INTEGER_ENDIANNESS_ALL
+#define Z_CPU_HAS(	  WHAT ) Z_CPU_HAS_##WHAT
+#define Z_CPU_HAS_ISA(	  WHICH) Z_CPU_HAS_ISA_##WHICH
+#define Z_CPU_HAS_INTEGER(bits ) Z_CPU_HAS_INTEGER_##bits##BIT
+#define Z_CPU_BITS(	  WHAT ) Z_CPU_BITS_##WHAT
 
-	/*--------------------------------------------------------------.
-	| On architectures with mixed endianness, the target endianness |
-	| must be specified by the compiler inspection system.		|
-	'--------------------------------------------------------------*/
-#	if Z_CPU_INTEGER_ENDIANNESS_ALL == Z_ENDIANNESS_MIXED
+#define Z_CPU_ENDIANNESS(TYPE, bits) Z_CPU_##TYPE##_ENDIANNESS_##bits##BIT
+#define Z_CPU_FORMAT(	 TYPE, bits) Z_CPU_##TYPE##_FORMAT_##bits##BIT
 
-#		if Z_COMPILER_HAS_KEY(INTEGER_ENDIANNESS_ALL)
-#			define Z_CPU_INTEGER_ENDIANNESS(bits) Z_COMPILER_KEY(INTEGER_ENDIANNESS_ALL)
-#		else
-#			define Z_CPU_INTEGER_ENDIANNESS(bits) Z_COMPILER_KEY(INTEGER_ENDIANNESS_##bits##BIT)
-#		endif
-
-	/*--------------------------------------------------------------.
-	| Architectures with the same endianness for every integer size	|
-	| must only define the Z_CPU_INTEGER_ENDIANNESS_ALL macro.	|
-	'--------------------------------------------------------------*/
-#	else
-#		define Z_CPU_INTEGER_ENDIANNESS(bits) Z_CPU_INTEGER_ENDIANNESS_ALL
-#	endif
-
-/*-----------------------------------------------------------------.
-| Architectures with different endianness depending on the size of |
-| the integer must define the Z_CPU_INTEGER_ENDIANNESS_<bits>BIT   |
-| macro for each integer size supported.			   |
-'-----------------------------------------------------------------*/
-#else
-#	define Z_CPU_INTEGER_ENDIANNESS(bits) Z_CPU_INTEGER_ENDIANNESS_##bits##BIT
-#endif
 
 /*-------------------------------------------------------------.
 | Architectures with the same integer format for every integer |
