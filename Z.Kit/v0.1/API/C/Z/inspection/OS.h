@@ -16,7 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	include <Z/inspection/compiler.h>
 
-#	if Z_COMPILER_HAS(OS)
+#	ifdef Z_COMPILER_OS
 #		define Z_OS Z_COMPILER_OS
 #	else
 #		include <Z/inspection/OS/detection.h>

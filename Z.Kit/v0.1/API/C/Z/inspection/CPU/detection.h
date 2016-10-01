@@ -566,4 +566,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_ESA_370
 
+#endif
+
 /* inspection/CPU/detection.h EOF */

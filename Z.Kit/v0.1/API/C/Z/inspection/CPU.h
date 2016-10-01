@@ -15,11 +15,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/language.h>
 
 #ifndef Z_CPU_ARCHITECTURE
-#	if Z_COMPILER_HAS(CPU_ARCHITECTURE)
+
+#	ifdef Z_COMPILER_CPU_ARCHITECTURE
 #		define Z_CPU_ARCHITECTURE Z_COMPILER_CPU_ARCHITECTURE
 #	else
 #		include <Z/inspection/CPU/detection.h>
 #	endif
+
 #endif
 
 #if !defined(Z_CPU_ARCHITECTURE)
