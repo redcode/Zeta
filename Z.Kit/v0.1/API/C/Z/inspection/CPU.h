@@ -129,26 +129,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPU_ENDIANNESS(TYPE, bits) Z_CPU_##TYPE##_ENDIANNESS_##bits##BIT
 #define Z_CPU_FORMAT(	 TYPE, bits) Z_CPU_##TYPE##_FORMAT_##bits##BIT
 
-
-/*-------------------------------------------------------------.
-| Architectures with the same integer format for every integer |
-| size must only define the Z_CPU_INTEGER_FORMAT_ALL macro.    |
-'-------------------------------------------------------------*/
-#ifdef Z_CPU_INTEGER_FORMAT_ALL
-
-#	if Z_CPU_INTEGER_FORMAT_ALL == Z_INTEGER_FORMAT_2S_COMPLEMENT
-#		define Z_CPU_INTEGER_FORMAT(bits) Z_VALUE_FORMAT_##bits##BIT_2S_COMPLEMENT_INTEGER
-#	elif Z_CPU_INTEGER_FORMAT_ALL == Z_INTEGER_FORMAT_1S_COMPLEMENT
-#		define Z_CPU_INTEGER_FORMAT(bits) Z_VALUE_FORMAT_##bits##BIT_1S_COMPLEMENT_INTEGER
-#	endif
-
-/*----------------------------------------------------------------------.
-| Architectures with different integer formats depending on the size of |
-| of the integer must define the Z_CPU_INTEGER_FORMAT_<bits>BIT macro	|
-| for each integer size supported.					|
-'----------------------------------------------------------------------*/
-#else
-#	define Z_CPU_INTEGER_FORMAT(bits) Z_CPU_INTEGER_FORMAT_##bits##BIT
-#endif
-
 #endif /* __Z_inspection_CPU_H__ */
