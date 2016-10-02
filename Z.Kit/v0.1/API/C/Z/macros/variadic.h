@@ -1,8 +1,7 @@
 /* Z Kit C API - macros/variadic.h
-	      ___
- _____	____ /	/______
-/_   /_/  -_)  __/  _ /
- /____/\___/\__/ \__,_/
+ _____ 	_______________
+/_   /_/  -_/_   _/  _ |
+ /____/\___/ /__//___/_|
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Copyright © 2006 Laurent Deniau <laurent.deniau@cern.ch>.
 Released under the terms of the GNU Lesser General Public License v3. */
