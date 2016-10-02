@@ -224,9 +224,7 @@ namespace Zeta {
 
 #		endif
 
-#		if	defined(Z_UINT64)				&& \
-			Z_UINT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULLONG && \
-			Z_UINT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULONG
+#		if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
 
 			struct UInt64 : Natural {
 				enum {	bits = Z_UINT64_BITS,
@@ -244,9 +242,7 @@ namespace Zeta {
 
 #		endif
 
-#		if	defined(Z_UINT128)				 && \
-			Z_UINT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULLONG && \
-			Z_UINT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULONG
+#		if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
 
 			struct UInt128 : Natural {
 				enum {	bits = Z_UINT128_BITS,
@@ -336,9 +332,7 @@ namespace Zeta {
 
 #		endif
 
-#		if	defined(Z_INT64)			      && \
-			Z_INT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_LLONG && \
-			Z_INT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_LONG
+#		if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
 
 			struct Int64 : Integer {
 				enum {	bits = Z_INT64_BITS,
@@ -358,9 +352,7 @@ namespace Zeta {
 
 #		endif
 
-#		if	defined(Z_INT128)			       && \
-			Z_INT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_LLONG && \
-			Z_INT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_LONG
+#		if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
 
 			struct Int128 : Integer {
 				enum {	bits = Z_INT128_BITS,
@@ -783,17 +775,11 @@ namespace Zeta {
 			template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong> {};
 #		endif
 
-#		if	defined(Z_UINT64)				&& \
-			Z_UINT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULLONG && \
-			Z_UINT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULONG
-
+#		if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
 			template <> struct Type<zuint64> : Mixins::Type::Unqualified<Abstract::Type::UInt64> {};
 #		endif
 
-#		if	defined(Z_UINT128)				 && \
-			Z_UINT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULLONG && \
-			Z_UINT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_ULONG
-
+#		if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
 			template <> struct Type<zuint128> : Mixins::Type::Unqualified<Abstract::Type::UInt128> {};
 #		endif
 
@@ -806,17 +792,11 @@ namespace Zeta {
 			template <> struct Type<signed long long int> : Mixins::Type::Unqualified<Abstract::Type::LLong > {};
 #		endif
 
-#		if	defined(Z_INT64)			      && \
-			Z_INT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_LLONG && \
-			Z_INT64_BASE_VALUE_TYPE != Z_VALUE_TYPE_LONG
-
+#		if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
 			template <> struct Type<zint64> : Mixins::Type::Unqualified<Abstract::Type::Int64> {};
 #		endif
 
-#		if	defined(Z_INT128)			       && \
-			Z_INT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_LLONG && \
-			Z_INT128_BASE_VALUE_TYPE != Z_VALUE_TYPE_LONG
-
+#		if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
 			template <> struct Type<zint128> : Mixins::Type::Unqualified<Abstract::Type::Int128> {};
 #		endif
 
