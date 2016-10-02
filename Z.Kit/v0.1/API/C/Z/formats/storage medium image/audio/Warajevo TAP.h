@@ -1,5 +1,5 @@
 /* Z Kit C API - formats/storage medium image/audio/Warajevo TAP.h
- _____ 	_______________
+ _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_|
 Copyright © 1993-2006 Zeljko Juric.

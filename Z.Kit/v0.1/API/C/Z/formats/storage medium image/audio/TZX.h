@@ -1,5 +1,5 @@
 /* Z Kit C API - formats/storage medium image/audio/TZX.h
- _____ 	_______________
+ _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_|
 Copyright © Tomaz Kac.

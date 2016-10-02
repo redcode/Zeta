@@ -1,5 +1,5 @@
 /* Z Kit C++ API - types/base.hpp
- _____ 	_______________
+ _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_|
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.

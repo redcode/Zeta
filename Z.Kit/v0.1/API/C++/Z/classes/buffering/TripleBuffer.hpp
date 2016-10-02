@@ -1,5 +1,5 @@
 /* Z Kit C++ API - classes/buffering/TripleBuffer.hpp
- _____ 	_______________
+ _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_|
 Copyright © 2012 Remis.

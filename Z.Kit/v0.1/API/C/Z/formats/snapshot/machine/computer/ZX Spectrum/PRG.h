@@ -1,5 +1,5 @@
 /* Z Kit C API - formats/snapshot/machine/computer/ZX Spectrum/PRG.h
- _____ 	_______________
+ _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_|
 Copyright © Kevin Phair.
