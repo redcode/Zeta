@@ -21,7 +21,7 @@ template <class T> struct Zeta::Shared {
 		Size owner_count;
 		T*   data;
 
-		Z_INLINE_MEMBER Owned(T *object) : owner_count(1), data(data) {}
+		Z_INLINE_MEMBER Owned(T *data) : owner_count(1), data(data) {}
 		Z_INLINE_MEMBER ~Owned() {delete data;}
 	};
 
@@ -35,8 +35,8 @@ template <class T> struct Zeta::Shared {
 		{if ((owned = shared.owned)) owned->owner_count++;}
 
 
-	Z_INLINE_MEMBER Shared(T *object)
-		{owned = object ? new Owned(object) : NULL;}
+	Z_INLINE_MEMBER Shared(T *data)
+		{owned = data ? new Owned(data) : NULL;}
 
 
 	Z_INLINE_MEMBER ~Shared()
@@ -55,15 +55,15 @@ template <class T> struct Zeta::Shared {
 		}
 
 
-	Z_INLINE_MEMBER Shared &operator =(T *object)
+	Z_INLINE_MEMBER Shared &operator =(T *data)
 		{
 		if (owned)
 			{
-			if (owned->object == object) return *this;
+			if (owned->data == data) return *this;
 			if (!--owned->owner_count) delete owned;
 			}
 
-		owned = object ? new Owned(object) : NULL;
+		owned = data ? new Owned(data) : NULL;
 		return *this;
 		}
 
