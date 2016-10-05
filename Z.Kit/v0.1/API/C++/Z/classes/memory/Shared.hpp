@@ -1,7 +1,7 @@
 /* Z Kit C++ API - classes/memory/Shared.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_|
+ /____/\___/ /__//___/_| Kit
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Copyright © 2016 r-lyeh.
 Released under the terms of the GNU Lesser General Public License v3. */

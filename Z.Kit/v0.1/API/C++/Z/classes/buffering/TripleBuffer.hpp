@@ -1,7 +1,7 @@
 /* Z Kit C++ API - classes/buffering/TripleBuffer.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_|
+ /____/\___/ /__//___/_| Kit
 Copyright © 2012 Remis.
 Copyright © 2014-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */

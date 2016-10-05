@@ -1,7 +1,7 @@
 /* Z Kit C++ API - classes/base/Range.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_|
+ /____/\___/ /__//___/_| Kit
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -89,6 +89,13 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 #	endif
 
 
+	Z_INLINE_MEMBER Boolean collides(const Range &range) const
+		{
+		return	this->index < range.index + range.size &&
+			range.index < this->index + this->size;
+		}
+
+
 	Z_INLINE_MEMBER Boolean contains(const Range &range) const
 		{
 		return	range.index >= this->index &&
@@ -100,19 +107,12 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 		{return this->index >= this->index && this->index < this->index + this->size;}
 
 
-	Z_INLINE_MEMBER Boolean collides(const Range &range) const
-		{
-		return	this->index < range.index + range.size &&
-			range.index < this->index + this->size;
-		}
+	Z_INLINE_MEMBER T end() const
+		{return this->index + this->size;}
 
 
 	Z_INLINE_MEMBER Boolean is_zero() const
 		{return !this->index && !this->size;}
-
-
-	Z_INLINE_MEMBER T end() const
-		{return this->index + this->size;}
 
 };
 

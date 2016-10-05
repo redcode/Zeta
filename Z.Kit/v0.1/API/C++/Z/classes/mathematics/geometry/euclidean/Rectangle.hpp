@@ -1,7 +1,7 @@
 /* Z Kit C++ API - classes/mathematics/geometry/euclidean/Rectangle.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_|
+ /____/\___/ /__//___/_| Kit
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -175,6 +175,15 @@ template <class T> struct Zeta::Rectangle {
 	// MARK: - WIP
 
 
+	Z_INLINE_MEMBER Boolean collides(const Rectangle &rectangle) const
+		{
+		return	point.x		 < rectangle.point.x + rectangle.size.x &&
+			point.x + size.x > rectangle.point.x &&
+			point.y		 < rectangle.point.y + rectangle.size.y &&
+			point.y + size.y > rectangle.point.y;
+		}
+
+
 	Z_INLINE_MEMBER Boolean contains(const Rectangle &rectangle) const
 		{
 		return	rectangle.point.x		     >= point.x		 &&
@@ -189,15 +198,6 @@ template <class T> struct Zeta::Rectangle {
 		return	point	>= this->point			&&
 			point.x <= this->point.x + this->size.x &&
 			point.y <= this->point.y + this->size.y;
-		}
-
-
-	Z_INLINE_MEMBER Boolean collides(const Rectangle &rectangle) const
-		{
-		return	point.x		 < rectangle.point.x + rectangle.size.x &&
-			point.x + size.x > rectangle.point.x &&
-			point.y		 < rectangle.point.y + rectangle.size.y &&
-			point.y + size.y > rectangle.point.y;
 		}
 
 

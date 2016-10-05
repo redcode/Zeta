@@ -1,7 +1,7 @@
 /* Z Kit C API - types/base.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_|
+ /____/\___/ /__//___/_| Kit
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -1032,6 +1032,9 @@ typedef Z4DType(INTTOP)				Z4DIntTop;
 /* MARK: - Default types */
 
 typedef zuint8					zboolean;
+typedef Z2DUInt8				Z2DBoolean;
+typedef Z3DUInt8				Z3DBoolean;
+typedef Z4DUInt8				Z4DBoolean;
 #define Z_BOOLEAN_BASE_VALUE_TYPE		Z_UINT8_BASE_VALUE_TYPE
 #define Z_BOOLEAN_FIXED_VALUE_TYPE		Z_UINT8_FIXED_VALUE_TYPE
 #define Z_BOOLEAN_VALUE_TYPE			Z_VALUE_TYPE_BOOLEAN
@@ -1048,6 +1051,9 @@ typedef zuint8					zboolean;
 #endif
 
 typedef char					zcharacter;
+typedef Z2DType(CHARACTER)			Z2DCharacter;
+typedef Z3DType(CHARACTER)			Z3DCharacter;
+typedef Z4DType(CHARACTER)			Z4DCharacter;
 #define Z_CHARACTER				Z_TYPE		      (CHARACTER)
 #define Z_CHARACTER_BASE_VALUE_TYPE		Z_TYPE_BASE_VALUE_TYPE(CHARACTER)
 #define Z_CHARACTER_FIXED_VALUE_TYPE		Z_TYPE_VALUE_TYPE     (CHARACTER)
@@ -1802,9 +1808,15 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	Z3DIntTop* pointer_3d_inttop;
 	Z4DIntTop* pointer_4d_inttop;
 
-	zboolean* pointer_boolean;
+	zboolean*   pointer_boolean;
+	Z2DBoolean* pointer_2d_boolean;
+	Z3DBoolean* pointer_3d_boolean;
+	Z4DBoolean* pointer_4d_boolean;
 
-	zcharacter* pointer_character;
+	zcharacter*   pointer_character;
+	Z2DCharacter* pointer_2d_character;
+	Z3DCharacter* pointer_3d_character;
+	Z4DCharacter* pointer_4d_character;
 
 	znatural*      pointer_natural;
 	Z2DNatural*    pointer_2d_natural;

@@ -1,7 +1,7 @@
 /* Z Kit C API - functions/mathematics/geometry/euclidean/ZCircle.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_|
+ /____/\___/ /__//___/_| Kit
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -23,10 +23,6 @@ Z_INLINE zboolean z_circle_##type##_are_equal(ZCircle##Type a, ZCircle##Type b)	
 	{return a.radius == b.radius && z_2d_##type##_are_equal(a.point, b.point);}		\
 												\
 												\
-Z_INLINE zboolean z_circle_##type##_is_zero(ZCircle##Type object)				\
-	{return object.radius == _(0.0) && z_2d_##type##_is_zero(object.point);}		\
-												\
-												\
 Z_INLINE ZRectangle##Type z_circle_##type##_inner_rectangle(ZCircle##Type object)		\
 	{											\
 	z##type half_size = object.radius / _(Z_SQUARE_ROOT_2);					\
@@ -35,6 +31,10 @@ Z_INLINE ZRectangle##Type z_circle_##type##_inner_rectangle(ZCircle##Type object
 	return z_rectangle_##type								\
 		(object.point.x - half_size, object.point.y - half_size, size, size);		\
 	}											\
+												\
+												\
+Z_INLINE zboolean z_circle_##type##_is_zero(ZCircle##Type object)				\
+	{return object.radius == _(0.0) && z_2d_##type##_is_zero(object.point);}		\
 												\
 												\
 Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object)		\
@@ -47,8 +47,8 @@ Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object
 
 
 #define z_circle_type_are_equal(      TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _are_equal	    )
-#define z_circle_type_is_zero(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _is_zero	    )
 #define z_circle_type_inner_rectangle(TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _inner_rectangle)
+#define z_circle_type_is_zero(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _is_zero	    )
 #define z_circle_type_outer_rectangle(TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _outer_rectangle)
 
 
@@ -97,8 +97,8 @@ Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object
 
 #ifdef Z_REAL
 #	define z_circle_are_equal	z_circle_type_are_equal	     (REAL)
-#	define z_circle_is_zero		z_circle_type_is_zero	     (REAL)
 #	define z_circle_inner_rectangle z_circle_type_inner_rectangle(REAL)
+#	define z_circle_is_zero		z_circle_type_is_zero	     (REAL)
 #	define z_circle_outer_rectangle z_circle_type_outer_rectangle(REAL)
 #endif
 

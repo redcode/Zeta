@@ -1,7 +1,7 @@
 /* Z Kit C API - functions/mathematics/geometry/euclidean/ZSphere.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_|
+ /____/\___/ /__//___/_| Kit
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -23,10 +23,6 @@ Z_INLINE zboolean z_sphere_##type##_are_equal(ZSphere##Type a, ZSphere##Type b)	
 	{return a.radius == b.radius && z_3d_##type##_are_equal(a.point, b.point);}	\
 											\
 											\
-Z_INLINE zboolean z_sphere_##type##_is_zero(ZSphere##Type object)			\
-	{return object.radius == _(0.0) && z_3d_##type##_is_zero(object.point);}	\
-											\
-											\
 Z_INLINE ZBox##Type z_sphere_##type##_inner_box(ZSphere##Type object)			\
 	{										\
 	z##type half_size = object.radius / _(Z_SQUARE_ROOT_3);				\
@@ -38,6 +34,10 @@ Z_INLINE ZBox##Type z_sphere_##type##_inner_box(ZSphere##Type object)			\
 		 object.point.z - half_size,						\
 		 size, size, size);							\
 	}										\
+											\
+											\
+Z_INLINE zboolean z_sphere_##type##_is_zero(ZSphere##Type object)			\
+	{return object.radius == _(0.0) && z_3d_##type##_is_zero(object.point);}	\
 											\
 											\
 Z_INLINE ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
@@ -53,8 +53,8 @@ Z_INLINE ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 
 
 #define z_sphere_type_are_equal(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _are_equal)
-#define z_sphere_type_is_zero(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _is_zero	)
 #define z_sphere_type_inner_box(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _inner_box)
+#define z_sphere_type_is_zero(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _is_zero	)
 #define z_sphere_type_outer_box(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _outer_box)
 
 
@@ -103,8 +103,8 @@ Z_INLINE ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 
 #ifdef Z_REAL
 #	define z_sphere_are_equal z_sphere_type_are_equal(REAL)
-#	define z_sphere_is_zero   z_sphere_type_is_zero  (REAL)
 #	define z_sphere_inner_box z_sphere_type_inner_box(REAL)
+#	define z_sphere_is_zero   z_sphere_type_is_zero  (REAL)
 #	define z_sphere_outer_box z_sphere_type_outer_box(REAL)
 #endif
 
