@@ -368,7 +368,6 @@ template <class T> struct Zeta::Rectangle {
 		}
 
 
-
 	Z_INLINE_MEMBER Rectangle fit_in_top_center(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
@@ -378,7 +377,6 @@ template <class T> struct Zeta::Rectangle {
 			 this->point.y +  this->size.y - fitting_size.y,
 			 fitting_size);
 		}
-
 
 
 	Z_INLINE_MEMBER Rectangle fit_in_top_left(const Value2D<T> &size) const
@@ -564,7 +562,6 @@ template <class T> struct Zeta::Rectangle {
 
 	Z_INLINE_MEMBER Value2D<T> unit_point_to_absolute(const Value2D<T> &point) const
 		{return point * this->size + this->point;}
-
 
 
 	/*inline Circle<T> inner_circle() const

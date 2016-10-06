@@ -24,5 +24,42 @@ template <class T> class Zeta::InitializerList {
 	Z_INLINE_MEMBER const T *end  () const {return _begin + _size;} 
 };
 
+template<class _Ep>
+class _LIBCPP_TYPE_VIS_ONLY initializer_list
+{
+    const _Ep* __begin_;
+    size_t    __size_;
+
+    _LIBCPP_ALWAYS_INLINE
+    _LIBCPP_CONSTEXPR_AFTER_CXX11
+    initializer_list(const _Ep* __b, size_t __s) _NOEXCEPT
+        : __begin_(__b),
+          __size_(__s)
+        {}
+public:
+    typedef _Ep        value_type;
+    typedef const _Ep& reference;
+    typedef const _Ep& const_reference;
+    typedef size_t    size_type;
+
+    typedef const _Ep* iterator;
+    typedef const _Ep* const_iterator;
+
+    _LIBCPP_ALWAYS_INLINE
+    _LIBCPP_CONSTEXPR_AFTER_CXX11
+    initializer_list() _NOEXCEPT : __begin_(nullptr), __size_(0) {}
+
+    _LIBCPP_ALWAYS_INLINE
+    _LIBCPP_CONSTEXPR_AFTER_CXX11
+    size_t    size()  const _NOEXCEPT {return __size_;}
+    
+    _LIBCPP_ALWAYS_INLINE
+    _LIBCPP_CONSTEXPR_AFTER_CXX11
+    const _Ep* begin() const _NOEXCEPT {return __begin_;}
+
+    _LIBCPP_ALWAYS_INLINE
+    _LIBCPP_CONSTEXPR_AFTER_CXX11
+    const _Ep* end()   const _NOEXCEPT {return __begin_ + __size_;}
+};
 
 #endif // __Z_classes_base_InitializerList_HPP__
