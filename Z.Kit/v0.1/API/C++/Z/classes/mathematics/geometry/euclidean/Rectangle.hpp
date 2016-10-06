@@ -405,8 +405,80 @@ template <class T> struct Zeta::Rectangle {
 		return Rectangle(this->point + (this->size - fitting_size) / T(2), fitting_size);
 		}
 
-		/*
-	inline Circle<T> inner_circle() const
+
+	Z_INLINE_MEMBER Rectangle grow_from_bottom_center(const Value2D<T> &delta) const
+		{return Rectangle(point.x - delta.x / T(2), point.y, size + delta);}
+
+
+	Z_INLINE_MEMBER Rectangle grow_from_bottom_left(const Value2D<T> &delta) const
+		{return Rectangle(point, size + delta);}
+
+
+	Z_INLINE_MEMBER Rectangle grow_from_bottom_right(const Value2D<T> &delta) const
+		{return Rectangle(point.x - delta.x, point.y, size + delta);}
+
+
+	Z_INLINE_MEMBER Rectangle grow_from_center(const Value2D<T> &delta) const
+		{return Rectangle(point - delta / T(2), size + delta);}
+
+
+	Z_INLINE_MEMBER Rectangle grow_from_center_left(const Value2D<T> &delta) const
+		{return Rectangle(point.x, point.y - delta.y / T(2), size + delta);}
+
+
+	Z_INLINE_MEMBER Rectangle grow_from_center_right(const Value2D<T> &delta) const
+		{return Rectangle(point.x - delta.x, point.y - delta.y / T(2), size + delta);}
+
+
+	Z_INLINE_MEMBER Rectangle grow_from_top_center(const Value2D<T> &delta) const
+		{return Rectangle(point.x - delta.x / T(2), point.y - delta.y, size + delta);}
+
+
+	Z_INLINE_MEMBER Rectangle grow_from_top_left(const Value2D<T> &delta) const
+		{return Rectangle(point.x, point.y - delta.y, size + delta);}
+
+
+	Z_INLINE_MEMBER Rectangle grow_from_top_right(const Value2D<T> &delta) const
+		{return Rectangle(point - delta, size + delta);}
+
+
+	Z_INLINE_MEMBER Rectangle shrink_from_bottom_center(const Value2D<T> &delta) const
+		{return Rectangle(point.x + delta.x / T(2), point.y, size - delta);}
+
+
+	Z_INLINE_MEMBER Rectangle shrink_from_bottom_left(const Value2D<T> &delta) const
+		{return Rectangle(point, size - delta);}
+
+
+	Z_INLINE_MEMBER Rectangle shrink_from_bottom_right(const Value2D<T> &delta) const
+		{return Rectangle(point.x + delta.x, point.y, size - delta);}
+
+
+	Z_INLINE_MEMBER Rectangle shrink_from_center(const Value2D<T> &delta) const
+		{return Rectangle(point + delta / T(2), size - delta);}
+
+
+	Z_INLINE_MEMBER Rectangle shrink_from_center_left(const Value2D<T> &delta) const
+		{return Rectangle(point.x, point.y + delta.y / T(2), size - delta);}
+
+
+	Z_INLINE_MEMBER Rectangle shrink_from_center_right(const Value2D<T> &delta) const
+		{return Rectangle(point.x + delta.x, point.y + delta.y / T(2), size - delta);}
+
+
+	Z_INLINE_MEMBER Rectangle shrink_from_top_center(const Value2D<T> &delta) const
+		{return Rectangle(point.x + delta.x / T(2), point.y + delta.y, size - delta);}
+
+
+	Z_INLINE_MEMBER Rectangle shrink_from_top_left(const Value2D<T> &delta) const
+		{return Rectangle(point.x, point.y + delta.y, size - delta);}
+
+
+	Z_INLINE_MEMBER Rectangle shrink_from_top_right(const Value2D<T> &delta) const
+		{return Rectangle(point + delta, size - delta);}
+
+
+	/*inline Circle<T> inner_circle() const
 		{
 		ZCircle##Type result;
 
