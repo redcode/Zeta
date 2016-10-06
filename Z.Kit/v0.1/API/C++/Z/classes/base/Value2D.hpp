@@ -170,7 +170,7 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 #	endif
 
 
-	// MARK: - Operations for natural, integer and real types
+	// MARK: - Functions for natural, integer and real types
 
 
 	Z_INLINE_MEMBER Value2D clamp(const Value2D &minimum, const Value2D &maximum) const
@@ -282,7 +282,7 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		{return Value2D(this->y, this->x);}
 
 
-	// MARK: - Operations for integer and real types
+	// MARK: - Functions for integer and real types
 
 
 	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_signed, Value2D>::type
@@ -305,7 +305,7 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		{return Value2D(-this->x, -this->y);}
 
 
-	// MARK: - Operations for real types only
+	// MARK: - Functions for real types only
 
 
 	Z_INLINE_MEMBER typename SaferEnableIf<Type<T>::is_real, Value2D>::type

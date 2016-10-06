@@ -533,6 +533,70 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_top_right(				\
 	}											\
 												\
 												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_x_from_center(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.point.x -= delta / _(2.0);							\
+	object.size.x  += delta;								\
+	return object;										\
+	}											\
+												\
+												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_x_from_left(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.size.x += delta;									\
+	return object;										\
+	}											\
+												\
+												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_x_from_right(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.point.x -= delta;								\
+	object.size.x  += delta;								\
+	return object;										\
+	}											\
+												\
+												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_y_from_bottom(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.size.y += delta;									\
+	return object;										\
+	}											\
+												\
+												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_y_from_center(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.point.y -= delta / _(2.0);							\
+	object.size.y  += delta;								\
+	return object;										\
+	}											\
+												\
+												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_y_from_top(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.point.y -= delta;								\
+	object.size.y  += delta;								\
+	return object;										\
+	}											\
+												\
+												\
 Z_INLINE ZCircle##Type z_rectangle_##type##_inner_circle(ZRectangle##Type object)		\
 	{											\
 	ZCircle##Type result;									\
@@ -696,6 +760,70 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_top_right(				\
 	}											\
 												\
 												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_center(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.point.x += delta / _(2.0);							\
+	object.size.x  -= delta;								\
+	return object;										\
+	}											\
+												\
+												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_left(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.size.x -= delta;									\
+	return object;										\
+	}											\
+												\
+												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_right(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.point.x += delta;								\
+	object.size.x  -= delta;								\
+	return object;										\
+	}											\
+												\
+												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_bottom(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.size.y -= delta;									\
+	return object;										\
+	}											\
+												\
+												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_center(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.point.y += delta / _(2.0);							\
+	object.size.y  -= delta;								\
+	return object;										\
+	}											\
+												\
+												\
+Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_top(				\
+	ZRectangle##Type object,								\
+	z##type		 delta									\
+)												\
+	{											\
+	object.point.y += delta;								\
+	object.size.y  -= delta;								\
+	return object;										\
+	}											\
+												\
+												\
 Z_INLINE ZAABR##Type z_rectangle_##type##_to_aabr(ZRectangle##Type object)			\
 	{											\
 	return z_aabr_##type									\
@@ -801,6 +929,12 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 #define z_rectangle_type_grow_from_top_center(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _grow_from_top_center     )
 #define z_rectangle_type_grow_from_top_left(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _grow_from_top_left	      )
 #define z_rectangle_type_grow_from_top_right(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _grow_from_top_right      )
+#define z_rectangle_type_grow_in_x_from_center(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _grow_in_x_from_center    )
+#define z_rectangle_type_grow_in_x_from_left(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _grow_in_x_from_left      )
+#define z_rectangle_type_grow_in_x_from_right(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _grow_in_x_from_right     )
+#define z_rectangle_type_grow_in_y_from_bottom(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _grow_in_y_from_bottom    )
+#define z_rectangle_type_grow_in_y_from_center(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _grow_in_y_from_center    )
+#define z_rectangle_type_grow_in_y_from_top(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _grow_in_y_from_top	      )
 #define z_rectangle_type_inner_circle(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _inner_circle	      )
 #define z_rectangle_type_is_zero(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _is_zero		      )
 #define z_rectangle_type_left_half(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _left_half		      )
@@ -820,6 +954,12 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 #define z_rectangle_type_shrink_from_top_center(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_from_top_center   )
 #define z_rectangle_type_shrink_from_top_left(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_from_top_left     )
 #define z_rectangle_type_shrink_from_top_right(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_from_top_right    )
+#define z_rectangle_type_shrink_in_x_from_center(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_in_x_from_center  )
+#define z_rectangle_type_shrink_in_x_from_left(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_in_x_from_left    )
+#define z_rectangle_type_shrink_in_x_from_right(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_in_x_from_right   )
+#define z_rectangle_type_shrink_in_y_from_bottom(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_in_y_from_bottom  )
+#define z_rectangle_type_shrink_in_y_from_center(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_in_y_from_center  )
+#define z_rectangle_type_shrink_in_y_from_top(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_in_y_from_top     )
 #define z_rectangle_type_to_aabr(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _to_aabr		      )
 #define z_rectangle_type_top_center(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _top_center		      )
 #define z_rectangle_type_top_half(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _top_half		      )
@@ -922,6 +1062,12 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 #	define z_rectangle_grow_from_top_center	     z_rectangle_type_grow_from_top_center     (REAL)
 #	define z_rectangle_grow_from_top_left	     z_rectangle_type_grow_from_top_left       (REAL)
 #	define z_rectangle_grow_from_top_right	     z_rectangle_type_grow_from_top_right      (REAL)
+#	define z_rectangle_grow_in_x_from_center     z_rectangle_type_grow_in_x_from_center    (REAL)
+#	define z_rectangle_grow_in_x_from_left	     z_rectangle_type_grow_in_x_from_left      (REAL)
+#	define z_rectangle_grow_in_x_from_right	     z_rectangle_type_grow_in_x_from_right     (REAL)
+#	define z_rectangle_grow_in_y_from_bottom     z_rectangle_type_grow_in_y_from_bottom    (REAL)
+#	define z_rectangle_grow_in_y_from_center     z_rectangle_type_grow_in_y_from_center    (REAL)
+#	define z_rectangle_grow_in_y_from_top	     z_rectangle_type_grow_in_y_from_top       (REAL)
 #	define z_rectangle_inner_circle		     z_rectangle_type_inner_circle	       (REAL)
 #	define z_rectangle_is_zero		     z_rectangle_type_is_zero		       (REAL)
 #	define z_rectangle_left_half		     z_rectangle_type_left_half		       (REAL)
@@ -941,6 +1087,12 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 #	define z_rectangle_shrink_from_top_center    z_rectangle_type_shrink_from_top_center   (REAL)
 #	define z_rectangle_shrink_from_top_left	     z_rectangle_type_shrink_from_top_left     (REAL)
 #	define z_rectangle_shrink_from_top_right     z_rectangle_type_shrink_from_top_right    (REAL)
+#	define z_rectangle_shrink_in_x_from_center   z_rectangle_type_shrink_in_x_from_center  (REAL)
+#	define z_rectangle_shrink_in_x_from_left     z_rectangle_type_shrink_in_x_from_left    (REAL)
+#	define z_rectangle_shrink_in_x_from_right    z_rectangle_type_shrink_in_x_from_right   (REAL)
+#	define z_rectangle_shrink_in_y_from_bottom   z_rectangle_type_shrink_in_y_from_bottom  (REAL)
+#	define z_rectangle_shrink_in_y_from_center   z_rectangle_type_shrink_in_y_from_center  (REAL)
+#	define z_rectangle_shrink_in_y_from_top	     z_rectangle_type_shrink_in_y_from_top     (REAL)
 #	define z_rectangle_to_aabr		     z_rectangle_type_to_aabr		       (REAL)
 #	define z_rectangle_top_center		     z_rectangle_type_top_center	       (REAL)
 #	define z_rectangle_top_half		     z_rectangle_type_top_half		       (REAL)
