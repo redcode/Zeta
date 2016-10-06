@@ -17,16 +17,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_IMPLEMENTATION_NATURAL(type)						   \
 										   \
 										   \
-Z_INLINE z##type z_##type##_clamp(z##type value, z##type minimum, z##type maximum) \
-	{return z_##type##_minimum(z_##type##_maximum(value, minimum), maximum);}  \
-										   \
-										   \
 Z_INLINE z##type z_##type##_maximum(z##type a, z##type b)			   \
 	{return Z_MAXIMUM(a, b);}						   \
 										   \
 										   \
 Z_INLINE z##type z_##type##_minimum(z##type a, z##type b)			   \
 	{return Z_MINIMUM(a, b);}						   \
+										   \
+										   \
+Z_INLINE z##type z_##type##_clamp(z##type value, z##type minimum, z##type maximum) \
+	{return z_##type##_minimum(z_##type##_maximum(value, minimum), maximum);}  \
 										   \
 										   \
 Z_INLINE void z_##type##_swap(void *a, void *b)					   \

@@ -20,6 +20,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	import <Foundation/NSGeometry.h>
 #endif
 
+#ifdef Z_USE_COCOS2D_X
+#	include "cocos2d.h"
+#endif
+
 namespace Zeta {template <class T> struct Value2D;}
 
 
@@ -123,14 +127,15 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 
 #	endif
 
+
 #	if	defined(Z_USE_NS_GEOMETRY)			     && \
 		Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP		     && \
 		(!defined(Z_USE_CG_GEOMETRY)			     || \
 		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
-		Z_INLINE_MEMBER Value2D(const NSSize  &size ) {this->x = size.width; this->y = size.height;}
 		Z_INLINE_MEMBER Value2D(const NSPoint &point) {this->x = point.x;    this->y = point.y;	   }
+		Z_INLINE_MEMBER Value2D(const NSSize  &size ) {this->x = size.width; this->y = size.height;}
 
 
 		Z_INLINE_MEMBER operator NSPoint() const
@@ -145,6 +150,22 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 			NSSize result = {CGFloat(this->x), CGFloat(this->y)};
 			return result;
 			}
+
+#	endif
+
+
+#	ifdef Z_USE_COCOS2D_X
+
+		Z_INLINE_MEMBER Value2D(const cocos2d::Vec2 &point) {this->x = point.x;    this->y = point.y;	 }
+		Z_INLINE_MEMBER Value2D(const cocos2d::Size &size ) {this->x = size.width; this->y = size.height;}
+
+
+		Z_INLINE_MEMBER operator cocos2d::Vec2() const
+			{return cocos2d::Vec2(float(this->x), float(this->y));}
+
+
+		Z_INLINE_MEMBER operator cocos2d::Size() const
+			{return cocos2d::Size(float(this->x), float(this->y));}
 
 #	endif
 

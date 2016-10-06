@@ -141,6 +141,7 @@ template <class T> struct Zeta::Rectangle {
 
 #	endif
 
+
 #	if	defined(Z_USE_NS_GEOMETRY)			     && \
 		Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP		     && \
 		(!defined(Z_USE_CG_GEOMETRY)			     || \
@@ -159,6 +160,22 @@ template <class T> struct Zeta::Rectangle {
 			};
 
 			return result;
+			}
+
+#	endif
+
+
+#	ifdef Z_USE_COCOS2D_X
+
+		Z_INLINE_MEMBER Rectangle(const cocos2d::Rect &rectangle)
+		: point(rectangle.origin), size(rectangle.size) {}
+
+
+		Z_INLINE_MEMBER operator cocos2d::Rect() const
+			{
+			return cocos2d::Rect
+				(float(point.x), float(point.y),
+				 float(size.x),  float(size.y));
 			}
 
 #	endif
