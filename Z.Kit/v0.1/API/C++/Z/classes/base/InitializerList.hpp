@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 
-namespace Zeta {template <class T> struct Shared;}
+namespace Zeta {template <class T> class InitializerList;}
 
 
 template <class T> class Zeta::InitializerList {
@@ -19,6 +19,13 @@ template <class T> class Zeta::InitializerList {
 	Size	 _size;
 
 	public:
+
+	Z_INLINE_MEMBER InitializerList()
+	: _begin(NULL), _size(0) {}
+
+	Z_INLINE_MEMBER InitializerList(const T *begin, Size size)
+	: _begin(begin), _size(size) {}
+
 	Z_INLINE_MEMBER Size	 size () const {return _size;}
 	Z_INLINE_MEMBER const T *begin() const {return _begin;}
 	Z_INLINE_MEMBER const T *end  () const {return _begin + _size;} 
