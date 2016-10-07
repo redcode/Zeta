@@ -68,6 +68,10 @@ Z_INLINE ZAABB##Type z_aabb_##type##_from_vertices(Z3D##Type a, Z3D##Type b)			\
 	}											\
 												\
 												\
+Z_INLINE Z3D##Type z_aabb_##type##_size(ZAABB##Type object)					\
+	{return z_3d_##type##_subtract(object.b, object.a);}					\
+												\
+												\
 Z_INLINE Z3D##Type z_aabb_##type##_absolute_point_to_unit(ZAABB##Type object, Z3D##Type point)	\
 	{											\
 	return z_3d_##type									\
@@ -88,6 +92,14 @@ Z_INLINE zboolean z_aabb_##type##_contains_box(ZAABB##Type object, ZBox##Type bo
 	}											\
 												\
 												\
+Z_INLINE zboolean z_aabb_##type##_contains_point(ZAABB##Type object, Z3D##Type point)		\
+	{											\
+	return	object.a.x <= point.x && point.x <= object.a.x &&				\
+		object.a.y <= point.y && point.y <= object.a.y &&				\
+		object.a.z <= point.z && point.z <= object.a.z;					\
+	}											\
+												\
+												\
 Z_INLINE zboolean z_aabb_##type##_contains_line_segment(					\
 	ZAABB##Type   object,									\
 	Z3DLine##Type segment									\
@@ -95,14 +107,6 @@ Z_INLINE zboolean z_aabb_##type##_contains_line_segment(					\
 	{											\
 	return	z_aabb_##type##_contains_point(object, segment.a) &&				\
 		z_aabb_##type##_contains_point(object, segment.b);				\
-	}											\
-												\
-												\
-Z_INLINE zboolean z_aabb_##type##_contains_point(ZAABB##Type object, Z3D##Type point)		\
-	{											\
-	return	object.a.x <= point.x && point.x <= object.a.x &&				\
-		object.a.y <= point.y && point.y <= object.a.y &&				\
-		object.a.z <= point.z && point.z <= object.a.z;					\
 	}											\
 												\
 												\
@@ -131,10 +135,6 @@ Z_INLINE ZSphere##Type z_aabb_##type##_inner_sphere(ZAABB##Type object)				\
 												\
 	return result;										\
 	}											\
-												\
-												\
-Z_INLINE Z3D##Type z_aabb_##type##_size(ZAABB##Type object)					\
-	{return z_3d_##type##_subtract(object.b, object.a);}					\
 												\
 												\
 Z_INLINE ZBox##Type z_aabb_##type##_to_box(ZAABB##Type object)					\

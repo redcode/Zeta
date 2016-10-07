@@ -121,16 +121,6 @@ Z_INLINE zboolean z_box_##type##_contains_aabb(ZBox##Type object, ZAABB##Type aa
 	}											\
 												\
 												\
-Z_INLINE zboolean z_box_##type##_contains_line_segment(						\
-	ZBox##Type    object,									\
-	Z3DLine##Type line_segment								\
-)												\
-	{											\
-	return	z_box_##type##_contains_point(object, line_segment.a) &&			\
-		z_box_##type##_contains_point(object, line_segment.b);				\
-	}											\
-												\
-												\
 Z_INLINE zboolean z_box_##type##_contains_point(ZBox##Type object, Z3D##Type point)		\
 	{											\
 	return	point.x >= object.point.x		  &&					\
@@ -139,6 +129,16 @@ Z_INLINE zboolean z_box_##type##_contains_point(ZBox##Type object, Z3D##Type poi
 		point.x <= object.point.x + object.size.x &&					\
 		point.y <= object.point.y + object.size.y &&					\
 		point.z <= object.point.z + object.size.z;					\
+	}											\
+												\
+												\
+Z_INLINE zboolean z_box_##type##_contains_line_segment(						\
+	ZBox##Type    object,									\
+	Z3DLine##Type line_segment								\
+)												\
+	{											\
+	return	z_box_##type##_contains_point(object, line_segment.a) &&			\
+		z_box_##type##_contains_point(object, line_segment.b);				\
 	}											\
 												\
 												\

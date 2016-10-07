@@ -59,6 +59,10 @@ Z_INLINE ZAABR##Type z_aabr_##type##_from_vertices(Z2D##Type a, Z2D##Type b)			\
 	}											\
 												\
 												\
+Z_INLINE Z2D##Type z_aabr_##type##_size(ZAABR##Type object)					\
+	{return z_2d_##type##_subtract(object.b, object.a);}					\
+												\
+												\
 Z_INLINE z##type z_aabr_##type##_area(ZAABR##Type object)					\
 	{return z_2d_##type##_inner_product(z_2d_##type##_subtract(object.b, object.a));}	\
 												\
@@ -195,6 +199,13 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 	}											\
 												\
 												\
+Z_INLINE zboolean z_aabr_##type##_contains_point(ZAABR##Type object, Z3D##Type point)		\
+	{											\
+	return	object.a.x <= point.x && point.x <= object.a.x &&				\
+		object.a.y <= point.y && point.y <= object.a.y;					\
+	}											\
+												\
+												\
 Z_INLINE zboolean z_aabr_##type##_contains_line_segment(					\
 	ZAABR##Type   object,									\
 	Z3DLine##Type segment									\
@@ -202,13 +213,6 @@ Z_INLINE zboolean z_aabr_##type##_contains_line_segment(					\
 	{											\
 	return	z_aabr_##type##_contains_point(object, segment.a) &&				\
 		z_aabr_##type##_contains_point(object, segment.b);				\
-	}											\
-												\
-												\
-Z_INLINE zboolean z_aabr_##type##_contains_point(ZAABR##Type object, Z3D##Type point)		\
-	{											\
-	return	object.a.x <= point.x && point.x <= object.a.x &&				\
-		object.a.y <= point.y && point.y <= object.a.y;					\
 	}											\
 												\
 												\
@@ -343,10 +347,6 @@ Z_INLINE ZAABR##Type z_aabr_##type##_right_half(ZAABR##Type object)				\
 	object.a.x = (object.a.x + object.b.x) / _(2.0);					\
 	return object;										\
 	}											\
-												\
-												\
-Z_INLINE Z2D##Type z_aabr_##type##_size(ZAABR##Type object)					\
-	{return z_2d_##type##_subtract(object.b, object.a);}					\
 												\
 												\
 Z_INLINE ZRectangle##Type z_aabr_##type##_to_rectangle(ZAABR##Type object)			\
