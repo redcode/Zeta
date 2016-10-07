@@ -19,7 +19,6 @@ template <class T> struct Zeta::Rectangle {
 	typedef typename ZRealType(ZRectangle, T) Base;  // Not actual but compatible
 	typedef typename ZRealType(ZRectangle, T) Super; // Not actual but compatible
 	typedef		 Value2D<T>		  Content;
-	typedef typename Value2D<T>::Base	  ContentBase;
 	typedef		 T			  Value;
 
 	Value2D<T> point, size;
@@ -41,8 +40,17 @@ template <class T> struct Zeta::Rectangle {
 	Z_INLINE_MEMBER Rectangle(T size_x, T size_y)				   : point(T(0)),  size(size_x, size_y) {}
 	Z_INLINE_MEMBER Rectangle(T size)					   : point(T(0)),  size(size)		{}
 
-	Z_INLINE_MEMBER Rectangle(void *data) {*this = *(Rectangle *)data;}
-	Z_INLINE_MEMBER Rectangle(const Base &rectangle) {(*(Base *)this) = rectangle;}
+
+	Z_INLINE_MEMBER Rectangle(void *data)
+		{*this = *(Rectangle *)data;}
+
+
+	Z_INLINE_MEMBER Rectangle(const Base &rectangle)
+		{(*(Base *)this) = rectangle;}
+
+
+	Z_INLINE_MEMBER Rectangle(const typename ZRealType(ZAABR, T) &aabr)
+	: point(aabr.a), size(aabr.a + aabr.b) {}
 
 
 	// MARK: - Operators
@@ -572,14 +580,6 @@ template <class T> struct Zeta::Rectangle {
 		result.radius = z_##type##_minimum(object.size.x, object.size.y) / _(2.0);
 		return result;
 		}
-
-
-	inline ZAABR##Type to_aabr(ZRectangle##Type object) const
-		{
-		return z_aabr_##type
-			(object.point.x, object.point.y,
-			 object.point.x + object.size.x, object.point.y + object.size.y);
-		}*/
 
 
 /*	inline Boolean contains_line_segment(const Z2DLine##Type &line_segment) const

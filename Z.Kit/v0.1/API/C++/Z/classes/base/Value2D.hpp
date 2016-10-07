@@ -63,7 +63,6 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 
 
 	Z_INLINE_MEMBER operator Boolean() const {return this->x != T(0) || this->y != T(0);}
-	Z_INLINE_MEMBER operator Base	() const {return *z_base;}
 
 	Z_INLINE_MEMBER Boolean operator ==(const Value2D &value) const {return this->x == value.x && this->y == value.y;}
 	Z_INLINE_MEMBER Boolean operator !=(const Value2D &value) const {return this->x != value.x || this->y != value.y;}
