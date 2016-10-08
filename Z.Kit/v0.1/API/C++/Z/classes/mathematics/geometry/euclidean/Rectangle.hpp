@@ -57,7 +57,7 @@ template <class T> struct Zeta::Rectangle {
 
 
 	Z_INLINE_MEMBER operator Boolean() const {return this->point || this->size;}
-	Z_INLINE_MEMBER operator Base   () const {return *z_base;}
+	Z_INLINE_MEMBER operator Base&	() const {return *z_base;}
 
 
 	Z_INLINE_MEMBER Boolean operator ==(const Rectangle &rectangle) const
@@ -300,10 +300,25 @@ template <class T> struct Zeta::Rectangle {
 
 	Z_INLINE_MEMBER Boolean contains(const Rectangle &rectangle) const
 		{
-		return	rectangle.point.x		     >= point.x		 &&
-			rectangle.point.y		     >= point.y		 &&
+		return	rectangle.point		     	     >= point		 &&
 			rectangle.point.x + rectangle.size.x <= point.x + size.x &&
 			rectangle.point.y + rectangle.size.y <= point.y + size.y;
+		}
+
+
+	Z_INLINE_MEMBER Boolean contains(const typename ZRealType(ZAABR, T) &aabr) const
+		{
+		return	aabr.a.x >= point.x	     && aabr.a.y >= point.y &&
+			aabr.b.x <= point.x + size.x && aabr.b.y <= point.y + size.y;
+		}
+
+
+	Z_INLINE_MEMBER Boolean contains(const typename ZRealType(ZCircle, T) &circle) const
+		{
+		return	circle.point.x - circle.radius >= point.x	   &&
+			circle.point.y - circle.radius >= point.y	   &&
+			circle.point.x + circle.radius <= point.x + size.x &&
+			circle.point.y + circle.radius <= point.y + size.y;
 		}
 
 
@@ -583,23 +598,7 @@ template <class T> struct Zeta::Rectangle {
 
 
 /*	inline Boolean contains_line_segment(const Z2DLine##Type &line_segment) const
-		{return contains_point(segment.a) && contains_point(segment.b);}
-
-
-	inline Boolean contains_aabr(const ZAABR##Type &aabr) const
-		{
-		return	aabr.a.x >= point.x	     && aabr.a.y >= point.y &&
-			aabr.b.x <= point.x + size.x && aabr.b.y <= point.y + size.y;
-		}
-
-
-	inline Boolean contains_circle(const ZCircle##Type &circle) const
-		{
-		return	circle.point.x - circle.radius >= point.x		  &&
-			circle.point.y - circle.radius >= point.y		  &&
-			circle.point.x + circle.radius <= point.x + object.size.x &&
-			circle.point.y + circle.radius <= point.y + object.size.y;
-		}*/
+		{return contains_point(segment.a) && contains_point(segment.b);}*/
 
 #ifndef Z_DECLARING_PARTIAL_RECTANGLE
 };
