@@ -12,14 +12,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/traits/mathematics.hpp>
 #include <Z/macros/type enumeration.h>
 
-#define ZNaturalType(Name, T) Zeta::SelectType<					       \
-	Zeta::Type<T>::is_natural ? Zeta::Logarithm2<Zeta::Type<T>::size>::value : 31, \
-	Z_ENUMERATE_FIXED_NATURAL_TYPES(Name##UInt, void)			       \
+#define ZNaturalType(Name, T) Zeta::SelectType<		       \
+	Zeta::Type<T>::is_natural			       \
+		? Zeta::Logarithm2<Zeta::Type<T>::size>::value \
+		: 31,					       \
+	Z_ENUMERATE_FIXED_NATURAL_TYPES(Name##UInt, void)      \
 >::type
 
-#define ZIntegerType(Name, T) Zeta::SelectType<					       \
-	Zeta::Type<T>::is_integer ? Zeta::Logarithm2<Zeta::Type<T>::size>::value : 31, \
-	Z_ENUMERATE_FIXED_INTEGER_TYPES(Name##Int, void)			       \
+#define ZIntegerType(Name, T) Zeta::SelectType<		       \
+	Zeta::Type<T>::is_integer			       \
+		? Zeta::Logarithm2<Zeta::Type<T>::size>::value \
+		: 31,					       \
+	Z_ENUMERATE_FIXED_INTEGER_TYPES(Name##Int, void)       \
 >::type
 
 #define ZExactType(Name, T) Zeta::SelectType<		       \
