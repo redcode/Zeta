@@ -12,12 +12,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Basics */
 
-#define Z_ABSOLUTE(value) ((a) < 0 ? -(a) : (a))
-
 #define Z_MAXIMUM(a, b) ((a) > (b) ? (a) : (b))
 #define Z_MINIMUM(a, b) ((a) < (b) ? (a) : (b))
 
-/* MARK: - Masked Bounded Addition/Subtraction */
+#define Z_ABSOLUTE(	value) ((a) < 0 ? -(a) : (a))
+#define Z_IS_POWER_OF_2(value) !((value) & ((value) - 1))
+
+#define Z_NEXT_MULTIPLE(    value, base) ((value) + (base) - ((value) % (base)))
+#define Z_PREVIOUS_MULTIPLE(value, base) ((((value) - 1) / (base)) * (base))
+
+/* MARK: - Masked bounded addition/subtraction */
 
 #define Z_MBA(value, delta, mask)			  \
 	(((value) & (mask)) + ((delta) & (mask)) > (mask) \

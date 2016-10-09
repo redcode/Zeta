@@ -55,7 +55,7 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 		T index = (this->index > range.index) ? this->index : range.index;
 		T end	= Zeta::minimum<T>(this->index + this->size, range.index + range.size);
 
-		return end > index ? Range(index, end - index) : Range(0, 0);
+		return end > index ? Range(index, end - index) : Range(0);
 		}
 
 

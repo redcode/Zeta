@@ -597,7 +597,7 @@ template <class T> struct Zeta::Rectangle {
 		}
 
 
-/*	inline Boolean contains_line_segment(const Z2DLine##Type &line_segment) const
+	inline Boolean contains_line_segment(const Z2DLine##Type &line_segment) const
 		{return contains_point(segment.a) && contains_point(segment.b);}*/
 
 #ifndef Z_DECLARING_PARTIAL_RECTANGLE
