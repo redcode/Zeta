@@ -8,8 +8,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_TypeOrVoid_HPP__
 #define __Z_traits_TypeOrVoid_HPP__
 
-namespace Zeta {
-	template <class T = void> struct TypeOrVoid {typedef T type;};
-}
+namespace Zeta {template <class T = void> struct TypeOrVoid {
+	typedef T type;
+};}
 
 #endif // __Z_traits_TypeOrVoid_HPP__
