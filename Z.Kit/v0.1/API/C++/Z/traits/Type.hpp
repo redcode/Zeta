@@ -148,6 +148,42 @@ namespace Zeta {
 			};
 		};
 
+#		if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+
+			struct UInt8 : Natural {
+				enum {	bits = Z_UINT8_BITS,
+					size = Z_UINT8_SIZE
+				};
+				enum {maximum = Z_UINT8_MAXIMUM};
+
+				typedef zuint8 type;
+				typedef zuint8 to_unsigned;
+
+#				ifdef Z_INT8
+					typedef zint8 to_signed;
+#				endif
+			};
+
+#		endif
+
+#		if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+
+			struct UInt16 : Natural {
+				enum {	bits = Z_UINT16_BITS,
+					size = Z_UINT16_SIZE
+				};
+				enum {maximum = Z_UINT16_MAXIMUM};
+
+				typedef zuint16 type;
+				typedef zuint16 to_unsigned;
+
+#				ifdef Z_INT16
+					typedef zint16 to_signed;
+#				endif
+			};
+
+#		endif
+
 #		if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
 
 			struct UInt32 : Natural {
@@ -197,6 +233,46 @@ namespace Zeta {
 
 #				ifdef Z_INT128
 					typedef zint128 to_signed;
+#				endif
+			};
+
+#		endif
+
+#		if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
+
+			struct Int8 : Integer {
+				enum {	bits = Z_INT8_BITS,
+					size = Z_INT8_SIZE
+				};
+				enum {	minimum = Z_INT8_MINIMUM,
+					maximum = Z_INT8_MAXIMUM
+				};
+
+				typedef zint8 type;
+				typedef zint8 to_signed;
+
+#				ifdef Z_UINT8
+					typedef zuint8 to_unsigned;
+#				endif
+			};
+
+#		endif
+
+#		if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
+
+			struct Int16 : Integer {
+				enum {	bits = Z_INT16_BITS,
+					size = Z_INT16_SIZE
+				};
+				enum {	minimum = Z_INT16_MINIMUM,
+					maximum = Z_INT16_MAXIMUM
+				};
+
+				typedef zint16 type;
+				typedef zint16 to_signed;
+
+#				ifdef Z_UINT16
+					typedef zuint16 to_unsigned;
 #				endif
 			};
 
@@ -802,15 +878,12 @@ namespace Zeta {
 
 		// MARK: - Numbers
 
-		template <> struct Type<char> : Mixins::Type::Unqualified<Abstract::Type::Character> {};
+#		if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+			template <> struct Type<zuint8> : Mixins::Type::Unqualified<Abstract::Type::UInt8> {};
+#		endif
 
-		template <> struct Type<unsigned char	  > : Mixins::Type::Unqualified<Abstract::Type::UChar > {};
-		template <> struct Type<unsigned short int> : Mixins::Type::Unqualified<Abstract::Type::UShort> {};
-		template <> struct Type<unsigned int	  > : Mixins::Type::Unqualified<Abstract::Type::UInt  > {};
-		template <> struct Type<unsigned long int > : Mixins::Type::Unqualified<Abstract::Type::ULong > {};
-
-#		ifdef Z_ULLONG
-			template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong> {};
+#		if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+			template <> struct Type<zuint16> : Mixins::Type::Unqualified<Abstract::Type::UInt16> {};
 #		endif
 
 #		if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
@@ -825,13 +898,12 @@ namespace Zeta {
 			template <> struct Type<zuint128> : Mixins::Type::Unqualified<Abstract::Type::UInt128> {};
 #		endif
 
-		template <> struct Type<signed char	> : Mixins::Type::Unqualified<Abstract::Type::Char > {};
-		template <> struct Type<signed short int> : Mixins::Type::Unqualified<Abstract::Type::Short> {};
-		template <> struct Type<signed int	> : Mixins::Type::Unqualified<Abstract::Type::Int  > {};
-		template <> struct Type<signed long int	> : Mixins::Type::Unqualified<Abstract::Type::Long > {};
+#		if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
+			template <> struct Type<zint8> : Mixins::Type::Unqualified<Abstract::Type::Int8> {};
+#		endif
 
-#		ifdef Z_LLONG
-			template <> struct Type<signed long long int> : Mixins::Type::Unqualified<Abstract::Type::LLong > {};
+#		if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
+			template <> struct Type<zint16> : Mixins::Type::Unqualified<Abstract::Type::Int16> {};
 #		endif
 
 #		if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
@@ -844,6 +916,26 @@ namespace Zeta {
 
 #		if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
 			template <> struct Type<zint128> : Mixins::Type::Unqualified<Abstract::Type::Int128> {};
+#		endif
+
+		template <> struct Type<char> : Mixins::Type::Unqualified<Abstract::Type::Character> {};
+
+		template <> struct Type<unsigned char	  > : Mixins::Type::Unqualified<Abstract::Type::UChar > {};
+		template <> struct Type<unsigned short int> : Mixins::Type::Unqualified<Abstract::Type::UShort> {};
+		template <> struct Type<unsigned int	  > : Mixins::Type::Unqualified<Abstract::Type::UInt  > {};
+		template <> struct Type<unsigned long int > : Mixins::Type::Unqualified<Abstract::Type::ULong > {};
+
+#		ifdef Z_ULLONG
+			template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong> {};
+#		endif
+
+		template <> struct Type<signed char	> : Mixins::Type::Unqualified<Abstract::Type::Char > {};
+		template <> struct Type<signed short int> : Mixins::Type::Unqualified<Abstract::Type::Short> {};
+		template <> struct Type<signed int	> : Mixins::Type::Unqualified<Abstract::Type::Int  > {};
+		template <> struct Type<signed long int	> : Mixins::Type::Unqualified<Abstract::Type::Long > {};
+
+#		ifdef Z_LLONG
+			template <> struct Type<signed long long int> : Mixins::Type::Unqualified<Abstract::Type::LLong > {};
 #		endif
 
 #		ifdef Z_FLOAT
