@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.h>
 #include <Z/macros/language.hpp>
 #include <Z/traits/SelectType.hpp>
-#include <limits>
+
 namespace Zeta {
 
 	// MARK: - Abstract
@@ -148,6 +148,120 @@ namespace Zeta {
 			};
 		};
 
+#		if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+
+			struct UInt32 : Natural {
+				enum {	bits = Z_UINT32_BITS,
+					size = Z_UINT32_SIZE
+				};
+				enum {maximum = Z_UINT32_MAXIMUM};
+
+				typedef zuint32 type;
+				typedef zuint32 to_unsigned;
+
+#				ifdef Z_INT32
+					typedef zint32 to_signed;
+#				endif
+			};
+
+#		endif
+
+#		if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+
+			struct UInt64 : Natural {
+				enum {	bits = Z_UINT64_BITS,
+					size = Z_UINT64_SIZE
+				};
+				enum {maximum = Z_UINT64_MAXIMUM};
+
+				typedef zuint64 type;
+				typedef zuint64 to_unsigned;
+
+#				ifdef Z_INT64
+					typedef zint64 to_signed;
+#				endif
+			};
+
+#		endif
+
+#		if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+
+			struct UInt128 : Natural {
+				enum {	bits = Z_UINT128_BITS,
+					size = Z_UINT128_SIZE
+				};
+				enum {maximum = Z_UINT128_MAXIMUM};
+
+				typedef zuint128 type;
+				typedef zuint128 to_unsigned;
+
+#				ifdef Z_INT128
+					typedef zint128 to_signed;
+#				endif
+			};
+
+#		endif
+
+#		if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
+
+			struct Int32 : Integer {
+				enum {	bits = Z_INT32_BITS,
+					size = Z_INT32_SIZE
+				};
+				enum {	minimum = Z_INT32_MINIMUM,
+					maximum = Z_INT32_MAXIMUM
+				};
+
+				typedef zint32 type;
+				typedef zint32 to_signed;
+
+#				ifdef Z_UINT32
+					typedef zuint32 to_unsigned;
+#				endif
+			};
+
+#		endif
+
+#		if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
+
+			struct Int64 : Integer {
+				enum {	bits = Z_INT64_BITS,
+					size = Z_INT64_SIZE
+				};
+				enum {	minimum = Z_INT64_MINIMUM,
+					maximum = Z_INT64_MAXIMUM
+				};
+
+				typedef zint64 type;
+				typedef zint64 to_signed;
+
+#				ifdef Z_UINT64
+					typedef zuint64 to_unsigned;
+#				endif
+			};
+
+#		endif
+
+#		if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
+
+			struct Int128 : Integer {
+				enum {	bits = Z_INT128_BITS,
+					size = Z_INT128_SIZE
+				};
+				enum {	minimum = Z_INT128_MINIMUM,
+					maximum = Z_INT128_MAXIMUM
+				};
+
+				typedef zint128 type;
+				typedef zint128 to_signed;
+
+#				ifdef Z_UINT128
+					typedef zuint128 to_unsigned;
+#				endif
+			};
+
+#		endif
+
 		struct Character : SelectType<Z_CHARACTER_IS_SIGNED, Natural, Integer>::type {
 			enum {	bits = Z_CHARACTER_BITS,
 				size = Z_CHARACTER_SIZE
@@ -224,42 +338,6 @@ namespace Zeta {
 
 #		endif
 
-#		if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
-
-			struct UInt64 : Natural {
-				enum {	bits = Z_UINT64_BITS,
-					size = Z_UINT64_SIZE
-				};
-				enum {maximum = Z_UINT64_MAXIMUM};
-
-				typedef zuint64 type;
-				typedef zuint64 to_unsigned;
-
-#				ifdef Z_INT64
-					typedef zint64 to_signed;
-#				endif
-			};
-
-#		endif
-
-#		if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
-
-			struct UInt128 : Natural {
-				enum {	bits = Z_UINT128_BITS,
-					size = Z_UINT128_SIZE
-				};
-				enum {maximum = Z_UINT128_MAXIMUM};
-
-				typedef zuint128 type;
-				typedef zuint128 to_unsigned;
-
-#				ifdef Z_INT128
-					typedef zint128 to_signed;
-#				endif
-			};
-
-#		endif
-
 		struct Char : Integer {
 			enum {	bits = Z_CHAR_BITS,
 				size = Z_CHAR_SIZE
@@ -327,46 +405,6 @@ namespace Zeta {
 
 #				ifdef Z_ULLONG
 					typedef unsigned long long int to_unsigned;
-#				endif
-			};
-
-#		endif
-
-#		if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
-
-			struct Int64 : Integer {
-				enum {	bits = Z_INT64_BITS,
-					size = Z_INT64_SIZE
-				};
-				enum {	minimum = Z_INT64_MINIMUM,
-					maximum = Z_INT64_MAXIMUM
-				};
-
-				typedef zint64 type;
-				typedef zint64 to_signed;
-
-#				ifdef Z_UINT64
-					typedef zuint64 to_unsigned;
-#				endif
-			};
-
-#		endif
-
-#		if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
-
-			struct Int128 : Integer {
-				enum {	bits = Z_INT128_BITS,
-					size = Z_INT128_SIZE
-				};
-				enum {	minimum = Z_INT128_MINIMUM,
-					maximum = Z_INT128_MAXIMUM
-				};
-
-				typedef zint128 type;
-				typedef zint128 to_signed;
-
-#				ifdef Z_UINT128
-					typedef zuint128 to_unsigned;
 #				endif
 			};
 
@@ -775,6 +813,10 @@ namespace Zeta {
 			template <> struct Type<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong> {};
 #		endif
 
+#		if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+			template <> struct Type<zuint32> : Mixins::Type::Unqualified<Abstract::Type::UInt32> {};
+#		endif
+
 #		if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
 			template <> struct Type<zuint64> : Mixins::Type::Unqualified<Abstract::Type::UInt64> {};
 #		endif
@@ -790,6 +832,10 @@ namespace Zeta {
 
 #		ifdef Z_LLONG
 			template <> struct Type<signed long long int> : Mixins::Type::Unqualified<Abstract::Type::LLong > {};
+#		endif
+
+#		if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
+			template <> struct Type<zint32> : Mixins::Type::Unqualified<Abstract::Type::Int32> {};
 #		endif
 
 #		if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
