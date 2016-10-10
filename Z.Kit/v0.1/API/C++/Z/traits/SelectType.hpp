@@ -14,12 +14,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {
 
-		template<unsigned int N, class T, class... types> struct SelectType {
-			typedef typename SelectType<N - 1, types...>::type type;
+		template<unsigned int N, class T0, class... T> struct SelectType {
+			typedef typename SelectType<N - 1, T...>::type type;
 		};
 
-		template<class T, class... types> struct SelectType<0, T, types...> {
-			typedef T type;
+		template<class T0, class... T> struct SelectType<0, T0, T...> {
+			typedef T0 type;
 		};
 
 	}
