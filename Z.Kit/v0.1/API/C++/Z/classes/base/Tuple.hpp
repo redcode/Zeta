@@ -17,8 +17,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		namespace Partials {namespace Abstract {
 
-			template <unsigned long I, class T0, class... T> struct Tuple
-			: Tuple<I - 1, T0, T...> {
+			template <unsigned long I, class... T> struct Tuple
+			: Tuple<I - 1, T...> {
 				protected: typedef typename SelectType<I - 1, T...>::type type;
 				private: type _value;
 
@@ -27,27 +27,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Z_INLINE_MEMBER void set(type value) {_value = value;}
 			};
 
-			template <class T0, class... T> struct Tuple<0, T0, T...> {
-				protected: typedef T0 type;
-				private: type _value;
-
-				protected:
-				Z_INLINE_MEMBER type get() {return _value;}
-				Z_INLINE_MEMBER void set(type value) {_value = value;}
-			};
+			template <class... T> struct Tuple<0, T...> {};
 		}}
 
 		template <class T0, class... T> class Tuple
-		: public Partials::Abstract::Tuple<sizeof...(T), T0, T...> {
+		: public Partials::Abstract::Tuple<sizeof...(T) + 1, T0, T...> {
 			public:
 
 			template <unsigned long I> Z_INLINE_MEMBER
-			typename Partials::Abstract::Tuple<I, T0, T...>::type get()
-				{return Partials::Abstract::Tuple<I, T0, T...>::get();}
+			typename Partials::Abstract::Tuple<I + 1, T0, T...>::type get()
+				{return Partials::Abstract::Tuple<I + 1, T0, T...>::get();}
 
 			template <unsigned long I> Z_INLINE_MEMBER
-			void set(typename Partials::Abstract::Tuple<I, T0, T...>::type value)
-				{return Partials::Abstract::Tuple<I, T0, T...>::set(value);}
+			void set(typename Partials::Abstract::Tuple<I + 1, T0, T...>::type value)
+				{return Partials::Abstract::Tuple<I + 1, T0, T...>::set(value);}
 		};
 	}
 
