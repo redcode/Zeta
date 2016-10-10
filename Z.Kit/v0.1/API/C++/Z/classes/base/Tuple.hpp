@@ -8,6 +8,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_Tuple_HPP__
 #define __Z_classes_base_Tuple_HPP__
 
+#include <Z/macros/language.hpp>
+#include <Z/traits/SelectType.hpp>
+
 # if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 	namespace Zeta {
