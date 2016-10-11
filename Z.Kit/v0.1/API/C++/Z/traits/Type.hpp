@@ -48,6 +48,7 @@ namespace Zeta {
 				is_rvalue_reference	     = false,
 				is_scalar		     = false,
 				is_signed		     = false,
+				is_struct		     = false,
 				is_union		     = false,
 				is_valid		     = false,
 				is_value		     = false,
@@ -81,6 +82,7 @@ namespace Zeta {
 			typedef Invalid referenced_type;
 			typedef Invalid return_type;
 
+			typedef Invalid to_argument;
 			typedef Invalid to_signed;
 			typedef Invalid to_unsigned;
 			typedef Invalid to_const;
@@ -672,6 +674,24 @@ namespace Zeta {
 			};
 
 #		endif
+
+		template <class T> struct Enumerated : Valid {
+			enum {is_enum = true};
+
+			typedef T type;
+		};
+
+		template <class T> struct Structure : Valid {
+			enum {is_struct = true};
+
+			typedef T type;
+		};
+
+		template <class T> struct Union : Valid {
+			enum {is_union = true};
+
+			typedef T type;
+		};
 	}}}
 
 	// MARK: - Mixins
@@ -870,7 +890,10 @@ namespace Zeta {
 	}}}
 
 	namespace Partials {
-		template <class T> struct Type : Abstract::Type::Valid {};
+
+		// MARK: - Structures and unions (WIP)
+
+		template <class T> struct Type : Mixins::Type::Unqualified<Abstract::Type::Structure<T> > {};
 
 		// MARK: - void
 
@@ -1056,13 +1079,22 @@ namespace Zeta {
 		: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatile<Type<T> >, Mixins::Type::ConstVolatileExact<Type<T> > >::type {};
 	}
 
-	template <class T> struct Type : SelectType <
-		Partials::Type<T>::is_pointer ? 1 : (Partials::Type<T>::is_rvalue_reference ? 3 : (Partials::Type<T>::is_lvalue_reference ? 2 : 0)),
+	template <class T> class Type : public SelectType <
+		Partials::Type<T>::is_pointer
+			? 1
+			: (Partials::Type<T>::is_rvalue_reference
+				? 3
+				: (Partials::Type<T>::is_lvalue_reference ? 2 : 0)),
 		Partials::Mixins::Type::Value	       <Partials::Type<T> >,
 		Partials::Mixins::Type::Pointer	       <Partials::Type<T> >,
 		Partials::Mixins::Type::LValueReference<Partials::Type<T> >,
 		Partials::Mixins::Type::RValueReference<Partials::Type<T> >
 	>::type {
+		private: typedef Partials::Type<T> Super;
+
+		public:
+		typedef typename SelectType<Super::is_struct || Super::is_union, T, const typename Super::remove_const_volatile&>::type to_argument;
+
 		// TODO: constexpr functions
 	};
 
