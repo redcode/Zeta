@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {template <class T0, class T1> struct Pair;}
 
 
-template <class T1, class T2> class Zeta::Pair {
+template <class T1, class T2> struct Zeta::Pair {
 	typedef T1 First;
 	typedef T2 Second;
 
