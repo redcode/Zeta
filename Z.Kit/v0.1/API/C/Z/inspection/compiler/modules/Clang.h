@@ -464,9 +464,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __cplusplus >= 201103L
 
-#		define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR TRUE
-
-		/*#define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE*/
+#		if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
+#			define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR  TRUE
+#			define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE TRUE
+#			define Z_COMPILER_CPP_HAS_TYPE_ULLONG	    TRUE
+#			define Z_COMPILER_CPP_HAS_TYPE_LLONG	    TRUE
+#		endif
 
 #		if __has_feature(cxx_generalized_initializers)
 #			define Z_COMPILER_CPP_HAS_INITIALIZER_LIST TRUE
@@ -510,9 +513,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE			TRUE
 #			define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS TRUE
 #		endif
-
-#		define Z_COMPILER_CPP_HAS_TYPE_ULLONG TRUE
-#		define Z_COMPILER_CPP_HAS_TYPE_LLONG  TRUE
 
 #		if __has_feature(cxx_alignas) || __has_extension(cxx_alignas)
 #			define Z_COMPILER_CPP_HAS_SPECIFIER_ALIGN_AS TRUE
