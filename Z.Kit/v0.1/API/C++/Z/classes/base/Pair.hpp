@@ -14,15 +14,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {template <class T0, class T1> struct Pair;}
 
 
-template <class T0, class T1> struct Zeta::Pair {
-	typedef T0 first_type;
-	typedef T1 second_type;
+template <class T1, class T2> class Zeta::Pair {
+	typedef T1 First;
+	typedef T2 Second;
 
-	T0 first;
-	T1 second;
+	T1 first;
+	T2 second;
 
-	Z_INLINE_MEMBER Pair(typename Type<T0>::to_argument first,
-			     typename Type<T1>::to_argument second)
+	Z_INLINE_MEMBER Pair() {}
+
+	Z_INLINE_MEMBER Pair(typename Type<T1>::to_argument first,
+			     typename Type<T2>::to_argument second)
 	: first(first), second(second) {}
 
 	Z_INLINE_MEMBER ~Pair() {}

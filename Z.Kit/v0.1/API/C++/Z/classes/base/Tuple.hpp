@@ -20,7 +20,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		namespace Partials {namespace Abstract {
 
-			template <unsigned long I, class... T>
+			template <unsigned int I, class... T>
 			struct Tuple : Tuple<I - 1, T...> {
 				protected:
 				typedef Tuple<I, T...>	   This;
@@ -59,12 +59,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				{return Partials::Abstract::Tuple<sizeof...(T), T...>::is_equal_to(tuple);}*/
 
 
-			template <unsigned long I> Z_INLINE_MEMBER
+			template <unsigned int I> Z_INLINE_MEMBER
 			typename Partials::Abstract::Tuple<I + 1, T...>::type get()
 				{return Partials::Abstract::Tuple<I + 1, T...>::get();}
 
 
-			template <unsigned long I> Z_INLINE_MEMBER
+			template <unsigned int I> Z_INLINE_MEMBER
 			void set(typename Partials::Abstract::Tuple<I + 1, T...>::type value)
 				{return Partials::Abstract::Tuple<I + 1, T...>::set(value);}
 		};
