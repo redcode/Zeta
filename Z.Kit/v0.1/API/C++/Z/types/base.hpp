@@ -71,6 +71,14 @@ namespace Zeta {
 		typedef zfloat128 Float128;
 #	endif
 
+#	ifdef Z_DINT64
+		typedef zdint64 DInt64;
+#	endif
+
+#	ifdef Z_DINT128
+		typedef zdint128 DInt128;
+#	endif
+
 	typedef zuchar	UChar;
 	typedef zushort UShort;
 	typedef zuint	UInt;
