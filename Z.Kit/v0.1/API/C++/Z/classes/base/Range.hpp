@@ -28,7 +28,6 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 	Z_INLINE_MEMBER Range()			 {}
 	Z_INLINE_MEMBER Range(T size)		 {this->index = 0; this->size = size;}
 	Z_INLINE_MEMBER Range(T index, T size)   {this->index = index; this->size = size;}
-	Z_INLINE_MEMBER Range(void *data)	 {*this = *(Range *)data;}
 	Z_INLINE_MEMBER Range(const Base &range) {*z_base = range;}
 
 	Z_INLINE_MEMBER operator Boolean() const {return this->index || this->size;}

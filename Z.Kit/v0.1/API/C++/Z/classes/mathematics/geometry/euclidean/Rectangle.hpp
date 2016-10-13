@@ -41,10 +41,6 @@ template <class T> struct Zeta::Rectangle {
 	Z_INLINE_MEMBER Rectangle(T size)					   : point(T(0)),  size(size)		{}
 
 
-	Z_INLINE_MEMBER Rectangle(void *data)
-		{*this = *(Rectangle *)data;}
-
-
 	Z_INLINE_MEMBER Rectangle(const Base &rectangle)
 		{(*(Base *)this) = rectangle;}
 

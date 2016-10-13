@@ -40,7 +40,6 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 	Z_INLINE_MEMBER Value2D()		   {}
 	Z_INLINE_MEMBER Value2D(T x, T y)	   {this->x = x; this->y = y;}
 	Z_INLINE_MEMBER Value2D(T scalar)	   {this->x = scalar; this->y = scalar;}
-	Z_INLINE_MEMBER Value2D(void *data)	   {*this = *(Value2D<T> *)data;}
 	Z_INLINE_MEMBER Value2D(const Base &value) {*z_base = value;}
 
 

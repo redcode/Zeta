@@ -28,7 +28,6 @@ template <class T> struct Zeta::Value3D : public ZNumberType(Z3D, T) {
 	Z_INLINE_MEMBER Value3D()		   {}
 	Z_INLINE_MEMBER Value3D(T x, T y, T z)	   {this->x = x; this->y = y; this->z = z;}
 	Z_INLINE_MEMBER Value3D(T scalar)	   {this->x = scalar; this->y = scalar; this->z = scalar;}
-	Z_INLINE_MEMBER Value3D(void *data)	   {*this = *(Value3D<T> *)data;}
 	Z_INLINE_MEMBER Value3D(const Base &value) {*z_base = value;}
 
 
