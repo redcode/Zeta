@@ -555,6 +555,10 @@ template <class T> struct Zeta::Rectangle {
 		{return Rectangle(point.x, point.y + delta, size.x, size.y - delta);}
 
 
+	Z_INLINE_MEMBER void swap(Rectangle &rectangle)
+		{Zeta::swap<Base>((Base *)this, (Base *)&rectangle);}
+
+
 	Z_INLINE_MEMBER Value2D<T> top_center() const
 		{return Value2D<T>(point.x + size.x / T(2), point.y + size.y);}
 

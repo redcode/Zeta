@@ -25,10 +25,10 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 	typedef typename ZNaturalType(ZRange, T) Super;
 	typedef		 T			 Value;
 
-	Z_INLINE_MEMBER Range()			 {}
+	Z_INLINE_MEMBER Range()			 {printf("copiado\n");}
 	Z_INLINE_MEMBER Range(T size)		 {this->index = 0; this->size = size;}
 	Z_INLINE_MEMBER Range(T index, T size)   {this->index = index; this->size = size;}
-	Z_INLINE_MEMBER Range(const Base &range) {*z_base = range;}
+	Z_INLINE_MEMBER Range(const Base &range) {*z_base = range; printf("copiado\n");}
 
 	Z_INLINE_MEMBER operator Boolean() const {return this->index || this->size;}
 
@@ -112,6 +112,9 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 	Z_INLINE_MEMBER Boolean is_zero() const
 		{return !this->index && !this->size;}
 
+
+	Z_INLINE_MEMBER void swap(Range &range)
+		{Zeta::swap<Base>(this, &range);}
 };
 
 

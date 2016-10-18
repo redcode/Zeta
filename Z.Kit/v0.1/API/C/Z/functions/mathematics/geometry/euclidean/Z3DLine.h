@@ -30,6 +30,14 @@ Z_INLINE zboolean z_3d_line_##type##_are_perpendicular(Z3DLine##Type a, Z3DLine#
 	}										  \
 											  \
 											  \
+Z_INLINE void z_3d_line_##type##_swap(Z3DLine##Type *a, Z3DLine##Type *b)		  \
+	{										  \
+	Z3DLine##Type t = *a;								  \
+											  \
+	*a = *b; *b = t;								  \
+	}										  \
+											  \
+											  \
 Z_INLINE zboolean z_3d_line_##type##_is_zero(Z3DLine##Type object)			  \
 	{return z_3d_##type##_is_zero(object.a) && z_3d_##type##_is_zero(object.b);}	  \
 											  \
@@ -38,11 +46,12 @@ Z_INLINE Z3DLine##Type z_3d_line_##type##_reverse(Z3DLine##Type object)			  \
 	{										  \
 	return z_3d_line_##type								  \
 		(object.b.x, object.b.y, object.b.z, object.a.x, object.a.y, object.a.z); \
-	}										  \
+	}
 
 
 #define z_3d_line_type_are_equal(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_, _are_equal	  )
 #define z_3d_line_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_, _are_perpendicular)
+#define z_3d_line_type_swap(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_, _swap		  )
 #define z_3d_line_type_is_zero(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_, _is_zero	  )
 #define z_3d_line_type_reverse(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_, _reverse	  )
 
@@ -117,6 +126,7 @@ Z_INLINE Z3D##Type z_3d_line_segment_##type##_lerp(Z3DLine##Type object, z##type
 #ifdef Z_REAL
 #	define z_3d_line_are_equal	   z_3d_line_type_are_equal	   (REAL)
 #	define z_3d_line_are_perpendicular z_3d_line_type_are_perpendicular(REAL)
+#	define z_3d_line_swap		   z_3d_line_type_swap		   (REAL)
 #	define z_3d_line_is_zero	   z_3d_line_type_is_zero	   (REAL)
 #	define z_3d_line_reverse	   z_3d_line_type_reverse	   (REAL)
 #	define z_3d_line_segment_center	   z_3d_line_segment_type_center   (REAL)

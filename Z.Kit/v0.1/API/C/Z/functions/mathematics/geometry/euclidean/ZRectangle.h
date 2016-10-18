@@ -58,6 +58,14 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_intersection(					\
 	}											\
 												\
 												\
+Z_INLINE void z_rectangle_##type##_swap(ZRectangle##Type *a, ZRectangle##Type *b)		\
+	{											\
+	ZRectangle##Type t = *a;								\
+												\
+	*a = *b; *b = t;									\
+	}											\
+												\
+												\
 Z_INLINE ZRectangle##Type z_rectangle_##type##_union(ZRectangle##Type a, ZRectangle##Type b)	\
 	{											\
 	ZRectangle##Type result;								\
@@ -885,6 +893,7 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 #define z_rectangle_type_collide(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _collide		      )
 #define z_rectangle_type_contains(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _contains		      )
 #define z_rectangle_type_intersection(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _intersection	      )
+#define z_rectangle_type_swap(			   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _swap		      )
 #define z_rectangle_type_union(			   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _union		      )
 #define z_rectangle_type_from_vertices(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _from_vertices	      )
 #define z_rectangle_type_absolute_point_to_unit(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _absolute_point_to_unit   )
@@ -1018,6 +1027,7 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 #	define z_rectangle_collide		     z_rectangle_type_collide		       (REAL)
 #	define z_rectangle_contains		     z_rectangle_type_contains		       (REAL)
 #	define z_rectangle_intersection		     z_rectangle_type_intersection	       (REAL)
+#	define z_rectangle_swap			     z_rectangle_type_swap		       (REAL)
 #	define z_rectangle_union		     z_rectangle_type_union		       (REAL)
 #	define z_rectangle_from_vertices	     z_rectangle_type_from_vertices	       (REAL)
 #	define z_rectangle_absolute_point_to_unit    z_rectangle_type_absolute_point_to_unit   (REAL)

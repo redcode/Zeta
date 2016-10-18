@@ -181,6 +181,7 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #ifdef Z_FLOAT16
 
 #	define z_aabb_float16_are_equal	z_3d_line_float16_are_equal
+#	define z_aabb_float16_swap	z_3d_line_float16_swap
 #	define z_aabb_float16_center	z_3d_line_segment_float16_center
 #	define z_aabb_float16_is_zero	z_3d_line_float16_is_zero
 
@@ -191,6 +192,7 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #ifdef Z_FLOAT24
 
 #	define z_aabb_float24_are_equal	z_3d_line_float24_are_equal
+#	define z_aabb_float24_swap	z_3d_line_float24_swap
 #	define z_aabb_float24_center	z_3d_line_segment_float24_center
 #	define z_aabb_float24_is_zero	z_3d_line_float24_is_zero
 
@@ -201,6 +203,7 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #ifdef Z_FLOAT32
 
 #	define z_aabb_float32_are_equal	z_3d_line_float32_are_equal
+#	define z_aabb_float32_swap	z_3d_line_float32_swap
 #	define z_aabb_float32_center	z_3d_line_segment_float32_center
 #	define z_aabb_float32_is_zero	z_3d_line_float32_is_zero
 
@@ -211,6 +214,7 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #ifdef Z_FLOAT48
 
 #	define z_aabb_float48_are_equal	z_3d_line_float48_are_equal
+#	define z_aabb_float48_swap	z_3d_line_float48_swap
 #	define z_aabb_float48_center	z_3d_line_segment_float48_center
 #	define z_aabb_float48_is_zero	z_3d_line_float48_is_zero
 
@@ -221,6 +225,7 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #ifdef Z_FLOAT64
 
 #	define z_aabb_float64_are_equal	z_3d_line_float64_are_equal
+#	define z_aabb_float64_swap	z_3d_line_float64_swap
 #	define z_aabb_float64_center	z_3d_line_segment_float64_center
 #	define z_aabb_float64_is_zero	z_3d_line_float64_is_zero
 
@@ -231,6 +236,7 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #ifdef Z_FLOAT72
 
 #	define z_aabb_float72_are_equal	z_3d_line_float72_are_equal
+#	define z_aabb_float72_swap	z_3d_line_float72_swap
 #	define z_aabb_float72_center	z_3d_line_segment_float72_center
 #	define z_aabb_float72_is_zero	z_3d_line_float72_is_zero
 
@@ -241,6 +247,7 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #ifdef Z_FLOAT80
 
 #	define z_aabb_float80_are_equal	z_3d_line_float80_are_equal
+#	define z_aabb_float80_swap	z_3d_line_float80_swap
 #	define z_aabb_float80_center	z_3d_line_segment_float80_center
 #	define z_aabb_float80_is_zero	z_3d_line_float80_is_zero
 
@@ -251,6 +258,7 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #ifdef Z_FLOAT96
 
 #	define z_aabb_float96_are_equal	z_3d_line_float96_are_equal
+#	define z_aabb_float96_swap	z_3d_line_float96_swap
 #	define z_aabb_float96_center	z_3d_line_segment_float96_center
 #	define z_aabb_float96_is_zero	z_3d_line_float96_is_zero
 
@@ -261,6 +269,7 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #ifdef Z_FLOAT128
 
 #	define z_aabb_float128_are_equal z_3d_line_float128_are_equal
+#	define z_aabb_float128_swap	 z_3d_line_float128_swap
 #	define z_aabb_float128_center	 z_3d_line_segment_float128_center
 #	define z_aabb_float128_is_zero	 z_3d_line_float128_is_zero
 
@@ -275,6 +284,7 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #ifdef Z_REAL
 
 #	define z_aabb_are_equal z_3d_line_are_equal
+#	define z_aabb_swap	z_3d_line_swap
 #	define z_aabb_center	z_3d_line_segment_center
 #	define z_aabb_is_zero	z_3d_line_is_zero
 

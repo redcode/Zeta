@@ -153,8 +153,7 @@ Z_INLINE void z_3d_##type##_swap(Z3D##Type *a, Z3D##Type *b)					\
 	{											\
 	Z3D##Type t = *a;									\
 												\
-	*a = *b;										\
-	*b = t;											\
+	*a = *b; *b = t;									\
 	}											\
 												\
 												\

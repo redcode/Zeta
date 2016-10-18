@@ -29,6 +29,14 @@ Z_INLINE zboolean z_2d_line_##type##_are_perpendicular(Z2DLine##Type a, Z2DLine#
 	}										 \
 											 \
 											 \
+Z_INLINE void z_2d_line_##type##_swap(Z2DLine##Type *a, Z2DLine##Type *b)		 \
+	{										 \
+	Z2DLine##Type t = *a;								 \
+											 \
+	*a = *b; *b = t;								 \
+	}										 \
+											 \
+											 \
 Z_INLINE zboolean z_2d_line_##type##_is_zero(Z2DLine##Type object)			 \
 	{return z_2d_##type##_is_zero(object.a) && z_2d_##type##_is_zero(object.b);}	 \
 											 \
@@ -37,10 +45,11 @@ Z_INLINE Z2DLine##Type z_2d_line_##type##_reverse(Z2DLine##Type object)			 \
 	{return z_2d_line_##type(object.b.x, object.b.y, object.a.x, object.a.y);}
 
 
-#define z_2d_line_type_are_equal(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _are_equal	  )
-#define z_2d_line_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _are_perpendicular)
-#define z_2d_line_type_is_zero(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _is_zero	  )
-#define z_2d_line_type_reverse(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_linx_, _reverse	  )
+#define z_2d_line_type_are_equal(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_, _are_equal	  )
+#define z_2d_line_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_, _are_perpendicular)
+#define z_2d_line_type_swap(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_, _swap		  )
+#define z_2d_line_type_is_zero(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_, _is_zero	  )
+#define z_2d_line_type_reverse(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_, _reverse	  )
 
 
 #define Z_IMPLEMENTATION_2D_LINE_SEGMENT(Type, type, _)					\
@@ -127,6 +136,7 @@ Z_INLINE Z2D##Type z_2d_line_segment_##type##_lerp(Z2DLine##Type object, z##type
 #ifdef Z_REAL
 #	define z_2d_line_are_equal	   z_2d_line_type_are_equal	   (REAL)
 #	define z_2d_line_are_perpendicular z_2d_line_type_are_perpendicular(REAL)
+#	define z_2d_line_swap		   z_2d_line_type_swap		   (REAL)
 #	define z_2d_line_is_zero	   z_2d_line_type_is_zero	   (REAL)
 #	define z_2d_line_reverse	   z_2d_line_type_reverse	   (REAL)
 #	define z_2d_line_segment_collide   z_2d_line_segment_type_collide  (REAL)

@@ -60,6 +60,14 @@ Z_INLINE ZBox##Type z_box_##type##_intersection(ZBox##Type a, ZBox##Type b)			\
 	}											\
 												\
 												\
+Z_INLINE void z_box_##type##_swap(ZBox##Type *a, ZBox##Type *b)					\
+	{											\
+	ZBox##Type t = *a;									\
+												\
+	*a = *b; *b = t;									\
+	}											\
+												\
+												\
 Z_INLINE ZBox##Type z_box_##type##_union(ZBox##Type a, ZBox##Type b)				\
 	{											\
 	ZBox##Type result;									\
@@ -203,6 +211,7 @@ Z_INLINE Z3D##Type z_box_##type##_unit_point_to_absolute(ZBox##Type object, Z3D#
 #define z_box_type_collide(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _collide		    )
 #define z_box_type_contains(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _contains		    )
 #define z_box_type_intersection(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _intersection	    )
+#define z_box_type_swap(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _swap		    )
 #define z_box_type_union(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _union		    )
 #define z_box_type_from_vertices(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _from_vertices	    )
 #define z_box_type_absolute_point_to_unit(TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _absolute_point_to_unit)
@@ -266,6 +275,7 @@ Z_INLINE Z3D##Type z_box_##type##_unit_point_to_absolute(ZBox##Type object, Z3D#
 #	define z_box_collide		    z_box_type_collide		     (REAL)
 #	define z_box_contains		    z_box_type_contains		     (REAL)
 #	define z_box_intersection	    z_box_type_intersection	     (REAL)
+#	define z_box_swap		    z_box_type_swap		     (REAL)
 #	define z_box_union		    z_box_type_union		     (REAL)
 #	define z_box_from_vertices	    z_box_type_from_vertices	     (REAL)
 #	define z_box_absolute_point_to_unit z_box_type_absolute_point_to_unit(REAL)

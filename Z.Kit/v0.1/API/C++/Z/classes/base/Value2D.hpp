@@ -259,6 +259,10 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		{return this->x * this->x + this->y * this->y;}
 
 
+	Z_INLINE_MEMBER void swap(Value2D &value)
+		{Zeta::swap<Base>(this, &value);}
+
+
 	Z_INLINE_MEMBER void to_vertex_array(T *array) const
 		{
 		array[0] = array[1] = array[2] = array[7] = T(0);
@@ -267,7 +271,7 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		}
 
 
-	Z_INLINE_MEMBER void to_vertex_array(Value2D delta, T *array) const
+	Z_INLINE_MEMBER void to_vertex_array(const Value2D &delta, T *array) const
 		{
 		array[0] = array[2] = delta.x;
 		array[1] = array[7] = delta.y;
