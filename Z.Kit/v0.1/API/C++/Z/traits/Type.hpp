@@ -1093,7 +1093,15 @@ namespace Zeta {
 		private: typedef Partials::Type<T> Super;
 
 		public:
-		typedef typename SelectType<Super::is_struct || Super::is_union, T, const typename Super::remove_const_volatile&>::type to_argument;
+
+		typedef typename SelectType<
+			Super::is_struct || Super::is_union,
+			T, const typename Super::remove_const_volatile&
+		>::type to_argument;
+
+		typedef struct {
+			zuint8 data[sizeof(T)];
+		} to_opaque;
 
 		// TODO: constexpr functions
 	};
