@@ -8,8 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_Pair_HPP__
 #define __Z_classes_base_Pair_HPP__
 
-#include <Z/types/base.hpp>
-#include <Z/traits/Type.hpp>
+#include <Z/functions/base/value.hpp>
 
 namespace Zeta {template <class T0, class T1> struct Pair;}
 
@@ -37,6 +36,14 @@ template <class T1, class T2> struct Zeta::Pair {
 
 	Z_INLINE_MEMBER Boolean operator !=(const Pair &pair) const
 		{return first != pair.first || second != pair.second;}
+
+
+	Z_INLINE_MEMBER void swap(Pair &pair)
+		{
+		Zeta::swap<typename Type<Pair>::to_opaque>
+			((typename Type<Pair>::to_opaque *)this,
+			 (typename Type<Pair>::to_opaque *)&pair);
+		}
 };
 
 
