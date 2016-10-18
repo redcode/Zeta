@@ -71,7 +71,8 @@ template <class T> struct Zeta::Shared {
 
 	Z_INLINE_MEMBER Boolean operator ==(const Shared &shared) const {return owned == shared.owned;}
 	Z_INLINE_MEMBER Boolean operator !=(const Shared &shared) const {return owned != shared.owned;}
-	Z_INLINE_MEMBER T*	operator ->()			  const {return owned->data;}
+
+	Z_INLINE_MEMBER T* operator ->() const {return owned->data;}
 
 
 	Z_INLINE_MEMBER T *get() const
