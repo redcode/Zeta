@@ -209,14 +209,14 @@ Z_DEFINE_STRICT_STRUCTURE (
 '----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 pilot_pulse_duration;		/* {2168}	*/
-	zuint16 sync_1_pulse_duration;		/* {667}	*/
-	zuint16 sync_2_pulse_duration;		/* {735}	*/
-	zuint16 bit_0_pulse_duration;		/* {855}	*/
-	zuint16 bit_1_pulse_duration;		/* {1710}	*/
-	zuint16 pilot_tone_duration;		/* TO DO	*/
-	zuint8	last_byte_bit_count;		/* TO DO	*/
-	zuint16 pause_after_this_block_ms;	/* {1000}	*/
+	zuint16 pilot_pulse_duration;	   /* {2168} */
+	zuint16 sync_1_pulse_duration;	   /* {667}  */
+	zuint16 sync_2_pulse_duration;	   /* {735}  */
+	zuint16 bit_0_pulse_duration;	   /* {855}  */
+	zuint16 bit_1_pulse_duration;	   /* {1710} */
+	zuint16 pilot_tone_duration;	   /* TO DO  */
+	zuint8	last_byte_bit_count;	   /* TO DO  */
+	zuint16 pause_after_this_block_ms; /* {1000} */
 	zuint8	data_size[3];
 	zuint8	data[];
 ) ZTZXTurboSpeedData;

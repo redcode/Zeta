@@ -9,8 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_memory_Shared_HPP__
 #define __Z_classes_memory_Shared_HPP__
 
-#include <Z/types/base.hpp>
-#include <Z/macros/language.hpp>
+#include <Z/functions/base/value.hpp>
 
 namespace Zeta {template <class T> struct Shared;}
 
@@ -74,8 +73,17 @@ template <class T> struct Zeta::Shared {
 	Z_INLINE_MEMBER Boolean operator !=(const Shared &shared) const {return owned != shared.owned;}
 	Z_INLINE_MEMBER T*	operator ->()			  const {return owned->data;}
 
-	Z_INLINE_MEMBER T*   get	() const {return owned ? owned->data : NULL;}
-	Z_INLINE_MEMBER Size owner_count() const {return owned->owner_count;}
+
+	Z_INLINE_MEMBER T *get() const
+		{return owned ? owned->data : NULL;}
+
+
+	Z_INLINE_MEMBER Size owner_count() const
+		{return owned->owner_count;}
+
+
+	Z_INLINE_MEMBER void swap(Shared &shared)
+		{Zeta::swap<Owned *>(&owned, &shared.owned);}
 };
 
 

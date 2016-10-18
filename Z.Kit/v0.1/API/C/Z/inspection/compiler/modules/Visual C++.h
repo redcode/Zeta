@@ -34,11 +34,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C types */
 
-#define Z_COMPILER_C_HAS_TYPE_LLONG
-#define Z_COMPILER_C_HAS_TYPE_FLOAT
-#define Z_COMPILER_C_HAS_TYPE_DOUBLE
+#define Z_COMPILER_C_HAS_TYPE_LLONG TRUE
+#define Z_COMPILER_C_HAS_TYPE_FLOAT TRUE
+#define Z_COMPILER_C_HAS_TYPE_DOUBLE TRUE
 /*#define Z_COMPILER_C_HAS_TYPE_LDOUBLE*/
-#define Z_COMPILER_C_LACKS_TYPE_LDOUBLE
 
 /* MARK: - C attributes */
 
