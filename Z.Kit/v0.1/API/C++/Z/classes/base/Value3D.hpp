@@ -226,7 +226,7 @@ template <class T> struct Zeta::Value3D : public ZNumberType(Z3D, T) {
 		}
 
 
-	Z_INLINE_MEMBER void to_vertex_array(Value2D delta, T *array) const
+	Z_INLINE_MEMBER void to_vertex_array(const Value2D &delta, T *array) const
 		{
 		array[0] = array[2] = delta.x;
 		array[1] = array[7] = delta.y;
