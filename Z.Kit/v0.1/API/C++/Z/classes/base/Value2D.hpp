@@ -123,6 +123,13 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 			return result;
 			}
 
+
+		Z_INLINE_MEMBER operator CGRect() const
+			{
+			CGRect result = {CGFloat(0), CGFloat(0), CGFloat(this->x), CGFloat(this->y)};
+			return result;
+			}
+
 #	endif
 
 
@@ -146,6 +153,13 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		Z_INLINE_MEMBER operator NSSize() const
 			{
 			NSSize result = {CGFloat(this->x), CGFloat(this->y)};
+			return result;
+			}
+
+
+		Z_INLINE_MEMBER operator NSRect() const
+			{
+			NSRect result = {CGFloat(0), CGFloat(0), CGFloat(this->x), CGFloat(this->y)};
 			return result;
 			}
 
