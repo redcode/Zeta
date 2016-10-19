@@ -342,17 +342,17 @@ Z_INLINE z##type z_aabr_##type##_middle_y(ZAABR##Type object)					\
 	{return (object.a.y + object.b.y) / _(2.0);}						\
 												\
 												\
+Z_INLINE ZRectangle##Type z_aabr_##type##_rectangle(ZAABR##Type object)				\
+	{											\
+	return z_rectangle_##type								\
+		(object.a.x, object.a.y, object.b.x - object.a.x, object.b.y - object.a.y);	\
+	}											\
+												\
+												\
 Z_INLINE ZAABR##Type z_aabr_##type##_right_half(ZAABR##Type object)				\
 	{											\
 	object.a.x = (object.a.x + object.b.x) / _(2.0);					\
 	return object;										\
-	}											\
-												\
-												\
-Z_INLINE ZRectangle##Type z_aabr_##type##_to_rectangle(ZAABR##Type object)			\
-	{											\
-	return z_rectangle_##type								\
-		(object.a.x, object.a.y, object.b.x - object.a.x, object.b.y - object.a.y);	\
 	}											\
 												\
 												\
@@ -438,9 +438,9 @@ Z_INLINE Z2D##Type z_aabr_##type##_unit_point_to_absolute(ZAABR##Type object, Z2
 #define z_aabr_type_left_half(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _left_half	      )
 #define z_aabr_type_middle_x(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _middle_x	      )
 #define z_aabr_type_middle_y(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _middle_y	      )
+#define z_aabr_type_rectangle(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _rectangle	      )
 #define z_aabr_type_right_half(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _right_half	      )
 #define z_aabr_type_size(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _size		      )
-#define z_aabr_type_to_rectangle(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _to_rectangle	      )
 #define z_aabr_type_top_center(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _top_center	      )
 #define z_aabr_type_top_half(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _top_half	      )
 #define z_aabr_type_top_left(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _top_left	      )
@@ -604,9 +604,9 @@ Z_INLINE Z2D##Type z_aabr_##type##_unit_point_to_absolute(ZAABR##Type object, Z2
 #	define z_aabr_left_half		     z_aabr_type_left_half	       (REAL)
 #	define z_aabr_middle_x		     z_aabr_type_middle_x	       (REAL)
 #	define z_aabr_middle_y		     z_aabr_type_middle_y	       (REAL)
+#	define z_aabr_rectangle		     z_aabr_type_rectangle	       (REAL)
 #	define z_aabr_right_half	     z_aabr_type_right_half	       (REAL)
 #	define z_aabr_size		     z_aabr_type_size		       (REAL)
-#	define z_aabr_to_rectangle	     z_aabr_type_to_rectangle	       (REAL)
 #	define z_aabr_top_center	     z_aabr_type_top_center	       (REAL)
 #	define z_aabr_top_half		     z_aabr_type_top_half	       (REAL)
 #	define z_aabr_top_left		     z_aabr_type_top_left	       (REAL)

@@ -93,6 +93,14 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_from_vertices(Z2D##Type a, Z2D##T
 	}											\
 												\
 												\
+Z_INLINE ZAABR##Type z_rectangle_##type##_aabr(ZRectangle##Type object)				\
+	{											\
+	return z_aabr_##type									\
+		(object.point.x, object.point.y,						\
+		 object.point.x + object.size.x, object.point.y + object.size.y);		\
+	}											\
+												\
+												\
 Z_INLINE Z2D##Type z_rectangle_##type##_absolute_point_to_unit(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 point									\
@@ -832,14 +840,6 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_top(				\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_rectangle_##type##_to_aabr(ZRectangle##Type object)			\
-	{											\
-	return z_aabr_##type									\
-		(object.point.x, object.point.y,						\
-		 object.point.x + object.size.x, object.point.y + object.size.y);		\
-	}											\
-												\
-												\
 Z_INLINE Z2D##Type z_rectangle_##type##_top_center(ZRectangle##Type object)			\
 	{											\
 	return z_2d_##type									\
@@ -896,6 +896,7 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 #define z_rectangle_type_swap(			   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _swap		      )
 #define z_rectangle_type_union(			   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _union		      )
 #define z_rectangle_type_from_vertices(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _from_vertices	      )
+#define z_rectangle_type_aabr(			   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _aabr		      )
 #define z_rectangle_type_absolute_point_to_unit(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _absolute_point_to_unit   )
 #define z_rectangle_type_align_in_bottom_center(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _align_in_bottom_center   )
 #define z_rectangle_type_align_in_bottom_left(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _align_in_bottom_left     )
@@ -969,7 +970,6 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 #define z_rectangle_type_shrink_in_y_from_bottom(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_in_y_from_bottom  )
 #define z_rectangle_type_shrink_in_y_from_center(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_in_y_from_center  )
 #define z_rectangle_type_shrink_in_y_from_top(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _shrink_in_y_from_top     )
-#define z_rectangle_type_to_aabr(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _to_aabr		      )
 #define z_rectangle_type_top_center(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _top_center		      )
 #define z_rectangle_type_top_half(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _top_half		      )
 #define z_rectangle_type_top_left(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _top_left		      )
@@ -1030,6 +1030,7 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 #	define z_rectangle_swap			     z_rectangle_type_swap		       (REAL)
 #	define z_rectangle_union		     z_rectangle_type_union		       (REAL)
 #	define z_rectangle_from_vertices	     z_rectangle_type_from_vertices	       (REAL)
+#	define z_rectangle_aabr			     z_rectangle_type_aabr		       (REAL)
 #	define z_rectangle_absolute_point_to_unit    z_rectangle_type_absolute_point_to_unit   (REAL)
 #	define z_rectangle_align_in_bottom_center    z_rectangle_type_align_in_bottom_center   (REAL)
 #	define z_rectangle_align_in_bottom_left	     z_rectangle_type_align_in_bottom_left     (REAL)
@@ -1103,7 +1104,6 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 #	define z_rectangle_shrink_in_y_from_bottom   z_rectangle_type_shrink_in_y_from_bottom  (REAL)
 #	define z_rectangle_shrink_in_y_from_center   z_rectangle_type_shrink_in_y_from_center  (REAL)
 #	define z_rectangle_shrink_in_y_from_top	     z_rectangle_type_shrink_in_y_from_top     (REAL)
-#	define z_rectangle_to_aabr		     z_rectangle_type_to_aabr		       (REAL)
 #	define z_rectangle_top_center		     z_rectangle_type_top_center	       (REAL)
 #	define z_rectangle_top_half		     z_rectangle_type_top_half		       (REAL)
 #	define z_rectangle_top_left		     z_rectangle_type_top_left		       (REAL)

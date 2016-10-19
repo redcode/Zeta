@@ -100,6 +100,16 @@ Z_INLINE ZBox##Type z_box_##type##_from_vertices(Z3D##Type a, Z3D##Type b)			\
 	}											\
 												\
 												\
+Z_INLINE ZAABB##Type z_box_##type##_aabb(ZBox##Type object)					\
+	{											\
+	return z_aabb_##type									\
+		(object.point.x,  object.point.y, object.point.z,				\
+		 object.point.x + object.size.x,						\
+		 object.point.y + object.size.y,						\
+		 object.point.z + object.size.z);						\
+	}											\
+												\
+												\
 Z_INLINE Z3D##Type z_box_##type##_absolute_point_to_unit(ZBox##Type object, Z3D##Type point)	\
 	{											\
 	return z_3d_##type									\
@@ -188,16 +198,6 @@ Z_INLINE zboolean z_box_##type##_is_zero(ZBox##Type object)					\
 	{return	z_3d_##type##_is_zero(object.point) && z_3d_##type##_is_zero(object.size);}	\
 												\
 												\
-Z_INLINE ZAABB##Type z_box_##type##_to_aabb(ZBox##Type object)					\
-	{											\
-	return z_aabb_##type									\
-		(object.point.x,  object.point.y, object.point.z,				\
-		 object.point.x + object.size.x,						\
-		 object.point.y + object.size.y,						\
-		 object.point.z + object.size.z);						\
-	}											\
-												\
-												\
 Z_INLINE Z3D##Type z_box_##type##_unit_point_to_absolute(ZBox##Type object, Z3D##Type point)	\
 	{											\
 	return z_3d_##type									\
@@ -214,6 +214,7 @@ Z_INLINE Z3D##Type z_box_##type##_unit_point_to_absolute(ZBox##Type object, Z3D#
 #define z_box_type_swap(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _swap		    )
 #define z_box_type_union(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _union		    )
 #define z_box_type_from_vertices(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _from_vertices	    )
+#define z_box_type_aabb(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _aabb		    )
 #define z_box_type_absolute_point_to_unit(TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _absolute_point_to_unit)
 #define z_box_type_center(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _center		    )
 #define z_box_type_contains_aabb(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _contains_aabb	    )
@@ -223,7 +224,6 @@ Z_INLINE Z3D##Type z_box_##type##_unit_point_to_absolute(ZBox##Type object, Z3D#
 #define z_box_type_correct(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _correct		    )
 #define z_box_type_inner_sphere(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _inner_sphere	    )
 #define z_box_type_is_zero(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _is_zero		    )
-#define z_box_type_to_aabb(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _to_aabb		    )
 #define z_box_type_unit_point_to_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_, _unit_point_to_absolute)
 
 
@@ -278,6 +278,7 @@ Z_INLINE Z3D##Type z_box_##type##_unit_point_to_absolute(ZBox##Type object, Z3D#
 #	define z_box_swap		    z_box_type_swap		     (REAL)
 #	define z_box_union		    z_box_type_union		     (REAL)
 #	define z_box_from_vertices	    z_box_type_from_vertices	     (REAL)
+#	define z_box_aabb		    z_box_type_aabb		     (REAL)
 #	define z_box_absolute_point_to_unit z_box_type_absolute_point_to_unit(REAL)
 #	define z_box_center		    z_box_type_center		     (REAL)
 #	define z_box_contains_aabb	    z_box_type_contains_aabb	     (REAL)
@@ -287,7 +288,6 @@ Z_INLINE Z3D##Type z_box_##type##_unit_point_to_absolute(ZBox##Type object, Z3D#
 #	define z_box_correct		    z_box_type_correct		     (REAL)
 #	define z_box_inner_sphere	    z_box_type_inner_sphere	     (REAL)
 #	define z_box_is_zero		    z_box_type_is_zero		     (REAL)
-#	define z_box_to_aabb		    z_box_type_to_aabb		     (REAL)
 #	define z_box_unit_point_to_absolute z_box_type_unit_point_to_absolute(REAL)
 #endif
 

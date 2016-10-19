@@ -31,6 +31,20 @@ Z_INLINE void z_sphere_##type##_swap(ZSphere##Type *a, ZSphere##Type *b)		\
 	}										\
 											\
 											\
+Z_INLINE ZAABB##Type z_sphere_##type##_inner_aabb(ZSphere##Type object)			\
+	{										\
+	z##type half_size = object.radius / _(Z_SQUARE_ROOT_3);				\
+											\
+	return z_aabb_##type								\
+		(object.point.x - half_size,						\
+		 object.point.y - half_size,						\
+		 object.point.z - half_size,						\
+		 object.point.x + half_size,						\
+		 object.point.y + half_size,						\
+		 object.point.z + half_size);						\
+	}										\
+											\
+											\
 Z_INLINE ZBox##Type z_sphere_##type##_inner_box(ZSphere##Type object)			\
 	{										\
 	z##type half_size = object.radius / _(Z_SQUARE_ROOT_3);				\
@@ -48,6 +62,18 @@ Z_INLINE zboolean z_sphere_##type##_is_zero(ZSphere##Type object)			\
 	{return object.radius == _(0.0) && z_3d_##type##_is_zero(object.point);}	\
 											\
 											\
+Z_INLINE ZAABB##Type z_sphere_##type##_outer_aabb(ZSphere##Type object)			\
+	{										\
+	return z_aabb_##type								\
+		(object.point.x - object.radius,					\
+		 object.point.y - object.radius,					\
+		 object.point.z - object.radius,					\
+		 object.point.x + object.radius,					\
+		 object.point.y + object.radius,					\
+		 object.point.z + object.radius);					\
+	}										\
+											\
+											\
 Z_INLINE ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 	{										\
 	z##type size = object.radius * _(2.0);						\
@@ -60,11 +86,13 @@ Z_INLINE ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 	}
 
 
-#define z_sphere_type_are_equal(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _are_equal)
-#define z_sphere_type_swap(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _swap	)
-#define z_sphere_type_inner_box(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _inner_box)
-#define z_sphere_type_is_zero(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _is_zero	)
-#define z_sphere_type_outer_box(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _outer_box)
+#define z_sphere_type_are_equal( TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _are_equal )
+#define z_sphere_type_swap(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _swap	  )
+#define z_sphere_type_inner_aabb(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _inner_aabb)
+#define z_sphere_type_inner_box( TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _inner_box )
+#define z_sphere_type_is_zero(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _is_zero	  )
+#define z_sphere_type_outer_aabb(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _outer_aabb)
+#define z_sphere_type_outer_box( TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _outer_box )
 
 
 /* MARK: - Implementation expansions */
@@ -111,11 +139,13 @@ Z_INLINE ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 
 
 #ifdef Z_REAL
-#	define z_sphere_are_equal z_sphere_type_are_equal(REAL)
-#	define z_sphere_swap	  z_sphere_type_swap	 (REAL)
-#	define z_sphere_inner_box z_sphere_type_inner_box(REAL)
-#	define z_sphere_is_zero	  z_sphere_type_is_zero  (REAL)
-#	define z_sphere_outer_box z_sphere_type_outer_box(REAL)
+#	define z_sphere_are_equal  z_sphere_type_are_equal (REAL)
+#	define z_sphere_swap	   z_sphere_type_swap	   (REAL)
+#	define z_sphere_inner_aabb z_sphere_type_inner_aabb(REAL)
+#	define z_sphere_inner_box  z_sphere_type_inner_box (REAL)
+#	define z_sphere_is_zero	   z_sphere_type_is_zero   (REAL)
+#	define z_sphere_outer_aabb z_sphere_type_outer_aabb(REAL)
+#	define z_sphere_outer_box  z_sphere_type_outer_box (REAL)
 #endif
 
 

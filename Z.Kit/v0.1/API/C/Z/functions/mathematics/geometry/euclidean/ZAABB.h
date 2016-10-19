@@ -81,6 +81,14 @@ Z_INLINE Z3D##Type z_aabb_##type##_absolute_point_to_unit(ZAABB##Type object, Z3
 	}											\
 												\
 												\
+Z_INLINE ZBox##Type z_aabb_##type##_box(ZAABB##Type object)					\
+	{											\
+	return z_box_##type									\
+		(object.a.x, object.a.y, object.a.z,						\
+		 object.b.x - object.a.x, object.b.y - object.a.y, object.b.z - object.a.z);	\
+	}											\
+												\
+												\
 Z_INLINE zboolean z_aabb_##type##_contains_box(ZAABB##Type object, ZBox##Type box)		\
 	{											\
 	return	object.a.x <= box.point.x	       &&					\
@@ -137,14 +145,6 @@ Z_INLINE ZSphere##Type z_aabb_##type##_inner_sphere(ZAABB##Type object)				\
 	}											\
 												\
 												\
-Z_INLINE ZBox##Type z_aabb_##type##_to_box(ZAABB##Type object)					\
-	{											\
-	return z_box_##type									\
-		(object.a.x, object.a.y, object.a.z,						\
-		 object.b.x - object.a.x, object.b.y - object.a.y, object.b.z - object.a.z);	\
-	}											\
-												\
-												\
 Z_INLINE Z3D##Type z_aabb_##type##_unit_point_to_absolute(ZAABB##Type object, Z3D##Type point)	\
 	{											\
 	return z_3d_##type									\
@@ -164,13 +164,13 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #define z_aabb_type_union(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _union		      )
 #define z_aabb_type_from_vertices(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _from_vertices	      )
 #define z_aabb_type_absolute_point_to_unit(TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _absolute_point_to_unit)
+#define z_aabb_type_box(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _box		      )
 #define z_aabb_type_contains_box(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_box	      )
 #define z_aabb_type_contains_line_segment( TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_line_segment )
 #define z_aabb_type_contains_point(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_point	      )
 #define z_aabb_type_contains_sphere(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_sphere	      )
 #define z_aabb_type_inner_sphere(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _inner_sphere	      )
 #define z_aabb_type_size(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _size		      )
-#define z_aabb_type_to_box(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _to_box		      )
 #define z_aabb_type_unit_point_to_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _unit_point_to_absolute)
 #define z_aabb_type_volume(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _volume		      )
 
@@ -294,13 +294,13 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 #	define z_aabb_union		     z_aabb_type_union		       (REAL)
 #	define z_aabb_from_vertices	     z_aabb_type_from_vertices	       (REAL)
 #	define z_aabb_absolute_point_to_unit z_aabb_type_absolute_point_to_unit(REAL)
+#	define z_aabb_box		     z_aabb_type_box		       (REAL)
 #	define z_aabb_contains_box	     z_aabb_type_contains_box	       (REAL)
 #	define z_aabb_contains_line_segment  z_aabb_type_contains_line_segment (REAL)
 #	define z_aabb_contains_point	     z_aabb_type_contains_point	       (REAL)
 #	define z_aabb_contains_sphere	     z_aabb_type_contains_sphere       (REAL)
 #	define z_aabb_inner_sphere	     z_aabb_type_inner_sphere	       (REAL)
 #	define z_aabb_size		     z_aabb_type_size		       (REAL)
-#	define z_aabb_to_box		     z_aabb_type_to_box		       (REAL)
 #	define z_aabb_unit_point_to_absolute z_aabb_type_unit_point_to_absolute(REAL)
 #	define z_aabb_volume		     z_aabb_type_volume		       (REAL)
 
