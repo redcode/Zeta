@@ -307,6 +307,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifdef __cplusplus
 
+	/* MARK: - C++ support */
+
+#	ifndef Z_COMPILER_CPP_HAS_TYPE_BOOLEAN
+#		define Z_COMPILER_CPP_HAS_TYPE_BOOLEAN FALSE
+#	endif
+
 	/* MARK: - C++11 support */
 
 #	ifndef Z_COMPILER_CPP_HAS_C99_PREPROCESSOR

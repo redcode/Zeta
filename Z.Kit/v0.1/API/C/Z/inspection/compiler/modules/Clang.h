@@ -460,6 +460,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if defined(__cplusplus)
 
+	/* MARK: - C++ support */
+
+#	define Z_COMPILER_CPP_HAS_TYPE_BOOLEAN TRUE
+
 	/* MARK: - C++11 support */
 
 #	if __cplusplus >= 201103L

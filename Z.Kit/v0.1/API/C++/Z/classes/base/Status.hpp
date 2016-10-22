@@ -79,11 +79,12 @@ struct Zeta::Status {
 	Z_INLINE_MEMBER Status() {}
 	Z_INLINE_MEMBER Status(ZStatus code) : code(code) {}
 
-	Z_INLINE_MEMBER operator Boolean() const {return !!code;}
+#	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+		Z_INLINE_MEMBER operator bool() const {return code;}
+#	endif
+
 	Z_INLINE_MEMBER operator ZStatus() const {return code;}
 
-	Z_INLINE_MEMBER Boolean operator ==(Status  status) const {return code == status.code;}
-	Z_INLINE_MEMBER Boolean operator !=(Status  status) const {return code != status.code;}
 	Z_INLINE_MEMBER Boolean operator ==(ZStatus status) const {return code == status;}
 	Z_INLINE_MEMBER Boolean operator !=(ZStatus status) const {return code != status;}
 

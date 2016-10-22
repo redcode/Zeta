@@ -18,7 +18,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {
 
-		namespace Partials {namespace Abstract {
+		namespace Abstract {
 
 			template <unsigned int I, class... T>
 			struct Tuple : Tuple<I - 1, T...> {
@@ -49,10 +49,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			};
 
 			template <class... T> struct Tuple<0, T...> {};
-		}}
+		}
 
 		template <class... T>
-		class Tuple : public Partials::Abstract::Tuple<sizeof...(T), T...> {
+		class Tuple : public Abstract::Tuple<sizeof...(T), T...> {
 			public:
 
 			/*Z_INLINE_MEMBER Boolean operator ==(const Tuple &tuple) const
@@ -60,13 +60,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <unsigned int I> Z_INLINE_MEMBER
-			typename Partials::Abstract::Tuple<I + 1, T...>::type get()
-				{return Partials::Abstract::Tuple<I + 1, T...>::get();}
+			typename Abstract::Tuple<I + 1, T...>::type get()
+				{return Abstract::Tuple<I + 1, T...>::get();}
 
 
 			template <unsigned int I> Z_INLINE_MEMBER
-			void set(typename Partials::Abstract::Tuple<I + 1, T...>::type value)
-				{return Partials::Abstract::Tuple<I + 1, T...>::set(value);}
+			void set(typename Abstract::Tuple<I + 1, T...>::type value)
+				{return Abstract::Tuple<I + 1, T...>::set(value);}
 		};
 	}
 

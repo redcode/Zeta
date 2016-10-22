@@ -26,8 +26,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Types */
 
-#define Z_C_HAS_TYPE_ULLONG TRUE /* unsigned long long [int] */
-#define Z_C_HAS_TYPE_LLONG  TRUE /* [signed] long long [int] */
+#define Z_C_HAS_TYPE_BOOLEAN TRUE /* _Bool		     */
+#define Z_C_HAS_TYPE_ULLONG  TRUE /* unsigned long long [int] */
+#define Z_C_HAS_TYPE_LLONG   TRUE /* [signed] long long [int] */
 
 /* MARK: - Type qualifiers */
 

@@ -16,7 +16,7 @@ namespace Zeta {
 
 	// MARK: - Abstract
 
-	namespace Partials {namespace Abstract {namespace Type {
+	namespace Abstract {namespace Type {
 
 		struct Invalid {
 			enum {	is_arithmetic		     = false,
@@ -81,6 +81,7 @@ namespace Zeta {
 			typedef Invalid pointee_type;
 			typedef Invalid referenced_type;
 			typedef Invalid return_type;
+			typedef Invalid underlying_type;
 
 			typedef Invalid to_argument;
 			typedef Invalid to_signed;
@@ -675,13 +676,13 @@ namespace Zeta {
 
 #		endif
 
-		template <class T> struct Enumerated : Valid {
+		template <class T> struct Enum : Valid {
 			enum {is_enum = true};
 
 			typedef T type;
 		};
 
-		template <class T> struct Structure : Valid {
+		template <class T> struct Struct : Valid {
 			enum {is_struct = true};
 
 			typedef T type;
@@ -692,11 +693,11 @@ namespace Zeta {
 
 			typedef T type;
 		};
-	}}}
+	}}
 
 	// MARK: - Mixins
 
-	namespace Partials {namespace Mixins {namespace Type {
+	namespace Mixins {namespace Type {
 
 		// MARK: - Unqualified
 
@@ -887,13 +888,13 @@ namespace Zeta {
 			typedef typename C::type	     to_rvalue_reference;
 			typedef typename C::type	     remove_pointer;
 		};
-	}}}
+	}}
 
 	namespace Partials {
 
 		// MARK: - Structures and unions (WIP)
 
-		template <class T> struct Type : Mixins::Type::Unqualified<Abstract::Type::Structure<T> > {};
+		template <class T> struct Type : Mixins::Type::Unqualified<Abstract::Type::Struct<T> > {};
 
 		// MARK: - void
 
@@ -1085,10 +1086,10 @@ namespace Zeta {
 			: (Partials::Type<T>::is_rvalue_reference
 				? 3
 				: (Partials::Type<T>::is_lvalue_reference ? 2 : 0)),
-		Partials::Mixins::Type::Value	       <Partials::Type<T> >,
-		Partials::Mixins::Type::Pointer	       <Partials::Type<T> >,
-		Partials::Mixins::Type::LValueReference<Partials::Type<T> >,
-		Partials::Mixins::Type::RValueReference<Partials::Type<T> >
+		Mixins::Type::Value	     <Partials::Type<T> >,
+		Mixins::Type::Pointer	     <Partials::Type<T> >,
+		Mixins::Type::LValueReference<Partials::Type<T> >,
+		Mixins::Type::RValueReference<Partials::Type<T> >
 	>::type {
 		private: typedef Partials::Type<T> Super;
 
@@ -1106,10 +1107,10 @@ namespace Zeta {
 		// TODO: constexpr functions
 	};
 
-	template <> struct Type<	       Partials::Abstract::Type::Invalid> : Partials::Abstract::Type::Invalid {};
-	template <> struct Type<const	       Partials::Abstract::Type::Invalid> : Partials::Abstract::Type::Invalid {};
-	template <> struct Type<      volatile Partials::Abstract::Type::Invalid> : Partials::Abstract::Type::Invalid {};
-	template <> struct Type<const volatile Partials::Abstract::Type::Invalid> : Partials::Abstract::Type::Invalid {};
+	template <> struct Type<	       Abstract::Type::Invalid> : Abstract::Type::Invalid {};
+	template <> struct Type<const	       Abstract::Type::Invalid> : Abstract::Type::Invalid {};
+	template <> struct Type<      volatile Abstract::Type::Invalid> : Abstract::Type::Invalid {};
+	template <> struct Type<const volatile Abstract::Type::Invalid> : Abstract::Type::Invalid {};
 }
 
 #endif // __Z_traits_Type_HPP__
