@@ -15,7 +15,6 @@ namespace Zeta {namespace Abstract {template <class T> struct Enumeration;}}
 
 
 template <class T> struct Zeta::Abstract::Enumeration {
-
 	T value;
 
 #	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)

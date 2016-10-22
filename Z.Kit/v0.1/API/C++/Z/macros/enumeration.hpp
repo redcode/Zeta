@@ -12,25 +12,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(CPP, STRONGLY_TYPED_ENUMERATION)
 
-#	define Z_ENUMERATION_BEGIN(Type, UnderlyingType)			  \
-		struct Type : Zeta::Abstract::Enumeration<UnderlyingType> {	  \
-										  \
-		Z_INLINE_MEMBER Type() {}					  \
-		Z_INLINE_MEMBER Type(UnderlyingType value) {this->value = value;} \
-										  \
-	enum Values : UnderlyingType {
+#	define Z_TYPED_ENUMERATION_BEGIN(Type, UnderlyingType)				  \
+		struct Type : Zeta::Abstract::Enumeration<UnderlyingType> {		  \
+											  \
+			Z_INLINE_MEMBER Type() {}					  \
+			Z_INLINE_MEMBER Type(UnderlyingType value) {this->value = value;} \
+											  \
+			enum Values : UnderlyingType {
 
-#else
+#endif
 
-#	define Z_ENUMERATION_BEGIN(Type, UnderlyingType)	       \
-		struct Type : Zeta::Abstract::Enumeration<int> {       \
+#define Z_ENUMERATION_BEGIN(Type)				       \
+	struct Type : Zeta::Abstract::Enumeration<int> {	       \
 								       \
 		Z_INLINE_MEMBER Type() {}			       \
 		Z_INLINE_MEMBER Type(int value) {this->value = value;} \
 								       \
-	enum {
-
-#endif
+		enum {
 
 #define Z_ENUMERATION_END };};
 
