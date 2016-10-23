@@ -179,6 +179,10 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 		Z_INLINE_MEMBER operator cocos2d::Size() const
 			{return cocos2d::Size(float(this->x), float(this->y));}
 
+
+		Z_INLINE_MEMBER operator cocos2d::Rect() const
+			{return cocos2d::Rect(0.0f, 0.0f, float(this->x),  float(this->y));}
+
 #	endif
 
 
