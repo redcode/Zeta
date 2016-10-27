@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_formats_multimedia_container_Creative_Voice_H__
 #define __Z_formats_multimedia_container_Creative_Voice_H__
 
-#include <Z/types/base.h>
+#include <Z/macros/filtering.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	identifier[19];	      /* 'Creative Voice File'		  */
@@ -43,13 +43,13 @@ Z_DEFINE_STRICT_STRUCTURE (
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 frequency_divisor;
 	zuint8 codec_id;
-	zuint8 data[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZCreativeVoiceSoundData;
 
 /* MARK: - ID 2 - Sound Data Continuation */
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 data[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZCreativeVoiceSoundDataContinuation;
 
 /* MARK: - ID 3 - Silence */
@@ -68,7 +68,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 /* MARK: - ID 5 - Text */
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 content[]; /* 0 terminated string */
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 content[];) /* 0 terminated string */
 ) ZCreativeVoiceText;
 
 /* MARK: - ID 6 - Repeat Start */
@@ -95,7 +95,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	channel_Count;
 	zuint16 codec_id;
 	zuint32 reserved;
-	zuint8	data[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZCreativeVoiceSoundDataInNewFormat;
 
 #endif /* __Z_formats_multimedia_container_Creative_Voice_H__ */

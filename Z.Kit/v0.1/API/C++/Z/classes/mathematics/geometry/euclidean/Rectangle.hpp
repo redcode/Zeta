@@ -49,6 +49,17 @@ template <class T> struct Zeta::Rectangle {
 	: point(aabr.a), size(aabr.a + aabr.b) {}
 
 
+	// MARK: - Static constructors
+
+
+	static Z_INLINE_MEMBER Rectangle from_vertices(const Value2D<T> &a, const Value2D<T> &b)
+		{
+		Value2D<T> minimum = Value2D<T>::minimum(a, b);
+
+		return Rectangle(minimum, Value2D<T>::maximum(a, b) - minimum);
+		}
+
+
 	// MARK: - Operators
 
 
@@ -183,17 +194,6 @@ template <class T> struct Zeta::Rectangle {
 			}
 
 #	endif
-
-
-	// MARK: - Static constructors
-
-
-	static Z_INLINE_MEMBER Rectangle from_vertices(const Value2D<T> &a, const Value2D<T> &b)
-		{
-		Value2D<T> minimum = Value2D<T>::minimum(a, b);
-
-		return Rectangle(minimum, Value2D<T>::maximum(a, b) - minimum);
-		}
 
 
 	// MARK: - Functions

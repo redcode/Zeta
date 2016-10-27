@@ -124,7 +124,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef __Z_formats_storage_medium_image_audio_TZX_H__
 #define __Z_formats_storage_medium_image_audio_TZX_H__
 
-#include <Z/types/base.h>
+#include <Z/macros/filtering.h>
 
 /* MARK: - File Header
 .--------------------------------------------------------------------------.
@@ -196,7 +196,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 pause;
 	zuint16 data_size;
-	zuint8	data[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXStandardSpeedData;
 
 /* MARK: - ID 11h - Turbo Speed Data
@@ -218,7 +218,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	last_byte_bit_count;	   /* TO DO  */
 	zuint16 pause_after_this_block_ms; /* {1000} */
 	zuint8	data_size[3];
-	zuint8	data[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXTurboSpeedData;
 
 /* MARK: - ID 12h - Pure Tone
@@ -241,8 +241,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 '-------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8	pulse_count;
-	zuint16 pulse_duration[];
+	zuint8 pulse_count;
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint16 pulse_durations[];)
 ) ZTZXPulseSequence;
 
 /* MARK: - ID 14h - Pure Data
@@ -257,7 +257,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	last_byte_bit_count;
 	zuint16 pause_after_this_block_ms;
 	zuint8	data_size[3];
-	zuint8	data[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXPureData;
 
 /* MARK: - ID 15h - Direct Recording
@@ -280,7 +280,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 pause_after_this_block_ms;
 	zuint8	last_byte_bit_count;
 	zuint8	data_size[3];
-	zuint8	data[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXDirectRecording;
 
 /* MARK: - ID 16h - C64 ROM Type Data (Added in v1.13, deprecated in v1.20)
@@ -344,7 +344,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	sampling_rate[3];
 	zuint8	compression_type;
 	zuint32 pulse_count;
-	zuint8	csw_data[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 csw_data[];)
 ) ZTZXCSWRecording;
 
 #define Z_TZX_CSW_COMPRESSION_TYPE_RLE	 1
@@ -384,8 +384,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 '---------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8	flags;
-	zuint16 pulse_duration[];
+	zuint8 flags;
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint16 pulse_durations[];)
 ) ZTZXSymbolDefinition;
 
 #define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT	       0
@@ -485,7 +485,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 name_size;
-	zuint8 name_ascii[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 name_ascii[];)
 ) ZTZXGroupStart;
 
 /* MARK: - ID 22h - Group End
@@ -547,7 +547,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 count;
-	zuint16 relative_offset[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint16 relative_offsets[];)
 ) ZTZXCallSequence;
 
 /* MARK: - ID 27h - Return from Sequence (Added in v1.10)
@@ -573,13 +573,13 @@ Z_DEFINE_STRICT_STRUCTURE (
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32	block_size;
 	zuint8	selection_count;
-	zuint8	selection[]; /* ZTZXSelectItem */
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 selection[];) /* ZTZXSelectItem */
 ) ZTZXSelect;
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 relative_offset;
 	zuint8	description_size;
-	zuint8	description_ascii[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 description_ascii[];)
 ) ZTZXSelectItem;
 
 /* MARK: - ID 2Ah - Stop Tape if in 48K Mode
@@ -625,7 +625,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 size;
-	zuint8 ascii[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
 ) ZTZXDescriptionText;
 
 /* MARK: - ID 31h - Message
@@ -646,7 +646,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 display_seconds;
 	zuint8 size;
-	zuint8 ascii[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
 ) ZTZXMessage;
 
 /* MARK: - ID 32h - Archive Information
@@ -671,13 +671,13 @@ Z_DEFINE_STRICT_STRUCTURE (
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 id;
 	zuint8 size;
-	zuint8 ascii[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
 ) ZTZXText;
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
 	zuint8	text_count;
-	zuint8	text[]; /* ZTZXText */
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 text[];) /* ZTZXText */
 ) ZTZXArchiveInformation;
 
 /* MARK: - ID 33h - Hardware Type
@@ -710,8 +710,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE 3
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8	     count;
-	ZTZXHardware hardware[];
+	zuint8 count;
+	Z_FLEXIBLE_ARRAY_MEMBER(ZTZXHardware hardware[];)
 ) ZTZXHardwareType;
 
 /* MARK: - ID 34h - Emulation Information (Deprecated in v1.20)
@@ -738,7 +738,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	ascii_id;
 	zuint32	data_size;
-	zuint8	data[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXCustomInformation;
 
 /* MARK: - ID 40h - Snapshot (Added in v1.10, deprecated in v1.20)
@@ -755,7 +755,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 format;
 	zuint8 size[3];
-	zuint8 data[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXSnapshot;
 
 #define Z_TZX_SNAPSHOT_FORMAT_Z80 0

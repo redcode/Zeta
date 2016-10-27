@@ -28,7 +28,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		Z_INLINE_MEMBER Type() {}			       \
 		Z_INLINE_MEMBER Type(int value) {this->value = value;} \
 								       \
-		enum {
+		enum Values {
 
 #define Z_ENUMERATION_END };};
 

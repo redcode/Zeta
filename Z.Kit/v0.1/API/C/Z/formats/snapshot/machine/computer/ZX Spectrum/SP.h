@@ -27,7 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H__
 #define __Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H__
 
-#include <Z/types/base.h>
+#include <Z/macros/filtering.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	signature[2];	  /* 'SP' */
@@ -54,7 +54,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 		zuint8 iff1	   :1
 	)} status;
 
-	zuint8 ram[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ram[];)
 Z_DEFINE_STRICT_STRUCTURE_END ZSPBody;
 
 #define Z_SP_BODY_IM(p) (Z_SP_BODY(p)->im_0 ? 0 : ((p)->im ? 2 : 1))

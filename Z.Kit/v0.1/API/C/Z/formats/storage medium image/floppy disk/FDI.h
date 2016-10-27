@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_formats_storage_medium_image_floppy_disk_FDI_H__
 #define __Z_formats_storage_medium_image_floppy_disk_FDI_H__
 
-#include <Z/types/base.h>
+#include <Z/macros/filtering.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	signature[3]; /* 'FDI' */
@@ -18,7 +18,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 disk_description_offset;
 	zuint16 data_offset;
 	zuint16 header_additional_information_size;
-	zuint8	additional_information[];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 additional_information[];)
 ) ZFDIHeader;
 
 Z_DEFINE_STRICT_STRUCTURE (
@@ -36,10 +36,10 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZFDISectorEntry;
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32		data_offset;
-	zuint16		zero; /* Always 0000h */
-	zuint8		sector_count;
-	ZFDISectorEntry sectors_entries[];
+	zuint32 data_offset;
+	zuint16 zero; /* Always 0000h */
+	zuint8	sector_count;
+	Z_FLEXIBLE_ARRAY_MEMBER(ZFDISectorEntry sectors_entries[];)
 ) ZFDITrackHeader;
 
 #endif /* __Z_formats_storage_medium_image_floppy_disk_FDI_H__ */

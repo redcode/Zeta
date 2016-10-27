@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 #include <Z/traits/Type.hpp>
-#include <Z/traits/conditionals.hpp>
+#include <Z/traits/filtering.hpp>
 
 
 namespace Zeta {

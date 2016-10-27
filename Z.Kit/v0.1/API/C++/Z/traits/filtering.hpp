@@ -1,12 +1,12 @@
-/* Z Kit C++ API - traits/conditionals.hpp
+/* Z Kit C++ API - traits/filtering.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_traits_conditionals_HPP__
-#define __Z_traits_conditionals_HPP__
+#ifndef __Z_traits_filtering_HPP__
+#define __Z_traits_filtering_HPP__
 
 #include <Z/inspection/language.h>
 #include <Z/traits/TypeOrVoid.hpp>
@@ -40,4 +40,4 @@ namespace Zeta {
 
 }
 
-#endif // __Z_traits_conditionals_HPP__
+#endif // __Z_traits_filtering_HPP__

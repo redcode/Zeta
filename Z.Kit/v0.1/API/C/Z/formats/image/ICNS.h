@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_formats_image_ICNS_H__
 #define __Z_formats_image_ICNS_H__
 
-#include <Z/types/base.h>
+#include <Z/macros/filtering.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 type;
@@ -16,11 +16,11 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZICNSEntry;
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32    signature;	  /* 'icns' */
-	zuint32    total_size;
-	zuint32    toc_signature; /* 'TOC ' */
-	zuint32    toc_size;
-	ZICNSEntry toc_entries[];
+	zuint32 signature;     /* 'icns' */
+	zuint32 total_size;
+	zuint32 toc_signature; /* 'TOC ' */
+	zuint32 toc_size;
+	Z_FLEXIBLE_ARRAY_MEMBER(ZICNSEntry toc_entries[];)
 ) ZICNSHeader;
 
 #if Z_CPU_INTEGER_ENDIANNESS(32BIT) == Z_ENDIANNESS_BIG

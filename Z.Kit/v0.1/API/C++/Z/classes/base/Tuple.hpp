@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 #include <Z/macros/language.hpp>
-#include <Z/traits/conditionals.hpp>
+#include <Z/traits/filtering.hpp>
 #include <Z/traits/SelectType.hpp>
 #include <type_traits>
 
