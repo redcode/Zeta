@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_formats_character_set_Unicode_H__
 #define __Z_formats_character_set_Unicode_H__
 
-/* MARK: - 0000-007F - Basic Latin */
+/* MARK: - 0000h-007Fh - Basic Latin */
 
 #define Z_UNICODE_NULL			      0x0000
 #define Z_UNICODE_START_OF_HEADING	      0x0001
@@ -139,7 +139,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TILDE			      0x007E
 #define Z_UNICODE_DELETE		      0x007F
 
-/* MARK: - 0080-00FF - C1 Controls and Latin-1 Supplement */
+/* MARK: - 0080h-00FFh - C1 Controls and Latin-1 Supplement */
 
 /* 0080h <control> */
 /* 0081h <control> */
@@ -270,7 +270,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LATIN_SMALL_LETTER_THORN		     0x00FE
 #define Z_UNICODE_LATIN_SMALL_LETTER_Y_WITH_DIAERESIS	     0x00FF
 
-/* MARK: - 0100-017F - Latin Extended-A */
+/* MARK: - 0100h-017Fh - Latin Extended-A */
 
 #define Z_UNICODE_LATIN_CAPITAL_LETTER_A_WITH_MACRON	      0x0100
 #define Z_UNICODE_LATIN_SMALL_LETTER_A_WITH_MACRON	      0x0101
@@ -401,7 +401,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LATIN_SMALL_LETTER_Z_WITH_CARON	      0x017E
 #define Z_UNICODE_LATIN_SMALL_LETTER_LONG_S		      0x017F
 
-/* MARK: - 0180-024F - Latin Extended-B */
+/* MARK: - 0180h-024Fh - Latin Extended-B */
 
 #define Z_UNICODE_LATIN_SMALL_LETTER_B_WITH_STROKE			0x0180
 #define Z_UNICODE_LATIN_CAPITAL_LETTER_B_WITH_HOOK			0x0181
@@ -612,7 +612,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LATIN_CAPITAL_LETTER_Y_WITH_STROKE			0x024E
 #define Z_UNICODE_LATIN_SMALL_LETTER_Y_WITH_STROKE			0x024F
 
-/* MARK: - 0250-02AF - IPA Extensions */
+/* MARK: - 0250h-02AFh - IPA Extensions */
 
 #define Z_UNICODE_LATIN_SMALL_LETTER_TURNED_A			     0x0250
 #define Z_UNICODE_LATIN_SMALL_LETTER_ALPHA			     0x0251
@@ -711,7 +711,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LATIN_SMALL_LETTER_TURNED_H_WITH_FISHHOOK	     0x02AE
 #define Z_UNICODE_LATIN_SMALL_LETTER_TURNED_H_WITH_FISHHOOK_AND_TAIL 0x02AF
 
-/* MARK: - 02B0-02FF - Spacing Modifier Letters */
+/* MARK: - 02B0h-02FFh - Spacing Modifier Letters */
 
 #define Z_UNICODE_MODIFIER_LETTER_SMALL_H		      0x02B0
 #define Z_UNICODE_MODIFIER_LETTER_SMALL_H_WITH_HOOK	      0x02B1
@@ -794,7 +794,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MODIFIER_LETTER_OPEN_SHELF		      0x02FE
 #define Z_UNICODE_MODIFIER_LETTER_LOW_LEFT_ARROW	      0x02FF
 
-/* MARK: - 0300-036F - Combining Diacritical Marks */
+/* MARK: - 0300h-036Fh - Combining Diacritical Marks */
 
 #define Z_UNICODE_COMBINING_GRAVE_ACCENT			   0x0300
 #define Z_UNICODE_COMBINING_ACUTE_ACCENT			   0x0301
@@ -909,7 +909,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COMBINING_LATIN_SMALL_LETTER_V		   0x036E
 #define Z_UNICODE_COMBINING_LATIN_SMALL_LETTER_X		   0x036F
 
-/* MARK: - 0370-03FF - Greek and Coptic */
+/* MARK: - 0370h-03FFh - Greek and Coptic */
 
 #define Z_UNICODE_GREEK_CAPITAL_LETTER_HETA			      0x0370
 #define Z_UNICODE_GREEK_SMALL_LETTER_HETA			      0x0371
@@ -1047,7 +1047,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_GREEK_CAPITAL_DOTTED_LUNATE_SIGMA_SYMBOL	      0x03FE
 #define Z_UNICODE_GREEK_CAPITAL_REVERSED_DOTTED_LUNATE_SIGMA_SYMBOL   0x03FF
 
-/* MARK: - 0400-04FF - Cyrillic */
+/* MARK: - 0400h-04FFh - Cyrillic */
 
 #define Z_UNICODE_CYRILLIC_CAPITAL_LETTER_IE_WITH_GRAVE			   0x0400
 #define Z_UNICODE_CYRILLIC_CAPITAL_LETTER_IO				   0x0401
@@ -1306,7 +1306,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CYRILLIC_CAPITAL_LETTER_HA_WITH_STROKE		   0x04FE
 #define Z_UNICODE_CYRILLIC_SMALL_LETTER_HA_WITH_STROKE			   0x04FF
 
-/* MARK: - 0500-052F - Cyrillic Supplement */
+/* MARK: - 0500h-052Fh - Cyrillic Supplement */
 
 #define Z_UNICODE_CYRILLIC_CAPITAL_LETTER_KOMI_DE	      0x0500
 #define Z_UNICODE_CYRILLIC_SMALL_LETTER_KOMI_DE		      0x0501
@@ -1357,7 +1357,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CYRILLIC_CAPITAL_LETTER_EL_WITH_DESCENDER   0x052E
 #define Z_UNICODE_CYRILLIC_SMALL_LETTER_EL_WITH_DESCENDER     0x052F
 
-/* MARK: - 0530-058F - Armenian */
+/* MARK: - 0530h-058Fh - Armenian */
 
 #define Z_UNICODE_ARMENIAN_CAPITAL_LETTER_AYB		  0x0531
 #define Z_UNICODE_ARMENIAN_CAPITAL_LETTER_BEN		  0x0532
@@ -1449,7 +1449,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LEFT_FACING_ARMENIAN_ETERNITY_SIGN	  0x058E
 #define Z_UNICODE_ARMENIAN_DRAM_SIGN			  0x058F
 
-/* MARK: - 0590-05FF - Hebrew */
+/* MARK: - 0590h-05FFh - Hebrew */
 
 #define Z_UNICODE_HEBREW_ACCENT_ETNAHTA		     0x0591
 #define Z_UNICODE_HEBREW_ACCENT_SEGOL		     0x0592
@@ -1539,7 +1539,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_HEBREW_PUNCTUATION_GERESH	     0x05F3
 #define Z_UNICODE_HEBREW_PUNCTUATION_GERSHAYIM	     0x05F4
 
-/* MARK: - 0600-06FF - Arabic */
+/* MARK: - 0600h-06FFh - Arabic */
 
 #define Z_UNICODE_ARABIC_NUMBER_SIGN						0x0600
 #define Z_UNICODE_ARABIC_SIGN_SANAH						0x0601
@@ -1797,7 +1797,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ARABIC_SIGN_SINDHI_POSTPOSITION_MEN				0x06FE
 #define Z_UNICODE_ARABIC_LETTER_HEH_WITH_INVERTED_V				0x06FF
 
-/* MARK: - 0700-074F - Syriac */
+/* MARK: - 0700h-074Fh - Syriac */
 
 #define Z_UNICODE_SYRIAC_END_OF_PARAGRAPH	       0x0700
 #define Z_UNICODE_SYRIAC_SUPRALINEAR_FULL_STOP	       0x0701
@@ -1877,7 +1877,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SYRIAC_LETTER_SOGDIAN_KHAPH	       0x074E
 #define Z_UNICODE_SYRIAC_LETTER_SOGDIAN_FE	       0x074F
 
-/* MARK: - 0750-077F - Arabic Supplement */
+/* MARK: - 0750h-077Fh - Arabic Supplement */
 
 #define Z_UNICODE_ARABIC_LETTER_BEH_WITH_THREE_DOTS_HORIZONTALLY_BELOW			      0x0750
 #define Z_UNICODE_ARABIC_LETTER_BEH_WITH_DOT_BELOW_AND_THREE_DOTS_ABOVE			      0x0751
@@ -1928,7 +1928,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ARABIC_LETTER_SEEN_WITH_INVERTED_V					      0x077E
 #define Z_UNICODE_ARABIC_LETTER_KAF_WITH_TWO_DOTS_ABOVE					      0x077F
 
-/* MARK: - 0780-07BF - Thaana */
+/* MARK: - 0780h-07BFh - Thaana */
 
 #define Z_UNICODE_THAANA_LETTER_HAA	  0x0780
 #define Z_UNICODE_THAANA_LETTER_SHAVIYANI 0x0781
@@ -1981,7 +1981,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_THAANA_SUKUN		  0x07B0
 #define Z_UNICODE_THAANA_LETTER_NAA	  0x07B1
 
-/* MARK: - 07C0-07FF - NKo */
+/* MARK: - 07C0h-07FFh - NKo */
 
 #define Z_UNICODE_NKO_DIGIT_ZERO		     0x07C0
 #define Z_UNICODE_NKO_DIGIT_ONE			     0x07C1
@@ -2043,7 +2043,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_NKO_EXCLAMATION_MARK		     0x07F9
 #define Z_UNICODE_NKO_LAJANYALAN		     0x07FA
 
-/* MARK: - 0800-083F - Samaritan */
+/* MARK: - 0800h-083Fh - Samaritan */
 
 #define Z_UNICODE_SAMARITAN_LETTER_ALAF			   0x0800
 #define Z_UNICODE_SAMARITAN_LETTER_BIT			   0x0801
@@ -2107,7 +2107,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SAMARITAN_PUNCTUATION_SOF_MASHFAAT	   0x083D
 #define Z_UNICODE_SAMARITAN_PUNCTUATION_ANNAAU		   0x083E
 
-/* MARK: - 0840-085F - Mandaic */
+/* MARK: - 0840h-085Fh - Mandaic */
 
 #define Z_UNICODE_MANDAIC_LETTER_HALQA	    0x0840
 #define Z_UNICODE_MANDAIC_LETTER_AB	    0x0841
@@ -2139,7 +2139,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MANDAIC_GEMINATION_MARK   0x085B
 #define Z_UNICODE_MANDAIC_PUNCTUATION	    0x085E
 
-/* MARK: - 08A0-08FF - Arabic Extended-A */
+/* MARK: - 08A0h-08FFh - Arabic Extended-A */
 
 #define Z_UNICODE_ARABIC_LETTER_BEH_WITH_SMALL_V_BELOW			0x08A0
 #define Z_UNICODE_ARABIC_LETTER_BEH_WITH_HAMZA_ABOVE			0x08A1
@@ -2192,7 +2192,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ARABIC_DAMMA_WITH_DOT					0x08FE
 #define Z_UNICODE_ARABIC_MARK_SIDEWAYS_NOON_GHUNNA			0x08FF
 
-/* MARK: - 0900-097F - Devanagari */
+/* MARK: - 0900h-097Fh - Devanagari */
 
 #define Z_UNICODE_DEVANAGARI_SIGN_INVERTED_CANDRABINDU	0x0900
 #define Z_UNICODE_DEVANAGARI_SIGN_CANDRABINDU		0x0901
@@ -2323,7 +2323,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_DEVANAGARI_LETTER_DDDA		0x097E
 #define Z_UNICODE_DEVANAGARI_LETTER_BBA			0x097F
 
-/* MARK: - 0980-09FF - Bengali */
+/* MARK: - 0980h-09FFh - Bengali */
 
 /* 09E4h <reserved> */
 /* 09E5h <reserved> */
@@ -2421,7 +2421,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BENGALI_ISSHAR					   0x09FA
 #define Z_UNICODE_BENGALI_GANDA_MARK					   0x09FB
 
-/* MARK: - 0A00-0A7F - Gurmukhi */
+/* MARK: - 0A00h-0A7Fh - Gurmukhi */
 
 /* 0A64h <reserved> */
 /* 0A65h <reserved> */
@@ -2505,7 +2505,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_GURMUKHI_EK_ONKAR	   0x0A74
 #define Z_UNICODE_GURMUKHI_SIGN_YAKASH	   0x0A75
 
-/* MARK: - 0A80-0AFF - Gujarati */
+/* MARK: - 0A80h-0AFFh - Gujarati */
 
 /* 0AE4h <reserved> */
 /* 0AE5h <reserved> */
@@ -2595,7 +2595,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_GUJARATI_RUPEE_SIGN		 0x0AF1
 #define Z_UNICODE_GUJARATI_LETTER_ZHA		 0x0AF9
 
-/* MARK: - 0B00-0B7F - Oriya */
+/* MARK: - 0B00h-0B7Fh - Oriya */
 
 /* 0B64h <reserved> */
 /* 0B65h <reserved> */
@@ -2690,7 +2690,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ORIYA_FRACTION_ONE_EIGHTH	  0x0B76
 #define Z_UNICODE_ORIYA_FRACTION_THREE_SIXTEENTHS 0x0B77
 
-/* MARK: - 0B80-0BFF - Tamil */
+/* MARK: - 0B80h-0BFFh - Tamil */
 
 /* 0BE4h <reserved> */
 /* 0BE5h <reserved> */
@@ -2767,7 +2767,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TAMIL_RUPEE_SIGN	    0x0BF9
 #define Z_UNICODE_TAMIL_NUMBER_SIGN	    0x0BFA
 
-/* MARK: - 0C00-0C7F - Telugu */
+/* MARK: - 0C00h-0C7Fh - Telugu */
 
 /* 0C64h <reserved> */
 /* 0C65h <reserved> */
@@ -2868,7 +2868,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TELUGU_FRACTION_DIGIT_THREE_FOR_EVEN_POWERS_OF_FOUR 0x0C7E
 #define Z_UNICODE_TELUGU_SIGN_TUUMU				      0x0C7F
 
-/* MARK: - 0C80-0CFF - Kannada */
+/* MARK: - 0C80h-0CFFh - Kannada */
 
 /* 0CE4h <reserved> */
 /* 0CE5h <reserved> */
@@ -2960,7 +2960,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_KANNADA_SIGN_JIHVAMULIYA	0x0CF1
 #define Z_UNICODE_KANNADA_SIGN_UPADHMANIYA	0x0CF2
 
-/* MARK: - 0D00-0D7F - Malayalam */
+/* MARK: - 0D00h-0D7Fh - Malayalam */
 
 /* 0D64h <reserved> */
 /* 0D65h <reserved> */
@@ -3065,7 +3065,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MALAYALAM_LETTER_CHILLU_LL	    0x0D7E
 #define Z_UNICODE_MALAYALAM_LETTER_CHILLU_K	    0x0D7F
 
-/* MARK: - 0D80-0DFF - Sinhala */
+/* MARK: - 0D80h-0DFFh - Sinhala */
 
 #define Z_UNICODE_SINHALA_SIGN_ANUSVARAYA			 0x0D82
 #define Z_UNICODE_SINHALA_SIGN_VISARGAYA			 0x0D83
@@ -3158,7 +3158,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SINHALA_VOWEL_SIGN_DIGA_GAYANUKITTA		 0x0DF3
 #define Z_UNICODE_SINHALA_PUNCTUATION_KUNDDALIYA		 0x0DF4
 
-/* MARK: - 0E00-0E7F - Thai */
+/* MARK: - 0E00h-0E7Fh - Thai */
 
 #define Z_UNICODE_THAI_CHARACTER_KO_KAI		  0x0E01
 #define Z_UNICODE_THAI_CHARACTER_KHO_KHAI	  0x0E02
@@ -3248,7 +3248,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_THAI_CHARACTER_ANGKHANKHU	  0x0E5A
 #define Z_UNICODE_THAI_CHARACTER_KHOMUT		  0x0E5B
 
-/* MARK: - 0E80-0EFF - Lao */
+/* MARK: - 0E80h-0EFFh - Lao */
 
 #define Z_UNICODE_LAO_LETTER_KO		 0x0E81
 #define Z_UNICODE_LAO_LETTER_KHO_SUNG	 0x0E82
@@ -3318,7 +3318,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LAO_LETTER_KHMU_GO	 0x0EDE
 #define Z_UNICODE_LAO_LETTER_KHMU_NYO	 0x0EDF
 
-/* MARK: - 0F00-0FFF - Tibetan */
+/* MARK: - 0F00h-0FFFh - Tibetan */
 
 #define Z_UNICODE_TIBETAN_SYLLABLE_OM				   0x0F00
 #define Z_UNICODE_TIBETAN_MARK_GTER_YIG_MGO_TRUNCATED_A		   0x0F01
@@ -3532,7 +3532,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TIBETAN_MARK_LEADING_MCHAN_RTAGS		   0x0FD9
 #define Z_UNICODE_TIBETAN_MARK_TRAILING_MCHAN_RTAGS		   0x0FDA
 
-/* MARK: - 1000-109F - Myanmar */
+/* MARK: - 1000h-109Fh - Myanmar */
 
 #define Z_UNICODE_MYANMAR_LETTER_KA			  0x1000
 #define Z_UNICODE_MYANMAR_LETTER_KHA			  0x1001
@@ -3695,7 +3695,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MYANMAR_SYMBOL_SHAN_ONE		  0x109E
 #define Z_UNICODE_MYANMAR_SYMBOL_SHAN_EXCLAMATION	  0x109F
 
-/* MARK: - 10A0-10FF - Georgian */
+/* MARK: - 10A0h-10FFh - Georgian */
 
 #define Z_UNICODE_GEORGIAN_CAPITAL_LETTER_AN   0x10A0
 #define Z_UNICODE_GEORGIAN_CAPITAL_LETTER_BAN  0x10A1
@@ -3786,7 +3786,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_GEORGIAN_LETTER_HARD_SIGN    0x10FE
 #define Z_UNICODE_GEORGIAN_LETTER_LABIAL_SIGN  0x10FF
 
-/* MARK: - 1100-11FF - Hangul Jamo */
+/* MARK: - 1100h-11FFh - Hangul Jamo */
 
 #define Z_UNICODE_HANGUL_CHOSEONG_KIYEOK		0x1100
 #define Z_UNICODE_HANGUL_CHOSEONG_SSANGKIYEOK		0x1101
@@ -4045,7 +4045,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_HANGUL_JONGSEONG_KIYEOK_HIEUH		0x11FE
 #define Z_UNICODE_HANGUL_JONGSEONG_SSANGNIEUN		0x11FF
 
-/* MARK: - 1200-137F - Ethiopic */
+/* MARK: - 1200h-137Fh - Ethiopic */
 
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_HA				      0x1200
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_HU				      0x1201
@@ -4406,7 +4406,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ETHIOPIC_NUMBER_HUNDRED			      0x137B
 #define Z_UNICODE_ETHIOPIC_NUMBER_TEN_THOUSAND			      0x137C
 
-/* MARK: - 1380-139F - Ethiopic Supplement */
+/* MARK: - 1380h-139Fh - Ethiopic Supplement */
 
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_SEBATBEIT_MWA  0x1380
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_MWI		   0x1381
@@ -4435,7 +4435,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ETHIOPIC_TONAL_MARK_DERET_HIDET  0x1398
 #define Z_UNICODE_ETHIOPIC_TONAL_MARK_KURT	   0x1399
 
-/* MARK: - 13A0-13FF - Cherokee */
+/* MARK: - 13A0h-13FFh - Cherokee */
 
 #define Z_UNICODE_CHEROKEE_LETTER_A	   0x13A0
 #define Z_UNICODE_CHEROKEE_LETTER_E	   0x13A1
@@ -4530,7 +4530,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CHEROKEE_SMALL_LETTER_YV 0x13FC
 #define Z_UNICODE_CHEROKEE_SMALL_LETTER_MV 0x13FD
 
-/* MARK: - 1400-167F - Unified Canadian Aboriginal Syllabics */
+/* MARK: - 1400h-167Fh - Unified Canadian Aboriginal Syllabics */
 
 #define Z_UNICODE_CANADIAN_SYLLABICS_HYPHEN				 0x1400
 #define Z_UNICODE_CANADIAN_SYLLABICS_E					 0x1401
@@ -5173,7 +5173,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CANADIAN_SYLLABICS_WOODS_CREE_FINAL_TH		 0x167E
 #define Z_UNICODE_CANADIAN_SYLLABICS_BLACKFOOT_W			 0x167F
 
-/* MARK: - 1680-169F - Ogham */
+/* MARK: - 1680h-169Fh - Ogham */
 
 #define Z_UNICODE_OGHAM_SPACE_MARK	      0x1680
 #define Z_UNICODE_OGHAM_LETTER_BEITH	      0x1681
@@ -5205,7 +5205,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OGHAM_FEATHER_MARK	      0x169B
 #define Z_UNICODE_OGHAM_REVERSED_FEATHER_MARK 0x169C
 
-/* MARK: - 16A0-16FF - Runic */
+/* MARK: - 16A0h-16FFh - Runic */
 
 #define Z_UNICODE_RUNIC_LETTER_FEHU_FEOH_FE_F		0x16A0
 #define Z_UNICODE_RUNIC_LETTER_V			0x16A1
@@ -5297,7 +5297,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_RUNIC_LETTER_FRANKS_CASKET_AC		0x16F7
 #define Z_UNICODE_RUNIC_LETTER_FRANKS_CASKET_AESC	0x16F8
 
-/* MARK: - 1700-171F - Tagalog */
+/* MARK: - 1700h-171Fh - Tagalog */
 
 #define Z_UNICODE_TAGALOG_LETTER_A     0x1700
 #define Z_UNICODE_TAGALOG_LETTER_I     0x1701
@@ -5320,7 +5320,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TAGALOG_VOWEL_SIGN_U 0x1713
 #define Z_UNICODE_TAGALOG_SIGN_VIRAMA  0x1714
 
-/* MARK: - 1720-173F - Hanunoo */
+/* MARK: - 1720h-173Fh - Hanunoo */
 
 #define Z_UNICODE_HANUNOO_LETTER_A		0x1720
 #define Z_UNICODE_HANUNOO_LETTER_I		0x1721
@@ -5346,7 +5346,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_PHILIPPINE_SINGLE_PUNCTUATION	0x1735
 #define Z_UNICODE_PHILIPPINE_DOUBLE_PUNCTUATION	0x1736
 
-/* MARK: - 1740-175F - Buhid */
+/* MARK: - 1740h-175Fh - Buhid */
 
 #define Z_UNICODE_BUHID_LETTER_A     0x1740
 #define Z_UNICODE_BUHID_LETTER_I     0x1741
@@ -5369,7 +5369,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BUHID_VOWEL_SIGN_I 0x1752
 #define Z_UNICODE_BUHID_VOWEL_SIGN_U 0x1753
 
-/* MARK: - 1760-177F - Tagbanwa */
+/* MARK: - 1760h-177Fh - Tagbanwa */
 
 #define Z_UNICODE_TAGBANWA_LETTER_A	0x1760
 #define Z_UNICODE_TAGBANWA_LETTER_I	0x1761
@@ -5390,7 +5390,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TAGBANWA_VOWEL_SIGN_I	0x1772
 #define Z_UNICODE_TAGBANWA_VOWEL_SIGN_U	0x1773
 
-/* MARK: - 1780-17FF - Khmer */
+/* MARK: - 1780h-17FFh - Khmer */
 
 #define Z_UNICODE_KHMER_LETTER_KA		       0x1780
 #define Z_UNICODE_KHMER_LETTER_KHA		       0x1781
@@ -5507,7 +5507,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_KHMER_SYMBOL_LEK_ATTAK_PRAM_BEI      0x17F8
 #define Z_UNICODE_KHMER_SYMBOL_LEK_ATTAK_PRAM_BUON     0x17F9
 
-/* MARK: - 1800-18AF - Mongolian */
+/* MARK: - 1800h-18AFh - Mongolian */
 
 #define Z_UNICODE_MONGOLIAN_BIRGA			     0x1800
 #define Z_UNICODE_MONGOLIAN_ELLIPSIS			     0x1801
@@ -5666,7 +5666,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MONGOLIAN_LETTER_ALI_GALI_DAGALGA	     0x18A9
 #define Z_UNICODE_MONGOLIAN_LETTER_MANCHU_ALI_GALI_LHA	     0x18AA
 
-/* MARK: - 18B0-18FF - Unified Canadian Aboriginal Syllabics Extended */
+/* MARK: - 18B0h-18FFh - Unified Canadian Aboriginal Syllabics Extended */
 
 #define Z_UNICODE_CANADIAN_SYLLABICS_OY		      0x18B0
 #define Z_UNICODE_CANADIAN_SYLLABICS_AY		      0x18B1
@@ -5739,7 +5739,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CANADIAN_SYLLABICS_BEAVER_DENE_R    0x18F4
 #define Z_UNICODE_CANADIAN_SYLLABICS_CARRIER_DENTAL_S 0x18F5
 
-/* MARK: - 1900-194F - Limbu */
+/* MARK: - 1900h-194Fh - Limbu */
 
 #define Z_UNICODE_LIMBU_VOWEL_CARRIER_LETTER  0x1900
 #define Z_UNICODE_LIMBU_LETTER_KA	      0x1901
@@ -5810,7 +5810,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LIMBU_DIGIT_EIGHT	      0x194E
 #define Z_UNICODE_LIMBU_DIGIT_NINE	      0x194F
 
-/* MARK: - 1950-197F - Tai Le */
+/* MARK: - 1950h-197Fh - Tai Le */
 
 #define Z_UNICODE_TAI_LE_LETTER_KA     0x1950
 #define Z_UNICODE_TAI_LE_LETTER_XA     0x1951
@@ -5848,7 +5848,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TAI_LE_LETTER_TONE_5 0x1973
 #define Z_UNICODE_TAI_LE_LETTER_TONE_6 0x1974
 
-/* MARK: - 1980-19DF - New Tai Lue */
+/* MARK: - 1980h-19DFh - New Tai Lue */
 
 #define Z_UNICODE_NEW_TAI_LUE_LETTER_HIGH_QA		 0x1980
 #define Z_UNICODE_NEW_TAI_LUE_LETTER_LOW_QA		 0x1981
@@ -5934,7 +5934,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_NEW_TAI_LUE_SIGN_LAE			 0x19DE
 #define Z_UNICODE_NEW_TAI_LUE_SIGN_LAEV			 0x19DF
 
-/* MARK: - 19E0-19FF - Khmer Symbols */
+/* MARK: - 19E0h-19FFh - Khmer Symbols */
 
 #define Z_UNICODE_KHMER_SYMBOL_PATHAMASAT     0x19E0
 #define Z_UNICODE_KHMER_SYMBOL_MUOY_KOET      0x19E1
@@ -5969,7 +5969,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_KHMER_SYMBOL_DAP_BUON_ROC   0x19FE
 #define Z_UNICODE_KHMER_SYMBOL_DAP_PRAM_ROC   0x19FF
 
-/* MARK: - 1A00-1A1F - Buginese */
+/* MARK: - 1A00h-1A1Fh - Buginese */
 
 #define Z_UNICODE_BUGINESE_LETTER_KA	  0x1A00
 #define Z_UNICODE_BUGINESE_LETTER_GA	  0x1A01
@@ -6002,7 +6002,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BUGINESE_PALLAWA	  0x1A1E
 #define Z_UNICODE_BUGINESE_END_OF_SECTION 0x1A1F
 
-/* MARK: - 1A20-1AAF - Tai Tham */
+/* MARK: - 1A20h-1AAFh - Tai Tham */
 
 #define Z_UNICODE_TAI_THAM_LETTER_HIGH_KA		       0x1A20
 #define Z_UNICODE_TAI_THAM_LETTER_HIGH_KHA		       0x1A21
@@ -6132,7 +6132,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TAI_THAM_SIGN_HANG			       0x1AAC
 #define Z_UNICODE_TAI_THAM_SIGN_CAANG			       0x1AAD
 
-/* MARK: - 1AB0-1AFF - Combining Diacritical Marks Extended */
+/* MARK: - 1AB0h-1AFFh - Combining Diacritical Marks Extended */
 
 #define Z_UNICODE_COMBINING_DOUBLED_CIRCUMFLEX_ACCENT	       0x1AB0
 #define Z_UNICODE_COMBINING_DIAERESIS_RING		       0x1AB1
@@ -6150,7 +6150,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COMBINING_PARENTHESES_BELOW		       0x1ABD
 #define Z_UNICODE_COMBINING_PARENTHESES_OVERLAY		       0x1ABE
 
-/* MARK: - 1B00-1B7F - Balinese */
+/* MARK: - 1B00h-1B7Fh - Balinese */
 
 #define Z_UNICODE_BALINESE_SIGN_ULU_RICEM				0x1B00
 #define Z_UNICODE_BALINESE_SIGN_ULU_CANDRA				0x1B01
@@ -6274,7 +6274,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BALINESE_MUSICAL_SYMBOL_LEFT_HAND_CLOSED_PLUK		0x1B7B
 #define Z_UNICODE_BALINESE_MUSICAL_SYMBOL_LEFT_HAND_OPEN_PING		0x1B7C
 
-/* MARK: - 1B80-1BBF - Sundanese */
+/* MARK: - 1B80h-1BBFh - Sundanese */
 
 #define Z_UNICODE_SUNDANESE_SIGN_PANYECEK	       0x1B80
 #define Z_UNICODE_SUNDANESE_SIGN_PANGLAYAR	       0x1B81
@@ -6341,7 +6341,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SUNDANESE_LETTER_FINAL_K	       0x1BBE
 #define Z_UNICODE_SUNDANESE_LETTER_FINAL_M	       0x1BBF
 
-/* MARK: - 1BC0-1BFF - Batak */
+/* MARK: - 1BC0h-1BFFh - Batak */
 
 #define Z_UNICODE_BATAK_LETTER_A		       0x1BC0
 #define Z_UNICODE_BATAK_LETTER_SIMALUNGUN_A	       0x1BC1
@@ -6400,7 +6400,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BATAK_SYMBOL_BINDU_JUDUL	       0x1BFE
 #define Z_UNICODE_BATAK_SYMBOL_BINDU_PANGOLAT	       0x1BFF
 
-/* MARK: - 1C00-1C4F - Lepcha */
+/* MARK: - 1C00h-1C4Fh - Lepcha */
 
 #define Z_UNICODE_LEPCHA_LETTER_KA			0x1C00
 #define Z_UNICODE_LEPCHA_LETTER_KLA			0x1C01
@@ -6477,7 +6477,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LEPCHA_LETTER_TTHA			0x1C4E
 #define Z_UNICODE_LEPCHA_LETTER_DDA			0x1C4F
 
-/* MARK: - 1C50-1C7F - Ol Chiki */
+/* MARK: - 1C50h-1C7Fh - Ol Chiki */
 
 #define Z_UNICODE_OL_CHIKI_DIGIT_ZERO		     0x1C50
 #define Z_UNICODE_OL_CHIKI_DIGIT_ONE		     0x1C51
@@ -6528,7 +6528,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OL_CHIKI_PUNCTUATION_MUCAAD	     0x1C7E
 #define Z_UNICODE_OL_CHIKI_PUNCTUATION_DOUBLE_MUCAAD 0x1C7F
 
-/* MARK: - 1CC0-1CCF - Sundanese Supplement */
+/* MARK: - 1CC0h-1CCFh - Sundanese Supplement */
 
 #define Z_UNICODE_SUNDANESE_PUNCTUATION_BINDU_SURYA	  0x1CC0
 #define Z_UNICODE_SUNDANESE_PUNCTUATION_BINDU_PANGLONG	  0x1CC1
@@ -6539,7 +6539,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SUNDANESE_PUNCTUATION_BINDU_DA_SATANGA  0x1CC6
 #define Z_UNICODE_SUNDANESE_PUNCTUATION_BINDU_BA_SATANGA  0x1CC7
 
-/* MARK: - 1CD0-1CFF - Vedic Extensions */
+/* MARK: - 1CD0h-1CFFh - Vedic Extensions */
 
 #define Z_UNICODE_VEDIC_TONE_KARSHANA					      0x1CD0
 #define Z_UNICODE_VEDIC_TONE_SHARA					      0x1CD1
@@ -6583,7 +6583,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_VEDIC_TONE_RING_ABOVE					      0x1CF8
 #define Z_UNICODE_VEDIC_TONE_DOUBLE_RING_ABOVE				      0x1CF9
 
-/* MARK: - 1D00-1D7F - Phonetic Extensions */
+/* MARK: - 1D00h-1D7Fh - Phonetic Extensions */
 
 #define Z_UNICODE_LATIN_LETTER_SMALL_CAPITAL_A			      0x1D00
 #define Z_UNICODE_LATIN_LETTER_SMALL_CAPITAL_AE			      0x1D01
@@ -6714,7 +6714,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LATIN_SMALL_CAPITAL_LETTER_U_WITH_STROKE	      0x1D7E
 #define Z_UNICODE_LATIN_SMALL_LETTER_UPSILON_WITH_STROKE	      0x1D7F
 
-/* MARK: - 1D80-1DBF - Phonetic Extensions Supplement */
+/* MARK: - 1D80h-1DBFh - Phonetic Extensions Supplement */
 
 #define Z_UNICODE_LATIN_SMALL_LETTER_B_WITH_PALATAL_HOOK		 0x1D80
 #define Z_UNICODE_LATIN_SMALL_LETTER_D_WITH_PALATAL_HOOK		 0x1D81
@@ -6781,7 +6781,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MODIFIER_LETTER_SMALL_EZH				 0x1DBE
 #define Z_UNICODE_MODIFIER_LETTER_SMALL_THETA				 0x1DBF
 
-/* MARK: - 1DC0-1DFF - Combining Diacritical Marks Supplement */
+/* MARK: - 1DC0h-1DFFh - Combining Diacritical Marks Supplement */
 
 #define Z_UNICODE_COMBINING_DOTTED_GRAVE_ACCENT					  0x1DC0
 #define Z_UNICODE_COMBINING_DOTTED_ACUTE_ACCENT					  0x1DC1
@@ -6842,7 +6842,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COMBINING_LEFT_ARROWHEAD_ABOVE				  0x1DFE
 #define Z_UNICODE_COMBINING_RIGHT_ARROWHEAD_AND_DOWN_ARROWHEAD_BELOW		  0x1DFF
 
-/* MARK: - 1E00-1EFF - Latin Extended Additional */
+/* MARK: - 1E00h-1EFFh - Latin Extended Additional */
 
 #define Z_UNICODE_LATIN_CAPITAL_LETTER_A_WITH_RING_BELOW		0x1E00
 #define Z_UNICODE_LATIN_SMALL_LETTER_A_WITH_RING_BELOW			0x1E01
@@ -7101,7 +7101,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LATIN_CAPITAL_LETTER_Y_WITH_LOOP			0x1EFE
 #define Z_UNICODE_LATIN_SMALL_LETTER_Y_WITH_LOOP			0x1EFF
 
-/* MARK: - 1F00-1FFF - Greek Extended */
+/* MARK: - 1F00h-1FFFh - Greek Extended */
 
 #define Z_UNICODE_GREEK_SMALL_LETTER_ALPHA_WITH_PSILI					   0x1F00
 #define Z_UNICODE_GREEK_SMALL_LETTER_ALPHA_WITH_DASIA					   0x1F01
@@ -7337,7 +7337,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_GREEK_OXIA								   0x1FFD
 #define Z_UNICODE_GREEK_DASIA								   0x1FFE
 
-/* MARK: - 2000-206F - General Punctuation */
+/* MARK: - 2000h-206Fh - General Punctuation */
 
 #define Z_UNICODE_EN_QUAD				     0x2000
 #define Z_UNICODE_EM_QUAD				     0x2001
@@ -7451,7 +7451,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_NATIONAL_DIGIT_SHAPES			     0x206E
 #define Z_UNICODE_NOMINAL_DIGIT_SHAPES			     0x206F
 
-/* MARK: - 2070-209F - Superscripts and Subscripts */
+/* MARK: - 2070h-209Fh - Superscripts and Subscripts */
 
 /* 2072h <reserved> */
 /* 2073h <reserved> */
@@ -7498,7 +7498,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LATIN_SUBSCRIPT_SMALL_LETTER_S     0x209B
 #define Z_UNICODE_LATIN_SUBSCRIPT_SMALL_LETTER_T     0x209C
 
-/* MARK: - 20A0-20CF - Currency Symbols */
+/* MARK: - 20A0h-20CFh - Currency Symbols */
 
 #define Z_UNICODE_EURO_CURRENCY_SIGN  0x20A0
 #define Z_UNICODE_COLON_SIGN	      0x20A1
@@ -7532,7 +7532,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_RUBLE_SIGN	      0x20BD
 #define Z_UNICODE_LARI_SIGN	      0x20BE
 
-/* MARK: - 20D0-20FF - Combining Diacritical Marks for Symbols */
+/* MARK: - 20D0h-20FFh - Combining Diacritical Marks for Symbols */
 
 #define Z_UNICODE_COMBINING_LEFT_HARPOON_ABOVE			   0x20D0
 #define Z_UNICODE_COMBINING_RIGHT_HARPOON_ABOVE			   0x20D1
@@ -7568,7 +7568,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COMBINING_RIGHT_ARROW_BELOW			   0x20EF
 #define Z_UNICODE_COMBINING_ASTERISK_ABOVE			   0x20F0
 
-/* MARK: - 2100-214F - Letterlike Symbols */
+/* MARK: - 2100h-214Fh - Letterlike Symbols */
 
 #define Z_UNICODE_ACCOUNT_OF			 0x2100
 #define Z_UNICODE_ADDRESSED_TO_THE_SUBJECT	 0x2101
@@ -7651,7 +7651,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TURNED_SMALL_F		 0x214E
 #define Z_UNICODE_SYMBOL_FOR_SAMARITAN_SOURCE	 0x214F
 
-/* MARK: - 2150-218F - Number Forms */
+/* MARK: - 2150h-218Fh - Number Forms */
 
 #define Z_UNICODE_VULGAR_FRACTION_ONE_SEVENTH	     0x2150
 #define Z_UNICODE_VULGAR_FRACTION_ONE_NINTH	     0x2151
@@ -7714,7 +7714,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TURNED_DIGIT_TWO		     0x218A
 #define Z_UNICODE_TURNED_DIGIT_THREE		     0x218B
 
-/* MARK: - 2190-21FF - Arrows */
+/* MARK: - 2190h-21FFh - Arrows */
 
 #define Z_UNICODE_LEFTWARDS_ARROW				      0x2190
 #define Z_UNICODE_UPWARDS_ARROW					      0x2191
@@ -7829,7 +7829,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_RIGHTWARDS_OPEN_HEADED_ARROW			      0x21FE
 #define Z_UNICODE_LEFT_RIGHT_OPEN_HEADED_ARROW			      0x21FF
 
-/* MARK: - 2200-22FF - Mathematical Operators */
+/* MARK: - 2200h-22FFh - Mathematical Operators */
 
 #define Z_UNICODE_FOR_ALL							 0x2200
 #define Z_UNICODE_COMPLEMENT							 0x2201
@@ -8088,7 +8088,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SMALL_CONTAINS_WITH_OVERBAR					 0x22FE
 #define Z_UNICODE_Z_NOTATION_BAG_MEMBERSHIP					 0x22FF
 
-/* MARK: - 2300-23FF - Miscellaneous Technical */
+/* MARK: - 2300h-23FFh - Miscellaneous Technical */
 
 #define Z_UNICODE_DIAMETER_SIGN						   0x2300
 #define Z_UNICODE_ELECTRIC_ARROW					   0x2301
@@ -8342,7 +8342,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BLACK_SQUARE_FOR_STOP					   0x23F9
 #define Z_UNICODE_BLACK_CIRCLE_FOR_RECORD				   0x23FA
 
-/* MARK: - 2400-243F - Control Pictures */
+/* MARK: - 2400h-243Fh - Control Pictures */
 
 #define Z_UNICODE_SYMBOL_FOR_NULL		       0x2400
 #define Z_UNICODE_SYMBOL_FOR_START_OF_HEADING	       0x2401
@@ -8384,7 +8384,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SYMBOL_FOR_DELETE_FORM_TWO	       0x2425
 #define Z_UNICODE_SYMBOL_FOR_SUBSTITUTE_FORM_TWO       0x2426
 
-/* MARK: - 2440-245F - Optical Character Recognition */
+/* MARK: - 2440h-245Fh - Optical Character Recognition */
 
 #define Z_UNICODE_OCR_HOOK			 0x2440
 #define Z_UNICODE_OCR_CHAIR			 0x2441
@@ -8398,7 +8398,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OCR_CUSTOMER_ACCOUNT_NUMBER	 0x2449
 #define Z_UNICODE_OCR_DOUBLE_BACKSLASH		 0x244A
 
-/* MARK: - 2460-24FF - Enclosed Alphanumerics */
+/* MARK: - 2460h-24FFh - Enclosed Alphanumerics */
 
 #define Z_UNICODE_CIRCLED_DIGIT_ONE		     0x2460
 #define Z_UNICODE_CIRCLED_DIGIT_TWO		     0x2461
@@ -8561,7 +8561,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_DOUBLE_CIRCLED_NUMBER_TEN	     0x24FE
 #define Z_UNICODE_NEGATIVE_CIRCLED_DIGIT_ZERO	     0x24FF
 
-/* MARK: - 2500-257F - Box Drawing */
+/* MARK: - 2500h-257Fh - Box Drawing */
 
 #define Z_UNICODE_BOX_DRAWINGS_LIGHT_HORIZONTAL				0x2500
 #define Z_UNICODE_BOX_DRAWINGS_HEAVY_HORIZONTAL				0x2501
@@ -8692,7 +8692,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BOX_DRAWINGS_HEAVY_LEFT_AND_LIGHT_RIGHT		0x257E
 #define Z_UNICODE_BOX_DRAWINGS_HEAVY_UP_AND_LIGHT_DOWN			0x257F
 
-/* MARK: - 2580-259F - Block Elements */
+/* MARK: - 2580h-259Fh - Block Elements */
 
 #define Z_UNICODE_UPPER_HALF_BLOCK				      0x2580
 #define Z_UNICODE_LOWER_ONE_EIGHTH_BLOCK			      0x2581
@@ -8727,7 +8727,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_QUADRANT_UPPER_RIGHT_AND_LOWER_LEFT		      0x259E
 #define Z_UNICODE_QUADRANT_UPPER_RIGHT_AND_LOWER_LEFT_AND_LOWER_RIGHT 0x259F
 
-/* MARK: - 25A0-25FF - Geometric Shapes */
+/* MARK: - 25A0h-25FFh - Geometric Shapes */
 
 #define Z_UNICODE_BLACK_SQUARE					0x25A0
 #define Z_UNICODE_WHITE_SQUARE					0x25A1
@@ -8826,7 +8826,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BLACK_MEDIUM_SMALL_SQUARE			0x25FE
 #define Z_UNICODE_LOWER_RIGHT_TRIANGLE				0x25FF
 
-/* MARK: - 2600-26FF - Miscellaneous Symbols */
+/* MARK: - 2600h-26FFh - Miscellaneous Symbols */
 
 #define Z_UNICODE_BLACK_SUN_WITH_RAYS				   0x2600
 #define Z_UNICODE_CLOUD						   0x2601
@@ -9085,7 +9085,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CUP_ON_BLACK_SQUARE				   0x26FE
 #define Z_UNICODE_WHITE_FLAG_WITH_HORIZONTAL_MIDDLE_BLACK_STRIPE   0x26FF
 
-/* MARK: - 2700-27BF - Dingbats */
+/* MARK: - 2700h-27BFh - Dingbats */
 
 #define Z_UNICODE_BLACK_SAFETY_SCISSORS				      0x2700
 #define Z_UNICODE_UPPER_BLADE_SCISSORS				      0x2701
@@ -9280,7 +9280,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OPEN_OUTLINED_RIGHTWARDS_ARROW		      0x27BE
 #define Z_UNICODE_DOUBLE_CURLY_LOOP				      0x27BF
 
-/* MARK: - 27C0-27EF - Miscellaneous Mathematical Symbols-A */
+/* MARK: - 27C0h-27EFh - Miscellaneous Mathematical Symbols-A */
 
 #define Z_UNICODE_THREE_DIMENSIONAL_ANGLE			   0x27C0
 #define Z_UNICODE_WHITE_TRIANGLE_CONTAINING_SMALL_WHITE_TRIANGLE   0x27C1
@@ -9331,7 +9331,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MATHEMATICAL_LEFT_FLATTENED_PARENTHESIS	   0x27EE
 #define Z_UNICODE_MATHEMATICAL_RIGHT_FLATTENED_PARENTHESIS	   0x27EF
 
-/* MARK: - 27F0-27FF - Supplemental Arrows-A */
+/* MARK: - 27F0h-27FFh - Supplemental Arrows-A */
 
 #define Z_UNICODE_UPWARDS_QUADRUPLE_ARROW		0x27F0
 #define Z_UNICODE_DOWNWARDS_QUADRUPLE_ARROW		0x27F1
@@ -9350,7 +9350,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LONG_RIGHTWARDS_DOUBLE_ARROW_FROM_BAR	0x27FE
 #define Z_UNICODE_LONG_RIGHTWARDS_SQUIGGLE_ARROW	0x27FF
 
-/* MARK: - 2800-28FF - Braille Patterns */
+/* MARK: - 2800h-28FFh - Braille Patterns */
 
 #define Z_UNICODE_BRAILLE_PATTERN_BLANK		0x2800
 #define Z_UNICODE_BRAILLE_PATTERN_DOTS_1	0x2801
@@ -9609,7 +9609,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BRAILLE_PATTERN_DOTS_2345678	0x28FE
 #define Z_UNICODE_BRAILLE_PATTERN_DOTS_12345678	0x28FF
 
-/* MARK: - 2900-297F - Supplemental Arrows-B */
+/* MARK: - 2900h-297Fh - Supplemental Arrows-B */
 
 #define Z_UNICODE_RIGHTWARDS_TWO_HEADED_ARROW_WITH_VERTICAL_STROKE			    0x2900
 #define Z_UNICODE_RIGHTWARDS_TWO_HEADED_ARROW_WITH_DOUBLE_VERTICAL_STROKE		    0x2901
@@ -9740,7 +9740,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_UP_FISH_TAIL								    0x297E
 #define Z_UNICODE_DOWN_FISH_TAIL							    0x297F
 
-/* MARK: - 2980-29FF - Miscellaneous Mathematical Symbols-B */
+/* MARK: - 2980h-29FFh - Miscellaneous Mathematical Symbols-B */
 
 #define Z_UNICODE_TRIPLE_VERTICAL_BAR_DELIMITER						0x2980
 #define Z_UNICODE_Z_NOTATION_SPOT							0x2981
@@ -9871,7 +9871,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TINY									0x29FE
 #define Z_UNICODE_MINY									0x29FF
 
-/* MARK: - 2A00-2AFF - Supplemental Mathematical Operators */
+/* MARK: - 2A00h-2AFFh - Supplemental Mathematical Operators */
 
 #define Z_UNICODE_N_ARY_CIRCLED_DOT_OPERATOR					       0x2A00
 #define Z_UNICODE_N_ARY_CIRCLED_PLUS_OPERATOR					       0x2A01
@@ -10130,7 +10130,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_WHITE_VERTICAL_BAR						       0x2AFE
 #define Z_UNICODE_N_ARY_WHITE_VERTICAL_BAR					       0x2AFF
 
-/* MARK: - 2B00-2BFF - Miscellaneous Symbols and Arrows */
+/* MARK: - 2B00h-2BFFh - Miscellaneous Symbols and Arrows */
 
 #define Z_UNICODE_NORTH_EAST_WHITE_ARROW						     0x2B00
 #define Z_UNICODE_NORTH_WEST_WHITE_ARROW						     0x2B01
@@ -10339,7 +10339,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_RIGHTWARDS_TWO_HEADED_ARROW_WITH_TRIANGLE_ARROWHEADS			     0x2BEE
 #define Z_UNICODE_DOWNWARDS_TWO_HEADED_ARROW_WITH_TRIANGLE_ARROWHEADS			     0x2BEF
 
-/* MARK: - 2C00-2C5F - Glagolitic */
+/* MARK: - 2C00h-2C5Fh - Glagolitic */
 
 #define Z_UNICODE_GLAGOLITIC_CAPITAL_LETTER_AZU			0x2C00
 #define Z_UNICODE_GLAGOLITIC_CAPITAL_LETTER_BUKY		0x2C01
@@ -10436,7 +10436,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_GLAGOLITIC_SMALL_LETTER_TROKUTASTI_A		0x2C5D
 #define Z_UNICODE_GLAGOLITIC_SMALL_LETTER_LATINATE_MYSLITE	0x2C5E
 
-/* MARK: - 2C60-2C7F - Latin Extended-C */
+/* MARK: - 2C60h-2C7Fh - Latin Extended-C */
 
 #define Z_UNICODE_LATIN_CAPITAL_LETTER_L_WITH_DOUBLE_BAR    0x2C60
 #define Z_UNICODE_LATIN_SMALL_LETTER_L_WITH_DOUBLE_BAR	    0x2C61
@@ -10471,7 +10471,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LATIN_CAPITAL_LETTER_S_WITH_SWASH_TAIL    0x2C7E
 #define Z_UNICODE_LATIN_CAPITAL_LETTER_Z_WITH_SWASH_TAIL    0x2C7F
 
-/* MARK: - 2C80-2CFF - Coptic */
+/* MARK: - 2C80h-2CFFh - Coptic */
 
 #define Z_UNICODE_COPTIC_CAPITAL_LETTER_ALFA		     0x2C80
 #define Z_UNICODE_COPTIC_SMALL_LETTER_ALFA		     0x2C81
@@ -10597,7 +10597,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COPTIC_FULL_STOP			     0x2CFE
 #define Z_UNICODE_COPTIC_MORPHOLOGICAL_DIVIDER		     0x2CFF
 
-/* MARK: - 2D00-2D2F - Georgian Supplement */
+/* MARK: - 2D00h-2D2Fh - Georgian Supplement */
 
 #define Z_UNICODE_GEORGIAN_SMALL_LETTER_AN   0x2D00
 #define Z_UNICODE_GEORGIAN_SMALL_LETTER_BAN  0x2D01
@@ -10640,7 +10640,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_GEORGIAN_SMALL_LETTER_YN   0x2D27
 #define Z_UNICODE_GEORGIAN_SMALL_LETTER_AEN  0x2D2D
 
-/* MARK: - 2D30-2D7F - Tifinagh */
+/* MARK: - 2D30h-2D7Fh - Tifinagh */
 
 #define Z_UNICODE_TIFINAGH_LETTER_YA			      0x2D30
 #define Z_UNICODE_TIFINAGH_LETTER_YAB			      0x2D31
@@ -10702,7 +10702,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TIFINAGH_SEPARATOR_MARK		      0x2D70
 #define Z_UNICODE_TIFINAGH_CONSONANT_JOINER		      0x2D7F
 
-/* MARK: - 2D80-2DDF - Ethiopic Extended */
+/* MARK: - 2D80h-2DDFh - Ethiopic Extended */
 
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_LOA	       0x2D80
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_MOA	       0x2D81
@@ -10784,7 +10784,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_GYE	       0x2DDD
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_GYO	       0x2DDE
 
-/* MARK: - 2DE0-2DFF - Cyrillic Extended-A */
+/* MARK: - 2DE0h-2DFFh - Cyrillic Extended-A */
 
 #define Z_UNICODE_COMBINING_CYRILLIC_LETTER_BE		     0x2DE0
 #define Z_UNICODE_COMBINING_CYRILLIC_LETTER_VE		     0x2DE1
@@ -10819,7 +10819,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COMBINING_CYRILLIC_LETTER_BIG_YUS	     0x2DFE
 #define Z_UNICODE_COMBINING_CYRILLIC_LETTER_IOTIFIED_BIG_YUS 0x2DFF
 
-/* MARK: - 2E00-2E7F - Supplemental Punctuation */
+/* MARK: - 2E00h-2E7Fh - Supplemental Punctuation */
 
 #define Z_UNICODE_RIGHT_ANGLE_SUBSTITUTION_MARKER	 0x2E00
 #define Z_UNICODE_RIGHT_ANGLE_DOTTED_SUBSTITUTION_MARKER 0x2E01
@@ -10889,7 +10889,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_REVERSED_COMMA			 0x2E41
 #define Z_UNICODE_DOUBLE_LOW_REVERSED_9_QUOTATION_MARK	 0x2E42
 
-/* MARK: - 2E80-2EFF - CJK Radicals Supplement */
+/* MARK: - 2E80h-2EFFh - CJK Radicals Supplement */
 
 #define Z_UNICODE_CJK_RADICAL_REPEAT			  0x2E80
 #define Z_UNICODE_CJK_RADICAL_CLIFF			  0x2E81
@@ -11007,7 +11007,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CJK_RADICAL_J_SIMPLIFIED_TURTLE	  0x2EF2
 #define Z_UNICODE_CJK_RADICAL_C_SIMPLIFIED_TURTLE	  0x2EF3
 
-/* MARK: - 2F00-2FDF - Kangxi Radicals */
+/* MARK: - 2F00h-2FDFh - Kangxi Radicals */
 
 #define Z_UNICODE_KANGXI_RADICAL_ONE		   0x2F00
 #define Z_UNICODE_KANGXI_RADICAL_LINE		   0x2F01
@@ -11224,7 +11224,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_KANGXI_RADICAL_TURTLE		   0x2FD4
 #define Z_UNICODE_KANGXI_RADICAL_FLUTE		   0x2FD5
 
-/* MARK: - 2FF0-2FFF - Ideographic Description Characters */
+/* MARK: - 2FF0h-2FFFh - Ideographic Description Characters */
 
 #define Z_UNICODE_IDEOGRAPHIC_DESCRIPTION_CHARACTER_LEFT_TO_RIGHT	      0x2FF0
 #define Z_UNICODE_IDEOGRAPHIC_DESCRIPTION_CHARACTER_ABOVE_TO_BELOW	      0x2FF1
@@ -11239,7 +11239,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_IDEOGRAPHIC_DESCRIPTION_CHARACTER_SURROUND_FROM_LOWER_LEFT  0x2FFA
 #define Z_UNICODE_IDEOGRAPHIC_DESCRIPTION_CHARACTER_OVERLAID		      0x2FFB
 
-/* MARK: - 3000-303F - CJK Symbols and Punctuation */
+/* MARK: - 3000h-303Fh - CJK Symbols and Punctuation */
 
 #define Z_UNICODE_IDEOGRAPHIC_SPACE					 0x3000
 #define Z_UNICODE_IDEOGRAPHIC_COMMA					 0x3001
@@ -11306,7 +11306,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_IDEOGRAPHIC_VARIATION_INDICATOR			 0x303E
 #define Z_UNICODE_IDEOGRAPHIC_HALF_FILL_SPACE				 0x303F
 
-/* MARK: - 3040-309F - Hiragana */
+/* MARK: - 3040h-309Fh - Hiragana */
 
 #define Z_UNICODE_HIRAGANA_LETTER_SMALL_A			     0x3041
 #define Z_UNICODE_HIRAGANA_LETTER_A				     0x3042
@@ -11402,7 +11402,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_HIRAGANA_VOICED_ITERATION_MARK		     0x309E
 #define Z_UNICODE_HIRAGANA_DIGRAPH_YORI				     0x309F
 
-/* MARK: - 30A0-30FF - Katakana */
+/* MARK: - 30A0h-30FFh - Katakana */
 
 #define Z_UNICODE_KATAKANA_HIRAGANA_DOUBLE_HYPHEN	 0x30A0
 #define Z_UNICODE_KATAKANA_LETTER_SMALL_A		 0x30A1
@@ -11501,7 +11501,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_KATAKANA_VOICED_ITERATION_MARK	 0x30FE
 #define Z_UNICODE_KATAKANA_DIGRAPH_KOTO			 0x30FF
 
-/* MARK: - 3100-312F - Bopomofo */
+/* MARK: - 3100h-312Fh - Bopomofo */
 
 #define Z_UNICODE_BOPOMOFO_LETTER_B   0x3105
 #define Z_UNICODE_BOPOMOFO_LETTER_P   0x3106
@@ -11545,7 +11545,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BOPOMOFO_LETTER_GN  0x312C
 #define Z_UNICODE_BOPOMOFO_LETTER_IH  0x312D
 
-/* MARK: - 3130-318F - Hangul Compatibility Jamo */
+/* MARK: - 3130h-318Fh - Hangul Compatibility Jamo */
 
 #define Z_UNICODE_HANGUL_LETTER_KIYEOK		   0x3131
 #define Z_UNICODE_HANGUL_LETTER_SSANGKIYEOK	   0x3132
@@ -11642,7 +11642,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_HANGUL_LETTER_ARAEA		   0x318D
 #define Z_UNICODE_HANGUL_LETTER_ARAEAE		   0x318E
 
-/* MARK: - 3190-319F - Kanbun */
+/* MARK: - 3190h-319Fh - Kanbun */
 
 #define Z_UNICODE_IDEOGRAPHIC_ANNOTATION_LINKING_MARK 0x3190
 #define Z_UNICODE_IDEOGRAPHIC_ANNOTATION_REVERSE_MARK 0x3191
@@ -11661,7 +11661,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_IDEOGRAPHIC_ANNOTATION_EARTH_MARK   0x319E
 #define Z_UNICODE_IDEOGRAPHIC_ANNOTATION_MAN_MARK     0x319F
 
-/* MARK: - 31A0-31BF - Bopomofo Extended */
+/* MARK: - 31A0h-31BFh - Bopomofo Extended */
 
 #define Z_UNICODE_BOPOMOFO_LETTER_BU	  0x31A0
 #define Z_UNICODE_BOPOMOFO_LETTER_ZI	  0x31A1
@@ -11691,7 +11691,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BOPOMOFO_LETTER_LH	  0x31B9
 #define Z_UNICODE_BOPOMOFO_LETTER_ZY	  0x31BA
 
-/* MARK: - 31C0-31EF - CJK Strokes */
+/* MARK: - 31C0h-31EFh - CJK Strokes */
 
 #define Z_UNICODE_CJK_STROKE_T	   0x31C0
 #define Z_UNICODE_CJK_STROKE_WG	   0x31C1
@@ -11730,7 +11730,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CJK_STROKE_PG	   0x31E2
 #define Z_UNICODE_CJK_STROKE_Q	   0x31E3
 
-/* MARK: - 31F0-31FF - Katakana Phonetic Extensions */
+/* MARK: - 31F0h-31FFh - Katakana Phonetic Extensions */
 
 #define Z_UNICODE_KATAKANA_LETTER_SMALL_KU 0x31F0
 #define Z_UNICODE_KATAKANA_LETTER_SMALL_SI 0x31F1
@@ -11749,7 +11749,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_KATAKANA_LETTER_SMALL_RE 0x31FE
 #define Z_UNICODE_KATAKANA_LETTER_SMALL_RO 0x31FF
 
-/* MARK: - 3200-32FF - Enclosed CJK Letters and Months */
+/* MARK: - 3200h-32FFh - Enclosed CJK Letters and Months */
 
 #define Z_UNICODE_PARENTHESIZED_HANGUL_KIYEOK		     0x3200
 #define Z_UNICODE_PARENTHESIZED_HANGUL_NIEUN		     0x3201
@@ -12006,7 +12006,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CIRCLED_KATAKANA_WE			     0x32FD
 #define Z_UNICODE_CIRCLED_KATAKANA_WO			     0x32FE
 
-/* MARK: - 3300-33FF - CJK Compatibility */
+/* MARK: - 3300h-33FFh - CJK Compatibility */
 
 #define Z_UNICODE_SQUARE_APAATO					     0x3300
 #define Z_UNICODE_SQUARE_ARUHUA					     0x3301
@@ -12265,9 +12265,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_IDEOGRAPHIC_TELEGRAPH_SYMBOL_FOR_DAY_THIRTY_ONE    0x33FE
 #define Z_UNICODE_SQUARE_GAL					     0x33FF
 
-/* MARK: - 3400-4DB5 - CJK Unified Ideographs Extension A */
+/* MARK: - 3400h-4DB5h - CJK Unified Ideographs Extension A */
 
-/* MARK: - 4DC0-4DFF - Yijing Hexagram Symbols */
+/* MARK: - 4DC0h-4DFFh - Yijing Hexagram Symbols */
 
 #define Z_UNICODE_HEXAGRAM_FOR_THE_CREATIVE_HEAVEN	   0x4DC0
 #define Z_UNICODE_HEXAGRAM_FOR_THE_RECEPTIVE_EARTH	   0x4DC1
@@ -12334,9 +12334,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_HEXAGRAM_FOR_AFTER_COMPLETION		   0x4DFE
 #define Z_UNICODE_HEXAGRAM_FOR_BEFORE_COMPLETION	   0x4DFF
 
-/* MARK: - 4E00-9FD5 - CJK Unified Ideographs */
+/* MARK: - 4E00h-9FD5h - CJK Unified Ideographs */
 
-/* MARK: - A000-A48F - Yi Syllables */
+/* MARK: - A000h-A48Fh - Yi Syllables */
 
 #define Z_UNICODE_YI_SYLLABLE_IT    0xA000
 #define Z_UNICODE_YI_SYLLABLE_IX    0xA001
@@ -13504,7 +13504,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_YI_SYLLABLE_YYRX  0xA48B
 #define Z_UNICODE_YI_SYLLABLE_YYR   0xA48C
 
-/* MARK: - A490-A4CF - Yi Radicals */
+/* MARK: - A490h-A4CFh - Yi Radicals */
 
 #define Z_UNICODE_YI_RADICAL_QOT   0xA490
 #define Z_UNICODE_YI_RADICAL_LI	   0xA491
@@ -13562,7 +13562,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_YI_RADICAL_NBIE  0xA4C5
 #define Z_UNICODE_YI_RADICAL_KE	   0xA4C6
 
-/* MARK: - A4D0-A4FF - Lisu */
+/* MARK: - A4D0h-A4FFh - Lisu */
 
 #define Z_UNICODE_LISU_LETTER_BA	     0xA4D0
 #define Z_UNICODE_LISU_LETTER_PA	     0xA4D1
@@ -13613,7 +13613,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LISU_PUNCTUATION_COMMA     0xA4FE
 #define Z_UNICODE_LISU_PUNCTUATION_FULL_STOP 0xA4FF
 
-/* MARK: - A500-A63F - Vai */
+/* MARK: - A500h-A63Fh - Vai */
 
 #define Z_UNICODE_VAI_SYLLABLE_EE	  0xA500
 #define Z_UNICODE_VAI_SYLLABLE_EEN	  0xA501
@@ -13916,7 +13916,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_VAI_SYLLABLE_NDOLE_MA	  0xA62A
 #define Z_UNICODE_VAI_SYLLABLE_NDOLE_DO	  0xA62B
 
-/* MARK: - A640-A69F - Cyrillic Extended-B */
+/* MARK: - A640h-A69Fh - Cyrillic Extended-B */
 
 #define Z_UNICODE_CYRILLIC_CAPITAL_LETTER_ZEMLYA		     0xA640
 #define Z_UNICODE_CYRILLIC_SMALL_LETTER_ZEMLYA			     0xA641
@@ -14015,7 +14015,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COMBINING_CYRILLIC_LETTER_EF			     0xA69E
 #define Z_UNICODE_COMBINING_CYRILLIC_LETTER_IOTIFIED_E		     0xA69F
 
-/* MARK: - A6A0-A6FF - Bamum */
+/* MARK: - A6A0h-A6FFh - Bamum */
 
 #define Z_UNICODE_BAMUM_LETTER_A		 0xA6A0
 #define Z_UNICODE_BAMUM_LETTER_KA		 0xA6A1
@@ -14106,7 +14106,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BAMUM_SEMICOLON		 0xA6F6
 #define Z_UNICODE_BAMUM_QUESTION_MARK		 0xA6F7
 
-/* MARK: - A700-A71F - Modifier Tone Letters */
+/* MARK: - A700h-A71Fh - Modifier Tone Letters */
 
 #define Z_UNICODE_MODIFIER_LETTER_CHINESE_TONE_YIN_PING		       0xA700
 #define Z_UNICODE_MODIFIER_LETTER_CHINESE_TONE_YANG_PING	       0xA701
@@ -14141,7 +14141,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MODIFIER_LETTER_RAISED_INVERTED_EXCLAMATION_MARK     0xA71E
 #define Z_UNICODE_MODIFIER_LETTER_LOW_INVERTED_EXCLAMATION_MARK	       0xA71F
 
-/* MARK: - A720-A7FF - Latin Extended-D */
+/* MARK: - A720h-A7FFh - Latin Extended-D */
 
 #define Z_UNICODE_MODIFIER_LETTER_STRESS_AND_HIGH_TONE			   0xA720
 #define Z_UNICODE_MODIFIER_LETTER_STRESS_AND_LOW_TONE			   0xA721
@@ -14303,7 +14303,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LATIN_EPIGRAPHIC_LETTER_I_LONGA			   0xA7FE
 #define Z_UNICODE_LATIN_EPIGRAPHIC_LETTER_ARCHAIC_M			   0xA7FF
 
-/* MARK: - A800-A82F - Syloti Nagri */
+/* MARK: - A800h-A82Fh - Syloti Nagri */
 
 #define Z_UNICODE_SYLOTI_NAGRI_LETTER_A	     0xA800
 #define Z_UNICODE_SYLOTI_NAGRI_LETTER_I	     0xA801
@@ -14350,7 +14350,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SYLOTI_NAGRI_POETRY_MARK_3 0xA82A
 #define Z_UNICODE_SYLOTI_NAGRI_POETRY_MARK_4 0xA82B
 
-/* MARK: - A830-A83F - Common Indic Number Forms */
+/* MARK: - A830h-A83Fh - Common Indic Number Forms */
 
 #define Z_UNICODE_NORTH_INDIC_FRACTION_ONE_QUARTER	0xA830
 #define Z_UNICODE_NORTH_INDIC_FRACTION_ONE_HALF		0xA831
@@ -14363,7 +14363,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_NORTH_INDIC_RUPEE_MARK		0xA838
 #define Z_UNICODE_NORTH_INDIC_QUANTITY_MARK		0xA839
 
-/* MARK: - A840-A87F - Phags-pa */
+/* MARK: - A840h-A87Fh - Phags-pa */
 
 #define Z_UNICODE_PHAGS_PA_LETTER_KA		0xA840
 #define Z_UNICODE_PHAGS_PA_LETTER_KHA		0xA841
@@ -14422,7 +14422,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_PHAGS_PA_MARK_SHAD		0xA876
 #define Z_UNICODE_PHAGS_PA_MARK_DOUBLE_SHAD	0xA877
 
-/* MARK: - A880-A8DF - Saurashtra */
+/* MARK: - A880h-A8DFh - Saurashtra */
 
 #define Z_UNICODE_SAURASHTRA_SIGN_ANUSVARA	   0xA880
 #define Z_UNICODE_SAURASHTRA_SIGN_VISARGA	   0xA881
@@ -14506,7 +14506,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SAURASHTRA_DIGIT_EIGHT	   0xA8D8
 #define Z_UNICODE_SAURASHTRA_DIGIT_NINE		   0xA8D9
 
-/* MARK: - A8E0-A8FF - Devanagari Extended */
+/* MARK: - A8E0h-A8FFh - Devanagari Extended */
 
 #define Z_UNICODE_COMBINING_DEVANAGARI_DIGIT_ZERO	    0xA8E0
 #define Z_UNICODE_COMBINING_DEVANAGARI_DIGIT_ONE	    0xA8E1
@@ -14539,7 +14539,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_DEVANAGARI_SIGN_SIDDHAM		    0xA8FC
 #define Z_UNICODE_DEVANAGARI_JAIN_OM			    0xA8FD
 
-/* MARK: - A900-A92F - Kayah Li */
+/* MARK: - A900h-A92Fh - Kayah Li */
 
 #define Z_UNICODE_KAYAH_LI_DIGIT_ZERO	     0xA900
 #define Z_UNICODE_KAYAH_LI_DIGIT_ONE	     0xA901
@@ -14590,7 +14590,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_KAYAH_LI_SIGN_CWI	     0xA92E
 #define Z_UNICODE_KAYAH_LI_SIGN_SHYA	     0xA92F
 
-/* MARK: - A930-A95F - Rejang */
+/* MARK: - A930h-A95Fh - Rejang */
 
 #define Z_UNICODE_REJANG_LETTER_KA	   0xA930
 #define Z_UNICODE_REJANG_LETTER_GA	   0xA931
@@ -14630,7 +14630,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_REJANG_VIRAMA		   0xA953
 #define Z_UNICODE_REJANG_SECTION_MARK	   0xA95F
 
-/* MARK: - A960-A97F - Hangul Jamo Extended-A */
+/* MARK: - A960h-A97Fh - Hangul Jamo Extended-A */
 
 #define Z_UNICODE_HANGUL_CHOSEONG_TIKEUT_MIEUM	      0xA960
 #define Z_UNICODE_HANGUL_CHOSEONG_TIKEUT_PIEUP	      0xA961
@@ -14662,7 +14662,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_HANGUL_CHOSEONG_HIEUH_SIOS	      0xA97B
 #define Z_UNICODE_HANGUL_CHOSEONG_SSANGYEORINHIEUH    0xA97C
 
-/* MARK: - A980-A9DF - Javanese */
+/* MARK: - A980h-A9DFh - Javanese */
 
 #define Z_UNICODE_JAVANESE_SIGN_PANYANGGA	    0xA980
 #define Z_UNICODE_JAVANESE_SIGN_CECAK		    0xA981
@@ -14756,7 +14756,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_JAVANESE_PADA_TIRTA_TUMETES	    0xA9DE
 #define Z_UNICODE_JAVANESE_PADA_ISEN_ISEN	    0xA9DF
 
-/* MARK: - A9E0-A9FF - Myanmar Extended-B */
+/* MARK: - A9E0h-A9FFh - Myanmar Extended-B */
 
 #define Z_UNICODE_MYANMAR_LETTER_SHAN_GHA		     0xA9E0
 #define Z_UNICODE_MYANMAR_LETTER_SHAN_CHA		     0xA9E1
@@ -14790,7 +14790,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MYANMAR_LETTER_TAI_LAING_BA		     0xA9FD
 #define Z_UNICODE_MYANMAR_LETTER_TAI_LAING_BHA		     0xA9FE
 
-/* MARK: - AA00-AA5F - Cham */
+/* MARK: - AA00h-AA5Fh - Cham */
 
 #define Z_UNICODE_CHAM_LETTER_A			0xAA00
 #define Z_UNICODE_CHAM_LETTER_I			0xAA01
@@ -14876,7 +14876,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CHAM_PUNCTUATION_DOUBLE_DANDA	0xAA5E
 #define Z_UNICODE_CHAM_PUNCTUATION_TRIPLE_DANDA	0xAA5F
 
-/* MARK: - AA60-AA7F - Myanmar Extended-A */
+/* MARK: - AA60h-AA7Fh - Myanmar Extended-A */
 
 #define Z_UNICODE_MYANMAR_LETTER_KHAMTI_GA		       0xAA60
 #define Z_UNICODE_MYANMAR_LETTER_KHAMTI_CA		       0xAA61
@@ -14911,7 +14911,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MYANMAR_LETTER_SHWE_PALAUNG_CHA	       0xAA7E
 #define Z_UNICODE_MYANMAR_LETTER_SHWE_PALAUNG_SHA	       0xAA7F
 
-/* MARK: - AA80-AADF - Tai Viet */
+/* MARK: - AA80h-AADFh - Tai Viet */
 
 #define Z_UNICODE_TAI_VIET_LETTER_LOW_KO    0xAA80
 #define Z_UNICODE_TAI_VIET_LETTER_HIGH_KO   0xAA81
@@ -14986,7 +14986,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TAI_VIET_SYMBOL_HO_HOI    0xAADE
 #define Z_UNICODE_TAI_VIET_SYMBOL_KOI_KOI   0xAADF
 
-/* MARK: - AAE0-AAFF - Meetei Mayek Extensions */
+/* MARK: - AAE0h-AAFFh - Meetei Mayek Extensions */
 
 #define Z_UNICODE_MEETEI_MAYEK_LETTER_E			0xAAE0
 #define Z_UNICODE_MEETEI_MAYEK_LETTER_O			0xAAE1
@@ -15012,7 +15012,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MEETEI_MAYEK_VOWEL_SIGN_VISARGA	0xAAF5
 #define Z_UNICODE_MEETEI_MAYEK_VIRAMA			0xAAF6
 
-/* MARK: - AB00-AB2F - Ethiopic Extended-A */
+/* MARK: - AB00h-AB2Fh - Ethiopic Extended-A */
 
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_TTHU   0xAB01
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_TTHI   0xAB02
@@ -15047,7 +15047,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_BBE	   0xAB2D
 #define Z_UNICODE_ETHIOPIC_SYLLABLE_BBO	   0xAB2E
 
-/* MARK: - AB30-AB6F - Latin Extended-E */
+/* MARK: - AB30h-AB6Fh - Latin Extended-E */
 
 #define Z_UNICODE_LATIN_SMALL_LETTER_BARRED_ALPHA			     0xAB30
 #define Z_UNICODE_LATIN_SMALL_LETTER_A_REVERSED_SCHWA			     0xAB31
@@ -15104,7 +15104,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LATIN_SMALL_LETTER_INVERTED_ALPHA			     0xAB64
 #define Z_UNICODE_GREEK_LETTER_SMALL_CAPITAL_OMEGA			     0xAB65
 
-/* MARK: - AB70-ABBF - Cherokee Supplement */
+/* MARK: - AB70h-ABBFh - Cherokee Supplement */
 
 #define Z_UNICODE_CHEROKEE_SMALL_LETTER_A   0xAB70
 #define Z_UNICODE_CHEROKEE_SMALL_LETTER_E   0xAB71
@@ -15187,7 +15187,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CHEROKEE_SMALL_LETTER_WV  0xABBE
 #define Z_UNICODE_CHEROKEE_SMALL_LETTER_YA  0xABBF
 
-/* MARK: - ABC0-ABFF - Meetei Mayek */
+/* MARK: - ABC0h-ABFFh - Meetei Mayek */
 
 #define Z_UNICODE_MEETEI_MAYEK_LETTER_KOK	  0xABC0
 #define Z_UNICODE_MEETEI_MAYEK_LETTER_SAM	  0xABC1
@@ -15246,9 +15246,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MEETEI_MAYEK_DIGIT_EIGHT	  0xABF8
 #define Z_UNICODE_MEETEI_MAYEK_DIGIT_NINE	  0xABF9
 
-/* MARK: - AC00-D7A3 - Hangul Syllables */
+/* MARK: - AC00h-D7A3h - Hangul Syllables */
 
-/* MARK: - D7B0-D7FF - Hangul Jamo Extended-B */
+/* MARK: - D7B0h-D7FFh - Hangul Jamo Extended-B */
 
 #define Z_UNICODE_HANGUL_JUNGSEONG_O_YEO		   0xD7B0
 #define Z_UNICODE_HANGUL_JUNGSEONG_O_O_I		   0xD7B1
@@ -15323,12 +15323,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_HANGUL_JONGSEONG_PHIEUPH_SIOS		   0xD7FA
 #define Z_UNICODE_HANGUL_JONGSEONG_PHIEUPH_THIEUTH	   0xD7FB
 
-/* MARK: - D800-DB7F - High Surrogates */
-/* MARK: - DB80-DBFF - High Private Use Surrogates */
-/* MARK: - DC00-DFFF - Low Surrogates */
-/* MARK: - E000-F8FF - Private Use Area */
+/* MARK: - D800h-DB7Fh - High Surrogates */
+/* MARK: - DB80h-DBFFh - High Private Use Surrogates */
+/* MARK: - DC00h-DFFFh - Low Surrogates */
+/* MARK: - E000h-F8FFh - Private Use Area */
 
-/* MARK: - F900-FAFF - CJK Compatibility Ideographs */
+/* MARK: - F900h-FAFFh - CJK Compatibility Ideographs */
 
 #define Z_UNICODE_CJK_COMPATIBILITY_IDEOGRAPH_F900 0xF900
 #define Z_UNICODE_CJK_COMPATIBILITY_IDEOGRAPH_F901 0xF901
@@ -15803,7 +15803,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CJK_COMPATIBILITY_IDEOGRAPH_FAD8 0xFAD8
 #define Z_UNICODE_CJK_COMPATIBILITY_IDEOGRAPH_FAD9 0xFAD9
 
-/* MARK: - FB00-FB4F - Alphabetic Presentation Forms */
+/* MARK: - FB00h-FB4Fh - Alphabetic Presentation Forms */
 
 #define Z_UNICODE_LATIN_SMALL_LIGATURE_FF		      0xFB00
 #define Z_UNICODE_LATIN_SMALL_LIGATURE_FI		      0xFB01
@@ -15864,7 +15864,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_HEBREW_LETTER_PE_WITH_RAFE		      0xFB4E
 #define Z_UNICODE_HEBREW_LIGATURE_ALEF_LAMED		      0xFB4F
 
-/* MARK: - FB50-FDFF - Arabic Presentation Forms-A */
+/* MARK: - FB50h-FDFFh - Arabic Presentation Forms-A */
 
 /* FDD0h <not a character> */
 /* FDD1h <not a character> */
@@ -16510,7 +16510,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_RIAL_SIGN									      0xFDFC
 #define Z_UNICODE_ARABIC_LIGATURE_BISMILLAH_AR_RAHMAN_AR_RAHEEM					      0xFDFD
 
-/* MARK: - FE00-FE0F - Variation Selectors */
+/* MARK: - FE00h-FE0Fh - Variation Selectors */
 
 #define Z_UNICODE_VARIATION_SELECTOR_1	0xFE00
 #define Z_UNICODE_VARIATION_SELECTOR_2	0xFE01
@@ -16529,7 +16529,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_VARIATION_SELECTOR_15	0xFE0E
 #define Z_UNICODE_VARIATION_SELECTOR_16	0xFE0F
 
-/* MARK: - FE10-FE1F - Vertical Forms */
+/* MARK: - FE10h-FE1Fh - Vertical Forms */
 
 #define Z_UNICODE_PRESENTATION_FORM_FOR_VERTICAL_COMMA				0xFE10
 #define Z_UNICODE_PRESENTATION_FORM_FOR_VERTICAL_IDEOGRAPHIC_COMMA		0xFE11
@@ -16542,7 +16542,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_PRESENTATION_FORM_FOR_VERTICAL_RIGHT_WHITE_LENTICULAR_BRAKCET	0xFE18
 #define Z_UNICODE_PRESENTATION_FORM_FOR_VERTICAL_HORIZONTAL_ELLIPSIS		0xFE19
 
-/* MARK: - FE20-FE2F - Combining Half Marks */
+/* MARK: - FE20h-FE2Fh - Combining Half Marks */
 
 #define Z_UNICODE_COMBINING_LIGATURE_LEFT_HALF	      0xFE20
 #define Z_UNICODE_COMBINING_LIGATURE_RIGHT_HALF	      0xFE21
@@ -16561,7 +16561,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COMBINING_CYRILLIC_TITLO_LEFT_HALF  0xFE2E
 #define Z_UNICODE_COMBINING_CYRILLIC_TITLO_RIGHT_HALF 0xFE2F
 
-/* MARK: - FE30-FE4F - CJK Compatibility Forms */
+/* MARK: - FE30h-FE4Fh - CJK Compatibility Forms */
 
 #define Z_UNICODE_PRESENTATION_FORM_FOR_VERTICAL_TWO_DOT_LEADER			0xFE30
 #define Z_UNICODE_PRESENTATION_FORM_FOR_VERTICAL_EM_DASH			0xFE31
@@ -16596,7 +16596,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CENTRELINE_LOW_LINE						0xFE4E
 #define Z_UNICODE_WAVY_LOW_LINE							0xFE4F
 
-/* MARK: - FE50-FE6F - Small Form Variants */
+/* MARK: - FE50h-FE6Fh - Small Form Variants */
 
 #define Z_UNICODE_SMALL_COMMA			     0xFE50
 #define Z_UNICODE_SMALL_IDEOGRAPHIC_COMMA	     0xFE51
@@ -16625,7 +16625,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SMALL_PERCENT_SIGN		     0xFE6A
 #define Z_UNICODE_SMALL_COMMERCIAL_AT		     0xFE6B
 
-/* MARK: - FE70-FEFF - Arabic Presentation Forms-B */
+/* MARK: - FE70h-FEFFh - Arabic Presentation Forms-B */
 
 #define Z_UNICODE_ARABIC_FATHATAN_ISOLATED_FORM				       0xFE70
 #define Z_UNICODE_ARABIC_TATWEEL_WITH_FATHATAN_ABOVE			       0xFE71
@@ -16769,7 +16769,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ARABIC_LIGATURE_LAM_WITH_ALEF_FINAL_FORM		       0xFEFC
 #define Z_UNICODE_ZERO_WIDTH_NO_BREAK_SPACE				       0xFEFF
 
-/* MARK: - FF00-FFEF - Halfwidth and Fullwidth Forms */
+/* MARK: - FF00h-FFEFh - Halfwidth and Fullwidth Forms */
 
 #define Z_UNICODE_FULLWIDTH_EXCLAMATION_MARK			   0xFF01
 #define Z_UNICODE_FULLWIDTH_QUOTATION_MARK			   0xFF02
@@ -16997,7 +16997,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_HALFWIDTH_BLACK_SQUARE			   0xFFED
 #define Z_UNICODE_HALFWIDTH_WHITE_CIRCLE			   0xFFEE
 
-/* MARK: - FFF0-FFFF - Specials */
+/* MARK: - FFF0h-FFFFh - Specials */
 
 /* FFFEh <not a character> */
 /* FFFFh <not a character> */
@@ -17007,7 +17007,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OBJECT_REPLACEMENT_CHARACTER	    0xFFFC
 #define Z_UNICODE_REPLACEMENT_CHARACTER		    0xFFFD
 
-/* MARK: - 10000-1007F - Linear B Syllabary */
+/* MARK: - 10000h-1007Fh - Linear B Syllabary */
 
 #define Z_UNICODE_LINEAR_B_SYLLABLE_B008_A   0x10000
 #define Z_UNICODE_LINEAR_B_SYLLABLE_B038_E   0x10001
@@ -17098,7 +17098,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LINEAR_B_SYMBOL_B086	     0x1005C
 #define Z_UNICODE_LINEAR_B_SYMBOL_B089	     0x1005D
 
-/* MARK: - 10080-100FF - Linear B Ideograms */
+/* MARK: - 10080h-100FFh - Linear B Ideograms */
 
 #define Z_UNICODE_LINEAR_B_IDEOGRAM_B100_MAN		 0x10080
 #define Z_UNICODE_LINEAR_B_IDEOGRAM_B102_WOMAN		 0x10081
@@ -17224,7 +17224,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LINEAR_B_IDEOGRAM_VESSEL_B250		 0x100F9
 #define Z_UNICODE_LINEAR_B_IDEOGRAM_VESSEL_B305		 0x100FA
 
-/* MARK: - 10100-1013F - Aegean Numbers */
+/* MARK: - 10100h-1013Fh - Aegean Numbers */
 
 #define Z_UNICODE_AEGEAN_WORD_SEPARATOR_LINE	      0x10100
 #define Z_UNICODE_AEGEAN_WORD_SEPARATOR_DOT	      0x10101
@@ -17284,7 +17284,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_AEGEAN_MEASURE_SECOND_SUBUNIT	      0x1013E
 #define Z_UNICODE_AEGEAN_MEASURE_THIRD_SUBUNIT	      0x1013F
 
-/* MARK: - 10140-1018F - Ancient Greek Numbers */
+/* MARK: - 10140h-1018Fh - Ancient Greek Numbers */
 
 #define Z_UNICODE_GREEK_ACROPHONIC_ATTIC_ONE_QUARTER		   0x10140
 #define Z_UNICODE_GREEK_ACROPHONIC_ATTIC_ONE_HALF		   0x10141
@@ -17364,7 +17364,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_GREEK_ONE_QUARTER_SIGN			   0x1018B
 #define Z_UNICODE_GREEK_SINUSOID_SIGN				   0x1018C
 
-/* MARK: - 10190-101CF - Ancient Symbols */
+/* MARK: - 10190h-101CFh - Ancient Symbols */
 
 #define Z_UNICODE_ROMAN_SEXTANS_SIGN	     0x10190
 #define Z_UNICODE_ROMAN_UNCIA_SIGN	     0x10191
@@ -17380,7 +17380,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ROMAN_CENTURIAL_SIGN	     0x1019B
 #define Z_UNICODE_GREEK_SYMBOL_TAU_RHO	     0x101A0
 
-/* MARK: - 101D0-101FF - Phaistos Disc */
+/* MARK: - 101D0h-101FFh - Phaistos Disc */
 
 #define Z_UNICODE_PHAISTOS_DISC_SIGN_PEDESTRIAN		      0x101D0
 #define Z_UNICODE_PHAISTOS_DISC_SIGN_PLUMED_HEAD	      0x101D1
@@ -17429,7 +17429,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_PHAISTOS_DISC_SIGN_WAVY_BAND		      0x101FC
 #define Z_UNICODE_PHAISTOS_DISC_SIGN_COMBINING_OBLIQUE_STROKE 0x101FD
 
-/* MARK: - 10280-1029F - Lycian */
+/* MARK: - 10280h-1029Fh - Lycian */
 
 #define Z_UNICODE_LYCIAN_LETTER_A  0x10280
 #define Z_UNICODE_LYCIAN_LETTER_E  0x10281
@@ -17461,7 +17461,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LYCIAN_LETTER_H  0x1029B
 #define Z_UNICODE_LYCIAN_LETTER_X  0x1029C
 
-/* MARK: - 102A0-102DF - Carian */
+/* MARK: - 102A0h-102DFh - Carian */
 
 #define Z_UNICODE_CARIAN_LETTER_A    0x102A0
 #define Z_UNICODE_CARIAN_LETTER_P2   0x102A1
@@ -17513,7 +17513,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CARIAN_LETTER_E2   0x102CF
 #define Z_UNICODE_CARIAN_LETTER_UUU3 0x102D0
 
-/* MARK: - 102E0-102FF - Coptic Epact Numbers */
+/* MARK: - 102E0h-102FFh - Coptic Epact Numbers */
 
 #define Z_UNICODE_COPTIC_EPACT_THOUSANDS_MARK	    0x102E0
 #define Z_UNICODE_COPTIC_EPACT_DIGIT_ONE	    0x102E1
@@ -17544,7 +17544,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COPTIC_EPACT_NUMBER_EIGHT_HUNDRED 0x102FA
 #define Z_UNICODE_COPTIC_EPACT_NUMBER_NINE_HUNDRED  0x102FB
 
-/* MARK: - 10300-1032F - Old Italic */
+/* MARK: - 10300h-1032Fh - Old Italic */
 
 #define Z_UNICODE_OLD_ITALIC_LETTER_A	   0x10300
 #define Z_UNICODE_OLD_ITALIC_LETTER_BE	   0x10301
@@ -17583,7 +17583,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OLD_ITALIC_NUMERAL_TEN   0x10322
 #define Z_UNICODE_OLD_ITALIC_NUMERAL_FIFTY 0x10323
 
-/* MARK: - 10330-1034F - Gothic */
+/* MARK: - 10330h-1034Fh - Gothic */
 
 #define Z_UNICODE_GOTHIC_LETTER_AHSA	     0x10330
 #define Z_UNICODE_GOTHIC_LETTER_BAIRKAN	     0x10331
@@ -17613,7 +17613,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_GOTHIC_LETTER_OTHAL	     0x10349
 #define Z_UNICODE_GOTHIC_LETTER_NINE_HUNDRED 0x1034A
 
-/* MARK: - 10350-1037F - Old Permic */
+/* MARK: - 10350h-1037Fh - Old Permic */
 
 #define Z_UNICODE_OLD_PERMIC_LETTER_AN		    0x10350
 #define Z_UNICODE_OLD_PERMIC_LETTER_BUR		    0x10351
@@ -17659,7 +17659,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COMBINING_OLD_PERMIC_LETTER_NENOE 0x10379
 #define Z_UNICODE_COMBINING_OLD_PERMIC_LETTER_SII   0x1037A
 
-/* MARK: - 10380-1039F - Ugaritic */
+/* MARK: - 10380h-1039Fh - Ugaritic */
 
 #define Z_UNICODE_UGARITIC_LETTER_ALPA	 0x10380
 #define Z_UNICODE_UGARITIC_LETTER_BETA	 0x10381
@@ -17693,7 +17693,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_UGARITIC_LETTER_SSU	 0x1039D
 #define Z_UNICODE_UGARITIC_WORD_DIVIDER	 0x1039F
 
-/* MARK: - 103A0-103DF - Old Persian */
+/* MARK: - 103A0h-103DFh - Old Persian */
 
 #define Z_UNICODE_OLD_PERSIAN_SIGN_A		0x103A0
 #define Z_UNICODE_OLD_PERSIAN_SIGN_I		0x103A1
@@ -17746,7 +17746,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OLD_PERSIAN_NUMBER_TWENTY	0x103D4
 #define Z_UNICODE_OLD_PERSIAN_NUMBER_HUNDRED	0x103D5
 
-/* MARK: - 10400-1044F - Deseret */
+/* MARK: - 10400h-1044Fh - Deseret */
 
 #define Z_UNICODE_DESERET_CAPITAL_LETTER_LONG_I	  0x10400
 #define Z_UNICODE_DESERET_CAPITAL_LETTER_LONG_E	  0x10401
@@ -17829,7 +17829,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_DESERET_SMALL_LETTER_OI	  0x1044E
 #define Z_UNICODE_DESERET_SMALL_LETTER_EW	  0x1044F
 
-/* MARK: - 10450-1047F - Shavian */
+/* MARK: - 10450h-1047Fh - Shavian */
 
 #define Z_UNICODE_SHAVIAN_LETTER_PEEP	 0x10450
 #define Z_UNICODE_SHAVIAN_LETTER_TOT	 0x10451
@@ -17880,7 +17880,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SHAVIAN_LETTER_IAN	 0x1047E
 #define Z_UNICODE_SHAVIAN_LETTER_YEW	 0x1047F
 
-/* MARK: - 10480-104AF - Osmanya */
+/* MARK: - 10480h-104AFh - Osmanya */
 
 #define Z_UNICODE_OSMANYA_LETTER_ALEF  0x10480
 #define Z_UNICODE_OSMANYA_LETTER_BA    0x10481
@@ -17923,7 +17923,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OSMANYA_DIGIT_EIGHT  0x104A8
 #define Z_UNICODE_OSMANYA_DIGIT_NINE   0x104A9
 
-/* MARK: - 10500-1052F - Elbasan */
+/* MARK: - 10500h-1052Fh - Elbasan */
 
 #define Z_UNICODE_ELBASAN_LETTER_A	0x10500
 #define Z_UNICODE_ELBASAN_LETTER_BE	0x10501
@@ -17966,7 +17966,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ELBASAN_LETTER_GHAMMA	0x10526
 #define Z_UNICODE_ELBASAN_LETTER_KHE	0x10527
 
-/* MARK: - 10530-1056F - Caucasian Albanian */
+/* MARK: - 10530h-1056Fh - Caucasian Albanian */
 
 #define Z_UNICODE_CAUCASIAN_ALBANIAN_LETTER_ALT	   0x10530
 #define Z_UNICODE_CAUCASIAN_ALBANIAN_LETTER_BET	   0x10531
@@ -18022,7 +18022,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CAUCASIAN_ALBANIAN_LETTER_KIW	   0x10563
 #define Z_UNICODE_CAUCASIAN_ALBANIAN_CITATION_MARK 0x1056F
 
-/* MARK: - 10600-1077F - Linear A */
+/* MARK: - 10600h-1077Fh - Linear A */
 
 #define Z_UNICODE_LINEAR_A_SIGN_AB001	   0x10600
 #define Z_UNICODE_LINEAR_A_SIGN_AB002	   0x10601
@@ -18366,7 +18366,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LINEAR_A_SIGN_A806	   0x10766
 #define Z_UNICODE_LINEAR_A_SIGN_A807	   0x10767
 
-/* MARK: - 10800-1083F - Cypriot Syllabary */
+/* MARK: - 10800h-1083Fh - Cypriot Syllabary */
 
 #define Z_UNICODE_CYPRIOT_SYLLABLE_A  0x10800
 #define Z_UNICODE_CYPRIOT_SYLLABLE_E  0x10801
@@ -18424,7 +18424,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CYPRIOT_SYLLABLE_ZA 0x1083C
 #define Z_UNICODE_CYPRIOT_SYLLABLE_ZO 0x1083F
 
-/* MARK: - 10840-1085F - Imperial Aramaic */
+/* MARK: - 10840h-1085Fh - Imperial Aramaic */
 
 #define Z_UNICODE_IMPERIAL_ARAMAIC_LETTER_ALEPH	       0x10840
 #define Z_UNICODE_IMPERIAL_ARAMAIC_LETTER_BETH	       0x10841
@@ -18458,7 +18458,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_IMPERIAL_ARAMAIC_NUMBER_ONE_THOUSAND 0x1085E
 #define Z_UNICODE_IMPERIAL_ARAMAIC_NUMBER_TEN_THOUSAND 0x1085F
 
-/* MARK: - 10860-1087F - Palmyrene */
+/* MARK: - 10860h-1087Fh - Palmyrene */
 
 #define Z_UNICODE_PALMYRENE_LETTER_ALEPH	   0x10860
 #define Z_UNICODE_PALMYRENE_LETTER_BETH		   0x10861
@@ -18493,7 +18493,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_PALMYRENE_NUMBER_TEN		   0x1087E
 #define Z_UNICODE_PALMYRENE_NUMBER_TWENTY	   0x1087F
 
-/* MARK: - 10880-108AF - Nabataean */
+/* MARK: - 10880h-108AFh - Nabataean */
 
 #define Z_UNICODE_NABATAEAN_LETTER_FINAL_ALEPH	  0x10880
 #define Z_UNICODE_NABATAEAN_LETTER_ALEPH	  0x10881
@@ -18536,7 +18536,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_NABATAEAN_NUMBER_TWENTY	  0x108AE
 #define Z_UNICODE_NABATAEAN_NUMBER_ONE_HUNDRED	  0x108AF
 
-/* MARK: - 108E0-108FF - Hatran */
+/* MARK: - 108E0h-108FFh - Hatran */
 
 #define Z_UNICODE_HATRAN_LETTER_ALEPH	    0x108E0
 #define Z_UNICODE_HATRAN_LETTER_BETH	    0x108E1
@@ -18565,7 +18565,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_HATRAN_NUMBER_TWENTY	    0x108FE
 #define Z_UNICODE_HATRAN_NUMBER_ONE_HUNDRED 0x108FF
 
-/* MARK: - 10900-1091F - Phoenician */
+/* MARK: - 10900h-1091Fh - Phoenician */
 
 #define Z_UNICODE_PHOENICIAN_LETTER_ALF		0x10900
 #define Z_UNICODE_PHOENICIAN_LETTER_BET		0x10901
@@ -18597,7 +18597,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_PHOENICIAN_NUMBER_THREE	0x1091B
 #define Z_UNICODE_PHOENICIAN_WORD_SEPARATOR	0x1091F
 
-/* MARK: - 10920-1093F - Lydian */
+/* MARK: - 10920h-1093Fh - Lydian */
 
 #define Z_UNICODE_LYDIAN_LETTER_A	 0x10920
 #define Z_UNICODE_LYDIAN_LETTER_B	 0x10921
@@ -18627,7 +18627,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LYDIAN_LETTER_C	 0x10939
 #define Z_UNICODE_LYDIAN_TRIANGULAR_MARK 0x1093F
 
-/* MARK: - 10980-1099F - Meroitic Hieroglyphs */
+/* MARK: - 10980h-1099Fh - Meroitic Hieroglyphs */
 
 #define Z_UNICODE_MEROITIC_HIEROGLYPHIC_LETTER_A      0x10980
 #define Z_UNICODE_MEROITIC_HIEROGLYPHIC_LETTER_E      0x10981
@@ -18662,7 +18662,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MEROITIC_HIEROGLYPHIC_SYMBOL_VIDJ   0x1099E
 #define Z_UNICODE_MEROITIC_HIEROGLYPHIC_SYMBOL_VIDJ_2 0x1099F
 
-/* MARK: - 109A0-109FF - Meroitic Cursive */
+/* MARK: - 109A0h-109FFh - Meroitic Cursive */
 
 #define Z_UNICODE_MEROITIC_CURSIVE_LETTER_A			 0x109A0
 #define Z_UNICODE_MEROITIC_CURSIVE_LETTER_E			 0x109A1
@@ -18755,7 +18755,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MEROITIC_CURSIVE_FRACTION_NINE_TWELFTHS	 0x109FE
 #define Z_UNICODE_MEROITIC_CURSIVE_FRACTION_TEN_TWELFTHS	 0x109FF
 
-/* MARK: - 10A00-10A5F - Kharoshthi */
+/* MARK: - 10A00h-10A5Fh - Kharoshthi */
 
 #define Z_UNICODE_KHAROSHTHI_LETTER_A		      0x10A00
 #define Z_UNICODE_KHAROSHTHI_VOWEL_SIGN_I	      0x10A01
@@ -18823,7 +18823,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_KHAROSHTHI_PUNCTUATION_DOUBLE_DANDA 0x10A57
 #define Z_UNICODE_KHAROSHTHI_PUNCTUATION_LINES	      0x10A58
 
-/* MARK: - 10A60-10A7F - Old South Arabian */
+/* MARK: - 10A60h-10A7Fh - Old South Arabian */
 
 #define Z_UNICODE_OLD_SOUTH_ARABIAN_LETTER_HE	      0x10A60
 #define Z_UNICODE_OLD_SOUTH_ARABIAN_LETTER_LAMEDH     0x10A61
@@ -18858,7 +18858,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OLD_SOUTH_ARABIAN_NUMBER_FIFTY      0x10A7E
 #define Z_UNICODE_OLD_SOUTH_ARABIAN_NUMERIC_INDICATOR 0x10A7F
 
-/* MARK: - 10A80-10A9F - Old North Arabian */
+/* MARK: - 10A80h-10A9Fh - Old North Arabian */
 
 #define Z_UNICODE_OLD_NORTH_ARABIAN_LETTER_HEH	  0x10A80
 #define Z_UNICODE_OLD_NORTH_ARABIAN_LETTER_LAM	  0x10A81
@@ -18893,7 +18893,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OLD_NORTH_ARABIAN_NUMBER_TEN	  0x10A9E
 #define Z_UNICODE_OLD_NORTH_ARABIAN_NUMBER_TWENTY 0x10A9F
 
-/* MARK: - 10AC0-10AFF - Manichaean */
+/* MARK: - 10AC0h-10AFFh - Manichaean */
 
 #define Z_UNICODE_MANICHAEAN_LETTER_ALEPH		       0x10AC0
 #define Z_UNICODE_MANICHAEAN_LETTER_BETH		       0x10AC1
@@ -18947,7 +18947,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MANICHAEAN_PUNCTUATION_TWO_DOTS	       0x10AF5
 #define Z_UNICODE_MANICHAEAN_PUNCTUATION_LINE_FILLER	       0x10AF6
 
-/* MARK: - 10B00-10B3F - Avestan */
+/* MARK: - 10B00h-10B3Fh - Avestan */
 
 #define Z_UNICODE_AVESTAN_LETTER_A			    0x10B00
 #define Z_UNICODE_AVESTAN_LETTER_AA			    0x10B01
@@ -19011,7 +19011,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_LARGE_TWO_RINGS_OVER_ONE_RING_PUNCTUATION 0x10B3E
 #define Z_UNICODE_LARGE_ONE_RING_OVER_TWO_RINGS_PUNCTUATION 0x10B3F
 
-/* MARK: - 10B40-10B5F - Inscriptional Parthian */
+/* MARK: - 10B40h-10B5Fh - Inscriptional Parthian */
 
 #define Z_UNICODE_INSCRIPTIONAL_PARTHIAN_LETTER_ALEPH	     0x10B40
 #define Z_UNICODE_INSCRIPTIONAL_PARTHIAN_LETTER_BETH	     0x10B41
@@ -19044,7 +19044,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_INSCRIPTIONAL_PARTHIAN_NUMBER_ONE_HUNDRED  0x10B5E
 #define Z_UNICODE_INSCRIPTIONAL_PARTHIAN_NUMBER_ONE_THOUSAND 0x10B5F
 
-/* MARK: - 10B60-10B7F - Inscriptional Pahlavi */
+/* MARK: - 10B60h-10B7Fh - Inscriptional Pahlavi */
 
 #define Z_UNICODE_INSCRIPTIONAL_PAHLAVI_LETTER_ALEPH	     0x10B60
 #define Z_UNICODE_INSCRIPTIONAL_PAHLAVI_LETTER_BETH	     0x10B61
@@ -19074,7 +19074,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_INSCRIPTIONAL_PAHLAVI_NUMBER_ONE_HUNDRED   0x10B7E
 #define Z_UNICODE_INSCRIPTIONAL_PAHLAVI_NUMBER_ONE_THOUSAND  0x10B7F
 
-/* MARK: - 10B80-10BAF - Psalter Pahlavi */
+/* MARK: - 10B80h-10BAFh - Psalter Pahlavi */
 
 #define Z_UNICODE_PSALTER_PAHLAVI_LETTER_ALEPH	       0x10B80
 #define Z_UNICODE_PSALTER_PAHLAVI_LETTER_BETH	       0x10B81
@@ -19106,7 +19106,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_PSALTER_PAHLAVI_NUMBER_TWENTY	       0x10BAE
 #define Z_UNICODE_PSALTER_PAHLAVI_NUMBER_ONE_HUNDRED   0x10BAF
 
-/* MARK: - 10C00-10C4F - Old Turkic */
+/* MARK: - 10C00h-10C4Fh - Old Turkic */
 
 #define Z_UNICODE_OLD_TURKIC_LETTER_ORKHON_A	 0x10C00
 #define Z_UNICODE_OLD_TURKIC_LETTER_YENISEI_A	 0x10C01
@@ -19182,7 +19182,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OLD_TURKIC_LETTER_ORKHON_OT	 0x10C47
 #define Z_UNICODE_OLD_TURKIC_LETTER_ORKHON_BASH	 0x10C48
 
-/* MARK: - 10C80-10CFF - Old Hungarian */
+/* MARK: - 10C80h-10CFFh - Old Hungarian */
 
 #define Z_UNICODE_OLD_HUNGARIAN_CAPITAL_LETTER_A	       0x10C80
 #define Z_UNICODE_OLD_HUNGARIAN_CAPITAL_LETTER_AA	       0x10C81
@@ -19293,7 +19293,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_OLD_HUNGARIAN_NUMBER_ONE_HUNDRED	       0x10CFE
 #define Z_UNICODE_OLD_HUNGARIAN_NUMBER_ONE_THOUSAND	       0x10CFF
 
-/* MARK: - 10E60-10E7F - Rumi Numeral Symbols */
+/* MARK: - 10E60h-10E7Fh - Rumi Numeral Symbols */
 
 #define Z_UNICODE_RUMI_DIGIT_ONE	    0x10E60
 #define Z_UNICODE_RUMI_DIGIT_TWO	    0x10E61
@@ -19327,7 +19327,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_RUMI_FRACTION_ONE_THIRD   0x10E7D
 #define Z_UNICODE_RUMI_FRACTION_TWO_THIRDS  0x10E7E
 
-/* MARK: - 11000-1107F - Brahmi */
+/* MARK: - 11000h-1107Fh - Brahmi */
 
 #define Z_UNICODE_BRAHMI_SIGN_CANDRABINDU	   0x11000
 #define Z_UNICODE_BRAHMI_SIGN_ANUSVARA		   0x11001
@@ -19439,7 +19439,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BRAHMI_DIGIT_NINE		   0x1106F
 #define Z_UNICODE_BRAHMI_NUMBER_JOINER		   0x1107F
 
-/* MARK: - 11080-110CF - Kaithi */
+/* MARK: - 11080h-110CFh - Kaithi */
 
 #define Z_UNICODE_KAITHI_SIGN_CANDRABINDU    0x11080
 #define Z_UNICODE_KAITHI_SIGN_ANUSVARA	     0x11081
@@ -19508,7 +19508,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_KAITHI_DANDA		     0x110C0
 #define Z_UNICODE_KAITHI_DOUBLE_DANDA	     0x110C1
 
-/* MARK: - 110D0-110FF - Sora Sompeng */
+/* MARK: - 110D0h-110FFh - Sora Sompeng */
 
 #define Z_UNICODE_SORA_SOMPENG_LETTER_SAH  0x110D0
 #define Z_UNICODE_SORA_SOMPENG_LETTER_TAH  0x110D1
@@ -19546,7 +19546,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SORA_SOMPENG_DIGIT_EIGHT 0x110F8
 #define Z_UNICODE_SORA_SOMPENG_DIGIT_NINE  0x110F9
 
-/* MARK: - 11100-1114F - Chakma */
+/* MARK: - 11100h-1114Fh - Chakma */
 
 #define Z_UNICODE_CHAKMA_SIGN_CANDRABINDU 0x11100
 #define Z_UNICODE_CHAKMA_SIGN_ANUSVARA	  0x11101
@@ -19616,7 +19616,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CHAKMA_DOUBLE_DANDA	  0x11142
 #define Z_UNICODE_CHAKMA_QUESTION_MARK	  0x11143
 
-/* MARK: - 11150-1117F - Mahajani */
+/* MARK: - 11150h-1117Fh - Mahajani */
 
 #define Z_UNICODE_MAHAJANI_LETTER_A	     0x11150
 #define Z_UNICODE_MAHAJANI_LETTER_I	     0x11151
@@ -19658,7 +19658,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MAHAJANI_SECTION_MARK	     0x11175
 #define Z_UNICODE_MAHAJANI_LIGATURE_SHRI     0x11176
 
-/* MARK: - 11180-111DF - Sharada */
+/* MARK: - 11180h-111DFh - Sharada */
 
 #define Z_UNICODE_SHARADA_SIGN_CANDRABINDU	 0x11180
 #define Z_UNICODE_SHARADA_SIGN_ANUSVARA		 0x11181
@@ -19755,7 +19755,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SHARADA_SECTION_MARK_1	 0x111DE
 #define Z_UNICODE_SHARADA_SECTION_MARK_2	 0x111DF
 
-/* MARK: - 111E0-111FF - Sinhala Archaic Numbers */
+/* MARK: - 111E0h-111FFh - Sinhala Archaic Numbers */
 
 #define Z_UNICODE_SINHALA_ARCHAIC_DIGIT_ONE	      0x111E1
 #define Z_UNICODE_SINHALA_ARCHAIC_DIGIT_TWO	      0x111E2
@@ -19778,7 +19778,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SINHALA_ARCHAIC_NUMBER_ONE_HUNDRED  0x111F3
 #define Z_UNICODE_SINHALA_ARCHAIC_NUMBER_ONE_THOUSAND 0x111F4
 
-/* MARK: - 11200-1124F - Khojki */
+/* MARK: - 11200h-1124Fh - Khojki */
 
 #define Z_UNICODE_KHOJKI_LETTER_A	     0x11200
 #define Z_UNICODE_KHOJKI_LETTER_AA	     0x11201
@@ -19842,7 +19842,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_KHOJKI_DOUBLE_SECTION_MARK 0x1123C
 #define Z_UNICODE_KHOJKI_ABBREVIATION_SIGN   0x1123D
 
-/* MARK: - 11280-112AF - Multani */
+/* MARK: - 11280h-112AFh - Multani */
 
 #define Z_UNICODE_MULTANI_LETTER_A     0x11280
 #define Z_UNICODE_MULTANI_LETTER_I     0x11281
@@ -19883,7 +19883,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MULTANI_LETTER_RHA   0x112A8
 #define Z_UNICODE_MULTANI_SECTION_MARK 0x112A9
 
-/* MARK: - 112B0-112FF - Khudawadi */
+/* MARK: - 112B0h-112FFh - Khudawadi */
 
 #define Z_UNICODE_KHUDAWADI_LETTER_A	  0x112B0
 #define Z_UNICODE_KHUDAWADI_LETTER_AA	  0x112B1
@@ -19955,7 +19955,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_KHUDAWADI_DIGIT_EIGHT	  0x112F8
 #define Z_UNICODE_KHUDAWADI_DIGIT_NINE	  0x112F9
 
-/* MARK: - 11300-1137F - Grantha */
+/* MARK: - 11300h-1137Fh - Grantha */
 
 #define Z_UNICODE_GRANTHA_SIGN_COMBINING_ANUSVARA_ABOVE	0x11300
 #define Z_UNICODE_GRANTHA_SIGN_CANDRABINDU		0x11301
@@ -20043,7 +20043,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COMBINING_GRANTHA_LETTER_VI		0x11373
 #define Z_UNICODE_COMBINING_GRANTHA_LETTER_PA		0x11374
 
-/* MARK: - 11480-114DF - Tirhuta */
+/* MARK: - 11480h-114DFh - Tirhuta */
 
 #define Z_UNICODE_TIRHUTA_ANJI			0x11480
 #define Z_UNICODE_TIRHUTA_LETTER_A		0x11481
@@ -20128,7 +20128,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TIRHUTA_DIGIT_EIGHT		0x114D8
 #define Z_UNICODE_TIRHUTA_DIGIT_NINE		0x114D9
 
-/* MARK: - 11580-115FF - Siddham */
+/* MARK: - 11580h-115FFh - Siddham */
 
 #define Z_UNICODE_SIDDHAM_LETTER_A					     0x11580
 #define Z_UNICODE_SIDDHAM_LETTER_AA					     0x11581
@@ -20223,7 +20223,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SIDDHAM_VOWEL_SIGN_ALTERNATE_U			     0x115DC
 #define Z_UNICODE_SIDDHAM_VOWEL_SIGN_ALTERNATE_UU			     0x115DD
 
-/* MARK: - 11600-1165F - Modi */
+/* MARK: - 11600h-1165Fh - Modi */
 
 #define Z_UNICODE_MODI_LETTER_A		     0x11600
 #define Z_UNICODE_MODI_LETTER_AA	     0x11601
@@ -20305,7 +20305,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MODI_DIGIT_EIGHT	     0x11658
 #define Z_UNICODE_MODI_DIGIT_NINE	     0x11659
 
-/* MARK: - 11680-116CF - Takri */
+/* MARK: - 11680h-116CFh - Takri */
 
 #define Z_UNICODE_TAKRI_LETTER_A      0x11680
 #define Z_UNICODE_TAKRI_LETTER_AA     0x11681
@@ -20374,7 +20374,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TAKRI_DIGIT_EIGHT   0x116C8
 #define Z_UNICODE_TAKRI_DIGIT_NINE    0x116C9
 
-/* MARK: - 11700-1173F - Ahom */
+/* MARK: - 11700h-1173Fh - Ahom */
 
 #define Z_UNICODE_AHOM_LETTER_KA			 0x11700
 #define Z_UNICODE_AHOM_LETTER_KHA			 0x11701
@@ -20434,7 +20434,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_AHOM_SIGN_RULAI			 0x1173E
 #define Z_UNICODE_AHOM_SYMBOL_VI			 0x1173F
 
-/* MARK: - 118A0-118FF - Warang Citi */
+/* MARK: - 118A0h-118FFh - Warang Citi */
 
 #define Z_UNICODE_WARANG_CITI_CAPITAL_LETTER_NGAA 0x118A0
 #define Z_UNICODE_WARANG_CITI_CAPITAL_LETTER_A	  0x118A1
@@ -20521,7 +20521,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_WARANG_CITI_NUMBER_NINETY	  0x118F2
 #define Z_UNICODE_WARANG_CITI_OM		  0x118FF
 
-/* MARK: - 11AC0-11AFF - Pau Cin Hau */
+/* MARK: - 11AC0h-11AFFh - Pau Cin Hau */
 
 #define Z_UNICODE_PAU_CIN_HAU_LETTER_PA			  0x11AC0
 #define Z_UNICODE_PAU_CIN_HAU_LETTER_KA			  0x11AC1
@@ -20581,7 +20581,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_PAU_CIN_HAU_LOW_FALLING_TONE_FINAL	  0x11AF7
 #define Z_UNICODE_PAU_CIN_HAU_GLOTTAL_STOP_FINAL	  0x11AF8
 
-/* MARK: - 12000-123FF - Cuneiform */
+/* MARK: - 12000h-123FFh - Cuneiform */
 
 #define Z_UNICODE_CUNEIFORM_SIGN_A						      0x12000
 #define Z_UNICODE_CUNEIFORM_SIGN_A_TIMES_A					      0x12001
@@ -21506,7 +21506,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CUNEIFORM_SIGN_UM_TIMES_ME					      0x12398
 #define Z_UNICODE_CUNEIFORM_SIGN_U_U						      0x12399
 
-/* MARK: - 12400-1247F - Cuneiform Numbers and Punctuation */
+/* MARK: - 12400h-1247Fh - Cuneiform Numbers and Punctuation */
 
 #define Z_UNICODE_CUNEIFORM_NUMERIC_SIGN_TWO_ASH		       0x12400
 #define Z_UNICODE_CUNEIFORM_NUMERIC_SIGN_THREE_ASH		       0x12401
@@ -21625,7 +21625,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CUNEIFORM_PUNCTUATION_SIGN_DIAGONAL_TRICOLON	       0x12473
 #define Z_UNICODE_CUNEIFORM_PUNCTUATION_SIGN_DIAGONAL_QUADCOLON	       0x12474
 
-/* MARK: - 12480-1254F - Early Dynastic Cuneiform */
+/* MARK: - 12480h-1254Fh - Early Dynastic Cuneiform */
 
 #define Z_UNICODE_CUNEIFORM_SIGN_AB_TIMES_NUN_TENU		     0x12480
 #define Z_UNICODE_CUNEIFORM_SIGN_AB_TIMES_SHU2			     0x12481
@@ -21824,7 +21824,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CUNEIFORM_SIGN_ZU_OVER_ZU_PLUS_SAR		     0x12542
 #define Z_UNICODE_CUNEIFORM_SIGN_ZU5_TIMES_THREE_DISH_TENU	     0x12543
 
-/* MARK: - 13000-1342F - Egyptian Hieroglyphs */
+/* MARK: - 13000h-1342Fh - Egyptian Hieroglyphs */
 
 #define Z_UNICODE_EGYPTIAN_HIEROGLYPH_A001   0x13000
 #define Z_UNICODE_EGYPTIAN_HIEROGLYPH_A002   0x13001
@@ -22898,7 +22898,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_EGYPTIAN_HIEROGLYPH_AA031  0x1342D
 #define Z_UNICODE_EGYPTIAN_HIEROGLYPH_AA032  0x1342E
 
-/* MARK: - 14400-1467F - Anatolian Hieroglyphs */
+/* MARK: - 14400h-1467Fh - Anatolian Hieroglyphs */
 
 #define Z_UNICODE_ANATOLIAN_HIEROGLYPH_A001			0x14400
 #define Z_UNICODE_ANATOLIAN_HIEROGLYPH_A002			0x14401
@@ -23484,7 +23484,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ANATOLIAN_HIEROGLYPH_A529			0x14645
 #define Z_UNICODE_ANATOLIAN_HIEROGLYPH_A530			0x14646
 
-/* MARK: - 16800-16A3F - Bamum Supplement */
+/* MARK: - 16800h-16A3Fh - Bamum Supplement */
 
 #define Z_UNICODE_BAMUM_LETTER_PHASE_A_NGKUE_MFON	      0x16800
 #define Z_UNICODE_BAMUM_LETTER_PHASE_A_GBIEE_FON	      0x16801
@@ -24056,7 +24056,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BAMUM_LETTER_PHASE_F_SAMBA		      0x16A37
 #define Z_UNICODE_BAMUM_LETTER_PHASE_F_VUEQ		      0x16A38
 
-/* MARK: - 16A40-16A6F - Mro */
+/* MARK: - 16A40h-16A6Fh - Mro */
 
 #define Z_UNICODE_MRO_LETTER_TA	   0x16A40
 #define Z_UNICODE_MRO_LETTER_NGI   0x16A41
@@ -24102,7 +24102,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MRO_DANDA	   0x16A6E
 #define Z_UNICODE_MRO_DOUBLE_DANDA 0x16A6F
 
-/* MARK: - 16AD0-16AFF - Bassa Vah */
+/* MARK: - 16AD0h-16AFFh - Bassa Vah */
 
 #define Z_UNICODE_BASSA_VAH_LETTER_ENNI		    0x16AD0
 #define Z_UNICODE_BASSA_VAH_LETTER_KA		    0x16AD1
@@ -24141,7 +24141,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BASSA_VAH_COMBINING_HIGH_LOW_TONE 0x16AF4
 #define Z_UNICODE_BASSA_VAH_FULL_STOP		    0x16AF5
 
-/* MARK: - 16B00-16B8F - Pahawh Hmong */
+/* MARK: - 16B00h-16B8Fh - Pahawh Hmong */
 
 #define Z_UNICODE_PAHAWH_HMONG_VOWEL_KEEB		   0x16B00
 #define Z_UNICODE_PAHAWH_HMONG_VOWEL_KEEV		   0x16B01
@@ -24271,7 +24271,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_PAHAWH_HMONG_CLAN_SIGN_KWM		   0x16B8E
 #define Z_UNICODE_PAHAWH_HMONG_CLAN_SIGN_VWJ		   0x16B8F
 
-/* MARK: - 16F00-16F9F - Miao */
+/* MARK: - 16F00h-16F9Fh - Miao */
 
 #define Z_UNICODE_MIAO_LETTER_PA		0x16F00
 #define Z_UNICODE_MIAO_LETTER_BA		0x16F01
@@ -24407,12 +24407,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MIAO_LETTER_REFORMED_TONE_6	0x16F9E
 #define Z_UNICODE_MIAO_LETTER_REFORMED_TONE_8	0x16F9F
 
-/* MARK: - 1B000-1B0FF - Kana Supplement */
+/* MARK: - 1B000h-1B0FFh - Kana Supplement */
 
 #define Z_UNICODE_KATAKANA_LETTER_ARCHAIC_E  0x1B000
 #define Z_UNICODE_HIRAGANA_LETTER_ARCHAIC_YE 0x1B001
 
-/* MARK: - 1BC00-1BC9F - Duployan */
+/* MARK: - 1BC00h-1BC9Fh - Duployan */
 
 #define Z_UNICODE_DUPLOYAN_LETTER_H			       0x1BC00
 #define Z_UNICODE_DUPLOYAN_LETTER_X			       0x1BC01
@@ -24558,14 +24558,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_DUPLOYAN_DOUBLE_MARK			       0x1BC9E
 #define Z_UNICODE_DUPLOYAN_PUNCTUATION_CHINOOK_FULL_STOP       0x1BC9F
 
-/* MARK: - 1BCA0-1BCAF - Shorthand Format Controls */
+/* MARK: - 1BCA0h-1BCAFh - Shorthand Format Controls */
 
 #define Z_UNICODE_SHORTHAND_FORMAT_LETTER_OVERLAP     0x1BCA0
 #define Z_UNICODE_SHORTHAND_FORMAT_CONTINUING_OVERLAP 0x1BCA1
 #define Z_UNICODE_SHORTHAND_FORMAT_DOWN_STEP	      0x1BCA2
 #define Z_UNICODE_SHORTHAND_FORMAT_UP_STEP	      0x1BCA3
 
-/* MARK: - 1D000-1D0FF - Byzantine Musical Symbols */
+/* MARK: - 1D000h-1D0FFh - Byzantine Musical Symbols */
 
 #define Z_UNICODE_BYZANTINE_MUSICAL_SYMBOL_PSILI				0x1D000
 #define Z_UNICODE_BYZANTINE_MUSICAL_SYMBOL_DASEIA				0x1D001
@@ -24814,7 +24814,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_BYZANTINE_MUSICAL_SYMBOL_KLASMA_KATO				0x1D0F4
 #define Z_UNICODE_BYZANTINE_MUSICAL_SYMBOL_GORGON_NEO_KATO			0x1D0F5
 
-/* MARK: - 1D100-1D1FF - Musical Symbols */
+/* MARK: - 1D100h-1D1FFh - Musical Symbols */
 
 #define Z_UNICODE_MUSICAL_SYMBOL_SINGLE_BARLINE						   0x1D100
 #define Z_UNICODE_MUSICAL_SYMBOL_DOUBLE_BARLINE						   0x1D101
@@ -25048,7 +25048,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MUSICAL_SYMBOL_KIEVAN_EIGHTH_NOTE_STEM_UP				   0x1D1E7
 #define Z_UNICODE_MUSICAL_SYMBOL_KIEVAN_FLAT_SIGN					   0x1D1E8
 
-/* MARK: - 1D200-1D24F - Ancient Greek Musical Notation */
+/* MARK: - 1D200h-1D24Fh - Ancient Greek Musical Notation */
 
 #define Z_UNICODE_GREEK_VOCAL_NOTATION_SYMBOL_1		0x1D200
 #define Z_UNICODE_GREEK_VOCAL_NOTATION_SYMBOL_2		0x1D201
@@ -25121,7 +25121,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COMBINING_GREEK_MUSICAL_PENTASEME	0x1D244
 #define Z_UNICODE_GREEK_MUSICAL_LEIMMA			0x1D245
 
-/* MARK: - 1D300-1D35F - Tai Xuan Jing Symbols */
+/* MARK: - 1D300h-1D35Fh - Tai Xuan Jing Symbols */
 
 #define Z_UNICODE_MONOGRAM_FOR_EARTH			    0x1D300
 #define Z_UNICODE_DIGRAM_FOR_HEAVENLY_EARTH		    0x1D301
@@ -25211,7 +25211,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TETRAGRAM_FOR_LABOURING		    0x1D355
 #define Z_UNICODE_TETRAGRAM_FOR_FOSTERING		    0x1D356
 
-/* MARK: - 1D360-1D37F - Counting Rod Numerals */
+/* MARK: - 1D360h-1D37Fh - Counting Rod Numerals */
 
 #define Z_UNICODE_COUNTING_ROD_UNIT_DIGIT_ONE	0x1D360
 #define Z_UNICODE_COUNTING_ROD_UNIT_DIGIT_TWO	0x1D361
@@ -25232,7 +25232,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_COUNTING_ROD_TENS_DIGIT_EIGHT	0x1D370
 #define Z_UNICODE_COUNTING_ROD_TENS_DIGIT_NINE	0x1D371
 
-/* MARK: - 1D400-1D7FF - Mathematical Alphanumeric Symbols */
+/* MARK: - 1D400h-1D7FFh - Mathematical Alphanumeric Symbols */
 
 /* 1D455h <reserved> */
 /* 1D49Dh <reserved> */
@@ -26255,7 +26255,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MATHEMATICAL_MONOSPACE_DIGIT_EIGHT			   0x1D7FE
 #define Z_UNICODE_MATHEMATICAL_MONOSPACE_DIGIT_NINE			   0x1D7FF
 
-/* MARK: - 1D800-1DAAF - Sutton SignWriting */
+/* MARK: - 1D800h-1DAAFh - Sutton SignWriting */
 
 #define Z_UNICODE_SIGNWRITING_HAND_FIST_INDEX						 0x1D800
 #define Z_UNICODE_SIGNWRITING_HAND_CIRCLE_INDEX						 0x1D801
@@ -26930,7 +26930,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SIGNWRITING_ROTATION_MODIFIER_15					 0x1DAAE
 #define Z_UNICODE_SIGNWRITING_ROTATION_MODIFIER_16					 0x1DAAF
 
-/* MARK: - 1E800-1E8DF - Mende Kikakui */
+/* MARK: - 1E800h-1E8DFh - Mende Kikakui */
 
 #define Z_UNICODE_MENDE_KIKAKUI_SYLLABLE_M001_KI		   0x1E800
 #define Z_UNICODE_MENDE_KIKAKUI_SYLLABLE_M002_KA		   0x1E801
@@ -27146,7 +27146,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MENDE_KIKAKUI_COMBINING_NUMBER_HUNDRED_THOUSANDS 0x1E8D5
 #define Z_UNICODE_MENDE_KIKAKUI_COMBINING_NUMBER_MILLIONS	   0x1E8D6
 
-/* MARK: - 1EE00-1EEFF - Arabic Mathematical Alphabetic Symbols */
+/* MARK: - 1EE00h-1EEFFh - Arabic Mathematical Alphabetic Symbols */
 
 #define Z_UNICODE_ARABIC_MATHEMATICAL_ALEF				  0x1EE00
 #define Z_UNICODE_ARABIC_MATHEMATICAL_BEH				  0x1EE01
@@ -27292,7 +27292,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ARABIC_MATHEMATICAL_OPERATOR_MEEM_WITH_HAH_WITH_TATWEEL 0x1EEF0
 #define Z_UNICODE_ARABIC_MATHEMATICAL_OPERATOR_HAH_WITH_DAL		  0x1EEF1
 
-/* MARK: - 1F000-1F02F - Mahjong Tiles */
+/* MARK: - 1F000h-1F02Fh - Mahjong Tiles */
 
 #define Z_UNICODE_MAHJONG_TILE_EAST_WIND	   0x1F000
 #define Z_UNICODE_MAHJONG_TILE_SOUTH_WIND	   0x1F001
@@ -27339,7 +27339,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_MAHJONG_TILE_JOKER		   0x1F02A
 #define Z_UNICODE_MAHJONG_TILE_BACK		   0x1F02B
 
-/* MARK: - 1F030-1F09F - Domino Tiles */
+/* MARK: - 1F030h-1F09Fh - Domino Tiles */
 
 #define Z_UNICODE_DOMINO_TILE_HORIZONTAL_BACK  0x1F030
 #define Z_UNICODE_DOMINO_TILE_HORIZONTAL_00_00 0x1F031
@@ -27442,7 +27442,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_DOMINO_TILE_VERTICAL_06_05   0x1F092
 #define Z_UNICODE_DOMINO_TILE_VERTICAL_06_06   0x1F093
 
-/* MARK: - 1F0A0-1F0FF - Playing Cards */
+/* MARK: - 1F0A0h-1F0FFh - Playing Cards */
 
 #define Z_UNICODE_PLAYING_CARD_BACK		  0x1F0A0
 #define Z_UNICODE_PLAYING_CARD_ACE_OF_SPADES	  0x1F0A1
@@ -27527,7 +27527,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_PLAYING_CARD_TRUMP_20		  0x1F0F4
 #define Z_UNICODE_PLAYING_CARD_TRUMP_21		  0x1F0F5
 
-/* MARK: - 1F100-1F1FF - Enclosed Alphanumeric Supplement */
+/* MARK: - 1F100h-1F1FFh - Enclosed Alphanumeric Supplement */
 
 #define Z_UNICODE_DIGIT_ZERO_FULL_STOP				  0x1F100
 #define Z_UNICODE_DIGIT_ZERO_COMMA				  0x1F101
@@ -27703,7 +27703,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_REGIONAL_INDICATOR_SYMBOL_LETTER_Y		  0x1F1FE
 #define Z_UNICODE_REGIONAL_INDICATOR_SYMBOL_LETTER_Z		  0x1F1FF
 
-/* MARK: - 1F200-1F2FF - Enclosed Ideographic Supplement */
+/* MARK: - 1F200h-1F2FFh - Enclosed Ideographic Supplement */
 
 #define Z_UNICODE_SQUARE_HIRAGANA_HOKA				      0x1F200
 #define Z_UNICODE_SQUARED_KATAKANA_KOKO				      0x1F201
@@ -27763,7 +27763,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CIRCLED_IDEOGRAPH_ADVANTAGE			      0x1F250
 #define Z_UNICODE_CIRCLED_IDEOGRAPH_ACCEPT			      0x1F251
 
-/* MARK: - 1F300-1F5FF - Miscellaneous Symbols and Pictographs */
+/* MARK: - 1F300h-1F5FFh - Miscellaneous Symbols and Pictographs */
 
 #define Z_UNICODE_CYCLONE									 0x1F300
 #define Z_UNICODE_FOGGY										 0x1F301
@@ -28532,7 +28532,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_SILHOUETTE_OF_JAPAN								 0x1F5FE
 #define Z_UNICODE_MOYAI										 0x1F5FF
 
-/* MARK: - 1F600-1F64F - Emoticons */
+/* MARK: - 1F600h-1F64Fh - Emoticons */
 
 #define Z_UNICODE_GRINNING_FACE					       0x1F600
 #define Z_UNICODE_GRINNING_FACE_WITH_SMILING_EYES		       0x1F601
@@ -28615,7 +28615,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_PERSON_WITH_POUTING_FACE			       0x1F64E
 #define Z_UNICODE_PERSON_WITH_FOLDED_HANDS			       0x1F64F
 
-/* MARK: - 1F650-1F67F - Ornamental Dingbats */
+/* MARK: - 1F650h-1F67Fh - Ornamental Dingbats */
 
 #define Z_UNICODE_NORTH_WEST_POINTING_LEAF				       0x1F650
 #define Z_UNICODE_SOUTH_WEST_POINTING_LEAF				       0x1F651
@@ -28666,7 +28666,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CHECKER_BOARD						       0x1F67E
 #define Z_UNICODE_REVERSE_CHECKER_BOARD					       0x1F67F
 
-/* MARK: - 1F680-1F6FF - Transport and Map Symbols */
+/* MARK: - 1F680h-1F6FFh - Transport and Map Symbols */
 
 #define Z_UNICODE_ROCKET			    0x1F680
 #define Z_UNICODE_HELICOPTER			    0x1F681
@@ -28767,7 +28767,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_DIESEL_LOCOMOTIVE		    0x1F6F2
 #define Z_UNICODE_PASSENGER_SHIP		    0x1F6F3
 
-/* MARK: - 1F700-1F77F - Alchemical Symbols */
+/* MARK: - 1F700h-1F77Fh - Alchemical Symbols */
 
 #define Z_UNICODE_ALCHEMICAL_SYMBOL_FOR_QUINTESSENCE		      0x1F700
 #define Z_UNICODE_ALCHEMICAL_SYMBOL_FOR_AIR			      0x1F701
@@ -28886,7 +28886,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_ALCHEMICAL_SYMBOL_FOR_HALF_DRAM		      0x1F772
 #define Z_UNICODE_ALCHEMICAL_SYMBOL_FOR_HALF_OUNCE		      0x1F773
 
-/* MARK: - 1F780-1F7FF - Geometric Shapes Extended */
+/* MARK: - 1F780h-1F7FFh - Geometric Shapes Extended */
 
 #define Z_UNICODE_BLACK_LEFT_POINTING_ISOSCELES_RIGHT_TRIANGLE	    0x1F780
 #define Z_UNICODE_BLACK_UP_POINTING_ISOSCELES_RIGHT_TRIANGLE	    0x1F781
@@ -28974,7 +28974,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_HEAVY_TWELVE_POINTED_BLACK_STAR		    0x1F7D3
 #define Z_UNICODE_HEAVY_TWELVE_POINTED_PINWHEEL_STAR		    0x1F7D4
 
-/* MARK: - 1F800-1F8FF - Supplemental Arrows-C */
+/* MARK: - 1F800h-1F8FFh - Supplemental Arrows-C */
 
 #define Z_UNICODE_LEFTWARDS_ARROW_WITH_SMALL_TRIANGLE_ARROWHEAD		  0x1F800
 #define Z_UNICODE_UPWARDS_ARROW_WITH_SMALL_TRIANGLE_ARROWHEAD		  0x1F801
@@ -29125,7 +29125,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_WHITE_ARROW_SHAFT_WIDTH_ONE				  0x1F8AC
 #define Z_UNICODE_WHITE_ARROW_SHAFT_WIDTH_TWO_THIRDS			  0x1F8AD
 
-/* MARK: - 1F900-1F9FF - Supplemental Symbols and Pictographs */
+/* MARK: - 1F900h-1F9FFh - Supplemental Symbols and Pictographs */
 
 #define Z_UNICODE_ZIPPER_MOUTH_FACE	 0x1F910
 #define Z_UNICODE_MONEY_MOUTH_FACE	 0x1F911
@@ -29143,17 +29143,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_UNICORN_FACE		 0x1F984
 #define Z_UNICODE_CHEESE_WEDGE		 0x1F9C0
 
-/* MARK: - 1FF80-1FFFF - Unassigned
+/* MARK: - 1FF80h-1FFFFh - Unassigned
 
 /* 1FFFEh <not a character> */
 /* 1FFFFh <not a character> */
 
-/* MARK: - 20000-2A6D6 - CJK Unified Ideographs Extension B */
-/* MARK: - 2A700-2B734 - CJK Unified Ideographs Extension C */
-/* MARK: - 2B740-2B81D - CJK Unified Ideographs Extension D */
-/* MARK: - 2B820-2CEA1 - CJK Unified Ideographs Extension E */
+/* MARK: - 20000h-2A6D6h - CJK Unified Ideographs Extension B */
+/* MARK: - 2A700h-2B734h - CJK Unified Ideographs Extension C */
+/* MARK: - 2B740h-2B81Dh - CJK Unified Ideographs Extension D */
+/* MARK: - 2B820h-2CEA1h - CJK Unified Ideographs Extension E */
 
-/* MARK: - 2F800-2FA1F - CJK Compatibility Ideographs Supplement */
+/* MARK: - 2F800h-2FA1Fh - CJK Compatibility Ideographs Supplement */
 
 #define Z_UNICODE_CJK_COMPATIBILITY_IDEOGRAPH_2F800 0x2F800
 #define Z_UNICODE_CJK_COMPATIBILITY_IDEOGRAPH_2F801 0x2F801
@@ -29698,67 +29698,67 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_CJK_COMPATIBILITY_IDEOGRAPH_2FA1C 0x2FA1C
 #define Z_UNICODE_CJK_COMPATIBILITY_IDEOGRAPH_2FA1D 0x2FA1D
 
-/* MARK: - 2FF80-2FFFF - Unassigned */
+/* MARK: - 2FF80h-2FFFFh - Unassigned */
 
 /* 2FFFEh <not a character> */
 /* 2FFFFh <not a character> */
 
-/* MARK: - 3FF80-3FFFF Unassigned */
+/* MARK: - 3FF80h-3FFFFh Unassigned */
 
 /* 3FFFEh <not a character> */
 /* 3FFFFh <not a character> */
 
-/* MARK: - 4FF80-4FFFF - Unassigned */
+/* MARK: - 4FF80h-4FFFFh - Unassigned */
 
 /* 4FFFEh <not a character> */
 /* 4FFFFh <not a character> */
 
-/* MARK: - 5FF80-5FFFF - Unassigned */
+/* MARK: - 5FF80h-5FFFFh - Unassigned */
 
 /* 5FFFEh <not a character> */
 /* 5FFFFh <not a character> */
 
-/* MARK: - 6FF80-6FFFF - Unassigned */
+/* MARK: - 6FF80h-6FFFFh - Unassigned */
 
 /* 6FFFEh <not a character> */
 /* 6FFFFh <not a character> */
 
-/* MARK: - 7FF80-7FFFF - Unassigned */
+/* MARK: - 7FF80h-7FFFFh - Unassigned */
 
 /* 7FFFEh <not a character> */
 /* 7FFFFh <not a character> */
 
-/* MARK: - 8FF80-8FFFF - Unassigned */
+/* MARK: - 8FF80h-8FFFFh - Unassigned */
 
 /* 8FFFEh <not a character> */
 /* 8FFFFh <not a character> */
 
-/* MARK: - 9FF80-9FFFF - Unassigned */
+/* MARK: - 9FF80h-9FFFFh - Unassigned */
 
 /* 9FFFEh <not a character> */
 /* 9FFFFh <not a character> */
 
-/* MARK: - AFF80-AFFFF - Unassigned */
+/* MARK: - AFF80h-AFFFFh - Unassigned */
 
 /* AFFFEh <not a character> */
 /* AFFFFh <not a character> */
 
-/* MARK: - BFF80-BFFFF - Unassigned */
+/* MARK: - BFF80h-BFFFFh - Unassigned */
 
 /* BFFFEh <not a character> */
 /* BFFFFh <not a character> */
 
-/* MARK: - CFF80-CFFFF - Unassigned */
+/* MARK: - CFF80h-CFFFFh - Unassigned */
 
 /* CFFFEh <not a character> */
 /* CFFFFh <not a character> */
 
-/* MARK: - DFF80-DFFFF - Unassigned */
+/* MARK: - DFF80h-DFFFFh - Unassigned */
 
 /* DFFFEh <not a character> */
 /* DFFFFh <not a character> */
 
-/* MARK: - E0000-E007F - Tags */
+/* MARK: - E0000h-E007Fh - Tags */
 
 #define Z_UNICODE_LANGUAGE_TAG		     0xE0001
 #define Z_UNICODE_TAG_SPACE		     0xE0020
@@ -29858,7 +29858,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_TAG_TILDE		     0xE007E
 #define Z_UNICODE_CANCEL_TAG		     0xE007F
 
-/* MARK: - E0100-E01EF - Variation Selectors Supplement */
+/* MARK: - E0100h-E01EFh - Variation Selectors Supplement */
 
 #define Z_UNICODE_VARIATION_SELECTOR_17	 0xE0100
 #define Z_UNICODE_VARIATION_SELECTOR_18	 0xE0101
@@ -30101,17 +30101,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_UNICODE_VARIATION_SELECTOR_255 0xE01EE
 #define Z_UNICODE_VARIATION_SELECTOR_256 0xE01EF
 
-/* MARK: - EFF80-EFFFF - Unassigned */
+/* MARK: - EFF80h-EFFFFh - Unassigned */
 
 /* EFFFEh <not a character> */
 /* EFFFFh <not a character> */
 
-/* MARK: - FFF80-FFFFF - Supplementary Private Use Area-A */
+/* MARK: - FFF80h-FFFFFh - Supplementary Private Use Area-A */
 
 /* FFFFEh <not a character> */
 /* FFFFFh <not a character> */
 
-/* MARK: - 10FF80-10FFFF - Supplementary Private Use Area-B */
+/* MARK: - 10FF80h-10FFFFh - Supplementary Private Use Area-B */
 
 /* 10FFFEh <not a character> */
 /* 10FFFFh <not a character> */
