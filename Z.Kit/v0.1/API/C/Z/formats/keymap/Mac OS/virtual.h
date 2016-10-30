@@ -108,7 +108,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_MAC_OS_KEY_CODE_F3				99
 #define Z_MAC_OS_KEY_CODE_F8				100
 #define Z_MAC_OS_KEY_CODE_F9				101
-#define Z_MAC_OS_KEY_CODE_JIS_EISU			102 /* toggles alphanumeric characters */
+#define Z_MAC_OS_KEY_CODE_JIS_EISU			102 /* Toggles alphanumeric characters */
 #define Z_MAC_OS_KEY_CODE_F11				103
 #define Z_MAC_OS_KEY_CODE_JIS_KANA			104
 #define Z_MAC_OS_KEY_CODE_F13				105
