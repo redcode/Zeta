@@ -88,8 +88,8 @@ struct Zeta::Status {
 	Z_INLINE_MEMBER Boolean operator ==(ZStatus status) const {return code == status;}
 	Z_INLINE_MEMBER Boolean operator !=(ZStatus status) const {return code != status;}
 
-	Z_INLINE_MEMBER Boolean is_error() {return code < 0;}
-	Z_INLINE_MEMBER Boolean is_valid() {return code >= UNREACHABLE && code <= UNIMPLEMENTED;}
+	Z_INLINE_MEMBER Boolean is_error() const {return code < 0;}
+	Z_INLINE_MEMBER Boolean is_valid() const {return code >= UNREACHABLE && code <= UNIMPLEMENTED;}
 };
 
 
