@@ -55,6 +55,7 @@ namespace Zeta {
 				is_variadic		     = false,
 				is_variadic_function	     = false,
 				is_void			     = false,
+				is_void_pointer		     = false,
 				is_volatile		     = false
 			};
 
@@ -823,6 +824,15 @@ namespace Zeta {
 			typedef typename C::to_const	      remove_volatile;
 		};
 
+		// MARK: - Void
+
+		template <class C> struct Void : C {
+			typedef typename C::type* to_pointer;
+			typedef typename C::type* add_pointer;
+			typedef typename C::type  remove_pointer;
+			typedef typename C::type  remove_reference;
+		};
+
 		// MARK: - Value
 
 		template <class C> struct Value : C {
@@ -835,6 +845,20 @@ namespace Zeta {
 
 #			if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
 				typedef typename C::type&& to_rvalue_reference;
+				typedef typename C::type&& add_rvalue_reference;
+#			endif
+		};
+
+		// MARK: - Void pointer
+
+		template <class C> struct VoidPointer : C {
+			typedef typename C::type	  to_pointer;
+			typedef typename C::type*	  add_pointer;
+			typedef typename C::type&	  add_lvalue_reference;
+			typedef typename C::pointee_type  remove_pointer;
+			typedef typename C::type	  remove_reference;
+
+#			if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
 				typedef typename C::type&& add_rvalue_reference;
 #			endif
 		};
@@ -978,7 +1002,8 @@ namespace Zeta {
 
 		template <class T> struct Type<T*> : Mixins::Type::Unqualified<Abstract::Type::Pointer<T> > {
 			enum {	is_function_pointer = Type<T>::is_function,
-				is_callable	    = is_function_pointer
+				is_callable	    = is_function_pointer,
+				is_void_pointer	    = Type<T>::is_void
 			};
 		};
 
@@ -988,7 +1013,7 @@ namespace Zeta {
 			template <> struct Type<decltype(nullptr)> : Mixins::Type::Unqualified<Abstract::Type::NullPointer> {};
 #		endif
 
-		// MARK: - L-Value References
+		// MARK: - L-value References
 
 		template <class T> struct Type<T&> : Mixins::Type::Unqualified<Abstract::Type::LValueReference<T> > {
 			enum {	is_function_reference	     = Type<T>::is_function,
@@ -997,7 +1022,7 @@ namespace Zeta {
 			};
 		};
 
-		// MARK: - R-Value references
+		// MARK: - R-value references
 
 		template <class T> struct Type<T&&> : Mixins::Type::Unqualified<Abstract::Type::RValueReference<T> > {
 			enum {	is_function_reference	     = Type<T>::is_function,
@@ -1080,24 +1105,31 @@ namespace Zeta {
 		: SelectType<Type<T>::is_exact, Mixins::Type::ConstVolatile<Type<T> >, Mixins::Type::ConstVolatileExact<Type<T> > >::type {};
 	}
 
-	template <class T> class Type : public SelectType <
-		Partials::Type<T>::is_pointer
-			? 1
-			: (Partials::Type<T>::is_rvalue_reference
-				? 3
-				: (Partials::Type<T>::is_lvalue_reference ? 2 : 0)),
-		Mixins::Type::Value	     <Partials::Type<T> >,
-		Mixins::Type::Pointer	     <Partials::Type<T> >,
-		Mixins::Type::LValueReference<Partials::Type<T> >,
-		Mixins::Type::RValueReference<Partials::Type<T> >
-	>::type {
-		private: typedef Partials::Type<T> Super;
+	namespace Base {
+		template <class T> struct Type : SelectType <
+			Partials::Type<T>::is_pointer
+				? (Partials::Type<T>::is_void_pointer ? 2 : 3)
+				: (Partials::Type<T>::is_reference
+					? (Partials::Type<T>::is_lvalue_reference ? 4 : 5)
+					: (Partials::Type<T>::is_void ? 0 : 1)),
+			Mixins::Type::Void	     <Partials::Type<T> >,
+			Mixins::Type::Value	     <Partials::Type<T> >,
+			Mixins::Type::VoidPointer    <Partials::Type<T> >,
+			Mixins::Type::Pointer	     <Partials::Type<T> >,
+			Mixins::Type::LValueReference<Partials::Type<T> >,
+			Mixins::Type::RValueReference<Partials::Type<T> >
+		>::type {};
+	}
+
+	template <class T> class Type : public Base::Type<T> {
+		private: typedef Base::Type<T> Super;
 
 		public:
 
 		typedef typename SelectType<
 			Super::is_struct || Super::is_union,
-			T, const typename Super::remove_const_volatile&
+			T,
+			const typename Base::Type<typename Super::remove_const_volatile>::add_lvalue_reference
 		>::type to_argument;
 
 		typedef struct {

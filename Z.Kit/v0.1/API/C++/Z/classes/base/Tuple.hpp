@@ -45,6 +45,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				protected:
 				Z_INLINE_MEMBER type get() {return _value;}
 				Z_INLINE_MEMBER void set(type value) {_value = value;}
+
+				//Z_INLINE_MEMBER Tuple() {}
 			};
 
 			template <class... T> struct Tuple<0, T...> {};
@@ -56,6 +58,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			/*Z_INLINE_MEMBER Boolean operator ==(const Tuple &tuple) const
 				{return Partials::Abstract::Tuple<sizeof...(T), T...>::is_equal_to(tuple);}*/
 
+			//Z_INLINE_MEMBER Tuple() {}
+
+			/*Z_INLINE_MEMBER Tuple(const T&... values)
+			: Abstract::Tuple<sizeof...(T), T...>(values...)
+				{}*/
 
 			template <unsigned int I> Z_INLINE_MEMBER
 			typename Abstract::Tuple<I + 1, T...>::type get()
