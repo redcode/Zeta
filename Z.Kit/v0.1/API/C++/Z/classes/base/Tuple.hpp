@@ -20,8 +20,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		namespace Abstract {
 
-			template <unsigned int I, class... T>
-			struct Tuple : Tuple<I - 1, T...> {
+			template <unsigned int I, class... T> struct Tuple : Tuple<I - 1, T...> {
 				protected:
 				typedef Tuple<I, T...>	   This;
 				typedef Tuple<I - 1, T...> Parent;
@@ -51,8 +50,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class... T> struct Tuple<0, T...> {};
 		}
 
-		template <class... T>
-		class Tuple : public Abstract::Tuple<sizeof...(T), T...> {
+		template <class... T> class Tuple : public Abstract::Tuple<sizeof...(T), T...> {
 			public:
 
 			/*Z_INLINE_MEMBER Boolean operator ==(const Tuple &tuple) const

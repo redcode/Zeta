@@ -23,7 +23,7 @@ template <class T> struct Zeta::Range : public ZNaturalType(ZRange, T) {
 
 	typedef typename ZNaturalType(ZRange, T) Base;
 	typedef typename ZNaturalType(ZRange, T) Super;
-	typedef		 T			 Value;
+	typedef T				 Value;
 
 	Z_INLINE_MEMBER Range()			 {}
 	Z_INLINE_MEMBER Range(T size)		 {this->index = 0; this->size = size;}

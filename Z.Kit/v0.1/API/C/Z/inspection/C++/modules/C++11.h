@@ -15,6 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Features */
 
 #define Z_CPP_HAS_C99_PREPROCESSOR				 TRUE /* N1653 */
+#define Z_CPP_HAS_EXPLICIT_CONVERSION				 TRUE /* N2437 */
 #define Z_CPP_HAS_EXPRESSION_SFINAE				 TRUE /* DR339 (?) */
 #define Z_CPP_HAS_INITIALIZER_LIST				 TRUE /* N2672 */
 #define Z_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER		 TRUE /* N2756 */

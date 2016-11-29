@@ -12,10 +12,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {template <class... T> struct Variant;}
 
+# if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-template <class... T> struct Zeta::Variant {
+	template <class... T> struct Zeta::Variant {
 
-};
+	};
 
+#endif
 
 #endif // __Z_classes_base_Variant_HPP__

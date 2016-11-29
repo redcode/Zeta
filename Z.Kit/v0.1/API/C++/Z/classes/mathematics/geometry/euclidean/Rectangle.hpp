@@ -18,8 +18,8 @@ template <class T> struct Zeta::Rectangle {
 
 	typedef typename ZRealType(ZRectangle, T) Base;  // Not actual but compatible
 	typedef typename ZRealType(ZRectangle, T) Super; // Not actual but compatible
-	typedef		 Value2D<T>		  Content;
-	typedef		 T			  Value;
+	typedef Value2D<T>			  Content;
+	typedef T				  Value;
 
 	Value2D<T> point, size;
 

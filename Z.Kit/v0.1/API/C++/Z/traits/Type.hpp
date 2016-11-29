@@ -988,7 +988,7 @@ namespace Zeta {
 			template <> struct Type<decltype(nullptr)> : Mixins::Type::Unqualified<Abstract::Type::NullPointer> {};
 #		endif
 
-		// MARK: - References
+		// MARK: - L-Value References
 
 		template <class T> struct Type<T&> : Mixins::Type::Unqualified<Abstract::Type::LValueReference<T> > {
 			enum {	is_function_reference	     = Type<T>::is_function,

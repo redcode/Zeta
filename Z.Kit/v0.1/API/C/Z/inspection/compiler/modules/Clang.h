@@ -475,6 +475,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_TYPE_LLONG	    TRUE
 #		endif
 
+#		if __has_feature(cxx_explicit_conversions)
+#			define Z_COMPILER_CPP_HAS_EXPLICIT_CONVERSION TRUE
+#		endif
+
 #		if __has_feature(cxx_generalized_initializers)
 #			define Z_COMPILER_CPP_HAS_INITIALIZER_LIST TRUE
 #		endif

@@ -31,7 +31,7 @@ template <class T> struct Zeta::Value2D : public ZNumberType(Z2D, T) {
 
 	typedef typename ZNumberType(Z2D, T) Base;
 	typedef typename ZNumberType(Z2D, T) Super;
-	typedef		 T		     Value;
+	typedef	T			     Value;
 
 
 	// MARK: - Constructors
