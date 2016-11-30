@@ -29,24 +29,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				private:
 				type _value;
 
-
-				protected:
-
-				/*Z_INLINE_MEMBER EnableIf<true, Boolean>::type
-				is_equal_to(const This &tuple) const
-					{return _value == tuple._value;}
-
-
-				Z_INLINE_MEMBER EnableIf<false, Boolean>::type
-				is_equal_to(const This &tuple) const
-					{return _value == tuple._value && Parent::is_equal_to(tuple);}*/
-
-
 				protected:
 				Z_INLINE_MEMBER type get() {return _value;}
 				Z_INLINE_MEMBER void set(type value) {_value = value;}
-
-				//Z_INLINE_MEMBER Tuple() {}
 			};
 
 			template <class... T> struct Tuple<0, T...> {};
@@ -54,15 +39,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class... T> class Tuple : public Partials::Tuple<sizeof...(T), T...> {
 			public:
-
-			/*Z_INLINE_MEMBER Boolean operator ==(const Tuple &tuple) const
-				{return Partials::Abstract::Tuple<sizeof...(T), T...>::is_equal_to(tuple);}*/
-
-			//Z_INLINE_MEMBER Tuple() {}
-
-			/*Z_INLINE_MEMBER Tuple(const T&... values)
-			: Abstract::Tuple<sizeof...(T), T...>(values...)
-				{}*/
 
 			template <unsigned int I> Z_INLINE_MEMBER
 			typename Partials::Tuple<I + 1, T...>::type get()
