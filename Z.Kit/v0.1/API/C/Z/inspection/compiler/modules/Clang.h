@@ -509,6 +509,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_STRONGLY_TYPED_ENUMERATION TRUE
 #		endif
 
+#		if __has_feature(cxx_alias_templates) || __has_extension(cxx_alias_templates)
+#			define Z_COMPILER_CPP_HAS_TEMPLATE_ALIAS TRUE
+#		endif
+
 #		if __has_feature(cxx_trailing_return) || __has_extension(cxx_trailing_return)
 #			define Z_COMPILER_CPP_HAS_TRAILING_RETURN_TYPE TRUE
 #		endif

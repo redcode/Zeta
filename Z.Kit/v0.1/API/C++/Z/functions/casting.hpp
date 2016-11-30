@@ -10,8 +10,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {
 
-	template <typename To, typename From> inline To hard_cast(From what)
-		{return *(To *)&what;}
+	template <class from, class to> inline To hard_cast(from what)
+		{return *(to *)&what;}
 
 }
 

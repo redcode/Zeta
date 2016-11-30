@@ -12,13 +12,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/language.hpp>
 #include <Z/traits/filtering.hpp>
 #include <Z/traits/SelectType.hpp>
-#include <type_traits>
+
 
 # if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 	namespace Zeta {
 
-		namespace Abstract {
+		namespace Partials {
 
 			template <unsigned int I, class... T> struct Tuple : Tuple<I - 1, T...> {
 				protected:
@@ -52,7 +52,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class... T> struct Tuple<0, T...> {};
 		}
 
-		template <class... T> class Tuple : public Abstract::Tuple<sizeof...(T), T...> {
+		template <class... T> class Tuple : public Partials::Tuple<sizeof...(T), T...> {
 			public:
 
 			/*Z_INLINE_MEMBER Boolean operator ==(const Tuple &tuple) const
@@ -65,16 +65,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				{}*/
 
 			template <unsigned int I> Z_INLINE_MEMBER
-			typename Abstract::Tuple<I + 1, T...>::type get()
-				{return Abstract::Tuple<I + 1, T...>::get();}
+			typename Partials::Tuple<I + 1, T...>::type get()
+				{return Partials::Tuple<I + 1, T...>::get();}
 
 
 			template <unsigned int I> Z_INLINE_MEMBER
-			void set(typename Abstract::Tuple<I + 1, T...>::type value)
-				{return Abstract::Tuple<I + 1, T...>::set(value);}
+			void set(typename Partials::Tuple<I + 1, T...>::type value)
+				{return Partials::Tuple<I + 1, T...>::set(value);}
 		};
 	}
 
 #endif
+
 
 #endif // __Z_classes_base_Tuple_HPP__

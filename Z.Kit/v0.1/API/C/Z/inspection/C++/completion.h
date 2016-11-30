@@ -56,6 +56,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_STRONGLY_TYPED_ENUMERATION FALSE
 #endif
 
+#ifndef Z_CPP_HAS_TEMPLATE_ALIAS
+#	define Z_CPP_HAS_TEMPLATE_ALIAS FALSE
+#endif
+
 #ifndef Z_CPP_HAS_TRAILING_RETURN_TYPE
 #	define Z_CPP_HAS_TRAILING_RETURN_TYPE FALSE
 #endif
