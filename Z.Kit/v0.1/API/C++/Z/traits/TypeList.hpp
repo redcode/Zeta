@@ -19,13 +19,3 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #endif // __Z_traits_TypeList_HPP__
-
-template<class A, template<class...> class B> struct mp_rename_impl;
-
-
-template<template<class...> class A, class... T, template<class...> class B>
-struct mp_rename_impl<A<T...>, B> {
-	using type = B<T...>;
-};
-
-template<class A, template<class...> class B> using Rename = typename mp_rename_impl<A, B>::type;
