@@ -49,6 +49,7 @@ namespace Zeta {
 				is_scalar		     = false,
 				is_signed		     = false,
 				is_struct		     = false,
+				is_template		     = false,
 				is_union		     = false,
 				is_valid		     = false,
 				is_value		     = false,
@@ -694,6 +695,15 @@ namespace Zeta {
 
 			typedef T type;
 		};
+
+#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+
+			template <template<class...> class T, class... A> struct Template : Struct<T<A...> > {
+				enum {is_template = true};
+				enum {arity = sizeof...(A)};
+			};
+
+#		endif
 	}}
 
 	// MARK: - Mixins
@@ -1093,16 +1103,19 @@ namespace Zeta {
 
 #		endif
 
+		// MARK: - Templates
+
+#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+			template <template<class...> class T, class... A> struct Case<T<A...> > : Mixins::Type::Unqualified<Abstract::Type::Template<T, A...> > {};
+#		endif
+
 		// MARK: - Generic specializations for qualified types
 
-		template <class T> struct Case<const T>
-		: SelectType<Case<T>::is_exact, Mixins::Type::Const<Case<T> >, Mixins::Type::ConstExact<Case<T> > >::type {};
+		template <class T> struct Case<const	      T> : SelectType<Case<T>::is_exact, Mixins::Type::Const	    <Case<T> >, Mixins::Type::ConstExact	<Case<T> > >::type {};
+		template <class T> struct Case<	     volatile T> : SelectType<Case<T>::is_exact, Mixins::Type::Volatile	    <Case<T> >, Mixins::Type::VolatileExact	<Case<T> > >::type {};
+		template <class T> struct Case<const volatile T> : SelectType<Case<T>::is_exact, Mixins::Type::ConstVolatile<Case<T> >, Mixins::Type::ConstVolatileExact<Case<T> > >::type {};
 
-		template <class T> struct Case<volatile T>
-		: SelectType<Case<T>::is_exact, Mixins::Type::Volatile<Case<T> >, Mixins::Type::VolatileExact<Case<T> > >::type {};
-
-		template <class T> struct Case<const volatile T>
-		: SelectType<Case<T>::is_exact, Mixins::Type::ConstVolatile<Case<T> >, Mixins::Type::ConstVolatileExact<Case<T> > >::type {};
+		// MARK: - Final construction
 
 		template <class T> struct Final : SelectType <
 			Case<T>::is_pointer

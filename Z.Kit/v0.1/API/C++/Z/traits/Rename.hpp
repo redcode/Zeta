@@ -16,9 +16,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template<class from, template<class...> class to> struct Rename;
 
-		template<template<class...> class from, class... T, template<class...> class to>
-		struct Rename<from<T...>, to> {
-			typedef to<T...> type;
+		template<template<class...> class from, class... A, template<class...> class to>
+		struct Rename<from<A...>, to> {
+			typedef to<A...> type;
 		};
 
 #		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
