@@ -20,6 +20,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		struct Rename<from<T...>, to> {
 			typedef to<T...> type;
 		};
+
+#		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+			template<class from, template<class...> class to>
+			using rename = typename Rename<from, to>::type;
+#		endif
 	}
 
 #endif

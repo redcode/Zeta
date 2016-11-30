@@ -22,6 +22,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef T0 type;
 		};
 
+#		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+			template<unsigned int I, class T0, class... T>
+			using select_type = typename SelectType<I, T0, T...>::type;
+#		endif
 	}
 
 #else
