@@ -11,6 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.h>
 #include <Z/macros/language.hpp>
 #include <Z/traits/SelectType.hpp>
+#include <Z/traits/TypeList.hpp>
 
 namespace Zeta {
 
@@ -84,6 +85,7 @@ namespace Zeta {
 			typedef Invalid referenced_type;
 			typedef Invalid return_type;
 			typedef Invalid underlying_type;
+			typedef Invalid arguments;
 
 			typedef Invalid to_argument;
 			typedef Invalid to_signed;
@@ -665,6 +667,8 @@ namespace Zeta {
 				typedef R to_const_volatile(A...) const volatile;
 
 				typedef R return_type;
+
+				typedef TypeList<A...> arguments;
 			};
 
 			template <class R, class... A> struct VariadicFunction : Function<R, A...> {
@@ -701,6 +705,8 @@ namespace Zeta {
 			template <template<class...> class T, class... A> struct Template : Struct<T<A...> > {
 				enum {is_template = true};
 				enum {arity = sizeof...(A)};
+
+				typedef TypeList<A...> arguments;
 			};
 
 #		endif
