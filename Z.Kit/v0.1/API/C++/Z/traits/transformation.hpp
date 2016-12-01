@@ -14,6 +14,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {
 
+		template<class T, class... more> struct PrependType;
+
+		template<template<class...> class T, class... A, class... more>
+		struct PrependType<T<A...>, more...> {
+			typedef T<more..., A...> type;
+		};
+
 		template<class T, class... more> struct AppendType;
 
 		template<template<class...> class T, class... A, class... more>
@@ -21,12 +28,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef T<A..., more...> type;
 		};
 
-		template<class T, class... more> struct PrependType;
+		template<class T, class... A> struct RemoveFirstType;
 
-		template<template<class...> class T, class... A, class... more>
-		struct PrependType<T<A...>, more...> {
-			typedef T<more..., A...> type;
+		template<template<class...> class T, class A0, class... A>
+		struct RemoveFirstType<T<A0, A...> > {
+			typedef T<A...> type;
 		};
+
+		template<template<class...> class T>
+		struct RemoveFirstType<T<> > {
+			typedef T<> type;
+		};
+
+		/*template<class T, class... A> struct RemoveLastType;
+
+		template<template<class...> class T, class... A, class A0>
+		struct RemoveLastType<T<A..., A0> > {
+			typedef T<A...> type;
+		};*/
 
 		template<class from, template<class...> class to> struct Rename;
 
@@ -38,10 +57,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
 
 			template<class T, class... more>
-			using append_type = typename AppendType <T, more...>::type;
+			using prepend_type = typename PrependType<T, more...>::type;
 
 			template<class T, class... more>
-			using prepend_type = typename PrependType<T, more...>::type;
+			using append_type = typename AppendType<T, more...>::type;
+
+			template<class T>
+			using remove_first_type = typename RemoveFirstType<T>::type;
+
+			//template<class T>
+			//using remove_last_type = typename RemoveLastType<T>::type;
 
 			template<class from, template<class...> class to>
 			using rename = typename Rename<from, to>::type;

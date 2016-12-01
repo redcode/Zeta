@@ -9,6 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_traits_base_HPP__
 
 namespace Zeta {
+	struct NaT   {};
 	struct Empty {};
 	struct True  {enum {value = true };};
 	struct False {enum {value = false};};

@@ -29,6 +29,7 @@ namespace Zeta {
 				is_enum			     = false,
 				is_exact		     = false,
 				is_integer		     = false,
+				is_invalid		     = true,
 				is_flexible_array	     = false,
 				is_function		     = false,
 				is_function_pointer	     = false,
@@ -79,40 +80,42 @@ namespace Zeta {
 				element_count = 0
 			};
 
-			typedef Invalid type;
-			typedef Invalid element_type;
-			typedef Invalid pointee_type;
-			typedef Invalid referenced_type;
-			typedef Invalid return_type;
-			typedef Invalid underlying_type;
-			typedef Invalid arguments;
+			typedef NaT type;
+			typedef NaT element_type;
+			typedef NaT pointee_type;
+			typedef NaT referenced_type;
+			typedef NaT return_type;
+			typedef NaT underlying_type;
+			typedef NaT arguments;
 
-			typedef Invalid to_argument;
-			typedef Invalid to_signed;
-			typedef Invalid to_unsigned;
-			typedef Invalid to_const;
-			typedef Invalid to_volatile;
-			typedef Invalid to_const_volatile;
-			typedef Invalid to_pointer;
-			typedef Invalid to_lvalue_reference;
-			typedef Invalid to_rvalue_reference;
+			typedef NaT to_argument;
+			typedef NaT to_signed;
+			typedef NaT to_unsigned;
+			typedef NaT to_const;
+			typedef NaT to_volatile;
+			typedef NaT to_const_volatile;
+			typedef NaT to_pointer;
+			typedef NaT to_lvalue_reference;
+			typedef NaT to_rvalue_reference;
 
-			typedef Invalid add_const;
-			typedef Invalid add_volatile;
-			typedef Invalid add_const_volatile;
-			typedef Invalid add_pointer;
-			typedef Invalid add_lvalue_reference;
-			typedef Invalid add_rvalue_reference;
+			typedef NaT add_const;
+			typedef NaT add_volatile;
+			typedef NaT add_const_volatile;
+			typedef NaT add_pointer;
+			typedef NaT add_lvalue_reference;
+			typedef NaT add_rvalue_reference;
 
-			typedef Invalid remove_const;
-			typedef Invalid remove_volatile;
-			typedef Invalid remove_const_volatile;
-			typedef Invalid remove_pointer;
-			typedef Invalid remove_reference;
+			typedef NaT remove_const;
+			typedef NaT remove_volatile;
+			typedef NaT remove_const_volatile;
+			typedef NaT remove_pointer;
+			typedef NaT remove_reference;
 		};
 
 		struct Valid : Invalid {
-			enum {is_valid = true};
+			enum {	is_invalid = false,
+				is_valid   = true
+			};
 		};
 
 		struct Fundamental : Valid {
@@ -898,12 +901,12 @@ namespace Zeta {
 		// MARK: - Reference
 
 		template <class C> struct Reference : C {
-			typedef Abstract::Type::Invalid to_const;
-			typedef Abstract::Type::Invalid to_volatile;
-			typedef Abstract::Type::Invalid to_const_volatile;
-			typedef Abstract::Type::Invalid add_const;
-			typedef Abstract::Type::Invalid add_volatile;
-			typedef Abstract::Type::Invalid add_const_volatile;
+			typedef NaT to_const;
+			typedef NaT to_volatile;
+			typedef NaT to_const_volatile;
+			typedef NaT add_const;
+			typedef NaT add_volatile;
+			typedef NaT add_const_volatile;
 
 			typedef typename C::referenced_type remove_reference;
 		};
@@ -1156,10 +1159,10 @@ namespace Zeta {
 		// TODO: constexpr functions
 	};
 
-	template <> struct Type<	       Abstract::Type::Invalid> : Abstract::Type::Invalid {};
-	template <> struct Type<const	       Abstract::Type::Invalid> : Abstract::Type::Invalid {};
-	template <> struct Type<      volatile Abstract::Type::Invalid> : Abstract::Type::Invalid {};
-	template <> struct Type<const volatile Abstract::Type::Invalid> : Abstract::Type::Invalid {};
+	template <> struct Type<	       NaT> : Abstract::Type::Invalid {};
+	template <> struct Type<const	       NaT> : Abstract::Type::Invalid {};
+	template <> struct Type<      volatile NaT> : Abstract::Type::Invalid {};
+	template <> struct Type<const volatile NaT> : Abstract::Type::Invalid {};
 }
 
 #endif // __Z_traits_Type_HPP__

@@ -9,12 +9,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_traits_SelectType_HPP__
 
 #include <Z/inspection/language.h>
+#include <Z/traits/base.hpp>
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 	namespace Zeta {
 
-		template<unsigned int I, class T0, class... T> struct SelectType {
+		template<unsigned int I, class T0 = NaT, class... T> struct SelectType {
 			typedef typename SelectType<I - 1, T...>::type type;
 		};
 
@@ -23,8 +24,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 
 #		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
-			template<unsigned int I, class T0, class... T>
-			using select_type = typename SelectType<I, T0, T...>::type;
+			template<unsigned int I, class... T>
+			using select_type = typename SelectType<I, T...>::type;
 #		endif
 	}
 
@@ -35,14 +36,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	namespace Zeta {
 
 		template <unsigned int,
-			class T00,	  class T01 = void, class T02 = void, class T03 = void,
-			class T04 = void, class T05 = void, class T06 = void, class T07 = void,
-			class T08 = void, class T09 = void, class T10 = void, class T11 = void,
-			class T12 = void, class T13 = void, class T14 = void, class T15 = void,
-			class T16 = void, class T17 = void, class T18 = void, class T19 = void,
-			class T20 = void, class T21 = void, class T22 = void, class T23 = void,
-			class T24 = void, class T25 = void, class T26 = void, class T27 = void,
-			class T28 = void, class T29 = void, class T30 = void, class T31 = void
+			class T00 = NaT, class T01 = NaT, class T02 = NaT, class T03 = NaT,
+			class T04 = NaT, class T05 = NaT, class T06 = NaT, class T07 = NaT,
+			class T08 = NaT, class T09 = NaT, class T10 = NaT, class T11 = NaT,
+			class T12 = NaT, class T13 = NaT, class T14 = NaT, class T15 = NaT,
+			class T16 = NaT, class T17 = NaT, class T18 = NaT, class T19 = NaT,
+			class T20 = NaT, class T21 = NaT, class T22 = NaT, class T23 = NaT,
+			class T24 = NaT, class T25 = NaT, class T26 = NaT, class T27 = NaT,
+			class T28 = NaT, class T29 = NaT, class T30 = NaT, class T31 = NaT
 		> struct SelectType {};
 
 #		define Z_TEMPLATE_SPECIALIZATION(type_count, index)		       \
