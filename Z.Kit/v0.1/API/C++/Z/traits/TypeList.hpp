@@ -13,9 +13,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 	namespace Zeta {
-		template<class... T> struct TypeList {
-			enum {size = sizeof...(T)};
+
+		template<class... A> struct TypeList {
+			enum {size = sizeof...(A)};
+
+			template<class... T> using prepend = TypeList<T..., A...>;
+			template<class... T> using append  = TypeList<A..., T...>;
 		};
+
 	}
 
 #endif
