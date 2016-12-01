@@ -45,10 +45,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			class T28 = void, class T29 = void, class T30 = void, class T31 = void
 		> struct SelectType {};
 
-#		define Z_TEMPLATE_SPECIALIZATION(type_count, index)		   \
-		template <Z_ENUMERATE_APPENDING_INDEX(type_count, class T)>	   \
+#		define Z_TEMPLATE_SPECIALIZATION(type_count, index)		       \
+		template <Z_ENUMERATE_APPENDING_INDEX(type_count, class T)>	       \
 		struct SelectType<index, Z_ENUMERATE_APPENDING_INDEX(type_count, T)> { \
-			typedef T##index type;					   \
+			typedef T##index type;					       \
 		};
 
 #		define Z_TEMPLATE_SPECIALIZATION_GROUP(type_count) \

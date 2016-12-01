@@ -18,8 +18,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			enum {size = sizeof...(A)};
 
 #			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
-				template<class... T> using prepend = TypeList<T..., A...>;
-				template<class... T> using append  = TypeList<A..., T...>;
+				template<class... more> using prepend = TypeList<more..., A...>;
+				template<class... more> using append  = TypeList<A..., more...>;
+#			else
+
 #			endif
 		};
 
