@@ -20,8 +20,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
 				template<class... more> using prepend = TypeList<more..., A...>;
 				template<class... more> using append  = TypeList<A..., more...>;
-#			else
-
 #			endif
 		};
 
