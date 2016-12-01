@@ -686,7 +686,9 @@ namespace Zeta {
 #		endif
 
 		template <class T> struct Enum : Valid {
-			enum {is_enum = true};
+			enum {	is_enum	  = true,
+				is_scalar = true
+			};
 
 			typedef T type;
 		};
