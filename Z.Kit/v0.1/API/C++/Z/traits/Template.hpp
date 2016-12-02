@@ -12,90 +12,89 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 
-	namespace Zeta {
+	namespace Zeta {struct Template;}
 
-		struct Template {
+	struct Zeta::Template {
 
-			template<class C, class... more> struct PrependType;
+		template<class C, class... A> struct PrependType;
 
-			template<template<class...> class C, class... T, class... more>
-			struct PrependType<C<T...>, more...> {
-				typedef C<more..., T...> type;
-			};
-
-			template<class C, class... more> struct AppendType;
-
-			template<template<class...> class C, class... T, class... more>
-			struct AppendType<C<T...>, more...> {
-				typedef C<T..., more...> type;
-			};
-
-			template <class C, unsigned int I> struct Remove;
-
-			template <template<class...> class C, class T0, class... T>
-			struct Remove<C<T0, T...>, 0> {
-				typedef C<T...> type;
-			};
-
-			template <template<class...> class C, class T0, class... T, unsigned int I>
-			struct Remove<C<T0, T...>, I> {
-				typedef typename PrependType<typename Remove<C<T...>, I - 1>::type, T0>::type type;
-			};
-
-			template<class C> struct RemoveFirst;
-
-			template<template<class...> class C, class T0, class... T>
-			struct RemoveFirst<C<T0, T...> > {
-				typedef C<T...> type;
-			};
-
-			template<template<class...> class C>
-			struct RemoveFirst<C<> > {
-				typedef C<> type;
-			};
-
-			template<class C> struct RemoveLast;
-
-			template<template<class...> class C, class... T>
-			struct RemoveLast<C<T...> > {
-				typedef typename Remove<C<T...>, sizeof...(T) - 1>::type type;
-			};
-
-			template<template<class...> class C>
-			struct RemoveLast<C<> > {
-				typedef C<> type;
-			};
-
-			template<class from, template<class...> class to> struct Rename;
-
-			template<template<class...> class from, class... T, template<class...> class to>
-			struct Rename<from<T...>, to> {
-				typedef to<T...> type;
-			};
-
-#			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
-
-				template<class C, class... more>
-				using prepend_type = typename PrependType<C, more...>::type;
-
-				template<class C, class... more>
-				using append_type = typename AppendType<C, more...>::type;
-
-				template<class C>
-				using remove_first = typename RemoveFirst<C>::type;
-
-				template<class C>
-				using remove_last = typename RemoveLast<C>::type;
-
-				template<class C, unsigned int I>
-				using remove = typename Remove<C, I>::type;
-
-				template<class from, template<class...> class to>
-				using rename = typename Rename<from, to>::type;
-
-#			endif
+		template<template<class...> class C, class... A, class... T>
+		struct PrependType<C<A...>, T...> {
+			typedef C<T..., A...> type;
 		};
-	}
+
+		template<class C, class... T> struct AppendType;
+
+		template<template<class...> class C, class... A, class... T>
+		struct AppendType<C<A...>, T...> {
+			typedef C<A..., T...> type;
+		};
+
+		template <class C, unsigned int I> struct Remove;
+
+		template <template<class...> class C, class A0, class... A>
+		struct Remove<C<A0, A...>, 0> {
+			typedef C<A...> type;
+		};
+
+		template <template<class...> class C, class A0, class... A, unsigned int I>
+		struct Remove<C<A0, A...>, I> {
+			typedef typename PrependType<typename Remove<C<A...>, I - 1>::type, A0>::type type;
+		};
+
+		template<class C> struct RemoveFirst;
+
+		template<template<class...> class C, class A0, class... A>
+		struct RemoveFirst<C<A0, A...> > {
+			typedef C<A...> type;
+		};
+
+		template<template<class...> class C>
+		struct RemoveFirst<C<> > {
+			typedef C<> type;
+		};
+
+		template<class C> struct RemoveLast;
+
+		template<template<class...> class C, class... A>
+		struct RemoveLast<C<A...> > {
+			typedef typename Remove<C<A...>, sizeof...(A) - 1>::type type;
+		};
+
+		template<template<class...> class C>
+		struct RemoveLast<C<> > {
+			typedef C<> type;
+		};
+
+		template<class from, template<class...> class to> struct Rename;
+
+		template<template<class...> class from, class... A, template<class...> class to>
+		struct Rename<from<A...>, to> {
+			typedef to<A...> type;
+		};
+
+#		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+
+			template<class C, class... T>
+			using prepend_type = typename PrependType<C, T...>::type;
+
+			template<class C, class... T>
+			using append_type = typename AppendType<C, T...>::type;
+
+			template<class C>
+			using remove_first = typename RemoveFirst<C>::type;
+
+			template<class C>
+			using remove_last = typename RemoveLast<C>::type;
+
+			template<class C, unsigned int I>
+			using remove = typename Remove<C, I>::type;
+
+			template<class from, template<class...> class to>
+			using rename = typename Rename<from, to>::type;
+
+#		endif
+	};
 
 #endif
 

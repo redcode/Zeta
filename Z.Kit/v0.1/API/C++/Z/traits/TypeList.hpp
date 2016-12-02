@@ -12,27 +12,31 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-	namespace Zeta {
+	namespace Zeta {template<class... A> struct TypeList;}
 
-		template<class... T> struct TypeList {
-			enum {size = sizeof...(T)};
+	template<class... A> struct Zeta::TypeList {
+		enum {size = sizeof...(A)};
 
-			typedef typename SelectType<0,			 T...>::type first;
-			typedef typename SelectType<size ? size - 1 : 0, T...>::type last;
+		typedef typename SelectType<0,			 A...>::type first;
+		typedef typename SelectType<size ? size - 1 : 0, A...>::type last;
 
-			typedef	typename Template::RemoveFirst<TypeList>::type remove_first;
-			typedef typename Template::RemoveLast <TypeList>::type remove_last;
+		typedef	typename Template::RemoveFirst<TypeList>::type remove_first;
+		typedef typename Template::RemoveLast <TypeList>::type remove_last;
 
-#			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+#		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
 
-				template<unsigned int I> using get     = typename SelectType<I, T...>::type;
-				template<class... more > using prepend = TypeList<more..., T...>;
-				template<class... more > using append  = TypeList<T..., more...>;
-				template<unsigned int I> using remove  = typename Template::Remove<TypeList, I>::type;
+			template<unsigned int I> using get = typename SelectType<I, A...>::type;
 
-#			endif
-		};
-	}
+			//template<unsigned int I, class T> set = typename SelectType<I, 
+
+
+			template<class... T > using prepend = TypeList<T..., A...>;
+			template<class... T > using append  = TypeList<A..., T...>;
+
+			template<unsigned int I> using remove = typename Template::Remove<TypeList, I>::type;
+
+#		endif
+	};
 
 #endif
 
