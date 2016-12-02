@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 
 	namespace Zeta {
 
@@ -82,8 +82,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template<class C>
 			using remove_first_type = typename RemoveFirstType<C>::type;
 
-			//template<class C>
-			//using remove_last_type = typename RemoveLastType<C>::type;
+			template<class C>
+			using remove_last_type = typename RemoveLastType<C>::type;
+
+			template<class C, unsigned int I>
+			using remove_type = typename RemoveType<C, I>::type;
 
 			template<class from, template<class...> class to>
 			using rename = typename Rename<from, to>::type;
