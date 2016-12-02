@@ -10,7 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 #include <Z/macros/language.hpp>
-#include <Z/traits/SelectType.hpp>
 #include <Z/traits/TypeList.hpp>
 
 namespace Zeta {
@@ -721,7 +720,7 @@ namespace Zeta {
 
 	namespace Mixins {namespace Type {
 
-		// MARK: - Unqualified
+		// MARK: - Mixins: Unqualified
 
 		template <class C> struct Unqualified : C {
 			typedef const	       typename C::type to_const;
@@ -744,7 +743,7 @@ namespace Zeta {
 			typedef typename C::type	      remove_const_volatile;
 		};
 
-		// MARK: - Qualified
+		// MARK: - Mixins: Qualified
 
 		template <class C> struct Qualified : Unqualified<C> {
 			enum {is_qualified = true};
@@ -754,7 +753,7 @@ namespace Zeta {
 			enum {is_qualified = true};
 		};
 
-		// MARK: - const qualified
+		// MARK: - Mixins: const qualified
 
 		template <class C> struct Const : Qualified<C> {
 			enum {is_const = true};
@@ -781,7 +780,7 @@ namespace Zeta {
 			typedef typename C::to_const	      remove_volatile;
 		};
 
-		// MARK: - volatile qualified
+		// MARK: - Mixins: volatile qualified
 
 		template <class C> struct Volatile : Qualified<C> {
 			enum {is_volatile = true};
@@ -808,7 +807,7 @@ namespace Zeta {
 			typedef typename C::to_volatile	      remove_const;
 		};
 
-		// MARK: - const volatile qualified
+		// MARK: - Mixins: const volatile qualified
 
 		template <class C> struct ConstVolatile : Qualified<C> {
 			enum {	is_const	  = true,
@@ -845,7 +844,7 @@ namespace Zeta {
 			typedef typename C::to_const	      remove_volatile;
 		};
 
-		// MARK: - Void
+		// MARK: - Mixins: Void
 
 		template <class C> struct Void : C {
 			typedef typename C::type* to_pointer;
@@ -854,7 +853,7 @@ namespace Zeta {
 			typedef typename C::type  remove_reference;
 		};
 
-		// MARK: - Value
+		// MARK: - Mixins: Value
 
 		template <class C> struct Value : C {
 			typedef typename C::type* to_pointer;
@@ -870,7 +869,7 @@ namespace Zeta {
 #			endif
 		};
 
-		// MARK: - Void pointer
+		// MARK: - Mixins: Void pointer
 
 		template <class C> struct VoidPointer : C {
 			typedef typename C::type	  to_pointer;
@@ -884,7 +883,7 @@ namespace Zeta {
 #			endif
 		};
 
-		// MARK: - Pointer
+		// MARK: - Mixins: Pointer
 
 		template <class C> struct Pointer : C {
 			typedef typename C::type	  to_pointer;
@@ -900,7 +899,7 @@ namespace Zeta {
 #			endif
 		};
 
-		// MARK: - Reference
+		// MARK: - Mixins: Reference
 
 		template <class C> struct Reference : C {
 			typedef NaT to_const;
@@ -913,7 +912,7 @@ namespace Zeta {
 			typedef typename C::referenced_type remove_reference;
 		};
 
-		// MARK: - L-value Reference
+		// MARK: - Mixins: L-value Reference
 
 		template <class C> struct LValueReference : Reference<C> {
 			typedef typename C::referenced_type* to_pointer;
@@ -925,7 +924,7 @@ namespace Zeta {
 #			endif
 		};
 
-		// MARK: - R-value Reference
+		// MARK: - Mixins: R-value Reference
 
 		template <class C> struct RValueReference : Reference<C> {
 			typedef typename C::referenced_type* to_pointer;
@@ -933,19 +932,29 @@ namespace Zeta {
 			typedef typename C::type	     to_rvalue_reference;
 			typedef typename C::type	     remove_pointer;
 		};
+
+		// MARK: - Mixins: Template
+
+		template <class C> struct Template : C {
+
+#			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+				template<class... T> using prepend_type = Zeta::Template::prepend_type<typename C::type, T...>;
+				template<class... T> using append_type  = Zeta::Template::append_type <typename C::type, T...>;
+#			endif
+		};
 	}}
 
 	namespace Partials {namespace Type {
 
-		// MARK: - Structures and unions (WIP)
+		// MARK: - Partials: Structures and unions (WIP)
 
 		template <class T> struct Case : Mixins::Type::Unqualified<Abstract::Type::Struct<T> > {};
 
-		// MARK: - void
+		// MARK: - Partials: void
 
 		template <> struct Case<void> : Mixins::Type::Unqualified<Abstract::Type::Void> {};
 
-		// MARK: - Numbers
+		// MARK: - Partials: Numbers
 
 #		if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
 			template <> struct Case<zuint8> : Mixins::Type::Unqualified<Abstract::Type::UInt8> {};
@@ -1019,7 +1028,7 @@ namespace Zeta {
 			template <> struct Case<long double> : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
 #		endif
 
-		// MARK: - Pointers
+		// MARK: - Partials: Pointers
 
 		template <class T> struct Case<T*> : Mixins::Type::Unqualified<Abstract::Type::Pointer<T> > {
 			enum {	is_function_pointer = Case<T>::is_function,
@@ -1028,13 +1037,13 @@ namespace Zeta {
 			};
 		};
 
-		// MARK: - Null pointer type
+		// MARK: - Partials: Null pointer type
 
 #		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
 			template <> struct Case<decltype(nullptr)> : Mixins::Type::Unqualified<Abstract::Type::NullPointer> {};
 #		endif
 
-		// MARK: - L-value References
+		// MARK: - Partials: L-value References
 
 		template <class T> struct Case<T&> : Mixins::Type::Unqualified<Abstract::Type::LValueReference<T> > {
 			enum {	is_function_reference	     = Case<T>::is_function,
@@ -1043,7 +1052,7 @@ namespace Zeta {
 			};
 		};
 
-		// MARK: - R-value references
+		// MARK: - Partials: R-value references
 
 		template <class T> struct Case<T&&> : Mixins::Type::Unqualified<Abstract::Type::RValueReference<T> > {
 			enum {	is_function_reference	     = Case<T>::is_function,
@@ -1052,7 +1061,7 @@ namespace Zeta {
 			};
 		};
 
-		// MARK: - Arrays
+		// MARK: - Partials: Arrays
 
 		template <class T, zsize N> struct Case<T[N]> : Mixins::Type::Unqualified<Abstract::Type::Array<T, N> > {};
 
@@ -1060,7 +1069,7 @@ namespace Zeta {
 		template <class T, zsize N> struct Case<      volatile T[N]> : Mixins::Type::VolatileArray     <Case<T[N]> > {};
 		template <class T, zsize N> struct Case<const volatile T[N]> : Mixins::Type::ConstVolatileArray<Case<T[N]> > {};
 
-		// MARK: - Flexible arrays
+		// MARK: - Partials: Flexible arrays
 
 		template <class T> struct Case<T[]> : Mixins::Type::Unqualified<Abstract::Type::FlexibleArray<T> > {};
 
@@ -1068,7 +1077,7 @@ namespace Zeta {
 		template <class T> struct Case<	     volatile T[]> : Mixins::Type::VolatileArray     <Case<T[]> > {};
 		template <class T> struct Case<const volatile T[]> : Mixins::Type::ConstVolatileArray<Case<T[]> > {};
 
-		// MARK: - Functions
+		// MARK: - Partials: Functions
 
 #		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
@@ -1114,32 +1123,33 @@ namespace Zeta {
 
 #		endif
 
-		// MARK: - Templates
+		// MARK: - Partials: Templates
 
 #		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 			template <template<class...> class T, class... A> struct Case<T<A...> > : Mixins::Type::Unqualified<Abstract::Type::Template<T, A...> > {};
 #		endif
 
-		// MARK: - Generic specializations for qualified types
+		// MARK: - Partials: Qualified types
 
 		template <class T> struct Case<const	      T> : SelectType<Case<T>::is_exact, Mixins::Type::Const	    <Case<T> >, Mixins::Type::ConstExact	<Case<T> > >::type {};
 		template <class T> struct Case<	     volatile T> : SelectType<Case<T>::is_exact, Mixins::Type::Volatile	    <Case<T> >, Mixins::Type::VolatileExact	<Case<T> > >::type {};
 		template <class T> struct Case<const volatile T> : SelectType<Case<T>::is_exact, Mixins::Type::ConstVolatile<Case<T> >, Mixins::Type::ConstVolatileExact<Case<T> > >::type {};
 
-		// MARK: - Final construction
+		// MARK: - Partials: Final aggregate
 
 		template <class T> struct Final : SelectType <
 			Case<T>::is_pointer
 				? (Case<T>::is_void_pointer ? 2 : 3)
 				: (Case<T>::is_reference
 					? (Case<T>::is_lvalue_reference ? 4 : 5)
-					: (Case<T>::is_void ? 0 : 1)),
+					: (Case<T>::is_void ? 0 : (Case<T>::is_template ? 6 : 1))),
 			Mixins::Type::Void	     <Case<T> >,
 			Mixins::Type::Value	     <Case<T> >,
 			Mixins::Type::VoidPointer    <Case<T> >,
 			Mixins::Type::Pointer	     <Case<T> >,
 			Mixins::Type::LValueReference<Case<T> >,
-			Mixins::Type::RValueReference<Case<T> >
+			Mixins::Type::RValueReference<Case<T> >,
+			Mixins::Type::Template	     <Case<T> >
 		>::type {};
 	}}
 
