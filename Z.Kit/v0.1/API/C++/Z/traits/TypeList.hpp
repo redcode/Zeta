@@ -12,9 +12,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-	namespace Zeta {template<class... A> struct TypeList;}
+	namespace Zeta {template <class... A> struct TypeList;}
 
-	template<class... A> struct Zeta::TypeList {
+	template <class... A> struct Zeta::TypeList {
 		enum {size = sizeof...(A)};
 
 		typedef typename SelectType<0,			 A...>::type first;
@@ -25,15 +25,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
 
-			template<unsigned int I> using get = typename SelectType<I, A...>::type;
+			template <unsigned int I> using get = typename SelectType<I, A...>::type;
 
 			//template<unsigned int I, class T> set = typename SelectType<I, 
 
 
-			template<class... T > using prepend = TypeList<T..., A...>;
-			template<class... T > using append  = TypeList<A..., T...>;
+			template <class... T > using prepend = TypeList<T..., A...>;
+			template <class... T > using append  = TypeList<A..., T...>;
 
-			template<unsigned int I> using remove = typename Template::Remove<TypeList, I>::type;
+			template <unsigned int I> using remove = typename Template::Remove<TypeList, I>::type;
 
 #		endif
 	};

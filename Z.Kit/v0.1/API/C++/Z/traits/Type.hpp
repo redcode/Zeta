@@ -60,7 +60,6 @@ namespace Zeta {
 				is_void_pointer		     = false,
 				is_volatile		     = false
 			};
-
 			enum {	is_constructible		   = false,
 				is_copy_constructible		   = false,
 				is_default_constructible	   = false,
@@ -74,9 +73,11 @@ namespace Zeta {
 				is_nothrow_default_constructible   = false,
 				is_nothrow_move_constructible	   = false
 			};
-
 			enum {	arity	      = 0,
 				element_count = 0
+			};
+			enum {	bits = 0,
+				size = 0
 			};
 
 			typedef NaT type;
@@ -160,9 +161,6 @@ namespace Zeta {
 #		if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
 
 			struct UInt8 : Natural {
-				enum {	bits = Z_UINT8_BITS,
-					size = Z_UINT8_SIZE
-				};
 				enum {maximum = Z_UINT8_MAXIMUM};
 
 				typedef zuint8 type;
@@ -178,9 +176,6 @@ namespace Zeta {
 #		if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
 
 			struct UInt16 : Natural {
-				enum {	bits = Z_UINT16_BITS,
-					size = Z_UINT16_SIZE
-				};
 				enum {maximum = Z_UINT16_MAXIMUM};
 
 				typedef zuint16 type;
@@ -196,9 +191,6 @@ namespace Zeta {
 #		if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
 
 			struct UInt32 : Natural {
-				enum {	bits = Z_UINT32_BITS,
-					size = Z_UINT32_SIZE
-				};
 				enum {maximum = Z_UINT32_MAXIMUM};
 
 				typedef zuint32 type;
@@ -214,9 +206,6 @@ namespace Zeta {
 #		if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
 
 			struct UInt64 : Natural {
-				enum {	bits = Z_UINT64_BITS,
-					size = Z_UINT64_SIZE
-				};
 				enum {maximum = Z_UINT64_MAXIMUM};
 
 				typedef zuint64 type;
@@ -232,9 +221,6 @@ namespace Zeta {
 #		if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
 
 			struct UInt128 : Natural {
-				enum {	bits = Z_UINT128_BITS,
-					size = Z_UINT128_SIZE
-				};
 				enum {maximum = Z_UINT128_MAXIMUM};
 
 				typedef zuint128 type;
@@ -250,9 +236,6 @@ namespace Zeta {
 #		if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
 
 			struct Int8 : Integer {
-				enum {	bits = Z_INT8_BITS,
-					size = Z_INT8_SIZE
-				};
 				enum {	minimum = Z_INT8_MINIMUM,
 					maximum = Z_INT8_MAXIMUM
 				};
@@ -270,9 +253,6 @@ namespace Zeta {
 #		if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
 
 			struct Int16 : Integer {
-				enum {	bits = Z_INT16_BITS,
-					size = Z_INT16_SIZE
-				};
 				enum {	minimum = Z_INT16_MINIMUM,
 					maximum = Z_INT16_MAXIMUM
 				};
@@ -290,9 +270,6 @@ namespace Zeta {
 #		if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
 
 			struct Int32 : Integer {
-				enum {	bits = Z_INT32_BITS,
-					size = Z_INT32_SIZE
-				};
 				enum {	minimum = Z_INT32_MINIMUM,
 					maximum = Z_INT32_MAXIMUM
 				};
@@ -310,9 +287,6 @@ namespace Zeta {
 #		if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
 
 			struct Int64 : Integer {
-				enum {	bits = Z_INT64_BITS,
-					size = Z_INT64_SIZE
-				};
 				enum {	minimum = Z_INT64_MINIMUM,
 					maximum = Z_INT64_MAXIMUM
 				};
@@ -330,9 +304,6 @@ namespace Zeta {
 #		if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
 
 			struct Int128 : Integer {
-				enum {	bits = Z_INT128_BITS,
-					size = Z_INT128_SIZE
-				};
 				enum {	minimum = Z_INT128_MINIMUM,
 					maximum = Z_INT128_MAXIMUM
 				};
@@ -348,9 +319,6 @@ namespace Zeta {
 #		endif
 
 		struct Character : SelectType<Z_CHARACTER_IS_SIGNED, Natural, Integer>::type {
-			enum {	bits = Z_CHARACTER_BITS,
-				size = Z_CHARACTER_SIZE
-			};
 			enum {	minimum = Z_CHARACTER_MINIMUM,
 				maximum = Z_CHARACTER_MAXIMUM
 			};
@@ -361,9 +329,6 @@ namespace Zeta {
 		};
 
 		struct UChar : Natural {
-			enum {	bits = Z_UCHAR_BITS,
-				size = Z_UCHAR_SIZE
-			};
 			enum {maximum = Z_UCHAR_MAXIMUM};
 
 			typedef unsigned char type;
@@ -372,9 +337,6 @@ namespace Zeta {
 		};
 
 		struct UShort : Natural {
-			enum {	bits = Z_USHORT_BITS,
-				size = Z_USHORT_SIZE
-			};
 			enum {maximum = Z_USHORT_MAXIMUM};
 
 			typedef unsigned short int type;
@@ -383,9 +345,6 @@ namespace Zeta {
 		};
 
 		struct UInt : Natural {
-			enum {	bits = Z_UINT_BITS,
-				size = Z_UINT_SIZE
-			};
 			enum {maximum = Z_UINT_MAXIMUM};
 
 			typedef unsigned int type;
@@ -394,9 +353,6 @@ namespace Zeta {
 		};
 
 		struct ULong : Natural {
-			enum {	bits = Z_ULONG_BITS,
-				size = Z_ULONG_SIZE
-			};
 			enum {maximum = Z_ULONG_MAXIMUM};
 
 			typedef unsigned long int type;
@@ -408,9 +364,6 @@ namespace Zeta {
 #		ifdef Z_ULLONG
 
 			struct ULLong : Natural {
-				enum {	bits = Z_ULLONG_BITS,
-					size = Z_ULLONG_SIZE
-				};
 				enum {maximum = Z_ULLONG_MAXIMUM};
 
 				typedef unsigned long long int type;
@@ -424,9 +377,6 @@ namespace Zeta {
 #		endif
 
 		struct Char : Integer {
-			enum {	bits = Z_CHAR_BITS,
-				size = Z_CHAR_SIZE
-			};
 			enum {	minimum = Z_CHAR_MINIMUM,
 				maximum = Z_CHAR_MAXIMUM
 			};
@@ -437,9 +387,6 @@ namespace Zeta {
 		};
 
 		struct Short : Integer {
-			enum {	bits = Z_SHORT_BITS,
-				size = Z_SHORT_SIZE
-			};
 			enum {	minimum = Z_SHORT_MINIMUM,
 				maximum = Z_SHORT_MAXIMUM
 			};
@@ -450,9 +397,6 @@ namespace Zeta {
 		};
 
 		struct Int : Integer {
-			enum {	bits = Z_INT_BITS,
-				size = Z_INT_SIZE
-			};
 			enum {	minimum = Z_INT_MINIMUM,
 				maximum = Z_INT_MAXIMUM
 			};
@@ -463,9 +407,6 @@ namespace Zeta {
 		};
 
 		struct Long : Integer {
-			enum {	bits = Z_LONG_BITS,
-				size = Z_LONG_SIZE
-			};
 			enum {	minimum = Z_LONG_MINIMUM,
 				maximum = Z_LONG_MAXIMUM
 			};
@@ -478,9 +419,6 @@ namespace Zeta {
 #		ifdef Z_LLONG
 
 			struct LLong : Integer {
-				enum {	bits = Z_LLONG_BITS,
-					size = Z_LLONG_SIZE
-				};
 				enum {	minimum = Z_LLONG_MINIMUM,
 					maximum = Z_LLONG_MAXIMUM
 				};
@@ -498,9 +436,7 @@ namespace Zeta {
 #		ifdef Z_FLOAT
 
 			struct Float : Real {
-				enum {	bits		    = Z_FLOAT_BITS,
-					size		    = Z_FLOAT_SIZE,
-					bias		    = Z_FLOAT_BIAS,
+				enum {	bias		    = Z_FLOAT_BIAS,
 					decimal_digits	    = Z_FLOAT_DECIMAL_DIGITS,
 					significand_offset  = Z_FLOAT_SIGNIFICAND_OFFSET,
 					significand_bits    = Z_FLOAT_SIGNIFICAND_BITS,
@@ -532,9 +468,7 @@ namespace Zeta {
 #		ifdef Z_DOUBLE
 
 			struct Double : Real {
-				enum {	bits		    = Z_DOUBLE_BITS,
-					size		    = Z_DOUBLE_SIZE,
-					bias		    = Z_DOUBLE_BIAS,
+				enum {	bias		    = Z_DOUBLE_BIAS,
 					decimal_digits	    = Z_DOUBLE_DECIMAL_DIGITS,
 					significand_offset  = Z_DOUBLE_SIGNIFICAND_OFFSET,
 					significand_bits    = Z_DOUBLE_SIGNIFICAND_BITS,
@@ -566,9 +500,7 @@ namespace Zeta {
 #		ifdef Z_LDOUBLE
 
 			struct LDouble : Real {
-				enum {	bits		    = Z_LDOUBLE_BITS,
-					size		    = Z_LDOUBLE_SIZE,
-					bias		    = Z_LDOUBLE_BIAS,
+				enum {	bias		    = Z_LDOUBLE_BIAS,
 					decimal_digits	    = Z_LDOUBLE_DECIMAL_DIGITS,
 					significand_offset  = Z_LDOUBLE_SIGNIFICAND_OFFSET,
 					significand_bits    = Z_LDOUBLE_SIGNIFICAND_BITS,
@@ -706,7 +638,7 @@ namespace Zeta {
 
 #		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 
-			template <template<class...> class T, class... A> struct Template : Struct<T<A...> > {
+			template <template <class...> class T, class... A> struct Template : Struct<T<A...> > {
 				enum {is_template = true};
 				enum {arity = sizeof...(A)};
 
@@ -844,6 +776,18 @@ namespace Zeta {
 			typedef typename C::to_const	      remove_volatile;
 		};
 
+		// MARK: - Mixins: Storable types
+
+		template <class C> struct Storable : C {
+			enum {	size = sizeof(typename C::type),
+				bits = size * 8
+			};
+
+			typedef struct {
+				zuint8 data[sizeof(typename C::type)];
+			} to_opaque;
+		};
+
 		// MARK: - Mixins: Void
 
 		template <class C> struct Void : C {
@@ -855,7 +799,7 @@ namespace Zeta {
 
 		// MARK: - Mixins: Value
 
-		template <class C> struct Value : C {
+		template <class C> struct Value : SelectType<C::is_function, Storable<C>, C>::type {
 			typedef typename C::type* to_pointer;
 			typedef typename C::type& to_lvalue_reference;
 			typedef typename C::type* add_pointer;
@@ -871,7 +815,7 @@ namespace Zeta {
 
 		// MARK: - Mixins: Void pointer
 
-		template <class C> struct VoidPointer : C {
+		template <class C> struct VoidPointer : Storable<C> {
 			typedef typename C::type	  to_pointer;
 			typedef typename C::type*	  add_pointer;
 			typedef typename C::type&	  add_lvalue_reference;
@@ -885,7 +829,7 @@ namespace Zeta {
 
 		// MARK: - Mixins: Pointer
 
-		template <class C> struct Pointer : C {
+		template <class C> struct Pointer : Storable<C> {
 			typedef typename C::type	  to_pointer;
 			typedef typename C::pointee_type& to_lvalue_reference;
 			typedef typename C::type*	  add_pointer;
@@ -901,7 +845,7 @@ namespace Zeta {
 
 		// MARK: - Mixins: Reference
 
-		template <class C> struct Reference : C {
+		template <class C> struct Reference : Storable<C> {
 			typedef NaT to_const;
 			typedef NaT to_volatile;
 			typedef NaT to_const_volatile;
@@ -935,7 +879,7 @@ namespace Zeta {
 
 		// MARK: - Mixins: Template
 
-		template <class C> struct Template : C {
+		template <class C> struct Template : Storable<C> {
 
 #			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
 				template<class... T> using prepend_type = Zeta::Template::prepend_type<typename C::type, T...>;
@@ -1063,7 +1007,7 @@ namespace Zeta {
 
 		// MARK: - Partials: Arrays
 
-		template <class T, zsize N> struct Case<T[N]> : Mixins::Type::Unqualified<Abstract::Type::Array<T, N> > {};
+		template<class T, zsize N> struct Case<T[N]> : Mixins::Type::Unqualified<Abstract::Type::Array<T, N> > {};
 
 		template <class T, zsize N> struct Case<const	       T[N]> : Mixins::Type::ConstArray	       <Case<T[N]> > {};
 		template <class T, zsize N> struct Case<      volatile T[N]> : Mixins::Type::VolatileArray     <Case<T[N]> > {};
@@ -1126,7 +1070,7 @@ namespace Zeta {
 		// MARK: - Partials: Templates
 
 #		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
-			template <template<class...> class T, class... A> struct Case<T<A...> > : Mixins::Type::Unqualified<Abstract::Type::Template<T, A...> > {};
+			template <template <class...> class T, class... A> struct Case<T<A...> > : Mixins::Type::Unqualified<Abstract::Type::Template<T, A...> > {};
 #		endif
 
 		// MARK: - Partials: Qualified types
@@ -1150,31 +1094,119 @@ namespace Zeta {
 			Mixins::Type::LValueReference<Case<T> >,
 			Mixins::Type::RValueReference<Case<T> >,
 			Mixins::Type::Template	     <Case<T> >
-		>::type {};
+		>::type {
+			typedef typename SelectType<
+				Final::is_struct || Final::is_union,
+				T, const typename Final<typename Final::remove_const_volatile>::add_lvalue_reference
+			>::type to_argument;
+		};
+
+		template <> struct Final<		NaT> : Abstract::Type::Invalid {};
+		template <> struct Final<const		NaT> : Abstract::Type::Invalid {};
+		template <> struct Final<      volatile NaT> : Abstract::Type::Invalid {};
+		template <> struct Final<const volatile NaT> : Abstract::Type::Invalid {};
 	}}
 
-	template <class T> class Type : public Partials::Type::Final<T> {
-		private: typedef Partials::Type::Final<T> Super;
+	template <class T> struct Type : Partials::Type::Final<T> {
+		struct flow {
+			enum {	is_arithmetic		     = Type::is_arithmetic,
+				is_array		     = Type::is_array,
+				is_callable		     = Type::is_callable,
+				is_class		     = Type::is_class,
+				is_const		     = Type::is_const,
+				is_const_volatile	     = Type::is_const_volatile,
+				is_enum			     = Type::is_enum,
+				is_exact		     = Type::is_exact,
+				is_integer		     = Type::is_integer,
+				is_invalid		     = Type::is_invalid,
+				is_flexible_array	     = Type::is_flexible_array,
+				is_function		     = Type::is_function,
+				is_function_pointer	     = Type::is_function_pointer,
+				is_function_reference	     = Type::is_function_reference,
+				is_function_lvalue_reference = Type::is_function_lvalue_reference,
+				is_function_rvalue_reference = Type::is_function_rvalue_reference,
+				is_fundamental		     = Type::is_fundamental,
+				is_member_pointer	     = Type::is_member_pointer,
+				is_natural		     = Type::is_natural,
+				is_number		     = Type::is_number,
+				is_nullptr		     = Type::is_nullptr,
+				is_pod			     = Type::is_pod,
+				is_pointer		     = Type::is_pointer,
+				is_qualified		     = Type::is_qualified,
+				is_real			     = Type::is_real,
+				is_reference		     = Type::is_reference,
+				is_lvalue_reference	     = Type::is_lvalue_reference,
+				is_rvalue_reference	     = Type::is_rvalue_reference,
+				is_scalar		     = Type::is_scalar,
+				is_signed		     = Type::is_signed,
+				is_struct		     = Type::is_struct,
+				is_template		     = Type::is_template,
+				is_union		     = Type::is_union,
+				is_valid		     = Type::is_valid,
+				is_value		     = Type::is_value,
+				is_variadic		     = Type::is_variadic,
+				is_variadic_function	     = Type::is_variadic_function,
+				is_void			     = Type::is_void,
+				is_void_pointer		     = Type::is_void_pointer,
+				is_volatile		     = Type::is_volatile
+			};
+			enum {	is_constructible		   = Type::is_constructible,
+				is_copy_constructible		   = Type::is_copy_constructible,
+				is_default_constructible	   = Type::is_default_constructible,
+				is_move_constructible		   = Type::is_move_constructible,
+				is_trivially_constructible	   = Type::is_trivially_constructible,
+				is_trivially_copy_constructible	   = Type::is_trivially_copy_constructible,
+				is_trivially_default_constructible = Type::is_trivially_default_constructible,
+				is_trivially_move_constructible	   = Type::is_trivially_move_constructible,
+				is_nothrow_constructible	   = Type::is_nothrow_constructible,
+				is_nothrow_copy_constructible	   = Type::is_nothrow_copy_constructible,
+				is_nothrow_default_constructible   = Type::is_nothrow_default_constructible,
+				is_nothrow_move_constructible	   = Type::is_nothrow_move_constructible
+			};
+			enum {	arity	      = Type::arity,
+				element_count = Type::element_count
+			};
+			enum {	bits = Type::bits,
+				size = Type::size
+			};
 
-		public:
+			typedef Type end;
 
-		typedef typename SelectType<
-			Super::is_struct || Super::is_union,
-			T,
-			const typename Partials::Type::Final<typename Super::remove_const_volatile>::add_lvalue_reference
-		>::type to_argument;
+			typedef typename Type::type	 type;
+			typedef typename Type::arguments arguments;
 
-		typedef struct {
-			zuint8 data[sizeof(T)];
-		} to_opaque;
+			typedef typename Type<typename Type::element_type   >::flow element_type;
+			typedef typename Type<typename Type::pointee_type   >::flow pointee_type;
+			typedef typename Type<typename Type::referenced_type>::flow referenced_type;
+			typedef typename Type<typename Type::return_type    >::flow return_type;
+			typedef typename Type<typename Type::underlying_type>::flow underlying_type;
+
+			typedef typename Type<typename Type::to_argument	>::flow to_argument;
+			typedef typename Type<typename Type::to_signed		>::flow to_signed;
+			typedef typename Type<typename Type::to_unsigned	>::flow to_unsigned;
+			typedef typename Type<typename Type::to_const		>::flow to_const;
+			typedef typename Type<typename Type::to_volatile	>::flow to_volatile;
+			typedef typename Type<typename Type::to_const_volatile	>::flow to_const_volatile;
+			typedef typename Type<typename Type::to_pointer		>::flow to_pointer;
+			typedef typename Type<typename Type::to_lvalue_reference>::flow to_lvalue_reference;
+			typedef typename Type<typename Type::to_rvalue_reference>::flow to_rvalue_reference;
+
+			typedef typename Type<typename Type::add_const		 >::flow add_const;
+			typedef typename Type<typename Type::add_volatile	 >::flow add_volatile;
+			typedef typename Type<typename Type::add_const_volatile	 >::flow add_const_volatile;
+			typedef typename Type<typename Type::add_pointer	 >::flow add_pointer;
+			typedef typename Type<typename Type::add_lvalue_reference>::flow add_lvalue_reference;
+			typedef typename Type<typename Type::add_rvalue_reference>::flow add_rvalue_reference;
+
+			typedef typename Type<typename Type::remove_const	  >::flow remove_const;
+			typedef typename Type<typename Type::remove_volatile	  >::flow remove_volatile;
+			typedef typename Type<typename Type::remove_const_volatile>::flow remove_const_volatile;
+			typedef typename Type<typename Type::remove_pointer	  >::flow remove_pointer;
+			typedef typename Type<typename Type::remove_reference	  >::flow remove_reference;
+		};
 
 		// TODO: constexpr functions
 	};
-
-	template <> struct Type<	       NaT> : Abstract::Type::Invalid {};
-	template <> struct Type<const	       NaT> : Abstract::Type::Invalid {};
-	template <> struct Type<      volatile NaT> : Abstract::Type::Invalid {};
-	template <> struct Type<const volatile NaT> : Abstract::Type::Invalid {};
 }
 
 #endif // __Z_traits_Type_HPP__
