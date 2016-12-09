@@ -49,6 +49,7 @@ namespace Zeta {
 				is_rvalue_reference	     = false,
 				is_scalar		     = false,
 				is_signed		     = false,
+				is_storable		     = false,
 				is_struct		     = false,
 				is_template		     = false,
 				is_union		     = false,
@@ -648,8 +649,6 @@ namespace Zeta {
 #		endif
 	}}
 
-	// MARK: - Mixins
-
 	namespace Mixins {namespace Type {
 
 		// MARK: - Mixins: Unqualified
@@ -779,8 +778,9 @@ namespace Zeta {
 		// MARK: - Mixins: Storable types
 
 		template <class C> struct Storable : C {
+			enum {is_storable = true};
 			enum {	size = sizeof(typename C::type),
-				bits = size * 8
+				bits = sizeof(typename C::type) * 8
 			};
 
 			typedef struct {
@@ -880,11 +880,7 @@ namespace Zeta {
 		// MARK: - Mixins: Template
 
 		template <class C> struct Template : Storable<C> {
-
-#			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
-				template<class... T> using prepend_type = Zeta::Template::prepend_type<typename C::type, T...>;
-				template<class... T> using append_type  = Zeta::Template::append_type <typename C::type, T...>;
-#			endif
+			// Reserved for future use.
 		};
 	}}
 

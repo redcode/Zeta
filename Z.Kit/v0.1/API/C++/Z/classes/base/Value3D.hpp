@@ -15,7 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {template <class T> struct Value3D;}
 
 
-template <class T> struct Zeta::Value3D : public ZNumberType(Z3D, T) {
+template <class T> struct Zeta::Value3D : ZNumberType(Z3D, T) {
 
 	typedef typename ZNumberType(Z3D, T) Base;
 	typedef typename ZNumberType(Z3D, T) Super;
