@@ -28,31 +28,24 @@ namespace Zeta {
 			private:
 			typedef typename Super<T...>::type Super;
 
+			protected:
 			TN _value;
 
-			public:
 			typedef TN type;
 
 			Z_INLINE_MEMBER Element() {}
 			Z_INLINE_MEMBER Element(T... previous, TN value) : Super(previous...), _value(value) {}
-
-			Z_INLINE_MEMBER TN   get()	   {return _value;}
-			Z_INLINE_MEMBER void set(TN value) {_value = value;}
 		};
 
 
 		template <class TN> class Element<TN> {
-			private:
+			protected:
 			TN _value;
 
-			public:
 			typedef TN type;
 
 			Z_INLINE_MEMBER Element() {}
 			Z_INLINE_MEMBER Element(TN value) : _value(value) {}
-
-			Z_INLINE_MEMBER TN   get()	   {return _value;}
-			Z_INLINE_MEMBER void set(TN value) {_value = value;}
 		};
 	}}
 
@@ -61,13 +54,16 @@ namespace Zeta {
 		private:
 		typedef typename Partials::Tuple::Super<T...>::type Super;
 
+		protected:
 		template <unsigned int I> struct At {
 			typedef typename TypeListRename<
 				typename TypeListRotateRight<
-					typename TypeListRemoveTail<TypeList<T...>, sizeof...(T) - 1>::type, 1
+					typename TypeListRemoveTail<TypeList<T...>, sizeof...(T) - (I + 1)>::type, 1
 				>::type,
 				Partials::Tuple::Element
-			>::type type;
+			>::type element;
+
+			typedef typename element::type type;
 		};
 
 		public:
@@ -76,11 +72,11 @@ namespace Zeta {
 
 
 		template <unsigned int I> Z_INLINE_MEMBER typename At<I>::type get()
-			{return At<I>::type::get();}
+			{return At<I>::element::_value;}
 
 
 		template <unsigned int I> Z_INLINE_MEMBER void set(typename At<I>::type value)
-			{return At<I>::type::set(value);}
+			{return At<I>::element::_value = value;}
 	};
 }
 
