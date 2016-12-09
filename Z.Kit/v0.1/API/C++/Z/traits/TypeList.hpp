@@ -14,6 +14,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {
 
+		template <class from, template <class...> class to> struct TypeListRename;
+
+		template <template <class...> class from, class... A, template <class...> class to>
+		struct TypeListRename<from<A...>, to> {
+			typedef to<A...> type;
+		};
+
 		template <class L, class... A> struct TypeListPrepend;
 
 		template <template <class...> class L, class... A, class... T>
@@ -76,11 +83,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef L<A...> type;
 		};
 
-		template <template <class...> class L, unsigned int S>
-		struct TypeListRemoveHead<L<>, S> {
-			typedef L<> type;
-		};
-
 		template <class L, unsigned int S> struct TypeListRemoveTail;
 
 		template <template <class...> class L, class... A, unsigned int S>
@@ -91,18 +93,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <template <class...> class L, class... A>
 		struct TypeListRemoveTail<L<A...>, 0> {
 			typedef L<A...> type;
-		};
-
-		template <template <class...> class L, unsigned int S>
-		struct TypeListRemoveTail<L<>, S> {
-			typedef L<> type;
-		};
-
-		template <class from, template <class...> class to> struct TypeListRename;
-
-		template <template <class...> class from, class... A, template <class...> class to>
-		struct TypeListRename<from<A...>, to> {
-			typedef to<A...> type;
 		};
 
 		template <class L0, class... L> struct TypeListJoin;
@@ -117,7 +107,40 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef L type;
 		};
 
+		template <class L, unsigned int> struct TypeListRotateLeft;
+
+		template <template <class...> class L, class... A, unsigned int N>
+		struct TypeListRotateLeft<L<A...>, N> {
+			typedef typename TypeListJoin<
+				typename TypeListRemoveHead<L<A...>, N % sizeof...(A)>::type,
+				typename TypeListRemoveTail<L<A...>, sizeof...(A) - (N % sizeof...(A))>::type
+			>::type type;
+		};
+
+		template <template <class...> class L, unsigned int N>
+		struct TypeListRotateLeft<L<>, N> {
+			typedef L<> type;
+		};
+
+		template <class L, unsigned int> struct TypeListRotateRight;
+
+		template <template <class...> class L, class... A, unsigned int N>
+		struct TypeListRotateRight<L<A...>, N> {
+			typedef typename TypeListJoin<
+				typename TypeListRemoveHead<L<A...>, sizeof...(A) - (N % sizeof...(A))>::type,
+				typename TypeListRemoveTail<L<A...>, N % sizeof...(A)>::type
+			>::type type;
+		};
+
+		template <template <class...> class L, unsigned int N>
+		struct TypeListRotateRight<L<>, N> {
+			typedef L<> type;
+		};
+
 #		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+
+			template <class from, template <class...> class to>
+			using type_list_rename = typename TypeListRename<from, to>::type;
 
 			template <class L, class... T	 > using type_list_prepend	= typename TypeListPrepend    <L, T...>::type;
 			template <class L, class... T	 > using type_list_append	= typename TypeListAppend     <L, T...>::type;
@@ -126,10 +149,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class L		 > using type_list_remove_last	= typename TypeListRemoveLast <L      >::type;
 			template <class L, unsigned int S> using type_list_remove_head	= typename TypeListRemoveHead <L, S   >::type;
 			template <class L, unsigned int S> using type_list_remove_tail	= typename TypeListRemoveTail <L, S   >::type;
-
-
-			template <class from, template <class...> class to>
-			using type_list_rename = typename TypeListRename<from, to>::type;
 
 #		endif
 
