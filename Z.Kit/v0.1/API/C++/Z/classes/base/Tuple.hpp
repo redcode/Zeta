@@ -8,50 +8,81 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_Tuple_HPP__
 #define __Z_classes_base_Tuple_HPP__
 
-#include <Z/types/base.hpp>
-#include <Z/macros/language.hpp>
-#include <Z/traits/filtering.hpp>
-#include <Z/traits/SelectType.hpp>
+#include <Z/traits/Type.hpp>
 
 
-# if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+namespace Zeta {
 
-	namespace Zeta {
+	namespace Partials {namespace Tuple {
 
-		namespace Partials {
+		template <class... T> class Element;
 
-			template <unsigned int I, class... T> struct Tuple : Tuple<I - 1, T...> {
-				protected:
-				typedef Tuple<I, T...>	   This;
-				typedef Tuple<I - 1, T...> Parent;
-				typedef typename SelectType<I - 1, T...>::type type;
-
-				private:
-				type _value;
-
-				protected:
-				Z_INLINE_MEMBER type get() {return _value;}
-				Z_INLINE_MEMBER void set(type value) {_value = value;}
-			};
-
-			template <class... T> struct Tuple<0, T...> {};
-		}
-
-		template <class... T> class Tuple : public Partials::Tuple<sizeof...(T), T...> {
-			public:
-
-			template <unsigned int I> Z_INLINE_MEMBER
-			typename Partials::Tuple<I + 1, T...>::type get()
-				{return Partials::Tuple<I + 1, T...>::get();}
-
-
-			template <unsigned int I> Z_INLINE_MEMBER
-			void set(typename Partials::Tuple<I + 1, T...>::type value)
-				{return Partials::Tuple<I + 1, T...>::set(value);}
+		template <class... T> struct Super {
+			typedef typename TypeListRename<
+				typename TypeListRotateRight<TypeList<T...>, 1>::type, Element
+			>::type type;
 		};
-	}
 
-#endif
+
+		template <class TN, class... T> class Element<TN, T...> : public Super<T...>::type {
+			private:
+			typedef typename Super<T...>::type Super;
+
+			TN _value;
+
+			public:
+			typedef TN type;
+
+			Z_INLINE_MEMBER Element() {}
+			Z_INLINE_MEMBER Element(T... previous, TN value) : Super(previous...), _value(value) {}
+
+			Z_INLINE_MEMBER TN   get()	   {return _value;}
+			Z_INLINE_MEMBER void set(TN value) {_value = value;}
+		};
+
+
+		template <class TN> class Element<TN> {
+			private:
+			TN _value;
+
+			public:
+			typedef TN type;
+
+			Z_INLINE_MEMBER Element() {}
+			Z_INLINE_MEMBER Element(TN value) : _value(value) {}
+
+			Z_INLINE_MEMBER TN   get()	   {return _value;}
+			Z_INLINE_MEMBER void set(TN value) {_value = value;}
+		};
+	}}
+
+
+	template <class... T> class Tuple : public Partials::Tuple::Super<T...>::type {
+		private:
+		typedef typename Partials::Tuple::Super<T...>::type Super;
+
+		template <unsigned int I> struct At {
+			typedef typename TypeListRename<
+				typename TypeListRotateRight<
+					typename TypeListRemoveTail<TypeList<T...>, sizeof...(T) - 1>::type, 1
+				>::type,
+				Partials::Tuple::Element
+			>::type type;
+		};
+
+		public:
+		Z_INLINE_MEMBER Tuple() {}
+		Z_INLINE_MEMBER Tuple(T... values) : Super(values...) {}
+
+
+		template <unsigned int I> Z_INLINE_MEMBER typename At<I>::type get()
+			{return At<I>::type::get();}
+
+
+		template <unsigned int I> Z_INLINE_MEMBER void set(typename At<I>::type value)
+			{return At<I>::type::set(value);}
+	};
+}
 
 
 #endif // __Z_classes_base_Tuple_HPP__

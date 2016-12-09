@@ -167,8 +167,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 				template <template <class...> class to> using rename = typename TypeListRename<TypeList, to>::type;
 
-				template <unsigned int I> using get = typename SelectType<I, A...>::type;
-
+				template <unsigned int I> using get	     = typename SelectType<I, A...>::type;
 				template <class... T	> using prepend	     = TypeList<T..., A...>;
 				template <class... T	> using append	     = TypeList<A..., T...>;
 				template <unsigned int I> using remove	     = typename TypeListRemove	   <TypeList, I>::type;
@@ -176,6 +175,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				template <unsigned int S> using remove_tail  = typename TypeListRemoveTail <TypeList, S>::type;
 				template <unsigned int N> using rotate_left  = typename TypeListRotateLeft <TypeList, N>::type;
 				template <unsigned int N> using rotate_right = typename TypeListRotateRight<TypeList, N>::type;
+
 #			endif
 		};
 	}
