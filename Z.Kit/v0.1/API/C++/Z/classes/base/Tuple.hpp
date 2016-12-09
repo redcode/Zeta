@@ -10,10 +10,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/traits/Type.hpp>
 
+#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 
-namespace Zeta {
-
-	namespace Partials {namespace Tuple {
+	namespace Zeta {namespace Partials {namespace Tuple {
 
 		template <class... T> class Element;
 
@@ -22,7 +21,6 @@ namespace Zeta {
 				typename TypeListRotateRight<TypeList<T...>, 1>::type, Element
 			>::type type;
 		};
-
 
 		template <class TN, class... T> class Element<TN, T...> : public Super<T...>::type {
 			private:
@@ -37,7 +35,6 @@ namespace Zeta {
 			Z_INLINE_MEMBER Element(T... previous, TN value) : Super(previous...), _value(value) {}
 		};
 
-
 		template <class TN> class Element<TN> {
 			protected:
 			TN _value;
@@ -47,10 +44,12 @@ namespace Zeta {
 			Z_INLINE_MEMBER Element() {}
 			Z_INLINE_MEMBER Element(TN value) : _value(value) {}
 		};
-	}}
+	}}}
+
+	namespace Zeta {template <class... T> class Tuple;}
 
 
-	template <class... T> class Tuple : public Partials::Tuple::Super<T...>::type {
+	template <class... T> class Zeta::Tuple : public Zeta::Partials::Tuple::Super<T...>::type {
 		private:
 		typedef typename Partials::Tuple::Super<T...>::type Super;
 
@@ -78,7 +77,8 @@ namespace Zeta {
 		template <unsigned int I> Z_INLINE_MEMBER void set(typename At<I>::type value)
 			{return At<I>::element::_value = value;}
 	};
-}
 
+
+#endif
 
 #endif // __Z_classes_base_Tuple_HPP__
