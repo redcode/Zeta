@@ -21,7 +21,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
 #	define Z_CONSTANT_EXPRESSION constexpr
-#	define Z_CONSTANT_MEMBER     constexpr
+#	define Z_CONSTANT_MEMBER     constexpr Z_INLINE_MEMBER
 #else 
 #	define Z_CONSTANT_EXPRESSION
 #	define Z_CONSTANT_MEMBER     Z_INLINE_MEMBER
