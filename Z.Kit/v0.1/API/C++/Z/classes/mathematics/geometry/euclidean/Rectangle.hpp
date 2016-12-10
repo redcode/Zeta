@@ -16,10 +16,7 @@ namespace Zeta {template <class T> struct Rectangle;}
 
 template <class T> struct Zeta::Rectangle {
 
-	typedef typename ZRealType(ZRectangle, T) Base;  // Not actual but compatible
-	typedef typename ZRealType(ZRectangle, T) Super; // Not actual but compatible
-	typedef Value2D<T>			  Content;
-	typedef T				  Value;
+	typedef typename ZRealType(ZRectangle, T) Base;
 
 	Value2D<T> point, size;
 
@@ -29,24 +26,21 @@ template <class T> struct Zeta::Rectangle {
 
 	Z_INLINE_MEMBER Rectangle() {}
 
-	Z_INLINE_MEMBER Rectangle(const Value2D<T> &point, const Value2D<T> &size) : point(point), size(size)		{}
-	Z_INLINE_MEMBER Rectangle(const Value2D<T> &point, T size_x, T size_y)     : point(point), size(size_x, size_y) {}
-	Z_INLINE_MEMBER Rectangle(const Value2D<T> &point, T size)		   : point(point), size(size)		{}
-	Z_INLINE_MEMBER Rectangle(T x, T y, const Value2D<T> &size)		   : point(x, y),  size(size)		{}
-	Z_INLINE_MEMBER Rectangle(T x, T y, T size_x, T size_y)			   : point(x, y),  size(size_x, size_y) {}
-	Z_INLINE_MEMBER Rectangle(T x, T y, T size)				   : point(x, y),  size(size)		{}
-	Z_INLINE_MEMBER Rectangle(T point, const Value2D<T> &size)		   : point(point), size(size)		{}
-	Z_INLINE_MEMBER Rectangle(const Value2D<T> &size)			   : point(T(0)),  size(size)		{}
-	Z_INLINE_MEMBER Rectangle(T size_x, T size_y)				   : point(T(0)),  size(size_x, size_y) {}
-	Z_INLINE_MEMBER Rectangle(T size)					   : point(T(0)),  size(size)		{}
+	Z_CONSTANT_MEMBER Rectangle(const Value2D<T> &point, const Value2D<T> &size) : point(point), size(size)		  {}
+	Z_CONSTANT_MEMBER Rectangle(const Value2D<T> &point, T size_x, T size_y)     : point(point), size(size_x, size_y) {}
+	Z_CONSTANT_MEMBER Rectangle(const Value2D<T> &point, T size)		     : point(point), size(size)		  {}
+	Z_CONSTANT_MEMBER Rectangle(T x, T y, const Value2D<T> &size)		     : point(x, y),  size(size)		  {}
+	Z_CONSTANT_MEMBER Rectangle(T x, T y, T size_x, T size_y)		     : point(x, y),  size(size_x, size_y) {}
+	Z_CONSTANT_MEMBER Rectangle(T x, T y, T size)				     : point(x, y),  size(size)		  {}
+	Z_CONSTANT_MEMBER Rectangle(T point, const Value2D<T> &size)		     : point(point), size(size)		  {}
+	Z_CONSTANT_MEMBER Rectangle(const Value2D<T> &size)			     : point(T(0)),  size(size)		  {}
+	Z_CONSTANT_MEMBER Rectangle(T size_x, T size_y)				     : point(T(0)),  size(size_x, size_y) {}
+	Z_CONSTANT_MEMBER Rectangle(T size)					     : point(T(0)),  size(size)		  {}
 
-
-	Z_INLINE_MEMBER Rectangle(const Base &rectangle)
-		{(*(Base *)this) = rectangle;}
-
+	Z_INLINE_MEMBER Rectangle(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
 	Z_INLINE_MEMBER Rectangle(const typename ZRealType(ZAABR, T) &aabr)
-	: point(aabr.a), size(aabr.a + aabr.b) {}
+ 	: point(aabr.a), size(aabr.a + aabr.b) {}
 
 
 	// MARK: - Static constructors
@@ -64,7 +58,7 @@ template <class T> struct Zeta::Rectangle {
 
 
 	Z_INLINE_MEMBER operator Boolean() const {return this->point || this->size;}
-	Z_INLINE_MEMBER operator Base&	() const {return *z_base;}
+	Z_INLINE_MEMBER operator Base&	() const {return *((Base *)this);}
 
 
 	Z_INLINE_MEMBER Boolean operator ==(const Rectangle &rectangle) const

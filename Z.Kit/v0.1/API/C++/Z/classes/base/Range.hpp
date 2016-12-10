@@ -9,7 +9,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_classes_base_Range_HPP__
 
 #include <Z/macros/type selection.hpp>
-#include <Z/macros/super.hpp>
 #include <Z/functions/base/value.hpp>
 
 #if defined(Z_USE_NS_RANGE) && Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP
@@ -19,34 +18,39 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {template <class T> struct Range;}
 
 
-template <class T> struct Zeta::Range : ZNaturalType(ZRange, T) {
+template <class T> struct Zeta::Range {
 
 	typedef typename ZNaturalType(ZRange, T) Base;
-	typedef typename ZNaturalType(ZRange, T) Super;
-	typedef T				 Value;
 
-	Z_INLINE_MEMBER Range()			 {}
-	Z_INLINE_MEMBER Range(T size)		 {this->index = 0; this->size = size;}
-	Z_INLINE_MEMBER Range(T index, T size)   {this->index = index; this->size = size;}
-	Z_INLINE_MEMBER Range(const Base &range) {*z_base = range;}
+	T index, size;
 
-	Z_INLINE_MEMBER operator Boolean() const {return this->index || this->size;}
+
+	Z_INLINE_MEMBER Range() {}
+
+	Z_CONSTANT_MEMBER Range(T size)		 : index(0),	 size(size) {}
+	Z_CONSTANT_MEMBER Range(T index, T size) : index(index), size(size) {}
+
+	Z_INLINE_MEMBER Range(const Base &range) {(*(Base *)this) = range;}
+
+
+	Z_INLINE_MEMBER operator Boolean() const {return index || size;}
+	Z_INLINE_MEMBER operator Base&	() const {return *((Base *)this);}
 
 
 	Z_INLINE_MEMBER Boolean operator ==(const Range &range) const
-		{return this->index == range.index && this->size == range.size;}
+		{return index == range.index && size == range.size;}
 
 
 	Z_INLINE_MEMBER Boolean operator !=(const Range &range) const
-		{return this->index != range.index || this->size != range.size;}
+		{return index != range.index || size != range.size;}
 
 
 	Z_INLINE_MEMBER Boolean operator ==(T number) const
-		{return this->index == number && this->size == number;}
+		{return index == number && size == number;}
 
 
 	Z_INLINE_MEMBER Boolean operator !=(T number) const
-		{return this->index != number || this->size != number;}
+		{return index != number || size != number;}
 
 
 	Z_INLINE_MEMBER Range operator &(const Range &range) const
@@ -75,12 +79,12 @@ template <class T> struct Zeta::Range : ZNaturalType(ZRange, T) {
 #	if defined(Z_USE_NS_RANGE) && Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP
 
 		Z_INLINE_MEMBER Range(const NSRange &range)
-			{this->index = range.location; this->size = range.length;}
+		: index(range.location), size(range.length) {}
 
 
 		Z_INLINE_MEMBER operator NSRange() const
 			{
-			NSRange result = {NSUInteger(this->index), NSUInteger(this->size)};
+			NSRange result = {NSUInteger(index), NSUInteger(size)};
 			return result;
 			}
 
@@ -89,28 +93,28 @@ template <class T> struct Zeta::Range : ZNaturalType(ZRange, T) {
 
 	Z_INLINE_MEMBER Boolean collides(const Range &range) const
 		{
-		return	this->index < range.index + range.size &&
-			range.index < this->index + this->size;
+		return	index	    < range.index + range.size &&
+			range.index < index + size;
 		}
 
 
 	Z_INLINE_MEMBER Boolean contains(const Range &range) const
 		{
-		return	range.index >= this->index &&
-			range.index + range.size <= this->index + this->size;
+		return	range.index		 >= index &&
+			range.index + range.size <= index + size;
 		}
 
 
 	Z_INLINE_MEMBER Boolean contains(T index) const
-		{return this->index >= this->index && this->index < this->index + this->size;}
+		{return index >= this->index && index < this->index + this->size;}
 
 
 	Z_INLINE_MEMBER T end() const
-		{return this->index + this->size;}
+		{return index + size;}
 
 
 	Z_INLINE_MEMBER Boolean is_zero() const
-		{return !this->index && !this->size;}
+		{return !index && !size;}
 
 
 	Z_INLINE_MEMBER void swap(Range &range)

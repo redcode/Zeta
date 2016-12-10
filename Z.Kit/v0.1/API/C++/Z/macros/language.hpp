@@ -12,17 +12,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Specifiers */
 
-#if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
-#	define Z_CONSTANT_EXPRESSION constexpr
-#else 
-#	define Z_CONSTANT_EXPRESSION
-#endif
-
 #if Z_COMPILER_CPP_HAS_ATTRIBUTE(INLINE_MEMBER)
 #	define Z_INLINE_MEMBER Z_COMPILER_CPP_ATTRIBUTE(INLINE_MEMBER)
 #else
 	/* TODO: is the "inline" specifier supported in all versions of C++? */
 #	define Z_INLINE_MEMBER inline
+#endif
+
+#if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
+#	define Z_CONSTANT_EXPRESSION constexpr
+#	define Z_CONSTANT_MEMBER     constexpr
+#else 
+#	define Z_CONSTANT_EXPRESSION
+#	define Z_CONSTANT_MEMBER     Z_INLINE_MEMBER
 #endif
 
 #if Z_LANGUAGE_HAS_SPECIFIER(CPP, NO_EXCEPTION)
