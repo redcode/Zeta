@@ -15,17 +15,29 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_CPP_HAS_ATTRIBUTE(INLINE_MEMBER)
 #	define Z_INLINE_MEMBER Z_COMPILER_CPP_ATTRIBUTE(INLINE_MEMBER)
 #else
-	/* TODO: is the "inline" specifier supported in all versions of C++? */
+	// TODO: is the "inline" specifier supported in all versions of C++?
 #	define Z_INLINE_MEMBER inline
 #endif
 
 #if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
 #	define Z_CONSTANT_EXPRESSION constexpr
-#	define Z_CONSTANT_MEMBER     constexpr Z_INLINE_MEMBER
+#	define Z_CONSTANT_N2235	     constexpr
 #else 
 #	define Z_CONSTANT_EXPRESSION
-#	define Z_CONSTANT_MEMBER     Z_INLINE_MEMBER
+#	define Z_CONSTANT_N2235
 #endif
+
+#if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
+#	define Z_CONSTANT_N3652 constexpr
+#else
+#	define Z_CONSTANT_N3652
+#endif
+
+#define Z_CONSTANT_CPP11 Z_CONSTANT_N2235
+#define Z_CONSTANT_CPP14 Z_CONSTANT_N3652
+
+#define Z_CONSTANT(	  REQUERIMENTS) Z_CONSTANT_##REQUERIMENTS Z_INLINE
+#define Z_CONSTANT_MEMBER(REQUERIMENTS) Z_CONSTANT_##REQUERIMENTS Z_INLINE_MEMBER
 
 #if Z_LANGUAGE_HAS_SPECIFIER(CPP, NO_EXCEPTION)
 #	define Z_NO_EXCEPTION noexcept

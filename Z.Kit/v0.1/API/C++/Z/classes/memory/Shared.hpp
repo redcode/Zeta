@@ -27,7 +27,7 @@ template <class T> struct Zeta::Shared {
 	Owned *owned;
 
 
-	Z_INLINE_MEMBER Shared() : owned(NULL) {}
+	Z_CONSTANT_MEMBER(CPP11) Shared() : owned(NULL) {}
 
 
 	Z_INLINE_MEMBER Shared(const Shared &shared)

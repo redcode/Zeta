@@ -121,6 +121,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 /* MARK: C++14 */
+
+#ifndef Z_CPP_HAS_BINARY_LITERAL
+#	define Z_CPP_HAS_BINARY_LITERAL FALSE
+#endif
+
+#ifndef Z_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION
+#	define Z_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION FALSE
+#endif
+
 /* MARK: C++17 */
 
 /* inspection/C++/completion.h EOF */

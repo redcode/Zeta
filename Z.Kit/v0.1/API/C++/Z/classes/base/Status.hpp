@@ -77,19 +77,20 @@ struct Zeta::Status {
 	ZStatus code;
 
 	Z_INLINE_MEMBER Status() {}
-	Z_INLINE_MEMBER Status(ZStatus code) : code(code) {}
+
+	Z_CONSTANT_MEMBER(CPP11) Status(ZStatus code) : code(code) {}
 
 #	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
-		Z_INLINE_MEMBER operator bool() const {return code;}
+		Z_CONSTANT_MEMBER(CPP11) operator bool() const {return code;}
 #	endif
 
-	Z_INLINE_MEMBER operator ZStatus() const {return code;}
+	Z_CONSTANT_MEMBER(CPP11) operator ZStatus() const {return code;}
 
-	Z_INLINE_MEMBER Boolean operator ==(ZStatus status) const {return code == status;}
-	Z_INLINE_MEMBER Boolean operator !=(ZStatus status) const {return code != status;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(ZStatus status) const {return code == status;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(ZStatus status) const {return code != status;}
 
-	Z_INLINE_MEMBER Boolean is_error() const {return code < 0;}
-	Z_INLINE_MEMBER Boolean is_valid() const {return code >= UNREACHABLE && code <= UNIMPLEMENTED;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean is_error() const {return code < 0;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean is_valid() const {return code >= UNREACHABLE && code <= UNIMPLEMENTED;}
 };
 
 

@@ -12,4 +12,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C++/modules/C++11.h>
 
+/* MARK: - Features */
+
+#define Z_CPP_HAS_BINARY_LITERAL		       TRUE /* N3472 */
+#define Z_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION TRUE /* N3652 */
+
 #endif /* __Z_inspection_CPP_modules_CPP14_H__ */

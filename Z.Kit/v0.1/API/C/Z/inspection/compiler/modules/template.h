@@ -160,6 +160,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C++14 support */
 
+/*#define Z_COMPILER_CPP_HAS_BINARY_LITERAL*/
+/*#define Z_COMPILER_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION*/
+
 /* MARK: - C++ attributes */
 
 /*#define Z_COMPILER_CPP_ATTRIBUTE_INLINE_MEMBER*/

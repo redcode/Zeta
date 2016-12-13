@@ -26,8 +26,8 @@ template <class T> struct Zeta::Value3D {
 
 	Z_INLINE_MEMBER Value3D() {}
 
-	Z_CONSTANT_MEMBER Value3D(T x, T y, T z) : x(x),      y(y),	 z(z)	   {}
-	Z_CONSTANT_MEMBER Value3D(T scalar)	 : x(scalar), y(scalar), z(scalar) {}
+	Z_CONSTANT_MEMBER(CPP11) Value3D(T x, T y, T z) : x(x),      y(y),	z(z)	  {}
+	Z_CONSTANT_MEMBER(CPP11) Value3D(T scalar)	: x(scalar), y(scalar), z(scalar) {}
 
 	Z_INLINE_MEMBER Value3D(const Base &value) {(*(Base *)this) = value;}
 
@@ -38,37 +38,37 @@ template <class T> struct Zeta::Value3D {
 	// MARK: - Operators
 
 
-	Z_INLINE_MEMBER operator Boolean() const {return x != T(0) || y != T(0) || z != T(0);}
-	Z_INLINE_MEMBER operator Base&	() const {return *((Base *)this);}
+	Z_CONSTANT_MEMBER(CPP11) operator Boolean() const {return x != T(0) || y != T(0) || z != T(0);}
+	Z_INLINE_MEMBER		 operator Base&  () const {return *((Base *)this);}
 
-	Z_INLINE_MEMBER Boolean operator ==(const Value3D &value) const {return x == value.x && y == value.y && z == value.z;}
-	Z_INLINE_MEMBER Boolean operator !=(const Value3D &value) const {return x != value.x || y != value.y || z != value.z;}
-	Z_INLINE_MEMBER Boolean operator <=(const Value3D &value) const {return x <= value.x && y <= value.y && z <= value.z;}
-	Z_INLINE_MEMBER Boolean operator >=(const Value3D &value) const {return x >= value.x && y >= value.y && z >= value.z;}
-	Z_INLINE_MEMBER Boolean operator  >(const Value3D &value) const {return x >  value.x && y >  value.y && z >  value.z;}
-	Z_INLINE_MEMBER Boolean operator  <(const Value3D &value) const {return x <  value.x && y <  value.y && z <  value.z;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(const Value3D &value) const {return x == value.x && y == value.y && z == value.z;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(const Value3D &value) const {return x != value.x || y != value.y || z != value.z;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator <=(const Value3D &value) const {return x <= value.x && y <= value.y && z <= value.z;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator >=(const Value3D &value) const {return x >= value.x && y >= value.y && z >= value.z;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator  >(const Value3D &value) const {return x >  value.x && y >  value.y && z >  value.z;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator  <(const Value3D &value) const {return x <  value.x && y <  value.y && z <  value.z;}
 
-	Z_INLINE_MEMBER Value3D operator +(const Value3D &value) const {return Value3D(x + value.x, y + value.y, z + value.z);}
-	Z_INLINE_MEMBER Value3D operator -(const Value3D &value) const {return Value3D(x - value.x, y - value.y, z - value.z);}
-	Z_INLINE_MEMBER Value3D operator *(const Value3D &value) const {return Value3D(x * value.x, y * value.y, z * value.z);}
-	Z_INLINE_MEMBER Value3D operator /(const Value3D &value) const {return Value3D(x / value.x, y / value.y, z / value.z);}
+	Z_CONSTANT_MEMBER(CPP11) Value3D operator +(const Value3D &value) const {return Value3D(x + value.x, y + value.y, z + value.z);}
+	Z_CONSTANT_MEMBER(CPP11) Value3D operator -(const Value3D &value) const {return Value3D(x - value.x, y - value.y, z - value.z);}
+	Z_CONSTANT_MEMBER(CPP11) Value3D operator *(const Value3D &value) const {return Value3D(x * value.x, y * value.y, z * value.z);}
+	Z_CONSTANT_MEMBER(CPP11) Value3D operator /(const Value3D &value) const {return Value3D(x / value.x, y / value.y, z / value.z);}
 
 	Z_INLINE_MEMBER Value3D &operator +=(const Value3D &value) {return *this = *this + value;}
 	Z_INLINE_MEMBER Value3D &operator -=(const Value3D &value) {return *this = *this - value;}
 	Z_INLINE_MEMBER Value3D &operator *=(const Value3D &value) {return *this = *this * value;}
 	Z_INLINE_MEMBER Value3D &operator /=(const Value3D &value) {return *this = *this / value;}
 
-	Z_INLINE_MEMBER Boolean operator ==(T scalar) const {return x == scalar && y == scalar && z == scalar;}
-	Z_INLINE_MEMBER Boolean operator !=(T scalar) const {return x != scalar || y != scalar || z != scalar;}
-	Z_INLINE_MEMBER Boolean operator <=(T scalar) const {return x <= scalar && y <= scalar && z <= scalar;}
-	Z_INLINE_MEMBER Boolean operator >=(T scalar) const {return x >= scalar && y >= scalar && z >= scalar;}
-	Z_INLINE_MEMBER Boolean operator  >(T scalar) const {return x >  scalar && y >	scalar && z >  scalar;}
-	Z_INLINE_MEMBER Boolean operator  <(T scalar) const {return x <  scalar && y <	scalar && z <  scalar;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(T scalar) const {return x == scalar && y == scalar && z == scalar;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(T scalar) const {return x != scalar || y != scalar || z != scalar;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator <=(T scalar) const {return x <= scalar && y <= scalar && z <= scalar;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator >=(T scalar) const {return x >= scalar && y >= scalar && z >= scalar;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator  >(T scalar) const {return x >  scalar && y >	scalar && z >  scalar;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator  <(T scalar) const {return x <  scalar && y <	scalar && z <  scalar;}
 
-	Z_INLINE_MEMBER Value3D operator +(T scalar) const {return Value3D(x + scalar, y + scalar, z + scalar);}
-	Z_INLINE_MEMBER Value3D operator -(T scalar) const {return Value3D(x - scalar, y - scalar, z - scalar);}
-	Z_INLINE_MEMBER Value3D operator *(T scalar) const {return Value3D(x * scalar, y * scalar, z * scalar);}
-	Z_INLINE_MEMBER Value3D operator /(T scalar) const {return Value3D(x / scalar, y / scalar, z / scalar);}
+	Z_CONSTANT_MEMBER(CPP11) Value3D operator +(T scalar) const {return Value3D(x + scalar, y + scalar, z + scalar);}
+	Z_CONSTANT_MEMBER(CPP11) Value3D operator -(T scalar) const {return Value3D(x - scalar, y - scalar, z - scalar);}
+	Z_CONSTANT_MEMBER(CPP11) Value3D operator *(T scalar) const {return Value3D(x * scalar, y * scalar, z * scalar);}
+	Z_CONSTANT_MEMBER(CPP11) Value3D operator /(T scalar) const {return Value3D(x / scalar, y / scalar, z / scalar);}
 
 	Z_INLINE_MEMBER Value3D &operator +=(T scalar) {return *this = *this + scalar;}
 	Z_INLINE_MEMBER Value3D &operator -=(T scalar) {return *this = *this - scalar;}

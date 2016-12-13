@@ -8,9 +8,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_Type_HPP__
 #define __Z_traits_Type_HPP__
 
-#include <Z/types/base.h>
-#include <Z/macros/language.hpp>
 #include <Z/traits/TypeList.hpp>
+
+#if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
+#	include <Z/functions/base/type.hpp>
+#else
+#	include <Z/types/base.h>
+#	include <Z/macros/language.hpp>
+#endif
 
 namespace Zeta {
 
@@ -454,9 +459,9 @@ namespace Zeta {
 					exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM
 				};
 
-				static Z_CONSTANT_MEMBER float epsilon () {return Z_FLOAT_EPSILON;}
-				static Z_CONSTANT_MEMBER float minimum () {return Z_FLOAT_MINIMUM;}
-				static Z_CONSTANT_MEMBER float maximum () {return Z_FLOAT_MAXIMUM;}
+				static Z_CONSTANT_MEMBER(CPP11) float epsilon () {return Z_FLOAT_EPSILON;}
+				static Z_CONSTANT_MEMBER(CPP11) float minimum () {return Z_FLOAT_MINIMUM;}
+				static Z_CONSTANT_MEMBER(CPP11) float maximum () {return Z_FLOAT_MAXIMUM;}
 				//static Z_CONSTANT_MEMBER float infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
 				//static Z_CONSTANT_MEMBER float nan	   () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}
 
@@ -486,9 +491,9 @@ namespace Zeta {
 					exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM
 				};
 
-				static Z_CONSTANT_MEMBER double epsilon () {return Z_DOUBLE_EPSILON;}
-				static Z_CONSTANT_MEMBER double minimum () {return Z_DOUBLE_MINIMUM;}
-				static Z_CONSTANT_MEMBER double maximum () {return Z_DOUBLE_MAXIMUM;}
+				static Z_CONSTANT_MEMBER(CPP11) double epsilon () {return Z_DOUBLE_EPSILON;}
+				static Z_CONSTANT_MEMBER(CPP11) double minimum () {return Z_DOUBLE_MINIMUM;}
+				static Z_CONSTANT_MEMBER(CPP11) double maximum () {return Z_DOUBLE_MAXIMUM;}
 				//static Z_CONSTANT_MEMBER double infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
 				//static Z_CONSTANT_MEMBER double nan	    () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}
 
@@ -518,9 +523,9 @@ namespace Zeta {
 					exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM
 				};
 
-				static Z_CONSTANT_MEMBER long double epsilon () {return Z_LDOUBLE_EPSILON;}
-				static Z_CONSTANT_MEMBER long double minimum () {return Z_LDOUBLE_MINIMUM;}
-				static Z_CONSTANT_MEMBER long double maximum () {return Z_LDOUBLE_MAXIMUM;}
+				static Z_CONSTANT_MEMBER(CPP11) long double epsilon () {return Z_LDOUBLE_EPSILON;}
+				static Z_CONSTANT_MEMBER(CPP11) long double minimum () {return Z_LDOUBLE_MINIMUM;}
+				static Z_CONSTANT_MEMBER(CPP11) long double maximum () {return Z_LDOUBLE_MAXIMUM;}
 				//static Z_CONSTANT_MEMBER long double infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
 				//static Z_CONSTANT_MEMBER long double nan	 () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;     }
 
@@ -1103,7 +1108,8 @@ namespace Zeta {
 		template <> struct Final<const volatile NaT> : Abstract::Type::Invalid {};
 	}}
 
-	template <class T> struct Type : Partials::Type::Final<T> {
+	template <class T> class Type : public Partials::Type::Final<T> {
+		public:
 		struct flow {
 			enum {	is_arithmetic		     = Type::is_arithmetic,
 				is_array		     = Type::is_array,
@@ -1200,6 +1206,21 @@ namespace Zeta {
 			typedef typename Type<typename Type::remove_pointer	  >::flow remove_pointer;
 			typedef typename Type<typename Type::remove_reference	  >::flow remove_reference;
 		};
+
+#		if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
+
+			static Z_CONSTANT_MEMBER(CPP14) zsize string_size()
+				{return Zeta::type_string_size<T>();}
+
+
+			static Z_CONSTANT_MEMBER(CPP14) SizedString<string_size()> string()
+				{return Zeta::type_string<T>();}
+
+
+			static Z_CONSTANT_MEMBER(CPP14) zuint64 id()
+				{return Zeta::type_id<T>();}
+
+#		endif
 
 		// TODO: constexpr functions
 	};

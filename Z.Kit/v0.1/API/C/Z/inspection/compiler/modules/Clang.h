@@ -564,6 +564,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	endif
 
+	/* MARK: - C++14 support */
+
+#	if __cplusplus >= 201402L
+
+#		if __has_feature(cxx_binary_literals) || __has_extension(cxx_binary_literals)
+#			define Z_COMPILER_CPP_HAS_BINARY_LITERAL TRUE
+#		endif
+
+#		if __has_feature(cxx_relaxed_constexpr) || __has_extension(cxx_relaxed_constexpr)
+#			define Z_COMPILER_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION TRUE
+#		endif
+
+#	endif
+
 	/* MARK: - C++ attributes */
 
 #	if __has_attribute(always_inline)
