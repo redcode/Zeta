@@ -10,7 +10,5 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_COMMA ,
 #define Z_DOT	.
-#define Z_OR	||
-#define Z_AND	&&
 
 #endif /* __Z_macros_tokens_H__ */
