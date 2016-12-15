@@ -19,10 +19,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_DATA_MODEL Z_COMPILER_DATA_MODEL
 #	else
 #		include <Z/inspection/data model/detection.h>
-#	endif
 
-#	ifndef Z_DATA_MODEL
-#		include <Z/inspection/data model/deduction.h>
+#		ifndef Z_DATA_MODEL
+#			include <Z/inspection/data model/deduction.h>
+#		endif
 #	endif
 
 #endif

@@ -11,7 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Identification */
 
 #ifndef Z_COMPILER
-#	include <Z/keys/compiler.h>
 #	include <Z/macros/version.h>
 
 #	define Z_COMPILER		  Z_COMPILER_APPLE_LLVM

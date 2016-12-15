@@ -8,13 +8,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_Type_HPP__
 #define __Z_traits_Type_HPP__
 
-#include <Z/traits/TypeList.hpp>
+#include <Z/types/base.hpp>
 
 #if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 #	include <Z/functions/base/type.hpp>
 #else
-#	include <Z/types/base.h>
 #	include <Z/macros/language.hpp>
+#endif
+
+#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+#	include <Z/traits/TypeList.hpp>
 #endif
 
 namespace Zeta {
@@ -902,75 +905,75 @@ namespace Zeta {
 		// MARK: - Partials: Numbers
 
 #		if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
-			template <> struct Case<zuint8> : Mixins::Type::Unqualified<Abstract::Type::UInt8> {};
+			template <> struct Case<UInt8> : Mixins::Type::Unqualified<Abstract::Type::UInt8> {};
 #		endif
 
 #		if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
-			template <> struct Case<zuint16> : Mixins::Type::Unqualified<Abstract::Type::UInt16> {};
+			template <> struct Case<UInt16> : Mixins::Type::Unqualified<Abstract::Type::UInt16> {};
 #		endif
 
 #		if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
-			template <> struct Case<zuint32> : Mixins::Type::Unqualified<Abstract::Type::UInt32> {};
+			template <> struct Case<UInt32> : Mixins::Type::Unqualified<Abstract::Type::UInt32> {};
 #		endif
 
 #		if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
-			template <> struct Case<zuint64> : Mixins::Type::Unqualified<Abstract::Type::UInt64> {};
+			template <> struct Case<UInt64> : Mixins::Type::Unqualified<Abstract::Type::UInt64> {};
 #		endif
 
 #		if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
-			template <> struct Case<zuint128> : Mixins::Type::Unqualified<Abstract::Type::UInt128> {};
+			template <> struct Case<UInt128> : Mixins::Type::Unqualified<Abstract::Type::UInt128> {};
 #		endif
 
 #		if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
-			template <> struct Case<zint8> : Mixins::Type::Unqualified<Abstract::Type::Int8> {};
+			template <> struct Case<Int8> : Mixins::Type::Unqualified<Abstract::Type::Int8> {};
 #		endif
 
 #		if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
-			template <> struct Case<zint16> : Mixins::Type::Unqualified<Abstract::Type::Int16> {};
+			template <> struct Case<Int16> : Mixins::Type::Unqualified<Abstract::Type::Int16> {};
 #		endif
 
 #		if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
-			template <> struct Case<zint32> : Mixins::Type::Unqualified<Abstract::Type::Int32> {};
+			template <> struct Case<Int32> : Mixins::Type::Unqualified<Abstract::Type::Int32> {};
 #		endif
 
 #		if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
-			template <> struct Case<zint64> : Mixins::Type::Unqualified<Abstract::Type::Int64> {};
+			template <> struct Case<Int64> : Mixins::Type::Unqualified<Abstract::Type::Int64> {};
 #		endif
 
 #		if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
-			template <> struct Case<zint128> : Mixins::Type::Unqualified<Abstract::Type::Int128> {};
+			template <> struct Case<Int128> : Mixins::Type::Unqualified<Abstract::Type::Int128> {};
 #		endif
 
-		template <> struct Case<char> : Mixins::Type::Unqualified<Abstract::Type::Character> {};
+		template <> struct Case<Character> : Mixins::Type::Unqualified<Abstract::Type::Character> {};
 
-		template <> struct Case<unsigned char	  > : Mixins::Type::Unqualified<Abstract::Type::UChar > {};
-		template <> struct Case<unsigned short int> : Mixins::Type::Unqualified<Abstract::Type::UShort> {};
-		template <> struct Case<unsigned int	  > : Mixins::Type::Unqualified<Abstract::Type::UInt  > {};
-		template <> struct Case<unsigned long int > : Mixins::Type::Unqualified<Abstract::Type::ULong > {};
+		template <> struct Case<UChar > : Mixins::Type::Unqualified<Abstract::Type::UChar > {};
+		template <> struct Case<UShort> : Mixins::Type::Unqualified<Abstract::Type::UShort> {};
+		template <> struct Case<UInt  > : Mixins::Type::Unqualified<Abstract::Type::UInt  > {};
+		template <> struct Case<ULong > : Mixins::Type::Unqualified<Abstract::Type::ULong > {};
 
 #		ifdef Z_ULLONG
-			template <> struct Case<unsigned long long int> : Mixins::Type::Unqualified<Abstract::Type::ULLong> {};
+			template <> struct Case<ULLong> : Mixins::Type::Unqualified<Abstract::Type::ULLong> {};
 #		endif
 
-		template <> struct Case<signed char	> : Mixins::Type::Unqualified<Abstract::Type::Char > {};
-		template <> struct Case<signed short int> : Mixins::Type::Unqualified<Abstract::Type::Short> {};
-		template <> struct Case<signed int	> : Mixins::Type::Unqualified<Abstract::Type::Int  > {};
-		template <> struct Case<signed long int	> : Mixins::Type::Unqualified<Abstract::Type::Long > {};
+		template <> struct Case<Char > : Mixins::Type::Unqualified<Abstract::Type::Char > {};
+		template <> struct Case<Short> : Mixins::Type::Unqualified<Abstract::Type::Short> {};
+		template <> struct Case<Int  > : Mixins::Type::Unqualified<Abstract::Type::Int	> {};
+		template <> struct Case<Long > : Mixins::Type::Unqualified<Abstract::Type::Long > {};
 
 #		ifdef Z_LLONG
-			template <> struct Case<signed long long int> : Mixins::Type::Unqualified<Abstract::Type::LLong > {};
+			template <> struct Case<LLong> : Mixins::Type::Unqualified<Abstract::Type::LLong> {};
 #		endif
 
 #		ifdef Z_FLOAT
-			template <> struct Case<float> : Mixins::Type::Unqualified<Abstract::Type::Float> {};
+			template <> struct Case<Float> : Mixins::Type::Unqualified<Abstract::Type::Float> {};
 #		endif
 
 #		ifdef Z_DOUBLE
-			template <> struct Case<double> : Mixins::Type::Unqualified<Abstract::Type::Double> {};
+			template <> struct Case<Double> : Mixins::Type::Unqualified<Abstract::Type::Double> {};
 #		endif
 
 #		ifdef Z_LDOUBLE
-			template <> struct Case<long double> : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
+			template <> struct Case<LDouble> : Mixins::Type::Unqualified<Abstract::Type::LDouble> {};
 #		endif
 
 		// MARK: - Partials: Pointers
@@ -1209,7 +1212,7 @@ namespace Zeta {
 
 #		if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 
-			static Z_CONSTANT_MEMBER(CPP14) zsize string_size()
+			static Z_CONSTANT_MEMBER(CPP14) Size string_size()
 				{return Zeta::type_string_size<T>();}
 
 
@@ -1217,7 +1220,7 @@ namespace Zeta {
 				{return Zeta::type_string<T>();}
 
 
-			static Z_CONSTANT_MEMBER(CPP14) zuint64 id()
+			static Z_CONSTANT_MEMBER(CPP14) UInt64 id()
 				{return Zeta::type_id<T>();}
 
 #		endif

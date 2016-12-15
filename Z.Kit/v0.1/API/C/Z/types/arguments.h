@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/compiler.h>
 
-#if Z_COMPILER_HAS(VAL)
+#if Z_COMPILER_HAS_TYPE(VAL)
 	typedef Z_COMPILER_TYPE(VAL) ZVAL;
 #else
 	typedef void* ZVAL;

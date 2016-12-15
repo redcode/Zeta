@@ -37,7 +37,6 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 /* MARK: - ID 0 - Terminator */
 
-
 /* MARK: - ID 1 - Sound Data */
 
 Z_DEFINE_STRICT_STRUCTURE (

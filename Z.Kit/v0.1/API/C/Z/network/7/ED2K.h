@@ -8,6 +8,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_network_7_ED2K_H__
 #define __Z_network_7_ED2K_H__
 
+#include <Z/types/base.h>
+
+Z_DEFINE_STRICT_STRUCTURE (
+	zuint8	protocol;
+	zuint32 size;
+	zuint8	opcode;
+) ZED2KMessageHeader;
+
 #define Z_ED2K_MESSAGE_HEADER_PROTOCOL_EDONKEY	0xE3
 #define Z_ED2K_MESSAGE_HEADER_PROTOCOL_EMULE	0xC5
 
@@ -89,11 +97,5 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ED2K_OPCODE_ASKSHAREDDIRSANS		0x5F /* <count 4>(<len 2><Directory len>)[count] */
 #define Z_ED2K_OPCODE_ASKSHAREDFILESDIRANS	0x60 /* <len 2><Directory len><count 4>(<HASH 16><ID 4><PORT 2><1 Tag_set>)[count] */
 #define Z_ED2K_OPCODE_ASKSHAREDDENIEDANS	0x61 /* (null) */
-
-typedef struct {
-	quint8 protocol;
-	quint32 size;
-	quint8 opcode;
-} ZED2KMessageHeader;
 
 #endif /* __Z_network_7_ED2K_H__ */

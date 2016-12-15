@@ -27,8 +27,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL Z_DATA_MODEL_LLP64
 
 #elif	defined(__LP32__) || /* Clang */ \
-	defined(__LP32	) || \
-	defined(_LP32_	) || \
+	defined(__LP32	) ||		 \
+	defined(_LP32_	) ||		 \
 	defined(_LP32	)
 
 #	define Z_DATA_MODEL Z_DATA_MODEL_LP32

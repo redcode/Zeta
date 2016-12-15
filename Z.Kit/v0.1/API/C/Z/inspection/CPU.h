@@ -11,16 +11,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/keys/hardware/CPU/architecture.h>
 #include <Z/keys/endianness.h>
 #include <Z/keys/value.h>
-#include <Z/inspection/language.h>
+#include <Z/inspection/compiler.h>
 
 #ifndef Z_CPU_ARCHITECTURE
-
 #	ifdef Z_COMPILER_CPU_ARCHITECTURE
 #		define Z_CPU_ARCHITECTURE Z_COMPILER_CPU_ARCHITECTURE
 #	else
 #		include <Z/inspection/CPU/detection.h>
 #	endif
-
 #endif
 
 #if !defined(Z_CPU_ARCHITECTURE)

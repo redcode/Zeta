@@ -8,7 +8,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_functions_base_value_HPP__
 #define __Z_functions_base_value_HPP__
 
-#include <Z/types/base.hpp>
 #include <Z/traits/Type.hpp>
 #include <Z/traits/filtering.hpp>
 

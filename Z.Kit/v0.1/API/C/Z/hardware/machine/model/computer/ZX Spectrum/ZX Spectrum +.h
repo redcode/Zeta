@@ -35,6 +35,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef __Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H__
 #define __Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H__
 
+#include <Z/hardware/machine/model/computer/ZX Spectrum/ZX Spectrum.h>
+
 /* MARK: - Memory */
 
 #define Z_ZX_SPECTRUM_PLUS_SIZE_RAM    (1024 * 48)

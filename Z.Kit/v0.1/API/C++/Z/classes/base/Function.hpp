@@ -8,7 +8,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_Function_HPP__
 #define __Z_classes_base_Function_HPP__
 
-#include <Z/types/base.hpp>
 #include <Z/traits/Type.hpp>
 
 

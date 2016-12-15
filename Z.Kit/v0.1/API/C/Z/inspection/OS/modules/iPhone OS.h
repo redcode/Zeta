@@ -8,9 +8,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_modules_OS_iPhone_OS_H__
 #define __Z_inspection_modules_OS_iPhone_OS_H__
 
-#include <Z/constants/base.h>
-#include <Z/keys/OS.h>
-
 #define Z_OS_STRING Z_OS_STRING_IPHONE_OS
 
 #define Z_OS_HAS_POSIX_THREADING TRUE

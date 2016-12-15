@@ -8,11 +8,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_OS_H__
 #define __Z_inspection_OS_H__
 
-#include <Z/constants/base.h>
 #include <Z/keys/OS.h>
 
-#ifndef Z_OS
-
+#ifdef Z_OS
+#	include <Z/constants/base.h>
+#else
 #	include <Z/inspection/compiler.h>
 
 #	ifdef Z_COMPILER_OS
@@ -20,7 +20,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	else
 #		include <Z/inspection/OS/detection.h>
 #	endif
-
 #endif
 
 #ifndef Z_OS

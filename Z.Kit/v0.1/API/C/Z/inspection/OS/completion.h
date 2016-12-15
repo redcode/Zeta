@@ -5,8 +5,6 @@
 Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#include <Z/constants/base.h>
-
 #ifndef Z_OS_HAS_NETWORKING
 #	define Z_OS_HAS_NETWORKING FALSE
 #endif

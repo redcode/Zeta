@@ -8,10 +8,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_macros_members_H__
 #define __Z_macros_members_H__
 
-#include <Z/inspection/CPU.h>
-#include <Z/inspection/compiler.h>
-#include <Z/macros/pasting.h>
 #include <Z/keys/order.h>
+#include <Z/inspection/CPU.h>
+#include <Z/macros/pasting.h>
 
 #define Z_MEMBERIZE_2(		m1, m2																		     ) m1; m2;
 #define Z_MEMBERIZE_3(		m1, m2, m3																	     ) m1; m2; m3;

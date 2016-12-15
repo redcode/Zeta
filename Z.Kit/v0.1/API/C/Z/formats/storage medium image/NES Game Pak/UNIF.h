@@ -7,7 +7,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 .----------------------------------------.
 | Extensions: unf, unif			 |
-| Endianness:	Little			 |
+| Endianness: Little			 |
 | Created by: Carmel-Veilleux, Tennessee |
 |    Used by:				 |
 '---------------------------------------*/

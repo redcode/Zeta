@@ -10,6 +10,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/floating point.h>
 #include <Z/inspection/CPU.h>
+#include <Z/inspection/language.h>
+#include <Z/macros/pasting.h>
 
 #define Z_INSPECTING_FLOATING_POINT
 
@@ -54,15 +56,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* TODO */
 
 #	if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE)
-#		define Z_FLOATING_POINT_BITS_LDOUBLE	128
-#		define Z_FLOATING_POINT_TYPE_FLOAT128	long double
-#		define Z_FLOATING_POINT_LITERAL_FLOAT128	Z_SUFFIX_L
+#		define Z_FLOATING_POINT_BITS_LDOUBLE	 128
+#		define Z_FLOATING_POINT_TYPE_FLOAT128	 long double
+#		define Z_FLOATING_POINT_LITERAL_FLOAT128 Z_SUFFIX_L
 
 #		define Z_PREPEND_FLOATING_POINT_FLOAT128(RIGHT) Z_IEEE_754_BINARY128##RIGHT
 #	endif
-
-
-
 
 #undef Z_INSPECTING_FLOATING_POINT
 

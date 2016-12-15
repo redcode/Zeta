@@ -9,7 +9,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_classes_time_Attotime_HPP__
 
 #include <Z/types/time.h>
-#include <Z/types/base.hpp>
 
 namespace Zeta {struct Attotime;}
 

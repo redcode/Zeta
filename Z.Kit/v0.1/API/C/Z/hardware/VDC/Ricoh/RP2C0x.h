@@ -187,7 +187,6 @@ EXT3 -17-|    (_)    |-24- /R
 #define __Z_hardware_VDC_Ricoh_RP2C0x_H__
 
 #include <Z/types/base.h>
-#include <Z/macros/bits.h>
 
 typedef struct {
 	zuint8 y;

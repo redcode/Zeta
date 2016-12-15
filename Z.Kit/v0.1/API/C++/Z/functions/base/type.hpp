@@ -14,10 +14,10 @@ namespace Zeta {
 
 
 	template <class T>
-	Z_CONSTANT(CPP14) zsize type_string_size()
+	Z_CONSTANT(CPP14) Size type_string_size()
 		{
 		Character const *p = __PRETTY_FUNCTION__;
-		zsize size = 0;
+		Size size = 0;
 
 		while (*p++ != '=');
 		while (*++p != ']') size++;
