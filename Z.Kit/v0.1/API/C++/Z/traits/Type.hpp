@@ -105,7 +105,8 @@ namespace Zeta {
 				is_trivially_move_constructible	   = false
 			};
 			enum {	arity	      = 0,
-				element_count = 0
+				element_count = 0,
+				pointer_level = 0
 			};
 			enum {	bits = 0,
 				size = 0
@@ -1069,16 +1070,13 @@ namespace Zeta {
 		};
 
 		template <class C> struct Storable : Virtual<C> {
-			typedef struct {typename C::type value;} to_wrap;
+			Z_DEFINE_STRICT_STRUCTURE (typename C::type value;     ) to_wrap;
+			Z_DEFINE_STRICT_STRUCTURE (UInt8 data[sizeof(to_wrap)];) to_opaque;
 
 			enum {is_storable = true};
 			enum {	size = sizeof(to_wrap),
 				bits = sizeof(to_wrap) * 8
 			};
-
-			typedef struct {
-				UInt8 data[sizeof(to_wrap)];
-			} to_opaque;
 		};
 
 		template <UInt K, class C> struct Kind;
@@ -1254,6 +1252,7 @@ namespace Zeta {
 				is_callable	    = is_function_pointer,
 				is_void_pointer	    = Case<T>::is_void
 			};
+			enum {pointer_level = Case<T>::pointer_level + 1};
 		};
 
 		// MARK: - Partials: Null pointer type
