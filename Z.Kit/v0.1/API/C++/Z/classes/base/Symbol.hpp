@@ -30,11 +30,11 @@ struct Zeta::Symbol {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(Symbol symbol) const
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(const Symbol &symbol) const
 		{return hash == symbol.hash && size == symbol.size;}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(Symbol symbol) const
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(const Symbol &symbol) const
 		{return hash != symbol.hash && size != symbol.size;}
 };
 
