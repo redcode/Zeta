@@ -1456,7 +1456,8 @@ namespace Zeta {
 				is_trivially_move_constructible	   = Type::is_trivially_move_constructible
 			};
 			enum {	arity	      = Type::arity,
-				element_count = Type::element_count
+				element_count = Type::element_count,
+				pointer_level = Type::pointer_level
 			};
 			enum {	bits = Type::bits,
 				size = Type::size

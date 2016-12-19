@@ -32,7 +32,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef TN type;
 
 			Z_INLINE_MEMBER Element() {}
-			Z_INLINE_MEMBER Element(T... previous, TN value) : Super(previous...), _value(value) {}
+			Z_CONSTANT_MEMBER(CPP11) Element(T... previous, TN value) : Super(previous...), _value(value) {}
 		};
 
 		template <class TN> class Element<TN> {
@@ -42,7 +42,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef TN type;
 
 			Z_INLINE_MEMBER Element() {}
-			Z_INLINE_MEMBER Element(TN value) : _value(value) {}
+			Z_CONSTANT_MEMBER(CPP11) Element(TN value) : _value(value) {}
 		};
 	}}}
 
@@ -54,7 +54,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		typedef typename Partials::Tuple::Super<T...>::type Super;
 
 		protected:
-		template <unsigned int I> struct At {
+		template <UInt I> struct At {
 			typedef typename TypeListRename<
 				typename TypeListRotateRight<
 					typename TypeListRemoveTail<TypeList<T...>, sizeof...(T) - (I + 1)>::type, 1
@@ -67,15 +67,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		public:
 		Z_INLINE_MEMBER Tuple() {}
-		Z_INLINE_MEMBER Tuple(T... values) : Super(values...) {}
+
+		Z_CONSTANT_MEMBER(CPP11) Tuple(T... values) : Super(values...) {}
 
 
-		template <unsigned int I> Z_INLINE_MEMBER typename At<I>::type get()
+		template <UInt I> Z_INLINE_MEMBER typename At<I>::type &at()
 			{return At<I>::element::_value;}
 
 
-		template <unsigned int I> Z_INLINE_MEMBER void set(typename At<I>::type value)
-			{return At<I>::element::_value = value;}
+		template <UInt I> Z_CONSTANT_MEMBER(CPP11) typename At<I>::type get() const
+			{return At<I>::element::_value;}
+
+
+		template <UInt I> Z_INLINE_MEMBER Tuple &set(typename At<I>::type value)
+			{
+			At<I>::element::_value = value;
+			return *this;
+			}
 	};
 
 
