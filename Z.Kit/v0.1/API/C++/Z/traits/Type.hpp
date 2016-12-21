@@ -1160,7 +1160,7 @@ namespace Zeta {
 #			endif
 		};
 
-		template <class C> struct Kind<Template, C> : Storable<C> {
+		template <class C> struct Kind<Template, C> : Kind<Value, C> {
 			// For future use.
 		};
 	}}}
