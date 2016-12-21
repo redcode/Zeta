@@ -13,8 +13,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 #	include <Z/functions/base/type.hpp>
 #	include <Z/classes/base/Symbol.hpp>
-#else
-#	include <Z/types/base.hpp>
 #endif
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)

@@ -8,14 +8,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_SelectType_HPP__
 #define __Z_traits_SelectType_HPP__
 
-#include <Z/inspection/language.h>
+#include <Z/types/base.hpp>
 #include <Z/traits/base.hpp>
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 	namespace Zeta {
 
-		template<unsigned int I, class T0 = NaT, class... T> struct SelectType {
+		template<UInt I, class T0 = NaT, class... T> struct SelectType {
 			typedef typename SelectType<I - 1, T...>::type type;
 		};
 
@@ -24,7 +24,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 
 #		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
-			template<unsigned int I, class... T>
+			template<UInt I, class... T>
 			using select_type = typename SelectType<I, T...>::type;
 #		endif
 	}
@@ -35,7 +35,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {
 
-		template <unsigned int,
+		template <UInt,
 			class T00 = NaT, class T01 = NaT, class T02 = NaT, class T03 = NaT,
 			class T04 = NaT, class T05 = NaT, class T06 = NaT, class T07 = NaT,
 			class T08 = NaT, class T09 = NaT, class T10 = NaT, class T11 = NaT,

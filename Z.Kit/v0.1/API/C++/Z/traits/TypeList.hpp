@@ -35,14 +35,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef L<A..., T...> type;
 		};
 
-		template <class L, unsigned int I> struct TypeListRemove;
+		template <class L, UInt I> struct TypeListRemove;
 
 		template <template <class...> class L, class A0, class... A>
 		struct TypeListRemove<L<A0, A...>, 0> {
 			typedef L<A...> type;
 		};
 
-		template <template <class...> class L, class A0, class... A, unsigned int I>
+		template <template <class...> class L, class A0, class... A, UInt I>
 		struct TypeListRemove<L<A0, A...>, I> {
 			typedef typename TypeListPrepend<typename TypeListRemove<L<A...>, I - 1>::type, A0>::type type;
 		};
@@ -71,9 +71,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef L<> type;
 		};
 
-		template <class L, unsigned int S> struct TypeListRemoveHead;
+		template <class L, UInt S> struct TypeListRemoveHead;
 
-		template <template <class...> class L, class... A, unsigned int S>
+		template <template <class...> class L, class... A, UInt S>
 		struct TypeListRemoveHead<L<A...>, S> {
 			typedef typename TypeListRemoveHead<typename TypeListRemoveFirst<L<A...> >::type, S - 1>::type type;
 		};
@@ -83,9 +83,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef L<A...> type;
 		};
 
-		template <class L, unsigned int S> struct TypeListRemoveTail;
+		template <class L, UInt S> struct TypeListRemoveTail;
 
-		template <template <class...> class L, class... A, unsigned int S>
+		template <template <class...> class L, class... A, UInt S>
 		struct TypeListRemoveTail<L<A...>, S> {
 			typedef typename TypeListRemoveTail<typename TypeListRemoveLast<L<A...> >::type, S - 1>::type type;
 		};
@@ -107,9 +107,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef L type;
 		};
 
-		template <class L, unsigned int> struct TypeListRotateLeft;
+		template <class L, UInt> struct TypeListRotateLeft;
 
-		template <template <class...> class L, class... A, unsigned int N>
+		template <template <class...> class L, class... A, UInt N>
 		struct TypeListRotateLeft<L<A...>, N> {
 			typedef typename TypeListJoin<
 				typename TypeListRemoveHead<L<A...>, N % sizeof...(A)>::type,
@@ -117,14 +117,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			>::type type;
 		};
 
-		template <template <class...> class L, unsigned int N>
+		template <template <class...> class L, UInt N>
 		struct TypeListRotateLeft<L<>, N> {
 			typedef L<> type;
 		};
 
-		template <class L, unsigned int> struct TypeListRotateRight;
+		template <class L, UInt> struct TypeListRotateRight;
 
-		template <template <class...> class L, class... A, unsigned int N>
+		template <template <class...> class L, class... A, UInt N>
 		struct TypeListRotateRight<L<A...>, N> {
 			typedef typename TypeListJoin<
 				typename TypeListRemoveHead<L<A...>, sizeof...(A) - (N % sizeof...(A))>::type,
@@ -132,7 +132,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			>::type type;
 		};
 
-		template <template <class...> class L, unsigned int N>
+		template <template <class...> class L, UInt N>
 		struct TypeListRotateRight<L<>, N> {
 			typedef L<> type;
 		};
@@ -142,15 +142,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class from, template <class...> class to>
 			using type_list_rename = typename TypeListRename<from, to>::type;
 
-			template <class L, class... T	 > using type_list_prepend	= typename TypeListPrepend    <L, T...>::type;
-			template <class L, class... T	 > using type_list_append	= typename TypeListAppend     <L, T...>::type;
-			template <class L, unsigned int I> using type_list_remove	= typename TypeListRemove     <L, I   >::type;
-			template <class L		 > using type_list_remove_first = typename TypeListRemoveFirst<L      >::type;
-			template <class L		 > using type_list_remove_last	= typename TypeListRemoveLast <L      >::type;
-			template <class L, unsigned int S> using type_list_remove_head	= typename TypeListRemoveHead <L, S   >::type;
-			template <class L, unsigned int S> using type_list_remove_tail	= typename TypeListRemoveTail <L, S   >::type;
-			template <class L, unsigned int N> using type_list_rotate_left	= typename TypeListRotateLeft <L, N   >::type;
-			template <class L, unsigned int N> using type_list_rotate_right = typename TypeListRotateRight<L, N   >::type;
+			template <class L, class... T> using type_list_prepend	    = typename TypeListPrepend    <L, T...>::type;
+			template <class L, class... T> using type_list_append	    = typename TypeListAppend     <L, T...>::type;
+			template <class L, UInt I    > using type_list_remove	    = typename TypeListRemove     <L, I   >::type;
+			template <class L	     > using type_list_remove_first = typename TypeListRemoveFirst<L	  >::type;
+			template <class L	     > using type_list_remove_last  = typename TypeListRemoveLast <L	  >::type;
+			template <class L, UInt S    > using type_list_remove_head  = typename TypeListRemoveHead <L, S   >::type;
+			template <class L, UInt S    > using type_list_remove_tail  = typename TypeListRemoveTail <L, S   >::type;
+			template <class L, UInt N    > using type_list_rotate_left  = typename TypeListRotateLeft <L, N   >::type;
+			template <class L, UInt N    > using type_list_rotate_right = typename TypeListRotateRight<L, N   >::type;
 
 #		endif
 
@@ -167,14 +167,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 				template <template <class...> class to> using rename = typename TypeListRename<TypeList, to>::type;
 
-				template <unsigned int I> using get	     = typename SelectType<I, A...>::type;
-				template <class... T	> using prepend	     = TypeList<T..., A...>;
-				template <class... T	> using append	     = TypeList<A..., T...>;
-				template <unsigned int I> using remove	     = typename TypeListRemove	   <TypeList, I>::type;
-				template <unsigned int S> using remove_head  = typename TypeListRemoveHead <TypeList, S>::type;
-				template <unsigned int S> using remove_tail  = typename TypeListRemoveTail <TypeList, S>::type;
-				template <unsigned int N> using rotate_left  = typename TypeListRotateLeft <TypeList, N>::type;
-				template <unsigned int N> using rotate_right = typename TypeListRotateRight<TypeList, N>::type;
+				template <UInt I    > using get		 = typename SelectType<I, A...>::type;
+				template <class... T> using prepend	 = TypeList<T..., A...>;
+				template <class... T> using append	 = TypeList<A..., T...>;
+				template <UInt I    > using remove	 = typename TypeListRemove     <TypeList, I>::type;
+				template <UInt S    > using remove_head	 = typename TypeListRemoveHead <TypeList, S>::type;
+				template <UInt S    > using remove_tail	 = typename TypeListRemoveTail <TypeList, S>::type;
+				template <UInt N    > using rotate_left	 = typename TypeListRotateLeft <TypeList, N>::type;
+				template <UInt N    > using rotate_right = typename TypeListRotateRight<TypeList, N>::type;
 
 #			endif
 		};
