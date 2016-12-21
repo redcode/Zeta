@@ -8,16 +8,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_Type_HPP__
 #define __Z_traits_Type_HPP__
 
-#include <Z/types/base.hpp>
+#include <Z/macros/language.hpp>
 
 #if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 #	include <Z/functions/base/type.hpp>
+#	include <Z/classes/base/Symbol.hpp>
 #else
-#	include <Z/macros/language.hpp>
+#	include <Z/types/base.hpp>
 #endif
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 #	include <Z/traits/TypeList.hpp>
+#else
+#	include <Z/traits/SelectType.hpp>
 #endif
 
 namespace Zeta {
@@ -37,6 +40,7 @@ namespace Zeta {
 				is_const_volatile	     = false,
 				is_const_volatile_lvalue     = false,
 				is_const_volatile_rvalue     = false,
+				is_data_member_pointer	     = false,
 				is_enum			     = false,
 				is_exact		     = false,
 				is_integer		     = false,
@@ -50,9 +54,8 @@ namespace Zeta {
 				is_fundamental		     = false,
 				is_lvalue		     = false,
 				is_lvalue_reference	     = false,
-				is_member_pointer	     = false,
 				is_member_function_pointer   = false,
-				is_member_object_pointer     = false,
+				is_member_pointer	     = false,
 				is_natural		     = false,
 				is_number		     = false,
 				is_nullptr		     = false,
@@ -114,6 +117,7 @@ namespace Zeta {
 
 			typedef NaT type;
 
+			typedef NaT class_type;
 			typedef NaT element_type;
 			typedef NaT pointee_type;
 			typedef NaT referenced_type;
@@ -1247,6 +1251,10 @@ namespace Zeta {
 
 		// MARK: - Partials: Pointers
 
+#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+			template <> struct Case<decltype(nullptr)> : Mixins::Unqualified<Abstract::NullPointer> {};
+#		endif
+
 		template <class T> struct Case<T*> : Mixins::Unqualified<Abstract::Pointer<T> > {
 			enum {	is_function_pointer = Case<T>::is_function,
 				is_callable	    = is_function_pointer,
@@ -1255,13 +1263,29 @@ namespace Zeta {
 			enum {pointer_level = Case<T>::pointer_level + 1};
 		};
 
-		// MARK: - Partials: Null pointer type
+		// TODO
+		template <class C, class T> struct Case<T C::*> : Mixins::Unqualified<Abstract::Pointer<T> > {
+			enum {	is_data_member_pointer = true,
+				is_member_pointer      = true
+			};
 
-#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
-			template <> struct Case<decltype(nullptr)> : Mixins::Unqualified<Abstract::NullPointer> {};
+			typedef C class_type;
+		};
+
+#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+
+			// TODO
+			template <class C, class R, class... A> struct Case<R(C::*)(A...)> : Mixins::Unqualified<Abstract::Function<R, A...> > {
+				enum {	is_member_function_pointer = true,
+					is_member_pointer	   = true
+				};
+
+				typedef C class_type;
+			};
+
 #		endif
 
-		// MARK: - Partials: L-value References
+		// MARK: - Partials: References
 
 		template <class T> struct Case<T&> : Mixins::Unqualified<Abstract::LValueReference<T> > {
 			enum {	is_function_reference	     = Case<T>::is_function,
@@ -1269,8 +1293,6 @@ namespace Zeta {
 				is_callable		     = is_function_reference
 			};
 		};
-
-		// MARK: - Partials: R-value references
 
 		template <class T> struct Case<T&&> : Mixins::Unqualified<Abstract::RValueReference<T> > {
 			enum {	is_function_reference	     = Case<T>::is_function,
@@ -1388,6 +1410,7 @@ namespace Zeta {
 				is_const_volatile	     = Type::is_const_volatile,
 				is_const_volatile_lvalue     = Type::is_const_volatile_lvalue,
 				is_const_volatile_rvalue     = Type::is_const_volatile_rvalue,
+				is_data_member_pointer	     = Type::is_data_member_pointer,
 				is_enum			     = Type::is_enum,
 				is_exact		     = Type::is_exact,
 				is_integer		     = Type::is_integer,
@@ -1401,9 +1424,8 @@ namespace Zeta {
 				is_fundamental		     = Type::is_fundamental,
 				is_lvalue		     = Type::is_lvalue,
 				is_lvalue_reference	     = Type::is_lvalue_reference,
-				is_member_pointer	     = Type::is_member_pointer,
 				is_member_function_pointer   = Type::is_member_function_pointer,
-				is_member_object_pointer     = Type::is_member_object_pointer,
+				is_member_pointer	     = Type::is_member_pointer,
 				is_natural		     = Type::is_natural,
 				is_number		     = Type::is_number,
 				is_nullptr		     = Type::is_nullptr,
@@ -1467,6 +1489,7 @@ namespace Zeta {
 
 			typedef typename Type::type type;
 
+			typedef typename Type<typename Type::class_type	    >::flow class_type;
 			typedef typename Type<typename Type::element_type   >::flow element_type;
 			typedef typename Type<typename Type::pointee_type   >::flow pointee_type;
 			typedef typename Type<typename Type::referenced_type>::flow referenced_type;
@@ -1525,15 +1548,15 @@ namespace Zeta {
 #		if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 
 			static Z_CONSTANT_MEMBER(CPP14) Size string_size()
-				{return Zeta::type_string_size<T>();}
+				{return type_string_size<T>();}
 
 
 			static Z_CONSTANT_MEMBER(CPP14) SizedString<string_size()> string()
-				{return Zeta::type_string<T>();}
+				{return type_string<T>();}
 
 
-			static Z_CONSTANT_MEMBER(CPP14) UInt64 id()
-				{return Zeta::type_id<T>();}
+			static Z_CONSTANT_MEMBER(CPP14) Symbol symbol()
+				{return type_string<T>().data;}
 
 #		endif
 

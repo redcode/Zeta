@@ -20,7 +20,7 @@ namespace Zeta {template <class T> struct Range;}
 
 template <class T> struct Zeta::Range {
 
-	typedef typename ZNaturalType(ZRange, T) Base;
+	typedef typename ZTypeFixedNatural(ZRange, T) Base;
 
 	T index, size;
 

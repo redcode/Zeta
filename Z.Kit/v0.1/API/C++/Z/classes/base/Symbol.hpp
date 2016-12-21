@@ -15,27 +15,21 @@ namespace Zeta {struct Symbol;}
 
 
 struct Zeta::Symbol {
-	UInt64 hash;
-	UInt16 size;
+	UInt64 id;
 
+	Z_INLINE_MEMBER Symbol() {}
+
+	Z_CONSTANT_MEMBER(CPP11) Symbol(UInt64 id)
+	: id(id) {}
 
 	Z_CONSTANT_MEMBER(CPP14) Symbol(const Character *string)
-	: hash(Z_UINT64(14695981039346656037)), size(0)
-		{
-		while (*string)
-			{
-			hash = (hash ^ *string++) * Z_UINT64(109951162821);
-			size++;
-			}
-		}
+	: id(Z_UINT64(14695981039346656037))
+		{while (*string) id = (id ^ *string++) * Z_UINT64(109951162821);}
 
+	Z_CONSTANT_MEMBER(CPP11) operator UInt64() const {return id;}
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(const Symbol &symbol) const
-		{return hash == symbol.hash && size == symbol.size;}
-
-
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(const Symbol &symbol) const
-		{return hash != symbol.hash && size != symbol.size;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(const Symbol &symbol) const {return id == symbol.id;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(const Symbol &symbol) const {return id != symbol.id;}
 };
 
 

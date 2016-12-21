@@ -28,7 +28,7 @@ namespace Zeta {template <class T> struct Value2D;}
 
 template <class T> struct Zeta::Value2D {
 
-	typedef typename ZNumberType(Z2D, T) Base;
+	typedef typename ZTypeFixedNumber(Z2D, T) Base;
 
 	T x, y;
 

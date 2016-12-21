@@ -38,19 +38,6 @@ namespace Zeta {
 		}
 
 
-	template <class T>
-	Z_CONSTANT(CPP14) UInt64 type_id()
-		{
-		auto	   string      = type_string<T>();
-		Size	   string_size = sizeof(string.data);
-		Character* c	       = string.data;
-		UInt64	   id	       = Z_UINT64(14695981039346656037);
-
-		while (string_size--) id = (id ^ *c++) * Z_UINT64(109951162821);
-		return id;
-		}
-
-
 }
 
 #endif // __Z_functions_base_type_HPP__

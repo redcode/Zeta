@@ -14,10 +14,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {
 
-		template <class from, template <class...> class to> struct TypeListRename;
+		template <class L, template <class...> class to> struct TypeListRename;
 
-		template <template <class...> class from, class... A, template <class...> class to>
-		struct TypeListRename<from<A...>, to> {
+		template <template <class...> class L, class... A, template <class...> class to>
+		struct TypeListRename<L<A...>, to> {
 			typedef to<A...> type;
 		};
 

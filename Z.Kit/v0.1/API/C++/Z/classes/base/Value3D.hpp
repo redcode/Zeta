@@ -16,7 +16,7 @@ namespace Zeta {template <class T> struct Value3D;}
 
 template <class T> struct Zeta::Value3D {
 
-	typedef typename ZNumberType(Z3D, T) Base;
+	typedef typename Z_TYPE_WITH_FIXED_NUMBER_SUFFIX(Z3D, UInt, Int, Float, T) Base;
 
 	T x, y, z;
 
