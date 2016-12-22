@@ -28,8 +28,8 @@ struct Zeta::Symbol {
 
 	Z_CONSTANT_MEMBER(CPP11) operator UInt64() const {return id;}
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(const Symbol &symbol) const {return id == symbol.id;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(const Symbol &symbol) const {return id != symbol.id;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(UInt64 id) const {return this->id == id;}
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(UInt64 id) const {return this->id != id;}
 };
 
 
