@@ -23,18 +23,19 @@ template <class T1, class T2> struct Zeta::Pair {
 
 	Z_INLINE_MEMBER Pair() {}
 
-	Z_INLINE_MEMBER Pair(typename Type<T1>::to_argument first,
-			     typename Type<T2>::to_argument second)
-	: first(first), second(second) {}
+	Z_CONSTANT_MEMBER(CPP11) Pair(
+		typename Type<T1>::to_argument first,
+		typename Type<T2>::to_argument second
+	) : first(first), second(second) {}
 
 	Z_INLINE_MEMBER ~Pair() {}
 
 
-	Z_INLINE_MEMBER Boolean operator ==(const Pair &pair) const
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(const Pair &pair) const
 		{return first == pair.first && second == pair.second;}
 
 
-	Z_INLINE_MEMBER Boolean operator !=(const Pair &pair) const
+	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(const Pair &pair) const
 		{return first != pair.first || second != pair.second;}
 
 

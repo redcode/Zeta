@@ -25,7 +25,7 @@ namespace Zeta {
 
 	// MARK: - Abstract
 
-	namespace Partials {namespace Type {namespace Abstract {
+	namespace Detail {namespace Type {namespace Abstract {
 
 		struct Invalid {
 			enum {	is_arithmetic		     = false,
@@ -731,7 +731,7 @@ namespace Zeta {
 #		endif
 	}}}
 
-	namespace Partials {namespace Type {namespace Mixins {
+	namespace Detail {namespace Type {namespace Mixins {
 
 		// MARK: - Mixins: Qualifiers (generic)
 
@@ -1163,7 +1163,7 @@ namespace Zeta {
 		};
 	}}}
 
-	namespace Partials {namespace Type {
+	namespace Detail {namespace Type {
 
 		// MARK: - Partials: Structures and unions (WIP)
 
@@ -1395,7 +1395,7 @@ namespace Zeta {
 		template <> struct Final<const volatile NaT> : Abstract::Invalid {};
 	}}
 
-	template <class T> class Type : public Partials::Type::Final<T> {
+	template <class T> class Type : public Detail::Type::Final<T> {
 		public:
 		struct flow {
 			enum {	is_arithmetic		     = Type::is_arithmetic,

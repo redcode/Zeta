@@ -36,7 +36,7 @@ template <class T> struct Zeta::Rectangle {
 	Z_CONSTANT_MEMBER(CPP11) Rectangle(const Value2D<T> &size)			    : point(T(0)),   size(size)		   {}
 	Z_CONSTANT_MEMBER(CPP11) Rectangle(T size_x, T size_y)				    : point(T(0)),   size(size_x, size_y)  {}
 	Z_CONSTANT_MEMBER(CPP11) Rectangle(T size)					    : point(T(0)),   size(size)		   {}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(const typename ZTypeFixedReal(ZAABR, T) &aabr)  : point(aabr.a), size(aabr.a + aabr.b) {}
+	Z_CONSTANT_MEMBER(CPP11) Rectangle(const typename ZTypeFixedReal(ZAABR, T) &aabr)   : point(aabr.a), size(aabr.a + aabr.b) {}
 
 	Z_INLINE_MEMBER Rectangle(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
