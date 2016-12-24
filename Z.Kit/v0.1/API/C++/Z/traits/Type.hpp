@@ -8,6 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_Type_HPP__
 #define __Z_traits_Type_HPP__
 
+#include <Z/traits/TypeToMemberPointer.hpp>
 #include <Z/macros/language.hpp>
 
 #if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
@@ -39,6 +40,7 @@ namespace Zeta {
 				is_const_volatile_lvalue     = false,
 				is_const_volatile_rvalue     = false,
 				is_data_member_pointer	     = false,
+				is_empty		     = false,
 				is_enum			     = false,
 				is_exact		     = false,
 				is_integer		     = false,
@@ -591,47 +593,6 @@ namespace Zeta {
 
 #		endif
 
-#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
-
-			struct NullPointer : Storable {
-				enum {	is_fundamental = true,
-					is_scalar      = true,
-					is_nullptr     = true
-				};	
-
-				typedef decltype(nullptr) type;
-			};
-
-#		endif
-
-		template <class T> struct Pointer : Storable {
-			enum {	is_pointer = true,
-				is_scalar  = true,
-				is_value   = true
-			};
-
-			typedef T* type;
-			typedef T  pointee_type;
-		};
-
-		template <class T> struct Reference : Storable {
-			enum {is_reference = true};
-
-			typedef T referenced_type;
-		};
-
-		template <class T> struct LValueReference : Reference<T> {
-			enum {is_lvalue_reference = true};
-
-			typedef T& type;
-		};
-
-		template <class T> struct RValueReference : Reference<T> {
-			enum {is_rvalue_reference = true};
-
-			typedef T&& type;
-		};
-
 		template <class T, zsize N> struct Array : Storable {
 			enum {is_array = true};
 			enum {element_count = N};
@@ -657,8 +618,15 @@ namespace Zeta {
 			typedef T type;
 		};
 
-		template <class T> struct Struct : Storable {
-			enum {is_struct = true};
+		template <class T> class Struct : public Storable {
+			private:
+			struct dummy	      {zint dummy;};
+			struct empty_test : T {zint dummy;};
+
+			public:
+			enum {	is_empty  = (sizeof(empty_test) == sizeof(dummy)),
+				is_struct = true
+			};
 
 			typedef T type;
 		};
@@ -667,6 +635,62 @@ namespace Zeta {
 			enum {is_union = true};
 
 			typedef T type;
+		};
+
+#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+
+			struct NullPointer : Storable {
+				enum {	is_fundamental = true,
+					is_scalar      = true,
+					is_nullptr     = true
+				};	
+
+				typedef decltype(nullptr) type;
+			};
+
+#		endif
+
+		template <class T> struct Pointer : Storable {
+			enum {	is_pointer = true,
+				is_scalar  = true,
+				is_value   = true
+			};
+
+			typedef T* type;
+			typedef T  pointee_type;
+		};
+
+		template <class T, class C, class M> struct MemberPointer : Storable {
+			enum {	is_member_pointer = true,
+				is_pointer	  = true,
+				is_scalar	  = true
+			};
+
+			typedef T type;
+			typedef C class_type;
+			typedef M pointee_type;
+		};
+
+		template <class T, class C, class M> struct MemberFunctionPointer : MemberPointer<T, C, M> {
+			enum {is_member_function_pointer = true};
+		};
+
+		template <class T> struct Reference : Storable {
+			enum {is_reference = true};
+
+			typedef T referenced_type;
+		};
+
+		template <class T> struct LValueReference : Reference<T> {
+			enum {is_lvalue_reference = true};
+
+			typedef T& type;
+		};
+
+		template <class T> struct RValueReference : Reference<T> {
+			enum {is_rvalue_reference = true};
+
+			typedef T&& type;
 		};
 
 #		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
@@ -1062,6 +1086,7 @@ namespace Zeta {
 			Value,
 			VoidPointer,
 			Pointer,
+			MemberFunctionPointer,
 			Reference,
 			Template
 		};
@@ -1140,6 +1165,9 @@ namespace Zeta {
 #			endif
 		};
 
+		template <class C> struct Kind<MemberFunctionPointer, C> : Storable<C> {
+		};
+
 		template <class C> struct Kind<Reference, C> : Storable<C> {
 			typedef NaT to_const;
 			typedef NaT to_volatile;
@@ -1165,15 +1193,15 @@ namespace Zeta {
 
 	namespace Detail {namespace Type {
 
-		// MARK: - Partials: Structures and unions (WIP)
+		// MARK: - Specializations: Structures and unions (WIP)
 
 		template <class T> struct Case : Mixins::Unqualified<Abstract::Struct<T> > {};
 
-		// MARK: - Partials: void
+		// MARK: - Specializations: void
 
 		template <> struct Case<void> : Mixins::Unqualified<Abstract::Void> {};
 
-		// MARK: - Partials: Numbers
+		// MARK: - Specializations: Numbers
 
 #		if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
 			template <> struct Case<UInt8> : Mixins::Unqualified<Abstract::UInt8> {};
@@ -1247,59 +1275,7 @@ namespace Zeta {
 			template <> struct Case<LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
 #		endif
 
-		// MARK: - Partials: Pointers
-
-#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
-			template <> struct Case<decltype(nullptr)> : Mixins::Unqualified<Abstract::NullPointer> {};
-#		endif
-
-		template <class T> struct Case<T*> : Mixins::Unqualified<Abstract::Pointer<T> > {
-			enum {	is_function_pointer = Case<T>::is_function,
-				is_callable	    = is_function_pointer,
-				is_void_pointer	    = Case<T>::is_void
-			};
-			enum {pointer_level = Case<T>::pointer_level + 1};
-		};
-
-		// TODO
-		template <class C, class T> struct Case<T C::*> : Mixins::Unqualified<Abstract::Pointer<T> > {
-			enum {	is_data_member_pointer = true,
-				is_member_pointer      = true
-			};
-
-			typedef C class_type;
-		};
-
-#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
-
-			// TODO
-			template <class C, class R, class... A> struct Case<R(C::*)(A...)> : Mixins::Unqualified<Abstract::Function<R, A...> > {
-				enum {	is_member_function_pointer = true,
-					is_member_pointer	   = true
-				};
-
-				typedef C class_type;
-			};
-
-#		endif
-
-		// MARK: - Partials: References
-
-		template <class T> struct Case<T&> : Mixins::Unqualified<Abstract::LValueReference<T> > {
-			enum {	is_function_reference	     = Case<T>::is_function,
-				is_function_lvalue_reference = is_function_reference,
-				is_callable		     = is_function_reference
-			};
-		};
-
-		template <class T> struct Case<T&&> : Mixins::Unqualified<Abstract::RValueReference<T> > {
-			enum {	is_function_reference	     = Case<T>::is_function,
-				is_function_rvalue_reference = is_function_reference,
-				is_callable		     = is_function_reference
-			};
-		};
-
-		// MARK: - Partials: Arrays
+		// MARK: - Specializations: Arrays
 
 		template <class T, Size N> struct Case<T[N]> : Mixins::Unqualified<Abstract::Array<T, N> > {};
 
@@ -1307,7 +1283,7 @@ namespace Zeta {
 		template <class T, Size N> struct Case<	     volatile T[N]> : Mixins::VolatileArray	<Case<T[N]> > {};
 		template <class T, Size N> struct Case<const volatile T[N]> : Mixins::ConstVolatileArray<Case<T[N]> > {};
 
-		// MARK: - Partials: Flexible arrays
+		// MARK: - Specializations: Flexible arrays
 
 		template <class T> struct Case<T[]> : Mixins::Unqualified<Abstract::FlexibleArray<T> > {};
 
@@ -1315,7 +1291,7 @@ namespace Zeta {
 		template <class T> struct Case<	     volatile T[]> : Mixins::VolatileArray     <Case<T[]> > {};
 		template <class T> struct Case<const volatile T[]> : Mixins::ConstVolatileArray<Case<T[]> > {};
 
-		// MARK: - Partials: Functions
+		// MARK: - Specializations: Functions
 
 #		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
@@ -1355,24 +1331,101 @@ namespace Zeta {
 
 #		endif
 
-		// MARK: - Partials: Templates
+		// MARK: - Specializations: Templates
 
 #		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 			template <template <class...> class T, class... A> struct Case<T<A...> > : Mixins::Unqualified<Abstract::Template<T, A...> > {};
 #		endif
 
-		// MARK: - Partials: Qualified types
+		// MARK: - Specializations: Pointers
+
+#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+			template <> struct Case<decltype(nullptr)> : Mixins::Unqualified<Abstract::NullPointer> {};
+#		endif
+
+		template <class T> struct Case<T*> : Mixins::Unqualified<Abstract::Pointer<T> > {
+			enum {	is_function_pointer = Case<T>::is_function,
+				is_callable	    = is_function_pointer,
+				is_void_pointer	    = Case<T>::is_void
+			};
+			enum {pointer_level = Case<T>::pointer_level + 1};
+		};
+
+		// TODO
+		template <class C, class T> struct Case<T C::*> : Mixins::Unqualified<Abstract::Pointer<T> > {
+			enum {	is_data_member_pointer = true,
+				is_member_pointer      = true
+			};
+
+			typedef C class_type;
+		};
+
+#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+
+			template <class C, class R, class... A> struct Case<R(C::*)(A...)		 > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)		     , C, R(A...)		> > {};
+			template <class C, class R, class... A> struct Case<R(C::*)(A...) const		 > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const	     , C, R(A...) const		> > {};
+			template <class C, class R, class... A> struct Case<R(C::*)(A...)	volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)	     volatile, C, R(A...)	volatile> > {};
+			template <class C, class R, class... A> struct Case<R(C::*)(A...) const volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const volatile, C, R(A...) const volatile> > {};
+
+			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)		      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)	       , C, R(A..., ...)	       > > {};
+			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const	      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const	       , C, R(A..., ...) const	       > > {};
+			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)	     volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)       volatile, C, R(A..., ...)       volatile> > {};
+			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const volatile, C, R(A..., ...) const volatile> > {};
+
+#			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+
+				template <class C, class R, class... A> struct Case<R(C::*)(A...)		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)		& , C, R(A...)		      & > > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A...)		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)		&&, C, R(A...)		      &&> > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A...) const		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const		& , C, R(A...) const	      & > > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A...) const		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const		&&, C, R(A...) const	      &&> > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A...)	volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)       volatile & , C, R(A...)	     volatile & > > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A...)	volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)       volatile &&, C, R(A...)	     volatile &&> > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const volatile & , C, R(A...) const volatile &	> > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const volatile &&, C, R(A...) const volatile &&> > {};
+
+				template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)		      & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)		  & , C, R(A...)		& > > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)		      &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)		  &&, C, R(A...)		&&> > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const	      & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const	  & , C, R(A...) const		& > > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const	      &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const	  &&, C, R(A...) const		&&> > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)	     volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)	 volatile & , C, R(A...)       volatile & > > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)	     volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)	 volatile &&, C, R(A...)       volatile &&> > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const volatile & , C, R(A...) const volatile & > > {};
+				template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const volatile &&, C, R(A...) const volatile &&> > {};
+
+#			endif
+
+#		endif
+
+		// MARK: - Specializations: References
+
+		template <class T> struct Case<T&> : Mixins::Unqualified<Abstract::LValueReference<T> > {
+			enum {	is_function_reference	     = Case<T>::is_function,
+				is_function_lvalue_reference = is_function_reference,
+				is_callable		     = is_function_reference
+			};
+		};
+
+		template <class T> struct Case<T&&> : Mixins::Unqualified<Abstract::RValueReference<T> > {
+			enum {	is_function_reference	     = Case<T>::is_function,
+				is_function_rvalue_reference = is_function_reference,
+				is_callable		     = is_function_reference
+			};
+		};
+
+		// MARK: - Specializations: Qualified types
 
 		template <class T> struct Case<const	      T> : SelectType<Case<T>::is_exact, Mixins::Const	      <Case<T> >, Mixins::ConstExact	    <Case<T> > >::type {};
 		template <class T> struct Case<	     volatile T> : SelectType<Case<T>::is_exact, Mixins::Volatile     <Case<T> >, Mixins::VolatileExact	    <Case<T> > >::type {};
 		template <class T> struct Case<const volatile T> : SelectType<Case<T>::is_exact, Mixins::ConstVolatile<Case<T> >, Mixins::ConstVolatileExact<Case<T> > >::type {};
 
-		// MARK: - Partials: Final aggregate
+		// MARK: - Final aggregate
 
 		template <class T> struct Final : Mixins::Kind<
 			Case<T>::is_storable
 				? (Case<T>::is_pointer
-					? (Case<T>::is_void_pointer ? Mixins::VoidPointer : Mixins::Pointer)
+					? (Case<T>::is_member_function_pointer
+						? Mixins::MemberFunctionPointer
+						: (Case<T>::is_void_pointer ? Mixins::VoidPointer : Mixins::Pointer))
 					: (Case<T>::is_reference
 						? Mixins::Reference
 						: (Case<T>::is_template ? Mixins::Template : Mixins::Value)))
@@ -1409,6 +1462,7 @@ namespace Zeta {
 				is_const_volatile_lvalue     = Type::is_const_volatile_lvalue,
 				is_const_volatile_rvalue     = Type::is_const_volatile_rvalue,
 				is_data_member_pointer	     = Type::is_data_member_pointer,
+				is_empty		     = Type::is_empty,
 				is_enum			     = Type::is_enum,
 				is_exact		     = Type::is_exact,
 				is_integer		     = Type::is_integer,
