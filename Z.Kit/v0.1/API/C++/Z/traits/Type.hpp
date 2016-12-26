@@ -1635,7 +1635,7 @@ namespace Zeta {
 			typedef typename Type<typename Type::to_wrap		     >::flow to_wrap;
 
 #			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
-				template <class klass> using to_member_pointer = typename Type<typename Type::to_member_pointer<klass>>::flow;
+				template <class klass> using to_member_pointer = typename Type<typename Type::to_member_pointer<klass> >::flow;
 #			endif
 
 			typedef typename Type<typename Type::add_const		      >::flow add_const;
@@ -1678,8 +1678,6 @@ namespace Zeta {
 				{return type_string<T>().data;}
 
 #		endif
-
-		// TODO: constexpr functions
 	};
 }
 

@@ -373,7 +373,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'----------------------------*/						\
 	defined(_PA_RISC2_0)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_PA_RISC
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_PA_RISC_2
 
 #elif	/*-----------------------.						\
 	| Stratus VOS Standard C |						\
@@ -400,7 +400,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'----------------------------*/						\
 	defined(_PA_RISC1_1)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_PA_RISC_2
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_PA_RISC
 
 #elif	/*-------------------------.						\
 	| Clang, GCC, IBM XL C/C++ |						\
