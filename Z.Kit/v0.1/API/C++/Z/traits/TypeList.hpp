@@ -10,9 +10,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/traits/SelectType.hpp>
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
-
-	namespace Zeta {
+namespace Zeta {
+#	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 
 		template <class L, template <class...> class to> struct TypeListRename;
 
@@ -194,10 +193,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				template <UInt	   rotation	 > using rotate_left  = typename TypeListRotateLeft <TypeList, rotation	     >::type;
 				template <UInt	   rotation	 > using rotate_right = typename TypeListRotateRight<TypeList, rotation	     >::type;
 				template <class	   function_model> using to_function  = typename TypeListToFunction <TypeList, function_model>::type;
+
 #			endif
 		};
-	}
 
-#endif
+#	endif
+}
 
 #endif // __Z_traits_TypeList_HPP__
