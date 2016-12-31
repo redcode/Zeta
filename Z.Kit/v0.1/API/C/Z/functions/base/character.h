@@ -12,68 +12,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/character.h>
 
 
-Z_INLINE zboolean z_is_ascii(zcharacter character)
-	{return Z_IS_ASCII(character);}
+#define Z_IMPLEMENTATION_CHARACTER(export, prefix)										   \
+																   \
+export zboolean prefix##is_alphanumeric		      (zcharacter character) {return Z_IS_ALPHANUMERIC		     (character);} \
+export zboolean prefix##is_ascii		      (zcharacter character) {return Z_IS_ASCII			     (character);} \
+export zboolean prefix##is_binary_digit		      (zcharacter character) {return Z_IS_BINARY_DIGIT		     (character);} \
+export zboolean prefix##is_blank		      (zcharacter character) {return Z_IS_BLANK			     (character);} \
+export zboolean prefix##is_control		      (zcharacter character) {return Z_IS_CONTROL		     (character);} \
+export zboolean prefix##is_decimal_digit	      (zcharacter character) {return Z_IS_DECIMAL_DIGIT		     (character);} \
+export zboolean prefix##is_graphical		      (zcharacter character) {return Z_IS_GRAPHICAL		     (character);} \
+export zboolean prefix##is_hexadecimal_digit	      (zcharacter character) {return Z_IS_HEXADECIMAL_DIGIT	     (character);} \
+export zboolean prefix##is_lowercase_hexadecimal_digit(zcharacter character) {return Z_IS_LOWERCASE_HEXADECIMAL_DIGIT(character);} \
+export zboolean prefix##is_lowercase_letter	      (zcharacter character) {return Z_IS_LOWERCASE_LETTER	     (character);} \
+export zboolean prefix##is_printable		      (zcharacter character) {return Z_IS_PRINTABLE		     (character);} \
+export zboolean prefix##is_octal_digit		      (zcharacter character) {return Z_IS_OCTAL_DIGIT		     (character);} \
+export zboolean prefix##is_uppercase_hexadecimal_digit(zcharacter character) {return Z_IS_UPPERCASE_HEXADECIMAL_DIGIT(character);} \
+export zboolean prefix##is_uppercase_letter	      (zcharacter character) {return Z_IS_UPPERCASE_LETTER	     (character);} \
+																   \
+export zcharacter prefix##lowercase(zcharacter character) {return Z_UPPERCASE(character);}					   \
+export zcharacter prefix##uppercase(zcharacter character) {return Z_UPPERCASE(character);}
 
 
-Z_INLINE zboolean z_is_blank(zcharacter character)
-	{return Z_IS_BLANK(character);}
-
-
-Z_INLINE zboolean z_is_binary_digit(zcharacter character)
-	{return Z_IS_BINARY_DIGIT(character);}
-
-
-Z_INLINE zboolean z_is_control(zcharacter character)
-	{return Z_IS_CONTROL(character);}
-
-
-Z_INLINE zboolean z_is_graphical(zcharacter character)
-	{return Z_IS_GRAPHICAL(character);}
-
-
-Z_INLINE zboolean z_is_printable(zcharacter character)
-	{return Z_IS_PRINTABLE(character);}
-
-
-Z_INLINE zboolean z_is_octal_digit(zcharacter character)
-	{return Z_IS_OCTAL_DIGIT(character);}
-
-
-Z_INLINE zboolean z_is_decimal_digit(zcharacter character)
-	{return Z_IS_DECIMAL_DIGIT(character);}
-
-
-Z_INLINE zboolean z_is_hexadecimal_digit(zcharacter character)
-	{return Z_IS_HEXADECIMAL_DIGIT(character);}
-
-
-Z_INLINE zboolean z_is_lowercase_hexadecimal_digit(zcharacter character)
-	{return Z_IS_LOWERCASE_HEXADECIMAL_DIGIT(character);}
-
-
-Z_INLINE zboolean z_is_uppercase_hexadecimal_digit(zcharacter character)
-	{return Z_IS_UPPERCASE_HEXADECIMAL_DIGIT(character);}
-
-
-Z_INLINE zboolean z_is_lowercase_letter(zcharacter character)
-	{return Z_IS_LOWERCASE_LETTER(character);}
-
-
-Z_INLINE zboolean z_is_uppercase_letter(zcharacter character)
-	{return Z_IS_UPPERCASE_LETTER(character);}
-
-
-Z_INLINE zboolean z_is_alphanumeric(zcharacter character)
-	{return Z_IS_ALPHANUMERIC(character);}
-
-
-Z_INLINE zcharacter z_to_lowercase(zcharacter character)
-	{return Z_TO_UPPERCASE(character);}
-
-
-Z_INLINE zcharacter z_to_uppercase(zcharacter character)
-	{return Z_TO_UPPERCASE(character);}
+Z_IMPLEMENTATION_CHARACTER(Z_INLINE, z_)
 
 
 #endif /* __Z_functions_base_character_H__ */

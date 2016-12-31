@@ -553,6 +553,18 @@ typedef struct {zint32 x, y, z, w;}		Z4DInt32;
 
 /* MARK: - Default fixed size types */
 
+typedef zuint8					zdint8;
+#define Z_DINT8					Z_UINT8
+#define Z_DINT8_IS_SIGNED			FALSE
+
+typedef zuint16					zdint16;
+#define Z_DINT16				Z_UINT16
+#define Z_DINT16_IS_SIGNED			FALSE
+
+typedef zuint32					zdint32;
+#define Z_DINT32				Z_UINT32
+#define Z_DINT32_IS_SIGNED			FALSE
+
 #if defined(Z_UINT64)
 
 	typedef zuint64				zdint64;
@@ -1224,15 +1236,23 @@ typedef ZRangeSize				ZRange;
 /* MARK: - Value component access types */
 
 Z_DEFINE_STRICT_UNION (
+	zdint8 value_dint8;
 	zuint8 value_uint8;
 	zint8  value_int8;
 ) Z8Bit;
 
 Z_DEFINE_STRICT_UNION_BEGIN
+	zdint16 value_dint16;
 	zuint16 value_uint16;
 	zint16	value_int16;
+	zdint8	array_dint8[2];
 	zuint8	array_uint8[2];
 	zint8	array_int8 [2];
+
+	struct {Z_ENDIANIZED_MEMBERS(16, 2) (
+		zdint8 index1,
+		zdint8 index0
+	)} values_dint8;
 
 	struct {Z_ENDIANIZED_MEMBERS(16, 2) (
 		zuint8 index1,
@@ -1250,12 +1270,20 @@ Z_DEFINE_STRICT_UNION_BEGIN
 Z_DEFINE_STRICT_UNION_END Z16Bit;
 
 Z_DEFINE_STRICT_UNION_BEGIN
+	zdint32 value_dint32;
 	zuint32 value_uint32;
 	zint32	value_int32;
+	zdint16 array_dint16[2];
 	zuint16 array_uint16[2];
 	zint16	array_int16 [2];
+	zdint8	array_dint8 [4];
 	zuint8	array_uint8 [4];
 	zint8	array_int8  [4];
+
+	struct {Z_ENDIANIZED_MEMBERS(32, 2) (
+		zdint16 index1,
+		zdint16 index0
+	)} values_dint16;
 
 	struct {Z_ENDIANIZED_MEMBERS(32, 2) (
 		zuint16 index1,
@@ -1266,6 +1294,13 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint16 index1,
 		zint16 index0
 	)} values_int16;
+
+	struct {Z_ENDIANIZED_MEMBERS(32, 4) (
+		zdint8 index3,
+		zdint8 index2,
+		zdint8 index1,
+		zdint8 index0
+	)} values_dint8;
 
 	struct {Z_ENDIANIZED_MEMBERS(32, 4) (
 		zuint8 index3,
@@ -1296,12 +1331,20 @@ Z_DEFINE_STRICT_UNION_BEGIN
 Z_DEFINE_STRICT_UNION_END Z32Bit;
 
 Z_DEFINE_STRICT_UNION_BEGIN
+	zdint32 array_dint32[2];
 	zuint32 array_uint32[2];
 	zint32	array_int32 [2];
+	zdint16 array_dint16[4];
 	zuint16 array_uint16[4];
 	zint16	array_int16 [4];
+	zdint8	array_dint8 [8];
 	zuint8	array_uint8 [8];
 	zint8	array_int8  [8];
+
+	struct {Z_ENDIANIZED_MEMBERS(64, 2) (
+		zdint32 index1,
+		zdint32 index0
+	)} values_dint32;
 
 	struct {Z_ENDIANIZED_MEMBERS(64, 2) (
 		zuint32 index1,
@@ -1312,6 +1355,13 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint32 index1,
 		zint32 index0
 	)} values_int32;
+
+	struct {Z_ENDIANIZED_MEMBERS(64, 4) (
+		zdint16 index3,
+		zdint16 index2,
+		zdint16 index1,
+		zdint16 index0
+	)} values_dint16;
 
 	struct {Z_ENDIANIZED_MEMBERS(64, 4) (
 		zuint16 index3,
@@ -1326,6 +1376,17 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint16 index1,
 		zint16 index0
 	)} values_int16;
+
+	struct {Z_ENDIANIZED_MEMBERS(64, 8) (
+		zdint8 index7,
+		zdint8 index6,
+		zdint8 index5,
+		zdint8 index4,
+		zdint8 index3,
+		zdint8 index2,
+		zdint8 index1,
+		zdint8 index0
+	)} values_dint8;
 
 	struct {Z_ENDIANIZED_MEMBERS(64, 8) (
 		zuint8 index7,
@@ -1349,16 +1410,16 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint8 index0
 	)} values_int8;
 
+#	ifdef Z_DINT64
+		zdint64 value_dint64;
+#	endif
+
 #	ifdef Z_UINT64
 		zuint64 value_uint64;
 #	endif
 
 #	ifdef Z_INT64
 		zint64 value_int64;
-#	endif
-
-#	ifdef Z_DINT64
-		zdint64 value_dint64;
 #	endif
 
 #	ifdef Z_FLOAT64
@@ -1387,12 +1448,22 @@ Z_DEFINE_STRICT_UNION_BEGIN
 Z_DEFINE_STRICT_UNION_END Z64Bit;
 
 Z_DEFINE_STRICT_UNION_BEGIN
+	zdint32	array_dint32[ 4];
 	zuint32	array_uint32[ 4];
 	zint32	array_int32 [ 4];
+	zdint16	array_dint16[ 8];
 	zuint16	array_uint16[ 8];
 	zint16	array_int16 [ 8];
+	zdint8	array_dint8 [16];
 	zuint8	array_uint8 [16];
 	zint8	array_int8  [16];
+
+	struct {Z_ENDIANIZED_MEMBERS(128, 4) (
+		zdint32 index3,
+		zdint32 index2,
+		zdint32 index1,
+		zdint32 index0
+	)} values_dint32;
 
 	struct {Z_ENDIANIZED_MEMBERS(128, 4) (
 		zuint32 index3,
@@ -1407,6 +1478,17 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint32 index1,
 		zint32 index0
 	)} values_int32;
+
+	struct {Z_ENDIANIZED_MEMBERS(128, 8) (
+		zdint16 index7,
+		zdint16 index6,
+		zdint16 index5,
+		zdint16 index4,
+		zdint16 index3,
+		zdint16 index2,
+		zdint16 index1,
+		zdint16 index0
+	)} values_dint16;
 
 	struct {Z_ENDIANIZED_MEMBERS(128, 8) (
 		zuint16 index7,
@@ -1429,6 +1511,25 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint16 index1,
 		zint16 index0
 	)} values_int16;
+
+	struct {Z_ENDIANIZED_MEMBERS(128, 16) (
+		zdint8 index15,
+		zdint8 index14,
+		zdint8 index13,
+		zdint8 index12,
+		zdint8 index11,
+		zdint8 index10,
+		zdint8 index09,
+		zdint8 index08,
+		zdint8 index07,
+		zdint8 index06,
+		zdint8 index05,
+		zdint8 index04,
+		zdint8 index03,
+		zdint8 index02,
+		zdint8 index01,
+		zdint8 index00
+	)} values_dint8;
 
 	struct {Z_ENDIANIZED_MEMBERS(128, 16) (
 		zuint8 index15,
@@ -1468,6 +1569,10 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint8 index00
 	)} values_int8;
 
+#	ifdef Z_DINT128
+		zdint128 value_dint128;
+#	endif
+
 #	ifdef Z_UINT128
 		zuint128 value_uint128;
 #	endif
@@ -1476,8 +1581,13 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint128 value_int128;
 #	endif
 
-#	ifdef Z_DINT128
-		zdint128 value_dint128;
+#	ifdef Z_DINT64
+		zdint64 array_dint64[2];
+
+		struct {Z_ENDIANIZED_MEMBERS(128, 2) (
+			zdint64 index1,
+			zdint64 index0
+		)} values_dint64;
 #	endif
 
 #	ifdef Z_UINT64
@@ -1496,15 +1606,6 @@ Z_DEFINE_STRICT_UNION_BEGIN
 			zint64 index1,
 			zint64 index0
 		)} values_int64;
-#	endif
-
-#	ifdef Z_DINT64
-		zdint64 array_dint64[2];
-
-		struct {Z_ENDIANIZED_MEMBERS(128, 2) (
-			zdint64 index1,
-			zdint64 index0
-		)} values_dint64;
 #	endif
 
 #	ifdef Z_FLOAT128
@@ -1612,6 +1713,10 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		Z3DInt128* pointer_3d_int128;
 		Z4DInt128* pointer_4d_int128;
 #	endif
+
+	zdint8*	 pointer_dint8;
+	zdint16* pointer_dint16;
+	zdint32* pointer_dint32;
 
 #	ifdef Z_DINT64
 		zdint64* pointer_dint64;

@@ -11,8 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/character set.h>
 
 #define Z_IS_ASCII(	  c) ((c) >= 0x00 && (c) <= 0x7F)
-#define Z_IS_BLANK(	  c) ((c) ==  ' ' || (c) == '\t')
 #define Z_IS_BINARY_DIGIT(c) ((c) ==  '0' || (c) ==  '1')
+#define Z_IS_BLANK(	  c) ((c) ==  ' ' || (c) == '\t')
 
 #if Z_CHARACTER_SET_IS_ASCII
 
@@ -24,15 +24,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_CHARACTER_SET_DIGITS_ARE_CONSECUTIVE
 
-#	define Z_IS_OCTAL_DIGIT(  c) ((c) >= '0' && (c) <= '7')
 #	define Z_IS_DECIMAL_DIGIT(c) ((c) >= '0' && (c) <= '9')
+#	define Z_IS_OCTAL_DIGIT(  c) ((c) >= '0' && (c) <= '7')
 
 #else
-
-#	define Z_IS_OCTAL_DIGIT(c) \
-		((c) == '0' || (c) == '1' || (c) == '2' || \
-		 (c) == '3' || (c) == '4' || (c) == '5' || \
-		 (c) == '6' || (c) == '7')
 
 #	define Z_IS_DECIMAL_DIGIT(c) \
 		((c) == '0' || (c) == '1' || (c) == '2' || \
@@ -40,12 +35,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		 (c) == '6' || (c) == '7' || (c) == '8' || \
 		 (c) == '9')
 
+#	define Z_IS_OCTAL_DIGIT(c) \
+		((c) == '0' || (c) == '1' || (c) == '2' || \
+		 (c) == '3' || (c) == '4' || (c) == '5' || \
+		 (c) == '6' || (c) == '7')
+
 #endif
 
 #if Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE
 
-#	define Z_IS_LOWERCASE_LETTER(		 c) ((c) >= 'a' && (c) <= 'z')
 #	define Z_IS_LOWERCASE_HEXADECIMAL_LETTER(c) ((c) >= 'a' && (c) <= 'f')
+#	define Z_IS_LOWERCASE_LETTER(		 c) ((c) >= 'a' && (c) <= 'z')
 
 #else
 
@@ -68,10 +68,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE
 
-#	define Z_IS_UPPERCASE_LETTER(		 c) ((c) >= 'A' && (c) <= 'Z')
 #	define Z_IS_UPPERCASE_HEXADECIMAL_LETTER(c) ((c) >= 'A' && (c) <= 'F')
+#	define Z_IS_UPPERCASE_LETTER(		 c) ((c) >= 'A' && (c) <= 'Z')
 
 #else
+
+#	define Z_IS_UPPERCASE_HEXADECIMAL_LETTER(c) \
+		((c) == 'A' || (c) == 'B' || (c) == 'C' || \
+		 (c) == 'D' || (c) == 'E' || (c) == 'F')
 
 #	define Z_IS_UPPERCASE_LETTER(c) \
 		((c) == 'A' || (c) == 'B' || (c) == 'C' || \
@@ -83,10 +87,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		 (c) == 'S' || (c) == 'T' || (c) == 'U' || \
 		 (c) == 'V' || (c) == 'Y' || (c) == 'X' || \
 		 (c) == 'Z')
-
-#	define Z_IS_UPPERCASE_HEXADECIMAL_LETTER(c) \
-		((c) == 'A' || (c) == 'B' || (c) == 'C' || \
-		 (c) == 'D' || (c) == 'E' || (c) == 'F')
 
 #endif
 
@@ -118,8 +118,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if	Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE && \
 	Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE
 
-#	define Z_TO_LOWERCASE(c) ((c) >= 'A' && (c) <= 'Z' ? (c) - 'A' + 'a' : (c))
-#	define Z_TO_UPPERCASE(c) ((c) >= 'a' && (c) <= 'z' ? (c) - 'a' + 'A' : (c))
+#	define Z_LOWERCASE(c) ((c) >= 'A' && (c) <= 'Z' ? (c) - 'A' + 'a' : (c))
+#	define Z_UPPERCASE(c) ((c) >= 'a' && (c) <= 'z' ? (c) - 'a' + 'A' : (c))
 
 #endif
 
