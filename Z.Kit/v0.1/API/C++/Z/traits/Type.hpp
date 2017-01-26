@@ -517,8 +517,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CONSTANT_MEMBER(CPP11) float epsilon () {return Z_FLOAT_EPSILON;}
 			static Z_CONSTANT_MEMBER(CPP11) float minimum () {return Z_FLOAT_MINIMUM;}
 			static Z_CONSTANT_MEMBER(CPP11) float maximum () {return Z_FLOAT_MAXIMUM;}
-			//static Z_CONSTANT_MEMBER float infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
-			//static Z_CONSTANT_MEMBER float nan	   () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}
+			//static Z_CONSTANT_MEMBER(CPP11) float infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
+			//static Z_CONSTANT_MEMBER(CPP11) float nan     () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}
 
 			typedef float type;
 			typedef float to_signed;
@@ -549,8 +549,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CONSTANT_MEMBER(CPP11) double epsilon () {return Z_DOUBLE_EPSILON;}
 			static Z_CONSTANT_MEMBER(CPP11) double minimum () {return Z_DOUBLE_MINIMUM;}
 			static Z_CONSTANT_MEMBER(CPP11) double maximum () {return Z_DOUBLE_MAXIMUM;}
-			//static Z_CONSTANT_MEMBER double infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
-			//static Z_CONSTANT_MEMBER double nan	    () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}
+			//static Z_CONSTANT_MEMBER(CPP11) double infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
+			//static Z_CONSTANT_MEMBER(CPP11) double nan     () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}
 
 			typedef double type;
 			typedef double to_signed;
@@ -581,8 +581,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CONSTANT_MEMBER(CPP11) long double epsilon () {return Z_LDOUBLE_EPSILON;}
 			static Z_CONSTANT_MEMBER(CPP11) long double minimum () {return Z_LDOUBLE_MINIMUM;}
 			static Z_CONSTANT_MEMBER(CPP11) long double maximum () {return Z_LDOUBLE_MAXIMUM;}
-			//static Z_CONSTANT_MEMBER long double infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
-			//static Z_CONSTANT_MEMBER long double nan	 () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;     }
+			//static Z_CONSTANT_MEMBER(CPP11) long double infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
+			//static Z_CONSTANT_MEMBER(CPP11) long double nan     () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;}
 
 			typedef long double type;
 			typedef long double to_signed;
