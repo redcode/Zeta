@@ -17,7 +17,6 @@ HEADERS += \
 	"$$H/constants/numbers.h" \
 	"$$H/constants/science/chemical elements.h" \
 	"$$H/constants/version.h" \
-	"$$H/formats/archive/9z.h" \
 	"$$H/formats/character set/ASCII.h" \
 	"$$H/formats/character set/DOS CP437.h" \
 	"$$H/formats/character set/DOS CP737.h" \
@@ -48,6 +47,7 @@ HEADERS += \
 	"$$H/formats/floating point/IEEE 754.h" \
 	"$$H/formats/floating point/Intel.h" \
 	"$$H/formats/image/ICNS.h" \
+	"$$H/formats/keymap/Mac OS/virtual.h" \
 	"$$H/formats/multimedia container/Creative Voice.h" \
 	"$$H/formats/multimedia container/Microsoft Wave.h" \
 	"$$H/formats/snapshot/machine/computer/ZX Spectrum/ACH.h" \
@@ -184,8 +184,8 @@ HEADERS += \
 	"$$H/macros/arguments.h" \
 	"$$H/macros/casting.h" \
 	"$$H/macros/character.h" \
-	"$$H/macros/conditionals.h" \
 	"$$H/macros/date.h" \
+	"$$H/macros/filtering.h" \
 	"$$H/macros/key.h" \
 	"$$H/macros/language.h" \
 	"$$H/macros/members.h" \
@@ -214,16 +214,21 @@ HEADERS += \
 	"$$H/types/data.h" \
 	"$$H/types/generic functions.h" \
 	"$$H/types/mathematics.h" \
-	"$$H/types/text.h" \
 	"$$H/types/time.h" \
 	"$$HPP/classes/base/Function.hpp" \
 	"$$HPP/classes/base/InitializerList.hpp" \
+	"$$HPP/classes/base/OpaqueFunctionPointer.hpp" \
+	"$$HPP/classes/base/OpaqueMemberFunctionPointer.hpp" \
 	"$$HPP/classes/base/Pair.hpp" \
 	"$$HPP/classes/base/Range.hpp" \
+	"$$HPP/classes/base/SizedString.hpp" \
 	"$$HPP/classes/base/Status.hpp" \
+	"$$HPP/classes/base/Symbol.hpp" \
 	"$$HPP/classes/base/Tuple.hpp" \
 	"$$HPP/classes/base/Value2D.hpp" \
 	"$$HPP/classes/base/Value3D.hpp" \
+	"$$HPP/classes/base/Variant.hpp" \
+	"$$HPP/classes/base/abstract/Enumeration.hpp" \
 	"$$HPP/classes/buffering/RingBuffer.hpp" \
 	"$$HPP/classes/buffering/TripleBuffer.hpp" \
 	"$$HPP/classes/mathematics/geometry/euclidean/AABB.hpp" \
@@ -237,15 +242,17 @@ HEADERS += \
 	"$$HPP/classes/memory/Shared.hpp" \
 	"$$HPP/classes/time/Attotime.hpp" \
 	"$$HPP/classes/time/Nanotime.hpp" \
+	"$$HPP/functions/base/structure.hpp" \
+	"$$HPP/functions/base/type.hpp" \
 	"$$HPP/functions/base/value.hpp" \
-	"$$HPP/functions/casting.hpp" \
+	"$$HPP/macros/enumeration.hpp" \
 	"$$HPP/macros/language.hpp" \
-	"$$HPP/macros/super.hpp" \
 	"$$HPP/macros/type selection.hpp" \
 	"$$HPP/traits/SelectType.hpp" \
 	"$$HPP/traits/Type.hpp" \
+	"$$HPP/traits/TypeList.hpp" \
 	"$$HPP/traits/TypeOrVoid.hpp" \
 	"$$HPP/traits/base.hpp" \
-	"$$HPP/traits/conditionals.hpp" \
+	"$$HPP/traits/filtering.hpp" \
 	"$$HPP/traits/mathematics.hpp" \
 	"$$HPP/types/base.hpp" \
