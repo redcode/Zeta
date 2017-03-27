@@ -12,13 +12,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_CPUArchitecture( left, right) left##AArch64##right
 #define Z_INSERT_cpu_architecture(left, right) left##aarch64##right
 
-#define Z_CPU_INTEGER_ENDIANNESS_ALL Z_ENDIANNESS_MIXED
-#define Z_CPU_INTEGER_FORMAT_ALL     Z_INTEGER_FORMAT_2S_COMPLEMENT
+#define Z_CPU_HAS_MMU		TRUE
+#define Z_CPU_HAS_FPU		TRUE
+#define Z_CPU_HAS_INTEGER_8BIT	TRUE
+#define Z_CPU_HAS_INTEGER_16BIT	TRUE
+#define Z_CPU_HAS_INTEGER_32BIT	TRUE
+#define Z_CPU_HAS_INTEGER_64BIT	TRUE
 
-#define Z_CPU_HAS_MMU TRUE
-#define Z_CPU_HAS_FPU TRUE
+#define Z_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_MIXED
+#define Z_CPU_INTEGER_FORMAT	 Z_INTEGER_FORMAT_2S_COMPLEMENT
 
-#define Z_CPU_BITS_TOP_INTEGER 32
-#define Z_CPU_BITS_ADDRESSING  32
+#define Z_CPU_BITS_TOP_INTEGER 64
+#define Z_CPU_BITS_ADDRESSING  64
 
 #endif /* __Z_inspection_CPU_modules_AArch64_H__ */
