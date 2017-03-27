@@ -23,7 +23,7 @@ struct Zeta::Status {
 		Unimplemented = Z_UNIMPLEMENTED
 	};
 
-	enum Error {
+	struct Error {enum {
 		Unknown		   = Z_ERROR_UNKNOWN,
 		AlreadyExists	   = Z_ERROR_ALREADY_EXISTS,
 		AlreadyInUse	   = Z_ERROR_ALREADY_IN_USE,
@@ -72,7 +72,7 @@ struct Zeta::Status {
 		TooSmall	   = Z_ERROR_TOO_SMALL,
 		Unauthorized	   = Z_ERROR_UNAUTHORIZED,
 		Unreachable	   = Z_ERROR_UNREACHABLE
-	};
+	};};
 
 	ZStatus code;
 
@@ -90,7 +90,6 @@ struct Zeta::Status {
 	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(ZStatus status) const {return code != status;}
 
 	Z_CONSTANT_MEMBER(CPP11) Boolean is_error() const {return code < 0;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean is_valid() const {return code >= Unreachable && code <= Unimplemented;}
 };
 
 
