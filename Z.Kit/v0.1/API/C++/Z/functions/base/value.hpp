@@ -111,7 +111,7 @@ namespace Zeta {
 		}
 
 
-	template <class T> Z_CONSTANT(CPP11) typename EnableIf<Type<T>::is_real, T>::type
+	template <class T> Z_CONSTANT(CPP14) typename EnableIf<Type<T>::is_real, T>::type
 	smoothstep(T a, T b, T t)
 		{
 		if (t <= a) return T(0.0);
