@@ -2,7 +2,7 @@
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
-Copyright © 2006-2016 Manuel Sainz de Baranda y Goñi.
+Copyright © 2006-2017 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef __Z_traits_Type_HPP__
@@ -121,9 +121,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef NaT return_type;
 		typedef NaT underlying_type;
 
-		typedef NaT arguments;
+		typedef NaT parameters;
 
-		typedef NaT to_argument;
+		typedef NaT to_parameter;
 		typedef NaT to_const;
 		typedef NaT to_const_lvalue;
 		typedef NaT to_const_rvalue;
@@ -715,7 +715,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			endif
 
 			typedef R return_type;
-			typedef TypeList<A...> arguments;
+			typedef TypeList<A...> parameters;
 		};
 
 		template <class R, class... A> struct VariadicFunction : Function<R, A...> {
@@ -746,7 +746,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_template = true};
 			enum {arity = sizeof...(A)};
 
-			typedef TypeList<A...> arguments;
+			typedef TypeList<A...> parameters;
 		};
 
 #	endif
@@ -1436,7 +1436,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		typedef typename SelectType<
 			Final::is_struct || Final::is_union,
 			T, typename Final<const typename Final::remove_const_volatile>::add_lvalue_reference
-		>::type to_argument;
+		>::type to_parameter;
 	};
 
 	template <> struct Final<		NaT> : Abstract::Invalid {};
@@ -1611,9 +1611,9 @@ namespace Zeta {
 			typedef typename Type<typename Type::return_type    >::flow return_type;
 			typedef typename Type<typename Type::underlying_type>::flow underlying_type;
 
-			typedef typename Type::arguments arguments;
+			typedef typename Type::parameters parameters;
 
-			typedef typename Type<typename Type::to_argument	     >::flow to_argument;
+			typedef typename Type<typename Type::to_parameter	     >::flow to_parameter;
 			typedef typename Type<typename Type::to_const		     >::flow to_const;
 			typedef typename Type<typename Type::to_const_lvalue	     >::flow to_const_lvalue;
 			typedef typename Type<typename Type::to_const_rvalue	     >::flow to_const_rvalue;
