@@ -30,9 +30,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			TN _value;
 
 			typedef TN type;
+			typedef TN parameter_type;
 
 			Z_INLINE_MEMBER Element() {}
-			Z_CONSTANT_MEMBER(CPP11) Element(T... previous, TN value) : Super(previous...), _value(value) {}
+			Z_CONSTANT_MEMBER(CPP11) Element(T... previous, typename Type<TN>::to_parameter value) : Super(previous...), _value(value) {}
 		};
 
 		template <class TN> class Element<TN> {
@@ -40,9 +41,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			TN _value;
 
 			typedef TN type;
+			typedef TN parameter_type;
 
 			Z_INLINE_MEMBER Element() {}
-			Z_CONSTANT_MEMBER(CPP11) Element(TN value) : _value(value) {}
+			Z_CONSTANT_MEMBER(CPP11) Element(typename Type<TN>::to_parameter value) : _value(value) {}
 		};
 	}}}
 
@@ -79,7 +81,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			{return At<I>::element::_value;}
 
 
-		template <UInt I> Z_INLINE_MEMBER Tuple &set(typename At<I>::type value)
+		template <UInt I> Z_INLINE_MEMBER Tuple &set(typename At<I>::parameter_type value)
 			{
 			At<I>::element::_value = value;
 			return *this;

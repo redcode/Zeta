@@ -1679,6 +1679,61 @@ namespace Zeta {
 
 #		endif
 	};
+
+	template <class C> struct TypeClassType	     {typedef typename Type<C>::class_type	type;};
+	template <class C> struct TypeElementType    {typedef typename Type<C>::element_type	type;};
+	template <class C> struct TypePointeeType    {typedef typename Type<C>::pointee_type	type;};
+	template <class C> struct TypeReferencedType {typedef typename Type<C>::referenced_type	type;};
+	template <class C> struct TypeReturnType     {typedef typename Type<C>::return_type	type;};
+	template <class C> struct TypeUnderlyingType {typedef typename Type<C>::underlying_type	type;};
+
+	template <class C> struct TypeParameters {typedef typename Type<C>::parameters type;};
+
+	template <class C> struct TypeToParameter	    {typedef typename Type<C>::to_parameter		type;};
+	template <class C> struct TypeToConst		    {typedef typename Type<C>::to_const			type;};
+	template <class C> struct TypeToConstLValue	    {typedef typename Type<C>::to_const_lvalue		type;};
+	template <class C> struct TypeToConstRValue	    {typedef typename Type<C>::to_const_rvalue		type;};
+	template <class C> struct TypeToConstVolatile	    {typedef typename Type<C>::to_const_volatile	type;};
+	template <class C> struct TypeToConstVolatileLValue {typedef typename Type<C>::to_const_volatile_lvalue	type;};
+	template <class C> struct TypeToConstVolatileRValue {typedef typename Type<C>::to_const_volatile_rvalue	type;};
+	template <class C> struct TypeToLValue		    {typedef typename Type<C>::to_lvalue		type;};
+	template <class C> struct TypeToLValueReference	    {typedef typename Type<C>::to_lvalue_reference	type;};
+	template <class C> struct TypeToOpaque		    {typedef typename Type<C>::to_opaque		type;};
+	template <class C> struct TypeToPointer		    {typedef typename Type<C>::to_pointer		type;};
+	template <class C> struct TypeToRValue		    {typedef typename Type<C>::to_rvalue		type;};
+	template <class C> struct TypeToRValueReference	    {typedef typename Type<C>::to_rvalue_reference	type;};
+	template <class C> struct TypeToSigned		    {typedef typename Type<C>::to_signed		type;};
+	template <class C> struct TypeToUnqualified	    {typedef typename Type<C>::to_unqualified		type;};
+	template <class C> struct TypeToUnsigned	    {typedef typename Type<C>::to_unsigned		type;};
+	template <class C> struct TypeToVolatile	    {typedef typename Type<C>::to_volatile		type;};
+	template <class C> struct TypeToVolatileLValue	    {typedef typename Type<C>::to_volatile_lvalue	type;};
+	template <class C> struct TypeToVolatileRValue	    {typedef typename Type<C>::to_volatile_rvalue	type;};
+	template <class C> struct TypeToWrap		    {typedef typename Type<C>::to_wrap			type;};
+
+	template <class C> struct TypeAddConst		     {typedef typename Type<C>::add_const		  type;};
+	template <class C> struct TypeAddConstLValue	     {typedef typename Type<C>::add_const_lvalue	  type;};
+	template <class C> struct TypeAddConstRValue	     {typedef typename Type<C>::add_const_rvalue	  type;};
+	template <class C> struct TypeAddConstVolatile	     {typedef typename Type<C>::add_const_volatile	  type;};
+	template <class C> struct TypeAddConstVolatileLValue {typedef typename Type<C>::add_const_volatile_lvalue type;};
+	template <class C> struct TypeAddConstVolatileRValue {typedef typename Type<C>::add_const_volatile_rvalue type;};
+	template <class C> struct TypeAddLValue		     {typedef typename Type<C>::add_lvalue		  type;};
+	template <class C> struct TypeAddLValueReference     {typedef typename Type<C>::add_lvalue_reference	  type;};
+	template <class C> struct TypeAddPointer	     {typedef typename Type<C>::add_pointer		  type;};
+	template <class C> struct TypeAddRValue		     {typedef typename Type<C>::add_rvalue		  type;};
+	template <class C> struct TypeAddRValueReference     {typedef typename Type<C>::add_rvalue_reference	  type;};
+	template <class C> struct TypeAddVolatile	     {typedef typename Type<C>::add_volatile		  type;};
+	template <class C> struct TypeAddVolatileLValue	     {typedef typename Type<C>::add_volatile_lvalue	  type;};
+	template <class C> struct TypeAddVolatileRValue	     {typedef typename Type<C>::add_volatile_rvalue	  type;};
+
+	template <class C> struct TypeRemoveConst	      {typedef typename Type<C>::remove_const		    type;};
+	template <class C> struct TypeRemoveConstThis	      {typedef typename Type<C>::remove_const_this	    type;};
+	template <class C> struct TypeRemoveConstVolatile     {typedef typename Type<C>::remove_const_volatile	    type;};
+	template <class C> struct TypeRemoveConstVolatileThis {typedef typename Type<C>::remove_const_volatile_this type;};
+	template <class C> struct TypeRemovePointer	      {typedef typename Type<C>::remove_pointer		    type;};
+	template <class C> struct TypeRemoveReference	      {typedef typename Type<C>::remove_reference	    type;};
+	template <class C> struct TypeRemoveThis	      {typedef typename Type<C>::remove_this		    type;};
+	template <class C> struct TypeRemoveVolatile	      {typedef typename Type<C>::remove_volatile	    type;};
+	template <class C> struct TypeRemoveVolatileThis      {typedef typename Type<C>::remove_volatile_this	    type;};
 }
 
 #endif // __Z_traits_Type_HPP__
