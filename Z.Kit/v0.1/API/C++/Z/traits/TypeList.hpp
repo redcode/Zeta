@@ -203,24 +203,39 @@ namespace Zeta {
 			template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...) const volatile &&> {typedef FR type(A...) const volatile &&;};
 #		endif
 
+		template <class L, template <class...> class metafunction> struct TypeListTransform;
+
+		template <template <class...> class L, class A0, class... A, template <class...> class M>
+		struct TypeListTransform<L<A0, A...>, M> {
+			typedef typename TypeListPrepend<
+				typename TypeListTransform<L<A...>, M>::type,
+				typename M<A0>::type
+			>::type type;
+		};
+
+		template <template <class...> class L, class A, template <class...> class M>
+		struct TypeListTransform<L<A>, M> {
+			typedef L<typename M<A>::type> type;
+		};
+
 #		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
 
-			template <class L, template <class...> class to> using type_list_rename = typename TypeListRename<L, to>::type;
-
-			template <class L, class... types	  > using type_list_append	 = typename TypeListAppend     <L, types...	 >::type;
-			template <class L			  > using type_list_first	 = typename TypeListFirst      <L		 >::type;
-			template <class L, UInt	    index	  > using type_list_get		 = typename TypeListGet	       <L, index	 >::type;
-			template <class L			  > using type_list_last	 = typename TypeListLast       <L		 >::type;
-			template <class L, class... types	  > using type_list_prepend	 = typename TypeListPrepend    <L, types...	 >::type;
-			template <class L, UInt	    index	  > using type_list_remove	 = typename TypeListRemove     <L, index	 >::type;
-			template <class L			  > using type_list_remove_first = typename TypeListRemoveFirst<L		 >::type;
-			template <class L, UInt	    head_size	  > using type_list_remove_head	 = typename TypeListRemoveHead <L, head_size	 >::type;
-			template <class L			  > using type_list_remove_last	 = typename TypeListRemoveLast <L		 >::type;
-			template <class L, UInt	    head_size	  > using type_list_remove_tail	 = typename TypeListRemoveTail <L, head_size	 >::type;
-			template <class L			  > using type_list_reverse	 = typename TypeListReverse    <L		 >::type;
-			template <class L, UInt	    rotation	  > using type_list_rotate_left	 = typename TypeListRotateLeft <L, rotation	 >::type;
-			template <class L, UInt	    rotation	  > using type_list_rotate_right = typename TypeListRotateRight<L, rotation	 >::type;
-			template <class L, class    function_model> using type_list_to_function	 = typename TypeListToFunction <L, function_model>::type;
+			template <class L, class...		     types	   > using type_list_append	  = typename TypeListAppend	<L, types...	  >::type;
+			template <class L					   > using type_list_first	  = typename TypeListFirst	<L		  >::type;
+			template <class L, UInt			     index	   > using type_list_get	  = typename TypeListGet	<L, index	  >::type;
+			template <class L					   > using type_list_last	  = typename TypeListLast	<L		  >::type;
+			template <class L, class...		     types	   > using type_list_prepend	  = typename TypeListPrepend	<L, types...	  >::type;
+			template <class L, UInt			     index	   > using type_list_remove	  = typename TypeListRemove	<L, index	  >::type;
+			template <class L					   > using type_list_remove_first = typename TypeListRemoveFirst<L		  >::type;
+			template <class L, UInt			     head_size	   > using type_list_remove_head  = typename TypeListRemoveHead	<L, head_size	  >::type;
+			template <class L					   > using type_list_remove_last  = typename TypeListRemoveLast	<L		  >::type;
+			template <class L, UInt			     head_size	   > using type_list_remove_tail  = typename TypeListRemoveTail	<L, head_size	  >::type;
+			template <class L, template <class...> class to		   > using type_list_rename	  = typename TypeListRename	<L, to		  >::type;
+			template <class L					   > using type_list_reverse	  = typename TypeListReverse	<L		  >::type;
+			template <class L, UInt			     rotation	   > using type_list_rotate_left  = typename TypeListRotateLeft	<L, rotation	  >::type;
+			template <class L, UInt			     rotation	   > using type_list_rotate_right = typename TypeListRotateRight<L, rotation	  >::type;
+			template <class L, class		     function_model> using type_list_to_function  = typename TypeListToFunction	<L, function_model>::type;
+			template <class L, template <class...> class metafunction  > using type_list_transform	  = typename TypeListTransform	<L, metafunction  >::type;
 
 #		endif
 
@@ -235,17 +250,17 @@ namespace Zeta {
 
 #			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
 
-				template <template <class...> class to> using rename = typename TypeListRename<TypeList, to>::type;
-
-				template <class... types	 > using append	      = TypeList<A..., types...>;
-				template <UInt	   index	 > using get	      = typename SelectType<index, A...>::type;
-				template <class... types	 > using prepend      = TypeList<types..., A...>;
-				template <UInt	   index	 > using remove	      = typename TypeListRemove     <TypeList, index	     >::type;
-				template <UInt	   head_size	 > using remove_head  = typename TypeListRemoveHead <TypeList, head_size     >::type;
-				template <UInt	   tail_size	 > using remove_tail  = typename TypeListRemoveTail <TypeList, tail_size     >::type;
-				template <UInt	   rotation	 > using rotate_left  = typename TypeListRotateLeft <TypeList, rotation	     >::type;
-				template <UInt	   rotation	 > using rotate_right = typename TypeListRotateRight<TypeList, rotation	     >::type;
-				template <class	   function_model> using to_function  = typename TypeListToFunction <TypeList, function_model>::type;
+				template <class...		    types	  > using append       = TypeList<A..., types...>;
+				template <UInt			    index	  > using get	       = typename SelectType<index, A...>::type;
+				template <class...		    types	  > using prepend      = TypeList<types..., A...>;
+				template <UInt			    index	  > using remove       = typename TypeListRemove     <TypeList, index	      >::type;
+				template <UInt			    head_size	  > using remove_head  = typename TypeListRemoveHead <TypeList, head_size     >::type;
+				template <UInt			    tail_size	  > using remove_tail  = typename TypeListRemoveTail <TypeList, tail_size     >::type;
+				template <template <class...> class to		  > using rename       = typename TypeListRename     <TypeList, to	      >::type;
+				template <UInt			    rotation	  > using rotate_left  = typename TypeListRotateLeft <TypeList, rotation      >::type;
+				template <UInt			    rotation	  > using rotate_right = typename TypeListRotateRight<TypeList, rotation      >::type;
+				template <class			    function_model> using to_function  = typename TypeListToFunction <TypeList, function_model>::type;
+				template <template <class...> class metafunction  > using transform    = typename TypeListTransform  <TypeList, metafunction  >::type;
 
 #			endif
 		};
