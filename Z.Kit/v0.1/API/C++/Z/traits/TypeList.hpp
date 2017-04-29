@@ -10,8 +10,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/traits/SelectType.hpp>
 
-namespace Zeta {
-#	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+
+	namespace Zeta {
 
 		template <class L, class... types> struct TypeListAppend;
 
@@ -264,8 +265,8 @@ namespace Zeta {
 
 #			endif
 		};
+	}
 
-#	endif
-}
+#endif
 
 #endif // __Z_traits_TypeList_HPP__

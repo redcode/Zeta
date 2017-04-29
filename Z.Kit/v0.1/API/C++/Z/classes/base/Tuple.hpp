@@ -14,70 +14,80 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {namespace Partials {namespace Tuple {
 
-		template <class... T> class Element;
+		template <class value_type_list, class parameter_type_list> class Element;
+		template <class value_type_list, class parameter_type_list> class Super;
 
-		template <class... T> struct Super {
-			typedef typename TypeListRename<
-				typename TypeListRotateRight<TypeList<T...>, 1>::type, Element
-			>::type type;
+		template <class... V, class... P> struct Super<TypeList<V...>, TypeList<P...> > {
+			typedef Element<
+				typename TypeListRotateRight<TypeList<V...>, 1>::type,
+				typename TypeListRotateRight<TypeList<P...>, 1>::type
+			> type;
 		};
 
-		template <class TN, class... T> class Element<TN, T...> : public Super<T...>::type {
+		template <class VN, class... V, class PN, class... P> class Element<TypeList<VN, V...>, TypeList<PN, P...> >
+		: public Super<TypeList<V...>, TypeList<P...> >::type {
 			private:
-			typedef typename Super<T...>::type Super;
+			typedef typename Super<TypeList<V...>, TypeList<P...> >::type Super;
 
 			protected:
-			TN _value;
+			VN _value;
 
-			typedef TN type;
-			typedef TN parameter_type;
+			typedef VN value_type;
+			typedef PN parameter_type;
 
+			public:
 			Z_INLINE_MEMBER Element() {}
-			Z_CONSTANT_MEMBER(CPP11) Element(T... previous, typename Type<TN>::to_parameter value) : Super(previous...), _value(value) {}
+			Z_CONSTANT_MEMBER(CPP11) Element(P... previous, PN value) : Super(previous...), _value(value) {}
 		};
 
-		template <class TN> class Element<TN> {
+		template <class VN, class PN> class Element<TypeList<VN>, TypeList<PN> > {
 			protected:
-			TN _value;
+			VN _value;
 
-			typedef TN type;
-			typedef TN parameter_type;
+			typedef VN value_type;
+			typedef PN parameter_type;
 
+			public:
 			Z_INLINE_MEMBER Element() {}
-			Z_CONSTANT_MEMBER(CPP11) Element(typename Type<TN>::to_parameter value) : _value(value) {}
+			Z_CONSTANT_MEMBER(CPP11) Element(PN value) : _value(value) {}
 		};
 	}}}
+
 
 	namespace Zeta {template <class... T> class Tuple;}
 
 
-	template <class... T> class Zeta::Tuple : public Zeta::Partials::Tuple::Super<T...>::type {
+	template <class... T> class Zeta::Tuple
+	: public Zeta::Partials::Tuple::Super<TypeList<T...>, typename TypeListTransform<TypeList<T...>, TypeToParameter>::type>::type {
 		private:
-		typedef typename Partials::Tuple::Super<T...>::type Super;
+		typedef TypeList<T...>								ValueTypeList;
+		typedef typename TypeListTransform<ValueTypeList, TypeToParameter>::type	ParameterTypeList;
+		typedef typename Partials::Tuple::Super<ValueTypeList, ParameterTypeList>::type Super;
 
 		protected:
-		template <UInt I> struct At {
-			typedef typename TypeListRename<
-				typename TypeListRotateRight<
-					typename TypeListRemoveTail<TypeList<T...>, sizeof...(T) - (I + 1)>::type, 1
-				>::type,
-				Partials::Tuple::Element
-			>::type element;
+		template <UInt I> class At {
+			private:
+			enum {tail_size = sizeof...(T) - (I + 1)};
 
-			typedef typename element::type type;
+			public:
+			typedef Partials::Tuple::Element<
+				typename TypeListRotateRight<typename TypeListRemoveTail<ValueTypeList,	    tail_size>::type, 1>::type,
+				typename TypeListRotateRight<typename TypeListRemoveTail<ParameterTypeList, tail_size>::type, 1>::type
+			> element;
+
+			typedef typename element::value_type	 value_type;
+			typedef typename element::parameter_type parameter_type;
 		};
 
 		public:
-		Z_INLINE_MEMBER Tuple() {}
-
-		Z_CONSTANT_MEMBER(CPP11) Tuple(T... values) : Super(values...) {}
+		using Super::Super;
 
 
-		template <UInt I> Z_INLINE_MEMBER typename At<I>::type &at()
+		template <UInt I> Z_INLINE_MEMBER typename At<I>::value_type &at()
 			{return At<I>::element::_value;}
 
 
-		template <UInt I> Z_CONSTANT_MEMBER(CPP11) typename At<I>::type get() const
+		template <UInt I> Z_CONSTANT_MEMBER(CPP11) typename At<I>::value_type get() const
 			{return At<I>::element::_value;}
 
 
@@ -87,7 +97,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			return *this;
 			}
 	};
-
 
 #endif
 
