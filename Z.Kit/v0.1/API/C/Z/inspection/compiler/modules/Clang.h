@@ -479,16 +479,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_EXPLICIT_CONVERSION TRUE
 #		endif
 
+#		if __has_feature(cxx_inheriting_constructors)
+#			define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE
+#		endif
+
 #		if __has_feature(cxx_generalized_initializers)
 #			define Z_COMPILER_CPP_HAS_INITIALIZER_LIST TRUE
 #		endif
 
-#		if __has_feature(cxx_nonstatic_member_init)
-#			define Z_COMPILER_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER TRUE
-#		endif
-
 #		if __has_feature(cxx_lambdas) || __has_extension(cxx_lambdas)
 #			define Z_COMPILER_CPP_HAS_LAMBDA TRUE
+#		endif
+
+#		if __has_feature(cxx_nonstatic_member_init)
+#			define Z_COMPILER_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER TRUE
 #		endif
 
 #		if __has_feature(cxx_range_for) || __has_extension(cxx_range_for)

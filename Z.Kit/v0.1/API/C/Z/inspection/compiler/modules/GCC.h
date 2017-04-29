@@ -395,7 +395,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(4, 8, 0)
-#			define Z_COMPILER_CPP_HAS_SPECIFIER_ALIGN_AS TRUE
+#			define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE
+#			define Z_COMPILER_CPP_HAS_SPECIFIER_ALIGN_AS	  TRUE
 #		endif
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(4, 8 ,1)

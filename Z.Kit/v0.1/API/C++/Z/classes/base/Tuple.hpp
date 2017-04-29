@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 
-	namespace Zeta {namespace Partials {namespace Tuple {
+	namespace Zeta {namespace Detail {namespace Tuple {
 
 		template <class value_type_list, class parameter_type_list> class Element;
 		template <class value_type_list, class parameter_type_list> class Super;
@@ -58,11 +58,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 	template <class... T> class Zeta::Tuple
-	: public Zeta::Partials::Tuple::Super<TypeList<T...>, typename TypeListTransform<TypeList<T...>, TypeToParameter>::type>::type {
+	: public Zeta::Detail::Tuple::Super<TypeList<T...>, typename TypeListTransform<TypeList<T...>, TypeToParameter>::type>::type {
 		private:
-		typedef TypeList<T...>								ValueTypeList;
-		typedef typename TypeListTransform<ValueTypeList, TypeToParameter>::type	ParameterTypeList;
-		typedef typename Partials::Tuple::Super<ValueTypeList, ParameterTypeList>::type Super;
+		typedef TypeList<T...>							      ValueTypeList;
+		typedef typename TypeListTransform<ValueTypeList, TypeToParameter>::type      ParameterTypeList;
+		typedef typename Detail::Tuple::Super<ValueTypeList, ParameterTypeList>::type Super;
 
 		protected:
 		template <UInt I> class At {
@@ -70,7 +70,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			enum {tail_size = sizeof...(T) - (I + 1)};
 
 			public:
-			typedef Partials::Tuple::Element<
+			typedef Detail::Tuple::Element<
 				typename TypeListRotateRight<typename TypeListRemoveTail<ValueTypeList,	    tail_size>::type, 1>::type,
 				typename TypeListRotateRight<typename TypeListRemoveTail<ParameterTypeList, tail_size>::type, 1>::type
 			> element;
@@ -80,8 +80,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 
 		public:
-		using Super::Super;
 
+#		if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
+			using Super::Super;
+#		else
+			Z_CONSTANT_MEMBER(CPP11) Tuple(T... values) : Super(values...) {}
+#		endif
 
 		template <UInt I> Z_INLINE_MEMBER typename At<I>::value_type &at()
 			{return At<I>::element::_value;}
