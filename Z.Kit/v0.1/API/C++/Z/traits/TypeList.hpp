@@ -214,9 +214,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			>::type type;
 		};
 
-		template <template <class...> class L, class A, template <class...> class M>
-		struct TypeListTransform<L<A>, M> {
-			typedef L<typename M<A>::type> type;
+		template <template <class...> class L, template <class...> class M>
+		struct TypeListTransform<L<>, M> {
+			typedef L<> type;
 		};
 
 #		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)

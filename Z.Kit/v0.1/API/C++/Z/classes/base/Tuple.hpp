@@ -40,16 +40,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_CONSTANT_MEMBER(CPP11) Element(P... previous, PN value) : Super(previous...), _value(value) {}
 		};
 
-		template <class VN, class PN> class Element<TypeList<VN>, TypeList<PN> > {
-			protected:
-			VN _value;
-
-			typedef VN value_type;
-			typedef PN parameter_type;
-
-			public:
-			Z_INLINE_MEMBER Element() {}
-			Z_CONSTANT_MEMBER(CPP11) Element(PN value) : _value(value) {}
+		template <> class Element<TypeList<>, TypeList<> > {
+			public: 
+			Z_CONSTANT_MEMBER(CPP11) Element() {}
 		};
 	}}}
 
