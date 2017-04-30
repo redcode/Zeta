@@ -1502,10 +1502,6 @@ namespace Zeta {
 
 #	endif
 
-#	if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
-		template <class T, class klass> using type_to_member_pointer = typename TypeToMemberPointer<T, klass>::type;
-#	endif
-
 	template <class T> class Type : public Detail::Type::Final<T> {
 		public:
 
@@ -1734,6 +1730,67 @@ namespace Zeta {
 	template <class T> struct TypeRemoveThis	      {typedef typename Type<T>::remove_this		    type;};
 	template <class T> struct TypeRemoveVolatile	      {typedef typename Type<T>::remove_volatile	    type;};
 	template <class T> struct TypeRemoveVolatileThis      {typedef typename Type<T>::remove_volatile_this	    type;};
+
+#	if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+
+		template <class T> using type_class_type      = typename Type<T>::class_type;
+		template <class T> using type_element_type    = typename Type<T>::element_type;
+		template <class T> using type_pointee_type    = typename Type<T>::pointee_type;
+		template <class T> using type_referenced_type = typename Type<T>::referenced_type;
+		template <class T> using type_return_type     = typename Type<T>::return_type;
+		template <class T> using type_underlying_type = typename Type<T>::underlying_type;
+
+		template <class T> using type_parameters = typename Type<T>::parameters;
+
+		template <class T> using type_to_parameter	       = typename Type<T>::to_parameter;
+		template <class T> using type_to_const		       = typename Type<T>::to_const;
+		template <class T> using type_to_const_lvalue	       = typename Type<T>::to_const_lvalue;
+		template <class T> using type_to_const_rvalue	       = typename Type<T>::to_const_rvalue;
+		template <class T> using type_to_const_volatile	       = typename Type<T>::to_const_volatile;
+		template <class T> using type_to_const_volatile_lvalue = typename Type<T>::to_const_volatile_lvalue;
+		template <class T> using type_to_const_volatile_rvalue = typename Type<T>::to_const_volatile_rvalue;
+		template <class T> using type_to_lvalue		       = typename Type<T>::to_lvalue;
+		template <class T> using type_to_lvalue_reference      = typename Type<T>::to_lvalue_reference;
+		template <class T> using type_to_opaque		       = typename Type<T>::to_opaque;
+		template <class T> using type_to_pointer	       = typename Type<T>::to_pointer;
+		template <class T> using type_to_rvalue		       = typename Type<T>::to_rvalue;
+		template <class T> using type_to_rvalue_reference      = typename Type<T>::to_rvalue_reference;
+		template <class T> using type_to_signed		       = typename Type<T>::to_signed;
+		template <class T> using type_to_unqualified	       = typename Type<T>::to_unqualified;
+		template <class T> using type_to_unsigned	       = typename Type<T>::to_unsigned;
+		template <class T> using type_to_volatile	       = typename Type<T>::to_volatile;
+		template <class T> using type_to_volatile_lvalue       = typename Type<T>::to_volatile_lvalue;
+		template <class T> using type_to_volatile_rvalue       = typename Type<T>::to_volatile_rvalue;
+		template <class T> using type_to_wrap		       = typename Type<T>::to_wrap;
+
+		template <class T, class klass> using type_to_member_pointer = typename TypeToMemberPointer<T, klass>::type;
+
+		template <class T> using type_add_const			= typename Type<T>::add_const;
+		template <class T> using type_add_const_lvalue		= typename Type<T>::add_const_lvalue;
+		template <class T> using type_add_const_rvalue		= typename Type<T>::add_const_rvalue;
+		template <class T> using type_add_const_volatile	= typename Type<T>::add_const_volatile;
+		template <class T> using type_add_const_volatile_lvalue	= typename Type<T>::add_const_volatile_lvalue;
+		template <class T> using type_add_const_volatile_rvalue	= typename Type<T>::add_const_volatile_rvalue;
+		template <class T> using type_add_lvalue		= typename Type<T>::add_lvalue;
+		template <class T> using type_add_lvalue_reference	= typename Type<T>::add_lvalue_reference;
+		template <class T> using type_add_pointer		= typename Type<T>::add_pointer;
+		template <class T> using type_add_rvalue		= typename Type<T>::add_rvalue;
+		template <class T> using type_add_rvalue_reference	= typename Type<T>::add_rvalue_reference;
+		template <class T> using type_add_volatile		= typename Type<T>::add_volatile;
+		template <class T> using type_add_volatile_lvalue	= typename Type<T>::add_volatile_lvalue;
+		template <class T> using type_add_volatile_rvalue	= typename Type<T>::add_volatile_rvalue;
+
+		template <class T> using type_remove_const		 = typename Type<T>::remove_const;
+		template <class T> using type_remove_const_this		 = typename Type<T>::remove_const_this;
+		template <class T> using type_remove_const_volatile	 = typename Type<T>::remove_const_volatile;
+		template <class T> using type_remove_const_volatile_this = typename Type<T>::remove_const_volatile_this;
+		template <class T> using type_remove_pointer		 = typename Type<T>::remove_pointer;
+		template <class T> using type_remove_reference		 = typename Type<T>::remove_reference;
+		template <class T> using type_remove_this		 = typename Type<T>::remove_this;
+		template <class T> using type_remove_volatile		 = typename Type<T>::remove_volatile;
+		template <class T> using type_remove_volatile_this	 = typename Type<T>::remove_volatile_this;
+
+#	endif
 }
 
 #endif // __Z_traits_Type_HPP__
