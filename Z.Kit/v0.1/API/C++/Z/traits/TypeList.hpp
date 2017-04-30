@@ -141,14 +141,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class L> struct TypeListReverse;
 
-		template <template <class...> class L, class... A>
-		struct TypeListReverse<L<A...> > {
-			typedef L<A...> type; // TODO
-		};
-
-		template <template <class...> class L, class A>
-		struct TypeListReverse<L<A> > {
-			typedef L<A> type;
+		template <template <class...> class L, class A0, class... A>
+		struct TypeListReverse<L<A0, A...> > {
+			typedef typename TypeListAppend<typename TypeListReverse<L<A...> >::type, A0>::type type;
 		};
 
 		template <template <class...> class L>
