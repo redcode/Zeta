@@ -16,7 +16,7 @@ namespace Zeta {template <class T> struct Rectangle;}
 
 template <class T> struct Zeta::Rectangle {
 
-	typedef typename ZTypeFixedReal(Z2D, T) Base;
+	typedef typename ZTypeFixedReal(ZRectangle, T) Base;
 
 	Value2D<T> point, size;
 
