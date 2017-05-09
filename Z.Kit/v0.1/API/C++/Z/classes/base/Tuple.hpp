@@ -80,7 +80,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				{return At<I>::Element::_value;}
 
 
-			template <UInt I> Z_CONSTANT_MEMBER(CPP11) typename At<I>::Element::Value get() const
+			template <UInt I> Z_CONSTANT_MEMBER(CPP11) typename At<I>::Element::Parameter get() const
 				{return At<I>::Element::_value;}
 
 
