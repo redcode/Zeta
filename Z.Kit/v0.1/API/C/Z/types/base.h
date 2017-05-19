@@ -551,45 +551,97 @@ typedef struct {zint32 x, y, z, w;}		Z4DInt32;
 #define Z_TYPE_INFINITY(	   TYPE)	Z_INSERT_##TYPE##_FIXED_TYPE(Z_, _INFINITY	     )
 #define Z_TYPE_NAN(		   TYPE)	Z_INSERT_##TYPE##_FIXED_TYPE(Z_, _NAN		     )
 
-/* MARK: - Default fixed size types */
+/* MARK: - Fixed size types for binary operations */
 
-typedef zuint8					zdint8;
-#define Z_DINT8					Z_UINT8
-#define Z_DINT8_IS_SIGNED			FALSE
+typedef zuint8					zbint8;
+#define Z_BINT8					Z_UINT8
+#define Z_BINT8_BASE_VALUE_TYPE			Z_UINT8_BASE_VALUE_TYPE
+#define Z_BINT8_FIXED_VALUE_TYPE		Z_UINT8_FIXED_VALUE_TYPE
+#define Z_BINT8_VALUE_TYPE			Z_UINT8_VALUE_TYPE
+#define Z_BINT8_VALUE_FORMAT			Z_UINT8_VALUE_FORMAT
+#define Z_BINT8_BITS				8
+#define Z_BINT8_SIZE				1
+#define Z_BINT8_IS_SIGNED			FALSE
 
-typedef zuint16					zdint16;
-#define Z_DINT16				Z_UINT16
-#define Z_DINT16_IS_SIGNED			FALSE
+typedef zuint16					zbint16;
+#define Z_BINT16				Z_UINT16
+#define Z_BINT16_BASE_VALUE_TYPE		Z_UINT16_BASE_VALUE_TYPE
+#define Z_BINT16_FIXED_VALUE_TYPE		Z_UINT16_FIXED_VALUE_TYPE
+#define Z_BINT16_VALUE_TYPE			Z_UINT16_VALUE_TYPE
+#define Z_BINT16_VALUE_FORMAT			Z_UINT16_VALUE_FORMAT
+#define Z_BINT16_ENDIANNESS			Z_CPU_ENDIANNESS(INTEGER, 16)
+#define Z_BINT16_BITS				16
+#define Z_BINT16_SIZE				2
+#define Z_BINT16_IS_SIGNED			FALSE
 
-typedef zuint32					zdint32;
-#define Z_DINT32				Z_UINT32
-#define Z_DINT32_IS_SIGNED			FALSE
+typedef zuint32					zbint32;
+#define Z_BINT32				Z_UINT32
+#define Z_BINT32_BASE_VALUE_TYPE		Z_UINT32_BASE_VALUE_TYPE
+#define Z_BINT32_FIXED_VALUE_TYPE		Z_UINT32_FIXED_VALUE_TYPE
+#define Z_BINT32_VALUE_TYPE			Z_UINT32_VALUE_TYPE
+#define Z_BINT32_VALUE_FORMAT			Z_UINT32_VALUE_FORMAT
+#define Z_BINT32_ENDIANNESS			Z_CPU_ENDIANNESS(INTEGER, 32)
+#define Z_BINT32_BITS				32
+#define Z_BINT32_SIZE				4
+#define Z_BINT32_IS_SIGNED			FALSE
 
 #if defined(Z_UINT64)
 
-	typedef zuint64				zdint64;
-#	define Z_DINT64				Z_UINT64
-#	define Z_DINT64_IS_SIGNED		FALSE
+	typedef zuint64				zbint64;
+#	define Z_BINT64				Z_UINT64
+#	define Z_BINT64_BASE_VALUE_TYPE		Z_UINT64_BASE_VALUE_TYPE
+#	define Z_BINT64_FIXED_VALUE_TYPE	Z_UINT64_FIXED_VALUE_TYPE
+#	define Z_BINT64_VALUE_TYPE		Z_UINT64_VALUE_TYPE
+#	define Z_BINT64_VALUE_FORMAT		Z_UINT64_VALUE_FORMAT
+#	define Z_BINT64_IS_SIGNED		FALSE
 
 #elif defined(Z_INT64)
 
-	typedef zint64				zdint64;
-#	define Z_DINT64				Z_INT64
-#	define Z_DINT64_IS_SIGNED		TRUE
+	typedef zint64				zbint64;
+#	define Z_BINT64				Z_INT64
+#	define Z_BINT64_BASE_VALUE_TYPE		Z_INT64_BASE_VALUE_TYPE
+#	define Z_BINT64_FIXED_VALUE_TYPE	Z_INT64_FIXED_VALUE_TYPE
+#	define Z_BINT64_VALUE_TYPE		Z_INT64_VALUE_TYPE
+#	define Z_BINT64_VALUE_FORMAT		Z_INT64_VALUE_FORMAT
+#	define Z_BINT64_IS_SIGNED		TRUE
+
+#endif
+
+#if defined(Z_BINT64)
+
+#	define Z_BINT64_ENDIANNESS		Z_CPU_ENDIANNESS(INTEGER, 64)
+#	define Z_BINT64_BITS			64
+#	define Z_BINT64_SIZE			8
 
 #endif
 
 #if defined(Z_UINT128)
 
-	typedef zuint128			zdint128;
-#	define Z_DINT128			Z_UINT128
-#	define Z_DINT128_IS_SIGNED		FALSE
+	typedef zuint128			zbint128;
+#	define Z_BINT128			Z_UINT128
+#	define Z_BINT128_BASE_VALUE_TYPE	Z_UINT128_BASE_VALUE_TYPE
+#	define Z_BINT128_FIXED_VALUE_TYPE	Z_UINT128_FIXED_VALUE_TYPE
+#	define Z_BINT128_VALUE_TYPE		Z_UINT128_VALUE_TYPE
+#	define Z_BINT128_VALUE_FORMAT		Z_UINT128_VALUE_FORMAT
+#	define Z_BINT128_IS_SIGNED		FALSE
 
 #elif defined(Z_INT128)
 
-	typedef zint128				zdint128;
-#	define Z_DINT128			Z_INT128
-#	define Z_DINT128_IS_SIGNED		TRUE
+	typedef zint128				zbint128;
+#	define Z_BINT128			Z_INT128
+#	define Z_BINT128_BASE_VALUE_TYPE	Z_INT128_BASE_VALUE_TYPE
+#	define Z_BINT128_FIXED_VALUE_TYPE	Z_INT128_FIXED_VALUE_TYPE
+#	define Z_BINT128_VALUE_TYPE		Z_INT128_VALUE_TYPE
+#	define Z_BINT128_VALUE_FORMAT		Z_INT128_VALUE_FORMAT
+#	define Z_BINT128_IS_SIGNED		TRUE
+
+#endif
+
+#if defined(Z_BINT128)
+
+#	define Z_BINT128_ENDIANNESS		Z_CPU_ENDIANNESS(INTEGER, 128)
+#	define Z_BINT128_BITS			128
+#	define Z_BINT128_SIZE			16
 
 #endif
 
@@ -953,6 +1005,32 @@ typedef Z4DType(INTMAX)				Z4DIntMax;
 #define Z_INTMAX_MINIMUM			Z_TYPE_MINIMUM	      (INTMAX)
 #define Z_INTMAX_MAXIMUM			Z_TYPE_MAXIMUM	      (INTMAX)
 
+#if Z_UINTMAX_BITS >= Z_INTMAX_BITS
+
+	typedef zuintmax			zbintmax;
+#	define Z_BINTMAX			Z_UINTMAX
+#	define Z_BINTMAX_BASE_VALUE_TYPE	Z_UINTMAX_BASE_VALUE_TYPE
+#	define Z_BINTMAX_FIXED_VALUE_TYPE	Z_UINTMAX_FIXED_VALUE_TYPE
+#	define Z_BINTMAX_VALUE_TYPE		Z_UINTMAX_VALUE_TYPE
+#	define Z_BINTMAX_VALUE_FORMAT		Z_UINTMAX_VALUE_FORMAT
+#	define Z_BINTMAX_ENDIANNESS		Z_UINTMAX_ENDIANNESS
+#	define Z_BINTMAX_BITS			Z_UINTMAX_BITS
+#	define Z_BINTMAX_SIZE			Z_UINTMAX_SIZE
+
+#else
+
+	typedef zintmax				zbintmax;
+#	define Z_BINTMAX			Z_INTMAX
+#	define Z_BINTMAX_BASE_VALUE_TYPE	Z_INTMAX_BASE_VALUE_TYPE
+#	define Z_BINTMAX_FIXED_VALUE_TYPE	Z_INTMAX_FIXED_VALUE_TYPE
+#	define Z_BINTMAX_VALUE_TYPE		Z_INTMAX_VALUE_TYPE
+#	define Z_BINTMAX_VALUE_FORMAT		Z_INTMAX_VALUE_FORMAT
+#	define Z_BINTMAX_ENDIANNESS		Z_INTMAX_ENDIANNESS
+#	define Z_BINTMAX_BITS			Z_INTMAX_BITS
+#	define Z_BINTMAX_SIZE			Z_INTMAX_SIZE
+
+#endif
+
 /* MARK: - Pointer size types */
 
 #define Z_POINTER_BITS				Z_DATA_MODEL_BITS(POINTER)
@@ -1040,6 +1118,32 @@ typedef Z4DType(INTTOP)				Z4DIntTop;
 #define Z_INTTOP_SIZE				Z_TYPE_SIZE	      (INTTOP)
 #define Z_INTTOP_MINIMUM			Z_TYPE_MINIMUM	      (INTTOP)
 #define Z_INTTOP_MAXIMUM			Z_TYPE_MAXIMUM	      (INTTOP)
+
+#if Z_UINTTOP_BITS >= Z_INTTOP_BITS
+
+	typedef zuinttop			zbinttop;
+#	define Z_BINTTOP			Z_UINTTOP
+#	define Z_BINTTOP_BASE_VALUE_TYPE	Z_UINTTOP_BASE_VALUE_TYPE
+#	define Z_BINTTOP_FIXED_VALUE_TYPE	Z_UINTTOP_FIXED_VALUE_TYPE
+#	define Z_BINTTOP_VALUE_TYPE		Z_UINTTOP_VALUE_TYPE
+#	define Z_BINTTOP_VALUE_FORMAT		Z_UINTTOP_VALUE_FORMAT
+#	define Z_BINTTOP_ENDIANNESS		Z_UINTTOP_ENDIANNESS
+#	define Z_BINTTOP_BITS			Z_UINTTOP_BITS
+#	define Z_BINTTOP_SIZE			Z_UINTTOP_SIZE
+
+#else
+
+	typedef zinttop				zbinttop;
+#	define Z_BINTTOP			Z_INTTOP
+#	define Z_BINTTOP_BASE_VALUE_TYPE	Z_INTTOP_BASE_VALUE_TYPE
+#	define Z_BINTTOP_FIXED_VALUE_TYPE	Z_INTTOP_FIXED_VALUE_TYPE
+#	define Z_BINTTOP_VALUE_TYPE		Z_INTTOP_VALUE_TYPE
+#	define Z_BINTTOP_VALUE_FORMAT		Z_INTTOP_VALUE_FORMAT
+#	define Z_BINTTOP_ENDIANNESS		Z_INTTOP_ENDIANNESS
+#	define Z_BINTTOP_BITS			Z_INTTOP_BITS
+#	define Z_BINTTOP_SIZE			Z_INTTOP_SIZE
+
+#endif
 
 /* MARK: - Default types */
 
@@ -1236,23 +1340,18 @@ typedef ZRangeSize				ZRange;
 /* MARK: - Value component access types */
 
 Z_DEFINE_STRICT_UNION (
-	zdint8 value_dint8;
 	zuint8 value_uint8;
 	zint8  value_int8;
+	zbint8 value_bint8;
 ) Z8Bit;
 
 Z_DEFINE_STRICT_UNION_BEGIN
-	zdint16 value_dint16;
 	zuint16 value_uint16;
 	zint16	value_int16;
-	zdint8	array_dint8[2];
+	zbint16 value_bint16;
 	zuint8	array_uint8[2];
 	zint8	array_int8 [2];
-
-	struct {Z_ENDIANIZED_MEMBERS(16, 2) (
-		zdint8 index1,
-		zdint8 index0
-	)} values_dint8;
+	zbint8	array_bint8[2];
 
 	struct {Z_ENDIANIZED_MEMBERS(16, 2) (
 		zuint8 index1,
@@ -1264,26 +1363,26 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint8 index0
 	)} values_int8;
 
+	struct {Z_ENDIANIZED_MEMBERS(16, 2) (
+		zbint8 index1,
+		zbint8 index0
+	)} values_bint8;
+
 #	ifdef Z_FLOAT16
 		zfloat16 value_float16;
 #	endif
 Z_DEFINE_STRICT_UNION_END Z16Bit;
 
 Z_DEFINE_STRICT_UNION_BEGIN
-	zdint32 value_dint32;
 	zuint32 value_uint32;
 	zint32	value_int32;
-	zdint16 array_dint16[2];
+	zbint32 value_bint32;
 	zuint16 array_uint16[2];
 	zint16	array_int16 [2];
-	zdint8	array_dint8 [4];
+	zbint16 array_bint16[2];
 	zuint8	array_uint8 [4];
 	zint8	array_int8  [4];
-
-	struct {Z_ENDIANIZED_MEMBERS(32, 2) (
-		zdint16 index1,
-		zdint16 index0
-	)} values_dint16;
+	zbint8	array_bint8 [4];
 
 	struct {Z_ENDIANIZED_MEMBERS(32, 2) (
 		zuint16 index1,
@@ -1295,12 +1394,10 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint16 index0
 	)} values_int16;
 
-	struct {Z_ENDIANIZED_MEMBERS(32, 4) (
-		zdint8 index3,
-		zdint8 index2,
-		zdint8 index1,
-		zdint8 index0
-	)} values_dint8;
+	struct {Z_ENDIANIZED_MEMBERS(32, 2) (
+		zbint16 index1,
+		zbint16 index0
+	)} values_bint16;
 
 	struct {Z_ENDIANIZED_MEMBERS(32, 4) (
 		zuint8 index3,
@@ -1315,6 +1412,13 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint8 index1,
 		zint8 index0
 	)} values_int8;
+
+	struct {Z_ENDIANIZED_MEMBERS(32, 4) (
+		zbint8 index3,
+		zbint8 index2,
+		zbint8 index1,
+		zbint8 index0
+	)} values_bint8;
 
 #	ifdef Z_FLOAT32
 		zfloat32 value_float32;
@@ -1331,20 +1435,15 @@ Z_DEFINE_STRICT_UNION_BEGIN
 Z_DEFINE_STRICT_UNION_END Z32Bit;
 
 Z_DEFINE_STRICT_UNION_BEGIN
-	zdint32 array_dint32[2];
 	zuint32 array_uint32[2];
 	zint32	array_int32 [2];
-	zdint16 array_dint16[4];
+	zbint32 array_bint32[2];
 	zuint16 array_uint16[4];
 	zint16	array_int16 [4];
-	zdint8	array_dint8 [8];
+	zbint16 array_bint16[4];
 	zuint8	array_uint8 [8];
 	zint8	array_int8  [8];
-
-	struct {Z_ENDIANIZED_MEMBERS(64, 2) (
-		zdint32 index1,
-		zdint32 index0
-	)} values_dint32;
+	zbint8	array_bint8 [8];
 
 	struct {Z_ENDIANIZED_MEMBERS(64, 2) (
 		zuint32 index1,
@@ -1356,12 +1455,10 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint32 index0
 	)} values_int32;
 
-	struct {Z_ENDIANIZED_MEMBERS(64, 4) (
-		zdint16 index3,
-		zdint16 index2,
-		zdint16 index1,
-		zdint16 index0
-	)} values_dint16;
+	struct {Z_ENDIANIZED_MEMBERS(64, 2) (
+		zbint32 index1,
+		zbint32 index0
+	)} values_bint32;
 
 	struct {Z_ENDIANIZED_MEMBERS(64, 4) (
 		zuint16 index3,
@@ -1377,16 +1474,12 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint16 index0
 	)} values_int16;
 
-	struct {Z_ENDIANIZED_MEMBERS(64, 8) (
-		zdint8 index7,
-		zdint8 index6,
-		zdint8 index5,
-		zdint8 index4,
-		zdint8 index3,
-		zdint8 index2,
-		zdint8 index1,
-		zdint8 index0
-	)} values_dint8;
+	struct {Z_ENDIANIZED_MEMBERS(64, 4) (
+		zbint16 index3,
+		zbint16 index2,
+		zbint16 index1,
+		zbint16 index0
+	)} values_bint16;
 
 	struct {Z_ENDIANIZED_MEMBERS(64, 8) (
 		zuint8 index7,
@@ -1410,9 +1503,16 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint8 index0
 	)} values_int8;
 
-#	ifdef Z_DINT64
-		zdint64 value_dint64;
-#	endif
+	struct {Z_ENDIANIZED_MEMBERS(64, 8) (
+		zbint8 index7,
+		zbint8 index6,
+		zbint8 index5,
+		zbint8 index4,
+		zbint8 index3,
+		zbint8 index2,
+		zbint8 index1,
+		zbint8 index0
+	)} values_bint8;
 
 #	ifdef Z_UINT64
 		zuint64 value_uint64;
@@ -1420,6 +1520,10 @@ Z_DEFINE_STRICT_UNION_BEGIN
 
 #	ifdef Z_INT64
 		zint64 value_int64;
+#	endif
+
+#	ifdef Z_BINT64
+		zbint64 value_bint64;
 #	endif
 
 #	ifdef Z_FLOAT64
@@ -1448,22 +1552,15 @@ Z_DEFINE_STRICT_UNION_BEGIN
 Z_DEFINE_STRICT_UNION_END Z64Bit;
 
 Z_DEFINE_STRICT_UNION_BEGIN
-	zdint32	array_dint32[ 4];
 	zuint32	array_uint32[ 4];
 	zint32	array_int32 [ 4];
-	zdint16	array_dint16[ 8];
+	zbint32	array_bint32[ 4];
 	zuint16	array_uint16[ 8];
 	zint16	array_int16 [ 8];
-	zdint8	array_dint8 [16];
+	zbint16	array_bint16[ 8];
 	zuint8	array_uint8 [16];
 	zint8	array_int8  [16];
-
-	struct {Z_ENDIANIZED_MEMBERS(128, 4) (
-		zdint32 index3,
-		zdint32 index2,
-		zdint32 index1,
-		zdint32 index0
-	)} values_dint32;
+	zbint8	array_bint8 [16];
 
 	struct {Z_ENDIANIZED_MEMBERS(128, 4) (
 		zuint32 index3,
@@ -1479,16 +1576,12 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint32 index0
 	)} values_int32;
 
-	struct {Z_ENDIANIZED_MEMBERS(128, 8) (
-		zdint16 index7,
-		zdint16 index6,
-		zdint16 index5,
-		zdint16 index4,
-		zdint16 index3,
-		zdint16 index2,
-		zdint16 index1,
-		zdint16 index0
-	)} values_dint16;
+	struct {Z_ENDIANIZED_MEMBERS(128, 4) (
+		zbint32 index3,
+		zbint32 index2,
+		zbint32 index1,
+		zbint32 index0
+	)} values_bint32;
 
 	struct {Z_ENDIANIZED_MEMBERS(128, 8) (
 		zuint16 index7,
@@ -1512,24 +1605,16 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint16 index0
 	)} values_int16;
 
-	struct {Z_ENDIANIZED_MEMBERS(128, 16) (
-		zdint8 index15,
-		zdint8 index14,
-		zdint8 index13,
-		zdint8 index12,
-		zdint8 index11,
-		zdint8 index10,
-		zdint8 index09,
-		zdint8 index08,
-		zdint8 index07,
-		zdint8 index06,
-		zdint8 index05,
-		zdint8 index04,
-		zdint8 index03,
-		zdint8 index02,
-		zdint8 index01,
-		zdint8 index00
-	)} values_dint8;
+	struct {Z_ENDIANIZED_MEMBERS(128, 8) (
+		zbint16 index7,
+		zbint16 index6,
+		zbint16 index5,
+		zbint16 index4,
+		zbint16 index3,
+		zbint16 index2,
+		zbint16 index1,
+		zbint16 index0
+	)} values_bint16;
 
 	struct {Z_ENDIANIZED_MEMBERS(128, 16) (
 		zuint8 index15,
@@ -1569,9 +1654,24 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint8 index00
 	)} values_int8;
 
-#	ifdef Z_DINT128
-		zdint128 value_dint128;
-#	endif
+	struct {Z_ENDIANIZED_MEMBERS(128, 16) (
+		zbint8 index15,
+		zbint8 index14,
+		zbint8 index13,
+		zbint8 index12,
+		zbint8 index11,
+		zbint8 index10,
+		zbint8 index09,
+		zbint8 index08,
+		zbint8 index07,
+		zbint8 index06,
+		zbint8 index05,
+		zbint8 index04,
+		zbint8 index03,
+		zbint8 index02,
+		zbint8 index01,
+		zbint8 index00
+	)} values_bint8;
 
 #	ifdef Z_UINT128
 		zuint128 value_uint128;
@@ -1581,13 +1681,8 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		zint128 value_int128;
 #	endif
 
-#	ifdef Z_DINT64
-		zdint64 array_dint64[2];
-
-		struct {Z_ENDIANIZED_MEMBERS(128, 2) (
-			zdint64 index1,
-			zdint64 index0
-		)} values_dint64;
+#	ifdef Z_BINT128
+		zbint128 value_bint128;
 #	endif
 
 #	ifdef Z_UINT64
@@ -1606,6 +1701,15 @@ Z_DEFINE_STRICT_UNION_BEGIN
 			zint64 index1,
 			zint64 index0
 		)} values_int64;
+#	endif
+
+#	ifdef Z_BINT64
+		zbint64 array_bint64[2];
+
+		struct {Z_ENDIANIZED_MEMBERS(128, 2) (
+			zbint64 index1,
+			zbint64 index0
+		)} values_bint64;
 #	endif
 
 #	ifdef Z_FLOAT128
@@ -1714,16 +1818,16 @@ Z_DEFINE_STRICT_UNION_BEGIN
 		Z4DInt128* pointer_4d_int128;
 #	endif
 
-	zdint8*	 pointer_dint8;
-	zdint16* pointer_dint16;
-	zdint32* pointer_dint32;
+	zbint8*	 pointer_bint8;
+	zbint16* pointer_bint16;
+	zbint32* pointer_bint32;
 
-#	ifdef Z_DINT64
-		zdint64* pointer_dint64;
+#	ifdef Z_BINT64
+		zbint64* pointer_bint64;
 #	endif
 
-#	ifdef Z_DINT128
-		zdint128* pointer_dint128;
+#	ifdef Z_BINT128
+		zbint128* pointer_bint128;
 #	endif
 
 #	ifdef Z_FLOAT16
@@ -1886,11 +1990,23 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	Z4DUIntMax*    pointer_4d_uintmax;
 	ZRangeUIntMax* pointer_range_uintmax;
 
+	zintmax*   pointer_intmax;
+	Z2DIntMax* pointer_2d_intmax;
+	Z3DIntMax* pointer_3d_intmax;
+	Z4DIntMax* pointer_4d_intmax;
+
+	zbintmax* pointer_bintmax;
+
 	zuintptr*      pointer_uintptr;
 	Z2DUIntPtr*    pointer_2d_uintptr;
 	Z3DUIntPtr*    pointer_3d_uintptr;
 	Z4DUIntPtr*    pointer_4d_uintptr;
 	ZRangeUIntPtr* pointer_range_uintptr;
+
+	zintptr*   pointer_intptr;
+	Z2DIntPtr* pointer_2d_intptr;
+	Z3DIntPtr* pointer_3d_intptr;
+	Z4DIntPtr* pointer_4d_intptr;
 
 	zuinttop*      pointer_uinttop;
 	Z2DUIntTop*    pointer_2d_uinttop;
@@ -1898,20 +2014,12 @@ Z_DEFINE_STRICT_UNION_BEGIN
 	Z4DUIntTop*    pointer_4d_uinttop;
 	ZRangeUIntTop* pointer_range_uinttop;
 
-	zintmax*   pointer_intmax;
-	Z2DIntMax* pointer_2d_intmax;
-	Z3DIntMax* pointer_3d_intmax;
-	Z4DIntMax* pointer_4d_intmax;
-
-	zintptr*   pointer_intptr;
-	Z2DIntPtr* pointer_2d_intptr;
-	Z3DIntPtr* pointer_3d_intptr;
-	Z4DIntPtr* pointer_4d_intptr;
-
 	zinttop*   pointer_inttop;
 	Z2DIntTop* pointer_2d_inttop;
 	Z3DIntTop* pointer_3d_inttop;
 	Z4DIntTop* pointer_4d_inttop;
+
+	zbinttop* pointer_binttop;
 
 	zboolean*   pointer_boolean;
 	Z2DBoolean* pointer_2d_boolean;

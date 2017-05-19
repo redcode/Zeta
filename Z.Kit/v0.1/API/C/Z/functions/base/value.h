@@ -140,20 +140,20 @@ Z_INLINE z##type z_##type##_smoothstep(z##type a, z##type b, z##type t)		\
 /* MARK: - Implementations for bit operations */
 
 
-#define Z_IMPLEMENTATION_VALUE_REVERSE(export, prefix, type, bits, level) \
-export z##type prefix##type##_reverse_in_##level##bit(z##type value)	  \
+#define Z_IMPLEMENTATION_VALUE_REVERSE(type, bits, level)	   \
+Z_INLINE z##type z_##type##_reverse_in_##level##bit(z##type value) \
 	{return Z_##bits##BIT_REVERSE_IN_##level##BIT(value);}
 
 
 #define z_type_reverse(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reverse_in_8bit)
 
 
-#define Z_IMPLEMENTATION_VALUE_ROTATE(export, prefix, type, bits)	  \
-									  \
-export z##type prefix##type##_rotate_left(z##type value, zuint rotation)  \
-	{return Z_##bits##BIT_ROTATE_LEFT(value, rotation);}		  \
-									  \
-export z##type prefix##type##_rotate_right(z##type value, zuint rotation) \
+#define Z_IMPLEMENTATION_VALUE_ROTATE(type, bits)			\
+									\
+Z_INLINE z##type z_##type##_rotate_left(z##type value, zuint rotation)	\
+	{return Z_##bits##BIT_ROTATE_LEFT(value, rotation);}		\
+									\
+Z_INLINE z##type z_##type##_rotate_right(z##type value, zuint rotation)	\
 	{return Z_##bits##BIT_ROTATE_RIGHT(value, rotation);}
 
 
@@ -164,11 +164,12 @@ export z##type prefix##type##_rotate_right(z##type value, zuint rotation) \
 /* MARK: - uint8 */
 
 
-Z_IMPLEMENTATION_NATURAL(uint8)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint8, 8, 4)
-Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, uint8, 8)
+Z_IMPLEMENTATION_NATURAL      (uint8)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint8, 8, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint8, 8, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint8, 8, 4)
+Z_IMPLEMENTATION_VALUE_ROTATE (uint8, 8)
+
 
 #define z_uint8_reverse Z_SAME
 
@@ -207,10 +208,6 @@ Z_INLINE zboolean z_uint8_subtraction_overflows_3(zuint8 a, zuint8 b, zuint8 c)
 
 Z_INLINE zboolean z_uint8_subtraction_overflows_4(zuint8 a, zuint8 b, zuint8 c, zuint8 d)
 	{return FALSE;}
-
-
-Z_INLINE zuinttop z_uint8_top_mirror(zuint8 value)
-	{return Z_8BIT_TOP_MIRROR(value);}
 
 
 #if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_ADD_THEN_GET)
@@ -297,12 +294,13 @@ Z_INLINE zuinttop z_uint8_top_mirror(zuint8 value)
 /* MARK: - uint16 */
 
 
-Z_IMPLEMENTATION_NATURAL(uint16)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 4)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint16, 16, 8)
-Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, uint16, 16)
+Z_IMPLEMENTATION_NATURAL      (uint16)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint16, 16, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint16, 16, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint16, 16, 4)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint16, 16, 8)
+Z_IMPLEMENTATION_VALUE_ROTATE (uint16, 16)
+
 
 #define z_uint16_reverse z_uint16_reverse_in_8bit
 
@@ -357,26 +355,6 @@ Z_INLINE zboolean z_uint16_subtraction_overflows_4(zuint16 a, zuint16 b, zuint16
 
 Z_INLINE zuint8 z_uint16_minimum_storage_size(zuint16 value)
 	{return value >> 8 ? 2 : 1;}
-
-
-#if Z_UINTTOP_BITS > 16
-
-	Z_INLINE zuinttop z_uint16_top_mirror(zuint16 value)
-		{return Z_16BIT_TOP_MIRROR(value);}
-
-#	if Z_UINTTOP_ENDIANNESS == Z_UINT16_ENDIANNESS
-
-#		define z_uint16_top_packet z_uint16_top_mirror
-
-#	elif	(Z_UINTTOP_ENDIANNESS == Z_ENDIANNESS_BIG     && \
-		 Z_UINT16_ENDIANNESS  == Z_ENDIANNESS_LITTLE) || \
-		(Z_UINTTOP_ENDIANNESS == Z_ENDIANNESS_LITTLE  && \
-		 Z_UINT16_ENDIANNESS  == Z_ENDIANNESS_BIG)
-
-		Z_INLINE zuinttop z_uint16_top_packet(zuint16 value)
-			{return Z_16BIT_TOP_MIRROR(z_uint16_reverse(value));}
-#	endif
-#endif
 
 
 #if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_ADD_THEN_GET)
@@ -463,13 +441,14 @@ Z_INLINE zuint8 z_uint16_minimum_storage_size(zuint16 value)
 /* MARK: - uint32 */
 
 
-Z_IMPLEMENTATION_NATURAL(uint32)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  1)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  2)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  4)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint32, 32,  8)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint32, 32, 16)
-Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, uint32, 32)
+Z_IMPLEMENTATION_NATURAL      (uint32)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32,  1)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32,  2)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32,  4)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32,  8)
+Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32, 16)
+Z_IMPLEMENTATION_VALUE_ROTATE (uint32, 32)
+
 
 #define z_uint32_reverse z_uint32_reverse_in_8bit
 
@@ -529,26 +508,6 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 	if ((value >>  8)) return 2;
 			   return 1;
 	}
-
-
-#if Z_UINTTOP_BITS > 32
-
-	Z_INLINE zuinttop z_uint32_top_mirror(zuint32 value)
-		{return Z_32BIT_TOP_MIRROR(value);}
-
-#	if Z_UINTTOP_ENDIANNESS == Z_UINT32_ENDIANNESS
-
-#		define z_uint32_top_packet z_uint32_top_mirror
-
-#	elif	(Z_UINTTOP_ENDIANNESS == Z_ENDIANNESS_BIG     && \
-		 Z_UINT32_ENDIANNESS  == Z_ENDIANNESS_LITTLE) || \
-		(Z_UINTTOP_ENDIANNESS == Z_ENDIANNESS_LITTLE  && \
-		 Z_UINT32_ENDIANNESS  == Z_ENDIANNESS_BIG)
-
-		Z_INLINE zuinttop z_uint32_top_packet(zuint32 value)
-			{return Z_32BIT_TOP_MIRROR(z_uint32_reverse(value));}
-#	endif
-#endif
 
 
 #if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_ADD_THEN_GET)
@@ -637,14 +596,15 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 
 #ifdef Z_UINT64
 
-	Z_IMPLEMENTATION_NATURAL(uint64)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint64, 64, 32)
-	Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, uint64, 64)
+	Z_IMPLEMENTATION_NATURAL      (uint64)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64, 32)
+	Z_IMPLEMENTATION_VALUE_ROTATE (uint64, 64)
+
 
 #	define z_uint64_reverse z_uint64_reverse_in_8bit
 
@@ -716,26 +676,6 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 		if ((value >>  8)) return 2;
 				   return 1;
 		}
-
-
-#	if Z_UINTTOP_BITS > 64
-	
-		Z_INLINE zuinttop z_uint64_top_mirror(zuint64 value)
-			{return Z_64BIT_TOP_MIRROR(value);}
-	
-#		if Z_UINTTOP_ENDIANNESS == Z_UINT64_ENDIANNESS
-	
-#			define z_uint64_top_packet z_uint64_top_mirror
-	
-#		elif	(Z_UINTTOP_ENDIANNESS == Z_ENDIANNESS_BIG     && \
-			 Z_UINT64_ENDIANNESS  == Z_ENDIANNESS_LITTLE) || \
-			(Z_UINTTOP_ENDIANNESS == Z_ENDIANNESS_LITTLE  && \
-			 Z_UINT64_ENDIANNESS  == Z_ENDIANNESS_BIG)
-	
-			Z_INLINE zuinttop z_uint64_top_packet(zuint64 value)
-				{return Z_64BIT_TOP_MIRROR(z_uint64_reverse(value));}
-#		endif
-#	endif
 
 
 #	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_ADD_THEN_GET)
@@ -827,14 +767,15 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 #ifdef Z_UINT128
 
 	Z_IMPLEMENTATION_NATURAL(uint128)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 32)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, uint128, 128, 64)
-	Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, uint128, 128)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128, 32)
+	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128, 64)
+	Z_IMPLEMENTATION_VALUE_ROTATE (uint128, 128)
+
 
 #	define z_uint128_reverse z_uint128_reverse_in_8bit
 
@@ -1003,12 +944,13 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 /* MARK: - int8 */
 
 
-Z_IMPLEMENTATION_NATURAL(int8)
-Z_IMPLEMENTATION_INTEGER(int8)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int8, 8, 4)
-Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, int8, 8)
+Z_IMPLEMENTATION_NATURAL      (int8)
+Z_IMPLEMENTATION_INTEGER      (int8)
+Z_IMPLEMENTATION_VALUE_REVERSE(int8, 8, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(int8, 8, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(int8, 8, 4)
+Z_IMPLEMENTATION_VALUE_ROTATE (int8, 8)
+
 
 #define z_int8_reverse Z_SAME
 
@@ -1142,13 +1084,14 @@ zboolean z_int8_subtraction_overflows_4(zint8 a, zint8 b, zint8 c, zint8 d)
 /* MARK: - int16 */
 
 
-Z_IMPLEMENTATION_NATURAL(int16)
-Z_IMPLEMENTATION_INTEGER(int16)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 4)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int16, 16, 8)
-Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, int16, 16)
+Z_IMPLEMENTATION_NATURAL      (int16)
+Z_IMPLEMENTATION_INTEGER      (int16)
+Z_IMPLEMENTATION_VALUE_REVERSE(int16, 16, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(int16, 16, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(int16, 16, 4)
+Z_IMPLEMENTATION_VALUE_REVERSE(int16, 16, 8)
+Z_IMPLEMENTATION_VALUE_ROTATE (int16, 16)
+
 
 #define z_int16_reverse z_int16_reverse_in_8bit
 
@@ -1294,14 +1237,15 @@ zboolean z_int16_subtraction_overflows_4(zint16 a, zint16 b, zint16 c, zint16 d)
 /* MARK: - int32 */
 
 
-Z_IMPLEMENTATION_NATURAL(int32)
-Z_IMPLEMENTATION_INTEGER(int32)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  1)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  2)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  4)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int32, 32,  8)
-Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int32, 32, 16)
-Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, int32, 32)
+Z_IMPLEMENTATION_NATURAL      (int32)
+Z_IMPLEMENTATION_INTEGER      (int32)
+Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32,  1)
+Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32,  2)
+Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32,  4)
+Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32,  8)
+Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32, 16)
+Z_IMPLEMENTATION_VALUE_ROTATE (int32, 32)
+
 
 #define z_int32_reverse z_int32_reverse_in_8bit
 
@@ -1449,15 +1393,16 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 #ifdef Z_INT64
 
-	Z_IMPLEMENTATION_NATURAL(int64)
-	Z_IMPLEMENTATION_INTEGER(int64)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int64, 64, 32)
-	Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, int64, 64)
+	Z_IMPLEMENTATION_NATURAL      (int64)
+	Z_IMPLEMENTATION_INTEGER      (int64)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64, 32)
+	Z_IMPLEMENTATION_VALUE_ROTATE (int64, 64)
+
 
 #	define z_int64_reverse z_int64_reverse_in_8bit
 
@@ -1607,16 +1552,17 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 #ifdef Z_INT128
 
-	Z_IMPLEMENTATION_NATURAL(int128)
-	Z_IMPLEMENTATION_INTEGER(int128)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 32)
-	Z_IMPLEMENTATION_VALUE_REVERSE(Z_INLINE, z_, int128, 128, 64)
-	Z_IMPLEMENTATION_VALUE_ROTATE (Z_INLINE, z_, int128, 128)
+	Z_IMPLEMENTATION_NATURAL      (int128)
+	Z_IMPLEMENTATION_INTEGER      (int128)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128, 32)
+	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128, 64)
+	Z_IMPLEMENTATION_VALUE_ROTATE (int128, 128)
+
 
 #	define z_int128_reverse z_int128_reverse_in_8bit
 
@@ -1847,6 +1793,194 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 	Z_IMPLEMENTATION_NATURAL(float128)
 	Z_IMPLEMENTATION_INTEGER(float128)
 	Z_IMPLEMENTATION_REAL(float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
+#endif
+
+
+/* MARK: - bint8 */
+
+
+Z_IMPLEMENTATION_VALUE_REVERSE(bint8, 8, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(bint8, 8, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(bint8, 8, 4)
+Z_IMPLEMENTATION_VALUE_ROTATE (bint8, 8)
+
+
+Z_INLINE zbinttop z_bint8_top_mirror(zbint8 value)
+	{return Z_8BIT_TOP_MIRROR(value);}
+
+
+/* MARK: - bint16 */
+
+
+Z_IMPLEMENTATION_VALUE_REVERSE(bint16, 16, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(bint16, 16, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(bint16, 16, 4)
+Z_IMPLEMENTATION_VALUE_REVERSE(bint16, 16, 8)
+Z_IMPLEMENTATION_VALUE_ROTATE (bint16, 16)
+
+
+#define z_bint16_reverse z_bint16_reverse_in_8bit
+
+#if Z_BINT16_ENDIANNESS == Z_ENDIANNESS_BIG
+
+#	define z_bint16_big_endian    Z_SAME
+#	define z_bint16_little_endian z_bint16_reverse
+
+#elif Z_BINT16_ENDIANNESS == Z_ENDIANNESS_LITTLE
+
+#	define z_bint16_big_endian    z_bint16_reverse
+#	define z_bint16_little_endian Z_SAME
+
+#endif
+
+
+#if Z_BINTTOP_BITS > 16
+
+	Z_INLINE zbinttop z_bint16_top_mirror(zbint16 value)
+		{return Z_16BIT_TOP_MIRROR(value);}
+
+#	if Z_BINTTOP_ENDIANNESS == Z_BINT16_ENDIANNESS
+
+#		define z_bint16_top_packet z_bint16_top_mirror
+
+#	elif	(Z_BINTTOP_ENDIANNESS == Z_ENDIANNESS_BIG     && \
+		 Z_BINT16_ENDIANNESS  == Z_ENDIANNESS_LITTLE) || \
+		(Z_BINTTOP_ENDIANNESS == Z_ENDIANNESS_LITTLE  && \
+		 Z_BINT16_ENDIANNESS  == Z_ENDIANNESS_BIG)
+
+		Z_INLINE zbinttop z_bint16_top_packet(zbint16 value)
+			{return Z_16BIT_TOP_MIRROR(z_bint16_reverse(value));}
+#	endif
+#endif
+
+
+/* MARK: - bint32 */
+
+
+Z_IMPLEMENTATION_VALUE_REVERSE(bint32, 32,  1)
+Z_IMPLEMENTATION_VALUE_REVERSE(bint32, 32,  2)
+Z_IMPLEMENTATION_VALUE_REVERSE(bint32, 32,  4)
+Z_IMPLEMENTATION_VALUE_REVERSE(bint32, 32,  8)
+Z_IMPLEMENTATION_VALUE_REVERSE(bint32, 32, 16)
+Z_IMPLEMENTATION_VALUE_ROTATE (bint32, 32)
+
+
+#define z_bint32_reverse z_bint32_reverse_in_8bit
+
+#if Z_BINT32_ENDIANNESS == Z_ENDIANNESS_BIG
+
+#	define z_bint32_big_endian    Z_SAME
+#	define z_bint32_little_endian z_bint32_reverse
+
+#elif Z_BINT32_ENDIANNESS == Z_ENDIANNESS_LITTLE
+
+#	define z_bint32_big_endian    z_bint32_reverse
+#	define z_bint32_little_endian Z_SAME
+
+#endif
+
+
+#if Z_BINTTOP_BITS > 32
+
+	Z_INLINE zbinttop z_bint32_top_mirror(zbint32 value)
+		{return Z_32BIT_TOP_MIRROR(value);}
+
+#	if Z_BINTTOP_ENDIANNESS == Z_BINT32_ENDIANNESS
+
+#		define z_bint32_top_packet z_bint32_top_mirror
+
+#	elif	(Z_BINTTOP_ENDIANNESS == Z_ENDIANNESS_BIG     && \
+		 Z_BINT32_ENDIANNESS  == Z_ENDIANNESS_LITTLE) || \
+		(Z_BINTTOP_ENDIANNESS == Z_ENDIANNESS_LITTLE  && \
+		 Z_BINT32_ENDIANNESS  == Z_ENDIANNESS_BIG)
+
+		Z_INLINE zbinttop z_bint32_top_packet(zbint32 value)
+			{return Z_32BIT_TOP_MIRROR(z_bint32_reverse(value));}
+#	endif
+
+#endif
+
+
+/* MARK: - bint64 */
+
+
+#ifdef Z_BINT64
+
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64, 32)
+	Z_IMPLEMENTATION_VALUE_ROTATE (bint64, 64)
+
+
+#	define z_bint64_reverse z_bint64_reverse_in_8bit
+
+#	if Z_BINT64_ENDIANNESS == Z_ENDIANNESS_BIG
+
+#		define z_bint64_big_endian    Z_SAME
+#		define z_bint64_little_endian z_bint64_reverse
+
+#	elif Z_BINT64_ENDIANNESS == Z_ENDIANNESS_LITTLE
+
+#		define z_bint64_big_endian    z_bint64_reverse
+#		define z_bint64_little_endian Z_SAME
+
+#	endif
+
+
+#	if Z_BINTTOP_BITS > 64
+	
+		Z_INLINE zbinttop z_bint64_top_mirror(zbint64 value)
+			{return Z_64BIT_TOP_MIRROR(value);}
+	
+#		if Z_BINTTOP_ENDIANNESS == Z_BINT64_ENDIANNESS
+	
+#			define z_bint64_top_packet z_bint64_top_mirror
+	
+#		elif	(Z_BINTTOP_ENDIANNESS == Z_ENDIANNESS_BIG     && \
+			 Z_BINT64_ENDIANNESS  == Z_ENDIANNESS_LITTLE) || \
+			(Z_BINTTOP_ENDIANNESS == Z_ENDIANNESS_LITTLE  && \
+			 Z_BINT64_ENDIANNESS  == Z_ENDIANNESS_BIG)
+	
+			Z_INLINE zbinttop z_bint64_top_packet(zbint64 value)
+				{return Z_64BIT_TOP_MIRROR(z_bint64_reverse(value));}
+#		endif
+#	endif
+
+#endif
+
+
+/* MARK: - bint128 */
+
+
+#ifdef Z_BINT128
+
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128, 32)
+	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128, 64)
+	Z_IMPLEMENTATION_VALUE_ROTATE (bint128, 128)
+
+
+#	define z_bint128_reverse z_bint128_reverse_in_8bit
+
+#	if Z_BINT128_ENDIANNESS == Z_ENDIANNESS_BIG
+
+#		define z_bint128_big_endian    Z_SAME
+#		define z_bint128_little_endian z_bint128_reverse
+
+#	elif Z_BINT128_ENDIANNESS == Z_ENDIANNESS_LITTLE
+
+#		define z_bint128_big_endian    z_bint128_reverse
+#		define z_bint128_little_endian Z_SAME
+
+#	endif
+
 #endif
 
 
