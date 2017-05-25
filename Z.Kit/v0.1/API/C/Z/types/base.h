@@ -103,7 +103,7 @@ typedef struct {zuint32 x, y, z, w;}		Z4DUInt32;
 #	if Z_DATA_MODEL_HAS_LITERAL(UINT128)
 #		define Z_UINT128		Z_DATA_MODEL_LITERAL(UINT128)
 #		define Z_UINT128_MAXIMUM	Z_UINT128(340282366920938463463374607431768211455)
-#	elsej
+#	else
 #		define Z_UINT128		Z_SAME
 #		define Z_UINT128_MAXIMUM	(((zuint128)0) - 1)
 #	endif
