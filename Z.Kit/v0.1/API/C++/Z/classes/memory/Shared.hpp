@@ -2,8 +2,8 @@
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
-Copyright © 2006-2017 Manuel Sainz de Baranda y Goñi.
-Copyright © 2016 r-lyeh.
+Copyright (C) 2006-2017 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2016 r-lyeh.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef __Z_classes_memory_Shared_HPP__

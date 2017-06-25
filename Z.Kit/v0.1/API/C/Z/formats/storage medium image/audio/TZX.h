@@ -2,10 +2,10 @@
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
-Copyright © Tomaz Kac.
-Copyright © Martijn v.d. Heide.
-Copyright © Ramsoft.
-Copyright © 2006-2017 Manuel Sainz de Baranda y Goñi.
+Copyright (C) Tomaz Kac.
+Copyright (C) Martijn v.d. Heide.
+Copyright (C) Ramsoft.
+Copyright (C) 2006-2017 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
 .-------------------------------------------------------------------------------.
