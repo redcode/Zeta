@@ -11,10 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/functions/base/value.hpp>
 
-namespace Zeta {template <class T> struct Shared;}
 
-
-template <class T> struct Zeta::Shared {
+namespace Zeta {template <class T> struct Shared {
 
 	struct Owned {
 		Size owner_count;
@@ -85,7 +83,7 @@ template <class T> struct Zeta::Shared {
 
 	Z_INLINE_MEMBER void swap(Shared &shared)
 		{Zeta::swap<Owned *>(&owned, &shared.owned);}
-};
+};}
 
 
 #endif // __Z_classes_memory_Shared_HPP__

@@ -10,10 +10,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 
-namespace Zeta {template <class T> class InitializerList;}
 
-
-template <class T> class Zeta::InitializerList {
+namespace Zeta {template <class T> class InitializerList {
 	private:
 	const T* _begin;
 	Size	 _size;
@@ -29,7 +27,7 @@ template <class T> class Zeta::InitializerList {
 	Z_INLINE_MEMBER Size	 size () const {return _size;}
 	Z_INLINE_MEMBER const T *begin() const {return _begin;}
 	Z_INLINE_MEMBER const T *end  () const {return _begin + _size;} 
-};
+};}
 
 
 #endif // __Z_classes_base_InitializerList_HPP__

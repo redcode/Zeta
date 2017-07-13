@@ -15,10 +15,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	import <Foundation/NSRange.h>
 #endif
 
-namespace Zeta {template <class T> struct Range;}
 
-
-template <class T> struct Zeta::Range {
+namespace Zeta {template <class T> struct Range {
 
 	typedef typename ZTypeFixedNatural(ZRange, T) Base;
 
@@ -117,7 +115,7 @@ template <class T> struct Zeta::Range {
 
 	Z_INLINE_MEMBER void swap(Range &range)
 		{Zeta::swap<Base>((Base *)this, (Base *)&range);}
-};
+};}
 
 
 #endif // __Z_classes_base_Range_HPP__

@@ -10,14 +10,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/functions/base/value.hpp>
 
-namespace Zeta {template <class... T> struct Variant;}
 
 # if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-	template <class... T> struct Zeta::Variant {
+	namespace Zeta {template <class... T> struct Variant {
 
-	};
+	};}
 
 #endif
+
 
 #endif // __Z_classes_base_Variant_HPP__

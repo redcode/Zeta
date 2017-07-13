@@ -10,10 +10,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/functions/base/value.hpp>
 
-namespace Zeta {template <class T0, class T1> struct Pair;}
 
-
-template <class T1, class T2> struct Zeta::Pair {
+namespace Zeta {template <class T1, class T2> struct Pair {
 	typedef T1 First;
 	typedef T2 Second;
 
@@ -45,7 +43,7 @@ template <class T1, class T2> struct Zeta::Pair {
 			((typename Type<Pair>::to_opaque *)this,
 			 (typename Type<Pair>::to_opaque *)&pair);
 		}
-};
+};}
 
 
 #endif // __Z_classes_base_Pair_HPP__

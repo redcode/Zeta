@@ -23,10 +23,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include "cocos2d.h"
 #endif
 
-namespace Zeta {template <class T> struct Value2D;}
 
-
-template <class T> struct Zeta::Value2D {
+namespace Zeta {template <class T> struct Value2D {
 
 	typedef typename ZTypeFixedNumber(Z2D, T) Base;
 
@@ -409,11 +407,7 @@ template <class T> struct Zeta::Value2D {
 	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
 	reciprocal() const
 		{return Value2D(T(1.0) / x, T(1.0) / y);}
-
-
-#ifndef Z_DECLARING_PARTIAL_VALUE_2D
-};
-#endif
+};}
 
 
 #endif // __Z_classes_base_Value2D_HPP__

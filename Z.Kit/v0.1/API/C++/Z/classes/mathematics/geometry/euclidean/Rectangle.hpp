@@ -11,10 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/classes/base/Value2D.hpp>
 #include <Z/types/mathematics.h>
 
-namespace Zeta {template <class T> struct Rectangle;}
 
-
-template <class T> struct Zeta::Rectangle {
+namespace Zeta {template <class T> struct Rectangle {
 
 	typedef typename ZTypeFixedReal(ZRectangle, T) Base;
 
@@ -592,10 +590,7 @@ template <class T> struct Zeta::Rectangle {
 
 	inline Boolean contains_line_segment(const Z2DLine##Type &line_segment) const
 		{return contains_point(segment.a) && contains_point(segment.b);}*/
-
-#ifndef Z_DECLARING_PARTIAL_RECTANGLE
-};
-#endif
+};}
 
 
 #endif // __Z_classes_mathematics_geometry_euclidean_Rectangle_HPP__

@@ -10,11 +10,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/time.h>
 
-namespace Zeta {struct Nanotime;}
 
-
-struct Zeta::Nanotime : public ZNanotime {
-};
+namespace Zeta {struct Nanotime : public ZNanotime {
+};}
 
 
 #endif // __Z_classes_time_Nanotime_HPP__

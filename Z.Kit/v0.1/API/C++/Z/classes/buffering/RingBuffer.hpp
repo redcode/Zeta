@@ -17,10 +17,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define z_cpu_relax() asm volatile("pause\n": : :"memory")
 #endif
 
-namespace Zeta {struct RingBuffer;}
 
-
-struct Zeta::RingBuffer : public ZRingBuffer {
+namespace Zeta {struct RingBuffer : public ZRingBuffer {
 
 	Z_INLINE_MEMBER RingBuffer() {}
 
@@ -90,7 +88,7 @@ struct Zeta::RingBuffer : public ZRingBuffer {
 		z_type_atomic_decrement_then_get(SIZE)(&fill_count);
 		return (UInt8 *)buffers + consumption_index * buffer_size;
 		}
-};
+};}
 
 
 #endif // __Z_classes_buffering_RingBuffer_HPP__

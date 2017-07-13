@@ -12,10 +12,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.hpp>
 #include <Z/macros/language.hpp>
 
-namespace Zeta {struct Status;}
 
-
-struct Zeta::Status {
+namespace Zeta {struct Status {
 
 	enum {	OK	      = Z_OK,
 		End	      = Z_END,
@@ -90,7 +88,7 @@ struct Zeta::Status {
 	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(ZStatus status) const {return code != status;}
 
 	Z_CONSTANT_MEMBER(CPP11) Boolean is_error() const {return code < 0;}
-};
+};}
 
 
 #endif // __Z_classes_base_Status_HPP__

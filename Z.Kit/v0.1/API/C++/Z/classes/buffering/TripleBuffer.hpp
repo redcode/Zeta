@@ -14,10 +14,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/language.hpp>
 #include <Z/functions/base/value.h>
 
-namespace Zeta {struct TripleBuffer;}
 
-
-struct Zeta::TripleBuffer : public ZTripleBuffer {
+namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 
 	Z_INLINE_MEMBER TripleBuffer() {}
 
@@ -65,7 +63,7 @@ struct Zeta::TripleBuffer : public ZTripleBuffer {
 
 		return this->buffers[new_flags & 3];;
 		}
-};
+};}
 
 
 #endif // __Z_classes_buffering_TripleBuffer_HPP__

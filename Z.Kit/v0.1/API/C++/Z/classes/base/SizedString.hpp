@@ -11,10 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.hpp>
 #include <Z/macros/language.hpp>
 
-namespace Zeta {template <unsigned int S> struct SizedString;}
 
-
-template <unsigned int S> struct Zeta::SizedString {
+namespace Zeta {template <unsigned int S> struct SizedString {
 	//typedef struct {
 		Character data[S + 1];
 	//} Data;
@@ -24,7 +22,7 @@ template <unsigned int S> struct Zeta::SizedString {
 	Z_CONSTANT_MEMBER(CPP11) SizedString() : data{0} {}
 	//constexpr SizedString(const Character *string) : data(*(Data *)string), null(0) {}
 	Z_CONSTANT_MEMBER(CPP11) Character const *c() const {return data;}
-};
+};}
 
 
 #endif // __Z_classes_base_SizedString_HPP__

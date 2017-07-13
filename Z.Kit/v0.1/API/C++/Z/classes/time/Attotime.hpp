@@ -10,11 +10,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/time.h>
 
-namespace Zeta {struct Attotime;}
 
-
-struct Zeta::Attotime : public ZAttotime {
-};
+namespace Zeta {struct Attotime : public ZAttotime {
+};}
 
 
 #endif // __Z_classes_time_Attotime_HPP__

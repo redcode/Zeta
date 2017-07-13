@@ -26,6 +26,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class VN, class... V, class PN, class... P> class Element<TypeList<VN, V...>, TypeList<PN, P...> >
 		: public Super<TypeList<V...>, TypeList<P...> >::type {
+
 			private:
 			typedef typename Super<TypeList<V...>, TypeList<P...> >::type Super;
 
@@ -50,7 +51,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	namespace Zeta {
 
 		template <class... T> class Tuple
-		: public Detail::Tuple::Super<TypeList<T...>, typename TypeListTransform<TypeList<T...>, TypeToParameter>::type>::type {
+		: public Detail::Tuple::Super<TypeList<T...>,typename TypeListTransform<TypeList<T...>, TypeToParameter>::type>::type {
+
 			private:
 			typedef TypeList<T...>							      ValueTypeList;
 			typedef typename TypeListTransform<ValueTypeList, TypeToParameter>::type      ParameterTypeList;
@@ -75,6 +77,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			else
 				Z_CONSTANT_MEMBER(CPP11) Tuple(T... values) : Super(values...) {}
 #			endif
+
 
 			template <UInt I> Z_INLINE_MEMBER typename At<I>::Element::Value &at()
 				{return At<I>::Element::_value;}

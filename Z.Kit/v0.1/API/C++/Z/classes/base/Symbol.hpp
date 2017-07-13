@@ -11,10 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.hpp>
 #include <Z/macros/language.hpp>
 
-namespace Zeta {struct Symbol;}
 
-
-struct Zeta::Symbol {
+namespace Zeta {struct Symbol {
 	UInt64 id;
 
 	Z_INLINE_MEMBER Symbol() {}
@@ -30,7 +28,7 @@ struct Zeta::Symbol {
 
 	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(UInt64 id) const {return this->id == id;}
 	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(UInt64 id) const {return this->id != id;}
-};
+};}
 
 
 #endif // __Z_classes_base_Symbol_HPP__

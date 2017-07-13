@@ -10,10 +10,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/traits/Type.hpp>
 
-namespace Zeta {struct OpaqueMemberFunctionPointer;}
 
-
-struct Zeta::OpaqueMemberFunctionPointer {
+namespace Zeta {struct OpaqueMemberFunctionPointer {
 	void (NaT::*pointer)();
 
 	template <class T, typename = typename EnableIf<
@@ -21,7 +19,7 @@ struct Zeta::OpaqueMemberFunctionPointer {
 	>::type>
 	Z_CONSTANT_MEMBER(CPP11) OpaqueMemberFunctionPointer(T pointer)
 	: pointer(reinterpret_cast<void (NaT::*)(void)>(pointer)) {}
-};
+};}
 
 
 #endif // __Z_classes_base_OpaqueMemberFunctionPointer_HPP__

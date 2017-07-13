@@ -11,10 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/type selection.hpp>
 #include <Z/functions/base/value.hpp>
 
-namespace Zeta {template <class T> struct Value3D;}
 
-
-template <class T> struct Zeta::Value3D {
+namespace Zeta {template <class T> struct Value3D {
 
 	typedef typename ZTypeFixedNumber(Z3D, T) Base;
 
@@ -83,10 +81,7 @@ template <class T> struct Zeta::Value3D {
 	// MARK: - Operations for natural, integer and real types
 	// MARK: - Operations for integer and real types
 	// MARK: - Operations for real types only
-
-#ifndef Z_DECLARING_PARTIAL_VALUE_3D
-};
-#endif
+};}
 
 
 #endif // __Z_classes_base_Value3D_HPP__
