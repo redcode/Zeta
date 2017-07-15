@@ -543,5 +543,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /*#define Z_COMPILER_TRAIT_TYPE_IS_BASE*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_UNION*/
 
 #endif /* __Z_inspection_modules_compiler_template_H__ */

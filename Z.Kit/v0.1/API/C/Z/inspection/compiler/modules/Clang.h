@@ -1281,4 +1281,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE __is_convertible_to
 #endif
 
+#if __has_extension(is_union)
+#	define Z_COMPILER_TRAIT_TYPE_IS_UNION __is_union
+#endif
+
 #endif /* __Z_inspection_compiler_modules_Clang_H__ */

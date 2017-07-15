@@ -1184,9 +1184,15 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 namespace Zeta {namespace Detail {namespace Type {
 
-	// MARK: - Specializations: Structures and unions (WIP)
+	// MARK: - Specializations: Structures and unions
 
-	template <class T> struct Case : Mixins::Unqualified<Abstract::Struct<T> > {};
+	template <class T> struct Case : Mixins::Unqualified<
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
+			typename SelectType<Z_COMPILER_TRAIT(TYPE_IS_UNION)(T), Abstract::Struct<T>, Abstract::Union<T> >::type
+#		else
+			Abstract::Struct<T>
+#		endif
+	> {};
 
 	// MARK: - Specializations: void
 

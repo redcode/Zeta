@@ -2358,3 +2358,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #else
 #	define Z_COMPILER_HAS_TRAIT_TYPE_IS_CONVERTIBLE FALSE
 #endif
+
+#ifdef Z_COMPILER_TRAIT_TYPE_IS_UNION
+#	define Z_COMPILER_HAS_TRAIT_TYPE_IS_UNION TRUE
+#else
+#	define Z_COMPILER_HAS_TRAIT_TYPE_IS_UNION FALSE
+#endif
