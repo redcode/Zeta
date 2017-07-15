@@ -1271,4 +1271,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
+/* MARK: - Built-in traits */
+
+#if __has_extension(is_base_of)
+#	define Z_COMPILER_TRAIT_TYPE_IS_BASE __is_base_of
+#endif
+
+#if __has_extension(is_convertible_to)
+#	define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE __is_convertible_to
+#endif
+
 #endif /* __Z_inspection_compiler_modules_Clang_H__ */

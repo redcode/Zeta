@@ -1441,15 +1441,17 @@ namespace Zeta {namespace Detail {namespace Type {
 
 namespace Zeta {
 
-	// TODO
-	template <class T, class of> struct TypeIsBase {
-		enum {value = __is_base_of(T, of)};
-	};
+#	if Z_COMPILER_HAS_TRAIT(TYPE_IS_BASE)
+		template <class T, class of> struct TypeIsBase {
+			enum {value = Z_COMPILER_TRAIT(TYPE_IS_BASE)(T, of)};
+		};
+#	endif
 
-	// TODO
-	template <class T, class to> struct TypeIsConvertible {
-		enum {value = __is_convertible_to(T, to)};
-	};
+#	if Z_COMPILER_HAS_TRAIT(TYPE_IS_CONVERTIBLE)
+		template <class T, class to> struct TypeIsConvertible {
+			enum {value = Z_COMPILER_TRAIT(TYPE_IS_CONVERTIBLE)(T, to)};
+		};
+#	endif
 
 	template <class T, class klass> struct TypeToMemberPointer;
 

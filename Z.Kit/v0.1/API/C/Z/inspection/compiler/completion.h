@@ -2344,3 +2344,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #else
 #	define Z_COMPILER_HAS_FUNCTION_INT128_ATOMIC_NOT_THEN_GET FALSE
 #endif
+
+/* MARK: - Built-in traits */
+
+#ifdef Z_COMPILER_TRAIT_TYPE_IS_BASE
+#	define Z_COMPILER_HAS_TRAIT_TYPE_IS_BASE TRUE
+#else
+#	define Z_COMPILER_HAS_TRAIT_TYPE_IS_BASE FALSE
+#endif
+
+#ifdef Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE
+#	define Z_COMPILER_HAS_TRAIT_TYPE_IS_CONVERTIBLE TRUE
+#else
+#	define Z_COMPILER_HAS_TRAIT_TYPE_IS_CONVERTIBLE FALSE
+#endif
