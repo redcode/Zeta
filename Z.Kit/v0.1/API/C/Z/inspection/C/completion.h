@@ -7,12 +7,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - K&R C */
 
-#ifndef Z_C_HAS_TYPE_FLOAT
-#	define Z_C_HAS_TYPE_FLOAT FALSE
-#endif
-
-#ifndef Z_C_HAS_TYPE_DOUBLE
-#	define Z_C_HAS_TYPE_DOUBLE FALSE
+#ifndef Z_C_HAS_OPERATOR_SIZE_OF
+#	define Z_C_HAS_OPERATOR_SIZE_OF FALSE
 #endif
 
 #ifndef Z_C_HAS_STORAGE_CLASS_AUTO
@@ -31,8 +27,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_STORAGE_CLASS_STATIC FALSE
 #endif
 
-#ifndef Z_C_HAS_OPERATOR_SIZE_OF
-#	define Z_C_HAS_OPERATOR_SIZE_OF FALSE
+#ifndef Z_C_HAS_TYPE_FLOAT
+#	define Z_C_HAS_TYPE_FLOAT FALSE
+#endif
+
+#ifndef Z_C_HAS_TYPE_DOUBLE
+#	define Z_C_HAS_TYPE_DOUBLE FALSE
 #endif
 
 /* MARK: - C89 */
@@ -101,6 +101,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_VLA FALSE
 #endif
 
+#ifndef Z_C_HAS_SPECIFIER_INLINE
+#	define Z_C_HAS_SPECIFIER_INLINE FALSE
+#endif
+
 #ifndef Z_C_HAS_TYPE_BOOLEAN
 #	define Z_C_HAS_TYPE_BOOL FALSE
 #endif
@@ -115,10 +119,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_C_HAS_TYPE_QUALIFIER_RESTRICT
 #	define Z_C_HAS_TYPE_QUALIFIER_RESTRICT FALSE
-#endif
-
-#ifndef Z_C_HAS_SPECIFIER_INLINE
-#	define Z_C_HAS_SPECIFIER_INLINE FALSE
 #endif
 
 /* MARK: - C11 */
@@ -143,12 +143,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_STATIC_ASSERTION FALSE
 #endif
 
-#ifndef Z_C_HAS_TYPE_QUALIFIER_ATOMIC
-#	define Z_C_HAS_TYPE_QUALIFIER_ATOMIC FALSE
-#endif
-
-#ifndef Z_C_HAS_STORATE_CLASS_THREAD_LOCAL
-#	define Z_C_HAS_STORATE_CLASS_THREAD_LOCAL FALSE
+#ifndef Z_C_HAS_OPERATOR_ALIGN_OF
+#	define Z_C_HAS_OPERATOR_ALIGN_OF FALSE
 #endif
 
 #ifndef Z_C_HAS_SPECIFIER_ATOMIC
@@ -163,8 +159,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_SPECIFIER_NO_RETURN FALSE
 #endif
 
-#ifndef Z_C_HAS_OPERATOR_ALIGN_OF
-#	define Z_C_HAS_OPERATOR_ALIGN_OF FALSE
+#ifndef Z_C_HAS_STORATE_CLASS_THREAD_LOCAL
+#	define Z_C_HAS_STORATE_CLASS_THREAD_LOCAL FALSE
+#endif
+
+#ifndef Z_C_HAS_TYPE_QUALIFIER_ATOMIC
+#	define Z_C_HAS_TYPE_QUALIFIER_ATOMIC FALSE
 #endif
 
 /* inspection/C/completion.h EOF */

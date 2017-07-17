@@ -124,6 +124,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef NaT to_const_volatile;
 		typedef NaT to_const_volatile_lvalue;
 		typedef NaT to_const_volatile_rvalue;
+		typedef NaT to_function;
 		typedef NaT to_lvalue;
 		typedef NaT to_lvalue_reference;
 		typedef NaT to_opaque;
@@ -1109,6 +1110,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	template <class C> struct Kind<InconvertibleFunction, C> : Virtual<C> {
 		typedef typename C::type remove_pointer;
 		typedef typename C::type remove_reference;
+		typedef typename C::type to_function;
 	};
 
 	template <class C> struct Kind<ConvertibleFunction, C> : Kind<InconvertibleFunction, C> {
@@ -1157,6 +1159,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct Kind<MemberFunctionPointer, C> : Storable<C> {
+		typedef typename C::pointee_type to_function;
 	};
 
 	template <class C> struct Kind<Reference, C> : Storable<C> {
@@ -1300,9 +1303,10 @@ namespace Zeta {namespace Detail {namespace Type {
 			is_void_pointer	    = Case<T>::is_void
 		};
 		enum {pointer_level = Case<T>::pointer_level + 1};
+
+		typedef typename SelectType<is_function_pointer, NaT, T>::type to_function;
 	};
 
-	// TODO
 	template <class C, class T> struct Case<T C::*> : Mixins::Unqualified<Abstract::Pointer<T> > {
 		enum {	is_data_member_pointer = true,
 			is_member_pointer      = true
@@ -1354,6 +1358,8 @@ namespace Zeta {namespace Detail {namespace Type {
 			is_function_lvalue_reference = is_function_reference,
 			is_callable		     = is_function_reference
 		};
+
+		typedef typename SelectType<is_function_reference, NaT, T>::type to_function;
 	};
 
 	template <class T> struct Case<T&&> : Mixins::Unqualified<Abstract::RValueReference<T> > {
@@ -1361,6 +1367,8 @@ namespace Zeta {namespace Detail {namespace Type {
 			is_function_rvalue_reference = is_function_reference,
 			is_callable		     = is_function_reference
 		};
+
+		typedef typename SelectType<is_function_reference, NaT, T>::type to_function;
 	};
 
 	// MARK: - Specializations: Functions
@@ -1612,6 +1620,7 @@ namespace Zeta {
 			typedef typename Type<typename Type::to_const_volatile	     >::flow to_const_volatile;
 			typedef typename Type<typename Type::to_const_volatile_lvalue>::flow to_const_volatile_lvalue;
 			typedef typename Type<typename Type::to_const_volatile_rvalue>::flow to_const_volatile_rvalue;
+			typedef typename Type<typename Type::to_function	     >::flow to_function;
 			typedef typename Type<typename Type::to_lvalue		     >::flow to_lvalue;
 			typedef typename Type<typename Type::to_lvalue_reference     >::flow to_lvalue_reference;
 			typedef typename Type<typename Type::to_opaque		     >::flow to_opaque;
@@ -1688,6 +1697,7 @@ namespace Zeta {
 	template <class T> struct TypeToConstVolatile	    {typedef typename Type<T>::to_const_volatile	type;};
 	template <class T> struct TypeToConstVolatileLValue {typedef typename Type<T>::to_const_volatile_lvalue	type;};
 	template <class T> struct TypeToConstVolatileRValue {typedef typename Type<T>::to_const_volatile_rvalue	type;};
+	template <class T> struct TypeToFunction	    {typedef typename Type<T>::to_function		type;};
 	template <class T> struct TypeToLValue		    {typedef typename Type<T>::to_lvalue		type;};
 	template <class T> struct TypeToLValueReference	    {typedef typename Type<T>::to_lvalue_reference	type;};
 	template <class T> struct TypeToOpaque		    {typedef typename Type<T>::to_opaque		type;};
@@ -1745,6 +1755,7 @@ namespace Zeta {
 		template <class T> using type_to_const_volatile	       = typename Type<T>::to_const_volatile;
 		template <class T> using type_to_const_volatile_lvalue = typename Type<T>::to_const_volatile_lvalue;
 		template <class T> using type_to_const_volatile_rvalue = typename Type<T>::to_const_volatile_rvalue;
+		template <class T> using type_to_function	       = typename Type<T>::to_function;
 		template <class T> using type_to_lvalue		       = typename Type<T>::to_lvalue;
 		template <class T> using type_to_lvalue_reference      = typename Type<T>::to_lvalue_reference;
 		template <class T> using type_to_opaque		       = typename Type<T>::to_opaque;

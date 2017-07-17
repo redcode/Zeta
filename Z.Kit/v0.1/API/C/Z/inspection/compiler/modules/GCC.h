@@ -145,13 +145,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - K&R C support */
 
-#define Z_COMPILER_C_HAS_TYPE_FLOAT		TRUE
-#define Z_COMPILER_C_HAS_TYPE_DOUBLE		TRUE
+#define Z_COMPILER_C_HAS_OPERATOR_SIZE_OF	TRUE
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO	TRUE
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_EXTERN	TRUE
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_REGISTER TRUE
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_STATIC	TRUE
-#define Z_COMPILER_C_HAS_OPERATOR_SIZE_OF	TRUE
+#define Z_COMPILER_C_HAS_TYPE_FLOAT		TRUE
+#define Z_COMPILER_C_HAS_TYPE_DOUBLE		TRUE
 
 /* MARK: - C89 support */
 
@@ -255,9 +255,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 #	if Z_COMPILER_VERSION >= Z_VERSION(4, 7, 0)
+#		define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF   TRUE
 #		define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS  TRUE
 #		define Z_COMPILER_C_HAS_SPECIFIER_NO_RETURN TRUE
-#		define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF   TRUE
 #	endif
 
 #	if Z_COMPILER_VERSION >= Z_VERSION(4, 9, 0)
@@ -267,8 +267,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		ifndef __STDC_NO_ATOMICS__
 #			define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS     TRUE
-#			define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC TRUE
 #			define Z_COMPILER_C_HAS_SPECIFIER_ATOMIC      TRUE
+#			define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC TRUE
 #		endif
 
 #	endif
@@ -285,69 +285,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifdef __BLOCKS__
 #	define Z_COMPILER_C_HAS_CLOSURE TRUE
-#endif
-
-/* MARK: - C attributes
-.---------------------------------------------------------------------------.
-| There is no official documentation where to consult since what version is |
-| available each attribute. The following list has been used as reference:  |
-| https://ohse.de/uwe/articles/gcc-attributes.html			    |
-'--------------------------------------------------------------------------*/
-
-/*#define Z_COMPILER_C_ATTRIBUTE_API_ALIAS*/
-/*#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT_ALIAS*/
-/*#define Z_COMPILER_C_ATTRIBUTE_API_WEAK_EXPORT*/
-
-#if Z_COMPILER_VERSION >= Z_VERSION(2, 3, 0)
-#	define Z_COMPILER_C_ATTRIBUTE_STRICT_SIZE_BEGIN
-#	define Z_COMPILER_C_ATTRIBUTE_STRICT_SIZE_END __attribute__((packed))
-#endif
-
-#if Z_COMPILER_VERSION >= Z_VERSION(2, 5, 0)
-#	define Z_COMPILER_C_ATTRIBUTE_NO_RETURN __attribute__((noreturn))
-#endif
-
-#if Z_COMPILER_VERSION >= Z_VERSION(2, 7, 0)
-#	define Z_COMPILER_C_ATTRIBUTE_ALIAS(name) __attribute__((alias(name)))
-#	define Z_COMPILER_C_ATTRIBUTE_WEAK	  __attribute__((weak))
-#endif
-
-#if	Z_COMPILER_VERSION >= Z_VERSION(2, 8, 0) && \
-	defined(Z_COMPILER_OS) && Z_COMPILER_OS == Z_OS_WINDOWS
-
-#	define Z_COMPILER_C_ATTRIBUTE_API	 __attribute__((dllimport))
-#	define Z_COMPILER_C_ATTRIBUTE_API_EXPORT __attribute__((dllexport))
-#endif
-
-#if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
-#	define Z_COMPILER_C_ATTRIBUTE_INLINE static __inline__ __attribute__((always_inline))
-#elif Z_COMPILER_VERSION >= Z_VERSION(1, 21, 0)
-#	define Z_COMPILER_C_ATTRIBUTE_INLINE static __inline__
-#endif
-
-#if Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0)
-
-#	define Z_COMPILER_C_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden"))) static
-#	define Z_COMPILER_C_ATTRIBUTE_PUBLIC  __attribute__((visibility("default")))
-
-	/*----------------------------------------------------------.
-	| See: http://gcc.gnu.org/ml/gcc-help/2006-08/msg00232.html |
-	'----------------------------------------------------------*/
-#	if	defined(Z_COMPILER_CPU_ARCHITECTURE)			  && \
-		(Z_COMPILER_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32 || \
-		 Z_COMPILER_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64)
-
-#		define Z_COMPILER_C_ATTRIBUTE_THREAD_LOCAL __thread
-#	endif
-
-#endif
-
-/*----------------------------------------------------------------------.
-| "sentinel" first appeared in the documentation of GCC v4.0.0:		|
-| https://gcc.gnu.org/onlinedocs/gcc-4.0.0/gcc/Function-Attributes.html |
-'----------------------------------------------------------------------*/
-#if Z_COMPILER_VERSION >= Z_VERSION(4, 0, 0)
-#	define Z_COMPILER_C_ATTRIBUTE_NULL_TERMINATED __attribute__((sentinel))
 #endif
 
 #if defined(__cplusplus)
@@ -383,10 +320,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		if Z_COMPILER_VERSION >= Z_VERSION(4, 6, 0)
 #			define Z_COMPILER_CPP_HAS_RANGE_BASED_FOR		TRUE
 #			define Z_COMPILER_CPP_HAS_UNRESTRICTED_UNION		TRUE
+#			define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER		TRUE
+#			define Z_COMPILER_CPP_HAS_OPERATOR_NO_EXCEPTION		TRUE
 #			define Z_COMPILER_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION TRUE
 #			define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION	TRUE
-#			define Z_COMPILER_CPP_HAS_OPERATOR_NO_EXCEPTION		TRUE
-#			define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER		TRUE
 #		endif
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(4, 7, 0)
@@ -408,9 +345,77 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	endif
 
-	/* MARK: - C++ attributes */
+#endif
 
-#	define Z_COMPILER_C_ATTRIBUTE_INLINE __inline__ __attribute__((always_inline))
+/* MARK: - Attributes
+.---------------------------------------------------------------------------.
+| There is no official documentation where to consult since what version is |
+| available each attribute. The following list has been used as reference:  |
+| https://ohse.de/uwe/articles/gcc-attributes.html			    |
+'--------------------------------------------------------------------------*/
+
+/*#define Z_COMPILER_ATTRIBUTE_API_ALIAS*/
+/*#define Z_COMPILER_ATTRIBUTE_API_EXPORT_ALIAS*/
+/*#define Z_COMPILER_ATTRIBUTE_API_WEAK_EXPORT*/
+
+#if Z_COMPILER_VERSION >= Z_VERSION(2, 3, 0)
+#	define Z_COMPILER_ATTRIBUTE_STRICT_SIZE_BEGIN
+#	define Z_COMPILER_ATTRIBUTE_STRICT_SIZE_END __attribute__((packed))
+#endif
+
+#if Z_COMPILER_VERSION >= Z_VERSION(2, 5, 0)
+#	define Z_COMPILER_ATTRIBUTE_NO_RETURN __attribute__((noreturn))
+#endif
+
+#if Z_COMPILER_VERSION >= Z_VERSION(2, 7, 0)
+#	define Z_COMPILER_ATTRIBUTE_ALIAS(name) __attribute__((alias(name)))
+#	define Z_COMPILER_ATTRIBUTE_WEAK	__attribute__((weak))
+#endif
+
+#if	Z_COMPILER_VERSION >= Z_VERSION(2, 8, 0) && \
+	defined(Z_COMPILER_OS) && Z_COMPILER_OS == Z_OS_WINDOWS
+
+#	define Z_COMPILER_ATTRIBUTE_API	       __attribute__((dllimport))
+#	define Z_COMPILER_ATTRIBUTE_API_EXPORT __attribute__((dllexport))
+#endif
+
+#if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
+#	define Z_COMPILER_ATTRIBUTE_INLINE static __inline__ __attribute__((always_inline))
+
+#elif Z_COMPILER_VERSION >= Z_VERSION(1, 21, 0)
+#	define Z_COMPILER_ATTRIBUTE_INLINE static __inline__
+#endif
+
+#if Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0)
+
+#	define Z_COMPILER_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden"))) static
+#	define Z_COMPILER_ATTRIBUTE_PUBLIC  __attribute__((visibility("default")))
+
+	/*----------------------------------------------------------.
+	| See: http://gcc.gnu.org/ml/gcc-help/2006-08/msg00232.html |
+	'----------------------------------------------------------*/
+#	if	defined(Z_COMPILER_CPU_ARCHITECTURE)			  && \
+		(Z_COMPILER_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32 || \
+		 Z_COMPILER_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64)
+
+#		define Z_COMPILER_ATTRIBUTE_THREAD_LOCAL __thread
+#	endif
+
+#endif
+
+/*----------------------------------------------------------------------.
+| "sentinel" first appeared in the documentation of GCC v4.0.0:		|
+| https://gcc.gnu.org/onlinedocs/gcc-4.0.0/gcc/Function-Attributes.html |
+'----------------------------------------------------------------------*/
+#if Z_COMPILER_VERSION >= Z_VERSION(4, 0, 0)
+#	define Z_COMPILER_ATTRIBUTE_NULL_TERMINATED __attribute__((sentinel))
+#endif
+
+/* MARK: - Attributes (C++ only) */
+
+#if defined(__cplusplus)
+
+#	define Z_COMPILER_ATTRIBUTE_INLINE_MEMBER __inline__ __attribute__((always_inline))
 
 #endif
 
@@ -1151,24 +1156,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 
-
-
-
-/* MARK: - C attributes */
-
-
-#if Z_COMPILER_VERSION >= Z_VERSION(4, 0, 0)
-#	define Z_COMPILER_C_ATTRIBUTE_NULL_TERMINATED __attribute__((sentinel))
-#endif
-
-
-/*#define Z_COMPILER_C_ATTRIBUTE_NULL_TERMINATED*/
-
-#define Z_COMPILER_C_ATTRIBUTE_STRICT_SIZE_BEGIN
-#define Z_COMPILER_C_ATTRIBUTE_STRICT_SIZE_END	 __attribute__((packed))
-#define Z_COMPILER_C_ATTRIBUTE_THREAD_LOCAL	 __thread
-
-/* MARK: - Built-in constants */
 
 /* MARK: - Built-in types */
 

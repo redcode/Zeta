@@ -12,8 +12,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Specifiers */
 
-#if Z_COMPILER_CPP_HAS_ATTRIBUTE(INLINE_MEMBER)
-#	define Z_INLINE_MEMBER Z_COMPILER_CPP_ATTRIBUTE(INLINE_MEMBER)
+#if Z_COMPILER_HAS_ATTRIBUTE(INLINE_MEMBER)
+#	define Z_INLINE_MEMBER Z_COMPILER_ATTRIBUTE(INLINE_MEMBER)
 #else
 	// TODO: is the "inline" specifier supported in all versions of C++?
 #	define Z_INLINE_MEMBER inline

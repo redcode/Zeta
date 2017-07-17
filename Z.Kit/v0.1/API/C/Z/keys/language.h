@@ -8,10 +8,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_keys_language_H__
 #define __Z_keys_language_H__
 
-#define Z_LANGUAGE_C		 0
-#define Z_LANGUAGE_CPP		 1
-#define Z_LANGUAGE_OBJECTIVE_C	 2
-#define Z_LANGUAGE_OBJECTIVE_CPP 3
+#define Z_LANGUAGE_C		 1
+#define Z_LANGUAGE_CPP		 3
+#define Z_LANGUAGE_OBJECTIVE_C	 5
+#define Z_LANGUAGE_OBJECTIVE_CPP 7
 
 #define Z_LANGUAGE_STRING_C		"C"
 #define Z_LANGUAGE_STRING_CPP		"C++"

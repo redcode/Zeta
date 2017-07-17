@@ -24,6 +24,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_HAS_VARIADIC_MACRO					TRUE
 #define Z_C_HAS_VLA						TRUE
 
+/* MARK: - Specifiers */
+
+#define Z_C_HAS_SPECIFIER_INLINE TRUE /* inline */
+
 /* MARK: - Types */
 
 #define Z_C_HAS_TYPE_BOOLEAN TRUE /* _Bool		     */
@@ -33,9 +37,5 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Type qualifiers */
 
 #define Z_C_HAS_TYPE_QUALIFIER_RESTRICT TRUE /* restrict */
-
-/* MARK: - Specifiers */
-
-#define Z_C_HAS_SPECIFIER_INLINE TRUE /* inline */
 
 #endif /* __Z_inspection_C_modules_C99_H__ */

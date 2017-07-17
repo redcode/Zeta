@@ -11,13 +11,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/traits/Type.hpp>
 
 
-namespace Zeta {struct OpaqueMemberFunctionPointer {
-	void (*)();
+namespace Zeta {struct OpaqueFunctionPointer {
+	void (* pointer)();
 
 	template <class T, typename = typename EnableIf<
 		Type<T>::is_function_pointer
 	>::type>
-	Z_CONSTANT_MEMBER(CPP11) OpaqueMemberFunctionPointer(T pointer)
+	Z_CONSTANT_MEMBER(CPP11) OpaqueFunctionPointer(T pointer)
 	: pointer(reinterpret_cast<void (*)(void)>(pointer)) {}
 };}
 

@@ -28,15 +28,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	undef Z_C_HAS_VLA
 #endif
 
-/* MARK: - Type qualifiers */
+/* MARK: - Operators */
 
-#ifndef __STDC_NO_ATOMICS__
-#	define Z_C_HAS_TYPE_QUALIFIER_ATOMIC TRUE /* _Atomic */
-#endif
-
-/* MARK: - Storage classes */
-
-#define Z_C_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* _Thread_local */
+#define Z_C_HAS_OPERATOR_ALIGN_OF TRUE /* _Alignof() */
 
 /* MARK: - Specifiers */
 
@@ -47,8 +41,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_HAS_SPECIFIER_ALIGN_AS  TRUE
 #define Z_C_HAS_SPECIFIER_NO_RETURN TRUE /* _Noreturn */
 
-/* MARK: - Operators */
+/* MARK: - Storage classes */
 
-#define Z_C_HAS_OPERATOR_ALIGN_OF TRUE /* _Alignof() */
+#define Z_C_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* _Thread_local */
+
+/* MARK: - Type qualifiers */
+
+#ifndef __STDC_NO_ATOMICS__
+#	define Z_C_HAS_TYPE_QUALIFIER_ATOMIC TRUE /* _Atomic */
+#endif
 
 #endif /* __Z_inspection_C_modules_C11_H__ */

@@ -32,10 +32,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_VARIADIC_TEMPLATE				 TRUE /* N2242(v0.9) */
 #define Z_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS		 TRUE /* N2555(v1.0) */
 
-/* MARK: - Types */
+/* MARK: - Attributes */
 
-#define Z_CPP_HAS_TYPE_ULLONG TRUE /* N1811: unsigned long long [int] */
-#define Z_CPP_HAS_TYPE_LLONG  TRUE /* N1811: [signed] long long [int] */
+#define Z_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY TRUE /* N2643: [[carries_dependency]] */
+#define Z_CPP_HAS_ATTRIBUTE_NO_RETURN	       TRUE /* N2761: [[noreturn]]	     */
+
+/* MARK: - Literals */
+
+#define Z_CPP_HAS_LITERAL_NULL_POINTER TRUE /* N2431: nullptr */
+
+/* MARK: - Operators */
+
+#define Z_CPP_HAS_OPERATOR_ALIGN_OF	TRUE /* N2341: alignof()  */
+#define Z_CPP_HAS_OPERATOR_NO_EXCEPTION TRUE /* N3050: noexcept() */
 
 /* MARK: - Specifiers */
 
@@ -46,13 +55,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN TRUE /* N3276(v1.1): decltype()	      */
 #define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION		    TRUE /* N3050:	 noexcept, noexcept() */
 
-/* MARK: - Operators */
+/* MARK: - Storage classes */
 
-#define Z_CPP_HAS_OPERATOR_ALIGN_OF	TRUE /* N2341: alignof()  */
-#define Z_CPP_HAS_OPERATOR_NO_EXCEPTION TRUE /* N3050: noexcept() */
+#define Z_CPP_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* N2659: thread_local */
 
-/* MARK: - Literals */
+/* MARK: - Types */
 
-#define Z_CPP_HAS_LITERAL_NULL_POINTER TRUE /* N2431: nullptr */
+#define Z_CPP_HAS_TYPE_ULLONG TRUE /* N1811: unsigned long long [int] */
+#define Z_CPP_HAS_TYPE_LLONG  TRUE /* N1811: [signed] long long [int] */
 
 #endif /* __Z_inspection_CPP_modules_CPP11_H__ */

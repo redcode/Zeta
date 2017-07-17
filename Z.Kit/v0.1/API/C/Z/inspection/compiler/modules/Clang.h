@@ -300,13 +300,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - K&R C support */
 
-#define Z_COMPILER_C_HAS_TYPE_FLOAT		TRUE
-#define Z_COMPILER_C_HAS_TYPE_DOUBLE		TRUE
+#define Z_COMPILER_C_HAS_OPERATOR_SIZE_OF	TRUE
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO	TRUE
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_EXTERN	TRUE
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_REGISTER TRUE
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_STATIC	TRUE
-#define Z_COMPILER_C_HAS_OPERATOR_SIZE_OF	TRUE
+#define Z_COMPILER_C_HAS_TYPE_FLOAT		TRUE
+#define Z_COMPILER_C_HAS_TYPE_DOUBLE		TRUE
 
 /* MARK: - C89 support */
 
@@ -374,8 +374,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if __has_feature(c_atomic) || __has_extension(c_atomic)
 #	define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS     TRUE
-#	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC TRUE
 #	define Z_COMPILER_C_HAS_SPECIFIER_ATOMIC      TRUE
+#	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC TRUE
 #endif
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
@@ -388,12 +388,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_C_HAS_STATIC_ASSERTION TRUE
 #	endif
 
-#	if __has_feature(c_alignas) || __has_extension(c_alignas)
-#		define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS TRUE
-#	endif
-
 #	if __has_feature(c_alignof) || __has_extension(c_alignof)
 #		define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF TRUE
+#	endif
+
+#	if __has_feature(c_alignas) || __has_extension(c_alignas)
+#		define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS TRUE
 #	endif
 
 #endif
@@ -408,56 +408,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_CLOSURE TRUE
 #endif
 
-/* MARK: - C attributes */
-
-#if __has_attribute(alias)
-#	define Z_COMPILER_C_ATTRIBUTE_ALIAS(name) __attribute__((alias(name)))
-#endif
-
-#if __has_attribute(dllimport)
-#	define Z_COMPILER_C_ATTRIBUTE_API __declspec(dllimport)
-#endif
-
-#if __has_attribute(dllexport)
-#	define Z_COMPILER_C_ATTRIBUTE_API_EXPORT __declspec(dllexport)
-#endif
-
-/*#define Z_COMPILER_C_ATTRIBUTE_API_ALIAS*/
-/*#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT_ALIAS*/
-/*#define Z_COMPILER_C_ATTRIBUTE_API_WEAK_EXPORT*/
-
-#if __has_attribute(always_inline)
-#	define Z_COMPILER_C_ATTRIBUTE_INLINE static __inline__ __attribute__((always_inline))
-#else
-#	define Z_COMPILER_C_ATTRIBUTE_INLINE static __inline__
-#endif
-
-#if __has_attribute(noreturn)
-#	define Z_COMPILER_C_ATTRIBUTE_NO_RETURN __attribute__((noreturn))
-#endif
-
-#if __has_attribute(sentinel)
-#	define Z_COMPILER_C_ATTRIBUTE_NULL_TERMINATED __attribute__((sentinel))
-#endif
-
-#if __has_attribute(visibility)
-#	define Z_COMPILER_C_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden"))) static
-#	define Z_COMPILER_C_ATTRIBUTE_PUBLIC  __attribute__((visibility("default")))
-#endif
-
-#if __has_attribute(packed)
-#	define Z_COMPILER_C_ATTRIBUTE_STRICT_SIZE_BEGIN
-#	define Z_COMPILER_C_ATTRIBUTE_STRICT_SIZE_END __attribute__((packed))
-#endif
-
-#if __has_extension(tls)
-#	define Z_COMPILER_C_ATTRIBUTE_THREAD_LOCAL __thread
-#endif
-
-#if __has_attribute(weak)
-#	define Z_COMPILER_C_ATTRIBUTE_WEAK __attribute__((weak))
-#endif
-
 #if defined(__cplusplus)
 
 	/* MARK: - C++ support */
@@ -469,14 +419,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	if __cplusplus >= 201103L
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
-#			define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR  TRUE
-#			define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE TRUE
-#			define Z_COMPILER_CPP_HAS_TYPE_ULLONG	    TRUE
-#			define Z_COMPILER_CPP_HAS_TYPE_LLONG	    TRUE
+#			define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR  TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_TYPE_ULLONG	    TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_TYPE_LLONG	    TRUE /* v2.9 */
 #		endif
 
 #		if __has_feature(cxx_explicit_conversions)
-#			define Z_COMPILER_CPP_HAS_EXPLICIT_CONVERSION TRUE
+#			define Z_COMPILER_CPP_HAS_EXPLICIT_CONVERSION TRUE /* v3.0 */
 #		endif
 
 #		if __has_feature(cxx_inheriting_constructors)
@@ -530,6 +480,26 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS TRUE
 #		endif
 
+#		if __has_attribute(carries_dependency)
+#			define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY TRUE
+#		endif
+
+#		if __has_attribute(noreturn)
+#			define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN TRUE
+#		endif
+
+#		if __has_feature(cxx_nullptr) || __has_extension(cxx_nullptr)
+#			define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER TRUE
+#		endif
+
+#		if __has_feature(cxx_alignof) || __has_extension(cxx_alignof)
+#			define Z_COMPILER_CPP_HAS_OPERATOR_ALIGN_OF TRUE
+#		endif
+
+#		if __has_feature(cxx_noexcept) || __has_extension(cxx_noexcept)
+#			define Z_COMPILER_CPP_HAS_OPERATOR_NO_EXCEPTION TRUE
+#		endif
+
 #		if __has_feature(cxx_alignas) || __has_extension(cxx_alignas)
 #			define Z_COMPILER_CPP_HAS_SPECIFIER_ALIGN_AS TRUE
 #		endif
@@ -554,16 +524,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION TRUE
 #		endif
 
-#		if __has_feature(cxx_alignof) || __has_extension(cxx_alignof)
-#			define Z_COMPILER_CPP_HAS_OPERATOR_ALIGN_OF TRUE
-#		endif
-
-#		if __has_feature(cxx_noexcept) || __has_extension(cxx_noexcept)
-#			define Z_COMPILER_CPP_HAS_OPERATOR_NO_EXCEPTION TRUE
-#		endif
-
-#		if __has_feature(cxx_nullptr) || __has_extension(cxx_nullptr)
-#			define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER TRUE
+		/*----------------------------------------------.
+		| IMPORTANT: thread_local support requires      |
+		| a C++ runtime  providing __cxa_thread_atexit.	|
+		'----------------------------------------------*/
+#		if __has_feature(cxx_thread_local)
+#			define Z_COMPILER_CPP_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* v3.3 */
 #		endif
 
 #	endif
@@ -582,12 +548,66 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	endif
 
-	/* MARK: - C++ attributes */
+#endif
+
+/* MARK: - Attributes */
+
+#if __has_attribute(alias)
+#	define Z_COMPILER_ATTRIBUTE_ALIAS(name) __attribute__((alias(name)))
+#endif
+
+#if __has_attribute(dllimport)
+#	define Z_COMPILER_ATTRIBUTE_API __declspec(dllimport)
+#endif
+
+#if __has_attribute(dllexport)
+#	define Z_COMPILER_ATTRIBUTE_API_EXPORT __declspec(dllexport)
+#endif
+
+/*#define Z_COMPILER_ATTRIBUTE_API_ALIAS*/
+/*#define Z_COMPILER_ATTRIBUTE_API_EXPORT_ALIAS*/
+/*#define Z_COMPILER_ATTRIBUTE_API_WEAK_EXPORT*/
+
+#if __has_attribute(always_inline)
+#	define Z_COMPILER_ATTRIBUTE_INLINE static __inline__ __attribute__((always_inline))
+#else
+#	define Z_COMPILER_ATTRIBUTE_INLINE static __inline__
+#endif
+
+#if __has_attribute(noreturn)
+#	define Z_COMPILER_ATTRIBUTE_NO_RETURN __attribute__((noreturn))
+#endif
+
+#if __has_attribute(sentinel)
+#	define Z_COMPILER_ATTRIBUTE_NULL_TERMINATED __attribute__((sentinel))
+#endif
+
+#if __has_attribute(visibility)
+#	define Z_COMPILER_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden"))) static
+#	define Z_COMPILER_ATTRIBUTE_PUBLIC  __attribute__((visibility("default")))
+#endif
+
+#if __has_attribute(packed)
+#	define Z_COMPILER_ATTRIBUTE_STRICT_SIZE_BEGIN
+#	define Z_COMPILER_ATTRIBUTE_STRICT_SIZE_END __attribute__((packed))
+#endif
+
+#if __has_extension(tls)
+#	define Z_COMPILER_ATTRIBUTE_THREAD_LOCAL __thread
+#endif
+
+#if __has_attribute(weak)
+#	define Z_COMPILER_ATTRIBUTE_WEAK __attribute__((weak))
+#endif
+
+/* MARK: - Attributes (C++ only) */
+
+#if defined(__cplusplus)
 
 #	if __has_attribute(always_inline)
-#		define Z_COMPILER_CPP_ATTRIBUTE_INLINE_MEMBER __inline__ __attribute__((always_inline))
+#		define Z_COMPILER_ATTRIBUTE_INLINE_MEMBER __inline__ __attribute__((always_inline))
 #	else
-#		define Z_COMPILER_CPP_ATTRIBUTE_INLINE_MEMBER __inline__
+#		define Z_COMPILER_ATTRIBUTE_INLINE_MEMBER __inline__
 #	endif
 
 #endif
