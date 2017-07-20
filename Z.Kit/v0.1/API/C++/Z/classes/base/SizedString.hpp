@@ -12,16 +12,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/language.hpp>
 
 
-namespace Zeta {template <unsigned int S> struct SizedString {
-	//typedef struct {
-		Character data[S + 1];
-	//} Data;
+namespace Zeta {template <Size S> struct SizedString {
+	Character data[S + 1];
 
-	//Data data;
 
 	Z_CONSTANT_MEMBER(CPP11) SizedString() : data{0} {}
-	//constexpr SizedString(const Character *string) : data(*(Data *)string), null(0) {}
-	Z_CONSTANT_MEMBER(CPP11) Character const *c() const {return data;}
+
+
+	Z_INLINE_MEMBER SizedString(const Character *string)
+		{
+		Size size = S;
+		Character *data = this->data;
+
+		while (size-- && *string) *data++ = *string++;
+		*data = '\0';
+		}
+
+
+	Z_CONSTANT_MEMBER(CPP11) operator const Character *() const {return data;}
 };}
 
 

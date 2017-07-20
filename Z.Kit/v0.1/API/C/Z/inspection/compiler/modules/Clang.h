@@ -1293,16 +1293,83 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in traits */
 
+#if __has_extension(is_abstract)
+#	define Z_COMPILER_TRAIT_TYPE_IS_ABSTRACT __is_abstract
+#endif
+
+#if __has_extension(is_aggregate)
+#	define Z_COMPILER_TRAIT_TYPE_IS_AGGREGATE __is_aggregate
+#endif
+
 #if __has_extension(is_base_of)
 #	define Z_COMPILER_TRAIT_TYPE_IS_BASE __is_base_of
+#endif
+
+#if __has_extension(is_class)
+#	define Z_COMPILER_TRAIT_TYPE_IS_CLASS __is_class
 #endif
 
 #if __has_extension(is_convertible_to)
 #	define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE __is_convertible_to
 #endif
 
+#if __has_extension(is_empty)
+#	define Z_COMPILER_TRAIT_TYPE_IS_EMPTY __is_empty
+#endif
+
+#if __has_extension(is_enum)
+#	define Z_COMPILER_TRAIT_TYPE_IS_ENUM __is_enum
+#endif
+
+#if __has_extension(is_final)
+#	define Z_COMPILER_TRAIT_TYPE_IS_FINAL __is_final
+#endif
+
+#if __has_extension(is_interface_class)
+#	define Z_COMPILER_TRAIT_TYPE_IS_INTERFACE_CLASS __is_interface_class
+#endif
+
+#if __has_extension(is_literal)
+#	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal
+#endif
+
+#if __has_extension(is_pod)
+#	define Z_COMPILER_TRAIT_TYPE_IS_POD __is_pod
+#endif
+
+#if __has_extension(is_polymorphic)
+#	define Z_COMPILER_TRAIT_TYPE_IS_POLYMORPHIC __is_polymorphic
+#endif
+
 #if __has_extension(is_union)
 #	define Z_COMPILER_TRAIT_TYPE_IS_UNION __is_union
 #endif
 
+#if __has_extension(underlying_type)
+#	define Z_COMPILER_TRAIT_TYPE_UNDERLYING_TYPE __underlying_type
+#endif
+
 #endif /* __Z_inspection_compiler_modules_Clang_H__ */
+
+/*
+#if __has_extension()
+#	define Z_COMPILER_TRAIT_TYPE
+#endif
+/*
+__is_constructible
+__has_nothrow_assign
+__has_nothrow_copy
+__has_nothrow_constructor
+__has_trivial_assign
+__has_trivial_copy
+__has_trivial_constructor
+__has_trivial_destructor
+__has_virtual_destructor
+__is_trivially_assignable(totype, fromtype)
+__is_trivially_constructible(type, argtypes...)
+__is_destructible
+__is_nothrow_destructible
+__is_nothrow_assignable
+__is_nothrow_constructible
+__is_assignable
+*/

@@ -322,14 +322,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in macros: Struture */
 
-/*#define Z_COMPILER_MACRO_OFFSET_OF*/
+/*#define Z_COMPILER_MACRO_OFFSET_OF(type, member)*/
 
 /* MARK: - Built-in macros: VAL */
 
-/*#define Z_COMPILER_MACRO_VAL_INITIALIZE*/
-/*#define Z_COMPILER_MACRO_VAL_FINALIZE*/
-/*#define Z_COMPILER_MACRO_VAL_READ*/
-/*#define Z_COMPILER_MACRO_VAL_COPY*/
+/*#define Z_COMPILER_MACRO_VAL_INITIALIZE(object, last_parameter)*/
+/*#define Z_COMPILER_MACRO_VAL_FINALIZE(object)*/
+/*#define Z_COMPILER_MACRO_VAL_READ(object, type)*/
+/*#define Z_COMPILER_MACRO_VAL_COPY(object, output)*/
 
 /* MARK: - Built-in functions: Atomic operations */
 
@@ -545,8 +545,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in traits */
 
-/*#define Z_COMPILER_TRAIT_TYPE_IS_BASE*/
-/*#define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE*/
-/*#define Z_COMPILER_TRAIT_TYPE_IS_UNION*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_ABSTRACT(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_AGGREGATE(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_BASE(type, of)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_CLASS(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE(type, to)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_EMPTY(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_ENUM(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_FINAL(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_INTERFACE_CLASS(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_LITERAL(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_POD(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_POLYMORPHIC(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_UNION(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_UNDERLYING_TYPE(type)*/
 
 #endif /* __Z_inspection_modules_compiler_template_H__ */

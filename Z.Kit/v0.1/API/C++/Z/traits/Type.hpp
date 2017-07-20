@@ -30,6 +30,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_array		     = false,
 			is_callable		     = false,
 			is_class		     = false,
+			is_compound		     = false,
 			is_const		     = false,
 			is_const_lvalue		     = false,
 			is_const_rvalue		     = false,
@@ -38,7 +39,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_const_volatile_rvalue     = false,
 			is_data_member_pointer	     = false,
 			is_empty		     = false,
-			is_enum			     = false,
 			is_exact		     = false,
 			is_integer		     = false,
 			is_invalid		     = true,
@@ -56,7 +56,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_natural		     = false,
 			is_number		     = false,
 			is_nullptr		     = false,
-			is_pod			     = false,
 			is_pointer		     = false,
 			is_qualified		     = false,
 			is_real			     = false,
@@ -68,7 +67,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_storable		     = false,
 			is_struct		     = false,
 			is_template		     = false,
-			is_union		     = false,
 			is_valid		     = false,
 			is_value		     = false,
 			is_variadic		     = false,
@@ -79,6 +77,43 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_volatile_lvalue	     = false,
 			is_volatile_rvalue	     = false
 		};
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ABSTRACT)
+			enum {is_abstract = false};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_AGGREGATE)
+			enum {is_aggregate = false};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUM)
+			enum {is_enum = false};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_FINAL)
+			enum {is_final = false};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_INTERFACE_CLASS)
+			enum {is_interface_class = false};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
+			enum {is_literal = false};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
+			enum {is_pod = false};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POLYMORPHIC)
+			enum {is_polymorphic = false};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
+			enum {is_union = false};
+#		endif
+
 		enum {	is_copy_assignable		   = false,
 			is_copy_constructible		   = false,
 			is_default_constructible	   = false,
@@ -113,7 +148,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef NaT pointee_type;
 		typedef NaT referenced_type;
 		typedef NaT return_type;
-		typedef NaT underlying_type;
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_UNDERLYING_TYPE)
+			typedef NaT underlying_type;
+#		endif
 
 		typedef NaT parameters;
 
@@ -179,10 +217,17 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {	is_arithmetic  = true,
 			is_fundamental = true,
 			is_number      = true,
-			is_pod	       = true,
 			is_scalar      = true,
 			is_value       = true
 		};
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
+			enum {is_literal = true};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
+			enum {is_pod = true};
+#		endif
 	};
 
 	struct Exact : Number {
@@ -210,6 +255,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {	is_fundamental = true,
 			is_void	       = true
 		};
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
+			enum {is_literal = true};
+#		endif
 
 		typedef void type;
 	};
@@ -585,66 +634,138 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	template <class T, zsize N> struct Array : Storable {
+	template <class T> struct Array : Storable {
 		enum {is_array = true};
+
+		typedef T element_type;
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_AGGREGATE)
+			enum {is_aggregate = true};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
+			enum {is_literal = Z_COMPILER_TRAIT(TYPE_IS_LITERAL)(T)};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
+			enum {is_pod = Z_COMPILER_TRAIT(TYPE_IS_POD)(T)};
+#		endif
+	};
+
+	template <class T, zsize N> struct SizedArray : Array<T> {
 		enum {element_count = N};
 
 		typedef T type[N];
-		typedef T element_type;
 	};
 
-	template <class T> struct FlexibleArray : Storable {
-		enum {	is_array	  = true,
-			is_flexible_array = true,
-		};
+	template <class T> struct FlexibleArray : Array<T> {
+		enum {is_flexible_array = true};
 
 		typedef T type[];
-		typedef T element_type;
 	};
 
 	template <class T> struct Enum : Storable {
-		enum {	is_enum	  = true,
-			is_scalar = true
+		enum {	is_enum	   = true,
+			is_scalar  = true
 		};
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
+			enum {is_literal = true};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
+			enum {is_pod = true};
+#		endif
+
+		typedef T type;
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_UNDERLYING_TYPE)
+			typedef Z_COMPILER_TRAIT(TYPE_UNDERLYING_TYPE)(T) underlying_type;
+#		endif
+	};
+
+	template <class T> struct Compound : Storable {
+		enum {is_compound = true};
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_AGGREGATE)
+			enum {is_aggregate = Z_COMPILER_TRAIT(TYPE_IS_AGGREGATE)(T)};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_FINAL)
+			enum {is_final = Z_COMPILER_TRAIT(TYPE_IS_FINAL)(T)};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
+			enum {is_literal = Z_COMPILER_TRAIT(TYPE_IS_LITERAL)(T)};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
+			enum {is_pod = Z_COMPILER_TRAIT(TYPE_IS_POD)(T)};
+#		endif
 
 		typedef T type;
 	};
 
-	template <class T> class Struct : public Storable {
-		private:
-		struct dummy	      {zint dummy;};
-		struct empty_test : T {zint dummy;};
-
+	template <class T> class Struct : public Compound<T> {
 		public:
-		enum {	is_empty  = (sizeof(empty_test) == sizeof(dummy)),
+		enum {	is_class  = true,
 			is_struct = true
 		};
 
-		typedef T type;
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ABSTRACT)
+			enum {is_abstract = Z_COMPILER_TRAIT(TYPE_IS_ABSTRACT)(T)};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_EMPTY)
+			enum {is_empty = Z_COMPILER_TRAIT(TYPE_IS_EMPTY)(T)};
+#		else
+			private:
+			struct Dummy	     {zint dummy;};
+			struct EmptyTest : T {zint dummy;};
+
+			public:
+			enum {is_empty = (sizeof(EmptyTest) == sizeof(Dummy))};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_INTERFACE_CLASS)
+			enum {is_interface_class = Z_COMPILER_TRAIT(TYPE_IS_INTERFACE_CLASS)(T)};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POLYMORPHIC)
+			enum {is_polymorphic = Z_COMPILER_TRAIT(TYPE_IS_POLYMORPHIC)(T)};
+#		endif
 	};
 
-	template <class T> struct Union : Storable {
+	template <class T> struct Union : Compound<T> {
 		enum {is_union = true};
+	};
 
-		typedef T type;
+	struct PointerLike : Storable {
+		enum {is_scalar	= true};
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
+			enum {is_literal = true};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
+			enum {is_pod = true};
+#		endif
 	};
 
 #	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
 
-		struct NullPointer : Storable {
+		struct NullPointer : PointerLike {
 			enum {	is_fundamental = true,
-				is_scalar      = true,
 				is_nullptr     = true
-			};	
+			};
 
 			typedef decltype(nullptr) type;
 		};
 
 #	endif
 
-	template <class T> struct Pointer : Storable {
+	template <class T> struct Pointer : PointerLike {
 		enum {	is_pointer = true,
-			is_scalar  = true,
 			is_value   = true
 		};
 
@@ -652,10 +773,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef T  pointee_type;
 	};
 
-	template <class T, class C, class M> struct MemberPointer : Storable {
+	template <class T, class C, class M> struct MemberPointer : PointerLike {
 		enum {	is_member_pointer = true,
-			is_pointer	  = true,
-			is_scalar	  = true
+			is_pointer	  = true
 		};
 
 		typedef T type;
@@ -663,12 +783,26 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef M pointee_type;
 	};
 
+	template <class T, class C, class M> struct DataMemberPointer : MemberPointer<T, C, M> {
+		enum {is_data_member_pointer = true};
+
+	};
+
 	template <class T, class C, class M> struct MemberFunctionPointer : MemberPointer<T, C, M> {
-		enum {is_member_function_pointer = true};
+		enum {	is_callable		   = true,
+			is_member_function_pointer = true
+		};
+		enum {pointer_level = 1};
+
+		typedef M to_function;
 	};
 
 	template <class T> struct Reference : Storable {
 		enum {is_reference = true};
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
+			enum {is_literal = true};
+#		endif
 
 		typedef T referenced_type;
 	};
@@ -1092,7 +1226,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		Z_DEFINE_STRICT_STRUCTURE (typename C::type value;     ) to_wrap;
 		Z_DEFINE_STRICT_STRUCTURE (UInt8 data[sizeof(to_wrap)];) to_opaque;
 
-		enum {is_storable = true};
 		enum {	size = sizeof(to_wrap),
 			bits = sizeof(to_wrap) * 8
 		};
@@ -1275,9 +1408,9 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <> struct Case<LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
 #	endif
 
-	// MARK: - Specializations: Arrays
+	// MARK: - Specializations: Sized arrays
 
-	template <class T, Size N> struct Case<T[N]> : Mixins::Unqualified<Abstract::Array<T, N> > {};
+	template <class T, Size N> struct Case<T[N]> : Mixins::Unqualified<Abstract::SizedArray<T, N> > {};
 
 	template <class T, Size N> struct Case<const	      T[N]> : Mixins::ConstArray	<Case<T[N]> > {};
 	template <class T, Size N> struct Case<	     volatile T[N]> : Mixins::VolatileArray	<Case<T[N]> > {};
@@ -1297,22 +1430,22 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <> struct Case<decltype(nullptr)> : Mixins::Unqualified<Abstract::NullPointer> {};
 #	endif
 
-	template <class T> struct Case<T*> : Mixins::Unqualified<Abstract::Pointer<T> > {
-		enum {	is_function_pointer = Case<T>::is_function,
+	template <class T> class Case<T*> : public Mixins::Unqualified<Abstract::Pointer<T> > {
+		private:
+		typedef Case<T> Pointee;
+
+		public:
+		enum {	is_function_pointer = Pointee::is_function,
 			is_callable	    = is_function_pointer,
-			is_void_pointer	    = Case<T>::is_void
+			is_void_pointer	    = Pointee::is_void
 		};
-		enum {pointer_level = Case<T>::pointer_level + 1};
+		enum {pointer_level = Pointee::pointer_level + 1};
 
 		typedef typename SelectType<is_function_pointer, NaT, T>::type to_function;
 	};
 
-	template <class C, class T> struct Case<T C::*> : Mixins::Unqualified<Abstract::Pointer<T> > {
-		enum {	is_data_member_pointer = true,
-			is_member_pointer      = true
-		};
-
-		typedef C class_type;
+	template <class C, class T> struct Case<T C::*> : Mixins::Unqualified<Abstract::DataMemberPointer<T C::*, C, T> > {
+		enum {pointer_level = Case<T>::pointer_level + 1};
 	};
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
@@ -1524,6 +1657,7 @@ namespace Zeta {
 				is_array		     = Type::is_array,
 				is_callable		     = Type::is_callable,
 				is_class		     = Type::is_class,
+				is_compound		     = Type::is_compound,
 				is_const		     = Type::is_const,
 				is_const_lvalue		     = Type::is_const_lvalue,
 				is_const_rvalue		     = Type::is_const_rvalue,
@@ -1532,7 +1666,6 @@ namespace Zeta {
 				is_const_volatile_rvalue     = Type::is_const_volatile_rvalue,
 				is_data_member_pointer	     = Type::is_data_member_pointer,
 				is_empty		     = Type::is_empty,
-				is_enum			     = Type::is_enum,
 				is_exact		     = Type::is_exact,
 				is_integer		     = Type::is_integer,
 				is_invalid		     = Type::is_invalid,
@@ -1550,7 +1683,6 @@ namespace Zeta {
 				is_natural		     = Type::is_natural,
 				is_number		     = Type::is_number,
 				is_nullptr		     = Type::is_nullptr,
-				is_pod			     = Type::is_pod,
 				is_pointer		     = Type::is_pointer,
 				is_qualified		     = Type::is_qualified,
 				is_real			     = Type::is_real,
@@ -1562,7 +1694,6 @@ namespace Zeta {
 				is_storable		     = Type::is_storable,
 				is_struct		     = Type::is_struct,
 				is_template		     = Type::is_template,
-				is_union		     = Type::is_union,
 				is_valid		     = Type::is_valid,
 				is_value		     = Type::is_value,
 				is_variadic		     = Type::is_variadic,
@@ -1573,6 +1704,43 @@ namespace Zeta {
 				is_volatile_lvalue	     = Type::is_volatile_lvalue,
 				is_volatile_rvalue	     = Type::is_volatile_rvalue
 			};
+
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_ABSTRACT)
+				enum {is_abstract = Type::is_abstract};
+#			endif
+
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_AGGREGATE)
+				enum {is_aggregate = Type::is_aggregate};
+#			endif
+
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUM)
+				enum {is_enum = Type::is_enum};
+#			endif
+
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_FINAL)
+				enum {is_final = Type::is_final};
+#			endif
+
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_INTERFACE_CLASS)
+				enum {is_interface_class = Type::is_interface_class};
+#			endif
+
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
+				enum {is_literal = Type::is_literal};
+#			endif
+
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
+				enum {is_pod = Type::is_pod};
+#			endif
+
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_POLYMORPHIC)
+				enum {is_polymorphic = Type::is_polymorphic};
+#			endif
+
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
+				enum {is_union = Type::is_union};
+#			endif
+
 			enum {	is_copy_assignable		   = Type::is_copy_assignable,
 				is_copy_constructible		   = Type::is_copy_constructible,
 				is_default_constructible	   = Type::is_default_constructible,
@@ -1609,7 +1777,10 @@ namespace Zeta {
 			typedef typename Type<typename Type::pointee_type   >::flow pointee_type;
 			typedef typename Type<typename Type::referenced_type>::flow referenced_type;
 			typedef typename Type<typename Type::return_type    >::flow return_type;
-			typedef typename Type<typename Type::underlying_type>::flow underlying_type;
+
+#			if Z_COMPILER_HAS_TRAIT(TYPE_UNDERLYING_TYPE)
+				typedef typename Type<typename Type::underlying_type>::flow underlying_type;
+#			endif
 
 			typedef typename Type::parameters parameters;
 
@@ -1676,7 +1847,7 @@ namespace Zeta {
 
 
 			static Z_CONSTANT_MEMBER(CPP14) Symbol symbol()
-				{return type_string<T>().data;}
+				{return Symbol(type_string<T>());}
 
 #		endif
 	};

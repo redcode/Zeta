@@ -16,11 +16,11 @@ namespace Zeta {
 	template <class T>
 	Z_CONSTANT(CPP14) Size type_string_size()
 		{
-		Character const *p = __PRETTY_FUNCTION__;
+		const Character *input = __PRETTY_FUNCTION__;
 		Size size = 0;
 
-		while (*p++ != '=');
-		while (*++p != ']') size++;
+		while (*input++ != '=');
+		while (*++input != ']') size++;
 		return size;
 		}
 
@@ -29,11 +29,11 @@ namespace Zeta {
 	Z_CONSTANT(CPP14) SizedString<type_string_size<T>()> type_string()
 		{
 		SizedString<type_string_size<T>()> string;
-		Character const* s = __PRETTY_FUNCTION__;
-		Character *o = string.data;
+		const Character *input = __PRETTY_FUNCTION__;
+		Character *output = string.data;
 
-		while (*s++ != '=');
-		while (*++s != ']') *o++ = *s;
+		while (*input++ != '=');
+		while (*++input != ']') *output++ = *input;
 		return string;
 		}
 
