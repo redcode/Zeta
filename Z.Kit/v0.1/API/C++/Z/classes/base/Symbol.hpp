@@ -31,4 +31,10 @@ namespace Zeta {struct Symbol {
 };}
 
 
+#ifdef Z_USE_SYMBOL_ABBREVIATION
+#	define $( string) Zeta::Symbol(#string)
+#	define $$(string) Zeta::Symbol(string )
+#endif
+
+
 #endif // __Z_classes_base_Symbol_HPP__
