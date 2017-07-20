@@ -10,48 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-/* MARK: - Type qualifiers */
-
-/* MARK: - Storage classes */
-
-#if Z_COMPILER_HAS_ATTRIBUTE(THREAD_LOCAL)
-#	define Z_THREAD_LOCAL Z_COMPILER_ATTRIBUTE(THREAD_LOCAL)
-
-#elif Z_LANGUAGE_HAS_STORAGE_CLASS(C, THREAD_LOCAL)
-#	define Z_THREAD_LOCAL _Thread_local
-
-#elif Z_LANGUAGE_HAS_STORAGE_CLASS(CPP, THREAD_LOCAL)
-#	define Z_THREAD_LOCAL thread_local
-#endif
-
-/* MARK: - Specifiers */
-
-#if Z_COMPILER_HAS_ATTRIBUTE(INLINE)
-#	define Z_INLINE Z_COMPILER_ATTRIBUTE(INLINE)
-
-#elif Z_LANGUAGE_HAS_SPECIFIER(C, INLINE) || Z_LANGUAGE_HAS_SPECIFIER(CPP, INLINE)
-
-#	if Z_LANGUAGE_HAS_STORAGE_CLASS(C, STATIC)
-#		define Z_INLINE static inline
-#	else
-#		define Z_INLINE inline
-#	endif
-
-#endif
-
-#if Z_COMPILER_HAS_ATTRIBUTE(NO_RETURN)
-#	define Z_NO_RETURN Z_COMPILER_ATTRIBUTE(NO_RETURN)
-
-#elif Z_LANGUAGE_HAS_SPECIFIER(C, NO_RETURN)
-#	define Z_NO_RETURN _Noreturn
-
-#elif Z_LANGUAGE_HAS_ATTRIBUTE(CPP, NO_RETURN)
-#	define [[noreturn]]
-
-#else
-#	define Z_NO_RETURN
-#endif
-
 /* MARK: - Attributes */
 
 #if Z_COMPILER_HAS_ATTRIBUTE(NULL_TERMINATED)
@@ -104,6 +62,46 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_API_WEAK_EXPORT Z_COMPILER_ATTRIBUTE(API_WEAK_EXPORT)
 #else
 #	define Z_API_WEAK_EXPORT Z_API_EXPORT Z_WEAK
+#endif
+
+/* MARK: - Specifiers */
+
+#if Z_COMPILER_HAS_ATTRIBUTE(INLINE)
+#	define Z_INLINE Z_COMPILER_ATTRIBUTE(INLINE)
+
+#elif Z_LANGUAGE_HAS_SPECIFIER(C, INLINE) || Z_LANGUAGE_HAS_SPECIFIER(CPP, INLINE)
+
+#	if Z_LANGUAGE_HAS_STORAGE_CLASS(C, STATIC)
+#		define Z_INLINE static inline
+#	else
+#		define Z_INLINE inline
+#	endif
+
+#endif
+
+#if Z_COMPILER_HAS_ATTRIBUTE(NO_RETURN)
+#	define Z_NO_RETURN Z_COMPILER_ATTRIBUTE(NO_RETURN)
+
+#elif Z_LANGUAGE_HAS_SPECIFIER(C, NO_RETURN)
+#	define Z_NO_RETURN _Noreturn
+
+#elif Z_LANGUAGE_HAS_ATTRIBUTE(CPP, NO_RETURN)
+#	define [[noreturn]]
+
+#else
+#	define Z_NO_RETURN
+#endif
+
+/* MARK: - Storage classes */
+
+#if Z_COMPILER_HAS_ATTRIBUTE(THREAD_LOCAL)
+#	define Z_THREAD_LOCAL Z_COMPILER_ATTRIBUTE(THREAD_LOCAL)
+
+#elif Z_LANGUAGE_HAS_STORAGE_CLASS(C, THREAD_LOCAL)
+#	define Z_THREAD_LOCAL _Thread_local
+
+#elif Z_LANGUAGE_HAS_STORAGE_CLASS(CPP, THREAD_LOCAL)
+#	define Z_THREAD_LOCAL thread_local
 #endif
 
 /* MARK: - Built-in macros: Struture */

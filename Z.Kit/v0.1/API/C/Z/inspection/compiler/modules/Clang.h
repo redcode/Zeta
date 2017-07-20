@@ -789,6 +789,27 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_POINTER_SIZE	(_MIPS_SZPTR / 8)
 #endif
 
+/* MARK: - Built-in magic constants */
+
+#define Z_COMPILER_MAGIC_CONSTANT_MANGLED_FUNCTION_NAME __PRETTY_FUNCTION__
+
+/* MARK: - Built-in macros: Struture */
+
+#define Z_COMPILER_MACRO_OFFSET_OF __builtin_offsetof
+
+/* MARK: - Built-in macros: VAL
+.-----------------------------------------------------------------.
+| Please, read the comments for this section in the GCC's header. |
+'----------------------------------------------------------------*/
+
+#define Z_COMPILER_MACRO_VAL_INITIALIZE __builtin_va_start
+#define Z_COMPILER_MACRO_VAL_FINALIZE   __builtin_va_end
+#define Z_COMPILER_MACRO_VAL_READ	__builtin_va_arg
+
+#if __has_builtin(__builtin_va_copy)
+#	define Z_COMPILER_MACRO_VAL_COPY(object, output) __builtin_va_copy(output, object)
+#endif
+
 /* MARK: - Built-in types */
 
 /*#define Z_COMPILER_TYPE_UINT8*/
@@ -841,23 +862,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_LITERAL_FLOAT80*/
 /*#define Z_COMPILER_LITERAL_FLOAT96*/
 /*#define Z_COMPILER_LITERAL_FLOAT128*/
-
-/* MARK: - Built-in macros: Struture */
-
-#define Z_COMPILER_MACRO_OFFSET_OF __builtin_offsetof
-
-/* MARK: - Built-in macros: VAL
-.-----------------------------------------------------------------.
-| Please, read the comments for this section in the GCC's header. |
-'----------------------------------------------------------------*/
-
-#define Z_COMPILER_MACRO_VAL_INITIALIZE __builtin_va_start
-#define Z_COMPILER_MACRO_VAL_FINALIZE   __builtin_va_end
-#define Z_COMPILER_MACRO_VAL_READ	__builtin_va_arg
-
-#if __has_builtin(__builtin_va_copy)
-#	define Z_COMPILER_MACRO_VAL_COPY(object, output) __builtin_va_copy(output, object)
-#endif
 
 /* MARK: - Built-in functions: Atomic operations */
 
@@ -1349,8 +1353,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_UNDERLYING_TYPE __underlying_type
 #endif
 
-#endif /* __Z_inspection_compiler_modules_Clang_H__ */
-
 /*
 #if __has_extension()
 #	define Z_COMPILER_TRAIT_TYPE
@@ -1373,3 +1375,5 @@ __is_nothrow_assignable
 __is_nothrow_constructible
 __is_assignable
 */
+
+#endif /* __Z_inspection_compiler_modules_Clang_H__ */

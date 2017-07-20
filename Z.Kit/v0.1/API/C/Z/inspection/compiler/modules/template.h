@@ -270,6 +270,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_CONSTANT_POINTER_BITS*/
 /*#define Z_COMPILER_CONSTANT_POINTER_SIZE*/
 
+/* MARK: - Built-in magic constants */
+
+/*#define Z_COMPILER_MAGIC_CONSTANT_MANGLED_FUNCTION_NAME*/
+
+/* MARK: - Built-in macros: Struture */
+
+/*#define Z_COMPILER_MACRO_OFFSET_OF(type, member)*/
+
+/* MARK: - Built-in macros: VAL */
+
+/*#define Z_COMPILER_MACRO_VAL_INITIALIZE(object, last_parameter)*/
+/*#define Z_COMPILER_MACRO_VAL_FINALIZE(object)*/
+/*#define Z_COMPILER_MACRO_VAL_READ(object, type)*/
+/*#define Z_COMPILER_MACRO_VAL_COPY(object, output)*/
+
 /* MARK: - Built-in types */
 
 /*#define Z_COMPILER_TYPE_UINT8*/
@@ -319,17 +334,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_LITERAL_FLOAT80*/
 /*#define Z_COMPILER_LITERAL_FLOAT96*/
 /*#define Z_COMPILER_LITERAL_FLOAT128*/
-
-/* MARK: - Built-in macros: Struture */
-
-/*#define Z_COMPILER_MACRO_OFFSET_OF(type, member)*/
-
-/* MARK: - Built-in macros: VAL */
-
-/*#define Z_COMPILER_MACRO_VAL_INITIALIZE(object, last_parameter)*/
-/*#define Z_COMPILER_MACRO_VAL_FINALIZE(object)*/
-/*#define Z_COMPILER_MACRO_VAL_READ(object, type)*/
-/*#define Z_COMPILER_MACRO_VAL_COPY(object, output)*/
 
 /* MARK: - Built-in functions: Atomic operations */
 

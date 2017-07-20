@@ -1836,7 +1836,7 @@ namespace Zeta {
 			typedef typename Type<typename Type::remove_volatile_this      >::flow remove_volatile_this;
 		};
 
-#		if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
+#		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 
 			static Z_CONSTANT_MEMBER(CPP14) Size string_size()
 				{return type_string_size<T>();}
