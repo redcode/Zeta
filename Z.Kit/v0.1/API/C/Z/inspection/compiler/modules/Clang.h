@@ -1349,6 +1349,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_POLYMORPHIC __is_polymorphic
 #endif
 
+#if __has_extension(is_trivially_constructible)
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_CONSTRUCTIBLE __is_trivially_constructible
+#endif
+
 #if __has_extension(is_union)
 #	define Z_COMPILER_TRAIT_TYPE_IS_UNION __is_union
 #endif

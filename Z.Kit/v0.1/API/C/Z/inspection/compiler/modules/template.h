@@ -562,6 +562,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TRAIT_TYPE_IS_LITERAL(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_POD(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_POLYMORPHIC(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_CONSTRUCTIBLE(type, ...)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_UNION(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_UNDERLYING_TYPE(type)*/
 
