@@ -1594,6 +1594,12 @@ namespace Zeta {
 		};
 #	endif
 
+#	if Z_COMPILER_HAS_TRAIT(TYPE_IS_CONSTRUCTIBLE) && Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+		template <class T, class... parameters> struct TypeIsConstructible {
+			enum {value = Z_COMPILER_TRAIT(TYPE_IS_CONSTRUCTIBLE)(T, parameters...)};
+		};
+#	endif
+
 #	if Z_COMPILER_HAS_TRAIT(TYPE_IS_CONVERTIBLE)
 		template <class T, class to> struct TypeIsConvertible {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_CONVERTIBLE)(T, to)};

@@ -1313,6 +1313,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_CLASS __is_class
 #endif
 
+#if __has_extension(is_constructible)
+#	define Z_COMPILER_TRAIT_TYPE_IS_CONSTRUCTIBLE __is_constructible
+#endif
+
 #if __has_extension(is_convertible_to)
 #	define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE __is_convertible_to
 #endif
@@ -1358,7 +1362,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE
 #endif
 /*
-__is_constructible
+
 __has_nothrow_assign
 __has_nothrow_copy
 __has_nothrow_constructor
