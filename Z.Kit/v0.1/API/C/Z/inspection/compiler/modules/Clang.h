@@ -1341,6 +1341,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal
 #endif
 
+#if __has_extension(is_nothrow_constructible)
+#	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_CONSTRUCTIBLE __is_nothrow_constructible
+#endif
+
 #if __has_extension(is_pod)
 #	define Z_COMPILER_TRAIT_TYPE_IS_POD __is_pod
 #endif
@@ -1380,7 +1384,7 @@ __is_trivially_constructible(type, argtypes...)
 __is_destructible
 __is_nothrow_destructible
 __is_nothrow_assignable
-__is_nothrow_constructible
+
 __is_assignable
 */
 

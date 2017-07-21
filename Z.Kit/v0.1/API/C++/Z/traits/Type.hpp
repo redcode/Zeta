@@ -1608,6 +1608,12 @@ namespace Zeta {
 			};
 #		endif
 
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_CONSTRUCTIBLE)
+			template <class T, class... parameters> struct TypeIsNothrowConstructible {
+				enum {value = Z_COMPILER_TRAIT(TYPE_IS_NOTHROW_CONSTRUCTIBLE)(T, parameters...)};
+			};
+#		endif
+
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_CONSTRUCTIBLE)
 			template <class T, class... parameters> struct TypeIsTriviallyConstructible {
 				enum {value = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_CONSTRUCTIBLE)(T, parameters...)};
