@@ -1595,6 +1595,9 @@ namespace Zeta {namespace Detail {namespace Type {
 
 namespace Zeta {
 
+	template <class A, class B> struct TypeAreEqual	      : False {};
+	template <class A	  > struct TypeAreEqual<A, A> : True  {};
+
 #	if Z_COMPILER_HAS_TRAIT(TYPE_IS_ASSIGNABLE)
 		template <class T, class from_type> struct TypeIsAssignable {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_ASSIGNABLE)(T, from_type)};
