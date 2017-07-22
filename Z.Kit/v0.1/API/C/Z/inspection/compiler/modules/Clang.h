@@ -1345,6 +1345,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal
 #endif
 
+#if __has_extension(is_nothrow_assignable)
+#	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_ASSIGNABLE __is_nothrow_assignable
+#endif
+
 #if __has_extension(is_nothrow_constructible)
 #	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_CONSTRUCTIBLE __is_nothrow_constructible
 #endif

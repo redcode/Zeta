@@ -1320,7 +1320,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 namespace Zeta {namespace Detail {namespace Type {
 
-	// MARK: - Specializations: Structures and unions
+	// MARK: - Specializations: Enumerations, structures and unions
 
 	template <class T> struct Case : Mixins::Unqualified<
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUM) && Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
@@ -1610,6 +1610,12 @@ namespace Zeta {
 #	if Z_COMPILER_HAS_TRAIT(TYPE_IS_CONVERTIBLE)
 		template <class T, class to_type> struct TypeIsConvertible {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_CONVERTIBLE)(T, to_type)};
+		};
+#	endif
+
+#	if Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)
+		template <class T, class from_type> struct TypeIsNothrowAssignable {
+			enum {value = Z_COMPILER_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)(T, from_type)};
 		};
 #	endif
 
