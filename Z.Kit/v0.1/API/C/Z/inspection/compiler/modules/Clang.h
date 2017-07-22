@@ -1305,6 +1305,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_AGGREGATE __is_aggregate
 #endif
 
+#if __has_extension(is_assignable)
+#	define Z_COMPILER_TRAIT_TYPE_IS_ASSIGNABLE __is_assignable
+#endif
+
 #if __has_extension(is_base_of)
 #	define Z_COMPILER_TRAIT_TYPE_IS_BASE __is_base_of
 #endif
@@ -1380,12 +1384,9 @@ __has_trivial_constructor
 __has_trivial_destructor
 __has_virtual_destructor
 __is_trivially_assignable(totype, fromtype)
-__is_trivially_constructible(type, argtypes...)
 __is_destructible
 __is_nothrow_destructible
 __is_nothrow_assignable
-
-__is_assignable
 */
 
 #endif /* __Z_inspection_compiler_modules_Clang_H__ */

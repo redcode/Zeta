@@ -551,10 +551,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /*#define Z_COMPILER_TRAIT_TYPE_IS_ABSTRACT(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_AGGREGATE(type)*/
-/*#define Z_COMPILER_TRAIT_TYPE_IS_BASE(type, of)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_ASSIGNABLE(type, from_type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_BASE(type, of_type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_CLASS(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_CONSTRUCTIBLE(type, ...)*/
-/*#define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE(type, to)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE(type, to_type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_EMPTY(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_ENUM(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_FINAL(type)*/
