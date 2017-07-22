@@ -1606,6 +1606,12 @@ namespace Zeta {
 		};
 #	endif
 
+#	if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_ASSIGNABLE)
+		template <class T, class from_type> struct TypeIsTriviallyAssignable {
+			enum {value = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_ASSIGNABLE)(T, from_type)};
+		};
+#	endif
+
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_CONSTRUCTIBLE)
