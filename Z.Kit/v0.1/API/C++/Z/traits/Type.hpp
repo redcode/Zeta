@@ -1323,7 +1323,14 @@ namespace Zeta {namespace Detail {namespace Type {
 	// MARK: - Specializations: Structures and unions
 
 	template <class T> struct Case : Mixins::Unqualified<
-#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUM) && Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
+			typename SelectType<
+				Z_COMPILER_TRAIT(TYPE_IS_ENUM)(T) ? 2 : Z_COMPILER_TRAIT(TYPE_IS_UNION)(T),
+				Abstract::Struct<T>, Abstract::Union<T>, Abstract::Enum<T>
+			>::type
+#		elif Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUM)
+			typename SelectType<Z_COMPILER_TRAIT(TYPE_IS_ENUM)(T), Abstract::Struct<T>, Abstract::Enum<T> >::type
+#		elif Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
 			typename SelectType<Z_COMPILER_TRAIT(TYPE_IS_UNION)(T), Abstract::Struct<T>, Abstract::Union<T> >::type
 #		else
 			Abstract::Struct<T>

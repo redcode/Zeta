@@ -1387,7 +1387,6 @@ __has_trivial_copy
 __has_trivial_constructor
 __has_trivial_destructor
 __has_virtual_destructor
-__is_trivially_assignable(totype, fromtype)
 __is_destructible
 __is_nothrow_destructible
 __is_nothrow_assignable
