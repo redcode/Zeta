@@ -128,6 +128,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_TERNARY_INSERT_1(left, right, a, b) left##a##right
 #define Z_TERNARY_INSERT_0(left, right, a, b) left##b##right
 
+#define Z_TERNARY_INSERT_TRUE( left, right, a, b) left##a##right
+#define Z_TERNARY_INSERT_FALSE(left, right, a, b) left##b##right
+
 #define Z_TERNARY_INSERT(condition) Z_JOIN_2(Z_TERNARY_INSERT_, condition)
+
+#define Z_TERNARY_1(a, b) a
+#define Z_TERNARY_0(a, b) b
+
+#define Z_TERNARY_TRUE( a, b) a
+#define Z_TERNARY_FALSE(a, b) b
+
+#define Z_TERNARY_(condition) Z_JOIN_2(Z_TERNARY_, condition)
+#define Z_TERNARY( condition) Z_TERNARY_(condition)
 
 #endif /* __Z_macros_pasting_H__ */
