@@ -1582,7 +1582,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		Case<T>
 	> {
 		typedef typename SelectType<
-			Final::is_struct || Final::is_union,
+			Final::is_compound,
 			T, typename Final<const typename Final::remove_const_volatile>::add_lvalue_reference
 		>::type to_parameter;
 	};
