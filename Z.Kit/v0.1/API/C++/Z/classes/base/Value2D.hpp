@@ -36,8 +36,8 @@ namespace Zeta {template <class T> struct Value2D {
 
 	Z_INLINE_MEMBER Value2D() {}
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D(T x, T y) : x(x),	y(y)	  {}
-	Z_CONSTANT_MEMBER(CPP11) Value2D(T scalar) : x(scalar), y(scalar) {}
+	Z_CT_MEMBER(CPP11) Value2D(T x, T y) : x(x),	  y(y)	    {}
+	Z_CT_MEMBER(CPP11) Value2D(T scalar) : x(scalar), y(scalar) {}
 
 	Z_INLINE_MEMBER Value2D(const Base &value) {(*(Base *)this) = value;}
 
@@ -45,52 +45,52 @@ namespace Zeta {template <class T> struct Value2D {
 	// MARK: - Static functions
 
 
-	static Z_CONSTANT_MEMBER(CPP11) Value2D maximum(const Value2D &a, const Value2D &b)
+	static Z_CT_MEMBER(CPP11) Value2D maximum(const Value2D &a, const Value2D &b)
 		{return Value2D(Zeta::maximum<T>(a.x, b.x), Zeta::maximum<T>(a.y, b.y));}
 
 
-	static Z_CONSTANT_MEMBER(CPP11) Value2D middle(const Value2D &a, const Value2D &b)
+	static Z_CT_MEMBER(CPP11) Value2D middle(const Value2D &a, const Value2D &b)
 		{return Value2D((a.x + b.x) / T(2), (a.y + b.y) / T(2));}
 
 
-	static Z_CONSTANT_MEMBER(CPP11) Value2D minimum(const Value2D &a, const Value2D &b)
+	static Z_CT_MEMBER(CPP11) Value2D minimum(const Value2D &a, const Value2D &b)
 		{return Value2D(Zeta::minimum<T>(a.x, b.x), Zeta::minimum<T>(a.y, b.y));}
 
 
 	// MARK: - Operators
 
 
-	Z_CONSTANT_MEMBER(CPP11) operator Boolean() const {return x != T(0) || y != T(0);}
-	Z_INLINE_MEMBER		 operator Base&  () const {return *((Base *)this);}
+	Z_CT_MEMBER(CPP11) operator Boolean() const {return x != T(0) || y != T(0);}
+	Z_INLINE_MEMBER    operator Base&  () const {return *((Base *)this);}
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(const Value2D &value) const {return x == value.x && y == value.y;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(const Value2D &value) const {return x != value.x || y != value.y;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator <=(const Value2D &value) const {return x <= value.x && y <= value.y;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator >=(const Value2D &value) const {return x >= value.x && y >= value.y;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator  >(const Value2D &value) const {return x >  value.x && y >  value.y;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator  <(const Value2D &value) const {return x <  value.x && y <  value.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator ==(const Value2D &value) const {return x == value.x && y == value.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator !=(const Value2D &value) const {return x != value.x || y != value.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator <=(const Value2D &value) const {return x <= value.x && y <= value.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator >=(const Value2D &value) const {return x >= value.x && y >= value.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator  >(const Value2D &value) const {return x >	value.x && y >	value.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator  <(const Value2D &value) const {return x <	value.x && y <	value.y;}
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D operator +(const Value2D &value) const {return Value2D(x + value.x, y + value.y);}
-	Z_CONSTANT_MEMBER(CPP11) Value2D operator -(const Value2D &value) const {return Value2D(x - value.x, y - value.y);}
-	Z_CONSTANT_MEMBER(CPP11) Value2D operator *(const Value2D &value) const {return Value2D(x * value.x, y * value.y);}
-	Z_CONSTANT_MEMBER(CPP11) Value2D operator /(const Value2D &value) const {return Value2D(x / value.x, y / value.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator +(const Value2D &value) const {return Value2D(x + value.x, y + value.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator -(const Value2D &value) const {return Value2D(x - value.x, y - value.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator *(const Value2D &value) const {return Value2D(x * value.x, y * value.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator /(const Value2D &value) const {return Value2D(x / value.x, y / value.y);}
 
 	Z_INLINE_MEMBER Value2D &operator +=(const Value2D &value) {return *this = *this + value;}
 	Z_INLINE_MEMBER Value2D &operator -=(const Value2D &value) {return *this = *this - value;}
 	Z_INLINE_MEMBER Value2D &operator *=(const Value2D &value) {return *this = *this * value;}
 	Z_INLINE_MEMBER Value2D &operator /=(const Value2D &value) {return *this = *this / value;}
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(T scalar) const {return x == scalar && y == scalar;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(T scalar) const {return x != scalar || y != scalar;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator <=(T scalar) const {return x <= scalar && y <= scalar;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator >=(T scalar) const {return x >= scalar && y >= scalar;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator  >(T scalar) const {return x >  scalar && y >  scalar;}
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator  <(T scalar) const {return x <  scalar && y <  scalar;}
+	Z_CT_MEMBER(CPP11) Boolean operator ==(T scalar) const {return x == scalar && y == scalar;}
+	Z_CT_MEMBER(CPP11) Boolean operator !=(T scalar) const {return x != scalar || y != scalar;}
+	Z_CT_MEMBER(CPP11) Boolean operator <=(T scalar) const {return x <= scalar && y <= scalar;}
+	Z_CT_MEMBER(CPP11) Boolean operator >=(T scalar) const {return x >= scalar && y >= scalar;}
+	Z_CT_MEMBER(CPP11) Boolean operator  >(T scalar) const {return x >  scalar && y >  scalar;}
+	Z_CT_MEMBER(CPP11) Boolean operator  <(T scalar) const {return x <  scalar && y <  scalar;}
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D operator +(T scalar) const {return Value2D(x + scalar, y + scalar);}
-	Z_CONSTANT_MEMBER(CPP11) Value2D operator -(T scalar) const {return Value2D(x - scalar, y - scalar);}
-	Z_CONSTANT_MEMBER(CPP11) Value2D operator *(T scalar) const {return Value2D(x * scalar, y * scalar);}
-	Z_CONSTANT_MEMBER(CPP11) Value2D operator /(T scalar) const {return Value2D(x / scalar, y / scalar);}
+	Z_CT_MEMBER(CPP11) Value2D operator +(T scalar) const {return Value2D(x + scalar, y + scalar);}
+	Z_CT_MEMBER(CPP11) Value2D operator -(T scalar) const {return Value2D(x - scalar, y - scalar);}
+	Z_CT_MEMBER(CPP11) Value2D operator *(T scalar) const {return Value2D(x * scalar, y * scalar);}
+	Z_CT_MEMBER(CPP11) Value2D operator /(T scalar) const {return Value2D(x / scalar, y / scalar);}
 
 	Z_INLINE_MEMBER Value2D &operator +=(T scalar) {return *this = *this + scalar;}
 	Z_INLINE_MEMBER Value2D &operator -=(T scalar) {return *this = *this - scalar;}
@@ -106,25 +106,25 @@ namespace Zeta {template <class T> struct Value2D {
 
 #	ifdef Z_USE_CG_GEOMETRY
 
-		Z_CONSTANT_MEMBER(CPP11) Value2D(const CGPoint &point) : x(point.x),	y(point.y)     {}
-		Z_CONSTANT_MEMBER(CPP11) Value2D(const CGSize  &size ) : x(size.width), y(size.height) {}
+		Z_CT_MEMBER(CPP11) Value2D(const CGPoint &point) : x(point.x),	y(point.y)     {}
+		Z_CT_MEMBER(CPP11) Value2D(const CGSize  &size ) : x(size.width), y(size.height) {}
 
 
-		Z_CONSTANT_MEMBER(CPP14) operator CGPoint() const
+		Z_CT_MEMBER(CPP14) operator CGPoint() const
 			{
 			CGPoint result = {CGFloat(x), CGFloat(y)};
 			return result;
 			}
 
 
-		Z_CONSTANT_MEMBER(CPP14) operator CGSize() const
+		Z_CT_MEMBER(CPP14) operator CGSize() const
 			{
 			CGSize result = {CGFloat(x), CGFloat(y)};
 			return result;
 			}
 
 
-		Z_CONSTANT_MEMBER(CPP14) operator CGRect() const
+		Z_CT_MEMBER(CPP14) operator CGRect() const
 			{
 			CGRect result = {CGFloat(0), CGFloat(0), CGFloat(x), CGFloat(y)};
 			return result;
@@ -139,25 +139,25 @@ namespace Zeta {template <class T> struct Value2D {
 		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
-		Z_CONSTANT_MEMBER(CPP11) Value2D(const NSPoint &point) : x(point.x),	y(point.y)     {}
-		Z_CONSTANT_MEMBER(CPP11) Value2D(const NSSize  &size ) : x(size.width), y(size.height) {}
+		Z_CT_MEMBER(CPP11) Value2D(const NSPoint &point) : x(point.x),	y(point.y)     {}
+		Z_CT_MEMBER(CPP11) Value2D(const NSSize  &size ) : x(size.width), y(size.height) {}
 
 
-		Z_CONSTANT_MEMBER(CPP14) operator NSPoint() const
+		Z_CT_MEMBER(CPP14) operator NSPoint() const
 			{
 			NSPoint result = {CGFloat(x), CGFloat(y)};
 			return result;
 			}
 
 
-		Z_CONSTANT_MEMBER(CPP14) operator NSSize() const
+		Z_CT_MEMBER(CPP14) operator NSSize() const
 			{
 			NSSize result = {CGFloat(x), CGFloat(y)};
 			return result;
 			}
 
 
-		Z_CONSTANT_MEMBER(CPP14) operator NSRect() const
+		Z_CT_MEMBER(CPP14) operator NSRect() const
 			{
 			NSRect result = {CGFloat(0), CGFloat(0), CGFloat(x), CGFloat(y)};
 			return result;
@@ -189,7 +189,7 @@ namespace Zeta {template <class T> struct Value2D {
 	// MARK: - Functions for natural, integer and real types
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D clamp(const Value2D &minimum, const Value2D &maximum) const
+	Z_CT_MEMBER(CPP11) Value2D clamp(const Value2D &minimum, const Value2D &maximum) const
 		{
 		return Value2D
 			(Zeta::clamp<T>(x, minimum.x, maximum.x),
@@ -197,7 +197,7 @@ namespace Zeta {template <class T> struct Value2D {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D clamp(T minimum, T maximum) const
+	Z_CT_MEMBER(CPP11) Value2D clamp(T minimum, T maximum) const
 		{
 		return Value2D
 			(Zeta::clamp<T>(x, minimum, maximum),
@@ -205,19 +205,19 @@ namespace Zeta {template <class T> struct Value2D {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean contains(const Value2D &value) const
+	Z_CT_MEMBER(CPP11) Boolean contains(const Value2D &value) const
 		{return x >= value.x && y >= value.y;}
 
 
-	Z_CONSTANT_MEMBER(CPP11) T cross_product(const Value2D &value) const
+	Z_CT_MEMBER(CPP11) T cross_product(const Value2D &value) const
 		{return x * value.y - y * value.x;}
 
 
-	Z_CONSTANT_MEMBER(CPP11) T dot_product(const Value2D &value) const
+	Z_CT_MEMBER(CPP11) T dot_product(const Value2D &value) const
 		{return x * value.x + y * value.y;}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D fit(const Value2D &value) const
+	Z_CT_MEMBER(CPP11) Value2D fit(const Value2D &value) const
 		{
 		return y / x > value.y / value.x
 			? Value2D(x * value.y / y, value.y)
@@ -225,35 +225,35 @@ namespace Zeta {template <class T> struct Value2D {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean has_zero() const
+	Z_CT_MEMBER(CPP11) Boolean has_zero() const
 		{return x == T(0) || y == T(0);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) T inner_maximum() const
+	Z_CT_MEMBER(CPP11) T inner_maximum() const
 		{return Zeta::maximum<T>(x, y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) T inner_middle() const
+	Z_CT_MEMBER(CPP11) T inner_middle() const
 		{return (x + y) / T(2);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) T inner_minimum() const
+	Z_CT_MEMBER(CPP11) T inner_minimum() const
 		{return Zeta::minimum<T>(x, y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) T inner_product() const
+	Z_CT_MEMBER(CPP11) T inner_product() const
 		{return x * y;}
 
 
-	Z_CONSTANT_MEMBER(CPP11) T inner_sum() const
+	Z_CT_MEMBER(CPP11) T inner_sum() const
 		{return x + y;}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean is_zero() const
+	Z_CT_MEMBER(CPP11) Boolean is_zero() const
 		{return x == T(0) && y == T(0);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D maximum(const Value2D &value) const
+	Z_CT_MEMBER(CPP11) Value2D maximum(const Value2D &value) const
 		{
 		return Value2D
 			(Zeta::maximum<T>(x, value.x),
@@ -261,11 +261,11 @@ namespace Zeta {template <class T> struct Value2D {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D middle(const Value2D &value) const
+	Z_CT_MEMBER(CPP11) Value2D middle(const Value2D &value) const
 		{return Value2D((x + value.x) / T(2), (y + value.y) / T(2));}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D minimum(const Value2D &value) const
+	Z_CT_MEMBER(CPP11) Value2D minimum(const Value2D &value) const
 		{
 		return Value2D
 			(Zeta::minimum<T>(x, value.x),
@@ -273,7 +273,7 @@ namespace Zeta {template <class T> struct Value2D {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) T squared_length() const
+	Z_CT_MEMBER(CPP11) T squared_length() const
 		{return x * x + y * y;}
 
 
@@ -298,29 +298,29 @@ namespace Zeta {template <class T> struct Value2D {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D yx() const
+	Z_CT_MEMBER(CPP11) Value2D yx() const
 		{return Value2D(y, x);}
 
 
 	// MARK: - Functions for integer and real types
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Value2D>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Value2D>::type
 	absolute() const
 		{return Value2D(Zeta::absolute<T>(x), Zeta::absolute<T>(y));}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Boolean>::type
 	has_negative() const
 		{return x < T(0) || y < T(0);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Boolean>::type
 	is_negative() const
 		{return x < T(0) && y < T(0);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Value2D>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Value2D>::type
 	negative() const
 		{return Value2D(-x, -y);}
 
@@ -328,32 +328,32 @@ namespace Zeta {template <class T> struct Value2D {
 	// MARK: - Functions for real types only
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
 	clamp_01() const
 		{return Value2D(Zeta::clamp_01<T>(x), Zeta::clamp_01<T>(y));}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_almost_zero() const
 		{return Zeta::is_almost_zero<T>(x) || Zeta::is_almost_zero<T>(y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_finite() const
 		{return Zeta::is_finite<T>(x) || Zeta::is_finite<T>(y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_infinity() const
 		{return Zeta::is_infinity<T>(x) || Zeta::is_infinity<T>(y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	has_nan() const
 		{return Zeta::is_nan<T>(x) || Zeta::is_nan<T>(y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
 	inverse_lerp(const Value2D &value, T t) const
 		{
 		return Value2D
@@ -362,7 +362,7 @@ namespace Zeta {template <class T> struct Value2D {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_almost_equal(const Value2D &value) const
 		{
 		return	Zeta::are_almost_equal<T>(x, value.x) &&
@@ -370,32 +370,32 @@ namespace Zeta {template <class T> struct Value2D {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_almost_zero() const
 		{return Zeta::is_almost_zero<T>(x) && Zeta::is_almost_zero<T>(y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_finite() const
 		{return Zeta::is_finite<T>(x) && Zeta::is_finite<T>(y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_infinity() const
 		{return Zeta::is_infinity<T>(x) && Zeta::is_infinity<T>(y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_nan() const
 		{return Zeta::is_nan<T>(x) && Zeta::is_nan<T>(y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
 	is_perpendicular(const Value2D &value) const
 		{return Zeta::absolute<T>(dot_product(value)) <= Type<T>::epsilon();}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
 	lerp(const Value2D &value, T t) const
 		{
 		return Value2D
@@ -404,7 +404,7 @@ namespace Zeta {template <class T> struct Value2D {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
+	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
 	reciprocal() const
 		{return Value2D(T(1.0) / x, T(1.0) / y);}
 };}

@@ -20,7 +20,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class T>
-			Z_CONSTANT(CPP14) Size type_string_size()
+			Z_CT(CPP14) Size type_string_size()
 				{
 				const Character *input = __PRETTY_FUNCTION__;
 				Size size = 0;
@@ -32,7 +32,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class T>
-			Z_CONSTANT(CPP14) SizedString<type_string_size<T>()> type_string()
+			Z_CT(CPP14) SizedString<type_string_size<T>()> type_string()
 				{
 				SizedString<type_string_size<T>()> string;
 				const Character *input = __PRETTY_FUNCTION__;

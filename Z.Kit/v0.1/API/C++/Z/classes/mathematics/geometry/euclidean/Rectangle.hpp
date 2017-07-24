@@ -24,17 +24,17 @@ namespace Zeta {template <class T> struct Rectangle {
 
 	Z_INLINE_MEMBER Rectangle() {}
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, const Value2D<T> &size) : point(point),  size(size)		   {}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, T size_x, T size_y)     : point(point),  size(size_x, size_y)  {}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, T size)		    : point(point),  size(size)		   {}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(T x, T y, const Value2D<T> &size)		    : point(x, y),   size(size)		   {}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(T x, T y, T size_x, T size_y)		    : point(x, y),   size(size_x, size_y)  {}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(T x, T y, T size)				    : point(x, y),   size(size)		   {}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(T point, const Value2D<T> &size)		    : point(point),  size(size)		   {}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(const Value2D<T> &size)			    : point(T(0)),   size(size)		   {}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(T size_x, T size_y)				    : point(T(0)),   size(size_x, size_y)  {}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(T size)					    : point(T(0)),   size(size)		   {}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle(const typename ZTypeFixedReal(ZAABR, T) &aabr)   : point(aabr.a), size(aabr.a + aabr.b) {}
+	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, const Value2D<T> &size) : point(point),  size(size)	     {}
+	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, T size_x, T size_y)     : point(point),  size(size_x, size_y)  {}
+	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, T size)		      : point(point),  size(size)	     {}
+	Z_CT_MEMBER(CPP11) Rectangle(T x, T y, const Value2D<T> &size)		      : point(x, y),   size(size)	     {}
+	Z_CT_MEMBER(CPP11) Rectangle(T x, T y, T size_x, T size_y)		      : point(x, y),   size(size_x, size_y)  {}
+	Z_CT_MEMBER(CPP11) Rectangle(T x, T y, T size)				      : point(x, y),   size(size)	     {}
+	Z_CT_MEMBER(CPP11) Rectangle(T point, const Value2D<T> &size)		      : point(point),  size(size)	     {}
+	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &size)			      : point(T(0)),   size(size)	     {}
+	Z_CT_MEMBER(CPP11) Rectangle(T size_x, T size_y)			      : point(T(0)),   size(size_x, size_y)  {}
+	Z_CT_MEMBER(CPP11) Rectangle(T size)					      : point(T(0)),   size(size)	     {}
+	Z_CT_MEMBER(CPP11) Rectangle(const typename ZTypeFixedReal(ZAABR, T) &aabr)   : point(aabr.a), size(aabr.a + aabr.b) {}
 
 	Z_INLINE_MEMBER Rectangle(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
@@ -42,7 +42,7 @@ namespace Zeta {template <class T> struct Rectangle {
 	// MARK: - Static constructors
 
 
-	static Z_CONSTANT_MEMBER(CPP14) Rectangle from_vertices(const Value2D<T> &a, const Value2D<T> &b)
+	static Z_CT_MEMBER(CPP14) Rectangle from_vertices(const Value2D<T> &a, const Value2D<T> &b)
 		{
 		Value2D<T> minimum = Value2D<T>::minimum(a, b);
 
@@ -53,18 +53,18 @@ namespace Zeta {template <class T> struct Rectangle {
 	// MARK: - Operators
 
 
-	Z_CONSTANT_MEMBER(CPP11) operator Boolean() const {return this->point || this->size;}
-	Z_INLINE_MEMBER operator Base&	() const {return *((Base *)this);}
+	Z_CT_MEMBER(CPP11) operator Boolean() const {return this->point || this->size;}
+	Z_INLINE_MEMBER    operator Base&  () const {return *((Base *)this);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(const Rectangle &rectangle) const
+	Z_CT_MEMBER(CPP11) Boolean operator ==(const Rectangle &rectangle) const
 		{
 		return	point.x == rectangle.point.x && point.y == rectangle.point.y &&
 			size.x	== rectangle.size.x  && size.y	== rectangle.size.y;
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(const Rectangle &rectangle) const
+	Z_CT_MEMBER(CPP11) Boolean operator !=(const Rectangle &rectangle) const
 		{
 		return	point.x != rectangle.point.x || point.y != rectangle.point.y ||
 			size.x	!= rectangle.size.x  || size.y	!= rectangle.size.y;
@@ -72,7 +72,7 @@ namespace Zeta {template <class T> struct Rectangle {
 
 
 	// Intersection
-	Z_CONSTANT_MEMBER(CPP14) Rectangle operator &(const Rectangle &rectangle) const
+	Z_CT_MEMBER(CPP14) Rectangle operator &(const Rectangle &rectangle) const
 		{
 		T x1, x2, y1, y2;
 
@@ -87,7 +87,7 @@ namespace Zeta {template <class T> struct Rectangle {
 
 
 	// Union
-	Z_CONSTANT_MEMBER(CPP14) Rectangle operator |(const Rectangle &rectangle) const
+	Z_CT_MEMBER(CPP14) Rectangle operator |(const Rectangle &rectangle) const
 		{
 		Rectangle result;
 
@@ -101,20 +101,20 @@ namespace Zeta {template <class T> struct Rectangle {
 	Z_INLINE_MEMBER Rectangle &operator &=(const Rectangle &rectangle) {return *this = *this & rectangle;}
 	Z_INLINE_MEMBER Rectangle &operator |=(const Rectangle &rectangle) {return *this = *this | rectangle;}
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle operator +(const Value2D<T> &value) const {return Rectangle(point + value, size);}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle operator -(const Value2D<T> &value) const {return Rectangle(point - value, size);}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle operator *(const Value2D<T> &value) const {return Rectangle(point * value, size);}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle operator /(const Value2D<T> &value) const {return Rectangle(point / value, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator +(const Value2D<T> &value) const {return Rectangle(point + value, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator -(const Value2D<T> &value) const {return Rectangle(point - value, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator *(const Value2D<T> &value) const {return Rectangle(point * value, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator /(const Value2D<T> &value) const {return Rectangle(point / value, size);}
 
 	Z_INLINE_MEMBER Rectangle &operator +=(const Value2D<T> &value) {return *this = *this + value;}
 	Z_INLINE_MEMBER Rectangle &operator -=(const Value2D<T> &value) {return *this = *this - value;}
 	Z_INLINE_MEMBER Rectangle &operator *=(const Value2D<T> &value) {return *this = *this * value;}
 	Z_INLINE_MEMBER Rectangle &operator /=(const Value2D<T> &value) {return *this = *this / value;}
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle operator +(T scalar) const {return Value2D<T>(point + scalar, size);}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle operator -(T scalar) const {return Value2D<T>(point - scalar, size);}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle operator *(T scalar) const {return Value2D<T>(point * scalar, size);}
-	Z_CONSTANT_MEMBER(CPP11) Rectangle operator /(T scalar) const {return Value2D<T>(point / scalar, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator +(T scalar) const {return Value2D<T>(point + scalar, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator -(T scalar) const {return Value2D<T>(point - scalar, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator *(T scalar) const {return Value2D<T>(point * scalar, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator /(T scalar) const {return Value2D<T>(point / scalar, size);}
 
 	Z_INLINE_MEMBER Rectangle &operator +=(T scalar) {return *this = *this + scalar;}
 	Z_INLINE_MEMBER Rectangle &operator -=(T scalar) {return *this = *this - scalar;}
@@ -130,11 +130,11 @@ namespace Zeta {template <class T> struct Rectangle {
 
 #	ifdef Z_USE_CG_GEOMETRY
 
-		Z_CONSTANT_MEMBER(CPP11) Rectangle(const CGRect &rectangle)
+		Z_CT_MEMBER(CPP11) Rectangle(const CGRect &rectangle)
 		: point(rectangle.origin), size(rectangle.size) {}
 
 
-		Z_CONSTANT_MEMBER(CPP14) operator CGRect() const
+		Z_CT_MEMBER(CPP14) operator CGRect() const
 			{
 			CGRect result = {
 				{CGFloat(point.x), CGFloat(point.y)},
@@ -153,11 +153,11 @@ namespace Zeta {template <class T> struct Rectangle {
 		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
-		Z_CONSTANT_MEMBER(CPP11) Rectangle(const NSRect &rectangle)
+		Z_CT_MEMBER(CPP11) Rectangle(const NSRect &rectangle)
 		: point(rectangle.origin), size(rectangle.size) {}
 
 
-		Z_CONSTANT_MEMBER(CPP14) operator NSRect() const
+		Z_CT_MEMBER(CPP14) operator NSRect() const
 			{
 			NSRect result = {
 				{CGFloat(point.x), CGFloat(point.y)},
@@ -189,31 +189,31 @@ namespace Zeta {template <class T> struct Rectangle {
 	// MARK: - Functions
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D<T> absolute_point_to_unit(const Value2D<T> &point) const
+	Z_CT_MEMBER(CPP11) Value2D<T> absolute_point_to_unit(const Value2D<T> &point) const
 		{return (point - this->point) / this->size;}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle align_in_bottom_center(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP11) Rectangle align_in_bottom_center(const Value2D<T> &size) const
 		{return Rectangle(this->point.x + (this->size.x - size.x) / T(2), this->point.y, size);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle align_in_bottom_left(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP11) Rectangle align_in_bottom_left(const Value2D<T> &size) const
 		{return Rectangle(this->point, size);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle align_in_bottom_right(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP11) Rectangle align_in_bottom_right(const Value2D<T> &size) const
 		{return Rectangle(this->point.x + this->size.x - size.x, this->point.y, size);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle align_in_center(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP11) Rectangle align_in_center(const Value2D<T> &size) const
 		{return Rectangle(this->point + (this->size - size) / T(2), size);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle align_in_center_left(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP11) Rectangle align_in_center_left(const Value2D<T> &size) const
 		{return Rectangle(this->point.x, this->point.y + (this->size.y - size.y) / T(2), size);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle align_in_center_right(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP11) Rectangle align_in_center_right(const Value2D<T> &size) const
 		{
 		return Rectangle
 			(this->point.x +  this->size.x - size.x,
@@ -222,7 +222,7 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle align_in_top_center(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP11) Rectangle align_in_top_center(const Value2D<T> &size) const
 		{
 		return Rectangle
 			(this->point.x + (this->size.x - size.x) / T(2),
@@ -231,51 +231,51 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle align_in_top_left(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP11) Rectangle align_in_top_left(const Value2D<T> &size) const
 		{return Rectangle(this->point.x, this->point.y + this->size.y - size.y, size);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle align_in_top_right(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP11) Rectangle align_in_top_right(const Value2D<T> &size) const
 		{return Rectangle(this->point + this->size - size, size);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D<T> bottom_center() const
+	Z_CT_MEMBER(CPP11) Value2D<T> bottom_center() const
 		{return Value2D<T>(point.x + size.x / T(2), point.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle bottom_half() const
+	Z_CT_MEMBER(CPP11) Rectangle bottom_half() const
 		{return Rectangle(point, size.x, size.y / T(2));}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D<T> bottom_left() const
+	Z_CT_MEMBER(CPP11) Value2D<T> bottom_left() const
 		{return point;}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle bottom_left_quarter() const
+	Z_CT_MEMBER(CPP11) Rectangle bottom_left_quarter() const
 		{return Rectangle(point, size / T(2));}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D<T> bottom_right() const
+	Z_CT_MEMBER(CPP11) Value2D<T> bottom_right() const
 		{return Value2D<T>(point.x + size.x, point.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle bottom_right_quarter() const
+	Z_CT_MEMBER(CPP11) Rectangle bottom_right_quarter() const
 		{return Rectangle(point.x + size.x / T(2), point.y, size / T(2));}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D<T> center() const
+	Z_CT_MEMBER(CPP11) Value2D<T> center() const
 		{return point + size / T(2);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D<T> center_left() const
+	Z_CT_MEMBER(CPP11) Value2D<T> center_left() const
 		{return Value2D<T>(point.x, point.y + size.y / T(2));}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D<T> center_right() const
+	Z_CT_MEMBER(CPP11) Value2D<T> center_right() const
 		{return Value2D<T>(point.x + size.x, point.y + size.y / T(2));}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean collides(const Rectangle &rectangle) const
+	Z_CT_MEMBER(CPP11) Boolean collides(const Rectangle &rectangle) const
 		{
 		return	point.x		 < rectangle.point.x + rectangle.size.x &&
 			point.x + size.x > rectangle.point.x &&
@@ -284,7 +284,7 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean contains(const Rectangle &rectangle) const
+	Z_CT_MEMBER(CPP11) Boolean contains(const Rectangle &rectangle) const
 		{
 		return	rectangle.point		     	     >= point		 &&
 			rectangle.point.x + rectangle.size.x <= point.x + size.x &&
@@ -292,14 +292,14 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean contains(const typename ZTypeFixedReal(ZAABR, T) &aabr) const
+	Z_CT_MEMBER(CPP11) Boolean contains(const typename ZTypeFixedReal(ZAABR, T) &aabr) const
 		{
 		return	aabr.a.x >= point.x	     && aabr.a.y >= point.y &&
 			aabr.b.x <= point.x + size.x && aabr.b.y <= point.y + size.y;
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean contains(const typename ZTypeFixedReal(ZCircle, T) &circle) const
+	Z_CT_MEMBER(CPP11) Boolean contains(const typename ZTypeFixedReal(ZCircle, T) &circle) const
 		{
 		return	circle.point.x - circle.radius >= point.x	   &&
 			circle.point.y - circle.radius >= point.y	   &&
@@ -308,7 +308,7 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean contains(const Value2D<T> &point) const
+	Z_CT_MEMBER(CPP11) Boolean contains(const Value2D<T> &point) const
 		{
 		return	point	>= this->point			&&
 			point.x <= this->point.x + this->size.x &&
@@ -324,7 +324,7 @@ namespace Zeta {template <class T> struct Rectangle {
 		}*/
 
 
-	Z_CONSTANT_MEMBER(CPP14) Rectangle fit_in_bottom_center(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP14) Rectangle fit_in_bottom_center(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -334,11 +334,11 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle fit_in_bottom_left(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP11) Rectangle fit_in_bottom_left(const Value2D<T> &size) const
 		{return Value2D<T>(this->point, size.fit(this->size));}
 
 
-	Z_CONSTANT_MEMBER(CPP14) Rectangle fit_in_bottom_right(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP14) Rectangle fit_in_bottom_right(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -348,7 +348,7 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP14) Rectangle fit_in_center(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP14) Rectangle fit_in_center(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -356,7 +356,7 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP14) Rectangle fit_in_center_left(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP14) Rectangle fit_in_center_left(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -366,7 +366,7 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP14) Rectangle fit_in_center_right(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP14) Rectangle fit_in_center_right(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -377,7 +377,7 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP14) Rectangle fit_in_top_center(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP14) Rectangle fit_in_top_center(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -388,7 +388,7 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP14) Rectangle fit_in_top_left(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP14) Rectangle fit_in_top_left(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -398,7 +398,7 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP14) Rectangle fit_in_top_right(const Value2D<T> &size) const
+	Z_CT_MEMBER(CPP14) Rectangle fit_in_top_right(const Value2D<T> &size) const
 		{
 		Value2D<T> fitting_size = size.fit(this->size);
 
@@ -406,143 +406,143 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_from_bottom_center(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_from_bottom_center(const Value2D<T> &delta) const
 		{return Rectangle(point.x - delta.x / T(2), point.y, size + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_from_bottom_left(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_from_bottom_left(const Value2D<T> &delta) const
 		{return Rectangle(point, size + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_from_bottom_right(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_from_bottom_right(const Value2D<T> &delta) const
 		{return Rectangle(point.x - delta.x, point.y, size + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_from_center(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_from_center(const Value2D<T> &delta) const
 		{return Rectangle(point - delta / T(2), size + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_from_center_left(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_from_center_left(const Value2D<T> &delta) const
 		{return Rectangle(point.x, point.y - delta.y / T(2), size + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_from_center_right(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_from_center_right(const Value2D<T> &delta) const
 		{return Rectangle(point.x - delta.x, point.y - delta.y / T(2), size + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_from_top_center(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_from_top_center(const Value2D<T> &delta) const
 		{return Rectangle(point.x - delta.x / T(2), point.y - delta.y, size + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_from_top_left(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_from_top_left(const Value2D<T> &delta) const
 		{return Rectangle(point.x, point.y - delta.y, size + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_from_top_right(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_from_top_right(const Value2D<T> &delta) const
 		{return Rectangle(point - delta, size + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_in_x_from_center(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_in_x_from_center(T delta) const
 		{return Rectangle(point.x - delta / T(2), point.y, size.x + delta, size.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_in_x_from_left(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_in_x_from_left(T delta) const
 		{return Rectangle(point, size.x + delta, size.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_in_x_from_right(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_in_x_from_right(T delta) const
 		{return Rectangle(point.x - delta, point.y, size.x + delta, size.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_in_y_from_bottom(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_in_y_from_bottom(T delta) const
 		{return Rectangle(point, size.x, size.y + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_in_y_from_center(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_in_y_from_center(T delta) const
 		{return Rectangle(point.x, point.y - delta / T(2), size.x, size.y + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle grow_in_y_from_top(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle grow_in_y_from_top(T delta) const
 		{return Rectangle(point.x, point.y - delta, size.x, size.y + delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean is_zero() const
+	Z_CT_MEMBER(CPP11) Boolean is_zero() const
 		{return point.is_zero() && size.is_zero();}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle left_half() const
+	Z_CT_MEMBER(CPP11) Rectangle left_half() const
 		{return Rectangle(point, size.x / T(2), size.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) T maximum_x() const {return point.x + size.x;}
-	Z_CONSTANT_MEMBER(CPP11) T maximum_y() const {return point.y + size.y;}
-	Z_CONSTANT_MEMBER(CPP11) T middle_x () const {return point.x + size.x / T(2);}
-	Z_CONSTANT_MEMBER(CPP11) T middle_y () const {return point.y + size.y / T(2);}
-	Z_CONSTANT_MEMBER(CPP11) T minimum_x() const {return point.x;}
-	Z_CONSTANT_MEMBER(CPP11) T minimum_y() const {return point.y;}
+	Z_CT_MEMBER(CPP11) T maximum_x() const {return point.x + size.x;}
+	Z_CT_MEMBER(CPP11) T maximum_y() const {return point.y + size.y;}
+	Z_CT_MEMBER(CPP11) T middle_x () const {return point.x + size.x / T(2);}
+	Z_CT_MEMBER(CPP11) T middle_y () const {return point.y + size.y / T(2);}
+	Z_CT_MEMBER(CPP11) T minimum_x() const {return point.x;}
+	Z_CT_MEMBER(CPP11) T minimum_y() const {return point.y;}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle right_half() const
+	Z_CT_MEMBER(CPP11) Rectangle right_half() const
 		{return Rectangle(point.x + size.x / T(2), point.y, size.x / T(2), size.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_from_bottom_center(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_from_bottom_center(const Value2D<T> &delta) const
 		{return Rectangle(point.x + delta.x / T(2), point.y, size - delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_from_bottom_left(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_from_bottom_left(const Value2D<T> &delta) const
 		{return Rectangle(point, size - delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_from_bottom_right(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_from_bottom_right(const Value2D<T> &delta) const
 		{return Rectangle(point.x + delta.x, point.y, size - delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_from_center(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_from_center(const Value2D<T> &delta) const
 		{return Rectangle(point + delta / T(2), size - delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_from_center_left(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_from_center_left(const Value2D<T> &delta) const
 		{return Rectangle(point.x, point.y + delta.y / T(2), size - delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_from_center_right(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_from_center_right(const Value2D<T> &delta) const
 		{return Rectangle(point.x + delta.x, point.y + delta.y / T(2), size - delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_from_top_center(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_from_top_center(const Value2D<T> &delta) const
 		{return Rectangle(point.x + delta.x / T(2), point.y + delta.y, size - delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_from_top_left(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_from_top_left(const Value2D<T> &delta) const
 		{return Rectangle(point.x, point.y + delta.y, size - delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_from_top_right(const Value2D<T> &delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_from_top_right(const Value2D<T> &delta) const
 		{return Rectangle(point + delta, size - delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_in_x_from_center(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_in_x_from_center(T delta) const
 		{return Rectangle(point.x + delta / T(2), point.y, size.x - delta, size.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_in_x_from_left(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_in_x_from_left(T delta) const
 		{return Rectangle(point, size.x - delta, size.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_in_x_from_right(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_in_x_from_right(T delta) const
 		{return Rectangle(point.x + delta, point.y, size.x - delta, size.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_in_y_from_bottom(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_in_y_from_bottom(T delta) const
 		{return Rectangle(point, size.x, size.y - delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_in_y_from_center(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_in_y_from_center(T delta) const
 		{return Rectangle(point.x, point.y + delta / T(2), size.x, size.y - delta);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle shrink_in_y_from_top(T delta) const
+	Z_CT_MEMBER(CPP11) Rectangle shrink_in_y_from_top(T delta) const
 		{return Rectangle(point.x, point.y + delta, size.x, size.y - delta);}
 
 
@@ -550,31 +550,31 @@ namespace Zeta {template <class T> struct Rectangle {
 		{Zeta::swap<Base>((Base *)this, (Base *)&rectangle);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D<T> top_center() const
+	Z_CT_MEMBER(CPP11) Value2D<T> top_center() const
 		{return Value2D<T>(point.x + size.x / T(2), point.y + size.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle top_half() const
+	Z_CT_MEMBER(CPP11) Rectangle top_half() const
 		{return Rectangle(point.x, point.y + size.y / T(2), size.x, size.y / T(2));}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D<T> top_left() const
+	Z_CT_MEMBER(CPP11) Value2D<T> top_left() const
 		{return Value2D<T>(point.x, point.y + size.y);}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle top_left_quarter() const
+	Z_CT_MEMBER(CPP11) Rectangle top_left_quarter() const
 		{return Rectangle(point.x, point.y + size.y / T(2), size / T(2));}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D<T> top_right() const
+	Z_CT_MEMBER(CPP11) Value2D<T> top_right() const
 		{return point + size;}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Rectangle top_right_quarter() const
+	Z_CT_MEMBER(CPP11) Rectangle top_right_quarter() const
 		{return Rectangle(point + size / T(2), size / T(2));}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Value2D<T> unit_point_to_absolute(const Value2D<T> &point) const
+	Z_CT_MEMBER(CPP11) Value2D<T> unit_point_to_absolute(const Value2D<T> &point) const
 		{return point * this->size + this->point;}
 
 

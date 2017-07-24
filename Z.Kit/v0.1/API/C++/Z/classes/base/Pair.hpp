@@ -21,7 +21,7 @@ namespace Zeta {template <class T1, class T2> struct Pair {
 
 	Z_INLINE_MEMBER Pair() {}
 
-	Z_CONSTANT_MEMBER(CPP11) Pair(
+	Z_CT_MEMBER(CPP11) Pair(
 		typename Type<T1>::to_parameter first,
 		typename Type<T2>::to_parameter second
 	) : first(first), second(second) {}
@@ -29,11 +29,11 @@ namespace Zeta {template <class T1, class T2> struct Pair {
 	Z_INLINE_MEMBER ~Pair() {}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator ==(const Pair &pair) const
+	Z_CT_MEMBER(CPP11) Boolean operator ==(const Pair &pair) const
 		{return first == pair.first && second == pair.second;}
 
 
-	Z_CONSTANT_MEMBER(CPP11) Boolean operator !=(const Pair &pair) const
+	Z_CT_MEMBER(CPP11) Boolean operator !=(const Pair &pair) const
 		{return first != pair.first || second != pair.second;}
 
 

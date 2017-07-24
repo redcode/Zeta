@@ -25,7 +25,7 @@ namespace Zeta {template <class T> struct Shared {
 	Owned *owned;
 
 
-	Z_CONSTANT_MEMBER(CPP11) Shared() : owned(NULL) {}
+	Z_CT_MEMBER(CPP11) Shared() : owned(NULL) {}
 
 
 	Z_INLINE_MEMBER Shared(const Shared &shared)

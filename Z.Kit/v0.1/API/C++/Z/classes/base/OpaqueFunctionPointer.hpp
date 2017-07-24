@@ -17,7 +17,7 @@ namespace Zeta {struct OpaqueFunctionPointer {
 	template <class T, typename = typename EnableIf<
 		Type<T>::is_function_pointer
 	>::type>
-	Z_CONSTANT_MEMBER(CPP11) OpaqueFunctionPointer(T pointer)
+	Z_CT_MEMBER(CPP11) OpaqueFunctionPointer(T pointer)
 	: pointer(reinterpret_cast<void (*)(void)>(pointer)) {}
 };}
 

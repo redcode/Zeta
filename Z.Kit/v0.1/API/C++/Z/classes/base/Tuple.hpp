@@ -38,12 +38,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef PN Parameter;
 
 			Z_INLINE_MEMBER Element() {}
-			Z_CONSTANT_MEMBER(CPP11) Element(P... previous, PN value) : Super(previous...), _value(value) {}
+			Z_CT_MEMBER(CPP11) Element(P... previous, PN value) : Super(previous...), _value(value) {}
 		};
 
 		template <> class Element<TypeList<>, TypeList<> > {
 			public: 
-			Z_CONSTANT_MEMBER(CPP11) Element() {}
+			Z_CT_MEMBER(CPP11) Element() {}
 		};
 	}}}
 
@@ -75,7 +75,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
 				using Super::Super;
 #			else
-				Z_CONSTANT_MEMBER(CPP11) Tuple(T... values) : Super(values...) {}
+				Z_CT_MEMBER(CPP11) Tuple(T... values) : Super(values...) {}
 #			endif
 
 
@@ -83,7 +83,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				{return At<I>::Element::_value;}
 
 
-			template <UInt I> Z_CONSTANT_MEMBER(CPP11) typename At<I>::Element::Parameter get() const
+			template <UInt I> Z_CT_MEMBER(CPP11) typename At<I>::Element::Parameter get() const
 				{return At<I>::Element::_value;}
 
 

@@ -16,7 +16,7 @@ namespace Zeta {template <Size S> struct SizedString {
 	Character data[S + 1];
 
 
-	Z_CONSTANT_MEMBER(CPP11) SizedString() : data{0} {}
+	Z_CT_MEMBER(CPP11) SizedString() : data{0} {}
 
 
 	Z_INLINE_MEMBER SizedString(const Character *string)
@@ -29,7 +29,7 @@ namespace Zeta {template <Size S> struct SizedString {
 		}
 
 
-	Z_CONSTANT_MEMBER(CPP11) operator const Character *() const {return data;}
+	Z_CT_MEMBER(CPP11) operator const Character *() const {return data;}
 };}
 
 

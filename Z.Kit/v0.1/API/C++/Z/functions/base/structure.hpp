@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {
 
 
-	template <class T, class C> Z_CONSTANT(CPP11) Size offset_of(T C::*member)
+	template <class T, class C> Z_CT_MEMBER(CPP11) Size offset_of(T C::*member)
 		{
 		return	(&reinterpret_cast<const UInt8 &>(reinterpret_cast<const C *>(1)->*member) -
 			  reinterpret_cast<const UInt8 *>(1));

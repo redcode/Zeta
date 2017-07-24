@@ -558,11 +558,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CONSTANT_MEMBER(CPP11) float epsilon () {return Z_FLOAT_EPSILON;}
-			static Z_CONSTANT_MEMBER(CPP11) float minimum () {return Z_FLOAT_MINIMUM;}
-			static Z_CONSTANT_MEMBER(CPP11) float maximum () {return Z_FLOAT_MAXIMUM;}
-			//static Z_CONSTANT_MEMBER(CPP11) float infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
-			//static Z_CONSTANT_MEMBER(CPP11) float nan     () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}
+			static Z_CT_MEMBER(CPP11) float epsilon () {return Z_FLOAT_EPSILON;}
+			static Z_CT_MEMBER(CPP11) float minimum () {return Z_FLOAT_MINIMUM;}
+			static Z_CT_MEMBER(CPP11) float maximum () {return Z_FLOAT_MAXIMUM;}
+			//static Z_CT_MEMBER(CPP11) float infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
+			//static Z_CT_MEMBER(CPP11) float nan     () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}
 
 			typedef float type;
 			typedef float to_signed;
@@ -590,11 +590,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CONSTANT_MEMBER(CPP11) double epsilon () {return Z_DOUBLE_EPSILON;}
-			static Z_CONSTANT_MEMBER(CPP11) double minimum () {return Z_DOUBLE_MINIMUM;}
-			static Z_CONSTANT_MEMBER(CPP11) double maximum () {return Z_DOUBLE_MAXIMUM;}
-			//static Z_CONSTANT_MEMBER(CPP11) double infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
-			//static Z_CONSTANT_MEMBER(CPP11) double nan     () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}
+			static Z_CT_MEMBER(CPP11) double epsilon () {return Z_DOUBLE_EPSILON;}
+			static Z_CT_MEMBER(CPP11) double minimum () {return Z_DOUBLE_MINIMUM;}
+			static Z_CT_MEMBER(CPP11) double maximum () {return Z_DOUBLE_MAXIMUM;}
+			//static Z_CT_MEMBER(CPP11) double infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
+			//static Z_CT_MEMBER(CPP11) double nan     () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}
 
 			typedef double type;
 			typedef double to_signed;
@@ -622,11 +622,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CONSTANT_MEMBER(CPP11) long double epsilon () {return Z_LDOUBLE_EPSILON;}
-			static Z_CONSTANT_MEMBER(CPP11) long double minimum () {return Z_LDOUBLE_MINIMUM;}
-			static Z_CONSTANT_MEMBER(CPP11) long double maximum () {return Z_LDOUBLE_MAXIMUM;}
-			//static Z_CONSTANT_MEMBER(CPP11) long double infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
-			//static Z_CONSTANT_MEMBER(CPP11) long double nan     () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;}
+			static Z_CT_MEMBER(CPP11) long double epsilon () {return Z_LDOUBLE_EPSILON;}
+			static Z_CT_MEMBER(CPP11) long double minimum () {return Z_LDOUBLE_MINIMUM;}
+			static Z_CT_MEMBER(CPP11) long double maximum () {return Z_LDOUBLE_MAXIMUM;}
+			//static Z_CT_MEMBER(CPP11) long double infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
+			//static Z_CT_MEMBER(CPP11) long double nan     () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;}
 
 			typedef long double type;
 			typedef long double to_signed;
@@ -1888,15 +1888,15 @@ namespace Zeta {
 
 #		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 
-			static Z_CONSTANT_MEMBER(CPP14) Size string_size()
+			static Z_CT_MEMBER(CPP14) Size string_size()
 				{return type_string_size<T>();}
 
 
-			static Z_CONSTANT_MEMBER(CPP14) SizedString<string_size()> string()
+			static Z_CT_MEMBER(CPP14) SizedString<string_size()> string()
 				{return type_string<T>();}
 
 
-			static Z_CONSTANT_MEMBER(CPP14) Symbol symbol()
+			static Z_CT_MEMBER(CPP14) Symbol symbol()
 				{return Symbol(type_string<T>());}
 
 #		endif
