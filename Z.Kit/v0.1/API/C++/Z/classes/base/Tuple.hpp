@@ -50,8 +50,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {
 
-		template <class... T> class Tuple :
-		public Detail::Tuple::Super<TypeList<T...>, typename TypeListTransform<TypeList<T...>, TypeToParameter>::type>::type {
+		template <class... T> class Tuple
+		: public Detail::Tuple::Super<TypeList<T...>, typename TypeListTransform<TypeList<T...>, TypeToParameter>::type>::type {
 
 			private:
 			typedef TypeList<T...>							      ValueTypeList;
