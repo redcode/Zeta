@@ -15,13 +15,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <CoreGraphics/CGGeometry.h>
 #endif
 
-#if defined(Z_USE_NS_GEOMETRY) && Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP
+#if defined(Z_USE_NS_GEOMETRY) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 #	import <Foundation/NSGeometry.h>
 #endif
 
 #ifdef Z_USE_COCOS2D_X
 #	include "cocos2d.h"
 #endif
+
+namespace Zeta {template <class T> struct Value3D;}
 
 
 namespace Zeta {template <class T> struct Value2D {
@@ -36,8 +38,9 @@ namespace Zeta {template <class T> struct Value2D {
 
 	Z_INLINE_MEMBER Value2D() {}
 
-	Z_CT_MEMBER(CPP11) Value2D(T x, T y) : x(x),	  y(y)	    {}
-	Z_CT_MEMBER(CPP11) Value2D(T scalar) : x(scalar), y(scalar) {}
+	Z_CT_MEMBER(CPP11) Value2D(T x, T y)		 : x(x),    y(y)    {}
+	Z_CT_MEMBER(CPP11) Value2D(T xy)		 : x(xy),   y(xy)   {}
+	Z_CT_MEMBER(CPP11) Value2D(const Value3D<T> &xy) : x(xy.x), y(xy.y) {}
 
 	Z_INLINE_MEMBER Value2D(const Base &value) {(*(Base *)this) = value;}
 
@@ -205,10 +208,6 @@ namespace Zeta {template <class T> struct Value2D {
 		}
 
 
-	Z_CT_MEMBER(CPP11) Boolean contains(const Value2D &value) const
-		{return x >= value.x && y >= value.y;}
-
-
 	Z_CT_MEMBER(CPP11) T cross_product(const Value2D &value) const
 		{return x * value.y - y * value.x;}
 
@@ -281,25 +280,24 @@ namespace Zeta {template <class T> struct Value2D {
 		{Zeta::swap<Base>((Base *)this, (Base *)&value);}
 
 
-	Z_INLINE_MEMBER void to_vertex_array(T *array) const
-		{
-		array[0] = array[1] = array[2] = array[7] = T(0);
-		array[3] = array[5] = y;
-		array[4] = array[6] = x;
-		}
+	Z_CT_MEMBER(CPP11) Value3D<T> xny(T n) const
+		{return Value3D<T>(x, n, y);}
 
 
-	Z_INLINE_MEMBER void to_vertex_array(const Value2D &delta, T *array) const
-		{
-		array[0] = array[2] = delta.x;
-		array[1] = array[7] = delta.y;
-		array[3] = array[5] = delta.y + y;
-		array[4] = array[6] = delta.x + x;
-		}
+	Z_CT_MEMBER(CPP11) Value3D<T> xyn(T n) const
+		{return Value3D<T>(x, y, n);}
+
+
+	Z_CT_MEMBER(CPP11) Value3D<T> ynx(T n) const
+		{return Value3D<T>(y, n, x);}
 
 
 	Z_CT_MEMBER(CPP11) Value2D yx() const
 		{return Value2D(y, x);}
+
+
+	Z_CT_MEMBER(CPP11) Value3D<T> yxn(T n) const
+		{return Value3D<T>(y, x, n);}
 
 
 	// MARK: - Functions for integer and real types
@@ -406,8 +404,12 @@ namespace Zeta {template <class T> struct Value2D {
 
 	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
 	reciprocal() const
-		{return Value2D(T(1.0) / x, T(1.0) / y);}
+		{return Value2D(T(1) / x, T(1) / y);}
 };}
 
+
+#ifndef __Z_classes_base_Value3D_HPP__
+#	include <Z/classes/base/Value3D.hpp>
+#endif
 
 #endif // __Z_classes_base_Value2D_HPP__
