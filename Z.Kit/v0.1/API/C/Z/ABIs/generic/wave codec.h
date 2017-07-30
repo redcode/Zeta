@@ -23,7 +23,7 @@ typedef struct {
 	void*		       output;
 	zuint32		       resolution;
 	zuint16		       channel_count;
-	ZKey(VALUE_TYPE)       sample_fixed_type;
+	ZKey(VALUE_TYPE)       sample_sized_type;
 	ZKey(WAVE_CODEC_STATE) state;
 	ZStatus		       status;
 } ZWaveCodecSC;

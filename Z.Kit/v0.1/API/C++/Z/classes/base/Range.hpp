@@ -18,7 +18,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {template <class T> struct Range {
 
-	typedef typename ZTypeFixedNatural(ZRange, T) Base;
+	typedef typename ZTypeSizedNatural(ZRange, T) Base;
 
 	T index, size;
 

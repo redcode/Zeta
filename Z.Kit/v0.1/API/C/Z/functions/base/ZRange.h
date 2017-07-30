@@ -73,16 +73,16 @@ Z_INLINE zboolean z_range_##type##_is_zero(ZRange##Type object)				 \
 	{return object.index == 0 && object.size == 0;}
 
 
-#define z_range_type_are_equal(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _are_equal	)
-#define z_range_type_collide(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _collide	)
-#define z_range_type_contains(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _contains	)
-#define z_range_type_intersection(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _intersection	)
-#define z_range_type_swap(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _swap		)
-#define z_range_type_union(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _union		)
-#define z_range_type_from_indices(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _from_indices	)
-#define z_range_type_contains_index(TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _contains_index)
-#define z_range_type_end(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _end		)
-#define z_range_type_is_zero(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _is_zero	)
+#define z_range_type_are_equal(	    TYPE) Z_INSERT_##TYPE##_sized_type(z_range_, _are_equal	)
+#define z_range_type_collide(	    TYPE) Z_INSERT_##TYPE##_sized_type(z_range_, _collide	)
+#define z_range_type_contains(	    TYPE) Z_INSERT_##TYPE##_sized_type(z_range_, _contains	)
+#define z_range_type_intersection(  TYPE) Z_INSERT_##TYPE##_sized_type(z_range_, _intersection	)
+#define z_range_type_swap(	    TYPE) Z_INSERT_##TYPE##_sized_type(z_range_, _swap		)
+#define z_range_type_union(	    TYPE) Z_INSERT_##TYPE##_sized_type(z_range_, _union		)
+#define z_range_type_from_indices(  TYPE) Z_INSERT_##TYPE##_sized_type(z_range_, _from_indices	)
+#define z_range_type_contains_index(TYPE) Z_INSERT_##TYPE##_sized_type(z_range_, _contains_index)
+#define z_range_type_end(	    TYPE) Z_INSERT_##TYPE##_sized_type(z_range_, _end		)
+#define z_range_type_is_zero(	    TYPE) Z_INSERT_##TYPE##_sized_type(z_range_, _is_zero	)
 
 
 /* MARK: - Implementation expansions */

@@ -49,11 +49,11 @@ Z_INLINE Z3DLine##Type z_3d_line_##type##_reverse(Z3DLine##Type object)			  \
 	}
 
 
-#define z_3d_line_type_are_equal(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_, _are_equal	  )
-#define z_3d_line_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_, _are_perpendicular)
-#define z_3d_line_type_swap(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_, _swap		  )
-#define z_3d_line_type_is_zero(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_, _is_zero	  )
-#define z_3d_line_type_reverse(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_, _reverse	  )
+#define z_3d_line_type_are_equal(	 TYPE) Z_INSERT_##TYPE##_sized_type(z_3d_line_, _are_equal	  )
+#define z_3d_line_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_sized_type(z_3d_line_, _are_perpendicular)
+#define z_3d_line_type_swap(		 TYPE) Z_INSERT_##TYPE##_sized_type(z_3d_line_, _swap		  )
+#define z_3d_line_type_is_zero(		 TYPE) Z_INSERT_##TYPE##_sized_type(z_3d_line_, _is_zero	  )
+#define z_3d_line_type_reverse(		 TYPE) Z_INSERT_##TYPE##_sized_type(z_3d_line_, _reverse	  )
 
 
 #define Z_IMPLEMENTATION_3D_LINE_SEGMENT(Type, type)					\
@@ -67,8 +67,8 @@ Z_INLINE Z3D##Type z_3d_line_segment_##type##_lerp(Z3DLine##Type object, z##type
 	{return z_3d_##type##_lerp(object.a, object.b, alpha);}
 
 
-#define z_3d_line_segment_type_center(TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_segment_, _center)
-#define z_3d_line_segment_type_lerp(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_segment_, _lerp  )
+#define z_3d_line_segment_type_center(TYPE) Z_INSERT_##TYPE##_sized_type(z_3d_line_segment_, _center)
+#define z_3d_line_segment_type_lerp(  TYPE) Z_INSERT_##TYPE##_sized_type(z_3d_line_segment_, _lerp  )
 
 
 /* MARK: - Implementation expansions */

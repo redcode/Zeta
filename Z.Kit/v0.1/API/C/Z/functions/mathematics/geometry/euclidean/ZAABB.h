@@ -158,21 +158,21 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 	{return z_3d_##type##_inner_product(z_3d_##type##_subtract(object.b, object.a));}
 
 
-#define z_aabb_type_collide(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _collide		      )
-#define z_aabb_type_contains(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains	      )
-#define z_aabb_type_intersection(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _intersection	      )
-#define z_aabb_type_union(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _union		      )
-#define z_aabb_type_from_vertices(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _from_vertices	      )
-#define z_aabb_type_absolute_point_to_unit(TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _absolute_point_to_unit)
-#define z_aabb_type_box(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _box		      )
-#define z_aabb_type_contains_box(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_box	      )
-#define z_aabb_type_contains_line_segment( TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_line_segment )
-#define z_aabb_type_contains_point(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_point	      )
-#define z_aabb_type_contains_sphere(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _contains_sphere	      )
-#define z_aabb_type_inner_sphere(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _inner_sphere	      )
-#define z_aabb_type_size(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _size		      )
-#define z_aabb_type_unit_point_to_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _unit_point_to_absolute)
-#define z_aabb_type_volume(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_, _volume		      )
+#define z_aabb_type_collide(		   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _collide		      )
+#define z_aabb_type_contains(		   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _contains	      )
+#define z_aabb_type_intersection(	   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _intersection	      )
+#define z_aabb_type_union(		   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _union		      )
+#define z_aabb_type_from_vertices(	   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _from_vertices	      )
+#define z_aabb_type_absolute_point_to_unit(TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _absolute_point_to_unit)
+#define z_aabb_type_box(		   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _box		      )
+#define z_aabb_type_contains_box(	   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _contains_box	      )
+#define z_aabb_type_contains_line_segment( TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _contains_line_segment )
+#define z_aabb_type_contains_point(	   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _contains_point	      )
+#define z_aabb_type_contains_sphere(	   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _contains_sphere	      )
+#define z_aabb_type_inner_sphere(	   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _inner_sphere	      )
+#define z_aabb_type_size(		   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _size		      )
+#define z_aabb_type_unit_point_to_absolute(TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _unit_point_to_absolute)
+#define z_aabb_type_volume(		   TYPE) Z_INSERT_##TYPE##_sized_type(z_aabb_, _volume		      )
 
 
 /* MARK: - Implementation expansions */

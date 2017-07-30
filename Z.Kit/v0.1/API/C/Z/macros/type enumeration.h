@@ -10,17 +10,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.h>
 
-#define Z_ENUMERATE_FIXED_NATURAL_TYPES(prefix, invalid)		 \
+#define Z_ENUMERATE_SIZED_NATURAL_TYPES(prefix, invalid)		 \
 	prefix##8, prefix##16, prefix##32,				 \
 	Z_TERNARY(Z_DATA_MODEL_HAS_TYPE(UINT64 ))(prefix##64,  invalid), \
 	Z_TERNARY(Z_DATA_MODEL_HAS_TYPE(UINT128))(prefix##128, invalid)
 
-#define Z_ENUMERATE_FIXED_INTEGER_TYPES(prefix, invalid)		\
+#define Z_ENUMERATE_SIZED_INTEGER_TYPES(prefix, invalid)		\
 	prefix##8, prefix##16, prefix##32,				\
 	Z_TERNARY(Z_DATA_MODEL_HAS_TYPE(INT64 ))(prefix##64,  invalid),	\
 	Z_TERNARY(Z_DATA_MODEL_HAS_TYPE(INT128))(prefix##128, invalid)
 
-#define Z_ENUMERATE_FIXED_REAL_TYPES(prefix, invalid)							 \
+#define Z_ENUMERATE_SIZED_REAL_TYPES(prefix, invalid)							 \
 	Z_TERNARY(Z_FLOATING_POINT_HAS_TYPE(FLOAT16 ))(prefix##16,  invalid),				 \
 	Z_TERNARY(Z_FLOATING_POINT_HAS_TYPE(FLOAT24 ))(prefix##24,  invalid),				 \
 	Z_TERNARY(Z_FLOATING_POINT_HAS_TYPE(FLOAT32 ))(prefix##32,  invalid), invalid,			 \
