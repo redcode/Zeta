@@ -86,13 +86,13 @@ Z_INLINE ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 	}
 
 
-#define z_sphere_type_are_equal( TYPE) Z_INSERT_##TYPE##_sized_type(z_sphere_, _are_equal )
-#define z_sphere_type_swap(	 TYPE) Z_INSERT_##TYPE##_sized_type(z_sphere_, _swap	  )
-#define z_sphere_type_inner_aabb(TYPE) Z_INSERT_##TYPE##_sized_type(z_sphere_, _inner_aabb)
-#define z_sphere_type_inner_box( TYPE) Z_INSERT_##TYPE##_sized_type(z_sphere_, _inner_box )
-#define z_sphere_type_is_zero(	 TYPE) Z_INSERT_##TYPE##_sized_type(z_sphere_, _is_zero	  )
-#define z_sphere_type_outer_aabb(TYPE) Z_INSERT_##TYPE##_sized_type(z_sphere_, _outer_aabb)
-#define z_sphere_type_outer_box( TYPE) Z_INSERT_##TYPE##_sized_type(z_sphere_, _outer_box )
+#define z_sphere_type_are_equal( TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _are_equal )
+#define z_sphere_type_swap(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _swap	  )
+#define z_sphere_type_inner_aabb(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _inner_aabb)
+#define z_sphere_type_inner_box( TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _inner_box )
+#define z_sphere_type_is_zero(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _is_zero	  )
+#define z_sphere_type_outer_aabb(TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _outer_aabb)
+#define z_sphere_type_outer_box( TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_, _outer_box )
 
 
 /* MARK: - Implementation expansions */

@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {template <class T> struct Value3D {
 
-	typedef typename ZTypeSizedNumber(Z3D, T) Base;
+	typedef typename ZTypeFixedNumber(Z3D, T) Base;
 
 	T x, y, z;
 

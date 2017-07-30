@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {template <class T> struct Rectangle {
 
-	typedef typename ZTypeSizedReal(ZRectangle, T) Base;
+	typedef typename ZTypeFixedReal(ZRectangle, T) Base;
 
 	Value2D<T> point, size;
 
@@ -34,7 +34,7 @@ namespace Zeta {template <class T> struct Rectangle {
 	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &size)			      : point(T(0)),   size(size)	     {}
 	Z_CT_MEMBER(CPP11) Rectangle(T size_x, T size_y)			      : point(T(0)),   size(size_x, size_y)  {}
 	Z_CT_MEMBER(CPP11) Rectangle(T size)					      : point(T(0)),   size(size)	     {}
-	Z_CT_MEMBER(CPP11) Rectangle(const typename ZTypeSizedReal(ZAABR, T) &aabr)   : point(aabr.a), size(aabr.b - aabr.a) {}
+	Z_CT_MEMBER(CPP11) Rectangle(const typename ZTypeFixedReal(ZAABR, T) &aabr)   : point(aabr.a), size(aabr.a + aabr.b) {}
 
 	Z_INLINE_MEMBER Rectangle(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
@@ -292,14 +292,14 @@ namespace Zeta {template <class T> struct Rectangle {
 		}
 
 
-	Z_CT_MEMBER(CPP11) Boolean contains(const typename ZTypeSizedReal(ZAABR, T) &aabr) const
+	Z_CT_MEMBER(CPP11) Boolean contains(const typename ZTypeFixedReal(ZAABR, T) &aabr) const
 		{
 		return	aabr.a.x >= point.x	     && aabr.a.y >= point.y &&
 			aabr.b.x <= point.x + size.x && aabr.b.y <= point.y + size.y;
 		}
 
 
-	Z_CT_MEMBER(CPP11) Boolean contains(const typename ZTypeSizedReal(ZCircle, T) &circle) const
+	Z_CT_MEMBER(CPP11) Boolean contains(const typename ZTypeFixedReal(ZCircle, T) &circle) const
 		{
 		return	circle.point.x - circle.radius >= point.x	   &&
 			circle.point.y - circle.radius >= point.y	   &&

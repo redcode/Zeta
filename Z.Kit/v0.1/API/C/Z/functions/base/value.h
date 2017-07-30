@@ -38,10 +38,10 @@ Z_INLINE void z_##type##_swap(void *a, void *b)					   \
 	}
 
 
-#define z_type_clamp(  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _clamp  )
-#define z_type_maximum(TYPE) Z_INSERT_##TYPE##_sized_type(z_, _maximum)
-#define z_type_minimum(TYPE) Z_INSERT_##TYPE##_sized_type(z_, _minimum)
-#define z_type_swap(   TYPE) Z_INSERT_##TYPE##_sized_type(z_, _swap   )
+#define z_type_clamp(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp  )
+#define z_type_maximum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _maximum)
+#define z_type_minimum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _minimum)
+#define z_type_swap(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _swap   )
 
 
 /* MARK: - Implementation for integer and real types */
@@ -56,8 +56,8 @@ Z_INLINE z##type z_##type##_sign(z##type value)			 \
 	{return value >= (z##type)0 ? (z##type)1 : -(z##type)1;}
 
 
-#define z_type_absolute(TYPE) Z_INSERT_##TYPE##_sized_type(z_, _absolute)
-#define z_type_sign(	TYPE) Z_INSERT_##TYPE##_sized_type(z_, _sign	)
+#define z_type_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _absolute)
+#define z_type_sign(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign	)
 
 
 /* MARK: - Implementation for real types only */
@@ -124,17 +124,17 @@ Z_INLINE z##type z_##type##_smoothstep(z##type a, z##type b, z##type t)		\
 	}
 
 
-#define z_type_are_almost_equal(TYPE) Z_INSERT_##TYPE##_sized_type(z_, _are_almost_equal)
-#define z_type_clamp_01(	TYPE) Z_INSERT_##TYPE##_sized_type(z_, _clamp_01	)
-#define z_type_inverse_lerp(	TYPE) Z_INSERT_##TYPE##_sized_type(z_, _inverse_lerp	)
-#define z_type_is_almost_zero(	TYPE) Z_INSERT_##TYPE##_sized_type(z_, _is_almost_zero	)
-#define z_type_is_finite(	TYPE) Z_INSERT_##TYPE##_sized_type(z_, _is_finite	)
-#define z_type_is_infinity(	TYPE) Z_INSERT_##TYPE##_sized_type(z_, _is_infinity	)
-#define z_type_is_nan(		TYPE) Z_INSERT_##TYPE##_sized_type(z_, _is_nan		)
-#define z_type_lerp(		TYPE) Z_INSERT_##TYPE##_sized_type(z_, _lerp		)
-#define z_type_sign_or_zero(	TYPE) Z_INSERT_##TYPE##_sized_type(z_, _sign_or_zero	)
-#define z_type_smootherstep(	TYPE) Z_INSERT_##TYPE##_sized_type(z_, _smootherstep	)
-#define z_type_smoothstep(	TYPE) Z_INSERT_##TYPE##_sized_type(z_, _smoothstep	)
+#define z_type_are_almost_equal(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _are_almost_equal)
+#define z_type_clamp_01(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp_01	)
+#define z_type_inverse_lerp(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _inverse_lerp	)
+#define z_type_is_almost_zero(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_almost_zero	)
+#define z_type_is_finite(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_finite	)
+#define z_type_is_infinity(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_infinity	)
+#define z_type_is_nan(		TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_nan		)
+#define z_type_lerp(		TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _lerp		)
+#define z_type_sign_or_zero(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign_or_zero	)
+#define z_type_smootherstep(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _smootherstep	)
+#define z_type_smoothstep(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _smoothstep	)
 
 
 /* MARK: - Implementations for bit operations */
@@ -145,7 +145,7 @@ Z_INLINE z##type z_##type##_reverse_in_##level##bit(z##type value) \
 	{return Z_##bits##BIT_REVERSE_IN_##level##BIT(value);}
 
 
-#define z_type_reverse(TYPE) Z_INSERT_##TYPE##_sized_type(z_, _reverse_in_8bit)
+#define z_type_reverse(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reverse_in_8bit)
 
 
 #define Z_IMPLEMENTATION_VALUE_ROTATE(type, bits)			\
@@ -157,8 +157,8 @@ Z_INLINE z##type z_##type##_rotate_right(z##type value, zuint rotation)	\
 	{return Z_##bits##BIT_ROTATE_RIGHT(value, rotation);}
 
 
-#define z_type_rotate_left( TYPE) Z_INSERT_##TYPE##_sized_type(z_, _rotate_left )
-#define z_type_rotate_right(TYPE) Z_INSERT_##TYPE##_sized_type(z_, _rotate_right)
+#define z_type_rotate_left( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotate_left )
+#define z_type_rotate_right(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotate_right)
 
 
 /* MARK: - uint8 */
@@ -1987,38 +1987,38 @@ Z_IMPLEMENTATION_VALUE_ROTATE (bint32, 32)
 /* MARK: - Function selectors */
 
 
-#define z_type_addition_overflows(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _addition_overflows	   )
-#define z_type_addition_overflows_3(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _addition_overflows_3	   )
-#define z_type_addition_overflows_4(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _addition_overflows_4	   )
-#define z_type_atomic_add_then_get(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_add_then_get	   )
-#define z_type_atomic_and_then_get(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_and_then_get	   )
-#define z_type_atomic_decrement_then_get( TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_decrement_then_get)
-#define z_type_atomic_get_then_add(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_get_then_add	   )
-#define z_type_atomic_get_then_and(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_get_then_and	   )
-#define z_type_atomic_get_then_decrement( TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_get_then_decrement)
-#define z_type_atomic_get_then_increment( TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_get_then_increment)
-#define z_type_atomic_get_then_nand(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_get_then_nand	   )
-#define z_type_atomic_get_then_not(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_get_then_not	   )
-#define z_type_atomic_get_then_or(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_get_then_or	   )
-#define z_type_atomic_get_then_set(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_get_then_set	   )
-#define z_type_atomic_get_then_subtract(  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_get_then_subtract )
-#define z_type_atomic_get_then_xor(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_get_then_xor	   )
-#define z_type_atomic_increment_then_get( TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_increment_then_get)
-#define z_type_atomic_nand_then_get(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_nand_then_get	   )
-#define z_type_atomic_not_then_get(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_not_then_get	   )
-#define z_type_atomic_or_then_get(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_or_then_get	   )
-#define z_type_atomic_set_if_equal(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_set_if_equal	   )
-#define z_type_atomic_subtract_then_get(  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_subtract_then_get )
-#define z_type_atomic_xor_then_get(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _atomic_xor_then_get	   )
-#define z_type_big_endian(		  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _big_endian		   )
-#define z_type_little_endian(		  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _little_endian		   )
-#define z_type_minimum_storage_size(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _minimum_storage_size	   )
-#define z_type_multiplication_overflows(  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _addition_overflows	   )
-#define z_type_multiplication_overflows_3(TYPE) Z_INSERT_##TYPE##_sized_type(z_, _addition_overflows_3	   )
-#define z_type_multiplication_overflows_4(TYPE) Z_INSERT_##TYPE##_sized_type(z_, _addition_overflows_4	   )
-#define z_type_subtraction_overflows(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _subtraction_overflows	   )
-#define z_type_subtraction_overflows_3(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _subtraction_overflows_3  )
-#define z_type_subtraction_overflows_4(	  TYPE) Z_INSERT_##TYPE##_sized_type(z_, _subtraction_overflows_4  )
+#define z_type_addition_overflows(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows	   )
+#define z_type_addition_overflows_3(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows_3	   )
+#define z_type_addition_overflows_4(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows_4	   )
+#define z_type_atomic_add_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_add_then_get	   )
+#define z_type_atomic_and_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_and_then_get	   )
+#define z_type_atomic_decrement_then_get( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_decrement_then_get)
+#define z_type_atomic_get_then_add(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_add	   )
+#define z_type_atomic_get_then_and(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_and	   )
+#define z_type_atomic_get_then_decrement( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_decrement)
+#define z_type_atomic_get_then_increment( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_increment)
+#define z_type_atomic_get_then_nand(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_nand	   )
+#define z_type_atomic_get_then_not(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_not	   )
+#define z_type_atomic_get_then_or(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_or	   )
+#define z_type_atomic_get_then_set(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_set	   )
+#define z_type_atomic_get_then_subtract(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_subtract )
+#define z_type_atomic_get_then_xor(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_get_then_xor	   )
+#define z_type_atomic_increment_then_get( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_increment_then_get)
+#define z_type_atomic_nand_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_nand_then_get	   )
+#define z_type_atomic_not_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_not_then_get	   )
+#define z_type_atomic_or_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_or_then_get	   )
+#define z_type_atomic_set_if_equal(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_set_if_equal	   )
+#define z_type_atomic_subtract_then_get(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_subtract_then_get )
+#define z_type_atomic_xor_then_get(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_xor_then_get	   )
+#define z_type_big_endian(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _big_endian		   )
+#define z_type_little_endian(		  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _little_endian		   )
+#define z_type_minimum_storage_size(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _minimum_storage_size	   )
+#define z_type_multiplication_overflows(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows	   )
+#define z_type_multiplication_overflows_3(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows_3	   )
+#define z_type_multiplication_overflows_4(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows_4	   )
+#define z_type_subtraction_overflows(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _subtraction_overflows	   )
+#define z_type_subtraction_overflows_3(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _subtraction_overflows_3  )
+#define z_type_subtraction_overflows_4(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _subtraction_overflows_4  )
 
 
 /* MARK: - Default real type definitions */
