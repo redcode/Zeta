@@ -65,6 +65,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in types */
 
+#define Z_COMPILER_TYPE_UINT8  unsigned __int8
+#define Z_COMPILER_TYPE_UINT16 unsigned __int16
+#define Z_COMPILER_TYPE_UINT32 unsigned __int32
+#define Z_COMPILER_TYPE_UINT64 unsigned __int64
+
+#define Z_COMPILER_TYPE_INT8  __int8
+#define Z_COMPILER_TYPE_INT16 __int16
+#define Z_COMPILER_TYPE_INT32 __int32
+#define Z_COMPILER_TYPE_INT64 __int64
+
 /* MARK: - Built-in functions: Struture */
 
 /* MARK: - Built-in functions: VAL */
