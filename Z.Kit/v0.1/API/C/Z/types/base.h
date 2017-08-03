@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/structure.h>
 #include <Z/macros/members.h>
 
-/* MARK: - Fixed size types */
+/* MARK: - Fixed width types */
 
 typedef Z_DATA_MODEL_TYPE(UINT8)		zuint8;
 typedef struct {zuint8 x, y;}			Z2DUInt8;
@@ -551,7 +551,7 @@ typedef struct {zint32 x, y, z, w;}		Z4DInt32;
 #define Z_TYPE_INFINITY(	   TYPE)	Z_INSERT_##TYPE##_FIXED_TYPE(Z_, _INFINITY	     )
 #define Z_TYPE_NAN(		   TYPE)	Z_INSERT_##TYPE##_FIXED_TYPE(Z_, _NAN		     )
 
-/* MARK: - Fixed size types for binary operations */
+/* MARK: - Fixed width types for binary operations */
 
 typedef zuint8					zbint8;
 #define Z_BINT8					Z_UINT8
