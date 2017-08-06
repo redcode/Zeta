@@ -92,7 +92,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_OS Z_OS_IOS
 #		endif
 
-#	elif
+#	else
 #		define Z_OS Z_OS_MAC_OS_X
 #	endif
 
