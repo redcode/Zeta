@@ -22,12 +22,15 @@ Z_INLINE zboolean z_range_##type##_are_equal(ZRange##Type a, ZRange##Type b)		 \
 	{return a.index == b.index && a.size == b.size;}				 \
 											 \
 											 \
-Z_INLINE zboolean z_range_##type##_collide(ZRange##Type a, ZRange##Type b)		 \
-	{return a.index < b.index + b.size && b.index < a.index + a.size;}		 \
-											 \
-											 \
 Z_INLINE zboolean z_range_##type##_contains(ZRange##Type a, ZRange##Type b)		 \
 	{return a.index <= b.index && a.index + a.size >= b.index + b.size;}		 \
+											 \
+											 \
+Z_INLINE zboolean z_range_##type##_intersect(ZRange##Type object, ZRange##Type range)	 \
+	{										 \
+	return	object.index < range.index  + range.size &&				 \
+		range.index  < object.index + object.size;				 \
+	}										 \
 											 \
 											 \
 Z_INLINE ZRange##Type z_range_##type##_intersection(ZRange##Type a, ZRange##Type b)	 \
@@ -74,8 +77,8 @@ Z_INLINE zboolean z_range_##type##_is_zero(ZRange##Type object)				 \
 
 
 #define z_range_type_are_equal(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _are_equal	)
-#define z_range_type_collide(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _collide	)
 #define z_range_type_contains(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _contains	)
+#define z_range_type_intersect(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _intersect	)
 #define z_range_type_intersection(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _intersection	)
 #define z_range_type_swap(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _swap		)
 #define z_range_type_union(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_, _union		)
@@ -105,8 +108,8 @@ Z_IMPLEMENTATION_RANGE(UInt32, uint32)
 
 
 #define z_range_are_equal      z_range_type_are_equal	  (SIZE)
-#define z_range_collide	       z_range_type_collide	  (SIZE)
 #define z_range_contains       z_range_type_contains	  (SIZE)
+#define z_range_intersect      z_range_type_intersect	  (SIZE)
 #define z_range_intersection   z_range_type_intersection  (SIZE)
 #define z_range_swap	       z_range_type_swap	  (SIZE)
 #define z_range_union	       z_range_type_union	  (SIZE)
