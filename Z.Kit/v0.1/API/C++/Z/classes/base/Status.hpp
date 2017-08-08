@@ -78,10 +78,6 @@ namespace Zeta {struct Status {
 
 	Z_CT_MEMBER(CPP11) Status(ZStatus code) : code(code) {}
 
-#	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
-		Z_CT_MEMBER(CPP11) operator bool() const {return code;}
-#	endif
-
 	Z_CT_MEMBER(CPP11) operator ZStatus() const {return code;}
 
 	Z_CT_MEMBER(CPP11) Boolean operator ==(ZStatus status) const {return code == status;}
