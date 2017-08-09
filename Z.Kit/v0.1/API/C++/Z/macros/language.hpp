@@ -39,6 +39,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CT(	    CONFORM_TO) Z_CT_##CONFORM_TO Z_INLINE
 #define Z_CT_MEMBER(CONFORM_TO) Z_CT_##CONFORM_TO Z_INLINE_MEMBER
 
+#if Z_LANGUAGE_HAS_SPECIFIER(CPP, EXPLICIT)
+#	define Z_EXPLICIT explicit
+#else
+#	define Z_EXPLICIT
+#endif
+
 #if Z_LANGUAGE_HAS_SPECIFIER(CPP, NO_EXCEPTION)
 #	define Z_NO_EXCEPTION noexcept
 #else
