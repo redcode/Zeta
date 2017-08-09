@@ -16,10 +16,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_C99_PREPROCESSOR FALSE
 #endif
 
-#ifndef Z_CPP_HAS_EXPLICIT_CONVERSION
-#	define Z_CPP_HAS_EXPLICIT_CONVERSION FALSE
-#endif
-
 #ifndef Z_CPP_HAS_EXPRESSION_SFINAE
 #	define Z_CPP_HAS_EXPRESSION_SFINAE FALSE
 #endif
@@ -118,6 +114,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN
 #	define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN FALSE
+#endif
+
+#ifndef Z_CPP_HAS_SPECIFIER_EXPLICIT
+#	define Z_CPP_HAS_SPECIFIER_EXPLICIT FALSE
 #endif
 
 #ifndef Z_CPP_HAS_SPECIFIER_NO_EXCEPTION

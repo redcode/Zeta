@@ -425,10 +425,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_TYPE_LLONG	    TRUE /* v2.9 */
 #		endif
 
-#		if __has_feature(cxx_explicit_conversions)
-#			define Z_COMPILER_CPP_HAS_EXPLICIT_CONVERSION TRUE /* v3.0 */
-#		endif
-
 #		if __has_feature(cxx_inheriting_constructors)
 #			define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE
 #		endif
@@ -518,6 +514,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		if __has_feature(cxx_decltype_incomplete_return_types) || __has_extension(cxx_decltype_incomplete_return_types)
 #			define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN TRUE
+#		endif
+
+#		if __has_feature(cxx_explicit_conversions)
+#			define Z_COMPILER_CPP_HAS_SPECIFIER_EXPLICIT TRUE /* v3.0 */
 #		endif
 
 #		if __has_feature(cxx_noexcept) || __has_extension(cxx_noexcept)

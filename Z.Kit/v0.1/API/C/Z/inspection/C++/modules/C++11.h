@@ -15,7 +15,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Features */
 
 #define Z_CPP_HAS_C99_PREPROCESSOR				 TRUE /* N1653 */
-#define Z_CPP_HAS_EXPLICIT_CONVERSION				 TRUE /* N2437 */
 #define Z_CPP_HAS_EXPRESSION_SFINAE				 TRUE /* DR339 (?) */
 #define Z_CPP_HAS_INHERITING_CONSTRUCTORS			 TRUE /* N2540 */
 #define Z_CPP_HAS_INITIALIZER_LIST				 TRUE /* N2672 */
@@ -53,6 +52,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION		    TRUE /* N2235:	 constexpr	      */
 #define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE		    TRUE /* N2343(v1.0): decltype()	      */
 #define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN TRUE /* N3276(v1.1): decltype()	      */
+#define Z_CPP_HAS_SPECIFIER_EXPLICIT			    TRUE /* N2437:	 explicit	      */
 #define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION		    TRUE /* N3050:	 noexcept, noexcept() */
 
 /* MARK: - Storage classes */
