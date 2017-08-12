@@ -12,13 +12,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Euclidean geometry */
 
-#define Z_TYPES_EUCLIDEAN_GEOMETRY_INTEGER(Type, type)		     \
-typedef struct {Z2D##Type point, size;}		   ZRectangle##Type; \
-typedef struct {Z3D##Type point, size;}		   ZBox##Type;	     \
-typedef struct {Z2D##Type a, b;}		   ZAABR##Type;	     \
-typedef struct {Z3D##Type a, b;}		   ZAABB##Type;	     \
-typedef ZAABR##Type				   Z2DLine##Type;    \
-typedef ZAABB##Type				   Z3DLine##Type;
+#define Z_TYPES_EUCLIDEAN_GEOMETRY_INTEGER(Type, type)	  \
+typedef struct {Z2D##Type a, b;}	Z2DLine##Type;    \
+typedef struct {Z3D##Type a, b;}	Z3DLine##Type;	  \
+typedef Z2DLine##Type			ZAABR##Type;	  \
+typedef Z3DLine##Type			ZAABB##Type;	  \
+typedef struct {Z2D##Type point, size;}	ZRectangle##Type; \
+typedef struct {Z3D##Type point, size;}	ZBox##Type;
+
+#define Z2DLineType(   TYPE) Z_INSERT_##TYPE##_FixedType(Z2DLine,   )
+#define Z3DLineType(   TYPE) Z_INSERT_##TYPE##_FixedType(Z3DLine,   )
+#define ZAABRType(     TYPE) Z_INSERT_##TYPE##_FixedType(ZAABR,	    )
+#define ZAABBType(     TYPE) Z_INSERT_##TYPE##_FixedType(ZAABB,	    )
+#define ZRectangleType(TYPE) Z_INSERT_##TYPE##_FixedType(ZRectangle,)
+#define ZBoxType(      TYPE) Z_INSERT_##TYPE##_FixedType(ZBox,	    )
 
 #define Z_TYPES_EUCLIDEAN_GEOMETRY_REAL(Type, type)		  \
 typedef struct {Z2D##Type point; z##type radius;}  ZCircle##Type; \
@@ -27,17 +34,11 @@ typedef struct {Z2D##Type point; z##type angle;}   Z2DRay##Type;  \
 typedef struct {Z3D##Type point; z##type angle;}   Z3DRay##Type;  \
 typedef struct {Z3D##Type normal; z##type offset;} ZPlane##Type;
 
-#define Z2DLineType(   TYPE) Z_INSERT_##TYPE##_FixedType(Z2DLine,   )
-#define Z3DLineType(   TYPE) Z_INSERT_##TYPE##_FixedType(Z3DLine,   )
-#define Z2DRayType(    TYPE) Z_INSERT_##TYPE##_FixedType(Z2DRay,    )
-#define Z3DRayType(    TYPE) Z_INSERT_##TYPE##_FixedType(Z3DRay,    )
-#define ZRectangleType(TYPE) Z_INSERT_##TYPE##_FixedType(ZRectangle,)
-#define ZBoxType(      TYPE) Z_INSERT_##TYPE##_FixedType(ZBox,	    )
-#define ZAABRType(     TYPE) Z_INSERT_##TYPE##_FixedType(ZAABR,	    )
-#define ZAABBType(     TYPE) Z_INSERT_##TYPE##_FixedType(ZAABB,	    )
-#define ZCircleType(   TYPE) Z_INSERT_##TYPE##_FixedType(ZCircle,   )
-#define ZSphereType(   TYPE) Z_INSERT_##TYPE##_FixedType(ZSphere,   )
-#define ZPlaneType(    TYPE) Z_INSERT_##TYPE##_FixedType(ZPlane,    )
+#define Z2DRayType( TYPE) Z_INSERT_##TYPE##_FixedType(Z2DRay, )
+#define Z3DRayType( TYPE) Z_INSERT_##TYPE##_FixedType(Z3DRay, )
+#define ZCircleType(TYPE) Z_INSERT_##TYPE##_FixedType(ZCircle,)
+#define ZSphereType(TYPE) Z_INSERT_##TYPE##_FixedType(ZSphere,)
+#define ZPlaneType( TYPE) Z_INSERT_##TYPE##_FixedType(ZPlane, )
 
 Z_TYPES_EUCLIDEAN_GEOMETRY_INTEGER(Int8,  int8 )
 Z_TYPES_EUCLIDEAN_GEOMETRY_INTEGER(Int16, int16)
@@ -126,16 +127,16 @@ struct ZSetElement {
 
 #ifdef Z_REAL
 	typedef Z2DLineType   (REAL) Z2DLine;
-	typedef Z3DLineType   (REAL) Z3DLine;
 	typedef Z2DRayType    (REAL) Z2DRay;
+	typedef Z3DLineType   (REAL) Z3DLine;
 	typedef Z3DRayType    (REAL) Z3DRay;
-	typedef ZRectangleType(REAL) ZRectangle;
-	typedef ZBoxType      (REAL) ZBox;
-	typedef ZAABRType     (REAL) ZAABR;
 	typedef ZAABBType     (REAL) ZAABB;
+	typedef ZAABRType     (REAL) ZAABR;
+	typedef ZBoxType      (REAL) ZBox;
 	typedef ZCircleType   (REAL) ZCircle;
-	typedef ZSphereType   (REAL) ZSphere;
 	typedef ZPlaneType    (REAL) ZPlane;
+	typedef ZRectangleType(REAL) ZRectangle;
+	typedef ZSphereType   (REAL) ZSphere;
 #endif
 
 #endif /* __Z_types_mathematics_H__ */
