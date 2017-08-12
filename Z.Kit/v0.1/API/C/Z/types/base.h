@@ -1319,7 +1319,7 @@ typedef struct {zuint32 index, size;}		ZRangeUInt32;
 
 #define ZRangeType(TYPE)			Z_INSERT_##TYPE##_FixedType(ZRange,)
 
-typedef ZRangeType(UCHAR)			ZRangeUChar;
+typedef ZRangeType(UCHAR )			ZRangeUChar;
 typedef ZRangeType(USHORT)			ZRangeUShort;
 typedef ZRangeType(UINT	 )			ZRangeUInt;
 typedef ZRangeType(ULONG )			ZRangeULong;
