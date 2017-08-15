@@ -60,7 +60,7 @@ Z_INLINE z##type z_##type##_sign(z##type value)			 \
 #define z_type_sign(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign	)
 
 
-/* MARK: - Implementation for real types only */
+/* MARK: - Implementation for real types */
 
 
 #define Z_IMPLEMENTATION_REAL(type, _, epsilon, infinity)			\

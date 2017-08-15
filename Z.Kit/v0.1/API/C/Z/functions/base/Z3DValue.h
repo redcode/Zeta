@@ -352,7 +352,7 @@ Z_INLINE Z3D##Type z_3d_##type##_negative(Z3D##Type object)					\
 #define z_3d_type_negative(    TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _negative    )
 
 
-/* MARK: - Implementation for real types only */
+/* MARK: - Implementation for real types */
 
 
 #define Z_IMPLEMENTATION_3D_REAL(Type, type, _, epsilon)				\

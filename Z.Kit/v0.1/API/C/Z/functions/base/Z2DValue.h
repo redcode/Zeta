@@ -285,7 +285,7 @@ Z_INLINE Z2D##Type z_2d_##type##_negative(Z2D##Type object)					\
 #define z_2d_type_negative(    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _negative    )
 
 
-/* MARK: - Implementation for real types only */
+/* MARK: - Implementation for real types */
 
 
 #define Z_IMPLEMENTATION_2D_REAL(Type, type, _, epsilon)					\
