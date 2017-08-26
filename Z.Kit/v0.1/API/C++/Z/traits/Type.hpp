@@ -1206,17 +1206,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 	// MARK: - Mixins: Kind
 
-	enum {	Void,
-		InconvertibleFunction,
-		ConvertibleFunction,
-		Value,
-		VoidPointer,
-		Pointer,
-		MemberFunctionPointer,
-		Reference,
-		Template
-	};
-
 	template <class C> struct Virtual : C {
 		typedef typename C::type remove_pointer;
 		typedef typename C::type remove_reference;
@@ -1229,6 +1218,17 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		enum {	size = sizeof(to_wrap),
 			bits = sizeof(to_wrap) * 8
 		};
+	};
+
+	enum {	Void,
+		InconvertibleFunction,
+		ConvertibleFunction,
+		Value,
+		VoidPointer,
+		Pointer,
+		MemberFunctionPointer,
+		Reference,
+		Template
 	};
 
 	template <UInt K, class C> struct Kind;
