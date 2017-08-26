@@ -15,7 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Implementation for natural, integer and real types */
 
 
-#define Z_IMPLEMENTATION_2D_COMMON(Type, type)							\
+#define Z_IMPLEMENTATION_2D_NATURAL(Type, type)							\
 												\
 												\
 Z_INLINE Z2D##Type z_2d_##type##_add(Z2D##Type a, Z2D##Type b)					\
@@ -257,10 +257,10 @@ Z_INLINE Z3D##Type z_2d_##type##_yxn(Z2D##Type object, z##type n)				\
 #define z_2d_type_yxn(		     TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _yxn		  )
 
 
-/* MARK: - Implementation for signed types */
+/* MARK: - Implementation for integer and real types */
 
 
-#define Z_IMPLEMENTATION_2D_SIGNED(Type, type)							\
+#define Z_IMPLEMENTATION_2D_INTEGER(Type, type)							\
 												\
 												\
 Z_INLINE Z2D##Type z_2d_##type##_absolute(Z2D##Type object)					\
@@ -285,23 +285,10 @@ Z_INLINE Z2D##Type z_2d_##type##_negative(Z2D##Type object)					\
 #define z_2d_type_negative(    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _negative    )
 
 
-/* MARK: - Implementation for integer types */
-
-
-#define Z_IMPLEMENTATION_2D_INTEGER(Type, type)					\
-										\
-										\
-Z_INLINE zboolean z_2d_##type##_are_perpendicular(Z2D##Type a, Z2D##Type b)	\
-	{return !z_##type##_absolute(z_2d_##type##_dot_product(a, b));}
-
-
-#define z_2d_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _are_perpendicular)
-
-
 /* MARK: - Implementation for real types */
 
 
-#define Z_IMPLEMENTATION_2D_REAL(Type, type, epsilon)						\
+#define Z_IMPLEMENTATION_2D_REAL(Type, type, _, epsilon)					\
 												\
 												\
 Z_INLINE zboolean z_2d_##type##_are_almost_equal(Z2D##Type a, Z2D##Type b)			\
@@ -360,113 +347,109 @@ Z_INLINE Z2D##Type z_2d_##type##_lerp(Z2D##Type a, Z2D##Type b, z##type t)			\
 												\
 												\
 Z_INLINE Z2D##Type z_2d_##type##_reciprocal(Z2D##Type object)					\
-	{return z_2d_##type(((z##type)1) / object.x, ((z##type)1) / object.y);}
+	{return z_2d_##type(_(1.0) / object.x, _(1.0) / object.y);}
 
 
-#define z_2d_type_are_almost_equal(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _are_almost_equal)
-#define z_2d_type_clamp_01(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _clamp_01	      )
-#define z_2d_type_has_almost_zero( TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _has_almost_zero )
-#define z_2d_type_has_finite(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _has_finite      )
-#define z_2d_type_has_infinity(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _has_infinity    )
-#define z_2d_type_has_nan(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _has_nan	      )
-#define z_2d_type_inverse_lerp(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _inverse_lerp    )
-#define z_2d_type_is_almost_zero(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _is_almost_zero  )
-#define z_2d_type_is_finite(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _is_finite	      )
-#define z_2d_type_is_infinity(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _is_infinity     )
-#define z_2d_type_is_nan(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _is_nan	      )
-#define z_2d_type_lerp(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _lerp	      )
-#define z_2d_type_reciprocal(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _reciprocal      )
+#define z_2d_type_are_almost_equal( TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _are_almost_equal )
+#define z_2d_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _are_perpendicular)
+#define z_2d_type_clamp_01(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _clamp_01		)
+#define z_2d_type_has_almost_zero(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _has_almost_zero	)
+#define z_2d_type_has_finite(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _has_finite	)
+#define z_2d_type_has_infinity(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _has_infinity	)
+#define z_2d_type_has_nan(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _has_nan		)
+#define z_2d_type_inverse_lerp(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _inverse_lerp	)
+#define z_2d_type_is_almost_zero(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _is_almost_zero	)
+#define z_2d_type_is_finite(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _is_finite	)
+#define z_2d_type_is_infinity(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _is_infinity	)
+#define z_2d_type_is_nan(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _is_nan		)
+#define z_2d_type_lerp(		    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _lerp		)
+#define z_2d_type_reciprocal(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _reciprocal	)
 
 
 /* MARK: - Implementation expansions */
 
 
-Z_IMPLEMENTATION_2D_COMMON(UInt8,  uint8 )
-Z_IMPLEMENTATION_2D_COMMON(UInt16, uint16)
-Z_IMPLEMENTATION_2D_COMMON(UInt32, uint32)
+Z_IMPLEMENTATION_2D_NATURAL(UInt8,  uint8 )
+Z_IMPLEMENTATION_2D_NATURAL(UInt16, uint16)
+Z_IMPLEMENTATION_2D_NATURAL(UInt32, uint32)
 
 #ifdef Z_UINT64
-	Z_IMPLEMENTATION_2D_COMMON(UInt64, uint64)
+	Z_IMPLEMENTATION_2D_NATURAL(UInt64, uint64)
 #endif
 
 #ifdef Z_UINT128
-	Z_IMPLEMENTATION_2D_COMMON(UInt128, uint128)
+	Z_IMPLEMENTATION_2D_NATURAL(UInt128, uint128)
 #endif
 
-Z_IMPLEMENTATION_2D_COMMON (Int8,  int8 )
-Z_IMPLEMENTATION_2D_SIGNED (Int8,  int8 )
+Z_IMPLEMENTATION_2D_NATURAL(Int8,  int8 )
 Z_IMPLEMENTATION_2D_INTEGER(Int8,  int8 )
-Z_IMPLEMENTATION_2D_COMMON (Int16, int16)
-Z_IMPLEMENTATION_2D_SIGNED (Int16, int16)
+Z_IMPLEMENTATION_2D_NATURAL(Int16, int16)
 Z_IMPLEMENTATION_2D_INTEGER(Int16, int16)
-Z_IMPLEMENTATION_2D_COMMON (Int32, int32)
-Z_IMPLEMENTATION_2D_SIGNED (Int32, int32)
+Z_IMPLEMENTATION_2D_NATURAL(Int32, int32)
 Z_IMPLEMENTATION_2D_INTEGER(Int32, int32)
 
 #ifdef Z_INT64
-	Z_IMPLEMENTATION_2D_COMMON (Int64, int64)
-	Z_IMPLEMENTATION_2D_SIGNED (Int64, int64)
+	Z_IMPLEMENTATION_2D_NATURAL(Int64, int64)
 	Z_IMPLEMENTATION_2D_INTEGER(Int64, int64)
 #endif
 
 #ifdef Z_INT128
-	Z_IMPLEMENTATION_2D_COMMON (Int128, int128)
-	Z_IMPLEMENTATION_2D_SIGNED (Int128, int128)
+	Z_IMPLEMENTATION_2D_NATURAL(Int128, int128)
 	Z_IMPLEMENTATION_2D_INTEGER(Int128, int128)
 #endif
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_2D_COMMON(Float16, float16)
-	Z_IMPLEMENTATION_2D_SIGNED(Float16, float16)
-	Z_IMPLEMENTATION_2D_REAL  (Float16, float16, Z_FLOAT16_EPSILON)
+	Z_IMPLEMENTATION_2D_NATURAL(Float16, float16)
+	Z_IMPLEMENTATION_2D_INTEGER(Float16, float16)
+	Z_IMPLEMENTATION_2D_REAL   (Float16, float16, Z_FLOAT16, Z_FLOAT16_EPSILON)
 #endif
 
 #ifdef Z_FLOAT24
-	Z_IMPLEMENTATION_2D_COMMON(Float24, float24)
-	Z_IMPLEMENTATION_2D_SIGNED(Float24, float24)
-	Z_IMPLEMENTATION_2D_REAL  (Float24, float24, Z_FLOAT24_EPSILON)
+	Z_IMPLEMENTATION_2D_NATURAL(Float24, float24)
+	Z_IMPLEMENTATION_2D_INTEGER(Float24, float24)
+	Z_IMPLEMENTATION_2D_REAL   (Float24, float24, Z_FLOAT24, Z_FLOAT24_EPSILON)
 #endif
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_2D_COMMON(Float32, float32)
-	Z_IMPLEMENTATION_2D_SIGNED(Float32, float32)
-	Z_IMPLEMENTATION_2D_REAL   (Float32, float32, Z_FLOAT32_EPSILON)
+	Z_IMPLEMENTATION_2D_NATURAL(Float32, float32)
+	Z_IMPLEMENTATION_2D_INTEGER(Float32, float32)
+	Z_IMPLEMENTATION_2D_REAL   (Float32, float32, Z_FLOAT32, Z_FLOAT32_EPSILON)
 #endif
 
 #ifdef Z_FLOAT48
-	Z_IMPLEMENTATION_2D_COMMON(Float48, float48)
-	Z_IMPLEMENTATION_2D_SIGNED(Float48, float48)
-	Z_IMPLEMENTATION_2D_REAL  (Float48, float48, Z_FLOAT48_EPSILON)
+	Z_IMPLEMENTATION_2D_NATURAL(Float48, float48)
+	Z_IMPLEMENTATION_2D_INTEGER(Float48, float48)
+	Z_IMPLEMENTATION_2D_REAL   (Float48, float48, Z_FLOAT48, Z_FLOAT48_EPSILON)
 #endif
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_2D_COMMON(Float64, float64)
-	Z_IMPLEMENTATION_2D_SIGNED(Float64, float64)
-	Z_IMPLEMENTATION_2D_REAL  (Float64, float64, Z_FLOAT64_EPSILON)
+	Z_IMPLEMENTATION_2D_NATURAL(Float64, float64)
+	Z_IMPLEMENTATION_2D_INTEGER(Float64, float64)
+	Z_IMPLEMENTATION_2D_REAL   (Float64, float64, Z_FLOAT64, Z_FLOAT64_EPSILON)
 #endif
 
 #ifdef Z_FLOAT72
-	Z_IMPLEMENTATION_2D_COMMON(Float72, float72)
-	Z_IMPLEMENTATION_2D_SIGNED(Float72, float72)
-	Z_IMPLEMENTATION_2D_REAL  (Float72, float72, Z_FLOAT72_EPSILON)
+	Z_IMPLEMENTATION_2D_NATURAL(Float72, float72)
+	Z_IMPLEMENTATION_2D_INTEGER(Float72, float72)
+	Z_IMPLEMENTATION_2D_REAL   (Float72, float72, Z_FLOAT72, Z_FLOAT72_EPSILON)
 #endif
 
 #ifdef Z_FLOAT80
-	Z_IMPLEMENTATION_2D_COMMON(Float80, float80)
-	Z_IMPLEMENTATION_2D_SIGNED(Float80, float80)
-	Z_IMPLEMENTATION_2D_REAL  (Float80, float80, Z_FLOAT80_EPSILON)
+	Z_IMPLEMENTATION_2D_NATURAL(Float80, float80)
+	Z_IMPLEMENTATION_2D_INTEGER(Float80, float80)
+	Z_IMPLEMENTATION_2D_REAL   (Float80, float80, Z_FLOAT80, Z_FLOAT80_EPSILON)
 #endif
 
 #ifdef Z_FLOAT96
-	Z_IMPLEMENTATION_2D_COMMON(Float96, float96)
-	Z_IMPLEMENTATION_2D_SIGNED(Float96, float96)
-	Z_IMPLEMENTATION_2D_REAL  (Float96, float96, Z_FLOAT96_EPSILON)
+	Z_IMPLEMENTATION_2D_NATURAL(Float96, float96)
+	Z_IMPLEMENTATION_2D_INTEGER(Float96, float96)
+	Z_IMPLEMENTATION_2D_REAL   (Float96, float96, Z_FLOAT96, Z_FLOAT96_EPSILON)
 #endif
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_2D_COMMON(Float128, float128)
-	Z_IMPLEMENTATION_2D_SIGNED(Float128, float128)
-	Z_IMPLEMENTATION_2D_REAL  (Float128, float128, Z_FLOAT128_EPSILON)
+	Z_IMPLEMENTATION_2D_NATURAL(Float128, float128)
+	Z_IMPLEMENTATION_2D_INTEGER(Float128, float128)
+	Z_IMPLEMENTATION_2D_REAL   (Float128, float128, Z_FLOAT128, Z_FLOAT128_EPSILON)
 #endif
 
 
