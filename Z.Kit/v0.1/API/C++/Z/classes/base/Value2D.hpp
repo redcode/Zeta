@@ -26,8 +26,108 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {template <class T> struct Value3D;}
 
 
-namespace Zeta {template <class T> struct Value2D {
+namespace Zeta {namespace Mixins {namespace Value2D {
 
+#	define Z_THIS ((Value2D *)this)
+
+
+	template <class Value2D, class T> struct Signed {};
+
+
+	template <class Value2D, class T> struct Integer : Signed<Value2D, T> {
+
+		Z_CT_MEMBER(CPP11) Value2D absolute() const
+			{return Value2D(Zeta::absolute<T>(Z_THIS->x), Zeta::absolute<T>(Z_THIS->y));}
+
+
+		Z_CT_MEMBER(CPP11) Boolean has_negative() const
+			{return Z_THIS->x < T(0) || Z_THIS->y < T(0);}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_negative() const
+			{return Z_THIS->x < T(0) && Z_THIS->y < T(0);}
+
+
+		Z_CT_MEMBER(CPP11) Value2D negative() const
+			{return Value2D(-Z_THIS->x, -Z_THIS->y);}
+	};
+
+
+	template <class Value2D, class T> struct Real : Signed<Value2D, T> {
+
+		Z_CT_MEMBER(CPP11) Value2D clamp_01() const
+			{return Value2D(Zeta::clamp_01<T>(Z_THIS->x), Zeta::clamp_01<T>(Z_THIS->y));}
+
+
+		Z_CT_MEMBER(CPP11) Boolean has_almost_zero() const
+			{return Zeta::is_almost_zero<T>(Z_THIS->x) || Zeta::is_almost_zero<T>(Z_THIS->y);}
+
+
+		Z_CT_MEMBER(CPP11) Boolean has_finite() const
+			{return Zeta::is_finite<T>(Z_THIS->x) || Zeta::is_finite<T>(Z_THIS->y);}
+
+
+		Z_CT_MEMBER(CPP11) Boolean has_infinity() const
+			{return Zeta::is_infinity<T>(Z_THIS->x) || Zeta::is_infinity<T>(Z_THIS->y);}
+
+
+		Z_CT_MEMBER(CPP11) Boolean has_nan() const
+			{return Zeta::is_nan<T>(Z_THIS->x) || Zeta::is_nan<T>(Z_THIS->y);}
+
+
+		Z_CT_MEMBER(CPP11) Value2D inverse_lerp(const Value2D &value, T t) const
+			{
+			return Value2D
+				(Zeta::inverse_lerp<T>(Z_THIS->x, value.x, t),
+				 Zeta::inverse_lerp<T>(Z_THIS->y, value.y, t));
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_almost_equal(const Value2D &value) const
+			{
+			return	Zeta::are_almost_equal<T>(Z_THIS->x, value.x) &&
+				Zeta::are_almost_equal<T>(Z_THIS->y, value.y);
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_almost_zero() const
+			{return Zeta::is_almost_zero<T>(Z_THIS->x) && Zeta::is_almost_zero<T>(Z_THIS->y);}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_finite() const
+			{return Zeta::is_finite<T>(Z_THIS->x) && Zeta::is_finite<T>(Z_THIS->y);}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_infinity() const
+			{return Zeta::is_infinity<T>(Z_THIS->x) && Zeta::is_infinity<T>(Z_THIS->y);}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_nan() const
+			{return Zeta::is_nan<T>(Z_THIS->x) && Zeta::is_nan<T>(Z_THIS->y);}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value2D &value) const
+			{return Zeta::absolute<T>(Z_THIS->dot_product(value)) <= Type<T>::epsilon();}
+
+
+		Z_CT_MEMBER(CPP11) Value2D lerp(const Value2D &value, T t) const
+			{
+			return Value2D
+				(Zeta::lerp<T>(Z_THIS->x, value.x, t),
+				 Zeta::lerp<T>(Z_THIS->y, value.y, t));
+			}
+
+
+		Z_CT_MEMBER(CPP11) Value2D reciprocal() const
+			{return Value2D(T(1) / Z_THIS->x, T(1) / Z_THIS->y);}
+	};
+
+
+#	undef Z_THIS
+}}}
+
+
+namespace Zeta {template <class T> struct Value2D : Mixins::Value2D::Partial<Type<T>::kind, Value2D<T>, T> {
 	typedef typename ZTypeFixedNumber(Z2D, T) Base;
 
 	T x, y;
@@ -109,7 +209,7 @@ namespace Zeta {template <class T> struct Value2D {
 
 #	ifdef Z_USE_CG_GEOMETRY
 
-		Z_CT_MEMBER(CPP11) Value2D(const CGPoint &point) : x(point.x),	y(point.y)     {}
+		Z_CT_MEMBER(CPP11) Value2D(const CGPoint &point) : x(point.x),	  y(point.y)	 {}
 		Z_CT_MEMBER(CPP11) Value2D(const CGSize  &size ) : x(size.width), y(size.height) {}
 
 
@@ -142,7 +242,7 @@ namespace Zeta {template <class T> struct Value2D {
 		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
-		Z_CT_MEMBER(CPP11) Value2D(const NSPoint &point) : x(point.x),	y(point.y)     {}
+		Z_CT_MEMBER(CPP11) Value2D(const NSPoint &point) : x(point.x),	  y(point.y)	 {}
 		Z_CT_MEMBER(CPP11) Value2D(const NSSize  &size ) : x(size.width), y(size.height) {}
 
 
@@ -171,7 +271,7 @@ namespace Zeta {template <class T> struct Value2D {
 
 #	ifdef Z_USE_COCOS2D_X
 
-		Z_INLINE_MEMBER Value2D(const cocos2d::Vec2 &point) : x(point.x),    y(point.y)     {}
+		Z_INLINE_MEMBER Value2D(const cocos2d::Vec2 &point) : x(point.x),    y(point.y)	    {}
 		Z_INLINE_MEMBER Value2D(const cocos2d::Size &size ) : x(size.width), y(size.height) {}
 
 
@@ -298,113 +398,6 @@ namespace Zeta {template <class T> struct Value2D {
 
 	Z_CT_MEMBER(CPP11) Value3D<T> yxn(T n) const
 		{return Value3D<T>(y, x, n);}
-
-
-	// MARK: - Functions for integer and real types
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Value2D>::type
-	absolute() const
-		{return Value2D(Zeta::absolute<T>(x), Zeta::absolute<T>(y));}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Boolean>::type
-	has_negative() const
-		{return x < T(0) || y < T(0);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Boolean>::type
-	is_negative() const
-		{return x < T(0) && y < T(0);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Value2D>::type
-	negative() const
-		{return Value2D(-x, -y);}
-
-
-	// MARK: - Functions for real types only
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
-	clamp_01() const
-		{return Value2D(Zeta::clamp_01<T>(x), Zeta::clamp_01<T>(y));}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	has_almost_zero() const
-		{return Zeta::is_almost_zero<T>(x) || Zeta::is_almost_zero<T>(y);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	has_finite() const
-		{return Zeta::is_finite<T>(x) || Zeta::is_finite<T>(y);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	has_infinity() const
-		{return Zeta::is_infinity<T>(x) || Zeta::is_infinity<T>(y);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	has_nan() const
-		{return Zeta::is_nan<T>(x) || Zeta::is_nan<T>(y);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
-	inverse_lerp(const Value2D &value, T t) const
-		{
-		return Value2D
-			(Zeta::inverse_lerp<T>(x, value.x, t),
-			 Zeta::inverse_lerp<T>(y, value.y, t));
-		}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_almost_equal(const Value2D &value) const
-		{
-		return	Zeta::are_almost_equal<T>(x, value.x) &&
-			Zeta::are_almost_equal<T>(y, value.y);
-		}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_almost_zero() const
-		{return Zeta::is_almost_zero<T>(x) && Zeta::is_almost_zero<T>(y);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_finite() const
-		{return Zeta::is_finite<T>(x) && Zeta::is_finite<T>(y);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_infinity() const
-		{return Zeta::is_infinity<T>(x) && Zeta::is_infinity<T>(y);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_nan() const
-		{return Zeta::is_nan<T>(x) && Zeta::is_nan<T>(y);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_perpendicular(const Value2D &value) const
-		{return Zeta::absolute<T>(dot_product(value)) <= Type<T>::epsilon();}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
-	lerp(const Value2D &value, T t) const
-		{
-		return Value2D
-			(Zeta::lerp<T>(x, value.x, t),
-			 Zeta::lerp<T>(y, value.y, t));
-		}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value2D>::type
-	reciprocal() const
-		{return Value2D(T(1) / x, T(1) / y);}
 };}
 
 
