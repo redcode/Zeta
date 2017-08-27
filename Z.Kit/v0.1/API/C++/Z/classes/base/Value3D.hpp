@@ -8,17 +8,190 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_Value3D_HPP__
 #define __Z_classes_base_Value3D_HPP__
 
-#include <Z/classes/base/Value2D.hpp>
+#ifndef __Z_classes_base_Value2D_HPP__
+#	include <Z/classes/base/Value2D.hpp>
+#endif
 
 
-namespace Zeta {template <class T> struct Value3D {
+namespace Zeta {namespace Mixins {namespace Value3D {
+
+#	define Z_THIS ((Value3D *)this)
+
+	template <class Value3D, class T, UInt T_number_set> struct Partial;
+
+
+	// MARK: - Partial implementation for signed types
+
+
+	template <class Value3D, class T>
+	struct Signed {
+
+		Z_CT_MEMBER(CPP11) Value3D absolute() const
+			{
+			return Value3D
+				(Zeta::absolute<T>(Z_THIS->x),
+				 Zeta::absolute<T>(Z_THIS->y),
+				 Zeta::absolute<T>(Z_THIS->z));
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean has_negative() const
+			{return Z_THIS->x < T(0) || Z_THIS->y < T(0) || Z_THIS->z < T(0);}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_negative() const
+			{return Z_THIS->x < T(0) && Z_THIS->y < T(0) && Z_THIS->z < T(0);}
+
+
+		Z_CT_MEMBER(CPP11) Value3D negative() const
+			{return Value3D(-Z_THIS->x, -Z_THIS->y, -Z_THIS->z);}
+	};
+
+
+	// MARK: - Partial implementation for natural types
+
+
+	template <class Value3D, class T>
+	struct Partial<Value3D, T, Z_NUMBER_SET_N> {};
+
+
+	// MARK: - Partial implementation for integer types
+
+
+	template <class Value3D, class T>
+	struct Partial<Value3D, T, Z_NUMBER_SET_Z> : Signed<Value3D, T> {
+
+		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value3D &value) const
+			{return !Zeta::absolute<T>(dot_product(value));}
+	};
+
+
+	// MARK: - Partial implementation for real types
+
+
+	template <class Value3D, class T>
+	struct Partial<Value3D, T, Z_NUMBER_SET_R> : Signed<Value3D, T> {
+
+		Z_CT_MEMBER(CPP11) Value3D clamp_01() const
+			{
+			return Value3D
+				(Zeta::clamp_01<T>(Z_THIS->x),
+				 Zeta::clamp_01<T>(Z_THIS->y),
+				 Zeta::clamp_01<T>(Z_THIS->z));
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean has_almost_zero() const
+			{
+			return	Zeta::is_almost_zero<T>(Z_THIS->x) ||
+				Zeta::is_almost_zero<T>(Z_THIS->y) ||
+				Zeta::is_almost_zero<T>(Z_THIS->z);
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean has_finite() const
+			{
+			return	Zeta::is_finite<T>(Z_THIS->x) ||
+				Zeta::is_finite<T>(Z_THIS->y) ||
+				Zeta::is_finite<T>(Z_THIS->z);
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean has_infinity() const
+			{
+			return	Zeta::is_infinity<T>(Z_THIS->x) ||
+				Zeta::is_infinity<T>(Z_THIS->y) ||
+				Zeta::is_infinity<T>(Z_THIS->z);
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean has_nan() const
+			{
+			return	Zeta::is_nan<T>(Z_THIS->x) ||
+				Zeta::is_nan<T>(Z_THIS->y) ||
+				Zeta::is_nan<T>(Z_THIS->z);
+			}
+
+
+		Z_CT_MEMBER(CPP11) Value3D inverse_lerp(const Value3D &value, T t) const
+			{
+			return Value3D
+				(Zeta::inverse_lerp<T>(Z_THIS->x, value.x, t),
+				 Zeta::inverse_lerp<T>(Z_THIS->y, value.y, t),
+				 Zeta::inverse_lerp<T>(Z_THIS->z, value.z, t));
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_almost_equal(const Value3D &value) const
+			{
+			return	Zeta::are_almost_equal<T>(Z_THIS->x, value.x) &&
+				Zeta::are_almost_equal<T>(Z_THIS->y, value.y) &&
+				Zeta::are_almost_equal<T>(Z_THIS->z, value.z);
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_almost_zero() const
+			{
+			return	Zeta::is_almost_zero<T>(Z_THIS->x) &&
+				Zeta::is_almost_zero<T>(Z_THIS->y) &&
+				Zeta::is_almost_zero<T>(Z_THIS->z);
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_finite() const
+			{
+			return	Zeta::is_finite<T>(Z_THIS->x) &&
+				Zeta::is_finite<T>(Z_THIS->y) &&
+				Zeta::is_finite<T>(Z_THIS->z);
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_infinity() const
+			{
+			return	Zeta::is_infinity<T>(Z_THIS->x) &&
+				Zeta::is_infinity<T>(Z_THIS->y) &&
+				Zeta::is_infinity<T>(Z_THIS->z);
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_nan() const
+			{
+			return	Zeta::is_nan<T>(Z_THIS->x) &&
+				Zeta::is_nan<T>(Z_THIS->y) &&
+				Zeta::is_nan<T>(Z_THIS->z);
+			}
+
+
+		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value3D &value) const
+			{return Zeta::absolute<T>(dot_product(value)) <= Type<T>::epsilon();}
+
+
+		Z_CT_MEMBER(CPP11) Value3D lerp(const Value3D &value, T t) const
+			{
+			return Value3D
+				(Zeta::lerp<T>(Z_THIS->x, value.x, t),
+				 Zeta::lerp<T>(Z_THIS->y, value.y, t),
+				 Zeta::lerp<T>(Z_THIS->z, value.z, t));
+			}
+
+
+		Z_CT_MEMBER(CPP11) Value3D reciprocal() const
+			{return Value3D(T(1) / Z_THIS->x, T(1) / Z_THIS->y, T(1) / Z_THIS->z);}
+	};
+
+
+#	undef Z_THIS
+}}}
+
+
+// MARK: - Common implementation
+
+
+namespace Zeta {template <class T> struct Value3D : Mixins::Value3D::Partial<Value3D<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedNumber(Z3D, T) Base;
 
 	T x, y, z;
-
-
-	// MARK: - Constructors
 
 
 	Z_INLINE_MEMBER Value3D() {}
@@ -31,39 +204,6 @@ namespace Zeta {template <class T> struct Value3D {
 	Z_CT_MEMBER(CPP11) Value3D(T x, const Value2D<T> &yz) : x(x),	 y(yz.x), z(yz.y) {}
 
 	Z_INLINE_MEMBER Value3D(const Base &value) {(*(Base *)this) = value;}
-
-
-	// MARK: - Static functions
-
-
-	static Z_CT_MEMBER(CPP11) Value3D maximum(const Value3D &a, const Value3D &b)
-		{
-		return Value3D
-			(Zeta::maximum<T>(a.x, b.x),
-			 Zeta::maximum<T>(a.y, b.y),
-			 Zeta::maximum<T>(a.z, b.z));
-		}
-
-
-	static Z_CT_MEMBER(CPP11) Value3D middle(const Value3D &a, const Value3D &b)
-		{
-		return Value3D
-			((a.x + b.x) / T(2),
-			 (a.y + b.y) / T(2),
-			 (a.z + b.z) / T(2));
-		}
-
-
-	static Z_CT_MEMBER(CPP11) Value3D minimum(const Value3D &a, const Value3D &b)
-		{
-		return Value3D
-			(Zeta::minimum<T>(a.x, b.x),
-			 Zeta::minimum<T>(a.y, b.y),
-			 Zeta::minimum<T>(a.z, b.z));
-		}
-
-
-	// MARK: - Operators
 
 
 	Z_CT_MEMBER(CPP11) operator Boolean() const {return x != T(0) || y != T(0) || z != T(0);}
@@ -105,9 +245,6 @@ namespace Zeta {template <class T> struct Value3D {
 
 	Z_INLINE_MEMBER T  operator[](int index) const {return ((T *)this)[index];}
 	Z_INLINE_MEMBER T &operator[](int index)       {return ((T *)this)[index];}
-
-
-	// MARK: - Functions for natural, integer and real types
 
 
 	Z_CT_MEMBER(CPP11) Value3D clamp(const Value3D &minimum, const Value3D &maximum) const
@@ -261,116 +398,6 @@ namespace Zeta {template <class T> struct Value3D {
 
 	Z_CT_MEMBER(CPP11) Value3D zyx() const
 		{return Value3D(z, y, x);}
-
-
-	// MARK: - Functions for integer and real types
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Value3D>::type
-	absolute() const
-		{return Value3D(Zeta::absolute<T>(x), Zeta::absolute<T>(y), Zeta::absolute<T>(z));}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Boolean>::type
-	has_negative() const
-		{return x < T(0) || y < T(0) || z < T(0);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Boolean>::type
-	is_negative() const
-		{return x < T(0) && y < T(0) && z < T(0);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_signed, Value3D>::type
-	negative() const
-		{return Value3D(-x, -y, -z);}
-
-
-	// MARK: - Functions for real types only
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value3D>::type
-	clamp_01() const
-		{return Value3D(Zeta::clamp_01<T>(x), Zeta::clamp_01<T>(y), Zeta::clamp_01<T>(z));}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	has_almost_zero() const
-		{return Zeta::is_almost_zero<T>(x) || Zeta::is_almost_zero<T>(y) || Zeta::is_almost_zero<T>(z);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	has_finite() const
-		{return Zeta::is_finite<T>(x) || Zeta::is_finite<T>(y) || Zeta::is_finite<T>(z);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	has_infinity() const
-		{return Zeta::is_infinity<T>(x) || Zeta::is_infinity<T>(y) || Zeta::is_infinity<T>(z);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	has_nan() const
-		{return Zeta::is_nan<T>(x) || Zeta::is_nan<T>(y) || Zeta::is_nan<T>(z);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value3D>::type
-	inverse_lerp(const Value3D &value, T t) const
-		{
-		return Value3D
-			(Zeta::inverse_lerp<T>(x, value.x, t),
-			 Zeta::inverse_lerp<T>(y, value.y, t),
-			 Zeta::inverse_lerp<T>(z, value.z, t));
-		}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_almost_equal(const Value3D &value) const
-		{
-		return	Zeta::are_almost_equal<T>(x, value.x) &&
-			Zeta::are_almost_equal<T>(y, value.y) &&
-			Zeta::are_almost_equal<T>(z, value.z);
-		}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_almost_zero() const
-		{return Zeta::is_almost_zero<T>(x) && Zeta::is_almost_zero<T>(y) && Zeta::is_almost_zero<T>(z);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_finite() const
-		{return Zeta::is_finite<T>(x) && Zeta::is_finite<T>(y) && Zeta::is_finite<T>(z);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_infinity() const
-		{return Zeta::is_infinity<T>(x) && Zeta::is_infinity<T>(y) && Zeta::is_infinity<T>(z);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_nan() const
-		{return Zeta::is_nan<T>(x) && Zeta::is_nan<T>(y) && Zeta::is_nan<T>(z);}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Boolean>::type
-	is_perpendicular(const Value3D &value) const
-		{return Zeta::absolute<T>(dot_product(value)) <= Type<T>::epsilon();}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value3D>::type
-	lerp(const Value3D &value, T t) const
-		{
-		return Value3D
-			(Zeta::lerp<T>(x, value.x, t),
-			 Zeta::lerp<T>(y, value.y, t),
-			 Zeta::lerp<T>(z, value.z, t));
-		}
-
-
-	Z_CT_MEMBER(CPP11) typename SaferEnableIf<Type<T>::is_real, Value3D>::type
-	reciprocal() const
-		{return Value3D(T(1) / x, T(1) / y, T(1) / z);}
 };}
 
 
