@@ -11,10 +11,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/value.h>
 
 
-/* MARK: - Implementation for natural, integer and real types */
+/* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_NATURAL(type)						   \
+#define Z_IMPLEMENTATION_VALUE_COMMON(type)					   \
 										   \
 										   \
 Z_INLINE z##type z_##type##_maximum(z##type a, z##type b)			   \
@@ -44,10 +44,10 @@ Z_INLINE void z_##type##_swap(void *a, void *b)					   \
 #define z_type_swap(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _swap   )
 
 
-/* MARK: - Implementation for integer and real types */
+/* MARK: - Partial implementation for signed types */
 
 
-#define Z_IMPLEMENTATION_INTEGER(type)				 \
+#define Z_IMPLEMENTATION_VALUE_SIGNED(type)			 \
 								 \
 Z_INLINE z##type z_##type##_absolute(z##type value)		 \
 	{return value < (z##type)0 ? -value : value;}		 \
@@ -63,7 +63,7 @@ Z_INLINE z##type z_##type##_sign(z##type value)			 \
 /* MARK: - Implementation for real types */
 
 
-#define Z_IMPLEMENTATION_REAL(type, _, epsilon, infinity)			\
+#define Z_IMPLEMENTATION_VALUE_REAL(type, _, epsilon, infinity)			\
 										\
 										\
 Z_INLINE zboolean z_##type##_are_almost_equal(z##type a, z##type b)		\
@@ -164,7 +164,7 @@ Z_INLINE z##type z_##type##_rotate_right(z##type value, zuint rotation)	\
 /* MARK: - uint8 */
 
 
-Z_IMPLEMENTATION_NATURAL      (uint8)
+Z_IMPLEMENTATION_VALUE_COMMON (uint8)
 Z_IMPLEMENTATION_VALUE_REVERSE(uint8, 8, 1)
 Z_IMPLEMENTATION_VALUE_REVERSE(uint8, 8, 2)
 Z_IMPLEMENTATION_VALUE_REVERSE(uint8, 8, 4)
@@ -294,7 +294,7 @@ Z_INLINE zboolean z_uint8_subtraction_overflows_4(zuint8 a, zuint8 b, zuint8 c, 
 /* MARK: - uint16 */
 
 
-Z_IMPLEMENTATION_NATURAL      (uint16)
+Z_IMPLEMENTATION_VALUE_COMMON (uint16)
 Z_IMPLEMENTATION_VALUE_REVERSE(uint16, 16, 1)
 Z_IMPLEMENTATION_VALUE_REVERSE(uint16, 16, 2)
 Z_IMPLEMENTATION_VALUE_REVERSE(uint16, 16, 4)
@@ -441,7 +441,7 @@ Z_INLINE zuint8 z_uint16_minimum_storage_size(zuint16 value)
 /* MARK: - uint32 */
 
 
-Z_IMPLEMENTATION_NATURAL      (uint32)
+Z_IMPLEMENTATION_VALUE_COMMON (uint32)
 Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32,  1)
 Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32,  2)
 Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32,  4)
@@ -596,7 +596,7 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 
 #ifdef Z_UINT64
 
-	Z_IMPLEMENTATION_NATURAL      (uint64)
+	Z_IMPLEMENTATION_VALUE_COMMON (uint64)
 	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64,  1)
 	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64,  2)
 	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64,  4)
@@ -766,7 +766,7 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 
 #ifdef Z_UINT128
 
-	Z_IMPLEMENTATION_NATURAL(uint128)
+	Z_IMPLEMENTATION_VALUE_COMMON (uint128)
 	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128,  1)
 	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128,  2)
 	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128,  4)
@@ -944,8 +944,8 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 /* MARK: - int8 */
 
 
-Z_IMPLEMENTATION_NATURAL      (int8)
-Z_IMPLEMENTATION_INTEGER      (int8)
+Z_IMPLEMENTATION_VALUE_COMMON (int8)
+Z_IMPLEMENTATION_VALUE_SIGNED (int8)
 Z_IMPLEMENTATION_VALUE_REVERSE(int8, 8, 1)
 Z_IMPLEMENTATION_VALUE_REVERSE(int8, 8, 2)
 Z_IMPLEMENTATION_VALUE_REVERSE(int8, 8, 4)
@@ -1084,8 +1084,8 @@ zboolean z_int8_subtraction_overflows_4(zint8 a, zint8 b, zint8 c, zint8 d)
 /* MARK: - int16 */
 
 
-Z_IMPLEMENTATION_NATURAL      (int16)
-Z_IMPLEMENTATION_INTEGER      (int16)
+Z_IMPLEMENTATION_VALUE_COMMON (int16)
+Z_IMPLEMENTATION_VALUE_SIGNED (int16)
 Z_IMPLEMENTATION_VALUE_REVERSE(int16, 16, 1)
 Z_IMPLEMENTATION_VALUE_REVERSE(int16, 16, 2)
 Z_IMPLEMENTATION_VALUE_REVERSE(int16, 16, 4)
@@ -1237,8 +1237,8 @@ zboolean z_int16_subtraction_overflows_4(zint16 a, zint16 b, zint16 c, zint16 d)
 /* MARK: - int32 */
 
 
-Z_IMPLEMENTATION_NATURAL      (int32)
-Z_IMPLEMENTATION_INTEGER      (int32)
+Z_IMPLEMENTATION_VALUE_COMMON (int32)
+Z_IMPLEMENTATION_VALUE_SIGNED (int32)
 Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32,  1)
 Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32,  2)
 Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32,  4)
@@ -1393,8 +1393,8 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 #ifdef Z_INT64
 
-	Z_IMPLEMENTATION_NATURAL      (int64)
-	Z_IMPLEMENTATION_INTEGER      (int64)
+	Z_IMPLEMENTATION_VALUE_COMMON (int64)
+	Z_IMPLEMENTATION_VALUE_SIGNED (int64)
 	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64,  1)
 	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64,  2)
 	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64,  4)
@@ -1552,8 +1552,8 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 #ifdef Z_INT128
 
-	Z_IMPLEMENTATION_NATURAL      (int128)
-	Z_IMPLEMENTATION_INTEGER      (int128)
+	Z_IMPLEMENTATION_VALUE_COMMON (int128)
+	Z_IMPLEMENTATION_VALUE_SIGNED (int128)
 	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128,  1)
 	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128,  2)
 	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128,  4)
@@ -1711,9 +1711,9 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_NATURAL(float16)
-	Z_IMPLEMENTATION_INTEGER(float16)
-	Z_IMPLEMENTATION_REAL(float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
+	Z_IMPLEMENTATION_VALUE_COMMON(float16)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float16)
+	Z_IMPLEMENTATION_VALUE_REAL  (float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
 #endif
 
 
@@ -1721,9 +1721,9 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 
 #ifdef Z_FLOAT24
-	Z_IMPLEMENTATION_NATURAL(float24)
-	Z_IMPLEMENTATION_INTEGER(float24)
-	Z_IMPLEMENTATION_REAL(float24, Z_FLOAT24, Z_FLOAT24_EPSILON, Z_FLOAT24_INFINITY)
+	Z_IMPLEMENTATION_VALUE_COMMON(float24)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float24)
+	Z_IMPLEMENTATION_VALUE_REAL  (float24, Z_FLOAT24, Z_FLOAT24_EPSILON, Z_FLOAT24_INFINITY)
 #endif
 
 
@@ -1731,18 +1731,18 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_NATURAL(float32)
-	Z_IMPLEMENTATION_INTEGER(float32)
-	Z_IMPLEMENTATION_REAL(float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
+	Z_IMPLEMENTATION_VALUE_COMMON(float32)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float32)
+	Z_IMPLEMENTATION_VALUE_REAL  (float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
 #endif
 
 /* MARK: - float48 */
 
 
 #ifdef Z_FLOAT48
-	Z_IMPLEMENTATION_NATURAL(float48)
-	Z_IMPLEMENTATION_INTEGER(float48)
-	Z_IMPLEMENTATION_REAL(float48, Z_FLOAT48, Z_FLOAT48_EPSILON, Z_FLOAT48_INFINITY)
+	Z_IMPLEMENTATION_VALUE_COMMON(float48)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float48)
+	Z_IMPLEMENTATION_VALUE_REAL  (float48, Z_FLOAT48, Z_FLOAT48_EPSILON, Z_FLOAT48_INFINITY)
 #endif
 
 
@@ -1750,9 +1750,9 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_NATURAL(float64)
-	Z_IMPLEMENTATION_INTEGER(float64)
-	Z_IMPLEMENTATION_REAL(float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
+	Z_IMPLEMENTATION_VALUE_COMMON(float64)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float64)
+	Z_IMPLEMENTATION_VALUE_REAL  (float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
 #endif
 
 
@@ -1760,9 +1760,9 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 
 #ifdef Z_FLOAT72
-	Z_IMPLEMENTATION_NATURAL(float72)
-	Z_IMPLEMENTATION_INTEGER(float72)
-	Z_IMPLEMENTATION_REAL(float72, Z_FLOAT72, Z_FLOAT72_EPSILON, Z_FLOAT72_INFINITY)
+	Z_IMPLEMENTATION_VALUE_COMMON(float72)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float72)
+	Z_IMPLEMENTATION_VALUE_REAL  (float72, Z_FLOAT72, Z_FLOAT72_EPSILON, Z_FLOAT72_INFINITY)
 #endif
 
 
@@ -1770,9 +1770,9 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 
 #ifdef Z_FLOAT80
-	Z_IMPLEMENTATION_NATURAL(float80)
-	Z_IMPLEMENTATION_INTEGER(float80)
-	Z_IMPLEMENTATION_REAL(float80, Z_FLOAT80, Z_FLOAT80_EPSILON, Z_FLOAT80_INFINITY)
+	Z_IMPLEMENTATION_VALUE_COMMON(float80)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float80)
+	Z_IMPLEMENTATION_VALUE_REAL  (float80, Z_FLOAT80, Z_FLOAT80_EPSILON, Z_FLOAT80_INFINITY)
 #endif
 
 
@@ -1780,9 +1780,9 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 
 #ifdef Z_FLOAT96
-	Z_IMPLEMENTATION_NATURAL(float96)
-	Z_IMPLEMENTATION_INTEGER(float96)
-	Z_IMPLEMENTATION_REAL(float96, Z_FLOAT96, Z_FLOAT96_EPSILON, Z_FLOAT96_INFINITY)
+	Z_IMPLEMENTATION_VALUE_COMMON(float96)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float96)
+	Z_IMPLEMENTATION_VALUE_REAL  (float96, Z_FLOAT96, Z_FLOAT96_EPSILON, Z_FLOAT96_INFINITY)
 #endif
 
 
@@ -1790,9 +1790,9 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_NATURAL(float128)
-	Z_IMPLEMENTATION_INTEGER(float128)
-	Z_IMPLEMENTATION_REAL(float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
+	Z_IMPLEMENTATION_VALUE_COMMON(float128)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float128)
+	Z_IMPLEMENTATION_VALUE_REAL  (float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
 #endif
 
 
