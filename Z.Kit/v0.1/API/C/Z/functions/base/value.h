@@ -137,7 +137,7 @@ Z_INLINE z##type z_##type##_smoothstep(z##type a, z##type b, z##type t)		\
 #define z_type_smoothstep(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _smoothstep	)
 
 
-/* MARK: - Implementations for bit operations */
+/* MARK: - Partial implementations for bit operations */
 
 
 #define Z_IMPLEMENTATION_VALUE_REVERSE(type, bits, level)	   \
