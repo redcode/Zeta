@@ -650,11 +650,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_FLOAT
 
 		struct Float : Real {
-			enum {	base_value_type	 = Z_FLOAT_BASE_VALUE_TYPE,
+		/*	enum {	base_value_type	 = Z_FLOAT_BASE_VALUE_TYPE,
 				fixed_value_type = Z_FLOAT_FIXED_VALUE_TYPE,
 				value_type	 = Z_FLOAT_VALUE_TYPE,
 				value_format	 = Z_FLOAT_VALUE_FORMAT
-			};
+			};*/
 			enum {	bias		   = Z_FLOAT_BIAS,
 				decimal_digits	   = Z_FLOAT_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT_SIGNIFICAND_OFFSET,
@@ -687,11 +687,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_DOUBLE
 
 		struct Double : Real {
-			enum {	base_value_type	 = Z_DOUBLE_BASE_VALUE_TYPE,
+		/*	enum {	base_value_type	 = Z_DOUBLE_BASE_VALUE_TYPE,
 				fixed_value_type = Z_DOUBLE_FIXED_VALUE_TYPE,
 				value_type	 = Z_DOUBLE_VALUE_TYPE,
 				value_format	 = Z_DOUBLE_VALUE_FORMAT
-			};
+			};*/
 			enum {	bias		   = Z_DOUBLE_BIAS,
 				decimal_digits	   = Z_DOUBLE_DECIMAL_DIGITS,
 				significand_offset = Z_DOUBLE_SIGNIFICAND_OFFSET,
@@ -724,11 +724,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_LDOUBLE
 
 		struct LDouble : Real {
-			enum {	base_value_type	 = Z_LDOUBLE_BASE_VALUE_TYPE,
+		/*	enum {	base_value_type	 = Z_LDOUBLE_BASE_VALUE_TYPE,
 				fixed_value_type = Z_LDOUBLE_FIXED_VALUE_TYPE,
 				value_type	 = Z_LDOUBLE_VALUE_TYPE,
 				value_format	 = Z_LDOUBLE_VALUE_FORMAT
-			};
+			};*/
 			enum {	bias		   = Z_LDOUBLE_BIAS,
 				decimal_digits	   = Z_LDOUBLE_DECIMAL_DIGITS,
 				significand_offset = Z_LDOUBLE_SIGNIFICAND_OFFSET,
