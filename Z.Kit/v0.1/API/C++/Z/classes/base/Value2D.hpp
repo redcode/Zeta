@@ -157,6 +157,7 @@ namespace Zeta {namespace Mixins {namespace Value2D {
 
 
 namespace Zeta {template <class T> struct Value2D : Mixins::Value2D::Partial<Value2D<T>, T, Type<T>::number_set> {
+
 	typedef typename ZTypeFixedNumber(Z2D, T) Base;
 
 	T x, y;
