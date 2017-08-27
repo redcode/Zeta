@@ -36,7 +36,8 @@ namespace Zeta {namespace Mixins {namespace Value2D {
 	// MARK: - Partial implementation for signed types
 
 
-	template <class Value2D, class T> struct Signed {
+	template <class Value2D, class T>
+	struct Signed {
 
 		Z_CT_MEMBER(CPP11) Value2D absolute() const
 			{return Value2D(Zeta::absolute<T>(Z_THIS->x), Zeta::absolute<T>(Z_THIS->y));}
@@ -383,6 +384,10 @@ namespace Zeta {template <class T> struct Value2D : Mixins::Value2D::Partial<Val
 			(Zeta::minimum<T>(x, value.x),
 			 Zeta::minimum<T>(y, value.y));
 		}
+
+
+	Z_CT_MEMBER(CPP11) Value3D<T> nyx(T n) const
+		{return Value3D<T>(n, y, x);}
 
 
 	Z_CT_MEMBER(CPP11) T squared_length() const
