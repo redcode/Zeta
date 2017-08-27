@@ -8,6 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_Type_HPP__
 #define __Z_traits_Type_HPP__
 
+#include <Z/keys/mathematics/number.h>
 #include <Z/macros/language.hpp>
 
 #if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
@@ -236,6 +237,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 	struct Natural : Exact {
 		enum {is_natural = true};
+		enum {number_set = Z_NUMBER_SET_N};
 		enum {minimum = 0};
 	};
 
@@ -243,12 +245,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {	is_integer = true,
 			is_signed  = true
 		};
+		enum {number_set = Z_NUMBER_SET_Z};
 	};
 
 	struct Real : Number {
 		enum {	is_real   = true,
 			is_signed = true
 		};
+		enum {number_set = Z_NUMBER_SET_R};
 	};
 
 	struct Void : Valid {
