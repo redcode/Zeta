@@ -11,10 +11,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/mathematics/geometry/euclidean/Z2DLine.h>
 
 
-/* MARK: - Implementation for signed types */
+/* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_AABR_SIGNED(Type, type)						\
+#define Z_IMPLEMENTATION_AABR_COMMON(Type, type)						\
 												\
 												\
 Z_INLINE ZAABR##Type z_aabr_##type##_align_in_bottom_center(ZAABR##Type object, Z2D##Type size)	\
@@ -736,7 +736,7 @@ Z_INLINE ZAABR##Type z_aabr_##type##_union(ZAABR##Type a, ZAABR##Type b)			\
 #define z_aabr_type_union(		      TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _union		    )
 
 
-/* MARK: - Implementation for real types */
+/* MARK: - Partial implementation for real types */
 
 
 #define Z_IMPLEMENTATION_AABR_REAL(Type, type)							\
@@ -794,21 +794,21 @@ Z_INLINE Z2D##Type z_aabr_##type##_unit_point_to_absolute(ZAABR##Type object, Z2
 #define z_aabr_int8_is_zero   z_2d_line_int8_is_zero
 #define z_aabr_int8_swap      z_2d_line_int8_swap
 
-Z_IMPLEMENTATION_AABR_SIGNED(Int8, int8)
+Z_IMPLEMENTATION_AABR_COMMON(Int8, int8)
 
 #define z_aabr_int16_are_equal z_2d_line_int16_are_equal
 #define z_aabr_int16_center    z_2d_line_segment_int16_center
 #define z_aabr_int16_is_zero   z_2d_line_int16_is_zero
 #define z_aabr_int16_swap      z_2d_line_int16_swap
 
-Z_IMPLEMENTATION_AABR_SIGNED(Int16, int16)
+Z_IMPLEMENTATION_AABR_COMMON(Int16, int16)
 
 #define z_aabr_int32_are_equal z_2d_line_int32_are_equal
 #define z_aabr_int32_center    z_2d_line_segment_int32_center
 #define z_aabr_int32_is_zero   z_2d_line_int32_is_zero
 #define z_aabr_int32_swap      z_2d_line_int32_swap
 
-Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
+Z_IMPLEMENTATION_AABR_COMMON(Int32, int32)
 
 #ifdef Z_INT64
 
@@ -817,7 +817,7 @@ Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
 #	define z_aabr_int64_is_zero   z_2d_line_int64_is_zero
 #	define z_aabr_int64_swap      z_2d_line_int64_swap
 
-	Z_IMPLEMENTATION_AABR_SIGNED(Int64, int64)
+	Z_IMPLEMENTATION_AABR_COMMON(Int64, int64)
 
 #endif
 
@@ -828,7 +828,7 @@ Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
 #	define z_aabr_int128_is_zero   z_2d_line_int128_is_zero
 #	define z_aabr_int128_swap      z_2d_line_int128_swap
 
-	Z_IMPLEMENTATION_AABR_SIGNED(Int128, int128)
+	Z_IMPLEMENTATION_AABR_COMMON(Int128, int128)
 
 #endif
 
@@ -839,7 +839,7 @@ Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
 #	define z_aabr_float16_is_zero	z_2d_line_float16_is_zero
 #	define z_aabr_float16_swap	z_2d_line_float16_swap
 
-	Z_IMPLEMENTATION_AABR_SIGNED(Float16, float16)
+	Z_IMPLEMENTATION_AABR_COMMON(Float16, float16)
 	Z_IMPLEMENTATION_AABR_REAL  (Float16, float16)
 
 #endif
@@ -851,7 +851,7 @@ Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
 #	define z_aabr_float24_is_zero	z_2d_line_float24_is_zero
 #	define z_aabr_float24_swap	z_2d_line_float24_swap
 
-	Z_IMPLEMENTATION_AABR_SIGNED(Float24, float24)
+	Z_IMPLEMENTATION_AABR_COMMON(Float24, float24)
 	Z_IMPLEMENTATION_AABR_REAL  (Float24, float24)
 
 #endif
@@ -863,7 +863,7 @@ Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
 #	define z_aabr_float32_is_zero	z_2d_line_float32_is_zero
 #	define z_aabr_float32_swap	z_2d_line_float32_swap
 
-	Z_IMPLEMENTATION_AABR_SIGNED(Float32, float32)
+	Z_IMPLEMENTATION_AABR_COMMON(Float32, float32)
 	Z_IMPLEMENTATION_AABR_REAL  (Float32, float32)
 
 #endif
@@ -875,7 +875,7 @@ Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
 #	define z_aabr_float48_is_zero	z_2d_line_float48_is_zero
 #	define z_aabr_float48_swap	z_2d_line_float48_swap
 
-	Z_IMPLEMENTATION_AABR_SIGNED(Float48, float48)
+	Z_IMPLEMENTATION_AABR_COMMON(Float48, float48)
 	Z_IMPLEMENTATION_AABR_REAL  (Float48, float48)
 
 #endif
@@ -887,7 +887,7 @@ Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
 #	define z_aabr_float64_is_zero	z_2d_line_float64_is_zero
 #	define z_aabr_float64_swap	z_2d_line_float64_swap
 
-	Z_IMPLEMENTATION_AABR_SIGNED(Float64, float64)
+	Z_IMPLEMENTATION_AABR_COMMON(Float64, float64)
 	Z_IMPLEMENTATION_AABR_REAL  (Float64, float64)
 
 #endif
@@ -899,7 +899,7 @@ Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
 #	define z_aabr_float72_is_zero	z_2d_line_float72_is_zero
 #	define z_aabr_float72_swap	z_2d_line_float72_swap
 
-	Z_IMPLEMENTATION_AABR_SIGNED(Float72, float72)
+	Z_IMPLEMENTATION_AABR_COMMON(Float72, float72)
 	Z_IMPLEMENTATION_AABR_REAL  (Float72, float72)
 
 #endif
@@ -911,7 +911,7 @@ Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
 #	define z_aabr_float80_is_zero	z_2d_line_float80_is_zero
 #	define z_aabr_float80_swap	z_2d_line_float80_swap
 
-	Z_IMPLEMENTATION_AABR_SIGNED(Float80, float80)
+	Z_IMPLEMENTATION_AABR_COMMON(Float80, float80)
 	Z_IMPLEMENTATION_AABR_REAL  (Float80, float80)
 
 #endif
@@ -923,7 +923,7 @@ Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
 #	define z_aabr_float96_is_zero	z_2d_line_float96_is_zero
 #	define z_aabr_float96_swap	z_2d_line_float96_swap
 
-	Z_IMPLEMENTATION_AABR_SIGNED(Float96, float96)
+	Z_IMPLEMENTATION_AABR_COMMON(Float96, float96)
 	Z_IMPLEMENTATION_AABR_REAL  (Float96, float96)
 
 #endif
@@ -935,7 +935,7 @@ Z_IMPLEMENTATION_AABR_SIGNED(Int32, int32)
 #	define z_aabr_float128_is_zero	 z_2d_line_float128_is_zero
 #	define z_aabr_float128_swap	 z_2d_line_float128_swap
 
-	Z_IMPLEMENTATION_AABR_SIGNED(Float128, float128)
+	Z_IMPLEMENTATION_AABR_COMMON(Float128, float128)
 	Z_IMPLEMENTATION_AABR_REAL  (Float128, float128)
 
 #endif

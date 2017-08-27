@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/value.h>
 
 
-/* MARK: - Implementation for natural, integer and real types */
+/* MARK: - Common implementation */
 
 
 #define Z_IMPLEMENTATION_3D_COMMON(Type, type)							\
@@ -319,7 +319,7 @@ Z_INLINE Z3D##Type z_3d_##type##_zyx(Z3D##Type object)						\
 #define z_3d_type_zyx(		     TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _zyx		  )
 
 
-/* MARK: - Implementation for signed types */
+/* MARK: - Partial implementation for signed types */
 
 
 #define Z_IMPLEMENTATION_3D_SIGNED(Type, type)							\
@@ -352,7 +352,7 @@ Z_INLINE Z3D##Type z_3d_##type##_negative(Z3D##Type object)					\
 #define z_3d_type_negative(    TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _negative    )
 
 
-/* MARK: - Implementation for integer types */
+/* MARK: - Partial implementation for integer types */
 
 
 #define Z_IMPLEMENTATION_3D_INTEGER(Type, type)					\
@@ -365,7 +365,7 @@ Z_INLINE zboolean z_3d_##type##_are_perpendicular(Z3D##Type a, Z3D##Type b)	\
 #define z_3d_type_are_perpendicular(VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _are_perpendicular)
 
 
-/* MARK: - Implementation for real types */
+/* MARK: - Partial implementation for real types */
 
 
 #define Z_IMPLEMENTATION_3D_REAL(Type, type, epsilon)					\

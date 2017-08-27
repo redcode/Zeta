@@ -12,10 +12,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/Z3DValue.h>
 
 
-/* MARK: - Implementation for signed types */
+/* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_3D_LINE_SIGNED(Type, type)					  \
+#define Z_IMPLEMENTATION_3D_LINE_COMMON(Type, type)					  \
 											  \
 											  \
 Z_INLINE zboolean z_3d_line_##type##_are_equal(Z3DLine##Type a, Z3DLine##Type b)	  \
@@ -61,7 +61,7 @@ Z_INLINE Z3D##Type z_3d_line_segment_##type##_center(Z3DLine##Type object)		  \
 #define z_3d_line_segment_type_center(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_segment_, _center		  )
 
 
-/* MARK: - Implementation for real types */
+/* MARK: - Partial implementation for real types */
 
 
 #define Z_IMPLEMENTATION_3D_LINE_REAL(Type, type)					\
@@ -76,60 +76,61 @@ Z_INLINE Z3D##Type z_3d_line_segment_##type##_lerp(Z3DLine##Type object, z##type
 
 /* MARK: - Implementation expansions */
 
-Z_IMPLEMENTATION_3D_LINE_SIGNED(Int8,  int8 )
-Z_IMPLEMENTATION_3D_LINE_SIGNED(Int16, int16)
-Z_IMPLEMENTATION_3D_LINE_SIGNED(Int32, int32)
+
+Z_IMPLEMENTATION_3D_LINE_COMMON(Int8,  int8 )
+Z_IMPLEMENTATION_3D_LINE_COMMON(Int16, int16)
+Z_IMPLEMENTATION_3D_LINE_COMMON(Int32, int32)
 
 #ifdef Z_INT64
-	Z_IMPLEMENTATION_3D_LINE_SIGNED(Int64, int64)
+	Z_IMPLEMENTATION_3D_LINE_COMMON(Int64, int64)
 #endif
 
 #ifdef Z_INT128
-	Z_IMPLEMENTATION_3D_LINE_SIGNED(Int128, int128)
+	Z_IMPLEMENTATION_3D_LINE_COMMON(Int128, int128)
 #endif
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_3D_LINE_SIGNED(Float16, float16)
+	Z_IMPLEMENTATION_3D_LINE_COMMON(Float16, float16)
 	Z_IMPLEMENTATION_3D_LINE_REAL  (Float16, float16)
 #endif
 
 #ifdef Z_FLOAT24
-	Z_IMPLEMENTATION_3D_LINE_SIGNED(Float24, float24)
+	Z_IMPLEMENTATION_3D_LINE_COMMON(Float24, float24)
 	Z_IMPLEMENTATION_3D_LINE_REAL  (Float24, float24)
 #endif
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_3D_LINE_SIGNED(Float32, float32)
+	Z_IMPLEMENTATION_3D_LINE_COMMON(Float32, float32)
 	Z_IMPLEMENTATION_3D_LINE_REAL  (Float32, float32)
 #endif
 
 #ifdef Z_FLOAT48
-	Z_IMPLEMENTATION_3D_LINE_SIGNED(Float48, float48)
+	Z_IMPLEMENTATION_3D_LINE_COMMON(Float48, float48)
 	Z_IMPLEMENTATION_3D_LINE_REAL  (Float48, float48)
 #endif
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_3D_LINE_SIGNED(Float64, float64)
+	Z_IMPLEMENTATION_3D_LINE_COMMON(Float64, float64)
 	Z_IMPLEMENTATION_3D_LINE_REAL  (Float64, float64)
 #endif
 
 #ifdef Z_FLOAT72
-	Z_IMPLEMENTATION_3D_LINE_SIGNED(Float72, float72)
+	Z_IMPLEMENTATION_3D_LINE_COMMON(Float72, float72)
 	Z_IMPLEMENTATION_3D_LINE_REAL  (Float72, float72)
 #endif
 
 #ifdef Z_FLOAT80
-	Z_IMPLEMENTATION_3D_LINE_SIGNED(Float80, float80)
+	Z_IMPLEMENTATION_3D_LINE_COMMON(Float80, float80)
 	Z_IMPLEMENTATION_3D_LINE_REAL  (Float80, float80)
 #endif
 
 #ifdef Z_FLOAT96
-	Z_IMPLEMENTATION_3D_LINE_SIGNED(Float96, float96)
+	Z_IMPLEMENTATION_3D_LINE_COMMON(Float96, float96)
 	Z_IMPLEMENTATION_3D_LINE_REAL  (Float96, float96)
 #endif
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_3D_LINE_SIGNED(Float128, float128)
+	Z_IMPLEMENTATION_3D_LINE_COMMON(Float128, float128)
 	Z_IMPLEMENTATION_3D_LINE_REAL  (Float128, float128)
 #endif
 

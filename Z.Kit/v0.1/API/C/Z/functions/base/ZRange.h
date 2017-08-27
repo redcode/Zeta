@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/value.h>
 
 
-/* MARK: - Implementation for natural types only */
+/* MARK: - Implementation */
 
 
 #define Z_IMPLEMENTATION_RANGE(Type, type)						 \

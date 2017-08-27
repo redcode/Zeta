@@ -12,10 +12,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/Z2DValue.h>
 
 
-/* MARK: - Implementation for signed types */
+/* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_RECTANGLE_SIGNED(Type, type)						\
+#define Z_IMPLEMENTATION_RECTANGLE_COMMON(Type, type)						\
 												\
 												\
 Z_INLINE ZAABR##Type z_rectangle_##type##_aabr(ZRectangle##Type object)				\
@@ -888,7 +888,7 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_union(ZRectangle##Type a, ZRectan
 #define z_rectangle_type_union(			   TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_, _union		      )
 
 
-/* MARK: - Implementation for integer types */
+/* MARK: - Partial implementation for integer types */
 
 
 #define Z_IMPLEMENTATION_RECTANGLE_INTEGER(Type, type)						\
@@ -949,7 +949,7 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_top_right_quarter(ZRectangle##Typ
 	}
 
 
-/* MARK: - Implementation for real types */
+/* MARK: - Partial implementation for real types */
 
 
 #define Z_IMPLEMENTATION_RECTANGLE_REAL(Type, type)						\
@@ -1051,67 +1051,67 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 /* MARK: - Implementation expansions */
 
 
-Z_IMPLEMENTATION_RECTANGLE_SIGNED (Int8, int8)
+Z_IMPLEMENTATION_RECTANGLE_COMMON (Int8, int8)
 Z_IMPLEMENTATION_RECTANGLE_INTEGER(Int8, int8)
 
-Z_IMPLEMENTATION_RECTANGLE_SIGNED (Int16, int16)
+Z_IMPLEMENTATION_RECTANGLE_COMMON (Int16, int16)
 Z_IMPLEMENTATION_RECTANGLE_INTEGER(Int16, int16)
 
-Z_IMPLEMENTATION_RECTANGLE_SIGNED (Int32, int32)
+Z_IMPLEMENTATION_RECTANGLE_COMMON (Int32, int32)
 Z_IMPLEMENTATION_RECTANGLE_INTEGER(Int32, int32)
 
 #ifdef Z_INT64
-	Z_IMPLEMENTATION_RECTANGLE_SIGNED (Int64, int64)
+	Z_IMPLEMENTATION_RECTANGLE_COMMON (Int64, int64)
 	Z_IMPLEMENTATION_RECTANGLE_INTEGER(Int64, int64)
 #endif
 
 #ifdef Z_INT128
-	Z_IMPLEMENTATION_RECTANGLE_SIGNED (Int128, int128)
+	Z_IMPLEMENTATION_RECTANGLE_COMMON (Int128, int128)
 	Z_IMPLEMENTATION_RECTANGLE_INTEGER(Int128, int128)
 #endif
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_RECTANGLE_SIGNED(Float16, float16)
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float16, float16)
 	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float16, float16)
 #endif
 
 #ifdef Z_FLOAT24
-	Z_IMPLEMENTATION_RECTANGLE_SIGNED(Float24, float24)
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float24, float24)
 	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float24, float24)
 #endif
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_RECTANGLE_SIGNED(Float32, float32)
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float32, float32)
 	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float32, float32)
 #endif
 
 #ifdef Z_FLOAT48
-	Z_IMPLEMENTATION_RECTANGLE_SIGNED(Float48, float48)
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float48, float48)
 	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float48, float48)
 #endif
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_RECTANGLE_SIGNED(Float64, float64)
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float64, float64)
 	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float64, float64)
 #endif
 
 #ifdef Z_FLOAT72
-	Z_IMPLEMENTATION_RECTANGLE_SIGNED(Float72, float72)
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float72, float72)
 	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float72, float72)
 #endif
 
 #ifdef Z_FLOAT80
-	Z_IMPLEMENTATION_RECTANGLE_SIGNED(Float80, float80)
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float80, float80)
 	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float80, float80)
 #endif
 
 #ifdef Z_FLOAT96
-	Z_IMPLEMENTATION_RECTANGLE_SIGNED(Float96, float96)
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float96, float96)
 	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float96, float96)
 #endif
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_RECTANGLE_SIGNED(Float128, float128)
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float128, float128)
 	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float128, float128)
 #endif
 

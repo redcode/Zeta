@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/value.h>
 
 
-/* MARK: - Implementation for natural, integer and real types */
+/* MARK: - Common implementation */
 
 
 #define Z_IMPLEMENTATION_2D_COMMON(Type, type)							\
@@ -257,7 +257,7 @@ Z_INLINE Z3D##Type z_2d_##type##_yxn(Z2D##Type object, z##type n)				\
 #define z_2d_type_yxn(		     TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _yxn		  )
 
 
-/* MARK: - Implementation for signed types */
+/* MARK: - Partial implementation for signed types */
 
 
 #define Z_IMPLEMENTATION_2D_SIGNED(Type, type)							\
@@ -285,7 +285,7 @@ Z_INLINE Z2D##Type z_2d_##type##_negative(Z2D##Type object)					\
 #define z_2d_type_negative(    TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _negative    )
 
 
-/* MARK: - Implementation for integer types */
+/* MARK: - Partial implementation for integer types */
 
 
 #define Z_IMPLEMENTATION_2D_INTEGER(Type, type)					\
@@ -298,7 +298,7 @@ Z_INLINE zboolean z_2d_##type##_are_perpendicular(Z2D##Type a, Z2D##Type b)	\
 #define z_2d_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _are_perpendicular)
 
 
-/* MARK: - Implementation for real types */
+/* MARK: - Partial implementation for real types */
 
 
 #define Z_IMPLEMENTATION_2D_REAL(Type, type, epsilon)						\
