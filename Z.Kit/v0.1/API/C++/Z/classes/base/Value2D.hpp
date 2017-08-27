@@ -172,18 +172,6 @@ namespace Zeta {template <class T> struct Value2D : Mixins::Value2D::Partial<Val
 	Z_INLINE_MEMBER Value2D(const Base &value) {(*(Base *)this) = value;}
 
 
-	static Z_CT_MEMBER(CPP11) Value2D maximum(const Value2D &a, const Value2D &b)
-		{return Value2D(Zeta::maximum<T>(a.x, b.x), Zeta::maximum<T>(a.y, b.y));}
-
-
-	static Z_CT_MEMBER(CPP11) Value2D middle(const Value2D &a, const Value2D &b)
-		{return Value2D((a.x + b.x) / T(2), (a.y + b.y) / T(2));}
-
-
-	static Z_CT_MEMBER(CPP11) Value2D minimum(const Value2D &a, const Value2D &b)
-		{return Value2D(Zeta::minimum<T>(a.x, b.x), Zeta::minimum<T>(a.y, b.y));}
-
-
 	Z_CT_MEMBER(CPP11) operator Boolean() const {return x != T(0) || y != T(0);}
 	Z_INLINE_MEMBER    operator Base&  () const {return *((Base *)this);}
 
@@ -385,6 +373,10 @@ namespace Zeta {template <class T> struct Value2D : Mixins::Value2D::Partial<Val
 			(Zeta::minimum<T>(x, value.x),
 			 Zeta::minimum<T>(y, value.y));
 		}
+
+
+	Z_CT_MEMBER(CPP11) Value3D<T> nxy(T n) const
+		{return Value3D<T>(n, x, y);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D<T> nyx(T n) const
