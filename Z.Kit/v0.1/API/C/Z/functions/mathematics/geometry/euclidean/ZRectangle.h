@@ -896,10 +896,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_union(ZRectangle##Type a, ZRectan
 												\
 Z_INLINE ZRectangle##Type z_rectangle_##type##_bottom_right_quarter(ZRectangle##Type object)	\
 	{											\
-	z##type size_x = object.size.x - object.size.x / (z##type)2;				\
-												\
-	object.point.x += object.size.x - size_x;						\
-	object.size.x   = size_x;								\
+	object.point.x += object.size.x / (z##type)2;						\
+	object.size.x   = object.size.x - object.size.x / (z##type)2;				\
 	object.size.y  /= (z##type)2;								\
 	return object;										\
 	}											\
@@ -907,44 +905,35 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_bottom_right_quarter(ZRectangle##
 												\
 Z_INLINE ZRectangle##Type z_rectangle_##type##_right_half(ZRectangle##Type object)		\
 	{											\
-	z##type size_x = object.size.x - object.size.x / (z##type)2;				\
-												\
-	object.point.x += object.size.x - size_x;						\
-	object.size.x   = size_x;								\
+	object.point.x += object.size.x / (z##type)2;						\
+	object.size.x   = object.size.x - object.size.x / (z##type)2;				\
 	return object;										\
 	}											\
 												\
 												\
 Z_INLINE ZRectangle##Type z_rectangle_##type##_top_half(ZRectangle##Type object)		\
 	{											\
-	z##type size_y = object.size.y - object.size.y / (z##type)2;				\
-												\
-	object.point.y += object.size.y - size_y;						\
-	object.size.y   = size_y;								\
+	object.point.y += object.size.y / (z##type)2;						\
+	object.size.y   = object.size.y - object.size.y / (z##type)2;				\
 	return object;										\
 	}											\
 												\
 												\
 Z_INLINE ZRectangle##Type z_rectangle_##type##_top_left_quarter(ZRectangle##Type object)	\
 	{											\
-	z##type size_y = object.size.y - object.size.y / (z##type)2;				\
-												\
-	object.point.y += object.size.y - size_y;						\
+	object.point.y += object.size.y / (z##type)2;						\
 	object.size.x  /= (z##type)2;								\
-	object.size.y   = size_y;								\
+	object.size.y   = object.size.y - object.size.y / (z##type)2;				\
 	return object;										\
 	}											\
 												\
 												\
 Z_INLINE ZRectangle##Type z_rectangle_##type##_top_right_quarter(ZRectangle##Type object)	\
 	{											\
-	z##type size_x = object.size.x - object.size.x / (z##type)2;				\
-	z##type size_y = object.size.y - object.size.y / (z##type)2;				\
-												\
-	object.point.x += object.size.x - size_x;						\
-	object.point.y += object.size.y - size_y;						\
-	object.size.x   = size_x;								\
-	object.size.y   = size_y;								\
+	object.point.x += object.size.x / (z##type)2;						\
+	object.point.y += object.size.y / (z##type)2;						\
+	object.size.x   = object.size.x - object.size.x / (z##type)2;				\
+	object.size.y   = object.size.y - object.size.y / (z##type)2;				\
 	return object;										\
 	}
 
