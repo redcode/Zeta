@@ -23,14 +23,6 @@ Z_INLINE zboolean z_circle_##type##_are_equal(ZCircle##Type a, ZCircle##Type b)	
 	{return a.radius == b.radius && z_2d_##type##_are_equal(a.point, b.point);}		\
 												\
 												\
-Z_INLINE void z_circle_##type##_swap(ZCircle##Type *a, ZCircle##Type *b)			\
-	{											\
-	ZCircle##Type t = *a;									\
-												\
-	*a = *b; *b = t;									\
-	}											\
-												\
-												\
 Z_INLINE ZAABR##Type z_circle_##type##_inner_aabr(ZCircle##Type object)				\
 	{											\
 	z##type half_size = object.radius / _(Z_SQUARE_ROOT_2);					\
@@ -57,7 +49,7 @@ Z_INLINE zboolean z_circle_##type##_is_zero(ZCircle##Type object)				\
 												\
 Z_INLINE ZAABR##Type z_circle_##type##_outer_aabr(ZCircle##Type object)				\
 	{											\
-	return z_aabr_##type								\
+	return z_aabr_##type									\
 		(object.point.x - object.radius, object.point.y - object.radius,		\
 		 object.point.x + object.radius, object.point.y + object.radius);		\
 	}											\
@@ -69,16 +61,24 @@ Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object
 												\
 	return z_rectangle_##type								\
 		(object.point.x - object.radius, object.point.y - object.radius, size, size);	\
+	}											\
+												\
+												\
+Z_INLINE void z_circle_##type##_swap(ZCircle##Type *a, ZCircle##Type *b)			\
+	{											\
+	ZCircle##Type t = *a;									\
+												\
+	*a = *b; *b = t;									\
 	}
 
 
 #define z_circle_type_are_equal(      TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _are_equal	    )
-#define z_circle_type_swap(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _swap	    )
 #define z_circle_type_inner_aabr(     TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _inner_aabr	    )
 #define z_circle_type_inner_rectangle(TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _inner_rectangle)
 #define z_circle_type_is_zero(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _is_zero	    )
 #define z_circle_type_outer_aabr(     TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _outer_aabr	    )
 #define z_circle_type_outer_rectangle(TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _outer_rectangle)
+#define z_circle_type_swap(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_, _swap	    )
 
 
 /* MARK: - Implementation expansions */
@@ -126,12 +126,12 @@ Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object
 
 #ifdef Z_REAL
 #	define z_circle_are_equal	z_circle_type_are_equal	     (REAL)
-#	define z_circle_swap		z_circle_type_swap	     (REAL)
 #	define z_circle_inner_aabr	z_circle_type_inner_aabr     (REAL)
 #	define z_circle_inner_rectangle z_circle_type_inner_rectangle(REAL)
 #	define z_circle_is_zero		z_circle_type_is_zero	     (REAL)
 #	define z_circle_outer_aabr	z_circle_type_outer_aabr     (REAL)
 #	define z_circle_outer_rectangle z_circle_type_outer_rectangle(REAL)
+#	define z_circle_swap		z_circle_type_swap	     (REAL)
 #endif
 
 
