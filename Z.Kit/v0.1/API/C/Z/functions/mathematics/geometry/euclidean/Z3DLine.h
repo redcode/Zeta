@@ -25,8 +25,7 @@ Z_INLINE zboolean z_3d_line_##type##_are_equal(Z3DLine##Type a, Z3DLine##Type b)
 Z_INLINE zboolean z_3d_line_##type##_are_perpendicular(Z3DLine##Type a, Z3DLine##Type b)  \
 	{										  \
 	return z_3d_##type##_are_perpendicular						  \
-		(z_3d_##type##_subtract(a.b, a.a),					  \
-		 z_3d_##type##_subtract(b.b, b.a));					  \
+		(z_3d_##type##_subtract(a.b, a.a), z_3d_##type##_subtract(b.b, b.a));	  \
 	}										  \
 											  \
 											  \
