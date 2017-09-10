@@ -86,15 +86,13 @@ namespace Zeta {namespace Mixins {namespace Rectangle {
 
 		/*Z_CT_MEMBER(CPP11) Boolean contains(const Circle<T> &circle) const
 			{
-			return	circle.point.x - circle.radius >= Z_THIS->point.x		   &&
-				circle.point.y - circle.radius >= Z_THIS->point.y		   &&
-				circle.point.x + circle.radius <= Z_THIS->point.x + Z_THIS->size.x &&
-				circle.point.y + circle.radius <= Z_THIS->point.y + Z_THIS->size.y;
+			return	circle.point - circle.radius >= Z_THIS->point &&
+				circle.point + circle.radius <= Z_THIS->point + Z_THIS->size;
 			}*/
 
 
 		/*Z_CT_MEMBER(CPP11) Circle<T> inner_circle() const
-			{return Circle<T>(THIS->center(), minimum<T>(THIS->size.x, THIS->size.y) / T(2));}*/
+			{return Circle<T>(Z_THIS->center(), Z_THIS->size.inner_minimum() / T(2));}*/
 
 
 		Z_CT_MEMBER(CPP11) Rectangle right_half() const
