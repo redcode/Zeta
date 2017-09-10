@@ -171,17 +171,11 @@ namespace Zeta {template <class T> struct Rectangle: Mixins::Rectangle::Partial<
 
 
 	Z_CT_MEMBER(CPP11) Boolean operator ==(const Rectangle &rectangle) const
-		{
-		return	point.x == rectangle.point.x && point.y == rectangle.point.y &&
-			size.x	== rectangle.size.x  && size.y	== rectangle.size.y;
-		}
+		{return	point == rectangle.point && size == rectangle.size;}
 
 
 	Z_CT_MEMBER(CPP11) Boolean operator !=(const Rectangle &rectangle) const
-		{
-		return	point.x != rectangle.point.x || point.y != rectangle.point.y ||
-			size.x	!= rectangle.size.x  || size.y	!= rectangle.size.y;
-		}
+		{return	point != rectangle.point || size != rectangle.size;}
 
 
 	// Intersection
