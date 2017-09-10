@@ -42,7 +42,7 @@ namespace Zeta {namespace Mixins {namespace Line3D {
 }}}
 
 
-namespace Zeta {template <class T> struct Line3D: Mixins::Line3D::Partial<Line3D<T>, T, Type<T>::number_set> {
+namespace Zeta {template <class T> struct Line3D : Mixins::Line3D::Partial<Line3D<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedSigned(Z3DLine, T) Base;
 

@@ -133,7 +133,7 @@ namespace Zeta {namespace Mixins {namespace Rectangle {
 }}}
 
 
-namespace Zeta {template <class T> struct Rectangle: Mixins::Rectangle::Partial<Rectangle<T>, T, Type<T>::number_set> {
+namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial<Rectangle<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedSigned(ZRectangle, T) Base;
 

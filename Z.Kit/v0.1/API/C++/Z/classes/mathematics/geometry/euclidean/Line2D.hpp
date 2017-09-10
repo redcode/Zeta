@@ -55,7 +55,7 @@ namespace Zeta {namespace Mixins {namespace Line2D {
 }}}
 
 
-namespace Zeta {template <class T> struct Line2D: Mixins::Line2D::Partial<Line2D<T>, T, Type<T>::number_set> {
+namespace Zeta {template <class T> struct Line2D : Mixins::Line2D::Partial<Line2D<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedSigned(Z2DLine, T) Base;
 
