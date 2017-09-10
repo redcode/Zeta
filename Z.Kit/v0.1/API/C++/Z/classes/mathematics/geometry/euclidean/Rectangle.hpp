@@ -367,35 +367,15 @@ namespace Zeta {template <class T> struct Rectangle: Mixins::Rectangle::Partial<
 
 
 	Z_CT_MEMBER(CPP11) Boolean contains(const Rectangle &rectangle) const
-		{
-		return	rectangle.point		     	     >= point		 &&
-			rectangle.point.x + rectangle.size.x <= point.x + size.x &&
-			rectangle.point.y + rectangle.size.y <= point.y + size.y;
-		}
+		{return rectangle.point >= point && rectangle.point + rectangle.size <= point + size;}
 
 
 	/*Z_CT_MEMBER(CPP11) Boolean contains(const AABR<T> &aabr) const
-		{
-		return	aabr.a.x >= point.x	     && aabr.a.y >= point.y &&
-			aabr.b.x <= point.x + size.x && aabr.b.y <= point.y + size.y;
-		}*/
-
-
-	/*Z_CT_MEMBER(CPP11) Boolean contains(const Circle<T> &circle) const
-		{
-		return	circle.point.x - circle.radius >= point.x	   &&
-			circle.point.y - circle.radius >= point.y	   &&
-			circle.point.x + circle.radius <= point.x + size.x &&
-			circle.point.y + circle.radius <= point.y + size.y;
-		}*/
+		{return aabr.a >= point && aabr.b <= point + size;}*/
 
 
 	Z_CT_MEMBER(CPP11) Boolean contains(const Value2D<T> &point) const
-		{
-		return	point	>= this->point			&&
-			point.x <= this->point.x + this->size.x &&
-			point.y <= this->point.y + this->size.y;
-		}
+		{return point >= this->point && point <= this->point + this->size;}
 
 
 	/*Z_CT_MEMBER(CPP11) Boolean contains(const Line2D<T> &line_segment) const
@@ -553,12 +533,7 @@ namespace Zeta {template <class T> struct Rectangle: Mixins::Rectangle::Partial<
 
 
 	Z_CT_MEMBER(CPP11) Boolean intersects(const Rectangle &rectangle) const
-		{
-		return	point.x		 < rectangle.point.x + rectangle.size.x &&
-			point.x + size.x > rectangle.point.x &&
-			point.y		 < rectangle.point.y + rectangle.size.y &&
-			point.y + size.y > rectangle.point.y;
-		}
+		{return point < rectangle.point + rectangle.size && point + size > rectangle.point;}
 
 
 	Z_CT_MEMBER(CPP11) Boolean is_zero() const
