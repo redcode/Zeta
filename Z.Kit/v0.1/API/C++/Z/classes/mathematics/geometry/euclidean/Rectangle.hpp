@@ -158,9 +158,9 @@ namespace Zeta {template <class T> struct Rectangle: Mixins::Rectangle::Partial<
 
 	static Z_CT_MEMBER(CPP14) Rectangle from_vertices(const Value2D<T> &a, const Value2D<T> &b)
 		{
-		Value2D<T> minimum = Value2D<T>::minimum(a, b);
+		Value2D<T> minimum = a.minimum(b);
 
-		return Rectangle(minimum, Value2D<T>::maximum(a, b) - minimum);
+		return Rectangle(minimum, a.maximum(b) - minimum);
 		}
 
 
