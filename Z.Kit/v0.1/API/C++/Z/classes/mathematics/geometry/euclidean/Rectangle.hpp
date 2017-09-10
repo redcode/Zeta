@@ -142,16 +142,16 @@ namespace Zeta {template <class T> struct Rectangle: Mixins::Rectangle::Partial<
 
 	Z_INLINE_MEMBER Rectangle() {}
 
-	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, const Value2D<T> &size) : point(point),  size(size)	    {}
-	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, T size_x, T size_y)     : point(point),  size(size_x, size_y) {}
-	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, T size)		      : point(point),  size(size)	    {}
-	Z_CT_MEMBER(CPP11) Rectangle(T x, T y, const Value2D<T> &size)		      : point(x, y),   size(size)	    {}
-	Z_CT_MEMBER(CPP11) Rectangle(T x, T y, T size_x, T size_y)		      : point(x, y),   size(size_x, size_y) {}
-	Z_CT_MEMBER(CPP11) Rectangle(T x, T y, T size)				      : point(x, y),   size(size)	    {}
-	Z_CT_MEMBER(CPP11) Rectangle(T point, const Value2D<T> &size)		      : point(point),  size(size)	    {}
-	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &size)			      : point(T(0)),   size(size)	    {}
-	Z_CT_MEMBER(CPP11) Rectangle(T size_x, T size_y)			      : point(T(0)),   size(size_x, size_y) {}
-	Z_CT_MEMBER(CPP11) Rectangle(T size)					      : point(T(0)),   size(size)	    {}
+	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, const Value2D<T> &size) : point(point),		 size(size)	      {}
+	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, T size_x, T size_y)     : point(point),		 size(size_x, size_y) {}
+	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &point, T size_xy)	      : point(point),		 size(size_xy)	      {}
+	Z_CT_MEMBER(CPP11) Rectangle(T point_x, T point_y, const Value2D<T> &size)    : point(point_x, point_y), size(size)	      {}
+	Z_CT_MEMBER(CPP11) Rectangle(T point_x, T point_y, T size_x, T size_y)	      : point(point_x, point_y), size(size_x, size_y) {}
+	Z_CT_MEMBER(CPP11) Rectangle(T point_x, T point_y, T size_xy)		      : point(point_x, point_y), size(size_xy)	      {}
+	Z_CT_MEMBER(CPP11) Rectangle(T point_xy, const Value2D<T> &size)	      : point(point_xy),	 size(size)	      {}
+	Z_CT_MEMBER(CPP11) Rectangle(const Value2D<T> &size)			      : point(T(0)),		 size(size)	      {}
+	Z_CT_MEMBER(CPP11) Rectangle(T size_x, T size_y)			      : point(T(0)),		 size(size_x, size_y) {}
+	Z_CT_MEMBER(CPP11) Rectangle(T size_xy)					      : point(T(0)),		 size(size_xy)	      {}
 
 	Z_INLINE_MEMBER Rectangle(const Base &rectangle) {(*(Base *)this) = rectangle;}
 
