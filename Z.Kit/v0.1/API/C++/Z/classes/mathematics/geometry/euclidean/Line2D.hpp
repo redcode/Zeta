@@ -71,6 +71,9 @@ namespace Zeta {template <class T> struct Line2D : Mixins::Line2D::Partial<Line2
 	Z_CT_MEMBER(CPP11) Line2D(T a_x, T a_y, T b_x, T b_y)		    : a(a_x, a_y), b(b_x, b_y) {}
 	Z_CT_MEMBER(CPP11) Line2D(T a_xy, T b_x, T b_y)			    : a(a_xy),	   b(b_x, b_y) {}
 	Z_CT_MEMBER(CPP11) Line2D(T a_xy, const Value2D<T> &b)		    : a(a_xy),	   b(b)	       {}
+	Z_CT_MEMBER(CPP11) Line2D(const Value2D<T> &b)			    : a(T(0)),	   b(b)	       {}
+	Z_CT_MEMBER(CPP11) Line2D(T b_x, T b_y)				    : a(T(0)),	   b(b_x, b_y) {}
+	Z_CT_MEMBER(CPP11) Line2D(T b_xy)				    : a(T(0)),	   b(b_xy)     {}
 
 	Z_INLINE_MEMBER Line2D(const Base &line) {(*(Base *)this) = line;}
 
