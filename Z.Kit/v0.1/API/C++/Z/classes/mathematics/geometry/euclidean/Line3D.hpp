@@ -58,9 +58,9 @@ namespace Zeta {template <class T> struct Line3D : Mixins::Line3D::Partial<Line3
 	Z_CT_MEMBER(CPP11) Line3D(T a_x, T a_y, T a_z, T b_x, T b_y, T b_z) : a(a_x, a_y, a_z), b(b_x, b_y, b_z) {}
 	Z_CT_MEMBER(CPP11) Line3D(T a_xyz, T b_x, T b_y, T b_z)		    : a(a_xyz),		b(b_x, b_y, b_z) {}
 	Z_CT_MEMBER(CPP11) Line3D(T a_xyz, const Value3D<T> &b)		    : a(a_xyz),		b(b)		 {}
-	Z_CT_MEMBER(CPP11) Line2D(const Value3D<T> &b)			    : a(T(0)),		b(b)		 {}
-	Z_CT_MEMBER(CPP11) Line2D(T b_x, T b_y, T b_z)			    : a(T(0)),		b(b_x, b_y, b_z) {}
-	Z_CT_MEMBER(CPP11) Line2D(T b_xyz)				    : a(T(0)),		b(b_xyz)	 {}
+	Z_CT_MEMBER(CPP11) Line3D(const Value3D<T> &b)			    : a(T(0)),		b(b)		 {}
+	Z_CT_MEMBER(CPP11) Line3D(T b_x, T b_y, T b_z)			    : a(T(0)),		b(b_x, b_y, b_z) {}
+	Z_CT_MEMBER(CPP11) Line3D(T b_xyz)				    : a(T(0)),		b(b_xyz)	 {}
 
 	Z_INLINE_MEMBER Line3D(const Base &line) {(*(Base *)this) = line;}
 
