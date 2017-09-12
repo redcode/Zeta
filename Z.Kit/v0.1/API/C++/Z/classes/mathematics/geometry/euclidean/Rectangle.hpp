@@ -87,7 +87,7 @@ namespace Zeta {namespace Mixins {namespace Rectangle {
 		/*Z_CT_MEMBER(CPP11) Boolean contains(const Circle<T> &circle) const
 			{
 			return	circle.point - circle.radius >= Z_THIS->point &&
-				circle.point + circle.radius <= Z_THIS->point + Z_THIS->size;
+				circle.point + circle.radius <	Z_THIS->point + Z_THIS->size;
 			}*/
 
 
@@ -181,9 +181,9 @@ namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial
 		{
 		T x1, x2, y1, y2;
 
-		return	(x1 = maximum<T>(point.x,	   rectangle.point.x)) <=
+		return	(x1 = maximum<T>(point.x,	   rectangle.point.x)) <
 			(x2 = minimum<T>(point.x + size.x, rectangle.point.x + rectangle.size.x)) &&
-			(y1 = maximum<T>(point.y,	   rectangle.point.y)) <=
+			(y1 = maximum<T>(point.y,	   rectangle.point.y)) <
 			(y2 = minimum<T>(point.y + size.y, rectangle.point.y + rectangle.size.y))
 
 			? Rectangle(x1, y1, x2 - x1, y2 - y1)
@@ -367,15 +367,15 @@ namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial
 
 
 	Z_CT_MEMBER(CPP11) Boolean contains(const Rectangle &rectangle) const
-		{return rectangle.point >= point && rectangle.point + rectangle.size <= point + size;}
+		{return rectangle.point >= point && rectangle.point + rectangle.size < point + size;}
 
 
 	/*Z_CT_MEMBER(CPP11) Boolean contains(const AABR<T> &aabr) const
-		{return aabr.a >= point && aabr.b <= point + size;}*/
+		{return aabr.a >= point && aabr.b < point + size;}*/
 
 
 	Z_CT_MEMBER(CPP11) Boolean contains(const Value2D<T> &point) const
-		{return point >= this->point && point <= this->point + this->size;}
+		{return point >= this->point && point < this->point + this->size;}
 
 
 	/*Z_CT_MEMBER(CPP11) Boolean contains(const Line2D<T> &line_segment) const
@@ -533,7 +533,7 @@ namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial
 
 
 	Z_CT_MEMBER(CPP11) Boolean intersects(const Rectangle &rectangle) const
-		{return point < rectangle.point + rectangle.size && point + size > rectangle.point;}
+		{return rectangle.point + rectangle.size > point && rectangle.point < point + size;}
 
 
 	Z_CT_MEMBER(CPP11) Boolean is_zero() const
