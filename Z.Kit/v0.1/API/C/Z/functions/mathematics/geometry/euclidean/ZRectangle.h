@@ -181,12 +181,15 @@ Z_INLINE Z2D##Type z_rectangle_##type##_center_right(ZRectangle##Type object)			
 	}											\
 												\
 												\
-Z_INLINE zboolean z_rectangle_##type##_contains(ZRectangle##Type a, ZRectangle##Type b)		\
+Z_INLINE zboolean z_rectangle_##type##_contains(						\
+	ZRectangle##Type object,								\
+	ZRectangle##Type rectangle								\
+)												\
 	{											\
-	return	b.point.x	     >= a.point.x	     &&					\
-		b.point.y	     >= a.point.y	     &&					\
-		b.point.x + b.size.x <= a.point.x + a.size.x &&					\
-		b.point.y + b.size.y <= a.point.y + a.size.y;					\
+	return	rectangle.point.x		     >= object.point.x		       &&	\
+		rectangle.point.y		     >= object.point.y		       &&	\
+		rectangle.point.x + rectangle.size.x <	object.point.x + object.size.x &&	\
+		rectangle.point.y + rectangle.size.y <	object.point.y + object.size.y;		\
 	}											\
 												\
 												\
@@ -194,8 +197,8 @@ Z_INLINE zboolean z_rectangle_##type##_contains_aabr(ZRectangle##Type object, ZA
 	{											\
 	return	aabr.a.x >= object.point.x		   &&					\
 		aabr.a.y >= object.point.y		   &&					\
-		aabr.b.x <= object.point.x + object.size.x &&					\
-		aabr.b.y <= object.point.y + object.size.y;					\
+		aabr.b.x <  object.point.x + object.size.x &&					\
+		aabr.b.y <  object.point.y + object.size.y;					\
 	}											\
 												\
 												\
@@ -203,8 +206,8 @@ Z_INLINE zboolean z_rectangle_##type##_contains_point(ZRectangle##Type object, Z
 	{											\
 	return	point.x >= object.point.x		  &&					\
 		point.y >= object.point.y		  &&					\
-		point.x <= object.point.x + object.size.x &&					\
-		point.y <= object.point.y + object.size.y;					\
+		point.x <  object.point.x + object.size.x &&					\
+		point.y <  object.point.y + object.size.y;					\
 	}											\
 												\
 												\
@@ -548,9 +551,9 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_intersection(					\
 	{											\
 	z##type x1, x2, y1, y2;									\
 												\
-	return	(x1 = z_##type##_maximum(a.point.x,	       b.point.x)) <=			\
+	return	(x1 = z_##type##_maximum(a.point.x,	       b.point.x)) <			\
 		(x2 = z_##type##_minimum(a.point.x + a.size.x, b.point.x + b.size.x)) &&	\
-		(y1 = z_##type##_maximum(a.point.y,	       b.point.y)) <=			\
+		(y1 = z_##type##_maximum(a.point.y,	       b.point.y)) <			\
 		(y2 = z_##type##_minimum(a.point.y + a.size.y, b.point.y + b.size.y))		\
 												\
 		? z_rectangle_##type(x1, y1, x2 - x1, y2 - y1)					\
@@ -970,8 +973,8 @@ Z_INLINE zboolean z_rectangle_##type##_contains_circle(						\
 	{											\
 	return	circle.point.x - circle.radius >= object.point.x		 &&		\
 		circle.point.y - circle.radius >= object.point.y		 &&		\
-		circle.point.x + circle.radius <= object.point.x + object.size.x &&		\
-		circle.point.y + circle.radius <= object.point.y + object.size.y;		\
+		circle.point.x + circle.radius <  object.point.x + object.size.x &&		\
+		circle.point.y + circle.radius <  object.point.y + object.size.y;		\
 	}											\
 												\
 												\
