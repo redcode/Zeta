@@ -140,7 +140,7 @@ Z_INLINE zboolean z_aabr_##type##_contains(ZAABR##Type a, ZAABR##Type b)			\
 	{return b.a.x >= a.a.x && b.a.y >= a.a.y && b.b.x <= a.b.x && b.b.y <= a.b.y;}		\
 												\
 												\
-Z_INLINE zboolean z_aabr_##type##_contains_point(ZAABR##Type object, Z3D##Type point)		\
+Z_INLINE zboolean z_aabr_##type##_contains_point(ZAABR##Type object, Z2D##Type point)		\
 	{											\
 	return	object.a.x <= point.x && point.x <= object.a.x &&				\
 		object.a.y <= point.y && point.y <= object.a.y;					\
@@ -149,7 +149,7 @@ Z_INLINE zboolean z_aabr_##type##_contains_point(ZAABR##Type object, Z3D##Type p
 												\
 Z_INLINE zboolean z_aabr_##type##_contains_line_segment(					\
 	ZAABR##Type   object,									\
-	Z3DLine##Type segment									\
+	Z2DLine##Type segment									\
 )												\
 	{											\
 	return	z_aabr_##type##_contains_point(object, segment.a) &&				\
