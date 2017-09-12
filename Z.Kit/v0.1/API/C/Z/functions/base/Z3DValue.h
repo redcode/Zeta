@@ -53,14 +53,6 @@ Z_INLINE Z3D##Type z_3d_##type##_clamp(Z3D##Type object, Z3D##Type minimum, Z3D#
 	}											\
 												\
 												\
-Z_INLINE zboolean z_3d_##type##_contains(Z3D##Type object, Z3D##Type value)			\
-	{return object.x >= value.x && object.y >= value.y && object.z >= value.z;}		\
-												\
-												\
-Z_INLINE zboolean z_3d_##type##_contains_scalar(Z3D##Type object, z##type scalar)		\
-	{return object.x >= scalar && object.y >= scalar && object.z >= scalar;}		\
-												\
-												\
 Z_INLINE Z3D##Type z_3d_##type##_cross_product(Z3D##Type a, Z3D##Type b)			\
 	{											\
 	return z_3d_##type									\
@@ -274,8 +266,6 @@ Z_INLINE Z3D##Type z_3d_##type##_zyx(Z3D##Type object)						\
 #define z_3d_type_add_scalar(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _add_scalar	  )
 #define z_3d_type_are_equal(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _are_equal	  )
 #define z_3d_type_clamp(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _clamp		  )
-#define z_3d_type_contains(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _contains	  )
-#define z_3d_type_contains_scalar(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _contains_scalar	  )
 #define z_3d_type_cross_product(     TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _cross_product	  )
 #define z_3d_type_cube_clamp(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _cube_clamp	  )
 #define z_3d_type_divide(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _divide		  )
@@ -604,8 +594,6 @@ Z_IMPLEMENTATION_3D_INTEGER(Int32, int32)
 #	define z_3d_are_perpendicular  z_3d_type_are_perpendicular (REAL)
 #	define z_3d_clamp	       z_3d_type_clamp		   (REAL)
 #	define z_3d_clamp_01	       z_3d_type_clamp_01	   (REAL)
-#	define z_3d_contains	       z_3d_type_contains	   (REAL)
-#	define z_3d_contains_scalar    z_3d_type_contains_scalar   (REAL)
 #	define z_3d_cross_product      z_3d_type_cross_product	   (REAL)
 #	define z_3d_cube_clamp	       z_3d_type_cube_clamp	   (REAL)
 #	define z_3d_divide	       z_3d_type_divide		   (REAL)
