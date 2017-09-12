@@ -42,7 +42,7 @@ namespace Zeta {namespace Mixins {namespace Box {
 		/*Z_CT_MEMBER(CPP11) Boolean contains(const Sphere<T> &circle) const
 			{
 			return	sphere.point - sphere.radius >= Z_THIS->point &&
-				sphere.point + sphere.radius <= Z_THIS->point + Z_THIS->size;
+				sphere.point + sphere.radius <	Z_THIS->point + Z_THIS->size;
 			}*/
 
 
@@ -108,11 +108,11 @@ namespace Zeta {template <class T> struct Box : Mixins::Box::Partial<Box<T>, T, 
 		{
 		T x1, x2, y1, y2, z1, z2;
 
-		return	(x1 = maximum<T>(point.x,	   box.point.x)) <=
+		return	(x1 = maximum<T>(point.x,	   box.point.x)) <
 			(x2 = minimum<T>(point.x + size.x, box.point.x + box.size.x)) &&
-			(y1 = maximum<T>(point.y,	   box.point.y)) <=
+			(y1 = maximum<T>(point.y,	   box.point.y)) <
 			(y2 = minimum<T>(point.y + size.y, box.point.y + box.size.y)) &&
-			(z1 = maximum<T>(point.z,	   box.point.z)) <=
+			(z1 = maximum<T>(point.z,	   box.point.z)) <
 			(z2 = minimum<T>(point.z + size.z, box.point.z + box.size.z))
 
 			? Box(x1, y1, z1, x2 - x1, y2 - y1, z2 - z1)
@@ -137,15 +137,15 @@ namespace Zeta {template <class T> struct Box : Mixins::Box::Partial<Box<T>, T, 
 
 
 	Z_CT_MEMBER(CPP11) Boolean contains(const Box &box) const
-		{return box.point >= point && box.point + box.size <= point + size;}
+		{return box.point >= point && box.point + box.size < point + size;}
 
 
 	/*Z_CT_MEMBER(CPP11) Boolean contains(const AABB<T> &aabb) const
-		{return aabb.a >= point && aabb.b <= point + size;}*/
+		{return aabb.a >= point && aabb.b < point + size;}*/
 
 
 	Z_CT_MEMBER(CPP11) Boolean contains(const Value3D<T> &point) const
-		{return point >= this->point && point <= this->point + this->size;}
+		{return point >= this->point && point < this->point + this->size;}
 
 
 	/*Z_CT_MEMBER(CPP11) Boolean contains(const Line3D<T> &line_segment) const
@@ -153,7 +153,7 @@ namespace Zeta {template <class T> struct Box : Mixins::Box::Partial<Box<T>, T, 
 
 
 	Z_CT_MEMBER(CPP11) Boolean intersects(const Box &box) const
-		{return point < box.point + box.size && point + size > box.point;}
+		{return box.point + box.size > point && box.point < point + size;}
 
 
 	Z_CT_MEMBER(CPP11) Boolean is_zero() const
