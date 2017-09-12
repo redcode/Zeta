@@ -44,14 +44,14 @@ Z_INLINE Z3D##Type z_box_##type##_center(ZBox##Type object)					\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_box_##type##_contains(ZBox##Type a, ZBox##Type b)				\
+Z_INLINE zboolean z_box_##type##_contains(ZBox##Type object, ZBox##Type box)			\
 	{											\
-	return	b.point.x	     >= a.point.x	     &&					\
-		b.point.y	     >= a.point.y	     &&					\
-		b.point.z	     >= a.point.z	     &&					\
-		b.point.x + b.size.x <= a.point.x + a.size.x &&					\
-		b.point.y + b.size.y <= a.point.y + a.size.y &&					\
-		b.point.z + b.size.z <= a.point.z + a.size.z;					\
+	return	box.point.x		 >= object.point.x		   &&			\
+		box.point.y		 >= object.point.y		   &&			\
+		box.point.z		 >= object.point.z		   &&			\
+		box.point.x + box.size.x <  object.point.x + object.size.x &&			\
+		box.point.y + box.size.y <  object.point.y + object.size.y &&			\
+		box.point.z + box.size.z <  object.point.z + object.size.z;			\
 	}											\
 												\
 												\
@@ -60,9 +60,9 @@ Z_INLINE zboolean z_box_##type##_contains_aabb(ZBox##Type object, ZAABB##Type aa
 	return	aabb.a.x >= object.point.x		   &&					\
 		aabb.a.y >= object.point.y		   &&					\
 		aabb.a.z >= object.point.z		   &&					\
-		aabb.b.x <= object.point.x + object.size.x &&					\
-		aabb.b.y <= object.point.y + object.size.y &&					\
-		aabb.b.z <= object.point.z + object.size.z;					\
+		aabb.b.x <  object.point.x + object.size.x &&					\
+		aabb.b.y <  object.point.y + object.size.y &&					\
+		aabb.b.z <  object.point.z + object.size.z;					\
 	}											\
 												\
 												\
@@ -71,9 +71,9 @@ Z_INLINE zboolean z_box_##type##_contains_point(ZBox##Type object, Z3D##Type poi
 	return	point.x >= object.point.x		  &&					\
 		point.y >= object.point.y		  &&					\
 		point.z >= object.point.z		  &&					\
-		point.x <= object.point.x + object.size.x &&					\
-		point.y <= object.point.y + object.size.y &&					\
-		point.z <= object.point.z + object.size.z;					\
+		point.x <  object.point.x + object.size.x &&					\
+		point.y <  object.point.y + object.size.y &&					\
+		point.z <  object.point.z + object.size.z;					\
 	}											\
 												\
 												\
@@ -121,11 +121,11 @@ Z_INLINE ZBox##Type z_box_##type##_intersection(ZBox##Type a, ZBox##Type b)			\
 	{											\
 	z##type x1, x2, y1, y2, z1, z2;								\
 												\
-	return	(x1 = z_##type##_maximum(a.point.x,	       b.point.x)) <=			\
+	return	(x1 = z_##type##_maximum(a.point.x,	       b.point.x)) <			\
 		(x2 = z_##type##_minimum(a.point.x + a.size.x, b.point.x + b.size.x)) &&	\
-		(y1 = z_##type##_maximum(a.point.y,	       b.point.y)) <=			\
+		(y1 = z_##type##_maximum(a.point.y,	       b.point.y)) <			\
 		(y2 = z_##type##_minimum(a.point.y + a.size.y, b.point.y + b.size.y)) &&	\
-		(z1 = z_##type##_maximum(a.point.z,	       b.point.z)) <=			\
+		(z1 = z_##type##_maximum(a.point.z,	       b.point.z)) <			\
 		(z2 = z_##type##_minimum(a.point.z + a.size.z, b.point.z + b.size.z))		\
 												\
 		? z_box_##type(x1, y1, z1, x2 - x1, y2 - y1, z2 - z1)				\
@@ -200,9 +200,9 @@ Z_INLINE zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Typ
 	return	sphere.point.x - sphere.radius >= object.point.x		 &&		\
 		sphere.point.y - sphere.radius >= object.point.y		 &&		\
 		sphere.point.z - sphere.radius >= object.point.z		 &&		\
-		sphere.point.x + sphere.radius <= object.point.x + object.size.x &&		\
-		sphere.point.y + sphere.radius <= object.point.y + object.size.y &&		\
-		sphere.point.z + sphere.radius <= object.point.z + object.size.z;		\
+		sphere.point.x + sphere.radius <  object.point.x + object.size.x &&		\
+		sphere.point.y + sphere.radius <  object.point.y + object.size.y &&		\
+		sphere.point.z + sphere.radius <  object.point.z + object.size.z;		\
 	}											\
 												\
 												\
