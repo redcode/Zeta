@@ -46,14 +46,6 @@ Z_INLINE Z2D##Type z_2d_##type##_clamp(Z2D##Type object, Z2D##Type minimum, Z2D#
 	}											\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_contains(Z2D##Type object, Z2D##Type value)			\
-	{return object.x >= value.x && object.y >= value.y;}					\
-												\
-												\
-Z_INLINE zboolean z_2d_##type##_contains_scalar(Z2D##Type object, z##type scalar)		\
-	{return object.x >= scalar && object.y >= scalar;}					\
-												\
-												\
 /* Area of the parallelogram between two vectors (OA and OB) */					\
 Z_INLINE z##type z_2d_##type##_cross_product(Z2D##Type a, Z2D##Type b)				\
 	{return a.x * b.y - a.y * b.x;}								\
@@ -217,8 +209,6 @@ Z_INLINE Z3D##Type z_2d_##type##_yxn(Z2D##Type object, z##type n)				\
 #define z_2d_type_add_scalar(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _add_scalar	  )
 #define z_2d_type_are_equal(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _are_equal	  )
 #define z_2d_type_clamp(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _clamp		  )
-#define z_2d_type_contains(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _contains	  )
-#define z_2d_type_contains_scalar(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _contains_scalar	  )
 #define z_2d_type_cross_product(     TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _cross_product	  )
 #define z_2d_type_divide(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _divide		  )
 #define z_2d_type_divide_3(	     TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_, _divide_3	  )
@@ -484,8 +474,6 @@ Z_IMPLEMENTATION_2D_INTEGER(Int32, int32)
 #	define z_2d_are_perpendicular  z_2d_type_are_perpendicular (REAL)
 #	define z_2d_clamp	       z_2d_type_clamp		   (REAL)
 #	define z_2d_clamp_01	       z_2d_type_clamp_01	   (REAL)
-#	define z_2d_contains	       z_2d_type_contains	   (REAL)
-#	define z_2d_contains_scalar    z_2d_type_contains_scalar   (REAL)
 #	define z_2d_cross_product      z_2d_type_cross_product	   (REAL)
 #	define z_2d_divide	       z_2d_type_divide		   (REAL)
 #	define z_2d_divide_3	       z_2d_type_divide_3	   (REAL)
