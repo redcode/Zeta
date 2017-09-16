@@ -92,12 +92,11 @@ Z_INLINE z##type z_3d_##type##_dot_product(Z3D##Type a, Z3D##Type b)				\
 	{return a.x * b.x + a.y * b.y + a.y * b.y;}						\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_fit(Z3D##Type a, Z3D##Type b)					\
+Z_INLINE Z3D##Type z_3d_##type##_fit(Z3D##Type object, Z3D##Type other)				\
 	{											\
-	return z_3d_##type##_zero;/*a.y / a.x > b.y / b.x					\
-		? z_3d_##type(a.x * b.y / a.y, b.y)						\
-		: z_3d_##type(b.x, a.y * b.x / a.x);*/						\
-	} /* TO DO */										\
+ 	/* TO DO */										\
+	return z_3d_##type##_zero;								\
+	}											\
 												\
 												\
 Z_INLINE Z3D##Type z_3d_##type##_from_scalar(z##type scalar)					\
