@@ -71,11 +71,11 @@ Z_INLINE z##type z_2d_##type##_dot_product(Z2D##Type a, Z2D##Type b)				\
 	{return a.x * b.x + a.y * b.y;}								\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_fit(Z2D##Type a, Z2D##Type b)					\
+Z_INLINE Z2D##Type z_2d_##type##_fit(Z2D##Type object, Z2D##Type other)				\
 	{											\
-	return a.y / a.x > b.y / b.x								\
-		? z_2d_##type(a.x * b.y / a.y, b.y)						\
-		: z_2d_##type(b.x, a.y * b.x / a.x);						\
+	return object.y / object.x > other.y / other.x						\
+		? z_2d_##type(object.x * other.y / object.y, other.y)				\
+		: z_2d_##type(other.x, object.y * other.x / object.x);				\
 	}											\
 												\
 												\
