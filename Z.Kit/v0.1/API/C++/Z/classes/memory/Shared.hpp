@@ -28,8 +28,8 @@ namespace Zeta {template <class T> struct Shared {
 	Z_CT_MEMBER(CPP11) Shared() : owned(NULL) {}
 
 
-	Z_INLINE_MEMBER Shared(const Shared &shared)
-		{if ((owned = shared.owned)) owned->owner_count++;}
+	Z_INLINE_MEMBER Shared(const Shared &other)
+		{if ((owned = other.owned)) owned->owner_count++;}
 
 
 	Z_INLINE_MEMBER Shared(T *data)
@@ -40,35 +40,35 @@ namespace Zeta {template <class T> struct Shared {
 		{if (owned && !--owned->owner_count) delete owned;}
 
 
-	Z_INLINE_MEMBER Shared &operator =(const Shared &shared)
+	Z_INLINE_MEMBER Shared &operator =(const Shared &rhs)
 		{
-		if (owned != shared.owned)
+		if (owned != rhs.owned)
 			{
 			if (owned && !--owned->owner_count) delete owned;
-			if ((owned = shared.owned)) owned->owner_count++;
+			if ((owned = rhs.owned)) owned->owner_count++;
 			}
 
 		return *this;
 		}
 
 
-	Z_INLINE_MEMBER Shared &operator =(T *data)
+	Z_INLINE_MEMBER Shared &operator =(T *rhs)
 		{
 		if (owned)
 			{
-			if (owned->data == data) return *this;
+			if (owned->data == rhs) return *this;
 			if (!--owned->owner_count) delete owned;
 			}
 
-		owned = data ? new Owned(data) : NULL;
+		owned = rhs ? new Owned(rhs) : NULL;
 		return *this;
 		}
 
 
 	Z_INLINE_MEMBER operator Boolean() const {return owned != NULL;}
 
-	Z_INLINE_MEMBER Boolean operator ==(const Shared &shared) const {return owned == shared.owned;}
-	Z_INLINE_MEMBER Boolean operator !=(const Shared &shared) const {return owned != shared.owned;}
+	Z_INLINE_MEMBER Boolean operator ==(const Shared &rhs) const {return owned == rhs.owned;}
+	Z_INLINE_MEMBER Boolean operator !=(const Shared &rhs) const {return owned != rhs.owned;}
 
 	Z_INLINE_MEMBER T* operator ->() const {return owned->data;}
 
@@ -81,8 +81,8 @@ namespace Zeta {template <class T> struct Shared {
 		{return owned->owner_count;}
 
 
-	Z_INLINE_MEMBER void swap(Shared &shared)
-		{Zeta::swap<Owned *>(&owned, &shared.owned);}
+	Z_INLINE_MEMBER void swap(Shared &other)
+		{Zeta::swap<Owned *>(&owned, &other.owned);}
 };}
 
 
