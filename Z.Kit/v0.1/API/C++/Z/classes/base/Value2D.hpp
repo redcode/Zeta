@@ -69,8 +69,8 @@ namespace Zeta {namespace Mixins {namespace Value2D {
 	template <class Value2D, class T>
 	struct Partial<Value2D, T, Z_NUMBER_SET_Z> : Signed<Value2D, T> {
 
-		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value2D &value) const
-			{return !Zeta::absolute<T>(Z_THIS->dot_product(value));}
+		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value2D &other) const
+			{return !Zeta::absolute<T>(Z_THIS->dot_product(other));}
 
 	};
 
@@ -101,18 +101,18 @@ namespace Zeta {namespace Mixins {namespace Value2D {
 			{return Zeta::is_nan<T>(Z_THIS->x) || Zeta::is_nan<T>(Z_THIS->y);}
 
 
-		Z_CT_MEMBER(CPP11) Value2D inverse_lerp(const Value2D &value, T t) const
+		Z_CT_MEMBER(CPP11) Value2D inverse_lerp(const Value2D &other, T t) const
 			{
 			return Value2D
-				(Zeta::inverse_lerp<T>(Z_THIS->x, value.x, t),
-				 Zeta::inverse_lerp<T>(Z_THIS->y, value.y, t));
+				(Zeta::inverse_lerp<T>(Z_THIS->x, other.x, t),
+				 Zeta::inverse_lerp<T>(Z_THIS->y, other.y, t));
 			}
 
 
-		Z_CT_MEMBER(CPP11) Boolean is_almost_equal(const Value2D &value) const
+		Z_CT_MEMBER(CPP11) Boolean is_almost_equal(const Value2D &other) const
 			{
-			return	Zeta::are_almost_equal<T>(Z_THIS->x, value.x) &&
-				Zeta::are_almost_equal<T>(Z_THIS->y, value.y);
+			return	Zeta::are_almost_equal<T>(Z_THIS->x, other.x) &&
+				Zeta::are_almost_equal<T>(Z_THIS->y, other.y);
 			}
 
 
@@ -132,15 +132,15 @@ namespace Zeta {namespace Mixins {namespace Value2D {
 			{return Zeta::is_nan<T>(Z_THIS->x) && Zeta::is_nan<T>(Z_THIS->y);}
 
 
-		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value2D &value) const
-			{return Zeta::absolute<T>(Z_THIS->dot_product(value)) <= Type<T>::epsilon();}
+		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value2D &other) const
+			{return Zeta::absolute<T>(Z_THIS->dot_product(other)) <= Type<T>::epsilon();}
 
 
-		Z_CT_MEMBER(CPP11) Value2D lerp(const Value2D &value, T t) const
+		Z_CT_MEMBER(CPP11) Value2D lerp(const Value2D &other, T t) const
 			{
 			return Value2D
-				(Zeta::lerp<T>(Z_THIS->x, value.x, t),
-				 Zeta::lerp<T>(Z_THIS->y, value.y, t));
+				(Zeta::lerp<T>(Z_THIS->x, other.x, t),
+				 Zeta::lerp<T>(Z_THIS->y, other.y, t));
 			}
 
 
@@ -175,39 +175,39 @@ namespace Zeta {template <class T> struct Value2D : Mixins::Value2D::Partial<Val
 	Z_CT_MEMBER(CPP11) operator Boolean() const {return x != T(0) || y != T(0);}
 	Z_INLINE_MEMBER    operator Base&  () const {return *((Base *)this);}
 
-	Z_CT_MEMBER(CPP11) Boolean operator ==(const Value2D &value) const {return x == value.x && y == value.y;}
-	Z_CT_MEMBER(CPP11) Boolean operator !=(const Value2D &value) const {return x != value.x || y != value.y;}
-	Z_CT_MEMBER(CPP11) Boolean operator <=(const Value2D &value) const {return x <= value.x && y <= value.y;}
-	Z_CT_MEMBER(CPP11) Boolean operator >=(const Value2D &value) const {return x >= value.x && y >= value.y;}
-	Z_CT_MEMBER(CPP11) Boolean operator  >(const Value2D &value) const {return x >	value.x && y >	value.y;}
-	Z_CT_MEMBER(CPP11) Boolean operator  <(const Value2D &value) const {return x <	value.x && y <	value.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator ==(const Value2D &rhs) const {return x == rhs.x && y == rhs.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator !=(const Value2D &rhs) const {return x != rhs.x || y != rhs.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator <=(const Value2D &rhs) const {return x <= rhs.x && y <= rhs.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator >=(const Value2D &rhs) const {return x >= rhs.x && y >= rhs.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator  >(const Value2D &rhs) const {return x >  rhs.x && y >  rhs.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator  <(const Value2D &rhs) const {return x <  rhs.x && y <  rhs.y;}
 
-	Z_CT_MEMBER(CPP11) Value2D operator +(const Value2D &value) const {return Value2D(x + value.x, y + value.y);}
-	Z_CT_MEMBER(CPP11) Value2D operator -(const Value2D &value) const {return Value2D(x - value.x, y - value.y);}
-	Z_CT_MEMBER(CPP11) Value2D operator *(const Value2D &value) const {return Value2D(x * value.x, y * value.y);}
-	Z_CT_MEMBER(CPP11) Value2D operator /(const Value2D &value) const {return Value2D(x / value.x, y / value.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator +(const Value2D &rhs) const {return Value2D(x + rhs.x, y + rhs.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator -(const Value2D &rhs) const {return Value2D(x - rhs.x, y - rhs.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator *(const Value2D &rhs) const {return Value2D(x * rhs.x, y * rhs.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator /(const Value2D &rhs) const {return Value2D(x / rhs.x, y / rhs.y);}
 
-	Z_INLINE_MEMBER Value2D &operator +=(const Value2D &value) {return *this = *this + value;}
-	Z_INLINE_MEMBER Value2D &operator -=(const Value2D &value) {return *this = *this - value;}
-	Z_INLINE_MEMBER Value2D &operator *=(const Value2D &value) {return *this = *this * value;}
-	Z_INLINE_MEMBER Value2D &operator /=(const Value2D &value) {return *this = *this / value;}
+	Z_INLINE_MEMBER Value2D &operator +=(const Value2D &rhs) {return *this = *this + rhs;}
+	Z_INLINE_MEMBER Value2D &operator -=(const Value2D &rhs) {return *this = *this - rhs;}
+	Z_INLINE_MEMBER Value2D &operator *=(const Value2D &rhs) {return *this = *this * rhs;}
+	Z_INLINE_MEMBER Value2D &operator /=(const Value2D &rhs) {return *this = *this / rhs;}
 
-	Z_CT_MEMBER(CPP11) Boolean operator ==(T scalar) const {return x == scalar && y == scalar;}
-	Z_CT_MEMBER(CPP11) Boolean operator !=(T scalar) const {return x != scalar || y != scalar;}
-	Z_CT_MEMBER(CPP11) Boolean operator <=(T scalar) const {return x <= scalar && y <= scalar;}
-	Z_CT_MEMBER(CPP11) Boolean operator >=(T scalar) const {return x >= scalar && y >= scalar;}
-	Z_CT_MEMBER(CPP11) Boolean operator  >(T scalar) const {return x >  scalar && y >  scalar;}
-	Z_CT_MEMBER(CPP11) Boolean operator  <(T scalar) const {return x <  scalar && y <  scalar;}
+	Z_CT_MEMBER(CPP11) Boolean operator ==(T rhs) const {return x == rhs && y == rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator !=(T rhs) const {return x != rhs || y != rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator <=(T rhs) const {return x <= rhs && y <= rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator >=(T rhs) const {return x >= rhs && y >= rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator  >(T rhs) const {return x >  rhs && y >  rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator  <(T rhs) const {return x <  rhs && y <  rhs;}
 
-	Z_CT_MEMBER(CPP11) Value2D operator +(T scalar) const {return Value2D(x + scalar, y + scalar);}
-	Z_CT_MEMBER(CPP11) Value2D operator -(T scalar) const {return Value2D(x - scalar, y - scalar);}
-	Z_CT_MEMBER(CPP11) Value2D operator *(T scalar) const {return Value2D(x * scalar, y * scalar);}
-	Z_CT_MEMBER(CPP11) Value2D operator /(T scalar) const {return Value2D(x / scalar, y / scalar);}
+	Z_CT_MEMBER(CPP11) Value2D operator +(T rhs) const {return Value2D(x + rhs, y + rhs);}
+	Z_CT_MEMBER(CPP11) Value2D operator -(T rhs) const {return Value2D(x - rhs, y - rhs);}
+	Z_CT_MEMBER(CPP11) Value2D operator *(T rhs) const {return Value2D(x * rhs, y * rhs);}
+	Z_CT_MEMBER(CPP11) Value2D operator /(T rhs) const {return Value2D(x / rhs, y / rhs);}
 
-	Z_INLINE_MEMBER Value2D &operator +=(T scalar) {return *this = *this + scalar;}
-	Z_INLINE_MEMBER Value2D &operator -=(T scalar) {return *this = *this - scalar;}
-	Z_INLINE_MEMBER Value2D &operator *=(T scalar) {return *this = *this * scalar;}
-	Z_INLINE_MEMBER Value2D &operator /=(T scalar) {return *this = *this / scalar;}
+	Z_INLINE_MEMBER Value2D &operator +=(T rhs) {return *this = *this + rhs;}
+	Z_INLINE_MEMBER Value2D &operator -=(T rhs) {return *this = *this - rhs;}
+	Z_INLINE_MEMBER Value2D &operator *=(T rhs) {return *this = *this * rhs;}
+	Z_INLINE_MEMBER Value2D &operator /=(T rhs) {return *this = *this / rhs;}
 
 	Z_INLINE_MEMBER T  operator[](int index) const {return ((T *)this)[index];}
 	Z_INLINE_MEMBER T &operator[](int index)       {return ((T *)this)[index];}
@@ -311,19 +311,19 @@ namespace Zeta {template <class T> struct Value2D : Mixins::Value2D::Partial<Val
 		}
 
 
-	Z_CT_MEMBER(CPP11) T cross_product(const Value2D &value) const
-		{return x * value.y - y * value.x;}
+	Z_CT_MEMBER(CPP11) T cross_product(const Value2D &other) const
+		{return x * other.y - y * other.x;}
 
 
-	Z_CT_MEMBER(CPP11) T dot_product(const Value2D &value) const
-		{return x * value.x + y * value.y;}
+	Z_CT_MEMBER(CPP11) T dot_product(const Value2D &other) const
+		{return x * other.x + y * other.y;}
 
 
-	Z_CT_MEMBER(CPP11) Value2D fit(const Value2D &value) const
+	Z_CT_MEMBER(CPP11) Value2D fit(const Value2D &other) const
 		{
-		return y / x > value.y / value.x
-			? Value2D(x * value.y / y, value.y)
-			: Value2D(value.x, y * value.x / x);
+		return y / x > other.y / other.x
+			? Value2D(x * other.y / y, other.y)
+			: Value2D(other.x, y * other.x / x);
 		}
 
 
@@ -355,23 +355,23 @@ namespace Zeta {template <class T> struct Value2D : Mixins::Value2D::Partial<Val
 		{return x == T(0) && y == T(0);}
 
 
-	Z_CT_MEMBER(CPP11) Value2D maximum(const Value2D &value) const
+	Z_CT_MEMBER(CPP11) Value2D maximum(const Value2D &other) const
 		{
 		return Value2D
-			(Zeta::maximum<T>(x, value.x),
-			 Zeta::maximum<T>(y, value.y));
+			(Zeta::maximum<T>(x, other.x),
+			 Zeta::maximum<T>(y, other.y));
 		}
 
 
-	Z_CT_MEMBER(CPP11) Value2D middle(const Value2D &value) const
-		{return Value2D((x + value.x) / T(2), (y + value.y) / T(2));}
+	Z_CT_MEMBER(CPP11) Value2D middle(const Value2D &other) const
+		{return Value2D((x + other.x) / T(2), (y + other.y) / T(2));}
 
 
-	Z_CT_MEMBER(CPP11) Value2D minimum(const Value2D &value) const
+	Z_CT_MEMBER(CPP11) Value2D minimum(const Value2D &other) const
 		{
 		return Value2D
-			(Zeta::minimum<T>(x, value.x),
-			 Zeta::minimum<T>(y, value.y));
+			(Zeta::minimum<T>(x, other.x),
+			 Zeta::minimum<T>(y, other.y));
 		}
 
 
@@ -387,8 +387,8 @@ namespace Zeta {template <class T> struct Value2D : Mixins::Value2D::Partial<Val
 		{return x * x + y * y;}
 
 
-	Z_INLINE_MEMBER void swap(Value2D &value)
-		{Zeta::swap<Base>((Base *)this, (Base *)&value);}
+	Z_INLINE_MEMBER void swap(Value2D &other)
+		{Zeta::swap<Base>((Base *)this, (Base *)&other);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D<T> xny(T n) const
