@@ -22,10 +22,10 @@ Z_INLINE zboolean z_range_##type##_are_equal(ZRange##Type a, ZRange##Type b)		 \
 	{return a.index == b.index && a.size == b.size;}				 \
 											 \
 											 \
-Z_INLINE zboolean z_range_##type##_contains(ZRange##Type object, ZRange##Type range)	 \
+Z_INLINE zboolean z_range_##type##_contains(ZRange##Type object, ZRange##Type other)	 \
 	{										 \
-	return	object.index		   <= range.index &&				 \
-		object.index + object.size >= range.index + range.size;			 \
+	return	object.index		   <= other.index &&				 \
+		object.index + object.size >= other.index + other.size;			 \
 	}										 \
 											 \
 											 \
