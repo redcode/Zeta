@@ -42,7 +42,7 @@ namespace Zeta {namespace Mixins {namespace Box {
 		/*Z_CT_MEMBER(CPP11) Boolean contains(const Sphere<T> &circle) const
 			{
 			return	sphere.point - sphere.radius >= Z_THIS->point &&
-				sphere.point + sphere.radius <	Z_THIS->point + Z_THIS->size;
+				sphere.point + sphere.radius <= Z_THIS->point + Z_THIS->size;
 			}*/
 
 
@@ -95,25 +95,25 @@ namespace Zeta {template <class T> struct Box : Mixins::Box::Partial<Box<T>, T, 
 	Z_INLINE_MEMBER    operator Base&  () const {return *((Base *)this);}
 
 
-	Z_CT_MEMBER(CPP11) Boolean operator ==(const Box &box) const
-		{return	point == box.point && size == box.size;}
+	Z_CT_MEMBER(CPP11) Boolean operator ==(const Box &rhs) const
+		{return	point == rhs.point && size == rhs.size;}
 
 
-	Z_CT_MEMBER(CPP11) Boolean operator !=(const Box &box) const
-		{return	point != box.point || size != box.size;}
+	Z_CT_MEMBER(CPP11) Boolean operator !=(const Box &rhs) const
+		{return	point != rhs.point || size != rhs.size;}
 
 
 	// Intersection
-	Z_CT_MEMBER(CPP14) Box operator &(const Box &box) const
+	Z_CT_MEMBER(CPP14) Box operator &(const Box &rhs) const
 		{
 		T x1, x2, y1, y2, z1, z2;
 
-		return	(x1 = maximum<T>(point.x,	   box.point.x)) <
-			(x2 = minimum<T>(point.x + size.x, box.point.x + box.size.x)) &&
-			(y1 = maximum<T>(point.y,	   box.point.y)) <
-			(y2 = minimum<T>(point.y + size.y, box.point.y + box.size.y)) &&
-			(z1 = maximum<T>(point.z,	   box.point.z)) <
-			(z2 = minimum<T>(point.z + size.z, box.point.z + box.size.z))
+		return	(x1 = maximum<T>(point.x,	   rhs.point.x)) <
+			(x2 = minimum<T>(point.x + size.x, rhs.point.x + rhs.size.x)) &&
+			(y1 = maximum<T>(point.y,	   rhs.point.y)) <
+			(y2 = minimum<T>(point.y + size.y, rhs.point.y + rhs.size.y)) &&
+			(z1 = maximum<T>(point.z,	   rhs.point.z)) <
+			(z2 = minimum<T>(point.z + size.z, rhs.point.z + rhs.size.z))
 
 			? Box(x1, y1, z1, x2 - x1, y2 - y1, z2 - z1)
 			: Box(T(0));
@@ -121,12 +121,12 @@ namespace Zeta {template <class T> struct Box : Mixins::Box::Partial<Box<T>, T, 
 
 
 	// Union
-	Z_CT_MEMBER(CPP14) Box operator |(const Box &box) const
+	Z_CT_MEMBER(CPP14) Box operator |(const Box &rhs) const
 		{
 		Box result;
 
-		result.point = point.minimum(box.point);
-		result.size  = (point + size).maximum(box.point + box.size) - result.point;
+		result.point = point.minimum(rhs.point);
+		result.size  = (point + size).maximum(rhs.point + rhs.size) - result.point;
 
 		return result;
 		}
@@ -136,24 +136,30 @@ namespace Zeta {template <class T> struct Box : Mixins::Box::Partial<Box<T>, T, 
 		{return point + size / T(2);}
 
 
-	Z_CT_MEMBER(CPP11) Boolean contains(const Box &box) const
-		{return box.point >= point && box.point + box.size < point + size;}
+	Z_CT_MEMBER(CPP11) Boolean contains(const Box &other) const
+		{
+		return	!other.size.has_zero() &&
+			other.point >= point && other.point + other.size <= point + size;
+		}
 
 
 	/*Z_CT_MEMBER(CPP11) Boolean contains(const AABB<T> &aabb) const
-		{return aabb.a >= point && aabb.b < point + size;}*/
+		{
+		return	aabb.a.x != aabb.b.x && aabb.a.y != aabb.b.y && aabb.a.z != aabb.b.z &&
+			aabb.a >= point && aabb.b <= point + size;
+		}
+		*/
 
 
 	Z_CT_MEMBER(CPP11) Boolean contains(const Value3D<T> &point) const
 		{return point >= this->point && point < this->point + this->size;}
 
 
-	/*Z_CT_MEMBER(CPP11) Boolean contains(const Line3D<T> &line_segment) const
-		{return contains(line_segment.a) && contains(line_segment.b);}*/
-
-
-	Z_CT_MEMBER(CPP11) Boolean intersects(const Box &box) const
-		{return box.point + box.size > point && box.point < point + size;}
+	Z_CT_MEMBER(CPP11) Boolean intersects(const Box &other) const
+		{
+		return	!size.has_zero() && !other.size.has_zero() &&
+			other.point + other.size > point && other.point < point + size;
+		}
 
 
 	Z_CT_MEMBER(CPP11) Boolean is_zero() const
@@ -169,8 +175,8 @@ namespace Zeta {template <class T> struct Box : Mixins::Box::Partial<Box<T>, T, 
 		}
 
 
-	Z_INLINE_MEMBER void swap(Box &box)
-		{Zeta::swap<Base>((Base *)this, (Base *)&box);}
+	Z_INLINE_MEMBER void swap(Box &other)
+		{Zeta::swap<Base>((Base *)this, (Base *)&other);}
 };}
 
 
