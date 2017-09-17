@@ -87,7 +87,7 @@ namespace Zeta {namespace Mixins {namespace Rectangle {
 		/*Z_CT_MEMBER(CPP11) Boolean contains(const Circle<T> &circle) const
 			{
 			return	circle.point - circle.radius >= Z_THIS->point &&
-				circle.point + circle.radius <	Z_THIS->point + Z_THIS->size;
+				circle.point + circle.radius <= Z_THIS->point + Z_THIS->size;
 			}*/
 
 
@@ -168,23 +168,23 @@ namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial
 	Z_INLINE_MEMBER    operator Base&  () const {return *((Base *)this);}
 
 
-	Z_CT_MEMBER(CPP11) Boolean operator ==(const Rectangle &rectangle) const
-		{return	point == rectangle.point && size == rectangle.size;}
+	Z_CT_MEMBER(CPP11) Boolean operator ==(const Rectangle &rhs) const
+		{return	point == rhs.point && size == rhs.size;}
 
 
-	Z_CT_MEMBER(CPP11) Boolean operator !=(const Rectangle &rectangle) const
-		{return	point != rectangle.point || size != rectangle.size;}
+	Z_CT_MEMBER(CPP11) Boolean operator !=(const Rectangle &rhs) const
+		{return	point != rhs.point || size != rhs.size;}
 
 
 	// Intersection
-	Z_CT_MEMBER(CPP14) Rectangle operator &(const Rectangle &rectangle) const
+	Z_CT_MEMBER(CPP14) Rectangle operator &(const Rectangle &rhs) const
 		{
 		T x1, x2, y1, y2;
 
-		return	(x1 = maximum<T>(point.x,	   rectangle.point.x)) <
-			(x2 = minimum<T>(point.x + size.x, rectangle.point.x + rectangle.size.x)) &&
-			(y1 = maximum<T>(point.y,	   rectangle.point.y)) <
-			(y2 = minimum<T>(point.y + size.y, rectangle.point.y + rectangle.size.y))
+		return	(x1 = maximum<T>(point.x,	   rhs.point.x)) <
+			(x2 = minimum<T>(point.x + size.x, rhs.point.x + rhs.size.x)) &&
+			(y1 = maximum<T>(point.y,	   rhs.point.y)) <
+			(y2 = minimum<T>(point.y + size.y, rhs.point.y + rhs.size.y))
 
 			? Rectangle(x1, y1, x2 - x1, y2 - y1)
 			: Rectangle(T(0));
@@ -192,39 +192,39 @@ namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial
 
 
 	// Union
-	Z_CT_MEMBER(CPP14) Rectangle operator |(const Rectangle &rectangle) const
+	Z_CT_MEMBER(CPP14) Rectangle operator |(const Rectangle &rhs) const
 		{
 		Rectangle result;
 
-		result.point = point.minimum(rectangle.point);
-		result.size  = (point + size).maximum(rectangle.point + rectangle.size) - result.point;
+		result.point = point.minimum(rhs.point);
+		result.size  = (point + size).maximum(rhs.point + rhs.size) - result.point;
 
 		return result;
 		}
 
 
-	Z_INLINE_MEMBER Rectangle &operator &=(const Rectangle &rectangle) {return *this = *this & rectangle;}
-	Z_INLINE_MEMBER Rectangle &operator |=(const Rectangle &rectangle) {return *this = *this | rectangle;}
+	Z_INLINE_MEMBER Rectangle &operator &=(const Rectangle &rhs) {return *this = *this & rhs;}
+	Z_INLINE_MEMBER Rectangle &operator |=(const Rectangle &rhs) {return *this = *this | rhs;}
 
-	Z_CT_MEMBER(CPP11) Rectangle operator +(const Value2D<T> &value) const {return Rectangle(point + value, size);}
-	Z_CT_MEMBER(CPP11) Rectangle operator -(const Value2D<T> &value) const {return Rectangle(point - value, size);}
-	Z_CT_MEMBER(CPP11) Rectangle operator *(const Value2D<T> &value) const {return Rectangle(point * value, size);}
-	Z_CT_MEMBER(CPP11) Rectangle operator /(const Value2D<T> &value) const {return Rectangle(point / value, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator +(const Value2D<T> &rhs) const {return Rectangle(point + rhs, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator -(const Value2D<T> &rhs) const {return Rectangle(point - rhs, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator *(const Value2D<T> &rhs) const {return Rectangle(point * rhs, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator /(const Value2D<T> &rhs) const {return Rectangle(point / rhs, size);}
 
-	Z_INLINE_MEMBER Rectangle &operator +=(const Value2D<T> &value) {return *this = *this + value;}
-	Z_INLINE_MEMBER Rectangle &operator -=(const Value2D<T> &value) {return *this = *this - value;}
-	Z_INLINE_MEMBER Rectangle &operator *=(const Value2D<T> &value) {return *this = *this * value;}
-	Z_INLINE_MEMBER Rectangle &operator /=(const Value2D<T> &value) {return *this = *this / value;}
+	Z_INLINE_MEMBER Rectangle &operator +=(const Value2D<T> &rhs) {return *this = *this + rhs;}
+	Z_INLINE_MEMBER Rectangle &operator -=(const Value2D<T> &rhs) {return *this = *this - rhs;}
+	Z_INLINE_MEMBER Rectangle &operator *=(const Value2D<T> &rhs) {return *this = *this * rhs;}
+	Z_INLINE_MEMBER Rectangle &operator /=(const Value2D<T> &rhs) {return *this = *this / rhs;}
 
-	Z_CT_MEMBER(CPP11) Rectangle operator +(T scalar) const {return Value2D<T>(point + scalar, size);}
-	Z_CT_MEMBER(CPP11) Rectangle operator -(T scalar) const {return Value2D<T>(point - scalar, size);}
-	Z_CT_MEMBER(CPP11) Rectangle operator *(T scalar) const {return Value2D<T>(point * scalar, size);}
-	Z_CT_MEMBER(CPP11) Rectangle operator /(T scalar) const {return Value2D<T>(point / scalar, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator +(T rhs) const {return Value2D<T>(point + rhs, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator -(T rhs) const {return Value2D<T>(point - rhs, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator *(T rhs) const {return Value2D<T>(point * rhs, size);}
+	Z_CT_MEMBER(CPP11) Rectangle operator /(T rhs) const {return Value2D<T>(point / rhs, size);}
 
-	Z_INLINE_MEMBER Rectangle &operator +=(T scalar) {return *this = *this + scalar;}
-	Z_INLINE_MEMBER Rectangle &operator -=(T scalar) {return *this = *this - scalar;}
-	Z_INLINE_MEMBER Rectangle &operator *=(T scalar) {return *this = *this * scalar;}
-	Z_INLINE_MEMBER Rectangle &operator /=(T scalar) {return *this = *this / scalar;}
+	Z_INLINE_MEMBER Rectangle &operator +=(T rhs) {return *this = *this + rhs;}
+	Z_INLINE_MEMBER Rectangle &operator -=(T rhs) {return *this = *this - rhs;}
+	Z_INLINE_MEMBER Rectangle &operator *=(T rhs) {return *this = *this * rhs;}
+	Z_INLINE_MEMBER Rectangle &operator /=(T rhs) {return *this = *this / rhs;}
 
 	Z_INLINE_MEMBER T  operator[](int index) const {return ((T *)this)[index];}
 	Z_INLINE_MEMBER T &operator[](int index)       {return ((T *)this)[index];}
@@ -366,20 +366,22 @@ namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial
 		{return Value2D<T>(point.x + size.x, point.y + size.y / T(2));}
 
 
-	Z_CT_MEMBER(CPP11) Boolean contains(const Rectangle &rectangle) const
-		{return rectangle.point >= point && rectangle.point + rectangle.size < point + size;}
+	Z_CT_MEMBER(CPP11) Boolean contains(const Rectangle &other) const
+		{
+		return	!other.size.has_zero() &&
+			other.point >= point && other.point + other.size <= point + size;
+		}
 
 
 	/*Z_CT_MEMBER(CPP11) Boolean contains(const AABR<T> &aabr) const
-		{return aabr.a >= point && aabr.b < point + size;}*/
+		{
+		return	aabr.a.x != aabr.b.x && aabr.a.y != aabr.b.y &&
+			aabr.a >= point && aabr.b <= point + size;
+		}*/
 
 
 	Z_CT_MEMBER(CPP11) Boolean contains(const Value2D<T> &point) const
 		{return point >= this->point && point < this->point + this->size;}
-
-
-	/*Z_CT_MEMBER(CPP11) Boolean contains(const Line2D<T> &line_segment) const
-		{return contains(line_segment.a) && contains(line_segment.b);}*/
 
 
 	Z_INLINE_MEMBER Rectangle &correct()
@@ -532,8 +534,11 @@ namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial
 		{return Rectangle(point.x, point.y - delta, size.x, size.y + delta);}
 
 
-	Z_CT_MEMBER(CPP11) Boolean intersects(const Rectangle &rectangle) const
-		{return rectangle.point + rectangle.size > point && rectangle.point < point + size;}
+	Z_CT_MEMBER(CPP11) Boolean intersects(const Rectangle &other) const
+		{
+		return	!size.has_zero() && !other.size.has_zero() &&
+			other.point + other.size > point && other.point < point + size;
+		}
 
 
 	Z_CT_MEMBER(CPP11) Boolean is_zero() const
@@ -612,8 +617,8 @@ namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial
 		{return Rectangle(point.x, point.y + delta, size.x, size.y - delta);}
 
 
-	Z_INLINE_MEMBER void swap(Rectangle &rectangle)
-		{Zeta::swap<Base>((Base *)this, (Base *)&rectangle);}
+	Z_INLINE_MEMBER void swap(Rectangle &other)
+		{Zeta::swap<Base>((Base *)this, (Base *)&other);}
 
 
 	Z_CT_MEMBER(CPP11) Value2D<T> top_center() const
