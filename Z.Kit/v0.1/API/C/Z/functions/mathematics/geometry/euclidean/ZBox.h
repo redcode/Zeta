@@ -21,7 +21,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 Z_INLINE ZAABB##Type z_box_##type##_aabb(ZBox##Type object)					\
 	{											\
 	return z_aabb_##type									\
-		(object.point.x,  object.point.y, object.point.z,				\
+		(object.point.x, object.point.y, object.point.z,				\
 		 object.point.x + object.size.x,						\
 		 object.point.y + object.size.y,						\
 		 object.point.z + object.size.z);						\
@@ -44,25 +44,31 @@ Z_INLINE Z3D##Type z_box_##type##_center(ZBox##Type object)					\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_box_##type##_contains(ZBox##Type object, ZBox##Type box)			\
+Z_INLINE zboolean z_box_##type##_contains(ZBox##Type object, ZBox##Type other)			\
 	{											\
-	return	box.point.x		 >= object.point.x		   &&			\
-		box.point.y		 >= object.point.y		   &&			\
-		box.point.z		 >= object.point.z		   &&			\
-		box.point.x + box.size.x <  object.point.x + object.size.x &&			\
-		box.point.y + box.size.y <  object.point.y + object.size.y &&			\
-		box.point.z + box.size.z <  object.point.z + object.size.z;			\
+	return	other.size.x		     != (z##type)0		       &&		\
+		other.size.y		     != (z##type)0		       &&		\
+		other.size.z		     != (z##type)0		       &&		\
+		other.point.x		     >= object.point.x		       &&		\
+		other.point.y		     >= object.point.y		       &&		\
+		other.point.z		     >= object.point.z		       &&		\
+		other.point.x + other.size.x <= object.point.x + object.size.x &&		\
+		other.point.y + other.size.y <= object.point.y + object.size.y &&		\
+		other.point.z + other.size.z <= object.point.z + object.size.z;			\
 	}											\
 												\
 												\
 Z_INLINE zboolean z_box_##type##_contains_aabb(ZBox##Type object, ZAABB##Type aabb)		\
 	{											\
-	return	aabb.a.x >= object.point.x		   &&					\
+	return	aabb.a.x != aabb.b.x			   &&					\
+		aabb.a.y != aabb.b.y			   &&					\
+		aabb.a.z != aabb.b.z			   &&					\
+		aabb.a.x >= object.point.x		   &&					\
 		aabb.a.y >= object.point.y		   &&					\
 		aabb.a.z >= object.point.z		   &&					\
-		aabb.b.x <  object.point.x + object.size.x &&					\
-		aabb.b.y <  object.point.y + object.size.y &&					\
-		aabb.b.z <  object.point.z + object.size.z;					\
+		aabb.b.x <= object.point.x + object.size.x &&					\
+		aabb.b.y <= object.point.y + object.size.y &&					\
+		aabb.b.z <= object.point.z + object.size.z;					\
 	}											\
 												\
 												\
@@ -74,16 +80,6 @@ Z_INLINE zboolean z_box_##type##_contains_point(ZBox##Type object, Z3D##Type poi
 		point.x <  object.point.x + object.size.x &&					\
 		point.y <  object.point.y + object.size.y &&					\
 		point.z <  object.point.z + object.size.z;					\
-	}											\
-												\
-												\
-Z_INLINE zboolean z_box_##type##_contains_line_segment(						\
-	ZBox##Type    object,									\
-	Z3DLine##Type line_segment								\
-)												\
-	{											\
-	return	z_box_##type##_contains_point(object, line_segment.a) &&			\
-		z_box_##type##_contains_point(object, line_segment.b);				\
 	}											\
 												\
 												\
@@ -111,9 +107,18 @@ Z_INLINE ZBox##Type z_box_##type##_from_vertices(Z3D##Type a, Z3D##Type b)			\
 												\
 Z_INLINE zboolean z_box_##type##_intersect(ZBox##Type a, ZBox##Type b)				\
 	{											\
-	return	a.point.x < b.point.x + b.size.x && b.point.x < a.point.x + a.size.x &&		\
-		a.point.y < b.point.y + b.size.y && b.point.y < a.point.y + a.size.y &&		\
-		a.point.z < b.point.z + b.size.z && b.point.z < a.point.z + a.size.z;		\
+	return	a.size.x	     != (z##type)0	     &&					\
+		a.size.y	     != (z##type)0	     &&					\
+		a.size.z	     != (z##type)0	     &&					\
+		b.size.x	     != (z##type)0	     &&					\
+		b.size.y	     != (z##type)0	     &&					\
+		b.size.z	     != (z##type)0	     &&					\
+		b.point.x + b.size.x >	a.point.x	     &&					\
+		b.point.y + b.size.y >	a.point.y	     &&					\
+		b.point.z + b.size.z >	a.point.z	     &&					\
+		b.point.x	     <	a.point.x + a.size.x &&					\
+		b.point.y	     <	a.point.y + a.size.y &&					\
+		b.point.z	     <	a.point.z + a.size.z;					\
 	}											\
 												\
 												\
@@ -200,9 +205,9 @@ Z_INLINE zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Typ
 	return	sphere.point.x - sphere.radius >= object.point.x		 &&		\
 		sphere.point.y - sphere.radius >= object.point.y		 &&		\
 		sphere.point.z - sphere.radius >= object.point.z		 &&		\
-		sphere.point.x + sphere.radius <  object.point.x + object.size.x &&		\
-		sphere.point.y + sphere.radius <  object.point.y + object.size.y &&		\
-		sphere.point.z + sphere.radius <  object.point.z + object.size.z;		\
+		sphere.point.x + sphere.radius <= object.point.x + object.size.x &&		\
+		sphere.point.y + sphere.radius <= object.point.y + object.size.y &&		\
+		sphere.point.z + sphere.radius <= object.point.z + object.size.z;		\
 	}											\
 												\
 												\

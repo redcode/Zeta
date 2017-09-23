@@ -147,8 +147,7 @@ namespace Zeta {template <class T> struct Box : Mixins::Box::Partial<Box<T>, T, 
 		{
 		return	aabb.a.x != aabb.b.x && aabb.a.y != aabb.b.y && aabb.a.z != aabb.b.z &&
 			aabb.a >= point && aabb.b <= point + size;
-		}
-		*/
+		}*/
 
 
 	Z_CT_MEMBER(CPP11) Boolean contains(const Value3D<T> &point) const
