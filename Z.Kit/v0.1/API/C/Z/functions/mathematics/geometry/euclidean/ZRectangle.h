@@ -183,22 +183,26 @@ Z_INLINE Z2D##Type z_rectangle_##type##_center_right(ZRectangle##Type object)			
 												\
 Z_INLINE zboolean z_rectangle_##type##_contains(						\
 	ZRectangle##Type object,								\
-	ZRectangle##Type rectangle								\
+	ZRectangle##Type other									\
 )												\
 	{											\
-	return	rectangle.point.x		     >= object.point.x		       &&	\
-		rectangle.point.y		     >= object.point.y		       &&	\
-		rectangle.point.x + rectangle.size.x <	object.point.x + object.size.x &&	\
-		rectangle.point.y + rectangle.size.y <	object.point.y + object.size.y;		\
+	return	other.size.x		     != (z##type)0		       &&		\
+		other.size.y		     != (z##type)0		       &&		\
+		other.point.x		     >= object.point.x		       &&		\
+		other.point.y		     >= object.point.y		       &&		\
+		other.point.x + other.size.x <= object.point.x + object.size.x &&		\
+		other.point.y + other.size.y <= object.point.y + object.size.y;			\
 	}											\
 												\
 												\
 Z_INLINE zboolean z_rectangle_##type##_contains_aabr(ZRectangle##Type object, ZAABR##Type aabr)	\
 	{											\
-	return	aabr.a.x >= object.point.x		   &&					\
+	return	aabr.a.x != aabr.b.x			   &&					\
+		aabr.a.y != aabr.b.y			   &&					\
+		aabr.a.x >= object.point.x		   &&					\
 		aabr.a.y >= object.point.y		   &&					\
-		aabr.b.x <  object.point.x + object.size.x &&					\
-		aabr.b.y <  object.point.y + object.size.y;					\
+		aabr.b.x <= object.point.x + object.size.x &&					\
+		aabr.b.y <= object.point.y + object.size.y;					\
 	}											\
 												\
 												\
@@ -208,16 +212,6 @@ Z_INLINE zboolean z_rectangle_##type##_contains_point(ZRectangle##Type object, Z
 		point.y >= object.point.y		  &&					\
 		point.x <  object.point.x + object.size.x &&					\
 		point.y <  object.point.y + object.size.y;					\
-	}											\
-												\
-												\
-Z_INLINE zboolean z_rectangle_##type##_contains_line_segment(					\
-	ZRectangle##Type object,								\
-	Z2DLine##Type	 line_segment								\
-)												\
-	{											\
-	return	z_rectangle_##type##_contains_point(object, line_segment.a) &&			\
-		z_rectangle_##type##_contains_point(object, line_segment.b);			\
 	}											\
 												\
 												\
@@ -539,8 +533,14 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_y_from_top(				\
 												\
 Z_INLINE zboolean z_rectangle_##type##_intersect(ZRectangle##Type a, ZRectangle##Type b)	\
 	{											\
-	return	a.point.x < b.point.x + b.size.x && b.point.x < a.point.x + a.size.x &&		\
-		a.point.y < b.point.y + b.size.y && b.point.y < a.point.y + a.size.y;		\
+	return	a.size.x	     != (z##type)0	     &&					\
+		a.size.y	     != (z##type)0	     &&					\
+		b.size.x	     != (z##type)0	     &&					\
+		b.size.y	     != (z##type)0	     &&					\
+		b.point.x + b.size.x >	a.point.x	     &&					\
+		b.point.y + b.size.y >	a.point.y	     &&					\
+		b.point.x	     <	a.point.x + a.size.x &&					\
+		b.point.y	     <	a.point.y + a.size.y;					\
 	}											\
 												\
 												\
@@ -973,8 +973,8 @@ Z_INLINE zboolean z_rectangle_##type##_contains_circle(						\
 	{											\
 	return	circle.point.x - circle.radius >= object.point.x		 &&		\
 		circle.point.y - circle.radius >= object.point.y		 &&		\
-		circle.point.x + circle.radius <  object.point.x + object.size.x &&		\
-		circle.point.y + circle.radius <  object.point.y + object.size.y;		\
+		circle.point.x + circle.radius <= object.point.x + object.size.x &&		\
+		circle.point.y + circle.radius <= object.point.y + object.size.y;		\
 	}											\
 												\
 												\
