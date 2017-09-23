@@ -45,6 +45,16 @@ Z_INLINE void z_2d_line_##type##_swap(Z2DLine##Type *a, Z2DLine##Type *b)		 \
 	}										 \
 											 \
 											 \
+Z_INLINE ZAABR##Type z_2d_line_segment_##type##_aabr(Z2DLine##Type object)		 \
+	{										 \
+	return z_aabr_##type								 \
+		(z_##type##_minimum(object.a.x, object.b.x),				 \
+		 z_##type##_minimum(object.a.y, object.b.y),				 \
+		 z_##type##_maximum(object.a.x, object.b.x),				 \
+		 z_##type##_maximum(object.a.y, object.b.y));		 		 \
+	}										 \
+											 \
+											 \
 Z_INLINE Z2D##Type z_2d_line_segment_##type##_center(Z2DLine##Type object)		 \
 	{return z_2d_##type##_middle(object.a, object.b);}
 
@@ -54,6 +64,7 @@ Z_INLINE Z2D##Type z_2d_line_segment_##type##_center(Z2DLine##Type object)		 \
 #define z_2d_line_type_is_zero(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_,		_is_zero	  )
 #define z_2d_line_type_reverse(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_,		_reverse	  )
 #define z_2d_line_type_swap(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_,		_swap		  )
+#define z_2d_line_segment_aabr(		 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_segment_, _aabr		  )
 #define z_2d_line_segment_type_center(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_segment_, _center		  )
 
 
@@ -154,6 +165,7 @@ Z_IMPLEMENTATION_2D_LINE_COMMON(Int32, int32)
 #	define z_2d_line_is_zero	   z_2d_line_type_is_zero	   (REAL)
 #	define z_2d_line_reverse	   z_2d_line_type_reverse	   (REAL)
 #	define z_2d_line_swap		   z_2d_line_type_swap		   (REAL)
+#	define z_2d_line_segment_aabr	   z_2d_line_segment_type_aabr	   (REAL)
 #	define z_2d_line_segment_center	   z_2d_line_segment_type_center   (REAL)
 #	define z_2d_line_segment_intersect z_2d_line_segment_type_intersect(REAL)
 #	define z_2d_line_segment_lerp	   z_2d_line_segment_type_lerp	   (REAL)
