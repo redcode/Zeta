@@ -41,7 +41,8 @@ namespace Zeta {namespace Mixins {namespace Box {
 
 		/*Z_CT_MEMBER(CPP11) Boolean contains(const Sphere<T> &circle) const
 			{
-			return	sphere.point - sphere.radius >= Z_THIS->point &&
+			return	sphere.radius != T(0)			      &&
+				sphere.point - sphere.radius >= Z_THIS->point &&
 				sphere.point + sphere.radius <= Z_THIS->point + Z_THIS->size;
 			}*/
 

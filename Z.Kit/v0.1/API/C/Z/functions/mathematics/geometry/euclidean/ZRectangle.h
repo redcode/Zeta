@@ -970,7 +970,8 @@ Z_INLINE zboolean z_rectangle_##type##_contains_circle(						\
 	ZCircle##Type	 circle									\
 )												\
 	{											\
-	return	circle.point.x - circle.radius >= object.point.x		 &&		\
+	return	circle.radius != (z##type)0					 &&		\
+		circle.point.x - circle.radius >= object.point.x		 &&		\
 		circle.point.y - circle.radius >= object.point.y		 &&		\
 		circle.point.x + circle.radius <= object.point.x + object.size.x &&		\
 		circle.point.y + circle.radius <= object.point.y + object.size.y;		\

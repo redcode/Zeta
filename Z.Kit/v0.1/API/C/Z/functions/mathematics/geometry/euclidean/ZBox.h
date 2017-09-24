@@ -201,7 +201,8 @@ Z_INLINE Z3D##Type z_box_##type##_absolute_point_to_unit(ZBox##Type object, Z3D#
 												\
 Z_INLINE zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Type sphere)	\
 	{											\
-	return	sphere.point.x - sphere.radius >= object.point.x		 &&		\
+	return	sphere.radius != (z##type)0					 &&		\
+		sphere.point.x - sphere.radius >= object.point.x		 &&		\
 		sphere.point.y - sphere.radius >= object.point.y		 &&		\
 		sphere.point.z - sphere.radius >= object.point.z		 &&		\
 		sphere.point.x + sphere.radius <= object.point.x + object.size.x &&		\
