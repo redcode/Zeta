@@ -16,8 +16,10 @@ namespace Zeta {struct OpaqueMemberFunctionPointer {
 	void (NaT::* pointer)();
 
 	template <class T, class = typename EnableIf<Type<T>::is_member_function_pointer>::type>
-	Z_CT_MEMBER(CPP11) OpaqueMemberFunctionPointer(T pointer)
-	: pointer(reinterpret_cast<void (NaT::*)()>(pointer)) {}
+	Z_INLINE_MEMBER OpaqueMemberFunctionPointer(T pointer)
+	: pointer((void (NaT::*)())pointer) {}
+
+	template <class T> Z_INLINE_MEMBER operator T() const {return (T)pointer;}
 };}
 
 
