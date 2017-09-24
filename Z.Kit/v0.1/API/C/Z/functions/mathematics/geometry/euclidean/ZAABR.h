@@ -136,24 +136,18 @@ Z_INLINE Z2D##Type z_aabr_##type##_center_right(ZAABR##Type object)				\
 	{return z_2d_##type(object.b.x, (object.a.y + object.b.y) / (z##type)2);}		\
 												\
 												\
-Z_INLINE zboolean z_aabr_##type##_contains(ZAABR##Type a, ZAABR##Type b)			\
-	{return b.a.x >= a.a.x && b.a.y >= a.a.y && b.b.x <= a.b.x && b.b.y <= a.b.y;}		\
+Z_INLINE zboolean z_aabr_##type##_contains(ZAABR##Type object, ZAABR##Type other)		\
+	{											\
+	return	other.a.x != other.b.x	&& other.a.y != other.b.y  &&				\
+		other.a.x >= object.a.x && other.a.y >= object.a.y &&				\
+		other.b.x <= object.b.x && other.b.y <= object.b.y;				\
+	}											\
 												\
 												\
 Z_INLINE zboolean z_aabr_##type##_contains_point(ZAABR##Type object, Z2D##Type point)		\
 	{											\
-	return	object.a.x <= point.x && point.x <= object.a.x &&				\
-		object.a.y <= point.y && point.y <= object.a.y;					\
-	}											\
-												\
-												\
-Z_INLINE zboolean z_aabr_##type##_contains_line_segment(					\
-	ZAABR##Type   object,									\
-	Z2DLine##Type segment									\
-)												\
-	{											\
-	return	z_aabr_##type##_contains_point(object, segment.a) &&				\
-		z_aabr_##type##_contains_point(object, segment.b);				\
+	return	point.x >= object.a.x && point.y >= object.a.y &&				\
+		point.x <  object.b.x && point.y <  object.b.y;					\
 	}											\
 												\
 												\
@@ -162,10 +156,12 @@ Z_INLINE zboolean z_aabr_##type##_contains_rectangle(						\
 	ZRectangle##Type rectangle								\
 )												\
 	{											\
-	return	object.a.x <= rectangle.point.x			   &&				\
-		object.a.y <= rectangle.point.y			   &&				\
-		object.b.x >= rectangle.point.x + rectangle.size.x &&				\
-		object.b.y >= rectangle.point.y + rectangle.size.y;				\
+	return	rectangle.size.x		     != (z##type)0 &&				\
+		rectangle.size.y		     != (z##type)0 &&				\
+		rectangle.point.x		     >= object.a.x &&				\
+		rectangle.point.y		     >= object.a.y &&				\
+		rectangle.point.x + rectangle.size.x <= object.b.x &&				\
+		rectangle.point.y + rectangle.size.y <= object.b.y;				\
 	}											\
 												\
 												\
@@ -402,16 +398,19 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_in_y_from_top(ZAABR##Type object, z##t
 												\
 												\
 Z_INLINE zboolean z_aabr_##type##_intersect(ZAABR##Type a, ZAABR##Type b)			\
-	{return a.a.x < b.b.x && b.a.x < a.b.x && a.a.y < b.b.y && b.a.y < a.b.y;}		\
+	{											\
+	return	a.a.x != a.b.x && a.a.y != a.b.y && b.a.x != b.b.x && b.a.y != b.b.y &&		\
+		b.b.x >  a.a.x && b.b.y >  a.a.y && b.a.x <  a.b.x && b.a.y <  a.b.y;		\
+	}											\
 												\
 												\
 Z_INLINE ZAABR##Type z_aabr_##type##_intersection(ZAABR##Type a, ZAABR##Type b)			\
 	{											\
 	z##type x1, x2, y1, y2;									\
 												\
-	return	(x1 = z_##type##_maximum(a.a.x, b.a.x)) <=					\
+	return	(x1 = z_##type##_maximum(a.a.x, b.a.x)) <					\
 		(x2 = z_##type##_minimum(a.b.x, b.b.x)) &&					\
-		(y1 = z_##type##_maximum(a.a.y, b.a.y))	<=					\
+		(y1 = z_##type##_maximum(a.a.y, b.a.y))	<					\
 		(y2 = z_##type##_minimum(a.b.y, b.b.y))						\
 												\
 		? z_aabr_##type(x1, y1, x2, y2)							\
@@ -672,7 +671,6 @@ Z_INLINE ZAABR##Type z_aabr_##type##_union(ZAABR##Type a, ZAABR##Type b)			\
 #define z_aabr_type_center_left(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _center_left		    )
 #define z_aabr_type_center_right(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _center_right		    )
 #define z_aabr_type_contains(		      TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _contains		    )
-#define z_aabr_type_contains_line_segment(    TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _contains_line_segment    )
 #define z_aabr_type_contains_point(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _contains_point	    )
 #define z_aabr_type_contains_rectangle(	      TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _contains_rectangle	    )
 #define z_aabr_type_fit_in_bottom_center(     TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_, _fit_in_bottom_center	    )
@@ -972,7 +970,6 @@ Z_IMPLEMENTATION_AABR_COMMON(Int32, int32)
 #	define z_aabr_center_right		z_aabr_type_center_right	     (REAL)
 #	define z_aabr_contains			z_aabr_type_contains		     (REAL)
 #	define z_aabr_contains_circle		z_aabr_type_contains_circle	     (REAL)
-#	define z_aabr_contains_line_segment	z_aabr_type_contains_line_segment    (REAL)
 #	define z_aabr_contains_point		z_aabr_type_contains_point	     (REAL)
 #	define z_aabr_contains_rectangle	z_aabr_type_contains_rectangle	     (REAL)
 #	define z_aabr_fit_in_bottom_center	z_aabr_type_fit_in_bottom_center     (REAL)
