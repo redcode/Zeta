@@ -945,49 +945,49 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-		template <class R, class... A> struct Function : Valid {
+		template <class R, class... P> struct Function : Valid {
 			enum {	is_callable = true,
 				is_function = true
 			};
-			enum {arity = sizeof...(A)};
+			enum {arity = sizeof...(P)};
 
-			typedef R type		   (A...);
-			typedef R to_const	   (A...) const;
-			typedef R to_volatile	   (A...)	volatile;
-			typedef R to_const_volatile(A...) const volatile;
+			typedef R type		   (P...);
+			typedef R to_const	   (P...) const;
+			typedef R to_volatile	   (P...)	volatile;
+			typedef R to_const_volatile(P...) const volatile;
 
 #			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-				typedef R to_lvalue		  (A...)		&;
-				typedef R to_rvalue		  (A...)		&&;
-				typedef R to_const_lvalue	  (A...) const		&;
-				typedef R to_const_rvalue	  (A...) const		&&;
-				typedef R to_volatile_lvalue	  (A...)       volatile &;
-				typedef R to_volatile_rvalue	  (A...)       volatile &&;
-				typedef R to_const_volatile_lvalue(A...) const volatile &;
-				typedef R to_const_volatile_rvalue(A...) const volatile &&;
+				typedef R to_lvalue		  (P...)		&;
+				typedef R to_rvalue		  (P...)		&&;
+				typedef R to_const_lvalue	  (P...) const		&;
+				typedef R to_const_rvalue	  (P...) const		&&;
+				typedef R to_volatile_lvalue	  (P...)       volatile &;
+				typedef R to_volatile_rvalue	  (P...)       volatile &&;
+				typedef R to_const_volatile_lvalue(P...) const volatile &;
+				typedef R to_const_volatile_rvalue(P...) const volatile &&;
 #			endif
 
 			typedef R return_type;
-			typedef TypeList<A...> parameters;
+			typedef TypeList<P...> parameters;
 		};
 
-		template <class R, class... A> struct VariadicFunction : Function<R, A...> {
+		template <class R, class... P> struct VariadicFunction : Function<R, P...> {
 			enum {is_variadic = true};
 
-			typedef R type		   (A..., ...);
-			typedef R to_const	   (A..., ...) const;
-			typedef R to_volatile	   (A..., ...)	     volatile;
-			typedef R to_const_volatile(A..., ...) const volatile;
+			typedef R type		   (P..., ...);
+			typedef R to_const	   (P..., ...) const;
+			typedef R to_volatile	   (P..., ...)	     volatile;
+			typedef R to_const_volatile(P..., ...) const volatile;
 
 #			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-				typedef R to_lvalue		  (A..., ...)		     &;
-				typedef R to_rvalue		  (A..., ...)		     &&;
-				typedef R to_const_lvalue	  (A..., ...) const	     &;
-				typedef R to_const_rvalue	  (A..., ...) const	     &&;
-				typedef R to_volatile_lvalue	  (A..., ...)       volatile &;
-				typedef R to_volatile_rvalue	  (A..., ...)       volatile &&;
-				typedef R to_const_volatile_lvalue(A..., ...) const volatile &;
-				typedef R to_const_volatile_rvalue(A..., ...) const volatile &&;
+				typedef R to_lvalue		  (P..., ...)		     &;
+				typedef R to_rvalue		  (P..., ...)		     &&;
+				typedef R to_const_lvalue	  (P..., ...) const	     &;
+				typedef R to_const_rvalue	  (P..., ...) const	     &&;
+				typedef R to_volatile_lvalue	  (P..., ...)       volatile &;
+				typedef R to_volatile_rvalue	  (P..., ...)       volatile &&;
+				typedef R to_const_volatile_lvalue(P..., ...) const volatile &;
+				typedef R to_const_volatile_rvalue(P..., ...) const volatile &&;
 #			endif
 		};
 
@@ -1581,35 +1581,35 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-		template <class C, class R, class... A> struct Case<R(C::*)(A...)		 > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)		     , C, R(A...)		> > {};
-		template <class C, class R, class... A> struct Case<R(C::*)(A...) const		 > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const	     , C, R(A...) const		> > {};
-		template <class C, class R, class... A> struct Case<R(C::*)(A...)	volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)	     volatile, C, R(A...)	volatile> > {};
-		template <class C, class R, class... A> struct Case<R(C::*)(A...) const volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const volatile, C, R(A...) const volatile> > {};
+		template <class C, class R, class... P> struct Case<R(C::*)(P...)		 > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		     , C, R(P...)		> > {};
+		template <class C, class R, class... P> struct Case<R(C::*)(P...) const		 > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const	     , C, R(P...) const		> > {};
+		template <class C, class R, class... P> struct Case<R(C::*)(P...)	volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)	     volatile, C, R(P...)	volatile> > {};
+		template <class C, class R, class... P> struct Case<R(C::*)(P...) const volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile, C, R(P...) const volatile> > {};
 
-		template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)		      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)	       , C, R(A..., ...)	       > > {};
-		template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const	      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const	       , C, R(A..., ...) const	       > > {};
-		template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)	     volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)       volatile, C, R(A..., ...)       volatile> > {};
-		template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const volatile, C, R(A..., ...) const volatile> > {};
+		template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)		      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)	       , C, R(P..., ...)	       > > {};
+		template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const	      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const	       , C, R(P..., ...) const	       > > {};
+		template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)	     volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)       volatile, C, R(P..., ...)       volatile> > {};
+		template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile, C, R(P..., ...) const volatile> > {};
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
-			template <class C, class R, class... A> struct Case<R(C::*)(A...)		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)		& , C, R(A...)		      & > > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A...)		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)		&&, C, R(A...)		      &&> > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A...) const		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const		& , C, R(A...) const	      & > > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A...) const		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const		&&, C, R(A...) const	      &&> > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A...)	volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)       volatile & , C, R(A...)	     volatile & > > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A...)	volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...)       volatile &&, C, R(A...)	     volatile &&> > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const volatile & , C, R(A...) const volatile &	> > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A...) const volatile &&, C, R(A...) const volatile &&> > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P...)		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		& , C, R(P...)		      & > > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P...)		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		&&, C, R(P...)		      &&> > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P...) const		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const		& , C, R(P...) const	      & > > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P...) const		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const		&&, C, R(P...) const	      &&> > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P...)	volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)       volatile & , C, R(P...)	     volatile & > > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P...)	volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)       volatile &&, C, R(P...)	     volatile &&> > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile & , C, R(P...) const volatile &	> > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile &&, C, R(P...) const volatile &&> > {};
 
-			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)		      & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)		  & , C, R(A...)		& > > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)		      &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)		  &&, C, R(A...)		&&> > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const	      & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const	  & , C, R(A...) const		& > > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const	      &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const	  &&, C, R(A...) const		&&> > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)	     volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)	 volatile & , C, R(A...)       volatile & > > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...)	     volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...)	 volatile &&, C, R(A...)       volatile &&> > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const volatile & , C, R(A...) const volatile & > > {};
-			template <class C, class R, class... A> struct Case<R(C::*)(A..., ...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(A..., ...) const volatile &&, C, R(A...) const volatile &&> > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)		      & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)		  & , C, R(P...)		& > > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)		      &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)		  &&, C, R(P...)		&&> > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const	      & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const	  & , C, R(P...) const		& > > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const	      &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const	  &&, C, R(P...) const		&&> > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)	     volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)	 volatile & , C, R(P...)       volatile & > > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)	     volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)	 volatile &&, C, R(P...)       volatile &&> > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile & , C, R(P...) const volatile & > > {};
+			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile &&, C, R(P...) const volatile &&> > {};
 
 #		endif
 
@@ -1639,37 +1639,37 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-		template <class R, class... A> struct Case<R(A...)> : Mixins::UnqualifiedFunction<Abstract::Function<R, A...> > {};
+		template <class R, class... P> struct Case<R(P...)> : Mixins::UnqualifiedFunction<Abstract::Function<R, P...> > {};
 
-		template <class R, class... A> struct Case<R(A...) const	 > : Mixins::ConstFunction	  <Case<R(A...)> > {};
-		template <class R, class... A> struct Case<R(A...)	 volatile> : Mixins::VolatileFunction	  <Case<R(A...)> > {};
-		template <class R, class... A> struct Case<R(A...) const volatile> : Mixins::ConstVolatileFunction<Case<R(A...)> > {};
+		template <class R, class... P> struct Case<R(P...) const	 > : Mixins::ConstFunction	  <Case<R(P...)> > {};
+		template <class R, class... P> struct Case<R(P...)	 volatile> : Mixins::VolatileFunction	  <Case<R(P...)> > {};
+		template <class R, class... P> struct Case<R(P...) const volatile> : Mixins::ConstVolatileFunction<Case<R(P...)> > {};
 
-		template <class R, class... A> struct Case<R(A..., ...)> : Mixins::UnqualifiedFunction<Abstract::VariadicFunction<R, A...> > {};
+		template <class R, class... P> struct Case<R(P..., ...)> : Mixins::UnqualifiedFunction<Abstract::VariadicFunction<R, P...> > {};
 
-		template <class R, class... A> struct Case<R(A..., ...) const	      > : Mixins::ConstFunction	       <Case<R(A..., ...)> > {};
-		template <class R, class... A> struct Case<R(A..., ...)	      volatile> : Mixins::VolatileFunction     <Case<R(A..., ...)> > {};
-		template <class R, class... A> struct Case<R(A..., ...) const volatile> : Mixins::ConstVolatileFunction<Case<R(A..., ...)> > {};
+		template <class R, class... P> struct Case<R(P..., ...) const	      > : Mixins::ConstFunction	       <Case<R(P..., ...)> > {};
+		template <class R, class... P> struct Case<R(P..., ...)	      volatile> : Mixins::VolatileFunction     <Case<R(P..., ...)> > {};
+		template <class R, class... P> struct Case<R(P..., ...) const volatile> : Mixins::ConstVolatileFunction<Case<R(P..., ...)> > {};
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
-			template <class R, class... A> struct Case<R(A...)		  & > : Mixins::LValueFunction		   <Case<R(A...)> > {};
-			template <class R, class... A> struct Case<R(A...)		  &&> : Mixins::RValueFunction		   <Case<R(A...)> > {};
-			template <class R, class... A> struct Case<R(A...) const	  & > : Mixins::ConstLValueFunction	   <Case<R(A...)> > {};
-			template <class R, class... A> struct Case<R(A...) const	  &&> : Mixins::ConstRValueFunction	   <Case<R(A...)> > {};
-			template <class R, class... A> struct Case<R(A...)	 volatile & > : Mixins::VolatileLValueFunction	   <Case<R(A...)> > {};
-			template <class R, class... A> struct Case<R(A...)	 volatile &&> : Mixins::VolatileRValueFunction	   <Case<R(A...)> > {};
-			template <class R, class... A> struct Case<R(A...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R(A...)> > {};
-			template <class R, class... A> struct Case<R(A...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R(A...)> > {};
+			template <class R, class... P> struct Case<R(P...)		  & > : Mixins::LValueFunction		   <Case<R(P...)> > {};
+			template <class R, class... P> struct Case<R(P...)		  &&> : Mixins::RValueFunction		   <Case<R(P...)> > {};
+			template <class R, class... P> struct Case<R(P...) const	  & > : Mixins::ConstLValueFunction	   <Case<R(P...)> > {};
+			template <class R, class... P> struct Case<R(P...) const	  &&> : Mixins::ConstRValueFunction	   <Case<R(P...)> > {};
+			template <class R, class... P> struct Case<R(P...)	 volatile & > : Mixins::VolatileLValueFunction	   <Case<R(P...)> > {};
+			template <class R, class... P> struct Case<R(P...)	 volatile &&> : Mixins::VolatileRValueFunction	   <Case<R(P...)> > {};
+			template <class R, class... P> struct Case<R(P...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R(P...)> > {};
+			template <class R, class... P> struct Case<R(P...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R(P...)> > {};
 
-			template <class R, class... A> struct Case<R(A..., ...)		       & > : Mixins::LValueFunction		<Case<R(A..., ...)> > {};
-			template <class R, class... A> struct Case<R(A..., ...)		       &&> : Mixins::RValueFunction		<Case<R(A..., ...)> > {};
-			template <class R, class... A> struct Case<R(A..., ...) const	       & > : Mixins::ConstLValueFunction	<Case<R(A..., ...)> > {};
-			template <class R, class... A> struct Case<R(A..., ...) const	       &&> : Mixins::ConstRValueFunction	<Case<R(A..., ...)> > {};
-			template <class R, class... A> struct Case<R(A..., ...)	      volatile & > : Mixins::VolatileLValueFunction     <Case<R(A..., ...)> > {};
-			template <class R, class... A> struct Case<R(A..., ...)	      volatile &&> : Mixins::VolatileRValueFunction     <Case<R(A..., ...)> > {};
-			template <class R, class... A> struct Case<R(A..., ...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R(A..., ...)> > {};
-			template <class R, class... A> struct Case<R(A..., ...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R(A..., ...)> > {};
+			template <class R, class... P> struct Case<R(P..., ...)		       & > : Mixins::LValueFunction		<Case<R(P..., ...)> > {};
+			template <class R, class... P> struct Case<R(P..., ...)		       &&> : Mixins::RValueFunction		<Case<R(P..., ...)> > {};
+			template <class R, class... P> struct Case<R(P..., ...) const	       & > : Mixins::ConstLValueFunction	<Case<R(P..., ...)> > {};
+			template <class R, class... P> struct Case<R(P..., ...) const	       &&> : Mixins::ConstRValueFunction	<Case<R(P..., ...)> > {};
+			template <class R, class... P> struct Case<R(P..., ...)	      volatile & > : Mixins::VolatileLValueFunction     <Case<R(P..., ...)> > {};
+			template <class R, class... P> struct Case<R(P..., ...)	      volatile &&> : Mixins::VolatileRValueFunction     <Case<R(P..., ...)> > {};
+			template <class R, class... P> struct Case<R(P..., ...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R(P..., ...)> > {};
+			template <class R, class... P> struct Case<R(P..., ...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R(P..., ...)> > {};
 
 #		endif
 
@@ -1785,35 +1785,35 @@ namespace Zeta {
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-		template <class C, class R, class... A> struct TypeToMemberPointer<R(A...)		 , C> {typedef R(C::*type)(A...)	       ;};
-		template <class C, class R, class... A> struct TypeToMemberPointer<R(A...) const	 , C> {typedef R(C::*type)(A...) const	       ;};
-		template <class C, class R, class... A> struct TypeToMemberPointer<R(A...)	 volatile, C> {typedef R(C::*type)(A...)       volatile;};
-		template <class C, class R, class... A> struct TypeToMemberPointer<R(A...) const volatile, C> {typedef R(C::*type)(A...) const volatile;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)		 , C> {typedef R(C::*type)(P...)	       ;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const	 , C> {typedef R(C::*type)(P...) const	       ;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)	 volatile, C> {typedef R(C::*type)(P...)       volatile;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const volatile, C> {typedef R(C::*type)(P...) const volatile;};
 
-		template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...)		      , C> {typedef R(C::*type)(A...)		    ;};
-		template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...) const	      , C> {typedef R(C::*type)(A...) const	    ;};
-		template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...)	      volatile, C> {typedef R(C::*type)(A...)	    volatile;};
-		template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...) const volatile, C> {typedef R(C::*type)(A...) const volatile;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)		      , C> {typedef R(C::*type)(P...)		    ;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const	      , C> {typedef R(C::*type)(P...) const	    ;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)	      volatile, C> {typedef R(C::*type)(P...)	    volatile;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const volatile, C> {typedef R(C::*type)(P...) const volatile;};
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A...)		  & , C> {typedef R(C::*type)(A...)		   & ;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A...)		  &&, C> {typedef R(C::*type)(A...)		   &&;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A...) const	  & , C> {typedef R(C::*type)(A...) const	   & ;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A...) const	  &&, C> {typedef R(C::*type)(A...) const	   &&;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A...)	 volatile & , C> {typedef R(C::*type)(A...)	  volatile & ;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A...)	 volatile &&, C> {typedef R(C::*type)(A...)	  volatile &&;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A...) const volatile & , C> {typedef R(C::*type)(A...) const volatile & ;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A...) const volatile &&, C> {typedef R(C::*type)(A...) const volatile &&;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)		  & , C> {typedef R(C::*type)(P...)		   & ;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)		  &&, C> {typedef R(C::*type)(P...)		   &&;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const	  & , C> {typedef R(C::*type)(P...) const	   & ;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const	  &&, C> {typedef R(C::*type)(P...) const	   &&;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)	 volatile & , C> {typedef R(C::*type)(P...)	  volatile & ;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)	 volatile &&, C> {typedef R(C::*type)(P...)	  volatile &&;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const volatile & , C> {typedef R(C::*type)(P...) const volatile & ;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const volatile &&, C> {typedef R(C::*type)(P...) const volatile &&;};
 
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...)		       & , C> {typedef R(C::*type)(A..., ...)		     & ;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...)		       &&, C> {typedef R(C::*type)(A..., ...)		     &&;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...) const	       & , C> {typedef R(C::*type)(A..., ...) const	     & ;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...) const	       &&, C> {typedef R(C::*type)(A..., ...) const	     &&;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...)	      volatile & , C> {typedef R(C::*type)(A..., ...)	    volatile & ;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...)	      volatile &&, C> {typedef R(C::*type)(A..., ...)	    volatile &&;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...) const volatile & , C> {typedef R(C::*type)(A..., ...) const volatile & ;};
-			template <class C, class R, class... A> struct TypeToMemberPointer<R(A..., ...) const volatile &&, C> {typedef R(C::*type)(A..., ...) const volatile &&;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)		       & , C> {typedef R(C::*type)(P..., ...)		     & ;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)		       &&, C> {typedef R(C::*type)(P..., ...)		     &&;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const	       & , C> {typedef R(C::*type)(P..., ...) const	     & ;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const	       &&, C> {typedef R(C::*type)(P..., ...) const	     &&;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)	      volatile & , C> {typedef R(C::*type)(P..., ...)	    volatile & ;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)	      volatile &&, C> {typedef R(C::*type)(P..., ...)	    volatile &&;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const volatile & , C> {typedef R(C::*type)(P..., ...) const volatile & ;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const volatile &&, C> {typedef R(C::*type)(P..., ...) const volatile &&;};
 
 #		endif
 

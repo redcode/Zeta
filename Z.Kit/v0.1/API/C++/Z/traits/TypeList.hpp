@@ -183,20 +183,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class L, class function_model> struct TypeListToFunction;
 
-		template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...)		     > {typedef FR type(A...)		    ;};
-		template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...) const	     > {typedef FR type(A...) const	    ;};
-		template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...)	     volatile> {typedef FR type(A...)	    volatile;};
-		template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...) const volatile> {typedef FR type(A...) const volatile;};
+		template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...)		 > {typedef R type(A...)	       ;};
+		template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...) const	 > {typedef R type(A...) const	       ;};
+		template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...)	 volatile> {typedef R type(A...)       volatile;};
+		template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...) const volatile> {typedef R type(A...) const volatile;};
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-			template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...)		      & > {typedef FR type(A...)		& ;};
-			template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...)		      &&> {typedef FR type(A...)		&&;};
-			template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...) const	      & > {typedef FR type(A...) const		& ;};
-			template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...) const	      &&> {typedef FR type(A...) const		&&;};
-			template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...)	     volatile & > {typedef FR type(A...)       volatile & ;};
-			template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...)	     volatile &&> {typedef FR type(A...)       volatile &&;};
-			template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...) const volatile & > {typedef FR type(A...) const volatile & ;};
-			template <template <class...> class L, class... A, class FR, class... FA> struct TypeListToFunction<L<A...>, FR(FA...) const volatile &&> {typedef FR type(A...) const volatile &&;};
+			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...)		  & > {typedef R type(A...)		   & ;};
+			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...)		  &&> {typedef R type(A...)		   &&;};
+			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...) const	  & > {typedef R type(A...) const	   & ;};
+			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...) const	  &&> {typedef R type(A...) const	   &&;};
+			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...)	 volatile & > {typedef R type(A...)	  volatile & ;};
+			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...)	 volatile &&> {typedef R type(A...)	  volatile &&;};
+			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...) const volatile & > {typedef R type(A...) const volatile & ;};
+			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...) const volatile &&> {typedef R type(A...) const volatile &&;};
 #		endif
 
 		template <class L, template <class...> class metafunction> struct TypeListTransform;
