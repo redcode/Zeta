@@ -156,13 +156,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 		typedef NaT parameters;
 
-		typedef NaT to_parameter;
 		typedef NaT to_const;
 		typedef NaT to_const_lvalue;
 		typedef NaT to_const_rvalue;
 		typedef NaT to_const_volatile;
 		typedef NaT to_const_volatile_lvalue;
 		typedef NaT to_const_volatile_rvalue;
+		typedef NaT to_forwardable;
 		typedef NaT to_function;
 		typedef NaT to_lvalue;
 		typedef NaT to_lvalue_reference;
@@ -1345,6 +1345,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	enum {	Void,
+		Function,
 		InconvertibleFunction,
 		ConvertibleFunction,
 		Value,
@@ -1708,7 +1709,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		typedef typename SelectType<
 			Final::is_compound,
 			T, typename Final<const typename Final::remove_const_volatile>::add_lvalue_reference
-		>::type to_parameter;
+		>::type to_forwardable;
 	};
 
 	template <> struct Final<		NaT> : Abstract::Invalid {};
@@ -1958,13 +1959,13 @@ namespace Zeta {
 
 			typedef typename Type::parameters parameters;
 
-			typedef typename Type<typename Type::to_parameter	     >::flow to_parameter;
 			typedef typename Type<typename Type::to_const		     >::flow to_const;
 			typedef typename Type<typename Type::to_const_lvalue	     >::flow to_const_lvalue;
 			typedef typename Type<typename Type::to_const_rvalue	     >::flow to_const_rvalue;
 			typedef typename Type<typename Type::to_const_volatile	     >::flow to_const_volatile;
 			typedef typename Type<typename Type::to_const_volatile_lvalue>::flow to_const_volatile_lvalue;
 			typedef typename Type<typename Type::to_const_volatile_rvalue>::flow to_const_volatile_rvalue;
+			typedef typename Type<typename Type::to_forwardable	     >::flow to_forwardable;
 			typedef typename Type<typename Type::to_function	     >::flow to_function;
 			typedef typename Type<typename Type::to_lvalue		     >::flow to_lvalue;
 			typedef typename Type<typename Type::to_lvalue_reference     >::flow to_lvalue_reference;
@@ -2035,13 +2036,13 @@ namespace Zeta {
 
 	template <class T> struct TypeParameters {typedef typename Type<T>::parameters type;};
 
-	template <class T> struct TypeToParameter	    {typedef typename Type<T>::to_parameter		type;};
 	template <class T> struct TypeToConst		    {typedef typename Type<T>::to_const			type;};
 	template <class T> struct TypeToConstLValue	    {typedef typename Type<T>::to_const_lvalue		type;};
 	template <class T> struct TypeToConstRValue	    {typedef typename Type<T>::to_const_rvalue		type;};
 	template <class T> struct TypeToConstVolatile	    {typedef typename Type<T>::to_const_volatile	type;};
 	template <class T> struct TypeToConstVolatileLValue {typedef typename Type<T>::to_const_volatile_lvalue	type;};
 	template <class T> struct TypeToConstVolatileRValue {typedef typename Type<T>::to_const_volatile_rvalue	type;};
+	template <class T> struct TypeToForwardable	    {typedef typename Type<T>::to_forwardable		type;};
 	template <class T> struct TypeToFunction	    {typedef typename Type<T>::to_function		type;};
 	template <class T> struct TypeToLValue		    {typedef typename Type<T>::to_lvalue		type;};
 	template <class T> struct TypeToLValueReference	    {typedef typename Type<T>::to_lvalue_reference	type;};
@@ -2093,13 +2094,13 @@ namespace Zeta {
 
 		template <class T> using type_parameters = typename Type<T>::parameters;
 
-		template <class T> using type_to_parameter	       = typename Type<T>::to_parameter;
 		template <class T> using type_to_const		       = typename Type<T>::to_const;
 		template <class T> using type_to_const_lvalue	       = typename Type<T>::to_const_lvalue;
 		template <class T> using type_to_const_rvalue	       = typename Type<T>::to_const_rvalue;
 		template <class T> using type_to_const_volatile	       = typename Type<T>::to_const_volatile;
 		template <class T> using type_to_const_volatile_lvalue = typename Type<T>::to_const_volatile_lvalue;
 		template <class T> using type_to_const_volatile_rvalue = typename Type<T>::to_const_volatile_rvalue;
+		template <class T> using type_to_forwardable	       = typename Type<T>::to_forwardable;
 		template <class T> using type_to_function	       = typename Type<T>::to_function;
 		template <class T> using type_to_lvalue		       = typename Type<T>::to_lvalue;
 		template <class T> using type_to_lvalue_reference      = typename Type<T>::to_lvalue_reference;

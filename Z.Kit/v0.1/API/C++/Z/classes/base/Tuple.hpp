@@ -54,12 +54,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {template <class... T> class Tuple : public Detail::Tuple::Super<
 		TypeList<T...>,
-		typename TypeListTransform<TypeList<T...>, TypeToParameter>::type
+		typename TypeListTransform<TypeList<T...>, TypeToForwardable>::type
 	>::type {
 
 		private:
 		typedef TypeList<T...>							      ValueTypeList;
-		typedef typename TypeListTransform   <ValueTypeList, TypeToParameter  >::type ParameterTypeList;
+		typedef typename TypeListTransform   <ValueTypeList, TypeToForwardable>::type ParameterTypeList;
 		typedef typename Detail::Tuple::Super<ValueTypeList, ParameterTypeList>::type Super;
 
 		protected:

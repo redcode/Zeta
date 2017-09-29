@@ -22,8 +22,8 @@ namespace Zeta {template <class T1, class T2> struct Pair {
 	Z_INLINE_MEMBER Pair() {}
 
 	Z_CT_MEMBER(CPP11) Pair(
-		typename Type<T1>::to_parameter first,
-		typename Type<T2>::to_parameter second
+		typename Type<T1>::to_forwardable first,
+		typename Type<T2>::to_forwardable second
 	) : first(first), second(second) {}
 
 	Z_INLINE_MEMBER ~Pair() {}
