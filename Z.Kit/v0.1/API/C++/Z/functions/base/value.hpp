@@ -47,7 +47,7 @@ namespace Zeta {
 		{return value >= T(0) ? T(1) : -T(1);}
 
 
-	// MARK: - Functions for real types only
+	// MARK: - Functions for real types
 
 
 	template <class T> Z_CT(CPP11) Boolean are_almost_equal(T a, T b)
