@@ -55,16 +55,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			private:
 			enum {tail_size = sizeof...(T) - (I + 1)};
 
+			public:
 			typedef Detail::Tuple::Element<typename TypeListRotateRight<
 				typename TypeListRemoveTail<TypeList<T...>, tail_size>::type, 1
 			>::type> Element;
 
-			public:
 			typedef typename Element::type type;
 		};
 
 
-#		if !Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
+#		if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
 			using Super::Super;
 #		else
 			Z_CT_MEMBER(CPP11) Tuple(typename Type<T>::to_forwardable ... values)
