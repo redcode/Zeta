@@ -14,84 +14,76 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {namespace Detail {namespace Tuple {
 
-		template <class value_type_list, class parameter_type_list> class Element;
-		template <class value_type_list, class parameter_type_list> class Super;
+		template <class type_list> class Element;
 
-		template <class... V, class... P>
-		struct Super<TypeList<V...>, TypeList<P...> > {
-			typedef Element<
-				typename TypeListRotateRight<TypeList<V...>, 1>::type,
-				typename TypeListRotateRight<TypeList<P...>, 1>::type
-			> type;
+		template <class... T> struct Super {
+			typedef Element<typename TypeListRotateRight<TypeList<T...>, 1>::type> type;
 		};
 
-		template <class VN, class... V, class PN, class... P>
-		class Element<TypeList<VN, V...>, TypeList<PN, P...> > : public Super<
-			TypeList<V...>,
-			TypeList<P...>
-		>::type {
-
-			private:
-			typedef typename Super<TypeList<V...>, TypeList<P...> >::type Super;
+		template <class TN, class... T>
+		class Element<TypeList<TN, T...> > : public Super<T...>::type {
 
 			protected:
-			VN _value;
+			TN _value;
 
 			public:
-			typedef VN Value;
-			typedef PN Parameter;
+			typedef TN type;
 
 			Z_INLINE_MEMBER Element() {}
-			Z_CT_MEMBER(CPP11) Element(P... previous, PN value) : Super(previous...), _value(value) {}
+
+			Z_CT_MEMBER(CPP11) Element(
+				typename Zeta::Type<T >::to_forwardable ... previous,
+				typename Zeta::Type<TN>::to_forwardable value
+			) : Super<T...>::type(previous...), _value(value) {}
 		};
 
-		template <> class Element<TypeList<>, TypeList<> > {
-			public: 
+		template <> class Element<TypeList<> > {
+			public:
 			Z_CT_MEMBER(CPP11) Element() {}
 		};
 	}}}
 
 
-	namespace Zeta {template <class... T> class Tuple : public Detail::Tuple::Super<
-		TypeList<T...>,
-		typename TypeListTransform<TypeList<T...>, TypeToForwardable>::type
-	>::type {
+	namespace Zeta {template <class... T> class Tuple : public Detail::Tuple::Super<T...>::type {
 
 		private:
-		typedef TypeList<T...>							      ValueTypeList;
-		typedef typename TypeListTransform   <ValueTypeList, TypeToForwardable>::type ParameterTypeList;
-		typedef typename Detail::Tuple::Super<ValueTypeList, ParameterTypeList>::type Super;
+		typedef typename Detail::Tuple::Super<T...>::type Super;
 
-		protected:
+		public:
 		template <UInt I> class At {
+
 			private:
 			enum {tail_size = sizeof...(T) - (I + 1)};
 
+			typedef Detail::Tuple::Element<typename TypeListRotateRight<
+				typename TypeListRemoveTail<TypeList<T...>, tail_size>::type, 1
+			>::type> Element;
+
 			public:
-			typedef Detail::Tuple::Element<
-				typename TypeListRotateRight<typename TypeListRemoveTail<ValueTypeList,	    tail_size>::type, 1>::type,
-				typename TypeListRotateRight<typename TypeListRemoveTail<ParameterTypeList, tail_size>::type, 1>::type
-			> Element;
+			typedef typename Element::type type;
 		};
 
-		public:
 
-#		if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
+#		if !Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
 			using Super::Super;
 #		else
-			Z_CT_MEMBER(CPP11) Tuple(T... values) : Super(values...) {}
+			Z_CT_MEMBER(CPP11) Tuple(typename Type<T>::to_forwardable ... values)
+			: Super(values...) {}
 #		endif
 
 
-		template <UInt I> Z_INLINE_MEMBER typename At<I>::Element::Value &at()
+		template <UInt I>
+		Z_INLINE_MEMBER typename At<I>::type &at()
 			{return At<I>::Element::_value;}
 
 
-		template <UInt I> Z_CT_MEMBER(CPP11) typename At<I>::Element::Parameter get() const
+		template <UInt I>
+		Z_CT_MEMBER(CPP11) typename Type<typename At<I>::type>::to_forwardable get() const
 			{return At<I>::Element::_value;}
 
 
-		template <UInt I> Z_INLINE_MEMBER Tuple &set(typename At<I>::Element::Parameter value)
+		template <UInt I>
+		Z_INLINE_MEMBER Tuple &set(typename Type<typename At<I>::type>::to_forwardable value)
 			{
 			At<I>::Element::_value = value;
 			return *this;
