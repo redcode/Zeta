@@ -36,64 +36,53 @@ namespace Zeta {
 		{return Zeta::minimum(Zeta::maximum(value, minimum), maximum);}
 
 
-	// MARK: - Functions for integer and real types
+	// MARK: - Functions for signed types
 
 
-	template <class T> Z_CT(CPP11) typename EnableIf<Type<T>::is_signed, T>::type
-	absolute(T value)
+	template <class T> Z_CT(CPP11) T absolute(T value)
 		{return value < T(0) ? -value : value;}
 
 
-	template <class T> Z_CT(CPP11) typename EnableIf<Type<T>::is_signed, T>::type
-	sign(T value)
+	template <class T> Z_CT(CPP11) T sign(T value)
 		{return value >= T(0) ? T(1) : -T(1);}
 
 
 	// MARK: - Functions for real types only
 
 
-	template <class T> Z_CT(CPP11) typename EnableIf<Type<T>::is_real, Boolean>::type
-	are_almost_equal(T a, T b)
+	template <class T> Z_CT(CPP11) Boolean are_almost_equal(T a, T b)
 		{return absolute(a - b) <= Type<T>::epsilon();}
 
 
-	template <class T> Z_CT(CPP11) typename EnableIf<Type<T>::is_real, T>::type
-	clamp_01(T value)
+	template <class T> Z_CT(CPP11) T clamp_01(T value)
 		{return minimum<T>(maximum<T>(value, T(0.0)), T(1.0));}
 
 
-	template <class T> Z_CT(CPP11) typename EnableIf<Type<T>::is_real, T>::type
-	inverse_lerp(T a, T b, T t)
+	template <class T> Z_CT(CPP11) T inverse_lerp(T a, T b, T t)
 		{return (t - a) / (b - a);}
 
 
-	template <class T> Z_CT(CPP11) typename EnableIf<Type<T>::is_real, Boolean>::type
-	is_almost_zero(T value)
+	template <class T> Z_CT(CPP11) Boolean is_almost_zero(T value)
 		{return absolute<T>(value) <= Type<T>::epsilon();}
 
 
-	template <class T> Z_CT(CPP11) typename EnableIf<Type<T>::is_real, Boolean>::type
-	is_finite(T value)
+	template <class T> Z_CT(CPP11) Boolean is_finite(T value)
 		{return value == value && value != Type<T>::infinity() && value != -Type<T>::infinity();}
 
 
-	template <class T> Z_CT(CPP11) typename EnableIf<Type<T>::is_real, Boolean>::type
-	is_infinity(T value)
+	template <class T> Z_CT(CPP11) Boolean is_infinity(T value)
 		{return value == Type<T>::infinity() || value == -Type<T>::infinity();}
 
 
-	template <class T> Z_CT(CPP11) typename EnableIf<Type<T>::is_real, Boolean>::type
-	is_nan(T value)
+	template <class T> Z_CT(CPP11) Boolean is_nan(T value)
 		{return !(value == value);}
 
 
-	template <class T> Z_CT(CPP11) typename EnableIf<Type<T>::is_real, T>::type
-	lerp(T a, T b, T t)
+	template <class T> Z_CT(CPP11) T lerp(T a, T b, T t)
 		{return a + t * (b - a);}
 
 
-	template <class T> Z_CT(CPP11) typename EnableIf<Type<T>::is_real, T>::type
-	sign_or_zero(T value)
+	template <class T> Z_CT(CPP11) T sign_or_zero(T value)
 		{
 		return absolute<T>(value) <= Type<T>::epsilon()
 			? T(0.0)
@@ -101,8 +90,7 @@ namespace Zeta {
 		}
 
 
-	template <class T> Z_CT(CPP14) typename EnableIf<Type<T>::is_real, T>::type
-	smootherstep(T a, T b, T t)
+	template <class T> Z_CT(CPP14) T smootherstep(T a, T b, T t)
 		{
 		if (t <= a) return T(0.0);
 		if (t >= b) return T(1.0);
@@ -111,8 +99,7 @@ namespace Zeta {
 		}
 
 
-	template <class T> Z_CT(CPP14) typename EnableIf<Type<T>::is_real, T>::type
-	smoothstep(T a, T b, T t)
+	template <class T> Z_CT(CPP14) T smoothstep(T a, T b, T t)
 		{
 		if (t <= a) return T(0.0);
 		if (t >= b) return T(1.0);
