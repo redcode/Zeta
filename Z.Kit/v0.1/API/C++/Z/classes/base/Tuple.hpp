@@ -12,6 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 
+
 	namespace Zeta {namespace Detail {namespace Tuple {
 
 		template <class type_list> class Element;
@@ -37,7 +38,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			) : Super<T...>::type(previous...), _value(value) {}
 		};
 
-		template <> class Element<TypeList<> > {
+		template <>
+		class Element<TypeList<> > {
 			public:
 			Z_CT_MEMBER(CPP11) Element() {}
 		};
@@ -89,6 +91,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			return *this;
 			}
 	};}
+
 
 #endif
 

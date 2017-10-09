@@ -36,8 +36,7 @@ namespace Zeta {namespace Mixins {namespace Value2D {
 	// MARK: - Partial implementation for signed types
 
 
-	template <class Value2D, class T>
-	struct Signed {
+	template <class Value2D, class T> struct Signed {
 
 		Z_CT_MEMBER(CPP11) Value2D absolute() const
 			{return Value2D(Zeta::absolute<T>(Z_THIS->x), Zeta::absolute<T>(Z_THIS->y));}
