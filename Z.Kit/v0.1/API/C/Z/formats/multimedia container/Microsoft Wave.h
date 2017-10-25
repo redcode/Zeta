@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_formats_multimedia_container_Microsoft_Wave_H__
 #define __Z_formats_multimedia_container_Microsoft_Wave_H__
 
-#include <Z/macros/filtering.h>
+#include <Z/types/base.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_id;		/* 'RIFF' in big endian */

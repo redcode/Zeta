@@ -27,7 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H__
 #define __Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H__
 
-#include <Z/macros/filtering.h>
+#include <Z/types/base.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	signature[2];	  /* 'SP' */

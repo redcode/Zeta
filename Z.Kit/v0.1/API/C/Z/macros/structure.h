@@ -94,4 +94,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_DEFINE_STRICT_UNION_BEGIN	Z_STRICT_SIZE_BEGIN typedef union {
 #define Z_DEFINE_STRICT_UNION_END	} Z_STRICT_SIZE_END
 
+#if Z_LANGUAGE_HAS(C, FLEXIBLE_ARRAY_MEMBER)
+#	define Z_FLEXIBLE_ARRAY_MEMBER(member) member
+#else
+#	define Z_FLEXIBLE_ARRAY_MEMBER(member)
+#endif
+
 #endif /* __Z_macros_structure_H__ */

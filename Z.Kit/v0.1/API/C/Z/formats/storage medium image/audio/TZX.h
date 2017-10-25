@@ -124,7 +124,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef __Z_formats_storage_medium_image_audio_TZX_H__
 #define __Z_formats_storage_medium_image_audio_TZX_H__
 
-#include <Z/macros/filtering.h>
+#include <Z/types/base.h>
 
 /* MARK: - File Header
 .--------------------------------------------------------------------------.

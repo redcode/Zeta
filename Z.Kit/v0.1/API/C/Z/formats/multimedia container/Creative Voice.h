@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_formats_multimedia_container_Creative_Voice_H__
 #define __Z_formats_multimedia_container_Creative_Voice_H__
 
-#include <Z/macros/filtering.h>
+#include <Z/types/base.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	identifier[19];	      /* 'Creative Voice File'		  */

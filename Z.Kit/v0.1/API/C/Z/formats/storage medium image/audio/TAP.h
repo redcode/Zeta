@@ -15,7 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef __Z_formats_storage_medium_image_audio_TAP_H__
 #define __Z_formats_storage_medium_image_audio_TAP_H__
 
-#include <Z/macros/filtering.h>
+#include <Z/types/base.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 size;
