@@ -1,12 +1,12 @@
-/* Z Kit C API - formats/keymap/Mac OS/virtual.h
+/* Z Kit C API - formats/keymap/Mac OS.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2017 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_formats_keymap_Mac_OS_virtual_H__
-#define __Z_formats_keymap_Mac_OS_virtual_H__
+#ifndef __Z_formats_keymap_Mac_OS_H__
+#define __Z_formats_keymap_Mac_OS_H__
 
 #define Z_MAC_OS_KEY_CODE_ANSI_A			0
 #define Z_MAC_OS_KEY_CODE_ANSI_S			1
@@ -134,38 +134,134 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_MAC_OS_KEY_CODE_DOWN_ARROW			125
 #define Z_MAC_OS_KEY_CODE_UP_ARROW			126
 
-#define Z_ARRAY_CONTENT_MAC_OS_KEY_CODE_TO_Z_KEY_CODE												       \
-	Z_KEY_CODE_ANSI_A,	      Z_KEY_CODE_ANSI_S,			Z_KEY_CODE_ANSI_D,		      Z_KEY_CODE_ANSI_F,	       \
-	Z_KEY_CODE_ANSI_H,	      Z_KEY_CODE_ANSI_G,			Z_KEY_CODE_ANSI_Z,		      Z_KEY_CODE_ANSI_X,	       \
-	Z_KEY_CODE_ANSI_C,	      Z_KEY_CODE_ANSI_V,			Z_KEY_CODE_ISO_SECTION,		      Z_KEY_CODE_ANSI_B,	       \
-	Z_KEY_CODE_ANSI_Q,	      Z_KEY_CODE_ANSI_W,			Z_KEY_CODE_ANSI_E,		      Z_KEY_CODE_ANSI_R,	       \
-	Z_KEY_CODE_ANSI_Y,	      Z_KEY_CODE_ANSI_T,			Z_KEY_CODE_ANSI_1,		      Z_KEY_CODE_ANSI_2,	       \
-	Z_KEY_CODE_ANSI_3,	      Z_KEY_CODE_ANSI_4,			Z_KEY_CODE_ANSI_6,		      Z_KEY_CODE_ANSI_5,	       \
-	Z_KEY_CODE_ANSI_EQUALS_SIGN,  Z_KEY_CODE_ANSI_9,			Z_KEY_CODE_ANSI_7,		      Z_KEY_CODE_ANSI_HYPHEN_MINUS,    \
-	Z_KEY_CODE_ANSI_8,	      Z_KEY_CODE_ANSI_0,			Z_KEY_CODE_ANSI_RIGHT_SQUARE_BRACKET, Z_KEY_CODE_ANSI_O,	       \
-	Z_KEY_CODE_ANSI_U,	      Z_KEY_CODE_ANSI_LEFT_SQUARE_BRACKET,	Z_KEY_CODE_ANSI_I,		      Z_KEY_CODE_ANSI_P,	       \
-	Z_KEY_CODE_RETURN,	      Z_KEY_CODE_ANSI_L,			Z_KEY_CODE_ANSI_J,		      Z_KEY_CODE_ANSI_APOSTROPHE,      \
-	Z_KEY_CODE_ANSI_K,	      Z_KEY_CODE_ANSI_SEMICOLON,		Z_KEY_CODE_ANSI_REVERSE_SOLIDUS,      Z_KEY_CODE_ANSI_COMMA,	       \
-	Z_KEY_CODE_ANSI_SOLIDUS,      Z_KEY_CODE_ANSI_N,			Z_KEY_CODE_ANSI_M,		      Z_KEY_CODE_ANSI_FULL_STOP,       \
-	Z_KEY_CODE_TAB,		      Z_KEY_CODE_SPACE,				Z_KEY_CODE_ANSI_GRAVE_ACCENT,	      Z_KEY_CODE_BACKSPACE,	       \
-	Z_KEY_CODE_INVALID,	      Z_KEY_CODE_ESCAPE,			Z_KEY_CODE_RIGHT_COMMAND,	      Z_KEY_CODE_LEFT_COMMAND,	       \
-	Z_KEY_CODE_LEFT_SHIFT,	      Z_KEY_CODE_CAPS_LOCK,			Z_KEY_CODE_LEFT_OPTION,		      Z_KEY_CODE_LEFT_CONTROL,	       \
-	Z_KEY_CODE_RIGHT_SHIFT,	      Z_KEY_CODE_RIGHT_OPTION,			Z_KEY_CODE_RIGHT_CONTROL,	      Z_KEY_CODE_FUNCTION,	       \
-	Z_KEY_CODE_APPLE_F17,	      Z_KEY_CODE_ANSI_KEYPAD_DECIMAL_SEPARATOR,	Z_KEY_CODE_INVALID,		      Z_KEY_CODE_ANSI_KEYPAD_ASTERISK, \
-	Z_KEY_CODE_INVALID,	      Z_KEY_CODE_ANSI_KEYPAD_PLUS_SIGN,		Z_KEY_CODE_INVALID,		      Z_KEY_CODE_ANSI_KEYPAD_NUM_LOCK, \
-	Z_KEY_CODE_INVALID,	      Z_KEY_CODE_INVALID,			Z_KEY_CODE_INVALID,		      Z_KEY_CODE_ANSI_KEYPAD_SOLIDUS,  \
-	Z_KEY_CODE_ANSI_KEYPAD_ENTER, Z_KEY_CODE_INVALID,			Z_KEY_CODE_ANSI_KEYPAD_HYPHEN_MINUS,  Z_KEY_CODE_APPLE_F18,	       \
-	Z_KEY_CODE_APPLE_F19,	      Z_KEY_CODE_APPLE_ANSI_KEYPAD_EQUALS_SIGN,	Z_KEY_CODE_ANSI_KEYPAD_0,	      Z_KEY_CODE_ANSI_KEYPAD_1,	       \
-	Z_KEY_CODE_ANSI_KEYPAD_2,     Z_KEY_CODE_ANSI_KEYPAD_3,			Z_KEY_CODE_ANSI_KEYPAD_4,	      Z_KEY_CODE_ANSI_KEYPAD_5,	       \
-	Z_KEY_CODE_ANSI_KEYPAD_6,     Z_KEY_CODE_ANSI_KEYPAD_7,			Z_KEY_CODE_APPLE_F20,		      Z_KEY_CODE_ANSI_KEYPAD_8,	       \
-	Z_KEY_CODE_ANSI_KEYPAD_9,     Z_KEY_CODE_JIS_YEN_SIGN,			Z_KEY_CODE_JIS_LOW_LINE,	      Z_KEY_CODE_JIS_KEYPAD_COMMA,     \
-	Z_KEY_CODE_F5,		      Z_KEY_CODE_F6,				Z_KEY_CODE_F7,			      Z_KEY_CODE_F3,		       \
-	Z_KEY_CODE_F8,		      Z_KEY_CODE_F9,				Z_KEY_CODE_JIS_EISU,		      Z_KEY_CODE_F11,		       \
-	Z_KEY_CODE_JIS_KANA,	      Z_KEY_CODE_PRINT_SCREEN,			Z_KEY_CODE_APPLE_F16,		      Z_KEY_CODE_SCROLL_LOCK,	       \
-	Z_KEY_CODE_INVALID,	      Z_KEY_CODE_F10,				Z_KEY_CODE_APPLICATION,		      Z_KEY_CODE_F12,		       \
-	Z_KEY_CODE_INVALID,	      Z_KEY_CODE_PAUSE,				Z_KEY_CODE_INSERT,		      Z_KEY_CODE_HOME,		       \
-	Z_KEY_CODE_PAGE_UP,	      Z_KEY_CODE_DELETE,			Z_KEY_CODE_F4,			      Z_KEY_CODE_END,		       \
-	Z_KEY_CODE_F2,		      Z_KEY_CODE_PAGE_DOWN,			Z_KEY_CODE_F1,			      Z_KEY_CODE_LEFT,		       \
-	Z_KEY_CODE_RIGHT,	      Z_KEY_CODE_DOWN,				Z_KEY_CODE_UP,			      Z_KEY_CODE_INVALID
+#define Z_ARRAY_CONTENT_MAC_OS_KEY_CODE_TO_Z_KEY_CODE \
+	Z_KEY_CODE_ANSI_A,			      \
+	Z_KEY_CODE_ANSI_S,			      \
+	Z_KEY_CODE_ANSI_D,			      \
+	Z_KEY_CODE_ANSI_F,			      \
+	Z_KEY_CODE_ANSI_H,			      \
+	Z_KEY_CODE_ANSI_G,			      \
+	Z_KEY_CODE_ANSI_Z,			      \
+	Z_KEY_CODE_ANSI_X,			      \
+	Z_KEY_CODE_ANSI_C,			      \
+	Z_KEY_CODE_ANSI_V,			      \
+	Z_KEY_CODE_ISO_SECTION,			      \
+	Z_KEY_CODE_ANSI_B,			      \
+	Z_KEY_CODE_ANSI_Q,			      \
+	Z_KEY_CODE_ANSI_W,			      \
+	Z_KEY_CODE_ANSI_E,			      \
+	Z_KEY_CODE_ANSI_R,			      \
+	Z_KEY_CODE_ANSI_Y,			      \
+	Z_KEY_CODE_ANSI_T,			      \
+	Z_KEY_CODE_ANSI_1,			      \
+	Z_KEY_CODE_ANSI_2,			      \
+	Z_KEY_CODE_ANSI_3,			      \
+	Z_KEY_CODE_ANSI_4,			      \
+	Z_KEY_CODE_ANSI_6,			      \
+	Z_KEY_CODE_ANSI_5,			      \
+	Z_KEY_CODE_ANSI_EQUALS_SIGN,		      \
+	Z_KEY_CODE_ANSI_9,			      \
+	Z_KEY_CODE_ANSI_7,			      \
+	Z_KEY_CODE_ANSI_HYPHEN_MINUS,		      \
+	Z_KEY_CODE_ANSI_8,			      \
+	Z_KEY_CODE_ANSI_0,			      \
+	Z_KEY_CODE_ANSI_RIGHT_SQUARE_BRACKET,	      \
+	Z_KEY_CODE_ANSI_O,			      \
+	Z_KEY_CODE_ANSI_U,			      \
+	Z_KEY_CODE_ANSI_LEFT_SQUARE_BRACKET,	      \
+	Z_KEY_CODE_ANSI_I,			      \
+	Z_KEY_CODE_ANSI_P,			      \
+	Z_KEY_CODE_RETURN,			      \
+	Z_KEY_CODE_ANSI_L,			      \
+	Z_KEY_CODE_ANSI_J,			      \
+	Z_KEY_CODE_ANSI_APOSTROPHE,		      \
+	Z_KEY_CODE_ANSI_K,			      \
+	Z_KEY_CODE_ANSI_SEMICOLON,		      \
+	Z_KEY_CODE_ANSI_REVERSE_SOLIDUS,	      \
+	Z_KEY_CODE_ANSI_COMMA,			      \
+	Z_KEY_CODE_ANSI_SOLIDUS,		      \
+	Z_KEY_CODE_ANSI_N,			      \
+	Z_KEY_CODE_ANSI_M,			      \
+	Z_KEY_CODE_ANSI_FULL_STOP,		      \
+	Z_KEY_CODE_TAB,				      \
+	Z_KEY_CODE_SPACE,			      \
+	Z_KEY_CODE_ANSI_GRAVE_ACCENT,		      \
+	Z_KEY_CODE_BACKSPACE,			      \
+	Z_KEY_CODE_INVALID,			      \
+	Z_KEY_CODE_ESCAPE,			      \
+	Z_KEY_CODE_RIGHT_COMMAND,		      \
+	Z_KEY_CODE_LEFT_COMMAND,		      \
+	Z_KEY_CODE_LEFT_SHIFT,			      \
+	Z_KEY_CODE_CAPS_LOCK,			      \
+	Z_KEY_CODE_LEFT_OPTION,			      \
+	Z_KEY_CODE_LEFT_CONTROL,		      \
+	Z_KEY_CODE_RIGHT_SHIFT,			      \
+	Z_KEY_CODE_RIGHT_OPTION,		      \
+	Z_KEY_CODE_RIGHT_CONTROL,		      \
+	Z_KEY_CODE_FUNCTION,			      \
+	Z_KEY_CODE_APPLE_F17,			      \
+	Z_KEY_CODE_ANSI_KEYPAD_DECIMAL_SEPARATOR,     \
+	Z_KEY_CODE_INVALID,			      \
+	Z_KEY_CODE_ANSI_KEYPAD_ASTERISK,	      \
+	Z_KEY_CODE_INVALID,			      \
+	Z_KEY_CODE_ANSI_KEYPAD_PLUS_SIGN,	      \
+	Z_KEY_CODE_INVALID,			      \
+	Z_KEY_CODE_ANSI_KEYPAD_NUM_LOCK,	      \
+	Z_KEY_CODE_INVALID,			      \
+	Z_KEY_CODE_INVALID,			      \
+	Z_KEY_CODE_INVALID,			      \
+	Z_KEY_CODE_ANSI_KEYPAD_SOLIDUS,		      \
+	Z_KEY_CODE_ANSI_KEYPAD_ENTER,		      \
+	Z_KEY_CODE_INVALID,			      \
+	Z_KEY_CODE_ANSI_KEYPAD_HYPHEN_MINUS,	      \
+	Z_KEY_CODE_APPLE_F18,			      \
+	Z_KEY_CODE_APPLE_F19,			      \
+	Z_KEY_CODE_APPLE_ANSI_KEYPAD_EQUALS_SIGN,     \
+	Z_KEY_CODE_ANSI_KEYPAD_0,		      \
+	Z_KEY_CODE_ANSI_KEYPAD_1,		      \
+	Z_KEY_CODE_ANSI_KEYPAD_2,		      \
+	Z_KEY_CODE_ANSI_KEYPAD_3,		      \
+	Z_KEY_CODE_ANSI_KEYPAD_4,		      \
+	Z_KEY_CODE_ANSI_KEYPAD_5,		      \
+	Z_KEY_CODE_ANSI_KEYPAD_6,		      \
+	Z_KEY_CODE_ANSI_KEYPAD_7,		      \
+	Z_KEY_CODE_APPLE_F20,			      \
+	Z_KEY_CODE_ANSI_KEYPAD_8,		      \
+	Z_KEY_CODE_ANSI_KEYPAD_9,		      \
+	Z_KEY_CODE_JIS_YEN_SIGN,		      \
+	Z_KEY_CODE_JIS_LOW_LINE,		      \
+	Z_KEY_CODE_JIS_KEYPAD_COMMA,		      \
+	Z_KEY_CODE_F5,				      \
+	Z_KEY_CODE_F6,				      \
+	Z_KEY_CODE_F7,				      \
+	Z_KEY_CODE_F3,				      \
+	Z_KEY_CODE_F8,				      \
+	Z_KEY_CODE_F9,				      \
+	Z_KEY_CODE_JIS_EISU,			      \
+	Z_KEY_CODE_F11,				      \
+	Z_KEY_CODE_JIS_KANA,			      \
+	Z_KEY_CODE_PRINT_SCREEN,		      \
+	Z_KEY_CODE_APPLE_F16,			      \
+	Z_KEY_CODE_SCROLL_LOCK,			      \
+	Z_KEY_CODE_INVALID,			      \
+	Z_KEY_CODE_F10,				      \
+	Z_KEY_CODE_APPLICATION,			      \
+	Z_KEY_CODE_F12,				      \
+	Z_KEY_CODE_INVALID,			      \
+	Z_KEY_CODE_PAUSE,			      \
+	Z_KEY_CODE_INSERT,			      \
+	Z_KEY_CODE_HOME,			      \
+	Z_KEY_CODE_PAGE_UP,			      \
+	Z_KEY_CODE_DELETE,			      \
+	Z_KEY_CODE_F4,				      \
+	Z_KEY_CODE_END,				      \
+	Z_KEY_CODE_F2,				      \
+	Z_KEY_CODE_PAGE_DOWN,			      \
+	Z_KEY_CODE_F1,				      \
+	Z_KEY_CODE_LEFT,			      \
+	Z_KEY_CODE_RIGHT,			      \
+	Z_KEY_CODE_DOWN,			      \
+	Z_KEY_CODE_UP,				      \
+	Z_KEY_CODE_INVALID
 
-#endif /* __Z_formats_keymap_Mac_OS_virtual_H__ */
+#endif /* __Z_formats_keymap_Mac_OS_H__ */
