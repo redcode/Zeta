@@ -1381,7 +1381,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if __has_extension()
 #	define Z_COMPILER_TRAIT_TYPE
 #endif
-/*
 
 __has_nothrow_assign
 __has_nothrow_copy
