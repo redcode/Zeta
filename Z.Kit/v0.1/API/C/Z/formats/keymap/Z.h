@@ -112,28 +112,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_CODE_ANSI_KEYPAD_8		 101
 #define Z_KEY_CODE_ANSI_KEYPAD_9		 102
 #define Z_KEY_CODE_APPLE_ANSI_KEYPAD_EQUALS_SIGN 103 /* Apple keyboards */
-#define Z_KEY_CODE_UNUSED_0			 104 /* Unused */
-#define Z_KEY_CODE_UNUSED_1			 105 /* Unused */
-#define Z_KEY_CODE_UNUSED_2			 106 /* Unused */
-#define Z_KEY_CODE_UNUSED_3			 107 /* Unused */
-#define Z_KEY_CODE_UNUSED_4			 108 /* Unused */
-#define Z_KEY_CODE_UNUSED_5			 109 /* Unused */
-#define Z_KEY_CODE_UNUSED_6			 110 /* Unused */
-#define Z_KEY_CODE_UNUSED_7			 111 /* Unused */
-#define Z_KEY_CODE_UNUSED_8			 112 /* Unused */
-#define Z_KEY_CODE_UNUSED_9			 113 /* Unused */
-#define Z_KEY_CODE_UNUSED_10			 114 /* Unused */
-#define Z_KEY_CODE_JIS_EISU			 115 /* Japanese keyboards */
-#define Z_KEY_CODE_JIS_KANA			 116 /* Japanese keyboards */
-#define Z_KEY_CODE_JIS_LOW_LINE			 117 /* Japanese keyboards */
-#define Z_KEY_CODE_JIS_YEN_SIGN			 118 /* Japanese keyboards */
-#define Z_KEY_CODE_JIS_KEYPAD_COMMA		 119 /* Japanese keyboards */
-#define Z_KEY_CODE_ISO_SECTION			 120 /* ISO keyboards */
-#define Z_KEY_CODE_APPLE_F16			 121 /* Apple keyboards */
-#define Z_KEY_CODE_APPLE_F17			 122 /* Apple keyboards */
-#define Z_KEY_CODE_APPLE_F18			 123 /* Apple keyboards */
-#define Z_KEY_CODE_APPLE_F19			 124 /* Apple keyboards */
-#define Z_KEY_CODE_APPLE_F20			 125 /* Apple keyboards */
+#define Z_KEY_CODE_F13				 104
+#define Z_KEY_CODE_F14				 105
+#define Z_KEY_CODE_F15				 106
+#define Z_KEY_CODE_F16				 107
+#define Z_KEY_CODE_F17				 108
+#define Z_KEY_CODE_F18				 109
+#define Z_KEY_CODE_F19				 110
+#define Z_KEY_CODE_F20				 111
+#define Z_KEY_CODE_F21				 112
+#define Z_KEY_CODE_F22				 113
+#define Z_KEY_CODE_F23				 114
+#define Z_KEY_CODE_F24				 115
+#define Z_KEY_CODE_JIS_EISU			 116 /* Japanese keyboards */
+#define Z_KEY_CODE_JIS_KANA			 117 /* Japanese keyboards */
+#define Z_KEY_CODE_JIS_LOW_LINE			 118 /* Japanese keyboards */
+#define Z_KEY_CODE_JIS_YEN_SIGN			 119 /* Japanese keyboards */
+#define Z_KEY_CODE_JIS_KEYPAD_COMMA		 120 /* Japanese keyboards */
+#define Z_KEY_CODE_ISO_SECTION			 121 /* ISO keyboards */
+#define Z_KEY_CODE_VOLUME_UP			 122
+#define Z_KEY_CODE_VOLUME_DOWN			 123
+#define Z_KEY_CODE_MUTE				 124
+#define Z_KEY_CODE_UNUSED_0			 125
 #define Z_KEY_CODE_FUNCTION			 126
 #define Z_KEY_CODE_DELETE			 127 /* Similar to ASCII */
 #define Z_KEY_CODE_INVALID			 Z_KEY_CODE_UNUSED_0
