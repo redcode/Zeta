@@ -19,7 +19,7 @@ namespace Zeta {template <Size S> struct SizedString {
 	Z_CT_MEMBER(CPP11) SizedString() : data{0} {}
 
 
-	Z_INLINE_MEMBER SizedString(const Character *string)
+	Z_CT_MEMBER(CPP14) SizedString(const Character *string)
 		{
 		Size size = S;
 		Character *data = this->data;
