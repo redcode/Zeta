@@ -426,7 +426,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 #		if __has_feature(cxx_inheriting_constructors)
-#			define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE
+#			define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE /* v3.3 */
 #		endif
 
 #		if __has_feature(cxx_generalized_initializers)
@@ -434,7 +434,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 #		if __has_feature(cxx_lambdas) || __has_extension(cxx_lambdas)
-#			define Z_COMPILER_CPP_HAS_LAMBDA TRUE
+#			define Z_COMPILER_CPP_HAS_LAMBDA TRUE /* v3.1 */
 #		endif
 
 #		if __has_feature(cxx_nonstatic_member_init)
@@ -456,7 +456,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		/*#define Z_COMPILER_CPP_HAS_STATIC_CONSTANT_DATA_MEMBER_INITIALIZER*/
 
 #		if __has_feature(cxx_strong_enums) || __has_extension(cxx_strong_enums)
-#			define Z_COMPILER_CPP_HAS_STRONGLY_TYPED_ENUMERATION TRUE
+#			define Z_COMPILER_CPP_HAS_STRONGLY_TYPED_ENUMERATION TRUE /* v2.9 */
 #		endif
 
 #		if __has_feature(cxx_alias_templates) || __has_extension(cxx_alias_templates)
@@ -476,12 +476,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS TRUE
 #		endif
 
-#		if __has_attribute(carries_dependency)
-#			define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY TRUE
-#		endif
+#		if Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0)
 
-#		if __has_attribute(noreturn)
-#			define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN TRUE
+#			if __has_attribute(carries_dependency)
+#				define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY TRUE
+#			endif
+
+#			if __has_attribute(noreturn)
+#				define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN TRUE
+#			endif
+
 #		endif
 
 #		if __has_feature(cxx_nullptr) || __has_extension(cxx_nullptr)
@@ -538,12 +542,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __cplusplus >= 201402L
 
-#		if __has_feature(cxx_binary_literals) || __has_extension(cxx_binary_literals)
-#			define Z_COMPILER_CPP_HAS_BINARY_LITERAL TRUE
-#		endif
-
 #		if __has_feature(cxx_relaxed_constexpr) || __has_extension(cxx_relaxed_constexpr)
 #			define Z_COMPILER_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION TRUE
+#		endif
+
+#		if __has_feature(cxx_return_type_deduction) || __has_extension(cxx_return_type_deduction)
+#			define Z_COMPILER_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE
+#		endif
+
+#		if __has_feature(cxx_variable_templates) || __has_extension(cxx_variable_templates)
+#			define Z_COMPILER_CPP_HAS_VARIABLE_TEMPLATE TRUE
+#		endif
+
+#		if __has_attribute(deprecated) && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
+#			define Z_COMPILER_CPP_HAS_ATTRIBUTE_DEPRECATED TRUE /* v3.4 */
+#		endif
+
+#		if __has_feature(cxx_binary_literals) || __has_extension(cxx_binary_literals)
+#			define Z_COMPILER_CPP_HAS_LITERAL_BINARY TRUE
 #		endif
 
 #	endif

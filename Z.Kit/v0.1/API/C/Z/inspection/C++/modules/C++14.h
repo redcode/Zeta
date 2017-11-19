@@ -14,7 +14,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Features */
 
-#define Z_CPP_HAS_BINARY_LITERAL		       TRUE /* N3472 */
-#define Z_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION TRUE /* N3652 */
+#define Z_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION	    TRUE /* N3652 */
+#define Z_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* N3638 */
+#define Z_CPP_HAS_VARIABLE_TEMPLATE			    TRUE /* N3651 */
+
+/* MARK: - Attributes */
+
+#define Z_CPP_HAS_ATTRIBUTE_DEPRECATED TRUE /* N3760: [[deprecated]] */
+
+/* MARK: - Literals */
+
+#define Z_CPP_HAS_LITERAL_BINARY TRUE /* N3472 */
 
 #endif /* __Z_inspection_CPP_modules_CPP14_H__ */
