@@ -24,23 +24,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				{
 				const Character *input = __PRETTY_FUNCTION__;
 				Size size = 0;
+				Size bracket_count = 0;
 
 				while (*input++ != '=');
-				while (*++input != ']') size++;
+				while (*++input != ']' || bracket_count)
+					{
+					if	(*input == '[') bracket_count++;
+					else if (*input == ']') bracket_count--;
+
+					size++;
+					}
+
 				return size;
 				}
 
 
-			template <class T>
-			Z_CT(CPP14) SizedString<type_string_size<T>()> type_string()
+			template <class T, Size S = type_string_size<T>()>
+			Z_CT(CPP14) SizedString<S> type_string()
 				{
-				SizedString<type_string_size<T>()> string;
 				const Character *input = __PRETTY_FUNCTION__;
-				Character *output = string.data;
 
 				while (*input++ != '=');
-				while (*++input != ']') *output++ = *input;
-				return string;
+				return SizedString<S>(input + 1);
 				}
 
 
