@@ -12,24 +12,36 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/language.hpp>
 
 
-namespace Zeta {template <Size S> struct SizedString {
-	Character data[S + 1];
+namespace Zeta {namespace Detail {namespace SizedString {
+
+	template <Size I> class Element : Element<I - 1> {
+
+		protected:
+		Character _character;
+
+		public:
+		Z_CT_MEMBER(CPP11) Element(const Character *string)
+		: Element<I - 1>(string), _character(string[I - 1]) {}
+	};
 
 
-	Z_CT_MEMBER(CPP11) SizedString() : data{0} {}
+	template <> class Element<0> {
+		public:
+		Z_CT_MEMBER(CPP11) Element(const Character *string) {}
+	};
+}}}
 
 
-	Z_CT_MEMBER(CPP14) SizedString(const Character *string)
-		{
-		Size size = S;
-		Character *data = this->data;
+namespace Zeta {template <Size S> class SizedString : public Detail::SizedString::Element<S> {
 
-		while (size-- && *string) *data++ = *string++;
-		*data = '\0';
-		}
+	protected:
+	Character _null_character;
 
+	public:
+	Z_CT_MEMBER(CPP11) SizedString(const Character *string)
+	: Detail::SizedString::Element<S>(string), _null_character('\0') {}
 
-	Z_CT_MEMBER(CPP11) operator const Character *() const {return data;}
+	Z_CT_MEMBER(CPP11) operator const Character *() const {return (const Character *)this;}
 };}
 
 
