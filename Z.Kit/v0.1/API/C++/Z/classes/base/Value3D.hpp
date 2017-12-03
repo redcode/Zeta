@@ -23,8 +23,7 @@ namespace Zeta {namespace Mixins {namespace Value3D {
 	// MARK: - Partial implementation for signed types
 
 
-	template <class Value3D, class T>
-	struct Signed {
+	template <class Value3D, class T> struct Signed {
 
 		Z_CT_MEMBER(CPP11) Value3D absolute() const
 			{

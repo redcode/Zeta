@@ -11,7 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 #include <Z/types/buffering.h>
-#include <Z/macros/language.hpp>
 #include <Z/functions/base/value.h>
 
 

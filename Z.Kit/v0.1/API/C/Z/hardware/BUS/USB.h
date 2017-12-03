@@ -274,6 +274,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* E8h-FFFFh - Reserved */
 
 #define Z_ARRAY_CONTENT_USB_KEY_CODE_TO_Z_KEY_CODE							      \
+	Z_KEY_CODE_INVALID,			  /* 0x00 - Unused					   */ \
 	Z_KEY_CODE_INVALID,			  /* 0x01 - Z_USB_KEY_CODE_KEYBOARD_ERROR_ROLL_OVER	   */ \
 	Z_KEY_CODE_INVALID,			  /* 0x02 - Z_USB_KEY_CODE_KEYBOARD_POST_FAIL		   */ \
 	Z_KEY_CODE_INVALID,			  /* 0x03 - Z_USB_KEY_CODE_KEYBOARD_ERROR_UNDEFINED	   */ \

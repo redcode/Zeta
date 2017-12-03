@@ -8,6 +8,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_base_HPP__
 #define __Z_traits_base_HPP__
 
+#include <Z/macros/language.hpp>
+
 namespace Zeta {
 	struct NaT   {};
 	struct Empty {};

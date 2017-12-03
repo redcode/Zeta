@@ -107,7 +107,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /*#define Z_COMPILER_C_HAS_CLOSURE*/
 
-/* MARK: - C++ support */
+/* MARK: - C++98 support */
 
 /*#define Z_COMPILER_CPP_HAS_TYPE_BOOLEAN*/
 

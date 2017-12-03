@@ -10,7 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/status.h>
 #include <Z/types/base.hpp>
-#include <Z/macros/language.hpp>
 
 
 namespace Zeta {struct Status {

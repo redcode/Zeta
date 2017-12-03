@@ -33,7 +33,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE_MEMBER Element() {}
 
 			Z_CT_MEMBER(CPP11) Element(
-				typename Zeta::Type<T >::to_forwardable ... previous,
+				typename Zeta::Type<T >::to_forwardable... previous,
 				typename Zeta::Type<TN>::to_forwardable value
 			) : Super<T...>::type(previous...), _value(value) {}
 		};
@@ -69,7 +69,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
 			using Super::Super;
 #		else
-			Z_CT_MEMBER(CPP11) Tuple(typename Type<T>::to_forwardable ... values)
+			Z_CT_MEMBER(CPP11) Tuple(typename Type<T>::to_forwardable... values)
 			: Super(values...) {}
 #		endif
 

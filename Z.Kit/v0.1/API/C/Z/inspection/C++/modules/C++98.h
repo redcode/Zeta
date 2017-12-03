@@ -12,4 +12,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C++/modules/C++89.h>
 
+/* MARK: - Types */
+
+#define Z_CPP_HAS_TYPE_BOOLEAN TRUE /* bool */
+
 #endif /* __Z_inspection_CPP_modules_CPP98_H__ */

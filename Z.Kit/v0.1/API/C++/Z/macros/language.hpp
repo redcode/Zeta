@@ -10,6 +10,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/macros/language.h>
 
+/* MARK: - Constants */
+
+#if !Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+#	ifndef true
+#		define true TRUE
+#	endif
+
+#	ifndef false
+#		define false FALSE
+#	endif
+#endif
+
 /* MARK: - Specifiers */
 
 #if Z_COMPILER_HAS_ATTRIBUTE(INLINE_MEMBER)

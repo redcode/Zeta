@@ -9,17 +9,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_traits_Type_HPP__
 
 #include <Z/keys/mathematics/number.h>
-#include <Z/macros/language.hpp>
+#include <Z/traits/TypeList.hpp>
 
 #if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 #	include <Z/functions/base/type.hpp>
 #	include <Z/classes/base/Symbol.hpp>
-#endif
-
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
-#	include <Z/traits/TypeList.hpp>
-#else
-#	include <Z/traits/SelectType.hpp>
 #endif
 
 // MARK: - Abstract
@@ -30,6 +24,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {	is_arithmetic		     = false,
 			is_array		     = false,
 			is_callable		     = false,
+			is_char			     = false,
+			is_character		     = false,
 			is_class		     = false,
 			is_compound		     = false,
 			is_const		     = false,
@@ -41,6 +37,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_data_member_pointer	     = false,
 			is_empty		     = false,
 			is_exact		     = false,
+			is_int			     = false,
 			is_integer		     = false,
 			is_invalid		     = true,
 			is_flexible_array	     = false,
@@ -50,6 +47,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_function_lvalue_reference = false,
 			is_function_rvalue_reference = false,
 			is_fundamental		     = false,
+			is_long			     = false,
 			is_lvalue		     = false,
 			is_lvalue_reference	     = false,
 			is_member_function_pointer   = false,
@@ -64,10 +62,15 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_rvalue		     = false,
 			is_rvalue_reference	     = false,
 			is_scalar		     = false,
+			is_short		     = false,
 			is_signed		     = false,
 			is_storable		     = false,
 			is_struct		     = false,
 			is_template		     = false,
+			is_uchar		     = false,
+			is_uint			     = false,
+			is_ulong		     = false,
+			is_ushort		     = false,
 			is_valid		     = false,
 			is_value		     = false,
 			is_variadic		     = false,
@@ -87,6 +90,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_aggregate = false};
 #		endif
 
+#		if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+			enum {is_boolean = false};
+#		endif
+
+#		ifdef Z_DOUBLE
+			enum {is_double = false};
+#		endif
+
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUM)
 			enum {is_enum = false};
 #		endif
@@ -95,12 +106,44 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_final = false};
 #		endif
 
+#		ifdef Z_FLOAT
+			enum {is_float = false};
+#		endif
+
+#		if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
+			enum {is_int8 = false};
+#		endif
+
+#		if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
+			enum {is_int16 = false};
+#		endif
+
+#		if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
+			enum {is_int32 = false};
+#		endif
+
+#		if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
+			enum {is_int64 = false};
+#		endif
+
+#		if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
+			enum {is_int128 = false};
+#		endif
+
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_INTERFACE_CLASS)
 			enum {is_interface_class = false};
 #		endif
 
+#		ifdef Z_LDOUBLE
+			enum {is_ldouble = false};
+#		endif
+
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
 			enum {is_literal = false};
+#		endif
+
+#		ifdef Z_LLONG
+			enum {is_llong = false};
 #		endif
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
@@ -109,6 +152,30 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POLYMORPHIC)
 			enum {is_polymorphic = false};
+#		endif
+
+#		if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+			enum {is_uint8 = false};
+#		endif
+
+#		if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+			enum {is_uint16 = false};
+#		endif
+
+#		if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+			enum {is_uint32 = false};
+#		endif
+
+#		if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+			enum {is_uint64 = false};
+#		endif
+
+#		if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+			enum {is_uint128 = false};
+#		endif
+
+#		ifdef Z_ULLONG
+			enum {is_ullong = false};
 #		endif
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
@@ -270,6 +337,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
 
 		struct UInt8 : Natural {
+			enum {is_uint8 = true};
+
 			enum {	base_value_type	 = Z_UINT8_BASE_VALUE_TYPE,
 				fixed_value_type = Z_UINT8_FIXED_VALUE_TYPE,
 				value_type	 = Z_UINT8_VALUE_TYPE,
@@ -290,6 +359,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
 
 		struct UInt16 : Natural {
+			enum {is_uint16 = true};
+
 			enum {	base_value_type	 = Z_UINT16_BASE_VALUE_TYPE,
 				fixed_value_type = Z_UINT16_FIXED_VALUE_TYPE,
 				value_type	 = Z_UINT16_VALUE_TYPE,
@@ -310,6 +381,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
 
 		struct UInt32 : Natural {
+			enum {is_uint32 = true};
+
 			enum {	base_value_type	 = Z_UINT32_BASE_VALUE_TYPE,
 				fixed_value_type = Z_UINT32_FIXED_VALUE_TYPE,
 				value_type	 = Z_UINT32_VALUE_TYPE,
@@ -330,6 +403,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
 
 		struct UInt64 : Natural {
+			enum {is_uint64 = true};
+
 			enum {	base_value_type	 = Z_UINT64_BASE_VALUE_TYPE,
 				fixed_value_type = Z_UINT64_FIXED_VALUE_TYPE,
 				value_type	 = Z_UINT64_VALUE_TYPE,
@@ -350,6 +425,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
 
 		struct UInt128 : Natural {
+			enum {is_uint128 = true};
+
 			enum {	base_value_type	 = Z_UINT128_BASE_VALUE_TYPE,
 				fixed_value_type = Z_UINT128_FIXED_VALUE_TYPE,
 				value_type	 = Z_UINT128_VALUE_TYPE,
@@ -370,6 +447,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
 
 		struct Int8 : Integer {
+			enum {is_int8 = true};
+
 			enum {	base_value_type	 = Z_INT8_BASE_VALUE_TYPE,
 				fixed_value_type = Z_INT8_FIXED_VALUE_TYPE,
 				value_type	 = Z_INT8_VALUE_TYPE,
@@ -392,6 +471,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
 
 		struct Int16 : Integer {
+			enum {is_int16 = true};
+
 			enum {	base_value_type	 = Z_INT16_BASE_VALUE_TYPE,
 				fixed_value_type = Z_INT16_FIXED_VALUE_TYPE,
 				value_type	 = Z_INT16_VALUE_TYPE,
@@ -414,6 +495,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
 
 		struct Int32 : Integer {
+			enum {is_int32 = true};
+
 			enum {	base_value_type	 = Z_INT16_BASE_VALUE_TYPE,
 				fixed_value_type = Z_INT16_FIXED_VALUE_TYPE,
 				value_type	 = Z_INT16_VALUE_TYPE,
@@ -436,6 +519,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
 
 		struct Int64 : Integer {
+			enum {is_int64 = true};
+
 			enum {	base_value_type	 = Z_INT64_BASE_VALUE_TYPE,
 				fixed_value_type = Z_INT64_FIXED_VALUE_TYPE,
 				value_type	 = Z_INT64_VALUE_TYPE,
@@ -458,6 +543,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
 
 		struct Int128 : Integer {
+			enum {is_int128 = true};
+
 			enum {	base_value_type	 = Z_INT128_BASE_VALUE_TYPE,
 				fixed_value_type = Z_INT128_FIXED_VALUE_TYPE,
 				value_type	 = Z_INT128_VALUE_TYPE,
@@ -477,22 +564,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	struct Character : SelectType<Z_CHARACTER_IS_SIGNED, Natural, Integer>::type {
-		enum {	base_value_type	 = Z_CHARACTER_BASE_VALUE_TYPE,
-			fixed_value_type = Z_CHARACTER_FIXED_VALUE_TYPE,
-			value_type	 = Z_CHARACTER_VALUE_TYPE,
-			value_format	 = Z_CHARACTER_VALUE_FORMAT
-		};
-		enum {	minimum = Z_CHARACTER_MINIMUM,
-			maximum = Z_CHARACTER_MAXIMUM
-		};
-
-		typedef char	      type;
-		typedef unsigned char to_unsigned;
-		typedef signed   char to_signed;
-	};
-
 	struct UChar : Natural {
+		enum {is_uchar = true};
+
 		enum {	base_value_type	 = Z_UCHAR_BASE_VALUE_TYPE,
 			fixed_value_type = Z_UCHAR_FIXED_VALUE_TYPE,
 			value_type	 = Z_UCHAR_VALUE_TYPE,
@@ -506,6 +580,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct UShort : Natural {
+		enum {is_ushort = true};
+
 		enum {	base_value_type	 = Z_USHORT_BASE_VALUE_TYPE,
 			fixed_value_type = Z_USHORT_FIXED_VALUE_TYPE,
 			value_type	 = Z_USHORT_VALUE_TYPE,
@@ -519,6 +595,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct UInt : Natural {
+		enum {is_uint = true};
+
 		enum {	base_value_type	 = Z_UINT_BASE_VALUE_TYPE,
 			fixed_value_type = Z_UINT_FIXED_VALUE_TYPE,
 			value_type	 = Z_UINT_VALUE_TYPE,
@@ -532,6 +610,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct ULong : Natural {
+		enum {is_ulong = true};
+
 		enum {	base_value_type	 = Z_ULONG_BASE_VALUE_TYPE,
 			fixed_value_type = Z_ULONG_FIXED_VALUE_TYPE,
 			value_type	 = Z_ULONG_VALUE_TYPE,
@@ -548,6 +628,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_ULLONG
 
 		struct ULLong : Natural {
+			enum {is_ullong = true};
+
 			enum {	base_value_type	 = Z_ULLONG_BASE_VALUE_TYPE,
 				fixed_value_type = Z_ULLONG_FIXED_VALUE_TYPE,
 				value_type	 = Z_ULLONG_VALUE_TYPE,
@@ -566,6 +648,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	endif
 
 	struct Char : Integer {
+		enum {is_char = true};
+
 		enum {	base_value_type	 = Z_CHAR_BASE_VALUE_TYPE,
 			fixed_value_type = Z_CHAR_FIXED_VALUE_TYPE,
 			value_type	 = Z_CHAR_VALUE_TYPE,
@@ -581,6 +665,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct Short : Integer {
+		enum {is_short = true};
+
 		enum {	base_value_type	 = Z_SHORT_BASE_VALUE_TYPE,
 			fixed_value_type = Z_SHORT_FIXED_VALUE_TYPE,
 			value_type	 = Z_SHORT_VALUE_TYPE,
@@ -596,6 +682,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct Int : Integer {
+		enum {is_int = true};
+
 		enum {	base_value_type	 = Z_INT_BASE_VALUE_TYPE,
 			fixed_value_type = Z_INT_FIXED_VALUE_TYPE,
 			value_type	 = Z_INT_VALUE_TYPE,
@@ -611,6 +699,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct Long : Integer {
+		enum {is_long = true};
+
 		enum {	base_value_type	 = Z_LONG_BASE_VALUE_TYPE,
 			fixed_value_type = Z_LONG_FIXED_VALUE_TYPE,
 			value_type	 = Z_LONG_VALUE_TYPE,
@@ -628,6 +718,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_LLONG
 
 		struct LLong : Integer {
+			enum {is_llong = true};
+
 			enum {	base_value_type	 = Z_LLONG_BASE_VALUE_TYPE,
 				fixed_value_type = Z_LLONG_FIXED_VALUE_TYPE,
 				value_type	 = Z_LLONG_VALUE_TYPE,
@@ -650,6 +742,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_FLOAT
 
 		struct Float : Real {
+			enum {is_float = true};
+
 		/*	enum {	base_value_type	 = Z_FLOAT_BASE_VALUE_TYPE,
 				fixed_value_type = Z_FLOAT_FIXED_VALUE_TYPE,
 				value_type	 = Z_FLOAT_VALUE_TYPE,
@@ -687,6 +781,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_DOUBLE
 
 		struct Double : Real {
+			enum {is_double = true};
+
 		/*	enum {	base_value_type	 = Z_DOUBLE_BASE_VALUE_TYPE,
 				fixed_value_type = Z_DOUBLE_FIXED_VALUE_TYPE,
 				value_type	 = Z_DOUBLE_VALUE_TYPE,
@@ -724,6 +820,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_LDOUBLE
 
 		struct LDouble : Real {
+			enum {is_ldouble = true};
+
 		/*	enum {	base_value_type	 = Z_LDOUBLE_BASE_VALUE_TYPE,
 				fixed_value_type = Z_LDOUBLE_FIXED_VALUE_TYPE,
 				value_type	 = Z_LDOUBLE_VALUE_TYPE,
@@ -757,6 +855,29 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 
 #	endif
+
+#	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+		struct Boolean : Exact {
+			enum {is_boolean = true};
+		};
+#	endif
+
+	struct Character : SelectType<Z_CHARACTER_IS_SIGNED, Natural, Integer>::type {
+		enum {is_character = true};
+
+		enum {	base_value_type	 = Z_CHARACTER_BASE_VALUE_TYPE,
+			fixed_value_type = Z_CHARACTER_FIXED_VALUE_TYPE,
+			value_type	 = Z_CHARACTER_VALUE_TYPE,
+			value_format	 = Z_CHARACTER_VALUE_FORMAT
+		};
+		enum {	minimum = Z_CHARACTER_MINIMUM,
+			maximum = Z_CHARACTER_MAXIMUM
+		};
+
+		typedef char	      type;
+		typedef unsigned char to_unsigned;
+		typedef signed   char to_signed;
+	};
 
 	template <class T> struct Array : Storable {
 		enum {is_array = true};
@@ -1508,8 +1629,6 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <> struct Case<Int128> : Mixins::Unqualified<Abstract::Int128> {};
 #	endif
 
-	template <> struct Case<Character> : Mixins::Unqualified<Abstract::Character> {};
-
 	template <> struct Case<UChar > : Mixins::Unqualified<Abstract::UChar > {};
 	template <> struct Case<UShort> : Mixins::Unqualified<Abstract::UShort> {};
 	template <> struct Case<UInt  > : Mixins::Unqualified<Abstract::UInt  > {};
@@ -1539,6 +1658,12 @@ namespace Zeta {namespace Detail {namespace Type {
 #	ifdef Z_LDOUBLE
 		template <> struct Case<LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
 #	endif
+
+#	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+		template <> struct Case<Boolean> : Mixins::Unqualified<Abstract::Boolean> {};
+#	endif
+
+	template <> struct Case<Character> : Mixins::Unqualified<Abstract::Character> {};
 
 	// MARK: - Specializations: Sized arrays
 
@@ -1831,6 +1956,8 @@ namespace Zeta {
 			enum {	is_arithmetic		     = Type::is_arithmetic,
 				is_array		     = Type::is_array,
 				is_callable		     = Type::is_callable,
+				is_char			     = Type::is_char,
+				is_character		     = Type::is_character,
 				is_class		     = Type::is_class,
 				is_compound		     = Type::is_compound,
 				is_const		     = Type::is_const,
@@ -1842,6 +1969,7 @@ namespace Zeta {
 				is_data_member_pointer	     = Type::is_data_member_pointer,
 				is_empty		     = Type::is_empty,
 				is_exact		     = Type::is_exact,
+				is_int			     = Type::is_int,
 				is_integer		     = Type::is_integer,
 				is_invalid		     = Type::is_invalid,
 				is_flexible_array	     = Type::is_flexible_array,
@@ -1851,6 +1979,7 @@ namespace Zeta {
 				is_function_lvalue_reference = Type::is_function_lvalue_reference,
 				is_function_rvalue_reference = Type::is_function_rvalue_reference,
 				is_fundamental		     = Type::is_fundamental,
+				is_long			     = Type::is_long,
 				is_lvalue		     = Type::is_lvalue,
 				is_lvalue_reference	     = Type::is_lvalue_reference,
 				is_member_function_pointer   = Type::is_member_function_pointer,
@@ -1865,10 +1994,15 @@ namespace Zeta {
 				is_rvalue		     = Type::is_rvalue,
 				is_rvalue_reference	     = Type::is_rvalue_reference,
 				is_scalar		     = Type::is_scalar,
+				is_short		     = Type::is_short,
 				is_signed		     = Type::is_signed,
 				is_storable		     = Type::is_storable,
 				is_struct		     = Type::is_struct,
 				is_template		     = Type::is_template,
+				is_uchar		     = Type::is_uchar,
+				is_uint			     = Type::is_uint,
+				is_ulong		     = Type::is_ulong,
+				is_ushort		     = Type::is_ushort,
 				is_valid		     = Type::is_valid,
 				is_value		     = Type::is_value,
 				is_variadic		     = Type::is_variadic,
@@ -1888,6 +2022,14 @@ namespace Zeta {
 				enum {is_aggregate = Type::is_aggregate};
 #			endif
 
+#			if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+				enum {is_boolean = Type::is_boolean};
+#			endif
+
+#			ifdef Z_DOUBLE
+				enum {is_double = Type::is_double};
+#			endif
+
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUM)
 				enum {is_enum = Type::is_enum};
 #			endif
@@ -1896,12 +2038,44 @@ namespace Zeta {
 				enum {is_final = Type::is_final};
 #			endif
 
+#			ifdef Z_FLOAT
+				enum {is_float = Type::is_float};
+#			endif
+
+#			if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
+				enum {is_int8 = Type::is_int8};
+#			endif
+
+#			if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
+				enum {is_int16 = Type::is_int16};
+#			endif
+
+#			if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
+				enum {is_int32 = Type::is_int32};
+#			endif
+
+#			if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
+				enum {is_int64 = Type::is_int64};
+#			endif
+
+#			if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
+				enum {is_int128 = Type::is_int128};
+#			endif
+
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_INTERFACE_CLASS)
 				enum {is_interface_class = Type::is_interface_class};
 #			endif
 
+#			ifdef Z_LDOUBLE
+				enum {is_ldouble = Type::is_ldouble};
+#			endif
+
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
 				enum {is_literal = Type::is_literal};
+#			endif
+
+#			ifdef Z_LLONG
+				enum {is_llong = Type::is_llong};
 #			endif
 
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
@@ -1910,6 +2084,30 @@ namespace Zeta {
 
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_POLYMORPHIC)
 				enum {is_polymorphic = Type::is_polymorphic};
+#			endif
+
+#			if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+				enum {is_uint8 = Type::is_uint8};
+#			endif
+
+#			if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+				enum {is_uint16 = Type::is_uint16};
+#			endif
+
+#			if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+				enum {is_uint32 = Type::is_uint32};
+#			endif
+
+#			if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+				enum {is_uint64 = Type::is_uint64};
+#			endif
+
+#			if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+				enum {is_uint128 = Type::is_uint128};
+#			endif
+
+#			ifdef Z_ULLONG
+				enum {is_ullong = Type::is_ullong};
 #			endif
 
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)

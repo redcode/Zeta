@@ -9,7 +9,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_classes_base_Symbol_HPP__
 
 #include <Z/types/base.hpp>
-#include <Z/macros/language.hpp>
 
 
 namespace Zeta {struct Symbol {

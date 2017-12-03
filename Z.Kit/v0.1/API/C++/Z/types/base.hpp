@@ -9,6 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_types_base_HPP__
 
 #include <Z/types/base.h>
+#include <Z/macros/language.hpp>
 
 namespace Zeta {
 	typedef zuint8	UInt8;
@@ -124,7 +125,12 @@ namespace Zeta {
 	typedef zintptr IntPtr;
 	typedef zinttop IntTop;
 
-	typedef zboolean   Boolean;
+#	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+		typedef bool Boolean;
+#	else
+		typedef zboolean Boolean;
+#	endif
+
 	typedef zcharacter Character;
 	typedef znatural   Natural;
 	typedef zinteger   Integer;

@@ -9,7 +9,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_functions_base_value_HPP__
 
 #include <Z/traits/Type.hpp>
-#include <Z/traits/filtering.hpp>
 
 namespace Zeta {
 

@@ -8,15 +8,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_OpaqueMemberFunctionPointer_HPP__
 #define __Z_classes_base_OpaqueMemberFunctionPointer_HPP__
 
-#include <Z/traits/Type.hpp>
-#include <Z/traits/filtering.hpp>
+#include <Z/traits/base.hpp>
 
 
 namespace Zeta {struct OpaqueMemberFunctionPointer {
 	void (NaT::* pointer)();
 
-	template <class T, class = typename EnableIf<Type<T>::is_member_function_pointer>::type>
-	Z_CT_MEMBER(CPP11) OpaqueMemberFunctionPointer(T pointer)
+	template <class T> Z_CT_MEMBER(CPP11) OpaqueMemberFunctionPointer(T pointer)
 	: pointer((void (NaT::*)())pointer) {}
 
 	template <class T> Z_CT_MEMBER(CPP11) operator T() const {return (T)pointer;}

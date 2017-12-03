@@ -8,6 +8,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - C++85 */
 /* MARK: - C++89 */
 /* MARK: - C++98 */
+
+#ifndef Z_CPP_HAS_TYPE_BOOLEAN
+#	define Z_CPP_HAS_TYPE_BOOLEAN FALSE
+#endif
+
 /* MARK: - C++03 */
 
 /* MARK: - C++11 */
