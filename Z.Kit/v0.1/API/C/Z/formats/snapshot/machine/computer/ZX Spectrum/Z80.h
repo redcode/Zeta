@@ -30,11 +30,11 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8 iff1, iff2;
 
 	struct {Z_BIT_FIELD(8, 5) (
-		zuint8 im			:2,
-		zuint8 issue_2_emulation	:1,
-		zuint8 int_frequency		:1,
-		zuint8 video_synchronization	:2,
-		zuint8 joystick_type		:2
+		zuint8 im		     :2,
+		zuint8 issue_2_emulation     :1,
+		zuint8 int_frequency	     :1,
+		zuint8 video_synchronization :2,
+		zuint8 joystick_type	     :2
 	)} bitfield2;
 Z_DEFINE_STRICT_STRUCTURE_END ZZ80v1Header;
 
