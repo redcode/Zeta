@@ -560,7 +560,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TRAIT_TYPE_IS_CONSTRUCTIBLE(type, ...)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE(type, to_type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_EMPTY(type)*/
-/*#define Z_COMPILER_TRAIT_TYPE_IS_ENUM(type)*/
+/*#define Z_COMPILER_TRAIT_TYPE_IS_ENUMERATION(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_FINAL(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_INTERFACE_CLASS(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_LITERAL(type)*/

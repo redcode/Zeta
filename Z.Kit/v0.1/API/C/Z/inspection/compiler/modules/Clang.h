@@ -1346,7 +1346,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if __has_extension(is_enum)
-#	define Z_COMPILER_TRAIT_TYPE_IS_ENUM __is_enum
+#	define Z_COMPILER_TRAIT_TYPE_IS_ENUMERATION __is_enum
 #endif
 
 #if __has_extension(is_final)
