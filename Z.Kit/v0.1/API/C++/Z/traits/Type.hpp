@@ -65,7 +65,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_short		     = false,
 			is_signed		     = false,
 			is_storable		     = false,
-			is_struct		     = false,
+			is_structure		     = false,
 			is_template		     = false,
 			is_uchar		     = false,
 			is_uint			     = false,
@@ -98,8 +98,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_double = false};
 #		endif
 
-#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUM)
-			enum {is_enum = false};
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION)
+			enum {is_enumeration = false};
 #		endif
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_FINAL)
@@ -909,9 +909,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef T type[];
 	};
 
-	template <class T> struct Enum : Storable {
-		enum {	is_enum	   = true,
-			is_scalar  = true
+	template <class T> struct Enumeration : Storable {
+		enum {	is_enumeration = true,
+			is_scalar      = true
 		};
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
@@ -951,10 +951,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef T type;
 	};
 
-	template <class T> class Struct : public Compound<T> {
+	template <class T> class Structure : public Compound<T> {
 		public:
-		enum {	is_class  = true,
-			is_struct = true
+		enum {	is_class     = true,
+			is_structure = true
 		};
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ABSTRACT)
@@ -1116,7 +1116,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 
-		template <template <class...> class T, class... A> struct Template : Struct<T<A...> > {
+		template <template <class...> class T, class... A> struct Template : Structure<T<A...> > {
 			enum {is_template = true};
 			enum {arity = sizeof...(A)};
 
@@ -1569,17 +1569,17 @@ namespace Zeta {namespace Detail {namespace Type {
 	// MARK: - Specializations: Enumerations, structures and unions
 
 	template <class T> struct Case : Mixins::Unqualified<
-#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUM) && Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) && Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
 			typename SelectType<
-				Z_COMPILER_TRAIT(TYPE_IS_ENUM)(T) ? 2 : Z_COMPILER_TRAIT(TYPE_IS_UNION)(T),
-				Abstract::Struct<T>, Abstract::Union<T>, Abstract::Enum<T>
+				Z_COMPILER_TRAIT(TYPE_IS_ENUMERATION)(T) ? 2 : Z_COMPILER_TRAIT(TYPE_IS_UNION)(T),
+				Abstract::Structure<T>, Abstract::Union<T>, Abstract::Enumeration<T>
 			>::type
-#		elif Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUM)
-			typename SelectType<Z_COMPILER_TRAIT(TYPE_IS_ENUM)(T), Abstract::Struct<T>, Abstract::Enum<T> >::type
+#		elif Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION)
+			typename SelectType<Z_COMPILER_TRAIT(TYPE_IS_ENUMERATION)(T), Abstract::Structure<T>, Abstract::Enumeration<T> >::type
 #		elif Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
-			typename SelectType<Z_COMPILER_TRAIT(TYPE_IS_UNION)(T), Abstract::Struct<T>, Abstract::Union<T> >::type
+			typename SelectType<Z_COMPILER_TRAIT(TYPE_IS_UNION)(T), Abstract::Structure<T>, Abstract::Union<T> >::type
 #		else
-			Abstract::Struct<T>
+			Abstract::Structure<T>
 #		endif
 	> {};
 
@@ -1997,7 +1997,7 @@ namespace Zeta {
 				is_short		     = Type::is_short,
 				is_signed		     = Type::is_signed,
 				is_storable		     = Type::is_storable,
-				is_struct		     = Type::is_struct,
+				is_structure		     = Type::is_structure,
 				is_template		     = Type::is_template,
 				is_uchar		     = Type::is_uchar,
 				is_uint			     = Type::is_uint,
@@ -2030,8 +2030,8 @@ namespace Zeta {
 				enum {is_double = Type::is_double};
 #			endif
 
-#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUM)
-				enum {is_enum = Type::is_enum};
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION)
+				enum {is_enumeration = Type::is_enumeration};
 #			endif
 
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_FINAL)
