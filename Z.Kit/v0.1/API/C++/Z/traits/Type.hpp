@@ -951,7 +951,20 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef T type;
 	};
 
-	template <class T> class Structure : public Compound<T> {
+	template <class T> struct MaybeTemplate : Compound<T> {};
+
+#	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+
+		template <template <class...> class T, class... A> struct MaybeTemplate<T<A...> > : Compound<T<A...> > {
+			enum {is_template = true};
+			enum {arity = sizeof...(A)};
+
+			typedef TypeList<A...> parameters;
+		};
+
+#	endif
+
+	template <class T> class Structure : public MaybeTemplate<T> {
 		public:
 		enum {	is_class     = true,
 			is_structure = true
@@ -981,7 +994,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		endif
 	};
 
-	template <class T> struct Union : Compound<T> {
+	template <class T> struct Union : MaybeTemplate<T> {
 		enum {is_union = true};
 	};
 
@@ -1110,17 +1123,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				typedef R to_const_volatile_lvalue(P..., ...) const volatile &;
 				typedef R to_const_volatile_rvalue(P..., ...) const volatile &&;
 #			endif
-		};
-
-#	endif
-
-#	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
-
-		template <template <class...> class T, class... A> struct Template : Structure<T<A...> > {
-			enum {is_template = true};
-			enum {arity = sizeof...(A)};
-
-			typedef TypeList<A...> parameters;
 		};
 
 #	endif
@@ -1799,12 +1801,6 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #		endif
 
-#	endif
-
-	// MARK: - Specializations: Templates
-
-#	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
-		template <template <class...> class T, class... A> struct Case<T<A...> > : Mixins::Unqualified<Abstract::Template<T, A...> > {};
 #	endif
 
 	// MARK: - Specializations: Qualified types
