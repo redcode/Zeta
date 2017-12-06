@@ -39,7 +39,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_exact		     = false,
 			is_int			     = false,
 			is_integer		     = false,
-			is_invalid		     = true,
 			is_flexible_array	     = false,
 			is_function		     = false,
 			is_function_pointer	     = false,
@@ -52,6 +51,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_lvalue_reference	     = false,
 			is_member_function_pointer   = false,
 			is_member_pointer	     = false,
+			is_nat			     = true,
 			is_natural		     = false,
 			is_number		     = false,
 			is_nullptr		     = false,
@@ -272,8 +272,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct Valid : Invalid {
-		enum {	is_invalid = false,
-			is_valid   = true
+		enum {	is_nat	 = false,
+			is_valid = true
 		};
 	};
 
@@ -1967,7 +1967,6 @@ namespace Zeta {
 				is_exact		     = Type::is_exact,
 				is_int			     = Type::is_int,
 				is_integer		     = Type::is_integer,
-				is_invalid		     = Type::is_invalid,
 				is_flexible_array	     = Type::is_flexible_array,
 				is_function		     = Type::is_function,
 				is_function_pointer	     = Type::is_function_pointer,
@@ -1980,6 +1979,7 @@ namespace Zeta {
 				is_lvalue_reference	     = Type::is_lvalue_reference,
 				is_member_function_pointer   = Type::is_member_function_pointer,
 				is_member_pointer	     = Type::is_member_pointer,
+				is_nat			     = Type::is_nat,
 				is_natural		     = Type::is_natural,
 				is_number		     = Type::is_number,
 				is_nullptr		     = Type::is_nullptr,
