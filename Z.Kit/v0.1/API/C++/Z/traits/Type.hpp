@@ -68,7 +68,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_signed		     = false,
 			is_storable		     = false,
 			is_structure		     = false,
-			is_template		     = false,
 			is_uchar		     = false,
 			is_uint			     = false,
 			is_uint8		     = false,
@@ -148,6 +147,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POLYMORPHIC)
 			enum {is_polymorphic = false};
+#		endif
+
+#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+			enum {is_template = false};
 #		endif
 
 #		ifdef Z_UINT32
@@ -1984,7 +1987,6 @@ namespace Zeta {
 				is_signed		     = Type::is_signed,
 				is_storable		     = Type::is_storable,
 				is_structure		     = Type::is_structure,
-				is_template		     = Type::is_template,
 				is_uchar		     = Type::is_uchar,
 				is_uint			     = Type::is_uint,
 				is_uint8		     = Type::is_uint8,
@@ -2064,6 +2066,10 @@ namespace Zeta {
 
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_POLYMORPHIC)
 				enum {is_polymorphic = Type::is_polymorphic};
+#			endif
+
+#			if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+				enum {is_template = Type::is_template};
 #			endif
 
 #			ifdef Z_UINT32
