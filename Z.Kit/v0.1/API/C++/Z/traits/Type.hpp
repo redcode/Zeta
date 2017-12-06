@@ -38,6 +38,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_empty		     = false,
 			is_exact		     = false,
 			is_int			     = false,
+			is_int8			     = false,
+			is_int16		     = false,
 			is_integer		     = false,
 			is_flexible_array	     = false,
 			is_function		     = false,
@@ -69,6 +71,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_template		     = false,
 			is_uchar		     = false,
 			is_uint			     = false,
+			is_uint8		     = false,
+			is_uint16		     = false,
 			is_ulong		     = false,
 			is_ushort		     = false,
 			is_valid		     = false,
@@ -110,23 +114,15 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_float = false};
 #		endif
 
-#		if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
-			enum {is_int8 = false};
-#		endif
-
-#		if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
-			enum {is_int16 = false};
-#		endif
-
-#		if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
+#		ifdef Z_INT32
 			enum {is_int32 = false};
 #		endif
 
-#		if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
+#		ifdef Z_INT64
 			enum {is_int64 = false};
 #		endif
 
-#		if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
+#		ifdef Z_INT128
 			enum {is_int128 = false};
 #		endif
 
@@ -154,23 +150,15 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_polymorphic = false};
 #		endif
 
-#		if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
-			enum {is_uint8 = false};
-#		endif
-
-#		if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
-			enum {is_uint16 = false};
-#		endif
-
-#		if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+#		ifdef Z_UINT32
 			enum {is_uint32 = false};
 #		endif
 
-#		if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+#		ifdef Z_UINT64
 			enum {is_uint64 = false};
 #		endif
 
-#		if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+#		ifdef Z_UINT128
 			enum {is_uint128 = false};
 #		endif
 
@@ -1966,6 +1954,8 @@ namespace Zeta {
 				is_empty		     = Type::is_empty,
 				is_exact		     = Type::is_exact,
 				is_int			     = Type::is_int,
+				is_int8			     = Type::is_int8,
+				is_int16		     = Type::is_int16,
 				is_integer		     = Type::is_integer,
 				is_flexible_array	     = Type::is_flexible_array,
 				is_function		     = Type::is_function,
@@ -1997,6 +1987,8 @@ namespace Zeta {
 				is_template		     = Type::is_template,
 				is_uchar		     = Type::is_uchar,
 				is_uint			     = Type::is_uint,
+				is_uint8		     = Type::is_uint8,
+				is_uint16		     = Type::is_uint16,
 				is_ulong		     = Type::is_ulong,
 				is_ushort		     = Type::is_ushort,
 				is_valid		     = Type::is_valid,
@@ -2038,23 +2030,15 @@ namespace Zeta {
 				enum {is_float = Type::is_float};
 #			endif
 
-#			if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
-				enum {is_int8 = Type::is_int8};
-#			endif
-
-#			if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
-				enum {is_int16 = Type::is_int16};
-#			endif
-
-#			if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
+#			ifdef Z_INT32
 				enum {is_int32 = Type::is_int32};
 #			endif
 
-#			if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
+#			ifdef Z_INT64
 				enum {is_int64 = Type::is_int64};
 #			endif
 
-#			if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
+#			ifdef Z_INT128
 				enum {is_int128 = Type::is_int128};
 #			endif
 
@@ -2082,23 +2066,15 @@ namespace Zeta {
 				enum {is_polymorphic = Type::is_polymorphic};
 #			endif
 
-#			if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
-				enum {is_uint8 = Type::is_uint8};
-#			endif
-
-#			if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
-				enum {is_uint16 = Type::is_uint16};
-#			endif
-
-#			if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+#			ifdef Z_UINT32
 				enum {is_uint32 = Type::is_uint32};
 #			endif
 
-#			if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+#			ifdef Z_UINT64
 				enum {is_uint64 = Type::is_uint64};
 #			endif
 
-#			if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+#			ifdef Z_UINT128
 				enum {is_uint128 = Type::is_uint128};
 #			endif
 
