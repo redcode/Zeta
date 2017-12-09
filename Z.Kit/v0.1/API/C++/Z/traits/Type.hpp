@@ -1453,8 +1453,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		Z_DEFINE_STRICT_STRUCTURE (typename C::type value;     ) to_wrap;
 		Z_DEFINE_STRICT_STRUCTURE (UInt8 data[sizeof(to_wrap)];) to_opaque;
 
-		enum {	size = sizeof(to_wrap),
-			bits = sizeof(to_wrap) * 8
+		enum {	size = C::is_empty ? 0 : sizeof(to_wrap),
+			bits = C::is_empty ? 0 : sizeof(to_wrap) * 8
 		};
 	};
 
