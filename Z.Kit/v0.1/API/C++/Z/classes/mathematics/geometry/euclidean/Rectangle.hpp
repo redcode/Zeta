@@ -404,7 +404,7 @@ namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial
 
 
 	Z_CT_MEMBER(CPP11) Rectangle fit_in_bottom_left(const Value2D<T> &size) const
-		{return Value2D<T>(this->point, size.fit(this->size));}
+		{return Rectangle(this->point, size.fit(this->size));}
 
 
 	Z_CT_MEMBER(CPP14) Rectangle fit_in_bottom_right(const Value2D<T> &size) const
