@@ -1466,8 +1466,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		VoidPointer,
 		Pointer,
 		MemberFunctionPointer,
-		Reference,
-		Template
+		Reference
 	};
 
 	template <UInt K, class C> struct Kind;
@@ -1550,10 +1549,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 #		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
 			typedef typename C::referenced_type&& to_rvalue_reference;
 #		endif
-	};
-
-	template <class C> struct Kind<Template, C> : Kind<Value, C> {
-		// For future use.
 	};
 }}}}
 
@@ -1810,7 +1805,7 @@ namespace Zeta {namespace Detail {namespace Type {
 					: (Case<T>::is_void_pointer ? Mixins::VoidPointer : Mixins::Pointer))
 				: (Case<T>::is_reference
 					? Mixins::Reference
-					: (Case<T>::is_template ? Mixins::Template : Mixins::Value)))
+					: Mixins::Value))
 			: (Case<T>::is_void
 				? Mixins::Void
 				: (Case<T>::is_function && Case<T>::is_qualified
