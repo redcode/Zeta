@@ -2,7 +2,7 @@
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2017 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef __Z_inspection_compiler_modules_Clang_H__
@@ -209,20 +209,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_OS Z_OS_LINUX
 
-#elif defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__)
-#	define Z_COMPILER_OS Z_OS_IOS
-
-#elif defined(__ENVIRONMENT_TV_OS_VERSION_MIN_REQUIRED__)
-#	define Z_COMPILER_OS Z_OS_TVOS
-
-#elif defined(__ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__)
-#	define Z_COMPILER_OS Z_OS_WATCHOS
-
-#elif	defined(__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__) || \
-	defined(__APPLE_CC__				     ) || \
+#elif	defined(__APPLE_CC__) || \
 	(defined(__APPLE__) && defined(__MACH__))
 
-#	define Z_COMPILER_OS Z_OS_MAC_OS_X
+#	if defined(__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__)
+#		define Z_COMPILER_OS Z_OS_MAC_OS_X
+
+#	elif defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__)
+#		define Z_COMPILER_OS Z_OS_IOS
+
+#	elif defined(__ENVIRONMENT_TV_OS_VERSION_MIN_REQUIRED__)
+#		define Z_COMPILER_OS Z_OS_TVOS
+
+#	elif defined(__ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__)
+#		define Z_COMPILER_OS Z_OS_WATCHOS
+#	endif
 
 #elif	defined(__WIN32	 ) || \
 	defined(__WIN32__) || \
@@ -1409,6 +1410,11 @@ __has_virtual_destructor
 __is_destructible
 __is_nothrow_destructible
 __is_nothrow_assignable
+__is_trivial
+__is_trivially_copyable
+__is_standard_layout
+
+
 */
 
 #endif /* __Z_inspection_compiler_modules_Clang_H__ */
