@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name                = "Z"
 	s.module_name         = "Z"
-	s.version             = "0.1"
+	s.version             = "0.1.0"
 	s.summary             = "Header-only multi-platform base API written in C/C++"
 	s.homepage            = "https://github.com/redcode/Z"
 	s.license             = {:type => 'MIT', :file => 'copying.txt'}
