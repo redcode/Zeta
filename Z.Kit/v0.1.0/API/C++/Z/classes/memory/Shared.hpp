@@ -70,7 +70,8 @@ namespace Zeta {template <class T> struct Shared {
 	Z_INLINE_MEMBER Boolean operator ==(const Shared &rhs) const {return owned == rhs.owned;}
 	Z_INLINE_MEMBER Boolean operator !=(const Shared &rhs) const {return owned != rhs.owned;}
 
-	Z_INLINE_MEMBER T* operator ->() const {return owned->data;}
+	Z_INLINE_MEMBER T& operator * () const {return *owned->data;}
+	Z_INLINE_MEMBER T* operator ->() const {return  owned->data;}
 
 
 	Z_INLINE_MEMBER T *get() const
