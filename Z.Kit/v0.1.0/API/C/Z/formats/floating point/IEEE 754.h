@@ -11,6 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - binary16 */
 
 #define Z_IEEE_754_BINARY16_BITS			    16			/* OK */
+#define Z_IEEE_754_BINARY16_PRECISION_BITS		    16			/* OK */
 #define Z_IEEE_754_BINARY16_BIAS			    15			/* OK */
 #define Z_IEEE_754_BINARY16_EPSILON			    0.00097656		/* OK */
 #define Z_IEEE_754_BINARY16_MINIMUM			    5.96046448e-08	/* OK */
@@ -33,6 +34,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - binary32 */
 
 #define Z_IEEE_754_BINARY32_BITS			    32			/* OK */
+#define Z_IEEE_754_BINARY32_PRECISION_BITS		    32			/* OK */
 #define Z_IEEE_754_BINARY32_BIAS			    127			/* OK */
 #define Z_IEEE_754_BINARY32_EPSILON			    1.192092896e-07	/* OK */
 #define Z_IEEE_754_BINARY32_MINIMUM			    1.175494351e-38	/* OK */
@@ -54,6 +56,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - binary64 */
 
 #define Z_IEEE_754_BINARY64_BITS			    64			/* OK */
+#define Z_IEEE_754_BINARY64_PRECISION_BITS		    64			/* OK */
 #define Z_IEEE_754_BINARY64_BIAS			    1023		/* OK */
 #define Z_IEEE_754_BINARY64_EPSILON			    2.2204460492503131e-16 /* OK */
 #define Z_IEEE_754_BINARY64_MINIMUM			    2.2250738585072014e-308 /* OK */
@@ -75,6 +78,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - binary128 */
 
 #define Z_IEEE_754_BINARY128_BITS			    128			/* OK */
+#define Z_IEEE_754_BINARY128_PRECISION_BITS		    128			/* OK */
 #define Z_IEEE_754_BINARY128_BIAS			    16383		/* OK */
 #define Z_IEEE_754_BINARY128_EPSILON			    1.92592994438723585305597794258492732e-34
 							  /*1.925929944387235853055977942584927319e-34*/
@@ -99,6 +103,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - decimal32 */
 
 #define Z_IEEE_754_DECIMAL32_BITS			    32			/* OK */
+#define Z_IEEE_754_DECIMAL32_PRECISION_BITS		    32			/* OK */
 #define Z_IEEE_754_DECIMAL32_BIAS			    101			/* OK */
 #define Z_IEEE_754_DECIMAL32_EPSILON			    1e-6
 #define Z_IEEE_754_DECIMAL32_MINIMUM_POSITIVE		    1e-95
@@ -113,6 +118,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - decimal64 */
 
 #define Z_IEEE_754_DECIMAL64_BITS			    64			/* OK */
+#define Z_IEEE_754_DECIMAL64_PRECISION_BITS		    64			/* OK */
 #define Z_IEEE_754_DECIMAL64_BIAS			    398			/* OK */
 #define Z_IEEE_754_DECIMAL64_EPSILON			    1e-15
 #define Z_IEEE_754_DECIMAL64_MINIMUM_POSITIVE		    1e-383
@@ -127,6 +133,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - decimal128 */
 
 #define Z_IEEE_754_DECIMAL128_BITS			    128			/* OK */
+#define Z_IEEE_754_DECIMAL128_PRECISION_BITS		    128			/* OK */
 #define Z_IEEE_754_DECIMAL128_BIAS			    6176		/* OK */
 #define Z_IEEE_754_DECIMAL128_EPSILON			    1e-33
 #define Z_IEEE_754_DECIMAL128_MINIMUM_POSITIVE		    1e-6143

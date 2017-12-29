@@ -852,7 +852,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TYPE_FLOAT72*/
 /*#define Z_COMPILER_TYPE_FLOAT80*/
 /*#define Z_COMPILER_TYPE_FLOAT96*/
-/*#define Z_COMPILER_TYPE_FLOAT128*/
+
+#ifdef __FLOAT128__
+#	define Z_COMPILER_TYPE_FLOAT128 __float128
+#endif
 
 #define Z_COMPILER_TYPE_VAL __builtin_va_list
 
