@@ -48,7 +48,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	prefix, suffix, T							\
 )										\
 	Zeta::SelectType<							\
-		Zeta::Type<T>::is_real ? sizeof(T) - 2 : 31,			\
+		Zeta::Type<T>::is_real ? Type<T>::precision_bits / 8 - 2 : 31,	\
 		Z_ENUMERATE_FIXED_REAL_TYPES(prefix##suffix, void)		\
 	>::type
 
@@ -58,7 +58,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Zeta::SelectType<							\
 		Zeta::Type<T>::is_signed					\
 			? (Zeta::Type<T>::is_real				\
-				? sizeof(T) - 2 + 5				\
+				? Type<T>::precision_bits / 8 - 2 + 5		\
 				: Zeta::Logarithm2<sizeof(T)>::value)		\
 			: 31,							\
 		Z_ENUMERATE_FIXED_INTEGER_TYPES(prefix##integer_suffix, void),	\
@@ -71,7 +71,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Zeta::SelectType<							\
 		Zeta::Type<T>::is_number					\
 			? (Zeta::Type<T>::is_real				\
-				? sizeof(T) - 2 + 5 + 5				\
+				? Type<T>::precision_bits / 8 - 2 + 5 + 5	\
 				: Zeta::Logarithm2<sizeof(T)>::value		\
 				  + (Zeta::Type<T>::is_signed ? 5 : 0))		\
 			: 31,							\
@@ -81,60 +81,62 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	>::type
 
 
-#define ZTypeFixedNatural(Name, T)					\
-	Zeta::SelectType<						\
-		Zeta::Type<T>::is_natural				\
-			? Zeta::Logarithm2<sizeof(T)>::value		\
-			: 31,						\
-		Z_ENUMERATE_FIXED_NATURAL_TYPES(Name##UInt, void)	\
+#define ZTypeFixedNatural(Name, T)						\
+	Zeta::SelectType<							\
+		Zeta::Type<T>::is_natural					\
+			? Zeta::Logarithm2<sizeof(T)>::value			\
+			: 31,							\
+		Z_ENUMERATE_FIXED_NATURAL_TYPES(Name##UInt, void)		\
 	>::type
 
-#define ZTypeFixedInteger(Name, T)					\
-	Zeta::SelectType<						\
-		Zeta::Type<T>::is_integer				\
-			? Zeta::Logarithm2<sizeof(T)>::value		\
-			: 31,						\
-		Z_ENUMERATE_FIXED_INTEGER_TYPES(Name##Int, void)	\
+#define ZTypeFixedInteger(Name, T)						\
+	Zeta::SelectType<							\
+		Zeta::Type<T>::is_integer					\
+			? Zeta::Logarithm2<sizeof(T)>::value			\
+			: 31,							\
+		Z_ENUMERATE_FIXED_INTEGER_TYPES(Name##Int, void)		\
 	>::type
 
-#define ZTypeFixedExact(Name, T)					\
-	Zeta::SelectType<						\
-		Zeta::Type<T>::is_exact					\
-			? Zeta::Logarithm2<sizeof(T)>::value		\
-			  + (Zeta::Type<T>::is_signed ? 5 : 0)		\
-			: 31,						\
-		Z_ENUMERATE_FIXED_NATURAL_TYPES(Name##UInt, void),	\
-		Z_ENUMERATE_FIXED_INTEGER_TYPES(Name##Int,  void)	\
+#define ZTypeFixedExact(Name, T)						\
+	Zeta::SelectType<							\
+		Zeta::Type<T>::is_exact						\
+			? Zeta::Logarithm2<sizeof(T)>::value			\
+			  + (Zeta::Type<T>::is_signed ? 5 : 0)			\
+			: 31,							\
+		Z_ENUMERATE_FIXED_NATURAL_TYPES(Name##UInt, void),		\
+		Z_ENUMERATE_FIXED_INTEGER_TYPES(Name##Int,  void)		\
 	>::type
 
-#define ZTypeFixedReal(Name, T)						\
-	Zeta::SelectType<						\
-		Zeta::Type<T>::is_real ? sizeof(T) - 2 : 31,		\
-		Z_ENUMERATE_FIXED_REAL_TYPES(Name##Float, void)		\
+#define ZTypeFixedReal(Name, T)							\
+	Zeta::SelectType<							\
+		Zeta::Type<T>::is_real						\
+			? Type<T>::precision_bits / 8 - 2			\
+			: 31,							\
+		Z_ENUMERATE_FIXED_REAL_TYPES(Name##Float, void)			\
 	>::type
 
-#define ZTypeFixedSigned(Name, T)					\
-	Zeta::SelectType<						\
-		Zeta::Type<T>::is_signed				\
-			? (Zeta::Type<T>::is_real			\
-				? sizeof(T) - 2 + 5			\
-				: Zeta::Logarithm2<sizeof(T)>::value)	\
-			: 31,						\
-		Z_ENUMERATE_FIXED_INTEGER_TYPES(Name##Int,   void),	\
-		Z_ENUMERATE_FIXED_REAL_TYPES   (Name##Float, void)	\
+#define ZTypeFixedSigned(Name, T)						\
+	Zeta::SelectType<							\
+		Zeta::Type<T>::is_signed					\
+			? (Zeta::Type<T>::is_real				\
+				? Type<T>::precision_bits / 8 - 2 + 5		\
+				: Zeta::Logarithm2<sizeof(T)>::value)		\
+			: 31,							\
+		Z_ENUMERATE_FIXED_INTEGER_TYPES(Name##Int,   void),		\
+		Z_ENUMERATE_FIXED_REAL_TYPES   (Name##Float, void)		\
 	>::type
 
-#define ZTypeFixedNumber(Name, T)					\
-	Zeta::SelectType<						\
-		Zeta::Type<T>::is_number				\
-			? (Zeta::Type<T>::is_real			\
-				? sizeof(T) - 2 + 5 + 5			\
-				: Zeta::Logarithm2<sizeof(T)>::value	\
-				  + (Zeta::Type<T>::is_signed ? 5 : 0))	\
-			: 31,						\
-		Z_ENUMERATE_FIXED_NATURAL_TYPES(Name##UInt,  void),	\
-		Z_ENUMERATE_FIXED_INTEGER_TYPES(Name##Int,   void),	\
-		Z_ENUMERATE_FIXED_REAL_TYPES   (Name##Float, void)	\
+#define ZTypeFixedNumber(Name, T)						\
+	Zeta::SelectType<							\
+		Zeta::Type<T>::is_number					\
+			? (Zeta::Type<T>::is_real				\
+				? Type<T>::precision_bits / 8 - 2 + 5 + 5	\
+				: Zeta::Logarithm2<sizeof(T)>::value		\
+				  + (Zeta::Type<T>::is_signed ? 5 : 0))		\
+			: 31,							\
+		Z_ENUMERATE_FIXED_NATURAL_TYPES(Name##UInt,  void),		\
+		Z_ENUMERATE_FIXED_INTEGER_TYPES(Name##Int,   void),		\
+		Z_ENUMERATE_FIXED_REAL_TYPES   (Name##Float, void)		\
 	>::type
 
 #endif // __Z_macros_type_selection_HPP__
