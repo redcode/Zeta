@@ -1858,7 +1858,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 		enum {	size	       = C::is_empty ? 0 : sizeof(typename C::type),
 			bits	       = C::is_empty ? 0 : size * 8,
-			precision_bits = C::is_real ? C::precision_bits : (C::is_exact ? size * 8 : 0)
+			precision_bits = C::precision_bits ? C::precision_bits : (C::is_exact ? size * 8 : 0)
 		};
 	};
 
