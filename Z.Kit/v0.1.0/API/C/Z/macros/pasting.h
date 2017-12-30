@@ -133,15 +133,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_TERNARY_INSERT(condition) Z_JOIN_2(Z_TERNARY_INSERT_, condition)
 
-#define Z_TERNARY_1(a, b) a
-#define Z_TERNARY_0(a, b) b
-
-#define Z_TERNARY_TRUE( a, b) a
-#define Z_TERNARY_FALSE(a, b) b
-
-#define Z_TERNARY_(condition) Z_JOIN_2(Z_TERNARY_, condition)
-#define Z_TERNARY( condition) Z_TERNARY_(condition)
-
 #define Z_IF_1(what) what
 #define Z_IF_0(what)
 
@@ -150,5 +141,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_IF_(condition) Z_JOIN_2(Z_IF_, condition)
 #define Z_IF( condition) Z_IF_(condition)
+
+#define Z_TERNARY_1(a, b) a
+#define Z_TERNARY_0(a, b) b
+
+#define Z_TERNARY_TRUE( a, b) a
+#define Z_TERNARY_FALSE(a, b) b
+
+#define Z_TERNARY_(condition) Z_JOIN_2(Z_TERNARY_, condition)
+#define Z_TERNARY( condition) Z_TERNARY_(condition)
 
 #endif /* __Z_macros_pasting_H__ */
