@@ -240,12 +240,15 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_trivially_move_assignable	   = false,
 			is_trivially_move_constructible	   = false
 		};
+
 		enum {	arity	      = 0,
 			element_count = 0,
 			pointer_level = 0
 		};
-		enum {	bits = 0,
-			size = 0
+
+		enum {	bits	       = 0,
+			precision_bits = 0,
+			size	       = 0
 		};
 
 		typedef NaT type;
@@ -341,17 +344,19 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {is_exact = true};
 	};
 
-	struct Natural : Exact {
+	template <class T> struct Natural : Exact {
 		enum {is_natural = true};
 		enum {number_set = Z_NUMBER_SET_N};
+		enum {precision_bits = sizeof(T) * 8};
 		enum {minimum = 0};
 	};
 
-	struct Integer : Exact {
+	template <class T> struct Integer : Exact {
 		enum {	is_integer = true,
 			is_signed  = true
 		};
 		enum {number_set = Z_NUMBER_SET_Z};
+		enum {precision_bits = sizeof(T) * 8};
 	};
 
 	struct Real : Number {
@@ -375,7 +380,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
 
-		struct UInt8 : Natural {
+		struct UInt8 : Natural<zuint8> {
 			enum {is_uint8 = true};
 
 			enum {	base_value_type	 = Z_UINT8_BASE_VALUE_TYPE,
@@ -394,7 +399,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
 
-		struct UInt16 : Natural {
+		struct UInt16 : Natural<zuint16> {
 			enum {is_uint16 = true};
 
 			enum {	base_value_type	 = Z_UINT16_BASE_VALUE_TYPE,
@@ -413,7 +418,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
 
-		struct UInt32 : Natural {
+		struct UInt32 : Natural<zuint32> {
 			enum {is_uint32 = true};
 
 			enum {	base_value_type	 = Z_UINT32_BASE_VALUE_TYPE,
@@ -435,7 +440,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
 
-		struct UInt64 : Natural {
+		struct UInt64 : Natural<zuint64> {
 			enum {is_uint64 = true};
 
 			enum {	base_value_type	 = Z_UINT64_BASE_VALUE_TYPE,
@@ -457,7 +462,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
 
-		struct UInt128 : Natural {
+		struct UInt128 : Natural<zuint128> {
 			enum {is_uint128 = true};
 
 			enum {	base_value_type	 = Z_UINT128_BASE_VALUE_TYPE,
@@ -479,7 +484,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
 
-		struct Int8 : Integer {
+		struct Int8 : Integer<zint8> {
 			enum {is_int8 = true};
 
 			enum {	base_value_type	 = Z_INT8_BASE_VALUE_TYPE,
@@ -500,7 +505,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
 
-		struct Int16 : Integer {
+		struct Int16 : Integer<zint16> {
 			enum {is_int16 = true};
 
 			enum {	base_value_type	 = Z_INT16_BASE_VALUE_TYPE,
@@ -521,7 +526,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
 
-		struct Int32 : Integer {
+		struct Int32 : Integer<zint32> {
 			enum {is_int32 = true};
 
 			enum {	base_value_type	 = Z_INT16_BASE_VALUE_TYPE,
@@ -545,7 +550,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
 
-		struct Int64 : Integer {
+		struct Int64 : Integer<zint64> {
 			enum {is_int64 = true};
 
 			enum {	base_value_type	 = Z_INT64_BASE_VALUE_TYPE,
@@ -569,7 +574,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
 
-		struct Int128 : Integer {
+		struct Int128 : Integer<zint128> {
 			enum {is_int128 = true};
 
 			enum {	base_value_type	 = Z_INT128_BASE_VALUE_TYPE,
@@ -601,7 +606,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_FLOAT16_VALUE_TYPE,
 				value_format	 = Z_FLOAT16_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_FLOAT16_BIAS,
+			enum {	precision_bits	   = Z_FLOAT16_PRECISION_BITS,
+				bias		   = Z_FLOAT16_BIAS,
 				decimal_digits	   = Z_FLOAT16_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT16_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT16_SIGNIFICAND_BITS,
@@ -640,7 +646,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_FLOAT24_VALUE_TYPE,
 				value_format	 = Z_FLOAT24_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_FLOAT24_BIAS,
+			enum {	precision_bits	   = Z_FLOAT24_PRECISION_BITS,
+				bias		   = Z_FLOAT24_BIAS,
 				decimal_digits	   = Z_FLOAT24_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT24_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT24_SIGNIFICAND_BITS,
@@ -679,7 +686,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_FLOAT32_VALUE_TYPE,
 				value_format	 = Z_FLOAT32_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_FLOAT32_BIAS,
+			enum {	precision_bits	   = Z_FLOAT32_PRECISION_BITS,
+				bias		   = Z_FLOAT32_BIAS,
 				decimal_digits	   = Z_FLOAT32_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT32_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT32_SIGNIFICAND_BITS,
@@ -718,7 +726,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_FLOAT48_VALUE_TYPE,
 				value_format	 = Z_FLOAT48_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_FLOAT48_BIAS,
+			enum {	precision_bits	   = Z_FLOAT48_PRECISION_BITS,
+				bias		   = Z_FLOAT48_BIAS,
 				decimal_digits	   = Z_FLOAT48_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT48_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT48_SIGNIFICAND_BITS,
@@ -757,7 +766,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_FLOAT64_VALUE_TYPE,
 				value_format	 = Z_FLOAT64_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_FLOAT64_BIAS,
+			enum {	precision_bits	   = Z_FLOAT64_PRECISION_BITS,
+				bias		   = Z_FLOAT64_BIAS,
 				decimal_digits	   = Z_FLOAT64_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT64_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT64_SIGNIFICAND_BITS,
@@ -796,7 +806,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_FLOAT72_VALUE_TYPE,
 				value_format	 = Z_FLOAT72_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_FLOAT72_BIAS,
+			enum {	precision_bits	   = Z_FLOAT72_PRECISION_BITS,
+				bias		   = Z_FLOAT72_BIAS,
 				decimal_digits	   = Z_FLOAT72_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT72_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT72_SIGNIFICAND_BITS,
@@ -835,7 +846,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_FLOAT80_VALUE_TYPE,
 				value_format	 = Z_FLOAT80_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_FLOAT80_BIAS,
+			enum {	precision_bits	   = Z_FLOAT80_PRECISION_BITS,
+				bias		   = Z_FLOAT80_BIAS,
 				decimal_digits	   = Z_FLOAT80_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT80_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT80_SIGNIFICAND_BITS,
@@ -874,7 +886,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_FLOAT96_VALUE_TYPE,
 				value_format	 = Z_FLOAT96_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_FLOAT96_BIAS,
+			enum {	precision_bits	   = Z_FLOAT96_PRECISION_BITS,
+				bias		   = Z_FLOAT96_BIAS,
 				decimal_digits	   = Z_FLOAT96_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT96_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT96_SIGNIFICAND_BITS,
@@ -913,7 +926,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_FLOAT128_VALUE_TYPE,
 				value_format	 = Z_FLOAT128_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_FLOAT128_BIAS,
+			enum {	precision_bits	   = Z_FLOAT128_PRECISION_BITS,
+				bias		   = Z_FLOAT128_BIAS,
 				decimal_digits	   = Z_FLOAT128_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT128_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT128_SIGNIFICAND_BITS,
@@ -942,7 +956,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	struct UChar : Natural {
+	struct UChar : Natural<zuchar> {
 		enum {is_uchar = true};
 
 		enum {	base_value_type	 = Z_UCHAR_BASE_VALUE_TYPE,
@@ -952,12 +966,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 		enum {maximum = Z_UCHAR_MAXIMUM};
 
-		typedef unsigned char type;
-		typedef unsigned char to_unsigned;
-		typedef signed   char to_signed;
+		typedef zuchar type;
+		typedef zuchar to_unsigned;
+		typedef zchar  to_signed;
 	};
 
-	struct UShort : Natural {
+	struct UShort : Natural<zushort> {
 		enum {is_ushort = true};
 
 		enum {	base_value_type	 = Z_USHORT_BASE_VALUE_TYPE,
@@ -967,12 +981,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 		enum {maximum = Z_USHORT_MAXIMUM};
 
-		typedef unsigned short int type;
-		typedef unsigned short int to_unsigned;
-		typedef signed	 short int to_signed;
+		typedef zushort type;
+		typedef zushort to_unsigned;
+		typedef zshort	to_signed;
 	};
 
-	struct UInt : Natural {
+	struct UInt : Natural<zuint> {
 		enum {is_uint = true};
 
 		enum {	base_value_type	 = Z_UINT_BASE_VALUE_TYPE,
@@ -982,12 +996,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 		enum {maximum = Z_UINT_MAXIMUM};
 
-		typedef unsigned int type;
-		typedef unsigned int to_unsigned;
-		typedef signed	 int to_signed;
+		typedef zuint type;
+		typedef zuint to_unsigned;
+		typedef zint  to_signed;
 	};
 
-	struct ULong : Natural {
+	struct ULong : Natural<zulong> {
 		enum {is_ulong = true};
 
 		enum {	base_value_type	 = Z_ULONG_BASE_VALUE_TYPE,
@@ -997,15 +1011,15 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 		enum {maximum = Z_ULONG_MAXIMUM};
 
-		typedef unsigned long int type;
-		typedef unsigned long int to_unsigned;
-		typedef signed	 long int to_signed;
+		typedef zulong type;
+		typedef zulong to_unsigned;
+		typedef zlong  to_signed;
 
 	};
 
 #	ifdef Z_ULLONG
 
-		struct ULLong : Natural {
+		struct ULLong : Natural<zullong> {
 			enum {is_ullong = true};
 
 			enum {	base_value_type	 = Z_ULLONG_BASE_VALUE_TYPE,
@@ -1015,17 +1029,17 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			};
 			enum {maximum = Z_ULLONG_MAXIMUM};
 
-			typedef unsigned long long int type;
-			typedef unsigned long long int to_unsigned;
+			typedef zullong type;
+			typedef zullong to_unsigned;
 
 #			ifdef Z_LLONG
-				typedef signed long long int to_signed;
+				typedef zllong to_signed;
 #			endif
 		};
 
 #	endif
 
-	struct Char : Integer {
+	struct Char : Integer<zchar> {
 		enum {is_char = true};
 
 		enum {	base_value_type	 = Z_CHAR_BASE_VALUE_TYPE,
@@ -1037,12 +1051,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			maximum = Z_CHAR_MAXIMUM
 		};
 
-		typedef signed	 char type;
-		typedef unsigned char to_unsigned;
-		typedef signed	 char to_signed;
+		typedef zchar  type;
+		typedef zuchar to_unsigned;
+		typedef zchar  to_signed;
 	};
 
-	struct Short : Integer {
+	struct Short : Integer<zshort> {
 		enum {is_short = true};
 
 		enum {	base_value_type	 = Z_SHORT_BASE_VALUE_TYPE,
@@ -1054,12 +1068,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			maximum = Z_SHORT_MAXIMUM
 		};
 
-		typedef signed	 short int type;
-		typedef unsigned short int to_unsigned;
-		typedef signed	 short int to_signed;
+		typedef zshort	type;
+		typedef zushort to_unsigned;
+		typedef zshort	to_signed;
 	};
 
-	struct Int : Integer {
+	struct Int : Integer<zint> {
 		enum {is_int = true};
 
 		enum {	base_value_type	 = Z_INT_BASE_VALUE_TYPE,
@@ -1071,12 +1085,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			maximum = Z_INT_MAXIMUM
 		};
 
-		typedef signed	 int type;
-		typedef unsigned int to_unsigned;
-		typedef signed	 int to_signed;
+		typedef zint  type;
+		typedef zuint to_unsigned;
+		typedef zint  to_signed;
 	};
 
-	struct Long : Integer {
+	struct Long : Integer<zlong> {
 		enum {is_long = true};
 
 		enum {	base_value_type	 = Z_LONG_BASE_VALUE_TYPE,
@@ -1088,14 +1102,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			maximum = Z_LONG_MAXIMUM
 		};
 
-		typedef signed	 long int type;
-		typedef unsigned long int to_unsigned;
-		typedef signed	 long int to_signed;
+		typedef zlong  type;
+		typedef zulong to_unsigned;
+		typedef zlong  to_signed;
 	};
 
 #	ifdef Z_LLONG
 
-		struct LLong : Integer {
+		struct LLong : Integer<zllong> {
 			enum {is_llong = true};
 
 			enum {	base_value_type	 = Z_LLONG_BASE_VALUE_TYPE,
@@ -1107,11 +1121,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				maximum = Z_LLONG_MAXIMUM
 			};
 
-			typedef signed long long int type;
-			typedef signed long long int to_signed;
+			typedef zllong type;
+			typedef zllong to_signed;
 
 #			ifdef Z_ULLONG
-				typedef unsigned long long int to_unsigned;
+				typedef zullong to_unsigned;
 #			endif
 		};
 
@@ -1127,7 +1141,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_FLOAT_VALUE_TYPE,
 				value_format	 = Z_FLOAT_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_FLOAT_BIAS,
+			enum {	precision_bits	   = Z_FLOAT_PRECISION_BITS,
+				bias		   = Z_FLOAT_BIAS,
 				decimal_digits	   = Z_FLOAT_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT_SIGNIFICAND_BITS,
@@ -1144,14 +1159,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) float epsilon () {return Z_FLOAT_EPSILON;}
-			static Z_CT_MEMBER(CPP11) float minimum () {return Z_FLOAT_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) float maximum () {return Z_FLOAT_MAXIMUM;}
+			static Z_CT_MEMBER(CPP11) zfloat epsilon () {return Z_FLOAT_EPSILON;}
+			static Z_CT_MEMBER(CPP11) zfloat minimum () {return Z_FLOAT_MINIMUM;}
+			static Z_CT_MEMBER(CPP11) zfloat maximum () {return Z_FLOAT_MAXIMUM;}
 			//static Z_CT_MEMBER(CPP11) float infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
 			//static Z_CT_MEMBER(CPP11) float nan     () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}
 
-			typedef float type;
-			typedef float to_signed;
+			typedef zfloat type;
+			typedef zfloat to_signed;
 		};
 
 #	endif
@@ -1166,7 +1181,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_DOUBLE_VALUE_TYPE,
 				value_format	 = Z_DOUBLE_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_DOUBLE_BIAS,
+			enum {	precision_bits	   = Z_DOUBLE_PRECISION_BITS,
+				bias		   = Z_DOUBLE_BIAS,
 				decimal_digits	   = Z_DOUBLE_DECIMAL_DIGITS,
 				significand_offset = Z_DOUBLE_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_DOUBLE_SIGNIFICAND_BITS,
@@ -1183,14 +1199,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) double epsilon () {return Z_DOUBLE_EPSILON;}
-			static Z_CT_MEMBER(CPP11) double minimum () {return Z_DOUBLE_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) double maximum () {return Z_DOUBLE_MAXIMUM;}
+			static Z_CT_MEMBER(CPP11) zdouble epsilon () {return Z_DOUBLE_EPSILON;}
+			static Z_CT_MEMBER(CPP11) zdouble minimum () {return Z_DOUBLE_MINIMUM;}
+			static Z_CT_MEMBER(CPP11) zdouble maximum () {return Z_DOUBLE_MAXIMUM;}
 			//static Z_CT_MEMBER(CPP11) double infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
 			//static Z_CT_MEMBER(CPP11) double nan     () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}
 
-			typedef double type;
-			typedef double to_signed;
+			typedef zdouble type;
+			typedef zdouble to_signed;
 		};
 
 #	endif
@@ -1205,7 +1221,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				value_type	 = Z_LDOUBLE_VALUE_TYPE,
 				value_format	 = Z_LDOUBLE_VALUE_FORMAT
 			};
-			enum {	bias		   = Z_LDOUBLE_BIAS,
+			enum {	precision_bits	   = Z_LDOUBLE_PRECISION_BITS,
+				bias		   = Z_LDOUBLE_BIAS,
 				decimal_digits	   = Z_LDOUBLE_DECIMAL_DIGITS,
 				significand_offset = Z_LDOUBLE_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_LDOUBLE_SIGNIFICAND_BITS,
@@ -1222,14 +1239,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) long double epsilon () {return Z_LDOUBLE_EPSILON;}
-			static Z_CT_MEMBER(CPP11) long double minimum () {return Z_LDOUBLE_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) long double maximum () {return Z_LDOUBLE_MAXIMUM;}
+			static Z_CT_MEMBER(CPP11) zldouble epsilon () {return Z_LDOUBLE_EPSILON;}
+			static Z_CT_MEMBER(CPP11) zldouble minimum () {return Z_LDOUBLE_MINIMUM;}
+			static Z_CT_MEMBER(CPP11) zldouble maximum () {return Z_LDOUBLE_MAXIMUM;}
 			//static Z_CT_MEMBER(CPP11) long double infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
 			//static Z_CT_MEMBER(CPP11) long double nan     () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;}
 
-			typedef long double type;
-			typedef long double to_signed;
+			typedef zldouble type;
+			typedef zldouble to_signed;
 		};
 
 #	endif
@@ -1237,10 +1254,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
 		struct Boolean : Exact {
 			enum {is_boolean = true};
+			enum {precision_bits = 1};
 		};
 #	endif
 
-	struct Character : SelectType<Z_CHARACTER_IS_SIGNED, Natural, Integer>::type {
+	struct Character : SelectType<Z_CHARACTER_IS_SIGNED, Natural<zcharacter>, Integer<zcharacter>>::type {
 		enum {is_character = true};
 
 		enum {	base_value_type	 = Z_CHARACTER_BASE_VALUE_TYPE,
@@ -1252,9 +1270,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			maximum = Z_CHARACTER_MAXIMUM
 		};
 
-		typedef char	      type;
-		typedef unsigned char to_unsigned;
-		typedef signed   char to_signed;
+		typedef zcharacter type;
+		typedef zuchar	   to_unsigned;
+		typedef zchar	   to_signed;
 	};
 
 	template <class T> struct Array : Storable {
