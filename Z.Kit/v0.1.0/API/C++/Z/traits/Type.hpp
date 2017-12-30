@@ -344,19 +344,17 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {is_exact = true};
 	};
 
-	template <class T> struct Natural : Exact {
+	struct Natural : Exact {
 		enum {is_natural = true};
 		enum {number_set = Z_NUMBER_SET_N};
-		enum {precision_bits = sizeof(T) * 8};
 		enum {minimum = 0};
 	};
 
-	template <class T> struct Integer : Exact {
+	struct Integer : Exact {
 		enum {	is_integer = true,
 			is_signed  = true
 		};
 		enum {number_set = Z_NUMBER_SET_Z};
-		enum {precision_bits = sizeof(T) * 8};
 	};
 
 	struct Real : Number {
@@ -380,7 +378,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
 
-		struct UInt8 : Natural<zuint8> {
+		struct UInt8 : Natural {
 			enum {is_uint8 = true};
 
 			enum {	base_value_type	 = Z_UINT8_BASE_VALUE_TYPE,
@@ -399,7 +397,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
 
-		struct UInt16 : Natural<zuint16> {
+		struct UInt16 : Natural {
 			enum {is_uint16 = true};
 
 			enum {	base_value_type	 = Z_UINT16_BASE_VALUE_TYPE,
@@ -418,7 +416,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
 
-		struct UInt32 : Natural<zuint32> {
+		struct UInt32 : Natural {
 			enum {is_uint32 = true};
 
 			enum {	base_value_type	 = Z_UINT32_BASE_VALUE_TYPE,
@@ -440,7 +438,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
 
-		struct UInt64 : Natural<zuint64> {
+		struct UInt64 : Natural {
 			enum {is_uint64 = true};
 
 			enum {	base_value_type	 = Z_UINT64_BASE_VALUE_TYPE,
@@ -462,7 +460,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
 
-		struct UInt128 : Natural<zuint128> {
+		struct UInt128 : Natural {
 			enum {is_uint128 = true};
 
 			enum {	base_value_type	 = Z_UINT128_BASE_VALUE_TYPE,
@@ -484,7 +482,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
 
-		struct Int8 : Integer<zint8> {
+		struct Int8 : Integer {
 			enum {is_int8 = true};
 
 			enum {	base_value_type	 = Z_INT8_BASE_VALUE_TYPE,
@@ -505,7 +503,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
 
-		struct Int16 : Integer<zint16> {
+		struct Int16 : Integer {
 			enum {is_int16 = true};
 
 			enum {	base_value_type	 = Z_INT16_BASE_VALUE_TYPE,
@@ -526,7 +524,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
 
-		struct Int32 : Integer<zint32> {
+		struct Int32 : Integer {
 			enum {is_int32 = true};
 
 			enum {	base_value_type	 = Z_INT16_BASE_VALUE_TYPE,
@@ -550,7 +548,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
 
-		struct Int64 : Integer<zint64> {
+		struct Int64 : Integer {
 			enum {is_int64 = true};
 
 			enum {	base_value_type	 = Z_INT64_BASE_VALUE_TYPE,
@@ -574,7 +572,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
 
-		struct Int128 : Integer<zint128> {
+		struct Int128 : Integer {
 			enum {is_int128 = true};
 
 			enum {	base_value_type	 = Z_INT128_BASE_VALUE_TYPE,
@@ -956,7 +954,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	struct UChar : Natural<zuchar> {
+	struct UChar : Natural {
 		enum {is_uchar = true};
 
 		enum {	base_value_type	 = Z_UCHAR_BASE_VALUE_TYPE,
@@ -971,7 +969,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef zchar  to_signed;
 	};
 
-	struct UShort : Natural<zushort> {
+	struct UShort : Natural {
 		enum {is_ushort = true};
 
 		enum {	base_value_type	 = Z_USHORT_BASE_VALUE_TYPE,
@@ -986,7 +984,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef zshort	to_signed;
 	};
 
-	struct UInt : Natural<zuint> {
+	struct UInt : Natural {
 		enum {is_uint = true};
 
 		enum {	base_value_type	 = Z_UINT_BASE_VALUE_TYPE,
@@ -1001,7 +999,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef zint  to_signed;
 	};
 
-	struct ULong : Natural<zulong> {
+	struct ULong : Natural {
 		enum {is_ulong = true};
 
 		enum {	base_value_type	 = Z_ULONG_BASE_VALUE_TYPE,
@@ -1019,7 +1017,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	ifdef Z_ULLONG
 
-		struct ULLong : Natural<zullong> {
+		struct ULLong : Natural {
 			enum {is_ullong = true};
 
 			enum {	base_value_type	 = Z_ULLONG_BASE_VALUE_TYPE,
@@ -1039,7 +1037,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	struct Char : Integer<zchar> {
+	struct Char : Integer {
 		enum {is_char = true};
 
 		enum {	base_value_type	 = Z_CHAR_BASE_VALUE_TYPE,
@@ -1056,7 +1054,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef zchar  to_signed;
 	};
 
-	struct Short : Integer<zshort> {
+	struct Short : Integer {
 		enum {is_short = true};
 
 		enum {	base_value_type	 = Z_SHORT_BASE_VALUE_TYPE,
@@ -1073,7 +1071,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef zshort	to_signed;
 	};
 
-	struct Int : Integer<zint> {
+	struct Int : Integer {
 		enum {is_int = true};
 
 		enum {	base_value_type	 = Z_INT_BASE_VALUE_TYPE,
@@ -1090,7 +1088,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef zint  to_signed;
 	};
 
-	struct Long : Integer<zlong> {
+	struct Long : Integer {
 		enum {is_long = true};
 
 		enum {	base_value_type	 = Z_LONG_BASE_VALUE_TYPE,
@@ -1109,7 +1107,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	ifdef Z_LLONG
 
-		struct LLong : Integer<zllong> {
+		struct LLong : Integer {
 			enum {is_llong = true};
 
 			enum {	base_value_type	 = Z_LLONG_BASE_VALUE_TYPE,
@@ -1258,7 +1256,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 #	endif
 
-	struct Character : SelectType<Z_CHARACTER_IS_SIGNED, Natural<zcharacter>, Integer<zcharacter>>::type {
+	struct Character : SelectType<Z_CHARACTER_IS_SIGNED, Natural, Integer>::type {
 		enum {is_character = true};
 
 		enum {	base_value_type	 = Z_CHARACTER_BASE_VALUE_TYPE,
@@ -1858,8 +1856,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		Z_DEFINE_STRICT_STRUCTURE (typename C::type value;     ) to_wrap;
 		Z_DEFINE_STRICT_STRUCTURE (UInt8 data[sizeof(to_wrap)];) to_opaque;
 
-		enum {	size = C::is_empty ? 0 : sizeof(to_wrap),
-			bits = C::is_empty ? 0 : sizeof(to_wrap) * 8
+		enum {	size	       = C::is_empty ? 0 : sizeof(typename C::type),
+			bits	       = C::is_empty ? 0 : size * 8,
+			precision_bits = C::is_real ? C::precision_bits : (C::is_exact ? size * 8 : 0)
 		};
 	};
 
