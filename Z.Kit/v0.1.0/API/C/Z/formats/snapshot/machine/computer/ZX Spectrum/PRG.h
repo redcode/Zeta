@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 .-------------------------------------.
 | Extensions: prg		      |
 | Endianness: Little		      |
-| Created by: Kevin Phair	      |
+| Created by: Phair, Kevin	      |
 |    Used by: Spectrum Emulator [DOS] |
 |				      |
 | http://code.google.com/p/specem     |

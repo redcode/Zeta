@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 .--------------------------------------------------.
 | Extensions: snp				   |
 | Endianness: Little				   |
-| Created by: Radovan Garabik - Lubomir Salanci	   |
+| Created by: Garabik, Radovan - Salanci, Lubomir  |
 |    Used by: Nuclear ZX [DOS]			   |
 |						   |
 | http://korpus.juls.savba.sk/~garabik/old/zx.html |

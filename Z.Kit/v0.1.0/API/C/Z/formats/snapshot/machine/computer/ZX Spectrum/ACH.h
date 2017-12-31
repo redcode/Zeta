@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 .-------------------------------.
 | Extensions: ach, archimedes	|
 | Endianness: Little		|
-| Created by: Carsten Witt	|
+| Created by: Witt, Carsten	|
 |    Used by: !Speccy [RISC OS]	|
 '------------------------------*/
 

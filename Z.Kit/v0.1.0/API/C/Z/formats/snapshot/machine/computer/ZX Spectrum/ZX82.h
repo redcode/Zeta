@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 .-------------------------------------------------------------------------.
 | Extensions: zx82							  |
 | Endianness: Big							  |
-| Created by: William James						  |
+| Created by: James, William						  |
 |    Used by: Speculator '97 [Amiga]					  |
 |									  |
 | IMPORTANT NOTICE: This format is not well known at all,		  |

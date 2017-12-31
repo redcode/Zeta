@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 .-----------------------------------------------------.
 | Extensions: sem				      |
 | Endianness: Little				      |
-| Created by: Bernd Waschke			      |
+| Created by: Waschke, Bernd			      |
 |    Used by: ZX Spectrum-Emulator (SpecEmu) [MS-DOS] |
 '----------------------------------------------------*/
 

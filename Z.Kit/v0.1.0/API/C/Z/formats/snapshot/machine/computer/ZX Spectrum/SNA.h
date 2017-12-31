@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 .---------------------------------------------.
 | Extensions: sna, snap, snapshot	      |
 | Endianness: Little			      |
-| Created by: Unknown			      |
+| Created by: McGavin, Peter		      |
 |    Used by: Any decent ZX Spectrum emulator |
 '--------------------------------------------*/
 
