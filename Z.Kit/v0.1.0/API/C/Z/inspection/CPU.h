@@ -66,7 +66,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_MIPS
 #	include <Z/inspection/CPU/modules/MIPS.h>
 
-#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_MIPS
+#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_MIPS64
 #	include <Z/inspection/CPU/modules/MIPS64.h>
 
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_MSP430
