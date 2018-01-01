@@ -46,10 +46,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/CPU/modules/Epiphany.h>
 
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_ESA_370
-#	include <Z/inspection/CPU/modules/ESA/370.h>
+#	include <Z/inspection/CPU/modules/ESA-370.h>
 
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_ESA_390
-#	include <Z/inspection/CPU/modules/ESA/390.h>
+#	include <Z/inspection/CPU/modules/ESA-390.h>
 
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_HEXAGON
 #	include <Z/inspection/CPU/modules/Hexagon.h>
@@ -106,7 +106,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/CPU/modules/x86-64.h>
 
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_Z_ARCHITECTURE
-#	include <Z/inspection/CPU/modules/z/Architecture.h>
+#	include <Z/inspection/CPU/modules/z-Architecture.h>
 
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_Z80
 #	include <Z/inspection/CPU/modules/Z80.h>
