@@ -62,7 +62,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/OS/modules/DC-OSx.h>
 
 #elif Z_OS == Z_OS_DG_UX
-#	include <Z/inspection/OS/modules/DG/UX.h>
+#	include <Z/inspection/OS/modules/DG-UX.h>
 
 #elif Z_OS == Z_OS_DOMAIN_OS
 #	include <Z/inspection/OS/modules/Domain-OS.h>
