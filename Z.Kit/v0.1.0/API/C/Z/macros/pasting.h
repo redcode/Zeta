@@ -142,6 +142,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_IF_(condition) Z_JOIN_2(Z_IF_, condition)
 #define Z_IF( condition) Z_IF_(condition)
 
+#define Z_UNLESS_1(what)
+#define Z_UNLESS_0(what) what
+
+#define Z_UNLESS_TRUE( what)
+#define Z_UNLESS_FALSE(what) what
+
+#define Z_UNLESS_(condition) Z_JOIN_2(Z_UNLESS_, condition)
+#define Z_UNLESS( condition) Z_UNLESS_(condition)
+
 #define Z_TERNARY_1(a, b) a
 #define Z_TERNARY_0(a, b) b
 
