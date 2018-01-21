@@ -19,7 +19,7 @@ namespace Zeta {struct Symbol {
 	Z_CT_MEMBER(CPP11) Symbol(UInt64 id)
 	: id(id) {}
 
-	Z_CT_MEMBER(CPP14) Symbol(const Character *string)
+	Z_CT_MEMBER(CPP14) Symbol(const Char *string)
 	: id(Z_UINT64(14695981039346656037))
 		{while (*string) id = (id ^ *string++) * Z_UINT64(109951162821);}
 

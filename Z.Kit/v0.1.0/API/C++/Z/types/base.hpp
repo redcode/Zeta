@@ -122,7 +122,7 @@ namespace Zeta {
 #	endif
 
 #	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
-		typedef NullPointer decltype(nullptr);
+		typedef decltype(nullptr) NullPointer;
 #	endif
 
 	typedef znatural Natural;
