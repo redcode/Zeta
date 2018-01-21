@@ -238,9 +238,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			pointer_level = 0
 		};
 
-		enum {	bits	       = 0,
-			precision_bits = 0,
-			size	       = 0
+		enum {	bits = 0,
+			size = 0
 		};
 
 		typedef NaT type;
@@ -1134,7 +1133,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
 		struct Boolean : Exact {
 			enum {is_boolean = true};
-			enum {precision_bits = 1};
 		};
 #	endif
 
@@ -1721,9 +1719,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		Z_DEFINE_STRICT_STRUCTURE (typename C::type value;     ) to_wrap;
 		Z_DEFINE_STRICT_STRUCTURE (UInt8 data[sizeof(to_wrap)];) to_opaque;
 
-		enum {	size	       = C::is_empty ? 0 : sizeof(typename C::type),
-			bits	       = C::is_empty ? 0 : size * 8,
-			precision_bits = C::is_exact ? size * 8 : C::precision_bits
+		enum {	size = C::is_empty ? 0 : sizeof(typename C::type),
+			bits = C::is_empty ? 0 : size * 8
 		};
 	};
 
