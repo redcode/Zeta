@@ -33,7 +33,7 @@ Z_INLINE zboolean z_range_##type##_contains_index(ZRange##Type object, z##type i
 	{return index >= object.index && index < object.index + object.size;}		 \
 											 \
 											 \
-Z_INLINE zsize z_range_##type##_end(ZRange##Type object)				 \
+Z_INLINE zusize z_range_##type##_end(ZRange##Type object)				 \
 	{return object.index + object.size;}						 \
 											 \
 											 \
@@ -107,16 +107,16 @@ Z_IMPLEMENTATION_RANGE(UInt32, uint32)
 /* MARK: - Default type definitions */
 
 
-#define z_range_are_equal      z_range_type_are_equal	  (SIZE)
-#define z_range_contains       z_range_type_contains	  (SIZE)
-#define z_range_contains_index z_range_type_contains_index(SIZE)
-#define z_range_end	       z_range_type_end		  (SIZE)
-#define z_range_from_indices   z_range_type_from_indices  (SIZE)
-#define z_range_intersect      z_range_type_intersect	  (SIZE)
-#define z_range_intersection   z_range_type_intersection  (SIZE)
-#define z_range_is_zero	       z_range_type_is_zero	  (SIZE)
-#define z_range_swap	       z_range_type_swap	  (SIZE)
-#define z_range_union	       z_range_type_union	  (SIZE)
+#define z_range_are_equal      z_range_type_are_equal	  (USIZE)
+#define z_range_contains       z_range_type_contains	  (USIZE)
+#define z_range_contains_index z_range_type_contains_index(USIZE)
+#define z_range_end	       z_range_type_end		  (USIZE)
+#define z_range_from_indices   z_range_type_from_indices  (USIZE)
+#define z_range_intersect      z_range_type_intersect	  (USIZE)
+#define z_range_intersection   z_range_type_intersection  (USIZE)
+#define z_range_is_zero	       z_range_type_is_zero	  (USIZE)
+#define z_range_swap	       z_range_type_swap	  (USIZE)
+#define z_range_union	       z_range_type_union	  (USIZE)
 
 
 #endif /* __Z_functions_base_ZRange_H__ */

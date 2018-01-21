@@ -62,7 +62,7 @@ ANALOG CHANNEL A -05-|		 |-24- DA4
 
 						   Content
 			      .-----------------------------------------------.
-	      Register	      |  7  |  6  |  5  |  4  |  3  |  2  |  1  |  0  |
+	      Register	      |	 7  |  6  |  5	|  4  |	 3  |  2  |  1	|  0  |
 .-----------------------------+-----------------------------------------------|
 | R0  |			      |		      8-Bit Fine Tune A		      |
 |-----| Channel A Tone Period |-----------------------------------------------|
@@ -78,9 +78,9 @@ ANALOG CHANNEL A -05-|		 |-24- DA4
 |-----+-----------------------+-----------------------------------------------|
 | R6  | Noise Period	      | /////////////// |    5-Bit Period Control     |
 |-----+-----------------------+-----------------------------------------------|
-| R7  | Enable		      |  IN OUT   |	 Noise	    |	   Noise      |
+| R7  | Enable		      |	 IN OUT	  |	 Noise	    |	   Noise      |
 |     |			      |-----------+-----------------+-----------------|
-|     |			      | IOB | IOA |  C  |  B  |  A  |  C  |  B  |  A  |
+|     |			      | IOB | IOA |  C	|  B  |  A  |  C  |  B  |  A  |
 |-----+-----------------------+-----------------+-----+-----+-----+-----+-----|
 | R10 | Channel A Amplitude   | /////////////// |  M  |  L3 |  L2 |  L1 |  L0 |
 |-----+-----------------------+-----------------+-----+-----+-----+-----+-----|
@@ -160,21 +160,21 @@ Z_DEFINE_STRICT_UNION (
 	} values;
 ) ZAY3891xState;
 
-#define Z_AY_3_891X_CHANNEL_A_TONE_PERIOD_FINE_TUNE	 0
-#define Z_AY_3_891X_CHANNEL_A_TONE_PERIOD_COARSE_TUNE	 1
-#define Z_AY_3_891X_CHANNEL_B_TONE_PERIOD_FINE_TUNE	 2
-#define Z_AY_3_891X_CHANNEL_B_TONE_PERID_COARSE_TUNE	 3
-#define Z_AY_3_891X_CHANNEL_C_TONE_PERIOD_FINE_TUNE	 4
-#define Z_AY_3_891X_CHANNEL_C_TONE_PERIOD_COARSE_TUNE	 5
-#define Z_AY_3_891X_NOISE_PERIOD			 6
-#define Z_AY_3_891X_ENABLEE				 7
-#define Z_AY_3_891X_CHANNEL_A_AMPLITUDE			 8
-#define Z_AY_3_891X_CHANNEL_B_AMPLITUDE			 9
-#define Z_AY_3_891X_CHANNEL_C_AMPLITUDE			10
-#define Z_AY_3_891X_ENVELOPE_PERIOD_FINE_TUNE		11
-#define Z_AY_3_891X_ENVELOPE_PERIOD_COARSE_TUNE		12
-#define Z_AY_3_891X_ENVELOPE_SHAPE_CYCLE		13
-#define Z_AY_3_891X_IO_PORT_A_DATA_STORE		14
-#define Z_AY_3_891X_IO_PORT_B_DATA_STORE		15
+#define Z_AY_3_891X_CHANNEL_A_TONE_PERIOD_FINE_TUNE    0
+#define Z_AY_3_891X_CHANNEL_A_TONE_PERIOD_COARSE_TUNE  1
+#define Z_AY_3_891X_CHANNEL_B_TONE_PERIOD_FINE_TUNE    2
+#define Z_AY_3_891X_CHANNEL_B_TONE_PERID_COARSE_TUNE   3
+#define Z_AY_3_891X_CHANNEL_C_TONE_PERIOD_FINE_TUNE    4
+#define Z_AY_3_891X_CHANNEL_C_TONE_PERIOD_COARSE_TUNE  5
+#define Z_AY_3_891X_NOISE_PERIOD		       6
+#define Z_AY_3_891X_ENABLEE			       7
+#define Z_AY_3_891X_CHANNEL_A_AMPLITUDE		       8
+#define Z_AY_3_891X_CHANNEL_B_AMPLITUDE		       9
+#define Z_AY_3_891X_CHANNEL_C_AMPLITUDE		      10
+#define Z_AY_3_891X_ENVELOPE_PERIOD_FINE_TUNE	      11
+#define Z_AY_3_891X_ENVELOPE_PERIOD_COARSE_TUNE	      12
+#define Z_AY_3_891X_ENVELOPE_SHAPE_CYCLE	      13
+#define Z_AY_3_891X_IO_PORT_A_DATA_STORE	      14
+#define Z_AY_3_891X_IO_PORT_B_DATA_STORE	      15
 
 #endif /* __Z_hardware_PSG_General_Instrument_AY_3_891x_H__ */

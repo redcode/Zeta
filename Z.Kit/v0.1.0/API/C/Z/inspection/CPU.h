@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/keys/value.h>
 #include <Z/inspection/compiler.h>
 
-#ifndef Z_CPU_ARCHITECTURE
+#ifndef Z_CPU_ARCHITECTURE /* UDC */
 #	ifdef Z_COMPILER_CPU_ARCHITECTURE
 #		define Z_CPU_ARCHITECTURE Z_COMPILER_CPU_ARCHITECTURE
 #	else
@@ -22,7 +22,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if !defined(Z_CPU_ARCHITECTURE)
-#	error "Target CPU architecture not defined."
+#	error "CPU architecture not defined."
 
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_6502
 #	include <Z/inspection/CPU/modules/6502.h>
@@ -112,7 +112,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/CPU/modules/Z80.h>
 
 #else
-#	error "Target CPU architecture not supported."
+#	error "CPU architecture not supported."
 
 #endif
 
@@ -185,10 +185,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_CPU_ARCHITECTURE_STRING Z_INSERT_CPU_ARCHITECTURE(Z_CPU_ARCHITECTURE_STRING_,)
 
-#define Z_CPU_HAS(	  WHAT ) Z_CPU_HAS_##WHAT
-#define Z_CPU_HAS_ISA(	  WHICH) Z_CPU_HAS_ISA_##WHICH
-#define Z_CPU_HAS_INTEGER(bits ) Z_CPU_HAS_INTEGER_##bits##BIT
-#define Z_CPU_BITS(	  WHAT ) Z_CPU_BITS_##WHAT
+#define Z_CPU_HAS(	  WHAT	) Z_CPU_HAS_##WHAT
+#define Z_CPU_HAS_ISA(	  WHICH	) Z_CPU_HAS_ISA_##WHICH
+#define Z_CPU_HAS_INTEGER(bits	) Z_CPU_HAS_INTEGER_##bits##BIT
+#define Z_CPU_HAS_REAL(	  FORMAT) Z_CPY_HAS_REAL_##FORMAT
+#define Z_CPU_BITS(	  WHAT	) Z_CPU_BITS_##WHAT
 
 #define Z_CPU_ENDIANNESS(TYPE, bits) Z_CPU_##TYPE##_ENDIANNESS_##bits##BIT
 #define Z_CPU_FORMAT(	 TYPE, bits) Z_CPU_##TYPE##_FORMAT_##bits##BIT

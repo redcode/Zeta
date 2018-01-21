@@ -52,7 +52,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_OBJECTIVE_C_FLAG(FLAG) FALSE
 #endif
 
-#if defined(Z_USE_LANGUAGE_STANDARD)
+#if defined(Z_USE_LANGUAGE_STANDARD) || Z_COMPILER == Z_COMPILER_UNKNOWN
 
 #	define Z_LANGUAGE_HAS(LANGUAGE, WHAT) \
  		Z_##LANGUAGE##_FLAG(Z_##LANGUAGE##_HAS_##WHAT)

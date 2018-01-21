@@ -8,12 +8,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_keys_data_model_H__
 #define __Z_keys_data_model_H__
 
-#define Z_DATA_MODEL_LP32   0
-#define Z_DATA_MODEL_ILP32  1
-#define Z_DATA_MODEL_LLP64  2
-#define Z_DATA_MODEL_LP64   3
-#define Z_DATA_MODEL_ILP64  4
-#define Z_DATA_MODEL_SILP64 5
+#define Z_DATA_MODEL_LP32   1
+#define Z_DATA_MODEL_ILP32  2
+#define Z_DATA_MODEL_LLP64  3
+#define Z_DATA_MODEL_LP64   4
+#define Z_DATA_MODEL_ILP64  5
+#define Z_DATA_MODEL_SILP64 6
 
 #define Z_KEY_BITS_DATA_MODEL 8
 #define Z_KEY_LAST_DATA_MODEL Z_DATA_MODEL_SILP64

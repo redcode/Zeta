@@ -32,7 +32,7 @@ namespace Zeta {template <class T> struct Range {
 
 
 	Z_CT_MEMBER(CPP11) operator Boolean() const {return !!size;}
-	Z_INLINE_MEMBER    operator Base&  () const {return *((Base *)this);}
+	Z_INLINE_MEMBER	   operator Base&  () const {return *((Base *)this);}
 
 
 	Z_CT_MEMBER(CPP11) Boolean operator ==(const Range &rhs) const
@@ -65,6 +65,7 @@ namespace Zeta {template <class T> struct Range {
 	Z_INLINE_MEMBER Range &operator &=(const Range &rhs) {return *this = *this & rhs;}
 	Z_INLINE_MEMBER Range &operator |=(const Range &rhs) {return *this = *this | rhs;}
 
+	Z_CT_MEMBER(CPP11) T  operator [](T index) const {return this->index + index;}
 
 #	if defined(Z_USE_NS_RANGE) && Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP
 

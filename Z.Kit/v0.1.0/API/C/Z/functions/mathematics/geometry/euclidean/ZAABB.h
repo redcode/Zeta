@@ -28,8 +28,8 @@ Z_INLINE ZBox##Type z_aabb_##type##_box(ZAABB##Type object)					\
 Z_INLINE zboolean z_aabb_##type##_contains(ZAABB##Type object, ZAABB##Type other)		\
 	{											\
 	return	other.a.x != other.b.x	&&							\
-		other.a.y != other.b.y  &&							\
-		other.a.z != other.b.z  &&							\
+		other.a.y != other.b.y	&&							\
+		other.a.z != other.b.z	&&							\
 		other.a.x >= object.a.x &&							\
 		other.a.y >= object.a.y &&							\
 		other.a.z >= object.a.z &&							\
@@ -186,46 +186,46 @@ Z_INLINE Z3D##Type z_aabb_##type##_unit_point_to_absolute(ZAABB##Type object, Z3
 /* MARK: - Implementation expansions */
 
 
-#define z_aabb_int8_are_equal z_3d_line_int8_are_equal
-#define z_aabb_int8_center    z_3d_line_segment_int8_center
-#define z_aabb_int8_is_zero   z_3d_line_int8_is_zero
-#define z_aabb_int8_swap      z_3d_line_int8_swap
+#define z_aabb_sint8_are_equal z_3d_line_sint8_are_equal
+#define z_aabb_sint8_center    z_3d_line_segment_sint8_center
+#define z_aabb_sint8_is_zero   z_3d_line_sint8_is_zero
+#define z_aabb_sint8_swap      z_3d_line_sint8_swap
 
-Z_IMPLEMENTATION_AABB_COMMON(Int8, int8)
+Z_IMPLEMENTATION_AABB_COMMON(SInt8, sint8)
 
-#define z_aabb_int16_are_equal z_3d_line_int16_are_equal
-#define z_aabb_int16_center    z_3d_line_segment_int16_center
-#define z_aabb_int16_is_zero   z_3d_line_int16_is_zero
-#define z_aabb_int16_swap      z_3d_line_int16_swap
+#define z_aabb_sint16_are_equal z_3d_line_sint16_are_equal
+#define z_aabb_sint16_center	z_3d_line_segment_sint16_center
+#define z_aabb_sint16_is_zero	z_3d_line_sint16_is_zero
+#define z_aabb_sint16_swap	z_3d_line_sint16_swap
 
-Z_IMPLEMENTATION_AABB_COMMON(Int16, int16)
+Z_IMPLEMENTATION_AABB_COMMON(SInt16, sint16)
 
-#define z_aabb_int32_are_equal z_3d_line_int32_are_equal
-#define z_aabb_int32_center    z_3d_line_segment_int32_center
-#define z_aabb_int32_is_zero   z_3d_line_int32_is_zero
-#define z_aabb_int32_swap      z_3d_line_int32_swap
+#define z_aabb_sint32_are_equal z_3d_line_sint32_are_equal
+#define z_aabb_sint32_center	z_3d_line_segment_sint32_center
+#define z_aabb_sint32_is_zero	z_3d_line_sint32_is_zero
+#define z_aabb_sint32_swap	z_3d_line_sint32_swap
 
-Z_IMPLEMENTATION_AABB_COMMON(Int32, int32)
+Z_IMPLEMENTATION_AABB_COMMON(SInt32, sint32)
 
-#ifdef Z_INT64
+#ifdef Z_SINT64
 
-#	define z_aabb_int64_are_equal z_3d_line_int64_are_equal
-#	define z_aabb_int64_center    z_3d_line_segment_int64_center
-#	define z_aabb_int64_is_zero   z_3d_line_int64_is_zero
-#	define z_aabb_int64_swap      z_3d_line_int64_swap
+#	define z_aabb_sint64_are_equal z_3d_line_sint64_are_equal
+#	define z_aabb_sint64_center    z_3d_line_segment_sint64_center
+#	define z_aabb_sint64_is_zero   z_3d_line_sint64_is_zero
+#	define z_aabb_sint64_swap      z_3d_line_sint64_swap
 
-	Z_IMPLEMENTATION_AABB_COMMON(Int64, int64)
+	Z_IMPLEMENTATION_AABB_COMMON(SInt64, sint64)
 
 #endif
 
-#ifdef Z_INT128
+#ifdef Z_SINT128
 
-#	define z_aabb_int128_are_equal z_3d_line_int128_are_equal
-#	define z_aabb_int128_center    z_3d_line_segment_int128_center
-#	define z_aabb_int128_is_zero   z_3d_line_int128_is_zero
-#	define z_aabb_int128_swap      z_3d_line_int128_swap
+#	define z_aabb_sint128_are_equal z_3d_line_sint128_are_equal
+#	define z_aabb_sint128_center	z_3d_line_segment_sint128_center
+#	define z_aabb_sint128_is_zero	z_3d_line_sint128_is_zero
+#	define z_aabb_sint128_swap	z_3d_line_sint128_swap
 
-	Z_IMPLEMENTATION_AABB_COMMON(Int128, int128)
+	Z_IMPLEMENTATION_AABB_COMMON(SInt128, sint128)
 
 #endif
 
@@ -241,18 +241,6 @@ Z_IMPLEMENTATION_AABB_COMMON(Int32, int32)
 
 #endif
 
-#ifdef Z_FLOAT24
-
-#	define z_aabb_float24_are_equal	z_3d_line_float24_are_equal
-#	define z_aabb_float24_center	z_3d_line_segment_float24_center
-#	define z_aabb_float24_is_zero	z_3d_line_float24_is_zero
-#	define z_aabb_float24_swap	z_3d_line_float24_swap
-
-	Z_IMPLEMENTATION_AABB_COMMON(Float24, float24)
-	Z_IMPLEMENTATION_AABB_REAL  (Float24, float24)
-
-#endif
-
 #ifdef Z_FLOAT32
 
 #	define z_aabb_float32_are_equal	z_3d_line_float32_are_equal
@@ -262,18 +250,6 @@ Z_IMPLEMENTATION_AABB_COMMON(Int32, int32)
 
 	Z_IMPLEMENTATION_AABB_COMMON(Float32, float32)
 	Z_IMPLEMENTATION_AABB_REAL  (Float32, float32)
-
-#endif
-
-#ifdef Z_FLOAT48
-
-#	define z_aabb_float48_are_equal	z_3d_line_float48_are_equal
-#	define z_aabb_float48_center	z_3d_line_segment_float48_center
-#	define z_aabb_float48_is_zero	z_3d_line_float48_is_zero
-#	define z_aabb_float48_swap	z_3d_line_float48_swap
-
-	Z_IMPLEMENTATION_AABB_COMMON(Float48, float48)
-	Z_IMPLEMENTATION_AABB_REAL  (Float48, float48)
 
 #endif
 
@@ -289,42 +265,6 @@ Z_IMPLEMENTATION_AABB_COMMON(Int32, int32)
 
 #endif
 
-#ifdef Z_FLOAT72
-
-#	define z_aabb_float72_are_equal	z_3d_line_float72_are_equal
-#	define z_aabb_float72_center	z_3d_line_segment_float72_center
-#	define z_aabb_float72_is_zero	z_3d_line_float72_is_zero
-#	define z_aabb_float72_swap	z_3d_line_float72_swap
-
-	Z_IMPLEMENTATION_AABB_COMMON(Float72, float72)
-	Z_IMPLEMENTATION_AABB_REAL  (Float72, float72)
-
-#endif
-
-#ifdef Z_FLOAT80
-
-#	define z_aabb_float80_are_equal	z_3d_line_float80_are_equal
-#	define z_aabb_float80_center	z_3d_line_segment_float80_center
-#	define z_aabb_float80_is_zero	z_3d_line_float80_is_zero
-#	define z_aabb_float80_swap	z_3d_line_float80_swap
-
-	Z_IMPLEMENTATION_AABB_COMMON(Float80, float80)
-	Z_IMPLEMENTATION_AABB_REAL  (Float80, float80)
-
-#endif
-
-#ifdef Z_FLOAT96
-
-#	define z_aabb_float96_are_equal	z_3d_line_float96_are_equal
-#	define z_aabb_float96_center	z_3d_line_segment_float96_center
-#	define z_aabb_float96_is_zero	z_3d_line_float96_is_zero
-#	define z_aabb_float96_swap	z_3d_line_float96_swap
-
-	Z_IMPLEMENTATION_AABB_COMMON(Float96, float96)
-	Z_IMPLEMENTATION_AABB_REAL  (Float96, float96)
-
-#endif
-
 #ifdef Z_FLOAT128
 
 #	define z_aabb_float128_are_equal z_3d_line_float128_are_equal
@@ -334,6 +274,42 @@ Z_IMPLEMENTATION_AABB_COMMON(Int32, int32)
 
 	Z_IMPLEMENTATION_AABB_COMMON(Float128, float128)
 	Z_IMPLEMENTATION_AABB_REAL  (Float128, float128)
+
+#endif
+
+#ifdef Z_FLOAT80_X87
+
+#	define z_aabb_float80_x87_are_equal z_3d_line_float80_x87_are_equal
+#	define z_aabb_float80_x87_center    z_3d_line_segment_float80_x87_center
+#	define z_aabb_float80_x87_is_zero   z_3d_line_float80_x87_is_zero
+#	define z_aabb_float80_x87_swap	    z_3d_line_float80_x87_swap
+
+	Z_IMPLEMENTATION_AABB_COMMON(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_AABB_REAL  (Float80_x87, float80_x87)
+
+#endif
+
+#ifdef Z_FLOAT96_X87
+
+#	define z_aabb_float96_x87_are_equal z_3d_line_float96_x87_are_equal
+#	define z_aabb_float96_x87_center    z_3d_line_segment_float96_x87_center
+#	define z_aabb_float96_x87_is_zero   z_3d_line_float96_x87_is_zero
+#	define z_aabb_float96_x87_swap	    z_3d_line_float96_x87_swap
+
+	Z_IMPLEMENTATION_AABB_COMMON(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_AABB_REAL  (Float96_x87, float96_x87)
+
+#endif
+
+#ifdef Z_FLOAT128_X87
+
+#	define z_aabb_float128_x87_are_equal z_3d_line_float128_x87_are_equal
+#	define z_aabb_float128_x87_center    z_3d_line_segment_float128_x87_center
+#	define z_aabb_float128_x87_is_zero   z_3d_line_float128_x87_is_zero
+#	define z_aabb_float128_x87_swap	     z_3d_line_float128_x87_swap
+
+	Z_IMPLEMENTATION_AABB_COMMON(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_AABB_REAL  (Float128_x87, float128_x87)
 
 #endif
 

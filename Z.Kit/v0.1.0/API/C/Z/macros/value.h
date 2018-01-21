@@ -82,14 +82,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_16BIT_ROTATE_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (16 - (rotation))))
 #define Z_16BIT_ROTATE_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (16 - (rotation))))
 
-#if Z_INT16_ENDIANNESS == Z_ENDIANNESS_BIG
+#if Z_BINT16_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #	define Z_16BIT_ENSURE_BIG_ENDIAN(   value)
 #	define Z_16BIT_ENSURE_LITTLE_ENDIAN(value) ((value) = Z_16BIT_REVERSE_IN_8BIT(value))
 #	define Z_16BIT_BIG_ENDIAN		   Z_SAME
 #	define Z_16BIT_LITTLE_ENDIAN		   Z_16BIT_REVERSE_IN_8BIT
 
-#elif Z_INT16_ENDIANNESS == Z_ENDIANNESS_LITTLE
+#elif Z_BINT16_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
 #	define Z_16BIT_ENSURE_BIG_ENDIAN(   value) ((value) = Z_16BIT_REVERSE_IN_8BIT(value))
 #	define Z_16BIT_ENSURE_LITTLE_ENDIAN(value)
@@ -163,14 +163,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	(((((zbint32)(d)) & 0xFF) << 24) | ((((zbint32)(c)) & 0xFF) << 16) | \
 	 ((((zbint32)(b)) & 0xFF) <<  8) |  (((zbint32)(a)) & 0xFF))
 
-#if Z_INT32_ENDIANNESS == Z_ENDIANNESS_BIG
+#if Z_BINT32_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #	define Z_32BIT_ENSURE_BIG_ENDIAN(   value)
 #	define Z_32BIT_ENSURE_LITTLE_ENDIAN(value) ((value) = Z_32BIT_REVERSE_IN_8BIT(value))
 #	define Z_32BIT_BIG_ENDIAN		   Z_SAME
 #	define Z_32BIT_LITTLE_ENDIAN		   Z_32BIT_REVERSE_IN_8BIT
 
-#elif Z_INT32_ENDIANNESS == Z_ENDIANNESS_LITTLE
+#elif Z_BINT32_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
 #	define Z_32BIT_ENSURE_BIG_ENDIAN(   value) ((value) = Z_32BIT_REVERSE_IN_8BIT(value))
 #	define Z_32BIT_ENSURE_LITTLE_ENDIAN(value)
@@ -266,14 +266,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_64BIT_FROM_32BIT_BA(b, a) ((((zbint64)(b)) << 32) | ((zbint64)(a)))
 
-#	if Z_INT64_ENDIANNESS == Z_ENDIANNESS_BIG
+#	if Z_BINT64_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #		define Z_64BIT_ENSURE_BIG_ENDIAN(   value)
 #		define Z_64BIT_ENSURE_LITTLE_ENDIAN(value) ((value) = Z_64BIT_REVERSE_IN_8BIT(value))
 #		define Z_64BIT_BIG_ENDIAN		   Z_SAME
 #		define Z_64BIT_LITTLE_ENDIAN		   Z_64BIT_REVERSE_IN_8BIT
 
-#	elif Z_INT64_ENDIANNESS == Z_ENDIANNESS_LITTLE
+#	elif Z_BINT64_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
 #		define Z_64BIT_ENSURE_BIG_ENDIAN(   value) ((value) = Z_64BIT_REVERSE_IN_8BIT(value))
 #		define Z_64BIT_ENSURE_LITTLE_ENDIAN(value)
@@ -288,7 +288,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifdef Z_BINT128
 
-#	if Z_DATA_MODEL_HAS_LITERAL(UINT128) || Z_DATA_MODEL_HAS_LITERAL(INT128)
+#	if Z_DATA_MODEL_HAS_LITERAL(UINT128) || Z_DATA_MODEL_HAS_LITERAL(SINT128)
 #		define Z_8BIT_128BIT_MIRROR( value) (((zbint128)(value)) * Z_BINT128(0x01010101010101010101010101010101))
 #		define Z_16BIT_128BIT_MIRROR(value) (((zbint128)(value)) * Z_BINT128(0x00010001000100010001000100010001))
 #		define Z_32BIT_128BIT_MIRROR(value) (((zbint128)(value)) * Z_BINT128(0x00000001000000010000000100000001))
@@ -443,14 +443,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_128BIT_ROTATE_LEFT( value, rotation) (((value) << (rotation)) | ((value) >> (128 - (rotation))))
 #	define Z_128BIT_ROTATE_RIGHT(value, rotation) (((value) >> (rotation)) | ((value) << (128 - (rotation))))
 
-#	if Z_INT128_ENDIANNESS == Z_ENDIANNESS_BIG
+#	if Z_BINT128_ENDIANNESS == Z_ENDIANNESS_BIG
 
 #		define Z_128BIT_ENSURE_BIG_ENDIAN(   value)
 #		define Z_128BIT_ENSURE_LITTLE_ENDIAN(value) ((value) = Z_128BIT_REVERSE_IN_8BIT(value))
 #		define Z_128BIT_BIG_ENDIAN		    Z_SAME
 #		define Z_128BIT_LITTLE_ENDIAN		    Z_128BIT_REVERSE_IN_8BIT
 
-#	elif Z_INT128_ENDIANNESS == Z_ENDIANNESS_LITTLE
+#	elif Z_BINT128_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
 #		define Z_128BIT_ENSURE_BIG_ENDIAN(   value) ((value) = Z_128BIT_REVERSE_IN_8BIT(value))
 #		define Z_128BIT_ENSURE_LITTLE_ENDIAN(value)

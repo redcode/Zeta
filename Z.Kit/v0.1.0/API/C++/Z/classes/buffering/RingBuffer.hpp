@@ -22,16 +22,16 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 	Z_INLINE_MEMBER RingBuffer() {}
 
 
-	Z_INLINE_MEMBER RingBuffer(void *buffers, Size buffer_size, Size buffer_count)
+	Z_INLINE_MEMBER RingBuffer(void *buffers, USize buffer_size, USize buffer_count)
 		{initialize(buffers, buffer_size, buffer_count);}
 
 
-	Z_INLINE_MEMBER void initialize(void *buffers, Size buffer_size, Size buffer_count)
+	Z_INLINE_MEMBER void initialize(void *buffers, USize buffer_size, USize buffer_count)
 		{
 		this->buffers		= buffers;
 		this->buffer_size	= buffer_size;
 		this->buffer_count	= buffer_count;
-		this->production_index  = 0;
+		this->production_index	= 0;
 		this->consumption_index = 0;
 		this->fill_count	= 0;
 		}
@@ -57,7 +57,7 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 		{
 		if (buffer_count == fill_count) return NULL;
 		production_index = (production_index + 1) % buffer_count;
-		z_type_atomic_increment_then_get(SIZE)(&fill_count);
+		z_type_atomic_increment_then_get(USIZE)(&fill_count);
 		return (UInt8 *)buffers + production_index * buffer_size;
 		}
 
@@ -66,7 +66,7 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 		{
 		if (!fill_count) return NULL;
 		consumption_index = (consumption_index + 1) % buffer_count;
-		z_type_atomic_decrement_then_get(SIZE)(&fill_count);
+		z_type_atomic_decrement_then_get(USIZE)(&fill_count);
 		return (UInt8 *)buffers + consumption_index * buffer_size;
 		}
 
@@ -75,7 +75,7 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 		{
 		while (buffer_count == fill_count) z_cpu_relax();
 		production_index = (production_index + 1) % buffer_count;
-		z_type_atomic_increment_then_get(SIZE)(&fill_count);
+		z_type_atomic_increment_then_get(USIZE)(&fill_count);
 		return (UInt8 *)buffers + production_index * buffer_size;
 		}
 
@@ -84,7 +84,7 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 		{
 		if (!fill_count) z_cpu_relax();
 		consumption_index = (consumption_index + 1) % buffer_count;
-		z_type_atomic_decrement_then_get(SIZE)(&fill_count);
+		z_type_atomic_decrement_then_get(USIZE)(&fill_count);
 		return (UInt8 *)buffers + consumption_index * buffer_size;
 		}
 };}

@@ -30,11 +30,11 @@ namespace Zeta {
 
 	template <UIntMax base> struct NaturalPower<base, 0> {enum {value = 1};};
 
-	template <IntMax base, UIntMax exponent> struct IntegerPower {
+	template <SIntMax base, UIntMax exponent> struct IntegerPower {
 		enum {value = base * IntegerPower<base, exponent - 1>::value};
 	};
 
-	template <IntMax base> struct IntegerPower<base, 0> {enum {value = 1};};
+	template <SIntMax base> struct IntegerPower<base, 0> {enum {value = 1};};
 
 
 	template <UIntMax N> struct Logarithm2 {

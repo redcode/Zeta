@@ -12,22 +12,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/version.h>
 
 typedef struct {
-	zcharacter const* identifier;
-	zcharacter const* name;
-	zuint64		  version;
-	zcharacter const* information;
-	void const*	  abi;
+	zchar const* identifier;
+	zchar const* name;
+	zuint64	     version;
+	void const*  abi;
 } ZModuleUnit;
 
 typedef struct {
-	zcharacter const*  identifier;
+	zchar const*	   identifier;
 	zuint64		   abi_version;
-	zsize		   unit_count;
+	zusize		   unit_count;
 	ZModuleUnit const* units;
 } ZModuleDomain;
 
 typedef struct {
-	zsize		     domain_count;
+	zusize		     domain_count;
 	ZModuleDomain const* domains;
 } ZModuleABI;
 

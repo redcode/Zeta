@@ -20,11 +20,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class T>
-			Z_CT(CPP14) Size type_string_size()
+			Z_CT(CPP14) USize type_string_size()
 				{
-				const Character *input = __PRETTY_FUNCTION__;
-				Size size = 0;
-				Size bracket_count = 0;
+				const Char *input = __PRETTY_FUNCTION__;
+				USize size = 0;
+				USize bracket_count = 0;
 
 				while (*input++ != '=');
 				while (*++input != ']' || bracket_count)
@@ -39,10 +39,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				}
 
 
-			template <class T, Size S = type_string_size<T>()>
+			template <class T, USize S = type_string_size<T>()>
 			Z_CT(CPP14) SizedString<S> type_string()
 				{
-				const Character *input = __PRETTY_FUNCTION__;
+				const Char *input = __PRETTY_FUNCTION__;
 
 				while (*input++ != '=');
 				return SizedString<S>(input + 1);

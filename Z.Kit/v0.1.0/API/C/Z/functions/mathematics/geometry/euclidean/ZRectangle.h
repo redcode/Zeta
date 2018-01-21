@@ -131,7 +131,7 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_top_right(				\
 Z_INLINE zboolean z_rectangle_##type##_are_equal(ZRectangle##Type a, ZRectangle##Type b)	\
 	{											\
 	return	z_2d_##type##_are_equal(a.point, b.point) &&					\
-		z_2d_##type##_are_equal(a.size,  b.size );					\
+		z_2d_##type##_are_equal(a.size,	 b.size );					\
 	}											\
 												\
 												\
@@ -899,7 +899,7 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_union(ZRectangle##Type a, ZRectan
 Z_INLINE ZRectangle##Type z_rectangle_##type##_bottom_right_quarter(ZRectangle##Type object)	\
 	{											\
 	object.point.x += object.size.x / (z##type)2;						\
-	object.size.x   = object.size.x - object.size.x / (z##type)2;				\
+	object.size.x	= object.size.x - object.size.x / (z##type)2;				\
 	object.size.y  /= (z##type)2;								\
 	return object;										\
 	}											\
@@ -908,7 +908,7 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_bottom_right_quarter(ZRectangle##
 Z_INLINE ZRectangle##Type z_rectangle_##type##_right_half(ZRectangle##Type object)		\
 	{											\
 	object.point.x += object.size.x / (z##type)2;						\
-	object.size.x   = object.size.x - object.size.x / (z##type)2;				\
+	object.size.x	= object.size.x - object.size.x / (z##type)2;				\
 	return object;										\
 	}											\
 												\
@@ -916,7 +916,7 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_right_half(ZRectangle##Type objec
 Z_INLINE ZRectangle##Type z_rectangle_##type##_top_half(ZRectangle##Type object)		\
 	{											\
 	object.point.y += object.size.y / (z##type)2;						\
-	object.size.y   = object.size.y - object.size.y / (z##type)2;				\
+	object.size.y	= object.size.y - object.size.y / (z##type)2;				\
 	return object;										\
 	}											\
 												\
@@ -925,7 +925,7 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_top_left_quarter(ZRectangle##Type
 	{											\
 	object.point.y += object.size.y / (z##type)2;						\
 	object.size.x  /= (z##type)2;								\
-	object.size.y   = object.size.y - object.size.y / (z##type)2;				\
+	object.size.y	= object.size.y - object.size.y / (z##type)2;				\
 	return object;										\
 	}											\
 												\
@@ -934,8 +934,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_top_right_quarter(ZRectangle##Typ
 	{											\
 	object.point.x += object.size.x / (z##type)2;						\
 	object.point.y += object.size.y / (z##type)2;						\
-	object.size.x   = object.size.x - object.size.x / (z##type)2;				\
-	object.size.y   = object.size.y - object.size.y / (z##type)2;				\
+	object.size.x	= object.size.x - object.size.x / (z##type)2;				\
+	object.size.y	= object.size.y - object.size.y / (z##type)2;				\
 	return object;										\
 	}
 
@@ -1043,68 +1043,58 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 /* MARK: - Implementation expansions */
 
 
-Z_IMPLEMENTATION_RECTANGLE_COMMON (Int8, int8)
-Z_IMPLEMENTATION_RECTANGLE_INTEGER(Int8, int8)
+Z_IMPLEMENTATION_RECTANGLE_COMMON (SInt8, sint8)
+Z_IMPLEMENTATION_RECTANGLE_INTEGER(SInt8, sint8)
 
-Z_IMPLEMENTATION_RECTANGLE_COMMON (Int16, int16)
-Z_IMPLEMENTATION_RECTANGLE_INTEGER(Int16, int16)
+Z_IMPLEMENTATION_RECTANGLE_COMMON (SInt16, sint16)
+Z_IMPLEMENTATION_RECTANGLE_INTEGER(SInt16, sint16)
 
-Z_IMPLEMENTATION_RECTANGLE_COMMON (Int32, int32)
-Z_IMPLEMENTATION_RECTANGLE_INTEGER(Int32, int32)
+Z_IMPLEMENTATION_RECTANGLE_COMMON (SInt32, sint32)
+Z_IMPLEMENTATION_RECTANGLE_INTEGER(SInt32, sint32)
 
-#ifdef Z_INT64
-	Z_IMPLEMENTATION_RECTANGLE_COMMON (Int64, int64)
-	Z_IMPLEMENTATION_RECTANGLE_INTEGER(Int64, int64)
+#ifdef Z_SINT64
+	Z_IMPLEMENTATION_RECTANGLE_COMMON (SInt64, sint64)
+	Z_IMPLEMENTATION_RECTANGLE_INTEGER(SInt64, sint64)
 #endif
 
-#ifdef Z_INT128
+#ifdef Z_SINT128
 	Z_IMPLEMENTATION_RECTANGLE_COMMON (Int128, int128)
 	Z_IMPLEMENTATION_RECTANGLE_INTEGER(Int128, int128)
 #endif
 
 #ifdef Z_FLOAT16
 	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float16, float16)
-	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float16, float16)
-#endif
-
-#ifdef Z_FLOAT24
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float24, float24)
-	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float24, float24)
+	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float16, float16)
 #endif
 
 #ifdef Z_FLOAT32
 	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float32, float32)
-	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float32, float32)
-#endif
-
-#ifdef Z_FLOAT48
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float48, float48)
-	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float48, float48)
+	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float32, float32)
 #endif
 
 #ifdef Z_FLOAT64
 	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float64, float64)
-	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float64, float64)
-#endif
-
-#ifdef Z_FLOAT72
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float72, float72)
-	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float72, float72)
-#endif
-
-#ifdef Z_FLOAT80
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float80, float80)
-	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float80, float80)
-#endif
-
-#ifdef Z_FLOAT96
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float96, float96)
-	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float96, float96)
+	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float64, float64)
 #endif
 
 #ifdef Z_FLOAT128
 	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float128, float128)
-	Z_IMPLEMENTATION_RECTANGLE_REAL  (Float128, float128)
+	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float128, float128)
+#endif
+
+#ifdef Z_FLOAT80_X87
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float80_x87, float80_x87)
+#endif
+
+#ifdef Z_FLOAT96_X87
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float96_x87, float96_x87)
+#endif
+
+#ifdef Z_FLOAT128_X87
+	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float128_x87, float128_x87)
 #endif
 
 

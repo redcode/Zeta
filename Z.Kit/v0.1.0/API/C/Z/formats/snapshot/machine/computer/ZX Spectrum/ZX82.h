@@ -59,7 +59,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_ZX82_DATA_TYPE_SNAPSHOT 4
 
 Z_DEFINE_STRICT_STRUCTURE_BEGIN
-	zuint8 border_color, im; /* (0 = use I register, 1 = IM 1 and 2 = IM 2) ??? */
+	zuint8 border_color, im; /* (0 = use I register, 1 = IM 1 and 2 = IM 2) (?) */
 	Z16Bit iy,  ix;
 	Z16Bit de,  bc,  hl,  af;
 	Z16Bit de_, bc_, hl_, af_, sp;

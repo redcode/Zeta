@@ -14,7 +14,7 @@ namespace Zeta {
 
 
 	template <class T, class C>
-	Z_CT(CPP11) Size offset_of(T C::*member)
+	Z_CT(CPP11) USize offset_of(T C::*member)
 		{
 		return	(&reinterpret_cast<const UInt8 &>(reinterpret_cast<const C *>(1)->*member) -
 			  reinterpret_cast<const UInt8 *>(1));

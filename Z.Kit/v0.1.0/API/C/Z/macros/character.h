@@ -10,9 +10,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/character set.h>
 
-#define Z_CHARACTER_IS_ASCII(	    c) ((c) >= 0x00 && (c) <= 0x7F)
-#define Z_CHARACTER_IS_BASE_2_DIGIT(c) ((c) ==  '0' || (c) ==  '1')
-#define Z_CHARACTER_IS_BLANK(	    c) ((c) ==  ' ' || (c) == '\t')
+#if ('\0' - 1) > 0
+#	define Z_CHARACTER_IS_ASCII(c) ((c) <= 0x7F)
+#else
+#	define Z_CHARACTER_IS_ASCII(c) ((c) >= 0x00 && (c) <= 0x7F)
+#endif
+
+#define Z_CHARACTER_IS_BASE_2_DIGIT(c) ((c) == '0' || (c) ==  '1')
+#define Z_CHARACTER_IS_BLANK(	    c) ((c) == ' ' || (c) == '\t')
 
 #if Z_CHARACTER_SET_IS_ASCII
 

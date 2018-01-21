@@ -787,46 +787,46 @@ Z_INLINE Z2D##Type z_aabr_##type##_unit_point_to_absolute(ZAABR##Type object, Z2
 /* MARK: - Implementation expansions */
 
 
-#define z_aabr_int8_are_equal z_2d_line_int8_are_equal
-#define z_aabr_int8_center    z_2d_line_segment_int8_center
-#define z_aabr_int8_is_zero   z_2d_line_int8_is_zero
-#define z_aabr_int8_swap      z_2d_line_int8_swap
+#define z_aabr_sint8_are_equal z_2d_line_sint8_are_equal
+#define z_aabr_sint8_center    z_2d_line_segment_sint8_center
+#define z_aabr_sint8_is_zero   z_2d_line_sint8_is_zero
+#define z_aabr_sint8_swap      z_2d_line_sint8_swap
 
-Z_IMPLEMENTATION_AABR_COMMON(Int8, int8)
+Z_IMPLEMENTATION_AABR_COMMON(SInt8, sint8)
 
-#define z_aabr_int16_are_equal z_2d_line_int16_are_equal
-#define z_aabr_int16_center    z_2d_line_segment_int16_center
-#define z_aabr_int16_is_zero   z_2d_line_int16_is_zero
-#define z_aabr_int16_swap      z_2d_line_int16_swap
+#define z_aabr_sint16_are_equal z_2d_line_sint16_are_equal
+#define z_aabr_sint16_center	z_2d_line_segment_sint16_center
+#define z_aabr_sint16_is_zero	z_2d_line_sint16_is_zero
+#define z_aabr_sint16_swap	z_2d_line_sint16_swap
 
-Z_IMPLEMENTATION_AABR_COMMON(Int16, int16)
+Z_IMPLEMENTATION_AABR_COMMON(SInt16, sint16)
 
-#define z_aabr_int32_are_equal z_2d_line_int32_are_equal
-#define z_aabr_int32_center    z_2d_line_segment_int32_center
-#define z_aabr_int32_is_zero   z_2d_line_int32_is_zero
-#define z_aabr_int32_swap      z_2d_line_int32_swap
+#define z_aabr_sint32_are_equal z_2d_line_sint32_are_equal
+#define z_aabr_sint32_center	z_2d_line_segment_sint32_center
+#define z_aabr_sint32_is_zero	z_2d_line_sint32_is_zero
+#define z_aabr_sint32_swap	z_2d_line_sint32_swap
 
-Z_IMPLEMENTATION_AABR_COMMON(Int32, int32)
+Z_IMPLEMENTATION_AABR_COMMON(SInt32, sint32)
 
-#ifdef Z_INT64
+#ifdef Z_SINT64
 
-#	define z_aabr_int64_are_equal z_2d_line_int64_are_equal
-#	define z_aabr_int64_center    z_2d_line_segment_int64_center
-#	define z_aabr_int64_is_zero   z_2d_line_int64_is_zero
-#	define z_aabr_int64_swap      z_2d_line_int64_swap
+#	define z_aabr_sint64_are_equal z_2d_line_sint64_are_equal
+#	define z_aabr_sint64_center    z_2d_line_segment_sint64_center
+#	define z_aabr_sint64_is_zero   z_2d_line_sint64_is_zero
+#	define z_aabr_sint64_swap      z_2d_line_sint64_swap
 
-	Z_IMPLEMENTATION_AABR_COMMON(Int64, int64)
+	Z_IMPLEMENTATION_AABR_COMMON(SInt64, sint64)
 
 #endif
 
-#ifdef Z_INT128
+#ifdef Z_SINT128
 
-#	define z_aabr_int128_are_equal z_2d_line_int128_are_equal
-#	define z_aabr_int128_center    z_2d_line_segment_int128_center
-#	define z_aabr_int128_is_zero   z_2d_line_int128_is_zero
-#	define z_aabr_int128_swap      z_2d_line_int128_swap
+#	define z_aabr_sint128_are_equal z_2d_line_sint128_are_equal
+#	define z_aabr_sint128_center	z_2d_line_segment_sint128_center
+#	define z_aabr_sint128_is_zero	z_2d_line_sint128_is_zero
+#	define z_aabr_sint128_swap	z_2d_line_sint128_swap
 
-	Z_IMPLEMENTATION_AABR_COMMON(Int128, int128)
+	Z_IMPLEMENTATION_AABR_COMMON(SInt128, sint128)
 
 #endif
 
@@ -842,18 +842,6 @@ Z_IMPLEMENTATION_AABR_COMMON(Int32, int32)
 
 #endif
 
-#ifdef Z_FLOAT24
-
-#	define z_aabr_float24_are_equal	z_2d_line_float24_are_equal
-#	define z_aabr_float24_center	z_2d_line_segment_float24_center
-#	define z_aabr_float24_is_zero	z_2d_line_float24_is_zero
-#	define z_aabr_float24_swap	z_2d_line_float24_swap
-
-	Z_IMPLEMENTATION_AABR_COMMON(Float24, float24)
-	Z_IMPLEMENTATION_AABR_REAL  (Float24, float24)
-
-#endif
-
 #ifdef Z_FLOAT32
 
 #	define z_aabr_float32_are_equal	z_2d_line_float32_are_equal
@@ -863,18 +851,6 @@ Z_IMPLEMENTATION_AABR_COMMON(Int32, int32)
 
 	Z_IMPLEMENTATION_AABR_COMMON(Float32, float32)
 	Z_IMPLEMENTATION_AABR_REAL  (Float32, float32)
-
-#endif
-
-#ifdef Z_FLOAT48
-
-#	define z_aabr_float48_are_equal	z_2d_line_float48_are_equal
-#	define z_aabr_float48_center	z_2d_line_segment_float48_center
-#	define z_aabr_float48_is_zero	z_2d_line_float48_is_zero
-#	define z_aabr_float48_swap	z_2d_line_float48_swap
-
-	Z_IMPLEMENTATION_AABR_COMMON(Float48, float48)
-	Z_IMPLEMENTATION_AABR_REAL  (Float48, float48)
 
 #endif
 
@@ -890,42 +866,6 @@ Z_IMPLEMENTATION_AABR_COMMON(Int32, int32)
 
 #endif
 
-#ifdef Z_FLOAT72
-
-#	define z_aabr_float72_are_equal	z_2d_line_float72_are_equal
-#	define z_aabr_float72_center	z_2d_line_segment_float72_center
-#	define z_aabr_float72_is_zero	z_2d_line_float72_is_zero
-#	define z_aabr_float72_swap	z_2d_line_float72_swap
-
-	Z_IMPLEMENTATION_AABR_COMMON(Float72, float72)
-	Z_IMPLEMENTATION_AABR_REAL  (Float72, float72)
-
-#endif
-
-#ifdef Z_FLOAT80
-
-#	define z_aabr_float80_are_equal	z_2d_line_float80_are_equal
-#	define z_aabr_float80_center	z_2d_line_segment_float80_center
-#	define z_aabr_float80_is_zero	z_2d_line_float80_is_zero
-#	define z_aabr_float80_swap	z_2d_line_float80_swap
-
-	Z_IMPLEMENTATION_AABR_COMMON(Float80, float80)
-	Z_IMPLEMENTATION_AABR_REAL  (Float80, float80)
-
-#endif
-
-#ifdef Z_FLOAT96
-
-#	define z_aabr_float96_are_equal	z_2d_line_float96_are_equal
-#	define z_aabr_float96_center	z_2d_line_segment_float96_center
-#	define z_aabr_float96_is_zero	z_2d_line_float96_is_zero
-#	define z_aabr_float96_swap	z_2d_line_float96_swap
-
-	Z_IMPLEMENTATION_AABR_COMMON(Float96, float96)
-	Z_IMPLEMENTATION_AABR_REAL  (Float96, float96)
-
-#endif
-
 #ifdef Z_FLOAT128
 
 #	define z_aabr_float128_are_equal z_2d_line_float128_are_equal
@@ -935,6 +875,42 @@ Z_IMPLEMENTATION_AABR_COMMON(Int32, int32)
 
 	Z_IMPLEMENTATION_AABR_COMMON(Float128, float128)
 	Z_IMPLEMENTATION_AABR_REAL  (Float128, float128)
+
+#endif
+
+#ifdef Z_FLOAT80_X87
+
+#	define z_aabr_float80_x87_are_equal z_2d_line_float80_x87_are_equal
+#	define z_aabr_float80_x87_center    z_2d_line_segment_float80_x87_center
+#	define z_aabr_float80_x87_is_zero   z_2d_line_float80_x87_is_zero
+#	define z_aabr_float80_x87_swap	    z_2d_line_float80_x87_swap
+
+	Z_IMPLEMENTATION_AABR_COMMON(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_AABR_REAL  (Float80_x87, float80_x87)
+
+#endif
+
+#ifdef Z_FLOAT96_X87
+
+#	define z_aabr_float96_x87_are_equal z_2d_line_float96_x87_are_equal
+#	define z_aabr_float96_x87_center    z_2d_line_segment_float96_x87_center
+#	define z_aabr_float96_x87_is_zero   z_2d_line_float96_x87_is_zero
+#	define z_aabr_float96_x87_swap	    z_2d_line_float96_x87_swap
+
+	Z_IMPLEMENTATION_AABR_COMMON(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_AABR_REAL  (Float96_x87, float96_x87)
+
+#endif
+
+#ifdef Z_FLOAT128_X87
+
+#	define z_aabr_float128_x87_are_equal z_2d_line_float128_x87_are_equal
+#	define z_aabr_float128_x87_center    z_2d_line_segment_float128_x87_center
+#	define z_aabr_float128_x87_is_zero   z_2d_line_float128_x87_is_zero
+#	define z_aabr_float128_x87_swap	     z_2d_line_float128_x87_swap
+
+	Z_IMPLEMENTATION_AABR_COMMON(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_AABR_REAL  (Float128_x87, float128_x87)
 
 #endif
 

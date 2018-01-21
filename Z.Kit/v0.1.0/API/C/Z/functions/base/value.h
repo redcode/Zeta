@@ -941,767 +941,767 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 #endif
 
 
-/* MARK: - int8 */
+/* MARK: - sint8 */
 
 
-Z_IMPLEMENTATION_VALUE_COMMON (int8)
-Z_IMPLEMENTATION_VALUE_SIGNED (int8)
-Z_IMPLEMENTATION_VALUE_REVERSE(int8, 8, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(int8, 8, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(int8, 8, 4)
-Z_IMPLEMENTATION_VALUE_ROTATE (int8, 8)
+Z_IMPLEMENTATION_VALUE_COMMON (sint8)
+Z_IMPLEMENTATION_VALUE_SIGNED (sint8)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint8, 8, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint8, 8, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint8, 8, 4)
+Z_IMPLEMENTATION_VALUE_ROTATE (sint8, 8)
 
 
-#define z_int8_reverse Z_SAME
+#define z_sint8_reverse Z_SAME
 
 
 Z_INLINE
-zboolean z_int8_addition_overflows(zint8 a, zint8 b)
+zboolean z_sint8_addition_overflows(zsint8 a, zsint8 b)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int8_addition_overflows_3(zint8 a, zint8 b, zint8 c)
+zboolean z_sint8_addition_overflows_3(zsint8 a, zsint8 b, zsint8 c)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int8_addition_overflows_4(zint8 a, zint8 b, zint8 c, zint8 d)
+zboolean z_sint8_addition_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int8_multiplication_overflows(zint8 a, zint8 b)
+zboolean z_sint8_multiplication_overflows(zsint8 a, zsint8 b)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int8_multiplication_overflows_3(zint8 a, zint8 b, zint8 c)
+zboolean z_sint8_multiplication_overflows_3(zsint8 a, zsint8 b, zsint8 c)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int8_multiplication_overflows_4(zint8 a, zint8 b, zint8 c, zint8 d)
+zboolean z_sint8_multiplication_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int8_subtraction_overflows(zint8 a, zint8 b)
+zboolean z_sint8_subtraction_overflows(zsint8 a, zsint8 b)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int8_subtraction_overflows_3(zint8 a, zint8 b, zint8 c)
+zboolean z_sint8_subtraction_overflows_3(zsint8 a, zsint8 b, zsint8 c)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int8_subtraction_overflows_4(zint8 a, zint8 b, zint8 c, zint8 d)
+zboolean z_sint8_subtraction_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
 	{return FALSE;}
 
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_ADD_THEN_GET)
-#	define z_int8_atomic_add_then_get Z_COMPILER_FUNCTION(INT8_ATOMIC_ADD_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_ADD_THEN_GET)
+#	define z_sint8_atomic_add_then_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_ADD_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_AND_THEN_GET)
-#	define z_int8_atomic_and_then_get Z_COMPILER_FUNCTION(INT8_ATOMIC_AND_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_AND_THEN_GET)
+#	define z_sint8_atomic_and_then_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_AND_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_DECREMENT_THEN_GET)
-#	define z_int8_atomic_decrement_then_get Z_COMPILER_FUNCTION(INT8_ATOMIC_DECREMENT_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_DECREMENT_THEN_GET)
+#	define z_sint8_atomic_decrement_then_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_DECREMENT_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_GET_THEN_ADD)
-#	define z_int8_atomic_get_then_add Z_COMPILER_FUNCTION(INT8_ATOMIC_GET_THEN_ADD)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_THEN_ADD)
+#	define z_sint8_atomic_get_then_add Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_THEN_ADD)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_GET_THEN_AND)
-#	define z_int8_atomic_get_then_and Z_COMPILER_FUNCTION(INT8_ATOMIC_GET_THEN_AND)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_THEN_AND)
+#	define z_sint8_atomic_get_then_and Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_THEN_AND)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_GET_THEN_DECREMENT)
-#	define z_int8_atomic_get_then_decrement Z_COMPILER_FUNCTION(INT8_ATOMIC_GET_THEN_DECREMENT)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_THEN_DECREMENT)
+#	define z_sint8_atomic_get_then_decrement Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_THEN_DECREMENT)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_GET_THEN_INCREMENT)
-#	define z_int8_atomic_get_then_increment Z_COMPILER_FUNCTION(INT8_ATOMIC_GET_THEN_INCREMENT)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_THEN_INCREMENT)
+#	define z_sint8_atomic_get_then_increment Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_THEN_INCREMENT)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_GET_THEN_NAND)
-#	define z_int8_atomic_get_then_nand Z_COMPILER_FUNCTION(INT8_ATOMIC_GET_THEN_NAND)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_THEN_NAND)
+#	define z_sint8_atomic_get_then_nand Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_THEN_NAND)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_GET_THEN_NOT)
-#	define z_int8_atomic_get_then_not Z_COMPILER_FUNCTION(INT8_ATOMIC_GET_THEN_NOT)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_THEN_NOT)
+#	define z_sint8_atomic_get_then_not Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_THEN_NOT)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_GET_THEN_OR)
-#	define z_int8_atomic_get_then_or Z_COMPILER_FUNCTION(INT8_ATOMIC_GET_THEN_OR)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_THEN_OR)
+#	define z_sint8_atomic_get_then_or Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_THEN_OR)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_GET_THEN_SET)
-#	define z_int8_atomic_get_then_set Z_COMPILER_FUNCTION(INT8_ATOMIC_GET_THEN_SET)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_THEN_SET)
+#	define z_sint8_atomic_get_then_set Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_THEN_SET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_GET_THEN_SUBTRACT)
-#	define z_int8_atomic_get_then_subtract Z_COMPILER_FUNCTION(INT8_ATOMIC_GET_THEN_SUBTRACT)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_THEN_SUBTRACT)
+#	define z_sint8_atomic_get_then_subtract Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_THEN_SUBTRACT)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_GET_THEN_XOR)
-#	define z_int8_atomic_get_then_xor Z_COMPILER_FUNCTION(INT8_ATOMIC_GET_THEN_XOR)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_THEN_XOR)
+#	define z_sint8_atomic_get_then_xor Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_THEN_XOR)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_INCREMENT_THEN_GET)
-#	define z_int8_atomic_increment_then_get Z_COMPILER_FUNCTION(INT8_ATOMIC_INCREMENT_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_INCREMENT_THEN_GET)
+#	define z_sint8_atomic_increment_then_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_INCREMENT_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_NAND_THEN_GET)
-#	define z_int8_atomic_nand_then_get Z_COMPILER_FUNCTION(INT8_ATOMIC_NAND_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_NAND_THEN_GET)
+#	define z_sint8_atomic_nand_then_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_NAND_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_NOT_THEN_GET)
-#	define z_int8_atomic_not_then_get Z_COMPILER_FUNCTION(INT8_ATOMIC_NOT_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_NOT_THEN_GET)
+#	define z_sint8_atomic_not_then_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_NOT_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_OR_THEN_GET)
-#	define z_int8_atomic_or_then_get Z_COMPILER_FUNCTION(INT8_ATOMIC_OR_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_OR_THEN_GET)
+#	define z_sint8_atomic_or_then_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_OR_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_SET_IF_EQUAL)
-#	define z_int8_atomic_set_if_equal Z_COMPILER_FUNCTION(INT8_ATOMIC_SET_IF_EQUAL)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_SET_IF_EQUAL)
+#	define z_sint8_atomic_set_if_equal Z_COMPILER_FUNCTION(SINT8_ATOMIC_SET_IF_EQUAL)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_SUBTRACT_THEN_GET)
-#	define z_int8_atomic_subtract_then_get Z_COMPILER_FUNCTION(INT8_ATOMIC_SUBTRACT_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_SUBTRACT_THEN_GET)
+#	define z_sint8_atomic_subtract_then_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_SUBTRACT_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT8_ATOMIC_XOR_THEN_GET)
-#	define z_int8_atomic_xor_then_get Z_COMPILER_FUNCTION(INT8_ATOMIC_XOR_THEN_GET)
-#endif
-
-
-/* MARK: - int16 */
-
-
-Z_IMPLEMENTATION_VALUE_COMMON (int16)
-Z_IMPLEMENTATION_VALUE_SIGNED (int16)
-Z_IMPLEMENTATION_VALUE_REVERSE(int16, 16, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(int16, 16, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(int16, 16, 4)
-Z_IMPLEMENTATION_VALUE_REVERSE(int16, 16, 8)
-Z_IMPLEMENTATION_VALUE_ROTATE (int16, 16)
-
-
-#define z_int16_reverse z_int16_reverse_in_8bit
-
-#if Z_INT16_ENDIANNESS == Z_ENDIANNESS_BIG
-
-#	define z_int16_big_endian     Z_SAME
-#	define z_int16_little_endian  z_int16_reverse
-
-#elif Z_INT16_ENDIANNESS == Z_ENDIANNESS_LITTLE
-
-#	define z_int16_big_endian     z_int16_reverse
-#	define z_int16_little_endian  Z_SAME
-
+#if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_XOR_THEN_GET)
+#	define z_sint8_atomic_xor_then_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_XOR_THEN_GET)
 #endif
 
 
-Z_INLINE
-zboolean z_int16_addition_overflows(zint16 a, zint16 b)
-	{return FALSE;}
+/* MARK: - sint16 */
 
 
-Z_INLINE
-zboolean z_int16_addition_overflows_3(zint16 a, zint16 b, zint16 c)
-	{return FALSE;}
+Z_IMPLEMENTATION_VALUE_COMMON (sint16)
+Z_IMPLEMENTATION_VALUE_SIGNED (sint16)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint16, 16, 1)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint16, 16, 2)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint16, 16, 4)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint16, 16, 8)
+Z_IMPLEMENTATION_VALUE_ROTATE (sint16, 16)
 
 
-Z_INLINE
-zboolean z_int16_addition_overflows_4(zint16 a, zint16 b, zint16 c, zint16 d)
-	{return FALSE;}
+#define z_sint16_reverse z_sint16_reverse_in_8bit
 
+#if Z_SINT16_ENDIANNESS == Z_ENDIANNESS_BIG
 
-Z_INLINE
-zboolean z_int16_multiplication_overflows(zint16 a, zint16 b)
-	{return FALSE;}
+#	define z_sint16_big_endian    Z_SAME
+#	define z_sint16_little_endian z_sint16_reverse
 
+#elif Z_SINT16_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-Z_INLINE
-zboolean z_int16_multiplication_overflows_3(zint16 a, zint16 b, zint16 c)
-	{return FALSE;}
-
-
-Z_INLINE
-zboolean z_int16_multiplication_overflows_4(zint16 a, zint16 b, zint16 c, zint16 d)
-	{return FALSE;}
-
-
-Z_INLINE
-zboolean z_int16_subtraction_overflows(zint16 a, zint16 b)
-	{return FALSE;}
-
-
-Z_INLINE
-zboolean z_int16_subtraction_overflows_3(zint16 a, zint16 b, zint16 c)
-	{return FALSE;}
-
-
-Z_INLINE
-zboolean z_int16_subtraction_overflows_4(zint16 a, zint16 b, zint16 c, zint16 d)
-	{return FALSE;}
-
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_ADD_THEN_GET)
-#	define z_int16_atomic_add_then_get Z_COMPILER_FUNCTION(INT16_ATOMIC_ADD_THEN_GET)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_AND_THEN_GET)
-#	define z_int16_atomic_and_then_get Z_COMPILER_FUNCTION(INT16_ATOMIC_AND_THEN_GET)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_DECREMENT_THEN_GET)
-#	define z_int16_atomic_decrement_then_get Z_COMPILER_FUNCTION(INT16_ATOMIC_DECREMENT_THEN_GET)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_GET_THEN_ADD)
-#	define z_int16_atomic_get_then_add Z_COMPILER_FUNCTION(INT16_ATOMIC_GET_THEN_ADD)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_GET_THEN_AND)
-#	define z_int16_atomic_get_then_and Z_COMPILER_FUNCTION(INT16_ATOMIC_GET_THEN_AND)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_GET_THEN_DECREMENT)
-#	define z_int16_atomic_get_then_decrement Z_COMPILER_FUNCTION(INT16_ATOMIC_GET_THEN_DECREMENT)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_GET_THEN_INCREMENT)
-#	define z_int16_atomic_get_then_increment Z_COMPILER_FUNCTION(INT16_ATOMIC_GET_THEN_INCREMENT)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_GET_THEN_NAND)
-#	define z_int16_atomic_get_then_nand Z_COMPILER_FUNCTION(INT16_ATOMIC_GET_THEN_NAND)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_GET_THEN_NOT)
-#	define z_int16_atomic_get_then_not Z_COMPILER_FUNCTION(INT16_ATOMIC_GET_THEN_NOT)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_GET_THEN_OR)
-#	define z_int16_atomic_get_then_or Z_COMPILER_FUNCTION(INT16_ATOMIC_GET_THEN_OR)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_GET_THEN_SET)
-#	define z_int16_atomic_get_then_set Z_COMPILER_FUNCTION(INT16_ATOMIC_GET_THEN_SET)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_GET_THEN_SUBTRACT)
-#	define z_int16_atomic_get_then_subtract Z_COMPILER_FUNCTION(INT16_ATOMIC_GET_THEN_SUBTRACT)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_GET_THEN_XOR)
-#	define z_int16_atomic_get_then_xor Z_COMPILER_FUNCTION(INT16_ATOMIC_GET_THEN_XOR)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_INCREMENT_THEN_GET)
-#	define z_int16_atomic_increment_then_get Z_COMPILER_FUNCTION(INT16_ATOMIC_INCREMENT_THEN_GET)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_NAND_THEN_GET)
-#	define z_int16_atomic_nand_then_get Z_COMPILER_FUNCTION(INT16_ATOMIC_NAND_THEN_GET)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_NOT_THEN_GET)
-#	define z_int16_atomic_not_then_get Z_COMPILER_FUNCTION(INT16_ATOMIC_NOT_THEN_GET)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_OR_THEN_GET)
-#	define z_int16_atomic_or_then_get Z_COMPILER_FUNCTION(INT16_ATOMIC_OR_THEN_GET)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_SET_IF_EQUAL)
-#	define z_int16_atomic_set_if_equal Z_COMPILER_FUNCTION(INT16_ATOMIC_SET_IF_EQUAL)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_SUBTRACT_THEN_GET)
-#	define z_int16_atomic_subtract_then_get Z_COMPILER_FUNCTION(INT16_ATOMIC_SUBTRACT_THEN_GET)
-#endif
-
-#if Z_COMPILER_HAS_FUNCTION(INT16_ATOMIC_XOR_THEN_GET)
-#	define z_int16_atomic_xor_then_get Z_COMPILER_FUNCTION(INT16_ATOMIC_XOR_THEN_GET)
-#endif
-
-
-/* MARK: - int32 */
-
-
-Z_IMPLEMENTATION_VALUE_COMMON (int32)
-Z_IMPLEMENTATION_VALUE_SIGNED (int32)
-Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32,  1)
-Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32,  2)
-Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32,  4)
-Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32,  8)
-Z_IMPLEMENTATION_VALUE_REVERSE(int32, 32, 16)
-Z_IMPLEMENTATION_VALUE_ROTATE (int32, 32)
-
-
-#define z_int32_reverse z_int32_reverse_in_8bit
-
-#if Z_INT32_ENDIANNESS == Z_ENDIANNESS_BIG
-
-#	define z_int32_big_endian     Z_SAME
-#	define z_int32_little_endian  z_int32_reverse
-
-#elif Z_INT32_ENDIANNESS == Z_ENDIANNESS_LITTLE
-
-#	define z_int32_big_endian     z_int32_reverse
-#	define z_int32_little_endian  Z_SAME
+#	define z_sint16_big_endian    z_sint16_reverse
+#	define z_sint16_little_endian Z_SAME
 
 #endif
 
 
 Z_INLINE
-zboolean z_int32_addition_overflows(zint32 a, zint32 b)
+zboolean z_sint16_addition_overflows(zsint16 a, zsint16 b)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int32_addition_overflows_3(zint32 a, zint32 b, zint32 c)
+zboolean z_sint16_addition_overflows_3(zsint16 a, zsint16 b, zsint16 c)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int32_addition_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
+zboolean z_sint16_addition_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint16 d)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int32_multiplication_overflows(zint32 a, zint32 b)
+zboolean z_sint16_multiplication_overflows(zsint16 a, zsint16 b)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int32_multiplication_overflows_3(zint32 a, zint32 b, zint32 c)
+zboolean z_sint16_multiplication_overflows_3(zsint16 a, zsint16 b, zsint16 c)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int32_multiplication_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
+zboolean z_sint16_multiplication_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint16 d)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int32_subtraction_overflows(zint32 a, zint32 b)
+zboolean z_sint16_subtraction_overflows(zsint16 a, zsint16 b)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int32_subtraction_overflows_3(zint32 a, zint32 b, zint32 c)
+zboolean z_sint16_subtraction_overflows_3(zsint16 a, zsint16 b, zsint16 c)
 	{return FALSE;}
 
 
 Z_INLINE
-zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
+zboolean z_sint16_subtraction_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint16 d)
 	{return FALSE;}
 
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_ADD_THEN_GET)
-#	define z_int32_atomic_add_then_get Z_COMPILER_FUNCTION(INT32_ATOMIC_ADD_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_ADD_THEN_GET)
+#	define z_sint16_atomic_add_then_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_ADD_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_AND_THEN_GET)
-#	define z_int32_atomic_and_then_get Z_COMPILER_FUNCTION(INT32_ATOMIC_AND_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_AND_THEN_GET)
+#	define z_sint16_atomic_and_then_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_AND_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_DECREMENT_THEN_GET)
-#	define z_int32_atomic_decrement_then_get Z_COMPILER_FUNCTION(INT32_ATOMIC_DECREMENT_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_DECREMENT_THEN_GET)
+#	define z_sint16_atomic_decrement_then_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_DECREMENT_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_GET_THEN_ADD)
-#	define z_int32_atomic_get_then_add Z_COMPILER_FUNCTION(INT32_ATOMIC_GET_THEN_ADD)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_THEN_ADD)
+#	define z_sint16_atomic_get_then_add Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_THEN_ADD)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_GET_THEN_AND)
-#	define z_int32_atomic_get_then_and Z_COMPILER_FUNCTION(INT32_ATOMIC_GET_THEN_AND)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_THEN_AND)
+#	define z_sint16_atomic_get_then_and Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_THEN_AND)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_GET_THEN_DECREMENT)
-#	define z_int32_atomic_get_then_decrement Z_COMPILER_FUNCTION(INT32_ATOMIC_GET_THEN_DECREMENT)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_THEN_DECREMENT)
+#	define z_sint16_atomic_get_then_decrement Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_THEN_DECREMENT)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_GET_THEN_INCREMENT)
-#	define z_int32_atomic_get_then_increment Z_COMPILER_FUNCTION(INT32_ATOMIC_GET_THEN_INCREMENT)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_THEN_INCREMENT)
+#	define z_sint16_atomic_get_then_increment Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_THEN_INCREMENT)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_GET_THEN_NAND)
-#	define z_int32_atomic_get_then_nand Z_COMPILER_FUNCTION(INT32_ATOMIC_GET_THEN_NAND)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_THEN_NAND)
+#	define z_sint16_atomic_get_then_nand Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_THEN_NAND)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_GET_THEN_NOT)
-#	define z_int32_atomic_get_then_not Z_COMPILER_FUNCTION(INT32_ATOMIC_GET_THEN_NOT)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_THEN_NOT)
+#	define z_sint16_atomic_get_then_not Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_THEN_NOT)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_GET_THEN_OR)
-#	define z_int32_atomic_get_then_or Z_COMPILER_FUNCTION(INT32_ATOMIC_GET_THEN_OR)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_THEN_OR)
+#	define z_sint16_atomic_get_then_or Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_THEN_OR)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_GET_THEN_SET)
-#	define z_int32_atomic_get_then_set Z_COMPILER_FUNCTION(INT32_ATOMIC_GET_THEN_SET)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_THEN_SET)
+#	define z_sint16_atomic_get_then_set Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_THEN_SET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_GET_THEN_SUBTRACT)
-#	define z_int32_atomic_get_then_subtract Z_COMPILER_FUNCTION(INT32_ATOMIC_GET_THEN_SUBTRACT)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_THEN_SUBTRACT)
+#	define z_sint16_atomic_get_then_subtract Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_THEN_SUBTRACT)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_GET_THEN_XOR)
-#	define z_int32_atomic_get_then_xor Z_COMPILER_FUNCTION(INT32_ATOMIC_GET_THEN_XOR)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_THEN_XOR)
+#	define z_sint16_atomic_get_then_xor Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_THEN_XOR)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_INCREMENT_THEN_GET)
-#	define z_int32_atomic_increment_then_get Z_COMPILER_FUNCTION(INT32_ATOMIC_INCREMENT_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_INCREMENT_THEN_GET)
+#	define z_sint16_atomic_increment_then_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_INCREMENT_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_NAND_THEN_GET)
-#	define z_int32_atomic_nand_then_get Z_COMPILER_FUNCTION(INT32_ATOMIC_NAND_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_NAND_THEN_GET)
+#	define z_sint16_atomic_nand_then_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_NAND_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_NOT_THEN_GET)
-#	define z_int32_atomic_not_then_get Z_COMPILER_FUNCTION(INT32_ATOMIC_NOT_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_NOT_THEN_GET)
+#	define z_sint16_atomic_not_then_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_NOT_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_OR_THEN_GET)
-#	define z_int32_atomic_or_then_get Z_COMPILER_FUNCTION(INT32_ATOMIC_OR_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_OR_THEN_GET)
+#	define z_sint16_atomic_or_then_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_OR_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_SET_IF_EQUAL)
-#	define z_int32_atomic_set_if_equal Z_COMPILER_FUNCTION(INT32_ATOMIC_SET_IF_EQUAL)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_SET_IF_EQUAL)
+#	define z_sint16_atomic_set_if_equal Z_COMPILER_FUNCTION(SINT16_ATOMIC_SET_IF_EQUAL)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_SUBTRACT_THEN_GET)
-#	define z_int32_atomic_subtract_then_get Z_COMPILER_FUNCTION(INT32_ATOMIC_SUBTRACT_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_SUBTRACT_THEN_GET)
+#	define z_sint16_atomic_subtract_then_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_SUBTRACT_THEN_GET)
 #endif
 
-#if Z_COMPILER_HAS_FUNCTION(INT32_ATOMIC_XOR_THEN_GET)
-#	define z_int32_atomic_xor_then_get Z_COMPILER_FUNCTION(INT32_ATOMIC_XOR_THEN_GET)
+#if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_XOR_THEN_GET)
+#	define z_sint16_atomic_xor_then_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_XOR_THEN_GET)
 #endif
 
 
-/* MARK: - int64 */
+/* MARK: - sint32 */
 
 
-#ifdef Z_INT64
-
-	Z_IMPLEMENTATION_VALUE_COMMON (int64)
-	Z_IMPLEMENTATION_VALUE_SIGNED (int64)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int64, 64, 32)
-	Z_IMPLEMENTATION_VALUE_ROTATE (int64, 64)
+Z_IMPLEMENTATION_VALUE_COMMON (sint32)
+Z_IMPLEMENTATION_VALUE_SIGNED (sint32)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint32, 32,  1)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint32, 32,  2)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint32, 32,  4)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint32, 32,  8)
+Z_IMPLEMENTATION_VALUE_REVERSE(sint32, 32, 16)
+Z_IMPLEMENTATION_VALUE_ROTATE (sint32, 32)
 
 
-#	define z_int64_reverse z_int64_reverse_in_8bit
+#define z_sint32_reverse z_sint32_reverse_in_8bit
 
-#	if Z_INT64_ENDIANNESS == Z_ENDIANNESS_BIG
+#if Z_SINT32_ENDIANNESS == Z_ENDIANNESS_BIG
 
-#		define z_int64_big_endian    Z_SAME
-#		define z_int64_little_endian z_int64_reverse
+#	define z_sint32_big_endian    Z_SAME
+#	define z_sint32_little_endian z_sint32_reverse
 
-#	elif Z_INT64_ENDIANNESS == Z_ENDIANNESS_LITTLE
+#elif Z_SINT32_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#		define z_int64_big_endian    z_int64_reverse
-#		define z_int64_little_endian Z_SAME
+#	define z_sint32_big_endian    z_sint32_reverse
+#	define z_sint32_little_endian Z_SAME
+
+#endif
+
+
+Z_INLINE
+zboolean z_sint32_addition_overflows(zsint32 a, zsint32 b)
+	{return FALSE;}
+
+
+Z_INLINE
+zboolean z_sint32_addition_overflows_3(zsint32 a, zsint32 b, zsint32 c)
+	{return FALSE;}
+
+
+Z_INLINE
+zboolean z_sint32_addition_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint32 d)
+	{return FALSE;}
+
+
+Z_INLINE
+zboolean z_sint32_multiplication_overflows(zsint32 a, zsint32 b)
+	{return FALSE;}
+
+
+Z_INLINE
+zboolean z_sint32_multiplication_overflows_3(zsint32 a, zsint32 b, zsint32 c)
+	{return FALSE;}
+
+
+Z_INLINE
+zboolean z_sint32_multiplication_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint32 d)
+	{return FALSE;}
+
+
+Z_INLINE
+zboolean z_sint32_subtraction_overflows(zsint32 a, zsint32 b)
+	{return FALSE;}
+
+
+Z_INLINE
+zboolean z_sint32_subtraction_overflows_3(zsint32 a, zsint32 b, zsint32 c)
+	{return FALSE;}
+
+
+Z_INLINE
+zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint32 d)
+	{return FALSE;}
+
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_ADD_THEN_GET)
+#	define z_sint32_atomic_add_then_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_ADD_THEN_GET)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_AND_THEN_GET)
+#	define z_sint32_atomic_and_then_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_AND_THEN_GET)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_DECREMENT_THEN_GET)
+#	define z_sint32_atomic_decrement_then_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_DECREMENT_THEN_GET)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_THEN_ADD)
+#	define z_sint32_atomic_get_then_add Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_THEN_ADD)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_THEN_AND)
+#	define z_sint32_atomic_get_then_and Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_THEN_AND)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_THEN_DECREMENT)
+#	define z_sint32_atomic_get_then_decrement Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_THEN_DECREMENT)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_THEN_INCREMENT)
+#	define z_sint32_atomic_get_then_increment Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_THEN_INCREMENT)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_THEN_NAND)
+#	define z_sint32_atomic_get_then_nand Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_THEN_NAND)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_THEN_NOT)
+#	define z_sint32_atomic_get_then_not Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_THEN_NOT)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_THEN_OR)
+#	define z_sint32_atomic_get_then_or Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_THEN_OR)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_THEN_SET)
+#	define z_sint32_atomic_get_then_set Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_THEN_SET)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_THEN_SUBTRACT)
+#	define z_sint32_atomic_get_then_subtract Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_THEN_SUBTRACT)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_THEN_XOR)
+#	define z_sint32_atomic_get_then_xor Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_THEN_XOR)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_INCREMENT_THEN_GET)
+#	define z_sint32_atomic_increment_then_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_INCREMENT_THEN_GET)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_NAND_THEN_GET)
+#	define z_sint32_atomic_nand_then_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_NAND_THEN_GET)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_NOT_THEN_GET)
+#	define z_sint32_atomic_not_then_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_NOT_THEN_GET)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_OR_THEN_GET)
+#	define z_sint32_atomic_or_then_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_OR_THEN_GET)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_SET_IF_EQUAL)
+#	define z_sint32_atomic_set_if_equal Z_COMPILER_FUNCTION(SINT32_ATOMIC_SET_IF_EQUAL)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_SUBTRACT_THEN_GET)
+#	define z_sint32_atomic_subtract_then_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_SUBTRACT_THEN_GET)
+#endif
+
+#if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_XOR_THEN_GET)
+#	define z_sint32_atomic_xor_then_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_XOR_THEN_GET)
+#endif
+
+
+/* MARK: - sint64 */
+
+
+#ifdef Z_SINT64
+
+	Z_IMPLEMENTATION_VALUE_COMMON (sint64)
+	Z_IMPLEMENTATION_VALUE_SIGNED (sint64)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64, 32)
+	Z_IMPLEMENTATION_VALUE_ROTATE (sint64, 64)
+
+
+#	define z_sint64_reverse z_sint64_reverse_in_8bit
+
+#	if Z_SINT64_ENDIANNESS == Z_ENDIANNESS_BIG
+
+#		define z_sint64_big_endian    Z_SAME
+#		define z_sint64_little_endian z_sint64_reverse
+
+#	elif Z_SINT64_ENDIANNESS == Z_ENDIANNESS_LITTLE
+
+#		define z_sint64_big_endian    z_sint64_reverse
+#		define z_sint64_little_endian Z_SAME
 
 #	endif
 
 
 	Z_INLINE
-	zboolean z_int64_addition_overflows(zint64 a, zint64 b)
+	zboolean z_sint64_addition_overflows(zsint64 a, zsint64 b)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int64_addition_overflows_3(zint64 a, zint64 b, zint64 c)
+	zboolean z_sint64_addition_overflows_3(zsint64 a, zsint64 b, zsint64 c)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int64_addition_overflows_4(zint64 a, zint64 b, zint64 c, zint64 d)
+	zboolean z_sint64_addition_overflows_4(zsint64 a, zsint64 b, zsint64 c, zsint64 d)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int64_multiplication_overflows(zint64 a, zint64 b)
+	zboolean z_sint64_multiplication_overflows(zsint64 a, zsint64 b)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int64_multiplication_overflows_3(zint64 a, zint64 b, zint64 c)
+	zboolean z_sint64_multiplication_overflows_3(zsint64 a, zsint64 b, zsint64 c)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int64_multiplication_overflows_4(zint64 a, zint64 b, zint64 c, zint64 d)
+	zboolean z_sint64_multiplication_overflows_4(zsint64 a, zsint64 b, zsint64 c, zsint64 d)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int64_subtraction_overflows(zint64 a, zint64 b)
+	zboolean z_sint64_subtraction_overflows(zsint64 a, zsint64 b)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int64_subtraction_overflows_3(zint64 a, zint64 b, zint64 c)
+	zboolean z_sint64_subtraction_overflows_3(zsint64 a, zsint64 b, zsint64 c)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int64_subtraction_overflows_4(zint64 a, zint64 b, zint64 c, zint64 d)
+	zboolean z_sint64_subtraction_overflows_4(zsint64 a, zsint64 b, zsint64 c, zsint64 d)
 		{return FALSE;}
 
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_ADD_THEN_GET)
-#		define z_int64_atomic_add_then_get Z_COMPILER_FUNCTION(INT64_ATOMIC_ADD_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_ADD_THEN_GET)
+#		define z_sint64_atomic_add_then_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_ADD_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_AND_THEN_GET)
-#		define z_int64_atomic_and_then_get Z_COMPILER_FUNCTION(INT64_ATOMIC_AND_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_AND_THEN_GET)
+#		define z_sint64_atomic_and_then_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_AND_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_DECREMENT_THEN_GET)
-#		define z_int64_atomic_decrement_then_get Z_COMPILER_FUNCTION(INT64_ATOMIC_DECREMENT_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_DECREMENT_THEN_GET)
+#		define z_sint64_atomic_decrement_then_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_DECREMENT_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_GET_THEN_ADD)
-#		define z_int64_atomic_get_then_add Z_COMPILER_FUNCTION(INT64_ATOMIC_GET_THEN_ADD)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_THEN_ADD)
+#		define z_sint64_atomic_get_then_add Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_THEN_ADD)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_GET_THEN_AND)
-#		define z_int64_atomic_get_then_and Z_COMPILER_FUNCTION(INT64_ATOMIC_GET_THEN_AND)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_THEN_AND)
+#		define z_sint64_atomic_get_then_and Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_THEN_AND)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_GET_THEN_DECREMENT)
-#		define z_int64_atomic_get_then_decrement Z_COMPILER_FUNCTION(INT64_ATOMIC_GET_THEN_DECREMENT)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_THEN_DECREMENT)
+#		define z_sint64_atomic_get_then_decrement Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_THEN_DECREMENT)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_GET_THEN_INCREMENT)
-#		define z_int64_atomic_get_then_increment Z_COMPILER_FUNCTION(INT64_ATOMIC_GET_THEN_INCREMENT)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_THEN_INCREMENT)
+#		define z_sint64_atomic_get_then_increment Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_THEN_INCREMENT)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_GET_THEN_NAND)
-#		define z_int64_atomic_get_then_nand Z_COMPILER_FUNCTION(INT64_ATOMIC_GET_THEN_NAND)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_THEN_NAND)
+#		define z_sint64_atomic_get_then_nand Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_THEN_NAND)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_GET_THEN_NOT)
-#		define z_int64_atomic_get_then_not Z_COMPILER_FUNCTION(INT64_ATOMIC_GET_THEN_NOT)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_THEN_NOT)
+#		define z_sint64_atomic_get_then_not Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_THEN_NOT)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_GET_THEN_OR)
-#		define z_int64_atomic_get_then_or Z_COMPILER_FUNCTION(INT64_ATOMIC_GET_THEN_OR)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_THEN_OR)
+#		define z_sint64_atomic_get_then_or Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_THEN_OR)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_GET_THEN_SET)
-#		define z_int64_atomic_get_then_set Z_COMPILER_FUNCTION(INT64_ATOMIC_GET_THEN_SET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_THEN_SET)
+#		define z_sint64_atomic_get_then_set Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_THEN_SET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_GET_THEN_SUBTRACT)
-#		define z_int64_atomic_get_then_subtract Z_COMPILER_FUNCTION(INT64_ATOMIC_GET_THEN_SUBTRACT)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_THEN_SUBTRACT)
+#		define z_sint64_atomic_get_then_subtract Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_THEN_SUBTRACT)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_GET_THEN_XOR)
-#		define z_int64_atomic_get_then_xor Z_COMPILER_FUNCTION(INT64_ATOMIC_GET_THEN_XOR)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_THEN_XOR)
+#		define z_sint64_atomic_get_then_xor Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_THEN_XOR)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_INCREMENT_THEN_GET)
-#		define z_int64_atomic_increment_then_get Z_COMPILER_FUNCTION(INT64_ATOMIC_INCREMENT_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_INCREMENT_THEN_GET)
+#		define z_sint64_atomic_increment_then_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_INCREMENT_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_NAND_THEN_GET)
-#		define z_int64_atomic_nand_then_get Z_COMPILER_FUNCTION(INT64_ATOMIC_NAND_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_NAND_THEN_GET)
+#		define z_sint64_atomic_nand_then_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_NAND_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_NOT_THEN_GET)
-#		define z_int64_atomic_not_then_get Z_COMPILER_FUNCTION(INT64_ATOMIC_NOT_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_NOT_THEN_GET)
+#		define z_sint64_atomic_not_then_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_NOT_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_OR_THEN_GET)
-#		define z_int64_atomic_or_then_get Z_COMPILER_FUNCTION(INT64_ATOMIC_OR_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_OR_THEN_GET)
+#		define z_sint64_atomic_or_then_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_OR_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_SET_IF_EQUAL)
-#		define z_int64_atomic_set_if_equal Z_COMPILER_FUNCTION(INT64_ATOMIC_SET_IF_EQUAL)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_SET_IF_EQUAL)
+#		define z_sint64_atomic_set_if_equal Z_COMPILER_FUNCTION(SINT64_ATOMIC_SET_IF_EQUAL)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_SUBTRACT_THEN_GET)
-#		define z_int64_atomic_subtract_then_get Z_COMPILER_FUNCTION(INT64_ATOMIC_SUBTRACT_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_SUBTRACT_THEN_GET)
+#		define z_sint64_atomic_subtract_then_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_SUBTRACT_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT64_ATOMIC_XOR_THEN_GET)
-#		define z_int64_atomic_xor_then_get Z_COMPILER_FUNCTION(INT64_ATOMIC_XOR_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_XOR_THEN_GET)
+#		define z_sint64_atomic_xor_then_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_XOR_THEN_GET)
 #	endif
 
 #endif
 
 
-/* MARK: - int128 */
+/* MARK: - sint128 */
 
 
-#ifdef Z_INT128
+#ifdef Z_SINT128
 
-	Z_IMPLEMENTATION_VALUE_COMMON (int128)
-	Z_IMPLEMENTATION_VALUE_SIGNED (int128)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128, 32)
-	Z_IMPLEMENTATION_VALUE_REVERSE(int128, 128, 64)
-	Z_IMPLEMENTATION_VALUE_ROTATE (int128, 128)
+	Z_IMPLEMENTATION_VALUE_COMMON (sint128)
+	Z_IMPLEMENTATION_VALUE_SIGNED (sint128)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128,  1)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128,  2)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128,  4)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128,  8)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128, 16)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128, 32)
+	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128, 64)
+	Z_IMPLEMENTATION_VALUE_ROTATE (sint128, 128)
 
 
-#	define z_int128_reverse z_int128_reverse_in_8bit
+#	define z_sint128_reverse z_sint128_reverse_in_8bit
 
-#	if Z_INT128_ENDIANNESS == Z_ENDIANNESS_BIG
+#	if Z_SINT128_ENDIANNESS == Z_ENDIANNESS_BIG
 
-#		define z_int128_big_endian     Z_SAME
-#		define z_int128_little_endian  z_int128_reverse
+#		define z_sint128_big_endian    Z_SAME
+#		define z_sint128_little_endian z_sint128_reverse
 
-#	elif Z_INT128_ENDIANNESS == Z_ENDIANNESS_LITTLE
+#	elif Z_SINT128_ENDIANNESS == Z_ENDIANNESS_LITTLE
 
-#		define z_int128_big_endian     z_int128_reverse
-#		define z_int128_little_endian  Z_SAME
+#		define z_sint128_big_endian    z_sint128_reverse
+#		define z_sint128_little_endian Z_SAME
 
 #	endif
 
 
 	Z_INLINE
-	zboolean z_int128_addition_overflows(zint128 a, zint128 b)
+	zboolean z_sint128_addition_overflows(zsint128 a, zsint128 b)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int128_addition_overflows_3(zint128 a, zint128 b, zint128 c)
+	zboolean z_sint128_addition_overflows_3(zsint128 a, zsint128 b, zsint128 c)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int128_addition_overflows_4(zint128 a, zint128 b, zint128 c, zint128 d)
+	zboolean z_sint128_addition_overflows_4(zsint128 a, zsint128 b, zsint128 c, zsint128 d)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int128_multiplication_overflows(zint128 a, zint128 b)
+	zboolean z_sint128_multiplication_overflows(zsint128 a, zsint128 b)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int128_multiplication_overflows_3(zint128 a, zint128 b, zint128 c)
+	zboolean z_sint128_multiplication_overflows_3(zsint128 a, zsint128 b, zsint128 c)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int128_multiplication_overflows_4(zint128 a, zint128 b, zint128 c, zint128 d)
+	zboolean z_sint128_multiplication_overflows_4(zsint128 a, zsint128 b, zsint128 c, zsint128 d)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int128_subtraction_overflows(zint128 a, zint128 b)
+	zboolean z_sint128_subtraction_overflows(zsint128 a, zsint128 b)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int128_subtraction_overflows_3(zint128 a, zint128 b, zint128 c)
+	zboolean z_sint128_subtraction_overflows_3(zsint128 a, zsint128 b, zsint128 c)
 		{return FALSE;}
 
 
 	Z_INLINE
-	zboolean z_int128_subtraction_overflows_4(zint128 a, zint128 b, zint128 c, zint128 d)
+	zboolean z_sint128_subtraction_overflows_4(zsint128 a, zsint128 b, zsint128 c, zsint128 d)
 		{return FALSE;}
 
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_ADD_THEN_GET)
-#		define z_int128_atomic_add_then_get Z_COMPILER_FUNCTION(INT128_ATOMIC_ADD_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_ADD_THEN_GET)
+#		define z_sint128_atomic_add_then_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_ADD_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_AND_THEN_GET)
-#		define z_int128_atomic_and_then_get Z_COMPILER_FUNCTION(INT128_ATOMIC_AND_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_AND_THEN_GET)
+#		define z_sint128_atomic_and_then_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_AND_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_DECREMENT_THEN_GET)
-#		define z_int128_atomic_decrement_then_get Z_COMPILER_FUNCTION(INT128_ATOMIC_DECREMENT_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_DECREMENT_THEN_GET)
+#		define z_sint128_atomic_decrement_then_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_DECREMENT_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_GET_THEN_ADD)
-#		define z_int128_atomic_get_then_add Z_COMPILER_FUNCTION(INT128_ATOMIC_GET_THEN_ADD)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_THEN_ADD)
+#		define z_sint128_atomic_get_then_add Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_THEN_ADD)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_GET_THEN_AND)
-#		define z_int128_atomic_get_then_and Z_COMPILER_FUNCTION(INT128_ATOMIC_GET_THEN_AND)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_THEN_AND)
+#		define z_sint128_atomic_get_then_and Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_THEN_AND)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_GET_THEN_DECREMENT)
-#		define z_int128_atomic_get_then_decrement Z_COMPILER_FUNCTION(INT128_ATOMIC_GET_THEN_DECREMENT)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_THEN_DECREMENT)
+#		define z_sint128_atomic_get_then_decrement Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_THEN_DECREMENT)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_GET_THEN_INCREMENT)
-#		define z_int128_atomic_get_then_increment Z_COMPILER_FUNCTION(INT128_ATOMIC_GET_THEN_INCREMENT)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_THEN_INCREMENT)
+#		define z_sint128_atomic_get_then_increment Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_THEN_INCREMENT)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_GET_THEN_NAND)
-#		define z_int128_atomic_get_then_nand Z_COMPILER_FUNCTION(INT128_ATOMIC_GET_THEN_NAND)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_THEN_NAND)
+#		define z_sint128_atomic_get_then_nand Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_THEN_NAND)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_GET_THEN_NOT)
-#		define z_int128_atomic_get_then_not Z_COMPILER_FUNCTION(INT128_ATOMIC_GET_THEN_NOT)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_THEN_NOT)
+#		define z_sint128_atomic_get_then_not Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_THEN_NOT)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_GET_THEN_OR)
-#		define z_int128_atomic_get_then_or Z_COMPILER_FUNCTION(INT128_ATOMIC_GET_THEN_OR)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_THEN_OR)
+#		define z_sint128_atomic_get_then_or Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_THEN_OR)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_GET_THEN_SET)
-#		define z_int128_atomic_get_then_set Z_COMPILER_FUNCTION(INT128_ATOMIC_GET_THEN_SET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_THEN_SET)
+#		define z_sint128_atomic_get_then_set Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_THEN_SET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_GET_THEN_SUBTRACT)
-#		define z_int128_atomic_get_then_subtract Z_COMPILER_FUNCTION(INT128_ATOMIC_GET_THEN_SUBTRACT)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_THEN_SUBTRACT)
+#		define z_sint128_atomic_get_then_subtract Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_THEN_SUBTRACT)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_GET_THEN_XOR)
-#		define z_int128_atomic_get_then_xor Z_COMPILER_FUNCTION(INT128_ATOMIC_GET_THEN_XOR)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_THEN_XOR)
+#		define z_sint128_atomic_get_then_xor Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_THEN_XOR)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_INCREMENT_THEN_GET)
-#		define z_int128_atomic_increment_then_get Z_COMPILER_FUNCTION(INT128_ATOMIC_INCREMENT_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_INCREMENT_THEN_GET)
+#		define z_sint128_atomic_increment_then_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_INCREMENT_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_NAND_THEN_GET)
-#		define z_int128_atomic_nand_then_get Z_COMPILER_FUNCTION(INT128_ATOMIC_NAND_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_NAND_THEN_GET)
+#		define z_sint128_atomic_nand_then_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_NAND_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_NOT_THEN_GET)
-#		define z_int128_atomic_not_then_get Z_COMPILER_FUNCTION(INT128_ATOMIC_NOT_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_NOT_THEN_GET)
+#		define z_sint128_atomic_not_then_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_NOT_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_OR_THEN_GET)
-#		define z_int128_atomic_or_then_get Z_COMPILER_FUNCTION(INT128_ATOMIC_OR_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_OR_THEN_GET)
+#		define z_sint128_atomic_or_then_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_OR_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_SET_IF_EQUAL)
-#		define z_int128_atomic_set_if_equal Z_COMPILER_FUNCTION(INT128_ATOMIC_SET_IF_EQUAL)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_SET_IF_EQUAL)
+#		define z_sint128_atomic_set_if_equal Z_COMPILER_FUNCTION(SINT128_ATOMIC_SET_IF_EQUAL)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_SUBTRACT_THEN_GET)
-#		define z_int128_atomic_subtract_then_get Z_COMPILER_FUNCTION(INT128_ATOMIC_SUBTRACT_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_SUBTRACT_THEN_GET)
+#		define z_sint128_atomic_subtract_then_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_SUBTRACT_THEN_GET)
 #	endif
 
-#	if Z_COMPILER_HAS_FUNCTION(INT128_ATOMIC_XOR_THEN_GET)
-#		define z_int128_atomic_xor_then_get Z_COMPILER_FUNCTION(INT128_ATOMIC_XOR_THEN_GET)
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_XOR_THEN_GET)
+#		define z_sint128_atomic_xor_then_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_XOR_THEN_GET)
 #	endif
 
 #endif
@@ -1717,16 +1717,6 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 #endif
 
 
-/* MARK: - float24 */
-
-
-#ifdef Z_FLOAT24
-	Z_IMPLEMENTATION_VALUE_COMMON(float24)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float24)
-	Z_IMPLEMENTATION_VALUE_REAL  (float24, Z_FLOAT24, Z_FLOAT24_EPSILON, Z_FLOAT24_INFINITY)
-#endif
-
-
 /* MARK: - float32 */
 
 
@@ -1735,16 +1725,6 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 	Z_IMPLEMENTATION_VALUE_SIGNED(float32)
 	Z_IMPLEMENTATION_VALUE_REAL  (float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
 #endif
-
-/* MARK: - float48 */
-
-
-#ifdef Z_FLOAT48
-	Z_IMPLEMENTATION_VALUE_COMMON(float48)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float48)
-	Z_IMPLEMENTATION_VALUE_REAL  (float48, Z_FLOAT48, Z_FLOAT48_EPSILON, Z_FLOAT48_INFINITY)
-#endif
-
 
 /* MARK: - float64 */
 
@@ -1756,36 +1736,6 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 #endif
 
 
-/* MARK: - float72 */
-
-
-#ifdef Z_FLOAT72
-	Z_IMPLEMENTATION_VALUE_COMMON(float72)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float72)
-	Z_IMPLEMENTATION_VALUE_REAL  (float72, Z_FLOAT72, Z_FLOAT72_EPSILON, Z_FLOAT72_INFINITY)
-#endif
-
-
-/* MARK: - float80 */
-
-
-#ifdef Z_FLOAT80
-	Z_IMPLEMENTATION_VALUE_COMMON(float80)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float80)
-	Z_IMPLEMENTATION_VALUE_REAL  (float80, Z_FLOAT80, Z_FLOAT80_EPSILON, Z_FLOAT80_INFINITY)
-#endif
-
-
-/* MARK: - float96 */
-
-
-#ifdef Z_FLOAT96
-	Z_IMPLEMENTATION_VALUE_COMMON(float96)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float96)
-	Z_IMPLEMENTATION_VALUE_REAL  (float96, Z_FLOAT96, Z_FLOAT96_EPSILON, Z_FLOAT96_INFINITY)
-#endif
-
-
 /* MARK: - float128 */
 
 
@@ -1793,6 +1743,36 @@ zboolean z_int32_subtraction_overflows_4(zint32 a, zint32 b, zint32 c, zint32 d)
 	Z_IMPLEMENTATION_VALUE_COMMON(float128)
 	Z_IMPLEMENTATION_VALUE_SIGNED(float128)
 	Z_IMPLEMENTATION_VALUE_REAL  (float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
+#endif
+
+
+/* MARK: - float80_x87 */
+
+
+#ifdef Z_FLOAT80_X87
+	Z_IMPLEMENTATION_VALUE_COMMON(float80_x87)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float80_x87)
+	Z_IMPLEMENTATION_VALUE_REAL  (float80_x87, Z_FLOAT80_X87, Z_FLOAT80_X87_EPSILON, Z_FLOAT80_X87_INFINITY)
+#endif
+
+
+/* MARK: - float96_x87 */
+
+
+#ifdef Z_FLOAT96_X87
+	Z_IMPLEMENTATION_VALUE_COMMON(float96_x87)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float96_x87)
+	Z_IMPLEMENTATION_VALUE_REAL  (float96_x87, Z_FLOAT96_X87, Z_FLOAT96_X87_EPSILON, Z_FLOAT96_X87_INFINITY)
+#endif
+
+
+/* MARK: - float128_x87 */
+
+
+#ifdef Z_FLOAT128_X87
+	Z_IMPLEMENTATION_VALUE_COMMON(float128_x87)
+	Z_IMPLEMENTATION_VALUE_SIGNED(float128_x87)
+	Z_IMPLEMENTATION_VALUE_REAL  (float128_x87, Z_FLOAT128_X87, Z_FLOAT128_X87_EPSILON, Z_FLOAT128_X87_INFINITY)
 #endif
 
 

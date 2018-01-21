@@ -27,7 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Index from base calculations */
 
-#define Z_INDEX(type, base, pointer)		 ((zsize)(((zuintptr)pointer - (zuintptr)base) / sizeof(type)))
-#define Z_BLOCK_INDEX(base, pointer, block_size) ((zsize)(((zuintptr)pointer - (zuintptr)base) / block_size))
+#define Z_INDEX(type, base, pointer)		 ((zusize)(((zuintptr)pointer - (zuintptr)base) / sizeof(type)))
+#define Z_BLOCK_INDEX(base, pointer, block_size) ((zusize)(((zuintptr)pointer - (zuintptr)base) / block_size))
 
 #endif /* __Z_macros_pointer_H__ */

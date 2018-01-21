@@ -53,7 +53,7 @@ namespace Zeta {namespace Mixins {namespace Rectangle {
 			{
 			return Rectangle
 				(Z_THIS->point.x,	Z_THIS->point.y + Z_THIS->size.y / T(2),
-				 Z_THIS->size.x / T(2), Z_THIS->size.y  - Z_THIS->size.y / T(2));
+				 Z_THIS->size.x / T(2), Z_THIS->size.y	- Z_THIS->size.y / T(2));
 			}
 
 
@@ -226,9 +226,6 @@ namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial
 	Z_INLINE_MEMBER Rectangle &operator -=(T rhs) {return *this = *this - rhs;}
 	Z_INLINE_MEMBER Rectangle &operator *=(T rhs) {return *this = *this * rhs;}
 	Z_INLINE_MEMBER Rectangle &operator /=(T rhs) {return *this = *this / rhs;}
-
-	Z_INLINE_MEMBER T  operator[](int index) const {return ((T *)this)[index];}
-	Z_INLINE_MEMBER T &operator[](int index)       {return ((T *)this)[index];}
 
 
 #	ifdef Z_USE_CG_GEOMETRY

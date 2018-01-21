@@ -596,14 +596,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TYPE_UINT32*/
 /*#define Z_COMPILER_TYPE_UINT64*/
 
-/*#define Z_COMPILER_TYPE_INT8*/
-/*#define Z_COMPILER_TYPE_INT16*/
-/*#define Z_COMPILER_TYPE_INT32*/
-/*#define Z_COMPILER_TYPE_INT64*/
+/*#define Z_COMPILER_TYPE_SINT8*/
+/*#define Z_COMPILER_TYPE_SINT16*/
+/*#define Z_COMPILER_TYPE_SINT32*/
+/*#define Z_COMPILER_TYPE_SINT64*/
 
 #ifdef __SIZEOF_INT128__
 #	define Z_COMPILER_TYPE_UINT128 __uint128_t
-#	define Z_COMPILER_TYPE_INT128  __int128_t
+#	define Z_COMPILER_TYPE_SINT128 __int128_t
 #endif
 
 /*#define Z_COMPILER_TYPE_FLOAT16*/
@@ -626,11 +626,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_LITERAL_UINT64*/
 /*#define Z_COMPILER_LITERAL_UINT128*/
 
-/*#define Z_COMPILER_LITERAL_INT8*/
-/*#define Z_COMPILER_LITERAL_INT16*/
-/*#define Z_COMPILER_LITERAL_INT32*/
-/*#define Z_COMPILER_LITERAL_INT64*/
-/*#define Z_COMPILER_LITERAL_INT128*/
+/*#define Z_COMPILER_LITERAL_SINT8*/
+/*#define Z_COMPILER_LITERAL_SINT16*/
+/*#define Z_COMPILER_LITERAL_SINT32*/
+/*#define Z_COMPILER_LITERAL_SINT64*/
+/*#define Z_COMPILER_LITERAL_SINT128*/
 
 /*#define Z_COMPILER_LITERAL_FLOAT16*/
 /*#define Z_COMPILER_LITERAL_FLOAT24*/

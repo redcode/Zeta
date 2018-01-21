@@ -16,7 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 Z_INLINE void z_triple_buffer_initialize(
 	ZTripleBuffer* object,
 	void const*    buffers,
-	zsize	       buffer_size
+	zusize	       buffer_size
 )
 	{
 	object->buffers[0] = (zuint8 *)buffers;

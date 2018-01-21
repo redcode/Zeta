@@ -150,7 +150,7 @@ namespace Zeta {template <class T> struct AABR : Line2D<T>, Mixins::Rectangle::P
 
 
 	Z_CT_MEMBER(CPP11) T area() const
-		{return (this->b - this->a).inner_product()
+		{return (this->b - this->a).inner_product();}
 
 
 	Z_CT_MEMBER(CPP11) Value2D<T> bottom_center() const
@@ -524,7 +524,7 @@ Z_CT_MEMBER(CPP11) ZAABR##Type z_aabr_##type##_shrink_from_bottom_left(const Val
 	}											\
 												\
 												\
-Z_CT_MEMBER(CPP11) ZAABR##Type z_aabr_##type##_shrink_from_bottom_right(const Value2D<T> &delta)												\
+Z_CT_MEMBER(CPP11) ZAABR##Type z_aabr_##type##_shrink_from_bottom_right(const Value2D<T> &delta)\
 	{											\
 	object.a.x += delta.x;									\
 	object.b.y -= delta.y;									\

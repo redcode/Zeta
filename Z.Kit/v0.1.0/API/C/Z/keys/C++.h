@@ -8,13 +8,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_keys_CPP_H__
 #define __Z_keys_CPP_H__
 
-#define Z_CPP85 0
-#define Z_CPP89 1
-#define Z_CPP98 2
-#define Z_CPP03 3
-#define Z_CPP11 4
-#define Z_CPP14 5
-#define Z_CPP17 6
+#define Z_CPP85 1
+#define Z_CPP89 2
+#define Z_CPP98 3
+#define Z_CPP03 4
+#define Z_CPP11 5
+#define Z_CPP14 6
+#define Z_CPP17 7
 
 #define Z_CPP_STRING_CPP85 "C++ v1.0 (C++85)"
 #define Z_CPP_STRING_CPP89 "C++ v2.0 (C++89)"

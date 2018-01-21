@@ -25,7 +25,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_array		     = false,
 			is_callable		     = false,
 			is_char			     = false,
-			is_character		     = false,
 			is_class		     = false,
 			is_compound		     = false,
 			is_const		     = false,
@@ -37,7 +36,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_data_member_pointer	     = false,
 			is_empty		     = false,
 			is_exact		     = false,
-			is_int			     = false,
 			is_integer		     = false,
 			is_flexible_array	     = false,
 			is_function		     = false,
@@ -46,7 +44,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_function_lvalue_reference = false,
 			is_function_rvalue_reference = false,
 			is_fundamental		     = false,
-			is_long			     = false,
 			is_lvalue		     = false,
 			is_lvalue_reference	     = false,
 			is_member_function_pointer   = false,
@@ -54,7 +51,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_nat			     = true,
 			is_natural		     = false,
 			is_number		     = false,
-			is_nullptr		     = false,
+			is_null_pointer		     = false,
 			is_pointer		     = false,
 			is_qualified		     = false,
 			is_real			     = false,
@@ -62,8 +59,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_rvalue		     = false,
 			is_rvalue_reference	     = false,
 			is_scalar		     = false,
-			is_short		     = false,
+			is_schar		     = false,
 			is_signed		     = false,
+			is_sint			     = false,
+			is_slong		     = false,
+			is_sshort		     = false,
 			is_storable		     = false,
 			is_structure		     = false,
 			is_uchar		     = false,
@@ -109,60 +109,32 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_float = false};
 #		endif
 
-#		if defined(Z_FLOAT16) && Z_FLOAT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
+#		if defined(Z_FLOAT16) && Z_FLOAT16_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
 			enum {is_float16 = false};
 #		endif
 
-#		if defined(Z_FLOAT24) && Z_FLOAT24_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT24
-			enum {is_float24 = false};
-#		endif
-
-#		if defined(Z_FLOAT32) && Z_FLOAT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
+#		if defined(Z_FLOAT32) && Z_FLOAT32_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
 			enum {is_float32 = false};
 #		endif
 
-#		if defined(Z_FLOAT48) && Z_FLOAT48_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT48
-			enum {is_float48 = false};
-#		endif
-
-#		if defined(Z_FLOAT64) && Z_FLOAT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
+#		if defined(Z_FLOAT64) && Z_FLOAT64_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
 			enum {is_float64 = false};
 #		endif
 
-#		if defined(Z_FLOAT72) && Z_FLOAT72_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT72
-			enum {is_float72 = false};
-#		endif
-
-#		if defined(Z_FLOAT80) && Z_FLOAT80_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80
-			enum {is_float80 = false};
-#		endif
-
-#		if defined(Z_FLOAT96) && Z_FLOAT96_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96
-			enum {is_float96 = false};
-#		endif
-
-#		if defined(Z_FLOAT128) && Z_FLOAT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
+#		if defined(Z_FLOAT128) && Z_FLOAT128_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
 			enum {is_float128 = false};
 #		endif
 
-#		if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
-			enum {is_int8 = false};
+#		if defined(Z_FLOAT80_X87) && Z_FLOAT80_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80_X87
+			enum {is_float80_x87 = false};
 #		endif
 
-#		if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
-			enum {is_int16 = false};
+#		if defined(Z_FLOAT96_X87) && Z_FLOAT96_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96_X87
+			enum {is_float96_x87 = false};
 #		endif
 
-#		if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
-			enum {is_int32 = false};
-#		endif
-
-#		if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
-			enum {is_int64 = false};
-#		endif
-
-#		if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
-			enum {is_int128 = false};
+#		if defined(Z_FLOAT128_X87) && Z_FLOAT128_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128_X87
+			enum {is_float128_x87 = false};
 #		endif
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_INTERFACE_CLASS)
@@ -177,10 +149,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_literal = false};
 #		endif
 
-#		ifdef Z_LLONG
-			enum {is_llong = false};
-#		endif
-
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
 			enum {is_pod = false};
 #		endif
@@ -189,27 +157,51 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_polymorphic = false};
 #		endif
 
+#		if Z_SINT8_VALUE_TYPE == Z_VALUE_TYPE_SINT8
+			enum {is_sint8 = false};
+#		endif
+
+#		if Z_SINT16_VALUE_TYPE == Z_VALUE_TYPE_SINT16
+			enum {is_sint16 = false};
+#		endif
+
+#		if defined(Z_SINT32) && Z_SINT32_VALUE_TYPE == Z_VALUE_TYPE_SINT32
+			enum {is_sint32 = false};
+#		endif
+
+#		if defined(Z_SINT64) && Z_SINT64_VALUE_TYPE == Z_VALUE_TYPE_SINT64
+			enum {is_sint64 = false};
+#		endif
+
+#		if defined(Z_SINT128) && Z_SINT128_VALUE_TYPE == Z_VALUE_TYPE_SINT128
+			enum {is_sint128 = false};
+#		endif
+
+#		ifdef Z_SLLONG
+			enum {is_sllong = false};
+#		endif
+
 #		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 			enum {is_template = false};
 #		endif
 
-#		if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+#		if Z_UINT8_VALUE_TYPE == Z_VALUE_TYPE_UINT8
 			enum {is_uint8 = false};
 #		endif
 
-#		if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+#		if Z_UINT16_VALUE_TYPE == Z_VALUE_TYPE_UINT16
 			enum {is_uint16 = false};
 #		endif
 
-#		if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+#		if defined(Z_UINT32) && Z_UINT32_VALUE_TYPE == Z_VALUE_TYPE_UINT32
 			enum {is_uint32 = false};
 #		endif
 
-#		if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+#		if defined(Z_UINT64) && Z_UINT64_VALUE_TYPE == Z_VALUE_TYPE_UINT64
 			enum {is_uint64 = false};
 #		endif
 
-#		if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+#		if defined(Z_UINT128) && Z_UINT128_VALUE_TYPE == Z_VALUE_TYPE_UINT128
 			enum {is_uint128 = false};
 #		endif
 
@@ -376,74 +368,67 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef void type;
 	};
 
-#	if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+#	if Z_UINT8_VALUE_TYPE == Z_VALUE_TYPE_UINT8
 
 		struct UInt8 : Natural {
 			enum {is_uint8 = true};
 
-			enum {	base_value_type	 = Z_UINT8_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_UINT8_VALUE_TYPE,
 				fixed_value_type = Z_UINT8_FIXED_VALUE_TYPE,
-				value_type	 = Z_UINT8_VALUE_TYPE,
 				value_format	 = Z_UINT8_VALUE_FORMAT
 			};
 			enum {maximum = Z_UINT8_MAXIMUM};
 
 			typedef zuint8 type;
 			typedef zuint8 to_unsigned;
-			typedef zint8  to_signed;
+			typedef zsint8 to_signed;
 		};
 
 #	endif
 
-#	if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+#	if Z_UINT16_VALUE_TYPE == Z_VALUE_TYPE_UINT16
 
 		struct UInt16 : Natural {
 			enum {is_uint16 = true};
 
-			enum {	base_value_type	 = Z_UINT16_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_UINT16_VALUE_TYPE,
 				fixed_value_type = Z_UINT16_FIXED_VALUE_TYPE,
-				value_type	 = Z_UINT16_VALUE_TYPE,
 				value_format	 = Z_UINT16_VALUE_FORMAT
 			};
 			enum {maximum = Z_UINT16_MAXIMUM};
 
 			typedef zuint16 type;
 			typedef zuint16 to_unsigned;
-			typedef zint16	to_signed;
+			typedef zsint16 to_signed;
 		};
 
 #	endif
 
-#	if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+#	if defined(Z_UINT32) && Z_UINT32_VALUE_TYPE == Z_VALUE_TYPE_UINT32
 
 		struct UInt32 : Natural {
 			enum {is_uint32 = true};
 
-			enum {	base_value_type	 = Z_UINT32_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_UINT32_VALUE_TYPE,
 				fixed_value_type = Z_UINT32_FIXED_VALUE_TYPE,
-				value_type	 = Z_UINT32_VALUE_TYPE,
 				value_format	 = Z_UINT32_VALUE_FORMAT
 			};
 			enum {maximum = Z_UINT32_MAXIMUM};
 
 			typedef zuint32 type;
 			typedef zuint32 to_unsigned;
-
-#			ifdef Z_INT32
-				typedef zint32 to_signed;
-#			endif
+			typedef zsint32 to_signed;
 		};
 
 #	endif
 
-#	if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+#	if defined(Z_UINT64) && Z_UINT64_VALUE_TYPE == Z_VALUE_TYPE_UINT64
 
 		struct UInt64 : Natural {
 			enum {is_uint64 = true};
 
-			enum {	base_value_type	 = Z_UINT64_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_UINT64_VALUE_TYPE,
 				fixed_value_type = Z_UINT64_FIXED_VALUE_TYPE,
-				value_type	 = Z_UINT64_VALUE_TYPE,
 				value_format	 = Z_UINT64_VALUE_FORMAT
 			};
 			enum {maximum = Z_UINT64_MAXIMUM};
@@ -451,21 +436,20 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			typedef zuint64 type;
 			typedef zuint64 to_unsigned;
 
-#			ifdef Z_INT64
-				typedef zint64 to_signed;
+#			ifdef Z_SINT64
+				typedef zsint64 to_signed;
 #			endif
 		};
 
 #	endif
 
-#	if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+#	if defined(Z_UINT128) && Z_UINT128_VALUE_TYPE == Z_VALUE_TYPE_UINT128
 
 		struct UInt128 : Natural {
 			enum {is_uint128 = true};
 
-			enum {	base_value_type	 = Z_UINT128_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_UINT128_VALUE_TYPE,
 				fixed_value_type = Z_UINT128_FIXED_VALUE_TYPE,
-				value_type	 = Z_UINT128_VALUE_TYPE,
 				value_format	 = Z_UINT128_VALUE_FORMAT
 			};
 			enum {maximum = Z_UINT128_MAXIMUM};
@@ -473,95 +457,88 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			typedef zuint128 type;
 			typedef zuint128 to_unsigned;
 
-#			ifdef Z_INT128
-				typedef zint128 to_signed;
+#			ifdef Z_SINT128
+				typedef zsint128 to_signed;
 #			endif
 		};
 
 #	endif
 
-#	if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
+#	if Z_SINT8_VALUE_TYPE == Z_VALUE_TYPE_SINT8
 
-		struct Int8 : Integer {
-			enum {is_int8 = true};
+		struct SInt8 : Integer {
+			enum {is_sint8 = true};
 
-			enum {	base_value_type	 = Z_INT8_BASE_VALUE_TYPE,
-				fixed_value_type = Z_INT8_FIXED_VALUE_TYPE,
-				value_type	 = Z_INT8_VALUE_TYPE,
-				value_format	 = Z_INT8_VALUE_FORMAT
+			enum {	value_type	 = Z_SINT8_VALUE_TYPE,
+				fixed_value_type = Z_SINT8_FIXED_VALUE_TYPE,
+				value_format	 = Z_SINT8_VALUE_FORMAT
 			};
-			enum {	minimum = Z_INT8_MINIMUM,
-				maximum = Z_INT8_MAXIMUM
+			enum {	minimum = Z_SINT8_MINIMUM,
+				maximum = Z_SINT8_MAXIMUM
 			};
 
-			typedef zint8  type;
+			typedef zsint8 type;
 			typedef zuint8 to_unsigned;
-			typedef zint8  to_signed;
+			typedef zsint8 to_signed;
 		};
 
 #	endif
 
-#	if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
+#	if Z_SINT16_VALUE_TYPE == Z_VALUE_TYPE_SINT16
 
-		struct Int16 : Integer {
-			enum {is_int16 = true};
+		struct SInt16 : Integer {
+			enum {is_sint16 = true};
 
-			enum {	base_value_type	 = Z_INT16_BASE_VALUE_TYPE,
-				fixed_value_type = Z_INT16_FIXED_VALUE_TYPE,
-				value_type	 = Z_INT16_VALUE_TYPE,
-				value_format	 = Z_INT16_VALUE_FORMAT
+			enum {	value_type	 = Z_SINT16_VALUE_TYPE,
+				fixed_value_type = Z_SINT16_FIXED_VALUE_TYPE,
+				value_format	 = Z_SINT16_VALUE_FORMAT
 			};
-			enum {	minimum = Z_INT16_MINIMUM,
-				maximum = Z_INT16_MAXIMUM
+			enum {	minimum = Z_SINT16_MINIMUM,
+				maximum = Z_SINT16_MAXIMUM
 			};
 
-			typedef zint16	type;
+			typedef zsint16 type;
 			typedef zuint16 to_unsigned;
-			typedef zint16	to_signed;
+			typedef zsint16 to_signed;
 		};
 
 #	endif
 
-#	if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
+#	if defined(Z_SINT32) && Z_SINT32_VALUE_TYPE == Z_VALUE_TYPE_SINT32
 
-		struct Int32 : Integer {
-			enum {is_int32 = true};
+		struct SInt32 : Integer {
+			enum {is_sint32 = true};
 
-			enum {	base_value_type	 = Z_INT16_BASE_VALUE_TYPE,
-				fixed_value_type = Z_INT16_FIXED_VALUE_TYPE,
-				value_type	 = Z_INT16_VALUE_TYPE,
-				value_format	 = Z_INT16_VALUE_FORMAT
+			enum {	value_type	 = Z_SINT16_VALUE_TYPE,
+				fixed_value_type = Z_SINT16_FIXED_VALUE_TYPE,
+				value_format	 = Z_SINT16_VALUE_FORMAT
 			};
-			enum {	minimum = Z_INT32_MINIMUM,
-				maximum = Z_INT32_MAXIMUM
+			enum {	minimum = Z_SINT32_MINIMUM,
+				maximum = Z_SINT32_MAXIMUM
 			};
 
-			typedef zint32 type;
-			typedef zint32 to_signed;
-
-#			ifdef Z_UINT32
-				typedef zuint32 to_unsigned;
-#			endif
+			typedef zsint32 type;
+			typedef zuint32 to_unsigned;
+			typedef zsint32 to_signed;
 		};
 
 #	endif
 
-#	if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
+#	if defined(Z_SINT64) && Z_SINT64_VALUE_TYPE == Z_VALUE_TYPE_SINT64
 
-		struct Int64 : Integer {
-			enum {is_int64 = true};
+		struct SInt64 : Integer {
+			enum {is_sint64 = true};
 
-			enum {	base_value_type	 = Z_INT64_BASE_VALUE_TYPE,
-				fixed_value_type = Z_INT64_FIXED_VALUE_TYPE,
-				value_type	 = Z_INT64_VALUE_TYPE,
-				value_format	 = Z_INT64_VALUE_FORMAT
+			enum {	value_type	 = Z_SINT64_VALUE_TYPE,
+				fixed_value_type = Z_SINT64_FIXED_VALUE_TYPE,
+				value_format	 = Z_SINT64_VALUE_FORMAT
 			};
-			enum {	minimum = Z_INT64_MINIMUM,
-				maximum = Z_INT64_MAXIMUM
+			enum {	minimum = Z_SINT64_MINIMUM,
+				maximum = Z_SINT64_MAXIMUM
 			};
 
-			typedef zint64 type;
-			typedef zint64 to_signed;
+			typedef zsint64 type;
+			typedef zsint64 to_signed;
 
 #			ifdef Z_UINT64
 				typedef zuint64 to_unsigned;
@@ -570,22 +547,21 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
+#	if defined(Z_SINT128) && Z_SINT128_VALUE_TYPE == Z_VALUE_TYPE_SINT128
 
-		struct Int128 : Integer {
-			enum {is_int128 = true};
+		struct SInt128 : Integer {
+			enum {is_sint128 = true};
 
-			enum {	base_value_type	 = Z_INT128_BASE_VALUE_TYPE,
-				fixed_value_type = Z_INT128_FIXED_VALUE_TYPE,
-				value_type	 = Z_INT128_VALUE_TYPE,
-				value_format	 = Z_INT128_VALUE_FORMAT
+			enum {	value_type	 = Z_SINT128_VALUE_TYPE,
+				fixed_value_type = Z_SINT128_FIXED_VALUE_TYPE,
+				value_format	 = Z_SINT128_VALUE_FORMAT
 			};
-			enum {	minimum = Z_INT128_MINIMUM,
-				maximum = Z_INT128_MAXIMUM
+			enum {	minimum = Z_SINT128_MINIMUM,
+				maximum = Z_SINT128_MAXIMUM
 			};
 
-			typedef zint128 type;
-			typedef zint128 to_signed;
+			typedef zsint128 type;
+			typedef zsint128 to_signed;
 
 #			ifdef Z_UINT128
 				typedef zuint128 to_unsigned;
@@ -594,18 +570,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_FLOAT16) && Z_FLOAT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
+#	if defined(Z_FLOAT16) && Z_FLOAT16_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
 
 		struct Float16 : Real {
 			enum {is_float16 = true};
 
-			enum {	base_value_type	 = Z_FLOAT16_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_FLOAT16_VALUE_TYPE,
 				fixed_value_type = Z_FLOAT16_FIXED_VALUE_TYPE,
-				value_type	 = Z_FLOAT16_VALUE_TYPE,
 				value_format	 = Z_FLOAT16_VALUE_FORMAT
 			};
-			enum {	precision_bits	   = Z_FLOAT16_PRECISION_BITS,
-				bias		   = Z_FLOAT16_BIAS,
+			enum {	bias		   = Z_FLOAT16_BIAS,
 				decimal_digits	   = Z_FLOAT16_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT16_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT16_SIGNIFICAND_BITS,
@@ -625,8 +599,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT_MEMBER(CPP11) zfloat16 epsilon () {return Z_FLOAT16_EPSILON;}
 			static Z_CT_MEMBER(CPP11) zfloat16 minimum () {return Z_FLOAT16_MINIMUM;}
 			static Z_CT_MEMBER(CPP11) zfloat16 maximum () {return Z_FLOAT16_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) zfloat16 infinity() Z_NO_EXCEPTION {return Z_FLOAT16_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) zfloat16 nan     () Z_NO_EXCEPTION {return Z_FLOAT16_NAN;}
+		/*	static Z_CT_MEMBER(CPP11) zfloat16 infinity() Z_NO_EXCEPTION {return Z_FLOAT16_INFINITY;}
+			static Z_CT_MEMBER(CPP11) zfloat16 nan	   () Z_NO_EXCEPTION {return Z_FLOAT16_NAN;}*/
 
 			typedef zfloat16 type;
 			typedef zfloat16 to_signed;
@@ -634,58 +608,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_FLOAT24) && Z_FLOAT24_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT24
-
-		struct Float24 : Real {
-			enum {is_float24 = true};
-
-			enum {	base_value_type	 = Z_FLOAT24_BASE_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT24_FIXED_VALUE_TYPE,
-				value_type	 = Z_FLOAT24_VALUE_TYPE,
-				value_format	 = Z_FLOAT24_VALUE_FORMAT
-			};
-			enum {	precision_bits	   = Z_FLOAT24_PRECISION_BITS,
-				bias		   = Z_FLOAT24_BIAS,
-				decimal_digits	   = Z_FLOAT24_DECIMAL_DIGITS,
-				significand_offset = Z_FLOAT24_SIGNIFICAND_OFFSET,
-				significand_bits   = Z_FLOAT24_SIGNIFICAND_BITS,
-				significand_digits = Z_FLOAT24_SIGNIFICAND_DIGITS,
-				exponent_offset	   = Z_FLOAT24_EXPONENT_OFFSET,
-				exponent_bits	   = Z_FLOAT24_EXPONENT_BITS,
-				exponent_radix	   = Z_FLOAT24_EXPONENT_RADIX,
-				sign_offset	   = Z_FLOAT24_SIGN_OFFSET,
-				sign_bits	   = Z_FLOAT24_SIGN_BITS
-			};
-			enum {	exponent_minimum    = Z_FLOAT24_EXPONENT_MINIMUM,
-				exponent_maximum    = Z_FLOAT24_EXPONENT_MAXIMUM,
-				exponent_10_minimum = Z_FLOAT24_EXPONENT_10_MINIMUM,
-				exponent_10_maximum = Z_FLOAT24_EXPONENT_10_MAXIMUM
-			};
-
-			static Z_CT_MEMBER(CPP11) zfloat24 epsilon () {return Z_FLOAT24_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat24 minimum () {return Z_FLOAT24_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat24 maximum () {return Z_FLOAT24_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) zfloat24 infinity() Z_NO_EXCEPTION {return Z_FLOAT24_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) zfloat24 nan     () Z_NO_EXCEPTION {return Z_FLOAT24_NAN;}
-
-			typedef zfloat24 type;
-			typedef zfloat24 to_signed;
-		};
-
-#	endif
-
-#	if defined(Z_FLOAT32) && Z_FLOAT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
+#	if defined(Z_FLOAT32) && Z_FLOAT32_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
 
 		struct Float32 : Real {
 			enum {is_float32 = true};
 
-			enum {	base_value_type	 = Z_FLOAT32_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_FLOAT32_VALUE_TYPE,
 				fixed_value_type = Z_FLOAT32_FIXED_VALUE_TYPE,
-				value_type	 = Z_FLOAT32_VALUE_TYPE,
 				value_format	 = Z_FLOAT32_VALUE_FORMAT
 			};
-			enum {	precision_bits	   = Z_FLOAT32_PRECISION_BITS,
-				bias		   = Z_FLOAT32_BIAS,
+			enum {	bias		   = Z_FLOAT32_BIAS,
 				decimal_digits	   = Z_FLOAT32_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT32_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT32_SIGNIFICAND_BITS,
@@ -705,8 +637,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT_MEMBER(CPP11) zfloat32 epsilon () {return Z_FLOAT32_EPSILON;}
 			static Z_CT_MEMBER(CPP11) zfloat32 minimum () {return Z_FLOAT32_MINIMUM;}
 			static Z_CT_MEMBER(CPP11) zfloat32 maximum () {return Z_FLOAT32_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) zfloat32 infinity() Z_NO_EXCEPTION {return Z_FLOAT32_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) zfloat32 nan     () Z_NO_EXCEPTION {return Z_FLOAT32_NAN;}
+		/*	static Z_CT_MEMBER(CPP11) zfloat32 infinity() Z_NO_EXCEPTION {return Z_FLOAT32_INFINITY;}
+			static Z_CT_MEMBER(CPP11) zfloat32 nan	   () Z_NO_EXCEPTION {return Z_FLOAT32_NAN;}*/
 
 			typedef zfloat32 type;
 			typedef zfloat32 to_signed;
@@ -714,58 +646,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_FLOAT48) && Z_FLOAT48_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT48
-
-		struct Float48 : Real {
-			enum {is_float48 = true};
-
-			enum {	base_value_type	 = Z_FLOAT48_BASE_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT48_FIXED_VALUE_TYPE,
-				value_type	 = Z_FLOAT48_VALUE_TYPE,
-				value_format	 = Z_FLOAT48_VALUE_FORMAT
-			};
-			enum {	precision_bits	   = Z_FLOAT48_PRECISION_BITS,
-				bias		   = Z_FLOAT48_BIAS,
-				decimal_digits	   = Z_FLOAT48_DECIMAL_DIGITS,
-				significand_offset = Z_FLOAT48_SIGNIFICAND_OFFSET,
-				significand_bits   = Z_FLOAT48_SIGNIFICAND_BITS,
-				significand_digits = Z_FLOAT48_SIGNIFICAND_DIGITS,
-				exponent_offset	   = Z_FLOAT48_EXPONENT_OFFSET,
-				exponent_bits	   = Z_FLOAT48_EXPONENT_BITS,
-				exponent_radix	   = Z_FLOAT48_EXPONENT_RADIX,
-				sign_offset	   = Z_FLOAT48_SIGN_OFFSET,
-				sign_bits	   = Z_FLOAT48_SIGN_BITS
-			};
-			enum {	exponent_minimum    = Z_FLOAT48_EXPONENT_MINIMUM,
-				exponent_maximum    = Z_FLOAT48_EXPONENT_MAXIMUM,
-				exponent_10_minimum = Z_FLOAT48_EXPONENT_10_MINIMUM,
-				exponent_10_maximum = Z_FLOAT48_EXPONENT_10_MAXIMUM
-			};
-
-			static Z_CT_MEMBER(CPP11) zfloat48 epsilon () {return Z_FLOAT48_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat48 minimum () {return Z_FLOAT48_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat48 maximum () {return Z_FLOAT48_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) zfloat48 infinity() Z_NO_EXCEPTION {return Z_FLOAT48_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) zfloat48 nan     () Z_NO_EXCEPTION {return Z_FLOAT48_NAN;}
-
-			typedef zfloat48 type;
-			typedef zfloat48 to_signed;
-		};
-
-#	endif
-
-#	if defined(Z_FLOAT64) && Z_FLOAT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
+#	if defined(Z_FLOAT64) && Z_FLOAT64_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
 
 		struct Float64 : Real {
 			enum {is_float64 = true};
 
-			enum {	base_value_type	 = Z_FLOAT64_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_FLOAT64_VALUE_TYPE,
 				fixed_value_type = Z_FLOAT64_FIXED_VALUE_TYPE,
-				value_type	 = Z_FLOAT64_VALUE_TYPE,
 				value_format	 = Z_FLOAT64_VALUE_FORMAT
 			};
-			enum {	precision_bits	   = Z_FLOAT64_PRECISION_BITS,
-				bias		   = Z_FLOAT64_BIAS,
+			enum {	bias		   = Z_FLOAT64_BIAS,
 				decimal_digits	   = Z_FLOAT64_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT64_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT64_SIGNIFICAND_BITS,
@@ -785,8 +675,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT_MEMBER(CPP11) zfloat64 epsilon () {return Z_FLOAT64_EPSILON;}
 			static Z_CT_MEMBER(CPP11) zfloat64 minimum () {return Z_FLOAT64_MINIMUM;}
 			static Z_CT_MEMBER(CPP11) zfloat64 maximum () {return Z_FLOAT64_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) zfloat64 infinity() Z_NO_EXCEPTION {return Z_FLOAT64_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) zfloat64 nan     () Z_NO_EXCEPTION {return Z_FLOAT64_NAN;}
+		/*	static Z_CT_MEMBER(CPP11) zfloat64 infinity() Z_NO_EXCEPTION {return Z_FLOAT64_INFINITY;}
+			static Z_CT_MEMBER(CPP11) zfloat64 nan	   () Z_NO_EXCEPTION {return Z_FLOAT64_NAN;}*/
 
 			typedef zfloat64 type;
 			typedef zfloat64 to_signed;
@@ -794,138 +684,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_FLOAT72) && Z_FLOAT72_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT72
-
-		struct Float72 : Real {
-			enum {is_float72 = true};
-
-			enum {	base_value_type	 = Z_FLOAT72_BASE_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT72_FIXED_VALUE_TYPE,
-				value_type	 = Z_FLOAT72_VALUE_TYPE,
-				value_format	 = Z_FLOAT72_VALUE_FORMAT
-			};
-			enum {	precision_bits	   = Z_FLOAT72_PRECISION_BITS,
-				bias		   = Z_FLOAT72_BIAS,
-				decimal_digits	   = Z_FLOAT72_DECIMAL_DIGITS,
-				significand_offset = Z_FLOAT72_SIGNIFICAND_OFFSET,
-				significand_bits   = Z_FLOAT72_SIGNIFICAND_BITS,
-				significand_digits = Z_FLOAT72_SIGNIFICAND_DIGITS,
-				exponent_offset	   = Z_FLOAT72_EXPONENT_OFFSET,
-				exponent_bits	   = Z_FLOAT72_EXPONENT_BITS,
-				exponent_radix	   = Z_FLOAT72_EXPONENT_RADIX,
-				sign_offset	   = Z_FLOAT72_SIGN_OFFSET,
-				sign_bits	   = Z_FLOAT72_SIGN_BITS
-			};
-			enum {	exponent_minimum    = Z_FLOAT72_EXPONENT_MINIMUM,
-				exponent_maximum    = Z_FLOAT72_EXPONENT_MAXIMUM,
-				exponent_10_minimum = Z_FLOAT72_EXPONENT_10_MINIMUM,
-				exponent_10_maximum = Z_FLOAT72_EXPONENT_10_MAXIMUM
-			};
-
-			static Z_CT_MEMBER(CPP11) zfloat72 epsilon () {return Z_FLOAT72_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat72 minimum () {return Z_FLOAT72_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat72 maximum () {return Z_FLOAT72_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) zfloat72 infinity() Z_NO_EXCEPTION {return Z_FLOAT72_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) zfloat72 nan     () Z_NO_EXCEPTION {return Z_FLOAT72_NAN;}
-
-			typedef zfloat72 type;
-			typedef zfloat72 to_signed;
-		};
-
-#	endif
-
-#	if defined(Z_FLOAT80) && Z_FLOAT80_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80
-
-		struct Float80 : Real {
-			enum {is_float80 = true};
-
-			enum {	base_value_type	 = Z_FLOAT80_BASE_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT80_FIXED_VALUE_TYPE,
-				value_type	 = Z_FLOAT80_VALUE_TYPE,
-				value_format	 = Z_FLOAT80_VALUE_FORMAT
-			};
-			enum {	precision_bits	   = Z_FLOAT80_PRECISION_BITS,
-				bias		   = Z_FLOAT80_BIAS,
-				decimal_digits	   = Z_FLOAT80_DECIMAL_DIGITS,
-				significand_offset = Z_FLOAT80_SIGNIFICAND_OFFSET,
-				significand_bits   = Z_FLOAT80_SIGNIFICAND_BITS,
-				significand_digits = Z_FLOAT80_SIGNIFICAND_DIGITS,
-				exponent_offset	   = Z_FLOAT80_EXPONENT_OFFSET,
-				exponent_bits	   = Z_FLOAT80_EXPONENT_BITS,
-				exponent_radix	   = Z_FLOAT80_EXPONENT_RADIX,
-				sign_offset	   = Z_FLOAT80_SIGN_OFFSET,
-				sign_bits	   = Z_FLOAT80_SIGN_BITS
-			};
-			enum {	exponent_minimum    = Z_FLOAT80_EXPONENT_MINIMUM,
-				exponent_maximum    = Z_FLOAT80_EXPONENT_MAXIMUM,
-				exponent_10_minimum = Z_FLOAT80_EXPONENT_10_MINIMUM,
-				exponent_10_maximum = Z_FLOAT80_EXPONENT_10_MAXIMUM
-			};
-
-			static Z_CT_MEMBER(CPP11) zfloat80 epsilon () {return Z_FLOAT80_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat80 minimum () {return Z_FLOAT80_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat80 maximum () {return Z_FLOAT80_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) zfloat80 infinity() Z_NO_EXCEPTION {return Z_FLOAT80_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) zfloat80 nan     () Z_NO_EXCEPTION {return Z_FLOAT80_NAN;}
-
-			typedef zfloat80 type;
-			typedef zfloat80 to_signed;
-		};
-
-#	endif
-
-#	if defined(Z_FLOAT96) && Z_FLOAT96_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96
-
-		struct Float96 : Real {
-			enum {is_float96 = true};
-
-			enum {	base_value_type	 = Z_FLOAT96_BASE_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT96_FIXED_VALUE_TYPE,
-				value_type	 = Z_FLOAT96_VALUE_TYPE,
-				value_format	 = Z_FLOAT96_VALUE_FORMAT
-			};
-			enum {	precision_bits	   = Z_FLOAT96_PRECISION_BITS,
-				bias		   = Z_FLOAT96_BIAS,
-				decimal_digits	   = Z_FLOAT96_DECIMAL_DIGITS,
-				significand_offset = Z_FLOAT96_SIGNIFICAND_OFFSET,
-				significand_bits   = Z_FLOAT96_SIGNIFICAND_BITS,
-				significand_digits = Z_FLOAT96_SIGNIFICAND_DIGITS,
-				exponent_offset	   = Z_FLOAT96_EXPONENT_OFFSET,
-				exponent_bits	   = Z_FLOAT96_EXPONENT_BITS,
-				exponent_radix	   = Z_FLOAT96_EXPONENT_RADIX,
-				sign_offset	   = Z_FLOAT96_SIGN_OFFSET,
-				sign_bits	   = Z_FLOAT96_SIGN_BITS
-			};
-			enum {	exponent_minimum    = Z_FLOAT96_EXPONENT_MINIMUM,
-				exponent_maximum    = Z_FLOAT96_EXPONENT_MAXIMUM,
-				exponent_10_minimum = Z_FLOAT96_EXPONENT_10_MINIMUM,
-				exponent_10_maximum = Z_FLOAT96_EXPONENT_10_MAXIMUM
-			};
-
-			static Z_CT_MEMBER(CPP11) zfloat96 epsilon () {return Z_FLOAT96_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat96 minimum () {return Z_FLOAT96_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat96 maximum () {return Z_FLOAT96_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) zfloat96 infinity() Z_NO_EXCEPTION {return Z_FLOAT96_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) zfloat96 nan     () Z_NO_EXCEPTION {return Z_FLOAT96_NAN;}
-
-			typedef zfloat96 type;
-			typedef zfloat96 to_signed;
-		};
-
-#	endif
-
-#	if defined(Z_FLOAT128) && Z_FLOAT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
+#	if defined(Z_FLOAT128) && Z_FLOAT128_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
 
 		struct Float128 : Real {
 			enum {is_float128 = true};
 
-			enum {	base_value_type	 = Z_FLOAT128_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_FLOAT128_VALUE_TYPE,
 				fixed_value_type = Z_FLOAT128_FIXED_VALUE_TYPE,
-				value_type	 = Z_FLOAT128_VALUE_TYPE,
 				value_format	 = Z_FLOAT128_VALUE_FORMAT
 			};
-			enum {	precision_bits	   = Z_FLOAT128_PRECISION_BITS,
-				bias		   = Z_FLOAT128_BIAS,
+			enum {	bias		   = Z_FLOAT128_BIAS,
 				decimal_digits	   = Z_FLOAT128_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT128_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT128_SIGNIFICAND_BITS,
@@ -945,8 +713,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT_MEMBER(CPP11) zfloat128 epsilon () {return Z_FLOAT128_EPSILON;}
 			static Z_CT_MEMBER(CPP11) zfloat128 minimum () {return Z_FLOAT128_MINIMUM;}
 			static Z_CT_MEMBER(CPP11) zfloat128 maximum () {return Z_FLOAT128_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) zfloat128 infinity() Z_NO_EXCEPTION {return Z_FLOAT128_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) zfloat128 nan     () Z_NO_EXCEPTION {return Z_FLOAT128_NAN;}
+		/*	static Z_CT_MEMBER(CPP11) zfloat128 infinity() Z_NO_EXCEPTION {return Z_FLOAT128_INFINITY;}
+			static Z_CT_MEMBER(CPP11) zfloat128 nan	    () Z_NO_EXCEPTION {return Z_FLOAT128_NAN;}*/
 
 			typedef zfloat128 type;
 			typedef zfloat128 to_signed;
@@ -954,95 +722,125 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	struct UChar : Natural {
-		enum {is_uchar = true};
+#	if defined(Z_FLOAT80_X87) && Z_FLOAT80_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80_X87
 
-		enum {	base_value_type	 = Z_UCHAR_BASE_VALUE_TYPE,
-			fixed_value_type = Z_UCHAR_FIXED_VALUE_TYPE,
-			value_type	 = Z_UCHAR_VALUE_TYPE,
-			value_format	 = Z_UCHAR_VALUE_FORMAT
-		};
-		enum {maximum = Z_UCHAR_MAXIMUM};
+		struct Float80_x87 : Real {
+			enum {is_float80_x87 = true};
 
-		typedef zuchar type;
-		typedef zuchar to_unsigned;
-		typedef zchar  to_signed;
-	};
-
-	struct UShort : Natural {
-		enum {is_ushort = true};
-
-		enum {	base_value_type	 = Z_USHORT_BASE_VALUE_TYPE,
-			fixed_value_type = Z_USHORT_FIXED_VALUE_TYPE,
-			value_type	 = Z_USHORT_VALUE_TYPE,
-			value_format	 = Z_USHORT_VALUE_FORMAT
-		};
-		enum {maximum = Z_USHORT_MAXIMUM};
-
-		typedef zushort type;
-		typedef zushort to_unsigned;
-		typedef zshort	to_signed;
-	};
-
-	struct UInt : Natural {
-		enum {is_uint = true};
-
-		enum {	base_value_type	 = Z_UINT_BASE_VALUE_TYPE,
-			fixed_value_type = Z_UINT_FIXED_VALUE_TYPE,
-			value_type	 = Z_UINT_VALUE_TYPE,
-			value_format	 = Z_UINT_VALUE_FORMAT
-		};
-		enum {maximum = Z_UINT_MAXIMUM};
-
-		typedef zuint type;
-		typedef zuint to_unsigned;
-		typedef zint  to_signed;
-	};
-
-	struct ULong : Natural {
-		enum {is_ulong = true};
-
-		enum {	base_value_type	 = Z_ULONG_BASE_VALUE_TYPE,
-			fixed_value_type = Z_ULONG_FIXED_VALUE_TYPE,
-			value_type	 = Z_ULONG_VALUE_TYPE,
-			value_format	 = Z_ULONG_VALUE_FORMAT
-		};
-		enum {maximum = Z_ULONG_MAXIMUM};
-
-		typedef zulong type;
-		typedef zulong to_unsigned;
-		typedef zlong  to_signed;
-
-	};
-
-#	ifdef Z_ULLONG
-
-		struct ULLong : Natural {
-			enum {is_ullong = true};
-
-			enum {	base_value_type	 = Z_ULLONG_BASE_VALUE_TYPE,
-				fixed_value_type = Z_ULLONG_FIXED_VALUE_TYPE,
-				value_type	 = Z_ULLONG_VALUE_TYPE,
-				value_format	 = Z_ULLONG_VALUE_FORMAT
+			enum {	value_type	 = Z_FLOAT80_X87_VALUE_TYPE,
+				fixed_value_type = Z_FLOAT80_X87_FIXED_VALUE_TYPE,
+				value_format	 = Z_FLOAT80_X87_VALUE_FORMAT
 			};
-			enum {maximum = Z_ULLONG_MAXIMUM};
+			enum {	bias		   = Z_FLOAT80_X87_BIAS,
+				decimal_digits	   = Z_FLOAT80_X87_DECIMAL_DIGITS,
+				significand_offset = Z_FLOAT80_X87_SIGNIFICAND_OFFSET,
+				significand_bits   = Z_FLOAT80_X87_SIGNIFICAND_BITS,
+				significand_digits = Z_FLOAT80_X87_SIGNIFICAND_DIGITS,
+				exponent_offset	   = Z_FLOAT80_X87_EXPONENT_OFFSET,
+				exponent_bits	   = Z_FLOAT80_X87_EXPONENT_BITS,
+				exponent_radix	   = Z_FLOAT80_X87_EXPONENT_RADIX,
+				sign_offset	   = Z_FLOAT80_X87_SIGN_OFFSET,
+				sign_bits	   = Z_FLOAT80_X87_SIGN_BITS
+			};
+			enum {	exponent_minimum    = Z_FLOAT80_X87_EXPONENT_MINIMUM,
+				exponent_maximum    = Z_FLOAT80_X87_EXPONENT_MAXIMUM,
+				exponent_10_minimum = Z_FLOAT80_X87_EXPONENT_10_MINIMUM,
+				exponent_10_maximum = Z_FLOAT80_X87_EXPONENT_10_MAXIMUM
+			};
 
-			typedef zullong type;
-			typedef zullong to_unsigned;
+			static Z_CT_MEMBER(CPP11) zfloat80_x87 epsilon () {return Z_FLOAT80_X87_EPSILON;}
+			static Z_CT_MEMBER(CPP11) zfloat80_x87 minimum () {return Z_FLOAT80_X87_MINIMUM;}
+			static Z_CT_MEMBER(CPP11) zfloat80_x87 maximum () {return Z_FLOAT80_X87_MAXIMUM;}
+		/*	static Z_CT_MEMBER(CPP11) zfloat80_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT80_X87_INFINITY;}
+			static Z_CT_MEMBER(CPP11) zfloat80_x87 nan     () Z_NO_EXCEPTION {return Z_FLOAT80_X87_NAN;}*/
 
-#			ifdef Z_LLONG
-				typedef zllong to_signed;
-#			endif
+			typedef zfloat80_x87 type;
+			typedef zfloat80_x87 to_signed;
 		};
 
 #	endif
 
-	struct Char : Integer {
+#	if defined(Z_FLOAT96_X87) && Z_FLOAT96_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96_X87
+
+		struct Float96_x87 : Real {
+			enum {is_float96_x87 = true};
+
+			enum {	value_type	 = Z_FLOAT96_X87_VALUE_TYPE,
+				fixed_value_type = Z_FLOAT96_X87_FIXED_VALUE_TYPE,
+				value_format	 = Z_FLOAT96_X87_VALUE_FORMAT
+			};
+			enum {	bias		   = Z_FLOAT96_X87_BIAS,
+				decimal_digits	   = Z_FLOAT96_X87_DECIMAL_DIGITS,
+				significand_offset = Z_FLOAT96_X87_SIGNIFICAND_OFFSET,
+				significand_bits   = Z_FLOAT96_X87_SIGNIFICAND_BITS,
+				significand_digits = Z_FLOAT96_X87_SIGNIFICAND_DIGITS,
+				exponent_offset	   = Z_FLOAT96_X87_EXPONENT_OFFSET,
+				exponent_bits	   = Z_FLOAT96_X87_EXPONENT_BITS,
+				exponent_radix	   = Z_FLOAT96_X87_EXPONENT_RADIX,
+				sign_offset	   = Z_FLOAT96_X87_SIGN_OFFSET,
+				sign_bits	   = Z_FLOAT96_X87_SIGN_BITS
+			};
+			enum {	exponent_minimum    = Z_FLOAT96_X87_EXPONENT_MINIMUM,
+				exponent_maximum    = Z_FLOAT96_X87_EXPONENT_MAXIMUM,
+				exponent_10_minimum = Z_FLOAT96_X87_EXPONENT_10_MINIMUM,
+				exponent_10_maximum = Z_FLOAT96_X87_EXPONENT_10_MAXIMUM
+			};
+
+			static Z_CT_MEMBER(CPP11) zfloat96_x87 epsilon () {return Z_FLOAT96_X87_EPSILON;}
+			static Z_CT_MEMBER(CPP11) zfloat96_x87 minimum () {return Z_FLOAT96_X87_MINIMUM;}
+			static Z_CT_MEMBER(CPP11) zfloat96_x87 maximum () {return Z_FLOAT96_X87_MAXIMUM;}
+		/*	static Z_CT_MEMBER(CPP11) zfloat96_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT96_X87_INFINITY;}
+			static Z_CT_MEMBER(CPP11) zfloat96_x87 nan     () Z_NO_EXCEPTION {return Z_FLOAT96_X87_NAN;}*/
+
+			typedef zfloat96_x87 type;
+			typedef zfloat96_x87 to_signed;
+		};
+
+#	endif
+
+#	if defined(Z_FLOAT128_X87) && Z_FLOAT128_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128_X87
+
+		struct Float128_x87 : Real {
+			enum {is_float128_x87 = true};
+
+			enum {	value_type	 = Z_FLOAT128_X87_VALUE_TYPE,
+				fixed_value_type = Z_FLOAT128_X87_FIXED_VALUE_TYPE,
+				value_format	 = Z_FLOAT128_X87_VALUE_FORMAT
+			};
+			enum {	bias		   = Z_FLOAT128_X87_BIAS,
+				decimal_digits	   = Z_FLOAT128_X87_DECIMAL_DIGITS,
+				significand_offset = Z_FLOAT128_X87_SIGNIFICAND_OFFSET,
+				significand_bits   = Z_FLOAT128_X87_SIGNIFICAND_BITS,
+				significand_digits = Z_FLOAT128_X87_SIGNIFICAND_DIGITS,
+				exponent_offset	   = Z_FLOAT128_X87_EXPONENT_OFFSET,
+				exponent_bits	   = Z_FLOAT128_X87_EXPONENT_BITS,
+				exponent_radix	   = Z_FLOAT128_X87_EXPONENT_RADIX,
+				sign_offset	   = Z_FLOAT128_X87_SIGN_OFFSET,
+				sign_bits	   = Z_FLOAT128_X87_SIGN_BITS
+			};
+			enum {	exponent_minimum    = Z_FLOAT128_X87_EXPONENT_MINIMUM,
+				exponent_maximum    = Z_FLOAT128_X87_EXPONENT_MAXIMUM,
+				exponent_10_minimum = Z_FLOAT128_X87_EXPONENT_10_MINIMUM,
+				exponent_10_maximum = Z_FLOAT128_X87_EXPONENT_10_MAXIMUM
+			};
+
+			static Z_CT_MEMBER(CPP11) zfloat128_x87 epsilon () {return Z_FLOAT128_X87_EPSILON;}
+			static Z_CT_MEMBER(CPP11) zfloat128_x87 minimum () {return Z_FLOAT128_X87_MINIMUM;}
+			static Z_CT_MEMBER(CPP11) zfloat128_x87 maximum () {return Z_FLOAT128_X87_MAXIMUM;}
+		/*	static Z_CT_MEMBER(CPP11) zfloat128_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT128_X87_INFINITY;}
+			static Z_CT_MEMBER(CPP11) zfloat128_x87 nan	() Z_NO_EXCEPTION {return Z_FLOAT128_X87_NAN;}*/
+
+			typedef zfloat128_x87 type;
+			typedef zfloat128_x87 to_signed;
+		};
+
+#	endif
+
+	struct Char : SelectType<Z_CHAR_IS_SIGNED, Natural, Integer>::type {
 		enum {is_char = true};
 
-		enum {	base_value_type	 = Z_CHAR_BASE_VALUE_TYPE,
+		enum {	value_type	 = Z_CHAR_VALUE_TYPE,
 			fixed_value_type = Z_CHAR_FIXED_VALUE_TYPE,
-			value_type	 = Z_CHAR_VALUE_TYPE,
 			value_format	 = Z_CHAR_VALUE_FORMAT
 		};
 		enum {	minimum = Z_CHAR_MINIMUM,
@@ -1051,76 +849,166 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 		typedef zchar  type;
 		typedef zuchar to_unsigned;
-		typedef zchar  to_signed;
+		typedef zschar to_signed;
 	};
 
-	struct Short : Integer {
-		enum {is_short = true};
+	struct UChar : Natural {
+		enum {is_uchar = true};
 
-		enum {	base_value_type	 = Z_SHORT_BASE_VALUE_TYPE,
-			fixed_value_type = Z_SHORT_FIXED_VALUE_TYPE,
-			value_type	 = Z_SHORT_VALUE_TYPE,
-			value_format	 = Z_SHORT_VALUE_FORMAT
+		enum {	value_type	 = Z_UCHAR_VALUE_TYPE,
+			fixed_value_type = Z_UCHAR_FIXED_VALUE_TYPE,
+			value_format	 = Z_UCHAR_VALUE_FORMAT
 		};
-		enum {	minimum = Z_SHORT_MINIMUM,
-			maximum = Z_SHORT_MAXIMUM
-		};
+		enum {maximum = Z_UCHAR_MAXIMUM};
 
-		typedef zshort	type;
+		typedef zuchar type;
+		typedef zuchar to_unsigned;
+		typedef zschar to_signed;
+	};
+
+	struct UShort : Natural {
+		enum {is_ushort = true};
+
+		enum {	value_type	 = Z_USHORT_VALUE_TYPE,
+			fixed_value_type = Z_USHORT_FIXED_VALUE_TYPE,
+			value_format	 = Z_USHORT_VALUE_FORMAT
+		};
+		enum {maximum = Z_USHORT_MAXIMUM};
+
+		typedef zushort type;
 		typedef zushort to_unsigned;
-		typedef zshort	to_signed;
+		typedef zsshort to_signed;
 	};
 
-	struct Int : Integer {
-		enum {is_int = true};
+	struct UInt : Natural {
+		enum {is_uint = true};
 
-		enum {	base_value_type	 = Z_INT_BASE_VALUE_TYPE,
-			fixed_value_type = Z_INT_FIXED_VALUE_TYPE,
-			value_type	 = Z_INT_VALUE_TYPE,
-			value_format	 = Z_INT_VALUE_FORMAT
+		enum {	value_type	 = Z_UINT_VALUE_TYPE,
+			fixed_value_type = Z_UINT_FIXED_VALUE_TYPE,
+			value_format	 = Z_UINT_VALUE_FORMAT
 		};
-		enum {	minimum = Z_INT_MINIMUM,
-			maximum = Z_INT_MAXIMUM
-		};
+		enum {maximum = Z_UINT_MAXIMUM};
 
-		typedef zint  type;
+		typedef zuint type;
 		typedef zuint to_unsigned;
-		typedef zint  to_signed;
+		typedef zsint to_signed;
 	};
 
-	struct Long : Integer {
-		enum {is_long = true};
+	struct ULong : Natural {
+		enum {is_ulong = true};
 
-		enum {	base_value_type	 = Z_LONG_BASE_VALUE_TYPE,
-			fixed_value_type = Z_LONG_FIXED_VALUE_TYPE,
-			value_type	 = Z_LONG_VALUE_TYPE,
-			value_format	 = Z_LONG_VALUE_FORMAT
+		enum {	value_type	 = Z_ULONG_VALUE_TYPE,
+			fixed_value_type = Z_ULONG_FIXED_VALUE_TYPE,
+			value_format	 = Z_ULONG_VALUE_FORMAT
 		};
-		enum {	minimum = Z_LONG_MINIMUM,
-			maximum = Z_LONG_MAXIMUM
-		};
+		enum {maximum = Z_ULONG_MAXIMUM};
 
-		typedef zlong  type;
+		typedef zulong type;
 		typedef zulong to_unsigned;
-		typedef zlong  to_signed;
+		typedef zslong to_signed;
+
 	};
 
-#	ifdef Z_LLONG
+#	ifdef Z_ULLONG
 
-		struct LLong : Integer {
-			enum {is_llong = true};
+		struct ULLong : Natural {
+			enum {is_ullong = true};
 
-			enum {	base_value_type	 = Z_LLONG_BASE_VALUE_TYPE,
-				fixed_value_type = Z_LLONG_FIXED_VALUE_TYPE,
-				value_type	 = Z_LLONG_VALUE_TYPE,
-				value_format	 = Z_LLONG_VALUE_FORMAT
+			enum {	value_type	 = Z_ULLONG_VALUE_TYPE,
+				fixed_value_type = Z_ULLONG_FIXED_VALUE_TYPE,
+				value_format	 = Z_ULLONG_VALUE_FORMAT
 			};
-			enum {	minimum = Z_LLONG_MINIMUM,
-				maximum = Z_LLONG_MAXIMUM
+			enum {maximum = Z_ULLONG_MAXIMUM};
+
+			typedef zullong type;
+			typedef zullong to_unsigned;
+
+#			ifdef Z_SLLONG
+				typedef zsllong to_signed;
+#			endif
+		};
+
+#	endif
+
+	struct SChar : Integer {
+		enum {is_schar = true};
+
+		enum {	value_type	 = Z_SCHAR_VALUE_TYPE,
+			fixed_value_type = Z_SCHAR_FIXED_VALUE_TYPE,
+			value_format	 = Z_SCHAR_VALUE_FORMAT
+		};
+		enum {	minimum = Z_SCHAR_MINIMUM,
+			maximum = Z_SCHAR_MAXIMUM
+		};
+
+		typedef zschar type;
+		typedef zuchar to_unsigned;
+		typedef zschar to_signed;
+	};
+
+	struct SShort : Integer {
+		enum {is_sshort = true};
+
+		enum {	value_type	 = Z_SSHORT_VALUE_TYPE,
+			fixed_value_type = Z_SSHORT_FIXED_VALUE_TYPE,
+			value_format	 = Z_SSHORT_VALUE_FORMAT
+		};
+		enum {	minimum = Z_SSHORT_MINIMUM,
+			maximum = Z_SSHORT_MAXIMUM
+		};
+
+		typedef zsshort type;
+		typedef zushort to_unsigned;
+		typedef zsshort to_signed;
+	};
+
+	struct SInt : Integer {
+		enum {is_sint = true};
+
+		enum {	value_type	 = Z_SINT_VALUE_TYPE,
+			fixed_value_type = Z_SINT_FIXED_VALUE_TYPE,
+			value_format	 = Z_SINT_VALUE_FORMAT
+		};
+		enum {	minimum = Z_SINT_MINIMUM,
+			maximum = Z_SINT_MAXIMUM
+		};
+
+		typedef zsint type;
+		typedef zuint to_unsigned;
+		typedef zsint to_signed;
+	};
+
+	struct SLong : Integer {
+		enum {is_slong = true};
+
+		enum {	value_type	 = Z_SLONG_VALUE_TYPE,
+			fixed_value_type = Z_SLONG_FIXED_VALUE_TYPE,
+			value_format	 = Z_SLONG_VALUE_FORMAT
+		};
+		enum {	minimum = Z_SLONG_MINIMUM,
+			maximum = Z_SLONG_MAXIMUM
+		};
+
+		typedef zslong type;
+		typedef zulong to_unsigned;
+		typedef zslong to_signed;
+	};
+
+#	ifdef Z_SLLONG
+
+		struct SLLong : Integer {
+			enum {is_sllong = true};
+
+			enum {	value_type	 = Z_SLLONG_VALUE_TYPE,
+				fixed_value_type = Z_SLLONG_FIXED_VALUE_TYPE,
+				value_format	 = Z_SLLONG_VALUE_FORMAT
+			};
+			enum {	minimum = Z_SLLONG_MINIMUM,
+				maximum = Z_SLLONG_MAXIMUM
 			};
 
-			typedef zllong type;
-			typedef zllong to_signed;
+			typedef zsllong type;
+			typedef zsllong to_signed;
 
 #			ifdef Z_ULLONG
 				typedef zullong to_unsigned;
@@ -1134,13 +1022,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct Float : Real {
 			enum {is_float = true};
 
-			enum {	base_value_type	 = Z_FLOAT_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_FLOAT_VALUE_TYPE,
 				fixed_value_type = Z_FLOAT_FIXED_VALUE_TYPE,
-				value_type	 = Z_FLOAT_VALUE_TYPE,
 				value_format	 = Z_FLOAT_VALUE_FORMAT
 			};
-			enum {	precision_bits	   = Z_FLOAT_PRECISION_BITS,
-				bias		   = Z_FLOAT_BIAS,
+			enum {	bias		   = Z_FLOAT_BIAS,
 				decimal_digits	   = Z_FLOAT_DECIMAL_DIGITS,
 				significand_offset = Z_FLOAT_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_FLOAT_SIGNIFICAND_BITS,
@@ -1160,8 +1046,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT_MEMBER(CPP11) zfloat epsilon () {return Z_FLOAT_EPSILON;}
 			static Z_CT_MEMBER(CPP11) zfloat minimum () {return Z_FLOAT_MINIMUM;}
 			static Z_CT_MEMBER(CPP11) zfloat maximum () {return Z_FLOAT_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) float infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) float nan     () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}
+		/*	static Z_CT_MEMBER(CPP11) zfloat infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
+			static Z_CT_MEMBER(CPP11) zfloat nan	 () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}*/
 
 			typedef zfloat type;
 			typedef zfloat to_signed;
@@ -1174,13 +1060,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct Double : Real {
 			enum {is_double = true};
 
-			enum {	base_value_type	 = Z_DOUBLE_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_DOUBLE_VALUE_TYPE,
 				fixed_value_type = Z_DOUBLE_FIXED_VALUE_TYPE,
-				value_type	 = Z_DOUBLE_VALUE_TYPE,
 				value_format	 = Z_DOUBLE_VALUE_FORMAT
 			};
-			enum {	precision_bits	   = Z_DOUBLE_PRECISION_BITS,
-				bias		   = Z_DOUBLE_BIAS,
+			enum {	bias		   = Z_DOUBLE_BIAS,
 				decimal_digits	   = Z_DOUBLE_DECIMAL_DIGITS,
 				significand_offset = Z_DOUBLE_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_DOUBLE_SIGNIFICAND_BITS,
@@ -1200,8 +1084,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT_MEMBER(CPP11) zdouble epsilon () {return Z_DOUBLE_EPSILON;}
 			static Z_CT_MEMBER(CPP11) zdouble minimum () {return Z_DOUBLE_MINIMUM;}
 			static Z_CT_MEMBER(CPP11) zdouble maximum () {return Z_DOUBLE_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) double infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) double nan     () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}
+		/*	static Z_CT_MEMBER(CPP11) zdouble infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
+			static Z_CT_MEMBER(CPP11) zdouble nan	  () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}*/
 
 			typedef zdouble type;
 			typedef zdouble to_signed;
@@ -1214,13 +1098,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct LDouble : Real {
 			enum {is_ldouble = true};
 
-			enum {	base_value_type	 = Z_LDOUBLE_BASE_VALUE_TYPE,
+			enum {	value_type	 = Z_LDOUBLE_VALUE_TYPE,
 				fixed_value_type = Z_LDOUBLE_FIXED_VALUE_TYPE,
-				value_type	 = Z_LDOUBLE_VALUE_TYPE,
 				value_format	 = Z_LDOUBLE_VALUE_FORMAT
 			};
-			enum {	precision_bits	   = Z_LDOUBLE_PRECISION_BITS,
-				bias		   = Z_LDOUBLE_BIAS,
+			enum {	bias		   = Z_LDOUBLE_BIAS,
 				decimal_digits	   = Z_LDOUBLE_DECIMAL_DIGITS,
 				significand_offset = Z_LDOUBLE_SIGNIFICAND_OFFSET,
 				significand_bits   = Z_LDOUBLE_SIGNIFICAND_BITS,
@@ -1240,8 +1122,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT_MEMBER(CPP11) zldouble epsilon () {return Z_LDOUBLE_EPSILON;}
 			static Z_CT_MEMBER(CPP11) zldouble minimum () {return Z_LDOUBLE_MINIMUM;}
 			static Z_CT_MEMBER(CPP11) zldouble maximum () {return Z_LDOUBLE_MAXIMUM;}
-			//static Z_CT_MEMBER(CPP11) long double infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
-			//static Z_CT_MEMBER(CPP11) long double nan     () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;}
+		/*	static Z_CT_MEMBER(CPP11) zldouble infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
+			static Z_CT_MEMBER(CPP11) zldouble nan	   () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;}*/
 
 			typedef zldouble type;
 			typedef zldouble to_signed;
@@ -1255,23 +1137,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {precision_bits = 1};
 		};
 #	endif
-
-	struct Character : SelectType<Z_CHARACTER_IS_SIGNED, Natural, Integer>::type {
-		enum {is_character = true};
-
-		enum {	base_value_type	 = Z_CHARACTER_BASE_VALUE_TYPE,
-			fixed_value_type = Z_CHARACTER_FIXED_VALUE_TYPE,
-			value_type	 = Z_CHARACTER_VALUE_TYPE,
-			value_format	 = Z_CHARACTER_VALUE_FORMAT
-		};
-		enum {	minimum = Z_CHARACTER_MINIMUM,
-			maximum = Z_CHARACTER_MAXIMUM
-		};
-
-		typedef zcharacter type;
-		typedef zuchar	   to_unsigned;
-		typedef zchar	   to_signed;
-	};
 
 	template <class T> struct Array : Storable {
 		enum {is_array = true};
@@ -1291,7 +1156,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		endif
 	};
 
-	template <class T, zsize N> struct SizedArray : Array<T> {
+	template <class T, zusize N> struct SizedArray : Array<T> {
 		enum {element_count = N};
 
 		typedef T type[N];
@@ -1372,8 +1237,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_empty = Z_COMPILER_TRAIT(TYPE_IS_EMPTY)(T)};
 #		else
 			private:
-			struct Dummy	     {zint dummy;};
-			struct EmptyTest : T {zint dummy;};
+			struct Dummy	     {zsint dummy;};
+			struct EmptyTest : T {zsint dummy;};
 
 			public:
 			enum {is_empty = (sizeof(EmptyTest) == sizeof(Dummy))};
@@ -1407,8 +1272,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
 
 		struct NullPointer : PointerLike {
-			enum {	is_fundamental = true,
-				is_nullptr     = true
+			enum {	is_fundamental	= true,
+				is_null_pointer = true
 			};
 
 			typedef decltype(nullptr) type;
@@ -1858,7 +1723,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 		enum {	size	       = C::is_empty ? 0 : sizeof(typename C::type),
 			bits	       = C::is_empty ? 0 : size * 8,
-			precision_bits = C::precision_bits ? C::precision_bits : (C::is_exact ? size * 8 : 0)
+			precision_bits = C::is_exact ? size * 8 : C::precision_bits
 		};
 	};
 
@@ -1981,82 +1846,75 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: Numbers
 
-#	if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+#	if Z_UINT8_VALUE_TYPE == Z_VALUE_TYPE_UINT8
 		template <> struct Case<UInt8> : Mixins::Unqualified<Abstract::UInt8> {};
 #	endif
 
-#	if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+#	if Z_UINT16_VALUE_TYPE == Z_VALUE_TYPE_UINT16
 		template <> struct Case<UInt16> : Mixins::Unqualified<Abstract::UInt16> {};
 #	endif
 
-#	if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+#	if defined(Z_UINT32) && Z_UINT32_VALUE_TYPE == Z_VALUE_TYPE_UINT32
 		template <> struct Case<UInt32> : Mixins::Unqualified<Abstract::UInt32> {};
 #	endif
 
-#	if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+#	if defined(Z_UINT64) && Z_UINT64_VALUE_TYPE == Z_VALUE_TYPE_UINT64
 		template <> struct Case<UInt64> : Mixins::Unqualified<Abstract::UInt64> {};
 #	endif
 
-#	if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+#	if defined(Z_UINT128) && Z_UINT128_VALUE_TYPE == Z_VALUE_TYPE_UINT128
 		template <> struct Case<UInt128> : Mixins::Unqualified<Abstract::UInt128> {};
 #	endif
 
-#	if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
-		template <> struct Case<Int8> : Mixins::Unqualified<Abstract::Int8> {};
+#	if Z_SINT8_VALUE_TYPE == Z_VALUE_TYPE_SINT8
+		template <> struct Case<SInt8> : Mixins::Unqualified<Abstract::SInt8> {};
 #	endif
 
-#	if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
-		template <> struct Case<Int16> : Mixins::Unqualified<Abstract::Int16> {};
+#	if Z_SINT16_VALUE_TYPE == Z_VALUE_TYPE_SINT16
+		template <> struct Case<SInt16> : Mixins::Unqualified<Abstract::SInt16> {};
 #	endif
 
-#	if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
-		template <> struct Case<Int32> : Mixins::Unqualified<Abstract::Int32> {};
+#	if defined(Z_SINT32) && Z_SINT32_VALUE_TYPE == Z_VALUE_TYPE_SINT32
+		template <> struct Case<SInt32> : Mixins::Unqualified<Abstract::SInt32> {};
 #	endif
 
-#	if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
-		template <> struct Case<Int64> : Mixins::Unqualified<Abstract::Int64> {};
+#	if defined(Z_SINT64) && Z_SINT64_VALUE_TYPE == Z_VALUE_TYPE_SINT64
+		template <> struct Case<SInt64> : Mixins::Unqualified<Abstract::SInt64> {};
 #	endif
 
-#	if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
-		template <> struct Case<Int128> : Mixins::Unqualified<Abstract::Int128> {};
+#	if defined(Z_SINT128) && Z_SINT128_VALUE_TYPE == Z_VALUE_TYPE_SINT128
+		template <> struct Case<SInt128> : Mixins::Unqualified<Abstract::SInt128> {};
 #	endif
 
-#	if defined(Z_FLOAT16) && Z_FLOAT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
+#	if defined(Z_FLOAT16) && Z_FLOAT16_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
 		template <> struct Case<Float16> : Mixins::Unqualified<Abstract::Float16> {};
 #	endif
 
-#	if defined(Z_FLOAT24) && Z_FLOAT24_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT24
-		template <> struct Case<Float24> : Mixins::Unqualified<Abstract::Float24> {};
-#	endif
-
-#	if defined(Z_FLOAT32) && Z_FLOAT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
+#	if defined(Z_FLOAT32) && Z_FLOAT32_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
 		template <> struct Case<Float32> : Mixins::Unqualified<Abstract::Float32> {};
 #	endif
 
-#	if defined(Z_FLOAT48) && Z_FLOAT48_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT48
-		template <> struct Case<Float48> : Mixins::Unqualified<Abstract::Float48> {};
-#	endif
-
-#	if defined(Z_FLOAT64) && Z_FLOAT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
+#	if defined(Z_FLOAT64) && Z_FLOAT64_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
 		template <> struct Case<Float64> : Mixins::Unqualified<Abstract::Float64> {};
 #	endif
 
-#	if defined(Z_FLOAT72) && Z_FLOAT72_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT72
-		template <> struct Case<Float72> : Mixins::Unqualified<Abstract::Float72> {};
-#	endif
-
-#	if defined(Z_FLOAT80) && Z_FLOAT80_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80
-		template <> struct Case<Float80> : Mixins::Unqualified<Abstract::Float80> {};
-#	endif
-
-#	if defined(Z_FLOAT96) && Z_FLOAT96_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96
-		template <> struct Case<Float96> : Mixins::Unqualified<Abstract::Float96> {};
-#	endif
-
-#	if defined(Z_FLOAT128) && Z_FLOAT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
+#	if defined(Z_FLOAT128) && Z_FLOAT128_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
 		template <> struct Case<Float128> : Mixins::Unqualified<Abstract::Float128> {};
 #	endif
 
+#	if defined(Z_FLOAT80_X87) && Z_FLOAT80_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80_X87
+		template <> struct Case<Float80_x87> : Mixins::Unqualified<Abstract::Float80_x87> {};
+#	endif
+
+#	if defined(Z_FLOAT96_X87) && Z_FLOAT96_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96_X87
+		template <> struct Case<Float96_x87> : Mixins::Unqualified<Abstract::Float96_x87> {};
+#	endif
+
+#	if defined(Z_FLOAT128_X87) && Z_FLOAT128_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128_X87
+		template <> struct Case<Float128_x87> : Mixins::Unqualified<Abstract::Float128_x87> {};
+#	endif
+
+	template <> struct Case<Char  > : Mixins::Unqualified<Abstract::Char  > {};
 	template <> struct Case<UChar > : Mixins::Unqualified<Abstract::UChar > {};
 	template <> struct Case<UShort> : Mixins::Unqualified<Abstract::UShort> {};
 	template <> struct Case<UInt  > : Mixins::Unqualified<Abstract::UInt  > {};
@@ -2066,13 +1924,13 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <> struct Case<ULLong> : Mixins::Unqualified<Abstract::ULLong> {};
 #	endif
 
-	template <> struct Case<Char > : Mixins::Unqualified<Abstract::Char > {};
-	template <> struct Case<Short> : Mixins::Unqualified<Abstract::Short> {};
-	template <> struct Case<Int  > : Mixins::Unqualified<Abstract::Int  > {};
-	template <> struct Case<Long > : Mixins::Unqualified<Abstract::Long > {};
+	template <> struct Case<SChar > : Mixins::Unqualified<Abstract::SChar > {};
+	template <> struct Case<SShort> : Mixins::Unqualified<Abstract::SShort> {};
+	template <> struct Case<SInt  > : Mixins::Unqualified<Abstract::SInt  > {};
+	template <> struct Case<SLong > : Mixins::Unqualified<Abstract::SLong > {};
 
-#	ifdef Z_LLONG
-		template <> struct Case<LLong> : Mixins::Unqualified<Abstract::LLong> {};
+#	ifdef Z_SLLONG
+		template <> struct Case<SLLong> : Mixins::Unqualified<Abstract::SLLong> {};
 #	endif
 
 #	ifdef Z_FLOAT
@@ -2091,15 +1949,13 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <> struct Case<Boolean> : Mixins::Unqualified<Abstract::Boolean> {};
 #	endif
 
-	template <> struct Case<Character> : Mixins::Unqualified<Abstract::Character> {};
-
 	// MARK: - Specializations: Sized arrays
 
-	template <class T, Size N> struct Case<T[N]> : Mixins::Unqualified<Abstract::SizedArray<T, N> > {};
+	template <class T, USize N> struct Case<T[N]> : Mixins::Unqualified<Abstract::SizedArray<T, N> > {};
 
-	template <class T, Size N> struct Case<const	      T[N]> : Mixins::ConstArray	<Case<T[N]> > {};
-	template <class T, Size N> struct Case<	     volatile T[N]> : Mixins::VolatileArray	<Case<T[N]> > {};
-	template <class T, Size N> struct Case<const volatile T[N]> : Mixins::ConstVolatileArray<Case<T[N]> > {};
+	template <class T, USize N> struct Case<const	       T[N]> : Mixins::ConstArray	 <Case<T[N]> > {};
+	template <class T, USize N> struct Case<      volatile T[N]> : Mixins::VolatileArray	 <Case<T[N]> > {};
+	template <class T, USize N> struct Case<const volatile T[N]> : Mixins::ConstVolatileArray<Case<T[N]> > {};
 
 	// MARK: - Specializations: Flexible arrays
 
@@ -2379,7 +2235,6 @@ namespace Zeta {
 				is_array		     = Type::is_array,
 				is_callable		     = Type::is_callable,
 				is_char			     = Type::is_char,
-				is_character		     = Type::is_character,
 				is_class		     = Type::is_class,
 				is_compound		     = Type::is_compound,
 				is_const		     = Type::is_const,
@@ -2391,7 +2246,6 @@ namespace Zeta {
 				is_data_member_pointer	     = Type::is_data_member_pointer,
 				is_empty		     = Type::is_empty,
 				is_exact		     = Type::is_exact,
-				is_int			     = Type::is_int,
 				is_integer		     = Type::is_integer,
 				is_flexible_array	     = Type::is_flexible_array,
 				is_function		     = Type::is_function,
@@ -2400,7 +2254,6 @@ namespace Zeta {
 				is_function_lvalue_reference = Type::is_function_lvalue_reference,
 				is_function_rvalue_reference = Type::is_function_rvalue_reference,
 				is_fundamental		     = Type::is_fundamental,
-				is_long			     = Type::is_long,
 				is_lvalue		     = Type::is_lvalue,
 				is_lvalue_reference	     = Type::is_lvalue_reference,
 				is_member_function_pointer   = Type::is_member_function_pointer,
@@ -2408,7 +2261,7 @@ namespace Zeta {
 				is_nat			     = Type::is_nat,
 				is_natural		     = Type::is_natural,
 				is_number		     = Type::is_number,
-				is_nullptr		     = Type::is_nullptr,
+				is_null_pointer		     = Type::is_null_pointer,
 				is_pointer		     = Type::is_pointer,
 				is_qualified		     = Type::is_qualified,
 				is_real			     = Type::is_real,
@@ -2416,8 +2269,11 @@ namespace Zeta {
 				is_rvalue		     = Type::is_rvalue,
 				is_rvalue_reference	     = Type::is_rvalue_reference,
 				is_scalar		     = Type::is_scalar,
-				is_short		     = Type::is_short,
+				is_schar		     = Type::is_schar,
 				is_signed		     = Type::is_signed,
+				is_sint			     = Type::is_sint,
+				is_slong		     = Type::is_slong,
+				is_sshort		     = Type::is_sshort,
 				is_storable		     = Type::is_storable,
 				is_structure		     = Type::is_structure,
 				is_uchar		     = Type::is_uchar,
@@ -2463,60 +2319,32 @@ namespace Zeta {
 				enum {is_float = Type::is_float};
 #			endif
 
-#			if defined(Z_FLOAT16) && Z_FLOAT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
+#			if defined(Z_FLOAT16) && Z_FLOAT16_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
 				enum {is_float16 = Type::is_float16};
 #			endif
 
-#			if defined(Z_FLOAT24) && Z_FLOAT24_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT24
-				enum {is_float24 = Type::is_float24};
-#			endif
-
-#			if defined(Z_FLOAT32) && Z_FLOAT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
+#			if defined(Z_FLOAT32) && Z_FLOAT32_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
 				enum {is_float32 = Type::is_float32};
 #			endif
 
-#			if defined(Z_FLOAT48) && Z_FLOAT48_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT48
-				enum {is_float48 = Type::is_float48};
-#			endif
-
-#			if defined(Z_FLOAT64) && Z_FLOAT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
+#			if defined(Z_FLOAT64) && Z_FLOAT64_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
 				enum {is_float64 = Type::is_float64};
 #			endif
 
-#			if defined(Z_FLOAT72) && Z_FLOAT72_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT72
-				enum {is_float72 = Type::is_float72};
-#			endif
-
-#			if defined(Z_FLOAT80) && Z_FLOAT80_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80
-				enum {is_float80 = Type::is_float80};
-#			endif
-
-#			if defined(Z_FLOAT96) && Z_FLOAT96_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96
-				enum {is_float96 = Type::is_float96};
-#			endif
-
-#			if defined(Z_FLOAT128) && Z_FLOAT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
+#			if defined(Z_FLOAT128) && Z_FLOAT128_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
 				enum {is_float128 = Type::is_float128};
 #			endif
 
-#			if Z_INT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT8
-				enum {is_int8 = Type::is_int8};
+#			if defined(Z_FLOAT80_X87) && Z_FLOAT80_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80_X87
+				enum {is_float80_x87 = Type::is_float80_x87};
 #			endif
 
-#			if Z_INT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT16
-				enum {is_int16 = Type::is_int16};
+#			if defined(Z_FLOAT96_X87) && Z_FLOAT96_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96_X87
+				enum {is_float96_x87 = Type::is_float96_x87};
 #			endif
 
-#			if defined(Z_INT32) && Z_INT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT32
-				enum {is_int32 = Type::is_int32};
-#			endif
-
-#			if defined(Z_INT64) && Z_INT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT64
-				enum {is_int64 = Type::is_int64};
-#			endif
-
-#			if defined(Z_INT128) && Z_INT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_INT128
-				enum {is_int128 = Type::is_int128};
+#			if defined(Z_FLOAT128_X87) && Z_FLOAT128_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128_X87
+				enum {is_float128_x87 = Type::is_float128_x87};
 #			endif
 
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_INTERFACE_CLASS)
@@ -2531,10 +2359,6 @@ namespace Zeta {
 				enum {is_literal = Type::is_literal};
 #			endif
 
-#			ifdef Z_LLONG
-				enum {is_llong = Type::is_llong};
-#			endif
-
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
 				enum {is_pod = Type::is_pod};
 #			endif
@@ -2543,27 +2367,51 @@ namespace Zeta {
 				enum {is_polymorphic = Type::is_polymorphic};
 #			endif
 
+#			if Z_SINT8_VALUE_TYPE == Z_VALUE_TYPE_SINT8
+				enum {is_sint8 = Type::is_sint8};
+#			endif
+
+#			if Z_SINT16_VALUE_TYPE == Z_VALUE_TYPE_SINT16
+				enum {is_sint16 = Type::is_sint16};
+#			endif
+
+#			if defined(Z_SINT32) && Z_SINT32_VALUE_TYPE == Z_VALUE_TYPE_SINT32
+				enum {is_sint32 = Type::is_sint32};
+#			endif
+
+#			if defined(Z_SINT64) && Z_SINT64_VALUE_TYPE == Z_VALUE_TYPE_SINT64
+				enum {is_sint64 = Type::is_sint64};
+#			endif
+
+#			if defined(Z_SINT128) && Z_SINT128_VALUE_TYPE == Z_VALUE_TYPE_SINT128
+				enum {is_sint128 = Type::is_sint128};
+#			endif
+
+#			ifdef Z_SLLONG
+				enum {is_sllong = Type::is_sllong};
+#			endif
+
 #			if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 				enum {is_template = Type::is_template};
 #			endif
 
-#			if Z_UINT8_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+#			if Z_UINT8_VALUE_TYPE == Z_VALUE_TYPE_UINT8
 				enum {is_uint8 = Type::is_uint8};
 #			endif
 
-#			if Z_UINT16_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+#			if Z_UINT16_VALUE_TYPE == Z_VALUE_TYPE_UINT16
 				enum {is_uint16 = Type::is_uint16};
 #			endif
 
-#			if defined(Z_UINT32) && Z_UINT32_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+#			if defined(Z_UINT32) && Z_UINT32_VALUE_TYPE == Z_VALUE_TYPE_UINT32
 				enum {is_uint32 = Type::is_uint32};
 #			endif
 
-#			if defined(Z_UINT64) && Z_UINT64_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+#			if defined(Z_UINT64) && Z_UINT64_VALUE_TYPE == Z_VALUE_TYPE_UINT64
 				enum {is_uint64 = Type::is_uint64};
 #			endif
 
-#			if defined(Z_UINT128) && Z_UINT128_BASE_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+#			if defined(Z_UINT128) && Z_UINT128_VALUE_TYPE == Z_VALUE_TYPE_UINT128
 				enum {is_uint128 = Type::is_uint128};
 #			endif
 
@@ -2672,7 +2520,7 @@ namespace Zeta {
 
 #		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 
-			static Z_CT_MEMBER(CPP14) Size string_size()
+			static Z_CT_MEMBER(CPP14) USize string_size()
 				{return type_string_size<T>();}
 
 

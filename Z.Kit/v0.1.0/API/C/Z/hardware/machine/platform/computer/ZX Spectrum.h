@@ -36,13 +36,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 .-----------------.
 | 7 6 5 4 3 2 1 0 |
 '-|-|-\___/-\___/-'
-  | |   |     '---> Ink ----------------.
-  | |   '---------> Paper --------.	|
-  | '-------------> Bright ---.   |	|
-  '---------------> Flash     |   |	|
-		      |       |   |	|
-     .----------------'       |   |	|
-     |		    .---------'   |	|
+  | |	|     '---> Ink ----------------.
+  | |	'---------> Paper --------.	|
+  | '-------------> Bright ---.	  |	|
+  '---------------> Flash     |	  |	|
+		      |	      |	  |	|
+     .----------------'	      |	  |	|
+     |		    .---------'	  |	|
      |		    |		  |	|
      v		    v		  v	v
 .---------.  .------------.  .---------------.
@@ -58,7 +58,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_ZX_SPECTRUM_COLOR_BLACK   0
 #define Z_ZX_SPECTRUM_COLOR_BLUE    1
-#define Z_ZX_SPECTRUM_COLOR_RED     2
+#define Z_ZX_SPECTRUM_COLOR_RED	    2
 #define Z_ZX_SPECTRUM_COLOR_MAGENTA 3
 #define Z_ZX_SPECTRUM_COLOR_GREEN   4
 #define Z_ZX_SPECTRUM_COLOR_CYAN    5
@@ -115,9 +115,9 @@ Z_DEFINE_STRICT_STRUCTURE (
 .-----------------.-----------------.
 | 7 6 5 4 3 2 1 0 | 7 6 5 4 3 2 1 0 |
 '-\_____________/-'-\___/-|-|-\___/-'
-	 |	      |   | |   '---> Border color
-  Keyboard (Read)     |   | '-------> MIC / tape output
-	 |	      |   '---------> EAR output / speaker
+	 |	      |	  | |   '---> Border color
+  Keyboard (Read)     |	  | '-------> MIC / tape output
+	 |	      |	  '---------> EAR output / speaker
 	 '-------.    '-------------> Unused
 		 |
 		 V
@@ -147,12 +147,12 @@ Z_DEFINE_STRICT_STRUCTURE (
  X | | | |  |			     / / /			    |  | | | | R
    | | | |  | ______________________/ / /__________________________ |  | | | | I
    | | | |  |/_____________________/ / /___________________________\|  | | | | I
-   | | | |  |  _   _   _   _   _  / / / _   _   _   _   _	    |  | | | | X
+   | | | |  |  _   _   _   _   _  / / / _   _	_   _	_	    |  | | | | X
    | | | '--> [1] [2] [3] [4] [5] \/  \[6] [7] [8] [9] [0] <-----------------'
-   | | |    |	  _   _   _   _   _\   \   _   _   _   _   _        |  | | |
+   | | |    |	  _   _   _   _   _\   \   _   _   _   _   _	    |  | | |
    | | '-------> [Q] [W] [E] [R] [T]\	\ [Y] [U] [I] [O] [P] <------------'
    | |	    |	    _	_   _	_   _\	 \   _	 _   _	 _   _____//|  | |
-   | '-----------> [A] [S] [D] [F] [G]\   \ [H] [J] [K] [L] [ENTER] <----'
+   | '-----------> [A] [S] [D] [F] [G]\	  \ [H] [J] [K] [L] [ENTER] <----'
    |	    |  _____   _   _   _   _  /\  / _	_   _	__   ___////|  |
    '--------> [SHIFT] [Z] [X] [C] [V]/ / / [B] [N] [M] [SS] [SPACE] <--'
 	    |_______________________/ / /_____________________////__|
@@ -361,7 +361,7 @@ Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 3) (
 #define Z_ZX_SPECTRUM_ADC_CYCLES_PER_HEADER_PILOT    (Z_ZX_SPECTRUM_ADC_CYCLES_PER_PILOT_PULSE * 8064)
 #define Z_ZX_SPECTRUM_ADC_CYCLES_PER_DATA_PILOT	     (Z_ZX_SPECTRUM_ADC_CYCLES_PER_PILOT_PULSE * 3224)
 
-#define Z_ZX_SPECTRUM_ADC_BLOCK_CONTENT_HEADER   0
+#define Z_ZX_SPECTRUM_ADC_BLOCK_CONTENT_HEADER	 0
 #define Z_ZX_SPECTRUM_ADC_BLOCK_CONTENT_DATA   255
 
 Z_DEFINE_STRICT_STRUCTURE (

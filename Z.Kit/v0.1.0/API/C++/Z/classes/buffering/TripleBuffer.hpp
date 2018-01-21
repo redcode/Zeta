@@ -19,11 +19,11 @@ namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 	Z_INLINE_MEMBER TripleBuffer() {}
 
 
-	Z_INLINE_MEMBER TripleBuffer(void *buffers, Size buffer_size)
+	Z_INLINE_MEMBER TripleBuffer(void *buffers, USize buffer_size)
 		{initialize(buffers, buffer_size);}
 
 
-	Z_INLINE_MEMBER void initialize(void *buffers, Size buffer_size)
+	Z_INLINE_MEMBER void initialize(void *buffers, USize buffer_size)
 		{
 		this->buffers[0] = buffers;
 		this->buffers[1] = (UInt8 *)buffers + buffer_size;

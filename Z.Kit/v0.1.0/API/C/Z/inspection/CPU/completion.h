@@ -33,4 +33,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPU_HAS_INTEGER_128BIT FALSE
 #endif
 
+#ifndef Z_CPU_HAS_REAL_IEEE_754_BINARY16
+#	define Z_CPU_HAS_REAL_IEEE_754_BINARY16 FALSE
+#endif
+
+#ifndef Z_CPU_HAS_REAL_IEEE_754_BINARY32
+#	define Z_CPU_HAS_REAL_IEEE_754_BINARY32 FALSE
+#endif
+
+#ifndef Z_CPU_HAS_REAL_IEEE_754_BINARY64
+#	define Z_CPU_HAS_REAL_IEEE_754_BINARY64 FALSE
+#endif
+
+#ifndef Z_CPU_HAS_REAL_IEEE_754_BINARY128
+#	define Z_CPU_HAS_REAL_IEEE_754_BINARY128 FALSE
+#endif
+
+#ifndef Z_CPU_INTEGER_FORMAT
+#	define Z_CPU_INTEGER_FORMAT Z_INTEGER_FORMAT_2S_COMPLEMENT
+#endif
+
 /* inspection/CPU/completion.h EOF */

@@ -11,11 +11,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 block_id;		/* 'RIFF' in big endian */
-	zuint32 block_size;		/* The size of the entire file minus 8 bytes */
-	zuint32 format;			/* 'WAVE' in big endian */
+	zuint32 block_id;   /* 'RIFF' in big endian			 */
+	zuint32 block_size; /* The size of the entire file minus 8 bytes */
+	zuint32 format;	    /* 'WAVE' in big endian			 */
 
-	struct {zuint32 subblock_id;	/* 'fmt ' in big endian */
+	struct {zuint32 subblock_id; /* 'fmt ' in big endian */
 		zuint32 subblock_size;
 		zuint16 audio_format;
 		zuint16 channel_count;
@@ -25,7 +25,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 		zuint16 bits_per_sample;
 	} fmt;
 
-	struct {zuint32 subblock_id;	/* 'data' in big endian */
+	struct {zuint32 subblock_id; /* 'data' in big endian */
 		zuint32 subblock_size;
 		Z_FLEXIBLE_ARRAY_MEMBER(Z_zuint8 samples[];)
 	} data;

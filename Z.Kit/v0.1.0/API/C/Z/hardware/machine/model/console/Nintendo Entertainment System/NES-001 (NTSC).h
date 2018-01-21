@@ -19,11 +19,11 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /* MARK: - Screen */
 
-#define Z_NES_001_NTSC_SCREEN_FPS	60
+#define Z_NES_001_NTSC_SCREEN_FPS      60
 
 /* MARK: - Timmings */
 
-#define Z_NES_001_NTSC_CPU_HZ		1789773
-#define Z_NES_001_NTSC_MASTER_CLOCK_HZ	21477272
+#define Z_NES_001_NTSC_CPU_HZ	       1789773
+#define Z_NES_001_NTSC_MASTER_CLOCK_HZ 21477272
 
 #endif /* __Z_hardware_machine_model_console_Nintendo_Entertainment_System_NES_001_NTSC_H__ */

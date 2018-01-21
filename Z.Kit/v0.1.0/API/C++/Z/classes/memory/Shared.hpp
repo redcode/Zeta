@@ -15,8 +15,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {template <class T> struct Shared {
 
 	struct Owned {
-		Size owner_count;
-		T*   data;
+		USize owner_count;
+		T*    data;
 
 		Z_INLINE_MEMBER Owned(T *data) : owner_count(1), data(data) {}
 		Z_INLINE_MEMBER ~Owned() {delete data;}
@@ -78,7 +78,7 @@ namespace Zeta {template <class T> struct Shared {
 		{return owned ? owned->data : NULL;}
 
 
-	Z_INLINE_MEMBER Size owner_count() const
+	Z_INLINE_MEMBER USize owner_count() const
 		{return owned->owner_count;}
 
 

@@ -20,14 +20,14 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Z/types/base.h>
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zint32	first_block_offset;
-	zint32	last_block_offset;
+	zsint32 first_block_offset;
+	zsint32 last_block_offset;
 	zuint32 eof_marker;
 ) ZWarajevoTAPHeader;
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zint32	previous_block_offset;
-	zint32	next_block_offset;
+	zsint32 previous_block_offset;
+	zsint32 next_block_offset;
 	zuint16 data_size;
 ) ZWarajevoTAPBlockHeader;
 

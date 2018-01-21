@@ -24,46 +24,46 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_CONVEX_UNIX       10 /* Convex Computer		*/
 #define Z_OS_CYGWIN	       11 /* Cygnus Solutions		*/
 #define Z_OS_DC_OSX	       12 /* Pyramid Technology		*/
-#define Z_OS_DG_UX	       14 /* Data General		*/
+#define Z_OS_DG_UX	       13 /* Data General		*/
 #define Z_OS_DIGITAL_UNIX      Z_OS_DEC_OSF_1
-#define Z_OS_DOMAIN_OS	       15 /* Apollo Computer		*/
-#define Z_OS_DRAGONFLY_BSD     16
-#define Z_OS_DYNIX_PTX	       17 /* Sequent Computer Systems	*/
-#define Z_OS_ECOS	       18 /* Cygnus Solutions		*/
-#define Z_OS_FREE_BSD	       19
-#define Z_OS_GNU_HURD	       20
-#define Z_OS_HAIKU	       21
-#define Z_OS_HI_UX_MPP	       22 /* Hitachi			*/
-#define Z_OS_HP_UX	       23 /* Hewlett-Packard		*/
+#define Z_OS_DOMAIN_OS	       14 /* Apollo Computer		*/
+#define Z_OS_DRAGONFLY_BSD     15
+#define Z_OS_DYNIX_PTX	       16 /* Sequent Computer Systems	*/
+#define Z_OS_ECOS	       17 /* Cygnus Solutions		*/
+#define Z_OS_FREE_BSD	       18
+#define Z_OS_GNU_HURD	       19
+#define Z_OS_HAIKU	       20
+#define Z_OS_HI_UX_MPP	       21 /* Hitachi			*/
+#define Z_OS_HP_UX	       22 /* Hewlett-Packard		*/
 #define Z_OS_I5_OS	       Z_OS_OS_400
 #define Z_OS_IBM_I	       Z_OS_OS_400
-#define Z_OS_INTEGRITY	       24 /* Green Hills Software	*/
+#define Z_OS_INTEGRITY	       23 /* Green Hills Software	*/
 #define Z_OS_IOS	       Z_OS_IPHONE_OS
-#define Z_OS_IPHONE_OS	       25 /* Apple			*/
-#define Z_OS_IRIX	       26 /* SGI			*/
-#define Z_OS_LINUX	       27
-#define Z_OS_LYNX_OS	       28 /* Lynx Software Technologies */
-#define Z_OS_MAC_OS	       29 /* Apple Computer		*/
-#define Z_OS_MAC_OS_X	       30 /* Apple Computer		*/
+#define Z_OS_IPHONE_OS	       24 /* Apple			*/
+#define Z_OS_IRIX	       25 /* SGI			*/
+#define Z_OS_LINUX	       26
+#define Z_OS_LYNX_OS	       27 /* Lynx Software Technologies */
+#define Z_OS_MAC_OS	       28 /* Apple Computer		*/
+#define Z_OS_MAC_OS_X	       29 /* Apple Computer		*/
 #define Z_OS_MACOS	       Z_OS_MAC_OS_X
-#define Z_OS_MINIX	       31
-#define Z_OS_MORPH_OS	       32
-#define Z_OS_MPE_XL	       33 /* Hewlett-Packard		*/
-#define Z_OS_MS_DOS	       34 /* Microsoft			*/
-#define Z_OS_NET_BSD	       35
-#define Z_OS_NET_WARE	       36 /* Novell			*/
-#define Z_OS_NON_STOP_OS       37 /* Hewlett-Packard		*/
-#define Z_OS_NUCLEUS_RTOS      38 /* Mentor Graphics		*/
-#define Z_OS_OPEN_BSD	       39
+#define Z_OS_MINIX	       30
+#define Z_OS_MORPH_OS	       31
+#define Z_OS_MPE_XL	       32 /* Hewlett-Packard		*/
+#define Z_OS_MS_DOS	       33 /* Microsoft			*/
+#define Z_OS_NET_BSD	       34
+#define Z_OS_NET_WARE	       35 /* Novell			*/
+#define Z_OS_NON_STOP_OS       36 /* Hewlett-Packard		*/
+#define Z_OS_NUCLEUS_RTOS      37 /* Mentor Graphics		*/
+#define Z_OS_OPEN_BSD	       38
 #define Z_OS_OPEN_DESKTOP      Z_OS_SCO_UNIX_SYSTEM_V
 #define Z_OS_OPEN_SERVER       Z_OS_SCO_UNIX_SYSTEM_V
 #define Z_OS_OPEN_UNIX	       Z_OS_UNIX_WARE
-#define Z_OS_ORBIS_OS	       40 /* Sony (PlayStation 4)	*/
-#define Z_OS_OS_2	       41 /* IBM / Microsoft		*/
-#define Z_OS_OS_9	       42 /* Microware Systems		*/
-#define Z_OS_OS_400	       43 /* IBM			*/
+#define Z_OS_ORBIS_OS	       39 /* Sony (PlayStation 4)	*/
+#define Z_OS_OS_2	       40 /* IBM / Microsoft		*/
+#define Z_OS_OS_9	       41 /* Microware Systems		*/
+#define Z_OS_OS_400	       42 /* IBM			*/
 #define Z_OS_OS_X	       Z_OS_MAC_OS_X
-#define Z_OS_OSF_1	       13 /* OSF			*/
+#define Z_OS_OSF_1	       43 /* OSF			*/
 #define Z_OS_PALM_OS	       44 /* Palm			*/
 #define Z_OS_PLAN_9	       45 /* Bell Labs			*/
 #define Z_OS_PSP	       46 /* Sony			*/

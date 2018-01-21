@@ -13,22 +13,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {namespace Detail {namespace SizedString {
 
-	template <Size I> class Element : public Element<I - 1> {
+	template <USize I> class Element : public Element<I - 1> {
 		protected:
-		Character _character;
+		Char _character;
 
 		public:
-		Z_CT_MEMBER(CPP11) Element(const Character *string)
+		Z_CT_MEMBER(CPP11) Element(const Char *string)
 		: Element<I - 1>(string), _character(string[I]) {}
 	};
 
 
 	template <> class Element<0> {
 		protected:
-		Character _character;
+		Char _character;
 
 		public:
-		Z_CT_MEMBER(CPP11) Element(const Character *string)
+		Z_CT_MEMBER(CPP11) Element(const Char *string)
 		: _character(string[0]) {}
 	};
 }}}
@@ -36,28 +36,28 @@ namespace Zeta {namespace Detail {namespace SizedString {
 
 namespace Zeta {
 
-	template <Size S> class SizedString : public Detail::SizedString::Element<S - 1> {
+	template <USize S> class SizedString : public Detail::SizedString::Element<S - 1> {
 		protected:
-		Character _null_character;
+		Char _null_character;
 
 		public:
-		Z_CT_MEMBER(CPP11) SizedString(const Character *string)
+		Z_CT_MEMBER(CPP11) SizedString(const Char *string)
 		: Detail::SizedString::Element<S - 1>(string), _null_character('\0') {}
 
-		Z_INLINE_MEMBER operator const Character *() const
+		Z_INLINE_MEMBER operator const Char *() const
 			{return &this->Detail::SizedString::Element<0>::_character;}
 	};
 
 
 	template <> class SizedString<0> {
 		protected:
-		Character _null_character;
+		Char _null_character;
 
 		public:
-		Z_CT_MEMBER(CPP11) SizedString(const Character *string)
+		Z_CT_MEMBER(CPP11) SizedString(const Char *string)
 		: _null_character('\0') {}
 
-		Z_INLINE_MEMBER operator const Character *() const
+		Z_INLINE_MEMBER operator const Char *() const
 			{return &_null_character;}
 	};
 }

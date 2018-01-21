@@ -88,36 +88,28 @@ Z_INLINE void z_circle_##type##_swap(ZCircle##Type *a, ZCircle##Type *b)			\
 	Z_IMPLEMENTATION_CIRCLE(Float16, float16, Z_FLOAT16)
 #endif
 
-#ifdef Z_FLOAT24
-	Z_IMPLEMENTATION_CIRCLE(Float24, float24, Z_FLOAT24)
-#endif
-
 #ifdef Z_FLOAT32
 	Z_IMPLEMENTATION_CIRCLE(Float32, float32, Z_FLOAT32)
-#endif
-
-#ifdef Z_FLOAT48
-	Z_IMPLEMENTATION_CIRCLE(Float48, float48, Z_FLOAT48)
 #endif
 
 #ifdef Z_FLOAT64
 	Z_IMPLEMENTATION_CIRCLE(Float64, float64, Z_FLOAT64)
 #endif
 
-#ifdef Z_FLOAT72
-	Z_IMPLEMENTATION_CIRCLE(Float72, float72, Z_FLOAT72)
-#endif
-
-#ifdef Z_FLOAT80
-	Z_IMPLEMENTATION_CIRCLE(Float80, float80, Z_FLOAT80)
-#endif
-
-#ifdef Z_FLOAT96
-	Z_IMPLEMENTATION_CIRCLE(Float96, float96, Z_FLOAT96)
-#endif
-
 #ifdef Z_FLOAT128
 	Z_IMPLEMENTATION_CIRCLE(Float128, float128, Z_FLOAT128)
+#endif
+
+#ifdef Z_FLOAT80_X87
+	Z_IMPLEMENTATION_CIRCLE(Float80_x87, float80_x87, Z_FLOAT80_X87)
+#endif
+
+#ifdef Z_FLOAT96_X87
+	Z_IMPLEMENTATION_CIRCLE(Float96_x87, float96_x87, Z_FLOAT96_X87)
+#endif
+
+#ifdef Z_FLOAT128_X87
+	Z_IMPLEMENTATION_CIRCLE(Float128_x87, float128_x87, Z_FLOAT128_X87)
 #endif
 
 

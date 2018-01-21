@@ -62,6 +62,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Types */
 
 #define Z_CPP_HAS_TYPE_ULLONG TRUE /* N1811: unsigned long long [int] */
-#define Z_CPP_HAS_TYPE_LLONG  TRUE /* N1811: [signed] long long [int] */
+#define Z_CPP_HAS_TYPE_SLLONG TRUE /* N1811: [signed] long long [int] */
 
 #endif /* __Z_inspection_CPP_modules_CPP11_H__ */

@@ -206,14 +206,14 @@ namespace Zeta {template <class T> struct Value3D : Mixins::Value3D::Partial<Val
 
 
 	Z_CT_MEMBER(CPP11) operator Boolean() const {return x != T(0) || y != T(0) || z != T(0);}
-	Z_INLINE_MEMBER    operator Base&  () const {return *((Base *)this);}
+	Z_INLINE_MEMBER	   operator Base&  () const {return *((Base *)this);}
 
 	Z_CT_MEMBER(CPP11) Boolean operator ==(const Value3D &rhs) const {return x == rhs.x && y == rhs.y && z == rhs.z;}
 	Z_CT_MEMBER(CPP11) Boolean operator !=(const Value3D &rhs) const {return x != rhs.x || y != rhs.y || z != rhs.z;}
 	Z_CT_MEMBER(CPP11) Boolean operator <=(const Value3D &rhs) const {return x <= rhs.x && y <= rhs.y && z <= rhs.z;}
 	Z_CT_MEMBER(CPP11) Boolean operator >=(const Value3D &rhs) const {return x >= rhs.x && y >= rhs.y && z >= rhs.z;}
-	Z_CT_MEMBER(CPP11) Boolean operator  >(const Value3D &rhs) const {return x >  rhs.x && y >  rhs.y && z >  rhs.z;}
-	Z_CT_MEMBER(CPP11) Boolean operator  <(const Value3D &rhs) const {return x <  rhs.x && y <  rhs.y && z <  rhs.z;}
+	Z_CT_MEMBER(CPP11) Boolean operator > (const Value3D &rhs) const {return x >  rhs.x && y >  rhs.y && z >  rhs.z;}
+	Z_CT_MEMBER(CPP11) Boolean operator < (const Value3D &rhs) const {return x <  rhs.x && y <  rhs.y && z <  rhs.z;}
 
 	Z_CT_MEMBER(CPP11) Value3D operator +(const Value3D &rhs) const {return Value3D(x + rhs.x, y + rhs.y, z + rhs.z);}
 	Z_CT_MEMBER(CPP11) Value3D operator -(const Value3D &rhs) const {return Value3D(x - rhs.x, y - rhs.y, z - rhs.z);}
@@ -229,8 +229,8 @@ namespace Zeta {template <class T> struct Value3D : Mixins::Value3D::Partial<Val
 	Z_CT_MEMBER(CPP11) Boolean operator !=(T rhs) const {return x != rhs || y != rhs || z != rhs;}
 	Z_CT_MEMBER(CPP11) Boolean operator <=(T rhs) const {return x <= rhs && y <= rhs && z <= rhs;}
 	Z_CT_MEMBER(CPP11) Boolean operator >=(T rhs) const {return x >= rhs && y >= rhs && z >= rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator  >(T rhs) const {return x >  rhs && y >  rhs && z >  rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator  <(T rhs) const {return x <  rhs && y <  rhs && z <  rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator > (T rhs) const {return x >  rhs && y >  rhs && z >  rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator < (T rhs) const {return x <  rhs && y <  rhs && z <  rhs;}
 
 	Z_CT_MEMBER(CPP11) Value3D operator +(T rhs) const {return Value3D(x + rhs, y + rhs, z + rhs);}
 	Z_CT_MEMBER(CPP11) Value3D operator -(T rhs) const {return Value3D(x - rhs, y - rhs, z - rhs);}
@@ -242,8 +242,8 @@ namespace Zeta {template <class T> struct Value3D : Mixins::Value3D::Partial<Val
 	Z_INLINE_MEMBER Value3D &operator *=(T rhs) {return *this = *this * rhs;}
 	Z_INLINE_MEMBER Value3D &operator /=(T rhs) {return *this = *this / rhs;}
 
-	Z_INLINE_MEMBER T  operator[](int index) const {return ((T *)this)[index];}
-	Z_INLINE_MEMBER T &operator[](int index)       {return ((T *)this)[index];}
+	Z_INLINE_MEMBER T  operator [](UInt index) const {return ((T *)this)[index];}
+	Z_INLINE_MEMBER T &operator [](UInt index)	 {return ((T *)this)[index];}
 
 
 	Z_CT_MEMBER(CPP11) Value3D clamp(const Value3D &minimum, const Value3D &maximum) const
@@ -336,7 +336,7 @@ namespace Zeta {template <class T> struct Value3D : Mixins::Value3D::Partial<Val
 		}
 
 
-	Z_INLINE_MEMBER Value3D rotate_as_axes(Value3D<Int8> rotation) const
+	Z_INLINE_MEMBER Value3D rotate_as_axes(Value3D<SInt8> rotation) const
 		{
 		Value3D result = *this;
 

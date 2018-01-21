@@ -103,7 +103,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			type qualifiers *parent;				\
 										\
 			struct {type qualifiers* data;				\
-				zsize size;					\
+				zusize size;					\
 			} children;						\
 										\
 			__VA_ARGS__						\
@@ -114,7 +114,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			type qualifiers *parent;				\
 										\
 			struct {type qualifiers* data;				\
-				zsize size;					\
+				zusize size;					\
 			} children;						\
 										\
 			__VA_ARGS__						\
@@ -229,7 +229,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			type qualifiers *parent;				\
 										\
 			struct {type qualifiers* data;				\
-				zsize size;					\
+				zusize size;					\
 			} children;						\
 										\
 			members							\
@@ -240,7 +240,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			type qualifiers *parent;				\
 										\
 			struct {type qualifiers* data;				\
-				zsize size;					\
+				zusize size;					\
 			} children;						\
 										\
 			members							\

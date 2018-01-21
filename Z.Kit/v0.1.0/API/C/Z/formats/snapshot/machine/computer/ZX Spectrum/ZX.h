@@ -38,7 +38,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint16	zero_7, sp;
 	zuint16 sound_mode;
 	zuint16	halt; /* boolean */
-	zint16	im;
+	zsint16 im;
 	zuint8	zero_8[10];
 Z_DEFINE_STRICT_STRUCTURE_END ZZX;
 

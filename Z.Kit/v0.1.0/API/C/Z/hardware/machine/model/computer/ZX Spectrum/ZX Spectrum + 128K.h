@@ -42,24 +42,24 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 0000 .-----------------.
      | ROM 0  | ROM 1  | Either ROM may be switched in.
-     |        |        |
-     |        |        |
-     |        |        |
+     |	      |	       |
+     |	      |	       |
+     |	      |	       |
 4000 |--------+--------'
      | Bank 5 |
-     |        |
-     |        |
+     |	      |
+     |	      |
      | screen |
 8000 |--------|
      | Bank 2 |        Any one of these pages may be switched in.
-     |        |
-     |        |
-     |        |
+     |	      |
+     |	      |
+     |	      |
 C000 |--------+--------------------------------------------------------------.
      | Bank 0 | Bank 1 | Bank 2 | Bank 3 | Bank 4 | Bank 5 | Bank 6 | Bank 7 |
-     |        |        |(also at|        |        |(also at|        |        |
-     |        |        | 8000)  |        |        | 4000)  |        |        |
-     |        |        |        |        |        | screen |        | screen |
+     |	      |	       |(also at|	 |	  |(also at|	    |	     |
+     |	      |	       | 8000)  |	 |	  | 4000)  |	    |	     |
+     |	      |	       |	|	 |	  | screen |	    | screen |
 FFFF '----------------------------------------------------------------------*/
 
 #define Z_ZX_SPECTRUM_PLUS_128K_SIZE_ROM    (1024 *  32)
@@ -97,14 +97,14 @@ Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 5) (
 .---------------------------------.  ---   ---
 |	Visible Top Border	  |   | 48  |
 |----.-----------------------.----|  ---    |
-|L   |			     |R   |   |     |
-|e   |			     |i   |   |     |
-|f  B|			     |g  B|   |     |
+|L   |			     |R	  |   |	    |
+|e   |			     |i	  |   |	    |
+|f  B|			     |g  B|   |	    |
 |t  o|	       Paper	     |h  o|   | 192 | 296
-|   r|			     |t  r|   |     |
-|   d|			     |   d|   |     |
-|   e|			     |   e|   |     |
-|   r|			     |   r|   |     |
+|   r|			     |t  r|   |	    |
+|   d|			     |	 d|   |	    |
+|   e|			     |	 e|   |	    |
+|   r|			     |	 r|   |	    |
 |----'-----------------------'----|  ---    |
 |	   Bottom Border	  |   | 56  |
 '---------------------------------'  ---   ---

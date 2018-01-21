@@ -24,52 +24,40 @@ namespace Zeta {
 		typedef zuint128 UInt128;
 #	endif
 
-	typedef zint8  Int8;
-	typedef zint16 Int16;
-	typedef zint32 Int32;
+	typedef zsint8	SInt8;
+	typedef zsint16 SInt16;
+	typedef zsint32 SInt32;
 
-#	ifdef Z_INT64
-		typedef zint64 Int64;
+#	ifdef Z_SINT64
+		typedef zsint64 SInt64;
 #	endif
 
-#	ifdef Z_INT128
-		typedef zint128 Int128;
-#	endif
-
-#	ifdef Z_FLOAT16
-		typedef zfloat16 Float16;
-#	endif
-
-#	ifdef Z_FLOAT24
-		typedef zfloat24 Float24;
+#	ifdef Z_SINT128
+		typedef zsint128 SInt128;
 #	endif
 
 #	ifdef Z_FLOAT32
 		typedef zfloat32 Float32;
 #	endif
 
-#	ifdef Z_FLOAT48
-		typedef zfloat48 Float48;
-#	endif
-
 #	ifdef Z_FLOAT64
 		typedef zfloat64 Float64;
 #	endif
 
-#	ifdef Z_FLOAT72
-		typedef zfloat72 Float72;
-#	endif
-
-#	ifdef Z_FLOAT80
-		typedef zfloat80 Float80;
-#	endif
-
-#	ifdef Z_FLOAT96
-		typedef zfloat96 Float96;
-#	endif
-
 #	ifdef Z_FLOAT128
 		typedef zfloat128 Float128;
+#	endif
+
+#	ifdef Z_FLOAT80_X87
+		typedef zfloat80_x87 Float80_x87;
+#	endif
+
+#	ifdef Z_FLOAT96_X87
+		typedef zfloat96_x87 Float96_x87;
+#	endif
+
+#	ifdef Z_FLOAT128_X87
+		typedef zfloat128_x87 Float128_x87;
 #	endif
 
 	typedef zbint8	BInt8;
@@ -84,6 +72,7 @@ namespace Zeta {
 		typedef zbint128 BInt128;
 #	endif
 
+	typedef zchar	Char;
 	typedef zuchar	UChar;
 	typedef zushort UShort;
 	typedef zuint	UInt;
@@ -93,13 +82,13 @@ namespace Zeta {
 		typedef zullong ULLong;
 #	endif
 
-	typedef zchar  Char;
-	typedef zshort Short;
-	typedef zint   Int;
-	typedef zlong  Long;
+	typedef zschar	SChar;
+	typedef zsshort SShort;
+	typedef zsint	SInt;
+	typedef zslong	SLong;
 
-#	ifdef Z_LLONG
-		typedef zllong LLong;
+#	ifdef Z_SLLONG
+		typedef zsllong SLLong;
 #	endif
 
 #	ifdef Z_FLOAT
@@ -114,16 +103,17 @@ namespace Zeta {
 		typedef zldouble LDouble;
 #	endif
 
-	typedef zsize  Size;
+	typedef zusize USize;
 	typedef zssize SSize;
 
 	typedef zuintmax UIntMax;
-	typedef zuintptr UIntPtr;
-	typedef zuinttop UIntTop;
+	typedef zsintmax SIntMax;
 
-	typedef zintmax IntMax;
-	typedef zintptr IntPtr;
-	typedef zinttop IntTop;
+	typedef zuintptr UIntPtr;
+	typedef zsintptr SIntPtr;
+
+	typedef zuinttop UIntTop;
+	typedef zsinttop SIntTop;
 
 #	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
 		typedef bool Boolean;
@@ -131,15 +121,16 @@ namespace Zeta {
 		typedef zboolean Boolean;
 #	endif
 
-	typedef zcharacter Character;
-	typedef znatural   Natural;
-	typedef zinteger   Integer;
+#	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+		typedef NullPointer decltype(nullptr);
+#	endif
+
+	typedef znatural Natural;
+	typedef zinteger Integer;
 
 #	ifdef Z_REAL
 		typedef zreal Real;
 #	endif
-
-	typedef ZOrder Order;
 
 	typedef ZPointer Pointer;
 };

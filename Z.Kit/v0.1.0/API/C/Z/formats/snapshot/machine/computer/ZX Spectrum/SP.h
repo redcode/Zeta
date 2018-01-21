@@ -21,7 +21,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 | Subsequently Pedro Gimeno (the author of VGASpec) renamed it to 'Spectrum' |
 | (but it's colloquially known as the 'Spanish Spectrum emulator') and added |
 | a header in the snapshot to break backward compatibility: the new format   |
-| supports both 16K and 48K images and it's 16422 or 49190 bytes long.  "    |
+| supports both 16K and 48K images and it's 16422 or 49190 bytes long.	"    |
 '---------------------------------------------------------------------------*/
 
 #ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H__

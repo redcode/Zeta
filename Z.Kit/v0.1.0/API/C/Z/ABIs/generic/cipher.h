@@ -13,20 +13,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CIPHER_FEATURE_SEQUENTIAL 1
 
 typedef ZStatus (* ZCipherTestKey)   (void const* key,
-				      zsize	   key_size);
+				      zusize	  key_size);
 
-typedef void	(* ZCipherSetKey)    (void*	   context,
+typedef void	(* ZCipherSetKey)    (void*	  context,
 				      void const* key,
-				      zsize	   key_size);
+				      zusize	  key_size);
 
-typedef void	(* ZCipherProcess)   (void*	   context,
+typedef void	(* ZCipherProcess)   (void*	  context,
 				      void const* block,
-				      zsize	   block_size,
-				      void*	   output);
+				      zusize	  block_size,
+				      void*	  output);
 
-typedef zsize	(* ZCipherOutputSize)(void*	   context,
+typedef zusize	(* ZCipherOutputSize)(void*	  context,
 				      void const* block,
-				      zsize	   block_size);
+				      zusize	  block_size);
 
 typedef struct {
 	ZCipherTestKey	  test_key;
@@ -35,12 +35,12 @@ typedef struct {
 	ZCipherProcess	  decipher;
 	ZCipherOutputSize enciphering_size;
 	ZCipherOutputSize deciphering_size;
-	zsize		  instance_size;
-	zsize		  key_minimum_size;
-	zsize		  key_maximum_size;
-	zsize		  key_word_size;
-	zsize		  enciphering_word_size;
-	zsize		  deciphering_word_size;
+	zusize		  instance_size;
+	zusize		  key_minimum_size;
+	zusize		  key_maximum_size;
+	zusize		  key_word_size;
+	zusize		  enciphering_word_size;
+	zusize		  deciphering_word_size;
 	zuint8		  features;
 } ZCipherABI;
 

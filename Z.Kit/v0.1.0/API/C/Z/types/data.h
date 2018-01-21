@@ -14,13 +14,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 typedef struct {
 	ZPointer data;
-	zsize	 size;
+	zusize	 size;
 } ZArray;
 
 typedef struct {
-	void* data;
-	zsize size;
-	zsize block_size;
+	void*  data;
+	zusize size;
+	zusize block_size;
 } ZBlockArray;
 
 /* MARK: - Abstract nodes */
@@ -49,13 +49,13 @@ Z_DEFINE_ARRAY_TREE_NODE (ZArrayTreeNodeWithData,,  ZPointer data;);
 
 typedef struct {
 	ZListNode* first_node;
-	zsize	   size;
+	zusize	   size;
 	ZListNode* last_node;
 } ZList;	
 
 typedef struct {
 	ZChainNode* first_node;
-	zsize	    size;
+	zusize	    size;
 	ZChainNode* last_node;
 } ZChain;
 

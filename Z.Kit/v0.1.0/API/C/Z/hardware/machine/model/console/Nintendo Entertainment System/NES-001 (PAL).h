@@ -19,11 +19,11 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /* MARK: - Screen */
 
-#define Z_NES_001_PAL_SCREEN_FPS	50
+#define Z_NES_001_PAL_SCREEN_FPS      50
 
 /* MARK: - Timmings */
 
-#define Z_NES_001_PAL_CPU_HZ		1662607
-#define Z_NES_001_PAL_MASTER_CLOCK_HZ	26601712
+#define Z_NES_001_PAL_CPU_HZ	      1662607
+#define Z_NES_001_PAL_MASTER_CLOCK_HZ 26601712
 
 #endif /* __Z_hardware_machine_model_console_Nintendo_Entertainment_System_NES_001_PAL_H__ */

@@ -109,7 +109,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_HAS_MACRO(OFFSET_OF)
 #	define Z_OFFSET_OF Z_COMPILER_MACRO(OFFSET_OF)
 #else
-#	define Z_OFFSET_OF(type, member) ((unsigned long)&((type *)(0))->member)
+#	define Z_OFFSET_OF(type, member) ((unsigned long int)&((type *)(0))->member)
 #endif
 
 /* MARK: - Informative macros */
@@ -121,7 +121,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifdef __cplusplus
 #	define Z_C_SYMBOLS_BEGIN extern "C" {
-#	define Z_C_SYMBOLS_END   }
+#	define Z_C_SYMBOLS_END	 }
 #else
 #	define Z_C_SYMBOLS_BEGIN
 #	define Z_C_SYMBOLS_END

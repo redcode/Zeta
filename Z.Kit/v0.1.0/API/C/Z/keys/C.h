@@ -8,13 +8,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_keys_C_H__
 #define __Z_keys_C_H__
 
-#define Z_KR_C 0
-#define Z_C89  1
-#define Z_C90  2
-#define Z_C94  3
+#define Z_KR_C 1
+#define Z_C89  2
+#define Z_C90  3
+#define Z_C94  4
 #define Z_C95  Z_C94
-#define Z_C99  4
-#define Z_C11  5
+#define Z_C99  5
+#define Z_C11  6
 
 #define Z_C_STRING_KR_C	"K&R C"
 #define Z_C_STRING_C89	"ANSI X3.159-1989 (C89)"

@@ -60,7 +60,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 typedef struct {
 	zuintptr id;
 
-	struct {zsize cycles;
+	struct {zusize cycles;
 		/* ... */
 	} context;
 } ZEmulatorComponent;
@@ -77,32 +77,32 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 Z_DEFINE_STRICT_STRUCTURE (
 	ZKey(EMULATOR_FUNCTION) key;
-	zsize			offset;
+	zusize			offset;
 ) ZEmulatorInstanceImport;
 
 typedef ZEmulatorExport		ZCPUEmulatorExport;
 typedef ZEmulatorInstanceImport ZCPUEmulatorInstanceImport;
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zsize			       dependency_count;
+	zusize			       dependency_count;
 	ZEmulatorDependency const*     dependencies;
-	zsize			       function_export_count;
+	zusize			       function_export_count;
 	ZEmulatorExport const*	       function_exports;
-	zsize			       instance_size;
-	zsize			       instance_state_offset;
-	zsize			       instance_state_size;
-	zsize			       instance_import_count;
+	zusize			       instance_size;
+	zusize			       instance_state_offset;
+	zusize			       instance_state_size;
+	zusize			       instance_import_count;
 	ZEmulatorInstanceImport const* instance_imports;
 ) ZCPUEmulatorABI;
 
 typedef struct {
 } ZMachineEmulatorABI;
 
-typedef zsize (* ZEmulatorRun)	(void*    object,
-				 zsize    cycles);
+typedef zusize (* ZEmulatorRun)	 (void*    object,
+				  zusize   cycles);
 
-typedef void  (* ZEmulatorPower)(void*    object,
-				 zboolean power_state);
+typedef void   (* ZEmulatorPower)(void*    object,
+				  zboolean power_state);
 
 typedef ZContextDo ZEmulatorWillReadState;
 typedef ZContextDo ZEmulatorDidWriteState;

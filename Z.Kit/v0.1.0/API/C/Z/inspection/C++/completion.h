@@ -133,8 +133,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_TYPE_ULLONG FALSE
 #endif
 
-#ifndef Z_CPP_HAS_TYPE_LLONG
-#	define Z_CPP_HAS_TYPE_LLONG FALSE
+#ifndef Z_CPP_HAS_TYPE_SLLONG
+#	define Z_CPP_HAS_TYPE_SLLONG FALSE
 #endif
 
 /* MARK: C++14 */

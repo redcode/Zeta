@@ -137,7 +137,7 @@ Flags (F register):
 
 typedef struct {
 	zuint16	pc,  sp;
-	Z16Bit	af,  bc,  de,  hl,  ix,  iy;
+	Z16Bit	af,  bc,  de,  hl,  ix, iy;
 	Z16Bit	af_, bc_, de_, hl_;
 	zuint8	i,   r;
 
@@ -181,14 +181,14 @@ typedef struct {
 
 /* MARK: - State structure macros (8-bit registers) */
 
-#define Z_Z80_STATE_A(  object) (object)->af.values_uint8.index1
-#define Z_Z80_STATE_F(  object) (object)->af.values_uint8.index0
-#define Z_Z80_STATE_B(  object) (object)->bc.values_uint8.index1
-#define Z_Z80_STATE_C(  object) (object)->bc.values_uint8.index0
-#define Z_Z80_STATE_D(  object) (object)->de.values_uint8.index1
-#define Z_Z80_STATE_E(  object) (object)->de.values_uint8.index0
-#define Z_Z80_STATE_H(  object) (object)->hl.values_uint8.index1
-#define Z_Z80_STATE_L(  object) (object)->hl.values_uint8.index0
+#define Z_Z80_STATE_A(	object) (object)->af.values_uint8.index1
+#define Z_Z80_STATE_F(	object) (object)->af.values_uint8.index0
+#define Z_Z80_STATE_B(	object) (object)->bc.values_uint8.index1
+#define Z_Z80_STATE_C(	object) (object)->bc.values_uint8.index0
+#define Z_Z80_STATE_D(	object) (object)->de.values_uint8.index1
+#define Z_Z80_STATE_E(	object) (object)->de.values_uint8.index0
+#define Z_Z80_STATE_H(	object) (object)->hl.values_uint8.index1
+#define Z_Z80_STATE_L(	object) (object)->hl.values_uint8.index0
 #define Z_Z80_STATE_IXH(object) (object)->ix.values_uint8.index1
 #define Z_Z80_STATE_IXL(object) (object)->ix.values_uint8.index0
 #define Z_Z80_STATE_IYH(object) (object)->iy.values_uint8.index1
@@ -201,8 +201,8 @@ typedef struct {
 #define Z_Z80_STATE_E_( object) (object)->de_.values_uint8.index0
 #define Z_Z80_STATE_H_( object) (object)->hl_.values_uint8.index1
 #define Z_Z80_STATE_L_( object) (object)->hl_.values_uint8.index0
-#define Z_Z80_STATE_I(  object) (object)->i
-#define Z_Z80_STATE_R(  object) (object)->r
+#define Z_Z80_STATE_I(	object) (object)->i
+#define Z_Z80_STATE_R(	object) (object)->r
 
 #define Z_Z80_STATE_MEMBER_A   af.values_uint8.index1
 #define Z_Z80_STATE_MEMBER_F   af.values_uint8.index0
@@ -232,17 +232,17 @@ typedef struct {
 #define Z_Z80_STATE_HALT(object) (object)->internal.halt
 #define Z_Z80_STATE_IFF1(object) (object)->internal.iff1
 #define Z_Z80_STATE_IFF2(object) (object)->internal.iff2
-#define Z_Z80_STATE_EI(	object) (object)->internal.ei
-#define Z_Z80_STATE_IM(	object) (object)->internal.im
+#define Z_Z80_STATE_EI(	 object) (object)->internal.ei
+#define Z_Z80_STATE_IM(	 object) (object)->internal.im
 #define Z_Z80_STATE_NMI( object) (object)->internal.nmi
 #define Z_Z80_STATE_IRQ( object) (object)->internal.irq
 
 #define Z_Z80_STATE_MEMBER_HALT internal.halt
 #define Z_Z80_STATE_MEMBER_IFF1 internal.iff1
 #define Z_Z80_STATE_MEMBER_IFF2 internal.iff2
-#define Z_Z80_STATE_MEMBER_EI   internal.ei
-#define Z_Z80_STATE_MEMBER_IM   internal.im
-#define Z_Z80_STATE_MEMBER_NMI  internal.nmi
-#define Z_Z80_STATE_MEMBER_IRQ  internal.irq
+#define Z_Z80_STATE_MEMBER_EI	internal.ei
+#define Z_Z80_STATE_MEMBER_IM	internal.im
+#define Z_Z80_STATE_MEMBER_NMI	internal.nmi
+#define Z_Z80_STATE_MEMBER_IRQ	internal.irq
 
 #endif /* __Z_hardware_CPU_architecture_Z80_H__ */
