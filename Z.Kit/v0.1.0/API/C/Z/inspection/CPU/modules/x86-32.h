@@ -8,9 +8,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_CPU_modules_x86_32_H__
 #define __Z_inspection_CPU_modules_x86_32_H__
 
-#define Z_APPEND_CPU_ARCHITECTURE(to)	       to##X86_32##
-#define Z_APPEND_CPUArchitecture( to)	       to##X8632##
-#define Z_APPEND_cpu_architecture(to)	       to##x86_32##
+#define Z_APPEND_CPU_ARCHITECTURE(to)	       to##X86_32
+#define Z_APPEND_CPUArchitecture( to)	       to##X8632
+#define Z_APPEND_cpu_architecture(to)	       to##x86_32
 #define Z_INSERT_CPU_ARCHITECTURE(left, right) left##X86_32##right
 #define Z_INSERT_CPUArchitecture( left, right) left##X8632##right
 #define Z_INSERT_cpu_architecture(left, right) left##x86_32##right
