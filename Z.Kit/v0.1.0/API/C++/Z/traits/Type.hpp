@@ -1965,7 +1965,7 @@ namespace Zeta {namespace Detail {namespace Type {
 	// MARK: - Specializations: Pointers
 
 #	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
-		template <> struct Case<decltype(nullptr)> : Mixins::Unqualified<Abstract::NullPointer> {};
+		template <> struct Case<NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
 #	endif
 
 	template <class T> class Case<T*> : public Mixins::Unqualified<Abstract::Pointer<T> > {
