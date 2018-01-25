@@ -2626,8 +2626,8 @@ namespace Zeta {
 		template <class T> using type_add_const_lvalue		= typename Type<T>::add_const_lvalue;
 		template <class T> using type_add_const_rvalue		= typename Type<T>::add_const_rvalue;
 		template <class T> using type_add_const_volatile	= typename Type<T>::add_const_volatile;
-		template <class T> using type_add_const_volatile_lvalue	= typename Type<T>::add_const_volatile_lvalue;
-		template <class T> using type_add_const_volatile_rvalue	= typename Type<T>::add_const_volatile_rvalue;
+		template <class T> using type_add_const_volatile_lvalue = typename Type<T>::add_const_volatile_lvalue;
+		template <class T> using type_add_const_volatile_rvalue = typename Type<T>::add_const_volatile_rvalue;
 		template <class T> using type_add_lvalue		= typename Type<T>::add_lvalue;
 		template <class T> using type_add_lvalue_reference	= typename Type<T>::add_lvalue_reference;
 		template <class T> using type_add_pointer		= typename Type<T>::add_pointer;
