@@ -343,9 +343,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if defined(__cplusplus) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
-#	define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT	    TRUE
-#	define Z_COMPILER_C_HAS_MIXED_DECLARATIONS_AND_CODE TRUE
-#	define Z_COMPILER_C_HAS_SPECIFIER_INLINE	    TRUE
+#	define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT		   TRUE
+#	define Z_COMPILER_C_HAS_MIXED_DECLARATIONS_AND_CODE	   TRUE
+#	define Z_COMPILER_C_HAS_NON_CONSTANT_AGGREGATE_INITIALIZER TRUE
+#	define Z_COMPILER_C_HAS_SPECIFIER_INLINE		   TRUE
 #endif
 
 #if	(defined(__cplusplus) && __cplusplus >= 201103L) || \
