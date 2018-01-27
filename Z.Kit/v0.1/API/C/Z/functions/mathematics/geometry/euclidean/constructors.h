@@ -695,14 +695,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#define z_2d_line_type(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_,	 )
-#define z_3d_line_type(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_,	 )
-#define z_aabb_type(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabb_,	 )
-#define z_aabr_type(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_aabr_,	 )
-#define z_box_type(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_box_type,	 )
-#define z_circle_type(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_circle_,	 )
-#define z_rectangle_type(TYPE) Z_INSERT_##TYPE##_fixed_type(z_rectangle_,)
-#define z_sphere_type(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_sphere_,	 )
+#define z_2d_line_type(	 TYPE) Z_APPEND_##TYPE##_fixed_type(z_2d_line_	)
+#define z_3d_line_type(	 TYPE) Z_APPEND_##TYPE##_fixed_type(z_3d_line_	)
+#define z_aabb_type(	 TYPE) Z_APPEND_##TYPE##_fixed_type(z_aabb_	)
+#define z_aabr_type(	 TYPE) Z_APPEND_##TYPE##_fixed_type(z_aabr_	)
+#define z_box_type(	 TYPE) Z_APPEND_##TYPE##_fixed_type(z_box_type	)
+#define z_circle_type(	 TYPE) Z_APPEND_##TYPE##_fixed_type(z_circle_	)
+#define z_rectangle_type(TYPE) Z_APPEND_##TYPE##_fixed_type(z_rectangle_)
+#define z_sphere_type(	 TYPE) Z_APPEND_##TYPE##_fixed_type(z_sphere_	)
 
 #define z_2d_line_type_zero(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_line_,   _zero)
 #define z_3d_line_type_zero(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_line_,   _zero)

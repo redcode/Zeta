@@ -282,10 +282,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define z_4d_float128_x87_zero z_4d_float128_x87(0.0, 0.0, 0.0, 0.0)
 #endif
 
-#define z_2d_type(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_,	 )
-#define z_3d_type(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_,	 )
-#define z_4d_type(   TYPE) Z_INSERT_##TYPE##_fixed_type(z_4d_,	 )
-#define z_range_type(TYPE) Z_INSERT_##TYPE##_fixed_type(z_range_,)
+#define z_2d_type(   TYPE) Z_APPEND_##TYPE##_fixed_type(z_2d_	)
+#define z_3d_type(   TYPE) Z_APPEND_##TYPE##_fixed_type(z_3d_	)
+#define z_4d_type(   TYPE) Z_APPEND_##TYPE##_fixed_type(z_4d_	)
+#define z_range_type(TYPE) Z_APPEND_##TYPE##_fixed_type(z_range_)
 
 #define z_2d_type_zero(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_2d_,    _zero)
 #define z_3d_type_zero(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_,    _zero)
