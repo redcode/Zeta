@@ -431,7 +431,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		z##type b_x,									\
 		z##type b_y									\
 	)											\
-		{Z2DLine##Type object = {{a_x, a_y}, {b_x, b_y}}; return object;}		\
+		{										\
+		Z2DLine##Type object;								\
+												\
+		object.a.x = a_x;								\
+		object.a.y = a_y;								\
+		object.b.x = b_x;								\
+		object.b.y = b_y;								\
+		return object;									\
+		}										\
 												\
 												\
 	Z_INLINE Z3DLine##Type z_3d_line_##type(						\
@@ -442,7 +450,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		z##type b_y,									\
 		z##type b_z									\
 	)											\
-		{Z3DLine##Type object = {{a_x, a_y, a_z}, {b_x, b_y, b_z}}; return object;}	\
+		{										\
+		Z3DLine##Type object;								\
+												\
+		object.a.x = a_x;								\
+		object.a.y = a_y;								\
+		object.a.z = a_z;								\
+		object.b.x = b_x;								\
+		object.b.y = b_y;								\
+		object.b.z = b_z;								\
+		return object;									\
 												\
 												\
 	Z_INLINE ZBox##Type z_box_##type(							\
@@ -453,7 +470,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		z##type size_y,									\
 		z##type size_z									\
 	)											\
-		{ZBox##Type object = {{x, y, z}, {size_x, size_y, size_z}}; return object;}	\
+		{										\
+		ZBox##Type object;								\
+												\
+		object.point.x = x;								\
+		object.point.y = y;								\
+		object.point.z = z;								\
+		object.size.x  = size_x;							\
+		object.size.y  = size_y;							\
+		object.size.z  = size_z;							\
+		return object;									\
+		}										\
 												\
 												\
 	Z_INLINE ZRectangle##Type z_rectangle_##type(						\
@@ -462,18 +489,41 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		z##type size_x,									\
 		z##type size_y									\
 	)											\
-		{ZRectangle##Type object = {{x, y}, {size_x, size_y}}; return object;}
+		{										\
+		ZRectangle##Type object;							\
+												\
+		object.point.x = x;								\
+		object.point.y = y;								\
+		object.size.x  = size_x;							\
+		object.size.y  = size_y;							\
+		return object;									\
+		}
 
 
 #	define Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS_REAL(Type, type)		\
 												\
 												\
 	Z_INLINE ZCircle##Type z_circle_##type(z##type x, z##type y, z##type radius)		\
-		{ZCircle##Type object = {{x, y}, radius}; return object;}			\
+		{										\
+		ZCircle##Type object;								\
+												\
+		object.point.x = x;								\
+		object.point.y = y;								\
+		object.radius  = radius;							\
+		return object;									\
+		}										\
 												\
 												\
 	Z_INLINE ZSphere##Type z_sphere_##type(z##type x, z##type y, z##type z, z##type radius)	\
-		{ZSphere##Type object = {{x, y, z}, radius}; return object;}
+		{										\
+		ZSphere##Type object;								\
+												\
+		object.point.x = x;								\
+		object.point.y = y;								\
+		object.point.z = z;								\
+		object.radius  = radius;							\
+		return object;									\
+		}
 
 
 	Z_IMPLEMENTATION_EUCLIDEAN_GEOMETRY_CONSTRUCTORS_INTEGER(SInt8,	 sint8 )

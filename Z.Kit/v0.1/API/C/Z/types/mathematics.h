@@ -34,11 +34,11 @@ typedef struct {Z2D##Type point;  z##type angle; } Z2DRay##Type;  \
 typedef struct {Z3D##Type point;  z##type angle; } Z3DRay##Type;  \
 typedef struct {Z3D##Type normal; z##type offset;} ZPlane##Type;
 
-#define Z2DRayType( TYPE) Z_INSERT_##TYPE##_FixedType(Z2DRay )
-#define Z3DRayType( TYPE) Z_INSERT_##TYPE##_FixedType(Z3DRay )
-#define ZCircleType(TYPE) Z_INSERT_##TYPE##_FixedType(ZCircle)
-#define ZSphereType(TYPE) Z_INSERT_##TYPE##_FixedType(ZSphere)
-#define ZPlaneType( TYPE) Z_INSERT_##TYPE##_FixedType(ZPlane )
+#define Z2DRayType( TYPE) Z_APPEND_##TYPE##_FixedType(Z2DRay )
+#define Z3DRayType( TYPE) Z_APPEND_##TYPE##_FixedType(Z3DRay )
+#define ZCircleType(TYPE) Z_APPEND_##TYPE##_FixedType(ZCircle)
+#define ZSphereType(TYPE) Z_APPEND_##TYPE##_FixedType(ZSphere)
+#define ZPlaneType( TYPE) Z_APPEND_##TYPE##_FixedType(ZPlane )
 
 Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(SInt8,  sint8 )
 Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(SInt16, sint16)

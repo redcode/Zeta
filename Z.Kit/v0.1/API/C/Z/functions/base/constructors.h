@@ -111,21 +111,51 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Type, type)	  \
 									  \
+									  \
 	Z_INLINE Z2D##Type z_2d_##type(z##type x, z##type y)		  \
-		{Z2D##Type object = {x, y}; return object;}		  \
+		{							  \
+		Z2D##Type object;					  \
+									  \
+		object.x = x;						  \
+		object.y = y;						  \
+		return object;						  \
+		}							  \
+									  \
 									  \
 	Z_INLINE Z3D##Type z_3d_##type(z##type x, z##type y, z##type z)	  \
-		{Z3D##Type object = {x, y, z}; return object;}		  \
+		{							  \
+		Z3D##Type object;					  \
+									  \
+		object.x = x;						  \
+		object.y = y;						  \
+		object.z = z;						  \
+		return object;						  \
+		}							  \
+									  \
 									  \
 	Z_INLINE							  \
 	Z4D##Type z_4d_##type(z##type x, z##type y, z##type z, z##type w) \
-		{Z4D##Type object = {x, y, z, w}; return object;}
+		{							  \
+		Z4D##Type object;					  \
+									  \
+		object.x = x;						  \
+		object.y = y;						  \
+		object.z = z;						  \
+		object.w = w;						  \
+		return object;						  \
+		}
 
 
 #	define Z_IMPLEMENTATION_RANGE_CONSTRUCTOR(Type, type)		  \
 									  \
 	Z_INLINE ZRange##Type z_range_##type(z##type index, z##type size) \
-		{ZRange##Type object = {index, size}; return object;}
+		{							  \
+		ZRange##Type object;					  \
+									  \
+		object.index = index;					  \
+		object.size  = size;					  \
+		return object;						  \
+		}
 
 
 	Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(UInt8,  uint8 )
