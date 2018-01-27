@@ -77,10 +77,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_BIT_FIELD(bits, member_count)				\
 	Z_TERNARY_APPEND(Z_COMPILER_BIT_FIELD_ORDER_##bits##BIT) \
-		(Z_MEMBERIZE_, member_count, REVERSED_)
+		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
 #define Z_ENDIANIZED_MEMBERS(bits, member_count)	 \
 	Z_TERNARY_APPEND(Z_CPU_ENDIANNESS(INTEGER, bits)) \
-		(Z_MEMBERIZE_, member_count, REVERSED_)
+		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
 #endif /* __Z_macros_members_H__ */
