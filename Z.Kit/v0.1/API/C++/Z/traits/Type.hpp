@@ -1777,10 +1777,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct Kind<VoidPointer, C> : Storable<C> {
-		typedef typename C::type	  to_pointer;
-		typedef typename C::type*	  add_pointer;
-		typedef typename C::type&	  add_lvalue_reference;
-		typedef typename C::pointee_type  remove_pointer;
+		typedef typename C::type	 to_pointer;
+		typedef typename C::type*	 add_pointer;
+		typedef typename C::type&	 add_lvalue_reference;
+		typedef typename C::pointee_type remove_pointer;
 
 #		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
 			typedef typename C::type&& add_rvalue_reference;
