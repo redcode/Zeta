@@ -86,7 +86,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_NO_RETURN _Noreturn
 
 #elif Z_LANGUAGE_HAS_ATTRIBUTE(CPP, NO_RETURN)
-#	define [[noreturn]]
+#	define Z_NO_RETURN [[noreturn]]
 
 #else
 #	define Z_NO_RETURN
