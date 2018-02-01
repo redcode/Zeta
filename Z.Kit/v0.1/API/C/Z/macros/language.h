@@ -109,7 +109,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_HAS_MACRO(OFFSET_OF)
 #	define Z_OFFSET_OF Z_COMPILER_MACRO(OFFSET_OF)
 #else
-#	define Z_OFFSET_OF(type, member) ((unsigned long int)&((type *)(0))->member)
+#	define Z_OFFSET_OF(type, member) (((unsigned long int)&((type *)(1))->member) - 1)
 #endif
 
 /* MARK: - Informative macros */
