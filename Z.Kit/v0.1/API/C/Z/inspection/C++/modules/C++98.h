@@ -12,6 +12,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C++/modules/C++89.h>
 
+/* MARK: - Features */
+
+#define Z_CPP_HAS_SFINAE TRUE
+
 /* MARK: - Types */
 
 #define Z_CPP_HAS_TYPE_BOOLEAN TRUE /* bool */

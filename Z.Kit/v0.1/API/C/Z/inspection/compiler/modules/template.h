@@ -110,6 +110,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C++98 support */
 
+/*#define Z_COMPILER_CPP_HAS_SFINAE*/
 /*#define Z_COMPILER_CPP_HAS_TYPE_BOOLEAN*/
 
 /* MARK: - C++11 support */

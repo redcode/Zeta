@@ -219,6 +219,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	/* MARK: - C++98 support */
 
+#	ifndef Z_COMPILER_CPP_HAS_SFINAE
+#		define Z_COMPILER_CPP_HAS_SFINAE FALSE
+#	endif
+
 #	ifndef Z_COMPILER_CPP_HAS_TYPE_BOOLEAN
 #		define Z_COMPILER_CPP_HAS_TYPE_BOOLEAN FALSE
 #	endif

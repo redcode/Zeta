@@ -289,6 +289,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if defined(__cplusplus)
 
+	/* MARK: - C++98 support */
+
+#	if __cplusplus >= 199711L
+
+#		define Z_COMPILER_CPP_HAS_SFINAE       TRUE /* TODO: from version...? */
+#		define Z_COMPILER_CPP_HAS_TYPE_BOOLEAN TRUE /* TODO: from version...? */
+
+#	endif
+
 	/* MARK: - C++11 support */
 
 #	if __cplusplus >= 201103L
