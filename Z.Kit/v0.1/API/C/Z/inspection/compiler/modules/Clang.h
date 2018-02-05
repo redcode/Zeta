@@ -427,6 +427,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_TYPE_SLLONG	    TRUE /* v2.9 */
 #		endif
 
+#		if __has_feature(cxx_default_function_template_args) || __has_extension(cxx_default_function_template_args)
+#			define Z_COMPILER_CPP_HAS_DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE TRUE /* v2.9 */
+#		endif
+
 #		if __has_feature(cxx_inheriting_constructors)
 #			define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE /* v3.3 */
 #		endif
