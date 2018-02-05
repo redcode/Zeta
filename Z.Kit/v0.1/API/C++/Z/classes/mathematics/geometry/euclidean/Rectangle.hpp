@@ -248,7 +248,7 @@ namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial
 
 
 #	if	defined(Z_USE_NS_GEOMETRY)			     && \
-		Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP		     && \
+		Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)		     && \
 		(!defined(Z_USE_CG_GEOMETRY)			     || \
 		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)

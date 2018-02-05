@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/type selection.hpp>
 #include <Z/functions/base/value.hpp>
 
-#if defined(Z_USE_NS_RANGE) && Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP
+#if defined(Z_USE_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 #	import <Foundation/NSRange.h>
 #endif
 
@@ -67,7 +67,7 @@ namespace Zeta {template <class T> struct Range {
 
 	Z_CT_MEMBER(CPP11) T  operator [](T index) const {return this->index + index;}
 
-#	if defined(Z_USE_NS_RANGE) && Z_LANGUAGE == Z_LANGUAGE_OBJECTIVE_CPP
+#	if defined(Z_USE_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
 		Z_CT_MEMBER(CPP11) Range(const NSRange &range)
 		: index(range.location), size(range.length) {}
