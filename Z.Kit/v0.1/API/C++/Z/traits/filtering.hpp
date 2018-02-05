@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/types/base.hpp>
 
-#if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#if Z_LANGUAGE_HAS(CPP, SFINAE)
 
 	namespace Zeta {
 		template <Boolean, class T = void> struct EnableIf {};
