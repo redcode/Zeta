@@ -8,7 +8,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_functional_Function_HPP__
 #define __Z_classes_functional_Function_HPP__
 
-#if	Z_LANGUAGE_HAS(CPP, LAMBDA) && \
+#if	Z_LANGUAGE_HAS(CPP, SFINAE) && \
+	Z_LANGUAGE_HAS(CPP, LAMBDA) && \
 	Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
 
 
