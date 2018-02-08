@@ -20,6 +20,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <class T> struct DisableIf<false, T> {typedef T type;};
 	}
 
+#	define Z_HAS_TRAIT_ENABLE_IF  TRUE
+#	define Z_HAS_TRAIT_DISABLE_IF TRUE
+#else
+#	define Z_HAS_TRAIT_ENABLE_IF  FALSE
+#	define Z_HAS_TRAIT_DISABLE_IF FALSE
 #endif
 
 #endif // __Z_traits_filtering_HPP__
