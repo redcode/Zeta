@@ -262,6 +262,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 	}
 
+#	define Z_HAS_TRAIT_TYPE_LIST TRUE
+#else
+#	define Z_HAS_TRAIT_TYPE_LIST FALSE
 #endif
 
 #endif // __Z_traits_TypeList_HPP__
