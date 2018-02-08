@@ -93,6 +93,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	};}
 
 
+#	define Z_HAS_CLASS_TUPLE TRUE
+#else
+#	define Z_HAS_CLASS_TUPLE FALSE
 #endif
 
 #endif // __Z_classes_base_Tuple_HPP__
