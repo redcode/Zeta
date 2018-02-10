@@ -12,18 +12,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/mathematics.h>
 
 
-namespace Zeta {namespace Mixins {namespace Box {
+namespace Zeta {namespace Partials {namespace Box {
 
 #	define Z_THIS ((Box *)this)
 
-	template <class Box, class T, UInt T_number_set> struct Partial;
+	template <class Box, class T, UInt T_number_set> struct Part;
 
 
 	// MARK: - Partial implementation for integer types
 
 
 	template <class Box, class T>
-	struct Partial<Box, T, Z_NUMBER_SET_Z> {
+	struct Part<Box, T, Z_NUMBER_SET_Z> {
 
 
 	};
@@ -33,7 +33,7 @@ namespace Zeta {namespace Mixins {namespace Box {
 
 
 	template <class Box, class T>
-	struct Partial<Box, T, Z_NUMBER_SET_R> {
+	struct Part<Box, T, Z_NUMBER_SET_R> {
 
 		Z_CT_MEMBER(CPP11) Zeta::Value3D<T> absolute_point_to_unit(const Zeta::Value3D<T> &point) const
 			{return (point - Z_THIS->point) / Z_THIS->size;}
@@ -61,7 +61,7 @@ namespace Zeta {namespace Mixins {namespace Box {
 }}}
 
 
-namespace Zeta {template <class T> struct Box : Mixins::Box::Partial<Box<T>, T, Type<T>::number_set> {
+namespace Zeta {template <class T> struct Box : Partials::Box::Part<Box<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedSigned(ZBox, T) Base;
 

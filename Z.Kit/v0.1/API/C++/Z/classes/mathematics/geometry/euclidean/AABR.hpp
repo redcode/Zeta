@@ -11,18 +11,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/classes/mathematics/geometry/euclidean/Line2D.hpp>
 
 
-namespace Zeta {namespace Mixins {namespace AABR {
+namespace Zeta {namespace Partials {namespace AABR {
 
 #	define Z_THIS ((AABR *)this)
 
-	template <class AABR, class T, UInt T_number_set> struct Partial;
+	template <class AABR, class T, UInt T_number_set> struct Part;
 
 
 	// MARK: - Partial implementation for integer types
 
 
 	template <class AABR, class T>
-	struct Partial<AABR, T, Z_NUMBER_SET_Z> {
+	struct Part<AABR, T, Z_NUMBER_SET_Z> {
 	};
 
 
@@ -30,7 +30,7 @@ namespace Zeta {namespace Mixins {namespace AABR {
 
 
 	template <class AABR, class T>
-	struct Partial<AABR, T, Z_NUMBER_SET_R> {
+	struct Part<AABR, T, Z_NUMBER_SET_R> {
 
 		Z_CT_MEMBER(CPP11) Zeta::Value2D<T> absolute_point_to_unit(const Zeta::Value2D<T> &point)
 			{return (point - Z_THIS->a) / (Z_THIS->b - Z_THIS->a);}
@@ -57,7 +57,7 @@ namespace Zeta {namespace Mixins {namespace AABR {
 }}}
 
 
-namespace Zeta {template <class T> struct AABR : Line2D<T>, Mixins::Rectangle::Partial<AABR<T>, T, Type<T>::number_set> {
+namespace Zeta {template <class T> struct AABR : Line2D<T>, Partials::Rectangle::Part<AABR<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedSigned(ZAABR, T) Base;
 

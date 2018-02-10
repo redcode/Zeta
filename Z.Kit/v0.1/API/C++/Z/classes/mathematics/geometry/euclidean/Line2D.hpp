@@ -12,25 +12,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/mathematics.h>
 
 
-namespace Zeta {namespace Mixins {namespace Line2D {
+namespace Zeta {namespace Partials {namespace Line2D {
 
 #	define Z_THIS ((Line2D *)this)
 
-	template <class Line2D, class T, UInt T_number_set> struct Partial;
+	template <class Line2D, class T, UInt T_number_set> struct Part;
 
 
 	// MARK: - Partial implementation for integer types
 
 
 	template <class Line2D, class T>
-	struct Partial<Line2D, T, Z_NUMBER_SET_Z> {};
+	struct Part<Line2D, T, Z_NUMBER_SET_Z> {};
 
 
 	// MARK: - Partial implementation for real types
 
 
 	template <class Line2D, class T>
-	struct Partial<Line2D, T, Z_NUMBER_SET_R> {
+	struct Part<Line2D, T, Z_NUMBER_SET_R> {
 
 		Z_CT_MEMBER(CPP14) Boolean segment_intersects(Line2D line_segment) const
 			{
@@ -55,7 +55,7 @@ namespace Zeta {namespace Mixins {namespace Line2D {
 }}}
 
 
-namespace Zeta {template <class T> struct Line2D : Mixins::Line2D::Partial<Line2D<T>, T, Type<T>::number_set> {
+namespace Zeta {template <class T> struct Line2D : Partials::Line2D::Part<Line2D<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedSigned(Z2DLine, T) Base;
 

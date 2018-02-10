@@ -12,18 +12,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/mathematics.h>
 
 
-namespace Zeta {namespace Mixins {namespace Rectangle {
+namespace Zeta {namespace Partials {namespace Rectangle {
 
 #	define Z_THIS ((Rectangle *)this)
 
-	template <class Rectangle, class T, UInt T_number_set> struct Partial;
+	template <class Rectangle, class T, UInt T_number_set> struct Part;
 
 
 	// MARK: - Partial implementation for integer types
 
 
 	template <class Rectangle, class T>
-	struct Partial<Rectangle, T, Z_NUMBER_SET_Z> {
+	struct Part<Rectangle, T, Z_NUMBER_SET_Z> {
 
 		Z_CT_MEMBER(CPP11) Rectangle bottom_right_quarter() const
 			{
@@ -70,7 +70,7 @@ namespace Zeta {namespace Mixins {namespace Rectangle {
 
 
 	template <class Rectangle, class T>
-	struct Partial<Rectangle, T, Z_NUMBER_SET_R> {
+	struct Part<Rectangle, T, Z_NUMBER_SET_R> {
 
 		Z_CT_MEMBER(CPP11) Zeta::Value2D<T> absolute_point_to_unit(const Zeta::Value2D<T> &point) const
 			{return (point - Z_THIS->point) / Z_THIS->size;}
@@ -134,7 +134,7 @@ namespace Zeta {namespace Mixins {namespace Rectangle {
 }}}
 
 
-namespace Zeta {template <class T> struct Rectangle : Mixins::Rectangle::Partial<Rectangle<T>, T, Type<T>::number_set> {
+namespace Zeta {template <class T> struct Rectangle : Partials::Rectangle::Part<Rectangle<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedSigned(ZRectangle, T) Base;
 

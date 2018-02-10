@@ -12,25 +12,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/mathematics.h>
 
 
-namespace Zeta {namespace Mixins {namespace Line3D {
+namespace Zeta {namespace Partials {namespace Line3D {
 
 #	define Z_THIS ((Line3D *)this)
 
-	template <class Line3D, class T, UInt T_number_set> struct Partial;
+	template <class Line3D, class T, UInt T_number_set> struct Part;
 
 
 	// MARK: - Partial implementation for integer types
 
 
 	template <class Line3D, class T>
-	struct Partial<Line3D, T, Z_NUMBER_SET_Z> {};
+	struct Part<Line3D, T, Z_NUMBER_SET_Z> {};
 
 
 	// MARK: - Partial implementation for real types
 
 
 	template <class Line3D, class T>
-	struct Partial<Line3D, T, Z_NUMBER_SET_R> {
+	struct Part<Line3D, T, Z_NUMBER_SET_R> {
 
 		Z_CT_MEMBER(CPP11) Zeta::Value3D<T> segment_lerp(T alpha) const
 			{return Z_THIS->a.lerp(Z_THIS->b, alpha);}
@@ -42,7 +42,7 @@ namespace Zeta {namespace Mixins {namespace Line3D {
 }}}
 
 
-namespace Zeta {template <class T> struct Line3D : Mixins::Line3D::Partial<Line3D<T>, T, Type<T>::number_set> {
+namespace Zeta {template <class T> struct Line3D : Partials::Line3D::Part<Line3D<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedSigned(Z3DLine, T) Base;
 

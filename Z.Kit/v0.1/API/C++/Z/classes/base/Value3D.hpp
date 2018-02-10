@@ -13,11 +13,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 
-namespace Zeta {namespace Mixins {namespace Value3D {
+namespace Zeta {namespace Partials {namespace Value3D {
 
 #	define Z_THIS ((Value3D *)this)
 
-	template <class Value3D, class T, UInt T_number_set> struct Partial;
+	template <class Value3D, class T, UInt T_number_set> struct Part;
 
 
 	// MARK: - Partial implementation for signed types
@@ -51,14 +51,14 @@ namespace Zeta {namespace Mixins {namespace Value3D {
 
 
 	template <class Value3D, class T>
-	struct Partial<Value3D, T, Z_NUMBER_SET_N> {};
+	struct Part<Value3D, T, Z_NUMBER_SET_N> {};
 
 
 	// MARK: - Partial implementation for integer types
 
 
 	template <class Value3D, class T>
-	struct Partial<Value3D, T, Z_NUMBER_SET_Z> : Signed<Value3D, T> {
+	struct Part<Value3D, T, Z_NUMBER_SET_Z> : Signed<Value3D, T> {
 
 		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value3D &other) const
 			{return !Zeta::absolute<T>(dot_product(other));}
@@ -69,7 +69,7 @@ namespace Zeta {namespace Mixins {namespace Value3D {
 
 
 	template <class Value3D, class T>
-	struct Partial<Value3D, T, Z_NUMBER_SET_R> : Signed<Value3D, T> {
+	struct Part<Value3D, T, Z_NUMBER_SET_R> : Signed<Value3D, T> {
 
 		Z_CT_MEMBER(CPP11) Value3D clamp_01() const
 			{
@@ -186,7 +186,7 @@ namespace Zeta {namespace Mixins {namespace Value3D {
 // MARK: - Common implementation
 
 
-namespace Zeta {template <class T> struct Value3D : Mixins::Value3D::Partial<Value3D<T>, T, Type<T>::number_set> {
+namespace Zeta {template <class T> struct Value3D : Partials::Value3D::Part<Value3D<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedNumber(Z3D, T) Base;
 

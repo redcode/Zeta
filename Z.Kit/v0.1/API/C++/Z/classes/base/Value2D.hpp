@@ -26,11 +26,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {template <class T> struct Value3D;}
 
 
-namespace Zeta {namespace Mixins {namespace Value2D {
+namespace Zeta {namespace Partials {namespace Value2D {
 
 #	define Z_THIS ((Value2D *)this)
 
-	template <class Value2D, class T, UInt T_number_set> struct Partial;
+	template <class Value2D, class T, UInt T_number_set> struct Part;
 
 
 	// MARK: - Partial implementation for signed types
@@ -59,14 +59,14 @@ namespace Zeta {namespace Mixins {namespace Value2D {
 
 
 	template <class Value2D, class T>
-	struct Partial<Value2D, T, Z_NUMBER_SET_N> {};
+	struct Part<Value2D, T, Z_NUMBER_SET_N> {};
 
 
 	// MARK: - Partial implementation for integer types
 
 
 	template <class Value2D, class T>
-	struct Partial<Value2D, T, Z_NUMBER_SET_Z> : Signed<Value2D, T> {
+	struct Part<Value2D, T, Z_NUMBER_SET_Z> : Signed<Value2D, T> {
 
 		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value2D &other) const
 			{return !Zeta::absolute<T>(Z_THIS->dot_product(other));}
@@ -78,7 +78,7 @@ namespace Zeta {namespace Mixins {namespace Value2D {
 
 
 	template <class Value2D, class T>
-	struct Partial<Value2D, T, Z_NUMBER_SET_R> : Signed<Value2D, T> {
+	struct Part<Value2D, T, Z_NUMBER_SET_R> : Signed<Value2D, T> {
 
 		Z_CT_MEMBER(CPP11) Value2D clamp_01() const
 			{return Value2D(Zeta::clamp_01<T>(Z_THIS->x), Zeta::clamp_01<T>(Z_THIS->y));}
@@ -155,7 +155,7 @@ namespace Zeta {namespace Mixins {namespace Value2D {
 // MARK: - Common implementation
 
 
-namespace Zeta {template <class T> struct Value2D : Mixins::Value2D::Partial<Value2D<T>, T, Type<T>::number_set> {
+namespace Zeta {template <class T> struct Value2D : Partials::Value2D::Part<Value2D<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedNumber(Z2D, T) Base;
 
