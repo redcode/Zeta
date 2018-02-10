@@ -51,7 +51,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_nat			     = true,
 			is_natural		     = false,
 			is_number		     = false,
-			is_null_pointer		     = false,
 			is_pointer		     = false,
 			is_qualified		     = false,
 			is_real			     = false,
@@ -147,6 +146,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
 			enum {is_literal = false};
+#		endif
+
+#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+			enum {is_null_pointer = false};
 #		endif
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
@@ -2258,7 +2261,6 @@ namespace Zeta {
 				is_nat			     = Type::is_nat,
 				is_natural		     = Type::is_natural,
 				is_number		     = Type::is_number,
-				is_null_pointer		     = Type::is_null_pointer,
 				is_pointer		     = Type::is_pointer,
 				is_qualified		     = Type::is_qualified,
 				is_real			     = Type::is_real,
@@ -2354,6 +2356,10 @@ namespace Zeta {
 
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
 				enum {is_literal = Type::is_literal};
+#			endif
+
+#			if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+				enum {is_null_pointer = Type::is_null_pointer};
 #			endif
 
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
