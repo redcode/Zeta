@@ -22,25 +22,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 
 		template <class TN, class... T>
-		class Element<TypeList<TN, T...> > : public Super<T...>::type {
+		struct Element<TypeList<TN, T...> > : Super<T...>::type {
+			typedef TN Value;
 
-			protected:
-			TN _value;
-
-			public:
-			typedef TN type;
+			Value value;
 
 			Z_INLINE_MEMBER Element() {}
 
 			Z_CT_MEMBER(CPP11) Element(
 				typename Zeta::Type<T >::to_forwardable... previous,
 				typename Zeta::Type<TN>::to_forwardable value
-			) : Super<T...>::type(previous...), _value(value) {}
+			) : Super<T...>::type(previous...), value(value) {}
 		};
 
 		template <>
-		class Element<TypeList<> > {
-			public:
+		struct Element<TypeList<> > {
 			Z_CT_MEMBER(CPP11) Element() {}
 		};
 	}}}
@@ -62,7 +58,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				typename TypeListRemoveTail<TypeList<T...>, tail_size>::type, 1
 			>::type> Element;
 
-			typedef typename Element::type type;
+			typedef typename Element::Value Value;
 		};
 
 
@@ -75,19 +71,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 		template <UInt I>
-		Z_INLINE_MEMBER typename At<I>::type &at()
-			{return At<I>::Element::_value;}
+		Z_INLINE_MEMBER typename At<I>::Value &at()
+			{return At<I>::Element::value;}
 
 
 		template <UInt I>
-		Z_CT_MEMBER(CPP11) typename Type<typename At<I>::type>::to_forwardable get() const
-			{return At<I>::Element::_value;}
+		Z_CT_MEMBER(CPP11) typename Type<typename At<I>::Value>::to_forwardable get() const
+			{return At<I>::Element::value;}
 
 
 		template <UInt I>
-		Z_INLINE_MEMBER Tuple &set(typename Type<typename At<I>::type>::to_forwardable value)
+		Z_INLINE_MEMBER Tuple &set(typename Type<typename At<I>::Value>::to_forwardable value)
 			{
-			At<I>::Element::_value = value;
+			At<I>::Element::value = value;
 			return *this;
 			}
 	};}
