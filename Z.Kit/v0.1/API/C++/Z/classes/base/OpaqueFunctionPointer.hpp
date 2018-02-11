@@ -15,11 +15,11 @@ namespace Zeta {struct OpaqueFunctionPointer {
 	void (* function)();
 
 	template <class T>
-	Z_CT_MEMBER(CPP11) OpaqueFunctionPointer(T function)
+	Z_INLINE_MEMBER OpaqueFunctionPointer(T function)
 	: function((void (*)())function) {}
 
 	template <class T>
-	Z_CT_MEMBER(CPP11) operator T() const {return (T)function;}
+	Z_INLINE_MEMBER operator T() const {return (T)function;}
 };}
 
 
