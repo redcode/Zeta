@@ -15,15 +15,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {
 
-		template <class F> class ObjectMemberFunction;
+		template <class F> struct ObjectMemberFunction;
 
-		template <class R, class... P>
-		class ObjectMemberFunction<R(P...)> : public MemberFunction<R(P...)> {
-
-			private:
-			typedef MemberFunction<R(P...)> Super;
-
-			public:
+		template <class R, class... P> struct ObjectMemberFunction<R(P...)> : MemberFunction<R(P...)> {
 			NaT *object;
 
 			Z_INLINE_MEMBER ObjectMemberFunction() {}
@@ -31,7 +25,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			if Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
 				Z_CT_MEMBER(CPP11) ObjectMemberFunction(NullPointer)
-				: Super(NULL), object(NULL) {};
+				: MemberFunction<R(P...)>(NULL), object(NULL) {};
 #			endif
 
 
@@ -41,11 +35,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer	 &&
 				TypeAreEqual<
 					typename Type<M>::flow::to_function::end::to_unqualified,
-					typename Super::Function
+					R(P...)
 				>::value,
 			M>::type>
 			Z_INLINE_MEMBER ObjectMemberFunction(O object, M function)
-			: Super(function), object((NaT *)object) {}
+			: MemberFunction<R(P...)>(function), object((NaT *)object) {}
 
 
 			template <class O, class M, class E = typename EnableIf<
@@ -53,11 +47,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<
 					typename Type<M>::flow::to_function::end::to_unqualified,
-					typename Super::Function
+					R(P...)
 				>::value,
 			M>::type>
 			Z_INLINE_MEMBER ObjectMemberFunction(const O &object, M function)
-			: Super(function), object((NaT *)&object) {}
+			: MemberFunction<R(P...)>(function), object((NaT *)&object) {}
 
 
 			template <class O, class E = typename EnableIf<
