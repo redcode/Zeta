@@ -75,7 +75,6 @@ namespace Zeta {template <class T> struct AABB : Line3D<T>, Partials::Rectangle:
 	Z_CT_MEMBER(CPP11) AABR(T b_xy)					  : Line2D<T>(b_xy)		  {}
 
 	Z_INLINE_MEMBER AABR(const Base &aabr) {(*(Base *)this) = aabr;}
-
 };}
 
 

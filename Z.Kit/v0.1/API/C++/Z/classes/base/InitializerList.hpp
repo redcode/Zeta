@@ -12,6 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 namespace Zeta {template <class T> class InitializerList {
+
 	private:
 	const T* _begin;
 	USize	 _size;
