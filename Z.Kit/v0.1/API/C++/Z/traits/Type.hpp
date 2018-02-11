@@ -353,7 +353,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef NaT class_type;
 		typedef NaT element_type;
 		typedef NaT pointee_type;
-		typedef NaT referenced_type;
+		typedef NaT referencee_type;
 		typedef NaT return_type;
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_UNDERLYING_TYPE)
@@ -1434,7 +1434,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_literal = true};
 #		endif
 
-		typedef T referenced_type;
+		typedef T referencee_type;
 	};
 
 	template <class T> struct LValueReference : Reference<T> {
@@ -1922,13 +1922,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef NaT add_volatile;
 		typedef NaT add_const_volatile;
 
-		typedef typename C::referenced_type* to_pointer;
-		typedef typename C::referenced_type& to_lvalue_reference;
+		typedef typename C::referencee_type* to_pointer;
+		typedef typename C::referencee_type& to_lvalue_reference;
 		typedef typename C::type	     remove_pointer;
-		typedef typename C::referenced_type  remove_reference;
+		typedef typename C::referencee_type  remove_reference;
 
 #		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
-			typedef typename C::referenced_type&& to_rvalue_reference;
+			typedef typename C::referencee_type&& to_rvalue_reference;
 #		endif
 	};
 }}}}
@@ -2604,7 +2604,7 @@ namespace Zeta {
 			typedef typename Type<typename Type::class_type	    >::flow class_type;
 			typedef typename Type<typename Type::element_type   >::flow element_type;
 			typedef typename Type<typename Type::pointee_type   >::flow pointee_type;
-			typedef typename Type<typename Type::referenced_type>::flow referenced_type;
+			typedef typename Type<typename Type::referencee_type>::flow referencee_type;
 			typedef typename Type<typename Type::return_type    >::flow return_type;
 
 #			if Z_HAS(TYPE_UNDERLYING_TYPE)
@@ -2684,7 +2684,7 @@ namespace Zeta {
 	template <class T> struct TypeClassType	     {typedef typename Type<T>::class_type	type;};
 	template <class T> struct TypeElementType    {typedef typename Type<T>::element_type	type;};
 	template <class T> struct TypePointeeType    {typedef typename Type<T>::pointee_type	type;};
-	template <class T> struct TypeReferencedType {typedef typename Type<T>::referenced_type	type;};
+	template <class T> struct TypeReferencedType {typedef typename Type<T>::referencee_type	type;};
 	template <class T> struct TypeReturnType     {typedef typename Type<T>::return_type	type;};
 	template <class T> struct TypeUnderlyingType {typedef typename Type<T>::underlying_type	type;};
 
@@ -2742,7 +2742,7 @@ namespace Zeta {
 		template <class T> using type_class_type      = typename Type<T>::class_type;
 		template <class T> using type_element_type    = typename Type<T>::element_type;
 		template <class T> using type_pointee_type    = typename Type<T>::pointee_type;
-		template <class T> using type_referenced_type = typename Type<T>::referenced_type;
+		template <class T> using type_referencee_type = typename Type<T>::referencee_type;
 		template <class T> using type_return_type     = typename Type<T>::return_type;
 		template <class T> using type_underlying_type = typename Type<T>::underlying_type;
 
