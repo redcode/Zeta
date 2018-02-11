@@ -22,10 +22,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <class F> struct MemberFunction;
 
 		template <class R, class... P> struct MemberFunction<R(P...)> {
-			typedef R Function(P...);
-			typedef R (NaT::* MemberFunctionPointer)(P...);
-
-			MemberFunctionPointer function;
+			R (NaT::* function)(P...);
 
 			Z_INLINE_MEMBER MemberFunction() {}
 
@@ -40,11 +37,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<
 					typename Type<M>::flow::to_function::end::to_unqualified,
-					Function
+					R(P...)
 				>::value,
 			M>::type>
 			Z_INLINE_MEMBER MemberFunction(M function)
-			: function((MemberFunctionPointer)function) {}
+			: function((R (NaT::*)(P...))function) {}
 
 
 			Z_CT_MEMBER(CPP11) operator Boolean() const {return function != NULL;}
@@ -54,10 +51,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<
 					typename Type<M>::flow::to_function::end::to_unqualified,
-					Function
+					R(P...)
 				>::value,
 			M>::type>
-			Z_CT_MEMBER(CPP11) operator M() const {return (M)function;}
+			Z_INLINE_MEMBER operator M() const {return (M)function;}
 
 
 			template <class O, bool void_return = Type<R>::is_void>

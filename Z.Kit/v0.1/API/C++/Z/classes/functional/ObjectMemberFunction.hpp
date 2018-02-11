@@ -69,24 +69,71 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			: MemberFunction<R(P...)>(function), object((NaT *)&object) {}
 
 
-			template <class O, class E = typename EnableIf<
-				Type<O>::is_pointer &&
-				Type<O>::flow::pointee_type::is_compound,
-			O>::type>
-			Z_INLINE_MEMBER operator O() const {return (O)object;}
+			template <class O, class E = typename EnableIf<Type<O>::is_compound, O>::type>
+			Z_INLINE_MEMBER operator O *() const {return (O *)object;}
 
 
 			template <class O, class E = typename EnableIf<Type<O>::is_compound, O>::type>
-			Z_INLINE_MEMBER O &operator *() const {return *(O *)object;}
+			Z_INLINE_MEMBER ObjectMemberFunction &operator =(O *object)
+				{
+				this->object = (NaT *)object;
+				return *this;
+				}
+
+
+			template <class O, class E = typename EnableIf<Type<O>::is_compound, O>::type>
+			Z_INLINE_MEMBER ObjectMemberFunction &operator =(const O &object)
+				{
+				this->object = (NaT *)&object;
+				return *this;
+				}
+
+
+			template <class M, class E = typename EnableIf<
+				Type<M>::is_member_function_pointer &&
+				TypeAreEqual<
+					typename Type<M>::flow::to_function::end::to_unqualified,
+					R(P...)
+				>::value,
+			M>::type>
+			Z_INLINE_MEMBER ObjectMemberFunction &operator =(M function)
+				{
+				this->function = (R (NaT::*)(P...))function;
+				return *this;
+				}
 
 
 			template <class O, bool void_return = Type<R>::is_void>
+			Z_INLINE_MEMBER typename EnableIf<void_return, void>::type
+			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
+				{(((NaT *)object)->*this->function)(arguments...);}
+
+
+			template <class O, bool void_return = Type<R>::is_void>
+			Z_INLINE_MEMBER typename EnableIf<void_return, void>::type
+			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
+				{(((NaT *)&object)->*this->function)(arguments...);}
+
+
+			template <class O, bool void_return = Type<R>::is_void>
+			Z_INLINE_MEMBER typename EnableIf<!void_return, R>::type
+			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
+				{return (((NaT *)object)->*this->function)(arguments...);}
+
+
+			template <class O, bool void_return = Type<R>::is_void>
+			Z_INLINE_MEMBER typename EnableIf<!void_return, R>::type
+			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
+				{return (((NaT *)&object)->*this->function)(arguments...);}
+
+
+			template <bool void_return = Type<R>::is_void>
 			Z_INLINE_MEMBER typename EnableIf<void_return, void>::type
 			operator ()(typename Type<P>::to_forwardable... arguments) const
 				{(object->*this->function)(arguments...);}
 
 
-			template <class O, bool void_return = Type<R>::is_void>
+			template <bool void_return = Type<R>::is_void>
 			Z_INLINE_MEMBER typename EnableIf<!void_return, R>::type
 			operator ()(typename Type<P>::to_forwardable... arguments) const
 				{return (object->*this->function)(arguments...);}
