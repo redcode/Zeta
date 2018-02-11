@@ -23,6 +23,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE_MEMBER ObjectMemberFunction() {}
 
 
+#			if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
+				using MemberFunction<R(P...)>::MemberFunction;
+#			else
+				template <class M, class E = typename EnableIf<
+					Type<M>::is_member_function_pointer &&
+					TypeAreEqual<
+						typename Type<M>::flow::to_function::end::to_unqualified,
+						R(P...)
+					>::value,
+				M>::type>
+				Z_INLINE_MEMBER ObjectMemberFunction(M function)
+				: MemberFunction<R(P...)>(function) {}
+#			endif
+
+
 #			if Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
 				Z_CT_MEMBER(CPP11) ObjectMemberFunction(NullPointer)
 				: MemberFunction<R(P...)>(NULL), object(NULL) {};
