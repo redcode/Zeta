@@ -21,7 +21,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class F> struct MemberFunction;
 
-
 		template <class R, class... P> struct MemberFunction<R(P...)> {
 			typedef R Function(P...);
 			typedef R (NaT::* MemberFunctionPointer)(P...);
