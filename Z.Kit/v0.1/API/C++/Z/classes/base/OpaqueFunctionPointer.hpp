@@ -12,12 +12,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 namespace Zeta {struct OpaqueFunctionPointer {
-	void (* pointer)();
+	void (* function)();
 
-	template <class T> Z_CT_MEMBER(CPP11) OpaqueFunctionPointer(T pointer)
-	: pointer((void (*)())pointer) {}
+	template <class T>
+	Z_CT_MEMBER(CPP11) OpaqueFunctionPointer(T function)
+	: function((void (*)())function) {}
 
-	template <class T> Z_CT_MEMBER(CPP11) operator T() const {return (T)pointer;}
+	template <class T>
+	Z_CT_MEMBER(CPP11) operator T() const {return (T)function;}
 };}
 
 
