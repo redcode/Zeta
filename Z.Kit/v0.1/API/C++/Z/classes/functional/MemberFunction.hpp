@@ -38,6 +38,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class M, class E = typename EnableIf<
+				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<
 					typename Type<M>::flow::to_function::end::to_unqualified,
 					Function
