@@ -41,7 +41,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_function_lvalue_reference = false,
 			is_function_rvalue_reference = false,
 			is_fundamental		     = false,
-			is_lvalue		     = false,
 			is_lvalue_reference	     = false,
 			is_member_function_pointer   = false,
 			is_member_pointer	     = false,
@@ -52,7 +51,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_qualified		     = false,
 			is_real			     = false,
 			is_reference		     = false,
-			is_rvalue		     = false,
 			is_rvalue_reference	     = false,
 			is_scalar		     = false,
 			is_schar		     = false,
@@ -381,6 +379,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				is_const_rvalue		 = false,
 				is_const_volatile_lvalue = false,
 				is_const_volatile_rvalue = false,
+				is_lvalue		 = false,
+				is_rvalue		 = false,
 				is_volatile_lvalue	 = false,
 				is_volatile_rvalue	 = false
 			};
@@ -410,6 +410,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_HAS_TYPE_IS_CONST_RVALUE	     TRUE
 #			define Z_HAS_TYPE_IS_CONST_VOLATILE_LVALUE   TRUE
 #			define Z_HAS_TYPE_IS_CONST_VOLATILE_RVALUE   TRUE
+#			define Z_HAS_TYPE_IS_LVALUE		     TRUE
+#			define Z_HAS_TYPE_IS_RVALUE		     TRUE
 #			define Z_HAS_TYPE_IS_VOLATILE_LVALUE	     TRUE
 #			define Z_HAS_TYPE_IS_VOLATILE_RVALUE	     TRUE
 #			define Z_HAS_TYPE_TO_CONST_LVALUE	     TRUE
@@ -437,6 +439,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_HAS_TYPE_IS_CONST_RVALUE	     FALSE
 #			define Z_HAS_TYPE_IS_CONST_VOLATILE_LVALUE   FALSE
 #			define Z_HAS_TYPE_IS_CONST_VOLATILE_RVALUE   FALSE
+#			define Z_HAS_TYPE_IS_LVALUE		     FALSE
+#			define Z_HAS_TYPE_IS_RVALUE		     FALSE
 #			define Z_HAS_TYPE_IS_VOLATILE_LVALUE	     FALSE
 #			define Z_HAS_TYPE_IS_VOLATILE_RVALUE	     FALSE
 #			define Z_HAS_TYPE_TO_CONST_LVALUE	     FALSE
@@ -2476,7 +2480,6 @@ namespace Zeta {
 				is_function_lvalue_reference = Type::is_function_lvalue_reference,
 				is_function_rvalue_reference = Type::is_function_rvalue_reference,
 				is_fundamental		     = Type::is_fundamental,
-				is_lvalue		     = Type::is_lvalue,
 				is_lvalue_reference	     = Type::is_lvalue_reference,
 				is_member_function_pointer   = Type::is_member_function_pointer,
 				is_member_pointer	     = Type::is_member_pointer,
@@ -2487,7 +2490,6 @@ namespace Zeta {
 				is_qualified		     = Type::is_qualified,
 				is_real			     = Type::is_real,
 				is_reference		     = Type::is_reference,
-				is_rvalue		     = Type::is_rvalue,
 				is_rvalue_reference	     = Type::is_rvalue_reference,
 				is_scalar		     = Type::is_scalar,
 				is_schar		     = Type::is_schar,
@@ -2714,6 +2716,8 @@ namespace Zeta {
 					is_const_rvalue		 = Type::is_const_rvalue,
 					is_const_volatile_lvalue = Type::is_const_volatile_lvalue,
 					is_const_volatile_rvalue = Type::is_const_volatile_rvalue,
+					is_lvalue		 = Type::is_lvalue,
+					is_rvalue		 = Type::is_rvalue,
 					is_volatile_lvalue	 = Type::is_volatile_lvalue,
 					is_volatile_rvalue	 = Type::is_volatile_rvalue
 				};
