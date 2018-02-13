@@ -55,9 +55,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	}
 
 
-#	define Z_HAS_CLASS_OBJECT_SELECTOR TRUE
+#	define Z_HAS_CLASS_ObjectSelector TRUE
 #else
-#	define Z_HAS_CLASS_OBJECT_SELECTOR FALSE
+#	define Z_HAS_CLASS_ObjectSelector FALSE
 #endif
 
 #endif // __Z_classes_functional_Selector_HPP__

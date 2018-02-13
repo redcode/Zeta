@@ -83,9 +83,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	}
 
 
-#	define Z_HAS_CLASS_MEMBER_FUNCTION TRUE
+#	define Z_HAS_CLASS_MemberFunction TRUE
 #else
-#	define Z_HAS_CLASS_MEMBER_FUNCTION FALSE
+#	define Z_HAS_CLASS_MemberFunction FALSE
 #endif
 
 #endif // __Z_classes_functional_MemberFunction_HPP__

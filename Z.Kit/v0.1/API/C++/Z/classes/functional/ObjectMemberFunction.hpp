@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/classes/functional/MemberFunction.hpp>
 
-#if Z_HAS_CLASS_MEMBER_FUNCTION
+#if Z_HAS_CLASS_MemberFunction
 
 
 	namespace Zeta {
@@ -141,9 +141,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	}
 
 
-#	define Z_HAS_CLASS_OBJECT_MEMBER_FUNCTION TRUE
+#	define Z_HAS_CLASS_ObjectMemberFunction TRUE
 #else
-#	define Z_HAS_CLASS_OBJECT_MEMBER_FUNCTION FALSE
+#	define Z_HAS_CLASS_ObjectMemberFunction FALSE
 #endif
 
 #endif // __Z_classes_functional_ObjectMemberFunction_HPP__

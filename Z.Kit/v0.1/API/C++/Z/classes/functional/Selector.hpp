@@ -96,9 +96,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	}
 
 
-#	define Z_HAS_CLASS_SELECTOR TRUE
+#	define Z_HAS_CLASS_Selector TRUE
 #else
-#	define Z_HAS_CLASS_SELECTOR FALSE
+#	define z_has_class_Selector FALSE
 #endif
 
 #endif // __Z_classes_functional_Selector_HPP__
