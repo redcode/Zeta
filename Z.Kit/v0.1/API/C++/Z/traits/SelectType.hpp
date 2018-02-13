@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.hpp>
 #include <Z/traits/base.hpp>
 
-#if !Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 	namespace Zeta {
 
