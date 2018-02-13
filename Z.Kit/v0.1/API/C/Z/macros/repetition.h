@@ -112,8 +112,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_FOR_31_APPEND_INDEX(p, _) p##0 _ p##1 _ p##2 _ p##3 _ p##4 _ p##5 _ p##6 _ p##7 _ p##8 _ p##9 _ p##10 _ p##11 _ p##12 _ p##13 _ p##14 _ p##15 _ p##16 _ p##17 _ p##18 _ p##19 _ p##20 _ p##21 _ p##22 _ p##23 _ p##24 _ p##25 _ p##26 _ p##27 _ p##28 _ p##29 _ p##30
 #define Z_FOR_32_APPEND_INDEX(p, _) p##0 _ p##1 _ p##2 _ p##3 _ p##4 _ p##5 _ p##6 _ p##7 _ p##8 _ p##9 _ p##10 _ p##11 _ p##12 _ p##13 _ p##14 _ p##15 _ p##16 _ p##17 _ p##18 _ p##19 _ p##20 _ p##21 _ p##22 _ p##23 _ p##24 _ p##25 _ p##26 _ p##27 _ p##28 _ p##29 _ p##30 _ p##31
 
-#define Z_ENUMERATE_APPENDING_INDEX(times, to) Z_FOR_##times##_APPEND_INDEX(to, Z_COMMA)
-
 #define Z_FOR_0_INSERT_INDEX( p, s, _)
 #define Z_FOR_1_INSERT_INDEX( p, s, _) p##0##s
 #define Z_FOR_2_INSERT_INDEX( p, s, _) p##0##s _ p##1##s
@@ -147,7 +145,5 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_FOR_30_INSERT_INDEX(p, s, _) p##0##s _ p##1##s _ p##2##s _ p##3##s _ p##4##s _ p##5##s _ p##6##s _ p##7##s _ p##8##s _ p##9##s _ p##10##s _ p##11##s _ p##12##s _ p##13##s _ p##14##s _ p##15##s _ p##16##s _ p##17##s _ p##18##s _ p##19##s _ p##20##s _ p##21##s _ p##22##s _ p##23##s _ p##24##s _ p##25##s _ p##26##s _ p##27##s _ p##28##s _ p##29##s
 #define Z_FOR_31_INSERT_INDEX(p, s, _) p##0##s _ p##1##s _ p##2##s _ p##3##s _ p##4##s _ p##5##s _ p##6##s _ p##7##s _ p##8##s _ p##9##s _ p##10##s _ p##11##s _ p##12##s _ p##13##s _ p##14##s _ p##15##s _ p##16##s _ p##17##s _ p##18##s _ p##19##s _ p##20##s _ p##21##s _ p##22##s _ p##23##s _ p##24##s _ p##25##s _ p##26##s _ p##27##s _ p##28##s _ p##29##s _ p##30##s
 #define Z_FOR_32_INSERT_INDEX(p, s, _) p##0##s _ p##1##s _ p##2##s _ p##3##s _ p##4##s _ p##5##s _ p##6##s _ p##7##s _ p##8##s _ p##9##s _ p##10##s _ p##11##s _ p##12##s _ p##13##s _ p##14##s _ p##15##s _ p##16##s _ p##17##s _ p##18##s _ p##19##s _ p##20##s _ p##21##s _ p##22##s _ p##23##s _ p##24##s _ p##25##s _ p##26##s _ p##27##s _ p##28##s _ p##29##s _ p##30##s _ p##31##s
-
-#define Z_ENUMERATE_INSERTING_INDEX(times, left, right) Z_FOR_##times##_INSERT_INDEX(left, right, Z_COMMA)
 
 #endif /* __Z_macros_repetition_H__ */

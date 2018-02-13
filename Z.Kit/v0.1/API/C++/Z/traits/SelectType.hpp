@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/base.hpp>
 #include <Z/traits/base.hpp>
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+#if !Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 	namespace Zeta {
 
@@ -46,10 +46,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			class T28 = NaT, class T29 = NaT, class T30 = NaT, class T31 = NaT
 		> struct SelectType {};
 
-#		define Z_TEMPLATE_SPECIALIZATION(type_count, index)		       \
-		template <Z_ENUMERATE_APPENDING_INDEX(type_count, class T)>	       \
-		struct SelectType<index, Z_ENUMERATE_APPENDING_INDEX(type_count, T)> { \
-			typedef T##index type;					       \
+#		define Z_TEMPLATE_SPECIALIZATION(type_count, index)			  \
+		template <Z_FOR_##type_count##_APPEND_INDEX(class T, Z_COMMA)>		  \
+		struct SelectType<index, Z_FOR_##type_count##_APPEND_INDEX(T, Z_COMMA)> { \
+			typedef T##index type;						  \
 		};
 
 #		define Z_TEMPLATE_SPECIALIZATION_GROUP(type_count) \
