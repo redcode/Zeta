@@ -2423,32 +2423,62 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	else
 
-		template <class C, class R> struct Case<R()> : Mixins::UnqualifiedFunction<Abstract::FunctionWith0Parameters<R> > {};
+		template <class R> struct Case<R()> : Mixins::UnqualifiedFunction<Abstract::FunctionWith0Parameters<R> > {};
 
-		template <class R, class P> struct Case<R() const	  > : Mixins::ConstFunction	   <Case<R()> > {};
-		template <class R, class P> struct Case<R()	  volatile> : Mixins::VolatileFunction	   <Case<R()> > {};
-		template <class R, class P> struct Case<R() const volatile> : Mixins::ConstVolatileFunction<Case<R()> > {};
+		template <class R> struct Case<R() const	 > : Mixins::ConstFunction	  <Case<R()> > {};
+		template <class R> struct Case<R()	 volatile> : Mixins::VolatileFunction	  <Case<R()> > {};
+		template <class R> struct Case<R() const volatile> : Mixins::ConstVolatileFunction<Case<R()> > {};
 
-#		define Z_TEMPLATE_SPECIALIZATION(type_count)																							\
-																														\
-		template <class C, class R> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA))>																\
-		: Mixins::UnqualifiedFunction<Abstract::FunctionWith##parameter_count##Parameters<R, Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)> > {};											\
-																														\
-		template <class R, class P> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)) const	  > : Mixins::ConstFunction	   <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};		\
-		template <class R, class P> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA))	  volatile> : Mixins::VolatileFunction	   <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};		\
-		template <class R, class P> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)) const volatile> : Mixins::ConstVolatileFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};		\
-																														\
-		template <class C, class R> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA), ...)>															\
-		: Mixins::UnqualifiedFunction<Abstract::VariadicFunctionWith##parameter_count##Parameters<R, Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)> > {};										\
-																														\
-		template <class R, class P> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA), ...) const	       > : Mixins::ConstFunction	<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-		template <class R, class P> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA), ...)       volatile> : Mixins::VolatileFunction	<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-		template <class R, class P> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA), ...) const volatile> : Mixins::ConstVolatileFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};
+#		define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																																    \
+																																							    \
+		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> : Mixins::UnqualifiedFunction<Abstract::FunctionWith##parameter_count##Parameters<R, Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)> > {};		    \
+																																							    \
+		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     > : Mixins::ConstFunction	      <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					    \
+		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile> : Mixins::VolatileFunction     <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					    \
+		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile> : Mixins::ConstVolatileFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					    \
+																																							    \
+		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> : Mixins::UnqualifiedFunction<Abstract::VariadicFunctionWith##parameter_count##Parameters<R, Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)> > {}; \
+																																							    \
+		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	  > : Mixins::ConstFunction	   <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};				    \
+		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile> : Mixins::VolatileFunction	   <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};				    \
+		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> : Mixins::ConstVolatileFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};
 
 		Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #		undef Z_TEMPLATE_SPECIALIZATIONS
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+
+			template <class R> struct Case<R()		  & > : Mixins::LValueFunction		   <Case<R()> > {};
+			template <class R> struct Case<R()		  &&> : Mixins::RValueFunction		   <Case<R()> > {};
+			template <class R> struct Case<R() const	  & > : Mixins::ConstLValueFunction	   <Case<R()> > {};
+			template <class R> struct Case<R() const	  &&> : Mixins::ConstRValueFunction	   <Case<R()> > {};
+			template <class R> struct Case<R()	 volatile & > : Mixins::VolatileLValueFunction	   <Case<R()> > {};
+			template <class R> struct Case<R()	 volatile &&> : Mixins::VolatileRValueFunction	   <Case<R()> > {};
+			template <class R> struct Case<R() const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R()> > {};
+			template <class R> struct Case<R() const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R()> > {};
+
+#			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																													    \
+																																					    \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      & > : Mixins::LValueFunction	       <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      &&> : Mixins::RValueFunction	       <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      & > : Mixins::ConstLValueFunction	       <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      &&> : Mixins::ConstRValueFunction	       <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile & > : Mixins::VolatileLValueFunction     <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile &&> : Mixins::VolatileRValueFunction     <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
+																																					    \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   & > : Mixins::LValueFunction		    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   &&> : Mixins::RValueFunction		    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   & > : Mixins::ConstLValueFunction	    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   &&> : Mixins::ConstRValueFunction	    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile & > : Mixins::VolatileLValueFunction	    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &&> : Mixins::VolatileRValueFunction	    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};
+
+			Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
+#			undef Z_TEMPLATE_SPECIALIZATIONS
 
 #		endif
 

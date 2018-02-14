@@ -76,7 +76,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_FOR_29_CALL_WITH_TIME(f, _) f(1) _ f(2) _ f(3) _ f(4) _ f(5) _ f(6) _ f(7) _ f(8) _ f(9) _ f(10) _ f(11) _ f(12) _ f(13) _ f(14) _ f(15) _ f(16) _ f(17) _ f(18) _ f(19) _ f(20) _ f(21) _ f(22) _ f(23) _ f(24) _ f(25) _ f(26) _ f(27) _ f(28) _ f(29)
 #define Z_FOR_30_CALL_WITH_TIME(f, _) f(1) _ f(2) _ f(3) _ f(4) _ f(5) _ f(6) _ f(7) _ f(8) _ f(9) _ f(10) _ f(11) _ f(12) _ f(13) _ f(14) _ f(15) _ f(16) _ f(17) _ f(18) _ f(19) _ f(20) _ f(21) _ f(22) _ f(23) _ f(24) _ f(25) _ f(26) _ f(27) _ f(28) _ f(29) _ f(30)
 #define Z_FOR_31_CALL_WITH_TIME(f, _) f(1) _ f(2) _ f(3) _ f(4) _ f(5) _ f(6) _ f(7) _ f(8) _ f(9) _ f(10) _ f(11) _ f(12) _ f(13) _ f(14) _ f(15) _ f(16) _ f(17) _ f(18) _ f(19) _ f(20) _ f(21) _ f(22) _ f(23) _ f(24) _ f(25) _ f(26) _ f(27) _ f(28) _ f(29) _ f(30) _ f(31)
-#define Z_FOR_32_CALL_WITH_TIME(f, _) f(1) _ f(2) _ f(3) _ f(4) _ f(5) _ f(6) _ f(7) _ f(8) _ f(9) _ f(10) _ f(11) _ f(12) _ f(13) _ f(14) _ f(15) _ f(16) _ f(17) _ f(18) _ f(19) _ f(20) _ f(21) _ f(22) _ f(23) _ f(24) _ f(25) _ f(26) _ f(27) _ f(28) _ f(29) _ f(30) _ f(31) _ f(31)
+#define Z_FOR_32_CALL_WITH_TIME(f, _) f(1) _ f(2) _ f(3) _ f(4) _ f(5) _ f(6) _ f(7) _ f(8) _ f(9) _ f(10) _ f(11) _ f(12) _ f(13) _ f(14) _ f(15) _ f(16) _ f(17) _ f(18) _ f(19) _ f(20) _ f(21) _ f(22) _ f(23) _ f(24) _ f(25) _ f(26) _ f(27) _ f(28) _ f(29) _ f(30) _ f(31) _ f(32)
 
 #define Z_FOR_0_CALL_WITH_TOKEN_AND_INDEX( f, t, _)
 #define Z_FOR_1_CALL_WITH_TOKEN_AND_INDEX( f, t, _) f(t, 0)
