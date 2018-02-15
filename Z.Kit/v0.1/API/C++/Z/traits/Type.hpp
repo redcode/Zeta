@@ -500,6 +500,18 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 	};
 
+	struct Void : Valid {
+		enum {	is_fundamental = true,
+			is_void	       = true
+		};
+
+#		if Z_TRAIT_HAS(Type, is_literal)
+			enum {is_literal = true};
+#		endif
+
+		typedef void type;
+	};
+
 	struct Storable : Valid {
 		enum {is_storable = true};
 	};
@@ -543,18 +555,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_signed = true
 		};
 		enum {number_set = Z_NUMBER_SET_R};
-	};
-
-	struct Void : Valid {
-		enum {	is_fundamental = true,
-			is_void	       = true
-		};
-
-#		if Z_TRAIT_HAS(Type, is_literal)
-			enum {is_literal = true};
-#		endif
-
-		typedef void type;
 	};
 
 #	if Z_TRAIT_HAS(Type, is_uint8)
