@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/classes/functional/MemberFunction.hpp>
 
-#if Z_HAS_CLASS_MemberFunction
+#if Z_HAS_CLASS(MemberFunction)
 
 
 	namespace Zeta {

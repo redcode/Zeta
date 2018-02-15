@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/classes/functional/Selector.hpp>
 
-#if Z_HAS_CLASS_SELECTOR && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+#if Z_HAS_CLASS(Selector) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
 
 	namespace Zeta {
