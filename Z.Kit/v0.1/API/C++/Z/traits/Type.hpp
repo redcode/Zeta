@@ -2374,14 +2374,14 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
-			template <class C, class R> struct Case<R(C::*)()		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		& , C, R()		  & > > {};
-			template <class C, class R> struct Case<R(C::*)()		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		&&, C, R()		  &&> > {};
-			template <class C, class R> struct Case<R(C::*)() const		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const		& , C, R() const	  & > > {};
-			template <class C, class R> struct Case<R(C::*)() const		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const		&&, C, R() const	  &&> > {};
-			template <class C, class R> struct Case<R(C::*)()	volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)       volatile & , C, R()	 volatile & > > {};
-			template <class C, class R> struct Case<R(C::*)()	volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)       volatile &&, C, R()	 volatile &&> > {};
-			template <class C, class R> struct Case<R(C::*)() const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile & , C, R() const volatile & > > {};
-			template <class C, class R> struct Case<R(C::*)() const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile &&, C, R() const volatile &&> > {};
+			template <class C, class R> struct Case<R(C::*)()		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()		    & , C, R()		      & > > {};
+			template <class C, class R> struct Case<R(C::*)()		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()		    &&, C, R()		      &&> > {};
+			template <class C, class R> struct Case<R(C::*)() const		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const	    & , C, R() const	      & > > {};
+			template <class C, class R> struct Case<R(C::*)() const		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const	    &&, C, R() const	      &&> > {};
+			template <class C, class R> struct Case<R(C::*)()	volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()       volatile & , C, R()	     volatile & > > {};
+			template <class C, class R> struct Case<R(C::*)()	volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()       volatile &&, C, R()	     volatile &&> > {};
+			template <class C, class R> struct Case<R(C::*)() const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const volatile & , C, R() const volatile & > > {};
+			template <class C, class R> struct Case<R(C::*)() const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const volatile &&, C, R() const volatile &&> > {};
 
 #			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																																												       \
 																																																					       \
