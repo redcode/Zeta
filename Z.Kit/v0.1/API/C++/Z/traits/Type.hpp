@@ -2680,10 +2680,10 @@ namespace Zeta {
 		template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)	 volatile, C> {typedef R(C::*type)(P...)       volatile;};
 		template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const volatile, C> {typedef R(C::*type)(P...) const volatile;};
 
-		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)		      , C> {typedef R(C::*type)(P...)		    ;};
-		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const	      , C> {typedef R(C::*type)(P...) const	    ;};
-		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)	      volatile, C> {typedef R(C::*type)(P...)	    volatile;};
-		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const volatile, C> {typedef R(C::*type)(P...) const volatile;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)		      , C> {typedef R(C::*type)(P..., ...)		 ;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const	      , C> {typedef R(C::*type)(P..., ...) const	 ;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)	      volatile, C> {typedef R(C::*type)(P..., ...)	 volatile;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const volatile, C> {typedef R(C::*type)(P..., ...) const volatile;};
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
@@ -2709,7 +2709,59 @@ namespace Zeta {
 
 #	else
 
+		template <class C, class R> struct TypeToMemberPointer<R()		 , C> {typedef R(C::*type)()		   ;};
+		template <class C, class R> struct TypeToMemberPointer<R() const	 , C> {typedef R(C::*type)() const	   ;};
+		template <class C, class R> struct TypeToMemberPointer<R()	 volatile, C> {typedef R(C::*type)()       volatile;};
+		template <class C, class R> struct TypeToMemberPointer<R() const volatile, C> {typedef R(C::*type)() const volatile;};
+
+#		define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																													       \
+																																					       \
+		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		     , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		 ;};	       \
+		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	 ;};	       \
+		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	 volatile;};	       \
+		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile;};	       \
+																																					       \
+		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		  , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   ;}; \
+		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	  , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   ;}; \
+		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	   volatile;}; \
+		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile;};
+
+		Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
+#		undef Z_TEMPLATE_SPECIALIZATIONS
+
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+
+			template <class C, class R> struct TypeToMemberPointer<R()		  & , C> {typedef R(C::*type)()		       & ;};
+			template <class C, class R> struct TypeToMemberPointer<R()		  &&, C> {typedef R(C::*type)()		       &&;};
+			template <class C, class R> struct TypeToMemberPointer<R() const	  & , C> {typedef R(C::*type)() const	       & ;};
+			template <class C, class R> struct TypeToMemberPointer<R() const	  &&, C> {typedef R(C::*type)() const	       &&;};
+			template <class C, class R> struct TypeToMemberPointer<R()	 volatile & , C> {typedef R(C::*type)()	      volatile & ;};
+			template <class C, class R> struct TypeToMemberPointer<R()	 volatile &&, C> {typedef R(C::*type)()	      volatile &&;};
+			template <class C, class R> struct TypeToMemberPointer<R() const volatile & , C> {typedef R(C::*type)() const volatile & ;};
+			template <class C, class R> struct TypeToMemberPointer<R() const volatile &&, C> {typedef R(C::*type)() const volatile &&;};
+
+#			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																														     \
+																																							     \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		     & ;};	     \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		     &&;};	     \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     & ;};	     \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     &&;};	     \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile & ;};	     \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile &&;};	     \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & ;};	     \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&;};	     \
+																																							     \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		       & ;}; \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		       &&;}; \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	       & ;}; \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	       &&;}; \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	      volatile & ;}; \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	      volatile &&;}; \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & ;}; \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&;};
+
+			Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
+#			undef Z_TEMPLATE_SPECIALIZATIONS
 
 #		endif
 
@@ -2796,10 +2848,12 @@ namespace Zeta {
 				is_trivially_move_assignable	   = Type::is_trivially_move_assignable,
 				is_trivially_move_constructible	   = Type::is_trivially_move_constructible
 			};
+
 			enum {	arity	      = Type::arity,
 				element_count = Type::element_count,
 				pointer_level = Type::pointer_level
 			};
+
 			enum {	bits = Type::bits,
 				size = Type::size
 			};
