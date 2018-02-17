@@ -10,48 +10,100 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/classes/functional/Selector.hpp>
 
-#if Z_HAS_CLASS(Selector) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+#if Z_HAS_CLASS(Selector)
 
 
 	namespace Zeta {
 		template <class F> struct ObjectSelector;
 
 		template <class R, class... P> struct ObjectSelector<R(P...)> : Selector<R(P...)> {
+			typedef typename Selector<R(P...)>::Call      Call;
+			typedef typename Selector<R(P...)>::CallSuper CallSuper;
+
 			id object;
 
 			Z_INLINE_MEMBER ObjectSelector() {}
 
-			Z_CT_MEMBER(CPP11) ObjectSelector(id object, SEL selector) : Selector(selector), object(object) {}
 
-			template <bool returns_void = Type<R>::is_void>
-			Z_INLINE_MEMBER typename EnableIf<returns_void, void>::type
+			Z_CT_MEMBER(CPP11) ObjectSelector(id object, SEL selector)
+			: Selector<R(P...)>(selector), object(object) {}
+
+
+			template <class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, void>::type
 			operator ()(typename Type<P>::to_forwardable... arguments) const
-				{((Caller)caller)(object, this->selector, arguments...);}
+				{((Call)objc_msgSend)(object, this->selector, arguments...);}
 
 
-			template <bool returns_void = Type<R>::is_void>
-			Z_INLINE_MEMBER typename EnableIf<!returns_void, R>::type
+#			if Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64 || Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32
+
+				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<
+					!Type<RR>::is_void &&
+					!Type<RR>::is_real &&
+					!Type<RR>::is_compound,
+				RR>::type
+				operator ()(typename Type<P>::to_forwardable... arguments) const
+					{return ((Call)objc_msgSend)(object, this->selector, arguments...);}
+
+
+				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_real, RR>::type
+				operator ()(typename Type<P>::to_forwardable... arguments) const
+					{return ((Call)objc_msgSend_fpret)(object, this->selector, arguments...);}
+
+#			else
+
+				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<
+					!Type<RR>::is_void &&
+					!Type<RR>::is_compound,
+				RR>::type
+				operator ()(typename Type<P>::to_forwardable... arguments) const
+					{return ((Call)objc_msgSend)(object, this->selector, arguments...);}
+
+#			endif
+
+
+			template <class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_compound, RR>::type
 			operator ()(typename Type<P>::to_forwardable... arguments) const
-				{return ((Caller)caller)(object, this->selector, arguments...);}
+				{return ((Call)objc_msgSend_stret)(object, this->selector, arguments...);}
 
 
-			template <bool returns_void = Type<R>::is_void>
-			Z_INLINE_MEMBER typename EnableIf<returns_void, void>::type
-			super(typename Type<P>::to_forwardable... arguments) const
-				{
-				struct objc_super object_super {object, [[object class] superclass]};
-				((SuperCaller)super_caller)(&object_super, this->selector, arguments...);
-				}
+#			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
-			template <bool returns_void = Type<R>::is_void>
-			Z_INLINE_MEMBER typename EnableIf<!returns_void, R>::type
-			super(typename Type<P>::to_forwardable... arguments) const
-				{
-				struct objc_super object_super {object, [[object class] superclass]};
-				return ((SuperCaller)super_caller)(&object_super, this->selector, arguments...);
-				}
+				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, void>::type
+				super(typename Type<P>::to_forwardable... arguments) const
+					{
+					struct objc_super object_super {object, [[object class] superclass]};
+					((CallSuper)objc_msgSendSuper)(&object_super, this->selector, arguments...);
+					}
+
+
+				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<
+					!Type<RR>::is_void &&
+					!Type<RR>::is_compound,
+				RR>::type
+				super(typename Type<P>::to_forwardable... arguments) const
+					{
+					struct objc_super object_super {object, [[object class] superclass]};
+					((CallSuper)objc_msgSendSuper)(&object_super, this->selector, arguments...);
+					}
+
+
+				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_compound, RR>::type
+				super(typename Type<P>::to_forwardable... arguments) const
+					{
+					struct objc_super object_super {object, [[object class] superclass]};
+					((CallSuper)objc_msgSendSuper_stret)(&object_super, this->selector, arguments...);
+					}
+
+#			endif
 		};
-
 	}
 
 
