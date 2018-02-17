@@ -30,8 +30,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, void>::type
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
 			operator ()(typename Type<P>::to_forwardable... arguments) const
+				{((Call)objc_msgSend)(object, this->selector, arguments...);}
+
+
+			template <class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
+			operator ()(id object, typename Type<P>::to_forwardable... arguments) const
 				{((Call)objc_msgSend)(object, this->selector, arguments...);}
 
 
@@ -48,8 +54,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<
+					!Type<RR>::is_void &&
+					!Type<RR>::is_real &&
+					!Type<RR>::is_compound,
+				RR>::type
+				operator ()(id object, typename Type<P>::to_forwardable... arguments) const
+					{return ((Call)objc_msgSend)(object, this->selector, arguments...);}
+
+
+				template <class RR = R>
 				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_real, RR>::type
 				operator ()(typename Type<P>::to_forwardable... arguments) const
+					{return ((Call)objc_msgSend_fpret)(object, this->selector, arguments...);}
+
+
+				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_real, RR>::type
+				operator ()(id object, typename Type<P>::to_forwardable... arguments) const
 					{return ((Call)objc_msgSend_fpret)(object, this->selector, arguments...);}
 
 #			else
@@ -62,6 +84,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				operator ()(typename Type<P>::to_forwardable... arguments) const
 					{return ((Call)objc_msgSend)(object, this->selector, arguments...);}
 
+
+				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<
+					!Type<RR>::is_void &&
+					!Type<RR>::is_compound,
+				RR>::type
+				operator ()(id object, typename Type<P>::to_forwardable... arguments) const
+					{return ((Call)objc_msgSend)(object, this->selector, arguments...);}
+
 #			endif
 
 
@@ -71,11 +102,47 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				{return ((Call)objc_msgSend_stret)(object, this->selector, arguments...);}
 
 
+			template <class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_compound, RR>::type
+			operator ()(id object, typename Type<P>::to_forwardable... arguments) const
+				{return ((Call)objc_msgSend_stret)(object, this->selector, arguments...);}
+
+
+			template <class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
+			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
+				{((CallSuper)objc_msgSendSuper)((struct objc_super *)&object_super, this->selector, arguments...);}
+
+
+			template <class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<
+				!Type<RR>::is_void &&
+				!Type<RR>::is_compound,
+			RR>::type
+			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
+				{return ((CallSuper)objc_msgSendSuper)((struct objc_super *)&object_super, this->selector, arguments...);}
+
+
+			template <class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_compound, RR>::type
+			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
+				{return ((CallSuper)objc_msgSendSuper_stret)((struct objc_super *)&object_super, this->selector, arguments...);}
+
+
 #			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
 				template <class RR = R>
-				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, void>::type
+				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
 				super(typename Type<P>::to_forwardable... arguments) const
+					{
+					struct objc_super object_super {object, [[object class] superclass]};
+					((CallSuper)objc_msgSendSuper)(&object_super, this->selector, arguments...);
+					}
+
+
+				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
+				super(id object, typename Type<P>::to_forwardable... arguments) const
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
 					((CallSuper)objc_msgSendSuper)(&object_super, this->selector, arguments...);
@@ -90,7 +157,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				super(typename Type<P>::to_forwardable... arguments) const
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
-					((CallSuper)objc_msgSendSuper)(&object_super, this->selector, arguments...);
+					return ((CallSuper)objc_msgSendSuper)(&object_super, this->selector, arguments...);
+					}
+
+
+				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<
+					!Type<RR>::is_void &&
+					!Type<RR>::is_compound,
+				RR>::type
+				super(id object, typename Type<P>::to_forwardable... arguments) const
+					{
+					struct objc_super object_super {object, [[object class] superclass]};
+					return ((CallSuper)objc_msgSendSuper)(&object_super, this->selector, arguments...);
 					}
 
 
@@ -99,7 +178,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				super(typename Type<P>::to_forwardable... arguments) const
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
-					((CallSuper)objc_msgSendSuper_stret)(&object_super, this->selector, arguments...);
+					return ((CallSuper)objc_msgSendSuper_stret)(&object_super, this->selector, arguments...);
+					}
+
+
+				template <class RR = R>
+				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_compound, RR>::type
+				super(id object, typename Type<P>::to_forwardable... arguments) const
+					{
+					struct objc_super object_super {object, [[object class] superclass]};
+					return ((CallSuper)objc_msgSendSuper_stret)(&object_super, this->selector, arguments...);
 					}
 
 #			endif

@@ -34,7 +34,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, void>::type
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
 			operator ()(id object, typename Type<P>::to_forwardable... arguments) const
 				{((Call)objc_msgSend)(object, selector, arguments...);}
 
@@ -76,7 +76,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, void>::type
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
 			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
 				{((CallSuper)objc_msgSendSuper)((struct objc_super *)&object_super, selector, arguments...);}
 
@@ -99,7 +99,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
 				template <class RR = R>
-				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, void>::type
+				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
 				super(id object, typename Type<P>::to_forwardable... arguments) const
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
@@ -115,7 +115,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				super(id object, typename Type<P>::to_forwardable... arguments) const
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
-					((CallSuper)objc_msgSendSuper)(&object_super, selector, arguments...);
+					return ((CallSuper)objc_msgSendSuper)(&object_super, selector, arguments...);
 					}
 
 
@@ -124,7 +124,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				super(id object, typename Type<P>::to_forwardable... arguments) const
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
-					((CallSuper)objc_msgSendSuper_stret)(&object_super, selector, arguments...);
+					return ((CallSuper)objc_msgSendSuper_stret)(&object_super, selector, arguments...);
 					}
 
 #			endif

@@ -103,10 +103,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				}
 
 
+			template <class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
+			operator ()(typename Type<P>::to_forwardable... arguments) const
+				{(object->*this->function)(arguments...);}
+
+
 			template <class O, class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, void>::type
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
 			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
 				{(((NaT *)object)->*this->function)(arguments...);}
+
+
+			template <class O, class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
+			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
+				{(((NaT *)&object)->*this->function)(arguments...);}
+
+
+			template <class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<!Type<RR>::is_void, RR>::type
+			operator ()(typename Type<P>::to_forwardable... arguments) const
+				{return (object->*this->function)(arguments...);}
 
 
 			template <class O, class RR = R>
@@ -116,26 +134,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O, class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, void>::type
-			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
-				{(((NaT *)&object)->*this->function)(arguments...);}
-
-
-			template <class O, class RR = R>
 			Z_INLINE_MEMBER typename EnableIf<!Type<RR>::is_void, RR>::type
 			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
 				{return (((NaT *)&object)->*this->function)(arguments...);}
-
-			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, void>::type
-			operator ()(typename Type<P>::to_forwardable... arguments) const
-				{(object->*this->function)(arguments...);}
-
-
-			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<!Type<RR>::is_void, RR>::type
-			operator ()(typename Type<P>::to_forwardable... arguments) const
-				{return (object->*this->function)(arguments...);}
 		};
 	}
 
