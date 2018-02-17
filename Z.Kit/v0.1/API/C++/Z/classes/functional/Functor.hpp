@@ -8,89 +8,106 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_functional_Functor_HPP__
 #define __Z_classes_functional_Functor_HPP__
 
-#if	Z_LANGUAGE_HAS(CPP, SFINAE) && \
-	Z_LANGUAGE_HAS(CPP, LAMBDA) && \
-	Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
+#include <Z/classes/functional/ObjectMemberFunction.hpp>
+//#include <Z/classes/functional/ObjectSelector.hpp>
 
 
-	namespace Zeta {namespace Deferred {
-
-		template <class function_prototype, class parameter_list> struct Functor;
-
-		template <class F, class... P> struct Functor<F, TypeList<P...> > {
-
-			typedef typename Type<F>::return_type R;
-
-			R (* caller)(const Functor *, typename Type<P>::to_forwardable...);
-			void *data;
-			typename TypeToMemberPointer<F, NaT>::type member_function;
+#if Z_LANGUAGE_HAS(CPP, SFINAE) && Z_LANGUAGE_HAS(CPP, LAMBDA)
 
 
-			Z_INLINE_MEMBER Functor() {};
+	namespace Zeta {
+
+		template <class F> class Functor;
+
+		template <class R, class... P> class Functor<R(P...)> {
+
+			private:
+			R    (* call   )(const Functor *, typename Type<P>::to_forwardable...);
+			void (* destroy)(void *);
+
+			union {	R (* function)(P...);
+				ObjectMemberFunction<R(P...)> object_member_function;
+#				if Z_HAS_CLASS(ObjectSelector)
+					ObjectSelector<R(P...)> object_selector;
+#				endif
+			} target;
+
+			public:
+
+			Z_CT_MEMBER(CPP11) Functor() : call(NULL), destroy([](void *){}) {}
 
 
-			template <bool returns_void = Type<R>::is_void>
-			Z_INLINE_MEMBER Functor(
-				typename EnableIf<returns_void, typename Type<F>::add_pointer>::type function
-			) :
-			caller([](const Functor *function, typename Type<P>::to_forwardable... arguments)
-				{((typename Type<F>::add_pointer)function->data)(arguments...);}),
-			data((void *)function)
-				{}
+			Z_INLINE_MEMBER
+			Functor(typename EnableIf<Type<R>::is_void, R (*)(P...)>::type function) :
+			call([](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+				{functor->target.function(arguments...);}),
+			destroy([](void *){})
+				{target.function = function;}
 
 
-			template <bool returns_void = Type<R>::is_void>
-			Z_INLINE_MEMBER Functor(
-				typename EnableIf<!returns_void, typename Type<F>::add_pointer>::type function
-			) :
-			caller([](const Functor *function, typename Type<P>::to_forwardable... arguments)
-				{return ((typename Type<F>::add_pointer)function->data)(arguments...);}),
-			data((void *)function)
-				{}
+			Z_INLINE_MEMBER
+			Functor(typename EnableIf<!Type<R>::is_void, R (*)(P...)>::type function) :
+			call([](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+				{return functor->target.function(arguments...);}),
+			destroy([](void *){})
+				{target.function = function;}
 
 
-			template <bool returns_void = Type<R>::is_void>
-			Z_INLINE_MEMBER Functor(
-				typename EnableIf<returns_void, void *>::type object,
-				OpaqueMemberFunctionPointer member_function
-			) :
-			caller([](const Functor *function, typename Type<P>::to_forwardable... arguments)
-				{((NaT *)function->data)->*(function->member_function)(arguments...);}),
-			data(object), member_function(member_function)
-				{}
+			Z_INLINE_MEMBER
+			Functor(typename EnableIf<Type<R>::is_void, const ObjectMemberFunction<R(P...)> &>::type object_member_function) :
+			call([](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+				{(functor->target.object_member_function->*functor->target.object_member_function->function)(arguments...);}),
+			destroy([](void *){})
+				{target.object_member_function = object_member_function;}
 
 
-			template <bool returns_void = Type<R>::is_void>
-			Z_INLINE_MEMBER Functor(
-				typename EnableIf<!returns_void, void *>::type object,
-				OpaqueMemberFunctionPointer member_function
-			) :
-			caller([](const Functor *function, typename Type<P>::to_forwardable... arguments)
-				{return (((NaT *)function->data)->*(function->member_function))(arguments...);}),
-			data(object), member_function(member_function)
-				{}
+			Z_INLINE_MEMBER
+			Functor(typename EnableIf<!Type<R>::is_void, const ObjectMemberFunction<R(P...)> &>::type object_member_function) :
+			call([](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+				{return (functor->target.object_member_function->*functor->target.object_member_function->function)(arguments...);}),
+			destroy([](void *){})
+				{target.object_member_function = object_member_function;}
 
 
-			template <bool returns_void = Type<R>::is_void>
-			Z_INLINE_MEMBER typename EnableIf<returns_void, void>::type
+#			if Z_HAS_CLASS(ObjectSelector)
+
+				Z_INLINE_MEMBER
+				Functor(const ObjectSelector<R(P...)> &object_selector) :
+				call([](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+					{return functor->target.object_selector(arguments...);}),
+				destroy([](void *){})
+					{target.object_selector = object_selector;}
+
+
+				Z_INLINE_MEMBER
+				Functor(id object, SEL selector) :
+				call([](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+					{return functor->target.object_selector(arguments...);}),
+				destroy([](void *){})
+					{target.object_selector = ObjectSelector(object, selector);}
+
+#			endif
+
+
+			Z_INLINE_MEMBER ~Functor() {destroy(this);}
+
+
+			Z_CT_MEMBER(CPP11) operator Boolean() const {return call != NULL;}
+
+
+			template <bool void_return = Type<R>::is_void>
+			Z_INLINE_MEMBER typename EnableIf<void_return, void>::type
 			operator ()(typename Type<P>::to_forwardable... arguments) const
-				{caller(this, arguments...);}
+				{call(this, arguments...);}
 
 
-			template <bool returns_void = Type<R>::is_void>
-			Z_INLINE_MEMBER typename EnableIf<!returns_void, R>::type
+			template <bool void_return = Type<R>::is_void>
+			Z_INLINE_MEMBER typename EnableIf<!void_return, R>::type
 			operator ()(typename Type<P>::to_forwardable... arguments) const
-				{return caller(this, arguments...);}
-
+				{return call(this, arguments...);}
 		};
-	}}
 
-
-	namespace Zeta {template <class F> struct Functor : Deferred::Functor<F, typename Type<F>::parameters> {
-		typedef Deferred::Functor<F, typename Type<F>::parameters> Super;
-
-		using Super::Super;
-	};}
+	}
 
 
 #endif
