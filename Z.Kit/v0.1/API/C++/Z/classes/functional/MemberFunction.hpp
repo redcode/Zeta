@@ -57,26 +57,26 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE_MEMBER operator M() const {return (M)function;}
 
 
-			template <class O, bool void_return = Type<R>::is_void>
-			Z_INLINE_MEMBER typename EnableIf<void_return, void>::type
+			template <class O, class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
 			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
 				{(((NaT *)object)->*function)(arguments...);}
 
 
-			template <class O, bool void_return = Type<R>::is_void>
-			Z_INLINE_MEMBER typename EnableIf<void_return, void>::type
+			template <class O, class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<Type<R>::is_void, RR>::type
 			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
 				{(((NaT *)&object)->*function)(arguments...);}
 
 
-			template <class O, bool void_return = Type<R>::is_void>
-			Z_INLINE_MEMBER typename EnableIf<!void_return, R>::type
+			template <class O, class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<!Type<R>::is_void, RR>::type
 			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
 				{return (((NaT *)object)->*function)(arguments...);}
 
 
-			template <class O, bool void_return = Type<R>::is_void>
-			Z_INLINE_MEMBER typename EnableIf<!void_return, R>::type
+			template <class O, class RR = R>
+			Z_INLINE_MEMBER typename EnableIf<!Type<R>::is_void, RR>::type
 			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
 				{return (((NaT *)&object)->*function)(arguments...);}
 		};
