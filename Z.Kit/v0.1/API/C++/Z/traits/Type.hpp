@@ -54,6 +54,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_scalar		     = false,
 			is_schar		     = false,
 			is_signed		     = false,
+			is_signed_or_unsigned	     = false,
 			is_sint			     = false,
 			is_slong		     = false,
 			is_sshort		     = false,
@@ -542,23 +543,26 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct Natural : Exact {
-		enum {	is_natural  = true,
-			is_unsigned = true
+		enum {	is_natural	      = true,
+			is_unsigned	      = true,
+			is_signed_or_unsigned = true
 		};
 		enum {number_set = Z_NUMBER_SET_N};
 		enum {minimum = 0};
 	};
 
 	struct Integer : Exact {
-		enum {	is_integer = true,
-			is_signed  = true
+		enum {	is_integer	      = true,
+			is_signed	      = true,
+			is_signed_or_unsigned = true
 		};
 		enum {number_set = Z_NUMBER_SET_Z};
 	};
 
 	struct Real : Number {
-		enum {	is_real   = true,
-			is_signed = true
+		enum {	is_real		      = true,
+			is_signed	      = true,
+			is_signed_or_unsigned = true
 		};
 		enum {number_set = Z_NUMBER_SET_R};
 	};
@@ -1763,21 +1767,30 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::to_const	      remove_volatile;
 	};
 
-	// MARK: - Mixins: Qualifiers (exact)
+	// MARK: - Mixins: Qualifiers (signed or unsigned)
 
-	template <class C> struct ConstExact : Const<C> {
+	template <class C> struct ConstInteger : Const<C> {
 		typedef const typename C::to_unsigned to_unsigned;
-		typedef const typename C::to_signed   to_signed;
 	};
 
-	template <class C> struct VolatileExact : Volatile<C> {
+	template <class C> struct VolatileInteger : Volatile<C> {
 		typedef volatile typename C::to_unsigned to_unsigned;
-		typedef volatile typename C::to_signed	 to_signed;
 	};
 
-	template <class C> struct ConstVolatileExact : ConstVolatile<C> {
+	template <class C> struct ConstVolatileInteger : ConstVolatile<C> {
 		typedef const volatile typename C::to_unsigned to_unsigned;
-		typedef const volatile typename C::to_signed   to_signed;
+	};
+
+	template <class C> struct ConstSignedOrUnsigned : TernaryType<C::is_real, Const<C>, ConstInteger<C> >::type {
+		typedef const typename C::to_signed to_signed;
+	};
+
+	template <class C> struct VolatileSignedOrUnsigned : TernaryType<C::is_real, Volatile<C>, VolatileInteger<C> >::type {
+		typedef volatile typename C::to_signed to_signed;
+	};
+
+	template <class C> struct ConstVolatileSignedOrUnsigned : TernaryType<C::is_real, ConstVolatile<C>, ConstVolatileInteger<C> >::type {
+		typedef const volatile typename C::to_signed to_signed;
 	};
 
 	// MARK: - Mixins: Qualifiers (array)
@@ -2551,9 +2564,9 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: Qualified types
 
-	template <class T> struct Case<const	      T> : TernaryType<Case<T>::is_exact, Mixins::ConstExact	    <Case<T> >, Mixins::Const	     <Case<T> > >::type {};
-	template <class T> struct Case<	     volatile T> : TernaryType<Case<T>::is_exact, Mixins::VolatileExact	    <Case<T> >, Mixins::Volatile     <Case<T> > >::type {};
-	template <class T> struct Case<const volatile T> : TernaryType<Case<T>::is_exact, Mixins::ConstVolatileExact<Case<T> >, Mixins::ConstVolatile<Case<T> > >::type {};
+	template <class T> struct Case<const	      T> : TernaryType<Case<T>::is_signed_or_unsigned, Mixins::ConstSignedOrUnsigned	    <Case<T> >, Mixins::Const	     <Case<T> > >::type {};
+	template <class T> struct Case<	     volatile T> : TernaryType<Case<T>::is_signed_or_unsigned, Mixins::VolatileSignedOrUnsigned	    <Case<T> >, Mixins::Volatile     <Case<T> > >::type {};
+	template <class T> struct Case<const volatile T> : TernaryType<Case<T>::is_signed_or_unsigned, Mixins::ConstVolatileSignedOrUnsigned<Case<T> >, Mixins::ConstVolatile<Case<T> > >::type {};
 
 	// MARK: - Final aggregate
 
@@ -2825,6 +2838,7 @@ namespace Zeta {
 				is_scalar		     = Type::is_scalar,
 				is_schar		     = Type::is_schar,
 				is_signed		     = Type::is_signed,
+				is_signed_or_unsigned	     = Type::is_signed_or_unsigned,
 				is_sint			     = Type::is_sint,
 				is_slong		     = Type::is_slong,
 				is_sshort		     = Type::is_sshort,
