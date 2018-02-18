@@ -14,6 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 	namespace Zeta {
+
 		template <class F> struct ObjectSelector;
 
 		template <class R, class... P> struct ObjectSelector<R(P...)> : Selector<R(P...)> {
