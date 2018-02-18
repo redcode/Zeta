@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/mathematics/number.h>
 #include <Z/inspection/Z.h>
+#include <Z/traits/TernaryType.hpp>
 #include <Z/traits/TypeList.hpp>
 
 #if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
@@ -62,6 +63,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_uchar		     = false,
 			is_uint			     = false,
 			is_ulong		     = false,
+			is_unsigned		     = false,
 			is_ushort		     = false,
 			is_valid		     = false,
 			is_value		     = false,
@@ -540,7 +542,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct Natural : Exact {
-		enum {is_natural = true};
+		enum {	is_natural  = true,
+			is_unsigned = true
+		};
 		enum {number_set = Z_NUMBER_SET_N};
 		enum {minimum = 0};
 	};
@@ -1027,7 +1031,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	struct Char : SelectType<Z_CHAR_IS_SIGNED, Natural, Integer>::type {
+	struct Char : TernaryType<Z_CHAR_IS_SIGNED, Integer, Natural>::type {
 		enum {is_char = true};
 
 		enum {	value_type	 = Z_CHAR_VALUE_TYPE,
@@ -2169,9 +2173,9 @@ namespace Zeta {namespace Detail {namespace Type {
 				Abstract::Structure<T>, Abstract::Union<T>, Abstract::Enumeration<T>
 			>::type
 #		elif Z_TRAIT_HAS(Type, is_enumeration)
-			typename SelectType<Z_COMPILER_TRAIT(TYPE_IS_ENUMERATION)(T), Abstract::Structure<T>, Abstract::Enumeration<T> >::type
+			typename TernaryType<Z_COMPILER_TRAIT(TYPE_IS_ENUMERATION)(T), Abstract::Enumeration<T>, Abstract::Structure<T> >::type
 #		elif Z_TRAIT_HAS(Type, is_union)
-			typename SelectType<Z_COMPILER_TRAIT(TYPE_IS_UNION)(T), Abstract::Structure<T>, Abstract::Union<T> >::type
+			typename TernaryType<Z_COMPILER_TRAIT(TYPE_IS_UNION)(T), Abstract::Union<T>, Abstract::Structure<T> >::type
 #		else
 			Abstract::Structure<T>
 #		endif
@@ -2319,7 +2323,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		};
 		enum {pointer_level = Pointee::pointer_level + 1};
 
-		typedef typename SelectType<is_function_pointer, NaT, T>::type to_function;
+		typedef typename TernaryType<is_function_pointer, T, NaT>::type to_function;
 	};
 
 	template <class C, class T> struct Case<T C::*> : Mixins::Unqualified<Abstract::DataMemberPointer<T C::*, C, T> > {
@@ -2428,7 +2432,7 @@ namespace Zeta {namespace Detail {namespace Type {
 			is_callable		     = is_function_reference
 		};
 
-		typedef typename SelectType<is_function_reference, NaT, T>::type to_function;
+		typedef typename TernaryType<is_function_reference, T, NaT>::type to_function;
 	};
 
 #	if Z_TRAIT_HAS(Type, is_rvalue_reference)
@@ -2439,7 +2443,7 @@ namespace Zeta {namespace Detail {namespace Type {
 				is_callable		     = is_function_reference
 			};
 
-			typedef typename SelectType<is_function_reference, NaT, T>::type to_function;
+			typedef typename TernaryType<is_function_reference, T, NaT>::type to_function;
 		};
 
 #	endif
@@ -2547,9 +2551,9 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: Qualified types
 
-	template <class T> struct Case<const	      T> : SelectType<Case<T>::is_exact, Mixins::Const	      <Case<T> >, Mixins::ConstExact	    <Case<T> > >::type {};
-	template <class T> struct Case<	     volatile T> : SelectType<Case<T>::is_exact, Mixins::Volatile     <Case<T> >, Mixins::VolatileExact	    <Case<T> > >::type {};
-	template <class T> struct Case<const volatile T> : SelectType<Case<T>::is_exact, Mixins::ConstVolatile<Case<T> >, Mixins::ConstVolatileExact<Case<T> > >::type {};
+	template <class T> struct Case<const	      T> : TernaryType<Case<T>::is_exact, Mixins::ConstExact	    <Case<T> >, Mixins::Const	     <Case<T> > >::type {};
+	template <class T> struct Case<	     volatile T> : TernaryType<Case<T>::is_exact, Mixins::VolatileExact	    <Case<T> >, Mixins::Volatile     <Case<T> > >::type {};
+	template <class T> struct Case<const volatile T> : TernaryType<Case<T>::is_exact, Mixins::ConstVolatileExact<Case<T> >, Mixins::ConstVolatile<Case<T> > >::type {};
 
 	// MARK: - Final aggregate
 
@@ -2569,9 +2573,9 @@ namespace Zeta {namespace Detail {namespace Type {
 					: Mixins::ConvertibleFunction)),
 		Case<T>
 	> {
-		typedef typename SelectType<
+		typedef typename TernaryType<
 			Final::is_compound,
-			T, typename Final<const typename Final::remove_const_volatile>::add_lvalue_reference
+			typename Final<const typename Final::remove_const_volatile>::add_lvalue_reference, T
 		>::type to_forwardable;
 	};
 
@@ -2830,6 +2834,7 @@ namespace Zeta {
 				is_uchar		     = Type::is_uchar,
 				is_uint			     = Type::is_uint,
 				is_ulong		     = Type::is_ulong,
+				is_unsigned		     = Type::is_unsigned,
 				is_ushort		     = Type::is_ushort,
 				is_valid		     = Type::is_valid,
 				is_value		     = Type::is_value,
