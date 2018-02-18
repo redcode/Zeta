@@ -56,6 +56,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_sint			     = false,
 			is_slong		     = false,
 			is_sshort		     = false,
+			is_statically_allocatable    = false,
 			is_storable		     = false,
 			is_structure		     = false,
 			is_uchar		     = false,
@@ -517,11 +518,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct Number : Storable {
-		enum {	is_arithmetic  = true,
-			is_fundamental = true,
-			is_number      = true,
-			is_scalar      = true,
-			is_value       = true
+		enum {	is_arithmetic		  = true,
+			is_fundamental		  = true,
+			is_number		  = true,
+			is_scalar		  = true,
+			is_statically_allocatable = true,
+			is_value		  = true
 		};
 
 #		if Z_TRAIT_HAS(Type, is_literal)
@@ -1347,6 +1349,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	template <class T, zusize N> struct SizedArray : Array<T> {
+		enum {is_statically_allocatable = true};
 		enum {element_count = N};
 
 		typedef T type[N];
@@ -1361,8 +1364,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_TRAIT_HAS(Type, is_enumeration)
 
 		template <class T> struct Enumeration : Storable {
-			enum {	is_enumeration = true,
-				is_scalar      = true
+			enum {	is_enumeration		  = true,
+				is_scalar		  = true,
+				is_statically_allocatable = true
 			};
 
 #			if Z_TRAIT_HAS(Type, is_literal)
@@ -1450,13 +1454,17 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_TRAIT_HAS(Type, is_union)
 
 		template <class T> struct Union : MaybeTemplate<T> {
-			enum {is_union = true};
+			enum {	is_statically_allocatable = true,
+				is_union		  = true
+			};
 		};
 
 #	endif
 
 	struct PointerLike : Storable {
-		enum {is_scalar	= true};
+		enum {	is_scalar		  = true,
+			is_statically_allocatable = true
+		};
 
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = true};
@@ -1513,7 +1521,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	template <class T> struct Reference : Storable {
-		enum {is_reference = true};
+		enum {	is_reference		  = true,
+			is_statically_allocatable = true
+		};
 
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = true};
@@ -2814,6 +2824,7 @@ namespace Zeta {
 				is_sint			     = Type::is_sint,
 				is_slong		     = Type::is_slong,
 				is_sshort		     = Type::is_sshort,
+				is_statically_allocatable    = Type::is_statically_allocatable,
 				is_storable		     = Type::is_storable,
 				is_structure		     = Type::is_structure,
 				is_uchar		     = Type::is_uchar,
