@@ -10,7 +10,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/traits/filtering.hpp>
 
-#if Z_LANGUAGE_HAS(CPP, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE) && Z_LANGUAGE_HAS(CPP, SFINAE)
+#if	Z_LANGUAGE_HAS(CPP, SFINAE)	       && \
+	Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && \
+	Z_LANGUAGE_HAS(CPP, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE)
 
 #	include <Z/traits/Type.hpp>
 #	include <objc/message.h>
