@@ -14,7 +14,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/classes/functional/ObjectSelector.hpp>
 #endif
 
-
 #if Z_HAS_CLASS(ObjectMemberFunction)
 
 
@@ -26,7 +25,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			private:
 			typedef R (* Call)(const Functor *, typename Type<P>::to_forwardable...);
-			typedef void (* Destroy)(void *);
+			typedef void (* Destroy)(Functor *);
 
 			Call	call;
 			Destroy destroy;
@@ -96,7 +95,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			public:
 
-			Z_CT_MEMBER(CPP11) Functor() : call(NULL), destroy([](void *){}) {}
+			Z_CT_MEMBER(CPP11) Functor() : call(NULL), destroy(NULL) {}
 
 
 			Z_INLINE_MEMBER Functor(R (* function)(P...)) :
@@ -105,7 +104,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			Z_INLINE_MEMBER Functor(const ObjectMemberFunction<R(P...)> &object_member_function) :
-			call(Callers::member_function()), destroy([](void *){})
+			call(Callers::member_function()), destroy(NULL)
 				{
 				target.object_member_function.function = object_member_function.function;
 				target.object_member_function.object   = object_member_function.object;
@@ -122,7 +121,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				>::value,
 			M>::type>
 			Z_INLINE_MEMBER Functor(O object, M function) :
-			call(Callers::member_function()), destroy([](void *){})
+			call(Callers::member_function()), destroy(NULL)
 				{
 				target.object_member_function.function = (R (NaT::*)(P...))function;
 				target.object_member_function.object   = (NaT *)object;
@@ -138,7 +137,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				>::value,
 			M>::type>
 			Z_INLINE_MEMBER Functor(const O &object, M function) :
-			call(Callers::member_function()), destroy([](void *){})
+			call(Callers::member_function()), destroy(NULL)
 				{
 				target.object_member_function.function = (R (NaT::*)(P...))function;
 				target.object_member_function.object   = (NaT *)&object;
@@ -149,7 +148,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 				Z_INLINE_MEMBER
 				Functor(const ObjectSelector<R(P...)> &object_selector) :
-				call(Callers::object_selector()), destroy([](void *){})
+				call(Callers::object_selector()), destroy(NULL)
 					{
 					target.object_selector.selector = object_selector.selector;
 					target.object_selector.object	= object_selector.object;
@@ -158,7 +157,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 				Z_INLINE_MEMBER
 				Functor(id object, SEL selector) :
-				call(Callers::object_selector()), destroy([](void *){})
+				call(Callers::object_selector()), destroy(NULL)
 					{
 					target.object_selector.selector = selector;
 					target.object_selector.object	= object;
@@ -167,7 +166,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			endif
 
 
-			Z_INLINE_MEMBER ~Functor() {destroy(this);}
+			Z_INLINE_MEMBER ~Functor() {if (destroy) destroy(this);}
 
 
 			Z_CT_MEMBER(CPP11) operator Boolean() const {return call != NULL;}
@@ -187,6 +186,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	}
 
 
+#	define Z_HAS_CLASS_Functor TRUE
+#else
+#	define Z_HAS_CLASS_Functor FALSE
 #endif
 
 #endif // __Z_classes_functional_Functor_HPP__
