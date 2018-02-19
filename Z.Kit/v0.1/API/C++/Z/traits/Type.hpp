@@ -28,7 +28,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_callable		     = false,
 			is_char			     = false,
 			is_class		     = false,
-			is_compound		     = false,
 			is_const		     = false,
 			is_const_volatile	     = false,
 			is_data_member_pointer	     = false,
@@ -61,6 +60,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_statically_allocatable    = false,
 			is_storable		     = false,
 			is_structure		     = false,
+			is_structure_or_union	     = false,
 			is_uchar		     = false,
 			is_uint			     = false,
 			is_ulong		     = false,
@@ -1357,14 +1357,18 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	template <class T, zusize N> struct SizedArray : Array<T> {
-		enum {is_statically_allocatable = true};
+		enum {	is_empty		  = (N == 0),
+			is_statically_allocatable = true
+		};
 		enum {element_count = N};
 
 		typedef T type[N];
 	};
 
 	template <class T> struct FlexibleArray : Array<T> {
-		enum {is_flexible_array = true};
+		enum {	is_empty	  = true,
+			is_flexible_array = true
+		};
 
 		typedef T type[];
 	};
@@ -1394,8 +1398,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	template <class T> struct Compound : Storable {
-		enum {is_compound = true};
+	template <class T> struct StructureOrUnion : Storable {
+		enum {is_structure_or_union = true};
 
 #		if Z_TRAIT_HAS(Type, is_aggregate)
 			enum {is_aggregate = Z_COMPILER_TRAIT(TYPE_IS_AGGREGATE)(T)};
@@ -1416,11 +1420,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef T type;
 	};
 
-	template <class T> struct MaybeTemplate : Compound<T> {};
+	template <class T> struct MaybeTemplate : StructureOrUnion<T> {};
 
 #	if Z_TRAIT_HAS(Type, is_template)
 
-		template <template <class...> class T, class... A> struct MaybeTemplate<T<A...> > : Compound<T<A...> > {
+		template <template <class...> class T, class... A> struct MaybeTemplate<T<A...> > : StructureOrUnion<T<A...> > {
 			enum {is_template = true};
 			enum {arity = sizeof...(A)};
 
@@ -1468,6 +1472,15 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 
 #	endif
+
+	template <class T> class ObjectiveCObject {
+	};
+
+	template <class T> class ObjectiveCClass : ObjectiveCObject<T> {
+	};
+
+	template <class T> class ObjectiveCInstance : ObjectiveCObject<T> {
+	};
 
 	struct PointerLike : Storable {
 		enum {	is_scalar		  = true,
@@ -2073,12 +2086,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct Storable : Virtual<C> {
-		Z_DEFINE_STRICT_STRUCTURE (typename C::type value;     ) to_wrap;
+/*		Z_DEFINE_STRICT_STRUCTURE (typename C::type value;     ) to_wrap;
 		Z_DEFINE_STRICT_STRUCTURE (UInt8 data[sizeof(to_wrap)];) to_opaque;
 
 		enum {	size = C::is_empty ? 0 : sizeof(to_wrap),
 			bits = C::is_empty ? 0 : sizeof(to_wrap) * 8
-		};
+		};*/
 	};
 
 	enum {	Void,
@@ -2587,7 +2600,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		Case<T>
 	> {
 		typedef typename TernaryType<
-			Final::is_compound,
+			Final::is_structure_or_union,
 			typename Final<const typename Final::remove_const_volatile>::add_lvalue_reference, T
 		>::type to_forwardable;
 	};
@@ -2812,7 +2825,6 @@ namespace Zeta {
 				is_callable		     = Type::is_callable,
 				is_char			     = Type::is_char,
 				is_class		     = Type::is_class,
-				is_compound		     = Type::is_compound,
 				is_const		     = Type::is_const,
 				is_const_volatile	     = Type::is_const_volatile,
 				is_data_member_pointer	     = Type::is_data_member_pointer,
@@ -2845,6 +2857,7 @@ namespace Zeta {
 				is_statically_allocatable    = Type::is_statically_allocatable,
 				is_storable		     = Type::is_storable,
 				is_structure		     = Type::is_structure,
+				is_structure_or_union	     = Type::is_structure_or_union,
 				is_uchar		     = Type::is_uchar,
 				is_uint			     = Type::is_uint,
 				is_ulong		     = Type::is_ulong,

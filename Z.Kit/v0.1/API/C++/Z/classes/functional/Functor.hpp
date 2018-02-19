@@ -99,7 +99,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			Z_INLINE_MEMBER Functor(R (* function)(P...)) :
-			call(Callers::function()), destroy([](void *){})
+			call(Callers::function()), destroy(NULL)
 				{target.function = function;}
 
 
@@ -112,9 +112,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O, class M, class E = typename EnableIf<
-				Type<O>::is_pointer			 &&
-				Type<O>::flow::pointee_type::is_compound &&
-				Type<M>::is_member_function_pointer	 &&
+				Type<O>::is_pointer				   &&
+				Type<O>::flow::pointee_type::is_structure_or_union &&
+				Type<M>::is_member_function_pointer		   &&
 				TypeAreEqual<
 					typename Type<M>::flow::to_function::end::to_unqualified,
 					R(P...)
@@ -129,7 +129,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O, class M, class E = typename EnableIf<
-				Type<O>::is_compound		    &&
+				Type<O>::is_structure_or_union	    &&
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<
 					typename Type<M>::flow::to_function::end::to_unqualified,

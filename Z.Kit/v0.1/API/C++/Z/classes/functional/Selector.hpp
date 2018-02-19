@@ -47,7 +47,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Z_INLINE_MEMBER typename EnableIf<
 					!Type<RR>::is_void &&
 					!Type<RR>::is_real &&
-					!Type<RR>::is_compound,
+					!Type<RR>::is_structure_or_union,
 				RR>::type
 				operator ()(id object, typename Type<P>::to_forwardable... arguments) const
 					{return ((Call)objc_msgSend)(object, selector, arguments...);}
@@ -63,7 +63,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				template <class RR = R>
 				Z_INLINE_MEMBER typename EnableIf<
 					!Type<RR>::is_void &&
-					!Type<RR>::is_compound,
+					!Type<RR>::is_structure_or_union,
 				RR>::type
 				operator ()(id object, typename Type<P>::to_forwardable... arguments) const
 					{return ((Call)objc_msgSend)(object, selector, arguments...);}
@@ -72,7 +72,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_compound, RR>::type
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_structure_or_union, RR>::type
 			operator ()(id object, typename Type<P>::to_forwardable... arguments) const
 				{return ((Call)objc_msgSend_stret)(object, selector, arguments...);}
 
@@ -86,14 +86,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class RR = R>
 			Z_INLINE_MEMBER typename EnableIf<
 				!Type<RR>::is_void &&
-				!Type<RR>::is_compound,
+				!Type<RR>::is_structure_or_union,
 			RR>::type
 			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
 				{return ((CallSuper)objc_msgSendSuper)((struct objc_super *)&object_super, selector, arguments...);}
 
 
 			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_compound, RR>::type
+			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_structure_or_union, RR>::type
 			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
 				{return ((CallSuper)objc_msgSendSuper_stret)((struct objc_super *)&object_super, selector, arguments...);}
 
@@ -112,7 +112,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				template <class RR = R>
 				Z_INLINE_MEMBER typename EnableIf<
 					!Type<RR>::is_void &&
-					!Type<RR>::is_compound,
+					!Type<RR>::is_structure_or_union,
 				RR>::type
 				super(id object, typename Type<P>::to_forwardable... arguments) const
 					{
@@ -122,7 +122,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 				template <class RR = R>
-				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_compound, RR>::type
+				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_structure_or_union, RR>::type
 				super(id object, typename Type<P>::to_forwardable... arguments) const
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
