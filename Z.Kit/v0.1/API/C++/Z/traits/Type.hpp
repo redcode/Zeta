@@ -259,6 +259,22 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_TRAIT_Type_HAS_is_null_pointer FALSE
 #		endif
 
+#		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+
+			enum {	is_objective_c_class	= false,
+				is_objective_c_instance = false,
+				is_objective_c_object	= false
+			};
+
+#			define Z_TRAIT_Type_HAS_is_objective_c_class	TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_instance TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_object	TRUE
+#		else
+#			define Z_TRAIT_Type_HAS_is_objective_c_class	FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_instance FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_object	FALSE
+#		endif
+
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
 			enum {is_pod = false};
 #			define Z_TRAIT_Type_HAS_is_pod TRUE
@@ -2578,13 +2594,12 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	endif
 
-	// MARK: - Objective-C objects
+	// MARK: - Objective-C
 
-/*
 	template <> struct Case<Detail::Type::Abstract::Pointer<id>::remove_pointer> {
 		enum {is_objective_c_object = true};
 	};
-*/
+
 
 	// MARK: - Specializations: Qualified types
 
