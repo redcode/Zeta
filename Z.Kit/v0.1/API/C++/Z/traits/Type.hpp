@@ -1473,13 +1473,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	template <class T> class ObjectiveCObject {
+	template <class T> class ObjectiveCObject : Valid {
+		enum {is_objective_c_object = true};
 	};
 
 	template <class T> class ObjectiveCClass : ObjectiveCObject<T> {
+		enum {is_objective_c_class = true};
 	};
 
 	template <class T> class ObjectiveCInstance : ObjectiveCObject<T> {
+		enum {is_objective_c_instance = true};
 	};
 
 	struct PointerLike : Storable {
@@ -2086,12 +2089,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct Storable : Virtual<C> {
-/*		Z_DEFINE_STRICT_STRUCTURE (typename C::type value;     ) to_wrap;
+		Z_DEFINE_STRICT_STRUCTURE (typename C::type value;     ) to_wrap;
 		Z_DEFINE_STRICT_STRUCTURE (UInt8 data[sizeof(to_wrap)];) to_opaque;
 
 		enum {	size = C::is_empty ? 0 : sizeof(to_wrap),
 			bits = C::is_empty ? 0 : sizeof(to_wrap) * 8
-		};*/
+		};
 	};
 
 	enum {	Void,
@@ -2575,6 +2578,14 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	endif
 
+	// MARK: - Objective-C objects
+
+/*
+	template <> struct Case<Detail::Type::Abstract::Pointer<id>::remove_pointer> {
+		enum {is_objective_c_object = true};
+	};
+*/
+
 	// MARK: - Specializations: Qualified types
 
 	template <class T> struct Case<const	      T> : TernaryType<Case<T>::is_signed_or_unsigned, Mixins::ConstSignedOrUnsigned	    <Case<T> >, Mixins::Const	     <Case<T> > >::type {};
@@ -2649,28 +2660,6 @@ namespace Zeta {
 #		define Z_HAS_TRAIT_TypeIsConvertible FALSE
 #	endif
 
-#	if Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)
-
-		template <class T, class from_type> struct TypeIsNothrowAssignable {
-			enum {value = Z_COMPILER_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)(T, from_type)};
-		};
-
-#		define Z_HAS_TRAIT_TypeIsNothrowAssignable TRUE
-#	else
-#		define Z_HAS_TRAIT_TypeIsNothrowAssignable FALSE
-#	endif
-
-#	if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_ASSIGNABLE)
-
-		template <class T, class from_type> struct TypeIsTriviallyAssignable {
-			enum {value = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_ASSIGNABLE)(T, from_type)};
-		};
-
-#		define Z_HAS_TRAIT_TypeIsTriviallyAssignable TRUE
-#	else
-#		define Z_HAS_TRAIT_TypeIsTriviallyAssignable FALSE
-#	endif
-
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_CONSTRUCTIBLE)
 
 		template <class T, class... parameters> struct TypeIsConstructible {
@@ -2680,6 +2669,17 @@ namespace Zeta {
 #		define Z_HAS_TRAIT_TypeIsConstructible TRUE
 #	else
 #		define Z_HAS_TRAIT_TypeIsConstructible FALSE
+#	endif
+
+#	if Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)
+
+		template <class T, class from_type> struct TypeIsNothrowAssignable {
+			enum {value = Z_COMPILER_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)(T, from_type)};
+		};
+
+#		define Z_HAS_TRAIT_TypeIsNothrowAssignable TRUE
+#	else
+#		define Z_HAS_TRAIT_TypeIsNothrowAssignable FALSE
 #	endif
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_CONSTRUCTIBLE)
@@ -2693,6 +2693,17 @@ namespace Zeta {
 #		define Z_HAS_TRAIT_TypeIsNothrowConstructible FALSE
 #	endif
 
+#	if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_ASSIGNABLE)
+
+		template <class T, class from_type> struct TypeIsTriviallyAssignable {
+			enum {value = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_ASSIGNABLE)(T, from_type)};
+		};
+
+#		define Z_HAS_TRAIT_TypeIsTriviallyAssignable TRUE
+#	else
+#		define Z_HAS_TRAIT_TypeIsTriviallyAssignable FALSE
+#	endif
+
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_CONSTRUCTIBLE)
 
 		template <class T, class... parameters> struct TypeIsTriviallyConstructible {
@@ -2702,6 +2713,24 @@ namespace Zeta {
 #		define Z_HAS_TRAIT_TypeIsTriviallyConstructible TRUE
 #	else
 #		define Z_HAS_TRAIT_TypeIsTriviallyConstructible FALSE
+#	endif
+
+#	if Z_LANGUAGE_HAS(CPP, SFINAE)
+		namespace Detail {namespace Type { namespace {
+			template <class T, SInt L, Boolean B> struct IsComplete			     : False {};
+			template <class T, SInt L>	      struct IsComplete	 <T, L, !!sizeof(T)> : True  {};
+			template <class T, SInt L, Boolean B> struct IsIncomplete		     : True  {};
+			template <class T, SInt L>	      struct IsIncomplete<T, L, !!sizeof(T)> : False {};
+		}}}
+
+		template <class T, SInt line> struct TypeIsComplete   : Detail::Type::IsComplete  <T, line, true> {};
+		template <class T, SInt line> struct TypeIsIncomplete : Detail::Type::IsIncomplete<T, line, true> {};
+
+#		define Z_HAS_TRAIT_TypeIsComplete   TRUE
+#		define Z_HAS_TRAIT_TypeIsIncomplete TRUE
+#	else
+#		define Z_HAS_TRAIT_TypeIsComplete   FALSE
+#		define Z_HAS_TRAIT_TypeIsIncomplete FALSE
 #	endif
 
 	template <class T, class klass> struct TypeToMemberPointer;
