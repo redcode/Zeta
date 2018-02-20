@@ -13,10 +13,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_LANGUAGE_HAS(CPP, SFINAE)
 
 	namespace Zeta {
-		template <Boolean, class T = void> struct EnableIf {};
-		template <class T> struct EnableIf<true, T> {typedef T type;};
+		template <Boolean B, class T> struct EnableIf  {};
+		template <Boolean B, class T> struct DisableIf {};
 
-		template <Boolean, class T = void> struct DisableIf {};
+		template <class T> struct EnableIf <true,  T> {typedef T type;};
 		template <class T> struct DisableIf<false, T> {typedef T type;};
 	}
 
