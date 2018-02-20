@@ -2723,8 +2723,10 @@ namespace Zeta {
 			template <class T, SInt L>	      struct IsIncomplete<T, L, !!sizeof(T)> : False {};
 		}}}
 
-		template <class T, SInt line> struct TypeIsComplete   : Detail::Type::IsComplete  <T, line, true> {};
-		template <class T, SInt line> struct TypeIsIncomplete : Detail::Type::IsIncomplete<T, line, true> {};
+		namespace {
+			template <class T, SInt at_line> struct TypeIsComplete	 : Detail::Type::IsComplete  <T, at_line, true> {};
+			template <class T, SInt at_line> struct TypeIsIncomplete : Detail::Type::IsIncomplete<T, at_line, true> {};
+		}
 
 #		define Z_HAS_TRAIT_TypeIsComplete   TRUE
 #		define Z_HAS_TRAIT_TypeIsIncomplete TRUE
