@@ -263,25 +263,32 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 			enum {	is_objective_c_class		= false,
 				is_objective_c_class_pointer	= false,
-				is_objective_c_instance		= false,
-				is_objective_c_instance_pointer = false,
 				is_objective_c_object		= false,
 				is_objective_c_object_pointer	= false
 			};
 
 #			define Z_TRAIT_Type_HAS_is_objective_c_class		TRUE
 #			define Z_TRAIT_Type_HAS_is_objective_c_class_pointer	TRUE
-#			define Z_TRAIT_Type_HAS_is_objective_c_instance		TRUE
-#			define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer TRUE
 #			define Z_TRAIT_Type_HAS_is_objective_c_object		TRUE
 #			define Z_TRAIT_Type_HAS_is_objective_c_object_pointer	TRUE
 #		else
 #			define Z_TRAIT_Type_HAS_is_objective_c_class		FALSE
 #			define Z_TRAIT_Type_HAS_is_objective_c_class_pointer	FALSE
-#			define Z_TRAIT_Type_HAS_is_objective_c_instance		FALSE
-#			define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer FALSE
 #			define Z_TRAIT_Type_HAS_is_objective_c_object		FALSE
 #			define Z_TRAIT_Type_HAS_is_objective_c_object_pointer	FALSE
+#		endif
+
+#		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, SFINAE)
+
+			enum {	is_objective_c_instance		= false,
+				is_objective_c_instance_pointer = false
+			};
+
+#			define Z_TRAIT_Type_HAS_is_objective_c_instance		TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer TRUE
+#		else
+#			define Z_TRAIT_Type_HAS_is_objective_c_instance		FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer FALSE
 #		endif
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
