@@ -261,18 +261,27 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
-			enum {	is_objective_c_class	= false,
-				is_objective_c_instance = false,
-				is_objective_c_object	= false
+			enum {	is_objective_c_class		= false,
+				is_objective_c_class_pointer	= false,
+				is_objective_c_instance		= false,
+				is_objective_c_instance_pointer = false,
+				is_objective_c_object		= false,
+				is_objective_c_object_pointer	= false
 			};
 
-#			define Z_TRAIT_Type_HAS_is_objective_c_class	TRUE
-#			define Z_TRAIT_Type_HAS_is_objective_c_instance TRUE
-#			define Z_TRAIT_Type_HAS_is_objective_c_object	TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_class		TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_class_pointer	TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_instance		TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_object		TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_object_pointer	TRUE
 #		else
-#			define Z_TRAIT_Type_HAS_is_objective_c_class	FALSE
-#			define Z_TRAIT_Type_HAS_is_objective_c_instance FALSE
-#			define Z_TRAIT_Type_HAS_is_objective_c_object	FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_class		FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_class_pointer	FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_instance		FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_object		FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_object_pointer	FALSE
 #		endif
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
@@ -1489,18 +1498,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	template <class T> class ObjectiveCObject : Valid {
-		enum {is_objective_c_object = true};
-	};
-
-	template <class T> class ObjectiveCClass : ObjectiveCObject<T> {
-		enum {is_objective_c_class = true};
-	};
-
-	template <class T> class ObjectiveCInstance : ObjectiveCObject<T> {
-		enum {is_objective_c_instance = true};
-	};
-
 	struct PointerLike : Storable {
 		enum {	is_scalar		  = true,
 			is_statically_allocatable = true
@@ -1747,6 +1744,25 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		undef Z_TEMPLATE_SPECIALIZATIONS
 
 #	endif
+
+	struct ObjectiveCObject : Valid {
+		enum {is_objective_c_object = true};
+
+		typedef typename Pointer<id>::remove_pointer type;
+	};
+
+	struct ObjectiveCClass : ObjectiveCObject {
+		enum {is_objective_c_class = true};
+
+		typedef typename Pointer<Class>::remove_pointer type;
+	};
+
+	template <class T> class ObjectiveCInstance : ObjectiveCObject {
+		enum {is_objective_c_instance = true};
+
+		typedef T type;
+	};
+
 }}}}
 
 namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
@@ -2366,6 +2382,16 @@ namespace Zeta {namespace Detail {namespace Type {
 			is_callable	    = is_function_pointer,
 			is_void_pointer	    = Pointee::is_void
 		};
+
+#		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+
+			enum {	is_objective_c_class_pointer	= Pointee::is_objective_c_class,
+				is_objective_c_instance_pointer = Pointee::is_objective_c_instance,
+				is_objective_c_object_pointer	= Pointee::is_objective_c_object,
+			};
+
+#		endif
+
 		enum {pointer_level = Pointee::pointer_level + 1};
 
 		typedef typename TernaryType<is_function_pointer, T, NaT>::type to_function;
@@ -2596,10 +2622,17 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Objective-C
 
-	template <> struct Case<Detail::Type::Abstract::Pointer<id>::remove_pointer> {
-		enum {is_objective_c_object = true};
-	};
+#	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
+		namespace Detail {namespace Type {
+			template <class T> struct ObjectiveCObjectPointerToObject;
+			template <class T> struct ObjectiveCObjectPointerToObject <T*> {typedef T type;};
+		}}
+
+		template <> struct Case<Detail::Type::ObjectiveCObjectPointerToObject<id   >::type> : Mixins::Unqualified<Abstract::ObjectiveCObject> {};
+		template <> struct Case<Detail::Type::ObjectiveCObjectPointerToObject<Class>::type> : Mixins::Unqualified<Abstract::ObjectiveCClass > {};
+
+#	endif
 
 	// MARK: - Specializations: Qualified types
 
@@ -3050,6 +3083,18 @@ namespace Zeta {
 
 #			if Z_TRAIT_HAS(Type, is_null_pointer)
 				enum {is_null_pointer = Type::is_null_pointer};
+#			endif
+
+#			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+
+				enum {	is_objective_c_class		= Type::is_objective_c_class,
+					is_objective_c_class_pointer	= Type::is_objective_c_class_pointer,
+					is_objective_c_instance		= Type::is_objective_c_instance,
+					is_objective_c_instance_pointer = Type::is_objective_c_instance_pointer,
+					is_objective_c_object		= Type::is_objective_c_object,
+					is_objective_c_object_pointer	= Type::is_objective_c_object_pointer
+				};
+
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_pod)
