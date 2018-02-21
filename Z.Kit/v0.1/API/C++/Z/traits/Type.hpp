@@ -2223,6 +2223,31 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 }}}}
 
+// MARK: - Helpers
+
+namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
+
+#	if Z_LANGUAGE_HAS(CPP, SFINAE)
+
+		namespace {
+			template <class T, SInt L, Boolean B> struct IsComplete			     : False {};
+			template <class T, SInt L>	      struct IsComplete	 <T, L, !!sizeof(T)> : True  {};
+			template <class T, SInt L, Boolean B> struct IsIncomplete		     : True  {};
+			template <class T, SInt L>	      struct IsIncomplete<T, L, !!sizeof(T)> : False {};
+		}
+
+		template <class T, Boolean B> struct IsStructureOrUnion				 : False {};
+		template <class T>	      struct IsStructureOrUnion<T, !!sizeof(int (T::*))> : True  {};
+
+		template <class T, Boolean B> struct IsUsableToCastNumber		     : False {};
+		template <class T>	      struct IsUsableToCastNumber<T, !!sizeof((T)1)> : True  {};
+
+#	endif
+
+	template <class T> struct RemovePointer;
+	template <class T> struct RemovePointer<T*> {typedef T type;};
+}}}}
+
 namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: Enumerations, structures and unions
@@ -2623,15 +2648,8 @@ namespace Zeta {namespace Detail {namespace Type {
 	// MARK: - Objective-C
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-
-		namespace Detail {namespace Type {
-			template <class T> struct ObjectiveCObjectPointerToObject;
-			template <class T> struct ObjectiveCObjectPointerToObject <T*> {typedef T type;};
-		}}
-
-		template <> struct Case<Detail::Type::ObjectiveCObjectPointerToObject<id   >::type> : Mixins::Unqualified<Abstract::ObjectiveCObject> {};
-		template <> struct Case<Detail::Type::ObjectiveCObjectPointerToObject<Class>::type> : Mixins::Unqualified<Abstract::ObjectiveCClass > {};
-
+		template <> struct Case<Helpers::RemovePointer<id   >::type> : Mixins::Unqualified<Abstract::ObjectiveCObject> {};
+		template <> struct Case<Helpers::RemovePointer<Class>::type> : Mixins::Unqualified<Abstract::ObjectiveCClass > {};
 #	endif
 
 	// MARK: - Specializations: Qualified types
@@ -2764,16 +2782,10 @@ namespace Zeta {
 #	endif
 
 #	if Z_LANGUAGE_HAS(CPP, SFINAE)
-		namespace Detail {namespace Type { namespace {
-			template <class T, SInt L, Boolean B> struct IsComplete			     : False {};
-			template <class T, SInt L>	      struct IsComplete	 <T, L, !!sizeof(T)> : True  {};
-			template <class T, SInt L, Boolean B> struct IsIncomplete		     : True  {};
-			template <class T, SInt L>	      struct IsIncomplete<T, L, !!sizeof(T)> : False {};
-		}}}
 
 		namespace {
-			template <class T, SInt at_line> struct TypeIsComplete	 : Detail::Type::IsComplete  <T, at_line, true> {};
-			template <class T, SInt at_line> struct TypeIsIncomplete : Detail::Type::IsIncomplete<T, at_line, true> {};
+			template <class T, SInt at_line> struct TypeIsComplete	 : Detail::Type::Helpers::IsComplete  <T, at_line, true> {};
+			template <class T, SInt at_line> struct TypeIsIncomplete : Detail::Type::Helpers::IsIncomplete<T, at_line, true> {};
 		}
 
 #		define Z_HAS_TRAIT_TypeIsComplete   TRUE
