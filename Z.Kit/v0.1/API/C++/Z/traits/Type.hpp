@@ -161,7 +161,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_TRAIT_Type_HAS_is_double FALSE
 #		endif
 
-#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION)
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_LANGUAGE_HAS(CPP, SFINAE)
 			enum {is_enumeration = false};
 #			define Z_TRAIT_Type_HAS_is_enumeration TRUE
 #		else
@@ -1405,106 +1405,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef T type[];
 	};
 
-#	if Z_TRAIT_HAS(Type, is_enumeration)
-
-		template <class T> struct Enumeration : Storable {
-			enum {	is_enumeration		  = true,
-				is_scalar		  = true,
-				is_statically_allocatable = true
-			};
-
-#			if Z_TRAIT_HAS(Type, is_literal)
-				enum {is_literal = true};
-#			endif
-
-#			if Z_TRAIT_HAS(Type, is_pod)
-				enum {is_pod = true};
-#			endif
-
-			typedef T type;
-
-#			if Z_TRAIT_HAS(Type, underlying_type)
-				typedef Z_COMPILER_TRAIT(TYPE_UNDERLYING_TYPE)(T) underlying_type;
-#			endif
-		};
-
-#	endif
-
-	template <class T> struct StructureOrUnion : Storable {
-		enum {is_structure_or_union = true};
-
-#		if Z_TRAIT_HAS(Type, is_aggregate)
-			enum {is_aggregate = Z_COMPILER_TRAIT(TYPE_IS_AGGREGATE)(T)};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_final)
-			enum {is_final = Z_COMPILER_TRAIT(TYPE_IS_FINAL)(T)};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_literal)
-			enum {is_literal = Z_COMPILER_TRAIT(TYPE_IS_LITERAL)(T)};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_pod)
-			enum {is_pod = Z_COMPILER_TRAIT(TYPE_IS_POD)(T)};
-#		endif
-
-		typedef T type;
-	};
-
-	template <class T> struct MaybeTemplate : StructureOrUnion<T> {};
-
-#	if Z_TRAIT_HAS(Type, is_template)
-
-		template <template <class...> class T, class... A> struct MaybeTemplate<T<A...> > : StructureOrUnion<T<A...> > {
-			enum {is_template = true};
-			enum {arity = sizeof...(A)};
-
-			typedef TypeList<A...> parameters;
-		};
-
-#	endif
-
-	template <class T> class Structure : public MaybeTemplate<T> {
-		public:
-		enum {	is_class     = true,
-			is_structure = true
-		};
-
-#		if Z_TRAIT_HAS(Type, is_abstract)
-			enum {is_abstract = Z_COMPILER_TRAIT(TYPE_IS_ABSTRACT)(T)};
-#		endif
-
-#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_EMPTY)
-			enum {is_empty = Z_COMPILER_TRAIT(TYPE_IS_EMPTY)(T)};
-#		else
-			private:
-			struct Dummy	     {zsint dummy;};
-			struct EmptyTest : T {zsint dummy;};
-
-			public:
-			enum {is_empty = (sizeof(EmptyTest) == sizeof(Dummy))};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_interface_class)
-			enum {is_interface_class = Z_COMPILER_TRAIT(TYPE_IS_INTERFACE_CLASS)(T)};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_polymorphic)
-			enum {is_polymorphic = Z_COMPILER_TRAIT(TYPE_IS_POLYMORPHIC)(T)};
-#		endif
-	};
-
-#	if Z_TRAIT_HAS(Type, is_union)
-
-		template <class T> struct Union : MaybeTemplate<T> {
-			enum {	is_statically_allocatable = true,
-				is_union		  = true
-			};
-		};
-
-#	endif
-
 	struct PointerLike : Storable {
 		enum {	is_scalar		  = true,
 			is_statically_allocatable = true
@@ -1752,24 +1652,139 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	struct ObjectiveCObject : Valid {
-		enum {is_objective_c_object = true};
-
-		typedef typename Pointer<id>::remove_pointer type;
+	enum {	Enumeration,
+		Structure,
+		Union,
+		ObjectiveCInstance
 	};
 
-	struct ObjectiveCClass : ObjectiveCObject {
-		enum {is_objective_c_class = true};
+	template <zuint K, class T> struct Kind;
 
-		typedef typename Pointer<Class>::remove_pointer type;
-	};
+#	if Z_TRAIT_HAS(Type, is_enumeration)
 
-	template <class T> class ObjectiveCInstance : ObjectiveCObject {
-		enum {is_objective_c_instance = true};
+		template <class T> struct Kind<Enumeration, T> : Storable {
+			enum {	is_enumeration		  = true,
+				is_scalar		  = true,
+				is_statically_allocatable = true
+			};
+
+#			if Z_TRAIT_HAS(Type, is_literal)
+				enum {is_literal = true};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_pod)
+				enum {is_pod = true};
+#			endif
+
+			typedef T type;
+
+#			if Z_TRAIT_HAS(Type, underlying_type)
+				typedef Z_COMPILER_TRAIT(TYPE_UNDERLYING_TYPE)(T) underlying_type;
+#			endif
+		};
+
+#	endif
+
+	template <class T> struct StructureOrUnion : Storable {
+		enum {is_structure_or_union = true};
+
+#		if Z_TRAIT_HAS(Type, is_aggregate)
+			enum {is_aggregate = Z_COMPILER_TRAIT(TYPE_IS_AGGREGATE)(T)};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_final)
+			enum {is_final = Z_COMPILER_TRAIT(TYPE_IS_FINAL)(T)};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_literal)
+			enum {is_literal = Z_COMPILER_TRAIT(TYPE_IS_LITERAL)(T)};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_pod)
+			enum {is_pod = Z_COMPILER_TRAIT(TYPE_IS_POD)(T)};
+#		endif
 
 		typedef T type;
 	};
 
+	template <class T> struct MaybeTemplate : StructureOrUnion<T> {};
+
+#	if Z_TRAIT_HAS(Type, is_template)
+
+		template <template <class...> class T, class... A> struct MaybeTemplate<T<A...> > : StructureOrUnion<T<A...> > {
+			enum {is_template = true};
+			enum {arity = sizeof...(A)};
+
+			typedef TypeList<A...> parameters;
+		};
+
+#	endif
+
+	template <class T> class Kind<Structure, T> : public MaybeTemplate<T> {
+		public:
+		enum {	is_class     = true,
+			is_structure = true
+		};
+
+#		if Z_TRAIT_HAS(Type, is_abstract)
+			enum {is_abstract = Z_COMPILER_TRAIT(TYPE_IS_ABSTRACT)(T)};
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_EMPTY)
+			enum {is_empty = Z_COMPILER_TRAIT(TYPE_IS_EMPTY)(T)};
+#		else
+			private:
+			struct Dummy	     {zsint dummy;};
+			struct EmptyTest : T {zsint dummy;};
+
+			public:
+			enum {is_empty = (sizeof(EmptyTest) == sizeof(Dummy))};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_interface_class)
+			enum {is_interface_class = Z_COMPILER_TRAIT(TYPE_IS_INTERFACE_CLASS)(T)};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_polymorphic)
+			enum {is_polymorphic = Z_COMPILER_TRAIT(TYPE_IS_POLYMORPHIC)(T)};
+#		endif
+	};
+
+#	if Z_TRAIT_HAS(Type, is_union)
+
+		template <class T> struct Kind<Union, T> : MaybeTemplate<T> {
+			enum {	is_statically_allocatable = true,
+				is_union		  = true
+			};
+		};
+
+#	endif
+
+#	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+
+		struct ObjectiveCObject : Valid {
+			enum {is_objective_c_object = true};
+
+			typedef typename Pointer<id>::remove_pointer type;
+		};
+
+		struct ObjectiveCClass : ObjectiveCObject {
+			enum {is_objective_c_class = true};
+
+			typedef typename Pointer<Class>::remove_pointer type;
+		};
+
+#		if Z_TRAIT_HAS(Type, is_objective_c_instance)
+
+			template <class T> struct Kind<ObjectiveCInstance, T> : ObjectiveCObject {
+				enum {is_objective_c_instance = true};
+
+				typedef T type;
+			};
+
+#		endif
+
+#	endif
 }}}}
 
 namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
@@ -2147,7 +2162,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		Reference
 	};
 
-	template <UInt K, class C> struct Kind;
+	template <zuint K, class C> struct Kind;
 
 	// MARK: - Mixins: Kind (virtual)
 
@@ -2259,20 +2274,50 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: Enumerations, structures and unions
 
-	template <class T> struct Case : Mixins::Unqualified<
-#		if Z_TRAIT_HAS(Type, is_enumeration) && Z_TRAIT_HAS(Type, is_union)
-			typename SelectType<
-				Z_COMPILER_TRAIT(TYPE_IS_ENUMERATION)(T) ? 2 : Z_COMPILER_TRAIT(TYPE_IS_UNION)(T),
-				Abstract::Structure<T>, Abstract::Union<T>, Abstract::Enumeration<T>
-			>::type
-#		elif Z_TRAIT_HAS(Type, is_enumeration)
-			typename TernaryType<Z_COMPILER_TRAIT(TYPE_IS_ENUMERATION)(T), Abstract::Enumeration<T>, Abstract::Structure<T> >::type
-#		elif Z_TRAIT_HAS(Type, is_union)
-			typename TernaryType<Z_COMPILER_TRAIT(TYPE_IS_UNION)(T), Abstract::Union<T>, Abstract::Structure<T> >::type
-#		else
-			Abstract::Structure<T>
-#		endif
-	> {};
+	template <class T> struct Ambiguous {
+
+		enum {	union_detected =
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
+				Z_COMPILER_TRAIT(TYPE_IS_UNION)(T)
+#			else
+				false
+#			endif
+		};
+
+		enum {	structure_or_union_detected = union_detected ||
+#			if Z_LANGUAGE_HAS(CPP, SFINAE)
+				Helpers::IsStructureOrUnion<T, true>::value
+#			else
+				false
+#			endif
+		};
+
+		enum {	enumeration_detected = 
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION)
+				Z_COMPILER_TRAIT(TYPE_IS_ENUMERATION)(T)
+#			elif Z_LANGUAGE_HAS(CPP, SFINAE)
+				!structure_or_union_detected && Helpers::IsUsableToCastNumber<T, true>::value
+#			else
+				false
+#			endif
+		};
+
+		enum {	objective_c_instance_detected =
+			Z_LANGUAGE_INCLUDES(OBJECTIVE_C) && Z_LANGUAGE_HAS(CPP, SFINAE) &&
+			!enumeration_detected && !structure_or_union_detected
+		};
+
+		enum {	kind = enumeration_detected
+				? Abstract::Enumeration
+				: (union_detected
+					? Abstract::Union
+					: (objective_c_instance_detected
+						? Abstract::ObjectiveCInstance
+						: Abstract::Structure))
+		};
+	};
+
+	template <class T> struct Case : Mixins::Unqualified<Abstract::Kind<Ambiguous<T>::kind, T> > {};
 
 	// MARK: - Specializations: void
 
