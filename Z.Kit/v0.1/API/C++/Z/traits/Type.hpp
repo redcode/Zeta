@@ -2700,7 +2700,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	endif
 
-	// MARK: - Objective-C
+	// MARK: - Specializations: Objective-C
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 		template <> struct Case<Helpers::RemovePointer<id   >::type> : Mixins::Unqualified<Abstract::ObjectiveCObject> {};
