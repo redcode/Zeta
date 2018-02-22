@@ -2272,7 +2272,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 
 namespace Zeta {namespace Detail {namespace Type {
 
-	// MARK: - Specializations: Enumerations, structures and unions
+	// MARK: - Specializations: Enumerations, structures, unions and Objective-C instances
 
 	template <class T> struct Ambiguous {
 
@@ -2463,9 +2463,12 @@ namespace Zeta {namespace Detail {namespace Type {
 #		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
 			enum {	is_objective_c_class_pointer	= Pointee::is_objective_c_class,
-				is_objective_c_instance_pointer = Pointee::is_objective_c_instance,
 				is_objective_c_object_pointer	= Pointee::is_objective_c_object,
 			};
+
+#			if Z_TRAIT_HAS(Type, is_objective_c_instance_pointer)
+				enum {is_objective_c_instance_pointer = Pointee::is_objective_c_instance};
+#			endif
 
 #		endif
 
@@ -3153,11 +3156,17 @@ namespace Zeta {
 
 				enum {	is_objective_c_class		= Type::is_objective_c_class,
 					is_objective_c_class_pointer	= Type::is_objective_c_class_pointer,
-					is_objective_c_instance		= Type::is_objective_c_instance,
-					is_objective_c_instance_pointer = Type::is_objective_c_instance_pointer,
 					is_objective_c_object		= Type::is_objective_c_object,
 					is_objective_c_object_pointer	= Type::is_objective_c_object_pointer
 				};
+
+#				if Z_LANGUAGE_HAS(CPP, SFINAE)
+
+					enum {	is_objective_c_instance		= Type::is_objective_c_instance,
+						is_objective_c_instance_pointer = Type::is_objective_c_instance_pointer
+					};
+
+#				endif
 
 #			endif
 
