@@ -83,6 +83,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 						};
 					}
 
+
 #				if Z_HAS_CLASS(ObjectSelector)
 
 					typedef R (* CallObjectSelector)(id, SEL, P...);
