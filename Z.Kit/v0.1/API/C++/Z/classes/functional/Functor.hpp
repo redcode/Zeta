@@ -63,7 +63,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 				template <class RR = R>
-				static Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, Call>::type member_function()
+				static Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, Call>::type object_member_function()
 					{
 					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 						{
@@ -74,7 +74,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 				template <class RR = R>
-				static Z_INLINE_MEMBER typename EnableIf<!Type<RR>::is_void, Call>::type member_function()
+				static Z_INLINE_MEMBER typename EnableIf<!Type<RR>::is_void, Call>::type object_member_function()
 					{
 					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 						{
@@ -85,11 +85,81 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #				if Z_HAS_CLASS(ObjectSelector)
 
+					typedef R (* CallObjectSelector)(id, SEL, P...);
+
+
+					template <class RR = R>
+					static Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, Call>::type object_selector()
+						{
+						return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+							{
+							((CallObjectSelector)objc_msgSend)
+								(functor->target.object_selector.object, functor->target.object_selector.selector,
+								 arguments...);
+							};
+						}
+
+
 #					if Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64 || Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32
+
+						template <class RR = R>
+						static Z_INLINE_MEMBER typename EnableIf<
+							!Type<RR>::is_void &&
+							!Type<RR>::is_real &&
+							!Type<RR>::is_structure_or_union,
+						Call>::type object_selector()
+							{
+							return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+								{
+								return ((CallObjectSelector)objc_msgSend)
+									(functor->target.object_selector.object, functor->target.object_selector.selector,
+									 arguments...);
+								};
+							}
+
+
+						template <class RR = R>
+						static Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_real, Call>::type object_selector()
+							{
+							return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+								{
+								return ((CallObjectSelector)objc_msgSend_fpret)
+									(functor->target.object_selector.object, functor->target.object_selector.selector,
+									 arguments...);
+								};
+							}
+
+#					else
+
+						template <class RR = R>
+						static Z_INLINE_MEMBER typename EnableIf<
+							!Type<RR>::is_void &&
+							!Type<RR>::is_structure_or_union,
+						Call>::type object_selector()
+							{
+							return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+								{
+								return ((CallObjectSelector)objc_msgSend)
+									(functor->target.object_selector.object, functor->target.object_selector.selector,
+									 arguments...);
+								};
+							}
+
 #					endif
 
-#				endif
 
+					template <class RR = R>
+					static Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_structure_or_union, Call>::type object_selector()
+						{
+						return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+							{
+							return ((CallObjectSelector)objc_msgSend_stret)
+								(functor->target.object_selector.object, functor->target.object_selector.selector,
+								 arguments...);
+							};
+						}
+
+#				endif
 			};
 
 
@@ -103,14 +173,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				{target.function = function;}
 
 
-			Z_INLINE_MEMBER Functor(const ObjectMemberFunction<R(P...)> &object_member_function) :
-			call(Callers::member_function()), destroy(NULL)
-				{
-				target.object_member_function.function = object_member_function.function;
-				target.object_member_function.object   = object_member_function.object;
-				}
-
-
 			template <class O, class M, class E = typename EnableIf<
 				Type<O>::is_pointer				   &&
 				Type<O>::flow::pointee_type::is_structure_or_union &&
@@ -121,7 +183,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				>::value,
 			M>::type>
 			Z_INLINE_MEMBER Functor(O object, M function) :
-			call(Callers::member_function()), destroy(NULL)
+			call(Callers::object_member_function()), destroy(NULL)
 				{
 				target.object_member_function.function = (R (NaT::*)(P...))function;
 				target.object_member_function.object   = (NaT *)object;
@@ -137,23 +199,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				>::value,
 			M>::type>
 			Z_INLINE_MEMBER Functor(const O &object, M function) :
-			call(Callers::member_function()), destroy(NULL)
+			call(Callers::object_member_function()), destroy(NULL)
 				{
 				target.object_member_function.function = (R (NaT::*)(P...))function;
 				target.object_member_function.object   = (NaT *)&object;
 				}
 
 
+			Z_INLINE_MEMBER Functor(const ObjectMemberFunction<R(P...)> &object_member_function) :
+			call(Callers::object_member_function()), destroy(NULL)
+				{
+				target.object_member_function.function = object_member_function.function;
+				target.object_member_function.object   = object_member_function.object;
+				}
+
+
 #			if Z_HAS_CLASS(ObjectSelector)
-
-				Z_INLINE_MEMBER
-				Functor(const ObjectSelector<R(P...)> &object_selector) :
-				call(Callers::object_selector()), destroy(NULL)
-					{
-					target.object_selector.selector = object_selector.selector;
-					target.object_selector.object	= object_selector.object;
-					}
-
 
 				Z_INLINE_MEMBER
 				Functor(id object, SEL selector) :
@@ -161,6 +222,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					{
 					target.object_selector.selector = selector;
 					target.object_selector.object	= object;
+					}
+
+
+				Z_INLINE_MEMBER
+				Functor(const ObjectSelector<R(P...)> &object_selector) :
+				call(Callers::object_selector()), destroy(NULL)
+					{
+					target.object_selector.selector = object_selector.selector;
+					target.object_selector.object	= object_selector.object;
 					}
 
 #			endif
