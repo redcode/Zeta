@@ -169,8 +169,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_CT_MEMBER(CPP11) Functor() : call(NULL), destroy(NULL) {}
 
 
-			Z_INLINE_MEMBER Functor(R (* function)(P...)) :
-			call(Callers::function()), destroy(NULL)
+			Z_INLINE_MEMBER Functor(R (* function)(P...))
+			: call(Callers::function()), destroy(NULL)
 				{target.function = function;}
 
 
@@ -183,8 +183,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					R(P...)
 				>::value,
 			M>::type>
-			Z_INLINE_MEMBER Functor(O object, M function) :
-			call(Callers::object_member_function()), destroy(NULL)
+			Z_INLINE_MEMBER Functor(O object, M function)
+			: call(Callers::object_member_function()), destroy(NULL)
 				{
 				target.object_member_function.function = (R (NaT::*)(P...))function;
 				target.object_member_function.object   = (NaT *)object;
@@ -199,16 +199,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					R(P...)
 				>::value,
 			M>::type>
-			Z_INLINE_MEMBER Functor(const O &object, M function) :
-			call(Callers::object_member_function()), destroy(NULL)
+			Z_INLINE_MEMBER Functor(const O &object, M function)
+			: call(Callers::object_member_function()), destroy(NULL)
 				{
 				target.object_member_function.function = (R (NaT::*)(P...))function;
 				target.object_member_function.object   = (NaT *)&object;
 				}
 
 
-			Z_INLINE_MEMBER Functor(const ObjectMemberFunction<R(P...)> &object_member_function) :
-			call(Callers::object_member_function()), destroy(NULL)
+			Z_INLINE_MEMBER Functor(const ObjectMemberFunction<R(P...)> &object_member_function)
+			: call(Callers::object_member_function()), destroy(NULL)
 				{
 				target.object_member_function.function = object_member_function.function;
 				target.object_member_function.object   = object_member_function.object;
@@ -218,8 +218,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			if Z_HAS_CLASS(ObjectSelector)
 
 				Z_INLINE_MEMBER
-				Functor(id object, SEL selector) :
-				call(Callers::object_selector()), destroy(NULL)
+				Functor(id object, SEL selector)
+				: call(Callers::object_selector()), destroy(NULL)
 					{
 					target.object_selector.selector = selector;
 					target.object_selector.object	= object;
@@ -227,8 +227,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 				Z_INLINE_MEMBER
-				Functor(const ObjectSelector<R(P...)> &object_selector) :
-				call(Callers::object_selector()), destroy(NULL)
+				Functor(const ObjectSelector<R(P...)> &object_selector)
+				: call(Callers::object_selector()), destroy(NULL)
 					{
 					target.object_selector.selector = object_selector.selector;
 					target.object_selector.object	= object_selector.object;
