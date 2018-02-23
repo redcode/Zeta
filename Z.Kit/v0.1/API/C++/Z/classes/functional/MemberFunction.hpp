@@ -49,10 +49,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			: function(function) {}
 
 
-			Z_INLINE_MEMBER MemberFunction(const OpaqueMemberFunctionPointer *function)
-			: function(*function) {}
-
-
 			Z_CT_MEMBER(CPP11) operator Boolean() const {return function != NULL;}
 
 
