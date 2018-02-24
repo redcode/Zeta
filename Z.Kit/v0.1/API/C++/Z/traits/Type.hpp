@@ -2165,6 +2165,18 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		};
 	};
 
+	template <class C> struct Convertible : C {
+		typedef typename C::type* to_pointer;
+		typedef typename C::type& to_lvalue_reference;
+		typedef typename C::type* add_pointer;
+		typedef typename C::type& add_lvalue_reference;
+
+#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+			typedef typename C::type&& to_rvalue_reference;
+			typedef typename C::type&& add_rvalue_reference;
+#		endif
+	};
+
 	enum {	Void,
 		Function,
 		InconvertibleFunction,
@@ -2173,7 +2185,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		VoidPointer,
 		Pointer,
 		MemberFunctionPointer,
-		Reference
+		Reference,
+		ObjectiveCObject
 	};
 
 	template <zuint K, class C> struct Kind;
@@ -2186,36 +2199,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct Kind<InconvertibleFunction, C> : Virtual<C> {
-		typedef typename C::type remove_pointer;
-		typedef typename C::type remove_reference;
 		typedef typename C::type to_function;
 	};
 
-	template <class C> struct Kind<ConvertibleFunction, C> : Kind<InconvertibleFunction, C> {
-		typedef typename C::type* to_pointer;
-		typedef typename C::type& to_lvalue_reference;
-		typedef typename C::type* add_pointer;
-		typedef typename C::type& add_lvalue_reference;
-
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
-			typedef typename C::type&& to_rvalue_reference;
-			typedef typename C::type&& add_rvalue_reference;
-#		endif
-	};
+	template <class C> struct Kind<ConvertibleFunction, C> : Kind<InconvertibleFunction, Convertible<C> > {};
 
 	// MARK: - Mixins: Kind (storable)
 
-	template <class C> struct Kind<Value, C> : Storable<C> {
-		typedef typename C::type* to_pointer;
-		typedef typename C::type& to_lvalue_reference;
-		typedef typename C::type* add_pointer;
-		typedef typename C::type& add_lvalue_reference;
-
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
-			typedef typename C::type&& to_rvalue_reference;
-			typedef typename C::type&& add_rvalue_reference;
-#		endif
-	};
+	template <class C> struct Kind<Value, C> : Storable<Convertible<C> > {};
 
 	template <class C> struct Kind<VoidPointer, C> : Storable<C> {
 		typedef typename C::type	 to_pointer;
@@ -2257,6 +2248,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 			typedef typename C::referencee_type&& to_rvalue_reference;
 #		endif
 	};
+
+	// MARK: - Mixins: Objective-C objects
+
+#	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+		template <class C> struct Kind<ObjectiveCObject, C> : Convertible<C> {};
+#	endif
 }}}}
 
 // MARK: - Helpers
@@ -2713,6 +2710,8 @@ namespace Zeta {namespace Detail {namespace Type {
 #		endif
 
 #	endif
+
+	// MARK: - Specializations: Apple blocks
 
 	// MARK: - Specializations: Objective-C
 
