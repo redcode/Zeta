@@ -45,9 +45,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O, class M, class E = typename EnableIf<
-				Type<O>::is_pointer				   &&
-				Type<O>::flow::pointee_type::is_structure_or_union &&
-				Type<M>::is_member_function_pointer		   &&
+				(Type<O>::is_void_pointer			       ||
+				 (Type<O>::is_pointer				       &&
+				  Type<O>::flow::pointee_type::is_structure_or_union)) &&
+				Type<M>::is_member_function_pointer		       &&
 				TypeAreEqual<
 					typename Type<M>::flow::to_function::end::to_unqualified,
 					R(P...)

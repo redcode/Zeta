@@ -1370,7 +1370,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	template <class T> struct Array : Storable {
+	template <zboolean E, class T> struct Array : Storable {
 		enum {is_array = true};
 
 		typedef T element_type;
@@ -1388,7 +1388,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		endif
 	};
 
-	template <class T, zusize N> struct SizedArray : Array<T> {
+	template <zboolean E, class T, zusize N> struct SizedArray : Array<E, T> {
 		enum {	is_empty		  = (N == 0),
 			is_statically_allocatable = true
 		};
@@ -1397,7 +1397,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef T type[N];
 	};
 
-	template <class T> struct FlexibleArray : Array<T> {
+	template <zboolean E, class T> struct FlexibleArray : Array<E, T> {
 		enum {	is_empty	  = true,
 			is_flexible_array = true
 		};
@@ -1658,11 +1658,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		ObjectiveCInstance
 	};
 
-	template <zuint K, class T> struct Kind;
+	template <zboolean E, zuint K, class T> struct Kind;
 
 #	if Z_TRAIT_HAS(Type, is_enumeration)
 
-		template <class T> struct Kind<Enumeration, T> : Storable {
+		template <class T> struct Kind<false, Enumeration, T> : Storable {
 			enum {	is_enumeration		  = true,
 				is_scalar		  = true,
 				is_statically_allocatable = true
@@ -1677,7 +1677,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			endif
 
 			typedef T type;
+		};
 
+		template <class T> struct Kind<true, Enumeration, T> : Kind<false, Enumeration, T> {
 #			if Z_TRAIT_HAS(Type, underlying_type)
 				typedef Z_COMPILER_TRAIT(TYPE_UNDERLYING_TYPE)(T) underlying_type;
 #			endif
@@ -1685,8 +1687,15 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	template <class T> struct StructureOrUnion : Storable {
+	template <zboolean E, class T> struct StructureOrUnion;
+
+	template <class T> struct StructureOrUnion<false, T> : Storable {
 		enum {is_structure_or_union = true};
+
+		typedef T type;
+	};
+
+	template <class T> struct StructureOrUnion<true, T> : StructureOrUnion<false, T> {
 
 #		if Z_TRAIT_HAS(Type, is_aggregate)
 			enum {is_aggregate = Z_COMPILER_TRAIT(TYPE_IS_AGGREGATE)(T)};
@@ -1703,15 +1712,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		if Z_TRAIT_HAS(Type, is_pod)
 			enum {is_pod = Z_COMPILER_TRAIT(TYPE_IS_POD)(T)};
 #		endif
-
-		typedef T type;
 	};
 
-	template <class T> struct MaybeTemplate : StructureOrUnion<T> {};
+	template <zboolean E, class T> struct MaybeTemplate : StructureOrUnion<E, T> {};
 
 #	if Z_TRAIT_HAS(Type, is_template)
 
-		template <template <class...> class T, class... A> struct MaybeTemplate<T<A...> > : StructureOrUnion<T<A...> > {
+		template <zboolean E, template <class...> class T, class... A> struct MaybeTemplate<E, T<A...> > : StructureOrUnion<E, T<A...> > {
 			enum {is_template = true};
 			enum {arity = sizeof...(A)};
 
@@ -1720,7 +1727,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	template <class T> class Kind<Structure, T> : public MaybeTemplate<T> {
+	template <class T> class Kind<false, Structure, T> : public MaybeTemplate<false, T> {
+		public:
+		enum {	is_class     = true,
+			is_structure = true
+		};
+	};
+
+	template <class T> class Kind<true, Structure, T> : public MaybeTemplate<true, T> {
 		public:
 		enum {	is_class     = true,
 			is_structure = true
@@ -1752,7 +1766,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_TRAIT_HAS(Type, is_union)
 
-		template <class T> struct Kind<Union, T> : MaybeTemplate<T> {
+		template <zboolean E, class T> struct Kind<E, Union, T> : MaybeTemplate<E, T> {
 			enum {	is_statically_allocatable = true,
 				is_union		  = true
 			};
@@ -1776,7 +1790,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_objective_c_instance)
 
-			template <class T> struct Kind<ObjectiveCInstance, T> : ObjectiveCObject {
+			template <zboolean E, class T> struct Kind<E, ObjectiveCInstance, T> : ObjectiveCObject {
 				enum {is_objective_c_instance = true};
 
 				typedef T type;
@@ -2317,142 +2331,142 @@ namespace Zeta {namespace Detail {namespace Type {
 		};
 	};
 
-	template <class T> struct Case : Mixins::Unqualified<Abstract::Kind<Ambiguous<T>::kind, T> > {};
+	template <Boolean E, class T> struct Case : Mixins::Unqualified<Abstract::Kind<E, Ambiguous<T>::kind, T> > {};
 
 	// MARK: - Specializations: void
 
-	template <> struct Case<void> : Mixins::Unqualified<Abstract::Void> {};
+	template <Boolean E> struct Case<E, void> : Mixins::Unqualified<Abstract::Void> {};
 
 	// MARK: - Specializations: Numbers
 
 #	if Z_TRAIT_HAS(Type, is_uint8)
-		template <> struct Case<UInt8> : Mixins::Unqualified<Abstract::UInt8> {};
+		template <Boolean E> struct Case<E, UInt8> : Mixins::Unqualified<Abstract::UInt8> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_uint16)
-		template <> struct Case<UInt16> : Mixins::Unqualified<Abstract::UInt16> {};
+		template <Boolean E> struct Case<E, UInt16> : Mixins::Unqualified<Abstract::UInt16> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_uint32)
-		template <> struct Case<UInt32> : Mixins::Unqualified<Abstract::UInt32> {};
+		template <Boolean E> struct Case<E, UInt32> : Mixins::Unqualified<Abstract::UInt32> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_uint64)
-		template <> struct Case<UInt64> : Mixins::Unqualified<Abstract::UInt64> {};
+		template <Boolean E> struct Case<E, UInt64> : Mixins::Unqualified<Abstract::UInt64> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_uint128)
-		template <> struct Case<UInt128> : Mixins::Unqualified<Abstract::UInt128> {};
+		template <Boolean E> struct Case<E, UInt128> : Mixins::Unqualified<Abstract::UInt128> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_sint8)
-		template <> struct Case<SInt8> : Mixins::Unqualified<Abstract::SInt8> {};
+		template <Boolean E> struct Case<E, SInt8> : Mixins::Unqualified<Abstract::SInt8> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_sint16)
-		template <> struct Case<SInt16> : Mixins::Unqualified<Abstract::SInt16> {};
+		template <Boolean E> struct Case<E, SInt16> : Mixins::Unqualified<Abstract::SInt16> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_sint32)
-		template <> struct Case<SInt32> : Mixins::Unqualified<Abstract::SInt32> {};
+		template <Boolean E> struct Case<E, SInt32> : Mixins::Unqualified<Abstract::SInt32> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_sint64)
-		template <> struct Case<SInt64> : Mixins::Unqualified<Abstract::SInt64> {};
+		template <Boolean E> struct Case<E, SInt64> : Mixins::Unqualified<Abstract::SInt64> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_sint128)
-		template <> struct Case<SInt128> : Mixins::Unqualified<Abstract::SInt128> {};
+		template <Boolean E> struct Case<E, SInt128> : Mixins::Unqualified<Abstract::SInt128> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_float16)
-		template <> struct Case<Float16> : Mixins::Unqualified<Abstract::Float16> {};
+		template <Boolean E> struct Case<E, Float16> : Mixins::Unqualified<Abstract::Float16> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_float32)
-		template <> struct Case<Float32> : Mixins::Unqualified<Abstract::Float32> {};
+		template <Boolean E> struct Case<E, Float32> : Mixins::Unqualified<Abstract::Float32> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_float64)
-		template <> struct Case<Float64> : Mixins::Unqualified<Abstract::Float64> {};
+		template <Boolean E> struct Case<E, Float64> : Mixins::Unqualified<Abstract::Float64> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_float128)
-		template <> struct Case<Float128> : Mixins::Unqualified<Abstract::Float128> {};
+		template <Boolean E> struct Case<E, Float128> : Mixins::Unqualified<Abstract::Float128> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_float80_x87)
-		template <> struct Case<Float80_x87> : Mixins::Unqualified<Abstract::Float80_x87> {};
+		template <Boolean E> struct Case<E, Float80_x87> : Mixins::Unqualified<Abstract::Float80_x87> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_float96_x87)
-		template <> struct Case<Float96_x87> : Mixins::Unqualified<Abstract::Float96_x87> {};
+		template <Boolean E> struct Case<E, Float96_x87> : Mixins::Unqualified<Abstract::Float96_x87> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_float128_x87)
-		template <> struct Case<Float128_x87> : Mixins::Unqualified<Abstract::Float128_x87> {};
+		template <Boolean E> struct Case<E, Float128_x87> : Mixins::Unqualified<Abstract::Float128_x87> {};
 #	endif
 
-	template <> struct Case<Char  > : Mixins::Unqualified<Abstract::Char  > {};
-	template <> struct Case<UChar > : Mixins::Unqualified<Abstract::UChar > {};
-	template <> struct Case<UShort> : Mixins::Unqualified<Abstract::UShort> {};
-	template <> struct Case<UInt  > : Mixins::Unqualified<Abstract::UInt  > {};
-	template <> struct Case<ULong > : Mixins::Unqualified<Abstract::ULong > {};
+	template <Boolean E> struct Case<E, Char  > : Mixins::Unqualified<Abstract::Char  > {};
+	template <Boolean E> struct Case<E, UChar > : Mixins::Unqualified<Abstract::UChar > {};
+	template <Boolean E> struct Case<E, UShort> : Mixins::Unqualified<Abstract::UShort> {};
+	template <Boolean E> struct Case<E, UInt  > : Mixins::Unqualified<Abstract::UInt  > {};
+	template <Boolean E> struct Case<E, ULong > : Mixins::Unqualified<Abstract::ULong > {};
 
 #	if Z_TRAIT_HAS(Type, is_ullong)
-		template <> struct Case<ULLong> : Mixins::Unqualified<Abstract::ULLong> {};
+		template <Boolean E> struct Case<E, ULLong> : Mixins::Unqualified<Abstract::ULLong> {};
 #	endif
 
-	template <> struct Case<SChar > : Mixins::Unqualified<Abstract::SChar > {};
-	template <> struct Case<SShort> : Mixins::Unqualified<Abstract::SShort> {};
-	template <> struct Case<SInt  > : Mixins::Unqualified<Abstract::SInt  > {};
-	template <> struct Case<SLong > : Mixins::Unqualified<Abstract::SLong > {};
+	template <Boolean E> struct Case<E, SChar > : Mixins::Unqualified<Abstract::SChar > {};
+	template <Boolean E> struct Case<E, SShort> : Mixins::Unqualified<Abstract::SShort> {};
+	template <Boolean E> struct Case<E, SInt  > : Mixins::Unqualified<Abstract::SInt  > {};
+	template <Boolean E> struct Case<E, SLong > : Mixins::Unqualified<Abstract::SLong > {};
 
 #	if Z_TRAIT_HAS(Type, is_sllong)
-		template <> struct Case<SLLong> : Mixins::Unqualified<Abstract::SLLong> {};
+		template <Boolean E> struct Case<E, SLLong> : Mixins::Unqualified<Abstract::SLLong> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_float)
-		template <> struct Case<Float> : Mixins::Unqualified<Abstract::Float> {};
+		template <Boolean E> struct Case<E, Float> : Mixins::Unqualified<Abstract::Float> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_double)
-		template <> struct Case<Double> : Mixins::Unqualified<Abstract::Double> {};
+		template <Boolean E> struct Case<E, Double> : Mixins::Unqualified<Abstract::Double> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_ldouble)
-		template <> struct Case<LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
+		template <Boolean E> struct Case<E, LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_boolean)
-		template <> struct Case<Boolean> : Mixins::Unqualified<Abstract::Boolean> {};
+		template <Boolean E> struct Case<E, Boolean> : Mixins::Unqualified<Abstract::Boolean> {};
 #	endif
 
 	// MARK: - Specializations: Sized arrays
 
-	template <class T, USize N> struct Case<T[N]> : Mixins::Unqualified<Abstract::SizedArray<T, N> > {};
+	template <Boolean E, class T, USize N> struct Case<E, T[N]> : Mixins::Unqualified<Abstract::SizedArray<E, T, N> > {};
 
-	template <class T, USize N> struct Case<const	       T[N]> : Mixins::ConstArray	 <Case<T[N]> > {};
-	template <class T, USize N> struct Case<      volatile T[N]> : Mixins::VolatileArray	 <Case<T[N]> > {};
-	template <class T, USize N> struct Case<const volatile T[N]> : Mixins::ConstVolatileArray<Case<T[N]> > {};
+	template <Boolean E, class T, USize N> struct Case<E, const	     T[N]> : Mixins::ConstArray	       <Case<E, T[N]> > {};
+	template <Boolean E, class T, USize N> struct Case<E,	    volatile T[N]> : Mixins::VolatileArray     <Case<E, T[N]> > {};
+	template <Boolean E, class T, USize N> struct Case<E, const volatile T[N]> : Mixins::ConstVolatileArray<Case<E, T[N]> > {};
 
 	// MARK: - Specializations: Flexible arrays
 
-	template <class T> struct Case<T[]> : Mixins::Unqualified<Abstract::FlexibleArray<T> > {};
+	template <Boolean E, class T> struct Case<E, T[]> : Mixins::Unqualified<Abstract::FlexibleArray<E, T> > {};
 
-	template <class T> struct Case<const	      T[]> : Mixins::ConstArray	       <Case<T[]> > {};
-	template <class T> struct Case<	     volatile T[]> : Mixins::VolatileArray     <Case<T[]> > {};
-	template <class T> struct Case<const volatile T[]> : Mixins::ConstVolatileArray<Case<T[]> > {};
+	template <Boolean E, class T> struct Case<E, const	    T[]> : Mixins::ConstArray	     <Case<E, T[]> > {};
+	template <Boolean E, class T> struct Case<E, 	   volatile T[]> : Mixins::VolatileArray     <Case<E, T[]> > {};
+	template <Boolean E, class T> struct Case<E, const volatile T[]> : Mixins::ConstVolatileArray<Case<E, T[]> > {};
 
 	// MARK: - Specializations: Pointers
 
 #	if Z_TRAIT_HAS(Type, is_null_pointer)
-		template <> struct Case<NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
+		template <Boolean E> struct Case<E, NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
 #	endif
 
-	template <class T> class Case<T*> : public Mixins::Unqualified<Abstract::Pointer<T> > {
+	template <Boolean E, class T> class Case<E, T*> : public Mixins::Unqualified<Abstract::Pointer<T> > {
 		private:
-		typedef Case<T> Pointee;
+		typedef Case<false, T> Pointee;
 
 		public:
 		enum {	is_function_pointer = Pointee::is_function,
@@ -2462,8 +2476,8 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
-			enum {	is_objective_c_class_pointer	= Pointee::is_objective_c_class,
-				is_objective_c_object_pointer	= Pointee::is_objective_c_object,
+			enum {	is_objective_c_class_pointer  = Pointee::is_objective_c_class,
+				is_objective_c_object_pointer = Pointee::is_objective_c_object,
 			};
 
 #			if Z_TRAIT_HAS(Type, is_objective_c_instance_pointer)
@@ -2477,96 +2491,96 @@ namespace Zeta {namespace Detail {namespace Type {
 		typedef typename TernaryType<is_function_pointer, T, NaT>::type to_function;
 	};
 
-	template <class C, class T> struct Case<T C::*> : Mixins::Unqualified<Abstract::DataMemberPointer<T C::*, C, T> > {
-		enum {pointer_level = Case<T>::pointer_level + 1};
+	template <Boolean E, class C, class T> struct Case<E, T C::*> : Mixins::Unqualified<Abstract::DataMemberPointer<T C::*, C, T> > {
+		enum {pointer_level = Case<E, T>::pointer_level + 1};
 	};
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-		template <class C, class R, class... P> struct Case<R(C::*)(P...)		 > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		     , C, R(P...)		> > {};
-		template <class C, class R, class... P> struct Case<R(C::*)(P...) const		 > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const	     , C, R(P...) const		> > {};
-		template <class C, class R, class... P> struct Case<R(C::*)(P...)	volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)	     volatile, C, R(P...)	volatile> > {};
-		template <class C, class R, class... P> struct Case<R(C::*)(P...) const volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile, C, R(P...) const volatile> > {};
+		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)		      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		  , C, R(P...)		     > > {};
+		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const	      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const	  , C, R(P...) const	     > > {};
+		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)	volatile      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)	  volatile, C, R(P...)	     volatile> > {};
+		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile, C, R(P...) const volatile> > {};
 
-		template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)		      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)	       , C, R(P..., ...)	       > > {};
-		template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const	      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const	       , C, R(P..., ...) const	       > > {};
-		template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)	     volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)       volatile, C, R(P..., ...)       volatile> > {};
-		template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile, C, R(P..., ...) const volatile> > {};
+		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)		   > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)		    , C, R(P..., ...)		    > > {};
+		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const	   > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const	    , C, R(P..., ...) const	    > > {};
+		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)	   volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)       volatile, C, R(P..., ...)       volatile> > {};
+		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile, C, R(P..., ...) const volatile> > {};
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
-			template <class C, class R, class... P> struct Case<R(C::*)(P...)		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		& , C, R(P...)		      & > > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P...)		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		&&, C, R(P...)		      &&> > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P...) const		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const		& , C, R(P...) const	      & > > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P...) const		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const		&&, C, R(P...) const	      &&> > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P...)	volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)       volatile & , C, R(P...)	     volatile & > > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P...)	volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)       volatile &&, C, R(P...)	     volatile &&> > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile & , C, R(P...) const volatile &	> > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile &&, C, R(P...) const volatile &&> > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)		       & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		      & , C, R(P...)		    & > > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)		       &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		      &&, C, R(P...)		    &&> > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const	       & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const	      & , C, R(P...) const	    & > > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const	       &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const	      &&, C, R(P...) const	    &&> > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)	      volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)	     volatile & , C, R(P...)	   volatile & > > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)	      volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)	     volatile &&, C, R(P...)	   volatile &&> > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile & , C, R(P...) const volatile & > > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile &&, C, R(P...) const volatile &&> > {};
 
-			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)		      & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)		  & , C, R(P..., ...)		     & > > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)		      &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)		  &&, C, R(P..., ...)		     &&> > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const	      & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const	  & , C, R(P..., ...) const	     & > > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const	      &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const	  &&, C, R(P..., ...) const	     &&> > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)	     volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)	 volatile & , C, R(P..., ...)       volatile & > > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...)	     volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)	 volatile &&, C, R(P..., ...)       volatile &&> > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile & , C, R(P..., ...) const volatile & > > {};
-			template <class C, class R, class... P> struct Case<R(C::*)(P..., ...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile &&, C, R(P..., ...) const volatile &&> > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)		    & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)		& , C, R(P..., ...)		   & > > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)		    &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)		&&, C, R(P..., ...)		   &&> > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const	    & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const		& , C, R(P..., ...) const	   & > > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const	    &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const		&&, C, R(P..., ...) const	   &&> > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)	   volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)       volatile & , C, R(P..., ...)	  volatile & > > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)	   volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)       volatile &&, C, R(P..., ...)	  volatile &&> > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile & , C, R(P..., ...) const volatile & > > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile &&, C, R(P..., ...) const volatile &&> > {};
 
 #		endif
 
 #	else
 
-		template <class C, class R> struct Case<R(C::*)()		> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()		, C, R()	       > > {};
-		template <class C, class R> struct Case<R(C::*)() const		> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const		, C, R() const	       > > {};
-		template <class C, class R> struct Case<R(C::*)()	volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()	volatile, C, R()       volatile> > {};
-		template <class C, class R> struct Case<R(C::*)() const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const volatile, C, R() const volatile> > {};
+		template <Boolean E, class C, class R> struct Case<E, R(C::*)()		      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()		      , C, R()		     > > {};
+		template <Boolean E, class C, class R> struct Case<E, R(C::*)() const	      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const	      , C, R() const	     > > {};
+		template <Boolean E, class C, class R> struct Case<E, R(C::*)()	      volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()	      volatile, C, R()	     volatile> > {};
+		template <Boolean E, class C, class R> struct Case<E, R(C::*)() const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const volatile, C, R() const volatile> > {};
 
-#		define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																																											      \
-																																																			      \
-		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		     > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	       , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		> > {};		      \
-		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	       , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const		> > {};		      \
-		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))       volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	volatile> > {};		      \
-		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile> > {};		      \
-																																																			      \
-		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		 > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		      > > {}; \
-		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	 > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const		, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	      > > {}; \
-		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	 volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)       volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	      volatile> > {}; \
-		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> > {};
+#		define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																																													    \
+																																																					    \
+		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		  > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		    , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		     > > {};		    \
+		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	  > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	    , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     > > {};		    \
+		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	  volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile> > {};		    \
+		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile> > {};		    \
+																																																					    \
+		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	       > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		      , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		    > > {}; \
+		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	       > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	      , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	    > > {}; \
+		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)       volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	      volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	    volatile> > {}; \
+		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> > {};
 
 		Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #		undef Z_TEMPLATE_SPECIALIZATIONS
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
-			template <class C, class R> struct Case<R(C::*)()		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()		    & , C, R()		      & > > {};
-			template <class C, class R> struct Case<R(C::*)()		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()		    &&, C, R()		      &&> > {};
-			template <class C, class R> struct Case<R(C::*)() const		 & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const	    & , C, R() const	      & > > {};
-			template <class C, class R> struct Case<R(C::*)() const		 &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const	    &&, C, R() const	      &&> > {};
-			template <class C, class R> struct Case<R(C::*)()	volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()       volatile & , C, R()	     volatile & > > {};
-			template <class C, class R> struct Case<R(C::*)()	volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()       volatile &&, C, R()	     volatile &&> > {};
-			template <class C, class R> struct Case<R(C::*)() const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const volatile & , C, R() const volatile & > > {};
-			template <class C, class R> struct Case<R(C::*)() const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const volatile &&, C, R() const volatile &&> > {};
+			template <Boolean E, class C, class R> struct Case<E, R(C::*)()		       & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()		  & , C, R()		    & > > {};
+			template <Boolean E, class C, class R> struct Case<E, R(C::*)()		       &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()		  &&, C, R()		    &&> > {};
+			template <Boolean E, class C, class R> struct Case<E, R(C::*)() const	       & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const	  & , C, R() const	    & > > {};
+			template <Boolean E, class C, class R> struct Case<E, R(C::*)() const	       &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const	  &&, C, R() const	    &&> > {};
+			template <Boolean E, class C, class R> struct Case<E, R(C::*)()	      volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()	 volatile & , C, R()	   volatile & > > {};
+			template <Boolean E, class C, class R> struct Case<E, R(C::*)()	      volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()	 volatile &&, C, R()	   volatile &&> > {};
+			template <Boolean E, class C, class R> struct Case<E, R(C::*)() const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const volatile & , C, R() const volatile & > > {};
+			template <Boolean E, class C, class R> struct Case<E, R(C::*)() const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const volatile &&, C, R() const volatile &&> > {};
 
-#			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																																												       \
-																																																					       \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		     & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		  & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      & > > {};		       \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		     &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		  &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      &&> > {};		       \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	  & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      & > > {};		       \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	  &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      &&> > {};		       \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	 volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile & > > {};		       \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	 volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile &&> > {};		       \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &	> > {};		       \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&> > {};		       \
-																																																					       \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		  & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		    & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		     & > > {}; \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		  &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		    &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		     &&> > {}; \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	  & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	    & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	     & > > {}; \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	  &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	    &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	     &&> > {}; \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	 volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	   volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	    volatile & > > {}; \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	 volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	   volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	    volatile &&> > {}; \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & > > {}; \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> > {};
+#			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																																														     \
+																																																							     \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		   & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		& , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		    & > > {};		     \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		   &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		&&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		    &&> > {};		     \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	   & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const		& , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	    & > > {};		     \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	   &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const		&&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	    &&> > {};		     \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	  volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))       volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile & > > {};		     \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	  volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))       volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile &&> > {};		     \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & > > {};		     \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&> > {};		     \
+																																																							     \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		& > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		  & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   & > > {}; \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		&&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		  &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   &&> > {}; \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const		& > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	  & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   & > > {}; \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const		&&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	  &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   &&> > {}; \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)       volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	 volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile & > > {}; \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)       volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	 volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &&> > {}; \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & > > {}; \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> > {};
 
 			Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #			undef Z_TEMPLATE_SPECIALIZATIONS
@@ -2577,8 +2591,8 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: References
 
-	template <class T> struct Case<T&> : Mixins::Unqualified<Abstract::LValueReference<T> > {
-		enum {	is_function_reference	     = Case<T>::is_function,
+	template <Boolean E, class T> struct Case<E, T&> : Mixins::Unqualified<Abstract::LValueReference<T> > {
+		enum {	is_function_reference	     = Case<false, T>::is_function,
 			is_function_lvalue_reference = is_function_reference,
 			is_callable		     = is_function_reference
 		};
@@ -2588,8 +2602,8 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	if Z_TRAIT_HAS(Type, is_rvalue_reference)
 
-		template <class T> struct Case<T&&> : Mixins::Unqualified<Abstract::RValueReference<T> > {
-			enum {	is_function_reference	     = Case<T>::is_function,
+		template <Boolean E, class T> struct Case<E, T&&> : Mixins::Unqualified<Abstract::RValueReference<T> > {
+			enum {	is_function_reference	     = Case<false, T>::is_function,
 				is_function_rvalue_reference = is_function_reference,
 				is_callable		     = is_function_reference
 			};
@@ -2603,95 +2617,95 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-		template <class R, class... P> struct Case<R(P...)> : Mixins::UnqualifiedFunction<Abstract::Function<R, P...> > {};
+		template <Boolean E, class R, class... P> struct Case<E, R(P...)> : Mixins::UnqualifiedFunction<Abstract::Function<R, P...> > {};
 
-		template <class R, class... P> struct Case<R(P...) const	 > : Mixins::ConstFunction	  <Case<R(P...)> > {};
-		template <class R, class... P> struct Case<R(P...)	 volatile> : Mixins::VolatileFunction	  <Case<R(P...)> > {};
-		template <class R, class... P> struct Case<R(P...) const volatile> : Mixins::ConstVolatileFunction<Case<R(P...)> > {};
+		template <Boolean E, class R, class... P> struct Case<E, R(P...) const	       > : Mixins::ConstFunction	<Case<E, R(P...)> > {};
+		template <Boolean E, class R, class... P> struct Case<E, R(P...)       volatile> : Mixins::VolatileFunction	<Case<E, R(P...)> > {};
+		template <Boolean E, class R, class... P> struct Case<E, R(P...) const volatile> : Mixins::ConstVolatileFunction<Case<E, R(P...)> > {};
 
-		template <class R, class... P> struct Case<R(P..., ...)> : Mixins::UnqualifiedFunction<Abstract::VariadicFunction<R, P...> > {};
+		template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)> : Mixins::UnqualifiedFunction<Abstract::VariadicFunction<R, P...> > {};
 
-		template <class R, class... P> struct Case<R(P..., ...) const	      > : Mixins::ConstFunction	       <Case<R(P..., ...)> > {};
-		template <class R, class... P> struct Case<R(P..., ...)	      volatile> : Mixins::VolatileFunction     <Case<R(P..., ...)> > {};
-		template <class R, class... P> struct Case<R(P..., ...) const volatile> : Mixins::ConstVolatileFunction<Case<R(P..., ...)> > {};
+		template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const	    > : Mixins::ConstFunction	     <Case<E, R(P..., ...)> > {};
+		template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)	    volatile> : Mixins::VolatileFunction     <Case<E, R(P..., ...)> > {};
+		template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const volatile> : Mixins::ConstVolatileFunction<Case<E, R(P..., ...)> > {};
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
-			template <class R, class... P> struct Case<R(P...)		  & > : Mixins::LValueFunction		   <Case<R(P...)> > {};
-			template <class R, class... P> struct Case<R(P...)		  &&> : Mixins::RValueFunction		   <Case<R(P...)> > {};
-			template <class R, class... P> struct Case<R(P...) const	  & > : Mixins::ConstLValueFunction	   <Case<R(P...)> > {};
-			template <class R, class... P> struct Case<R(P...) const	  &&> : Mixins::ConstRValueFunction	   <Case<R(P...)> > {};
-			template <class R, class... P> struct Case<R(P...)	 volatile & > : Mixins::VolatileLValueFunction	   <Case<R(P...)> > {};
-			template <class R, class... P> struct Case<R(P...)	 volatile &&> : Mixins::VolatileRValueFunction	   <Case<R(P...)> > {};
-			template <class R, class... P> struct Case<R(P...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R(P...)> > {};
-			template <class R, class... P> struct Case<R(P...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R(P...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P...)		& > : Mixins::LValueFunction		 <Case<E, R(P...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P...)		&&> : Mixins::RValueFunction		 <Case<E, R(P...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P...) const		& > : Mixins::ConstLValueFunction	 <Case<E, R(P...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P...) const		&&> : Mixins::ConstRValueFunction	 <Case<E, R(P...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P...)       volatile & > : Mixins::VolatileLValueFunction	 <Case<E, R(P...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P...)       volatile &&> : Mixins::VolatileRValueFunction	 <Case<E, R(P...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<E, R(P...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<E, R(P...)> > {};
 
-			template <class R, class... P> struct Case<R(P..., ...)		       & > : Mixins::LValueFunction		<Case<R(P..., ...)> > {};
-			template <class R, class... P> struct Case<R(P..., ...)		       &&> : Mixins::RValueFunction		<Case<R(P..., ...)> > {};
-			template <class R, class... P> struct Case<R(P..., ...) const	       & > : Mixins::ConstLValueFunction	<Case<R(P..., ...)> > {};
-			template <class R, class... P> struct Case<R(P..., ...) const	       &&> : Mixins::ConstRValueFunction	<Case<R(P..., ...)> > {};
-			template <class R, class... P> struct Case<R(P..., ...)	      volatile & > : Mixins::VolatileLValueFunction     <Case<R(P..., ...)> > {};
-			template <class R, class... P> struct Case<R(P..., ...)	      volatile &&> : Mixins::VolatileRValueFunction     <Case<R(P..., ...)> > {};
-			template <class R, class... P> struct Case<R(P..., ...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R(P..., ...)> > {};
-			template <class R, class... P> struct Case<R(P..., ...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R(P..., ...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)		     & > : Mixins::LValueFunction	      <Case<E, R(P..., ...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)		     &&> : Mixins::RValueFunction	      <Case<E, R(P..., ...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const	     & > : Mixins::ConstLValueFunction	      <Case<E, R(P..., ...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const	     &&> : Mixins::ConstRValueFunction	      <Case<E, R(P..., ...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)	    volatile & > : Mixins::VolatileLValueFunction     <Case<E, R(P..., ...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)	    volatile &&> : Mixins::VolatileRValueFunction     <Case<E, R(P..., ...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<E, R(P..., ...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<E, R(P..., ...)> > {};
 
 #		endif
 
 #	else
 
-		template <class R> struct Case<R()> : Mixins::UnqualifiedFunction<Abstract::FunctionWith0Parameters<R> > {};
+		template <Boolean E, class R> struct Case<E, R()> : Mixins::UnqualifiedFunction<Abstract::FunctionWith0Parameters<R> > {};
 
-		template <class R> struct Case<R() const	 > : Mixins::ConstFunction	  <Case<R()> > {};
-		template <class R> struct Case<R()	 volatile> : Mixins::VolatileFunction	  <Case<R()> > {};
-		template <class R> struct Case<R() const volatile> : Mixins::ConstVolatileFunction<Case<R()> > {};
+		template <Boolean E, class R> struct Case<E, R() const	       > : Mixins::ConstFunction	<Case<E, R()> > {};
+		template <Boolean E, class R> struct Case<E, R()       volatile> : Mixins::VolatileFunction	<Case<E, R()> > {};
+		template <Boolean E, class R> struct Case<E, R() const volatile> : Mixins::ConstVolatileFunction<Case<E, R()> > {};
 
-#		define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																															    \
-																																							    \
-		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> : Mixins::UnqualifiedFunction<Abstract::FunctionWith##parameter_count##Parameters<R, Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)> > {};		    \
-																																							    \
-		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     > : Mixins::ConstFunction	      <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					    \
-		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile> : Mixins::VolatileFunction     <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					    \
-		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile> : Mixins::ConstVolatileFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					    \
-																																							    \
-		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> : Mixins::UnqualifiedFunction<Abstract::VariadicFunctionWith##parameter_count##Parameters<R, Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)> > {}; \
-																																							    \
-		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	  > : Mixins::ConstFunction	   <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};				    \
-		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile> : Mixins::VolatileFunction	   <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};				    \
-		template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> : Mixins::ConstVolatileFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};
+#		define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																																	  \
+																																									  \
+		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> : Mixins::UnqualifiedFunction<Abstract::FunctionWith##parameter_count##Parameters<R, Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)> > {};		  \
+																																									  \
+		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	   > : Mixins::ConstFunction	    <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					  \
+		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile> : Mixins::VolatileFunction     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					  \
+		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile> : Mixins::ConstVolatileFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					  \
+																																									  \
+		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> : Mixins::UnqualifiedFunction<Abstract::VariadicFunctionWith##parameter_count##Parameters<R, Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)> > {}; \
+																																									  \
+		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const		> : Mixins::ConstFunction	 <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};				  \
+		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	volatile> : Mixins::VolatileFunction	 <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};				  \
+		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> : Mixins::ConstVolatileFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};
 
 		Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #		undef Z_TEMPLATE_SPECIALIZATIONS
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
-			template <class R> struct Case<R()		  & > : Mixins::LValueFunction		   <Case<R()> > {};
-			template <class R> struct Case<R()		  &&> : Mixins::RValueFunction		   <Case<R()> > {};
-			template <class R> struct Case<R() const	  & > : Mixins::ConstLValueFunction	   <Case<R()> > {};
-			template <class R> struct Case<R() const	  &&> : Mixins::ConstRValueFunction	   <Case<R()> > {};
-			template <class R> struct Case<R()	 volatile & > : Mixins::VolatileLValueFunction	   <Case<R()> > {};
-			template <class R> struct Case<R()	 volatile &&> : Mixins::VolatileRValueFunction	   <Case<R()> > {};
-			template <class R> struct Case<R() const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R()> > {};
-			template <class R> struct Case<R() const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R()> > {};
+			template <Boolean E, class R> struct Case<E, R()		& > : Mixins::LValueFunction		 <Case<E, R()> > {};
+			template <Boolean E, class R> struct Case<E, R()		&&> : Mixins::RValueFunction		 <Case<E, R()> > {};
+			template <Boolean E, class R> struct Case<E, R() const		& > : Mixins::ConstLValueFunction	 <Case<E, R()> > {};
+			template <Boolean E, class R> struct Case<E, R() const		&&> : Mixins::ConstRValueFunction	 <Case<E, R()> > {};
+			template <Boolean E, class R> struct Case<E, R()       volatile & > : Mixins::VolatileLValueFunction	 <Case<E, R()> > {};
+			template <Boolean E, class R> struct Case<E, R()       volatile &&> : Mixins::VolatileRValueFunction	 <Case<E, R()> > {};
+			template <Boolean E, class R> struct Case<E, R() const volatile & > : Mixins::ConstVolatileLValueFunction<Case<E, R()> > {};
+			template <Boolean E, class R> struct Case<E, R() const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<E, R()> > {};
 
-#			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																												    \
-																																					    \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      & > : Mixins::LValueFunction	       <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      &&> : Mixins::RValueFunction	       <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      & > : Mixins::ConstLValueFunction	       <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      &&> : Mixins::ConstRValueFunction	       <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile & > : Mixins::VolatileLValueFunction     <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile &&> : Mixins::VolatileRValueFunction     <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	    \
-																																					    \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   & > : Mixins::LValueFunction		    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   &&> : Mixins::RValueFunction		    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   & > : Mixins::ConstLValueFunction	    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   &&> : Mixins::ConstRValueFunction	    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile & > : Mixins::VolatileLValueFunction	    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &&> : Mixins::VolatileRValueFunction	    <Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};
+#			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																														     \
+																																							     \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		    & > : Mixins::LValueFunction	     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		    &&> : Mixins::RValueFunction	     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	    & > : Mixins::ConstLValueFunction	     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	    &&> : Mixins::ConstRValueFunction	     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile & > : Mixins::VolatileLValueFunction     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile &&> : Mixins::VolatileRValueFunction     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
+																																							     \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		 & > : Mixins::LValueFunction		  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		 &&> : Mixins::RValueFunction		  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const		 & > : Mixins::ConstLValueFunction	  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const		 &&> : Mixins::ConstRValueFunction	  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	volatile & > : Mixins::VolatileLValueFunction	  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	volatile &&> : Mixins::VolatileRValueFunction	  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};
 
 			Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #			undef Z_TEMPLATE_SPECIALIZATIONS
@@ -2703,33 +2717,33 @@ namespace Zeta {namespace Detail {namespace Type {
 	// MARK: - Specializations: Objective-C
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-		template <> struct Case<Helpers::RemovePointer<id   >::type> : Mixins::Unqualified<Abstract::ObjectiveCObject> {};
-		template <> struct Case<Helpers::RemovePointer<Class>::type> : Mixins::Unqualified<Abstract::ObjectiveCClass > {};
+		template <Boolean E> struct Case<E, Helpers::RemovePointer<id	>::type> : Mixins::Unqualified<Abstract::ObjectiveCObject> {};
+		template <Boolean E> struct Case<E, Helpers::RemovePointer<Class>::type> : Mixins::Unqualified<Abstract::ObjectiveCClass > {};
 #	endif
 
 	// MARK: - Specializations: Qualified types
 
-	template <class T> struct Case<const	      T> : TernaryType<Case<T>::is_signed_or_unsigned, Mixins::ConstSignedOrUnsigned	    <Case<T> >, Mixins::Const	     <Case<T> > >::type {};
-	template <class T> struct Case<	     volatile T> : TernaryType<Case<T>::is_signed_or_unsigned, Mixins::VolatileSignedOrUnsigned	    <Case<T> >, Mixins::Volatile     <Case<T> > >::type {};
-	template <class T> struct Case<const volatile T> : TernaryType<Case<T>::is_signed_or_unsigned, Mixins::ConstVolatileSignedOrUnsigned<Case<T> >, Mixins::ConstVolatile<Case<T> > >::type {};
+	template <Boolean E, class T> struct Case<E, const	    T> : TernaryType<Case<false, T>::is_signed_or_unsigned, Mixins::ConstSignedOrUnsigned	 <Case<E, T> >, Mixins::Const	     <Case<E, T> > >::type {};
+	template <Boolean E, class T> struct Case<E, 	   volatile T> : TernaryType<Case<false, T>::is_signed_or_unsigned, Mixins::VolatileSignedOrUnsigned	 <Case<E, T> >, Mixins::Volatile     <Case<E, T> > >::type {};
+	template <Boolean E, class T> struct Case<E, const volatile T> : TernaryType<Case<false, T>::is_signed_or_unsigned, Mixins::ConstVolatileSignedOrUnsigned<Case<E, T> >, Mixins::ConstVolatile<Case<E, T> > >::type {};
 
 	// MARK: - Final aggregate
 
 	template <class T> struct Final : Mixins::Kind<
-		Case<T>::is_storable
-			? (Case<T>::is_pointer
-				? (Case<T>::is_member_function_pointer
+		Case<false, T>::is_storable
+			? (Case<false, T>::is_pointer
+				? (Case<false, T>::is_member_function_pointer
 					? Mixins::MemberFunctionPointer
-					: (Case<T>::is_void_pointer ? Mixins::VoidPointer : Mixins::Pointer))
-				: (Case<T>::is_reference
+					: (Case<false, T>::is_void_pointer ? Mixins::VoidPointer : Mixins::Pointer))
+				: (Case<false, T>::is_reference
 					? Mixins::Reference
 					: Mixins::Value))
-			: (Case<T>::is_void
+			: (Case<false, T>::is_void
 				? Mixins::Void
-				: (Case<T>::is_function && Case<T>::is_qualified
+				: (Case<false, T>::is_function && Case<false, T>::is_qualified
 					? Mixins::InconvertibleFunction
 					: Mixins::ConvertibleFunction)),
-		Case<T>
+		Case<true, T>
 	> {
 		typedef typename TernaryType<
 			Final::is_structure_or_union,

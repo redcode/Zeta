@@ -10,11 +10,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/classes/functional/ObjectMemberFunction.hpp>
 
-#ifdef Z_USE_OBJECTIVE_C_RUNTIME
-#	include <Z/classes/functional/ObjectSelector.hpp>
-#endif
-
 #if Z_HAS_CLASS(ObjectMemberFunction)
+
+#	ifdef Z_USE_OBJECTIVE_C_RUNTIME
+#		include <Z/classes/functional/ObjectSelector.hpp>
+#	endif
 
 
 	namespace Zeta {
@@ -175,9 +175,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O, class M, class E = typename EnableIf<
-				Type<O>::is_pointer				   &&
-				Type<O>::flow::pointee_type::is_structure_or_union &&
-				Type<M>::is_member_function_pointer		   &&
+				(Type<O>::is_void_pointer			       ||
+				 (Type<O>::is_pointer				       &&
+				  Type<O>::flow::pointee_type::is_structure_or_union)) &&
+				Type<M>::is_member_function_pointer		       &&
 				TypeAreEqual<
 					typename Type<M>::flow::to_function::end::to_unqualified,
 					R(P...)
