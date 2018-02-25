@@ -2279,8 +2279,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 
 			template <class T> Z_INLINE T fake();
 
-			template <class T, class F, class R>	struct IsFunctor						: False {};
-			template <class T, class R, class... P> struct IsFunctor<T, R(P...), decltype(fake<T>()(fake<P>()...))> : True  {};
+			template <class T, class F, class R>	struct IsFunctional						   : False {};
+			template <class T, class R, class... P> struct IsFunctional<T, R(P...), decltype(fake<T>()(fake<P>()...))> : True  {};
+
+			template <class T, class F, class R>	struct IsFunctor							   : False {};
+			template <class T, class R, class... P> struct IsFunctor<T, R(P...), decltype(fake<T>().operator()(fake<P>()...))> : True  {};
 
 #		endif
 
@@ -2815,6 +2818,10 @@ namespace Zeta {
 #	endif
 
 #	if Z_LANGUAGE_HAS(CPP, SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+
+		template <class T, class compatible_call_prototype> struct TypeIsFunctional;
+
+		template <class T, class R, class... P> struct TypeIsFunctional<T, R(P...)> : Detail::Type::Helpers::IsFunctional<T, R(P...), R> {};
 
 		template <class T, class compatible_call_prototype> struct TypeIsFunctor;
 
