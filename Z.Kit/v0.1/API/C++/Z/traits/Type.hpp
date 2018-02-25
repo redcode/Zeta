@@ -2827,9 +2827,11 @@ namespace Zeta {
 
 		template <class T, class R, class... P> struct TypeIsFunctor<T, R(P...)> : Detail::Type::Helpers::IsFunctor<T, R(P...), R> {};
 
-#		define Z_HAS_TRAIT_TypeIsFunctor TRUE
+#		define Z_HAS_TRAIT_TypeIsFunctional TRUE
+#		define Z_HAS_TRAIT_TypeIsFunctor    TRUE
 #	else
-#		define Z_HAS_TRAIT_TypeIsFunctor FALSE
+#		define Z_HAS_TRAIT_TypeIsFunctional FALSE
+#		define Z_HAS_TRAIT_TypeIsFunctor    TRUE
 #	endif
 
 #	if Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)
