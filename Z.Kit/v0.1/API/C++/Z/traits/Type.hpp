@@ -2276,8 +2276,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 		template <class T>	      struct IsUsableToCastNumber<T, !!sizeof((T)1)> : True  {};
 
 #		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+
+			template <class T> Z_INLINE T fake();
+
 			template <class T, class F, class R>	struct IsFunctor							   : False {};
-			template <class T, class R, class... P> struct IsFunctor<T, R(P...), decltype(((T *)1)->operator()((*(P *)1)...))> : True  {};
+			template <class T, class R, class... P> struct IsFunctor<T, R(P...), decltype(fake<T>().operator()(fake<P>()...))> : True  {};
+
 #		endif
 
 #	endif
