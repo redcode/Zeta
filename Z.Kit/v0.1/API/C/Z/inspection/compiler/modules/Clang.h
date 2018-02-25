@@ -535,10 +535,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION TRUE
 #		endif
 
-		/*----------------------------------------------.
-		| IMPORTANT: thread_local support requires      |
-		| a C++ runtime  providing __cxa_thread_atexit.	|
-		'----------------------------------------------*/
+		/*--------------------------------------------.
+		| IMPORTANT: thread_local support requires a  |
+		| C++ runtime  providing __cxa_thread_atexit. |
+		'--------------------------------------------*/
 #		if __has_feature(cxx_thread_local)
 #			define Z_COMPILER_CPP_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* v3.3 */
 #		endif
@@ -641,30 +641,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /*#define Z_COMPILER_CONSTANT_FLOAT16_INFINITY*/
 /*#define Z_COMPILER_CONSTANT_FLOAT16_NAN*/
-
-/*#define Z_COMPILER_CONSTANT_FLOAT24_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT24_NAN*/
-
 /*#define Z_COMPILER_CONSTANT_FLOAT32_INFINITY*/
 /*#define Z_COMPILER_CONSTANT_FLOAT32_NAN*/
-
-/*#define Z_COMPILER_CONSTANT_FLOAT48_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT48_NAN*/
-
 /*#define Z_COMPILER_CONSTANT_FLOAT64_INFINITY*/
 /*#define Z_COMPILER_CONSTANT_FLOAT64_NAN*/
-
-/*#define Z_COMPILER_CONSTANT_FLOAT72_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT72_NAN*/
-
-/*#define Z_COMPILER_CONSTANT_FLOAT80_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT80_NAN*/
-
-/*#define Z_COMPILER_CONSTANT_FLOAT96_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT96_NAN*/
-
 /*#define Z_COMPILER_CONSTANT_FLOAT128_INFINITY*/
 /*#define Z_COMPILER_CONSTANT_FLOAT128_NAN*/
+/*#define Z_COMPILER_CONSTANT_FLOAT80_X87_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_FLOAT80_X87_NAN*/
+/*#define Z_COMPILER_CONSTANT_FLOAT96_X87_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_FLOAT96_X87_NAN*/
+/*#define Z_COMPILER_CONSTANT_FLOAT128_X87_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_FLOAT128_X87_NAN*/
 
 #ifdef __CHAR_BIT__
 #	define Z_COMPILER_CONSTANT_UCHAR_BITS __CHAR_BIT__
@@ -816,7 +804,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TYPE_UINT16*/
 /*#define Z_COMPILER_TYPE_UINT32*/
 /*#define Z_COMPILER_TYPE_UINT64*/
-
 /*#define Z_COMPILER_TYPE_SINT8*/
 /*#define Z_COMPILER_TYPE_SINT16*/
 /*#define Z_COMPILER_TYPE_SINT32*/
@@ -828,13 +815,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 /*#define Z_COMPILER_TYPE_FLOAT16*/
-/*#define Z_COMPILER_TYPE_FLOAT24*/
 /*#define Z_COMPILER_TYPE_FLOAT32*/
-/*#define Z_COMPILER_TYPE_FLOAT48*/
 /*#define Z_COMPILER_TYPE_FLOAT64*/
-/*#define Z_COMPILER_TYPE_FLOAT72*/
-/*#define Z_COMPILER_TYPE_FLOAT80*/
-/*#define Z_COMPILER_TYPE_FLOAT96*/
+/*#define Z_COMPILER_TYPE_FLOAT128*/
+/*#define Z_COMPILER_TYPE_FLOAT80_X87*/
+/*#define Z_COMPILER_TYPE_FLOAT96_X87*/
+/*#define Z_COMPILER_TYPE_FLOAT128_X87*/
 
 #ifdef __FLOAT128__
 #	define Z_COMPILER_TYPE_FLOAT128 __float128
@@ -849,22 +835,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_LITERAL_UINT32*/
 /*#define Z_COMPILER_LITERAL_UINT64*/
 /*#define Z_COMPILER_LITERAL_UINT128*/
-
 /*#define Z_COMPILER_LITERAL_SINT8*/
 /*#define Z_COMPILER_LITERAL_SINT16*/
 /*#define Z_COMPILER_LITERAL_SINT32*/
 /*#define Z_COMPILER_LITERAL_SINT64*/
 /*#define Z_COMPILER_LITERAL_SINT128*/
-
 /*#define Z_COMPILER_LITERAL_FLOAT16*/
-/*#define Z_COMPILER_LITERAL_FLOAT24*/
 /*#define Z_COMPILER_LITERAL_FLOAT32*/
-/*#define Z_COMPILER_LITERAL_FLOAT48*/
 /*#define Z_COMPILER_LITERAL_FLOAT64*/
-/*#define Z_COMPILER_LITERAL_FLOAT72*/
-/*#define Z_COMPILER_LITERAL_FLOAT80*/
-/*#define Z_COMPILER_LITERAL_FLOAT96*/
 /*#define Z_COMPILER_LITERAL_FLOAT128*/
+/*#define Z_COMPILER_LITERAL_FLOAT80_X87*/
+/*#define Z_COMPILER_LITERAL_FLOAT96_X87*/
+/*#define Z_COMPILER_LITERAL_FLOAT128_X87*/
 
 /* MARK: - Built-in functions: Atomic operations */
 
@@ -1372,6 +1354,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_CONSTRUCTIBLE __is_trivially_constructible
 #endif
 
+#if __has_extension(__has_trivial_destructor)
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DESTRUCTIBLE __has_trivial_destructor
+#endif
+
 #if __has_extension(is_union)
 #	define Z_COMPILER_TRAIT_TYPE_IS_UNION __is_union
 #endif
@@ -1391,7 +1377,6 @@ __has_nothrow_constructor
 __has_trivial_assign
 __has_trivial_copy
 __has_trivial_constructor
-__has_trivial_destructor
 __has_virtual_destructor
 __is_destructible
 __is_nothrow_destructible
