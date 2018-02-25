@@ -2279,8 +2279,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 
 			template <class T> Z_INLINE T fake();
 
-			template <class T, class F, class R>	struct IsFunctor							   : False {};
-			template <class T, class R, class... P> struct IsFunctor<T, R(P...), decltype(fake<T>().operator()(fake<P>()...))> : True  {};
+			template <class T, class F, class R>	struct IsFunctor						: False {};
+			template <class T, class R, class... P> struct IsFunctor<T, R(P...), decltype(fake<T>()(fake<P>()...))> : True  {};
 
 #		endif
 
