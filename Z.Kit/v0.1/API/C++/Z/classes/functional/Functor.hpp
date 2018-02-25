@@ -218,8 +218,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			if Z_HAS_CLASS(ObjectSelector)
 
-				Z_INLINE_MEMBER
-				Functor(id object, SEL selector)
+				Z_INLINE_MEMBER Functor(id object, SEL selector)
 				: call(Callers::object_selector()), destroy(NULL)
 					{
 					target.object_selector.selector = selector;
@@ -227,8 +226,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					}
 
 
-				Z_INLINE_MEMBER
-				Functor(const ObjectSelector<R(P...)> &object_selector)
+				Z_INLINE_MEMBER Functor(const ObjectSelector<R(P...)> &object_selector)
 				: call(Callers::object_selector()), destroy(NULL)
 					{
 					target.object_selector.selector = object_selector.selector;
