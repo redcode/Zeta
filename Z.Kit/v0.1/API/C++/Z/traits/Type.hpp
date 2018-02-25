@@ -2275,7 +2275,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 		template <class T, Boolean B> struct IsUsableToCastNumber		     : False {};
 		template <class T>	      struct IsUsableToCastNumber<T, !!sizeof((T)1)> : True  {};
 
-#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 			template <class T> Z_INLINE T fake();
 
@@ -2814,7 +2814,7 @@ namespace Zeta {
 #		define Z_HAS_TRAIT_TypeIsConstructible FALSE
 #	endif
 
-#	if Z_LANGUAGE_HAS(CPP, SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+#	if Z_LANGUAGE_HAS(CPP, SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 		template <class T, class compatible_call_prototype> struct TypeIsFunctor;
 
