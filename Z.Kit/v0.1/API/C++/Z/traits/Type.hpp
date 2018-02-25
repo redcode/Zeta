@@ -2275,6 +2275,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 		template <class T, Boolean B> struct IsUsableToCastNumber		     : False {};
 		template <class T>	      struct IsUsableToCastNumber<T, !!sizeof((T)1)> : True  {};
 
+#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+			template <class T, class F, class R>	struct IsFunctor							   : False {};
+			template <class T, class R, class... P> struct IsFunctor<T, R(P...), decltype(((T *)1)->operator()((*(P *)1)...))> : True  {};
+#		endif
+
 #	endif
 
 	template <class T> struct RemovePointer;
@@ -2803,6 +2808,17 @@ namespace Zeta {
 #		define Z_HAS_TRAIT_TypeIsConstructible TRUE
 #	else
 #		define Z_HAS_TRAIT_TypeIsConstructible FALSE
+#	endif
+
+#	if Z_LANGUAGE_HAS(CPP, SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+
+		template <class T, class compatible_call_prototype> struct TypeIsFunctor;
+
+		template <class T, class R, class... P> struct TypeIsFunctor<T, R(P...)> : Detail::Type::Helpers::IsFunctor<T, R(P...), R> {};
+
+#		define Z_HAS_TRAIT_TypeIsFunctor TRUE
+#	else
+#		define Z_HAS_TRAIT_TypeIsFunctor FALSE
 #	endif
 
 #	if Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)
