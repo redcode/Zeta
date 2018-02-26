@@ -18,6 +18,49 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/classes/base/Symbol.hpp>
 #endif
 
+// MARK: - Helpers
+
+namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
+
+#	if Z_LANGUAGE_HAS(CPP, SFINAE)
+
+		namespace {
+			template <class T, SInt L, Boolean B> struct IsComplete			     : False {};
+			template <class T, SInt L>	      struct IsComplete	 <T, L, !!sizeof(T)> : True  {};
+			template <class T, SInt L, Boolean B> struct IsIncomplete		     : True  {};
+			template <class T, SInt L>	      struct IsIncomplete<T, L, !!sizeof(T)> : False {};
+		}
+
+		template <class T, Boolean B> struct IsStructureOrUnion				 : False {};
+		template <class T>	      struct IsStructureOrUnion<T, !!sizeof(int (T::*))> : True  {};
+
+		template <class T, Boolean B> struct IsUsableToCastNumber		     : False {};
+		template <class T>	      struct IsUsableToCastNumber<T, !!sizeof((T)1)> : True  {};
+
+#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+
+			template <class T, class R> struct IsDefaultConstructible		    : False {};
+			template <class T>	    struct IsDefaultConstructible<T, decltype(T())> : True  {};
+
+			#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+
+				template <class T> Z_INLINE T fake();
+
+				template <class T, class F, class R>	struct IsFunctional						   : False {};
+				template <class T, class R, class... P> struct IsFunctional<T, R(P...), decltype(fake<T>()(fake<P>()...))> : True  {};
+
+				template <class T, class F, class R>	struct IsFunctor							   : False {};
+				template <class T, class R, class... P> struct IsFunctor<T, R(P...), decltype(fake<T>().operator()(fake<P>()...))> : True  {};
+#			endif
+
+#		endif
+
+#	endif
+
+	template <class T> struct RemovePointer;
+	template <class T> struct RemovePointer<T*> {typedef T type;};
+}}}}
+
 // MARK: - Abstract
 
 namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
@@ -77,7 +120,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 		enum {	is_copy_assignable		   = false,
 			is_copy_constructible		   = false,
-			is_default_constructible	   = false,
 			is_destructible			   = false,
 			is_move_assignable		   = false,
 			is_move_constructible		   = false,
@@ -151,6 +193,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_TRAIT_Type_HAS_is_boolean TRUE
 #		else
 #			define Z_TRAIT_Type_HAS_is_boolean FALSE
+#		endif
+
+#		if Z_LANGUAGE_HAS(CPP, SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+			enum {is_default_constructible = false};
+#			define Z_TRAIT_Type_HAS_is_default_constructible TRUE
+#		else
+#			define Z_TRAIT_Type_HAS_is_default_constructible FALSE
 #		endif
 
 #		ifdef Z_DOUBLE
@@ -566,6 +615,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_statically_allocatable = true,
 			is_value		  = true
 		};
+
+#		if Z_TRAIT_HAS(Type, is_default_constructible)
+			enum {is_default_constructible = true};
+#		endif
 
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = true};
@@ -1393,6 +1446,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_aggregate = true};
 #		endif
 
+#		if Z_TRAIT_HAS(Type, is_default_constructible)
+			enum {is_default_constructible = Helpers::IsDefaultConstructible<T, T>::value};
+#		endif
+
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = Z_COMPILER_TRAIT(TYPE_IS_LITERAL)(T)};
 #		endif
@@ -1427,6 +1484,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {	is_scalar		  = true,
 			is_statically_allocatable = true
 		};
+
+#		if Z_TRAIT_HAS(Type, is_default_constructible)
+			enum {is_default_constructible = true};
+#		endif
 
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = true};
@@ -1490,6 +1551,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {	is_reference		  = true,
 			is_statically_allocatable = true
 		};
+
+#		if Z_TRAIT_HAS(Type, is_default_constructible)
+			enum {is_default_constructible = true}; // In the C++ standard library is false
+#		endif
 
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = true};
@@ -1694,6 +1759,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				is_statically_allocatable = true
 			};
 
+#			if Z_TRAIT_HAS(Type, is_default_constructible)
+				enum {is_default_constructible = true};
+#			endif
+
 #			if Z_TRAIT_HAS(Type, is_literal)
 				enum {is_literal = true};
 #			endif
@@ -1729,6 +1798,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_aggregate)
 			enum {is_aggregate = Z_COMPILER_TRAIT(TYPE_IS_AGGREGATE)(T)};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_default_constructible)
+			enum {is_default_constructible = Helpers::IsDefaultConstructible<T, T>::value};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_final)
@@ -2288,43 +2361,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 		template <class C> struct Kind<ObjectiveCObject, C> : Convertible<C> {};
 #	endif
-}}}}
-
-// MARK: - Helpers
-
-namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
-
-#	if Z_LANGUAGE_HAS(CPP, SFINAE)
-
-		namespace {
-			template <class T, SInt L, Boolean B> struct IsComplete			     : False {};
-			template <class T, SInt L>	      struct IsComplete	 <T, L, !!sizeof(T)> : True  {};
-			template <class T, SInt L, Boolean B> struct IsIncomplete		     : True  {};
-			template <class T, SInt L>	      struct IsIncomplete<T, L, !!sizeof(T)> : False {};
-		}
-
-		template <class T, Boolean B> struct IsStructureOrUnion				 : False {};
-		template <class T>	      struct IsStructureOrUnion<T, !!sizeof(int (T::*))> : True  {};
-
-		template <class T, Boolean B> struct IsUsableToCastNumber		     : False {};
-		template <class T>	      struct IsUsableToCastNumber<T, !!sizeof((T)1)> : True  {};
-
-#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
-
-			template <class T> Z_INLINE T fake();
-
-			template <class T, class F, class R>	struct IsFunctional						   : False {};
-			template <class T, class R, class... P> struct IsFunctional<T, R(P...), decltype(fake<T>()(fake<P>()...))> : True  {};
-
-			template <class T, class F, class R>	struct IsFunctor							   : False {};
-			template <class T, class R, class... P> struct IsFunctor<T, R(P...), decltype(fake<T>().operator()(fake<P>()...))> : True  {};
-
-#		endif
-
-#	endif
-
-	template <class T> struct RemovePointer;
-	template <class T> struct RemovePointer<T*> {typedef T type;};
 }}}}
 
 namespace Zeta {namespace Detail {namespace Type {
@@ -3096,7 +3132,6 @@ namespace Zeta {
 
 			enum {	is_copy_assignable		   = Type::is_copy_assignable,
 				is_copy_constructible		   = Type::is_copy_constructible,
-				is_default_constructible	   = Type::is_default_constructible,
 				is_destructible			   = Type::is_destructible,
 				is_move_assignable		   = Type::is_move_assignable,
 				is_move_constructible		   = Type::is_move_constructible,
@@ -3165,6 +3200,10 @@ namespace Zeta {
 
 #			if Z_TRAIT_HAS(Type, is_boolean)
 				enum {is_boolean = Type::is_boolean};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_default_constructible)
+				enum {is_default_constructible = Type::is_default_constructible};
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_double)
