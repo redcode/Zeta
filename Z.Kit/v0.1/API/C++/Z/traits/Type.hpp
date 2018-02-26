@@ -90,7 +90,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_trivially_copy_assignable	   = false,
 			is_trivially_copy_constructible	   = false,
 			is_trivially_default_constructible = false,
-			is_trivially_destructible	   = false,
 			is_trivially_move_assignable	   = false,
 			is_trivially_move_constructible	   = false
 		};
@@ -354,6 +353,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_TRAIT_Type_HAS_is_template FALSE
 #		endif
 
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_DESTRUCTIBLE)
+			enum {is_trivially_destructible = false};
+#			define Z_TRAIT_Type_HAS_is_trivially_destructible TRUE
+#		else
+#			define Z_TRAIT_Type_HAS_is_trivially_destructible FALSE
+#		endif
+
 #		if Z_UINT8_VALUE_TYPE == Z_VALUE_TYPE_UINT8
 			enum {is_uint8 = false};
 #			define Z_TRAIT_Type_HAS_is_uint8 TRUE
@@ -567,6 +573,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_pod)
 			enum {is_pod = true};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_destructible)
+			enum {is_trivially_destructible = true};
 #		endif
 	};
 
@@ -1370,11 +1380,15 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	template <zboolean E, class T> struct Array : Storable {
+	template <zboolean E, class T> struct Array;
+
+	template <class T> struct Array<false, T> : Storable {
 		enum {is_array = true};
 
 		typedef T element_type;
+	};
 
+	template <class T> struct Array<true, T> : Array<false, T> {
 #		if Z_TRAIT_HAS(Type, is_aggregate)
 			enum {is_aggregate = true};
 #		endif
@@ -1385,6 +1399,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_pod)
 			enum {is_pod = Z_COMPILER_TRAIT(TYPE_IS_POD)(T)};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_destructible)
+			enum {is_trivially_destructible = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_DESTRUCTIBLE)(T)};
 #		endif
 	};
 
@@ -1416,6 +1434,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_pod)
 			enum {is_pod = true};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_destructible)
+			enum {is_trivially_destructible = true};
 #		endif
 	};
 
@@ -1471,6 +1493,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = true};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_destructible)
+			enum {is_trivially_destructible = true};
 #		endif
 
 		typedef T referencee_type;
@@ -1676,6 +1702,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				enum {is_pod = true};
 #			endif
 
+#			if Z_TRAIT_HAS(Type, is_trivially_destructible)
+				enum {is_trivially_destructible = true};
+#			endif
+
 			typedef T type;
 		};
 
@@ -1711,6 +1741,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_pod)
 			enum {is_pod = Z_COMPILER_TRAIT(TYPE_IS_POD)(T)};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_destructible)
+			enum {is_trivially_destructible = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_DESTRUCTIBLE)(T)};
 #		endif
 	};
 
@@ -3075,7 +3109,6 @@ namespace Zeta {
 				is_trivially_copy_assignable	   = Type::is_trivially_copy_assignable,
 				is_trivially_copy_constructible	   = Type::is_trivially_copy_constructible,
 				is_trivially_default_constructible = Type::is_trivially_default_constructible,
-				is_trivially_destructible	   = Type::is_trivially_destructible,
 				is_trivially_move_assignable	   = Type::is_trivially_move_assignable,
 				is_trivially_move_constructible	   = Type::is_trivially_move_constructible
 			};
@@ -3246,6 +3279,10 @@ namespace Zeta {
 
 #			if Z_TRAIT_HAS(Type, is_template)
 				enum {is_template = Type::is_template};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_trivially_destructible)
+				enum {is_trivially_destructible = Type::is_trivially_destructible};
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_uint8)
