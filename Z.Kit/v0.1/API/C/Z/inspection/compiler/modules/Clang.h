@@ -1383,7 +1383,6 @@ __has_nothrow_assign
 __has_nothrow_copy
 __has_nothrow_constructor
 __has_trivial_assign
-__has_trivial_constructor
 __has_virtual_destructor
 __is_destructible
 __is_nothrow_destructible
