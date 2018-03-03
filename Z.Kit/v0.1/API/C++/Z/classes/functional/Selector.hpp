@@ -35,6 +35,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_CT_MEMBER(CPP11) operator SEL() const {return selector;}
 
 
+			Z_INLINE_MEMBER Selector &operator =(SEL rhs)
+				{
+				selector = rhs;
+				return *this;
+				}
+
+
 			template <class RR = R>
 			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
 			operator ()(id object, typename Type<P>::to_forwardable... arguments) const

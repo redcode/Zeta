@@ -30,6 +30,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			: Selector<R(P...)>(selector), object(object) {}
 
 
+			Z_INLINE_MEMBER ObjectSelector &operator =(SEL rhs)
+				{
+				this->selector = rhs;
+				return *this;
+				}
+
+
+			Z_INLINE_MEMBER ObjectSelector &operator =(id rhs)
+				{
+				object = rhs;
+				return *this;
+				}
+
+
 			template <class RR = R>
 			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
 			operator ()(typename Type<P>::to_forwardable... arguments) const
