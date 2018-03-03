@@ -1577,7 +1577,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 
 #		if Z_TRAIT_HAS(Type, is_default_constructible)
-			enum {is_default_constructible = true}; // It's false In the C++ standard library
+			enum {is_default_constructible = true}; // It's false in the C++ standard library
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_literal)
