@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/Z.h>
 #include <Z/traits/TernaryType.hpp>
 #include <Z/traits/TypeList.hpp>
-
+#include <Z/macros/repetition.h>
 #if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 #	include <Z/functions/base/type.hpp>
 #	include <Z/classes/base/Symbol.hpp>
@@ -54,28 +54,28 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 
 #			else
 
-				template <class T, class R, class... P> struct IsFunctional<T, R(P...), decltype(fake<T>()	     ())> : True {};
-				template <class T, class R, class... P> struct IsFunctor   <T, R(P...), decltype(fake<T>().operator()())> : True {};
+				template <class T, class R> struct IsFunctional<T, R(), decltype(fake<T>()	     ())> : True {};
+				template <class T, class R> struct IsFunctor   <T, R(), decltype(fake<T>().operator()())> : True {};
 
 #				define Z_TEMPLATE_FAKE_ARGUMENT(index) fake<P##index>()
 
-#				define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)								   \
-																		   \
-				template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct IsFunctional<	   \
-					T,													   \
-					R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)),							   \
-					decltype(fake<T>()(Z_FOR_##parameter_count##_CALL_WITH_INDEX(Z_TEMPLATE_FAKE_ARGUMENT, Z_COMMA)))	   \
-				> : True {};													   \
-																		   \
-				template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct IsFunctor<		   \
-					T,													   \
-					R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)),							   \
-					decltype(fake<T>().operator(Z_FOR_##parameter_count##_CALL_WITH_INDEX(Z_TEMPLATE_FAKE_ARGUMENT, Z_COMMA))) \
+#				define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)								     \
+																		     \
+				template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct IsFunctional<	     \
+					T,													     \
+					R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)),							     \
+					decltype(fake<T>()(Z_FOR_##parameter_count##_CALL_WITH_INDEX(Z_TEMPLATE_FAKE_ARGUMENT, Z_COMMA)))	     \
+				> : True {};													     \
+																		     \
+				template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct IsFunctor<		     \
+					T,													     \
+					R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)),							     \
+					decltype(fake<T>().operator()(Z_FOR_##parameter_count##_CALL_WITH_INDEX(Z_TEMPLATE_FAKE_ARGUMENT, Z_COMMA))) \
 				> : True {};
 
 				Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #				undef Z_TEMPLATE_SPECIALIZATIONS
-#				undef Z_TEMPLATE_FAKE_PARAMETER
+#				undef Z_TEMPLATE_FAKE_ARGUMENT
 
 #			endif
 
