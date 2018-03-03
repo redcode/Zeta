@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/Z.h>
 #include <Z/traits/TernaryType.hpp>
 #include <Z/traits/TypeList.hpp>
-#include <Z/macros/repetition.h>
+
 #if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 #	include <Z/functions/base/type.hpp>
 #	include <Z/classes/base/Symbol.hpp>
