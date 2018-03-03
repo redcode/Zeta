@@ -62,14 +62,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 #				define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)								     \
 																		     \
 				template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct IsFunctional<	     \
-					T,													     \
-					R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)),							     \
+					T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)),						     \
 					decltype(fake<T>()(Z_FOR_##parameter_count##_CALL_WITH_INDEX(Z_TEMPLATE_FAKE_ARGUMENT, Z_COMMA)))	     \
 				> : True {};													     \
 																		     \
 				template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct IsFunctor<		     \
-					T,													     \
-					R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)),							     \
+					T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)),						     \
 					decltype(fake<T>().operator()(Z_FOR_##parameter_count##_CALL_WITH_INDEX(Z_TEMPLATE_FAKE_ARGUMENT, Z_COMMA))) \
 				> : True {};
 
@@ -2913,15 +2911,35 @@ namespace Zeta {
 #		define Z_HAS_TRAIT_TypeIsConstructible FALSE
 #	endif
 
-#	if Z_LANGUAGE_HAS(CPP, SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+#	if Z_LANGUAGE_HAS(CPP, SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
 
 		template <class T, class compatible_call_prototype> struct TypeIsFunctional;
-
-		template <class T, class R, class... P> struct TypeIsFunctional<T, R(P...)> : Detail::Type::Helpers::IsFunctional<T, R(P...), R> {};
-
 		template <class T, class compatible_call_prototype> struct TypeIsFunctor;
 
-		template <class T, class R, class... P> struct TypeIsFunctor<T, R(P...)> : Detail::Type::Helpers::IsFunctor<T, R(P...), R> {};
+#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+
+			template <class T, class R, class... P> struct TypeIsFunctional<T, R(P...)> : Detail::Type::Helpers::IsFunctional<T, R(P...), R> {};
+			template <class T, class R, class... P> struct TypeIsFunctor   <T, R(P...)> : Detail::Type::Helpers::IsFunctor	 <T, R(P...), R> {};
+
+#		else
+
+			template <class T, class R> struct TypeIsFunctional<T, R()> : Detail::Type::Helpers::IsFunctional<T, R(), R> {};
+			template <class T, class R> struct TypeIsFunctor   <T, R()> : Detail::Type::Helpers::IsFunctor	 <T, R(), R> {};
+
+#			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)							       \
+																       \
+			template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeIsFunctional< \
+				T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))					       \
+			> : Detail::Type::Helpers::IsFunctional<T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)), R> {};       \
+																       \
+			template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeIsFunctor<    \
+				T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))					       \
+			> : Detail::Type::Helpers::IsFunctor<T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)), R> {};
+
+			Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
+#			undef Z_TEMPLATE_SPECIALIZATIONS
+
+#		endif
 
 #		define Z_HAS_TRAIT_TypeIsFunctional TRUE
 #		define Z_HAS_TRAIT_TypeIsFunctor    TRUE
