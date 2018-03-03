@@ -28,10 +28,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			else
 				template <class M, class E = typename EnableIf<
 					Type<M>::is_member_function_pointer &&
-					TypeAreEqual<
-						typename Type<M>::flow::to_function::end::to_unqualified,
-						R(P...)
-					>::value,
+					TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 				M>::type>
 				Z_INLINE_MEMBER ObjectMemberFunction(M function)
 				: MemberFunction<R(P...)>(function) {}
@@ -49,10 +46,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				 (Type<O>::is_pointer				       &&
 				  Type<O>::flow::pointee_type::is_structure_or_union)) &&
 				Type<M>::is_member_function_pointer		       &&
-				TypeAreEqual<
-					typename Type<M>::flow::to_function::end::to_unqualified,
-					R(P...)
-				>::value,
+				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE_MEMBER ObjectMemberFunction(O object, M function)
 			: MemberFunction<R(P...)>(function), object((NaT *)object) {}
@@ -61,10 +55,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class O, class M, class E = typename EnableIf<
 				Type<O>::is_structure_or_union	    &&
 				Type<M>::is_member_function_pointer &&
-				TypeAreEqual<
-					typename Type<M>::flow::to_function::end::to_unqualified,
-					R(P...)
-				>::value,
+				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE_MEMBER ObjectMemberFunction(const O &object, M function)
 			: MemberFunction<R(P...)>(function), object((NaT *)&object) {}
@@ -74,32 +65,32 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE_MEMBER operator O *() const {return (O *)object;}
 
 
-			template <class O, class E = typename EnableIf<Type<O>::is_structure_or_union, O>::type>
-			Z_INLINE_MEMBER ObjectMemberFunction &operator =(O *object)
+			template <class O>
+			Z_INLINE_MEMBER typename EnableIf<Type<O>::is_structure_or_union, ObjectMemberFunction &>::type
+			operator =(O *rhs)
 				{
-				this->object = (NaT *)object;
+				object = (NaT *)rhs;
 				return *this;
 				}
 
 
-			template <class O, class E = typename EnableIf<Type<O>::is_structure_or_union, O>::type>
-			Z_INLINE_MEMBER ObjectMemberFunction &operator =(const O &object)
+			template <class O>
+			Z_INLINE_MEMBER typename EnableIf<Type<O>::is_structure_or_union, ObjectMemberFunction &>::type
+			operator =(const O &rhs)
 				{
-				this->object = (NaT *)&object;
+				object = (NaT *)&rhs;
 				return *this;
 				}
 
 
-			template <class M, class E = typename EnableIf<
+			template <class M>
+			Z_INLINE_MEMBER typename EnableIf<
 				Type<M>::is_member_function_pointer &&
-				TypeAreEqual<
-					typename Type<M>::flow::to_function::end::to_unqualified,
-					R(P...)
-				>::value,
-			M>::type>
-			Z_INLINE_MEMBER ObjectMemberFunction &operator =(M function)
+				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+			ObjectMemberFunction &>::type
+			operator =(M rhs)
 				{
-				this->function = (R (NaT::*)(P...))function;
+				this->function = (R (NaT::*)(P...))rhs;
 				return *this;
 				}
 
@@ -138,6 +129,36 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE_MEMBER typename EnableIf<!Type<RR>::is_void, RR>::type
 			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
 				{return (((NaT *)&object)->*this->function)(arguments...);}
+
+
+			template <class O, class M>
+			Z_INLINE_MEMBER typename EnableIf<
+				(Type<O>::is_void_pointer			       ||
+				 (Type<O>::is_pointer				       &&
+				  Type<O>::flow::pointee_type::is_structure_or_union)) &&
+				Type<M>::is_member_function_pointer		       &&
+				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+			ObjectMemberFunction &>::type
+			set(O object, M function)
+				{
+				this->function = (R (NaT::*)(P...))function;
+				this->object   = (NaT *)&object;
+				return *this;
+				}
+
+
+			template <class O, class M>
+			Z_INLINE_MEMBER typename EnableIf<
+				Type<O>::is_structure_or_union	    &&
+				Type<M>::is_member_function_pointer &&
+				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+			ObjectMemberFunction &>::type
+			set(const O &object, M function)
+				{
+				this->function = (R (NaT::*)(P...))function;
+				this->object   = (NaT *)&object;
+				return *this;
+				}
 		};
 	}
 
