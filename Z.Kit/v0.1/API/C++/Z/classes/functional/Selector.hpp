@@ -30,11 +30,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			Z_INLINE_MEMBER Selector() {}
 
-			Z_INLINE_MEMBER Selector(SEL selector) : selector(selector) {}
+			Z_INLINE_MEMBER Selector(SEL selector)
+			: selector(selector) {}
+
 
 			Z_INLINE_MEMBER operator SEL() const {return selector;}
-
-			Z_INLINE_MEMBER Selector &operator =(SEL rhs) {selector = rhs; return *this;}
 
 
 			template <class RR = R>
