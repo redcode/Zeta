@@ -1354,6 +1354,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_CONSTRUCTIBLE __is_trivially_constructible
 #endif
 
+#if __has_extension(has_trivial_copy)
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE __has_trivial_copy
+#endif
+
 #if __has_extension(has_trivial_destructor)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DESTRUCTIBLE __has_trivial_destructor
 #endif
@@ -1375,7 +1379,6 @@ __has_nothrow_assign
 __has_nothrow_copy
 __has_nothrow_constructor
 __has_trivial_assign
-__has_trivial_copy
 __has_trivial_constructor
 __has_virtual_destructor
 __is_destructible
