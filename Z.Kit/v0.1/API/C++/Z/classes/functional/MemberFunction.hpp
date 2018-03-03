@@ -57,6 +57,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE_MEMBER operator M() const {return (M)function;}
 
 
+			template <class M, class E = typename EnableIf<
+				Type<M>::is_member_function_pointer &&
+				TypeAreEqual<
+					typename Type<M>::flow::to_function::end::to_unqualified,
+					R(P...)
+				>::value,
+			M>::type>
+			Z_INLINE_MEMBER MemberFunction &operator =(M rhs)
+				{function = (R (NaT::*)(P...))rhs; return *this;}
+
+
 			template <class O, class RR = R>
 			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
 			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
