@@ -26,22 +26,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE_MEMBER ObjectSelector() {}
 
 
-			Z_CT_MEMBER(CPP11) ObjectSelector(id object, SEL selector)
+			Z_INLINE_MEMBER ObjectSelector(id object, SEL selector)
 			: Selector<R(P...)>(selector), object(object) {}
 
 
-			Z_INLINE_MEMBER ObjectSelector &operator =(SEL rhs)
-				{
-				this->selector = rhs;
-				return *this;
-				}
+			Z_INLINE_MEMBER operator id() const {return object;}
 
-
-			Z_INLINE_MEMBER ObjectSelector &operator =(id rhs)
-				{
-				object = rhs;
-				return *this;
-				}
+			Z_INLINE_MEMBER ObjectSelector &operator =(SEL rhs) {this->selector = rhs; return *this;}
+			Z_INLINE_MEMBER ObjectSelector &operator =(id  rhs) {object	    = rhs; return *this;}
 
 
 			template <class RR = R>
@@ -142,6 +134,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_structure_or_union, RR>::type
 			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
 				{return ((CallSuper)objc_msgSendSuper_stret)((struct objc_super *)&object_super, this->selector, arguments...);}
+
+
+			Z_INLINE_MEMBER ObjectSelector &set(id object, SEL selector)
+				{
+				this->selector = selector;
+				this->object   = object;
+				return *this;
+				}
 
 
 #			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
