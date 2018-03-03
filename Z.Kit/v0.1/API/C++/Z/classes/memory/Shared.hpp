@@ -15,10 +15,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {template <class T> struct Shared {
 
 	struct Owned {
-		USize owner_count;
 		T*    data;
+		USize owner_count;
 
-		Z_INLINE_MEMBER Owned(T *data) : owner_count(1), data(data) {}
+		Z_INLINE_MEMBER Owned(T *data) : data(data), owner_count(1) {}
 		Z_INLINE_MEMBER ~Owned() {delete data;}
 	};
 
