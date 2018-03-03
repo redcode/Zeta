@@ -1354,7 +1354,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_CONSTRUCTIBLE __is_trivially_constructible
 #endif
 
-#if __has_extension(__has_trivial_destructor)
+#if __has_extension(has_trivial_destructor)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DESTRUCTIBLE __has_trivial_destructor
 #endif
 
