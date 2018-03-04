@@ -196,6 +196,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef NaT remove_reference;
 		typedef NaT remove_volatile;
 
+#		if Z_COMPILER_HAS_TRAIT(TYPE_HAS_VIRTUAL_DESTRUCTOR)
+			enum {has_virtual_destructor = false};
+#			define Z_TRAIT_Type_HAS_has_virtual_destructor TRUE
+#		else
+#			define Z_TRAIT_Type_HAS_has_virtual_destructor FALSE
+#		endif
+
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ABSTRACT)
 			enum {is_abstract = false};
 #			define Z_TRAIT_Type_HAS_is_abstract TRUE
@@ -1892,6 +1899,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_structure = true
 		};
 
+#		if Z_TRAIT_HAS(Type, has_virtual_destructor)
+			enum {has_virtual_destructor = Z_COMPILER_TRAIT(TYPE_HAS_VIRTUAL_DESTRUCTOR)(T)};
+#		endif
+
 #		if Z_TRAIT_HAS(Type, is_abstract)
 			enum {is_abstract = Z_COMPILER_TRAIT(TYPE_IS_ABSTRACT)(T)};
 #		endif
@@ -3252,6 +3263,10 @@ namespace Zeta {
 			typedef typename Type<typename Type::remove_pointer	  >::flow remove_pointer;
 			typedef typename Type<typename Type::remove_reference	  >::flow remove_reference;
 			typedef typename Type<typename Type::remove_volatile	  >::flow remove_volatile;
+
+#			if Z_TRAIT_HAS(Type, has_virtual_destructor)
+				enum {has_virtual_destructor = Type::has_virtual_destructor};
+#			endif
 
 #			if Z_TRAIT_HAS(Type, is_abstract)
 				enum {is_abstract = Type::is_abstract};
