@@ -432,7 +432,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		endif
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE)
-			enum {is_trivially_default_constructible = true};
+			enum {is_trivially_default_constructible = false};
 #			define Z_TRAIT_Type_HAS_is_trivially_default_constructible TRUE
 #		else
 #			define Z_TRAIT_Type_HAS_is_trivially_default_constructible FALSE
@@ -648,11 +648,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_statically_allocatable = true
 		};
 
-#		if Z_TRAIT_HAS(Type, is_default_constructible)
-			// It's false in the C++ standard library for references
-			enum {is_default_constructible = true};
-#		endif
-
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = true};
 #		endif
@@ -661,12 +656,21 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_trivially_copy_constructible = true};
 #		endif
 
-#		if Z_TRAIT_HAS(Type, is_trivially_default_constructible)
-			enum {is_trivially_default_constructible = true};
-#		endif
-
 #		if Z_TRAIT_HAS(Type, is_trivially_destructible)
 			enum {is_trivially_destructible = true};
+#		endif
+
+		//----------------------------------------------.
+		// Unlike the standard C++ library, Z considers |
+		// the following to be "true" for references:	|
+		//----------------------------------------------'
+
+#		if Z_TRAIT_HAS(Type, is_default_constructible)
+			enum {is_default_constructible = true};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_default_constructible)
+			enum {is_trivially_default_constructible = true};
 #		endif
 	};
 
