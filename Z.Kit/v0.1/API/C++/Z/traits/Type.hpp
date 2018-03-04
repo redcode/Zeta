@@ -154,7 +154,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_nothrow_move_assignable	   = false,
 			is_nothrow_move_constructible	   = false,
 			is_trivially_copy_assignable	   = false,
-			is_trivially_default_constructible = false,
 			is_trivially_move_assignable	   = false,
 			is_trivially_move_constructible	   = false
 		};
@@ -332,21 +331,21 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
-			enum {	is_objective_c_class		= false,
-				is_objective_c_class_pointer	= false,
-				is_objective_c_object		= false,
-				is_objective_c_object_pointer	= false
+			enum {	is_objective_c_class	      = false,
+				is_objective_c_class_pointer  = false,
+				is_objective_c_object	      = false,
+				is_objective_c_object_pointer = false
 			};
 
-#			define Z_TRAIT_Type_HAS_is_objective_c_class		TRUE
-#			define Z_TRAIT_Type_HAS_is_objective_c_class_pointer	TRUE
-#			define Z_TRAIT_Type_HAS_is_objective_c_object		TRUE
-#			define Z_TRAIT_Type_HAS_is_objective_c_object_pointer	TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_class	      TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_class_pointer  TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_object	      TRUE
+#			define Z_TRAIT_Type_HAS_is_objective_c_object_pointer TRUE
 #		else
-#			define Z_TRAIT_Type_HAS_is_objective_c_class		FALSE
-#			define Z_TRAIT_Type_HAS_is_objective_c_class_pointer	FALSE
-#			define Z_TRAIT_Type_HAS_is_objective_c_object		FALSE
-#			define Z_TRAIT_Type_HAS_is_objective_c_object_pointer	FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_class	      FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_class_pointer  FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_object	      FALSE
+#			define Z_TRAIT_Type_HAS_is_objective_c_object_pointer FALSE
 #		endif
 
 #		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, SFINAE)
@@ -430,6 +429,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_TRAIT_Type_HAS_is_trivially_copy_constructible TRUE
 #		else
 #			define Z_TRAIT_Type_HAS_is_trivially_copy_constructible FALSE
+#		endif
+
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE)
+			enum {is_trivially_default_constructible = true};
+#			define Z_TRAIT_Type_HAS_is_trivially_default_constructible TRUE
+#		else
+#			define Z_TRAIT_Type_HAS_is_trivially_default_constructible FALSE
 #		endif
 
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_DESTRUCTIBLE)
@@ -637,18 +643,35 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {is_storable = true};
 	};
 
-	struct Number : Storable {
-		enum {	is_arithmetic		  = true,
-			is_fundamental		  = true,
-			is_number		  = true,
-			is_scalar		  = true,
-			is_statically_allocatable = true,
+	struct Value : Storable {
+		enum {	is_statically_allocatable = true,
 			is_value		  = true
 		};
 
 #		if Z_TRAIT_HAS(Type, is_default_constructible)
+			// It's false in the C++ standard library for references
 			enum {is_default_constructible = true};
 #		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
+			enum {is_trivially_copy_constructible = true};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_default_constructible)
+			enum {is_trivially_default_constructible = true};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_destructible)
+			enum {is_trivially_destructible = true};
+#		endif
+	};
+
+	struct Number : Storable {
+		enum {	is_arithmetic  = true,
+			is_fundamental = true,
+			is_number      = true,
+			is_scalar      = true
+		};
 
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = true};
@@ -656,14 +679,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_pod)
 			enum {is_pod = true};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
-			enum {is_trivially_copy_constructible = true};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_trivially_destructible)
-			enum {is_trivially_destructible = true};
 #		endif
 	};
 
@@ -1496,6 +1511,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_trivially_copy_constructible = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE)(T)};
 #		endif
 
+#		if Z_TRAIT_HAS(Type, is_trivially_default_constructible)
+			enum {is_trivially_default_constructible = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE)(T)};
+#		endif
+
 #		if Z_TRAIT_HAS(Type, is_trivially_destructible)
 			enum {is_trivially_destructible = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_DESTRUCTIBLE)(T)};
 #		endif
@@ -1518,14 +1537,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef T type[];
 	};
 
-	struct PointerLike : Storable {
-		enum {	is_scalar		  = true,
-			is_statically_allocatable = true
-		};
-
-#		if Z_TRAIT_HAS(Type, is_default_constructible)
-			enum {is_default_constructible = true};
-#		endif
+	struct PointerLike : Value {
+		enum {is_scalar = true};
 
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = true};
@@ -1533,14 +1546,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_pod)
 			enum {is_pod = true};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
-			enum {is_trivially_copy_constructible = true};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_trivially_destructible)
-			enum {is_trivially_destructible = true};
 #		endif
 	};
 
@@ -1589,25 +1594,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef M to_function;
 	};
 
-	template <class T> struct Reference : Storable {
-		enum {	is_reference		  = true,
-			is_statically_allocatable = true
-		};
-
-#		if Z_TRAIT_HAS(Type, is_default_constructible)
-			enum {is_default_constructible = true}; // It's false in the C++ standard library
-#		endif
+	template <class T> struct Reference : Value {
+		enum {is_reference = true};
 
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = true};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
-			enum {is_trivially_copy_constructible = true};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_trivially_destructible)
-			enum {is_trivially_destructible = true};
 #		endif
 
 		typedef T referencee_type;
@@ -1799,15 +1790,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_TRAIT_HAS(Type, is_enumeration)
 
-		template <class T> struct Kind<false, Enumeration, T> : Storable {
-			enum {	is_enumeration		  = true,
-				is_scalar		  = true,
-				is_statically_allocatable = true
+		template <class T> struct Kind<false, Enumeration, T> : Value {
+			enum {	is_enumeration = true,
+				is_scalar      = true
 			};
-
-#			if Z_TRAIT_HAS(Type, is_default_constructible)
-				enum {is_default_constructible = true};
-#			endif
 
 #			if Z_TRAIT_HAS(Type, is_literal)
 				enum {is_literal = true};
@@ -1815,14 +1801,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #			if Z_TRAIT_HAS(Type, is_pod)
 				enum {is_pod = true};
-#			endif
-
-#			if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
-				enum {is_trivially_copy_constructible = true};
-#			endif
-
-#			if Z_TRAIT_HAS(Type, is_trivially_destructible)
-				enum {is_trivially_destructible = true};
 #			endif
 
 			typedef T type;
@@ -1868,6 +1846,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
 			enum {is_trivially_copy_constructible = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE)(T)};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_default_constructible)
+			enum {is_trivially_default_constructible = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE)(T)};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_trivially_destructible)
@@ -3216,7 +3198,6 @@ namespace Zeta {
 				is_nothrow_move_assignable	   = Type::is_nothrow_move_assignable,
 				is_nothrow_move_constructible	   = Type::is_nothrow_move_constructible,
 				is_trivially_copy_assignable	   = Type::is_trivially_copy_assignable,
-				is_trivially_default_constructible = Type::is_trivially_default_constructible,
 				is_trivially_move_assignable	   = Type::is_trivially_move_assignable,
 				is_trivially_move_constructible	   = Type::is_trivially_move_constructible
 			};
@@ -3341,10 +3322,10 @@ namespace Zeta {
 
 #			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
-				enum {	is_objective_c_class		= Type::is_objective_c_class,
-					is_objective_c_class_pointer	= Type::is_objective_c_class_pointer,
-					is_objective_c_object		= Type::is_objective_c_object,
-					is_objective_c_object_pointer	= Type::is_objective_c_object_pointer
+				enum {	is_objective_c_class	      = Type::is_objective_c_class,
+					is_objective_c_class_pointer  = Type::is_objective_c_class_pointer,
+					is_objective_c_object	      = Type::is_objective_c_object,
+					is_objective_c_object_pointer = Type::is_objective_c_object_pointer
 				};
 
 #				if Z_LANGUAGE_HAS(CPP, SFINAE)
@@ -3395,6 +3376,10 @@ namespace Zeta {
 
 #			if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
 				enum {is_trivially_copy_constructible = Type::is_trivially_copy_constructible};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_trivially_default_constructible)
+				enum {is_trivially_default_constructible = Type::is_trivially_default_constructible};
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_trivially_destructible)
