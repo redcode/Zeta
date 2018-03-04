@@ -153,7 +153,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_nothrow_destructible		   = false,
 			is_nothrow_move_assignable	   = false,
 			is_nothrow_move_constructible	   = false,
-			is_trivially_copy_assignable	   = false,
 			is_trivially_move_assignable	   = false,
 			is_trivially_move_constructible	   = false
 		};
@@ -431,6 +430,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_TRAIT_Type_HAS_is_template FALSE
 #		endif
 
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPY_ASSIGNABLE)
+			enum {is_trivially_copy_assignable = false};
+#			define Z_TRAIT_Type_HAS_is_trivially_copy_assignable TRUE
+#		else
+#			define Z_TRAIT_Type_HAS_is_trivially_copy_assignable FALSE
+#		endif
+
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE)
 			enum {is_trivially_copy_constructible = false};
 #			define Z_TRAIT_Type_HAS_is_trivially_copy_constructible TRUE
@@ -681,6 +687,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_default_constructible)
 			enum {is_default_constructible = true};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_copy_assignable)
+			enum {is_trivially_copy_assignable = true};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_trivially_copyable)
@@ -1854,6 +1864,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_pod)
 			enum {is_pod = Z_COMPILER_TRAIT(TYPE_IS_POD)(T)};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_copy_assignable)
+			enum {is_trivially_copy_assignable = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_COPY_ASSIGNABLE)(T)};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
@@ -3217,7 +3231,6 @@ namespace Zeta {
 				is_nothrow_destructible		   = Type::is_nothrow_destructible,
 				is_nothrow_move_assignable	   = Type::is_nothrow_move_assignable,
 				is_nothrow_move_constructible	   = Type::is_nothrow_move_constructible,
-				is_trivially_copy_assignable	   = Type::is_trivially_copy_assignable,
 				is_trivially_move_assignable	   = Type::is_trivially_move_assignable,
 				is_trivially_move_constructible	   = Type::is_trivially_move_constructible
 			};
@@ -3396,6 +3409,10 @@ namespace Zeta {
 
 #			if Z_TRAIT_HAS(Type, is_template)
 				enum {is_template = Type::is_template};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_trivially_copy_assignable)
+				enum {is_trivially_copy_assignable = Type::is_trivially_copy_assignable};
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
