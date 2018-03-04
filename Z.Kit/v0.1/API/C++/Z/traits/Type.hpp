@@ -121,6 +121,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_schar		     = false,
 			is_signed		     = false,
 			is_signed_or_unsigned	     = false,
+			is_simple		     = false,
 			is_sint			     = false,
 			is_slong		     = false,
 			is_sshort		     = false,
@@ -134,7 +135,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_unsigned		     = false,
 			is_ushort		     = false,
 			is_valid		     = false,
-			is_value		     = false,
 			is_variadic		     = false,
 			is_variadic_function	     = false,
 			is_void			     = false,
@@ -643,14 +643,18 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {is_storable = true};
 	};
 
-	struct Value : Storable {
-		enum {	is_statically_allocatable = true,
-			is_value		  = true
+	struct Simple : Storable {
+		enum {	is_simple		  = true,
+			is_statically_allocatable = true
 		};
 
 #		if Z_TRAIT_HAS(Type, is_default_constructible)
 			// It's false in the C++ standard library for references
 			enum {is_default_constructible = true};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_literal)
+			enum {is_literal = true};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
@@ -666,16 +670,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		endif
 	};
 
-	struct Number : Storable {
+	struct Number : Simple {
 		enum {	is_arithmetic  = true,
 			is_fundamental = true,
 			is_number      = true,
 			is_scalar      = true
 		};
-
-#		if Z_TRAIT_HAS(Type, is_literal)
-			enum {is_literal = true};
-#		endif
 
 #		if Z_TRAIT_HAS(Type, is_pod)
 			enum {is_pod = true};
@@ -1537,12 +1537,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef T type[];
 	};
 
-	struct PointerLike : Value {
+	struct PointerLike : Simple {
 		enum {is_scalar = true};
-
-#		if Z_TRAIT_HAS(Type, is_literal)
-			enum {is_literal = true};
-#		endif
 
 #		if Z_TRAIT_HAS(Type, is_pod)
 			enum {is_pod = true};
@@ -1562,9 +1558,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	endif
 
 	template <class T> struct Pointer : PointerLike {
-		enum {	is_pointer = true,
-			is_value   = true
-		};
+		enum {is_pointer = true};
 
 		typedef T* type;
 		typedef T  pointee_type;
@@ -1594,12 +1588,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef M to_function;
 	};
 
-	template <class T> struct Reference : Value {
+	template <class T> struct Reference : Simple {
 		enum {is_reference = true};
-
-#		if Z_TRAIT_HAS(Type, is_literal)
-			enum {is_literal = true};
-#		endif
 
 		typedef T referencee_type;
 	};
@@ -1790,14 +1780,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_TRAIT_HAS(Type, is_enumeration)
 
-		template <class T> struct Kind<false, Enumeration, T> : Value {
+		template <class T> struct Kind<false, Enumeration, T> : Simple {
 			enum {	is_enumeration = true,
 				is_scalar      = true
 			};
-
-#			if Z_TRAIT_HAS(Type, is_literal)
-				enum {is_literal = true};
-#			endif
 
 #			if Z_TRAIT_HAS(Type, is_pod)
 				enum {is_pod = true};
@@ -3165,6 +3151,7 @@ namespace Zeta {
 				is_schar		     = Type::is_schar,
 				is_signed		     = Type::is_signed,
 				is_signed_or_unsigned	     = Type::is_signed_or_unsigned,
+				is_simple		     = Type::is_simple,
 				is_sint			     = Type::is_sint,
 				is_slong		     = Type::is_slong,
 				is_sshort		     = Type::is_sshort,
@@ -3178,7 +3165,6 @@ namespace Zeta {
 				is_unsigned		     = Type::is_unsigned,
 				is_ushort		     = Type::is_ushort,
 				is_valid		     = Type::is_valid,
-				is_value		     = Type::is_value,
 				is_variadic		     = Type::is_variadic,
 				is_variadic_function	     = Type::is_variadic_function,
 				is_void			     = Type::is_void,
