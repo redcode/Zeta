@@ -1330,7 +1330,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_INTERFACE_CLASS __is_interface_class
 #endif
 
-#if __has_extension(is_literal)
+#if __has_extension(is_literal_type)
+#	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal_type
+#elif __has_extension(is_literal)
 #	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal
 #endif
 
@@ -1342,12 +1344,32 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_CONSTRUCTIBLE __is_nothrow_constructible
 #endif
 
+#if __has_extension(has_nothrow_assign)
+#	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_COPY_ASSIGNABLE __has_nothrow_assign
+#endif
+
+#if __has_extension(has_nothrow_copy)
+#	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_COPY_CONSTRUCTIBLE __has_nothrow_copy
+#endif
+
+#if __has_extension(has_nothrow_constructor)
+#	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_DEFAULT_CONSTRUCTIBLE __has_nothrow_constructor
+#endif
+
 #if __has_extension(is_pod)
 #	define Z_COMPILER_TRAIT_TYPE_IS_POD __is_pod
 #endif
 
 #if __has_extension(is_polymorphic)
 #	define Z_COMPILER_TRAIT_TYPE_IS_POLYMORPHIC __is_polymorphic
+#endif
+
+#if __has_extension(is_standard_layout)
+#	define Z_COMPILER_TRAIT_TYPE_IS_STANDARD_LAYOUT __is_standard_layout
+#endif
+
+#if __has_extension(is_trivial)
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIAL __is_trivial
 #endif
 
 #if __has_extension(is_trivially_assignable)
@@ -1391,13 +1413,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE
 #endif
 
-__has_nothrow_assign
-__has_nothrow_copy
-__has_nothrow_constructor
+__is_destructible
 __is_nothrow_destructible
-__is_nothrow_assignable
-__is_trivial
-__is_standard_layout
+__reference_binds_to_temporary
 */
 
 #endif /* __Z_inspection_compiler_modules_Clang_H__ */
