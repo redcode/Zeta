@@ -431,6 +431,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_TRAIT_Type_HAS_is_trivially_copy_constructible FALSE
 #		endif
 
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPYABLE)
+			enum {is_trivially_copyable = false};
+#			define Z_TRAIT_Type_HAS_is_trivially_copyable TRUE
+#		else
+#			define Z_TRAIT_Type_HAS_is_trivially_copyable FALSE
+#		endif
+
 #		if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE)
 			enum {is_trivially_default_constructible = false};
 #			define Z_TRAIT_Type_HAS_is_trivially_default_constructible TRUE
@@ -667,6 +674,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_default_constructible)
 			enum {is_default_constructible = true};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_copyable)
+			enum {is_trivially_copyable = true};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_trivially_default_constructible)
@@ -1515,6 +1526,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_trivially_copy_constructible = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE)(T)};
 #		endif
 
+#		if Z_TRAIT_HAS(Type, is_trivially_copyable)
+			enum {is_trivially_copyable = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_COPYABLE)(T)};
+#		endif
+
 #		if Z_TRAIT_HAS(Type, is_trivially_default_constructible)
 			enum {is_trivially_default_constructible = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE)(T)};
 #		endif
@@ -1836,6 +1851,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
 			enum {is_trivially_copy_constructible = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE)(T)};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_trivially_copyable)
+			enum {is_trivially_copyable = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_COPYABLE)(T)};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_trivially_default_constructible)
@@ -3366,6 +3385,10 @@ namespace Zeta {
 
 #			if Z_TRAIT_HAS(Type, is_trivially_copy_constructible)
 				enum {is_trivially_copy_constructible = Type::is_trivially_copy_constructible};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_trivially_copyable)
+				enum {is_trivially_copyable = Type::is_trivially_copyable};
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_trivially_default_constructible)
