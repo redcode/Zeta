@@ -1358,6 +1358,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE __has_trivial_copy
 #endif
 
+#if __has_extension(is_trivially_copyable)
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPYABLE __is_trivially_copyable
+#endif
+
 #if __has_extension(has_trivial_constructor)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE __has_trivial_constructor
 #endif
@@ -1388,10 +1392,7 @@ __is_destructible
 __is_nothrow_destructible
 __is_nothrow_assignable
 __is_trivial
-__is_trivially_copyable
 __is_standard_layout
-
-
 */
 
 #endif /* __Z_inspection_compiler_modules_Clang_H__ */
