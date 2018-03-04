@@ -1282,6 +1282,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in traits */
 
+#if __has_extension(has_virtual_destructor)
+#	define Z_COMPILER_TRAIT_TYPE_HAS_VIRTUAL_DESTRUCTOR __has_virtual_destructor
+#endif
+
 #if __has_extension(is_abstract)
 #	define Z_COMPILER_TRAIT_TYPE_IS_ABSTRACT __is_abstract
 #endif
@@ -1387,7 +1391,6 @@ __has_nothrow_assign
 __has_nothrow_copy
 __has_nothrow_constructor
 __has_trivial_assign
-__has_virtual_destructor
 __is_destructible
 __is_nothrow_destructible
 __is_nothrow_assignable

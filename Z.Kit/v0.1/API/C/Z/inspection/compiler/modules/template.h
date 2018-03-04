@@ -518,6 +518,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in traits */
 
+/*#define Z_COMPILER_TRAIT_TYPE_HAS_VIRTUAL_DESTRUCTOR(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_ABSTRACT(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_AGGREGATE(type)*/
 /*#define Z_COMPILER_TRAIT_TYPE_IS_ASSIGNABLE(type, from_type)*/
