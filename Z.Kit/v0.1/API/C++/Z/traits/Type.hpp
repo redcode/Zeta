@@ -22,7 +22,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 
-#	if Z_LANGUAGE_HAS(CPP, SFINAE)
+#	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 
 		namespace {
 			template <class T, SInt L, Boolean B> struct IsComplete			     : False {};
@@ -223,7 +223,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_TRAIT_Type_HAS_is_boolean FALSE
 #		endif
 
-#		if Z_LANGUAGE_HAS(CPP, SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+#		if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
 			enum {is_default_constructible = false};
 #			define Z_TRAIT_Type_HAS_is_default_constructible TRUE
 #		else
@@ -237,7 +237,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_TRAIT_Type_HAS_is_double FALSE
 #		endif
 
-#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_LANGUAGE_HAS(CPP, SFINAE)
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 			enum {is_enumeration = false};
 #			define Z_TRAIT_Type_HAS_is_enumeration TRUE
 #		else
@@ -354,7 +354,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			define Z_TRAIT_Type_HAS_is_objective_c_object_pointer FALSE
 #		endif
 
-#		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, SFINAE)
+#		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 
 			enum {	is_objective_c_instance		= false,
 				is_objective_c_instance_pointer = false
@@ -2448,7 +2448,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		};
 
 		enum {	structure_or_union_detected = union_detected ||
-#			if Z_LANGUAGE_HAS(CPP, SFINAE)
+#			if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 				Helpers::IsStructureOrUnion<T, true>::value
 #			else
 				false
@@ -2458,7 +2458,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		enum {	enumeration_detected = 
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION)
 				Z_COMPILER_TRAIT(TYPE_IS_ENUMERATION)(T)
-#			elif Z_LANGUAGE_HAS(CPP, SFINAE)
+#			elif Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 				!structure_or_union_detected && Helpers::IsUsableToCastNumber<T, true>::value
 #			else
 				false
@@ -2466,7 +2466,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		};
 
 		enum {	objective_c_instance_detected =
-			Z_LANGUAGE_INCLUDES(OBJECTIVE_C) && Z_LANGUAGE_HAS(CPP, SFINAE) &&
+			Z_LANGUAGE_INCLUDES(OBJECTIVE_C) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) &&
 			!enumeration_detected && !structure_or_union_detected
 		};
 
@@ -2957,7 +2957,7 @@ namespace Zeta {
 #		define Z_HAS_TRAIT_TypeIsConstructible FALSE
 #	endif
 
-#	if Z_LANGUAGE_HAS(CPP, SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+#	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
 
 		template <class T, class compatible_call_prototype> struct TypeIsFunctional;
 		template <class T, class compatible_call_prototype> struct TypeIsFunctor;
@@ -3038,7 +3038,7 @@ namespace Zeta {
 #		define Z_HAS_TRAIT_TypeIsTriviallyConstructible FALSE
 #	endif
 
-#	if Z_LANGUAGE_HAS(CPP, SFINAE)
+#	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 
 		namespace {
 			template <class T, SInt at_line> struct TypeIsComplete	 : Detail::Type::Helpers::IsComplete  <T, at_line, true> {};
@@ -3365,7 +3365,7 @@ namespace Zeta {
 					is_objective_c_object_pointer = Type::is_objective_c_object_pointer
 				};
 
-#				if Z_LANGUAGE_HAS(CPP, SFINAE)
+#				if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 
 					enum {	is_objective_c_instance		= Type::is_objective_c_instance,
 						is_objective_c_instance_pointer = Type::is_objective_c_instance_pointer
