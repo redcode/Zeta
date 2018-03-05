@@ -419,11 +419,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	/* MARK: - C++11 support */
 
+#	if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
+#		define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE TRUE /* v2.9 */
+#	endif
+
 #	if __cplusplus >= 201103L
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
 #			define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR  TRUE /* v2.9 */
-#			define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE TRUE /* v2.9 */
 #			define Z_COMPILER_CPP_HAS_TYPE_ULLONG	    TRUE /* v2.9 */
 #			define Z_COMPILER_CPP_HAS_TYPE_SLLONG	    TRUE /* v2.9 */
 #		endif
@@ -437,7 +440,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 #		if __has_feature(cxx_generalized_initializers)
-#			define Z_COMPILER_CPP_HAS_INITIALIZER_LIST TRUE
+#			define Z_COMPILER_CPP_HAS_INITIALIZER_LIST TRUE /* v3.1 */
 #		endif
 
 #		if __has_feature(cxx_lambdas) || __has_extension(cxx_lambdas)
@@ -445,19 +448,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 #		if __has_feature(cxx_nonstatic_member_init)
-#			define Z_COMPILER_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER TRUE
+#			define Z_COMPILER_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER TRUE /* v3.0 */
 #		endif
 
 #		if __has_feature(cxx_range_for) || __has_extension(cxx_range_for)
-#			define Z_COMPILER_CPP_HAS_RANGE_BASED_FOR TRUE
+#			define Z_COMPILER_CPP_HAS_RANGE_BASED_FOR TRUE /* v3.0 */
 #		endif
 
 #		if __has_feature(cxx_reference_qualified_functions) || __has_extension(cxx_reference_qualified_functions)
-#			define Z_COMPILER_CPP_HAS_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION TRUE
+#			define Z_COMPILER_CPP_HAS_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION TRUE /* v2.9 */
 #		endif
 
 #		if __has_feature(cxx_rvalue_references) || __has_extension(cxx_rvalue_references)
-#			define Z_COMPILER_CPP_HAS_RVALUE_REFERENCE TRUE
+#			define Z_COMPILER_CPP_HAS_RVALUE_REFERENCE TRUE /* v2.9 */
 #		endif
 
 		/*#define Z_COMPILER_CPP_HAS_STATIC_CONSTANT_DATA_MEMBER_INITIALIZER*/
@@ -467,64 +470,64 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 #		if __has_feature(cxx_alias_templates) || __has_extension(cxx_alias_templates)
-#			define Z_COMPILER_CPP_HAS_TEMPLATE_ALIAS TRUE
+#			define Z_COMPILER_CPP_HAS_TEMPLATE_ALIAS TRUE /* v3.0 */
 #		endif
 
 #		if __has_feature(cxx_trailing_return) || __has_extension(cxx_trailing_return)
-#			define Z_COMPILER_CPP_HAS_TRAILING_RETURN_TYPE TRUE
+#			define Z_COMPILER_CPP_HAS_TRAILING_RETURN_TYPE TRUE /* v2.9 */
 #		endif
 
 #		if __has_feature(cxx_unrestricted_unions)
-#			define Z_COMPILER_CPP_HAS_UNRESTRICTED_UNION TRUE
+#			define Z_COMPILER_CPP_HAS_UNRESTRICTED_UNION TRUE /* v3.1 */
 #		endif
 
 #		if __has_feature(cxx_variadic_templates) || __has_extension(cxx_variadic_templates)
-#			define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE			TRUE
-#			define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS TRUE
+#			define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE			TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS TRUE /* v2.9 */
 #		endif
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0)
 
 #			if __has_attribute(carries_dependency)
-#				define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY TRUE
+#				define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY TRUE /* v3.3 */
 #			endif
 
 #			if __has_attribute(noreturn)
-#				define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN TRUE
+#				define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN TRUE /* v3.3 */
 #			endif
 
 #		endif
 
 #		if __has_feature(cxx_nullptr) || __has_extension(cxx_nullptr)
-#			define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER TRUE
+#			define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER TRUE /* v3.0 */
 #		endif
 
 #		if __has_feature(cxx_alignof) || __has_extension(cxx_alignof)
-#			define Z_COMPILER_CPP_HAS_OPERATOR_ALIGN_OF TRUE
+#			define Z_COMPILER_CPP_HAS_OPERATOR_ALIGN_OF TRUE /* v3.3 */
 #		endif
 
 #		if __has_feature(cxx_noexcept) || __has_extension(cxx_noexcept)
-#			define Z_COMPILER_CPP_HAS_OPERATOR_NO_EXCEPTION TRUE
+#			define Z_COMPILER_CPP_HAS_OPERATOR_NO_EXCEPTION TRUE /* v3.0 */
 #		endif
 
 #		if __has_feature(cxx_alignas) || __has_extension(cxx_alignas)
-#			define Z_COMPILER_CPP_HAS_SPECIFIER_ALIGN_AS TRUE
+#			define Z_COMPILER_CPP_HAS_SPECIFIER_ALIGN_AS TRUE /* v3.3 */
 #		endif
 
 #		if __has_feature(cxx_auto_type) || __has_extension(cxx_auto_type)
-#			define Z_COMPILER_CPP_HAS_SPECIFIER_AUTO TRUE
+#			define Z_COMPILER_CPP_HAS_SPECIFIER_AUTO TRUE /* v2.9 */
 #		endif
 
 #		if __has_feature(cxx_constexpr)
-#			define Z_COMPILER_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION TRUE
+#			define Z_COMPILER_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION TRUE /* v3.1 */
 #		endif
 
 #		if __has_feature(cxx_decltype) || __has_extension(cxx_decltype)
-#			define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE TRUE
+#			define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE TRUE /* v2.9 */
 #		endif
 
 #		if __has_feature(cxx_decltype_incomplete_return_types) || __has_extension(cxx_decltype_incomplete_return_types)
-#			define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN TRUE
+#			define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN TRUE /* v3.1 */
 #		endif
 
 #		if __has_feature(cxx_explicit_conversions)
@@ -532,7 +535,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 #		if __has_feature(cxx_noexcept) || __has_extension(cxx_noexcept)
-#			define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION TRUE
+#			define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION TRUE /* v3.0 */
 #		endif
 
 		/*--------------------------------------------.
