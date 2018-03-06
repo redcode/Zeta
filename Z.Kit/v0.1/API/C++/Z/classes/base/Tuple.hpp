@@ -65,6 +65,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
 			using Super::Super;
 #		else
+			Z_INLINE_MEMBER Tuple() {}
+
 			Z_CT_MEMBER(CPP11) Tuple(typename Type<T>::to_forwardable... values)
 			: Super(values...) {}
 #		endif
