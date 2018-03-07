@@ -426,26 +426,38 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	if __cplusplus >= 201103L
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
-#			define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR  TRUE /* v2.9 */
-#			define Z_COMPILER_CPP_HAS_TYPE_ULLONG	    TRUE /* v2.9 */
-#			define Z_COMPILER_CPP_HAS_TYPE_SLLONG	    TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_TYPE_ULLONG	   TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_TYPE_SLLONG	   TRUE /* v2.9 */
 #		endif
 
 #		if __has_feature(cxx_default_function_template_args) || __has_extension(cxx_default_function_template_args)
 #			define Z_COMPILER_CPP_HAS_DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE TRUE /* v2.9 */
 #		endif
 
+		/*#define Z_COMPILER_CPP_HAS_DEFAULTED_FUNCTION*/
+		/*#define Z_COMPILER_CPP_HAS_DELETED_FUNCTION*/
+		/*#define Z_COMPILER_CPP_HAS_EXTENDED_FRIEND_DECLARATION*/
+		/*#define Z_COMPILER_CPP_HAS_EXTERN_TEMPLATE*/
+		/*#define Z_COMPILER_CPP_HAS_FORWARD_DECLARATION_OF_ENUMERATION*/
+
 #		if __has_feature(cxx_inheriting_constructors)
 #			define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE /* v3.3 */
 #		endif
+
+		/*#define Z_COMPILER_CPP_HAS_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE*/
 
 #		if __has_feature(cxx_generalized_initializers)
 #			define Z_COMPILER_CPP_HAS_INITIALIZER_LIST TRUE /* v3.1 */
 #		endif
 
+		/*#define Z_COMPILER_CPP_HAS_INLINE_NAMESPACE*/
+
 #		if __has_feature(cxx_lambdas) || __has_extension(cxx_lambdas)
 #			define Z_COMPILER_CPP_HAS_LAMBDA TRUE /* v3.1 */
 #		endif
+
+		/*#define Z_COMPILER_CPP_HAS_MULTI_DECLARATOR_AUTO*/
 
 #		if __has_feature(cxx_nonstatic_member_init)
 #			define Z_COMPILER_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER TRUE /* v3.0 */
@@ -459,10 +471,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION TRUE /* v2.9 */
 #		endif
 
+		/*#define Z_COMPILER_CPP_HAS_REMOVAL_OF_AUTO_AS_A_STORAGE_CLASS*/
+		/*#define Z_COMPILER_CPP_HAS_RIGHT_ANGLE_BRACKETS*/
+
 #		if __has_feature(cxx_rvalue_references) || __has_extension(cxx_rvalue_references)
 #			define Z_COMPILER_CPP_HAS_RVALUE_REFERENCE TRUE /* v2.9 */
 #		endif
 
+		/*#define Z_COMPILER_CPP_HAS_STATIC_ASSERTION*/
 		/*#define Z_COMPILER_CPP_HAS_STATIC_CONSTANT_DATA_MEMBER_INITIALIZER*/
 
 #		if __has_feature(cxx_strong_enums) || __has_extension(cxx_strong_enums)
@@ -538,10 +554,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION TRUE /* v3.0 */
 #		endif
 
-		/*--------------------------------------------.
-		| IMPORTANT: thread_local support requires a  |
-		| C++ runtime  providing __cxa_thread_atexit. |
-		'--------------------------------------------*/
+		/*-------------------------------------------.
+		| IMPORTANT: thread_local support requires a |
+		| C++ runtime providing __cxa_thread_atexit. |
+		'-------------------------------------------*/
 #		if __has_feature(cxx_thread_local)
 #			define Z_COMPILER_CPP_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* v3.3 */
 #		endif
@@ -553,15 +569,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	if __cplusplus >= 201402L
 
 #		if __has_feature(cxx_relaxed_constexpr) || __has_extension(cxx_relaxed_constexpr)
-#			define Z_COMPILER_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION TRUE
+#			define Z_COMPILER_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION TRUE /* v3.4 */
 #		endif
 
 #		if __has_feature(cxx_return_type_deduction) || __has_extension(cxx_return_type_deduction)
-#			define Z_COMPILER_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE
+#			define Z_COMPILER_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* v3.4 */
 #		endif
 
 #		if __has_feature(cxx_variable_templates) || __has_extension(cxx_variable_templates)
-#			define Z_COMPILER_CPP_HAS_VARIABLE_TEMPLATE TRUE
+#			define Z_COMPILER_CPP_HAS_VARIABLE_TEMPLATE TRUE /* v3.4 */
 #		endif
 
 #		if __has_attribute(deprecated) && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
@@ -569,7 +585,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 #		if __has_feature(cxx_binary_literals) || __has_extension(cxx_binary_literals)
-#			define Z_COMPILER_CPP_HAS_LITERAL_BINARY TRUE
+#			define Z_COMPILER_CPP_HAS_LITERAL_BINARY TRUE /* v2.9 */
 #		endif
 
 #	endif
