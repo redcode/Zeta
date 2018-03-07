@@ -423,39 +423,56 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE TRUE /* v2.9 */
 #	endif
 
-#	if __cplusplus >= 201103L && Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
-#		define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR TRUE /* v2.9 */
-#		define Z_COMPILER_CPP_HAS_TYPE_ULLONG	   TRUE /* v2.9 */
-#		define Z_COMPILER_CPP_HAS_TYPE_SLLONG	   TRUE /* v2.9 */
+#	if __has_feature(cxx_auto_type)
+#		define Z_COMPILER_CPP_HAS_MULTI_DECLARATOR_AUTO		     TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_REMOVAL_OF_AUTO_AS_A_STORAGE_CLASS TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_AUTO		     TRUE /* v2.9 */
+#	endif
+
+#	if __cplusplus >= 201103L
+
+#		if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
+#			define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR			   TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_TYPE_ULLONG				   TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_TYPE_SLLONG				   TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_EXTENDED_FRIEND_DECLARATION		   TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_EXTERN_TEMPLATE			   TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_RIGHT_ANGLE_BRACKETS			   TRUE /* v2.9 */
+#		endif
+
+#		if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
+#			define Z_COMPILER_CPP_HAS_FORWARD_DECLARATION_OF_ENUMERATION TRUE /* v3.1 */
+#		endif
+
 #	endif
 
 #	if __has_feature(cxx_default_function_template_args)
 #		define Z_COMPILER_CPP_HAS_DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE TRUE /* v2.9 */
 #	endif
 
-	/*#define Z_COMPILER_CPP_HAS_DEFAULTED_FUNCTION*/
-	/*#define Z_COMPILER_CPP_HAS_DELETED_FUNCTION*/
-	/*#define Z_COMPILER_CPP_HAS_EXTENDED_FRIEND_DECLARATION*/
-	/*#define Z_COMPILER_CPP_HAS_EXTERN_TEMPLATE*/
-	/*#define Z_COMPILER_CPP_HAS_FORWARD_DECLARATION_OF_ENUMERATION*/
+#	if __has_feature(cxx_defaulted_functions)
+#		define Z_COMPILER_CPP_HAS_DEFAULTED_FUNCTION TRUE /* v3.0 */
+#	endif
+
+#	if __has_feature(cxx_deleted_functions)
+#		define Z_COMPILER_CPP_HAS_DELETED_FUNCTION TRUE /* v2.9 */
+#	endif
 
 #	if __has_feature(cxx_inheriting_constructors)
 #		define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE /* v3.3 */
 #	endif
 
-	/*#define Z_COMPILER_CPP_HAS_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE*/
-
 #	if __has_feature(cxx_generalized_initializers)
 #		define Z_COMPILER_CPP_HAS_INITIALIZER_LIST TRUE /* v3.1 */
 #	endif
 
-	/*#define Z_COMPILER_CPP_HAS_INLINE_NAMESPACE*/
+#	if __has_feature(cxx_inline_namespaces)
+#		define Z_COMPILER_CPP_HAS_INLINE_NAMESPACE TRUE /* v2.9 */
 
 #	if __has_feature(cxx_lambdas)
 #		define Z_COMPILER_CPP_HAS_LAMBDA TRUE /* v3.1 */
 #	endif
-
-	/*#define Z_COMPILER_CPP_HAS_MULTI_DECLARATOR_AUTO*/
 
 #	if __has_feature(cxx_nonstatic_member_init)
 #		define Z_COMPILER_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER TRUE /* v3.0 */
@@ -469,14 +486,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION TRUE /* v2.9 */
 #	endif
 
-	/*#define Z_COMPILER_CPP_HAS_REMOVAL_OF_AUTO_AS_A_STORAGE_CLASS*/
-	/*#define Z_COMPILER_CPP_HAS_RIGHT_ANGLE_BRACKETS*/
-
 #	if __has_feature(cxx_rvalue_references)
 #		define Z_COMPILER_CPP_HAS_RVALUE_REFERENCE TRUE /* v2.9 */
 #	endif
 
-	/*#define Z_COMPILER_CPP_HAS_STATIC_ASSERTION*/
+#	if __has_feature(cxx_static_assert)
+#		define Z_COMPILER_CPP_HAS_STATIC_ASSERTION TRUE /* v2.9 */
+#	endif
+
 	/*#define Z_COMPILER_CPP_HAS_STATIC_CONSTANT_DATA_MEMBER_INITIALIZER*/
 
 #	if __has_feature(cxx_strong_enums)
@@ -528,10 +545,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_ALIGN_AS TRUE /* v3.3 */
 #	endif
 
-#	if __has_feature(cxx_auto_type)
-#		define Z_COMPILER_CPP_HAS_SPECIFIER_AUTO TRUE /* v2.9 */
-#	endif
-
 #	if __has_feature(cxx_constexpr)
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION TRUE /* v3.1 */
 #	endif
@@ -574,7 +587,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_VARIABLE_TEMPLATE TRUE /* v3.4 */
 #	endif
 
-#	if __has_attribute(deprecated) && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
+#	if Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0) && __has_attribute(deprecated)
 #		define Z_COMPILER_CPP_HAS_ATTRIBUTE_DEPRECATED TRUE /* v3.4 */
 #	endif
 
