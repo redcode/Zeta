@@ -151,12 +151,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_OPERATOR_ALIGN_OF FALSE
 #endif
 
-#ifndef Z_C_HAS_SPECIFIER_ATOMIC
-#	define Z_C_HAS_SPECIFIER_ATOMIC FALSE
-#endif
-
 #ifndef Z_C_HAS_SPECIFIER_ALIGN_AS
 #	define Z_C_HAS_SPECIFIER_ALIGN_AS FALSE
+#endif
+
+#ifndef Z_C_HAS_SPECIFIER_ATOMIC
+#	define Z_C_HAS_SPECIFIER_ATOMIC FALSE
 #endif
 
 #ifndef Z_C_HAS_SPECIFIER_NO_RETURN

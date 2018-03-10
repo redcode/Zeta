@@ -382,25 +382,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
 
-#	if __has_feature(c_generic_selections) || __has_extension(c_generic_selections)
+#	if __has_feature(c_generic_selections)
 #		define Z_COMPILER_C_HAS_GENERIC_SELECTION TRUE
 #	endif
 
-#	if __has_feature(c_static_assert) || __has_extension(c_static_assert)
+#	if __has_feature(c_static_assert)
 #		define Z_COMPILER_C_HAS_STATIC_ASSERTION TRUE
 #	endif
 
-#	if __has_feature(c_alignof) || __has_extension(c_alignof)
+#	if __has_feature(c_alignof)
 #		define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF TRUE
 #	endif
 
-#	if __has_feature(c_alignas) || __has_extension(c_alignas)
+#	if __has_feature(c_alignas)
 #		define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS TRUE
 #	endif
 
 #endif
 
-#if __has_feature(c_thread_local) || __has_extension(c_thread_local)
+#if __has_feature(c_thread_local)
 #	define Z_COMPILER_C_HAS_STORATE_CLASS_THREAD_LOCAL TRUE
 #endif
 
