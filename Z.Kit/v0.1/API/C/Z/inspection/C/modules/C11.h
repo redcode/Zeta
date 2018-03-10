@@ -38,8 +38,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_SPECIFIER_ATOMIC TRUE /* _Atomic() */
 #endif
 
-#define Z_C_HAS_SPECIFIER_ALIGN_AS  TRUE
-#define Z_C_HAS_SPECIFIER_NO_RETURN TRUE /* _Noreturn */
+#define Z_C_HAS_SPECIFIER_ALIGN_AS  TRUE /* _Alignas() */
+#define Z_C_HAS_SPECIFIER_NO_RETURN TRUE /* _Noreturn  */
 
 /* MARK: - Storage classes */
 
