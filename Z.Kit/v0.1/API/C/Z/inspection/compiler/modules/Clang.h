@@ -366,7 +366,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE TRUE // OK
 #	endif
 
-#	if (defined(__cplusplus) || defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
+#	if defined(__cplusplus) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
 #		define Z_COMPILER_C_HAS_ANONYMOUS_UNION TRUE // OK
 #	endif
 
@@ -374,30 +374,26 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if __has_feature(c_atomic) || __has_extension(c_atomic)
+#if __has_feature(c_atomic)
 #	define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS     TRUE
 #	define Z_COMPILER_C_HAS_SPECIFIER_ATOMIC      TRUE
 #	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC TRUE
 #endif
 
-#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
+#if __has_feature(c_generic_selections)
+#	define Z_COMPILER_C_HAS_GENERIC_SELECTION TRUE
+#endif
 
-#	if __has_feature(c_generic_selections)
-#		define Z_COMPILER_C_HAS_GENERIC_SELECTION TRUE
-#	endif
+#if __has_feature(c_static_assert)
+#	define Z_COMPILER_C_HAS_STATIC_ASSERTION TRUE
+#endif
 
-#	if __has_feature(c_static_assert)
-#		define Z_COMPILER_C_HAS_STATIC_ASSERTION TRUE
-#	endif
+#if __has_feature(c_alignof)
+#	define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF TRUE
+#endif
 
-#	if __has_feature(c_alignof)
-#		define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF TRUE
-#	endif
-
-#	if __has_feature(c_alignas)
-#		define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS TRUE
-#	endif
-
+#if __has_feature(c_alignas)
+#	define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS TRUE
 #endif
 
 #if __has_feature(c_thread_local)
@@ -410,7 +406,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_CLOSURE TRUE
 #endif
 
-#if defined(__cplusplus)
+#ifdef __cplusplus
 
 	/* MARK: - C++98 support */
 
@@ -469,6 +465,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __has_feature(cxx_inline_namespaces)
 #		define Z_COMPILER_CPP_HAS_INLINE_NAMESPACE TRUE /* v2.9 */
+#	endif
 
 #	if __has_feature(cxx_lambdas)
 #		define Z_COMPILER_CPP_HAS_LAMBDA TRUE /* v3.1 */
@@ -651,7 +648,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Attributes (C++ only) */
 
-#if defined(__cplusplus)
+#ifdef __cplusplus
 
 #	if __has_attribute(always_inline)
 #		define Z_COMPILER_ATTRIBUTE_INLINE_MEMBER __inline__ __attribute__((always_inline))
