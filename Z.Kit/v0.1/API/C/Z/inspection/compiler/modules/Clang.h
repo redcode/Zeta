@@ -420,6 +420,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 #	if __has_feature(cxx_auto_type)
+#		undef  Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO
 #		define Z_COMPILER_CPP_HAS_MULTI_DECLARATOR_AUTO		     TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_REMOVAL_OF_AUTO_AS_A_STORAGE_CLASS TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_AUTO		     TRUE /* v2.9 */
