@@ -329,17 +329,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C99 support */
 
-#define Z_COMPILER_C_HAS_INLINE_FUNCION		 TRUE
-#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT TRUE
+#define Z_COMPILER_C_HAS_INLINE_FUNCION		      TRUE
+#define Z_COMPILER_C_HAS_MAGIC_CONSTANT_FUNCTION_NAME TRUE
+#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT      TRUE
 
 #if defined(__UINTMAX_MAX__) && 0U - 1U == __UINTMAX_MAX__
 #	define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGER TRUE
 #endif
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
-#	define Z_COMPILER_C_HAS_COMPOUND_LITERAL       TRUE
-#	define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER TRUE
-#	define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER  TRUE
+#	define Z_COMPILER_C_HAS_COMPOUND_LITERAL	     TRUE
+#	define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER	     TRUE
+#	define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER	     TRUE
 
 #	ifndef __STDC_NO_VLA__
 #		define Z_COMPILER_C_HAS_VLA TRUE
@@ -420,7 +421,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	/* MARK: - C++11 support */
 
 #	if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
-#		define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE	       TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME TRUE /* v2.9 (Available in older versions?) */
 #	endif
 
 #	if __has_feature(cxx_auto_type)

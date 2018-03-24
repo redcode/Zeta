@@ -157,6 +157,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_LITERAL_NULL_POINTER FALSE
 #endif
 
+#ifndef Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME
+#	define Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME FALSE
+#endif
+
 #ifndef Z_CPP_HAS_OPERATOR_ALIGN_OF
 #	define Z_CPP_HAS_OPERATOR_ALIGN_OF FALSE
 #endif

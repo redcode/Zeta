@@ -55,6 +55,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_CPP_HAS_LITERAL_NULL_POINTER TRUE /* N2431: nullptr */
 
+/* MARK: - Magic constants */
+
+#define Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME TRUE /* __func__ */
+
 /* MARK: - Operators */
 
 #define Z_CPP_HAS_OPERATOR_ALIGN_OF	TRUE /* N2341: alignof()  */

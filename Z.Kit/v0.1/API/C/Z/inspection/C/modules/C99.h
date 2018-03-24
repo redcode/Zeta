@@ -25,6 +25,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_HAS_VARIADIC_MACRO					TRUE
 #define Z_C_HAS_VLA						TRUE
 
+/* MARK: - Magic constants */
+
+#define Z_C_HAS_MAGIC_CONSTANT_FUNCTION_NAME TRUE /* __func__ */
+
 /* MARK: - Specifiers */
 
 #define Z_C_HAS_SPECIFIER_INLINE TRUE /* inline */
