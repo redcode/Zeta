@@ -23,6 +23,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define __has_extension __has_feature /* Compatibility with Clang < v3.0 */
 #endif
 
+#ifndef __has_attribute
+#	define __has_attribute(which) FALSE
+#endif
+
 /* MARK: - CPU
 .--------------------------------------------------.
 | Reference: [Clang sources]/lib/Basic/Targets.cpp |
@@ -430,6 +434,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
 #			define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR			   TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_CONDITIONALLY_SUPPORTED_BEHAVIOR	   TRUE /* v2.9 */
 #			define Z_COMPILER_CPP_HAS_TYPE_ULLONG				   TRUE /* v2.9 */
 #			define Z_COMPILER_CPP_HAS_TYPE_SLLONG				   TRUE /* v2.9 */
 #			define Z_COMPILER_CPP_HAS_EXTENDED_FRIEND_DECLARATION		   TRUE /* v2.9 */
@@ -488,6 +493,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_RVALUE_REFERENCE TRUE /* v2.9 */
 #	endif
 
+#	if __has_feature(cxx_attributes)
+#		define Z_COMPILER_CPP_HAS_STANDARDIZED_ATTRIBUTE_SYNTAX TRUE /* v3.3 */
+
+#		if __has_attribute(carries_dependency)
+#			define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY TRUE /* v3.3 */
+#		endif
+
+#		if __has_attribute(noreturn)
+#			define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN TRUE /* v3.3 */
+#		endif
+#	endif
+
 #	if __has_feature(cxx_static_assert)
 #		define Z_COMPILER_CPP_HAS_STATIC_ASSERTION TRUE /* v2.9 */
 #	endif
@@ -513,18 +530,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	if __has_feature(cxx_variadic_templates)
 #		define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE			TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS TRUE /* v2.9 */
-#	endif
-
-#	if Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0)
-
-#		if __has_attribute(carries_dependency)
-#			define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY TRUE /* v3.3 */
-#		endif
-
-#		if __has_attribute(noreturn)
-#			define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN TRUE /* v3.3 */
-#		endif
-
 #	endif
 
 #	if __has_feature(cxx_nullptr)
