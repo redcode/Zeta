@@ -457,6 +457,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_DEFAULTED_FUNCTION TRUE /* v3.0 */
 #	endif
 
+#	if __has_feature(cxx_delegating_constructors)
+#		define Z_COMPILER_CPP_HAS_DELEGATING_CONSTRUCTORS TRUE /* v3.0 */
+#	endif
+
 #	if __has_feature(cxx_deleted_functions)
 #		define Z_COMPILER_CPP_HAS_DELETED_FUNCTION TRUE /* v2.9 */
 #	endif
