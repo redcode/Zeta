@@ -369,6 +369,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER FALSE
 #	endif
 
+#	ifndef Z_COMPILER_CPP_HAS_LITERAL_RAW_STRING
+#		define Z_COMPILER_CPP_HAS_LITERAL_RAW_STRING FALSE
+#	endif
+
+#	ifndef Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING
+#		define Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING FALSE
+#	endif
+
 #	ifndef Z_COMPILER_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME
 #		define Z_COMPILER_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME FALSE
 #	endif
@@ -1113,7 +1121,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_HAS_TYPE_VAL FALSE
 #endif
 
-/* MARK: - Built-in literals */
+/* MARK: - Suffix macros for built-in types */
 
 #ifdef Z_COMPILER_LITERAL_UINT8
 #	define Z_COMPILER_HAS_LITERAL_UINT8 TRUE

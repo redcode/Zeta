@@ -544,6 +544,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER TRUE /* v3.0 */
 #	endif
 
+#	if __has_feature(cxx_raw_string_literals)
+#		define Z_COMPILER_CPP_HAS_LITERAL_RAW_STRING TRUE /* v3.0 */
+#	endif
+
+#	if __has_feature(cxx_unicode_literals)
+#		define Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING TRUE /* v3.0 */
+#	endif
+
 #	if __has_feature(cxx_alignof)
 #		define Z_COMPILER_CPP_HAS_OPERATOR_ALIGN_OF TRUE /* v3.3 */
 #	endif
@@ -863,7 +871,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_COMPILER_TYPE_VAL __builtin_va_list
 
-/* MARK: - Built-in literals */
+/* MARK: - Suffix macros for built-in types */
 
 /*#define Z_COMPILER_LITERAL_UINT8*/
 /*#define Z_COMPILER_LITERAL_UINT16*/

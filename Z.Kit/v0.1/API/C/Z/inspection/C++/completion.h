@@ -157,6 +157,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_LITERAL_NULL_POINTER FALSE
 #endif
 
+#ifndef Z_CPP_HAS_LITERAL_RAW_STRING
+#	define Z_CPP_HAS_LITERAL_RAW_STRING FALSE
+#endif
+
+#ifndef Z_CPP_HAS_LITERAL_UNICODE_STRING
+#	define Z_CPP_HAS_LITERAL_UNICODE_STRING FALSE
+#endif
+
 #ifndef Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME
 #	define Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME FALSE
 #endif

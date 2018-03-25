@@ -150,6 +150,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY*/
 /*#define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN*/
 /*#define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER*/
+/*#define Z_COMPILER_CPP_HAS_LITERAL_RAW_STRING*/
+/*#define Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING*/
 /*#define Z_COMPILER_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME*/
 /*#define Z_COMPILER_CPP_HAS_OPERATOR_ALIGN_OF*/
 /*#define Z_COMPILER_CPP_HAS_OPERATOR_NO_EXCEPTION*/
@@ -302,7 +304,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /*#define Z_COMPILER_TYPE_VAL*/
 
-/* MARK: - Built-in literals */
+/* MARK: - Suffix macros for built-in types */
 
 /*#define Z_COMPILER_LITERAL_UINT8*/
 /*#define Z_COMPILER_LITERAL_UINT16*/
