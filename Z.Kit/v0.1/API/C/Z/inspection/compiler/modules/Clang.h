@@ -437,12 +437,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
 #			define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR			   TRUE /* v2.9 */
 #			define Z_COMPILER_CPP_HAS_CONDITIONALLY_SUPPORTED_BEHAVIOR	   TRUE /* v2.9 */
-#			define Z_COMPILER_CPP_HAS_TYPE_ULLONG				   TRUE /* v2.9 */
-#			define Z_COMPILER_CPP_HAS_TYPE_SLLONG				   TRUE /* v2.9 */
 #			define Z_COMPILER_CPP_HAS_EXTENDED_FRIEND_DECLARATION		   TRUE /* v2.9 */
 #			define Z_COMPILER_CPP_HAS_EXTERN_TEMPLATE			   TRUE /* v2.9 */
 #			define Z_COMPILER_CPP_HAS_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE TRUE /* v2.9 */
 #			define Z_COMPILER_CPP_HAS_RIGHT_ANGLE_BRACKETS			   TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_TYPE_CHAR16				   TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_TYPE_CHAR32				   TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_TYPE_ULLONG				   TRUE /* v2.9 */
+#			define Z_COMPILER_CPP_HAS_TYPE_SLLONG				   TRUE /* v2.9 */
 #		endif
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)

@@ -413,6 +413,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_STORATE_CLASS_THREAD_LOCAL FALSE
 #	endif
 
+#	ifndef Z_COMPILER_CPP_HAS_TYPE_CHAR16
+#		define Z_COMPILER_CPP_HAS_TYPE_CHAR16 FALSE
+#	endif
+
+#	ifndef Z_COMPILER_CPP_HAS_TYPE_CHAR32
+#		define Z_COMPILER_CPP_HAS_TYPE_CHAR32 FALSE
+#	endif
+
 #	ifndef Z_COMPILER_CPP_HAS_TYPE_ULLONG
 #		define Z_COMPILER_CPP_HAS_TYPE_ULLONG FALSE
 #	endif

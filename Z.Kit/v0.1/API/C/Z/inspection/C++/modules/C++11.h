@@ -80,6 +80,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Types */
 
+#define Z_CPP_HAS_TYPE_CHAR16 TRUE /* N2249 */
+#define Z_CPP_HAS_TYPE_CHAR32 TRUE /* N2249 */
 #define Z_CPP_HAS_TYPE_ULLONG TRUE /* N1811: unsigned long long [int] */
 #define Z_CPP_HAS_TYPE_SLLONG TRUE /* N1811: [signed] long long [int] */
 
