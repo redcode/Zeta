@@ -227,6 +227,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: C++14 */
 
+#ifndef Z_CPP_HAS_GENERIC_LAMBDA
+#	define Z_CPP_HAS_GENERIC_LAMBDA FALSE
+#endif
+
 #ifndef Z_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION
 #	define Z_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION FALSE
 #endif

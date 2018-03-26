@@ -170,6 +170,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C++14 support */
 
+/*#define Z_COMPILER_CPP_HAS_GENERIC_LAMBDA*/
 /*#define Z_COMPILER_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION*/
 /*#define Z_COMPILER_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION*/
 /*#define Z_COMPILER_CPP_HAS_VARIABLE_TEMPLATE*/

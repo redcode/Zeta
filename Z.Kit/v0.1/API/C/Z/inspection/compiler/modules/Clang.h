@@ -594,6 +594,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	/* MARK: - C++14 support */
 
+#	if __has_feature(cxx_generic_lambdas)
+#		define Z_COMPILER_CPP_HAS_GENERIC_LAMBDA TRUE /* v3.4 */
+#	endif
+
 #	if __has_feature(cxx_relaxed_constexpr)
 #		define Z_COMPILER_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION TRUE /* v3.4 */
 #	endif

@@ -439,6 +439,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	/* MARK: - C++14 support */
 
+#	ifndef Z_COMPILER_CPP_HAS_GENERIC_LAMBDA
+#		define Z_COMPILER_CPP_HAS_GENERIC_LAMBDA FALSE
+#	endif
+
 #	ifndef Z_COMPILER_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION
 #		define Z_COMPILER_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION FALSE
 #	endif
