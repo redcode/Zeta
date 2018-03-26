@@ -17,9 +17,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class type_list> class Element;
 
+
 		template <class... T> struct Super {
 			typedef Element<typename TypeListRotateRight<TypeList<T...>, 1>::type> type;
 		};
+
 
 		template <class TN, class... T>
 		struct Element<TypeList<TN, T...> > : Super<T...>::type {
@@ -35,9 +37,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			) : Super<T...>::type(previous...), value(value) {}
 		};
 
-		template <>
-		struct Element<TypeList<> > {
-			Z_CT_MEMBER(CPP11) Element() {}
+
+		template <class T>
+		struct Element<TypeList<T> > {
+			typedef T Value;
+
+			Value value;
+
+			Z_INLINE_MEMBER Element() {}
+
+			Z_CT_MEMBER(CPP11) Element(typename Zeta::Type<T>::to_forwardable value)
+			: value(value) {}
 		};
 	}}}
 
