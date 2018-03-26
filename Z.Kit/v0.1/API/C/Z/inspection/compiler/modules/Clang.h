@@ -550,6 +550,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING TRUE /* v3.0 */
 #	endif
 
+#	if __has_feature(cxx_user_literals)
+#		define Z_COMPILER_CPP_HAS_LITERAL_USER_DEFINED TRUE /* v3.1 */
+#	endif
+
 #	if __has_feature(cxx_alignof)
 #		define Z_COMPILER_CPP_HAS_OPERATOR_ALIGN_OF TRUE /* v3.3 */
 #	endif
