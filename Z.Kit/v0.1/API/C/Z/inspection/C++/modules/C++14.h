@@ -14,6 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Features */
 
+#define Z_CPP_HAS_GENERIC_LAMBDA			    TRUE /* N3649 */
 #define Z_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION	    TRUE /* N3652 */
 #define Z_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* N3638 */
 #define Z_CPP_HAS_VARIABLE_TEMPLATE			    TRUE /* N3651 */
