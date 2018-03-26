@@ -23,6 +23,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 
 
+		template <class T>
+		struct Element<TypeList<T> > {
+			typedef T Value;
+
+			Value value;
+
+			Z_INLINE_MEMBER Element() {}
+
+			Z_CT_MEMBER(CPP11) Element(typename Zeta::Type<T>::to_forwardable value)
+			: value(value) {}
+		};
+
+
 		template <class TN, class... T>
 		struct Element<TypeList<TN, T...> > : Super<T...>::type {
 			typedef TN Value;
@@ -35,19 +48,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				typename Zeta::Type<T >::to_forwardable... previous,
 				typename Zeta::Type<TN>::to_forwardable value
 			) : Super<T...>::type(previous...), value(value) {}
-		};
-
-
-		template <class T>
-		struct Element<TypeList<T> > {
-			typedef T Value;
-
-			Value value;
-
-			Z_INLINE_MEMBER Element() {}
-
-			Z_CT_MEMBER(CPP11) Element(typename Zeta::Type<T>::to_forwardable value)
-			: value(value) {}
 		};
 	}}}
 

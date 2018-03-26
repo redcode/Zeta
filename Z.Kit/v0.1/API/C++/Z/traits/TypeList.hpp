@@ -23,14 +23,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class L> struct TypeListFirst;
 
-		template <template <class...> class L, class... A>
-		struct TypeListFirst<L<A...> > {
-			typedef typename SelectType<0, A...>::type type;
-		};
-
 		template <template <class...> class L, class A>
 		struct TypeListFirst<L<A> > {
 			typedef A type;
+		};
+
+		template <template <class...> class L, class... A>
+		struct TypeListFirst<L<A...> > {
+			typedef typename SelectType<0, A...>::type type;
 		};
 
 		template <class L, UInt index> struct TypeListGet;
@@ -42,27 +42,27 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class L0, class... L> struct TypeListJoin;
 
-		template <class L0, template <class...> class L1, class... A1, class... L>
-		struct TypeListJoin<L0, L1<A1...>, L...> {
-			typedef typename TypeListJoin<typename TypeListAppend<L0, A1...>::type, L...>::type type;
-		};
-
 		template <class L>
 		struct TypeListJoin<L> {
 			typedef L type;
 		};
 
+		template <class L0, template <class...> class L1, class... A1, class... L>
+		struct TypeListJoin<L0, L1<A1...>, L...> {
+			typedef typename TypeListJoin<typename TypeListAppend<L0, A1...>::type, L...>::type type;
+		};
+
 		template <class L> struct TypeListLast;
+
+		template <template <class...> class L, class A>
+		struct TypeListLast<L<A> > {
+			typedef A type;
+		};
 
 		template <template <class...> class L, class... A>
 		struct TypeListLast<L<A...> > {
 			typedef typename SelectType<0, A...>::type type;
 			typedef typename SelectType<sizeof...(A) ? sizeof...(A) - 1 : 0, A...>::type last;
-		};
-
-		template <template <class...> class L, class A>
-		struct TypeListLast<L<A> > {
-			typedef A type;
 		};
 
 		template <class L, class... types> struct TypeListPrepend;
@@ -93,65 +93,70 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class L> struct TypeListRemoveFirst;
 
-		template <template <class...> class L, class A0, class... A>
-		struct TypeListRemoveFirst<L<A0, A...> > {
-			typedef L<A...> type;
-		};
-
 		template <template <class...> class L>
 		struct TypeListRemoveFirst<L<> > {
 			typedef L<> type;
 		};
 
-		template <class L, UInt head_size> struct TypeListRemoveHead;
-
-		template <template <class...> class L, class... A, UInt S>
-		struct TypeListRemoveHead<L<A...>, S> {
-			typedef typename TypeListRemoveHead<typename TypeListRemoveFirst<L<A...> >::type, S - 1>::type type;
+		template <template <class...> class L, class A0, class... A>
+		struct TypeListRemoveFirst<L<A0, A...> > {
+			typedef L<A...> type;
 		};
+
+		template <class L, UInt head_size> struct TypeListRemoveHead;
 
 		template <template <class...> class L, class... A>
 		struct TypeListRemoveHead<L<A...>, 0> {
 			typedef L<A...> type;
 		};
 
-		template <class L> struct TypeListRemoveLast;
-
-		template <template <class...> class L, class... A>
-		struct TypeListRemoveLast<L<A...> > {
-			typedef typename TypeListRemove<L<A...>, sizeof...(A) - 1>::type type;
+		template <template <class...> class L, class... A, UInt S>
+		struct TypeListRemoveHead<L<A...>, S> {
+			typedef typename TypeListRemoveHead<typename TypeListRemoveFirst<L<A...> >::type, S - 1>::type type;
 		};
+
+		template <class L> struct TypeListRemoveLast;
 
 		template <template <class...> class L>
 		struct TypeListRemoveLast<L<> > {
 			typedef L<> type;
 		};
 
-		template <class L, UInt tail_size> struct TypeListRemoveTail;
-
-		template <template <class...> class L, class... A, UInt S>
-		struct TypeListRemoveTail<L<A...>, S> {
-			typedef typename TypeListRemoveTail<typename TypeListRemoveLast<L<A...> >::type, S - 1>::type type;
+		template <template <class...> class L, class... A>
+		struct TypeListRemoveLast<L<A...> > {
+			typedef typename TypeListRemove<L<A...>, sizeof...(A) - 1>::type type;
 		};
+
+		template <class L, UInt tail_size> struct TypeListRemoveTail;
 
 		template <template <class...> class L, class... A>
 		struct TypeListRemoveTail<L<A...>, 0> {
 			typedef L<A...> type;
 		};
 
-		template <class L> struct TypeListReverse;
-
-		template <template <class...> class L, class A0, class... A>
-		struct TypeListReverse<L<A0, A...> > {
-			typedef typename TypeListAppend<typename TypeListReverse<L<A...> >::type, A0>::type type;
+		template <template <class...> class L, class... A, UInt S>
+		struct TypeListRemoveTail<L<A...>, S> {
+			typedef typename TypeListRemoveTail<typename TypeListRemoveLast<L<A...> >::type, S - 1>::type type;
 		};
+
+		template <class L> struct TypeListReverse;
 
 		template <template <class...> class L>
 		struct TypeListReverse<L<> > {
 			typedef L<> type;
 		};
 
+		template <template <class...> class L, class A0, class... A>
+		struct TypeListReverse<L<A0, A...> > {
+			typedef typename TypeListAppend<typename TypeListReverse<L<A...> >::type, A0>::type type;
+		};
+
 		template <class L, UInt rotation> struct TypeListRotateLeft;
+
+		template <template <class...> class L, UInt R>
+		struct TypeListRotateLeft<L<>, R> {
+			typedef L<> type;
+		};
 
 		template <template <class...> class L, class... A, UInt R>
 		struct TypeListRotateLeft<L<A...>, R> {
@@ -161,12 +166,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			>::type type;
 		};
 
+		template <class L, UInt rotation> struct TypeListRotateRight;
+
 		template <template <class...> class L, UInt R>
-		struct TypeListRotateLeft<L<>, R> {
+		struct TypeListRotateRight<L<>, R> {
 			typedef L<> type;
 		};
-
-		template <class L, UInt rotation> struct TypeListRotateRight;
 
 		template <template <class...> class L, class... A, UInt R>
 		struct TypeListRotateRight<L<A...>, R> {
@@ -174,11 +179,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				typename TypeListRemoveHead<L<A...>, sizeof...(A) - (R % sizeof...(A))>::type,
 				typename TypeListRemoveTail<L<A...>, R % sizeof...(A)>::type
 			>::type type;
-		};
-
-		template <template <class...> class L, UInt R>
-		struct TypeListRotateRight<L<>, R> {
-			typedef L<> type;
 		};
 
 		template <class L, class function_model> struct TypeListToFunction;
@@ -201,17 +201,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class L, template <class...> class metafunction> struct TypeListTransform;
 
+		template <template <class...> class L, template <class...> class M>
+		struct TypeListTransform<L<>, M> {
+			typedef L<> type;
+		};
+
 		template <template <class...> class L, class A0, class... A, template <class...> class M>
 		struct TypeListTransform<L<A0, A...>, M> {
 			typedef typename TypeListPrepend<
 				typename TypeListTransform<L<A...>, M>::type,
 				typename M<A0>::type
 			>::type type;
-		};
-
-		template <template <class...> class L, template <class...> class M>
-		struct TypeListTransform<L<>, M> {
-			typedef L<> type;
 		};
 
 #		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
