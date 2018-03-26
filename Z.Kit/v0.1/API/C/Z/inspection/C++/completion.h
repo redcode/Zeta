@@ -109,6 +109,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_RVALUE_REFERENCE FALSE
 #endif
 
+#ifndef Z_CPP_HAS_STANDARD_LAYOUT
+#	define Z_CPP_HAS_STANDARD_LAYOUT FALSE
+#endif
+
 #ifndef Z_CPP_HAS_STANDARDIZED_ATTRIBUTE_SYNTAX
 #	define Z_CPP_HAS_STANDARDIZED_ATTRIBUTE_SYNTAX FALSE
 #endif

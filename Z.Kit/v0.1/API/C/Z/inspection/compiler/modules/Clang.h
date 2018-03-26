@@ -438,9 +438,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_TYPE_ULLONG				   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_TYPE_SLLONG				   TRUE /* v2.9 */
 
-#		if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
-#			define Z_COMPILER_CPP_HAS_FORWARD_DECLARATION_OF_ENUMERATION TRUE /* v3.1 */
-#			define Z_COMPILER_CPP_HAS_UNIVERSAL_CHARACTER_NAME	     TRUE /* v3.1 */
+#		if Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0)
+#			define Z_COMPILER_CPP_HAS_STANDARD_LAYOUT TRUE /* v3.0 */
+
+#			if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
+#				define Z_COMPILER_CPP_HAS_FORWARD_DECLARATION_OF_ENUMERATION TRUE /* v3.1 */
+#				define Z_COMPILER_CPP_HAS_UNIVERSAL_CHARACTER_NAME	     TRUE /* v3.1 */
+#			endif
 #		endif
 #	endif
 
