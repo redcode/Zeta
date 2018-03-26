@@ -22,6 +22,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_STRING_CPP03 "ISO/IEC 14882:2003 (C++03)"
 #define Z_CPP_STRING_CPP11 "ISO/IEC 14882:2011 (C++11)"
 #define Z_CPP_STRING_CPP14 "ISO/IEC 14882:2014 (C++14)"
-#define Z_CPP_STRING_CPP17 "C++17"
+#define Z_CPP_STRING_CPP17 "ISO/IEC 14882:2017 (C++17)"
 
 #endif /* __Z_keys_CPP_H__ */

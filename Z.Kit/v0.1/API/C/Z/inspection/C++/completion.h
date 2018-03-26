@@ -239,6 +239,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION FALSE
 #endif
 
+#ifndef Z_CPP_HAS_SIZED_DEALLOCATION
+#	define Z_CPP_HAS_SIZED_DEALLOCATION FALSE
+#endif
+
 #ifndef Z_CPP_HAS_VARIABLE_TEMPLATE
 #	define Z_CPP_HAS_VARIABLE_TEMPLATE FALSE
 #endif

@@ -451,6 +451,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION FALSE
 #	endif
 
+#	ifndef Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION
+#		define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION FALSE
+#	endif
+
 #	ifndef Z_COMPILER_CPP_HAS_VARIABLE_TEMPLATE
 #		define Z_COMPILER_CPP_HAS_VARIABLE_TEMPLATE FALSE
 #	endif
@@ -462,6 +466,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	ifndef Z_COMPILER_CPP_HAS_LITERAL_BINARY
 #		define Z_COMPILER_CPP_HAS_LITERAL_BINARY FALSE
 #	endif
+
+	/* MARK: - C++17 support */
 
 #endif
 

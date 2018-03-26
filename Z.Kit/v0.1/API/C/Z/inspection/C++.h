@@ -12,7 +12,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/keys/C++.h>
 
 #if !defined(Z_CPP) && defined(__cplusplus)
-#	if __cplusplus >= 201402L
+#	if __cplusplus >= 201703L
+#		define Z_CPP Z_CPP17
+#	elif __cplusplus >= 201402L
 #		define Z_CPP Z_CPP14
 #	elif __cplusplus >= 201103L
 #		define Z_CPP Z_CPP11

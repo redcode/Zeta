@@ -606,11 +606,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* v3.4 */
 #	endif
 
+#	if __cplusplus >= 201402L && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
+/*#		define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION TRUE /* v3.4 */
+#	endif
+
 #	if __has_feature(cxx_variable_templates)
 #		define Z_COMPILER_CPP_HAS_VARIABLE_TEMPLATE TRUE /* v3.4 */
 #	endif
 
-#	if Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0) && __has_attribute(deprecated)
+#	if defined(Z_COMPILER_CPP_HAS_STANDARDIZED_ATTRIBUTE_SYNTAX) && __has_attribute(deprecated)
 #		define Z_COMPILER_CPP_HAS_ATTRIBUTE_DEPRECATED TRUE /* v3.4 */
 #	endif
 
