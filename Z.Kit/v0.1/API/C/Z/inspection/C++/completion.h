@@ -133,6 +133,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_TRAILING_RETURN_TYPE FALSE
 #endif
 
+#ifndef Z_CPP_HAS_UNIVERSAL_CHARACTER_NAME
+#	define Z_CPP_HAS_UNIVERSAL_CHARACTER_NAME FALSE
+#endif
+
 #ifndef Z_CPP_HAS_UNRESTRICTED_UNION
 #	define Z_CPP_HAS_UNRESTRICTED_UNION FALSE
 #endif
