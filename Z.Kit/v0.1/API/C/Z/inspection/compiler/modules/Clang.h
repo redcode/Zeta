@@ -19,12 +19,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_VERSION_STRING __clang_version__
 #endif
 
-#ifndef __has_extension
-#	define __has_extension __has_feature /* Compatibility with Clang < v3.0 */
-#endif
+/* MARK: - Compatibility with old versions */
 
 #ifndef __has_attribute
 #	define __has_attribute(which) FALSE
+#endif
+
+#ifndef __has_extension
+#	define __has_extension __has_feature /* < v3.0 */
+#endif
+
+#ifndef __has_builtin
+#	define __has_builtin(which) FALSE
 #endif
 
 /* MARK: - CPU
