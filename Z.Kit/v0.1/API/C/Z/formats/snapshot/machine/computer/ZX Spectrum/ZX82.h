@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 |    Used by: Speculator '97 [Amiga]					  |
 |									  |
 | IMPORTANT NOTICE: This format is not well known at all,		  |
-| so the types and constants here declared can be useless.		  |
+| so the types and constants declared here can be useless.		  |
 | The only documentation I have found is from the SinclairFAQ.		  |
 |									  |
 | From SinclairFAQ:							  |
