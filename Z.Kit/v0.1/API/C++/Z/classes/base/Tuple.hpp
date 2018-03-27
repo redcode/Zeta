@@ -23,15 +23,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 
 
-		template <class T>
-		struct Element<TypeList<T> > {
-			typedef T Value;
+		template <class T0>
+		struct Element<TypeList<T0> > {
+			typedef T0 Value;
 
 			Value value;
 
 			Z_INLINE_MEMBER Element() {}
 
-			Z_CT_MEMBER(CPP11) Element(typename Zeta::Type<T>::to_forwardable value)
+			Z_CT_MEMBER(CPP11) Element(typename Zeta::Type<T0>::to_forwardable value)
 			: value(value) {}
 		};
 
