@@ -222,7 +222,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if	(defined(__cplusplus) && __cplusplus >= 201103L) || \\
+#if	(defined(__cplusplus) && __cplusplus >= 201103L) || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
 
 #	if Z_COMPILER_VERSION >= Z_VERSION(1, 27, 0) && !defined(__DARWIN_NO_LONG_LONG)
