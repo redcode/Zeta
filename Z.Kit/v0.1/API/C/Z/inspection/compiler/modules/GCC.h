@@ -99,8 +99,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#define Z_COMPILER_CPU_ARCHITECTURE
-
 /* MARK: - Endianness and Bit field order */
 
 #ifdef __BYTE_ORDER__
