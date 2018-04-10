@@ -16,66 +16,96 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| IBM XL C/C++ |							\
 	'-------------*/							\
 	defined(__TOS_LINUX__) ||						\
-	/*---------------------------------------------.			\
-	| Clang, GCC, Intel C++, Oracle Solaris Studio |			\
-	'---------------------------------------------*/			\
+										\
+	/*----------------------.						\
+	| Clang			|						\
+	| GCC			|						\
+	| Intel C++		|						\
+	| Oracle Solaris Studio |						\
+	'----------------------*/						\
 	defined(__gnu_linux__) ||						\
-	/*---------------------------------------------------------.		\
-	| Clang, GCC, Intel C++, Oracle Solaris Studio, PGI C/C++, |		\
-	| IBM XL C/C++						   |		\
-	'---------------------------------------------------------*/		\
+										\
+	/*----------------------.						\
+	| Clang			|						\
+	| GCC			|						\
+	| Intel C++		|						\
+	| Oracle Solaris Studio |						\
+	| PGI C/C++		|						\
+	| IBM XL C/C++		|						\
+	'----------------------*/						\
       	defined(__linux) ||							\
-	/*---------------------------------------------------------.		\
-	| Clang, GCC, Intel C++, Oracle Solaris Studio, PGI C/C++, |		\
-	| IBM XL C/C++						   |		\
-	'---------------------------------------------------------*/		\
+										\
+      	/*----------------------.						\
+	| Clang			|						\
+	| GCC			|						\
+	| Intel C++		|						\
+	| Oracle Solaris Studio |						\
+	| PGI C/C++		|						\
+	| IBM XL C/C++		|						\
+	'----------------------*/						\
 	defined(__linux__) ||							\
-	/*--------------------------------------------------------.		\
-	| Clang, GCC, Intel C++, Oracle Solaris Studio, PGI C/C++ |		\
-	'--------------------------------------------------------*/		\
+										\
+	/*----------------------.						\
+	| Clang			|						\
+	| GCC			|						\
+	| Intel C++		|						\
+	| Oracle Solaris Studio |						\
+	| PGI C/C++		|						\
+	'----------------------*/						\
 	defined(linux)
 
 #	define Z_OS Z_OS_LINUX
 
-#elif	/*------------------.							\
-	| Apple LLVM, Clang |							\
-	'------------------*/							\
+#elif	/*-----------.								\
+	| Apple LLVM |								\
+	| Clang	     |								\
+	'-----------*/								\
 	defined(__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__)
 
 #	define Z_OS Z_OS_MAC_OS_X
 
-#elif	/*------------------.							\
-	| Apple LLVM, Clang |							\
-	'------------------*/							\
+#elif	/*-----------.								\
+	| Apple LLVM |								\
+	| Clang	     |								\
+	'-----------*/								\
 	defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__)
 
 #	define Z_OS Z_OS_IOS
 
-#elif	/*------------------.							\
-	| Apple LLVM, Clang |							\
-	'------------------*/							\
+#elif	/*-----------.								\
+	| Apple LLVM |								\
+	| Clang	     |								\
+	'-----------*/								\
 	defined(__ENVIRONMENT_TV_OS_VERSION_MIN_REQUIRED__)
 
 #	define Z_OS Z_OS_TVOS
 
-#elif	/*------------------.							\
-	| Apple LLVM, Clang |							\
-	'------------------*/							\
+#elif	/*-----------.								\
+	| Apple LLVM |								\
+	| Clang	     |								\
+	'-----------*/								\
 	defined(__ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__)
 
 #	define Z_OS Z_OS_WATCHOS
 
-#elif	/*------------------.							\
-	| Apple LLVM, Clang |							\
-	'------------------*/							\
+#elif	/*-----------.								\
+	| Apple LLVM |								\
+	| Clang	     |								\
+	'-----------*/								\
 	defined(__APPLE_CC__) ||						\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
 	defined(__APPLE_CPP__) ||						\
-	/*---------------------------------------------.			\
-	| Apple LLVM, Clang, GCC, Intel C++, PGI C/C++ |			\
-	'---------------------------------------------*/			\
+										\
+	/*-----------.								\
+	| Apple LLVM |								\
+	| Clang	     |								\
+	| GCC	     |								\
+	| Intel C++  |								\
+	| PGI C/C++  |								\
+	'-----------*/								\
 	(defined(__APPLE__) && defined(__MACH__))
 
 #	include <TargetConditionals.h>
@@ -100,14 +130,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__DOS__) ||							\
+										\
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(__MSDOS__) ||							\
+										\
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(_MSDOS) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -119,65 +152,103 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(__NT__) ||							\
+										\
 	/*-------------.							\
 	| IBM XL C/C++ |							\
 	'-------------*/							\
 	defined(__TOS_WIN__) ||							\
-	/*----------------------.						\
-	| Clang, GCC, PGI C/C++	|						\
-	'----------------------*/						\
+										\
+	/*----------.								\
+	| Clang	    |								\
+	| GCC	    |								\
+	| PGI C/C++ |								\
+	'----------*/								\
 	defined(__WIN32) ||							\
-	/*------------------------------------------.				\
-	| Clang, Borland C++, Clang, GCC, PGI C/C++ |				\
-	'------------------------------------------*/				\
+										\
+	/*------------.								\
+	| Clang	      |								\
+	| Borland C++ |								\
+	| Clang	      |								\
+	| GCC	      |								\
+	| PGI C/C++   |								\
+	'------------*/								\
 	defined(__WIN32__) ||							\
-	/*----------------------.						\
-	| Clang, GCC, PGI C/C++ |						\
-	'----------------------*/						\
+										\
+	/*----------.								\
+	| Clang	    |								\
+	| GCC	    |								\
+	| PGI C/C++ |								\
+	'----------*/								\
 	defined(__WIN64) ||							\
-	/*----------------------.						\
-	| Clang, GCC, PGI C/C++ |						\
-	'----------------------*/						\
+										\
+	/*----------.								\
+	| Clang	    |								\
+	| GCC	    |								\
+	| PGI C/C++ |								\
+	'----------*/								\
 	defined(__WIN64__) ||							\
+										\
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(__WINDOWS__) ||							\
+										\
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(__WINDOWS_386__) ||						\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__WINNT) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__WINNT__) ||							\
+										\
 	/*-----------.								\
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(_WIN16) ||							\
-	/*---------------------------------------------.			\
-	| Clang, GCC, Intel C++, PGI C/C++, Visual C++ |			\
-	'---------------------------------------------*/			\
+										\
+	/*-----------.								\
+	| Clang	     |								\
+	| GCC	     |								\
+	| Intel C++  |								\
+	| PGI C/C++  |								\
+	| Visual C++ |								\
+	'-----------*/								\
 	defined(_WIN32) ||							\
-	/*---------------------------------------------.			\
-	| Clang, GCC, Intel C++, PGI C/C++, Visual C++ |			\
-	'---------------------------------------------*/			\
+										\
+	/*-----------.								\
+	| Clang	     |								\
+	| GCC	     |								\
+	| Intel C++  |								\
+	| PGI C/C++  |								\
+	| Visual C++ |								\
+	'-----------*/								\
 	defined(_WIN64) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(WIN32) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(WIN64) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(WINNT)
 
 #	define Z_OS Z_OS_WINDOWS
@@ -186,18 +257,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(_WIN32_WCE) ||							\
+										\
 	/*-----------.								\
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(WIN32_PLATFORM_HPC2000) ||					\
+										\
 	/*-----------.								\
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(WIN32_PLATFORM_HPCPRO) ||					\
+										\
 	/*-----------.								\
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(WIN32_PLATFORM_PSPC) ||						\
+										\
 	/*-----------.								\
 	| Visual C++ |								\
 	'-----------*/								\
@@ -212,10 +287,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_AEGIS
 
-#elif	/*------------------.							\
-	| GCC, IBM XL C/C++ |							\
-	'------------------*/							\
+#elif	/*-------------.							\
+	| GCC	       |							\
+	| IBM XL C/C++ |							\
+	'-------------*/							\
 	defined(_AIX) ||							\
+										\
 	/*-------------.							\
 	| IBM XL C/C++ |							\
 	'-------------*/							\
@@ -227,6 +304,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| GCC |									\
 	'----*/									\
 	defined(__amigaos__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -262,33 +340,43 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_CELL_OS
 
-#elif	/*-------------------------.						\
-	| Clang, GCC, IBM XL C/C++ |						\
-	'-------------------------*/						\
+#elif	/*-------------.							\
+	| Clang	       |							\
+	| GCC	       |							\
+	| IBM XL C/C++ |							\
+	'-------------*/							\
 	defined(__bg__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
 	defined(__bgp__) ||							\
-	/*--------------------.							\
-	| Clang, IBM XL C/C++ |							\
-	'--------------------*/							\
+										\
+	/*-------------.							\
+	| Clang	       |							\
+	| IBM XL C/C++ |							\
+	'-------------*/							\
 	defined(__bgq__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
 	defined(__blrts) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
 	defined(__blrts__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
 	defined(__THW_BLUEGENE) ||						\
-	/*--------------------.							\
-	| Clang, IBM XL C/C++ |							\
-	'--------------------*/							\
+										\
+	/*-------------.							\
+	| Clang	       |							\
+	| IBM XL C/C++ |							\
+	'-------------*/							\
 	defined(__THW_BLUEGENE__)
 
 #	define Z_OS Z_OS_CNK
@@ -304,10 +392,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	defined(__CYGWIN__) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__CYGWIN32__) ||						\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -326,10 +416,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__dgux__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
 	defined(__DGUX__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -355,6 +447,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(_SEQUENT_) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -373,10 +466,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	!defined(__ORBIS__) &&							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	(defined(__FreeBSD__) ||						\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -405,14 +501,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_HI_UX_MPP
 
-#elif	/*------------------------.						\
-	| GCC, HP aC++, HP ANSI C |						\
-	'------------------------*/						\
+#elif	/*----------.								\
+	| GCC	    |								\
+	| HP aC++   |								\
+	| HP ANSI C |								\
+	'----------*/								\
 	defined(__hpux) ||							\
+										\
 	/*-------.								\
 	| HP UPC |								\
 	'-------*/								\
 	defined(_hpux) ||							\
+										\
 	/*----.									\
 	| GCC |									\
 	'----*/									\
@@ -431,6 +531,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__sgi) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -449,6 +550,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(Macintosh) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -474,6 +576,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__mpexl) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -481,9 +584,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_MPE_XL
 
-#elif	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+#elif	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__NetBSD__)
 
 #	define Z_OS Z_OS_NET_BSD
@@ -492,6 +596,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| GCC (NetWare coss-compiler) |						\
 	'----------------------------*/						\
 	defined(__netware__) ||							\
+										\
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
@@ -513,9 +618,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_NUCLEUS_RTOS
 
-#elif	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+#elif	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__OpenBSD__)
 
 #	define Z_OS Z_OS_OPEN_BSD
@@ -531,14 +637,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(__OS2__) ||							\
+										\
 	/*--------------.							\
 	| VisualAge C++ |							\
 	'--------------*/							\
 	defined(__TOS_OS2__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
 	defined(_OS2) ||			   				\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -550,6 +659,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Ultimate C/C++ |							\
 	'---------------*/							\
 	defined(__OS9000) ||							\
+										\
 	/*---------------.							\
 	| Ultimate C/C++ |							\
 	'---------------*/							\
@@ -568,6 +678,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__osf__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -593,10 +704,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	defined(__psp__) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(_PSP) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -608,6 +721,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(__QNX__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -626,10 +740,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(_SCO_DS) ||							\
+										\
 	/*--------.								\
 	| GCC (?) |								\
 	'--------*/								\
 	defined(M_I386 ) ||							\
+										\
 	/*----.									\
 	| GCC |									\
 	'----*/									\
@@ -640,30 +756,42 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(sinux)
 #	define Z_OS Z_OS_SINIX
 
-#elif	/*----------------------------------.					\
-	| Clang, GCC, Oracle Solaris Studio |					\
-	'----------------------------------*/					\
+#elif	/*----------------------.						\
+	| Clang			|						\
+	| GCC			|						\
+	| Oracle Solaris Studio |						\
+	'----------------------*/						\
 	defined(__sun) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__sun__) ||							\
+										\
 	/*----------------------.						\
 	| Oracle Solaris Studio |						\
 	'----------------------*/						\
 	defined(__SunOS) ||							\
-	/*----------------------------------.					\
-	| Clang, GCC, Oracle Solaris Studio |					\
-	'----------------------------------*/					\
+										\
+	/*----------------------.						\
+	| Clang			|						\
+	| GCC			|						\
+	| Oracle Solaris Studio |						\
+	'----------------------*/						\
 	defined(sun)
 
-#	if	/*-----------.							\
-		| Clang, GCC |							\
-		'-----------*/							\
+#	if	/*------.							\
+		| Clang |							\
+		| GCC	|							\
+		'------*/							\
 		defined(__svr4__) ||						\
-		/*---------------------------------.				\
-		|Clang, GCC, Oracle Solaris Studio |				\
-		'---------------------------------*/				\
+										\
+		/*----------------------.					\
+		| Clang			|					\
+		| GCC			|					\
+		| Oracle Solaris Studio |					\
+		'----------------------*/					\
 		defined(__SVR4)
 
 #		define Z_OS Z_OS_SOLARIS
@@ -689,10 +817,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__ultrix__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
 	defined(__ultrix) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -711,6 +841,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__crayx1) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -722,6 +853,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(_UNIXWARE7) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -740,6 +872,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__VMS) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -754,13 +887,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_VOS
 
-#elif	/*----------------.							\
-	| Diab C/C++, GCC |							\
-	'----------------*/							\
+#elif	/*-----------.								\
+	| Diab C/C++ |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__vxworks) ||							\
-	/*----------------.							\
-	| Diab C/C++, GCC |							\
-	'----------------*/							\
+										\
+	/*-----------.								\
+	| Diab C/C++ |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__VXWORKS__)
 
 #	define Z_OS Z_OS_VX_WORKS
@@ -769,10 +905,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__MVS__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
 	defined(__HOS_MVS__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
