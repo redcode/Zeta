@@ -5,29 +5,50 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#if	/*----------------------------------.					\
-	| Clang, GCC, Oracle Solaris Studio |					\
-	'----------------------------------*/					\
+#if	/*----------------------.						\
+	| Clang			|						\
+	| GCC			|						\
+	| Oracle Solaris Studio |						\
+	'----------------------*/						\
 	defined(__amd64) ||							\
-	/*---------------------------------------------.			\
-	| Clang, GCC, Oracle Solaris Studio, PGI C/C++ |			\
-	'---------------------------------------------*/			\
+										\
+	/*----------------------.						\
+	| Clang			|						\
+	| GCC			|						\
+	| Oracle Solaris Studio |						\
+	| PGI C/C++		|						\
+	'----------------------*/						\
 	defined(__amd64__) ||							\
-	/*---------------------------------------------.			\
-	| Clang, GCC, Intel C++, Oracle Solaris Studio |			\
-	'---------------------------------------------*/			\
+										\
+	/*----------------------.						\
+	| Clang			|						\
+	| GCC			|						\
+	| Intel C++		|						\
+	| Oracle Solaris Studio |						\
+	'----------------------*/						\
 	defined(__x86_64) ||							\
-	/*--------------------------------------------------------.		\
-	| Clang, GCC, Intel C++, Oracle Solaris Studio, PGI C/C++ |		\
-	'--------------------------------------------------------*/		\
+										\
+	/*----------------------.						\
+	| Clang			|						\
+	| GCC			|						\
+	| Intel C++		|						\
+	| Oracle Solaris Studio |						\
+	| PGI C/C++		|						\
+	'----------------------*/						\
 	defined(__x86_64__) ||							\
-	/*-----------------------------.					\
-	| Clang, Intel C++, Visual C++ |					\
-	'-----------------------------*/					\
+										\
+	/*-----------.								\
+	| Clang	     |								\
+	| Intel C++  |								\
+	| Visual C++ |								\
+	'-----------*/								\
 	defined(_M_AMD64) ||							\
-	/*-----------------------------.					\
-	| Clang, Intel C++, Visual C++ |					\
-	'-----------------------------*/					\
+										\
+	/*-----------.								\
+	| Clang	     |								\
+	| Intel C++  |								\
+	| Visual C++ |								\
+	'-----------*/								\
 	defined(_M_X64)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_64
@@ -36,89 +57,135 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Diab C/C++ |								\
 	'-----------*/								\
 	defined(__386) ||							\
+										\
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(__386__) ||							\
+										\
 	/*-------------.							\
 	| Digital Mars |							\
 	'-------------*/							\
 	defined(__I86__) ||							\
+										\
 	/*--------------.							\
 	| Stratus VOS C |							\
 	'--------------*/							\
 	defined(__IA32__) ||							\
-	/*-------------------.							\
-	| Clang, CodeWarrior |							\
-	'-------------------*/							\
+										\
+	/*------------.								\
+	| Clang	      |								\
+	| CodeWarrior |								\
+	'------------*/								\
 	defined(__INTEL__) ||							\
+										\
 	/*-------------.							\
 	| IBM XL C/C++ |							\
 	'-------------*/							\
 	defined(__THW_INTEL__) ||						\
+										\
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(__X86__) ||							\
+										\
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(__WINDOWS_386__) ||						\
-	/*-------------------------------------------------------------------.	\
-	| Clang, GCC, Intel C++, MinGW, PGI C/C++, Stratus VOS C, Sun Studio |	\
-	'-------------------------------------------------------------------*/	\
+										\
+	/*--------------.							\
+	| Clang		|							\
+	| GCC		|							\
+	| Intel C++	|							\
+	| MinGW		|							\
+	| PGI C/C++	|							\
+	| Stratus VOS C |							\
+	| Sun Studio	|							\
+	'--------------*/							\
 	defined(__i386) ||							\
-	/*----------------------------------------.				\
-	| Clang, GCC, Intel C++, MinGW, PGI C/C++ |				\
-	'----------------------------------------*/				\
+										\
+	/*----------.								\
+	| Clang	    |								\
+	| GCC	    |								\
+	| Intel C++ |								\
+	| MinGW	    |								\
+	| PGI C/C++ |								\
+	'----------*/								\
 	defined(__i386__) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__i486) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__i486__) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__i586) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__i586__) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__i686) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__i686__) ||							\
-	/*-------------.							\
-	| Clang, MinGW |							\
-	'-------------*/							\
+										\
+	/*------.								\
+	| Clang |								\
+	| MinGW |								\
+	'------*/								\
 	defined(_X86_) ||							\
+										\
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(M_I386) ||							\
-	/*---------------------------------------------------------------.	\
-	| Clang, GCC, Intel C++, MinGW, Oracle Solaris Studio, PGI C/C++ |	\
-	'---------------------------------------------------------------*/	\
+										\
+	/*----------------------.						\
+	| Clang			|						\
+	| GCC			|						\
+	| Intel C++		|						\
+	| MinGW			|						\
+	| Oracle Solaris Studio |						\
+	| PGI C/C++		|						\
+	'----------------------*/						\
 	defined(i386) ||							\
-	/*---------------------------------------------------------.		\
-	| Clang, Digital Mars, Intel C++, Visual C++, Watcom C/C++ |		\
-	'---------------------------------------------------------*/		\
+										\
+	/*-------------.							\
+	| Clang	       |							\
+	| Digital Mars |							\
+	| Intel C++    |							\
+	| Visual C++   |							\
+	| Watcom C/C++ |							\
+	'-------------*/							\
 	(defined(_M_IX86) && !defined(__WATCOMC__))
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_32
 
-#elif	/*---------------------------------------.				\
-	| Digital Mars, Visual C++, Watcom C/C++ |				\
-	'---------------------------------------*/				\
+#elif	/*-------------.							\
+	| Digital Mars |							\
+	| Visual C++   |							\
+	| Watcom C/C++ |							\
+	'-------------*/							\
 	defined(_M_I86 ) ||							\
+										\
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
@@ -126,18 +193,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_16
 
-#elif	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+#elif	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__aarch64__) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__arm64) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__arm64__)							\
+										\
 	/*--------------------------------------------------------------.	\
 	| Visual C++ (not implemented yet, found in the Windows 10 SDK) |	\
 	'--------------------------------------------------------------*/	\
@@ -149,42 +220,59 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ARM C/C++ Compiler |							\
 	'-------------------*/							\
 	defined(__TARGET_ARCH_ARM) ||						\
+										\
 	/*-------------------.							\
 	| ARM C/C++ Compiler |							\
 	'-------------------*/							\
 	defined(__TARGET_ARCH_THUMB) ||						\
-	/*-------------------------------.					\
-	| Clang, GCC, ARM C/C++ Compiler |					\
-	'-------------------------------*/					\
+										\
+	/*-------------------.							\
+	| Clang		     |							\
+	| GCC		     |							\
+	| ARM C/C++ Compiler |							\
+	'-------------------*/							\
 	defined(__arm__) ||							\
-	/*------------------.							\
-	| Clang, Diab C/C++ |							\
-	'------------------*/							\
+										\
+	/*-----------.								\
+	| Clang	     |								\
+	| Diab C/C++ |								\
+	'-----------*/								\
 	defined(__arm) ||							\
-	/*-------------------------------.					\
-	| Clang, GCC, ARM C/C++ Compiler |					\
-	'-------------------------------*/					\
+										\
+	/*-------------------.							\
+	| Clang		     |							\
+	| GCC		     |							\
+	| ARM C/C++ Compiler |							\
+	'-------------------*/							\
 	defined(__thumb__) ||							\
+										\
 	/*-------------.							\
 	| ImageCraft C |							\
 	'-------------*/							\
 	defined(_ARM) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(_ARM_) ||							\
-	/*------------------.							\
-	| Clang, Visual C++ |							\
-	'------------------*/							\
+										\
+	/*-----------.								\
+	| Clang	     |								\
+	| Visual C++ |								\
+	'-----------*/								\
 	defined(_M_ARM) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(_M_ARM_NT) ||							\
-	/*------------------.							\
-	| Clang, Visual C++ |							\
-	'------------------*/							\
+										\
+	/*-----------.								\
+	| Clang	     |								\
+	| Visual C++ |								\
+	'-----------*/								\
 	defined(_M_ARMT) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -196,10 +284,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| DEC C (?) |								\
 	'----------*/								\
 	defined(__alpha) ||							\
+										\
 	/*----.									\
 	| GCC |									\
 	'----*/									\
 	defined(__alpha__) ||							\
+										\
 	/*-----------.								\
 	| Visual C++ |								\
 	'-----------*/								\
@@ -211,6 +301,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| GCC |									\
 	'----*/									\
 	defined(__BFIN__) ||							\
+										\
 	/*----.									\
 	| GCC |									\
 	'----*/									\
@@ -236,14 +327,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	defined(__HEXAGON_ARCH__) ||						\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__QDSP6_ARCH__) ||						\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__hexagon__) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -255,26 +349,37 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| GCC |									\
 	'----*/									\
 	defined(__IA64__) ||							\
-	/*---------------.							\
-	| GCC, Intel C++ |							\
-	'---------------*/							\
+										\
+	/*----------.								\
+	| GCC	    |								\
+	| Intel C++ |								\
+	'----------*/								\
 	defined(__ia64__) ||							\
-	/*------------------------.						\
-	| GCC, HP aC++, Intel C++ |						\
-	'------------------------*/						\
+										\
+	/*----------.								\
+	| GCC	    |								\
+	| HP aC++   |								\
+	| Intel C++ |								\
+	'----------*/								\
 	defined(__ia64) ||							\
-	/*---------------.							\
-	| GCC, Intel C++ |							\
-	'---------------*/							\
+										\
+	/*----------.								\
+	| GCC	    |								\
+	| Intel C++ |								\
+	'----------*/								\
 	defined(__itanium__) ||							\
+										\
 	/*----.									\
 	| GCC |									\
 	'----*/									\
 	defined(_IA64) ||							\
-	/*----------------------.						\
-	| Intel C++, Visual C++ |						\
-	'----------------------*/						\
+										\
+	/*-----------.								\
+	| Intel C++  |								\
+	| Visual C++ |								\
+	'-----------*/								\
 	defined(_M_IA64) ||							\
+										\
 	/*----------.								\
 	| Indel C++ |								\
 	'----------*/								\
@@ -293,10 +398,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Stratus VOS C |							\
 	'--------------*/							\
 	defined(__MC68K__) ||							\
+										\
 	/*----.									\
 	| GCC |									\
 	'----*/									\
 	defined(__m68k__) ||							\
+										\
 	/*------.								\
 	| SAS/C |								\
 	'------*/								\
@@ -308,17 +415,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	defined(__mips64) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__mips64__) ||							\
-	/*------------------------.						\
-	| Clang, GCC, MIPSpro (?) |						\
-	'------------------------*/						\
+										\
+	/*------------.								\
+	| Clang	      |								\
+	| GCC	      |								\
+	| MIPSpro (?) |								\
+	'------------*/								\
 	(defined(__mips) && (__mips == 64 || __mips == 4 || __mips == 3)) ||	\
-	/*---------------.							\
-	| Clang, MIPSpro |							\
-	'---------------*/							\
+										\
+	/*--------.								\
+	| Clang	  |								\
+	| MIPSpro |								\
+	'--------*/								\
 	(defined(_MIPS_ISA) &&							\
 	 ((defined(_MIPS_ISA_MIPS64) && _MIPS_ISA == _MIPS_ISA_MIPS64) ||	\
  	  (defined(_MIPS_ISA_MIPS4 ) && _MIPS_ISA == _MIPS_ISA_MIPS4 ) ||	\
@@ -330,25 +443,34 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| CodeWarrior |								\
 	'------------*/								\
 	defined(__MIPS__) ||							\
-	/*--------------------.							\
-	| Clang, GCC, MIPSpro |							\
-	'--------------------*/							\
+										\
+	/*--------.								\
+	| Clang	  |								\
+	| GCC	  |								\
+	| MIPSpro |								\
+	'--------*/								\
 	defined(__mips) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__mips__) ||							\
+										\
 	/*-----------.								\
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(_M_MRX000) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(_mips) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(mips)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MIPS
@@ -357,6 +479,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	defined(__MSP430__) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -368,9 +491,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Stratus VOS Standard C |						\
 	'-----------------------*/						\
 	defined(__HPPA20__) ||							\
-	/*----------------------------.						\
-	| GCC, Stratus VOS Standard C |						\
-	'----------------------------*/						\
+										\
+	/*-----------------------.						\
+	| GCC			 |						\
+	| Stratus VOS Standard C |						\
+	'-----------------------*/						\
 	defined(_PA_RISC2_0)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_PA_RISC_2
@@ -379,88 +504,123 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Stratus VOS Standard C |						\
 	'-----------------------*/						\
 	defined(__HPPA__) ||							\
+										\
 	/*-----------------------.						\
 	| Stratus VOS Standard C |						\
 	'-----------------------*/						\
 	defined(__HPPA11__) ||							\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
 	defined(__hppa) ||							\
+										\
 	/*----.									\
 	| GCC |									\
 	'----*/									\
 	defined(__hppa__) ||							\
+										\
 	/*----.									\
 	| GCC |									\
 	'----*/									\
 	defined(_PA_RISC1_0) ||							\
-	/*----------------------------.						\
-	| GCC, Stratus VOS Standard C |						\
-	'----------------------------*/						\
+										\
+	/*-----------------------.						\
+	| GCC			 |						\
+	| Stratus VOS Standard C |						\
+	'-----------------------*/						\
 	defined(_PA_RISC1_1)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_PA_RISC
 
-#elif	/*-------------------------.						\
-	| Clang, GCC, IBM XL C/C++ |						\
-	'-------------------------*/						\
+#elif	/*-------------.							\
+	| Clang	       |							\
+	| GCC	       |							\
+	| IBM XL C/C++ |							\
+	'-------------*/							\
 	defined(__PPC64__) ||							\
-	/*-------------------------.						\
-	| Clang, GCC, IBM XL C/C++ |						\
-	'-------------------------*/						\
+										\
+	/*-------------.							\
+	| Clang	       |							\
+	| GCC	       |							\
+	| IBM XL C/C++ |							\
+	'-------------*/							\
 	defined(__powerpc64__) ||						\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__ppc64__) ||							\
-	/*-----------------------------.					\
-	| Clang, GCC, IBM XL C/C++ (?) |					\
-	'-----------------------------*/					\
+										\
+	/*-----------------.							\
+	| Clang		   |							\
+	| GCC		   |							\
+	| IBM XL C/C++ (?) |							\
+	'-----------------*/							\
 	defined(_ARCH_PPC64)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_64BIT
 
-#elif	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+#elif	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__POWERPC__) ||							\
+										\
 	/*-------------.							\
 	| IBM XL C/C++ |							\
 	'-------------*/							\
 	defined(__PPC) ||							\
-	/*-------------------------.						\
-	| Clang, GCC, IBM XL C/C++ |						\
-	'-------------------------*/						\
+										\
+	/*-------------.							\
+	| Clang	       |							\
+	| GCC	       |							\
+	| IBM XL C/C++ |							\
+	'-------------*/							\
 	defined(__PPC__) ||							\
+										\
 	/*------------.								\
 	| CodeWarrior |								\
 	'------------*/								\
 	defined(__PPCBROADWAY__) ||						\
+										\
 	/*------------.								\
 	| CodeWarrior |								\
 	'------------*/								\
 	defined(__PPCGECKO__) ||						\
-	/*------------------.							\
-	| GCC, IBM XL C/C++ |							\
-	'------------------*/							\
+										\
+	/*-------------.							\
+	| GCC	       |							\
+	| IBM XL C/C++ |							\
+	'-------------*/							\
 	defined(__powerpc) ||							\
-	/*-------------------------.						\
-	| Clang, GCC, IBM XL C/C++ |						\
-	'-------------------------*/						\
+										\
+	/*-------------.							\
+	| Clang	       |							\
+	| GCC	       |							\
+	| IBM XL C/C++ |							\
+	'-------------*/							\
 	defined(__powerpc__) ||							\
+										\
 	/*-----------.								\
 	| Diab C/C++ |								\
 	'-----------*/								\
 	defined(__ppc) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__ppc__) ||							\
-	/*-----------------------------.					\
-	| Clang, GCC, IBM XL C/C++ (?) |					\
-	'-----------------------------*/					\
+										\
+	/*-----------------.							\
+	| Clang		   |							\
+	| GCC		   |							\
+	| IBM XL C/C++ (?) |							\
+	'-----------------*/							\
 	defined(_ARCH_PPC) ||							\
+										\
 	/*-----------.								\
 	| Visual C++ |								\
 	'-----------*/								\
@@ -472,18 +632,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	defined(__arch64__) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__sparc_v9__) ||						\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__sparc64__) ||							\
-	/*------------------.							\
-	| Clang, Sun Studio |							\
-	'------------------*/							\
+										\
+	/*-----------.								\
+	| Clang	     |								\
+	| Sun Studio |								\
+	'-----------*/								\
 	defined(__sparcv9) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -491,26 +657,35 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SPARC_V9
 
-#elif	/*-----------------------.						\
-	| Clang, GCC, Sun Studio |						\
-	'-----------------------*/						\
-	defined(__sparc) ||							\
-	/*-----------.								\
-	| Clang, GCC |								\
+#elif	/*-----------.								\
+	| Clang	     |								\
+	| GCC	     |								\
+	| Sun Studio |								\
 	'-----------*/								\
+	defined(__sparc) ||							\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__sparc__) ||							\
+										\
 	/*----.									\
 	| GCC |									\
 	'----*/									\
 	defined(__sparc_v8__) ||						\
-	/*------------------.							\
-	| Clang, Sun Studio |							\
-	'------------------*/							\
+										\
+	/*-----------.								\
+	| Clang	     |								\
+	| Sun Studio |								\
+	'-----------*/								\
 	defined(__sparcv8) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__sparcv8__) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -532,14 +707,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SUPERH
 
-#elif	/*-------------------------------------.				\
-	| Dignus Systems/C, Dignus Systems/C++ |				\
-	'-------------------------------------*/				\
+#elif	/*-------------------.							\
+	| Dignus Systems/C   |							\
+	| Dignus Systems/C++ |							\
+	'-------------------*/							\
 	defined(__SYSC_ZARCH__) ||						\
-	/*-----------.								\
-	| Clang, GCC |								\
-	'-----------*/								\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
 	defined(__s390x__) ||							\
+										\
 	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -558,6 +737,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| IBM XL C/C++ |							\
 	'-------------*/							\
 	defined(__370__) ||							\
+										\
 	/*-------------.							\
 	| IBM XL C/C++ |							\
 	'-------------*/							\
