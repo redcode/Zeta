@@ -33,13 +33,10 @@ namespace Zeta {namespace Partials {namespace Value2D {
 	template <class Base, class Value2D, class T, UInt T_number_set> struct Part;
 
 
-	// MARK: - Partial implementation for signed types
-
-
 	template <class Base, class Value2D, class T> struct Signed : Base {
 
 #		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-			Z_INLINE_MEMBER	   Signed()			 {}
+			Z_INLINE_MEMBER	   Signed() {}
 			Z_CT_MEMBER(CPP11) Signed(T x, T y) : Base{x, y} {}
 #		endif
 
@@ -61,27 +58,21 @@ namespace Zeta {namespace Partials {namespace Value2D {
 	};
 
 
-	// MARK: - Partial implementation for natural types
-
-
 	template <class Base, class Value2D, class T>
 	struct Part<Base, Value2D, T, Z_NUMBER_SET_N> : Base {
 
 #		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-			Z_INLINE_MEMBER	   Part()		       {}
+			Z_INLINE_MEMBER	   Part() {}
 			Z_CT_MEMBER(CPP11) Part(T x, T y) : Base{x, y} {}
 #		endif
 	};
-
-
-	// MARK: - Partial implementation for integer types
 
 
 	template <class Base, class Value2D, class T>
 	struct Part<Base, Value2D, T, Z_NUMBER_SET_Z> : Signed<Base, Value2D, T> {
 
 #		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-			Z_INLINE_MEMBER	   Part()					   {}
+			Z_INLINE_MEMBER	   Part() {}
 			Z_CT_MEMBER(CPP11) Part(T x, T y) : Signed<Base, Value2D, T>(x, y) {}
 #		endif
 
@@ -91,14 +82,11 @@ namespace Zeta {namespace Partials {namespace Value2D {
 	};
 
 
-	// MARK: - Partial implementation for real types
-
-
 	template <class Base, class Value2D, class T>
 	struct Part<Base, Value2D, T, Z_NUMBER_SET_R> : Signed<Base, Value2D, T> {
 
 #		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-			Z_INLINE_MEMBER	   Part()					   {}
+			Z_INLINE_MEMBER	   Part() {}
 			Z_CT_MEMBER(CPP11) Part(T x, T y) : Signed<Base, Value2D, T>(x, y) {}
 #		endif
 
@@ -173,9 +161,6 @@ namespace Zeta {namespace Partials {namespace Value2D {
 
 #	undef Z_THIS
 }}}
-
-
-// MARK: - Common implementation
 
 
 namespace Zeta {template <class T> struct Value2D
