@@ -17,13 +17,13 @@ namespace Zeta {namespace Partials {namespace Value3D {
 
 #	define Z_THIS ((Value3D *)this)
 
-	template <class Value3D, class T, UInt T_number_set> struct Part;
+	template <class Base, class Value3D, class T, UInt T_number_set> struct Part;
 
 
 	// MARK: - Partial implementation for signed types
 
 
-	template <class Value3D, class T> struct Signed {
+	template <class Base, class Value3D, class T> struct Signed : Base {
 
 		Z_CT_MEMBER(CPP11) Value3D absolute() const
 			{
@@ -50,15 +50,15 @@ namespace Zeta {namespace Partials {namespace Value3D {
 	// MARK: - Partial implementation for natural types
 
 
-	template <class Value3D, class T>
-	struct Part<Value3D, T, Z_NUMBER_SET_N> {};
+	template <class Base, class Value3D, class T>
+	struct Part<Base, Value3D, T, Z_NUMBER_SET_N> : Base {};
 
 
 	// MARK: - Partial implementation for integer types
 
 
-	template <class Value3D, class T>
-	struct Part<Value3D, T, Z_NUMBER_SET_Z> : Signed<Value3D, T> {
+	template <class Base, class Value3D, class T>
+	struct Part<Base, Value3D, T, Z_NUMBER_SET_Z> : Signed<Base, Value3D, T> {
 
 		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value3D &other) const
 			{return !Zeta::absolute<T>(dot_product(other));}
@@ -68,8 +68,8 @@ namespace Zeta {namespace Partials {namespace Value3D {
 	// MARK: - Partial implementation for real types
 
 
-	template <class Value3D, class T>
-	struct Part<Value3D, T, Z_NUMBER_SET_R> : Signed<Value3D, T> {
+	template <class Base, class Value3D, class T>
+	struct Part<Base, Value3D, T, Z_NUMBER_SET_R> : Signed<Base, Value3D, T> {
 
 		Z_CT_MEMBER(CPP11) Value3D clamp_01() const
 			{
@@ -186,56 +186,57 @@ namespace Zeta {namespace Partials {namespace Value3D {
 // MARK: - Common implementation
 
 
-namespace Zeta {template <class T> struct Value3D : Partials::Value3D::Part<Value3D<T>, T, Type<T>::number_set> {
-
-	typedef typename ZTypeFixedNumber(Z3D, T) Base;
-
-	T x, y, z;
-
+namespace Zeta {template <class T> struct Value3D
+: Partials::Value3D::Part<ZTypeFixedNumber(Z3D, T), Value3D<T>, T, Type<T>::number_set> {
 
 	Z_INLINE_MEMBER Value3D() {}
-											
-	Z_CT_MEMBER(CPP11) Value3D(T x, T y, T z)	      : x(x),	 y(y),	  z(z)	  {}
-	Z_CT_MEMBER(CPP11) Value3D(T x, T y)		      : x(x),	 y(y),	  z(T(0)) {}
-	Z_CT_MEMBER(CPP11) Value3D(T xyz)		      : x(xyz),	 y(xyz),  z(xyz)  {}
-	Z_CT_MEMBER(CPP11) Value3D(const Value2D<T> &xy)      : x(xy.x), y(xy.y), z(T(0)) {}
-	Z_CT_MEMBER(CPP11) Value3D(const Value2D<T> &xy, T z) : x(xy.x), y(xy.y), z(z)	  {}
-	Z_CT_MEMBER(CPP11) Value3D(T x, const Value2D<T> &yz) : x(x),	 y(yz.x), z(yz.y) {}
 
-	Z_INLINE_MEMBER Value3D(const Base &value) {(*(Base *)this) = value;}
+#	if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+		Z_CT_MEMBER(CPP11) Value3D(T x, T y, T z)	      : Base{x,	   y,	 z   } {}
+		Z_CT_MEMBER(CPP11) Value3D(T x, T y)		      : Base{x,	   y,	 T(0)} {}
+		Z_CT_MEMBER(CPP11) Value3D(T xyz)		      : Base{xyz,  xyz,	 xyz } {}
+		Z_CT_MEMBER(CPP11) Value3D(const Value2D<T> &xy)      : Base{xy.x, xy.y, T(0)} {}
+		Z_CT_MEMBER(CPP11) Value3D(const Value2D<T> &xy, T z) : Base{xy.x, xy.y, z   } {}
+		Z_CT_MEMBER(CPP11) Value3D(T x, const Value2D<T> &yz) : Base{x,	   yz.x, yz.y} {}
+#	else
+		Z_INLINE_MEMBER Value3D(T x, T y, T z)		   {this->x = x;    this->y = y;    this->z = z;   }
+		Z_INLINE_MEMBER Value3D(T x, T y)		   {this->x = x;    this->y = y;    this->z = T(0);}
+		Z_INLINE_MEMBER Value3D(T xyz)			   {this->x = xyz;  this->y = xyz;  this->z = xyz; }
+		Z_INLINE_MEMBER Value3D(const Value2D<T> &xy)	   {this->x = xy.x; this->y = xy.y; this->z = T(0);}
+		Z_INLINE_MEMBER Value3D(const Value2D<T> &xy, T z) {this->x = xy.x; this->y = xy.y; this->z = z;   }
+		Z_INLINE_MEMBER Value3D(T x, const Value2D<T> &yz) {this->x = x;    this->y = yz.x; this->z = yz.y;}
+#	endif
 
+	Z_CT_MEMBER(CPP11) operator Boolean() const {return this->x != T(0) || this->y != T(0) || this->z != T(0);}
 
-	Z_CT_MEMBER(CPP11) operator Boolean() const {return x != T(0) || y != T(0) || z != T(0);}
-	Z_INLINE_MEMBER	   operator Base&  () const {return *((Base *)this);}
+	Z_CT_MEMBER(CPP11) Boolean operator ==(const Value3D &rhs) const {return this->x == rhs.x && this->y == rhs.y && this->z == rhs.z;}
+	Z_CT_MEMBER(CPP11) Boolean operator !=(const Value3D &rhs) const {return this->x != rhs.x || this->y != rhs.y || this->z != rhs.z;}
+	Z_CT_MEMBER(CPP11) Boolean operator <=(const Value3D &rhs) const {return this->x <= rhs.x && this->y <= rhs.y && this->z <= rhs.z;}
+	Z_CT_MEMBER(CPP11) Boolean operator >=(const Value3D &rhs) const {return this->x >= rhs.x && this->y >= rhs.y && this->z >= rhs.z;}
+	Z_CT_MEMBER(CPP11) Boolean operator > (const Value3D &rhs) const {return this->x >  rhs.x && this->y >	rhs.y && this->z >  rhs.z;}
+	Z_CT_MEMBER(CPP11) Boolean operator < (const Value3D &rhs) const {return this->x <  rhs.x && this->y <	rhs.y && this->z <  rhs.z;}
 
-	Z_CT_MEMBER(CPP11) Boolean operator ==(const Value3D &rhs) const {return x == rhs.x && y == rhs.y && z == rhs.z;}
-	Z_CT_MEMBER(CPP11) Boolean operator !=(const Value3D &rhs) const {return x != rhs.x || y != rhs.y || z != rhs.z;}
-	Z_CT_MEMBER(CPP11) Boolean operator <=(const Value3D &rhs) const {return x <= rhs.x && y <= rhs.y && z <= rhs.z;}
-	Z_CT_MEMBER(CPP11) Boolean operator >=(const Value3D &rhs) const {return x >= rhs.x && y >= rhs.y && z >= rhs.z;}
-	Z_CT_MEMBER(CPP11) Boolean operator > (const Value3D &rhs) const {return x >  rhs.x && y >  rhs.y && z >  rhs.z;}
-	Z_CT_MEMBER(CPP11) Boolean operator < (const Value3D &rhs) const {return x <  rhs.x && y <  rhs.y && z <  rhs.z;}
-
-	Z_CT_MEMBER(CPP11) Value3D operator +(const Value3D &rhs) const {return Value3D(x + rhs.x, y + rhs.y, z + rhs.z);}
-	Z_CT_MEMBER(CPP11) Value3D operator -(const Value3D &rhs) const {return Value3D(x - rhs.x, y - rhs.y, z - rhs.z);}
-	Z_CT_MEMBER(CPP11) Value3D operator *(const Value3D &rhs) const {return Value3D(x * rhs.x, y * rhs.y, z * rhs.z);}
-	Z_CT_MEMBER(CPP11) Value3D operator /(const Value3D &rhs) const {return Value3D(x / rhs.x, y / rhs.y, z / rhs.z);}
+	Z_CT_MEMBER(CPP11) Value3D operator +(const Value3D &rhs) const {return Value3D(this->x + rhs.x, this->y + rhs.y, this->z + rhs.z);}
+	Z_CT_MEMBER(CPP11) Value3D operator -(const Value3D &rhs) const {return Value3D(this->x - rhs.x, this->y - rhs.y, this->z - rhs.z);}
+	Z_CT_MEMBER(CPP11) Value3D operator *(const Value3D &rhs) const {return Value3D(this->x * rhs.x, this->y * rhs.y, this->z * rhs.z);}
+	Z_CT_MEMBER(CPP11) Value3D operator /(const Value3D &rhs) const {return Value3D(this->x / rhs.x, this->y / rhs.y, this->z / rhs.z);}
 
 	Z_INLINE_MEMBER Value3D &operator +=(const Value3D &rhs) {return *this = *this + rhs;}
 	Z_INLINE_MEMBER Value3D &operator -=(const Value3D &rhs) {return *this = *this - rhs;}
 	Z_INLINE_MEMBER Value3D &operator *=(const Value3D &rhs) {return *this = *this * rhs;}
 	Z_INLINE_MEMBER Value3D &operator /=(const Value3D &rhs) {return *this = *this / rhs;}
 
-	Z_CT_MEMBER(CPP11) Boolean operator ==(T rhs) const {return x == rhs && y == rhs && z == rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator !=(T rhs) const {return x != rhs || y != rhs || z != rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator <=(T rhs) const {return x <= rhs && y <= rhs && z <= rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator >=(T rhs) const {return x >= rhs && y >= rhs && z >= rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator > (T rhs) const {return x >  rhs && y >  rhs && z >  rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator < (T rhs) const {return x <  rhs && y <  rhs && z <  rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator ==(T rhs) const {return this->x == rhs && this->y == rhs && this->z == rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator !=(T rhs) const {return this->x != rhs || this->y != rhs || this->z != rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator <=(T rhs) const {return this->x <= rhs && this->y <= rhs && this->z <= rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator >=(T rhs) const {return this->x >= rhs && this->y >= rhs && this->z >= rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator > (T rhs) const {return this->x >  rhs && this->y >  rhs && this->z >  rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator < (T rhs) const {return this->x <  rhs && this->y <  rhs && this->z <  rhs;}
 
-	Z_CT_MEMBER(CPP11) Value3D operator +(T rhs) const {return Value3D(x + rhs, y + rhs, z + rhs);}
-	Z_CT_MEMBER(CPP11) Value3D operator -(T rhs) const {return Value3D(x - rhs, y - rhs, z - rhs);}
-	Z_CT_MEMBER(CPP11) Value3D operator *(T rhs) const {return Value3D(x * rhs, y * rhs, z * rhs);}
-	Z_CT_MEMBER(CPP11) Value3D operator /(T rhs) const {return Value3D(x / rhs, y / rhs, z / rhs);}
+	Z_CT_MEMBER(CPP11) Value3D operator +(T rhs) const {return Value3D(this->x + rhs, this->y + rhs, this->z + rhs);}
+	Z_CT_MEMBER(CPP11) Value3D operator -(T rhs) const {return Value3D(this->x - rhs, this->y - rhs, this->z - rhs);}
+	Z_CT_MEMBER(CPP11) Value3D operator *(T rhs) const {return Value3D(this->x * rhs, this->y * rhs, this->z * rhs);}
+	Z_CT_MEMBER(CPP11) Value3D operator /(T rhs) const {return Value3D(this->x / rhs, this->y / rhs, this->z / rhs);}
 
 	Z_INLINE_MEMBER Value3D &operator +=(T rhs) {return *this = *this + rhs;}
 	Z_INLINE_MEMBER Value3D &operator -=(T rhs) {return *this = *this - rhs;}
@@ -249,32 +250,32 @@ namespace Zeta {template <class T> struct Value3D : Partials::Value3D::Part<Valu
 	Z_CT_MEMBER(CPP11) Value3D clamp(const Value3D &minimum, const Value3D &maximum) const
 		{
 		return Value3D
-			(Zeta::clamp<T>(x, minimum.x, maximum.x),
-			 Zeta::clamp<T>(y, minimum.y, maximum.y),
-			 Zeta::clamp<T>(z, minimum.z, maximum.z));
+			(Zeta::clamp<T>(this->x, minimum.x, maximum.x),
+			 Zeta::clamp<T>(this->y, minimum.y, maximum.y),
+			 Zeta::clamp<T>(this->z, minimum.z, maximum.z));
 		}
 
 
 	Z_CT_MEMBER(CPP11) Value3D clamp(T minimum, T maximum) const
 		{
 		return Value3D
-			(Zeta::clamp<T>(x, minimum, maximum),
-			 Zeta::clamp<T>(y, minimum, maximum),
-			 Zeta::clamp<T>(z, minimum, maximum));
+			(Zeta::clamp<T>(this->x, minimum, maximum),
+			 Zeta::clamp<T>(this->y, minimum, maximum),
+			 Zeta::clamp<T>(this->z, minimum, maximum));
 		}
 
 
 	Z_CT_MEMBER(CPP11) Value3D cross_product(const Value3D &other) const
 		{
 		return Value3D
-			(y * other.z - z * other.y,
-			 z * other.x - x * other.z,
-			 x * other.y - y * other.x);
+			(this->y * other.z - this->z * other.y,
+			 this->z * other.x - this->x * other.z,
+			 this->x * other.y - this->y * other.x);
 		}
 
 
 	Z_CT_MEMBER(CPP11) T dot_product(const Value3D &other) const
-		{return x * other.x + y * other.y + y * other.y;}
+		{return this->x * other.x + this->y * other.y + this->y * other.y;} // Review
 
 
 	Z_CT_MEMBER(CPP11) Value3D fit(const Value3D &other) const
@@ -282,57 +283,57 @@ namespace Zeta {template <class T> struct Value3D : Partials::Value3D::Part<Valu
 
 
 	Z_CT_MEMBER(CPP11) Boolean has_zero() const
-		{return x == T(0) || y == T(0) || z == T(0);}
+		{return this->x == T(0) || this->y == T(0) || this->z == T(0);}
 
 
 	Z_CT_MEMBER(CPP11) T inner_maximum() const
-		{return Zeta::maximum<T>(Zeta::maximum<T>(x, y), z);}
+		{return Zeta::maximum<T>(Zeta::maximum<T>(this->x, this->y), this->z);}
 
 
 	Z_CT_MEMBER(CPP11) T inner_middle() const
-		{return (x + y + z) / T(3);}
+		{return (this->x + this->y + this->z) / T(3);}
 
 
 	Z_CT_MEMBER(CPP11) T inner_minimum() const
-		{return Zeta::minimum<T>(Zeta::minimum<T>(x, y), z);}
+		{return Zeta::minimum<T>(Zeta::minimum<T>(this->x, this->y), this->z);}
 
 
 	Z_CT_MEMBER(CPP11) T inner_product() const
-		{return x * y * z;}
+		{return this->x * this->y * this->z;}
 
 
 	Z_CT_MEMBER(CPP11) T inner_sum() const
-		{return x + y + z;}
+		{return this->x + this->y + this->z;}
 
 
 	Z_CT_MEMBER(CPP11) Boolean is_zero() const
-		{return x == T(0) && y == T(0) && z == T(0);}
+		{return this->x == T(0) && this->y == T(0) && this->z == T(0);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D maximum(const Value3D &other) const
 		{
 		return Value3D
-			(Zeta::maximum<T>(x, other.x),
-			 Zeta::maximum<T>(y, other.y),
-			 Zeta::maximum<T>(z, other.z));
+			(Zeta::maximum<T>(this->x, other.x),
+			 Zeta::maximum<T>(this->y, other.y),
+			 Zeta::maximum<T>(this->z, other.z));
 		}
 
 
 	Z_CT_MEMBER(CPP11) Value3D middle(const Value3D &other) const
 		{
 		return Value3D
-			((x + other.x) / T(2),
-			 (y + other.y) / T(2),
-			 (z + other.z) / T(2));
+			((this->x + other.x) / T(2),
+			 (this->y + other.y) / T(2),
+			 (this->z + other.z) / T(2));
 		}
 
 
 	Z_CT_MEMBER(CPP11) Value3D minimum(const Value3D &other) const
 		{
 		return Value3D
-			(Zeta::minimum<T>(x, other.x),
-			 Zeta::minimum<T>(y, other.y),
-			 Zeta::minimum<T>(z, other.z));
+			(Zeta::minimum<T>(this->x, other.x),
+			 Zeta::minimum<T>(this->y, other.y),
+			 Zeta::minimum<T>(this->z, other.z));
 		}
 
 
@@ -348,55 +349,55 @@ namespace Zeta {template <class T> struct Value3D : Partials::Value3D::Part<Valu
 
 
 	Z_CT_MEMBER(CPP11) T squared_length() const
-		{return x * x + y * y + z * z;}
+		{return this->x * this->x + this->y * this->y + this->z * this->z;}
 
 
 	Z_INLINE_MEMBER void swap(Value3D &other)
-		{Zeta::swap<Base>((Base *)this, (Base *)&other);}
+		{Zeta::swap<Value3D>(this, &other);}
 
 
 	Z_CT_MEMBER(CPP11) Value2D<T> xy() const
-		{return Value2D<T>(x, y);}
+		{return Value2D<T>(this->x, this->y);}
 
 
 	Z_CT_MEMBER(CPP11) Value2D<T> xz() const
-		{return Value2D<T>(x, z);}
+		{return Value2D<T>(this->x, this->z);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D xzy() const
-		{return Value3D(x, z, y);}
+		{return Value3D(this->x, this->z, this->y);}
 
 
 	Z_CT_MEMBER(CPP11) Value2D<T> yx() const
-		{return Value2D<T>(y, x);}
+		{return Value2D<T>(this->y, this->x);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D yxz() const
-		{return Value3D(y, x, z);}
+		{return Value3D(this->y, this->x, this->z);}
 
 
 	Z_CT_MEMBER(CPP11) Value2D<T> yz() const
-		{return Value2D<T>(y, z);}
+		{return Value2D<T>(this->y, this->z);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D yzx() const
-		{return Value3D(y, z, x);}
+		{return Value3D(this->y, this->z, this->x);}
 
 
 	Z_CT_MEMBER(CPP11) Value2D<T> zx() const
-		{return Value2D<T>(z, x);}
+		{return Value2D<T>(this->z, this->x);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D zxy() const
-		{return Value3D(z, x, y);}
+		{return Value3D(this->z, this->x, this->y);}
 
 
 	Z_CT_MEMBER(CPP11) Value2D<T> zy() const
-		{return Value2D<T>(z, y);}
+		{return Value2D<T>(this->z, this->y);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D zyx() const
-		{return Value3D(z, y, x);}
+		{return Value3D(this->z, this->y, this->x);}
 };}
 
 
