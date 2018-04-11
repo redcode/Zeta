@@ -159,9 +159,15 @@ namespace Zeta {template <class T> struct Value2D
 
 	Z_INLINE_MEMBER Value2D() {}
 
-	Z_CT_MEMBER(CPP11) Value2D(T x, T y)		 {this->x = x;	  this->y = y;	 }
-	Z_CT_MEMBER(CPP11) Value2D(T xy)		 {this->x = xy;	  this->y = xy;	 }
-	Z_CT_MEMBER(CPP11) Value2D(const Value3D<T> &xy) {this->x = xy.x; this->y = xy.y;}
+#	if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+		Z_CT_MEMBER(CPP11) Value2D(T x, T y)		 : Base{x,    y   } {}
+		Z_CT_MEMBER(CPP11) Value2D(T xy)		 : Base{xy,   xy  } {}
+		Z_CT_MEMBER(CPP11) Value2D(const Value3D<T> &xy) : Base{xy.x, xy.y} {}
+#	else
+		Z_INLINE_MEMBER Value2D(T x, T y)	      {this->x = x;    this->y = y;   }
+		Z_INLINE_MEMBER Value2D(T xy)		      {this->x = xy;   this->y = xy;  }
+		Z_INLINE_MEMBER Value2D(const Value3D<T> &xy) {this->x = xy.x; this->y = xy.y;}
+#	endif
 
 	Z_CT_MEMBER(CPP11) operator Boolean() const {return this->x != T(0) || this->y != T(0);}
 

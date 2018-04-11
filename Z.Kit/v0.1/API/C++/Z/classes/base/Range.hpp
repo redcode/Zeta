@@ -20,8 +20,14 @@ namespace Zeta {template <class T> struct Range : ZTypeFixedNatural(ZRange, T) {
 
 	Z_INLINE_MEMBER Range() {}
 
-	Z_CT_MEMBER(CPP11) Range(T size)	  : {this->index = 0;	  this->size = size;}
-	Z_CT_MEMBER(CPP11) Range(T index, T size) : {this->index = index; this->size = size;}
+#	if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+		Z_CT_MEMBER(CPP11) Value2D(T x, T y)		 : Base{x,    y   } {}
+		Z_CT_MEMBER(CPP11) Value2D(T xy)		 : Base{xy,   xy  } {}
+		Z_CT_MEMBER(CPP11) Value2D(const Value3D<T> &xy) : Base{xy.x, xy.y} {}
+#	else
+		Z_INLINE_MEMBER Range(T size)	       {this->index = 0;     this->size = size;}
+		Z_INLINE_MEMBER Range(T index, T size) {this->index = index; this->size = size;}
+#	endif
 
 	Z_CT_MEMBER(CPP11) operator Boolean() const {return !!this->size;}
 
