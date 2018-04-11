@@ -23,11 +23,13 @@ namespace Zeta {template <class T> struct Range : ZTypeFixedNatural(ZRange, T) {
 	Z_INLINE_MEMBER Range() {}
 
 #	if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-		Z_CT_MEMBER(CPP11) Range(T size)	  : Base{0,	size} {}
-		Z_CT_MEMBER(CPP11) Range(T index, T size) : Base{index, size} {}
+		Z_CT_MEMBER(CPP11) Range(T size)	    : Base{0,		size	  } {}
+		Z_CT_MEMBER(CPP11) Range(T index, T size)   : Base{index,	size	  } {}
+		Z_CT_MEMBER(CPP11) Range(const Base &other) : Base{other.index, other.size} {}
 #	else
-		Z_INLINE_MEMBER Range(T size)	       {this->index = 0;     this->size = size;}
-		Z_INLINE_MEMBER Range(T index, T size) {this->index = index; this->size = size;}
+		Z_INLINE_MEMBER Range(T size)		 {this->index = 0;     this->size = size;}
+		Z_INLINE_MEMBER Range(T index, T size)	 {this->index = index; this->size = size;}
+		Z_INLINE_MEMBER Range(const Base &other) {*(Base *)this = other;}
 #	endif
 
 	Z_CT_MEMBER(CPP11) operator Boolean() const {return !!this->size;}
