@@ -38,20 +38,26 @@ namespace Zeta {namespace Partials {namespace Value2D {
 
 	template <class Base, class Value2D, class T> struct Signed : Base {
 
+#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+			Z_INLINE_MEMBER	   Signed()			 {}
+			Z_CT_MEMBER(CPP11) Signed(T x, T y) : Base{x, y} {}
+#		endif
+
+
 		Z_CT_MEMBER(CPP11) Value2D absolute() const
-			{return Value2D(Zeta::absolute<T>(Z_THIS->x), Zeta::absolute<T>(Z_THIS->y));}
+			{return Value2D(Zeta::absolute<T>(this->x), Zeta::absolute<T>(this->y));}
 
 
 		Z_CT_MEMBER(CPP11) Boolean has_negative() const
-			{return Z_THIS->x < T(0) || Z_THIS->y < T(0);}
+			{return this->x < T(0) || this->y < T(0);}
 
 
 		Z_CT_MEMBER(CPP11) Boolean is_negative() const
-			{return Z_THIS->x < T(0) && Z_THIS->y < T(0);}
+			{return this->x < T(0) && this->y < T(0);}
 
 
 		Z_CT_MEMBER(CPP11) Value2D negative() const
-			{return Value2D(-Z_THIS->x, -Z_THIS->y);}
+			{return Value2D(-this->x, -this->y);}
 	};
 
 
@@ -59,7 +65,13 @@ namespace Zeta {namespace Partials {namespace Value2D {
 
 
 	template <class Base, class Value2D, class T>
-	struct Part<Base, Value2D, T, Z_NUMBER_SET_N> : Base {};
+	struct Part<Base, Value2D, T, Z_NUMBER_SET_N> : Base {
+
+#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+			Z_INLINE_MEMBER	   Part()		       {}
+			Z_CT_MEMBER(CPP11) Part(T x, T y) : Base{x, y} {}
+#		endif
+	};
 
 
 	// MARK: - Partial implementation for integer types
@@ -67,6 +79,12 @@ namespace Zeta {namespace Partials {namespace Value2D {
 
 	template <class Base, class Value2D, class T>
 	struct Part<Base, Value2D, T, Z_NUMBER_SET_Z> : Signed<Base, Value2D, T> {
+
+#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+			Z_INLINE_MEMBER	   Part()					   {}
+			Z_CT_MEMBER(CPP11) Part(T x, T y) : Signed<Base, Value2D, T>(x, y) {}
+#		endif
+
 
 		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value2D &other) const
 			{return !Zeta::absolute<T>(Z_THIS->dot_product(other));}
@@ -79,55 +97,61 @@ namespace Zeta {namespace Partials {namespace Value2D {
 	template <class Base, class Value2D, class T>
 	struct Part<Base, Value2D, T, Z_NUMBER_SET_R> : Signed<Base, Value2D, T> {
 
+#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+			Z_INLINE_MEMBER	   Part()					   {}
+			Z_CT_MEMBER(CPP11) Part(T x, T y) : Signed<Base, Value2D, T>(x, y) {}
+#		endif
+
+
 		Z_CT_MEMBER(CPP11) Value2D clamp_01() const
-			{return Value2D(Zeta::clamp_01<T>(Z_THIS->x), Zeta::clamp_01<T>(Z_THIS->y));}
+			{return Value2D(Zeta::clamp_01<T>(this->x), Zeta::clamp_01<T>(this->y));}
 
 
 		Z_CT_MEMBER(CPP11) Boolean has_almost_zero() const
-			{return Zeta::is_almost_zero<T>(Z_THIS->x) || Zeta::is_almost_zero<T>(Z_THIS->y);}
+			{return Zeta::is_almost_zero<T>(this->x) || Zeta::is_almost_zero<T>(this->y);}
 
 
 		Z_CT_MEMBER(CPP11) Boolean has_finite() const
-			{return Zeta::is_finite<T>(Z_THIS->x) || Zeta::is_finite<T>(Z_THIS->y);}
+			{return Zeta::is_finite<T>(this->x) || Zeta::is_finite<T>(this->y);}
 
 
 		Z_CT_MEMBER(CPP11) Boolean has_infinity() const
-			{return Zeta::is_infinity<T>(Z_THIS->x) || Zeta::is_infinity<T>(Z_THIS->y);}
+			{return Zeta::is_infinity<T>(this->x) || Zeta::is_infinity<T>(this->y);}
 
 
 		Z_CT_MEMBER(CPP11) Boolean has_nan() const
-			{return Zeta::is_nan<T>(Z_THIS->x) || Zeta::is_nan<T>(Z_THIS->y);}
+			{return Zeta::is_nan<T>(this->x) || Zeta::is_nan<T>(this->y);}
 
 
 		Z_CT_MEMBER(CPP11) Value2D inverse_lerp(const Value2D &other, T t) const
 			{
 			return Value2D
-				(Zeta::inverse_lerp<T>(Z_THIS->x, other.x, t),
-				 Zeta::inverse_lerp<T>(Z_THIS->y, other.y, t));
+				(Zeta::inverse_lerp<T>(this->x, other.x, t),
+				 Zeta::inverse_lerp<T>(this->y, other.y, t));
 			}
 
 
 		Z_CT_MEMBER(CPP11) Boolean is_almost_equal(const Value2D &other) const
 			{
-			return	Zeta::are_almost_equal<T>(Z_THIS->x, other.x) &&
-				Zeta::are_almost_equal<T>(Z_THIS->y, other.y);
+			return	Zeta::are_almost_equal<T>(this->x, other.x) &&
+				Zeta::are_almost_equal<T>(this->y, other.y);
 			}
 
 
 		Z_CT_MEMBER(CPP11) Boolean is_almost_zero() const
-			{return Zeta::is_almost_zero<T>(Z_THIS->x) && Zeta::is_almost_zero<T>(Z_THIS->y);}
+			{return Zeta::is_almost_zero<T>(this->x) && Zeta::is_almost_zero<T>(this->y);}
 
 
 		Z_CT_MEMBER(CPP11) Boolean is_finite() const
-			{return Zeta::is_finite<T>(Z_THIS->x) && Zeta::is_finite<T>(Z_THIS->y);}
+			{return Zeta::is_finite<T>(this->x) && Zeta::is_finite<T>(this->y);}
 
 
 		Z_CT_MEMBER(CPP11) Boolean is_infinity() const
-			{return Zeta::is_infinity<T>(Z_THIS->x) && Zeta::is_infinity<T>(Z_THIS->y);}
+			{return Zeta::is_infinity<T>(this->x) && Zeta::is_infinity<T>(this->y);}
 
 
 		Z_CT_MEMBER(CPP11) Boolean is_nan() const
-			{return Zeta::is_nan<T>(Z_THIS->x) && Zeta::is_nan<T>(Z_THIS->y);}
+			{return Zeta::is_nan<T>(this->x) && Zeta::is_nan<T>(this->y);}
 
 
 		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value2D &other) const
@@ -137,13 +161,13 @@ namespace Zeta {namespace Partials {namespace Value2D {
 		Z_CT_MEMBER(CPP11) Value2D lerp(const Value2D &other, T t) const
 			{
 			return Value2D
-				(Zeta::lerp<T>(Z_THIS->x, other.x, t),
-				 Zeta::lerp<T>(Z_THIS->y, other.y, t));
+				(Zeta::lerp<T>(this->x, other.x, t),
+				 Zeta::lerp<T>(this->y, other.y, t));
 			}
 
 
 		Z_CT_MEMBER(CPP11) Value2D reciprocal() const
-			{return Value2D(T(1) / Z_THIS->x, T(1) / Z_THIS->y);}
+			{return Value2D(T(1) / this->x, T(1) / this->y);}
 	};
 
 
@@ -155,14 +179,17 @@ namespace Zeta {namespace Partials {namespace Value2D {
 
 
 namespace Zeta {template <class T> struct Value2D
-: Partials::Value2D::Part<ZTypeFixedNumber(Z2D, T), Value2D<T>, T, Type<T>::number_set> {
+: Partials::Value2D::Part<typename ZTypeFixedNumber(Z2D, T), Value2D<T>, T, Type<T>::number_set> {
+
+	typedef typename ZTypeFixedNumber(Z2D, T) Base;
+	typedef Partials::Value2D::Part<Base, Value2D, T, Type<T>::number_set> Super;
 
 	Z_INLINE_MEMBER Value2D() {}
 
 #	if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-		Z_CT_MEMBER(CPP11) Value2D(T x, T y)		 : Base{x,    y   } {}
-		Z_CT_MEMBER(CPP11) Value2D(T xy)		 : Base{xy,   xy  } {}
-		Z_CT_MEMBER(CPP11) Value2D(const Value3D<T> &xy) : Base{xy.x, xy.y} {}
+		Z_CT_MEMBER(CPP11) Value2D(T x, T y)		 : Super(x,    y   ) {}
+		Z_CT_MEMBER(CPP11) Value2D(T xy)		 : Super(xy,   xy  ) {}
+		Z_CT_MEMBER(CPP11) Value2D(const Value3D<T> &xy) : Super(xy.x, xy.y) {}
 #	else
 		Z_INLINE_MEMBER Value2D(T x, T y)	      {this->x = x;    this->y = y;   }
 		Z_INLINE_MEMBER Value2D(T xy)		      {this->x = xy;   this->y = xy;  }
@@ -211,8 +238,13 @@ namespace Zeta {template <class T> struct Value2D
 
 #	ifdef Z_USE_CG_GEOMETRY
 
-		Z_CT_MEMBER(CPP11) Value2D(const CGPoint &point) {this->x = point.x;	this->y = point.y;    }
-		Z_CT_MEMBER(CPP11) Value2D(const CGSize	 &size ) {this->x = size.width; this->y = size.height;}
+#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+			Z_CT_MEMBER(CPP11) Value2D(const CGPoint &point) : Super(point.x,    point.y	) {}
+			Z_CT_MEMBER(CPP11) Value2D(const CGSize  &size ) : Super(size.width, size.height) {}
+#		else
+			Z_INLINE_MEMBER Value2D(const CGPoint &point) {this->x = point.x;    this->y = point.y;	   }
+			Z_INLINE_MEMBER Value2D(const CGSize  &size ) {this->x = size.width; this->y = size.height;}
+#		endif
 
 
 		Z_CT_MEMBER(CPP14) operator CGPoint() const
@@ -244,8 +276,13 @@ namespace Zeta {template <class T> struct Value2D
 		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
-		Z_CT_MEMBER(CPP11) Value2D(const NSPoint &point) : {this->x = point.x;	  this->y = point.y;	}
-		Z_CT_MEMBER(CPP11) Value2D(const NSSize  &size ) : {this->x = size.width; this->y = size.height;}
+#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+			Z_CT_MEMBER(CPP11) Value2D(const NSPoint &point) : Super(point.x,    point.y	) {}
+			Z_CT_MEMBER(CPP11) Value2D(const NSSize  &size ) : Super(size.width, size.height) {}
+#		else
+			Z_INLINE_MEMBER Value2D(const NSPoint &point) {this->x = point.x;    this->y = point.y;	   }
+			Z_INLINE_MEMBER Value2D(const NSSize  &size ) {this->x = size.width; this->y = size.height;}
+#		endif
 
 
 		Z_CT_MEMBER(CPP14) operator NSPoint() const
@@ -384,7 +421,7 @@ namespace Zeta {template <class T> struct Value2D
 
 
 	Z_INLINE_MEMBER void swap(Value2D &other)
-		{Zeta::swap<Value2D>(this, &other);}
+		{Zeta::swap<Base>(this, &other);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D<T> xny(T n) const
