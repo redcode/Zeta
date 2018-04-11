@@ -30,13 +30,13 @@ namespace Zeta {namespace Partials {namespace Value2D {
 
 #	define Z_THIS ((Value2D *)this)
 
-	template <class Value2D, class T, UInt T_number_set> struct Part;
+	template <class Base, class Value2D, class T, UInt T_number_set> struct Part;
 
 
 	// MARK: - Partial implementation for signed types
 
 
-	template <class Value2D, class T> struct Signed {
+	template <class Base, class Value2D, class T> struct Signed : Base {
 
 		Z_CT_MEMBER(CPP11) Value2D absolute() const
 			{return Value2D(Zeta::absolute<T>(Z_THIS->x), Zeta::absolute<T>(Z_THIS->y));}
@@ -58,27 +58,26 @@ namespace Zeta {namespace Partials {namespace Value2D {
 	// MARK: - Partial implementation for natural types
 
 
-	template <class Value2D, class T>
-	struct Part<Value2D, T, Z_NUMBER_SET_N> {};
+	template <class Base, class Value2D, class T>
+	struct Part<Base, Value2D, T, Z_NUMBER_SET_N> : Base {};
 
 
 	// MARK: - Partial implementation for integer types
 
 
-	template <class Value2D, class T>
-	struct Part<Value2D, T, Z_NUMBER_SET_Z> : Signed<Value2D, T> {
+	template <class Base, class Value2D, class T>
+	struct Part<Base, Value2D, T, Z_NUMBER_SET_Z> : Signed<Base, Value2D, T> {
 
 		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value2D &other) const
 			{return !Zeta::absolute<T>(Z_THIS->dot_product(other));}
-
 	};
 
 
 	// MARK: - Partial implementation for real types
 
 
-	template <class Value2D, class T>
-	struct Part<Value2D, T, Z_NUMBER_SET_R> : Signed<Value2D, T> {
+	template <class Base, class Value2D, class T>
+	struct Part<Base, Value2D, T, Z_NUMBER_SET_R> : Signed<Base, Value2D, T> {
 
 		Z_CT_MEMBER(CPP11) Value2D clamp_01() const
 			{return Value2D(Zeta::clamp_01<T>(Z_THIS->x), Zeta::clamp_01<T>(Z_THIS->y));}
@@ -155,53 +154,45 @@ namespace Zeta {namespace Partials {namespace Value2D {
 // MARK: - Common implementation
 
 
-namespace Zeta {template <class T> struct Value2D : Partials::Value2D::Part<Value2D<T>, T, Type<T>::number_set> {
-
-	typedef typename ZTypeFixedNumber(Z2D, T) Base;
-
-	T x, y;
-
+namespace Zeta {template <class T> struct Value2D
+: Partials::Value2D::Part<ZTypeFixedNumber(Z2D, T), Value2D<T>, T, Type<T>::number_set> {
 
 	Z_INLINE_MEMBER Value2D() {}
 
-	Z_CT_MEMBER(CPP11) Value2D(T x, T y)		 : x(x),    y(y)    {}
-	Z_CT_MEMBER(CPP11) Value2D(T xy)		 : x(xy),   y(xy)   {}
-	Z_CT_MEMBER(CPP11) Value2D(const Value3D<T> &xy) : x(xy.x), y(xy.y) {}
+	Z_CT_MEMBER(CPP11) Value2D(T x, T y)		 {this->x = x;	  this->y = y;	 }
+	Z_CT_MEMBER(CPP11) Value2D(T xy)		 {this->x = xy;	  this->y = xy;	 }
+	Z_CT_MEMBER(CPP11) Value2D(const Value3D<T> &xy) {this->x = xy.x; this->y = xy.y;}
 
-	Z_INLINE_MEMBER Value2D(const Base &value) {(*(Base *)this) = value;}
+	Z_CT_MEMBER(CPP11) operator Boolean() const {return this->x != T(0) || this->y != T(0);}
 
+	Z_CT_MEMBER(CPP11) Boolean operator ==(const Value2D &rhs) const {return this->x == rhs.x && this->y == rhs.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator !=(const Value2D &rhs) const {return this->x != rhs.x || this->y != rhs.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator <=(const Value2D &rhs) const {return this->x <= rhs.x && this->y <= rhs.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator >=(const Value2D &rhs) const {return this->x >= rhs.x && this->y >= rhs.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator > (const Value2D &rhs) const {return this->x >  rhs.x && this->y >	rhs.y;}
+	Z_CT_MEMBER(CPP11) Boolean operator < (const Value2D &rhs) const {return this->x <  rhs.x && this->y <	rhs.y;}
 
-	Z_CT_MEMBER(CPP11) operator Boolean() const {return x != T(0) || y != T(0);}
-	Z_INLINE_MEMBER	   operator Base&  () const {return *((Base *)this);}
-
-	Z_CT_MEMBER(CPP11) Boolean operator ==(const Value2D &rhs) const {return x == rhs.x && y == rhs.y;}
-	Z_CT_MEMBER(CPP11) Boolean operator !=(const Value2D &rhs) const {return x != rhs.x || y != rhs.y;}
-	Z_CT_MEMBER(CPP11) Boolean operator <=(const Value2D &rhs) const {return x <= rhs.x && y <= rhs.y;}
-	Z_CT_MEMBER(CPP11) Boolean operator >=(const Value2D &rhs) const {return x >= rhs.x && y >= rhs.y;}
-	Z_CT_MEMBER(CPP11) Boolean operator > (const Value2D &rhs) const {return x >  rhs.x && y >  rhs.y;}
-	Z_CT_MEMBER(CPP11) Boolean operator < (const Value2D &rhs) const {return x <  rhs.x && y <  rhs.y;}
-
-	Z_CT_MEMBER(CPP11) Value2D operator +(const Value2D &rhs) const {return Value2D(x + rhs.x, y + rhs.y);}
-	Z_CT_MEMBER(CPP11) Value2D operator -(const Value2D &rhs) const {return Value2D(x - rhs.x, y - rhs.y);}
-	Z_CT_MEMBER(CPP11) Value2D operator *(const Value2D &rhs) const {return Value2D(x * rhs.x, y * rhs.y);}
-	Z_CT_MEMBER(CPP11) Value2D operator /(const Value2D &rhs) const {return Value2D(x / rhs.x, y / rhs.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator +(const Value2D &rhs) const {return Value2D(this->x + rhs.x, this->y + rhs.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator -(const Value2D &rhs) const {return Value2D(this->x - rhs.x, this->y - rhs.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator *(const Value2D &rhs) const {return Value2D(this->x * rhs.x, this->y * rhs.y);}
+	Z_CT_MEMBER(CPP11) Value2D operator /(const Value2D &rhs) const {return Value2D(this->x / rhs.x, this->y / rhs.y);}
 
 	Z_INLINE_MEMBER Value2D &operator +=(const Value2D &rhs) {return *this = *this + rhs;}
 	Z_INLINE_MEMBER Value2D &operator -=(const Value2D &rhs) {return *this = *this - rhs;}
 	Z_INLINE_MEMBER Value2D &operator *=(const Value2D &rhs) {return *this = *this * rhs;}
 	Z_INLINE_MEMBER Value2D &operator /=(const Value2D &rhs) {return *this = *this / rhs;}
 
-	Z_CT_MEMBER(CPP11) Boolean operator ==(T rhs) const {return x == rhs && y == rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator !=(T rhs) const {return x != rhs || y != rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator <=(T rhs) const {return x <= rhs && y <= rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator >=(T rhs) const {return x >= rhs && y >= rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator > (T rhs) const {return x >  rhs && y >  rhs;}
-	Z_CT_MEMBER(CPP11) Boolean operator < (T rhs) const {return x <  rhs && y <  rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator ==(T rhs) const {return this->x == rhs && this->y == rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator !=(T rhs) const {return this->x != rhs || this->y != rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator <=(T rhs) const {return this->x <= rhs && this->y <= rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator >=(T rhs) const {return this->x >= rhs && this->y >= rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator > (T rhs) const {return this->x >  rhs && this->y >  rhs;}
+	Z_CT_MEMBER(CPP11) Boolean operator < (T rhs) const {return this->x <  rhs && this->y <  rhs;}
 
-	Z_CT_MEMBER(CPP11) Value2D operator +(T rhs) const {return Value2D(x + rhs, y + rhs);}
-	Z_CT_MEMBER(CPP11) Value2D operator -(T rhs) const {return Value2D(x - rhs, y - rhs);}
-	Z_CT_MEMBER(CPP11) Value2D operator *(T rhs) const {return Value2D(x * rhs, y * rhs);}
-	Z_CT_MEMBER(CPP11) Value2D operator /(T rhs) const {return Value2D(x / rhs, y / rhs);}
+	Z_CT_MEMBER(CPP11) Value2D operator +(T rhs) const {return Value2D(this->x + rhs, this->y + rhs);}
+	Z_CT_MEMBER(CPP11) Value2D operator -(T rhs) const {return Value2D(this->x - rhs, this->y - rhs);}
+	Z_CT_MEMBER(CPP11) Value2D operator *(T rhs) const {return Value2D(this->x * rhs, this->y * rhs);}
+	Z_CT_MEMBER(CPP11) Value2D operator /(T rhs) const {return Value2D(this->x / rhs, this->y / rhs);}
 
 	Z_INLINE_MEMBER Value2D &operator +=(T rhs) {return *this = *this + rhs;}
 	Z_INLINE_MEMBER Value2D &operator -=(T rhs) {return *this = *this - rhs;}
@@ -214,27 +205,27 @@ namespace Zeta {template <class T> struct Value2D : Partials::Value2D::Part<Valu
 
 #	ifdef Z_USE_CG_GEOMETRY
 
-		Z_CT_MEMBER(CPP11) Value2D(const CGPoint &point) : x(point.x),	  y(point.y)	 {}
-		Z_CT_MEMBER(CPP11) Value2D(const CGSize	 &size ) : x(size.width), y(size.height) {}
+		Z_CT_MEMBER(CPP11) Value2D(const CGPoint &point) {this->x = point.x;	this->y = point.y;    }
+		Z_CT_MEMBER(CPP11) Value2D(const CGSize	 &size ) {this->x = size.width; this->y = size.height;}
 
 
 		Z_CT_MEMBER(CPP14) operator CGPoint() const
 			{
-			CGPoint result = {CGFloat(x), CGFloat(y)};
+			CGPoint result = {CGFloat(this->x), CGFloat(this->y)};
 			return result;
 			}
 
 
 		Z_CT_MEMBER(CPP14) operator CGSize() const
 			{
-			CGSize result = {CGFloat(x), CGFloat(y)};
+			CGSize result = {CGFloat(this->x), CGFloat(this->y)};
 			return result;
 			}
 
 
 		Z_CT_MEMBER(CPP14) operator CGRect() const
 			{
-			CGRect result = {CGFloat(0), CGFloat(0), CGFloat(x), CGFloat(y)};
+			CGRect result = {CGFloat(0), CGFloat(0), CGFloat(this->x), CGFloat(this->y)};
 			return result;
 			}
 
@@ -247,27 +238,27 @@ namespace Zeta {template <class T> struct Value2D : Partials::Value2D::Part<Valu
 		 !defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 		  !NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
-		Z_CT_MEMBER(CPP11) Value2D(const NSPoint &point) : x(point.x),	  y(point.y)	 {}
-		Z_CT_MEMBER(CPP11) Value2D(const NSSize  &size ) : x(size.width), y(size.height) {}
+		Z_CT_MEMBER(CPP11) Value2D(const NSPoint &point) : {this->x = point.x;	  this->y = point.y;	}
+		Z_CT_MEMBER(CPP11) Value2D(const NSSize  &size ) : {this->x = size.width; this->y = size.height;}
 
 
 		Z_CT_MEMBER(CPP14) operator NSPoint() const
 			{
-			NSPoint result = {CGFloat(x), CGFloat(y)};
+			NSPoint result = {CGFloat(this->x), CGFloat(this->y)};
 			return result;
 			}
 
 
 		Z_CT_MEMBER(CPP14) operator NSSize() const
 			{
-			NSSize result = {CGFloat(x), CGFloat(y)};
+			NSSize result = {CGFloat(this->x), CGFloat(this->y)};
 			return result;
 			}
 
 
 		Z_CT_MEMBER(CPP14) operator NSRect() const
 			{
-			NSRect result = {CGFloat(0), CGFloat(0), CGFloat(x), CGFloat(y)};
+			NSRect result = {CGFloat(0), CGFloat(0), CGFloat(this->x), CGFloat(this->y)};
 			return result;
 			}
 
@@ -276,20 +267,20 @@ namespace Zeta {template <class T> struct Value2D : Partials::Value2D::Part<Valu
 
 #	ifdef Z_USE_COCOS2D_X
 
-		Z_INLINE_MEMBER Value2D(const cocos2d::Vec2 &point) : x(point.x),    y(point.y)	    {}
-		Z_INLINE_MEMBER Value2D(const cocos2d::Size &size ) : x(size.width), y(size.height) {}
+		Z_INLINE_MEMBER Value2D(const cocos2d::Vec2 &point) {this->x = point.x;    this->y = point.y;	 }
+		Z_INLINE_MEMBER Value2D(const cocos2d::Size &size ) {this->x = size.width; this->y = size.height;}
 
 
 		Z_INLINE_MEMBER operator cocos2d::Vec2() const
-			{return cocos2d::Vec2(float(x), float(y));}
+			{return cocos2d::Vec2(float(this->x), float(this->y));}
 
 
 		Z_INLINE_MEMBER operator cocos2d::Size() const
-			{return cocos2d::Size(float(x), float(y));}
+			{return cocos2d::Size(float(this->x), float(this->y));}
 
 
 		Z_INLINE_MEMBER operator cocos2d::Rect() const
-			{return cocos2d::Rect(0.0f, 0.0f, float(x),  float(y));}
+			{return cocos2d::Rect(0.0f, 0.0f, float(this->x), float(this->y));}
 
 #	endif
 
@@ -297,117 +288,117 @@ namespace Zeta {template <class T> struct Value2D : Partials::Value2D::Part<Valu
 	Z_CT_MEMBER(CPP11) Value2D clamp(const Value2D &minimum, const Value2D &maximum) const
 		{
 		return Value2D
-			(Zeta::clamp<T>(x, minimum.x, maximum.x),
-			 Zeta::clamp<T>(y, minimum.y, maximum.y));
+			(Zeta::clamp<T>(this->x, minimum.x, maximum.x),
+			 Zeta::clamp<T>(this->y, minimum.y, maximum.y));
 		}
 
 
 	Z_CT_MEMBER(CPP11) Value2D clamp(T minimum, T maximum) const
 		{
 		return Value2D
-			(Zeta::clamp<T>(x, minimum, maximum),
-			 Zeta::clamp<T>(y, minimum, maximum));
+			(Zeta::clamp<T>(this->x, minimum, maximum),
+			 Zeta::clamp<T>(this->y, minimum, maximum));
 		}
 
 
 	Z_CT_MEMBER(CPP11) T cross_product(const Value2D &other) const
-		{return x * other.y - y * other.x;}
+		{return this->x * other.y - this->y * other.x;}
 
 
 	Z_CT_MEMBER(CPP11) T dot_product(const Value2D &other) const
-		{return x * other.x + y * other.y;}
+		{return this->x * other.x + this->y * other.y;}
 
 
 	Z_CT_MEMBER(CPP11) Value2D fit(const Value2D &other) const
 		{
-		return y / x > other.y / other.x
-			? Value2D(x * other.y / y, other.y)
-			: Value2D(other.x, y * other.x / x);
+		return this->y / this->x > other.y / other.x
+			? Value2D(this->x * other.y / this->y, other.y)
+			: Value2D(other.x, this->y * other.x / this->x);
 		}
 
 
 	Z_CT_MEMBER(CPP11) Boolean has_zero() const
-		{return x == T(0) || y == T(0);}
+		{return this->x == T(0) || this->y == T(0);}
 
 
 	Z_CT_MEMBER(CPP11) T inner_maximum() const
-		{return Zeta::maximum<T>(x, y);}
+		{return Zeta::maximum<T>(this->x, this->y);}
 
 
 	Z_CT_MEMBER(CPP11) T inner_middle() const
-		{return (x + y) / T(2);}
+		{return (this->x + this->y) / T(2);}
 
 
 	Z_CT_MEMBER(CPP11) T inner_minimum() const
-		{return Zeta::minimum<T>(x, y);}
+		{return Zeta::minimum<T>(this->x, this->y);}
 
 
 	Z_CT_MEMBER(CPP11) T inner_product() const
-		{return x * y;}
+		{return this->x * this->y;}
 
 
 	Z_CT_MEMBER(CPP11) T inner_sum() const
-		{return x + y;}
+		{return this->x + this->y;}
 
 
 	Z_CT_MEMBER(CPP11) Boolean is_zero() const
-		{return x == T(0) && y == T(0);}
+		{return this->x == T(0) && this->y == T(0);}
 
 
 	Z_CT_MEMBER(CPP11) Value2D maximum(const Value2D &other) const
 		{
 		return Value2D
-			(Zeta::maximum<T>(x, other.x),
-			 Zeta::maximum<T>(y, other.y));
+			(Zeta::maximum<T>(this->x, other.x),
+			 Zeta::maximum<T>(this->y, other.y));
 		}
 
 
 	Z_CT_MEMBER(CPP11) Value2D middle(const Value2D &other) const
-		{return Value2D((x + other.x) / T(2), (y + other.y) / T(2));}
+		{return Value2D((this->x + other.x) / T(2), (this->y + other.y) / T(2));}
 
 
 	Z_CT_MEMBER(CPP11) Value2D minimum(const Value2D &other) const
 		{
 		return Value2D
-			(Zeta::minimum<T>(x, other.x),
-			 Zeta::minimum<T>(y, other.y));
+			(Zeta::minimum<T>(this->x, other.x),
+			 Zeta::minimum<T>(this->y, other.y));
 		}
 
 
 	Z_CT_MEMBER(CPP11) Value3D<T> nxy(T n) const
-		{return Value3D<T>(n, x, y);}
+		{return Value3D<T>(n, this->x, this->y);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D<T> nyx(T n) const
-		{return Value3D<T>(n, y, x);}
+		{return Value3D<T>(n, this->y, this->x);}
 
 
 	Z_CT_MEMBER(CPP11) T squared_length() const
-		{return x * x + y * y;}
+		{return this->x * this->x + this->y * this->y;}
 
 
 	Z_INLINE_MEMBER void swap(Value2D &other)
-		{Zeta::swap<Base>((Base *)this, (Base *)&other);}
+		{Zeta::swap<Value2D>(this, &other);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D<T> xny(T n) const
-		{return Value3D<T>(x, n, y);}
+		{return Value3D<T>(this->x, n, this->y);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D<T> xyn(T n) const
-		{return Value3D<T>(x, y, n);}
+		{return Value3D<T>(this->x, this->y, n);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D<T> ynx(T n) const
-		{return Value3D<T>(y, n, x);}
+		{return Value3D<T>(this->y, n, this->x);}
 
 
 	Z_CT_MEMBER(CPP11) Value2D yx() const
-		{return Value2D(y, x);}
+		{return Value2D(this->y, this->x);}
 
 
 	Z_CT_MEMBER(CPP11) Value3D<T> yxn(T n) const
-		{return Value3D<T>(y, x, n);}
+		{return Value3D<T>(this->y, this->x, n);}
 };}
 
 
