@@ -18,12 +18,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {template <class T> struct Range : ZTypeFixedNatural(ZRange, T) {
 
+	typedef typename ZTypeFixedNatural(ZRange, T) Base;
+
 	Z_INLINE_MEMBER Range() {}
 
 #	if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-		Z_CT_MEMBER(CPP11) Value2D(T x, T y)		 : Base{x,    y   } {}
-		Z_CT_MEMBER(CPP11) Value2D(T xy)		 : Base{xy,   xy  } {}
-		Z_CT_MEMBER(CPP11) Value2D(const Value3D<T> &xy) : Base{xy.x, xy.y} {}
+		Z_CT_MEMBER(CPP11) Range(T size)	  : Base{0,	size} {}
+		Z_CT_MEMBER(CPP11) Range(T index, T size) : Base{index, size} {}
 #	else
 		Z_INLINE_MEMBER Range(T size)	       {this->index = 0;     this->size = size;}
 		Z_INLINE_MEMBER Range(T index, T size) {this->index = index; this->size = size;}
@@ -67,11 +68,16 @@ namespace Zeta {template <class T> struct Range : ZTypeFixedNatural(ZRange, T) {
 
 #	if defined(Z_USE_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
-		Z_CT_MEMBER(CPP11) Range(const NSRange &range)
-			{
-			this->index = range.location;
-			this->size  = range.length;
-			}
+#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+			Z_CT_MEMBER(CPP11) Range(const NSRange &range)
+			: Base{range.location, range.length} {}
+#		else
+			Z_INLINE_MEMBER Range(const NSRange &range)
+				{
+				this->index = range.location;
+				this->size  = range.length;
+				}
+#		endif
 
 
 		Z_CT_MEMBER(CPP14) operator NSRange() const
@@ -104,7 +110,7 @@ namespace Zeta {template <class T> struct Range : ZTypeFixedNatural(ZRange, T) {
 
 
 	Z_INLINE_MEMBER void swap(Range &other)
-		{Zeta::swap<Range>(this, &other);}
+		{Zeta::swap<Base>(this, &other);}
 };}
 
 
