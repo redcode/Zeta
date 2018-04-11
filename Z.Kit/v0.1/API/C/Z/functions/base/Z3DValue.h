@@ -89,7 +89,7 @@ Z_INLINE Z3D##Type z_3d_##type##_divide_by_scalar(Z3D##Type object, z##type scal
 												\
 												\
 Z_INLINE z##type z_3d_##type##_dot_product(Z3D##Type a, Z3D##Type b)				\
-	{return a.x * b.x + a.y * b.y + a.y * b.y;}						\
+	{return a.x * b.x + a.y * b.y + a.z * b.z;}						\
 												\
 												\
 Z_INLINE Z3D##Type z_3d_##type##_fit(Z3D##Type object, Z3D##Type other)				\
