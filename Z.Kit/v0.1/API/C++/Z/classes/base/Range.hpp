@@ -56,7 +56,7 @@ namespace Zeta {template <class T> struct Range : ZTypeFixedNatural(ZRange, T) {
 	Z_INLINE_MEMBER Range &operator &=(const Range &rhs) {return *this = *this & rhs;}
 	Z_INLINE_MEMBER Range &operator |=(const Range &rhs) {return *this = *this | rhs;}
 
-	Z_CT_MEMBER(CPP11) T  operator [](T index) const {return this->index + index;}
+	Z_CT_MEMBER(CPP11) T operator [](T index) const {return this->index + index;}
 
 
 #	if defined(Z_USE_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
