@@ -187,13 +187,15 @@ namespace Zeta {template <class T> struct Value2D
 	Z_INLINE_MEMBER Value2D() {}
 
 #	if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-		Z_CT_MEMBER(CPP11) Value2D(T x, T y)		 : Super(x,    y   ) {}
-		Z_CT_MEMBER(CPP11) Value2D(T xy)		 : Super(xy,   xy  ) {}
-		Z_CT_MEMBER(CPP11) Value2D(const Value3D<T> &xy) : Super(xy.x, xy.y) {}
+		Z_CT_MEMBER(CPP11) Value2D(T x, T y)		 : Super(x,	  y	 ) {}
+		Z_CT_MEMBER(CPP11) Value2D(T xy)		 : Super(xy,	  xy	 ) {}
+		Z_CT_MEMBER(CPP11) Value2D(const Value3D<T> &xy) : Super(xy.x,	  xy.y	 ) {}
+		Z_CT_MEMBER(CPP11) Value2D(const Base &other)    : Super(other.x, other.y) {}
 #	else
 		Z_INLINE_MEMBER Value2D(T x, T y)	      {this->x = x;    this->y = y;   }
 		Z_INLINE_MEMBER Value2D(T xy)		      {this->x = xy;   this->y = xy;  }
 		Z_INLINE_MEMBER Value2D(const Value3D<T> &xy) {this->x = xy.x; this->y = xy.y;}
+		Z_INLINE_MEMBER Value2D(const Base &other)    {*(Base *)this = other;}
 #	endif
 
 	Z_CT_MEMBER(CPP11) operator Boolean() const {return this->x != T(0) || this->y != T(0);}
