@@ -16,11 +16,11 @@ namespace Zeta {
 	// MARK: - Functions for any type
 
 
-	template <class T> Z_INLINE void swap(T *a, T *b)
+	template <class T> Z_INLINE void swap(void *a, void *b)
 		{
-		T t = *a;
-		*a = *b;
-		*b = t;
+		T t = *(T *)a;
+		*(T *)a = *(T *)b;
+		*(T *)b = t;
 		}
 
 
