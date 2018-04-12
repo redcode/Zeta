@@ -17,56 +17,52 @@ namespace Zeta {namespace Partials {namespace Value3D {
 
 #	define Z_THIS ((Value3D *)this)
 
-	template <class Base, class Value3D, class T, UInt T_number_set> struct Part;
+	template <class Value3D, class T, UInt T_number_set> struct Part;
 
 
-	template <class Base, class Value3D, class T> struct Signed : Base {
+	template <class Value3D, class T>
+	struct Part<Value3D, T, Z_NUMBER_SET_N> {
+		T x, y, z;
 
-#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-			Z_INLINE_MEMBER	   Signed() {}
-			Z_CT_MEMBER(CPP11) Signed(T x, T y, T z) : Base{x, y, z} {}
-#		endif
+		Z_INLINE_MEMBER	   Signed() {}
+		Z_CT_MEMBER(CPP11) Signed(T x, T y, T z) : x(x), y(y), z(z) {}
+	};
+
+
+	template <class Value3D, class T> struct Signed {
+		T x, y, z;
+
+		Z_INLINE_MEMBER	   Signed() {}
+		Z_CT_MEMBER(CPP11) Signed(T x, T y, T z) : x(x), y(y), z(z) {}
 
 
 		Z_CT_MEMBER(CPP11) Value3D absolute() const
 			{
 			return Value3D
-				(Zeta::absolute<T>(this->x),
-				 Zeta::absolute<T>(this->y),
-				 Zeta::absolute<T>(this->z));
+				(Zeta::absolute<T>(x),
+				 Zeta::absolute<T>(y),
+				 Zeta::absolute<T>(z));
 			}
 
 
 		Z_CT_MEMBER(CPP11) Boolean has_negative() const
-			{return this->x < T(0) || this->y < T(0) || this->z < T(0);}
+			{return x < T(0) || y < T(0) || z < T(0);}
 
 
 		Z_CT_MEMBER(CPP11) Boolean is_negative() const
-			{return this->x < T(0) && this->y < T(0) && this->z < T(0);}
+			{return x < T(0) && y < T(0) && z < T(0);}
 
 
 		Z_CT_MEMBER(CPP11) Value3D negative() const
-			{return Value3D(-this->x, -this->y, -this->z);}
+			{return Value3D(-x, -y, -z);}
 	};
 
 
-	template <class Base, class Value3D, class T>
-	struct Part<Base, Value3D, T, Z_NUMBER_SET_N> : Base {
+	template <class Value3D, class T>
+	struct Part<Value3D, T, Z_NUMBER_SET_Z> : Signed<Value3D, T> {
 
-#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-			Z_INLINE_MEMBER	   Part() {}
-			Z_CT_MEMBER(CPP11) Part(T x, T y, T z) : Base{x, y, z} {}
-#		endif
-	};
-
-
-	template <class Base, class Value3D, class T>
-	struct Part<Base, Value3D, T, Z_NUMBER_SET_Z> : Signed<Base, Value3D, T> {
-
-#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-			Z_INLINE_MEMBER	   Part() {}
-			Z_CT_MEMBER(CPP11) Part(T x, T y, T z) : Signed<Base, Value3D, T>(x, y, z) {}
-#		endif
+		Z_INLINE_MEMBER	   Part() {}
+		Z_CT_MEMBER(CPP11) Part(T x, T y, T z) : Signed<Value3D, T>(x, y, z) {}
 
 
 		Z_CT_MEMBER(CPP11) Boolean is_perpendicular(const Value3D &other) const
@@ -74,13 +70,11 @@ namespace Zeta {namespace Partials {namespace Value3D {
 	};
 
 
-	template <class Base, class Value3D, class T>
-	struct Part<Base, Value3D, T, Z_NUMBER_SET_R> : Signed<Base, Value3D, T> {
+	template <class Value3D, class T>
+	struct Part<Value3D, T, Z_NUMBER_SET_R> : Signed<Value3D, T> {
 
-#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-			Z_INLINE_MEMBER	   Part() {}
-			Z_CT_MEMBER(CPP11) Part(T x, T y) : Signed<Base, Value3D, T>(x, y, z) {}
-#		endif
+		Z_INLINE_MEMBER	   Part() {}
+		Z_CT_MEMBER(CPP11) Part(T x, T y, T z) : Signed<Value3D, T>(x, y, z) {}
 
 
 		Z_CT_MEMBER(CPP11) Value3D clamp_01() const
@@ -195,33 +189,23 @@ namespace Zeta {namespace Partials {namespace Value3D {
 }}}
 
 
-namespace Zeta {template <class T> struct Value3D
-: Partials::Value3D::Part<typename ZTypeFixedNumber(Z3D, T), Value3D<T>, T, Type<T>::number_set> {
+namespace Zeta {template <class T> struct Value3D : Partials::Value3D::Part<Value3D<T>, T, Type<T>::number_set> {
 
 	typedef typename ZTypeFixedNumber(Z3D, T) Base;
 	typedef Partials::Value3D::Part<Base, Value3D, T, Type<T>::number_set> Super;
 
 	Z_INLINE_MEMBER Value3D() {}
 
-#	if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-		Z_CT_MEMBER(CPP11) Value3D(T x, T y, T z)	      : Super(x,       y,	z      ) {}
-		Z_CT_MEMBER(CPP11) Value3D(T x, T y)		      : Super(x,       y,	T(0)   ) {}
-		Z_CT_MEMBER(CPP11) Value3D(T xyz)		      : Super(xyz,     xyz,	xyz    ) {}
-		Z_CT_MEMBER(CPP11) Value3D(const Value2D<T> &xy)      : Super(xy.x,    xy.y,	T(0)   ) {}
-		Z_CT_MEMBER(CPP11) Value3D(const Value2D<T> &xy, T z) : Super(xy.x,    xy.y,	z      ) {}
-		Z_CT_MEMBER(CPP11) Value3D(T x, const Value2D<T> &yz) : Super(x,       yz.x,	yz.y   ) {}
-		Z_CT_MEMBER(CPP11) Value3D(const Base &other)	      : Super(other.x, other.y, other.z) {}
-#	else
-		Z_INLINE_MEMBER Value3D(T x, T y, T z)		   {this->x = x;    this->y = y;    this->z = z;   }
-		Z_INLINE_MEMBER Value3D(T x, T y)		   {this->x = x;    this->y = y;    this->z = T(0);}
-		Z_INLINE_MEMBER Value3D(T xyz)			   {this->x = xyz;  this->y = xyz;  this->z = xyz; }
-		Z_INLINE_MEMBER Value3D(const Value2D<T> &xy)	   {this->x = xy.x; this->y = xy.y; this->z = T(0);}
-		Z_INLINE_MEMBER Value3D(const Value2D<T> &xy, T z) {this->x = xy.x; this->y = xy.y; this->z = z;   }
-		Z_INLINE_MEMBER Value3D(T x, const Value2D<T> &yz) {this->x = x;    this->y = yz.x; this->z = yz.y;}
-		Z_INLINE_MEMBER Value3D(const Base &other)	   {*(Base *)this = other;}
-#	endif
+	Z_CT_MEMBER(CPP11) Value3D(T x, T y, T z)	      : Super(x,       y,	z      ) {}
+	Z_CT_MEMBER(CPP11) Value3D(T x, T y)		      : Super(x,       y,	T(0)   ) {}
+	Z_CT_MEMBER(CPP11) Value3D(T xyz)		      : Super(xyz,     xyz,	xyz    ) {}
+	Z_CT_MEMBER(CPP11) Value3D(const Value2D<T> &xy)      : Super(xy.x,    xy.y,	T(0)   ) {}
+	Z_CT_MEMBER(CPP11) Value3D(const Value2D<T> &xy, T z) : Super(xy.x,    xy.y,	z      ) {}
+	Z_CT_MEMBER(CPP11) Value3D(T x, const Value2D<T> &yz) : Super(x,       yz.x,	yz.y   ) {}
+	Z_CT_MEMBER(CPP11) Value3D(const Base &other)	      : Super(other.x, other.y, other.z) {}
 
 	Z_CT_MEMBER(CPP11) operator Boolean() const {return this->x != T(0) || this->y != T(0) || this->z != T(0);}
+	Z_INLINE_MEMBER	   operator Base&  () const {return *((Base *)this);}
 
 	Z_CT_MEMBER(CPP11) Boolean operator ==(const Value3D &rhs) const {return this->x == rhs.x && this->y == rhs.y && this->z == rhs.z;}
 	Z_CT_MEMBER(CPP11) Boolean operator !=(const Value3D &rhs) const {return this->x != rhs.x || this->y != rhs.y || this->z != rhs.z;}
