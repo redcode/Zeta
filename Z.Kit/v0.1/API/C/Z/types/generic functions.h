@@ -190,15 +190,16 @@ Z_TYPES_GENERIC_FUNCTIONS(SInt32, zsint32*, zsint32 value)
 
 Z_TYPES_GENERIC_FUNCTIONS(Pointer, ZPointer, void *pointer)
 
-typedef zsint (* ZCompare8Bit	       )(Z8Bit	 a, Z8Bit   b		 );
+typedef zsint (* ZCompare8Bit  )(Z8Bit	 a, Z8Bit   b);
+typedef zsint (* ZCompare16Bit )(Z16Bit	 a, Z16Bit  b);
+typedef zsint (* ZCompare32Bit )(Z32Bit	 a, Z32Bit  b);
+typedef zsint (* ZCompare64Bit )(Z64Bit	 a, Z64Bit  b);
+typedef zsint (* ZCompare128Bit)(Z128Bit a, Z128Bit b);
+
 typedef zsint (* ZCompare8BitWithData  )(Z8Bit	 a, Z8Bit   b, void *data);
-typedef zsint (* ZCompare16Bit	       )(Z16Bit	 a, Z16Bit  b		 );
 typedef zsint (* ZCompare16BitWithData )(Z16Bit	 a, Z16Bit  b, void *data);
-typedef zsint (* ZCompare32Bit	       )(Z32Bit	 a, Z32Bit  b		 );
 typedef zsint (* ZCompare32BitWithData )(Z32Bit	 a, Z32Bit  b, void *data);
-typedef zsint (* ZCompare64Bit	       )(Z64Bit	 a, Z64Bit  b		 );
 typedef zsint (* ZCompare64BitWithData )(Z64Bit	 a, Z64Bit  b, void *data);
-typedef zsint (* ZCompare128Bit	       )(Z128Bit a, Z128Bit b		 );
 typedef zsint (* ZCompare128BitWithData)(Z128Bit a, Z128Bit b, void *data);
 
 #endif /* __Z_types_generic_functions_H__ */
