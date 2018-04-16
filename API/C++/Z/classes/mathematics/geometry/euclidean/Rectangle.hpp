@@ -240,15 +240,25 @@ namespace Zeta {template <class T> struct Rectangle : Partials::Rectangle::Part<
 		: Super(rectangle.origin, rectangle.size) {}
 
 
-		Z_CT_MEMBER(CPP14) operator CGRect() const
-			{
-			CGRect result = {
-				{CGFloat(this->point.x), CGFloat(this->point.y)},
-				{CGFloat(this->size.x),  CGFloat(this->size.y)}
-			};
+#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
 
-			return result;
-			}
+			Z_CT_MEMBER(CPP11) operator CGRect() const
+				{
+				return {{CGFloat(this->point.x), CGFloat(this->point.y)},
+					{CGFloat(this->size.x),	 CGFloat(this->size.y)}};
+				}
+
+#		else
+			Z_CT_MEMBER(CPP14) operator CGRect() const
+				{
+				CGRect result = {
+					{CGFloat(this->point.x), CGFloat(this->point.y)},
+					{CGFloat(this->size.x),	 CGFloat(this->size.y)}
+				};
+
+				return result;
+				}
+#		endif
 #	endif
 
 
@@ -262,15 +272,25 @@ namespace Zeta {template <class T> struct Rectangle : Partials::Rectangle::Part<
 		: Super(rectangle.origin, rectangle.size) {}
 
 
-		Z_CT_MEMBER(CPP14) operator NSRect() const
-			{
-			NSRect result = {
-				{CGFloat(this->point.x), CGFloat(this->point.y)},
-				{CGFloat(this->size.x),	 CGFloat(this->size.y)}
-			};
+#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
 
-			return result;
-			}
+			Z_CT_MEMBER(CPP11) operator NSRect() const
+				{
+				return {{CGFloat(this->point.x), CGFloat(this->point.y)},
+					{CGFloat(this->size.x),	 CGFloat(this->size.y)}};
+				}
+
+#		else
+			Z_CT_MEMBER(CPP14) operator NSRect() const
+				{
+				NSRect result = {
+					{CGFloat(this->point.x), CGFloat(this->point.y)},
+					{CGFloat(this->size.x),	 CGFloat(this->size.y)}
+				};
+
+				return result;
+				}
+#		endif
 #	endif
 
 

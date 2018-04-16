@@ -28,16 +28,16 @@ namespace Zeta {template <class T> struct Range {
 	Z_CT_MEMBER(CPP11) Range(T index, T size)   : index(index),	  size(size)	   {}
 	Z_CT_MEMBER(CPP11) Range(const Base &other) : index(other.index), size(other.size) {}
 
-	Z_CT_MEMBER(CPP11) operator Boolean() const {return !!this->size;}
+	Z_CT_MEMBER(CPP11) operator Boolean() const {return !!size;}
 	Z_INLINE_MEMBER	   operator Base&  () const {return *((Base *)this);}
 
 
 	Z_CT_MEMBER(CPP11) Boolean operator ==(const Range &rhs) const
-		{return this->index == rhs.index && this->size == rhs.size;}
+		{return index == rhs.index && size == rhs.size;}
 
 
 	Z_CT_MEMBER(CPP11) Boolean operator !=(const Range &rhs) const
-		{return this->index != rhs.index || this->size != rhs.size;}
+		{return index != rhs.index || size != rhs.size;}
 
 
 	Z_CT_MEMBER(CPP14) Range operator &(const Range &rhs) const
@@ -67,28 +67,26 @@ namespace Zeta {template <class T> struct Range {
 
 #	if defined(Z_USE_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
+		Z_CT_MEMBER(CPP11) Range(const NSRange &range)
+		: index(range.location), size(range.length) {}
+
+
 #		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
-			Z_CT_MEMBER(CPP11) Range(const NSRange &range)
-			: Base{range.location, range.length} {}
+			Z_CT_MEMBER(CPP11) operator NSRange() const
+				{return NSRange{NSUInteger(index), NSUInteger(size)};}
 #		else
-			Z_INLINE_MEMBER Range(const NSRange &range)
+			Z_CT_MEMBER(CPP14) operator NSRange() const
 				{
-				this->index = range.location;
-				this->size  = range.length;
+				NSRange result = {NSUInteger(index), NSUInteger(size)};
+				return result;
 				}
-#		endif
+#		end
 
-
-		Z_CT_MEMBER(CPP14) operator NSRange() const
-			{
-			NSRange result = {NSUInteger(this->index), NSUInteger(this->size)};
-			return result;
-			}
 #	endif
 
 
 	Z_CT_MEMBER(CPP11) Boolean contains(const Range &other) const
-		{return other.index >= this->index && other.end() <= end();}
+		{return other.index >= index && other.end() <= end();}
 
 
 	Z_CT_MEMBER(CPP11) Boolean contains(T index) const
@@ -96,15 +94,15 @@ namespace Zeta {template <class T> struct Range {
 
 
 	Z_CT_MEMBER(CPP11) T end() const
-		{return this->index + this->size;}
+		{return index + size;}
 
 
 	Z_CT_MEMBER(CPP11) Boolean intersects(const Range &other) const
-		{return	this->index < other.end() && other.index < end();}
+		{return	index < other.end() && other.index < end();}
 
 
 	Z_CT_MEMBER(CPP11) Boolean is_zero() const
-		{return !this->index && !this->size;}
+		{return !index && !size;}
 
 
 	Z_INLINE_MEMBER void swap(Range &other)

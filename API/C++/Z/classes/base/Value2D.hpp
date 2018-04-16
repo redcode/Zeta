@@ -216,25 +216,41 @@ namespace Zeta {template <class T> struct Value2D : Partials::Value2D::Part<Valu
 		Z_CT_MEMBER(CPP11) Value2D(const CGSize  &size ) : Super(size.width, size.height) {}
 
 
-		Z_CT_MEMBER(CPP14) operator CGPoint() const
-			{
-			CGPoint result = {CGFloat(this->x), CGFloat(this->y)};
-			return result;
-			}
+#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+
+			Z_CT_MEMBER(CPP11) operator CGPoint() const
+				{return {CGFloat(this->x), CGFloat(this->y)};
 
 
-		Z_CT_MEMBER(CPP14) operator CGSize() const
-			{
-			CGSize result = {CGFloat(this->x), CGFloat(this->y)};
-			return result;
-			}
+			Z_CT_MEMBER(CPP11) operator CGSize() const
+				{return {CGFloat(this->x), CGFloat(this->y)};
 
 
-		Z_CT_MEMBER(CPP14) operator CGRect() const
-			{
-			CGRect result = {CGFloat(0), CGFloat(0), CGFloat(this->x), CGFloat(this->y)};
-			return result;
-			}
+			Z_CT_MEMBER(CPP11) operator CGRect() const
+				{return {{CGFloat(0), CGFloat(0)}, {CGFloat(this->x), CGFloat(this->y)}};}
+
+#		else
+			Z_CT_MEMBER(CPP14) operator CGPoint() const
+				{
+				CGPoint result = {CGFloat(this->x), CGFloat(this->y)};
+				return result;
+				}
+
+
+			Z_CT_MEMBER(CPP14) operator CGSize() const
+				{
+				CGSize result = {CGFloat(this->x), CGFloat(this->y)};
+				return result;
+				}
+
+
+			Z_CT_MEMBER(CPP14) operator CGRect() const
+				{
+				CGRect result = {CGFloat(0), CGFloat(0), CGFloat(this->x), CGFloat(this->y)};
+				return result;
+				}
+#		endif
+
 #	endif
 
 
@@ -248,25 +264,41 @@ namespace Zeta {template <class T> struct Value2D : Partials::Value2D::Part<Valu
 		Z_CT_MEMBER(CPP11) Value2D(const NSSize  &size ) : Super(size.width, size.height) {}
 
 
-		Z_CT_MEMBER(CPP14) operator NSPoint() const
-			{
-			NSPoint result = {CGFloat(this->x), CGFloat(this->y)};
-			return result;
-			}
+#		if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
+
+			Z_CT_MEMBER(CPP11) operator NSPoint() const
+				{return {CGFloat(this->x), CGFloat(this->y)};
 
 
-		Z_CT_MEMBER(CPP14) operator NSSize() const
-			{
-			NSSize result = {CGFloat(this->x), CGFloat(this->y)};
-			return result;
-			}
+			Z_CT_MEMBER(CPP11) operator NSSize() const
+				{return {CGFloat(this->x), CGFloat(this->y)};
 
 
-		Z_CT_MEMBER(CPP14) operator NSRect() const
-			{
-			NSRect result = {CGFloat(0), CGFloat(0), CGFloat(this->x), CGFloat(this->y)};
-			return result;
-			}
+			Z_CT_MEMBER(CPP11) operator NSRect() const
+				{return {{CGFloat(0), CGFloat(0)}, {CGFloat(this->x), CGFloat(this->y)}};}
+
+#		else
+			Z_CT_MEMBER(CPP14) operator NSPoint() const
+				{
+				NSPoint result = {CGFloat(this->x), CGFloat(this->y)};
+				return result;
+				}
+
+
+			Z_CT_MEMBER(CPP14) operator NSSize() const
+				{
+				NSSize result = {CGFloat(this->x), CGFloat(this->y)};
+				return result;
+				}
+
+
+			Z_CT_MEMBER(CPP14) operator NSRect() const
+				{
+				NSRect result = {CGFloat(0), CGFloat(0), CGFloat(this->x), CGFloat(this->y)};
+				return result;
+				}
+#		endif
+
 #	endif
 
 
