@@ -18,23 +18,23 @@ namespace Zeta {template <class T1, class T2> struct Pair {
 	T1 first;
 	T2 second;
 
-	Z_INLINE_MEMBER Pair() {}
+	Z_INLINE Pair() {}
 
-	Z_CT_MEMBER(CPP11) Pair(
+	Z_CT(CPP11) Pair(
 		typename Type<T1>::to_forwardable first,
 		typename Type<T2>::to_forwardable second
 	) : first(first), second(second) {}
 
 
-	Z_CT_MEMBER(CPP11) Boolean operator ==(const Pair &pair) const
+	Z_CT(CPP11) Boolean operator ==(const Pair &pair) const
 		{return first == pair.first && second == pair.second;}
 
 
-	Z_CT_MEMBER(CPP11) Boolean operator !=(const Pair &pair) const
+	Z_CT(CPP11) Boolean operator !=(const Pair &pair) const
 		{return first != pair.first || second != pair.second;}
 
 
-	Z_INLINE_MEMBER void swap(Pair &pair)
+	Z_INLINE void swap(Pair &pair)
 		{
 		Zeta::swap<typename Type<Pair>::to_opaque>
 			((typename Type<Pair>::to_opaque *)this,

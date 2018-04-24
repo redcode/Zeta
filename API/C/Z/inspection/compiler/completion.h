@@ -575,18 +575,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_HAS_ATTRIBUTE_WEAK FALSE
 #endif
 
-/* MARK: - Attributes (C++ only) */
-
-#ifdef __cplusplus
-
-#	ifdef Z_COMPILER_ATTRIBUTE_INLINE_MEMBER
-#		define Z_COMPILER_HAS_ATTRIBUTE_INLINE_MEMBER TRUE
-#	else
-#		define Z_COMPILER_HAS_ATTRIBUTE_INLINE_MEMBER FALSE
-#	endif
-
-#endif
-
 /* MARK: - Built-in constants */
 
 #ifdef Z_COMPILER_CONSTANT_FLOAT16_INFINITY

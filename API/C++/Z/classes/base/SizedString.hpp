@@ -18,7 +18,7 @@ namespace Zeta {namespace Detail {namespace SizedString {
 		Char _character;
 
 		public:
-		Z_CT_MEMBER(CPP11) Element(const Char *string)
+		Z_CT(CPP11) Element(const Char *string)
 		: Element<I - 1>(string), _character(string[I]) {}
 	};
 
@@ -28,7 +28,7 @@ namespace Zeta {namespace Detail {namespace SizedString {
 		Char _character;
 
 		public:
-		Z_CT_MEMBER(CPP11) Element(const Char *string)
+		Z_CT(CPP11) Element(const Char *string)
 		: _character(string[0]) {}
 	};
 }}}
@@ -41,10 +41,10 @@ namespace Zeta {
 		Char _null_character;
 
 		public:
-		Z_CT_MEMBER(CPP11) SizedString(const Char *string)
+		Z_CT(CPP11) SizedString(const Char *string)
 		: Detail::SizedString::Element<S - 1>(string), _null_character('\0') {}
 
-		Z_INLINE_MEMBER operator const Char *() const
+		Z_INLINE operator const Char *() const
 			{return &this->Detail::SizedString::Element<0>::_character;}
 	};
 
@@ -54,10 +54,10 @@ namespace Zeta {
 		Char _null_character;
 
 		public:
-		Z_CT_MEMBER(CPP11) SizedString(const Char *string)
+		Z_CT(CPP11) SizedString(const Char *string)
 		: _null_character('\0') {}
 
-		Z_INLINE_MEMBER operator const Char *() const
+		Z_INLINE operator const Char *() const
 			{return &_null_character;}
 	};
 }

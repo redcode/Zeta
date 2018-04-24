@@ -16,17 +16,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 		template <class T>
-		Z_CT(CPP14) T &&forwardable(typename Type<T>::remove_reference &what) Z_NO_EXCEPTION
+		static Z_CT(CPP14) T &&forwardable(typename Type<T>::remove_reference &what) Z_NO_EXCEPTION
 			{return static_cast<T &&>(what);}
 
 
 		template <class T>
-		Z_CT(CPP14) T &&forwardable(typename Type<T>::remove_reference &&what) Z_NO_EXCEPTION
+		static Z_CT(CPP14) T &&forwardable(typename Type<T>::remove_reference &&what) Z_NO_EXCEPTION
 			{return static_cast<T &&>(what);}
 
 
 		template <class T>
-		Z_CT(CPP14) typename Type<T>::remove_reference &&movable(T &&what) Z_NO_EXCEPTION
+		static Z_CT(CPP14) typename Type<T>::remove_reference &&movable(T &&what) Z_NO_EXCEPTION
 			{return static_cast<typename Type<T>::remove_reference &&>(what);}
 
 

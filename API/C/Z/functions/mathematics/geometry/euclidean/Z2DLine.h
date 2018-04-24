@@ -9,53 +9,59 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_functions_mathematics_geometry_euclidean_Z2DLine_H__
 
 #include <Z/functions/mathematics/geometry/euclidean/constructors.h>
-#include <Z/functions/base/Z2DValue.h>
+#include <Z/functions/base/Z2D.h>
 
 
 /* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_2D_LINE_COMMON(Type, type)					 \
-											 \
-											 \
-Z_INLINE zboolean z_2d_line_##type##_are_equal(Z2DLine##Type a, Z2DLine##Type b)	 \
-	{return z_2d_##type##_are_equal(a.a, b.a) && z_2d_##type##_are_equal(a.b, b.b);} \
-											 \
-											 \
-Z_INLINE zboolean z_2d_line_##type##_are_perpendicular(Z2DLine##Type a, Z2DLine##Type b) \
-	{										 \
-	return z_2d_##type##_are_perpendicular						 \
-		(z_2d_##type##_subtract(a.b, a.a), z_2d_##type##_subtract(b.b, b.a));	 \
-	}										 \
-											 \
-											 \
-Z_INLINE zboolean z_2d_line_##type##_is_zero(Z2DLine##Type object)			 \
-	{return z_2d_##type##_is_zero(object.a) && z_2d_##type##_is_zero(object.b);}	 \
-											 \
-											 \
-Z_INLINE Z2DLine##Type z_2d_line_##type##_reverse(Z2DLine##Type object)			 \
-	{return z_2d_line_##type(object.b.x, object.b.y, object.a.x, object.a.y);}	 \
-											 \
-											 \
-Z_INLINE void z_2d_line_##type##_swap(Z2DLine##Type *a, Z2DLine##Type *b)		 \
-	{										 \
-	Z2DLine##Type t = *a;								 \
-											 \
-	*a = *b; *b = t;								 \
-	}										 \
-											 \
-											 \
-Z_INLINE ZAABR##Type z_2d_line_segment_##type##_aabr(Z2DLine##Type object)		 \
-	{										 \
-	return z_aabr_##type								 \
-		(z_##type##_minimum(object.a.x, object.b.x),				 \
-		 z_##type##_minimum(object.a.y, object.b.y),				 \
-		 z_##type##_maximum(object.a.x, object.b.x),				 \
-		 z_##type##_maximum(object.a.y, object.b.y));		 		 \
-	}										 \
-											 \
-											 \
-Z_INLINE Z2D##Type z_2d_line_segment_##type##_center(Z2DLine##Type object)		 \
+#define Z_IMPLEMENTATION_COMMON(Type, type)							\
+												\
+static Z_INLINE											\
+zboolean z_2d_line_##type##_are_equal(Z2DLine##Type a, Z2DLine##Type b)				\
+	{return z_2d_##type##_are_equal(a.a, b.a) && z_2d_##type##_are_equal(a.b, b.b);}	\
+												\
+												\
+static Z_INLINE											\
+zboolean z_2d_line_##type##_are_perpendicular(Z2DLine##Type a, Z2DLine##Type b)			\
+	{											\
+	return z_2d_##type##_are_perpendicular							\
+		(z_2d_##type##_subtract(a.b, a.a), z_2d_##type##_subtract(b.b, b.a));		\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_2d_line_##type##_is_zero(Z2DLine##Type object)					\
+	{return z_2d_##type##_is_zero(object.a) && z_2d_##type##_is_zero(object.b);}		\
+												\
+												\
+static Z_INLINE											\
+Z2DLine##Type z_2d_line_##type##_reverse(Z2DLine##Type object)					\
+	{return z_2d_line_##type(object.b.x, object.b.y, object.a.x, object.a.y);}		\
+												\
+												\
+static Z_INLINE											\
+void z_2d_line_##type##_swap(Z2DLine##Type *a, Z2DLine##Type *b)				\
+	{											\
+	Z2DLine##Type t = *a;									\
+												\
+	*a = *b; *b = t;									\
+	}											\
+												\
+												\
+static Z_INLINE											\
+ZAABR##Type z_2d_line_segment_##type##_aabr(Z2DLine##Type object)				\
+	{											\
+	return z_aabr_##type									\
+		(z_##type##_minimum(object.a.x, object.b.x),					\
+		 z_##type##_minimum(object.a.y, object.b.y),					\
+		 z_##type##_maximum(object.a.x, object.b.x),					\
+		 z_##type##_maximum(object.a.y, object.b.y));					\
+	}											\
+												\
+												\
+static Z_INLINE											\
+Z2D##Type z_2d_line_segment_##type##_center(Z2DLine##Type object)				\
 	{return z_2d_##type##_middle(object.a, object.b);}
 
 
@@ -71,23 +77,24 @@ Z_INLINE Z2D##Type z_2d_line_segment_##type##_center(Z2DLine##Type object)		 \
 /* MARK: - Partial implementation for real types */
 
 
-#define Z_IMPLEMENTATION_2D_LINE_REAL(Type, type)					\
-											\
-											\
-Z_INLINE zboolean z_2d_line_segment_##type##_intersect(Z2DLine##Type a, Z2DLine##Type b)\
-	{										\
-	Z2D##Type d  = z_2d_##type##_subtract(b.a, a.a);				\
-	Z2D##Type va = z_2d_##type##_subtract(a.b, a.a);				\
-	Z2D##Type vb = z_2d_##type##_subtract(b.b, b.a);				\
-	z##type	  c  = z_2d_##type##_cross_product(va, vb);				\
-	z##type	  t  = z_2d_##type##_cross_product(d, vb) / c;				\
-	z##type	  u  = z_2d_##type##_cross_product(d, va) / c;				\
-											\
-	return !(t < (z##type)0 || t > (z##type)1 || u < (z##type)0 || u > (z##type)1);	\
-	}										\
-											\
-											\
-Z_INLINE Z2D##Type z_2d_line_segment_##type##_lerp(Z2DLine##Type object, z##type alpha)	\
+#define Z_IMPLEMENTATION_REAL(Type, type)							\
+												\
+static Z_INLINE											\
+zboolean z_2d_line_segment_##type##_intersect(Z2DLine##Type a, Z2DLine##Type b)			\
+	{											\
+	Z2D##Type d  = z_2d_##type##_subtract(b.a, a.a);					\
+	Z2D##Type va = z_2d_##type##_subtract(a.b, a.a);					\
+	Z2D##Type vb = z_2d_##type##_subtract(b.b, b.a);					\
+	z##type	  c  = z_2d_##type##_cross_product(va, vb);					\
+	z##type	  t  = z_2d_##type##_cross_product(d, vb) / c;					\
+	z##type	  u  = z_2d_##type##_cross_product(d, va) / c;					\
+												\
+	return !(t < (z##type)0 || t > (z##type)1 || u < (z##type)0 || u > (z##type)1);		\
+	}											\
+												\
+												\
+static Z_INLINE											\
+Z2D##Type z_2d_line_segment_##type##_lerp(Z2DLine##Type object, z##type alpha)			\
 	{return z_2d_##type##_lerp(object.a, object.b, alpha);}
 
 
@@ -98,52 +105,59 @@ Z_INLINE Z2D##Type z_2d_line_segment_##type##_lerp(Z2DLine##Type object, z##type
 /* MARK: - Implementation expansions */
 
 
-Z_IMPLEMENTATION_2D_LINE_COMMON(SInt8,	sint8 )
-Z_IMPLEMENTATION_2D_LINE_COMMON(SInt16, sint16)
-Z_IMPLEMENTATION_2D_LINE_COMMON(SInt32, sint32)
+Z_IMPLEMENTATION_COMMON(SInt8,	sint8 )
+Z_IMPLEMENTATION_COMMON(SInt16, sint16)
+Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 
 #ifdef Z_SINT64
-	Z_IMPLEMENTATION_2D_LINE_COMMON(SInt64, sint64)
+	Z_IMPLEMENTATION_COMMON(SInt64, sint64)
 #endif
 
 #ifdef Z_SINT128
-	Z_IMPLEMENTATION_2D_LINE_COMMON(SInt128, sint128)
+	Z_IMPLEMENTATION_COMMON(SInt128, sint128)
 #endif
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_2D_LINE_COMMON(Float16, float16)
-	Z_IMPLEMENTATION_2D_LINE_REAL  (Float16, float16)
+	Z_IMPLEMENTATION_COMMON(Float16, float16)
+	Z_IMPLEMENTATION_REAL  (Float16, float16)
 #endif
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_2D_LINE_COMMON(Float32, float32)
-	Z_IMPLEMENTATION_2D_LINE_REAL  (Float32, float32)
+	Z_IMPLEMENTATION_COMMON(Float32, float32)
+	Z_IMPLEMENTATION_REAL  (Float32, float32)
 #endif
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_2D_LINE_COMMON(Float64, float64)
-	Z_IMPLEMENTATION_2D_LINE_REAL  (Float64, float64)
+	Z_IMPLEMENTATION_COMMON(Float64, float64)
+	Z_IMPLEMENTATION_REAL  (Float64, float64)
 #endif
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_2D_LINE_COMMON(Float128, float128)
-	Z_IMPLEMENTATION_2D_LINE_REAL  (Float128, float128)
+	Z_IMPLEMENTATION_COMMON(Float128, float128)
+	Z_IMPLEMENTATION_REAL  (Float128, float128)
 #endif
 
 #ifdef Z_FLOAT80_X87
-	Z_IMPLEMENTATION_2D_LINE_COMMON(Float80_x87, float80_x87)
-	Z_IMPLEMENTATION_2D_LINE_REAL  (Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_COMMON(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_REAL  (Float80_x87, float80_x87)
 #endif
 
 #ifdef Z_FLOAT96_X87
-	Z_IMPLEMENTATION_2D_LINE_COMMON(Float96_x87, float96_x87)
-	Z_IMPLEMENTATION_2D_LINE_REAL  (Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_COMMON(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_REAL  (Float96_x87, float96_x87)
 #endif
 
 #ifdef Z_FLOAT128_X87
-	Z_IMPLEMENTATION_2D_LINE_COMMON(Float128_x87, float128_x87)
-	Z_IMPLEMENTATION_2D_LINE_REAL  (Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_COMMON(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_REAL  (Float128_x87, float128_x87)
 #endif
+
+
+/* MARK: - Cleanup */
+
+
+#undef Z_IMPLEMENTATION_COMMON
+#undef Z_IMPLEMENTATION_REAL
 
 
 /* MARK: - Default real type definitions */

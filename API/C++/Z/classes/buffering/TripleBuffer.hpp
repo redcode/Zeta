@@ -16,14 +16,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 
-	Z_INLINE_MEMBER TripleBuffer() {}
+	Z_INLINE TripleBuffer() {}
 
 
-	Z_INLINE_MEMBER TripleBuffer(void *buffers, USize buffer_size)
+	Z_INLINE TripleBuffer(void *buffers, USize buffer_size)
 		{initialize(buffers, buffer_size);}
 
 
-	Z_INLINE_MEMBER void initialize(void *buffers, USize buffer_size)
+	Z_INLINE void initialize(void *buffers, USize buffer_size)
 		{
 		this->buffers[0] = buffers;
 		this->buffers[1] = (UInt8 *)buffers + buffer_size;
@@ -32,11 +32,11 @@ namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 		}
 
 
-	Z_INLINE_MEMBER void *production_buffer () const {return buffers[(flags & 48) >> 4];}
-	Z_INLINE_MEMBER void *consumption_buffer() const {return buffers[flags & 3];}
+	Z_INLINE void *production_buffer () const {return buffers[(flags & 48) >> 4];}
+	Z_INLINE void *consumption_buffer() const {return buffers[flags & 3];}
 
 
-	Z_INLINE_MEMBER void *produce()
+	Z_INLINE void *produce()
 		{
 		UInt8 flags, new_flags;
 
@@ -50,7 +50,7 @@ namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 		}
 
 
-	Z_INLINE_MEMBER void *consume()
+	Z_INLINE void *consume()
 		{
 		UInt8 flags, new_flags;
 

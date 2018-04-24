@@ -1,12 +1,12 @@
-/* Z Kit C API - functions/base/Z2DValue.h
+/* Z Kit C API - functions/base/Z2D.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_base_Z2DValue_H__
-#define __Z_functions_base_Z2DValue_H__
+#ifndef __Z_functions_base_Z2D_H__
+#define __Z_functions_base_Z2D_H__
 
 #include <Z/functions/base/constructors.h>
 #include <Z/functions/base/value.h>
@@ -15,30 +15,35 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_2D_COMMON(Type, type)							\
+#define Z_IMPLEMENTATION_COMMON(Type, type)							\
 												\
-												\
-Z_INLINE Z2D##Type z_2d_##type##_add(Z2D##Type a, Z2D##Type b)					\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_add(Z2D##Type a, Z2D##Type b)						\
 	{return z_2d_##type(a.x + b.x, a.y + b.y);}						\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_add_3(Z2D##Type a, Z2D##Type b, Z2D##Type c)			\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_add_3(Z2D##Type a, Z2D##Type b, Z2D##Type c)				\
 	{return z_2d_##type(a.x + b.x + c.x, a.y + b.y + c.y);}					\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_add_4(Z2D##Type a, Z2D##Type b, Z2D##Type c, Z2D##Type d)	\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_add_4(Z2D##Type a, Z2D##Type b, Z2D##Type c, Z2D##Type d)		\
 	{return z_2d_##type(a.x + b.x + c.x + d.x, a.y + b.y + c.y + d.y);}			\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_add_scalar(Z2D##Type object, z##type scalar)			\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_add_scalar(Z2D##Type object, z##type scalar)				\
 	{return z_2d_##type(object.x + scalar, object.y + scalar);}				\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_are_equal(Z2D##Type a, Z2D##Type b)				\
+static Z_INLINE											\
+zboolean z_2d_##type##_are_equal(Z2D##Type a, Z2D##Type b)					\
 	{return a.x == b.x && a.y == b.y;}							\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_clamp(Z2D##Type object, Z2D##Type minimum, Z2D##Type maximum)	\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_clamp(Z2D##Type object, Z2D##Type minimum, Z2D##Type maximum)		\
 	{											\
 	return z_2d_##type									\
 		(z_##type##_clamp(object.x, minimum.x, maximum.x),				\
@@ -47,31 +52,38 @@ Z_INLINE Z2D##Type z_2d_##type##_clamp(Z2D##Type object, Z2D##Type minimum, Z2D#
 												\
 												\
 /* Area of the parallelogram between two vectors (OA and OB) */					\
-Z_INLINE z##type z_2d_##type##_cross_product(Z2D##Type a, Z2D##Type b)				\
+static Z_INLINE											\
+z##type z_2d_##type##_cross_product(Z2D##Type a, Z2D##Type b)					\
 	{return a.x * b.y - a.y * b.x;}								\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_divide(Z2D##Type a, Z2D##Type b)				\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_divide(Z2D##Type a, Z2D##Type b)					\
 	{return z_2d_##type(a.x / b.x, a.y / b.y);}						\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_divide_3(Z2D##Type a, Z2D##Type b, Z2D##Type c)		\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_divide_3(Z2D##Type a, Z2D##Type b, Z2D##Type c)				\
 	{return z_2d_##type(a.x / b.x / c.x, a.y / b.y / c.x);}					\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_divide_4(Z2D##Type a, Z2D##Type b, Z2D##Type c, Z2D##Type d)	\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_divide_4(Z2D##Type a, Z2D##Type b, Z2D##Type c, Z2D##Type d)		\
 	{return z_2d_##type(a.x / b.x / c.x / d.x, a.y / b.y / c.y / d.y);}			\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_divide_by_scalar(Z2D##Type object, z##type scalar)		\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_divide_by_scalar(Z2D##Type object, z##type scalar)			\
 	{return z_2d_##type(object.x / scalar, object.y / scalar);}				\
 												\
 												\
-Z_INLINE z##type z_2d_##type##_dot_product(Z2D##Type a, Z2D##Type b)				\
+static Z_INLINE											\
+z##type z_2d_##type##_dot_product(Z2D##Type a, Z2D##Type b)					\
 	{return a.x * b.x + a.y * b.y;}								\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_fit(Z2D##Type object, Z2D##Type other)				\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_fit(Z2D##Type object, Z2D##Type other)					\
 	{											\
 	return object.y / object.x > other.y / other.x						\
 		? z_2d_##type(object.x * other.y / object.y, other.y)				\
@@ -79,75 +91,93 @@ Z_INLINE Z2D##Type z_2d_##type##_fit(Z2D##Type object, Z2D##Type other)				\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_from_scalar(z##type scalar)					\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_from_scalar(z##type scalar)						\
 	{return z_2d_##type(scalar, scalar);}							\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_has_zero(Z2D##Type object)					\
+static Z_INLINE											\
+zboolean z_2d_##type##_has_zero(Z2D##Type object)						\
 	{return object.x == (z##type)0 || object.y == (z##type)0;}				\
 												\
 												\
-Z_INLINE z##type z_2d_##type##_inner_maximum(Z2D##Type object)					\
+static Z_INLINE											\
+z##type z_2d_##type##_inner_maximum(Z2D##Type object)						\
 	{return z_##type##_maximum(object.x, object.y);}					\
 												\
 												\
-Z_INLINE z##type z_2d_##type##_inner_middle(Z2D##Type object)					\
+static Z_INLINE											\
+z##type z_2d_##type##_inner_middle(Z2D##Type object)						\
 	{return (object.x + object.y) / (z##type)2;}						\
 												\
 												\
-Z_INLINE z##type z_2d_##type##_inner_minimum(Z2D##Type object)					\
+static Z_INLINE											\
+z##type z_2d_##type##_inner_minimum(Z2D##Type object)						\
 	{return z_##type##_minimum(object.x, object.y);}					\
 												\
 												\
-Z_INLINE z##type z_2d_##type##_inner_product(Z2D##Type object)					\
+static Z_INLINE											\
+z##type z_2d_##type##_inner_product(Z2D##Type object)						\
 	{return object.x * object.y;}								\
 												\
 												\
-Z_INLINE z##type z_2d_##type##_inner_sum(Z2D##Type object)					\
+static Z_INLINE											\
+z##type z_2d_##type##_inner_sum(Z2D##Type object)						\
 	{return object.x + object.y;}								\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_is_zero(Z2D##Type object)					\
+static Z_INLINE											\
+zboolean z_2d_##type##_is_zero(Z2D##Type object)						\
 	{return object.x == (z##type)0 && object.y == (z##type)0;}				\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_maximum(Z2D##Type a, Z2D##Type b)				\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_maximum(Z2D##Type a, Z2D##Type b)					\
 	{return z_2d_##type(z_##type##_maximum(a.x, b.x), z_##type##_maximum(a.y, b.y));}	\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_middle(Z2D##Type a, Z2D##Type b)				\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_middle(Z2D##Type a, Z2D##Type b)					\
 	{return z_2d_##type((a.x + b.x) / (z##type)2, (a.y + b.y) / (z##type)2);}		\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_minimum(Z2D##Type a, Z2D##Type b)				\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_minimum(Z2D##Type a, Z2D##Type b)					\
 	{return z_2d_##type(z_##type##_minimum(a.x, b.x), z_##type##_minimum(a.y, b.y));}	\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_multiply(Z2D##Type a, Z2D##Type b)				\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_multiply(Z2D##Type a, Z2D##Type b)					\
 	{return z_2d_##type(a.x * b.x, a.y * b.y);}						\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_multiply_3(Z2D##Type a, Z2D##Type b, Z2D##Type c)		\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_multiply_3(Z2D##Type a, Z2D##Type b, Z2D##Type c)			\
 	{return z_2d_##type(a.x * b.x * c.x, a.y * b.y * c.y);}					\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_multiply_4(Z2D##Type a, Z2D##Type b, Z2D##Type c, Z2D##Type d)	\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_multiply_4(Z2D##Type a, Z2D##Type b, Z2D##Type c, Z2D##Type d)		\
 	{return z_2d_##type(a.x * b.x * c.x * d.x, a.y * b.y * c.y * d.y);}			\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_multiply_by_scalar(Z2D##Type object, z##type scalar)		\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_multiply_by_scalar(Z2D##Type object, z##type scalar)			\
 	{return z_2d_##type(object.x * scalar, object.y * scalar);}				\
 												\
 												\
-Z_INLINE Z3D##Type z_2d_##type##_nxy(Z2D##Type object, z##type n)				\
+static Z_INLINE											\
+Z3D##Type z_2d_##type##_nxy(Z2D##Type object, z##type n)					\
 	{return z_3d_##type(n, object.x, object.y);}						\
 												\
 												\
-Z_INLINE Z3D##Type z_2d_##type##_nyx(Z2D##Type object, z##type n)				\
+static Z_INLINE											\
+Z3D##Type z_2d_##type##_nyx(Z2D##Type object, z##type n)					\
 	{return z_3d_##type(n, object.y, object.x);}						\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_square_clamp(Z2D##Type object, z##type minimum,z##type maximum)\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_square_clamp(Z2D##Type object, z##type minimum,z##type maximum)		\
 	{											\
 	return z_2d_##type									\
 		(z_##type##_clamp(object.x, minimum, maximum),					\
@@ -155,27 +185,33 @@ Z_INLINE Z2D##Type z_2d_##type##_square_clamp(Z2D##Type object, z##type minimum,
 	}											\
 												\
 												\
-Z_INLINE z##type z_2d_##type##_squared_length(Z2D##Type object)					\
+static Z_INLINE											\
+z##type z_2d_##type##_squared_length(Z2D##Type object)						\
 	{return object.x * object.x + object.y * object.y;}					\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_subtract(Z2D##Type a, Z2D##Type b)				\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_subtract(Z2D##Type a, Z2D##Type b)					\
 	{return z_2d_##type(a.x - b.x, a.y - b.y);}						\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_subtract_3(Z2D##Type a, Z2D##Type b, Z2D##Type c)		\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_subtract_3(Z2D##Type a, Z2D##Type b, Z2D##Type c)			\
 	{return z_2d_##type(a.x - b.x - c.x, a.y - b.y - c.y);}					\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_subtract_4(Z2D##Type a, Z2D##Type b, Z2D##Type c, Z2D##Type d)	\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_subtract_4(Z2D##Type a, Z2D##Type b, Z2D##Type c, Z2D##Type d)		\
 	{return z_2d_##type(a.x - b.x - c.x - d.x, a.y - b.y - c.y - d.y);}			\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_subtract_scalar(Z2D##Type object, z##type scalar)		\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_subtract_scalar(Z2D##Type object, z##type scalar)			\
 	{return z_2d_##type(object.x - scalar, object.y - scalar);}				\
 												\
 												\
-Z_INLINE void z_2d_##type##_swap(Z2D##Type *a, Z2D##Type *b)					\
+static Z_INLINE											\
+void z_2d_##type##_swap(Z2D##Type *a, Z2D##Type *b)						\
 	{											\
 	Z2D##Type t = *a;									\
 												\
@@ -183,23 +219,28 @@ Z_INLINE void z_2d_##type##_swap(Z2D##Type *a, Z2D##Type *b)					\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_2d_##type##_xny(Z2D##Type object, z##type n)				\
+static Z_INLINE											\
+Z3D##Type z_2d_##type##_xny(Z2D##Type object, z##type n)					\
 	{return z_3d_##type(object.x, n, object.y);}						\
 												\
 												\
-Z_INLINE Z3D##Type z_2d_##type##_xyn(Z2D##Type object, z##type n)				\
+static Z_INLINE											\
+Z3D##Type z_2d_##type##_xyn(Z2D##Type object, z##type n)					\
 	{return z_3d_##type(object.x, object.y, n);}						\
 												\
 												\
-Z_INLINE Z3D##Type z_2d_##type##_ynx(Z2D##Type object, z##type n)				\
+static Z_INLINE											\
+Z3D##Type z_2d_##type##_ynx(Z2D##Type object, z##type n)					\
 	{return z_3d_##type(object.y, n, object.x);}						\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_yx(Z2D##Type object)						\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_yx(Z2D##Type object)							\
 	{return z_2d_##type(object.y, object.x);}						\
 												\
 												\
-Z_INLINE Z3D##Type z_2d_##type##_yxn(Z2D##Type object, z##type n)				\
+static Z_INLINE											\
+Z3D##Type z_2d_##type##_yxn(Z2D##Type object, z##type n)					\
 	{return z_3d_##type(object.y, object.x, n);}
 
 
@@ -250,22 +291,25 @@ Z_INLINE Z3D##Type z_2d_##type##_yxn(Z2D##Type object, z##type n)				\
 /* MARK: - Partial implementation for signed types */
 
 
-#define Z_IMPLEMENTATION_2D_SIGNED(Type, type)							\
+#define Z_IMPLEMENTATION_SIGNED(Type, type)							\
 												\
-												\
-Z_INLINE Z2D##Type z_2d_##type##_absolute(Z2D##Type object)					\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_absolute(Z2D##Type object)						\
 	{return z_2d_##type(z_##type##_absolute(object.x), z_##type##_absolute(object.y));}	\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_has_negative(Z2D##Type object)					\
+static Z_INLINE											\
+zboolean z_2d_##type##_has_negative(Z2D##Type object)						\
 	{return object.x < (z##type)0 || object.y < (z##type)0;}				\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_is_negative(Z2D##Type object)					\
+static Z_INLINE											\
+zboolean z_2d_##type##_is_negative(Z2D##Type object)						\
 	{return object.x < (z##type)0 && object.y < (z##type)0;}				\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_negative(Z2D##Type object)					\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_negative(Z2D##Type object)						\
 	{return z_2d_##type(-object.x, -object.y);}
 
 
@@ -278,10 +322,10 @@ Z_INLINE Z2D##Type z_2d_##type##_negative(Z2D##Type object)					\
 /* MARK: - Partial implementation for integer types */
 
 
-#define Z_IMPLEMENTATION_2D_INTEGER(Type, type)					\
-										\
-										\
-Z_INLINE zboolean z_2d_##type##_are_perpendicular(Z2D##Type a, Z2D##Type b)	\
+#define Z_IMPLEMENTATION_INTEGER(Type, type)							\
+												\
+static Z_INLINE											\
+zboolean z_2d_##type##_are_perpendicular(Z2D##Type a, Z2D##Type b)				\
 	{return !z_##type##_absolute(z_2d_##type##_dot_product(a, b));}
 
 
@@ -291,65 +335,78 @@ Z_INLINE zboolean z_2d_##type##_are_perpendicular(Z2D##Type a, Z2D##Type b)	\
 /* MARK: - Partial implementation for real types */
 
 
-#define Z_IMPLEMENTATION_2D_REAL(Type, type, epsilon)						\
+#define Z_IMPLEMENTATION_REAL(Type, type, epsilon)						\
 												\
-												\
-Z_INLINE zboolean z_2d_##type##_are_almost_equal(Z2D##Type a, Z2D##Type b)			\
+static Z_INLINE											\
+zboolean z_2d_##type##_are_almost_equal(Z2D##Type a, Z2D##Type b)				\
 	{return z_##type##_are_almost_equal(a.x, b.x) && z_##type##_are_almost_equal(a.y, b.y);}\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_are_perpendicular(Z2D##Type a, Z2D##Type b)			\
+static Z_INLINE											\
+zboolean z_2d_##type##_are_perpendicular(Z2D##Type a, Z2D##Type b)				\
 	{return z_##type##_absolute(z_2d_##type##_dot_product(a, b)) <= epsilon;}		\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_clamp_01(Z2D##Type object)					\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_clamp_01(Z2D##Type object)						\
 	{return z_2d_##type(z_##type##_clamp_01(object.x), z_##type##_clamp_01(object.y));}	\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_has_almost_zero(Z2D##Type object)				\
+static Z_INLINE											\
+zboolean z_2d_##type##_has_almost_zero(Z2D##Type object)					\
 	{return z_##type##_is_almost_zero(object.x) || z_##type##_is_almost_zero(object.y);}	\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_has_finite(Z2D##Type object)					\
+static Z_INLINE											\
+zboolean z_2d_##type##_has_finite(Z2D##Type object)						\
 	{return z_##type##_is_finite(object.x) || z_##type##_is_finite(object.y);}		\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_has_infinity(Z2D##Type object)					\
+static Z_INLINE											\
+zboolean z_2d_##type##_has_infinity(Z2D##Type object)						\
 	{return z_##type##_is_infinity(object.x) || z_##type##_is_infinity(object.y);}		\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_has_nan(Z2D##Type object)					\
+static Z_INLINE											\
+zboolean z_2d_##type##_has_nan(Z2D##Type object)						\
 	{return z_##type##_is_nan(object.x) || z_##type##_is_nan(object.y);}			\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_inverse_lerp(Z2D##Type a, Z2D##Type b, z##type t)		\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_inverse_lerp(Z2D##Type a, Z2D##Type b, z##type t)			\
 	{											\
 	return z_2d_##type									\
 		(z_##type##_inverse_lerp(a.x, b.x, t), z_##type##_inverse_lerp(a.y, b.y, t));	\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_is_almost_zero(Z2D##Type object)				\
+static Z_INLINE											\
+zboolean z_2d_##type##_is_almost_zero(Z2D##Type object)						\
 	{return z_##type##_is_almost_zero(object.x) && z_##type##_is_almost_zero(object.y);}	\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_is_finite(Z2D##Type object)					\
+static Z_INLINE											\
+zboolean z_2d_##type##_is_finite(Z2D##Type object)						\
 	{return z_##type##_is_finite(object.x) && z_##type##_is_finite(object.y);}		\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_is_infinity(Z2D##Type object)					\
+static Z_INLINE											\
+zboolean z_2d_##type##_is_infinity(Z2D##Type object)						\
 	{return z_##type##_is_infinity(object.x) && z_##type##_is_infinity(object.y);}		\
 												\
 												\
-Z_INLINE zboolean z_2d_##type##_is_nan(Z2D##Type object)					\
+static Z_INLINE											\
+zboolean z_2d_##type##_is_nan(Z2D##Type object)							\
 	{return z_##type##_is_nan(object.x) && z_##type##_is_nan(object.y);}			\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_lerp(Z2D##Type a, Z2D##Type b, z##type t)			\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_lerp(Z2D##Type a, Z2D##Type b, z##type t)				\
 	{return z_2d_##type(z_##type##_lerp(a.x, b.x, t), z_##type##_lerp(a.y, b.y, t));}	\
 												\
 												\
-Z_INLINE Z2D##Type z_2d_##type##_reciprocal(Z2D##Type object)					\
+static Z_INLINE											\
+Z2D##Type z_2d_##type##_reciprocal(Z2D##Type object)						\
 	{return z_2d_##type(((z##type)1) / object.x, ((z##type)1) / object.y);}
 
 
@@ -371,81 +428,90 @@ Z_INLINE Z2D##Type z_2d_##type##_reciprocal(Z2D##Type object)					\
 /* MARK: - Implementation expansions */
 
 
-Z_IMPLEMENTATION_2D_COMMON(UInt8,  uint8 )
-Z_IMPLEMENTATION_2D_COMMON(UInt16, uint16)
-Z_IMPLEMENTATION_2D_COMMON(UInt32, uint32)
+Z_IMPLEMENTATION_COMMON(UInt8,	uint8 )
+Z_IMPLEMENTATION_COMMON(UInt16, uint16)
+Z_IMPLEMENTATION_COMMON(UInt32, uint32)
 
 #ifdef Z_UINT64
-	Z_IMPLEMENTATION_2D_COMMON(UInt64, uint64)
+	Z_IMPLEMENTATION_COMMON(UInt64, uint64)
 #endif
 
 #ifdef Z_UINT128
-	Z_IMPLEMENTATION_2D_COMMON(UInt128, uint128)
+	Z_IMPLEMENTATION_COMMON(UInt128, uint128)
 #endif
 
-Z_IMPLEMENTATION_2D_COMMON (SInt8,  sint8 )
-Z_IMPLEMENTATION_2D_SIGNED (SInt8,  sint8 )
-Z_IMPLEMENTATION_2D_INTEGER(SInt8,  sint8 )
-Z_IMPLEMENTATION_2D_COMMON (SInt16, sint16)
-Z_IMPLEMENTATION_2D_SIGNED (SInt16, sint16)
-Z_IMPLEMENTATION_2D_INTEGER(SInt16, sint16)
-Z_IMPLEMENTATION_2D_COMMON (SInt32, sint32)
-Z_IMPLEMENTATION_2D_SIGNED (SInt32, sint32)
-Z_IMPLEMENTATION_2D_INTEGER(SInt32, sint32)
+Z_IMPLEMENTATION_COMMON (SInt8,  sint8 )
+Z_IMPLEMENTATION_SIGNED (SInt8,  sint8 )
+Z_IMPLEMENTATION_INTEGER(SInt8,  sint8 )
+Z_IMPLEMENTATION_COMMON (SInt16, sint16)
+Z_IMPLEMENTATION_SIGNED (SInt16, sint16)
+Z_IMPLEMENTATION_INTEGER(SInt16, sint16)
+Z_IMPLEMENTATION_COMMON (SInt32, sint32)
+Z_IMPLEMENTATION_SIGNED (SInt32, sint32)
+Z_IMPLEMENTATION_INTEGER(SInt32, sint32)
 
 #ifdef Z_SINT64
-	Z_IMPLEMENTATION_2D_COMMON (SInt64, sint64)
-	Z_IMPLEMENTATION_2D_SIGNED (SInt64, sint64)
-	Z_IMPLEMENTATION_2D_INTEGER(SInt64, sint64)
+	Z_IMPLEMENTATION_COMMON (SInt64, sint64)
+	Z_IMPLEMENTATION_SIGNED (SInt64, sint64)
+	Z_IMPLEMENTATION_INTEGER(SInt64, sint64)
 #endif
 
 #ifdef Z_SINT128
-	Z_IMPLEMENTATION_2D_COMMON (SInt128, sint128)
-	Z_IMPLEMENTATION_2D_SIGNED (SInt128, sint128)
-	Z_IMPLEMENTATION_2D_INTEGER(SInt128, sint128)
+	Z_IMPLEMENTATION_COMMON (SInt128, sint128)
+	Z_IMPLEMENTATION_SIGNED (SInt128, sint128)
+	Z_IMPLEMENTATION_INTEGER(SInt128, sint128)
 #endif
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_2D_COMMON(Float16, float16)
-	Z_IMPLEMENTATION_2D_SIGNED(Float16, float16)
-	Z_IMPLEMENTATION_2D_REAL  (Float16, float16, Z_FLOAT16_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float16, float16)
+	Z_IMPLEMENTATION_SIGNED(Float16, float16)
+	Z_IMPLEMENTATION_REAL  (Float16, float16, Z_FLOAT16_EPSILON)
 #endif
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_2D_COMMON(Float32, float32)
-	Z_IMPLEMENTATION_2D_SIGNED(Float32, float32)
-	Z_IMPLEMENTATION_2D_REAL  (Float32, float32, Z_FLOAT32_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float32, float32)
+	Z_IMPLEMENTATION_SIGNED(Float32, float32)
+	Z_IMPLEMENTATION_REAL  (Float32, float32, Z_FLOAT32_EPSILON)
 #endif
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_2D_COMMON(Float64, float64)
-	Z_IMPLEMENTATION_2D_SIGNED(Float64, float64)
-	Z_IMPLEMENTATION_2D_REAL  (Float64, float64, Z_FLOAT64_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float64, float64)
+	Z_IMPLEMENTATION_SIGNED(Float64, float64)
+	Z_IMPLEMENTATION_REAL  (Float64, float64, Z_FLOAT64_EPSILON)
 #endif
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_2D_COMMON(Float128, float128)
-	Z_IMPLEMENTATION_2D_SIGNED(Float128, float128)
-	Z_IMPLEMENTATION_2D_REAL  (Float128, float128, Z_FLOAT128_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float128, float128)
+	Z_IMPLEMENTATION_SIGNED(Float128, float128)
+	Z_IMPLEMENTATION_REAL  (Float128, float128, Z_FLOAT128_EPSILON)
 #endif
 
 #ifdef Z_FLOAT80_X87
-	Z_IMPLEMENTATION_2D_COMMON(Float80_x87, float80_x87)
-	Z_IMPLEMENTATION_2D_SIGNED(Float80_x87, float80_x87)
-	Z_IMPLEMENTATION_2D_REAL  (Float80_x87, float80_x87, Z_FLOAT80_X87_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_SIGNED(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_REAL  (Float80_x87, float80_x87, Z_FLOAT80_X87_EPSILON)
 #endif
 
 #ifdef Z_FLOAT96_X87
-	Z_IMPLEMENTATION_2D_COMMON(Float96_x87, float96_x87)
-	Z_IMPLEMENTATION_2D_SIGNED(Float96_x87, float96_x87)
-	Z_IMPLEMENTATION_2D_REAL  (Float96_x87, float96_x87, Z_FLOAT96_X87_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_SIGNED(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_REAL  (Float96_x87, float96_x87, Z_FLOAT96_X87_EPSILON)
 #endif
 
 #ifdef Z_FLOAT128_X87
-	Z_IMPLEMENTATION_2D_COMMON(Float128_x87, float128_x87)
-	Z_IMPLEMENTATION_2D_SIGNED(Float128_x87, float128_x87)
-	Z_IMPLEMENTATION_2D_REAL  (Float128_x87, float128_x87, Z_FLOAT128_X87_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_SIGNED(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_REAL  (Float128_x87, float128_x87, Z_FLOAT128_X87_EPSILON)
 #endif
+
+
+/* MARK: - Cleanup */
+
+
+#undef Z_IMPLEMENTATION_COMMON
+#undef Z_IMPLEMENTATION_SIGNED
+#undef Z_IMPLEMENTATION_INTEGER
+#undef Z_IMPLEMENTATION_REAL
 
 
 /* MARK: - Default real type definitions */
@@ -515,4 +581,4 @@ Z_IMPLEMENTATION_2D_INTEGER(SInt32, sint32)
 #endif
 
 
-#endif /* __Z_functions_base_Z2DValue_H__ */
+#endif /* __Z_functions_base_Z2D_H__ */

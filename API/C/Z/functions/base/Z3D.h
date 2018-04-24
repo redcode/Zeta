@@ -1,12 +1,12 @@
-/* Z Kit C API - functions/base/Z3DValue.h
+/* Z Kit C API - functions/base/Z3D.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_base_Z3DValue_H__
-#define __Z_functions_base_Z3DValue_H__
+#ifndef __Z_functions_base_Z3D_H__
+#define __Z_functions_base_Z3D_H__
 
 #include <Z/functions/base/constructors.h>
 #include <Z/functions/base/value.h>
@@ -15,36 +15,41 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_3D_COMMON(Type, type)							\
+#define Z_IMPLEMENTATION_COMMON(Type, type)							\
 												\
-												\
-Z_INLINE Z3D##Type z_3d_##type##_add(Z3D##Type a, Z3D##Type b)					\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_add(Z3D##Type a, Z3D##Type b)						\
 	{return z_3d_##type(a.x + b.x, a.y + b.y, a.z + b.z);}					\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_add_3(Z3D##Type a, Z3D##Type b, Z3D##Type c)			\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_add_3(Z3D##Type a, Z3D##Type b, Z3D##Type c)				\
 	{											\
 	return z_3d_##type									\
 		(a.x + b.x + c.x, a.y + b.y + c.y, a.z + b.z + c.z);				\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_add_4(Z3D##Type a, Z3D##Type b, Z3D##Type c, Z3D##Type d)	\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_add_4(Z3D##Type a, Z3D##Type b, Z3D##Type c, Z3D##Type d)		\
 	{											\
 	return z_3d_##type									\
 		(a.x + b.x + c.x + d.x, a.y + b.y + c.y + d.y, a.z + b.z + c.z + d.z);		\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_add_scalar(Z3D##Type object, z##type scalar)			\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_add_scalar(Z3D##Type object, z##type scalar)				\
 	{return z_3d_##type(object.x + scalar, object.y + scalar, object.z + scalar);}		\
 												\
 												\
-Z_INLINE zboolean z_3d_##type##_are_equal(Z3D##Type a, Z3D##Type b)				\
+static Z_INLINE											\
+zboolean z_3d_##type##_are_equal(Z3D##Type a, Z3D##Type b)					\
 	{return a.x == b.x && a.y == b.y && a.z == b.z;}					\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_clamp(Z3D##Type object, Z3D##Type minimum, Z3D##Type maximum)	\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_clamp(Z3D##Type object, Z3D##Type minimum, Z3D##Type maximum)		\
 	{											\
 	return z_3d_##type									\
 		(z_##type##_clamp(object.x, minimum.x, maximum.x),				\
@@ -53,14 +58,16 @@ Z_INLINE Z3D##Type z_3d_##type##_clamp(Z3D##Type object, Z3D##Type minimum, Z3D#
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_cross_product(Z3D##Type a, Z3D##Type b)			\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_cross_product(Z3D##Type a, Z3D##Type b)					\
 	{											\
 	return z_3d_##type									\
 		(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x); 		\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_cube_clamp(Z3D##Type object, z##type minimum, z##type maximum)	\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_cube_clamp(Z3D##Type object, z##type minimum, z##type maximum)		\
 	{											\
 	return z_3d_##type									\
 		(z_##type##_clamp(object.x, minimum, maximum),					\
@@ -69,69 +76,84 @@ Z_INLINE Z3D##Type z_3d_##type##_cube_clamp(Z3D##Type object, z##type minimum, z
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_divide(Z3D##Type a, Z3D##Type b)				\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_divide(Z3D##Type a, Z3D##Type b)					\
 	{return z_3d_##type(a.x / b.x, a.y / b.y, a.z / b.z);}					\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_divide_3(Z3D##Type a, Z3D##Type b, Z3D##Type c)		\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_divide_3(Z3D##Type a, Z3D##Type b, Z3D##Type c)				\
 	{return z_3d_##type(a.x / b.x / c.x, a.y / b.y / c.y, a.z / b.z / c.z);}		\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_divide_4(Z3D##Type a, Z3D##Type b, Z3D##Type c, Z3D##Type d)	\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_divide_4(Z3D##Type a, Z3D##Type b, Z3D##Type c, Z3D##Type d)		\
 	{											\
 	return z_3d_##type									\
 		(a.x / b.x / c.x / d.x, a.y / b.y / c.y / d.y, a.z / b.z / c.z / d.z);		\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_divide_by_scalar(Z3D##Type object, z##type scalar)		\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_divide_by_scalar(Z3D##Type object, z##type scalar)			\
 	{return z_3d_##type(object.x / scalar, object.y / scalar, object.z / scalar);}		\
 												\
 												\
-Z_INLINE z##type z_3d_##type##_dot_product(Z3D##Type a, Z3D##Type b)				\
+static Z_INLINE											\
+z##type z_3d_##type##_dot_product(Z3D##Type a, Z3D##Type b)					\
 	{return a.x * b.x + a.y * b.y + a.z * b.z;}						\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_fit(Z3D##Type object, Z3D##Type other)				\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_fit(Z3D##Type object, Z3D##Type other)					\
 	{											\
  	/* TO DO */										\
 	return z_3d_##type##_zero;								\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_from_scalar(z##type scalar)					\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_from_scalar(z##type scalar)						\
 	{return z_3d_##type(scalar, scalar, scalar);}						\
 												\
 												\
-Z_INLINE zboolean z_3d_##type##_has_zero(Z3D##Type object)					\
+static Z_INLINE											\
+zboolean z_3d_##type##_has_zero(Z3D##Type object)						\
 	{return object.x == (z##type)0 || object.y == (z##type)0 || object.z == (z##type)0;}	\
 												\
 												\
-Z_INLINE z##type z_3d_##type##_inner_maximum(Z3D##Type object)					\
+static Z_INLINE											\
+z##type z_3d_##type##_inner_maximum(Z3D##Type object)						\
 	{return z_##type##_maximum(z_##type##_maximum(object.x, object.y), object.z);}		\
 												\
 												\
-Z_INLINE z##type z_3d_##type##_inner_middle(Z3D##Type object)					\
+static Z_INLINE											\
+z##type z_3d_##type##_inner_middle(Z3D##Type object)						\
 	{return (object.x + object.y + object.z) / (z##type)3;}					\
 												\
 												\
-Z_INLINE z##type z_3d_##type##_inner_minimum(Z3D##Type object)					\
+static Z_INLINE											\
+z##type z_3d_##type##_inner_minimum(Z3D##Type object)						\
 	{return z_##type##_minimum(z_##type##_minimum(object.x, object.y), object.z);}		\
 												\
 												\
-Z_INLINE z##type z_3d_##type##_inner_product(Z3D##Type object)					\
+static Z_INLINE											\
+z##type z_3d_##type##_inner_product(Z3D##Type object)						\
 	{return object.x * object.y * object.z;}						\
 												\
 												\
-Z_INLINE z##type z_3d_##type##_inner_sum(Z3D##Type object)					\
+static Z_INLINE											\
+z##type z_3d_##type##_inner_sum(Z3D##Type object)						\
 	{return object.x + object.y + object.z;}						\
 												\
 												\
-Z_INLINE zboolean z_3d_##type##_is_zero(Z3D##Type object)					\
+static Z_INLINE											\
+zboolean z_3d_##type##_is_zero(Z3D##Type object)						\
 	{return object.x == (z##type)0 && object.y == (z##type)0 && object.z == (z##type)0;}	\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_maximum(Z3D##Type a, Z3D##Type b)				\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_maximum(Z3D##Type a, Z3D##Type b)					\
 	{											\
 	return z_3d_##type									\
 		(z_##type##_maximum(a.x, b.x),							\
@@ -140,14 +162,16 @@ Z_INLINE Z3D##Type z_3d_##type##_maximum(Z3D##Type a, Z3D##Type b)				\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_middle(Z3D##Type a, Z3D##Type b)				\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_middle(Z3D##Type a, Z3D##Type b)					\
 	{											\
 	return z_3d_##type									\
 		((a.x + b.x) / (z##type)2, (a.y + b.y) / (z##type)2, (a.z + b.z) / (z##type)2);	\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_minimum(Z3D##Type a, Z3D##Type b)				\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_minimum(Z3D##Type a, Z3D##Type b)					\
 	{											\
 	return z_3d_##type									\
 		(z_##type##_minimum(a.x, b.x),							\
@@ -156,26 +180,31 @@ Z_INLINE Z3D##Type z_3d_##type##_minimum(Z3D##Type a, Z3D##Type b)				\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_multiply(Z3D##Type a, Z3D##Type b)				\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_multiply(Z3D##Type a, Z3D##Type b)					\
 	{return z_3d_##type(a.x * b.x, a.y * b.y, a.z * b.z);}					\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_multiply_3(Z3D##Type a, Z3D##Type b, Z3D##Type c)		\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_multiply_3(Z3D##Type a, Z3D##Type b, Z3D##Type c)			\
 	{return z_3d_##type(a.x * b.x * c.x, a.y * b.y * c.y, a.z * b.z * c.z);}		\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_multiply_4(Z3D##Type a, Z3D##Type b, Z3D##Type c, Z3D##Type d)	\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_multiply_4(Z3D##Type a, Z3D##Type b, Z3D##Type c, Z3D##Type d)		\
 	{											\
 	return z_3d_##type									\
 		(a.x * b.x * c.x * d.x, a.y * b.y * c.y * d.y, a.z * b.z * c.z * d.z);		\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_multiply_by_scalar(Z3D##Type object, z##type scalar)		\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_multiply_by_scalar(Z3D##Type object, z##type scalar)			\
 	{return z_3d_##type(object.x * scalar, object.y * scalar, object.z * scalar);}		\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_rotate_as_axes(Z3D##Type object, Z3DSInt8 rotation)		\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_rotate_as_axes(Z3D##Type object, Z3DSInt8 rotation)			\
 	{											\
 	if ((rotation.x % 4) & 1) z_##type##_swap(&object.y, &object.z);			\
 	if ((rotation.y % 4) & 1) z_##type##_swap(&object.x, &object.z);			\
@@ -184,30 +213,36 @@ Z_INLINE Z3D##Type z_3d_##type##_rotate_as_axes(Z3D##Type object, Z3DSInt8 rotat
 	}											\
 												\
 												\
-Z_INLINE z##type z_3d_##type##_squared_length(Z3D##Type object)					\
+static Z_INLINE											\
+z##type z_3d_##type##_squared_length(Z3D##Type object)						\
 	{return object.x * object.x + object.y * object.y + object.z * object.z;}		\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_subtract(Z3D##Type a, Z3D##Type b)				\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_subtract(Z3D##Type a, Z3D##Type b)					\
 	{return z_3d_##type(a.x - b.x, a.y - b.y, a.z - b.z);}					\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_subtract_3(Z3D##Type a, Z3D##Type b, Z3D##Type c)		\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_subtract_3(Z3D##Type a, Z3D##Type b, Z3D##Type c)			\
 	{return z_3d_##type(a.x - b.x - c.x, a.y - b.y - c.y, a.z - b.z - c.z);}		\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_subtract_4(Z3D##Type a, Z3D##Type b, Z3D##Type c, Z3D##Type d)	\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_subtract_4(Z3D##Type a, Z3D##Type b, Z3D##Type c, Z3D##Type d)		\
 	{											\
 	return z_3d_##type									\
 		(a.x - b.x - c.x - d.x, a.y - b.y - c.y - d.y, a.z - b.z - c.z - d.z);		\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_subtract_scalar(Z3D##Type object, z##type scalar)		\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_subtract_scalar(Z3D##Type object, z##type scalar)			\
 	{return z_3d_##type(object.x - scalar, object.y - scalar, object.z - scalar);}		\
 												\
 												\
-Z_INLINE void z_3d_##type##_swap(Z3D##Type *a, Z3D##Type *b)					\
+static Z_INLINE											\
+void z_3d_##type##_swap(Z3D##Type *a, Z3D##Type *b)						\
 	{											\
 	Z3D##Type t = *a;									\
 												\
@@ -215,47 +250,58 @@ Z_INLINE void z_3d_##type##_swap(Z3D##Type *a, Z3D##Type *b)					\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_3d_##type##_xy(Z3D##Type object)						\
+static Z_INLINE											\
+Z2D##Type z_3d_##type##_xy(Z3D##Type object)							\
 	{return z_2d_##type(object.x, object.y);}						\
 												\
 												\
-Z_INLINE Z2D##Type z_3d_##type##_xz(Z3D##Type object)						\
+static Z_INLINE											\
+Z2D##Type z_3d_##type##_xz(Z3D##Type object)							\
 	{return z_2d_##type(object.x, object.z);}						\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_xzy(Z3D##Type object)						\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_xzy(Z3D##Type object)							\
 	{return z_3d_##type(object.x, object.z, object.y);}					\
 												\
 												\
-Z_INLINE Z2D##Type z_3d_##type##_yx(Z3D##Type object)						\
+static Z_INLINE											\
+Z2D##Type z_3d_##type##_yx(Z3D##Type object)							\
 	{return z_2d_##type(object.y, object.x);}						\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_yxz(Z3D##Type object)						\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_yxz(Z3D##Type object)							\
 	{return z_3d_##type(object.y, object.x, object.z);}					\
 												\
 												\
-Z_INLINE Z2D##Type z_3d_##type##_yz(Z3D##Type object)						\
+static Z_INLINE											\
+Z2D##Type z_3d_##type##_yz(Z3D##Type object)							\
 	{return z_2d_##type(object.y, object.z);}						\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_yzx(Z3D##Type object)						\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_yzx(Z3D##Type object)							\
 	{return z_3d_##type(object.y, object.z, object.x);}					\
 												\
 												\
-Z_INLINE Z2D##Type z_3d_##type##_zx(Z3D##Type object)						\
+static Z_INLINE											\
+Z2D##Type z_3d_##type##_zx(Z3D##Type object)							\
 	{return z_2d_##type(object.z, object.x);}						\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_zxy(Z3D##Type object)						\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_zxy(Z3D##Type object)							\
 	{return z_3d_##type(object.z, object.x, object.y);}					\
 												\
 												\
-Z_INLINE Z2D##Type z_3d_##type##_zy(Z3D##Type object)						\
+static Z_INLINE											\
+Z2D##Type z_3d_##type##_zy(Z3D##Type object)							\
 	{return z_2d_##type(object.z, object.y);}						\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_zyx(Z3D##Type object)						\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_zyx(Z3D##Type object)							\
 	{return z_3d_##type(object.z, object.y, object.x);}
 
 
@@ -311,10 +357,10 @@ Z_INLINE Z3D##Type z_3d_##type##_zyx(Z3D##Type object)						\
 /* MARK: - Partial implementation for signed types */
 
 
-#define Z_IMPLEMENTATION_3D_SIGNED(Type, type)							\
+#define Z_IMPLEMENTATION_SIGNED(Type, type)							\
 												\
-												\
-Z_INLINE Z3D##Type z_3d_##type##_absolute(Z3D##Type object)					\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_absolute(Z3D##Type object)						\
 	{											\
 	return z_3d_##type									\
 		(z_##type##_absolute(object.x),							\
@@ -323,15 +369,18 @@ Z_INLINE Z3D##Type z_3d_##type##_absolute(Z3D##Type object)					\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_3d_##type##_has_negative(Z3D##Type object)					\
+static Z_INLINE											\
+zboolean z_3d_##type##_has_negative(Z3D##Type object)						\
 	{return object.x < (z##type)0 || object.y < (z##type)0 || object.z < (z##type)0;}	\
 												\
 												\
-Z_INLINE zboolean z_3d_##type##_is_negative(Z3D##Type object)					\
+static Z_INLINE											\
+zboolean z_3d_##type##_is_negative(Z3D##Type object)						\
 	{return object.x < (z##type)0 && object.y < (z##type)0 && object.z < (z##type)0;}	\
 												\
 												\
-Z_INLINE Z3D##Type z_3d_##type##_negative(Z3D##Type object)					\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_negative(Z3D##Type object)						\
 	{return z_3d_##type(-object.x, -object.y, -object.z);}
 
 
@@ -344,10 +393,9 @@ Z_INLINE Z3D##Type z_3d_##type##_negative(Z3D##Type object)					\
 /* MARK: - Partial implementation for integer types */
 
 
-#define Z_IMPLEMENTATION_3D_INTEGER(Type, type)					\
-										\
-										\
-Z_INLINE zboolean z_3d_##type##_are_perpendicular(Z3D##Type a, Z3D##Type b)	\
+#define Z_IMPLEMENTATION_INTEGER(Type, type)							\
+												\
+Z_INLINE zboolean z_3d_##type##_are_perpendicular(Z3D##Type a, Z3D##Type b)			\
 	{return !z_##type##_absolute(z_3d_##type##_dot_product(a, b));}
 
 
@@ -357,118 +405,131 @@ Z_INLINE zboolean z_3d_##type##_are_perpendicular(Z3D##Type a, Z3D##Type b)	\
 /* MARK: - Partial implementation for real types */
 
 
-#define Z_IMPLEMENTATION_3D_REAL(Type, type, epsilon)					\
-											\
-											\
-Z_INLINE zboolean z_3d_##type##_are_almost_equal(Z3D##Type a, Z3D##Type b)		\
-	{										\
-	return	z_##type##_are_almost_equal(a.x, b.x) &&				\
-		z_##type##_are_almost_equal(a.y, b.y) &&				\
-		z_##type##_are_almost_equal(a.z, b.z);					\
-	}										\
-											\
-											\
-Z_INLINE zboolean z_3d_##type##_are_perpendicular(Z3D##Type a, Z3D##Type b)		\
-	{return z_##type##_absolute(z_3d_##type##_dot_product(a, b)) <= epsilon;}	\
-											\
-											\
-Z_INLINE Z3D##Type z_3d_##type##_clamp_01(Z3D##Type object)				\
-	{										\
-	return z_3d_##type								\
-		(z_##type##_clamp_01(object.x),						\
-		 z_##type##_clamp_01(object.y),						\
-		 z_##type##_clamp_01(object.z));					\
-	}										\
-											\
-											\
-Z_INLINE zboolean z_3d_##type##_has_almost_zero(Z3D##Type object)			\
-	{										\
-	return	z_##type##_is_almost_zero(object.x) ||					\
-		z_##type##_is_almost_zero(object.y) ||					\
-		z_##type##_is_almost_zero(object.z);					\
-	}										\
-											\
-											\
-Z_INLINE zboolean z_3d_##type##_has_finite(Z3D##Type object)				\
-	{										\
-	return	z_##type##_is_finite(object.x) ||					\
-		z_##type##_is_finite(object.y) ||					\
-		z_##type##_is_finite(object.z);						\
-	}										\
-											\
-											\
-Z_INLINE zboolean z_3d_##type##_has_infinity(Z3D##Type object)				\
-	{										\
-	return	z_##type##_is_infinity(object.x) ||					\
-		z_##type##_is_infinity(object.y) ||					\
-		z_##type##_is_infinity(object.z);					\
-	}										\
-											\
-											\
-Z_INLINE zboolean z_3d_##type##_has_nan(Z3D##Type object)				\
-	{										\
-	return	z_##type##_is_nan(object.x) ||						\
-		z_##type##_is_nan(object.y) ||						\
-		z_##type##_is_nan(object.z);						\
-	}										\
-											\
-											\
-Z_INLINE Z3D##Type z_3d_##type##_inverse_lerp(Z3D##Type a, Z3D##Type b, z##type t)	\
-	{										\
-	return z_3d_##type								\
-		(z_##type##_inverse_lerp(a.x, b.x, t),					\
-		 z_##type##_inverse_lerp(a.y, b.y, t),					\
-		 z_##type##_inverse_lerp(a.z, b.z, t));					\
-	}										\
-											\
-											\
-Z_INLINE zboolean z_3d_##type##_is_almost_zero(Z3D##Type object)			\
-	{										\
-	return	z_##type##_is_almost_zero(object.x) &&					\
-		z_##type##_is_almost_zero(object.y) &&					\
-		z_##type##_is_almost_zero(object.z);					\
-	}										\
-											\
-											\
-Z_INLINE zboolean z_3d_##type##_is_finite(Z3D##Type object)				\
-	{										\
-	return	z_##type##_is_finite(object.x) &&					\
-		z_##type##_is_finite(object.y) &&					\
-		z_##type##_is_finite(object.z);						\
-	}										\
-											\
-											\
-Z_INLINE zboolean z_3d_##type##_is_infinity(Z3D##Type object)				\
-	{										\
-	return	z_##type##_is_infinity(object.x) &&					\
-		z_##type##_is_infinity(object.y) &&					\
-		z_##type##_is_infinity(object.z);					\
-	}										\
-											\
-											\
-Z_INLINE zboolean z_3d_##type##_is_nan(Z3D##Type object)				\
-	{										\
-	return	z_##type##_is_nan(object.x) &&						\
-		z_##type##_is_nan(object.y) &&						\
-		z_##type##_is_nan(object.z);						\
-	}										\
-											\
-											\
-Z_INLINE Z3D##Type z_3d_##type##_lerp(Z3D##Type a, Z3D##Type b, z##type t)		\
-	{										\
-	return z_3d_##type								\
-		(z_##type##_lerp(a.x, b.x, t),						\
-		 z_##type##_lerp(a.y, b.y, t),						\
-		 z_##type##_lerp(a.z, b.z, t));						\
-	}										\
-											\
-											\
-Z_INLINE Z3D##Type z_3d_##type##_reciprocal(Z3D##Type object)				\
-	{										\
-	return z_3d_##type								\
-		(((z##type)1) / object.x,						\
-		 ((z##type)1) / object.y,						\
-		 ((z##type)1) / object.z);						\
+#define Z_IMPLEMENTATION_REAL(Type, type, epsilon)						\
+												\
+static Z_INLINE											\
+zboolean z_3d_##type##_are_almost_equal(Z3D##Type a, Z3D##Type b)				\
+	{											\
+	return	z_##type##_are_almost_equal(a.x, b.x) &&					\
+		z_##type##_are_almost_equal(a.y, b.y) &&					\
+		z_##type##_are_almost_equal(a.z, b.z);						\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_3d_##type##_are_perpendicular(Z3D##Type a, Z3D##Type b)				\
+	{return z_##type##_absolute(z_3d_##type##_dot_product(a, b)) <= epsilon;}		\
+												\
+												\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_clamp_01(Z3D##Type object)						\
+	{											\
+	return z_3d_##type									\
+		(z_##type##_clamp_01(object.x),							\
+		 z_##type##_clamp_01(object.y),							\
+		 z_##type##_clamp_01(object.z));						\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_3d_##type##_has_almost_zero(Z3D##Type object)					\
+	{											\
+	return	z_##type##_is_almost_zero(object.x) ||						\
+		z_##type##_is_almost_zero(object.y) ||						\
+		z_##type##_is_almost_zero(object.z);						\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_3d_##type##_has_finite(Z3D##Type object)						\
+	{											\
+	return	z_##type##_is_finite(object.x) ||						\
+		z_##type##_is_finite(object.y) ||						\
+		z_##type##_is_finite(object.z);							\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_3d_##type##_has_infinity(Z3D##Type object)						\
+	{											\
+	return	z_##type##_is_infinity(object.x) ||						\
+		z_##type##_is_infinity(object.y) ||						\
+		z_##type##_is_infinity(object.z);						\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_3d_##type##_has_nan(Z3D##Type object)						\
+	{											\
+	return	z_##type##_is_nan(object.x) ||							\
+		z_##type##_is_nan(object.y) ||							\
+		z_##type##_is_nan(object.z);							\
+	}											\
+												\
+												\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_inverse_lerp(Z3D##Type a, Z3D##Type b, z##type t)			\
+	{											\
+	return z_3d_##type									\
+		(z_##type##_inverse_lerp(a.x, b.x, t),						\
+		 z_##type##_inverse_lerp(a.y, b.y, t),						\
+		 z_##type##_inverse_lerp(a.z, b.z, t));						\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_3d_##type##_is_almost_zero(Z3D##Type object)						\
+	{											\
+	return	z_##type##_is_almost_zero(object.x) &&						\
+		z_##type##_is_almost_zero(object.y) &&						\
+		z_##type##_is_almost_zero(object.z);						\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_3d_##type##_is_finite(Z3D##Type object)						\
+	{											\
+	return	z_##type##_is_finite(object.x) &&						\
+		z_##type##_is_finite(object.y) &&						\
+		z_##type##_is_finite(object.z);							\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_3d_##type##_is_infinity(Z3D##Type object)						\
+	{											\
+	return	z_##type##_is_infinity(object.x) &&						\
+		z_##type##_is_infinity(object.y) &&						\
+		z_##type##_is_infinity(object.z);						\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_3d_##type##_is_nan(Z3D##Type object)							\
+	{											\
+	return	z_##type##_is_nan(object.x) &&							\
+		z_##type##_is_nan(object.y) &&							\
+		z_##type##_is_nan(object.z);							\
+	}											\
+												\
+												\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_lerp(Z3D##Type a, Z3D##Type b, z##type t)				\
+	{											\
+	return z_3d_##type									\
+		(z_##type##_lerp(a.x, b.x, t),							\
+		 z_##type##_lerp(a.y, b.y, t),							\
+		 z_##type##_lerp(a.z, b.z, t));							\
+	}											\
+												\
+												\
+static Z_INLINE											\
+Z3D##Type z_3d_##type##_reciprocal(Z3D##Type object)						\
+	{											\
+	return z_3d_##type									\
+		(((z##type)1) / object.x,							\
+		 ((z##type)1) / object.y,							\
+		 ((z##type)1) / object.z);							\
 	}
 
 
@@ -490,81 +551,90 @@ Z_INLINE Z3D##Type z_3d_##type##_reciprocal(Z3D##Type object)				\
 /* MARK: - Implementation expansions */
 
 
-Z_IMPLEMENTATION_3D_COMMON(UInt8,  uint8 )
-Z_IMPLEMENTATION_3D_COMMON(UInt16, uint16)
-Z_IMPLEMENTATION_3D_COMMON(UInt32, uint32)
+Z_IMPLEMENTATION_COMMON(UInt8,  uint8 )
+Z_IMPLEMENTATION_COMMON(UInt16, uint16)
+Z_IMPLEMENTATION_COMMON(UInt32, uint32)
 
 #ifdef Z_UINT64
-	Z_IMPLEMENTATION_3D_COMMON(UInt64, uint64)
+	Z_IMPLEMENTATION_COMMON(UInt64, uint64)
 #endif
 
 #ifdef Z_UINT128
-	Z_IMPLEMENTATION_3D_COMMON(UInt128, uint128)
+	Z_IMPLEMENTATION_COMMON(UInt128, uint128)
 #endif
 
-Z_IMPLEMENTATION_3D_COMMON (SInt8,  sint8 )
-Z_IMPLEMENTATION_3D_SIGNED (SInt8,  sint8 )
-Z_IMPLEMENTATION_3D_INTEGER(SInt8,  sint8 )
-Z_IMPLEMENTATION_3D_COMMON (SInt16, sint16)
-Z_IMPLEMENTATION_3D_SIGNED (SInt16, sint16)
-Z_IMPLEMENTATION_3D_INTEGER(SInt16, sint16)
-Z_IMPLEMENTATION_3D_COMMON (SInt32, sint32)
-Z_IMPLEMENTATION_3D_SIGNED (SInt32, sint32)
-Z_IMPLEMENTATION_3D_INTEGER(SInt32, sint32)
+Z_IMPLEMENTATION_COMMON (SInt8,  sint8 )
+Z_IMPLEMENTATION_SIGNED (SInt8,  sint8 )
+Z_IMPLEMENTATION_INTEGER(SInt8,  sint8 )
+Z_IMPLEMENTATION_COMMON (SInt16, sint16)
+Z_IMPLEMENTATION_SIGNED (SInt16, sint16)
+Z_IMPLEMENTATION_INTEGER(SInt16, sint16)
+Z_IMPLEMENTATION_COMMON (SInt32, sint32)
+Z_IMPLEMENTATION_SIGNED (SInt32, sint32)
+Z_IMPLEMENTATION_INTEGER(SInt32, sint32)
 
 #ifdef Z_SINT64
-	Z_IMPLEMENTATION_3D_COMMON (SInt64, sint64)
-	Z_IMPLEMENTATION_3D_SIGNED (SInt64, sint64)
-	Z_IMPLEMENTATION_3D_INTEGER(SInt64, sint64)
+	Z_IMPLEMENTATION_COMMON (SInt64, sint64)
+	Z_IMPLEMENTATION_SIGNED (SInt64, sint64)
+	Z_IMPLEMENTATION_INTEGER(SInt64, sint64)
 #endif
 
 #ifdef Z_SINT128
-	Z_IMPLEMENTATION_3D_COMMON (SInt128, sint128)
-	Z_IMPLEMENTATION_3D_SIGNED (SInt128, sint128)
-	Z_IMPLEMENTATION_3D_INTEGER(SInt128, sint128)
+	Z_IMPLEMENTATION_COMMON (SInt128, sint128)
+	Z_IMPLEMENTATION_SIGNED (SInt128, sint128)
+	Z_IMPLEMENTATION_INTEGER(SInt128, sint128)
 #endif
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_3D_COMMON(Float16, float16)
-	Z_IMPLEMENTATION_3D_SIGNED(Float16, float16)
-	Z_IMPLEMENTATION_3D_REAL  (Float16, float16, Z_FLOAT16_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float16, float16)
+	Z_IMPLEMENTATION_SIGNED(Float16, float16)
+	Z_IMPLEMENTATION_REAL  (Float16, float16, Z_FLOAT16_EPSILON)
 #endif
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_3D_COMMON(Float32, float32)
-	Z_IMPLEMENTATION_3D_SIGNED(Float32, float32)
-	Z_IMPLEMENTATION_3D_REAL  (Float32, float32, Z_FLOAT32_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float32, float32)
+	Z_IMPLEMENTATION_SIGNED(Float32, float32)
+	Z_IMPLEMENTATION_REAL  (Float32, float32, Z_FLOAT32_EPSILON)
 #endif
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_3D_COMMON(Float64, float64)
-	Z_IMPLEMENTATION_3D_SIGNED(Float64, float64)
-	Z_IMPLEMENTATION_3D_REAL  (Float64, float64, Z_FLOAT64_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float64, float64)
+	Z_IMPLEMENTATION_SIGNED(Float64, float64)
+	Z_IMPLEMENTATION_REAL  (Float64, float64, Z_FLOAT64_EPSILON)
 #endif
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_3D_COMMON(Float128, float128)
-	Z_IMPLEMENTATION_3D_SIGNED(Float128, float128)
-	Z_IMPLEMENTATION_3D_REAL  (Float128, float128, Z_FLOAT128_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float128, float128)
+	Z_IMPLEMENTATION_SIGNED(Float128, float128)
+	Z_IMPLEMENTATION_REAL  (Float128, float128, Z_FLOAT128_EPSILON)
 #endif
 
 #ifdef Z_FLOAT80_X87
-	Z_IMPLEMENTATION_3D_COMMON(Float80_x87, float80_x87)
-	Z_IMPLEMENTATION_3D_SIGNED(Float80_x87, float80_x87)
-	Z_IMPLEMENTATION_3D_REAL  (Float80_x87, float80_x87, Z_FLOAT80_X87_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_SIGNED(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_REAL  (Float80_x87, float80_x87, Z_FLOAT80_X87_EPSILON)
 #endif
 
 #ifdef Z_FLOAT96_X87
-	Z_IMPLEMENTATION_3D_COMMON(Float96_x87, float96_x87)
-	Z_IMPLEMENTATION_3D_SIGNED(Float96_x87, float96_x87)
-	Z_IMPLEMENTATION_3D_REAL  (Float96_x87, float96_x87, Z_FLOAT96_X87_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_SIGNED(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_REAL  (Float96_x87, float96_x87, Z_FLOAT96_X87_EPSILON)
 #endif
 
 #ifdef Z_FLOAT128_X87
-	Z_IMPLEMENTATION_3D_COMMON(Float128_x87, float128_x87)
-	Z_IMPLEMENTATION_3D_SIGNED(Float128_x87, float128_x87)
-	Z_IMPLEMENTATION_3D_REAL  (Float128_x87, float128_x87, Z_FLOAT128_X87_EPSILON)
+	Z_IMPLEMENTATION_COMMON(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_SIGNED(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_REAL  (Float128_x87, float128_x87, Z_FLOAT128_X87_EPSILON)
 #endif
+
+
+/* MARK: - Cleanup */
+
+
+#undef Z_IMPLEMENTATION_COMMON
+#undef Z_IMPLEMENTATION_SIGNED
+#undef Z_IMPLEMENTATION_INTEGER
+#undef Z_IMPLEMENTATION_REAL
 
 
 /* MARK: - Default real type definitions */
@@ -639,4 +709,4 @@ Z_IMPLEMENTATION_3D_INTEGER(SInt32, sint32)
 #endif
 
 
-#endif /* __Z_functions_base_Z3DValue_H__ */
+#endif /* __Z_functions_base_Z3D_H__ */

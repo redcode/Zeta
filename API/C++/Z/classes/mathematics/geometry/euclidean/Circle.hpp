@@ -20,19 +20,19 @@ namespace Zeta {template <class T> struct Circle {
 	T radius;
 
 
-	Z_INLINE_MEMBER Circle() {}
+	Z_INLINE Circle() {}
 
-	Z_CT_MEMBER(CPP11) Circle(const Value2D<T> &point, T radius) : point(point), radius(radius) {}
-	Z_CT_MEMBER(CPP11) Circle(T x, T y, T radius)		     : point(x, y),  radius(radius) {}
+	Z_CT(CPP11) Circle(const Value2D<T> &point, T radius) : point(point), radius(radius) {}
+	Z_CT(CPP11) Circle(T x, T y, T radius)		      : point(x, y),  radius(radius) {}
 
-	Z_INLINE_MEMBER Circle(const Base &circle) {(*(Base *)this) = circle;}
+	Z_INLINE Circle(const Base &circle) {(*(Base *)this) = circle;}
 
 
-	Z_CT_MEMBER(CPP11) Boolean operator ==(const Circle &circle) const
+	Z_CT(CPP11) Boolean operator ==(const Circle &circle) const
 		{return point.x == circle.point.x && point.y == circle.point.y && radius == circle.radius;}
 
 
-	Z_CT_MEMBER(CPP11) Boolean operator !=(const Circle &circle) const
+	Z_CT(CPP11) Boolean operator !=(const Circle &circle) const
 		{return point.x != circle.point.x || point.y != circle.point.y || radius != circle.radius;}
 
 
@@ -60,15 +60,15 @@ Z_INLINE ZRectangle##Type z_circle_##type##_inner_rectangle(ZCircle##Type object
 												\
 
 
-	Z_CT_MEMBER(CPP11) Boolean is_zero() const
+	Z_CT(CPP11) Boolean is_zero() const
 		{return radius == T(0) && point.is_zero();}
 
 
-	Z_CT_MEMBER(CPP11) AABR<T> outer_aabr() const
+	Z_CT(CPP11) AABR<T> outer_aabr() const
 		{return AABR<T>(point - radius, point + radius);}
 
 
-	Z_CT_MEMBER(CPP11) Rectangle<T> outer_rectangle() const
+	Z_CT(CPP11) Rectangle<T> outer_rectangle() const
 		{return Rectangle<T>(point - radius, radius * T(2));}
 
 

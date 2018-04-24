@@ -657,9 +657,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_ATTRIBUTE_API_WEAK_EXPORT*/
 
 #if __has_attribute(always_inline)
-#	define Z_COMPILER_ATTRIBUTE_INLINE static __inline__ __attribute__((always_inline))
+#	define Z_COMPILER_ATTRIBUTE_INLINE __inline__ __attribute__((always_inline))
 #else
-#	define Z_COMPILER_ATTRIBUTE_INLINE static __inline__
+#	define Z_COMPILER_ATTRIBUTE_INLINE __inline__
 #endif
 
 #if __has_attribute(noreturn)
@@ -671,7 +671,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if __has_attribute(visibility)
-#	define Z_COMPILER_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden"))) static
+#	define Z_COMPILER_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden")))
 #	define Z_COMPILER_ATTRIBUTE_PUBLIC  __attribute__((visibility("default")))
 #endif
 
@@ -686,18 +686,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if __has_attribute(weak)
 #	define Z_COMPILER_ATTRIBUTE_WEAK __attribute__((weak))
-#endif
-
-/* MARK: - Attributes (C++ only) */
-
-#ifdef __cplusplus
-
-#	if __has_attribute(always_inline)
-#		define Z_COMPILER_ATTRIBUTE_INLINE_MEMBER __inline__ __attribute__((always_inline))
-#	else
-#		define Z_COMPILER_ATTRIBUTE_INLINE_MEMBER __inline__
-#	endif
-
 #endif
 
 /* MARK: - Built-in constants */

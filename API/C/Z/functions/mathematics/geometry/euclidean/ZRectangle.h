@@ -9,16 +9,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_functions_mathematics_geometry_euclidean_ZRectangle_H__
 
 #include <Z/functions/mathematics/geometry/euclidean/constructors.h>
-#include <Z/functions/base/Z2DValue.h>
+#include <Z/functions/base/Z2D.h>
 
 
 /* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_RECTANGLE_COMMON(Type, type)						\
+#define Z_IMPLEMENTATION_COMMON(Type, type)							\
 												\
-												\
-Z_INLINE ZAABR##Type z_rectangle_##type##_aabr(ZRectangle##Type object)				\
+static Z_INLINE											\
+ZAABR##Type z_rectangle_##type##_aabr(ZRectangle##Type object)					\
 	{											\
 	return z_aabr_##type									\
 		(object.point.x, object.point.y,						\
@@ -26,7 +26,8 @@ Z_INLINE ZAABR##Type z_rectangle_##type##_aabr(ZRectangle##Type object)				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_bottom_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_align_in_bottom_center(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -37,7 +38,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_bottom_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_bottom_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_align_in_bottom_left(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -47,7 +49,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_bottom_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_bottom_right(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_align_in_bottom_right(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -58,10 +61,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_bottom_right(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_center(					\
-	ZRectangle##Type object,								\
-	Z2D##Type	 size									\
-)												\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_align_in_center(ZRectangle##Type object, Z2D##Type size)	\
 	{											\
 	object.point.x += (object.size.x - size.x) / (z##type)2;				\
 	object.point.y += (object.size.y - size.y) / (z##type)2;				\
@@ -70,7 +71,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_center(					\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_center_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_align_in_center_left(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -81,7 +83,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_center_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_center_right(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_align_in_center_right(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -93,7 +96,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_center_right(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_top_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_align_in_top_center(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -105,7 +109,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_top_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_top_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_align_in_top_left(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -116,7 +121,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_top_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_top_right(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_align_in_top_right(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -128,29 +134,34 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_align_in_top_right(				\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_rectangle_##type##_are_equal(ZRectangle##Type a, ZRectangle##Type b)	\
+static Z_INLINE											\
+zboolean z_rectangle_##type##_are_equal(ZRectangle##Type a, ZRectangle##Type b)			\
 	{											\
 	return	z_2d_##type##_are_equal(a.point, b.point) &&					\
 		z_2d_##type##_are_equal(a.size,	 b.size );					\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_rectangle_##type##_bottom_center(ZRectangle##Type object)			\
+static Z_INLINE											\
+Z2D##Type z_rectangle_##type##_bottom_center(ZRectangle##Type object)				\
 	{return z_2d_##type(object.point.x + object.size.x / (z##type)2, object.point.y);}	\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_bottom_half(ZRectangle##Type object)		\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_bottom_half(ZRectangle##Type object)			\
 	{											\
 	object.size.y /= (z##type)2;								\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_rectangle_##type##_bottom_left(ZRectangle##Type object)			\
+static Z_INLINE											\
+Z2D##Type z_rectangle_##type##_bottom_left(ZRectangle##Type object)				\
 	{return object.point;}									\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_bottom_left_quarter(ZRectangle##Type object)	\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_bottom_left_quarter(ZRectangle##Type object)		\
 	{											\
 	object.size.x /= (z##type)2;								\
 	object.size.y /= (z##type)2;								\
@@ -158,11 +169,13 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_bottom_left_quarter(ZRectangle##T
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_rectangle_##type##_bottom_right(ZRectangle##Type object)			\
+static Z_INLINE											\
+Z2D##Type z_rectangle_##type##_bottom_right(ZRectangle##Type object)				\
 	{return z_2d_##type(object.point.x + object.size.x, object.point.y);}			\
 												\
 												\
-Z_INLINE Z2D##Type z_rectangle_##type##_center(ZRectangle##Type object)				\
+static Z_INLINE											\
+Z2D##Type z_rectangle_##type##_center(ZRectangle##Type object)					\
 	{											\
 	return z_2d_##type									\
 		(object.point.x + object.size.x / (z##type)2,					\
@@ -170,21 +183,21 @@ Z_INLINE Z2D##Type z_rectangle_##type##_center(ZRectangle##Type object)				\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_rectangle_##type##_center_left(ZRectangle##Type object)			\
+static Z_INLINE											\
+Z2D##Type z_rectangle_##type##_center_left(ZRectangle##Type object)				\
 	{return z_2d_##type(object.point.x, object.point.y + object.size.y / (z##type)2);}	\
 												\
 												\
-Z_INLINE Z2D##Type z_rectangle_##type##_center_right(ZRectangle##Type object)			\
+static Z_INLINE											\
+Z2D##Type z_rectangle_##type##_center_right(ZRectangle##Type object)				\
 	{											\
 	return z_2d_##type									\
 		(object.point.x + object.size.x, object.point.y + object.size.y / (z##type)2);	\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_rectangle_##type##_contains(						\
-	ZRectangle##Type object,								\
-	ZRectangle##Type other									\
-)												\
+static Z_INLINE											\
+zboolean z_rectangle_##type##_contains(ZRectangle##Type object, ZRectangle##Type other)		\
 	{											\
 	return	other.size.x		     != (z##type)0		       &&		\
 		other.size.y		     != (z##type)0		       &&		\
@@ -195,7 +208,8 @@ Z_INLINE zboolean z_rectangle_##type##_contains(						\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_rectangle_##type##_contains_aabr(ZRectangle##Type object, ZAABR##Type aabr)	\
+static Z_INLINE											\
+zboolean z_rectangle_##type##_contains_aabr(ZRectangle##Type object, ZAABR##Type aabr)		\
 	{											\
 	return	aabr.a.x != aabr.b.x			   &&					\
 		aabr.a.y != aabr.b.y			   &&					\
@@ -206,7 +220,8 @@ Z_INLINE zboolean z_rectangle_##type##_contains_aabr(ZRectangle##Type object, ZA
 	}											\
 												\
 												\
-Z_INLINE zboolean z_rectangle_##type##_contains_point(ZRectangle##Type object, Z2D##Type point)	\
+static Z_INLINE											\
+zboolean z_rectangle_##type##_contains_point(ZRectangle##Type object, Z2D##Type point)		\
 	{											\
 	return	point.x >= object.point.x		  &&					\
 		point.y >= object.point.y		  &&					\
@@ -215,7 +230,8 @@ Z_INLINE zboolean z_rectangle_##type##_contains_point(ZRectangle##Type object, Z
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_correct(ZRectangle##Type object)			\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_correct(ZRectangle##Type object)				\
 	{											\
 	if (object.size.x < (z##type)0) object.point.x -= (object.size.x = -object.size.x);	\
 	if (object.size.y < (z##type)0) object.point.y -= (object.size.y = -object.size.y);	\
@@ -223,7 +239,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_correct(ZRectangle##Type object)	
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_bottom_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_fit_in_bottom_center(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -237,7 +254,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_bottom_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_bottom_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_fit_in_bottom_left(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -247,7 +265,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_bottom_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_bottom_right(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_fit_in_bottom_right(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -261,10 +280,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_bottom_right(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_center(					\
-	ZRectangle##Type object,								\
-	Z2D##Type	 size									\
-)												\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_fit_in_center(ZRectangle##Type object, Z2D##Type size)	\
 	{											\
 	ZRectangle##Type result;								\
 												\
@@ -275,7 +292,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_center(					\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_center_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_fit_in_center_left(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -289,7 +307,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_center_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_center_right(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_fit_in_center_right(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -303,7 +322,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_center_right(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_top_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_fit_in_top_center(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 size									\
 )												\
@@ -317,10 +337,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_top_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_top_left(					\
-	ZRectangle##Type object,								\
-	Z2D##Type	 size									\
-)												\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_fit_in_top_left(ZRectangle##Type object, Z2D##Type size)	\
 	{											\
 	ZRectangle##Type result;								\
 												\
@@ -331,10 +349,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_top_left(					\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_top_right(				\
-	ZRectangle##Type object,								\
-	Z2D##Type	 size									\
-)												\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_fit_in_top_right(ZRectangle##Type object, Z2D##Type size)	\
 	{											\
 	ZRectangle##Type result;								\
 												\
@@ -345,7 +361,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_fit_in_top_right(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_from_vertices(Z2D##Type a, Z2D##Type b)		\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_from_vertices(Z2D##Type a, Z2D##Type b)			\
 	{											\
 	Z2D##Type minimum = z_2d_##type##_minimum(a, b);					\
 												\
@@ -356,7 +373,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_from_vertices(Z2D##Type a, Z2D##T
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_bottom_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_from_bottom_center(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -368,7 +386,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_bottom_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_bottom_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_from_bottom_left(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -379,7 +398,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_bottom_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_bottom_right(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_from_bottom_right(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -391,7 +411,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_bottom_right(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_from_center(						\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -404,7 +425,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_center_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_from_center_left(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -416,7 +438,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_center_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_center_right(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_from_center_right(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -429,7 +452,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_center_right(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_top_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_from_top_center(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -442,7 +466,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_top_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_top_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_from_top_left(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -454,7 +479,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_top_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_top_right(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_from_top_right(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -467,7 +493,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_from_top_right(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_x_from_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_in_x_from_center(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -478,7 +505,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_x_from_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_x_from_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_in_x_from_left(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -488,7 +516,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_x_from_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_x_from_right(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_in_x_from_right(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -499,7 +528,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_x_from_right(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_y_from_bottom(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_in_y_from_bottom(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -509,7 +539,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_y_from_bottom(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_y_from_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_in_y_from_center(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -520,7 +551,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_y_from_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_y_from_top(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_grow_in_y_from_top(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -531,7 +563,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_grow_in_y_from_top(				\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_rectangle_##type##_intersect(ZRectangle##Type a, ZRectangle##Type b)	\
+static Z_INLINE											\
+zboolean z_rectangle_##type##_intersect(ZRectangle##Type a, ZRectangle##Type b)			\
 	{											\
 	return	a.size.x	     != (z##type)0	     &&					\
 		a.size.y	     != (z##type)0	     &&					\
@@ -544,7 +577,7 @@ Z_INLINE zboolean z_rectangle_##type##_intersect(ZRectangle##Type a, ZRectangle#
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_intersection(					\
+static Z_INLINE ZRectangle##Type z_rectangle_##type##_intersection(				\
 	ZRectangle##Type a,									\
 	ZRectangle##Type b									\
 )												\
@@ -561,42 +594,51 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_intersection(					\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_rectangle_##type##_is_zero(ZRectangle##Type object)				\
+static Z_INLINE											\
+zboolean z_rectangle_##type##_is_zero(ZRectangle##Type object)					\
 	{return z_2d_##type##_is_zero(object.point) && z_2d_##type##_is_zero(object.size);}	\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_left_half(ZRectangle##Type object)		\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_left_half(ZRectangle##Type object)			\
 	{											\
 	object.size.x /= (z##type)2;								\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE z##type z_rectangle_##type##_maximum_x(ZRectangle##Type object)			\
+static Z_INLINE											\
+z##type z_rectangle_##type##_maximum_x(ZRectangle##Type object)					\
 	{return object.point.x + object.size.x;}						\
 												\
 												\
-Z_INLINE z##type z_rectangle_##type##_maximum_y(ZRectangle##Type object)			\
+static Z_INLINE											\
+z##type z_rectangle_##type##_maximum_y(ZRectangle##Type object)					\
 	{return object.point.y + object.size.y;}						\
 												\
 												\
-Z_INLINE z##type z_rectangle_##type##_middle_x(ZRectangle##Type object)				\
+static Z_INLINE											\
+z##type z_rectangle_##type##_middle_x(ZRectangle##Type object)					\
 	{return object.point.x + object.size.x / (z##type)2;}					\
 												\
 												\
-Z_INLINE z##type z_rectangle_##type##_middle_y(ZRectangle##Type object)				\
+static Z_INLINE											\
+z##type z_rectangle_##type##_middle_y(ZRectangle##Type object)					\
 	{return object.point.y + object.size.y / (z##type)2;}					\
 												\
 												\
-Z_INLINE z##type z_rectangle_##type##_minimum_x(ZRectangle##Type object)			\
+static Z_INLINE											\
+z##type z_rectangle_##type##_minimum_x(ZRectangle##Type object)					\
 	{return object.point.x;}								\
 												\
 												\
-Z_INLINE z##type z_rectangle_##type##_minimum_y(ZRectangle##Type object)			\
+static Z_INLINE											\
+z##type z_rectangle_##type##_minimum_y(ZRectangle##Type object)					\
 	{return object.point.y;}								\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_bottom_center(			\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_from_bottom_center(				\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -608,7 +650,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_bottom_center(			\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_bottom_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_from_bottom_left(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -619,7 +662,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_bottom_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_bottom_right(			\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_from_bottom_right(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -631,7 +675,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_bottom_right(			\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_from_center(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -644,7 +689,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_center_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_from_center_left(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -656,7 +702,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_center_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_center_right(			\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_from_center_right(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -669,7 +716,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_center_right(			\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_top_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_from_top_center(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -682,7 +730,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_top_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_top_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_from_top_left(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -694,7 +743,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_top_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_top_right(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_from_top_right(					\
 	ZRectangle##Type object,								\
 	Z2D##Type	 delta									\
 )												\
@@ -707,7 +757,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_from_top_right(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_center(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -718,7 +769,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_left(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_left(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -728,7 +780,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_left(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_right(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_right(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -739,7 +792,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_x_from_right(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_bottom(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_bottom(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -749,7 +803,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_bottom(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_center(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_center(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -760,7 +815,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_center(				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_top(				\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_top(					\
 	ZRectangle##Type object,								\
 	z##type		 delta									\
 )												\
@@ -771,7 +827,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_shrink_in_y_from_top(				\
 	}											\
 												\
 												\
-Z_INLINE void z_rectangle_##type##_swap(ZRectangle##Type *a, ZRectangle##Type *b)		\
+static Z_INLINE											\
+void z_rectangle_##type##_swap(ZRectangle##Type *a, ZRectangle##Type *b)			\
 	{											\
 	ZRectangle##Type t = *a;								\
 												\
@@ -779,22 +836,26 @@ Z_INLINE void z_rectangle_##type##_swap(ZRectangle##Type *a, ZRectangle##Type *b
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_rectangle_##type##_top_center(ZRectangle##Type object)			\
+static Z_INLINE											\
+Z2D##Type z_rectangle_##type##_top_center(ZRectangle##Type object)				\
 	{											\
 	return z_2d_##type									\
 		(object.point.x + object.size.x / (z##type)2, object.point.y + object.size.y);	\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_rectangle_##type##_top_left(ZRectangle##Type object)			\
+static Z_INLINE											\
+Z2D##Type z_rectangle_##type##_top_left(ZRectangle##Type object)				\
 	{return z_2d_##type(object.point.x, object.point.y + object.size.y);}			\
 												\
 												\
-Z_INLINE Z2D##Type z_rectangle_##type##_top_right(ZRectangle##Type object)			\
+static Z_INLINE											\
+Z2D##Type z_rectangle_##type##_top_right(ZRectangle##Type object)				\
 	{return z_2d_##type(object.point.x + object.size.x, object.point.y + object.size.y);}	\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_union(ZRectangle##Type a, ZRectangle##Type b)	\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_union(ZRectangle##Type a, ZRectangle##Type b)		\
 	{											\
 	ZRectangle##Type result;								\
 												\
@@ -893,10 +954,10 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_union(ZRectangle##Type a, ZRectan
 /* MARK: - Partial implementation for integer types */
 
 
-#define Z_IMPLEMENTATION_RECTANGLE_INTEGER(Type, type)						\
+#define Z_IMPLEMENTATION_INTEGER(Type, type)							\
 												\
-												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_bottom_right_quarter(ZRectangle##Type object)	\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_bottom_right_quarter(ZRectangle##Type object)		\
 	{											\
 	object.point.x += object.size.x / (z##type)2;						\
 	object.size.x	= object.size.x - object.size.x / (z##type)2;				\
@@ -905,7 +966,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_bottom_right_quarter(ZRectangle##
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_right_half(ZRectangle##Type object)		\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_right_half(ZRectangle##Type object)			\
 	{											\
 	object.point.x += object.size.x / (z##type)2;						\
 	object.size.x	= object.size.x - object.size.x / (z##type)2;				\
@@ -913,7 +975,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_right_half(ZRectangle##Type objec
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_top_half(ZRectangle##Type object)		\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_top_half(ZRectangle##Type object)				\
 	{											\
 	object.point.y += object.size.y / (z##type)2;						\
 	object.size.y	= object.size.y - object.size.y / (z##type)2;				\
@@ -921,7 +984,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_top_half(ZRectangle##Type object)
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_top_left_quarter(ZRectangle##Type object)	\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_top_left_quarter(ZRectangle##Type object)			\
 	{											\
 	object.point.y += object.size.y / (z##type)2;						\
 	object.size.x  /= (z##type)2;								\
@@ -930,7 +994,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_top_left_quarter(ZRectangle##Type
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_top_right_quarter(ZRectangle##Type object)	\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_top_right_quarter(ZRectangle##Type object)		\
 	{											\
 	object.point.x += object.size.x / (z##type)2;						\
 	object.point.y += object.size.y / (z##type)2;						\
@@ -943,13 +1008,10 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_top_right_quarter(ZRectangle##Typ
 /* MARK: - Partial implementation for real types */
 
 
-#define Z_IMPLEMENTATION_RECTANGLE_REAL(Type, type)						\
+#define Z_IMPLEMENTATION_REAL(Type, type)							\
 												\
-												\
-Z_INLINE Z2D##Type z_rectangle_##type##_absolute_point_to_unit(					\
-	ZRectangle##Type object,								\
-	Z2D##Type	 point									\
-)												\
+static Z_INLINE											\
+Z2D##Type z_rectangle_##type##_absolute_point_to_unit(ZRectangle##Type object, Z2D##Type point)	\
 	{											\
 	return z_2d_##type									\
 		((point.x - object.point.x) / object.size.x,					\
@@ -957,7 +1019,8 @@ Z_INLINE Z2D##Type z_rectangle_##type##_absolute_point_to_unit(					\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_bottom_right_quarter(ZRectangle##Type object)	\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_bottom_right_quarter(ZRectangle##Type object)		\
 	{											\
 	object.point.x += (object.size.x /= (z##type)2);					\
 	object.size.y  /= (z##type)2;								\
@@ -965,10 +1028,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_bottom_right_quarter(ZRectangle##
 	}											\
 												\
 												\
-Z_INLINE zboolean z_rectangle_##type##_contains_circle(						\
-	ZRectangle##Type object,								\
-	ZCircle##Type	 circle									\
-)												\
+static Z_INLINE											\
+zboolean z_rectangle_##type##_contains_circle(ZRectangle##Type object,ZCircle##Type circle)	\
 	{											\
 	return	circle.radius != (z##type)0					 &&		\
 		circle.point.x - circle.radius >= object.point.x		 &&		\
@@ -978,7 +1039,8 @@ Z_INLINE zboolean z_rectangle_##type##_contains_circle(						\
 	}											\
 												\
 												\
-Z_INLINE ZCircle##Type z_rectangle_##type##_inner_circle(ZRectangle##Type object)		\
+static Z_INLINE											\
+ZCircle##Type z_rectangle_##type##_inner_circle(ZRectangle##Type object)			\
 	{											\
 	ZCircle##Type result;									\
 												\
@@ -988,21 +1050,24 @@ Z_INLINE ZCircle##Type z_rectangle_##type##_inner_circle(ZRectangle##Type object
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_right_half(ZRectangle##Type object)		\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_right_half(ZRectangle##Type object)			\
 	{											\
 	object.point.x += (object.size.x /= (z##type)2);					\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_top_half(ZRectangle##Type object)		\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_top_half(ZRectangle##Type object)				\
 	{											\
 	object.point.y += (object.size.y /= (z##type)2);					\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_top_left_quarter(ZRectangle##Type object)	\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_top_left_quarter(ZRectangle##Type object)			\
 	{											\
 	object.size.x  /= (z##type)2;								\
 	object.point.y += (object.size.y /= (z##type)2);					\
@@ -1010,7 +1075,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_top_left_quarter(ZRectangle##Type
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_rectangle_##type##_top_right_quarter(ZRectangle##Type object)	\
+static Z_INLINE											\
+ZRectangle##Type z_rectangle_##type##_top_right_quarter(ZRectangle##Type object)		\
 	{											\
 	object.point.x += (object.size.x /= (z##type)2);					\
 	object.point.y += (object.size.y /= (z##type)2);					\
@@ -1018,10 +1084,8 @@ Z_INLINE ZRectangle##Type z_rectangle_##type##_top_right_quarter(ZRectangle##Typ
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
-	ZRectangle##Type object,								\
-	Z2D##Type	 point									\
-)												\
+static Z_INLINE											\
+Z2D##Type z_rectangle_##type##_unit_point_to_absolute(ZRectangle##Type object, Z2D##Type point)	\
 	{											\
 	return z_2d_##type									\
 		(point.x * object.size.x + object.point.x,					\
@@ -1043,59 +1107,67 @@ Z_INLINE Z2D##Type z_rectangle_##type##_unit_point_to_absolute(					\
 /* MARK: - Implementation expansions */
 
 
-Z_IMPLEMENTATION_RECTANGLE_COMMON (SInt8, sint8)
-Z_IMPLEMENTATION_RECTANGLE_INTEGER(SInt8, sint8)
+Z_IMPLEMENTATION_COMMON (SInt8, sint8)
+Z_IMPLEMENTATION_INTEGER(SInt8, sint8)
 
-Z_IMPLEMENTATION_RECTANGLE_COMMON (SInt16, sint16)
-Z_IMPLEMENTATION_RECTANGLE_INTEGER(SInt16, sint16)
+Z_IMPLEMENTATION_COMMON (SInt16, sint16)
+Z_IMPLEMENTATION_INTEGER(SInt16, sint16)
 
-Z_IMPLEMENTATION_RECTANGLE_COMMON (SInt32, sint32)
-Z_IMPLEMENTATION_RECTANGLE_INTEGER(SInt32, sint32)
+Z_IMPLEMENTATION_COMMON (SInt32, sint32)
+Z_IMPLEMENTATION_INTEGER(SInt32, sint32)
 
 #ifdef Z_SINT64
-	Z_IMPLEMENTATION_RECTANGLE_COMMON (SInt64, sint64)
-	Z_IMPLEMENTATION_RECTANGLE_INTEGER(SInt64, sint64)
+	Z_IMPLEMENTATION_COMMON (SInt64, sint64)
+	Z_IMPLEMENTATION_INTEGER(SInt64, sint64)
 #endif
 
 #ifdef Z_SINT128
-	Z_IMPLEMENTATION_RECTANGLE_COMMON (Int128, int128)
-	Z_IMPLEMENTATION_RECTANGLE_INTEGER(Int128, int128)
+	Z_IMPLEMENTATION_COMMON (Int128, int128)
+	Z_IMPLEMENTATION_INTEGER(Int128, int128)
 #endif
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float16, float16)
-	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float16, float16)
+	Z_IMPLEMENTATION_COMMON(Float16, float16)
+	Z_IMPLEMENTATION_REAL  (Float16, float16)
 #endif
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float32, float32)
-	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float32, float32)
+	Z_IMPLEMENTATION_COMMON(Float32, float32)
+	Z_IMPLEMENTATION_REAL  (Float32, float32)
 #endif
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float64, float64)
-	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float64, float64)
+	Z_IMPLEMENTATION_COMMON(Float64, float64)
+	Z_IMPLEMENTATION_REAL  (Float64, float64)
 #endif
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float128, float128)
-	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float128, float128)
+	Z_IMPLEMENTATION_COMMON(Float128, float128)
+	Z_IMPLEMENTATION_REAL  (Float128, float128)
 #endif
 
 #ifdef Z_FLOAT80_X87
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float80_x87, float80_x87)
-	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_COMMON(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_REAL  (Float80_x87, float80_x87)
 #endif
 
 #ifdef Z_FLOAT96_X87
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float96_x87, float96_x87)
-	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_COMMON(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_REAL  (Float96_x87, float96_x87)
 #endif
 
 #ifdef Z_FLOAT128_X87
-	Z_IMPLEMENTATION_RECTANGLE_COMMON(Float128_x87, float128_x87)
-	Z_IMPLEMENTATION_RECTANGLE_REAL	 (Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_COMMON(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_REAL  (Float128_x87, float128_x87)
 #endif
+
+
+/* MARK: - Cleanup */
+
+
+#undef Z_IMPLEMENTATION_COMMON
+#undef Z_IMPLEMENTATION_INTEGER
+#undef Z_IMPLEMENTATION_REAL
 
 
 /* MARK: - Default real type definitions */

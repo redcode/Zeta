@@ -14,10 +14,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_AABB_COMMON(Type, type)						\
+#define Z_IMPLEMENTATION_COMMON(Type, type)							\
 												\
-												\
-Z_INLINE ZBox##Type z_aabb_##type##_box(ZAABB##Type object)					\
+static Z_INLINE											\
+ZBox##Type z_aabb_##type##_box(ZAABB##Type object)						\
 	{											\
 	return z_box_##type									\
 		(object.a.x, object.a.y, object.a.z,						\
@@ -25,7 +25,8 @@ Z_INLINE ZBox##Type z_aabb_##type##_box(ZAABB##Type object)					\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_aabb_##type##_contains(ZAABB##Type object, ZAABB##Type other)		\
+static Z_INLINE											\
+zboolean z_aabb_##type##_contains(ZAABB##Type object, ZAABB##Type other)			\
 	{											\
 	return	other.a.x != other.b.x	&&							\
 		other.a.y != other.b.y	&&							\
@@ -39,7 +40,8 @@ Z_INLINE zboolean z_aabb_##type##_contains(ZAABB##Type object, ZAABB##Type other
 	}											\
 												\
 												\
-Z_INLINE zboolean z_aabb_##type##_contains_box(ZAABB##Type object, ZBox##Type box)		\
+static Z_INLINE											\
+zboolean z_aabb_##type##_contains_box(ZAABB##Type object, ZBox##Type box)			\
 	{											\
 	return	box.size.x		 != (z##type)0 &&					\
 		box.size.y		 != (z##type)0 &&					\
@@ -53,14 +55,16 @@ Z_INLINE zboolean z_aabb_##type##_contains_box(ZAABB##Type object, ZBox##Type bo
 	}											\
 												\
 												\
-Z_INLINE zboolean z_aabb_##type##_contains_point(ZAABB##Type object, Z3D##Type point)		\
+static Z_INLINE											\
+zboolean z_aabb_##type##_contains_point(ZAABB##Type object, Z3D##Type point)			\
 	{											\
 	return	point.x >= object.a.x && point.y >= object.a.y && point.z >= object.a.z &&	\
 		point.x <  object.b.x && point.y <  object.b.y && point.z <  object.b.z;	\
 	}											\
 												\
 												\
-Z_INLINE ZAABB##Type z_aabb_##type##_from_vertices(Z3D##Type a, Z3D##Type b)			\
+static Z_INLINE											\
+ZAABB##Type z_aabb_##type##_from_vertices(Z3D##Type a, Z3D##Type b)				\
 	{											\
 	ZAABB##Type result;									\
 												\
@@ -70,7 +74,8 @@ Z_INLINE ZAABB##Type z_aabb_##type##_from_vertices(Z3D##Type a, Z3D##Type b)			\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_aabb_##type##_intersect(ZAABB##Type a, ZAABB##Type b)			\
+static Z_INLINE											\
+zboolean z_aabb_##type##_intersect(ZAABB##Type a, ZAABB##Type b)				\
 	{											\
 	return	a.a.x != a.b.x && a.a.y != a.b.y && a.a.z != a.b.z &&				\
 		b.a.x != b.b.x && b.a.y != b.b.y && b.a.z != b.b.z &&				\
@@ -79,7 +84,8 @@ Z_INLINE zboolean z_aabb_##type##_intersect(ZAABB##Type a, ZAABB##Type b)			\
 	}											\
 												\
 												\
-Z_INLINE ZAABB##Type z_aabb_##type##_intersection(ZAABB##Type a, ZAABB##Type b)			\
+static Z_INLINE											\
+ZAABB##Type z_aabb_##type##_intersection(ZAABB##Type a, ZAABB##Type b)				\
 	{											\
 	z##type x1, x2, y1, y2, z1, z2;								\
 												\
@@ -95,11 +101,13 @@ Z_INLINE ZAABB##Type z_aabb_##type##_intersection(ZAABB##Type a, ZAABB##Type b)	
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_aabb_##type##_size(ZAABB##Type object)					\
+static Z_INLINE											\
+Z3D##Type z_aabb_##type##_size(ZAABB##Type object)						\
 	{return z_3d_##type##_subtract(object.b, object.a);}					\
 												\
 												\
-Z_INLINE ZAABB##Type z_aabb_##type##_union(ZAABB##Type a, ZAABB##Type b)			\
+static Z_INLINE											\
+ZAABB##Type z_aabb_##type##_union(ZAABB##Type a, ZAABB##Type b)					\
 	{											\
 	ZAABB##Type result;									\
 												\
@@ -109,7 +117,8 @@ Z_INLINE ZAABB##Type z_aabb_##type##_union(ZAABB##Type a, ZAABB##Type b)			\
 	}											\
 												\
 												\
-Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
+static Z_INLINE											\
+z##type z_aabb_##type##_volume(ZAABB##Type object)						\
 	{return z_3d_##type##_inner_product(z_3d_##type##_subtract(object.b, object.a));}
 
 
@@ -128,10 +137,10 @@ Z_INLINE z##type z_aabb_##type##_volume(ZAABB##Type object)					\
 /* MARK: - Partial implementation for real types */
 
 
-#define Z_IMPLEMENTATION_AABB_REAL(Type, type)							\
+#define Z_IMPLEMENTATION_REAL(Type, type)							\
 												\
-												\
-Z_INLINE Z3D##Type z_aabb_##type##_absolute_point_to_unit(ZAABB##Type object, Z3D##Type point)	\
+static Z_INLINE											\
+Z3D##Type z_aabb_##type##_absolute_point_to_unit(ZAABB##Type object, Z3D##Type point)		\
 	{											\
 	return z_3d_##type									\
 		((point.x - object.a.x) / (object.b.x - object.a.x),				\
@@ -140,7 +149,8 @@ Z_INLINE Z3D##Type z_aabb_##type##_absolute_point_to_unit(ZAABB##Type object, Z3
 	}											\
 												\
 												\
-Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##Type sphere)	\
+static Z_INLINE											\
+zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##Type sphere)		\
 	{											\
 	return	sphere.radius != (z##type)0		     &&					\
 		sphere.point.x - sphere.radius >= object.a.x &&					\
@@ -152,7 +162,8 @@ Z_INLINE zboolean z_aabb_##type##_contains_sphere(ZAABB##Type object, ZSphere##T
 	}											\
 												\
 												\
-Z_INLINE ZSphere##Type z_aabb_##type##_inner_sphere(ZAABB##Type object)				\
+static Z_INLINE											\
+ZSphere##Type z_aabb_##type##_inner_sphere(ZAABB##Type object)					\
 	{											\
 	ZSphere##Type result;									\
 												\
@@ -168,7 +179,8 @@ Z_INLINE ZSphere##Type z_aabb_##type##_inner_sphere(ZAABB##Type object)				\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_aabb_##type##_unit_point_to_absolute(ZAABB##Type object, Z3D##Type point)	\
+static Z_INLINE											\
+Z3D##Type z_aabb_##type##_unit_point_to_absolute(ZAABB##Type object, Z3D##Type point)		\
 	{											\
 	return z_3d_##type									\
 		(point.x * (object.b.x - object.a.x) + object.a.x,				\
@@ -191,21 +203,21 @@ Z_INLINE Z3D##Type z_aabb_##type##_unit_point_to_absolute(ZAABB##Type object, Z3
 #define z_aabb_sint8_is_zero   z_3d_line_sint8_is_zero
 #define z_aabb_sint8_swap      z_3d_line_sint8_swap
 
-Z_IMPLEMENTATION_AABB_COMMON(SInt8, sint8)
+Z_IMPLEMENTATION_COMMON(SInt8, sint8)
 
 #define z_aabb_sint16_are_equal z_3d_line_sint16_are_equal
 #define z_aabb_sint16_center	z_3d_line_segment_sint16_center
 #define z_aabb_sint16_is_zero	z_3d_line_sint16_is_zero
 #define z_aabb_sint16_swap	z_3d_line_sint16_swap
 
-Z_IMPLEMENTATION_AABB_COMMON(SInt16, sint16)
+Z_IMPLEMENTATION_COMMON(SInt16, sint16)
 
 #define z_aabb_sint32_are_equal z_3d_line_sint32_are_equal
 #define z_aabb_sint32_center	z_3d_line_segment_sint32_center
 #define z_aabb_sint32_is_zero	z_3d_line_sint32_is_zero
 #define z_aabb_sint32_swap	z_3d_line_sint32_swap
 
-Z_IMPLEMENTATION_AABB_COMMON(SInt32, sint32)
+Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 
 #ifdef Z_SINT64
 
@@ -214,7 +226,7 @@ Z_IMPLEMENTATION_AABB_COMMON(SInt32, sint32)
 #	define z_aabb_sint64_is_zero   z_3d_line_sint64_is_zero
 #	define z_aabb_sint64_swap      z_3d_line_sint64_swap
 
-	Z_IMPLEMENTATION_AABB_COMMON(SInt64, sint64)
+	Z_IMPLEMENTATION_COMMON(SInt64, sint64)
 
 #endif
 
@@ -225,7 +237,7 @@ Z_IMPLEMENTATION_AABB_COMMON(SInt32, sint32)
 #	define z_aabb_sint128_is_zero	z_3d_line_sint128_is_zero
 #	define z_aabb_sint128_swap	z_3d_line_sint128_swap
 
-	Z_IMPLEMENTATION_AABB_COMMON(SInt128, sint128)
+	Z_IMPLEMENTATION_COMMON(SInt128, sint128)
 
 #endif
 
@@ -236,8 +248,8 @@ Z_IMPLEMENTATION_AABB_COMMON(SInt32, sint32)
 #	define z_aabb_float16_is_zero	z_3d_line_float16_is_zero
 #	define z_aabb_float16_swap	z_3d_line_float16_swap
 
-	Z_IMPLEMENTATION_AABB_COMMON(Float16, float16)
-	Z_IMPLEMENTATION_AABB_REAL  (Float16, float16)
+	Z_IMPLEMENTATION_COMMON(Float16, float16)
+	Z_IMPLEMENTATION_REAL  (Float16, float16)
 
 #endif
 
@@ -248,8 +260,8 @@ Z_IMPLEMENTATION_AABB_COMMON(SInt32, sint32)
 #	define z_aabb_float32_is_zero	z_3d_line_float32_is_zero
 #	define z_aabb_float32_swap	z_3d_line_float32_swap
 
-	Z_IMPLEMENTATION_AABB_COMMON(Float32, float32)
-	Z_IMPLEMENTATION_AABB_REAL  (Float32, float32)
+	Z_IMPLEMENTATION_COMMON(Float32, float32)
+	Z_IMPLEMENTATION_REAL  (Float32, float32)
 
 #endif
 
@@ -260,8 +272,8 @@ Z_IMPLEMENTATION_AABB_COMMON(SInt32, sint32)
 #	define z_aabb_float64_is_zero	z_3d_line_float64_is_zero
 #	define z_aabb_float64_swap	z_3d_line_float64_swap
 
-	Z_IMPLEMENTATION_AABB_COMMON(Float64, float64)
-	Z_IMPLEMENTATION_AABB_REAL  (Float64, float64)
+	Z_IMPLEMENTATION_COMMON(Float64, float64)
+	Z_IMPLEMENTATION_REAL  (Float64, float64)
 
 #endif
 
@@ -272,8 +284,8 @@ Z_IMPLEMENTATION_AABB_COMMON(SInt32, sint32)
 #	define z_aabb_float128_is_zero	 z_3d_line_float128_is_zero
 #	define z_aabb_float128_swap	 z_3d_line_float128_swap
 
-	Z_IMPLEMENTATION_AABB_COMMON(Float128, float128)
-	Z_IMPLEMENTATION_AABB_REAL  (Float128, float128)
+	Z_IMPLEMENTATION_COMMON(Float128, float128)
+	Z_IMPLEMENTATION_REAL  (Float128, float128)
 
 #endif
 
@@ -284,8 +296,8 @@ Z_IMPLEMENTATION_AABB_COMMON(SInt32, sint32)
 #	define z_aabb_float80_x87_is_zero   z_3d_line_float80_x87_is_zero
 #	define z_aabb_float80_x87_swap	    z_3d_line_float80_x87_swap
 
-	Z_IMPLEMENTATION_AABB_COMMON(Float80_x87, float80_x87)
-	Z_IMPLEMENTATION_AABB_REAL  (Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_COMMON(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_REAL  (Float80_x87, float80_x87)
 
 #endif
 
@@ -296,8 +308,8 @@ Z_IMPLEMENTATION_AABB_COMMON(SInt32, sint32)
 #	define z_aabb_float96_x87_is_zero   z_3d_line_float96_x87_is_zero
 #	define z_aabb_float96_x87_swap	    z_3d_line_float96_x87_swap
 
-	Z_IMPLEMENTATION_AABB_COMMON(Float96_x87, float96_x87)
-	Z_IMPLEMENTATION_AABB_REAL  (Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_COMMON(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_REAL  (Float96_x87, float96_x87)
 
 #endif
 
@@ -308,10 +320,17 @@ Z_IMPLEMENTATION_AABB_COMMON(SInt32, sint32)
 #	define z_aabb_float128_x87_is_zero   z_3d_line_float128_x87_is_zero
 #	define z_aabb_float128_x87_swap	     z_3d_line_float128_x87_swap
 
-	Z_IMPLEMENTATION_AABB_COMMON(Float128_x87, float128_x87)
-	Z_IMPLEMENTATION_AABB_REAL  (Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_COMMON(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_REAL  (Float128_x87, float128_x87)
 
 #endif
+
+
+/* MARK: - Cleanup */
+
+
+#undef Z_IMPLEMENTATION_COMMON
+#undef Z_IMPLEMENTATION_REAL
 
 
 /* MARK: - Default real type definitions */

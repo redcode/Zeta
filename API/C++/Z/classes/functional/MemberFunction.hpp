@@ -24,11 +24,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <class R, class... P> struct MemberFunction<R(P...)> {
 			R (NaT::* function)(P...);
 
-			Z_INLINE_MEMBER MemberFunction() {}
+			Z_INLINE MemberFunction() {}
 
 
 #			if Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
-				Z_CT_MEMBER(CPP11) MemberFunction(NullPointer)
+				Z_CT(CPP11) MemberFunction(NullPointer)
 				: function(NULL) {};
 #			endif
 
@@ -37,11 +37,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
-			Z_INLINE_MEMBER MemberFunction(M function)
+			Z_INLINE MemberFunction(M function)
 			: function((R (NaT::*)(P...))function) {}
 
 
-			Z_CT_MEMBER(CPP11) operator Boolean() const {return function != NULL;}
+			Z_CT(CPP11) operator Boolean() const {return function != NULL;}
 
 
 			template <class M, class E = typename EnableIf<
@@ -52,7 +52,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class M>
-			Z_INLINE_MEMBER typename EnableIf<
+			Z_INLINE typename EnableIf<
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			MemberFunction &>::type
@@ -64,25 +64,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O, class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
+			Z_INLINE typename EnableIf<Type<RR>::is_void, RR>::type
 			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
 				{(((NaT *)object)->*function)(arguments...);}
 
 
 			template <class O, class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<R>::is_void, RR>::type
+			Z_INLINE typename EnableIf<Type<R>::is_void, RR>::type
 			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
 				{(((NaT *)&object)->*function)(arguments...);}
 
 
 			template <class O, class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<!Type<R>::is_void, RR>::type
+			Z_INLINE typename EnableIf<!Type<R>::is_void, RR>::type
 			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
 				{return (((NaT *)object)->*function)(arguments...);}
 
 
 			template <class O, class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<!Type<R>::is_void, RR>::type
+			Z_INLINE typename EnableIf<!Type<R>::is_void, RR>::type
 			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
 				{return (((NaT *)&object)->*function)(arguments...);}
 		};

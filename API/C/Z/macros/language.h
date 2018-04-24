@@ -70,13 +70,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_INLINE Z_COMPILER_ATTRIBUTE(INLINE)
 
 #elif Z_LANGUAGE_HAS_SPECIFIER(C, INLINE) || Z_LANGUAGE_HAS_SPECIFIER(CPP, INLINE)
-
-#	if Z_LANGUAGE_HAS_STORAGE_CLASS(C, STATIC)
-#		define Z_INLINE static inline
-#	else
-#		define Z_INLINE inline
-#	endif
-
+#	define Z_INLINE inline
+#else
+#	define Z_INLINE
 #endif
 
 #if Z_COMPILER_HAS_ATTRIBUTE(NO_RETURN)

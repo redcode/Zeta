@@ -9,21 +9,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_functions_mathematics_geometry_euclidean_ZCircle_H__
 
 #include <Z/functions/mathematics/geometry/euclidean/constructors.h>
-#include <Z/functions/base/Z2DValue.h>
+#include <Z/functions/base/Z2D.h>
 #include <Z/constants/numbers.h>
 
 
 /* MARK: - Implementation */
 
 
-#define Z_IMPLEMENTATION_CIRCLE(Type, type, _)							\
+#define Z_IMPLEMENTATION(Type, type, _)								\
 												\
-												\
-Z_INLINE zboolean z_circle_##type##_are_equal(ZCircle##Type a, ZCircle##Type b)			\
+static Z_INLINE											\
+zboolean z_circle_##type##_are_equal(ZCircle##Type a, ZCircle##Type b)				\
 	{return a.radius == b.radius && z_2d_##type##_are_equal(a.point, b.point);}		\
 												\
 												\
-Z_INLINE ZAABR##Type z_circle_##type##_inner_aabr(ZCircle##Type object)				\
+static Z_INLINE											\
+ZAABR##Type z_circle_##type##_inner_aabr(ZCircle##Type object)					\
 	{											\
 	z##type half_size = object.radius / _(Z_SQUARE_ROOT_2);					\
 												\
@@ -33,7 +34,8 @@ Z_INLINE ZAABR##Type z_circle_##type##_inner_aabr(ZCircle##Type object)				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_circle_##type##_inner_rectangle(ZCircle##Type object)		\
+static Z_INLINE											\
+ZRectangle##Type z_circle_##type##_inner_rectangle(ZCircle##Type object)			\
 	{											\
 	z##type half_size = object.radius / _(Z_SQUARE_ROOT_2);					\
 	z##type size = half_size * _(2.0);							\
@@ -43,11 +45,13 @@ Z_INLINE ZRectangle##Type z_circle_##type##_inner_rectangle(ZCircle##Type object
 	}											\
 												\
 												\
-Z_INLINE zboolean z_circle_##type##_is_zero(ZCircle##Type object)				\
+static Z_INLINE											\
+zboolean z_circle_##type##_is_zero(ZCircle##Type object)					\
 	{return object.radius == _(0.0) && z_2d_##type##_is_zero(object.point);}		\
 												\
 												\
-Z_INLINE ZAABR##Type z_circle_##type##_outer_aabr(ZCircle##Type object)				\
+static Z_INLINE											\
+ZAABR##Type z_circle_##type##_outer_aabr(ZCircle##Type object)					\
 	{											\
 	return z_aabr_##type									\
 		(object.point.x - object.radius, object.point.y - object.radius,		\
@@ -55,7 +59,8 @@ Z_INLINE ZAABR##Type z_circle_##type##_outer_aabr(ZCircle##Type object)				\
 	}											\
 												\
 												\
-Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object)		\
+static Z_INLINE											\
+ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object)			\
 	{											\
 	z##type size = object.radius * _(2.0);							\
 												\
@@ -64,7 +69,8 @@ Z_INLINE ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object
 	}											\
 												\
 												\
-Z_INLINE void z_circle_##type##_swap(ZCircle##Type *a, ZCircle##Type *b)			\
+static Z_INLINE											\
+void z_circle_##type##_swap(ZCircle##Type *a, ZCircle##Type *b)					\
 	{											\
 	ZCircle##Type t = *a;									\
 												\
@@ -85,32 +91,38 @@ Z_INLINE void z_circle_##type##_swap(ZCircle##Type *a, ZCircle##Type *b)			\
 
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_CIRCLE(Float16, float16, Z_FLOAT16)
+	Z_IMPLEMENTATION(Float16, float16, Z_FLOAT16)
 #endif
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_CIRCLE(Float32, float32, Z_FLOAT32)
+	Z_IMPLEMENTATION(Float32, float32, Z_FLOAT32)
 #endif
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_CIRCLE(Float64, float64, Z_FLOAT64)
+	Z_IMPLEMENTATION(Float64, float64, Z_FLOAT64)
 #endif
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_CIRCLE(Float128, float128, Z_FLOAT128)
+	Z_IMPLEMENTATION(Float128, float128, Z_FLOAT128)
 #endif
 
 #ifdef Z_FLOAT80_X87
-	Z_IMPLEMENTATION_CIRCLE(Float80_x87, float80_x87, Z_FLOAT80_X87)
+	Z_IMPLEMENTATION(Float80_x87, float80_x87, Z_FLOAT80_X87)
 #endif
 
 #ifdef Z_FLOAT96_X87
-	Z_IMPLEMENTATION_CIRCLE(Float96_x87, float96_x87, Z_FLOAT96_X87)
+	Z_IMPLEMENTATION(Float96_x87, float96_x87, Z_FLOAT96_X87)
 #endif
 
 #ifdef Z_FLOAT128_X87
-	Z_IMPLEMENTATION_CIRCLE(Float128_x87, float128_x87, Z_FLOAT128_X87)
+	Z_IMPLEMENTATION(Float128_x87, float128_x87, Z_FLOAT128_X87)
 #endif
+
+
+/* MARK: - Cleanup */
+
+
+#undef Z_IMPLEMENTATION
 
 
 /* MARK: - Default real type definitions */

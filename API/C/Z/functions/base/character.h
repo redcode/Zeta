@@ -32,7 +32,7 @@ export z##type	prefix##type##_lowercase		 (z##type character) {return Z_CHARACTE
 export z##type	prefix##type##_uppercase		 (z##type character) {return Z_CHARACTER_UPPERCASE		   (character);}
 
 
-Z_IMPLEMENTATION_CHARACTER(Z_INLINE, z_, char)
+Z_IMPLEMENTATION_CHARACTER(static Z_INLINE, z_, char)
 
 
 #endif /* __Z_functions_base_character_H__ */

@@ -201,10 +201,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_ATTRIBUTE_THREAD_LOCAL*/
 /*#define Z_COMPILER_ATTRIBUTE_WEAK*/
 
-/* MARK: - Attributes (C++ only) */
-
-/*#define Z_COMPILER_ATTRIBUTE_INLINE_MEMBER*/
-
 /* MARK: - Built-in constants */
 
 /*#define Z_COMPILER_CONSTANT_FLOAT16_INFINITY*/

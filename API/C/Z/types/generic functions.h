@@ -76,7 +76,7 @@ typedef zboolean (* ZValidateContextIndexAndData)(void *context, zusize index, v
 typedef zboolean (* ZValidateIndex		)(		 zusize index		 );
 typedef zboolean (* ZValidateIndexAndData	)(		 zusize index, void *data);
 
-#define Z_TYPES_GENERIC_FUNCTIONS(Type, pointer_type, value)								 \
+#define Z_TYPES(Type, pointer_type, value)										 \
 															 \
 typedef zsint (* ZCompare##Type		 )(pointer_type a, pointer_type b);						 \
 typedef zsint (* ZCompare##Type##WithData)(pointer_type a, pointer_type b, void *data);					 \
@@ -136,59 +136,61 @@ typedef zboolean (* ZValidate##Type##AndData		)(			       value, void *data);
 #define ZValidateType(			 TYPE) Z_APPEND_##TYPE##_FixedType(ZValidate			    )
 #define ZValidateTypeAndData(		 TYPE) Z_INSERT_##TYPE##_FixedType(ZValidate,		     AndData)
 
-Z_TYPES_GENERIC_FUNCTIONS(UInt8,  zuint8*,  zuint8  value)
-Z_TYPES_GENERIC_FUNCTIONS(UInt16, zuint16*, zuint16 value)
-Z_TYPES_GENERIC_FUNCTIONS(UInt32, zuint32*, zuint32 value)
+Z_TYPES(UInt8,	zuint8*,  zuint8  value)
+Z_TYPES(UInt16, zuint16*, zuint16 value)
+Z_TYPES(UInt32, zuint32*, zuint32 value)
 
 #ifdef Z_UINT64
-	Z_TYPES_GENERIC_FUNCTIONS(UInt64, zuint64*, zuint64 value)
+	Z_TYPES(UInt64, zuint64*, zuint64 value)
 #endif
 
 #ifdef Z_UINT128
-	Z_TYPES_GENERIC_FUNCTIONS(UInt128, zuint128*, zuint128 value)
+	Z_TYPES(UInt128, zuint128*, zuint128 value)
 #endif
 
-Z_TYPES_GENERIC_FUNCTIONS(SInt8,  zsint8*,  zsint8  value)
-Z_TYPES_GENERIC_FUNCTIONS(SInt16, zsint16*, zsint16 value)
-Z_TYPES_GENERIC_FUNCTIONS(SInt32, zsint32*, zsint32 value)
+Z_TYPES(SInt8,	zsint8*,  zsint8  value)
+Z_TYPES(SInt16, zsint16*, zsint16 value)
+Z_TYPES(SInt32, zsint32*, zsint32 value)
 
 #ifdef Z_SINT64
-	Z_TYPES_GENERIC_FUNCTIONS(SInt64, zsint64*, zsint64 value)
+	Z_TYPES(SInt64, zsint64*, zsint64 value)
 #endif
 
 #ifdef Z_SINT128
-	Z_TYPES_GENERIC_FUNCTIONS(SInt128, zsint128*, zsint128 value)
+	Z_TYPES(SInt128, zsint128*, zsint128 value)
 #endif
 
 #ifdef Z_FLOAT16
-	Z_TYPES_GENERIC_FUNCTIONS(Float16, zfloat16*, zfloat16 value)
+	Z_TYPES(Float16, zfloat16*, zfloat16 value)
 #endif
 
 #ifdef Z_FLOAT32
-	Z_TYPES_GENERIC_FUNCTIONS(Float32, zfloat32*, zfloat32 value)
+	Z_TYPES(Float32, zfloat32*, zfloat32 value)
 #endif
 
 #ifdef Z_FLOAT64
-	Z_TYPES_GENERIC_FUNCTIONS(Float64, zfloat64*, zfloat64 value)
+	Z_TYPES(Float64, zfloat64*, zfloat64 value)
 #endif
 
 #ifdef Z_FLOAT128
-	Z_TYPES_GENERIC_FUNCTIONS(Float128, zfloat128*, zfloat128 value)
+	Z_TYPES(Float128, zfloat128*, zfloat128 value)
 #endif
 
 #ifdef Z_FLOAT80_X87
-	Z_TYPES_GENERIC_FUNCTIONS(Float80_x87, zfloat80_x87*, zfloat80_x87 value)
+	Z_TYPES(Float80_x87, zfloat80_x87*, zfloat80_x87 value)
 #endif
 
 #ifdef Z_FLOAT96_X87
-	Z_TYPES_GENERIC_FUNCTIONS(Float96_x87, zfloat96_x87*, zfloat96_x87 value)
+	Z_TYPES(Float96_x87, zfloat96_x87*, zfloat96_x87 value)
 #endif
 
 #ifdef Z_FLOAT128_X87
-	Z_TYPES_GENERIC_FUNCTIONS(Float128_x87, zfloat128_x87*, zfloat128_x87 value)
+	Z_TYPES(Float128_x87, zfloat128_x87*, zfloat128_x87 value)
 #endif
 
-Z_TYPES_GENERIC_FUNCTIONS(Pointer, ZPointer, void *pointer)
+Z_TYPES(Pointer, ZPointer, void *pointer)
+
+#undef Z_TYPES
 
 typedef zsint (* ZCompare8Bit  )(Z8Bit	 a, Z8Bit   b);
 typedef zsint (* ZCompare16Bit )(Z16Bit	 a, Z16Bit  b);

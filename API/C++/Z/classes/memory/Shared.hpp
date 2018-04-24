@@ -18,29 +18,29 @@ namespace Zeta {template <class T> struct Shared {
 		T*    data;
 		USize owner_count;
 
-		Z_INLINE_MEMBER Owned(T *data) : data(data), owner_count(1) {}
-		Z_INLINE_MEMBER ~Owned() {delete data;}
+		Z_INLINE Owned(T *data) : data(data), owner_count(1) {}
+		Z_INLINE ~Owned() {delete data;}
 	};
 
 	Owned *owned;
 
 
-	Z_CT_MEMBER(CPP11) Shared() : owned(NULL) {}
+	Z_CT(CPP11) Shared() : owned(NULL) {}
 
 
-	Z_INLINE_MEMBER Shared(const Shared &other)
+	Z_INLINE Shared(const Shared &other)
 		{if ((owned = other.owned)) owned->owner_count++;}
 
 
-	Z_INLINE_MEMBER Shared(T *data)
+	Z_INLINE Shared(T *data)
 		{owned = data ? new Owned(data) : NULL;}
 
 
-	Z_INLINE_MEMBER ~Shared()
+	Z_INLINE ~Shared()
 		{if (owned && !--owned->owner_count) delete owned;}
 
 
-	Z_INLINE_MEMBER Shared &operator =(const Shared &rhs)
+	Z_INLINE Shared &operator =(const Shared &rhs)
 		{
 		if (owned != rhs.owned)
 			{
@@ -52,7 +52,7 @@ namespace Zeta {template <class T> struct Shared {
 		}
 
 
-	Z_INLINE_MEMBER Shared &operator =(T *rhs)
+	Z_INLINE Shared &operator =(T *rhs)
 		{
 		if (owned)
 			{
@@ -65,24 +65,24 @@ namespace Zeta {template <class T> struct Shared {
 		}
 
 
-	Z_INLINE_MEMBER operator Boolean() const {return owned != NULL;}
+	Z_INLINE operator Boolean() const {return owned != NULL;}
 
-	Z_INLINE_MEMBER Boolean operator ==(const Shared &rhs) const {return owned == rhs.owned;}
-	Z_INLINE_MEMBER Boolean operator !=(const Shared &rhs) const {return owned != rhs.owned;}
+	Z_INLINE Boolean operator ==(const Shared &rhs) const {return owned == rhs.owned;}
+	Z_INLINE Boolean operator !=(const Shared &rhs) const {return owned != rhs.owned;}
 
-	Z_INLINE_MEMBER T &operator * () const {return *owned->data;}
-	Z_INLINE_MEMBER T *operator ->() const {return  owned->data;}
+	Z_INLINE T &operator * () const {return *owned->data;}
+	Z_INLINE T *operator ->() const {return  owned->data;}
 
 
-	Z_INLINE_MEMBER T *get() const
+	Z_INLINE T *get() const
 		{return owned ? owned->data : NULL;}
 
 
-	Z_INLINE_MEMBER USize owner_count() const
+	Z_INLINE USize owner_count() const
 		{return owned->owner_count;}
 
 
-	Z_INLINE_MEMBER void swap(Shared &other)
+	Z_INLINE void swap(Shared &other)
 		{Zeta::swap<Owned *>(&owned, &other.owned);}
 };}
 

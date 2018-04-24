@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Euclidean geometry */
 
-#define Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(Type, type)	  \
+#define Z_TYPES_SIGNED(Type, type)			  \
 typedef struct {Z2D##Type a, b;}	Z2DLine##Type;    \
 typedef struct {Z3D##Type a, b;}	Z3DLine##Type;	  \
 typedef Z2DLine##Type			ZAABR##Type;	  \
@@ -27,7 +27,7 @@ typedef struct {Z3D##Type point, size;}	ZBox##Type;
 #define ZRectangleType(TYPE) Z_APPEND_##TYPE##_FixedType(ZRectangle)
 #define ZBoxType(      TYPE) Z_APPEND_##TYPE##_FixedType(ZBox	   )
 
-#define Z_TYPES_EUCLIDEAN_GEOMETRY_REAL(Type, type)		  \
+#define Z_TYPES_REAL(Type, type)				  \
 typedef struct {Z2D##Type point;  z##type radius;} ZCircle##Type; \
 typedef struct {Z3D##Type point;  z##type radius;} ZSphere##Type; \
 typedef struct {Z2D##Type point;  z##type angle; } Z2DRay##Type;  \
@@ -40,52 +40,55 @@ typedef struct {Z3D##Type normal; z##type offset;} ZPlane##Type;
 #define ZSphereType(TYPE) Z_APPEND_##TYPE##_FixedType(ZSphere)
 #define ZPlaneType( TYPE) Z_APPEND_##TYPE##_FixedType(ZPlane )
 
-Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(SInt8,  sint8 )
-Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(SInt16, sint16)
-Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(SInt32, sint32)
+Z_TYPES_SIGNED(SInt8,  sint8 )
+Z_TYPES_SIGNED(SInt16, sint16)
+Z_TYPES_SIGNED(SInt32, sint32)
 
 #ifdef Z_SINT64
-	Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(SInt64, sint64)
+	Z_TYPES_SIGNED(SInt64, sint64)
 #endif
 
 #ifdef Z_SINT128
-	Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(SInt128, sint128)
+	Z_TYPES_SIGNED(SInt128, sint128)
 #endif
 
 #ifdef Z_FLOAT16
-	Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(Float16, float16)
-	Z_TYPES_EUCLIDEAN_GEOMETRY_REAL	 (Float16, float16)
+	Z_TYPES_SIGNED(Float16, float16)
+	Z_TYPES_REAL  (Float16, float16)
 #endif
 
 #ifdef Z_FLOAT32
-	Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(Float32, float32)
-	Z_TYPES_EUCLIDEAN_GEOMETRY_REAL	 (Float32, float32)
+	Z_TYPES_SIGNED(Float32, float32)
+	Z_TYPES_REAL  (Float32, float32)
 #endif
 
 #ifdef Z_FLOAT64
-	Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(Float64, float64)
-	Z_TYPES_EUCLIDEAN_GEOMETRY_REAL	 (Float64, float64)
+	Z_TYPES_SIGNED(Float64, float64)
+	Z_TYPES_REAL  (Float64, float64)
 #endif
 
 #ifdef Z_FLOAT128
-	Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(Float128, float128)
-	Z_TYPES_EUCLIDEAN_GEOMETRY_REAL	 (Float128, float128)
+	Z_TYPES_SIGNED(Float128, float128)
+	Z_TYPES_REAL  (Float128, float128)
 #endif
 
 #ifdef Z_FLOAT80_X87
-	Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(Float80_x87, float80_x87)
-	Z_TYPES_EUCLIDEAN_GEOMETRY_REAL	 (Float80_x87, float80_x87)
+	Z_TYPES_SIGNED(Float80_x87, float80_x87)
+	Z_TYPES_REAL  (Float80_x87, float80_x87)
 #endif
 
 #ifdef Z_FLOAT96_X87
-	Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(Float96_x87, float96_x87)
-	Z_TYPES_EUCLIDEAN_GEOMETRY_REAL	 (Float96_x87, float96_x87)
+	Z_TYPES_SIGNED(Float96_x87, float96_x87)
+	Z_TYPES_REAL  (Float96_x87, float96_x87)
 #endif
 
 #ifdef Z_FLOAT128_X87
-	Z_TYPES_EUCLIDEAN_GEOMETRY_SIGNED(Float128_x87, float128_x87)
-	Z_TYPES_EUCLIDEAN_GEOMETRY_REAL	 (Float128_x87, float128_x87)
+	Z_TYPES_SIGNED(Float128_x87, float128_x87)
+	Z_TYPES_REAL  (Float128_x87, float128_x87)
 #endif
+
+#undef Z_TYPES_SIGNED
+#undef Z_TYPES_REAL
 
 /* MARK: - Set theory */
 

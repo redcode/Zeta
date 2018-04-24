@@ -385,15 +385,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
-#	define Z_COMPILER_ATTRIBUTE_INLINE static __inline__ __attribute__((always_inline))
+#	define Z_COMPILER_ATTRIBUTE_INLINE __inline__ __attribute__((always_inline))
 
 #elif Z_COMPILER_VERSION >= Z_VERSION(1, 21, 0)
-#	define Z_COMPILER_ATTRIBUTE_INLINE static __inline__
+#	define Z_COMPILER_ATTRIBUTE_INLINE __inline__
 #endif
 
 #if Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0)
 
-#	define Z_COMPILER_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden"))) static
+#	define Z_COMPILER_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden")))
 #	define Z_COMPILER_ATTRIBUTE_PUBLIC  __attribute__((visibility("default")))
 
 	/*----------------------------------------------------------.
@@ -414,14 +414,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 '----------------------------------------------------------------------*/
 #if Z_COMPILER_VERSION >= Z_VERSION(4, 0, 0)
 #	define Z_COMPILER_ATTRIBUTE_NULL_TERMINATED __attribute__((sentinel))
-#endif
-
-/* MARK: - Attributes (C++ only) */
-
-#if defined(__cplusplus)
-
-#	define Z_COMPILER_ATTRIBUTE_INLINE_MEMBER __inline__ __attribute__((always_inline))
-
 #endif
 
 /* MARK: - Built-in constants */

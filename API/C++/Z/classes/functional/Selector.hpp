@@ -28,17 +28,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			SEL selector;
 
-			Z_INLINE_MEMBER Selector() {}
+			Z_INLINE Selector() {}
 
-			Z_INLINE_MEMBER Selector(SEL selector)
+			Z_INLINE Selector(SEL selector)
 			: selector(selector) {}
 
 
-			Z_INLINE_MEMBER operator SEL() const {return selector;}
+			Z_INLINE operator SEL() const {return selector;}
 
 
 			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
+			Z_INLINE typename EnableIf<Type<RR>::is_void, RR>::type
 			operator ()(id object, typename Type<P>::to_forwardable... arguments) const
 				{((Call)objc_msgSend)(object, selector, arguments...);}
 
@@ -46,7 +46,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			if Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64 || Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32
 
 				template <class RR = R>
-				Z_INLINE_MEMBER typename EnableIf<
+				Z_INLINE typename EnableIf<
 					!Type<RR>::is_void &&
 					!Type<RR>::is_real &&
 					!Type<RR>::is_structure_or_union,
@@ -56,14 +56,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 				template <class RR = R>
-				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_real, RR>::type
+				Z_INLINE typename EnableIf<Type<RR>::is_real, RR>::type
 				operator ()(id object, typename Type<P>::to_forwardable... arguments) const
 					{return ((Call)objc_msgSend_fpret)(object, selector, arguments...);}
 
 #			else
 
 				template <class RR = R>
-				Z_INLINE_MEMBER typename EnableIf<
+				Z_INLINE typename EnableIf<
 					!Type<RR>::is_void &&
 					!Type<RR>::is_structure_or_union,
 				RR>::type
@@ -74,19 +74,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_structure_or_union, RR>::type
+			Z_INLINE typename EnableIf<Type<RR>::is_structure_or_union, RR>::type
 			operator ()(id object, typename Type<P>::to_forwardable... arguments) const
 				{return ((Call)objc_msgSend_stret)(object, selector, arguments...);}
 
 
 			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
+			Z_INLINE typename EnableIf<Type<RR>::is_void, RR>::type
 			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
 				{((CallSuper)objc_msgSendSuper)((struct objc_super *)&object_super, selector, arguments...);}
 
 
 			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<
+			Z_INLINE typename EnableIf<
 				!Type<RR>::is_void &&
 				!Type<RR>::is_structure_or_union,
 			RR>::type
@@ -95,7 +95,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class RR = R>
-			Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_structure_or_union, RR>::type
+			Z_INLINE typename EnableIf<Type<RR>::is_structure_or_union, RR>::type
 			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
 				{return ((CallSuper)objc_msgSendSuper_stret)((struct objc_super *)&object_super, selector, arguments...);}
 
@@ -103,7 +103,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
 				template <class RR = R>
-				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_void, RR>::type
+				Z_INLINE typename EnableIf<Type<RR>::is_void, RR>::type
 				super(id object, typename Type<P>::to_forwardable... arguments) const
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
@@ -112,7 +112,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 				template <class RR = R>
-				Z_INLINE_MEMBER typename EnableIf<
+				Z_INLINE typename EnableIf<
 					!Type<RR>::is_void &&
 					!Type<RR>::is_structure_or_union,
 				RR>::type
@@ -124,7 +124,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 				template <class RR = R>
-				Z_INLINE_MEMBER typename EnableIf<Type<RR>::is_structure_or_union, RR>::type
+				Z_INLINE typename EnableIf<Type<RR>::is_structure_or_union, RR>::type
 				super(id object, typename Type<P>::to_forwardable... arguments) const
 					{
 					struct objc_super object_super {object, [[object class] superclass]};

@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/functions/base/value.h>
 
 
-Z_INLINE void z_triple_buffer_initialize(
+static Z_INLINE void z_triple_buffer_initialize(
 	ZTripleBuffer* object,
 	void const*    buffers,
 	zusize	       buffer_size
@@ -26,15 +26,15 @@ Z_INLINE void z_triple_buffer_initialize(
 	}
 
 
-Z_INLINE void *z_triple_buffer_production_buffer(ZTripleBuffer const *object)
+static Z_INLINE void *z_triple_buffer_production_buffer(ZTripleBuffer const *object)
 	{return object->buffers[(object->flags & 48) >> 4];}
 
 
-Z_INLINE void *z_triple_buffer_consumption_buffer(ZTripleBuffer const *object)
+static Z_INLINE void *z_triple_buffer_consumption_buffer(ZTripleBuffer const *object)
 	{return object->buffers[object->flags & 3];}
 
 
-Z_INLINE void *z_triple_buffer_produce(ZTripleBuffer *object)
+static Z_INLINE void *z_triple_buffer_produce(ZTripleBuffer *object)
 	{
 	zuint8 flags, new_flags;
 
@@ -48,7 +48,7 @@ Z_INLINE void *z_triple_buffer_produce(ZTripleBuffer *object)
 	}
 
 
-Z_INLINE void *z_triple_buffer_consume(ZTripleBuffer *object)
+static Z_INLINE void *z_triple_buffer_consume(ZTripleBuffer *object)
 	{
 	zuint8 flags, new_flags;
 

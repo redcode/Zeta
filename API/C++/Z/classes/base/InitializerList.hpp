@@ -19,15 +19,15 @@ namespace Zeta {template <class T> class InitializerList {
 
 	public:
 
-	Z_INLINE_MEMBER InitializerList()
+	Z_INLINE InitializerList()
 	: _begin(NULL), _size(0) {}
 
-	Z_INLINE_MEMBER InitializerList(const T *begin, USize size)
+	Z_INLINE InitializerList(const T *begin, USize size)
 	: _begin(begin), _size(size) {}
 
-	Z_INLINE_MEMBER USize	 size () const {return _size;}
-	Z_INLINE_MEMBER const T *begin() const {return _begin;}
-	Z_INLINE_MEMBER const T *end  () const {return _begin + _size;} 
+	Z_INLINE USize	  size () const {return _size;}
+	Z_INLINE const T *begin() const {return _begin;}
+	Z_INLINE const T *end  () const {return _begin + _size;} 
 };}
 
 

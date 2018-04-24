@@ -73,16 +73,16 @@ namespace Zeta {struct Status {
 
 	ZStatus code;
 
-	Z_INLINE_MEMBER Status() {}
+	Z_INLINE Status() {}
 
-	Z_CT_MEMBER(CPP11) Status(ZStatus code) : code(code) {}
+	Z_CT(CPP11) Status(ZStatus code) : code(code) {}
 
-	Z_CT_MEMBER(CPP11) operator ZStatus() const {return code;}
+	Z_CT(CPP11) operator ZStatus() const {return code;}
 
-	Z_CT_MEMBER(CPP11) Boolean operator ==(ZStatus status) const {return code == status;}
-	Z_CT_MEMBER(CPP11) Boolean operator !=(ZStatus status) const {return code != status;}
+	Z_CT(CPP11) Boolean operator ==(ZStatus status) const {return code == status;}
+	Z_CT(CPP11) Boolean operator !=(ZStatus status) const {return code != status;}
 
-	Z_CT_MEMBER(CPP11) Boolean is_error() const {return code < 0;}
+	Z_CT(CPP11) Boolean is_error() const {return code < 0;}
 };}
 
 

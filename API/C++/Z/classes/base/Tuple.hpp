@@ -29,9 +29,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			Value value;
 
-			Z_INLINE_MEMBER Element() {}
+			Z_INLINE Element() {}
 
-			Z_CT_MEMBER(CPP11) Element(typename Zeta::Type<T0>::to_forwardable value)
+			Z_CT(CPP11) Element(typename Zeta::Type<T0>::to_forwardable value)
 			: value(value) {}
 		};
 
@@ -42,9 +42,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			Value value;
 
-			Z_INLINE_MEMBER Element() {}
+			Z_INLINE Element() {}
 
-			Z_CT_MEMBER(CPP11) Element(
+			Z_CT(CPP11) Element(
 				typename Zeta::Type<T >::to_forwardable... previous,
 				typename Zeta::Type<TN>::to_forwardable value
 			) : Super<T...>::type(previous...), value(value) {}
@@ -75,25 +75,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
 			using Super::Super;
 #		else
-			Z_INLINE_MEMBER Tuple() {}
+			Z_INLINE Tuple() {}
 
-			Z_CT_MEMBER(CPP11) Tuple(typename Type<T>::to_forwardable... values)
+			Z_CT(CPP11) Tuple(typename Type<T>::to_forwardable... values)
 			: Super(values...) {}
 #		endif
 
 
 		template <UInt I>
-		Z_INLINE_MEMBER typename At<I>::Value &at()
+		Z_INLINE typename At<I>::Value &at()
 			{return At<I>::Element::value;}
 
 
 		template <UInt I>
-		Z_CT_MEMBER(CPP11) typename Type<typename At<I>::Value>::to_forwardable get() const
+		Z_CT(CPP11) typename Type<typename At<I>::Value>::to_forwardable get() const
 			{return At<I>::Element::value;}
 
 
 		template <UInt I>
-		Z_INLINE_MEMBER Tuple &set(typename Type<typename At<I>::Value>::to_forwardable value)
+		Z_INLINE Tuple &set(typename Type<typename At<I>::Value>::to_forwardable value)
 			{
 			At<I>::Element::value = value;
 			return *this;

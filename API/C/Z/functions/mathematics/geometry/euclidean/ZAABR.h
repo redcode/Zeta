@@ -14,10 +14,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_AABR_COMMON(Type, type)						\
+#define Z_IMPLEMENTATION_COMMON(Type, type)							\
 												\
-												\
-Z_INLINE ZAABR##Type z_aabr_##type##_align_in_bottom_center(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_align_in_bottom_center(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	object.b.x = (object.a.x += (object.b.x - object.a.x - size.x) / (z##type)2) + size.x;	\
 	object.b.y = object.a.y + size.y;							\
@@ -25,7 +25,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_align_in_bottom_center(ZAABR##Type object, 
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_align_in_bottom_left(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_align_in_bottom_left(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	object.b.x = object.a.x + size.x;							\
 	object.b.y = object.a.y + size.y;							\
@@ -33,7 +34,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_align_in_bottom_left(ZAABR##Type object, Z2
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_align_in_bottom_right(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_align_in_bottom_right(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	object.a.x = object.b.x - size.x;							\
 	object.b.y = object.b.y + size.x;							\
@@ -41,7 +43,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_align_in_bottom_right(ZAABR##Type object, Z
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_align_in_center(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_align_in_center(ZAABR##Type object, Z2D##Type size)			\
 	{											\
 	object.b.x = (object.a.x += (object.b.x - object.a.x - size.x) / (z##type)2) + size.x;	\
 	object.b.y = (object.a.y += (object.b.y - object.a.y - size.y) / (z##type)2) + size.y;	\
@@ -49,7 +52,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_align_in_center(ZAABR##Type object, Z2D##Ty
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_align_in_center_left(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_align_in_center_left(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	object.b.x = object.a.x + size.x;							\
 	object.b.y = (object.a.y += (object.b.y - object.a.y - size.y) / (z##type)2) + size.y;	\
@@ -57,7 +61,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_align_in_center_left(ZAABR##Type object, Z2
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_align_in_center_right(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_align_in_center_right(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	object.a.x = object.b.x - size.x;							\
 	object.b.y = (object.a.y += (object.b.y - object.a.y - size.y) / (z##type)2) + size.y;	\
@@ -65,7 +70,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_align_in_center_right(ZAABR##Type object, Z
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_align_in_top_center(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_align_in_top_center(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	object.a.y = object.b.y - size.y;							\
 	object.b.x = (object.a.x += (object.b.x - object.a.x - size.x) / (z##type)2) + size.x;	\
@@ -73,7 +79,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_align_in_top_center(ZAABR##Type object, Z2D
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_align_in_top_left(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_align_in_top_left(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	object.a.y = object.b.y - size.y;							\
 	object.b.x = object.a.x + size.x;							\
@@ -81,7 +88,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_align_in_top_left(ZAABR##Type object, Z2D##
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_align_in_top_right(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_align_in_top_right(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	object.a.x = object.b.x - size.x;							\
 	object.a.y = object.b.y - size.y;							\
@@ -89,26 +97,31 @@ Z_INLINE ZAABR##Type z_aabr_##type##_align_in_top_right(ZAABR##Type object, Z2D#
 	}											\
 												\
 												\
-Z_INLINE z##type z_aabr_##type##_area(ZAABR##Type object)					\
+static Z_INLINE											\
+z##type z_aabr_##type##_area(ZAABR##Type object)						\
 	{return z_2d_##type##_inner_product(z_2d_##type##_subtract(object.b, object.a));}	\
 												\
 												\
-Z_INLINE Z2D##Type z_aabr_##type##_bottom_center(ZAABR##Type object)				\
+static Z_INLINE											\
+Z2D##Type z_aabr_##type##_bottom_center(ZAABR##Type object)					\
 	{return z_2d_##type((object.a.x + object.b.x) / (z##type)2, object.a.y);}		\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_bottom_half(ZAABR##Type object)				\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_bottom_half(ZAABR##Type object)					\
 	{											\
 	object.b.y = (object.a.y + object.b.y) / (z##type)2;					\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_aabr_##type##_bottom_left(ZAABR##Type object)				\
+static Z_INLINE											\
+Z2D##Type z_aabr_##type##_bottom_left(ZAABR##Type object)					\
 	{return object.a;}									\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_bottom_left_quarter(ZAABR##Type object)			\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_bottom_left_quarter(ZAABR##Type object)				\
 	{											\
 	object.b.x = (object.a.x + object.b.x) / (z##type)2;					\
 	object.b.y = (object.a.y + object.b.y) / (z##type)2;					\
@@ -116,11 +129,13 @@ Z_INLINE ZAABR##Type z_aabr_##type##_bottom_left_quarter(ZAABR##Type object)			\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_aabr_##type##_bottom_right(ZAABR##Type object)				\
+static Z_INLINE											\
+Z2D##Type z_aabr_##type##_bottom_right(ZAABR##Type object)					\
 	{return z_2d_##type(object.b.x, object.a.y);}						\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_bottom_right_quarter(ZAABR##Type object)			\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_bottom_right_quarter(ZAABR##Type object)				\
 	{											\
 	object.a.x = (object.a.x + object.b.x) / (z##type)2;					\
 	object.b.y = (object.a.y + object.b.y) / (z##type)2;					\
@@ -128,15 +143,18 @@ Z_INLINE ZAABR##Type z_aabr_##type##_bottom_right_quarter(ZAABR##Type object)			
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_aabr_##type##_center_left(ZAABR##Type object)				\
+static Z_INLINE											\
+Z2D##Type z_aabr_##type##_center_left(ZAABR##Type object)					\
 	{return z_2d_##type(object.a.x, (object.a.y + object.b.y) / (z##type)2);}		\
 												\
 												\
-Z_INLINE Z2D##Type z_aabr_##type##_center_right(ZAABR##Type object)				\
+static Z_INLINE											\
+Z2D##Type z_aabr_##type##_center_right(ZAABR##Type object)					\
 	{return z_2d_##type(object.b.x, (object.a.y + object.b.y) / (z##type)2);}		\
 												\
 												\
-Z_INLINE zboolean z_aabr_##type##_contains(ZAABR##Type object, ZAABR##Type other)		\
+static Z_INLINE											\
+zboolean z_aabr_##type##_contains(ZAABR##Type object, ZAABR##Type other)			\
 	{											\
 	return	other.a.x != other.b.x	&& other.a.y != other.b.y  &&				\
 		other.a.x >= object.a.x && other.a.y >= object.a.y &&				\
@@ -144,17 +162,16 @@ Z_INLINE zboolean z_aabr_##type##_contains(ZAABR##Type object, ZAABR##Type other
 	}											\
 												\
 												\
-Z_INLINE zboolean z_aabr_##type##_contains_point(ZAABR##Type object, Z2D##Type point)		\
+static Z_INLINE											\
+zboolean z_aabr_##type##_contains_point(ZAABR##Type object, Z2D##Type point)			\
 	{											\
 	return	point.x >= object.a.x && point.y >= object.a.y &&				\
 		point.x <  object.b.x && point.y <  object.b.y;					\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_aabr_##type##_contains_rectangle(						\
-	ZAABR##Type	 object,								\
-	ZRectangle##Type rectangle								\
-)												\
+static Z_INLINE											\
+zboolean z_aabr_##type##_contains_rectangle(ZAABR##Type object, ZRectangle##Type rectangle)	\
 	{											\
 	return	rectangle.size.x		     != (z##type)0 &&				\
 		rectangle.size.y		     != (z##type)0 &&				\
@@ -165,11 +182,13 @@ Z_INLINE zboolean z_aabr_##type##_contains_rectangle(						\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_aabr_##type##_size(ZAABR##Type object)					\
+static Z_INLINE											\
+Z2D##Type z_aabr_##type##_size(ZAABR##Type object)						\
 	{return z_2d_##type##_subtract(object.b, object.a);}					\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_bottom_center(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_fit_in_bottom_center(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	Z2D##Type old_size = z_aabr_##type##_size(object);					\
 												\
@@ -179,7 +198,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_bottom_center(ZAABR##Type object, Z2
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_bottom_left(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_fit_in_bottom_left(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	object.b = z_2d_##type##_add								\
 		(object.a, z_2d_##type##_fit(size, z_aabr_##type##_size(object)));		\
@@ -188,14 +208,16 @@ Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_bottom_left(ZAABR##Type object, Z2D#
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_bottom_right(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_fit_in_bottom_right(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	size = z_2d_##type##_fit(size, z_aabr_##type##_size(object));				\
 	return z_aabr_##type(object.b.x - size.x, object.a.y, object.b.x, object.a.y + size.y);	\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_center(ZAABR##Type object, Z2D##Type size)		\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_fit_in_center(ZAABR##Type object, Z2D##Type size)			\
 	{											\
 	Z2D##Type old_size = z_aabr_##type##_size(object);					\
 												\
@@ -206,7 +228,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_center(ZAABR##Type object, Z2D##Type
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_center_left(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_fit_in_center_left(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	Z2D##Type old_size = z_aabr_##type##_size(object);					\
 												\
@@ -216,7 +239,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_center_left(ZAABR##Type object, Z2D#
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_center_right(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_fit_in_center_right(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	Z2D##Type old_size = z_aabr_##type##_size(object);					\
 												\
@@ -226,7 +250,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_center_right(ZAABR##Type object, Z2D
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_top_center(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_fit_in_top_center(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	Z2D##Type old_size = z_aabr_##type##_size(object);					\
 												\
@@ -236,7 +261,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_top_center(ZAABR##Type object, Z2D##
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_top_left(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_fit_in_top_left(ZAABR##Type object, Z2D##Type size)			\
 	{											\
 	size = z_2d_##type##_fit(size, z_aabr_##type##_size(object));				\
 												\
@@ -246,7 +272,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_top_left(ZAABR##Type object, Z2D##Ty
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_top_right(ZAABR##Type object, Z2D##Type size)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_fit_in_top_right(ZAABR##Type object, Z2D##Type size)		\
 	{											\
 	object.a = z_2d_##type##_subtract							\
 		(object.b, z_2d_##type##_fit(size, z_aabr_##type##_size(object)));		\
@@ -255,7 +282,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_fit_in_top_right(ZAABR##Type object, Z2D##T
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_from_vertices(Z2D##Type a, Z2D##Type b)			\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_from_vertices(Z2D##Type a, Z2D##Type b)				\
 	{											\
 	ZAABR##Type result;									\
 												\
@@ -265,10 +293,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_from_vertices(Z2D##Type a, Z2D##Type b)			\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_bottom_center(					\
-	ZAABR##Type object,									\
-	Z2D##Type   delta									\
-)												\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_from_bottom_center(ZAABR##Type object, Z2D##Type delta)	\
 	{											\
 	z##type size_x = object.b.x - object.a.x;						\
 												\
@@ -278,7 +304,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_bottom_center(					\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_bottom_left(ZAABR##Type object, Z2D##Type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_from_bottom_left(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	object.b.x += delta.x;									\
 	object.b.y += delta.y;									\
@@ -286,7 +313,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_bottom_left(ZAABR##Type object, Z
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_bottom_right(ZAABR##Type object, Z2D##Type delta)\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_from_bottom_right(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	object.a.x -= delta.x;									\
 	object.b.y += delta.y;									\
@@ -294,7 +322,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_bottom_right(ZAABR##Type object, 
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_center(ZAABR##Type object, Z2D##Type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_from_center(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	z##type size_x = object.b.x - object.a.x;						\
 	z##type size_y = object.b.y - object.a.y;						\
@@ -305,7 +334,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_center(ZAABR##Type object, Z2D##T
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_center_left(ZAABR##Type object, Z2D##Type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_from_center_left(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	z##type size_y = object.b.y - object.a.y;						\
 												\
@@ -315,7 +345,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_center_left(ZAABR##Type object, Z
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_center_right(ZAABR##Type object, Z2D##Type delta)\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_from_center_right(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	z##type size_y = object.b.y - object.a.y;						\
 												\
@@ -325,7 +356,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_center_right(ZAABR##Type object, 
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_top_center(ZAABR##Type object, Z2D##Type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_from_top_center(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	z##type size_x = object.b.x - object.a.x;						\
 												\
@@ -335,7 +367,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_top_center(ZAABR##Type object, Z2
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_top_left(ZAABR##Type object, Z2D##Type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_from_top_left(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	object.b.x += delta.x;									\
 	object.a.y -= delta.y;									\
@@ -343,7 +376,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_top_left(ZAABR##Type object, Z2D#
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_top_right(ZAABR##Type object, Z2D##Type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_from_top_right(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	object.a.x -= delta.x;									\
 	object.a.y -= delta.y;									\
@@ -351,7 +385,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_from_top_right(ZAABR##Type object, Z2D
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_in_x_from_center(ZAABR##Type object, z##type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_in_x_from_center(ZAABR##Type object, z##type delta)		\
 	{											\
 	z##type size_x = object.b.x - object.a.x;						\
 												\
@@ -360,28 +395,32 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_in_x_from_center(ZAABR##Type object, z
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_in_x_from_left(ZAABR##Type object, z##type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_in_x_from_left(ZAABR##Type object, z##type delta)		\
 	{											\
 	object.b.x += delta;									\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_in_x_from_right(ZAABR##Type object, z##type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_in_x_from_right(ZAABR##Type object, z##type delta)		\
 	{											\
 	object.a.x -= delta;									\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_in_y_from_bottom(ZAABR##Type object, z##type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_in_y_from_bottom(ZAABR##Type object, z##type delta)		\
 	{											\
 	object.b.y += delta;									\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_in_y_from_center(ZAABR##Type object, z##type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_in_y_from_center(ZAABR##Type object, z##type delta)		\
 	{											\
 	z##type size_y = object.b.y - object.a.y;						\
 												\
@@ -390,21 +429,24 @@ Z_INLINE ZAABR##Type z_aabr_##type##_grow_in_y_from_center(ZAABR##Type object, z
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_grow_in_y_from_top(ZAABR##Type object, z##type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_grow_in_y_from_top(ZAABR##Type object, z##type delta)		\
 	{											\
 	object.a.y -= delta;									\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_aabr_##type##_intersect(ZAABR##Type a, ZAABR##Type b)			\
+static Z_INLINE											\
+zboolean z_aabr_##type##_intersect(ZAABR##Type a, ZAABR##Type b)				\
 	{											\
 	return	a.a.x != a.b.x && a.a.y != a.b.y && b.a.x != b.b.x && b.a.y != b.b.y &&		\
 		b.b.x >  a.a.x && b.b.y >  a.a.y && b.a.x <  a.b.x && b.a.y <  a.b.y;		\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_intersection(ZAABR##Type a, ZAABR##Type b)			\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_intersection(ZAABR##Type a, ZAABR##Type b)				\
 	{											\
 	z##type x1, x2, y1, y2;									\
 												\
@@ -418,55 +460,62 @@ Z_INLINE ZAABR##Type z_aabr_##type##_intersection(ZAABR##Type a, ZAABR##Type b)	
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_left_half(ZAABR##Type object)				\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_left_half(ZAABR##Type object)					\
 	{											\
 	object.b.x = (object.a.x + object.b.x) / (z##type)2;					\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE z##type z_aabr_##type##_maximum_x(ZAABR##Type object)					\
+static Z_INLINE											\
+z##type z_aabr_##type##_maximum_x(ZAABR##Type object)						\
 	{return object.b.x;}									\
 												\
 												\
-Z_INLINE z##type z_aabr_##type##_maximum_y(ZAABR##Type object)					\
+static Z_INLINE											\
+z##type z_aabr_##type##_maximum_y(ZAABR##Type object)						\
 	{return object.b.y;}									\
 												\
 												\
-Z_INLINE z##type z_aabr_##type##_middle_x(ZAABR##Type object)					\
+static Z_INLINE											\
+z##type z_aabr_##type##_middle_x(ZAABR##Type object)						\
 	{return (object.a.x + object.b.x) / (z##type)2;}					\
 												\
 												\
-Z_INLINE z##type z_aabr_##type##_middle_y(ZAABR##Type object)					\
+static Z_INLINE											\
+z##type z_aabr_##type##_middle_y(ZAABR##Type object)						\
 	{return (object.a.y + object.b.y) / (z##type)2;}					\
 												\
 												\
-Z_INLINE z##type z_aabr_##type##_minimum_x(ZAABR##Type object)					\
+static Z_INLINE											\
+z##type z_aabr_##type##_minimum_x(ZAABR##Type object)						\
 	{return object.a.x;}									\
 												\
 												\
-Z_INLINE z##type z_aabr_##type##_minimum_y(ZAABR##Type object)					\
+static Z_INLINE											\
+z##type z_aabr_##type##_minimum_y(ZAABR##Type object)						\
 	{return object.a.y;}									\
 												\
 												\
-Z_INLINE ZRectangle##Type z_aabr_##type##_rectangle(ZAABR##Type object)				\
+static Z_INLINE											\
+ZRectangle##Type z_aabr_##type##_rectangle(ZAABR##Type object)					\
 	{											\
 	return z_rectangle_##type								\
 		(object.a.x, object.a.y, object.b.x - object.a.x, object.b.y - object.a.y);	\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_right_half(ZAABR##Type object)				\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_right_half(ZAABR##Type object)					\
 	{											\
 	object.a.x = (object.a.x + object.b.x) / (z##type)2;					\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_bottom_center(					\
-	ZAABR##Type object,									\
-	Z2D##Type   delta									\
-)												\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_from_bottom_center(ZAABR##Type object, Z2D##Type delta)	\
 	{											\
 	z##type size_x = object.b.x - object.a.x;						\
 												\
@@ -476,10 +525,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_bottom_center(					\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_bottom_left(					\
-	ZAABR##Type object,									\
-	Z2D##Type   delta									\
-)												\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_from_bottom_left(ZAABR##Type object, Z2D##Type delta)	\
 	{											\
 	object.b.x -= delta.x;									\
 	object.b.y -= delta.y;									\
@@ -487,10 +534,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_bottom_left(					\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_bottom_right(					\
-	ZAABR##Type object,									\
-	Z2D##Type   delta									\
-)												\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_from_bottom_right(ZAABR##Type object,Z2D##Type delta)	\
 	{											\
 	object.a.x += delta.x;									\
 	object.b.y -= delta.y;									\
@@ -498,7 +543,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_bottom_right(					\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_center(ZAABR##Type object, Z2D##Type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_from_center(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	z##type size_x = object.b.x - object.a.x;						\
 	z##type size_y = object.b.y - object.a.y;						\
@@ -509,10 +555,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_center(ZAABR##Type object, Z2D#
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_center_left(					\
-	ZAABR##Type object,									\
-	Z2D##Type   delta									\
-)												\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_from_center_left(ZAABR##Type object, Z2D##Type delta)	\
 	{											\
 	z##type size_y = object.b.y - object.a.y;						\
 												\
@@ -522,10 +566,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_center_left(					\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_center_right(					\
-	ZAABR##Type object,									\
-	Z2D##Type   delta									\
-)												\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_from_center_right(ZAABR##Type object, Z2D##Type delta)	\
 	{											\
 	z##type size_y = object.b.y - object.a.y;						\
 												\
@@ -535,7 +577,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_center_right(					\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_top_center(ZAABR##Type object, Z2D##Type delta)\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_from_top_center(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	z##type size_x = object.b.x - object.a.x;						\
 												\
@@ -545,7 +588,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_top_center(ZAABR##Type object, 
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_top_left(ZAABR##Type object, Z2D##Type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_from_top_left(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	object.b.x -= delta.x;									\
 	object.a.y += delta.y;									\
@@ -553,7 +597,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_top_left(ZAABR##Type object, Z2
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_top_right(ZAABR##Type object, Z2D##Type delta) \
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_from_top_right(ZAABR##Type object, Z2D##Type delta)		\
 	{											\
 	object.a.x += delta.x;									\
 	object.a.y += delta.y;									\
@@ -561,7 +606,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_shrink_from_top_right(ZAABR##Type object, Z
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_in_x_from_center(ZAABR##Type object, z##type delta) \
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_in_x_from_center(ZAABR##Type object, z##type delta)		\
 	{											\
 	z##type size_x = object.b.x - object.a.x;						\
 												\
@@ -570,28 +616,32 @@ Z_INLINE ZAABR##Type z_aabr_##type##_shrink_in_x_from_center(ZAABR##Type object,
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_in_x_from_left(ZAABR##Type object, z##type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_in_x_from_left(ZAABR##Type object, z##type delta)		\
 	{											\
 	object.b.x -= delta;									\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_in_x_from_right(ZAABR##Type object, z##type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_in_x_from_right(ZAABR##Type object, z##type delta)		\
 	{											\
 	object.a.x += delta;									\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_in_y_from_bottom(ZAABR##Type object, z##type delta) \
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_in_y_from_bottom(ZAABR##Type object, z##type delta)		\
 	{											\
 	object.b.y -= delta;									\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_in_y_from_center(ZAABR##Type object, z##type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_in_y_from_center(ZAABR##Type object, z##type delta)		\
 	{											\
 	z##type size_y = object.b.y - object.a.y;						\
 												\
@@ -600,29 +650,34 @@ Z_INLINE ZAABR##Type z_aabr_##type##_shrink_in_y_from_center(ZAABR##Type object,
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_shrink_in_y_from_top(ZAABR##Type object, z##type delta)	\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_shrink_in_y_from_top(ZAABR##Type object, z##type delta)		\
 	{											\
 	object.a.y += delta;									\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_aabr_##type##_top_center(ZAABR##Type object)				\
+static Z_INLINE											\
+Z2D##Type z_aabr_##type##_top_center(ZAABR##Type object)					\
 	{return z_2d_##type((object.a.x + object.b.x) / (z##type)2, object.b.y);}		\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_top_half(ZAABR##Type object)				\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_top_half(ZAABR##Type object)					\
 	{											\
 	object.a.y = (object.a.y + object.b.y) / (z##type)2;					\
 	return object;										\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_aabr_##type##_top_left(ZAABR##Type object)					\
+static Z_INLINE											\
+Z2D##Type z_aabr_##type##_top_left(ZAABR##Type object)						\
 	{return z_2d_##type(object.a.x, object.b.y);}						\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_top_left_quarter(ZAABR##Type object)			\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_top_left_quarter(ZAABR##Type object)				\
 	{											\
 	object.b.x = (object.a.x + object.b.x) / (z##type)2;					\
 	object.a.y = (object.a.y + object.b.y) / (z##type)2;					\
@@ -630,11 +685,13 @@ Z_INLINE ZAABR##Type z_aabr_##type##_top_left_quarter(ZAABR##Type object)			\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_aabr_##type##_top_right(ZAABR##Type object)				\
+static Z_INLINE											\
+Z2D##Type z_aabr_##type##_top_right(ZAABR##Type object)						\
 	{return object.b;}									\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_top_right_quarter(ZAABR##Type object)			\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_top_right_quarter(ZAABR##Type object)				\
 	{											\
 	object.a.x = (object.a.x + object.b.x) / (z##type)2;					\
 	object.a.y = (object.a.y + object.b.y) / (z##type)2;					\
@@ -642,7 +699,8 @@ Z_INLINE ZAABR##Type z_aabr_##type##_top_right_quarter(ZAABR##Type object)			\
 	}											\
 												\
 												\
-Z_INLINE ZAABR##Type z_aabr_##type##_union(ZAABR##Type a, ZAABR##Type b)			\
+static Z_INLINE											\
+ZAABR##Type z_aabr_##type##_union(ZAABR##Type a, ZAABR##Type b)					\
 	{											\
 	ZAABR##Type result;									\
 												\
@@ -737,10 +795,10 @@ Z_INLINE ZAABR##Type z_aabr_##type##_union(ZAABR##Type a, ZAABR##Type b)			\
 /* MARK: - Partial implementation for real types */
 
 
-#define Z_IMPLEMENTATION_AABR_REAL(Type, type)							\
+#define Z_IMPLEMENTATION_REAL(Type, type)							\
 												\
-												\
-Z_INLINE Z2D##Type z_aabr_##type##_absolute_point_to_unit(ZAABR##Type object, Z2D##Type point)	\
+static Z_INLINE											\
+Z2D##Type z_aabr_##type##_absolute_point_to_unit(ZAABR##Type object, Z2D##Type point)		\
 	{											\
 	return z_2d_##type									\
 		((point.x - object.a.x) / (object.b.x - object.a.x),				\
@@ -748,7 +806,8 @@ Z_INLINE Z2D##Type z_aabr_##type##_absolute_point_to_unit(ZAABR##Type object, Z2
 	}											\
 												\
 												\
-Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##Type circle)	\
+static Z_INLINE											\
+zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##Type circle)		\
 	{											\
 	return	circle.point.x - circle.radius >= object.a.x &&					\
 		circle.point.y - circle.radius >= object.a.y &&					\
@@ -757,7 +816,8 @@ Z_INLINE zboolean z_aabr_##type##_contains_circle(ZAABR##Type object, ZCircle##T
 	}											\
 												\
 												\
-Z_INLINE ZCircle##Type z_aabr_##type##_inner_circle(ZAABR##Type object)				\
+static Z_INLINE											\
+ZCircle##Type z_aabr_##type##_inner_circle(ZAABR##Type object)					\
 	{											\
 	ZCircle##Type result;									\
 												\
@@ -770,7 +830,8 @@ Z_INLINE ZCircle##Type z_aabr_##type##_inner_circle(ZAABR##Type object)				\
 	}											\
 												\
 												\
-Z_INLINE Z2D##Type z_aabr_##type##_unit_point_to_absolute(ZAABR##Type object, Z2D##Type point)	\
+static Z_INLINE											\
+Z2D##Type z_aabr_##type##_unit_point_to_absolute(ZAABR##Type object, Z2D##Type point)		\
 	{											\
 	return z_2d_##type									\
 		(point.x * (object.b.x - object.a.x) + object.a.x,				\
@@ -792,21 +853,21 @@ Z_INLINE Z2D##Type z_aabr_##type##_unit_point_to_absolute(ZAABR##Type object, Z2
 #define z_aabr_sint8_is_zero   z_2d_line_sint8_is_zero
 #define z_aabr_sint8_swap      z_2d_line_sint8_swap
 
-Z_IMPLEMENTATION_AABR_COMMON(SInt8, sint8)
+Z_IMPLEMENTATION_COMMON(SInt8, sint8)
 
 #define z_aabr_sint16_are_equal z_2d_line_sint16_are_equal
 #define z_aabr_sint16_center	z_2d_line_segment_sint16_center
 #define z_aabr_sint16_is_zero	z_2d_line_sint16_is_zero
 #define z_aabr_sint16_swap	z_2d_line_sint16_swap
 
-Z_IMPLEMENTATION_AABR_COMMON(SInt16, sint16)
+Z_IMPLEMENTATION_COMMON(SInt16, sint16)
 
 #define z_aabr_sint32_are_equal z_2d_line_sint32_are_equal
 #define z_aabr_sint32_center	z_2d_line_segment_sint32_center
 #define z_aabr_sint32_is_zero	z_2d_line_sint32_is_zero
 #define z_aabr_sint32_swap	z_2d_line_sint32_swap
 
-Z_IMPLEMENTATION_AABR_COMMON(SInt32, sint32)
+Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 
 #ifdef Z_SINT64
 
@@ -815,7 +876,7 @@ Z_IMPLEMENTATION_AABR_COMMON(SInt32, sint32)
 #	define z_aabr_sint64_is_zero   z_2d_line_sint64_is_zero
 #	define z_aabr_sint64_swap      z_2d_line_sint64_swap
 
-	Z_IMPLEMENTATION_AABR_COMMON(SInt64, sint64)
+	Z_IMPLEMENTATION_COMMON(SInt64, sint64)
 
 #endif
 
@@ -826,7 +887,7 @@ Z_IMPLEMENTATION_AABR_COMMON(SInt32, sint32)
 #	define z_aabr_sint128_is_zero	z_2d_line_sint128_is_zero
 #	define z_aabr_sint128_swap	z_2d_line_sint128_swap
 
-	Z_IMPLEMENTATION_AABR_COMMON(SInt128, sint128)
+	Z_IMPLEMENTATION_COMMON(SInt128, sint128)
 
 #endif
 
@@ -837,8 +898,8 @@ Z_IMPLEMENTATION_AABR_COMMON(SInt32, sint32)
 #	define z_aabr_float16_is_zero	z_2d_line_float16_is_zero
 #	define z_aabr_float16_swap	z_2d_line_float16_swap
 
-	Z_IMPLEMENTATION_AABR_COMMON(Float16, float16)
-	Z_IMPLEMENTATION_AABR_REAL  (Float16, float16)
+	Z_IMPLEMENTATION_COMMON(Float16, float16)
+	Z_IMPLEMENTATION_REAL  (Float16, float16)
 
 #endif
 
@@ -849,8 +910,8 @@ Z_IMPLEMENTATION_AABR_COMMON(SInt32, sint32)
 #	define z_aabr_float32_is_zero	z_2d_line_float32_is_zero
 #	define z_aabr_float32_swap	z_2d_line_float32_swap
 
-	Z_IMPLEMENTATION_AABR_COMMON(Float32, float32)
-	Z_IMPLEMENTATION_AABR_REAL  (Float32, float32)
+	Z_IMPLEMENTATION_COMMON(Float32, float32)
+	Z_IMPLEMENTATION_REAL  (Float32, float32)
 
 #endif
 
@@ -861,8 +922,8 @@ Z_IMPLEMENTATION_AABR_COMMON(SInt32, sint32)
 #	define z_aabr_float64_is_zero	z_2d_line_float64_is_zero
 #	define z_aabr_float64_swap	z_2d_line_float64_swap
 
-	Z_IMPLEMENTATION_AABR_COMMON(Float64, float64)
-	Z_IMPLEMENTATION_AABR_REAL  (Float64, float64)
+	Z_IMPLEMENTATION_COMMON(Float64, float64)
+	Z_IMPLEMENTATION_REAL  (Float64, float64)
 
 #endif
 
@@ -873,8 +934,8 @@ Z_IMPLEMENTATION_AABR_COMMON(SInt32, sint32)
 #	define z_aabr_float128_is_zero	 z_2d_line_float128_is_zero
 #	define z_aabr_float128_swap	 z_2d_line_float128_swap
 
-	Z_IMPLEMENTATION_AABR_COMMON(Float128, float128)
-	Z_IMPLEMENTATION_AABR_REAL  (Float128, float128)
+	Z_IMPLEMENTATION_COMMON(Float128, float128)
+	Z_IMPLEMENTATION_REAL  (Float128, float128)
 
 #endif
 
@@ -885,8 +946,8 @@ Z_IMPLEMENTATION_AABR_COMMON(SInt32, sint32)
 #	define z_aabr_float80_x87_is_zero   z_2d_line_float80_x87_is_zero
 #	define z_aabr_float80_x87_swap	    z_2d_line_float80_x87_swap
 
-	Z_IMPLEMENTATION_AABR_COMMON(Float80_x87, float80_x87)
-	Z_IMPLEMENTATION_AABR_REAL  (Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_COMMON(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_REAL  (Float80_x87, float80_x87)
 
 #endif
 
@@ -897,8 +958,8 @@ Z_IMPLEMENTATION_AABR_COMMON(SInt32, sint32)
 #	define z_aabr_float96_x87_is_zero   z_2d_line_float96_x87_is_zero
 #	define z_aabr_float96_x87_swap	    z_2d_line_float96_x87_swap
 
-	Z_IMPLEMENTATION_AABR_COMMON(Float96_x87, float96_x87)
-	Z_IMPLEMENTATION_AABR_REAL  (Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_COMMON(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_REAL  (Float96_x87, float96_x87)
 
 #endif
 
@@ -909,10 +970,17 @@ Z_IMPLEMENTATION_AABR_COMMON(SInt32, sint32)
 #	define z_aabr_float128_x87_is_zero   z_2d_line_float128_x87_is_zero
 #	define z_aabr_float128_x87_swap	     z_2d_line_float128_x87_swap
 
-	Z_IMPLEMENTATION_AABR_COMMON(Float128_x87, float128_x87)
-	Z_IMPLEMENTATION_AABR_REAL  (Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_COMMON(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_REAL  (Float128_x87, float128_x87)
 
 #endif
+
+
+/* MARK: - Cleanup */
+
+
+#undef Z_IMPLEMENTATION_COMMON
+#undef Z_IMPLEMENTATION_REAL
 
 
 /* MARK: - Default real type definitions */

@@ -15,64 +15,73 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Implementation */
 
 
-#define Z_IMPLEMENTATION_RANGE(Type, type)						 \
-											 \
-											 \
-Z_INLINE zboolean z_range_##type##_are_equal(ZRange##Type a, ZRange##Type b)		 \
-	{return a.index == b.index && a.size == b.size;}				 \
-											 \
-											 \
-Z_INLINE zboolean z_range_##type##_contains(ZRange##Type object, ZRange##Type other)	 \
-	{										 \
-	return	object.index		   <= other.index &&				 \
-		object.index + object.size >= other.index + other.size;			 \
-	}										 \
-											 \
-											 \
-Z_INLINE zboolean z_range_##type##_contains_index(ZRange##Type object, z##type index)	 \
-	{return index >= object.index && index < object.index + object.size;}		 \
-											 \
-											 \
-Z_INLINE zusize z_range_##type##_end(ZRange##Type object)				 \
-	{return object.index + object.size;}						 \
-											 \
-											 \
-Z_INLINE ZRange##Type z_range_##type##_from_indices(z##type a, z##type b)		 \
-	{return a < b ? z_range_##type(a, b - a) : z_range_##type(b, a - b);}		 \
-											 \
-											 \
-Z_INLINE zboolean z_range_##type##_intersect(ZRange##Type a, ZRange##Type b)		 \
-	{return a.index < b.index + b.size && b.index < a.index + a.size;}		 \
-											 \
-											 \
-Z_INLINE ZRange##Type z_range_##type##_intersection(ZRange##Type a, ZRange##Type b)	 \
-	{										 \
-	z##type index = (a.index > b.index) ? a.index : b.index,			 \
-		end   = z_##type##_minimum(a.index + a.size, b.index + b.size);		 \
-											 \
-	return end > index ? z_range_##type(index, end - index) : z_range_##type##_zero; \
-	}										 \
-											 \
-											 \
-Z_INLINE void z_range_##type##_swap(ZRange##Type *a, ZRange##Type *b)			 \
-	{										 \
-	ZRange##Type t = *a;								 \
-											 \
-	*a = *b; *b = t;								 \
-	}										 \
-											 \
-											 \
-Z_INLINE ZRange##Type z_range_##type##_union(ZRange##Type a, ZRange##Type b)		 \
-	{										 \
-	z##type	index = (a.index < b.index) ? a.index : b.index,			 \
-		a_end = a.index + a.size,						 \
-		b_end = b.index + b.size;						 \
-											 \
-        return z_range_##type(index, ((a_end > b_end) ? a_end : b_end) - index);	 \
-	}										 \
-											 \
-											 \
-Z_INLINE zboolean z_range_##type##_is_zero(ZRange##Type object)				 \
+#define Z_IMPLEMENTATION(Type, type)								\
+												\
+static Z_INLINE											\
+zboolean z_range_##type##_are_equal(ZRange##Type a, ZRange##Type b)				\
+	{return a.index == b.index && a.size == b.size;}					\
+												\
+												\
+static Z_INLINE											\
+zboolean z_range_##type##_contains(ZRange##Type object, ZRange##Type other)			\
+	{											\
+	return	object.index		   <= other.index &&					\
+		object.index + object.size >= other.index + other.size;				\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_range_##type##_contains_index(ZRange##Type object, z##type index)			\
+	{return index >= object.index && index < object.index + object.size;}			\
+												\
+												\
+static Z_INLINE											\
+zusize z_range_##type##_end(ZRange##Type object)						\
+	{return object.index + object.size;}							\
+												\
+												\
+static Z_INLINE											\
+ZRange##Type z_range_##type##_from_indices(z##type a, z##type b)				\
+	{return a < b ? z_range_##type(a, b - a) : z_range_##type(b, a - b);}			\
+												\
+												\
+static Z_INLINE											\
+zboolean z_range_##type##_intersect(ZRange##Type a, ZRange##Type b)				\
+	{return a.index < b.index + b.size && b.index < a.index + a.size;}			\
+												\
+												\
+static Z_INLINE											\
+ZRange##Type z_range_##type##_intersection(ZRange##Type a, ZRange##Type b)			\
+	{											\
+	z##type index = (a.index > b.index) ? a.index : b.index,				\
+		end   = z_##type##_minimum(a.index + a.size, b.index + b.size);			\
+												\
+	return end > index ? z_range_##type(index, end - index) : z_range_##type##_zero;	\
+	}											\
+												\
+												\
+static Z_INLINE											\
+void z_range_##type##_swap(ZRange##Type *a, ZRange##Type *b)					\
+	{											\
+	ZRange##Type t = *a;									\
+												\
+	*a = *b; *b = t;									\
+	}											\
+												\
+												\
+static Z_INLINE											\
+ZRange##Type z_range_##type##_union(ZRange##Type a, ZRange##Type b)				\
+	{											\
+	z##type	index = (a.index < b.index) ? a.index : b.index,				\
+		a_end = a.index + a.size,							\
+		b_end = b.index + b.size;							\
+												\
+        return z_range_##type(index, ((a_end > b_end) ? a_end : b_end) - index);		\
+	}											\
+												\
+												\
+static Z_INLINE											\
+zboolean z_range_##type##_is_zero(ZRange##Type object)						\
 	{return object.index == 0 && object.size == 0;}
 
 
@@ -91,17 +100,23 @@ Z_INLINE zboolean z_range_##type##_is_zero(ZRange##Type object)				 \
 /* MARK: - Implementation expansions */
 
 
-Z_IMPLEMENTATION_RANGE(UInt8,  uint8 )
-Z_IMPLEMENTATION_RANGE(UInt16, uint16)
-Z_IMPLEMENTATION_RANGE(UInt32, uint32)
+Z_IMPLEMENTATION(UInt8,	uint8 )
+Z_IMPLEMENTATION(UInt16, uint16)
+Z_IMPLEMENTATION(UInt32, uint32)
 
 #ifdef Z_UINT64
-	Z_IMPLEMENTATION_RANGE(UInt64, uint64)
+	Z_IMPLEMENTATION(UInt64, uint64)
 #endif
 
 #ifdef Z_UINT128
-	Z_IMPLEMENTATION_RANGE(UInt128, uint128)
+	Z_IMPLEMENTATION(UInt128, uint128)
 #endif
+
+
+/* MARK: - Cleanup */
+
+
+#undef Z_IMPLEMENTATION
 
 
 /* MARK: - Default type definitions */

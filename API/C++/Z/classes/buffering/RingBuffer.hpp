@@ -19,14 +19,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {struct RingBuffer : public ZRingBuffer {
 
-	Z_INLINE_MEMBER RingBuffer() {}
+	Z_INLINE RingBuffer() {}
 
 
-	Z_INLINE_MEMBER RingBuffer(void *buffers, USize buffer_size, USize buffer_count)
+	Z_INLINE RingBuffer(void *buffers, USize buffer_size, USize buffer_count)
 		{initialize(buffers, buffer_size, buffer_count);}
 
 
-	Z_INLINE_MEMBER void initialize(void *buffers, USize buffer_size, USize buffer_count)
+	Z_INLINE void initialize(void *buffers, USize buffer_size, USize buffer_count)
 		{
 		this->buffers		= buffers;
 		this->buffer_size	= buffer_size;
@@ -37,7 +37,7 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 		}
 
 
-	Z_INLINE_MEMBER void *production_buffer() const
+	Z_INLINE void *production_buffer() const
 		{
 		return buffer_count - fill_count
 			? (UInt8 *)buffers + production_index * buffer_size
@@ -45,7 +45,7 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 		}
 
 
-	Z_INLINE_MEMBER void *consumption_buffer() const
+	Z_INLINE void *consumption_buffer() const
 		{
 		return fill_count
 			? (UInt8 *)buffers + consumption_index * buffer_size
@@ -53,7 +53,7 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 		}
 
 
-	Z_INLINE_MEMBER void *try_produce()
+	Z_INLINE void *try_produce()
 		{
 		if (buffer_count == fill_count) return NULL;
 		production_index = (production_index + 1) % buffer_count;
@@ -62,7 +62,7 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 		}
 
 
-	Z_INLINE_MEMBER void *try_consume()
+	Z_INLINE void *try_consume()
 		{
 		if (!fill_count) return NULL;
 		consumption_index = (consumption_index + 1) % buffer_count;
@@ -71,7 +71,7 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 		}
 
 
-	Z_INLINE_MEMBER void *produce()
+	Z_INLINE void *produce()
 		{
 		while (buffer_count == fill_count) z_cpu_relax();
 		production_index = (production_index + 1) % buffer_count;
@@ -80,7 +80,7 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 		}
 
 
-	Z_INLINE_MEMBER void *consume()
+	Z_INLINE void *consume()
 		{
 		if (!fill_count) z_cpu_relax();
 		consumption_index = (consumption_index + 1) % buffer_count;

@@ -3521,15 +3521,15 @@ namespace Zeta {
 #		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 
 
-			static Z_CT_MEMBER(CPP14) USize string_size()
+			static Z_CT(CPP14) USize string_size()
 				{return type_string_size<T>();}
 
 
-			static Z_CT_MEMBER(CPP14) SizedString<string_size()> string()
+			static Z_CT(CPP14) SizedString<string_size()> string()
 				{return type_string<T>();}
 
 
-			static Z_CT_MEMBER(CPP14) Symbol symbol()
+			static Z_CT(CPP14) Symbol symbol()
 				{return Symbol(type_string<T>());}
 
 

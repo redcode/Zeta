@@ -24,13 +24,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Specifiers */
 
-#if Z_COMPILER_HAS_ATTRIBUTE(INLINE_MEMBER)
-#	define Z_INLINE_MEMBER Z_COMPILER_ATTRIBUTE(INLINE_MEMBER)
-#else
-	// TODO: is the "inline" specifier supported in all versions of C++?
-#	define Z_INLINE_MEMBER inline
-#endif
-
 #if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
 #	define Z_CONSTANT constexpr
 #	define Z_CT_N2235 constexpr
@@ -48,8 +41,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CT_CPP11 Z_CT_N2235
 #define Z_CT_CPP14 Z_CT_N3652
 
-#define Z_CT(	    CONFORM_TO) Z_CT_##CONFORM_TO Z_INLINE
-#define Z_CT_MEMBER(CONFORM_TO) Z_CT_##CONFORM_TO Z_INLINE_MEMBER
+#define Z_CT(CONFORM_TO) Z_CT_##CONFORM_TO Z_INLINE
 
 #if Z_LANGUAGE_HAS_SPECIFIER(CPP, EXPLICIT)
 #	define Z_EXPLICIT explicit

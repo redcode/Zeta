@@ -9,16 +9,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_functions_mathematics_geometry_euclidean_ZBox_H__
 
 #include <Z/functions/mathematics/geometry/euclidean/constructors.h>
-#include <Z/functions/base/Z3DValue.h>
+#include <Z/functions/base/Z3D.h>
 
 
 /* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_BOX_COMMON(Type, type)							\
+#define Z_IMPLEMENTATION_COMMON(Type, type)							\
 												\
-												\
-Z_INLINE ZAABB##Type z_box_##type##_aabb(ZBox##Type object)					\
+static Z_INLINE											\
+ZAABB##Type z_box_##type##_aabb(ZBox##Type object)						\
 	{											\
 	return z_aabb_##type									\
 		(object.point.x, object.point.y, object.point.z,				\
@@ -28,14 +28,16 @@ Z_INLINE ZAABB##Type z_box_##type##_aabb(ZBox##Type object)					\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_box_##type##_are_equal(ZBox##Type a, ZBox##Type b)				\
+static Z_INLINE											\
+zboolean z_box_##type##_are_equal(ZBox##Type a, ZBox##Type b)					\
 	{											\
 	return	z_3d_##type##_are_equal(a.point, b.point) &&					\
 		z_3d_##type##_are_equal(a.size,  b.size );					\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_box_##type##_center(ZBox##Type object)					\
+static Z_INLINE											\
+Z3D##Type z_box_##type##_center(ZBox##Type object)						\
 	{											\
 	return z_3d_##type									\
 		(object.point.x + object.size.x / (z##type)2,					\
@@ -44,7 +46,8 @@ Z_INLINE Z3D##Type z_box_##type##_center(ZBox##Type object)					\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_box_##type##_contains(ZBox##Type object, ZBox##Type other)			\
+static Z_INLINE											\
+zboolean z_box_##type##_contains(ZBox##Type object, ZBox##Type other)				\
 	{											\
 	return	other.size.x		     != (z##type)0		       &&		\
 		other.size.y		     != (z##type)0		       &&		\
@@ -58,7 +61,8 @@ Z_INLINE zboolean z_box_##type##_contains(ZBox##Type object, ZBox##Type other)		
 	}											\
 												\
 												\
-Z_INLINE zboolean z_box_##type##_contains_aabb(ZBox##Type object, ZAABB##Type aabb)		\
+static Z_INLINE											\
+zboolean z_box_##type##_contains_aabb(ZBox##Type object, ZAABB##Type aabb)			\
 	{											\
 	return	aabb.a.x != aabb.b.x			   &&					\
 		aabb.a.y != aabb.b.y			   &&					\
@@ -72,7 +76,8 @@ Z_INLINE zboolean z_box_##type##_contains_aabb(ZBox##Type object, ZAABB##Type aa
 	}											\
 												\
 												\
-Z_INLINE zboolean z_box_##type##_contains_point(ZBox##Type object, Z3D##Type point)		\
+static Z_INLINE											\
+zboolean z_box_##type##_contains_point(ZBox##Type object, Z3D##Type point)			\
 	{											\
 	return	point.x >= object.point.x		  &&					\
 		point.y >= object.point.y		  &&					\
@@ -83,7 +88,8 @@ Z_INLINE zboolean z_box_##type##_contains_point(ZBox##Type object, Z3D##Type poi
 	}											\
 												\
 												\
-Z_INLINE ZBox##Type z_box_##type##_correct(ZBox##Type object)					\
+static Z_INLINE											\
+ZBox##Type z_box_##type##_correct(ZBox##Type object)						\
 	{											\
 	if (object.size.x < (z##type)0) object.point.x -= (object.size.x = -object.size.x);	\
 	if (object.size.y < (z##type)0) object.point.y -= (object.size.y = -object.size.y);	\
@@ -92,7 +98,8 @@ Z_INLINE ZBox##Type z_box_##type##_correct(ZBox##Type object)					\
 	}											\
 												\
 												\
-Z_INLINE ZBox##Type z_box_##type##_from_vertices(Z3D##Type a, Z3D##Type b)			\
+static Z_INLINE											\
+ZBox##Type z_box_##type##_from_vertices(Z3D##Type a, Z3D##Type b)				\
 	{											\
 	Z3D##Type minimum = z_3d_##type##_minimum(a, b);					\
 	Z3D##Type maximum = z_3d_##type##_maximum(a, b);					\
@@ -105,7 +112,8 @@ Z_INLINE ZBox##Type z_box_##type##_from_vertices(Z3D##Type a, Z3D##Type b)			\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_box_##type##_intersect(ZBox##Type a, ZBox##Type b)				\
+static Z_INLINE											\
+zboolean z_box_##type##_intersect(ZBox##Type a, ZBox##Type b)					\
 	{											\
 	return	a.size.x	     != (z##type)0	     &&					\
 		a.size.y	     != (z##type)0	     &&					\
@@ -122,7 +130,8 @@ Z_INLINE zboolean z_box_##type##_intersect(ZBox##Type a, ZBox##Type b)				\
 	}											\
 												\
 												\
-Z_INLINE ZBox##Type z_box_##type##_intersection(ZBox##Type a, ZBox##Type b)			\
+static Z_INLINE											\
+ZBox##Type z_box_##type##_intersection(ZBox##Type a, ZBox##Type b)				\
 	{											\
 	z##type x1, x2, y1, y2, z1, z2;								\
 												\
@@ -138,11 +147,13 @@ Z_INLINE ZBox##Type z_box_##type##_intersection(ZBox##Type a, ZBox##Type b)			\
 	}											\
 												\
 												\
-Z_INLINE zboolean z_box_##type##_is_zero(ZBox##Type object)					\
+static Z_INLINE											\
+zboolean z_box_##type##_is_zero(ZBox##Type object)						\
 	{return	z_3d_##type##_is_zero(object.point) && z_3d_##type##_is_zero(object.size);}	\
 												\
 												\
-Z_INLINE void z_box_##type##_swap(ZBox##Type *a, ZBox##Type *b)					\
+static Z_INLINE											\
+void z_box_##type##_swap(ZBox##Type *a, ZBox##Type *b)						\
 	{											\
 	ZBox##Type t = *a;									\
 												\
@@ -150,7 +161,8 @@ Z_INLINE void z_box_##type##_swap(ZBox##Type *a, ZBox##Type *b)					\
 	}											\
 												\
 												\
-Z_INLINE ZBox##Type z_box_##type##_union(ZBox##Type a, ZBox##Type b)				\
+static Z_INLINE											\
+ZBox##Type z_box_##type##_union(ZBox##Type a, ZBox##Type b)					\
 	{											\
 	ZBox##Type result;									\
 												\
@@ -187,10 +199,10 @@ Z_INLINE ZBox##Type z_box_##type##_union(ZBox##Type a, ZBox##Type b)				\
 /* MARK: - Partial implementation for real types */
 
 
-#define Z_IMPLEMENTATION_BOX_REAL(Type, type)							\
+#define Z_IMPLEMENTATION_REAL(Type, type)							\
 												\
-												\
-Z_INLINE Z3D##Type z_box_##type##_absolute_point_to_unit(ZBox##Type object, Z3D##Type point)	\
+static Z_INLINE											\
+Z3D##Type z_box_##type##_absolute_point_to_unit(ZBox##Type object, Z3D##Type point)		\
 	{											\
 	return z_3d_##type									\
 		((point.x - object.point.x) / object.size.x,					\
@@ -199,7 +211,8 @@ Z_INLINE Z3D##Type z_box_##type##_absolute_point_to_unit(ZBox##Type object, Z3D#
 	}											\
 												\
 												\
-Z_INLINE zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Type sphere)	\
+static Z_INLINE											\
+zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Type sphere)		\
 	{											\
 	return	sphere.radius != (z##type)0					 &&		\
 		sphere.point.x - sphere.radius >= object.point.x		 &&		\
@@ -211,7 +224,8 @@ Z_INLINE zboolean z_box_##type##_contains_sphere(ZBox##Type object, ZSphere##Typ
 	}											\
 												\
 												\
-Z_INLINE ZSphere##Type z_box_##type##_inner_sphere(ZBox##Type object)				\
+static Z_INLINE											\
+ZSphere##Type z_box_##type##_inner_sphere(ZBox##Type object)					\
 	{											\
 	ZSphere##Type result;									\
 												\
@@ -225,7 +239,8 @@ Z_INLINE ZSphere##Type z_box_##type##_inner_sphere(ZBox##Type object)				\
 	}											\
 												\
 												\
-Z_INLINE Z3D##Type z_box_##type##_unit_point_to_absolute(ZBox##Type object, Z3D##Type point)	\
+static Z_INLINE											\
+Z3D##Type z_box_##type##_unit_point_to_absolute(ZBox##Type object, Z3D##Type point)		\
 	{											\
 	return z_3d_##type									\
 		(point.x * object.size.x + object.point.x,					\
@@ -243,52 +258,59 @@ Z_INLINE Z3D##Type z_box_##type##_unit_point_to_absolute(ZBox##Type object, Z3D#
 /* MARK: - Implementation expansions */
 
 
-Z_IMPLEMENTATION_BOX_COMMON(SInt8,  sint8 )
-Z_IMPLEMENTATION_BOX_COMMON(SInt16, sint16)
-Z_IMPLEMENTATION_BOX_COMMON(SInt32, sint32)
+Z_IMPLEMENTATION_COMMON(SInt8,	sint8 )
+Z_IMPLEMENTATION_COMMON(SInt16, sint16)
+Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 
 #ifdef Z_SINT64
-	Z_IMPLEMENTATION_BOX_COMMON(SInt64, sint64)
+	Z_IMPLEMENTATION_COMMON(SInt64, sint64)
 #endif
 
 #ifdef Z_SINT128
-	Z_IMPLEMENTATION_BOX_COMMON(SInt128, sint128)
+	Z_IMPLEMENTATION_COMMON(SInt128, sint128)
 #endif
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_BOX_COMMON(Float16, float16)
-	Z_IMPLEMENTATION_BOX_REAL  (Float16, float16)
+	Z_IMPLEMENTATION_COMMON(Float16, float16)
+	Z_IMPLEMENTATION_REAL  (Float16, float16)
 #endif
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_BOX_COMMON(Float32, float32)
-	Z_IMPLEMENTATION_BOX_REAL  (Float32, float32)
+	Z_IMPLEMENTATION_COMMON(Float32, float32)
+	Z_IMPLEMENTATION_REAL  (Float32, float32)
 #endif
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_BOX_COMMON(Float64, float64)
-	Z_IMPLEMENTATION_BOX_REAL  (Float64, float64)
+	Z_IMPLEMENTATION_COMMON(Float64, float64)
+	Z_IMPLEMENTATION_REAL  (Float64, float64)
 #endif
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_BOX_COMMON(Float128, float128)
-	Z_IMPLEMENTATION_BOX_REAL  (Float128, float128)
+	Z_IMPLEMENTATION_COMMON(Float128, float128)
+	Z_IMPLEMENTATION_REAL  (Float128, float128)
 #endif
 
 #ifdef Z_FLOAT80_X87
-	Z_IMPLEMENTATION_BOX_COMMON(Float80_x87, float80_x87)
-	Z_IMPLEMENTATION_BOX_REAL  (Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_COMMON(Float80_x87, float80_x87)
+	Z_IMPLEMENTATION_REAL  (Float80_x87, float80_x87)
 #endif
 
 #ifdef Z_FLOAT96_X87
-	Z_IMPLEMENTATION_BOX_COMMON(Float96_x87, float96_x87)
-	Z_IMPLEMENTATION_BOX_REAL  (Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_COMMON(Float96_x87, float96_x87)
+	Z_IMPLEMENTATION_REAL  (Float96_x87, float96_x87)
 #endif
 
 #ifdef Z_FLOAT128_X87
-	Z_IMPLEMENTATION_BOX_COMMON(Float128_x87, float128_x87)
-	Z_IMPLEMENTATION_BOX_REAL  (Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_COMMON(Float128_x87, float128_x87)
+	Z_IMPLEMENTATION_REAL  (Float128_x87, float128_x87)
 #endif
+
+
+/* MARK: - Cleanup */
+
+
+#undef Z_IMPLEMENTATION_COMMON
+#undef Z_IMPLEMENTATION_REAL
 
 
 /* MARK: - Default real type definitions */

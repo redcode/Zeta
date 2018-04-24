@@ -109,10 +109,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #else
 
-#	define Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Type, type)	  \
+#	define Z_IMPLEMENTATION_ZND_CONSTRUCTORS(Type, type)		  \
 									  \
-									  \
-	Z_INLINE Z2D##Type z_2d_##type(z##type x, z##type y)		  \
+	static Z_INLINE							  \
+	Z2D##Type z_2d_##type(z##type x, z##type y)			  \
 		{							  \
 		Z2D##Type object;					  \
 									  \
@@ -122,7 +122,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		}							  \
 									  \
 									  \
-	Z_INLINE Z3D##Type z_3d_##type(z##type x, z##type y, z##type z)	  \
+	static Z_INLINE							  \
+	Z3D##Type z_3d_##type(z##type x, z##type y, z##type z)		  \
 		{							  \
 		Z3D##Type object;					  \
 									  \
@@ -133,7 +134,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		}							  \
 									  \
 									  \
-	Z_INLINE							  \
+	static Z_INLINE							  \
 	Z4D##Type z_4d_##type(z##type x, z##type y, z##type z, z##type w) \
 		{							  \
 		Z4D##Type object;					  \
@@ -146,74 +147,78 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		}
 
 
-#	define Z_IMPLEMENTATION_RANGE_CONSTRUCTOR(Type, type)		  \
-									  \
-	Z_INLINE ZRange##Type z_range_##type(z##type index, z##type size) \
-		{							  \
-		ZRange##Type object;					  \
-									  \
-		object.index = index;					  \
-		object.size  = size;					  \
-		return object;						  \
+#	define Z_IMPLEMENTATION_ZRange_CONSTRUCTOR(Type, type)	 \
+								 \
+	static Z_INLINE						 \
+	ZRange##Type z_range_##type(z##type index, z##type size) \
+		{						 \
+		ZRange##Type object;				 \
+								 \
+		object.index = index;				 \
+		object.size  = size;				 \
+		return object;					 \
 		}
 
 
-	Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(UInt8,  uint8 )
-	Z_IMPLEMENTATION_RANGE_CONSTRUCTOR    (UInt8,  uint8 )
-	Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(UInt16, uint16)
-	Z_IMPLEMENTATION_RANGE_CONSTRUCTOR    (UInt16, uint16)
-	Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(UInt32, uint32)
-	Z_IMPLEMENTATION_RANGE_CONSTRUCTOR    (UInt32, uint32)
+	Z_IMPLEMENTATION_ZND_CONSTRUCTORS  (UInt8,  uint8 )
+	Z_IMPLEMENTATION_ZRange_CONSTRUCTOR(UInt8,  uint8 )
+	Z_IMPLEMENTATION_ZND_CONSTRUCTORS  (UInt16, uint16)
+	Z_IMPLEMENTATION_ZRange_CONSTRUCTOR(UInt16, uint16)
+	Z_IMPLEMENTATION_ZND_CONSTRUCTORS  (UInt32, uint32)
+	Z_IMPLEMENTATION_ZRange_CONSTRUCTOR(UInt32, uint32)
 
 #	ifdef Z_UINT64
-		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(UInt64, uint64)
-		Z_IMPLEMENTATION_RANGE_CONSTRUCTOR    (UInt64, uint64)
+		Z_IMPLEMENTATION_ZND_CONSTRUCTORS  (UInt64, uint64)
+		Z_IMPLEMENTATION_ZRange_CONSTRUCTOR(UInt64, uint64)
 #	endif
 
 #	ifdef Z_UINT128
-		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(UInt128, uint128)
-		Z_IMPLEMENTATION_RANGE_CONSTRUCTOR    (UInt128, uint128)
+		Z_IMPLEMENTATION_ZND_CONSTRUCTORS  (UInt128, uint128)
+		Z_IMPLEMENTATION_ZRange_CONSTRUCTOR(UInt128, uint128)
 #	endif
 
-	Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(SInt8,  sint8 )
-	Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(SInt16, sint16)
-	Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(SInt32, sint32)
+	Z_IMPLEMENTATION_ZND_CONSTRUCTORS(SInt8,  sint8 )
+	Z_IMPLEMENTATION_ZND_CONSTRUCTORS(SInt16, sint16)
+	Z_IMPLEMENTATION_ZND_CONSTRUCTORS(SInt32, sint32)
 
 #	ifdef Z_SINT64
-		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(SInt64, sint64)
+		Z_IMPLEMENTATION_ZND_CONSTRUCTORS(SInt64, sint64)
 #	endif
 
 #	ifdef Z_SINT128
-		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(SInt128, sint128)
+		Z_IMPLEMENTATION_ZND_CONSTRUCTORS(SInt128, sint128)
 #	endif
 
 #	ifdef Z_FLOAT16
-		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float16, float16)
+		Z_IMPLEMENTATION_ZND_CONSTRUCTORS(Float16, float16)
 #	endif
 
 #	ifdef Z_FLOAT32
-		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float32, float32)
+		Z_IMPLEMENTATION_ZND_CONSTRUCTORS(Float32, float32)
 #	endif
 
 #	ifdef Z_FLOAT64
-		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float64, float64)
+		Z_IMPLEMENTATION_ZND_CONSTRUCTORS(Float64, float64)
 #	endif
 
 #	ifdef Z_FLOAT128
-		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float128, float128)
+		Z_IMPLEMENTATION_ZND_CONSTRUCTORS(Float128, float128)
 #	endif
 
 #	ifdef Z_FLOAT80_X87
-		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float80_x87, float80_x87)
+		Z_IMPLEMENTATION_ZND_CONSTRUCTORS(Float80_x87, float80_x87)
 #	endif
 
 #	ifdef Z_FLOAT96_X87
-		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float96_x87, float96_x87)
+		Z_IMPLEMENTATION_ZND_CONSTRUCTORS(Float96_x87, float96_x87)
 #	endif
 
 #	ifdef Z_FLOAT128_X87
-		Z_IMPLEMENTATION_ND_VALUE_CONSTRUCTORS(Float128_x87, float128_x87)
+		Z_IMPLEMENTATION_ZND_CONSTRUCTORS(Float128_x87, float128_x87)
 #	endif
+
+#	undef Z_IMPLEMENTATION_ZND_CONSTRUCTORS
+#	undef Z_IMPLEMENTATION_ZRange_CONSTRUCTOR
 
 #endif
 

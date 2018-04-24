@@ -14,27 +14,30 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_VALUE_COMMON(type)					   \
-										   \
-										   \
-Z_INLINE z##type z_##type##_maximum(z##type a, z##type b)			   \
-	{return Z_MAXIMUM(a, b);}						   \
-										   \
-										   \
-Z_INLINE z##type z_##type##_minimum(z##type a, z##type b)			   \
-	{return Z_MINIMUM(a, b);}						   \
-										   \
-										   \
-Z_INLINE z##type z_##type##_clamp(z##type value, z##type minimum, z##type maximum) \
-	{return z_##type##_minimum(z_##type##_maximum(value, minimum), maximum);}  \
-										   \
-										   \
-Z_INLINE void z_##type##_swap(void *a, void *b)					   \
-	{									   \
-	z##type t = *(z##type *)a;						   \
-										   \
-	*(z##type *)a = *(z##type *)b;						   \
-	*(z##type *)b = t;							   \
+#define Z_IMPLEMENTATION_COMMON(type)								\
+												\
+static Z_INLINE											\
+z##type z_##type##_maximum(z##type a, z##type b)						\
+	{return Z_MAXIMUM(a, b);}								\
+												\
+												\
+static Z_INLINE											\
+z##type z_##type##_minimum(z##type a, z##type b)						\
+	{return Z_MINIMUM(a, b);}								\
+												\
+												\
+static Z_INLINE											\
+z##type z_##type##_clamp(z##type value, z##type minimum, z##type maximum)			\
+	{return z_##type##_minimum(z_##type##_maximum(value, minimum), maximum);}		\
+												\
+												\
+static Z_INLINE											\
+void z_##type##_swap(void *a, void *b)								\
+	{											\
+	z##type t = *(z##type *)a;								\
+												\
+	*(z##type *)a = *(z##type *)b;								\
+	*(z##type *)b = t;									\
 	}
 
 
@@ -47,12 +50,15 @@ Z_INLINE void z_##type##_swap(void *a, void *b)					   \
 /* MARK: - Partial implementation for signed types */
 
 
-#define Z_IMPLEMENTATION_VALUE_SIGNED(type)			 \
-								 \
-Z_INLINE z##type z_##type##_absolute(z##type value)		 \
-	{return value < (z##type)0 ? -value : value;}		 \
-								 \
-Z_INLINE z##type z_##type##_sign(z##type value)			 \
+#define Z_IMPLEMENTATION_SIGNED(type)								\
+												\
+static Z_INLINE											\
+z##type z_##type##_absolute(z##type value)							\
+	{return value < (z##type)0 ? -value : value;}						\
+												\
+												\
+static Z_INLINE											\
+z##type z_##type##_sign(z##type value)								\
 	{return value >= (z##type)0 ? (z##type)1 : -(z##type)1;}
 
 
@@ -63,64 +69,74 @@ Z_INLINE z##type z_##type##_sign(z##type value)			 \
 /* MARK: - Implementation for real types */
 
 
-#define Z_IMPLEMENTATION_VALUE_REAL(type, _, epsilon, infinity)			\
-										\
-										\
-Z_INLINE zboolean z_##type##_are_almost_equal(z##type a, z##type b)		\
-	{return z_##type##_absolute(a - b) <= epsilon;}				\
-										\
-										\
-Z_INLINE z##type z_##type##_clamp_01(z##type value)				\
-	{return z_##type##_minimum(z_##type##_maximum(value, _(0.0)), _(1.0));}	\
-										\
-										\
-Z_INLINE z##type z_##type##_inverse_lerp(z##type a, z##type b, z##type t)	\
-	{return (t - a) / (b - a);}						\
-										\
-										\
-Z_INLINE zboolean z_##type##_is_almost_zero(z##type value)			\
-	{return z_##type##_absolute(value) <= epsilon;}				\
-										\
-										\
-Z_INLINE zboolean z_##type##_is_finite(z##type value)				\
-	{return value == value && value != infinity && value != -infinity;}	\
-										\
-										\
-Z_INLINE zboolean z_##type##_is_infinity(z##type value)				\
-	{return value == infinity || value == -infinity;}			\
-										\
-										\
-Z_INLINE zboolean z_##type##_is_nan(z##type value)				\
-	{return !(value == value);}						\
-										\
-										\
-Z_INLINE z##type z_##type##_lerp(z##type a, z##type b, z##type t)		\
-	{return a + t * (b - a);}						\
-										\
-										\
-Z_INLINE z##type z_##type##_sign_or_zero(z##type value)				\
-	{									\
-	return z_##type##_absolute(value) <= epsilon				\
-		? _(0.0)							\
-		: z_##type##_sign(value);					\
-	}									\
-										\
-										\
-Z_INLINE z##type z_##type##_smootherstep(z##type a, z##type b, z##type t)	\
-	{									\
-	if (t <= a) return _(0.0);						\
-	if (t >= b) return _(1.0);						\
-	t = (t - a) / (b - a);							\
-	return t * t * t * (t * (t * _(6.0) - _(15.0)) + _(10.0));		\
-	}									\
-										\
-										\
-Z_INLINE z##type z_##type##_smoothstep(z##type a, z##type b, z##type t)		\
-	{									\
-	if (t <= a) return _(0.0);						\
-	if (t >= b) return _(1.0);						\
-	t = (t - a) / (b - a);							\
-	return t * t * (_(3.0) - _(2.0) * t);					\
+#define Z_IMPLEMENTATION_REAL(type, _, epsilon, infinity)					\
+												\
+static Z_INLINE											\
+zboolean z_##type##_are_almost_equal(z##type a, z##type b)					\
+	{return z_##type##_absolute(a - b) <= epsilon;}						\
+												\
+												\
+static Z_INLINE											\
+z##type z_##type##_clamp_01(z##type value)							\
+	{return z_##type##_minimum(z_##type##_maximum(value, _(0.0)), _(1.0));}			\
+												\
+												\
+static Z_INLINE											\
+z##type z_##type##_inverse_lerp(z##type a, z##type b, z##type t)				\
+	{return (t - a) / (b - a);}								\
+												\
+												\
+static Z_INLINE											\
+zboolean z_##type##_is_almost_zero(z##type value)						\
+	{return z_##type##_absolute(value) <= epsilon;}						\
+												\
+												\
+static Z_INLINE											\
+zboolean z_##type##_is_finite(z##type value)							\
+	{return value == value && value != infinity && value != -infinity;}			\
+												\
+												\
+static Z_INLINE											\
+zboolean z_##type##_is_infinity(z##type value)							\
+	{return value == infinity || value == -infinity;}					\
+												\
+												\
+static Z_INLINE											\
+zboolean z_##type##_is_nan(z##type value)							\
+	{return !(value == value);}								\
+												\
+												\
+static Z_INLINE											\
+z##type z_##type##_lerp(z##type a, z##type b, z##type t)					\
+	{return a + t * (b - a);}								\
+												\
+												\
+static Z_INLINE											\
+z##type z_##type##_sign_or_zero(z##type value)							\
+	{											\
+	return z_##type##_absolute(value) <= epsilon						\
+		? _(0.0)									\
+		: z_##type##_sign(value);							\
+	}											\
+												\
+												\
+static Z_INLINE											\
+z##type z_##type##_smootherstep(z##type a, z##type b, z##type t)				\
+	{											\
+	if (t <= a) return _(0.0);								\
+	if (t >= b) return _(1.0);								\
+	t = (t - a) / (b - a);									\
+	return t * t * t * (t * (t * _(6.0) - _(15.0)) + _(10.0));				\
+	}											\
+												\
+												\
+static Z_INLINE											\
+z##type z_##type##_smoothstep(z##type a, z##type b, z##type t)					\
+	{											\
+	if (t <= a) return _(0.0);								\
+	if (t >= b) return _(1.0);								\
+	t = (t - a) / (b - a);									\
+	return t * t * (_(3.0) - _(2.0) * t);							\
 	}
 
 
@@ -140,20 +156,25 @@ Z_INLINE z##type z_##type##_smoothstep(z##type a, z##type b, z##type t)		\
 /* MARK: - Partial implementations for bit operations */
 
 
-#define Z_IMPLEMENTATION_VALUE_REVERSE(type, bits, level)	   \
-Z_INLINE z##type z_##type##_reverse_in_##level##bit(z##type value) \
+#define Z_IMPLEMENTATION_REVERSE(type, bits, level)						\
+												\
+static Z_INLINE											\
+z##type z_##type##_reverse_in_##level##bit(z##type value)					\
 	{return Z_##bits##BIT_REVERSE_IN_##level##BIT(value);}
 
 
 #define z_type_reverse(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reverse_in_8bit)
 
 
-#define Z_IMPLEMENTATION_VALUE_ROTATE(type, bits)			\
-									\
-Z_INLINE z##type z_##type##_rotate_left(z##type value, zuint rotation)	\
-	{return Z_##bits##BIT_ROTATE_LEFT(value, rotation);}		\
-									\
-Z_INLINE z##type z_##type##_rotate_right(z##type value, zuint rotation)	\
+#define Z_IMPLEMENTATION_ROTATE(type, bits)							\
+												\
+static Z_INLINE											\
+z##type z_##type##_rotate_left(z##type value, zuint rotation)					\
+	{return Z_##bits##BIT_ROTATE_LEFT(value, rotation);}					\
+												\
+												\
+static Z_INLINE											\
+z##type z_##type##_rotate_right(z##type value, zuint rotation)					\
 	{return Z_##bits##BIT_ROTATE_RIGHT(value, rotation);}
 
 
@@ -164,49 +185,58 @@ Z_INLINE z##type z_##type##_rotate_right(z##type value, zuint rotation)	\
 /* MARK: - uint8 */
 
 
-Z_IMPLEMENTATION_VALUE_COMMON (uint8)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint8, 8, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint8, 8, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint8, 8, 4)
-Z_IMPLEMENTATION_VALUE_ROTATE (uint8, 8)
+Z_IMPLEMENTATION_COMMON (uint8)
+Z_IMPLEMENTATION_REVERSE(uint8, 8, 1)
+Z_IMPLEMENTATION_REVERSE(uint8, 8, 2)
+Z_IMPLEMENTATION_REVERSE(uint8, 8, 4)
+Z_IMPLEMENTATION_ROTATE (uint8, 8)
 
 
 #define z_uint8_reverse Z_SAME
 
 
-Z_INLINE zboolean z_uint8_addition_overflows(zuint8 a, zuint8 b)
+static Z_INLINE
+zboolean z_uint8_addition_overflows(zuint8 a, zuint8 b)
 	{return (zuint16)a + (zuint16)b > Z_UINT8_MAXIMUM;}
 
 
-Z_INLINE zboolean z_uint8_addition_overflows_3(zuint8 a, zuint8 b, zuint8 c)
+static Z_INLINE
+zboolean z_uint8_addition_overflows_3(zuint8 a, zuint8 b, zuint8 c)
 	{return (zuint16)a + (zuint16)b + (zuint16)c > Z_UINT8_MAXIMUM;}
 
 
-Z_INLINE zboolean z_uint8_addition_overflows_4(zuint8 a, zuint8 b, zuint8 c, zuint8 d)
+static Z_INLINE
+zboolean z_uint8_addition_overflows_4(zuint8 a, zuint8 b, zuint8 c, zuint8 d)
 	{return (zuint16)a + (zuint16)b + (zuint16)c + (zuint16)d > Z_UINT8_MAXIMUM;}
 
 
-Z_INLINE zboolean z_uint8_multiplication_overflows(zuint8 a, zuint8 b)
+static Z_INLINE
+zboolean z_uint8_multiplication_overflows(zuint8 a, zuint8 b)
 	{return (zuint16)a * (zuint16)b > Z_UINT8_MAXIMUM;}
 
 
-Z_INLINE zboolean z_uint8_multiplication_overflows_3(zuint8 a, zuint8 b, zuint8 c)
+static Z_INLINE
+zboolean z_uint8_multiplication_overflows_3(zuint8 a, zuint8 b, zuint8 c)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint8_multiplication_overflows_4(zuint8 a, zuint8 b, zuint8 c, zuint8 d)
+static Z_INLINE
+zboolean z_uint8_multiplication_overflows_4(zuint8 a, zuint8 b, zuint8 c, zuint8 d)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint8_subtraction_overflows(zuint8 a, zuint8 b)
+static Z_INLINE
+zboolean z_uint8_subtraction_overflows(zuint8 a, zuint8 b)
 	{return b > a;}
 
 
-Z_INLINE zboolean z_uint8_subtraction_overflows_3(zuint8 a, zuint8 b, zuint8 c)
+static Z_INLINE
+zboolean z_uint8_subtraction_overflows_3(zuint8 a, zuint8 b, zuint8 c)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint8_subtraction_overflows_4(zuint8 a, zuint8 b, zuint8 c, zuint8 d)
+static Z_INLINE
+zboolean z_uint8_subtraction_overflows_4(zuint8 a, zuint8 b, zuint8 c, zuint8 d)
 	{return FALSE;}
 
 
@@ -294,12 +324,12 @@ Z_INLINE zboolean z_uint8_subtraction_overflows_4(zuint8 a, zuint8 b, zuint8 c, 
 /* MARK: - uint16 */
 
 
-Z_IMPLEMENTATION_VALUE_COMMON (uint16)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint16, 16, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint16, 16, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint16, 16, 4)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint16, 16, 8)
-Z_IMPLEMENTATION_VALUE_ROTATE (uint16, 16)
+Z_IMPLEMENTATION_COMMON (uint16)
+Z_IMPLEMENTATION_REVERSE(uint16, 16, 1)
+Z_IMPLEMENTATION_REVERSE(uint16, 16, 2)
+Z_IMPLEMENTATION_REVERSE(uint16, 16, 4)
+Z_IMPLEMENTATION_REVERSE(uint16, 16, 8)
+Z_IMPLEMENTATION_ROTATE (uint16, 16)
 
 
 #define z_uint16_reverse z_uint16_reverse_in_8bit
@@ -317,43 +347,53 @@ Z_IMPLEMENTATION_VALUE_ROTATE (uint16, 16)
 #endif
 
 
-Z_INLINE zboolean z_uint16_addition_overflows(zuint16 a, zuint16 b)
+static Z_INLINE
+zboolean z_uint16_addition_overflows(zuint16 a, zuint16 b)
 	{return (zuint32)a + (zuint32)b > Z_UINT16_MAXIMUM;}
 
 
-Z_INLINE zboolean z_uint16_addition_overflows_3(zuint16 a, zuint16 b, zuint16 c)
+static Z_INLINE
+zboolean z_uint16_addition_overflows_3(zuint16 a, zuint16 b, zuint16 c)
 	{return (zuint32)a + (zuint32)b + (zuint32)c > Z_UINT16_MAXIMUM;}
 
 
-Z_INLINE zboolean z_uint16_addition_overflows_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
+static Z_INLINE
+zboolean z_uint16_addition_overflows_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
 	{return (zuint32)a + (zuint32)b + (zuint32)c + (zuint32)d > Z_UINT16_MAXIMUM;}
 
 
-Z_INLINE zboolean z_uint16_multiplication_overflows(zuint16 a, zuint16 b)
+static Z_INLINE
+zboolean z_uint16_multiplication_overflows(zuint16 a, zuint16 b)
 	{return (zuint32)a * (zuint32)b > Z_UINT16_MAXIMUM;}
 
 
-Z_INLINE zboolean z_uint16_multiplication_overflows_3(zuint16 a, zuint16 b, zuint16 c)
+static Z_INLINE
+zboolean z_uint16_multiplication_overflows_3(zuint16 a, zuint16 b, zuint16 c)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint16_multiplication_overflows_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
+static Z_INLINE
+zboolean z_uint16_multiplication_overflows_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint16_subtraction_overflows(zuint16 a, zuint16 b)
+static Z_INLINE
+zboolean z_uint16_subtraction_overflows(zuint16 a, zuint16 b)
 	{return b > a;}
 
 
-Z_INLINE zboolean z_uint16_subtraction_overflows_3(zuint16 a, zuint16 b, zuint16 c)
+static Z_INLINE
+zboolean z_uint16_subtraction_overflows_3(zuint16 a, zuint16 b, zuint16 c)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint16_subtraction_overflows_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
+static Z_INLINE
+zboolean z_uint16_subtraction_overflows_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
 	{return FALSE;}
 
 
-Z_INLINE zuint8 z_uint16_minimum_storage_size(zuint16 value)
+static Z_INLINE
+zuint8 z_uint16_minimum_storage_size(zuint16 value)
 	{return value >> 8 ? 2 : 1;}
 
 
@@ -441,13 +481,13 @@ Z_INLINE zuint8 z_uint16_minimum_storage_size(zuint16 value)
 /* MARK: - uint32 */
 
 
-Z_IMPLEMENTATION_VALUE_COMMON (uint32)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32,  1)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32,  2)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32,  4)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32,  8)
-Z_IMPLEMENTATION_VALUE_REVERSE(uint32, 32, 16)
-Z_IMPLEMENTATION_VALUE_ROTATE (uint32, 32)
+Z_IMPLEMENTATION_COMMON (uint32)
+Z_IMPLEMENTATION_REVERSE(uint32, 32,  1)
+Z_IMPLEMENTATION_REVERSE(uint32, 32,  2)
+Z_IMPLEMENTATION_REVERSE(uint32, 32,  4)
+Z_IMPLEMENTATION_REVERSE(uint32, 32,  8)
+Z_IMPLEMENTATION_REVERSE(uint32, 32, 16)
+Z_IMPLEMENTATION_ROTATE (uint32, 32)
 
 
 #define z_uint32_reverse z_uint32_reverse_in_8bit
@@ -465,43 +505,53 @@ Z_IMPLEMENTATION_VALUE_ROTATE (uint32, 32)
 #endif
 
 
-Z_INLINE zboolean z_uint32_addition_overflows(zuint32 a, zuint32 b)
+static Z_INLINE
+zboolean z_uint32_addition_overflows(zuint32 a, zuint32 b)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint32_addition_overflows_3(zuint32 a, zuint32 b, zuint32 c)
+static Z_INLINE
+zboolean z_uint32_addition_overflows_3(zuint32 a, zuint32 b, zuint32 c)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint32_addition_overflows_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
+static Z_INLINE
+zboolean z_uint32_addition_overflows_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint32_multiplication_overflows(zuint32 a, zuint32 b)
+static Z_INLINE
+zboolean z_uint32_multiplication_overflows(zuint32 a, zuint32 b)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint32_multiplication_overflows_3(zuint32 a, zuint32 b, zuint32 c)
+static Z_INLINE
+zboolean z_uint32_multiplication_overflows_3(zuint32 a, zuint32 b, zuint32 c)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint32_multiplication_overflows_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
+static Z_INLINE
+zboolean z_uint32_multiplication_overflows_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint32_subtraction_overflows(zuint32 a, zuint32 b)
+static Z_INLINE
+zboolean z_uint32_subtraction_overflows(zuint32 a, zuint32 b)
 	{return b > a;}
 
 
-Z_INLINE zboolean z_uint32_subtraction_overflows_3(zuint32 a, zuint32 b, zuint32 c)
+static Z_INLINE
+zboolean z_uint32_subtraction_overflows_3(zuint32 a, zuint32 b, zuint32 c)
 	{return FALSE;}
 
 
-Z_INLINE zboolean z_uint32_subtraction_overflows_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
+static Z_INLINE
+zboolean z_uint32_subtraction_overflows_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
 	{return FALSE;}
 
 
-Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
+static Z_INLINE
+zuint8 z_uint32_minimum_storage_size(zuint32 value)
 	{
 	if ((value >> 24)) return 4;
 	if ((value >> 16)) return 3;
@@ -596,14 +646,14 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 
 #ifdef Z_UINT64
 
-	Z_IMPLEMENTATION_VALUE_COMMON (uint64)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint64, 64, 32)
-	Z_IMPLEMENTATION_VALUE_ROTATE (uint64, 64)
+	Z_IMPLEMENTATION_COMMON (uint64)
+	Z_IMPLEMENTATION_REVERSE(uint64, 64,  1)
+	Z_IMPLEMENTATION_REVERSE(uint64, 64,  2)
+	Z_IMPLEMENTATION_REVERSE(uint64, 64,  4)
+	Z_IMPLEMENTATION_REVERSE(uint64, 64,  8)
+	Z_IMPLEMENTATION_REVERSE(uint64, 64, 16)
+	Z_IMPLEMENTATION_REVERSE(uint64, 64, 32)
+	Z_IMPLEMENTATION_ROTATE (uint64, 64)
 
 
 #	define z_uint64_reverse z_uint64_reverse_in_8bit
@@ -621,51 +671,52 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 #	endif
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint64_addition_overflows(zuint64 a, zuint64 b)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint64_addition_overflows_3(zuint64 a, zuint64 b, zuint64 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint64_addition_overflows_4(zuint64 a, zuint64 b, zuint64 c, zuint64 d)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint64_multiplication_overflows(zuint64 a, zuint64 b)
 		{return FALSE;}
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint64_multiplication_overflows_3(zuint64 a, zuint64 b, zuint64 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint64_multiplication_overflows_4(zuint64 a, zuint64 b, zuint64 c, zuint64 d)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint64_subtraction_overflows(zuint64 a, zuint64 b)
 		{return b > a;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint64_subtraction_overflows_3(zuint64 a, zuint64 b, zuint64 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint64_subtraction_overflows_4(zuint64 a, zuint64 b, zuint64 c, zuint64 d)
 		{return FALSE;}
 
 
-	Z_INLINE zuint8 z_uint64_minimum_storage_size(zuint64 value)
+	static Z_INLINE
+	zuint8 z_uint64_minimum_storage_size(zuint64 value)
 		{
 		if ((value >> 56)) return 8;
 		if ((value >> 48)) return 7;
@@ -766,15 +817,15 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 
 #ifdef Z_UINT128
 
-	Z_IMPLEMENTATION_VALUE_COMMON (uint128)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128, 32)
-	Z_IMPLEMENTATION_VALUE_REVERSE(uint128, 128, 64)
-	Z_IMPLEMENTATION_VALUE_ROTATE (uint128, 128)
+	Z_IMPLEMENTATION_COMMON (uint128)
+	Z_IMPLEMENTATION_REVERSE(uint128, 128,  1)
+	Z_IMPLEMENTATION_REVERSE(uint128, 128,  2)
+	Z_IMPLEMENTATION_REVERSE(uint128, 128,  4)
+	Z_IMPLEMENTATION_REVERSE(uint128, 128,  8)
+	Z_IMPLEMENTATION_REVERSE(uint128, 128, 16)
+	Z_IMPLEMENTATION_REVERSE(uint128, 128, 32)
+	Z_IMPLEMENTATION_REVERSE(uint128, 128, 64)
+	Z_IMPLEMENTATION_ROTATE (uint128, 128)
 
 
 #	define z_uint128_reverse z_uint128_reverse_in_8bit
@@ -792,52 +843,53 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 #	endif
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint128_addition_overflows(zuint128 a, zuint128 b)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint128_addition_overflows_3(zuint128 a, zuint128 b, zuint128 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint128_addition_overflows_4(zuint128 a, zuint128 b, zuint128 c, zuint128 d)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint128_multiplication_overflows(zuint128 a, zuint128 b)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint128_multiplication_overflows_3(zuint128 a, zuint128 b, zuint128 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint128_multiplication_overflows_4(zuint128 a, zuint128 b, zuint128 c, zuint128 d)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint128_subtraction_overflows(zuint128 a, zuint128 b)
 		{return b > a;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint128_subtraction_overflows_3(zuint128 a, zuint128 b, zuint128 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_uint128_subtraction_overflows_4(zuint128 a, zuint128 b, zuint128 c, zuint128 d)
 		{return FALSE;}
 
 
-	Z_INLINE zuint8 z_uint128_minimum_storage_size(zuint128 value)
+	static Z_INLINE
+	zuint8 z_uint128_minimum_storage_size(zuint128 value)
 		{
 		if ((value >> 120)) return 16;
 		if ((value >> 112)) return 15;
@@ -944,58 +996,58 @@ Z_INLINE zuint8 z_uint32_minimum_storage_size(zuint32 value)
 /* MARK: - sint8 */
 
 
-Z_IMPLEMENTATION_VALUE_COMMON (sint8)
-Z_IMPLEMENTATION_VALUE_SIGNED (sint8)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint8, 8, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint8, 8, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint8, 8, 4)
-Z_IMPLEMENTATION_VALUE_ROTATE (sint8, 8)
+Z_IMPLEMENTATION_COMMON (sint8)
+Z_IMPLEMENTATION_SIGNED (sint8)
+Z_IMPLEMENTATION_REVERSE(sint8, 8, 1)
+Z_IMPLEMENTATION_REVERSE(sint8, 8, 2)
+Z_IMPLEMENTATION_REVERSE(sint8, 8, 4)
+Z_IMPLEMENTATION_ROTATE (sint8, 8)
 
 
 #define z_sint8_reverse Z_SAME
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint8_addition_overflows(zsint8 a, zsint8 b)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint8_addition_overflows_3(zsint8 a, zsint8 b, zsint8 c)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint8_addition_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint8_multiplication_overflows(zsint8 a, zsint8 b)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint8_multiplication_overflows_3(zsint8 a, zsint8 b, zsint8 c)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint8_multiplication_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint8_subtraction_overflows(zsint8 a, zsint8 b)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint8_subtraction_overflows_3(zsint8 a, zsint8 b, zsint8 c)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint8_subtraction_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
 	{return FALSE;}
 
@@ -1084,13 +1136,13 @@ zboolean z_sint8_subtraction_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
 /* MARK: - sint16 */
 
 
-Z_IMPLEMENTATION_VALUE_COMMON (sint16)
-Z_IMPLEMENTATION_VALUE_SIGNED (sint16)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint16, 16, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint16, 16, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint16, 16, 4)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint16, 16, 8)
-Z_IMPLEMENTATION_VALUE_ROTATE (sint16, 16)
+Z_IMPLEMENTATION_COMMON (sint16)
+Z_IMPLEMENTATION_SIGNED (sint16)
+Z_IMPLEMENTATION_REVERSE(sint16, 16, 1)
+Z_IMPLEMENTATION_REVERSE(sint16, 16, 2)
+Z_IMPLEMENTATION_REVERSE(sint16, 16, 4)
+Z_IMPLEMENTATION_REVERSE(sint16, 16, 8)
+Z_IMPLEMENTATION_ROTATE (sint16, 16)
 
 
 #define z_sint16_reverse z_sint16_reverse_in_8bit
@@ -1108,47 +1160,47 @@ Z_IMPLEMENTATION_VALUE_ROTATE (sint16, 16)
 #endif
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint16_addition_overflows(zsint16 a, zsint16 b)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint16_addition_overflows_3(zsint16 a, zsint16 b, zsint16 c)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint16_addition_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint16 d)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint16_multiplication_overflows(zsint16 a, zsint16 b)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint16_multiplication_overflows_3(zsint16 a, zsint16 b, zsint16 c)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint16_multiplication_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint16 d)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint16_subtraction_overflows(zsint16 a, zsint16 b)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint16_subtraction_overflows_3(zsint16 a, zsint16 b, zsint16 c)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint16_subtraction_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint16 d)
 	{return FALSE;}
 
@@ -1237,14 +1289,14 @@ zboolean z_sint16_subtraction_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint
 /* MARK: - sint32 */
 
 
-Z_IMPLEMENTATION_VALUE_COMMON (sint32)
-Z_IMPLEMENTATION_VALUE_SIGNED (sint32)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint32, 32,  1)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint32, 32,  2)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint32, 32,  4)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint32, 32,  8)
-Z_IMPLEMENTATION_VALUE_REVERSE(sint32, 32, 16)
-Z_IMPLEMENTATION_VALUE_ROTATE (sint32, 32)
+Z_IMPLEMENTATION_COMMON (sint32)
+Z_IMPLEMENTATION_SIGNED (sint32)
+Z_IMPLEMENTATION_REVERSE(sint32, 32,  1)
+Z_IMPLEMENTATION_REVERSE(sint32, 32,  2)
+Z_IMPLEMENTATION_REVERSE(sint32, 32,  4)
+Z_IMPLEMENTATION_REVERSE(sint32, 32,  8)
+Z_IMPLEMENTATION_REVERSE(sint32, 32, 16)
+Z_IMPLEMENTATION_ROTATE (sint32, 32)
 
 
 #define z_sint32_reverse z_sint32_reverse_in_8bit
@@ -1262,47 +1314,47 @@ Z_IMPLEMENTATION_VALUE_ROTATE (sint32, 32)
 #endif
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint32_addition_overflows(zsint32 a, zsint32 b)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint32_addition_overflows_3(zsint32 a, zsint32 b, zsint32 c)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint32_addition_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint32 d)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint32_multiplication_overflows(zsint32 a, zsint32 b)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint32_multiplication_overflows_3(zsint32 a, zsint32 b, zsint32 c)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint32_multiplication_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint32 d)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint32_subtraction_overflows(zsint32 a, zsint32 b)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint32_subtraction_overflows_3(zsint32 a, zsint32 b, zsint32 c)
 	{return FALSE;}
 
 
-Z_INLINE
+static Z_INLINE
 zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint32 d)
 	{return FALSE;}
 
@@ -1393,15 +1445,15 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 #ifdef Z_SINT64
 
-	Z_IMPLEMENTATION_VALUE_COMMON (sint64)
-	Z_IMPLEMENTATION_VALUE_SIGNED (sint64)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint64, 64, 32)
-	Z_IMPLEMENTATION_VALUE_ROTATE (sint64, 64)
+	Z_IMPLEMENTATION_COMMON (sint64)
+	Z_IMPLEMENTATION_SIGNED (sint64)
+	Z_IMPLEMENTATION_REVERSE(sint64, 64,  1)
+	Z_IMPLEMENTATION_REVERSE(sint64, 64,  2)
+	Z_IMPLEMENTATION_REVERSE(sint64, 64,  4)
+	Z_IMPLEMENTATION_REVERSE(sint64, 64,  8)
+	Z_IMPLEMENTATION_REVERSE(sint64, 64, 16)
+	Z_IMPLEMENTATION_REVERSE(sint64, 64, 32)
+	Z_IMPLEMENTATION_ROTATE (sint64, 64)
 
 
 #	define z_sint64_reverse z_sint64_reverse_in_8bit
@@ -1419,47 +1471,47 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 #	endif
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint64_addition_overflows(zsint64 a, zsint64 b)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint64_addition_overflows_3(zsint64 a, zsint64 b, zsint64 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint64_addition_overflows_4(zsint64 a, zsint64 b, zsint64 c, zsint64 d)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint64_multiplication_overflows(zsint64 a, zsint64 b)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint64_multiplication_overflows_3(zsint64 a, zsint64 b, zsint64 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint64_multiplication_overflows_4(zsint64 a, zsint64 b, zsint64 c, zsint64 d)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint64_subtraction_overflows(zsint64 a, zsint64 b)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint64_subtraction_overflows_3(zsint64 a, zsint64 b, zsint64 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint64_subtraction_overflows_4(zsint64 a, zsint64 b, zsint64 c, zsint64 d)
 		{return FALSE;}
 
@@ -1552,16 +1604,16 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 #ifdef Z_SINT128
 
-	Z_IMPLEMENTATION_VALUE_COMMON (sint128)
-	Z_IMPLEMENTATION_VALUE_SIGNED (sint128)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128, 32)
-	Z_IMPLEMENTATION_VALUE_REVERSE(sint128, 128, 64)
-	Z_IMPLEMENTATION_VALUE_ROTATE (sint128, 128)
+	Z_IMPLEMENTATION_COMMON (sint128)
+	Z_IMPLEMENTATION_SIGNED (sint128)
+	Z_IMPLEMENTATION_REVERSE(sint128, 128,  1)
+	Z_IMPLEMENTATION_REVERSE(sint128, 128,  2)
+	Z_IMPLEMENTATION_REVERSE(sint128, 128,  4)
+	Z_IMPLEMENTATION_REVERSE(sint128, 128,  8)
+	Z_IMPLEMENTATION_REVERSE(sint128, 128, 16)
+	Z_IMPLEMENTATION_REVERSE(sint128, 128, 32)
+	Z_IMPLEMENTATION_REVERSE(sint128, 128, 64)
+	Z_IMPLEMENTATION_ROTATE (sint128, 128)
 
 
 #	define z_sint128_reverse z_sint128_reverse_in_8bit
@@ -1579,47 +1631,47 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 #	endif
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint128_addition_overflows(zsint128 a, zsint128 b)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint128_addition_overflows_3(zsint128 a, zsint128 b, zsint128 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint128_addition_overflows_4(zsint128 a, zsint128 b, zsint128 c, zsint128 d)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint128_multiplication_overflows(zsint128 a, zsint128 b)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint128_multiplication_overflows_3(zsint128 a, zsint128 b, zsint128 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint128_multiplication_overflows_4(zsint128 a, zsint128 b, zsint128 c, zsint128 d)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint128_subtraction_overflows(zsint128 a, zsint128 b)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint128_subtraction_overflows_3(zsint128 a, zsint128 b, zsint128 c)
 		{return FALSE;}
 
 
-	Z_INLINE
+	static Z_INLINE
 	zboolean z_sint128_subtraction_overflows_4(zsint128 a, zsint128 b, zsint128 c, zsint128 d)
 		{return FALSE;}
 
@@ -1711,9 +1763,9 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_VALUE_COMMON(float16)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float16)
-	Z_IMPLEMENTATION_VALUE_REAL  (float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
+	Z_IMPLEMENTATION_COMMON(float16)
+	Z_IMPLEMENTATION_SIGNED(float16)
+	Z_IMPLEMENTATION_REAL  (float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
 #endif
 
 
@@ -1721,18 +1773,18 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_VALUE_COMMON(float32)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float32)
-	Z_IMPLEMENTATION_VALUE_REAL  (float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
+	Z_IMPLEMENTATION_COMMON(float32)
+	Z_IMPLEMENTATION_SIGNED(float32)
+	Z_IMPLEMENTATION_REAL  (float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
 #endif
 
 /* MARK: - float64 */
 
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_VALUE_COMMON(float64)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float64)
-	Z_IMPLEMENTATION_VALUE_REAL  (float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
+	Z_IMPLEMENTATION_COMMON(float64)
+	Z_IMPLEMENTATION_SIGNED(float64)
+	Z_IMPLEMENTATION_REAL  (float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
 #endif
 
 
@@ -1740,9 +1792,9 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_VALUE_COMMON(float128)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float128)
-	Z_IMPLEMENTATION_VALUE_REAL  (float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
+	Z_IMPLEMENTATION_COMMON(float128)
+	Z_IMPLEMENTATION_SIGNED(float128)
+	Z_IMPLEMENTATION_REAL  (float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
 #endif
 
 
@@ -1750,9 +1802,9 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT80_X87
-	Z_IMPLEMENTATION_VALUE_COMMON(float80_x87)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float80_x87)
-	Z_IMPLEMENTATION_VALUE_REAL  (float80_x87, Z_FLOAT80_X87, Z_FLOAT80_X87_EPSILON, Z_FLOAT80_X87_INFINITY)
+	Z_IMPLEMENTATION_COMMON(float80_x87)
+	Z_IMPLEMENTATION_SIGNED(float80_x87)
+	Z_IMPLEMENTATION_REAL  (float80_x87, Z_FLOAT80_X87, Z_FLOAT80_X87_EPSILON, Z_FLOAT80_X87_INFINITY)
 #endif
 
 
@@ -1760,9 +1812,9 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT96_X87
-	Z_IMPLEMENTATION_VALUE_COMMON(float96_x87)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float96_x87)
-	Z_IMPLEMENTATION_VALUE_REAL  (float96_x87, Z_FLOAT96_X87, Z_FLOAT96_X87_EPSILON, Z_FLOAT96_X87_INFINITY)
+	Z_IMPLEMENTATION_COMMON(float96_x87)
+	Z_IMPLEMENTATION_SIGNED(float96_x87)
+	Z_IMPLEMENTATION_REAL  (float96_x87, Z_FLOAT96_X87, Z_FLOAT96_X87_EPSILON, Z_FLOAT96_X87_INFINITY)
 #endif
 
 
@@ -1770,33 +1822,34 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT128_X87
-	Z_IMPLEMENTATION_VALUE_COMMON(float128_x87)
-	Z_IMPLEMENTATION_VALUE_SIGNED(float128_x87)
-	Z_IMPLEMENTATION_VALUE_REAL  (float128_x87, Z_FLOAT128_X87, Z_FLOAT128_X87_EPSILON, Z_FLOAT128_X87_INFINITY)
+	Z_IMPLEMENTATION_COMMON(float128_x87)
+	Z_IMPLEMENTATION_SIGNED(float128_x87)
+	Z_IMPLEMENTATION_REAL  (float128_x87, Z_FLOAT128_X87, Z_FLOAT128_X87_EPSILON, Z_FLOAT128_X87_INFINITY)
 #endif
 
 
 /* MARK: - bint8 */
 
 
-Z_IMPLEMENTATION_VALUE_REVERSE(bint8, 8, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(bint8, 8, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(bint8, 8, 4)
-Z_IMPLEMENTATION_VALUE_ROTATE (bint8, 8)
+Z_IMPLEMENTATION_REVERSE(bint8, 8, 1)
+Z_IMPLEMENTATION_REVERSE(bint8, 8, 2)
+Z_IMPLEMENTATION_REVERSE(bint8, 8, 4)
+Z_IMPLEMENTATION_ROTATE (bint8, 8)
 
 
-Z_INLINE zbinttop z_bint8_top_mirror(zbint8 value)
+static Z_INLINE
+zbinttop z_bint8_top_mirror(zbint8 value)
 	{return Z_8BIT_TOP_MIRROR(value);}
 
 
 /* MARK: - bint16 */
 
 
-Z_IMPLEMENTATION_VALUE_REVERSE(bint16, 16, 1)
-Z_IMPLEMENTATION_VALUE_REVERSE(bint16, 16, 2)
-Z_IMPLEMENTATION_VALUE_REVERSE(bint16, 16, 4)
-Z_IMPLEMENTATION_VALUE_REVERSE(bint16, 16, 8)
-Z_IMPLEMENTATION_VALUE_ROTATE (bint16, 16)
+Z_IMPLEMENTATION_REVERSE(bint16, 16, 1)
+Z_IMPLEMENTATION_REVERSE(bint16, 16, 2)
+Z_IMPLEMENTATION_REVERSE(bint16, 16, 4)
+Z_IMPLEMENTATION_REVERSE(bint16, 16, 8)
+Z_IMPLEMENTATION_ROTATE (bint16, 16)
 
 
 #define z_bint16_reverse z_bint16_reverse_in_8bit
@@ -1816,7 +1869,8 @@ Z_IMPLEMENTATION_VALUE_ROTATE (bint16, 16)
 
 #if Z_BINTTOP_BITS > 16
 
-	Z_INLINE zbinttop z_bint16_top_mirror(zbint16 value)
+	static Z_INLINE
+	zbinttop z_bint16_top_mirror(zbint16 value)
 		{return Z_16BIT_TOP_MIRROR(value);}
 
 #	if Z_BINTTOP_ENDIANNESS == Z_BINT16_ENDIANNESS
@@ -1828,7 +1882,8 @@ Z_IMPLEMENTATION_VALUE_ROTATE (bint16, 16)
 		(Z_BINTTOP_ENDIANNESS == Z_ENDIANNESS_LITTLE  && \
 		 Z_BINT16_ENDIANNESS  == Z_ENDIANNESS_BIG)
 
-		Z_INLINE zbinttop z_bint16_top_packet(zbint16 value)
+		static Z_INLINE
+		zbinttop z_bint16_top_packet(zbint16 value)
 			{return Z_16BIT_TOP_MIRROR(z_bint16_reverse(value));}
 #	endif
 #endif
@@ -1837,12 +1892,12 @@ Z_IMPLEMENTATION_VALUE_ROTATE (bint16, 16)
 /* MARK: - bint32 */
 
 
-Z_IMPLEMENTATION_VALUE_REVERSE(bint32, 32,  1)
-Z_IMPLEMENTATION_VALUE_REVERSE(bint32, 32,  2)
-Z_IMPLEMENTATION_VALUE_REVERSE(bint32, 32,  4)
-Z_IMPLEMENTATION_VALUE_REVERSE(bint32, 32,  8)
-Z_IMPLEMENTATION_VALUE_REVERSE(bint32, 32, 16)
-Z_IMPLEMENTATION_VALUE_ROTATE (bint32, 32)
+Z_IMPLEMENTATION_REVERSE(bint32, 32,  1)
+Z_IMPLEMENTATION_REVERSE(bint32, 32,  2)
+Z_IMPLEMENTATION_REVERSE(bint32, 32,  4)
+Z_IMPLEMENTATION_REVERSE(bint32, 32,  8)
+Z_IMPLEMENTATION_REVERSE(bint32, 32, 16)
+Z_IMPLEMENTATION_ROTATE (bint32, 32)
 
 
 #define z_bint32_reverse z_bint32_reverse_in_8bit
@@ -1862,7 +1917,8 @@ Z_IMPLEMENTATION_VALUE_ROTATE (bint32, 32)
 
 #if Z_BINTTOP_BITS > 32
 
-	Z_INLINE zbinttop z_bint32_top_mirror(zbint32 value)
+	static Z_INLINE
+	zbinttop z_bint32_top_mirror(zbint32 value)
 		{return Z_32BIT_TOP_MIRROR(value);}
 
 #	if Z_BINTTOP_ENDIANNESS == Z_BINT32_ENDIANNESS
@@ -1874,7 +1930,8 @@ Z_IMPLEMENTATION_VALUE_ROTATE (bint32, 32)
 		(Z_BINTTOP_ENDIANNESS == Z_ENDIANNESS_LITTLE  && \
 		 Z_BINT32_ENDIANNESS  == Z_ENDIANNESS_BIG)
 
-		Z_INLINE zbinttop z_bint32_top_packet(zbint32 value)
+		static Z_INLINE
+		zbinttop z_bint32_top_packet(zbint32 value)
 			{return Z_32BIT_TOP_MIRROR(z_bint32_reverse(value));}
 #	endif
 
@@ -1886,13 +1943,13 @@ Z_IMPLEMENTATION_VALUE_ROTATE (bint32, 32)
 
 #ifdef Z_BINT64
 
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint64, 64, 32)
-	Z_IMPLEMENTATION_VALUE_ROTATE (bint64, 64)
+	Z_IMPLEMENTATION_REVERSE(bint64, 64,  1)
+	Z_IMPLEMENTATION_REVERSE(bint64, 64,  2)
+	Z_IMPLEMENTATION_REVERSE(bint64, 64,  4)
+	Z_IMPLEMENTATION_REVERSE(bint64, 64,  8)
+	Z_IMPLEMENTATION_REVERSE(bint64, 64, 16)
+	Z_IMPLEMENTATION_REVERSE(bint64, 64, 32)
+	Z_IMPLEMENTATION_ROTATE (bint64, 64)
 
 
 #	define z_bint64_reverse z_bint64_reverse_in_8bit
@@ -1912,7 +1969,8 @@ Z_IMPLEMENTATION_VALUE_ROTATE (bint32, 32)
 
 #	if Z_BINTTOP_BITS > 64
 	
-		Z_INLINE zbinttop z_bint64_top_mirror(zbint64 value)
+		static Z_INLINE
+		zbinttop z_bint64_top_mirror(zbint64 value)
 			{return Z_64BIT_TOP_MIRROR(value);}
 	
 #		if Z_BINTTOP_ENDIANNESS == Z_BINT64_ENDIANNESS
@@ -1924,7 +1982,8 @@ Z_IMPLEMENTATION_VALUE_ROTATE (bint32, 32)
 			(Z_BINTTOP_ENDIANNESS == Z_ENDIANNESS_LITTLE  && \
 			 Z_BINT64_ENDIANNESS  == Z_ENDIANNESS_BIG)
 	
-			Z_INLINE zbinttop z_bint64_top_packet(zbint64 value)
+			static Z_INLINE
+			zbinttop z_bint64_top_packet(zbint64 value)
 				{return Z_64BIT_TOP_MIRROR(z_bint64_reverse(value));}
 #		endif
 #	endif
@@ -1937,14 +1996,14 @@ Z_IMPLEMENTATION_VALUE_ROTATE (bint32, 32)
 
 #ifdef Z_BINT128
 
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128,  1)
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128,  2)
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128,  4)
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128,  8)
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128, 16)
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128, 32)
-	Z_IMPLEMENTATION_VALUE_REVERSE(bint128, 128, 64)
-	Z_IMPLEMENTATION_VALUE_ROTATE (bint128, 128)
+	Z_IMPLEMENTATION_REVERSE(bint128, 128,  1)
+	Z_IMPLEMENTATION_REVERSE(bint128, 128,  2)
+	Z_IMPLEMENTATION_REVERSE(bint128, 128,  4)
+	Z_IMPLEMENTATION_REVERSE(bint128, 128,  8)
+	Z_IMPLEMENTATION_REVERSE(bint128, 128, 16)
+	Z_IMPLEMENTATION_REVERSE(bint128, 128, 32)
+	Z_IMPLEMENTATION_REVERSE(bint128, 128, 64)
+	Z_IMPLEMENTATION_ROTATE (bint128, 128)
 
 
 #	define z_bint128_reverse z_bint128_reverse_in_8bit
@@ -1962,6 +2021,16 @@ Z_IMPLEMENTATION_VALUE_ROTATE (bint32, 32)
 #	endif
 
 #endif
+
+
+/* MARK: - Cleanup */
+
+
+#undef Z_IMPLEMENTATION_COMMON
+#undef Z_IMPLEMENTATION_SIGNED
+#undef Z_IMPLEMENTATION_REAL
+#undef Z_IMPLEMENTATION_REVERSE
+#undef Z_IMPLEMENTATION_ROTATE
 
 
 /* MARK: - Function selectors */
