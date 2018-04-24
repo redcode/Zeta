@@ -971,11 +971,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_FLOAT16_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) zfloat16 epsilon () {return Z_FLOAT16_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat16 minimum () {return Z_FLOAT16_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat16 maximum () {return Z_FLOAT16_MAXIMUM;}
-		/*	static Z_CT_MEMBER(CPP11) zfloat16 infinity() Z_NO_EXCEPTION {return Z_FLOAT16_INFINITY;}
-			static Z_CT_MEMBER(CPP11) zfloat16 nan	   () Z_NO_EXCEPTION {return Z_FLOAT16_NAN;}*/
+			static Z_CT(CPP11) zfloat16 epsilon () {return Z_FLOAT16_EPSILON;}
+			static Z_CT(CPP11) zfloat16 minimum () {return Z_FLOAT16_MINIMUM;}
+			static Z_CT(CPP11) zfloat16 maximum () {return Z_FLOAT16_MAXIMUM;}
+		/*	static Z_CT(CPP11) zfloat16 infinity() Z_NO_EXCEPTION {return Z_FLOAT16_INFINITY;}
+			static Z_CT(CPP11) zfloat16 nan	    () Z_NO_EXCEPTION {return Z_FLOAT16_NAN;}*/
 
 			typedef zfloat16 type;
 			typedef zfloat16 to_signed;
@@ -1009,11 +1009,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_FLOAT32_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) zfloat32 epsilon () {return Z_FLOAT32_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat32 minimum () {return Z_FLOAT32_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat32 maximum () {return Z_FLOAT32_MAXIMUM;}
-		/*	static Z_CT_MEMBER(CPP11) zfloat32 infinity() Z_NO_EXCEPTION {return Z_FLOAT32_INFINITY;}
-			static Z_CT_MEMBER(CPP11) zfloat32 nan	   () Z_NO_EXCEPTION {return Z_FLOAT32_NAN;}*/
+			static Z_CT(CPP11) zfloat32 epsilon () {return Z_FLOAT32_EPSILON;}
+			static Z_CT(CPP11) zfloat32 minimum () {return Z_FLOAT32_MINIMUM;}
+			static Z_CT(CPP11) zfloat32 maximum () {return Z_FLOAT32_MAXIMUM;}
+		/*	static Z_CT(CPP11) zfloat32 infinity() Z_NO_EXCEPTION {return Z_FLOAT32_INFINITY;}
+			static Z_CT(CPP11) zfloat32 nan	    () Z_NO_EXCEPTION {return Z_FLOAT32_NAN;}*/
 
 			typedef zfloat32 type;
 			typedef zfloat32 to_signed;
@@ -1047,11 +1047,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_FLOAT64_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) zfloat64 epsilon () {return Z_FLOAT64_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat64 minimum () {return Z_FLOAT64_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat64 maximum () {return Z_FLOAT64_MAXIMUM;}
-		/*	static Z_CT_MEMBER(CPP11) zfloat64 infinity() Z_NO_EXCEPTION {return Z_FLOAT64_INFINITY;}
-			static Z_CT_MEMBER(CPP11) zfloat64 nan	   () Z_NO_EXCEPTION {return Z_FLOAT64_NAN;}*/
+			static Z_CT(CPP11) zfloat64 epsilon () {return Z_FLOAT64_EPSILON;}
+			static Z_CT(CPP11) zfloat64 minimum () {return Z_FLOAT64_MINIMUM;}
+			static Z_CT(CPP11) zfloat64 maximum () {return Z_FLOAT64_MAXIMUM;}
+		/*	static Z_CT(CPP11) zfloat64 infinity() Z_NO_EXCEPTION {return Z_FLOAT64_INFINITY;}
+			static Z_CT(CPP11) zfloat64 nan	    () Z_NO_EXCEPTION {return Z_FLOAT64_NAN;}*/
 
 			typedef zfloat64 type;
 			typedef zfloat64 to_signed;
@@ -1085,11 +1085,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_FLOAT128_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) zfloat128 epsilon () {return Z_FLOAT128_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat128 minimum () {return Z_FLOAT128_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat128 maximum () {return Z_FLOAT128_MAXIMUM;}
-		/*	static Z_CT_MEMBER(CPP11) zfloat128 infinity() Z_NO_EXCEPTION {return Z_FLOAT128_INFINITY;}
-			static Z_CT_MEMBER(CPP11) zfloat128 nan	    () Z_NO_EXCEPTION {return Z_FLOAT128_NAN;}*/
+			static Z_CT(CPP11) zfloat128 epsilon () {return Z_FLOAT128_EPSILON;}
+			static Z_CT(CPP11) zfloat128 minimum () {return Z_FLOAT128_MINIMUM;}
+			static Z_CT(CPP11) zfloat128 maximum () {return Z_FLOAT128_MAXIMUM;}
+		/*	static Z_CT(CPP11) zfloat128 infinity() Z_NO_EXCEPTION {return Z_FLOAT128_INFINITY;}
+			static Z_CT(CPP11) zfloat128 nan     () Z_NO_EXCEPTION {return Z_FLOAT128_NAN;}*/
 
 			typedef zfloat128 type;
 			typedef zfloat128 to_signed;
@@ -1123,11 +1123,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_FLOAT80_X87_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) zfloat80_x87 epsilon () {return Z_FLOAT80_X87_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat80_x87 minimum () {return Z_FLOAT80_X87_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat80_x87 maximum () {return Z_FLOAT80_X87_MAXIMUM;}
-		/*	static Z_CT_MEMBER(CPP11) zfloat80_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT80_X87_INFINITY;}
-			static Z_CT_MEMBER(CPP11) zfloat80_x87 nan     () Z_NO_EXCEPTION {return Z_FLOAT80_X87_NAN;}*/
+			static Z_CT(CPP11) zfloat80_x87 epsilon () {return Z_FLOAT80_X87_EPSILON;}
+			static Z_CT(CPP11) zfloat80_x87 minimum () {return Z_FLOAT80_X87_MINIMUM;}
+			static Z_CT(CPP11) zfloat80_x87 maximum () {return Z_FLOAT80_X87_MAXIMUM;}
+		/*	static Z_CT(CPP11) zfloat80_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT80_X87_INFINITY;}
+			static Z_CT(CPP11) zfloat80_x87 nan	() Z_NO_EXCEPTION {return Z_FLOAT80_X87_NAN;}*/
 
 			typedef zfloat80_x87 type;
 			typedef zfloat80_x87 to_signed;
@@ -1161,11 +1161,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_FLOAT96_X87_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) zfloat96_x87 epsilon () {return Z_FLOAT96_X87_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat96_x87 minimum () {return Z_FLOAT96_X87_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat96_x87 maximum () {return Z_FLOAT96_X87_MAXIMUM;}
-		/*	static Z_CT_MEMBER(CPP11) zfloat96_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT96_X87_INFINITY;}
-			static Z_CT_MEMBER(CPP11) zfloat96_x87 nan     () Z_NO_EXCEPTION {return Z_FLOAT96_X87_NAN;}*/
+			static Z_CT(CPP11) zfloat96_x87 epsilon () {return Z_FLOAT96_X87_EPSILON;}
+			static Z_CT(CPP11) zfloat96_x87 minimum () {return Z_FLOAT96_X87_MINIMUM;}
+			static Z_CT(CPP11) zfloat96_x87 maximum () {return Z_FLOAT96_X87_MAXIMUM;}
+		/*	static Z_CT(CPP11) zfloat96_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT96_X87_INFINITY;}
+			static Z_CT(CPP11) zfloat96_x87 nan	() Z_NO_EXCEPTION {return Z_FLOAT96_X87_NAN;}*/
 
 			typedef zfloat96_x87 type;
 			typedef zfloat96_x87 to_signed;
@@ -1199,11 +1199,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_FLOAT128_X87_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) zfloat128_x87 epsilon () {return Z_FLOAT128_X87_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat128_x87 minimum () {return Z_FLOAT128_X87_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat128_x87 maximum () {return Z_FLOAT128_X87_MAXIMUM;}
-		/*	static Z_CT_MEMBER(CPP11) zfloat128_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT128_X87_INFINITY;}
-			static Z_CT_MEMBER(CPP11) zfloat128_x87 nan	() Z_NO_EXCEPTION {return Z_FLOAT128_X87_NAN;}*/
+			static Z_CT(CPP11) zfloat128_x87 epsilon () {return Z_FLOAT128_X87_EPSILON;}
+			static Z_CT(CPP11) zfloat128_x87 minimum () {return Z_FLOAT128_X87_MINIMUM;}
+			static Z_CT(CPP11) zfloat128_x87 maximum () {return Z_FLOAT128_X87_MAXIMUM;}
+		/*	static Z_CT(CPP11) zfloat128_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT128_X87_INFINITY;}
+			static Z_CT(CPP11) zfloat128_x87 nan	 () Z_NO_EXCEPTION {return Z_FLOAT128_X87_NAN;}*/
 
 			typedef zfloat128_x87 type;
 			typedef zfloat128_x87 to_signed;
@@ -1418,11 +1418,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_FLOAT_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) zfloat epsilon () {return Z_FLOAT_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zfloat minimum () {return Z_FLOAT_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zfloat maximum () {return Z_FLOAT_MAXIMUM;}
-		/*	static Z_CT_MEMBER(CPP11) zfloat infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
-			static Z_CT_MEMBER(CPP11) zfloat nan	 () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}*/
+			static Z_CT(CPP11) zfloat epsilon () {return Z_FLOAT_EPSILON;}
+			static Z_CT(CPP11) zfloat minimum () {return Z_FLOAT_MINIMUM;}
+			static Z_CT(CPP11) zfloat maximum () {return Z_FLOAT_MAXIMUM;}
+		/*	static Z_CT(CPP11) zfloat infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
+			static Z_CT(CPP11) zfloat nan	  () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}*/
 
 			typedef zfloat type;
 			typedef zfloat to_signed;
@@ -1456,11 +1456,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_DOUBLE_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) zdouble epsilon () {return Z_DOUBLE_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zdouble minimum () {return Z_DOUBLE_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zdouble maximum () {return Z_DOUBLE_MAXIMUM;}
-		/*	static Z_CT_MEMBER(CPP11) zdouble infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
-			static Z_CT_MEMBER(CPP11) zdouble nan	  () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}*/
+			static Z_CT(CPP11) zdouble epsilon () {return Z_DOUBLE_EPSILON;}
+			static Z_CT(CPP11) zdouble minimum () {return Z_DOUBLE_MINIMUM;}
+			static Z_CT(CPP11) zdouble maximum () {return Z_DOUBLE_MAXIMUM;}
+		/*	static Z_CT(CPP11) zdouble infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
+			static Z_CT(CPP11) zdouble nan	   () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}*/
 
 			typedef zdouble type;
 			typedef zdouble to_signed;
@@ -1494,11 +1494,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				exponent_10_maximum = Z_LDOUBLE_EXPONENT_10_MAXIMUM
 			};
 
-			static Z_CT_MEMBER(CPP11) zldouble epsilon () {return Z_LDOUBLE_EPSILON;}
-			static Z_CT_MEMBER(CPP11) zldouble minimum () {return Z_LDOUBLE_MINIMUM;}
-			static Z_CT_MEMBER(CPP11) zldouble maximum () {return Z_LDOUBLE_MAXIMUM;}
-		/*	static Z_CT_MEMBER(CPP11) zldouble infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
-			static Z_CT_MEMBER(CPP11) zldouble nan	   () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;}*/
+			static Z_CT(CPP11) zldouble epsilon () {return Z_LDOUBLE_EPSILON;}
+			static Z_CT(CPP11) zldouble minimum () {return Z_LDOUBLE_MINIMUM;}
+			static Z_CT(CPP11) zldouble maximum () {return Z_LDOUBLE_MAXIMUM;}
+		/*	static Z_CT(CPP11) zldouble infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
+			static Z_CT(CPP11) zldouble nan	    () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;}*/
 
 			typedef zldouble type;
 			typedef zldouble to_signed;
