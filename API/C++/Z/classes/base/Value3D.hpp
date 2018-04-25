@@ -213,14 +213,9 @@ Z_CT(CPP11) Value3D negative() const								\
 	{return Value3D(-x, -y, -z);}
 
 
-
 namespace Zeta {
-	template <class T, UInt T_number_set = Type<T>::number_set> struct Value3D {};
 
-
-	template <class T> struct Value3D<T, Z_NUMBER_SET_N> {
-		Z_IMPLEMENTATION_COMMON
-	};
+	// template <class T, UInt T_number_set = Type<T>::number_set> struct Value3D;
 
 
 	template <class T> struct Value3D<T, Z_NUMBER_SET_Z> {
@@ -230,6 +225,11 @@ namespace Zeta {
 
 		Z_CT(CPP11) Boolean is_perpendicular(const Value3D &other) const
 			{return !Zeta::absolute<T>(dot_product(other));}
+	};
+
+
+	template <class T> struct Value3D<T, Z_NUMBER_SET_N> {
+		Z_IMPLEMENTATION_COMMON
 	};
 
 

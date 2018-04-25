@@ -20,8 +20,8 @@ Z_CT(CPP11) Value2D(const Prefix##Size  &size ) : x(size.width), y(size.height) 
 #if Z_LANGUAGE_HAS(CPP, INITIALIZER_LIST)
 
 #	define Z_IMPLEMENTATION_FOUNDATION_OPERATORS(Prefix)					\
-	Z_CT(CPP11) operator Prefix##Point() const {return {CGFloat(x), CGFloat(y)};		\
-	Z_CT(CPP11) operator Prefix##Size () const {return {CGFloat(x), CGFloat(y)};		\
+	Z_CT(CPP11) operator Prefix##Point() const {return {CGFloat(x), CGFloat(y)};}		\
+	Z_CT(CPP11) operator Prefix##Size () const {return {CGFloat(x), CGFloat(y)};}		\
 	Z_CT(CPP11) operator Prefix##Rect () const {return {{0.0, 0.0}, {CGFloat(x), CGFloat(y)}};}
 
 #else
@@ -265,14 +265,9 @@ Z_CT(CPP11) Value2D negative() const								\
 
 
 namespace Zeta {
-	template <class T> struct Value3D;
 
-	template <class T, UInt T_number_set = Type<T>::number_set> struct Value2D {};
-
-
-	template <class T> struct Value2D<T, Z_NUMBER_SET_N> {
-		Z_IMPLEMENTATION_COMMON
-	};
+	template <class T, UInt T_number_set = Type<T>::number_set> struct Value2D;
+	template <class T, UInt T_number_set = Type<T>::number_set> struct Value3D;
 
 
 	template <class T> struct Value2D<T, Z_NUMBER_SET_Z> {
@@ -282,6 +277,11 @@ namespace Zeta {
 
 		Z_CT(CPP11) Boolean is_perpendicular(const Value2D &other) const
 			{return !Zeta::absolute<T>(dot_product(other));}
+	};
+
+
+	template <class T> struct Value2D<T, Z_NUMBER_SET_N> {
+		Z_IMPLEMENTATION_COMMON
 	};
 
 
