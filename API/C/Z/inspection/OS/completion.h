@@ -21,8 +21,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_OS_IS_POSIX FALSE
 #endif
 
+#ifndef Z_OS_IS_POSIX_LIKE
+#	define Z_OS_IS_POSIX_LIKE FALSE
+#endif
+
 #ifndef Z_OS_IS_UNIX
-#	define Z_OS_IS_POSIX FALSE
+#	define Z_OS_IS_UNIX FALSE
+#endif
+
+#ifndef Z_OS_IS_UNIX_LIKE
+#	define Z_OS_IS_UNIX_LIKE FALSE
 #endif
 
 /* inspection/OS/completion.h EOF */

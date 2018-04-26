@@ -13,7 +13,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_HAS_POSIX_THREADING TRUE
 #define Z_OS_HAS_NETWORKING	 TRUE
 #define Z_OS_HAS_TLS		 TRUE
-#define Z_OS_IS_POSIX		 TRUE
+#define Z_OS_IS_POSIX_LIKE	 TRUE
+#define Z_OS_IS_UNIX_LIKE	 TRUE
 
 #define Z_OS_PATH_SLASH_CHARACTER '/'
 #define Z_OS_PATH_SLASH_STRING	  "/"
