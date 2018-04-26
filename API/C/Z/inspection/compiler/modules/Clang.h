@@ -13,9 +13,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_COMPILER
 #	include <Z/macros/version.h>
 
-#	define Z_COMPILER		  Z_COMPILER_CLANG
-#	define Z_COMPILER_STRING	  Z_COMPILER_STRING_CLANG
-#	define Z_COMPILER_VERSION	  Z_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
+#	define Z_COMPILER		 Z_COMPILER_CLANG
+#	define Z_COMPILER_STRING	 Z_COMPILER_STRING_CLANG
+#	define Z_COMPILER_VERSION	 Z_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
 #	define Z_COMPILER_VERSION_STRING __clang_version__
 #endif
 
