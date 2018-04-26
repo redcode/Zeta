@@ -259,7 +259,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_FLOATING_POINT_FLOAT64(left, right)	  left##IEEE_754_BINARY64##right
 
 #define Z_APPEND_FLOATING_POINT_FLOAT128(to)		  to##IEEE_754_BINARY128
-#define Z_INSERT_FLOATING_POINT_FLOAT128(left, right)	  left##IEEI_754_BINARY128##right
+#define Z_INSERT_FLOATING_POINT_FLOAT128(left, right)	  left##IEEE_754_BINARY128##right
 
 #define Z_APPEND_FLOATING_POINT_FLOAT80_X87(to)		  to##X87_BINARY80
 #define Z_INSERT_FLOATING_POINT_FLOAT80_X87(left, right)  left##X87_BINARY80##right
