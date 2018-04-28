@@ -68,7 +68,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				typename TypeListRemoveTail<TypeList<T...>, tail_size>::type, 1
 			>::type> Element;
 
-			typedef typename Element::Value Value;
+			typedef typename Element::Value type;
 		};
 
 
@@ -83,17 +83,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 		template <UInt I>
-		Z_INLINE typename At<I>::Value &at()
+		Z_INLINE typename At<I>::type &at()
 			{return At<I>::Element::value;}
 
 
 		template <UInt I>
-		Z_CT(CPP11) typename Type<typename At<I>::Value>::to_forwardable get() const
+		Z_CT(CPP11) typename Type<typename At<I>::type>::to_forwardable get() const
 			{return At<I>::Element::value;}
 
 
 		template <UInt I>
-		Z_INLINE Tuple &set(typename Type<typename At<I>::Value>::to_forwardable value)
+		Z_INLINE Tuple &set(typename Type<typename At<I>::type>::to_forwardable value)
 			{
 			At<I>::Element::value = value;
 			return *this;
