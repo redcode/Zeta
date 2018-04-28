@@ -206,7 +206,6 @@ HEADERS += ../../API/C/Z/constants/base.h \
            ../../API/C/Z/inspection/C++/modules/C++11.h \
            ../../API/C/Z/inspection/C++/modules/C++14.h \
            ../../API/C/Z/inspection/C++/modules/C++17.h \
-           ../../API/C/Z/inspection/C++/modules/C++20.h \
            ../../API/C/Z/inspection/C++/modules/C++85.h \
            ../../API/C/Z/inspection/C++/modules/C++89.h \
            ../../API/C/Z/inspection/C++/modules/C++98.h \
