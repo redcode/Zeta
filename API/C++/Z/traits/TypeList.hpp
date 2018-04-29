@@ -262,43 +262,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 	}
 
-#	define Z_HAS_TRAIT_TypeList	       TRUE
-#	define Z_HAS_TRAIT_TypeListAppend      TRUE
-#	define Z_HAS_TRAIT_TypeListFirst       TRUE
-#	define Z_HAS_TRAIT_TypeListGet	       TRUE
-#	define Z_HAS_TRAIT_TypeListJoin	       TRUE
-#	define Z_HAS_TRAIT_TypeListLast	       TRUE
-#	define Z_HAS_TRAIT_TypeListPrepend     TRUE
-#	define Z_HAS_TRAIT_TypeListRename      TRUE
-#	define Z_HAS_TRAIT_TypeListRemove      TRUE
-#	define Z_HAS_TRAIT_TypeListRemoveFirst TRUE
-#	define Z_HAS_TRAIT_TypeListRemoveHead  TRUE
-#	define Z_HAS_TRAIT_TypeListRemoveLast  TRUE
-#	define Z_HAS_TRAIT_TypeListRemoveTail  TRUE
-#	define Z_HAS_TRAIT_TypeListReverse     TRUE
-#	define Z_HAS_TRAIT_TypeListRotateLeft  TRUE
-#	define Z_HAS_TRAIT_TypeListRotateRight TRUE
-#	define Z_HAS_TRAIT_TypeListToFunction  TRUE
-#	define Z_HAS_TRAIT_TypeListTransform   TRUE
+#	define Z_HAS_TRAIT_TypeList TRUE
 #else
-#	define Z_HAS_TRAIT_TypeList	       FALSE
-#	define Z_HAS_TRAIT_TypeListAppend      FALSE
-#	define Z_HAS_TRAIT_TypeListFirst       FALSE
-#	define Z_HAS_TRAIT_TypeListGet	       FALSE
-#	define Z_HAS_TRAIT_TypeListJoin	       FALSE
-#	define Z_HAS_TRAIT_TypeListLast	       FALSE
-#	define Z_HAS_TRAIT_TypeListPrepend     FALSE
-#	define Z_HAS_TRAIT_TypeListRename      FALSE
-#	define Z_HAS_TRAIT_TypeListRemove      FALSE
-#	define Z_HAS_TRAIT_TypeListRemoveFirst FALSE
-#	define Z_HAS_TRAIT_TypeListRemoveHead  FALSE
-#	define Z_HAS_TRAIT_TypeListRemoveLast  FALSE
-#	define Z_HAS_TRAIT_TypeListRemoveTail  FALSE
-#	define Z_HAS_TRAIT_TypeListReverse     FALSE
-#	define Z_HAS_TRAIT_TypeListRotateLeft  FALSE
-#	define Z_HAS_TRAIT_TypeListRotateRight FALSE
-#	define Z_HAS_TRAIT_TypeListToFunction  FALSE
-#	define Z_HAS_TRAIT_TypeListTransform   FALSE
+#	define Z_HAS_TRAIT_TypeList FALSE
 #endif
 
 #endif // __Z_traits_TypeList_HPP__
