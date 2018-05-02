@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/mathematics/geometry.h
+/* Z Kit - keys/mathematics/geometry.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

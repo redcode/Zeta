@@ -1,4 +1,4 @@
-/* Z Kit C API - macros/node.h
+/* Z Kit - macros/node.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

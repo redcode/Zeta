@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/science/electricity.h
+/* Z Kit - keys/science/electricity.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

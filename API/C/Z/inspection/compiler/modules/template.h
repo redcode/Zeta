@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/modules/compiler/template.h
+/* Z Kit - inspection/modules/compiler/template.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

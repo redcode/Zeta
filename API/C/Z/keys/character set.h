@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/character set.h
+/* Z Kit - keys/character set.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

@@ -1,4 +1,4 @@
-/* Z Kit C++ API - functions/base/structure.hpp
+/* Z Kit - functions/base/structure.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

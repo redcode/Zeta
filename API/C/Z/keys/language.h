@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/language.h
+/* Z Kit - keys/language.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

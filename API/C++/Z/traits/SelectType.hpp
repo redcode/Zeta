@@ -1,4 +1,4 @@
-/* Z Kit C++ API - traits/SelectType.hpp
+/* Z Kit - traits/SelectType.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

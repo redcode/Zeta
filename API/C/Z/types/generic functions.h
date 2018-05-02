@@ -1,4 +1,4 @@
-/* Z Kit C API - types/generic functions.h
+/* Z Kit - types/generic functions.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

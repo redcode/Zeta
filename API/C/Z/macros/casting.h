@@ -1,4 +1,4 @@
-/* Z Kit C API - macros/casting.h
+/* Z Kit - macros/casting.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

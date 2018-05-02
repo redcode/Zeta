@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/CPU/architecture/6502.h
+/* Z Kit - hardware/CPU/architecture/6502.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/modules/OS/iPhone OS.h
+/* Z Kit - inspection/modules/OS/iPhone OS.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

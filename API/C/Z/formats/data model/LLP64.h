@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/data model/LLP64.h
+/* Z Kit - formats/data model/LLP64.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

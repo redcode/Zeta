@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/snapshot/machine/computer/ZX Spectrum/FRZ.h
+/* Z Kit - formats/snapshot/machine/computer/ZX Spectrum/FRZ.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

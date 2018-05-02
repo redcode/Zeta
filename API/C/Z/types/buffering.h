@@ -1,4 +1,4 @@
-/* Z Kit C API - types/buffering.h
+/* Z Kit - types/buffering.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

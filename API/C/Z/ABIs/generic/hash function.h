@@ -1,4 +1,4 @@
-/* Z Kit C API - ABIs/generic/hash function.h
+/* Z Kit - ABIs/generic/hash function.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

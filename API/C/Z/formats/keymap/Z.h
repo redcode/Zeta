@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/keymap/Z.h
+/* Z Kit - formats/keymap/Z.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

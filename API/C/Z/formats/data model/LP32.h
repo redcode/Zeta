@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/data model/LP32.h
+/* Z Kit - formats/data model/LP32.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

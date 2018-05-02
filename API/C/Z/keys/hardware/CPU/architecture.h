@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/hardware/CPU.h
+/* Z Kit - keys/hardware/CPU.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

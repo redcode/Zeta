@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/keymap/Mac OS.h
+/* Z Kit - formats/keymap/Mac OS.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

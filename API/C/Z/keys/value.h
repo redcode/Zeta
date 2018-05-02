@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/value.h
+/* Z Kit - keys/value.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

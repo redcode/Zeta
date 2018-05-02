@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/base/Tuple.hpp
+/* Z Kit - classes/base/Tuple.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

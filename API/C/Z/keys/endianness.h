@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/endianness.h
+/* Z Kit - keys/endianness.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

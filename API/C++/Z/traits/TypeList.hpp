@@ -1,4 +1,4 @@
-/* Z Kit C++ API - traits/TypeList.hpp
+/* Z Kit - traits/TypeList.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

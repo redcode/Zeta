@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/C++/modules/C++11.h
+/* Z Kit - inspection/C++/modules/C++11.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

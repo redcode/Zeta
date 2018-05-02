@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/CPU/completion.h
+/* Z Kit - inspection/CPU/completion.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

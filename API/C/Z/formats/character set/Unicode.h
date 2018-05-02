@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/character set/Unicode.h
+/* Z Kit - formats/character set/Unicode.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

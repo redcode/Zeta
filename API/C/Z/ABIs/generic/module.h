@@ -1,4 +1,4 @@
-/* Z Kit C API - ABIs/generic/module.h
+/* Z Kit - ABIs/generic/module.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

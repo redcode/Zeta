@@ -1,4 +1,4 @@
-/* Z Kit C API - types/base.h
+/* Z Kit - types/base.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

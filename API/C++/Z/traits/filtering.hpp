@@ -1,4 +1,4 @@
-/* Z Kit C++ API - traits/filtering.hpp
+/* Z Kit - traits/filtering.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

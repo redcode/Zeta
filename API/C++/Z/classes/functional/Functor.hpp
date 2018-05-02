@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/functional/Functor.hpp
+/* Z Kit - classes/functional/Functor.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

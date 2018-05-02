@@ -1,4 +1,4 @@
-/* Z Kit C++ API - traits/base.hpp
+/* Z Kit - traits/base.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

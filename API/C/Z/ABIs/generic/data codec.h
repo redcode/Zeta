@@ -1,4 +1,4 @@
-/* Z Kit C API - ABIs/generic/data codec.h
+/* Z Kit - ABIs/generic/data codec.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

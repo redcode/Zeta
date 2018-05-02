@@ -1,4 +1,4 @@
-/* Z Kit C API - constants/version.h
+/* Z Kit - constants/version.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

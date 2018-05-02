@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/base/Value3D.hpp
+/* Z Kit - classes/base/Value3D.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

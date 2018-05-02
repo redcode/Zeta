@@ -1,4 +1,4 @@
-/* Z Kit C API - macros/tokens.h
+/* Z Kit - macros/tokens.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

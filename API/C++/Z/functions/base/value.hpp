@@ -1,4 +1,4 @@
-/* Z Kit C++ API - functions/base/value.hpp
+/* Z Kit - functions/base/value.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

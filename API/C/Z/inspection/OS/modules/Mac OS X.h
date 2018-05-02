@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/modules/OS/Mac OS X.h
+/* Z Kit - inspection/modules/OS/Mac OS X.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

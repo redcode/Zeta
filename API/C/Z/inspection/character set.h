@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/character set.h
+/* Z Kit - inspection/character set.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

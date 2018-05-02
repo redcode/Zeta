@@ -1,4 +1,4 @@
-/* Z Kit C API - macros/pointer.h
+/* Z Kit - macros/pointer.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

@@ -1,4 +1,4 @@
-/* Z Kit C API - macros/templating.h
+/* Z Kit - macros/templating.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

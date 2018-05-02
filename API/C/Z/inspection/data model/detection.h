@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/data model/detection.h
+/* Z Kit - inspection/data model/detection.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

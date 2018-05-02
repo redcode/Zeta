@@ -1,4 +1,4 @@
-/* Z Kit C API - constants/science/chemical elements.h
+/* Z Kit - constants/science/chemical elements.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

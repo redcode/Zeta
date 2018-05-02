@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/base/InitializerList.hpp
+/* Z Kit - classes/base/InitializerList.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

@@ -1,4 +1,4 @@
-/* Z Kit C API - macros/variadic selection.h
+/* Z Kit - macros/variadic selection.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

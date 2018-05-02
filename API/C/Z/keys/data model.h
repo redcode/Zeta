@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/data model.h
+/* Z Kit - keys/data model.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

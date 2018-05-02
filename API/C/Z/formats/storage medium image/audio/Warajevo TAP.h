@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/storage medium image/audio/Warajevo TAP.h
+/* Z Kit - formats/storage medium image/audio/Warajevo TAP.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

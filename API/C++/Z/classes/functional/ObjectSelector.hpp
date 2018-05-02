@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/functional/ObjectSelector.hpp
+/* Z Kit - classes/functional/ObjectSelector.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

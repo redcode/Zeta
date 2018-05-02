@@ -1,4 +1,4 @@
-/* Z Kit C API - constants/numbers.h
+/* Z Kit - constants/numbers.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

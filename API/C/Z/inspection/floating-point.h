@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/floating-point.h
+/* Z Kit - inspection/floating-point.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

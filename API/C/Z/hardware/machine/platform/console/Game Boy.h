@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/machine/platform/console/Game Boy.h
+/* Z Kit - hardware/machine/platform/console/Game Boy.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

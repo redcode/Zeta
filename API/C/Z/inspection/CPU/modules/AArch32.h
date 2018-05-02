@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/modules/CPU/AArch32.h
+/* Z Kit - inspection/modules/CPU/AArch32.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

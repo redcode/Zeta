@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/Objective-C/modules/Objective-C v1.0.h
+/* Z Kit - inspection/Objective-C/modules/Objective-C v1.0.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

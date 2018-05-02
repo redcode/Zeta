@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/character set/DOS CP855.h
+/* Z Kit - formats/character set/DOS CP855.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

@@ -1,4 +1,4 @@
-/* Z Kit C++ API - traits/mathematics.hpp
+/* Z Kit - traits/mathematics.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

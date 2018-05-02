@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/machine/model/console/Nintendo Entertainment System/NES-001 (PAL).h
+/* Z Kit - hardware/machine/model/console/Nintendo Entertainment System/NES-001 (PAL).h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

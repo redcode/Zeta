@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/functional/Selector.hpp
+/* Z Kit - classes/functional/Selector.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

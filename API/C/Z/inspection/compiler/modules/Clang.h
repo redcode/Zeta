@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/compiler/modules/Clang.h
+/* Z Kit - inspection/compiler/modules/Clang.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

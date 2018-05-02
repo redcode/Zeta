@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/floating-point/IEEE 754.h
+/* Z Kit - formats/floating-point/IEEE 754.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

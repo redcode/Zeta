@@ -1,4 +1,4 @@
-/* Z Kit C API - types/mathematics.h
+/* Z Kit - types/mathematics.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

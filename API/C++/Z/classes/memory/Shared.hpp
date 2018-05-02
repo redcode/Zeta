@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/memory/Shared.hpp
+/* Z Kit - classes/memory/Shared.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

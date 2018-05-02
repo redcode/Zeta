@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/functional/ObjectMemberFunction.hpp
+/* Z Kit - classes/functional/ObjectMemberFunction.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

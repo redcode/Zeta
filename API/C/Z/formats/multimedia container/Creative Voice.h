@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/multimedia container/Creative Voice.h
+/* Z Kit - formats/multimedia container/Creative Voice.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

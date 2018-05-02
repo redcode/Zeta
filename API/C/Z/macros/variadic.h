@@ -1,4 +1,4 @@
-/* Z Kit C API - macros/variadic.h
+/* Z Kit - macros/variadic.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

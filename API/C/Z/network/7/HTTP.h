@@ -1,4 +1,4 @@
-/* Z Kit C API - Z/network/7/HTTP.h
+/* Z Kit - Z/network/7/HTTP.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

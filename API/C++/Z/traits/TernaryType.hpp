@@ -1,4 +1,4 @@
-/* Z Kit C++ API - traits/TernaryType.hpp
+/* Z Kit - traits/TernaryType.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

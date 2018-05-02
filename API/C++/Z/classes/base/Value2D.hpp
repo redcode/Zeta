@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/base/Value2D.hpp
+/* Z Kit - classes/base/Value2D.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

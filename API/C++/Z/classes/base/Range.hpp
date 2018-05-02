@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/base/Range.hpp
+/* Z Kit - classes/base/Range.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

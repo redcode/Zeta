@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/storage medium image/NES Game Pak/UNIF.h
+/* Z Kit - formats/storage medium image/NES Game Pak/UNIF.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

@@ -1,4 +1,4 @@
-/* Z Kit C API - macros/type enumeration.h
+/* Z Kit - macros/type enumeration.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

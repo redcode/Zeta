@@ -1,4 +1,4 @@
-/* Z Kit C API - network/4/TCP.h
+/* Z Kit - network/4/TCP.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

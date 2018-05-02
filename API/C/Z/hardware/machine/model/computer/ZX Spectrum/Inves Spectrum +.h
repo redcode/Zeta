@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/machine/model/computer/ZX Spectrum/Inves Spectrum +.h
+/* Z Kit - hardware/machine/model/computer/ZX Spectrum/Inves Spectrum +.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

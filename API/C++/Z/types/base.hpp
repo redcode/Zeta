@@ -1,4 +1,4 @@
-/* Z Kit C++ API - types/base.hpp
+/* Z Kit - types/base.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

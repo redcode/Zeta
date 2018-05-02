@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/machine/platform/computer/ZX Spectrum.h
+/* Z Kit - hardware/machine/platform/computer/ZX Spectrum.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

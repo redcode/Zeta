@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/base/Status.hpp
+/* Z Kit - classes/base/Status.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

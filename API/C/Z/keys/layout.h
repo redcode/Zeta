@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/layout.h
+/* Z Kit - keys/layout.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

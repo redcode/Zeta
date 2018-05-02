@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/VDC/Ricoh/RP2C0x.h
+/* Z Kit - hardware/VDC/Ricoh/RP2C0x.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

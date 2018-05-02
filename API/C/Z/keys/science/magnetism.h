@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/science/magnetism.h
+/* Z Kit - keys/science/magnetism.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

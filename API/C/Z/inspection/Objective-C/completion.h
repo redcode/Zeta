@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/Objective-C/completion.h
+/* Z Kit - inspection/Objective-C/completion.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

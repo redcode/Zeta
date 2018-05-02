@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/buffering/TripleBuffer.hpp
+/* Z Kit - classes/buffering/TripleBuffer.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

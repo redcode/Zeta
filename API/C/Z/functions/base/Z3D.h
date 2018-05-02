@@ -1,4 +1,4 @@
-/* Z Kit C API - functions/base/Z3D.h
+/* Z Kit - functions/base/Z3D.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

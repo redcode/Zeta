@@ -1,4 +1,4 @@
-/* Z Kit C API - functioms/buffering/ZTripleBuffer.h
+/* Z Kit - functioms/buffering/ZTripleBuffer.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

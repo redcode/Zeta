@@ -1,4 +1,4 @@
-/* Z Kit C API - functions/mathematics/geometry/euclidean/all.h
+/* Z Kit - functions/mathematics/geometry/euclidean/all.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

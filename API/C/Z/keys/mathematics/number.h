@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/mathematics/number.h
+/* Z Kit - keys/mathematics/number.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

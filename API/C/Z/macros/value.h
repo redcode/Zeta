@@ -1,4 +1,4 @@
-/* Z Kit C API - macros/value.h
+/* Z Kit - macros/value.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

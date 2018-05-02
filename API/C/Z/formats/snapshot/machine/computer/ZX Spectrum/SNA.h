@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/snapshot/machine/computer/ZX Spectrum/SNA.h
+/* Z Kit - formats/snapshot/machine/computer/ZX Spectrum/SNA.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

@@ -1,4 +1,4 @@
-/* Z Kit C API - functioms/buffering/ZRingBuffer.h
+/* Z Kit - functioms/buffering/ZRingBuffer.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

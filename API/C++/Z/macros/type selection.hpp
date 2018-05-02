@@ -1,4 +1,4 @@
-/* Z Kit C++ API - macros/type selection.hpp
+/* Z Kit - macros/type selection.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

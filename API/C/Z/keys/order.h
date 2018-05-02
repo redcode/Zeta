@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/order.h
+/* Z Kit - keys/order.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

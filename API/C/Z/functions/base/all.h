@@ -1,4 +1,4 @@
-/* Z Kit C API - functions/base/all.h
+/* Z Kit - functions/base/all.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

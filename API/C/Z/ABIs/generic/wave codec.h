@@ -1,4 +1,4 @@
-/* Z Kit C API - ABIs/generic/wave codec.h
+/* Z Kit - ABIs/generic/wave codec.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

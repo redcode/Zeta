@@ -1,4 +1,4 @@
-/* Z Kit C API - ABIs/generic/allocation.h
+/* Z Kit - ABIs/generic/allocation.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

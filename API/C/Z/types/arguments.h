@@ -1,4 +1,4 @@
-/* Z Kit C API - types/arguments.h
+/* Z Kit - types/arguments.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

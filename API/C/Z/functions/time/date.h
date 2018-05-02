@@ -1,4 +1,4 @@
-/* Z Kit C API - functions/time/date.h
+/* Z Kit - functions/time/date.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

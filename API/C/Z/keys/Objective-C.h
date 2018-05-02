@@ -1,4 +1,4 @@
-/* Z Kit C API - keys/Objective-C.h
+/* Z Kit - keys/Objective-C.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

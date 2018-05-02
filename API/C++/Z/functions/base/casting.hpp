@@ -1,4 +1,4 @@
-/* Z Kit C++ API - functions/base/casting.hpp
+/* Z Kit - functions/base/casting.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

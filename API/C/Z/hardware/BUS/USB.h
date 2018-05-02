@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/BUS/USB.h
+/* Z Kit - hardware/BUS/USB.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

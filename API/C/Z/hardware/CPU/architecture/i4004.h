@@ -1,4 +1,4 @@
-/* Z Kit C API - hardware/CPU/architecture/i4004.h
+/* Z Kit - hardware/CPU/architecture/i4004.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/base/OpaqueFunctionPointer.hpp
+/* Z Kit - classes/base/OpaqueFunctionPointer.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

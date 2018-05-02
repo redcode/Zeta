@@ -1,4 +1,4 @@
-/* Z Kit C API - formats/image/ICNS.h
+/* Z Kit - formats/image/ICNS.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

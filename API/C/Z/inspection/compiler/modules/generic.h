@@ -1,4 +1,4 @@
-/* Z Kit C API - inspection/modules/compiler/generic.h
+/* Z Kit - inspection/modules/compiler/generic.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit

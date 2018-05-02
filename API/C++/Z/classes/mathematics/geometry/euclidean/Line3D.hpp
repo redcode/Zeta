@@ -1,4 +1,4 @@
-/* Z Kit C++ API - classes/mathematics/geometry/euclidean/Line3D.hpp
+/* Z Kit - classes/mathematics/geometry/euclidean/Line3D.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
