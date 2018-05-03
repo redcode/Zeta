@@ -571,16 +571,16 @@ Z_DEFINE_STRICT_STRUCTURE (
 '-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32	block_size;
-	zuint8	selection_count;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 selection[];) /* ZTZXSelectItem */
-) ZTZXSelect;
-
-Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 relative_offset;
 	zuint8	description_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 description_ascii[];)
 ) ZTZXSelectItem;
+
+Z_DEFINE_STRICT_STRUCTURE (
+	zuint32	block_size;
+	zuint8	selection_count;
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 selection[];) /* ZTZXSelectItem */
+) ZTZXSelect;
 
 /* MARK: - ID 2Ah - Stop Tape if in 48K Mode
 .----------------------------------------------------------------------------.
