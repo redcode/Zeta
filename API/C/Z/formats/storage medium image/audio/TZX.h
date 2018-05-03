@@ -311,7 +311,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 '-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 complete_block_size;
+	zuint32 block_size; /* without this field */
 	/* TO DO */
 ) ZTZXC64ROMTypeData;
 
@@ -327,7 +327,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 '-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 complete_block_size;
+	zuint32 block_size; /* without this field */
 	/* TO DO */
 ) ZTZXC64TurboTapeData;
 
@@ -339,7 +339,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 '---------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 block_size;
+	zuint32 block_size;  /* without this field */
 	zuint16 pause_after_this_block_ms;
 	zuint8	sampling_rate[3];
 	zuint8	compression_type;
@@ -361,7 +361,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 '----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 block_size;
+	zuint32 block_size; /* without this field */
 	zuint16 pause_after_this_block_ms;
 	zuint32 symbol_count;
 	zuint8	pulses_per_symbol_maximum;
@@ -592,7 +592,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 '---------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 block_size;
+	zuint32 block_size; /* without this field */
 ) ZTZXStopIf48K;
 
 /* MARK: - ID 2Bh - Set Signal Level (Added in v1.20)
@@ -603,7 +603,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 '---------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 block_size;
+	zuint32 block_size; /* without this field */
 	zuint8	level;
 ) ZTZXSetSignalLevel;
 
@@ -624,7 +624,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 '-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 size;
+	zuint8 ascii_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
 ) ZTZXDescriptionText;
 
@@ -645,7 +645,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 display_seconds;
-	zuint8 size;
+	zuint8 ascii_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
 ) ZTZXMessage;
 
@@ -670,7 +670,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 id;
-	zuint8 size;
+	zuint8 ascii_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
 ) ZTZXText;
 
@@ -710,7 +710,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE 3
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 count;
+	zuint8 hardware_count;
 	Z_FLEXIBLE_ARRAY_MEMBER(ZTZXHardware hardware[];)
 ) ZTZXHardwareType;
 
@@ -722,10 +722,30 @@ Z_DEFINE_STRICT_STRUCTURE (
 | this is a very important part for emulators.				       |
 | Those bits that are not used by the emulator that stored the info, should be |
 | left at their DEFAULT values.						       |
-'-----------------------------------------------------------------------------*/
+'------------------------------------------------------------------------------'
+
+Flags field (16-bit little-endian):
+.---------------------------------.
+| F E D C B A 9 8 7 6 5 4 3 2 1 0 |
+'-\_________/-|-|-|-|-|-\_/-|-|-|-'
+       |      | | | | |  |  | | '-> R register emulation
+       |      | | | | |  |  | '---> LDIR emulation
+       |      | | | | |	 |  '-----> high resolution colour emulation with
+       |      | | | | |  |          true interrupt frequency
+       |      | | | | |  '--------> video synchronisation
+       |      | | | | |		    (1 = high, 3 = low, 0 or 2 = normal)
+       |      | | | | '-----------> fast loading when ROM load routine is used
+       |      | | | '-------------> border emulation
+       |      | | '---------------> screen refresh mode (1 = ON, 0 = OFF)
+       |      | '-----------------> start playing the tape immediately
+       |      '-------------------> auto type LOAD"" or press ENTER when in 128K mode
+       '--------------------------> unused */
 
 Z_DEFINE_STRICT_STRUCTURE (
-	/* TO DO */
+	zuint16 flags;
+	zuint8	screen_refresh_delay;	/* 1 - 255 */
+	zuint16 interrupt_hz;		/* 0 - 999 */
+	zuint8	reserved[3];
 ) ZTZXEmulationInformation;
 
 /* MARK: - ID 35h - Custom Information (Added in v1.01, deprecated in v1.20)
