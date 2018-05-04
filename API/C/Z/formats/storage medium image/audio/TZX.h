@@ -176,16 +176,16 @@ typedef zuint8 ZTZXBlockID;
 #define Z_TZX_BLOCK_ID_GLUE		     0x5A
 
 /* MARK: - ID 10h - Standard Speed Data
-.-----------------------------------------------------------------------------.
-| This block must be replayed with the standard Spectrum ROM timing values    |
-| (see the values in curly brackets in block ID 11). The pilot tone consists  |
-| in 8063 pulses if the first data byte (flag byte) is < 128, 3223 otherwise. |
-| This block can be used for the ROM loading routines AND for custom loading  |
-| routines that use the same timings as ROM ones do.			      |
-'----------------------------------------------------------------------------*/
+.-------------------------------------------------------------------------------.
+| This block must be played using the standard Spectrum ROM timings (see the	|
+| values in curly brackets in block ID 11). The initial pilot tone consists in	|
+| 8063 pulses if the first data byte (flag byte) is < 128, 3223 otherwise.	|
+| This block can be used for the ROM loading routines and for custom loading	|
+| routines that use the same timings as ROM ones do.				|
+'------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 pause;
+	zuint16 pause_ms; /* pause after this block {1000} */
 	zuint16 data_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXStandardSpeedData;
