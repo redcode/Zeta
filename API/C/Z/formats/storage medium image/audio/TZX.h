@@ -120,20 +120,19 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Z/types/base.h>
 
 /* MARK: - File Header
-.--------------------------------------------------------------------------.
-| The file is identified with the first 8 bytes being 'ZXTape!' plus the   |
-| 'end of file' byte 26 (1Ah). This is followed by two bytes containing	   |
-| the major and minor version numbers.					   |
-|									   |
-| To be able to use a TZX file, your program must be able to handle files  |
-| of at least its major version number. If your program can handle (say)   |
-| version 1.05 and you encounter a file with version number 1.06, your	   |
-| program must be able to handle it, even if it cannot handle all the data |
-| in the file.								   |
-|									   |
-| Then the main body of the file follows. It consists of a mixture of	   |
-| blocks, each preceded and identified by an ID byte.			   |
-'-------------------------------------------------------------------------*/
+.-------------------------------------------------------------------------------.
+| The file is identified with the first 8 bytes being 'ZXTape!' plus the EOF	|
+| byte 26 (1Ah). This is followed by two bytes containing the major and minor	|
+| version numbers.								|
+|										|
+| To be able to use a TZX file, your program must be able to handle files of at |
+| least its major version number. If your program can handle (say) version 1.05 |
+| and you encounter a file with version number 1.06, your program must be able	|
+| to handle it, even if it cannot handle all the data in the file.		|
+|										|
+| Then the main body of the file follows. It consists of a mixture of blocks,	|
+| each preceded and identified by an ID byte.					|
+'------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 signature[7]; /* 'ZXTape!' */
