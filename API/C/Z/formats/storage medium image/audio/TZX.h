@@ -137,8 +137,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 signature[7]; /* 'ZXTape!' */
 	zuint8 eof_marker;   /* 1Ah	  */
-	zuint8 major_revision_number;
-	zuint8 minor_revision_number;
+	zuint8 major_version;
+	zuint8 minor_version;
 ) ZTZXHeader;
 
 /* MARK: - Block ID */
