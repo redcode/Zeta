@@ -185,29 +185,29 @@ typedef zuint8 ZTZXBlockID;
 '------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 pause_ms; /* pause after this block {1000} */
+	zuint16 pause_duration_ms; /* pause after this block {1000} */
 	zuint16 data_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXStandardSpeedData;
 
 /* MARK: - ID 11h - Turbo Speed Data
-.-----------------------------------------------------------------------------.
-| This block is very similar to the normal TAP block but with some additional |
-| info on the timings and other important differences. The same tape encoding |
-| is used as for the standard speed data block. If a block should use some    |
-| non-standard sync or pilot tones (i.e. all sorts of protection schemes)     |
-| then use the next three blocks to describe it.			      |
-'----------------------------------------------------------------------------*/
+.-------------------------------------------------------------------------------.
+| This block is very similar to the normal TAP block but with some additional	|
+| information on the timings and other important differences. The same tape	|
+| encoding is used as for the standard speed data block. If a block should use	|
+| some non-standard sync or pilot tones (i.e. all sorts of protection schemes)	|
+| then use the next three blocks to describe it.				|
+'------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 pilot_pulse_duration;	   /* {2168} */
-	zuint16 sync_1_pulse_duration;	   /* {667}  */
-	zuint16 sync_2_pulse_duration;	   /* {735}  */
-	zuint16 bit_0_pulse_duration;	   /* {855}  */
-	zuint16 bit_1_pulse_duration;	   /* {1710} */
-	zuint16 pilot_tone_duration;	   /* TO DO  */
-	zuint8	last_byte_bit_count;	   /* TO DO  */
-	zuint16 pause_after_this_block_ms; /* {1000} */
+	zuint16 pilot_pulse_duration;  /* {2168} */
+	zuint16 sync_1_pulse_duration; /* {667}  */
+	zuint16 sync_2_pulse_duration; /* {735}  */
+	zuint16 bit_0_pulse_duration;  /* {855}  */
+	zuint16 bit_1_pulse_duration;  /* {1710} */
+	zuint16 pilot_tone_duration;   /* TO DO  */
+	zuint8	last_byte_bit_count;   /* TO DO  */
+	zuint16 pause_duration_ms;     /* pause after this block {1000} */
 	zuint8	data_size[3];
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXTurboSpeedData;
