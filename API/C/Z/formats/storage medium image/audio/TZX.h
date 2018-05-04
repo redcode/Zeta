@@ -32,12 +32,6 @@ Released under the terms of the GNU Lesser General Public License v3.
 | other machines too, e.g. the Amstrad CPC and C64, but they are now available	|
 | as distinct file formats with other filename extensions.			|
 |										|
-|    At the end of this document you can find a description of encoding		|
-| differences between these machines and a table which displays timings used by	|
-| their respective ROM loading routines (some of them are not official).	|
-| If you know of any other machines that have similar encoding that could be	|
-| represented with this file format then let us know.				|
-|										|
 |    If you're looking for TZX files, you can find an extensive collection at	|
 | Martijn van der Heide's 'World of Spectrum': http://www.worldofspectrum.org	|
 |										|
@@ -151,38 +145,37 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 /* MARK: - Block ID */
 
-#define Z_TZX_BLOCK_ID_STANDARD_SPEED_DATA  0x10
-#define Z_TZX_BLOCK_ID_TURBO_SPEED_DATA	    0x11
-#define Z_TZX_BLOCK_ID_PURE_TONE	    0x12
-#define Z_TZX_BLOCK_ID_PULSE_SEQUENCE	    0x13
-#define Z_TZX_BLOCK_ID_PURE_DATA	    0x14
-#define Z_TZX_BLOCK_ID_DIRECT_RECORDING	    0x15
-#define Z_TZX_BLOCK_ID_CSW_RECORDING	    0x18 /* Added in v1.20 */
-#define Z_TZX_BLOCK_ID_GENERALIZED_DATA	    0x19 /* Added in v1.20 */
-#define Z_TZX_BLOCK_ID_PAUSE		    0x20
-#define Z_TZX_BLOCK_ID_GROUP_START	    0x21
-#define Z_TZX_BLOCK_ID_GROUP_END	    0x22
-#define Z_TZX_BLOCK_ID_JUMP		    0x23
-#define Z_TZX_BLOCK_ID_LOOP_START	    0x24 /* Added in v1.10 */
-#define Z_TZX_BLOCK_ID_LOOP_END		    0x25 /* Added in v1.10 */
-#define Z_TZX_BLOCK_ID_CALL_SEQUENCE	    0x26 /* Added in v1.10 */
-#define Z_TZX_BLOCK_ID_RETURN_FROM_SEQUENCE 0x27 /* Added in v1.10 */
-#define Z_TZX_BLOCK_ID_SELECT		    0x28 /* Added in v1.10 */
-#define Z_TZX_BLOCK_ID_STOP_IF_48K	    0x2A
-#define Z_TZX_BLOCK_ID_SET_SIGNAL_LEVEL	    0x2B /* Added in v1.20 */
-#define Z_TZX_BLOCK_ID_DESCRIPTION_TEXT	    0x30
-#define Z_TZX_BLOCK_ID_MESSAGE		    0x31
-#define Z_TZX_BLOCK_ID_ARCHIVE_INFORMATION  0x32
-#define Z_TZX_BLOCK_ID_HARDWARE_TYPE	    0x33
-#define Z_TZX_BLOCK_ID_CUSTOM_INFORMATION   0x35
-#define Z_TZX_BLOCK_ID_GLUE		    0x5A
+typedef zuint8 ZTZXBlockID;
 
- /* Deprecated. These should not be used in v1.20 and later. */
+#define Z_TZX_BLOCK_ID_STANDARD_SPEED_DATA   0x10
+#define Z_TZX_BLOCK_ID_TURBO_SPEED_DATA	     0x11
+#define Z_TZX_BLOCK_ID_PURE_TONE	     0x12
+#define Z_TZX_BLOCK_ID_PULSE_SEQUENCE	     0x13
+#define Z_TZX_BLOCK_ID_PURE_DATA	     0x14
+#define Z_TZX_BLOCK_ID_DIRECT_RECORDING	     0x15
 #define Z_TZX_BLOCK_ID_C64_ROM_TYPE_DATA     0x16 /* Added in v1.13, deprecated in v1.20 */
 #define Z_TZX_BLOCK_ID_C64_TURBO_TAPE_DATA   0x17 /* Added in v1.13, deprecated in v1.20 */
+#define Z_TZX_BLOCK_ID_CSW_RECORDING	     0x18 /* Added in v1.20 */
+#define Z_TZX_BLOCK_ID_GENERALIZED_DATA	     0x19 /* Added in v1.20 */
+#define Z_TZX_BLOCK_ID_PAUSE		     0x20
+#define Z_TZX_BLOCK_ID_GROUP_START	     0x21
+#define Z_TZX_BLOCK_ID_GROUP_END	     0x22
+#define Z_TZX_BLOCK_ID_JUMP		     0x23
+#define Z_TZX_BLOCK_ID_LOOP_START	     0x24 /* Added in v1.10 */
+#define Z_TZX_BLOCK_ID_LOOP_END		     0x25 /* Added in v1.10 */
+#define Z_TZX_BLOCK_ID_CALL_SEQUENCE	     0x26 /* Added in v1.10 */
+#define Z_TZX_BLOCK_ID_RETURN_FROM_SEQUENCE  0x27 /* Added in v1.10 */
+#define Z_TZX_BLOCK_ID_SELECT		     0x28 /* Added in v1.10 */
+#define Z_TZX_BLOCK_ID_STOP_IF_48K	     0x2A
+#define Z_TZX_BLOCK_ID_SET_SIGNAL_LEVEL	     0x2B /* Added in v1.20 */
+#define Z_TZX_BLOCK_ID_DESCRIPTION_TEXT	     0x30
+#define Z_TZX_BLOCK_ID_MESSAGE		     0x31
+#define Z_TZX_BLOCK_ID_ARCHIVE_INFORMATION   0x32
+#define Z_TZX_BLOCK_ID_HARDWARE_TYPE	     0x33
 #define Z_TZX_BLOCK_ID_EMULATION_INFORMATION 0x34 /* Deprecated in v1.20 */
 #define Z_TZX_BLOCK_ID_CUSTOM_INFORMATION    0x35 /* Added in v1.01, deprecated in v1.20 */
 #define Z_TZX_BLOCK_ID_SNAPSHOT		     0x40 /* Added in v1.10, deprecated in v1.20 */
+#define Z_TZX_BLOCK_ID_GLUE		     0x5A
 
 /* MARK: - ID 10h - Standard Speed Data
 .-----------------------------------------------------------------------------.
