@@ -48,8 +48,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 | 2) Rules and definitions							|
 | ------------------------							|
 |										|
-| - Any value requiring more than one byte is stored in little endian format	|
-|   (i.e. LSB first).								|
+| - Any value requiring more than one byte is stored in little endian-format.	|
 |										|
 | - All unused bits should be set to zero.					|
 |										|
