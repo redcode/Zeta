@@ -13,6 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 | Endianness: Little								|
 | Created by: Tomaz Kac								|
 |    Used by: Many programs							|
+|  Reference: http://www.worldofspectrum.org/TZXformat.html			|
 |										|
 | Format revision: v1.20 (2006-12-19)						|
 |										|
@@ -112,6 +113,24 @@ Released under the terms of the GNU Lesser General Public License v3.
 |   will have the length of the block in first 4 bytes (long word) after the ID	|
 |   (this length does not include these 4 length bytes). This should enable	|
 |   programs that can only handle older versions to skip that block.		|
+|										|
+| 3) Fields common to more than 1 type of block					|
+| ---------------------------------------------					|
+|										|
+| data										|
+|   Data as in .TAP files.							|
+|										|
+| data_size									|
+|   The size in bytes of the data following this field.				|
+|										|
+| last_byte_bit_count								|
+|   Bits used in the last byte of the data (the remaining ones should be 0).	|
+|   e.g. if this is 6, then the bits used "X" in the last byte are: XXXXXX00,	|
+|   where MSb is the leftmost bit and LSb is the rightmost bit.			|
+|										|
+| pause_duration_ms								|
+|   The duration of the period of silence after block playback in milliseconds	|
+|   (usually 1000).								|
 '------------------------------------------------------------------------------*/
 
 #ifndef __Z_formats_storage_medium_image_audio_TZX_H__
@@ -185,7 +204,7 @@ typedef zuint8 ZTZXBlockID;
 '------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 pause_duration_ms; /* pause after this block {1000} */
+	zuint16 pause_duration_ms;
 	zuint16 data_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXStandardSpeedData;
@@ -200,75 +219,75 @@ Z_DEFINE_STRICT_STRUCTURE (
 '------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 pilot_pulse_duration;  /* {2168} */
-	zuint16 sync_1_pulse_duration; /* {667}  */
-	zuint16 sync_2_pulse_duration; /* {735}  */
-	zuint16 bit_0_pulse_duration;  /* {855}  */
-	zuint16 bit_1_pulse_duration;  /* {1710} */
-	zuint16 pilot_tone_duration;   /* TO DO  */
-	zuint8	last_byte_bit_count;   /* TO DO  */
-	zuint16 pause_duration_ms;     /* pause after this block {1000} */
+	zuint16 cycles_per_pilot_pulse;	    /* {2168} */
+	zuint16 cycles_per_sync_high_pulse; /* {667}  */
+	zuint16 cycles_per_sync_low_pulse;  /* {735}  */
+	zuint16 cycles_per_bit_0_pulse;	    /* {855}  */
+	zuint16 cycles_per_bit_1_pulse;	    /* {1710} */
+	zuint16 pilot_tone_pulse_count;	    /* {8063 header (flag < 128), 3223 data (flag >= 128)} */
+	zuint8	last_byte_bit_count;
+	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXTurboSpeedData;
 
 /* MARK: - ID 12h - Pure Tone
-.------------------------------------------------------------------------.
-| This will produce a tone which is basically the same as the pilot tone |
-| the ID 10, ID 11 blocks. You can define how long the pulse is and how  |
-| many pulses are in the tone.						 |
-'-----------------------------------------------------------------------*/
+.-------------------------------------------------------------------------------.
+| This will produce a tone which is basically the same as the pilot tone in the |
+| ID 10, ID 11 blocks. You can define how long the pulse is and how many pulses |
+| are in the tone.								|
+'------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 pulse_t_states;
+	zuint16 cycles_per_pulse;
 	zuint16 pulse_count;
 ) ZTZXPureTone;
 
 /* MARK: - ID 13h - Pulse Sequence
-.--------------------------------------------------------------.
-| This will produce N pulses, each having its own timing.      |
-| Up to 255 pulses can be stored in this block; this is useful |
-| for non-standard sync tones used by some protection schemes. |
-'-------------------------------------------------------------*/
+.-------------------------------------------------------------------------------.
+| This will produce N pulses, each having its own timing. Up to 255 pulses can	|
+| be stored in this block; this is useful for non-standard sync tones used by	|
+| some protection schemes.							|
+'------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 pulse_count;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint16 pulse_durations[];)
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint16 pulse_cycles[];)
 ) ZTZXPulseSequence;
 
 /* MARK: - ID 14h - Pure Data
-.------------------------------------------------------.
-| This is the same as in the turbo loading data block, |
-| except that it has no pilot or sync pulses.	       |
-'-----------------------------------------------------*/
+.-------------------------------------------------------------------------------.
+| This is the same as in the turbo loading data block (ID 11h), except that it	|
+| has no pilot or sync pulses.							|
+'------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 bit_0_pulse_duration;
-	zuint16 bit_1_pulse_duration;
+	zuint16 cycles_per_bit_0_pulse;
+	zuint16 cycles_per_bit_1_pulse;
 	zuint8	last_byte_bit_count;
-	zuint16 pause_after_this_block_ms;
+	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXPureData;
 
 /* MARK: - ID 15h - Direct Recording
-.---------------------------------------------------------------------------.
-| This block is used for tapes which have some parts in a format such that  |
-| the turbo loader block cannot be used. This is not like a VOC file, since |
-| the information is much more compact. Each sample value is represented by |
-| one bit only (0 for low, 1 for high) which means that the block will be   |
-| at most 1/8 the size of the equivalent VOC.				    |
-|									    |
-| The preferred sampling frequencies are 22050 or 44100 Hz		    |
-| (158 or 79 T-states per sample).					    |
-|									    |
-| Please, if you can, don't use other sampling frequencies and only use	    |
-| this block if you can not use any other one.				    |
-'--------------------------------------------------------------------------*/
+.-------------------------------------------------------------------------------.
+| This block is used for tapes which have some parts in a format such that the	|
+| turbo loader block cannot be used. This is not like a VOC file, since the	|
+| information is much more compact. Each sample value is represented by one bit |
+| only (0 for low, 1 for high) which means that the block will be at most 1/8	|
+| the size of the equivalent VOC.						|
+|										|
+| The preferred sampling frequencies are 22050 or 44100 Hz			|
+| (158 or 79 cycles per sample).						|
+|										|
+| Please, if you can, don't use other sampling frequencies and only use this	|
+| block if you can not use any other one.					|
+'------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 t_states_per_sample;
-	zuint16 pause_after_this_block_ms;
+	zuint16 cycles_per_sample;
+	zuint16 pause_duration_ms;
 	zuint8	last_byte_bit_count;
 	zuint8	data_size[3];
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
