@@ -166,8 +166,8 @@ typedef struct {zsint32 x, y, z, w;} Z4DSInt32;
 #		define Z_SINT64_MINIMUM (-Z_SINT64_MAXIMUM - Z_SINT64(1))
 #	else
 #		define Z_SINT64		Z_SAME
-#		define Z_SINT64_MAXIMUM 0 /* TO BE IMPLEMENTED */
-#		define Z_SINT64_MINIMUM 0 /* TO BE IMPLEMENTED */
+#		define Z_SINT64_MAXIMUM 0 /* TODO */
+#		define Z_SINT64_MINIMUM 0 /* TODO */
 #	endif
 
 #endif
@@ -191,8 +191,8 @@ typedef struct {zsint32 x, y, z, w;} Z4DSInt32;
 #		define Z_SINT128_MINIMUM (-Z_SINT128_MAXIMUM - Z_SINT128(1))
 #	else
 #		define Z_SINT128	 Z_SAME
-#		define Z_SINT128_MAXIMUM 0 /* TO BE IMPLEMENTED */
-#		define Z_SINT128_MINIMUM 0 /* TO BE IMPLEMENTED */
+#		define Z_SINT128_MAXIMUM 0 /* TODO */
+#		define Z_SINT128_MINIMUM 0 /* TODO */
 #	endif
 
 #endif
