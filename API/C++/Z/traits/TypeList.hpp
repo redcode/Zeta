@@ -215,7 +215,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 
 #		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
-
 			template <class L, class...		     types	   > using type_list_append	  = typename TypeListAppend	<L, types...	  >::type;
 			template <class L					   > using type_list_first	  = typename TypeListFirst	<L		  >::type;
 			template <class L, UInt			     index	   > using type_list_get	  = typename TypeListGet	<L, index	  >::type;
@@ -232,7 +231,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class L, UInt			     rotation	   > using type_list_rotate_right = typename TypeListRotateRight<L, rotation	  >::type;
 			template <class L, class		     function_model> using type_list_to_function  = typename TypeListToFunction	<L, function_model>::type;
 			template <class L, template <class...> class metafunction  > using type_list_transform	  = typename TypeListTransform	<L, metafunction  >::type;
-
 #		endif
 
 		template <class... A> struct TypeList {
@@ -245,7 +243,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef typename TypeListReverse    <TypeList>::type reverse;
 
 #			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
-
 				template <class...		    types	  > using append       = TypeList<A..., types...>;
 				template <UInt			    index	  > using get	       = typename SelectType<index, A...>::type;
 				template <class...		    types	  > using prepend      = TypeList<types..., A...>;
@@ -257,7 +254,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				template <UInt			    rotation	  > using rotate_right = typename TypeListRotateRight<TypeList, rotation      >::type;
 				template <class			    function_model> using to_function  = typename TypeListToFunction <TypeList, function_model>::type;
 				template <template <class...> class metafunction  > using transform    = typename TypeListTransform  <TypeList, metafunction  >::type;
-
 #			endif
 		};
 	}
