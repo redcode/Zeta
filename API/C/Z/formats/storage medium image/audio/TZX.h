@@ -117,6 +117,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 | 3) Fields common to more than 1 type of block					|
 | ---------------------------------------------					|
 |										|
+| block_size									|
+|   The size (in bytes) of the whole block (without this field).		|
+|										|
 | data										|
 |   Data as in .TAP files.							|
 |										|
@@ -294,35 +297,61 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXDirectRecording;
 
 /* MARK: - ID 16h - C64 ROM Type Data (Added in v1.13, deprecated in v1.20)
-.------------------------------------------------------------------------------.
-| This block was created to support the Commodore 64 standard ROM and similar  |
-| tape blocks. It is made so basically anything that uses two or four pulses   |
-| (which are the same in pairs) per bit can be written with it.		       |
-|									       |
-| Some explanation:							       |
-| - A wave consists of 2 pulses. The structure contains the length of 1 pulse. |
-| - The wave MUST always start with the LOW amplitude, since the C64 can only  |
-|   detect the transition HIGH -> LOW.					       |
-| - If some pulse length is 0 then the whole wave must not be present. This    |
-|    applies to DATA too.						       |
-| - The XOR checksum (if it is set to 0 or 1) is a XOR of all bits in the byte |
-|   XOR-ed with the value in this field as the start value.		       |
-| - Finish Byte waves should be played after each byte EXCEPT last one.	       |
-| - Finish Data waves should be ONLY played after last byte of data.	       |
-| - When all the Data has finished there is an optional Trailer Tone, which is |
-|   standard for the Repeated Blocks in C64 ROM Loader.			       |
-|									       |
-| The replay procedure looks like this:					       |
-| - Pilot Tone								       |
-| - Sync waves								       |
-| - Data Bytes (with XOR and/or Finish Byte waves)			       |
-| - Finish Data pulses							       |
-| - Trailing Tone							       |
-'-----------------------------------------------------------------------------*/
+.-------------------------------------------------------------------------------.
+| This block was created to support the Commodore 64 standard ROM and similar	|
+| tape blocks. It is made so basically anything that uses two or four pulses	|
+| (which are the same in pairs) per bit can be written with it.			|
+|										|
+| Some explanation:								|
+|										|
+| - A wave consists of 2 pulses. The structure contains the length of 1 pulse.	|
+|										|
+| - The wave MUST always start with the LOW amplitude, since the C64 can only	|
+|   detect the transition HIGH -> LOW.						|
+|										|
+| - If some pulse length is 0 then the whole wave must not be present. This	|
+|   applies to DATA too.							|
+|										|
+| - The XOR checksum (if it is set to 0 or 1) is a XOR of all bits in the byte	|
+|   XOR-ed with the value in this field as the start value.			|
+|										|
+| - Finish Byte waves should be played after each byte EXCEPT last one.		|
+|										|
+| - Finish Data waves should be ONLY played after last byte of data.		|
+|										|
+| - When all the Data has finished there is an optional Trailer Tone, which is	|
+|   standard for the Repeated Blocks in C64 ROM Loader.				|
+|										|
+| The replay procedure looks like this:						|
+| 1) Pilot Tone									|
+| 2) Sync waves									|
+| 3) Data Bytes (with XOR and/or Finish Byte waves)				|
+| 4) Finish Data pulses								|
+| 5) Trailing Tone								|
+'------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 block_size; /* without this field */
-	/* TO DO */
+	zuint32 block_size;
+	zuint16 cycles_per_pilot_pulse;		   /*  [616] */
+	zuint16 pilot_wave_count;
+	zuint16 cycles_per_sync_low_pulse;	   /* [1176] */
+	zuint16 cycles_per_sync_high_pulse;	   /*  [896] */
+	zuint16 cycles_per_bit_0_low_pulse;	   /*  [616] */
+	zuint16 cycles_per_bit_0_high_pulse;	   /*  [896] */
+	zuint16 cycles_per_bit_1_low_pulse;	   /*  [896] */
+	zuint16 cycles_per_bit_1_high_pulse;	   /*  [616] */
+	zuint8	xor_checksum_bit;
+	zuint16 cycles_per_finish_byte_low_pulse;  /* [1176] */
+	zuint16 cycles_per_finish_byte_high_pulse; /*  [896] */
+	zuint16 cycles_per_finish_data_low_pulse;  /* [1176] */
+	zuint16 cycles_per_finish_data_high_pulse; /*  [616] */
+	zuint16 cycles_per_trailing_tone_pulse;	   /*  [616] */
+	zuint16 trailing_tone_wave_count;
+	zuint8	last_byte_bit_count;
+	zuint8	general_purpose;
+	zuint16 pause_duration_ms;
+	zuint8	data_size[3];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXC64ROMTypeData;
 
 /* MARK: - ID 17h - C64 Turbo Tape Data (Added in v1.13, deprecated in v1.20)
