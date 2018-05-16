@@ -312,12 +312,12 @@ Z_DEFINE_STRICT_STRUCTURE (
 | - The XOR checksum (if applicable) is a XOR of all bits in the byte XOR-ed	|
 |   with the value in this field as the start value.				|
 |										|
-| - Finish Byte waves should be played after each byte EXCEPT last one.		|
+| - Finish byte waves should be played after each byte EXCEPT last one.		|
 |										|
-| - Finish Data waves should be ONLY played after last byte of data.		|
+| - Finish data waves should be ONLY played after last byte of data.		|
 |										|
-| - When all the Data has finished there is an optional Trailer Tone, which is	|
-|   standard for the Repeated Blocks in Commodore 64 ROM Loader.		|
+| - When all the data has finished there is an optional trailing tone, which is	|
+|   standard for the repeated blocks in the Commodore 64 ROM Loader.		|
 |										|
 | - The numbers in brackets [] are the values of the Commodore 64 ROM loader.	|
 |										|
@@ -328,7 +328,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 | 3) For each byte in data:							|
 |    1) x8 bit waves (1 wave for each bit of the byte)				|
 |    2) x1 XOR wave (optional)							|
-|    3) x1 finish byte wave							|
+|    3) x1 finish byte wave (except in the last byte)				|
 | 4) x1 finish data wave							|
 | 5) Trailing tone (optional)							|
 '------------------------------------------------------------------------------*/
