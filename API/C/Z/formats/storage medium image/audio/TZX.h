@@ -282,14 +282,14 @@ Z_DEFINE_STRICT_STRUCTURE (
 | the size of the equivalent VOC.						|
 |										|
 | The preferred sampling frequencies are 22050 or 44100 Hz			|
-| (158 or 79 cycles per sample).						|
+| (158 or 79 cycles per pulse).							|
 |										|
 | Please, if you can, don't use other sampling frequencies and only use this	|
 | block if you can not use any other one.					|
 '------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 cycles_per_sample;
+	zuint16 cycles_per_pulse;
 	zuint16 pause_duration_ms;
 	zuint8	last_byte_bit_count;
 	zuint8	data_size[3];
@@ -304,30 +304,33 @@ Z_DEFINE_STRICT_STRUCTURE (
 |										|
 | Some explanation:								|
 |										|
-| - A wave consists of 2 pulses. The structure contains the length of 1 pulse.	|
+| - A wave consists of 2 pulses: first LOW then HIGH.				|
 |										|
-| - The wave MUST always start with the LOW amplitude, since the C64 can only	|
-|   detect the transition HIGH -> LOW.						|
+| - If the cycles of any pulse are 0 then the wave must be skipped.		|
+|   This applies to DATA too.							|
 |										|
-| - If some pulse length is 0 then the whole wave must not be present. This	|
-|   applies to DATA too.							|
-|										|
-| - The XOR checksum (if it is set to 0 or 1) is a XOR of all bits in the byte	|
-|   XOR-ed with the value in this field as the start value.			|
+| - The XOR checksum (if applicable) is a XOR of all bits in the byte XOR-ed	|
+|   with the value in this field as the start value.				|
 |										|
 | - Finish Byte waves should be played after each byte EXCEPT last one.		|
 |										|
 | - Finish Data waves should be ONLY played after last byte of data.		|
 |										|
 | - When all the Data has finished there is an optional Trailer Tone, which is	|
-|   standard for the Repeated Blocks in C64 ROM Loader.				|
+|   standard for the Repeated Blocks in Commodore 64 ROM Loader.		|
+|										|
+| - The numbers in brackets [] are the values of the Commodore 64 ROM loader.	|
 |										|
 | The replay procedure looks like this:						|
+|										|
 | 1) Pilot Tone									|
 | 2) Sync waves									|
-| 3) Data Bytes (with XOR and/or Finish Byte waves)				|
-| 4) Finish Data pulses								|
-| 5) Trailing Tone								|
+| 3) For each byte in data:							|
+|    1) x8 bit waves (1 wave for each bit of the byte)				|
+|    2) x1 XOR wave (optional)							|
+|    3) x1 finish byte wave							|
+| 4) x1 finish data wave							|
+| 5) Trailing tone (optional)							|
 '------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
@@ -348,28 +351,55 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 cycles_per_trailing_tone_pulse;	   /*  [616] */
 	zuint16 trailing_tone_wave_count;
 	zuint8	last_byte_bit_count;
-	zuint8	general_purpose;
+	zuint8	data_endianness;
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXC64ROMTypeData;
 
+#define Z_TZX_C64_XOR_CHECKSUM_BIT_START_WITH_0 0x00
+#define Z_TZX_C64_XOR_CHECKSUM_BIT_START_WITH_1 0x01
+#define Z_TZX_C64_XOR_CHECKSUM_BIT_NONE		0xFF
+
+#define Z_TZX_C64_DATA_ENDIANNESS_LITTLE 0x00
+#define Z_TZX_C64_DATA_ENDIANNESS_BIG	 0x01
+
 /* MARK: - ID 17h - C64 Turbo Tape Data (Added in v1.13, deprecated in v1.20)
-.------------------------------------------------------------------------------.
-| This block is made to support another type of encoding that is commonly used |
-| by the C64. Most of the commercial software uses this type of encoding, i.e. |
-| the pilot tone is not made from one type of wave only, but it is made from   |
-| actual data byte which is repeated many times. As the sync value another,    |
-| different, data byte is sent to signal the start of the data. The data bits  |
-| are made from ONE wave only and there is NO XOR checksum either! Trailing    |
-| byte is played AFTER the DATA has ended.				       |
-'-----------------------------------------------------------------------------*/
+.-------------------------------------------------------------------------------.
+| This block is made to support another type of encoding that is commonly used	|
+| by the Commodore 64. Most of the commercial software uses this encoding, i.e. |
+| the pilot tone is not made from one type of wave only, but it is made from	|
+| actual data byte which is repeated many times. As the sync value another,	|
+| different, data byte is sent to signal the start of the data. The data bits	|
+| are made from ONE wave only and there is NO XOR checksum either! Trailing	|
+| byte is played AFTER the DATA has ended.					|
+'------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 block_size; /* without this field */
-	/* TO DO */
+	zuint32 block_size;
+	zuint16 cycles_per_bit_0_pulse;
+	zuint16 cycles_per_bit_1_pulse;
+
+	struct {Z_BIT_FIELD(8, 4) (
+		zuint8 unused	:4,
+		zuint8 position	:1,
+		zuint8 value	:1,
+		zuint8 count	:3
+	)} padding_bits;
+
+	zuint16 pilot_byte_count;
+	zuint8	pilot_byte;
+	zuint8	last_byte_bit_count;
+	zuint8	data_endianness;
+	zuint16 trailing_byte_count;
+	zuint8	trailing_byte;
+	zuint16 pause_duration_ms;
+	zuint8	data_size[3];
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXC64TurboTapeData;
 
+#define Z_TZX_C64_PADDING_BITS_POSITION_BEFORE 0
+#define Z_TZX_C64_PADDING_BITS_POSITION_AFTER  1
 
 /* MARK: - ID 18h - CSW Recording (Added in v1.20)
 .----------------------------------------------------.
