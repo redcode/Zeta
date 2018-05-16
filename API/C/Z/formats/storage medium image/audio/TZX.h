@@ -391,7 +391,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 cycles_per_bit_1_pulse;
 
 	struct {Z_BIT_FIELD(8, 4) (
-		zuint8 unused	:4,
+		zuint8 unused	:3,
 		zuint8 position	:1,
 		zuint8 value	:1,
 		zuint8 count	:3
