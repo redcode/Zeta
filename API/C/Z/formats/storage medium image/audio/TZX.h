@@ -446,18 +446,18 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
 
 /* MARK: - ID 19h - Generalized Data (Added in v1.20)
-.-----------------------------------------------------------------------------.
-| This block has been specifically developed to represent an extremely wide   |
-| range of data encoding techniques. The basic idea is that each loading      |
-| component (pilot tone, sync pulses, data) is associated to a specific	      |
-| sequence of pulses, where each sequence (wave) can contain a different      |
-| number of pulses from the others. In this way we can have a situation where |
-| bit 0 is represented with 4 pulses and bit 1 with 8 pulses.		      |
-'----------------------------------------------------------------------------*/
+.-------------------------------------------------------------------------------.
+| This block has been specifically developed to represent an extremely wide	|
+| range of data encoding techniques. The basic idea is that each loading	|
+| component (pilot, sync, data) is associated to a specific sequence of pulses, |
+| where each sequence (wave) can contain a different number of pulses from the	|
+| others. In this way we can have a situation where bit 0 is represented with 4 |
+| pulses and bit 1 with 8 pulses.						|
+'------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 block_size; /* without this field */
-	zuint16 pause_after_this_block_ms;
+	zuint32 block_size;
+	zuint16 pause_duration_ms;
 	zuint32 symbol_count;
 	zuint8	pulses_per_symbol_maximum;
 
