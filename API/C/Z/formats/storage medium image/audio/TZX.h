@@ -126,6 +126,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 | data_size									|
 |   The size in bytes of the data following this field.				|
 |										|
+| general_purpose.data_bit_order						|
+|   The order in which the bits of the data bytes must be played.		|
+|										|
 | last_byte_bit_count								|
 |   Bits used in the last byte of the data (the remaining ones should be 0).	|
 |   e.g. if this is 6, then the bits used "X" in the last byte are: XXXXXX00,	|
@@ -134,6 +137,11 @@ Released under the terms of the GNU Lesser General Public License v3.
 | pause_duration_ms								|
 |   The duration of the period of silence after block playback in milliseconds	|
 |   (usually 1000).								|
+|										|
+| xor_checksum_bit								|
+|   The XOR checksum (if applicable, i.e. if different than 0xFF) is a XOR of	|
+|   all bits in the data byte XORed with the value in this field as the start	|
+|   value.									|
 '------------------------------------------------------------------------------*/
 
 #ifndef __Z_formats_storage_medium_image_audio_TZX_H__
@@ -302,6 +310,17 @@ Z_DEFINE_STRICT_STRUCTURE (
 | tape blocks. It is made so basically anything that uses two or four pulses	|
 | (which are the same in pairs) per bit can be written with it.			|
 |										|
+| The replay procedure looks like this:						|
+|										|
+| 1) Pilot Tone									|
+| 2) x1 sync wave								|
+| 3) For each byte in data:							|
+|    1) x8 bit waves (1 wave for each bit of the byte)				|
+|    2) x1 XOR wave (optional)							|
+|    3) x1 finish byte wave (except in the last byte)				|
+| 4) x1 finish data wave							|
+| 5) Trailing tone (optional)							|
+|										|
 | Some explanation:								|
 |										|
 | - A wave consists of 2 pulses: first LOW then HIGH.				|
@@ -309,28 +328,14 @@ Z_DEFINE_STRICT_STRUCTURE (
 | - If the cycles of any pulse are 0 then the wave must be skipped.		|
 |   This applies to DATA too.							|
 |										|
-| - The XOR checksum (if applicable) is a XOR of all bits in the byte XOR-ed	|
-|   with the value in this field as the start value.				|
+| - Finish byte wave should be played after each byte EXCEPT last one.		|
 |										|
-| - Finish byte waves should be played after each byte EXCEPT last one.		|
-|										|
-| - Finish data waves should be ONLY played after last byte of data.		|
+| - Finish data wave should be ONLY played after last byte of data.		|
 |										|
 | - When all the data has finished there is an optional trailing tone, which is	|
 |   standard for the repeated blocks in the Commodore 64 ROM Loader.		|
 |										|
 | - The numbers in brackets [] are the values of the Commodore 64 ROM loader.	|
-|										|
-| The replay procedure looks like this:						|
-|										|
-| 1) Pilot Tone									|
-| 2) Sync waves									|
-| 3) For each byte in data:							|
-|    1) x8 bit waves (1 wave for each bit of the byte)				|
-|    2) x1 XOR wave (optional)							|
-|    3) x1 finish byte wave (except in the last byte)				|
-| 4) x1 finish data wave							|
-| 5) Trailing tone (optional)							|
 '------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
@@ -351,7 +356,12 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 cycles_per_trailing_tone_pulse;	   /*  [616] */
 	zuint16 trailing_tone_wave_count;
 	zuint8	last_byte_bit_count;
-	zuint8	data_endianness;
+
+	struct {Z_BIT_FIELD(8, 2) (
+		zuint8 unused	      :7,
+		zuint8 data_bit_order :1
+	)} general_purpose;
+
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
@@ -361,8 +371,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_C64_XOR_CHECKSUM_BIT_START_WITH_1 0x01
 #define Z_TZX_C64_XOR_CHECKSUM_BIT_NONE		0xFF
 
-#define Z_TZX_C64_DATA_ENDIANNESS_LITTLE 0x00
-#define Z_TZX_C64_DATA_ENDIANNESS_BIG	 0x01
+#define Z_TZX_C64_DATA_BIT_ORDER_LSB 0 /* LSB first */
+#define Z_TZX_C64_DATA_BIT_ORDER_MSB 1 /* MSB first */
 
 /* MARK: - ID 17h - C64 Turbo Tape Data (Added in v1.13, deprecated in v1.20)
 .-------------------------------------------------------------------------------.
@@ -390,7 +400,12 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 pilot_byte_count;
 	zuint8	pilot_byte;
 	zuint8	last_byte_bit_count;
-	zuint8	data_endianness;
+
+	struct {Z_BIT_FIELD(8, 2) (
+		zuint8 unused	       :7,
+		zuint8 data_endianness :1
+	)} general_purpose;
+
 	zuint16 trailing_byte_count;
 	zuint8	trailing_byte;
 	zuint16 pause_duration_ms;
