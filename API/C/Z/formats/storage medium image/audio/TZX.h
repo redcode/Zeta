@@ -402,8 +402,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	last_byte_bit_count;
 
 	struct {Z_BIT_FIELD(8, 2) (
-		zuint8 unused	       :7,
-		zuint8 data_endianness :1
+		zuint8 unused	      :7,
+		zuint8 data_bit_order :1
 	)} general_purpose;
 
 	zuint16 trailing_byte_count;
