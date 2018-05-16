@@ -381,8 +381,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 | the pilot tone is not made from one type of wave only, but it is made from	|
 | actual data byte which is repeated many times. As the sync value another,	|
 | different, data byte is sent to signal the start of the data. The data bits	|
-| are made from ONE wave only and there is NO XOR checksum either! Trailing	|
-| byte is played AFTER the DATA has ended.					|
+| are made from ONE wave only and there is NO XOR checksum either. The trailing |
+| byte is played one or more times AFTER the DATA has ended.			|
 '------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
