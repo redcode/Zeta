@@ -434,11 +434,11 @@ Z_DEFINE_STRICT_STRUCTURE (
 '---------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 block_size;  /* without this field */
-	zuint16 pause_after_this_block_ms;
+	zuint32 block_size;
+	zuint16 pause_duration_ms;
 	zuint8	sampling_rate[3];
 	zuint8	compression_type;
-	zuint32 pulse_count;
+	zuint32 pulse_count; /* after decompression, for validation purposes */
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 csw_data[];)
 ) ZTZXCSWRecording;
 
