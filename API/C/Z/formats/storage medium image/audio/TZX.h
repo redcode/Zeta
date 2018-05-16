@@ -320,6 +320,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 |    3) x1 finish byte wave (except in the last byte)				|
 | 4) x1 finish data wave							|
 | 5) Trailing tone (optional)							|
+| 6) Pause									|
 |										|
 | Some explanation:								|
 |										|
@@ -383,6 +384,16 @@ Z_DEFINE_STRICT_STRUCTURE (
 | different, data byte is sent to signal the start of the data. The data bits	|
 | are made from ONE wave only and there is NO XOR checksum either. The trailing |
 | byte is played one or more times AFTER the DATA has ended.			|
+|										|
+| The replay procedure looks like this:						|
+|										|
+| 1) Pilot bytes								|
+| 2) For each byte in data:							|
+|    1) Padding bits (only if padding position is BEFORE)			|
+|    2) x8 bit waves (1 wave for each bit of the byte)				|
+|    3) Padding bits (only if padding position is AFTER)			|
+| 3) Trailing bytes								|
+| 4) Pause									|
 '------------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
