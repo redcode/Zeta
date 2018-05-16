@@ -458,10 +458,12 @@ Z_DEFINE_STRICT_STRUCTURE (
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
 	zuint16 pause_duration_ms;
-	zuint32 symbol_count;
-	zuint8	pulses_per_symbol_maximum;
-
-	/* TO DO */
+	zuint32 pilot_sync_symbol_count;
+	zuint8	pulses_per_pilot_sync_symbol_maximum;
+	zuint8	pilot_sync_symbol_definition_count;
+	zuint32 data_symbol_count;
+	zuint8	pulses_per_data_symbol_maximum;
+	zuint8	data_symbol_definition_count;
 ) ZTZXGeneralizedData;
 
 /*---------------------------------------------------------------------------.
@@ -479,14 +481,14 @@ Z_DEFINE_STRICT_STRUCTURE (
 '---------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 flags;
+	zuint8 polarity;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint16 pulse_durations[];)
 ) ZTZXSymbolDefinition;
 
-#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT	       0
-#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT_NEGATIVE 1
-#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_LOW	       2
-#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_HIGH	       3
+#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_OPPOSITE 0
+#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT  1
+#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_LOW      2
+#define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_HIGH     3
 
 /*----------------------------------------------------------------------------.
 | Most commonly, pilot and sync are repetitions of the same pulse, thus they  |
@@ -514,7 +516,7 @@ Offset	   Value			Description
 |----+-----------------+----------------------------------------------|
 | 06 | 2	       | Total number of symbols in pilot/sync block  |
 |----+-----------------+----------------------------------------------|
-| 0A | 2	       | Max pulses per symbol			      |
+| 0A | 2	       | Maximum pulses per symbol		      |
 |----+-----------------+----------------------------------------------|
 | 0B | 2	       | Number of symbols in pilot/sync alphabet     |
 |----+-----------------+----------------------------------------------|
@@ -534,7 +536,7 @@ Offset	   Value			Description
 | 22 | (0, 855, 855)   | Data symbol definitions		      |
 |    | (0, 1710, 1710) |					      |
 |----+-----------------+----------------------------------------------|
-| 2C | 00000000b (00h) |- Floading flag (00h = header)		      |
+| 2C | 00000000b (00h) |- Loading flag (00h = header)		      |
 |    | 00000011b (03h) |- Data type (03h = "Bytes:")		      |
 |    | 01001010b (4Ah) |\					      |
 |    | 01010000b (50h) | |					      |
