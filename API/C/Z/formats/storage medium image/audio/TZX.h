@@ -8,141 +8,124 @@ Copyright (C) Ramsoft.
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
-.-------------------------------------------------------------------------------.
-| Extensions: tzx, cdt								|
-| Endianness: Little								|
-| Created by: Tomaz Kac								|
-|    Used by: Many programs							|
-|  Reference: http://www.worldofspectrum.org/TZXformat.html			|
-|										|
-| Format revision: v1.20 (2006-12-19)						|
-|										|
-| 1) Introduction								|
-| ---------------								|
-|										|
-|    TZX is a file format designed to preserve all (hopefully) of the tapes	|
-| with turbo or custom loading routines. Even though some of the newer and	|
-| 'smarter' emulators can find most of the info about the loader from the code	|
-| itself, this isn't possible if you want to save the file to tape, or to a	|
-| real Spectrum.								|
-| And with all this information in the file, the emulators don't have to bother	|
-| with finding out the timings and other things.				|
-|										|
-|    This file format is explicitly targeted to the ZX Spectrum compatible	|
-| computers only. Specialized versions of the TZX format have been defined for	|
-| other machines too, e.g. the Amstrad CPC and C64, but they are now available	|
-| as distinct file formats with other filename extensions.			|
-|										|
-|    If you're looking for TZX files, you can find an extensive collection at	|
-| Martijn van der Heide's 'World of Spectrum': http://www.worldofspectrum.org	|
-|										|
-|    The format was first started off by Tomaz Kac who was maintainer until	|
-| revision 1.13, and then passed to Martijn v.d. Heide. After that, Ramsoft	|
-| were the maintainers for a brief period during which the v1.20 revision was	|
-| put together. If you have any questions about the format, visit the forums at	|
-| World of Spectrum and ask.							|
-|										|
-|    The default format file extension is "TZX" and hopefully this won't have	|
-| to change in the future. Amstrad CPC files should use the extension "CDT" to	|
-| distinguish them from the ZX Spectrum files.					|
-|										|
-| 2) Rules and definitions							|
-| ------------------------							|
-|										|
-| - Any value requiring more than one byte is stored in little endian-format.	|
-|										|
-| - All unused bits should be set to zero.					|
-|										|
-| - The timings are given in Z80 clock ticks unless otherwise stated stated.	|
-|   1 T state = (1 / 3500000) s							|
-|										|
-| - All ASCII texts use the ISO 8859-1 (Latin 1) encoding; some of them can	|
-|   have several lines, which should be separated by ASCII code 13 decimal	|
-|   (0Dh).									|
-|										|
-| - You might interpret 'full-period' as ----____ or ____----, and		|
-|   'half-period' as ---- or ____. One 'half-period' will also be referred to	|
-|   as a 'pulse'.								|
-|										|
-| - The values in curly brackets {} are the default values that are used in the	|
-|   Spectrum ROM saving routines. These values are in decimal.			|
-|										|
-| - If there is no pause between two data blocks then the second one should	|
-|   follow immediately; not even so much as one T state between them.		|
-|										|
-| - This document refers to 'high' and 'low' pulse levels. Whether this is	|
-|   implemented as EAR=1 and EAR=0 respectively or the other way around is not	|
-|   important, as long as it is done consistently.				|
-|										|
-| - Zeros and ones in 'Direct recording' blocks mean low and high pulse levels	|
-|   respectively. The 'current pulse level' after playing a Direct Recording	|
-|   block of CSW recording block is the last level played.			|
-|										|
-| - The 'current pulse level' after playing the blocks ID 10,11,12,13,14 or 19	|
-|   is the opposite of the last pulse level played, so that a subsequent pulse	|
-|   will produce an edge.							|
-|										|
-| - A 'Pause' block consists of a 'low' pulse level of some duration.		|
-|   To ensure that the last edge produced is properly finished there should be	|
-|   at least 1ms pause of the opposite level and only after that the pulse	|
-|   should go to 'low'. At the end of a 'Pause' block the 'current pulse level'	|
-|   is low (note that the first pulse will therefore not immediately produce an	|
-|   edge). A 'Pause' block of zero duration is completely ignored, so the	|
-|   'current pulse level' will NOT change in this case. This also applies to	|
-|   'Data' blocks that have some pause duration included in them.		|
-|										|
-| - An emulator should put the 'current pulse level' to 'low' when starting to	|
-|   play a TZX file, either from the start or from a certain position. The	|
-|   writer of a TZX file should ensure that the 'current pulse level' is	|
-|   well-defined in every sequence of blocks where this is important, i.e. in	|
-|   any sequence that includes a 'Direct recording' block, or that depends on	|
-|   edges generated by 'Pause' blocks. The recommended way of doing this is to	|
-|   include a Pause after each sequence of blocks.				|
-|										|
-| - When creating a 'Direct recording' block please stick to the standard	|
-|   sampling frequencies of 22050 or 44100 Hz. This will ensure correct		|
-|   playback when using modern soundcards.					|
-|										|
-| - The length of a block is given in the following format: numbers in square	|
-|   brackets [] mean that the value must be read from the offset in the		|
-|   brackets. Other values are normal numbers.					|
-|   Example: [02,03]+0A means: get number (16bit) from offset 02 and add 0A.	|
-|   All numbers are in hexadecimal.						|
-|										|
-| - General Extension Rule: ALL custom blocks that will be added after v1.10	|
-|   will have the length of the block in first 4 bytes (long word) after the ID	|
-|   (this length does not include these 4 length bytes). This should enable	|
-|   programs that can only handle older versions to skip that block.		|
-|										|
-| 3) Fields common to more than 1 type of block					|
-| ---------------------------------------------					|
-|										|
-| block_size									|
-|   The size (in bytes) of the whole block (without this field).		|
-|										|
-| data										|
-|   Data as in .TAP files.							|
-|										|
-| data_size									|
-|   The size in bytes of the data following this field.				|
-|										|
-| general_purpose.data_bit_order						|
-|   The order in which the bits of the data bytes must be played.		|
-|										|
-| last_byte_bit_count								|
-|   Bits used in the last byte of the data (the remaining ones should be 0).	|
-|   e.g. if this is 6, then the bits used "X" in the last byte are: XXXXXX00,	|
-|   where MSb is the leftmost bit and LSb is the rightmost bit.			|
-|										|
-| pause_duration_ms								|
-|   The duration of the period of silence after block playback in milliseconds	|
-|   (usually 1000).								|
-|										|
-| xor_checksum_bit								|
-|   The XOR checksum (if applicable, i.e. if different than 0xFF) is a XOR of	|
-|   all bits in the data byte XORed with the value in this field as the start	|
-|   value.									|
-'------------------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| Extensions: tzx, cdt							       |
+| Endianness: Little							       |
+| Created by: Tomaz Kac							       |
+|    Used by: Many programs						       |
+|  Reference: http://www.worldofspectrum.org/TZXformat.html		       |
+|									       |
+| Format revision: v1.20 (2006-12-19)					       |
+|									       |
+| 1) Introduction							       |
+| ---------------							       |
+|									       |
+| TZX is a file format designed to preserve all (hopefully) of the tapes with  |
+| turbo or custom loading routines. Even though some of the newer and smarter  |
+| emulators can find most of the information about the loader from the code    |
+| itself, this isn't possible if you want to save the file to tape, or to a    |
+| real ZX Spectrum. With all this information in the file, the emulators don't |
+| have to bother with finding out the timings and other things.		       |
+|									       |
+| This file format is explicitly targeted to the ZX Spectrum compatible	       |
+| computers only. Specialized versions of the TZX format have been defined for |
+| other machines too, e.g. the Amstrad CPC and Commodore 64, but they are now  |
+| available as distinct file formats with other filename extensions.	       |
+|									       |
+| If you're looking for TZX files, you can find an extensive collection at     |
+| Martijn van der Heide's 'World of Spectrum': http://www.worldofspectrum.org  |
+|									       |
+| The format was first started off by Tomaz Kac who was maintainer until       |
+| revision 1.13, and then passed to Martijn v.d. Heide. After that, Ramsoft    |
+| were the maintainers for a brief period during which the v1.20 revision was  |
+| put together. If you have any questions about the format, visit the forums   |
+| at World of Spectrum and ask.						       |
+|									       |
+| The default format file extension is "TZX" and hopefully this won't have to  |
+| change in the future. Amstrad CPC files should use the extension "CDT" to    |
+| distinguish them from the ZX Spectrum files.				       |
+|									       |
+| 2) Rules and definitions						       |
+| ------------------------						       |
+|									       |
+| - Any value requiring more than one byte is stored in little endian-format.  |
+|									       |
+| - All unused bits should be set to zero.				       |
+|									       |
+| - The timings are given in Z80 clock cycles unless otherwise stated.	       |
+|   1 cycle = (1 / 3500000) s						       |
+|									       |
+| - All ASCII texts use the ISO 8859-1 (Latin 1) encoding; some of them can    |
+|   have several lines, which should be separated by ASCII code 0Dh.	       |
+|									       |
+| - You might interpret 'wave' as --__ or __--, and 'pulse' as -- or __.       |
+|									       |
+| - The values in brackets are the default values that are used in the ROM     |
+|   routines of the machine. Curly {} for the ZX Spectrum and square [] for    |
+|   the Commodore 64.							       |
+|									       |
+| - If there is no pause between two data blocks then the second one should    |
+|   follow immediately; not even so much as one CPU cycle between them.	       |
+|									       |
+| - This document refers to 'HIGH' and 'LOW' pulse levels. Whether this is     |
+|   implemented as EAR=1 and EAR=0 respectively or the other way around is not |
+|   important, as long as it is done consistently.			       |
+|									       |
+| - The 'current pulse level' after playing the blocks ID 10,11,12,13,14 or 19 |
+|   is the opposite of the last pulse level played, so that a subsequent pulse |
+|   will produce an edge.						       |
+|									       |
+| - A 'Pause' block consists of a LOW pulse level of some duration.	       |
+|   To ensure that the last edge produced is properly finished there should be |
+|   at least 1ms pause of the opposite level and only after that the pulse     |
+|   should go to LOW. At the end of a 'Pause' block the 'current pulse level'  |
+|   is low (note that the first pulse will therefore not immediately produce   |
+|   an edge). A 'Pause' block of zero duration is completely ignored, so the   |
+|   'current pulse level' will NOT change in this case. This also applies to   |
+|   'Data' blocks that have some pause duration included in them.	       |
+|									       |
+| - An emulator should put the 'current pulse level' to LOW when starting to   |
+|   play a TZX file, either from the start or from a certain position. The     |
+|   writer of a TZX file should ensure that the 'current pulse level' is       |
+|   well-defined in every sequence of blocks where this is important, i.e. in  |
+|   any sequence that includes a 'Direct recording' block, or that depends on  |
+|   edges generated by 'Pause' blocks. The recommended way of doing this is to |
+|   include a Pause after each sequence of blocks.			       |
+|									       |
+| - General extension rule: ALL custom blocks that will be added after v1.10   |
+|   will contain the size of the block in the first 4 bytes (this size does    |
+|   not include these 4 bytes). This should enable programs that can only      |
+|   handle older versions to skip that block.				       |
+|									       |
+| 3) Fields common to more than 1 type of block				       |
+| ---------------------------------------------				       |
+|									       |
+| block_size								       |
+|   The size (in bytes) of the whole block (without this field).	       |
+|									       |
+| data									       |
+|   Data as in .TAP files.						       |
+|									       |
+| data_size								       |
+|   The size in bytes of the data following this field.			       |
+|									       |
+| general_purpose.data_bit_order					       |
+|   The order in which the bits of the data bytes must be played.	       |
+|									       |
+| last_byte_bit_count							       |
+|   Bits used in the last byte of the data (the remaining ones should be 0).   |
+|   e.g. if this is 6, then the bits used "X" in the last byte are: XXXXXX00,  |
+|   where MSb is the leftmost bit and LSb is the rightmost bit.		       |
+|									       |
+| pause_duration_ms							       |
+|   The duration of the period of silence after block playback in milliseconds |
+|   (usually 1000).							       |
+|									       |
+| xor_checksum_bit							       |
+|   The XOR checksum (if applicable, i.e. if different than 0xFF) is a XOR of  |
+|   all bits in the data byte XORed with the value in this field as the start  |
+|   value.								       |
+'-----------------------------------------------------------------------------*/
 
 #ifndef __Z_formats_storage_medium_image_audio_TZX_H__
 #define __Z_formats_storage_medium_image_audio_TZX_H__
@@ -150,19 +133,19 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Z/types/base.h>
 
 /* MARK: - File Header
-.-------------------------------------------------------------------------------.
-| The file is identified with the first 8 bytes being 'ZXTape!' plus the EOF	|
-| byte 26 (1Ah). This is followed by two bytes containing the major and minor	|
-| version numbers.								|
-|										|
-| To be able to use a TZX file, your program must be able to handle files of at |
-| least its major version number. If your program can handle (say) version 1.05 |
-| and you encounter a file with version number 1.06, your program must be able	|
-| to handle it, even if it cannot handle all the data in the file.		|
-|										|
-| Then the main body of the file follows. It consists of a mixture of blocks,	|
-| each preceded and identified by an ID byte.					|
-'------------------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| The file is identified with the first 8 bytes being 'ZXTape!' plus the EOF   |
+| byte 26 (1Ah). This is followed by two bytes containing the major and minor  |
+| version numbers.							       |
+|									       |
+| To be able to use a TZX file, your program must be able to handle files of   |
+| at least its major version number. If your program can handle (say) version  |
+| 1.05 and you encounter a file with version number 1.06, your program must be |
+| able to handle it, even if it cannot handle all the data in the file.	       |
+|									       |
+| Then the main body of the file follows. It consists of a mixture of blocks,  |
+| each preceded and identified by an ID byte.				       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 signature[7]; /* 'ZXTape!' */
@@ -206,13 +189,13 @@ typedef zuint8 ZTZXBlockID;
 #define Z_TZX_BLOCK_ID_GLUE		     0x5A
 
 /* MARK: - ID 10h - Standard Speed Data
-.-------------------------------------------------------------------------------.
-| This block must be played using the standard Spectrum ROM timings (see the	|
-| values in curly brackets in block ID 11). The initial pilot tone consists in	|
-| 8063 pulses if the first data byte (flag byte) is < 128, 3223 otherwise.	|
-| This block can be used for the ROM loading routines and for custom loading	|
-| routines that use the same timings as ROM ones do.				|
-'------------------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This block must be played using the standard Spectrum ROM timings (see the   |
+| values in curly brackets in block ID 11). The initial pilot tone consists in |
+| 8063 pulses if the first data byte (flag byte) is < 128, 3223 otherwise.     |
+| This block can be used for the ROM loading routines and for custom loading   |
+| routines that use the same timings as ROM ones do.			       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 pause_duration_ms;
@@ -221,13 +204,13 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXStandardSpeedData;
 
 /* MARK: - ID 11h - Turbo Speed Data
-.-------------------------------------------------------------------------------.
-| This block is very similar to the normal TAP block but with some additional	|
-| information on the timings and other important differences. The same tape	|
-| encoding is used as for the standard speed data block. If a block should use	|
-| some non-standard sync or pilot tones (i.e. all sorts of protection schemes)	|
-| then use the next three blocks to describe it.				|
-'------------------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This block is very similar to the normal TAP block but with some additional  |
+| information on the timings and other important differences. The same tape    |
+| encoding is used as for the standard speed data block. If a block should use |
+| some non-standard sync or pilot tones (i.e. all sorts of protection schemes) |
+| then use the next three blocks to describe it.			       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 cycles_per_pilot_pulse;	    /* {2168} */
@@ -243,11 +226,11 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXTurboSpeedData;
 
 /* MARK: - ID 12h - Pure Tone
-.-------------------------------------------------------------------------------.
-| This will produce a tone which is basically the same as the pilot tone in the |
-| ID 10, ID 11 blocks. You can define how long the pulse is and how many pulses |
-| are in the tone.								|
-'------------------------------------------------------------------------------*/
+.----------------------------------------------------------------------------.
+| This will produce a tone which is basically the same as the pilot tone in  |
+| the ID 10, ID 11 blocks. You can define how long the pulse is and how many |
+| pulses are in the tone.						     |
+'---------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 cycles_per_pulse;
@@ -255,11 +238,11 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXPureTone;
 
 /* MARK: - ID 13h - Pulse Sequence
-.-------------------------------------------------------------------------------.
-| This will produce N pulses, each having its own timing. Up to 255 pulses can	|
-| be stored in this block; this is useful for non-standard sync tones used by	|
-| some protection schemes.							|
-'------------------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This will produce N pulses, each having its own timing. Up to 255 pulses can |
+| be stored in this block; this is useful for non-standard sync tones used by  |
+| some protection schemes.						       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 pulse_count;
@@ -267,10 +250,10 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXPulseSequence;
 
 /* MARK: - ID 14h - Pure Data
-.-------------------------------------------------------------------------------.
-| This is the same as in the turbo loading data block (ID 11h), except that it	|
-| has no pilot or sync pulses.							|
-'------------------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This is the same as in the turbo loading data block (ID 11h), except that it |
+| has no pilot or sync pulses.						       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 cycles_per_bit_0_pulse;
@@ -282,19 +265,23 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXPureData;
 
 /* MARK: - ID 15h - Direct Recording
-.-------------------------------------------------------------------------------.
-| This block is used for tapes which have some parts in a format such that the	|
-| turbo loader block cannot be used. This is not like a VOC file, since the	|
-| information is much more compact. Each sample value is represented by one bit |
-| only (0 for low, 1 for high) which means that the block will be at most 1/8	|
-| the size of the equivalent VOC.						|
-|										|
-| The preferred sampling frequencies are 22050 or 44100 Hz			|
-| (158 or 79 cycles per pulse).							|
-|										|
-| Please, if you can, don't use other sampling frequencies and only use this	|
-| block if you can not use any other one.					|
-'------------------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This block is used for tapes which have some parts in a format such that the |
+| turbo loader block cannot be used. This is not like a VOC file, since the    |
+| information is much more compact. Each sample value is represented by one    |
+| bit only (0 for LOW, 1 for HIGH) which means that the block will be at most  |
+| 1/8 the size of the equivalent VOC.					       |
+|									       |
+| The 'current pulse level' after playing this type of block is the last level |
+| played.								       |
+|									       |
+| When creating a block of this type please stick to the standard sampling     |
+| frequencies of 22050 or 44100 Hz (158 or 79 cycles per pulse). This will     |
+| ensure correct playback when using modern soundcards.			       |
+|									       |
+| If you can, don't use other sampling frequencies and only use this block if  |
+| you can not use any other one.					       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 cycles_per_pulse;
@@ -305,39 +292,37 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXDirectRecording;
 
 /* MARK: - ID 16h - C64 ROM Type Data (Added in v1.13, deprecated in v1.20)
-.-------------------------------------------------------------------------------.
-| This block was created to support the Commodore 64 standard ROM and similar	|
-| tape blocks. It is made so basically anything that uses two or four pulses	|
-| (which are the same in pairs) per bit can be written with it.			|
-|										|
-| The replay procedure looks like this:						|
-|										|
-| 1) Pilot Tone									|
-| 2) x1 sync wave								|
-| 3) For each byte in data:							|
-|    1) x8 bit waves (1 wave for each bit of the byte)				|
-|    2) x1 XOR wave (optional)							|
-|    3) x1 finish byte wave (except in the last byte)				|
-| 4) x1 finish data wave							|
-| 5) Trailing tone (optional)							|
-| 6) Pause									|
-|										|
-| Some explanation:								|
-|										|
-| - A wave consists of 2 pulses: first LOW then HIGH.				|
-|										|
-| - If the cycles of any pulse are 0 then the wave must be skipped.		|
-|   This applies to DATA too.							|
-|										|
-| - Finish byte wave should be played after each byte EXCEPT last one.		|
-|										|
-| - Finish data wave should be ONLY played after last byte of data.		|
-|										|
-| - When all the data has finished there is an optional trailing tone, which is	|
-|   standard for the repeated blocks in the Commodore 64 ROM Loader.		|
-|										|
-| - The numbers in brackets [] are the values of the Commodore 64 ROM loader.	|
-'------------------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This block was created to support the Commodore 64 standard ROM and similar  |
+| tape blocks. It is made so basically anything that uses two or four pulses   |
+| (which are the same in pairs) per bit can be written with it.		       |
+|									       |
+| The replay procedure looks like this:					       |
+|									       |
+| 1) Pilot Tone								       |
+| 2) x1 sync wave							       |
+| 3) For each byte in data:						       |
+|    1) x8 bit waves (1 wave for each bit of the byte)			       |
+|    2) x1 XOR wave (optional)						       |
+|    3) x1 finish byte wave (except in the last byte)			       |
+| 4) x1 finish data wave						       |
+| 5) Trailing tone (optional)						       |
+| 6) Pause								       |
+|									       |
+| Some explanation:							       |
+|									       |
+| - A wave consists of 2 pulses: first LOW then HIGH.			       |
+|									       |
+| - If the cycles of any pulse are 0 then the wave must be skipped.	       |
+|   This applies to DATA too.						       |
+|									       |
+| - Finish byte wave should be played after each byte EXCEPT last one.	       |
+|									       |
+| - Finish data wave should be ONLY played after last byte of data.	       |
+|									       |
+| - When all the data has finished there is an optional trailing tone, which   |
+|   is standard for the repeated blocks in the Commodore 64 ROM Loader.	       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
@@ -376,25 +361,25 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_C64_DATA_BIT_ORDER_MSB 1 /* MSB first */
 
 /* MARK: - ID 17h - C64 Turbo Tape Data (Added in v1.13, deprecated in v1.20)
-.-------------------------------------------------------------------------------.
-| This block is made to support another type of encoding that is commonly used	|
-| by the Commodore 64. Most of the commercial software uses this encoding, i.e. |
-| the pilot tone is not made from one type of wave only, but it is made from	|
-| actual data byte which is repeated many times. As the sync value another,	|
-| different, data byte is sent to signal the start of the data. The data bits	|
-| are made from ONE wave only and there is NO XOR checksum either. The trailing |
-| byte is played one or more times AFTER the DATA has ended.			|
-|										|
-| The replay procedure looks like this:						|
-|										|
-| 1) Pilot bytes								|
-| 2) For each byte in data:							|
-|    1) Padding bits (only if padding position is BEFORE)			|
-|    2) x8 bit waves (1 wave for each bit of the byte)				|
-|    3) Padding bits (only if padding position is AFTER)			|
-| 3) Trailing bytes								|
-| 4) Pause									|
-'------------------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This block is made to support another type of encoding that is commonly used |
+| by the Commodore 64. Most of the commercial software uses this encoding,     |
+| i.e. the pilot tone is not made from one type of wave only, but it is made   |
+| from actual data byte which is repeated many times. As the sync value	       |
+| another, different, data byte is sent to signal the start of the data. The   |
+| data bits are made from ONE wave only and there is NO XOR checksum either.   |
+| The trailing byte is played one or more times AFTER the DATA has ended.      |
+|									       |
+| The replay procedure looks like this:					       |
+|									       |
+| 1) Pilot bytes							       |
+| 2) For each byte in data:						       |
+|    1) Padding bits (only if padding position is BEFORE)		       |
+|    2) x8 bit waves (1 wave for each bit of the byte)			       |
+|    3) Padding bits (only if padding position is AFTER)		       |
+| 3) Trailing bytes							       |
+| 4) Pause								       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
@@ -428,10 +413,13 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_C64_PADDING_BITS_POSITION_AFTER  1
 
 /* MARK: - ID 18h - CSW Recording (Added in v1.20)
-.----------------------------------------------------.
-| This block contains a sequence of raw pulses	     |
-| encoded in CSW format v2 (Compressed Square Wave). |
-'---------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This block contains a sequence of raw pulses encoded in CSW format v2. See   |
+| details of this format in <Z/formats/audio/CSW.h>			       |
+|									       |
+| The 'current pulse level' after playing this type of block is the last level |
+| played.								       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
@@ -446,14 +434,14 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
 
 /* MARK: - ID 19h - Generalized Data (Added in v1.20)
-.-------------------------------------------------------------------------------.
-| This block has been specifically developed to represent an extremely wide	|
-| range of data encoding techniques. The basic idea is that each loading	|
-| component (pilot, sync, data) is associated to a specific sequence of pulses, |
-| where each sequence (wave) can contain a different number of pulses from the	|
-| others. In this way we can have a situation where bit 0 is represented with 4 |
-| pulses and bit 1 with 8 pulses.						|
-'------------------------------------------------------------------------------*/
+.-----------------------------------------------------------------------------.
+| This block has been specifically developed to represent an extremely wide   |
+| range of data encoding techniques. The basic idea is that each loading      |
+| component (pilot tone, sync, data) is associated to a specific sequence of  |
+| pulses, where each sequence (wave) can contain a different number of pulses |
+| from the others. e.g. we can represent bit 0 with 4 pulses and bit 1 with 8 |
+| pulses.								      |
+'----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
@@ -464,21 +452,24 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 data_symbol_count;
 	zuint8	pulses_per_data_symbol_maximum;
 	zuint8	data_symbol_definition_count;
+	/* Pilot/sync symbols definition table */
+	/* Pilot/sync stream		       */
+	/* Data symbols definition table       */
+	/* Data stream			       */
 ) ZTZXGeneralizedData;
 
-/*---------------------------------------------------------------------------.
-| The alphabet is stored using a table where each symbol is a row of pulses. |
-| The number of columns (i.e. pulses) of the table is the length of the	     |
-| longest sequence amongst all (MAXP = NPP or NPD, for pilot/sync or data    |
-| blocks respectively); shorter waves are terminated by a zero-length pulse  |
-| in the sequence.							     |
-|									     |
-| Any number of data symbols is allowed, so we can have more than two	     |
-| distinct waves; for example, imagine a loader which writes two bits at a   |
-| time by encoding them with four distinct pulse lengths: this loader would  |
-| have an alphabet of four symbols, each associated to a specific sequence   |
-| of pulses (wave).							     |
-'---------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------.
+| The symbols definition table is stored using a table where each symbol is a  |
+| row of pulses. The number of columns (i.e. pulses) of the table is the       |
+| maximum number of pulses per symbol (amongst pilot/sync and data symbols);   |
+| shorter waves are terminated by a zero-length pulse in the sequence.	       |
+|									       |
+| Any number of data symbols is allowed, so we can have more than two distinct |
+| waves; for example, imagine a loader which writes two bits at a time by      |
+| encoding them with four distinct pulse lengths: this loader would have a     |
+| symbols definition table of four symbols, each associated to a specific      |
+| sequence of pulses (wave).						       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 polarity;
