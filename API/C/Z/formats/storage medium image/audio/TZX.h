@@ -175,7 +175,7 @@ typedef zuint8 ZTZXBlockID;
 #define Z_TZX_BLOCK_ID_LOOP_START	     0x24 /* Added in v1.10 */
 #define Z_TZX_BLOCK_ID_LOOP_END		     0x25 /* Added in v1.10 */
 #define Z_TZX_BLOCK_ID_CALL_SEQUENCE	     0x26 /* Added in v1.10 */
-#define Z_TZX_BLOCK_ID_RETURN_FROM_SEQUENCE  0x27 /* Added in v1.10 */
+#define Z_TZX_BLOCK_ID_RETURN		     0x27 /* Added in v1.10 */
 #define Z_TZX_BLOCK_ID_SELECT		     0x28 /* Added in v1.10 */
 #define Z_TZX_BLOCK_ID_STOP_IF_48K	     0x2A
 #define Z_TZX_BLOCK_ID_SET_SIGNAL_LEVEL	     0x2B /* Added in v1.20 */
@@ -637,7 +637,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint16 relative_offsets[];)
 ) ZTZXCallSequence;
 
-/* MARK: - ID 27h - Return from Sequence (Added in v1.10)
+/* MARK: - ID 27h - Return (Added in v1.10)
 .----------------------------------------------------------------------------.
 | This block indicates the end of the Called Sequence. The next block played |
 | will be the block after the last CALL block (or the next Call, if the Call |
