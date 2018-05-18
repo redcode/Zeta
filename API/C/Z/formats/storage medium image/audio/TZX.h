@@ -911,14 +911,14 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXEmulationInformation;
 
 /* MARK: - ID 35h - Custom Information (Added in v1.01, deprecated in v1.20)
-.------------------------------------------------------------------------.
-| This block can be used to save any information you want. For example,	 |
-| it might contain some information written by a utility, extra settings |
-| required by a particular emulator, or even poke data.			 |
-'-----------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This block can be used to save any information you want. For example, it     |
+| might contain some information written by a utility, extra settings required |
+| by a particular emulator, or even poke data.				       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8	ascii_id;
+	zuint8	ascii_id[10];
 	zuint32	data_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXCustomInformation;
@@ -927,7 +927,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 .------------------------------------------------------------------------------.
 | This would enable one to snapshot the prgram at the start and still have all |
 | the tape blocks in the same file. Only .Z80 and .SNA snapshots are supported |
-| for compatibility reasons!.						       |
+| for compatibility reasons!						       |
 | The emulator should take care of that the snapshot is not taken while the    |
 | actual tape loading is taking place (which doesn't do much sense). When an   |
 | emulator encounters the snapshot block it should load it and then continue   |
@@ -956,7 +956,10 @@ Z_DEFINE_STRICT_STRUCTURE (
 '-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 data[9];
+	zuint8 signature[6]; /* 'XTape!' */
+	zuint8 eof_marker;   /* 1Ah	 */
+	zuint8 major_version;
+	zuint8 minor_version;
 ) ZTZXGlue;
 
 #endif /* __Z_formats_storage_medium_image_audio_TZX_H__ */
