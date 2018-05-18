@@ -686,13 +686,13 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 /* MARK: - ID 2Bh - Set Signal Level (Added in v1.20)
 .----------------------------------------------------------------------.
-| This block sets the current signal level to the specified value      |
-| (high or low). It should be used whenever it is necessary to avoid   |
+| This block sets the 'current pulse level' to the specified value     |
+| (HIGH or LOW). It should be used whenever it is necessary to avoid   |
 | any ambiguities, e.g. with custom loaders which are level-sensitive. |
 '---------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 block_size; /* without this field */
+	zuint32 block_size;
 	zuint8	level;
 ) ZTZXSetSignalLevel;
 
