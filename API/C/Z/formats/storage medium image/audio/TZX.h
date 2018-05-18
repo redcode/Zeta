@@ -655,7 +655,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 | Of course, to make some use of it the emulator/utility has to show a menu    |
 | with the selections when it encounters such a block.			       |
 |									       |
-| Please use single line and maximum 30 chars for description texts.	       |
+| Please use single line and maximum 30 characters for description texts.      |
 '-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
@@ -709,7 +709,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 | The description can be up to 255 characters long but please keep it down to  |
 | about 30 so the program can show it in one line (where this is appropriate). |
 |									       |
-| Please use 'Archive Information' block for title, authors, publisher, etc.   |
+| Please use block ID 32h for title, authors, publisher, etc.		       |
 '-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
