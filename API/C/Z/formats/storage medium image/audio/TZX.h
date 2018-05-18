@@ -620,17 +620,17 @@ Z_DEFINE_STRICT_STRUCTURE (
 '-----------------------------------------------------------------------------*/
 
 /* MARK: - ID 26h - Call Sequence (Added in v1.10)
-.----------------------------------------------------------------------------.
-| This block is an analogue of the CALL Subroutine statement. It basically   |
-| executes a sequence of blocks that are somewhere else and then goes back   |
-| to the next block. Because more than one call can be normally used you can |
-| include a list of sequences to be called. The 'nesting' of call blocks is  |
-| also not allowed for the simplicity reasons. You can, of course, use the   |
-| CALL blocks in the LOOP sequences and vice versa. The value is relative    |
-| for the obvious reasons - so that you can add some blocks in the beginning |
-| of the file without disturbing the call values. Please take a look at	     |
-| 'Jump To Block' for reference on the values.				     |
-'---------------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This block is an analogue of the CALL Subroutine statement. It basically     |
+| executes a sequence of blocks that are somewhere else and then goes back to  |
+| the next block. Because more than one call can be normally used you can      |
+| include a list of sequences to be called. The 'nesting' of call blocks is    |
+| also not allowed for the simplicity reasons. You can, of course, use the     |
+| CALL blocks in the LOOP sequences and vice versa. The value is relative for  |
+| the obvious reasons: so that you can add some blocks in the beginning of the |
+| file without disturbing the call values. Please take a look at block ID 23h  |
+| for reference on the values.						       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 count;
