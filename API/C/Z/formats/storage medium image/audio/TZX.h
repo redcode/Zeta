@@ -753,21 +753,21 @@ Z_DEFINE_STRICT_STRUCTURE (
 | If all texts on the tape are in English language then you don't have to      |
 | supply the 'Language' field.						       |
 |									       |
-| The information about what hardware the tape uses is in the 'Hardware Type'  |
-| block, so no need for it here.					       |
+| The information about what hardware the tape uses is in the block ID 33h, so |
+| no need for it here.							       |
 '-----------------------------------------------------------------------------*/
-
-Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 id;
-	zuint8 ascii_size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
-) ZTZXText;
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
 	zuint8	text_count;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 text[];) /* ZTZXText */
 ) ZTZXArchiveInformation;
+
+Z_DEFINE_STRICT_STRUCTURE (
+	zuint8 id;
+	zuint8 ascii_size;
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
+) ZTZXText;
 
 /* MARK: - ID 33h - Hardware Type
 .----------------------------------------------------------------------------.
