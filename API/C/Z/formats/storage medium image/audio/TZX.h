@@ -611,13 +611,13 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXLoopStart;
 
 /* MARK: - ID 25h - Loop End (Added in v1.10)
-.-----------------------------------------------------------------------.
-| This is the same as BASIC's NEXT statement. It means that the utility |
-| should jump back to the start of the loop if it hasn't been run for	|
-| the specified number of times.					|
-|									|
-| This block has no body.						|
-'----------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This is the same as BASIC's NEXT statement. It means that the utility should |
+| jump back to the start of the loop if it hasn't been run for the specified   |
+| number of times.							       |
+|									       |
+| This block has no body.						       |
+'-----------------------------------------------------------------------------*/
 
 /* MARK: - ID 26h - Call Sequence (Added in v1.10)
 .----------------------------------------------------------------------------.
