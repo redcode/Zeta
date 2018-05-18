@@ -434,14 +434,25 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
 
 /* MARK: - ID 19h - Generalized Data (Added in v1.20)
-.-----------------------------------------------------------------------------.
-| This block has been specifically developed to represent an extremely wide   |
-| range of data encoding techniques. The basic idea is that each loading      |
-| component (pilot tone, sync, data) is associated to a specific sequence of  |
-| pulses, where each sequence (wave) can contain a different number of pulses |
-| from the others. e.g. we can represent bit 0 with 4 pulses and bit 1 with 8 |
-| pulses.								      |
-'----------------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This block has been specifically developed to represent an extremely wide    |
+| range of data encoding techniques. The basic idea is that each loading       |
+| component (pilot tone, sync, data) is associated to a specific sequence of   |
+| pulses, where each sequence (wave) can contain a different number of pulses  |
+| from the others. e.g. we can represent bit 0 with 4 pulses and bit 1 with 8  |
+| pulses.								       |
+|									       |
+| The symbols definitions are stored using a table where each symbol is a row  |
+| of pulses. The number of columns (i.e. pulses) of the table is the maximum   |
+| number of pulses per symbol (amongst pilot/sync and data symbols); shorter   |
+| waves are terminated by a zero-length pulse in the sequence.		       |
+|									       |
+| Any number of data symbols is allowed, so we can have more than two distinct |
+| waves; for example, imagine a loader which writes two bits at a time by      |
+| encoding them with four distinct pulse lengths: this loader would have a     |
+| symbols definition table of four symbols, each associated to a specific      |
+| sequence of pulses (wave).						       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
@@ -457,19 +468,6 @@ Z_DEFINE_STRICT_STRUCTURE (
 	/* Data symbols definition table       */
 	/* Data stream			       */
 ) ZTZXGeneralizedData;
-
-/*-----------------------------------------------------------------------------.
-| The symbols definition table is stored using a table where each symbol is a  |
-| row of pulses. The number of columns (i.e. pulses) of the table is the       |
-| maximum number of pulses per symbol (amongst pilot/sync and data symbols);   |
-| shorter waves are terminated by a zero-length pulse in the sequence.	       |
-|									       |
-| Any number of data symbols is allowed, so we can have more than two distinct |
-| waves; for example, imagine a loader which writes two bits at a time by      |
-| encoding them with four distinct pulse lengths: this loader would have a     |
-| symbols definition table of four symbols, each associated to a specific      |
-| sequence of pulses (wave).						       |
-'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 polarity;
@@ -549,12 +547,11 @@ Offset	   Value			Description
 '--------------------------------------------------------------------*/
 
 /* MARK: - ID 20h - Pause (Silence) or 'Stop the Tape' Command
-.------------------------------------------------------------------------.
-| This will make a silence (low amplitude level (0)) for a given time in |
-| milliseconds. If the value is 0 then the emulator or utility should	 |
-| (in effect) STOP THE TAPE, i.e. should not continue loading until the	 |
-| user or emulator requests it.						 |
-'-----------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| This will make a silence (LOW pulses) for a given time. If the duration is 0 |
+| then the emulator or utility should (in effect) STOP THE TAPE, i.e. should   |
+| not continue loading until the user or emulator requests it.		       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 duration_ms;
