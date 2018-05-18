@@ -179,7 +179,7 @@ typedef zuint8 ZTZXBlockID;
 #define Z_TZX_BLOCK_ID_SELECT		     0x28 /* Added in v1.10 */
 #define Z_TZX_BLOCK_ID_STOP_IF_48K	     0x2A
 #define Z_TZX_BLOCK_ID_SET_SIGNAL_LEVEL	     0x2B /* Added in v1.20 */
-#define Z_TZX_BLOCK_ID_DESCRIPTION_TEXT	     0x30
+#define Z_TZX_BLOCK_ID_DESCRIPTION	     0x30
 #define Z_TZX_BLOCK_ID_MESSAGE		     0x31
 #define Z_TZX_BLOCK_ID_ARCHIVE_INFORMATION   0x32
 #define Z_TZX_BLOCK_ID_HARDWARE_TYPE	     0x33
@@ -655,7 +655,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 | Of course, to make some use of it the emulator/utility has to show a menu    |
 | with the selections when it encounters such a block.			       |
 |									       |
-| Please use single line and maximum 30 characters for description texts.      |
+| Please use single line and maximum of 30 characters for description texts.   |
 '-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
@@ -699,7 +699,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_SIGNAL_LEVEL_LOW	0
 #define Z_TZX_SIGNAL_LEVEL_HIGH	1
 
-/* MARK: - ID 30h - Description Text
+/* MARK: - ID 30h - Description
 .------------------------------------------------------------------------------.
 | This is meant to identify parts of the tape, so you know where level 1       |
 | starts, where to rewind to when the game ends, etc. This description is not  |
@@ -715,7 +715,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 ascii_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
-) ZTZXDescriptionText;
+) ZTZXDescription;
 
 /* MARK: - ID 31h - Message
 .----------------------------------------------------------------------------.
@@ -724,16 +724,16 @@ Z_DEFINE_STRICT_STRUCTURE (
 | then the emulator should wait for the user to press a key.		     |
 |									     |
 | The text message should:						     |
-| - stick to a maximum of 30 chars per line;				     |
-| - use single 0x0D (13 decimal) to separate lines;			     |
-| - stick to a maximum of 8 lines.					     |
+| - Stick to a maximum of 30 characters per line.			     |
+| - Stick to a maximum of 8 lines.					     |
+| - Use single 0Dh (13 decimal) to separate lines.			     |
 |									     |
 | If you do not obey these rules, emulators may display your message in any  |
 | way they like.							     |
 '---------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 display_seconds;
+	zuint8 duration_s; /* Seconds */
 	zuint8 ascii_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
 ) ZTZXMessage;
