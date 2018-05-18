@@ -572,7 +572,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 name_size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 name_ascii[];)
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 name[];)
 ) ZTZXGroupStart;
 
 /* MARK: - ID 22h - Group End
@@ -594,7 +594,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 '--------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 relative_offset;
+	zsint16 relative_offset;
 ) ZTZXJump;
 
 /* MARK: - ID 24h - Loop Start (Added in v1.10)
@@ -634,7 +634,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 count;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint16 relative_offsets[];)
+	Z_FLEXIBLE_ARRAY_MEMBER(zsint16 relative_offsets[];)
 ) ZTZXCallSequence;
 
 /* MARK: - ID 27h - Return (Added in v1.10)
@@ -650,24 +650,25 @@ Z_DEFINE_STRICT_STRUCTURE (
 .------------------------------------------------------------------------------.
 | This block is useful when the tape consists of two or more separately	       |
 | loadable parts. With this block, you are able to select one of the parts and |
-| the utility/emulator will start loading from that block. For example you can |
+| the emulator/utility will start loading from that block. For example you can |
 | use it when the game has a separate Trainer or when it is a multiload.       |
 | Of course, to make some use of it the emulator/utility has to show a menu    |
 | with the selections when it encounters such a block.			       |
-| All offsets are relative signed words.				       |
+|									       |
+| Please use single line and maximum 30 chars for description texts.	       |
 '-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 relative_offset;
-	zuint8	description_size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 description_ascii[];)
-) ZTZXSelectItem;
+	zuint32	block_size;
+	zuint8	item_count;
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 items[];) /* ZTZXSelectItem */
+) ZTZXSelect;
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32	block_size;
-	zuint8	selection_count;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 selection[];) /* ZTZXSelectItem */
-) ZTZXSelect;
+	zsint16 relative_offset;
+	zuint8	description_size;
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 description[];)
+) ZTZXSelectItem;
 
 /* MARK: - ID 2Ah - Stop Tape if in 48K Mode
 .----------------------------------------------------------------------------.
