@@ -426,7 +426,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 pause_duration_ms;
 	zuint8	sampling_rate[3];
 	zuint8	compression_type;
-	zuint32 pulse_count; /* after decompression, for validation purposes */
+	zuint32 pulse_count; /* After decompression, for validation purposes */
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 csw_data[];)
 ) ZTZXCSWRecording;
 
@@ -598,16 +598,16 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXJump;
 
 /* MARK: - ID 24h - Loop Start (Added in v1.10)
-.-----------------------------------------------------------------------.
-| If you have a sequence of identical blocks, or of identical groups of |
-| blocks, you can use this block to tell how many times they should be	|
-| repeated. This block is the same as the FOR statement in BASIC.	|
-|									|
-| For simplicity reasons don't nest loop blocks!			|
-'----------------------------------------------------------------------*/
+.------------------------------------------------------------------------------.
+| If you have a sequence of identical blocks or groups of blocks, you can use  |
+| this block to tell how many times they should be repeated. This block is the |
+| same as the FOR statement in BASIC.					       |
+|									       |
+| For simplicity reasons don't nest loop blocks!			       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 count;
+	zuint16 count; /* Greater than 1 */
 ) ZTZXLoopStart;
 
 /* MARK: - ID 25h - Loop End (Added in v1.10)
