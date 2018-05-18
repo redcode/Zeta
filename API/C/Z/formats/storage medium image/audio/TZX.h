@@ -670,17 +670,18 @@ Z_DEFINE_STRICT_STRUCTURE (
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 description[];)
 ) ZTZXSelectItem;
 
-/* MARK: - ID 2Ah - Stop Tape if in 48K Mode
-.----------------------------------------------------------------------------.
-| When this block is encountered, the tape will stop ONLY if the machine is  |
-| an 48K Spectrum. This block is to be used for multiloading games that load |
-| one level at a time in 48K mode, but load the entire tape at once if in    |
-| 128K mode.								     |
-| This block has no body of its own, but follows the extension rule.	     |
-'---------------------------------------------------------------------------*/
+/* MARK: - ID 2Ah - Stop if 48K
+.------------------------------------------------------------------------------.
+| When this block is encountered, the tape will stop ONLY if the machine is a  |
+| 48K ZX Spectrum. This block is to be used for multiloading games that load   |
+| one level at a time in 48K mode, but load the entire tape at once if in 128K |
+| mode.									       |
+|									       |
+| This block has no body of its own, but follows the extension rule.	       |
+'-----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint32 block_size; /* without this field */
+	zuint32 block_size; /* 0 */
 ) ZTZXStopIf48K;
 
 /* MARK: - ID 2Bh - Set Signal Level (Added in v1.20)
