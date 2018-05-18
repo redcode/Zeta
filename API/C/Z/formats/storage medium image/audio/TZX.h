@@ -179,10 +179,10 @@ typedef zuint8 ZTZXBlockID;
 #define Z_TZX_BLOCK_ID_SELECT		     0x28 /* Added in v1.10 */
 #define Z_TZX_BLOCK_ID_STOP_IF_48K	     0x2A
 #define Z_TZX_BLOCK_ID_SET_SIGNAL_LEVEL	     0x2B /* Added in v1.20 */
-#define Z_TZX_BLOCK_ID_DESCRIPTION	     0x30
+#define Z_TZX_BLOCK_ID_SECTION_DESCRIPTION   0x30
 #define Z_TZX_BLOCK_ID_MESSAGE		     0x31
-#define Z_TZX_BLOCK_ID_ARCHIVE_INFORMATION   0x32
-#define Z_TZX_BLOCK_ID_HARDWARE_TYPE	     0x33
+#define Z_TZX_BLOCK_ID_INFORMATION	     0x32
+#define Z_TZX_BLOCK_ID_HARDWARE_INFORMATION  0x33
 #define Z_TZX_BLOCK_ID_EMULATION_INFORMATION 0x34 /* Deprecated in v1.20 */
 #define Z_TZX_BLOCK_ID_CUSTOM_INFORMATION    0x35 /* Added in v1.01, deprecated in v1.20 */
 #define Z_TZX_BLOCK_ID_SNAPSHOT		     0x40 /* Added in v1.10, deprecated in v1.20 */
@@ -699,7 +699,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_SIGNAL_LEVEL_LOW	0
 #define Z_TZX_SIGNAL_LEVEL_HIGH	1
 
-/* MARK: - ID 30h - Description
+/* MARK: - ID 30h - Section Description
 .------------------------------------------------------------------------------.
 | This is meant to identify parts of the tape, so you know where level 1       |
 | starts, where to rewind to when the game ends, etc. This description is not  |
@@ -715,7 +715,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 ascii_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
-) ZTZXDescription;
+) ZTZXSectionDescription;
 
 /* MARK: - ID 31h - Message
 .----------------------------------------------------------------------------.
@@ -738,20 +738,20 @@ Z_DEFINE_STRICT_STRUCTURE (
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
 ) ZTZXMessage;
 
-/* MARK: - ID 32h - Archive Information
+/* MARK: - ID 32h - Information
 .------------------------------------------------------------------------------.
 | Use this block at the beginning of the tape to identify the title of the     |
 | game, author, publisher, year of publication, price (including the	       |
 | currency), type of software (arcade adventure, puzzle, word processor, ...), |
-| protection scheme it uses (Speedlock 1, Alkatraz, ...) and its origin	       |
+| loader/protection scheme it uses (Speedlock 1, Alkatraz, ...) and its origin |
 | (Original, Budget re-release, ...), etc. This block is built in a way that   |
-| allows easy future expansion. The block consists of a series of text	       |
-| strings. Each text has its identification number (which tells us what the    |
-| text means) and then the ASCII text. To make it possible to skip this block, |
-| if needed, the length of the whole block is at the beginning of it.	       |
+| allows easy future expansion. The block consists of a series of fields. Each |
+| one has its identification number (which tells us what the field means) and  |
+| then the ASCII text. To make it possible to skip this block, if needed, the  |
+| length of the whole block is at the beginning of it.			       |
 |									       |
 | If all texts on the tape are in English language then you don't have to      |
-| supply the 'Language' field.						       |
+| supply the language field.						       |
 |									       |
 | The information about what hardware the tape uses is in the block ID 33h, so |
 | no need for it here.							       |
@@ -759,17 +759,28 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint32 block_size;
-	zuint8	text_count;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 text[];) /* ZTZXText */
-) ZTZXArchiveInformation;
+	zuint8	field_count;
+	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 fields[];) /* ZTZXInformationField */
+) ZTZXInformation;
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 id;
 	zuint8 ascii_size;
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ascii[];)
-) ZTZXText;
+) ZTZXInformationField;
 
-/* MARK: - ID 33h - Hardware Type
+#define Z_TZX_INFORMATION_FIELD_FULL_TITLE 0x00
+#define Z_TZX_INFORMATION_FIELD_PUBLISHER  0x01
+#define Z_TZX_INFORMATION_FIELD_AUTHORS	   0x02
+#define Z_TZX_INFORMATION_FIELD_YEAR	   0x03
+#define Z_TZX_INFORMATION_FIELD_LANGUAGE   0x04 /* Added in v1.10 */
+#define Z_TZX_INFORMATION_FIELD_TYPE	   0x05 /* Added in v1.12 */
+#define Z_TZX_INFORMATION_FIELD_PRICE	   0x06 /* Added in v1.12 */
+#define Z_TZX_INFORMATION_FIELD_LOADER	   0x07 /* Added in v1.12 */
+#define Z_TZX_INFORMATION_FIELD_ORIGIN	   0x08 /* Added in v1.12 */
+#define Z_TZX_INFORMATION_FIELD_COMMENT	   0xFF
+
+/* MARK: - ID 33h - Hardware Information
 .----------------------------------------------------------------------------.
 | This blocks contains information about the hardware that the programs on   |
 | this tape use. Please include only machines and hardware for which you are |
@@ -782,10 +793,12 @@ Z_DEFINE_STRICT_STRUCTURE (
 |									     |
 | If you are not sure or you haven't tested a tape on some particular	     |
 | machine/hardware combination then do not include it in the list.	     |
-|									     |
-| The list of hardware types and IDs is somewhat large, and may be found at  |
-| the end of the format description.					     |
 '---------------------------------------------------------------------------*/
+
+Z_DEFINE_STRICT_STRUCTURE (
+	zuint8 hardware_count;
+	Z_FLEXIBLE_ARRAY_MEMBER(ZTZXHardware hardware[];)
+) ZTZXHardwareInformation;
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 type;
@@ -793,15 +806,75 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 compatibility;
 ) ZTZXHardware;
 
+#define Z_TZX_HARDWARE_TYPE_COMPUTER	     0x00
+#define Z_TZX_HARDWARE_TYPE_EXTERNAL_STORAGE 0x01
+#define Z_TZX_HARDWARE_TYPE_MEMORY_ADDON     0x02
+#define Z_TZX_HARDWARE_TYPE_SOUND	     0x03
+#define Z_TZX_HARDWARE_TYPE_JOYSTICK	     0x04
+#define Z_TZX_HARDWARE_TYPE_MICE	     0x05
+#define Z_TZX_HARDWARE_TYPE_OTHER	     0x06
+#define Z_TZX_HARDWARE_TYPE_SERIAL_PORT	     0x07
+#define Z_TZX_HARDWARE_TYPE_PARALLEL_PORT    0x08
+#define Z_TZX_HARDWARE_TYPE_PRINTER	     0x09
+#define Z_TZX_HARDWARE_TYPE_MODEM	     0x0A
+#define Z_TZX_HARDWARE_TYPE_DIGITIZER	     0x0B
+#define Z_TZX_HARDWARE_TYPE_NETWORK_ADAPTER  0x0C
+#define Z_TZX_HARDWARE_TYPE_KEYBOARD	     0x0D
+#define Z_TZX_HARDWARE_TYPE_ADC_DAC	     0x0E
+#define Z_TZX_HARDWARE_TYPE_EPROM_PROGRAMMER 0x0F
+#define Z_TZX_HARDWARE_TYPE_GRAPHICS	     0x10
+
+#define Z_TZX_HARDWARE_ID_ZX_SPECTRUM_16K		 0x00
+#define Z_TZX_HARDWARE_ID_ZX_SPECTRUM_48K_PLUS		 0x01
+#define Z_TZX_HARDWARE_ID_ZX_SPECTRUM_48K_ISSUE_1	 0x02
+#define Z_TZX_HARDWARE_ID_ZX_SPECTRUM_PLUS_128K_SINCLAIR 0x03
+#define Z_TZX_HARDWARE_ID_ZX_SPECTRUM_PLUS_2		 0x04
+#define Z_TZX_HARDWARE_ID_ZX_SPECTRUM_PLUS_2A_PLUS_3	 0x05
+#define Z_TZX_HARDWARE_ID_TIMEX_SINCLAIR_2048		 0x06
+#define Z_TZX_HARDWARE_ID_TIMEX_SINCLAIR_2068		 0x07
+#define Z_TZX_HARDWARE_ID_PENTAGON_128			 0x08
+#define Z_TZX_HARDWARE_ID_SAM_COUPE			 0x09
+#define Z_TZX_HARDWARE_ID_DIDAKTIK_M			 0x0A
+#define Z_TZX_HARDWARE_ID_DIDAKTIK_GAMA			 0x0B
+#define Z_TZX_HARDWARE_ID_ZX80				 0x0C
+#define Z_TZX_HARDWARE_ID_ZX81				 0x0D
+#define Z_TZX_HARDWARE_ID_ZX_SPECTRUM_PLUS_128K_ES	 0x0E
+#define Z_TZX_HARDWARE_ID_ZX_SPECTRUM_PLUS_2_AR		 0x0F
+#define Z_TZX_HARDWARE_ID_MICRODIGITAL_TK_90X		 0x10
+#define Z_TZX_HARDWARE_ID_MICRODIGITAL_TK_95		 0x11
+#define Z_TZX_HARDWARE_ID_BAJT				 0x12
+#define Z_TZX_HARDWARE_ID_ELWRO_800_3_JUNIOR		 0x13
+#define Z_TZX_HARDWARE_ID_SCORPION_ZS_256		 0x14
+#define Z_TZX_HARDWARE_ID_CPC_464			 0x15 /* Added in v1.02 */
+#define Z_TZX_HARDWARE_ID_CPC_664			 0x16 /* Added in v1.02 */
+#define Z_TZX_HARDWARE_ID_CPC_6128			 0x17 /* Added in v1.02 */
+#define Z_TZX_HARDWARE_ID_CPC_464_PLUS			 0x18 /* Added in v1.02 */
+#define Z_TZX_HARDWARE_ID_CPC_6128_PLUS			 0x19 /* Added in v1.02 */
+#define Z_TZX_HARDWARE_ID_JUPITER_ACE			 0x1A /* Added in v1.12 */
+#define Z_TZX_HARDWARE_ID_ENTERPRISE			 0x1B /* Added in v1.12 */
+#define Z_TZX_HARDWARE_ID_COMMODORE_64			 0x1C /* Added in v1.13 */
+#define Z_TZX_HARDWARE_ID_COMMODORE_128			 0x1D /* Added in v1.13 */
+#define Z_TZX_HARDWARE_ID_INVES_SPECTRUM_PLUS		 0x1E /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_PROFI				 0x1F /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_GRANDROMMAX			 0x20 /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_KAY_1024			 0x21 /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_HC_91				 0x22 /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_HC_2000			 0x23 /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_MISTRUM			 0x24 /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_QUORUM_128			 0x25 /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_ATM				 0x26 /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_ATM_TURBO_2			 0x27 /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_CHROME			 0x28 /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_ZX_BADA_LOC			 0x29 /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_TIMEX_SINCLAIR_1500		 0x2A /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_PC_8300			 0x2B /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_TK95				 0x2C /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_ZX97_LITE			 0x2D /* Added in v1.20 */
+
 #define Z_TZX_HARDWARE_COMPATIBILITY_COMPATIBLE	  0
 #define Z_TZX_HARDWARE_COMPATIBILITY_NEEDED	  1
 #define Z_TZX_HARDWARE_COMPATIBILITY_UNNEEDED	  2
 #define Z_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE 3
-
-Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 hardware_count;
-	Z_FLEXIBLE_ARRAY_MEMBER(ZTZXHardware hardware[];)
-) ZTZXHardwareType;
 
 /* MARK: - ID 34h - Emulation Information (Deprecated in v1.20)
 .------------------------------------------------------------------------------.
