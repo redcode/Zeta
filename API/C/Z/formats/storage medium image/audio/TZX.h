@@ -558,15 +558,17 @@ Z_DEFINE_STRICT_STRUCTURE (
 ) ZTZXPause;
 
 /* MARK: - ID 21h - Group Start
-.----------------------------------------------------------------------------.
-| This block marks the start of a group of blocks which are to be treated as |
-| one single (composite) block. This is very handy for tapes that use lots   |
-| of subblocks like Bleepload (which may well have over 160 custom loading   |
-| blocks). You can also give the group a name (example 'Bleepload Block 1'). |
-|									     |
-| For each group start block, there must be a group end block. Nesting of    |
-| groups is not allowed.						     |
-'---------------------------------------------------------------------------*/
+.-----------------------------------------------------------------------------.
+| This block marks the start of a group of blocks which are to be treated as  |
+| one single (composite) block. This is very handy for tapes that use lots of |
+| blocks like Bleepload (which may well have over 160 custom loading blocks). |
+| You can also give the group a name (example 'Bleepload Block 1').	      |
+|									      |
+| For each group start block, there must be a group end block. Nesting of     |
+| groups is not allowed.						      |
+|									      |
+| Please keep the group name under 30 characters long.			      |
+'----------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 name_size;
@@ -588,7 +590,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 | Jump  2 = 'Skip one block'					      |
 | Jump -1 = 'Go to the previous block'				      |
 |								      |
-|All blocks are included in the block count!			      |
+| All blocks are included in the block count!			      |
 '--------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
