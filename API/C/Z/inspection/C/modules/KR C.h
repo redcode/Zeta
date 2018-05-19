@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_HAS_STORAGE_CLASS_EXTERN   TRUE /* extern	*/
 #define Z_C_HAS_STORAGE_CLASS_REGISTER TRUE /* register */
 #define Z_C_HAS_STORAGE_CLASS_STATIC   TRUE /* static	*/
-#define Z_C_HAS_TYPE_FLOAT	       TRUE /* float  */
-#define Z_C_HAS_TYPE_DOUBLE	       TRUE /* double */
+#define Z_C_HAS_TYPE_FLOAT	       TRUE /* float	*/
+#define Z_C_HAS_TYPE_DOUBLE	       TRUE /* double	*/
 
 #endif /* __Z_inspection_C_modules_KR_C_H__ */
