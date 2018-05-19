@@ -30,7 +30,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_ZX_SPECTRUM_SIZE_VIDEO_RAM		  6912
 #define Z_ZX_SPECTRUM_SIZE_VIDEO_CHARACTER_RAM	  6144
-#define Z_ZX_SPECTRUM_SIZE_VIDEO_ATTRIBUTE_RAM	  768
+#define Z_ZX_SPECTRUM_SIZE_VIDEO_ATTRIBUTE_RAM	   768
 
 /* MARK: - Video: Color Attribute
 .-----------------.
