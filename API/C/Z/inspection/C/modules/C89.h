@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_HAS_ENUMERATION		TRUE
 #define Z_C_HAS_VOID_POINTER		TRUE
 #define Z_C_HAS_TYPE_LDOUBLE		TRUE /* long double */
-#define Z_C_HAS_TYPE_QUALIFIER_CONSTANT TRUE /* const	 */
-#define Z_C_HAS_TYPE_QUALIFIER_VOLATILE TRUE /* volatile */
+#define Z_C_HAS_TYPE_QUALIFIER_CONSTANT TRUE /* const	    */
+#define Z_C_HAS_TYPE_QUALIFIER_VOLATILE TRUE /* volatile    */
 
 #endif /* __Z_inspection_C_modules_C89_H__ */
