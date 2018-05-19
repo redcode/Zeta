@@ -8,11 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_CPP_modules_CPP11_H__
 #define __Z_inspection_CPP_modules_CPP11_H__
 
-/* MARK: - Inherited */
-
 #include <Z/inspection/C++/modules/C++03.h>
-
-/* MARK: - Features */
 
 #define Z_CPP_HAS_C99_PREPROCESSOR				   TRUE /* N1653 */
 #define Z_CPP_HAS_CONDITIONALLY_SUPPORTED_BEHAVIOR		   TRUE /* N1627 */
@@ -47,47 +43,26 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_UNRESTRICTED_UNION				   TRUE /* N2544 */
 #define Z_CPP_HAS_VARIADIC_TEMPLATE				   TRUE /* N2242(v0.9) */
 #define Z_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS		   TRUE /* N2555(v1.0) */
-
-/* MARK: - Attributes */
-
-#define Z_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY TRUE /* N2643: [[carries_dependency]] */
-#define Z_CPP_HAS_ATTRIBUTE_NO_RETURN	       TRUE /* N2761: [[noreturn]]	     */
-
-/* MARK: - Literals */
-
-#define Z_CPP_HAS_LITERAL_NULL_POINTER	 TRUE /* N2431: nullptr */
-#define Z_CPP_HAS_LITERAL_RAW_STRING	 TRUE /* N2442 */
-#define Z_CPP_HAS_LITERAL_UNICODE_STRING TRUE /* N2442 */
-#define Z_CPP_HAS_LITERAL_USER_DEFINED	 TRUE /* N2765 */
-
-/* MARK: - Magic constants */
-
-#define Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME TRUE /* __func__ */
-
-/* MARK: - Operators */
-
-#define Z_CPP_HAS_OPERATOR_ALIGN_OF	TRUE /* N2341: alignof()  */
-#define Z_CPP_HAS_OPERATOR_NO_EXCEPTION TRUE /* N3050: noexcept() */
-
-/* MARK: - Specifiers */
-
-#define Z_CPP_HAS_SPECIFIER_ALIGN_AS			    TRUE /* N2341:	 alignas()	      */
-#define Z_CPP_HAS_SPECIFIER_AUTO			    TRUE /* N1984(v1.0): auto		      */
-#define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION		    TRUE /* N2235:	 constexpr	      */
-#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE		    TRUE /* N2343(v1.0): decltype()	      */
-#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN TRUE /* N3276(v1.1): decltype()	      */
-#define Z_CPP_HAS_SPECIFIER_EXPLICIT			    TRUE /* N2437:	 explicit	      */
-#define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION		    TRUE /* N3050:	 noexcept, noexcept() */
-
-/* MARK: - Storage classes */
-
-#define Z_CPP_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* N2659: thread_local */
-
-/* MARK: - Types */
-
-#define Z_CPP_HAS_TYPE_CHAR16 TRUE /* N2249: char16_t		      */
-#define Z_CPP_HAS_TYPE_CHAR32 TRUE /* N2249: char32_t		      */
-#define Z_CPP_HAS_TYPE_ULLONG TRUE /* N1811: unsigned long long [int] */
-#define Z_CPP_HAS_TYPE_SLLONG TRUE /* N1811: [signed] long long [int] */
+#define Z_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY			   TRUE /* N2643: [[carries_dependency]]   */
+#define Z_CPP_HAS_ATTRIBUTE_NO_RETURN				   TRUE /* N2761: [[noreturn]]		   */
+#define Z_CPP_HAS_LITERAL_NULL_POINTER				   TRUE /* N2431: nullptr		   */
+#define Z_CPP_HAS_LITERAL_RAW_STRING				   TRUE /* N2442			   */
+#define Z_CPP_HAS_LITERAL_UNICODE_STRING			   TRUE /* N2442			   */
+#define Z_CPP_HAS_LITERAL_USER_DEFINED				   TRUE /* N2765			   */
+#define Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME			   TRUE /* __func__			   */
+#define Z_CPP_HAS_OPERATOR_ALIGN_OF				   TRUE /* N2341: alignof()		   */
+#define Z_CPP_HAS_OPERATOR_NO_EXCEPTION				   TRUE /* N3050: noexcept()		   */
+#define Z_CPP_HAS_SPECIFIER_ALIGN_AS				   TRUE /* N2341: alignas()		   */
+#define Z_CPP_HAS_SPECIFIER_AUTO				   TRUE /* N1984(v1.0): auto		   */
+#define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION			   TRUE /* N2235: constexpr		   */
+#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE			   TRUE /* N2343(v1.0): decltype()	   */
+#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN	   TRUE /* N3276(v1.1): decltype()	   */
+#define Z_CPP_HAS_SPECIFIER_EXPLICIT				   TRUE /* N2437: explicit		   */
+#define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION			   TRUE /* N3050: noexcept, noexcept()	   */
+#define Z_CPP_HAS_STORATE_CLASS_THREAD_LOCAL			   TRUE /* N2659: thread_local		   */
+#define Z_CPP_HAS_TYPE_CHAR16					   TRUE /* N2249: char16_t		   */
+#define Z_CPP_HAS_TYPE_CHAR32					   TRUE /* N2249: char32_t		   */
+#define Z_CPP_HAS_TYPE_ULLONG					   TRUE /* N1811: unsigned long long [int] */
+#define Z_CPP_HAS_TYPE_SLLONG					   TRUE /* N1811: [signed] long long [int] */
 
 #endif /* __Z_inspection_CPP_modules_CPP11_H__ */

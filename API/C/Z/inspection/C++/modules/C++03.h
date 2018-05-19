@@ -8,8 +8,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_CPP_modules_CPP03_H__
 #define __Z_inspection_CPP_modules_CPP03_H__
 
-/* MARK: - Inherited */
-
 #include <Z/inspection/C++/modules/C++98.h>
 
 #endif /* __Z_inspection_CPP_modules_CPP03_H__ */
