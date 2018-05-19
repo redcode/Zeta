@@ -8,11 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_C_modules_C94_H__
 #define __Z_inspection_C_modules_C94_H__
 
-/* MARK: - Inherited */
-
 #include <Z/inspection/C/modules/C90.h>
-
-/* MARK: - Features */
 
 #define Z_C_HAS_DIGRAPH TRUE
 

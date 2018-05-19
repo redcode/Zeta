@@ -8,11 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_inspection_C_modules_C99_H__
 #define __Z_inspection_C_modules_C99_H__
 
-/* MARK: - Inherited */
-
 #include <Z/inspection/C/modules/C94.h>
-
-/* MARK: - Features */
 
 #define Z_C_HAS_COMPOUND_LITERAL				TRUE
 #define Z_C_HAS_CPP_STYLE_COMMENT				TRUE
@@ -24,23 +20,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGER TRUE
 #define Z_C_HAS_VARIADIC_MACRO					TRUE
 #define Z_C_HAS_VLA						TRUE
-
-/* MARK: - Magic constants */
-
-#define Z_C_HAS_MAGIC_CONSTANT_FUNCTION_NAME TRUE /* __func__ */
-
-/* MARK: - Specifiers */
-
-#define Z_C_HAS_SPECIFIER_INLINE TRUE /* inline */
-
-/* MARK: - Types */
-
-#define Z_C_HAS_TYPE_BOOLEAN TRUE /* _Bool		      */
-#define Z_C_HAS_TYPE_ULLONG  TRUE /* unsigned long long [int] */
-#define Z_C_HAS_TYPE_SLLONG  TRUE /* [signed] long long [int] */
-
-/* MARK: - Type qualifiers */
-
-#define Z_C_HAS_TYPE_QUALIFIER_RESTRICT TRUE /* restrict */
+#define Z_C_HAS_MAGIC_CONSTANT_FUNCTION_NAME			TRUE /* __func__		 */
+#define Z_C_HAS_SPECIFIER_INLINE				TRUE /* inline			 */
+#define Z_C_HAS_TYPE_BOOLEAN					TRUE /* _Bool			 */
+#define Z_C_HAS_TYPE_ULLONG					TRUE /* unsigned long long [int] */
+#define Z_C_HAS_TYPE_SLLONG					TRUE /* [signed] long long [int] */
+#define Z_C_HAS_TYPE_QUALIFIER_RESTRICT				TRUE /* restrict		 */
 
 #endif /* __Z_inspection_C_modules_C99_H__ */
