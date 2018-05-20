@@ -845,7 +845,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 hardware_count;
-	Z_FLEXIBLE_ARRAY_MEMBER(ZTZXHardware hardware[];)
+	Z_FLEXIBLE_ARRAY_MEMBER(ZTZXHardware hardware[];) /* ZTZXHardware */
 ) ZTZXHardwareInformation;
 
 Z_DEFINE_STRICT_STRUCTURE (
@@ -1015,10 +1015,20 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 #define Z_TZX_KEYBOARD_ID_ZX_SPECTRUM_PLUS_128K_KEYPAD		       0x00
 
-#define Z_TZX_HARDWARE_COMPATIBILITY_COMPATIBLE	  0
-#define Z_TZX_HARDWARE_COMPATIBILITY_NEEDED	  1
-#define Z_TZX_HARDWARE_COMPATIBILITY_UNNEEDED	  2
-#define Z_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE 3
+#define Z_TZX_ADC_DAC_ID_ADC8					       0x00
+#define Z_TZX_ADC_DAC_ID_BLACKBOARD_ELECTRONICS /* ? */		       0x01
+
+#define Z_TZX_EPROM_PROGRAMMER_ID_ORME_EPROM_CARD		       0x00
+
+#define Z_TZX_GRAPHICS_ID_WRX_HI_RES /* correct name? */	       0x00 /* Added in v1.20 */
+#define Z_TZX_GRAPHICS_ID_G007					       0x01 /* Added in v1.20 */
+#define Z_TZX_GRAPHICS_ID_MEMOTECH /* Memopak HRG? */		       0x02 /* Added in v1.20 */
+#define Z_TZX_GRAPHICS_ID_LAMBDA_8300				       0x03 /* Added in v1.20 */
+
+#define Z_TZX_HARDWARE_COMPATIBILITY_COMPATIBLE			       0
+#define Z_TZX_HARDWARE_COMPATIBILITY_NEEDED			       1
+#define Z_TZX_HARDWARE_COMPATIBILITY_UNNEEDED			       2
+#define Z_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE		       3
 
 /* MARK: - ID 34h - Emulation Information (Deprecated in v1.20)
 .------------------------------------------------------------------------------.
