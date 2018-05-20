@@ -956,6 +956,20 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_MEMORY_ID_48K				0x09 /* Added in v1.20 */
 #define Z_TZX_MEMORY_ID_8K_16K_USED			0x0A /* Added in v1.20 */
 
+#define Z_TZX_SOUND_ID_CLASSIC_AY			0x00 /* (compatible with 128K ZXs) */
+#define Z_TZX_SOUND_ID_FULLER_BOX_AY			0x01
+#define Z_TZX_SOUND_ID_CURRAH_MICROSPEECH		0x02
+#define Z_TZX_SOUND_ID_SPECDRUM				0x03
+#define Z_TZX_SOUND_ID_AY_ACB_STEREO_MELODIK		0x04
+#define Z_TZX_SOUND_ID_AY_ABC_STEREO			0x05
+#define Z_TZX_SOUND_ID_MUSIC_MACHINE			0x06 /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_COVOX				0x07 /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_GENERAL_SOUND			0x08 /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_DIGITAL_INTERFACE_B8001		0x09 /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_ZON_X_AY				0x0A /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_QUICKSILVA_AY			0x0B /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_JUPITER_ACE			0x0C /* Added in v1.20 */
+
 #define Z_TZX_MICE_ID_AMX_MOUSE				0x00
 #define Z_TZX_MICE_ID_KEMPSTON_MOUSE			0x01
 
