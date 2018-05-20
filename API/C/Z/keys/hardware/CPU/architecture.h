@@ -8,16 +8,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_keys_hardware_CPU_H__
 #define __Z_keys_hardware_CPU_H__
 
-#define Z_CPU_ARCHITECTURE_UNKNOWN	  0
-#define Z_CPU_ARCHITECTURE_6502		  1  /* MOS Technology		*/
-#define Z_CPU_ARCHITECTURE_AARCH32	  2  /* Acorn Computers		*/
-#define Z_CPU_ARCHITECTURE_AARCH64	  3  /* ARM			*/
-#define Z_CPU_ARCHITECTURE_ALPHA	  4  /* DEC			*/
-#define Z_CPU_ARCHITECTURE_BLACKFIN	  5  /* Analog Devices		*/
-#define Z_CPU_ARCHITECTURE_CONVEX	  6  /* Convex Computer		*/
-#define Z_CPU_ARCHITECTURE_EPIPHANY	  7  /* Adapteva		*/
-#define Z_CPU_ARCHITECTURE_ESA_370	  8  /* IBM			*/
-#define Z_CPU_ARCHITECTURE_ESA_390	  9  /* IBM			*/
+#define Z_CPU_ARCHITECTURE_UNKNOWN	   0
+#define Z_CPU_ARCHITECTURE_6502		   1 /* MOS Technology		*/
+#define Z_CPU_ARCHITECTURE_AARCH32	   2 /* Acorn Computers		*/
+#define Z_CPU_ARCHITECTURE_AARCH64	   3 /* ARM			*/
+#define Z_CPU_ARCHITECTURE_ALPHA	   4 /* DEC			*/
+#define Z_CPU_ARCHITECTURE_BLACKFIN	   5 /* Analog Devices		*/
+#define Z_CPU_ARCHITECTURE_CONVEX	   6 /* Convex Computer		*/
+#define Z_CPU_ARCHITECTURE_EPIPHANY	   7 /* Adapteva		*/
+#define Z_CPU_ARCHITECTURE_ESA_370	   8 /* IBM			*/
+#define Z_CPU_ARCHITECTURE_ESA_390	   9 /* IBM			*/
 #define Z_CPU_ARCHITECTURE_HEXAGON	  10 /* Qualcomm		*/
 #define Z_CPU_ARCHITECTURE_ITANIUM	  11 /* Hewlett-Packard / Intel */
 #define Z_CPU_ARCHITECTURE_LANAI	  12 /* Google (?)		*/
