@@ -1,4 +1,4 @@
-/* Z Kit - formats/multimedia container/Microsoft Wave.h
+/* Z Kit - formats/multimedia/Microsoft Wave.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
@@ -11,8 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 | Created by: Microsoft				   |
 '-------------------------------------------------*/
 
-#ifndef __Z_formats_multimedia_container_Microsoft_Wave_H__
-#define __Z_formats_multimedia_container_Microsoft_Wave_H__
+#ifndef __Z_formats_multimedia_Microsoft_Wave_H__
+#define __Z_formats_multimedia_Microsoft_Wave_H__
 
 #include <Z/types/base.h>
 
@@ -46,4 +46,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 #	define Z_MICROSOFT_WAVE_FORMAT		0x45564157
 #endif
 
-#endif /* __Z_formats_multimedia_container_Microsoft_Wave_H__ */
+#endif /* __Z_formats_multimedia_Microsoft_Wave_H__ */

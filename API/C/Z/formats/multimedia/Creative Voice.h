@@ -1,4 +1,4 @@
-/* Z Kit - formats/multimedia container/Creative Voice.h
+/* Z Kit - formats/multimedia/Creative Voice.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
@@ -11,8 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 | Created by: Creative Technology |
 '--------------------------------*/
 
-#ifndef __Z_formats_multimedia_container_Creative_Voice_H__
-#define __Z_formats_multimedia_container_Creative_Voice_H__
+#ifndef __Z_formats_multimedia_Creative_Voice_H__
+#define __Z_formats_multimedia_Creative_Voice_H__
 
 #include <Z/types/base.h>
 
@@ -103,4 +103,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZCreativeVoiceSoundDataInNewFormat;
 
-#endif /* __Z_formats_multimedia_container_Creative_Voice_H__ */
+#endif /* __Z_formats_multimedia_Creative_Voice_H__ */
