@@ -105,9 +105,9 @@ ANALOG CHANNEL A -05-|		 |-24- DA4
 #include <Z/types/base.h>
 
 Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 8) (
+	zuint8 unused0 :1,
 	zuint8 unused1 :1,
 	zuint8 unused2 :1,
-	zuint8 unused3 :1,
 	zuint8 m       :1,
 	zuint8 l3      :1,
 	zuint8 l2      :1,
@@ -145,10 +145,10 @@ Z_DEFINE_STRICT_UNION (
 		zuint8 envelope_period_coarse_tune;
 
 		struct {Z_BIT_FIELD(8, 8) (
+			zuint8 unused0 :1,
 			zuint8 unused1 :1,
 			zuint8 unused2 :1,
 			zuint8 unused3 :1,
-			zuint8 unused4 :1,
 			zuint8 cont    :1,
 			zuint8 att     :1,
 			zuint8 alt     :1,
