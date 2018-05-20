@@ -854,133 +854,145 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 compatibility;
 ) ZTZXHardware;
 
-#define Z_TZX_HARDWARE_TYPE_MACHINE			0x00
-#define Z_TZX_HARDWARE_TYPE_STORAGE			0x01
-#define Z_TZX_HARDWARE_TYPE_MEMORY			0x02
-#define Z_TZX_HARDWARE_TYPE_SOUND			0x03
-#define Z_TZX_HARDWARE_TYPE_JOYSTICK			0x04
-#define Z_TZX_HARDWARE_TYPE_MICE			0x05
-#define Z_TZX_HARDWARE_TYPE_OTHER			0x06
-#define Z_TZX_HARDWARE_TYPE_SERIAL_PORT			0x07
-#define Z_TZX_HARDWARE_TYPE_PARALLEL_PORT		0x08
-#define Z_TZX_HARDWARE_TYPE_PRINTER			0x09
-#define Z_TZX_HARDWARE_TYPE_MODEM			0x0A
-#define Z_TZX_HARDWARE_TYPE_DIGITIZER			0x0B
-#define Z_TZX_HARDWARE_TYPE_NETWORK_ADAPTER		0x0C
-#define Z_TZX_HARDWARE_TYPE_KEYBOARD			0x0D
-#define Z_TZX_HARDWARE_TYPE_ADC_DAC			0x0E
-#define Z_TZX_HARDWARE_TYPE_EPROM_PROGRAMMER		0x0F
-#define Z_TZX_HARDWARE_TYPE_GRAPHICS			0x10
+#define Z_TZX_HARDWARE_TYPE_MACHINE				       0x00
+#define Z_TZX_HARDWARE_TYPE_STORAGE				       0x01
+#define Z_TZX_HARDWARE_TYPE_MEMORY				       0x02
+#define Z_TZX_HARDWARE_TYPE_SOUND				       0x03
+#define Z_TZX_HARDWARE_TYPE_JOYSTICK				       0x04
+#define Z_TZX_HARDWARE_TYPE_MICE				       0x05
+#define Z_TZX_HARDWARE_TYPE_OTHER				       0x06
+#define Z_TZX_HARDWARE_TYPE_SERIAL_PORT				       0x07
+#define Z_TZX_HARDWARE_TYPE_PARALLEL_PORT			       0x08
+#define Z_TZX_HARDWARE_TYPE_PRINTER				       0x09
+#define Z_TZX_HARDWARE_TYPE_MODEM				       0x0A
+#define Z_TZX_HARDWARE_TYPE_DIGITIZER				       0x0B
+#define Z_TZX_HARDWARE_TYPE_NETWORK_ADAPTER			       0x0C
+#define Z_TZX_HARDWARE_TYPE_KEYBOARD				       0x0D
+#define Z_TZX_HARDWARE_TYPE_ADC_DAC				       0x0E
+#define Z_TZX_HARDWARE_TYPE_EPROM_PROGRAMMER			       0x0F
+#define Z_TZX_HARDWARE_TYPE_GRAPHICS				       0x10
 
-#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_16K		0x00
-#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_48K_PLUS		0x01
-#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_48K_ISSUE_1	0x02
-#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_128K_SINCLAIR 0x03
-#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_2		0x04
-#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_2A_PLUS_3	0x05
-#define Z_TZX_MACHINE_ID_TIMEX_SINCLAIR_2048		0x06
-#define Z_TZX_MACHINE_ID_TIMEX_SINCLAIR_2068		0x07
-#define Z_TZX_MACHINE_ID_PENTAGON_128			0x08
-#define Z_TZX_MACHINE_ID_SAM_COUPE			0x09
-#define Z_TZX_MACHINE_ID_DIDAKTIK_M			0x0A
-#define Z_TZX_MACHINE_ID_DIDAKTIK_GAMA			0x0B
-#define Z_TZX_MACHINE_ID_ZX80				0x0C
-#define Z_TZX_MACHINE_ID_ZX81				0x0D
-#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_128K_ES	0x0E
-#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_2_AR		0x0F
-#define Z_TZX_MACHINE_ID_MICRODIGITAL_TK_90X		0x10
-#define Z_TZX_MACHINE_ID_MICRODIGITAL_TK_95		0x11
-#define Z_TZX_MACHINE_ID_BAJT				0x12
-#define Z_TZX_MACHINE_ID_ELWRO_800_3_JUNIOR		0x13
-#define Z_TZX_MACHINE_ID_SCORPION_ZS_256		0x14
-#define Z_TZX_MACHINE_ID_CPC_464			0x15 /* Added in v1.02 */
-#define Z_TZX_MACHINE_ID_CPC_664			0x16 /* Added in v1.02 */
-#define Z_TZX_MACHINE_ID_CPC_6128			0x17 /* Added in v1.02 */
-#define Z_TZX_MACHINE_ID_CPC_464_PLUS			0x18 /* Added in v1.02 */
-#define Z_TZX_MACHINE_ID_CPC_6128_PLUS			0x19 /* Added in v1.02 */
-#define Z_TZX_MACHINE_ID_JUPITER_ACE			0x1A /* Added in v1.12 */
-#define Z_TZX_MACHINE_ID_ENTERPRISE			0x1B /* Added in v1.12 */
-#define Z_TZX_MACHINE_ID_COMMODORE_64			0x1C /* Added in v1.13 */
-#define Z_TZX_MACHINE_ID_COMMODORE_128			0x1D /* Added in v1.13 */
-#define Z_TZX_MACHINE_ID_INVES_SPECTRUM_PLUS		0x1E /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_PROFI				0x1F /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_GRANDROMMAX			0x20 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_KAY_1024			0x21 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_HC_91				0x22 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_HC_2000			0x23 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_MISTRUM			0x24 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_QUORUM_128			0x25 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_ATM				0x26 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_ATM_TURBO_2			0x27 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_CHROME				0x28 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_ZX_BADA_LOC			0x29 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_TIMEX_SINCLAIR_1500		0x2A /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_PC_8300			0x2B /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_TK95				0x2C /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_ZX97_LITE			0x2D /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_16K			       0x00
+#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_48K_PLUS			       0x01
+#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_48K_ISSUE_1		       0x02
+#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_128K_SINCLAIR		       0x03
+#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_2			       0x04
+#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_2A_PLUS_3		       0x05
+#define Z_TZX_MACHINE_ID_TIMEX_SINCLAIR_2048			       0x06
+#define Z_TZX_MACHINE_ID_TIMEX_SINCLAIR_2068			       0x07
+#define Z_TZX_MACHINE_ID_PENTAGON_128				       0x08
+#define Z_TZX_MACHINE_ID_SAM_COUPE				       0x09
+#define Z_TZX_MACHINE_ID_DIDAKTIK_M				       0x0A
+#define Z_TZX_MACHINE_ID_DIDAKTIK_GAMA				       0x0B
+#define Z_TZX_MACHINE_ID_ZX80					       0x0C
+#define Z_TZX_MACHINE_ID_ZX81					       0x0D
+#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_128K_ES		       0x0E
+#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_2_AR			       0x0F
+#define Z_TZX_MACHINE_ID_MICRODIGITAL_TK_90X			       0x10
+#define Z_TZX_MACHINE_ID_MICRODIGITAL_TK_95			       0x11
+#define Z_TZX_MACHINE_ID_BAJT					       0x12
+#define Z_TZX_MACHINE_ID_ELWRO_800_3_JUNIOR			       0x13
+#define Z_TZX_MACHINE_ID_SCORPION_ZS_256			       0x14
+#define Z_TZX_MACHINE_ID_CPC_464				       0x15 /* Added in v1.02 */
+#define Z_TZX_MACHINE_ID_CPC_664				       0x16 /* Added in v1.02 */
+#define Z_TZX_MACHINE_ID_CPC_6128				       0x17 /* Added in v1.02 */
+#define Z_TZX_MACHINE_ID_CPC_464_PLUS				       0x18 /* Added in v1.02 */
+#define Z_TZX_MACHINE_ID_CPC_6128_PLUS				       0x19 /* Added in v1.02 */
+#define Z_TZX_MACHINE_ID_JUPITER_ACE				       0x1A /* Added in v1.12 */
+#define Z_TZX_MACHINE_ID_ENTERPRISE				       0x1B /* Added in v1.12 */
+#define Z_TZX_MACHINE_ID_COMMODORE_64				       0x1C /* Added in v1.13 */
+#define Z_TZX_MACHINE_ID_COMMODORE_128				       0x1D /* Added in v1.13 */
+#define Z_TZX_MACHINE_ID_INVES_SPECTRUM_PLUS			       0x1E /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_PROFI					       0x1F /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_GRANDROMMAX				       0x20 /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_KAY_1024				       0x21 /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_HC_91					       0x22 /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_HC_2000				       0x23 /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_MISTRUM				       0x24 /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_QUORUM_128				       0x25 /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_ATM					       0x26 /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_ATM_TURBO_2				       0x27 /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_CHROME					       0x28 /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_ZX_BADA_LOC				       0x29 /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_TIMEX_SINCLAIR_1500			       0x2A /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_PC_8300				       0x2B /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_TK95					       0x2C /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_ZX97_LITE				       0x2D /* Added in v1.20 */
 
-#define Z_TZX_STORAGE_ID_ZX_MICRODRIVE			0x00
-#define Z_TZX_STORAGE_ID_OPUS_DISCOVERY_1		0x01
-#define Z_TZX_STORAGE_ID_DISCIPLE			0x02
-#define Z_TZX_STORAGE_ID_PLUS_D				0x03
-#define Z_TZX_STORAGE_ID_WAFADRIVE			0x04
-#define Z_TZX_STORAGE_ID_BETA_DISK_INTERFACE		0x05
-#define Z_TZX_STORAGE_ID_BYTE_DRIVE_500			0x06
-#define Z_TZX_STORAGE_ID_WATFORD			0x07 /* (What model?) */
-#define Z_TZX_STORAGE_ID_FIZ				0x08
-#define Z_TZX_STORAGE_ID_TRITON_QUICK_DISK		0x09
-#define Z_TZX_STORAGE_ID_DIDAKTIK_40_80			0x0A
-#define Z_TZX_STORAGE_ID_MB_02_PLUS			0x0B
-#define Z_TZX_STORAGE_ID_ZX_SPECTRUM_PLUS_3_DISK_DRIVE	0x0C
-#define Z_TZX_STORAGE_ID_OLIGER_DISK_INTERFACE		0x0D
-#define Z_TZX_STORAGE_ID_TIMEX_FDD_3000			0x0E
-#define Z_TZX_STORAGE_ID_ZEBRA_FLOPPY_DISK_DRIVE	0x0F
-#define Z_TZX_STORAGE_ID_MILLENA_K			0x10
-#define Z_TZX_STORAGE_ID_LARKEN				0x11
-#define Z_TZX_STORAGE_ID_KEMPSTON_DISC_INTERFACE	0x12 /* Added in v1.20 */
-#define Z_TZX_STORAGE_ID_SANDY				0x13 /* Added in v1.20 */
-#define Z_TZX_STORAGE_ID_ZX_SPECTRUM_PLUS_3E_HDD	0x14 /* Added in v1.20 */
-#define Z_TZX_STORAGE_ID_ZXATASP			0x15 /* Added in v1.20 */
-#define Z_TZX_STORAGE_ID_DIVIDE				0x16 /* Added in v1.20 */
-#define Z_TZX_STORAGE_ID_ZXCF				0x17 /* Added in v1.20 */
+#define Z_TZX_STORAGE_ID_ZX_MICRODRIVE				       0x00
+#define Z_TZX_STORAGE_ID_OPUS_DISCOVERY_1			       0x01
+#define Z_TZX_STORAGE_ID_DISCIPLE				       0x02
+#define Z_TZX_STORAGE_ID_PLUS_D					       0x03
+#define Z_TZX_STORAGE_ID_WAFADRIVE				       0x04
+#define Z_TZX_STORAGE_ID_BETA_DISK_INTERFACE			       0x05
+#define Z_TZX_STORAGE_ID_BYTE_DRIVE_500				       0x06
+#define Z_TZX_STORAGE_ID_WATFORD /* What model? */		       0x07
+#define Z_TZX_STORAGE_ID_FIZ					       0x08
+#define Z_TZX_STORAGE_ID_TRITON_QUICK_DISK			       0x09
+#define Z_TZX_STORAGE_ID_DIDAKTIK_40_80				       0x0A
+#define Z_TZX_STORAGE_ID_MB_02_PLUS				       0x0B
+#define Z_TZX_STORAGE_ID_ZX_SPECTRUM_PLUS_3_DISK_DRIVE		       0x0C
+#define Z_TZX_STORAGE_ID_OLIGER_DISK_INTERFACE			       0x0D
+#define Z_TZX_STORAGE_ID_TIMEX_FDD_3000				       0x0E
+#define Z_TZX_STORAGE_ID_ZEBRA_FLOPPY_DISK_DRIVE		       0x0F
+#define Z_TZX_STORAGE_ID_MILLENA_K				       0x10
+#define Z_TZX_STORAGE_ID_LARKEN					       0x11
+#define Z_TZX_STORAGE_ID_KEMPSTON_DISC_INTERFACE		       0x12 /* Added in v1.20 */
+#define Z_TZX_STORAGE_ID_SANDY					       0x13 /* Added in v1.20 */
+#define Z_TZX_STORAGE_ID_ZX_SPECTRUM_PLUS_3E_HDD		       0x14 /* Added in v1.20 */
+#define Z_TZX_STORAGE_ID_ZXATASP				       0x15 /* Added in v1.20 */
+#define Z_TZX_STORAGE_ID_DIVIDE					       0x16 /* Added in v1.20 */
+#define Z_TZX_STORAGE_ID_ZXCF					       0x17 /* Added in v1.20 */
 
-#define Z_TZX_MEMORY_ID_SAM_RAM				0x00
-#define Z_TZX_MEMORY_ID_MULTIFACE_ONE			0x01
-#define Z_TZX_MEMORY_ID_MULTIFACE_128			0x02
-#define Z_TZX_MEMORY_ID_MULTIFACE_3			0x03
-#define Z_TZX_MEMORY_ID_MULTIPRINT			0x04
-#define Z_TZX_MEMORY_ID_MB_02_PLUS			0x05
-#define Z_TZX_MEMORY_ID_SOFT_ROM			0x06 /* Added in v1.20 */
-#define Z_TZX_MEMORY_ID_1K				0x07 /* Added in v1.20 */
-#define Z_TZX_MEMORY_ID_16K				0x08 /* Added in v1.20 */
-#define Z_TZX_MEMORY_ID_48K				0x09 /* Added in v1.20 */
-#define Z_TZX_MEMORY_ID_8K_16K_USED			0x0A /* Added in v1.20 */
+#define Z_TZX_MEMORY_ID_SAM_RAM					       0x00
+#define Z_TZX_MEMORY_ID_MULTIFACE_ONE				       0x01
+#define Z_TZX_MEMORY_ID_MULTIFACE_128				       0x02
+#define Z_TZX_MEMORY_ID_MULTIFACE_3				       0x03
+#define Z_TZX_MEMORY_ID_MULTIPRINT				       0x04
+#define Z_TZX_MEMORY_ID_MB_02_PLUS				       0x05
+#define Z_TZX_MEMORY_ID_SOFT_ROM				       0x06 /* Added in v1.20 */
+#define Z_TZX_MEMORY_ID_1K					       0x07 /* Added in v1.20 */
+#define Z_TZX_MEMORY_ID_16K					       0x08 /* Added in v1.20 */
+#define Z_TZX_MEMORY_ID_48K					       0x09 /* Added in v1.20 */
+#define Z_TZX_MEMORY_ID_8K_16K_USED				       0x0A /* Added in v1.20 */
 
-#define Z_TZX_SOUND_ID_CLASSIC_AY			0x00 /* (compatible with 128K ZXs) */
-#define Z_TZX_SOUND_ID_FULLER_BOX_AY			0x01
-#define Z_TZX_SOUND_ID_CURRAH_MICROSPEECH		0x02
-#define Z_TZX_SOUND_ID_SPECDRUM				0x03
-#define Z_TZX_SOUND_ID_AY_ACB_STEREO_MELODIK		0x04
-#define Z_TZX_SOUND_ID_AY_ABC_STEREO			0x05
-#define Z_TZX_SOUND_ID_MUSIC_MACHINE			0x06 /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_COVOX				0x07 /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_GENERAL_SOUND			0x08 /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_DIGITAL_INTERFACE_B8001		0x09 /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_ZON_X_AY				0x0A /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_QUICKSILVA_AY			0x0B /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_JUPITER_ACE			0x0C /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_CLASSIC_AY				       0x00 /* (compatible with 128K ZXs) */
+#define Z_TZX_SOUND_ID_FULLER_BOX_AY				       0x01
+#define Z_TZX_SOUND_ID_CURRAH_MICROSPEECH			       0x02
+#define Z_TZX_SOUND_ID_SPECDRUM					       0x03
+#define Z_TZX_SOUND_ID_AY_ACB_STEREO_MELODIK			       0x04
+#define Z_TZX_SOUND_ID_AY_ABC_STEREO				       0x05
+#define Z_TZX_SOUND_ID_MUSIC_MACHINE				       0x06 /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_COVOX					       0x07 /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_GENERAL_SOUND				       0x08 /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_DIGITAL_INTERFACE_B8001			       0x09 /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_ZON_X_AY					       0x0A /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_QUICKSILVA_AY				       0x0B /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_JUPITER_ACE				       0x0C /* Added in v1.20 */
 
-#define Z_TZX_JOYSTICK_ID_KEMPSTON			0x00
-#define Z_TZX_JOYSTICK_ID_STAR_CURSOR_PROTEK_AGF	0x01
-#define Z_TZX_JOYSTICK_ID_SINCLAIR_2_LEFT		0x02
-#define Z_TZX_JOYSTICK_ID_SINCLAIR_1_RIGHT		0x03
-#define Z_TZX_JOYSTICK_ID_FULLER			0x04
+#define Z_TZX_JOYSTICK_ID_KEMPSTON				       0x00
+#define Z_TZX_JOYSTICK_ID_STAR_CURSOR_PROTEK_AGF		       0x01
+#define Z_TZX_JOYSTICK_ID_SINCLAIR_2_LEFT			       0x02
+#define Z_TZX_JOYSTICK_ID_SINCLAIR_1_RIGHT			       0x03
+#define Z_TZX_JOYSTICK_ID_FULLER				       0x04
 
-#define Z_TZX_MICE_ID_AMX_MOUSE				0x00
-#define Z_TZX_MICE_ID_KEMPSTON_MOUSE			0x01
+#define Z_TZX_MICE_ID_AMX_MOUSE					       0x00
+#define Z_TZX_MICE_ID_KEMPSTON_MOUSE				       0x01
 
-#define Z_TZX_SERIAL_PORT_ID_ZX_INTERFACE_1		0x00
-#define Z_TZX_SERIAL_PORT_ID_ZX_SPECTRUM_PLUS_128K	0x01
+#define Z_TZX_SERIAL_PORT_ID_ZX_INTERFACE_1			       0x00
+#define Z_TZX_SERIAL_PORT_ID_ZX_SPECTRUM_PLUS_128K		       0x01
+
+#define Z_TZX_PARALLEL_PORT_ID_KEMPSTON_CENTRONICS_INTERFACE_S	       0x00
+#define Z_TZX_PARALLEL_PORT_ID_KEMPSTON_CENTRONICS_INTERFACE_E	       0x01
+#define Z_TZX_PARALLEL_PORT_ID_ZX_SPECTRUM_PLUS_3		       0x02
+#define Z_TZX_PARALLEL_PORT_ID_TASMAN_PARALLEL_PRINTER_INTERFACE       0x03
+#define Z_TZX_PARALLEL_PORT_ID_DKTRONICS_PARALLEL_CENTRONICS_INTERFACE 0x04
+#define Z_TZX_PARALLEL_PORT_ID_HILDERBAY_INTERFACE		       0x05
+#define Z_TZX_PARALLEL_PORT_ID_INES_PRINTERFACE /* ? */		       0x06
+#define Z_TZX_PARALLEL_PORT_ID_ZX_LPRINT_III			       0x07
+#define Z_TZX_PARALLEL_PORT_ID_MULTIPRINT			       0x08
+#define Z_TZX_PARALLEL_PORT_ID_OPUS_DISCOVERY_1			       0x09
+#define Z_TZX_PARALLEL_PORT_ID_STANDARD_8255_IC_WITH_PORTS_31_63_95    0x0A
 
 #define Z_TZX_HARDWARE_COMPATIBILITY_COMPATIBLE	  0
 #define Z_TZX_HARDWARE_COMPATIBILITY_NEEDED	  1
