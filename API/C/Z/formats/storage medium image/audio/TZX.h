@@ -1040,22 +1040,21 @@ Z_DEFINE_STRICT_STRUCTURE (
 | left at their DEFAULT values.						       |
 '------------------------------------------------------------------------------'
 
-Flags field (16-bit little-endian):
-.---------------------------------.
-| F E D C B A 9 8 7 6 5 4 3 2 1 0 |
-'-\_________/-|-|-|-|-|-\_/-|-|-|-'
-       |      | | | | |  |  | | '-> R register emulation
-       |      | | | | |  |  | '---> LDIR instruction emulation
-       |      | | | | |	 |  '-----> high resolution colour emulation with
-       |      | | | | |  |          true interrupt frequency
-       |      | | | | |  '--------> video synchronisation
-       |      | | | | |		    (1 = high, 3 = low, 0 or 2 = normal)
-       |      | | | | '-----------> fast loading when ROM load routine is used
-       |      | | | '-------------> border emulation
-       |      | | '---------------> screen refresh mode (1 = ON, 0 = OFF)
-       |      | '-----------------> start playing the tape immediately
-       |      '-------------------> auto type LOAD"" or press ENTER when in 128K mode
-       '--------------------------> unused */
+Flags (16-bit little-endian):
+.----------------------------.
+| 15..10 9 8 7 6 5 4 3 2 1 0 |
+'-\____/-|-|-|-|-|-\_/-|-|-|-'
+  unused | | | | |  |  | | '-> R register emulation
+	 | | | | |  |  | '---> LDIR instruction emulation
+	 | | | | |  |  '-----> high resolution colour emulation with
+	 | | | | |  |	       true interrupt frequency
+	 | | | | |  '--------> video synchronisation
+	 | | | | |	       (1 = high, 3 = low, 0 or 2 = normal)
+	 | | | | '-----------> fast loading when ROM load routine is used
+	 | | | '-------------> border emulation
+	 | | '---------------> screen refresh mode (1 = ON, 0 = OFF)
+	 | '-----------------> start playing the tape immediately
+	 '-------------------> auto type LOAD"" or press ENTER when in 128K mode */
 
 Z_DEFINE_STRICT_STRUCTURE (
 	struct {Z_BIT_FIELD(8, 7) (
