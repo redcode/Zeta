@@ -1045,7 +1045,7 @@ Flags field (16-bit little-endian):
 | F E D C B A 9 8 7 6 5 4 3 2 1 0 |
 '-\_________/-|-|-|-|-|-\_/-|-|-|-'
        |      | | | | |  |  | | '-> R register emulation
-       |      | | | | |  |  | '---> LDIR emulation
+       |      | | | | |  |  | '---> LDIR instruction emulation
        |      | | | | |	 |  '-----> high resolution colour emulation with
        |      | | | | |  |          true interrupt frequency
        |      | | | | |  '--------> video synchronisation
@@ -1058,7 +1058,22 @@ Flags field (16-bit little-endian):
        '--------------------------> unused */
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint16 flags;
+	struct {Z_BIT_FIELD(8, 7) (
+		zuint8 screen_refresh_mode     :1,
+		zuint8 screen_border	       :1,
+		zuint8 fast_loading	       :1,
+		zuint8 vsync		       :2,
+		zuint8 hrc_with_true_frequency :1,
+		zuint8 ldir_instruction	       :1,
+		zuint8 r_register	       :1
+	)} features;
+
+	struct {Z_BIT_FIELD(8, 3) (
+		zuint8 unused				:6,
+		zuint8 type_load_or_press_enter_if_128k :1,
+		zuint8 autoplay				:1
+	)} loading;
+
 	zuint8	screen_refresh_delay;	/* 1 - 255 */
 	zuint16 interrupt_hz;		/* 0 - 999 */
 	zuint8	reserved[3];
