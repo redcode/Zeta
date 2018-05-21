@@ -1098,11 +1098,20 @@ Z_DEFINE_STRICT_STRUCTURE (
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZTZXCustomInformation;
 
-#define Z_TZX_CUSTOM_INFORMATION_ID_POKES	     'P','O','K','E','s',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
-#define Z_TZX_CUSTOM_INFORMATION_ID_INSTRUCTIONS     'I','n','s','t','r','u','c','t','i','o','n','s',' ',' ',' ',' '
-#define Z_TZX_CUSTOM_INFORMATION_ID_SCREEN	     'S','p','e','c','t','r','u','m',' ','S','c','r','e','e','n',' '
-#define Z_TZX_CUSTOM_INFORMATION_ID_ZX_EDIT_DOCUMENT 'Z','X','-','E','d','i','t',' ','d','o','c','u','m','e','n','t'
-#define Z_TZX_CUSTOM_INFORMATION_ID_PICTURE	     'P','i','c','t','u','r','e',' ',' ',' ',' ',' ',' ',' ',' ',' '
+#define Z_TZX_CUSTOM_INFORMATION_CONTENT_ID_POKES \
+	'P','O','K','E','s',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
+
+#define Z_TZX_CUSTOM_INFORMATION_CONTENT_ID_INSTRUCTIONS \
+	'I','n','s','t','r','u','c','t','i','o','n','s',' ',' ',' ',' '
+
+#define Z_TZX_CUSTOM_INFORMATION_CONTENT_ID_SCREEN \
+	'S','p','e','c','t','r','u','m',' ','S','c','r','e','e','n',' '
+
+#define Z_TZX_CUSTOM_INFORMATION_CONTENT_ID_ZX_EDIT_DOCUMENT \
+	'Z','X','-','E','d','i','t',' ','d','o','c','u','m','e','n','t'
+
+#define Z_TZX_CUSTOM_INFORMATION_CONTENT_ID_PICTURE \
+	'P','i','c','t','u','r','e',' ',' ',' ',' ',' ',' ',' ',' ',' '
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 description_size;
