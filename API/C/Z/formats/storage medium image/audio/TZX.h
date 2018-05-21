@@ -1078,6 +1078,10 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	reserved[3];
 ) ZTZXEmulationInformation;
 
+#define Z_TZX_EMULATION_INFORMATION_VSYNC_HIGH   0
+#define Z_TZX_EMULATION_INFORMATION_VSYNC_LOW    1
+#define Z_TZX_EMULATION_INFORMATION_VSYNC_NORMAL 2
+
 /* MARK: - ID 35h - Custom Information ("Added" in v1.01, deprecated in v1.20)
 .------------------------------------------------------------------------------.
 | This block can be used to save any information you want. For example, it     |
