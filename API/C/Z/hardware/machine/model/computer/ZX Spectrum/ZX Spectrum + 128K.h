@@ -40,31 +40,31 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /* MARK: - Memory
 
-0000 .-----------------.
-     | ROM 0  | ROM 1  | Either ROM may be switched in.
+     .-----------------.
+0000 | ROM 0  | ROM 1  | Either ROM may be switched in.
      |	      |	       |
      |	      |	       |
-     |	      |	       |
-4000 |--------+--------'
-     | Bank 5 |
+3FFF |	      |	       |
+     |--------+--------'
+4000 | Bank 5 |
      |	      |
      |	      |
-     | screen |
-8000 |--------|
-     | Bank 2 |        Any one of these pages may be switched in.
+7FFF | screen |
+     |--------|
+8000 | Bank 2 |        Any one of these pages may be switched in.
      |	      |
      |	      |
-     |	      |
-C000 |--------+--------------------------------------------------------------.
-     | Bank 0 | Bank 1 | Bank 2 | Bank 3 | Bank 4 | Bank 5 | Bank 6 | Bank 7 |
+BFFF |	      |
+     |--------+--------------------------------------------------------------.
+C000 | Bank 0 | Bank 1 | Bank 2 | Bank 3 | Bank 4 | Bank 5 | Bank 6 | Bank 7 |
      |	      |	       |(also at|	 |	  |(also at|	    |	     |
      |	      |	       | 8000)  |	 |	  | 4000)  |	    |	     |
-     |	      |	       |	|	 |	  | screen |	    | screen |
-FFFF '----------------------------------------------------------------------*/
+FFFF |	      |	       |	|	 |	  | screen |	    | screen |
+     '----------------------------------------------------------------------*/
 
-#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_ROM    (1024 *  32)
-#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_RAM    (1024 * 128)
-#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_MEMORY (1024 * (32 + 128))
+#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_ROM    32768  /* 1024 * 32		*/
+#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_RAM    131072 /* 1024 * 128	*/
+#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_MEMORY 163840 /* 1024 * (32 + 128) */
 
 /* MARK: - I/O Ports */
 
@@ -82,14 +82,14 @@ FFFF '----------------------------------------------------------------------*/
    '--------------> unused */
 
 Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 5) (
-	zuint8 unused	:2,
-	zuint8 disable	:1,
-	zuint8 rom	:1,
-	zuint8 vram	:1,
-	zuint8 user	:3
+	zuint8 unused  :2,
+	zuint8 disable :1,
+	zuint8 rom     :1,
+	zuint8 vram    :1,
+	zuint8 user    :3
 )) ZZXSpectrumPlus128KBankSwitch;
 
-/* FFFD - Read/ Select */
+/* FFFD - Read/Select */
 
 /* MARK: - Screen
 				     ---
@@ -144,21 +144,15 @@ Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 5) (
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_INT		       Z_ZX_SPECTRUM_CYCLES_PER_INT
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_VBLANK	       Z_ZX_SPECTRUM_CYCLES_AT_VBLANK
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INT		       Z_ZX_SPECTRUM_CYCLES_AT_INT
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INVISIBLE_TOP_BORDER Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_VBLANK
-
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_VISIBLE_TOP_BORDER   (Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INVISIBLE_TOP_BORDER + \
-								Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE	       * \
-								Z_ZX_SPECTRUM_PLUS_128K_SCREEN_INVISIBLE_TOP_BORDER_HEIGHT)
-
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_PAPER_REGION	       (Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_VISIBLE_TOP_BORDER + \
-								Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE	     * \
-								Z_ZX_SPECTRUM_PLUS_128K_SCREEN_VISIBLE_TOP_BORDER_HEIGHT)
-
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_BOTTOM_BORDER	       (Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_PAPER_REGION + \
-								Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE    * \
-								Z_ZX_SPECTRUM_PLUS_128K_SCREEN_PAPER_HEIGHT)
-
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_LINE(region, line)   (Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_##region  + \
-								Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE * line)
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INVISIBLE_TOP_BORDER 1824  /* Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_VBLANK		   */
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_VISIBLE_TOP_BORDER   3420  /* Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INVISIBLE_TOP_BORDER +
+									Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE	       *
+									Z_ZX_SPECTRUM_PLUS_128K_SCREEN_INVISIBLE_TOP_BORDER_HEIGHT */
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_PAPER_REGION	       14364 /* Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_VISIBLE_TOP_BORDER +
+									Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE	     *
+									Z_ZX_SPECTRUM_PLUS_128K_SCREEN_VISIBLE_TOP_BORDER_HEIGHT   */
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_BOTTOM_BORDER	       58140 /* Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_PAPER_REGION +
+									Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE    *
+									Z_ZX_SPECTRUM_PLUS_128K_SCREEN_PAPER_HEIGHT		   */
 
 #endif /* __Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H__ */
