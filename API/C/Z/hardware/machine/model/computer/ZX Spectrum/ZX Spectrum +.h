@@ -39,9 +39,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /* MARK: - Memory */
 
-#define Z_ZX_SPECTRUM_PLUS_SIZE_RAM    (1024 * 48)
+#define Z_ZX_SPECTRUM_PLUS_SIZE_RAM    49152 /* 1024 * 48	 */
 #define Z_ZX_SPECTRUM_PLUS_SIZE_ROM    Z_ZX_SPECTRUM_SIZE_ROM
-#define Z_ZX_SPECTRUM_PLUS_SIZE_MEMORY (1024 * (16 + 48))
+#define Z_ZX_SPECTRUM_PLUS_SIZE_MEMORY 65536 /* 1024 * (16 + 48) */
 
 /* MARK: - Screen */
 
@@ -78,6 +78,5 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_ZX_SPECTRUM_PLUS_CYCLES_AT_VISIBLE_TOP_BORDER	  Z_ZX_SPECTRUM_CYCLES_AT_VISIBLE_TOP_BORDER
 #define Z_ZX_SPECTRUM_PLUS_CYCLES_AT_PAPER_REGION	  Z_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION
 #define Z_ZX_SPECTRUM_PLUS_CYCLES_AT_BOTTOM_BORDER	  Z_ZX_SPECTRUM_CYCLES_AT_BOTTOM_BORDER
-#define Z_ZX_SPECTRUM_PLUS_CYCLES_AT_LINE		  Z_ZX_SPECTRUM_CYCLES_AT_LINE
 
 #endif /* __Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H__ */
