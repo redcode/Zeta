@@ -16,6 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_DEFAULTED_FUNCTION				   TRUE /* N2346 */
 #define Z_CPP_HAS_DELEGATING_CONSTRUCTORS			   TRUE /* N1986 */
 #define Z_CPP_HAS_DELETED_FUNCTION				   TRUE /* N2346 */
+#define Z_CPP_HAS_EXPLICIT_CONVERSION_FUNCTION			   TRUE /* N2437 */
 #define Z_CPP_HAS_EXPRESSION_SFINAE				   TRUE /* N2634 (DR339?) */
 #define Z_CPP_HAS_EXTENDED_FRIEND_DECLARATION			   TRUE /* N1791 */
 #define Z_CPP_HAS_EXTERN_TEMPLATE				   TRUE /* N1987 */
@@ -57,7 +58,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION			   TRUE /* N2235: constexpr		   */
 #define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE			   TRUE /* N2343(v1.0): decltype()	   */
 #define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN	   TRUE /* N3276(v1.1): decltype()	   */
-#define Z_CPP_HAS_SPECIFIER_EXPLICIT				   TRUE /* N2437: explicit		   */
 #define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION			   TRUE /* N3050: noexcept, noexcept()	   */
 #define Z_CPP_HAS_STORATE_CLASS_THREAD_LOCAL			   TRUE /* N2659: thread_local		   */
 #define Z_CPP_HAS_TYPE_CHAR16					   TRUE /* N2249: char16_t		   */
