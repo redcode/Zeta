@@ -429,8 +429,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
 #		define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE	       TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME TRUE /* v2.9 (Available in older versions?) */
-#	endif
 
+#		if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
+#			define Z_COMPILER_CPP_HAS_CPP11_UNIVERSAL_CHARACTER_NAME TRUE /* v3.1 */
+#		endif
+#	endif
 
 #	if __cplusplus >= 201103L && Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
 #		define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR			   TRUE /* v2.9 */
@@ -466,7 +469,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
 #				define Z_COMPILER_CPP_HAS_FORWARD_DECLARATION_OF_ENUMERATION TRUE /* v3.1 */
-#				define Z_COMPILER_CPP_HAS_UNIVERSAL_CHARACTER_NAME	     TRUE /* v3.1 */
 #			endif
 #		endif
 #	endif
