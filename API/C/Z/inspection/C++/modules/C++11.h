@@ -46,6 +46,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS		   TRUE /* N2555(v1.0) */
 #define Z_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY			   TRUE /* N2643: [[carries_dependency]]   */
 #define Z_CPP_HAS_ATTRIBUTE_NO_RETURN				   TRUE /* N2761: [[noreturn]]		   */
+#define Z_CPP_HAS_LITERAL_CHAR16_CHARACTER			   TRUE /* N2249: u'c'			   */
+#define Z_CPP_HAS_LITERAL_CHAR16_STRING				   TRUE /* N2249: u"string"		   */
+#define Z_CPP_HAS_LITERAL_CHAR32_CHARACTER			   TRUE /* N2249: U'c'			   */
+#define Z_CPP_HAS_LITERAL_CHAR32_STRING				   TRUE /* N2249: U"string"		   */
 #define Z_CPP_HAS_LITERAL_NULL_POINTER				   TRUE /* N2431: nullptr		   */
 #define Z_CPP_HAS_LITERAL_RAW_STRING				   TRUE /* N2442			   */
 #define Z_CPP_HAS_LITERAL_UNICODE_STRING			   TRUE /* N2442			   */

@@ -439,6 +439,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_EXTERN_TEMPLATE			   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_RIGHT_ANGLE_BRACKETS			   TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR16_CHARACTER		   TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR16_STRING			   TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR32_CHARACTER		   TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR32_STRING			   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_TYPE_CHAR16				   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_TYPE_CHAR32				   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_TYPE_ULLONG				   TRUE /* v2.9 */
@@ -446,6 +450,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0)
 #			define Z_COMPILER_CPP_HAS_STANDARD_LAYOUT TRUE /* v3.0 */
+
+			/*-------------------------------------------------------------.
+			| Due to a bug, the following macros don't work on Clang v3.0: |
+			|							       |
+			|    __has_feature(cxx_raw_string_literals)		       |
+			|    __has_feature(cxx_unicode_literals)		       |
+			|							       |
+			| so we detect these features using the compiler's version.    |
+			| See: https://bugs.llvm.org/show_bug.cgi?id=11267	       |
+			'-------------------------------------------------------------*/
+
+#			define Z_COMPILER_CPP_HAS_LITERAL_RAW_STRING	 TRUE /* v3.0 */
+#			define Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING TRUE /* v3.0 */
 
 #			if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
 #				define Z_COMPILER_CPP_HAS_FORWARD_DECLARATION_OF_ENUMERATION TRUE /* v3.1 */
@@ -554,14 +571,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __has_feature(cxx_nullptr)
 #		define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER TRUE /* v3.0 */
-#	endif
-
-#	if __has_feature(cxx_raw_string_literals)
-#		define Z_COMPILER_CPP_HAS_LITERAL_RAW_STRING TRUE /* v3.0 */
-#	endif
-
-#	if __has_feature(cxx_unicode_literals)
-#		define Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING TRUE /* v3.0 */
 #	endif
 
 #	if __has_feature(cxx_user_literals)
