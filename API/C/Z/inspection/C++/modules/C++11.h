@@ -51,8 +51,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_LITERAL_CHAR32_CHARACTER			   TRUE /* N2249: U'c'			   */
 #define Z_CPP_HAS_LITERAL_CHAR32_STRING				   TRUE /* N2249: U"string"		   */
 #define Z_CPP_HAS_LITERAL_NULL_POINTER				   TRUE /* N2431: nullptr		   */
-#define Z_CPP_HAS_LITERAL_RAW_STRING				   TRUE /* N2442			   */
-#define Z_CPP_HAS_LITERAL_UNICODE_STRING			   TRUE /* N2442			   */
+#define Z_CPP_HAS_LITERAL_RAW_STRING				   TRUE /* N2442: [L|u|U|u8]R"string"	   */
+#define Z_CPP_HAS_LITERAL_UNICODE_STRING			   TRUE /* N2442: u8"string"		   */
 #define Z_CPP_HAS_LITERAL_USER_DEFINED				   TRUE /* N2765			   */
 #define Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME			   TRUE /* __func__			   */
 #define Z_CPP_HAS_OPERATOR_ALIGN_OF				   TRUE /* N2341: alignof()		   */
