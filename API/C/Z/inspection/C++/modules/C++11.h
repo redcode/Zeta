@@ -27,6 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_INITIALIZER_LIST				   TRUE /* N2672 */
 #define Z_CPP_HAS_INLINE_NAMESPACE				   TRUE /* N2535 */
 #define Z_CPP_HAS_LAMBDA					   TRUE /* N2550(v0.9), N2658(v1.0), N2927(v1.1) */
+#define Z_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT		   TRUE /* N2657 */
 #define Z_CPP_HAS_MULTI_DECLARATOR_AUTO				   TRUE /* N1737 */
 #define Z_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER		   TRUE /* N2756 */
 #define Z_CPP_HAS_RANGE_BASED_FOR				   TRUE /* N2930 */

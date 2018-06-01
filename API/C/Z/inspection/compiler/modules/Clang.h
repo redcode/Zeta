@@ -517,6 +517,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_LAMBDA TRUE /* v3.1 */
 #	endif
 
+#	if __has_feature(cxx_local_type_template_args)
+#		define Z_COMPILER_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT TRUE /* v2.9 */
+#	endif
+
 #	if __has_feature(cxx_nonstatic_member_init)
 #		define Z_COMPILER_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER TRUE /* v3.0 */
 #	endif

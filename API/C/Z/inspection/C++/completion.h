@@ -89,6 +89,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_LAMBDA FALSE
 #endif
 
+#ifndef Z_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT
+#	define Z_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT FALSE
+#endif
+
 #ifndef Z_CPP_HAS_MULTI_DECLARATOR_AUTO
 #	define Z_CPP_HAS_MULTI_DECLARATOR_AUTO FALSE
 #endif
