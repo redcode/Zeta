@@ -34,7 +34,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_REMOVAL_OF_AUTO_AS_A_STORAGE_CLASS		   TRUE /* N2546 */
 #define Z_CPP_HAS_RIGHT_ANGLE_BRACKETS				   TRUE /* N1757 */
 #define Z_CPP_HAS_RVALUE_REFERENCE				   TRUE /* N2118(v1.0), N2844(v2.0), N2844+(v2.1), N3053(v3.0) */
-#define Z_CPP_HAS_SIZE_OF_NON_STATIC_DATA_MEMBER		   TRUE /* N2253, DR850: sizeof(Class::non_static_data_member) */
 #define Z_CPP_HAS_STANDARD_LAYOUT				   TRUE /* N2342 */
 #define Z_CPP_HAS_STANDARDIZED_ATTRIBUTE_SYNTAX			   TRUE /* N2761 */
 #define Z_CPP_HAS_STATIC_ASSERTION				   TRUE /* N1720 */
@@ -58,6 +57,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME			   TRUE /* __func__			   */
 #define Z_CPP_HAS_OPERATOR_ALIGN_OF				   TRUE /* N2341: alignof()		   */
 #define Z_CPP_HAS_OPERATOR_NO_EXCEPTION				   TRUE /* N3050: noexcept()		   */
+#define Z_CPP_HAS_OPERATOR_SIZE_OF_NON_STATIC_DATA_MEMBER	   TRUE /* N2253, DR850: sizeof(Class::non_static_data_member) */
 #define Z_CPP_HAS_SPECIFIER_ALIGN_AS				   TRUE /* N2341: alignas()		   */
 #define Z_CPP_HAS_SPECIFIER_AUTO				   TRUE /* N1984(v1.0): auto		   */
 #define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION			   TRUE /* N2235: constexpr		   */

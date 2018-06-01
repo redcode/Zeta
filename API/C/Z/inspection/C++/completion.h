@@ -117,10 +117,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_RVALUE_REFERENCE FALSE
 #endif
 
-#ifndef Z_CPP_HAS_SIZE_OF_NON_STATIC_DATA_MEMBER
-#	define Z_CPP_HAS_SIZE_OF_NON_STATIC_DATA_MEMBER FALSE
-#endif
-
 #ifndef Z_CPP_HAS_STANDARD_LAYOUT
 #	define Z_CPP_HAS_STANDARD_LAYOUT FALSE
 #endif
@@ -211,6 +207,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_CPP_HAS_OPERATOR_NO_EXCEPTION
 #	define Z_CPP_HAS_OPERATOR_NO_EXCEPTION FALSE
+#endif
+
+#ifndef Z_CPP_HAS_OPERATOR_SIZE_OF_NON_STATIC_DATA_MEMBER
+#	define Z_CPP_HAS_OPERATOR_SIZE_OF_NON_STATIC_DATA_MEMBER FALSE
 #endif
 
 #ifndef Z_CPP_HAS_SPECIFIER_ALIGN_AS
