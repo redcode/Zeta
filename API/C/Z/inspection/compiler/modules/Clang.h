@@ -570,6 +570,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	if __has_feature(cxx_variadic_templates)
 #		define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE			TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_OPERATOR_SIZE_OF_PARAMETER_PACK	TRUE /* v2.9 */
 #	endif
 
 #	if __has_feature(cxx_nullptr)

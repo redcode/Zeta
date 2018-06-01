@@ -44,30 +44,31 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_UNRESTRICTED_UNION				   TRUE /* N2544 */
 #define Z_CPP_HAS_VARIADIC_TEMPLATE				   TRUE /* N2242(v0.9) */
 #define Z_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS		   TRUE /* N2555(v1.0) */
-#define Z_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY			   TRUE /* N2643: [[carries_dependency]]   */
-#define Z_CPP_HAS_ATTRIBUTE_NO_RETURN				   TRUE /* N2761: [[noreturn]]		   */
-#define Z_CPP_HAS_LITERAL_CHAR16_CHARACTER			   TRUE /* N2249: u'c'			   */
-#define Z_CPP_HAS_LITERAL_CHAR16_STRING				   TRUE /* N2249: u"string"		   */
-#define Z_CPP_HAS_LITERAL_CHAR32_CHARACTER			   TRUE /* N2249: U'c'			   */
-#define Z_CPP_HAS_LITERAL_CHAR32_STRING				   TRUE /* N2249: U"string"		   */
-#define Z_CPP_HAS_LITERAL_NULL_POINTER				   TRUE /* N2431: nullptr		   */
-#define Z_CPP_HAS_LITERAL_RAW_STRING				   TRUE /* N2442: [L|u|U|u8]R"string"	   */
-#define Z_CPP_HAS_LITERAL_UNICODE_STRING			   TRUE /* N2442: u8"string"		   */
-#define Z_CPP_HAS_LITERAL_USER_DEFINED				   TRUE /* N2765			   */
-#define Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME			   TRUE /* __func__			   */
-#define Z_CPP_HAS_OPERATOR_ALIGN_OF				   TRUE /* N2341: alignof()		   */
-#define Z_CPP_HAS_OPERATOR_NO_EXCEPTION				   TRUE /* N3050: noexcept()		   */
-#define Z_CPP_HAS_OPERATOR_SIZE_OF_NON_STATIC_DATA_MEMBER	   TRUE /* N2253, DR850: sizeof(Class::non_static_data_member) */
-#define Z_CPP_HAS_SPECIFIER_ALIGN_AS				   TRUE /* N2341: alignas()		   */
-#define Z_CPP_HAS_SPECIFIER_AUTO				   TRUE /* N1984(v1.0): auto		   */
-#define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION			   TRUE /* N2235: constexpr		   */
-#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE			   TRUE /* N2343(v1.0): decltype()	   */
-#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN	   TRUE /* N3276(v1.1): decltype()	   */
-#define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION			   TRUE /* N3050: noexcept, noexcept()	   */
-#define Z_CPP_HAS_STORATE_CLASS_THREAD_LOCAL			   TRUE /* N2659: thread_local		   */
-#define Z_CPP_HAS_TYPE_CHAR16					   TRUE /* N2249: char16_t		   */
-#define Z_CPP_HAS_TYPE_CHAR32					   TRUE /* N2249: char32_t		   */
-#define Z_CPP_HAS_TYPE_ULLONG					   TRUE /* N1811: unsigned long long [int] */
-#define Z_CPP_HAS_TYPE_SLLONG					   TRUE /* N1811: [signed] long long [int] */
+#define Z_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY			   TRUE /* N2643: [[carries_dependency]]	    */
+#define Z_CPP_HAS_ATTRIBUTE_NO_RETURN				   TRUE /* N2761: [[noreturn]]			    */
+#define Z_CPP_HAS_LITERAL_CHAR16_CHARACTER			   TRUE /* N2249: u'c'				    */
+#define Z_CPP_HAS_LITERAL_CHAR16_STRING				   TRUE /* N2249: u"string"			    */
+#define Z_CPP_HAS_LITERAL_CHAR32_CHARACTER			   TRUE /* N2249: U'c'				    */
+#define Z_CPP_HAS_LITERAL_CHAR32_STRING				   TRUE /* N2249: U"string"			    */
+#define Z_CPP_HAS_LITERAL_NULL_POINTER				   TRUE /* N2431: nullptr			    */
+#define Z_CPP_HAS_LITERAL_RAW_STRING				   TRUE /* N2442: [L|u|U|u8]R"string"		    */
+#define Z_CPP_HAS_LITERAL_UNICODE_STRING			   TRUE /* N2442: u8"string"			    */
+#define Z_CPP_HAS_LITERAL_USER_DEFINED				   TRUE /* N2765				    */
+#define Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME			   TRUE /* __func__				    */
+#define Z_CPP_HAS_OPERATOR_ALIGN_OF				   TRUE /* N2341: alignof()			    */
+#define Z_CPP_HAS_OPERATOR_NO_EXCEPTION				   TRUE /* N3050: noexcept()			    */
+#define Z_CPP_HAS_OPERATOR_SIZE_OF_NON_STATIC_DATA_MEMBER	   TRUE /* N2253, DR850: sizeof(Class::data_member) */
+#define Z_CPP_HAS_OPERATOR_SIZE_OF_PARAMETER_PACK		   TRUE /* N2242: sizeof...(parameter_pack)	    */
+#define Z_CPP_HAS_SPECIFIER_ALIGN_AS				   TRUE /* N2341: alignas()			    */
+#define Z_CPP_HAS_SPECIFIER_AUTO				   TRUE /* N1984(v1.0): auto			    */
+#define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION			   TRUE /* N2235: constexpr			    */
+#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE			   TRUE /* N2343(v1.0): decltype()		    */
+#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN	   TRUE /* N3276(v1.1): decltype()		    */
+#define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION			   TRUE /* N3050: noexcept, noexcept()		    */
+#define Z_CPP_HAS_STORATE_CLASS_THREAD_LOCAL			   TRUE /* N2659: thread_local			    */
+#define Z_CPP_HAS_TYPE_CHAR16					   TRUE /* N2249: char16_t			    */
+#define Z_CPP_HAS_TYPE_CHAR32					   TRUE /* N2249: char32_t			    */
+#define Z_CPP_HAS_TYPE_ULLONG					   TRUE /* N1811: unsigned long long [int]	    */
+#define Z_CPP_HAS_TYPE_SLLONG					   TRUE /* N1811: [signed] long long [int]	    */
 
 #endif /* __Z_inspection_CPP_modules_CPP11_H__ */
