@@ -469,6 +469,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
 #				define Z_COMPILER_CPP_HAS_FORWARD_DECLARATION_OF_ENUMERATION TRUE /* v3.1 */
+#				define Z_COMPILER_CPP_HAS_SIZE_OF_NON_STATIC_DATA_MEMBER     TRUE /* v3.1 */
 #			endif
 #		endif
 #	endif
