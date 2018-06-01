@@ -149,6 +149,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_TRAILING_RETURN_TYPE FALSE
 #endif
 
+#ifndef Z_CPP_HAS_UNNAMED_TYPE_AS_TEMPLATE_ARGUMENT
+#	define Z_CPP_HAS_UNNAMED_TYPE_AS_TEMPLATE_ARGUMENT FALSE
+#endif
+
 #ifndef Z_CPP_HAS_UNRESTRICTED_UNION
 #	define Z_CPP_HAS_UNRESTRICTED_UNION FALSE
 #endif

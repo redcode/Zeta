@@ -518,7 +518,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 #	if __has_feature(cxx_local_type_template_args)
-#		define Z_COMPILER_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT   TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_UNNAMED_TYPE_AS_TEMPLATE_ARGUMENT TRUE /* v2.9 */
 #	endif
 
 #	if __has_feature(cxx_nonstatic_member_init)
