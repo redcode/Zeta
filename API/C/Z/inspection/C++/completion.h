@@ -245,6 +245,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN FALSE
 #endif
 
+#ifndef Z_CPP_HAS_SPECIFIER_FINAL
+#	define Z_CPP_HAS_SPECIFIER_FINAL FALSE
+#endif
+
 #ifndef Z_CPP_HAS_SPECIFIER_NO_EXCEPTION
 #	define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION FALSE
 #endif
