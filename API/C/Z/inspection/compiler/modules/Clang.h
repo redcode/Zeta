@@ -611,7 +611,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 #	if __has_feature(cxx_override_control)
-#		define Z_COMPILER_CPP_HAS_SPECIFIER_FINAL TRUE /* v3.0 */
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_FINAL    TRUE /* v3.0 */
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_OVERRIDE TRUE /* v3.0 */
 #	endif
 
 #	if __has_feature(cxx_noexcept)

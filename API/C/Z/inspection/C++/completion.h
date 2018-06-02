@@ -253,6 +253,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION FALSE
 #endif
 
+#ifndef Z_CPP_HAS_SPECIFIER_OVERRIDE
+#	define Z_CPP_HAS_SPECIFIER_OVERRIDE FALSE
+#endif
+
 #ifndef Z_CPP_HAS_STORATE_CLASS_THREAD_LOCAL
 #	define Z_CPP_HAS_STORATE_CLASS_THREAD_LOCAL FALSE
 #endif

@@ -68,6 +68,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN	   TRUE /* N3276(v1.1): decltype()		    */
 #define Z_CPP_HAS_SPECIFIER_FINAL				   TRUE /* N2928, N3206, N3272			    */
 #define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION			   TRUE /* N3050: noexcept, noexcept()		    */
+#define Z_CPP_HAS_SPECIFIER_OVERRIDE				   TRUE /* N2928, N3206, N3272			    */
 #define Z_CPP_HAS_STORATE_CLASS_THREAD_LOCAL			   TRUE /* N2659: thread_local			    */
 #define Z_CPP_HAS_TYPE_CHAR16					   TRUE /* N2249: char16_t			    */
 #define Z_CPP_HAS_TYPE_CHAR32					   TRUE /* N2249: char32_t			    */
