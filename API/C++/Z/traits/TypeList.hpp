@@ -28,9 +28,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef A type;
 		};
 
-		template <template <class...> class L, class... A>
-		struct TypeListFirst<L<A...> > {
-			typedef typename SelectType<0, A...>::type type;
+		template <template <class...> class L, class A0, class... A>
+		struct TypeListFirst<L<A0, A...> > {
+			typedef A0 type;
 		};
 
 		template <class L, UInt index> struct TypeListGet;
@@ -61,8 +61,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <template <class...> class L, class... A>
 		struct TypeListLast<L<A...> > {
-			typedef typename SelectType<0, A...>::type type;
-			typedef typename SelectType<sizeof...(A) ? sizeof...(A) - 1 : 0, A...>::type last;
+			typedef typename SelectType<sizeof...(A) ? sizeof...(A) - 1 : 0, A...>::type type;
 		};
 
 		template <class L, class... types> struct TypeListPrepend;
