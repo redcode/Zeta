@@ -10,7 +10,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/traits/Type.hpp>
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+#if	Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS) && \
+	Z_LANGUAGE_HAS_OPERATOR(CPP, SIZE_OF_PARAMETER_PACK)
 
 
 	namespace Zeta {namespace Detail {namespace Tuple {
