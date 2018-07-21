@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/mathematics/number.h>
 #include <Z/inspection/Z.h>
+#include <Z/traits/base.hpp>
 #include <Z/traits/TernaryType.hpp>
 #include <Z/traits/TypeList.hpp>
 
