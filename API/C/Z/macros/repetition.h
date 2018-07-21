@@ -8,8 +8,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_macros_repetition_H__
 #define __Z_macros_repetition_H__
 
-#include <Z/macros/tokens.h>
-
 #define Z_FOR_0_CALL_WITH_INDEX( f, _)
 #define Z_FOR_1_CALL_WITH_INDEX( f, _) f(0)
 #define Z_FOR_2_CALL_WITH_INDEX( f, _) f(0) _ f(1)
