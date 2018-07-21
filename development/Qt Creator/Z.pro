@@ -249,5 +249,6 @@ HEADERS += \
 "../../API/C++/Z/traits/SelectType.hpp" \
 "../../API/C++/Z/traits/TernaryType.hpp" \
 "../../API/C++/Z/traits/Type.hpp" \
+"../../API/C++/Z/traits/TypeCount.hpp" \
 "../../API/C++/Z/traits/TypeList.hpp" \
 "../../API/C++/Z/types/base.hpp"
