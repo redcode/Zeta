@@ -8,10 +8,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_Tuple_HPP__
 #define __Z_classes_base_Tuple_HPP__
 
-#include <Z/traits/Type.hpp>
+#include <Z/inspection/language.h>
 
-#if	Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS) && \
-	Z_LANGUAGE_HAS_OPERATOR(CPP, SIZE_OF_PARAMETER_PACK)
+#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+
+#	include <Z/traits/Type.hpp>
 
 
 	namespace Zeta {namespace Detail {namespace Tuple {
@@ -62,7 +63,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <UInt I> class At {
 
 			private:
-			enum {tail_size = sizeof...(T) - (I + 1)};
+			enum {tail_size = TypeCount<T...>::value - (I + 1)};
 
 			public:
 			typedef Detail::Tuple::Element<typename TypeListRotateRight<

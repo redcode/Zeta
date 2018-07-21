@@ -8,9 +8,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_TypeList_HPP__
 #define __Z_traits_TypeList_HPP__
 
-#include <Z/traits/SelectType.hpp>
+#include <Z/inspection/language.h>
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+
+#	include <Z/traits/SelectType.hpp>
+#	include <Z/traits/TypeCount.hpp>
 
 	namespace Zeta {
 
@@ -61,7 +64,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <template <class...> class L, class... A>
 		struct TypeListLast<L<A...> > {
-			typedef typename SelectType<sizeof...(A) ? sizeof...(A) - 1 : 0, A...>::type type;
+			typedef typename SelectType<TypeCount<A...>::value
+				? TypeCount<A...>::value - 1
+				: 0, A...
+			>::type type;
 		};
 
 		template <class L, class... types> struct TypeListPrepend;
@@ -123,7 +129,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <template <class...> class L, class... A>
 		struct TypeListRemoveLast<L<A...> > {
-			typedef typename TypeListRemove<L<A...>, sizeof...(A) - 1>::type type;
+			typedef typename TypeListRemove<L<A...>, TypeCount<A...>::value - 1>::type type;
 		};
 
 		template <class L, UInt tail_size> struct TypeListRemoveTail;
@@ -160,8 +166,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <template <class...> class L, class... A, UInt R>
 		struct TypeListRotateLeft<L<A...>, R> {
 			typedef typename TypeListJoin<
-				typename TypeListRemoveHead<L<A...>, R % sizeof...(A)>::type,
-				typename TypeListRemoveTail<L<A...>, sizeof...(A) - (R % sizeof...(A))>::type
+				typename TypeListRemoveHead<L<A...>, R % TypeCount<A...>::value>::type,
+				typename TypeListRemoveTail<L<A...>, TypeCount<A...>::value - (R % TypeCount<A...>::value)>::type
 			>::type type;
 		};
 
@@ -175,8 +181,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <template <class...> class L, class... A, UInt R>
 		struct TypeListRotateRight<L<A...>, R> {
 			typedef typename TypeListJoin<
-				typename TypeListRemoveHead<L<A...>, sizeof...(A) - (R % sizeof...(A))>::type,
-				typename TypeListRemoveTail<L<A...>, R % sizeof...(A)>::type
+				typename TypeListRemoveHead<L<A...>, TypeCount<A...>::value - (R % TypeCount<A...>::value)>::type,
+				typename TypeListRemoveTail<L<A...>, R % TypeCount<A...>::value>::type
 			>::type type;
 		};
 
@@ -233,7 +239,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 		template <class... A> struct TypeList {
-			enum {size = sizeof...(A)};
+			enum {size = TypeCount<A...>::value};
 
 			typedef typename TypeListFirst	    <TypeList>::type first;
 			typedef typename TypeListLast	    <TypeList>::type last;

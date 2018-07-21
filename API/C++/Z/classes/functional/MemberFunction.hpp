@@ -8,12 +8,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_functional_MemberFunction_HPP__
 #define __Z_classes_functional_MemberFunction_HPP__
 
-#include <Z/traits/filtering.hpp>
+#include <Z/inspection/language.h>
 
 #if	Z_LANGUAGE_HAS(CPP, SFINAE)	       && \
 	Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && \
 	Z_LANGUAGE_HAS(CPP, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE)
 
+#	include <Z/traits/filtering.hpp>
 #	include <Z/traits/Type.hpp>
 
 

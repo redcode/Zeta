@@ -11,7 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/language.hpp>
 
 namespace Zeta {
-	struct NaT   {};
 	struct Empty {};
 	struct True  {enum {value = true };};
 	struct False {enum {value = false};};

@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_base_OpaqueMemberFunctionPointer_HPP__
 #define __Z_classes_base_OpaqueMemberFunctionPointer_HPP__
 
-#include <Z/traits/base.hpp>
+#include <Z/types/base.hpp>
 
 
 namespace Zeta {struct OpaqueMemberFunctionPointer {

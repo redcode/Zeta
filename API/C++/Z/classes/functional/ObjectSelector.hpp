@@ -8,6 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_classes_functional_ObjectSelector_HPP__
 #define __Z_classes_functional_ObjectSelector_HPP__
 
+#include <Z/inspection/Z.h>
 #include <Z/classes/functional/Selector.hpp>
 
 #if Z_HAS_CLASS(Selector)

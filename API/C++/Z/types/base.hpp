@@ -133,6 +133,8 @@ namespace Zeta {
 #	endif
 
 	typedef ZPointer Pointer;
+
+	struct NaT {};
 };
 
 #endif // __Z_types_base_HPP__

@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_traits_TypeCount_HPP__
 #define __Z_traits_TypeCount_HPP__
 
-#include <Z/traits/base.hpp>
+#include <Z/inspection/language.h>
 
 #if	Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && \
 	Z_LANGUAGE_HAS_OPERATOR(CPP, SIZE_OF_PARAMETER_PACK)
@@ -19,7 +19,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #else
 
-#	include <Z/macros/pasting.h>
+#	include <Z/types/base.hpp>
 #	include <Z/macros/repetition.h>
 #	include <Z/macros/tokens.h>
 

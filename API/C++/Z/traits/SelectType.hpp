@@ -9,17 +9,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define __Z_traits_SelectType_HPP__
 
 #include <Z/types/base.hpp>
-#include <Z/traits/base.hpp>
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 	namespace Zeta {
 
-		template<UInt I, class T0 = NaT, class... T> struct SelectType {
+		template <UInt I, class T0 = NaT, class... T> struct SelectType {
 			typedef typename SelectType<I - 1, T...>::type type;
 		};
 
-		template<class T0, class... T> struct SelectType<0, T0, T...> {
+		template <class T0, class... T> struct SelectType<0, T0, T...> {
 			typedef T0 type;
 		};
 

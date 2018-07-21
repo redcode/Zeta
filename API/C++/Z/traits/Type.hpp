@@ -13,6 +13,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/traits/TernaryType.hpp>
 #include <Z/traits/TypeList.hpp>
 
+#if !Z_HAS_TRAIT(TypeList)
+#	include <Z/traits/SelectType.hpp>
+
+#	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+#		include <Z/traits/TypeCount.hpp>
+#	endif
+#endif
+
 #if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
 #	include <Z/functions/base/type.hpp>
 #	include <Z/classes/base/Symbol.hpp>
@@ -1652,7 +1660,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {	is_callable = true,
 				is_function = true
 			};
-			enum {arity = sizeof...(P)};
+			enum {arity = TypeCount<P...>::value};
 
 			typedef R type		   (P...);
 			typedef R to_const	   (P...) const;
@@ -1893,7 +1901,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 		template <zboolean E, template <class...> class T, class... A> struct MaybeTemplate<E, T<A...> > : StructureOrUnion<E, T<A...> > {
 			enum {is_template = true};
-			enum {arity = sizeof...(A)};
+			enum {arity = TypeCount<A...>::value};
 
 			typedef TypeList<A...> parameters;
 		};
