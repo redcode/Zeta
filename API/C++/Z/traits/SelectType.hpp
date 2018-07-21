@@ -24,8 +24,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 
 #		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
-			template<UInt I, class... T>
-			using select_type = typename SelectType<I, T...>::type;
+			template <UInt I, class... T> using select_type = typename SelectType<I, T...>::type;
+#			define Z_HAS_TRAIT_ALIAS_select_type TRUE
 #		endif
 	}
 
@@ -61,6 +61,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		undef Z_TEMPLATE_SPECIALIZATION
 	}
 
+#endif
+
+#ifndef Z_HAS_TRAIT_ALIAS_select_type
+#	define Z_HAS_TRAIT_ALIAS_select_type FALSE
 #endif
 
 #endif // __Z_traits_SelectType_HPP__
