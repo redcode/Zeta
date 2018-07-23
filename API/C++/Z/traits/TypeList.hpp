@@ -11,6 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/language.h>
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+#	define Z_HAS_TRAIT_TypeList	       TRUE
 #	define Z_HAS_TRAIT_TypeListAppend      TRUE
 #	define Z_HAS_TRAIT_TypeListFirst       TRUE
 #	define Z_HAS_TRAIT_TypeListGet	       TRUE
@@ -28,8 +29,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_TypeListRotateRight TRUE
 #	define Z_HAS_TRAIT_TypeListToFunction  TRUE
 #	define Z_HAS_TRAIT_TypeListTransform   TRUE
-#	define Z_HAS_TRAIT_TypeList	       TRUE
 #else
+#	define Z_HAS_TRAIT_TypeList	       FALSE
 #	define Z_HAS_TRAIT_TypeListAppend      FALSE
 #	define Z_HAS_TRAIT_TypeListFirst       FALSE
 #	define Z_HAS_TRAIT_TypeListGet	       FALSE
@@ -47,7 +48,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_TypeListRotateRight FALSE
 #	define Z_HAS_TRAIT_TypeListToFunction  FALSE
 #	define Z_HAS_TRAIT_TypeListTransform   FALSE
-#	define Z_HAS_TRAIT_TypeList	       FALSE
 #endif
 
 #if	Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS) && \
