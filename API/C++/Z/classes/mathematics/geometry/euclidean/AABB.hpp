@@ -32,22 +32,22 @@ namespace Zeta {namespace Partials {namespace AABB {
 	template <class AABB, class T>
 	struct Part<AABB, T, Z_NUMBER_SET_R> {
 
-		Z_CT_MEMBER(CPP11) Zeta::Value3D<T> absolute_point_to_unit(const Zeta::Value3D<T> &point)
+		Z_CT(CPP11) Zeta::Value3D<T> absolute_point_to_unit(const Zeta::Value3D<T> &point)
 			{return (point - Z_THIS->a) / (Z_THIS->b - Z_THIS->a);}
 
 
-		/*Z_CT_MEMBER(CPP11) Boolean contains(const Circle<T> circle)
+		/*Z_CT(CPP11) Boolean contains(const Circle<T> circle)
 			{
 			return	circle.point - circle.radius >= Z_THIS->a &&
 				circle.point + circle.radius <= Z_THIS->b;
 			}*/
 
 
-		/*Z_CT_MEMBER(CPP11) Circle<T> inner_circle()
+		/*Z_CT(CPP11) Circle<T> inner_circle()
 			{return Circle<T>(Z_THIS->center(), (b - a).inner_minimum() / T(2));}*/
 
 
-		Z_CT_MEMBER(CPP11) Zeta::Value3D<T> unit_point_to_absolute(Zeta::Value3D<T> point)
+		Z_CT(CPP11) Zeta::Value3D<T> unit_point_to_absolute(Zeta::Value3D<T> point)
 			{return point * (object.b - object.a) + object.a;}
 	};
 
@@ -62,19 +62,19 @@ namespace Zeta {template <class T> struct AABB : Line3D<T>, Partials::Rectangle:
 	typedef typename ZTypeFixedSigned(ZAABR, T) Base;
 
 
-	Z_INLINE_MEMBER AABR() {}
+	Z_INLINE AABR() {}
 
-	Z_CT_MEMBER(CPP11) AABR(const Value2D<T> &a, const Value2D<T> &b) : Line2D<T>(a, b)		  {}
-	Z_CT_MEMBER(CPP11) AABR(const Value2D<T> &a, T b_x, T b_y)	  : Line2D<T>(a, b_x, b_y)	  {}
-	Z_CT_MEMBER(CPP11) AABR(const Value2D<T> &a, T b_xy)		  : Line2D<T>(a, b_xy)		  {}
-	Z_CT_MEMBER(CPP11) AABR(T a_x, T a_y, const Value2D<T> &b)	  : Line2D<T>(a_x, a_y, b)	  {}
-	Z_CT_MEMBER(CPP11) AABR(T a_x, T a_y, T b_x, T b_y)		  : Line2D<T>(a_x, a_y, b_x, b_y) {}
-	Z_CT_MEMBER(CPP11) AABR(T a_xy, T b_x, T b_y)			  : Line2D<T>(a_xy, b_x, b_y)	  {}
-	Z_CT_MEMBER(CPP11) AABR(T a_xy, const Value2D<T> &b)		  : Line2D<T>(a_xy, b)		  {}
-	Z_CT_MEMBER(CPP11) AABR(T b_x, T b_y)				  : Line2D<T>(b_x, b_y)		  {}
-	Z_CT_MEMBER(CPP11) AABR(T b_xy)					  : Line2D<T>(b_xy)		  {}
+	Z_CT(CPP11) AABR(const Value2D<T> &a, const Value2D<T> &b) : Line2D<T>(a, b)		   {}
+	Z_CT(CPP11) AABR(const Value2D<T> &a, T b_x, T b_y)	   : Line2D<T>(a, b_x, b_y)	   {}
+	Z_CT(CPP11) AABR(const Value2D<T> &a, T b_xy)		   : Line2D<T>(a, b_xy)		   {}
+	Z_CT(CPP11) AABR(T a_x, T a_y, const Value2D<T> &b)	   : Line2D<T>(a_x, a_y, b)	   {}
+	Z_CT(CPP11) AABR(T a_x, T a_y, T b_x, T b_y)		   : Line2D<T>(a_x, a_y, b_x, b_y) {}
+	Z_CT(CPP11) AABR(T a_xy, T b_x, T b_y)			   : Line2D<T>(a_xy, b_x, b_y)	   {}
+	Z_CT(CPP11) AABR(T a_xy, const Value2D<T> &b)		   : Line2D<T>(a_xy, b)		   {}
+	Z_CT(CPP11) AABR(T b_x, T b_y)				   : Line2D<T>(b_x, b_y)	   {}
+	Z_CT(CPP11) AABR(T b_xy)				   : Line2D<T>(b_xy)		   {}
 
-	Z_INLINE_MEMBER AABR(const Base &aabr) {(*(Base *)this) = aabr;}
+	Z_INLINE AABR(const Base &aabr) {(*(Base *)this) = aabr;}
 };}
 
 
