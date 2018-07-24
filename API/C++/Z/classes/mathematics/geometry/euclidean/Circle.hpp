@@ -20,7 +20,7 @@ namespace Zeta {template <class T> struct Circle {
 	T radius;
 
 
-	Z_INLINE Circle() {}
+	Z_INLINE Circle() Z_DEFAULTED({})
 
 	Z_CT(CPP11) Circle(const Value2D<T> &point, T radius) : point(point), radius(radius) {}
 	Z_CT(CPP11) Circle(T x, T y, T radius)		      : point(x, y),  radius(radius) {}

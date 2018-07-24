@@ -62,7 +62,7 @@ namespace Zeta {template <class T> struct AABR : Line2D<T>, Partials::Rectangle:
 	typedef typename ZTypeFixedSigned(ZAABR, T) Base;
 
 
-	Z_INLINE_MEMBER AABR() {}
+	Z_INLINE_MEMBER AABR() Z_DEFAULTED({})
 
 	Z_CT_MEMBER(CPP11) AABR(const Value2D<T> &a, const Value2D<T> &b) : Line2D<T>(a, b)		  {}
 	Z_CT_MEMBER(CPP11) AABR(const Value2D<T> &a, T b_x, T b_y)	  : Line2D<T>(a, b_x, b_y)	  {}

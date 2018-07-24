@@ -18,7 +18,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 typedef typename ZTypeFixedNumber(Z3D, T) Base;							\
 T x, y, z;											\
 												\
-Z_INLINE Value3D() {}										\
+Z_INLINE Value3D() Z_DEFAULTED({})								\
 												\
 Z_CT(CPP11) Value3D(T x, T y, T z)	       : x(x),	     y(y),	 z(z)	    {}		\
 Z_CT(CPP11) Value3D(T x, T y)		       : x(x),	     y(y),	 z(T(0))    {}		\

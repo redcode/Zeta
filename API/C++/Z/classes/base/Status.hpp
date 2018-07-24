@@ -73,7 +73,7 @@ namespace Zeta {struct Status {
 
 	ZStatus code;
 
-	Z_INLINE Status() {}
+	Z_INLINE Status() Z_DEFAULTED({})
 
 	Z_CT(CPP11) Status(ZStatus code) : code(code) {}
 

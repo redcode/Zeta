@@ -18,7 +18,7 @@ namespace Zeta {template <class T1, class T2> struct Pair {
 	T1 first;
 	T2 second;
 
-	Z_INLINE Pair() {}
+	Z_INLINE Pair() Z_DEFAULTED({})
 
 	Z_CT(CPP11) Pair(
 		typename Type<T1>::to_forwardable first,

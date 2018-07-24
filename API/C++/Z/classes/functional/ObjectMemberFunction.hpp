@@ -21,7 +21,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <class R, class... P> struct ObjectMemberFunction<R(P...)> : MemberFunction<R(P...)> {
 			NaT *object;
 
-			Z_INLINE ObjectMemberFunction() {}
+			Z_INLINE ObjectMemberFunction() Z_DEFAULTED({})
 
 
 #			if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)

@@ -31,7 +31,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			Value value;
 
-			Z_INLINE Element() {}
+			Z_INLINE Element() Z_DEFAULTED({})
 
 			Z_CT(CPP11) Element(typename Zeta::Type<T0>::to_forwardable value)
 			: value(value) {}
@@ -44,7 +44,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			Value value;
 
-			Z_INLINE Element() {}
+			Z_INLINE Element() Z_DEFAULTED({})
 
 			Z_CT(CPP11) Element(
 				typename Zeta::Type<T >::to_forwardable... previous,
@@ -77,7 +77,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
 			using Super::Super;
 #		else
-			Z_INLINE Tuple() {}
+			Z_INLINE Tuple() Z_DEFAULTED({})
 
 			Z_CT(CPP11) Tuple(typename Type<T>::to_forwardable... values)
 			: Super(values...) {}

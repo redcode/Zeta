@@ -25,7 +25,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <class R, class... P> struct MemberFunction<R(P...)> {
 			R (NaT::* function)(P...);
 
-			Z_INLINE MemberFunction() {}
+			Z_INLINE MemberFunction() Z_DEFAULTED({})
 
 
 #			if Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)

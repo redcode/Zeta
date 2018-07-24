@@ -17,7 +17,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 typedef typename ZTypeFixedSigned(Z2DLine, T) Base;						\
 Value2D<T> a, b;										\
 												\
-Z_INLINE Line2D() {}										\
+Z_INLINE Line2D() Z_DEFAULTED({})								\
 												\
 Z_CT(CPP11) Line2D(const Value2D<T> &a, const Value2D<T> &b) : a(a),	    b(b)	{}	\
 Z_CT(CPP11) Line2D(const Value2D<T> &a, T b_x, T b_y)	     : a(a),	    b(b_x, b_y) {}	\

@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {struct Symbol {
 	UInt64 id;
 
-	Z_INLINE Symbol() {}
+	Z_INLINE Symbol() Z_DEFAULTED({})
 
 	Z_CT(CPP11) Symbol(UInt64 id)
 	: id(id) {}

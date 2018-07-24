@@ -24,7 +24,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			id object;
 
-			Z_INLINE ObjectSelector() {}
+			Z_INLINE ObjectSelector() Z_DEFAULTED({})
 
 
 			Z_INLINE ObjectSelector(id object, SEL selector)

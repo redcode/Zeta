@@ -29,7 +29,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			SEL selector;
 
-			Z_INLINE Selector() {}
+			Z_INLINE Selector() Z_DEFAULTED({})
 
 			Z_INLINE Selector(SEL selector)
 			: selector(selector) {}

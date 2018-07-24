@@ -17,7 +17,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 typedef typename ZTypeFixedSigned(ZBox, T) Base;						\
 Value3D<T> point, size;										\
 												\
-Z_INLINE Box() {}										\
+Z_INLINE Box() Z_DEFAULTED({})									\
 												\
 												\
 Z_CT(CPP11) Box(const Value3D<T> &point, const Value3D<T> &size)				\

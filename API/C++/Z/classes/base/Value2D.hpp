@@ -106,7 +106,7 @@ Z_CT(CPP11) Value2D(const Prefix##Size  &size ) : x(size.width), y(size.height) 
 typedef typename ZTypeFixedNumber(Z2D, T) Base;							\
 T x, y;												\
 												\
-Z_INLINE Value2D() {}										\
+Z_INLINE Value2D() Z_DEFAULTED({})								\
 												\
 Z_CT(CPP11) Value2D(T x, T y)		  : x(x),	y(y)	   {}				\
 Z_CT(CPP11) Value2D(T xy)		  : x(xy),	y(xy)	   {}				\

@@ -103,7 +103,7 @@ Z_CT(CPP11) Rectangle(const Prefix##Rect &rectangle)						\
 typedef typename ZTypeFixedSigned(ZRectangle, T) Base;						\
 Value2D<T> point, size;										\
 												\
-Z_INLINE Rectangle() {}										\
+Z_INLINE Rectangle() Z_DEFAULTED({})								\
 												\
 												\
 Z_CT(CPP11) Rectangle(const Value2D<T> &point, const Value2D<T> &size)				\

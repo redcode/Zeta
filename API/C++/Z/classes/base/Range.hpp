@@ -20,7 +20,7 @@ namespace Zeta {template <class T> struct Range {
 	typedef typename ZTypeFixedNatural(ZRange, T) Base;
 	T index, size;
 
-	Z_INLINE Range() {}
+	Z_INLINE Range() Z_DEFAULTED({})
 
 	Z_CT(CPP11) Range(T size)	     : index(0),	   size(size)	    {}
 	Z_CT(CPP11) Range(T index, T size)   : index(index),	   size(size)	    {}

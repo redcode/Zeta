@@ -17,7 +17,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 typedef typename ZTypeFixedSigned(Z3DLine, T) Base;						\
 Value3D<T> a, b;										\
 												\
-Z_INLINE Line3D() {}										\
+Z_INLINE Line3D() Z_DEFAULTED({})								\
 												     \
 Z_CT(CPP11) Line3D(const Value3D<T> &a, const Value3D<T> &b) : a(a),		 b(b)		  {} \
 Z_CT(CPP11) Line3D(const Value3D<T> &a, T b_x, T b_y, T b_z) : a(a),		 b(b_x, b_y, b_z) {} \
