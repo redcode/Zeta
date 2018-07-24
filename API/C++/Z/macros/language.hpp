@@ -55,4 +55,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_NO_EXCEPTION throw()
 #endif
 
+/* MARK: - Defaulted functions */
+
+#if Z_LANGUAGE_HAS(C, VARIADIC_MACRO) || Z_LANGUAGE_HAS(CPP, C99_PREPROCESSOR)
+#	if Z_LANGUAGE_HAS(CPP, DEFAULTED_FUNCTION)
+#		define Z_DEFAULTED(...) = default;
+#	else
+#		define Z_DEFAULTED(...) __VA_ARGS__
+#	endif
+#else
+#	if Z_LANGUAGE_HAS(CPP, DEFAULTED_FUNCTION)
+#		define Z_DEFAULTED(body) = default;
+#	else
+#		define Z_DEFAULTED(body) body
+#	endif
+#endif
+
 #endif // __Z_macros_language_HPP__
