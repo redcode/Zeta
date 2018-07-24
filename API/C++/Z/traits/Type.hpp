@@ -2885,8 +2885,10 @@ namespace Zeta {namespace Detail {namespace Type {
 		};
 
 		enum {	objective_c_instance_detected =
-			Z_LANGUAGE_INCLUDES(OBJECTIVE_C) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) &&
-			!enumeration_detected && !structure_or_union_detected
+			Z_LANGUAGE_INCLUDES(OBJECTIVE_C)       &&
+			Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) &&
+			!enumeration_detected		       &&
+			!structure_or_union_detected
 		};
 
 		enum {	kind = enumeration_detected
