@@ -19,7 +19,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {struct RingBuffer : public ZRingBuffer {
 
-	Z_INLINE RingBuffer() {}
+	Z_INLINE RingBuffer() Z_DEFAULTED({})
 
 
 	Z_INLINE RingBuffer(void *buffers, USize buffer_size, USize buffer_count)

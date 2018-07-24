@@ -16,7 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 
-	Z_INLINE TripleBuffer() {}
+	Z_INLINE TripleBuffer() Z_DEFAULTED({})
 
 
 	Z_INLINE TripleBuffer(void *buffers, USize buffer_size)
