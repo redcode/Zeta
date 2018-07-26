@@ -641,8 +641,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* v3.4 */
 #	endif
 
+	/*-------------------------------------------------------------------------------.
+	| In Clang v3.7 and later, sized deallocation is only enabled if the user passes |
+	| the -fsized-deallocation flag. The user must supply definitions of the sized	 |
+	| deallocation functions, either by providing them explicitly or by using a C++	 |
+	| standard library that does. libstdc++ added these functions in version v5.0,	 |
+	| and libc++ added them in version v3.7.					 |
+	'-------------------------------------------------------------------------------*/
 #	if __cplusplus >= 201402L && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
-/*#		define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION TRUE /* v3.4 */
+/*#		define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION TRUE*/ /* v3.4 */
 #	endif
 
 #	if __has_feature(cxx_variable_templates)
