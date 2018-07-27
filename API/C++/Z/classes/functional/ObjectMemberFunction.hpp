@@ -36,7 +36,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			endif
 
 
-#			if Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+#			if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
 				Z_CT(CPP11) ObjectMemberFunction(NullPointer)
 				: MemberFunction<R(P...)>(NULL), object(NULL) {};
 #			endif
