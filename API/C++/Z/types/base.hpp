@@ -3,6 +3,7 @@
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2018 Agaxia.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef __Z_types_base_HPP__
@@ -134,7 +135,14 @@ namespace Zeta {
 
 	typedef ZPointer Pointer;
 
-	struct NaT {};
+	struct NaT {
+#		if Z_LANGUAGE_HAS(CPP, DELETED_FUNCTION)
+			NaT()			     = delete;
+			NaT(const NaT &)	     = delete;
+			~NaT()			     = delete;
+			NaT &operator =(const NaT &) = delete;
+#		endif
+	};
 };
 
 #endif // __Z_types_base_HPP__
