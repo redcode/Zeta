@@ -2811,7 +2811,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::type&	 add_lvalue_reference;
 		typedef typename C::pointee_type remove_pointer;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_TRAIT_HAS(Type, add_rvalue_reference)
 			typedef typename C::type&& add_rvalue_reference;
 #		endif
 	};
@@ -2819,7 +2819,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	template <class C> struct Kind<Pointer, C> : Kind<VoidPointer, C> {
 		typedef typename C::pointee_type& to_lvalue_reference;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_TRAIT_HAS(Type, to_rvalue_reference)
 			typedef typename C::pointee_type&& to_rvalue_reference;
 #		endif
 	};
@@ -2841,7 +2841,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::type	     remove_pointer;
 		typedef typename C::referencee_type  remove_reference;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_TRAIT_HAS(Type, to_rvalue_reference)
 			typedef typename C::referencee_type&& to_rvalue_reference;
 #		endif
 	};
