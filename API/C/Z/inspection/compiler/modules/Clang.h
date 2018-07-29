@@ -686,6 +686,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_ATTRIBUTE_API_ALIAS*/
 /*#define Z_COMPILER_ATTRIBUTE_API_EXPORT_ALIAS*/
 /*#define Z_COMPILER_ATTRIBUTE_API_WEAK_EXPORT*/
+/*#define Z_COMPILER_ATTRIBUTE_EBCO*/
 
 #if __has_attribute(always_inline)
 #	define Z_COMPILER_ATTRIBUTE_INLINE __inline__ __attribute__((always_inline))

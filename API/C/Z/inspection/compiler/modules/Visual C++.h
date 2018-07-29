@@ -41,21 +41,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C attributes */
 
-#define Z_COMPILER_C_ATTRIBUTE_ALIAS(name)
-#define Z_COMPILER_C_ATTRIBUTE_API		 __declspec(dllimport)
-/*#define Z_COMPILER_C_ATTRIBUTE_API_ALIAS*/
-#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT	 __declspec(dllexport)
-/*#define Z_COMPILER_C_ATTRIBUTE_API_EXPORT_ALIAS*/
-/*#define Z_COMPILER_C_ATTRIBUTE_API_WEAK_EXPORT*/
-#define Z_COMPILER_C_ATTRIBUTE_INLINE		 static __forceinline
-/*#define Z_COMPILER_C_ATTRIBUTE_NO_RETURN*/
-/*#define Z_COMPILER_C_ATTRIBUTE_NULL_TERMINATED*/
-#define Z_COMPILER_C_ATTRIBUTE_PRIVATE		 static
-/*#define Z_COMPILER_C_ATTRIBUTE_PUBLIC*/
-#define Z_COMPILER_C_ATTRIBUTE_STRICT_SIZE_BEGIN __pragma(pack(push, 1))
-#define Z_COMPILER_C_ATTRIBUTE_STRICT_SIZE_END	 __pragma(pack(pop))
-#define Z_COMPILER_C_ATTRIBUTE_THREAD_LOCAL	 __declspec(thread)
-#define Z_COMPILER_C_ATTRIBUTE_WEAK		 __declspec(selectany)
+#define Z_COMPILER_ATTRIBUTE_ALIAS(name)
+#define Z_COMPILER_ATTRIBUTE_API	       __declspec(dllimport)
+/*#define Z_COMPILER_ATTRIBUTE_API_ALIAS*/
+#define Z_COMPILER_ATTRIBUTE_API_EXPORT	       __declspec(dllexport)
+/*#define Z_COMPILER_ATTRIBUTE_API_EXPORT_ALIAS*/
+/*#define Z_COMPILER_ATTRIBUTE_API_WEAK_EXPORT*/
+#define Z_COMPILER_ATTRIBUTE_EBCO	       __declspec(empty_bases)
+#define Z_COMPILER_ATTRIBUTE_INLINE	       static __forceinline
+/*#define Z_COMPILER_ATTRIBUTE_NO_RETURN*/
+/*#define Z_COMPILER_ATTRIBUTE_NULL_TERMINATED*/
+#define Z_COMPILER_ATTRIBUTE_PRIVATE	       static
+/*#define Z_COMPILER_ATTRIBUTE_PUBLIC*/
+#define Z_COMPILER_ATTRIBUTE_STRICT_SIZE_BEGIN __pragma(pack(push, 1))
+#define Z_COMPILER_ATTRIBUTE_STRICT_SIZE_END   __pragma(pack(pop))
+#define Z_COMPILER_ATTRIBUTE_THREAD_LOCAL      __declspec(thread)
+#define Z_COMPILER_ATTRIBUTE_WEAK	       __declspec(selectany)
 
 /* MARK: - Specific constants */
 

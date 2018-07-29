@@ -2345,8 +2345,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_empty = Z_COMPILER_TRAIT(TYPE_IS_EMPTY)(T)};
 #		else
 			private:
-			struct Dummy	     {zsint dummy;};
-			struct EmptyTest : T {zsint dummy;};
+			struct Dummy		    {zsint dummy;};
+			struct Z_EBCO EmptyTest : T {zsint dummy;};
 
 			public:
 			enum {is_empty = (sizeof(EmptyTest) == sizeof(Dummy))};

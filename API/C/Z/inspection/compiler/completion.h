@@ -562,6 +562,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_HAS_ATTRIBUTE_API_WEAK_EXPORT FALSE
 #endif
 
+#ifdef Z_COMPILER_ATTRIBUTE_EBCO
+#	define Z_COMPILER_HAS_ATTRIBUTE_EBCO TRUE
+#else
+#	define Z_COMPILER_HAS_ATTRIBUTE_EBCO FALSE
+#endif
+
 #ifdef Z_COMPILER_ATTRIBUTE_INLINE
 #	define Z_COMPILER_HAS_ATTRIBUTE_INLINE TRUE
 #else

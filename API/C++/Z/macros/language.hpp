@@ -10,6 +10,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/macros/language.h>
 
+/* MARK: - Attributes */
+
+#if Z_COMPILER_HAS_ATTRIBUTE(EBCO)
+#	define Z_EBCO Z_COMPILER_ATTRIBUTE(EBCO)
+#else
+#	define Z_EBCO
+#endif
+
 /* MARK: - Constants */
 
 #if !Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
