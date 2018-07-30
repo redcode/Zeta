@@ -12,6 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 #	define Z_HAS_TRAIT_TypeList	       TRUE
+#	define Z_HAS_TRAIT_TypeListSize	       TRUE
 #	define Z_HAS_TRAIT_TypeListAppend      TRUE
 #	define Z_HAS_TRAIT_TypeListFirst       TRUE
 #	define Z_HAS_TRAIT_TypeListGet	       TRUE
@@ -31,6 +32,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_TypeListTransform   TRUE
 #else
 #	define Z_HAS_TRAIT_TypeList	       FALSE
+#	define Z_HAS_TRAIT_TypeListSize	       FALSE
 #	define Z_HAS_TRAIT_TypeListAppend      FALSE
 #	define Z_HAS_TRAIT_TypeListFirst       FALSE
 #	define Z_HAS_TRAIT_TypeListGet	       FALSE
@@ -116,6 +118,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/traits/TypeCount.hpp>
 
 	namespace Zeta {
+
+		template <class L> struct TypeListSize;
+
+		template <template <class...> class L, class... A> struct TypeListSize<L<A...> > {
+			enum {value = TypeCount<A...>::value};
+		};
 
 		template <class L, class... types> struct TypeListAppend;
 
