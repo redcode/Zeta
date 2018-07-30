@@ -796,10 +796,21 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 
 		typedef NaT type;
+
+		typedef NaT add_const;
+		typedef NaT add_const_volatile;
+		typedef NaT add_lvalue_reference;
+		typedef NaT add_pointer;
+		typedef NaT add_volatile;
 		typedef NaT class_type;
 		typedef NaT element_type;
 		typedef NaT pointee_type;
 		typedef NaT referencee_type;
+		typedef NaT remove_const;
+		typedef NaT remove_const_volatile;
+		typedef NaT remove_pointer;
+		typedef NaT remove_reference;
+		typedef NaT remove_volatile;
 		typedef NaT return_type;
 		typedef NaT to_const;
 		typedef NaT to_const_volatile;
@@ -813,16 +824,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef NaT to_unsigned;
 		typedef NaT to_volatile;
 		typedef NaT to_wrap;
-		typedef NaT add_const;
-		typedef NaT add_const_volatile;
-		typedef NaT add_lvalue_reference;
-		typedef NaT add_pointer;
-		typedef NaT add_volatile;
-		typedef NaT remove_const;
-		typedef NaT remove_const_volatile;
-		typedef NaT remove_pointer;
-		typedef NaT remove_reference;
-		typedef NaT remove_volatile;
 
 #		if Z_TRAIT_HAS(Type, has_virtual_destructor)
 			enum {has_virtual_destructor = false};
@@ -1018,14 +1019,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				is_volatile_rvalue	 = false
 			};
 
-			typedef NaT to_const_lvalue;
-			typedef NaT to_const_rvalue;
-			typedef NaT to_const_volatile_lvalue;
-			typedef NaT to_const_volatile_rvalue;
-			typedef NaT to_lvalue;
-			typedef NaT to_rvalue;
-			typedef NaT to_volatile_lvalue;
-			typedef NaT to_volatile_rvalue;
 			typedef NaT add_const_lvalue;
 			typedef NaT add_const_rvalue;
 			typedef NaT add_const_volatile_lvalue;
@@ -1038,6 +1031,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			typedef NaT remove_const_volatile_this;
 			typedef NaT remove_this;
 			typedef NaT remove_volatile_this;
+			typedef NaT to_const_lvalue;
+			typedef NaT to_const_rvalue;
+			typedef NaT to_const_volatile_lvalue;
+			typedef NaT to_const_volatile_rvalue;
+			typedef NaT to_lvalue;
+			typedef NaT to_rvalue;
+			typedef NaT to_volatile_lvalue;
+			typedef NaT to_volatile_rvalue;
 
 #		endif
 
@@ -1047,8 +1048,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				is_rvalue_reference	     = false
 			};
 
-			typedef NaT to_rvalue_reference;
 			typedef NaT add_rvalue_reference;
+			typedef NaT to_rvalue_reference;
 
 #		endif
 
@@ -2076,18 +2077,18 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 			typedef R type		   (P...);
 			typedef R to_const	   (P...) const;
-			typedef R to_volatile	   (P...)	volatile;
 			typedef R to_const_volatile(P...) const volatile;
+			typedef R to_volatile	   (P...)	volatile;
 
 #			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-				typedef R to_lvalue		  (P...)		&;
-				typedef R to_rvalue		  (P...)		&&;
 				typedef R to_const_lvalue	  (P...) const		&;
 				typedef R to_const_rvalue	  (P...) const		&&;
-				typedef R to_volatile_lvalue	  (P...)       volatile &;
-				typedef R to_volatile_rvalue	  (P...)       volatile &&;
 				typedef R to_const_volatile_lvalue(P...) const volatile &;
 				typedef R to_const_volatile_rvalue(P...) const volatile &&;
+				typedef R to_lvalue		  (P...)		&;
+				typedef R to_rvalue		  (P...)		&&;
+				typedef R to_volatile_lvalue	  (P...)       volatile &;
+				typedef R to_volatile_rvalue	  (P...)       volatile &&;
 #			endif
 
 			typedef R return_type;
@@ -2102,18 +2103,18 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 			typedef R type		   (P..., ...);
 			typedef R to_const	   (P..., ...) const;
-			typedef R to_volatile	   (P..., ...)	     volatile;
 			typedef R to_const_volatile(P..., ...) const volatile;
+			typedef R to_volatile	   (P..., ...)	     volatile;
 
 #			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-				typedef R to_lvalue		  (P..., ...)		     &;
-				typedef R to_rvalue		  (P..., ...)		     &&;
 				typedef R to_const_lvalue	  (P..., ...) const	     &;
 				typedef R to_const_rvalue	  (P..., ...) const	     &&;
-				typedef R to_volatile_lvalue	  (P..., ...)	    volatile &;
-				typedef R to_volatile_rvalue	  (P..., ...)	    volatile &&;
 				typedef R to_const_volatile_lvalue(P..., ...) const volatile &;
 				typedef R to_const_volatile_rvalue(P..., ...) const volatile &&;
+				typedef R to_lvalue		  (P..., ...)		     &;
+				typedef R to_rvalue		  (P..., ...)		     &&;
+				typedef R to_volatile_lvalue	  (P..., ...)	    volatile &;
+				typedef R to_volatile_rvalue	  (P..., ...)	    volatile &&;
 #			endif
 		};
 
@@ -2127,18 +2128,18 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 			typedef R type		   ();
 			typedef R to_const	   () const;
-			typedef R to_volatile	   ()	    volatile;
 			typedef R to_const_volatile() const volatile;
+			typedef R to_volatile	   ()	    volatile;
 
 #			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-				typedef R to_lvalue		  ()		    &;
-				typedef R to_rvalue		  ()		    &&;
 				typedef R to_const_lvalue	  () const	    &;
 				typedef R to_const_rvalue	  () const	    &&;
-				typedef R to_volatile_lvalue	  ()	   volatile &;
-				typedef R to_volatile_rvalue	  ()	   volatile &&;
 				typedef R to_const_volatile_lvalue() const volatile &;
 				typedef R to_const_volatile_rvalue() const volatile &&;
+				typedef R to_lvalue		  ()		    &;
+				typedef R to_rvalue		  ()		    &&;
+				typedef R to_volatile_lvalue	  ()	   volatile &;
+				typedef R to_volatile_rvalue	  ()	   volatile &&;
 #			endif
 
 			typedef R return_type;
@@ -2157,16 +2158,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 																	       \
 				typedef R type			  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA));			       \
 				typedef R to_const		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const;		       \
-				typedef R to_volatile		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile;	       \
-				typedef R to_const_volatile	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile;	       \
-				typedef R to_lvalue		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      &;       \
-				typedef R to_rvalue		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      &&;      \
 				typedef R to_const_lvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      &;       \
 				typedef R to_const_rvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      &&;      \
-				typedef R to_volatile_lvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile &;       \
-				typedef R to_volatile_rvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile &&;      \
+				typedef R to_const_volatile	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile;	       \
 				typedef R to_const_volatile_lvalue(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &;       \
 				typedef R to_const_volatile_rvalue(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&;      \
+				typedef R to_lvalue		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      &;       \
+				typedef R to_rvalue		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      &&;      \
+				typedef R to_volatile		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile;	       \
+				typedef R to_volatile_lvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile &;       \
+				typedef R to_volatile_rvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile &&;      \
 				typedef R return_type;											       \
 			};														       \
 																	       \
@@ -2177,16 +2178,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 																	       \
 				typedef R type			  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...);		       \
 				typedef R to_const		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const;	       \
-				typedef R to_volatile		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile;    \
-				typedef R to_const_volatile	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile;    \
-				typedef R to_lvalue		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   &;  \
-				typedef R to_rvalue		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   &&; \
 				typedef R to_const_lvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   &;  \
 				typedef R to_const_rvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   &&; \
-				typedef R to_volatile_lvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &;  \
-				typedef R to_volatile_rvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &&; \
+				typedef R to_const_volatile	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile;    \
 				typedef R to_const_volatile_lvalue(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &;  \
 				typedef R to_const_volatile_rvalue(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&; \
+				typedef R to_lvalue		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   &;  \
+				typedef R to_rvalue		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   &&; \
+				typedef R to_volatile		  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile;    \
+				typedef R to_volatile_lvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &;  \
+				typedef R to_volatile_rvalue	  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &&; \
 			};
 
 #		else
@@ -2202,8 +2203,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 																     \
 				typedef R type		   (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA));		     \
 				typedef R to_const	   (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const;		     \
-				typedef R to_volatile	   (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	      volatile;      \
 				typedef R to_const_volatile(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile;	     \
+				typedef R to_volatile	   (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	      volatile;      \
 																     \
 				typedef R return_type;										     \
 			};													     \
@@ -2215,8 +2216,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 																     \
 				typedef R type		   (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...);		     \
 				typedef R to_const	   (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const;	     \
-				typedef R to_volatile	   (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	   volatile; \
 				typedef R to_const_volatile(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile; \
+				typedef R to_volatile	   (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	   volatile; \
 			};
 
 #		endif
@@ -2403,16 +2404,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	// MARK: - Mixins: Qualifiers (generic)
 
 	template <class C> struct Unqualified : C {
-		typedef		       typename C::type to_unqualified;
-		typedef const	       typename C::type to_const;
-		typedef	      volatile typename C::type to_volatile;
-		typedef const volatile typename C::type to_const_volatile;
 		typedef const	       typename C::type add_const;
-		typedef	      volatile typename C::type add_volatile;
 		typedef const volatile typename C::type add_const_volatile;
+		typedef	      volatile typename C::type add_volatile;
 		typedef		       typename C::type remove_const;
-		typedef		       typename C::type remove_volatile;
 		typedef		       typename C::type remove_const_volatile;
+		typedef		       typename C::type remove_volatile;
+		typedef const	       typename C::type to_const;
+		typedef const volatile typename C::type to_const_volatile;
+		typedef	      volatile typename C::type to_volatile;
+		typedef		       typename C::type to_unqualified;
 	};
 
 	template <class C> struct Qualified : C {
@@ -2437,8 +2438,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 	template <class C> struct ConstVolatile : Qualified<C> {
 		enum {	is_const	  = true,
-			is_volatile	  = true,
-			is_const_volatile = true
+			is_const_volatile = true,
+			is_volatile	  = true
 		};
 
 		typedef typename C::to_const_volatile type;
@@ -2491,27 +2492,27 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	// MARK: - Mixins: Qualifiers (function)
 
 	template <class C> struct UnqualifiedFunction : C {
-		typedef typename C::type	      to_unqualified;
 		typedef typename C::to_const	      add_const;
-		typedef typename C::to_volatile	      add_volatile;
 		typedef typename C::to_const_volatile add_const_volatile;
+		typedef typename C::to_volatile	      add_volatile;
 		typedef typename C::type	      remove_const;
-		typedef typename C::type	      remove_volatile;
 		typedef typename C::type	      remove_const_volatile;
+		typedef typename C::type	      remove_volatile;
+		typedef typename C::type	      to_unqualified;
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-			typedef typename C::to_lvalue		     add_lvalue;
-			typedef typename C::to_rvalue		     add_rvalue;
 			typedef typename C::to_const_lvalue	     add_const_lvalue;
 			typedef typename C::to_const_rvalue	     add_const_rvalue;
-			typedef typename C::to_volatile_lvalue	     add_volatile_lvalue;
-			typedef typename C::to_volatile_rvalue	     add_volatile_rvalue;
 			typedef typename C::to_const_volatile_lvalue add_const_volatile_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_const_volatile_rvalue;
-			typedef typename C::type		     remove_this;
+			typedef typename C::to_lvalue		     add_lvalue;
+			typedef typename C::to_rvalue		     add_rvalue;
+			typedef typename C::to_volatile_lvalue	     add_volatile_lvalue;
+			typedef typename C::to_volatile_rvalue	     add_volatile_rvalue;
 			typedef typename C::type		     remove_const_this;
-			typedef typename C::type		     remove_volatile_this;
 			typedef typename C::type		     remove_const_volatile_this;
+			typedef typename C::type		     remove_this;
+			typedef typename C::type		     remove_volatile_this;
 #		endif
 	};
 
@@ -2544,12 +2545,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::to_volatile		     remove_const;
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-			typedef typename C::to_volatile_lvalue	     add_lvalue;
-			typedef typename C::to_volatile_rvalue	     add_rvalue;
 			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
-			typedef typename C::to_volatile		     remove_this;
+			typedef typename C::to_volatile_lvalue	     add_lvalue;
+			typedef typename C::to_volatile_rvalue	     add_rvalue;
 			typedef typename C::to_volatile		     remove_const_this;
+			typedef typename C::to_volatile		     remove_this;
 #		endif
 	};
 
@@ -2566,14 +2567,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::to_const	      remove_volatile;
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-			typedef typename C::to_const_volatile_lvalue add_lvalue;
-			typedef typename C::to_const_volatile_rvalue add_rvalue;
 			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
+			typedef typename C::to_const_volatile_lvalue add_lvalue;
+			typedef typename C::to_const_volatile_rvalue add_rvalue;
 			typedef typename C::to_const_volatile_lvalue add_volatile_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_volatile_rvalue;
-			typedef typename C::to_const_volatile	     remove_this;
 			typedef typename C::to_volatile		     remove_const_this;
+			typedef typename C::to_const_volatile	     remove_this;
 			typedef typename C::to_const		     remove_volatile_this;
 #		endif
 	};
@@ -2585,11 +2586,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 			typedef typename C::to_lvalue		     type;
 			typedef typename C::to_const_lvalue	     add_const;
-			typedef typename C::to_volatile_lvalue	     add_volatile;
 			typedef typename C::to_const_volatile_lvalue add_const_volatile;
+			typedef typename C::to_volatile_lvalue	     add_volatile;
 			typedef typename C::to_lvalue		     remove_const;
-			typedef typename C::to_lvalue		     remove_volatile;
 			typedef typename C::to_lvalue		     remove_const_volatile;
+			typedef typename C::to_lvalue		     remove_volatile;
 		};
 
 		template <class C> struct RValueFunction : QualifiedFunction<C> {
@@ -2597,11 +2598,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 			typedef typename C::to_rvalue		     type;
 			typedef typename C::to_const_rvalue	     add_const;
-			typedef typename C::to_volatile_rvalue	     add_volatile;
 			typedef typename C::to_const_volatile_rvalue add_const_volatile;
+			typedef typename C::to_volatile_rvalue	     add_volatile;
 			typedef typename C::to_rvalue		     remove_const;
-			typedef typename C::to_rvalue		     remove_volatile;
 			typedef typename C::to_rvalue		     remove_const_volatile;
+			typedef typename C::to_rvalue		     remove_volatile;
 		};
 
 		template <class C> struct ConstLValueFunction : QualifiedFunction<C> {
@@ -2612,16 +2613,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 			typedef typename C::to_const_lvalue	     type;
 			typedef typename C::to_const_lvalue	     add_const;
-			typedef typename C::to_const_volatile_lvalue add_volatile;
 			typedef typename C::to_const_volatile_lvalue add_const_volatile;
 			typedef typename C::to_const_lvalue	     add_lvalue;
 			typedef typename C::to_const_rvalue	     add_rvalue;
+			typedef typename C::to_const_volatile_lvalue add_volatile;
 			typedef typename C::to_const_volatile_lvalue add_volatile_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_volatile_rvalue;
 			typedef typename C::to_lvalue		     remove_const;
-			typedef typename C::to_const_lvalue	     remove_volatile;
 			typedef typename C::to_lvalue		     remove_const_volatile;
 			typedef typename C::to_const		     remove_this;
+			typedef typename C::to_const_lvalue	     remove_volatile;
 			typedef typename C::to_const		     remove_volatile_this;
 		};
 
@@ -2633,16 +2634,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 			typedef typename C::to_const_rvalue	     type;
 			typedef typename C::to_const_rvalue	     add_const;
-			typedef typename C::to_const_volatile_rvalue add_volatile;
 			typedef typename C::to_const_volatile_rvalue add_const_volatile;
 			typedef typename C::to_const_lvalue	     add_lvalue;
 			typedef typename C::to_const_rvalue	     add_rvalue;
+			typedef typename C::to_const_volatile_rvalue add_volatile;
 			typedef typename C::to_const_volatile_lvalue add_volatile_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_volatile_rvalue;
 			typedef typename C::to_rvalue		     remove_const;
-			typedef typename C::to_const_rvalue	     remove_volatile;
 			typedef typename C::to_rvalue		     remove_const_volatile;
 			typedef typename C::to_const		     remove_this;
+			typedef typename C::to_const_rvalue	     remove_volatile;
 			typedef typename C::to_const		     remove_volatile_this;
 		};
 
@@ -2654,17 +2655,17 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 			typedef typename C::to_volatile_lvalue	     type;
 			typedef typename C::to_const_volatile_lvalue add_const;
-			typedef typename C::to_volatile_lvalue	     add_volatile;
+			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
+			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
 			typedef typename C::to_const_volatile_lvalue add_const_volatile;
 			typedef typename C::to_volatile_lvalue	     add_lvalue;
 			typedef typename C::to_volatile_rvalue	     add_rvalue;
-			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
-			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
+			typedef typename C::to_volatile_lvalue	     add_volatile;
 			typedef typename C::to_volatile_lvalue	     remove_const;
-			typedef typename C::to_lvalue		     remove_volatile;
+			typedef typename C::to_volatile		     remove_const_this;
 			typedef typename C::to_lvalue		     remove_const_volatile;
 			typedef typename C::to_volatile		     remove_this;
-			typedef typename C::to_volatile		     remove_const_this;
+			typedef typename C::to_lvalue		     remove_volatile;
 		};
 
 		template <class C> struct VolatileRValueFunction : QualifiedFunction<C> {
@@ -2675,17 +2676,17 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 			typedef typename C::to_volatile_rvalue	     type;
 			typedef typename C::to_const_volatile_rvalue add_const;
-			typedef typename C::to_volatile_rvalue	     add_volatile;
+			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
+			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
 			typedef typename C::to_const_volatile_rvalue add_const_volatile;
 			typedef typename C::to_volatile_lvalue	     add_lvalue;
 			typedef typename C::to_volatile_rvalue	     add_rvalue;
-			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
-			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
+			typedef typename C::to_volatile_rvalue	     add_volatile;
 			typedef typename C::to_volatile_rvalue	     remove_const;
-			typedef typename C::to_rvalue		     remove_volatile;
+			typedef typename C::to_volatile		     remove_const_this;
 			typedef typename C::to_rvalue		     remove_const_volatile;
 			typedef typename C::to_volatile		     remove_this;
-			typedef typename C::to_volatile		     remove_const_this;
+			typedef typename C::to_rvalue		     remove_volatile;
 		};
 
 		template <class C> struct ConstVolatileLValueFunction : QualifiedFunction<C> {
@@ -2700,19 +2701,19 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 			typedef typename C::to_const_volatile_lvalue type;
 			typedef typename C::to_const_volatile_lvalue add_const;
-			typedef typename C::to_const_volatile_lvalue add_volatile;
+			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
+			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
 			typedef typename C::to_const_volatile_lvalue add_const_volatile;
 			typedef typename C::to_const_volatile_lvalue add_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_rvalue;
-			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
-			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
+			typedef typename C::to_const_volatile_lvalue add_volatile;
 			typedef typename C::to_const_volatile_lvalue add_volatile_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_volatile_rvalue;
 			typedef typename C::to_volatile_lvalue	     remove_const;
-			typedef typename C::to_const_lvalue	     remove_volatile;
+			typedef typename C::to_volatile		     remove_const_this;
 			typedef typename C::to_lvalue		     remove_const_volatile;
 			typedef typename C::to_const_volatile	     remove_this;
-			typedef typename C::to_volatile		     remove_const_this;
+			typedef typename C::to_const_lvalue	     remove_volatile;
 			typedef typename C::to_const		     remove_volatile_this;
 		};
 
@@ -2728,19 +2729,19 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 			typedef typename C::to_const_volatile_rvalue type;
 			typedef typename C::to_const_volatile_rvalue add_const;
-			typedef typename C::to_const_volatile_rvalue add_volatile;
+			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
+			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
 			typedef typename C::to_const_volatile_rvalue add_const_volatile;
 			typedef typename C::to_const_volatile_lvalue add_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_rvalue;
-			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
-			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
+			typedef typename C::to_const_volatile_rvalue add_volatile;
 			typedef typename C::to_const_volatile_lvalue add_volatile_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_volatile_rvalue;
 			typedef typename C::to_volatile_rvalue	     remove_const;
-			typedef typename C::to_const_rvalue	     remove_volatile;
+			typedef typename C::to_volatile		     remove_const_this;
 			typedef typename C::to_rvalue		     remove_const_volatile;
 			typedef typename C::to_const_volatile	     remove_this;
-			typedef typename C::to_volatile		     remove_const_this;
+			typedef typename C::to_const_rvalue	     remove_volatile;
 			typedef typename C::to_const		     remove_volatile_this;
 		};
 
@@ -2763,14 +2764,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct Convertible : C {
-		typedef typename C::type* to_pointer;
-		typedef typename C::type& to_lvalue_reference;
-		typedef typename C::type* add_pointer;
 		typedef typename C::type& add_lvalue_reference;
+		typedef typename C::type* add_pointer;
+		typedef typename C::type& to_lvalue_reference;
+		typedef typename C::type* to_pointer;
 
 #		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
-			typedef typename C::type&& to_rvalue_reference;
 			typedef typename C::type&& add_rvalue_reference;
+			typedef typename C::type&& to_rvalue_reference;
 #		endif
 	};
 
@@ -2791,8 +2792,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	// MARK: - Mixins: Kind (virtual)
 
 	template <class C> struct Kind<Void, C> : Virtual<C> {
-		typedef typename C::type* to_pointer;
 		typedef typename C::type* add_pointer;
+		typedef typename C::type* to_pointer;
 	};
 
 	template <class C> struct Kind<InconvertibleFunction, C> : Virtual<C> {
@@ -2806,10 +2807,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	template <class C> struct Kind<Value, C> : Storable<Convertible<C> > {};
 
 	template <class C> struct Kind<VoidPointer, C> : Storable<C> {
-		typedef typename C::type	 to_pointer;
-		typedef typename C::type*	 add_pointer;
 		typedef typename C::type&	 add_lvalue_reference;
+		typedef typename C::type*	 add_pointer;
 		typedef typename C::pointee_type remove_pointer;
+		typedef typename C::type	 to_pointer;
 
 #		if Z_TRAIT_HAS(Type, add_rvalue_reference)
 			typedef typename C::type&& add_rvalue_reference;
@@ -2829,17 +2830,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct Kind<Reference, C> : Storable<C> {
-		typedef NaT to_const;
-		typedef NaT to_volatile;
-		typedef NaT to_const_volatile;
-		typedef NaT add_const;
-		typedef NaT add_volatile;
-		typedef NaT add_const_volatile;
-
-		typedef typename C::referencee_type* to_pointer;
-		typedef typename C::referencee_type& to_lvalue_reference;
+		typedef NaT			     add_const;
+		typedef NaT			     add_const_volatile;
+		typedef NaT			     add_volatile;
 		typedef typename C::type	     remove_pointer;
 		typedef typename C::referencee_type  remove_reference;
+		typedef NaT			     to_const;
+		typedef NaT			     to_const_volatile;
+		typedef typename C::referencee_type& to_lvalue_reference;
+		typedef typename C::referencee_type* to_pointer;
+		typedef NaT			     to_volatile;
 
 #		if Z_TRAIT_HAS(Type, to_rvalue_reference)
 			typedef typename C::referencee_type&& to_rvalue_reference;
@@ -3040,8 +3040,8 @@ namespace Zeta {namespace Detail {namespace Type {
 		typedef Case<false, T> Pointee;
 
 		public:
-		enum {	is_function_pointer = Pointee::is_function,
-			is_callable	    = is_function_pointer,
+		enum {	is_callable	    = Pointee::is_function,
+			is_function_pointer = Pointee::is_function,
 			is_void_pointer	    = Pointee::is_void
 		};
 
@@ -3070,13 +3070,13 @@ namespace Zeta {namespace Detail {namespace Type {
 
 		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)		      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		  , C, R(P...)		     > > {};
 		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const	      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const	  , C, R(P...) const	     > > {};
-		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)	volatile      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)	  volatile, C, R(P...)	     volatile> > {};
 		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile, C, R(P...) const volatile> > {};
+		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)	volatile      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)	  volatile, C, R(P...)	     volatile> > {};
 
 		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)		   > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)		    , C, R(P..., ...)		    > > {};
 		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const	   > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const	    , C, R(P..., ...) const	    > > {};
-		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)	   volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)       volatile, C, R(P..., ...)       volatile> > {};
 		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile, C, R(P..., ...) const volatile> > {};
+		template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)	   volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)       volatile, C, R(P..., ...)       volatile> > {};
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
@@ -3084,19 +3084,19 @@ namespace Zeta {namespace Detail {namespace Type {
 			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)		       &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)		      &&, C, R(P...)		    &&> > {};
 			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const	       & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const	      & , C, R(P...) const	    & > > {};
 			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const	       &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const	      &&, C, R(P...) const	    &&> > {};
-			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)	      volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)	     volatile & , C, R(P...)	   volatile & > > {};
-			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)	      volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)	     volatile &&, C, R(P...)	   volatile &&> > {};
 			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile & , C, R(P...) const volatile & > > {};
 			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...) const volatile &&, C, R(P...) const volatile &&> > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)	      volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)	     volatile & , C, R(P...)	   volatile & > > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P...)	      volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P...)	     volatile &&, C, R(P...)	   volatile &&> > {};
 
 			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)		    & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)		& , C, R(P..., ...)		   & > > {};
 			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)		    &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)		&&, C, R(P..., ...)		   &&> > {};
 			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const	    & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const		& , C, R(P..., ...) const	   & > > {};
 			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const	    &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const		&&, C, R(P..., ...) const	   &&> > {};
-			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)	   volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)       volatile & , C, R(P..., ...)	  volatile & > > {};
-			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)	   volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)       volatile &&, C, R(P..., ...)	  volatile &&> > {};
 			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile & , C, R(P..., ...) const volatile & > > {};
 			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...) const volatile &&, C, R(P..., ...) const volatile &&> > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)	   volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)       volatile & , C, R(P..., ...)	  volatile & > > {};
+			template <Boolean E, class C, class R, class... P> struct Case<E, R(C::*)(P..., ...)	   volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(P..., ...)       volatile &&, C, R(P..., ...)	  volatile &&> > {};
 
 #		endif
 
@@ -3104,20 +3104,20 @@ namespace Zeta {namespace Detail {namespace Type {
 
 		template <Boolean E, class C, class R> struct Case<E, R(C::*)()		      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()		      , C, R()		     > > {};
 		template <Boolean E, class C, class R> struct Case<E, R(C::*)() const	      > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const	      , C, R() const	     > > {};
-		template <Boolean E, class C, class R> struct Case<E, R(C::*)()	      volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()	      volatile, C, R()	     volatile> > {};
 		template <Boolean E, class C, class R> struct Case<E, R(C::*)() const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const volatile, C, R() const volatile> > {};
+		template <Boolean E, class C, class R> struct Case<E, R(C::*)()	      volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()	      volatile, C, R()	     volatile> > {};
 
 #		define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																																													    \
 																																																					    \
 		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		  > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		    , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		     > > {};		    \
 		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	  > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	    , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     > > {};		    \
-		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	  volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile> > {};		    \
 		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile> > {};		    \
+		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	  volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile> > {};		    \
 																																																					    \
 		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	       > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		      , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		    > > {}; \
 		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	       > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	      , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	    > > {}; \
-		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)       volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	      volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	    volatile> > {}; \
-		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> > {};
+		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> > {}; \
+		template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)       volatile> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	      volatile, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	    volatile> > {};
 
 		Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #		undef Z_TEMPLATE_SPECIALIZATIONS
@@ -3128,10 +3128,10 @@ namespace Zeta {namespace Detail {namespace Type {
 			template <Boolean E, class C, class R> struct Case<E, R(C::*)()		       &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()		  &&, C, R()		    &&> > {};
 			template <Boolean E, class C, class R> struct Case<E, R(C::*)() const	       & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const	  & , C, R() const	    & > > {};
 			template <Boolean E, class C, class R> struct Case<E, R(C::*)() const	       &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const	  &&, C, R() const	    &&> > {};
-			template <Boolean E, class C, class R> struct Case<E, R(C::*)()	      volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()	 volatile & , C, R()	   volatile & > > {};
-			template <Boolean E, class C, class R> struct Case<E, R(C::*)()	      volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()	 volatile &&, C, R()	   volatile &&> > {};
 			template <Boolean E, class C, class R> struct Case<E, R(C::*)() const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const volatile & , C, R() const volatile & > > {};
 			template <Boolean E, class C, class R> struct Case<E, R(C::*)() const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)() const volatile &&, C, R() const volatile &&> > {};
+			template <Boolean E, class C, class R> struct Case<E, R(C::*)()	      volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()	 volatile & , C, R()	   volatile & > > {};
+			template <Boolean E, class C, class R> struct Case<E, R(C::*)()	      volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)()	 volatile &&, C, R()	   volatile &&> > {};
 
 #			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																																														     \
 																																																							     \
@@ -3139,19 +3139,19 @@ namespace Zeta {namespace Detail {namespace Type {
 			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		   &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		&&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		    &&> > {};		     \
 			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	   & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const		& , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	    & > > {};		     \
 			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	   &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const		&&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	    &&> > {};		     \
-			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	  volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))       volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile & > > {};		     \
-			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	  volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))       volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile &&> > {};		     \
 			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & > > {};		     \
 			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&> > {};		     \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	  volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))       volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile & > > {};		     \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	  volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))       volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile &&> > {};		     \
 																																																							     \
 			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		& > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		  & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   & > > {}; \
 			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		&&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		  &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   &&> > {}; \
 			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const		& > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	  & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   & > > {}; \
 			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const		&&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	  &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   &&> > {}; \
-			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)       volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	 volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile & > > {}; \
-			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)       volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	 volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &&> > {}; \
 			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & > > {}; \
-			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> > {};
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> > {}; \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)       volatile & > : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	 volatile & , C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile & > > {}; \
+			template <Boolean E, class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)       volatile &&> : Mixins::Unqualified<Abstract::MemberFunctionPointer<R(C::*)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	 volatile &&, C, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &&> > {};
 
 			Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #			undef Z_TEMPLATE_SPECIALIZATIONS
@@ -3191,14 +3191,14 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E, class R, class... P> struct Case<E, R(P...)> : Mixins::UnqualifiedFunction<Abstract::Function<R, P...> > {};
 
 		template <Boolean E, class R, class... P> struct Case<E, R(P...) const	       > : Mixins::ConstFunction	<Case<E, R(P...)> > {};
-		template <Boolean E, class R, class... P> struct Case<E, R(P...)       volatile> : Mixins::VolatileFunction	<Case<E, R(P...)> > {};
 		template <Boolean E, class R, class... P> struct Case<E, R(P...) const volatile> : Mixins::ConstVolatileFunction<Case<E, R(P...)> > {};
+		template <Boolean E, class R, class... P> struct Case<E, R(P...)       volatile> : Mixins::VolatileFunction	<Case<E, R(P...)> > {};
 
 		template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)> : Mixins::UnqualifiedFunction<Abstract::VariadicFunction<R, P...> > {};
 
 		template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const	    > : Mixins::ConstFunction	     <Case<E, R(P..., ...)> > {};
-		template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)	    volatile> : Mixins::VolatileFunction     <Case<E, R(P..., ...)> > {};
 		template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const volatile> : Mixins::ConstVolatileFunction<Case<E, R(P..., ...)> > {};
+		template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)	    volatile> : Mixins::VolatileFunction     <Case<E, R(P..., ...)> > {};
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
@@ -3206,19 +3206,19 @@ namespace Zeta {namespace Detail {namespace Type {
 			template <Boolean E, class R, class... P> struct Case<E, R(P...)		&&> : Mixins::RValueFunction		 <Case<E, R(P...)> > {};
 			template <Boolean E, class R, class... P> struct Case<E, R(P...) const		& > : Mixins::ConstLValueFunction	 <Case<E, R(P...)> > {};
 			template <Boolean E, class R, class... P> struct Case<E, R(P...) const		&&> : Mixins::ConstRValueFunction	 <Case<E, R(P...)> > {};
-			template <Boolean E, class R, class... P> struct Case<E, R(P...)       volatile & > : Mixins::VolatileLValueFunction	 <Case<E, R(P...)> > {};
-			template <Boolean E, class R, class... P> struct Case<E, R(P...)       volatile &&> : Mixins::VolatileRValueFunction	 <Case<E, R(P...)> > {};
 			template <Boolean E, class R, class... P> struct Case<E, R(P...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<E, R(P...)> > {};
 			template <Boolean E, class R, class... P> struct Case<E, R(P...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<E, R(P...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P...)       volatile & > : Mixins::VolatileLValueFunction	 <Case<E, R(P...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P...)       volatile &&> : Mixins::VolatileRValueFunction	 <Case<E, R(P...)> > {};
 
 			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)		     & > : Mixins::LValueFunction	      <Case<E, R(P..., ...)> > {};
 			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)		     &&> : Mixins::RValueFunction	      <Case<E, R(P..., ...)> > {};
 			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const	     & > : Mixins::ConstLValueFunction	      <Case<E, R(P..., ...)> > {};
 			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const	     &&> : Mixins::ConstRValueFunction	      <Case<E, R(P..., ...)> > {};
-			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)	    volatile & > : Mixins::VolatileLValueFunction     <Case<E, R(P..., ...)> > {};
-			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)	    volatile &&> : Mixins::VolatileRValueFunction     <Case<E, R(P..., ...)> > {};
 			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<E, R(P..., ...)> > {};
 			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<E, R(P..., ...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)	    volatile & > : Mixins::VolatileLValueFunction     <Case<E, R(P..., ...)> > {};
+			template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)	    volatile &&> : Mixins::VolatileRValueFunction     <Case<E, R(P..., ...)> > {};
 
 #		endif
 
@@ -3227,22 +3227,22 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E, class R> struct Case<E, R()> : Mixins::UnqualifiedFunction<Abstract::FunctionWith0Parameters<R> > {};
 
 		template <Boolean E, class R> struct Case<E, R() const	       > : Mixins::ConstFunction	<Case<E, R()> > {};
-		template <Boolean E, class R> struct Case<E, R()       volatile> : Mixins::VolatileFunction	<Case<E, R()> > {};
 		template <Boolean E, class R> struct Case<E, R() const volatile> : Mixins::ConstVolatileFunction<Case<E, R()> > {};
+		template <Boolean E, class R> struct Case<E, R()       volatile> : Mixins::VolatileFunction	<Case<E, R()> > {};
 
 #		define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																																	  \
 																																									  \
 		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> : Mixins::UnqualifiedFunction<Abstract::FunctionWith##parameter_count##Parameters<R, Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)> > {};		  \
 																																									  \
 		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	   > : Mixins::ConstFunction	    <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					  \
-		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile> : Mixins::VolatileFunction     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					  \
 		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile> : Mixins::ConstVolatileFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					  \
+		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile> : Mixins::VolatileFunction     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};					  \
 																																									  \
 		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> : Mixins::UnqualifiedFunction<Abstract::VariadicFunctionWith##parameter_count##Parameters<R, Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)> > {}; \
 																																									  \
 		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const		> : Mixins::ConstFunction	 <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};				  \
-		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	volatile> : Mixins::VolatileFunction	 <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};				  \
-		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> : Mixins::ConstVolatileFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};
+		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile> : Mixins::ConstVolatileFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};				  \
+		template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	volatile> : Mixins::VolatileFunction	 <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};
 
 		Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #		undef Z_TEMPLATE_SPECIALIZATIONS
@@ -3253,10 +3253,10 @@ namespace Zeta {namespace Detail {namespace Type {
 			template <Boolean E, class R> struct Case<E, R()		&&> : Mixins::RValueFunction		 <Case<E, R()> > {};
 			template <Boolean E, class R> struct Case<E, R() const		& > : Mixins::ConstLValueFunction	 <Case<E, R()> > {};
 			template <Boolean E, class R> struct Case<E, R() const		&&> : Mixins::ConstRValueFunction	 <Case<E, R()> > {};
-			template <Boolean E, class R> struct Case<E, R()       volatile & > : Mixins::VolatileLValueFunction	 <Case<E, R()> > {};
-			template <Boolean E, class R> struct Case<E, R()       volatile &&> : Mixins::VolatileRValueFunction	 <Case<E, R()> > {};
 			template <Boolean E, class R> struct Case<E, R() const volatile & > : Mixins::ConstVolatileLValueFunction<Case<E, R()> > {};
 			template <Boolean E, class R> struct Case<E, R() const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<E, R()> > {};
+			template <Boolean E, class R> struct Case<E, R()       volatile & > : Mixins::VolatileLValueFunction	 <Case<E, R()> > {};
+			template <Boolean E, class R> struct Case<E, R()       volatile &&> : Mixins::VolatileRValueFunction	 <Case<E, R()> > {};
 
 #			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																														     \
 																																							     \
@@ -3264,19 +3264,19 @@ namespace Zeta {namespace Detail {namespace Type {
 			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		    &&> : Mixins::RValueFunction	     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
 			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	    & > : Mixins::ConstLValueFunction	     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
 			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	    &&> : Mixins::ConstRValueFunction	     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
-			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile & > : Mixins::VolatileLValueFunction     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
-			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile &&> : Mixins::VolatileRValueFunction     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
 			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
 			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile & > : Mixins::VolatileLValueFunction     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	   volatile &&> : Mixins::VolatileRValueFunction     <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))> > {};	     \
 																																							     \
 			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		 & > : Mixins::LValueFunction		  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
 			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		 &&> : Mixins::RValueFunction		  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
 			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const		 & > : Mixins::ConstLValueFunction	  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
 			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const		 &&> : Mixins::ConstRValueFunction	  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	volatile & > : Mixins::VolatileLValueFunction	  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	volatile &&> : Mixins::VolatileRValueFunction	  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
 			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & > : Mixins::ConstVolatileLValueFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
-			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&> : Mixins::ConstVolatileRValueFunction<Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	volatile & > : Mixins::VolatileLValueFunction	  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {}; \
+			template <Boolean E, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	volatile &&> : Mixins::VolatileRValueFunction	  <Case<E, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)> > {};
 
 			Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #			undef Z_TEMPLATE_SPECIALIZATIONS
@@ -3297,8 +3297,8 @@ namespace Zeta {namespace Detail {namespace Type {
 	// MARK: - Specializations: Qualified types
 
 	template <Boolean E, class T> struct Case<E, const	    T> : TernaryType<Case<false, T>::is_signed_or_unsigned, Mixins::ConstSignedOrUnsigned	 <Case<E, T> >, Mixins::Const	     <Case<E, T> > >::type {};
-	template <Boolean E, class T> struct Case<E, 	   volatile T> : TernaryType<Case<false, T>::is_signed_or_unsigned, Mixins::VolatileSignedOrUnsigned	 <Case<E, T> >, Mixins::Volatile     <Case<E, T> > >::type {};
 	template <Boolean E, class T> struct Case<E, const volatile T> : TernaryType<Case<false, T>::is_signed_or_unsigned, Mixins::ConstVolatileSignedOrUnsigned<Case<E, T> >, Mixins::ConstVolatile<Case<E, T> > >::type {};
+	template <Boolean E, class T> struct Case<E, 	   volatile T> : TernaryType<Case<false, T>::is_signed_or_unsigned, Mixins::VolatileSignedOrUnsigned	 <Case<E, T> >, Mixins::Volatile     <Case<E, T> > >::type {};
 
 	// MARK: - Final aggregate
 
@@ -3326,8 +3326,8 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	template <> struct Final<		NaT> : Abstract::Invalid {};
 	template <> struct Final<const		NaT> : Abstract::Invalid {};
-	template <> struct Final<      volatile NaT> : Abstract::Invalid {};
 	template <> struct Final<const volatile NaT> : Abstract::Invalid {};
+	template <> struct Final<      volatile NaT> : Abstract::Invalid {};
 }}}
 
 namespace Zeta {
@@ -3446,20 +3446,20 @@ namespace Zeta {
 
 	template <class C> struct TypeToMemberPointer<		     void, C> {typedef NaT type;};
 	template <class C> struct TypeToMemberPointer<const	     void, C> {typedef NaT type;};
-	template <class C> struct TypeToMemberPointer<	    volatile void, C> {typedef NaT type;};
 	template <class C> struct TypeToMemberPointer<const volatile void, C> {typedef NaT type;};
+	template <class C> struct TypeToMemberPointer<	    volatile void, C> {typedef NaT type;};
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 		template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)		 , C> {typedef R(C::*type)(P...)	       ;};
 		template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const	 , C> {typedef R(C::*type)(P...) const	       ;};
-		template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)	 volatile, C> {typedef R(C::*type)(P...)       volatile;};
 		template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const volatile, C> {typedef R(C::*type)(P...) const volatile;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)	 volatile, C> {typedef R(C::*type)(P...)       volatile;};
 
 		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)		      , C> {typedef R(C::*type)(P..., ...)		 ;};
 		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const	      , C> {typedef R(C::*type)(P..., ...) const	 ;};
-		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)	      volatile, C> {typedef R(C::*type)(P..., ...)	 volatile;};
 		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const volatile, C> {typedef R(C::*type)(P..., ...) const volatile;};
+		template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)	      volatile, C> {typedef R(C::*type)(P..., ...)	 volatile;};
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
@@ -3467,19 +3467,19 @@ namespace Zeta {
 			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)		  &&, C> {typedef R(C::*type)(P...)		   &&;};
 			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const	  & , C> {typedef R(C::*type)(P...) const	   & ;};
 			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const	  &&, C> {typedef R(C::*type)(P...) const	   &&;};
-			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)	 volatile & , C> {typedef R(C::*type)(P...)	  volatile & ;};
-			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)	 volatile &&, C> {typedef R(C::*type)(P...)	  volatile &&;};
 			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const volatile & , C> {typedef R(C::*type)(P...) const volatile & ;};
 			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...) const volatile &&, C> {typedef R(C::*type)(P...) const volatile &&;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)	 volatile & , C> {typedef R(C::*type)(P...)	  volatile & ;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P...)	 volatile &&, C> {typedef R(C::*type)(P...)	  volatile &&;};
 
 			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)		       & , C> {typedef R(C::*type)(P..., ...)		     & ;};
 			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)		       &&, C> {typedef R(C::*type)(P..., ...)		     &&;};
 			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const	       & , C> {typedef R(C::*type)(P..., ...) const	     & ;};
 			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const	       &&, C> {typedef R(C::*type)(P..., ...) const	     &&;};
-			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)	      volatile & , C> {typedef R(C::*type)(P..., ...)	    volatile & ;};
-			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)	      volatile &&, C> {typedef R(C::*type)(P..., ...)	    volatile &&;};
 			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const volatile & , C> {typedef R(C::*type)(P..., ...) const volatile & ;};
 			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...) const volatile &&, C> {typedef R(C::*type)(P..., ...) const volatile &&;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)	      volatile & , C> {typedef R(C::*type)(P..., ...)	    volatile & ;};
+			template <class C, class R, class... P> struct TypeToMemberPointer<R(P..., ...)	      volatile &&, C> {typedef R(C::*type)(P..., ...)	    volatile &&;};
 
 #		endif
 
@@ -3487,20 +3487,20 @@ namespace Zeta {
 
 		template <class C, class R> struct TypeToMemberPointer<R()		 , C> {typedef R(C::*type)()		   ;};
 		template <class C, class R> struct TypeToMemberPointer<R() const	 , C> {typedef R(C::*type)() const	   ;};
-		template <class C, class R> struct TypeToMemberPointer<R()	 volatile, C> {typedef R(C::*type)()       volatile;};
 		template <class C, class R> struct TypeToMemberPointer<R() const volatile, C> {typedef R(C::*type)() const volatile;};
+		template <class C, class R> struct TypeToMemberPointer<R()	 volatile, C> {typedef R(C::*type)()       volatile;};
 
 #		define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																													       \
 																																					       \
 		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		     , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		 ;};	       \
 		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	 ;};	       \
-		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	 volatile;};	       \
 		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile;};	       \
+		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	 volatile;};	       \
 																																					       \
 		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		  , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   ;}; \
 		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	  , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   ;}; \
-		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	   volatile;}; \
-		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile;};
+		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile;}; \
+		template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	   volatile;};
 
 		Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #		undef Z_TEMPLATE_SPECIALIZATIONS
@@ -3511,10 +3511,10 @@ namespace Zeta {
 			template <class C, class R> struct TypeToMemberPointer<R()		  &&, C> {typedef R(C::*type)()		       &&;};
 			template <class C, class R> struct TypeToMemberPointer<R() const	  & , C> {typedef R(C::*type)() const	       & ;};
 			template <class C, class R> struct TypeToMemberPointer<R() const	  &&, C> {typedef R(C::*type)() const	       &&;};
-			template <class C, class R> struct TypeToMemberPointer<R()	 volatile & , C> {typedef R(C::*type)()	      volatile & ;};
-			template <class C, class R> struct TypeToMemberPointer<R()	 volatile &&, C> {typedef R(C::*type)()	      volatile &&;};
 			template <class C, class R> struct TypeToMemberPointer<R() const volatile & , C> {typedef R(C::*type)() const volatile & ;};
 			template <class C, class R> struct TypeToMemberPointer<R() const volatile &&, C> {typedef R(C::*type)() const volatile &&;};
+			template <class C, class R> struct TypeToMemberPointer<R()	 volatile & , C> {typedef R(C::*type)()	      volatile & ;};
+			template <class C, class R> struct TypeToMemberPointer<R()	 volatile &&, C> {typedef R(C::*type)()	      volatile &&;};
 
 #			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)																														     \
 																																							     \
@@ -3522,19 +3522,19 @@ namespace Zeta {
 			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		      &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))		     &&;};	     \
 			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     & ;};	     \
 			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	      &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const	     &&;};	     \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile & ;};	     \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile &&;};	     \
 			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile & ;};	     \
 			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)) const volatile &&;};	     \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile & ;};	     \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	     volatile &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))	    volatile &&;};	     \
 																																							     \
 			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		       & ;}; \
 			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		   &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)		       &&;}; \
 			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	       & ;}; \
 			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	   &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const	       &&;}; \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	      volatile & ;}; \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	      volatile &&;}; \
 			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile & ;}; \
-			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&;};
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...) const volatile &&;}; \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile & , C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	      volatile & ;}; \
+			template <class C, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeToMemberPointer<R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	  volatile &&, C> {typedef R(C::*type)(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA), ...)	      volatile &&;};
 
 			Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #			undef Z_TEMPLATE_SPECIALIZATIONS
@@ -3631,12 +3631,21 @@ namespace Zeta {
 
 			typedef typename Type::type type;
 
-			typedef typename Type<typename Type::class_type	    >::flow class_type;
-			typedef typename Type<typename Type::element_type   >::flow element_type;
-			typedef typename Type<typename Type::pointee_type   >::flow pointee_type;
-			typedef typename Type<typename Type::referencee_type>::flow referencee_type;
-			typedef typename Type<typename Type::return_type    >::flow return_type;
-
+			typedef typename Type<typename Type::add_const		  >::flow add_const;
+			typedef typename Type<typename Type::add_const_volatile	  >::flow add_const_volatile;
+			typedef typename Type<typename Type::add_lvalue_reference >::flow add_lvalue_reference;
+			typedef typename Type<typename Type::add_pointer	  >::flow add_pointer;
+			typedef typename Type<typename Type::add_volatile	  >::flow add_volatile;
+			typedef typename Type<typename Type::class_type		  >::flow class_type;
+			typedef typename Type<typename Type::element_type	  >::flow element_type;
+			typedef typename Type<typename Type::pointee_type	  >::flow pointee_type;
+			typedef typename Type<typename Type::referencee_type	  >::flow referencee_type;
+			typedef typename Type<typename Type::remove_const	  >::flow remove_const;
+			typedef typename Type<typename Type::remove_const_volatile>::flow remove_const_volatile;
+			typedef typename Type<typename Type::remove_pointer	  >::flow remove_pointer;
+			typedef typename Type<typename Type::remove_reference	  >::flow remove_reference;
+			typedef typename Type<typename Type::remove_volatile	  >::flow remove_volatile;
+			typedef typename Type<typename Type::return_type	  >::flow return_type;
 			typedef typename Type<typename Type::to_const		  >::flow to_const;
 			typedef typename Type<typename Type::to_const_volatile	  >::flow to_const_volatile;
 			typedef typename Type<typename Type::to_forwardable	  >::flow to_forwardable;
@@ -3649,16 +3658,6 @@ namespace Zeta {
 			typedef typename Type<typename Type::to_unsigned	  >::flow to_unsigned;
 			typedef typename Type<typename Type::to_volatile	  >::flow to_volatile;
 			typedef typename Type<typename Type::to_wrap		  >::flow to_wrap;
-			typedef typename Type<typename Type::add_const		  >::flow add_const;
-			typedef typename Type<typename Type::add_const_volatile	  >::flow add_const_volatile;
-			typedef typename Type<typename Type::add_lvalue_reference >::flow add_lvalue_reference;
-			typedef typename Type<typename Type::add_pointer	  >::flow add_pointer;
-			typedef typename Type<typename Type::add_volatile	  >::flow add_volatile;
-			typedef typename Type<typename Type::remove_const	  >::flow remove_const;
-			typedef typename Type<typename Type::remove_const_volatile>::flow remove_const_volatile;
-			typedef typename Type<typename Type::remove_pointer	  >::flow remove_pointer;
-			typedef typename Type<typename Type::remove_reference	  >::flow remove_reference;
-			typedef typename Type<typename Type::remove_volatile	  >::flow remove_volatile;
 
 #			if Z_TRAIT_HAS(Type, has_virtual_destructor)
 				enum {has_virtual_destructor = Type::has_virtual_destructor};
@@ -3854,14 +3853,6 @@ namespace Zeta {
 					is_volatile_rvalue	 = Type::is_volatile_rvalue
 				};
 
-				typedef typename Type<typename Type::to_const_lvalue	       >::flow to_const_lvalue;
-				typedef typename Type<typename Type::to_const_rvalue	       >::flow to_const_rvalue;
-				typedef typename Type<typename Type::to_const_volatile_lvalue  >::flow to_const_volatile_lvalue;
-				typedef typename Type<typename Type::to_const_volatile_rvalue  >::flow to_const_volatile_rvalue;
-				typedef typename Type<typename Type::to_lvalue		       >::flow to_lvalue;
-				typedef typename Type<typename Type::to_rvalue		       >::flow to_rvalue;
-				typedef typename Type<typename Type::to_volatile_lvalue	       >::flow to_volatile_lvalue;
-				typedef typename Type<typename Type::to_volatile_rvalue	       >::flow to_volatile_rvalue;
 				typedef typename Type<typename Type::add_const_lvalue	       >::flow add_const_lvalue;
 				typedef typename Type<typename Type::add_const_rvalue	       >::flow add_const_rvalue;
 				typedef typename Type<typename Type::add_const_volatile_lvalue >::flow add_const_volatile_lvalue;
@@ -3874,6 +3865,14 @@ namespace Zeta {
 				typedef typename Type<typename Type::remove_const_volatile_this>::flow remove_const_volatile_this;
 				typedef typename Type<typename Type::remove_this	       >::flow remove_this;
 				typedef typename Type<typename Type::remove_volatile_this      >::flow remove_volatile_this;
+				typedef typename Type<typename Type::to_const_lvalue	       >::flow to_const_lvalue;
+				typedef typename Type<typename Type::to_const_rvalue	       >::flow to_const_rvalue;
+				typedef typename Type<typename Type::to_const_volatile_lvalue  >::flow to_const_volatile_lvalue;
+				typedef typename Type<typename Type::to_const_volatile_rvalue  >::flow to_const_volatile_rvalue;
+				typedef typename Type<typename Type::to_lvalue		       >::flow to_lvalue;
+				typedef typename Type<typename Type::to_rvalue		       >::flow to_rvalue;
+				typedef typename Type<typename Type::to_volatile_lvalue	       >::flow to_volatile_lvalue;
+				typedef typename Type<typename Type::to_volatile_rvalue	       >::flow to_volatile_rvalue;
 
 #			endif
 
@@ -3883,8 +3882,8 @@ namespace Zeta {
 					is_rvalue_reference	     = Type::is_rvalue_reference
 				};
 
-				typedef typename Type<typename Type::to_rvalue_reference  >::flow to_rvalue_reference;
 				typedef typename Type<typename Type::add_rvalue_reference >::flow add_rvalue_reference;
+				typedef typename Type<typename Type::to_rvalue_reference  >::flow to_rvalue_reference;
 
 #			endif
 
