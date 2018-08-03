@@ -866,21 +866,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_volatile		     = false
 		};
 
-		enum {	is_copy_assignable		   = false,
-			is_copy_constructible		   = false,
-			is_destructible			   = false,
-			is_move_assignable		   = false,
-			is_move_constructible		   = false,
-			is_nothrow_copy_assignable	   = false,
-			is_nothrow_copy_constructible	   = false,
-			is_nothrow_default_constructible   = false,
-			is_nothrow_destructible		   = false,
-			is_nothrow_move_assignable	   = false,
-			is_nothrow_move_constructible	   = false,
-			is_trivially_move_assignable	   = false,
-			is_trivially_move_constructible	   = false
-		};
-
 		enum {	arity	      = 0,
 			element_count = 0,
 			pointer_level = 0
@@ -3696,21 +3681,6 @@ namespace Zeta {
 				is_void			     = Type::is_void,
 				is_void_pointer		     = Type::is_void_pointer,
 				is_volatile		     = Type::is_volatile
-			};
-
-			enum {	is_copy_assignable		   = Type::is_copy_assignable,
-				is_copy_constructible		   = Type::is_copy_constructible,
-				is_destructible			   = Type::is_destructible,
-				is_move_assignable		   = Type::is_move_assignable,
-				is_move_constructible		   = Type::is_move_constructible,
-				is_nothrow_copy_assignable	   = Type::is_nothrow_copy_assignable,
-				is_nothrow_copy_constructible	   = Type::is_nothrow_copy_constructible,
-				is_nothrow_default_constructible   = Type::is_nothrow_default_constructible,
-				is_nothrow_destructible		   = Type::is_nothrow_destructible,
-				is_nothrow_move_assignable	   = Type::is_nothrow_move_assignable,
-				is_nothrow_move_constructible	   = Type::is_nothrow_move_constructible,
-				is_trivially_move_assignable	   = Type::is_trivially_move_assignable,
-				is_trivially_move_constructible	   = Type::is_trivially_move_constructible
 			};
 
 			enum {	arity	      = Type::arity,
