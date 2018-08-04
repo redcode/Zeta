@@ -866,6 +866,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in macros: Struture */
 
+#pragma clang diagnostic ignored "-Wextended-offsetof"
 #define Z_COMPILER_MACRO_OFFSET_OF __builtin_offsetof
 
 /* MARK: - Built-in macros: VAL
