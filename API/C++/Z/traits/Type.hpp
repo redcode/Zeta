@@ -242,38 +242,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_null_pointer FALSE
 #endif
 
-#if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-#	define Z_HAS_TRAIT_TypeIsObjectiveCClass	      TRUE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCClassPointer	      TRUE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCObject	      TRUE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCObjectPointer      TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_class	      TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_class_pointer  TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_object	      TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_object_pointer TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsObjectiveCClass	      FALSE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCClassPointer	      FALSE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCObject	      FALSE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCObjectPointer      FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_class	      FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_class_pointer  FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_object	      FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_object_pointer FALSE
-#endif
-
-#if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-#	define Z_HAS_TRAIT_TypeIsObjectiveCInstance		TRUE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCInstancePointer	TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_instance		TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsObjectiveCInstance		FALSE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCInstancePointer	FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_instance		FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer FALSE
-#endif
-
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
 #	define Z_HAS_TRAIT_TypeIsPOD   TRUE
 #	define Z_TRAIT_Type_HAS_is_pod TRUE
@@ -328,14 +296,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #else
 #	define Z_HAS_TRAIT_TypeIsSInt128   FALSE
 #	define Z_TRAIT_Type_HAS_is_sint128 FALSE
-#endif
-
-#ifdef Z_SLLONG
-#	define Z_HAS_TRAIT_TypeIsSLLong	  TRUE
-#	define Z_TRAIT_Type_HAS_is_sllong TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsSLLong	  FALSE
-#	define Z_TRAIT_Type_HAS_is_sllong FALSE
 #endif
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
@@ -438,20 +398,56 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_uint128 FALSE
 #endif
 
-#ifdef Z_ULLONG
-#	define Z_HAS_TRAIT_TypeIsULLong	  TRUE
-#	define Z_TRAIT_Type_HAS_is_ullong TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsULLong	  FALSE
-#	define Z_TRAIT_Type_HAS_is_ullong FALSE
-#endif
-
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
 #	define Z_HAS_TRAIT_TypeIsUnion	 TRUE
 #	define Z_TRAIT_Type_HAS_is_union TRUE
 #else
 #	define Z_HAS_TRAIT_TypeIsUnion	 FALSE
 #	define Z_TRAIT_Type_HAS_is_union FALSE
+#endif
+
+#if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+#	define Z_HAS_TRAIT_TypeIsObjectiveCClass	      TRUE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCClassPointer	      TRUE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCObject	      TRUE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCObjectPointer      TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_class	      TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_class_pointer  TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_object	      TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_object_pointer TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsObjectiveCClass	      FALSE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCClassPointer	      FALSE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCObject	      FALSE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCObjectPointer      FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_class	      FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_class_pointer  FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_object	      FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_object_pointer FALSE
+#endif
+
+#if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#	define Z_HAS_TRAIT_TypeIsObjectiveCInstance		TRUE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCInstancePointer	TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_instance		TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsObjectiveCInstance		FALSE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCInstancePointer	FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_instance		FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer FALSE
+#endif
+
+#ifdef Z_LLONG
+#	define Z_HAS_TRAIT_TypeIsSLLong	  TRUE
+#	define Z_HAS_TRAIT_TypeIsULLong	  TRUE
+#	define Z_TRAIT_Type_HAS_is_sllong TRUE
+#	define Z_TRAIT_Type_HAS_is_ullong TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsSLLong	  FALSE
+#	define Z_HAS_TRAIT_TypeIsULLong	  FALSE
+#	define Z_TRAIT_Type_HAS_is_sllong FALSE
+#	define Z_TRAIT_Type_HAS_is_ullong FALSE
 #endif
 
 #if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
@@ -985,24 +981,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_null_pointer = false};
 #		endif
 
-#		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-
-			enum {	is_objective_c_class	      = false,
-				is_objective_c_class_pointer  = false,
-				is_objective_c_object	      = false,
-				is_objective_c_object_pointer = false
-			};
-
-#			if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-
-				enum {	is_objective_c_instance		= false,
-					is_objective_c_instance_pointer = false
-				};
-
-#			endif
-
-#		endif
-
 #		if Z_TRAIT_HAS(Type, is_pod)
 			enum {is_pod = false};
 #		endif
@@ -1029,10 +1007,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_sint128)
 			enum {is_sint128 = false};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_sllong)
-			enum {is_sllong = false};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_template)
@@ -1079,12 +1053,32 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_uint128 = false};
 #		endif
 
-#		if Z_TRAIT_HAS(Type, is_ullong)
-			enum {is_ullong = false};
-#		endif
-
 #		if Z_TRAIT_HAS(Type, is_union)
 			enum {is_union = false};
+#		endif
+
+#		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+
+			enum {	is_objective_c_class	      = false,
+				is_objective_c_class_pointer  = false,
+				is_objective_c_object	      = false,
+				is_objective_c_object_pointer = false
+			};
+
+#			if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+
+				enum {	is_objective_c_instance		= false,
+					is_objective_c_instance_pointer = false
+				};
+
+#			endif
+
+#		endif
+
+#		ifdef Z_LLONG
+			enum {	is_sllong = false,
+				is_ullong = false
+			};
 #		endif
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
@@ -1262,6 +1256,26 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
+#	if Z_TRAIT_HAS(Type, is_sint8)
+
+		struct SInt8 : Integer {
+			enum {is_sint8 = true};
+
+			enum {	value_type	 = Z_SINT8_VALUE_TYPE,
+				fixed_value_type = Z_SINT8_FIXED_VALUE_TYPE,
+				value_format	 = Z_SINT8_VALUE_FORMAT
+			};
+			enum {	minimum = Z_SINT8_MINIMUM,
+				maximum = Z_SINT8_MAXIMUM
+			};
+
+			typedef zsint8 type;
+			typedef zuint8 to_unsigned;
+			typedef zsint8 to_signed;
+		};
+
+#	endif
+
 #	if Z_TRAIT_HAS(Type, is_uint16)
 
 		struct UInt16 : Natural {
@@ -1280,6 +1294,26 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
+#	if Z_TRAIT_HAS(Type, is_sint16)
+
+		struct SInt16 : Integer {
+			enum {is_sint16 = true};
+
+			enum {	value_type	 = Z_SINT16_VALUE_TYPE,
+				fixed_value_type = Z_SINT16_FIXED_VALUE_TYPE,
+				value_format	 = Z_SINT16_VALUE_FORMAT
+			};
+			enum {	minimum = Z_SINT16_MINIMUM,
+				maximum = Z_SINT16_MAXIMUM
+			};
+
+			typedef zsint16 type;
+			typedef zuint16 to_unsigned;
+			typedef zsint16 to_signed;
+		};
+
+#	endif
+
 #	if Z_TRAIT_HAS(Type, is_uint32)
 
 		struct UInt32 : Natural {
@@ -1292,6 +1326,26 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {maximum = Z_UINT32_MAXIMUM};
 
 			typedef zuint32 type;
+			typedef zuint32 to_unsigned;
+			typedef zsint32 to_signed;
+		};
+
+#	endif
+
+#	if Z_TRAIT_HAS(Type, is_sint32)
+
+		struct SInt32 : Integer {
+			enum {is_sint32 = true};
+
+			enum {	value_type	 = Z_SINT16_VALUE_TYPE,
+				fixed_value_type = Z_SINT16_FIXED_VALUE_TYPE,
+				value_format	 = Z_SINT16_VALUE_FORMAT
+			};
+			enum {	minimum = Z_SINT32_MINIMUM,
+				maximum = Z_SINT32_MAXIMUM
+			};
+
+			typedef zsint32 type;
 			typedef zuint32 to_unsigned;
 			typedef zsint32 to_signed;
 		};
@@ -1319,87 +1373,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if Z_TRAIT_HAS(Type, is_uint128)
-
-		struct UInt128 : Natural {
-			enum {is_uint128 = true};
-
-			enum {	value_type	 = Z_UINT128_VALUE_TYPE,
-				fixed_value_type = Z_UINT128_FIXED_VALUE_TYPE,
-				value_format	 = Z_UINT128_VALUE_FORMAT
-			};
-			enum {maximum = Z_UINT128_MAXIMUM};
-
-			typedef zuint128 type;
-			typedef zuint128 to_unsigned;
-
-#			ifdef Z_SINT128
-				typedef zsint128 to_signed;
-#			endif
-		};
-
-#	endif
-
-#	if Z_TRAIT_HAS(Type, is_sint8)
-
-		struct SInt8 : Integer {
-			enum {is_sint8 = true};
-
-			enum {	value_type	 = Z_SINT8_VALUE_TYPE,
-				fixed_value_type = Z_SINT8_FIXED_VALUE_TYPE,
-				value_format	 = Z_SINT8_VALUE_FORMAT
-			};
-			enum {	minimum = Z_SINT8_MINIMUM,
-				maximum = Z_SINT8_MAXIMUM
-			};
-
-			typedef zsint8 type;
-			typedef zuint8 to_unsigned;
-			typedef zsint8 to_signed;
-		};
-
-#	endif
-
-#	if Z_TRAIT_HAS(Type, is_sint16)
-
-		struct SInt16 : Integer {
-			enum {is_sint16 = true};
-
-			enum {	value_type	 = Z_SINT16_VALUE_TYPE,
-				fixed_value_type = Z_SINT16_FIXED_VALUE_TYPE,
-				value_format	 = Z_SINT16_VALUE_FORMAT
-			};
-			enum {	minimum = Z_SINT16_MINIMUM,
-				maximum = Z_SINT16_MAXIMUM
-			};
-
-			typedef zsint16 type;
-			typedef zuint16 to_unsigned;
-			typedef zsint16 to_signed;
-		};
-
-#	endif
-
-#	if Z_TRAIT_HAS(Type, is_sint32)
-
-		struct SInt32 : Integer {
-			enum {is_sint32 = true};
-
-			enum {	value_type	 = Z_SINT16_VALUE_TYPE,
-				fixed_value_type = Z_SINT16_FIXED_VALUE_TYPE,
-				value_format	 = Z_SINT16_VALUE_FORMAT
-			};
-			enum {	minimum = Z_SINT32_MINIMUM,
-				maximum = Z_SINT32_MAXIMUM
-			};
-
-			typedef zsint32 type;
-			typedef zuint32 to_unsigned;
-			typedef zsint32 to_signed;
-		};
-
-#	endif
-
 #	if Z_TRAIT_HAS(Type, is_sint64)
 
 		struct SInt64 : Integer {
@@ -1418,6 +1391,27 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #			ifdef Z_UINT64
 				typedef zuint64 to_unsigned;
+#			endif
+		};
+
+#	endif
+
+#	if Z_TRAIT_HAS(Type, is_uint128)
+
+		struct UInt128 : Natural {
+			enum {is_uint128 = true};
+
+			enum {	value_type	 = Z_UINT128_VALUE_TYPE,
+				fixed_value_type = Z_UINT128_FIXED_VALUE_TYPE,
+				value_format	 = Z_UINT128_VALUE_FORMAT
+			};
+			enum {maximum = Z_UINT128_MAXIMUM};
+
+			typedef zuint128 type;
+			typedef zuint128 to_unsigned;
+
+#			ifdef Z_SINT128
+				typedef zsint128 to_signed;
 #			endif
 		};
 
@@ -1742,6 +1736,22 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef zschar to_signed;
 	};
 
+	struct SChar : Integer {
+		enum {is_schar = true};
+
+		enum {	value_type	 = Z_SCHAR_VALUE_TYPE,
+			fixed_value_type = Z_SCHAR_FIXED_VALUE_TYPE,
+			value_format	 = Z_SCHAR_VALUE_FORMAT
+		};
+		enum {	minimum = Z_SCHAR_MINIMUM,
+			maximum = Z_SCHAR_MAXIMUM
+		};
+
+		typedef zschar type;
+		typedef zuchar to_unsigned;
+		typedef zschar to_signed;
+	};
+
 	struct UShort : Natural {
 		enum {is_ushort = true};
 
@@ -1756,6 +1766,22 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef zsshort to_signed;
 	};
 
+	struct SShort : Integer {
+		enum {is_sshort = true};
+
+		enum {	value_type	 = Z_SSHORT_VALUE_TYPE,
+			fixed_value_type = Z_SSHORT_FIXED_VALUE_TYPE,
+			value_format	 = Z_SSHORT_VALUE_FORMAT
+		};
+		enum {	minimum = Z_SSHORT_MINIMUM,
+			maximum = Z_SSHORT_MAXIMUM
+		};
+
+		typedef zsshort type;
+		typedef zushort to_unsigned;
+		typedef zsshort to_signed;
+	};
+
 	struct UInt : Natural {
 		enum {is_uint = true};
 
@@ -1766,6 +1792,22 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {maximum = Z_UINT_MAXIMUM};
 
 		typedef zuint type;
+		typedef zuint to_unsigned;
+		typedef zsint to_signed;
+	};
+
+	struct SInt : Integer {
+		enum {is_sint = true};
+
+		enum {	value_type	 = Z_SINT_VALUE_TYPE,
+			fixed_value_type = Z_SINT_FIXED_VALUE_TYPE,
+			value_format	 = Z_SINT_VALUE_FORMAT
+		};
+		enum {	minimum = Z_SINT_MINIMUM,
+			maximum = Z_SINT_MAXIMUM
+		};
+
+		typedef zsint type;
 		typedef zuint to_unsigned;
 		typedef zsint to_signed;
 	};
@@ -1785,7 +1827,23 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 	};
 
-#	if Z_TRAIT_HAS(Type, is_ullong)
+	struct SLong : Integer {
+		enum {is_slong = true};
+
+		enum {	value_type	 = Z_SLONG_VALUE_TYPE,
+			fixed_value_type = Z_SLONG_FIXED_VALUE_TYPE,
+			value_format	 = Z_SLONG_VALUE_FORMAT
+		};
+		enum {	minimum = Z_SLONG_MINIMUM,
+			maximum = Z_SLONG_MAXIMUM
+		};
+
+		typedef zslong type;
+		typedef zulong to_unsigned;
+		typedef zslong to_signed;
+	};
+
+#	ifdef Z_LLONG
 
 		struct ULLong : Natural {
 			enum {is_ullong = true};
@@ -1803,74 +1861,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				typedef zsllong to_signed;
 #			endif
 		};
-
-#	endif
-
-	struct SChar : Integer {
-		enum {is_schar = true};
-
-		enum {	value_type	 = Z_SCHAR_VALUE_TYPE,
-			fixed_value_type = Z_SCHAR_FIXED_VALUE_TYPE,
-			value_format	 = Z_SCHAR_VALUE_FORMAT
-		};
-		enum {	minimum = Z_SCHAR_MINIMUM,
-			maximum = Z_SCHAR_MAXIMUM
-		};
-
-		typedef zschar type;
-		typedef zuchar to_unsigned;
-		typedef zschar to_signed;
-	};
-
-	struct SShort : Integer {
-		enum {is_sshort = true};
-
-		enum {	value_type	 = Z_SSHORT_VALUE_TYPE,
-			fixed_value_type = Z_SSHORT_FIXED_VALUE_TYPE,
-			value_format	 = Z_SSHORT_VALUE_FORMAT
-		};
-		enum {	minimum = Z_SSHORT_MINIMUM,
-			maximum = Z_SSHORT_MAXIMUM
-		};
-
-		typedef zsshort type;
-		typedef zushort to_unsigned;
-		typedef zsshort to_signed;
-	};
-
-	struct SInt : Integer {
-		enum {is_sint = true};
-
-		enum {	value_type	 = Z_SINT_VALUE_TYPE,
-			fixed_value_type = Z_SINT_FIXED_VALUE_TYPE,
-			value_format	 = Z_SINT_VALUE_FORMAT
-		};
-		enum {	minimum = Z_SINT_MINIMUM,
-			maximum = Z_SINT_MAXIMUM
-		};
-
-		typedef zsint type;
-		typedef zuint to_unsigned;
-		typedef zsint to_signed;
-	};
-
-	struct SLong : Integer {
-		enum {is_slong = true};
-
-		enum {	value_type	 = Z_SLONG_VALUE_TYPE,
-			fixed_value_type = Z_SLONG_FIXED_VALUE_TYPE,
-			value_format	 = Z_SLONG_VALUE_FORMAT
-		};
-		enum {	minimum = Z_SLONG_MINIMUM,
-			maximum = Z_SLONG_MAXIMUM
-		};
-
-		typedef zslong type;
-		typedef zulong to_unsigned;
-		typedef zslong to_signed;
-	};
-
-#	if Z_TRAIT_HAS(Type, is_sllong)
 
 		struct SLLong : Integer {
 			enum {is_sllong = true};
@@ -2939,6 +2929,14 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	template <class T> struct Ambiguous {
 
+		enum {	structure_detected =
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_CLASS)
+				Z_COMPILER_TRAIT(TYPE_IS_CLASS)(T)
+#			else
+				false
+#			endif			
+		};
+
 		enum {	union_detected =
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
 				Z_COMPILER_TRAIT(TYPE_IS_UNION)(T)
@@ -2947,7 +2945,7 @@ namespace Zeta {namespace Detail {namespace Type {
 #			endif
 		};
 
-		enum {	structure_or_union_detected = union_detected ||
+		enum {	structure_or_union_detected = structure_detected || union_detected ||
 #			if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 				Helpers::IsStructureOrUnion<T, true>::value
 #			else
@@ -2994,36 +2992,36 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E> struct Case<E, UInt8> : Mixins::Unqualified<Abstract::UInt8> {};
 #	endif
 
-#	if Z_TRAIT_HAS(Type, is_uint16)
-		template <Boolean E> struct Case<E, UInt16> : Mixins::Unqualified<Abstract::UInt16> {};
-#	endif
-
-#	if Z_TRAIT_HAS(Type, is_uint32)
-		template <Boolean E> struct Case<E, UInt32> : Mixins::Unqualified<Abstract::UInt32> {};
-#	endif
-
-#	if Z_TRAIT_HAS(Type, is_uint64)
-		template <Boolean E> struct Case<E, UInt64> : Mixins::Unqualified<Abstract::UInt64> {};
-#	endif
-
-#	if Z_TRAIT_HAS(Type, is_uint128)
-		template <Boolean E> struct Case<E, UInt128> : Mixins::Unqualified<Abstract::UInt128> {};
-#	endif
-
 #	if Z_TRAIT_HAS(Type, is_sint8)
 		template <Boolean E> struct Case<E, SInt8> : Mixins::Unqualified<Abstract::SInt8> {};
+#	endif
+
+#	if Z_TRAIT_HAS(Type, is_uint16)
+		template <Boolean E> struct Case<E, UInt16> : Mixins::Unqualified<Abstract::UInt16> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_sint16)
 		template <Boolean E> struct Case<E, SInt16> : Mixins::Unqualified<Abstract::SInt16> {};
 #	endif
 
+#	if Z_TRAIT_HAS(Type, is_uint32)
+		template <Boolean E> struct Case<E, UInt32> : Mixins::Unqualified<Abstract::UInt32> {};
+#	endif
+
 #	if Z_TRAIT_HAS(Type, is_sint32)
 		template <Boolean E> struct Case<E, SInt32> : Mixins::Unqualified<Abstract::SInt32> {};
 #	endif
 
+#	if Z_TRAIT_HAS(Type, is_uint64)
+		template <Boolean E> struct Case<E, UInt64> : Mixins::Unqualified<Abstract::UInt64> {};
+#	endif
+
 #	if Z_TRAIT_HAS(Type, is_sint64)
 		template <Boolean E> struct Case<E, SInt64> : Mixins::Unqualified<Abstract::SInt64> {};
+#	endif
+
+#	if Z_TRAIT_HAS(Type, is_uint128)
+		template <Boolean E> struct Case<E, UInt128> : Mixins::Unqualified<Abstract::UInt128> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_sint128)
@@ -3060,20 +3058,16 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	template <Boolean E> struct Case<E, Char  > : Mixins::Unqualified<Abstract::Char  > {};
 	template <Boolean E> struct Case<E, UChar > : Mixins::Unqualified<Abstract::UChar > {};
-	template <Boolean E> struct Case<E, UShort> : Mixins::Unqualified<Abstract::UShort> {};
-	template <Boolean E> struct Case<E, UInt  > : Mixins::Unqualified<Abstract::UInt  > {};
-	template <Boolean E> struct Case<E, ULong > : Mixins::Unqualified<Abstract::ULong > {};
-
-#	if Z_TRAIT_HAS(Type, is_ullong)
-		template <Boolean E> struct Case<E, ULLong> : Mixins::Unqualified<Abstract::ULLong> {};
-#	endif
-
 	template <Boolean E> struct Case<E, SChar > : Mixins::Unqualified<Abstract::SChar > {};
+	template <Boolean E> struct Case<E, UShort> : Mixins::Unqualified<Abstract::UShort> {};
 	template <Boolean E> struct Case<E, SShort> : Mixins::Unqualified<Abstract::SShort> {};
+	template <Boolean E> struct Case<E, UInt  > : Mixins::Unqualified<Abstract::UInt  > {};
 	template <Boolean E> struct Case<E, SInt  > : Mixins::Unqualified<Abstract::SInt  > {};
+	template <Boolean E> struct Case<E, ULong > : Mixins::Unqualified<Abstract::ULong > {};
 	template <Boolean E> struct Case<E, SLong > : Mixins::Unqualified<Abstract::SLong > {};
 
-#	if Z_TRAIT_HAS(Type, is_sllong)
+#	ifdef Z_LLONG
+		template <Boolean E> struct Case<E, ULLong> : Mixins::Unqualified<Abstract::ULLong> {};
 		template <Boolean E> struct Case<E, SLLong> : Mixins::Unqualified<Abstract::SLLong> {};
 #	endif
 
@@ -3804,24 +3798,6 @@ namespace Zeta {
 				enum {is_null_pointer = Type::is_null_pointer};
 #			endif
 
-#			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-
-				enum {	is_objective_c_class	      = Type::is_objective_c_class,
-					is_objective_c_class_pointer  = Type::is_objective_c_class_pointer,
-					is_objective_c_object	      = Type::is_objective_c_object,
-					is_objective_c_object_pointer = Type::is_objective_c_object_pointer
-				};
-
-#				if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-
-					enum {	is_objective_c_instance		= Type::is_objective_c_instance,
-						is_objective_c_instance_pointer = Type::is_objective_c_instance_pointer
-					};
-
-#				endif
-
-#			endif
-
 #			if Z_TRAIT_HAS(Type, is_pod)
 				enum {is_pod = Type::is_pod};
 #			endif
@@ -3848,10 +3824,6 @@ namespace Zeta {
 
 #			if Z_TRAIT_HAS(Type, is_sint128)
 				enum {is_sint128 = Type::is_sint128};
-#			endif
-
-#			if Z_TRAIT_HAS(Type, is_sllong)
-				enum {is_sllong = Type::is_sllong};
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_template)
@@ -3898,12 +3870,30 @@ namespace Zeta {
 				enum {is_uint128 = Type::is_uint128};
 #			endif
 
-#			if Z_TRAIT_HAS(Type, is_ullong)
-				enum {is_ullong = Type::is_ullong};
-#			endif
-
 #			if Z_TRAIT_HAS(Type, is_union)
 				enum {is_union = Type::is_union};
+#			endif
+
+#			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+
+				enum {	is_objective_c_class	      = Type::is_objective_c_class,
+					is_objective_c_class_pointer  = Type::is_objective_c_class_pointer,
+					is_objective_c_object	      = Type::is_objective_c_object,
+					is_objective_c_object_pointer = Type::is_objective_c_object_pointer
+				};
+
+#				if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+					enum {	is_objective_c_instance		= Type::is_objective_c_instance,
+						is_objective_c_instance_pointer = Type::is_objective_c_instance_pointer
+					};
+#				endif
+
+#			endif
+
+#			ifdef Z_LLONG
+				enum {	is_sllong = Type::is_sllong,
+					is_ullong = Type::is_ullong
+				};
 #			endif
 
 #			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
@@ -4147,20 +4137,6 @@ namespace Zeta {
 		template <class T> struct TypeIsNullPointer {enum {is_null_pointer = Type<T>::is_null_pointer};};
 #	endif
 
-#	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-
-		template <class T> struct TypeIsObjectiveCClass		{enum {is_objective_c_class	     = Type<T>::is_objective_c_class	     };};
-		template <class T> struct TypeIsObjectiveCClassPointer	{enum {is_objective_c_class_pointer  = Type<T>::is_objective_c_class_pointer };};
-		template <class T> struct TypeIsObjectiveCObject	{enum {is_objective_c_object	     = Type<T>::is_objective_c_object	     };};
-		template <class T> struct TypeIsObjectiveCObjectPointer {enum {is_objective_c_object_pointer = Type<T>::is_objective_c_object_pointer};};
-
-#		if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-			template <class T> struct TypeIsObjectiveCInstance	  {enum {is_objective_c_instance	 = Type<T>::is_objective_c_instance	   };};
-			template <class T> struct TypeIsObjectiveCInstancePointer {enum {is_objective_c_instance_pointer = Type<T>::is_objective_c_instance_pointer};};
-#		endif
-
-#	endif
-
 #	if Z_HAS_TRAIT(TypeIsPOD)
 		template <class T> struct TypeIsPOD {enum {is_pod = Type<T>::is_pod};};
 #	endif
@@ -4187,10 +4163,6 @@ namespace Zeta {
 
 #	if Z_HAS_TRAIT(TypeIsSInt128)
 		template <class T> struct TypeIsSInt128 {enum {is_sint128 = Type<T>::is_sint128};};
-#	endif
-
-#	if Z_HAS_TRAIT(TypeIsSLLong)
-		template <class T> struct TypeIsSLLong {enum {is_sllong = Type<T>::is_sllong};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTemplate)
@@ -4237,12 +4209,27 @@ namespace Zeta {
 		template <class T> struct TypeIsUInt128 {enum {is_uint128 = Type<T>::is_uint128};};
 #	endif
 
-#	if Z_HAS_TRAIT(TypeIsULLong)
-		template <class T> struct TypeIsULLong {enum {is_ullong = Type<T>::is_ullong};};
-#	endif
-
 #	if Z_HAS_TRAIT(TypeIsUnion)
 		template <class T> struct TypeIsUnion {enum {is_union = Type<T>::is_union};};
+#	endif
+
+#	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+
+		template <class T> struct TypeIsObjectiveCClass		{enum {is_objective_c_class	     = Type<T>::is_objective_c_class	     };};
+		template <class T> struct TypeIsObjectiveCClassPointer	{enum {is_objective_c_class_pointer  = Type<T>::is_objective_c_class_pointer };};
+		template <class T> struct TypeIsObjectiveCObject	{enum {is_objective_c_object	     = Type<T>::is_objective_c_object	     };};
+		template <class T> struct TypeIsObjectiveCObjectPointer {enum {is_objective_c_object_pointer = Type<T>::is_objective_c_object_pointer};};
+
+#		if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+			template <class T> struct TypeIsObjectiveCInstance	  {enum {is_objective_c_instance	 = Type<T>::is_objective_c_instance	   };};
+			template <class T> struct TypeIsObjectiveCInstancePointer {enum {is_objective_c_instance_pointer = Type<T>::is_objective_c_instance_pointer};};
+#		endif
+
+#	endif
+
+#	ifdef Z_LLONG
+		template <class T> struct TypeIsSLLong {enum {is_sllong = Type<T>::is_sllong};};
+		template <class T> struct TypeIsULLong {enum {is_ullong = Type<T>::is_ullong};};
 #	endif
 
 #	if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
