@@ -276,6 +276,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_VALUE_TYPE_SINT64 Z_VALUE_TYPE_SLLONG
 
 #else
+
 #	if Z_COMPILER_HAS_TYPE(UINT64)
 
 #		if Z_COMPILER_HAS_LITERAL(UINT64)
@@ -297,6 +298,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_DATA_MODEL_VALUE_TYPE_SINT64 Z_VALUE_TYPE_SINT64
 
 #	endif
+
 #endif
 
 /* MARK: - 128-bit */
@@ -312,6 +314,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_VALUE_TYPE_SINT128 Z_VALUE_TYPE_SLLONG
 
 #else
+
 #	if Z_COMPILER_HAS_TYPE(UINT128)
 
 #		if Z_COMPILER_HAS_LITERAL(UINT128)
@@ -333,6 +336,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_DATA_MODEL_VALUE_TYPE_SINT128 Z_VALUE_TYPE_SINT128
 
 #	endif
+
 #endif
 
 #include <Z/inspection/data model/completion.h>
