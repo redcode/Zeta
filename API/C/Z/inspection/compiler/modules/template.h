@@ -88,8 +88,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_C_HAS_VLA*/
 /*#define Z_COMPILER_C_HAS_MAGIC_CONSTANT_FUNCTION_NAME*/
 /*#define Z_COMPILER_C_HAS_SPECIFIER_INLINE*/
-/*#define Z_COMPILER_C_HAS_TYPE_ULLONG*/
-/*#define Z_COMPILER_C_HAS_TYPE_SLLONG*/
+/*#define Z_COMPILER_C_HAS_TYPE_LLONG*/
 /*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT*/
 
 /* MARK: - C11 support */
@@ -179,8 +178,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_CPP_HAS_STORATE_CLASS_THREAD_LOCAL*/
 /*#define Z_COMPILER_CPP_HAS_TYPE_CHAR16*/
 /*#define Z_COMPILER_CPP_HAS_TYPE_CHAR32*/
-/*#define Z_COMPILER_CPP_HAS_TYPE_ULLONG*/
-/*#define Z_COMPILER_CPP_HAS_TYPE_SLLONG*/
+/*#define Z_COMPILER_CPP_HAS_TYPE_LLONG*/
 
 /* MARK: - C++14 support */
 

@@ -269,12 +269,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_TYPE_CHAR32 FALSE
 #endif
 
-#ifndef Z_CPP_HAS_TYPE_ULLONG
-#	define Z_CPP_HAS_TYPE_ULLONG FALSE
-#endif
-
-#ifndef Z_CPP_HAS_TYPE_SLLONG
-#	define Z_CPP_HAS_TYPE_SLLONG FALSE
+#ifndef Z_CPP_HAS_TYPE_LLONG
+#	define Z_CPP_HAS_TYPE_LLONG FALSE
 #endif
 
 /* MARK: C++14 */

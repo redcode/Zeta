@@ -117,12 +117,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_TYPE_BOOL FALSE
 #endif
 
-#ifndef Z_C_HAS_TYPE_ULLONG
-#	define Z_C_HAS_TYPE_ULLONG FALSE
-#endif
-
-#ifndef Z_C_HAS_TYPE_SLLONG
-#	define Z_C_HAS_TYPE_SLLONG FALSE
+#ifndef Z_C_HAS_TYPE_LLONG
+#	define Z_C_HAS_TYPE_LLONG FALSE
 #endif
 
 #ifndef Z_C_HAS_TYPE_QUALIFIER_RESTRICT

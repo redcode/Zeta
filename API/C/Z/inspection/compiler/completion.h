@@ -156,10 +156,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_SPECIFIER_INLINE FALSE
 #endif
 
-#ifndef Z_COMPILER_C_HAS_TYPE_ULLONG
-#	define Z_COMPILER_C_HAS_TYPE_ULLONG FALSE
-#endif
-
 #ifndef Z_COMPILER_C_HAS_TYPE_LLONG
 #	define Z_COMPILER_C_HAS_TYPE_LLONG FALSE
 #endif
@@ -482,12 +478,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_TYPE_CHAR32 FALSE
 #	endif
 
-#	ifndef Z_COMPILER_CPP_HAS_TYPE_ULLONG
-#		define Z_COMPILER_CPP_HAS_TYPE_ULLONG FALSE
-#	endif
-
-#	ifndef Z_COMPILER_CPP_HAS_TYPE_SLLONG
-#		define Z_COMPILER_CPP_HAS_TYPE_SLLONG FALSE
+#	ifndef Z_COMPILER_CPP_HAS_TYPE_LLONG
+#		define Z_COMPILER_CPP_HAS_TYPE_LLONG FALSE
 #	endif
 
 	/* MARK: - C++14 support */

@@ -72,7 +72,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_STORATE_CLASS_THREAD_LOCAL			   TRUE /* N2659: thread_local			    */
 #define Z_CPP_HAS_TYPE_CHAR16					   TRUE /* N2249: char16_t			    */
 #define Z_CPP_HAS_TYPE_CHAR32					   TRUE /* N2249: char32_t			    */
-#define Z_CPP_HAS_TYPE_ULLONG					   TRUE /* N1811: unsigned long long [int]	    */
-#define Z_CPP_HAS_TYPE_SLLONG					   TRUE /* N1811: [signed] long long [int]	    */
+#define Z_CPP_HAS_TYPE_LLONG					   TRUE /* N1811: [unsigned|signed] long long [int] */
 
 #endif /* __Z_inspection_CPP_modules_CPP11_H__ */

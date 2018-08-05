@@ -366,8 +366,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGER TRUE
 #	define Z_COMPILER_C_HAS_VARIADIC_MACRO					TRUE
-#	define Z_COMPILER_C_HAS_TYPE_ULLONG					TRUE
-#	define Z_COMPILER_C_HAS_TYPE_SLLONG					TRUE
+#	define Z_COMPILER_C_HAS_TYPE_LLONG					TRUE
 #endif
 
 /* MARK: - C11 support */
@@ -449,8 +448,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_LITERAL_CHAR32_STRING			   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_TYPE_CHAR16				   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_TYPE_CHAR32				   TRUE /* v2.9 */
-#		define Z_COMPILER_CPP_HAS_TYPE_ULLONG				   TRUE /* v2.9 */
-#		define Z_COMPILER_CPP_HAS_TYPE_SLLONG				   TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_TYPE_LLONG				   TRUE /* v2.9 */
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0)
 #			define Z_COMPILER_CPP_HAS_STANDARD_LAYOUT TRUE /* v3.0 */
