@@ -1208,13 +1208,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		endif
 	};
 
-	struct Exact : Number {
+	struct Integral : Number {
 		enum {	is_exact    = true,
 			is_integral = true,
 		};
 	};
 
-	struct Natural : Exact {
+	struct Natural : Integral {
 		enum {	is_natural	      = true,
 			is_unsigned	      = true,
 			is_signed_or_unsigned = true
@@ -1223,7 +1223,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {minimum = 0};
 	};
 
-	struct Integer : Exact {
+	struct Integer : Integral {
 		enum {	is_integer	      = true,
 			is_signed	      = true,
 			is_signed_or_unsigned = true
@@ -2000,7 +2000,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_TRAIT_HAS(Type, is_boolean)
 
-		struct Boolean : Exact {
+		struct Boolean : Integral {
 			enum {is_boolean = true};
 		};
 
