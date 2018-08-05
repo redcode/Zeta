@@ -28,15 +28,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_VALUE_TYPE_BOOLEAN	   15 /* _Bool (C) / bool (C++)	 */
 #define Z_VALUE_TYPE_NULL_POINTER  16 /* decltype(nullptr) (C++) */
 #define Z_VALUE_TYPE_UINT8	  128
-#define Z_VALUE_TYPE_UINT16	  129 /* Base type in SILP64 data model only. */
-#define Z_VALUE_TYPE_UINT32	  130 /* Base type in ILP64 and SILP64 data models only. */
-#define Z_VALUE_TYPE_UINT64	  131
-#define Z_VALUE_TYPE_UINT128	  132
-#define Z_VALUE_TYPE_SINT8	  160
-#define Z_VALUE_TYPE_SINT16	  161 /* Base type in SILP64 data model only. */
-#define Z_VALUE_TYPE_SINT32	  162 /* Base type in ILP64 and SILP64 data models only. */
-#define Z_VALUE_TYPE_SINT64	  163
-#define Z_VALUE_TYPE_SINT128	  164
+#define Z_VALUE_TYPE_SINT8	  129
+#define Z_VALUE_TYPE_UINT16	  130 /* Base type in SILP64 data model only. */
+#define Z_VALUE_TYPE_SINT16	  131 /* Base type in SILP64 data model only. */
+#define Z_VALUE_TYPE_UINT32	  132 /* Base type in ILP64 and SILP64 data models only. */
+#define Z_VALUE_TYPE_SINT32	  133 /* Base type in ILP64 and SILP64 data models only. */
+#define Z_VALUE_TYPE_UINT64	  134
+#define Z_VALUE_TYPE_SINT64	  135
+#define Z_VALUE_TYPE_UINT128	  136
+#define Z_VALUE_TYPE_SINT128	  137
 #define Z_VALUE_TYPE_FLOAT16	  192
 #define Z_VALUE_TYPE_FLOAT32	  193
 #define Z_VALUE_TYPE_FLOAT64	  194
