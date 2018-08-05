@@ -821,6 +821,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_empty		     = false,
 			is_exact		     = false,
 			is_integer		     = false,
+			is_integral		     = false,
 			is_flexible_array	     = false,
 			is_function		     = false,
 			is_function_lvalue_reference = false,
@@ -1208,7 +1209,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct Exact : Number {
-		enum {is_exact = true};
+		enum {	is_exact    = true,
+			is_integral = true,
+		};
 	};
 
 	struct Natural : Exact {
@@ -3634,6 +3637,7 @@ namespace Zeta {
 				is_empty		     = Type::is_empty,
 				is_exact		     = Type::is_exact,
 				is_integer		     = Type::is_integer,
+				is_integral		     = Type::is_integral,
 				is_flexible_array	     = Type::is_flexible_array,
 				is_function		     = Type::is_function,
 				is_function_lvalue_reference = Type::is_function_lvalue_reference,
@@ -3985,6 +3989,7 @@ namespace Zeta {
 	template <class T> struct TypeIsEmpty			{enum {value = Type<T>::is_empty		    };};
 	template <class T> struct TypeIsExact			{enum {value = Type<T>::is_exact		    };};
 	template <class T> struct TypeIsInteger			{enum {value = Type<T>::is_integer		    };};
+	template <class T> struct TypeIsIntegral		{enum {value = Type<T>::is_integral		    };};
 	template <class T> struct TypeIsFlexibleArray		{enum {value = Type<T>::is_flexible_array	    };};
 	template <class T> struct TypeIsFunction		{enum {value = Type<T>::is_function		    };};
 	template <class T> struct TypeIsFunctionLValueReference {enum {value = Type<T>::is_function_lvalue_reference};};
