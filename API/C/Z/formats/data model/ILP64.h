@@ -8,18 +8,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_formats_data_model_ILP64_H__
 #define __Z_formats_data_model_ILP64_H__
 
-#define Z_ILP64_BITS_UCHAR    8
-#define Z_ILP64_BITS_USHORT  16
-#define Z_ILP64_BITS_UINT    64
-#define Z_ILP64_BITS_ULONG   64
-#define Z_ILP64_BITS_ULLONG  64
-#define Z_ILP64_BITS_USIZE   64
-#define Z_ILP64_BITS_SCHAR    8
-#define Z_ILP64_BITS_SSHORT  16
-#define Z_ILP64_BITS_SINT    64
-#define Z_ILP64_BITS_SLONG   64
-#define Z_ILP64_BITS_SLLONG  64
-#define Z_ILP64_BITS_SSIZE   64
+#define Z_ILP64_BITS_CHAR     8
+#define Z_ILP64_BITS_SHORT   16
+#define Z_ILP64_BITS_INT     64
+#define Z_ILP64_BITS_LONG    64
+#define Z_ILP64_BITS_LLONG   64
+#define Z_ILP64_BITS_SIZE    64
 #define Z_ILP64_BITS_POINTER 64
 
 #endif /* __Z_formats_data_model_ILP64_H__ */
