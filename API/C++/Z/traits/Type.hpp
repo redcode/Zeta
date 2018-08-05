@@ -1066,11 +1066,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			};
 
 #			if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-
 				enum {	is_objective_c_instance		= false,
 					is_objective_c_instance_pointer = false
 				};
-
 #			endif
 
 #		endif
