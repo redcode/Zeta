@@ -15,40 +15,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_UInt8(left, right)	   left##UInt8##right
 #define Z_INSERT_uint8(left, right)	   left##uint8##right
 
-#define Z_APPEND_UINT16(to)		   to##UINT16
-#define Z_APPEND_UInt16(to)		   to##UInt16
-#define Z_APPEND_uint16(to)		   to##uint16
-#define Z_INSERT_UINT16(left, right)	   left##UINT16##right
-#define Z_INSERT_UInt16(left, right)	   left##UInt16##right
-#define Z_INSERT_uint16(left, right)	   left##uint16##right
-
-#define Z_APPEND_UINT32(to)		   to##UINT32
-#define Z_APPEND_UInt32(to)		   to##UInt32
-#define Z_APPEND_uint32(to)		   to##uint32
-#define Z_INSERT_UINT32(left, right)	   left##UINT32##right
-#define Z_INSERT_UInt32(left, right)	   left##UInt32##right
-#define Z_INSERT_uint32(left, right)	   left##uint32##right
-
-#define Z_APPEND_UINT64(to)		   to##UINT64
-#define Z_APPEND_UInt64(to)		   to##UInt64
-#define Z_APPEND_uint64(to)		   to##uint64
-#define Z_INSERT_UINT64(left, right)	   left##UINT64##right
-#define Z_INSERT_UInt64(left, right)	   left##UInt64##right
-#define Z_INSERT_uint64(left, right)	   left##uint64##right
-
-#define Z_APPEND_UINT128(to)		   to##UINT128
-#define Z_APPEND_UInt128(to)		   to##UInt128
-#define Z_APPEND_uint128(to)		   to##uint128
-#define Z_INSERT_UINT128(left, right)	   left##UINT128##right
-#define Z_INSERT_UInt128(left, right)	   left##UInt128##right
-#define Z_INSERT_uint128(left, right)	   left##uint128##right
-
 #define Z_APPEND_SINT8(to)		   to##SINT8
 #define Z_APPEND_SInt8(to)		   to##SInt8
 #define Z_APPEND_sint8(to)		   to##sint8
 #define Z_INSERT_SINT8(left, right)	   left##SINT8##right
 #define Z_INSERT_SInt8(left, right)	   left##SInt8##right
 #define Z_INSERT_sint8(left, right)	   left##sint8##right
+
+#define Z_APPEND_UINT16(to)		   to##UINT16
+#define Z_APPEND_UInt16(to)		   to##UInt16
+#define Z_APPEND_uint16(to)		   to##uint16
+#define Z_INSERT_UINT16(left, right)	   left##UINT16##right
+#define Z_INSERT_UInt16(left, right)	   left##UInt16##right
+#define Z_INSERT_uint16(left, right)	   left##uint16##right
 
 #define Z_APPEND_SINT16(to)		   to##SINT16
 #define Z_APPEND_SInt16(to)		   to##SInt16
@@ -57,6 +36,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_SInt16(left, right)	   left##SInt16##right
 #define Z_INSERT_sint16(left, right)	   left##sint16##right
 
+#define Z_APPEND_UINT32(to)		   to##UINT32
+#define Z_APPEND_UInt32(to)		   to##UInt32
+#define Z_APPEND_uint32(to)		   to##uint32
+#define Z_INSERT_UINT32(left, right)	   left##UINT32##right
+#define Z_INSERT_UInt32(left, right)	   left##UInt32##right
+#define Z_INSERT_uint32(left, right)	   left##uint32##right
+
 #define Z_APPEND_SINT32(to)		   to##SINT32
 #define Z_APPEND_SInt32(to)		   to##SInt32
 #define Z_APPEND_sint32(to)		   to##sint32
@@ -64,12 +50,26 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_SInt32(left, right)	   left##SInt32##right
 #define Z_INSERT_sint32(left, right)	   left##sint32##right
 
+#define Z_APPEND_UINT64(to)		   to##UINT64
+#define Z_APPEND_UInt64(to)		   to##UInt64
+#define Z_APPEND_uint64(to)		   to##uint64
+#define Z_INSERT_UINT64(left, right)	   left##UINT64##right
+#define Z_INSERT_UInt64(left, right)	   left##UInt64##right
+#define Z_INSERT_uint64(left, right)	   left##uint64##right
+
 #define Z_APPEND_SINT64(to)		   to##SINT64
 #define Z_APPEND_SInt64(to)		   to##SInt64
 #define Z_APPEND_sint64(to)		   to##sint64
 #define Z_INSERT_SINT64(left, right)	   left##SINT64##right
 #define Z_INSERT_SInt64(left, right)	   left##SInt64##right
 #define Z_INSERT_sint64(left, right)	   left##sint64##right
+
+#define Z_APPEND_UINT128(to)		   to##UINT128
+#define Z_APPEND_UInt128(to)		   to##UInt128
+#define Z_APPEND_uint128(to)		   to##uint128
+#define Z_INSERT_UINT128(left, right)	   left##UINT128##right
+#define Z_INSERT_UInt128(left, right)	   left##UInt128##right
+#define Z_INSERT_uint128(left, right)	   left##uint128##right
 
 #define Z_APPEND_SINT128(to)		   to##SINT128
 #define Z_APPEND_SInt128(to)		   to##SInt128
@@ -205,42 +205,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_UCHAR_FixedType    Z_JOIN_2(Z_INSERT_UInt,    Z_UCHAR_BITS)
 #define Z_INSERT_UCHAR_fixed_type   Z_JOIN_2(Z_INSERT_uint,    Z_UCHAR_BITS)
 
-#define Z_APPEND_USHORT_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_USHORT_BITS)
-#define Z_APPEND_USHORT_FIXED_TYPE  Z_JOIN_2(Z_APPEND_UINT,    Z_USHORT_BITS)
-#define Z_APPEND_USHORT_FixedType   Z_JOIN_2(Z_APPEND_UInt,    Z_USHORT_BITS)
-#define Z_APPEND_USHORT_fixed_type  Z_JOIN_2(Z_APPEND_uint,    Z_USHORT_BITS)
-#define Z_INSERT_USHORT_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_USHORT_BITS)
-#define Z_INSERT_USHORT_FIXED_TYPE  Z_JOIN_2(Z_INSERT_UINT,    Z_USHORT_BITS)
-#define Z_INSERT_USHORT_FixedType   Z_JOIN_2(Z_INSERT_UInt,    Z_USHORT_BITS)
-#define Z_INSERT_USHORT_fixed_type  Z_JOIN_2(Z_INSERT_uint,    Z_USHORT_BITS)
-
-#define Z_APPEND_UINT_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_UINT_BITS)
-#define Z_APPEND_UINT_FIXED_TYPE    Z_JOIN_2(Z_APPEND_UINT,    Z_UINT_BITS)
-#define Z_APPEND_UINT_FixedType	    Z_JOIN_2(Z_APPEND_UInt,    Z_UINT_BITS)
-#define Z_APPEND_UINT_fixed_type    Z_JOIN_2(Z_APPEND_uint,    Z_UINT_BITS)
-#define Z_INSERT_UINT_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_UINT_BITS)
-#define Z_INSERT_UINT_FIXED_TYPE    Z_JOIN_2(Z_INSERT_UINT,    Z_UINT_BITS)
-#define Z_INSERT_UINT_FixedType	    Z_JOIN_2(Z_INSERT_UInt,    Z_UINT_BITS)
-#define Z_INSERT_UINT_fixed_type    Z_JOIN_2(Z_INSERT_uint,    Z_UINT_BITS)
-
-#define Z_APPEND_ULONG_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_ULONG_BITS)
-#define Z_APPEND_ULONG_FIXED_TYPE   Z_JOIN_2(Z_APPEND_UINT,    Z_ULONG_BITS)
-#define Z_APPEND_ULONG_FixedType    Z_JOIN_2(Z_APPEND_UInt,    Z_ULONG_BITS)
-#define Z_APPEND_ULONG_fixed_type   Z_JOIN_2(Z_APPEND_uint,    Z_ULONG_BITS)
-#define Z_INSERT_ULONG_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_ULONG_BITS)
-#define Z_INSERT_ULONG_FIXED_TYPE   Z_JOIN_2(Z_INSERT_UINT,    Z_ULONG_BITS)
-#define Z_INSERT_ULONG_FixedType    Z_JOIN_2(Z_INSERT_UInt,    Z_ULONG_BITS)
-#define Z_INSERT_ULONG_fixed_type   Z_JOIN_2(Z_INSERT_uint,    Z_ULONG_BITS)
-
-#define Z_APPEND_ULLONG_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_ULLONG_BITS)
-#define Z_APPEND_ULLONG_FIXED_TYPE  Z_JOIN_2(Z_APPEND_UINT,    Z_ULLONG_BITS)
-#define Z_APPEND_ULLONG_FixedType   Z_JOIN_2(Z_APPEND_UInt,    Z_ULLONG_BITS)
-#define Z_APPEND_ULLONG_fixed_type  Z_JOIN_2(Z_APPEND_uint,    Z_ULLONG_BITS)
-#define Z_INSERT_ULLONG_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_ULLONG_BITS)
-#define Z_INSERT_ULLONG_FIXED_TYPE  Z_JOIN_2(Z_INSERT_UINT,    Z_ULLONG_BITS)
-#define Z_INSERT_ULLONG_FixedType   Z_JOIN_2(Z_INSERT_UInt,    Z_ULLONG_BITS)
-#define Z_INSERT_ULLONG_fixed_type  Z_JOIN_2(Z_INSERT_uint,    Z_ULLONG_BITS)
-
 #define Z_APPEND_SCHAR_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SCHAR_BITS)
 #define Z_APPEND_SCHAR_FIXED_TYPE   Z_JOIN_2(Z_APPEND_SINT,    Z_SCHAR_BITS)
 #define Z_APPEND_SCHAR_FixedType    Z_JOIN_2(Z_APPEND_SInt,    Z_SCHAR_BITS)
@@ -249,6 +213,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_SCHAR_FIXED_TYPE   Z_JOIN_2(Z_INSERT_SINT,    Z_SCHAR_BITS)
 #define Z_INSERT_SCHAR_FixedType    Z_JOIN_2(Z_INSERT_SInt,    Z_SCHAR_BITS)
 #define Z_INSERT_SCHAR_fixed_type   Z_JOIN_2(Z_INSERT_sint,    Z_SCHAR_BITS)
+
+#define Z_APPEND_USHORT_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_USHORT_BITS)
+#define Z_APPEND_USHORT_FIXED_TYPE  Z_JOIN_2(Z_APPEND_UINT,    Z_USHORT_BITS)
+#define Z_APPEND_USHORT_FixedType   Z_JOIN_2(Z_APPEND_UInt,    Z_USHORT_BITS)
+#define Z_APPEND_USHORT_fixed_type  Z_JOIN_2(Z_APPEND_uint,    Z_USHORT_BITS)
+#define Z_INSERT_USHORT_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_USHORT_BITS)
+#define Z_INSERT_USHORT_FIXED_TYPE  Z_JOIN_2(Z_INSERT_UINT,    Z_USHORT_BITS)
+#define Z_INSERT_USHORT_FixedType   Z_JOIN_2(Z_INSERT_UInt,    Z_USHORT_BITS)
+#define Z_INSERT_USHORT_fixed_type  Z_JOIN_2(Z_INSERT_uint,    Z_USHORT_BITS)
 
 #define Z_APPEND_SSHORT_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SSHORT_BITS)
 #define Z_APPEND_SSHORT_FIXED_TYPE  Z_JOIN_2(Z_APPEND_SINT,    Z_SSHORT_BITS)
@@ -259,6 +232,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_SSHORT_FixedType   Z_JOIN_2(Z_INSERT_SInt,    Z_SSHORT_BITS)
 #define Z_INSERT_SSHORT_fixed_type  Z_JOIN_2(Z_INSERT_sint,    Z_SSHORT_BITS)
 
+#define Z_APPEND_UINT_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_UINT_BITS)
+#define Z_APPEND_UINT_FIXED_TYPE    Z_JOIN_2(Z_APPEND_UINT,    Z_UINT_BITS)
+#define Z_APPEND_UINT_FixedType	    Z_JOIN_2(Z_APPEND_UInt,    Z_UINT_BITS)
+#define Z_APPEND_UINT_fixed_type    Z_JOIN_2(Z_APPEND_uint,    Z_UINT_BITS)
+#define Z_INSERT_UINT_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_UINT_BITS)
+#define Z_INSERT_UINT_FIXED_TYPE    Z_JOIN_2(Z_INSERT_UINT,    Z_UINT_BITS)
+#define Z_INSERT_UINT_FixedType	    Z_JOIN_2(Z_INSERT_UInt,    Z_UINT_BITS)
+#define Z_INSERT_UINT_fixed_type    Z_JOIN_2(Z_INSERT_uint,    Z_UINT_BITS)
+
 #define Z_APPEND_SINT_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SINT_BITS)
 #define Z_APPEND_SINT_FIXED_TYPE    Z_JOIN_2(Z_APPEND_SINT,    Z_SINT_BITS)
 #define Z_APPEND_SINT_FixedType	    Z_JOIN_2(Z_APPEND_SInt,    Z_SINT_BITS)
@@ -268,6 +250,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_SINT_FixedType	    Z_JOIN_2(Z_INSERT_SInt,    Z_SINT_BITS)
 #define Z_INSERT_SINT_fixed_type    Z_JOIN_2(Z_INSERT_sint,    Z_SINT_BITS)
 
+#define Z_APPEND_ULONG_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_ULONG_BITS)
+#define Z_APPEND_ULONG_FIXED_TYPE   Z_JOIN_2(Z_APPEND_UINT,    Z_ULONG_BITS)
+#define Z_APPEND_ULONG_FixedType    Z_JOIN_2(Z_APPEND_UInt,    Z_ULONG_BITS)
+#define Z_APPEND_ULONG_fixed_type   Z_JOIN_2(Z_APPEND_uint,    Z_ULONG_BITS)
+#define Z_INSERT_ULONG_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_ULONG_BITS)
+#define Z_INSERT_ULONG_FIXED_TYPE   Z_JOIN_2(Z_INSERT_UINT,    Z_ULONG_BITS)
+#define Z_INSERT_ULONG_FixedType    Z_JOIN_2(Z_INSERT_UInt,    Z_ULONG_BITS)
+#define Z_INSERT_ULONG_fixed_type   Z_JOIN_2(Z_INSERT_uint,    Z_ULONG_BITS)
+
 #define Z_APPEND_SLONG_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SLONG_BITS)
 #define Z_APPEND_SLONG_FIXED_TYPE   Z_JOIN_2(Z_APPEND_SINT,    Z_SLONG_BITS)
 #define Z_APPEND_SLONG_FixedType    Z_JOIN_2(Z_APPEND_SInt,    Z_SLONG_BITS)
@@ -276,6 +267,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_SLONG_FIXED_TYPE   Z_JOIN_2(Z_INSERT_SINT,    Z_SLONG_BITS)
 #define Z_INSERT_SLONG_FixedType    Z_JOIN_2(Z_INSERT_SInt,    Z_SLONG_BITS)
 #define Z_INSERT_SLONG_fixed_type   Z_JOIN_2(Z_INSERT_sint,    Z_SLONG_BITS)
+
+#define Z_APPEND_ULLONG_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_ULLONG_BITS)
+#define Z_APPEND_ULLONG_FIXED_TYPE  Z_JOIN_2(Z_APPEND_UINT,    Z_ULLONG_BITS)
+#define Z_APPEND_ULLONG_FixedType   Z_JOIN_2(Z_APPEND_UInt,    Z_ULLONG_BITS)
+#define Z_APPEND_ULLONG_fixed_type  Z_JOIN_2(Z_APPEND_uint,    Z_ULLONG_BITS)
+#define Z_INSERT_ULLONG_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_ULLONG_BITS)
+#define Z_INSERT_ULLONG_FIXED_TYPE  Z_JOIN_2(Z_INSERT_UINT,    Z_ULLONG_BITS)
+#define Z_INSERT_ULLONG_FixedType   Z_JOIN_2(Z_INSERT_UInt,    Z_ULLONG_BITS)
+#define Z_INSERT_ULLONG_fixed_type  Z_JOIN_2(Z_INSERT_uint,    Z_ULLONG_BITS)
 
 #define Z_APPEND_SLLONG_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SLLONG_BITS)
 #define Z_APPEND_SLLONG_FIXED_TYPE  Z_JOIN_2(Z_APPEND_SINT,    Z_SLLONG_BITS)
