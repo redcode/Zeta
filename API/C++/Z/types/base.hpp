@@ -14,23 +14,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {
 	typedef zuint8	UInt8;
+	typedef zsint8	SInt8;
 	typedef zuint16 UInt16;
+	typedef zsint16 SInt16;
 	typedef zuint32 UInt32;
+	typedef zsint32 SInt32;
 
 #	ifdef Z_UINT64
 		typedef zuint64 UInt64;
 #	endif
 
-#	ifdef Z_UINT128
-		typedef zuint128 UInt128;
-#	endif
-
-	typedef zsint8	SInt8;
-	typedef zsint16 SInt16;
-	typedef zsint32 SInt32;
-
 #	ifdef Z_SINT64
 		typedef zsint64 SInt64;
+#	endif
+
+#	ifdef Z_UINT128
+		typedef zuint128 UInt128;
 #	endif
 
 #	ifdef Z_SINT128
@@ -61,34 +60,18 @@ namespace Zeta {
 		typedef zfloat128_x87 Float128_x87;
 #	endif
 
-	typedef zbint8	BInt8;
-	typedef zbint16 BInt16;
-	typedef zbint32 BInt32;
-
-#	ifdef Z_BINT64
-		typedef zbint64 BInt64;
-#	endif
-
-#	ifdef Z_BINT128
-		typedef zbint128 BInt128;
-#	endif
-
 	typedef zchar	Char;
 	typedef zuchar	UChar;
-	typedef zushort UShort;
-	typedef zuint	UInt;
-	typedef zulong	ULong;
-
-#	ifdef Z_ULLONG
-		typedef zullong ULLong;
-#	endif
-
 	typedef zschar	SChar;
+	typedef zushort UShort;
 	typedef zsshort SShort;
+	typedef zuint	UInt;
 	typedef zsint	SInt;
+	typedef zulong	ULong;
 	typedef zslong	SLong;
 
-#	ifdef Z_SLLONG
+#	ifdef Z_LLONG
+		typedef zullong ULLong;
 		typedef zsllong SLLong;
 #	endif
 
@@ -104,15 +87,12 @@ namespace Zeta {
 		typedef zldouble LDouble;
 #	endif
 
-	typedef zusize USize;
-	typedef zssize SSize;
-
+	typedef zusize	 USize;
+	typedef zssize	 SSize;
 	typedef zuintmax UIntMax;
 	typedef zsintmax SIntMax;
-
 	typedef zuintptr UIntPtr;
 	typedef zsintptr SIntPtr;
-
 	typedef zuinttop UIntTop;
 	typedef zsinttop SIntTop;
 
