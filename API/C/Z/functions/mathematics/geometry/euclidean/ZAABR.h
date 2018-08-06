@@ -987,12 +987,6 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 
 
 #ifdef Z_REAL
-
-#	define z_aabr_are_equal z_2d_line_are_equal
-#	define z_aabr_swap	z_2d_line_swap
-#	define z_aabr_center	z_2d_line_segment_center
-#	define z_aabr_is_zero	z_2d_line_is_zero
-
 #	define z_aabr_absolute_point_to_unit	z_aabr_type_absolute_point_to_unit   (REAL)
 #	define z_aabr_align_in_bottom_center	z_aabr_type_align_in_bottom_center   (REAL)
 #	define z_aabr_align_in_bottom_left	z_aabr_type_align_in_bottom_left     (REAL)
@@ -1003,6 +997,7 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 #	define z_aabr_align_in_top_center	z_aabr_type_align_in_top_center	     (REAL)
 #	define z_aabr_align_in_top_left		z_aabr_type_align_in_top_left	     (REAL)
 #	define z_aabr_align_in_top_right	z_aabr_type_align_in_top_right	     (REAL)
+#	define z_aabr_are_equal			z_2d_line_are_equal
 #	define z_aabr_area			z_aabr_type_area		     (REAL)
 #	define z_aabr_bottom_center		z_aabr_type_bottom_center	     (REAL)
 #	define z_aabr_bottom_half		z_aabr_type_bottom_half		     (REAL)
@@ -1010,6 +1005,7 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 #	define z_aabr_bottom_left_quarter	z_aabr_type_bottom_left_quarter	     (REAL)
 #	define z_aabr_bottom_right		z_aabr_type_bottom_right	     (REAL)
 #	define z_aabr_bottom_right_quarter	z_aabr_type_bottom_right_quarter     (REAL)
+#	define z_aabr_center			z_2d_line_segment_center
 #	define z_aabr_center_left		z_aabr_type_center_left		     (REAL)
 #	define z_aabr_center_right		z_aabr_type_center_right	     (REAL)
 #	define z_aabr_contains			z_aabr_type_contains		     (REAL)
@@ -1044,6 +1040,7 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 #	define z_aabr_inner_circle		z_aabr_type_inner_circle	     (REAL)
 #	define z_aabr_intersect			z_aabr_type_intersect		     (REAL)
 #	define z_aabr_intersection		z_aabr_type_intersection	     (REAL)
+#	define z_aabr_is_zero			z_2d_line_is_zero
 #	define z_aabr_left_half			z_aabr_type_left_half		     (REAL)
 #	define z_aabr_maximum_x			z_aabr_type_maximum_x		     (REAL)
 #	define z_aabr_maximum_y			z_aabr_type_maximum_y		     (REAL)
@@ -1069,6 +1066,7 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 #	define z_abbr_shrink_in_y_from_bottom	z_abbr_type_shrink_in_y_from_bottom  (REAL)
 #	define z_abbr_shrink_in_y_from_center	z_abbr_type_shrink_in_y_from_center  (REAL)
 #	define z_abbr_shrink_in_y_from_top	z_abbr_type_shrink_in_y_from_top     (REAL)
+#	define z_aabr_swap			z_2d_line_swap
 #	define z_aabr_top_center		z_aabr_type_top_center		     (REAL)
 #	define z_aabr_top_half			z_aabr_type_top_half		     (REAL)
 #	define z_aabr_top_left			z_aabr_type_top_left		     (REAL)
@@ -1077,7 +1075,6 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 #	define z_aabr_top_right_quarter		z_aabr_type_top_right_quarter	     (REAL)
 #	define z_aabr_union			z_aabr_type_union		     (REAL)
 #	define z_aabr_unit_point_to_absolute	z_aabr_type_unit_point_to_absolute   (REAL)
-
 #endif
 
 

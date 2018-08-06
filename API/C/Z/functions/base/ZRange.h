@@ -100,7 +100,7 @@ zboolean z_range_##type##_is_zero(ZRange##Type object)						\
 /* MARK: - Implementation expansions */
 
 
-Z_IMPLEMENTATION(UInt8,	uint8 )
+Z_IMPLEMENTATION(UInt8,  uint8 )
 Z_IMPLEMENTATION(UInt16, uint16)
 Z_IMPLEMENTATION(UInt32, uint32)
 

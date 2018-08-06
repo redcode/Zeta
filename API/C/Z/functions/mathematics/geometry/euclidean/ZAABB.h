@@ -337,14 +337,10 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 
 
 #ifdef Z_REAL
-
-#	define z_aabb_are_equal z_3d_line_are_equal
-#	define z_aabb_center	z_3d_line_segment_center
-#	define z_aabb_is_zero	z_3d_line_is_zero
-#	define z_aabb_swap	z_3d_line_swap
-
 #	define z_aabb_absolute_point_to_unit z_aabb_type_absolute_point_to_unit(REAL)
+#	define z_aabb_are_equal		     z_3d_line_are_equal
 #	define z_aabb_box		     z_aabb_type_box		       (REAL)
+#	define z_aabb_center		     z_3d_line_segment_center
 #	define z_aabb_contains		     z_aabb_type_contains	       (REAL)
 #	define z_aabb_contains_box	     z_aabb_type_contains_box	       (REAL)
 #	define z_aabb_contains_point	     z_aabb_type_contains_point	       (REAL)
@@ -353,11 +349,12 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 #	define z_aabb_inner_sphere	     z_aabb_type_inner_sphere	       (REAL)
 #	define z_aabb_intersect		     z_aabb_type_intersect	       (REAL)
 #	define z_aabb_intersection	     z_aabb_type_intersection	       (REAL)
+#	define z_aabb_is_zero		     z_3d_line_is_zero
 #	define z_aabb_size		     z_aabb_type_size		       (REAL)
+#	define z_aabb_swap		     z_3d_line_swap
 #	define z_aabb_union		     z_aabb_type_union		       (REAL)
 #	define z_aabb_unit_point_to_absolute z_aabb_type_unit_point_to_absolute(REAL)
 #	define z_aabb_volume		     z_aabb_type_volume		       (REAL)
-
 #endif
 
 
