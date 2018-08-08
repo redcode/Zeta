@@ -341,7 +341,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT      TRUE
 
 #if defined(__UINTMAX_MAX__) && 0U - 1U == __UINTMAX_MAX__
-#	define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGER TRUE
+#	define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGRAL TRUE
 #endif
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
@@ -364,9 +364,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if	(defined(__cplusplus) && __cplusplus >= 201103L) || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
 
-#	define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGER TRUE
-#	define Z_COMPILER_C_HAS_VARIADIC_MACRO					TRUE
-#	define Z_COMPILER_C_HAS_TYPE_LLONG					TRUE
+#	define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGRAL TRUE
+#	define Z_COMPILER_C_HAS_VARIADIC_MACRO					 TRUE
+#	define Z_COMPILER_C_HAS_TYPE_LLONG					 TRUE
 #endif
 
 /* MARK: - C11 support */
