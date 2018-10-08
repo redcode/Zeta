@@ -108,7 +108,8 @@ static Z_INLINE											\
 Z3D##Type z_3d_##type##_fit(Z3D##Type object, Z3D##Type other)					\
 	{											\
  	/* TO DO */										\
-	return z_3d_##type##_zero;								\
+	return z_3d_##type##_add(object, other);						\
+	/*return z_3d_##type##_zero;*/								\
 	}											\
 												\
 												\
