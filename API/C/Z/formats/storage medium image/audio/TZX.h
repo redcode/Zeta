@@ -120,7 +120,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 |   (usually 1000).							       |
 |									       |
 | xor_checksum_bit							       |
-|   The XOR checksum (if applicable, i.e. if different than 0xFF) is a XOR of  |
+|   The XOR checksum (if applicable, i.e. if different than FFh) is a XOR of   |
 |   all bits in the data byte XORed with the value in this field as the start  |
 |   value.								       |
 |									       |
