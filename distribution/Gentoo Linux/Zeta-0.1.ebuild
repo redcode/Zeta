@@ -17,7 +17,6 @@ src_test()	{ :; }
 
 src_install() {
 	insinto /usr/include/Z
-	doins -r API/C/Z/.
-	doins -r API/C++/Z/.
+	doins -r API/Z/.
 	dodoc AUTHORS COPYING.LESSER HISTORY INSTALL README
 }

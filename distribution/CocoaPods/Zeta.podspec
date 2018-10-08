@@ -11,8 +11,8 @@ Pod::Spec.new do |s|
 	s.header_dir          = "Z"
 	s.header_mappings_dir = "Z"
 	s.libraries           = 'c++'
-	s.source_files        = '../../API/C/**/*.h', '../../API/C++/**/*.hpp', 
-	s.xcconfig            = {'LIBRARY_SEARCH_PATHS' => ['$(PODS_ROOT)/API/C', '$(PODS_ROOT)/API/C++']}
-	s.preserve_paths      = 'glm/**/*{.h,.hpp,.inl}'
-	s.public_header_files = 'API/C/Z/**/*.h', 'API/C++/Z/**/*.h'
+	s.source_files        = '../../API/**/*.h'
+	s.xcconfig            = {'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/API'}
+	s.preserve_paths      = 'Z/**/*{.h,.hpp,.inl}'
+	s.public_header_files = 'API/Z/**/*.h'
 end
