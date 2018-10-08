@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef __Z_macros_version_H__
 #define __Z_macros_version_H__
 
-#define Z_VERSION(major, minor, micro) (major * 1000000 + minor * 1000 + micro)
+#define Z_VERSION(major, minor, micro) ((major) * 1000000 + (minor) * 1000 + (micro))
 #define Z_VERSION_MAJOR(version)
 #define Z_VERSION_MINOR(version)
 #define Z_VERSION_MICRO(version)
