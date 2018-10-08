@@ -43,7 +43,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/compiler/modules/Borland C++.h>
 
 #elif defined(__CC65__)
-#	include <Z/inspection/compiler/modules/CC65.h>
+#	include <Z/inspection/compiler/modules/cc65.h>
 
 #elif defined(__MWERKS__) || defined(__CWCC__)
 #	include <Z/inspection/compiler/modules/CodeWarrior.h>

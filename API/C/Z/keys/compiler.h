@@ -103,7 +103,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_STRING_ARM_COMPILER			   "ARM Compiler"
 #define Z_COMPILER_STRING_AZTEC_C			   "Aztec C"
 #define Z_COMPILER_STRING_BORLAND_CPP			   "Borland C++"
-#define Z_COMPILER_STRING_CC65				   "CC65"
+#define Z_COMPILER_STRING_CC65				   "cc65"
 #define Z_COMPILER_STRING_CODE_WARRIOR			   "CodeWarrior"
 #define Z_COMPILER_STRING_COMEAU_CPP			   "Comeau C++ "
 #define Z_COMPILER_STRING_COMPAQ_C_CPP			   "Compaq C/C++"
