@@ -50,7 +50,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - K&R C support */
 
 /*#define Z_COMPILER_C_HAS_OPERATOR_SIZE_OF*/
-
 /*#define Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO*/
 /*#define Z_COMPILER_C_HAS_STORAGE_CLASS_EXTERN*/
 /*#define Z_COMPILER_C_HAS_STORAGE_CLASS_REGISTER*/
