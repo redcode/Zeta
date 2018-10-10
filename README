@@ -48,7 +48,7 @@ TABLE OF CONTENTS
 ----------------
 
     Z is not a substitute of the standard C library, nor of the standard C++
-    library, but can be used as a base layer to implement these.
+    library, but it can be used as a base layer to implement these.
 
 
 
