@@ -16,4 +16,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_IP16L32_BITS_SIZE    16
 #define Z_IP16L32_BITS_POINTER 16
 
-#endif /* __Z_formats_data_model_ILP32_H__ */
+#endif /* __Z_formats_data_model_IP16L32_H__ */
