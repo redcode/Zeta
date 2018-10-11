@@ -27,7 +27,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if Z_DATA_MODEL == Z_DATA_MODEL_ILP32
+#if Z_DATA_MODEL == Z_DATA_MODEL_IP16L32
+
+#	include <Z/formats/data model/IP16L32.h>
+
+#	define Z_APPEND_DATA_MODEL(to)		to##IP16L32
+#	define Z_APPEND_data_model(to)		to##ip16l32
+#	define Z_INSERT_DATA_MODEL(left, right) left##IP16L32##right
+#	define Z_INSERT_data_model(left, right) left##ip16l32##right
+
+#elif Z_DATA_MODEL == Z_DATA_MODEL_I16LP32
+
+#	include <Z/formats/data model/I16LP32.h>
+
+#	define Z_APPEND_DATA_MODEL(to)		to##I16LP32
+#	define Z_APPEND_data_model(to)		to##i16lp32
+#	define Z_INSERT_DATA_MODEL(left, right) left##I16LP32##right
+#	define Z_INSERT_data_model(left, right) left##i16lp32##right
+
+#elif Z_DATA_MODEL == Z_DATA_MODEL_ILP32
 
 #	include <Z/formats/data model/ILP32.h>
 
