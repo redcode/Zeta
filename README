@@ -22,7 +22,7 @@
 
 
 TABLE OF CONTENTS
------------------
+=================
 
     1. What Z is
     2. What Z is not
@@ -35,7 +35,7 @@ TABLE OF CONTENTS
 
 
 1. What Z is
-------------
+============
 
     Z (pronounced zeta) is a multi-platform header-only base library written in
     C/C++ suitable to be used as a starting point for low-level projects. Among
@@ -45,7 +45,7 @@ TABLE OF CONTENTS
 
 
 2. What Z is not
-----------------
+================
 
     Z is not a substitute of the standard C library, nor of the standard C++
     library, but it can be used as a base layer to implement these.
@@ -53,24 +53,24 @@ TABLE OF CONTENTS
 
 
 3. Design criteria
-------------------
+==================
 
 
 
 4. Conventions
---------------
+==============
 
 
 
 5. Coding style
----------------
+===============
 
 
 
 6. Contributing
----------------
+===============
 
 
 
 7. To do
---------
+========

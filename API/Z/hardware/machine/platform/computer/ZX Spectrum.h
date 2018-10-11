@@ -12,14 +12,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Memory map
 .-------------------------------------.
-| Type | Location  | Content	      |
-|------+-----------+------------------|
-| ROM  | 0000-3FFF | Firmware	      |
-|------+-----------+------------------|
-| VRAM | 4000-57FF | Video Characters |
-|      | 5800-5AFF | Video Attributes |
-|------+-----------+------------------|
-| RAM  | 5B00-FFFF | User programs    |
+| Location  | Type | Content	      |
+|-----------+------+------------------|
+| 0000-3FFF | ROM  | Firmware	      |
+|-----------+------+------------------|
+| 4000-57FF | VRAM | Video Characters |
+| 5800-5AFF | VRAM | Video Attributes |
+|-----------+------+------------------|
+| 5B00-FFFF | RAM  | User programs    |
 '------------------------------------*/
 
 #define Z_ZX_SPECTRUM_ADDRESS_ROM		  0x0000
@@ -30,7 +30,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_ZX_SPECTRUM_SIZE_VIDEO_RAM		  6912
 #define Z_ZX_SPECTRUM_SIZE_VIDEO_CHARACTER_RAM	  6144
-#define Z_ZX_SPECTRUM_SIZE_VIDEO_ATTRIBUTE_RAM	   768
+#define Z_ZX_SPECTRUM_SIZE_VIDEO_ATTRIBUTE_RAM	  768
 
 /* MARK: - Video: Color Attribute
 .-----------------.
@@ -349,20 +349,20 @@ Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 3) (
 |									 |
 '-----------------------------------------------------------------------*/
 
-#define Z_ZX_SPECTRUM_ADC_PULSES_PER_HEADER_PILOT	 8063 /* 5 seconds */
-#define Z_ZX_SPECTRUM_ADC_PULSES_PER_DATA_PILOT		 3223 /* 2 seconds */
-#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_PILOT_PULSE	 2168 /*  807.2 Hz */
-#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_SYNC_HIGH_PULSE	  667 /* 2623.7 Hz */
-#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_SYNC_LOW_PULSE	  735 /* 2381   Hz */
-#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_BIT_0_PULSE	  855 /* 2046.8 Hz */
-#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_BIT_1_PULSE	 1710 /* 1023.4 Hz */
-#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_TAIL		  945
-#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_PAUSE	      3500000
+#define Z_ZX_SPECTRUM_ADC_PULSES_PER_HEADER_PILOT    8063     /* 5 seconds */
+#define Z_ZX_SPECTRUM_ADC_PULSES_PER_DATA_PILOT	     3223     /* 2 seconds */
+#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_PILOT_PULSE     2168     /*  807.2 Hz */
+#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_SYNC_HIGH_PULSE 667      /* 2623.7 Hz */
+#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_SYNC_LOW_PULSE  735      /* 2381   Hz */
+#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_BIT_0_PULSE     855      /* 2046.8 Hz */
+#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_BIT_1_PULSE     1710     /* 1023.4 Hz */
+#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_TAIL	     945
+#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_PAUSE	     3500000
 #define Z_ZX_SPECTRUM_ADC_CYCLES_PER_HEADER_PILOT    17482752 /* 2168 * 8064 */
-#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_DATA_PILOT	      6989632 /* 2168 * 3224 */
+#define Z_ZX_SPECTRUM_ADC_CYCLES_PER_DATA_PILOT	     6989632  /* 2168 * 3224 */
 
-#define Z_ZX_SPECTRUM_ADC_BLOCK_CONTENT_HEADER		    0
-#define Z_ZX_SPECTRUM_ADC_BLOCK_CONTENT_DATA		  255
+#define Z_ZX_SPECTRUM_ADC_BLOCK_CONTENT_HEADER 0
+#define Z_ZX_SPECTRUM_ADC_BLOCK_CONTENT_DATA   255
 
 Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	type;
