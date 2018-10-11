@@ -76,7 +76,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - C99 support */
 
 #if __CC65_STD__ == __CC65_STD_C99__ || __CC65_STD__ == __CC65_STD_CC65__
-
 	/*#define Z_COMPILER_C_HAS_COMPOUND_LITERAL*/
 	#define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT	 TRUE
 	#define Z_COMPILER_C_HAS_SPECIFIER_INLINE	 TRUE
@@ -91,7 +90,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	/*#define Z_COMPILER_C_HAS_MAGIC_CONSTANT_FUNCTION_NAME*/
 	/*#define Z_COMPILER_C_HAS_TYPE_LLONG*/
 	#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT TRUE
-
 #endif
 
 /* MARK: - C11 support */
