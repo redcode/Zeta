@@ -114,7 +114,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #ifndef Z_C_HAS_TYPE_BOOLEAN
-#	define Z_C_HAS_TYPE_BOOL FALSE
+#	define Z_C_HAS_TYPE_BOOLEAN FALSE
 #endif
 
 #ifndef Z_C_HAS_TYPE_LLONG

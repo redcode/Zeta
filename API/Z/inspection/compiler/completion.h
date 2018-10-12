@@ -156,6 +156,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_SPECIFIER_INLINE FALSE
 #endif
 
+#ifndef Z_COMPILER_C_HAS_TYPE_BOOLEAN
+#	define Z_COMPILER_C_HAS_TYPE_BOOLEAN FALSE
+#endif
+
 #ifndef Z_COMPILER_C_HAS_TYPE_LLONG
 #	define Z_COMPILER_C_HAS_TYPE_LLONG FALSE
 #endif

@@ -87,6 +87,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_C_HAS_VLA*/
 /*#define Z_COMPILER_C_HAS_MAGIC_CONSTANT_FUNCTION_NAME*/
 /*#define Z_COMPILER_C_HAS_SPECIFIER_INLINE*/
+/*#define Z_COMPILER_C_HAS_TYPE_BOOLEAN*/
 /*#define Z_COMPILER_C_HAS_TYPE_LLONG*/
 /*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT*/
 
