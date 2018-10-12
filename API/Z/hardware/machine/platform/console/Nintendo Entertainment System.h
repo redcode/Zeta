@@ -106,8 +106,8 @@ Controller	 | |					Controller Connector
 '____________________________________________________' */
 
 
-#ifndef __Z_hardware_machine_platform_console_Nintendo_Entertainment_System_H__
-#define __Z_hardware_machine_platform_console_Nintendo_Entertainment_System_H__
+#ifndef _Z_hardware_machine_platform_console_Nintendo_Entertainment_System_H_
+#define _Z_hardware_machine_platform_console_Nintendo_Entertainment_System_H_
 
 #include <Z/types/base.h>
 
@@ -359,4 +359,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 Z_DEFINE_STRICT_STRUCTURE (
 ) ZNESNoiseD;
 
-#endif /* __Z_hardware_machine_platform_console_Nintendo_Entertainment_System_H__ */
+#endif /* _Z_hardware_machine_platform_console_Nintendo_Entertainment_System_H_ */

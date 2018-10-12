@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_character_set_H__
-#define __Z_keys_character_set_H__
+#ifndef _Z_keys_character_set_H_
+#define _Z_keys_character_set_H_
 
 #define Z_CHARACTER_SET_ASCII		1
 #define Z_CHARACTER_SET_UTF_8		2
@@ -78,4 +78,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_BITS_CHARACTER_SET 8
 #define Z_KEY_LAST_CHARACTER_SET Z_CHARACTER_SET_ANSEL
 
-#endif /* __Z_keys_character_set_H__ */
+#endif /* _Z_keys_character_set_H_ */

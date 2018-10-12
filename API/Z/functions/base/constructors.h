@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_base_constructors_H__
-#define __Z_functions_base_constructors_H__
+#ifndef _Z_functions_base_constructors_H_
+#define _Z_functions_base_constructors_H_
 
 #include <Z/types/base.h>
 
@@ -323,4 +323,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define z_range	     z_range_type     (USIZE)
 #define z_range_zero z_range_type_zero(USIZE)
 
-#endif /* __Z_functions_base_constructors_H__ */
+#endif /* _Z_functions_base_constructors_H_ */

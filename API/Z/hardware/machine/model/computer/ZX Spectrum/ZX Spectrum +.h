@@ -32,8 +32,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |--'-----------------------------------------------------'-----------|
 |____________________________________________________________________| */
 
-#ifndef __Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H__
-#define __Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H__
+#ifndef _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H_
+#define _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H_
 
 #include <Z/hardware/machine/model/computer/ZX Spectrum/ZX Spectrum.h>
 
@@ -79,4 +79,4 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_ZX_SPECTRUM_PLUS_CYCLES_AT_PAPER_REGION	  Z_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION
 #define Z_ZX_SPECTRUM_PLUS_CYCLES_AT_BOTTOM_BORDER	  Z_ZX_SPECTRUM_CYCLES_AT_BOTTOM_BORDER
 
-#endif /* __Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H__ */
+#endif /* _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_H_ */

@@ -6,8 +6,8 @@ Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Copyright (C) 2018 Agaxia.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_inspection_compiler_modules_Clang_H__
-#define __Z_inspection_compiler_modules_Clang_H__
+#ifndef _Z_inspection_compiler_modules_Clang_H_
+#define _Z_inspection_compiler_modules_Clang_H_
 
 /* MARK: - Identification */
 
@@ -470,7 +470,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			| so we detect these features using the compiler's version.    |
 			| See: https://bugs.llvm.org/show_bug.cgi?id=11267	       |
 			'-------------------------------------------------------------*/
-
 #			define Z_COMPILER_CPP_HAS_LITERAL_RAW_STRING	 TRUE /* v3.0 */
 #			define Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING TRUE /* v3.0 */
 
@@ -1508,4 +1507,4 @@ __is_nothrow_destructible
 __reference_binds_to_temporary
 */
 
-#endif /* __Z_inspection_compiler_modules_Clang_H__ */
+#endif /* _Z_inspection_compiler_modules_Clang_H_ */

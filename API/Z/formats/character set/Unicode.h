@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_formats_character_set_Unicode_H__
-#define __Z_formats_character_set_Unicode_H__
+#ifndef _Z_formats_character_set_Unicode_H_
+#define _Z_formats_character_set_Unicode_H_
 
 /* MARK: - 0000h-007Fh - Basic Latin */
 
@@ -30116,4 +30116,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* 10FFFEh <not a character> */
 /* 10FFFFh <not a character> */
 
-#endif /* __Z_formats_character_set_Unicode_H__ */
+#endif /* _Z_formats_character_set_Unicode_H_ */

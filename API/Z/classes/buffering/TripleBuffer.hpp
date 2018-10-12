@@ -6,8 +6,8 @@ Copyright (C) 2012 Remis.
 Copyright (C) 2014-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_classes_buffering_TripleBuffer_HPP__
-#define __Z_classes_buffering_TripleBuffer_HPP__
+#ifndef _Z_classes_buffering_TripleBuffer_HPP_
+#define _Z_classes_buffering_TripleBuffer_HPP_
 
 #include <Z/types/base.hpp>
 #include <Z/types/buffering.h>
@@ -65,4 +65,4 @@ namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 };}
 
 
-#endif // __Z_classes_buffering_TripleBuffer_HPP__
+#endif // _Z_classes_buffering_TripleBuffer_HPP_

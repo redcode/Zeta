@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_macros_key_H__
-#define __Z_macros_key_H__
+#ifndef _Z_macros_key_H_
+#define _Z_macros_key_H_
 
 #include <Z/types/base.h>
 
@@ -17,4 +17,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_BITS(	       NAME) Z_KEY_BITS_##NAME
 #define Z_KEY_SIZE(	       NAME) Z_JOIN_2(Z_INSERT_NUMBER_, Z_KEY_BITS_##NAME)(Z_UINT, _SIZE	    )
 
-#endif /* __Z_macros_key_H__ */
+#endif /* _Z_macros_key_H_ */

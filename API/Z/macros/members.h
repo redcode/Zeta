@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_macros_members_H__
-#define __Z_macros_members_H__
+#ifndef _Z_macros_members_H_
+#define _Z_macros_members_H_
 
 #include <Z/keys/order.h>
 #include <Z/inspection/CPU.h>
@@ -83,4 +83,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_TERNARY_APPEND(Z_CPU_ENDIANNESS(INTEGER, bits)) \
 		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
-#endif /* __Z_macros_members_H__ */
+#endif /* _Z_macros_members_H_ */

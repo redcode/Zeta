@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_hardware_BUS_USB_H__
-#define __Z_hardware_BUS_USB_H__
+#ifndef _Z_hardware_BUS_USB_H_
+#define _Z_hardware_BUS_USB_H_
 
 /* MARK: - HID Device Usage Pages */
 
@@ -507,4 +507,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_KEY_CODE_RIGHT_OPTION,		  /* 0xE6 - Z_USB_KEY_CODE_KEYBOARD_RIGHT_ALT		   */ \
 	Z_KEY_CODE_RIGHT_COMMAND		  /* 0xE7 - Z_USB_KEY_CODE_KEYBOARD_RIGHT_GUI		   */
 
-#endif /* __Z_hardware_BUS_USB_H__ */
+#endif /* _Z_hardware_BUS_USB_H_ */

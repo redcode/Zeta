@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_macros_repetition_H__
-#define __Z_macros_repetition_H__
+#ifndef _Z_macros_repetition_H_
+#define _Z_macros_repetition_H_
 
 #define Z_FOR_0_CALL_WITH_INDEX( f, _)
 #define Z_FOR_1_CALL_WITH_INDEX( f, _) f(0)
@@ -280,4 +280,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_FOR_31_INSERT_TIME(p, s, _) p##1##s _ p##2##s _ p##3##s _ p##4##s _ p##5##s _ p##6##s _ p##7##s _ p##8##s _ p##9##s _ p##10##s _ p##11##s _ p##12##s _ p##13##s _ p##14##s _ p##15##s _ p##16##s _ p##17##s _ p##18##s _ p##19##s _ p##20##s _ p##21##s _ p##22##s _ p##23##s _ p##24##s _ p##25##s _ p##26##s _ p##27##s _ p##28##s _ p##29##s _ p##30##s _ p##31##s
 #define Z_FOR_32_INSERT_TIME(p, s, _) p##1##s _ p##2##s _ p##3##s _ p##4##s _ p##5##s _ p##6##s _ p##7##s _ p##8##s _ p##9##s _ p##10##s _ p##11##s _ p##12##s _ p##13##s _ p##14##s _ p##15##s _ p##16##s _ p##17##s _ p##18##s _ p##19##s _ p##20##s _ p##21##s _ p##22##s _ p##23##s _ p##24##s _ p##25##s _ p##26##s _ p##27##s _ p##28##s _ p##29##s _ p##30##s _ p##31##s _ p##32##s
 
-#endif /* __Z_macros_repetition_H__ */
+#endif /* _Z_macros_repetition_H_ */

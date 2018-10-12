@@ -14,8 +14,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |    Used by: CBSpeccy [Amiga] |
 '-----------------------------*/
 
-#ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H__
-#define __Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H__
+#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_
+#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_
 
 #include <Z/types/base.h>
 
@@ -51,4 +51,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	} ram;
 Z_DEFINE_STRICT_STRUCTURE_END ZFRZ;
 
-#endif /* __Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H__ */
+#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_ */

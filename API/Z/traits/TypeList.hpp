@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_traits_TypeList_HPP__
-#define __Z_traits_TypeList_HPP__
+#ifndef _Z_traits_TypeList_HPP_
+#define _Z_traits_TypeList_HPP_
 
 #include <Z/inspection/language.h>
 
@@ -373,4 +373,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif // __Z_traits_TypeList_HPP__
+#endif // _Z_traits_TypeList_HPP_

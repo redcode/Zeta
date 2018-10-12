@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_classes_functional_ObjectSelector_HPP__
-#define __Z_classes_functional_ObjectSelector_HPP__
+#ifndef _Z_classes_functional_ObjectSelector_HPP_
+#define _Z_classes_functional_ObjectSelector_HPP_
 
 #include <Z/inspection/Z.h>
 #include <Z/classes/functional/Selector.hpp>
@@ -216,4 +216,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_CLASS_ObjectSelector FALSE
 #endif
 
-#endif // __Z_classes_functional_Selector_HPP__
+#endif // _Z_classes_functional_Selector_HPP_

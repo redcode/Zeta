@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_constants_science_chemical_elements_H__
-#define __Z_constants_science_chemical_elements_H__
+#ifndef _Z_constants_science_chemical_elements_H_
+#define _Z_constants_science_chemical_elements_H_
 
 #include <Z/keys/science/chemical elements.h>
 #include <Z/keys/science/electricity.h>
@@ -6382,4 +6382,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OGANESSON_MOLAR_MAGNETIC_SUSCEPTIBILITY	REAL_UNKNOWN
 #define Z_OGANESSON_VOLUME_MAGNETIC_SUSCEPTIBILITY	REAL_UNKNOWN
 
-#endif /* __Z_constants_science_chemical_elements_H__ */
+#endif /* _Z_constants_science_chemical_elements_H_ */

@@ -14,8 +14,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |    Sound: NES APU		    |
 '----------------------------------*/
 
-#ifndef __Z_hardware_machine_model_console_Nintendo_Entertainment_System_NES_001_NTSC_H__
-#define __Z_hardware_machine_model_console_Nintendo_Entertainment_System_NES_001_NTSC_H__
+#ifndef _Z_hardware_machine_model_console_Nintendo_Entertainment_System_NES_001_NTSC_H_
+#define _Z_hardware_machine_model_console_Nintendo_Entertainment_System_NES_001_NTSC_H_
 
 /* MARK: - Screen */
 
@@ -26,4 +26,4 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_NES_001_NTSC_CPU_HZ	       1789773
 #define Z_NES_001_NTSC_MASTER_CLOCK_HZ 21477272
 
-#endif /* __Z_hardware_machine_model_console_Nintendo_Entertainment_System_NES_001_NTSC_H__ */
+#endif /* _Z_hardware_machine_model_console_Nintendo_Entertainment_System_NES_001_NTSC_H_ */

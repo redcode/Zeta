@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_types_base_H__
-#define __Z_types_base_H__
+#ifndef _Z_types_base_H_
+#define _Z_types_base_H_
 
 #include <Z/inspection/CPU.h>
 #include <Z/inspection/floating-point.h>
@@ -1650,4 +1650,4 @@ Z_DEFINE_STRICT_UNION_BEGIN
 #	endif
 Z_DEFINE_STRICT_UNION_END ZPointer;
 
-#endif /* __Z_types_base_H__ */
+#endif /* _Z_types_base_H_ */

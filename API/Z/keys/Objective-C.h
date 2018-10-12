@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_Objective_C_H__
-#define __Z_keys_Objective_C_H__
+#ifndef _Z_keys_Objective_C_H_
+#define _Z_keys_Objective_C_H_
 
 #define Z_OBJECTIVE_C_1_0 1
 #define Z_OBJECTIVE_C_2_0 2
@@ -14,4 +14,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OBJECTIVE_C_STRING_OBJECTIVE_C_1_0 "Objective-C v1.0"
 #define Z_OBJECTIVE_C_STRING_OBJECTIVE_C_2_0 "Objective-C v2.0"
 
-#endif /* __Z_keys_Objective_C_H__ */
+#endif /* _Z_keys_Objective_C_H_ */

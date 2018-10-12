@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_inspection_CPP_modules_CPP17_H__
-#define __Z_inspection_CPP_modules_CPP17_H__
+#ifndef _Z_inspection_CPP_modules_CPP17_H_
+#define _Z_inspection_CPP_modules_CPP17_H_
 
 #include <Z/inspection/C++/modules/C++14.h>
 
@@ -15,4 +15,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_LITERAL_HEXADECIMAL_FLOATING_POINT TRUE
 #define Z_CPP_HAS_LITERAL_UTF8_CHARACTER_LITERAL     TRUE /* N4267 */
 
-#endif /* __Z_inspection_CPP_modules_CPP17_H__ */
+#endif /* _Z_inspection_CPP_modules_CPP17_H_ */

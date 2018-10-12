@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_formats_character_set_DOS_CP852_H__
-#define __Z_formats_character_set_DOS_CP852_H__
+#ifndef _Z_formats_character_set_DOS_CP852_H_
+#define _Z_formats_character_set_DOS_CP852_H_
 
 /* From 00h to 7Fh like ASCII */
 #define Z_DOS_CP852_LATIN_CAPITAL_LETTER_C_WITH_CEDILLA		0x80
@@ -156,4 +156,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	_(00AD), _(02DD), _(02DB), _(02C7), _(02D8), _(00A7), _(00F7), _(00B8), \
 	_(00B0), _(00A8), _(02D9), _(0171), _(0158), _(0159), _(25A0), _(00A0)
 
-#endif /* __Z_formats_character_set_DOS_CP852_H__ */
+#endif /* _Z_formats_character_set_DOS_CP852_H_ */

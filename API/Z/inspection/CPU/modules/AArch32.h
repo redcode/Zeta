@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_inspection_CPU_modules_AArch32_H__
-#define __Z_inspection_CPU_modules_AArch32_H__
+#ifndef _Z_inspection_CPU_modules_AArch32_H_
+#define _Z_inspection_CPU_modules_AArch32_H_
 
 #define Z_APPEND_CPU_ARCHITECTURE(to)	       to##AARCH32
 #define Z_APPEND_CPUArchitecture( to)	       to##AArch32
@@ -30,4 +30,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPU_BITS_TOP_INTEGER 32
 #define Z_CPU_BITS_ADDRESSING  32
 
-#endif /* __Z_inspection_CPU_modules_AArch32_H__ */
+#endif /* _Z_inspection_CPU_modules_AArch32_H_ */

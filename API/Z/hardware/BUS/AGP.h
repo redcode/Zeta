@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_hardware_BUS_AGP_H__
-#define __Z_hardware_BUS_AGP_H__
+#ifndef _Z_hardware_BUS_AGP_H_
+#define _Z_hardware_BUS_AGP_H_
 
 #define Z_AGP_COMMAND_READ		      0x0
 #define Z_AGP_COMMAND_READ_HIGH_PRIORITY      0x1
@@ -21,4 +21,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_AGP_COMMAND_FENCE		      0xC
 /* Reserved 0xD - 0xF */
 
-#endif /* __Z_hardware_BUS_AGP_H__ */
+#endif /* _Z_hardware_BUS_AGP_H_ */

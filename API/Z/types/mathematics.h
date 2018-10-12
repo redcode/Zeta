@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_types_mathematics_H__
-#define __Z_types_mathematics_H__
+#ifndef _Z_types_mathematics_H_
+#define _Z_types_mathematics_H_
 
 #include <Z/types/base.h>
 
@@ -132,4 +132,4 @@ struct ZSetElement {
 	typedef ZSphereType   (REAL) ZSphere;
 #endif
 
-#endif /* __Z_types_mathematics_H__ */
+#endif /* _Z_types_mathematics_H_ */

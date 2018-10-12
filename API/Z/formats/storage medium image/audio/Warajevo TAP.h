@@ -14,8 +14,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |    Used by: Warajevo [MS-DOS] and some old ZX Spectrum emulators |
 '-----------------------------------------------------------------*/
 
-#ifndef __Z_formats_storage_medium_image_audio_Warajevo_TAP_H__
-#define __Z_formats_storage_medium_image_audio_Warajevo_TAP_H__
+#ifndef _Z_formats_storage_medium_image_audio_Warajevo_TAP_H_
+#define _Z_formats_storage_medium_image_audio_Warajevo_TAP_H_
 
 #include <Z/types/base.h>
 
@@ -31,4 +31,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16 data_size;
 ) ZWarajevoTAPBlockHeader;
 
-#endif /* __Z_formats_storage_medium_image_audio_Warajevo_TAP_H__ */
+#endif /* _Z_formats_storage_medium_image_audio_Warajevo_TAP_H_ */

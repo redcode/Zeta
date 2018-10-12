@@ -6,8 +6,8 @@ Copyright (C) 2012 Remis.
 Copyright (C) 2014 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_buffering_ZTripleBuffer_H__
-#define __Z_functions_buffering_ZTripleBuffer_H__
+#ifndef _Z_functions_buffering_ZTripleBuffer_H_
+#define _Z_functions_buffering_ZTripleBuffer_H_
 
 #include <Z/types/buffering.h>
 #include <Z/functions/base/value.h>
@@ -62,4 +62,4 @@ static Z_INLINE void *z_triple_buffer_consume(ZTripleBuffer *object)
 	}
 
 
-#endif /* __Z_functions_buffering_ZTripleBuffer_H__ */
+#endif /* _Z_functions_buffering_ZTripleBuffer_H_ */

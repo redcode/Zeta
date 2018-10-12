@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_mathematics_geometry_H__
-#define __Z_keys_mathematics_geometry_H__
+#ifndef _Z_keys_mathematics_geometry_H_
+#define _Z_keys_mathematics_geometry_H_
 
 #define Z_BRAVAIS_LATTICE_TRICLINIC_P	  1
 #define Z_BRAVAIS_LATTICE_MONOCLINIC_P	  2
@@ -26,4 +26,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_BITS_BRAVAIS_LATTICE 8
 #define Z_KEY_LAST_BRAVAIS_LATTICE Z_BRAVAIS_LATTICE_CUBIC_F
 
-#endif /* __Z_keys_mathematics_geometry_H__ */
+#endif /* _Z_keys_mathematics_geometry_H_ */

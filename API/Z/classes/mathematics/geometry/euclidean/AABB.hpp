@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_classes_mathematics_geometry_euclidean_AABB_HPP__
-#define __Z_classes_mathematics_geometry_euclidean_AABB_HPP__
+#ifndef _Z_classes_mathematics_geometry_euclidean_AABB_HPP_
+#define _Z_classes_mathematics_geometry_euclidean_AABB_HPP_
 
 #include <Z/classes/mathematics/geometry/euclidean/Line3D.hpp>
 
@@ -78,4 +78,4 @@ namespace Zeta {template <class T> struct AABB : Line3D<T>, Partials::Rectangle:
 };}
 
 
-#endif // __Z_classes_mathematics_geometry_euclidean_AABR_HPP__
+#endif // _Z_classes_mathematics_geometry_euclidean_AABR_HPP_

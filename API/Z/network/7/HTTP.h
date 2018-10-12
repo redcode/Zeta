@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_network_7_HTTP_H__
-#define __Z_network_7_HTTP_H__
+#ifndef _Z_network_7_HTTP_H_
+#define _Z_network_7_HTTP_H_
 
 /* MARK: - Ports */
 
@@ -97,4 +97,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_HTTP_STATUS_NETWORK_READ_TIME_OUT_ERROR	   598 /* Microsoft HTTP proxies */
 #define Z_HTTP_STATUS_NETWORK_CONNECT_TIME_OUT_ERROR	   599 /* Microsoft HTTP proxies */
 
-#endif /* __Z_network_7_HTTP_H__ */
+#endif /* _Z_network_7_HTTP_H_ */

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_C_H__
-#define __Z_keys_C_H__
+#ifndef _Z_keys_C_H_
+#define _Z_keys_C_H_
 
 #define Z_KR_C 1
 #define Z_C89  2
@@ -24,4 +24,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_STRING_C99	"ISO/IEC 9899:1999 (C99)"
 #define Z_C_STRING_C11	"ISO/IEC 9899:2011 (C11)"
 
-#endif /* __Z_keys_C_H__ */
+#endif /* _Z_keys_C_H_ */

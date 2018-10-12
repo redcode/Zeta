@@ -5,9 +5,9 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_hardware_machine_model_ZX_Spectrum_ZX_Spectrum_Plus2_H__
-#define __Z_hardware_machine_model_ZX_Spectrum_ZX_Spectrum_Plus2_H__
+#ifndef _Z_hardware_machine_model_ZX_Spectrum_ZX_Spectrum_Plus2_H_
+#define _Z_hardware_machine_model_ZX_Spectrum_ZX_Spectrum_Plus2_H_
 
 
 
-#endif /* __Z_hardware_machine_model_ZX_Spectrum_ZX_Spectrum_Plus2_H__ */
+#endif /* _Z_hardware_machine_model_ZX_Spectrum_ZX_Spectrum_Plus2_H_ */

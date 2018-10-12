@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_macros_type_selection_HPP__
-#define __Z_macros_type_selection_HPP__
+#ifndef _Z_macros_type_selection_HPP_
+#define _Z_macros_type_selection_HPP_
 
 #include <Z/traits/Type.hpp>
 #include <Z/traits/mathematics.hpp>
@@ -73,4 +73,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		Z_ENUMERATE_FIXED_REAL_TYPES_Suffixes(Name##Float, void)	\
 	>::type
 
-#endif // __Z_macros_type_selection_HPP__
+#endif // _Z_macros_type_selection_HPP_

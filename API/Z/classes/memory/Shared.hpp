@@ -6,8 +6,8 @@ Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Copyright (C) 2016 r-lyeh.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_classes_memory_Shared_HPP__
-#define __Z_classes_memory_Shared_HPP__
+#ifndef _Z_classes_memory_Shared_HPP_
+#define _Z_classes_memory_Shared_HPP_
 
 #include <Z/functions/base/value.hpp>
 
@@ -87,4 +87,4 @@ namespace Zeta {template <class T> struct Shared {
 };}
 
 
-#endif // __Z_classes_memory_Shared_HPP__
+#endif // _Z_classes_memory_Shared_HPP_

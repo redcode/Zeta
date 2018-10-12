@@ -32,8 +32,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |--'-----------------------------------------------------'-----------|====|
 |____________________________________________________________________|====| */
 
-#ifndef __Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H__
-#define __Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H__
+#ifndef _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H_
+#define _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H_
 
 #include <Z/hardware/machine/model/computer/ZX Spectrum/ZX Spectrum.h>
 #include <Z/types/base.h>
@@ -155,4 +155,4 @@ Z_DEFINE_STRICT_STRUCTURE (Z_BIT_FIELD(8, 5) (
 									Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE    *
 									Z_ZX_SPECTRUM_PLUS_128K_SCREEN_PAPER_HEIGHT		   */
 
-#endif /* __Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H__ */
+#endif /* _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H_ */

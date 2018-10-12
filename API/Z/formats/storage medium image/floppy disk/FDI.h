@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_formats_storage_medium_image_floppy_disk_FDI_H__
-#define __Z_formats_storage_medium_image_floppy_disk_FDI_H__
+#ifndef _Z_formats_storage_medium_image_floppy_disk_FDI_H_
+#define _Z_formats_storage_medium_image_floppy_disk_FDI_H_
 
 #include <Z/types/base.h>
 
@@ -42,4 +42,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	Z_FLEXIBLE_ARRAY_MEMBER(ZFDISectorEntry sectors_entries[];)
 ) ZFDITrackHeader;
 
-#endif /* __Z_formats_storage_medium_image_floppy_disk_FDI_H__ */
+#endif /* _Z_formats_storage_medium_image_floppy_disk_FDI_H_ */

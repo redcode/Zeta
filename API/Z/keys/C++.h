@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_CPP_H__
-#define __Z_keys_CPP_H__
+#ifndef _Z_keys_CPP_H_
+#define _Z_keys_CPP_H_
 
 #define Z_CPP85 1
 #define Z_CPP89 2
@@ -24,4 +24,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_STRING_CPP14 "ISO/IEC 14882:2014 (C++14)"
 #define Z_CPP_STRING_CPP17 "ISO/IEC 14882:2017 (C++17)"
 
-#endif /* __Z_keys_CPP_H__ */
+#endif /* _Z_keys_CPP_H_ */

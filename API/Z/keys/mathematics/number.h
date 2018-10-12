@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_mathematics_number_H__
-#define __Z_keys_mathematics_number_H__
+#ifndef _Z_keys_mathematics_number_H_
+#define _Z_keys_mathematics_number_H_
 
 #define Z_NUMBER_SET_N 1
 #define Z_NUMBER_SET_Z 3
@@ -18,4 +18,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_BITS_NUMBER_SET 8
 #define Z_KEY_LAST_NUMBER_SET Z_NUMBER_SET_C
 
-#endif /* __Z_keys_mathematics_number_H__ */
+#endif /* _Z_keys_mathematics_number_H_ */

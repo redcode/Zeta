@@ -12,8 +12,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |    Used by: Any decent ZX Spectrum emulator |
 '--------------------------------------------*/
 
-#ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_Z80_H__
-#define __Z_formats_snapshot_machine_computer_ZX_Spectrum_Z80_H__
+#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_Z80_H_
+#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_Z80_H_
 
 #include <Z/types/base.h>
 
@@ -114,4 +114,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	last_output_to_1ffd;
 ) ZZ80v3ExtendedHeader;
 
-#endif /* __Z_formats_snapshot_machine_computer_ZX_Spectrum_Z80_H__ */
+#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_Z80_H_ */

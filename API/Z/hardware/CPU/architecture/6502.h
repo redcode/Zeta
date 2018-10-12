@@ -36,8 +36,8 @@ Status (P register):
   | '-------------> overflow
   '---------------> negative */
 
-#ifndef __Z_hardware_CPU_architecture_6502_H__
-#define __Z_hardware_CPU_architecture_6502_H__
+#ifndef _Z_hardware_CPU_architecture_6502_H_
+#define _Z_hardware_CPU_architecture_6502_H_
 
 #include <Z/types/base.h>
 
@@ -81,4 +81,4 @@ typedef struct {
 #define Z_6502_STATE_MEMBER_X  x
 #define Z_6502_STATE_MEMBER_Y  y
 
-#endif /* __Z_hardware_CPU_architecture_6502_H__ */
+#endif /* _Z_hardware_CPU_architecture_6502_H_ */

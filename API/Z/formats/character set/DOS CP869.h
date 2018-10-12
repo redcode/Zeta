@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_formats_character_set_DOS_CP869_H__
-#define __Z_formats_character_set_DOS_CP869_H__
+#ifndef _Z_formats_character_set_DOS_CP869_H_
+#define _Z_formats_character_set_DOS_CP869_H_
 
 /* From 00h to 7Fh like ASCII */
 /* 80h undefined */
@@ -156,4 +156,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	_(00AD),   _(00B1),   _(03C5),	 _(03C6),   _(03C7),   _(00A7),	  _(03C8), _(0385),   \
 	_(00B0),   _(00A8),   _(03C9),	 _(03CB),   _(03B0),   _(03CE),	  _(25A0), _(00A0)
 
-#endif /* __Z_formats_character_set_DOS_CP869_H__ */
+#endif /* _Z_formats_character_set_DOS_CP869_H_ */

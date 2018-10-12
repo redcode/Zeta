@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_compiler_H__
-#define __Z_keys_compiler_H__
+#ifndef _Z_keys_compiler_H_
+#define _Z_keys_compiler_H_
 
 #define Z_COMPILER_UNKNOWN			    0
 #define Z_COMPILER_GCC				    1
@@ -173,4 +173,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_STRING_WATCOM_C_CPP			   "Watcom C/C++"
 #define Z_COMPILER_STRING_ZORTECH_CPP			   "Zortech C++"
 
-#endif /* __Z_keys_compiler_H__ */
+#endif /* _Z_keys_compiler_H_ */

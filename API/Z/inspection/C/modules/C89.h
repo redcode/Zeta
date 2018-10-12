@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_inspection_C_modules_C89_H__
-#define __Z_inspection_C_modules_C89_H__
+#ifndef _Z_inspection_C_modules_C89_H_
+#define _Z_inspection_C_modules_C89_H_
 
 #include <Z/inspection/C/modules/KR C.h>
 
@@ -16,4 +16,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_HAS_TYPE_QUALIFIER_CONSTANT TRUE /* const	    */
 #define Z_C_HAS_TYPE_QUALIFIER_VOLATILE TRUE /* volatile    */
 
-#endif /* __Z_inspection_C_modules_C89_H__ */
+#endif /* _Z_inspection_C_modules_C89_H_ */

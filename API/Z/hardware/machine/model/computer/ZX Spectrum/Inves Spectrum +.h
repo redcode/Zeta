@@ -32,8 +32,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |--'-----------------------------------------------------'-----------|
 |____________________________________________________________________| */
 
-#ifndef __Z_hardware_machine_model_ZX_Spectrum_Inves_Spectrum_Plus_H__
-#define __Z_hardware_machine_model_ZX_Spectrum_Inves_Spectrum_Plus_H__
+#ifndef _Z_hardware_machine_model_ZX_Spectrum_Inves_Spectrum_Plus_H_
+#define _Z_hardware_machine_model_ZX_Spectrum_Inves_Spectrum_Plus_H_
 
 #define Z_INVES_SPECTRUM_PLUS_SIZE_MEMORY	    (1024 * 16 + 1024 * 48)
 #define Z_INVES_SPECTRUM_PLUS_FIRMWARE_BASE_ADDRESS 0
@@ -44,4 +44,4 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_INVES_SPECTRUM_PLUS_MASTER_CLOCK_HZ 177345
 #define Z_INVES_SPECTRUM_PLUS_CPU_HZ	      3546900
 
-#endif /* __Z_hardware_machine_model_ZX_Spectrum_Inves_Spectrum_Plus_H__ */
+#endif /* _Z_hardware_machine_model_ZX_Spectrum_Inves_Spectrum_Plus_H_ */

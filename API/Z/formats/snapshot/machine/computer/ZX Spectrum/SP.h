@@ -24,8 +24,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 | supports both 16K and 48K images and it's 16422 or 49190 bytes long.	"    |
 '---------------------------------------------------------------------------*/
 
-#ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H__
-#define __Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H__
+#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_
+#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_
 
 #include <Z/types/base.h>
 
@@ -59,4 +59,4 @@ Z_DEFINE_STRICT_STRUCTURE_END ZSPBody;
 
 #define Z_SP_BODY_IM(p) (Z_SP_BODY(p)->im_0 ? 0 : ((p)->im ? 2 : 1))
 
-#endif /* __Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H__ */
+#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_ */

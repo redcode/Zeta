@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_layout_H__
-#define __Z_keys_layout_H__
+#ifndef _Z_keys_layout_H_
+#define _Z_keys_layout_H_
 
 #define Z_SCALING_SAME	 0
 #define Z_SCALING_NONE	 1
@@ -17,4 +17,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_BITS_SCALING 8
 #define Z_KEY_LAST_SCALING Z_SCALING_EXPAND
 
-#endif /* __Z_keys_layout_H__ */
+#endif /* _Z_keys_layout_H_ */

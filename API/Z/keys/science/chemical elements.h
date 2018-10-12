@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_science_chemistry_H__
-#define __Z_keys_science_chemistry_H__
+#ifndef _Z_keys_science_chemistry_H_
+#define _Z_keys_science_chemistry_H_
 
 #define Z_CHEMICAL_ELEMENT_HYDROGEN	   1
 #define Z_CHEMICAL_ELEMENT_HELIUM	   2
@@ -197,4 +197,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_BITS_CHEMICAL_ELEMENT_ADIABATIC_INDEX 8
 #define Z_KEY_LAST_CHEMICAL_ELEMENT_ADIABATIC_INDEX Z_CHEMICAL_ELEMENT_ADIABATIC_INDEX_7_5
 
-#endif /* __Z_keys_science_chemistry_H__ */
+#endif /* _Z_keys_science_chemistry_H_ */

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_network_7_ED2K_H__
-#define __Z_network_7_ED2K_H__
+#ifndef _Z_network_7_ED2K_H_
+#define _Z_network_7_ED2K_H_
 
 #include <Z/types/base.h>
 
@@ -98,4 +98,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_ED2K_OPCODE_ASKSHAREDFILESDIRANS	0x60 /* <len 2><Directory len><count 4>(<HASH 16><ID 4><PORT 2><1 Tag_set>)[count] */
 #define Z_ED2K_OPCODE_ASKSHAREDDENIEDANS	0x61 /* (null) */
 
-#endif /* __Z_network_7_ED2K_H__ */
+#endif /* _Z_network_7_ED2K_H_ */

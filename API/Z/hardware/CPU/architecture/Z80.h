@@ -52,8 +52,8 @@ Flags (F register):
   | '-------------> zero
   '---------------> sign */
 
-#ifndef __Z_hardware_CPU_architecture_Z80_H__
-#define __Z_hardware_CPU_architecture_Z80_H__
+#ifndef _Z_hardware_CPU_architecture_Z80_H_
+#define _Z_hardware_CPU_architecture_Z80_H_
 
 #include <Z/types/base.h>
 
@@ -245,4 +245,4 @@ typedef struct {
 #define Z_Z80_STATE_MEMBER_NMI	internal.nmi
 #define Z_Z80_STATE_MEMBER_IRQ	internal.irq
 
-#endif /* __Z_hardware_CPU_architecture_Z80_H__ */
+#endif /* _Z_hardware_CPU_architecture_Z80_H_ */

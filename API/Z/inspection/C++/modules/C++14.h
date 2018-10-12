@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_inspection_CPP_modules_CPP14_H__
-#define __Z_inspection_CPP_modules_CPP14_H__
+#ifndef _Z_inspection_CPP_modules_CPP14_H_
+#define _Z_inspection_CPP_modules_CPP14_H_
 
 #include <Z/inspection/C++/modules/C++11.h>
 
@@ -18,4 +18,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_ATTRIBUTE_DEPRECATED			    TRUE /* N3760: [[deprecated]] */
 #define Z_CPP_HAS_LITERAL_BINARY			    TRUE /* N3472 */
 
-#endif /* __Z_inspection_CPP_modules_CPP14_H__ */
+#endif /* _Z_inspection_CPP_modules_CPP14_H_ */

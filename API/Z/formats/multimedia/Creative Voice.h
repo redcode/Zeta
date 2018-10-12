@@ -11,8 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 | Created by: Creative Technology |
 '--------------------------------*/
 
-#ifndef __Z_formats_multimedia_Creative_Voice_H__
-#define __Z_formats_multimedia_Creative_Voice_H__
+#ifndef _Z_formats_multimedia_Creative_Voice_H_
+#define _Z_formats_multimedia_Creative_Voice_H_
 
 #include <Z/types/base.h>
 
@@ -103,4 +103,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
 ) ZCreativeVoiceSoundDataInNewFormat;
 
-#endif /* __Z_formats_multimedia_Creative_Voice_H__ */
+#endif /* _Z_formats_multimedia_Creative_Voice_H_ */

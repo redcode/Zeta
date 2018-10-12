@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_inspection_floating_point_H__
-#define __Z_inspection_floating_point_H__
+#ifndef _Z_inspection_floating_point_H_
+#define _Z_inspection_floating_point_H_
 
 #include <Z/inspection/language.h>
 #include <Z/macros/pasting.h>
@@ -321,4 +321,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/formats/floating-point/x87.h>
 #endif
 
-#endif /* __Z_inspection_floating_point_H__ */
+#endif /* _Z_inspection_floating_point_H_ */

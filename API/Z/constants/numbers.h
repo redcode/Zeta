@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_constants_numbers_H__
-#define __Z_constants_numbers_H__
+#ifndef _Z_constants_numbers_H_
+#define _Z_constants_numbers_H_
 
 /* MARK: - Irrational numbers */
 
@@ -960,4 +960,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CARMACK_NUMBER 0x5F3759DF
 #define Z_LOMONT_NUMBER	 0x5F375A86
 
-#endif /* __Z_constants_numbers_H__ */
+#endif /* _Z_constants_numbers_H_ */

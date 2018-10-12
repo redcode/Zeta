@@ -12,8 +12,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |    Used by: !Speccy [RISC OS]	|
 '------------------------------*/
 
-#ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H__
-#define __Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H__
+#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H_
+#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H_
 
 #include <Z/types/base.h>
 
@@ -41,4 +41,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint8	memory[1024 * 64]; /* Complete ZX Spectrum 48K memory */
 Z_DEFINE_STRICT_STRUCTURE_END ZACH;
 
-#endif /* __Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H__ */
+#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H_ */

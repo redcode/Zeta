@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_macros_value_H__
-#define __Z_macros_value_H__
+#ifndef _Z_macros_value_H_
+#define _Z_macros_value_H_
 
 #include <Z/types/base.h>
 
@@ -486,4 +486,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_TYPE_BIG_ENDIAN(   TYPE) Z_INSERT_##TYPE##_BITS(Z_, BIT_BIG_ENDIAN	 )
 #define Z_TYPE_LITTLE_ENDIAN(TYPE) Z_INSERT_##TYPE##_BITS(Z_, BIT_LITTLE_ENDIAN	 )
 
-#endif /* __Z_macros_value_H__ */
+#endif /* _Z_macros_value_H_ */

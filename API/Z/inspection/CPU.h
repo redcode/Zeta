@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_inspection_CPU_H__
-#define __Z_inspection_CPU_H__
+#ifndef _Z_inspection_CPU_H_
+#define _Z_inspection_CPU_H_
 
 #include <Z/keys/hardware/CPU/architecture.h>
 #include <Z/keys/endianness.h>
@@ -194,4 +194,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPU_ENDIANNESS(TYPE, bits) Z_CPU_##TYPE##_ENDIANNESS_##bits##BIT
 #define Z_CPU_FORMAT(	 TYPE, bits) Z_CPU_##TYPE##_FORMAT_##bits##BIT
 
-#endif /* __Z_inspection_CPU_H__ */
+#endif /* _Z_inspection_CPU_H_ */

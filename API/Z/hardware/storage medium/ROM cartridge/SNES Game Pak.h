@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_hardware_storage_medium_ROM_cartridge_SNES_Game_Pak_H__
-#define __Z_hardware_storage_medium_ROM_cartridge_SNES_Game_Pak_H__
+#ifndef _Z_hardware_storage_medium_ROM_cartridge_SNES_Game_Pak_H_
+#define _Z_hardware_storage_medium_ROM_cartridge_SNES_Game_Pak_H_
 
 #include <Z/types/base.h>
 
@@ -235,4 +235,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_SNES_GAME_PAK_LICENSE_CYBERSOFT			 249
 #define Z_SNES_GAME_PAK_LICENSE_HUDSON_SOFT			 255
 
-#endif /* __Z_hardware_storage_medium_ROM_cartridge_SNES_Game_Pak_H__ */
+#endif /* _Z_hardware_storage_medium_ROM_cartridge_SNES_Game_Pak_H_ */

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_order_H__
-#define __Z_keys_order_H__
+#ifndef _Z_keys_order_H_
+#define _Z_keys_order_H_
 
 #define Z_ORDER_DESCENDING -1
 #define Z_ORDER_EQUAL	    0
@@ -15,4 +15,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ORDER_NORMAL   0
 #define Z_ORDER_REVERSED 1
 
-#endif /* __Z_keys_order_H__ */
+#endif /* _Z_keys_order_H_ */

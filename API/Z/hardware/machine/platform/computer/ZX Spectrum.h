@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_hardware_machine_platform_computer_ZX_Spectrum_H__
-#define __Z_hardware_machine_platform_computer_ZX_Spectrum_H__
+#ifndef _Z_hardware_machine_platform_computer_ZX_Spectrum_H_
+#define _Z_hardware_machine_platform_computer_ZX_Spectrum_H_
 
 #include <Z/types/base.h>
 
@@ -402,4 +402,4 @@ typedef struct {
 	} ula_io;
 } ZZXSpectrumState;
 
-#endif /* __Z_hardware_machine_platform_computer_ZX_Spectrum_H__ */
+#endif /* _Z_hardware_machine_platform_computer_ZX_Spectrum_H_ */

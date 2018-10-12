@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_network_4_UDP_H__
-#define __Z_network_4_UDP_H__
+#ifndef _Z_network_4_UDP_H_
+#define _Z_network_4_UDP_H_
 
 #include <Z/types/base.h>
 
@@ -23,4 +23,4 @@ typedef Z_STRICT_STRUCTURE (
 	zuint32 data;
 ) ZUDPPseudoHeader;
 
-#endif /* __Z_network_4_UDP_H__ */
+#endif /* _Z_network_4_UDP_H_ */

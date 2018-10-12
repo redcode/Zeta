@@ -175,8 +175,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |   - Initial version.							       |
 '-----------------------------------------------------------------------------*/
 
-#ifndef __Z_formats_storage_medium_image_audio_TZX_H__
-#define __Z_formats_storage_medium_image_audio_TZX_H__
+#ifndef _Z_formats_storage_medium_image_audio_TZX_H_
+#define _Z_formats_storage_medium_image_audio_TZX_H_
 
 #include <Z/types/base.h>
 
@@ -1182,4 +1182,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 minor_version;
 ) ZTZXGlue;
 
-#endif /* __Z_formats_storage_medium_image_audio_TZX_H__ */
+#endif /* _Z_formats_storage_medium_image_audio_TZX_H_ */

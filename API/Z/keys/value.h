@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_value_H__
-#define __Z_keys_value_H__
+#ifndef _Z_keys_value_H_
+#define _Z_keys_value_H_
 
 /* Standard C/C++ base types */
 
@@ -82,4 +82,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_BITS_VALUE_FORMAT	8
 #define Z_KEY_LAST_VALUE_FORMAT	Z_VALUE_FORMAT_INTEL_FLOAT128
 
-#endif /* __Z_keys_value_H__ */
+#endif /* _Z_keys_value_H_ */

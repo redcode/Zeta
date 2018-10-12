@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_traits_base_HPP__
-#define __Z_traits_base_HPP__
+#ifndef _Z_traits_base_HPP_
+#define _Z_traits_base_HPP_
 
 #include <Z/macros/language.hpp>
 
@@ -16,4 +16,4 @@ namespace Zeta {
 	struct False {enum {value = false};};
 }
 
-#endif // __Z_traits_base_HPP__
+#endif // _Z_traits_base_HPP_

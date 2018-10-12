@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_formats_data_model_SILP64_H__
-#define __Z_formats_data_model_SILP64_H__
+#ifndef _Z_formats_data_model_SILP64_H_
+#define _Z_formats_data_model_SILP64_H_
 
 #define Z_SILP64_BITS_CHAR     8
 #define Z_SILP64_BITS_SHORT   64
@@ -16,4 +16,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_SILP64_BITS_SIZE    64
 #define Z_SILP64_BITS_POINTER 64
 
-#endif /* __Z_formats_data_model_SILP64_H__ */
+#endif /* _Z_formats_data_model_SILP64_H_ */

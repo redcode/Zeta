@@ -6,8 +6,8 @@ Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Copyright (C) 2018 Agaxia.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_traits_Type_HPP__
-#define __Z_traits_Type_HPP__
+#ifndef _Z_traits_Type_HPP_
+#define _Z_traits_Type_HPP_
 
 #include <Z/keys/mathematics/number.h>
 #include <Z/inspection/Z.h>
@@ -4358,4 +4358,4 @@ namespace Zeta {
 #	endif
 }
 
-#endif // __Z_traits_Type_HPP__
+#endif // _Z_traits_Type_HPP_

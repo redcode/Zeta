@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_mathematics_geometry_euclidean_Z3DLine_H__
-#define __Z_functions_mathematics_geometry_euclidean_Z3DLine_H__
+#ifndef _Z_functions_mathematics_geometry_euclidean_Z3DLine_H_
+#define _Z_functions_mathematics_geometry_euclidean_Z3DLine_H_
 
 #include <Z/functions/mathematics/geometry/euclidean/constructors.h>
 #include <Z/functions/base/Z3D.h>
@@ -165,4 +165,4 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 #endif
 
 
-#endif /* __Z_functions_mathematics_geometry_euclidean_Z3DLine_H__ */
+#endif /* _Z_functions_mathematics_geometry_euclidean_Z3DLine_H_ */

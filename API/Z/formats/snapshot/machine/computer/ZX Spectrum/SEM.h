@@ -12,8 +12,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |    Used by: ZX Spectrum-Emulator (SpecEmu) [MS-DOS] |
 '----------------------------------------------------*/
 
-#ifndef __Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H__
-#define __Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H__
+#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_
+#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_
 
 #include <Z/types/base.h>
 
@@ -43,4 +43,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint16	     speed_factor; /* Optional (only if poke included) */
 ) ZSEM;
 
-#endif /* __Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H__ */
+#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_ */

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_functions_base_ZRange_H__
-#define __Z_functions_base_ZRange_H__
+#ifndef _Z_functions_base_ZRange_H_
+#define _Z_functions_base_ZRange_H_
 
 #include <Z/functions/base/constructors.h>
 #include <Z/functions/base/value.h>
@@ -134,4 +134,4 @@ Z_IMPLEMENTATION(UInt32, uint32)
 #define z_range_union	       z_range_type_union	  (USIZE)
 
 
-#endif /* __Z_functions_base_ZRange_H__ */
+#endif /* _Z_functions_base_ZRange_H_ */

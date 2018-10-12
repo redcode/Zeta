@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_formats_character_set_DOS_CP737_H__
-#define __Z_formats_character_set_DOS_CP737_H__
+#ifndef _Z_formats_character_set_DOS_CP737_H_
+#define _Z_formats_character_set_DOS_CP737_H_
 
 /* From 00h to 7Fh like ASCII */
 #define Z_DOS_CP737_GREEK_CAPITAL_LETTER_ALPHA			       0x80
@@ -156,4 +156,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	_(038F), _(00B1), _(2265), _(2264), _(03AA), _(03AB), _(00F7), _(2248), \
 	_(00B0), _(2219), _(00B7), _(221A), _(207F), _(00B2), _(25A0), _(00A0)
 
-#endif /* __Z_formats_character_set_DOS_CP737_H__ */
+#endif /* _Z_formats_character_set_DOS_CP737_H_ */

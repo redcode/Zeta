@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_formats_character_set_DOS_CP866_H__
-#define __Z_formats_character_set_DOS_CP866_H__
+#ifndef _Z_formats_character_set_DOS_CP866_H_
+#define _Z_formats_character_set_DOS_CP866_H_
 
 /* From 00h to 7Fh like ASCII */
 #define Z_DOS_CP866_CYRILLIC_CAPITAL_LETTER_A			       0x80
@@ -156,4 +156,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	_(0401), _(0451), _(0404), _(0454), _(0407), _(0457), _(040E), _(045E), \
 	_(00B0), _(2219), _(00B7), _(221A), _(2116), _(00A4), _(25A0), _(00A0)
 
-#endif /* __Z_formats_character_set_DOS_CP866_H__ */
+#endif /* _Z_formats_character_set_DOS_CP866_H_ */

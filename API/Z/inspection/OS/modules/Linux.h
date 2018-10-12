@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_inspection_modules_OS_Linux_H__
-#define __Z_inspection_modules_OS_Linux_H__
+#ifndef _Z_inspection_modules_OS_Linux_H_
+#define _Z_inspection_modules_OS_Linux_H_
 
 #define Z_OS_STRING Z_OS_STRING_LINUX
 
@@ -19,4 +19,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_PATH_SLASH_CHARACTER '/'
 #define Z_OS_PATH_SLASH_STRING	  "/"
 
-#endif /* __Z_inspection_modules_OS_Linux_H__ */
+#endif /* _Z_inspection_modules_OS_Linux_H_ */

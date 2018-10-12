@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_allocation_H__
-#define __Z_keys_allocation_H__
+#ifndef _Z_keys_allocation_H_
+#define _Z_keys_allocation_H_
 
 #define Z_TEXT_ALIGNMENT_CENTER 0
 #define Z_TEXT_ALIGNMENT_LEFT	1
@@ -24,4 +24,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_BITS_TEXT_LINE_BREAK_MODE 8
 #define Z_KEY_LAST_TEXT_LINE_BREAK_MODE Z_TEXT_LINE_BREAK_MODE_MIDDLE_TRUNCATION
 
-#endif /* __Z_keys_text_H__ */
+#endif /* _Z_keys_text_H_ */

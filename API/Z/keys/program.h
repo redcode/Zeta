@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_keys_program_H__
-#define __Z_keys_program_H__
+#ifndef _Z_keys_program_H_
+#define _Z_keys_program_H_
 
 #define Z_PROGRAM_FORMAT_A_OUT	1
 #define Z_PROGRAM_FORMAT_COFF	2
@@ -36,4 +36,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PROGRAM_FORMAT_STRING_SOM    "SOM"
 #define Z_PROGRAM_FORMAT_STRING_XCOFF  "XCOFF"
 
-#endif /* __Z_keys_program_H__ */
+#endif /* _Z_keys_program_H_ */

@@ -12,8 +12,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |    Used by: Any NES emulator |
 '-----------------------------*/
 
-#ifndef __Z_formats_storage_medium_image_NES_Game_Pak_iNES_H__
-#define __Z_formats_storage_medium_image_NES_Game_Pak_iNES_H__
+#ifndef _Z_formats_storage_medium_image_NES_Game_Pak_iNES_H_
+#define _Z_formats_storage_medium_image_NES_Game_Pak_iNES_H_
 
 #include <Z/types/base.h>
 
@@ -73,4 +73,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_INES_MAPPER_CONY_MAPPER		83
 #define Z_INES_MAPPER_PASOFAMI_MAPPER		84*/
 
-#endif /* __Z_formats_storage_medium_image_NES_Game_Pak_iNES_H__ */
+#endif /* _Z_formats_storage_medium_image_NES_Game_Pak_iNES_H_ */

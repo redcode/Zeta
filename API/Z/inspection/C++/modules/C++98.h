@@ -5,12 +5,12 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_inspection_CPP_modules_CPP98_H__
-#define __Z_inspection_CPP_modules_CPP98_H__
+#ifndef _Z_inspection_CPP_modules_CPP98_H_
+#define _Z_inspection_CPP_modules_CPP98_H_
 
 #include <Z/inspection/C++/modules/C++89.h>
 
 #define Z_CPP_HAS_SFINAE       TRUE
 #define Z_CPP_HAS_TYPE_BOOLEAN TRUE /* bool */
 
-#endif /* __Z_inspection_CPP_modules_CPP98_H__ */
+#endif /* _Z_inspection_CPP_modules_CPP98_H_ */

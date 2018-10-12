@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_macros_pasting_H__
-#define __Z_macros_pasting_H__
+#ifndef _Z_macros_pasting_H_
+#define _Z_macros_pasting_H_
 
 #define Z_EMPTY_(dummy)
 #define Z_EMPTY Z_EMPTY_(.)
@@ -256,4 +256,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_TERNARY(condition) Z_JOIN_2(Z_TERNARY_, condition)
 
-#endif /* __Z_macros_pasting_H__ */
+#endif /* _Z_macros_pasting_H_ */

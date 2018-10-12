@@ -34,10 +34,10 @@ Front view		Back view
 |	      \\\\\\ /	\  '|____________|'  |
 '_________..________/	 \___________________' */
 
-#ifndef __Z_hardware_machine_platform_console_Game_Boy_H__
-#define __Z_hardware_machine_platform_console_Game_Boy_H__
+#ifndef _Z_hardware_machine_platform_console_Game_Boy_H_
+#define _Z_hardware_machine_platform_console_Game_Boy_H_
 
 #include <Z/types/base.h>
 
 
-#endif /* __Z_hardware_machine_platform_console_Game_Boy_H__ */
+#endif /* _Z_hardware_machine_platform_console_Game_Boy_H_ */

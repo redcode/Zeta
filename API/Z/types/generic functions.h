@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_types_generic_functions_H__
-#define __Z_types_generic_functions_H__
+#ifndef _Z_types_generic_functions_H_
+#define _Z_types_generic_functions_H_
 
 #include <Z/types/base.h>
 
@@ -203,4 +203,4 @@ typedef zsint (* ZCompare32BitWithData )(Z32Bit	 a, Z32Bit  b, void *data);
 typedef zsint (* ZCompare64BitWithData )(Z64Bit	 a, Z64Bit  b, void *data);
 typedef zsint (* ZCompare128BitWithData)(Z128Bit a, Z128Bit b, void *data);
 
-#endif /* __Z_types_generic_functions_H__ */
+#endif /* _Z_types_generic_functions_H_ */

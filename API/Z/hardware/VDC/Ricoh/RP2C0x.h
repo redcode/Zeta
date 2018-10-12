@@ -183,8 +183,8 @@ EXT3 -17-|    (_)    |-24- /R
 
 	    		*/
 
-#ifndef __Z_hardware_VDC_Ricoh_RP2C0x_H__
-#define __Z_hardware_VDC_Ricoh_RP2C0x_H__
+#ifndef _Z_hardware_VDC_Ricoh_RP2C0x_H_
+#define _Z_hardware_VDC_Ricoh_RP2C0x_H_
 
 #include <Z/types/base.h>
 
@@ -622,4 +622,4 @@ typedef struct {
 
 
 
-#endif /* __Z_hardware_VDC_Ricoh_RP2C0x_H__ */
+#endif /* _Z_hardware_VDC_Ricoh_RP2C0x_H_ */

@@ -12,8 +12,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |    Used by:				 |
 '---------------------------------------*/
 
-#ifndef __Z_formats_storage_medium_image_NES_Game_Pak_UNIF_H__
-#define __Z_formats_storage_medium_image_NES_Game_Pak_UNIF_H__
+#ifndef _Z_formats_storage_medium_image_NES_Game_Pak_UNIF_H_
+#define _Z_formats_storage_medium_image_NES_Game_Pak_UNIF_H_
 
 #include <Z/types/base.h>
 
@@ -23,4 +23,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	zero[24];
 ) ZUNIFHeader;
 
-#endif /* __Z_formats_storage_medium_image_NES_Game_Pak_UNIF_H__ */
+#endif /* _Z_formats_storage_medium_image_NES_Game_Pak_UNIF_H_ */

@@ -99,8 +99,8 @@ ANALOG CHANNEL A -05-|		 |-24- DA4
 | R17 | I/O Port B Data Store |		 8-Bit Parallel I/O on Port A	      |
 '----------------------------------------------------------------------------*/
 
-#ifndef __Z_hardware_PSG_General_Instrument_AY_3_891x_H__
-#define __Z_hardware_PSG_General_Instrument_AY_3_891x_H__
+#ifndef _Z_hardware_PSG_General_Instrument_AY_3_891x_H_
+#define _Z_hardware_PSG_General_Instrument_AY_3_891x_H_
 
 #include <Z/types/base.h>
 
@@ -177,4 +177,4 @@ Z_DEFINE_STRICT_UNION (
 #define Z_AY_3_891X_IO_PORT_A_DATA_STORE	      14
 #define Z_AY_3_891X_IO_PORT_B_DATA_STORE	      15
 
-#endif /* __Z_hardware_PSG_General_Instrument_AY_3_891x_H__ */
+#endif /* _Z_hardware_PSG_General_Instrument_AY_3_891x_H_ */

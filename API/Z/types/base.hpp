@@ -6,8 +6,8 @@ Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Copyright (C) 2018 Agaxia.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_types_base_HPP__
-#define __Z_types_base_HPP__
+#ifndef _Z_types_base_HPP_
+#define _Z_types_base_HPP_
 
 #include <Z/types/base.h>
 #include <Z/macros/language.hpp>
@@ -125,4 +125,4 @@ namespace Zeta {
 	};
 };
 
-#endif // __Z_types_base_HPP__
+#endif // _Z_types_base_HPP_

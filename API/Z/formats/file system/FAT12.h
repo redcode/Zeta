@@ -5,8 +5,8 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef __Z_formats_file_system_FAT12_H__
-#define __Z_formats_file_system_FAT12_H__
+#ifndef _Z_formats_file_system_FAT12_H_
+#define _Z_formats_file_system_FAT12_H_
 
 #include <Z/types/base.h>
 
@@ -58,4 +58,4 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_FAT_12_FILE_ATTRIBUTE_SUBDIRECTORY 16
 #define Z_FAT_12_FILE_ATTRIBUTE_ARCHIVE	     32
 
-#endif /* __Z_formats_file_system_FAT12_H__ */
+#endif /* _Z_formats_file_system_FAT12_H_ */
