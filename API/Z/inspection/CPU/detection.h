@@ -43,13 +43,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(_M_AMD64) ||							\
-										\
-	/*-----------.								\
-	| Clang	     |								\
-	| Intel C++  |								\
-	| Visual C++ |								\
-	'-----------*/								\
-	defined(_M_X64)
+	defined(_M_X64	)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_64
 
@@ -87,11 +81,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
-	defined(__X86__) ||							\
-										\
-	/*-------------.							\
-	| Watcom C/C++ |							\
-	'-------------*/							\
+	defined(__X86__	       ) ||						\
 	defined(__WINDOWS_386__) ||						\
 										\
 	/*--------------.							\
@@ -203,10 +193,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	defined(__arm64) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
 	defined(__arm64__)							\
 										\
 	/*--------------------------------------------------------------.	\
@@ -219,11 +205,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	/*-------------------.							\
 	| ARM C/C++ Compiler |							\
 	'-------------------*/							\
-	defined(__TARGET_ARCH_ARM) ||						\
-										\
-	/*-------------------.							\
-	| ARM C/C++ Compiler |							\
-	'-------------------*/							\
+	defined(__TARGET_ARCH_ARM  ) ||						\
 	defined(__TARGET_ARCH_THUMB) ||						\
 										\
 	/*-------------------.							\
@@ -280,6 +262,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH32
 
+#elif	/*-----.								\
+	| cc65 |								\
+	'-----*/								\
+	defined(__APPLE2ENH__	) ||						\
+	defined(__APPLE2__	) ||						\
+	defined(__ATARI__	) ||						\
+	defined(__ATARI2600__	) ||						\
+	defined(__ATARI5200__	) ||						\
+	defined(__ATMOS__	) ||						\
+	defined(__CBM__		) ||						\
+	defined(__CREATIVISION__) ||						\
+	defined(__GAMATE__	) ||						\
+	defined(__LYNX__	) ||						\
+	defined(__NES__		) ||						\
+	defined(__OSIC1P__	) ||						\
+	defined(__PCE__		) ||						\
+	defined(__SUPERVISION__	) ||						\
+	defined(__TELESTRAT__	) ||						\
+	(defined(__GEOS__) && defined(__C65__))
+
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_6502
+
 #elif	/*----------.								\
 	| DEC C (?) |								\
 	'----------*/								\
@@ -301,11 +305,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| GCC |									\
 	'----*/									\
 	defined(__BFIN__) ||							\
-										\
-	/*----.									\
-	| GCC |									\
-	'----*/									\
-	defined(__bfin)
+	defined(__bfin	)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_BLACKFIN
 
@@ -327,21 +327,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	defined(__HEXAGON_ARCH__) ||						\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
-	defined(__QDSP6_ARCH__) ||						\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
-	defined(__hexagon__) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
-	defined(__qdsp6__)
+	defined(__QDSP6_ARCH__	) ||						\
+	defined(__hexagon__	) ||						\
+	defined(__qdsp6__	)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_HEXAGON
 
@@ -414,11 +402,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	/*------.								\
 	| Clang |								\
 	'------*/								\
-	defined(__mips64) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	defined(__mips64  ) ||							\
 	defined(__mips64__) ||							\
 										\
 	/*------------.								\
@@ -479,11 +463,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	defined(__MSP430__) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
-	defined(MSP430)
+	defined(MSP430	  )
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MSP430
 
@@ -503,11 +483,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	/*-----------------------.						\
 	| Stratus VOS Standard C |						\
 	'-----------------------*/						\
-	defined(__HPPA__) ||							\
-										\
-	/*-----------------------.						\
-	| Stratus VOS Standard C |						\
-	'-----------------------*/						\
+	defined(__HPPA__  ) ||							\
 	defined(__HPPA11__) ||							\
 										\
 	/*--.									\
@@ -518,11 +494,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	/*----.									\
 	| GCC |									\
 	'----*/									\
-	defined(__hppa__) ||							\
-										\
-	/*----.									\
-	| GCC |									\
-	'----*/									\
+	defined(__hppa__   ) ||							\
 	defined(_PA_RISC1_0) ||							\
 										\
 	/*-----------------------.						\
@@ -538,13 +510,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| GCC	       |							\
 	| IBM XL C/C++ |							\
 	'-------------*/							\
-	defined(__PPC64__) ||							\
-										\
-	/*-------------.							\
-	| Clang	       |							\
-	| GCC	       |							\
-	| IBM XL C/C++ |							\
-	'-------------*/							\
+	defined(__PPC64__    ) ||						\
 	defined(__powerpc64__) ||						\
 										\
 	/*------.								\
@@ -584,11 +550,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| CodeWarrior |								\
 	'------------*/								\
 	defined(__PPCBROADWAY__) ||						\
-										\
-	/*------------.								\
-	| CodeWarrior |								\
-	'------------*/								\
-	defined(__PPCGECKO__) ||						\
+	defined(__PPCGECKO__   ) ||						\
 										\
 	/*-------------.							\
 	| GCC	       |							\
@@ -631,11 +593,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	/*------.								\
 	| Clang |								\
 	'------*/								\
-	defined(__arch64__) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	defined(__arch64__  ) ||						\
 	defined(__sparc_v9__) ||						\
 										\
 	/*------.								\
@@ -685,11 +643,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	defined(__sparcv8__) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
-	defined(sparc)
+	defined(sparc	   )
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SPARC
 
@@ -736,11 +690,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	/*-------------.							\
 	| IBM XL C/C++ |							\
 	'-------------*/							\
-	defined(__370__) ||							\
-										\
-	/*-------------.							\
-	| IBM XL C/C++ |							\
-	'-------------*/							\
+	defined(__370__	   ) ||							\
 	defined(__THW_370__)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_ESA_370
