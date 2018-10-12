@@ -369,6 +369,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_TYPE_LLONG					 TRUE
 #endif
 
+/*-----------------------------------------------------------.
+| It seems that Clang always recognizes _Bool, except in C++ |
+| (until C++ supports C99, of course).			     |
+'-----------------------------------------------------------*/
+#if (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) || !defined(__cplusplus)
+#	define Z_COMPILER_C_HAS_TYPE_BOOLEAN TRUE
+#endif
+
 /* MARK: - C11 support */
 
 #if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
