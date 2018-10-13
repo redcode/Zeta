@@ -190,6 +190,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(SASC) || defined(__SASC) || defined(__SASC__)
 #	include <Z/inspection/compiler/modules/SAS - C.h>
 
+#elif defined(__SCCZ80)
+#	include <Z/inspection/compiler/modules/SCCZ80.h>
+
 #elif defined(_SCO_DS)
 #	include <Z/inspection/compiler/modules/SCO OpenServer.h>
 

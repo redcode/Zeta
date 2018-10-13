@@ -75,21 +75,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_PGI_C_CPP			    58
 #define Z_COMPILER_RENESAS_C_CPP		    59
 #define Z_COMPILER_SAS_C			    60
-#define Z_COMPILER_SCO_OPEN_SERVER		    61
-#define Z_COMPILER_SDCC				    62
-#define Z_COMPILER_SN_COMPILER			    63
-#define Z_COMPILER_STRATUS_VOS_C		    64
-#define Z_COMPILER_SYMANTEC_CPP			    65
-#define Z_COMPILER_TENDRA_C_CPP			    66
-#define Z_COMPILER_TEXAS_INSTRUMENTS_C_CPP_COMPILER 67
-#define Z_COMPILER_THINK_C			    68
-#define Z_COMPILER_TINY_C			    69
-#define Z_COMPILER_TURBO_C_CPP			    70
-#define Z_COMPILER_ULTIMATE_C_CPP		    71
-#define Z_COMPILER_USL_C			    72
-#define Z_COMPILER_VBCC				    73
-#define Z_COMPILER_WATCOM_C_CPP			    74
-#define Z_COMPILER_ZORTECH_CPP			    75
+#define Z_COMPILER_SCCZ80			    61 /* Z88DK */
+#define Z_COMPILER_SCO_OPEN_SERVER		    62
+#define Z_COMPILER_SDCC				    63
+#define Z_COMPILER_SN_COMPILER			    64
+#define Z_COMPILER_STRATUS_VOS_C		    65
+#define Z_COMPILER_SYMANTEC_CPP			    66
+#define Z_COMPILER_TENDRA_C_CPP			    67
+#define Z_COMPILER_TEXAS_INSTRUMENTS_C_CPP_COMPILER 68
+#define Z_COMPILER_THINK_C			    69
+#define Z_COMPILER_TINY_C			    70
+#define Z_COMPILER_TURBO_C_CPP			    71
+#define Z_COMPILER_ULTIMATE_C_CPP		    72
+#define Z_COMPILER_USL_C			    73
+#define Z_COMPILER_VBCC				    74
+#define Z_COMPILER_WATCOM_C_CPP			    75
+#define Z_COMPILER_ZORTECH_CPP			    76
 
 #define Z_COMPILER_STRING_GCC				   "GCC"
 #define Z_COMPILER_STRING_CLANG				   "Clang"
@@ -157,6 +158,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_STRING_PGI_C_CPP			   "PGI C/C++"
 #define Z_COMPILER_STRING_RENESAS_C_CPP			   "Renesas C/C++"
 #define Z_COMPILER_STRING_SAS_C				   "SAS/C"
+#define Z_COMPILER_STRING_SCCZ80			   "SCCZ80"
 #define Z_COMPILER_STRING_SCO_OPEN_SERVER		   "SCO OpenServer"
 #define Z_COMPILER_STRING_SDCC				   "SDCC" /* Small Device C Compiler */
 #define Z_COMPILER_STRING_SN_COMPILER			   "SN Compiler"
