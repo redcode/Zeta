@@ -12,11 +12,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/date.h>
 
 
-static Z_INLINE zboolean z_gregorian_year_is_leap(zullong year)
+static Z_INLINE 
+boolean z_gregorian_year_is_leap(zullong year)
 	{return Z_GREGORIAN_YEAR_IS_LEAP(year);}
 
 
-static Z_INLINE zuint8 z_gregorian_year_days_in_month(zullong year, zuint8 month)
+static Z_INLINE
+zuint8 z_gregorian_year_days_in_month(zullong year, zuint8 month)
 	{
 	return month == 2
 		? (Z_GREGORIAN_YEAR_IS_LEAP(year) ? 29 : 28)
