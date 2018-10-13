@@ -75,7 +75,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C99 support */
 
-#define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER TRUE
+#define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER	      TRUE
+#define Z_COMPILER_C_HAS_MAGIC_CONSTANT_FUNCTION_NAME TRUE
 
 #if __CC65_STD__ == __CC65_STD_C99__ || __CC65_STD__ == __CC65_STD_CC65__
 	/*#define Z_COMPILER_C_HAS_COMPOUND_LITERAL*/
@@ -88,7 +89,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	/*#define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGRAL*/
 	/*#define Z_COMPILER_C_HAS_VARIADIC_MACRO*/
 	/*#define Z_COMPILER_C_HAS_VLA*/
-	/*#define Z_COMPILER_C_HAS_MAGIC_CONSTANT_FUNCTION_NAME*/
 	/*#define Z_COMPILER_C_HAS_SPECIFIER_INLINE*/
 	/*#define Z_COMPILER_C_HAS_TYPE_BOOLEAN*/
 	/*#define Z_COMPILER_C_HAS_TYPE_LLONG*/
