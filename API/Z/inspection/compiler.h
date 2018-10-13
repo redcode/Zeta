@@ -193,8 +193,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(_SCO_DS)
 #	include <Z/inspection/compiler/modules/SCO OpenServer.h>
 
-#elif defined(SDCC)
-#	include <Z/inspection/compiler/modules/Small Device C Compiler.h>
+#elif defined(__SDCC) /* Z88DK version? */ || defined(SDCC)
+#	include <Z/inspection/compiler/modules/SDCC.h>
 
 #elif defined(__SNC__)
 #	include <Z/inspection/compiler/modules/SN Compiler.h>

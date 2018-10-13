@@ -76,7 +76,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_RENESAS_C_CPP		    59
 #define Z_COMPILER_SAS_C			    60
 #define Z_COMPILER_SCO_OPEN_SERVER		    61
-#define Z_COMPILER_SMALL_DEVICE_C_COMPILER	    62
+#define Z_COMPILER_SDCC				    62
 #define Z_COMPILER_SN_COMPILER			    63
 #define Z_COMPILER_STRATUS_VOS_C		    64
 #define Z_COMPILER_SYMANTEC_CPP			    65
@@ -158,7 +158,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_STRING_RENESAS_C_CPP			   "Renesas C/C++"
 #define Z_COMPILER_STRING_SAS_C				   "SAS/C"
 #define Z_COMPILER_STRING_SCO_OPEN_SERVER		   "SCO OpenServer"
-#define Z_COMPILER_STRING_SMALL_DEVICE_C_COMPILER	   "Small Device C Compiler"
+#define Z_COMPILER_STRING_SDCC				   "SDCC" /* Small Device C Compiler */
 #define Z_COMPILER_STRING_SN_COMPILER			   "SN Compiler"
 #define Z_COMPILER_STRING_STRATUS_VOS_C			   "Stratus VOS C"
 #define Z_COMPILER_STRING_SYMANTEC_CPP			   "Symantec C++"
