@@ -10,7 +10,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/macros/variadic.h>
 
-#if !defined(Z_AVOID_VARIADIC_MACROS) && Z_LANGUAGE_HAS(C, VARIADIC_MACRO)
+#if	!defined(Z_AVOID_VARIADIC_MACROS) && \
+	(Z_LANGUAGE_HAS(C, VARIADIC_MACRO) || Z_LANGUAGE_HAS(CPP, C99_PREPROCESSOR))
 
 #	define Z_JOIN_N(n) Z_PASTE_2(Z_JOIN_, n) /* Needed for Z_JOIN(...) only */
 #	define Z_JOIN(...) Z_SAME(Z_JOIN_N(Z_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N())))(__VA_ARGS__)

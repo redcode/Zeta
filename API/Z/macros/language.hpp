@@ -65,7 +65,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Defaulted functions */
 
-#if Z_LANGUAGE_HAS(C, VARIADIC_MACRO) || Z_LANGUAGE_HAS(CPP, C99_PREPROCESSOR)
+#if	!defined(Z_AVOID_VARIADIC_MACROS) && \
+	(Z_LANGUAGE_HAS(C, VARIADIC_MACRO) || Z_LANGUAGE_HAS(CPP, C99_PREPROCESSOR))
+
 #	if Z_LANGUAGE_HAS(CPP, DEFAULTED_FUNCTION)
 #		define Z_DEFAULTED(...) = default;
 #	else

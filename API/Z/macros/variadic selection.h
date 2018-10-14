@@ -11,7 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-#if !defined(Z_AVOID_VARIADIC_MACROS) && Z_LANGUAGE_HAS(C, VARIADIC_MACRO)
+#if	!defined(Z_AVOID_VARIADIC_MACROS) && \
+	(Z_LANGUAGE_HAS(C, VARIADIC_MACRO) || Z_LANGUAGE_HAS(CPP, C99_PREPROCESSOR))
 
 #	include <Z/macros/pasting.h>
 
