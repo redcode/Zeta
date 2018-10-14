@@ -844,15 +844,15 @@ Z_DEFINE_STRICT_STRUCTURE (
 '---------------------------------------------------------------------------*/
 
 Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 hardware_count;
-	Z_FLEXIBLE_ARRAY_MEMBER(ZTZXHardware hardware[];) /* ZTZXHardware */
-) ZTZXHardwareInformation;
-
-Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 type;
 	zuint8 id;
 	zuint8 compatibility;
 ) ZTZXHardware;
+
+Z_DEFINE_STRICT_STRUCTURE (
+	zuint8 hardware_count;
+	Z_FLEXIBLE_ARRAY_MEMBER(ZTZXHardware hardware[];) /* ZTZXHardware */
+) ZTZXHardwareInformation;
 
 #define Z_TZX_HARDWARE_TYPE_MACHINE				       0x00
 #define Z_TZX_HARDWARE_TYPE_STORAGE				       0x01
