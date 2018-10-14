@@ -382,14 +382,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
 
 #	if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
-#		define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE TRUE // OK
+#		define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE TRUE
 #	endif
 
 #	if defined(__cplusplus) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
-#		define Z_COMPILER_C_HAS_ANONYMOUS_UNION TRUE // OK
+#		define Z_COMPILER_C_HAS_ANONYMOUS_UNION TRUE
 #	endif
 
-#	define Z_COMPILER_C_HAS_SPECIFIER_NO_RETURN TRUE /* TODO: Check support in previous versions */
+#	define Z_COMPILER_C_HAS_SPECIFIER_NO_RETURN TRUE /* Available in older versions? */
 
 #endif
 
