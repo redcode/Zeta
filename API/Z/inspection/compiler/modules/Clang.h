@@ -544,7 +544,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_RVALUE_REFERENCE TRUE /* v2.9 */
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0)
-
+#			define Z_COMPILER_CPP_HAS_MOVE_SPECIAL_MEMBER_FUNCTIONS TRUE
 #		endif
 #	endif
 
