@@ -56,7 +56,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_LITERAL_RAW_STRING				   TRUE /* N2442: [L|u|U|u8]R"string"		    */
 #define Z_CPP_HAS_LITERAL_UNICODE_STRING			   TRUE /* N2442: u8"string"			    */
 #define Z_CPP_HAS_LITERAL_USER_DEFINED				   TRUE /* N2765				    */
-#define Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME			   TRUE /* __func__				    */
+#define Z_CPP_HAS_MAGIC_CONSTANT_FUNCTION_NAME			   TRUE /* N2340: __func__			    */
 #define Z_CPP_HAS_OPERATOR_ALIGN_OF				   TRUE /* N2341: alignof()			    */
 #define Z_CPP_HAS_OPERATOR_NO_EXCEPTION				   TRUE /* N3050: noexcept()			    */
 #define Z_CPP_HAS_OPERATOR_SIZE_OF_NON_STATIC_DATA_MEMBER	   TRUE /* N2253, DR850: sizeof(Class::data_member) */
