@@ -445,6 +445,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __cplusplus >= 201103L && Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
 #		define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR			   TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_CONCURRENT_STATIC_LOCAL_VARIABLE	   TRUE /* v2.9 (Available in older standards?) */
 #		define Z_COMPILER_CPP_HAS_CONDITIONALLY_SUPPORTED_BEHAVIOR	   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_EXTENDED_FRIEND_DECLARATION		   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_EXTERN_TEMPLATE			   TRUE /* v2.9 */

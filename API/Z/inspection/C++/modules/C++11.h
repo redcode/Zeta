@@ -11,6 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/C++/modules/C++03.h>
 
 #define Z_CPP_HAS_C99_PREPROCESSOR				   TRUE /* N1653 */
+#define Z_CPP_HAS_CONCURRENT_STATIC_LOCAL_VARIABLE		   TRUE /* N2660 */
 #define Z_CPP_HAS_CONDITIONALLY_SUPPORTED_BEHAVIOR		   TRUE /* N1627 */
 #define Z_CPP_HAS_CPP11_UNIVERSAL_CHARACTER_NAME		   TRUE /* N2170 */
 #define Z_CPP_HAS_DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE TRUE /* DR226 */
