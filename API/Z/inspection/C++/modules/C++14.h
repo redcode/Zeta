@@ -11,6 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/C++/modules/C++11.h>
 
 #define Z_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR		    TRUE /* N3781 */
+#define Z_CPP_HAS_CPP14_RULES_ON_CONTEXTUAL_CONVERSION	    TRUE /* N3323 */
 #define Z_CPP_HAS_GENERIC_LAMBDA			    TRUE /* N3649 */
 #define Z_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION	    TRUE /* N3652 */
 #define Z_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* N3638 */
