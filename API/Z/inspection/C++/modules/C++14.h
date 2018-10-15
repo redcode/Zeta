@@ -17,7 +17,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_SIZED_DEALLOCATION			    TRUE /* N3778 */
 #define Z_CPP_HAS_VARIABLE_TEMPLATE			    TRUE /* N3651 */
 #define Z_CPP_HAS_ATTRIBUTE_DEPRECATED			    TRUE /* N3760: [[deprecated]] */
-#define Z_CPP_HAS_LITERAL_BINARY			    TRUE /* N3472 */
+#define Z_CPP_HAS_LITERAL_BINARY			    TRUE /* N3472: 0[b|B]number	  */
 #define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_AUTO	    TRUE /* N3638: decltype(auto) */
 
 #endif /* _Z_inspection_CPP_modules_CPP14_H_ */
