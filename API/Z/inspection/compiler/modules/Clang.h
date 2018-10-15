@@ -521,6 +521,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_OPERATOR_SIZE_OF_PARAMETER_PACK	TRUE /* v2.9 */
 #	endif
 
+#	if __has_feature(cxx_nonstatic_member_init)
+#		define Z_COMPILER_CPP_HAS_DEFAULT_MEMBER_INITIALIZER TRUE /* v3.0 */
+#	endif
+
 #	if __has_feature(cxx_default_function_template_args)
 #		define Z_COMPILER_CPP_HAS_DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE TRUE /* v2.9 */
 #	endif
@@ -557,10 +561,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_LAMBDA TRUE /* v3.1 */
 #	endif
 
-#	if __has_feature(cxx_nonstatic_member_init)
-#		define Z_COMPILER_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER TRUE /* v3.0 */
-#	endif
-
 #	if __has_feature(cxx_range_for)
 #		define Z_COMPILER_CPP_HAS_RANGE_BASED_FOR TRUE /* v3.0 */
 #	endif
@@ -572,8 +572,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	if __has_feature(cxx_static_assert)
 #		define Z_COMPILER_CPP_HAS_STATIC_ASSERTION TRUE /* v2.9 */
 #	endif
-
-	/*#define Z_COMPILER_CPP_HAS_STATIC_CONSTANT_DATA_MEMBER_INITIALIZER*/
 
 #	if __has_feature(cxx_strong_enums)
 #		define Z_COMPILER_CPP_HAS_STRONGLY_TYPED_ENUMERATION TRUE /* v2.9 */
@@ -668,6 +666,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __has_feature(cxx_contextual_conversions)
 #		define Z_COMPILER_CPP_HAS_CPP14_RULES_ON_CONTEXTUAL_CONVERSION TRUE /* v3.4 */
+#	endif
+
+#	if __has_feature(cxx_aggregate_nsdmi)
+#		define Z_COMPILER_CPP_HAS_DEFAULT_MEMBER_INITIALIZER_FOR_AGGREGATE TRUE /* v3.3 */
 #	endif
 
 #	if __has_feature(cxx_generic_lambdas)

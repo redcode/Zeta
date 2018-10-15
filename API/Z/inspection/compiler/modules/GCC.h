@@ -328,8 +328,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #						define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION	TRUE
 
 #						if Z_COMPILER_VERSION >= Z_VERSION(4, 7, 0)
-#							define Z_COMPILER_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER TRUE
-#							define Z_COMPILER_CPP_HAS_TEMPLATE_ALIAS		     TRUE
+#							define Z_COMPILER_CPP_HAS_DEFAULT_MEMBER_INITIALIZER TRUE
+#							define Z_COMPILER_CPP_HAS_TEMPLATE_ALIAS	     TRUE
 
 #							if Z_COMPILER_VERSION >= Z_VERSION(4, 8, 0)
 #								define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE
@@ -345,7 +345,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #				endif
 #			endif
 #		endif
-		/*#define Z_COMPILER_CPP_HAS_STATIC_CONSTANT_DATA_MEMBER_INITIALIZER*/
 
 #	endif
 
