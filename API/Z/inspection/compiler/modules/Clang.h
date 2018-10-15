@@ -489,11 +489,36 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 #	endif
 
+#	if __has_feature(cxx_local_type_template_args)
+#		define Z_COMPILER_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT   TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_UNNAMED_TYPE_AS_TEMPLATE_ARGUMENT TRUE /* v2.9 */
+#	endif
+
 #	if __has_feature(cxx_auto_type)
 #		undef  Z_COMPILER_C_HAS_STORAGE_CLASS_AUTO
 #		define Z_COMPILER_CPP_HAS_MULTI_DECLARATOR_AUTO		   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_REMOVAL_OF_AUTO_AS_STORAGE_CLASS TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_AUTO		   TRUE /* v2.9 */
+#	endif
+
+#	if __has_feature(cxx_attributes)
+#		define Z_COMPILER_CPP_HAS_STANDARDIZED_ATTRIBUTE_SYNTAX TRUE /* v3.3 */
+#		define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY	TRUE /* v3.3 */
+#		define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN		TRUE /* v3.3 */
+#	endif
+
+#	if __has_feature(cxx_rvalue_references)
+#		define Z_COMPILER_CPP_HAS_RVALUE_REFERENCE TRUE /* v2.9 */
+
+#		if Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0)
+#			define Z_COMPILER_CPP_HAS_MOVE_SPECIAL_MEMBER_FUNCTIONS TRUE /* v3.0 */
+#		endif
+#	endif
+
+#	if __has_feature(cxx_variadic_templates)
+#		define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE			TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS TRUE /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_OPERATOR_SIZE_OF_PARAMETER_PACK	TRUE /* v2.9 */
 #	endif
 
 #	if __has_feature(cxx_default_function_template_args)
@@ -532,11 +557,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_LAMBDA TRUE /* v3.1 */
 #	endif
 
-#	if __has_feature(cxx_local_type_template_args)
-#		define Z_COMPILER_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT   TRUE /* v2.9 */
-#		define Z_COMPILER_CPP_HAS_UNNAMED_TYPE_AS_TEMPLATE_ARGUMENT TRUE /* v2.9 */
-#	endif
-
 #	if __has_feature(cxx_nonstatic_member_init)
 #		define Z_COMPILER_CPP_HAS_NON_STATIC_DATA_MEMBER_INITIALIZER TRUE /* v3.0 */
 #	endif
@@ -547,20 +567,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __has_feature(cxx_reference_qualified_functions)
 #		define Z_COMPILER_CPP_HAS_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION TRUE /* v2.9 */
-#	endif
-
-#	if __has_feature(cxx_rvalue_references)
-#		define Z_COMPILER_CPP_HAS_RVALUE_REFERENCE TRUE /* v2.9 */
-
-#		if Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0)
-#			define Z_COMPILER_CPP_HAS_MOVE_SPECIAL_MEMBER_FUNCTIONS TRUE /* v3.0 */
-#		endif
-#	endif
-
-#	if __has_feature(cxx_attributes)
-#		define Z_COMPILER_CPP_HAS_STANDARDIZED_ATTRIBUTE_SYNTAX TRUE /* v3.3 */
-#		define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY	TRUE /* v3.3 */
-#		define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN		TRUE /* v3.3 */
 #	endif
 
 #	if __has_feature(cxx_static_assert)
@@ -583,12 +589,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __has_feature(cxx_unrestricted_unions)
 #		define Z_COMPILER_CPP_HAS_UNRESTRICTED_UNION TRUE /* v3.1 */
-#	endif
-
-#	if __has_feature(cxx_variadic_templates)
-#		define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE			TRUE /* v2.9 */
-#		define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS TRUE /* v2.9 */
-#		define Z_COMPILER_CPP_HAS_OPERATOR_SIZE_OF_PARAMETER_PACK	TRUE /* v2.9 */
 #	endif
 
 #	if __has_feature(cxx_nullptr)
@@ -642,6 +642,27 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	/* MARK: - C++14 support */
 
+#	if __cplusplus >= 201402L && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
+
+		/*-------------------------------------------------------------------------.
+		| In Clang v3.7 and later, sized deallocation is only enabled if the user  |
+		| passes the -fsized-deallocation flag. The user must supply definitions   |
+		| of the sized deallocation functions, either by providing them explicitly |
+		| or by using a C++ standard library that does. libstdc++ added these	   |
+		| functions in version v5.0, and libc++ added them in version v3.7.	   |
+		'-------------------------------------------------------------------------*/
+#		define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION TRUE /* v3.4 */
+
+		/*-----------------------------------------------------------------------.
+		| [[deprecated]]] is detected using the compiler's version, since it was |
+		| implemented in Clang before __has_cpp_attribute(deprecated).		 |
+		| __has_attribute(deprecated) cannot be used, because it returns true if |
+		| __attribute__((deprecated)) is available, which is not the same.	 |
+		'-----------------------------------------------------------------------*/
+#		define Z_COMPILER_CPP_HAS_ATTRIBUTE_DEPRECATED TRUE /* v3.4 */
+
+#	endif
+
 #	ifdef __cpp_digit_separators
 #		define Z_COMPILER_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR TRUE /* v3.4 */
 #	endif
@@ -662,23 +683,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* v3.4 */
 #	endif
 
-	/*-------------------------------------------------------------------------------.
-	| In Clang v3.7 and later, sized deallocation is only enabled if the user passes |
-	| the -fsized-deallocation flag. The user must supply definitions of the sized	 |
-	| deallocation functions, either by providing them explicitly or by using a C++	 |
-	| standard library that does. libstdc++ added these functions in version v5.0,	 |
-	| and libc++ added them in version v3.7.					 |
-	'-------------------------------------------------------------------------------*/
-#	if __cplusplus >= 201402L && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
-/*#		define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION TRUE*/ /* v3.4 */
-#	endif
-
 #	if __has_feature(cxx_variable_templates)
 #		define Z_COMPILER_CPP_HAS_VARIABLE_TEMPLATE TRUE /* v3.4 */
-#	endif
-
-#	if __cplusplus >= 201402L && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
-#		define Z_COMPILER_CPP_HAS_ATTRIBUTE_DEPRECATED TRUE /* v3.4 */
 #	endif
 
 #	if __has_feature(cxx_binary_literals)
