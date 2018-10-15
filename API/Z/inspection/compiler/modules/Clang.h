@@ -26,12 +26,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define __has_attribute(which) FALSE
 #endif
 
-#ifndef __has_extension
-#	define __has_extension __has_feature /* < v3.0 */
-#endif
-
 #ifndef __has_builtin
 #	define __has_builtin(which) FALSE
+#endif
+
+#ifndef __has_cpp_attribute
+#	define __has_cpp_attribute(which) FALSE
+#endif
+
+#ifndef __has_extension
+#	define __has_extension __has_feature /* < v3.0 */
 #endif
 
 /* MARK: - CPU
@@ -555,14 +559,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __has_feature(cxx_attributes)
 #		define Z_COMPILER_CPP_HAS_STANDARDIZED_ATTRIBUTE_SYNTAX TRUE /* v3.3 */
-
-#		if __has_attribute(carries_dependency)
-#			define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY TRUE /* v3.3 */
-#		endif
-
-#		if __has_attribute(noreturn)
-#			define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN TRUE /* v3.3 */
-#		endif
+#		define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY	TRUE /* v3.3 */
+#		define Z_COMPILER_CPP_HAS_ATTRIBUTE_NO_RETURN		TRUE /* v3.3 */
 #	endif
 
 #	if __has_feature(cxx_static_assert)
@@ -675,7 +673,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_VARIABLE_TEMPLATE TRUE /* v3.4 */
 #	endif
 
-#	if defined(Z_COMPILER_CPP_HAS_STANDARDIZED_ATTRIBUTE_SYNTAX) && __has_attribute(deprecated)
+#	if __cplusplus >= 201402L && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
 #		define Z_COMPILER_CPP_HAS_ATTRIBUTE_DEPRECATED TRUE /* v3.4 */
 #	endif
 
