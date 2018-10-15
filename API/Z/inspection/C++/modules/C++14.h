@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C++/modules/C++11.h>
 
+#define Z_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR		    TRUE /* N3781 */
 #define Z_CPP_HAS_GENERIC_LAMBDA			    TRUE /* N3649 */
 #define Z_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION	    TRUE /* N3652 */
 #define Z_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* N3638 */
@@ -17,5 +18,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_VARIABLE_TEMPLATE			    TRUE /* N3651 */
 #define Z_CPP_HAS_ATTRIBUTE_DEPRECATED			    TRUE /* N3760: [[deprecated]] */
 #define Z_CPP_HAS_LITERAL_BINARY			    TRUE /* N3472 */
+#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_AUTO	    TRUE /* N3638 */
 
 #endif /* _Z_inspection_CPP_modules_CPP14_H_ */

@@ -249,8 +249,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE FALSE
 #endif
 
-#ifndef Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN
-#	define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN FALSE
+#ifndef Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_INCOMPLETE_RETURN
+#	define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_INCOMPLETE_RETURN FALSE
 #endif
 
 #ifndef Z_CPP_HAS_SPECIFIER_FINAL
@@ -283,6 +283,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: C++14 */
 
+#ifndef Z_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR
+#	define Z_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR FALSE
+#endif
+
 #ifndef Z_CPP_HAS_GENERIC_LAMBDA
 #	define Z_CPP_HAS_GENERIC_LAMBDA FALSE
 #endif
@@ -311,7 +315,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_LITERAL_BINARY FALSE
 #endif
 
+#ifndef Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_AUTO
+#	define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_AUTO FALSE
+#endif
+
 /* MARK: C++17 */
-/* MARK: C++20 */
 
 /* inspection/C++/completion.h EOF */

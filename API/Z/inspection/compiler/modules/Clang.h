@@ -427,6 +427,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifdef __cplusplus
 
+	/*--------------------------------------------------.
+	| Reference: https://clang.llvm.org/cxx_status.html |
+	'--------------------------------------------------*/
+
 	/* MARK: - C++98 support */
 
 #	define Z_COMPILER_CPP_HAS_SFINAE       TRUE
@@ -618,7 +622,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 #	if __has_feature(cxx_decltype_incomplete_return_types)
-#		define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN TRUE /* v3.1 */
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_INCOMPLETE_RETURN TRUE /* v3.1 */
 #	endif
 
 #	if __has_feature(cxx_override_control)
@@ -639,6 +643,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 	/* MARK: - C++14 support */
+
+#	ifdef __cpp_digit_separators
+#		define Z_COMPILER_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR TRUE /* v3.4 */
+#	endif
 
 #	if __has_feature(cxx_generic_lambdas)
 #		define Z_COMPILER_CPP_HAS_GENERIC_LAMBDA TRUE /* v3.4 */
@@ -673,6 +681,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __has_feature(cxx_binary_literals)
 #		define Z_COMPILER_CPP_HAS_LITERAL_BINARY TRUE /* v2.9 */
+#	endif
+
+#	if __has_feature(cxx_decltype_auto)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_AUTO TRUE /* v3.3 */
 #	endif
 
 	/* MARK: - C++17 support */

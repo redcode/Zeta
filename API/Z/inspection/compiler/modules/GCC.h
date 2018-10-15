@@ -337,7 +337,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #								if Z_COMPILER_VERSION >= Z_VERSION(4, 8 ,1)
 #									define Z_COMPILER_CPP_HAS_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION TRUE
-#									define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN	 TRUE
+#									define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_INCOMPLETE_RETURN	 TRUE
 #								endif
 #							endif
 #						endif

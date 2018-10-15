@@ -67,7 +67,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_SPECIFIER_AUTO				   TRUE /* N1984(v1.0): auto			    */
 #define Z_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION			   TRUE /* N2235: constexpr			    */
 #define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE			   TRUE /* N2343(v1.0): decltype()		    */
-#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_INCOMPLETE_RETURN	   TRUE /* N3276(v1.1): decltype()		    */
+#define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_INCOMPLETE_RETURN	   TRUE /* N3276(v1.1): decltype()		    */
 #define Z_CPP_HAS_SPECIFIER_FINAL				   TRUE /* N2928(v0.8), N3206(v0.9), N3272(v1.0)    */
 #define Z_CPP_HAS_SPECIFIER_NO_EXCEPTION			   TRUE /* N3050: noexcept, noexcept()		    */
 #define Z_CPP_HAS_SPECIFIER_OVERRIDE				   TRUE /* N2928(v0.8), N3206(v0.9), N3272(v1.0)    */
