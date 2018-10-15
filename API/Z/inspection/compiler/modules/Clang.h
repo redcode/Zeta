@@ -30,12 +30,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define __has_builtin(which) FALSE
 #endif
 
-#ifndef __has_cpp_attribute
+#ifndef __has_cpp_attribute /* v3.6 */
 #	define __has_cpp_attribute(which) FALSE
 #endif
 
-#ifndef __has_extension
-#	define __has_extension __has_feature /* < v3.0 */
+#ifndef __has_extension /* v3.0 */
+#	define __has_extension __has_feature
 #endif
 
 /* MARK: - CPU
