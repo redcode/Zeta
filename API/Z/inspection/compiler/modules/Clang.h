@@ -648,7 +648,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		| definitions of the sized deallocation functions, either by providing	 |
 		| them explicitly or by using a C++ standard library that does.		 |
 		'-----------------------------------------------------------------------*/
-#		/*define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION TRUE*/ /* v3.4 */
+/*#		define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION TRUE*/ /* v3.4 */
 
 		/*-----------------------------------------------------------------------.
 		| [[deprecated]]] is detected using the compiler's version, since it was |
