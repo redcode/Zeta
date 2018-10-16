@@ -431,9 +431,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifdef __cplusplus
 
-	/*--------------------------------------------------.
-	| Reference: https://clang.llvm.org/cxx_status.html |
-	'--------------------------------------------------*/
+	/*---------------------------------------------------.
+	| References:					     |
+	| https://clang.llvm.org/cxx_status.html	     |
+	| https://en.cppreference.com/w/cpp/compiler_support |
+	| [Clang sources]/lib/Lex/PPMacroExpansion.cpp	     |
+	'---------------------------------------------------*/
 
 	/* MARK: - C++98 support */
 
@@ -470,18 +473,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		if Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0)
 #			define Z_COMPILER_CPP_HAS_STANDARD_LAYOUT TRUE /* v3.0 */
 
-			/*-------------------------------------------------------------.
-			| Due to a bug, the following macros don't work on Clang v3.0: |
-			|							       |
-			|    __has_feature(cxx_raw_string_literals)		       |
-			|    __has_feature(cxx_unicode_literals)		       |
-			|							       |
-			| so we detect these features using the compiler's version.    |
-			| See: https://bugs.llvm.org/show_bug.cgi?id=11267	       |
-			'-------------------------------------------------------------*/
-#			define Z_COMPILER_CPP_HAS_LITERAL_RAW_STRING	 TRUE /* v3.0 */
-#			define Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING TRUE /* v3.0 */
-
 #			if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
 #				define Z_COMPILER_CPP_HAS_FORWARD_DECLARATION_OF_ENUMERATION	  TRUE /* v3.1 */
 #				define Z_COMPILER_CPP_HAS_OPERATOR_SIZE_OF_NON_STATIC_DATA_MEMBER TRUE /* v3.1 */
@@ -489,7 +480,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 #	endif
 
-#	if __has_feature(cxx_local_type_template_args)
+#	if	__has_feature(cxx_local_type_template_args) || \
+		(__cplusplus >= 201103L			    && \
+		 Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)   && \
+		 Z_COMPILER_VERSION <  Z_VERSION(3, 1, 0))
+
 #		define Z_COMPILER_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_UNNAMED_TYPE_AS_TEMPLATE_ARGUMENT TRUE /* v2.9 */
 #	endif
@@ -529,7 +524,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE TRUE /* v2.9 */
 #	endif
 
-#	if __has_feature(cxx_defaulted_functions)
+#	if	__has_feature(cxx_defaulted_functions)	    || \
+		(__cplusplus >= 201103L			    && \
+		 Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0)   && \
+		 Z_COMPILER_VERSION <  Z_VERSION(3, 1, 0))
+
 #		define Z_COMPILER_CPP_HAS_DEFAULTED_FUNCTION TRUE /* v3.0 */
 #	endif
 
@@ -593,11 +592,31 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER TRUE /* v3.0 */
 #	endif
 
+#	if	__has_feature(cxx_raw_string_literals)	  || \
+		(__cplusplus >= 201103L			  && \
+		 Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0) && \
+		 Z_COMPILER_VERSION <  Z_VERSION(3, 1, 0))
+
+#		define Z_COMPILER_CPP_HAS_LITERAL_RAW_STRING TRUE /* v3.0 */
+#	endif
+
+#	if	__has_feature(cxx_unicode_literals)	  || \
+		(__cplusplus >= 201103L			  && \
+		 Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0) && \
+		 Z_COMPILER_VERSION <  Z_VERSION(3, 1, 0))
+
+#		define Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING TRUE /* v3.0 */
+#	endif
+
 #	if __has_feature(cxx_user_literals)
 #		define Z_COMPILER_CPP_HAS_LITERAL_USER_DEFINED TRUE /* v3.1 */
 #	endif
 
-#	if __has_feature(cxx_alignof)
+#	if	__has_feature(cxx_alignof)		  || \
+		(__cplusplus >= 201103L			  && \
+		 Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0) && \
+		 Z_COMPILER_VERSION <  Z_VERSION(3, 6, 0))
+
 #		define Z_COMPILER_CPP_HAS_OPERATOR_ALIGN_OF TRUE /* v3.3 */
 #	endif
 
@@ -630,37 +649,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION TRUE /* v3.0 */
 #	endif
 
-	/*-------------------------------------------.
-	| IMPORTANT: thread_local support requires a |
-	| C++ runtime providing __cxa_thread_atexit. |
-	'-------------------------------------------*/
+	/*-----------------------------------------------.
+	| IMPORTANT: STORATE_CLASS_THREAD_LOCAL requires |
+	| a C++ runtime providing __cxa_thread_atexit.	 |
+	'-----------------------------------------------*/
 #	if __has_feature(cxx_thread_local)
 #		define Z_COMPILER_CPP_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* v3.3 */
 #	endif
 
 	/* MARK: - C++14 support */
 
-#	if __cplusplus >= 201402L && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
+#	ifdef	defined(__cpp_digit_separators)		  || \
+		(__cplusplus >= 201402L			  && \
+		 Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0) && \
+		 Z_COMPILER_VERSION <  Z_VERSION(3, 6, 0))
 
-		/*-----------------------------------------------------------------------.
-		| IMPORTANT: In Clang v3.7 and later, sized deallocation is only enabled |
-		| if the user passes the -fsized-deallocation flag. The user must supply |
-		| definitions of the sized deallocation functions, either by providing	 |
-		| them explicitly or by using a C++ standard library that does.		 |
-		'-----------------------------------------------------------------------*/
-/*#		define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION TRUE*/ /* v3.4 */
-
-		/*-----------------------------------------------------------------------.
-		| [[deprecated]]] is detected using the compiler's version, since it was |
-		| implemented in Clang before __has_cpp_attribute(deprecated).		 |
-		| __has_attribute(deprecated) cannot be used, because it returns true if |
-		| __attribute__((deprecated)) is available, which is not the same.	 |
-		'-----------------------------------------------------------------------*/
-#		define Z_COMPILER_CPP_HAS_ATTRIBUTE_DEPRECATED TRUE /* v3.4 */
-
-#	endif
-
-#	ifdef __cpp_digit_separators
 #		define Z_COMPILER_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR TRUE /* v3.4 */
 #	endif
 
@@ -672,7 +675,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_DEFAULT_MEMBER_INITIALIZER_FOR_AGGREGATE TRUE /* v3.3 */
 #	endif
 
-#	if __has_feature(cxx_generic_lambdas)
+#	if	__has_feature(cxx_generic_lambdas)	  || \
+		(__cplusplus >= 201402L			  && \
+		 Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0) && \
+		 Z_COMPILER_VERSION <  Z_VERSION(3, 5, 0))
+
 #		define Z_COMPILER_CPP_HAS_GENERIC_LAMBDA TRUE /* v3.4 */
 #	endif
 
@@ -688,15 +695,41 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* v3.4 */
 #	endif
 
+	/*-----------------------------------------------------------------------.
+	| IMPORTANT: In Clang v3.7 and later, SIZED_DEALLOCATION is only enabled |
+	| if the user passes the -fsized-deallocation flag. The user must supply |
+	| definitions of the sized deallocation functions, either by providing	 |
+	| them explicitly or by using a C++ standard library that does.		 |
+	'-----------------------------------------------------------------------*/
+#	if __cplusplus >= 201402L && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
+/*#		define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION TRUE*/ /* v3.4 */
+#	endif
+
 #	if __has_feature(cxx_variable_templates)
 #		define Z_COMPILER_CPP_HAS_VARIABLE_TEMPLATE TRUE /* v3.4 */
 #	endif
 
-#	if __has_feature(cxx_binary_literals)
+#	if	__has_cpp_attribute(deprecated)		  || \
+		(__cplusplus >= 201402L			  && \
+		 Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0) && \
+		 Z_COMPILER_VERSION <  Z_VERSION(3, 6, 0))
+
+#		define Z_COMPILER_CPP_HAS_ATTRIBUTE_DEPRECATED TRUE /* v3.4 */
+#	endif
+
+#	if	__has_feature(cxx_binary_literals)	  || \
+		(__cplusplus >= 201402L			  && \
+		 Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0) && \
+		 Z_COMPILER_VERSION <  Z_VERSION(3, 3, 0))
+
 #		define Z_COMPILER_CPP_HAS_LITERAL_BINARY TRUE /* v2.9 */
 #	endif
 
-#	if __has_feature(cxx_decltype_auto)
+#	if	__has_feature(cxx_decltype_auto)	  || \
+		(__cplusplus >= 201402L			  && \
+		 Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0) && \
+		 Z_COMPILER_VERSION <  Z_VERSION(3, 5, 0))
+
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_AUTO TRUE /* v3.3 */
 #	endif
 
