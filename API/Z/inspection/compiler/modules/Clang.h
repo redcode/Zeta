@@ -480,6 +480,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 #	endif
 
+#	if __has_feature(cxx_generalized_initializers)
+#		define Z_COMPILER_CPP_HAS_INITIALIZER_LIST	 TRUE /* v3.1 */
+#		define Z_COMPILER_CPP_HAS_UNIFORM_INITIALIZATION TRUE /* v3.1 */
+#	endif
+
 #	if	__has_feature(cxx_local_type_template_args) || \
 		(__cplusplus >= 201103L			    && \
 		 Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)   && \
@@ -546,10 +551,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __has_feature(cxx_inheriting_constructors)
 #		define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE /* v3.3 */
-#	endif
-
-#	if __has_feature(cxx_generalized_initializers)
-#		define Z_COMPILER_CPP_HAS_INITIALIZER_LIST TRUE /* v3.1 */
 #	endif
 
 #	if __has_feature(cxx_inline_namespaces)

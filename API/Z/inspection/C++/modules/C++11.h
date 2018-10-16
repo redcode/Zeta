@@ -43,6 +43,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_STRONGLY_TYPED_ENUMERATION			   TRUE /* N2347 */
 #define Z_CPP_HAS_TEMPLATE_ALIAS				   TRUE /* N2258 */
 #define Z_CPP_HAS_TRAILING_RETURN_TYPE				   TRUE /* N2541 */
+#define Z_CPP_HAS_UNIFORM_INITIALIZATION			   TRUE /* N2672 */
 #define Z_CPP_HAS_UNNAMED_TYPE_AS_TEMPLATE_ARGUMENT		   TRUE /* N2657 */
 #define Z_CPP_HAS_UNRESTRICTED_UNION				   TRUE /* N2544 */
 #define Z_CPP_HAS_VARIADIC_TEMPLATE				   TRUE /* N2242(v0.9) */
