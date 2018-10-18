@@ -736,6 +736,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	/* MARK: - C++17 support */
 
+#	define Z_CPP_HAS_PREPROCESSOR_OPERATOR_HAS_INCLUDE TRUE /* All versions */
+
 #endif
 
 /* MARK: - Attributes */
