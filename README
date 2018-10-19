@@ -5,72 +5,21 @@
    |                        /_   /_/  -_/_   _/  _ |                        |
    |                         /____/\___/ /__//___/_|                        |
    |                                                                        |
-   |                A multi-platform header-only base library               |
-   |                                                                        |
-   |                                  v0.1                                  |
+   |                            v0.1 (pre-alpha)                            |
    |                                                                        |
    |         Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi         |
    |  Released under the terms of the GNU Lesser General Public License v3  |
    |                                                                        |
    |                             http://zeta.st                             |
    |                                                                        |
+   |   Z (expressed as the Greek capital letter "zeta") is a header-only    |
+   |   multi-platform standalone general purpose library written in C/C++.  |
+   |   It is meant to be used as a starting point for low-level projects    |
+   |   where the standard libraries are not available. This implies that    |
+   |   Z has no dependencies, it's self-contained, and uses the available   |
+   |   predefined compiler macros to detect the features of the language    |
+   |   and the target system.                                               |
    |                                                                        |
    |    ____________________________________________________________________|___
    |   /                                                                       /
     \_/_______________________________________________________________________/
-
-
-
-TABLE OF CONTENTS
-=================
-
-    1. What Z is
-    2. What Z is not
-    3. Design criteria
-    4. Conventions
-    5. Coding style
-    6. Contributing
-    7. To do
-
-
-
-1. What Z is
-============
-
-    Z (pronounced zeta) is a multi-platform header-only base library written in
-    C/C++ suitable to be used as a starting point for low-level projects. Among
-    other things, it includes a modular inspection system capable of detecting
-    the characteristics of the compiler and the target system at compile time.
-
-
-
-2. What Z is not
-================
-
-    Z is not a substitute of the standard C library, nor of the standard C++
-    library, but it can be used as a base layer to implement these.
-
-
-
-3. Design criteria
-==================
-
-
-
-4. Conventions
-==============
-
-
-
-5. Coding style
-===============
-
-
-
-6. Contributing
-===============
-
-
-
-7. To do
-========
