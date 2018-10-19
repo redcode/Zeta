@@ -301,7 +301,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Data model */
 
-#if defined(__LP64__) || defined(_LP64)
+#if	defined(__LP64__) || \
+	defined(_LP64	)
+
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_LP64
 
 #elif defined(__LP32__)
@@ -310,7 +312,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(_WIN64)
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_LLP64
 
-#elif defined(__ILP32__) || defined(_ILP32) || defined(_WIN32)
+#elif	defined(__ILP32__) || \
+	defined(_ILP32	 ) || \
+	defined(_WIN32	 )
+
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_ILP32
 #endif
 

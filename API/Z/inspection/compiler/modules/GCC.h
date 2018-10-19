@@ -23,8 +23,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - OS */
 
-#if	defined(__gnu_linux) || defined(__linux) || \
-	defined(__linux__  ) || defined(linux  )
+#if	defined(__gnu_linux) || \
+	defined(__linux	   ) || \
+	defined(__linux__  ) || \
+	defined(linux	   )
 
 #	define Z_COMPILER_OS Z_OS_LINUX
 
@@ -37,10 +39,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__OpenBSD__)
 #	define Z_COMPILER_OS Z_OS_OPEN_BSD
 
-#elif	defined(__WIN32	 ) || defined(__WIN32__) || defined(__WIN64  ) || \
-	defined(__WIN64__) || defined(__WINNT  ) || defined(__WINNT__) || \
-	defined(_WIN32	 ) || defined(_WIN64   ) || defined(WIN32    ) || \
-	defined(WIN64	 ) || defined(WINNT    )
+#elif	defined(__WIN32	 ) || \
+	defined(__WIN32__) || \
+	defined(__WIN64  ) || \
+	defined(__WIN64__) || \
+	defined(__WINNT  ) || \
+	defined(__WINNT__) || \
+	defined(_WIN32	 ) || \
+	defined(_WIN64	 ) || \
+	defined(WIN32	 ) || \
+	defined(WIN64	 ) || \
+	defined(WINNT	 )
 
 #	define Z_COMPILER_OS Z_OS_WINDOWS
 
@@ -65,15 +74,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(M_XENIX)
 #	define Z_COMPILER_OS Z_OS_SCO_UNIX_SYSTEM_V
 
-#elif defined(__sun) || defined(__sun__) || defined(sun)
+#elif	defined(__sun  ) || \
+	defined(__sun__) || \
+	defined(sun    )
 
-#	if defined(__svr4__) || defined(__SVR4)
+#	if	defined(__svr4__) || \
+		defined(__SVR4	)
+
 #		define Z_COMPILER_OS Z_COMPILER_OS_SOLARIS
 #	else
 #		define Z_COMPILER_OS Z_COMPILER_OS_SUN_OS
 #	endif
 
-#elif defined(__vxworks) || defined(__VXWORKS__)
+#elif	defined(__vxworks  ) || \
+	defined(__VXWORKS__)
+
 #	define Z_COMPILER_OS Z_OS_VX_WORKS
 
 #endif
