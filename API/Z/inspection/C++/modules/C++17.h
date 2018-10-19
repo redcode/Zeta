@@ -12,8 +12,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_CPP_HAS_FOLD_EXPRESSION		     TRUE /* N4295   */
 #define Z_CPP_HAS_NESTED_NAMESPACE_DEFINITION	     TRUE /* N4230   */
-#define Z_CPP_HAS_LITERAL_HEXADECIMAL_FLOATING_POINT TRUE /* */
 #define Z_CPP_HAS_LITERAL_UTF8_CHARACTER_LITERAL     TRUE /* N4267   */
+
+
+#define Z_CPP_HAS_CONSTANT_EXPRESSION_IF	     TRUE /* P0292R2 */
+#define Z_CPP_HAS_CONSTANT_EXPRESSION_LAMBDA	     TRUE /* P0170R1 */
+#define Z_CPP_HAS_ATTRIBUTE_FALL_THROUGH	     TRUE /* P0188R1 [[fallthrough]]  */
+#define Z_CPP_HAS_ATTRIBUTE_MAYBE_UNUSED	     TRUE /* P0212R1 [[maybe_unused]] */
+#define Z_CPP_HAS_ATTRIBUTE_NO_DISCARD		     TRUE /* P0189R1 [[nodiscard]]    */
+#define Z_CPP_HAS_LITERAL_HEXADECIMAL_FLOATING_POINT TRUE /* P0245R1 */
 #define Z_CPP_HAS_PREPROCESSOR_OPERATOR_HAS_INCLUDE  TRUE /* P0061R1 */
 
 #endif /* _Z_inspection_CPP_modules_CPP17_H_ */

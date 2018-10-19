@@ -736,7 +736,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	/* MARK: - C++17 support */
 
-#	define Z_CPP_HAS_PREPROCESSOR_OPERATOR_HAS_INCLUDE TRUE /* All versions */
+#if	__cplusplus >= 201703L
+#		define Z_COMPILER_CPP_HAS_LITERAL_HEXADECIMAL_FLOATING_POINT TRUE /* All versions */
+#	endif
+
+#	define Z_COMPILER_CPP_HAS_PREPROCESSOR_OPERATOR_HAS_INCLUDE TRUE /* All versions */
 
 #endif
 
