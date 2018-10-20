@@ -12,6 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_CPP_HAS_FOLD_EXPRESSION			  TRUE /* N4295   */
 #define Z_CPP_HAS_LITERAL_UTF8_CHARACTER_LITERAL	  TRUE /* N4267   */
+
 #define Z_CPP_HAS_ATTRIBUTE_USING_PREFIX		  TRUE /* P0028R4 */
 #define Z_CPP_HAS_CONSTANT_EXPRESSION_IF		  TRUE /* P0292R2 */
 #define Z_CPP_HAS_CONSTANT_EXPRESSION_LAMBDA		  TRUE /* P0170R1 */
@@ -22,6 +23,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_STATIC_ASSERTION_WITH_NO_MESSAGE	  TRUE /* N3928   */
 #define Z_CPP_HAS_SWITCH_WITH_INITIALIZER		  TRUE /* P0305R1 */
 #define Z_CPP_HAS_TYPENAME_IN_TEMPLATE_TEMPLATE_PARAMETER TRUE /* N4051   */
+#define Z_CPP_HAS_VARIADIC_USING			  TRUE /* P0195R2 */
 #define Z_CPP_HAS_ATTRIBUTE_FALL_THROUGH		  TRUE /* P0188R1 [[fallthrough]]  */
 #define Z_CPP_HAS_ATTRIBUTE_MAYBE_UNUSED		  TRUE /* P0212R1 [[maybe_unused]] */
 #define Z_CPP_HAS_ATTRIBUTE_NO_DISCARD			  TRUE /* P0189R1 [[nodiscard]]    */
