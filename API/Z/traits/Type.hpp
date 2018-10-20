@@ -4069,170 +4069,170 @@ namespace Zeta {
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsAggregate)
-		template <class T> struct TypeIsAggregate {enum {is_aggregate = Type<T>::is_aggregate};};
+		template <class T> struct TypeIsAggregate {enum {value = Type<T>::is_aggregate};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsBoolean)
-		template <class T> struct TypeIsBoolean {enum {is_boolean = Type<T>::is_boolean};};
+		template <class T> struct TypeIsBoolean {enum {value = Type<T>::is_boolean};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsDefaultConstructible)
-		template <class T> struct TypeIsDefaultConstructible {enum {is_default_constructible = Type<T>::is_default_constructible};};
+		template <class T> struct TypeIsDefaultConstructible {enum {value = Type<T>::is_default_constructible};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsDouble)
-		template <class T> struct TypeIsDouble {enum {is_double = Type<T>::is_double};};
+		template <class T> struct TypeIsDouble {enum {value = Type<T>::is_double};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsEnumeration)
-		template <class T> struct TypeIsEnumeration {enum {is_enumeration = Type<T>::is_enumeration};};
+		template <class T> struct TypeIsEnumeration {enum {value = Type<T>::is_enumeration};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsFinal)
-		template <class T> struct TypeIsFinal {enum {is_final = Type<T>::is_final};};
+		template <class T> struct TypeIsFinal {enum {value = Type<T>::is_final};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsFloat)
-		template <class T> struct TypeIsFloat {enum {is_float = Type<T>::is_float};};
+		template <class T> struct TypeIsFloat {enum {value = Type<T>::is_float};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsFloat16)
-		template <class T> struct TypeIsFloat16 {enum {is_float16 = Type<T>::is_float16};};
+		template <class T> struct TypeIsFloat16 {enum {value = Type<T>::is_float16};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsFloat32)
-		template <class T> struct TypeIsFloat32 {enum {is_float32 = Type<T>::is_float32};};
+		template <class T> struct TypeIsFloat32 {enum {value = Type<T>::is_float32};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsFloat64)
-		template <class T> struct TypeIsFloat64 {enum {is_float64 = Type<T>::is_float64};};
+		template <class T> struct TypeIsFloat64 {enum {value = Type<T>::is_float64};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsFloat128)
-		template <class T> struct TypeIsFloat128 {enum {is_float128 = Type<T>::is_float128};};
+		template <class T> struct TypeIsFloat128 {enum {value = Type<T>::is_float128};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsFloat80_x87)
-		template <class T> struct TypeIsFloat80_x87 {enum {is_float80_x87 = Type<T>::is_float80_x87};};
+		template <class T> struct TypeIsFloat80_x87 {enum {value = Type<T>::is_float80_x87};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsFloat96_x87)
-		template <class T> struct TypeIsFloat96_x87 {enum {is_float96_x87 = Type<T>::is_float96_x87};};
+		template <class T> struct TypeIsFloat96_x87 {enum {value = Type<T>::is_float96_x87};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsFloat128_x87)
-		template <class T> struct TypeIsFloat128_x87 {enum {is_float128_x87 = Type<T>::is_float128_x87};};
+		template <class T> struct TypeIsFloat128_x87 {enum {value = Type<T>::is_float128_x87};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsInterfaceClass)
-		template <class T> struct TypeIsInterfaceClass {enum {is_interface_class = Type<T>::is_interface_class};};
+		template <class T> struct TypeIsInterfaceClass {enum {value = Type<T>::is_interface_class};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsLDouble)
-		template <class T> struct TypeIsLDouble {enum {is_ldouble = Type<T>::is_ldouble};};
+		template <class T> struct TypeIsLDouble {enum {value = Type<T>::is_ldouble};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsLiteral)
-		template <class T> struct TypeIsLiteral {enum {is_literal = Type<T>::is_literal};};
+		template <class T> struct TypeIsLiteral {enum {value = Type<T>::is_literal};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsNullPointer)
-		template <class T> struct TypeIsNullPointer {enum {is_null_pointer = Type<T>::is_null_pointer};};
+		template <class T> struct TypeIsNullPointer {enum {value = Type<T>::is_null_pointer};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsPOD)
-		template <class T> struct TypeIsPOD {enum {is_pod = Type<T>::is_pod};};
+		template <class T> struct TypeIsPOD {enum {value = Type<T>::is_pod};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsPolymorphic)
-		template <class T> struct TypeIsPolymorphic {enum {is_polymorphic = Type<T>::is_polymorphic};};
+		template <class T> struct TypeIsPolymorphic {enum {value = Type<T>::is_polymorphic};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsSInt8)
-		template <class T> struct TypeIsSInt8 {enum {is_sint8 = Type<T>::is_sint8};};
+		template <class T> struct TypeIsSInt8 {enum {value = Type<T>::is_sint8};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsSInt16)
-		template <class T> struct TypeIsSInt16 {enum {is_sint16 = Type<T>::is_sint16};};
+		template <class T> struct TypeIsSInt16 {enum {value = Type<T>::is_sint16};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsSInt32)
-		template <class T> struct TypeIsSInt32 {enum {is_sint32 = Type<T>::is_sint32};};
+		template <class T> struct TypeIsSInt32 {enum {value = Type<T>::is_sint32};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsSInt64)
-		template <class T> struct TypeIsSInt64 {enum {is_sint64 = Type<T>::is_sint64};};
+		template <class T> struct TypeIsSInt64 {enum {value = Type<T>::is_sint64};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsSInt128)
-		template <class T> struct TypeIsSInt128 {enum {is_sint128 = Type<T>::is_sint128};};
+		template <class T> struct TypeIsSInt128 {enum {value = Type<T>::is_sint128};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTemplate)
-		template <class T> struct TypeIsTemplate {enum {is_template = Type<T>::is_template};};
+		template <class T> struct TypeIsTemplate {enum {value = Type<T>::is_template};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyCopyAssignable)
-		template <class T> struct TypeIsTriviallyCopyAssignable {enum {is_trivially_copy_assignable = Type<T>::is_trivially_copy_assignable};};
+		template <class T> struct TypeIsTriviallyCopyAssignable {enum {value = Type<T>::is_trivially_copy_assignable};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyCopyConstructible)
-		template <class T> struct TypeIsTriviallyCopyConstructible {enum {is_trivially_copy_constructible = Type<T>::is_trivially_copy_constructible};};
+		template <class T> struct TypeIsTriviallyCopyConstructible {enum {value = Type<T>::is_trivially_copy_constructible};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyCopyable)
-		template <class T> struct TypeIsTriviallyCopyable {enum {is_trivially_copyable = Type<T>::is_trivially_copyable};};
+		template <class T> struct TypeIsTriviallyCopyable {enum {value = Type<T>::is_trivially_copyable};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyDefaultConstructible)
-		template <class T> struct TypeIsTriviallyDefaultConstructible {enum {is_trivially_default_constructible = Type<T>::is_trivially_default_constructible};};
+		template <class T> struct TypeIsTriviallyDefaultConstructible {enum {value = Type<T>::is_trivially_default_constructible};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyDestructible)
-		template <class T> struct TypeIsTriviallyDestructible {enum {is_trivially_destructible = Type<T>::is_trivially_destructible};};
+		template <class T> struct TypeIsTriviallyDestructible {enum {value = Type<T>::is_trivially_destructible};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsUInt8)
-		template <class T> struct TypeIsUInt8 {enum {is_uint8 = Type<T>::is_uint8};};
+		template <class T> struct TypeIsUInt8 {enum {value = Type<T>::is_uint8};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsUInt16)
-		template <class T> struct TypeIsUInt16 {enum {is_uint16 = Type<T>::is_uint16};};
+		template <class T> struct TypeIsUInt16 {enum {value = Type<T>::is_uint16};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsUInt32)
-		template <class T> struct TypeIsUInt32 {enum {is_uint32 = Type<T>::is_uint32};};
+		template <class T> struct TypeIsUInt32 {enum {value = Type<T>::is_uint32};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsUInt64)
-		template <class T> struct TypeIsUInt64 {enum {is_uint64 = Type<T>::is_uint64};};
+		template <class T> struct TypeIsUInt64 {enum {value = Type<T>::is_uint64};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsUInt128)
-		template <class T> struct TypeIsUInt128 {enum {is_uint128 = Type<T>::is_uint128};};
+		template <class T> struct TypeIsUInt128 {enum {value = Type<T>::is_uint128};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsUnion)
-		template <class T> struct TypeIsUnion {enum {is_union = Type<T>::is_union};};
+		template <class T> struct TypeIsUnion {enum {value = Type<T>::is_union};};
 #	endif
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
-		template <class T> struct TypeIsObjectiveCClass		{enum {is_objective_c_class	     = Type<T>::is_objective_c_class	     };};
-		template <class T> struct TypeIsObjectiveCClassPointer	{enum {is_objective_c_class_pointer  = Type<T>::is_objective_c_class_pointer };};
-		template <class T> struct TypeIsObjectiveCObject	{enum {is_objective_c_object	     = Type<T>::is_objective_c_object	     };};
-		template <class T> struct TypeIsObjectiveCObjectPointer {enum {is_objective_c_object_pointer = Type<T>::is_objective_c_object_pointer};};
+		template <class T> struct TypeIsObjectiveCClass		{enum {value = Type<T>::is_objective_c_class	     };};
+		template <class T> struct TypeIsObjectiveCClassPointer	{enum {value = Type<T>::is_objective_c_class_pointer };};
+		template <class T> struct TypeIsObjectiveCObject	{enum {value = Type<T>::is_objective_c_object	     };};
+		template <class T> struct TypeIsObjectiveCObjectPointer {enum {value = Type<T>::is_objective_c_object_pointer};};
 
 #		if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-			template <class T> struct TypeIsObjectiveCInstance	  {enum {is_objective_c_instance	 = Type<T>::is_objective_c_instance	   };};
-			template <class T> struct TypeIsObjectiveCInstancePointer {enum {is_objective_c_instance_pointer = Type<T>::is_objective_c_instance_pointer};};
+			template <class T> struct TypeIsObjectiveCInstance	  {enum {value = Type<T>::is_objective_c_instance	 };};
+			template <class T> struct TypeIsObjectiveCInstancePointer {enum {value = Type<T>::is_objective_c_instance_pointer};};
 #		endif
 
 #	endif
 
 #	ifdef Z_LLONG
-		template <class T> struct TypeIsSLLong {enum {is_sllong = Type<T>::is_sllong};};
-		template <class T> struct TypeIsULLong {enum {is_ullong = Type<T>::is_ullong};};
+		template <class T> struct TypeIsSLLong {enum {value = Type<T>::is_sllong};};
+		template <class T> struct TypeIsULLong {enum {value = Type<T>::is_ullong};};
 #	endif
 
 #	if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
