@@ -341,7 +341,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C94 support */
 
-#define Z_COMPILER_C_HAS_DIGRAPH TRUE
+#define Z_COMPILER_C_HAS_DIGRAPHS TRUE
 
 /* MARK: - C99 support */
 

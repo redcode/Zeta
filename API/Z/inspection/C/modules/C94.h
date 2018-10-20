@@ -10,6 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C/modules/C90.h>
 
-#define Z_C_HAS_DIGRAPH TRUE
+#define Z_C_HAS_DIGRAPHS TRUE
 
 #endif /* _Z_inspection_C_modules_C94_H_ */

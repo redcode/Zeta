@@ -71,7 +71,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C94 support */
 
-/*#define Z_COMPILER_C_HAS_DIGRAPH*/
+/*#define Z_COMPILER_C_HAS_DIGRAPHS*/
 
 /* MARK: - C99 support */
 

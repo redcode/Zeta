@@ -102,8 +102,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C94 support */
 
-#ifndef Z_COMPILER_C_HAS_DIGRAPH
-#	define Z_COMPILER_C_HAS_DIGRAPH FALSE
+#ifndef Z_COMPILER_C_HAS_DIGRAPHS
+#	define Z_COMPILER_C_HAS_DIGRAPHS FALSE
 #endif
 
 /* MARK: - C99 support */

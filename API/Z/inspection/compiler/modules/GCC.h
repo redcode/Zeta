@@ -179,7 +179,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - C94 support */
 
 #if Z_COMPILER_VERSION >= Z_VERSION(2, 7, 0)
-#	define Z_COMPILER_C_HAS_DIGRAPH TRUE
+#	define Z_COMPILER_C_HAS_DIGRAPHS TRUE
 #endif
 
 /* MARK: - C99 support
