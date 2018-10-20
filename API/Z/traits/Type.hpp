@@ -66,6 +66,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_TypeIsBase FALSE
 #endif
 
+#if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+#	define Z_HAS_TRAIT_TypeIsBoolean   TRUE
+#	define Z_TRAIT_Type_HAS_is_boolean TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsBoolean   FALSE
+#	define Z_TRAIT_Type_HAS_is_boolean FALSE
+#endif
+
 #if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 #	define Z_HAS_TRAIT_TypeIsComplete   TRUE
 #	define Z_HAS_TRAIT_TypeIsIncomplete TRUE
@@ -94,6 +102,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_default_constructible FALSE
 #endif
 
+#ifdef Z_DOUBLE
+#	define Z_HAS_TRAIT_TypeIsDouble	  TRUE
+#	define Z_TRAIT_Type_HAS_is_double TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsDouble	  FALSE
+#	define Z_TRAIT_Type_HAS_is_double FALSE
+#endif
+
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 #	define Z_HAS_TRAIT_TypeIsEnumeration   TRUE
 #	define Z_TRAIT_Type_HAS_is_enumeration TRUE
@@ -110,6 +126,70 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_final FALSE
 #endif
 
+#ifdef Z_FLOAT
+#	define Z_HAS_TRAIT_TypeIsFloat	 TRUE
+#	define Z_TRAIT_Type_HAS_is_float TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFloat	 FALSE
+#	define Z_TRAIT_Type_HAS_is_float FALSE
+#endif
+
+#if defined(Z_FLOAT16) && Z_FLOAT16_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
+#	define Z_HAS_TRAIT_TypeIsFloat16   TRUE
+#	define Z_TRAIT_Type_HAS_is_float16 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFloat16   FALSE
+#	define Z_TRAIT_Type_HAS_is_float16 FALSE
+#endif
+
+#if defined(Z_FLOAT32) && Z_FLOAT32_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
+#	define Z_HAS_TRAIT_TypeIsFloat32   TRUE
+#	define Z_TRAIT_Type_HAS_is_float32 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFloat32   FALSE
+#	define Z_TRAIT_Type_HAS_is_float32 FALSE
+#endif
+
+#if defined(Z_FLOAT64) && Z_FLOAT64_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
+#	define Z_HAS_TRAIT_TypeIsFloat64   TRUE
+#	define Z_TRAIT_Type_HAS_is_float64 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFloat64   FALSE
+#	define Z_TRAIT_Type_HAS_is_float64 FALSE
+#endif
+
+#if defined(Z_FLOAT128) && Z_FLOAT128_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
+#	define Z_HAS_TRAIT_TypeIsFloat128   TRUE
+#	define Z_TRAIT_Type_HAS_is_float128 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFloat128   FALSE
+#	define Z_TRAIT_Type_HAS_is_float128 FALSE
+#endif
+
+#if defined(Z_FLOAT80_X87) && Z_FLOAT80_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80_X87
+#	define Z_HAS_TRAIT_TypeIsFloat80_x87   TRUE
+#	define Z_TRAIT_Type_HAS_is_float80_x87 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFloat80_x87   FALSE
+#	define Z_TRAIT_Type_HAS_is_float80_x87 FALSE
+#endif
+
+#if defined(Z_FLOAT96_X87) && Z_FLOAT96_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96_X87
+#	define Z_HAS_TRAIT_TypeIsFloat96_x87   TRUE
+#	define Z_TRAIT_Type_HAS_is_float96_x87 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFloat96_x87   FALSE
+#	define Z_TRAIT_Type_HAS_is_float96_x87 FALSE
+#endif
+
+#if defined(Z_FLOAT128_X87) && Z_FLOAT128_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128_X87
+#	define Z_HAS_TRAIT_TypeIsFloat128_x87	TRUE
+#	define Z_TRAIT_Type_HAS_is_float128_x87 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFloat128_x87	FALSE
+#	define Z_TRAIT_Type_HAS_is_float128_x87 FALSE
+#endif
+
 #if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
 #	define Z_HAS_TRAIT_TypeIsFunctional TRUE
 #	define Z_HAS_TRAIT_TypeIsFunctor    TRUE
@@ -124,6 +204,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #else
 #	define Z_HAS_TRAIT_TypeIsInterfaceClass	   FALSE
 #	define Z_TRAIT_Type_HAS_is_interface_class FALSE
+#endif
+
+#ifdef Z_LDOUBLE
+#	define Z_HAS_TRAIT_TypeIsLDouble   TRUE
+#	define Z_TRAIT_Type_HAS_is_ldouble TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsLDouble   FALSE
+#	define Z_TRAIT_Type_HAS_is_ldouble FALSE
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
@@ -146,6 +234,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_TypeIsNothrowConstructible FALSE
 #endif
 
+#if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+#	define Z_HAS_TRAIT_TypeIsNullPointer	TRUE
+#	define Z_TRAIT_Type_HAS_is_null_pointer TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsNullPointer	FALSE
+#	define Z_TRAIT_Type_HAS_is_null_pointer FALSE
+#endif
+
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
 #	define Z_HAS_TRAIT_TypeIsPOD   TRUE
 #	define Z_TRAIT_Type_HAS_is_pod TRUE
@@ -160,6 +256,46 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #else
 #	define Z_HAS_TRAIT_TypeIsPolymorphic   FALSE
 #	define Z_TRAIT_Type_HAS_is_polymorphic FALSE
+#endif
+
+#if Z_SINT8_VALUE_TYPE == Z_VALUE_TYPE_SINT8
+#	define Z_HAS_TRAIT_TypeIsSInt8	 TRUE
+#	define Z_TRAIT_Type_HAS_is_sint8 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsSInt8	 FALSE
+#	define Z_TRAIT_Type_HAS_is_sint8 FALSE
+#endif
+
+#if Z_SINT16_VALUE_TYPE == Z_VALUE_TYPE_SINT16
+#	define Z_HAS_TRAIT_TypeIsSInt16	  TRUE
+#	define Z_TRAIT_Type_HAS_is_sint16 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsSInt16	  FALSE
+#	define Z_TRAIT_Type_HAS_is_sint16 FALSE
+#endif
+
+#if defined(Z_SINT32) && Z_SINT32_VALUE_TYPE == Z_VALUE_TYPE_SINT32
+#	define Z_HAS_TRAIT_TypeIsSInt32	  TRUE
+#	define Z_TRAIT_Type_HAS_is_sint32 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsSInt32	  FALSE
+#	define Z_TRAIT_Type_HAS_is_sint32 FALSE
+#endif
+
+#if defined(Z_SINT64) && Z_SINT64_VALUE_TYPE == Z_VALUE_TYPE_SINT64
+#	define Z_HAS_TRAIT_TypeIsSInt64	  TRUE
+#	define Z_TRAIT_Type_HAS_is_sint64 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsSInt64	  FALSE
+#	define Z_TRAIT_Type_HAS_is_sint64 FALSE
+#endif
+
+#if defined(Z_SINT128) && Z_SINT128_VALUE_TYPE == Z_VALUE_TYPE_SINT128
+#	define Z_HAS_TRAIT_TypeIsSInt128   TRUE
+#	define Z_TRAIT_Type_HAS_is_sint128 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsSInt128   FALSE
+#	define Z_TRAIT_Type_HAS_is_sint128 FALSE
 #endif
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
@@ -222,6 +358,46 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_trivially_destructible FALSE
 #endif
 
+#if Z_UINT8_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+#	define Z_HAS_TRAIT_TypeIsUInt8	 TRUE
+#	define Z_TRAIT_Type_HAS_is_uint8 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsUInt8	 FALSE
+#	define Z_TRAIT_Type_HAS_is_uint8 FALSE
+#endif
+
+#if Z_UINT16_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+#	define Z_HAS_TRAIT_TypeIsUInt16	  TRUE
+#	define Z_TRAIT_Type_HAS_is_uint16 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsUInt16	  FALSE
+#	define Z_TRAIT_Type_HAS_is_uint16 FALSE
+#endif
+
+#if defined(Z_UINT32) && Z_UINT32_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+#	define Z_HAS_TRAIT_TypeIsUInt32	  TRUE
+#	define Z_TRAIT_Type_HAS_is_uint32 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsUInt32	  FALSE
+#	define Z_TRAIT_Type_HAS_is_uint32 FALSE
+#endif
+
+#if defined(Z_UINT64) && Z_UINT64_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+#	define Z_HAS_TRAIT_TypeIsUInt64	  TRUE
+#	define Z_TRAIT_Type_HAS_is_uint64 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsUInt64	  FALSE
+#	define Z_TRAIT_Type_HAS_is_uint64 FALSE
+#endif
+
+#if defined(Z_UINT128) && Z_UINT128_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+#	define Z_HAS_TRAIT_TypeIsUInt128   TRUE
+#	define Z_TRAIT_Type_HAS_is_uint128 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsUInt128   FALSE
+#	define Z_TRAIT_Type_HAS_is_uint128 FALSE
+#endif
+
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
 #	define Z_HAS_TRAIT_TypeIsUnion	 TRUE
 #	define Z_TRAIT_Type_HAS_is_union TRUE
@@ -260,6 +436,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_TypeIsObjectiveCInstancePointer	FALSE
 #	define Z_TRAIT_Type_HAS_is_objective_c_instance		FALSE
 #	define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer FALSE
+#endif
+
+#ifdef Z_LLONG
+#	define Z_HAS_TRAIT_TypeIsSLLong	  TRUE
+#	define Z_HAS_TRAIT_TypeIsULLong	  TRUE
+#	define Z_TRAIT_Type_HAS_is_sllong TRUE
+#	define Z_TRAIT_Type_HAS_is_ullong TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsSLLong	  FALSE
+#	define Z_HAS_TRAIT_TypeIsULLong	  FALSE
+#	define Z_TRAIT_Type_HAS_is_sllong FALSE
+#	define Z_TRAIT_Type_HAS_is_ullong FALSE
 #endif
 
 #if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
@@ -624,39 +812,27 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	struct Invalid {
 		enum {	is_arithmetic		     = false,
 			is_array		     = false,
-			is_boolean		     = false,
 			is_callable		     = false,
 			is_char			     = false,
 			is_class		     = false,
 			is_const		     = false,
 			is_const_volatile	     = false,
 			is_data_member_pointer	     = false,
-			is_double		     = false,
 			is_empty		     = false,
 			is_exact		     = false,
 			is_integer		     = false,
 			is_integral		     = false,
 			is_flexible_array	     = false,
-			is_float		     = false,
-			is_float16		     = false,
-			is_float32		     = false,
-			is_float64		     = false,
-			is_float128		     = false,
-			is_float80_x87		     = false,
-			is_float96_x87		     = false,
-			is_float128_x87		     = false,
 			is_function		     = false,
 			is_function_lvalue_reference = false,
 			is_function_pointer	     = false,
 			is_function_reference	     = false,
 			is_fundamental		     = false,
-			is_ldouble		     = false,
 			is_lvalue_reference	     = false,
 			is_member_function_pointer   = false,
 			is_member_pointer	     = false,
 			is_nat			     = true,
 			is_natural		     = false,
-			is_null_pointer		     = false,
 			is_number		     = false,
 			is_pointer		     = false,
 			is_qualified		     = false,
@@ -668,12 +844,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_signed_or_unsigned	     = false,
 			is_simple		     = false,
 			is_sint			     = false,
-			is_sint8		     = false,
-			is_sint16		     = false,
-			is_sint32		     = false,
-			is_sint64		     = false,
-			is_sint128		     = false,
-			is_sllong		     = false,
 			is_slong		     = false,
 			is_sshort		     = false,
 			is_statically_allocatable    = false,
@@ -682,12 +852,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_structure_or_union	     = false,
 			is_uchar		     = false,
 			is_uint			     = false,
-			is_uint8		     = false,
-			is_uint16		     = false,
-			is_uint32		     = false,
-			is_uint64		     = false,
-			is_uint128		     = false,
-			is_ullong		     = false,
 			is_ulong		     = false,
 			is_unsigned		     = false,
 			is_ushort		     = false,
@@ -750,8 +914,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_aggregate = false};
 #		endif
 
+#		if Z_TRAIT_HAS(Type, is_boolean)
+			enum {is_boolean = false};
+#		endif
+
 #		if Z_TRAIT_HAS(Type, is_default_constructible)
 			enum {is_default_constructible = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_double)
+			enum {is_double = false};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_enumeration)
@@ -762,12 +934,52 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_final = false};
 #		endif
 
+#		if Z_TRAIT_HAS(Type, is_float)
+			enum {is_float = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_float16)
+			enum {is_float16 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_float32)
+			enum {is_float32 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_float64)
+			enum {is_float64 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_float128)
+			enum {is_float128 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_float80_x87)
+			enum {is_float80_x87 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_float96_x87)
+			enum {is_float96_x87 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_float128_x87)
+			enum {is_float128_x87 = false};
+#		endif
+
 #		if Z_TRAIT_HAS(Type, is_interface_class)
 			enum {is_interface_class = false};
 #		endif
 
+#		if Z_TRAIT_HAS(Type, is_ldouble)
+			enum {is_ldouble = false};
+#		endif
+
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_null_pointer)
+			enum {is_null_pointer = false};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_pod)
@@ -776,6 +988,26 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_polymorphic)
 			enum {is_polymorphic = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_sint8)
+			enum {is_sint8 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_sint16)
+			enum {is_sint16 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_sint32)
+			enum {is_sint32 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_sint64)
+			enum {is_sint64 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_sint128)
+			enum {is_sint128 = false};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_template)
@@ -802,6 +1034,26 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_trivially_destructible = false};
 #		endif
 
+#		if Z_TRAIT_HAS(Type, is_uint8)
+			enum {is_uint8 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_uint16)
+			enum {is_uint16 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_uint32)
+			enum {is_uint32 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_uint64)
+			enum {is_uint64 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_uint128)
+			enum {is_uint128 = false};
+#		endif
+
 #		if Z_TRAIT_HAS(Type, is_union)
 			enum {is_union = false};
 #		endif
@@ -820,6 +1072,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 				};
 #			endif
 
+#		endif
+
+#		ifdef Z_LLONG
+			enum {	is_sllong = false,
+				is_ullong = false
+			};
 #		endif
 
 #		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
@@ -981,7 +1239,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {number_set = Z_NUMBER_SET_R};
 	};
 
-#	if Z_UINT8_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+#	if Z_TRAIT_HAS(Type, is_uint8)
 
 		struct UInt8 : Natural {
 			enum {is_uint8 = true};
@@ -999,7 +1257,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if Z_SINT8_VALUE_TYPE == Z_VALUE_TYPE_SINT8
+#	if Z_TRAIT_HAS(Type, is_sint8)
 
 		struct SInt8 : Integer {
 			enum {is_sint8 = true};
@@ -1019,7 +1277,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if Z_UINT16_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+#	if Z_TRAIT_HAS(Type, is_uint16)
 
 		struct UInt16 : Natural {
 			enum {is_uint16 = true};
@@ -1037,7 +1295,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if Z_SINT16_VALUE_TYPE == Z_VALUE_TYPE_SINT16
+#	if Z_TRAIT_HAS(Type, is_sint16)
 
 		struct SInt16 : Integer {
 			enum {is_sint16 = true};
@@ -1057,7 +1315,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_UINT32) && Z_UINT32_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+#	if Z_TRAIT_HAS(Type, is_uint32)
 
 		struct UInt32 : Natural {
 			enum {is_uint32 = true};
@@ -1075,7 +1333,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_SINT32) && Z_SINT32_VALUE_TYPE == Z_VALUE_TYPE_SINT32
+#	if Z_TRAIT_HAS(Type, is_sint32)
 
 		struct SInt32 : Integer {
 			enum {is_sint32 = true};
@@ -1095,7 +1353,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_UINT64) && Z_UINT64_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+#	if Z_TRAIT_HAS(Type, is_uint64)
 
 		struct UInt64 : Natural {
 			enum {is_uint64 = true};
@@ -1116,7 +1374,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_SINT64) && Z_SINT64_VALUE_TYPE == Z_VALUE_TYPE_SINT64
+#	if Z_TRAIT_HAS(Type, is_sint64)
 
 		struct SInt64 : Integer {
 			enum {is_sint64 = true};
@@ -1139,7 +1397,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_UINT128) && Z_UINT128_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+#	if Z_TRAIT_HAS(Type, is_uint128)
 
 		struct UInt128 : Natural {
 			enum {is_uint128 = true};
@@ -1160,7 +1418,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_SINT128) && Z_SINT128_VALUE_TYPE == Z_VALUE_TYPE_SINT128
+#	if Z_TRAIT_HAS(Type, is_sint128)
 
 		struct SInt128 : Integer {
 			enum {is_sint128 = true};
@@ -1183,7 +1441,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_FLOAT16) && Z_FLOAT16_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
+#	if Z_TRAIT_HAS(Type, is_float16)
 
 		struct Float16 : Real {
 			enum {is_float16 = true};
@@ -1221,7 +1479,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_FLOAT32) && Z_FLOAT32_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
+#	if Z_TRAIT_HAS(Type, is_float32)
 
 		struct Float32 : Real {
 			enum {is_float32 = true};
@@ -1259,7 +1517,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_FLOAT64) && Z_FLOAT64_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
+#	if Z_TRAIT_HAS(Type, is_float64)
 
 		struct Float64 : Real {
 			enum {is_float64 = true};
@@ -1297,7 +1555,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_FLOAT128) && Z_FLOAT128_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
+#	if Z_TRAIT_HAS(Type, is_float128)
 
 		struct Float128 : Real {
 			enum {is_float128 = true};
@@ -1335,7 +1593,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_FLOAT80_X87) && Z_FLOAT80_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80_X87
+#	if Z_TRAIT_HAS(Type, is_float80_x87)
 
 		struct Float80_x87 : Real {
 			enum {is_float80_x87 = true};
@@ -1373,7 +1631,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_FLOAT96_X87) && Z_FLOAT96_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96_X87
+#	if Z_TRAIT_HAS(Type, is_float96_x87)
 
 		struct Float96_x87 : Real {
 			enum {is_float96_x87 = true};
@@ -1411,7 +1669,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if defined(Z_FLOAT128_X87) && Z_FLOAT128_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128_X87
+#	if Z_TRAIT_HAS(Type, is_float128_x87)
 
 		struct Float128_x87 : Real {
 			enum {is_float128_x87 = true};
@@ -1626,7 +1884,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	ifdef Z_FLOAT
+#	if Z_TRAIT_HAS(Type, is_float)
 
 		struct Float : Real {
 			enum {is_float = true};
@@ -1664,7 +1922,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	ifdef Z_DOUBLE
+#	if Z_TRAIT_HAS(Type, is_double)
 
 		struct Double : Real {
 			enum {is_double = true};
@@ -1702,7 +1960,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	ifdef Z_LDOUBLE
+#	if Z_TRAIT_HAS(Type, is_ldouble)
 
 		struct LDouble : Real {
 			enum {is_ldouble = true};
@@ -1740,7 +1998,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+#	if Z_TRAIT_HAS(Type, is_boolean)
 
 		struct Boolean : Integral {
 			enum {is_boolean = true};
@@ -1815,7 +2073,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		endif
 	};
 
-#	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+#	if Z_TRAIT_HAS(Type, is_null_pointer)
 
 		struct NullPointer : PointerLike {
 			enum {	is_fundamental	= true,
@@ -2731,71 +2989,71 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: Numbers
 
-#	if Z_UINT8_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+#	if Z_TRAIT_HAS(Type, is_uint8)
 		template <Boolean E> struct Case<E, UInt8> : Mixins::Unqualified<Abstract::UInt8> {};
 #	endif
 
-#	if Z_SINT8_VALUE_TYPE == Z_VALUE_TYPE_SINT8
+#	if Z_TRAIT_HAS(Type, is_sint8)
 		template <Boolean E> struct Case<E, SInt8> : Mixins::Unqualified<Abstract::SInt8> {};
 #	endif
 
-#	if Z_UINT16_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+#	if Z_TRAIT_HAS(Type, is_uint16)
 		template <Boolean E> struct Case<E, UInt16> : Mixins::Unqualified<Abstract::UInt16> {};
 #	endif
 
-#	if Z_SINT16_VALUE_TYPE == Z_VALUE_TYPE_SINT16
+#	if Z_TRAIT_HAS(Type, is_sint16)
 		template <Boolean E> struct Case<E, SInt16> : Mixins::Unqualified<Abstract::SInt16> {};
 #	endif
 
-#	if defined(Z_UINT32) && Z_UINT32_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+#	if Z_TRAIT_HAS(Type, is_uint32)
 		template <Boolean E> struct Case<E, UInt32> : Mixins::Unqualified<Abstract::UInt32> {};
 #	endif
 
-#	if defined(Z_SINT32) && Z_SINT32_VALUE_TYPE == Z_VALUE_TYPE_SINT32
+#	if Z_TRAIT_HAS(Type, is_sint32)
 		template <Boolean E> struct Case<E, SInt32> : Mixins::Unqualified<Abstract::SInt32> {};
 #	endif
 
-#	if defined(Z_UINT64) && Z_UINT64_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+#	if Z_TRAIT_HAS(Type, is_uint64)
 		template <Boolean E> struct Case<E, UInt64> : Mixins::Unqualified<Abstract::UInt64> {};
 #	endif
 
-#	if defined(Z_SINT64) && Z_SINT64_VALUE_TYPE == Z_VALUE_TYPE_SINT64
+#	if Z_TRAIT_HAS(Type, is_sint64)
 		template <Boolean E> struct Case<E, SInt64> : Mixins::Unqualified<Abstract::SInt64> {};
 #	endif
 
-#	if defined(Z_UINT128) && Z_UINT128_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+#	if Z_TRAIT_HAS(Type, is_uint128)
 		template <Boolean E> struct Case<E, UInt128> : Mixins::Unqualified<Abstract::UInt128> {};
 #	endif
 
-#	if defined(Z_SINT128) && Z_SINT128_VALUE_TYPE == Z_VALUE_TYPE_SINT128
+#	if Z_TRAIT_HAS(Type, is_sint128)
 		template <Boolean E> struct Case<E, SInt128> : Mixins::Unqualified<Abstract::SInt128> {};
 #	endif
 
-#	if defined(Z_FLOAT16) && Z_FLOAT16_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
+#	if Z_TRAIT_HAS(Type, is_float16)
 		template <Boolean E> struct Case<E, Float16> : Mixins::Unqualified<Abstract::Float16> {};
 #	endif
 
-#	if defined(Z_FLOAT32) && Z_FLOAT32_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
+#	if Z_TRAIT_HAS(Type, is_float32)
 		template <Boolean E> struct Case<E, Float32> : Mixins::Unqualified<Abstract::Float32> {};
 #	endif
 
-#	if defined(Z_FLOAT64) && Z_FLOAT64_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
+#	if Z_TRAIT_HAS(Type, is_float64)
 		template <Boolean E> struct Case<E, Float64> : Mixins::Unqualified<Abstract::Float64> {};
 #	endif
 
-#	if defined(Z_FLOAT128) && Z_FLOAT128_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
+#	if Z_TRAIT_HAS(Type, is_float128)
 		template <Boolean E> struct Case<E, Float128> : Mixins::Unqualified<Abstract::Float128> {};
 #	endif
 
-#	if defined(Z_FLOAT80_X87) && Z_FLOAT80_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80_X87
+#	if Z_TRAIT_HAS(Type, is_float80_x87)
 		template <Boolean E> struct Case<E, Float80_x87> : Mixins::Unqualified<Abstract::Float80_x87> {};
 #	endif
 
-#	if defined(Z_FLOAT96_X87) && Z_FLOAT96_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96_X87
+#	if Z_TRAIT_HAS(Type, is_float96_x87)
 		template <Boolean E> struct Case<E, Float96_x87> : Mixins::Unqualified<Abstract::Float96_x87> {};
 #	endif
 
-#	if defined(Z_FLOAT128_X87) && Z_FLOAT128_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128_X87
+#	if Z_TRAIT_HAS(Type, is_float128_x87)
 		template <Boolean E> struct Case<E, Float128_x87> : Mixins::Unqualified<Abstract::Float128_x87> {};
 #	endif
 
@@ -2814,19 +3072,19 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E> struct Case<E, SLLong> : Mixins::Unqualified<Abstract::SLLong> {};
 #	endif
 
-#	ifdef Z_FLOAT
+#	if Z_TRAIT_HAS(Type, is_float)
 		template <Boolean E> struct Case<E, Float> : Mixins::Unqualified<Abstract::Float> {};
 #	endif
 
-#	ifdef Z_DOUBLE
+#	if Z_TRAIT_HAS(Type, is_double)
 		template <Boolean E> struct Case<E, Double> : Mixins::Unqualified<Abstract::Double> {};
 #	endif
 
-#	ifdef Z_LDOUBLE
+#	if Z_TRAIT_HAS(Type, is_ldouble)
 		template <Boolean E> struct Case<E, LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+#	if Z_TRAIT_HAS(Type, is_boolean)
 		template <Boolean E> struct Case<E, Boolean> : Mixins::Unqualified<Abstract::Boolean> {};
 #	endif
 
@@ -2848,7 +3106,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: Pointers
 
-#	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+#	if Z_TRAIT_HAS(Type, is_null_pointer)
 		template <Boolean E> struct Case<E, NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
 #	endif
 
@@ -3370,39 +3628,27 @@ namespace Zeta {
 		struct flow {
 			enum {	is_arithmetic		     = Type::is_arithmetic,
 				is_array		     = Type::is_array,
-				is_boolean		     = Type::is_boolean,
 				is_callable		     = Type::is_callable,
 				is_char			     = Type::is_char,
 				is_class		     = Type::is_class,
 				is_const		     = Type::is_const,
 				is_const_volatile	     = Type::is_const_volatile,
 				is_data_member_pointer	     = Type::is_data_member_pointer,
-				is_double		     = Type::is_double,
 				is_empty		     = Type::is_empty,
 				is_exact		     = Type::is_exact,
 				is_integer		     = Type::is_integer,
 				is_integral		     = Type::is_integral,
 				is_flexible_array	     = Type::is_flexible_array,
-				is_float		     = Type::is_float,
-				is_float16		     = Type::is_float16,
-				is_float32		     = Type::is_float32,
-				is_float64		     = Type::is_float64,
-				is_float128		     = Type::is_float128,
-				is_float80_x87		     = Type::is_float80_x87,
-				is_float96_x87		     = Type::is_float96_x87,
-				is_float128_x87		     = Type::is_float128_x87,
 				is_function		     = Type::is_function,
 				is_function_lvalue_reference = Type::is_function_lvalue_reference,
 				is_function_pointer	     = Type::is_function_pointer,
 				is_function_reference	     = Type::is_function_reference,
 				is_fundamental		     = Type::is_fundamental,
-				is_ldouble		     = Type::is_ldouble,
 				is_lvalue_reference	     = Type::is_lvalue_reference,
 				is_member_function_pointer   = Type::is_member_function_pointer,
 				is_member_pointer	     = Type::is_member_pointer,
 				is_nat			     = Type::is_nat,
 				is_natural		     = Type::is_natural,
-				is_null_pointer		     = Type::is_null_pointer,
 				is_number		     = Type::is_number,
 				is_pointer		     = Type::is_pointer,
 				is_qualified		     = Type::is_qualified,
@@ -3414,12 +3660,6 @@ namespace Zeta {
 				is_signed_or_unsigned	     = Type::is_signed_or_unsigned,
 				is_simple		     = Type::is_simple,
 				is_sint			     = Type::is_sint,
-				is_sint8		     = Type::is_sint8,
-				is_sint16		     = Type::is_sint16,
-				is_sint32		     = Type::is_sint32,
-				is_sint64		     = Type::is_sint64,
-				is_sint128		     = Type::is_sint128,
-				is_sllong		     = Type::is_sllong,
 				is_slong		     = Type::is_slong,
 				is_sshort		     = Type::is_sshort,
 				is_statically_allocatable    = Type::is_statically_allocatable,
@@ -3428,12 +3668,6 @@ namespace Zeta {
 				is_structure_or_union	     = Type::is_structure_or_union,
 				is_uchar		     = Type::is_uchar,
 				is_uint			     = Type::is_uint,
-				is_uint8		     = Type::is_uint8,
-				is_uint16		     = Type::is_uint16,
-				is_uint32		     = Type::is_uint32,
-				is_uint64		     = Type::is_uint64,
-				is_uint128		     = Type::is_uint128,
-				is_ullong		     = Type::is_ullong,
 				is_ulong		     = Type::is_ulong,
 				is_unsigned		     = Type::is_unsigned,
 				is_ushort		     = Type::is_ushort,
@@ -3498,8 +3732,16 @@ namespace Zeta {
 				enum {is_aggregate = Type::is_aggregate};
 #			endif
 
+#			if Z_TRAIT_HAS(Type, is_boolean)
+				enum {is_boolean = Type::is_boolean};
+#			endif
+
 #			if Z_TRAIT_HAS(Type, is_default_constructible)
 				enum {is_default_constructible = Type::is_default_constructible};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_double)
+				enum {is_double = Type::is_double};
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_enumeration)
@@ -3510,12 +3752,52 @@ namespace Zeta {
 				enum {is_final = Type::is_final};
 #			endif
 
+#			if Z_TRAIT_HAS(Type, is_float)
+				enum {is_float = Type::is_float};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_float16)
+				enum {is_float16 = Type::is_float16};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_float32)
+				enum {is_float32 = Type::is_float32};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_float64)
+				enum {is_float64 = Type::is_float64};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_float128)
+				enum {is_float128 = Type::is_float128};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_float80_x87)
+				enum {is_float80_x87 = Type::is_float80_x87};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_float96_x87)
+				enum {is_float96_x87 = Type::is_float96_x87};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_float128_x87)
+				enum {is_float128_x87 = Type::is_float128_x87};
+#			endif
+
 #			if Z_TRAIT_HAS(Type, is_interface_class)
 				enum {is_interface_class = Type::is_interface_class};
 #			endif
 
+#			if Z_TRAIT_HAS(Type, is_ldouble)
+				enum {is_ldouble = Type::is_ldouble};
+#			endif
+
 #			if Z_TRAIT_HAS(Type, is_literal)
 				enum {is_literal = Type::is_literal};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_null_pointer)
+				enum {is_null_pointer = Type::is_null_pointer};
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_pod)
@@ -3524,6 +3806,26 @@ namespace Zeta {
 
 #			if Z_TRAIT_HAS(Type, is_polymorphic)
 				enum {is_polymorphic = Type::is_polymorphic};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_sint8)
+				enum {is_sint8 = Type::is_sint8};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_sint16)
+				enum {is_sint16 = Type::is_sint16};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_sint32)
+				enum {is_sint32 = Type::is_sint32};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_sint64)
+				enum {is_sint64 = Type::is_sint64};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_sint128)
+				enum {is_sint128 = Type::is_sint128};
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_template)
@@ -3550,6 +3852,26 @@ namespace Zeta {
 				enum {is_trivially_destructible = Type::is_trivially_destructible};
 #			endif
 
+#			if Z_TRAIT_HAS(Type, is_uint8)
+				enum {is_uint8 = Type::is_uint8};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_uint16)
+				enum {is_uint16 = Type::is_uint16};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_uint32)
+				enum {is_uint32 = Type::is_uint32};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_uint64)
+				enum {is_uint64 = Type::is_uint64};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_uint128)
+				enum {is_uint128 = Type::is_uint128};
+#			endif
+
 #			if Z_TRAIT_HAS(Type, is_union)
 				enum {is_union = Type::is_union};
 #			endif
@@ -3568,6 +3890,12 @@ namespace Zeta {
 					};
 #				endif
 
+#			endif
+
+#			ifdef Z_LLONG
+				enum {	is_sllong = Type::is_sllong,
+					is_ullong = Type::is_ullong
+				};
 #			endif
 
 #			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
@@ -3652,39 +3980,27 @@ namespace Zeta {
 	template <class T> struct TypeElementCount		{enum {value = Type<T>::element_count		    };};
 	template <class T> struct TypeIsArithmetic		{enum {value = Type<T>::is_arithmetic		    };};
 	template <class T> struct TypeIsArray			{enum {value = Type<T>::is_array		    };};
-	template <class T> struct TypeIsBoolean			{enum {value = Type<T>::is_boolean		    };};
 	template <class T> struct TypeIsCallable		{enum {value = Type<T>::is_callable		    };};
 	template <class T> struct TypeIsChar			{enum {value = Type<T>::is_char			    };};
 	template <class T> struct TypeIsClass			{enum {value = Type<T>::is_class		    };};
 	template <class T> struct TypeIsConst			{enum {value = Type<T>::is_const		    };};
 	template <class T> struct TypeIsConstVolatile		{enum {value = Type<T>::is_const_volatile	    };};
 	template <class T> struct TypeIsDataMemberPointer	{enum {value = Type<T>::is_data_member_pointer	    };};
-	template <class T> struct TypeIsDouble			{enum {value = Type<T>::is_double		    };};
 	template <class T> struct TypeIsEmpty			{enum {value = Type<T>::is_empty		    };};
 	template <class T> struct TypeIsExact			{enum {value = Type<T>::is_exact		    };};
 	template <class T> struct TypeIsInteger			{enum {value = Type<T>::is_integer		    };};
 	template <class T> struct TypeIsIntegral		{enum {value = Type<T>::is_integral		    };};
 	template <class T> struct TypeIsFlexibleArray		{enum {value = Type<T>::is_flexible_array	    };};
-	template <class T> struct TypeIsFloat			{enum {value = Type<T>::is_float		    };};
-	template <class T> struct TypeIsFloat16			{enum {value = Type<T>::is_float16		    };};
-	template <class T> struct TypeIsFloat32			{enum {value = Type<T>::is_float32		    };};
-	template <class T> struct TypeIsFloat64			{enum {value = Type<T>::is_float64		    };};
-	template <class T> struct TypeIsFloat128		{enum {value = Type<T>::is_float128		    };};
-	template <class T> struct TypeIsFloat80_x87		{enum {value = Type<T>::is_float80_x87		    };};
-	template <class T> struct TypeIsFloat96_x87		{enum {value = Type<T>::is_float96_x87		    };};
-	template <class T> struct TypeIsFloat128_x87		{enum {value = Type<T>::is_float128_x87		    };};
 	template <class T> struct TypeIsFunction		{enum {value = Type<T>::is_function		    };};
 	template <class T> struct TypeIsFunctionLValueReference {enum {value = Type<T>::is_function_lvalue_reference};};
 	template <class T> struct TypeIsFunctionPointer		{enum {value = Type<T>::is_function_pointer	    };};
 	template <class T> struct TypeIsFunctionReference	{enum {value = Type<T>::is_function_reference	    };};
 	template <class T> struct TypeIsFundamental		{enum {value = Type<T>::is_fundamental		    };};
-	template <class T> struct TypeIsLDouble			{enum {value = Type<T>::is_ldouble		    };};
 	template <class T> struct TypeIsLValueReference		{enum {value = Type<T>::is_lvalue_reference	    };};
 	template <class T> struct TypeIsMemberFunctionPointer	{enum {value = Type<T>::is_member_function_pointer  };};
 	template <class T> struct TypeIsMemberPointer		{enum {value = Type<T>::is_member_pointer	    };};
 	template <class T> struct TypeIsNaT			{enum {value = Type<T>::is_nat			    };};
 	template <class T> struct TypeIsNatural			{enum {value = Type<T>::is_natural		    };};
-	template <class T> struct TypeIsNullPointer		{enum {value = Type<T>::is_null_pointer		    };};
 	template <class T> struct TypeIsNumber			{enum {value = Type<T>::is_number		    };};
 	template <class T> struct TypeIsPointer			{enum {value = Type<T>::is_pointer		    };};
 	template <class T> struct TypeIsQualified		{enum {value = Type<T>::is_qualified		    };};
@@ -3696,12 +4012,6 @@ namespace Zeta {
 	template <class T> struct TypeIsSignedOrUnsigned	{enum {value = Type<T>::is_signed_or_unsigned	    };};
 	template <class T> struct TypeIsSimple			{enum {value = Type<T>::is_simple		    };};
 	template <class T> struct TypeIsSInt			{enum {value = Type<T>::is_sint			    };};
-	template <class T> struct TypeIsSInt8			{enum {value = Type<T>::is_sint8		    };};
-	template <class T> struct TypeIsSInt16			{enum {value = Type<T>::is_sint16		    };};
-	template <class T> struct TypeIsSInt32			{enum {value = Type<T>::is_sint32		    };};
-	template <class T> struct TypeIsSInt64			{enum {value = Type<T>::is_sint64		    };};
-	template <class T> struct TypeIsSInt128			{enum {value = Type<T>::is_sint128		    };};
-	template <class T> struct TypeIsSLLong			{enum {value = Type<T>::is_sllong		    };};
 	template <class T> struct TypeIsSLong			{enum {value = Type<T>::is_slong		    };};
 	template <class T> struct TypeIsSShort			{enum {value = Type<T>::is_sshort		    };};
 	template <class T> struct TypeIsStaticallyAllocatable	{enum {value = Type<T>::is_statically_allocatable   };};
@@ -3710,12 +4020,6 @@ namespace Zeta {
 	template <class T> struct TypeIsStructureOrUnion	{enum {value = Type<T>::is_structure_or_union	    };};
 	template <class T> struct TypeIsUChar			{enum {value = Type<T>::is_uchar		    };};
 	template <class T> struct TypeIsUInt			{enum {value = Type<T>::is_uint			    };};
-	template <class T> struct TypeIsUInt8			{enum {value = Type<T>::is_uint8		    };};
-	template <class T> struct TypeIsUInt16			{enum {value = Type<T>::is_uint16		    };};
-	template <class T> struct TypeIsUInt32			{enum {value = Type<T>::is_uint32		    };};
-	template <class T> struct TypeIsUInt64			{enum {value = Type<T>::is_uint64		    };};
-	template <class T> struct TypeIsUInt128			{enum {value = Type<T>::is_uint128		    };};
-	template <class T> struct TypeIsULLong			{enum {value = Type<T>::is_ullong		    };};
 	template <class T> struct TypeIsULong			{enum {value = Type<T>::is_ulong		    };};
 	template <class T> struct TypeIsUnsigned		{enum {value = Type<T>::is_unsigned		    };};
 	template <class T> struct TypeIsUShort			{enum {value = Type<T>::is_ushort		    };};
@@ -3765,77 +4069,170 @@ namespace Zeta {
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsAggregate)
-		template <class T> struct TypeIsAggregate {enum {value = Type<T>::is_aggregate};};
+		template <class T> struct TypeIsAggregate {enum {is_aggregate = Type<T>::is_aggregate};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsBoolean)
+		template <class T> struct TypeIsBoolean {enum {is_boolean = Type<T>::is_boolean};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsDefaultConstructible)
-		template <class T> struct TypeIsDefaultConstructible {enum {value = Type<T>::is_default_constructible};};
+		template <class T> struct TypeIsDefaultConstructible {enum {is_default_constructible = Type<T>::is_default_constructible};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsDouble)
+		template <class T> struct TypeIsDouble {enum {is_double = Type<T>::is_double};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsEnumeration)
-		template <class T> struct TypeIsEnumeration {enum {value = Type<T>::is_enumeration};};
+		template <class T> struct TypeIsEnumeration {enum {is_enumeration = Type<T>::is_enumeration};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsFinal)
-		template <class T> struct TypeIsFinal {enum {value = Type<T>::is_final};};
+		template <class T> struct TypeIsFinal {enum {is_final = Type<T>::is_final};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsFloat)
+		template <class T> struct TypeIsFloat {enum {is_float = Type<T>::is_float};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsFloat16)
+		template <class T> struct TypeIsFloat16 {enum {is_float16 = Type<T>::is_float16};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsFloat32)
+		template <class T> struct TypeIsFloat32 {enum {is_float32 = Type<T>::is_float32};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsFloat64)
+		template <class T> struct TypeIsFloat64 {enum {is_float64 = Type<T>::is_float64};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsFloat128)
+		template <class T> struct TypeIsFloat128 {enum {is_float128 = Type<T>::is_float128};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsFloat80_x87)
+		template <class T> struct TypeIsFloat80_x87 {enum {is_float80_x87 = Type<T>::is_float80_x87};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsFloat96_x87)
+		template <class T> struct TypeIsFloat96_x87 {enum {is_float96_x87 = Type<T>::is_float96_x87};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsFloat128_x87)
+		template <class T> struct TypeIsFloat128_x87 {enum {is_float128_x87 = Type<T>::is_float128_x87};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsInterfaceClass)
-		template <class T> struct TypeIsInterfaceClass {enum {value = Type<T>::is_interface_class};};
+		template <class T> struct TypeIsInterfaceClass {enum {is_interface_class = Type<T>::is_interface_class};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsLDouble)
+		template <class T> struct TypeIsLDouble {enum {is_ldouble = Type<T>::is_ldouble};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsLiteral)
-		template <class T> struct TypeIsLiteral {enum {value = Type<T>::is_literal};};
+		template <class T> struct TypeIsLiteral {enum {is_literal = Type<T>::is_literal};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsNullPointer)
+		template <class T> struct TypeIsNullPointer {enum {is_null_pointer = Type<T>::is_null_pointer};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsPOD)
-		template <class T> struct TypeIsPOD {enum {value = Type<T>::is_pod};};
+		template <class T> struct TypeIsPOD {enum {is_pod = Type<T>::is_pod};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsPolymorphic)
-		template <class T> struct TypeIsPolymorphic {enum {value = Type<T>::is_polymorphic};};
+		template <class T> struct TypeIsPolymorphic {enum {is_polymorphic = Type<T>::is_polymorphic};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsSInt8)
+		template <class T> struct TypeIsSInt8 {enum {is_sint8 = Type<T>::is_sint8};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsSInt16)
+		template <class T> struct TypeIsSInt16 {enum {is_sint16 = Type<T>::is_sint16};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsSInt32)
+		template <class T> struct TypeIsSInt32 {enum {is_sint32 = Type<T>::is_sint32};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsSInt64)
+		template <class T> struct TypeIsSInt64 {enum {is_sint64 = Type<T>::is_sint64};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsSInt128)
+		template <class T> struct TypeIsSInt128 {enum {is_sint128 = Type<T>::is_sint128};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTemplate)
-		template <class T> struct TypeIsTemplate {enum {value = Type<T>::is_template};};
+		template <class T> struct TypeIsTemplate {enum {is_template = Type<T>::is_template};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyCopyAssignable)
-		template <class T> struct TypeIsTriviallyCopyAssignable {enum {value = Type<T>::is_trivially_copy_assignable};};
+		template <class T> struct TypeIsTriviallyCopyAssignable {enum {is_trivially_copy_assignable = Type<T>::is_trivially_copy_assignable};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyCopyConstructible)
-		template <class T> struct TypeIsTriviallyCopyConstructible {enum {value = Type<T>::is_trivially_copy_constructible};};
+		template <class T> struct TypeIsTriviallyCopyConstructible {enum {is_trivially_copy_constructible = Type<T>::is_trivially_copy_constructible};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyCopyable)
-		template <class T> struct TypeIsTriviallyCopyable {enum {value = Type<T>::is_trivially_copyable};};
+		template <class T> struct TypeIsTriviallyCopyable {enum {is_trivially_copyable = Type<T>::is_trivially_copyable};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyDefaultConstructible)
-		template <class T> struct TypeIsTriviallyDefaultConstructible {enum {value = Type<T>::is_trivially_default_constructible};};
+		template <class T> struct TypeIsTriviallyDefaultConstructible {enum {is_trivially_default_constructible = Type<T>::is_trivially_default_constructible};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyDestructible)
-		template <class T> struct TypeIsTriviallyDestructible {enum {value = Type<T>::is_trivially_destructible};};
+		template <class T> struct TypeIsTriviallyDestructible {enum {is_trivially_destructible = Type<T>::is_trivially_destructible};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsUInt8)
+		template <class T> struct TypeIsUInt8 {enum {is_uint8 = Type<T>::is_uint8};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsUInt16)
+		template <class T> struct TypeIsUInt16 {enum {is_uint16 = Type<T>::is_uint16};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsUInt32)
+		template <class T> struct TypeIsUInt32 {enum {is_uint32 = Type<T>::is_uint32};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsUInt64)
+		template <class T> struct TypeIsUInt64 {enum {is_uint64 = Type<T>::is_uint64};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsUInt128)
+		template <class T> struct TypeIsUInt128 {enum {is_uint128 = Type<T>::is_uint128};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsUnion)
-		template <class T> struct TypeIsUnion {enum {value = Type<T>::is_union};};
+		template <class T> struct TypeIsUnion {enum {is_union = Type<T>::is_union};};
 #	endif
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
-		template <class T> struct TypeIsObjectiveCClass		{enum {value = Type<T>::is_objective_c_class	     };};
-		template <class T> struct TypeIsObjectiveCClassPointer	{enum {value = Type<T>::is_objective_c_class_pointer };};
-		template <class T> struct TypeIsObjectiveCObject	{enum {value = Type<T>::is_objective_c_object	     };};
-		template <class T> struct TypeIsObjectiveCObjectPointer {enum {value = Type<T>::is_objective_c_object_pointer};};
+		template <class T> struct TypeIsObjectiveCClass		{enum {is_objective_c_class	     = Type<T>::is_objective_c_class	     };};
+		template <class T> struct TypeIsObjectiveCClassPointer	{enum {is_objective_c_class_pointer  = Type<T>::is_objective_c_class_pointer };};
+		template <class T> struct TypeIsObjectiveCObject	{enum {is_objective_c_object	     = Type<T>::is_objective_c_object	     };};
+		template <class T> struct TypeIsObjectiveCObjectPointer {enum {is_objective_c_object_pointer = Type<T>::is_objective_c_object_pointer};};
 
 #		if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-			template <class T> struct TypeIsObjectiveCInstance	  {enum {value = Type<T>::is_objective_c_instance	 };};
-			template <class T> struct TypeIsObjectiveCInstancePointer {enum {value = Type<T>::is_objective_c_instance_pointer};};
+			template <class T> struct TypeIsObjectiveCInstance	  {enum {is_objective_c_instance	 = Type<T>::is_objective_c_instance	   };};
+			template <class T> struct TypeIsObjectiveCInstancePointer {enum {is_objective_c_instance_pointer = Type<T>::is_objective_c_instance_pointer};};
 #		endif
 
+#	endif
+
+#	ifdef Z_LLONG
+		template <class T> struct TypeIsSLLong {enum {is_sllong = Type<T>::is_sllong};};
+		template <class T> struct TypeIsULLong {enum {is_ullong = Type<T>::is_ullong};};
 #	endif
 
 #	if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
