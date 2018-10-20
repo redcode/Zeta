@@ -146,14 +146,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_TypeIsNothrowConstructible FALSE
 #endif
 
-#if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
-#	define Z_HAS_TRAIT_TypeIsNullPointer	TRUE
-#	define Z_TRAIT_Type_HAS_is_null_pointer TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsNullPointer	FALSE
-#	define Z_TRAIT_Type_HAS_is_null_pointer FALSE
-#endif
-
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
 #	define Z_HAS_TRAIT_TypeIsPOD   TRUE
 #	define Z_TRAIT_Type_HAS_is_pod TRUE
@@ -664,6 +656,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_member_pointer	     = false,
 			is_nat			     = true,
 			is_natural		     = false,
+			is_null_pointer		     = false,
 			is_number		     = false,
 			is_pointer		     = false,
 			is_qualified		     = false,
@@ -775,10 +768,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #		if Z_TRAIT_HAS(Type, is_literal)
 			enum {is_literal = false};
-#		endif
-
-#		if Z_TRAIT_HAS(Type, is_null_pointer)
-			enum {is_null_pointer = false};
 #		endif
 
 #		if Z_TRAIT_HAS(Type, is_pod)
@@ -1826,7 +1815,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		endif
 	};
 
-#	if Z_TRAIT_HAS(Type, is_null_pointer)
+#	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
 
 		struct NullPointer : PointerLike {
 			enum {	is_fundamental	= true,
@@ -2859,7 +2848,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: Pointers
 
-#	if Z_TRAIT_HAS(Type, is_null_pointer)
+#	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
 		template <Boolean E> struct Case<E, NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
 #	endif
 
@@ -3413,6 +3402,7 @@ namespace Zeta {
 				is_member_pointer	     = Type::is_member_pointer,
 				is_nat			     = Type::is_nat,
 				is_natural		     = Type::is_natural,
+				is_null_pointer		     = Type::is_null_pointer,
 				is_number		     = Type::is_number,
 				is_pointer		     = Type::is_pointer,
 				is_qualified		     = Type::is_qualified,
@@ -3526,10 +3516,6 @@ namespace Zeta {
 
 #			if Z_TRAIT_HAS(Type, is_literal)
 				enum {is_literal = Type::is_literal};
-#			endif
-
-#			if Z_TRAIT_HAS(Type, is_null_pointer)
-				enum {is_null_pointer = Type::is_null_pointer};
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_pod)
@@ -3698,6 +3684,7 @@ namespace Zeta {
 	template <class T> struct TypeIsMemberPointer		{enum {value = Type<T>::is_member_pointer	    };};
 	template <class T> struct TypeIsNaT			{enum {value = Type<T>::is_nat			    };};
 	template <class T> struct TypeIsNatural			{enum {value = Type<T>::is_natural		    };};
+	template <class T> struct TypeIsNullPointer		{enum {value = Type<T>::is_null_pointer		    };};
 	template <class T> struct TypeIsNumber			{enum {value = Type<T>::is_number		    };};
 	template <class T> struct TypeIsPointer			{enum {value = Type<T>::is_pointer		    };};
 	template <class T> struct TypeIsQualified		{enum {value = Type<T>::is_qualified		    };};
@@ -3799,10 +3786,6 @@ namespace Zeta {
 
 #	if Z_HAS_TRAIT(TypeIsLiteral)
 		template <class T> struct TypeIsLiteral {enum {value = Type<T>::is_literal};};
-#	endif
-
-#	if Z_HAS_TRAIT(TypeIsNullPointer)
-		template <class T> struct TypeIsNullPointer {enum {value = Type<T>::is_null_pointer};};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsPOD)
