@@ -15,7 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/structure.h>
 #include <Z/macros/members.h>
 
-/* MARK: - Fixed width types */
+/* MARK: - Fixed width numeric types */
 
 typedef Z_DATA_MODEL_TYPE(UINT8)     zuint8;
 typedef struct {zuint8 x, y;}	     Z2DUInt8;
@@ -466,7 +466,7 @@ typedef struct {zsint32 x, y, z, w;} Z4DSInt32;
 #define Z_TYPE_INFINITY(	   TYPE) Z_INSERT_##TYPE##_FIXED_TYPE(Z_, _INFINITY	      )
 #define Z_TYPE_NAN(		   TYPE) Z_INSERT_##TYPE##_FIXED_TYPE(Z_, _NAN		      )
 
-/* MARK: - Standard base types */
+/* MARK: - Fundamental types */
 
 #if ('\0' - 1) > 0
 #	define Z_CHAR_IS_SIGNED FALSE
@@ -744,7 +744,7 @@ typedef Z4DType(SLONG)		  Z4DSLong;
 
 #endif
 
-/* MARK: - Object size types */
+/* MARK: - Object size integral types */
 
 #define Z_USIZE_BITS		 Z_DATA_MODEL_BITS(SIZE)
 
@@ -776,7 +776,7 @@ typedef Z4DType(SSIZE)		 Z4DSSize;
 #define Z_SSIZE_MINIMUM		 Z_TYPE_MINIMUM		(SSIZE)
 #define Z_SSIZE_MAXIMUM		 Z_TYPE_MAXIMUM		(SSIZE)
 
-/* MARK: - Maximum size types */
+/* MARK: - Maximum size integral types */
 
 #if defined(Z_UINT128)
 #	define Z_UINTMAX_BITS 128
@@ -848,7 +848,7 @@ typedef Z4DType(SINTMAX)	   Z4DSIntMax;
 
 #endif
 
-/* MARK: - Pointer size types */
+/* MARK: - Pointer size integral types */
 
 #define Z_POINTER_BITS		   Z_DATA_MODEL_BITS(POINTER)
 #define Z_POINTER_SIZE		   (Z_UINTPTR_BITS / 8)
@@ -883,7 +883,7 @@ typedef Z4DType(SINTPTR)	   Z4DSIntPtr;
 #define Z_SINTPTR_MINIMUM	   Z_TYPE_MINIMUM	  (SINTPTR)
 #define Z_SINTPTR_MAXIMUM	   Z_TYPE_MAXIMUM	  (SINTPTR)
 
-/* MARK: - Optimum maximum size types */
+/* MARK: - Optimum maximum size integral types */
 
 #if Z_CPU_BITS(TOP_INTEGER) >= 128 && defined(Z_UINT128)
 #	define Z_UINTTOP_BITS 128
@@ -1363,7 +1363,7 @@ Z_DEFINE_STRICT_UNION_BEGIN
 #	endif
 Z_DEFINE_STRICT_UNION_END Z128Bit;
 
-/* MARK: - Pointer cast type for lvalue assignment */
+/* MARK: - Pointer type-casting type */
 
 Z_DEFINE_STRICT_UNION_BEGIN
 	zuint8*	      pointer_uint8;

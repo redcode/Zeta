@@ -13,6 +13,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/language.hpp>
 
 namespace Zeta {
+
+	/* MARK: - Fixed width types */
+
 	typedef zuint8	UInt8;
 	typedef zsint8	SInt8;
 	typedef zuint16 UInt16;
@@ -60,6 +63,8 @@ namespace Zeta {
 		typedef zfloat128_x87 Float128_x87;
 #	endif
 
+	/* MARK: - C/C++ fundamental types */
+
 	typedef zchar	Char;
 	typedef zuchar	UChar;
 	typedef zschar	SChar;
@@ -87,14 +92,7 @@ namespace Zeta {
 		typedef zldouble LDouble;
 #	endif
 
-	typedef zusize	 USize;
-	typedef zssize	 SSize;
-	typedef zuintmax UIntMax;
-	typedef zsintmax SIntMax;
-	typedef zuintptr UIntPtr;
-	typedef zsintptr SIntPtr;
-	typedef zuinttop UIntTop;
-	typedef zsinttop SIntTop;
+	/* MARK: - C++ specific fundamental types */
 
 #	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
 		typedef bool Boolean;
@@ -102,9 +100,45 @@ namespace Zeta {
 		typedef zboolean Boolean;
 #	endif
 
-#	if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+#	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
+		typedef wchar_t WChar;
+#	endif
+
+#	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR16)
+		typedef char16_t Char16;
+#	endif
+
+#	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR32)
+		typedef char32_t Char32;
+#	endif
+
+#	if	Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && \
+		Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+
 		typedef decltype(nullptr) NullPointer;
 #	endif
+
+	/* MARK: - Object size integral types */
+
+	typedef zusize USize;
+	typedef zssize SSize;
+
+	/* MARK: - Maximum size integral types */
+
+	typedef zuintmax UIntMax;
+	typedef zsintmax SIntMax;
+
+	/* MARK: - Pointer size integral types */
+
+	typedef zuintptr UIntPtr;
+	typedef zsintptr SIntPtr;
+
+	/* MARK: - Optimum maximum size integral types */
+
+	typedef zuinttop UIntTop;
+	typedef zsinttop SIntTop;
+
+	/* MARK: - Default types */
 
 	typedef znatural Natural;
 	typedef zinteger Integer;
@@ -113,7 +147,11 @@ namespace Zeta {
 		typedef zreal Real;
 #	endif
 
+	/* MARK: - Pointer type-casting type */
+
 	typedef ZPointer Pointer;
+
+	/* MARK: - Not a type */
 
 	struct NaT {
 #		if Z_LANGUAGE_HAS(CPP, DELETED_FUNCTION)
