@@ -25,8 +25,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_VALUE_TYPE_FLOAT	   12 /* float			 */
 #define Z_VALUE_TYPE_DOUBLE	   13 /* double			 */
 #define Z_VALUE_TYPE_LDOUBLE	   14 /* long double		 */
-#define Z_VALUE_TYPE_BOOLEAN	   15 /* _Bool (C) / bool (C++)	 */
-#define Z_VALUE_TYPE_NULL_POINTER  16 /* decltype(nullptr) (C++) */
+#define Z_VALUE_TYPE_BOOLEAN	   15 /* (C) _Bool / (C++) bool	 */
+#define Z_VALUE_TYPE_WCHAR	   16 /* (C++) wchar_t		 */
+#define Z_VALUE_TYPE_CHAR16	   17 /* (C++) char16_t		 */
+#define Z_VALUE_TYPE_CHAR32	   18 /* (C++) char32_t		 */
+#define Z_VALUE_TYPE_NULL_POINTER  19 /* (C++) decltype(nullptr) */
 #define Z_VALUE_TYPE_UINT8	  128
 #define Z_VALUE_TYPE_SINT8	  129
 #define Z_VALUE_TYPE_UINT16	  130 /* Base type in SILP64 data model only. */
