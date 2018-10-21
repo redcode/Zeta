@@ -602,7 +602,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_underlying_type FALSE
 #endif
 
-#if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
+#if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
+	Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
+
 #	define Z_TRAIT_Type_HAS_string		 TRUE
 #	define Z_TRAIT_Type_HAS_symbol		 TRUE
 #	define Z_TRAIT_Type_HAS_type_string_size TRUE
@@ -674,7 +676,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_ALIAS_type_to_wrap		    FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS) && Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#if	Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS) && \
+	Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+
 #	define Z_HAS_TRAIT_ALIAS_type_add_const_lvalue		 TRUE
 #	define Z_HAS_TRAIT_ALIAS_type_add_const_rvalue		 TRUE
 #	define Z_HAS_TRAIT_ALIAS_type_add_const_volatile_lvalue	 TRUE
@@ -1141,18 +1145,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 	};
 
-	struct Void : Valid {
-		enum {	is_fundamental = true,
-			is_void	       = true
-		};
-
-#		if Z_TRAIT_HAS(Type, is_literal)
-			enum {is_literal = true};
-#		endif
-
-		typedef void type;
-	};
-
 	struct Storable : Valid {
 		enum {is_storable = true};
 	};
@@ -1237,6 +1229,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_signed_or_unsigned = true
 		};
 		enum {number_set = Z_NUMBER_SET_R};
+	};
+
+	struct PointerLike : Simple {
+		enum {is_scalar = true};
+
+#		if Z_TRAIT_HAS(Type, is_pod)
+			enum {is_pod = true};
+#		endif
 	};
 
 #	if Z_TRAIT_HAS(Type, is_uint8)
@@ -1707,6 +1707,18 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
+	struct Void : Valid {
+		enum {	is_fundamental = true,
+			is_void	       = true
+		};
+
+#		if Z_TRAIT_HAS(Type, is_literal)
+			enum {is_literal = true};
+#		endif
+
+		typedef void type;
+	};
+
 	struct Char : TernaryType<Z_CHAR_IS_SIGNED, Integer, Natural>::type {
 		enum {is_char = true};
 
@@ -2002,6 +2014,50 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 		struct Boolean : Integral {
 			enum {is_boolean = true};
+
+			typedef bool type;
+		};
+
+#	endif
+
+/*#	if Z_TRAIT_HAS(Type, is_wchar)
+
+		struct WChar {
+			enum {is_wchar = true};
+
+			typedef wchar_t type;
+		};
+
+#	endif
+
+#	if Z_TRAIT_HAS(Type, is_char16)
+
+		struct Char16 {
+			enum {is_wchar = true};
+
+			typedef char16_t type;
+		};
+
+#	endif
+
+#	if Z_TRAIT_HAS(Type, is_char32)
+
+		struct Char32 {
+			enum {is_wchar = true};
+
+			typedef char32_t type;
+		};
+
+#	endif*/
+
+#	if Z_TRAIT_HAS(Type, is_null_pointer)
+
+		struct NullPointer : PointerLike {
+			enum {	is_fundamental	= true,
+				is_null_pointer = true
+			};
+
+			typedef decltype(nullptr) type;
 		};
 
 #	endif
@@ -2064,26 +2120,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 		typedef T type[];
 	};
-
-	struct PointerLike : Simple {
-		enum {is_scalar = true};
-
-#		if Z_TRAIT_HAS(Type, is_pod)
-			enum {is_pod = true};
-#		endif
-	};
-
-#	if Z_TRAIT_HAS(Type, is_null_pointer)
-
-		struct NullPointer : PointerLike {
-			enum {	is_fundamental	= true,
-				is_null_pointer = true
-			};
-
-			typedef decltype(nullptr) type;
-		};
-
-#	endif
 
 	template <class T> struct Pointer : PointerLike {
 		enum {is_pointer = true};
@@ -2983,11 +3019,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	template <Boolean E, class T> struct Case : Mixins::Unqualified<Abstract::Kind<E, Ambiguous<T>::kind, T> > {};
 
-	// MARK: - Specializations: void
-
-	template <Boolean E> struct Case<E, void> : Mixins::Unqualified<Abstract::Void> {};
-
-	// MARK: - Specializations: Numbers
+	// MARK: - Specializations: Fixed width numeric types
 
 #	if Z_TRAIT_HAS(Type, is_uint8)
 		template <Boolean E> struct Case<E, UInt8> : Mixins::Unqualified<Abstract::UInt8> {};
@@ -3057,6 +3089,9 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E> struct Case<E, Float128_x87> : Mixins::Unqualified<Abstract::Float128_x87> {};
 #	endif
 
+	// MARK: - Specializations: C/C++ fundamental types
+
+	template <Boolean E> struct Case<E, void> : Mixins::Unqualified<Abstract::Void> {};
 	template <Boolean E> struct Case<E, Char  > : Mixins::Unqualified<Abstract::Char  > {};
 	template <Boolean E> struct Case<E, UChar > : Mixins::Unqualified<Abstract::UChar > {};
 	template <Boolean E> struct Case<E, SChar > : Mixins::Unqualified<Abstract::SChar > {};
@@ -3084,8 +3119,23 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E> struct Case<E, LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
 #	endif
 
+	// MARK: - Specializations: C/C++ specific fundamental types
+
 #	if Z_TRAIT_HAS(Type, is_boolean)
 		template <Boolean E> struct Case<E, Boolean> : Mixins::Unqualified<Abstract::Boolean> {};
+#	endif
+
+/*#	if Z_TRAIT_HAS(Type, is_wchar)
+#	endif
+
+#	if Z_TRAIT_HAS(Type, is_char16)
+#	endif
+
+#	if Z_TRAIT_HAS(Type, is_char32)
+#	endif*/
+
+#	if Z_TRAIT_HAS(Type, is_null_pointer)
+		template <Boolean E> struct Case<E, NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
 #	endif
 
 	// MARK: - Specializations: Sized arrays
@@ -3105,10 +3155,6 @@ namespace Zeta {namespace Detail {namespace Type {
 	template <Boolean E, class T> struct Case<E, const volatile T[]> : Mixins::ConstVolatileArray<Case<E, T[]> > {};
 
 	// MARK: - Specializations: Pointers
-
-#	if Z_TRAIT_HAS(Type, is_null_pointer)
-		template <Boolean E> struct Case<E, NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
-#	endif
 
 	template <Boolean E, class T> class Case<E, T*> : public Mixins::Unqualified<Abstract::Pointer<T> > {
 		private:
