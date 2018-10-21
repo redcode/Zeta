@@ -28,110 +28,91 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/classes/base/Symbol.hpp>
 #endif
 
-/* MARK: - Component availability configuration */
+// MARK: - Component availability configuration
 
-#if Z_COMPILER_HAS_TRAIT(TYPE_HAS_VIRTUAL_DESTRUCTOR)
-#	define Z_HAS_TRAIT_TypeHasVirtualDestructor    TRUE
-#	define Z_TRAIT_Type_HAS_has_virtual_destructor TRUE
+//-------------------------------------------------.
+// Components that are only available if the types |
+// to which they refer are supported or enabled.   |
+//-------------------------------------------------'
+
+#if Z_UINT8_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+#	define Z_HAS_TRAIT_TypeIsUInt8	 TRUE
+#	define Z_TRAIT_Type_HAS_is_uint8 TRUE
 #else
-#	define Z_HAS_TRAIT_TypeHasVirtualDestructor    FALSE
-#	define Z_TRAIT_Type_HAS_has_virtual_destructor FALSE
+#	define Z_HAS_TRAIT_TypeIsUInt8	 FALSE
+#	define Z_TRAIT_Type_HAS_is_uint8 FALSE
 #endif
 
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_ABSTRACT)
-#	define Z_HAS_TRAIT_TypeIsAbstract   TRUE
-#	define Z_TRAIT_Type_HAS_is_abstract TRUE
+#if Z_SINT8_VALUE_TYPE == Z_VALUE_TYPE_SINT8
+#	define Z_HAS_TRAIT_TypeIsSInt8	 TRUE
+#	define Z_TRAIT_Type_HAS_is_sint8 TRUE
 #else
-#	define Z_HAS_TRAIT_TypeIsAbstract   FALSE
-#	define Z_TRAIT_Type_HAS_is_abstract FALSE
+#	define Z_HAS_TRAIT_TypeIsSInt8	 FALSE
+#	define Z_TRAIT_Type_HAS_is_sint8 FALSE
 #endif
 
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_AGGREGATE)
-#	define Z_HAS_TRAIT_TypeIsAggregate   TRUE
-#	define Z_TRAIT_Type_HAS_is_aggregate TRUE
+#if Z_UINT16_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+#	define Z_HAS_TRAIT_TypeIsUInt16	  TRUE
+#	define Z_TRAIT_Type_HAS_is_uint16 TRUE
 #else
-#	define Z_HAS_TRAIT_TypeIsAggregate   FALSE
-#	define Z_TRAIT_Type_HAS_is_aggregate FALSE
+#	define Z_HAS_TRAIT_TypeIsUInt16	  FALSE
+#	define Z_TRAIT_Type_HAS_is_uint16 FALSE
 #endif
 
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_ASSIGNABLE)
-#	define Z_HAS_TRAIT_TypeIsAssignable TRUE
+#if Z_SINT16_VALUE_TYPE == Z_VALUE_TYPE_SINT16
+#	define Z_HAS_TRAIT_TypeIsSInt16	  TRUE
+#	define Z_TRAIT_Type_HAS_is_sint16 TRUE
 #else
-#	define Z_HAS_TRAIT_TypeIsAssignable FALSE
+#	define Z_HAS_TRAIT_TypeIsSInt16	  FALSE
+#	define Z_TRAIT_Type_HAS_is_sint16 FALSE
 #endif
 
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_BASE)
-#	define Z_HAS_TRAIT_TypeIsBase TRUE
+#if defined(Z_UINT32) && Z_UINT32_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+#	define Z_HAS_TRAIT_TypeIsUInt32	  TRUE
+#	define Z_TRAIT_Type_HAS_is_uint32 TRUE
 #else
-#	define Z_HAS_TRAIT_TypeIsBase FALSE
+#	define Z_HAS_TRAIT_TypeIsUInt32	  FALSE
+#	define Z_TRAIT_Type_HAS_is_uint32 FALSE
 #endif
 
-#if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
-#	define Z_HAS_TRAIT_TypeIsBoolean   TRUE
-#	define Z_TRAIT_Type_HAS_is_boolean TRUE
+#if defined(Z_SINT32) && Z_SINT32_VALUE_TYPE == Z_VALUE_TYPE_SINT32
+#	define Z_HAS_TRAIT_TypeIsSInt32	  TRUE
+#	define Z_TRAIT_Type_HAS_is_sint32 TRUE
 #else
-#	define Z_HAS_TRAIT_TypeIsBoolean   FALSE
-#	define Z_TRAIT_Type_HAS_is_boolean FALSE
+#	define Z_HAS_TRAIT_TypeIsSInt32	  FALSE
+#	define Z_TRAIT_Type_HAS_is_sint32 FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-#	define Z_HAS_TRAIT_TypeIsComplete   TRUE
-#	define Z_HAS_TRAIT_TypeIsIncomplete TRUE
+#if defined(Z_UINT64) && Z_UINT64_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+#	define Z_HAS_TRAIT_TypeIsUInt64	  TRUE
+#	define Z_TRAIT_Type_HAS_is_uint64 TRUE
 #else
-#	define Z_HAS_TRAIT_TypeIsComplete   FALSE
-#	define Z_HAS_TRAIT_TypeIsIncomplete FALSE
+#	define Z_HAS_TRAIT_TypeIsUInt64	  FALSE
+#	define Z_TRAIT_Type_HAS_is_uint64 FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_CONSTRUCTIBLE)
-#	define Z_HAS_TRAIT_TypeIsConstructible TRUE
+#if defined(Z_SINT64) && Z_SINT64_VALUE_TYPE == Z_VALUE_TYPE_SINT64
+#	define Z_HAS_TRAIT_TypeIsSInt64	  TRUE
+#	define Z_TRAIT_Type_HAS_is_sint64 TRUE
 #else
-#	define Z_HAS_TRAIT_TypeIsConstructible FALSE
+#	define Z_HAS_TRAIT_TypeIsSInt64	  FALSE
+#	define Z_TRAIT_Type_HAS_is_sint64 FALSE
 #endif
 
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_CONVERTIBLE)
-#	define Z_HAS_TRAIT_TypeIsConvertible TRUE
+#if defined(Z_UINT128) && Z_UINT128_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+#	define Z_HAS_TRAIT_TypeIsUInt128   TRUE
+#	define Z_TRAIT_Type_HAS_is_uint128 TRUE
 #else
-#	define Z_HAS_TRAIT_TypeIsConvertible FALSE
+#	define Z_HAS_TRAIT_TypeIsUInt128   FALSE
+#	define Z_TRAIT_Type_HAS_is_uint128 FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
-#	define Z_HAS_TRAIT_TypeIsDefaultConstructible	 TRUE
-#	define Z_TRAIT_Type_HAS_is_default_constructible TRUE
+#if defined(Z_SINT128) && Z_SINT128_VALUE_TYPE == Z_VALUE_TYPE_SINT128
+#	define Z_HAS_TRAIT_TypeIsSInt128   TRUE
+#	define Z_TRAIT_Type_HAS_is_sint128 TRUE
 #else
-#	define Z_HAS_TRAIT_TypeIsDefaultConstructible	 FALSE
-#	define Z_TRAIT_Type_HAS_is_default_constructible FALSE
-#endif
-
-#ifdef Z_DOUBLE
-#	define Z_HAS_TRAIT_TypeIsDouble	  TRUE
-#	define Z_TRAIT_Type_HAS_is_double TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsDouble	  FALSE
-#	define Z_TRAIT_Type_HAS_is_double FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-#	define Z_HAS_TRAIT_TypeIsEnumeration   TRUE
-#	define Z_TRAIT_Type_HAS_is_enumeration TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsEnumeration   FALSE
-#	define Z_TRAIT_Type_HAS_is_enumeration FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_FINAL)
-#	define Z_HAS_TRAIT_TypeIsFinal	 TRUE
-#	define Z_TRAIT_Type_HAS_is_final TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsFinal	 FALSE
-#	define Z_TRAIT_Type_HAS_is_final FALSE
-#endif
-
-#ifdef Z_FLOAT
-#	define Z_HAS_TRAIT_TypeIsFloat	 TRUE
-#	define Z_TRAIT_Type_HAS_is_float TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsFloat	 FALSE
-#	define Z_TRAIT_Type_HAS_is_float FALSE
+#	define Z_HAS_TRAIT_TypeIsSInt128   FALSE
+#	define Z_TRAIT_Type_HAS_is_sint128 FALSE
 #endif
 
 #if defined(Z_FLOAT16) && Z_FLOAT16_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
@@ -190,254 +171,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_float128_x87 FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
-#	define Z_HAS_TRAIT_TypeIsFunctional TRUE
-#	define Z_HAS_TRAIT_TypeIsFunctor    TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsFunctional FALSE
-#	define Z_HAS_TRAIT_TypeIsFunctor    TRUE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_INTERFACE_CLASS)
-#	define Z_HAS_TRAIT_TypeIsInterfaceClass	   TRUE
-#	define Z_TRAIT_Type_HAS_is_interface_class TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsInterfaceClass	   FALSE
-#	define Z_TRAIT_Type_HAS_is_interface_class FALSE
-#endif
-
-#ifdef Z_LDOUBLE
-#	define Z_HAS_TRAIT_TypeIsLDouble   TRUE
-#	define Z_TRAIT_Type_HAS_is_ldouble TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsLDouble   FALSE
-#	define Z_TRAIT_Type_HAS_is_ldouble FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
-#	define Z_HAS_TRAIT_TypeIsLiteral   TRUE
-#	define Z_TRAIT_Type_HAS_is_literal TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsLiteral   FALSE
-#	define Z_TRAIT_Type_HAS_is_literal FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)
-#	define Z_HAS_TRAIT_TypeIsNothrowAssignable TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsNothrowAssignable FALSE
-#endif
-
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_CONSTRUCTIBLE)
-#	define Z_HAS_TRAIT_TypeIsNothrowConstructible TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsNothrowConstructible FALSE
-#endif
-
-#if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
-#	define Z_HAS_TRAIT_TypeIsNullPointer	TRUE
-#	define Z_TRAIT_Type_HAS_is_null_pointer TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsNullPointer	FALSE
-#	define Z_TRAIT_Type_HAS_is_null_pointer FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
-#	define Z_HAS_TRAIT_TypeIsPOD   TRUE
-#	define Z_TRAIT_Type_HAS_is_pod TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsPOD   FALSE
-#	define Z_TRAIT_Type_HAS_is_pod FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_POLYMORPHIC)
-#	define Z_HAS_TRAIT_TypeIsPolymorphic   TRUE
-#	define Z_TRAIT_Type_HAS_is_polymorphic TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsPolymorphic   FALSE
-#	define Z_TRAIT_Type_HAS_is_polymorphic FALSE
-#endif
-
-#if Z_SINT8_VALUE_TYPE == Z_VALUE_TYPE_SINT8
-#	define Z_HAS_TRAIT_TypeIsSInt8	 TRUE
-#	define Z_TRAIT_Type_HAS_is_sint8 TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsSInt8	 FALSE
-#	define Z_TRAIT_Type_HAS_is_sint8 FALSE
-#endif
-
-#if Z_SINT16_VALUE_TYPE == Z_VALUE_TYPE_SINT16
-#	define Z_HAS_TRAIT_TypeIsSInt16	  TRUE
-#	define Z_TRAIT_Type_HAS_is_sint16 TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsSInt16	  FALSE
-#	define Z_TRAIT_Type_HAS_is_sint16 FALSE
-#endif
-
-#if defined(Z_SINT32) && Z_SINT32_VALUE_TYPE == Z_VALUE_TYPE_SINT32
-#	define Z_HAS_TRAIT_TypeIsSInt32	  TRUE
-#	define Z_TRAIT_Type_HAS_is_sint32 TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsSInt32	  FALSE
-#	define Z_TRAIT_Type_HAS_is_sint32 FALSE
-#endif
-
-#if defined(Z_SINT64) && Z_SINT64_VALUE_TYPE == Z_VALUE_TYPE_SINT64
-#	define Z_HAS_TRAIT_TypeIsSInt64	  TRUE
-#	define Z_TRAIT_Type_HAS_is_sint64 TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsSInt64	  FALSE
-#	define Z_TRAIT_Type_HAS_is_sint64 FALSE
-#endif
-
-#if defined(Z_SINT128) && Z_SINT128_VALUE_TYPE == Z_VALUE_TYPE_SINT128
-#	define Z_HAS_TRAIT_TypeIsSInt128   TRUE
-#	define Z_TRAIT_Type_HAS_is_sint128 TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsSInt128   FALSE
-#	define Z_TRAIT_Type_HAS_is_sint128 FALSE
-#endif
-
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
-#	define Z_HAS_TRAIT_TypeIsTemplate   TRUE
-#	define Z_TRAIT_Type_HAS_is_template TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsTemplate   FALSE
-#	define Z_TRAIT_Type_HAS_is_template FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_ASSIGNABLE)
-#	define Z_HAS_TRAIT_TypeIsTriviallyAssignable TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsTriviallyAssignable FALSE
-#endif
-
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_CONSTRUCTIBLE)
-#	define Z_HAS_TRAIT_TypeIsTriviallyConstructible TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsTriviallyConstructible FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPY_ASSIGNABLE)
-#	define Z_HAS_TRAIT_TypeIsTriviallyCopyAssignable     TRUE
-#	define Z_TRAIT_Type_HAS_is_trivially_copy_assignable TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsTriviallyCopyAssignable     FALSE
-#	define Z_TRAIT_Type_HAS_is_trivially_copy_assignable FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE)
-#	define Z_HAS_TRAIT_TypeIsTriviallyCopyConstructible	TRUE
-#	define Z_TRAIT_Type_HAS_is_trivially_copy_constructible TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsTriviallyCopyConstructible	FALSE
-#	define Z_TRAIT_Type_HAS_is_trivially_copy_constructible FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPYABLE)
-#	define Z_HAS_TRAIT_TypeIsTriviallyCopyable    TRUE
-#	define Z_TRAIT_Type_HAS_is_trivially_copyable TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsTriviallyCopyable    FALSE
-#	define Z_TRAIT_Type_HAS_is_trivially_copyable FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE)
-#	define Z_HAS_TRAIT_TypeIsTriviallyDefaultConstructible	   TRUE
-#	define Z_TRAIT_Type_HAS_is_trivially_default_constructible TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsTriviallyDefaultConstructible	   FALSE
-#	define Z_TRAIT_Type_HAS_is_trivially_default_constructible FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_DESTRUCTIBLE)
-#	define Z_HAS_TRAIT_TypeIsTriviallyDestructible	  TRUE
-#	define Z_TRAIT_Type_HAS_is_trivially_destructible TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsTriviallyDestructible	  FALSE
-#	define Z_TRAIT_Type_HAS_is_trivially_destructible FALSE
-#endif
-
-#if Z_UINT8_VALUE_TYPE == Z_VALUE_TYPE_UINT8
-#	define Z_HAS_TRAIT_TypeIsUInt8	 TRUE
-#	define Z_TRAIT_Type_HAS_is_uint8 TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsUInt8	 FALSE
-#	define Z_TRAIT_Type_HAS_is_uint8 FALSE
-#endif
-
-#if Z_UINT16_VALUE_TYPE == Z_VALUE_TYPE_UINT16
-#	define Z_HAS_TRAIT_TypeIsUInt16	  TRUE
-#	define Z_TRAIT_Type_HAS_is_uint16 TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsUInt16	  FALSE
-#	define Z_TRAIT_Type_HAS_is_uint16 FALSE
-#endif
-
-#if defined(Z_UINT32) && Z_UINT32_VALUE_TYPE == Z_VALUE_TYPE_UINT32
-#	define Z_HAS_TRAIT_TypeIsUInt32	  TRUE
-#	define Z_TRAIT_Type_HAS_is_uint32 TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsUInt32	  FALSE
-#	define Z_TRAIT_Type_HAS_is_uint32 FALSE
-#endif
-
-#if defined(Z_UINT64) && Z_UINT64_VALUE_TYPE == Z_VALUE_TYPE_UINT64
-#	define Z_HAS_TRAIT_TypeIsUInt64	  TRUE
-#	define Z_TRAIT_Type_HAS_is_uint64 TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsUInt64	  FALSE
-#	define Z_TRAIT_Type_HAS_is_uint64 FALSE
-#endif
-
-#if defined(Z_UINT128) && Z_UINT128_VALUE_TYPE == Z_VALUE_TYPE_UINT128
-#	define Z_HAS_TRAIT_TypeIsUInt128   TRUE
-#	define Z_TRAIT_Type_HAS_is_uint128 TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsUInt128   FALSE
-#	define Z_TRAIT_Type_HAS_is_uint128 FALSE
-#endif
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
-#	define Z_HAS_TRAIT_TypeIsUnion	 TRUE
-#	define Z_TRAIT_Type_HAS_is_union TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsUnion	 FALSE
-#	define Z_TRAIT_Type_HAS_is_union FALSE
-#endif
-
-#if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-#	define Z_HAS_TRAIT_TypeIsObjectiveCClass	      TRUE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCClassPointer	      TRUE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCObject	      TRUE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCObjectPointer      TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_class	      TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_class_pointer  TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_object	      TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_object_pointer TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsObjectiveCClass	      FALSE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCClassPointer	      FALSE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCObject	      FALSE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCObjectPointer      FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_class	      FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_class_pointer  FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_object	      FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_object_pointer FALSE
-#endif
-
-#if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-#	define Z_HAS_TRAIT_TypeIsObjectiveCInstance		TRUE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCInstancePointer	TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_instance		TRUE
-#	define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsObjectiveCInstance		FALSE
-#	define Z_HAS_TRAIT_TypeIsObjectiveCInstancePointer	FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_instance		FALSE
-#	define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer FALSE
-#endif
-
 #ifdef Z_LLONG
 #	define Z_HAS_TRAIT_TypeIsSLLong	  TRUE
 #	define Z_HAS_TRAIT_TypeIsULLong	  TRUE
@@ -448,6 +181,95 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_TypeIsULLong	  FALSE
 #	define Z_TRAIT_Type_HAS_is_sllong FALSE
 #	define Z_TRAIT_Type_HAS_is_ullong FALSE
+#endif
+
+#ifdef Z_FLOAT
+#	define Z_HAS_TRAIT_TypeIsFloat	 TRUE
+#	define Z_TRAIT_Type_HAS_is_float TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFloat	 FALSE
+#	define Z_TRAIT_Type_HAS_is_float FALSE
+#endif
+
+#ifdef Z_DOUBLE
+#	define Z_HAS_TRAIT_TypeIsDouble	  TRUE
+#	define Z_TRAIT_Type_HAS_is_double TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsDouble	  FALSE
+#	define Z_TRAIT_Type_HAS_is_double FALSE
+#endif
+
+#ifdef Z_LDOUBLE
+#	define Z_HAS_TRAIT_TypeIsLDouble   TRUE
+#	define Z_TRAIT_Type_HAS_is_ldouble TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsLDouble   FALSE
+#	define Z_TRAIT_Type_HAS_is_ldouble FALSE
+#endif
+
+#if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+#	define Z_HAS_TRAIT_TypeIsBoolean   TRUE
+#	define Z_TRAIT_Type_HAS_is_boolean TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsBoolean   FALSE
+#	define Z_TRAIT_Type_HAS_is_boolean FALSE
+#endif
+
+/*#if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
+#	define Z_HAS_TRAIT_TypeIsWChar	TRUE
+#	define Z_TRAIT_Type_HAS_is_wchar TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsWChar	 FALSE
+#	define Z_TRAIT_Type_HAS_is_wchar FALSE
+#endif
+
+#if Z_LANGUAGE_HAS_TYPE(CPP, CHAR16)
+#	define Z_HAS_TRAIT_TypeIsChar16	  TRUE
+#	define Z_TRAIT_Type_HAS_is_char16 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsChar16	  FALSE
+#	define Z_TRAIT_Type_HAS_is_char16 FALSE
+#endif
+
+#if Z_LANGUAGE_HAS_TYPE(CPP, CHAR32)
+#	define Z_HAS_TRAIT_TypeIsChar32	  TRUE
+#	define Z_TRAIT_Type_HAS_is_char32 TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsChar32	  FALSE
+#	define Z_TRAIT_Type_HAS_is_char32 FALSE
+#endif*/
+
+#if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+#	define Z_HAS_TRAIT_TypeIsNullPointer	TRUE
+#	define Z_TRAIT_Type_HAS_is_null_pointer TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsNullPointer	FALSE
+#	define Z_TRAIT_Type_HAS_is_null_pointer FALSE
+#endif
+
+//--------------------------------------------------------.
+// Components that are only available if the language	  |
+// fearures to which they refer are supported or enabled. |
+//--------------------------------------------------------'
+
+#if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#	define Z_HAS_TRAIT_TypeIsFunctionRValueReference     TRUE
+#	define Z_HAS_TRAIT_TypeIsRValueReference	     TRUE
+#	define Z_HAS_TRAIT_TypeAddRValueReference	     TRUE
+#	define Z_HAS_TRAIT_TypeToRValueReference	     TRUE
+#	define Z_TRAIT_Type_HAS_is_function_rvalue_reference TRUE
+#	define Z_TRAIT_Type_HAS_is_rvalue_reference	     TRUE
+#	define Z_TRAIT_Type_HAS_add_rvalue_reference	     TRUE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference	     TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFunctionRValueReference     FALSE
+#	define Z_HAS_TRAIT_TypeIsRValueReference	     FALSE
+#	define Z_HAS_TRAIT_TypeAddRValueReference	     FALSE
+#	define Z_HAS_TRAIT_TypeToRValueReference	     FALSE
+#	define Z_TRAIT_Type_HAS_is_function_rvalue_reference FALSE
+#	define Z_TRAIT_Type_HAS_is_rvalue_reference	     FALSE
+#	define Z_TRAIT_Type_HAS_add_rvalue_reference	     FALSE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference	     FALSE
 #endif
 
 #if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
@@ -566,24 +388,231 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_to_volatile_rvalue	   FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
-#	define Z_HAS_TRAIT_TypeIsFunctionRValueReference     TRUE
-#	define Z_HAS_TRAIT_TypeIsRValueReference	     TRUE
-#	define Z_HAS_TRAIT_TypeAddRValueReference	     TRUE
-#	define Z_HAS_TRAIT_TypeToRValueReference	     TRUE
-#	define Z_TRAIT_Type_HAS_is_function_rvalue_reference TRUE
-#	define Z_TRAIT_Type_HAS_is_rvalue_reference	     TRUE
-#	define Z_TRAIT_Type_HAS_add_rvalue_reference	     TRUE
-#	define Z_TRAIT_Type_HAS_to_rvalue_reference	     TRUE
+//------------------------------------------------.
+// Components that need compiler built-in traits. |
+// There are no known workarounds.		  |
+//------------------------------------------------'
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_HAS_VIRTUAL_DESTRUCTOR)
+#	define Z_HAS_TRAIT_TypeHasVirtualDestructor    TRUE
+#	define Z_TRAIT_Type_HAS_has_virtual_destructor TRUE
 #else
-#	define Z_HAS_TRAIT_TypeIsFunctionRValueReference     FALSE
-#	define Z_HAS_TRAIT_TypeIsRValueReference	     FALSE
-#	define Z_HAS_TRAIT_TypeAddRValueReference	     FALSE
-#	define Z_HAS_TRAIT_TypeToRValueReference	     FALSE
-#	define Z_TRAIT_Type_HAS_is_function_rvalue_reference FALSE
-#	define Z_TRAIT_Type_HAS_is_rvalue_reference	     FALSE
-#	define Z_TRAIT_Type_HAS_add_rvalue_reference	     FALSE
-#	define Z_TRAIT_Type_HAS_to_rvalue_reference	     FALSE
+#	define Z_HAS_TRAIT_TypeHasVirtualDestructor    FALSE
+#	define Z_TRAIT_Type_HAS_has_virtual_destructor FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_ABSTRACT)
+#	define Z_HAS_TRAIT_TypeIsAbstract   TRUE
+#	define Z_TRAIT_Type_HAS_is_abstract TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsAbstract   FALSE
+#	define Z_TRAIT_Type_HAS_is_abstract FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_AGGREGATE)
+#	define Z_HAS_TRAIT_TypeIsAggregate   TRUE
+#	define Z_TRAIT_Type_HAS_is_aggregate TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsAggregate   FALSE
+#	define Z_TRAIT_Type_HAS_is_aggregate FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_ASSIGNABLE)
+#	define Z_HAS_TRAIT_TypeIsAssignable TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsAssignable FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_BASE)
+#	define Z_HAS_TRAIT_TypeIsBase TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsBase FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_CONVERTIBLE)
+#	define Z_HAS_TRAIT_TypeIsConvertible TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsConvertible FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_FINAL)
+#	define Z_HAS_TRAIT_TypeIsFinal	 TRUE
+#	define Z_TRAIT_Type_HAS_is_final TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFinal	 FALSE
+#	define Z_TRAIT_Type_HAS_is_final FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_INTERFACE_CLASS)
+#	define Z_HAS_TRAIT_TypeIsInterfaceClass	   TRUE
+#	define Z_TRAIT_Type_HAS_is_interface_class TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsInterfaceClass	   FALSE
+#	define Z_TRAIT_Type_HAS_is_interface_class FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
+#	define Z_HAS_TRAIT_TypeIsLiteral   TRUE
+#	define Z_TRAIT_Type_HAS_is_literal TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsLiteral   FALSE
+#	define Z_TRAIT_Type_HAS_is_literal FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)
+#	define Z_HAS_TRAIT_TypeIsNothrowAssignable TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsNothrowAssignable FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
+#	define Z_HAS_TRAIT_TypeIsPOD   TRUE
+#	define Z_TRAIT_Type_HAS_is_pod TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsPOD   FALSE
+#	define Z_TRAIT_Type_HAS_is_pod FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_POLYMORPHIC)
+#	define Z_HAS_TRAIT_TypeIsPolymorphic   TRUE
+#	define Z_TRAIT_Type_HAS_is_polymorphic TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsPolymorphic   FALSE
+#	define Z_TRAIT_Type_HAS_is_polymorphic FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_ASSIGNABLE)
+#	define Z_HAS_TRAIT_TypeIsTriviallyAssignable TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsTriviallyAssignable FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPY_ASSIGNABLE)
+#	define Z_HAS_TRAIT_TypeIsTriviallyCopyAssignable     TRUE
+#	define Z_TRAIT_Type_HAS_is_trivially_copy_assignable TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsTriviallyCopyAssignable     FALSE
+#	define Z_TRAIT_Type_HAS_is_trivially_copy_assignable FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE)
+#	define Z_HAS_TRAIT_TypeIsTriviallyCopyConstructible	TRUE
+#	define Z_TRAIT_Type_HAS_is_trivially_copy_constructible TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsTriviallyCopyConstructible	FALSE
+#	define Z_TRAIT_Type_HAS_is_trivially_copy_constructible FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPYABLE)
+#	define Z_HAS_TRAIT_TypeIsTriviallyCopyable    TRUE
+#	define Z_TRAIT_Type_HAS_is_trivially_copyable TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsTriviallyCopyable    FALSE
+#	define Z_TRAIT_Type_HAS_is_trivially_copyable FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE)
+#	define Z_HAS_TRAIT_TypeIsTriviallyDefaultConstructible	   TRUE
+#	define Z_TRAIT_Type_HAS_is_trivially_default_constructible TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsTriviallyDefaultConstructible	   FALSE
+#	define Z_TRAIT_Type_HAS_is_trivially_default_constructible FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_DESTRUCTIBLE)
+#	define Z_HAS_TRAIT_TypeIsTriviallyDestructible	  TRUE
+#	define Z_TRAIT_Type_HAS_is_trivially_destructible TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsTriviallyDestructible	  FALSE
+#	define Z_TRAIT_Type_HAS_is_trivially_destructible FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
+#	define Z_HAS_TRAIT_TypeIsUnion	 TRUE
+#	define Z_TRAIT_Type_HAS_is_union TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsUnion	 FALSE
+#	define Z_TRAIT_Type_HAS_is_union FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_UNDERLYING_TYPE)
+#	define Z_HAS_TRAIT_TypeUnderlyingType	TRUE
+#	define Z_TRAIT_Type_HAS_underlying_type TRUE
+#else
+#	define Z_HAS_TRAIT_TypeUnderlyingType	FALSE
+#	define Z_TRAIT_Type_HAS_underlying_type FALSE
+#endif
+
+//-----------------------------------------------------------.
+// Components that need compiler built-in traits in addition |
+// to some C++11 features. There are no known workarounds.   |
+//-----------------------------------------------------------'
+
+#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_CONSTRUCTIBLE)
+#	define Z_HAS_TRAIT_TypeIsConstructible TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsConstructible FALSE
+#endif
+
+#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_CONSTRUCTIBLE)
+#	define Z_HAS_TRAIT_TypeIsNothrowConstructible TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsNothrowConstructible FALSE
+#endif
+
+#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_CONSTRUCTIBLE)
+#	define Z_HAS_TRAIT_TypeIsTriviallyConstructible TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsTriviallyConstructible FALSE
+#endif
+
+//-------------------------------------------------------------.
+// Components that use built-in compiler traits if available.  |
+// If not, they use workarounds that need some C++11 features. |
+//-------------------------------------------------------------'
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#	define Z_HAS_TRAIT_TypeIsEnumeration   TRUE
+#	define Z_TRAIT_Type_HAS_is_enumeration TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsEnumeration   FALSE
+#	define Z_TRAIT_Type_HAS_is_enumeration FALSE
+#endif
+
+//-------------------------------------------.
+// Components that need some C++11 features. |
+//-------------------------------------------'
+
+#if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#	define Z_HAS_TRAIT_TypeIsComplete   TRUE
+#	define Z_HAS_TRAIT_TypeIsIncomplete TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsComplete   FALSE
+#	define Z_HAS_TRAIT_TypeIsIncomplete FALSE
+#endif
+
+#if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+#	define Z_HAS_TRAIT_TypeIsDefaultConstructible	 TRUE
+#	define Z_TRAIT_Type_HAS_is_default_constructible TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsDefaultConstructible	 FALSE
+#	define Z_TRAIT_Type_HAS_is_default_constructible FALSE
+#endif
+
+#if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+#	define Z_HAS_TRAIT_TypeIsFunctional TRUE
+#	define Z_HAS_TRAIT_TypeIsFunctor    TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsFunctional FALSE
+#	define Z_HAS_TRAIT_TypeIsFunctor    TRUE
+#endif
+
+#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+#	define Z_HAS_TRAIT_TypeIsTemplate   TRUE
+#	define Z_TRAIT_Type_HAS_is_template TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsTemplate   FALSE
+#	define Z_TRAIT_Type_HAS_is_template FALSE
 #endif
 
 #if Z_HAS_TRAIT(TypeList)
@@ -594,13 +623,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_parameters FALSE
 #endif
 
-#if Z_COMPILER_HAS_TRAIT(TYPE_UNDERLYING_TYPE)
-#	define Z_HAS_TRAIT_TypeUnderlyingType	TRUE
-#	define Z_TRAIT_Type_HAS_underlying_type TRUE
-#else
-#	define Z_HAS_TRAIT_TypeUnderlyingType	FALSE
-#	define Z_TRAIT_Type_HAS_underlying_type FALSE
-#endif
+//-------------------------------------------------------------------------.
+// Components that need some C++14 features in addition to compiler magic. |
+//-------------------------------------------------------------------------'
 
 #if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
 	Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
@@ -613,6 +638,52 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_symbol		 FALSE
 #	define Z_TRAIT_Type_HAS_type_string_size FALSE
 #endif
+
+//------------------------------------------------------.
+// Components that are only available in Objective-C++. |
+//------------------------------------------------------'
+
+#if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+#	define Z_HAS_TRAIT_TypeIsObjectiveCClass	      TRUE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCClassPointer	      TRUE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCObject	      TRUE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCObjectPointer      TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_class	      TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_class_pointer  TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_object	      TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_object_pointer TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsObjectiveCClass	      FALSE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCClassPointer	      FALSE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCObject	      FALSE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCObjectPointer      FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_class	      FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_class_pointer  FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_object	      FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_object_pointer FALSE
+#endif
+
+//-----------------------------------------------------.
+// Components that are only available in Objective-C++ |
+// and that need some C++11 features.		       |
+//-----------------------------------------------------'
+
+#if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#	define Z_HAS_TRAIT_TypeIsObjectiveCInstance		TRUE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCInstancePointer	TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_instance		TRUE
+#	define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsObjectiveCInstance		FALSE
+#	define Z_HAS_TRAIT_TypeIsObjectiveCInstancePointer	FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_instance		FALSE
+#	define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer FALSE
+#endif
+
+//-------------------------------------------------------------------.
+// Aliases that are only available if the language supports template |
+// aliases and the template to which they refer is also available.   |
+//-------------------------------------------------------------------'
 
 #if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
 #	define Z_TRAIT_Type_HAS_to_member_pointer	    TRUE
@@ -3124,12 +3195,15 @@ namespace Zeta {namespace Detail {namespace Type {
 #	endif
 
 /*#	if Z_TRAIT_HAS(Type, is_wchar)
+		template <Boolean E> struct Case<E, WChar> : Mixins::Unqualified<Abstract::WChar> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_char16)
+		template <Boolean E> struct Case<E, Char16> : Mixins::Unqualified<Abstract::Char16> {};
 #	endif
 
 #	if Z_TRAIT_HAS(Type, is_char32)
+		template <Boolean E> struct Case<E, Char32> : Mixins::Unqualified<Abstract::Char32> {};
 #	endif*/
 
 #	if Z_TRAIT_HAS(Type, is_null_pointer)
