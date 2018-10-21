@@ -3866,13 +3866,13 @@ namespace Zeta {
 				enum {is_boolean = Type::is_boolean};
 #			endif
 
-#			if Z_TRAIT_HAS(Type, is_char16)
+/*#			if Z_TRAIT_HAS(Type, is_char16)
 				enum {is_char16 = Type::is_char16};
 #			endif
 
 #			if Z_TRAIT_HAS(Type, is_char32)
 				enum {is_char32 = Type::is_char32};
-#			endif
+#			endif*/
 
 #			if Z_TRAIT_HAS(Type, is_default_constructible)
 				enum {is_default_constructible = Type::is_default_constructible};
