@@ -101,7 +101,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 						}
 
 
-#					if Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64 || Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32
+#					if	Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64 || \
+						Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32
 
 						template <class RR = R>
 						static Z_INLINE typename EnableIf<
