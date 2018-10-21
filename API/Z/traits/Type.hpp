@@ -868,12 +868,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 
 		enum {	arity	      = 0,
+			bits	      = 0,
 			element_count = 0,
-			pointer_level = 0
-		};
-
-		enum {	bits = 0,
-			size = 0
+			pointer_level = 0,
+			size	      = 0
 		};
 
 		typedef NaT type;
