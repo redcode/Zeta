@@ -991,6 +991,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_boolean = false};
 #		endif
 
+/*#		if Z_TRAIT_HAS(Type, is_char16)
+			enum {is_char16 = false};
+#		endif
+
+#		if Z_TRAIT_HAS(Type, is_char32)
+			enum {is_char32 = false};
+#		endif*/
+
 #		if Z_TRAIT_HAS(Type, is_default_constructible)
 			enum {is_default_constructible = false};
 #		endif
@@ -1130,6 +1138,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		if Z_TRAIT_HAS(Type, is_union)
 			enum {is_union = false};
 #		endif
+
+/*#		if Z_TRAIT_HAS(Type, is_wchar)
+			enum {is_wchar = false};
+#		endif*/
 
 #		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
@@ -3854,6 +3866,14 @@ namespace Zeta {
 				enum {is_boolean = Type::is_boolean};
 #			endif
 
+#			if Z_TRAIT_HAS(Type, is_char16)
+				enum {is_char16 = Type::is_char16};
+#			endif
+
+#			if Z_TRAIT_HAS(Type, is_char32)
+				enum {is_char32 = Type::is_char32};
+#			endif
+
 #			if Z_TRAIT_HAS(Type, is_default_constructible)
 				enum {is_default_constructible = Type::is_default_constructible};
 #			endif
@@ -3993,6 +4013,10 @@ namespace Zeta {
 #			if Z_TRAIT_HAS(Type, is_union)
 				enum {is_union = Type::is_union};
 #			endif
+
+/*#			if Z_TRAIT_HAS(Type, is_wchar)
+				enum {is_wchar = Type::is_wchar};
+#			endif*/
 
 #			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
@@ -4194,6 +4218,14 @@ namespace Zeta {
 		template <class T> struct TypeIsBoolean {enum {value = Type<T>::is_boolean};};
 #	endif
 
+/*#	if Z_HAS_TRAIT(TypeIsChar16)
+		template <class T> struct TypeIsChar16 {enum {value = Type<T>::is_char16};};
+#	endif
+
+#	if Z_HAS_TRAIT(TypeIsChar32)
+		template <class T> struct TypeIsChar32 {enum {value = Type<T>::is_char32};};
+#	endif*/
+
 #	if Z_HAS_TRAIT(TypeIsDefaultConstructible)
 		template <class T> struct TypeIsDefaultConstructible {enum {value = Type<T>::is_default_constructible};};
 #	endif
@@ -4333,6 +4365,10 @@ namespace Zeta {
 #	if Z_HAS_TRAIT(TypeIsUnion)
 		template <class T> struct TypeIsUnion {enum {value = Type<T>::is_union};};
 #	endif
+
+/*#	if Z_HAS_TRAIT(TypeIsWChar)
+		template <class T> struct TypeIsWChar {enum {value = Type<T>::is_wchar};};
+#	endif*/
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
