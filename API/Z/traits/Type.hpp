@@ -3119,7 +3119,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E> struct Case<E, LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
 #	endif
 
-	// MARK: - Specializations: C/C++ specific fundamental types
+	// MARK: - Specializations: C++ specific fundamental types
 
 #	if Z_TRAIT_HAS(Type, is_boolean)
 		template <Boolean E> struct Case<E, Boolean> : Mixins::Unqualified<Abstract::Boolean> {};
