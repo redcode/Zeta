@@ -96,6 +96,8 @@ namespace Zeta {
 
 #	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
 		typedef bool Boolean;
+#	elif Z_LANGUAGE_HAS_TYPE(C, BOOLEAN)
+		typedef _Bool Boolean;
 #	else
 		typedef zboolean Boolean;
 #	endif
