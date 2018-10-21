@@ -447,6 +447,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_CPP_HAS_SFINAE       TRUE
 #	define Z_COMPILER_CPP_HAS_TYPE_BOOLEAN TRUE
+#	define Z_COMPILER_CPP_HAS_TYPE_WCHAR   TRUE
 
 	/* MARK: - C++11 support */
 

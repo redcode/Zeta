@@ -115,6 +115,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	/*#define Z_COMPILER_CPP_HAS_SFINAE*/
 	/*#define Z_COMPILER_CPP_HAS_TYPE_BOOLEAN*/
+	/*#define Z_COMPILER_CPP_HAS_TYPE_WCHAR*/
 
 	/* MARK: - C++11 support */
 

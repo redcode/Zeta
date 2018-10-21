@@ -17,6 +17,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_TYPE_BOOLEAN FALSE
 #endif
 
+#ifndef Z_CPP_HAS_TYPE_WCHAR
+#	define Z_CPP_HAS_TYPE_WCHAR FALSE
+#endif
+
 /* MARK: - C++03 */
 
 /* MARK: - C++11 */

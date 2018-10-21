@@ -11,6 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/C++/modules/C++89.h>
 
 #define Z_CPP_HAS_SFINAE       TRUE
-#define Z_CPP_HAS_TYPE_BOOLEAN TRUE /* bool */
+#define Z_CPP_HAS_TYPE_BOOLEAN TRUE /* bool    */
+#define Z_CPP_HAS_TYPE_WCHAR   TRUE /* wchar_t */
 
 #endif /* _Z_inspection_CPP_modules_CPP98_H_ */
