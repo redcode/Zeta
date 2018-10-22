@@ -65,6 +65,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_DELETED_FUNCTION FALSE
 #endif
 
+#ifndef Z_CPP_HAS_DIRECT_LIST_INITIALIZATION
+#	define Z_CPP_HAS_DIRECT_LIST_INITIALIZATION FALSE
+#endif
+
 #ifndef Z_CPP_HAS_EXPLICIT_CONVERSION_FUNCTION
 #	define Z_CPP_HAS_EXPLICIT_CONVERSION_FUNCTION FALSE
 #endif
@@ -159,10 +163,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_CPP_HAS_TRAILING_RETURN_TYPE
 #	define Z_CPP_HAS_TRAILING_RETURN_TYPE FALSE
-#endif
-
-#ifndef Z_CPP_HAS_UNIFORM_INITIALIZATION
-#	define Z_CPP_HAS_UNIFORM_INITIALIZATION FALSE
 #endif
 
 #ifndef Z_CPP_HAS_UNNAMED_TYPE_AS_TEMPLATE_ARGUMENT
