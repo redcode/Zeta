@@ -10,13 +10,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C++/modules/C++14.h>
 
-#define Z_CPP_HAS_FOLD_EXPRESSION			  TRUE /* N4295	  */
-
 #define Z_CPP_HAS_ATTRIBUTE_USING_PREFIX		  TRUE /* P0028R4 */
 #define Z_CPP_HAS_CONSTANT_EXPRESSION_IF		  TRUE /* P0292R2 */
 #define Z_CPP_HAS_CONSTANT_EXPRESSION_LAMBDA		  TRUE /* P0170R1 */
 #define Z_CPP_HAS_CPP17_RULES_ON_BRACED_INITIALIZATION	  TRUE /* N3922	  */
 #define Z_CPP_HAS_ENUMERATION_ATTRIBUTES		  TRUE /* N4266	  */
+#define Z_CPP_HAS_FOLD_EXPRESSION			  TRUE /* N4295	  */
 #define Z_CPP_HAS_IF_WITH_INITIALIZER			  TRUE /* P0305R1 */
 #define Z_CPP_HAS_INLINE_VARIABLE			  TRUE /* P0386R2 */
 #define Z_CPP_HAS_NAMESPACE_ATTRIBUTES			  TRUE /* N4266	  */
