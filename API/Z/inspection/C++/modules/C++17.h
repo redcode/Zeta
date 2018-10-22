@@ -19,6 +19,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_GUARANTEED_COPY_ELISION		  TRUE /* P0135R1 */
 #define Z_CPP_HAS_IF_WITH_INITIALIZER			  TRUE /* P0305R1 */
 #define Z_CPP_HAS_INLINE_VARIABLE			  TRUE /* P0386R2 */
+#define Z_CPP_HAS_LAMBDA_CAPTURE_OF_STAR_THIS_BY_VALUE	  TRUE /* P0018R3 */
 #define Z_CPP_HAS_NAMESPACE_ATTRIBUTES			  TRUE /* N4266	  */
 #define Z_CPP_HAS_NESTED_NAMESPACE_DEFINITION		  TRUE /* N4230	  */
 #define Z_CPP_HAS_REMOVAL_OF_INCREMENT_BOOLEAN_OPERATOR	  TRUE /* P0002R1 */
@@ -36,3 +37,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_PREPROCESSOR_OPERATOR_HAS_INCLUDE	  TRUE /* P0061R1 */
 
 #endif /* _Z_inspection_CPP_modules_CPP17_H_ */
+
