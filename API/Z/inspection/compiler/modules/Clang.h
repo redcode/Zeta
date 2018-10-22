@@ -449,6 +449,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CPP_HAS_TYPE_BOOLEAN TRUE
 #	define Z_COMPILER_CPP_HAS_TYPE_WCHAR   TRUE
 
+	/* MARK: - C++03 support */
+
+#	define Z_COMPILER_CPP_HAS_VALUE_INITIALIZATION TRUE
+
 	/* MARK: - C++11 support */
 
 #	if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)

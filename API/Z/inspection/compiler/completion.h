@@ -236,6 +236,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_TYPE_WCHAR FALSE
 #	endif
 
+	/* MARK: - C++03 support */
+
+#	ifndef Z_COMPILER_CPP_HAS_VALUE_INITIALIZATION
+#		define Z_COMPILER_CPP_HAS_VALUE_INITIALIZATION FALSE
+#	endif
+
 	/* MARK: - C++11 support */
 
 #	ifndef Z_COMPILER_CPP_HAS_C99_PREPROCESSOR

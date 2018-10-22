@@ -23,6 +23,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C++03 */
 
+#ifndef Z_CPP_HAS_VALUE_INITIALIZATION
+#	define Z_CPP_HAS_VALUE_INITIALIZATION FALSE
+#endif
+
 /* MARK: - C++11 */
 
 #ifndef Z_CPP_HAS_C99_PREPROCESSOR
