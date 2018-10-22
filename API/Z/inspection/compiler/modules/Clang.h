@@ -712,8 +712,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| definitions of the sized deallocation functions, either by providing	 |
 	| them explicitly or by using a C++ standard library that does.		 |
 	'-----------------------------------------------------------------------*/
-#	if __cplusplus >= 201402L && Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0)
-/*#		define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION TRUE*/ /* v3.4 */
+#	if	__cplusplus >= 201402L			 && \
+		Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0) && \
+		Z_COMPILER_VERSION <  Z_VERSION(3, 7, 0)
+
+#		define Z_COMPILER_CPP_HAS_SIZED_DEALLOCATION TRUE /* v3.4 */
 #	endif
 
 #	if __has_feature(cxx_variable_templates)
