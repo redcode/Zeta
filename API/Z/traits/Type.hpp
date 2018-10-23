@@ -3172,7 +3172,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: C/C++ fundamental types
 
-	template <Boolean E> struct Case<E, void> : Mixins::Unqualified<Abstract::Void> {};
+	template <Boolean E> struct Case<E, void  > : Mixins::Unqualified<Abstract::Void  > {};
 	template <Boolean E> struct Case<E, Char  > : Mixins::Unqualified<Abstract::Char  > {};
 	template <Boolean E> struct Case<E, UChar > : Mixins::Unqualified<Abstract::UChar > {};
 	template <Boolean E> struct Case<E, SChar > : Mixins::Unqualified<Abstract::SChar > {};
@@ -3200,11 +3200,11 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E> struct Case<E, LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
 #	endif
 
-	// MARK: - Specializations: C++ specific fundamental types
-
 #	if Z_TRAIT_HAS(Type, is_boolean)
 		template <Boolean E> struct Case<E, Boolean> : Mixins::Unqualified<Abstract::Boolean> {};
 #	endif
+
+	// MARK: - Specializations: C++ specific fundamental types
 
 /*#	if Z_TRAIT_HAS(Type, is_wchar)
 		template <Boolean E> struct Case<E, WChar> : Mixins::Unqualified<Abstract::WChar> {};
