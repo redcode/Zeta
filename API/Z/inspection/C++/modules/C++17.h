@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C++/modules/C++14.h>
 
-#define Z_CPP_HAS_AGGREGATE_WITH_BASE_CLASS		     TRUE /* P0017R1 */
+#define Z_CPP_HAS_AGGREGATE_WITH_BASE_CLASSES		     TRUE /* P0017R1 */
 #define Z_CPP_HAS_ATTRIBUTE_USING_PREFIX		     TRUE /* P0028R4 */
 #define Z_CPP_HAS_CONSTANT_EXPRESSION_IF		     TRUE /* P0292R2 */
 #define Z_CPP_HAS_CONSTANT_EXPRESSION_LAMBDA		     TRUE /* P0170R1 */
