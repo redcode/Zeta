@@ -39,5 +39,11 @@ Front view		Back view
 
 #include <Z/types/base.h>
 
+/* MARK: - Screen */
+
+#define Z_GAME_BOY_SCREEN_FPS	 59.7
+#define Z_GAME_BOY_SCREEN_WIDTH	 160
+#define Z_GAME_BOY_SCREEN_HEIGHT 144
+#define Z_GAME_BOY_SCREEN_PIXELS 23040 /* 160 * 144 */
 
 #endif /* _Z_hardware_machine_platform_console_Game_Boy_H_ */
