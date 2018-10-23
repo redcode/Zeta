@@ -92,8 +92,6 @@ namespace Zeta {
 		typedef zldouble LDouble;
 #	endif
 
-	/* MARK: - C++ specific fundamental types */
-
 #	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
 		typedef bool Boolean;
 #	elif Z_LANGUAGE_HAS_TYPE(C, BOOLEAN)
@@ -101,6 +99,8 @@ namespace Zeta {
 #	else
 		typedef zboolean Boolean;
 #	endif
+
+	/* MARK: - C++ specific fundamental types */
 
 #	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
 		typedef wchar_t WChar;
