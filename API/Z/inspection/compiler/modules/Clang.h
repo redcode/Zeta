@@ -678,6 +678,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR TRUE /* v3.4 */
 #	endif
 
+#	if __has_feature(cxx_relaxed_constexpr)
+#		define Z_COMPILER_CPP_HAS_CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION TRUE /* v3.4 */
+#	endif
+
 #	if __has_feature(cxx_contextual_conversions)
 #		define Z_COMPILER_CPP_HAS_CPP14_RULES_ON_CONTEXTUAL_CONVERSION TRUE /* v3.4 */
 #	endif
@@ -696,10 +700,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if __has_feature(cxx_init_captures)
 #		define Z_COMPILER_CPP_HAS_INITIALIZED_LAMBDA_CAPTURE TRUE /* v3.4 */
-#	endif
-
-#	if __has_feature(cxx_relaxed_constexpr)
-#		define Z_COMPILER_CPP_HAS_RELAXED_CONSTANT_EXPRESSION_FUNCTION TRUE /* v3.4 */
 #	endif
 
 #	if __has_feature(cxx_return_type_deduction)
