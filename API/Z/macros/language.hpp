@@ -34,20 +34,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
 #	define Z_CONSTANT constexpr
-#	define Z_CT_N2235 constexpr
+#	define Z_CT_CPP11 constexpr
 #else 
 #	define Z_CONSTANT
-#	define Z_CT_N2235
+#	define Z_CT_CPP11
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
-#	define Z_CT_N3652 constexpr
+#if Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
+#	define Z_CT_CPP14 constexpr
 #else
-#	define Z_CT_N3652
+#	define Z_CT_CPP14
 #endif
-
-#define Z_CT_CPP11 Z_CT_N2235
-#define Z_CT_CPP14 Z_CT_N3652
 
 #define Z_CT(CONFORM_TO) Z_CT_##CONFORM_TO Z_INLINE
 

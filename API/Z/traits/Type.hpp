@@ -23,7 +23,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
+#if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
+	Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
+
 #	include <Z/functions/base/type.hpp>
 #	include <Z/classes/base/Symbol.hpp>
 #endif
@@ -628,7 +630,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 //-------------------------------------------------------------------------'
 
 #if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
-	Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
+	Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
 
 #	define Z_TRAIT_Type_HAS_string		 TRUE
 #	define Z_TRAIT_Type_HAS_symbol		 TRUE
@@ -4099,7 +4101,8 @@ namespace Zeta {
 #			endif
 		};
 
-#		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_LANGUAGE_HAS(CPP, RELAXED_CONSTANT_EXPRESSION_FUNCTION)
+#		if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
+			Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
 
 
 			static Z_CT(CPP14) USize string_size()
