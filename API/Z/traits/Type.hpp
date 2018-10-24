@@ -251,7 +251,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 //--------------------------------------------------------.
 // Components that are only available if the language	  |
-// fearures to which they refer are supported or enabled. |
+// features to which they refer are supported or enabled. |
 //--------------------------------------------------------'
 
 #if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
