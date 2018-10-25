@@ -30,6 +30,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_IGNORATION_OF_UNKNOWN_ATTRIBUTES		     TRUE /* P0283R2 */
 #define Z_CPP_HAS_INLINE_VARIABLE				     TRUE /* P0386R2 */
 #define Z_CPP_HAS_LAMBDA_CAPTURE_OF_THIS_OBJECT_BY_VALUE	     TRUE /* P0018R3 */
+#define Z_CPP_HAS_LAUNDER /* Not a good name */			     TRUE /* P0137R1 */
 #define Z_CPP_HAS_NESTED_NAMESPACE_DEFINITION			     TRUE /* N4230   */
 #define Z_CPP_HAS_NON_TYPE_TEMPLATE_PARAMETER_WITH_AUTO_TYPE	     TRUE /* P0127R2 */
 #define Z_CPP_HAS_OVER_ALIGNED_DYNAMIC_ALLOCATION		     TRUE /* P0035R4 */
