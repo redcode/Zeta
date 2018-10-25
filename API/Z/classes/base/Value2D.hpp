@@ -277,11 +277,21 @@ namespace Zeta {
 
 		Z_CT(CPP11) Boolean is_perpendicular(const Value2D &other) const
 			{return !Zeta::absolute<T>(dot_product(other));}
+
+
+#		ifdef Z_EXTENSION_VALUE_2D_Z
+			Z_EXTENSION_VALUE_2D_Z
+#		endif
 	};
 
 
 	template <class T> struct Value2D<T, Z_NUMBER_SET_N> {
 		Z_IMPLEMENTATION_COMMON
+
+
+#		ifdef Z_EXTENSION_VALUE_2D_N
+			Z_EXTENSION_VALUE_2D_N
+#		endif
 	};
 
 
@@ -355,6 +365,11 @@ namespace Zeta {
 
 		Z_CT(CPP11) Value2D reciprocal() const
 			{return Value2D(T(1) / x, T(1) / y);}
+
+
+#		ifdef Z_EXTENSION_VALUE_2D_R
+			Z_EXTENSION_VALUE_2D_R
+#		endif
 	};
 }
 

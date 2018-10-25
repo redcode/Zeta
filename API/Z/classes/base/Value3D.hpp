@@ -225,11 +225,21 @@ namespace Zeta {
 
 		Z_CT(CPP11) Boolean is_perpendicular(const Value3D &other) const
 			{return !Zeta::absolute<T>(dot_product(other));}
+
+
+#		ifdef Z_EXTENSION_VALUE_3D_Z
+			Z_EXTENSION_VALUE_3D_Z
+#		endif
 	};
 
 
 	template <class T> struct Value3D<T, Z_NUMBER_SET_N> {
 		Z_IMPLEMENTATION_COMMON
+
+
+#		ifdef Z_EXTENSION_VALUE_3D_N
+			Z_EXTENSION_VALUE_3D_N
+#		endif
 	};
 
 
@@ -343,6 +353,11 @@ namespace Zeta {
 
 		Z_CT(CPP11) Value3D reciprocal() const
 			{return Value3D(T(1) / x, T(1) / y, T(1) / z);}
+
+
+#		ifdef Z_EXTENSION_VALUE_3D_R
+			Z_EXTENSION_VALUE_3D_R
+#		endif
 	};
 }
 
