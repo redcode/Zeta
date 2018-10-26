@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define _Z_inspection_CPP_modules_CPP17_H_
 
 #include <Z/inspection/C++/modules/C++14.h>
- 
+
 #define Z_CPP_HAS_AGGREGATE_WITH_BASE_CLASSES			     TRUE /* P0017R1 */
 #define Z_CPP_HAS_ATTRIBUTES_FOR_ENUMERATION			     TRUE /* N4266   */
 #define Z_CPP_HAS_ATTRIBUTES_FOR_NAMESPACE			     TRUE /* N4266   */
@@ -34,6 +34,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_NESTED_NAMESPACE_DEFINITION			     TRUE /* N4230   */
 #define Z_CPP_HAS_NON_TYPE_TEMPLATE_PARAMETER_WITH_AUTO_TYPE	     TRUE /* P0127R2 */
 #define Z_CPP_HAS_OVER_ALIGNED_DYNAMIC_ALLOCATION		     TRUE /* P0035R4 */
+#define Z_CPP_HAS_REMOVAL_OF_DYNAMIC_EXCEPTION_SPECIFICATION	     TRUE /* P0003R5 */
 #define Z_CPP_HAS_REMOVAL_OF_INCREMENT_BOOLEAN_OPERATOR		     TRUE /* P0002R1 */
 #define Z_CPP_HAS_REMOVAL_OF_REGISTER_AS_STORAGE_CLASS		     TRUE /* P0001R1 */
 #define Z_CPP_HAS_REMOVAL_OF_TRIGRAPHS				     TRUE /* N4086   */
