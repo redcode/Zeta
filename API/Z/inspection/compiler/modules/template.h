@@ -9,7 +9,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_inspection_modules_compiler_template_H_
 #define _Z_inspection_modules_compiler_template_H_
 
-#include <Z/keys/compiler.h>
 #include <Z/macros/version.h>
 
 /* MARK: - Identification */
