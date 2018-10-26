@@ -291,6 +291,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_ANONYMOUS_UNION TRUE
 #endif
 
+/* MARK: - C18 support */
+
 /* MARK: - Apple C extensions support */
 
 #ifdef __BLOCKS__

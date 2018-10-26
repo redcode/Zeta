@@ -57,6 +57,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_TYPE_QUALIFIER_VOLATILE FALSE
 #endif
 
+/* MARK: - C90 */
+
 /* MARK: - C94 */
 
 #ifndef Z_C_HAS_DIGRAPHS
@@ -170,5 +172,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_C_HAS_TYPE_QUALIFIER_ATOMIC
 #	define Z_C_HAS_TYPE_QUALIFIER_ATOMIC FALSE
 #endif
+
+/* MARK: - C18 */
 
 /* inspection/C/completion.h EOF */

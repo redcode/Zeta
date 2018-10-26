@@ -214,6 +214,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC FALSE
 #endif
 
+/* MARK: - C18 support */
+
 /* MARK: - Apple C extensions support */
 
 #ifndef Z_COMPILER_C_HAS_CLOSURE

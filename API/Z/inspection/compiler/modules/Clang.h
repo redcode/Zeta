@@ -428,6 +428,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_STORATE_CLASS_THREAD_LOCAL TRUE
 #endif
 
+/* MARK: - C18 support */
+
 /* MARK: - Apple C extensions support */
 
 #if __has_extension(blocks)
