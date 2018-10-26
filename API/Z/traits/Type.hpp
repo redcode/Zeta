@@ -684,7 +684,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 //-------------------------------------------------------------------.
 // Aliases that are only available if the language supports template |
-// aliases and the template to which they refer is also available.   |
+// aliases and the component to which they refer is also available.  |
 //-------------------------------------------------------------------'
 
 #if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
