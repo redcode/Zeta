@@ -205,7 +205,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	/*#define Z_COMPILER_CPP_HAS_LITERAL_BINARY*/
 	/*#define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_AUTO*/
 
-	/* MARK: C++17 support */
+	/* MARK: - C++17 support */
 
 	/*#define Z_COMPILER_CPP_HAS_AGGREGATE_WITH_BASE_CLASSES*/
 	/*#define Z_COMPILER_CPP_HAS_ATTRIBUTES_FOR_ENUMERATION*/

@@ -540,7 +540,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_AUTO FALSE
 #	endif
 
-	/* MARK: C++17 support */
+	/* MARK: - C++17 support */
 
 #	ifndef Z_COMPILER_CPP_HAS_AGGREGATE_WITH_BASE_CLASSES
 #		define Z_COMPILER_CPP_HAS_AGGREGATE_WITH_BASE_CLASSES FALSE

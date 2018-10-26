@@ -289,7 +289,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_TYPE_LLONG FALSE
 #endif
 
-/* MARK: C++14 */
+/* MARK: - C++14 */
 
 #ifndef Z_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR
 #	define Z_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR FALSE
@@ -339,7 +339,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_SPECIFIER_DECLARED_TYPE_OF_AUTO FALSE
 #endif
 
-/* MARK: C++17 */
+/* MARK: - C++17 */
 
 #ifndef Z_CPP_HAS_AGGREGATE_WITH_BASE_CLASSES
 #	define Z_CPP_HAS_AGGREGATE_WITH_BASE_CLASSES FALSE
