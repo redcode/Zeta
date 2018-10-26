@@ -16,6 +16,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_C Z_KR_C
 #	elif !defined(__STDC_VERSION__)
 #		define Z_C Z_89
+#	elif __STDC_VERSION__ >= 201710L
+#		define Z_C Z_C18
 #	elif __STDC_VERSION__ >= 201112L
 #		define Z_C Z_C11
 #	elif __STDC_VERSION__ >= 199901L
@@ -26,6 +28,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_C Z_C90
 #	endif
 #endif
+
+#if Z_C == Z_C18
+
+#	include <Z/inspection/C/modules/C18.h>
+
+#	define Z_C_STRING Z_C_STRING_C18
 
 #if Z_C == Z_C11
 
