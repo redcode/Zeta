@@ -66,6 +66,8 @@ typedef struct {
 } ZEmulatorComponent;
 
 Z_DEFINE_STRICT_STRUCTURE (
+	zchar const* domain_identifier;
+	zchar const* unit_identifier;
 ) ZEmulatorDependency;
 
 typedef ZContextDo ZEmulatorFunction;
@@ -95,8 +97,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 	ZEmulatorInstanceImport const* instance_imports;
 ) ZCPUEmulatorABI;
 
-typedef struct {
-} ZMachineEmulatorABI;
+/*typedef struct {
+} ZMachineEmulatorABI;*/
 
 typedef zusize (* ZEmulatorRun)	 (void*    object,
 				  zusize   cycles);
