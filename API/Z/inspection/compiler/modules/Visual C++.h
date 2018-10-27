@@ -33,7 +33,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Bit field order */
 
-#define Z_COMPILER_BIT_FIELD_ORDER Z_ORDER_REVERSED
+#define Z_COMPILER_BIT_FIELD_ORDER Z_ORDER_REVERSED /* TODO */
 
 /*#define Z_COMPILER_BIT_FIELD_ORDER_8BIT*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_16BIT*/
@@ -219,10 +219,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_ATTRIBUTE_API_EXPORT_ALIAS*/
 /*#define Z_COMPILER_ATTRIBUTE_API_WEAK_EXPORT*/
 #define Z_COMPILER_ATTRIBUTE_EBCO	       __declspec(empty_bases)
-#define Z_COMPILER_ATTRIBUTE_INLINE	       static __forceinline
+#define Z_COMPILER_ATTRIBUTE_INLINE	       __forceinline
 /*#define Z_COMPILER_ATTRIBUTE_NO_RETURN*/
 /*#define Z_COMPILER_ATTRIBUTE_NULL_TERMINATED*/
-#define Z_COMPILER_ATTRIBUTE_PRIVATE	       static
+/*#define Z_COMPILER_ATTRIBUTE_PRIVATE*/
 /*#define Z_COMPILER_ATTRIBUTE_PUBLIC*/
 #define Z_COMPILER_ATTRIBUTE_STRICT_SIZE_BEGIN __pragma(pack(push, 1))
 #define Z_COMPILER_ATTRIBUTE_STRICT_SIZE_END   __pragma(pack(pop))
@@ -305,7 +305,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in macros: Struture */
 
-/*#define Z_COMPILER_MACRO_OFFSET_OF(type, member)*/
+#define Z_COMPILER_MACRO_OFFSET_OF __builtin_offsetof
 
 /* MARK: - Built-in macros: VAL */
 
