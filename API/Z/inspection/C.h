@@ -35,7 +35,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_C_STRING Z_C_STRING_C18
 
-#if Z_C == Z_C11
+#elif Z_C == Z_C11
 
 #	include <Z/inspection/C/modules/C11.h>
 

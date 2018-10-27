@@ -56,8 +56,6 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 		zuint8 unused_1 :2
 	)} interrupt;
 
-	/*zuint8 iff2;*/
-
 	zuint8	r;
 	Z16Bit	af;
 	zuint16	sp;
@@ -101,8 +99,6 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN
 		zuint8 iff2	:1,
 		zuint8 unused_1 :2
 	)} interrupt;
-
-	/*zuint8 iff2;*/
 
 	zuint8	r;
 	Z16Bit	af;
