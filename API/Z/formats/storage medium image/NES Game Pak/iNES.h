@@ -28,8 +28,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8 playchoice_rom;
 	zuint8 zero_0;
 	zuint8 zero_1;
-	zuint8 full_compatible_with_ntsc_console;
-	zuint8 not_necessarily_full_compatible_with_pal_console;
+	zuint8 full_ntsc_compatible;
+	zuint8 not_necessarily_pal_compatible;
 	zuint8 extra_ram_at_6000h_7fffh;
 	zuint8 dont_have_bus_conflicts;
 	zuint8 zero_2[6];

@@ -14,6 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 |	    1987       (Australasia)	    |
 '-------------------------------------------'
 
+
 Front view
  ___ __________________________________ ______ ______
 |   |				       |______|	     |
@@ -153,7 +154,17 @@ Controller	 | |					Controller Connector
 | C000	      |      | ROM | Upper Bank of Cartridge ROM	|
 '--------------------------------------------------------------*/
 
-/* MARK: - I/O Ports */
+#define Z_NES_ADDRESS_PPU_PATTERN_TABLE_0	     0x0000
+#define Z_NES_ADDRESS_PPU_PATTERN_TABLE_1	     0x1000
+#define Z_NES_ADDRESS_PPU_UNIVERSAL_BACKGROUND_COLOR 0x3F00
+#define Z_NES_ADDRESS_PPU_BACKGROUND_PALETTE_0
+#define Z_NES_ADDRESS_PPU_BACKGROUND_PALETTE_1
+#define Z_NES_ADDRESS_PPU_BACKGROUND_PALETTE_2
+#define Z_NES_ADDRESS_PPU_BACKGROUND_PALETTE_3
+#define Z_NES_ADDRESS_PPU_SPRITE_PALETTE_0
+#define Z_NES_ADDRESS_PPU_SPRITE_PALETTE_1
+#define Z_NES_ADDRESS_PPU_SPRITE_PALETTE_2
+#define Z_NES_ADDRESS_PPU_SPRITE_PALETTE_3
 
 #define Z_NES_MMR_PPU_CONTROL	      0x2000 /* Write	     */
 #define Z_NES_MMR_PPU_MASK	      0x2001 /* Write	     */
@@ -183,20 +194,6 @@ Controller	 | |					Controller Connector
 #define Z_NES_MMR_JOYSTICK_1	      0x4016 /* Read / Write */
 #define Z_NES_MMR_JOYSTICK_2	      0x4017 /* Read / Write */
 
-/* MARK: - Memory addresses */
-
-#define Z_NES_ADDRESS_PPU_PATTERN_TABLE_0	     0x0000
-#define Z_NES_ADDRESS_PPU_PATTERN_TABLE_1	     0x1000
-#define Z_NES_ADDRESS_PPU_UNIVERSAL_BACKGROUND_COLOR 0x3F00
-#define Z_NES_ADDRESS_PPU_BACKGROUND_PALETTE_0
-#define Z_NES_ADDRESS_PPU_BACKGROUND_PALETTE_1
-#define Z_NES_ADDRESS_PPU_BACKGROUND_PALETTE_2
-#define Z_NES_ADDRESS_PPU_BACKGROUND_PALETTE_3
-#define Z_NES_ADDRESS_PPU_SPRITE_PALETTE_0
-#define Z_NES_ADDRESS_PPU_SPRITE_PALETTE_1
-#define Z_NES_ADDRESS_PPU_SPRITE_PALETTE_2
-#define Z_NES_ADDRESS_PPU_SPRITE_PALETTE_3
-
 /* MARK: - Video */
 
 #define Z_NES_PPU_GREYSCALE_MODE_NORMAL_COLOR	0
@@ -218,16 +215,7 @@ Controller	 | |					Controller Connector
 #define Z_NES_SCREEN_WIDTH  256
 #define Z_NES_SCREEN_HEIGHT 240
 
-
-
-
-
 /* PPU (Picture Processing Unit) */
-
-
-
-
-
 
 
 /*typedef Z_8BIT_FIELD_WITH_8_MEMBERS (
