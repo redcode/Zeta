@@ -74,7 +74,7 @@ typedef ZContextDo ZEmulatorFunction;
 
 Z_DEFINE_STRICT_STRUCTURE (
 	ZKey(EMULATOR_FUNCTION) key;
-	ZEmulatorFunction	function;
+	ZPointer		component;
 ) ZEmulatorExport;
 
 Z_DEFINE_STRICT_STRUCTURE (
@@ -88,8 +88,8 @@ typedef ZEmulatorInstanceImport ZCPUEmulatorInstanceImport;
 Z_DEFINE_STRICT_STRUCTURE (
 	zusize			       dependency_count;
 	ZEmulatorDependency const*     dependencies;
-	zusize			       function_export_count;
-	ZEmulatorExport const*	       function_exports;
+	zusize			       export_count;
+	ZEmulatorExport const*	       exports;
 	zusize			       instance_size;
 	zusize			       instance_state_offset;
 	zusize			       instance_state_size;
