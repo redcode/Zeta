@@ -1366,7 +1366,7 @@ Z_DEFINE_STRICT_UNION_END Z128Bit;
 /* MARK: - Pointer type-casting type */
 
 Z_DEFINE_STRICT_UNION_BEGIN
-	void (* function)(void);
+	void (* pointer_function)(void);
 
 	zuint8*	      pointer_uint8;
 	Z2DUInt8*     pointer_2d_uint8;
