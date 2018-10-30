@@ -3,7 +3,19 @@
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
-Released under the terms of the GNU Lesser General Public License v3. */
+
+This library is free software: you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this library.  If not, see <http://www.gnu.org/licenses/>. */
 
 #ifndef _Z_network_7_ED2K_H_
 #define _Z_network_7_ED2K_H_
@@ -20,6 +32,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_ED2K_MESSAGE_HEADER_PROTOCOL_EMULE	0xC5
 
 /* client <-> server (TCP) */
+
 #define Z_ED2K_OPCODE_LOGINREQUEST		0x01 /* <HASH 16><ID 4><PORT 2><1 Tag_set> */
 #define Z_ED2K_OPCODE_REJECT			0x05 /* (null) */
 #define Z_ED2K_OPCODE_GETSERVERLIST		0x14 /* (null)client->server */
@@ -52,6 +65,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_ED2K_OPCODE_FOUNDSOURCES_OBFU		0x44 /* <HASH 16><count 1>(<ID 4><PORT 2><obf settings 1>(UserHash16 if obf&0x08))[count] */
 
 /* client <-> server (UDP) */
+
 #define Z_ED2K_OPCODE_GLOBSEARCHREQ3		0x90 /* <1 tag set><search_tree> */
 #define Z_ED2K_OPCODE_GLOBSEARCHREQ2		0x92 /* <search_tree> */
 #define Z_ED2K_OPCODE_GLOBSERVSTATREQ		0x96 /* (null) */
@@ -70,6 +84,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_ED2K_OPCODE_SERVER_LIST_REQ2		0xA4 /* (null) */
 
 /* client <-> client (TCP)*/
+
 #define Z_ED2K_OPCODE_HELLO			0x01 /* 0x10<HASH 16><ID 4><PORT 2><1 Tag_set> */
 #define Z_ED2K_OPCODE_SENDINGPART		0x46 /* <HASH 16><von 4><bis 4><Daten len:(von-bis)> */
 #define Z_ED2K_OPCODE_REQUESTPARTS		0x47 /* <HASH 16><von[3] 4*3><bis[3] 4*3> */
