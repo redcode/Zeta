@@ -1021,7 +1021,7 @@ typedef Z4DType(NATURAL)	   Z4DNatural;
 #elif defined(Z_USE_INTEGER_SINT64) && defined(Z_SINT64)
 #	define Z_INTEGER_BITS 64
 
-#elif defined(Z_USE_INTEGER_SINT64) && defined(Z_SINT128)
+#elif defined(Z_USE_INTEGER_SINT128) && defined(Z_SINT128)
 #	define Z_INTEGER_BITS 128
 #else
 #	define Z_INTEGER_BITS Z_SLONG_BITS
