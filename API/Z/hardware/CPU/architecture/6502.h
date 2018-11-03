@@ -72,24 +72,27 @@ Status (P register):
 /* MARK: - State storage type */
 
 typedef struct {
-	zuint16	pc;
-	zuint8	s, p, a, x, y;
+	zuint16	 pc;
+	zuint8	 s, p, a, x, y;
+	zboolean nmi, irq;
 } Z6502State;
 
-/* MARK: - State structure macros */
+#define Z_6502_STATE_PC( object) (object)->pc
+#define Z_6502_STATE_S(	 object) (object)->s
+#define Z_6502_STATE_P(	 object) (object)->p
+#define Z_6502_STATE_A(	 object) (object)->a
+#define Z_6502_STATE_X(	 object) (object)->x
+#define Z_6502_STATE_Y(	 object) (object)->y
+#define Z_6502_STATE_NMI(object) (object)->nmi
+#define Z_6502_STATE_IRQ(object) (object)->irq
 
-#define Z_6502_STATE_PC(object) (object)->pc
-#define Z_6502_STATE_S( object) (object)->s
-#define Z_6502_STATE_P( object) (object)->p
-#define Z_6502_STATE_A( object) (object)->a
-#define Z_6502_STATE_X( object) (object)->x
-#define Z_6502_STATE_Y( object) (object)->y
-
-#define Z_6502_STATE_MEMBER_PC pc
-#define Z_6502_STATE_MEMBER_S  s
-#define Z_6502_STATE_MEMBER_P  p
-#define Z_6502_STATE_MEMBER_A  a
-#define Z_6502_STATE_MEMBER_X  x
-#define Z_6502_STATE_MEMBER_Y  y
+#define Z_6502_STATE_MEMBER_PC	pc
+#define Z_6502_STATE_MEMBER_S	s
+#define Z_6502_STATE_MEMBER_P	p
+#define Z_6502_STATE_MEMBER_A	a
+#define Z_6502_STATE_MEMBER_X	x
+#define Z_6502_STATE_MEMBER_Y	y
+#define Z_6502_STATE_MEMBER_NMI nmi
+#define Z_6502_STATE_MEMBER_IRQ irq
 
 #endif /* _Z_hardware_CPU_architecture_6502_H_ */
