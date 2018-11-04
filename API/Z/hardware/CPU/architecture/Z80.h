@@ -149,11 +149,11 @@ Flags (F register):
 
 /* MARK: - State storage type */
 
-typedef struct {
+Z_DEFINE_STRICT_STRUCTURE_BEGIN
 	zuint16	pc,  sp;
 	Z16Bit	af,  bc,  de,  hl,  ix, iy;
 	Z16Bit	af_, bc_, de_, hl_;
-	zuint8	i,   r;
+	zuint8	r,   i;
 
 	zuint16 memptr;
 
@@ -165,7 +165,7 @@ typedef struct {
 		zuint8 ei   :1;
 		zuint8 im   :2;
 	} internal;
-} ZZ80State;
+Z_DEFINE_STRICT_STRUCTURE_END ZZ80State;
 
 #define Z_Z80_STATE_AF(	   object) (object)->af.value_uint16
 #define Z_Z80_STATE_BC(	   object) (object)->bc.value_uint16
