@@ -2,8 +2,6 @@
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
-Copyright (C) 1993-2006 Zeljko Juric.
-Copyright (C) 1993-2006 Samir Ribic.
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 
 This library is  free software: you can redistribute it  and/or modify it under

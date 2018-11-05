@@ -3,7 +3,7 @@
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) Tomaz Kac.
-Copyright (C) Martijn v.d. Heide.
+Copyright (C) Martijn van der Heide.
 Copyright (C) Ramsoft.
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 
