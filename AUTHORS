@@ -1,1 +1,38 @@
-Sainz de Baranda y Goñi, Manuel
+Sainz de Baranda y Goñi, Manuel <manuel@zxe.io>
+
+  Original author.
+
+Deniau, Laurent <laurent.deniau@cern.ch>
+
+  + L_PP_ARG_N and L_PP_RSEQ_N macros in <Z/macros/variadic.h> (Public domain).
+
+Kac, Tomaz
+
+  + Comments in <Z/formats/storage medium image/audio/TZX.h>, copied from the
+    document "TZX FORMAT" <https://www.worldofspectrum.org/TZXformat.html>.
+
+Kobalicek, Petr <kobalicek.petr@gmail.com>
+
+  + Z_SELECT_<NUMBER> macros in <Z/macros/variadic selection.h>, copied from his
+    project ppmagic <https://github.com/kobalicek/ppmagic> (Public domain).
+
+Ortega Sosa, Sofía <agaxia@zxe.io>
+
+  * Bugs fixes.
+  * Apportations to the language inspection system.
+  * Apportations to the Type<T> trait.
+  * Improvements to NaT.
+
+Ramsoft
+
+  + Comments in <Z/formats/storage medium image/audio/TZX.h>, copied from the
+    document "TZX FORMAT" <https://www.worldofspectrum.org/TZXformat.html>.
+
+Rodríguez Palomino, Mario (r-lyeh)
+
+  * Improvements to the Shared<T> class.
+
+van der Heide, Martijn
+
+  + Comments in <Z/formats/storage medium image/audio/TZX.h>, copied from the
+    document "TZX FORMAT" <https://www.worldofspectrum.org/TZXformat.html>.
