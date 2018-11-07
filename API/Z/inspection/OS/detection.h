@@ -352,43 +352,30 @@ with this library. If not, see <http://www.gnu.org/licenses/>. */
 #	define Z_OS Z_OS_CELL_OS
 
 #elif	/*-------------.							\
-	| Clang	       |							\
 	| GCC	       |							\
 	| IBM XL C/C++ |							\
 	'-------------*/							\
-	defined(__bg__) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
+	defined(__bg__ ) ||							\
 	defined(__bgp__) ||							\
 										\
-	/*-------------.							\
-	| Clang	       |							\
-	| IBM XL C/C++ |							\
-	'-------------*/							\
-	defined(__bgq__) ||							\
-										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
-	defined(__blrts) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
+	defined(__bgq__  ) ||							\
+	defined(__blrts  ) ||							\
 	defined(__blrts__) ||							\
 										\
+	/*-------------.							\
+	| IBM XL C/C++ |							\
+	'-------------*/							\
+	defined(__THW_BLUEGENE__) ||						\
+	defined(__TOS_BGQ__     )						\
+										\
 	/*--.									\
 	| ? |									\
 	'--*/									\
-	defined(__THW_BLUEGENE) ||						\
-										\
-	/*-------------.							\
-	| Clang	       |							\
-	| IBM XL C/C++ |							\
-	'-------------*/							\
-	defined(__THW_BLUEGENE__)
+	defined(__TOS_BGP__  ) ||						\
+	defined(__TOS_BLRTS__)
 
 #	define Z_OS Z_OS_CNK
 
