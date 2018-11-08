@@ -94,7 +94,6 @@ HEADERS += \
 "../../API/Z/functions/base/Z3D.h" \
 "../../API/Z/functions/base/ZRange.h" \
 "../../API/Z/functions/base/all.h" \
-"../../API/Z/functions/base/casting.hpp" \
 "../../API/Z/functions/base/character.h" \
 "../../API/Z/functions/base/constructors.h" \
 "../../API/Z/functions/base/structure.hpp" \
@@ -196,7 +195,6 @@ HEADERS += \
 "../../API/Z/keys/C.h" \
 "../../API/Z/keys/OS.h" \
 "../../API/Z/keys/Objective-C.h" \
-"../../API/Z/keys/character set.h" \
 "../../API/Z/keys/compiler.h" \
 "../../API/Z/keys/data model.h" \
 "../../API/Z/keys/endianness.h" \
