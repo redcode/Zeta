@@ -1,4 +1,4 @@
-/* Z Kit - ABIs/generic/allocation.h
+/* Z Kit - ABIs/generic/allocator.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
@@ -17,8 +17,8 @@ You should have received  a copy of the GNU Lesser General Public License along
 with this library. If not, see <http://www.gnu.org/licenses/>.
 ---------------------------------------------------------------------------- */
 
-#ifndef _Z_ABIs_generic_allocation_H_
-#define _Z_ABIs_generic_allocation_H_
+#ifndef _Z_ABIs_generic_allocator_H_
+#define _Z_ABIs_generic_allocator_H_
 
 #include <Z/types/base.h>
 
@@ -43,6 +43,6 @@ typedef struct {
 	ZAllocateClean allocate_clean;
 	ZReallocate    reallocate;
 	ZDeallocate    deallocate;
-} ZAllocationABI;
+} ZAllocatorABI;
 
-#endif /* _Z_ABIs_generic_allocation_H_ */
+#endif /* _Z_ABIs_generic_allocator_H_ */
