@@ -6076,7 +6076,7 @@ with this library. If not, see <http://www.gnu.org/licenses/>.
 #define Z_COPERNICIUM_MOLAR_MAGNETIC_SUSCEPTIBILITY	REAL_UNKNOWN
 #define Z_COPERNICIUM_VOLUME_MAGNETIC_SUSCEPTIBILITY	REAL_UNKNOWN
 
-/* MARK: - 113 - Uut */
+/* MARK: - 113 - Nh */
 
 #define Z_NIHONIUM_SYMBOL				Nh
 #define Z_NIHONIUM_ATOMIC_NUMBER			113
@@ -6182,7 +6182,7 @@ with this library. If not, see <http://www.gnu.org/licenses/>.
 #define Z_FLEROVIUM_MOLAR_MAGNETIC_SUSCEPTIBILITY	REAL_UNKNOWN
 #define Z_FLEROVIUM_VOLUME_MAGNETIC_SUSCEPTIBILITY	REAL_UNKNOWN
 
-/* MARK: - 115 - Uup */
+/* MARK: - 115 - Mc */
 
 #define Z_MOSCOVIUM_SYMBOL				Mc
 #define Z_MOSCOVIUM_ATOMIC_NUMBER			115
@@ -6288,7 +6288,7 @@ with this library. If not, see <http://www.gnu.org/licenses/>.
 #define Z_LIVERMORIUM_MOLAR_MAGNETIC_SUSCEPTIBILITY	REAL_UNKNOWN
 #define Z_LIVERMORIUM_VOLUME_MAGNETIC_SUSCEPTIBILITY	REAL_UNKNOWN
 
-/* MARK: - 117 - Uus */
+/* MARK: - 117 - Ts */
 
 #define Z_TENNESSINE_SYMBOL				Ts
 #define Z_TENNESSINE_ATOMIC_NUMBER			117
@@ -6341,7 +6341,7 @@ with this library. If not, see <http://www.gnu.org/licenses/>.
 #define Z_TENNESSINE_MOLAR_MAGNETIC_SUSCEPTIBILITY	REAL_UNKNOWN
 #define Z_TENNESSINE_VOLUME_MAGNETIC_SUSCEPTIBILITY	REAL_UNKNOWN
 
-/* MARK: - 118 - Uuo */
+/* MARK: - 118 - Og */
 
 #define Z_OGANESSON_SYMBOL				Og
 #define Z_OGANESSON_ATOMIC_NUMBER			118
