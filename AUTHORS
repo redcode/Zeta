@@ -28,7 +28,12 @@ Ramsoft
   + Comments in <Z/formats/storage medium image/audio/TZX.h>, copied from the
     document "TZX FORMAT" <https://www.worldofspectrum.org/TZXformat.html>.
 
-Rodríguez Palomino, Mario (r-lyeh)
+Remis <remis.thoughts@gmail.com>
+
+  + TripleBuffer and ZTripleBuffer are based on his code. See:
+    <http://remis-thoughts.blogspot.com/2012/01/triple-buffering-as-concurrency_30.html>
+
+Rodríguez Palomino, Mario (aka r-lyeh)
 
   * Improvements to the Shared<T> class.
 
