@@ -20,7 +20,7 @@ with this library. If not, see <http://www.gnu.org/licenses/>.
 #ifndef _Z_ABIs_generic_emulation_H_
 #define _Z_ABIs_generic_emulation_H_
 
-#include <Z/types/generic functions.h>
+#include <Z/types/base.h>
 #include <Z/macros/key.h>
 
 #define Z_EMULATOR_FUNCTION_POWER		0
@@ -69,6 +69,11 @@ with this library. If not, see <http://www.gnu.org/licenses/>.
 
 #define Z_KEY_BITS_EMULATOR_FUNCTION 8
 
+typedef void   (* ZEmulatorPower	)(void* object, zboolean state );
+typedef zusize (* ZEmulatorRun		)(void* object, zusize   cycles);
+typedef void   (* ZEmulatorWillReadState)(void* object);
+typedef void   (* ZEmulatorDidWriteState)(void* object);
+
 typedef struct {
 	zuintptr id;
 
@@ -81,8 +86,6 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zchar const* domain_identifier;
 	zchar const* unit_identifier;
 ) ZEmulatorDependency;
-
-typedef ZContextDo ZEmulatorFunction;
 
 Z_DEFINE_STRICT_STRUCTURE (
 	ZKey(EMULATOR_FUNCTION) key;
@@ -108,17 +111,5 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zusize			       instance_import_count;
 	ZEmulatorInstanceImport const* instance_imports;
 ) ZCPUEmulatorABI;
-
-/*typedef struct {
-} ZMachineEmulatorABI;*/
-
-typedef zusize (* ZEmulatorRun)	 (void*    object,
-				  zusize   cycles);
-
-typedef void   (* ZEmulatorPower)(void*    object,
-				  zboolean power_state);
-
-typedef ZContextDo ZEmulatorWillReadState;
-typedef ZContextDo ZEmulatorDidWriteState;
 
 #endif /* _Z_ABIs_generic_emulation_H_ */
