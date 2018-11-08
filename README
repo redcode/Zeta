@@ -14,10 +14,7 @@
    |   Z (expressed as the Greek capital letter "zeta") is a header-only    |
    |   multi-platform standalone general purpose library written in C/C++.  |
    |   It is meant to be used as a starting point for low-level projects    |
-   |   where the standard libraries are not available. This implies that    |
-   |   Z has no dependencies, it's self-contained, and uses the available   |
-   |   predefined compiler macros to detect the features of the language    |
-   |   and the target system.                                               |
+   |   where the standard libraries are not available.                      |
    |                                                                        |
    |    ____________________________________________________________________|___
    |   /                                                                       /
