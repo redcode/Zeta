@@ -239,7 +239,7 @@ Controller	 | |					Controller Connector
 	*/
 
 
-/* Square Wave Register A 
+/* Square Wave Register A
 .-----------------.
 | 7 6 5 4 3 2 1 0 |
 '-\_/-|-|-\_____/-'
@@ -344,7 +344,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 '-|-\___/-\_____/-'
   |   |	     '----> Playback sample rate
   |   '-----------> Unused
-  '---------------> random number type generation */	  
+  '---------------> random number type generation */
 
 Z_DEFINE_STRICT_STRUCTURE (
 ) ZNESNoiseC;
