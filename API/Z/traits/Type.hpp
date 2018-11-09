@@ -3054,7 +3054,7 @@ namespace Zeta {namespace Detail {namespace Type {
 				Z_COMPILER_TRAIT(TYPE_IS_CLASS)(T)
 #			else
 				false
-#			endif			
+#			endif
 		};
 
 		enum {	union_detected =
@@ -3073,7 +3073,7 @@ namespace Zeta {namespace Detail {namespace Type {
 #			endif
 		};
 
-		enum {	enumeration_detected = 
+		enum {	enumeration_detected =
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION)
 				Z_COMPILER_TRAIT(TYPE_IS_ENUMERATION)(T)
 #			elif Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
@@ -3757,6 +3757,18 @@ namespace Zeta {
 			template <class klass> using to_member_pointer = typename TypeToMemberPointer<typename Type::type, klass>::type;
 #		endif
 
+#		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
+
+#			define Z_IMPLEMENTATION_MEMBER_FUNCTIONS							       \
+				static Z_CT(CPP14) USize		      string_size() {return type_string_size  <T>() ;} \
+				static Z_CT(CPP14) SizedString<string_size()> string	 () {return type_string       <T>() ;} \
+				static Z_CT(CPP14) Symbol		      symbol	 () {return Symbol(type_string<T>());}
+
+			Z_IMPLEMENTATION_MEMBER_FUNCTIONS
+#		else
+#			define Z_IMPLEMENTATION_MEMBER_FUNCTIONS
+#		endif
+
 		struct flow {
 			enum {	is_arithmetic		     = Type::is_arithmetic,
 				is_array		     = Type::is_array,
@@ -4099,25 +4111,11 @@ namespace Zeta {
 #			if Z_TRAIT_HAS(Type, to_member_pointer)
 				template <class klass> using to_member_pointer = typename Type<typename Type::to_member_pointer<klass> >::flow;
 #			endif
+
+			Z_IMPLEMENTATION_MEMBER_FUNCTIONS
 		};
 
-#		if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
-			Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
-
-
-			static Z_CT(CPP14) USize string_size()
-				{return type_string_size<T>();}
-
-
-			static Z_CT(CPP14) SizedString<string_size()> string()
-				{return type_string<T>();}
-
-
-			static Z_CT(CPP14) Symbol symbol()
-				{return Symbol(type_string<T>());}
-
-
-#		endif
+#		undef Z_IMPLEMENTATION_MEMBER_FUNCTIONS
 	};
 
 	template <class T> struct TypeArity			{enum {value = Type<T>::arity			    };};
