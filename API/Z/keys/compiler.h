@@ -33,7 +33,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_DICE_C			    22
 #define Z_COMPILER_DIGITAL_MARS			    23
 #define Z_COMPILER_DIGNUS_SYSTEMS_C		    24
-#define Z_COMPILER_DIGNUS_SYSTEMS_CPP		    Z_COMPILER_DIGNUS_SYSTEMS_CPP
+#define   Z_COMPILER_DIGNUS_SYSTEMS_CPP		    Z_COMPILER_DIGNUS_SYSTEMS_C /* Check this */
 #define Z_COMPILER_DJGPP			    25
 #define Z_COMPILER_EDG_CPP_FRONTEND		    26
 #define Z_COMPILER_EKOPATH			    27
@@ -44,7 +44,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_HP_UPC			    32
 #define Z_COMPILER_IAR_C_CPP			    33
 #define Z_COMPILER_IBM_XL_C_CPP			    34
-#define Z_COMPILER_VISUAL_AGE_CPP		    Z_COMPILER_IBM_XL_C_CPP
+#define   Z_COMPILER_VISUAL_AGE_CPP		    Z_COMPILER_IBM_XL_C_CPP
 #define Z_COMPILER_IBM_Z_OS_C_CPP		    35
 #define Z_COMPILER_IMAGECRAFT_C			    36
 #define Z_COMPILER_INTEL_CPP			    37
@@ -65,10 +65,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_OPEN64			    52
 #define Z_COMPILER_ORACLE_PRO_C_PRECOMPILER	    53
 #define Z_COMPILER_ORACLE_SOLARIS_STUDIO	    54
-#define Z_COMPILER_SUN_STUDIO			    Z_COMPILER_ORACLE_SOLARIS_STUDIO
-#define Z_COMPILER_SUN_WORK_SHOP		    Z_COMPILER_ORACLE_SOLARIS_STUDIO
-#define Z_COMPILER_FORTE_DEVELOPER		    Z_COMPILER_ORACLE_SOLARIS_STUDIO
-#define Z_COMPILER_SUN_PRO_COMPILERS		    Z_COMPILER_ORACLE_SOLARIS_STUDIO
+#define   Z_COMPILER_SUN_STUDIO			    Z_COMPILER_ORACLE_SOLARIS_STUDIO
+#define   Z_COMPILER_SUN_WORK_SHOP		    Z_COMPILER_ORACLE_SOLARIS_STUDIO
+#define   Z_COMPILER_FORTE_DEVELOPER		    Z_COMPILER_ORACLE_SOLARIS_STUDIO
+#define   Z_COMPILER_SUN_PRO_COMPILERS		    Z_COMPILER_ORACLE_SOLARIS_STUDIO
 #define Z_COMPILER_PACIFIC_C			    55
 #define Z_COMPILER_PALM_C_CPP			    56
 #define Z_COMPILER_PELLES_C			    57
@@ -127,7 +127,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_STRING_HP_UPC			   "HP UPC"
 #define Z_COMPILER_STRING_IAR_C_CPP			   "IAR C/C++"
 #define Z_COMPILER_STRING_IBM_XL_C_CPP			   "IBM XL C/C++"
-#define Z_COMPILER_STRING_VISUAL_AGE_CPP		   "VisualAge C++" /* Renamed to IBM XL C/C++ */
+#define   Z_COMPILER_STRING_VISUAL_AGE_CPP		   "VisualAge C++" /* Renamed to IBM XL C/C++ */
 #define Z_COMPILER_STRING_IBM_Z_OS_C_CPP		   "IBM z/OS C/C++"
 #define Z_COMPILER_STRING_IMAGECRAFT_C			   "ImageCraft C"
 #define Z_COMPILER_STRING_INTEL_CPP			   "Intel C++"
