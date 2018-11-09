@@ -20,8 +20,8 @@ Ortega Sosa, Sofía <agaxia@zxe.io>
 
   * Bugs fixes.
   * Contributions to the language inspection system.
-  * Contributions to the Type<T> trait.
-  * Improvements to NaT.
+  * Contributions to the Zeta::Type<T> trait.
+  * Improvements to Zeta::NaT.
 
 Ramsoft
 
@@ -30,12 +30,12 @@ Ramsoft
 
 Remis <remis.thoughts@gmail.com>
 
-  + TripleBuffer and ZTripleBuffer are based on his code. See:
+  + Zeta::TripleBuffer and ZTripleBuffer are based on his code. See:
     <http://remis-thoughts.blogspot.com/2012/01/triple-buffering-as-concurrency_30.html>
 
 Rodríguez Palomino, Mario (aka r-lyeh)
 
-  * Improvements to the Shared<T> class.
+  * Improvements to the Zeta::Shared<T> class.
 
 van der Heide, Martijn
 
