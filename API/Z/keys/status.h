@@ -8,7 +8,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_keys_status_H_
 #define _Z_keys_status_H_
 
-#define	Z_OK		0
+#ifdef Z_OK
+#	undef Z_OK /* zlib */
+#endif
+
+#define Z_OK		0
 #define Z_END		1
 #define Z_UPDATED	2
 #define Z_UNIMPLEMENTED	3
