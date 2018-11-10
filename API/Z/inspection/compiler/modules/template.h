@@ -40,6 +40,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_BIT_FIELD_ORDER_64BIT*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_128BIT*/
 
+/* MARK: - Platform */
+
+/*#define Z_COMPILER_PLATFORM*/
+
 /* MARK: - OS */
 
 /*#define Z_COMPIER_OS*/
