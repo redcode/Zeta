@@ -18,7 +18,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPU_HAS_INTEGER_8BIT TRUE
 
 #define Z_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
-#define Z_CPU_INTEGER_FORMAT	 Z_INTEGER_FORMAT_2S_COMPLEMENT
 
 #define Z_CPU_BITS_TOP_INTEGER 8
 #define Z_CPU_BITS_ADDRESSING  16
