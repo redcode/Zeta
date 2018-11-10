@@ -29,9 +29,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* Video game consoles */
 
+#define Z_PLATFORM_3DO
 #define Z_PLATFORM_ATARI_2600
 #define Z_PLATFORM_ATARI_5200
 #define Z_PLATFORM_ATARI_7800
+#define Z_PLATFORM_CD_I
 #define Z_PLATFORM_DREAMCAST
 #define Z_PLATFORM_GAME_BOY
 #define Z_PLATFORM_GAME_BOY_ADVANCE
@@ -46,12 +48,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PLATFORM_NINTENDO_DS
 #define Z_PLATFORM_NINTENDO_GAME_CUBE
 #define Z_PLATFORM_NINTENDO_SWITCH
+#define Z_PLATFORM_PC_ENGINE
 #define Z_PLATFORM_PLAYSTATION
 #define Z_PLATFORM_PLAYSTATION_2
 #define Z_PLATFORM_PLAYSTATION_3
 #define Z_PLATFORM_PLAYSTATION_4
 #define Z_PLATFORM_SEGA_SATURN
 #define Z_PLATFORM_SNES
+#define Z_PLATFORM_SUPERVISION
 #define Z_PLATFORM_WII
 #define Z_PLATFORM_WII_U
 #define Z_PLATFORM_XBOX

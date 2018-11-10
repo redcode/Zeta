@@ -44,6 +44,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_BIT_FIELD_ORDER_128BIT*/
 
 /* MARK: - Platform */
+/*------------------------------------------.
+| Reference: [cc65 sources]/src/cc65/main.c |
+'------------------------------------------*/
 
 #if defined(__APPLE2__) || (__APPLE2ENH__)
 #	define Z_COMPILER_PLATFORM Z_PLATFORM_APPLE_II
@@ -54,7 +57,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__ATARI5200__)
 #	define Z_COMPILER_PLATFORM Z_PLATFORM_ATARI_5200
 
-#elif defined(__C16__)
+#elif defined(__C16__) || defined(__PLUS4__)
 #	define Z_COMPILER_PLATFORM Z_PLATFORM_COMMODORE_16
 
 #elif defined(__C64__)
@@ -69,8 +72,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__NES__)
 #	define Z_COMPILER_PLATFORM Z_PLATFORM_NES
 
+#elif defined(__PCE__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_PC_ENGINE
+
 #elif defined(__PET__)
 #	define Z_COMPILER_PLATFORM Z_PLATFORM_PET
+
+#elif defined(__SUPERVISION__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_SUPERVISION
 
 #elif defined(__VIC20__)
 #	define Z_COMPILER_PLATFORM Z_PLATFORM_VIC_20
