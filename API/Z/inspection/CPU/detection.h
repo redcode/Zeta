@@ -593,6 +593,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	/*------.								\
 	| Clang |								\
 	'------*/								\
+	defined(__riscv_xlen) && __riscv_xlen == 64
+
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV64I
+
+#elif	/*------.								\
+	| Clang |								\
+	'------*/								\
+	defined(__riscv_xlen) && __riscv_xlen == 32
+
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV32I
+
+#elif	/*------.								\
+	| Clang |								\
+	'------*/								\
 	defined(__arch64__  ) ||						\
 	defined(__sparc_v9__) ||						\
 										\

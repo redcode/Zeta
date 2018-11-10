@@ -84,6 +84,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_POWERPC_64BIT
 #	include <Z/inspection/CPU/modules/PowerPC 64-bit.h>
 
+#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_RV32E
+#	include <Z/inspection/CPU/modules/RV32E.h>
+
+#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_RV32I
+#	include <Z/inspection/CPU/modules/RV32I.h>
+
+#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_RV64I
+#	include <Z/inspection/CPU/modules/RV64I.h>
+
+#elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_RV128I
+#	include <Z/inspection/CPU/modules/RV128I.h>
+
 #elif Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_SPARC
 #	include <Z/inspection/CPU/modules/SPARC.h>
 

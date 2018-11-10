@@ -39,9 +39,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 /* MARK: - CPU
-.--------------------------------------------------.
-| Reference: [Clang sources]/lib/Basic/Targets.cpp |
-'-------------------------------------------------*/
+.-----------------------------------------------.
+| References:					|
+| [Clang sources]/lib/Basic/Targets.cpp		|
+| [Clang sources]/lib/Basic/Targets/* (>= v6.0) |
+'----------------------------------------------*/
 
 #if	defined(__amd64	  ) || \
 	defined(__amd64__ ) || \
@@ -127,6 +129,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_ARCH_PPC  )
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_32BIT
+
+#elif defined(__riscv_xlen)
+
+#	if __riscv_xlen == 64
+#		define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV64I
+
+#	elif __riscv_xlen == 32
+#		define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV32I
+#	endif
+
 
 #elif	defined(__arch64__  ) || \
 	defined(__sparc_v9__) || \
