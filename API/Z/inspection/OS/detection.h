@@ -33,16 +33,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| PGI C/C++		|						\
 	| IBM XL C/C++		|						\
 	'----------------------*/						\
-      	defined(__linux) ||							\
-										\
-      	/*----------------------.						\
-	| Clang			|						\
-	| GCC			|						\
-	| Intel C++		|						\
-	| Oracle Solaris Studio |						\
-	| PGI C/C++		|						\
-	| IBM XL C/C++		|						\
-	'----------------------*/						\
+      	defined(__linux	 ) ||							\
 	defined(__linux__) ||							\
 										\
 	/*----------------------.						\
@@ -135,11 +126,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Watcom C/C++ |							\
 	'-------------*/							\
 	defined(__MSDOS__) ||							\
-										\
-	/*-------------.							\
-	| Watcom C/C++ |							\
-	'-------------*/							\
-	defined(_MSDOS) ||							\
+	defined(_MSDOS	 ) ||							\
 										\
 	/*--.									\
 	| ? |									\
@@ -256,27 +243,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	/*-----------.								\
 	| Visual C++ |								\
 	'-----------*/								\
-	defined(_WIN32_WCE) ||							\
-										\
-	/*-----------.								\
-	| Visual C++ |								\
-	'-----------*/								\
+	defined(_WIN32_WCE	      ) ||					\
 	defined(WIN32_PLATFORM_HPC2000) ||					\
-										\
-	/*-----------.								\
-	| Visual C++ |								\
-	'-----------*/								\
-	defined(WIN32_PLATFORM_HPCPRO) ||					\
-										\
-	/*-----------.								\
-	| Visual C++ |								\
-	'-----------*/								\
-	defined(WIN32_PLATFORM_PSPC) ||						\
-										\
-	/*-----------.								\
-	| Visual C++ |								\
-	'-----------*/								\
-	defined(WIN32_PLATFORM_WFSP)
+	defined(WIN32_PLATFORM_HPCPRO ) ||					\
+	defined(WIN32_PLATFORM_PSPC   ) ||					\
+	defined(WIN32_PLATFORM_WFSP   )
 
 #	define Z_OS Z_OS_WINDOWS_CE
 
@@ -646,11 +617,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Ultimate C/C++ |							\
 	'---------------*/							\
 	defined(__OS9000) ||							\
-										\
-	/*---------------.							\
-	| Ultimate C/C++ |							\
-	'---------------*/							\
-	defined(_OSK)
+	defined(_OSK	)
 
 #	define Z_OS Z_OS_OS_9
 
@@ -696,16 +663,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Clang |								\
 	'------*/								\
 	defined(__psp__) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
-	defined(_PSP) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
-	defined(PSP)
+	defined(_PSP   ) ||							\
+	defined(PSP    )
 
 #	define Z_OS Z_OS_PSP
 

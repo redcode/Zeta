@@ -160,8 +160,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif Z_OS == Z_OS_PLAN_9
 #	include <Z/inspection/OS/modules/Plan 9.h>
 
-#elif Z_OS == Z_OS_PSP
-#	include <Z/inspection/OS/modules/PlayStation Portable.h>
+#elif Z_OS == Z_OS_PSP_SYSTEM_SOFTWARE
+#	include <Z/inspection/OS/modules/PSP System Software.h>
 
 #elif Z_OS == Z_OS_QNX
 #	include <Z/inspection/OS/modules/QNX.h>
