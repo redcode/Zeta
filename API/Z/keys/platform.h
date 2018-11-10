@@ -5,6 +5,10 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
+/*--------------------------------------------------------------.
+| NOTE: Only platforms with known C/C++ compilers are included. |
+'--------------------------------------------------------------*/
+
 #ifndef _Z_keys_platform_H_
 #define _Z_keys_platform_H_
 
@@ -54,11 +58,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PLATFORM_PLAYSTATION_2	/* Sony */
 #define Z_PLATFORM_PLAYSTATION_3	/* Sony */
 #define Z_PLATFORM_PLAYSTATION_4	/* Sony */
+#define Z_PLATFORM_PLAYSTATION_PORTABLE /* Sony */
+#define Z_PLATFORM_PLAYSTATION_VITA	/* Sony */
 #define Z_PLATFORM_SEGA_SATURN		/* Sega */
 #define Z_PLATFORM_SNES			/* Nintendo */
 #define Z_PLATFORM_SUPERVISION		/* Watara */
+#define Z_PLATFORM_VIRTUAL_BOY		/* Nintendo */
 #define Z_PLATFORM_WII			/* Nintendo */
 #define Z_PLATFORM_WII_U		/* Nintendo */
+#define Z_PLATFORM_WONDER_SWAN		/* Bandai */
 #define Z_PLATFORM_XBOX			/* Microsoft */
 #define Z_PLATFORM_XBOX_360		/* Microsoft */
 #define Z_PLATFORM_XBOX_ONE		/* Microsoft */
