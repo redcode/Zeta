@@ -15,8 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_CPUArchitecture( left, right) left##6502##right
 #define Z_INSERT_cpu_architecture(left, right) left##6502##right
 
-#define Z_CPU_HAS_INTEGER_8BIT	TRUE
-#define Z_CPU_HAS_INTEGER_16BIT TRUE
+#define Z_CPU_HAS_INTEGER_8BIT TRUE
 
 #define Z_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
 #define Z_CPU_INTEGER_FORMAT	 Z_INTEGER_FORMAT_2S_COMPLEMENT
