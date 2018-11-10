@@ -39,11 +39,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 /* MARK: - CPU
-.-----------------------------------------------.
-| References:					|
-| [Clang sources]/lib/Basic/Targets.cpp		|
-| [Clang sources]/lib/Basic/Targets/* (>= v6.0) |
-'----------------------------------------------*/
+.-------------------------------------------------.
+| References:					  |
+| [Clang sources]/lib/Basic/Targets.cpp		  |
+| [Clang sources]/lib/Basic/Targets/<*> (>= v6.0) |
+'------------------------------------------------*/
 
 #if	defined(__amd64	  ) || \
 	defined(__amd64__ ) || \
@@ -226,11 +226,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_PLATFORM*/
 
 /* MARK: - OS
-.-----------------------------------------------.
-| References:					|
-| [Clang sources]/lib/Basic/Targets.cpp		|
-| [Clang sources]/lib/Basic/Targets/* (>= v6.0) |
-'----------------------------------------------*/
+.-------------------------------------------------.
+| References:					  |
+| [Clang sources]/lib/Basic/Targets.cpp		  |
+| [Clang sources]/lib/Basic/Targets/<*> (>= v6.0) |
+'------------------------------------------------*/
 
 #if defined(__ANDROID__)
 #	define Z_COMPILER_OS Z_OS_ANDROID
@@ -699,7 +699,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	/* MARK: - C++14 support */
 
-#	ifdef	defined(__cpp_digit_separators)		  || \
+#	if	defined(__cpp_digit_separators)		  || \
 		(__cplusplus >= 201402L			  && \
 		 Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0) && \
 		 Z_COMPILER_VERSION <  Z_VERSION(3, 6, 0))
