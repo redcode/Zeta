@@ -657,7 +657,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	/*--.									\
 	| ? |									\
 	'--*/									\
-	defined(__OS400__)
+	defined(__OS400__)							\
+										\
+	/*-------------------------.						\
+	| IBM XL C/C++ (ILE C/C++) |						\
+	'-------------------------*/						\
+	defined(__TOS_OS400__)
 
 #	define Z_OS Z_OS_OS_400
 
