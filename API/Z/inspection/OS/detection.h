@@ -61,7 +61,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-----------*/								\
 	defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__)
 
-#	define Z_OS Z_OS_IOS
+#	define Z_OS Z_OS_IPHONE_OS
 
 #elif	/*-----------.								\
 	| Apple LLVM |								\
@@ -77,7 +77,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-----------*/								\
 	defined(__ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__)
 
-#	define Z_OS Z_OS_WATCHOS
+#	define Z_OS Z_OS_WATCH_OS
 
 #elif	/*-----------.								\
 	| Apple LLVM |								\
@@ -107,10 +107,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_OS Z_OS_TVOS
 
 #		elif defined(TARGET_OS_WATCH) && TARGET_OS_WATCH
-#			define Z_OS Z_OS_WATCHOS
+#			define Z_OS Z_OS_WATCH_OS
 
 #		else
-#			define Z_OS Z_OS_IOS
+#			define Z_OS Z_OS_IPHONE_OS
 #		endif
 
 #	else
