@@ -8,6 +8,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_inspection_compiler_modules_cc65_H_
 #define _Z_inspection_compiler_modules_cc65_H_
 
+/*------------------------------------------------.
+| Reference: https://cc65.github.io/doc/cc65.html |
+'------------------------------------------------*/
+
 /* MARK: - Identification */
 
 #include <Z/macros/version.h>
@@ -38,6 +42,47 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_BIT_FIELD_ORDER_32BIT*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_64BIT*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_128BIT*/
+
+/* MARK: - Platform */
+
+#if defined(__APPLE2__) || (__APPLE2ENH__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_APPLE_II
+
+#elif defined(__ATARI2600__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_ATARI_2600
+
+#elif defined(__ATARI5200__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_ATARI_5200
+
+#elif defined(__C16__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_COMMODORE_16
+
+#elif defined(__C64__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_COMMODORE_64
+
+#elif defined(__C128__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_COMMODORE_128
+
+#elif defined(__LYNX__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_COMMODORE_LYNX
+
+#elif defined(__NES__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_NES
+
+#elif defined(__PET__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_PET
+
+#elif defined(__VIC20__)
+#	define Z_COMPILER_PLATFORM Z_PLATFORM_VIC_20
+#endif
+
+/*
+__ATARI__
+__ATARIXL__
+__ATMOS__
+__CBM__
+__CBM510__
+__CBM610__*/
 
 /* MARK: - OS */
 
