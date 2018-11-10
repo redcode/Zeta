@@ -214,9 +214,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_PLATFORM*/
 
 /* MARK: - OS
-.--------------------------------------------------.
-| Reference: [Clang sources]/lib/Basic/Targets.cpp |
-'-------------------------------------------------*/
+.-----------------------------------------------.
+| References:					|
+| [Clang sources]/lib/Basic/Targets.cpp		|
+| [Clang sources]/lib/Basic/Targets/* (>= v6.0) |
+'----------------------------------------------*/
 
 #if defined(__ANDROID__)
 #	define Z_COMPILER_OS Z_OS_ANDROID
@@ -264,6 +266,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__CELLOS_LV2__)
 #	define Z_COMPILER_OS Z_OS_CELL_OS
 
+#elif	defined(__CYGWIN__  ) || \
+	defined(__CYGWIN32__) || \
+	defined(__CYGWIN64__)
+
+#	define Z_COMPILER_OS Z_OS_CYGWIN
+
 #elif defined(__DragonFly__)
 #	define Z_COMPILER_OS Z_OS_DRAGONFLY_BSD
 
@@ -292,6 +300,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(PSP    )
 
 #	define Z_COMPILER_OS Z_OS_PSP_SYSTEM_SOFTWARE
+
+#elif defined(__rtems__)
+#	define Z_COMPILER_OS Z_OS_RTEMS
 
 #elif	defined(__SVR4	) || \
 	defined(__sun	) || \
