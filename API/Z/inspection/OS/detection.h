@@ -166,35 +166,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| GCC	    |								\
 	| PGI C/C++ |								\
 	'----------*/								\
-	defined(__WIN64) ||							\
-										\
-	/*----------.								\
-	| Clang	    |								\
-	| GCC	    |								\
-	| PGI C/C++ |								\
-	'----------*/								\
+	defined(__WIN64	 ) ||							\
 	defined(__WIN64__) ||							\
 										\
 	/*-------------.							\
 	| Watcom C/C++ |							\
 	'-------------*/							\
-	defined(__WINDOWS__) ||							\
-										\
-	/*-------------.							\
-	| Watcom C/C++ |							\
-	'-------------*/							\
+	defined(__WINDOWS__    ) ||						\
 	defined(__WINDOWS_386__) ||						\
 										\
 	/*------.								\
 	| Clang |								\
 	| GCC	|								\
 	'------*/								\
-	defined(__WINNT) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	defined(__WINNT	 ) ||							\
 	defined(__WINNT__) ||							\
 										\
 	/*-----------.								\
@@ -210,14 +195,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(_WIN32) ||							\
-										\
-	/*-----------.								\
-	| Clang	     |								\
-	| GCC	     |								\
-	| Intel C++  |								\
-	| PGI C/C++  |								\
-	| Visual C++ |								\
-	'-----------*/								\
 	defined(_WIN64) ||							\
 										\
 	/*------.								\
@@ -225,17 +202,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| GCC	|								\
 	'------*/								\
 	defined(WIN32) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
 	defined(WIN64) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
 	defined(WINNT)
 
 #	define Z_OS Z_OS_WINDOWS
@@ -349,16 +316,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	/*------.								\
 	| Clang |								\
 	'------*/								\
-	defined(__CYGWIN__) ||							\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	defined(__CYGWIN__  ) ||						\
 	defined(__CYGWIN32__) ||						\
-										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
 	defined(__CYGWIN64__)
 
 #	define Z_OS Z_OS_CYGWIN
@@ -374,16 +333,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__dgux__) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
 	defined(__DGUX__) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(DGUX)
+	defined(DGUX	)
 
 #	define Z_OS Z_OS_DG_UX
 
@@ -405,11 +356,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(_SEQUENT_) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(sequent)
+	defined(sequent	 )
 
 #	define Z_OS Z_OS_DYNIX_PTX
 
@@ -489,11 +436,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__sgi) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(sgi)
+	defined(sgi  )
 
 #	define Z_OS Z_OS_IRIX
 
@@ -508,10 +451,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(Macintosh) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
 	defined(macintosh)
 
 #	define Z_OS Z_OS_MAC_OS
@@ -534,11 +473,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__mpexl) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(mpeix)
+	defined(mpeix  )
 
 #	define Z_OS Z_OS_MPE_XL
 
@@ -605,11 +540,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(_OS2) ||			   				\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(OS2)
+	defined(OS2 )
 
 #	define Z_OS Z_OS_OS_2
 
@@ -637,11 +568,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__osf__) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(__osf)
+	defined(__osf  )
 
 #	define Z_OS Z_OS_OSF_1
 
@@ -768,16 +695,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__ultrix__) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(__ultrix) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(ultrix) /* "unix & vax"? */
+	defined(__ultrix  ) ||							\
+	defined(ultrix	  ) /* "unix & vax"? */
 
 #	define Z_OS Z_OS_ULTRIX
 
@@ -792,11 +711,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__crayx1) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(_CRAY)
+	defined(_CRAY	)
 
 #	define Z_OS Z_OS_UNICOS_MP
 
@@ -804,11 +719,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(_UNIXWARE7) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(sco)
+	defined(sco	  )
 
 #	define Z_OS Z_OS_UNIX_WARE
 
@@ -823,11 +734,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| ? |									\
 	'--*/									\
 	defined(__VMS) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(VMS)
+	defined(VMS  )
 
 #	define Z_OS Z_OS_VMS
 
@@ -843,11 +750,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| GCC	     |								\
 	'-----------*/								\
 	defined(__vxworks) ||							\
-										\
-	/*-----------.								\
-	| Diab C/C++ |								\
-	| GCC	     |								\
-	'-----------*/								\
 	defined(__VXWORKS__)
 
 #	define Z_OS Z_OS_VX_WORKS
@@ -855,16 +757,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	/*--.									\
 	| ? |									\
 	'--*/									\
-	defined(__MVS__) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
+	defined(__MVS__	   ) ||							\
 	defined(__HOS_MVS__) ||							\
-										\
-	/*--.									\
-	| ? |									\
-	'--*/									\
 	defined(__TOS_MVS__)
 
 #	define Z_OS Z_OS_Z_OS
