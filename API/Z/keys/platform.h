@@ -5,10 +5,6 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-/*--------------------------------------------------------------.
-| NOTE: Only platforms with known C/C++ compilers are included. |
-'--------------------------------------------------------------*/
-
 #ifndef _Z_keys_platform_H_
 #define _Z_keys_platform_H_
 
