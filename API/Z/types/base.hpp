@@ -161,6 +161,11 @@ namespace Zeta {
 			NaT(const NaT &)	     = delete;
 			~NaT()			     = delete;
 			NaT &operator =(const NaT &) = delete;
+
+#			if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+				NaT(NaT &&)	       = delete;
+				NaT &operator =(NaT &) = delete;
+#			endif
 #		endif
 	};
 };
