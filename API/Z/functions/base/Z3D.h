@@ -400,7 +400,7 @@ Z_INLINE zboolean z_3d_##type##_are_perpendicular(Z3D##Type a, Z3D##Type b)			\
 	{return !z_##type##_absolute(z_3d_##type##_dot_product(a, b));}
 
 
-#define z_3d_type_are_perpendicular(VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _are_perpendicular)
+#define z_3d_type_are_perpendicular(TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _are_perpendicular)
 
 
 /* MARK: - Partial implementation for real types */
@@ -534,19 +534,19 @@ Z3D##Type z_3d_##type##_reciprocal(Z3D##Type object)						\
 	}
 
 
-#define z_3d_type_are_almost_equal(VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _are_almost_equal)
-#define z_3d_type_clamp_01(	   VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _clamp_01	       )
-#define z_3d_type_has_almost_zero( VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _has_almost_zero )
-#define z_3d_type_has_finite(	   VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _has_finite      )
-#define z_3d_type_has_infinity(	   VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _has_infinity    )
-#define z_3d_type_has_nan(	   VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _has_nan	       )
-#define z_3d_type_inverse_lerp(	   VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _inverse_lerp    )
-#define z_3d_type_is_almost_zero(  VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _is_almost_zero  )
-#define z_3d_type_is_finite(	   VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _is_finite       )
-#define z_3d_type_is_infinity(	   VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _is_infinity     )
-#define z_3d_type_is_nan(	   VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _is_nan	       )
-#define z_3d_type_lerp(		   VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _lerp	       )
-#define z_3d_type_reciprocal(	   VALUE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _reciprocal      )
+#define z_3d_type_are_almost_equal(TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _are_almost_equal)
+#define z_3d_type_clamp_01(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _clamp_01	      )
+#define z_3d_type_has_almost_zero( TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _has_almost_zero )
+#define z_3d_type_has_finite(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _has_finite      )
+#define z_3d_type_has_infinity(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _has_infinity    )
+#define z_3d_type_has_nan(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _has_nan	      )
+#define z_3d_type_inverse_lerp(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _inverse_lerp    )
+#define z_3d_type_is_almost_zero(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _is_almost_zero  )
+#define z_3d_type_is_finite(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _is_finite	      )
+#define z_3d_type_is_infinity(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _is_infinity     )
+#define z_3d_type_is_nan(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _is_nan	      )
+#define z_3d_type_lerp(		   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _lerp	      )
+#define z_3d_type_reciprocal(	   TYPE) Z_INSERT_##TYPE##_fixed_type(z_3d_, _reciprocal      )
 
 
 /* MARK: - Implementation expansions */
