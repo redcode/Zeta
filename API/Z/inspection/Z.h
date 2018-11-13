@@ -12,6 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_HAS_CLASS(	  Which) Z_HAS_CLASS_##Which
 #define Z_HAS_TRAIT(	  Which) Z_HAS_TRAIT_##Which
 #define Z_HAS_TRAIT_ALIAS(which) Z_HAS_TRAIT_ALIAS_##which
+#define Z_HAS_TYPE(	  Which) Z_HAS_TYPE_##Which
 
 #define Z_TRAIT_HAS(Trait, what) Z_TRAIT_##Trait##_HAS_##what
 
