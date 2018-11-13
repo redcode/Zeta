@@ -149,10 +149,6 @@ namespace Zeta {
 		typedef zreal Real;
 #	endif
 
-	/* MARK: - Pointer type-casting type */
-
-	typedef ZPointer Pointer;
-
 	/* MARK: - Not a type */
 
 	struct NaT {
