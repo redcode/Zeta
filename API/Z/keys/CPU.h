@@ -1,12 +1,12 @@
-/* Z Kit - keys/hardware/CPU.h
+/* Z Kit - keys/CPU.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_keys_hardware_CPU_H_
-#define _Z_keys_hardware_CPU_H_
+#ifndef _Z_keys_CPU_H_
+#define _Z_keys_CPU_H_
 
 #define Z_CPU_ARCHITECTURE_UNKNOWN		  0
 #define Z_CPU_ARCHITECTURE_6502			  1 /* MOS Technology			  */
@@ -77,4 +77,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPU_ARCHITECTURE_STRING_Z_ARCHITECTURE "z/Architecture"
 #define Z_CPU_ARCHITECTURE_STRING_Z80		 "Z80"
 
-#endif /* _Z_keys_hardware_CPU_H_ */
+#endif /* _Z_keys_CPU_H_ */

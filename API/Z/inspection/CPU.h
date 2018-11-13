@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_inspection_CPU_H_
 #define _Z_inspection_CPU_H_
 
-#include <Z/keys/hardware/CPU/architecture.h>
+#include <Z/keys/CPU.h>
 #include <Z/keys/endianness.h>
 #include <Z/keys/value.h>
 #include <Z/inspection/compiler.h>
