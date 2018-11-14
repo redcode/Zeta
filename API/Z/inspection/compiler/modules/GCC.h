@@ -322,6 +322,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_COMPILER_CPP_HAS_TYPE_LLONG					   TRUE
 
 #			if Z_COMPILER_VERSION >= Z_VERSION(4, 4, 0)
+#				define Z_COMPILER_CPP_HAS_COPY_LIST_INITIALIZATION		TRUE
 #				define Z_COMPILER_CPP_HAS_DIRECT_LIST_INITIALIZATION		TRUE
 #				define Z_COMPILER_CPP_HAS_INITIALIZER_LIST			TRUE
 #				define Z_COMPILER_CPP_HAS_STRONGLY_TYPED_ENUMERATION		TRUE
@@ -1209,7 +1210,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_COMPILER_VERSION >= Z_VERSION(4, 1, 0)
 
-#	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 
+#	ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1
 #		define Z_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_EQUAL __sync_bool_compare_and_swap
 #		define Z_COMPILER_FUNCTION_INT8_ATOMIC_SET_IF_EQUAL  __sync_bool_compare_and_swap
 #	endif

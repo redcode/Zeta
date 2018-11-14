@@ -520,6 +520,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 #	if __has_feature(cxx_generalized_initializers)
+#		define Z_COMPILER_CPP_HAS_COPY_LIST_INITIALIZATION   TRUE /* v3.1 */
 #		define Z_COMPILER_CPP_HAS_DIRECT_LIST_INITIALIZATION TRUE /* v3.1 */
 #		define Z_COMPILER_CPP_HAS_INITIALIZER_LIST	     TRUE /* v3.1 */
 #	endif
