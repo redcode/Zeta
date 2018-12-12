@@ -301,11 +301,26 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_ALPHA
 
-#elif	/*----.									\
-	| GCC |									\
-	'----*/									\
-	defined(__BFIN__) ||							\
-	defined(__bfin	)
+#elif	/*------.								\
+	| Clang |								\
+	'------*/								\
+	defined(__ADSPBLACKFIN__  )						\
+	defined(__ADSPLPBLACKFIN__)						\
+	defined(__BFIN		  )						\
+										\
+	/*------.								\
+	| Clang |								\
+	| GCC	|								\
+	'------*/								\
+	defined(__BFIN__)							\
+	defined(__bfin	)							\
+										\
+	/*------.								\
+	| Clang |								\
+	'------*/								\
+	defined(__bfin__)							\
+	defined(BFIN	)							\
+	defined(bfin	)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_BLACKFIN
 

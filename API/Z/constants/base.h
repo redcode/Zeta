@@ -24,12 +24,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define FALSE 0
 #endif
 
-#ifndef ON
-#	define ON 1
-#endif
-
-#ifndef OFF
-#	define OFF 0
-#endif
-
 #endif /* _Z_constants_base_H_ */

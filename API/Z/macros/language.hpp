@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/macros/language.h>
 
-/* MARK: - Attributes */
+// MARK: - Attributes
 
 #if Z_COMPILER_HAS_ATTRIBUTE(EBCO)
 #	define Z_EBCO Z_COMPILER_ATTRIBUTE(EBCO)
@@ -18,7 +18,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_EBCO
 #endif
 
-/* MARK: - Constants */
+// MARK: - Constants
 
 #if !Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
 #	ifndef true
@@ -30,12 +30,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 #endif
 
-/* MARK: - Specifiers */
+// MARK: - Specifiers
 
 #if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
 #	define Z_CONSTANT constexpr
 #	define Z_CT_CPP11 constexpr
-#else 
+#else
 #	define Z_CONSTANT
 #	define Z_CT_CPP11
 #endif
@@ -60,7 +60,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_NO_EXCEPTION throw()
 #endif
 
-/* MARK: - Defaulted functions */
+// MARK: - Defaulted functions
 
 #if	!defined(Z_AVOID_VARIADIC_MACROS) && \
 	(Z_LANGUAGE_HAS(C, VARIADIC_MACRO) || Z_LANGUAGE_HAS(CPP, C99_PREPROCESSOR))

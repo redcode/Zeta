@@ -11,149 +11,168 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/character set.h>
 
 #if ('\0' - 1) > 0
-#	define Z_CHARACTER_IS_ASCII(c) \
-		((c) <= 0x7F)
+#	define Z_CHARACTER_IS_ASCII(character) \
+		((character) <= 0x7F)
 #else
-#	define Z_CHARACTER_IS_ASCII(c) \
-		((c) >= 0x00 && (c) <= 0x7F)
+#	define Z_CHARACTER_IS_ASCII(character) \
+		((character) >= 0x00 && (character) <= 0x7F)
 #endif
 
-#define Z_CHARACTER_IS_BASE_2_DIGIT(c) \
-	((c) == '0' || (c) == '1')
+#define Z_CHARACTER_IS_BASE_2_DIGIT(character) \
+	((character) == '0' || (character) == '1')
 
-#define Z_CHARACTER_IS_BLANK(c) \
-	((c) == ' ' || (c) == '\t')
+#define Z_CHARACTER_IS_BLANK(character) \
+	((character) == ' ' || (character) == '\t')
 
 #if Z_CHARACTER_SET_IS_ASCII
 
-#	define Z_CHARACTER_IS_CONTROL(c) \
-		(((c) & 0xE0) == 0 || (c) == 0x7F)
+#	define Z_CHARACTER_IS_CONTROL(character) \
+		(((character) & 0xE0) == 0 || (character) == 0x7F)
 
-#	define Z_CHARACTER_IS_GRAPHICAL(c) \
-		((c) >= '!' && (c) <= '~')
+#	define Z_CHARACTER_IS_GRAPHICAL(character) \
+		((character) >= '!' && (character) <= '~')
 
-#	define Z_CHARACTER_IS_PRINTABLE(c) \
-		((c) >= ' ' && (c) <= '~')
+#	define Z_CHARACTER_IS_PRINTABLE(character) \
+		((character) >= ' ' && (character) <= '~')
 
 #endif
 
 #if Z_CHARACTER_SET_DIGITS_ARE_CONSECUTIVE
 
-#	define Z_CHARACTER_IS_BASE_8_DIGIT(c) \
-		((c) >= '0' && (c) <= '7')
+#	define Z_CHARACTER_IS_BASE_8_DIGIT(character) \
+		((character) >= '0' && (character) <= '7')
 
-#	define Z_CHARACTER_IS_BASE_10_DIGIT(c) \
-		((c) >= '0' && (c) <= '9')
+#	define Z_CHARACTER_IS_BASE_10_DIGIT(character) \
+		((character) >= '0' && (character) <= '9')
 
 #else
 
-#	define Z_CHARACTER_IS_BASE_8_DIGIT(c)		   \
-		((c) == '0' || (c) == '1' || (c) == '2' || \
-		 (c) == '3' || (c) == '4' || (c) == '5' || \
-		 (c) == '6' || (c) == '7')
+#	define Z_CHARACTER_IS_BASE_8_DIGIT(character)	     \
+		((character) == '0' || (character) == '1' || \
+		 (character) == '2' || (character) == '3' || \
+		 (character) == '4' || (character) == '5' || \
+		 (character) == '6' || (character) == '7')
 
-#	define Z_CHARACTER_IS_BASE_10_DIGIT(c)		   \
-		((c) == '0' || (c) == '1' || (c) == '2' || \
-		 (c) == '3' || (c) == '4' || (c) == '5' || \
-		 (c) == '6' || (c) == '7' || (c) == '8' || \
-		 (c) == '9')
+#	define Z_CHARACTER_IS_BASE_10_DIGIT(character)	     \
+		((character) == '0' || (character) == '1' || \
+		 (character) == '2' || (character) == '3' || \
+		 (character) == '4' || (character) == '5' || \
+		 (character) == '6' || (character) == '7' || \
+		 (character) == '8' || (character) == '9')
 
 #endif
 
 #if Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE
 
-#	define Z_CHARACTER_IS_BASE_16_LOWERCASE_LETTER(c) \
-		((c) >= 'a' && (c) <= 'f')
+#	define Z_CHARACTER_IS_BASE_16_LOWERCASE_LETTER(character) \
+		((character) >= 'a' && (character) <= 'f')
 
-#	define Z_CHARACTER_IS_LOWERCASE_LETTER(c) \
-		((c) >= 'a' && (c) <= 'z')
+#	define Z_CHARACTER_IS_LOWERCASE_LETTER(character) \
+		((character) >= 'a' && (character) <= 'z')
 
 #else
 
-#	define Z_CHARACTER_IS_BASE_16_LOWERCASE_LETTER(c)  \
-		((c) == 'a' || (c) == 'b' || (c) == 'c' || \
-		 (c) == 'd' || (c) == 'e' || (c) == 'f')
+#	define Z_CHARACTER_IS_BASE_16_LOWERCASE_LETTER(character) \
+		((character) == 'a' || (character) == 'b' ||	  \
+		 (character) == 'c' || (character) == 'd' ||	  \
+		 (character) == 'e' || (character) == 'f')
 
-#	define Z_CHARACTER_IS_LOWERCASE_LETTER(c)	   \
-		((c) == 'a' || (c) == 'b' || (c) == 'c' || \
-		 (c) == 'd' || (c) == 'e' || (c) == 'f' || \
-		 (c) == 'g' || (c) == 'h' || (c) == 'i' || \
-		 (c) == 'j' || (c) == 'k' || (c) == 'l' || \
-		 (c) == 'm' || (c) == 'n' || (c) == 'o' || \
-		 (c) == 'p' || (c) == 'q' || (c) == 'r' || \
-		 (c) == 's' || (c) == 't' || (c) == 'u' || \
-		 (c) == 'v' || (c) == 'y' || (c) == 'x' || \
-		 (c) == 'z')
+#	define Z_CHARACTER_IS_LOWERCASE_LETTER(character)    \
+		((character) == 'a' || (character) == 'b' || \
+		 (character) == 'c' || (character) == 'd' || \
+		 (character) == 'e' || (character) == 'f' || \
+		 (character) == 'g' || (character) == 'h' || \
+		 (character) == 'i' || (character) == 'j' || \
+		 (character) == 'k' || (character) == 'l' || \
+		 (character) == 'm' || (character) == 'n' || \
+		 (character) == 'o' || (character) == 'p' || \
+		 (character) == 'q' || (character) == 'r' || \
+		 (character) == 's' || (character) == 't' || \
+		 (character) == 'u' || (character) == 'v' || \
+		 (character) == 'y' || (character) == 'x' || \
+		 (character) == 'z')
 
 #endif
 
 #if Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE
 
-#	define Z_CHARACTER_IS_BASE_16_UPPERCASE_LETTER(c) \
-		((c) >= 'A' && (c) <= 'F')
+#	define Z_CHARACTER_IS_BASE_16_UPPERCASE_LETTER(character) \
+		((character) >= 'A' && (character) <= 'F')
 
-#	define Z_CHARACTER_IS_UPPERCASE_LETTER(c) \
-		((c) >= 'A' && (c) <= 'Z')
+#	define Z_CHARACTER_IS_UPPERCASE_LETTER(character) \
+		((character) >= 'A' && (character) <= 'Z')
 
 #else
 
-#	define Z_CHARACTER_IS_BASE_16_UPPERCASE_LETTER(c)  \
-		((c) == 'A' || (c) == 'B' || (c) == 'C' || \
-		 (c) == 'D' || (c) == 'E' || (c) == 'F')
+#	define Z_CHARACTER_IS_BASE_16_UPPERCASE_LETTER(character) \
+		((character) == 'A' || (character) == 'B' ||	  \
+		 (character) == 'C' || (character) == 'D' ||	  \
+		 (character) == 'E' || (character) == 'F')
 
-#	define Z_CHARACTER_IS_UPPERCASE_LETTER(c)			 \
-		((c) == 'A' || (c) == 'B' || (c) == 'C' || (c) == 'D' || \
-		 (c) == 'E' || (c) == 'F' || (c) == 'G' || (c) == 'H' || \
-		 (c) == 'I' || (c) == 'J' || (c) == 'K' || (c) == 'L' || \
-		 (c) == 'M' || (c) == 'N' || (c) == 'O' || (c) == 'P' || \
-		 (c) == 'Q' || (c) == 'R' || (c) == 'S' || (c) == 'T' || \
-		 (c) == 'U' || (c) == 'V' || (c) == 'Y' || (c) == 'X' || \
-		 (c) == 'Z')
+#	define Z_CHARACTER_IS_UPPERCASE_LETTER(character)    \
+		((character) == 'A' || (character) == 'B' || \
+		 (character) == 'C' || (character) == 'D' || \
+		 (character) == 'E' || (character) == 'F' || \
+		 (character) == 'G' || (character) == 'H' || \
+		 (character) == 'I' || (character) == 'J' || \
+		 (character) == 'K' || (character) == 'L' || \
+		 (character) == 'M' || (character) == 'N' || \
+		 (character) == 'O' || (character) == 'P' || \
+		 (character) == 'Q' || (character) == 'R' || \
+		 (character) == 'S' || (character) == 'T' || \
+		 (character) == 'U' || (character) == 'V' || \
+		 (character) == 'Y' || (character) == 'X' || \
+		 (character) == 'Z')
 
 #endif
 
-#define Z_CHARACTER_IS_BASE_16_LOWERCASE_DIGIT(c)      \
-	(Z_CHARACTER_IS_BASE_10_DIGIT		(c) || \
-	 Z_CHARACTER_IS_BASE_16_LOWERCASE_LETTER(c))
+#define Z_CHARACTER_IS_BASE_16_LOWERCASE_DIGIT(character)      \
+	(Z_CHARACTER_IS_BASE_10_DIGIT		(character) || \
+	 Z_CHARACTER_IS_BASE_16_LOWERCASE_LETTER(character))
 
-#define Z_CHARACTER_IS_BASE_16_UPPERCASE_DIGIT(c)      \
-	(Z_CHARACTER_IS_BASE_10_DIGIT		(c) || \
-	 Z_CHARACTER_IS_BASE_16_UPPERCASE_LETTER(c))
+#define Z_CHARACTER_IS_BASE_16_UPPERCASE_DIGIT(character)      \
+	(Z_CHARACTER_IS_BASE_10_DIGIT		(character) || \
+	 Z_CHARACTER_IS_BASE_16_UPPERCASE_LETTER(character))
 
 #if Z_CHARACTER_SET_IS_ASCII
 
-#	define Z_CHARACTER_IS_BASE_16_DIGIT(c) \
-		(((c) >= '0' && (c) <= '9') || \
-		 (((c) & 0xDF) >= 'A' && ((c) & 0xDF) <= 'F'))
+#	define Z_CHARACTER_IS_BASE_16_DIGIT(character) \
+		(((character) >= '0' && (character) <= '9') || \
+		 (((character) & 0xDF) >= 'A' && ((character) & 0xDF) <= 'F'))
 
-#	define Z_CHARACTER_IS_LETTER(c) \
-		(((c) & 0xDF) >= 'A' && ((c) & 0xDF) <= 'Z')
+#	define Z_CHARACTER_IS_LETTER(character) \
+		(((character) & 0xDF) >= 'A' && ((character) & 0xDF) <= 'Z')
 
 #else
 
-#	define Z_CHARACTER_IS_BASE_16_DIGIT(c)		       \
-		(Z_CHARACTER_IS_BASE_10_DIGIT		(c) || \
-		 Z_CHARACTER_IS_BASE_16_LOWERCASE_LETTER(c) || \
-		 Z_CHARACTER_IS_BASE_16_UPPERCASE_LETTER(c))
+#	define Z_CHARACTER_IS_BASE_16_DIGIT(character)		       \
+		(Z_CHARACTER_IS_BASE_10_DIGIT		(character) || \
+		 Z_CHARACTER_IS_BASE_16_LOWERCASE_LETTER(character) || \
+		 Z_CHARACTER_IS_BASE_16_UPPERCASE_LETTER(character))
 
-#	define Z_CHARACTER_IS_LETTER(c) \
-		(Z_CHARACTER_IS_LOWERCASE_LETTER(c) || \
-		 Z_CHARACTER_IS_UPPERCASE_LETTER(c))
+#	define Z_CHARACTER_IS_LETTER(character)		       \
+		(Z_CHARACTER_IS_LOWERCASE_LETTER(character) || \
+		 Z_CHARACTER_IS_UPPERCASE_LETTER(character))
 
 #endif
 
 #if	Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE && \
 	Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE
 
-#	define Z_CHARACTER_LOWERCASE(c) \
-		((c) >= 'A' && (c) <= 'Z' ? (c) - 'A' + 'a' : (c))
+#	define Z_CHARACTER_LOWERCASE(character)		  \
+		((character) >= 'A' && (character) <= 'Z' \
+			? (character) - 'A' + 'a'	  \
+			: (character))
 
-#	define Z_CHARACTER_UPPERCASE(c) \
-		((c) >= 'a' && (c) <= 'z' ? (c) - 'a' + 'A' : (c))
+#	define Z_CHARACTER_UPPERCASE(character)		  \
+		((character) >= 'a' && (character) <= 'z' \
+			? (character) - 'a' + 'A'	  \
+			: (character))
 
 #endif
 
-#define Z_CHARACTER_IS_ALPHANUMERIC(c) \
-	(Z_CHARACTER_IS_BASE_10_DIGIT(c) || Z_CHARACTER_IS_LETTER(c))
+#define Z_CHARACTER_IS_ALPHANUMERIC(character)	    \
+	(Z_CHARACTER_IS_BASE_10_DIGIT(character) || \
+	 Z_CHARACTER_IS_LETTER	     (character))
 
 #endif /* _Z_macros_character_H_ */

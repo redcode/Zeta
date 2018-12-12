@@ -8,15 +8,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_macros_pasting_H_
 #define _Z_macros_pasting_H_
 
-#define Z_EMPTY_(dummy)
-#define Z_EMPTY Z_EMPTY_(.)
-
-#define Z_QUOTED_(what) #what
-#define Z_QUOTED( what) Z_QUOTED_(what)
-#define Z_SAME(	  what) what
+#define Z_SAME(what) what
 
 #define Z_EXPAND_PREFIX_0(  what) 0##what
 #define Z_EXPAND_PREFIX_0x( what) 0x##what
+#define Z_EXPAND_PREFIX_0b( what) 0b##what
 #define Z_EXPAND_PREFIX_Z(  what) Z##what
 #define Z_EXPAND_PREFIX_Z_( what) Z_##what
 #define Z_EXPAND_PREFIX_z(  what) z##what
@@ -37,6 +33,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PREFIX_	   Z_SAME
 #define Z_PREFIX_0(  what) Z_EXPAND_PREFIX_0  (what)
 #define Z_PREFIX_0x( what) Z_EXPAND_PREFIX_0x (what)
+#define Z_PREFIX_0b( what) Z_EXPAND_PREFIX_0b (what)
 #define Z_PREFIX_Z(  what) Z_EXPAND_PREFIX_Z  (what)
 #define Z_PREFIX_Z_( what) Z_EXPAND_PREFIX_Z_ (what)
 #define Z_PREFIX_z(  what) Z_EXPAND_PREFIX_z  (what)
@@ -54,21 +51,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_SUFFIX_UL( what) Z_EXPAND_SUFFIX_UL (what)
 #define Z_SUFFIX_ULL(what) Z_EXPAND_SUFFIX_ULL(what)
 #define Z_SUFFIX_W(  what) Z_EXPAND_SUFFIX_W  (what)
-
-#define Z_EXPAND_UNDERSCORE_(	       what) _##what##_
-#define Z_EXPAND_UNDERSCORE_X2_(       what) __##what##__
-#define Z_EXPAND_PREFIX_UNDERSCORE_(   what) _##what
-#define Z_EXPAND_PREFIX_UNDERSCORE_X2_(what) __##what
-#define Z_EXPAND_SUFFIX_UNDERSCORE_(   what) what##_
-#define Z_EXPAND_SUFFIX_UNDERSCORE_X2_(what) what##__
-
-#define Z_UNDERSCORE(	       what) Z_EXPAND_UNDERSCORE_	   (what)
-#define Z_UNDERSCORE_X2(       what) Z_EXPAND_UNDERSCORE_X2_	   (what)
-#define Z_PREFIX_UNDERSCORE(   what) Z_EXPAND_PREFIX_UNDERSCORE_   (what)
-#define Z_PREFIX_UNDERSCORE_X2(what) Z_EXPAND_PREFIX_UNDERSCORE_X2_(what)
-#define Z_SUFFIX_UNDERSCORE(   what) Z_EXPAND_SUFFIX_UNDERSCORE_   (what)
-#define Z_SUFFIX_UNDERSCORE_X2(what) Z_EXPAND_SUFFIX_UNDERSCORE_X2_(what)
-
 
 #define Z_PASTE_2( _1, _2)																		  _1##_2
 #define Z_PASTE_3( _1, _2, _3)																		  _1##_2##_3
@@ -98,7 +80,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PASTE_27(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27)			  _1##_2##_3##_4##_5##_6##_7##_8##_9##_10##_11##_12##_13##_14##_15##_16##_17##_18##_19##_20##_21##_22##_23##_24##_25##_26##_27
 #define Z_PASTE_28(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28)			  _1##_2##_3##_4##_5##_6##_7##_8##_9##_10##_11##_12##_13##_14##_15##_16##_17##_18##_19##_20##_21##_22##_23##_24##_25##_26##_27##_28
 #define Z_PASTE_29(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29)		  _1##_2##_3##_4##_5##_6##_7##_8##_9##_10##_11##_12##_13##_14##_15##_16##_17##_18##_19##_20##_21##_22##_23##_24##_25##_26##_27##_28##_29
-#define Z_PASTE_31(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30)		  _1##_2##_3##_4##_5##_6##_7##_8##_9##_10##_11##_12##_13##_14##_15##_16##_17##_18##_19##_20##_21##_22##_23##_24##_25##_26##_27##_28##_29##_30
+#define Z_PASTE_30(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30)		  _1##_2##_3##_4##_5##_6##_7##_8##_9##_10##_11##_12##_13##_14##_15##_16##_17##_18##_19##_20##_21##_22##_23##_24##_25##_26##_27##_28##_29##_30
 #define Z_PASTE_31(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31)	  _1##_2##_3##_4##_5##_6##_7##_8##_9##_10##_11##_12##_13##_14##_15##_16##_17##_18##_19##_20##_21##_22##_23##_24##_25##_26##_27##_28##_29##_30##_31
 #define Z_PASTE_32(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32) _1##_2##_3##_4##_5##_6##_7##_8##_9##_10##_11##_12##_13##_14##_15##_16##_17##_18##_19##_20##_21##_22##_23##_24##_25##_26##_27##_28##_29##_30##_31##_32
 
@@ -130,7 +112,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_JOIN_27(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27)				 Z_PASTE_27(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27)
 #define Z_JOIN_28(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28)			 Z_PASTE_28(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28)
 #define Z_JOIN_29(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29)		 Z_PASTE_29(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29)
-#define Z_JOIN_31(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30)		 Z_PASTE_31(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30)
+#define Z_JOIN_30(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30)		 Z_PASTE_31(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30)
 #define Z_JOIN_31(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31)	 Z_PASTE_31(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31)
 #define Z_JOIN_32(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32) Z_PASTE_32(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32)
 
@@ -177,6 +159,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PREPEND_NUMBER_512( to) 512##to
 #define Z_PREPEND_NUMBER_1024(to) 1024##to
 
+#define Z_PREPEND_TERNARY_1(	to, a, b) a##to
+#define Z_PREPEND_TERNARY_0(	to, a, b) b##to
+#define Z_PREPEND_TERNARY_TRUE( to, a, b) a##to
+#define Z_PREPEND_TERNARY_FALSE(to, a, b) b##to
+
+#define Z_PREPEND_TERNARY(boolean) Z_JOIN_2(Z_PREPEND_TERNARY_, boolean)
+
 #define Z_INSERT_NUMBER_0(   left, right) left##0##right
 #define Z_INSERT_NUMBER_1(   left, right) left##1##right
 #define Z_INSERT_NUMBER_2(   left, right) left##2##right
@@ -219,6 +208,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_NUMBER_256( left, right) left##256##right
 #define Z_INSERT_NUMBER_512( left, right) left##512##right
 #define Z_INSERT_NUMBER_1024(left, right) left##1024##right
+
+#define Z_INSERT_TERNARY_1(    left, right, a, b) left##a##right
+#define Z_INSERT_TERNARY_0(    left, right, a, b) left##b##right
+#define Z_INSERT_TERNARY_TRUE( left, right, a, b) left##a##right
+#define Z_INSERT_TERNARY_FALSE(left, right, a, b) left##b##right
+
+#define Z_INSERT_TERNARY(boolean) Z_JOIN_2(Z_INSERT_TERNARY_, boolean)
 
 #define Z_APPEND_NUMBER_0(   to) to##0
 #define Z_APPEND_NUMBER_1(   to) to##1
@@ -263,46 +259,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_APPEND_NUMBER_512( to) to##512
 #define Z_APPEND_NUMBER_1024(to) to##1024
 
-#define Z_TERNARY_PREPEND_1(	to, a, b) a##to
-#define Z_TERNARY_PREPEND_0(	to, a, b) b##to
-#define Z_TERNARY_PREPEND_TRUE( to, a, b) a##to
-#define Z_TERNARY_PREPEND_FALSE(to, a, b) b##to
+#define Z_APPEND_TERNARY_1(    to, a, b) to##a
+#define Z_APPEND_TERNARY_0(    to, a, b) to##b
+#define Z_APPEND_TERNARY_TRUE( to, a, b) to##a
+#define Z_APPEND_TERNARY_FALSE(to, a, b) to##b
 
-#define Z_TERNARY_PREPEND(condition) Z_JOIN_2(Z_TERNARY_PREPEND_, condition)
-
-#define Z_TERNARY_INSERT_1(    left, right, a, b) left##a##right
-#define Z_TERNARY_INSERT_0(    left, right, a, b) left##b##right
-#define Z_TERNARY_INSERT_TRUE( left, right, a, b) left##a##right
-#define Z_TERNARY_INSERT_FALSE(left, right, a, b) left##b##right
-
-#define Z_TERNARY_INSERT(condition) Z_JOIN_2(Z_TERNARY_INSERT_, condition)
-
-#define Z_TERNARY_APPEND_1(    to, a, b) to##a
-#define Z_TERNARY_APPEND_0(    to, a, b) to##b
-#define Z_TERNARY_APPEND_TRUE( to, a, b) to##a
-#define Z_TERNARY_APPEND_FALSE(to, a, b) to##b
-
-#define Z_TERNARY_APPEND(condition) Z_JOIN_2(Z_TERNARY_APPEND_, condition)
-
-#define Z_IF_1(	   what) what
-#define Z_IF_0(	   what)
-#define Z_IF_TRUE( what) what
-#define Z_IF_FALSE(what)
-
-#define Z_IF(condition) Z_JOIN_2(Z_IF_, condition)
-
-#define Z_UNLESS_1(    what)
-#define Z_UNLESS_0(    what) what
-#define Z_UNLESS_TRUE( what)
-#define Z_UNLESS_FALSE(what) what
-
-#define Z_UNLESS(condition) Z_JOIN_2(Z_UNLESS_, condition)
-
-#define Z_TERNARY_1(	a, b) a
-#define Z_TERNARY_0(	a, b) b
-#define Z_TERNARY_TRUE( a, b) a
-#define Z_TERNARY_FALSE(a, b) b
-
-#define Z_TERNARY(condition) Z_JOIN_2(Z_TERNARY_, condition)
+#define Z_APPEND_TERNARY(boolean) Z_JOIN_2(Z_APPEND_TERNARY_, boolean)
 
 #endif /* _Z_macros_pasting_H_ */

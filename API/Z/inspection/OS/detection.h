@@ -519,6 +519,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_OPEN_BSD
 
+#elif	/*--.									\
+	| ? |									\
+	'--*/									\
+	defined(__VMS) ||							\
+	defined(VMS  )
+
+#	define Z_OS Z_OS_OPEN_VMS
+
 #elif	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -729,14 +737,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(UTS)
 
 #	define Z_OS Z_OS_UTS
-
-#elif	/*--.									\
-	| ? |									\
-	'--*/									\
-	defined(__VMS) ||							\
-	defined(VMS  )
-
-#	define Z_OS Z_OS_VMS
 
 #elif	/*--.									\
 	| ? |									\

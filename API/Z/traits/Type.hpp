@@ -9,11 +9,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_traits_Type_HPP_
 #define _Z_traits_Type_HPP_
 
-#include <Z/keys/mathematics/number.h>
+#include <Z/keys/number.h>
 #include <Z/inspection/Z.h>
-#include <Z/traits/base.hpp>
-#include <Z/traits/TernaryType.hpp>
+#include <Z/traits/constants.hpp>
+#include <Z/traits/control.hpp>
 #include <Z/traits/TypeList.hpp>
+#include <Z/classes/NaT.hpp>
+#include <Z/macros/structure.h>
 
 #if !Z_HAS_TRAIT(TypeList)
 #	include <Z/traits/SelectType.hpp>
@@ -26,8 +28,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
 	Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
 
-#	include <Z/functions/base/type.hpp>
-#	include <Z/classes/base/Symbol.hpp>
+#	include <Z/functions/type.hpp>
+#	include <Z/classes/Symbol.hpp>
 #endif
 
 // MARK: - Component availability configuration
@@ -37,7 +39,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 // to which they refer are supported or enabled.   |
 //-------------------------------------------------'
 
-#if Z_UINT8_VALUE_TYPE == Z_VALUE_TYPE_UINT8
+#if Z_UINT8_FUNDAMENTAL == Z_FUNDAMENTAL_UINT8
 #	define Z_HAS_TRAIT_TypeIsUInt8	 TRUE
 #	define Z_TRAIT_Type_HAS_is_uint8 TRUE
 #else
@@ -45,7 +47,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_uint8 FALSE
 #endif
 
-#if Z_SINT8_VALUE_TYPE == Z_VALUE_TYPE_SINT8
+#if Z_SINT8_FUNDAMENTAL == Z_FUNDAMENTAL_SINT8
 #	define Z_HAS_TRAIT_TypeIsSInt8	 TRUE
 #	define Z_TRAIT_Type_HAS_is_sint8 TRUE
 #else
@@ -53,7 +55,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_sint8 FALSE
 #endif
 
-#if Z_UINT16_VALUE_TYPE == Z_VALUE_TYPE_UINT16
+#if Z_UINT16_FUNDAMENTAL == Z_FUNDAMENTAL_UINT16
 #	define Z_HAS_TRAIT_TypeIsUInt16	  TRUE
 #	define Z_TRAIT_Type_HAS_is_uint16 TRUE
 #else
@@ -61,7 +63,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_uint16 FALSE
 #endif
 
-#if Z_SINT16_VALUE_TYPE == Z_VALUE_TYPE_SINT16
+#if Z_SINT16_FUNDAMENTAL == Z_FUNDAMENTAL_SINT16
 #	define Z_HAS_TRAIT_TypeIsSInt16	  TRUE
 #	define Z_TRAIT_Type_HAS_is_sint16 TRUE
 #else
@@ -69,7 +71,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_sint16 FALSE
 #endif
 
-#if defined(Z_UINT32) && Z_UINT32_VALUE_TYPE == Z_VALUE_TYPE_UINT32
+#if defined(Z_UINT32) && Z_UINT32_FUNDAMENTAL == Z_FUNDAMENTAL_UINT32
 #	define Z_HAS_TRAIT_TypeIsUInt32	  TRUE
 #	define Z_TRAIT_Type_HAS_is_uint32 TRUE
 #else
@@ -77,7 +79,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_uint32 FALSE
 #endif
 
-#if defined(Z_SINT32) && Z_SINT32_VALUE_TYPE == Z_VALUE_TYPE_SINT32
+#if defined(Z_SINT32) && Z_SINT32_FUNDAMENTAL == Z_FUNDAMENTAL_SINT32
 #	define Z_HAS_TRAIT_TypeIsSInt32	  TRUE
 #	define Z_TRAIT_Type_HAS_is_sint32 TRUE
 #else
@@ -85,7 +87,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_sint32 FALSE
 #endif
 
-#if defined(Z_UINT64) && Z_UINT64_VALUE_TYPE == Z_VALUE_TYPE_UINT64
+#if defined(Z_UINT64) && Z_UINT64_FUNDAMENTAL == Z_FUNDAMENTAL_UINT64
 #	define Z_HAS_TRAIT_TypeIsUInt64	  TRUE
 #	define Z_TRAIT_Type_HAS_is_uint64 TRUE
 #else
@@ -93,7 +95,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_uint64 FALSE
 #endif
 
-#if defined(Z_SINT64) && Z_SINT64_VALUE_TYPE == Z_VALUE_TYPE_SINT64
+#if defined(Z_SINT64) && Z_SINT64_FUNDAMENTAL == Z_FUNDAMENTAL_SINT64
 #	define Z_HAS_TRAIT_TypeIsSInt64	  TRUE
 #	define Z_TRAIT_Type_HAS_is_sint64 TRUE
 #else
@@ -101,7 +103,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_sint64 FALSE
 #endif
 
-#if defined(Z_UINT128) && Z_UINT128_VALUE_TYPE == Z_VALUE_TYPE_UINT128
+#if defined(Z_UINT128) && Z_UINT128_FUNDAMENTAL == Z_FUNDAMENTAL_UINT128
 #	define Z_HAS_TRAIT_TypeIsUInt128   TRUE
 #	define Z_TRAIT_Type_HAS_is_uint128 TRUE
 #else
@@ -109,7 +111,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_uint128 FALSE
 #endif
 
-#if defined(Z_SINT128) && Z_SINT128_VALUE_TYPE == Z_VALUE_TYPE_SINT128
+#if defined(Z_SINT128) && Z_SINT128_FUNDAMENTAL == Z_FUNDAMENTAL_SINT128
 #	define Z_HAS_TRAIT_TypeIsSInt128   TRUE
 #	define Z_TRAIT_Type_HAS_is_sint128 TRUE
 #else
@@ -117,7 +119,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_sint128 FALSE
 #endif
 
-#if defined(Z_FLOAT16) && Z_FLOAT16_VALUE_TYPE == Z_VALUE_TYPE_FLOAT16
+#if defined(Z_FLOAT16) && Z_FLOAT16_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT16
 #	define Z_HAS_TRAIT_TypeIsFloat16   TRUE
 #	define Z_TRAIT_Type_HAS_is_float16 TRUE
 #else
@@ -125,7 +127,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_float16 FALSE
 #endif
 
-#if defined(Z_FLOAT32) && Z_FLOAT32_VALUE_TYPE == Z_VALUE_TYPE_FLOAT32
+#if defined(Z_FLOAT32) && Z_FLOAT32_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT32
 #	define Z_HAS_TRAIT_TypeIsFloat32   TRUE
 #	define Z_TRAIT_Type_HAS_is_float32 TRUE
 #else
@@ -133,7 +135,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_float32 FALSE
 #endif
 
-#if defined(Z_FLOAT64) && Z_FLOAT64_VALUE_TYPE == Z_VALUE_TYPE_FLOAT64
+#if defined(Z_FLOAT64) && Z_FLOAT64_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT64
 #	define Z_HAS_TRAIT_TypeIsFloat64   TRUE
 #	define Z_TRAIT_Type_HAS_is_float64 TRUE
 #else
@@ -141,7 +143,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_float64 FALSE
 #endif
 
-#if defined(Z_FLOAT128) && Z_FLOAT128_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128
+#if defined(Z_FLOAT128) && Z_FLOAT128_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT128
 #	define Z_HAS_TRAIT_TypeIsFloat128   TRUE
 #	define Z_TRAIT_Type_HAS_is_float128 TRUE
 #else
@@ -149,7 +151,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_float128 FALSE
 #endif
 
-#if defined(Z_FLOAT80_X87) && Z_FLOAT80_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT80_X87
+#if defined(Z_FLOAT80_X87) && Z_FLOAT80_X87_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT80_X87
 #	define Z_HAS_TRAIT_TypeIsFloat80_x87   TRUE
 #	define Z_TRAIT_Type_HAS_is_float80_x87 TRUE
 #else
@@ -157,7 +159,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_float80_x87 FALSE
 #endif
 
-#if defined(Z_FLOAT96_X87) && Z_FLOAT96_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT96_X87
+#if defined(Z_FLOAT96_X87) && Z_FLOAT96_X87_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT96_X87
 #	define Z_HAS_TRAIT_TypeIsFloat96_x87   TRUE
 #	define Z_TRAIT_Type_HAS_is_float96_x87 TRUE
 #else
@@ -165,7 +167,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_float96_x87 FALSE
 #endif
 
-#if defined(Z_FLOAT128_X87) && Z_FLOAT128_X87_VALUE_TYPE == Z_VALUE_TYPE_FLOAT128_X87
+#if defined(Z_FLOAT128_X87) && Z_FLOAT128_X87_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT128_X87
 #	define Z_HAS_TRAIT_TypeIsFloat128_x87	TRUE
 #	define Z_TRAIT_Type_HAS_is_float128_x87 TRUE
 #else
@@ -390,10 +392,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_to_volatile_rvalue	   FALSE
 #endif
 
-//------------------------------------------------.
-// Components that need compiler built-in traits. |
-// There are no known workarounds.		  |
-//------------------------------------------------'
+//------------------------------------------------------------------.
+// Components that need compiler built-in traits to be implemented. |
+// There are no known workarounds.				    |
+//------------------------------------------------------------------'
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_HAS_VIRTUAL_DESTRUCTOR)
 #	define Z_HAS_TRAIT_TypeHasVirtualDestructor    TRUE
@@ -545,10 +547,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_underlying_type FALSE
 #endif
 
-//-----------------------------------------------------------.
-// Components that need compiler built-in traits in addition |
-// to some C++11 features. There are no known workarounds.   |
-//-----------------------------------------------------------'
+//--------------------------------------------------------------.
+// Components that need compiler built-in traits and some C++11 |
+// features to be implemented. There are no known workarounds.	|
+//--------------------------------------------------------------'
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_CONSTRUCTIBLE)
 #	define Z_HAS_TRAIT_TypeIsConstructible TRUE
@@ -892,6 +894,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_callable		     = false,
 			is_char			     = false,
 			is_class		     = false,
+			is_compound		     = false,
 			is_const		     = false,
 			is_const_volatile	     = false,
 			is_data_member_pointer	     = false,
@@ -945,6 +948,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			element_count = 0,
 			pointer_level = 0,
 			size	      = 0
+		};
+
+		enum {	fixed_fundamental = 0,
+			fundamental	  = 0,
+			number_format	  = 0
 		};
 
 		typedef NaT type;
@@ -1327,9 +1335,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct UInt8 : Natural {
 			enum {is_uint8 = true};
 
-			enum {	value_type	 = Z_UINT8_VALUE_TYPE,
-				fixed_value_type = Z_UINT8_FIXED_VALUE_TYPE,
-				value_format	 = Z_UINT8_VALUE_FORMAT
+			enum {	fundamental	  = Z_UINT8_FUNDAMENTAL,
+				fixed_fundamental = Z_UINT8_FIXED_FUNDAMENTAL,
+				number_format	  = Z_UINT8_NUMBER_FORMAT
 			};
 			enum {maximum = Z_UINT8_MAXIMUM};
 
@@ -1345,9 +1353,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct SInt8 : Integer {
 			enum {is_sint8 = true};
 
-			enum {	value_type	 = Z_SINT8_VALUE_TYPE,
-				fixed_value_type = Z_SINT8_FIXED_VALUE_TYPE,
-				value_format	 = Z_SINT8_VALUE_FORMAT
+			enum {	fundamental	  = Z_SINT8_FUNDAMENTAL,
+				fixed_fundamental = Z_SINT8_FIXED_FUNDAMENTAL,
+				number_format	  = Z_SINT8_NUMBER_FORMAT
 			};
 			enum {	minimum = Z_SINT8_MINIMUM,
 				maximum = Z_SINT8_MAXIMUM
@@ -1365,9 +1373,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct UInt16 : Natural {
 			enum {is_uint16 = true};
 
-			enum {	value_type	 = Z_UINT16_VALUE_TYPE,
-				fixed_value_type = Z_UINT16_FIXED_VALUE_TYPE,
-				value_format	 = Z_UINT16_VALUE_FORMAT
+			enum {	fundamental	  = Z_UINT16_FUNDAMENTAL,
+				fixed_fundamental = Z_UINT16_FIXED_FUNDAMENTAL,
+				number_format	  = Z_UINT16_NUMBER_FORMAT
 			};
 			enum {maximum = Z_UINT16_MAXIMUM};
 
@@ -1383,9 +1391,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct SInt16 : Integer {
 			enum {is_sint16 = true};
 
-			enum {	value_type	 = Z_SINT16_VALUE_TYPE,
-				fixed_value_type = Z_SINT16_FIXED_VALUE_TYPE,
-				value_format	 = Z_SINT16_VALUE_FORMAT
+			enum {	fundamental	  = Z_SINT16_FUNDAMENTAL,
+				fixed_fundamental = Z_SINT16_FIXED_FUNDAMENTAL,
+				number_format	  = Z_SINT16_NUMBER_FORMAT
 			};
 			enum {	minimum = Z_SINT16_MINIMUM,
 				maximum = Z_SINT16_MAXIMUM
@@ -1403,9 +1411,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct UInt32 : Natural {
 			enum {is_uint32 = true};
 
-			enum {	value_type	 = Z_UINT32_VALUE_TYPE,
-				fixed_value_type = Z_UINT32_FIXED_VALUE_TYPE,
-				value_format	 = Z_UINT32_VALUE_FORMAT
+			enum {	fundamental	  = Z_UINT32_FUNDAMENTAL,
+				fixed_fundamental = Z_UINT32_FIXED_FUNDAMENTAL,
+				number_format	  = Z_UINT32_NUMBER_FORMAT
 			};
 			enum {maximum = Z_UINT32_MAXIMUM};
 
@@ -1421,9 +1429,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct SInt32 : Integer {
 			enum {is_sint32 = true};
 
-			enum {	value_type	 = Z_SINT16_VALUE_TYPE,
-				fixed_value_type = Z_SINT16_FIXED_VALUE_TYPE,
-				value_format	 = Z_SINT16_VALUE_FORMAT
+			enum {	fundamental	  = Z_SINT16_FUNDAMENTAL,
+				fixed_fundamental = Z_SINT16_FIXED_FUNDAMENTAL,
+				number_format	  = Z_SINT16_NUMBER_FORMAT
 			};
 			enum {	minimum = Z_SINT32_MINIMUM,
 				maximum = Z_SINT32_MAXIMUM
@@ -1441,9 +1449,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct UInt64 : Natural {
 			enum {is_uint64 = true};
 
-			enum {	value_type	 = Z_UINT64_VALUE_TYPE,
-				fixed_value_type = Z_UINT64_FIXED_VALUE_TYPE,
-				value_format	 = Z_UINT64_VALUE_FORMAT
+			enum {	fundamental	  = Z_UINT64_FUNDAMENTAL,
+				fixed_fundamental = Z_UINT64_FIXED_FUNDAMENTAL,
+				number_format	  = Z_UINT64_NUMBER_FORMAT
 			};
 			enum {maximum = Z_UINT64_MAXIMUM};
 
@@ -1462,9 +1470,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct SInt64 : Integer {
 			enum {is_sint64 = true};
 
-			enum {	value_type	 = Z_SINT64_VALUE_TYPE,
-				fixed_value_type = Z_SINT64_FIXED_VALUE_TYPE,
-				value_format	 = Z_SINT64_VALUE_FORMAT
+			enum {	fundamental	  = Z_SINT64_FUNDAMENTAL,
+				fixed_fundamental = Z_SINT64_FIXED_FUNDAMENTAL,
+				number_format	  = Z_SINT64_NUMBER_FORMAT
 			};
 			enum {	minimum = Z_SINT64_MINIMUM,
 				maximum = Z_SINT64_MAXIMUM
@@ -1485,9 +1493,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct UInt128 : Natural {
 			enum {is_uint128 = true};
 
-			enum {	value_type	 = Z_UINT128_VALUE_TYPE,
-				fixed_value_type = Z_UINT128_FIXED_VALUE_TYPE,
-				value_format	 = Z_UINT128_VALUE_FORMAT
+			enum {	fundamental	  = Z_UINT128_FUNDAMENTAL,
+				fixed_fundamental = Z_UINT128_FIXED_FUNDAMENTAL,
+				number_format	  = Z_UINT128_NUMBER_FORMAT
 			};
 			enum {maximum = Z_UINT128_MAXIMUM};
 
@@ -1506,9 +1514,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct SInt128 : Integer {
 			enum {is_sint128 = true};
 
-			enum {	value_type	 = Z_SINT128_VALUE_TYPE,
-				fixed_value_type = Z_SINT128_FIXED_VALUE_TYPE,
-				value_format	 = Z_SINT128_VALUE_FORMAT
+			enum {	fundamental	  = Z_SINT128_FUNDAMENTAL,
+				fixed_fundamental = Z_SINT128_FIXED_FUNDAMENTAL,
+				number_format	  = Z_SINT128_NUMBER_FORMAT
 			};
 			enum {	minimum = Z_SINT128_MINIMUM,
 				maximum = Z_SINT128_MAXIMUM
@@ -1529,9 +1537,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct Float16 : Real {
 			enum {is_float16 = true};
 
-			enum {	value_type	 = Z_FLOAT16_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT16_FIXED_VALUE_TYPE,
-				value_format	 = Z_FLOAT16_VALUE_FORMAT
+			enum {	fundamental	  = Z_FLOAT16_FUNDAMENTAL,
+				fixed_fundamental = Z_FLOAT16_FIXED_FUNDAMENTAL,
+				number_format	  = Z_FLOAT16_NUMBER_FORMAT
 			};
 			enum {	bias		   = Z_FLOAT16_BIAS,
 				decimal_digits	   = Z_FLOAT16_DECIMAL_DIGITS,
@@ -1567,9 +1575,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct Float32 : Real {
 			enum {is_float32 = true};
 
-			enum {	value_type	 = Z_FLOAT32_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT32_FIXED_VALUE_TYPE,
-				value_format	 = Z_FLOAT32_VALUE_FORMAT
+			enum {	fundamental	  = Z_FLOAT32_FUNDAMENTAL,
+				fixed_fundamental = Z_FLOAT32_FIXED_FUNDAMENTAL,
+				number_format	  = Z_FLOAT32_NUMBER_FORMAT
 			};
 			enum {	bias		   = Z_FLOAT32_BIAS,
 				decimal_digits	   = Z_FLOAT32_DECIMAL_DIGITS,
@@ -1605,9 +1613,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct Float64 : Real {
 			enum {is_float64 = true};
 
-			enum {	value_type	 = Z_FLOAT64_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT64_FIXED_VALUE_TYPE,
-				value_format	 = Z_FLOAT64_VALUE_FORMAT
+			enum {	fundamental	  = Z_FLOAT64_FUNDAMENTAL,
+				fixed_fundamental = Z_FLOAT64_FIXED_FUNDAMENTAL,
+				number_format	  = Z_FLOAT64_NUMBER_FORMAT
 			};
 			enum {	bias		   = Z_FLOAT64_BIAS,
 				decimal_digits	   = Z_FLOAT64_DECIMAL_DIGITS,
@@ -1643,9 +1651,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct Float128 : Real {
 			enum {is_float128 = true};
 
-			enum {	value_type	 = Z_FLOAT128_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT128_FIXED_VALUE_TYPE,
-				value_format	 = Z_FLOAT128_VALUE_FORMAT
+			enum {	fundamental	  = Z_FLOAT128_FUNDAMENTAL,
+				fixed_fundamental = Z_FLOAT128_FIXED_FUNDAMENTAL,
+				number_format	  = Z_FLOAT128_NUMBER_FORMAT
 			};
 			enum {	bias		   = Z_FLOAT128_BIAS,
 				decimal_digits	   = Z_FLOAT128_DECIMAL_DIGITS,
@@ -1681,9 +1689,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct Float80_x87 : Real {
 			enum {is_float80_x87 = true};
 
-			enum {	value_type	 = Z_FLOAT80_X87_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT80_X87_FIXED_VALUE_TYPE,
-				value_format	 = Z_FLOAT80_X87_VALUE_FORMAT
+			enum {	fundamental	  = Z_FLOAT80_X87_FUNDAMENTAL,
+				fixed_fundamental = Z_FLOAT80_X87_FIXED_FUNDAMENTAL,
+				number_format	  = Z_FLOAT80_X87_NUMBER_FORMAT
 			};
 			enum {	bias		   = Z_FLOAT80_X87_BIAS,
 				decimal_digits	   = Z_FLOAT80_X87_DECIMAL_DIGITS,
@@ -1719,9 +1727,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct Float96_x87 : Real {
 			enum {is_float96_x87 = true};
 
-			enum {	value_type	 = Z_FLOAT96_X87_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT96_X87_FIXED_VALUE_TYPE,
-				value_format	 = Z_FLOAT96_X87_VALUE_FORMAT
+			enum {	fundamental	  = Z_FLOAT96_X87_FUNDAMENTAL,
+				fixed_fundamental = Z_FLOAT96_X87_FIXED_FUNDAMENTAL,
+				number_format	  = Z_FLOAT96_X87_NUMBER_FORMAT
 			};
 			enum {	bias		   = Z_FLOAT96_X87_BIAS,
 				decimal_digits	   = Z_FLOAT96_X87_DECIMAL_DIGITS,
@@ -1757,9 +1765,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct Float128_x87 : Real {
 			enum {is_float128_x87 = true};
 
-			enum {	value_type	 = Z_FLOAT128_X87_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT128_X87_FIXED_VALUE_TYPE,
-				value_format	 = Z_FLOAT128_X87_VALUE_FORMAT
+			enum {	fundamental	  = Z_FLOAT128_X87_FUNDAMENTAL,
+				fixed_fundamental = Z_FLOAT128_X87_FIXED_FUNDAMENTAL,
+				number_format	  = Z_FLOAT128_X87_NUMBER_FORMAT
 			};
 			enum {	bias		   = Z_FLOAT128_X87_BIAS,
 				decimal_digits	   = Z_FLOAT128_X87_DECIMAL_DIGITS,
@@ -1805,9 +1813,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	struct Char : TernaryType<Z_CHAR_IS_SIGNED, Integer, Natural>::type {
 		enum {is_char = true};
 
-		enum {	value_type	 = Z_CHAR_VALUE_TYPE,
-			fixed_value_type = Z_CHAR_FIXED_VALUE_TYPE,
-			value_format	 = Z_CHAR_VALUE_FORMAT
+		enum {	fundamental	  = Z_CHAR_FUNDAMENTAL,
+			fixed_fundamental = Z_CHAR_FIXED_FUNDAMENTAL,
+			number_format	  = Z_CHAR_NUMBER_FORMAT
 		};
 		enum {	minimum = Z_CHAR_MINIMUM,
 			maximum = Z_CHAR_MAXIMUM
@@ -1821,9 +1829,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	struct UChar : Natural {
 		enum {is_uchar = true};
 
-		enum {	value_type	 = Z_UCHAR_VALUE_TYPE,
-			fixed_value_type = Z_UCHAR_FIXED_VALUE_TYPE,
-			value_format	 = Z_UCHAR_VALUE_FORMAT
+		enum {	fundamental	  = Z_UCHAR_FUNDAMENTAL,
+			fixed_fundamental = Z_UCHAR_FIXED_FUNDAMENTAL,
+			number_format	  = Z_UCHAR_NUMBER_FORMAT
 		};
 		enum {maximum = Z_UCHAR_MAXIMUM};
 
@@ -1835,9 +1843,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	struct SChar : Integer {
 		enum {is_schar = true};
 
-		enum {	value_type	 = Z_SCHAR_VALUE_TYPE,
-			fixed_value_type = Z_SCHAR_FIXED_VALUE_TYPE,
-			value_format	 = Z_SCHAR_VALUE_FORMAT
+		enum {	fundamental	  = Z_SCHAR_FUNDAMENTAL,
+			fixed_fundamental = Z_SCHAR_FIXED_FUNDAMENTAL,
+			number_format	  = Z_SCHAR_NUMBER_FORMAT
 		};
 		enum {	minimum = Z_SCHAR_MINIMUM,
 			maximum = Z_SCHAR_MAXIMUM
@@ -1851,9 +1859,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	struct UShort : Natural {
 		enum {is_ushort = true};
 
-		enum {	value_type	 = Z_USHORT_VALUE_TYPE,
-			fixed_value_type = Z_USHORT_FIXED_VALUE_TYPE,
-			value_format	 = Z_USHORT_VALUE_FORMAT
+		enum {	fundamental	  = Z_USHORT_FUNDAMENTAL,
+			fixed_fundamental = Z_USHORT_FIXED_FUNDAMENTAL,
+			number_format	  = Z_USHORT_NUMBER_FORMAT
 		};
 		enum {maximum = Z_USHORT_MAXIMUM};
 
@@ -1865,9 +1873,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	struct SShort : Integer {
 		enum {is_sshort = true};
 
-		enum {	value_type	 = Z_SSHORT_VALUE_TYPE,
-			fixed_value_type = Z_SSHORT_FIXED_VALUE_TYPE,
-			value_format	 = Z_SSHORT_VALUE_FORMAT
+		enum {	fundamental	  = Z_SSHORT_FUNDAMENTAL,
+			fixed_fundamental = Z_SSHORT_FIXED_FUNDAMENTAL,
+			number_format	  = Z_SSHORT_NUMBER_FORMAT
 		};
 		enum {	minimum = Z_SSHORT_MINIMUM,
 			maximum = Z_SSHORT_MAXIMUM
@@ -1881,9 +1889,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	struct UInt : Natural {
 		enum {is_uint = true};
 
-		enum {	value_type	 = Z_UINT_VALUE_TYPE,
-			fixed_value_type = Z_UINT_FIXED_VALUE_TYPE,
-			value_format	 = Z_UINT_VALUE_FORMAT
+		enum {	fundamental	  = Z_UINT_FUNDAMENTAL,
+			fixed_fundamental = Z_UINT_FIXED_FUNDAMENTAL,
+			number_format	  = Z_UINT_NUMBER_FORMAT
 		};
 		enum {maximum = Z_UINT_MAXIMUM};
 
@@ -1895,9 +1903,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	struct SInt : Integer {
 		enum {is_sint = true};
 
-		enum {	value_type	 = Z_SINT_VALUE_TYPE,
-			fixed_value_type = Z_SINT_FIXED_VALUE_TYPE,
-			value_format	 = Z_SINT_VALUE_FORMAT
+		enum {	fundamental	  = Z_SINT_FUNDAMENTAL,
+			fixed_fundamental = Z_SINT_FIXED_FUNDAMENTAL,
+			number_format	  = Z_SINT_NUMBER_FORMAT
 		};
 		enum {	minimum = Z_SINT_MINIMUM,
 			maximum = Z_SINT_MAXIMUM
@@ -1911,9 +1919,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	struct ULong : Natural {
 		enum {is_ulong = true};
 
-		enum {	value_type	 = Z_ULONG_VALUE_TYPE,
-			fixed_value_type = Z_ULONG_FIXED_VALUE_TYPE,
-			value_format	 = Z_ULONG_VALUE_FORMAT
+		enum {	fundamental	  = Z_ULONG_FUNDAMENTAL,
+			fixed_fundamental = Z_ULONG_FIXED_FUNDAMENTAL,
+			number_format	  = Z_ULONG_NUMBER_FORMAT
 		};
 		enum {maximum = Z_ULONG_MAXIMUM};
 
@@ -1926,9 +1934,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	struct SLong : Integer {
 		enum {is_slong = true};
 
-		enum {	value_type	 = Z_SLONG_VALUE_TYPE,
-			fixed_value_type = Z_SLONG_FIXED_VALUE_TYPE,
-			value_format	 = Z_SLONG_VALUE_FORMAT
+		enum {	fundamental	  = Z_SLONG_FUNDAMENTAL,
+			fixed_fundamental = Z_SLONG_FIXED_FUNDAMENTAL,
+			number_format	  = Z_SLONG_NUMBER_FORMAT
 		};
 		enum {	minimum = Z_SLONG_MINIMUM,
 			maximum = Z_SLONG_MAXIMUM
@@ -1944,9 +1952,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct ULLong : Natural {
 			enum {is_ullong = true};
 
-			enum {	value_type	 = Z_ULLONG_VALUE_TYPE,
-				fixed_value_type = Z_ULLONG_FIXED_VALUE_TYPE,
-				value_format	 = Z_ULLONG_VALUE_FORMAT
+			enum {	fundamental	  = Z_ULLONG_FUNDAMENTAL,
+				fixed_fundamental = Z_ULLONG_FIXED_FUNDAMENTAL,
+				number_format	  = Z_ULLONG_NUMBER_FORMAT
 			};
 			enum {maximum = Z_ULLONG_MAXIMUM};
 
@@ -1961,9 +1969,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct SLLong : Integer {
 			enum {is_sllong = true};
 
-			enum {	value_type	 = Z_SLLONG_VALUE_TYPE,
-				fixed_value_type = Z_SLLONG_FIXED_VALUE_TYPE,
-				value_format	 = Z_SLLONG_VALUE_FORMAT
+			enum {	fundamental	  = Z_SLLONG_FUNDAMENTAL,
+				fixed_fundamental = Z_SLLONG_FIXED_FUNDAMENTAL,
+				number_format	  = Z_SLLONG_NUMBER_FORMAT
 			};
 			enum {	minimum = Z_SLLONG_MINIMUM,
 				maximum = Z_SLLONG_MAXIMUM
@@ -1984,9 +1992,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct Float : Real {
 			enum {is_float = true};
 
-			enum {	value_type	 = Z_FLOAT_VALUE_TYPE,
-				fixed_value_type = Z_FLOAT_FIXED_VALUE_TYPE,
-				value_format	 = Z_FLOAT_VALUE_FORMAT
+			enum {	fundamental	  = Z_FLOAT_FUNDAMENTAL,
+				fixed_fundamental = Z_FLOAT_FIXED_FUNDAMENTAL,
+				number_format	  = Z_FLOAT_NUMBER_FORMAT
 			};
 			enum {	bias		   = Z_FLOAT_BIAS,
 				decimal_digits	   = Z_FLOAT_DECIMAL_DIGITS,
@@ -2022,9 +2030,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct Double : Real {
 			enum {is_double = true};
 
-			enum {	value_type	 = Z_DOUBLE_VALUE_TYPE,
-				fixed_value_type = Z_DOUBLE_FIXED_VALUE_TYPE,
-				value_format	 = Z_DOUBLE_VALUE_FORMAT
+			enum {	fundamental	  = Z_DOUBLE_FUNDAMENTAL,
+				fixed_fundamental = Z_DOUBLE_FIXED_FUNDAMENTAL,
+				number_format	  = Z_DOUBLE_NUMBER_FORMAT
 			};
 			enum {	bias		   = Z_DOUBLE_BIAS,
 				decimal_digits	   = Z_DOUBLE_DECIMAL_DIGITS,
@@ -2060,9 +2068,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		struct LDouble : Real {
 			enum {is_ldouble = true};
 
-			enum {	value_type	 = Z_LDOUBLE_VALUE_TYPE,
-				fixed_value_type = Z_LDOUBLE_FIXED_VALUE_TYPE,
-				value_format	 = Z_LDOUBLE_VALUE_FORMAT
+			enum {	fundamental	  = Z_LDOUBLE_FUNDAMENTAL,
+				fixed_fundamental = Z_LDOUBLE_FIXED_FUNDAMENTAL,
+				number_format	  = Z_LDOUBLE_NUMBER_FORMAT
 			};
 			enum {	bias		   = Z_LDOUBLE_BIAS,
 				decimal_digits	   = Z_LDOUBLE_DECIMAL_DIGITS,
@@ -2945,8 +2953,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct Storable : Virtual<C> {
-		Z_DEFINE_STRICT_STRUCTURE (typename C::type value;     ) to_wrap;
-		Z_DEFINE_STRICT_STRUCTURE (UInt8 data[sizeof(to_wrap)];) to_opaque;
+		Z_DEFINE_STRICT_STRUCTURE (typename C::type value;,	 to_wrap  );
+		Z_DEFINE_STRICT_STRUCTURE (UInt8 data[sizeof(to_wrap)];, to_opaque);
 
 		enum {	size = C::is_empty ? 0 : sizeof(to_wrap),
 			bits = C::is_empty ? 0 : sizeof(to_wrap) * 8
@@ -3507,7 +3515,7 @@ namespace Zeta {namespace Detail {namespace Type {
 	template <Boolean E, class T> struct Case<E, const volatile T> : TernaryType<Case<false, T>::is_signed_or_unsigned, Mixins::ConstVolatileSignedOrUnsigned<Case<E, T> >, Mixins::ConstVolatile<Case<E, T> > >::type {};
 	template <Boolean E, class T> struct Case<E, 	   volatile T> : TernaryType<Case<false, T>::is_signed_or_unsigned, Mixins::VolatileSignedOrUnsigned	 <Case<E, T> >, Mixins::Volatile     <Case<E, T> > >::type {};
 
-	// MARK: - Final aggregate
+	// MARK: - Final detail
 
 	template <class T> struct Final : Mixins::Kind<
 		Case<false, T>::is_storable
@@ -3525,6 +3533,8 @@ namespace Zeta {namespace Detail {namespace Type {
 					: Mixins::ConvertibleFunction)),
 		Case<true, T>
 	> {
+		enum {is_compound = !Final::is_fundamental};
+
 		typedef typename TernaryType<
 			Final::is_structure_or_union,
 			typename Final<const typename Final::remove_const_volatile>::add_lvalue_reference, T
@@ -3775,6 +3785,7 @@ namespace Zeta {
 				is_callable		     = Type::is_callable,
 				is_char			     = Type::is_char,
 				is_class		     = Type::is_class,
+				is_compound		     = Type::is_compound,
 				is_const		     = Type::is_const,
 				is_const_volatile	     = Type::is_const_volatile,
 				is_data_member_pointer	     = Type::is_data_member_pointer,
@@ -3824,12 +3835,15 @@ namespace Zeta {
 			};
 
 			enum {	arity	      = Type::arity,
+				bits	      = Type::bits,
 				element_count = Type::element_count,
-				pointer_level = Type::pointer_level
+				pointer_level = Type::pointer_level,
+				size	      = Type::size
 			};
 
-			enum {	bits = Type::bits,
-				size = Type::size
+			enum {	fixed_fundamental = Type::fixed_fundamental,
+				fundamental	  = Type::fundamental,
+				number_format	  = Type::number_format
 			};
 
 			typedef Type end;
@@ -4121,11 +4135,14 @@ namespace Zeta {
 	template <class T> struct TypeArity			{enum {value = Type<T>::arity			    };};
 	template <class T> struct TypeBits			{enum {value = Type<T>::bits			    };};
 	template <class T> struct TypeElementCount		{enum {value = Type<T>::element_count		    };};
+	template <class T> struct TypeFixedFundamental		{enum {value = Type<T>::fixed_fundamental	    };};
+	template <class T> struct TypeFundamental		{enum {value = Type<T>::fundamental		    };};
 	template <class T> struct TypeIsArithmetic		{enum {value = Type<T>::is_arithmetic		    };};
 	template <class T> struct TypeIsArray			{enum {value = Type<T>::is_array		    };};
 	template <class T> struct TypeIsCallable		{enum {value = Type<T>::is_callable		    };};
 	template <class T> struct TypeIsChar			{enum {value = Type<T>::is_char			    };};
 	template <class T> struct TypeIsClass			{enum {value = Type<T>::is_class		    };};
+	template <class T> struct TypeIsCompound		{enum {value = Type<T>::is_compound		    };};
 	template <class T> struct TypeIsConst			{enum {value = Type<T>::is_const		    };};
 	template <class T> struct TypeIsConstVolatile		{enum {value = Type<T>::is_const_volatile	    };};
 	template <class T> struct TypeIsDataMemberPointer	{enum {value = Type<T>::is_data_member_pointer	    };};
@@ -4172,6 +4189,7 @@ namespace Zeta {
 	template <class T> struct TypeIsVoid			{enum {value = Type<T>::is_void			    };};
 	template <class T> struct TypeIsVoidPointer		{enum {value = Type<T>::is_void_pointer		    };};
 	template <class T> struct TypeIsVolatile		{enum {value = Type<T>::is_volatile		    };};
+	template <class T> struct TypeNumberFormat		{enum {value = Type<T>::number_format		    };};
 	template <class T> struct TypePointerLevel		{enum {value = Type<T>::pointer_level		    };};
 	template <class T> struct TypeSize			{enum {value = Type<T>::size			    };};
 

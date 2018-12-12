@@ -139,6 +139,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif Z_OS == Z_OS_OPEN_BSD
 #	include <Z/inspection/OS/modules/OpenBSD.h>
 
+#elif Z_OS == Z_OS_OPEN_VMS
+#	include <Z/inspection/OS/modules/OpenVMS.h>
+
 #elif Z_OS == Z_OS_ORBIS_OS
 #	include <Z/inspection/OS/modules/Orbis OS.h>
 
@@ -205,9 +208,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif Z_OS == Z_OS_UTS
 #	include <Z/inspection/OS/modules/UTS.h>
 
-#elif Z_OS == Z_OS_VMS
-#	include <Z/inspection/OS/modules/VMS.h>
-
 #elif Z_OS == Z_OS_VOS
 #	include <Z/inspection/OS/modules/VOS.h>
 
@@ -230,7 +230,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/OS/completion.h>
 
-#define Z_OS_HAS(WHAT) Z_OS_HAS_##WHAT
-#define Z_OS_IS( WHAT) Z_OS_IS_##WHAT
+#define Z_OS_HAS(WHAT ) Z_OS_HAS_##WHAT
 
 #endif /* _Z_inspection_OS_H_ */

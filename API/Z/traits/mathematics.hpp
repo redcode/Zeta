@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_traits_mathematics_HPP_
 #define _Z_traits_mathematics_HPP_
 
-#include <Z/types/base.hpp>
+#include <Z/types/fundamental.hpp>
 
 namespace Zeta {
 

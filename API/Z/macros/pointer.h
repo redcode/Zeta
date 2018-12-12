@@ -8,14 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_macros_pointer_H_
 #define _Z_macros_pointer_H_
 
-#include <Z/types/base.h>
-
-/* MARK: - Logic operations */
-
-#define Z_POINTER_AND(pointer, value) ((void *)( (zuintptr)pointer & (value)));
-#define Z_POINTER_OR( pointer, value) ((void *)( (zuintptr)pointer | (value)));
-#define Z_POINTER_XOR(pointer, value) ((void *)( (zuintptr)pointer ^ (value)));
-#define Z_POINTER_NOT(pointer)	      ((void *)(~(zuintptr)pointer));
+#include <Z/types/fundamental.h>
 
 /* MARK: - Pointer from base + index */
 

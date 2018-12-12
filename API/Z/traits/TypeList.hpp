@@ -114,7 +114,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 
-#	include <Z/traits/SelectType.hpp>
+#	include <Z/traits/control.hpp>
 #	include <Z/traits/TypeCount.hpp>
 
 	namespace Zeta {

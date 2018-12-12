@@ -8,8 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_ABIs_generic_emulation_H_
 #define _Z_ABIs_generic_emulation_H_
 
-#include <Z/types/base.h>
-#include <Z/macros/key.h>
+#include <Z/macros/type.h>
 
 #define Z_EMULATOR_FUNCTION_POWER		0
 #define Z_EMULATOR_FUNCTION_RESET		1
@@ -77,8 +76,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 Z_DEFINE_STRICT_STRUCTURE (
 	ZKey(EMULATOR_FUNCTION) key;
-	ZPointer		component;
-) ZEmulatorExport;
+	void (*)(void)		function;
+) ZEmulatorFunctionExport;
 
 Z_DEFINE_STRICT_STRUCTURE (
 	ZKey(EMULATOR_FUNCTION) key;
@@ -91,8 +90,8 @@ typedef ZEmulatorInstanceImport ZCPUEmulatorInstanceImport;
 Z_DEFINE_STRICT_STRUCTURE (
 	zusize			       dependency_count;
 	ZEmulatorDependency const*     dependencies;
-	zusize			       export_count;
-	ZEmulatorExport const*	       exports;
+	zusize			       function_export_count;
+	ZEmulatorExport const*	       function_exports;
 	zusize			       instance_size;
 	zusize			       instance_state_offset;
 	zusize			       instance_state_size;

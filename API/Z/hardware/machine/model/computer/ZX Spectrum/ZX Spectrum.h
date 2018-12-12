@@ -6,12 +6,13 @@ Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
 .---------------------------------.
-|   Vendor: Sinclair Research	  |
-| Released: 1982-04-23		  |
-|      CPU: Zilog Z80 @ 3.5 MHz	  |
-|      ROM: 16K			  |
-|      RAM: 16K / 48K		  |
-|    Sound: Internal speaker	  |
+| Model name: ZX Spectrum	  |
+|     Vendor: Sinclair Research	  |
+|   Released: 1982-04-23	  |
+|	 CPU: Zilog Z80 @ 3.5 MHz |
+|	 ROM: 16K		  |
+|	 RAM: 16K / 48K		  |
+|      Sound: Internal speaker	  |
 '---------------------------------'
 
  __________________________________________________
@@ -30,7 +31,36 @@ Released under the terms of the GNU Lesser General Public License v3.
 |  _____   _   _   _   _   _   _   _   __   ___////|
 | [SHIFT] [Z] [X] [C] [V] [B] [N] [M] [SS] [SPACE] |
 |____________________________________________////__|
-(__________________________________________________) */
+(__________________________________________________)
+
+
+.---------------------------------.
+| Model name: ZX Spectrum +	  |
+|     Vendor: Sinclair Research	  |
+|   Released: 1984-10		  |
+|	 CPU: Zilog Z80 @ 3.5 MHz |
+|	 ROM: 16K		  |
+|	 RAM: 48K		  |
+|      Sound: Internal speaker	  |
+'---------------------------------'
+
+ ____________________________				  ___________
+|  ___. __  _	  __ . __    '''''''''''''''''''''''''''''	     |
+| __\ ||  ||__|__|--|||						     |
+|--------------------------------------------------------------------|
+| ZX Spectrum +							     |
+|--.-----------------------------------------------------.-----------|
+|  |( )|( )|(1)|(2)|(3)|(4)|(5)|(6)|(7)|(1)|(1)|(1)|(BRK)|	     |
+|--|-----------------------------------------------------|-----------|
+|  |(DEL)|(1)|(Q)|(W)|(E)|(R)|(T)|(Y)|(U)|(I)|(O)|(P)|.-.|	     |
+|--|-------------------------------------------------|| ||-----------|
+|  |(EXT)|(ED)|(A)|(S)|(D)|(F)|(G)|(H)|(J)|(K)|(L)|(____'|	     |
+|--|-----------------------------------------------------|-----------|
+|  |(CAPS S)|( )|(Z)|(X)|(C)|(V)|(B)|(N)|(M)|(.)|(CAPS S)|	     |
+|--|-----------------------------------------------------|-----------|
+|  |( )|(;)|(")|(_)|(_)|(_______________)|(_)|(_)|(,)|(_)|	//// |
+|--'-----------------------------------------------------'-----------|
+|____________________________________________________________________| */
 
 #ifndef _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H_
 #define _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H_
@@ -66,44 +96,38 @@ Released under the terms of the GNU Lesser General Public License v3.
 |---------------------------------|
 		352			*/
 
-#define Z_ZX_SPECTRUM_SCREEN_FPS			 50
-#define Z_ZX_SPECTRUM_SCREEN_WIDTH			 352
-#define Z_ZX_SPECTRUM_SCREEN_HEIGHT			 296
+#define Z_ZX_SPECTRUM_SCREEN_FPS 			     50
+#define Z_ZX_SPECTRUM_SCREEN_WIDTH			    352
+#define Z_ZX_SPECTRUM_SCREEN_HEIGHT			    296
 #define Z_ZX_SPECTRUM_SCREEN_PIXELS			 104192 /* 352 * 296 */
-#define Z_ZX_SPECTRUM_SCREEN_PAPER_WIDTH		 256
-#define Z_ZX_SPECTRUM_SCREEN_PAPER_HEIGHT		 192
-#define Z_ZX_SPECTRUM_SCREEN_PAPER_PIXELS		 49152	/* 256 * 192 */
-#define Z_ZX_SPECTRUM_SCREEN_TOP_BORDER_HEIGHT		 56
-#define Z_ZX_SPECTRUM_SCREEN_INVISIBLE_TOP_BORDER_HEIGHT 8
-#define Z_ZX_SPECTRUM_SCREEN_VISIBLE_TOP_BORDER_HEIGHT	 48
-#define Z_ZX_SPECTRUM_SCREEN_BOTTOM_BORDER_HEIGHT	 56
-#define Z_ZX_SPECTRUM_SCREEN_LEFT_BORDER_WIDTH		 48
-#define Z_ZX_SPECTRUM_SCREEN_RIGHT_BORDER_WIDTH		 48
+#define Z_ZX_SPECTRUM_SCREEN_PAPER_WIDTH		    256
+#define Z_ZX_SPECTRUM_SCREEN_PAPER_HEIGHT		    192
+#define Z_ZX_SPECTRUM_SCREEN_PAPER_PIXELS		  49152	/* 256 * 192 */
+#define Z_ZX_SPECTRUM_SCREEN_TOP_BORDER_HEIGHT		     56
+#define Z_ZX_SPECTRUM_SCREEN_INVISIBLE_TOP_BORDER_HEIGHT      8
+#define Z_ZX_SPECTRUM_SCREEN_VISIBLE_TOP_BORDER_HEIGHT	     48
+#define Z_ZX_SPECTRUM_SCREEN_BOTTOM_BORDER_HEIGHT	     56
+#define Z_ZX_SPECTRUM_SCREEN_LEFT_BORDER_WIDTH		     48
+#define Z_ZX_SPECTRUM_SCREEN_RIGHT_BORDER_WIDTH		     48
 
 /* MARK: - Timmings */
 
 #define Z_ZX_SPECTRUM_CPU_HZ			     3500000
-#define Z_ZX_SPECTRUM_CYCLES_PER_FRAME		     69888
-#define Z_ZX_SPECTRUM_CYCLES_PER_SCANLINE	     224
-#define Z_ZX_SPECTRUM_CYCLES_PER_HBLANK		     48
-#define Z_ZX_SPECTRUM_CYCLES_PER_VBLANK		     1792
-#define Z_ZX_SPECTRUM_CYCLES_PER_TOP_BORDER_LINE     176
-#define Z_ZX_SPECTRUM_CYCLES_PER_LEFT_BORDER_LINE    24
-#define Z_ZX_SPECTRUM_CYCLES_PER_RIGHT_BORDER_LINE   24
-#define Z_ZX_SPECTRUM_CYCLES_PER_BOTTOM_BORDER_LINE  176
-#define Z_ZX_SPECTRUM_CYCLES_PER_PAPER_LINE	     128
-#define Z_ZX_SPECTRUM_CYCLES_PER_INT		     32
-#define Z_ZX_SPECTRUM_CYCLES_AT_VBLANK		     0
-#define Z_ZX_SPECTRUM_CYCLES_AT_INT		     24
-#define Z_ZX_SPECTRUM_CYCLES_AT_INVISIBLE_TOP_BORDER 1792  /* Z_ZX_SPECTRUM_CYCLES_PER_VBLANK		       */
-#define Z_ZX_SPECTRUM_CYCLES_AT_VISIBLE_TOP_BORDER   3584  /* Z_ZX_SPECTRUM_CYCLES_AT_INVISIBLE_TOP_BORDER +
-							      Z_ZX_SPECTRUM_CYCLES_PER_SCANLINE		   *
-							      Z_ZX_SPECTRUM_SCREEN_INVISIBLE_TOP_BORDER_HEIGHT */
-#define Z_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION	     14336 /* Z_ZX_SPECTRUM_CYCLES_AT_VISIBLE_TOP_BORDER +
-							      Z_ZX_SPECTRUM_CYCLES_PER_SCANLINE		 *
-							      Z_ZX_SPECTRUM_SCREEN_VISIBLE_TOP_BORDER_HEIGHT   */
-#define Z_ZX_SPECTRUM_CYCLES_AT_BOTTOM_BORDER	     57344 /* Z_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION +
-							      Z_ZX_SPECTRUM_CYCLES_PER_SCANLINE    *
-							      Z_ZX_SPECTRUM_SCREEN_PAPER_HEIGHT		       */
+#define Z_ZX_SPECTRUM_CYCLES_PER_FRAME		       69888
+#define Z_ZX_SPECTRUM_CYCLES_PER_SCANLINE		 224
+#define Z_ZX_SPECTRUM_CYCLES_PER_HBLANK			  48
+#define Z_ZX_SPECTRUM_CYCLES_PER_VBLANK			1792
+#define Z_ZX_SPECTRUM_CYCLES_PER_TOP_BORDER_LINE	 176
+#define Z_ZX_SPECTRUM_CYCLES_PER_LEFT_BORDER_LINE	  24
+#define Z_ZX_SPECTRUM_CYCLES_PER_RIGHT_BORDER_LINE	  24
+#define Z_ZX_SPECTRUM_CYCLES_PER_BOTTOM_BORDER_LINE	 176
+#define Z_ZX_SPECTRUM_CYCLES_PER_PAPER_LINE		 128
+#define Z_ZX_SPECTRUM_CYCLES_PER_INT			  32
+#define Z_ZX_SPECTRUM_CYCLES_AT_VBLANK			   0
+#define Z_ZX_SPECTRUM_CYCLES_AT_INT			  24
+#define Z_ZX_SPECTRUM_CYCLES_AT_INVISIBLE_TOP_BORDER	1792
+#define Z_ZX_SPECTRUM_CYCLES_AT_VISIBLE_TOP_BORDER	3584
+#define Z_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION	       14336
+#define Z_ZX_SPECTRUM_CYCLES_AT_BOTTOM_BORDER	       57344
 
 #endif /* _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H_ */

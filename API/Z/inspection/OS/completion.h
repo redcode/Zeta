@@ -5,6 +5,10 @@
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
+#ifndef Z_OS_MODERN_NAME
+#	define Z_OS_MODERN_NAME Z_OS_NAME
+#endif
+
 #ifndef Z_OS_HAS_NETWORKING
 #	define Z_OS_HAS_NETWORKING FALSE
 #endif

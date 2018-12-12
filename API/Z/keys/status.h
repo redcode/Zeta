@@ -12,11 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	undef Z_OK /* zlib */
 #endif
 
-#define Z_OK		0
-#define Z_END		1
-#define Z_UPDATED	2
-#define Z_UNIMPLEMENTED	3
-
+#define Z_OK			      0
 #define Z_ERROR_UNKNOWN		     -1
 #define Z_ERROR_ALREADY_EXISTS	     -2
 #define Z_ERROR_ALREADY_IN_USE	     -3

@@ -19,7 +19,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #else
 
-#	include <Z/types/base.hpp>
+#	include <Z/classes/NaT.hpp>
 #	include <Z/macros/repetition.h>
 #	include <Z/macros/tokens.h>
 

@@ -8,25 +8,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_ABIs_generic_cipher_H_
 #define _Z_ABIs_generic_cipher_H_
 
-#include <Z/types/base.h>
+#include <Z/types/fundamental.h>
 
-#define Z_CIPHER_FEATURE_SEQUENTIAL 1
+typedef zsint  (* ZCipherTestKey)   (void const* key,
+				     zusize	 key_size);
 
-typedef ZStatus (* ZCipherTestKey)   (void const* key,
-				      zusize	  key_size);
+typedef void   (* ZCipherSetKey)    (void*	 context,
+				     void const* key,
+				     zusize	 key_size);
 
-typedef void	(* ZCipherSetKey)    (void*	  context,
-				      void const* key,
-				      zusize	  key_size);
+typedef void   (* ZCipherProcess)   (void*	 context,
+				     void const* block,
+				     zusize	 block_size,
+				     void*	 output);
 
-typedef void	(* ZCipherProcess)   (void*	  context,
-				      void const* block,
-				      zusize	  block_size,
-				      void*	  output);
-
-typedef zusize	(* ZCipherOutputSize)(void*	  context,
-				      void const* block,
-				      zusize	  block_size);
+typedef zusize (* ZCipherOutputSize)(void*	 context,
+				     void const* block,
+				     zusize	 block_size);
 
 typedef struct {
 	ZCipherTestKey	  test_key;
@@ -43,5 +41,7 @@ typedef struct {
 	zusize		  deciphering_word_size;
 	zuint8		  features;
 } ZCipherABI;
+
+#define Z_CIPHER_FEATURE_SEQUENTIAL 1
 
 #endif /* _Z_ABIs_generic_cipher_H_ */

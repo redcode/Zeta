@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/constants/base.h>
 #include <Z/keys/compiler.h>
+#include <Z/macros/version.h>
 
 #if defined(__clang__)
 #	if defined(__apple_build_version__)
@@ -178,6 +179,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(_PACC_VER)
 #	include <Z/inspection/compiler/modules/Palm C - C++.h>
 
+#elif defined(__PCC__)
+#	include <Z/inspection/compiler/modules/PCC.h>
+
 #elif defined(__POCC__)
 #	include <Z/inspection/compiler/modules/Pelles C.h>
 
@@ -224,7 +228,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/compiler/modules/Tiny C.h>
 
 #elif defined(__TURBOC__)
-#	include <Z/inspection/compiler/modules/Turbo C - C++.h>
+#	include <Z/inspection/compiler/modules/Turbo C.h>
 
 #elif defined(_UCC)
 #	include <Z/inspection/compiler/modules/Ultimate C - C++.h>

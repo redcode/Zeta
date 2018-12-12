@@ -8,9 +8,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_inspection_modules_compiler_GCC_H_
 #define _Z_inspection_modules_compiler_GCC_H_
 
-#include <Z/macros/version.h>
-#include <Z/keys/order.h>
-
 /* MARK: - Identification */
 
 #define Z_COMPILER		  Z_COMPILER_GCC
@@ -186,7 +183,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 | GCC implements several features of C99 as extensions in C90 and in C++98, |
 | but some of them generate warnings with "-pedantic" when compiling using  |
 | a standard previous to C99.						    |
-| Reference: http://gcc.gnu.org/c99status.html				    |
+| Reference: <http://gcc.gnu.org/c99status.html>			    |
 '--------------------------------------------------------------------------*/
 
 #if Z_COMPILER_VERSION >= Z_VERSION(1, 21, 0)
@@ -255,9 +252,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 /* MARK: - C11 support
-.----------------------------------------------.
-| Reference: http://gcc.gnu.org/wiki/C11Status |
-'---------------------------------------------*/
+.------------------------------------------------.
+| Reference: <http://gcc.gnu.org/wiki/C11Status> |
+'-----------------------------------------------*/
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
 
@@ -372,7 +369,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 .---------------------------------------------------------------------------.
 | There is no official documentation where to consult since what version is |
 | available each attribute. The following list has been used as reference:  |
-| https://ohse.de/uwe/articles/gcc-attributes.html			    |
+| <https://ohse.de/uwe/articles/gcc-attributes.html>			    |
 '--------------------------------------------------------------------------*/
 
 /*#define Z_COMPILER_ATTRIBUTE_API_ALIAS*/
@@ -412,9 +409,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_ATTRIBUTE_PRIVATE __attribute__((visibility("hidden")))
 #	define Z_COMPILER_ATTRIBUTE_PUBLIC  __attribute__((visibility("default")))
 
-	/*----------------------------------------------------------.
-	| See: http://gcc.gnu.org/ml/gcc-help/2006-08/msg00232.html |
-	'----------------------------------------------------------*/
+	/*------------------------------------------------------------.
+	| See: <http://gcc.gnu.org/ml/gcc-help/2006-08/msg00232.html> |
+	'------------------------------------------------------------*/
 #	if	defined(Z_COMPILER_CPU_ARCHITECTURE)			  && \
 		(Z_COMPILER_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32 || \
 		 Z_COMPILER_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64)
@@ -424,10 +421,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-/*----------------------------------------------------------------------.
-| "sentinel" first appeared in the documentation of GCC v4.0.0:		|
-| https://gcc.gnu.org/onlinedocs/gcc-4.0.0/gcc/Function-Attributes.html |
-'----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------.
+| "sentinel" first appeared in the documentation of GCC v4.0.0:		  |
+| <https://gcc.gnu.org/onlinedocs/gcc-4.0.0/gcc/Function-Attributes.html> |
+'------------------------------------------------------------------------*/
 #if Z_COMPILER_VERSION >= Z_VERSION(4, 0, 0)
 #	define Z_COMPILER_ATTRIBUTE_NULL_TERMINATED __attribute__((sentinel))
 #endif
@@ -1190,7 +1187,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 | dealing with variable argument lists.					       |
 |									       |
 | Read the complete story:						       |
-| https://gcc.gnu.org/bugzilla/show_bug.cgi?id=45249			       |
+| <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=45249>			       |
 |									       |
 | This should not be a problem, after all the built-in macros work well, but   |
 | some versions of GCC create dependencies with the C standard library under   |

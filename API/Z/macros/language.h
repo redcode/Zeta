@@ -104,8 +104,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_COMPILER_HAS_MACRO(OFFSET_OF)
 #	define Z_OFFSET_OF Z_COMPILER_MACRO(OFFSET_OF)
+
+#elif Z_LANGUAGE_HAS_TYPE(C, LLONG) || Z_LANGUAGE_HAS_TYPE(CPP, LLONG)
+#	define Z_OFFSET_OF(type, member) \
+		((unsigned long int)(unsigned long long int)&((type *)(0))->member)
+
 #else
-#	define Z_OFFSET_OF(type, member) (((unsigned long int)&((type *)(1))->member) - 1)
+#	define Z_OFFSET_OF(type, member) \
+		((unsigned long int)&((type *)(0))->member)
 #endif
 
 /* MARK: - Informative macros */

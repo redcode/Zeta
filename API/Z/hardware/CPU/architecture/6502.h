@@ -39,7 +39,7 @@ Status (P register):
 #ifndef _Z_hardware_CPU_architecture_6502_H_
 #define _Z_hardware_CPU_architecture_6502_H_
 
-#include <Z/types/base.h>
+#include <Z/types/fundamental.h>
 
 /* MARK: - Addresses */
 
@@ -60,14 +60,14 @@ Status (P register):
 
 /* MARK: - State storage type */
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN
+Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint16 pc;
 	zuint8	s, p, a, x, y;
 
 	struct {zuint8 irq :1;
 		zuint8 nmi :1;
 	} internal;
-Z_DEFINE_STRICT_STRUCTURE_END Z6502State;
+} Z_DEFINE_STRICT_STRUCTURE_END (Z6502State);
 
 #define Z_6502_STATE_PC( object) (object)->pc
 #define Z_6502_STATE_S(	 object) (object)->s

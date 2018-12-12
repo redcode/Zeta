@@ -15,11 +15,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef _Z_formats_storage_medium_image_audio_TAP_H_
 #define _Z_formats_storage_medium_image_audio_TAP_H_
 
-#include <Z/types/base.h>
+#include <Z/types/fundamental.h>
+#include <Z/macros/structure.h>
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_STRICT_STRUCTURE ({
 	zuint16 size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
-) ZTAPBlock;
+	Z_FAM(zuint8 data[];)
+}, ZTAPBlock);
 
 #endif /* _Z_formats_storage_medium_image_audio_TAP_H_ */

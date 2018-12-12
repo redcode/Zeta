@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_ABIs_generic_hash_function_H_
 #define _Z_ABIs_generic_hash_function_H_
 
-#include <Z/types/base.h>
+#include <Z/types/fundamental.h>
 
 void  (* ZHashFunctionInitialize)(void*	      context);
 

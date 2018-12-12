@@ -11,4 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMMA ,
 #define Z_DOT	.
 
+#define Z_EMPTY_(dummy)
+#define Z_EMPTY Z_EMPTY_(.)
+
 #endif /* _Z_macros_tokens_H_ */

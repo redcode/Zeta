@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_types_buffering_H_
 #define _Z_types_buffering_H_
 
-#include <Z/types/base.h>
+#include <Z/types/fundamental.h>
 
 typedef struct {
 	void*		buffers[3];

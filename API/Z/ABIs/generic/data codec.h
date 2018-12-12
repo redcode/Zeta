@@ -8,18 +8,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_ABIs_generic_data_codec_H_
 #define _Z_ABIs_generic_data_codec_H_
 
-#include <Z/types/base.h>
+#include <Z/types/fundamental.h>
 
-typedef zusize	(* ZDataCodecProcess)	(void const* block,
-					 zusize	     block_size,
-					 void*	     output);
+typedef zusize (* ZDataCodecProcess)   (void const* block,
+					zusize	    block_size,
+					void*	    output);
 
-typedef zusize	(* ZDataCodecOutputSize)(void const* block,
-					 zusize	     block_size);
+typedef zusize (* ZDataCodecOutputSize)(void const* block,
+					zusize	    block_size);
 
-typedef ZStatus (* ZDataCodecValidate)	(void const* block,
-					 zusize	     block_size,
-					 zusize*     error_offset);
+typedef zsint  (* ZDataCodecValidate)  (void const* block,
+					zusize	    block_size,
+					zusize*	    error_offset);
 
 typedef struct {
 	ZDataCodecProcess    encode;
