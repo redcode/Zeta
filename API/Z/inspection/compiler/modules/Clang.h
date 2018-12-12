@@ -42,20 +42,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__amd64__ ) /* v2.6 */ || \
 	defined(__x86_64  ) /* v2.6 */ || \
 	defined(__x86_64__) /* v2.6 */ || \
-	defined(_M_AMD64  ) || \
+	defined(_M_AMD64  ) /* v2.9 */ || \
 	defined(_M_X64	  ) /* v2.7 */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_64
 
-#elif	defined(__INTEL__) || \
+#elif	defined(__INTEL__) /* v2.8 */ || \
 	defined(__i386	 ) /* v2.6 */ || \
 	defined(__i386__ ) /* v2.6 */ || \
-	defined(__i486	 ) || \
-	defined(__i486__ ) || \
-	defined(__i586	 ) || \
-	defined(__i586__ ) || \
-	defined(__i686	 ) || \
-	defined(__i686__ ) || \
+	defined(__i486	 ) /* v3.0 */ || \
+	defined(__i486__ ) /* v3.0 */ || \
+	defined(__i586	 ) /* v3.0 */ || \
+	defined(__i586__ ) /* v3.0 */ || \
+	defined(__i686	 ) /* v3.0 */ || \
+	defined(__i686__ ) /* v3.0 */ || \
 	defined(_M_IX86	 ) /* v2.7 */ || \
 	defined(_X86_	 ) /* v2.6 */ || \
 	defined(i386	 ) /* v2.6 */
@@ -127,7 +127,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_64BIT
 
 #elif	defined(__POWERPC__) /* v2.6 */ || \
-	defined(__PPC__	   ) || \
+	defined(__PPC__	   ) /* v2.8 */ || \
 	defined(__powerpc__) /* v2.7 */ || \
 	defined(__ppc__	   ) /* v2.6 */ || \
 	defined(_ARCH_PPC  ) /* v2.6 */
@@ -142,7 +142,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif __riscv_xlen == 32
 #		define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV32I
 #	endif
-
 
 #elif	defined(__arch64__  ) || \
 	defined(__sparc_v9__) || \
@@ -289,10 +288,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_OS Z_OS_FREE_BSD
 
-#elif defined(__HAIKU__)
+#elif defined(__HAIKU__) /* v2.8 */
 #	define Z_COMPILER_OS Z_OS_HAIKU
 
-#elif defined(__minix)
+#elif defined(__minix) /* v2.8 */
 #	define Z_COMPILER_OS Z_OS_MINIX
 
 #elif defined(__NetBSD__) /* v2.6 */
@@ -312,7 +311,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_OS	   Z_OS_PSP_SYSTEM_SOFTWARE
 #	define Z_COMPILER_PLATFORM Z_PLATFORM_PSP
 
-#elif defined(__rtems__)
+#elif defined(__rtems__) /* v3.0 */
 #	define Z_COMPILER_OS Z_OS_RTEMS
 
 #elif	defined(__SVR4	) /* v2.6 */ || \
@@ -332,10 +331,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_LP64
 
-#elif defined(__LP32__)
+#elif defined(__LP32__) /* v2.7 */
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_LP32
 
-#elif defined(_WIN64)
+#elif defined(_WIN64) /* v2.7 */
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_LLP64
 
 #elif	defined(__ILP32__) || \
@@ -910,9 +909,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_CONSTANT_SCHAR_SIZE*/
 /*#define Z_COMPILER_CONSTANT_SCHAR_MINIMUM*/
 
-#ifdef __SIZEOF_SHORT__ /* v2.8 */
+#if defined(__SIZEOF_SHORT__) /* v2.8 */
 #	define Z_COMPILER_CONSTANT_USHORT_SIZE __SIZEOF_SHORT__
 #	define Z_COMPILER_CONSTANT_SSHORT_SIZE __SIZEOF_SHORT__
+
+#elif defined(_EM_SSIZE) /* v2.8 */
+#	define Z_COMPILER_CONSTANT_USHORT_SIZE _EM_SSIZE
+#	define Z_COMPILER_CONSTANT_SSHORT_SIZE _EM_SSIZE
 #endif
 
 #ifdef __SHRT_MAX__ /* v2.6 */
@@ -929,9 +932,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_SINT_BITS _MIPS_SZINT
 #endif
 
-#ifdef __SIZEOF_INT__ /* v2.8 */
+#if defined(__SIZEOF_INT__) /* v2.8 */
 #	define Z_COMPILER_CONSTANT_UINT_SIZE __SIZEOF_INT__
 #	define Z_COMPILER_CONSTANT_SINT_SIZE __SIZEOF_INT__
+
+#elif defined(_EM_WSIZE) /* v2.8 */
+#	define Z_COMPILER_CONSTANT_UINT_SIZE _EM_WSIZE
+#	define Z_COMPILER_CONSTANT_SINT_SIZE _EM_WSIZE
 #endif
 
 #ifdef __INT_MAX__ /* v2.6 */
@@ -946,9 +953,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_SLONG_BITS _MIPS_SZLONG
 #endif
 
-#ifdef __SIZEOF_LONG__ /* v2.8 */
+#if defined(__SIZEOF_LONG__) /* v2.8 */
 #	define Z_COMPILER_CONSTANT_ULONG_SIZE __SIZEOF_LONG__
 #	define Z_COMPILER_CONSTANT_SLONG_SIZE __SIZEOF_LONG__
+
+#elif defined(_EM_LSIZE) /* v2.8 */
+#	define Z_COMPILER_CONSTANT_ULONG_SIZE _EM_LSIZE
+#	define Z_COMPILER_CONSTANT_SLONG_SIZE _EM_LSIZE
 #endif
 
 #ifdef __LONG_MAX__ /* v2.6 */
@@ -972,8 +983,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_CONSTANT_SLLONG_BITS*/
 /*#define Z_COMPILER_CONSTANT_SLLONG_MINIMUM*/
 
-#ifdef __SIZEOF_FLOAT__ /* v2.8 */
+#if defined(__SIZEOF_FLOAT__) /* v2.8 */
 #	define Z_COMPILER_CONSTANT_FLOAT_SIZE __SIZEOF_FLOAT__
+
+#elif defined(_EM_FSIZE) /* v2.8 */
+#	define Z_COMPILER_CONSTANT_FLOAT_SIZE _EM_FSIZE
 #endif
 
 #if __has_builtin(__builtin_huge_valf)
@@ -988,12 +1002,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /*#define Z_COMPILER_CONSTANT_FLOAT_BITS*/
 
-#ifdef __SIZEOF_DOUBLE__ /* v2.8 */
+#if defined(__SIZEOF_DOUBLE__) /* v2.8 */
 #	define Z_COMPILER_CONSTANT_DOUBLE_SIZE __SIZEOF_DOUBLE__
+
+#elif defined(_EM_DSIZE) /* v2.8 */
+#	define Z_COMPILER_CONSTANT_DOUBLE_SIZE _EM_DSIZE
 #endif
 
 #if __has_builtin(__builtin_huge_val)
 #	define Z_COMPILER_CONSTANT_DOUBLE_INFINITY __builtin_huge_val() /* v2.6 */
+
 #elif __has_builtin(__builtin_inf)
 #	define Z_COMPILER_CONSTANT_DOUBLE_INFINITY __builtin_inf() /* v2.6 */
 #endif
@@ -1010,6 +1028,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if __has_builtin(__builtin_huge_vall)
 #	define Z_COMPILER_CONSTANT_LDOUBLE_INFINITY __builtin_huge_vall() /* v2.6 */
+
 #elif __has_builtin(__builtin_infl)
 #	define Z_COMPILER_CONSTANT_LDOUBLE_INFINITY __builtin_infl() /* v2.6 */
 #endif
@@ -1078,10 +1097,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_POINTER_BITS _MIPS_SZPTR
 #endif
 
-#ifdef __SIZEOF_POINTER__ /* v2.8 */
+#if defined(__SIZEOF_POINTER__) /* v2.8 */
 #	define Z_COMPILER_CONSTANT_UINTPTR_SIZE __SIZEOF_POINTER__
 #	define Z_COMPILER_CONSTANT_SINTPTR_SIZE __SIZEOF_POINTER__
 #	define Z_COMPILER_CONSTANT_POINTER_SIZE __SIZEOF_POINTER__
+
+#elif defined(_EM_PSIZE) /* v2.8 */
+#	define Z_COMPILER_CONSTANT_UINTPTR_SIZE _EM_PSIZE
+#	define Z_COMPILER_CONSTANT_SINTPTR_SIZE _EM_PSIZE
+#	define Z_COMPILER_CONSTANT_POINTER_SIZE _EM_PSIZE
 #endif
 
 #ifdef __UINTPTR_MAX__
@@ -1629,7 +1653,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if __has_extension(is_convertible_to)
-#	define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE __is_convertible_to
+#	define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE __is_convertible_to /* v2.9 */
 #endif
 
 #if __has_extension(is_empty)
