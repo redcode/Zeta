@@ -12,19 +12,27 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Identification */
 
 #ifndef Z_COMPILER
-#	define Z_COMPILER		 Z_COMPILER_CLANG
-#	define Z_COMPILER_STRING	 Z_COMPILER_STRING_CLANG
-#	define Z_COMPILER_VERSION	 Z_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
+#	define Z_COMPILER      Z_COMPILER_CLANG
+#	define Z_COMPILER_NAME Z_COMPILER_NAME_CLANG
+
+#if	defined(__clang_major__	    ) /* v2.8 */ && \
+	defined(__clang_minor__	    ) /* v2.8 */ && \
+	defined(__clang_patchlevel__) /* v2.8 */
+
+#	define Z_COMPILER_VERSION Z_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
+#endif
+
+#ifdef __clang_version__ /* v2.8 */
 #	define Z_COMPILER_VERSION_STRING __clang_version__
 #endif
 
 /* MARK: - Compatibility with old versions */
 
-#ifndef __has_attribute
+#ifndef __has_attribute /* v2.9 */
 #	define __has_attribute(which) FALSE
 #endif
 
-#ifndef __has_builtin
+#ifndef __has_builtin /* v2.6 */
 #	define __has_builtin(which) FALSE
 #endif
 
@@ -62,27 +70,32 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_32
 
-#elif	defined(__aarch64__) ||	\
-	defined(__arm64	   ) || \
-	defined(__arm64__  )
+#elif	defined(__aarch64__) /* v3.3 */ || \
+	defined(__arm64	   ) /* v3.5 */ || \
+	defined(__arm64__  ) /* v3.5 */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH64
 
-#elif	defined(__arm__	 ) /* v2.6 */ || \
-	defined(__arm	 ) /* v2.6 */ || \
-	defined(__thumb__) /* v2.7 */ || \
-	defined(_ARM_	 ) || \
-	defined(_M_ARM	 ) || \
-	defined(_M_ARM_NT) || \
-	defined(_M_ARMT	 ) || \
-	defined(_M_THUMB )
+#elif	defined(__ARM_ARCH) /* v3.2 */ || \
+	defined(__arm	  ) /* v2.6 */ || \
+	defined(__arm__	  ) /* v2.6 */ || \
+	defined(__thumb__ ) /* v2.7 */ || \
+	defined(_ARM_	  ) || \
+	defined(_M_ARM	  ) /* v3.5 */ || \
+	defined(_M_ARM_NT ) /* v3.5 */ || \
+	defined(_M_ARMT	  ) /* v3.5 */ || \
+	defined(_M_THUMB  ) /* v3.5 */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH32
 
-#elif	defined(__HEXAGON_ARCH__) \
-	defined(__QDSP6_ARCH__	) \
-	defined(__hexagon__	) \
-	defined(__qdsp6__	)
+#elif	defined(__HEXAGON_ARCH__) /* v3.1 */ \
+	defined(__QDSP6_ARCH__	) /* v3.1 */ \
+	defined(__hexagon	) /* v3.1 */ \
+	defined(__hexagon__	) /* v3.1 */ \
+	defined(__qdsp6		) /* v3.1 */ \
+	defined(__qdsp6__	) /* v3.1 */ \
+	defined(hexagon		) /* v3.1 */ \
+	defined(qdsp6		) /* v3.1 */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_HEXAGON
 
@@ -100,10 +113,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__lanai__)
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_LANAI
 
-#elif	defined(__mips64  )		  || \
-	defined(__mips64__)		  || \
-	(defined(__mips) && __mips == 64) || \
-	(defined(_MIPS_ISA) && defined(_MIPS_ISA_MIPS64) && _MIPS_ISA == _MIPS_ISA_MIPS64)
+#elif	defined(__mips64  )		  /* v3.2 */ || \
+	defined(__mips64__)		  /* v3.2 */ || \
+	(defined(__mips) && __mips == 64) /* v3.5 */ || \
+	(defined(_MIPS_ISA) && defined(_MIPS_ISA_MIPS64) && _MIPS_ISA == _MIPS_ISA_MIPS64) /* v3.5 */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MIPS64
 
@@ -119,7 +132,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MSP430
 
-#elif	defined(__PPC64__    ) || \
+#elif	defined(__PPC64__    ) /* v3.4 */ || \
 	defined(__powerpc64__) /* v2.7 */ || \
 	defined(__ppc64__    ) /* v2.6 */ || \
 	defined(_ARCH_PPC64  ) /* v2.6 */
@@ -143,11 +156,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV32I
 #	endif
 
-#elif	defined(__arch64__  ) || \
-	defined(__sparc_v9__) || \
-	defined(__sparc64__ ) || \
-	defined(__sparcv9   ) || \
-	defined(__sparcv9__ )
+#elif	defined(__arch64__  ) /* v3.3 */ || \
+	defined(__sparc_v9__) /* v3.3 */ || \
+	defined(__sparc64__ ) /* v3.3 */ || \
+	defined(__sparcv9   ) /* v3.3 */ || \
+	defined(__sparcv9__ ) /* v3.3 */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SPARC_V9
 
@@ -161,7 +174,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif   defined(__s390__ ) /* v2.6 */ || \
 	defined(__s390x__) /* v2.6 */ || \
-	defined(__zarch__)
+	defined(__zarch__) /* v3.3 */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_Z_ARCHITECTURE
 
@@ -169,38 +182,38 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - CPU endianness / bit field order */
 
-#ifdef __BYTE_ORDER__
+#ifdef __BYTE_ORDER__ /* v3.2 */
 
-#	if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+#	if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__ /* v3.2 */
 #		define Z_COMPILER_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
 #		define Z_COMPILER_BIT_FIELD_ORDER	 Z_ORDER_REVERSED
 
-#	elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
+#	elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__ /* v3.2 */
 #		define Z_COMPILER_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_BIG
 #		define Z_COMPILER_BIT_FIELD_ORDER	 Z_ORDER_NORMAL
 
-#	elif __BYTE_ORDER__ == __ORDER_PDP_ENDIAN__
+#	elif __BYTE_ORDER__ == __ORDER_PDP_ENDIAN__ /* v3.2 */
 #		define Z_COMPILER_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_PDP
 #		define Z_COMPILER_BIT_FIELD_ORDER	 Z_ORDER_NORMAL
 #	endif
 
-#elif	defined(__AARCH64EL__	 ) || \
+#elif	defined(__AARCH64EL__	 ) /* v3.3 */ || \
 	defined(__ARMEL__	 ) /* v2.6 */ || \
 	defined(__LITTLE_ENDIAN__) /* v2.6 */ || \
 	defined(__MIPSEL	 ) /* v2.7 */ || \
 	defined(__MIPSEL__	 ) /* v2.7 */ || \
 	defined(__THUMBEL__	 ) /* v2.7 */ || \
-	defined(_LITTLE_ENDIAN	 ) || \
+	defined(_LITTLE_ENDIAN	 ) /* v3.4 */ || \
 	defined(_MIPSEL		 ) /* v2.7 */ || \
 	defined(MIPSEL		 ) /* v2.7 */
 
 #	define Z_COMPILER_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
 #	define Z_COMPILER_BIT_FIELD_ORDER	 Z_ORDER_REVERSED
 
-#elif	defined(__AARCH_BIG_ENDIAN) || \
-	defined(__AARCH64EB__	  ) || \
-	defined(__ARM_BIG_ENDIAN  ) || \
-	defined(__ARMEB__	  ) || \
+#elif	defined(__AARCH_BIG_ENDIAN) /* v3.4 */ || \
+	defined(__AARCH64EB__	  ) /* v3.5 */ || \
+	defined(__ARM_BIG_ENDIAN  ) /* v3.3 */ || \
+	defined(__ARMEB__	  ) /* v3.5 */ || \
 	defined(__BIG_ENDIAN__	  ) /* v2.6 */ || \
 	defined(__MIPSEB	  ) /* v2.7 */ || \
 	defined(__MIPSEB__	  ) /* v2.7 */ || \
@@ -226,7 +239,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - OS / Platform */
 
-#if defined(__ANDROID__)
+#if defined(__ANDROID__) /* v3.2 */
 #	define Z_COMPILER_OS Z_OS_ANDROID
 
 #elif	defined(__gnu_linux__) /* v2.6 */ || \
@@ -267,7 +280,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_OS Z_OS_WINDOWS
 
-#elif defined(__Bitrig__)
+#elif defined(__Bitrig__) /* v3.2 */
 #	define Z_COMPILER_OS Z_OS_BITRIG
 
 #elif defined(__CELLOS_LV2__) /* v2.7 (Revisar, puede que sólo para la PPU) */
@@ -284,7 +297,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_OS Z_OS_DRAGONFLY_BSD
 
 #elif	defined(__FreeBSD__	  ) /* v2.6 */ || \
-	defined(__FreeBSD_kernel__)
+	defined(__FreeBSD_kernel__) /* v3.4 */
 
 #	define Z_COMPILER_OS Z_OS_FREE_BSD
 
@@ -337,8 +350,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(_WIN64) /* v2.7 */
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_LLP64
 
-#elif	defined(__ILP32__) || \
-	defined(_ILP32	 ) || \
+#elif	defined(__ILP32__) /* v3.5 */ || \
+	defined(_ILP32	 ) /* v3.5 */ || \
 	defined(_WIN32	 ) /* v2.6 */
 
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_ILP32
@@ -694,7 +707,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| a C++ runtime providing __cxa_thread_atexit.	 |
 	'-----------------------------------------------*/
 #	if __has_feature(cxx_thread_local)
-#		define Z_COMPILER_CPP_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* v3.3 */
+#		define Z_COMPILER_CPP_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* v3.3 (v3.0?) */
 #	endif
 
 	/* MARK: - C++14 support */
@@ -927,7 +940,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_CONSTANT_SSHORT_BITS*/
 /*#define Z_COMPILER_CONSTANT_SSHORT_MINIMUM*/
 
-#ifdef _MIPS_SZINT
+#ifdef _MIPS_SZINT /* v3.1 */
 #	define Z_COMPILER_CONSTANT_UINT_BITS _MIPS_SZINT
 #	define Z_COMPILER_CONSTANT_SINT_BITS _MIPS_SZINT
 #endif
@@ -948,7 +961,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_CONSTANT_UINT_MAXIMUM*/
 /*#define Z_COMPILER_CONSTANT_SINT_MINIMUM*/
 
-#ifdef _MIPS_SZLONG
+#ifdef _MIPS_SZLONG /* v3.1 */
 #	define Z_COMPILER_CONSTANT_ULONG_BITS _MIPS_SZLONG
 #	define Z_COMPILER_CONSTANT_SLONG_BITS _MIPS_SZLONG
 #endif
@@ -1049,18 +1062,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_SSIZE_SIZE __SIZEOF_SIZE_T__
 #endif
 
-#ifdef __SIZE_MAX__
+#ifdef __SIZE_MAX__ /* v3.3 */
 #	define Z_COMPILER_CONSTANT_USIZE_MAXIMUM __SIZE_MAX__
 #endif
 
 /*#define Z_COMPILER_CONSTANT_SSIZE_MINIMUM*/
 /*#define Z_COMPILER_CONSTANT_SSIZE_MAXIMUM*/
 
-#ifdef __UINTMAX_WIDTH__
+#ifdef __UINTMAX_WIDTH__ /* v3.5 */
 #	define Z_COMPILER_CONSTANT_UINTMAX_BITS __UINTMAX_WIDTH__
 #endif
 
-#ifdef __UINTMAX_MAX__
+#ifdef __UINTMAX_MAX__ /* v3.5 */
 #	define Z_COMPILER_CONSTANT_UINTMAX_MAXIMUM __UINTMAX_MAX__
 #endif
 
@@ -1091,7 +1104,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_SINTPTR_BITS __INTPTR_WIDTH__
 #	define Z_COMPILER_CONSTANT_POINTER_BITS __INTPTR_WIDTH__
 
-#elif defined(_MIPS_SZPTR)
+#elif defined(_MIPS_SZPTR) /* v3.1 */
 #	define Z_COMPILER_CONSTANT_UINTPTR_BITS _MIPS_SZPTR
 #	define Z_COMPILER_CONSTANT_SINTPTR_BITS _MIPS_SZPTR
 #	define Z_COMPILER_CONSTANT_POINTER_BITS _MIPS_SZPTR
@@ -1108,11 +1121,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_POINTER_SIZE _EM_PSIZE
 #endif
 
-#ifdef __UINTPTR_MAX__
+#ifdef __UINTPTR_MAX__ /* v3.5 */
 #	define Z_COMPILER_CONSTANT_UINTPTR_MAXIMUM __UINTPTR_MAX__
 #endif
 
-#ifdef __INTPTR_MAX__
+#ifdef __INTPTR_MAX__ /* v3.5 */
 #	define Z_COMPILER_CONSTANT_SINTPTR_MAXIMUM __INTPTR_MAX__
 #endif
 
@@ -1151,7 +1164,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TYPE_SINT32*/
 /*#define Z_COMPILER_TYPE_SINT64*/
 
-#ifdef __SIZEOF_INT128__
+#ifdef __SIZEOF_INT128__ /* v3.3 */
 #	define Z_COMPILER_TYPE_UINT128 __uint128_t /* v2.6 */
 #	define Z_COMPILER_TYPE_SINT128 __int128_t  /* v2.6 */
 #endif
@@ -1649,7 +1662,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if __has_extension(is_constructible)
-#	define Z_COMPILER_TRAIT_TYPE_IS_CONSTRUCTIBLE __is_constructible
+#	define Z_COMPILER_TRAIT_TYPE_IS_CONSTRUCTIBLE __is_constructible /* v3.5 */
 #endif
 
 #if __has_extension(is_convertible_to)
@@ -1665,25 +1678,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if __has_extension(is_final)
-#	define Z_COMPILER_TRAIT_TYPE_IS_FINAL __is_final
+#	define Z_COMPILER_TRAIT_TYPE_IS_FINAL __is_final /* v3.1 */
 #endif
 
 #if __has_extension(is_interface_class)
-#	define Z_COMPILER_TRAIT_TYPE_IS_INTERFACE_CLASS __is_interface_class
+#	define Z_COMPILER_TRAIT_TYPE_IS_INTERFACE_CLASS __is_interface_class /* v3.2 */
 #endif
 
 #if __has_extension(is_literal_type)
-#	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal_type
+#	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal_type /* v3.0 */
 #elif __has_extension(is_literal)
 #	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal /* v2.7 */
 #endif
 
 #if __has_extension(is_nothrow_assignable)
-#	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_ASSIGNABLE __is_nothrow_assignable
+#	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_ASSIGNABLE __is_nothrow_assignable /* v3.5 */
 #endif
 
 #if __has_extension(is_nothrow_constructible)
-#	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_CONSTRUCTIBLE __is_nothrow_constructible
+#	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_CONSTRUCTIBLE __is_nothrow_constructible /* v3.5 */
 #endif
 
 #if __has_extension(has_nothrow_assign)
@@ -1707,19 +1720,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if __has_extension(is_standard_layout)
-#	define Z_COMPILER_TRAIT_TYPE_IS_STANDARD_LAYOUT __is_standard_layout
+#	define Z_COMPILER_TRAIT_TYPE_IS_STANDARD_LAYOUT __is_standard_layout /* v3.0 */
 #endif
 
 #if __has_extension(is_trivial)
-#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIAL __is_trivial
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIAL __is_trivial /* v3.0 */
 #endif
 
 #if __has_extension(is_trivially_assignable)
-#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_ASSIGNABLE __is_trivially_assignable
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_ASSIGNABLE __is_trivially_assignable /* v3.1 */
 #endif
 
 #if __has_extension(is_trivially_constructible)
-#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_CONSTRUCTIBLE __is_trivially_constructible
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_CONSTRUCTIBLE __is_trivially_constructible /* v3.1 */
 #endif
 
 #if __has_extension(has_trivial_assign)
@@ -1731,7 +1744,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if __has_extension(is_trivially_copyable)
-#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPYABLE __is_trivially_copyable
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPYABLE __is_trivially_copyable /* v3.0 */
 #endif
 
 #if __has_extension(has_trivial_constructor)
@@ -1747,7 +1760,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if __has_extension(underlying_type)
-#	define Z_COMPILER_TRAIT_TYPE_UNDERLYING_TYPE __underlying_type
+#	define Z_COMPILER_TRAIT_TYPE_UNDERLYING_TYPE __underlying_type /* v3.0 */
 #endif
 
 /*

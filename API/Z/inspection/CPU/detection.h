@@ -202,7 +202,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH64
 
-#elif	/*-------------------.							\
+#elif	/*------.								\
+	| Clang |								\
+	'------*/								\
+	defined(__ARM_ARCH) ||							\
+										\
+	/*-------------------.							\
 	| ARM C/C++ Compiler |							\
 	'-------------------*/							\
 	defined(__TARGET_ARCH_ARM  ) ||						\
@@ -341,10 +346,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	/*------.								\
 	| Clang |								\
 	'------*/								\
-	defined(__HEXAGON_ARCH__) ||						\
-	defined(__QDSP6_ARCH__	) ||						\
-	defined(__hexagon__	) ||						\
-	defined(__qdsp6__	)
+	defined(__HEXAGON_ARCH__)						\
+	defined(__QDSP6_ARCH__	)						\
+	defined(__hexagon	)						\
+	defined(__hexagon__	)						\
+	defined(__qdsp6		)						\
+	defined(__qdsp6__	)						\
+	defined(hexagon		)						\
+	defined(qdsp6		)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_HEXAGON
 
