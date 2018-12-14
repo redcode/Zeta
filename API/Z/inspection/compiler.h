@@ -13,11 +13,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/version.h>
 
 #if defined(__clang__)
-#	if defined(__apple_build_version__)
+/*#	if defined(__apple_build_version__)
 #		include <Z/inspection/compiler/modules/Apple LLVM.h>
-#	else
+#	else*/
 #		include <Z/inspection/compiler/modules/Clang.h>
-#	endif
+/*#	endif*/
 
 #elif defined(_ACC_)
 #	include <Z/inspection/compiler/modules/ACC.h>

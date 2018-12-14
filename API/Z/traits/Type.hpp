@@ -3,7 +3,7 @@
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
-Copyright (C) 2018 Ortega Sosa, Sofía.
+Copyright (C) 2018 Sofía Ortega Sosa.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef _Z_traits_Type_HPP_
@@ -15,10 +15,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/traits/control.hpp>
 #include <Z/traits/TypeList.hpp>
 #include <Z/classes/NaT.hpp>
-#include <Z/macros/structure.h>
+#include <Z/macros/aggregate.h>
 
 #if !Z_HAS_TRAIT(TypeList)
-#	include <Z/traits/SelectType.hpp>
+#	include <Z/traits/control.hpp>
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 #		include <Z/traits/TypeCount.hpp>
@@ -547,10 +547,31 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_underlying_type FALSE
 #endif
 
-//--------------------------------------------------------------.
-// Components that need compiler built-in traits and some C++11 |
-// features to be implemented. There are no known workarounds.	|
-//--------------------------------------------------------------'
+//-----------------------------------------------------------------------.
+// Components that use built-in compiler traits if available. If not,	 |
+// they are implemented using workarounds that need some C++11 features. |
+//-----------------------------------------------------------------------'
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_COMPLETE) || Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#	define Z_HAS_TRAIT_TypeIsComplete   TRUE
+#	define Z_HAS_TRAIT_TypeIsIncomplete TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsComplete   FALSE
+#	define Z_HAS_TRAIT_TypeIsIncomplete FALSE
+#endif
+
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#	define Z_HAS_TRAIT_TypeIsEnumeration   TRUE
+#	define Z_TRAIT_Type_HAS_is_enumeration TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsEnumeration   FALSE
+#	define Z_TRAIT_Type_HAS_is_enumeration FALSE
+#endif
+
+//-------------------------------------------------------------------.
+// Components that need compiler built-in traits in addition to some |
+// C++11 features to be implemented. There are no known workarounds. |
+//-------------------------------------------------------------------'
 
 #if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_CONSTRUCTIBLE)
 #	define Z_HAS_TRAIT_TypeIsConstructible TRUE
@@ -571,29 +592,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 //-------------------------------------------------------------.
-// Components that use built-in compiler traits if available.  |
-// If not, they use workarounds that need some C++11 features. |
+// Components that need some C++11 features to be implemented. |
 //-------------------------------------------------------------'
-
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-#	define Z_HAS_TRAIT_TypeIsEnumeration   TRUE
-#	define Z_TRAIT_Type_HAS_is_enumeration TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsEnumeration   FALSE
-#	define Z_TRAIT_Type_HAS_is_enumeration FALSE
-#endif
-
-//-------------------------------------------.
-// Components that need some C++11 features. |
-//-------------------------------------------'
-
-#if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-#	define Z_HAS_TRAIT_TypeIsComplete   TRUE
-#	define Z_HAS_TRAIT_TypeIsIncomplete TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsComplete   FALSE
-#	define Z_HAS_TRAIT_TypeIsIncomplete FALSE
-#endif
 
 #if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
 #	define Z_HAS_TRAIT_TypeIsDefaultConstructible	 TRUE
@@ -627,9 +627,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_parameters FALSE
 #endif
 
-//-------------------------------------------------------------------------.
-// Components that need some C++14 features in addition to compiler magic. |
-//-------------------------------------------------------------------------'
+//-----------------------------------------------.
+// Components that need some C++14 features in	 |
+// addition to compiler magic to be implemented. |
+//-----------------------------------------------'
 
 #if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
 	Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
@@ -667,10 +668,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_objective_c_object_pointer FALSE
 #endif
 
-//-----------------------------------------------------.
-// Components that are only available in Objective-C++ |
-// and that need some C++11 features.		       |
-//-----------------------------------------------------'
+//------------------------------------------------------.
+// Components that are only available in Objective-C++	|
+// and that need some C++11 features to be implemented. |
+//------------------------------------------------------'
 
 #if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 #	define Z_HAS_TRAIT_TypeIsObjectiveCInstance		TRUE
@@ -684,10 +685,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_objective_c_instance_pointer FALSE
 #endif
 
-//-------------------------------------------------------------------.
-// Aliases that are only available if the language supports template |
-// aliases and the component to which they refer is also available.  |
-//-------------------------------------------------------------------'
+//--------------------------------------------------------------------.
+// Aliases that are only available if the language supports template  |
+// aliases and the components to which they refer are also available. |
+//--------------------------------------------------------------------'
 
 #if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
 #	define Z_TRAIT_Type_HAS_to_member_pointer	    TRUE
@@ -823,13 +824,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 
 #	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 
-		namespace {
-			template <class T, SInt L, Boolean B> struct IsComplete			     : False {};
-			template <class T, SInt L>	      struct IsComplete	 <T, L, !!sizeof(T)> : True  {};
-			template <class T, SInt L, Boolean B> struct IsIncomplete		     : True  {};
-			template <class T, SInt L>	      struct IsIncomplete<T, L, !!sizeof(T)> : False {};
-		}
-
 		template <class T, Boolean B> struct IsStructureOrUnion				 : False {};
 		template <class T>	      struct IsStructureOrUnion<T, !!sizeof(int (T::*))> : True  {};
 
@@ -880,8 +874,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 
 #	endif
 
-	template <class T> struct RemovePointer;
-	template <class T> struct RemovePointer<T*> {typedef T type;};
 }}}}
 
 // MARK: - Abstract
@@ -2953,8 +2945,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct Storable : Virtual<C> {
-		Z_DEFINE_STRICT_STRUCTURE (typename C::type value;,	 to_wrap  );
-		Z_DEFINE_STRICT_STRUCTURE (UInt8 data[sizeof(to_wrap)];, to_opaque);
+		struct {typename C::type value;}	   to_wrap  ;
+		struct {UInt8 data[sizeof(to_wrap)];} to_opaque;
 
 		enum {	size = C::is_empty ? 0 : sizeof(to_wrap),
 			bits = C::is_empty ? 0 : sizeof(to_wrap) * 8
@@ -3505,8 +3497,15 @@ namespace Zeta {namespace Detail {namespace Type {
 	// MARK: - Specializations: Objective-C
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+
+		namespace Helpers {
+			template <class T> struct RemovePointer;
+			template <class T> struct RemovePointer<T*> {typedef T type;};
+		}
+
 		template <Boolean E> struct Case<E, Helpers::RemovePointer<id	>::type> : Mixins::Unqualified<Abstract::ObjectiveCObject> {};
 		template <Boolean E> struct Case<E, Helpers::RemovePointer<Class>::type> : Mixins::Unqualified<Abstract::ObjectiveCClass > {};
+
 #	endif
 
 	// MARK: - Specializations: Qualified types
@@ -3515,36 +3514,37 @@ namespace Zeta {namespace Detail {namespace Type {
 	template <Boolean E, class T> struct Case<E, const volatile T> : TernaryType<Case<false, T>::is_signed_or_unsigned, Mixins::ConstVolatileSignedOrUnsigned<Case<E, T> >, Mixins::ConstVolatile<Case<E, T> > >::type {};
 	template <Boolean E, class T> struct Case<E, 	   volatile T> : TernaryType<Case<false, T>::is_signed_or_unsigned, Mixins::VolatileSignedOrUnsigned	 <Case<E, T> >, Mixins::Volatile     <Case<E, T> > >::type {};
 
-	// MARK: - Final detail
+	// MARK: - Build detail
 
-	template <class T> struct Final : Mixins::Kind<
-		Case<false, T>::is_storable
-			? (Case<false, T>::is_pointer
-				? (Case<false, T>::is_member_function_pointer
+	template <class T, class C = Case<false, T> > struct Build : Mixins::Kind<
+		C::is_storable
+			? (C::is_pointer
+				? (C::is_member_function_pointer
 					? Mixins::MemberFunctionPointer
-					: (Case<false, T>::is_void_pointer ? Mixins::VoidPointer : Mixins::Pointer))
-				: (Case<false, T>::is_reference
+					: (C::is_void_pointer ? Mixins::VoidPointer : Mixins::Pointer))
+				: (C::is_reference
 					? Mixins::Reference
 					: Mixins::Value))
-			: (Case<false, T>::is_void
+			: (C::is_void
 				? Mixins::Void
-				: (Case<false, T>::is_function && Case<false, T>::is_qualified
+				: (C::is_function && C::is_qualified
 					? Mixins::InconvertibleFunction
 					: Mixins::ConvertibleFunction)),
 		Case<true, T>
 	> {
-		enum {is_compound = !Final::is_fundamental};
+		enum {is_compound = !Build::is_fundamental};
 
 		typedef typename TernaryType<
-			Final::is_structure_or_union,
-			typename Final<const typename Final::remove_const_volatile>::add_lvalue_reference, T
+			Build::is_structure_or_union,
+			T,
+			T
 		>::type to_forwardable;
 	};
 
-	template <> struct Final<		NaT> : Abstract::Invalid {};
-	template <> struct Final<const		NaT> : Abstract::Invalid {};
-	template <> struct Final<const volatile NaT> : Abstract::Invalid {};
-	template <> struct Final<      volatile NaT> : Abstract::Invalid {};
+	template <> struct Build<		NaT> : Abstract::Invalid {};
+	template <> struct Build<const		NaT> : Abstract::Invalid {};
+	template <> struct Build<const volatile NaT> : Abstract::Invalid {};
+	template <> struct Build<      volatile NaT> : Abstract::Invalid {};
 }}}
 
 namespace Zeta {
@@ -3568,7 +3568,24 @@ namespace Zeta {
 
 #	endif
 
-#	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#	if Z_COMPILER_HAS_TRAIT(TYPE_IS_COMPLETE)
+
+		template <class T, SInt at_line> struct TypeIsComplete {
+			enum {value = Z_COMPILER_TRAIT(TYPE_IS_COMPLETE)(T)};
+		};
+
+		template <class T, SInt at_line> struct TypeIsIncomplete {
+			enum {value = !Z_COMPILER_TRAIT(TYPE_IS_COMPLETE)(T)};
+		};
+
+#	elif Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+
+		namespace Detail {namespace Type {namespace Helpers {namespace {
+			template <class T, SInt L, Boolean B> struct IsComplete			     : False {};
+			template <class T, SInt L>	      struct IsComplete	 <T, L, !!sizeof(T)> : True  {};
+			template <class T, SInt L, Boolean B> struct IsIncomplete		     : True  {};
+			template <class T, SInt L>	      struct IsIncomplete<T, L, !!sizeof(T)> : False {};
+		}}}}
 
 		namespace {
 			template <class T, SInt at_line> struct TypeIsComplete	 : Detail::Type::Helpers::IsComplete  <T, at_line, true> {};
@@ -3760,7 +3777,7 @@ namespace Zeta {
 
 #	endif
 
-	template <class T> class Type : public Detail::Type::Final<T> {
+	template <class T> class Type : public Detail::Type::Build<T> {
 		public:
 
 #		if Z_TRAIT_HAS(Type, to_member_pointer)

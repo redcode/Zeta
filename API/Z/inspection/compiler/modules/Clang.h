@@ -3,7 +3,7 @@
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
-Copyright (C) 2018 Ortega Sosa, Sofía.
+Copyright (C) 2018 Sofía Ortega Sosa.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef _Z_inspection_compiler_modules_Clang_H_
@@ -11,9 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Identification */
 
-#ifndef Z_COMPILER
-#	define Z_COMPILER      Z_COMPILER_CLANG
-#	define Z_COMPILER_NAME Z_COMPILER_NAME_CLANG
+#define Z_COMPILER	Z_COMPILER_CLANG
+#define Z_COMPILER_NAME Z_COMPILER_NAME_CLANG
 
 #if	defined(__clang_major__	    ) /* v2.8 */ && \
 	defined(__clang_minor__	    ) /* v2.8 */ && \
@@ -1637,20 +1636,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in traits */
 
+#ifdef __cplusplus
+#	if Z_COMPILER_VERSION >= Z_VERSION(0, 0, 0)
+#		define Z_COMPILER_TRAIT_TYPE_IS_AGGREGATE  __is_aggregate
+#		define Z_COMPILER_TRAIT_TYPE_IS_ASSIGNABLE __is_assignable
+#	endif
+
+#	if Z_COMPILER_VERSION >= Z_VERSION(3, 5, 0)
+#		define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_ASSIGNABLE    __is_nothrow_assignable	 /* v3.5 */
+#		define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_CONSTRUCTIBLE __is_nothrow_constructible /* v3.5 */
+#	endif
+#endif
+
 #if __has_extension(has_virtual_destructor)
 #	define Z_COMPILER_TRAIT_TYPE_HAS_VIRTUAL_DESTRUCTOR __has_virtual_destructor /* v2.6 */
 #endif
 
 #if __has_extension(is_abstract)
 #	define Z_COMPILER_TRAIT_TYPE_IS_ABSTRACT __is_abstract /* v2.6 */
-#endif
-
-#if __has_extension(is_aggregate)
-#	define Z_COMPILER_TRAIT_TYPE_IS_AGGREGATE __is_aggregate
-#endif
-
-#if __has_extension(is_assignable)
-#	define Z_COMPILER_TRAIT_TYPE_IS_ASSIGNABLE __is_assignable
 #endif
 
 #if __has_extension(is_base_of)
@@ -1682,21 +1685,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if __has_extension(is_interface_class)
-#	define Z_COMPILER_TRAIT_TYPE_IS_INTERFACE_CLASS __is_interface_class /* v3.2 */
+#	define Z_COMPILER_TRAIT_TYPE_IS_INTERFACE_CLASS __is_interface_class /* v3.2 (not detectable with __has_extension?) */
 #endif
 
-#if __has_extension(is_literal_type)
-#	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal_type /* v3.0 */
-#elif __has_extension(is_literal)
+#if __has_extension(is_literal)
 #	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal /* v2.7 */
-#endif
 
-#if __has_extension(is_nothrow_assignable)
-#	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_ASSIGNABLE __is_nothrow_assignable /* v3.5 */
-#endif
-
-#if __has_extension(is_nothrow_constructible)
-#	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_CONSTRUCTIBLE __is_nothrow_constructible /* v3.5 */
+#elif defined(__cplusplus) && Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0)
+#	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal_type /* v3.0 */
 #endif
 
 #if __has_extension(has_nothrow_assign)
@@ -1763,25 +1759,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_UNDERLYING_TYPE __underlying_type /* v3.0 */
 #endif
 
-/*
-#if __has_extension()
-#	define Z_COMPILER_TRAIT_TYPE
-#endif
-
-__is_destructible
-__is_nothrow_destructible
-__reference_binds_to_temporary
-*/
-
-#endif /* _Z_inspection_compiler_modules_Clang_H_ */
-
-
-
-
-
 #if	defined(__LONG_DOUBLE_128__) || /* v2.6 */ \
 	defined(__LONGDOUBLE128	   )
 
 #	define Z_COMPILER_CONSTANT_LDOUBLE_PRECISION_BITS 128 /* TODO */
 #endif
 
+#endif /* _Z_inspection_compiler_modules_Clang_H_ */

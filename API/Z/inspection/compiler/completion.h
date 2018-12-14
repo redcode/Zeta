@@ -3,7 +3,7 @@
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
-Copyright (C) 2018 Ortega Sosa, Sofía.
+Copyright (C) 2018 Sofía Ortega Sosa.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - CPU endianness */
@@ -2961,16 +2961,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_HAS_TRAIT_TYPE_UNDERLYING_TYPE TRUE
 #else
 #	define Z_COMPILER_HAS_TRAIT_TYPE_UNDERLYING_TYPE FALSE
-#endif
-
-/* MARK: - Value formats */
-
-#if Z_COMPILER_C_HAS_TYPE_FLOAT && !defined(Z_COMPILER_VALUE_FORMAT_FLOAT)
-#	define Z_COMPILER_VALUE_FORMAT_FLOAT Z_VALUE_FORMAT_IEEE_754_BINARY32
-#endif
-
-#if Z_COMPILER_C_HAS_TYPE_DOUBLE && !defined(Z_COMPILER_VALUE_FORMAT_DOUBLE)
-#	define Z_COMPILER_VALUE_FORMAT_DOUBLE Z_VALUE_FORMAT_IEEE_754_BINARY64
 #endif
 
 /* MARK: - Complete implementations */

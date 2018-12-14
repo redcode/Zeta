@@ -11,16 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/fundamental.hpp>
 
 namespace Zeta {
-
-	template <class T, T V> struct Constant {
-		typedef T type;
-		static Z_CONSTANT T value = V;
-
-		Z_CT(CPP11) T operator ()() const Z_NO_EXCEPTION {return V;}
-	};
-
-	struct True  : Constant<Boolean, true > {};
-	struct False : Constant<Boolean, false> {};
+	struct True  {enum {value = true };};
+	struct False {enum {value = false};};
 }
 
 #endif // _Z_traits_constants_HPP_

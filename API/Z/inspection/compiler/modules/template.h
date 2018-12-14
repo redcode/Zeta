@@ -3,7 +3,7 @@
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
-Copyright (C) 2018 Ortega Sosa, Sofía.
+Copyright (C) 2018 Sofía Ortega Sosa.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef _Z_inspection_modules_compiler_template_H_
