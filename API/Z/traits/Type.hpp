@@ -25,6 +25,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 #endif
 
+#if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#	include <Z/functions/unevaluated.hpp>
+#endif
+
 #if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
 	Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
 
@@ -538,8 +542,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 			template <class T, class R> struct IsDefaultConstructible		    : False {};
 			template <class T>	    struct IsDefaultConstructible<T, decltype(T())> : True  {};
 
-			template <class T> Z_INLINE T fake();
-
 			template <class T, class F, class R> struct IsFunctional : False {};
 			template <class T, class F, class R> struct IsFunctor	 : False {};
 
@@ -909,8 +911,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_UINT8_FUNDAMENTAL == Z_FUNDAMENTAL_UINT8
 
 		struct UInt8 : Natural {
-			enum {is_uint8 = true};
-
 			enum {	fundamental	  = Z_UINT8_FUNDAMENTAL,
 				fixed_fundamental = Z_UINT8_FIXED_FUNDAMENTAL,
 				number_format	  = Z_UINT8_NUMBER_FORMAT
@@ -927,8 +927,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_SINT8_FUNDAMENTAL == Z_FUNDAMENTAL_SINT8
 
 		struct SInt8 : Integer {
-			enum {is_sint8 = true};
-
 			enum {	fundamental	  = Z_SINT8_FUNDAMENTAL,
 				fixed_fundamental = Z_SINT8_FIXED_FUNDAMENTAL,
 				number_format	  = Z_SINT8_NUMBER_FORMAT
@@ -947,8 +945,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_UINT16_FUNDAMENTAL == Z_FUNDAMENTAL_UINT16
 
 		struct UInt16 : Natural {
-			enum {is_uint16 = true};
-
 			enum {	fundamental	  = Z_UINT16_FUNDAMENTAL,
 				fixed_fundamental = Z_UINT16_FIXED_FUNDAMENTAL,
 				number_format	  = Z_UINT16_NUMBER_FORMAT
@@ -965,8 +961,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_SINT16_FUNDAMENTAL == Z_FUNDAMENTAL_SINT16
 
 		struct SInt16 : Integer {
-			enum {is_sint16 = true};
-
 			enum {	fundamental	  = Z_SINT16_FUNDAMENTAL,
 				fixed_fundamental = Z_SINT16_FIXED_FUNDAMENTAL,
 				number_format	  = Z_SINT16_NUMBER_FORMAT
@@ -985,8 +979,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_UINT32) && Z_UINT32_FUNDAMENTAL == Z_FUNDAMENTAL_UINT32
 
 		struct UInt32 : Natural {
-			enum {is_uint32 = true};
-
 			enum {	fundamental	  = Z_UINT32_FUNDAMENTAL,
 				fixed_fundamental = Z_UINT32_FIXED_FUNDAMENTAL,
 				number_format	  = Z_UINT32_NUMBER_FORMAT
@@ -1006,8 +998,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_SINT32) && Z_SINT32_FUNDAMENTAL == Z_FUNDAMENTAL_SINT32
 
 		struct SInt32 : Integer {
-			enum {is_sint32 = true};
-
 			enum {	fundamental	  = Z_SINT16_FUNDAMENTAL,
 				fixed_fundamental = Z_SINT16_FIXED_FUNDAMENTAL,
 				number_format	  = Z_SINT16_NUMBER_FORMAT
@@ -1029,8 +1019,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_UINT64) && Z_UINT64_FUNDAMENTAL == Z_FUNDAMENTAL_UINT64
 
 		struct UInt64 : Natural {
-			enum {is_uint64 = true};
-
 			enum {	fundamental	  = Z_UINT64_FUNDAMENTAL,
 				fixed_fundamental = Z_UINT64_FIXED_FUNDAMENTAL,
 				number_format	  = Z_UINT64_NUMBER_FORMAT
@@ -1050,8 +1038,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_SINT64) && Z_SINT64_FUNDAMENTAL == Z_FUNDAMENTAL_SINT64
 
 		struct SInt64 : Integer {
-			enum {is_sint64 = true};
-
 			enum {	fundamental	  = Z_SINT64_FUNDAMENTAL,
 				fixed_fundamental = Z_SINT64_FIXED_FUNDAMENTAL,
 				number_format	  = Z_SINT64_NUMBER_FORMAT
@@ -1073,8 +1059,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_UINT128) && Z_UINT128_FUNDAMENTAL == Z_FUNDAMENTAL_UINT128
 
 		struct UInt128 : Natural {
-			enum {is_uint128 = true};
-
 			enum {	fundamental	  = Z_UINT128_FUNDAMENTAL,
 				fixed_fundamental = Z_UINT128_FIXED_FUNDAMENTAL,
 				number_format	  = Z_UINT128_NUMBER_FORMAT
@@ -1094,8 +1078,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_SINT128) && Z_SINT128_FUNDAMENTAL == Z_FUNDAMENTAL_SINT128
 
 		struct SInt128 : Integer {
-			enum {is_sint128 = true};
-
 			enum {	fundamental	  = Z_SINT128_FUNDAMENTAL,
 				fixed_fundamental = Z_SINT128_FIXED_FUNDAMENTAL,
 				number_format	  = Z_SINT128_NUMBER_FORMAT
@@ -1117,8 +1099,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_FLOAT16) && Z_FLOAT16_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT16
 
 		struct Float16 : FloatingPoint {
-			enum {is_float16 = true};
-
 			enum {	fundamental	  = Z_FLOAT16_FUNDAMENTAL,
 				fixed_fundamental = Z_FLOAT16_FIXED_FUNDAMENTAL,
 				number_format	  = Z_FLOAT16_NUMBER_FORMAT
@@ -1155,8 +1135,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_FLOAT32) && Z_FLOAT32_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT32
 
 		struct Float32 : FloatingPoint {
-			enum {is_float32 = true};
-
 			enum {	fundamental	  = Z_FLOAT32_FUNDAMENTAL,
 				fixed_fundamental = Z_FLOAT32_FIXED_FUNDAMENTAL,
 				number_format	  = Z_FLOAT32_NUMBER_FORMAT
@@ -1193,8 +1171,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_FLOAT64) && Z_FLOAT64_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT64
 
 		struct Float64 : FloatingPoint {
-			enum {is_float64 = true};
-
 			enum {	fundamental	  = Z_FLOAT64_FUNDAMENTAL,
 				fixed_fundamental = Z_FLOAT64_FIXED_FUNDAMENTAL,
 				number_format	  = Z_FLOAT64_NUMBER_FORMAT
@@ -1231,8 +1207,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_FLOAT128) && Z_FLOAT128_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT128
 
 		struct Float128 : FloatingPoint {
-			enum {is_float128 = true};
-
 			enum {	fundamental	  = Z_FLOAT128_FUNDAMENTAL,
 				fixed_fundamental = Z_FLOAT128_FIXED_FUNDAMENTAL,
 				number_format	  = Z_FLOAT128_NUMBER_FORMAT
@@ -1269,8 +1243,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_FLOAT80_X87) && Z_FLOAT80_X87_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT80_X87
 
 		struct Float80_x87 : FloatingPoint {
-			enum {is_float80_x87 = true};
-
 			enum {	fundamental	  = Z_FLOAT80_X87_FUNDAMENTAL,
 				fixed_fundamental = Z_FLOAT80_X87_FIXED_FUNDAMENTAL,
 				number_format	  = Z_FLOAT80_X87_NUMBER_FORMAT
@@ -1307,8 +1279,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_FLOAT96_X87) && Z_FLOAT96_X87_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT96_X87
 
 		struct Float96_x87 : FloatingPoint {
-			enum {is_float96_x87 = true};
-
 			enum {	fundamental	  = Z_FLOAT96_X87_FUNDAMENTAL,
 				fixed_fundamental = Z_FLOAT96_X87_FIXED_FUNDAMENTAL,
 				number_format	  = Z_FLOAT96_X87_NUMBER_FORMAT
@@ -1345,8 +1315,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if defined(Z_FLOAT128_X87) && Z_FLOAT128_X87_FUNDAMENTAL == Z_FUNDAMENTAL_FLOAT128_X87
 
 		struct Float128_x87 : FloatingPoint {
-			enum {is_float128_x87 = true};
-
 			enum {	fundamental	  = Z_FLOAT128_X87_FUNDAMENTAL,
 				fixed_fundamental = Z_FLOAT128_X87_FIXED_FUNDAMENTAL,
 				number_format	  = Z_FLOAT128_X87_NUMBER_FORMAT
@@ -1393,8 +1361,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct Char : TernaryType<Z_CHAR_IS_SIGNED, Integer, Natural>::type {
-		enum {is_char = true};
-
 		enum {	fundamental	  = Z_CHAR_FUNDAMENTAL,
 			fixed_fundamental = Z_CHAR_FIXED_FUNDAMENTAL,
 			number_format	  = Z_CHAR_NUMBER_FORMAT
@@ -1409,8 +1375,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct UChar : Natural {
-		enum {is_uchar = true};
-
 		enum {	fundamental	  = Z_UCHAR_FUNDAMENTAL,
 			fixed_fundamental = Z_UCHAR_FIXED_FUNDAMENTAL,
 			number_format	  = Z_UCHAR_NUMBER_FORMAT
@@ -1423,8 +1387,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct SChar : Integer {
-		enum {is_schar = true};
-
 		enum {	fundamental	  = Z_SCHAR_FUNDAMENTAL,
 			fixed_fundamental = Z_SCHAR_FIXED_FUNDAMENTAL,
 			number_format	  = Z_SCHAR_NUMBER_FORMAT
@@ -1439,8 +1401,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct UShort : Natural {
-		enum {is_ushort = true};
-
 		enum {	fundamental	  = Z_USHORT_FUNDAMENTAL,
 			fixed_fundamental = Z_USHORT_FIXED_FUNDAMENTAL,
 			number_format	  = Z_USHORT_NUMBER_FORMAT
@@ -1453,8 +1413,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct SShort : Integer {
-		enum {is_sshort = true};
-
 		enum {	fundamental	  = Z_SSHORT_FUNDAMENTAL,
 			fixed_fundamental = Z_SSHORT_FIXED_FUNDAMENTAL,
 			number_format	  = Z_SSHORT_NUMBER_FORMAT
@@ -1469,8 +1427,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct UInt : Natural {
-		enum {is_uint = true};
-
 		enum {	fundamental	  = Z_UINT_FUNDAMENTAL,
 			fixed_fundamental = Z_UINT_FIXED_FUNDAMENTAL,
 			number_format	  = Z_UINT_NUMBER_FORMAT
@@ -1483,8 +1439,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct SInt : Integer {
-		enum {is_sint = true};
-
 		enum {	fundamental	  = Z_SINT_FUNDAMENTAL,
 			fixed_fundamental = Z_SINT_FIXED_FUNDAMENTAL,
 			number_format	  = Z_SINT_NUMBER_FORMAT
@@ -1499,8 +1453,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct ULong : Natural {
-		enum {is_ulong = true};
-
 		enum {	fundamental	  = Z_ULONG_FUNDAMENTAL,
 			fixed_fundamental = Z_ULONG_FIXED_FUNDAMENTAL,
 			number_format	  = Z_ULONG_NUMBER_FORMAT
@@ -1514,8 +1466,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	struct SLong : Integer {
-		enum {is_slong = true};
-
 		enum {	fundamental	  = Z_SLONG_FUNDAMENTAL,
 			fixed_fundamental = Z_SLONG_FIXED_FUNDAMENTAL,
 			number_format	  = Z_SLONG_NUMBER_FORMAT
@@ -1532,8 +1482,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_ULLONG
 
 		struct ULLong : Natural {
-			enum {is_ullong = true};
-
 			enum {	fundamental	  = Z_ULLONG_FUNDAMENTAL,
 				fixed_fundamental = Z_ULLONG_FIXED_FUNDAMENTAL,
 				number_format	  = Z_ULLONG_NUMBER_FORMAT
@@ -1553,8 +1501,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_SLLONG
 
 		struct SLLong : Integer {
-			enum {is_sllong = true};
-
 			enum {	fundamental	  = Z_SLLONG_FUNDAMENTAL,
 				fixed_fundamental = Z_SLLONG_FIXED_FUNDAMENTAL,
 				number_format	  = Z_SLLONG_NUMBER_FORMAT
@@ -1576,8 +1522,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_FLOAT
 
 		struct Float : FloatingPoint {
-			enum {is_float = true};
-
 			enum {	fundamental	  = Z_FLOAT_FUNDAMENTAL,
 				fixed_fundamental = Z_FLOAT_FIXED_FUNDAMENTAL,
 				number_format	  = Z_FLOAT_NUMBER_FORMAT
@@ -1614,8 +1558,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_DOUBLE
 
 		struct Double : FloatingPoint {
-			enum {is_double = true};
-
 			enum {	fundamental	  = Z_DOUBLE_FUNDAMENTAL,
 				fixed_fundamental = Z_DOUBLE_FIXED_FUNDAMENTAL,
 				number_format	  = Z_DOUBLE_NUMBER_FORMAT
@@ -1652,8 +1594,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	ifdef Z_LDOUBLE
 
 		struct LDouble : FloatingPoint {
-			enum {is_ldouble = true};
-
 			enum {	fundamental	  = Z_LDOUBLE_FUNDAMENTAL,
 				fixed_fundamental = Z_LDOUBLE_FIXED_FUNDAMENTAL,
 				number_format	  = Z_LDOUBLE_NUMBER_FORMAT
@@ -1700,8 +1640,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 /*#	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
 
 		struct WChar {
-			enum {is_wchar = true};
-
 			typedef wchar_t type;
 		};
 
@@ -1710,8 +1648,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR16)
 
 		struct Char16 {
-			enum {is_wchar = true};
-
 			typedef char16_t type;
 		};
 
@@ -1720,8 +1656,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR32)
 
 		struct Char32 {
-			enum {is_wchar = true};
-
 			typedef char32_t type;
 		};
 
