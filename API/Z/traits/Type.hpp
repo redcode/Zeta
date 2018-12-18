@@ -44,15 +44,31 @@ Released under the terms of the GNU Lesser General Public License v3. */
 //-----------------------------------------------------------------------'
 
 #if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
-#	define Z_HAS_TRAIT_TypeAddRValueReference	     TRUE
-#	define Z_HAS_TRAIT_TypeToRValueReference	     TRUE
-#	define Z_TRAIT_Type_HAS_add_rvalue_reference	     TRUE
-#	define Z_TRAIT_Type_HAS_to_rvalue_reference	     TRUE
+#	define Z_HAS_TRAIT_TypeAddRValueReference		      TRUE
+#	define Z_HAS_TRAIT_TypeToRValueReference		      TRUE
+#	define Z_HAS_TRAIT_TypeToRvalueReferenceToConst		      TRUE
+#	define Z_HAS_TRAIT_TypeToRvalueReferenceToConstVolatile	      TRUE
+#	define Z_HAS_TRAIT_TypeToRvalueReferenceToUnqualified	      TRUE
+#	define Z_HAS_TRAIT_TypeToRvalueReferenceToVolatile	      TRUE
+#	define Z_TRAIT_Type_HAS_add_rvalue_reference		      TRUE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference		      TRUE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference_to_const	      TRUE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference_to_const_volatile TRUE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference_to_unqualified    TRUE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference_to_volatile	      TRUE
 #else
-#	define Z_HAS_TRAIT_TypeAddRValueReference	     FALSE
-#	define Z_HAS_TRAIT_TypeToRValueReference	     FALSE
-#	define Z_TRAIT_Type_HAS_add_rvalue_reference	     FALSE
-#	define Z_TRAIT_Type_HAS_to_rvalue_reference	     FALSE
+#	define Z_HAS_TRAIT_TypeAddRValueReference		      FALSE
+#	define Z_HAS_TRAIT_TypeToRValueReference		      FALSE
+#	define Z_HAS_TRAIT_TypeToRvalueReferenceToConst		      FALSE
+#	define Z_HAS_TRAIT_TypeToRvalueReferenceToConstVolatile	      FALSE
+#	define Z_HAS_TRAIT_TypeToRvalueReferenceToUnqualified	      FALSE
+#	define Z_HAS_TRAIT_TypeToRvalueReferenceToVolatile	      FALSE
+#	define Z_TRAIT_Type_HAS_add_rvalue_reference		      FALSE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference		      FALSE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference_to_const	      FALSE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference_to_const_volatile FALSE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference_to_unqualified    FALSE
+#	define Z_TRAIT_Type_HAS_to_rvalue_reference_to_volatile	      FALSE
 #endif
 
 #if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
@@ -291,6 +307,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_TypeIsIncomplete FALSE
 #endif
 
+#if	Z_COMPILER_HAS_TRAIT(TYPE_IS_DEFAULT_CONSTRUCTIBLE) || \
+	(Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE))
+
+#	define Z_HAS_TRAIT_TypeIsDefaultConstructible	 TRUE
+#	define Z_TRAIT_Type_HAS_is_default_constructible TRUE
+#else
+#	define Z_HAS_TRAIT_TypeIsDefaultConstructible	 FALSE
+#	define Z_TRAIT_Type_HAS_is_default_constructible FALSE
+#endif
+
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 #	define Z_HAS_TRAIT_TypeIsEnumeration   TRUE
 #	define Z_TRAIT_Type_HAS_is_enumeration TRUE
@@ -327,19 +353,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 //----------------------------------------------------------------'
 
 #if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
-#	define Z_HAS_TRAIT_TypeIsDefaultConstructible	 TRUE
-#	define Z_TRAIT_Type_HAS_is_default_constructible TRUE
+#	define Z_HAS_TRAIT_TypeIsCallable TRUE
+#	define Z_HAS_TRAIT_TypeIsFunctor  TRUE
 #else
-#	define Z_HAS_TRAIT_TypeIsDefaultConstructible	 FALSE
-#	define Z_TRAIT_Type_HAS_is_default_constructible FALSE
-#endif
-
-#if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
-#	define Z_HAS_TRAIT_TypeIsFunctional TRUE
-#	define Z_HAS_TRAIT_TypeIsFunctor    TRUE
-#else
-#	define Z_HAS_TRAIT_TypeIsFunctional FALSE
-#	define Z_HAS_TRAIT_TypeIsFunctor    TRUE
+#	define Z_HAS_TRAIT_TypeIsCallable FALSE
+#	define Z_HAS_TRAIT_TypeIsFunctor  TRUE
 #endif
 
 #if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
@@ -406,65 +424,81 @@ Released under the terms of the GNU Lesser General Public License v3. */
 //--------------------------------------------------------------------'
 
 #if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
-#	define Z_TRAIT_Type_HAS_to_member_pointer	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_add_const		    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_add_const_volatile    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_add_lvalue_reference  TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_add_pointer	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_add_volatile	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_class_type	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_element_type	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_pointee_type	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_referencee_type	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_remove_const	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_remove_const_volatile TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_remove_pointer	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_remove_reference	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_remove_volatile	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_return_type	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_const		    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_const_volatile	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_forwardable	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_function	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference   TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_member_pointer	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_opaque		    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_pointer	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_signed		    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_unqualified	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_unsigned	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_volatile	    TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_wrap		    TRUE
+#	define Z_TRAIT_Type_HAS_to_member_pointer			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_add_const				    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_add_const_volatile		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_add_lvalue_reference		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_add_pointer			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_add_volatile			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_class_type			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_element_type			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_pointee_type			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_referencee_type			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_remove_const			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_remove_const_volatile		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_remove_pointer			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_remove_reference			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_remove_volatile			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_return_type			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_const				    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_const_volatile			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_forwardable			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_function			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference_to_const	    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference_to_const_volatile TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference_to_unqualified    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference_to_volatile	    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_member_pointer			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_opaque				    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_pointer			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_pointer_to_const		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_pointer_to_const_volatile	    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_pointer_to_unqualified		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_pointer_to_volatile		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_signed				    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_unqualified			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_unsigned			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_volatile			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_wrap				    TRUE
 #else
-#	define Z_TRAIT_Type_HAS_to_member_pointer	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_add_const		    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_add_const_volatile    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_add_lvalue_reference  FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_add_pointer	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_add_volatile	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_class_type	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_element_type	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_pointee_type	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_referencee_type	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_remove_const	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_remove_const_volatile FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_remove_pointer	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_remove_reference	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_remove_volatile	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_return_type	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_const		    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_const_volatile	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_forwardable	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_function	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference   FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_member_pointer	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_opaque		    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_pointer	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_signed		    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_unqualified	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_unsigned	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_volatile	    FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_wrap		    FALSE
+#	define Z_TRAIT_Type_HAS_to_member_pointer			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_add_const				    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_add_const_volatile		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_add_lvalue_reference		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_add_pointer			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_add_volatile			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_class_type			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_element_type			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_pointee_type			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_referencee_type			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_remove_const			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_remove_const_volatile		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_remove_pointer			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_remove_reference			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_remove_volatile			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_return_type			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_const				    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_const_volatile			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_forwardable			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_function			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference_to_const	    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference_to_const_volatile TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference_to_unqualified    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_lvalue_reference_to_volatile	    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_member_pointer			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_opaque				    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_pointer			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_pointer_to_const		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_pointer_to_const_volatile	    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_pointer_to_unqualified		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_pointer_to_volatile		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_signed				    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_unqualified			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_unsigned			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_volatile			    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_wrap				    TRUE
 #endif
 
 #if	Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS) && \
@@ -506,11 +540,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS) && Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
-#	define Z_HAS_TRAIT_ALIAS_type_add_rvalue_reference TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference  TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_add_rvalue_reference		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference		    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference_to_const	    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference_to_const_volatile TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference_to_unqualified    TRUE
+#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference_to_volatile	    TRUE
 #else
-#	define Z_HAS_TRAIT_ALIAS_type_add_rvalue_reference FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference  FALSE
+#	define Z_HAS_TRAIT_ALIAS_type_add_rvalue_reference		    FALSE
+#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference		    FALSE
+#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference_to_const	    FALSE
+#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference_to_const_volatile FALSE
+#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference_to_unqualified    FALSE
+#	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference_to_volatile	    FALSE
 #endif
 
 #if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS) && Z_TRAIT_HAS(Type, parameters)
@@ -542,24 +584,24 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 			template <class T, class R> struct IsDefaultConstructible		    : False {};
 			template <class T>	    struct IsDefaultConstructible<T, decltype(T())> : True  {};
 
-			template <class T, class F, class R> struct IsFunctional : False {};
-			template <class T, class F, class R> struct IsFunctor	 : False {};
+			template <class T, class F, class R> struct IsCallable : False {};
+			template <class T, class F, class R> struct IsFunctor  : False {};
 
 			#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
-				template <class T, class R, class... P> struct IsFunctional<T, R(P...), decltype(fake<T>()	     (fake<P>()...))> : True {};
-				template <class T, class R, class... P> struct IsFunctor   <T, R(P...), decltype(fake<T>().operator()(fake<P>()...))> : True {};
+				template <class T, class R, class... P> struct IsCallable<T, R(P...), decltype(fake<T>()	   (fake<P>()...))> : True {};
+				template <class T, class R, class... P> struct IsFunctor <T, R(P...), decltype(fake<T>().operator()(fake<P>()...))> : True {};
 
 #			else
 
-				template <class T, class R> struct IsFunctional<T, R(), decltype(fake<T>()	     ())> : True {};
-				template <class T, class R> struct IsFunctor   <T, R(), decltype(fake<T>().operator()())> : True {};
+				template <class T, class R> struct IsCallable<T, R(), decltype(fake<T>()	   ())> : True {};
+				template <class T, class R> struct IsFunctor <T, R(), decltype(fake<T>().operator()())> : True {};
 
 #				define Z_TEMPLATE_FAKE_ARGUMENT(index) fake<P##index>()
 
 #				define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)								     \
 																		     \
-				template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct IsFunctional<	     \
+				template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct IsCallable<	     \
 					T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)),						     \
 					decltype(fake<T>()(Z_FOR_##parameter_count##_CALL_WITH_INDEX(Z_TEMPLATE_FAKE_ARGUMENT, Z_COMMA)))	     \
 				> : True {};													     \
@@ -589,7 +631,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		enum {	is_arithmetic		      = false,
 			is_array		      = false,
 			is_boolean		      = false,
-			is_callable		      = false,
 			is_class		      = false,
 			is_compound		      = false,
 			is_const		      = false,
@@ -601,6 +642,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_data_member_pointer	      = false,
 			is_empty		      = false,
 			is_exact		      = false,
+			is_indirection		      = false,
 			is_integer		      = false,
 			is_integral		      = false,
 			is_flexible_array	      = false,
@@ -622,10 +664,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_objective_c_class_pointer  = false,
 			is_objective_c_object	      = false,
 			is_objective_c_object_pointer = false,
+			is_pointable		      = false,
 			is_pointer		      = false,
 			is_qualified		      = false,
 			is_real			      = false,
 			is_reference		      = false,
+			is_referenceable	      = false,
 			is_rvalue		      = false,
 			is_rvalue_reference	      = false,
 			is_scalar		      = false,
@@ -647,11 +691,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_volatile_rvalue	      = false
 		};
 
-		enum {	arity	      = 0,
-			bits	      = 0,
-			element_count = 0,
-			pointer_level = 0,
-			size	      = 0
+		enum {	arity			= 0,
+			bits			= 0,
+			dimension_count		= 0,
+			dimension_element_count = 0,
+			element_count		= 0,
+			indirection_level	= 0,
+			size			= 0
 		};
 
 		enum {	fixed_fundamental = 0,
@@ -668,12 +714,15 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef NaT add_volatile;
 		typedef NaT class_type;
 		typedef NaT element_type;
+		typedef NaT indirectee_type;
 		typedef NaT pointee_type;
 		typedef NaT referencee_type;
+		typedef NaT remove_array;
 		typedef NaT remove_const;
 		typedef NaT remove_const_this;
 		typedef NaT remove_const_volatile;
 		typedef NaT remove_const_volatile_this;
+		typedef NaT remove_indirection;
 		typedef NaT remove_pointer;
 		typedef NaT remove_reference;
 		typedef NaT remove_this;
@@ -685,8 +734,16 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef NaT to_forwardable;
 		typedef NaT to_function;
 		typedef NaT to_lvalue_reference;
+		typedef NaT to_lvalue_reference_to_const;
+		typedef NaT to_lvalue_reference_to_const_volatile;
+		typedef NaT to_lvalue_reference_to_unqualified;
+		typedef NaT to_lvalue_reference_to_volatile;
 		typedef NaT to_opaque;
 		typedef NaT to_pointer;
+		typedef NaT to_pointer_to_const;
+		typedef NaT to_pointer_to_const_volatile;
+		typedef NaT to_pointer_to_unqualified;
+		typedef NaT to_pointer_to_volatile;
 		typedef NaT to_signed;
 		typedef NaT to_unqualified;
 		typedef NaT to_unsigned;
@@ -793,6 +850,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
 			typedef NaT add_rvalue_reference;
 			typedef NaT to_rvalue_reference;
+			typedef NaT to_rvalue_reference_to_const;
+			typedef NaT to_rvalue_reference_to_const_volatile;
+			typedef NaT to_rvalue_reference_to_unqualified;
+			typedef NaT to_rvalue_reference_to_volatile;
 #		endif
 
 #		if Z_TRAIT_HAS(Type, parameters)
@@ -1637,9 +1698,11 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-/*#	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
+#	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
 
-		struct WChar {
+		struct WChar : Natural {
+			enum {fundamental = Z_FUNDAMENTAL_WCHAR};
+
 			typedef wchar_t type;
 		};
 
@@ -1647,7 +1710,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR16)
 
-		struct Char16 {
+		struct Char16 : Natural {
+			enum {fundamental = Z_FUNDAMENTAL_CHAR16};
+
 			typedef char16_t type;
 		};
 
@@ -1655,11 +1720,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR32)
 
-		struct Char32 {
+		struct Char32 : Natural {
+			enum {fundamental = Z_FUNDAMENTAL_CHAR32};
+
 			typedef char32_t type;
 		};
 
-#	endif*/
+#	endif
 
 #	if Z_TRAIT_HAS(Type, is_null_pointer)
 
@@ -1686,7 +1753,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_aggregate = true};
 #		endif
 
-#		if Z_TRAIT_HAS(Type, is_default_constructible)
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_DEFAULT_CONSTRUCTIBLE)
+			enum {is_default_constructible = Z_COMPILER_TRAIT(TYPE_IS_DEFAULT_CONSTRUCTIBLE)(T)};
+#		elif Z_TRAIT_HAS(Type, is_default_constructible)
 			enum {is_default_constructible = Helpers::IsDefaultConstructible<T, T>::value};
 #		endif
 
@@ -1737,16 +1806,19 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 		typedef T* type;
 		typedef T  pointee_type;
+		typedef T  indirectee_type;
 	};
 
 	template <class T, class C, class M> struct MemberPointer : PointerLike {
-		enum {	is_member_pointer = true,
+		enum {	is_indirection	  = true,
+			is_member_pointer = true,
 			is_pointer	  = true
 		};
 
 		typedef T type;
 		typedef C class_type;
 		typedef M pointee_type;
+		typedef M indirectee_type;
 	};
 
 	template <class T, class C, class M> struct DataMemberPointer : MemberPointer<T, C, M> {
@@ -1755,18 +1827,19 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 	};
 
 	template <class T, class C, class M> struct MemberFunctionPointer : MemberPointer<T, C, M> {
-		enum {	is_callable		   = true,
-			is_member_function_pointer = true
-		};
-		enum {pointer_level = 1};
+		enum {is_member_function_pointer = true};
+		enum {indirection_level = 1};
 
 		typedef M to_function;
 	};
 
 	template <class T> struct Reference : Simple {
-		enum {is_reference = true};
+		enum {	is_indirection = true,
+			is_reference   = true
+		};
 
 		typedef T referencee_type;
+		typedef T indirectee_type;
 	};
 
 	template <class T> struct LValueReference : Reference<T> {
@@ -1788,9 +1861,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
 
 		template <class R, class... P> struct Function : Valid {
-			enum {	is_callable = true,
-				is_function = true
-			};
+			enum {is_function = true};
 			enum {arity = TypeCount<P...>::value};
 
 			typedef R type		   (P...);
@@ -1839,9 +1910,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #	else
 
 		template <class R> struct FunctionWith0Parameters : Valid {
-			enum {	is_callable = true,
-				is_function = true
-			};
+			enum {is_function = true};
 			enum {arity = 0};
 
 			typedef R type		   ();
@@ -1869,9 +1938,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 																	       \
 			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)>					       \
 			struct FunctionWith##parameter_count##Parameters : Valid {							       \
-				enum {	is_callable = true,										       \
-					is_function = true										       \
-				};													       \
+				enum {is_function = true};										       \
 				enum {arity = parameter_count};										       \
 																	       \
 				typedef R type			  (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA));			       \
@@ -1914,9 +1981,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 																     \
 			template <class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)>				     \
 			struct FunctionWith##parameter_count##Parameters : Valid {						     \
-				enum {	is_callable = true,									     \
-					is_function = true									     \
-				};												     \
+				enum {is_function = true};									     \
 				enum {arity = parameter_count + 1};								     \
 																     \
 				typedef R type		   (Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA));		     \
@@ -1989,7 +2054,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_aggregate = Z_COMPILER_TRAIT(TYPE_IS_AGGREGATE)(T)};
 #		endif
 
-#		if Z_TRAIT_HAS(Type, is_default_constructible)
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_DEFAULT_CONSTRUCTIBLE)
+			enum {is_default_constructible = Z_COMPILER_TRAIT(TYPE_IS_DEFAULT_CONSTRUCTIBLE)(T)};
+#		elif Z_TRAIT_HAS(Type, is_default_constructible)
 			enum {is_default_constructible = Helpers::IsDefaultConstructible<T, T>::value};
 #		endif
 
@@ -2467,12 +2534,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 	// MARK: - Mixins: Kind
 
-	template <class C> struct Virtual : C {
-		typedef typename C::type remove_pointer;
-		typedef typename C::type remove_reference;
-	};
-
-	template <class C> struct Storable : Virtual<C> {
+	template <class C> struct Storable : C {
 		typedef struct {typename C::type value;}	   to_wrap  ;
 		typedef struct {UInt8 data[sizeof(to_wrap)];} to_opaque;
 
@@ -2481,17 +2543,23 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		};
 	};
 
-	template <class C> struct Convertible : C {
-		typedef typename C::type& add_lvalue_reference;
+	template <class C> struct Pointable : C {
+		enum {is_pointable = true};
+
 		typedef typename C::type* add_pointer;
-		typedef typename C::type& to_lvalue_reference;
-		typedef typename C::type* to_pointer;
+	};
+
+	template <class C> struct Referenceable : C {
+		enum {is_referenceable = true};
+
+		typedef typename C::type& add_lvalue_reference;
 
 #		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
 			typedef typename C::type&& add_rvalue_reference;
-			typedef typename C::type&& to_rvalue_reference;
 #		endif
 	};
+
+	template <class C> struct Indirectionable : Referenceable<Pointable<C> > {};
 
 	enum {	Void,
 		Function,
@@ -2509,41 +2577,48 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 	// MARK: - Mixins: Kind (virtual)
 
-	template <class C> struct Kind<Void, C> : Virtual<C> {
-		typedef typename C::type* add_pointer;
+	template <class C> struct Kind<Void, C> : Pointable<C> {
 		typedef typename C::type* to_pointer;
 	};
 
-	template <class C> struct Kind<InconvertibleFunction, C> : Virtual<C> {
+	template <class C> struct Kind<InconvertibleFunction, C> : C {
 		typedef typename C::type to_function;
 	};
 
-	template <class C> struct Kind<ConvertibleFunction, C> : Kind<InconvertibleFunction, Convertible<C> > {};
+	template <class C> struct Kind<ConvertibleFunction, C> : Kind<InconvertibleFunction, Indirectionable<C> > {
+		typedef typename C::type& to_lvalue_reference;
+		typedef typename C::type* to_pointer;
 
-	// MARK: - Mixins: Kind (storable)
-
-	template <class C> struct Kind<Value, C> : Storable<Convertible<C> > {};
-
-	template <class C> struct Kind<VoidPointer, C> : Storable<C> {
-		typedef typename C::type&	 add_lvalue_reference;
-		typedef typename C::type*	 add_pointer;
-		typedef typename C::pointee_type remove_pointer;
-		typedef typename C::type	 to_pointer;
-
-#		if Z_TRAIT_HAS(Type, add_rvalue_reference)
-			typedef typename C::type&& add_rvalue_reference;
+#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+			typedef typename C::type&& to_rvalue_reference;
 #		endif
 	};
 
-	template <class C> struct Kind<Pointer, C> : Kind<VoidPointer, C> {
+	// MARK: - Mixins: Kind (storable)
+
+	template <class C> struct Kind<Value, C> : Storable<Indirectionable<C> > {
+		typedef typename C::type& to_lvalue_reference;
+		typedef typename C::type* to_pointer;
+
+#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+			typedef typename C::type&& to_rvalue_reference;
+#		endif
+	};
+
+	template <class C> struct Kind<VoidPointer, C> : Storable<Indirectionable<C> > {
+		typedef typename C::type to_pointer;
+	};
+
+	template <class C> struct Kind<Pointer, C> : Storable<Indirectionable<C> > {
 		typedef typename C::pointee_type& to_lvalue_reference;
+		typedef typename C::type	  to_pointer;
 
 #		if Z_TRAIT_HAS(Type, to_rvalue_reference)
 			typedef typename C::pointee_type&& to_rvalue_reference;
 #		endif
 	};
 
-	template <class C> struct Kind<MemberFunctionPointer, C> : Storable<C> {
+	template <class C> struct Kind<MemberFunctionPointer, C> : Storable<Indirectionable<C> > {
 		typedef typename C::pointee_type to_function;
 	};
 
@@ -2551,8 +2626,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef NaT			     add_const;
 		typedef NaT			     add_const_volatile;
 		typedef NaT			     add_volatile;
-		typedef typename C::type	     remove_pointer;
-		typedef typename C::referencee_type  remove_reference;
 		typedef NaT			     to_const;
 		typedef NaT			     to_const_volatile;
 		typedef typename C::referencee_type& to_lvalue_reference;
@@ -2567,7 +2640,14 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	// MARK: - Mixins: Objective-C objects
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-		template <class C> struct Kind<ObjectiveCObject, C> : Convertible<C> {};
+		template <class C> struct Kind<ObjectiveCObject, C> : Indirectionable<C> {
+			typedef typename C::type& to_lvalue_reference;
+			typedef typename C::type* to_pointer;
+
+#			if Z_TRAIT_HAS(Type, to_rvalue_reference)
+				typedef typename C::type&& to_rvalue_reference;
+#			endif
+		};
 #	endif
 }}}}
 
@@ -2739,7 +2819,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: C++ specific fundamental types
 
-/*#	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
+#	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
 		template <Boolean E> struct Case<E, WChar> : Mixins::Unqualified<Abstract::WChar> {};
 #	endif
 
@@ -2749,7 +2829,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR32)
 		template <Boolean E> struct Case<E, Char32> : Mixins::Unqualified<Abstract::Char32> {};
-#	endif*/
+#	endif
 
 #	if Z_TRAIT_HAS(Type, is_null_pointer)
 		template <Boolean E> struct Case<E, NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
@@ -2778,8 +2858,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		typedef Case<false, T> Pointee;
 
 		public:
-		enum {	is_callable	    = Pointee::is_function,
-			is_function_pointer = Pointee::is_function,
+		enum {	is_function_pointer = Pointee::is_function,
 			is_void_pointer	    = Pointee::is_void
 		};
 
@@ -2795,13 +2874,13 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #		endif
 
-		enum {pointer_level = Pointee::pointer_level + 1};
+		enum {indirection_level = Pointee::indirection_level + 1};
 
 		typedef typename TernaryType<is_function_pointer, T, NaT>::type to_function;
 	};
 
 	template <Boolean E, class C, class T> struct Case<E, T C::*> : Mixins::Unqualified<Abstract::DataMemberPointer<T C::*, C, T> > {
-		enum {pointer_level = Case<E, T>::pointer_level + 1};
+		enum {indirection_level = Case<false, T>::indirection_level + 1};
 	};
 
 #	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
@@ -2902,9 +2981,10 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	template <Boolean E, class T> struct Case<E, T&> : Mixins::Unqualified<Abstract::LValueReference<T> > {
 		enum {	is_function_reference	     = Case<false, T>::is_function,
-			is_function_lvalue_reference = is_function_reference,
-			is_callable		     = is_function_reference
+			is_function_lvalue_reference = is_function_reference
 		};
+		enum {};
+
 
 		typedef typename TernaryType<is_function_reference, T, NaT>::type to_function;
 	};
@@ -2913,8 +2993,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 		template <Boolean E, class T> struct Case<E, T&&> : Mixins::Unqualified<Abstract::RValueReference<T> > {
 			enum {	is_function_reference	     = Case<false, T>::is_function,
-				is_function_rvalue_reference = is_function_reference,
-				is_callable		     = is_function_reference
+				is_function_rvalue_reference = is_function_reference
 			};
 
 			typedef typename TernaryType<is_function_reference, T, NaT>::type to_function;
@@ -3058,16 +3137,20 @@ namespace Zeta {namespace Detail {namespace Type {
 					: Mixins::Value))
 			: (C::is_void
 				? Mixins::Void
-				: (C::is_function && C::is_qualified
+				: (C::is_qualified
 					? Mixins::InconvertibleFunction
 					: Mixins::ConvertibleFunction)),
 		Case<true, T>
 	> {
 		enum {is_compound = !Build::is_fundamental};
 
-		typedef typename TernaryType<
-			Build::is_structure_or_union,
-			T,
+		typedef typename TernaryType<Build::is_array,	    typename Build::element_type,    T>::type remove_array;
+		typedef typename TernaryType<Build::is_indirection, typename Build::indirectee_type, T>::type remove_indirection;
+		typedef typename TernaryType<Build::is_pointer,	    typename Build::pointee_type,    T>::type remove_pointer;
+		typedef typename TernaryType<Build::is_reference,   typename Build::referencee_type, T>::type remove_reference;
+
+		typedef typename TernaryType<Build::is_structure_or_union,
+			typename Build<const typename Build::remove_const_volatile>::add_lvalue_reference,
 			T
 		>::type to_forwardable;
 	};
@@ -3099,28 +3182,53 @@ namespace Zeta {
 
 #	endif
 
+#	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+
+		template <class T, class compatible_call_prototype> struct TypeIsCallable;
+		template <class T, class compatible_call_prototype> struct TypeIsFunctor;
+
+#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+
+			template <class T, class R, class... P> struct TypeIsCallable<T, R(P...)> : Detail::Type::Helpers::IsCallable<T, R(P...), R> {};
+			template <class T, class R, class... P> struct TypeIsFunctor <T, R(P...)> : Detail::Type::Helpers::IsFunctor <T, R(P...), R> {};
+
+#		else
+
+			template <class T, class R> struct TypeIsCallable<T, R()> : Detail::Type::Helpers::IsCallable<T, R(), R> {};
+			template <class T, class R> struct TypeIsFunctor <T, R()> : Detail::Type::Helpers::IsFunctor <T, R(), R> {};
+
+#			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)							     \
+																     \
+			template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeIsCallable< \
+				T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))					     \
+			> : Detail::Type::Helpers::IsCallable<T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)), R> {};       \
+																     \
+			template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeIsFunctor<  \
+				T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))					     \
+			> : Detail::Type::Helpers::IsFunctor<T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)), R> {};
+
+			Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
+#			undef Z_TEMPLATE_SPECIALIZATIONS
+
+#		endif
+
+#	endif
+
 #	if Z_COMPILER_HAS_TRAIT(TYPE_IS_COMPLETE)
 
 		template <class T, SInt at_line> struct TypeIsComplete {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_COMPLETE)(T)};
 		};
 
-		template <class T, SInt at_line> struct TypeIsIncomplete {
-			enum {value = !Z_COMPILER_TRAIT(TYPE_IS_COMPLETE)(T)};
-		};
-
 #	elif Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
 
 		namespace Detail {namespace Type {namespace Helpers {namespace {
-			template <class T, SInt L, Boolean B> struct IsComplete			     : False {};
-			template <class T, SInt L>	      struct IsComplete	 <T, L, !!sizeof(T)> : True  {};
-			template <class T, SInt L, Boolean B> struct IsIncomplete		     : True  {};
-			template <class T, SInt L>	      struct IsIncomplete<T, L, !!sizeof(T)> : False {};
+			template <class T, SInt L, Boolean B> struct IsComplete			    : False {};
+			template <class T, SInt L>	      struct IsComplete <T, L, !!sizeof(T)> : True  {};
 		}}}}
 
 		namespace {
-			template <class T, SInt at_line> struct TypeIsComplete	 : Detail::Type::Helpers::IsComplete  <T, at_line, true> {};
-			template <class T, SInt at_line> struct TypeIsIncomplete : Detail::Type::Helpers::IsIncomplete<T, at_line, true> {};
+			template <class T, SInt at_line> struct TypeIsComplete : Detail::Type::Helpers::IsComplete<T, at_line, true> {};
 		}
 
 #	endif
@@ -3138,38 +3246,6 @@ namespace Zeta {
 		template <class T, class... parameters> struct TypeIsConstructible {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_CONSTRUCTIBLE)(T, parameters...)};
 		};
-
-#	endif
-
-#	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
-
-		template <class T, class compatible_call_prototype> struct TypeIsFunctional;
-		template <class T, class compatible_call_prototype> struct TypeIsFunctor;
-
-#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
-
-			template <class T, class R, class... P> struct TypeIsFunctional<T, R(P...)> : Detail::Type::Helpers::IsFunctional<T, R(P...), R> {};
-			template <class T, class R, class... P> struct TypeIsFunctor   <T, R(P...)> : Detail::Type::Helpers::IsFunctor	 <T, R(P...), R> {};
-
-#		else
-
-			template <class T, class R> struct TypeIsFunctional<T, R()> : Detail::Type::Helpers::IsFunctional<T, R(), R> {};
-			template <class T, class R> struct TypeIsFunctor   <T, R()> : Detail::Type::Helpers::IsFunctor	 <T, R(), R> {};
-
-#			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)							       \
-																       \
-			template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeIsFunctional< \
-				T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))					       \
-			> : Detail::Type::Helpers::IsFunctional<T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)), R> {};       \
-																       \
-			template <class T, class R, Z_FOR_##parameter_count##_APPEND_INDEX(class P, Z_COMMA)> struct TypeIsFunctor<    \
-				T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA))					       \
-			> : Detail::Type::Helpers::IsFunctor<T, R(Z_FOR_##parameter_count##_APPEND_INDEX(P, Z_COMMA)), R> {};
-
-			Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
-#			undef Z_TEMPLATE_SPECIALIZATIONS
-
-#		endif
 
 #	endif
 
@@ -3331,7 +3407,6 @@ namespace Zeta {
 			enum {	is_arithmetic		      = Type::is_arithmetic,
 				is_array		      = Type::is_array,
 				is_boolean		      = Type::is_boolean,
-				is_callable		      = Type::is_callable,
 				is_class		      = Type::is_class,
 				is_compound		      = Type::is_compound,
 				is_const		      = Type::is_const,
@@ -3343,6 +3418,7 @@ namespace Zeta {
 				is_data_member_pointer	      = Type::is_data_member_pointer,
 				is_empty		      = Type::is_empty,
 				is_exact		      = Type::is_exact,
+				is_indirection		      = Type::is_indirection,
 				is_integer		      = Type::is_integer,
 				is_integral		      = Type::is_integral,
 				is_flexible_array	      = Type::is_flexible_array,
@@ -3364,10 +3440,12 @@ namespace Zeta {
 				is_objective_c_class_pointer  = Type::is_objective_c_class_pointer,
 				is_objective_c_object	      = Type::is_objective_c_object,
 				is_objective_c_object_pointer = Type::is_objective_c_object_pointer,
+				is_pointable		      = Type::is_pointable,
 				is_pointer		      = Type::is_pointer,
 				is_qualified		      = Type::is_qualified,
 				is_real			      = Type::is_real,
 				is_reference		      = Type::is_reference,
+				is_referenceable	      = Type::is_referenceable,
 				is_rvalue		      = Type::is_rvalue,
 				is_rvalue_reference	      = Type::is_rvalue_reference,
 				is_scalar		      = Type::is_scalar,
@@ -3389,11 +3467,11 @@ namespace Zeta {
 				is_volatile_rvalue	      = Type::is_volatile_rvalue
 			};
 
-			enum {	arity	      = Type::arity,
-				bits	      = Type::bits,
-				element_count = Type::element_count,
-				pointer_level = Type::pointer_level,
-				size	      = Type::size
+			enum {	arity		  = Type::arity,
+				bits		  = Type::bits,
+				element_count	  = Type::element_count,
+				indirection_level = Type::indirection_level,
+				size		  = Type::size
 			};
 
 			enum {	fixed_fundamental = Type::fixed_fundamental,
@@ -3405,37 +3483,48 @@ namespace Zeta {
 
 			typedef typename Type::type type;
 
-			typedef typename Type<typename Type::add_const		       >::flow add_const;
-			typedef typename Type<typename Type::add_const_volatile	       >::flow add_const_volatile;
-			typedef typename Type<typename Type::add_lvalue_reference      >::flow add_lvalue_reference;
-			typedef typename Type<typename Type::add_pointer	       >::flow add_pointer;
-			typedef typename Type<typename Type::add_volatile	       >::flow add_volatile;
-			typedef typename Type<typename Type::class_type		       >::flow class_type;
-			typedef typename Type<typename Type::element_type	       >::flow element_type;
-			typedef typename Type<typename Type::pointee_type	       >::flow pointee_type;
-			typedef typename Type<typename Type::referencee_type	       >::flow referencee_type;
-			typedef typename Type<typename Type::remove_const	       >::flow remove_const;
-			typedef typename Type<typename Type::remove_const_this	       >::flow remove_const_this;
-			typedef typename Type<typename Type::remove_const_volatile     >::flow remove_const_volatile;
-			typedef typename Type<typename Type::remove_const_volatile_this>::flow remove_const_volatile_this;
-			typedef typename Type<typename Type::remove_pointer	       >::flow remove_pointer;
-			typedef typename Type<typename Type::remove_reference	       >::flow remove_reference;
-			typedef typename Type<typename Type::remove_this	       >::flow remove_this;
-			typedef typename Type<typename Type::remove_volatile	       >::flow remove_volatile;
-			typedef typename Type<typename Type::remove_volatile_this      >::flow remove_volatile_this;
-			typedef typename Type<typename Type::return_type	       >::flow return_type;
-			typedef typename Type<typename Type::to_const		       >::flow to_const;
-			typedef typename Type<typename Type::to_const_volatile	       >::flow to_const_volatile;
-			typedef typename Type<typename Type::to_forwardable	       >::flow to_forwardable;
-			typedef typename Type<typename Type::to_function	       >::flow to_function;
-			typedef typename Type<typename Type::to_lvalue_reference       >::flow to_lvalue_reference;
-			typedef typename Type<typename Type::to_opaque		       >::flow to_opaque;
-			typedef typename Type<typename Type::to_pointer		       >::flow to_pointer;
-			typedef typename Type<typename Type::to_signed		       >::flow to_signed;
-			typedef typename Type<typename Type::to_unqualified	       >::flow to_unqualified;
-			typedef typename Type<typename Type::to_unsigned	       >::flow to_unsigned;
-			typedef typename Type<typename Type::to_volatile	       >::flow to_volatile;
-			typedef typename Type<typename Type::to_wrap		       >::flow to_wrap;
+			typedef typename Type<typename Type::add_const				  >::flow add_const;
+			typedef typename Type<typename Type::add_const_volatile			  >::flow add_const_volatile;
+			typedef typename Type<typename Type::add_lvalue_reference		  >::flow add_lvalue_reference;
+			typedef typename Type<typename Type::add_pointer			  >::flow add_pointer;
+			typedef typename Type<typename Type::add_volatile			  >::flow add_volatile;
+			typedef typename Type<typename Type::class_type				  >::flow class_type;
+			typedef typename Type<typename Type::element_type			  >::flow element_type;
+			typedef typename Type<typename Type::indirectee_type			  >::flow indirectee_type;
+			typedef typename Type<typename Type::pointee_type			  >::flow pointee_type;
+			typedef typename Type<typename Type::referencee_type			  >::flow referencee_type;
+			typedef typename Type<typename Type::remove_array			  >::flow remove_array;
+			typedef typename Type<typename Type::remove_const			  >::flow remove_const;
+			typedef typename Type<typename Type::remove_const_this			  >::flow remove_const_this;
+			typedef typename Type<typename Type::remove_const_volatile		  >::flow remove_const_volatile;
+			typedef typename Type<typename Type::remove_const_volatile_this 	  >::flow remove_const_volatile_this;
+			typedef typename Type<typename Type::remove_indirection			  >::flow remove_indirection;
+			typedef typename Type<typename Type::remove_pointer			  >::flow remove_pointer;
+			typedef typename Type<typename Type::remove_reference			  >::flow remove_reference;
+			typedef typename Type<typename Type::remove_this			  >::flow remove_this;
+			typedef typename Type<typename Type::remove_volatile			  >::flow remove_volatile;
+			typedef typename Type<typename Type::remove_volatile_this		  >::flow remove_volatile_this;
+			typedef typename Type<typename Type::return_type			  >::flow return_type;
+			typedef typename Type<typename Type::to_const				  >::flow to_const;
+			typedef typename Type<typename Type::to_const_volatile			  >::flow to_const_volatile;
+			typedef typename Type<typename Type::to_forwardable			  >::flow to_forwardable;
+			typedef typename Type<typename Type::to_function			  >::flow to_function;
+			typedef typename Type<typename Type::to_lvalue_reference		  >::flow to_lvalue_reference;
+			typedef typename Type<typename Type::to_lvalue_reference_to_const	  >::flow to_lvalue_reference_to_const;
+			typedef typename Type<typename Type::to_lvalue_reference_to_const_volatile>::flow to_lvalue_reference_to_const_volatile;
+			typedef typename Type<typename Type::to_lvalue_reference_to_unqualified	  >::flow to_lvalue_reference_to_unqualified;
+			typedef typename Type<typename Type::to_lvalue_reference_to_volatile	  >::flow to_lvalue_reference_to_volatile;
+			typedef typename Type<typename Type::to_opaque				  >::flow to_opaque;
+			typedef typename Type<typename Type::to_pointer				  >::flow to_pointer;
+			typedef typename Type<typename Type::to_pointer_to_const		  >::flow to_pointer_to_const;
+			typedef typename Type<typename Type::to_pointer_to_const_volatile	  >::flow to_pointer_to_const_volatile;
+			typedef typename Type<typename Type::to_pointer_to_unqualified		  >::flow to_pointer_to_unqualified;
+			typedef typename Type<typename Type::to_pointer_to_volatile		  >::flow to_pointer_to_volatile;
+			typedef typename Type<typename Type::to_signed				  >::flow to_signed;
+			typedef typename Type<typename Type::to_unqualified			  >::flow to_unqualified;
+			typedef typename Type<typename Type::to_unsigned			  >::flow to_unsigned;
+			typedef typename Type<typename Type::to_volatile			  >::flow to_volatile;
+			typedef typename Type<typename Type::to_wrap				  >::flow to_wrap;
 
 #			if Z_TRAIT_HAS(Type, has_virtual_destructor)
 				enum {has_virtual_destructor = Type::has_virtual_destructor};
@@ -3535,8 +3624,12 @@ namespace Zeta {
 #			endif
 
 #			if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
-				typedef typename Type<typename Type::add_rvalue_reference >::flow add_rvalue_reference;
-				typedef typename Type<typename Type::to_rvalue_reference  >::flow to_rvalue_reference;
+				typedef typename Type<typename Type::add_rvalue_reference		  >::flow add_rvalue_reference;
+				typedef typename Type<typename Type::to_rvalue_reference		  >::flow to_rvalue_reference;
+				typedef typename Type<typename Type::to_rvalue_reference_to_const	  >::flow to_rvalue_reference_to_const;
+				typedef typename Type<typename Type::to_rvalue_reference_to_const_volatile>::flow to_rvalue_reference_to_const_volatile;
+				typedef typename Type<typename Type::to_rvalue_reference_to_unqualified	  >::flow to_rvalue_reference_to_unqualified;
+				typedef typename Type<typename Type::to_rvalue_reference_to_volatile	  >::flow to_rvalue_reference_to_volatile;
 #			endif
 
 #			if Z_TRAIT_HAS(Type, parameters)
@@ -3560,12 +3653,13 @@ namespace Zeta {
 	template <class T> struct TypeArity			{enum {value = Type<T>::arity			     };};
 	template <class T> struct TypeBits			{enum {value = Type<T>::bits			     };};
 	template <class T> struct TypeElementCount		{enum {value = Type<T>::element_count		     };};
+	template <class T> struct TypeDimensionCount		{enum {value = Type<T>::dimension_count		     };};
 	template <class T> struct TypeFixedFundamental		{enum {value = Type<T>::fixed_fundamental	     };};
 	template <class T> struct TypeFundamental		{enum {value = Type<T>::fundamental		     };};
+	template <class T> struct TypeIndirectionLevel		{enum {value = Type<T>::indirection_level	     };};
 	template <class T> struct TypeIsArithmetic		{enum {value = Type<T>::is_arithmetic		     };};
 	template <class T> struct TypeIsArray			{enum {value = Type<T>::is_array		     };};
 	template <class T> struct TypeIsBoolean			{enum {value = Type<T>::is_boolean		     };};
-	template <class T> struct TypeIsCallable		{enum {value = Type<T>::is_callable		     };};
 	template <class T> struct TypeIsClass			{enum {value = Type<T>::is_class		     };};
 	template <class T> struct TypeIsCompound		{enum {value = Type<T>::is_compound		     };};
 	template <class T> struct TypeIsConst			{enum {value = Type<T>::is_const		     };};
@@ -3577,6 +3671,7 @@ namespace Zeta {
 	template <class T> struct TypeIsDataMemberPointer	{enum {value = Type<T>::is_data_member_pointer	     };};
 	template <class T> struct TypeIsEmpty			{enum {value = Type<T>::is_empty		     };};
 	template <class T> struct TypeIsExact			{enum {value = Type<T>::is_exact		     };};
+	template <class T> struct TypeIsIndirection		{enum {value = Type<T>::is_indirection		     };};
 	template <class T> struct TypeIsInteger			{enum {value = Type<T>::is_integer		     };};
 	template <class T> struct TypeIsIntegral		{enum {value = Type<T>::is_integral		     };};
 	template <class T> struct TypeIsFlexibleArray		{enum {value = Type<T>::is_flexible_array	     };};
@@ -3598,10 +3693,12 @@ namespace Zeta {
 	template <class T> struct TypeIsObjectiveCClassPointer	{enum {value = Type<T>::is_objective_c_class_pointer };};
 	template <class T> struct TypeIsObjectiveCObject	{enum {value = Type<T>::is_objective_c_object	     };};
 	template <class T> struct TypeIsObjectiveCObjectPointer {enum {value = Type<T>::is_objective_c_object_pointer};};
+	template <class T> struct TypeIsPointable		{enum {value = Type<T>::is_pointable		     };};
 	template <class T> struct TypeIsPointer			{enum {value = Type<T>::is_pointer		     };};
 	template <class T> struct TypeIsQualified		{enum {value = Type<T>::is_qualified		     };};
 	template <class T> struct TypeIsReal			{enum {value = Type<T>::is_real			     };};
 	template <class T> struct TypeIsReference		{enum {value = Type<T>::is_reference		     };};
+	template <class T> struct TypeIsReferenceable		{enum {value = Type<T>::is_referenceable	     };};
 	template <class T> struct TypeIsRValue			{enum {value = Type<T>::is_rvalue		     };};
 	template <class T> struct TypeIsRValueReference		{enum {value = Type<T>::is_rvalue_reference	     };};
 	template <class T> struct TypeIsScalar			{enum {value = Type<T>::is_scalar		     };};
@@ -3622,40 +3719,50 @@ namespace Zeta {
 	template <class T> struct TypeIsVolatileLValue		{enum {value = Type<T>::is_volatile_lvalue	     };};
 	template <class T> struct TypeIsVolatileRValue		{enum {value = Type<T>::is_volatile_rvalue	     };};
 	template <class T> struct TypeNumberFormat		{enum {value = Type<T>::number_format		     };};
-	template <class T> struct TypePointerLevel		{enum {value = Type<T>::pointer_level		     };};
 	template <class T> struct TypeSize			{enum {value = Type<T>::size			     };};
 
-	template <class T> struct TypeAddConst		      {typedef typename Type<T>::add_const		    type;};
-	template <class T> struct TypeAddConstVolatile	      {typedef typename Type<T>::add_const_volatile	    type;};
-	template <class T> struct TypeAddLValueReference      {typedef typename Type<T>::add_lvalue_reference	    type;};
-	template <class T> struct TypeAddPointer	      {typedef typename Type<T>::add_pointer		    type;};
-	template <class T> struct TypeAddVolatile	      {typedef typename Type<T>::add_volatile		    type;};
-	template <class T> struct TypeClassType		      {typedef typename Type<T>::class_type		    type;};
-	template <class T> struct TypeElementType	      {typedef typename Type<T>::element_type		    type;};
-	template <class T> struct TypePointeeType	      {typedef typename Type<T>::pointee_type		    type;};
-	template <class T> struct TypeReferenceeType	      {typedef typename Type<T>::referencee_type	    type;};
-	template <class T> struct TypeRemoveConst	      {typedef typename Type<T>::remove_const		    type;};
-	template <class T> struct TypeRemoveConstThis	      {typedef typename Type<T>::remove_const_this	    type;};
-	template <class T> struct TypeRemoveConstVolatile     {typedef typename Type<T>::remove_const_volatile	    type;};
-	template <class T> struct TypeRemoveConstVolatileThis {typedef typename Type<T>::remove_const_volatile_this type;};
-	template <class T> struct TypeRemovePointer	      {typedef typename Type<T>::remove_pointer		    type;};
-	template <class T> struct TypeRemoveReference	      {typedef typename Type<T>::remove_reference	    type;};
-	template <class T> struct TypeRemoveThis	      {typedef typename Type<T>::remove_this		    type;};
-	template <class T> struct TypeRemoveVolatile	      {typedef typename Type<T>::remove_volatile	    type;};
-	template <class T> struct TypeRemoveVolatileThis      {typedef typename Type<T>::remove_volatile_this	    type;};
-	template <class T> struct TypeReturnType	      {typedef typename Type<T>::return_type		    type;};
-	template <class T> struct TypeToConst		      {typedef typename Type<T>::to_const		    type;};
-	template <class T> struct TypeToConstVolatile	      {typedef typename Type<T>::to_const_volatile	    type;};
-	template <class T> struct TypeToForwardable	      {typedef typename Type<T>::to_forwardable		    type;};
-	template <class T> struct TypeToFunction	      {typedef typename Type<T>::to_function		    type;};
-	template <class T> struct TypeToLValueReference	      {typedef typename Type<T>::to_lvalue_reference	    type;};
-	template <class T> struct TypeToOpaque		      {typedef typename Type<T>::to_opaque		    type;};
-	template <class T> struct TypeToPointer		      {typedef typename Type<T>::to_pointer		    type;};
-	template <class T> struct TypeToSigned		      {typedef typename Type<T>::to_signed		    type;};
-	template <class T> struct TypeToUnqualified	      {typedef typename Type<T>::to_unqualified		    type;};
-	template <class T> struct TypeToUnsigned	      {typedef typename Type<T>::to_unsigned		    type;};
-	template <class T> struct TypeToVolatile	      {typedef typename Type<T>::to_volatile		    type;};
-	template <class T> struct TypeToWrap		      {typedef typename Type<T>::to_wrap		    type;};
+	template <class T> struct TypeAddConst			       {typedef typename Type<T>::add_const				type;};
+	template <class T> struct TypeAddConstVolatile		       {typedef typename Type<T>::add_const_volatile			type;};
+	template <class T> struct TypeAddLValueReference	       {typedef typename Type<T>::add_lvalue_reference			type;};
+	template <class T> struct TypeAddPointer		       {typedef typename Type<T>::add_pointer				type;};
+	template <class T> struct TypeAddVolatile		       {typedef typename Type<T>::add_volatile				type;};
+	template <class T> struct TypeClassType			       {typedef typename Type<T>::class_type				type;};
+	template <class T> struct TypeElementType		       {typedef typename Type<T>::element_type				type;};
+	template <class T> struct TypeIndirecteeType		       {typedef typename Type<T>::indirectee_type			type;};
+	template <class T> struct TypePointeeType		       {typedef typename Type<T>::pointee_type				type;};
+	template <class T> struct TypeReferenceeType		       {typedef typename Type<T>::referencee_type			type;};
+	template <class T> struct TypeRemoveArray		       {typedef typename Type<T>::remove_array				type;};
+	template <class T> struct TypeRemoveConst		       {typedef typename Type<T>::remove_const				type;};
+	template <class T> struct TypeRemoveConstThis		       {typedef typename Type<T>::remove_const_this			type;};
+	template <class T> struct TypeRemoveConstVolatile	       {typedef typename Type<T>::remove_const_volatile			type;};
+	template <class T> struct TypeRemoveConstVolatileThis	       {typedef typename Type<T>::remove_const_volatile_this		type;};
+	template <class T> struct TypeRemoveIndirection		       {typedef typename Type<T>::remove_indirection			type;};
+	template <class T> struct TypeRemovePointer		       {typedef typename Type<T>::remove_pointer			type;};
+	template <class T> struct TypeRemoveReference		       {typedef typename Type<T>::remove_reference			type;};
+	template <class T> struct TypeRemoveThis		       {typedef typename Type<T>::remove_this				type;};
+	template <class T> struct TypeRemoveVolatile		       {typedef typename Type<T>::remove_volatile			type;};
+	template <class T> struct TypeRemoveVolatileThis	       {typedef typename Type<T>::remove_volatile_this			type;};
+	template <class T> struct TypeReturnType		       {typedef typename Type<T>::return_type				type;};
+	template <class T> struct TypeToConst			       {typedef typename Type<T>::to_const				type;};
+	template <class T> struct TypeToConstVolatile		       {typedef typename Type<T>::to_const_volatile			type;};
+	template <class T> struct TypeToForwardable		       {typedef typename Type<T>::to_forwardable			type;};
+	template <class T> struct TypeToFunction		       {typedef typename Type<T>::to_function				type;};
+	template <class T> struct TypeToLValueReference		       {typedef typename Type<T>::to_lvalue_reference			type;};
+	template <class T> struct TypeToLvalueReferenceToConst	       {typedef typename Type<T>::to_lvalue_reference_to_const		type;};
+	template <class T> struct TypeToLvalueReferenceToConstVolatile {typedef typename Type<T>::to_lvalue_reference_to_const_volatile type;};
+	template <class T> struct TypeToLvalueReferenceToUnqualified   {typedef typename Type<T>::to_lvalue_reference_to_unqualified	type;};
+	template <class T> struct TypeToLvalueReferenceToVolatile      {typedef typename Type<T>::to_lvalue_reference_to_volatile	type;};
+	template <class T> struct TypeToOpaque			       {typedef typename Type<T>::to_opaque				type;};
+	template <class T> struct TypeToPointer			       {typedef typename Type<T>::to_pointer				type;};
+	template <class T> struct TypeToPointerToConst		       {typedef typename Type<T>::to_pointer_to_const			type;};
+	template <class T> struct TypeToPointerToConstColatile	       {typedef typename Type<T>::to_pointer_to_const_volatile		type;};
+	template <class T> struct TypeToPointerToUnqualified	       {typedef typename Type<T>::to_pointer_to_unqualified		type;};
+	template <class T> struct TypeToPointerToVolatile	       {typedef typename Type<T>::to_pointer_to_volatile		type;};
+	template <class T> struct TypeToSigned			       {typedef typename Type<T>::to_signed				type;};
+	template <class T> struct TypeToUnqualified		       {typedef typename Type<T>::to_unqualified			type;};
+	template <class T> struct TypeToUnsigned		       {typedef typename Type<T>::to_unsigned				type;};
+	template <class T> struct TypeToVolatile		       {typedef typename Type<T>::to_volatile				type;};
+	template <class T> struct TypeToWrap			       {typedef typename Type<T>::to_wrap				type;};
 
 #	if Z_HAS_TRAIT(TypeHasVirtualDestructor)
 		template <class T> struct TypeHasVirtualDestructor {enum {value = Type<T>::has_virtual_destructor};};
@@ -3754,8 +3861,12 @@ namespace Zeta {
 #	endif
 
 #	if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
-		template <class T> struct TypeAddRValueReference {typedef typename Type<T>::add_rvalue_reference type;};
-		template <class T> struct TypeToRValueReference	 {typedef typename Type<T>::to_rvalue_reference	 type;};
+		template <class T> struct TypeAddRValueReference	       {typedef typename Type<T>::add_rvalue_reference			type;};
+		template <class T> struct TypeToRValueReference		       {typedef typename Type<T>::to_rvalue_reference			type;};
+		template <class T> struct TypeToRvalueReferenceToConst	       {typedef typename Type<T>::to_rvalue_reference_to_const		type;};
+		template <class T> struct TypeToRvalueReferenceToConstVolatile {typedef typename Type<T>::to_rvalue_reference_to_const_volatile type;};
+		template <class T> struct TypeToRvalueReferenceToUnqualified   {typedef typename Type<T>::to_rvalue_reference_to_unqualified	type;};
+		template <class T> struct TypeToRvalueReferenceToVolatile      {typedef typename Type<T>::to_rvalue_reference_to_volatile	type;};
 #	endif
 
 #	if Z_HAS_TRAIT(TypeParameters)
@@ -3768,37 +3879,48 @@ namespace Zeta {
 
 #	if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
 
-		template <class T> using type_add_const			 = typename Type<T>::add_const;
-		template <class T> using type_add_const_volatile	 = typename Type<T>::add_const_volatile;
-		template <class T> using type_add_lvalue_reference	 = typename Type<T>::add_lvalue_reference;
-		template <class T> using type_add_pointer		 = typename Type<T>::add_pointer;
-		template <class T> using type_add_volatile		 = typename Type<T>::add_volatile;
-		template <class T> using type_class_type		 = typename Type<T>::class_type;
-		template <class T> using type_element_type		 = typename Type<T>::element_type;
-		template <class T> using type_pointee_type		 = typename Type<T>::pointee_type;
-		template <class T> using type_referencee_type		 = typename Type<T>::referencee_type;
-		template <class T> using type_remove_const		 = typename Type<T>::remove_const;
-		template <class T> using type_remove_const_this		 = typename Type<T>::remove_const_this;
-		template <class T> using type_remove_const_volatile	 = typename Type<T>::remove_const_volatile;
-		template <class T> using type_remove_const_volatile_this = typename Type<T>::remove_const_volatile_this;
-		template <class T> using type_remove_pointer		 = typename Type<T>::remove_pointer;
-		template <class T> using type_remove_reference		 = typename Type<T>::remove_reference;
-		template <class T> using type_remove_this		 = typename Type<T>::remove_this;
-		template <class T> using type_remove_volatile		 = typename Type<T>::remove_volatile;
-		template <class T> using type_remove_volatile_this	 = typename Type<T>::remove_volatile_this;
-		template <class T> using type_return_type		 = typename Type<T>::return_type;
-		template <class T> using type_to_const			 = typename Type<T>::to_const;
-		template <class T> using type_to_const_volatile		 = typename Type<T>::to_const_volatile;
-		template <class T> using type_to_forwardable		 = typename Type<T>::to_forwardable;
-		template <class T> using type_to_function		 = typename Type<T>::to_function;
-		template <class T> using type_to_lvalue_reference	 = typename Type<T>::to_lvalue_reference;
-		template <class T> using type_to_opaque		 	 = typename Type<T>::to_opaque;
-		template <class T> using type_to_pointer	 	 = typename Type<T>::to_pointer;
-		template <class T> using type_to_signed		 	 = typename Type<T>::to_signed;
-		template <class T> using type_to_unqualified	 	 = typename Type<T>::to_unqualified;
-		template <class T> using type_to_unsigned	 	 = typename Type<T>::to_unsigned;
-		template <class T> using type_to_volatile	 	 = typename Type<T>::to_volatile;
-		template <class T> using type_to_wrap		 	 = typename Type<T>::to_wrap;
+		template <class T> using type_add_const				    = typename Type<T>::add_const;
+		template <class T> using type_add_const_volatile		    = typename Type<T>::add_const_volatile;
+		template <class T> using type_add_lvalue_reference		    = typename Type<T>::add_lvalue_reference;
+		template <class T> using type_add_pointer			    = typename Type<T>::add_pointer;
+		template <class T> using type_add_volatile			    = typename Type<T>::add_volatile;
+		template <class T> using type_class_type			    = typename Type<T>::class_type;
+		template <class T> using type_element_type			    = typename Type<T>::element_type;
+		template <class T> using type_indirectee_type			    = typename Type<T>::indirectee_type;
+		template <class T> using type_pointee_type			    = typename Type<T>::pointee_type;
+		template <class T> using type_referencee_type			    = typename Type<T>::referencee_type;
+		template <class T> using type_remove_array			    = typename Type<T>::remove_array;
+		template <class T> using type_remove_const			    = typename Type<T>::remove_const;
+		template <class T> using type_remove_const_this			    = typename Type<T>::remove_const_this;
+		template <class T> using type_remove_const_volatile		    = typename Type<T>::remove_const_volatile;
+		template <class T> using type_remove_const_volatile_this	    = typename Type<T>::remove_const_volatile_this;
+		template <class T> using type_remove_indirection		    = typename Type<T>::remove_indirection;
+		template <class T> using type_remove_pointer			    = typename Type<T>::remove_pointer;
+		template <class T> using type_remove_reference			    = typename Type<T>::remove_reference;
+		template <class T> using type_remove_this			    = typename Type<T>::remove_this;
+		template <class T> using type_remove_volatile			    = typename Type<T>::remove_volatile;
+		template <class T> using type_remove_volatile_this		    = typename Type<T>::remove_volatile_this;
+		template <class T> using type_return_type			    = typename Type<T>::return_type;
+		template <class T> using type_to_const				    = typename Type<T>::to_const;
+		template <class T> using type_to_const_volatile			    = typename Type<T>::to_const_volatile;
+		template <class T> using type_to_forwardable			    = typename Type<T>::to_forwardable;
+		template <class T> using type_to_function			    = typename Type<T>::to_function;
+		template <class T> using type_to_lvalue_reference		    = typename Type<T>::to_lvalue_reference;
+		template <class T> using type_to_lvalue_reference_to_const	    = typename Type<T>::to_lvalue_reference_to_const;
+		template <class T> using type_to_lvalue_reference_to_const_volatile = typename Type<T>::to_lvalue_reference_to_const_volatile;
+		template <class T> using type_to_lvalue_reference_to_unqualified    = typename Type<T>::to_lvalue_reference_to_unqualified;
+		template <class T> using type_to_lvalue_reference_to_volatile	    = typename Type<T>::to_lvalue_reference_to_volatile;
+		template <class T> using type_to_opaque				    = typename Type<T>::to_opaque;
+		template <class T> using type_to_pointer			    = typename Type<T>::to_pointer;
+		template <class T> using type_to_pointer_to_const		    = typename Type<T>::to_pointer_to_const;
+		template <class T> using type_to_pointer_to_const_volatile	    = typename Type<T>::to_pointer_to_const_volatile;
+		template <class T> using type_to_pointer_to_unqualified		    = typename Type<T>::to_pointer_to_unqualified;
+		template <class T> using type_to_pointer_to_volatile		    = typename Type<T>::to_pointer_to_volatile;
+		template <class T> using type_to_signed				    = typename Type<T>::to_signed;
+		template <class T> using type_to_unqualified			    = typename Type<T>::to_unqualified;
+		template <class T> using type_to_unsigned			    = typename Type<T>::to_unsigned;
+		template <class T> using type_to_volatile			    = typename Type<T>::to_volatile;
+		template <class T> using type_to_wrap				    = typename Type<T>::to_wrap;
 
 		template <class T, class klass> using type_to_member_pointer = typename TypeToMemberPointer<T, klass>::type;
 
@@ -3822,8 +3944,12 @@ namespace Zeta {
 #		endif
 
 #		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
-			template <class T> using type_add_rvalue_reference = typename Type<T>::add_rvalue_reference;
-			template <class T> using type_to_rvalue_reference  = typename Type<T>::to_rvalue_reference;
+			template <class T> using type_add_rvalue_reference		    = typename Type<T>::add_rvalue_reference;
+			template <class T> using type_to_rvalue_reference		    = typename Type<T>::to_rvalue_reference;
+			template <class T> using type_to_rvalue_reference_to_const	    = typename Type<T>::to_rvalue_reference_to_const;
+			template <class T> using type_to_rvalue_reference_to_const_volatile = typename Type<T>::to_rvalue_reference_to_const_volatile;
+			template <class T> using type_to_rvalue_reference_to_unqualified    = typename Type<T>::to_rvalue_reference_to_unqualified;
+			template <class T> using type_to_rvalue_reference_to_volatile	    = typename Type<T>::to_rvalue_reference_to_volatile;
 #		endif
 
 #		if Z_HAS_TRAIT_ALIAS(type_parameters)
