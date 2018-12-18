@@ -27,9 +27,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class T0>
 		struct Element<TypeList<T0> > {
-			typedef T0 Value;
+			typedef T0 type;
 
-			Value value;
+			type value;
 
 			Z_INLINE Element() Z_DEFAULTED({})
 
@@ -40,9 +40,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class TN, class... T>
 		struct Element<TypeList<TN, T...> > : Super<T...>::type {
-			typedef TN Value;
+			typedef TN type;
 
-			Value value;
+			type value;
 
 			Z_INLINE Element() Z_DEFAULTED({})
 
@@ -70,7 +70,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				typename TypeListRemoveTail<TypeList<T...>, tail_size>::type, 1
 			>::type> Element;
 
-			typedef typename Element::Value type;
+			typedef typename Element::type type;
 		};
 
 
