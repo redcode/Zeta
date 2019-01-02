@@ -2,14 +2,14 @@
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef _Z_functions_Z2D_H_
 #define _Z_functions_Z2D_H_
 
-#include <Z/constructors/dimensional.h>
-#include <Z/functions/base/value.h>
+#include <Z/types/dimensional.h>
+#include <Z/functions/mathematics.h>
 
 
 /* MARK: - Common implementation */

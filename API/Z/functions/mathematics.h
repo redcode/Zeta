@@ -2,13 +2,13 @@
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef _Z_functions_mathematics_H_
 #define _Z_functions_mathematics_H_
 
-#include <Z/macros/value.h>
+#include <Z/macros/mathematics.h>
 
 
 /* MARK: - Common implementation */

@@ -3,7 +3,7 @@
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2015 Petr Kobalicek <kobalicek.petr@gmail.com>.
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef _Z_macros_variadic_control_H_
