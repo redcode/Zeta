@@ -14,7 +14,7 @@ namespace Zeta {
 
 
 	template <class T, class C>
-	static Z_INLINE USize offset_of(T C::*member)
+	static Z_INLINE USize offset_of(T C::*member) Z_NOTHROW
 		{
 		return	(&reinterpret_cast<const UInt8 &>(reinterpret_cast<const C *>(sizeof(C))->*member) -
 			  reinterpret_cast<const UInt8 *>(sizeof(C)));

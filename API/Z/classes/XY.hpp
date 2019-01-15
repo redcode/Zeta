@@ -8,8 +8,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_classes_XY_HPP_
 #define _Z_classes_XY_HPP_
 
-#include <Z/macros/type selection.hpp>
-#include <Z/functions/value.hpp>
+#include <Z/macros/type.hpp>
+#include <Z/functions/mathematics.hpp>
 
 
 #define Z_IMPLEMENTATION_APPLE_CONSTRUCTORS(Prefix)			      \
@@ -89,12 +89,12 @@ Z_CT(CPP11) XY(const Prefix##Size  &size ) : x(size.width), y(size.height) {}
 
 #	define Z_IMPLEMENTATION_COCOS2D_X						    \
 											    \
-	Z_INLINE XY(const cocos2d::Vec2 &point) : x(point.x),    y(point.y)     {}	    \
-	Z_INLINE XY(const cocos2d::Size &size ) : x(size.width), y(size.height) {}	    \
+	Z_INLINE XY(const cocos2d::Vec2 &point) Z_NOTHROW : x(point.x),    y(point.y)     {}	    \
+	Z_INLINE XY(const cocos2d::Size &size ) Z_NOTHROW : x(size.width), y(size.height) {}	    \
 											    \
-	Z_INLINE operator cocos2d::Vec2() const {return cocos2d::Vec2(float(x), float(y));} \
-	Z_INLINE operator cocos2d::Size() const {return cocos2d::Size(float(x), float(y));} \
-	Z_INLINE operator cocos2d::Rect() const {return cocos2d::Rect(0.0f, 0.0f, float(x), float(y));}
+	Z_INLINE operator cocos2d::Vec2() const Z_NOTHROW {return cocos2d::Vec2(float(x), float(y));} \
+	Z_INLINE operator cocos2d::Size() const Z_NOTHROW {return cocos2d::Size(float(x), float(y));} \
+	Z_INLINE operator cocos2d::Rect() const Z_NOTHROW {return cocos2d::Rect(0.0f, 0.0f, float(x), float(y));}
 
 #else
 #	define Z_IMPLEMENTATION_COCOS2D_X
@@ -106,67 +106,67 @@ Z_CT(CPP11) XY(const Prefix##Size  &size ) : x(size.width), y(size.height) {}
 typedef typename ZTypeFixedNumber(Z2D, T) Base;						\
 T x, y;											\
 											\
-Z_INLINE XY() Z_DEFAULTED({})								\
+Z_INLINE XY() Z_NOTHROW Z_DEFAULTED({})								\
 											\
-Z_CT(CPP11) XY(T x, T y)	  : x(x),	y(y)	   {}				\
-Z_CT(CPP11) XY(T xy)		  : x(xy),	y(xy)	   {}				\
-Z_CT(CPP11) XY(const XYZ<T> &xy)  : x(xy.x),	y(xy.y)	   {}				\
-Z_CT(CPP11) XY(const Base &other) : x(other.x), y(other.y) {}				\
+Z_CT(CPP11) XY(T x, T y)	  Z_NOTHROW : x(x),	y(y)	   {}				\
+Z_CT(CPP11) XY(T xy)		  Z_NOTHROW : x(xy),	y(xy)	   {}				\
+Z_CT(CPP11) XY(const XYZ<T> &xy)  Z_NOTHROW : x(xy.x),	y(xy.y)	   {}				\
+Z_CT(CPP11) XY(const Base &other) Z_NOTHROW : x(other.x), y(other.y) {}				\
 											\
-Z_CT(CPP11) operator Boolean() const {return x != T(0) || y != T(0);}			\
-Z_INLINE    operator Base&  () const {return *((Base *)this);}				\
+Z_CT(CPP11) operator Boolean() const Z_NOTHROW {return x != T(0) || y != T(0);}			\
+Z_INLINE    operator Base&  () const Z_NOTHROW {return *((Base *)this);}				\
 											\
-Z_CT(CPP11) Boolean operator ==(const XY &rhs) const {return x == rhs.x && y == rhs.y;}	\
-Z_CT(CPP11) Boolean operator !=(const XY &rhs) const {return x != rhs.x || y != rhs.y;}	\
-Z_CT(CPP11) Boolean operator <=(const XY &rhs) const {return x <= rhs.x && y <= rhs.y;}	\
-Z_CT(CPP11) Boolean operator >=(const XY &rhs) const {return x >= rhs.x && y >= rhs.y;}	\
-Z_CT(CPP11) Boolean operator > (const XY &rhs) const {return x >  rhs.x && y >  rhs.y;}	\
-Z_CT(CPP11) Boolean operator < (const XY &rhs) const {return x <  rhs.x && y <  rhs.y;}	\
+Z_CT(CPP11) Boolean operator ==(const XY &rhs) const Z_NOTHROW {return x == rhs.x && y == rhs.y;}	\
+Z_CT(CPP11) Boolean operator !=(const XY &rhs) const Z_NOTHROW {return x != rhs.x || y != rhs.y;}	\
+Z_CT(CPP11) Boolean operator <=(const XY &rhs) const Z_NOTHROW {return x <= rhs.x && y <= rhs.y;}	\
+Z_CT(CPP11) Boolean operator >=(const XY &rhs) const Z_NOTHROW {return x >= rhs.x && y >= rhs.y;}	\
+Z_CT(CPP11) Boolean operator > (const XY &rhs) const Z_NOTHROW {return x >  rhs.x && y >  rhs.y;}	\
+Z_CT(CPP11) Boolean operator < (const XY &rhs) const Z_NOTHROW {return x <  rhs.x && y <  rhs.y;}	\
 											\
-Z_CT(CPP11) XY operator +(const XY &rhs) const {return XY(x + rhs.x, y + rhs.y);}	\
-Z_CT(CPP11) XY operator -(const XY &rhs) const {return XY(x - rhs.x, y - rhs.y);}	\
-Z_CT(CPP11) XY operator *(const XY &rhs) const {return XY(x * rhs.x, y * rhs.y);}	\
-Z_CT(CPP11) XY operator /(const XY &rhs) const {return XY(x / rhs.x, y / rhs.y);}	\
+Z_CT(CPP11) XY operator +(const XY &rhs) const Z_NOTHROW {return XY(x + rhs.x, y + rhs.y);}	\
+Z_CT(CPP11) XY operator -(const XY &rhs) const Z_NOTHROW {return XY(x - rhs.x, y - rhs.y);}	\
+Z_CT(CPP11) XY operator *(const XY &rhs) const Z_NOTHROW {return XY(x * rhs.x, y * rhs.y);}	\
+Z_CT(CPP11) XY operator /(const XY &rhs) const Z_NOTHROW {return XY(x / rhs.x, y / rhs.y);}	\
 											\
-Z_INLINE XY &operator +=(const XY &rhs) {return *this = *this + rhs;}			\
-Z_INLINE XY &operator -=(const XY &rhs) {return *this = *this - rhs;}			\
-Z_INLINE XY &operator *=(const XY &rhs) {return *this = *this * rhs;}			\
-Z_INLINE XY &operator /=(const XY &rhs) {return *this = *this / rhs;}			\
+Z_INLINE XY &operator +=(const XY &rhs) Z_NOTHROW {return *this = *this + rhs;}			\
+Z_INLINE XY &operator -=(const XY &rhs) Z_NOTHROW {return *this = *this - rhs;}			\
+Z_INLINE XY &operator *=(const XY &rhs) Z_NOTHROW {return *this = *this * rhs;}			\
+Z_INLINE XY &operator /=(const XY &rhs) Z_NOTHROW {return *this = *this / rhs;}			\
 											\
-Z_CT(CPP11) Boolean operator ==(T rhs) const {return x == rhs && y == rhs;}		\
-Z_CT(CPP11) Boolean operator !=(T rhs) const {return x != rhs || y != rhs;}		\
-Z_CT(CPP11) Boolean operator <=(T rhs) const {return x <= rhs && y <= rhs;}		\
-Z_CT(CPP11) Boolean operator >=(T rhs) const {return x >= rhs && y >= rhs;}		\
-Z_CT(CPP11) Boolean operator > (T rhs) const {return x >  rhs && y >  rhs;}		\
-Z_CT(CPP11) Boolean operator < (T rhs) const {return x <  rhs && y <  rhs;}		\
+Z_CT(CPP11) Boolean operator ==(T rhs) const Z_NOTHROW {return x == rhs && y == rhs;}		\
+Z_CT(CPP11) Boolean operator !=(T rhs) const Z_NOTHROW {return x != rhs || y != rhs;}		\
+Z_CT(CPP11) Boolean operator <=(T rhs) const Z_NOTHROW {return x <= rhs && y <= rhs;}		\
+Z_CT(CPP11) Boolean operator >=(T rhs) const Z_NOTHROW {return x >= rhs && y >= rhs;}		\
+Z_CT(CPP11) Boolean operator > (T rhs) const Z_NOTHROW {return x >  rhs && y >  rhs;}		\
+Z_CT(CPP11) Boolean operator < (T rhs) const Z_NOTHROW {return x <  rhs && y <  rhs;}		\
 											\
-Z_CT(CPP11) XY operator +(T rhs) const {return XY(x + rhs, y + rhs);}			\
-Z_CT(CPP11) XY operator -(T rhs) const {return XY(x - rhs, y - rhs);}			\
-Z_CT(CPP11) XY operator *(T rhs) const {return XY(x * rhs, y * rhs);}			\
-Z_CT(CPP11) XY operator /(T rhs) const {return XY(x / rhs, y / rhs);}			\
+Z_CT(CPP11) XY operator +(T rhs) const Z_NOTHROW {return XY(x + rhs, y + rhs);}			\
+Z_CT(CPP11) XY operator -(T rhs) const Z_NOTHROW {return XY(x - rhs, y - rhs);}			\
+Z_CT(CPP11) XY operator *(T rhs) const Z_NOTHROW {return XY(x * rhs, y * rhs);}			\
+Z_CT(CPP11) XY operator /(T rhs) const Z_NOTHROW {return XY(x / rhs, y / rhs);}			\
 											\
-Z_INLINE XY &operator +=(T rhs) {return *this = *this + rhs;}				\
-Z_INLINE XY &operator -=(T rhs) {return *this = *this - rhs;}				\
-Z_INLINE XY &operator *=(T rhs) {return *this = *this * rhs;}				\
-Z_INLINE XY &operator /=(T rhs) {return *this = *this / rhs;}				\
+Z_INLINE XY &operator +=(T rhs) Z_NOTHROW {return *this = *this + rhs;}				\
+Z_INLINE XY &operator -=(T rhs) Z_NOTHROW {return *this = *this - rhs;}				\
+Z_INLINE XY &operator *=(T rhs) Z_NOTHROW {return *this = *this * rhs;}				\
+Z_INLINE XY &operator /=(T rhs) Z_NOTHROW {return *this = *this / rhs;}				\
 											\
-Z_INLINE T  operator [](UInt index) const {return ((T *)this)[index];}			\
-Z_INLINE T &operator [](UInt index)	  {return ((T *)this)[index];}			\
+Z_INLINE T  operator [](UInt index) const Z_NOTHROW {return ((T *)this)[index];}			\
+Z_INLINE T &operator [](UInt index)	  Z_NOTHROW {return ((T *)this)[index];}			\
 											\
 Z_IMPLEMENTATION_CG_GEOMETRY								\
 Z_IMPLEMENTATION_NS_GEOMETRY								\
 Z_IMPLEMENTATION_COCOS2D_X								\
 											\
-Z_CT(CPP11) XY	   yx ()    const {return XY(y, x);}					\
-Z_CT(CPP11) XYZ<T> nxy(T n) const {return XYZ<T>(n, x, y);}				\
-Z_CT(CPP11) XYZ<T> nyx(T n) const {return XYZ<T>(n, y, x);}				\
-Z_CT(CPP11) XYZ<T> xny(T n) const {return XYZ<T>(x, n, y);}				\
-Z_CT(CPP11) XYZ<T> xyn(T n) const {return XYZ<T>(x, y, n);}				\
-Z_CT(CPP11) XYZ<T> ynx(T n) const {return XYZ<T>(y, n, x);}				\
-Z_CT(CPP11) XYZ<T> yxn(T n) const {return XYZ<T>(y, x, n);}				\
+Z_CT(CPP11) XY	   yx ()    const Z_NOTHROW {return XY(y, x);}				\
+Z_CT(CPP11) XYZ<T> nxy(T n) const Z_NOTHROW {return XYZ<T>(n, x, y);}			\
+Z_CT(CPP11) XYZ<T> nyx(T n) const Z_NOTHROW {return XYZ<T>(n, y, x);}			\
+Z_CT(CPP11) XYZ<T> xny(T n) const Z_NOTHROW {return XYZ<T>(x, n, y);}			\
+Z_CT(CPP11) XYZ<T> xyn(T n) const Z_NOTHROW {return XYZ<T>(x, y, n);}			\
+Z_CT(CPP11) XYZ<T> ynx(T n) const Z_NOTHROW {return XYZ<T>(y, n, x);}			\
+Z_CT(CPP11) XYZ<T> yxn(T n) const Z_NOTHROW {return XYZ<T>(y, x, n);}			\
 											\
 											\
-Z_CT(CPP11) XY clamp(const XY &minimum, const XY &maximum) const			\
+Z_CT(CPP11) XY clamp(const XY &minimum, const XY &maximum) const Z_NOTHROW		\
 	{										\
 	return XY									\
 		(Zeta::clamp<T>(x, minimum.x, maximum.x),				\
@@ -174,7 +174,7 @@ Z_CT(CPP11) XY clamp(const XY &minimum, const XY &maximum) const			\
 	}										\
 											\
 											\
-Z_CT(CPP11) XY clamp(T minimum, T maximum) const					\
+Z_CT(CPP11) XY clamp(T minimum, T maximum) const Z_NOTHROW				\
 	{										\
 	return XY									\
 		(Zeta::clamp<T>(x, minimum, maximum),					\
@@ -182,15 +182,15 @@ Z_CT(CPP11) XY clamp(T minimum, T maximum) const					\
 	}										\
 											\
 											\
-Z_CT(CPP11) T cross_product(const XY &other) const					\
+Z_CT(CPP11) T cross_product(const XY &other) const Z_NOTHROW				\
 	{return x * other.y - y * other.x;}						\
 											\
 											\
-Z_CT(CPP11) T dot_product(const XY &other) const					\
+Z_CT(CPP11) T dot_product(const XY &other) const Z_NOTHROW				\
 	{return x * other.x + y * other.y;}						\
 											\
 											\
-Z_CT(CPP11) XY fit(const XY &other) const						\
+Z_CT(CPP11) XY fit(const XY &other) const Z_NOTHROW					\
 	{										\
 	return y / x > other.y / other.x						\
 		? XY(x * other.y / y, other.y)						\
@@ -198,69 +198,65 @@ Z_CT(CPP11) XY fit(const XY &other) const						\
 	}										\
 											\
 											\
-Z_CT(CPP11) Boolean has_zero() const							\
+Z_CT(CPP11) Boolean has_zero() const Z_NOTHROW						\
 	{return x == T(0) || y == T(0);}						\
 											\
 											\
-Z_CT(CPP11) T inner_maximum() const							\
+Z_CT(CPP11) T inner_maximum() const Z_NOTHROW						\
 	{return Zeta::maximum<T>(x, y);}						\
 											\
 											\
-Z_CT(CPP11) T inner_middle() const							\
+Z_CT(CPP11) T inner_middle() const Z_NOTHROW						\
 	{return (x + y) / T(2);}							\
 											\
 											\
-Z_CT(CPP11) T inner_minimum() const							\
+Z_CT(CPP11) T inner_minimum() const Z_NOTHROW						\
 	{return Zeta::minimum<T>(x, y);}						\
 											\
 											\
-Z_CT(CPP11) T inner_product() const							\
+Z_CT(CPP11) T inner_product() const Z_NOTHROW						\
 	{return x * y;}									\
 											\
 											\
-Z_CT(CPP11) T inner_sum() const								\
+Z_CT(CPP11) T inner_sum() const Z_NOTHROW 						\
 	{return x + y;}									\
 											\
 											\
-Z_CT(CPP11) Boolean is_zero() const							\
+Z_CT(CPP11) Boolean is_zero() const Z_NOTHROW						\
 	{return x == T(0) && y == T(0);}						\
 											\
 											\
-Z_CT(CPP11) XY maximum(const XY &other) const						\
+Z_CT(CPP11) XY maximum(const XY &other) const Z_NOTHROW					\
 	{return XY(Zeta::maximum<T>(x, other.x), Zeta::maximum<T>(y, other.y));}	\
 											\
 											\
-Z_CT(CPP11) XY middle(const XY &other) const						\
+Z_CT(CPP11) XY middle(const XY &other) const Z_NOTHROW					\
 	{return XY((x + other.x) / T(2), (y + other.y) / T(2));}			\
 											\
 											\
-Z_CT(CPP11) XY minimum(const XY &other) const						\
+Z_CT(CPP11) XY minimum(const XY &other) const Z_NOTHROW					\
 	{return XY(Zeta::minimum<T>(x, other.x), Zeta::minimum<T>(y, other.y));}	\
 											\
 											\
-Z_CT(CPP11) T squared_length() const							\
-	{return x * x + y * y;}								\
-											\
-											\
-Z_INLINE void swap(XY &other)								\
-	{Zeta::swap<Base>(this, &other);}
+Z_CT(CPP11) T squared_length() const Z_NOTHROW						\
+	{return x * x + y * y;}
 
 
 #define Z_IMPLEMENTATION_SIGNED								\
 											\
-Z_CT(CPP11) XY absolute() const								\
+Z_CT(CPP11) XY absolute() const Z_NOTHROW						\
 	{return XY(Zeta::absolute<T>(x), Zeta::absolute<T>(y));}			\
 											\
 											\
-Z_CT(CPP11) Boolean has_negative() const						\
+Z_CT(CPP11) Boolean has_negative() const Z_NOTHROW					\
 	{return x < T(0) || y < T(0);}							\
 											\
 											\
-Z_CT(CPP11) Boolean is_negative() const							\
+Z_CT(CPP11) Boolean is_negative() const Z_NOTHROW					\
 	{return x < T(0) && y < T(0);}							\
 											\
 											\
-Z_CT(CPP11) XY negative() const								\
+Z_CT(CPP11) XY negative() const Z_NOTHROW						\
 	{return XY(-x, -y);}
 
 
@@ -275,7 +271,7 @@ namespace Zeta {
 		Z_IMPLEMENTATION_SIGNED
 
 
-		Z_CT(CPP11) Boolean is_perpendicular(const XY &other) const
+		Z_CT(CPP11) Boolean is_perpendicular(const XY &other) const Z_NOTHROW
 			{return !Zeta::absolute<T>(dot_product(other));}
 
 
@@ -300,27 +296,27 @@ namespace Zeta {
 		Z_IMPLEMENTATION_SIGNED
 
 
-		Z_CT(CPP11) XY clamp_01() const
+		Z_CT(CPP11) XY clamp_01() const Z_NOTHROW
 			{return XY(Zeta::clamp_01<T>(x), Zeta::clamp_01<T>(y));}
 
 
-		Z_CT(CPP11) Boolean has_almost_zero() const
+		Z_CT(CPP11) Boolean has_almost_zero() const Z_NOTHROW
 			{return Zeta::is_almost_zero<T>(x) || Zeta::is_almost_zero<T>(y);}
 
 
-		Z_CT(CPP11) Boolean has_finite() const
+		Z_CT(CPP11) Boolean has_finite() const Z_NOTHROW
 			{return Zeta::is_finite<T>(x) || Zeta::is_finite<T>(y);}
 
 
-		Z_CT(CPP11) Boolean has_infinity() const
+		Z_CT(CPP11) Boolean has_infinity() const Z_NOTHROW
 			{return Zeta::is_infinity<T>(x) || Zeta::is_infinity<T>(y);}
 
 
-		Z_CT(CPP11) Boolean has_nan() const
+		Z_CT(CPP11) Boolean has_nan() const Z_NOTHROW
 			{return Zeta::is_nan<T>(x) || Zeta::is_nan<T>(y);}
 
 
-		Z_CT(CPP11) XY inverse_lerp(const XY &other, T t) const
+		Z_CT(CPP11) XY inverse_lerp(const XY &other, T t) const Z_NOTHROW
 			{
 			return XY
 				(Zeta::inverse_lerp<T>(x, other.x, t),
@@ -328,34 +324,34 @@ namespace Zeta {
 			}
 
 
-		Z_CT(CPP11) Boolean is_almost_equal(const XY &other) const
+		Z_CT(CPP11) Boolean is_almost_equal(const XY &other) const Z_NOTHROW
 			{
 			return	Zeta::are_almost_equal<T>(x, other.x) &&
 				Zeta::are_almost_equal<T>(y, other.y);
 			}
 
 
-		Z_CT(CPP11) Boolean is_almost_zero() const
+		Z_CT(CPP11) Boolean is_almost_zero() const Z_NOTHROW
 			{return Zeta::is_almost_zero<T>(x) && Zeta::is_almost_zero<T>(y);}
 
 
-		Z_CT(CPP11) Boolean is_finite() const
+		Z_CT(CPP11) Boolean is_finite() const Z_NOTHROW
 			{return Zeta::is_finite<T>(x) && Zeta::is_finite<T>(y);}
 
 
-		Z_CT(CPP11) Boolean is_infinity() const
+		Z_CT(CPP11) Boolean is_infinity() const Z_NOTHROW
 			{return Zeta::is_infinity<T>(x) && Zeta::is_infinity<T>(y);}
 
 
-		Z_CT(CPP11) Boolean is_nan() const
+		Z_CT(CPP11) Boolean is_nan() const Z_NOTHROW
 			{return Zeta::is_nan<T>(x) && Zeta::is_nan<T>(y);}
 
 
-		Z_CT(CPP11) Boolean is_perpendicular(const XY &other) const
+		Z_CT(CPP11) Boolean is_perpendicular(const XY &other) const Z_NOTHROW
 			{return Zeta::absolute<T>(dot_product(other)) <= Type<T>::epsilon();}
 
 
-		Z_CT(CPP11) XY lerp(const XY &other, T t) const
+		Z_CT(CPP11) XY lerp(const XY &other, T t) const Z_NOTHROW
 			{
 			return XY
 				(Zeta::lerp<T>(x, other.x, t),
@@ -363,7 +359,7 @@ namespace Zeta {
 			}
 
 
-		Z_CT(CPP11) XY reciprocal() const
+		Z_CT(CPP11) XY reciprocal() const Z_NOTHROW
 			{return XY(T(1) / x, T(1) / y);}
 
 

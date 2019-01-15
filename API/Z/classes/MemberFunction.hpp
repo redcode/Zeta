@@ -24,11 +24,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <class R, class... P> struct MemberFunction<R(P...)> {
 			R (NaT::* function)(P...);
 
-			Z_INLINE MemberFunction() Z_DEFAULTED({})
+
+			Z_INLINE MemberFunction() Z_NOTHROW
+				Z_DEFAULTED({})
 
 
-#			if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
-				Z_CT(CPP11) MemberFunction(NullPointer)
+#			ifdef Z_NULL_POINTER
+				Z_CT(CPP11) MemberFunction(NullPointer) Z_NOTHROW
 				: function(NULL) {};
 #			endif
 
@@ -37,18 +39,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
-			Z_INLINE MemberFunction(M function)
+			Z_INLINE MemberFunction(M function) Z_NOTHROW
 			: function((R (NaT::*)(P...))function) {}
 
 
-			Z_CT(CPP11) operator Boolean() const {return function != NULL;}
+			Z_CT(CPP11) operator Boolean() const Z_NOTHROW
+				{return function != NULL;}
 
 
 			template <class M, class E = typename TypeIf<
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
-			Z_INLINE operator M() const {return (M)function;}
+			Z_INLINE operator M() const Z_NOTHROW
+				{return (M)function;}
 
 
 			template <class M>
@@ -56,7 +60,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			MemberFunction &>::type
-			operator =(M rhs)
+			operator =(M rhs) Z_NOTHROW
 				{
 				function = (R (NaT::*)(P...))rhs;
 				return *this;

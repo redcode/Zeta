@@ -36,7 +36,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CONSTANT constexpr
 #	define Z_CT_CPP11 constexpr
 #else
-#	define Z_CONSTANT
+#	define Z_CONSTANT const
 #	define Z_CT_CPP11
 #endif
 
@@ -55,9 +55,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_LANGUAGE_HAS_SPECIFIER(CPP, NO_EXCEPTION)
-#	define Z_NO_EXCEPTION noexcept
+#	define Z_NOTHROW /*noexcept*/
 #else
-#	define Z_NO_EXCEPTION throw()
+#	define Z_NOTHROW throw()
 #endif
 
 // MARK: - Defaulted functions

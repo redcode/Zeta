@@ -31,7 +31,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			type value;
 
-			Z_INLINE Element() Z_DEFAULTED({})
+			Z_INLINE Element()
+				Z_DEFAULTED({})
+
 
 			Z_CT(CPP11) Element(typename Zeta::Type<T0>::to_forwardable value)
 			: value(value) {}
@@ -44,7 +46,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			type value;
 
-			Z_INLINE Element() Z_DEFAULTED({})
+			Z_INLINE Element()
+				Z_DEFAULTED({})
+
 
 			Z_CT(CPP11) Element(
 				typename Zeta::Type<T >::to_forwardable... previous,
@@ -76,8 +80,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
 			using Super::Super;
+
 #		else
-			Z_INLINE Tuple() Z_DEFAULTED({})
+			Z_INLINE Tuple()
+				Z_DEFAULTED({})
+
 
 			Z_CT(CPP11) Tuple(typename Type<T>::to_forwardable... values)
 			: Super(values...) {}
@@ -85,12 +92,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 		template <UInt I>
-		Z_INLINE typename At<I>::type &at()
+		Z_INLINE typename At<I>::type &at() Z_NOTHROW
 			{return At<I>::Element::value;}
 
 
 		template <UInt I>
-		Z_CT(CPP11) typename Type<typename At<I>::type>::to_forwardable get() const
+		Z_CT(CPP11) typename Type<typename At<I>::type>::to_forwardable get() const Z_NOTHROW
 			{return At<I>::Element::value;}
 
 

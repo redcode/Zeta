@@ -14,15 +14,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER	Z_COMPILER_CLANG
 #define Z_COMPILER_NAME Z_COMPILER_NAME_CLANG
 
-#if	defined(__clang_major__	    ) /* v2.8 */ && \
-	defined(__clang_minor__	    ) /* v2.8 */ && \
-	defined(__clang_patchlevel__) /* v2.8 */
-
-#	define Z_COMPILER_VERSION Z_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
-#endif
-
-#ifdef __clang_version__ /* v2.8 */
+#if defined(__clang_version__) /* v2.8 */
+#	define Z_COMPILER_VERSION	 Z_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
 #	define Z_COMPILER_VERSION_STRING __clang_version__
+
+#elif defined(__SIZE_WIDTH__) /* v2.7 */
+#	define Z_COMPILER_VERSION	 Z_VERSION(2, 7, 0)
+#	define Z_COMPILER_VERSION_STRING "2.7"
+#else
+#	define Z_COMPILER_VERSION	 Z_VERSION(2, 6, 0)
+#	define Z_COMPILER_VERSION_STRING "2.6"
 #endif
 
 /* MARK: - Compatibility with old versions */
@@ -171,6 +172,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SPARC
 
+#elif defined(__XS1B__) /* v3.4 */
+#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_XCORE
+
 #elif   defined(__s390__ ) /* v2.6 */ || \
 	defined(__s390x__) /* v2.6 */ || \
 	defined(__zarch__) /* v3.3 */
@@ -184,16 +188,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifdef __BYTE_ORDER__ /* v3.2 */
 
 #	if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__ /* v3.2 */
-#		define Z_COMPILER_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
-#		define Z_COMPILER_BIT_FIELD_ORDER	 Z_ORDER_REVERSED
+#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_LITTLE
+#		define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_REVERSED
 
 #	elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__ /* v3.2 */
-#		define Z_COMPILER_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_BIG
-#		define Z_COMPILER_BIT_FIELD_ORDER	 Z_ORDER_NORMAL
+#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_BIG
+#		define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_NORMAL
 
 #	elif __BYTE_ORDER__ == __ORDER_PDP_ENDIAN__ /* v3.2 */
-#		define Z_COMPILER_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_PDP
-#		define Z_COMPILER_BIT_FIELD_ORDER	 Z_ORDER_NORMAL
+#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_PDP
+#		define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_NORMAL
 #	endif
 
 #elif	defined(__AARCH64EL__	 ) /* v3.3 */ || \
@@ -206,8 +210,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_MIPSEL		 ) /* v2.7 */ || \
 	defined(MIPSEL		 ) /* v2.7 */
 
-#	define Z_COMPILER_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_LITTLE
-#	define Z_COMPILER_BIT_FIELD_ORDER	 Z_ORDER_REVERSED
+#	define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_LITTLE
+#	define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_REVERSED
 
 #elif	defined(__AARCH_BIG_ENDIAN) /* v3.4 */ || \
 	defined(__AARCH64EB__	  ) /* v3.5 */ || \
@@ -220,15 +224,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_MIPSEB		  ) /* v2.7 */ || \
 	defined(MIPSEB		  ) /* v2.7 */
 
-#	define Z_COMPILER_CPU_INTEGER_ENDIANNESS Z_ENDIANNESS_BIG
-#	define Z_COMPILER_BIT_FIELD_ORDER	 Z_ORDER_NORMAL
+#	define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_BIG
+#	define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_NORMAL
 #endif
 
-/*#define Z_COMPIER_CPU_INTEGER_ENDIANNESS_8BIT*/
-/*#define Z_COMPIER_CPU_INTEGER_ENDIANNESS_16BIT*/
-/*#define Z_COMPIER_CPU_INTEGER_ENDIANNESS_32BIT*/
-/*#define Z_COMPIER_CPU_INTEGER_ENDIANNESS_64BIT*/
-/*#define Z_COMPIER_CPU_INTEGER_ENDIANNESS_128BIT*/
+/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_8BIT*/
+/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_16BIT*/
+/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_32BIT*/
+/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_64BIT*/
+/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_128BIT*/
 
 /*#define Z_COMPILER_BIT_FIELD_ORDER_8BIT*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_16BIT*/
@@ -395,14 +399,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER TRUE
 #	define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER  TRUE /* v2.6 */
 
-#	ifndef __STDC_NO_VLA__
-#		define Z_COMPILER_C_HAS_VLA TRUE
+#	ifndef __STDC_NO_VLA__ /* (?) Not found in Clang's sources. */
+#		define Z_COMPILER_C_HAS_VLA TRUE /* v2.6 */
 #	endif
 #endif
 
 #if defined(__cplusplus) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
-#	define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT		   TRUE
-#	define Z_COMPILER_C_HAS_MIXED_DECLARATIONS_AND_CODE	   TRUE
+#	define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT		   TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_MIXED_DECLARATIONS_AND_CODE	   TRUE /* v2.6 */
 #	define Z_COMPILER_C_HAS_NON_CONSTANT_AGGREGATE_INITIALIZER TRUE
 #	define Z_COMPILER_C_HAS_SPECIFIER_INLINE		   TRUE /* v2.6 */
 #endif
@@ -411,7 +415,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
 
 #	define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGRAL TRUE
-#	define Z_COMPILER_C_HAS_VARIADIC_MACRO					 TRUE
+#	define Z_COMPILER_C_HAS_VARIADIC_MACRO					 TRUE /* v2.6 */
 #	define Z_COMPILER_C_HAS_TYPE_LLONG					 TRUE /* v2.6 */
 #endif
 
@@ -469,8 +473,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Apple C extensions support */
 
-#if __has_extension(blocks)
-#	define Z_COMPILER_C_HAS_CLOSURE TRUE
+#if	__has_extension(blocks) || /* v2.6 */ \
+	defined(__BLOCKS__)	   /* v2.6 */
+
+#	define Z_COMPILER_C_HAS_CLOSURE TRUE /* v2.6 */
 #endif
 
 #ifdef __cplusplus
@@ -484,7 +490,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	/* MARK: - C++98 support */
 
-#	define Z_COMPILER_CPP_HAS_SFINAE       TRUE
+#	define Z_COMPILER_CPP_HAS_SFINAE       TRUE /* v2.6 */
 #	define Z_COMPILER_CPP_HAS_TYPE_BOOLEAN TRUE /* v2.6 */
 #	define Z_COMPILER_CPP_HAS_TYPE_WCHAR   TRUE /* v2.6 */
 
@@ -877,11 +883,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_ATTRIBUTE_PUBLIC  __attribute__((visibility("default"))) /* v2.6 */
 #endif
 
-#if __has_attribute(packed)
-#	define Z_COMPILER_ATTRIBUTE_STRICT_SIZE_BEGIN
-#	define Z_COMPILER_ATTRIBUTE_STRICT_SIZE_END __attribute__((packed)) /* v2.6 */
-#endif
-
 #if __has_extension(tls)
 #	define Z_COMPILER_ATTRIBUTE_THREAD_LOCAL __thread /* v2.6 */
 #endif
@@ -890,22 +891,39 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_ATTRIBUTE_WEAK __attribute__((weak)) /* v2.6 */
 #endif
 
-/* MARK: - Built-in constants */
+/* MARK: - Padding modifiers */
 
-/*#define Z_COMPILER_CONSTANT_FLOAT16_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT16_NAN*/
-/*#define Z_COMPILER_CONSTANT_FLOAT32_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT32_NAN*/
-/*#define Z_COMPILER_CONSTANT_FLOAT64_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT64_NAN*/
-/*#define Z_COMPILER_CONSTANT_FLOAT128_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT128_NAN*/
-/*#define Z_COMPILER_CONSTANT_FLOAT80_X87_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT80_X87_NAN*/
-/*#define Z_COMPILER_CONSTANT_FLOAT96_X87_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT96_X87_NAN*/
-/*#define Z_COMPILER_CONSTANT_FLOAT128_X87_INFINITY*/
-/*#define Z_COMPILER_CONSTANT_FLOAT128_X87_NAN*/
+#if __has_attribute(packed)							 /* v2.6 */
+#	define Z_COMPILER_DEFINE_STRICT_STRUCTURE_BEFORE_TYPE	    __attribute__((packed))
+#	define Z_COMPILER_DEFINE_STRICT_UNION_BEFORE_TYPE	    __attribute__((packed))
+#	define Z_COMPILER_STRICT_NAMED_STRUCTURE_BEFORE_TYPE	    __attribute__((packed))
+#	define Z_COMPILER_STRICT_NAMED_UNION_BEFORE_TYPE	    __attribute__((packed))
+#	define Z_COMPILER_STRICT_UNNAMED_STRUTURE_BEFORE_IDENTIFIER __attribute__((packed))
+#	define Z_COMPILER_STRICT_UNNAMED_UNION_BEFORE_IDENTIFIER    __attribute__((packed))
+#endif
+
+/*#define Z_COMPILER_DEFINE_STRICT_STRUCTURE_BEFORE_TYPEDEF*/
+/*#define Z_COMPILER_DEFINE_STRICT_STRUCTURE_BEFORE_STRUCT*/
+/*#define Z_COMPILER_DEFINE_STRICT_STRUCTURE_BEFORE_BODY*/
+/*#define Z_COMPILER_DEFINE_STRICT_STRUCTURE_AFTER_TYPE*/
+/*#define Z_COMPILER_DEFINE_STRICT_UNION_BEFORE_TYPEDEF*/
+/*#define Z_COMPILER_DEFINE_STRICT_UNION_BEFORE_UNION*/
+/*#define Z_COMPILER_DEFINE_STRICT_UNION_BEFORE_BODY*/
+/*#define Z_COMPILER_DEFINE_STRICT_UNION_AFTER_TYPE*/
+/*#define Z_COMPILER_STRICT_NAMED_STRUCTURE_BEFORE_STRUCT*/
+/*#define Z_COMPILER_STRICT_NAMED_STRUCTURE_BEFORE_BODY*/
+/*#define Z_COMPILER_STRICT_NAMED_STRUCTURE_AFTER_BODY*/
+/*#define Z_COMPILER_STRICT_NAMED_UNION_BEFORE_UNION*/
+/*#define Z_COMPILER_STRICT_NAMED_UNION_BEFORE_BODY*/
+/*#define Z_COMPILER_STRICT_NAMED_UNION_AFTER_BODY*/
+/*#define Z_COMPILER_STRICT_UNNAMED_STRUTURE_BEFORE_STRUCT*/
+/*#define Z_COMPILER_STRICT_UNNAMED_STRUTURE_BEFORE_BODY*/
+/*#define Z_COMPILER_STRICT_UNNAMED_STRUTURE_AFTER_IDENTIFIER*/
+/*#define Z_COMPILER_STRICT_UNNAMED_UNION_BEFORE_STRUCT*/
+/*#define Z_COMPILER_STRICT_UNNAMED_UNION_BEFORE_BODY*/
+/*#define Z_COMPILER_STRICT_UNNAMED_UNION_AFTER_IDENTIFIER*/
+
+/* MARK: - Built-in constants */
 
 #ifdef __CHAR_BIT__ /* v2.6 */
 #	define Z_COMPILER_CONSTANT_UCHAR_BITS __CHAR_BIT__
@@ -915,11 +933,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifdef __SCHAR_MAX__ /* v2.6 */
 #	define Z_COMPILER_CONSTANT_SCHAR_MAXIMUM __SCHAR_MAX__
 #endif
-
-/*#define Z_COMPILER_CONSTANT_UCHAR_SIZE*/
-/*#define Z_COMPILER_CONSTANT_UCHAR_MAXIMUM*/
-/*#define Z_COMPILER_CONSTANT_SCHAR_SIZE*/
-/*#define Z_COMPILER_CONSTANT_SCHAR_MINIMUM*/
 
 #if defined(__SIZEOF_SHORT__) /* v2.8 */
 #	define Z_COMPILER_CONSTANT_USHORT_SIZE __SIZEOF_SHORT__
@@ -933,11 +946,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifdef __SHRT_MAX__ /* v2.6 */
 #	define Z_COMPILER_CONSTANT_SSHORT_MAXIMUM __SHRT_MAX__
 #endif
-
-/*#define Z_COMPILER_CONSTANT_USHORT_BITS*/
-/*#define Z_COMPILER_CONSTANT_USHORT_MAXIMUM*/
-/*#define Z_COMPILER_CONSTANT_SSHORT_BITS*/
-/*#define Z_COMPILER_CONSTANT_SSHORT_MINIMUM*/
 
 #ifdef _MIPS_SZINT /* v3.1 */
 #	define Z_COMPILER_CONSTANT_UINT_BITS _MIPS_SZINT
@@ -957,9 +965,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_SINT_MAXIMUM __INT_MAX__
 #endif
 
-/*#define Z_COMPILER_CONSTANT_UINT_MAXIMUM*/
-/*#define Z_COMPILER_CONSTANT_SINT_MINIMUM*/
-
 #ifdef _MIPS_SZLONG /* v3.1 */
 #	define Z_COMPILER_CONSTANT_ULONG_BITS _MIPS_SZLONG
 #	define Z_COMPILER_CONSTANT_SLONG_BITS _MIPS_SZLONG
@@ -978,9 +983,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_SLONG_MAXIMUM __LONG_MAX__
 #endif
 
-/*#define Z_COMPILER_CONSTANT_ULONG_MAXIMUM*/
-/*#define Z_COMPILER_CONSTANT_SLONG_MINIMUM*/
-
 #ifdef __SIZEOF_LONG_LONG__ /* v2.8 */
 #	define Z_COMPILER_CONSTANT_ULLONG_SIZE __SIZEOF_LONG_LONG__
 #	define Z_COMPILER_CONSTANT_SLLONG_SIZE __SIZEOF_LONG_LONG__
@@ -989,11 +991,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifdef __LONG_LONG_MAX__ /* v2.6 */
 #	define Z_COMPILER_CONSTANT_SLLONG_MAXIMUM __LONG_LONG_MAX__
 #endif
-
-/*#define Z_COMPILER_CONSTANT_ULLONG_BITS*/
-/*#define Z_COMPILER_CONSTANT_ULLONG_MAXIMUM*/
-/*#define Z_COMPILER_CONSTANT_SLLONG_BITS*/
-/*#define Z_COMPILER_CONSTANT_SLLONG_MINIMUM*/
 
 #if defined(__SIZEOF_FLOAT__) /* v2.8 */
 #	define Z_COMPILER_CONSTANT_FLOAT_SIZE __SIZEOF_FLOAT__
@@ -1011,8 +1008,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if __has_builtin(__builtin_nanf)
 #	define Z_COMPILER_CONSTANT_FLOAT_NAN __builtin_nanf("") /* v2.6 */
 #endif
-
-/*#define Z_COMPILER_CONSTANT_FLOAT_BITS*/
 
 #if defined(__SIZEOF_DOUBLE__) /* v2.8 */
 #	define Z_COMPILER_CONSTANT_DOUBLE_SIZE __SIZEOF_DOUBLE__
@@ -1032,8 +1027,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_DOUBLE_NAN __builtin_nan("") /* v2.6 */
 #endif
 
-/*#define Z_COMPILER_CONSTANT_DOUBLE_BITS*/
-
 #ifdef __SIZEOF_LONG_DOUBLE__ /* v2.8 */
 #	define Z_COMPILER_CONSTANT_LDOUBLE_SIZE __SIZEOF_LONG_DOUBLE__
 #endif
@@ -1049,7 +1042,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_LDOUBLE_NAN __builtin_nanl("") /* v2.6 */
 #endif
 
-/*#define Z_COMPILER_CONSTANT_LDOUBLE_BITS*/
+#ifdef __WCHAR_WIDTH__  /* v2.7 */
+#	define Z_COMPILER_CONSTANT_WCHAR_BITS __WCHAR_WIDTH__
+#endif
+
+#ifdef __SIZEOF_WCHAR_T__ /* v2.8 */
+#	define Z_COMPILER_CONSTANT_WCHAR_SIZE __SIZEOF_WCHAR_T__
+#endif
+
+#ifdef __WCHAR_MAX__ /* v2.6 */
+#	define Z_COMPILER_CONSTANT_WCHAR_MAXIMUM __WCHAR_MAX__
+#endif
 
 #ifdef __SIZE_WIDTH__ /* v2.7 */
 #	define Z_COMPILER_CONSTANT_USIZE_BITS __SIZE_WIDTH__
@@ -1064,9 +1067,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifdef __SIZE_MAX__ /* v3.3 */
 #	define Z_COMPILER_CONSTANT_USIZE_MAXIMUM __SIZE_MAX__
 #endif
-
-/*#define Z_COMPILER_CONSTANT_SSIZE_MINIMUM*/
-/*#define Z_COMPILER_CONSTANT_SSIZE_MAXIMUM*/
 
 #ifdef __UINTMAX_WIDTH__ /* v3.5 */
 #	define Z_COMPILER_CONSTANT_UINTMAX_BITS __UINTMAX_WIDTH__
@@ -1084,16 +1084,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_SINTMAX_MAXIMUM __INTMAX_MAX__
 #endif
 
-/*#define Z_COMPILER_CONSTANT_UINTMAX_SIZE*/
-/*#define Z_COMPILER_CONSTANT_SINTMAX_SIZE*/
-/*#define Z_COMPILER_CONSTANT_SINTMAX_MINIMUM*/
-
 #if defined(__POINTER_WIDTH__) /* v2.6 */
 #	define Z_COMPILER_CONSTANT_UINTPTR_BITS __POINTER_WIDTH__
 #	define Z_COMPILER_CONSTANT_SINTPTR_BITS __POINTER_WIDTH__
 #	define Z_COMPILER_CONSTANT_POINTER_BITS __POINTER_WIDTH__
 
-#elif defined(__UINTPTR_WIDTH__)
+#elif defined(__UINTPTR_WIDTH__) /* v3.5 */
 #	define Z_COMPILER_CONSTANT_UINTPTR_BITS __UINTPTR_WIDTH__
 #	define Z_COMPILER_CONSTANT_SINTPTR_BITS __UINTPTR_WIDTH__
 #	define Z_COMPILER_CONSTANT_POINTER_BITS __UINTPTR_WIDTH__
@@ -1128,6 +1124,44 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_SINTPTR_MAXIMUM __INTPTR_MAX__
 #endif
 
+/*#define Z_COMPILER_CONSTANT_FLOAT16_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_FLOAT16_NAN*/
+/*#define Z_COMPILER_CONSTANT_FLOAT32_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_FLOAT32_NAN*/
+/*#define Z_COMPILER_CONSTANT_FLOAT64_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_FLOAT64_NAN*/
+/*#define Z_COMPILER_CONSTANT_FLOAT128_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_FLOAT128_NAN*/
+/*#define Z_COMPILER_CONSTANT_FLOAT80_X87_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_FLOAT80_X87_NAN*/
+/*#define Z_COMPILER_CONSTANT_FLOAT96_X87_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_FLOAT96_X87_NAN*/
+/*#define Z_COMPILER_CONSTANT_FLOAT128_X87_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_FLOAT128_X87_NAN*/
+/*#define Z_COMPILER_CONSTANT_UCHAR_SIZE*/
+/*#define Z_COMPILER_CONSTANT_UCHAR_MAXIMUM*/
+/*#define Z_COMPILER_CONSTANT_SCHAR_SIZE*/
+/*#define Z_COMPILER_CONSTANT_SCHAR_MINIMUM*/
+/*#define Z_COMPILER_CONSTANT_USHORT_BITS*/
+/*#define Z_COMPILER_CONSTANT_USHORT_MAXIMUM*/
+/*#define Z_COMPILER_CONSTANT_SSHORT_BITS*/
+/*#define Z_COMPILER_CONSTANT_SSHORT_MINIMUM*/
+/*#define Z_COMPILER_CONSTANT_UINT_MAXIMUM*/
+/*#define Z_COMPILER_CONSTANT_SINT_MINIMUM*/
+/*#define Z_COMPILER_CONSTANT_ULONG_MAXIMUM*/
+/*#define Z_COMPILER_CONSTANT_SLONG_MINIMUM*/
+/*#define Z_COMPILER_CONSTANT_ULLONG_BITS*/
+/*#define Z_COMPILER_CONSTANT_ULLONG_MAXIMUM*/
+/*#define Z_COMPILER_CONSTANT_SLLONG_BITS*/
+/*#define Z_COMPILER_CONSTANT_SLLONG_MINIMUM*/
+/*#define Z_COMPILER_CONSTANT_FLOAT_BITS*/
+/*#define Z_COMPILER_CONSTANT_DOUBLE_BITS*/
+/*#define Z_COMPILER_CONSTANT_LDOUBLE_BITS*/
+/*#define Z_COMPILER_CONSTANT_SSIZE_MINIMUM*/
+/*#define Z_COMPILER_CONSTANT_SSIZE_MAXIMUM*/
+/*#define Z_COMPILER_CONSTANT_UINTMAX_SIZE*/
+/*#define Z_COMPILER_CONSTANT_SINTMAX_SIZE*/
+/*#define Z_COMPILER_CONSTANT_SINTMAX_MINIMUM*/
 /*#define Z_COMPILER_CONSTANT_SINTPTR_MINIMUM*/
 
 /* MARK: - Built-in magic constants */
@@ -1154,27 +1188,30 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in types */
 
-/*#define Z_COMPILER_TYPE_UINT8*/
-/*#define Z_COMPILER_TYPE_UINT16*/
-/*#define Z_COMPILER_TYPE_UINT32*/
-/*#define Z_COMPILER_TYPE_UINT64*/
-/*#define Z_COMPILER_TYPE_SINT8*/
-/*#define Z_COMPILER_TYPE_SINT16*/
-/*#define Z_COMPILER_TYPE_SINT32*/
-/*#define Z_COMPILER_TYPE_SINT64*/
+#ifdef __INT8_TYPE__ /* v2.6 */
+#	define Z_COMPILER_TYPE_UINT8 unsigned __INT8_TYPE__
+#	define Z_COMPILER_TYPE_SINT8   signed __INT8_TYPE__
+#endif
+
+#ifdef __INT16_TYPE__ /* v2.6 */
+#	define Z_COMPILER_TYPE_UINT16 unsigned __INT16_TYPE__
+#	define Z_COMPILER_TYPE_SINT16	signed __INT16_TYPE__
+#endif
+
+#ifdef __INT32_TYPE__ /* v2.6 */
+#	define Z_COMPILER_TYPE_UINT32 unsigned __INT32_TYPE__
+#	define Z_COMPILER_TYPE_SINT32	signed __INT32_TYPE__
+#endif
+
+#ifdef __INT64_TYPE__ /* v2.6 */
+#	define Z_COMPILER_TYPE_UINT64 unsigned __INT64_TYPE__
+#	define Z_COMPILER_TYPE_SINT64	signed __INT64_TYPE__
+#endif
 
 #ifdef __SIZEOF_INT128__ /* v3.3 */
 #	define Z_COMPILER_TYPE_UINT128 __uint128_t /* v2.6 */
 #	define Z_COMPILER_TYPE_SINT128 __int128_t  /* v2.6 */
 #endif
-
-/*#define Z_COMPILER_TYPE_FLOAT16*/
-/*#define Z_COMPILER_TYPE_FLOAT32*/
-/*#define Z_COMPILER_TYPE_FLOAT64*/
-/*#define Z_COMPILER_TYPE_FLOAT128*/
-/*#define Z_COMPILER_TYPE_FLOAT80_X87*/
-/*#define Z_COMPILER_TYPE_FLOAT96_X87*/
-/*#define Z_COMPILER_TYPE_FLOAT128_X87*/
 
 #ifdef __FLOAT128__
 #	define Z_COMPILER_TYPE_FLOAT128 __float128
@@ -1182,17 +1219,36 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_COMPILER_TYPE_VAL __builtin_va_list /* v2.6 */
 
+/*#define Z_COMPILER_TYPE_UINT8*/
+/*#define Z_COMPILER_TYPE_SINT8*/
+/*#define Z_COMPILER_TYPE_UINT16*/
+/*#define Z_COMPILER_TYPE_SINT16*/
+/*#define Z_COMPILER_TYPE_UINT32*/
+/*#define Z_COMPILER_TYPE_SINT32*/
+/*#define Z_COMPILER_TYPE_UINT64*/
+/*#define Z_COMPILER_TYPE_SINT64*/
+/*#define Z_COMPILER_TYPE_UINT128*/
+/*#define Z_COMPILER_TYPE_SINT128*/
+/*#define Z_COMPILER_TYPE_FLOAT16*/
+/*#define Z_COMPILER_TYPE_FLOAT32*/
+/*#define Z_COMPILER_TYPE_FLOAT64*/
+/*#define Z_COMPILER_TYPE_FLOAT128*/
+/*#define Z_COMPILER_TYPE_FLOAT80_X87*/
+/*#define Z_COMPILER_TYPE_FLOAT96_X87*/
+/*#define Z_COMPILER_TYPE_FLOAT128_X87*/
+/*#define Z_COMPILER_TYPE_VAL*/
+
 /* MARK: - Suffix macros for built-in types */
 
 /*#define Z_COMPILER_LITERAL_UINT8*/
-/*#define Z_COMPILER_LITERAL_UINT16*/
-/*#define Z_COMPILER_LITERAL_UINT32*/
-/*#define Z_COMPILER_LITERAL_UINT64*/
-/*#define Z_COMPILER_LITERAL_UINT128*/
 /*#define Z_COMPILER_LITERAL_SINT8*/
+/*#define Z_COMPILER_LITERAL_UINT16*/
 /*#define Z_COMPILER_LITERAL_SINT16*/
+/*#define Z_COMPILER_LITERAL_UINT32*/
 /*#define Z_COMPILER_LITERAL_SINT32*/
+/*#define Z_COMPILER_LITERAL_UINT64*/
 /*#define Z_COMPILER_LITERAL_SINT64*/
+/*#define Z_COMPILER_LITERAL_UINT128*/
 /*#define Z_COMPILER_LITERAL_SINT128*/
 /*#define Z_COMPILER_LITERAL_FLOAT16*/
 /*#define Z_COMPILER_LITERAL_FLOAT32*/
@@ -1635,6 +1691,46 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 /* MARK: - Built-in traits */
+
+/*__is_destructible (not correctly implemented? not available?) */ /* v3.5 (partially implemented) */
+/*__is_sealed*/ /* v3.4 */
+/*__is_trivially_destructible*/
+/*__is_nothrow_destructible (not correctly implemented? not available?) */ /* v3.5 (partially implemented) */
+/*__has_nothrow_move_assign*/ /* v3.3 */
+/*__has_trivial_move_assign*/ /* v3.3 */
+/*__has_trivial_move_constructor*/ /* v3.3 */
+/*__has_unique_object_representations*/
+/*__reference_binds_to_temporary*/
+/*__is_lvalue_expr (operator? specifier?) */ /* v3.0 */
+/*__is_rvalue_expr (operator? specifier?) */ /* v3.0 */
+/*__is_arithmetic*/ /* v3.0 */
+/*__is_floating_point*/ /* v3.0 */
+/*__is_integral*/ /* v3.0 */
+/*__is_complete_type*/ /* v3.0 */
+/*__is_void*/ /* v3.0 */
+/*__is_array*/ /* v3.0 */
+/*__is_function*/ /* v3.0 */
+/*__is_reference*/ /* v3.0 */
+/*__is_lvalue_reference*/ /* v3.0 */
+/*__is_rvalue_reference*/ /* v3.0 */
+/*__is_fundamental*/ /* v3.0 */
+/*__is_object*/ /* v3.0 */
+/*__is_scalar*/ /* v3.0 */
+/*__is_compound*/ /* v3.0 */
+/*__is_pointer*/ /* v3.0 */
+/*__is_member_object_pointer*/ /* v3.0 */
+/*__is_member_function_pointer*/ /* v3.0 */
+/*__is_member_pointer*/ /* v3.0 */
+/*__is_const*/ /* v3.0 */
+/*__is_volatile*/ /* v3.0 */
+/*__is_signed*/ /* v3.0 */
+/*__is_unsigned*/ /* v3.0 */
+/*__is_same*/ /* v3.0 */
+/*__is_convertible (?) Embarcadero */ /* v3.0 */
+/*__array_rank*/ /* v3.0 */
+/*__array_extent*/ /* v3.0 */
+/*__builtin_omp_required_simd_align*/
+
 
 #ifdef __cplusplus
 #	if Z_COMPILER_VERSION >= Z_VERSION(0, 0, 0)

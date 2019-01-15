@@ -8,14 +8,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_inspection_character_set_H_
 #define _Z_inspection_character_set_H_
 
-#define Z_CHARACTER_SET_DIGITS_ARE_CONSECUTIVE			    \
-	(  ('0' < '9')						    \
+#if	('0' < '9')						    \
 	&& ('0' + 1 == '1') && ('1' + 1 == '2') && ('2' + 1 == '3') \
 	&& ('3' + 1 == '4') && ('4' + 1 == '5') && ('5' + 1 == '6') \
-	&& ('6' + 1 == '7') && ('7' + 1 == '8') && ('8' + 1 == '9'))
+	&& ('6' + 1 == '7') && ('7' + 1 == '8') && ('8' + 1 == '9')
 
-#define Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE	    \
-	(  ('A' < 'Z')						    \
+#	define Z_CHARACTER_SET_DIGITS_ARE_CONSECUTIVE TRUE
+#else
+#	define Z_CHARACTER_SET_DIGITS_ARE_CONSECUTIVE FALSE
+#endif
+
+#if	('A' < 'Z')						    \
 	&& ('A' + 1 == 'B') && ('B' + 1 == 'C') && ('C' + 1 == 'D') \
 	&& ('D' + 1 == 'E') && ('E' + 1 == 'F') && ('F' + 1 == 'G') \
 	&& ('G' + 1 == 'H') && ('H' + 1 == 'I') && ('I' + 1 == 'J') \
@@ -24,10 +27,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	&& ('P' + 1 == 'Q') && ('Q' + 1 == 'R') && ('R' + 1 == 'S') \
 	&& ('S' + 1 == 'T') && ('T' + 1 == 'U') && ('U' + 1 == 'V') \
 	&& ('V' + 1 == 'W') && ('W' + 1 == 'X') && ('X' + 1 == 'Y') \
-	&& ('Y' + 1 == 'Z'))
+	&& ('Y' + 1 == 'Z')
 
-#define Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE	    \
-	(  ('a' < 'z')						    \
+#	define Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE TRUE
+#else
+#	define Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE FALSE
+#endif
+
+#if	('a' < 'z')						    \
 	&& ('a' + 1 == 'b') && ('b' + 1 == 'c') && ('c' + 1 == 'd') \
 	&& ('d' + 1 == 'e') && ('e' + 1 == 'f') && ('f' + 1 == 'g') \
 	&& ('g' + 1 == 'h') && ('h' + 1 == 'i') && ('i' + 1 == 'j') \
@@ -36,10 +43,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	&& ('p' + 1 == 'q') && ('q' + 1 == 'r') && ('r' + 1 == 's') \
 	&& ('s' + 1 == 't') && ('t' + 1 == 'u') && ('u' + 1 == 'v') \
 	&& ('v' + 1 == 'w') && ('w' + 1 == 'x') && ('x' + 1 == 'y') \
-	&& ('y' + 1 == 'z'))
+	&& ('y' + 1 == 'z')
 
-#define Z_CHARACTER_SET_IS_ASCII					 \
-	(  (' ' ==  32) && ('!' ==  33) && ('"'  ==  34) && ('#' ==  35) \
+#	define Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE TRUE
+#else
+#	define Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE FALSE
+#endif
+
+#if	   (' ' ==  32) && ('!' ==  33) && ('"'  ==  34) && ('#' ==  35) \
 	&& ('%' ==  37) && ('&' ==  38) && ('\'' ==  39) && ('(' ==  40) \
 	&& (')' ==  41) && ('*' ==  42) && ('+'  ==  43) && (',' ==  44) \
 	&& ('-' ==  45) && ('.' ==  46) && ('/'  ==  47) && ('0' ==  48) \
@@ -61,6 +72,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	&& ('o' == 111) && ('p' == 112) && ('q'  == 113) && ('r' == 114) \
 	&& ('s' == 115) && ('t' == 116) && ('u'  == 117) && ('v' == 118) \
 	&& ('w' == 119) && ('x' == 120) && ('y'  == 121) && ('z' == 122) \
-	&& ('{' == 123) && ('|' == 124) && ('}'  == 125) && ('~' == 126))
+	&& ('{' == 123) && ('|' == 124) && ('}'  == 125) && ('~' == 126)
+
+#	define Z_CHARACTER_SET_IS_ASCII TRUE
+#else
+#	define Z_CHARACTER_SET_IS_ASCII FALSE
+#endif
 
 #endif /* _Z_inspection_character_set_H_ */

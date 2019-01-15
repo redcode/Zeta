@@ -12,65 +12,65 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/traits/Type.hpp>
 #include <Z/traits/mathematics.hpp>
 
-#define ZTypeFixedNatural(Name, T)						\
-	Zeta::SelectType<							\
-		Zeta::Type<T>::is_natural					\
-			? Zeta::Logarithm2<sizeof(T)>::value			\
-			: 31,							\
-		Z_ENUMERATE_FIXED_NATURAL_TYPES_BITS(Name##UInt, void)		\
+#define ZTypeFixedNatural(Name, T)					  \
+	Zeta::SelectType<						  \
+		Zeta::Type<T>::is_natural				  \
+			? Zeta::Logarithm2<sizeof(T)>::value		  \
+			: 31,						  \
+		Z_ENUMERATE_FIXED_NATURAL_TYPES_BITS(Name##UInt, void)	  \
 	>::type
 
-#define ZTypeFixedInteger(Name, T)						\
-	Zeta::SelectType<							\
-		Zeta::Type<T>::is_integer					\
-			? Zeta::Logarithm2<sizeof(T)>::value			\
-			: 31,							\
-		Z_ENUMERATE_FIXED_INTEGER_TYPES_BITS(Name##SInt, void)		\
+#define ZTypeFixedInteger(Name, T)					  \
+	Zeta::SelectType<						  \
+		Zeta::Type<T>::is_integer				  \
+			? Zeta::Logarithm2<sizeof(T)>::value		  \
+			: 31,						  \
+		Z_ENUMERATE_FIXED_INTEGER_TYPES_BITS(Name##SInt, void)	  \
 	>::type
 
-#define ZTypeFixedExact(Name, T)						\
-	Zeta::SelectType<							\
-		Zeta::Type<T>::is_exact						\
-			? Zeta::Logarithm2<sizeof(T)>::value			\
-			  + (Zeta::Type<T>::is_signed ? 5 : 0)			\
-			: 31,							\
-		Z_ENUMERATE_FIXED_NATURAL_TYPES_BITS(Name##UInt, void),		\
-		Z_ENUMERATE_FIXED_INTEGER_TYPES_BITS(Name##SInt, void)		\
+#define ZTypeFixedIntegral(Name, T)					  \
+	Zeta::SelectType<						  \
+		Zeta::Type<T>::is_integral				  \
+			? Zeta::Logarithm2<sizeof(T)>::value		  \
+			  + (Zeta::Type<T>::is_integer ? 5 : 0)		  \
+			: 31,						  \
+		Z_ENUMERATE_FIXED_NATURAL_TYPES_BITS(Name##UInt, void),	  \
+		Z_ENUMERATE_FIXED_INTEGER_TYPES_BITS(Name##SInt, void)	  \
 	>::type
 
-#define ZTypeFixedReal(Name, T)							\
-	Zeta::SelectType<							\
-		Zeta::Type<T>::is_real						\
-			? Type<T>::fixed_value_type				\
-			  - Z_KEY_INDEX_VALUE_TYPE_FIXED_REAL			\
-			: 31,							\
-		Z_ENUMERATE_FIXED_REAL_TYPES(Name##Float, void)			\
+#define ZTypeFixedReal(Name, T)						  \
+	Zeta::SelectType<						  \
+		Zeta::Type<T>::is_real					  \
+			? Zeta::Type<T>::fixed_fundamental		  \
+			  - Z_FUNDAMENTAL_FLOAT16			  \
+			: 31,						  \
+		Z_ENUMERATE_FIXED_REAL_TYPES(Name##Float, void)		  \
 	>::type
 
-#define ZTypeFixedSigned(Name, T)						\
-	Zeta::SelectType<							\
-		Zeta::Type<T>::is_signed					\
-			? (Zeta::Type<T>::is_integer				\
-				? Zeta::Logarithm2<sizeof(T)>::value		\
-				: Type<T>::fixed_value_type			\
-				  - Z_KEY_INDEX_VALUE_TYPE_FIXED_REAL + 5)	\
-			: 31,							\
-		Z_ENUMERATE_FIXED_INTEGER_TYPES_BITS (Name##SInt,  void),	\
-		Z_ENUMERATE_FIXED_REAL_TYPES_Suffixes(Name##Float, void)	\
+#define ZTypeFixedSigned(Name, T)					  \
+	Zeta::SelectType<						  \
+		Zeta::Type<T>::is_signed				  \
+			? (Zeta::Type<T>::is_integer			  \
+				? Zeta::Logarithm2<sizeof(T)>::value	  \
+				: Zeta::Type<T>::fixed_fundamental	  \
+				  - Z_FUNDAMENTAL_FLOAT16 + 5)		  \
+			: 31,						  \
+		Z_ENUMERATE_FIXED_INTEGER_TYPES_BITS (Name##SInt,  void), \
+		Z_ENUMERATE_FIXED_REAL_TYPES_Suffixes(Name##Float, void)  \
 	>::type
 
-#define ZTypeFixedNumber(Name, T)						\
-	Zeta::SelectType<							\
-		Zeta::Type<T>::is_number					\
-			? (Zeta::Type<T>::is_exact				\
-				? Zeta::Logarithm2<sizeof(T)>::value		\
-				  + (Zeta::Type<T>::is_signed ? 5 : 0)		\
-				: Type<T>::fixed_value_type			\
-				  - Z_KEY_INDEX_VALUE_TYPE_FIXED_REAL + 5 + 5)	\
-			: 31,							\
-		Z_ENUMERATE_FIXED_NATURAL_TYPES_BITS (Name##UInt,  void),	\
-		Z_ENUMERATE_FIXED_INTEGER_TYPES_BITS (Name##SInt,  void),	\
-		Z_ENUMERATE_FIXED_REAL_TYPES_Suffixes(Name##Float, void)	\
+#define ZTypeFixedNumber(Name, T)					  \
+	Zeta::SelectType<						  \
+		Zeta::Type<T>::is_number				  \
+			? (Zeta::Type<T>::is_integral			  \
+				? Zeta::Logarithm2<sizeof(T)>::value	  \
+				  + (Zeta::Type<T>::is_integer ? 5 : 0)	  \
+				: Zeta::Type<T>::fixed_fundamental	  \
+				  - Z_FUNDAMENTAL_FLOAT16 + 5 + 5)	  \
+			: 31,						  \
+		Z_ENUMERATE_FIXED_NATURAL_TYPES_BITS (Name##UInt,  void), \
+		Z_ENUMERATE_FIXED_INTEGER_TYPES_BITS (Name##SInt,  void), \
+		Z_ENUMERATE_FIXED_REAL_TYPES_Suffixes(Name##Float, void)  \
 	>::type
 
 #endif // _Z_macros_type_HPP_

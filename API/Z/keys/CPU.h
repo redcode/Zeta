@@ -40,8 +40,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPU_ARCHITECTURE_X86_16	       29 /* Intel				*/
 #define Z_CPU_ARCHITECTURE_X86_32	       30 /* Intel				*/
 #define Z_CPU_ARCHITECTURE_X86_64	       31 /* AMD				*/
-#define Z_CPU_ARCHITECTURE_Z_ARCHITECTURE      32 /* IBM				*/
-#define Z_CPU_ARCHITECTURE_Z80		       33 /* Zilog				*/
+#define Z_CPU_ARCHITECTURE_XCORE	       32 /* XMOS				*/
+#define Z_CPU_ARCHITECTURE_Z_ARCHITECTURE      33 /* IBM				*/
+#define Z_CPU_ARCHITECTURE_Z80		       34 /* Zilog				*/
 
 #define Z_CPU_ARCHITECTURE_NAME_6502	       "6502"
 #define Z_CPU_ARCHITECTURE_NAME_AARCH32	       "AArch32"
@@ -74,6 +75,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPU_ARCHITECTURE_NAME_X86_16	       "x86-16"
 #define Z_CPU_ARCHITECTURE_NAME_X86_32	       "x86-32"
 #define Z_CPU_ARCHITECTURE_NAME_X86_64	       "x86-64"
+#define Z_CPU_ARCHITECTURE_NAME_XCORE	       "xCORE"
 #define Z_CPU_ARCHITECTURE_NAME_Z_ARCHITECTURE "z/Architecture"
 #define Z_CPU_ARCHITECTURE_NAME_Z80	       "Z80"
 

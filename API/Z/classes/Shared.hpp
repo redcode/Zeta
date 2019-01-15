@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef _Z_classes_Shared_HPP_
 #define _Z_classes_Shared_HPP_
 
-#include <Z/functions/value.hpp>
+#include <Z/types/fundamental.hpp>
 
 
 namespace Zeta {template <class T> struct Shared {
@@ -18,21 +18,27 @@ namespace Zeta {template <class T> struct Shared {
 		T*    data;
 		USize owner_count;
 
-		Z_INLINE Owned(T *data) : data(data), owner_count(1) {}
-		Z_INLINE ~Owned() {delete data;}
+
+		Z_INLINE Owned(T *data) Z_NOTHROW
+		: data(data), owner_count(1) {}
+
+
+		Z_INLINE ~Owned()
+			{delete data;}
 	};
 
 	Owned *owned;
 
 
-	Z_CT(CPP11) Shared() : owned(NULL) {}
+	Z_CT(CPP11) Shared() Z_NOTHROW
+	: owned(NULL) {}
 
 
-	Z_INLINE Shared(const Shared &other)
+	Z_INLINE Shared(const Shared &other) Z_NOTHROW
 		{if ((owned = other.owned)) owned->owner_count++;}
 
 
-	Z_INLINE Shared(T *data)
+	Z_INLINE Shared(T *data) Z_NOTHROW
 		{owned = data ? new Owned(data) : NULL;}
 
 
@@ -65,25 +71,63 @@ namespace Zeta {template <class T> struct Shared {
 		}
 
 
-	Z_INLINE operator Boolean() const {return owned != NULL;}
+#	ifdef Z_NULL_POINTER
 
-	Z_INLINE Boolean operator ==(const Shared &rhs) const {return owned == rhs.owned;}
-	Z_INLINE Boolean operator !=(const Shared &rhs) const {return owned != rhs.owned;}
-
-	Z_INLINE T &operator * () const {return *owned->data;}
-	Z_INLINE T *operator ->() const {return  owned->data;}
+		Z_CT(CPP11) Shared(NullPointer) Z_NOTHROW
+		: owned(NULL) {}
 
 
-	Z_INLINE T *get() const
+		Z_INLINE Shared &operator =(NullPointer)
+			{
+			if (owned && !--owned->owner_count) delete owned;
+			owned = NULL;
+			return *this;
+			}
+
+#	endif
+
+
+	Z_INLINE operator Boolean() const Z_NOTHROW
+		{return owned != NULL;}
+
+	Z_INLINE Boolean operator ==(const Shared &rhs) const Z_NOTHROW
+		{return owned == rhs.owned;}
+
+
+	Z_INLINE Boolean operator !=(const Shared &rhs) const Z_NOTHROW
+		{return owned != rhs.owned;}
+
+
+	Z_INLINE T &operator *() const Z_NOTHROW
+		{return *owned->data;}
+
+
+	Z_INLINE T *operator ->() const Z_NOTHROW
+		{return owned->data;}
+
+
+	Z_INLINE T *get() const Z_NOTHROW
 		{return owned ? owned->data : NULL;}
 
 
-	Z_INLINE USize owner_count() const
+	Z_INLINE USize owner_count() const Z_NOTHROW
 		{return owned->owner_count;}
 
 
-	Z_INLINE void swap(Shared &other)
-		{Zeta::swap<Owned *>(&owned, &other.owned);}
+	Z_INLINE void reset()
+		{
+		if (owned && !--owned->owner_count) delete owned;
+		owned = NULL;
+		}
+
+
+	Z_INLINE void swap(Shared &other) Z_NOTHROW
+		{
+		Owned *t = owned;
+
+		owned = other.owned;
+		other.owned = t;
+		}
 };}
 
 

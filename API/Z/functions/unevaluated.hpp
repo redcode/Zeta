@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define _Z_functions_unevaluated_HPP_
 
 namespace Zeta {
-	template <class T> T fake();
+	template <class T> T fake() Z_NOTHROW;
 }
 
 #endif // _Z_functions_unevaluated_HPP_

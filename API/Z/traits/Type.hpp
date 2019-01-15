@@ -334,7 +334,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 // Components that require some C++11 features to be implemented. |
 //----------------------------------------------------------------'
 
-#if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+#ifdef Z_NULL_POINTER
 #	define Z_HAS_TRAIT_TypeIsNullPointer	TRUE
 #	define Z_TRAIT_Type_HAS_is_null_pointer TRUE
 #else
@@ -764,6 +764,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_array		      = false,
 			is_boolean		      = false,
 			is_class		      = false,
+			is_closure		      = false,
 			is_compound		      = false,
 			is_const		      = false,
 			is_const_lvalue		      = false,
@@ -795,6 +796,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_member_pointer	      = false,
 			is_nat			      = true,
 			is_natural		      = false,
+			is_noexcept		      = false,
 			is_number		      = false,
 			is_objective_c_class	      = false,
 			is_objective_c_class_pointer  = false,
@@ -1312,8 +1314,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT(CPP11) zfloat16 epsilon () {return Z_FLOAT16_EPSILON;}
 			static Z_CT(CPP11) zfloat16 minimum () {return Z_FLOAT16_MINIMUM;}
 			static Z_CT(CPP11) zfloat16 maximum () {return Z_FLOAT16_MAXIMUM;}
-		/*	static Z_CT(CPP11) zfloat16 infinity() Z_NO_EXCEPTION {return Z_FLOAT16_INFINITY;}
-			static Z_CT(CPP11) zfloat16 nan	    () Z_NO_EXCEPTION {return Z_FLOAT16_NAN;}*/
+		/*	static Z_CT(CPP11) zfloat16 infinity() Z_NOTHROW {return Z_FLOAT16_INFINITY;}
+			static Z_CT(CPP11) zfloat16 nan	    () Z_NOTHROW {return Z_FLOAT16_NAN;}*/
 
 			typedef zfloat16 type;
 			typedef zfloat16 to_signed;
@@ -1348,8 +1350,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT(CPP11) zfloat32 epsilon () {return Z_FLOAT32_EPSILON;}
 			static Z_CT(CPP11) zfloat32 minimum () {return Z_FLOAT32_MINIMUM;}
 			static Z_CT(CPP11) zfloat32 maximum () {return Z_FLOAT32_MAXIMUM;}
-		/*	static Z_CT(CPP11) zfloat32 infinity() Z_NO_EXCEPTION {return Z_FLOAT32_INFINITY;}
-			static Z_CT(CPP11) zfloat32 nan	    () Z_NO_EXCEPTION {return Z_FLOAT32_NAN;}*/
+		/*	static Z_CT(CPP11) zfloat32 infinity() Z_NOTHROW {return Z_FLOAT32_INFINITY;}
+			static Z_CT(CPP11) zfloat32 nan	    () Z_NOTHROW {return Z_FLOAT32_NAN;}*/
 
 			typedef zfloat32 type;
 			typedef zfloat32 to_signed;
@@ -1384,8 +1386,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT(CPP11) zfloat64 epsilon () {return Z_FLOAT64_EPSILON;}
 			static Z_CT(CPP11) zfloat64 minimum () {return Z_FLOAT64_MINIMUM;}
 			static Z_CT(CPP11) zfloat64 maximum () {return Z_FLOAT64_MAXIMUM;}
-		/*	static Z_CT(CPP11) zfloat64 infinity() Z_NO_EXCEPTION {return Z_FLOAT64_INFINITY;}
-			static Z_CT(CPP11) zfloat64 nan	    () Z_NO_EXCEPTION {return Z_FLOAT64_NAN;}*/
+		/*	static Z_CT(CPP11) zfloat64 infinity() Z_NOTHROW {return Z_FLOAT64_INFINITY;}
+			static Z_CT(CPP11) zfloat64 nan	    () Z_NOTHROW {return Z_FLOAT64_NAN;}*/
 
 			typedef zfloat64 type;
 			typedef zfloat64 to_signed;
@@ -1420,8 +1422,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT(CPP11) zfloat128 epsilon () {return Z_FLOAT128_EPSILON;}
 			static Z_CT(CPP11) zfloat128 minimum () {return Z_FLOAT128_MINIMUM;}
 			static Z_CT(CPP11) zfloat128 maximum () {return Z_FLOAT128_MAXIMUM;}
-		/*	static Z_CT(CPP11) zfloat128 infinity() Z_NO_EXCEPTION {return Z_FLOAT128_INFINITY;}
-			static Z_CT(CPP11) zfloat128 nan     () Z_NO_EXCEPTION {return Z_FLOAT128_NAN;}*/
+		/*	static Z_CT(CPP11) zfloat128 infinity() Z_NOTHROW {return Z_FLOAT128_INFINITY;}
+			static Z_CT(CPP11) zfloat128 nan     () Z_NOTHROW {return Z_FLOAT128_NAN;}*/
 
 			typedef zfloat128 type;
 			typedef zfloat128 to_signed;
@@ -1456,8 +1458,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT(CPP11) zfloat80_x87 epsilon () {return Z_FLOAT80_X87_EPSILON;}
 			static Z_CT(CPP11) zfloat80_x87 minimum () {return Z_FLOAT80_X87_MINIMUM;}
 			static Z_CT(CPP11) zfloat80_x87 maximum () {return Z_FLOAT80_X87_MAXIMUM;}
-		/*	static Z_CT(CPP11) zfloat80_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT80_X87_INFINITY;}
-			static Z_CT(CPP11) zfloat80_x87 nan	() Z_NO_EXCEPTION {return Z_FLOAT80_X87_NAN;}*/
+		/*	static Z_CT(CPP11) zfloat80_x87 infinity() Z_NOTHROW {return Z_FLOAT80_X87_INFINITY;}
+			static Z_CT(CPP11) zfloat80_x87 nan	() Z_NOTHROW {return Z_FLOAT80_X87_NAN;}*/
 
 			typedef zfloat80_x87 type;
 			typedef zfloat80_x87 to_signed;
@@ -1492,8 +1494,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT(CPP11) zfloat96_x87 epsilon () {return Z_FLOAT96_X87_EPSILON;}
 			static Z_CT(CPP11) zfloat96_x87 minimum () {return Z_FLOAT96_X87_MINIMUM;}
 			static Z_CT(CPP11) zfloat96_x87 maximum () {return Z_FLOAT96_X87_MAXIMUM;}
-		/*	static Z_CT(CPP11) zfloat96_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT96_X87_INFINITY;}
-			static Z_CT(CPP11) zfloat96_x87 nan	() Z_NO_EXCEPTION {return Z_FLOAT96_X87_NAN;}*/
+		/*	static Z_CT(CPP11) zfloat96_x87 infinity() Z_NOTHROW {return Z_FLOAT96_X87_INFINITY;}
+			static Z_CT(CPP11) zfloat96_x87 nan	() Z_NOTHROW {return Z_FLOAT96_X87_NAN;}*/
 
 			typedef zfloat96_x87 type;
 			typedef zfloat96_x87 to_signed;
@@ -1528,8 +1530,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT(CPP11) zfloat128_x87 epsilon () {return Z_FLOAT128_X87_EPSILON;}
 			static Z_CT(CPP11) zfloat128_x87 minimum () {return Z_FLOAT128_X87_MINIMUM;}
 			static Z_CT(CPP11) zfloat128_x87 maximum () {return Z_FLOAT128_X87_MAXIMUM;}
-		/*	static Z_CT(CPP11) zfloat128_x87 infinity() Z_NO_EXCEPTION {return Z_FLOAT128_X87_INFINITY;}
-			static Z_CT(CPP11) zfloat128_x87 nan	 () Z_NO_EXCEPTION {return Z_FLOAT128_X87_NAN;}*/
+		/*	static Z_CT(CPP11) zfloat128_x87 infinity() Z_NOTHROW {return Z_FLOAT128_X87_INFINITY;}
+			static Z_CT(CPP11) zfloat128_x87 nan	 () Z_NOTHROW {return Z_FLOAT128_X87_NAN;}*/
 
 			typedef zfloat128_x87 type;
 			typedef zfloat128_x87 to_signed;
@@ -1735,8 +1737,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT(CPP11) zfloat epsilon () {return Z_FLOAT_EPSILON;}
 			static Z_CT(CPP11) zfloat minimum () {return Z_FLOAT_MINIMUM;}
 			static Z_CT(CPP11) zfloat maximum () {return Z_FLOAT_MAXIMUM;}
-		/*	static Z_CT(CPP11) zfloat infinity() Z_NO_EXCEPTION {return Z_FLOAT_INFINITY;}
-			static Z_CT(CPP11) zfloat nan	  () Z_NO_EXCEPTION {return Z_FLOAT_NAN;}*/
+		/*	static Z_CT(CPP11) zfloat infinity() Z_NOTHROW {return Z_FLOAT_INFINITY;}
+			static Z_CT(CPP11) zfloat nan	  () Z_NOTHROW {return Z_FLOAT_NAN;}*/
 
 			typedef zfloat type;
 			typedef zfloat to_signed;
@@ -1771,8 +1773,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT(CPP11) zdouble epsilon () {return Z_DOUBLE_EPSILON;}
 			static Z_CT(CPP11) zdouble minimum () {return Z_DOUBLE_MINIMUM;}
 			static Z_CT(CPP11) zdouble maximum () {return Z_DOUBLE_MAXIMUM;}
-		/*	static Z_CT(CPP11) zdouble infinity() Z_NO_EXCEPTION {return Z_DOUBLE_INFINITY;}
-			static Z_CT(CPP11) zdouble nan	   () Z_NO_EXCEPTION {return Z_DOUBLE_NAN;}*/
+		/*	static Z_CT(CPP11) zdouble infinity() Z_NOTHROW {return Z_DOUBLE_INFINITY;}
+			static Z_CT(CPP11) zdouble nan	   () Z_NOTHROW {return Z_DOUBLE_NAN;}*/
 
 			typedef zdouble type;
 			typedef zdouble to_signed;
@@ -1807,8 +1809,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			static Z_CT(CPP11) zldouble epsilon () {return Z_LDOUBLE_EPSILON;}
 			static Z_CT(CPP11) zldouble minimum () {return Z_LDOUBLE_MINIMUM;}
 			static Z_CT(CPP11) zldouble maximum () {return Z_LDOUBLE_MAXIMUM;}
-		/*	static Z_CT(CPP11) zldouble infinity() Z_NO_EXCEPTION {return Z_LDOUBLE_INFINITY;}
-			static Z_CT(CPP11) zldouble nan	    () Z_NO_EXCEPTION {return Z_LDOUBLE_NAN;}*/
+		/*	static Z_CT(CPP11) zldouble infinity() Z_NOTHROW {return Z_LDOUBLE_INFINITY;}
+			static Z_CT(CPP11) zldouble nan	    () Z_NOTHROW {return Z_LDOUBLE_NAN;}*/
 
 			typedef zldouble type;
 			typedef zldouble to_signed;
@@ -1835,7 +1837,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 
 #	endif
-
+/*
 #	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR16)
 
 		struct Char16 : Natural {
@@ -1855,7 +1857,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 
 #	endif
-
+*/
 #	if Z_TRAIT_HAS(Type, is_null_pointer)
 
 		struct NullPointer : PointerLike {
@@ -2677,8 +2679,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 			typedef typename C::type&& add_rvalue_reference;
 #		endif
 
-		typedef struct {typename C::type value;}      to_wrap;
-		typedef struct {UInt8 data[sizeof(to_wrap)];} to_opaque;
+		Z_DEFINE_STRICT_STRUCTURE({typename C::type value;},      to_wrap  );
+		Z_DEFINE_STRICT_STRUCTURE({UInt8 data[sizeof(to_wrap)];}, to_opaque);
 
 		enum {	size = C::is_empty ? 0 : sizeof(to_wrap),
 			bits = C::is_empty ? 0 : sizeof(to_wrap) * 8
@@ -3062,7 +3064,7 @@ namespace Zeta {namespace Detail {namespace Type {
 #	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
 		template <Boolean E> struct Case<E, WChar> : Mixins::Unqualified<Abstract::WChar> {};
 #	endif
-
+/*
 #	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR16)
 		template <Boolean E> struct Case<E, Char16> : Mixins::Unqualified<Abstract::Char16> {};
 #	endif
@@ -3070,7 +3072,7 @@ namespace Zeta {namespace Detail {namespace Type {
 #	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR32)
 		template <Boolean E> struct Case<E, Char32> : Mixins::Unqualified<Abstract::Char32> {};
 #	endif
-
+*/
 #	if Z_TRAIT_HAS(Type, is_null_pointer)
 		template <Boolean E> struct Case<E, NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
 #	endif
@@ -3273,6 +3275,14 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: Apple blocks
 
+#	if Z_COMPILER_C_HAS(CLOSURE)
+
+		template <Boolean E, class R, class... P> struct Case<E, R(^)(P...)> : Abstract::Valid {
+			enum {is_closure = true};
+		};
+
+#	endif
+
 	// MARK: - Specializations: Objective-C
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
@@ -3280,7 +3290,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E> struct Case<E, TypeRemovePointer<Class>::type> : Mixins::Unqualified<Abstract::ObjectiveCClass > {};
 #	endif
 
-	// MARK: - Specializations: Qualified types
+	// MARK: - Specializations: Qualifiers
 
 	template <Boolean E, class T> struct Case<E, const	    T> : Mixins::Const	      <Case<false, T>::is_signed_or_unsigned ? Mixins::SignedOrUnsigned : Mixins::NonSignedOrUnsigned, Case<E, T> > {};
 	template <Boolean E, class T> struct Case<E, const volatile T> : Mixins::ConstVolatile<Case<false, T>::is_signed_or_unsigned ? Mixins::SignedOrUnsigned : Mixins::NonSignedOrUnsigned, Case<E, T> > {};
@@ -3374,6 +3384,7 @@ namespace Zeta {
 				is_array		      = Type::is_array,
 				is_boolean		      = Type::is_boolean,
 				is_class		      = Type::is_class,
+				is_closure		      = Type::is_closure,
 				is_compound		      = Type::is_compound,
 				is_const		      = Type::is_const,
 				is_const_lvalue		      = Type::is_const_lvalue,
@@ -3640,6 +3651,7 @@ namespace Zeta {
 	template <class T> struct TypeIsArray			{enum {value = Type<T>::is_array		     };};
 	template <class T> struct TypeIsBoolean			{enum {value = Type<T>::is_boolean		     };};
 	template <class T> struct TypeIsClass			{enum {value = Type<T>::is_class		     };};
+	template <class T> struct TypeIsClosure			{enum {value = Type<T>::is_closure		     };};
 	template <class T> struct TypeIsCompound		{enum {value = Type<T>::is_compound		     };};
 	template <class T> struct TypeIsConst			{enum {value = Type<T>::is_const		     };};
 	template <class T> struct TypeIsConstLValue		{enum {value = Type<T>::is_const_lvalue		     };};

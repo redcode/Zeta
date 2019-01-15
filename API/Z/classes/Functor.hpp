@@ -47,7 +47,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			struct Callers {
 
 				template <class RR = R>
-				static Z_INLINE typename TypeIf<Type<RR>::is_void, Call>::type function()
+				static Z_INLINE typename TypeIf<Type<RR>::is_void, Call>::type
+				function() Z_NOTHROW
 					{
 					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 						{functor->target.function(arguments...);};
@@ -55,7 +56,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 				template <class RR = R>
-				static Z_INLINE typename TypeIf<!Type<RR>::is_void, Call>::type function()
+				static Z_INLINE typename TypeIf<!Type<RR>::is_void, Call>::type
+				function() Z_NOTHROW
 					{
 					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 						{return functor->target.function(arguments...);};
@@ -63,7 +65,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 				template <class RR = R>
-				static Z_INLINE typename TypeIf<Type<RR>::is_void, Call>::type object_member_function()
+				static Z_INLINE typename TypeIf<Type<RR>::is_void, Call>::type
+				object_member_function() Z_NOTHROW
 					{
 					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 						{
@@ -74,7 +77,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 				template <class RR = R>
-				static Z_INLINE typename TypeIf<!Type<RR>::is_void, Call>::type object_member_function()
+				static Z_INLINE typename TypeIf<!Type<RR>::is_void, Call>::type
+				object_member_function() Z_NOTHROW
 					{
 					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 						{
@@ -90,7 +94,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 					template <class RR = R>
-					static Z_INLINE typename TypeIf<Type<RR>::is_void, Call>::type object_selector()
+					static Z_INLINE typename TypeIf<Type<RR>::is_void, Call>::type
+					object_selector() Z_NOTHROW
 						{
 						return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 							{
@@ -108,7 +113,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 							!Type<RR>::is_void &&
 							!Type<RR>::is_real &&
 							!Type<RR>::is_structure_or_union,
-						Call>::type object_selector()
+						Call>::type
+						object_selector() Z_NOTHROW
 							{
 							return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 								{
@@ -120,7 +126,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 						template <class RR = R>
-						static Z_INLINE typename TypeIf<Type<RR>::is_real, Call>::type object_selector()
+						static Z_INLINE typename TypeIf<Type<RR>::is_real, Call>::type
+						object_selector() Z_NOTHROW
 							{
 							return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 								{
@@ -133,10 +140,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #					else
 
 						template <class RR = R>
-						static Z_INLINE typename TypeIf<
-							!Type<RR>::is_void &&
-							!Type<RR>::is_structure_or_union,
-						Call>::type object_selector()
+						static Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_structure_or_union, Call>::type
+						object_selector() Z_NOTHROW
 							{
 							return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 								{
@@ -150,7 +155,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 					template <class RR = R>
-					static Z_INLINE typename TypeIf<Type<RR>::is_structure_or_union, Call>::type object_selector()
+					static Z_INLINE typename TypeIf<Type<RR>::is_structure_or_union, Call>::type
+					object_selector() Z_NOTHROW
 						{
 						return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 							{
@@ -166,10 +172,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			public:
 
-			Z_CT(CPP11) Functor() : call(NULL), destroy(NULL) {}
+			Z_CT(CPP11) Functor() Z_NOTHROW
+			: call(NULL), destroy(NULL) {}
 
 
-			Z_INLINE Functor(R (* function)(P...))
+#			ifdef Z_NULL_POINTER
+				Z_CT(CPP11) Functor(NullPointer) Z_NOTHROW
+				: call(NULL), destroy(NULL) {}
+#			endif
+
+
+			Z_INLINE Functor(R (* function)(P...)) Z_NOTHROW
 			: call(Callers::function()), destroy(NULL)
 				{target.function = function;}
 
@@ -181,7 +194,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer		       &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
-			Z_INLINE Functor(O object, M function)
+			Z_INLINE Functor(O object, M function) Z_NOTHROW
 			: call(Callers::object_member_function()), destroy(NULL)
 				{
 				target.object_member_function.function = (R (NaT::*)(P...))function;
@@ -194,7 +207,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
-			Z_INLINE Functor(const O &object, M function)
+			Z_INLINE Functor(const O &object, M function) Z_NOTHROW
 			: call(Callers::object_member_function()), destroy(NULL)
 				{
 				target.object_member_function.function = (R (NaT::*)(P...))function;
@@ -202,7 +215,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				}
 
 
-			Z_INLINE Functor(const ObjectMemberFunction<R(P...)> &object_member_function)
+			Z_INLINE Functor(const ObjectMemberFunction<R(P...)> &object_member_function) Z_NOTHROW
 			: call(Callers::object_member_function()), destroy(NULL)
 				{
 				target.object_member_function.function = object_member_function.function;
@@ -210,9 +223,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				}
 
 
+#			if Z_HAS_TRAIT(TypeIsConvertible)
+
+				template <class O, class E = typename TypeIf<
+					Type<O>::is_structure_or_union &&
+					TypeIsConvertible<O, R(*)(P...)>::value,
+				O>::type>
+				Z_INLINE Functor(const O &object) Z_NOTHROW
+				: call(Callers::function()), destroy(NULL)
+					{target.function = (R(*)(P...))object;}
+
+#			endif
+
+
 #			if Z_HAS_CLASS(ObjectSelector)
 
-				Z_INLINE Functor(id object, SEL selector)
+				Z_INLINE Functor(id object, SEL selector) Z_NOTHROW
 				: call(Callers::object_selector()), destroy(NULL)
 					{
 					target.object_selector.selector = selector;
@@ -220,7 +246,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					}
 
 
-				Z_INLINE Functor(const ObjectSelector<R(P...)> &object_selector)
+				Z_INLINE Functor(const ObjectSelector<R(P...)> &object_selector) Z_NOTHROW
 				: call(Callers::object_selector()), destroy(NULL)
 					{
 					target.object_selector.selector = object_selector.selector;
@@ -230,10 +256,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			endif
 
 
-			Z_INLINE ~Functor() {if (destroy) destroy(this);}
+			Z_INLINE ~Functor()
+				{if (destroy) destroy(this);}
 
 
-			Z_CT(CPP11) operator Boolean() const {return call != NULL;}
+			Z_CT(CPP11) operator Boolean() const Z_NOTHROW
+				{return call != NULL;}
 
 
 			template <class RR = R>

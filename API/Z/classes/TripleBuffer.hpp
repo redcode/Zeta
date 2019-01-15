@@ -16,14 +16,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 
-	Z_INLINE TripleBuffer() Z_DEFAULTED({})
+	Z_INLINE TripleBuffer() Z_NOTHROW
+		Z_DEFAULTED({})
 
 
-	Z_INLINE TripleBuffer(void *buffers, USize buffer_size)
+	Z_INLINE TripleBuffer(void *buffers, USize buffer_size) Z_NOTHROW
 		{initialize(buffers, buffer_size);}
 
 
-	Z_INLINE void initialize(void *buffers, USize buffer_size)
+	Z_INLINE void initialize(void *buffers, USize buffer_size) Z_NOTHROW
 		{
 		this->buffers[0] = buffers;
 		this->buffers[1] = (UInt8 *)buffers + buffer_size;
@@ -32,11 +33,15 @@ namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 		}
 
 
-	Z_INLINE void *production_buffer () const {return buffers[(flags & 48) >> 4];}
-	Z_INLINE void *consumption_buffer() const {return buffers[flags & 3];}
+	Z_INLINE void *production_buffer() const Z_NOTHROW
+		{return buffers[(flags & 48) >> 4];}
 
 
-	Z_INLINE void *produce()
+	Z_INLINE void *consumption_buffer() const Z_NOTHROW
+		{return buffers[flags & 3];}
+
+
+	Z_INLINE void *produce() Z_NOTHROW
 		{
 		UInt8 flags, new_flags;
 
@@ -50,7 +55,7 @@ namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 		}
 
 
-	Z_INLINE void *consume()
+	Z_INLINE void *consume() Z_NOTHROW
 		{
 		UInt8 flags, new_flags;
 

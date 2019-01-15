@@ -25,9 +25,9 @@ namespace Zeta {template <class T> class InitializerList {
 	Z_INLINE InitializerList(const T *begin, USize size)
 	: _begin(begin), _size(size) {}
 
-	Z_INLINE USize	  size () const {return _size;}
-	Z_INLINE const T *begin() const {return _begin;}
-	Z_INLINE const T *end  () const {return _begin + _size;}
+	Z_INLINE USize	  size () const Z_NOTHROW {return _size;}
+	Z_INLINE const T *begin() const Z_NOTHROW {return _begin;}
+	Z_INLINE const T *end  () const Z_NOTHROW {return _begin + _size;}
 };}
 
 

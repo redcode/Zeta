@@ -67,18 +67,31 @@ namespace Zeta {struct Status {
 		Unreachable	   = Z_ERROR_UNREACHABLE
 	};};
 
-	ZStatus code;
+	SInt code;
 
-	Z_INLINE Status() Z_DEFAULTED({})
 
-	Z_CT(CPP11) Status(ZStatus code) : code(code) {}
+	Z_INLINE Status() Z_NOTHROW
+		Z_DEFAULTED({})
 
-	Z_CT(CPP11) operator ZStatus() const {return code;}
 
-	Z_CT(CPP11) Boolean operator ==(ZStatus status) const {return code == status;}
-	Z_CT(CPP11) Boolean operator !=(ZStatus status) const {return code != status;}
+	Z_CT(CPP11) Status(SInt code) Z_NOTHROW
+	: code(code) {}
 
-	Z_CT(CPP11) Boolean is_error() const {return code < 0;}
+
+	Z_CT(CPP11) operator SInt() const Z_NOTHROW
+		{return code;}
+
+
+	Z_CT(CPP11) Boolean operator ==(SInt status) const Z_NOTHROW
+		{return code == status;}
+
+
+	Z_CT(CPP11) Boolean operator !=(SInt status) const Z_NOTHROW
+		{return code != status;}
+
+
+	Z_CT(CPP11) Boolean is_error() const Z_NOTHROW
+		{return code < 0;}
 };}
 
 

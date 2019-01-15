@@ -21,7 +21,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <class R, class... P> struct ObjectMemberFunction<R(P...)> : MemberFunction<R(P...)> {
 			NaT *object;
 
-			Z_INLINE ObjectMemberFunction() Z_DEFAULTED({})
+
+			Z_INLINE ObjectMemberFunction() Z_NOTHROW
+				Z_DEFAULTED({})
 
 
 #			if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
@@ -31,13 +33,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					Type<M>::is_member_function_pointer &&
 					TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 				M>::type>
-				Z_INLINE ObjectMemberFunction(M function)
+				Z_INLINE ObjectMemberFunction(M function) Z_NOTHROW
 				: MemberFunction<R(P...)>(function) {}
 #			endif
 
 
-#			if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
-				Z_CT(CPP11) ObjectMemberFunction(NullPointer)
+#			ifdef Z_NULL_POINTER
+				Z_CT(CPP11) ObjectMemberFunction(NullPointer) Z_NOTHROW
 				: MemberFunction<R(P...)>(NULL), object(NULL) {};
 #			endif
 
@@ -49,7 +51,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer		       &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
-			Z_INLINE ObjectMemberFunction(O object, M function)
+			Z_INLINE ObjectMemberFunction(O object, M function) Z_NOTHROW
 			: MemberFunction<R(P...)>(function), object((NaT *)object) {}
 
 
@@ -58,17 +60,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
-			Z_INLINE ObjectMemberFunction(const O &object, M function)
+			Z_INLINE ObjectMemberFunction(const O &object, M function) Z_NOTHROW
 			: MemberFunction<R(P...)>(function), object((NaT *)&object) {}
 
 
 			template <class O, class E = typename TypeIf<Type<O>::is_structure_or_union, O>::type>
-			Z_INLINE operator O *() const {return (O *)object;}
+			Z_INLINE operator O *() const Z_NOTHROW
+				{return (O *)object;}
 
 
 			template <class O>
 			Z_INLINE typename TypeIf<Type<O>::is_structure_or_union, ObjectMemberFunction &>::type
-			operator =(O *rhs)
+			operator =(O *rhs) Z_NOTHROW
 				{
 				object = (NaT *)rhs;
 				return *this;
@@ -77,7 +80,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			template <class O>
 			Z_INLINE typename TypeIf<Type<O>::is_structure_or_union, ObjectMemberFunction &>::type
-			operator =(const O &rhs)
+			operator =(const O &rhs) Z_NOTHROW
 				{
 				object = (NaT *)&rhs;
 				return *this;
@@ -89,7 +92,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			ObjectMemberFunction &>::type
-			operator =(M rhs)
+			operator =(M rhs) Z_NOTHROW
 				{
 				this->function = (R (NaT::*)(P...))rhs;
 				return *this;
@@ -140,7 +143,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer		       &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			ObjectMemberFunction &>::type
-			set(O object, M function)
+			set(O object, M function) Z_NOTHROW
 				{
 				this->function = (R (NaT::*)(P...))function;
 				this->object   = (NaT *)&object;
@@ -154,7 +157,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			ObjectMemberFunction &>::type
-			set(const O &object, M function)
+			set(const O &object, M function) Z_NOTHROW
 				{
 				this->function = (R (NaT::*)(P...))function;
 				this->object   = (NaT *)&object;

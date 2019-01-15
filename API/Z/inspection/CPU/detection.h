@@ -5,6 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
+/* MARK: - x86-64 */
+
 #if	/*----------------------.						\
 	| Clang			|						\
 	| GCC			|						\
@@ -46,6 +48,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_M_X64	)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_64
+
+/* MARK: - x86-32 */
 
 #elif	/*-----------.								\
 	| Diab C/C++ |								\
@@ -169,6 +173,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_32
 
+/* MARK: - x86-16 */
+
 #elif	/*-------------.							\
 	| Digital Mars |							\
 	| Visual C++   |							\
@@ -182,6 +188,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_M_IX86)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_16
+
+/* MARK: - AArch64 */
 
 #elif	/*------.								\
 	| Clang |								\
@@ -201,6 +209,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_M_ARM64)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH64
+
+/* MARK: - AArch32 */
 
 #elif	/*------.								\
 	| Clang |								\
@@ -267,6 +277,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH32
 
+/* MARK: - 6502 */
+
 #elif	/*-----.								\
 	| cc65 |								\
 	'-----*/								\
@@ -289,6 +301,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_6502
 
+/* MARK: - Alpha */
+
 #elif	/*----------.								\
 	| DEC C (?) |								\
 	'----------*/								\
@@ -305,6 +319,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_M_ALPHA)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_ALPHA
+
+/* MARK: - Blackfin */
 
 #elif	/*------.								\
 	| Clang |								\
@@ -329,6 +345,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_BLACKFIN
 
+/* MARK: - Convex */
+
 #elif	/*----.									\
 	| GCC |									\
 	'----*/									\
@@ -336,12 +354,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_CONVEX
 
+/* MARK: - Epiphany */
+
 #elif	/*--.									\
 	| ? |									\
 	'--*/									\
 	defined(__epiphany__)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_EPIPHANY
+
+/* MARK: - Hexagon */
 
 #elif	/*------.								\
 	| Clang |								\
@@ -356,6 +378,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(qdsp6		)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_HEXAGON
+
+/* MARK: - Itanium */
 
 #elif	/*----.									\
 	| GCC |									\
@@ -399,12 +423,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_ITANIUM
 
+/* MARK: - Lanai */
+
 #elif	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__lanai__)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_LANAI
+
+/* MARK: -  */
 
 #elif	/*--------------.							\
 	| Stratus VOS C |							\
@@ -422,6 +450,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(M68000)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_M68K
+
+/* MARK: - M68K */
 
 #elif	/*------.								\
 	| Clang |								\
@@ -446,6 +476,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	  (defined(_MIPS_ISA_MIPS3 ) && _MIPS_ISA == _MIPS_ISA_MIPS3 )))
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MIPS64
+
+/* MARK: - MIPS */
 
 #elif	/*------------.								\
 	| CodeWarrior |								\
@@ -483,6 +515,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MIPS
 
+/* MARK: - MSP430 */
+
 #elif	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -490,6 +524,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(MSP430	  )
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MSP430
+
+/* MARK: - PA-RISC 2.0 */
 
 #elif	/*-----------------------.						\
 	| Stratus VOS Standard C |						\
@@ -503,6 +539,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_PA_RISC2_0)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_PA_RISC_2
+
+/* MARK: - PA-RISC */
 
 #elif	/*-----------------------.						\
 	| Stratus VOS Standard C |						\
@@ -529,6 +567,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_PA_RISC
 
+/* MARK: - PowerPC 64-bit */
+
 #elif	/*-------------.							\
 	| Clang	       |							\
 	| GCC	       |							\
@@ -551,6 +591,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_ARCH_PPC64)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_64BIT
+
+/* MARK: - PowerPC 32-bit */
 
 #elif	/*------.								\
 	| Clang |								\
@@ -614,6 +656,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_32BIT
 
+/* MARK: - RV64I */
+
 #elif	/*------.								\
 	| Clang |								\
 	'------*/								\
@@ -621,12 +665,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV64I
 
+/* MARK: - RV32I */
+
 #elif	/*------.								\
 	| Clang |								\
 	'------*/								\
 	defined(__riscv_xlen) && __riscv_xlen == 32
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV32I
+
+/* MARK: - SPARC V9 */
 
 #elif	/*------.								\
 	| Clang |								\
@@ -652,6 +700,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__sparcv9__)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SPARC_V9
+
+/* MARK: - SPARC */
 
 #elif	/*-----------.								\
 	| Clang	     |								\
@@ -685,6 +735,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SPARC
 
+/* MARK: - SuperH 5 */
+
 #elif	/*----.									\
 	| GCC |									\
 	'----*/									\
@@ -692,12 +744,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SUPERH_5
 
+/* MARK: - SuperH */
+
 #elif	/*----.									\
 	| GCC |									\
 	'----*/									\
 	defined(__sh__)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SUPERH
+
+/* MARK: - xCORE */
+
+#elif	/*------.								\
+	| Clang |								\
+	'------*/								\
+	defined(__XS1B__)
+
+#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_XCORE
+
+/* MARK: - z/Architecture */
 
 #elif	/*-------------------.							\
 	| Dignus Systems/C   |							\
@@ -718,12 +783,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_Z_ARCHITECTURE
 
+/* MARK: - ESA/390 */
+
 #elif	/*----.									\
 	| GCC |									\
 	'----*/									\
 	defined(__s390__)
 
 #	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_ESA_390
+
+/* MARK: - ESA/370 */
 
 #elif	/*-------------.							\
 	| IBM XL C/C++ |							\

@@ -24,28 +24,36 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			id object;
 
-			Z_INLINE ObjectSelector() Z_DEFAULTED({})
+
+			Z_INLINE ObjectSelector() Z_NOTHROW
+				Z_DEFAULTED({})
 
 
-			Z_INLINE ObjectSelector(id object, SEL selector)
+			Z_INLINE ObjectSelector(id object, SEL selector) Z_NOTHROW
 			: Selector<R(P...)>(selector), object(object) {}
 
 
-			Z_INLINE operator id() const {return object;}
+			Z_INLINE operator id() const Z_NOTHROW
+				{return object;}
 
-			Z_INLINE ObjectSelector &operator =(SEL rhs) {this->selector = rhs; return *this;}
-			Z_INLINE ObjectSelector &operator =(id  rhs) {object	     = rhs; return *this;}
+
+			Z_INLINE ObjectSelector &operator =(SEL rhs) Z_NOTHROW
+				{this->selector = rhs; return *this;}
+
+
+			Z_INLINE ObjectSelector &operator =(id rhs) Z_NOTHROW
+				{object = rhs; return *this;}
 
 
 			template <class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
-			operator ()(typename Type<P>::to_forwardable... arguments) const
+			operator ()(typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 				{((Call)objc_msgSend)(object, this->selector, arguments...);}
 
 
 			template <class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
-			operator ()(id object, typename Type<P>::to_forwardable... arguments) const
+			operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 				{((Call)objc_msgSend)(object, this->selector, arguments...);}
 
 
@@ -57,7 +65,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					!Type<RR>::is_real &&
 					!Type<RR>::is_structure_or_union,
 				RR>::type
-				operator ()(typename Type<P>::to_forwardable... arguments) const
+				operator ()(typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{return ((Call)objc_msgSend)(object, this->selector, arguments...);}
 
 
@@ -67,19 +75,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					!Type<RR>::is_real &&
 					!Type<RR>::is_structure_or_union,
 				RR>::type
-				operator ()(id object, typename Type<P>::to_forwardable... arguments) const
+				operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{return ((Call)objc_msgSend)(object, this->selector, arguments...);}
 
 
 				template <class RR = R>
 				Z_INLINE typename TypeIf<Type<RR>::is_real, RR>::type
-				operator ()(typename Type<P>::to_forwardable... arguments) const
+				operator ()(typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{return ((Call)objc_msgSend_fpret)(object, this->selector, arguments...);}
 
 
 				template <class RR = R>
 				Z_INLINE typename TypeIf<Type<RR>::is_real, RR>::type
-				operator ()(id object, typename Type<P>::to_forwardable... arguments) const
+				operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{return ((Call)objc_msgSend_fpret)(object, this->selector, arguments...);}
 
 #			else
@@ -89,7 +97,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					!Type<RR>::is_void &&
 					!Type<RR>::is_structure_or_union,
 				RR>::type
-				operator ()(typename Type<P>::to_forwardable... arguments) const
+				operator ()(typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{return ((Call)objc_msgSend)(object, this->selector, arguments...);}
 
 
@@ -98,7 +106,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					!Type<RR>::is_void &&
 					!Type<RR>::is_structure_or_union,
 				RR>::type
-				operator ()(id object, typename Type<P>::to_forwardable... arguments) const
+				operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{return ((Call)objc_msgSend)(object, this->selector, arguments...);}
 
 #			endif
@@ -106,19 +114,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			template <class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_structure_or_union, RR>::type
-			operator ()(typename Type<P>::to_forwardable... arguments) const
+			operator ()(typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 				{return ((Call)objc_msgSend_stret)(object, this->selector, arguments...);}
 
 
 			template <class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_structure_or_union, RR>::type
-			operator ()(id object, typename Type<P>::to_forwardable... arguments) const
+			operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 				{return ((Call)objc_msgSend_stret)(object, this->selector, arguments...);}
 
 
 			template <class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
-			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
+			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 				{((CallSuper)objc_msgSendSuper)((struct objc_super *)&object_super, this->selector, arguments...);}
 
 
@@ -127,17 +135,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				!Type<RR>::is_void &&
 				!Type<RR>::is_structure_or_union,
 			RR>::type
-			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
+			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 				{return ((CallSuper)objc_msgSendSuper)((struct objc_super *)&object_super, this->selector, arguments...);}
 
 
 			template <class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_structure_or_union, RR>::type
-			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const
+			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 				{return ((CallSuper)objc_msgSendSuper_stret)((struct objc_super *)&object_super, this->selector, arguments...);}
 
 
-			Z_INLINE ObjectSelector &set(id object, SEL selector)
+			Z_INLINE ObjectSelector &set(id object, SEL selector) Z_NOTHROW
 				{
 				this->selector = selector;
 				this->object   = object;
@@ -149,7 +157,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 				template <class RR = R>
 				Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
-				super(typename Type<P>::to_forwardable... arguments) const
+				super(typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
 					((CallSuper)objc_msgSendSuper)(&object_super, this->selector, arguments...);
@@ -158,7 +166,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 				template <class RR = R>
 				Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
-				super(id object, typename Type<P>::to_forwardable... arguments) const
+				super(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
 					((CallSuper)objc_msgSendSuper)(&object_super, this->selector, arguments...);
@@ -170,7 +178,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					!Type<RR>::is_void &&
 					!Type<RR>::is_structure_or_union,
 				RR>::type
-				super(typename Type<P>::to_forwardable... arguments) const
+				super(typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
 					return ((CallSuper)objc_msgSendSuper)(&object_super, this->selector, arguments...);
@@ -182,7 +190,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					!Type<RR>::is_void &&
 					!Type<RR>::is_structure_or_union,
 				RR>::type
-				super(id object, typename Type<P>::to_forwardable... arguments) const
+				super(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
 					return ((CallSuper)objc_msgSendSuper)(&object_super, this->selector, arguments...);
@@ -191,7 +199,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 				template <class RR = R>
 				Z_INLINE typename TypeIf<Type<RR>::is_structure_or_union, RR>::type
-				super(typename Type<P>::to_forwardable... arguments) const
+				super(typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
 					return ((CallSuper)objc_msgSendSuper_stret)(&object_super, this->selector, arguments...);
@@ -200,7 +208,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 				template <class RR = R>
 				Z_INLINE typename TypeIf<Type<RR>::is_structure_or_union, RR>::type
-				super(id object, typename Type<P>::to_forwardable... arguments) const
+				super(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
 					return ((CallSuper)objc_msgSendSuper_stret)(&object_super, this->selector, arguments...);

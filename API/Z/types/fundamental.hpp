@@ -105,7 +105,7 @@ namespace Zeta {
 #	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
 		typedef wchar_t WChar;
 #	endif
-
+/*
 #	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR16)
 		typedef char16_t Char16;
 #	endif
@@ -113,11 +113,12 @@ namespace Zeta {
 #	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR32)
 		typedef char32_t Char32;
 #	endif
-
+*/
 #	if	Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && \
 		Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
 
 		typedef decltype(nullptr) NullPointer;
+#		define Z_NULL_POINTER	  Z_SAME
 #	endif
 
 	/* MARK: - Object size integral types */

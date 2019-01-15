@@ -14,12 +14,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {struct OpaqueMemberFunctionPointer {
 	void (NaT::* function)();
 
-	template <class M>
-	Z_INLINE OpaqueMemberFunctionPointer(M function)
-	: function((void (NaT::*)())function) {}
 
 	template <class M>
-	Z_INLINE operator M() const {return (M)function;}
+	Z_INLINE OpaqueMemberFunctionPointer(M function) Z_NOTHROW
+	: function((void (NaT::*)())function) {}
+
+
+	template <class M>
+	Z_INLINE operator M() const Z_NOTHROW
+		{return (M)function;}
 };}
 
 

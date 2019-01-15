@@ -13,33 +13,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {
 
 
-	// MARK: - Functions for any type
-
-
-	template <class T>
-	static Z_INLINE void swap(void *a, void *b)
-		{
-		T t = *(T *)a;
-		*(T *)a = *(T *)b;
-		*(T *)b = t;
-		}
-
-
 	// MARK: - Functions for comparable types
 
 
 	template <class T>
-	static Z_CT(CPP11) T maximum(T a, T b)
+	static Z_CT(CPP11) T maximum(T a, T b) Z_NOTHROW
 		{return a > b ? a : b;}
 
 
 	template <class T>
-	static Z_CT(CPP11) T minimum(T a, T b)
+	static Z_CT(CPP11) T minimum(T a, T b) Z_NOTHROW
 		{return a < b ? a : b;}
 
 
 	template <class T>
-	static Z_CT(CPP11) T clamp(T value, T minimum, T maximum)
+	static Z_CT(CPP11) T clamp(T value, T minimum, T maximum) Z_NOTHROW
 		{return Zeta::minimum(Zeta::maximum(value, minimum), maximum);}
 
 
@@ -47,12 +35,12 @@ namespace Zeta {
 
 
 	template <class T>
-	static Z_CT(CPP11) T absolute(T value)
+	static Z_CT(CPP11) T absolute(T value) Z_NOTHROW
 		{return value < T(0) ? -value : value;}
 
 
 	template <class T>
-	static Z_CT(CPP11) T sign(T value)
+	static Z_CT(CPP11) T sign(T value) Z_NOTHROW
 		{return value >= T(0) ? T(1) : -T(1);}
 
 
@@ -60,27 +48,27 @@ namespace Zeta {
 
 
 	template <class T>
-	static Z_CT(CPP11) Boolean are_almost_equal(T a, T b)
+	static Z_CT(CPP11) Boolean are_almost_equal(T a, T b) Z_NOTHROW
 		{return absolute(a - b) <= Type<T>::epsilon();}
 
 
 	template <class T>
-	static Z_CT(CPP11) T clamp_01(T value)
+	static Z_CT(CPP11) T clamp_01(T value) Z_NOTHROW
 		{return minimum<T>(maximum<T>(value, T(0.0)), T(1.0));}
 
 
 	template <class T>
-	static Z_CT(CPP11) T inverse_lerp(T a, T b, T t)
+	static Z_CT(CPP11) T inverse_lerp(T a, T b, T t) Z_NOTHROW
 		{return (t - a) / (b - a);}
 
 
 	template <class T>
-	static Z_CT(CPP11) Boolean is_almost_zero(T value)
+	static Z_CT(CPP11) Boolean is_almost_zero(T value) Z_NOTHROW
 		{return absolute<T>(value) <= Type<T>::epsilon();}
 
 
 	template <class T>
-	static Z_CT(CPP11) Boolean is_finite(T value)
+	static Z_CT(CPP11) Boolean is_finite(T value) Z_NOTHROW
 		{
 		return	value ==  value		      &&
 			value !=  Type<T>::infinity() &&
@@ -89,24 +77,24 @@ namespace Zeta {
 
 
 	template <class T>
-	static Z_CT(CPP11) Boolean is_infinity(T value)
+	static Z_CT(CPP11) Boolean is_infinity(T value) Z_NOTHROW
 		{
 		return	value ==  Type<T>::infinity() ||
 			value == -Type<T>::infinity();}
 
 
 	template <class T>
-	static Z_CT(CPP11) Boolean is_nan(T value)
+	static Z_CT(CPP11) Boolean is_nan(T value) Z_NOTHROW
 		{return !(value == value);}
 
 
 	template <class T>
-	static Z_CT(CPP11) T lerp(T a, T b, T t)
+	static Z_CT(CPP11) T lerp(T a, T b, T t) Z_NOTHROW
 		{return a + t * (b - a);}
 
 
 	template <class T>
-	static Z_CT(CPP11) T sign_or_zero(T value)
+	static Z_CT(CPP11) T sign_or_zero(T value) Z_NOTHROW
 		{
 		return absolute<T>(value) <= Type<T>::epsilon()
 			? T(0.0)
@@ -115,7 +103,7 @@ namespace Zeta {
 
 
 	template <class T>
-	static Z_CT(CPP14) T smootherstep(T a, T b, T t)
+	static Z_CT(CPP14) T smootherstep(T a, T b, T t) Z_NOTHROW
 		{
 		if (t <= a) return T(0.0);
 		if (t >= b) return T(1.0);
@@ -125,7 +113,7 @@ namespace Zeta {
 
 
 	template <class T>
-	static Z_CT(CPP14) T smoothstep(T a, T b, T t)
+	static Z_CT(CPP14) T smoothstep(T a, T b, T t) Z_NOTHROW
 		{
 		if (t <= a) return T(0.0);
 		if (t >= b) return T(1.0);

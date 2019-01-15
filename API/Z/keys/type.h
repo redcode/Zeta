@@ -11,14 +11,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_FUNDAMENTAL_POINTER	     1
 #define Z_FUNDAMENTAL_CHAR	     2 /* char			  */
 #define Z_FUNDAMENTAL_UCHAR	     3 /* unsigned char		  */
-#define Z_FUNDAMENTAL_USHORT	     4 /* unsigned short int	  */
-#define Z_FUNDAMENTAL_UINT	     5 /* unsigned int		  */
-#define Z_FUNDAMENTAL_ULONG	     6 /* unsigned long int	  */
-#define Z_FUNDAMENTAL_ULLONG	     7 /* unsigned long long int  */
-#define Z_FUNDAMENTAL_SCHAR	     8 /* signed char		  */
-#define Z_FUNDAMENTAL_SSHORT	     9 /* signed short int	  */
-#define Z_FUNDAMENTAL_SINT	    10 /* signed int		  */
-#define Z_FUNDAMENTAL_SLONG	    11 /* signed long int	  */
+#define Z_FUNDAMENTAL_SCHAR	     4 /* signed char		  */
+#define Z_FUNDAMENTAL_USHORT	     5 /* unsigned short int	  */
+#define Z_FUNDAMENTAL_SSHORT	     6 /* signed short int	  */
+#define Z_FUNDAMENTAL_UINT	     7 /* unsigned int		  */
+#define Z_FUNDAMENTAL_SINT	     8 /* signed int		  */
+#define Z_FUNDAMENTAL_ULONG	     9 /* unsigned long int	  */
+#define Z_FUNDAMENTAL_SLONG	    10 /* signed long int	  */
+#define Z_FUNDAMENTAL_ULLONG	    11 /* unsigned long long int  */
 #define Z_FUNDAMENTAL_SLLONG	    12 /* signed long long int	  */
 #define Z_FUNDAMENTAL_FLOAT	    13 /* float			  */
 #define Z_FUNDAMENTAL_DOUBLE	    14 /* double		  */
