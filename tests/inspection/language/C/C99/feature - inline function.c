@@ -1,4 +1,4 @@
-static inline int increment(value)
+static inline int increment(int value)
 	{return value + 1;}
 
 

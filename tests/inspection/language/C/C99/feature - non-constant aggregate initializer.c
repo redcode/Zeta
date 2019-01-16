@@ -1,5 +1,7 @@
 typedef struct {int a; int b;} AB;
 
+int increment(int value);
+
 
 int increment(int value)
 	{return value + 1;}
