@@ -44,6 +44,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define __has_extension __has_feature
 #endif
 
+/* MARK: - Private helpers */
+
+#ifdef Z_PERMISSIVE
+#	define Z_HAS_C_FEATURE(	 which) (__has_feature(c_##which  ) || __has_extension(c_##which  ))
+#	define Z_HAS_CPP_FEATURE(which) (__has_feature(cxx_##which) || __has_extension(cxx_##which))
+#else
+#	define Z_HAS_C_FEATURE(	 which) __has_feature(c_##which  )
+#	define Z_HAS_CPP_FEATURE(which) __has_feature(cxx_##which)
+#endif
+
 /* MARK: - CPU */
 
 #if	defined(__amd64	  ) /* v2.6 */ || \
@@ -80,7 +90,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__arm	  ) /* v2.6 */ || \
 	defined(__arm__	  ) /* v2.6 */ || \
 	defined(__thumb__ ) /* v2.7 */ || \
-	defined(_ARM_	  ) || \
+	defined(_ARM_	  ) /* v3.8 */ || \
 	defined(_M_ARM	  ) /* v3.5 */ || \
 	defined(_M_ARM_NT ) /* v3.5 */ || \
 	defined(_M_ARMT	  ) /* v3.5 */ || \
@@ -147,12 +157,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_32BIT
 
-#elif defined(__riscv_xlen)
+#elif defined(__riscv_xlen) /* v7.0 */
 
-#	if __riscv_xlen == 64
+#	if __riscv_xlen == 64 /* v7.0 */
 #		define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV64I
 
-#	elif __riscv_xlen == 32
+#	elif __riscv_xlen == 32 /* v7.0 */
 #		define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV32I
 #	endif
 
@@ -167,7 +177,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif	defined(__sparc	   ) /* v2.6 */ || \
 	defined(__sparc__  ) /* v2.6 */ || \
 	defined(__sparcv8  ) /* v2.6 */ || \
-	defined(__sparcv8__) || \
+	defined(__sparcv8__) /* v3.8 */ || \
 	defined(sparc	   ) /* v2.6 */
 
 #	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SPARC
@@ -262,10 +272,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__) /* v2.6 */
 #		define Z_COMPILER_OS Z_OS_IOS
 
-#	elif defined(__ENVIRONMENT_TV_OS_VERSION_MIN_REQUIRED__)
+#	elif defined(__ENVIRONMENT_TV_OS_VERSION_MIN_REQUIRED__) /* v3.8 */
 #		define Z_COMPILER_OS Z_OS_TVOS
 
-#	elif defined(__ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__)
+#	elif defined(__ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__) /* v3.8 */
 #		define Z_COMPILER_OS Z_OS_WATCHOS
 #	endif
 
@@ -292,7 +302,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif	defined(__CYGWIN__  ) /* v2.7 */ || \
 	defined(__CYGWIN32__) /* v2.7 */ || \
-	defined(__CYGWIN64__)
+	defined(__CYGWIN64__) /* v3.8 */
 
 #	define Z_COMPILER_OS Z_OS_CYGWIN
 
@@ -316,7 +326,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__OpenBSD__) /* v2.6 */
 #	define Z_COMPILER_OS Z_OS_OPEN_BSD
 
-#elif defined(__ORBIS__)
+#elif defined(__ORBIS__) /* v3.9 */
 #	define Z_COMPILER_OS	   Z_OS_ORBIS_OS
 #	define Z_COMPILER_PLATFORM Z_PLATFORM_PS4
 
@@ -386,15 +396,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C99 support */
 
-#define Z_COMPILER_C_HAS_INLINE_FUNCION		      TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_MAGIC_CONSTANT_FUNCTION_NAME TRUE /* v2.6 */
-#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT      TRUE /* v2.6 */
-
-#if defined(__UINTMAX_MAX__) && 0U - 1U == __UINTMAX_MAX__
-#	define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGRAL TRUE
-#endif
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+#	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT TRUE /* v2.6 */
+#endif
+
+#if	defined(Z_PERMISSIVE) || \
+	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
+
 #	define Z_COMPILER_C_HAS_COMPOUND_LITERAL       TRUE /* v2.6 */
 #	define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER TRUE
 #	define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER  TRUE /* v2.6 */
@@ -404,26 +414,44 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 #endif
 
-#if defined(__cplusplus) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
+#if	defined(Z_PERMISSIVE) || \
+	defined(__cplusplus)  || \
+	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
+
 #	define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT		   TRUE /* v2.6 */
 #	define Z_COMPILER_C_HAS_MIXED_DECLARATIONS_AND_CODE	   TRUE /* v2.6 */
 #	define Z_COMPILER_C_HAS_NON_CONSTANT_AGGREGATE_INITIALIZER TRUE
-#	define Z_COMPILER_C_HAS_SPECIFIER_INLINE		   TRUE /* v2.6 */
 #endif
 
-#if	(defined(__cplusplus) && __cplusplus >= 201103L) || \
+#if	defined(__cplusplus) || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
 
+#	define Z_COMPILER_C_HAS_INLINE_FUNCION	 TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_SPECIFIER_INLINE TRUE /* v2.6 */
+#endif
+
+#if	(defined(__cplusplus	 ) && __cplusplus      >= 201103L	 ) || \
+	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L	 ) || \
+	(defined(__UINTMAX_MAX__ ) && 0U - 1U	       == __UINTMAX_MAX__)
+
 #	define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGRAL TRUE
-#	define Z_COMPILER_C_HAS_VARIADIC_MACRO					 TRUE /* v2.6 */
-#	define Z_COMPILER_C_HAS_TYPE_LLONG					 TRUE /* v2.6 */
+#endif
+
+#if	defined(Z_PERMISSIVE)					   || \
+	(defined(__cplusplus	 ) && __cplusplus      >= 201103L) || \
+	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
+
+#	define Z_COMPILER_C_HAS_VARIADIC_MACRO TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_TYPE_LLONG     TRUE /* v2.6 */
 #endif
 
 /*-----------------------------------------------------------.
 | It seems that Clang always recognizes _Bool, except in C++ |
 | (until C++ supports C99, of course).			     |
 '-----------------------------------------------------------*/
-#if (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) || !defined(__cplusplus)
+#if	!defined(__cplusplus) || \
+	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
+
 #	define Z_COMPILER_C_HAS_TYPE_BOOLEAN TRUE /* v2.6 */
 #endif
 
@@ -1188,8 +1216,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TYPE_SINT128 __int128_t  /* v2.6 */
 #endif
 
-#ifdef __FLOAT128__
-#	define Z_COMPILER_TYPE_FLOAT128 __float128
+#ifdef __FLOAT128__ /* v3.9 */
+#	define Z_COMPILER_TYPE_FLOAT128 __float128 /* v3.9 */
 #endif
 
 #define Z_COMPILER_TYPE_VAL __builtin_va_list /* v2.6 */
@@ -1667,15 +1695,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in traits */
 
-/*__is_destructible (not correctly implemented? not available?) */ /* v3.5 (partially implemented) */
+/*__is_destructible (not correctly implemented? not available?) */ /* v3.5 (partially implemented), v3.8 (fully implemented) */
 /*__is_sealed*/ /* v3.4 */
-/*__is_trivially_destructible*/
-/*__is_nothrow_destructible (not correctly implemented? not available?) */ /* v3.5 (partially implemented) */
+/*__is_trivially_destructible*/ /* v5.0 */
+/*__is_nothrow_destructible (not correctly implemented? not available?) */ /* v3.5 (partially implemented), v3.8 (fully implemented) */
 /*__has_nothrow_move_assign*/ /* v3.3 */
 /*__has_trivial_move_assign*/ /* v3.3 */
 /*__has_trivial_move_constructor*/ /* v3.3 */
-/*__has_unique_object_representations*/
-/*__reference_binds_to_temporary*/
+/*__has_unique_object_representations*/ /* v6.0 */
+/*__reference_binds_to_temporary*/ /* 7.0 */
 /*__is_lvalue_expr (operator? specifier?) */ /* v3.0 */
 /*__is_rvalue_expr (operator? specifier?) */ /* v3.0 */
 /*__is_arithmetic*/ /* v3.0 */
@@ -1704,18 +1732,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*__is_convertible (?) Embarcadero */ /* v3.0 */
 /*__array_rank*/ /* v3.0 */
 /*__array_extent*/ /* v3.0 */
-/*__builtin_omp_required_simd_align*/
+/*__builtin_omp_required_simd_align*/ /* v3.7 */
 
 
 #ifdef __cplusplus
-#	if Z_COMPILER_VERSION >= Z_VERSION(0, 0, 0)
-#		define Z_COMPILER_TRAIT_TYPE_IS_AGGREGATE  __is_aggregate
-#		define Z_COMPILER_TRAIT_TYPE_IS_ASSIGNABLE __is_assignable
-#	endif
 
 #	if Z_COMPILER_VERSION >= Z_VERSION(3, 5, 0)
 #		define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_ASSIGNABLE    __is_nothrow_assignable	 /* v3.5 */
 #		define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_CONSTRUCTIBLE __is_nothrow_constructible /* v3.5 */
+
+#		if Z_COMPILER_VERSION >= Z_VERSION(3, 9, 0)
+#			define Z_COMPILER_TRAIT_TYPE_IS_ASSIGNABLE __is_assignable /* v3.9 */
+
+#			if Z_COMPILER_VERSION >= Z_VERSION(5, 0, 0)
+#				define Z_COMPILER_TRAIT_TYPE_IS_AGGREGATE __is_aggregate /* v5.0 */
+#			endif
+#		endif
 #	endif
 #endif
 
@@ -1830,10 +1862,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_UNDERLYING_TYPE __underlying_type /* v3.0 */
 #endif
 
-#if	defined(__LONG_DOUBLE_128__) || /* v2.6 */ \
-	defined(__LONGDOUBLE128	   )
+#if	defined(__LONG_DOUBLE_128__) /* v2.6 */ || \
+	defined(__LONGDOUBLE128	   ) /* v5.0 */
 
 #	define Z_COMPILER_CONSTANT_LDOUBLE_PRECISION_BITS 128 /* TODO */
 #endif
+
+/* MARK: - Private helpers clean-up */
+
+#undef Z_HAS_C_FEATURE
+#undef Z_HAS_CPP_FEATURE
 
 #endif /* _Z_inspection_compiler_modules_Clang_H_ */
