@@ -413,9 +413,11 @@ typedef Z_DATA_MODEL_TYPE(SINT32)  zsint32;
 /* MARK: - Standard numeric types */
 
 #if ('\0' - 1) > 0
-#	define Z_CHAR_IS_SIGNED FALSE
+#	define Z_CHAR_IS_UNSIGNED TRUE
+#	define Z_CHAR_IS_SIGNED	  FALSE
 #else
-#	define Z_CHAR_IS_SIGNED TRUE
+#	define Z_CHAR_IS_UNSIGNED FALSE
+#	define Z_CHAR_IS_SIGNED	  TRUE
 #endif
 
 typedef char			   zchar;
