@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_functions_mathematics_geometry_euclidean_ZSphere_H_
-#define _Z_functions_mathematics_geometry_euclidean_ZSphere_H_
+#ifndef Z_functions_mathematics_geometry_euclidean_ZSphere_H_
+#define Z_functions_mathematics_geometry_euclidean_ZSphere_H_
 
 #include <Z/functions/mathematics/geometry/euclidean/constructors.h>
 #include <Z/functions/base/Z3D.h>
@@ -148,4 +148,4 @@ ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 #endif
 
 
-#endif /* _Z_functions_mathematics_geometry_euclidean_ZSphere_H_ */
+#endif /* Z_functions_mathematics_geometry_euclidean_ZSphere_H_ */

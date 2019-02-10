@@ -6,8 +6,8 @@ Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Copyright (C) 2018 Sofía Ortega Sosa.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_types_fundamental_HPP_
-#define _Z_types_fundamental_HPP_
+#ifndef Z_types_fundamental_HPP_
+#define Z_types_fundamental_HPP_
 
 #include <Z/types/fundamental.h>
 #include <Z/macros/language.hpp>
@@ -92,9 +92,9 @@ namespace Zeta {
 		typedef zldouble LDouble;
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+#	if Z_DIALECT_HAS_TYPE(CPP, BOOL)
 		typedef bool Boolean;
-#	elif Z_LANGUAGE_HAS_TYPE(C, BOOLEAN)
+#	elif Z_DIALECT_HAS_TYPE(C, BOOL)
 		typedef _Bool Boolean;
 #	else
 		typedef zboolean Boolean;
@@ -102,20 +102,20 @@ namespace Zeta {
 
 	/* MARK: - C++ specific fundamental types */
 
-#	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
+#	if Z_DIALECT_HAS_TYPE(CPP, WCHAR_T)
 		typedef wchar_t WChar;
 #	endif
-/*
-#	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR16)
+
+#	if Z_DIALECT_HAS_TYPE(CPP, CHAR16_T)
 		typedef char16_t Char16;
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR32)
+#	if Z_DIALECT_HAS_TYPE(CPP, CHAR32_T)
 		typedef char32_t Char32;
 #	endif
-*/
-#	if	Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) && \
-		Z_LANGUAGE_HAS_LITERAL(CPP, NULL_POINTER)
+
+#	if	Z_DIALECT_HAS_SPECIFIER(CPP, DECLTYPE) && \
+		Z_DIALECT_HAS_LITERAL  (CPP, NULLPTR )
 
 		typedef decltype(nullptr) NullPointer;
 #		define Z_NULL_POINTER	  Z_SAME
@@ -153,4 +153,4 @@ namespace Zeta {
 	/* MARK: - Not a type */
 };
 
-#endif // _Z_types_fundamental_HPP_
+#endif // Z_types_fundamental_HPP_

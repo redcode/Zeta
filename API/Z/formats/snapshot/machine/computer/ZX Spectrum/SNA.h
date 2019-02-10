@@ -19,8 +19,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 | Reference: <http://www.worldofspectrum.org/infoseekid.cgi?id=1000266>	 |
 '-----------------------------------------------------------------------*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H_
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H_
 
 #include <Z/types/bitwise.h>
 
@@ -54,7 +54,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #define Z_SNA_V48K_PC_VALUE 0x72
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	i;
 	Z16Bit	hl_, de_, bc_, af_,
 	Z16Bit	hl,  de,  bc;
@@ -73,7 +73,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint8	im;
 	zuint8	border_color;
 	zuint8	ram[49152];
-} Z_DEFINE_STRICT_STRUCTURE_END (ZSNAv48K);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZSNAv48K);
 
 /* v128K
 .-----------------------------------------------------------------------------.
@@ -97,7 +97,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 | banks 0, 1, 3, 4, 6 and 7. --						      |
 '----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	i;
 	Z16Bit	hl_, de_, bc_, af_,
 	Z16Bit	hl,  de,  bc;
@@ -122,6 +122,6 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint8	port_7ffd_data;
 	zuint8	tr_dos_rom_paged; /* boolean */
 	zuint8	remaining_ram_banks[16384 * 6];
-} Z_DEFINE_STRICT_STRUCTURE_END (ZSNAv128K);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZSNAv128K);
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H_ */

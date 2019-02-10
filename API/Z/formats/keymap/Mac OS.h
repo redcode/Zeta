@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_formats_keymap_Mac_OS_H_
-#define _Z_formats_keymap_Mac_OS_H_
+#ifndef Z_formats_keymap_Mac_OS_H_
+#define Z_formats_keymap_Mac_OS_H_
 
 #define Z_MAC_OS_KEY_CODE_ANSI_A			  0
 #define Z_MAC_OS_KEY_CODE_ANSI_S			  1
@@ -281,4 +281,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_KEY_CODE_UP,				  /* 126 - Z_MAC_OS_KEY_CODE_UP				   */ \
 	Z_KEY_CODE_INVALID			  /* 127						   */
 
-#endif /* _Z_formats_keymap_Mac_OS_H_ */
+#endif /* Z_formats_keymap_Mac_OS_H_ */

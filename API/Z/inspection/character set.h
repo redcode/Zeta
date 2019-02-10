@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_character_set_H_
-#define _Z_inspection_character_set_H_
+#ifndef Z_inspection_character_set_H_
+#define Z_inspection_character_set_H_
 
 #if	('0' < '9')						    \
 	&& ('0' + 1 == '1') && ('1' + 1 == '2') && ('2' + 1 == '3') \
@@ -79,4 +79,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CHARACTER_SET_IS_ASCII FALSE
 #endif
 
-#endif /* _Z_inspection_character_set_H_ */
+#endif /* Z_inspection_character_set_H_ */

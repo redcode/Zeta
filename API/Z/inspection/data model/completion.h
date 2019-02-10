@@ -5,6 +5,9 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
+#ifndef Z_inspection_data_model_completion_H_
+#define Z_inspection_data_model_completion_H_
+
 #ifdef Z_DATA_MODEL_TYPE_UINT8
 #	define Z_DATA_MODEL_HAS_TYPE_UINT8 TRUE
 #else
@@ -125,4 +128,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_HAS_LITERAL_SINT128 FALSE
 #endif
 
-/* inspection/data model/completion.h EOF */
+#endif /* Z_inspection_data_model_completion_H_ */

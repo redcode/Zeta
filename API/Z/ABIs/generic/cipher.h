@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_ABIs_generic_cipher_H_
-#define _Z_ABIs_generic_cipher_H_
+#ifndef Z_ABIs_generic_cipher_H_
+#define Z_ABIs_generic_cipher_H_
 
 #include <Z/types/fundamental.h>
 
@@ -44,4 +44,4 @@ typedef struct {
 
 #define Z_CIPHER_FEATURE_SEQUENTIAL 1
 
-#endif /* _Z_ABIs_generic_cipher_H_ */
+#endif /* Z_ABIs_generic_cipher_H_ */

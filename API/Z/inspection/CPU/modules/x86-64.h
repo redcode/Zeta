@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_CPU_modules_x86_64_H_
-#define _Z_inspection_CPU_modules_x86_64_H_
+#ifndef Z_inspection_CPU_modules_x86_64_H_
+#define Z_inspection_CPU_modules_x86_64_H_
 
 #define Z_APPEND_CPU_ARCHITECTURE(to)	       to##X86_64
 #define Z_APPEND_CPUArchitecture( to)	       to##X8664
@@ -305,4 +305,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPU_HAS_ISA_X86_64 FALSE
 #endif*/
 
-#endif /* _Z_inspection_CPU_modules_x86_64_H_ */
+#endif /* Z_inspection_CPU_modules_x86_64_H_ */

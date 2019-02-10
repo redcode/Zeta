@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_macros_type_HPP_
-#define _Z_macros_type_HPP_
+#ifndef Z_macros_type_HPP_
+#define Z_macros_type_HPP_
 
 #include <Z/macros/type.h>
 #include <Z/traits/Type.hpp>
@@ -73,4 +73,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		Z_ENUMERATE_FIXED_REAL_TYPES_Suffixes(Name##Float, void)  \
 	>::type
 
-#endif // _Z_macros_type_HPP_
+#endif // Z_macros_type_HPP_

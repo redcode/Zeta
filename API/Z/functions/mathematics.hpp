@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_functions_value_HPP_
-#define _Z_functions_value_HPP_
+#ifndef Z_functions_value_HPP_
+#define Z_functions_value_HPP_
 
 #include <Z/traits/Type.hpp>
 
@@ -124,4 +124,4 @@ namespace Zeta {
 
 }
 
-#endif // _Z_functions_value_HPP_
+#endif // Z_functions_value_HPP_

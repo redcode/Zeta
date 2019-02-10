@@ -5,12 +5,12 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_Tuple_HPP_
-#define _Z_classes_Tuple_HPP_
+#ifndef Z_classes_Tuple_HPP_
+#define Z_classes_Tuple_HPP_
 
 #include <Z/inspection/language.h>
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 
 #	include <Z/traits/Type.hpp>
 
@@ -78,7 +78,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 
 
-#		if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
+#		if Z_DIALECT_HAS(CPP, INHERITING_CONSTRUCTORS)
 			using Super::Super;
 
 #		else
@@ -115,4 +115,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_CLASS_Tuple FALSE
 #endif
 
-#endif // _Z_classes_Tuple_HPP_
+#endif // Z_classes_Tuple_HPP_

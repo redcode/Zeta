@@ -5,20 +5,20 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_NaT_HPP_
-#define _Z_classes_NaT_HPP_
+#ifndef Z_classes_NaT_HPP_
+#define Z_classes_NaT_HPP_
 
 #include <Z/inspection/language.h>
 
 
 namespace Zeta {struct NaT {
-#	if Z_LANGUAGE_HAS(CPP, DELETED_FUNCTION)
+#	if Z_DIALECT_HAS(CPP, DELETED_FUNCTION)
 		NaT()			     = delete;
 		NaT(const NaT &)	     = delete;
 		~NaT()			     = delete;
 		NaT &operator =(const NaT &) = delete;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 			NaT(NaT &&)	       = delete;
 			NaT &operator =(NaT &) = delete;
 #		endif
@@ -27,4 +27,4 @@ namespace Zeta {struct NaT {
 }
 
 
-#endif // _Z_classes_NaT_HPP_
+#endif // Z_classes_NaT_HPP_

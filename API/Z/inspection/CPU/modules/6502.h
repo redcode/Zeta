@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_CPU_modules_6502_H_
-#define _Z_inspection_CPU_modules_6502_H_
+#ifndef Z_inspection_CPU_modules_6502_H_
+#define Z_inspection_CPU_modules_6502_H_
 
 #define Z_APPEND_CPU_ARCHITECTURE(to)	       to##6502
 #define Z_APPEND_CPUArchitecture( to)	       to##6502
@@ -20,4 +20,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPU_BITS_TOP_INTEGRAL	  8
 #define Z_CPU_BITS_ADDRESSING	  16
 
-#endif /* _Z_inspection_CPU_modules_6502_H_ */
+#endif /* Z_inspection_CPU_modules_6502_H_ */

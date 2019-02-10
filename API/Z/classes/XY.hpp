@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_XY_HPP_
-#define _Z_classes_XY_HPP_
+#ifndef Z_classes_XY_HPP_
+#define Z_classes_XY_HPP_
 
 #include <Z/macros/type.hpp>
 #include <Z/functions/mathematics.hpp>
@@ -17,7 +17,7 @@ Z_CT(CPP11) XY(const Prefix##Point &point) : x(point.x),    y(point.y)     {} \
 Z_CT(CPP11) XY(const Prefix##Size  &size ) : x(size.width), y(size.height) {}
 
 
-#if Z_LANGUAGE_HAS(CPP, COPY_LIST_INITIALIZATION)
+#if Z_DIALECT_HAS(CPP, COPY_LIST_INITIALIZATION)
 
 #	define Z_IMPLEMENTATION_APPLE_OPERATORS(Prefix)				      \
 	Z_CT(CPP11) operator Prefix##Point() const {return {CGFloat(x), CGFloat(y)};} \
@@ -378,8 +378,8 @@ namespace Zeta {
 #undef Z_IMPLEMENTATION_COMMON
 #undef Z_IMPLEMENTATION_SIGNED
 
-#ifndef _Z_classes_XYZ_HPP_
+#ifndef Z_classes_XYZ_HPP_
 #	include <Z/classes/XYZ.hpp>
 #endif
 
-#endif // _Z_classes_XY_HPP_
+#endif // Z_classes_XY_HPP_

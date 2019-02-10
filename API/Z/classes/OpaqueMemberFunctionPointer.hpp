@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_OpaqueMemberFunctionPointer_HPP_
-#define _Z_classes_OpaqueMemberFunctionPointer_HPP_
+#ifndef Z_classes_OpaqueMemberFunctionPointer_HPP_
+#define Z_classes_OpaqueMemberFunctionPointer_HPP_
 
 #include <Z/types/fundamental.hpp>
 
@@ -26,4 +26,4 @@ namespace Zeta {struct OpaqueMemberFunctionPointer {
 };}
 
 
-#endif // _Z_classes_OpaqueMemberFunctionPointer_HPP_
+#endif // Z_classes_OpaqueMemberFunctionPointer_HPP_

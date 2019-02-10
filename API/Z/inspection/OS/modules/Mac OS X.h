@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_modules_OS_Mac_OS_X_H_
-#define _Z_inspection_modules_OS_Mac_OS_X_H_
+#ifndef Z_inspection_modules_OS_Mac_OS_X_H_
+#define Z_inspection_modules_OS_Mac_OS_X_H_
 
 #define Z_OS_STRING Z_OS_STRING_MAC_OS_X
 
@@ -20,4 +20,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_PATH_SLASH_CHARACTER '/'
 #define Z_OS_PATH_SLASH_STRING	  "/"
 
-#endif /* _Z_inspection_modules_OS_Mac_OS_X_H_ */
+#endif /* Z_inspection_modules_OS_Mac_OS_X_H_ */

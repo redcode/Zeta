@@ -5,19 +5,18 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_types_bitwise_H_
-#define _Z_types_bitwise_H_
+#ifndef Z_types_bitwise_H_
+#define Z_types_bitwise_H_
 
 #include <Z/types/fundamental.h>
-#include <Z/macros/structure.h>
-#include <Z/macros/members.h>
+#include <Z/macros/aggregate.h>
 
-Z_DEFINE_STRICT_UNION_BEGIN {
+Z_DEFINE_PACKED_UNION_BEGIN {
 	zuint8 value_uint8;
 	zsint8 value_sint8;
-} Z_DEFINE_STRICT_UNION_END (Z8Bit);
+} Z_DEFINE_PACKED_UNION_END (Z8Bit);
 
-Z_DEFINE_STRICT_UNION_BEGIN {
+Z_DEFINE_PACKED_UNION_BEGIN {
 	zuint16 value_uint16;
 	zsint16 value_sint16;
 	zuint8	array_uint8[2];
@@ -32,9 +31,9 @@ Z_DEFINE_STRICT_UNION_BEGIN {
 		zsint8 index1,
 		zsint8 index0
 	)} values_sint8;
-} Z_DEFINE_STRICT_UNION_END (Z16Bit);
+} Z_DEFINE_PACKED_UNION_END (Z16Bit);
 
-Z_DEFINE_STRICT_UNION_BEGIN {
+Z_DEFINE_PACKED_UNION_BEGIN {
 	zuint32 value_uint32;
 	zsint32 value_sint32;
 	zuint16 array_uint16[2];
@@ -65,9 +64,9 @@ Z_DEFINE_STRICT_UNION_BEGIN {
 		zsint8 index1,
 		zsint8 index0
 	)} values_sint8;
-} Z_DEFINE_STRICT_UNION_END (Z32Bit);
+} Z_DEFINE_PACKED_UNION_END (Z32Bit);
 
-Z_DEFINE_STRICT_UNION_BEGIN {
+Z_DEFINE_PACKED_UNION_BEGIN {
 #	ifdef Z_UINT64
 		zuint64 value_uint64;
 #	endif
@@ -128,9 +127,9 @@ Z_DEFINE_STRICT_UNION_BEGIN {
 		zsint8 index1,
 		zsint8 index0
 	)} values_sint8;
-} Z_DEFINE_STRICT_UNION_END (Z64Bit);
+} Z_DEFINE_PACKED_UNION_END (Z64Bit);
 
-Z_DEFINE_STRICT_UNION_BEGIN {
+Z_DEFINE_PACKED_UNION_BEGIN {
 #	ifdef Z_UINT128
 		zuint128 value_uint128;
 #	endif
@@ -237,6 +236,6 @@ Z_DEFINE_STRICT_UNION_BEGIN {
 		zsint8 index01,
 		zsint8 index00
 	)} values_sint8;
-} Z_DEFINE_STRICT_UNION_END (Z128Bit);
+} Z_DEFINE_PACKED_UNION_END (Z128Bit);
 
-#endif /* _Z_types_bitwise_H_ */
+#endif /* Z_types_bitwise_H_ */

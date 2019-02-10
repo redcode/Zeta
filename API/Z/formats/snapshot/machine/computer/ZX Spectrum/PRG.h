@@ -15,12 +15,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 |  Reference: [MAME sources]/src/mame/machine/spec_snqk.cpp |
 '----------------------------------------------------------*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H_
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H_
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	file_type;	   /* 05h		*/
 	zuint8	program_name[10];  /* 20h, name[8], 20h */
 	zuint16	file_sector_count; /* BIG ENDIAN	*/
@@ -34,6 +34,6 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint16	sp;
 	zuint8	zero_1[14];
 	zuint8	ram[49152];
-} Z_DEFINE_STRICT_STRUCTURE_END (ZPRG);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZPRG);
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H_ */

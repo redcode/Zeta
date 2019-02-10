@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_C_H_
-#define _Z_inspection_C_H_
+#ifndef Z_inspection_C_H_
+#define Z_inspection_C_H_
 
 #include <Z/constants/base.h>
 #include <Z/keys/C.h>
@@ -28,7 +28,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_C Z_C99
 
 #	elif __STDC_VERSION__ >= 199409L
-#		define Z_C Z_C94
+#		define Z_C Z_C95
 
 #	else
 #		define Z_C Z_C90
@@ -47,9 +47,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/C/modules/C99.h>
 #	define Z_C_NAME Z_C_NAME_C99
 
-#elif Z_C == Z_C94
-#	include <Z/inspection/C/modules/C94.h>
-#	define Z_C_NAME Z_C_NAME_C94
+#elif Z_C == Z_C95
+#	include <Z/inspection/C/modules/C95.h>
+#	define Z_C_NAME Z_C_NAME_C95
 
 #elif Z_C == Z_C90
 #	include <Z/inspection/C/modules/C90.h>
@@ -67,15 +67,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C/completion.h>
 
-#define Z_C_HAS(		      WHAT ) Z_C_HAS_##WHAT
-#define Z_C_HAS_ATTRIBUTE(	      WHICH) Z_C_HAS_ATTRIBUTE_##WHICH
-#define Z_C_HAS_LITERAL(	      WHICH) Z_C_HAS_LITERAL_##WHICH
-#define Z_C_HAS_MAGIC_CONSTANT(	      WHICH) Z_C_HAS_MAGIC_CONSTANT_##WHICH
-#define Z_C_HAS_OPERATOR(	      WHICH) Z_C_HAS_OPERATOR_##WHICH
-#define Z_C_HAS_SPECIFIER(	      WHICH) Z_C_HAS_SPECIFIER_##WHICH
-#define Z_C_HAS_STORAGE_CLASS(	      WHICH) Z_C_HAS_STORAGE_CLASS_##WHICH
-#define Z_C_HAS_TYPE(		      WHICH) Z_C_HAS_TYPE_##WHICH
-#define Z_C_HAS_TYPE_QUALIFIER(	      WHICH) Z_C_HAS_TYPE_QUALIFIER_##WHICH
-#define Z_C_HAS_PREPROCESSOR_OPERATOR(WHICH) Z_C_HAS_PREPROCESSOR_OPERATOR_##WHICH
+#define Z_C_HAS(		       WHAT ) Z_C_HAS_##WHAT
+#define Z_C_HAS_ESCAPE_SEQUENCE(       WHICH) Z_C_HAS_ESCAPE_SEQUENCE_##WHICH
+#define Z_C_HAS_IDENTIFIER(	       WHICH) Z_C_HAS_IDENTIFIER_##WHICH
+#define Z_C_HAS_LITERAL(	       WHICH) Z_C_HAS_LITERAL_##WHICH
+#define Z_C_HAS_OPERATOR(	       WHICH) Z_C_HAS_OPERATOR_##WHICH
+#define Z_C_HAS_PREPROCESSOR_DIRECTIVE(WHICH) Z_C_HAS_PREPROCESSOR_DIRECTIVE_##WHICH
+#define Z_C_HAS_PREPROCESSOR_OPERATOR( WHICH) Z_C_HAS_PREPROCESSOR_OPERATOR_##WHICH
+#define Z_C_HAS_SPECIFIER(	       WHICH) Z_C_HAS_SPECIFIER_##WHICH
+#define Z_C_HAS_STANDARD_PRAGMA(       WHICH) Z_C_HAS_STANDARD_PRAGMA_##WHICH
+#define Z_C_HAS_STORAGE_CLASS(	       WHICH) Z_C_HAS_STORAGE_CLASS_##WHICH
+#define Z_C_HAS_TYPE(		       WHICH) Z_C_HAS_TYPE_##WHICH
+#define Z_C_HAS_TYPE_MODIFIER(	       WHICH) Z_C_HAS_TYPE_MODIFIER_##WHICH
+#define Z_C_HAS_TYPE_QUALIFIER(	       WHICH) Z_C_HAS_TYPE_QUALIFIER_##WHICH
 
-#endif /* _Z_inspection_C_H_ */
+#endif /* Z_inspection_C_H_ */

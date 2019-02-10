@@ -5,14 +5,14 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_functions_base_ZRange_H_
-#define _Z_functions_base_ZRange_H_
+#ifndef Z_functions_base_ZRange_H_
+#define Z_functions_base_ZRange_H_
 
 #include <Z/functions/base/constructors.h>
 #include <Z/functions/base/value.h>
 
 
-#if Z_LANGUAGE_HAS(C, COMPOUND_LITERAL)
+#if Z_DIALECT_HAS(C, COMPOUND_LITERAL)
 
 #	define z_range_uint8(index, size)  ((ZRangeUInt8 ){index, size})
 #	define z_range_uint16(index, size) ((ZRangeUInt16){index, size})
@@ -170,4 +170,4 @@ Z_IMPLEMENTATION(UInt32, uint32)
 #define z_range_zero	       z_range_type_zero	  (USIZE)
 
 
-#endif /* _Z_functions_base_ZRange_H_ */
+#endif /* Z_functions_base_ZRange_H_ */

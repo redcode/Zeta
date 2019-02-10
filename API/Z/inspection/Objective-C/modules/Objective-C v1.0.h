@@ -5,7 +5,7 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_Objective_C_modules_Objective_C_1_0_H_
-#define _Z_inspection_Objective_C_modules_Objective_C_1_0_H_
+#ifndef Z_inspection_ObjectiveC_modules_ObjectiveC_1_0_H_
+#define Z_inspection_ObjectiveC_modules_ObjectiveC_1_0_H_
 
-#endif /* _Z_inspection_Objective_C_modules_Objective_C_1_0_H_ */
+#endif /* Z_inspection_ObjectiveC_modules_ObjectiveC_1_0_H_ */

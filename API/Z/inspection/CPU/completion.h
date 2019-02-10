@@ -5,6 +5,9 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
+#ifndef Z_inspection_CPU_completion_H_
+#define Z_inspection_CPU_completion_H_
+
 #ifndef Z_CPU_HAS_INTEGRAL_8BIT
 #	define Z_CPU_HAS_INTEGRAL_8BIT FALSE
 #endif
@@ -45,4 +48,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPU_INTEGER_FORMAT Z_INTEGER_FORMAT_2S_COMPLEMENT
 #endif
 
-/* inspection/CPU/completion.h EOF */
+#endif /* Z_inspection_CPU_completion_H_ */

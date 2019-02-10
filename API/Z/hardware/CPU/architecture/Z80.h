@@ -5,9 +5,9 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_hardware_CPU_architecture_Z80_H_
-#define _Z_hardware_CPU_architecture_Z80_H_
+#ifndef Z_hardware_CPU_architecture_Z80_H_
+#define Z_hardware_CPU_architecture_Z80_H_
 
 #define Z_Z80_ADDRESS_NMI_POINTER 0x0066
 
-#endif /* _Z_hardware_CPU_architecture_Z80_H_ */
+#endif /* Z_hardware_CPU_architecture_Z80_H_ */

@@ -5,14 +5,14 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_MemberFunction_HPP_
-#define _Z_classes_MemberFunction_HPP_
+#ifndef Z_classes_MemberFunction_HPP_
+#define Z_classes_MemberFunction_HPP_
 
 #include <Z/inspection/language.h>
 
-#if	Z_LANGUAGE_HAS(CPP, SFINAE)	       && \
-	Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && \
-	Z_LANGUAGE_HAS(CPP, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE)
+#if	Z_DIALECT_HAS(CPP, SFINAE)	      && \
+	Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE) && \
+	Z_DIALECT_HAS(CPP, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE)
 
 #	include <Z/traits/Type.hpp>
 
@@ -98,4 +98,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_CLASS_MemberFunction FALSE
 #endif
 
-#endif // _Z_classes_MemberFunction_HPP_
+#endif // Z_classes_MemberFunction_HPP_

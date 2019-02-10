@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_AABR_HPP_
-#define _Z_classes_AABR_HPP_
+#ifndef Z_classes_AABR_HPP_
+#define Z_classes_AABR_HPP_
 
 #include <Z/classes/Line2D.hpp>
 
@@ -682,4 +682,4 @@ Z_CT_MEMBER(CPP11) AABR z_aabr_##type##_union(ZAABR##Type a, ZAABR##Type b)			\
 };}
 
 
-#endif // _Z_classes_AABR_HPP_
+#endif // Z_classes_AABR_HPP_

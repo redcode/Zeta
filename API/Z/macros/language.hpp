@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_macros_language_HPP_
-#define _Z_macros_language_HPP_
+#ifndef Z_macros_language_HPP_
+#define Z_macros_language_HPP_
 
 #include <Z/macros/language.h>
 
@@ -20,7 +20,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 // MARK: - Constants
 
-#if !Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+#if !Z_DIALECT_HAS_TYPE(CPP, BOOL)
 #	ifndef true
 #		define true TRUE
 #	endif
@@ -32,7 +32,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 // MARK: - Specifiers
 
-#if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
+#if Z_DIALECT_HAS_SPECIFIER(CPP, CONSTEXPR)
 #	define Z_CONSTANT constexpr
 #	define Z_CT_CPP11 constexpr
 #else
@@ -40,7 +40,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CT_CPP11
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
+#if Z_DIALECT_HAS(CPP, CPP14_RULES_ON_CONSTEXPR_FUNCTION)
 #	define Z_CT_CPP14 constexpr
 #else
 #	define Z_CT_CPP14
@@ -48,13 +48,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_CT(CONFORM_TO) Z_CT_##CONFORM_TO Z_INLINE
 
-#if Z_LANGUAGE_HAS_SPECIFIER(CPP, EXPLICIT)
+#if Z_DIALECT_HAS_SPECIFIER(CPP, EXPLICIT)
 #	define Z_EXPLICIT explicit
 #else
 #	define Z_EXPLICIT
 #endif
 
-#if Z_LANGUAGE_HAS_SPECIFIER(CPP, NO_EXCEPTION)
+#if Z_DIALECT_HAS_SPECIFIER(CPP, NOEXCEPT)
 #	define Z_NOTHROW /*noexcept*/
 #else
 #	define Z_NOTHROW throw()
@@ -63,19 +63,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 // MARK: - Defaulted functions
 
 #if	!defined(Z_AVOID_VARIADIC_MACROS) && \
-	(Z_LANGUAGE_HAS(C, VARIADIC_MACRO) || Z_LANGUAGE_HAS(CPP, C99_PREPROCESSOR))
+	(Z_DIALECT_HAS(C, VARIADIC_MACRO) || Z_DIALECT_HAS(CPP, C99_PREPROCESSOR))
 
-#	if Z_LANGUAGE_HAS(CPP, DEFAULTED_FUNCTION)
+#	if Z_DIALECT_HAS(CPP, DEFAULTED_FUNCTION)
 #		define Z_DEFAULTED(...) = default;
 #	else
 #		define Z_DEFAULTED(...) __VA_ARGS__
 #	endif
 #else
-#	if Z_LANGUAGE_HAS(CPP, DEFAULTED_FUNCTION)
+#	if Z_DIALECT_HAS(CPP, DEFAULTED_FUNCTION)
 #		define Z_DEFAULTED(body) = default;
 #	else
 #		define Z_DEFAULTED(body) body
 #	endif
 #endif
 
-#endif // _Z_macros_language_HPP_
+#endif // Z_macros_language_HPP_

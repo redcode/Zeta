@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_Rectangle_HPP_
-#define _Z_classes_Rectangle_HPP_
+#ifndef Z_classes_Rectangle_HPP_
+#define Z_classes_Rectangle_HPP_
 
 #include <Z/classes/XY.hpp>
 #include <Z/types/geometry.h>
@@ -17,7 +17,7 @@ Z_CT(CPP11) Rectangle(const Prefix##Rect &rectangle) \
 : point(rectangle.origin), size(rectangle.size) {}
 
 
-#if Z_LANGUAGE_HAS(CPP, COPY_LIST_INITIALIZATION)
+#if Z_DIALECT_HAS(CPP, COPY_LIST_INITIALIZATION)
 
 #	define Z_IMPLEMENTATION_APPLE_OPERATOR(Prefix)	      \
 							      \
@@ -672,4 +672,4 @@ namespace Zeta {
 #undef Z_IMPLEMENTATION_COCOS2D_X
 #undef Z_IMPLEMENTATION_COMMON
 
-#endif // _Z_classes_Rectangle_HPP_
+#endif // Z_classes_Rectangle_HPP_

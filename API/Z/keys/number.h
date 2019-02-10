@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_keys_number_H_
-#define _Z_keys_number_H_
+#ifndef Z_keys_number_H_
+#define Z_keys_number_H_
 
 #define Z_NUMBER_SET_N 1
 #define Z_NUMBER_SET_Z 3
@@ -32,13 +32,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_NUMBER_FORMAT_IEEE_754_BINARY32	     12
 #define Z_NUMBER_FORMAT_IEEE_754_BINARY64	     13
 #define Z_NUMBER_FORMAT_IEEE_754_BINARY128	     14
-#define Z_NUMBER_FORMAT_IEEE_754_BINARY256	     15
-#define Z_NUMBER_FORMAT_IEEE_754_DECIMAL32	     16
-#define Z_NUMBER_FORMAT_IEEE_754_DECIMAL64	     17
-#define Z_NUMBER_FORMAT_IEEE_754_DECIMAL128	     18
-#define Z_NUMBER_FORMAT_X87_BINARY80		     19
-#define Z_NUMBER_FORMAT_X87_BINARY96		     20
-#define Z_NUMBER_FORMAT_X87_BINARY128		     21
+#define Z_NUMBER_FORMAT_IEEE_754_DECIMAL32	     15
+#define Z_NUMBER_FORMAT_IEEE_754_DECIMAL64	     16
+#define Z_NUMBER_FORMAT_IEEE_754_DECIMAL128	     17
+#define Z_NUMBER_FORMAT_X87_BINARY80		     18
+#define Z_NUMBER_FORMAT_X87_BINARY96		     19
+#define Z_NUMBER_FORMAT_X87_BINARY128		     20
 
 #define Z_KEY_BITS_NUMBER_FORMAT 8
 #define Z_KEY_LAST_NUMBER_FORMAT Z_NUMBER_FORMAT_INTEL_FLOAT128
@@ -49,4 +48,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_BITS_INTEGER_FORMAT 8
 #define Z_KEY_LAST_INTEGER_FORMAT Z_INTEGER_FORMAT_2S_COMPLEMENT
 
-#endif /* _Z_keys_number_H_ */
+#endif /* Z_keys_number_H_ */

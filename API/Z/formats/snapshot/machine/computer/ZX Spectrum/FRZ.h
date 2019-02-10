@@ -18,12 +18,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 | reverse-engineered and shared the description of this format. |
 '--------------------------------------------------------------*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	zero_0;
 	zuint8	port_7ffd_data;
 	Z16Bit	hl_, hl, de_, de, bc_, bc, af_, af;
@@ -53,6 +53,6 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 		zuint8 bank_6[16384];
 		zuint8 bank_7[16384];
 	} ram;
-} Z_DEFINE_STRICT_STRUCTURE_END (ZFRZ);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZFRZ);
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_ */

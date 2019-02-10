@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_functions_mathematics_geometry_euclidean_ZCircle_H_
-#define _Z_functions_mathematics_geometry_euclidean_ZCircle_H_
+#ifndef Z_functions_mathematics_geometry_euclidean_ZCircle_H_
+#define Z_functions_mathematics_geometry_euclidean_ZCircle_H_
 
 #include <Z/functions/mathematics/geometry/euclidean/constructors.h>
 #include <Z/functions/base/Z2D.h>
@@ -138,4 +138,4 @@ ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object)	\
 #endif
 
 
-#endif /* _Z_functions_mathematics_geometry_euclidean_ZCircle_H_ */
+#endif /* Z_functions_mathematics_geometry_euclidean_ZCircle_H_ */

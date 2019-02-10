@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_Functor_HPP_
-#define _Z_classes_Functor_HPP_
+#ifndef Z_classes_Functor_HPP_
+#define Z_classes_Functor_HPP_
 
 #include <Z/classes/ObjectMemberFunction.hpp>
 
@@ -106,14 +106,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 						}
 
 
-#					if Z_CPU_ARCHITECTURE_IS(X86_64) || Z_CPU_ARCHITECTURE_IS(X86_32)
+#					if	Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64 || \
+						Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32
 
 						template <class RR = R>
-						static Z_INLINE typename TypeIf<
-							!Type<RR>::is_void &&
-							!Type<RR>::is_real &&
-							!Type<RR>::is_structure_or_union,
-						Call>::type
+						static Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_real && !Type<RR>::is_class, Call>::type
 						object_selector() Z_NOTHROW
 							{
 							return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
@@ -140,7 +137,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #					else
 
 						template <class RR = R>
-						static Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_structure_or_union, Call>::type
+						static Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_class, Call>::type
 						object_selector() Z_NOTHROW
 							{
 							return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
@@ -155,7 +152,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 					template <class RR = R>
-					static Z_INLINE typename TypeIf<Type<RR>::is_structure_or_union, Call>::type
+					static Z_INLINE typename TypeIf<Type<RR>::is_class, Call>::type
 					object_selector() Z_NOTHROW
 						{
 						return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
@@ -188,10 +185,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O, class M, class E = typename TypeIf<
-				(Type<O>::is_void_pointer			       ||
-				 (Type<O>::is_pointer				       &&
-				  Type<O>::flow::pointee_type::is_structure_or_union)) &&
-				Type<M>::is_member_function_pointer		       &&
+				(Type<O>::is_void_pointer		  ||
+				 (Type<O>::is_pointer			  &&
+				  Type<O>::flow::pointee_type::is_class)) &&
+				Type<M>::is_member_function_pointer	  &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE Functor(O object, M function) Z_NOTHROW
@@ -203,7 +200,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O, class M, class E = typename TypeIf<
-				Type<O>::is_structure_or_union	    &&
+				Type<O>::is_class		    &&
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
@@ -226,7 +223,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			if Z_HAS_TRAIT(TypeIsConvertible)
 
 				template <class O, class E = typename TypeIf<
-					Type<O>::is_structure_or_union &&
+					Type<O>::is_class &&
 					TypeIsConvertible<O, R(*)(P...)>::value,
 				O>::type>
 				Z_INLINE Functor(const O &object) Z_NOTHROW
@@ -283,4 +280,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_CLASS_Functor FALSE
 #endif
 
-#endif // _Z_classes_Functor_HPP_
+#endif // Z_classes_Functor_HPP_

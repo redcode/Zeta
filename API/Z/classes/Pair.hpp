@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_Pair_HPP_
-#define _Z_classes_Pair_HPP_
+#ifndef Z_classes_Pair_HPP_
+#define Z_classes_Pair_HPP_
 
 #include <Z/functions/value.hpp>
 
@@ -43,4 +43,4 @@ namespace Zeta {template <class T1, class T2> struct Pair {
 };}
 
 
-#endif // _Z_classes_Pair_HPP_
+#endif // Z_classes_Pair_HPP_

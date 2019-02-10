@@ -16,12 +16,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 |	      [MAME sources]/src/mame/machine/spec_snqk.cpp	    |
 '------------------------------------------------------------------*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H_
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H_
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	Z16Bit	bc,  de,  hl,  af,  ix,  iy;
 	zuint16 sp,  pc;
 	zuint8	r,   i;
@@ -29,6 +29,6 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint8	im;
 	zuint8	border_color;
 	zuint8	memory[65536];
-} Z_DEFINE_STRICT_STRUCTURE_END (ZSIT);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZSIT);
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H_ */

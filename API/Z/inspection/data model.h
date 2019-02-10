@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_data_model_H_
-#define _Z_inspection_data_model_H_
+#ifndef Z_inspection_data_model_H_
+#define Z_inspection_data_model_H_
 
 #include <Z/keys/data model.h>
 #include <Z/keys/type.h>
@@ -283,7 +283,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_TYPE_SINT64	       signed long int
 #	define Z_DATA_MODEL_FUNDAMENTAL_SINT64 Z_FUNDAMENTAL_SLONG
 
-#elif Z_DATA_MODEL_BITS(LLONG) == 64 && (Z_LANGUAGE_HAS_TYPE(C, LLONG) || Z_LANGUAGE_HAS_TYPE(CPP, LLONG))
+#elif Z_DATA_MODEL_BITS(LLONG) == 64 && (Z_DIALECT_HAS_TYPE(C, LLONG) || Z_DIALECT_HAS_TYPE(CPP, LLONG))
 
 #	define Z_DATA_MODEL_LITERAL_UINT64     Z_SUFFIX_ULL
 #	define Z_DATA_MODEL_TYPE_UINT64	       unsigned long long int
@@ -321,7 +321,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - 128-bit */
 
-#if Z_DATA_MODEL_BITS(LLONG) == 128 && (Z_LANGUAGE_HAS_TYPE(C, LLONG) || Z_LANGUAGE_HAS_TYPE(CPP, LLONG))
+#if Z_DATA_MODEL_BITS(LLONG) == 128 && (Z_DIALECT_HAS_TYPE(C, LLONG) || Z_DIALECT_HAS_TYPE(CPP, LLONG))
 
 #	define Z_DATA_MODEL_LITERAL_UINT128	Z_SUFFIX_ULL
 #	define Z_DATA_MODEL_TYPE_UINT128	unsigned long long int
@@ -359,4 +359,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/data model/completion.h>
 
-#endif /* _Z_inspection_data_model_H_ */
+#endif /* Z_inspection_data_model_H_ */

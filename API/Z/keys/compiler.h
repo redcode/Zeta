@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_keys_compiler_H_
-#define _Z_keys_compiler_H_
+#ifndef Z_keys_compiler_H_
+#define Z_keys_compiler_H_
 							      /* First released by:   Official website:			   */
 #define Z_COMPILER_UNKNOWN				  0 /* ---------------------- ------------------------------------ */
 #define Z_COMPILER_GCC					  1 /* GNU		      <https://gcc.gnu.org>		   */
@@ -179,4 +179,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_NAME_SUN_WORK_SHOP			 "Sun WorkShop"
 #define Z_COMPILER_NAME_VISUAL_AGE_CPP			 "VisualAge C++" /* Renamed to IBM XL C/C++ */
 
-#endif /* _Z_keys_compiler_H_ */
+#endif /* Z_keys_compiler_H_ */

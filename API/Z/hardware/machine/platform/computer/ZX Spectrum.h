@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_hardware_machine_platform_computer_ZX_Spectrum_H_
-#define _Z_hardware_machine_platform_computer_ZX_Spectrum_H_
+#ifndef Z_hardware_machine_platform_computer_ZX_Spectrum_H_
+#define Z_hardware_machine_platform_computer_ZX_Spectrum_H_
 
 #include <Z/types/fundamental.h>
 
@@ -65,7 +65,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ZX_SPECTRUM_COLOR_YELLOW  6
 #define Z_ZX_SPECTRUM_COLOR_WHITE   7
 
-Z_DEFINE_STRICT_STRUCTURE ({Z_BIT_FIELD(8, 4) (
+Z_DEFINE_PACKED_STRUCTURE ({Z_BIT_FIELD(8, 4) (
 	zuint8 flash  :1,
 	zuint8 bright :1,
 	zuint8 paper  :3,
@@ -96,7 +96,7 @@ Z_DEFINE_STRICT_STRUCTURE ({Z_BIT_FIELD(8, 4) (
 	RGB(0.84, 0.84, 0.0 ), /* Basic Yellow	*/ \
 	RGB(0.84, 0.84, 0.84)  /* Basic White	*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8			  characters[Z_ZX_SPECTRUM_SIZE_VIDEO_CHARACTER_RAM];
 	ZZXSpectrumColorAttribute attributes[Z_ZX_SPECTRUM_SIZE_VIDEO_ATTRIBUTE_RAM];
 }, ZZXSpectrumVRAM);
@@ -158,7 +158,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 	    |_______________________/ / /_____________________////__|
 	    (_______________________\/	\___________________________) */
 
-Z_DEFINE_STRICT_STRUCTURE ({Z_BIT_FIELD(8, 4) (
+Z_DEFINE_PACKED_STRUCTURE ({Z_BIT_FIELD(8, 4) (
 	zuint8 unused	    :3,
 	zuint8 mic	    :1,
 	zuint8 ear	    :1,
@@ -277,7 +277,7 @@ Z_DEFINE_STRICT_STRUCTURE ({Z_BIT_FIELD(8, 4) (
 | "	      = SYMBOL SHIFT + P     |
 '-----------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({Z_BIT_FIELD(8, 3) (
+Z_DEFINE_PACKED_STRUCTURE ({Z_BIT_FIELD(8, 3) (
 	zuint8 one	:1,
 	zuint8 ear	:1,
 	zuint8 key_mask :6
@@ -363,7 +363,7 @@ Z_DEFINE_STRICT_STRUCTURE ({Z_BIT_FIELD(8, 3) (
 #define Z_ZX_SPECTRUM_ADC_BLOCK_CONTENT_HEADER		 0
 #define Z_ZX_SPECTRUM_ADC_BLOCK_CONTENT_DATA	       255
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8	type;
 	zuint8	file_name[10];
 	zuint16	data_size;
@@ -390,4 +390,4 @@ Z_DEFINE_STRICT_STRUCTURE ({
 #define Z_ZX_SPECTRUM_ADC_BLOCK_TYPE_CHARACTER_ARRAY 2
 #define Z_ZX_SPECTRUM_ADC_BLOCK_TYPE_CODE_FILE	     3
 
-#endif /* _Z_hardware_machine_platform_computer_ZX_Spectrum_H_ */
+#endif /* Z_hardware_machine_platform_computer_ZX_Spectrum_H_ */

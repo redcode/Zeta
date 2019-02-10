@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_functions_ZRingBuffer_H_
-#define _Z_functions_ZRingBuffer_H_
+#ifndef Z_functions_ZRingBuffer_H_
+#define Z_functions_ZRingBuffer_H_
 
 #include <Z/types/buffering.h>
 #include <Z/functions/atomic.h>
@@ -82,4 +82,4 @@ static Z_INLINE void *z_ring_buffer_consume(ZRingBuffer *object)
 	}
 
 
-#endif /* _Z_functions_ZRingBuffer_H_ */
+#endif /* Z_functions_ZRingBuffer_H_ */

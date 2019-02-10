@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_macros_mathematics_H_
-#define _Z_macros_mathematics_H_
+#ifndef Z_macros_mathematics_H_
+#define Z_macros_mathematics_H_
 
 #define Z_MAXIMUM(a, b) ((a) > (b) ? (a) : (b))
 #define Z_MINIMUM(a, b) ((a) < (b) ? (a) : (b))
@@ -23,4 +23,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PREVIOUS_MULTIPLE(value, base) \
 	((((value) - 1) / (base)) * (base))
 
-#endif /* _Z_macros_mathematics_H_ */
+#endif /* Z_macros_mathematics_H_ */

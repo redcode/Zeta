@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_macros_repetition_H_
-#define _Z_macros_repetition_H_
+#ifndef Z_macros_repetition_H_
+#define Z_macros_repetition_H_
 
 #define Z_FOR_0_APPEND_INDEX( p, _)
 #define Z_FOR_1_APPEND_INDEX( p, _) p##0
@@ -280,4 +280,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_FOR_31_CALL_WITH_TOKEN_AND_TIME(f, t, _) f(t, 1) _ f(t, 2) _ f(t, 3) _ f(t, 4) _ f(t, 5) _ f(t, 6) _ f(t, 7) _ f(t, 8) _ f(t, 9) _ f(t, 10) _ f(t, 11) _ f(t, 12) _ f(t, 13) _ f(t, 14) _ f(t, 15) _ f(t, 16) _ f(t, 17) _ f(t, 18) _ f(t, 19) _ f(t, 20) _ f(t, 21) _ f(t, 22) _ f(t, 23) _ f(t, 24) _ f(t, 25) _ f(t, 26) _ f(t, 27) _ f(t, 28) _ f(t, 29) _ f(t, 30) _ f(t, 31)
 #define Z_FOR_32_CALL_WITH_TOKEN_AND_TIME(f, t, _) f(t, 1) _ f(t, 2) _ f(t, 3) _ f(t, 4) _ f(t, 5) _ f(t, 6) _ f(t, 7) _ f(t, 8) _ f(t, 9) _ f(t, 10) _ f(t, 11) _ f(t, 12) _ f(t, 13) _ f(t, 14) _ f(t, 15) _ f(t, 16) _ f(t, 17) _ f(t, 18) _ f(t, 19) _ f(t, 20) _ f(t, 21) _ f(t, 22) _ f(t, 23) _ f(t, 24) _ f(t, 25) _ f(t, 26) _ f(t, 27) _ f(t, 28) _ f(t, 29) _ f(t, 30) _ f(t, 31) _ f(t, 32)
 
-#endif /* _Z_macros_repetition_H_ */
+#endif /* Z_macros_repetition_H_ */

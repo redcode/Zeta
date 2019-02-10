@@ -19,12 +19,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 | Thanks to Troels Norgaard for sharing the description of this format. |
 '----------------------------------------------------------------------*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H_
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H_
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	rom_tail[132]; /* last 132 bytes of ROM			    */
 	zuint8	ram[49152];
 	zuint8	zero_0[132];
@@ -46,7 +46,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint16	halt; /* boolean */
 	zsint16 im;
 	zuint8	zero_8[10];
-} Z_DEFINE_STRICT_STRUCTURE_END (ZZX);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZZX);
 
 #define Z_ZX_COLOR_MODE_BW	 0
 #define Z_ZX_COLOR_MODE_COLOR	 1
@@ -59,4 +59,4 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 #define Z_ZX_IM_1		 0
 #define Z_ZX_IM_2		 1
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H_ */

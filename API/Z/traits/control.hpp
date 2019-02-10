@@ -5,19 +5,20 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_traits_control_HPP_
-#define _Z_traits_control_HPP_
+#ifndef Z_traits_control_HPP_
+#define Z_traits_control_HPP_
 
+#include <Z/inspection/Z.h>
 #include <Z/types/fundamental.hpp>
 #include <Z/classes/NaT.hpp>
 
-#if Z_LANGUAGE_HAS(CPP, SFINAE)
+#if Z_DIALECT_HAS(CPP, SFINAE)
 #	define Z_HAS_TRAIT_TypeIf TRUE
 #else
 #	define Z_HAS_TRAIT_TypeIf FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE) && Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
 #	define Z_HAS_TRAIT_ALIAS_select_type TRUE
 #else
 #	define Z_HAS_TRAIT_ALIAS_select_type FALSE
@@ -37,7 +38,7 @@ namespace Zeta {
 	template <class A, class B> struct TernaryType<false, A, B> {typedef B type;};
 }
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE)
 
 	namespace Zeta {
 
@@ -89,4 +90,4 @@ namespace Zeta {
 
 #endif
 
-#endif // _Z_traits_control_HPP_
+#endif // Z_traits_control_HPP_

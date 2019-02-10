@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_types_geometry_H_
-#define _Z_types_geometry_H_
+#ifndef Z_types_geometry_H_
+#define Z_types_geometry_H_
 
 #include <Z/types/fundamental.h>
 
@@ -102,7 +102,7 @@ Z_TYPES_SIGNED(SInt32, sint32)
 	typedef ZSphereType   (REAL) ZSphere;
 #endif
 
-#if Z_LANGUAGE_HAS(C, COMPOUND_LITERAL)
+#if Z_DIALECT_HAS(C, COMPOUND_LITERAL)
 
 #	define z_2d_line_sint8(a_x, a_y, b_x, b_y) \
 		((Z2DLineSInt8){{a_x, a_y}, {b_x, b_y}})
@@ -670,4 +670,4 @@ Z_TYPES_SIGNED(SInt32, sint32)
 #	define z_aabr_0	     z_2d_line_0
 #endif
 
-#endif /* _Z_types_geometry_H_ */
+#endif /* Z_types_geometry_H_ */

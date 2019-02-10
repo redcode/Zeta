@@ -33,8 +33,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |--'-----------------------------------------------------'-----------|====|
 |____________________________________________________________________|====| */
 
-#ifndef _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H_
-#define _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H_
+#ifndef Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H_
+#define Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H_
 
 #include <Z/hardware/machine/model/computer/ZX Spectrum/ZX Spectrum.h>
 #include <Z/types/fundamental.h>
@@ -82,7 +82,7 @@ FFFF |	      |	       |	|	 |	  | screen |	    | screen |
    |  '-----------> disable
    '--------------> unused */
 
-Z_DEFINE_STRICT_STRUCTURE ({Z_BIT_FIELD(8, 5) (
+Z_DEFINE_PACKED_STRUCTURE ({Z_BIT_FIELD(8, 5) (
 	zuint8 unused  :2,
 	zuint8 disable :1,
 	zuint8 rom     :1,
@@ -150,4 +150,4 @@ Z_DEFINE_STRICT_STRUCTURE ({Z_BIT_FIELD(8, 5) (
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_VBLANK	       Z_ZX_SPECTRUM_CYCLES_AT_VBLANK
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INT		       Z_ZX_SPECTRUM_CYCLES_AT_INT
 
-#endif /* _Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H_ */
+#endif /* Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_Plus_128K_H_ */

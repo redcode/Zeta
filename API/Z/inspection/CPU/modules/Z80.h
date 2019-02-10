@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_CPU_modules_Z80_H_
-#define _Z_inspection_CPU_modules_Z80_H_
+#ifndef Z_inspection_CPU_modules_Z80_H_
+#define Z_inspection_CPU_modules_Z80_H_
 
 #define Z_APPEND_CPU_ARCHITECTURE(to)	       to##Z80
 #define Z_APPEND_CPUArchitecture( to)	       to##Z80
@@ -21,4 +21,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPU_BITS_TOP_INTEGRAL	  16
 #define Z_CPU_BITS_ADDRESSING	  16
 
-#endif /* _Z_inspection_CPU_modules_Z80_H_ */
+#endif /* Z_inspection_CPU_modules_Z80_H_ */

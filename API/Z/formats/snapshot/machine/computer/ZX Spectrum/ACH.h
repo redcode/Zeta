@@ -16,12 +16,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 |	      [MAME sources]/src/mame/machine/spec_snqk.cpp	    |
 '------------------------------------------------------------------*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H_
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H_
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	a;	       zuint8 zero_00[	3];
 	zuint8	f;	       zuint8 zero_01[	3];
 	zuint8	b;	       zuint8 zero_02[	3];
@@ -43,6 +43,6 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	Z16Bit	ix;	       zuint8 zero_16[	2];
 	Z16Bit	iy;	       zuint8 zero_17[	2];
 	zuint8	memory[65536];
-} Z_DEFINE_STRICT_STRUCTURE_END (ZACH);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZACH);
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H_ */

@@ -174,8 +174,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |   - Initial version.							       |
 '-----------------------------------------------------------------------------*/
 
-#ifndef _Z_formats_storage_medium_image_audio_TZX_H_
-#define _Z_formats_storage_medium_image_audio_TZX_H_
+#ifndef Z_formats_storage_medium_image_audio_TZX_H_
+#define Z_formats_storage_medium_image_audio_TZX_H_
 
 #include <Z/types/fundamental.h>
 #include <Z/macros/structure.h>
@@ -195,7 +195,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 | each preceded and identified by an ID byte.				       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 signature[7]; /* 'ZXTape!' */
 	zuint8 eof_marker;   /* 1Ah	  */
 	zuint8 major_version;
@@ -245,7 +245,7 @@ typedef zuint8 ZTZXBlockID;
 | routines that use the same timings as ROM ones do.			       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 pause_duration_ms;
 	zuint16 data_size;
 	Z_FAM(zuint8 data[];)
@@ -260,7 +260,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | then use the next three blocks to describe it.			       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 cycles_per_pilot_pulse;	    /* {2168} */
 	zuint16 cycles_per_sync_high_pulse; /* {667}  */
 	zuint16 cycles_per_sync_low_pulse;  /* {735}  */
@@ -280,7 +280,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | pulses are in the tone.						     |
 '---------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 cycles_per_pulse;
 	zuint16 pulse_count;
 }, ZTZXPureTone);
@@ -292,7 +292,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | some protection schemes.						       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 pulse_count;
 	Z_FAM(zuint16 pulse_cycles[];)
 }, ZTZXPulseSequence);
@@ -303,7 +303,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | has no pilot or sync pulses.						       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 cycles_per_bit_0_pulse;
 	zuint16 cycles_per_bit_1_pulse;
 	zuint8	last_byte_bit_count;
@@ -331,7 +331,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | you can not use any other one.					       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 cycles_per_pulse;
 	zuint16 pause_duration_ms;
 	zuint8	last_byte_bit_count;
@@ -372,7 +372,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 |   is standard for the repeated blocks in the Commodore 64 ROM Loader.	       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint32 block_size;
 	zuint16 cycles_per_pilot_pulse;		   /*  [616] */
 	zuint16 pilot_wave_count;
@@ -399,7 +399,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
 	Z_FAM(zuint8 data[];)
-} Z_DEFINE_STRICT_STRUCTURE_END (ZTZXC64ROMTypeData);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZTZXC64ROMTypeData);
 
 #define Z_TZX_C64_XOR_CHECKSUM_BIT_START_WITH_0 0x00
 #define Z_TZX_C64_XOR_CHECKSUM_BIT_START_WITH_1 0x01
@@ -429,7 +429,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 | 4) Pause								       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint32 block_size;
 	zuint16 cycles_per_bit_0_pulse;
 	zuint16 cycles_per_bit_1_pulse;
@@ -455,7 +455,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
 	Z_FAM(zuint8 data[];)
-} Z_DEFINE_STRICT_STRUCTURE_END (ZTZXC64TurboTapeData);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZTZXC64TurboTapeData);
 
 #define Z_TZX_C64_PADDING_BITS_POSITION_BEFORE 0
 #define Z_TZX_C64_PADDING_BITS_POSITION_AFTER  1
@@ -469,7 +469,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 | played.								       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint32 block_size;
 	zuint16 pause_duration_ms;
 	zuint8	sampling_rate[3];
@@ -502,7 +502,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | sequence of pulses (wave).						       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint32 block_size;
 	zuint16 pause_duration_ms;
 	zuint32 pilot_sync_symbol_count;
@@ -517,7 +517,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 	/* Data stream			       */
 }, ZTZXGeneralizedData);
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 polarity;
 	Z_FAM(zuint16 pulse_durations[];)
 }, ZTZXSymbolDefinition);
@@ -537,7 +537,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | stream in bits is NB * TOTD, or in bytes DS = ceil(NB * TOTD / 8).	      |
 '----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8	symbol;
 	zuint16 repetitions;
 }, ZTZXPulseRLE);
@@ -601,7 +601,7 @@ Offset	   Value			Description
 | not continue loading until the user or emulator requests it.		       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 duration_ms;
 }, ZTZXPause);
 
@@ -618,7 +618,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | Please keep the group name under 30 characters long.			      |
 '----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 name_size;
 	Z_FAM(zuint8 name[];)
 }, ZTZXGroupStart);
@@ -641,7 +641,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | All blocks are included in the block count!			      |
 '--------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zsint16 relative_offset;
 }, ZTZXJump);
 
@@ -654,7 +654,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | For simplicity reasons don't nest loop blocks!			       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 count; /* Greater than 1 */
 }, ZTZXLoopStart);
 
@@ -680,7 +680,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | for reference on the values.						       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 count;
 	Z_FAM(zsint16 relative_offsets[];)
 }, ZTZXCallSequence);
@@ -706,13 +706,13 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | Please use single line and maximum of 30 characters for description texts.   |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint32	block_size;
 	zuint8	item_count;
 	Z_FAM(zuint8 items[];) /* ZTZXSelectItem */
 }, ZTZXSelect);
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zsint16 relative_offset;
 	zuint8	description_size;
 	Z_FAM(zuint8 description[];)
@@ -728,7 +728,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | This block has no body of its own, but follows the extension rule.	       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint32 block_size; /* 0 */
 }, ZTZXStopIf48K);
 
@@ -739,7 +739,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | any ambiguities, e.g. with custom loaders which are level-sensitive. |
 '---------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint32 block_size;
 	zuint8	level;
 }, ZTZXSetSignalLevel);
@@ -760,7 +760,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | Please use block ID 32h for title, authors, publisher, etc.		       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 text_size;
 	Z_FAM(zuint8 text[];)
 }, ZTZXSectionDescription);
@@ -780,7 +780,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | way they like.							     |
 '---------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 duration_s; /* Seconds */
 	zuint8 text_size;
 	Z_FAM(zuint8 text[];)
@@ -805,13 +805,13 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | no need for it here.							       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint32 block_size;
 	zuint8	field_count;
 	Z_FAM(zuint8 fields[];) /* ZTZXInformationField */
 }, ZTZXInformation);
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 id;
 	zuint8 text_size;
 	Z_FAM(zuint8 text[];)
@@ -843,13 +843,13 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | machine/hardware combination then do not include it in the list.	     |
 '---------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 type;
 	zuint8 id;
 	zuint8 compatibility;
 }, ZTZXHardware);
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 hardware_count;
 	Z_FAM(ZTZXHardware hardware[];) /* ZTZXHardware */
 }, ZTZXHardwareInformation);
@@ -1059,7 +1059,7 @@ Flags (16-bit little-endian):
 	 | '-----------------> start playing the tape immediately
 	 '-------------------> auto type LOAD"" or press ENTER when in 128K mode */
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	struct {Z_BIT_FIELD(8, 7)(
 		zuint8 screen_refresh_mode     :1,
 		zuint8 screen_border	       :1,
@@ -1079,7 +1079,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint8	screen_refresh_delay;	/* 1 - 255 */
 	zuint16 interrupt_hz;		/* 0 - 999 */
 	zuint8	reserved[3];
-} Z_DEFINE_STRICT_STRUCTURE_END (ZTZXEmulationInformation);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZTZXEmulationInformation);
 
 #define Z_TZX_EMULATION_INFORMATION_VSYNC_HIGH   0
 #define Z_TZX_EMULATION_INFORMATION_VSYNC_LOW    1
@@ -1092,7 +1092,7 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 | by a particular emulator, or even poke data.				       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8	content_id[16];
 	zuint32	data_size;
 	Z_FAM(zuint8 data[];)
@@ -1113,27 +1113,27 @@ Z_DEFINE_STRICT_STRUCTURE ({
 #define Z_TZX_CUSTOM_INFORMATION_CONTENT_ID_PICTURE \
 	'P','i','c','t','u','r','e',' ',' ',' ',' ',' ',' ',' ',' ',' '
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 description_size;
 	Z_FAM(zuint8 description[];)
 }, ZTZXPOKEs);
 
-/*Z_DEFINE_STRICT_STRUCTURE ({
+/*Z_DEFINE_PACKED_STRUCTURE ({
 }, ZTZXTrainer);*/
 
-/*Z_DEFINE_STRICT_STRUCTURE ({
+/*Z_DEFINE_PACKED_STRUCTURE ({
 }, ZTZXInstructions);*/
 
-/*Z_DEFINE_STRICT_STRUCTURE ({
+/*Z_DEFINE_PACKED_STRUCTURE ({
 }, ZTZXScreen);*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 description_size; /* if 0 then handle description as 'Instructions' */
 	Z_FAM(zuint8 description[];)
 	/* ZX-Editor document (.ZED file) data */
 }, ZTZXZXEditDocument);
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 format;
 	zuint8 description_size; /* if 0 then handle description as 'Inlay Card' */
 	Z_FAM(zuint8 description[];)
@@ -1154,7 +1154,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | with the next block.							       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 format;
 	zuint8 size[3];
 	Z_FAM(zuint8 data[];)
@@ -1175,11 +1175,11 @@ Z_DEFINE_STRICT_STRUCTURE ({
 | both of the higher version number.					       |
 '-----------------------------------------------------------------------------*/
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 signature[6]; /* 'XTape!' */
 	zuint8 eof_marker;   /* 1Ah	 */
 	zuint8 major_version;
 	zuint8 minor_version;
 }, ZTZXGlue);
 
-#endif /* _Z_formats_storage_medium_image_audio_TZX_H_ */
+#endif /* Z_formats_storage_medium_image_audio_TZX_H_ */

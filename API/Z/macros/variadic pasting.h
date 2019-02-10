@@ -1,17 +1,17 @@
-/* Z Kit - macros/variadic pasting.h
+/* Z Kit - macros/variadic pasting.h (C99)
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_macros_variadic_pasting_H_
-#define _Z_macros_variadic_pasting_H_
+#ifndef Z_macros_variadic_pasting_H_
+#define Z_macros_variadic_pasting_H_
 
 #include <Z/macros/variadic.h>
 
 #if	!defined(Z_AVOID_VARIADIC_MACROS) && \
-	(Z_LANGUAGE_HAS(C, VARIADIC_MACRO) || Z_LANGUAGE_HAS(CPP, C99_PREPROCESSOR))
+	(Z_DIALECT_HAS(C, VARIADIC_MACRO) || Z_DIALECT_HAS(CPP, C99_PREPROCESSOR))
 
 #	define Z_JOIN_N(n) \
 		Z_PASTE_2(Z_JOIN_, n) /* Needed for Z_JOIN(...) only */
@@ -22,4 +22,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif /* _Z_macros_variadic_pasting_H_ */
+#endif /* Z_macros_variadic_pasting_H_ */

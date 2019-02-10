@@ -38,12 +38,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 |   - Appendix C - Example Packer C code (Page 538)			      |
 '----------------------------------------------------------------------------*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H_
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H_
 
 #include <Z/types/fundamental.h>
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8	signature[4];	 /* {'Z', 'X', '8', '2'} */
 	zuint8	data_type;
 	zuint8	data_compressed; /* boolean */
@@ -58,7 +58,7 @@ Z_DEFINE_STRICT_STRUCTURE ({
 #define Z_ZX82_DATA_TYPE_CODE	  3
 #define Z_ZX82_DATA_TYPE_SNAPSHOT 4
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	border_color;
 	zuint8	im; /* (0 = use I register, 1 = IM 1 and 2 = IM 2) (?) */
 	Z16Bit	iy,  ix;
@@ -69,6 +69,6 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint8	zero_1, r;
 	zuint16 pc;
 	Z_FAM(zuint8 memory[];)
-} Z_DEFINE_STRICT_STRUCTURE_END (ZZX82Snapshot);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZZX82Snapshot);
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H_ */

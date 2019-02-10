@@ -6,13 +6,13 @@ Copyright (C) 2006 Laurent Deniau <laurent.deniau@cern.ch>.
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_macros_variadic_H_
-#define _Z_macros_variadic_H_
+#ifndef Z_macros_variadic_H_
+#define Z_macros_variadic_H_
 
 #include <Z/inspection/language.h>
 
 #if	!defined(Z_AVOID_VARIADIC_MACROS) && \
-	(Z_LANGUAGE_HAS(C, VARIADIC_MACRO) || Z_LANGUAGE_HAS(CPP, C99_PREPROCESSOR))
+	(Z_DIALECT_HAS(C, VARIADIC_MACRO) || Z_DIALECT_HAS(CPP, C99_PREPROCESSOR))
 
 #	include <Z/macros/pasting.h>
 
@@ -46,4 +46,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif /* _Z_macros_variadic_H_ */
+#endif /* Z_macros_variadic_H_ */

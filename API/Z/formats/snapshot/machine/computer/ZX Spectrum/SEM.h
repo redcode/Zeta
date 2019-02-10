@@ -15,12 +15,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 |	      [MAME sources]/src/mame/machine/spec_snqk.cpp	    |
 '------------------------------------------------------------------*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	signature_size;	/* 5	   */
 	zuint8	signature[5];	/* 'SPEC1' */
 	zuint8	ram[49152];
@@ -33,18 +33,18 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint8	iff1, zero_2;
 	zuint8	iff2, zero_3;
 	zuint8	im,   zero_4;
-} Z_DEFINE_STRICT_STRUCTURE_END (ZSEMSnapshot);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZSEMSnapshot);
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 address;
 	zuint8	value;
 	zuint8	zero;
 }, ZSEMPoke);
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	ZSEMSnapshot snapshot;
 	ZSEMPoke     poke;	   /* Optional */
 	zuint16	     speed_factor; /* Optional (only if poke included) */
 }, ZSEM);
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_ */

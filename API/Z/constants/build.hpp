@@ -5,12 +5,12 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_constants_build_H_
-#define _Z_constants_build_H_
+#ifndef Z_constants_build_HPP_
+#define Z_constants_build_HPP_
 
 #include <Z/inspection/language.h>
 
-#if Z_LANGUAGE_HAS(CPP, CONSTANT_EXPRESSION)
+#if Z_DIALECT_HAS_SPECIFIER(CPP, CONSTEXPR)
 
 	namespace Zeta {enum {
 		build_year = (__DATE__[7] - '0') * 1000 + (__DATE__[ 8] - '0') * 100 +
@@ -43,4 +43,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif /* _Z_constants_build_H_ */
+#endif /* Z_constants_build_HPP_ */

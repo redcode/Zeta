@@ -5,15 +5,15 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_floating_point_H_
-#define _Z_inspection_floating_point_H_
+#ifndef Z_inspection_floating_point_H_
+#define Z_inspection_floating_point_H_
 
 #include <Z/keys/number.h>
 #include <Z/keys/type.h>
 #include <Z/inspection/language.h>
 #include <Z/macros/pasting.h>
 
-#if Z_LANGUAGE_HAS_TYPE(C, DOUBLE)
+#if Z_DIALECT_HAS_TYPE(C, DOUBLE)
 
 #	ifndef Z_FLOATING_POINT_NUMBER_FORMAT_DOUBLE /* PDM */
 #		ifdef Z_COMPILER_NUMBER_FORMAT_DOUBLE
@@ -44,7 +44,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
+#if Z_DIALECT_HAS_TYPE(C, FLOAT)
 
 #	ifndef Z_FLOATING_POINT_NUMBER_FORMAT_FLOAT /* PDM */
 #		ifdef Z_COMPILER_NUMBER_FORMAT_FLOAT
@@ -88,7 +88,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE) || Z_LANGUAGE_HAS_TYPE(CPP, LDOUBLE)
+#if Z_DIALECT_HAS_TYPE(C, LONG_DOUBLE) || Z_DIALECT_HAS_TYPE(CPP, LONG_DOUBLE)
 
 #	ifndef Z_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE /* PDM */
 #		ifdef Z_COMPILER_NUMBER_FORMAT_LDOUBLE
@@ -316,4 +316,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/formats/floating-point/x87.h>
 #endif
 
-#endif /* _Z_inspection_floating_point_H_ */
+#endif /* Z_inspection_floating_point_H_ */

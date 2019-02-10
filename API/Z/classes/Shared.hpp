@@ -6,8 +6,8 @@ Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Copyright (C) 2016 r-lyeh.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_Shared_HPP_
-#define _Z_classes_Shared_HPP_
+#ifndef Z_classes_Shared_HPP_
+#define Z_classes_Shared_HPP_
 
 #include <Z/types/fundamental.hpp>
 
@@ -90,6 +90,7 @@ namespace Zeta {template <class T> struct Shared {
 	Z_INLINE operator Boolean() const Z_NOTHROW
 		{return owned != NULL;}
 
+
 	Z_INLINE Boolean operator ==(const Shared &rhs) const Z_NOTHROW
 		{return owned == rhs.owned;}
 
@@ -131,4 +132,4 @@ namespace Zeta {template <class T> struct Shared {
 };}
 
 
-#endif // _Z_classes_Shared_HPP_
+#endif // Z_classes_Shared_HPP_

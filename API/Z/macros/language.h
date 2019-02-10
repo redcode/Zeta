@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_macros_language_H_
-#define _Z_macros_language_H_
+#ifndef Z_macros_language_H_
+#define Z_macros_language_H_
 
 #include <Z/inspection/language.h>
 
@@ -18,17 +18,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_NULL_TERMINATED
 #endif
 
-#if Z_COMPILER_HAS_ATTRIBUTE(STRICT_SIZE_BEGIN) && Z_COMPILER_HAS_ATTRIBUTE(STRICT_SIZE_END)
-#	define Z_STRICT_SIZE_BEGIN Z_COMPILER_ATTRIBUTE(STRICT_SIZE_BEGIN)
-#	define Z_STRICT_SIZE_END   Z_COMPILER_ATTRIBUTE(STRICT_SIZE_END)
-#else
-#	define Z_STRICT_SIZE_BEGIN
-#	define Z_STRICT_SIZE_END
-#endif
-
 #if Z_COMPILER_HAS_ATTRIBUTE(PRIVATE)
 #	define Z_PRIVATE Z_COMPILER_ATTRIBUTE(PRIVATE)
-#elif Z_LANGUAGE_HAS_STORAGE_CLASS(C, STATIC)
+#elif Z_DIALECT_HAS_STORAGE_CLASS(C, STATIC)
 #	define Z_PRIVATE static
 #else
 #	define Z_PRIVATE
@@ -69,7 +61,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_HAS_ATTRIBUTE(INLINE)
 #	define Z_INLINE Z_COMPILER_ATTRIBUTE(INLINE)
 
-#elif Z_LANGUAGE_HAS_SPECIFIER(C, INLINE) || Z_LANGUAGE_HAS_SPECIFIER(CPP, INLINE)
+#elif Z_DIALECT_HAS_SPECIFIER(C, INLINE) || Z_DIALECT_HAS_SPECIFIER(CPP, INLINE)
 #	define Z_INLINE inline
 #else
 #	define Z_INLINE
@@ -78,10 +70,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_HAS_ATTRIBUTE(NO_RETURN)
 #	define Z_NO_RETURN Z_COMPILER_ATTRIBUTE(NO_RETURN)
 
-#elif Z_LANGUAGE_HAS_SPECIFIER(C, NO_RETURN)
+#elif Z_DIALECT_HAS_SPECIFIER(C, NORETURN)
 #	define Z_NO_RETURN _Noreturn
 
-#elif Z_LANGUAGE_HAS_ATTRIBUTE(CPP, NO_RETURN)
+#elif Z_DIALECT_HAS_ATTRIBUTE(CPP, NORETURN)
 #	define Z_NO_RETURN [[noreturn]]
 
 #else
@@ -93,40 +85,29 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_COMPILER_HAS_ATTRIBUTE(THREAD_LOCAL)
 #	define Z_THREAD_LOCAL Z_COMPILER_ATTRIBUTE(THREAD_LOCAL)
 
-#elif Z_LANGUAGE_HAS_STORAGE_CLASS(C, THREAD_LOCAL)
+#elif Z_DIALECT_HAS_STORAGE_CLASS(C, THREAD_LOCAL)
 #	define Z_THREAD_LOCAL _Thread_local
 
-#elif Z_LANGUAGE_HAS_STORAGE_CLASS(CPP, THREAD_LOCAL)
+#elif Z_DIALECT_HAS_STORAGE_CLASS(CPP, THREAD_LOCAL)
 #	define Z_THREAD_LOCAL thread_local
-#endif
-
-/* MARK: - Built-in macros: Struture */
-
-#if Z_COMPILER_HAS_MACRO(OFFSET_OF)
-#	define Z_OFFSET_OF Z_COMPILER_MACRO(OFFSET_OF)
-
-#elif Z_LANGUAGE_HAS_TYPE(C, LLONG) || Z_LANGUAGE_HAS_TYPE(CPP, LLONG)
-#	define Z_OFFSET_OF(type, member) \
-		((unsigned long int)(unsigned long long int)&((type *)(0))->member)
-
-#else
-#	define Z_OFFSET_OF(type, member) \
-		((unsigned long int)&((type *)(0))->member)
 #endif
 
 /* MARK: - Informative macros */
 
 #define Z_OUT
 #define Z_INOUT
+#define Z_UNUSED(variable) (void)variable
 
-/* MARK: - Sections */
+/* MARK: - Linkage */
 
 #ifdef __cplusplus
-#	define Z_C_SYMBOLS_BEGIN extern "C" {
-#	define Z_C_SYMBOLS_END	 }
+#	define Z_EXTERN_C	extern "C"
+#	define Z_EXTERN_C_BEGIN extern "C" {
+#	define Z_EXTERN_C_END	}
 #else
-#	define Z_C_SYMBOLS_BEGIN
-#	define Z_C_SYMBOLS_END
+#	define Z_EXTERN_C
+#	define Z_EXTERN_C_BEGIN
+#	define Z_EXTERN_C_END
 #endif
 
-#endif /* _Z_macros_language_H_ */
+#endif /* Z_macros_language_H_ */

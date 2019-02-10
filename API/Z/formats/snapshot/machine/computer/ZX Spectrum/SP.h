@@ -28,12 +28,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 | supports both 16K and 48K images and it's 16422 or 49190 bytes long. --    |
 '---------------------------------------------------------------------------*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	Z16Bit	bc,  de,  hl,  af,  ix, iy;
 	Z16Bit	bc_, de_, hl_, af_;
 	zuint8	r,   i;
@@ -54,17 +54,17 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 
 	zuint8 zero_2; /* reserved for future use */
 	Z_FAM(zuint8 ram[];)
-} Z_DEFINE_STRICT_STRUCTURE_END (ZSPOld);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZSPOld);
 
 #define Z_SP_FLASH_STATUS_NORMAL  0
 #define Z_SP_FLASH_STATUS_INVERSE 1
 
 #define Z_SP_IM(p) ((p)->bits.im_0 ? 0 : ((p)->bits.im ? 2 : 1))
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8	signature[2];	  /* 'SP'	    */
 	zuint16 ram_size;	  /* 16384 or 49152 */
 	zuint16 ram_load_address; /* 16384	    */
 }, ZSPNewHeader);
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_ */

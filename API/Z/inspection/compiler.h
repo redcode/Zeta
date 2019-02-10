@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_compiler_H_
-#define _Z_inspection_compiler_H_
+#ifndef Z_inspection_compiler_H_
+#define Z_inspection_compiler_H_
 
 #include <Z/constants/base.h>
 #include <Z/keys/compiler.h>
@@ -259,8 +259,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_COMPILER_C_HAS(			  WHAT ) Z_COMPILER_C_HAS_##WHAT
 #define Z_COMPILER_C_HAS_ATTRIBUTE(		  WHICH) Z_COMPILER_C_HAS_ATTRIBUTE_##WHICH
+#define Z_COMPILER_C_HAS_IDENTIFIER(		  WHICH) Z_COMPILER_C_HAS_IDENTIFIER_##WHICH
 #define Z_COMPILER_C_HAS_LITERAL(		  WHICH) Z_COMPILER_C_HAS_LITERAL_##WHICH
-#define Z_COMPILER_C_HAS_MAGIC_CONSTANT(	  WHICH) Z_COMPILER_C_HAS_MAGIC_CONSTANT_##WHICH
 #define Z_COMPILER_C_HAS_OPERATOR(		  WHICH) Z_COMPILER_C_HAS_OPERATOR_##WHICH
 #define Z_COMPILER_C_HAS_SPECIFIER(		  WHICH) Z_COMPILER_C_HAS_SPECIFIER_##WHICH
 #define Z_COMPILER_C_HAS_STORAGE_CLASS(		  WHICH) Z_COMPILER_C_HAS_STORAGE_CLASS_##WHICH
@@ -269,8 +269,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_PREPROCESSOR_OPERATOR(	  WHICH) Z_COMPILER_C_HAS_PREPROCESSOR_OPERATOR_##WHICH
 #define Z_COMPILER_CPP_HAS(			  WHAT ) Z_COMPILER_CPP_HAS_##WHAT
 #define Z_COMPILER_CPP_HAS_ATTRIBUTE(		  WHICH) Z_COMPILER_CPP_HAS_ATTRIBUTE_##WHICH
+#define Z_COMPILER_CPP_HAS_IDENTIFIER(		  WHICH) Z_COMPILER_CPP_HAS_IDENTIFIER_##WHICH
 #define Z_COMPILER_CPP_HAS_LITERAL(		  WHICH) Z_COMPILER_CPP_HAS_LITERAL_##WHICH
-#define Z_COMPILER_CPP_HAS_MAGIC_CONSTANT(	  WHICH) Z_COMPILER_CPP_HAS_MAGIC_CONSTANT_##WHICH
 #define Z_COMPILER_CPP_HAS_OPERATOR(		  WHICH) Z_COMPILER_CPP_HAS_OPERATOR_##WHICH
 #define Z_COMPILER_CPP_HAS_SPECIFIER(		  WHICH) Z_COMPILER_CPP_HAS_SPECIFIER_##WHICH
 #define Z_COMPILER_CPP_HAS_STORAGE_CLASS(	  WHICH) Z_COMPILER_CPP_HAS_STORAGE_CLASS_##WHICH
@@ -303,4 +303,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_TRAIT(			  WHICH) Z_COMPILER_TRAIT_##WHICH
 #define Z_COMPILER_TYPE(			  WHICH) Z_COMPILER_TYPE_##WHICH
 
-#endif /* _Z_inspection_compiler_H_ */
+#endif /* Z_inspection_compiler_H_ */

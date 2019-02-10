@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_Range_HPP_
-#define _Z_classes_Range_HPP_
+#ifndef Z_classes_Range_HPP_
+#define Z_classes_Range_HPP_
 
 #include <Z/macros/type selection.hpp>
 #include <Z/functions/value.hpp>
@@ -90,7 +90,7 @@ namespace Zeta {template <class T> struct Range {
 		: index(range.location), size(range.length) {}
 
 
-#		if Z_LANGUAGE_HAS(CPP, COPY_LIST_INITIALIZATION)
+#		if Z_DIALECT_HAS(CPP, COPY_LIST_INITIALIZATION)
 			Z_CT(CPP11) operator NSRange() const Z_NOTHROW
 				{return {NSUInteger(index), NSUInteger(size)};}
 #		else
@@ -125,4 +125,4 @@ namespace Zeta {template <class T> struct Range {
 };}
 
 
-#endif // _Z_classes_Range_HPP_
+#endif // Z_classes_Range_HPP_

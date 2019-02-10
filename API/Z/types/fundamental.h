@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_types_fundamental_H_
-#define _Z_types_fundamental_H_
+#ifndef Z_types_fundamental_H_
+#define Z_types_fundamental_H_
 
 #include <Z/inspection/CPU.h>
 #include <Z/inspection/floating-point.h>
@@ -516,7 +516,7 @@ typedef signed long int		   zslong;
 #define Z_SLONG_MINIMUM		   Z_TYPE_MINIMUM	   (SLONG)
 #define Z_SLONG_MAXIMUM		   Z_TYPE_MAXIMUM	   (SLONG)
 
-#if Z_LANGUAGE_HAS_TYPE(C, LLONG) || Z_LANGUAGE_HAS_TYPE(CPP, LLONG)
+#if Z_DIALECT_HAS_TYPE(C, LONG_LONG) || Z_DIALECT_HAS_TYPE(CPP, LONG_LONG)
 
 	typedef unsigned long long int	  zullong;
 #	define Z_ULLONG			  Z_SUFFIX_LL
@@ -544,7 +544,7 @@ typedef signed long int		   zslong;
 
 #endif
 
-#if Z_LANGUAGE_HAS_TYPE(C, FLOAT)
+#if Z_DIALECT_HAS_TYPE(C, FLOAT)
 
 	typedef float			   zfloat;
 #	define Z_FLOAT			   Z_SUFFIX_F
@@ -575,7 +575,7 @@ typedef signed long int		   zslong;
 
 #endif
 
-#if Z_LANGUAGE_HAS_TYPE(C, DOUBLE)
+#if Z_DIALECT_HAS_TYPE(C, DOUBLE)
 
 	typedef double			    zdouble;
 #	define Z_DOUBLE			    Z_SAME
@@ -606,7 +606,7 @@ typedef signed long int		   zslong;
 
 #endif
 
-#if Z_LANGUAGE_HAS_TYPE(C, LDOUBLE) || Z_LANGUAGE_HAS_TYPE(CPP, LDOUBLE)
+#if Z_DIALECT_HAS_TYPE(C, LONG_DOUBLE) || Z_DIALECT_HAS_TYPE(CPP, LONG_DOUBLE)
 
 	typedef long double		     zldouble;
 #	define Z_LDOUBLE		     Z_SUFFIX_L
@@ -950,4 +950,4 @@ typedef ztype(INTEGER)		    zinteger;
 
 #endif
 
-#endif /* _Z_types_fundamental_H_ */
+#endif /* Z_types_fundamental_H_ */

@@ -5,13 +5,13 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_traits_TypeCount_HPP_
-#define _Z_traits_TypeCount_HPP_
+#ifndef Z_traits_TypeCount_HPP_
+#define Z_traits_TypeCount_HPP_
 
 #include <Z/inspection/language.h>
 
-#if	Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && \
-	Z_LANGUAGE_HAS_OPERATOR(CPP, SIZE_OF_PARAMETER_PACK)
+#if	Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE) && \
+	Z_DIALECT_HAS_OPERATOR_CASE(CPP, SIZEOF, PARAMETER_PACK)
 
 	namespace Zeta {template <class... T> struct TypeCount {
 		enum {value = sizeof...(T)};
@@ -49,4 +49,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif // _Z_traits_TypeCount_HPP_
+#endif // Z_traits_TypeCount_HPP_

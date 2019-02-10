@@ -5,12 +5,12 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_traits_TypeList_HPP_
-#define _Z_traits_TypeList_HPP_
+#ifndef Z_traits_TypeList_HPP_
+#define Z_traits_TypeList_HPP_
 
 #include <Z/inspection/language.h>
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 #	define Z_HAS_TRAIT_TypeList	       TRUE
 #	define Z_HAS_TRAIT_TypeListSize	       TRUE
 #	define Z_HAS_TRAIT_TypeListAppend      TRUE
@@ -52,8 +52,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_TypeListTransform   FALSE
 #endif
 
-#if	Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS) && \
-	Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+#if	Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS) && \
+	Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
 
 #	define Z_TRAIT_TypeList_HAS_append		TRUE
 #	define Z_TRAIT_TypeList_HAS_get			TRUE
@@ -112,7 +112,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_ALIAS_type_list_transform	FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 
 #	include <Z/traits/control.hpp>
 #	include <Z/traits/TypeCount.hpp>
@@ -301,7 +301,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...) const volatile> {typedef R type(A...) const volatile;};
 		template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...)	 volatile> {typedef R type(A...)       volatile;};
 
-#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#		if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...)		  & > {typedef R type(A...)		   & ;};
 			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...)		  &&> {typedef R type(A...)		   &&;};
 			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...) const	  & > {typedef R type(A...) const	   & ;};
@@ -336,7 +336,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef typename TypeListRemoveLast <TypeList>::type remove_last;
 			typedef typename TypeListReverse    <TypeList>::type reverse;
 
-#			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+#			if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
 				template <class...		    types	  > using append       = TypeList<A..., types...>;
 				template <UInt			    index	  > using get	       = typename SelectType<index, A...>::type;
 				template <class...		    types	  > using prepend      = TypeList<types..., A...>;
@@ -351,7 +351,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			endif
 		};
 
-#		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+#		if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
 			template <class L, class...		     types	   > using type_list_append	  = typename TypeListAppend	<L, types...	  >::type;
 			template <class L					   > using type_list_first	  = typename TypeListFirst	<L		  >::type;
 			template <class L, UInt			     index	   > using type_list_get	  = typename TypeListGet	<L, index	  >::type;
@@ -373,4 +373,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif // _Z_traits_TypeList_HPP_
+#endif // Z_traits_TypeList_HPP_

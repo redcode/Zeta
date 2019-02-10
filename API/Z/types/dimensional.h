@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_types_dimensional_H_
-#define _Z_types_dimensional_H_
+#ifndef Z_types_dimensional_H_
+#define Z_types_dimensional_H_
 
 #include <Z/types/fundamental.h>
 
@@ -183,7 +183,7 @@ typedef Z4DType(INTEGER) Z4DInteger;
 	typedef Z4DReal	      Z4D;
 #endif
 
-#if Z_LANGUAGE_HAS(C, COMPOUND_LITERAL)
+#if Z_DIALECT_HAS(C, COMPOUND_LITERAL)
 
 #	define z_2d_uint8(x, y)	      ((Z2DUInt8){x, y})
 #	define z_3d_uint8(x, y, z)    ((Z3DUInt8){x, y, z})
@@ -470,4 +470,4 @@ typedef Z4DType(INTEGER) Z4DInteger;
 #	define z_4d_0 z_4d_type_0(REAL)
 #endif
 
-#endif /* _Z_types_dimensional_H_ */
+#endif /* Z_types_dimensional_H_ */

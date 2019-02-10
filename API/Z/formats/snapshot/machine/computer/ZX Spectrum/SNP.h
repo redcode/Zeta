@@ -17,12 +17,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 |	      [MAME sources]/src/mame/machine/spec_snqk.cpp	    |
 '------------------------------------------------------------------*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN {
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	ram[49152];
 	Z16Bit	af;
 	zuint8	border_color;
@@ -35,6 +35,6 @@ Z_DEFINE_STRICT_STRUCTURE_BEGIN {
 	zuint8	im;
 	zuint8	r, i;
 	Z16Bit	af_, bc_, de_, hl_;
-} Z_DEFINE_STRICT_STRUCTURE_END (ZSNP);
+} Z_DEFINE_PACKED_STRUCTURE_END (ZSNP);
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_ */

@@ -5,11 +5,11 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_constants_version_H_
-#define _Z_constants_version_H_
+#ifndef Z_constants_version_H_
+#define Z_constants_version_H_
 
 #include <Z/macros/version.h>
 
 #define Z_KIT_VERSION Z_VERSION(0, 1, 0)
 
-#endif /* _Z_constants_version_H_ */
+#endif /* Z_constants_version_H_ */

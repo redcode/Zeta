@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_classes_ObjectMemberFunction_HPP_
-#define _Z_classes_ObjectMemberFunction_HPP_
+#ifndef Z_classes_ObjectMemberFunction_HPP_
+#define Z_classes_ObjectMemberFunction_HPP_
 
 #include <Z/inspection/Z.h>
 #include <Z/classes/MemberFunction.hpp>
@@ -26,7 +26,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Z_DEFAULTED({})
 
 
-#			if Z_LANGUAGE_HAS(CPP, INHERITING_CONSTRUCTORS)
+#			if Z_DIALECT_HAS(CPP, INHERITING_CONSTRUCTORS)
 				using MemberFunction<R(P...)>::MemberFunction;
 #			else
 				template <class M, class E = typename TypeIf<
@@ -45,10 +45,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O, class M, class E = typename TypeIf<
-				(Type<O>::is_void_pointer			       ||
-				 (Type<O>::is_pointer				       &&
-				  Type<O>::flow::pointee_type::is_structure_or_union)) &&
-				Type<M>::is_member_function_pointer		       &&
+				(Type<O>::is_void_pointer		  ||
+				 (Type<O>::is_pointer			  &&
+				  Type<O>::flow::pointee_type::is_class)) &&
+				Type<M>::is_member_function_pointer	  &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE ObjectMemberFunction(O object, M function) Z_NOTHROW
@@ -56,7 +56,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O, class M, class E = typename TypeIf<
-				Type<O>::is_structure_or_union	    &&
+				Type<O>::is_class		    &&
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
@@ -64,13 +64,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			: MemberFunction<R(P...)>(function), object((NaT *)&object) {}
 
 
-			template <class O, class E = typename TypeIf<Type<O>::is_structure_or_union, O>::type>
+			template <class O, class E = typename TypeIf<Type<O>::is_class, O>::type>
 			Z_INLINE operator O *() const Z_NOTHROW
 				{return (O *)object;}
 
 
 			template <class O>
-			Z_INLINE typename TypeIf<Type<O>::is_structure_or_union, ObjectMemberFunction &>::type
+			Z_INLINE typename TypeIf<Type<O>::is_class, ObjectMemberFunction &>::type
 			operator =(O *rhs) Z_NOTHROW
 				{
 				object = (NaT *)rhs;
@@ -79,7 +79,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O>
-			Z_INLINE typename TypeIf<Type<O>::is_structure_or_union, ObjectMemberFunction &>::type
+			Z_INLINE typename TypeIf<Type<O>::is_class, ObjectMemberFunction &>::type
 			operator =(const O &rhs) Z_NOTHROW
 				{
 				object = (NaT *)&rhs;
@@ -137,10 +137,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			template <class O, class M>
 			Z_INLINE typename TypeIf<
-				(Type<O>::is_void_pointer			       ||
-				 (Type<O>::is_pointer				       &&
-				  Type<O>::flow::pointee_type::is_structure_or_union)) &&
-				Type<M>::is_member_function_pointer		       &&
+				(Type<O>::is_void_pointer		  ||
+				 (Type<O>::is_pointer			  &&
+				  Type<O>::flow::pointee_type::is_class)) &&
+				Type<M>::is_member_function_pointer	  &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			ObjectMemberFunction &>::type
 			set(O object, M function) Z_NOTHROW
@@ -153,7 +153,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			template <class O, class M>
 			Z_INLINE typename TypeIf<
-				Type<O>::is_structure_or_union	    &&
+				Type<O>::is_class		    &&
 				Type<M>::is_member_function_pointer &&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			ObjectMemberFunction &>::type
@@ -172,4 +172,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_CLASS_ObjectMemberFunction FALSE
 #endif
 
-#endif // _Z_classes_ObjectMemberFunction_HPP_
+#endif // Z_classes_ObjectMemberFunction_HPP_

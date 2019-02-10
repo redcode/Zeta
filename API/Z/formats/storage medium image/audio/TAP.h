@@ -12,15 +12,15 @@ Released under the terms of the GNU Lesser General Public License v3.
 |    Used by: Many programs |
 '--------------------------*/
 
-#ifndef _Z_formats_storage_medium_image_audio_TAP_H_
-#define _Z_formats_storage_medium_image_audio_TAP_H_
+#ifndef Z_formats_storage_medium_image_audio_TAP_H_
+#define Z_formats_storage_medium_image_audio_TAP_H_
 
 #include <Z/types/fundamental.h>
 #include <Z/macros/structure.h>
 
-Z_DEFINE_STRICT_STRUCTURE ({
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 size;
 	Z_FAM(zuint8 data[];)
 }, ZTAPBlock);
 
-#endif /* _Z_formats_storage_medium_image_audio_TAP_H_ */
+#endif /* Z_formats_storage_medium_image_audio_TAP_H_ */

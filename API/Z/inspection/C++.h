@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_CPP_H_
-#define _Z_inspection_CPP_H_
+#ifndef Z_inspection_CPP_H_
+#define Z_inspection_CPP_H_
 
 #include <Z/constants/base.h>
 #include <Z/keys/C++.h>
@@ -33,31 +33,31 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_CPP == Z_CPP17
 #		include <Z/inspection/C++/modules/C++17.h>
-#		define Z_CPP_STRING Z_CPP_STRING_CPP17
+#		define Z_CPP_NAME Z_CPP_NAME_CPP17
 
 #	elif Z_CPP == Z_CPP14
 #		include <Z/inspection/C++/modules/C++14.h>
-#		define Z_CPP_STRING Z_CPP_STRING_CPP14
+#		define Z_CPP_NAME Z_CPP_NAME_CPP14
 
 #	elif Z_CPP == Z_CPP11
 #		include <Z/inspection/C++/modules/C++11.h>
-#		define Z_CPP_STRING Z_CPP_STRING_CPP11
+#		define Z_CPP_NAME Z_CPP_NAME_CPP11
 
 #	elif Z_CPP == Z_CPP03
 #		include <Z/inspection/C++/modules/C++03.h>
-#		define Z_CPP_STRING Z_CPP_STRING_CPP03
+#		define Z_CPP_NAME Z_CPP_NAME_CPP03
 
 #	elif Z_CPP == Z_CPP98
 #		include <Z/inspection/C++/modules/C++98.h>
-#		define Z_CPP_STRING Z_CPP_STRING_CPP98
+#		define Z_CPP_NAME Z_CPP_NAME_CPP98
 
 #	elif Z_CPP == Z_CPP89
 #		include <Z/inspection/C++/modules/C++89.h>
-#		define Z_CPP_STRING Z_CPP_STRING_CPP89
+#		define Z_CPP_NAME Z_CPP_NAME_CPP89
 
 #	elif Z_CPP == Z_CPP85
 #		include <Z/inspection/C++/modules/C++85.h>
-#		define Z_CPP_STRING Z_CPP_STRING_CPP85
+#		define Z_CPP_NAME Z_CPP_NAME_CPP85
 
 #	endif
 
@@ -65,15 +65,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C++/completion.h>
 
-#define Z_CPP_HAS(			WHAT ) Z_CPP_HAS_##WHAT
-#define Z_CPP_HAS_ATTRIBUTE(		WHICH) Z_CPP_HAS_ATTRIBUTE_##WHICH
-#define Z_CPP_HAS_LITERAL(		WHICH) Z_CPP_HAS_LITERAL_##WHICH
-#define Z_CPP_HAS_MAGIC_CONSTANT(	WHICH) Z_CPP_HAS_MAGIC_CONSTANT_##WHICH
-#define Z_CPP_HAS_OPERATOR(		WHICH) Z_CPP_HAS_OPERATOR_##WHICH
-#define Z_CPP_HAS_SPECIFIER(		WHICH) Z_CPP_HAS_SPECIFIER_##WHICH
-#define Z_CPP_HAS_STORAGE_CLASS(	WHICH) Z_CPP_HAS_STORAGE_CLASS_##WHICH
-#define Z_CPP_HAS_TYPE(			WHICH) Z_CPP_HAS_TYPE_##WHICH
-#define Z_CPP_HAS_TYPE_QUALIFIER(	WHICH) Z_CPP_HAS_TYPE_QUALIFIER_##WHICH
-#define Z_CPP_HAS_PREPROCESSOR_OPERATOR(WHICH) Z_CPP_HAS_PREPROCESSOR_OPERATOR_##WHICH
+#define Z_CPP_HAS(			 WHAT ) Z_CPP_HAS_##WHAT
+#define Z_CPP_HAS_ATTRIBUTE(		 WHICH) Z_CPP_HAS_ATTRIBUTE_##WHICH
+#define Z_CPP_HAS_IDENTIFIER(		 WHICH) Z_CPP_HAS_IDENTIFIER_##WHICH
+#define Z_CPP_HAS_LITERAL(		 WHICH) Z_CPP_HAS_LITERAL_##WHICH
+#define Z_CPP_HAS_OPERATOR(		 WHICH) Z_CPP_HAS_OPERATOR_##WHICH
+#define Z_CPP_HAS_PREPROCESSOR_DIRECTIVE(WHICH) Z_CPP_HAS_PREPROCESSOR_DIRECTIVE_##WHICH
+#define Z_CPP_HAS_PREPROCESSOR_OPERATOR( WHICH) Z_CPP_HAS_PREPROCESSOR_OPERATOR_##WHICH
+#define Z_CPP_HAS_SPECIFIER(		 WHICH) Z_CPP_HAS_SPECIFIER_##WHICH
+#define Z_CPP_HAS_STORAGE_CLASS(	 WHICH) Z_CPP_HAS_STORAGE_CLASS_##WHICH
+#define Z_CPP_HAS_TYPE(			 WHICH) Z_CPP_HAS_TYPE_##WHICH
+#define Z_CPP_HAS_TYPE_QUALIFIER(	 WHICH) Z_CPP_HAS_TYPE_QUALIFIER_##WHICH
+#define Z_CPP_HAS_TYPE_SPECIFIER(	 WHICH) Z_CPP_HAS_TYPE_SPECIFIER_##WHICH
 
-#endif /* _Z_inspection_CPP_H_ */
+#define Z_CPP_HAS_OPERATOR_CASE( OPERATOR,  CASE) Z_CPP_HAS_OPERATOR_CASE_##OPERATOR##_##CASE
+#define Z_CPP_HAS_SPECIFIER_CASE(SPECIFIER, CASE) Z_CPP_HAS_SPECIFIER_CASE_##SPECIFIER##_##CASE
+
+#endif /* Z_inspection_CPP_H_ */

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_ABIs_generic_emulation_H_
-#define _Z_ABIs_generic_emulation_H_
+#ifndef Z_ABIs_generic_emulation_H_
+#define Z_ABIs_generic_emulation_H_
 
 #include <Z/macros/type.h>
 
@@ -69,17 +69,17 @@ typedef struct {
 	} context;
 } ZEmulatorComponent;
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE (
 	zchar const* domain_identifier;
 	zchar const* unit_identifier;
 ) ZEmulatorDependency;
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE (
 	ZKey(EMULATOR_FUNCTION) key;
 	void (*)(void)		function;
 ) ZEmulatorFunctionExport;
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE (
 	ZKey(EMULATOR_FUNCTION) key;
 	zusize			offset;
 ) ZEmulatorInstanceImport;
@@ -87,7 +87,16 @@ Z_DEFINE_STRICT_STRUCTURE (
 typedef ZEmulatorExport		ZCPUEmulatorExport;
 typedef ZEmulatorInstanceImport ZCPUEmulatorInstanceImport;
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zchar const* name;
+	zusize	     offset;
+	zuint16	     bit_offset;
+	zuint16	     bits;
+	zuint16	     storage_bits;
+	zuint8	     endianness;
+}, ZEmulatorContextVariableExport);
+
+Z_DEFINE_PACKED_STRUCTURE ({
 	zusize			       dependency_count;
 	ZEmulatorDependency const*     dependencies;
 	zusize			       function_export_count;
@@ -97,6 +106,6 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zusize			       instance_state_size;
 	zusize			       instance_import_count;
 	ZEmulatorInstanceImport const* instance_imports;
-) ZCPUEmulatorABI;
+}, ZCPUEmulatorABI);
 
-#endif /* _Z_ABIs_generic_emulation_H_ */
+#endif /* Z_ABIs_generic_emulation_H_ */

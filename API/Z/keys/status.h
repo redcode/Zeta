@@ -5,11 +5,11 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_keys_status_H_
-#define _Z_keys_status_H_
+#ifndef Z_keys_status_H_
+#define Z_keys_status_H_
 
 #ifdef Z_OK
-#	undef Z_OK /* zlib */
+#undef Z_OK /* defined by zlib */
 #endif
 
 #define Z_OK			      0
@@ -62,4 +62,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ERROR_UNAUTHORIZED	     -47
 #define Z_ERROR_UNREACHABLE	     -48
 
-#endif /* _Z_keys_status_H_ */
+#endif /* Z_keys_status_H_ */
