@@ -18,6 +18,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_TypeIf FALSE
 #endif
 
+#if Z_DIALECT_HAS(CPP, SFINAE) && Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
+#	define Z_HAS_TRAIT_ALIAS_type_if TRUE
+#else
+#	define Z_HAS_TRAIT_ALIAS_type_if FALSE
+#endif
+
 #if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE) && Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
 #	define Z_HAS_TRAIT_ALIAS_select_type TRUE
 #else
@@ -27,9 +33,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 namespace Zeta {
 
 #	if Z_HAS_TRAIT(TypeIf)
+
 		template <Boolean B, class T> struct TypeIf {};
 
 		template <class T> struct TypeIf <true, T> {typedef T type;};
+
+#		if Z_HAS_TRAIT_ALIAS(type_if)
+			template <Boolean B, class T> using type_if = typename TypeIf<B, T>::type;
+#		endif
+
 #	endif
 
 	template <Boolean condition, class if_true, class if_false> struct TernaryType;
