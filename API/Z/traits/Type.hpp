@@ -6,13 +6,11 @@ Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Copyright (C) 2018 Sofía Ortega Sosa.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_traits_Type_HPP_
-#define _Z_traits_Type_HPP_
+#ifndef Z_traits_Type_HPP_
+#define Z_traits_Type_HPP_
 
 #include <Z/keys/number.h>
-#include <Z/inspection/Z.h>
 #include <Z/traits/constants.hpp>
-#include <Z/traits/control.hpp>
 #include <Z/traits/TypeList.hpp>
 #include <Z/classes/NaT.hpp>
 #include <Z/macros/aggregate.h>
@@ -20,17 +18,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if !Z_HAS_TRAIT(TypeList)
 #	include <Z/traits/control.hpp>
 
-#	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+#	if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE)
 #		include <Z/traits/TypeCount.hpp>
 #	endif
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#if Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE)
 #	include <Z/functions/unevaluated.hpp>
 #endif
 
 #if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
-	Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
+	Z_DIALECT_HAS(CPP, CPP14_RULES_ON_CONSTEXPR_FUNCTION)
 
 #	include <Z/functions/type.hpp>
 #	include <Z/classes/Symbol.hpp>
@@ -43,7 +41,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 // features that their resulting types require are supported or enabled. |
 //-----------------------------------------------------------------------'
 
-#if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 #	define Z_HAS_TRAIT_TypeAddConstLValue		  TRUE
 #	define Z_HAS_TRAIT_TypeAddConstRValue		  TRUE
 #	define Z_HAS_TRAIT_TypeAddConstVolatileLValue	  TRUE
@@ -111,7 +109,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_to_volatile_rvalue	  FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 #	define Z_HAS_TRAIT_TypeAddRValueReference    TRUE
 #	define Z_HAS_TRAIT_TypeToRValueReference     TRUE
 #	define Z_TRAIT_Type_HAS_add_rvalue_reference TRUE
@@ -283,14 +281,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 // are implemented using workarounds that require some C++11 features.	   |
 //-------------------------------------------------------------------------'
 
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_COMPLETE) || Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_COMPLETE) || Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE)
 #	define Z_HAS_TRAIT_TypeIsComplete TRUE
 #else
 #	define Z_HAS_TRAIT_TypeIsComplete FALSE
 #endif
 
 #if	Z_COMPILER_HAS_TRAIT(TYPE_IS_DEFAULT_CONSTRUCTIBLE) || \
-	(Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE))
+	(Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE) && Z_DIALECT_HAS_SPECIFIER(CPP, DECLTYPE))
 
 #	define Z_HAS_TRAIT_TypeIsDefaultConstructible	 TRUE
 #	define Z_TRAIT_Type_HAS_is_default_constructible TRUE
@@ -299,7 +297,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_default_constructible FALSE
 #endif
 
-#if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE)
 #	define Z_HAS_TRAIT_TypeIsEnumeration   TRUE
 #	define Z_TRAIT_Type_HAS_is_enumeration TRUE
 #else
@@ -312,19 +310,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 // C++11 features to be implemented. There are no known workarounds.	|
 //----------------------------------------------------------------------'
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_CONSTRUCTIBLE)
+#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_CONSTRUCTIBLE)
 #	define Z_HAS_TRAIT_TypeIsConstructible TRUE
 #else
 #	define Z_HAS_TRAIT_TypeIsConstructible FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_CONSTRUCTIBLE)
+#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_CONSTRUCTIBLE)
 #	define Z_HAS_TRAIT_TypeIsNothrowConstructible TRUE
 #else
 #	define Z_HAS_TRAIT_TypeIsNothrowConstructible FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_CONSTRUCTIBLE)
+#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE) && Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_CONSTRUCTIBLE)
 #	define Z_HAS_TRAIT_TypeIsTriviallyConstructible TRUE
 #else
 #	define Z_HAS_TRAIT_TypeIsTriviallyConstructible FALSE
@@ -342,7 +340,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_TRAIT_Type_HAS_is_null_pointer FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
 #	define Z_HAS_TRAIT_TypeIsTemplate   TRUE
 #	define Z_TRAIT_Type_HAS_is_template TRUE
 #else
@@ -351,19 +349,27 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_HAS_TRAIT(TypeList)
+#	define Z_HAS_TRAIT_TypeParameter   TRUE
 #	define Z_HAS_TRAIT_TypeParameters  TRUE
 #	define Z_TRAIT_Type_HAS_parameters TRUE
 #else
+#	define Z_HAS_TRAIT_TypeParameter   FALSE
 #	define Z_HAS_TRAIT_TypeParameters  FALSE
 #	define Z_TRAIT_Type_HAS_parameters FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+#if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
 #	define Z_TRAIT_Type_HAS_add_member_pointer TRUE
 #	define Z_TRAIT_Type_HAS_to_member_pointer  TRUE
 #else
 #	define Z_TRAIT_Type_HAS_add_member_pointer FALSE
 #	define Z_TRAIT_Type_HAS_to_member_pointer  FALSE
+#endif
+
+#if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS) && Z_HAS_TRAIT(TypeList)
+#	define Z_TRAIT_Type_HAS_parameter TRUE
+#else
+#	define Z_TRAIT_Type_HAS_parameter FALSE
 #endif
 
 //------------------------------------------------.
@@ -372,7 +378,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 //------------------------------------------------'
 
 #if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
-	Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
+	Z_DIALECT_HAS(CPP, CPP14_RULES_ON_CONSTEXPR_FUNCTION)
 
 #	define Z_TRAIT_Type_HAS_string	    TRUE
 #	define Z_TRAIT_Type_HAS_string_size TRUE
@@ -388,7 +394,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 // that require some C++11 features to be implemented.	   |
 //---------------------------------------------------------'
 
-#if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE)
 #	define Z_HAS_TRAIT_TypeIsObjectiveCInstance		TRUE
 #	define Z_HAS_TRAIT_TypeIsObjectiveCInstancePointer	TRUE
 #	define Z_TRAIT_Type_HAS_is_objective_c_instance		TRUE
@@ -405,7 +411,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 // aliases and the components to which they refer are also available. |
 //--------------------------------------------------------------------'
 
-#if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+#if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
 #	define Z_HAS_TRAIT_ALIAS_type_add_const			 TRUE
 #	define Z_HAS_TRAIT_ALIAS_type_add_const_volatile	 TRUE
 #	define Z_HAS_TRAIT_ALIAS_type_add_lvalue_reference	 TRUE
@@ -483,8 +489,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_ALIAS_type_to_wrap			 FALSE
 #endif
 
-#if	Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS) && \
-	Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#if	Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS) && \
+	Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
 #	define Z_HAS_TRAIT_ALIAS_type_add_const_lvalue		TRUE
 #	define Z_HAS_TRAIT_ALIAS_type_add_const_rvalue		TRUE
@@ -521,7 +527,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_ALIAS_type_to_volatile_rvalue	FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS) && Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS) && Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 #	define Z_HAS_TRAIT_ALIAS_type_add_rvalue_reference TRUE
 #	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference  TRUE
 #else
@@ -529,31 +535,37 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_TRAIT_ALIAS_type_to_rvalue_reference  FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS) && Z_HAS_TRAIT_ALIAS(type_parameters)
+#if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS) && Z_TRAIT_HAS(Type, parameters)
 #	define Z_HAS_TRAIT_ALIAS_type_parameters TRUE
 #else
 #	define Z_HAS_TRAIT_ALIAS_type_parameters FALSE
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS) && Z_HAS_TRAIT_ALIAS(type_underlying_type)
+#if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS) && Z_TRAIT_HAS(Type, underlying_type)
 #	define Z_HAS_TRAIT_ALIAS_type_underlying_type TRUE
 #else
 #	define Z_HAS_TRAIT_ALIAS_type_underlying_type FALSE
+#endif
+
+#if Z_TRAIT_HAS(Type, parameter)
+#	define Z_HAS_TRAIT_ALIAS_type_parameter TRUE
+#else
+#	define Z_HAS_TRAIT_ALIAS_type_parameter FALSE
 #endif
 
 // MARK: - Helpers
 
 namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 
-#	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#	if Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE)
 
-		template <class T, Boolean B> struct IsStructureOrUnion				 : False {};
-		template <class T>	      struct IsStructureOrUnion<T, !!sizeof(int (T::*))> : True  {};
+		template <class T, Boolean B> struct IsConstruct			  : False {};
+		template <class T>	      struct IsConstruct<T, !!sizeof(int (T::*))> : True  {};
 
 		template <class T, Boolean B> struct IsUsableToCastNumber		     : False {};
 		template <class T>	      struct IsUsableToCastNumber<T, !!sizeof((T)1)> : True  {};
 
-#		if Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE)
+#		if Z_DIALECT_HAS_SPECIFIER(CPP, DECLTYPE)
 
 			template <class T, class R> struct IsDefaultConstructible		    : False {};
 			template <class T>	    struct IsDefaultConstructible<T, decltype(T())> : True  {};
@@ -561,7 +573,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 			template <class T, class F, class R> struct IsCallable : False {};
 			template <class T, class F, class R> struct IsFunctor  : False {};
 
-			#if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+			#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE)
 
 				template <class T, class R, class... P> struct IsCallable<T, R(P...), decltype(fake<T>()	   (fake<P>()...))> : True {};
 				template <class T, class R, class... P> struct IsFunctor <T, R(P...), decltype(fake<T>().operator()(fake<P>()...))> : True {};
@@ -603,27 +615,23 @@ namespace Zeta {
 	template <class A	  > struct TypeAreEqual<A, A> : True  {};
 
 #	if Z_HAS_TRAIT(TypeIsAssignable)
-
 		template <class T, class from_type> struct TypeIsAssignable {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_ASSIGNABLE)(T, from_type)};
 		};
-
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsBase)
-
 		template <class T, class of_type> struct TypeIsBase {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_BASE)(T, of_type)};
 		};
-
 #	endif
 
-#	if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) && Z_LANGUAGE_HAS_SPECIFIER(CPP, DECLARED_TYPE) // Añadir FLAG
+#	if Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE) && Z_DIALECT_HAS_SPECIFIER(CPP, DECLTYPE) // Añadir FLAG
 
 		template <class T, class compatible_call_prototype> struct TypeIsCallable;
 		template <class T, class compatible_call_prototype> struct TypeIsFunctor;
 
-#		if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+#		if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE)
 
 			template <class T, class R, class... P> struct TypeIsCallable<T, R(P...)> : Detail::Type::Helpers::IsCallable<T, R(P...), R> {};
 			template <class T, class R, class... P> struct TypeIsFunctor <T, R(P...)> : Detail::Type::Helpers::IsFunctor <T, R(P...), R> {};
@@ -656,7 +664,7 @@ namespace Zeta {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_COMPLETE)(T)};
 		};
 
-#	elif Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#	elif Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE)
 
 		namespace Detail {namespace Type {namespace Helpers {namespace {
 			template <class T, SInt L, Boolean B> struct TestCompleteness			 : False {};
@@ -670,35 +678,27 @@ namespace Zeta {
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsConvertible)
-
 		template <class T, class to_type> struct TypeIsConvertible {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_CONVERTIBLE)(T, to_type)};
 		};
-
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsConstructible)
-
 		template <class T, class... parameters> struct TypeIsConstructible {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_CONSTRUCTIBLE)(T, parameters...)};
 		};
-
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsNothrowAssignable)
-
 		template <class T, class from_type> struct TypeIsNothrowAssignable {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)(T, from_type)};
 		};
-
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsNothrowConstructible)
-
 		template <class T, class... parameters> struct TypeIsNothrowConstructible {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_NOTHROW_CONSTRUCTIBLE)(T, parameters...)};
 		};
-
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyAssignable)
@@ -710,12 +710,13 @@ namespace Zeta {
 #	endif
 
 #	if Z_HAS_TRAIT(TypeIsTriviallyConstructible)
-
 		template <class T, class... parameters> struct TypeIsTriviallyConstructible {
 			enum {value = Z_COMPILER_TRAIT(TYPE_IS_TRIVIALLY_CONSTRUCTIBLE)(T, parameters...)};
 		};
-
 #	endif
+
+	template <class T> struct TypeRemovePointer	{typedef T type;};
+	template <class T> struct TypeRemovePointer<T*> {typedef T type;};
 
 	template <class T, class klass> struct TypeAddMemberPointer;
 
@@ -728,12 +729,9 @@ namespace Zeta {
 
 	template <class T, class C> struct TypeAddMemberPointer<T&, C> {typedef NaT type;};
 
-#	if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#	if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 		template <class T, class C> struct TypeAddMemberPointer<T&&, C> {typedef NaT type;};
 #	endif
-
-	template <class T> struct TypeRemovePointer	{typedef T type;};
-	template <class T> struct TypeRemovePointer<T*> {typedef T type;};
 }
 
 // MARK: - Abstract
@@ -815,7 +813,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_statically_allocatable     = false,
 			is_storable		      = false,
 			is_structure		      = false,
-			is_structure_or_union	      = false,
 			is_unsigned		      = false,
 			is_valid		      = false,
 			is_variadic		      = false,
@@ -838,7 +835,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 		enum {	fixed_fundamental = 0,
 			fundamental	  = 0,
-			number_format	  = 0
+			number_format	  = 0,
+			number_set	  = 0,
 		};
 
 		typedef NaT type;
@@ -951,13 +949,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_union = false};
 #		endif
 
-#		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE)
 			enum {	is_objective_c_instance		= false,
 				is_objective_c_instance_pointer = false
 			};
 #		endif
 
-#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#		if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 			typedef NaT add_const_lvalue;
 			typedef NaT add_const_rvalue;
 			typedef NaT add_const_volatile_lvalue;
@@ -976,7 +974,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			typedef NaT to_volatile_rvalue;
 #		endif
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 			typedef NaT add_rvalue_reference;
 			typedef NaT to_rvalue_reference;
 #		endif
@@ -989,9 +987,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			typedef NaT underlying_type;
 #		endif
 
-#		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+#		if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
 			template <class klass> using add_member_pointer = NaT;
 			template <class klass> using to_member_pointer	= NaT;
+#		endif
+
+#		if Z_TRAIT_HAS(Type, parameter)
+			template <zuint index> using parameter = NaT;
 #		endif
 	};
 
@@ -1818,7 +1820,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(C, BOOLEAN) || Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+#	if Z_DIALECT_HAS_TYPE(C, BOOL) || Z_DIALECT_HAS_TYPE(CPP, BOOL)
 
 		struct Boolean : Integral {
 			enum {is_boolean = true};
@@ -1828,7 +1830,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
+#	if Z_DIALECT_HAS_TYPE(CPP, WCHAR_T)
 
 		struct WChar : Natural {
 			enum {fundamental = Z_FUNDAMENTAL_WCHAR};
@@ -1837,8 +1839,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 
 #	endif
-/*
-#	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR16)
+
+#	if Z_DIALECT_HAS_TYPE(CPP, CHAR16_T)
 
 		struct Char16 : Natural {
 			enum {fundamental = Z_FUNDAMENTAL_CHAR16};
@@ -1848,7 +1850,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR32)
+#	if Z_DIALECT_HAS_TYPE(CPP, CHAR32_T)
 
 		struct Char32 : Natural {
 			enum {fundamental = Z_FUNDAMENTAL_CHAR32};
@@ -1857,7 +1859,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};
 
 #	endif
-*/
+
 #	if Z_TRAIT_HAS(Type, is_null_pointer)
 
 		struct NullPointer : PointerLike {
@@ -1967,7 +1969,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef T& type;
 	};
 
-#	if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#	if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 
 		template <class T> struct RValueReference : Reference<T> {
 			enum {is_rvalue_reference = true};
@@ -1977,7 +1979,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+#	if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE)
 
 		template <class R, class... P> struct Function : Valid {
 			enum {is_function = true};
@@ -1988,7 +1990,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			typedef R to_const_volatile(P...) const volatile;
 			typedef R to_volatile	   (P...)	volatile;
 
-#			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#			if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 				typedef R to_const_lvalue	  (P...) const		&;
 				typedef R to_const_rvalue	  (P...) const		&&;
 				typedef R to_const_volatile_lvalue(P...) const volatile &;
@@ -2004,6 +2006,10 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			if Z_TRAIT_HAS(Type, parameters)
 				typedef TypeList<P...> parameters;
 #			endif
+
+#			if Z_TRAIT_HAS(Type, parameter)
+				template <zuint index> using parameter = TypeListGet<parameters, index>::type;
+#			endif
 		};
 
 		template <class R, class... P> struct VariadicFunction : Function<R, P...> {
@@ -2014,7 +2020,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			typedef R to_const_volatile(P..., ...) const volatile;
 			typedef R to_volatile	   (P..., ...)	     volatile;
 
-#			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#			if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 				typedef R to_const_lvalue	  (P..., ...) const	     &;
 				typedef R to_const_rvalue	  (P..., ...) const	     &&;
 				typedef R to_const_volatile_lvalue(P..., ...) const volatile &;
@@ -2037,7 +2043,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			typedef R to_const_volatile() const volatile;
 			typedef R to_volatile	   ()	    volatile;
 
-#			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#			if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 				typedef R to_const_lvalue	  () const	    &;
 				typedef R to_const_rvalue	  () const	    &&;
 				typedef R to_const_volatile_lvalue() const volatile &;
@@ -2051,7 +2057,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			typedef R return_type;
 		};
 
-#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#		if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
 #			define Z_TEMPLATE_SPECIALIZATIONS(parameter_count)								       \
 																	       \
@@ -2159,15 +2165,15 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	endif
 
-	template <zboolean E, class T> struct StructureOrUnion;
+	template <zboolean E, class T> struct Construct;
 
-	template <class T> struct StructureOrUnion<false, T> : Storable {
-		enum {is_structure_or_union = true};
+	template <class T> struct Construct<false, T> : Storable {
+		enum {is_class = true};
 
 		typedef T type;
 	};
 
-	template <class T> struct StructureOrUnion<true, T> : StructureOrUnion<false, T> {
+	template <class T> struct Construct<true, T> : Construct<false, T> {
 
 #		if Z_TRAIT_HAS(Type, is_aggregate)
 			enum {is_aggregate = Z_COMPILER_TRAIT(TYPE_IS_AGGREGATE)(T)};
@@ -2212,31 +2218,31 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #		endif
 	};
 
-	template <zboolean E, class T> struct MaybeTemplate : StructureOrUnion<E, T> {};
+	template <zboolean E, class T> struct MaybeTemplate : Construct<E, T> {};
 
 #	if Z_TRAIT_HAS(Type, is_template)
 
-		template <zboolean E, template <class...> class T, class... A> struct MaybeTemplate<E, T<A...> > : StructureOrUnion<E, T<A...> > {
+		template <zboolean E, template <class...> class T, class... A> struct MaybeTemplate<E, T<A...> > : Construct<E, T<A...> > {
 			enum {is_template = true};
 			enum {arity = TypeCount<A...>::value};
 
 			typedef TypeList<A...> parameters;
+
+#			if Z_TRAIT_HAS(Type, parameter)
+				template <zuint index> using parameter = TypeListGet<parameters, index>::type;
+#			endif
 		};
 
 #	endif
 
 	template <class T> class Kind<false, Structure, T> : public MaybeTemplate<false, T> {
 		public:
-		enum {	is_class     = true,
-			is_structure = true
-		};
+		enum {is_structure = true};
 	};
 
 	template <class T> class Kind<true, Structure, T> : public MaybeTemplate<true, T> {
 		public:
-		enum {	is_class     = true,
-			is_structure = true
-		};
+		enum {is_structure = true};
 
 #		if Z_TRAIT_HAS(Type, has_virtual_destructor)
 			enum {has_virtual_destructor = Z_COMPILER_TRAIT(TYPE_HAS_VIRTUAL_DESTRUCTOR)(T)};
@@ -2410,7 +2416,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::type	      remove_volatile_this;
 		typedef typename C::type	      to_unqualified;
 
-#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#		if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 			typedef typename C::to_const_lvalue	     add_const_lvalue;
 			typedef typename C::to_const_rvalue	     add_const_rvalue;
 			typedef typename C::to_const_volatile_lvalue add_const_volatile_lvalue;
@@ -2437,7 +2443,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::to_const	      remove_volatile;
 		typedef typename C::to_const	      remove_volatile_this;
 
-#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#		if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 			typedef typename C::to_const_lvalue	     add_lvalue;
 			typedef typename C::to_const_rvalue	     add_rvalue;
 			typedef typename C::to_const_volatile_lvalue add_volatile_lvalue;
@@ -2456,7 +2462,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::to_volatile	      remove_const_this;
 		typedef typename C::to_volatile	      remove_this;
 
-#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#		if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
 			typedef typename C::to_volatile_lvalue	     add_lvalue;
@@ -2480,7 +2486,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::to_const	      remove_volatile;
 		typedef typename C::to_const	      remove_volatile_this;
 
-#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#		if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 			typedef typename C::to_const_volatile_lvalue add_const_lvalue;
 			typedef typename C::to_const_volatile_rvalue add_const_rvalue;
 			typedef typename C::to_const_volatile_lvalue add_lvalue;
@@ -2490,7 +2496,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 #		endif
 	};
 
-#	if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#	if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
 		template <class C> struct LValueFunction : QualifiedFunction<C> {
 			enum {	has_lvalue = true,
@@ -2675,12 +2681,12 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 		typedef typename C::type& add_lvalue_reference;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 			typedef typename C::type&& add_rvalue_reference;
 #		endif
 
-		Z_DEFINE_STRICT_STRUCTURE({typename C::type value;},      to_wrap  );
-		Z_DEFINE_STRICT_STRUCTURE({UInt8 data[sizeof(to_wrap)];}, to_opaque);
+		Z_DEFINE_PACKED_STRUCTURE({typename C::type value;},      to_wrap  );
+		Z_DEFINE_PACKED_STRUCTURE({UInt8 data[sizeof(to_wrap)];}, to_opaque);
 
 		enum {	size = C::is_empty ? 0 : sizeof(to_wrap),
 			bits = C::is_empty ? 0 : sizeof(to_wrap) * 8
@@ -2744,7 +2750,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::type& to_lvalue_reference;
 		typedef typename C::type* to_pointer;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 			typedef typename C::type&& add_rvalue_reference;
 			typedef typename C::type&& to_rvalue_reference;
 #		endif
@@ -2768,7 +2774,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::type& to_lvalue_reference;
 		typedef typename C::type* to_pointer;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 			typedef typename C::type&& to_rvalue_reference;
 #		endif
 	};
@@ -2780,7 +2786,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 		typedef typename C::type& add_lvalue_reference;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 			typedef typename C::type&& add_rvalue_reference;
 #		endif
 	};
@@ -2806,7 +2812,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 		typedef typename C::pointee_type& to_lvalue_reference;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 			typedef typename C::pointee_type&& to_rvalue_reference;
 #		endif
 	};
@@ -2836,7 +2842,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::referencee_type* to_pointer;
 		typedef NaT			     to_volatile;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 			typedef typename C::referencee_type&& to_rvalue_reference;
 #		endif
 	};
@@ -2868,7 +2874,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::pointee_type& to_lvalue_reference;
 		typedef typename C::pointee_type* to_pointer;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 			typedef typename C::pointee_type&& to_rvalue_reference;
 #		endif
 	};
@@ -2887,7 +2893,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::pointee_type& to_lvalue_reference;
 		typedef typename C::pointee_type* to_pointer;
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 			typedef typename C::pointee_type&& to_rvalue_reference;
 #		endif
 	};
@@ -2915,9 +2921,9 @@ namespace Zeta {namespace Detail {namespace Type {
 #			endif
 		};
 
-		enum {	structure_or_union_detected = structure_detected || union_detected ||
-#			if Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-				Helpers::IsStructureOrUnion<T, true>::value
+		enum {	class_detected = structure_detected || union_detected ||
+#			if Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE)
+				Helpers::IsConstruct<T, true>::value
 #			else
 				false
 #			endif
@@ -2926,18 +2932,18 @@ namespace Zeta {namespace Detail {namespace Type {
 		enum {	enumeration_detected =
 #			if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION)
 				Z_COMPILER_TRAIT(TYPE_IS_ENUMERATION)(T)
-#			elif Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
-				!structure_or_union_detected && Helpers::IsUsableToCastNumber<T, true>::value
+#			elif Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE)
+				!class_detected && Helpers::IsUsableToCastNumber<T, true>::value
 #			else
 				false
 #			endif
 		};
 
 		enum {	objective_c_instance_detected =
-			Z_LANGUAGE_INCLUDES(OBJECTIVE_C)       &&
-			Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE) &&
-			!enumeration_detected		       &&
-			!structure_or_union_detected
+			Z_LANGUAGE_INCLUDES(OBJECTIVE_C)      &&
+			Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE) &&
+			!enumeration_detected		      &&
+			!class_detected
 		};
 
 		enum {	kind = enumeration_detected
@@ -3055,24 +3061,24 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E> struct Case<E, LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN) || Z_LANGUAGE_HAS_TYPE(C, BOOLEAN)
+#	if Z_DIALECT_HAS_TYPE(CPP, BOOL) || Z_DIALECT_HAS_TYPE(C, BOOL)
 		template <Boolean E> struct Case<E, Boolean> : Mixins::Unqualified<Abstract::Boolean> {};
 #	endif
 
 	// MARK: - Specializations: C++ specific fundamental types
 
-#	if Z_LANGUAGE_HAS_TYPE(CPP, WCHAR)
+#	if Z_DIALECT_HAS_TYPE(CPP, WCHAR_T)
 		template <Boolean E> struct Case<E, WChar> : Mixins::Unqualified<Abstract::WChar> {};
 #	endif
-/*
-#	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR16)
+
+#	if Z_DIALECT_HAS_TYPE(CPP, CHAR16_T)
 		template <Boolean E> struct Case<E, Char16> : Mixins::Unqualified<Abstract::Char16> {};
 #	endif
 
-#	if Z_LANGUAGE_HAS_TYPE(CPP, CHAR32)
+#	if Z_DIALECT_HAS_TYPE(CPP, CHAR32_T)
 		template <Boolean E> struct Case<E, Char32> : Mixins::Unqualified<Abstract::Char32> {};
 #	endif
-*/
+
 #	if Z_TRAIT_HAS(Type, is_null_pointer)
 		template <Boolean E> struct Case<E, NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
 #	endif
@@ -3153,7 +3159,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		enum {indirection_level = Referencee::indirection_level + 1};
 	};
 
-#	if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#	if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 
 		template <Boolean E, class T> class Case<E, T&&> : public Mixins::Unqualified<Abstract::RValueReference<T> > {
 			private:
@@ -3174,7 +3180,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: Functions
 
-#	if Z_LANGUAGE_HAS(CPP, VARIADIC_TEMPLATE)
+#	if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE)
 
 		template <Boolean E, class R, class... P> struct Case<E, R(P...)> : Mixins::UnqualifiedFunction<Abstract::Function<R, P...> > {};
 
@@ -3188,7 +3194,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E, class R, class... P> struct Case<E, R(P..., ...) const volatile> : Mixins::ConstVolatileFunction<Case<E, R(P..., ...)> > {};
 		template <Boolean E, class R, class... P> struct Case<E, R(P..., ...)	    volatile> : Mixins::VolatileFunction     <Case<E, R(P..., ...)> > {};
 
-#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#		if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
 			template <Boolean E, class R, class... P> struct Case<E, R(P...)		& > : Mixins::LValueFunction		 <Case<E, R(P...)> > {};
 			template <Boolean E, class R, class... P> struct Case<E, R(P...)		&&> : Mixins::RValueFunction		 <Case<E, R(P...)> > {};
@@ -3235,7 +3241,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		Z_FOR_32_CALL_WITH_TIME(Z_TEMPLATE_SPECIALIZATIONS, Z_EMPTY)
 #		undef Z_TEMPLATE_SPECIALIZATIONS
 
-#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#		if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
 			template <Boolean E, class R> struct Case<E, R()		& > : Mixins::LValueFunction		 <Case<E, R()> > {};
 			template <Boolean E, class R> struct Case<E, R()		&&> : Mixins::RValueFunction		 <Case<E, R()> > {};
@@ -3327,7 +3333,7 @@ namespace Zeta {namespace Detail {namespace Type {
 	C> {
 		enum {is_compound = !Build::is_fundamental};
 
-		typedef typename TernaryType<Build::is_structure_or_union,
+		typedef typename TernaryType<Build::is_class,
 			typename Build<const typename Build::remove_const_volatile>::add_lvalue_reference,
 			T
 		>::type to_forwardable;
@@ -3343,12 +3349,12 @@ namespace Zeta {
 
 	template <class T> struct Type : Detail::Type::Build<T> {
 
-#		if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+#		if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
 			template <class klass> using add_member_pointer = typename TypeAddMemberPointer<T,				   klass>::type;
 			template <class klass> using to_member_pointer	= typename TypeAddMemberPointer<typename Type::remove_indirection, klass>::type;
 #		endif
 
-#		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
+#		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_DIALECT_HAS(CPP, CPP14_RULES_ON_CONSTEXPR_FUNCTION)
 
 #			define Z_IMPLEMENTATION_MEMBER_FUNCTIONS							       \
 				static Z_CT(CPP14) USize		      string_size() {return type_string_size  <T>() ;} \
@@ -3434,7 +3440,6 @@ namespace Zeta {
 				is_statically_allocatable     = Type::is_statically_allocatable,
 				is_storable		      = Type::is_storable,
 				is_structure		      = Type::is_structure,
-				is_structure_or_union	      = Type::is_structure_or_union,
 				is_unsigned		      = Type::is_unsigned,
 				is_valid		      = Type::is_valid,
 				is_variadic		      = Type::is_variadic,
@@ -3457,7 +3462,8 @@ namespace Zeta {
 
 			enum {	fixed_fundamental = Type::fixed_fundamental,
 				fundamental	  = Type::fundamental,
-				number_format	  = Type::number_format
+				number_format	  = Type::number_format,
+				number_set	  = Type::number_set
 			};
 
 			typedef Type end;
@@ -3572,13 +3578,13 @@ namespace Zeta {
 				enum {is_union = Type::is_union};
 #			endif
 
-#			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE)
 				enum {	is_objective_c_instance		= Type::is_objective_c_instance,
 					is_objective_c_instance_pointer = Type::is_objective_c_instance_pointer
 				};
 #			endif
 
-#			if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#			if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 				typedef typename Type<typename Type::add_const_lvalue	      >::flow add_const_lvalue;
 				typedef typename Type<typename Type::add_const_rvalue	      >::flow add_const_rvalue;
 				typedef typename Type<typename Type::add_const_volatile_lvalue>::flow add_const_volatile_lvalue;
@@ -3597,7 +3603,7 @@ namespace Zeta {
 				typedef typename Type<typename Type::to_volatile_rvalue	      >::flow to_volatile_rvalue;
 #			endif
 
-#			if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#			if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 				typedef typename Type<typename Type::add_rvalue_reference>::flow add_rvalue_reference;
 				typedef typename Type<typename Type::to_rvalue_reference >::flow to_rvalue_reference;
 #			endif
@@ -3610,9 +3616,13 @@ namespace Zeta {
 				typedef typename Type<typename Type::underlying_type>::flow underlying_type;
 #			endif
 
-#			if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+#			if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
 				template <class klass> using add_member_pointer = typename Type<typename Type::add_member_pointer<klass> >::flow;
 				template <class klass> using to_member_pointer	= typename Type<typename Type::to_member_pointer <klass> >::flow;
+#			endif
+
+#			if Z_TRAIT_HAS(Type, parameter)
+				template <zuint index> using parameter = typename Type<typename Type::parameter<index> >::flow;
 #			endif
 
 			Z_IMPLEMENTATION_MEMBER_FUNCTIONS
@@ -3701,7 +3711,6 @@ namespace Zeta {
 	template <class T> struct TypeIsStaticallyAllocatable	{enum {value = Type<T>::is_statically_allocatable    };};
 	template <class T> struct TypeIsStorable		{enum {value = Type<T>::is_storable		     };};
 	template <class T> struct TypeIsStructure		{enum {value = Type<T>::is_structure		     };};
-	template <class T> struct TypeIsStructureOrUnion	{enum {value = Type<T>::is_structure_or_union	     };};
 	template <class T> struct TypeIsUnsigned		{enum {value = Type<T>::is_unsigned		     };};
 	template <class T> struct TypeIsValid			{enum {value = Type<T>::is_valid		     };};
 	template <class T> struct TypeIsVariadic		{enum {value = Type<T>::is_variadic		     };};
@@ -3712,6 +3721,7 @@ namespace Zeta {
 	template <class T> struct TypeIsVolatileLValue		{enum {value = Type<T>::is_volatile_lvalue	     };};
 	template <class T> struct TypeIsVolatileRValue		{enum {value = Type<T>::is_volatile_rvalue	     };};
 	template <class T> struct TypeNumberFormat		{enum {value = Type<T>::number_format		     };};
+	template <class T> struct TypeNumberSet			{enum {value = Type<T>::number_set		     };};
 	template <class T> struct TypePointerLevel		{enum {value = Type<T>::pointer_level		     };};
 	template <class T> struct TypeSize			{enum {value = Type<T>::size			     };};
 
@@ -3826,12 +3836,12 @@ namespace Zeta {
 		template <class T> struct TypeIsUnion {enum {value = Type<T>::is_union};};
 #	endif
 
-#	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_LANGUAGE_HAS(CPP, EXPRESSION_SFINAE)
+#	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE)
 		template <class T> struct TypeIsObjectiveCInstance	  {enum {value = Type<T>::is_objective_c_instance	 };};
 		template <class T> struct TypeIsObjectiveCInstancePointer {enum {value = Type<T>::is_objective_c_instance_pointer};};
 #	endif
 
-#	if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#	if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 		template <class T> struct TypeAddConstLValue	     {typedef typename Type<T>::add_const_lvalue	  type;};
 		template <class T> struct TypeAddConstRValue	     {typedef typename Type<T>::add_const_rvalue	  type;};
 		template <class T> struct TypeAddConstVolatileLValue {typedef typename Type<T>::add_const_volatile_lvalue type;};
@@ -3850,7 +3860,7 @@ namespace Zeta {
 		template <class T> struct TypeToVolatileRValue	     {typedef typename Type<T>::to_volatile_rvalue	  type;};
 #	endif
 
-#	if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#	if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 		template <class T> struct TypeAddRValueReference {typedef typename Type<T>::add_rvalue_reference type;};
 		template <class T> struct TypeToRValueReference	 {typedef typename Type<T>::to_rvalue_reference	 type;};
 #	endif
@@ -3863,7 +3873,13 @@ namespace Zeta {
 		template <class T> struct TypeUnderlyingType {typedef typename Type<T>::underlying_type	type;};
 #	endif
 
-#	if Z_LANGUAGE_HAS(CPP, TEMPLATE_ALIAS)
+#	if Z_HAS_TRAIT(TypeParameter)
+		template <class T, UInt index> struct TypeParameter {
+			typedef typename TypeListGet<Type<T>::parameters, index>::type type;
+		};
+#	endif
+
+#	if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
 
 		template <class T> using type_add_const			 = typename Type<T>::add_const;
 		template <class T> using type_add_const_volatile	 = typename Type<T>::add_const_volatile;
@@ -3904,7 +3920,7 @@ namespace Zeta {
 		template <class T, class klass> using type_add_member_pointer = typename TypeAddMemberPointer<T, klass>::type;
 		template <class T, class klass> using type_to_member_pointer  = typename TypeToMemberPointer <T, klass>::type;
 
-#		if Z_LANGUAGE_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
+#		if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 			template <class T> using type_add_const_lvalue		= typename Type<T>::add_const_lvalue;
 			template <class T> using type_add_const_rvalue		= typename Type<T>::add_const_rvalue;
 			template <class T> using type_add_const_volatile_lvalue = typename Type<T>::add_const_volatile_lvalue;
@@ -3923,7 +3939,7 @@ namespace Zeta {
 			template <class T> using type_to_volatile_rvalue	= typename Type<T>::to_volatile_rvalue;
 #		endif
 
-#		if Z_LANGUAGE_HAS(CPP, RVALUE_REFERENCE)
+#		if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
 			template <class T> using type_add_rvalue_reference = typename Type<T>::add_rvalue_reference;
 			template <class T> using type_to_rvalue_reference  = typename Type<T>::to_rvalue_reference;
 #		endif
@@ -3936,7 +3952,11 @@ namespace Zeta {
 			template <class T> using type_underlying_type = typename Type<T>::underlying_type;
 #		endif
 
+#		if Z_HAS_TRAIT_ALIAS(type_parameter)
+			template <class T, UInt index> using type_parameter = typename Type<T>::parameter<index>;
+#		endif
+
 #	endif
 }
 
-#endif // _Z_traits_Type_HPP_
+#endif // Z_traits_Type_HPP_
