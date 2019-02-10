@@ -2008,7 +2008,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 #			endif
 
 #			if Z_TRAIT_HAS(Type, parameter)
-				template <zuint index> using parameter = TypeListGet<parameters, index>::type;
+				template <zuint index> using parameter = typename TypeListGet<parameters, index>::type;
 #			endif
 		};
 
@@ -2229,7 +2229,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			typedef TypeList<A...> parameters;
 
 #			if Z_TRAIT_HAS(Type, parameter)
-				template <zuint index> using parameter = TypeListGet<parameters, index>::type;
+				template <zuint index> using parameter = typename TypeListGet<parameters, index>::type;
 #			endif
 		};
 
@@ -3622,7 +3622,7 @@ namespace Zeta {
 #			endif
 
 #			if Z_TRAIT_HAS(Type, parameter)
-				template <zuint index> using parameter = typename Type<typename Type::parameter<index> >::flow;
+				template <zuint index> using parameter = typename Type<typename Type::template parameter<index> >::flow;
 #			endif
 
 			Z_IMPLEMENTATION_MEMBER_FUNCTIONS
@@ -3875,7 +3875,7 @@ namespace Zeta {
 
 #	if Z_HAS_TRAIT(TypeParameter)
 		template <class T, UInt index> struct TypeParameter {
-			typedef typename TypeListGet<Type<T>::parameters, index>::type type;
+			typedef typename TypeListGet<typename Type<T>::parameters, index>::type type;
 		};
 #	endif
 
@@ -3953,7 +3953,7 @@ namespace Zeta {
 #		endif
 
 #		if Z_HAS_TRAIT_ALIAS(type_parameter)
-			template <class T, UInt index> using type_parameter = typename Type<T>::parameter<index>;
+			template <class T, UInt index> using type_parameter = typename Type<T>::template parameter<index>;
 #		endif
 
 #	endif
