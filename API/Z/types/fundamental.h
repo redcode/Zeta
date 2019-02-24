@@ -691,10 +691,13 @@ typedef ztype(SSIZE)		  zssize;
 
 #if defined(Z_UINT128)
 #	define Z_UINTMAX_BITS 128
+
 #elif defined(Z_UINT64)
 #	define Z_UINTMAX_BITS 64
+
 #elif defined(Z_ULLONG)
 #	define Z_UINTMAX_BITS Z_ULLONG_BITS
+
 #else
 #	define Z_UINTMAX_BITS Z_ULONG_BITS
 #endif
@@ -711,10 +714,13 @@ typedef ztype(UINTMAX)		    zuintmax;
 
 #if defined(Z_SINT128)
 #	define Z_SINTMAX_BITS 128
+
 #elif defined(Z_SINT64)
 #	define Z_SINTMAX_BITS 64
+
 #elif defined(Z_SLLONG)
 #	define Z_SINTMAX_BITS Z_SLLONG_BITS
+
 #else
 #	define Z_SINTMAX_BITS Z_SLONG_BITS
 #endif
@@ -856,25 +862,27 @@ typedef ztype(SINTTOP)		    zsinttop;
 
 /* MARK: - Default types */
 
-typedef zuint8			    zboolean;
-#define Z_BOOLEAN_FUNDAMENTAL	    Z_UINT8_FUNDAMENTAL
-#define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_UINT8_FIXED_FUNDAMENTAL
-#define Z_BOOLEAN_NUMBER_FORMAT	    Z_UINT8_NUMBER_FORMAT
-#define Z_BOOLEAN_BITS		    Z_UINT8_BITS
-#define Z_BOOLEAN_SIZE		    Z_UINT8_SIZE
+#ifdef Z_UINT8
 
-#if defined(Z_USE_NATURAL_UINT16)
-#	define Z_NATURAL_BITS 16
+	typedef zuint8			   zboolean;
+#	define Z_BOOLEAN_FUNDAMENTAL	   Z_UINT8_FUNDAMENTAL
+#	define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_UINT8_FIXED_FUNDAMENTAL
+#	define Z_BOOLEAN_NUMBER_FORMAT	   Z_UINT8_NUMBER_FORMAT
+#	define Z_BOOLEAN_BITS		   Z_UINT8_BITS
+#	define Z_BOOLEAN_SIZE		   Z_UINT8_SIZE
 
-#elif defined(Z_USE_NATURAL_UINT32)
-#	define Z_NATURAL_BITS 32
-
-#elif defined(Z_USE_NATURAL_UINT64) && defined(Z_UINT64)
-#	define Z_NATURAL_BITS 64
-
-#elif defined(Z_USE_NATURAL_UINT128) && defined(Z_UINT128)
-#	define Z_NATURAL_BITS 128
 #else
+
+	typedef zuchar			   zboolean;
+#	define Z_BOOLEAN_FUNDAMENTAL	   Z_UCHAR_FUNDAMENTAL
+#	define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_UCHAR_FIXED_FUNDAMENTAL
+#	define Z_BOOLEAN_NUMBER_FORMAT	   Z_UCHAR_NUMBER_FORMAT
+#	define Z_BOOLEAN_BITS		   Z_UCHAR_BITS
+#	define Z_BOOLEAN_SIZE		   Z_UCHAR_SIZE
+
+#endif
+
+#ifndef Z_NATURAL_BITS
 #	define Z_NATURAL_BITS Z_ULONG_BITS
 #endif
 
@@ -888,18 +896,7 @@ typedef ztype(NATURAL)		    znatural;
 #define Z_NATURAL_MINIMUM	    Z_TYPE_MINIMUM	    (NATURAL)
 #define Z_NATURAL_MAXIMUM	    Z_TYPE_MAXIMUM	    (NATURAL)
 
-#if defined(Z_USE_INTEGER_SINT16)
-#	define Z_INTEGER_BITS 16
-
-#elif defined(Z_USE_INTEGER_SINT32)
-#	define Z_INTEGER_BITS 32
-
-#elif defined(Z_USE_INTEGER_SINT64) && defined(Z_SINT64)
-#	define Z_INTEGER_BITS 64
-
-#elif defined(Z_USE_INTEGER_SINT128) && defined(Z_SINT128)
-#	define Z_INTEGER_BITS 128
-#else
+#ifndef Z_INTEGER_BITS
 #	define Z_INTEGER_BITS Z_SLONG_BITS
 #endif
 
@@ -913,35 +910,15 @@ typedef ztype(INTEGER)		    zinteger;
 #define Z_INTEGER_MINIMUM	    Z_TYPE_MINIMUM	    (INTEGER)
 #define Z_INTEGER_MAXIMUM	    Z_TYPE_MAXIMUM	    (INTEGER)
 
-#if defined(Z_USE_REAL_FLOAT16) && defined(Z_FLOAT16)
-#	define Z_REAL_FIXED_FUNDAMENTAL Z_FUNDAMENTAL_FLOAT16
+#ifndef Z_REAL_FIXED_FUNDAMENTAL
 
-#elif defined(Z_USE_REAL_FLOAT32) && defined(Z_FLOAT32)
-#	define Z_REAL_FIXED_FUNDAMENTAL Z_FUNDAMENTAL_FLOAT32
+#	if defined(Z_DOUBLE)
+#		define Z_REAL_FIXED_FUNDAMENTAL Z_DOUBLE_FIXED_FUNDAMENTAL
 
-#elif defined(Z_USE_REAL_FLOAT64) && defined(Z_FLOAT64)
-#	define Z_REAL_FIXED_FUNDAMENTAL Z_FUNDAMENTAL_FLOAT64
+#	elif defined(Z_FLOAT)
+#		define Z_REAL_FIXED_FUNDAMENTAL Z_DOUBLE_FIXED_FUNDAMENTAL
+#	endif
 
-#elif defined(Z_USE_REAL_FLOAT128) && defined(Z_FLOAT128)
-#	define Z_REAL_FIXED_FUNDAMENTAL Z_FUNDAMENTAL_FLOAT128
-
-#elif defined(Z_USE_REAL_FLOAT80_X87) && defined(Z_FLOAT80_X87)
-#	define Z_REAL_FIXED_FUNDAMENTAL Z_FUNDAMENTAL_FLOAT80_X87
-
-#elif defined(Z_USE_REAL_FLOAT96_X87) && defined(Z_FLOAT96_X87)
-#	define Z_REAL_FIXED_FUNDAMENTAL Z_FUNDAMENTAL_FLOAT96_X87
-
-#elif defined(Z_USE_REAL_FLOAT128_X87) && defined(Z_FLOAT128_X87)
-#	define Z_REAL_FIXED_FUNDAMENTAL Z_FUNDAMENTAL_FLOAT128_X87
-
-#elif defined(Z_USE_REAL_FLOAT) && defined(Z_FLOAT)
-#	define Z_REAL_FIXED_FUNDAMENTAL Z_FLOAT_FIXED_FUNDAMENTAL
-
-#elif defined(Z_USE_REAL_LDOUBLE) && defined(Z_LDOUBLE)
-#	define Z_REAL_FIXED_FUNDAMENTAL Z_DOUBLE_FIXED_FUNDAMENTAL
-
-#elif defined(Z_DOUBLE)
-#	define Z_REAL_FIXED_FUNDAMENTAL Z_DOUBLE_FIXED_FUNDAMENTAL
 #endif
 
 #ifdef Z_REAL_FIXED_FUNDAMENTAL
