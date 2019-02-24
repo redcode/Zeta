@@ -79,7 +79,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_TINY_C				 68 /* Bellard, Fabrice	      <https://bellard.org/tcc>		     */
 #define Z_COMPILER_TURBO_C				 69 /* Borland							     */
 #define Z_COMPILER_TURBO_CPP				 70 /* Borland							     */
-#define Z_COMPILER_SCO_UDK				 71 /* Microware Systems					     */
+#define Z_COMPILER_ULTRA_C_CPP				 71 /* Microware Systems					     */
 #define Z_COMPILER_USL					 72 /*								     */
 #define Z_COMPILER_VBCC					 73 /* Barthelmann, Volker    <http://www.compilers.de/vbcc.html>    */
 #define Z_COMPILER_VOS_C				 74 /* Stratus Technologies					     */
