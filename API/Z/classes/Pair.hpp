@@ -5,10 +5,11 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_Pair_HPP_
-#define Z_classes_Pair_HPP_
+#ifndef Z_classes_Pair_HPP
+#define Z_classes_Pair_HPP
 
-#include <Z/functions/value.hpp>
+#include <Z/types/fundamental.h>
+#include <Z/macros/language.hpp>
 
 
 namespace Zeta {template <class T1, class T2> struct Pair {
@@ -34,13 +35,13 @@ namespace Zeta {template <class T1, class T2> struct Pair {
 		{return first != pair.first || second != pair.second;}
 
 
-	Z_INLINE void swap(Pair &pair)
+	/*Z_INLINE void swap(Pair &pair)
 		{
 		Zeta::swap<typename Type<Pair>::to_opaque>
-			((typename Type<Pair>::to_opaque *)this,
-			 (typename Type<Pair>::to_opaque *)&pair);
-		}
+			(reinterpret_cast<typename Type<Pair>::to_opaque *>(this),
+			 reinterpret_cast<typename Type<Pair>::to_opaque *>(&pair));
+		}*/
 };}
 
 
-#endif // Z_classes_Pair_HPP_
+#endif // Z_classes_Pair_HPP

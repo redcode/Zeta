@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_date_H_
-#define Z_functions_date_H_
+#ifndef Z_functions_date_H
+#define Z_functions_date_H
 
 #include <Z/types/fundamental.h>
 #include <Z/macros/date.h>
@@ -26,4 +26,4 @@ zuint8 z_gregorian_year_days_in_month(zullong year, zuint8 month)
 	}
 
 
-#endif /* Z_functions_date_H_ */
+#endif /* Z_functions_date_H */

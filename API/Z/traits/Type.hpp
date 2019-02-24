@@ -6,8 +6,8 @@ Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Copyright (C) 2018 Sofía Ortega Sosa.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_traits_Type_HPP_
-#define Z_traits_Type_HPP_
+#ifndef Z_traits_Type_HPP
+#define Z_traits_Type_HPP
 
 #include <Z/keys/number.h>
 #include <Z/traits/constants.hpp>
@@ -3959,4 +3959,4 @@ namespace Zeta {
 #	endif
 }
 
-#endif // Z_traits_Type_HPP_
+#endif // Z_traits_Type_HPP

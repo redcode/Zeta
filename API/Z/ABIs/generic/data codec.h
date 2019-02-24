@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_ABIs_generic_data_codec_H_
-#define Z_ABIs_generic_data_codec_H_
+#ifndef Z_ABIs_generic_data_codec_H
+#define Z_ABIs_generic_data_codec_H
 
 #include <Z/types/fundamental.h>
 
@@ -30,4 +30,4 @@ typedef struct {
 	zboolean	     sequential;
 } ZDataCodecABI;
 
-#endif /* Z_ABIs_generic_data_codec_H_ */
+#endif /* Z_ABIs_generic_data_codec_H */

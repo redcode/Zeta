@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_keys_number_H_
-#define Z_keys_number_H_
+#ifndef Z_keys_number_H
+#define Z_keys_number_H
 
 #define Z_NUMBER_SET_N 1
 #define Z_NUMBER_SET_Z 3
@@ -14,9 +14,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_NUMBER_SET_R 5
 #define Z_NUMBER_SET_I 6
 #define Z_NUMBER_SET_C 7
-
-#define Z_KEY_BITS_NUMBER_SET 8
-#define Z_KEY_LAST_NUMBER_SET Z_NUMBER_SET_C
 
 #define Z_NUMBER_FORMAT_8BIT_NATURAL		      1
 #define Z_NUMBER_FORMAT_16BIT_NATURAL		      2
@@ -39,13 +36,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_NUMBER_FORMAT_X87_BINARY96		     19
 #define Z_NUMBER_FORMAT_X87_BINARY128		     20
 
-#define Z_KEY_BITS_NUMBER_FORMAT 8
-#define Z_KEY_LAST_NUMBER_FORMAT Z_NUMBER_FORMAT_INTEL_FLOAT128
-
 #define Z_INTEGER_FORMAT_1S_COMPLEMENT 0
 #define Z_INTEGER_FORMAT_2S_COMPLEMENT 1
 
-#define Z_KEY_BITS_INTEGER_FORMAT 8
-#define Z_KEY_LAST_INTEGER_FORMAT Z_INTEGER_FORMAT_2S_COMPLEMENT
-
-#endif /* Z_keys_number_H_ */
+#endif /* Z_keys_number_H */

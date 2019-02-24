@@ -5,12 +5,10 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_keys_platform_H_
-#define Z_keys_platform_H_
+#ifndef Z_keys_platform_H
+#define Z_keys_platform_H
 
 #define Z_PLATFORM_UNKNOWN	         0
-
-/* Calculators */
 
 /* Computers */
 
@@ -84,4 +82,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PLATFORM_XBOX_360	      1039 /* Microsoft		*/
 #define Z_PLATFORM_XBOX_ONE	      1040 /* Microsoft		*/
 
-#endif /* Z_keys_platform_H_ */
+#endif /* Z_keys_platform_H */

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_Selector_HPP_
-#define Z_classes_Selector_HPP_
+#ifndef Z_classes_Selector_HPP
+#define Z_classes_Selector_HPP
 
 #include <Z/inspection/language.h>
 
@@ -40,7 +40,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
 			operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-				{((Call)objc_msgSend)(object, selector, arguments...);}
+				{reinterpret_cast<Call>(objc_msgSend)(object, selector, arguments...);}
 
 
 #			if	Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64 || \
@@ -49,20 +49,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				template <class RR = R>
 				Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_real && !Type<RR>::is_class, RR>::type
 				operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-					{return ((Call)objc_msgSend)(object, selector, arguments...);}
+					{return reinterpret_cast<Call>(objc_msgSend)(object, selector, arguments...);}
 
 
 				template <class RR = R>
 				Z_INLINE typename TypeIf<Type<RR>::is_real, RR>::type
 				operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-					{return ((Call)objc_msgSend_fpret)(object, selector, arguments...);}
+					{return reinterpret_cast<Call>(objc_msgSend_fpret)(object, selector, arguments...);}
 
 #			else
 
 				template <class RR = R>
 				Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_class, RR>::type
 				operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-					{return ((Call)objc_msgSend)(object, selector, arguments...);}
+					{return reinterpret_cast<Call>(objc_msgSend)(object, selector, arguments...);}
 
 #			endif
 
@@ -70,25 +70,34 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_class, RR>::type
 			operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-				{return ((Call)objc_msgSend_stret)(object, selector, arguments...);}
+				{return reinterpret_cast<Call>(objc_msgSend_stret)(object, selector, arguments...);}
 
 
 			template <class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
 			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-				{((CallSuper)objc_msgSendSuper)((struct objc_super *)&object_super, selector, arguments...);}
+				{
+				reinterpret_cast<CallSuper>(objc_msgSendSuper)
+					(const_cast<struct objc_super *>(&object_super), selector, arguments...);
+				}
 
 
 			template <class RR = R>
 			Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_class, RR>::type
 			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-				{return ((CallSuper)objc_msgSendSuper)((struct objc_super *)&object_super, selector, arguments...);}
+				{
+				return reinterpret_cast<CallSuper>(objc_msgSendSuper)
+					(const_cast<struct objc_super *>(&object_super), selector, arguments...);
+				}
 
 
 			template <class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_class, RR>::type
 			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-				{return ((CallSuper)objc_msgSendSuper_stret)((struct objc_super *)&object_super, selector, arguments...);}
+				{
+				return reinterpret_cast<CallSuper>(objc_msgSendSuper_stret)
+					(const_cast<struct objc_super *>(&object_super), selector, arguments...);
+				}
 
 
 #			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
@@ -98,7 +107,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				super(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
-					((CallSuper)objc_msgSendSuper)(&object_super, selector, arguments...);
+					reinterpret_cast<CallSuper>(objc_msgSendSuper)(&object_super, selector, arguments...);
 					}
 
 
@@ -107,7 +116,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				super(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
-					return ((CallSuper)objc_msgSendSuper)(&object_super, selector, arguments...);
+					return reinterpret_cast<CallSuper>(objc_msgSendSuper)(&object_super, selector, arguments...);
 					}
 
 
@@ -116,7 +125,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				super(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
 					{
 					struct objc_super object_super {object, [[object class] superclass]};
-					return ((CallSuper)objc_msgSendSuper_stret)(&object_super, selector, arguments...);
+					return reinterpret_cast<CallSuper>(objc_msgSendSuper_stret)(&object_super, selector, arguments...);
 					}
 
 #			endif
@@ -129,4 +138,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define z_has_class_Selector FALSE
 #endif
 
-#endif // Z_classes_Selector_HPP_
+#endif // Z_classes_Selector_HPP

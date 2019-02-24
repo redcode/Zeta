@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_Line3D_HPP_
-#define Z_classes_Line3D_HPP_
+#ifndef Z_classes_Line3D_HPP
+#define Z_classes_Line3D_HPP
 
 #include <Z/classes/XYZ.hpp>
 #include <Z/types/geometry.h>
@@ -77,4 +77,4 @@ namespace Zeta {
 
 #undef Z_IMPLEMENTATION_COMMON
 
-#endif // Z_classes_Line3D_HPP_
+#endif // Z_classes_Line3D_HPP

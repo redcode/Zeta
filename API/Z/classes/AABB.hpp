@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_AABB_HPP_
-#define Z_classes_AABB_HPP_
+#ifndef Z_classes_AABB_HPP
+#define Z_classes_AABB_HPP
 
 #include <Z/classes/Line3D.hpp>
 
@@ -78,4 +78,4 @@ namespace Zeta {template <class T> struct AABB : Line3D<T>, Partials::Rectangle:
 };}
 
 
-#endif // Z_classes_AABB_HPP_
+#endif // Z_classes_AABB_HPP

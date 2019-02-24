@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_ABIs_generic_allocator_H_
-#define Z_ABIs_generic_allocator_H_
+#ifndef Z_ABIs_generic_allocator_H
+#define Z_ABIs_generic_allocator_H
 
 #include <Z/types/fundamental.h>
 
@@ -33,4 +33,4 @@ typedef struct {
 	ZDeallocate    deallocate;
 } ZAllocatorABI;
 
-#endif /* Z_ABIs_generic_allocator_H_ */
+#endif /* Z_ABIs_generic_allocator_H */

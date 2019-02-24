@@ -62,8 +62,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |--'-----------------------------------------------------'-----------|
 |____________________________________________________________________| */
 
-#ifndef Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H_
-#define Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H_
+#ifndef Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H
+#define Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H
 
 /* MARK: - Memory */
 
@@ -130,4 +130,4 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION	       14336
 #define Z_ZX_SPECTRUM_CYCLES_AT_BOTTOM_BORDER	       57344
 
-#endif /* Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H_ */
+#endif /* Z_hardware_machine_model_computer_ZX_Spectrum_ZX_Spectrum_H */

@@ -5,10 +5,10 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_date_H_
-#define Z_macros_date_H_
+#ifndef Z_macros_date_H
+#define Z_macros_date_H
 
 #define Z_GREGORIAN_YEAR_IS_LEAP(year) \
 	!((year) % 100 ? (year) % 4 : (year) % 400)
 
-#endif /* Z_macros_date_H_ */
+#endif /* Z_macros_date_H */

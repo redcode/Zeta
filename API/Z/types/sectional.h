@@ -1,12 +1,12 @@
-/* Z Kit - types/segmental.h
+/* Z Kit - types/sectional.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_types_segmental_H_
-#define Z_types_segmental_H_
+#ifndef Z_types_sectional_H
+#define Z_types_sectional_H
 
 #include <Z/types/fundamental.h>
 
@@ -105,4 +105,4 @@ typedef ZRangeUSize	    ZRange;
 
 #endif
 
-#endif /* Z_types_segmental_H_ */
+#endif /* Z_types_sectional_H */

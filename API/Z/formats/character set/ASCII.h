@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_formats_character_set_ASCII_H_
-#define Z_formats_character_set_ASCII_H_
+#ifndef Z_formats_character_set_ASCII_H
+#define Z_formats_character_set_ASCII_H
 
 #define Z_ASCII_NULL			    0x00
 #define Z_ASCII_START_OF_HEADING	    0x01
@@ -155,4 +155,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	_(0070), _(0071), _(0072), _(0073), _(0074), _(0075), _(0076), _(0077), \
 	_(0078), _(0079), _(007A), _(007B), _(007C), _(007D), _(007E), _(007F)
 
-#endif /* Z_formats_character_set_ASCII_H_ */
+#endif /* Z_formats_character_set_ASCII_H */

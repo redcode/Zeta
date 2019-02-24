@@ -17,8 +17,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |	      [MAME sources]/src/mame/machine/spec_snqk.cpp	    |
 '------------------------------------------------------------------*/
 
-#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_
-#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H
 
 #include <Z/types/bitwise.h>
 
@@ -37,4 +37,4 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	Z16Bit	af_, bc_, de_, hl_;
 } Z_DEFINE_PACKED_STRUCTURE_END (ZSNP);
 
-#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H */

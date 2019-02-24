@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_Status_HPP_
-#define Z_classes_Status_HPP_
+#ifndef Z_classes_Status_HPP
+#define Z_classes_Status_HPP
 
 #include <Z/keys/status.h>
 #include <Z/types/fundamental.hpp>
@@ -95,4 +95,4 @@ namespace Zeta {struct Status {
 };}
 
 
-#endif // Z_classes_Status_HPP_
+#endif // Z_classes_Status_HPP

@@ -1,15 +1,15 @@
-/* Z Kit - functions/base/ZRange.h
+/* Z Kit - functions/ZRange.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_base_ZRange_H_
-#define Z_functions_base_ZRange_H_
+#ifndef Z_functions_ZRange_H
+#define Z_functions_ZRange_H
 
-#include <Z/functions/base/constructors.h>
-#include <Z/functions/base/value.h>
+#include <Z/types/sectional.h>
+#include <Z/functions/mathematics.h>
 
 
 #if Z_DIALECT_HAS(C, COMPOUND_LITERAL)
@@ -170,4 +170,4 @@ Z_IMPLEMENTATION(UInt32, uint32)
 #define z_range_zero	       z_range_type_zero	  (USIZE)
 
 
-#endif /* Z_functions_base_ZRange_H_ */
+#endif /* Z_functions_ZRange_H */

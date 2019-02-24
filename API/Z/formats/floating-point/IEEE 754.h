@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_formats_floating_point_IEEE_754_H_
-#define Z_formats_floating_point_IEEE_754_H_
+#ifndef Z_formats_floating_point_IEEE_754_H
+#define Z_formats_floating_point_IEEE_754_H
 
 /* MARK: - binary16 */
 
@@ -123,4 +123,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_IEEE_754_DECIMAL128_SIGN_OFFSET		      127
 #define Z_IEEE_754_DECIMAL128_SIGN_BITS				1
 
-#endif /* Z_formats_floating_point_IEEE_754_H_ */
+#endif /* Z_formats_floating_point_IEEE_754_H */

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_C_completion_H_
-#define Z_inspection_C_completion_H_
+#ifndef Z_inspection_C_completion_H
+#define Z_inspection_C_completion_H
 
 /* MARK: - K&R C */
 
@@ -442,8 +442,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_SPECIFIER_NORETURN FALSE
 #endif
 
-#ifndef Z_C_HAS_STORATE_CLASS_THREAD_LOCAL
-#	define Z_C_HAS_STORATE_CLASS_THREAD_LOCAL FALSE
+#ifndef Z_C_HAS_STORAGE_CLASS_THREAD_LOCAL
+#	define Z_C_HAS_STORAGE_CLASS_THREAD_LOCAL FALSE
 #endif
 
 #ifndef Z_C_HAS_TYPE_MODIFIER_ATOMIC
@@ -454,4 +454,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_TYPE_QUALIFIER_ATOMIC FALSE
 #endif
 
-#endif /* Z_inspection_C_completion_H_ */
+#endif /* Z_inspection_C_completion_H */

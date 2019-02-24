@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_character_H_
-#define Z_macros_character_H_
+#ifndef Z_macros_character_H
+#define Z_macros_character_H
 
 #include <Z/inspection/character set.h>
 
@@ -175,4 +175,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	(Z_CHARACTER_IS_BASE_10_DIGIT(character) || \
 	 Z_CHARACTER_IS_LETTER	     (character))
 
-#endif /* Z_macros_character_H_ */
+#endif /* Z_macros_character_H */

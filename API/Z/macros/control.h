@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_control_H_
-#define Z_macros_control_H_
+#ifndef Z_macros_control_H
+#define Z_macros_control_H
 
 #include <Z/macros/pasting.h>
 
@@ -31,4 +31,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_TERNARY(boolean) Z_JOIN_2(Z_TERNARY_, boolean)
 
-#endif /* Z_macros_control_H_ */
+#endif /* Z_macros_control_H */

@@ -5,10 +5,10 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_XYZ_HPP_
-#define Z_classes_XYZ_HPP_
+#ifndef Z_classes_XYZ_HPP
+#define Z_classes_XYZ_HPP
 
-#ifndef Z_classes_XY_HPP_
+#ifndef Z_classes_XY_HPP
 #	include <Z/classes/XY.hpp>
 #endif
 
@@ -171,7 +171,7 @@ Z_CT(CPP11) XYZ middle(const XYZ &other) const						\
 	}										\
 											\
 											\
-Z_INLINE XYZ rotate_as_axes(XYZ<SInt8> rotation) const					\
+/*Z_INLINE XYZ rotate_as_axes(XYZ<SInt8> rotation) const					\
 	{										\
 	XYZ result = *this;								\
 											\
@@ -179,15 +179,15 @@ Z_INLINE XYZ rotate_as_axes(XYZ<SInt8> rotation) const					\
 	if ((rotation.y % 4) & 1) Zeta::swap<T>(&result.x, &result.z);			\
 	if ((rotation.z % 4) & 1) Zeta::swap<T>(&result.x, &result.y);			\
 	return result;									\
-	}										\
+	}*/										\
 											\
 											\
 Z_CT(CPP11) T squared_length() const							\
 	{return x * x + y * y + z * z;}							\
 											\
 											\
-Z_INLINE void swap(XYZ &other)								\
-	{Zeta::swap<Base>(this, &other);}
+/*Z_INLINE void swap(XYZ &other)								\
+	{Zeta::swap<Base>(this, &other);}*/
 
 
 #define Z_IMPLEMENTATION_SIGNED								\
@@ -365,4 +365,4 @@ namespace Zeta {
 #undef Z_IMPLEMENTATION_COMMON
 #undef Z_IMPLEMENTATION_SIGNED
 
-#endif // Z_classes_XYZ_HPP_
+#endif // Z_classes_XYZ_HPP

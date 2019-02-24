@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_OS_H_
-#define Z_inspection_OS_H_
+#ifndef Z_inspection_OS_H
+#define Z_inspection_OS_H
 
 #include <Z/keys/OS.h>
 
@@ -230,6 +230,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/OS/completion.h>
 
-#define Z_OS_HAS(WHAT ) Z_OS_HAS_##WHAT
+#ifndef Z_OS_MODERN_NAME
+#	define Z_OS_MODERN_NAME Z_OS_NAME
+#endif
 
-#endif /* Z_inspection_OS_H_ */
+#define Z_OS_HAS(FEATURE) Z_OS_HAS_##FEATURE
+
+#endif /* Z_inspection_OS_H */

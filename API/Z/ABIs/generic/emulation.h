@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_ABIs_generic_emulation_H_
-#define Z_ABIs_generic_emulation_H_
+#ifndef Z_ABIs_generic_emulation_H
+#define Z_ABIs_generic_emulation_H
 
 #include <Z/macros/type.h>
 
@@ -108,4 +108,4 @@ Z_DEFINE_PACKED_STRUCTURE ({
 	ZEmulatorInstanceImport const* instance_imports;
 }, ZCPUEmulatorABI);
 
-#endif /* Z_ABIs_generic_emulation_H_ */
+#endif /* Z_ABIs_generic_emulation_H */

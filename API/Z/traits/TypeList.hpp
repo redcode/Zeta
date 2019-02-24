@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_traits_TypeList_HPP_
-#define Z_traits_TypeList_HPP_
+#ifndef Z_traits_TypeList_HPP
+#define Z_traits_TypeList_HPP
 
 #include <Z/inspection/language.h>
 
@@ -359,34 +359,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				template <class			    function_model> using to_function  = typename TypeListToFunction <TypeList, function_model>::type;
 				template <template <class...> class metafunction  > using transform    = typename TypeListTransform  <TypeList, metafunction  >::type;
 #			endif
-
-			struct flow {
-				enum {size = TypeList::size};
-
-				typedef TypeList end;
-
-				typedef typename TypeList::first first;
-				typedef typename TypeList::last	 last;
-
-				typedef	typename TypeList::remove_first::flow remove_first;
-				typedef typename TypeList::remove_last ::flow remove_last;
-				typedef typename TypeList::reverse     ::flow reverse;
-
-#				if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
-					template <UInt			    index	  > using get	       = typename TypeList::get	       <index	      >;
-					template <template <class...> class to		  > using rename       = typename TypeList::rename     <to	      >;
-					template <class			    function_model> using to_function  = typename TypeList::to_function<function_model>;
-
-					template <class...		    types	  > using append       = typename TypeList::append	<types...    >::flow;
-					template <class...		    types	  > using prepend      = typename TypeList::prepend	<types...    >::flow;
-					template <UInt			    index	  > using remove       = typename TypeList::remove	<index	     >::flow;
-					template <UInt			    head_size	  > using remove_head  = typename TypeList::remove_head <head_size   >::flow;
-					template <UInt			    tail_size	  > using remove_tail  = typename TypeList::remove_tail <tail_size   >::flow;
-					template <UInt			    rotation	  > using rotate_left  = typename TypeList::rotate_left <rotation    >::flow;
-					template <UInt			    rotation	  > using rotate_right = typename TypeList::rotate_right<rotation    >::flow;
-					template <template <class...> class metafunction  > using transform    = typename TypeList::transform	<metafunction>::flow;
-#				endif
-			};
 		};
 
 #		if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
@@ -411,4 +383,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif // Z_traits_TypeList_HPP_
+#endif // Z_traits_TypeList_HPP

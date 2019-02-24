@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_keys_OS_H_
-#define Z_keys_OS_H_
+#ifndef Z_keys_OS_H
+#define Z_keys_OS_H
 					 /* First released by:	       Official website:									  */
 #define Z_OS_UNKNOWN		       0 /* -------------------------- ------------------------------------------------------------------------------------------ */
 #define Z_OS_AEGIS		       1 /* Apollo Computer													  */
@@ -179,4 +179,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_NAME_TRU64_UNIX	      "Tru64 UNIX"
 #define Z_OS_NAME_WATCHOS	      "watchOS"
 
-#endif /* Z_keys_OS_H_ */
+#endif /* Z_keys_OS_H */

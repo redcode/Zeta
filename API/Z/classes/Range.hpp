@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_Range_HPP_
-#define Z_classes_Range_HPP_
+#ifndef Z_classes_Range_HPP
+#define Z_classes_Range_HPP
 
 #include <Z/macros/type selection.hpp>
 #include <Z/functions/value.hpp>
@@ -42,7 +42,7 @@ namespace Zeta {template <class T> struct Range {
 
 
 	Z_INLINE operator Base&() const Z_NOTHROW
-		{return *((Base *)this);}
+		{return *reinterpret_cast<Base *>(this);}
 
 
 	Z_CT(CPP11) Boolean operator ==(const Range &rhs) const Z_NOTHROW
@@ -125,4 +125,4 @@ namespace Zeta {template <class T> struct Range {
 };}
 
 
-#endif // Z_classes_Range_HPP_
+#endif // Z_classes_Range_HPP

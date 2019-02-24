@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_RingBuffer_HPP_
-#define Z_classes_RingBuffer_HPP_
+#ifndef Z_classes_RingBuffer_HPP
+#define Z_classes_RingBuffer_HPP
 
 #include <Z/types/fundamental.hpp>
 #include <Z/types/buffering.h>
@@ -91,4 +91,4 @@ namespace Zeta {struct RingBuffer : public ZRingBuffer {
 };}
 
 
-#endif // Z_classes_RingBuffer_HPP_
+#endif // Z_classes_RingBuffer_HPP

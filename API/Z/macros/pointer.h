@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_pointer_H_
-#define Z_macros_pointer_H_
+#ifndef Z_macros_pointer_H
+#define Z_macros_pointer_H
 
 #include <Z/types/fundamental.h>
 
@@ -28,4 +28,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_BLOCK_INDEX(base, pointer, block_size) \
 	((zusize)(((zuintptr)pointer - (zuintptr)base) / block_size))
 
-#endif /* Z_macros_pointer_H_ */
+#endif /* Z_macros_pointer_H */

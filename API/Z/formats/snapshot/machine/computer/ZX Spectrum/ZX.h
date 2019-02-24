@@ -19,8 +19,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 | Thanks to Troels Norgaard for sharing the description of this format. |
 '----------------------------------------------------------------------*/
 
-#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H_
-#define Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H
 
 #include <Z/types/bitwise.h>
 
@@ -59,4 +59,4 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 #define Z_ZX_IM_1		 0
 #define Z_ZX_IM_2		 1
 
-#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H */

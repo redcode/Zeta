@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_type_HPP_
-#define Z_functions_type_HPP_
+#ifndef Z_functions_type_HPP
+#define Z_functions_type_HPP
 
 #include <Z/classes/SizedString.hpp>
 
@@ -57,4 +57,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif // Z_functions_type_HPP_
+#endif // Z_functions_type_HPP

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_constants_build_HPP_
-#define Z_constants_build_HPP_
+#ifndef Z_constants_build_HPP
+#define Z_constants_build_HPP
 
 #include <Z/inspection/language.h>
 
@@ -43,4 +43,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif /* Z_constants_build_HPP_ */
+#endif /* Z_constants_build_HPP */

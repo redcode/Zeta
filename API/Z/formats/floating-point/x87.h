@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_formats_floating_point_x87_H_
-#define Z_formats_floating_point_x87_H_
+#ifndef Z_formats_floating_point_x87_H
+#define Z_formats_floating_point_x87_H
 
 #define Z_X87_BINARY80_BITS			80
 #define Z_X87_BINARY80_BIAS		     16383
@@ -65,4 +65,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_X87_BINARY128_SIGN_OFFSET	    Z_X87_BINARY80_SIGN_OFFSET
 #define Z_X87_BINARY128_SIGN_BITS	    Z_X87_BINARY80_SIGN_BITS
 
-#endif /* Z_formats_floating_point_Intel_H_ */
+#endif /* Z_formats_floating_point_x87_H */

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_Functor_HPP_
-#define Z_classes_Functor_HPP_
+#ifndef Z_classes_Functor_HPP
+#define Z_classes_Functor_HPP
 
 #include <Z/classes/ObjectMemberFunction.hpp>
 
@@ -99,7 +99,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 						{
 						return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 							{
-							((CallObjectSelector)objc_msgSend)
+							reinterpret_cast<CallObjectSelector>(objc_msgSend)
 								(functor->target.object_selector.object, functor->target.object_selector.selector,
 								 arguments...);
 							};
@@ -115,7 +115,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 							{
 							return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 								{
-								return ((CallObjectSelector)objc_msgSend)
+								return reinterpret_cast<CallObjectSelector>(objc_msgSend)
 									(functor->target.object_selector.object, functor->target.object_selector.selector,
 									 arguments...);
 								};
@@ -128,7 +128,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 							{
 							return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 								{
-								return ((CallObjectSelector)objc_msgSend_fpret)
+								return reinterpret_cast<CallObjectSelector>(objc_msgSend_fpret)
 									(functor->target.object_selector.object, functor->target.object_selector.selector,
 									 arguments...);
 								};
@@ -142,7 +142,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 							{
 							return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 								{
-								return ((CallObjectSelector)objc_msgSend)
+								return reinterpret_cast<CallObjectSelector>(objc_msgSend)
 									(functor->target.object_selector.object, functor->target.object_selector.selector,
 									 arguments...);
 								};
@@ -157,7 +157,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 						{
 						return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
 							{
-							return ((CallObjectSelector)objc_msgSend_stret)
+							return reinterpret_cast<CallObjectSelector>(objc_msgSend_stret)
 								(functor->target.object_selector.object, functor->target.object_selector.selector,
 								 arguments...);
 							};
@@ -185,17 +185,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			template <class O, class M, class E = typename TypeIf<
-				(Type<O>::is_void_pointer		  ||
-				 (Type<O>::is_pointer			  &&
-				  Type<O>::flow::pointee_type::is_class)) &&
-				Type<M>::is_member_function_pointer	  &&
+				(Type<O>::is_void || Type<O>::is_class) &&
+				Type<M>::is_member_function_pointer	&&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
-			Z_INLINE Functor(O object, M function) Z_NOTHROW
+			Z_INLINE Functor(O *object, M function) Z_NOTHROW
 			: call(Callers::object_member_function()), destroy(NULL)
 				{
-				target.object_member_function.function = (R (NaT::*)(P...))function;
-				target.object_member_function.object   = (NaT *)object;
+				target.object_member_function.function = reinterpret_cast<R (NaT::*)(P...)>(function);
+				target.object_member_function.object   = reinterpret_cast<NaT *>(const_cast<typename Type<O>::to_unqualified *>(object));
 				}
 
 
@@ -207,8 +205,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE Functor(const O &object, M function) Z_NOTHROW
 			: call(Callers::object_member_function()), destroy(NULL)
 				{
-				target.object_member_function.function = (R (NaT::*)(P...))function;
-				target.object_member_function.object   = (NaT *)&object;
+				target.object_member_function.function = reinterpret_cast<R (NaT::*)(P...)>(function);
+				target.object_member_function.object   = reinterpret_cast<NaT *>(const_cast<typename Type<O>::to_unqualified *>(&object));
 				}
 
 
@@ -228,7 +226,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				O>::type>
 				Z_INLINE Functor(const O &object) Z_NOTHROW
 				: call(Callers::function()), destroy(NULL)
-					{target.function = (R(*)(P...))object;}
+					{target.function = (R(*)(P...))object;} // TODO: cast
 
 #			endif
 
@@ -280,4 +278,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_CLASS_Functor FALSE
 #endif
 
-#endif // Z_classes_Functor_HPP_
+#endif // Z_classes_Functor_HPP

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_aggregate_H_
-#define Z_macros_aggregate_H_
+#ifndef Z_macros_aggregate_H
+#define Z_macros_aggregate_H
 
 #include <Z/keys/order.h>
 #include <Z/inspection/CPU.h>
@@ -186,12 +186,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_MEMBERIZE_REVERSED_31(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20, m21, m22, m23, m24, m25, m26, m27, m28, m29, m30, m31)	    m31; m30; m29; m28; m27; m26; m25; m24; m23; m22; m21; m20; m19; m18; m17; m16; m15; m14; m13; m12; m11; m10; m9; m8; m7; m6; m5; m4; m3; m2; m1;
 #define Z_MEMBERIZE_REVERSED_32(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20, m21, m22, m23, m24, m25, m26, m27, m28, m29, m30, m31, m32) m32; m31; m30; m29; m28; m27; m26; m25; m24; m23; m22; m21; m20; m19; m18; m17; m16; m15; m14; m13; m12; m11; m10; m9; m8; m7; m6; m5; m4; m3; m2; m1;
 
-#define Z_BIT_FIELD(bits, member_count)				 \
-	Z_APPEND_TERNARY(Z_COMPILER_BIT_FIELD_ORDER_##bits##BIT) \
+#define Z_BIT_FIELD(bits, member_count)			  \
+	Z_APPEND_TERNARY(Z_COMPILER_BIT_FIELD_ORDER(bits)) \
 		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
 #define Z_ENDIANIZED_MEMBERS(bits, member_count)	  \
 	Z_APPEND_TERNARY(Z_CPU_ENDIANNESS(INTEGRAL, bits)) \
 		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
-#endif /* Z_macros_aggregate_H_ */
+#endif /* Z_macros_aggregate_H */

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_floating_point_H_
-#define Z_inspection_floating_point_H_
+#ifndef Z_inspection_floating_point_H
+#define Z_inspection_floating_point_H
 
 #include <Z/keys/number.h>
 #include <Z/keys/type.h>
@@ -15,7 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_DIALECT_HAS_TYPE(C, DOUBLE)
 
-#	ifndef Z_FLOATING_POINT_NUMBER_FORMAT_DOUBLE /* PDM */
+#	ifndef Z_FLOATING_POINT_NUMBER_FORMAT_DOUBLE
 #		ifdef Z_COMPILER_NUMBER_FORMAT_DOUBLE
 #			define Z_FLOATING_POINT_NUMBER_FORMAT_DOUBLE Z_COMPILER_NUMBER_FORMAT_DOUBLE
 #		else
@@ -63,7 +63,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 #		define Z_FLOATING_POINT_FIXED_FUNDAMENTAL_FLOAT Z_FUNDAMENTAL_FLOAT16
-
 
 #	elif Z_FLOATING_POINT_NUMBER_FORMAT_FLOAT == Z_NUMBER_FORMAT_IEEE_754_BINARY32
 
@@ -316,4 +315,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/formats/floating-point/x87.h>
 #endif
 
-#endif /* Z_inspection_floating_point_H_ */
+#endif /* Z_inspection_floating_point_H */

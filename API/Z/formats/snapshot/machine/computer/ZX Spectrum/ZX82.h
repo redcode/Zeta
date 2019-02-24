@@ -38,8 +38,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |   - Appendix C - Example Packer C code (Page 538)			      |
 '----------------------------------------------------------------------------*/
 
-#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H_
-#define Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H
 
 #include <Z/types/fundamental.h>
 
@@ -71,4 +71,4 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	Z_FAM(zuint8 memory[];)
 } Z_DEFINE_PACKED_STRUCTURE_END (ZZX82Snapshot);
 
-#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H */

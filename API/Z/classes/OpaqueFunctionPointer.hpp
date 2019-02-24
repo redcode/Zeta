@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_OpaqueFunctionPointer_HPP_
-#define Z_classes_OpaqueFunctionPointer_HPP_
+#ifndef Z_classes_OpaqueFunctionPointer_HPP
+#define Z_classes_OpaqueFunctionPointer_HPP
 
 #include <Z/macros/language.hpp>
 
@@ -17,13 +17,13 @@ namespace Zeta {struct OpaqueFunctionPointer {
 
 	template <class T>
 	Z_INLINE OpaqueFunctionPointer(T function) Z_NOTHROW
-	: function((void (*)())function) {}
+	: function(reinterpret_cast<void (*)()>(function)) {}
 
 
 	template <class T>
 	Z_INLINE operator T() const Z_NOTHROW
-		{return (T)function;}
+		{return reinterpret_cast<T>(function);}
 };}
 
 
-#endif // Z_classes_OpaqueFunctionPointer_HPP_
+#endif // Z_classes_OpaqueFunctionPointer_HPP

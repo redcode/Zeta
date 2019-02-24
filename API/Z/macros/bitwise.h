@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_bitwise_H_
-#define Z_macros_bitwise_H_
+#ifndef Z_macros_bitwise_H
+#define Z_macros_bitwise_H
 
 #include <Z/types/fundamental.h>
 
@@ -465,4 +465,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_TYPE_BIG_ENDIAN(   TYPE) Z_INSERT_##TYPE##_BITS(Z_, BIT_BIG_ENDIAN	 )
 #define Z_TYPE_LITTLE_ENDIAN(TYPE) Z_INSERT_##TYPE##_BITS(Z_, BIT_LITTLE_ENDIAN	 )
 
-#endif /* Z_macros_bitwise_H_ */
+#endif /* Z_macros_bitwise_H */

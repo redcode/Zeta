@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_casting_HPP_
-#define Z_functions_casting_HPP_
+#ifndef Z_functions_casting_HPP
+#define Z_functions_casting_HPP
 
 #include <Z/traits/Type.hpp>
 
@@ -34,4 +34,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif // Z_functions_casting_HPP_
+#endif // Z_functions_casting_HPP

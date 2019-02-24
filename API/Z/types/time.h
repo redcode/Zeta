@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_types_time_H_
-#define Z_types_time_H_
+#ifndef Z_types_time_H
+#define Z_types_time_H
 
 #include <Z/types/fundamental.h>
 
@@ -20,4 +20,4 @@ Z_DEFINE_PACKED_STRUCTURE (
 	zuint32 nanoseconds;
 , ZNanotime);
 
-#endif /* Z_types_time_H_ */
+#endif /* Z_types_time_H */

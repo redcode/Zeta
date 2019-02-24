@@ -5,8 +5,8 @@
 Copyright (C) 2006-2017 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_SizedString_HPP_
-#define Z_classes_SizedString_HPP_
+#ifndef Z_classes_SizedString_HPP
+#define Z_classes_SizedString_HPP
 
 #include <Z/types/fundamental.hpp>
 
@@ -63,4 +63,4 @@ namespace Zeta {
 }
 
 
-#endif // Z_classes_SizedString_HPP_
+#endif // Z_classes_SizedString_HPP

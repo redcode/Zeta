@@ -6,8 +6,8 @@ Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Copyright (C) 2018 Sofía Ortega Sosa.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_types_fundamental_HPP_
-#define Z_types_fundamental_HPP_
+#ifndef Z_types_fundamental_HPP
+#define Z_types_fundamental_HPP
 
 #include <Z/types/fundamental.h>
 #include <Z/macros/language.hpp>
@@ -153,4 +153,4 @@ namespace Zeta {
 	/* MARK: - Not a type */
 };
 
-#endif // Z_types_fundamental_HPP_
+#endif // Z_types_fundamental_HPP

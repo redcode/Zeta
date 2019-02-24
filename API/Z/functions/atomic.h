@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_atomic_H_
-#define Z_functions_atomic_H_
+#ifndef Z_functions_atomic_H
+#define Z_functions_atomic_H
 
 #include <Z/types/fundamental.h>
 
@@ -869,4 +869,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define z_type_atomic_subtract_then_get( TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_subtract_then_get )
 #define z_type_atomic_xor_then_get(	 TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _atomic_xor_then_get	  )
 
-#endif /* Z_functions_atomic_H_ */
+#endif /* Z_functions_atomic_H */

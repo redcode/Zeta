@@ -6,8 +6,8 @@ Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Copyright (C) 2018 Sofía Ortega Sosa.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_compiler_modules_Clang_H_
-#define Z_inspection_compiler_modules_Clang_H_
+#ifndef Z_inspection_compiler_modules_Clang_H
+#define Z_inspection_compiler_modules_Clang_H
 
 /* MARK: - Compatibility with old versions */
 
@@ -47,11 +47,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_BUILTIN(which) FALSE
 #endif
 
-
-
 /* MARK: - Identification */
 
-#define Z_COMPILER	Z_COMPILER_CLANG
 #define Z_COMPILER_NAME Z_COMPILER_NAME_CLANG
 
 #if defined(__clang_version__) /* v2.8 */
@@ -205,21 +202,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-/* MARK: - CPU endianness / bit field order */
+/* MARK: - CPU integral endianness / bit field order */
 
 #ifdef __BYTE_ORDER__ /* v3.2 */
 
 #	if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__ /* v3.2 */
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_LITTLE
-#		define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_REVERSED
+#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
+#		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_REVERSED
 
 #	elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__ /* v3.2 */
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_BIG
-#		define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_NORMAL
+#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
+#		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_NORMAL
 
 #	elif __BYTE_ORDER__ == __ORDER_PDP_ENDIAN__ /* v3.2 */
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_PDP
-#		define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_NORMAL
+#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_PDP
+#		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_NORMAL /* TODO: Test */
 #	endif
 
 #elif	defined(__AARCH64EL__	 ) /* v3.3 */ || \
@@ -232,8 +229,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_MIPSEL		 ) /* v2.7 */ || \
 	defined(MIPSEL		 ) /* v2.7 */
 
-#	define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_LITTLE
-#	define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_REVERSED
+#	define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
+#	define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_REVERSED
 
 #elif	defined(__AARCH_BIG_ENDIAN) /* v3.4 */ || \
 	defined(__AARCH64EB__	  ) /* v3.5 */ || \
@@ -246,8 +243,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_MIPSEB		  ) /* v2.7 */ || \
 	defined(MIPSEB		  ) /* v2.7 */
 
-#	define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_BIG
-#	define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_NORMAL
+#	define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
+#	define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_NORMAL
 #endif
 
 /*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_8BIT*/
@@ -261,6 +258,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_BIT_FIELD_ORDER_32BIT*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_64BIT*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_128BIT*/
+
+/* MARK: - CPU integer format */
+
+#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_ALL Z_INTEGER_FORMAT_2S_COMPLEMENT
+
+/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_8BIT*/
+/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_16BIT*/
+/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_32BIT*/
+/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_64BIT*/
+/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_128BIT*/
 
 /* MARK: - OS / Platform */
 
@@ -382,7 +389,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_ILP32
 #endif
 
-/* MARK: - K&R C support */
+/* MARK: - K&R C */
 
 #define Z_COMPILER_C_HAS_OLD_STYLE_FUNCTION	TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_OPERATOR_SIZEOF	TRUE /* v2.6 */
@@ -393,7 +400,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_TYPE_DOUBLE		TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_TYPE_FLOAT		TRUE /* v2.6 */
 
-/* MARK: - C89 support */
+/* MARK: - C89 */
 
 #define Z_COMPILER_C_HAS_C89_RULES_ON_TYPE_CONVERSION		TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_CONSTRUCT_AS_FUNCTION_ARGUMENT		TRUE /* v2.6 */
@@ -436,13 +443,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_TYPE_QUALIFIER_CONST			TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_TYPE_QUALIFIER_VOLATILE		TRUE /* v2.6 */
 
-/* MARK: - C95 support */
+/* MARK: - C95 */
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199409L
 #	define Z_COMPILER_C_HAS_DIGRAPHS TRUE /* v2.6 */
 #endif
 
-/* MARK: - C99 support */
+/* MARK: - C99 */
 
 /*#define Z_COMPILER_C_HAS_C99_RULES_ON_INTEGER_LITERALS*/
 /*#define Z_COMPILER_C_HAS_C99_RULES_ON_TYPE_COMPATIBILITY*/
@@ -554,7 +561,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /*#define Z_COMPILER_C_HAS_TYPE_SPECIFIER_IMAGINARY*/
 
-/* MARK: - C11 support */
+/* MARK: - C11 */
 
 /*#define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE*/
 /*#define Z_COMPILER_C_HAS_ANONYMOUS_UNION*/
@@ -569,7 +576,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_C_HAS_OPERATOR_ALIGNOF*/
 /*#define Z_COMPILER_C_HAS_SPECIFIER_ALIGNAS*/
 /*#define Z_COMPILER_C_HAS_SPECIFIER_NORETURN*/
-/*#define Z_COMPILER_C_HAS_STORATE_CLASS_THREAD_LOCAL*/
+/*#define Z_COMPILER_C_HAS_STORAGE_CLASS_THREAD_LOCAL*/
 /*#define Z_COMPILER_C_HAS_TYPE_MODIFIER_ATOMIC*/
 /*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC*/
 
@@ -615,12 +622,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if __has_feature(c_thread_local) /* v3.3 */
-#	define Z_COMPILER_C_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* v3.3 */
+#	define Z_COMPILER_C_HAS_STORAGE_CLASS_THREAD_LOCAL TRUE /* v3.3 */
 #endif
 
-/* MARK: - C18 support */
-
-/* MARK: - Apple C extensions support */
+/* MARK: - Apple C extensions */
 
 #if	__has_extension(blocks) || /* v2.6 */ \
 	defined(__BLOCKS__)	   /* v2.6 */
@@ -637,17 +642,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| [Clang sources]/lib/Lex/PPMacroExpansion.cpp	       |
 	'-----------------------------------------------------*/
 
-	/* MARK: - C++98 support */
+	/* MARK: - C++98 */
+
+	/*#define Z_COMPILER_CPP_HAS_SFINAE*/
+	/*#define Z_COMPILER_CPP_HAS_TYPE_BOOL*/
+	/*#define Z_COMPILER_CPP_HAS_TYPE_WCHAR_T*/
 
 #	define Z_COMPILER_CPP_HAS_SFINAE       TRUE /* v2.6 */
 #	define Z_COMPILER_CPP_HAS_TYPE_BOOL    TRUE /* v2.6 */
 #	define Z_COMPILER_CPP_HAS_TYPE_WCHAR_T TRUE /* v2.6 */
 
-	/* MARK: - C++03 support */
+	/* MARK: - C++03 */
 
 #	define Z_COMPILER_CPP_HAS_VALUE_INITIALIZATION TRUE
 
-	/* MARK: - C++11 support */
+	/* MARK: - C++11 */
 
 	/*#define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR*/
 	/*#define Z_COMPILER_CPP_HAS_CONCURRENT_STATIC_LOCAL_VARIABLE*/
@@ -666,7 +675,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	/*#define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS*/
 	/*#define Z_COMPILER_CPP_HAS_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE*/
 	/*#define Z_COMPILER_CPP_HAS_INITIALIZER_LIST*/
-	/*#define Z_COMPILER_CPP_HAS_INLINE_NAMESPACE*/
 	/*#define Z_COMPILER_CPP_HAS_LAMBDA*/
 	/*#define Z_COMPILER_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT*/
 	/*#define Z_COMPILER_CPP_HAS_MOVE_SPECIAL_MEMBER_FUNCTIONS*/
@@ -696,8 +704,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	/*#define Z_COMPILER_CPP_HAS_LITERAL_CHAR32_T_STRING*/
 	/*#define Z_COMPILER_CPP_HAS_LITERAL_NULLPTR*/
 	/*#define Z_COMPILER_CPP_HAS_LITERAL_RAW_STRING*/
-	/*#define Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING*/
 	/*#define Z_COMPILER_CPP_HAS_LITERAL_USER_DEFINED*/
+	/*#define Z_COMPILER_CPP_HAS_LITERAL_UTF8_STRING*/
 	/*#define Z_COMPILER_CPP_HAS_OPERATOR_ALIGNOF*/
 	/*#define Z_COMPILER_CPP_HAS_OPERATOR_NOEXCEPT*/
 	/*#define Z_COMPILER_CPP_HAS_OPERATOR_CASE_SIZEOF_NON_STATIC_DATA_MEMBER*/
@@ -710,7 +718,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	/*#define Z_COMPILER_CPP_HAS_SPECIFIER_OVERRIDE*/
 	/*#define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_DECLTYPE_INCOMPLETE_RETURN*/
 	/*#define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_EXPLICIT_CONVERSION_FUNCTION*/
-	/*#define Z_COMPILER_CPP_HAS_STORATE_CLASS_THREAD_LOCAL*/
+	/*#define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_INLINE_NAMESPACE*/
+	/*#define Z_COMPILER_CPP_HAS_STORAGE_CLASS_THREAD_LOCAL*/
 	/*#define Z_COMPILER_CPP_HAS_TYPE_AUTO*/
 	/*#define Z_COMPILER_CPP_HAS_TYPE_CHAR16_T*/
 	/*#define Z_COMPILER_CPP_HAS_TYPE_CHAR32_T*/
@@ -924,14 +933,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 	/*-----------------------------------------------.
-	| IMPORTANT: STORATE_CLASS_THREAD_LOCAL requires |
+	| IMPORTANT: STORAGE_CLASS_THREAD_LOCAL requires |
 	| a C++ runtime providing __cxa_thread_atexit.	 |
 	'-----------------------------------------------*/
 #	if __has_feature(cxx_thread_local)
-#		define Z_COMPILER_CPP_HAS_STORATE_CLASS_THREAD_LOCAL TRUE /* v3.3 (v3.0?) */
+#		define Z_COMPILER_CPP_HAS_STORAGE_CLASS_THREAD_LOCAL TRUE /* v3.3 (v3.0?) */
 #	endif
 
-	/* MARK: - C++14 support */
+	/* MARK: - C++14 */
 
 	/*#define Z_COMPILER_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR*/
 	/*#define Z_COMPILER_CPP_HAS_CPP14_RULES_ON_CONSTEXPR_FUNCTION*/
@@ -1023,9 +1032,49 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_DECLTYPE_AUTO TRUE /* v3.3 */
 #	endif
 
-	/* MARK: - C++17 support */
+	/* MARK: - C++17 */
 
-
+	/*#define Z_COMPILER_CPP_HAS_AGGREGATE_INITIALIZATION_FOR_DERIVED_CLASS*/
+	/*#define Z_COMPILER_CPP_HAS_ATTRIBUTES_FOR_ENUMERATION*/
+	/*#define Z_COMPILER_CPP_HAS_ATTRIBUTES_FOR_NAMESPACE*/
+	/*#define Z_COMPILER_CPP_HAS_ATTRIBUTE_USING_PREFIX*/
+	/*#define Z_COMPILER_CPP_HAS_CPP17_RULES_ON_AUTO_AND_BRACED_INITIALIZATION*/
+	/*#define Z_COMPILER_CPP_HAS_CPP17_RULES_ON_EXPRESSION_EVALUATION_ORDER*/
+	/*#define Z_COMPILER_CPP_HAS_CPP17_RULES_ON_INHERITING_CONSTRUCTORS*/
+	/*#define Z_COMPILER_CPP_HAS_CPP17_RULES_ON_NON_TYPE_TEMPLATE_ARGUMENTS*/
+	/*#define Z_COMPILER_CPP_HAS_CPP17_RULES_ON_TEMPLATE_TEMPLATE_ARGUMENT_MATCHING*/
+	/*#define Z_COMPILER_CPP_HAS_DIFFERING_BEGIN_AND_END_TYPES_IN_RANGE_BASED_FOR*/
+	/*#define Z_COMPILER_CPP_HAS_DIRECT_LIST_INITIALIZATION_FOR_ENUMERATION*/
+	/*#define Z_COMPILER_CPP_HAS_NOEXCEPT_AS_PART_OF_THE_TYPE*/
+	/*#define Z_COMPILER_CPP_HAS_FOLD_EXPRESSION*/
+	/*#define Z_COMPILER_CPP_HAS_FOLD_EXPRESSION_SAFETY_WITH_EMPTY_PARAMETER_PACK*/
+	/*#define Z_COMPILER_CPP_HAS_GUARANTEED_COPY_ELISION*/
+	/*#define Z_COMPILER_CPP_HAS_IF_WITH_INITIALIZER*/
+	/*#define Z_COMPILER_CPP_HAS_IGNORATION_OF_UNKNOWN_ATTRIBUTES*/
+	/*#define Z_COMPILER_CPP_HAS_LAMBDA_CAPTURE_OF_THIS_OBJECT_BY_VALUE*/
+	/*#define Z_COMPILER_CPP_HAS_LAUNDER*/
+	/*#define Z_COMPILER_CPP_HAS_NESTED_NAMESPACE_DEFINITION*/
+	/*#define Z_COMPILER_CPP_HAS_NON_TYPE_TEMPLATE_PARAMETER_WITH_AUTO_TYPE*/
+	/*#define Z_COMPILER_CPP_HAS_OVER_ALIGNED_DYNAMIC_ALLOCATION*/
+	/*#define Z_COMPILER_CPP_HAS_REMOVAL_OF_DYNAMIC_EXCEPTION_SPECIFICATION*/
+	/*#define Z_COMPILER_CPP_HAS_REMOVAL_OF_INCREMENT_OPERATOR_WITH_BOOL_OPERAND*/
+	/*#define Z_COMPILER_CPP_HAS_REMOVAL_OF_REGISTER_AS_STORAGE_CLASS*/
+	/*#define Z_COMPILER_CPP_HAS_REMOVAL_OF_TRIGRAPHS*/
+	/*#define Z_COMPILER_CPP_HAS_STATIC_ASSERTION_WITH_NO_MESSAGE*/
+	/*#define Z_COMPILER_CPP_HAS_STRUCTURED_BINDING*/
+	/*#define Z_COMPILER_CPP_HAS_SWITCH_WITH_INITIALIZER*/
+	/*#define Z_COMPILER_CPP_HAS_TEMPLATE_ARGUMENT_DEDUCTION_FOR_CLASS_TEMPLATE*/
+	/*#define Z_COMPILER_CPP_HAS_TYPENAME_IN_TEMPLATE_TEMPLATE_PARAMETER*/
+	/*#define Z_COMPILER_CPP_HAS_VARIADIC_USING*/
+	/*#define Z_COMPILER_CPP_HAS_ATTRIBUTE_FALLTHROUGH*/
+	/*#define Z_COMPILER_CPP_HAS_ATTRIBUTE_MAYBE_UNUSED*/
+	/*#define Z_COMPILER_CPP_HAS_ATTRIBUTE_NODISCARD*/
+	/*#define Z_COMPILER_CPP_HAS_LITERAL_HEXADECIMAL_FLOATING_POINT*/
+	/*#define Z_COMPILER_CPP_HAS_LITERAL_UTF8_CHARACTER*/
+	/*#define Z_COMPILER_CPP_HAS_PREPROCESSOR_OPERATOR_HAS_INCLUDE*/
+	/*#define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_CONSTEXPR_IF*/
+	/*#define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_CONSTEXPR_LAMBDA*/
+	/*#define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_INLINE_VARIABLE*/
 
 #if	__cplusplus >= 201703L
 #		define Z_COMPILER_CPP_HAS_LITERAL_HEXADECIMAL_FLOATING_POINT TRUE /* All versions? */
@@ -2038,4 +2087,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #undef Z_HAS_ATTRIBUTE
 #undef Z_HAS_BUILTIN
 
-#endif /* Z_inspection_compiler_modules_Clang_H_ */
+#endif /* Z_inspection_compiler_modules_Clang_H */

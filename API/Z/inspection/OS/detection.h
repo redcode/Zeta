@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_OS_detection_H_
-#define Z_inspection_OS_detection_H_
+#ifndef Z_inspection_OS_detection_H
+#define Z_inspection_OS_detection_H
 
 #if	/*------.								\
 	| Clang |								\
@@ -768,4 +768,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif /* Z_inspection_OS_detection_H_ */
+#endif /* Z_inspection_OS_detection_H */

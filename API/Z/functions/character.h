@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_character_H_
-#define Z_functions_character_H_
+#ifndef Z_functions_character_H
+#define Z_functions_character_H
 
 #include <Z/types/fundamental.h>
 #include <Z/macros/character.h>
@@ -31,4 +31,4 @@ export z##type	prefix##type##_uppercase		 (z##type character) {return Z_CHARACTE
 
 Z_IMPLEMENTATION_CHARACTER(static Z_INLINE, z_, char)
 
-#endif /* Z_functions_character_H_ */
+#endif /* Z_functions_character_H */

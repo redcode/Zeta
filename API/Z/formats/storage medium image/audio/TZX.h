@@ -174,11 +174,11 @@ Released under the terms of the GNU Lesser General Public License v3.
 |   - Initial version.							       |
 '-----------------------------------------------------------------------------*/
 
-#ifndef Z_formats_storage_medium_image_audio_TZX_H_
-#define Z_formats_storage_medium_image_audio_TZX_H_
+#ifndef Z_formats_storage_medium_image_audio_TZX_H
+#define Z_formats_storage_medium_image_audio_TZX_H
 
 #include <Z/types/fundamental.h>
-#include <Z/macros/structure.h>
+#include <Z/macros/language.h>
 
 /* MARK: - File Header
 .------------------------------------------------------------------------------.
@@ -1182,4 +1182,4 @@ Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 minor_version;
 }, ZTZXGlue);
 
-#endif /* Z_formats_storage_medium_image_audio_TZX_H_ */
+#endif /* Z_formats_storage_medium_image_audio_TZX_H */

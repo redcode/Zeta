@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_types_geometry_H_
-#define Z_types_geometry_H_
+#ifndef Z_types_geometry_H
+#define Z_types_geometry_H
 
 #include <Z/types/fundamental.h>
 
@@ -670,4 +670,4 @@ Z_TYPES_SIGNED(SInt32, sint32)
 #	define z_aabr_0	     z_2d_line_0
 #endif
 
-#endif /* Z_types_geometry_H_ */
+#endif /* Z_types_geometry_H */

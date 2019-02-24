@@ -1,14 +1,14 @@
-/* Z Kit - functions/mathematics/geometry/euclidean/ZAABB.h
+/* Z Kit - functions/ZAABB.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_mathematics_geometry_euclidean_ZAABB_H_
-#define Z_functions_mathematics_geometry_euclidean_ZAABB_H_
+#ifndef Z_functions_ZAABB_H
+#define Z_functions_ZAABB_H
 
-#include <Z/functions/mathematics/geometry/euclidean/Z3DLine.h>
+#include <Z/functions/Z3DLine.h>
 
 
 /* MARK: - Common implementation */
@@ -352,4 +352,4 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 #endif
 
 
-#endif /* Z_functions_mathematics_geometry_euclidean_ZAABB_H_ */
+#endif /* Z_functions_ZAABB_H */

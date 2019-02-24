@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_Rectangle_HPP_
-#define Z_classes_Rectangle_HPP_
+#ifndef Z_classes_Rectangle_HPP
+#define Z_classes_Rectangle_HPP
 
 #include <Z/classes/XY.hpp>
 #include <Z/types/geometry.h>
@@ -572,8 +572,8 @@ Z_CT(CPP11) Rectangle shrink_in_y_from_top(T delta) const					\
 	{return Rectangle(point.x, point.y + delta, size.x, size.y - delta);}			\
 												\
 												\
-Z_INLINE void swap(Rectangle &other)								\
-	{Zeta::swap<Base>((Base *)this, (Base *)&other);}					\
+/*Z_INLINE void swap(Rectangle &other)								\
+	{Zeta::swap<Base>((Base *)this, (Base *)&other);}*/					\
 												\
 												\
 Z_CT(CPP11) XY<T> top_center() const								\
@@ -672,4 +672,4 @@ namespace Zeta {
 #undef Z_IMPLEMENTATION_COCOS2D_X
 #undef Z_IMPLEMENTATION_COMMON
 
-#endif // Z_classes_Rectangle_HPP_
+#endif // Z_classes_Rectangle_HPP

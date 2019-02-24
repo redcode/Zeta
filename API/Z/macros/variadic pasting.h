@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_variadic_pasting_H_
-#define Z_macros_variadic_pasting_H_
+#ifndef Z_macros_variadic_pasting_H
+#define Z_macros_variadic_pasting_H
 
 #include <Z/macros/variadic.h>
 
@@ -22,4 +22,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif /* Z_macros_variadic_pasting_H_ */
+#endif /* Z_macros_variadic_pasting_H */

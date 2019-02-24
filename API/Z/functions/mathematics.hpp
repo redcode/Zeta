@@ -1,12 +1,12 @@
-/* Z Kit - functions/value.hpp
+/* Z Kit - functions/mathematics.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_value_HPP_
-#define Z_functions_value_HPP_
+#ifndef Z_functions_mathematics_HPP
+#define Z_functions_mathematics_HPP
 
 #include <Z/traits/Type.hpp>
 
@@ -124,4 +124,4 @@ namespace Zeta {
 
 }
 
-#endif // Z_functions_value_HPP_
+#endif // Z_functions_mathematics_HPP

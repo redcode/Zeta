@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_ABIs_generic_module_H_
-#define Z_ABIs_generic_module_H_
+#ifndef Z_ABIs_generic_module_H
+#define Z_ABIs_generic_module_H
 
 #include <Z/types/fundamental.h>
 #include <Z/macros/version.h>
@@ -30,4 +30,4 @@ typedef struct {
 	ZModuleDomain const* domains;
 } ZModuleABI;
 
-#endif /* Z_ABIs_generic_module_H_ */
+#endif /* Z_ABIs_generic_module_H */

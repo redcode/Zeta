@@ -1,15 +1,15 @@
-/* Z Kit - functions/mathematics/geometry/euclidean/ZCircle.h
+/* Z Kit - functions/ZCircle.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_mathematics_geometry_euclidean_ZCircle_H_
-#define Z_functions_mathematics_geometry_euclidean_ZCircle_H_
+#ifndef Z_functions_ZCircle_H
+#define Z_functions_ZCircle_H
 
-#include <Z/functions/mathematics/geometry/euclidean/constructors.h>
-#include <Z/functions/base/Z2D.h>
+#include <Z/types/geometry.h>
+#include <Z/functions/Z2D.h>
 #include <Z/constants/numbers.h>
 
 
@@ -138,4 +138,4 @@ ZRectangle##Type z_circle_##type##_outer_rectangle(ZCircle##Type object)	\
 #endif
 
 
-#endif /* Z_functions_mathematics_geometry_euclidean_ZCircle_H_ */
+#endif /* Z_functions_ZCircle_H */

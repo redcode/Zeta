@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_NaT_HPP_
-#define Z_classes_NaT_HPP_
+#ifndef Z_classes_NaT_HPP
+#define Z_classes_NaT_HPP
 
 #include <Z/inspection/language.h>
 
@@ -23,8 +23,7 @@ namespace Zeta {struct NaT {
 			NaT &operator =(NaT &) = delete;
 #		endif
 #	endif
-	};
-}
+};}
 
 
-#endif // Z_classes_NaT_HPP_
+#endif // Z_classes_NaT_HPP

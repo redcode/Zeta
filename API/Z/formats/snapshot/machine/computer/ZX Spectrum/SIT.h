@@ -16,8 +16,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |	      [MAME sources]/src/mame/machine/spec_snqk.cpp	    |
 '------------------------------------------------------------------*/
 
-#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H_
-#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H
 
 #include <Z/types/bitwise.h>
 
@@ -31,4 +31,4 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	memory[65536];
 } Z_DEFINE_PACKED_STRUCTURE_END (ZSIT);
 
-#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H */

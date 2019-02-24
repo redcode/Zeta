@@ -6,8 +6,8 @@ Copyright (C) 2015 Petr Kobalicek <kobalicek.petr@gmail.com>.
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_variadic_control_H_
-#define Z_macros_variadic_control_H_
+#ifndef Z_macros_variadic_control_H
+#define Z_macros_variadic_control_H
 
 #include <Z/inspection/language.h>
 
@@ -53,4 +53,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif /* Z_macros_variadic_control_H_ */
+#endif /* Z_macros_variadic_control_H */

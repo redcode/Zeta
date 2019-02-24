@@ -19,8 +19,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 | Reference: <http://www.worldofspectrum.org/infoseekid.cgi?id=1000266>	 |
 '-----------------------------------------------------------------------*/
 
-#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H_
-#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H
 
 #include <Z/types/bitwise.h>
 
@@ -124,4 +124,4 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	remaining_ram_banks[16384 * 6];
 } Z_DEFINE_PACKED_STRUCTURE_END (ZSNAv128K);
 
-#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H */

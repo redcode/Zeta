@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_structure_HPP_
-#define Z_functions_structure_HPP_
+#ifndef Z_functions_structure_HPP
+#define Z_functions_structure_HPP
 
 #include <Z/types/fundamental.hpp>
 
@@ -23,4 +23,4 @@ namespace Zeta {
 
 }
 
-#endif // Z_functions_structure_HPP_
+#endif // Z_functions_structure_HPP

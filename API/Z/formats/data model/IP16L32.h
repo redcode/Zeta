@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_formats_data_model_IP16L32_H_
-#define Z_formats_data_model_IP16L32_H_
+#ifndef Z_formats_data_model_IP16L32_H
+#define Z_formats_data_model_IP16L32_H
 
 #define Z_IP16L32_BITS_CHAR	8
 #define Z_IP16L32_BITS_SHORT   16
@@ -16,4 +16,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_IP16L32_BITS_SIZE    16
 #define Z_IP16L32_BITS_POINTER 16
 
-#endif /* Z_formats_data_model_IP16L32_H_ */
+#endif /* Z_formats_data_model_IP16L32_H */

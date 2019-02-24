@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_ObjectMemberFunction_HPP_
-#define Z_classes_ObjectMemberFunction_HPP_
+#ifndef Z_classes_ObjectMemberFunction_HPP
+#define Z_classes_ObjectMemberFunction_HPP
 
 #include <Z/inspection/Z.h>
 #include <Z/classes/MemberFunction.hpp>
@@ -52,7 +52,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE ObjectMemberFunction(O object, M function) Z_NOTHROW
-			: MemberFunction<R(P...)>(function), object((NaT *)object) {}
+			: MemberFunction<R(P...)>(function), object(reinterpret_cast<NaT *>(object)) {}
 
 
 			template <class O, class M, class E = typename TypeIf<
@@ -61,19 +61,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE ObjectMemberFunction(const O &object, M function) Z_NOTHROW
-			: MemberFunction<R(P...)>(function), object((NaT *)&object) {}
+			: MemberFunction<R(P...)>(function), object(reinterpret_cast<NaT *>(&object)) {}
 
 
 			template <class O, class E = typename TypeIf<Type<O>::is_class, O>::type>
 			Z_INLINE operator O *() const Z_NOTHROW
-				{return (O *)object;}
+				{return reinterpret_cast<O *>(object);}
 
 
 			template <class O>
 			Z_INLINE typename TypeIf<Type<O>::is_class, ObjectMemberFunction &>::type
 			operator =(O *rhs) Z_NOTHROW
 				{
-				object = (NaT *)rhs;
+				object = reinterpret_cast<NaT *>(rhs);
 				return *this;
 				}
 
@@ -82,7 +82,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE typename TypeIf<Type<O>::is_class, ObjectMemberFunction &>::type
 			operator =(const O &rhs) Z_NOTHROW
 				{
-				object = (NaT *)&rhs;
+				object = reinterpret_cast<NaT *>(&rhs);
 				return *this;
 				}
 
@@ -94,7 +94,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			ObjectMemberFunction &>::type
 			operator =(M rhs) Z_NOTHROW
 				{
-				this->function = (R (NaT::*)(P...))rhs;
+				this->function = reinterpret_cast<R (NaT::*)(P...)>(rhs);
 				return *this;
 				}
 
@@ -108,13 +108,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class O, class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
 			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
-				{(((NaT *)object)->*this->function)(arguments...);}
+				{(reinterpret_cast<NaT *>(object)->*this->function)(arguments...);}
 
 
 			template <class O, class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
 			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
-				{(((NaT *)&object)->*this->function)(arguments...);}
+				{(reinterpret_cast<NaT *>(&object)->*this->function)(arguments...);}
 
 
 			template <class RR = R>
@@ -126,27 +126,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class O, class RR = R>
 			Z_INLINE typename TypeIf<!Type<RR>::is_void, RR>::type
 			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
-				{return (((NaT *)object)->*this->function)(arguments...);}
+				{return (reinterpret_cast<NaT *>(object)->*this->function)(arguments...);}
 
 
 			template <class O, class RR = R>
 			Z_INLINE typename TypeIf<!Type<RR>::is_void, RR>::type
 			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
-				{return (((NaT *)&object)->*this->function)(arguments...);}
+				{return (reinterpret_cast<NaT *>(&object)->*this->function)(arguments...);}
 
 
 			template <class O, class M>
 			Z_INLINE typename TypeIf<
-				(Type<O>::is_void_pointer		  ||
-				 (Type<O>::is_pointer			  &&
-				  Type<O>::flow::pointee_type::is_class)) &&
-				Type<M>::is_member_function_pointer	  &&
+				(Type<O>::is_void || Type<O>::is_class) &&
+				Type<M>::is_member_function_pointer	&&
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			ObjectMemberFunction &>::type
-			set(O object, M function) Z_NOTHROW
+			set(O *object, M function) Z_NOTHROW
 				{
-				this->function = (R (NaT::*)(P...))function;
-				this->object   = (NaT *)&object;
+				this->function = reinterpret_cast<R (NaT::*)(P...)>(function);
+				this->object   = reinterpret_cast<NaT *>(&object);
 				return *this;
 				}
 
@@ -159,8 +157,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			ObjectMemberFunction &>::type
 			set(const O &object, M function) Z_NOTHROW
 				{
-				this->function = (R (NaT::*)(P...))function;
-				this->object   = (NaT *)&object;
+				this->function = reinterpret_cast<R (NaT::*)(P...)>(function);
+				this->object   = reinterpret_cast<NaT *>(&object);
 				return *this;
 				}
 		};
@@ -172,4 +170,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_CLASS_ObjectMemberFunction FALSE
 #endif
 
-#endif // Z_classes_ObjectMemberFunction_HPP_
+#endif // Z_classes_ObjectMemberFunction_HPP

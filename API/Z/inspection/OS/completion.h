@@ -5,12 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_OS_completion_H_
-#define Z_inspection_OS_completion_H_
-
-#ifndef Z_OS_MODERN_NAME
-#	define Z_OS_MODERN_NAME Z_OS_NAME
-#endif
+#ifndef Z_inspection_OS_completion_H
+#define Z_inspection_OS_completion_H
 
 #ifndef Z_OS_HAS_NETWORKING
 #	define Z_OS_HAS_NETWORKING FALSE
@@ -24,20 +20,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_OS_HAS_TLS FALSE
 #endif
 
-#ifndef Z_OS_IS_POSIX
-#	define Z_OS_IS_POSIX FALSE
-#endif
-
-#ifndef Z_OS_IS_POSIX_LIKE
-#	define Z_OS_IS_POSIX_LIKE FALSE
-#endif
-
-#ifndef Z_OS_IS_UNIX
-#	define Z_OS_IS_UNIX FALSE
-#endif
-
-#ifndef Z_OS_IS_UNIX_LIKE
-#	define Z_OS_IS_UNIX_LIKE FALSE
-#endif
-
-#endif /* Z_inspection_OS_completion_H_ */
+#endif /* Z_inspection_OS_completion_H */

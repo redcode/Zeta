@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_bitwise_H_
-#define Z_functions_bitwise_H_
+#ifndef Z_functions_bitwise_H
+#define Z_functions_bitwise_H
 
 #include <Z/macros/bitwise.h>
 
@@ -253,4 +253,4 @@ Z_IMPLEMENTATION_ROTATE (sint32, 32)
 #define z_type_minimum_storage_size(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _minimum_storage_size)
 
 
-#endif /* Z_functions_bitwise_H_ */
+#endif /* Z_functions_bitwise_H */

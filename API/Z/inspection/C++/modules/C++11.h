@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_CPP_modules_CPP11_H_
-#define Z_inspection_CPP_modules_CPP11_H_
+#ifndef Z_inspection_CPP_modules_CPP11_H
+#define Z_inspection_CPP_modules_CPP11_H
 
 #include <Z/inspection/C++/modules/C++03.h>
 
@@ -27,7 +27,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_INHERITING_CONSTRUCTORS			   TRUE /* N2540 */
 #define Z_CPP_HAS_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE	   TRUE /* N1610 */
 #define Z_CPP_HAS_INITIALIZER_LIST				   TRUE /* N2672 */
-#define Z_CPP_HAS_INLINE_NAMESPACE				   TRUE /* N2535 */
 #define Z_CPP_HAS_LAMBDA					   TRUE /* N2550(v0.9), N2658(v1.0), N2927(v1.1) */
 #define Z_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT		   TRUE /* N2657 */
 #define Z_CPP_HAS_MOVE_SPECIAL_MEMBER_FUNCTIONS			   TRUE /* N3053 */
@@ -48,33 +47,34 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_UNRESTRICTED_UNION				   TRUE /* N2544 */
 #define Z_CPP_HAS_VARIADIC_TEMPLATE				   TRUE /* N2242(v0.9) */
 #define Z_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS		   TRUE /* N2555(v1.0) */
-#define Z_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY			   TRUE /* N2643: [[carries_dependency]]	    */
-#define Z_CPP_HAS_ATTRIBUTE_NORETURN				   TRUE /* N2761: [[noreturn]]			    */
-#define Z_CPP_HAS_IDENTIFIER_FUNC				   TRUE /* N2340: __func__			    */
-#define Z_CPP_HAS_LITERAL_CHAR16_T_CHARACTER			   TRUE /* N2249: u'c'				    */
-#define Z_CPP_HAS_LITERAL_CHAR16_T_STRING			   TRUE /* N2249: u"string"			    */
-#define Z_CPP_HAS_LITERAL_CHAR32_T_CHARACTER			   TRUE /* N2249: U'c'				    */
-#define Z_CPP_HAS_LITERAL_CHAR32_T_STRING			   TRUE /* N2249: U"string"			    */
-#define Z_CPP_HAS_LITERAL_NULLPTR				   TRUE /* N2431: nullptr			    */
-#define Z_CPP_HAS_LITERAL_RAW_STRING				   TRUE /* N2442: [L|u|U|u8]R"(string)"		    */
-#define Z_CPP_HAS_LITERAL_UNICODE_STRING			   TRUE /* N2442: u8"string"			    */
-#define Z_CPP_HAS_LITERAL_USER_DEFINED				   TRUE /* N2765				    */
-#define Z_CPP_HAS_OPERATOR_ALIGNOF				   TRUE /* N2341: alignof()			    */
-#define Z_CPP_HAS_OPERATOR_NOEXCEPT				   TRUE /* N3050: noexcept()			    */
-#define Z_CPP_HAS_OPERATOR_CASE_SIZEOF_NON_STATIC_DATA_MEMBER	   TRUE /* N2253, DR850: sizeof(Class::data_member) */
-#define Z_CPP_HAS_OPERATOR_CASE_SIZEOF_PARAMETER_PACK		   TRUE /* N2242: sizeof...(parameter_pack)	    */
-#define Z_CPP_HAS_SPECIFIER_ALIGNAS				   TRUE /* N2341: alignas()			    */
-#define Z_CPP_HAS_SPECIFIER_CONSTEXPR				   TRUE /* N2235: constexpr			    */
-#define Z_CPP_HAS_SPECIFIER_DECLTYPE				   TRUE /* N2343(v1.0): decltype()		    */
-#define Z_CPP_HAS_SPECIFIER_FINAL				   TRUE /* N2928(v0.8), N3206(v0.9), N3272(v1.0)    */
-#define Z_CPP_HAS_SPECIFIER_NOEXCEPT				   TRUE /* N3050: noexcept, noexcept()		    */
-#define Z_CPP_HAS_SPECIFIER_OVERRIDE				   TRUE /* N2928(v0.8), N3206(v0.9), N3272(v1.0)    */
-#define Z_CPP_HAS_SPECIFIER_CASE_DECLTYPE_INCOMPLETE_RETURN	   TRUE /* N3276(v1.1): decltype()		    */
+#define Z_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY			   TRUE /* N2643 */
+#define Z_CPP_HAS_ATTRIBUTE_NORETURN				   TRUE /* N2761 */
+#define Z_CPP_HAS_IDENTIFIER_FUNC				   TRUE /* N2340 */
+#define Z_CPP_HAS_LITERAL_CHAR16_T_CHARACTER			   TRUE /* N2249 */
+#define Z_CPP_HAS_LITERAL_CHAR16_T_STRING			   TRUE /* N2249 */
+#define Z_CPP_HAS_LITERAL_CHAR32_T_CHARACTER			   TRUE /* N2249 */
+#define Z_CPP_HAS_LITERAL_CHAR32_T_STRING			   TRUE /* N2249 */
+#define Z_CPP_HAS_LITERAL_NULLPTR				   TRUE /* N2431 */
+#define Z_CPP_HAS_LITERAL_RAW_STRING				   TRUE /* N2442 */
+#define Z_CPP_HAS_LITERAL_USER_DEFINED				   TRUE /* N2765 */
+#define Z_CPP_HAS_LITERAL_UTF8_STRING				   TRUE /* N2442 */
+#define Z_CPP_HAS_OPERATOR_ALIGNOF				   TRUE /* N2341 */
+#define Z_CPP_HAS_OPERATOR_NOEXCEPT				   TRUE /* N3050 */
+#define Z_CPP_HAS_OPERATOR_CASE_SIZEOF_NON_STATIC_DATA_MEMBER	   TRUE /* N2253, DR850 */
+#define Z_CPP_HAS_OPERATOR_CASE_SIZEOF_PARAMETER_PACK		   TRUE /* N2242 */
+#define Z_CPP_HAS_SPECIFIER_ALIGNAS				   TRUE /* N2341 */
+#define Z_CPP_HAS_SPECIFIER_CONSTEXPR				   TRUE /* N2235 */
+#define Z_CPP_HAS_SPECIFIER_DECLTYPE				   TRUE /* N2343(v1.0) */
+#define Z_CPP_HAS_SPECIFIER_FINAL				   TRUE /* N2928(v0.8), N3206(v0.9), N3272(v1.0) */
+#define Z_CPP_HAS_SPECIFIER_NOEXCEPT				   TRUE /* N3050 */
+#define Z_CPP_HAS_SPECIFIER_OVERRIDE				   TRUE /* N2928(v0.8), N3206(v0.9), N3272(v1.0) */
+#define Z_CPP_HAS_SPECIFIER_CASE_DECLTYPE_INCOMPLETE_RETURN	   TRUE /* N3276(v1.1) */
 #define Z_CPP_HAS_SPECIFIER_CASE_EXPLICIT_CONVERSION_FUNCTION	   TRUE /* N2437 */
-#define Z_CPP_HAS_STORATE_CLASS_THREAD_LOCAL			   TRUE /* N2659: thread_local			    */
-#define Z_CPP_HAS_TYPE_AUTO					   TRUE /* N1984(v1.0): auto			    */
-#define Z_CPP_HAS_TYPE_CHAR16_T					   TRUE /* N2249: char16_t			    */
-#define Z_CPP_HAS_TYPE_CHAR32_T					   TRUE /* N2249: char32_t			    */
-#define Z_CPP_HAS_TYPE_LONG_LONG				   TRUE /* N1811: [unsigned|signed] long long [int] */
+#define Z_CPP_HAS_SPECIFIER_CASE_INLINE_NAMESPACE		   TRUE /* N2535 */
+#define Z_CPP_HAS_STORAGE_CLASS_THREAD_LOCAL			   TRUE /* N2659 */
+#define Z_CPP_HAS_TYPE_AUTO					   TRUE /* N1984(v1.0) */
+#define Z_CPP_HAS_TYPE_CHAR16_T					   TRUE /* N2249 */
+#define Z_CPP_HAS_TYPE_CHAR32_T					   TRUE /* N2249 */
+#define Z_CPP_HAS_TYPE_LONG_LONG				   TRUE /* N1811 */
 
-#endif /* Z_inspection_CPP_modules_CPP11_H_ */
+#endif /* Z_inspection_CPP_modules_CPP11_H */

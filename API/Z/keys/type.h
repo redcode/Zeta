@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_keys_type_H_
-#define Z_keys_type_H_
+#ifndef Z_keys_type_H
+#define Z_keys_type_H
 
 #define Z_FUNDAMENTAL_POINTER	     1
 #define Z_FUNDAMENTAL_CHAR	     2 /* char			  */
@@ -46,7 +46,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_FUNDAMENTAL_FLOAT96_X87  197
 #define Z_FUNDAMENTAL_FLOAT128_X87 198
 
-#define Z_KEY_BITS_FUNDAMENTAL 8
-#define Z_KEY_LAST_FUNDAMENTAL Z_VALUE_TYPE_FLOAT128_X87
-
-#endif /* Z_keys_type_H_ */
+#endif /* Z_keys_type_H */

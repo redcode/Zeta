@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_keys_CPU_H_
-#define Z_keys_CPU_H_
+#ifndef Z_keys_CPU_H
+#define Z_keys_CPU_H
 
 #define Z_CPU_ARCHITECTURE_UNKNOWN		0
 #define Z_CPU_ARCHITECTURE_6502			1 /* MOS Technology			*/
@@ -79,4 +79,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPU_ARCHITECTURE_NAME_Z_ARCHITECTURE "z/Architecture"
 #define Z_CPU_ARCHITECTURE_NAME_Z80	       "Z80"
 
-#endif /* Z_keys_CPU_H_ */
+#endif /* Z_keys_CPU_H */

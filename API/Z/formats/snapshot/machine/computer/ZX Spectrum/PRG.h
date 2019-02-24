@@ -15,8 +15,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |  Reference: [MAME sources]/src/mame/machine/spec_snqk.cpp |
 '----------------------------------------------------------*/
 
-#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H_
-#define Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H
 
 #include <Z/types/bitwise.h>
 
@@ -36,4 +36,4 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	ram[49152];
 } Z_DEFINE_PACKED_STRUCTURE_END (ZPRG);
 
-#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_PRG_H */

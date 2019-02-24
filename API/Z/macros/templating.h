@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_templating_H_
-#define Z_macros_templating_H_
+#ifndef Z_macros_templating_H
+#define Z_macros_templating_H
 
 #define Z_APPEND_UINT8(to)		   to##UINT8
 #define Z_APPEND_UInt8(to)		   to##UInt8
@@ -404,4 +404,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_REAL_FixedType	    Z_JOIN_2(Z_INSERT_FixedType_,  Z_REAL_FIXED_FUNDAMENTAL)
 #define Z_INSERT_REAL_fixed_type    Z_JOIN_2(Z_INSERT_fixed_type_, Z_REAL_FIXED_FUNDAMENTAL)
 
-#endif /* Z_macros_templating_H_ */
+#endif /* Z_macros_templating_H */

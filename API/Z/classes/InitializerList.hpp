@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_InitializerList_HPP_
-#define Z_classes_InitializerList_HPP_
+#ifndef Z_classes_InitializerList_HPP
+#define Z_classes_InitializerList_HPP
 
 #include <Z/types/fundamental.hpp>
 
@@ -31,4 +31,4 @@ namespace Zeta {template <class T> class InitializerList {
 };}
 
 
-#endif // Z_classes_InitializerList_HPP_
+#endif // Z_classes_InitializerList_HPP

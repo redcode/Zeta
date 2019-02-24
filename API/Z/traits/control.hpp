@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_traits_control_HPP_
-#define Z_traits_control_HPP_
+#ifndef Z_traits_control_HPP
+#define Z_traits_control_HPP
 
 #include <Z/inspection/Z.h>
 #include <Z/types/fundamental.hpp>
@@ -102,4 +102,4 @@ namespace Zeta {
 
 #endif
 
-#endif // Z_traits_control_HPP_
+#endif // Z_traits_control_HPP

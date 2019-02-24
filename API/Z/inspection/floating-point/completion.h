@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_floating_point_completion_H_
-#define Z_inspection_floating_point_completion_H_
+#ifndef Z_inspection_floating_point_completion_H
+#define Z_inspection_floating_point_completion_H
 
 #ifdef Z_FLOATING_POINT_TYPE_FLOAT16
 #	define Z_FLOATING_POINT_HAS_TYPE_FLOAT16 TRUE
@@ -50,4 +50,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_FLOATING_POINT_HAS_TYPE_FLOAT128_X87 FALSE
 #endif
 
-#endif /* Z_inspection_floating_point_completion_H_ */
+#endif /* Z_inspection_floating_point_completion_H */

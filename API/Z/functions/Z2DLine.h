@@ -5,11 +5,11 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_Z2DLine_H_
-#define Z_functions_Z2DLine_H_
+#ifndef Z_functions_Z2DLine_H
+#define Z_functions_Z2DLine_H
 
-#include <Z/functions/mathematics/geometry/euclidean/constructors.h>
-#include <Z/functions/base/Z2D.h>
+#include <Z/types/geometry.h>
+#include <Z/functions/Z2D.h>
 
 
 /* MARK: - Common implementation */
@@ -175,4 +175,4 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 #endif
 
 
-#endif /* Z_functions_Z2DLine_H_ */
+#endif /* Z_functions_Z2DLine_H */

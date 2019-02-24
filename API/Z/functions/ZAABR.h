@@ -1,14 +1,14 @@
-/* Z Kit - functions/mathematics/geometry/euclidean/ZAABR.h
+/* Z Kit - functions/ZAABR.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_mathematics_geometry_euclidean_ZAABR_H_
-#define Z_functions_mathematics_geometry_euclidean_ZAABR_H_
+#ifndef Z_functions_ZAABR_H
+#define Z_functions_ZAABR_H
 
-#include <Z/functions/mathematics/geometry/euclidean/Z2DLine.h>
+#include <Z/functions/Z2DLine.h>
 
 
 /* MARK: - Common implementation */
@@ -1065,4 +1065,4 @@ Z_IMPLEMENTATION_COMMON(SInt32, sint32)
 #endif
 
 
-#endif /* Z_functions_mathematics_geometry_euclidean_ZAABR_H_ */
+#endif /* Z_functions_ZAABR_H */

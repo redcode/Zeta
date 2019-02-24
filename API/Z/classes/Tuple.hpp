@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_Tuple_HPP_
-#define Z_classes_Tuple_HPP_
+#ifndef Z_classes_Tuple_HPP
+#define Z_classes_Tuple_HPP
 
 #include <Z/inspection/language.h>
 
@@ -17,7 +17,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 	namespace Zeta {namespace Detail {namespace Tuple {
 
-		template <class type_list> class Element;
+		template <class type_list> struct Element;
 
 
 		template <class... T> struct Super {
@@ -115,4 +115,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_CLASS_Tuple FALSE
 #endif
 
-#endif // Z_classes_Tuple_HPP_
+#endif // Z_classes_Tuple_HPP

@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_platform_H_
-#define Z_inspection_platform_H_
+#ifndef Z_inspection_platform_H
+#define Z_inspection_platform_H
 
 #include <Z/keys/platform.h>
 
@@ -26,4 +26,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_PLATFORM Z_PLATFORM_UNKNOWN
 #endif
 
-#endif /* Z_inspection_platform_H_ */
+#endif /* Z_inspection_platform_H */

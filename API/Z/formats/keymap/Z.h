@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_formats_keymap_Z_H_
-#define Z_formats_keymap_Z_H_
+#ifndef Z_formats_keymap_Z_H
+#define Z_formats_keymap_Z_H
 
 #define Z_KEY_CODE_UP				   0
 #define Z_KEY_CODE_RIGHT			   1
@@ -138,4 +138,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_CODE_DELETE			 127 /* Similar to ASCII */
 #define Z_KEY_CODE_INVALID			 Z_KEY_CODE_UNUSED_0
 
-#endif /* Z_formats_keymap_Z_H_ */
+#endif /* Z_formats_keymap_Z_H */

@@ -1,16 +1,15 @@
-/* Z Kit - inspection/modules/compiler/GCC.h
+/* Z Kit - inspection/compiler/modules/GCC.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_modules_compiler_GCC_H_
-#define Z_inspection_modules_compiler_GCC_H_
+#ifndef Z_inspection_compiler_modules_GCC_H
+#define Z_inspection_compiler_modules_GCC_H
 
 /* MARK: - Identification */
 
-#define Z_COMPILER		  Z_COMPILER_GCC
 #define Z_COMPILER_STRING	  Z_COMPILER_STRING_GCC
 #define Z_COMPILER_VERSION	  Z_VERSION(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
 #define Z_COMPILER_VERSION_STRING __VERSION__
@@ -110,21 +109,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-/* MARK: - Endianness and Bit field order */
+/* MARK: - CPU integral endianness / bit field order */
 
 #ifdef __BYTE_ORDER__
 
 #	if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_LITTLE
-#		define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_REVERSED
+#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
+#		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_REVERSED
 
 #	elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_BIG
-#		define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_NORMAL
+#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
+#		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_NORMAL
 
 #	elif __BYTE_ORDER__ == __ORDER_PDP_ENDIAN__
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS Z_ENDIANNESS_PDP
-#		define Z_COMPILER_BIT_FIELD_ORDER	  Z_ORDER_NORMAL
+#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_PDP
+#		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_NORMAL
 #	endif
 
 #endif
@@ -269,7 +268,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			if Z_COMPILER_VERSION >= Z_VERSION(4, 9, 0)
 #				define Z_COMPILER_C_HAS_GENERIC_SELECTION	   TRUE
-#				define Z_COMPILER_C_HAS_STORATE_CLASS_THREAD_LOCAL TRUE
+#				define Z_COMPILER_C_HAS_STORAGE_CLASS_THREAD_LOCAL TRUE
 
 #				ifndef __STDC_NO_ATOMICS__
 #					define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS     TRUE
@@ -1128,7 +1127,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif /* Z_inspection_modules_compiler_Clang_H_ */
+#endif /* Z_inspection_modules_compiler_Clang
 
 
 
@@ -1387,4 +1386,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-#endif /* Z_inspection_modules_compiler_GCC_H_ */
+#endif /* Z_inspection_compiler_modules_GCC_H */

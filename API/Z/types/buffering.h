@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_types_buffering_H_
-#define Z_types_buffering_H_
+#ifndef Z_types_buffering_H
+#define Z_types_buffering_H
 
 #include <Z/types/fundamental.h>
 
@@ -24,4 +24,4 @@ typedef struct {
 	zusize volatile fill_count;
 } ZRingBuffer;
 
-#endif /* Z_types_buffering_H_ */
+#endif /* Z_types_buffering_H */

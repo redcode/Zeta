@@ -28,8 +28,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 | supports both 16K and 48K images and it's 16422 or 49190 bytes long. --    |
 '---------------------------------------------------------------------------*/
 
-#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_
-#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H
 
 #include <Z/types/bitwise.h>
 
@@ -67,4 +67,4 @@ Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 ram_load_address; /* 16384	    */
 }, ZSPNewHeader);
 
-#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H */

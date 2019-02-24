@@ -1,12 +1,12 @@
-/* Z Kit - functioms/ZRingBuffer.h
+/* Z Kit - functions/ZRingBuffer.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_ZRingBuffer_H_
-#define Z_functions_ZRingBuffer_H_
+#ifndef Z_functions_ZRingBuffer_H
+#define Z_functions_ZRingBuffer_H
 
 #include <Z/types/buffering.h>
 #include <Z/functions/atomic.h>
@@ -82,4 +82,4 @@ static Z_INLINE void *z_ring_buffer_consume(ZRingBuffer *object)
 	}
 
 
-#endif /* Z_functions_ZRingBuffer_H_ */
+#endif /* Z_functions_ZRingBuffer_H */

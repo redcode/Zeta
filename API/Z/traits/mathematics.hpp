@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_traits_mathematics_HPP_
-#define Z_traits_mathematics_HPP_
+#ifndef Z_traits_mathematics_HPP
+#define Z_traits_mathematics_HPP
 
 #include <Z/types/fundamental.hpp>
 
@@ -45,4 +45,4 @@ namespace Zeta {
 	template <> struct Logarithm2<0> {enum {value = 0};};
 }
 
-#endif // Z_traits_mathematics_HPP_
+#endif // Z_traits_mathematics_HPP

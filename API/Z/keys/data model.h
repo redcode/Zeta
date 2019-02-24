@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_keys_data_model_H_
-#define Z_keys_data_model_H_
+#ifndef Z_keys_data_model_H
+#define Z_keys_data_model_H
 
 #define Z_DATA_MODEL_IP16L32 1
 #define Z_DATA_MODEL_I16LP32 2
@@ -17,16 +17,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_DATA_MODEL_ILP64   7
 #define Z_DATA_MODEL_SILP64  8
 
-#define Z_KEY_BITS_DATA_MODEL 8
-#define Z_KEY_LAST_DATA_MODEL Z_DATA_MODEL_SILP64
+#define Z_DATA_MODEL_NAME_IP16L32 "IP16L32"
+#define Z_DATA_MODEL_NAME_I16LP32 "I16LP32"
+#define Z_DATA_MODEL_NAME_LP32	  "LP32"
+#define Z_DATA_MODEL_NAME_ILP32	  "ILP32"
+#define Z_DATA_MODEL_NAME_LP64	  "LP64"
+#define Z_DATA_MODEL_NAME_LLP64	  "LLP64"
+#define Z_DATA_MODEL_NAME_ILP64	  "ILP64"
+#define Z_DATA_MODEL_NAME_SILP64  "SILP64"
 
-#define Z_DATA_MODEL_STRING_IP16L32 "IP16L32"
-#define Z_DATA_MODEL_STRING_I16LP32 "I16LP32"
-#define Z_DATA_MODEL_STRING_LP32    "LP32"
-#define Z_DATA_MODEL_STRING_ILP32   "ILP32"
-#define Z_DATA_MODEL_STRING_LP64    "LP64"
-#define Z_DATA_MODEL_STRING_LLP64   "LLP64"
-#define Z_DATA_MODEL_STRING_ILP64   "ILP64"
-#define Z_DATA_MODEL_STRING_SILP64  "SILP64"
-
-#endif /* Z_keys_data_model_H_ */
+#endif /* Z_keys_data_model_H */

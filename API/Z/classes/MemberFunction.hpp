@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_classes_MemberFunction_HPP_
-#define Z_classes_MemberFunction_HPP_
+#ifndef Z_classes_MemberFunction_HPP
+#define Z_classes_MemberFunction_HPP
 
 #include <Z/inspection/language.h>
 
@@ -40,7 +40,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE MemberFunction(M function) Z_NOTHROW
-			: function((R (NaT::*)(P...))function) {}
+			: function(reinterpret_cast<R (NaT::*)(P...)>(function)) {}
 
 
 			Z_CT(CPP11) operator Boolean() const Z_NOTHROW
@@ -52,7 +52,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE operator M() const Z_NOTHROW
-				{return (M)function;}
+				{return reinterpret_cast<M>(function);}
 
 
 			template <class M>
@@ -62,7 +62,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			MemberFunction &>::type
 			operator =(M rhs) Z_NOTHROW
 				{
-				function = (R (NaT::*)(P...))rhs;
+				function = reinterpret_cast<R (NaT::*)(P...)>(rhs);
 				return *this;
 				}
 
@@ -70,25 +70,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class O, class RR = R>
 			Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
 			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
-				{(((NaT *)object)->*function)(arguments...);}
+				{(reinterpret_cast<NaT *>(object)->*function)(arguments...);}
 
 
 			template <class O, class RR = R>
 			Z_INLINE typename TypeIf<Type<R>::is_void, RR>::type
 			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
-				{(((NaT *)&object)->*function)(arguments...);}
+				{(reinterpret_cast<NaT *>(&object)->*function)(arguments...);}
 
 
 			template <class O, class RR = R>
 			Z_INLINE typename TypeIf<!Type<R>::is_void, RR>::type
 			operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
-				{return (((NaT *)object)->*function)(arguments...);}
+				{return (reinterpret_cast<NaT *>(object)->*function)(arguments...);}
 
 
 			template <class O, class RR = R>
 			Z_INLINE typename TypeIf<!Type<R>::is_void, RR>::type
 			operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
-				{return (((NaT *)&object)->*function)(arguments...);}
+				{return (reinterpret_cast<NaT *>(&object)->*function)(arguments...);}
 		};
 	}
 
@@ -98,4 +98,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_HAS_CLASS_MemberFunction FALSE
 #endif
 
-#endif // Z_classes_MemberFunction_HPP_
+#endif // Z_classes_MemberFunction_HPP

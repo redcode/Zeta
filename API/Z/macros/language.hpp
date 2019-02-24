@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_language_HPP_
-#define Z_macros_language_HPP_
+#ifndef Z_macros_language_HPP
+#define Z_macros_language_HPP
 
 #include <Z/macros/language.h>
 
@@ -78,4 +78,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 #endif
 
-#endif // Z_macros_language_HPP_
+#endif // Z_macros_language_HPP

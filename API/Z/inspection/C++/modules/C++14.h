@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_CPP_modules_CPP14_H_
-#define Z_inspection_CPP_modules_CPP14_H_
+#ifndef Z_inspection_CPP_modules_CPP14_H
+#define Z_inspection_CPP_modules_CPP14_H
 
 #include <Z/inspection/C++/modules/C++11.h>
 
@@ -19,8 +19,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* N3638 */
 #define Z_CPP_HAS_SIZED_DEALLOCATION			    TRUE /* N3778 */
 #define Z_CPP_HAS_VARIABLE_TEMPLATE			    TRUE /* N3651 */
-#define Z_CPP_HAS_ATTRIBUTE_DEPRECATED			    TRUE /* N3760: [[deprecated]] */
-#define Z_CPP_HAS_LITERAL_BINARY_INTEGRAL		    TRUE /* N3472: 0[b|B]<number> */
-#define Z_CPP_HAS_SPECIFIER_CASE_DECLTYPE_AUTO		    TRUE /* N3638: decltype(auto) */
+#define Z_CPP_HAS_ATTRIBUTE_DEPRECATED			    TRUE /* N3760 */
+#define Z_CPP_HAS_LITERAL_BINARY_INTEGRAL		    TRUE /* N3472 */
+#define Z_CPP_HAS_SPECIFIER_CASE_DECLTYPE_AUTO		    TRUE /* N3638 */
 
-#endif /* Z_inspection_CPP_modules_CPP14_H_ */
+#endif /* Z_inspection_CPP_modules_CPP14_H */

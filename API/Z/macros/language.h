@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_language_H_
-#define Z_macros_language_H_
+#ifndef Z_macros_language_H
+#define Z_macros_language_H
 
 #include <Z/inspection/language.h>
 
@@ -110,4 +110,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_EXTERN_C_END
 #endif
 
-#endif /* Z_macros_language_H_ */
+#endif /* Z_macros_language_H */

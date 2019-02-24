@@ -1,15 +1,15 @@
-/* Z Kit - functions/mathematics/geometry/euclidean/ZSphere.h
+/* Z Kit - functions/ZSphere.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_mathematics_geometry_euclidean_ZSphere_H_
-#define Z_functions_mathematics_geometry_euclidean_ZSphere_H_
+#ifndef Z_functions_ZSphere_H
+#define Z_functions_ZSphere_H
 
-#include <Z/functions/mathematics/geometry/euclidean/constructors.h>
-#include <Z/functions/base/Z3D.h>
+#include <Z/types/geometry.h>
+#include <Z/functions/Z3D.h>
 #include <Z/constants/numbers.h>
 
 
@@ -148,4 +148,4 @@ ZBox##Type z_sphere_##type##_outer_box(ZSphere##Type object)			\
 #endif
 
 
-#endif /* Z_functions_mathematics_geometry_euclidean_ZSphere_H_ */
+#endif /* Z_functions_ZSphere_H */

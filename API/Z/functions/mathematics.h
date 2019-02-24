@@ -5,8 +5,8 @@
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_functions_mathematics_H_
-#define Z_functions_mathematics_H_
+#ifndef Z_functions_mathematics_H
+#define Z_functions_mathematics_H
 
 #include <Z/macros/mathematics.h>
 
@@ -789,4 +789,4 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 #endif
 
 
-#endif /* Z_functions_mathematics_H_ */
+#endif /* Z_functions_mathematics_H */

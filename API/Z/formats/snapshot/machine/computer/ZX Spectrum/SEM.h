@@ -15,8 +15,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 |	      [MAME sources]/src/mame/machine/spec_snqk.cpp	    |
 '------------------------------------------------------------------*/
 
-#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_
-#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H
 
 #include <Z/types/bitwise.h>
 
@@ -47,4 +47,4 @@ Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16	     speed_factor; /* Optional (only if poke included) */
 }, ZSEM);
 
-#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H */
