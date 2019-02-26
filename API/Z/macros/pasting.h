@@ -1,7 +1,7 @@
 /* Z Kit - macros/pasting.h
  _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
+/_   /_/  -_/_   _/  _ | Kit
+ /____/\___/ /__//___/_| ゼータキット
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -10,47 +10,71 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_SAME(what) what
 
-#define Z_EXPAND_PREFIX_0(  what) 0##what
-#define Z_EXPAND_PREFIX_0x( what) 0x##what
-#define Z_EXPAND_PREFIX_0b( what) 0b##what
-#define Z_EXPAND_PREFIX_Z(  what) Z##what
-#define Z_EXPAND_PREFIX_Z_( what) Z_##what
-#define Z_EXPAND_PREFIX_z(  what) z##what
-#define Z_EXPAND_PREFIX_z_( what) z_##what
-#define Z_EXPAND_PREFIX_zb_(what) zb_##what
-#define Z_EXPAND_SUFFIX_DD( what) what##DD
-#define Z_EXPAND_SUFFIX_DF( what) what##DF
-#define Z_EXPAND_SUFFIX_DL( what) what##DL
-#define Z_EXPAND_SUFFIX_F(  what) what##F
-#define Z_EXPAND_SUFFIX_L(  what) what##L
-#define Z_EXPAND_SUFFIX_LL( what) what##LL
-#define Z_EXPAND_SUFFIX_Q(  what) what##Q
-#define Z_EXPAND_SUFFIX_U(  what) what##U
-#define Z_EXPAND_SUFFIX_UL( what) what##UL
-#define Z_EXPAND_SUFFIX_ULL(what) what##ULL
-#define Z_EXPAND_SUFFIX_W(  what) what##W
+#define Z_EXPAND_PREFIX_0(    what) 0##what
+#define Z_EXPAND_PREFIX_0x(   what) 0x##what
+#define Z_EXPAND_PREFIX_0b(   what) 0b##what
+#define Z_EXPAND_PREFIX_Z(    what) Z##what
+#define Z_EXPAND_PREFIX_Z_(   what) Z_##what
+#define Z_EXPAND_PREFIX_z(    what) z##what
+#define Z_EXPAND_PREFIX_z_(   what) z_##what
+#define Z_EXPAND_PREFIX_zb_(  what) zb_##what
+#define Z_EXPAND_SUFFIX_D32(  what) what##D32
+#define Z_EXPAND_SUFFIX_D64(  what) what##D64
+#define Z_EXPAND_SUFFIX_D64x( what) what##D64x
+#define Z_EXPAND_SUFFIX_D128( what) what##D128
+#define Z_EXPAND_SUFFIX_D128x(what) what##D128x
+#define Z_EXPAND_SUFFIX_DD(   what) what##DD
+#define Z_EXPAND_SUFFIX_DF(   what) what##DF
+#define Z_EXPAND_SUFFIX_DL(   what) what##DL
+#define Z_EXPAND_SUFFIX_F(    what) what##F
+#define Z_EXPAND_SUFFIX_F16(  what) what##F16
+#define Z_EXPAND_SUFFIX_F32(  what) what##F32
+#define Z_EXPAND_SUFFIX_F32x( what) what##F32x
+#define Z_EXPAND_SUFFIX_F64(  what) what##F64
+#define Z_EXPAND_SUFFIX_F64x( what) what##F64x
+#define Z_EXPAND_SUFFIX_F128( what) what##F128
+#define Z_EXPAND_SUFFIX_F128x(what) what##F128x
+#define Z_EXPAND_SUFFIX_L(    what) what##L
+#define Z_EXPAND_SUFFIX_LL(   what) what##LL
+#define Z_EXPAND_SUFFIX_Q(    what) what##Q
+#define Z_EXPAND_SUFFIX_U(    what) what##U
+#define Z_EXPAND_SUFFIX_UL(   what) what##UL
+#define Z_EXPAND_SUFFIX_ULL(  what) what##ULL
+#define Z_EXPAND_SUFFIX_W(    what) what##W
 
-#define Z_PREFIX_	   Z_SAME
-#define Z_PREFIX_0(  what) Z_EXPAND_PREFIX_0  (what)
-#define Z_PREFIX_0x( what) Z_EXPAND_PREFIX_0x (what)
-#define Z_PREFIX_0b( what) Z_EXPAND_PREFIX_0b (what)
-#define Z_PREFIX_Z(  what) Z_EXPAND_PREFIX_Z  (what)
-#define Z_PREFIX_Z_( what) Z_EXPAND_PREFIX_Z_ (what)
-#define Z_PREFIX_z(  what) Z_EXPAND_PREFIX_z  (what)
-#define Z_PREFIX_z_( what) Z_EXPAND_PREFIX_z_ (what)
-#define Z_PREFIX_zb_(what) Z_EXPAND_PREFIX_zb_(what)
-#define Z_SUFFIX_	   Z_SAME
-#define Z_SUFFIX_DD( what) Z_EXPAND_SUFFIX_DD (what)
-#define Z_SUFFIX_DF( what) Z_EXPAND_SUFFIX_DF (what)
-#define Z_SUFFIX_DL( what) Z_EXPAND_SUFFIX_DL (what)
-#define Z_SUFFIX_F(  what) Z_EXPAND_SUFFIX_F  (what)
-#define Z_SUFFIX_L(  what) Z_EXPAND_SUFFIX_L  (what)
-#define Z_SUFFIX_LL( what) Z_EXPAND_SUFFIX_LL (what)
-#define Z_SUFFIX_Q(  what) Z_EXPAND_SUFFIX_Q  (what)
-#define Z_SUFFIX_U(  what) Z_EXPAND_SUFFIX_U  (what)
-#define Z_SUFFIX_UL( what) Z_EXPAND_SUFFIX_UL (what)
-#define Z_SUFFIX_ULL(what) Z_EXPAND_SUFFIX_ULL(what)
-#define Z_SUFFIX_W(  what) Z_EXPAND_SUFFIX_W  (what)
+#define Z_PREFIX_	     Z_SAME
+#define Z_PREFIX_0(    what) Z_EXPAND_PREFIX_0	  (what)
+#define Z_PREFIX_0x(   what) Z_EXPAND_PREFIX_0x	  (what)
+#define Z_PREFIX_0b(   what) Z_EXPAND_PREFIX_0b	  (what)
+#define Z_PREFIX_Z(    what) Z_EXPAND_PREFIX_Z	  (what)
+#define Z_PREFIX_Z_(   what) Z_EXPAND_PREFIX_Z_	  (what)
+#define Z_PREFIX_z(    what) Z_EXPAND_PREFIX_z	  (what)
+#define Z_PREFIX_z_(   what) Z_EXPAND_PREFIX_z_	  (what)
+#define Z_PREFIX_zb_(  what) Z_EXPAND_PREFIX_zb_  (what)
+#define Z_SUFFIX_	     Z_SAME
+#define Z_SUFFIX_D32(  what) Z_EXPAND_SUFFIX_D32  (what)
+#define Z_SUFFIX_D64(  what) Z_EXPAND_SUFFIX_D64  (what)
+#define Z_SUFFIX_D64x( what) Z_EXPAND_SUFFIX_D64x (what)
+#define Z_SUFFIX_D128( what) Z_EXPAND_SUFFIX_D128 (what)
+#define Z_SUFFIX_D128x(what) Z_EXPAND_SUFFIX_D128x(what)
+#define Z_SUFFIX_DD(   what) Z_EXPAND_SUFFIX_DD	  (what)
+#define Z_SUFFIX_DF(   what) Z_EXPAND_SUFFIX_DF	  (what)
+#define Z_SUFFIX_DL(   what) Z_EXPAND_SUFFIX_DL	  (what)
+#define Z_SUFFIX_F(    what) Z_EXPAND_SUFFIX_F	  (what)
+#define Z_SUFFIX_F16(  what) Z_EXPAND_SUFFIX_F16  (what)
+#define Z_SUFFIX_F32(  what) Z_EXPAND_SUFFIX_F32  (what)
+#define Z_SUFFIX_F32x( what) Z_EXPAND_SUFFIX_F32x (what)
+#define Z_SUFFIX_F64(  what) Z_EXPAND_SUFFIX_F64  (what)
+#define Z_SUFFIX_F64x( what) Z_EXPAND_SUFFIX_F64x (what)
+#define Z_SUFFIX_F128( what) Z_EXPAND_SUFFIX_F128 (what)
+#define Z_SUFFIX_F128x(what) Z_EXPAND_SUFFIX_F128x(what)
+#define Z_SUFFIX_L(    what) Z_EXPAND_SUFFIX_L	  (what)
+#define Z_SUFFIX_LL(   what) Z_EXPAND_SUFFIX_LL	  (what)
+#define Z_SUFFIX_Q(    what) Z_EXPAND_SUFFIX_Q	  (what)
+#define Z_SUFFIX_U(    what) Z_EXPAND_SUFFIX_U	  (what)
+#define Z_SUFFIX_UL(   what) Z_EXPAND_SUFFIX_UL	  (what)
+#define Z_SUFFIX_ULL(  what) Z_EXPAND_SUFFIX_ULL  (what)
+#define Z_SUFFIX_W(    what) Z_EXPAND_SUFFIX_W	  (what)
 
 #define Z_PASTE_2( _1, _2)																		  _1##_2
 #define Z_PASTE_3( _1, _2, _3)																		  _1##_2##_3
