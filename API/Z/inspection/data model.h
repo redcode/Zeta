@@ -36,72 +36,56 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/formats/data model/IP16L32.h>
 
 #	define Z_APPEND_DATA_MODEL(to)		to##IP16L32
-#	define Z_APPEND_data_model(to)		to##ip16l32
 #	define Z_INSERT_DATA_MODEL(left, right) left##IP16L32##right
-#	define Z_INSERT_data_model(left, right) left##ip16l32##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_I16LP32
 
 #	include <Z/formats/data model/I16LP32.h>
 
 #	define Z_APPEND_DATA_MODEL(to)		to##I16LP32
-#	define Z_APPEND_data_model(to)		to##i16lp32
 #	define Z_INSERT_DATA_MODEL(left, right) left##I16LP32##right
-#	define Z_INSERT_data_model(left, right) left##i16lp32##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_ILP32
 
 #	include <Z/formats/data model/ILP32.h>
 
 #	define Z_APPEND_DATA_MODEL(to)		to##ILP32
-#	define Z_APPEND_data_model(to)		to##ilp32
 #	define Z_INSERT_DATA_MODEL(left, right) left##ILP32##right
-#	define Z_INSERT_data_model(left, right) left##ilp32##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_ILP64
 
 #	include <Z/formats/data model/ILP64.h>
 
 #	define Z_APPEND_DATA_MODEL(to)		to##ILP64
-#	define Z_APPEND_data_model(to)		to##ilp64
 #	define Z_INSERT_DATA_MODEL(left, right) left##ILP64##right
-#	define Z_INSERT_data_model(left, right) left##ilp64##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LLP64
 
 #	include <Z/formats/data model/LLP64.h>
 
 #	define Z_APPEND_DATA_MODEL(to)		to##LLP64
-#	define Z_APPEND_data_model(to)		to##llp64
 #	define Z_INSERT_DATA_MODEL(left, right) left##LLP64##right
-#	define Z_INSERT_data_model(left, right) left##llp64##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LP32
 
 #	include <Z/formats/data model/LP32.h>
 
 #	define Z_APPEND_DATA_MODEL(to)		to##LP32
-#	define Z_APPEND_data_model(to)		to##lp32
 #	define Z_INSERT_DATA_MODEL(left, right) left##LP32##right
-#	define Z_INSERT_data_model(left, right) left##lp32##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LP64
 
 #	include <Z/formats/data model/LP64.h>
 
 #	define Z_APPEND_DATA_MODEL(to)		to##LP64
-#	define Z_APPEND_data_model(to)		to##lp64
 #	define Z_INSERT_DATA_MODEL(left, right) left##LP64##right
-#	define Z_INSERT_data_model(left, right) left##lp64##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_SILP64
 
 #	include <Z/formats/data model/SILP64.h>
 
 #	define Z_APPEND_DATA_MODEL(to)		to##SILP64
-#	define Z_APPEND_data_model(to)		to##silp64
 #	define Z_INSERT_DATA_MODEL(left, right) left##SILP64##right
-#	define Z_INSERT_data_model(left, right) left##silp64##right
 
 #else
 #	error "Invalid Z_DATA_MODEL key."
@@ -165,16 +149,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_FUNDAMENTAL_SINT16 Z_FUNDAMENTAL_SCHAR
 #	define Z_DATA_MODEL_LITERAL_SINT16     Z_SAME
 
-#elif Z_DATA_MODEL_BITS(SHORT) == 16
-
-#	define Z_DATA_MODEL_TYPE_UINT16	       unsigned short int
-#	define Z_DATA_MODEL_FUNDAMENTAL_UINT16 Z_FUNDAMENTAL_USHORT
-#	define Z_DATA_MODEL_LITERAL_UINT16     Z_SUFFIX_U
-
-#	define Z_DATA_MODEL_TYPE_SINT16	       signed short int
-#	define Z_DATA_MODEL_FUNDAMENTAL_SINT16 Z_FUNDAMENTAL_SSHORT
-#	define Z_DATA_MODEL_LITERAL_SINT16     Z_SAME
-
 #elif Z_DATA_MODEL_BITS(INT) == 16
 
 #	define Z_DATA_MODEL_TYPE_UINT16	       unsigned int
@@ -183,6 +157,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_DATA_MODEL_TYPE_SINT16	       signed int
 #	define Z_DATA_MODEL_FUNDAMENTAL_SINT16 Z_FUNDAMENTAL_SINT
+#	define Z_DATA_MODEL_LITERAL_SINT16     Z_SAME
+
+#elif Z_DATA_MODEL_BITS(SHORT) == 16
+
+#	define Z_DATA_MODEL_TYPE_UINT16	       unsigned short int
+#	define Z_DATA_MODEL_FUNDAMENTAL_UINT16 Z_FUNDAMENTAL_USHORT
+#	define Z_DATA_MODEL_LITERAL_UINT16     Z_SUFFIX_U
+
+#	define Z_DATA_MODEL_TYPE_SINT16	       signed short int
+#	define Z_DATA_MODEL_FUNDAMENTAL_SINT16 Z_FUNDAMENTAL_SSHORT
 #	define Z_DATA_MODEL_LITERAL_SINT16     Z_SAME
 
 #else
@@ -213,17 +197,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - 32-bit */
 
-#if Z_DATA_MODEL_BITS(SHORT) == 32
-
-#	define Z_DATA_MODEL_TYPE_UINT32	       unsigned short int
-#	define Z_DATA_MODEL_FUNDAMENTAL_UINT32 Z_FUNDAMENTAL_USHORT
-#	define Z_DATA_MODEL_LITERAL_UINT32     Z_SUFFIX_U
-
-#	define Z_DATA_MODEL_TYPE_SINT32	       signed short int
-#	define Z_DATA_MODEL_FUNDAMENTAL_SINT32 Z_FUNDAMENTAL_SSHORT
-#	define Z_DATA_MODEL_LITERAL_SINT32     Z_SAME
-
-#elif Z_DATA_MODEL_BITS(INT) == 32
+#if Z_DATA_MODEL_BITS(INT) == 32
 
 #	define Z_DATA_MODEL_TYPE_UINT32	       unsigned int
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT32 Z_FUNDAMENTAL_UINT
@@ -231,6 +205,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_DATA_MODEL_TYPE_SINT32	       signed int
 #	define Z_DATA_MODEL_FUNDAMENTAL_SINT32 Z_FUNDAMENTAL_SINT
+#	define Z_DATA_MODEL_LITERAL_SINT32     Z_SAME
+
+#elif Z_DATA_MODEL_BITS(SHORT) == 32
+
+#	define Z_DATA_MODEL_TYPE_UINT32	       unsigned short int
+#	define Z_DATA_MODEL_FUNDAMENTAL_UINT32 Z_FUNDAMENTAL_USHORT
+#	define Z_DATA_MODEL_LITERAL_UINT32     Z_SUFFIX_U
+
+#	define Z_DATA_MODEL_TYPE_SINT32	       signed short int
+#	define Z_DATA_MODEL_FUNDAMENTAL_SINT32 Z_FUNDAMENTAL_SSHORT
 #	define Z_DATA_MODEL_LITERAL_SINT32     Z_SAME
 
 #elif Z_DATA_MODEL_BITS(LONG) == 32

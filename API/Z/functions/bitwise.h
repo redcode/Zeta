@@ -245,12 +245,12 @@ Z_IMPLEMENTATION_ROTATE (sint32, 32)
 #undef Z_IMPLEMENTATION_REVERSE
 #undef Z_IMPLEMENTATION_ROTATE
 
-#define z_type_reverse(		    TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _reverse_in_8bit	)
-#define z_type_rotate_left(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotate_left		)
-#define z_type_rotate_right(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _rotate_right	)
-#define z_type_big_endian(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _big_endian		)
-#define z_type_little_endian(	    TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _little_endian	)
-#define z_type_minimum_storage_size(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _minimum_storage_size)
+#define z_type_reverse(		    TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _reverse_in_8bit	 )
+#define z_type_rotate_left(	    TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _rotate_left	 )
+#define z_type_rotate_right(	    TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _rotate_right	 )
+#define z_type_big_endian(	    TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _big_endian		 )
+#define z_type_little_endian(	    TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _little_endian	 )
+#define z_type_minimum_storage_size(TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _minimum_storage_size)
 
 
 #endif /* Z_functions_bitwise_H */

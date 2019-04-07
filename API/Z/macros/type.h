@@ -1,7 +1,7 @@
 /* Z Kit - macros/type.h
  _____  _______________
-/_   /_/  -_/_   _/  _ | Kit
- /____/\___/ /__//___/_| ゼータキット
+/_   /_/  -_/_   _/  _ |
+ /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -9,7 +9,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_macros_type_H
 
 #include <Z/macros/control.h>
-#include <Z/types/fundamental.h>
+#include <Z/types/integral.h>
+#include <Z/types/real.h>
 
 #define Z_ENUMERATE_FIXED_NATURAL_TYPES_BITS(prefix, invalid)		 \
 	prefix##8, prefix##16, prefix##32,				 \

@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_classes_InitializerList_HPP
 #define Z_classes_InitializerList_HPP
 
-#include <Z/types/fundamental.hpp>
+#include <Z/types/integral.hpp>
 
 
 namespace Zeta {template <class T> class InitializerList {

@@ -34,6 +34,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif Z_OS == Z_OS_AMIGA_OS
 #	include <Z/inspection/OS/modules/AmigaOS.h>
 
+#elif Z_OS == Z_OS_ANANAS_OS
+#	include <Z/inspection/OS/modules/Ananas-OS.h>
+
 #elif Z_OS == Z_OS_ANDROID
 #	include <Z/inspection/OS/modules/Android.h>
 
@@ -78,6 +81,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif Z_OS == Z_OS_FREE_BSD
 #	include <Z/inspection/OS/modules/FreeBSD.h>
+
+#elif Z_OS == Z_OS_FUCHSIA
+#	include <Z/inspection/OS/modules/Fuchsia.h>
 
 #elif Z_OS == Z_OS_GNU_HURD
 #	include <Z/inspection/OS/modules/GNU Hurd.h>

@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_classes_Pair_HPP
 #define Z_classes_Pair_HPP
 
-#include <Z/types/fundamental.h>
+#include <Z/types/integral.h>
 #include <Z/macros/language.hpp>
 
 

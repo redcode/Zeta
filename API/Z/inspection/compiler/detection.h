@@ -130,6 +130,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__LCC__)
 #	define Z_COMPILER Z_COMPILER_LCC
 
+#elif defined(__MCC__)
+#	define Z_COMPILER Z_COMPILER_MCC
+
 #elif defined(__HIGHC__)
 #	define Z_COMPILER Z_COMPILER_METAWARE_HIGH_C_CPP
 

@@ -1,12 +1,12 @@
-/* Z Kit - hardware/machine/platform/computer/ZX Spectrum.h
+/* Z Kit - hardware/machine/computer/ZX Spectrum.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_hardware_machine_platform_computer_ZX_Spectrum_H
-#define Z_hardware_machine_platform_computer_ZX_Spectrum_H
+#ifndef Z_hardware_machine_computer_ZX_Spectrum_H
+#define Z_hardware_machine_computer_ZX_Spectrum_H
 
 #include <Z/types/fundamental.h>
 
@@ -390,4 +390,4 @@ Z_DEFINE_PACKED_STRUCTURE ({
 #define Z_ZX_SPECTRUM_ADC_BLOCK_TYPE_CHARACTER_ARRAY 2
 #define Z_ZX_SPECTRUM_ADC_BLOCK_TYPE_CODE_FILE	     3
 
-#endif /* Z_hardware_machine_platform_computer_ZX_Spectrum_H */
+#endif /* Z_hardware_machine_computer_ZX_Spectrum_H */

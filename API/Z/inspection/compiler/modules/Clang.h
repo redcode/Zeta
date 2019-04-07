@@ -261,13 +261,31 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - CPU integer format */
 
-#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_ALL Z_INTEGER_FORMAT_2S_COMPLEMENT
+/*#define Z_COMPIER_CPU_INTEGER_FORMAT_ALL*/
+/*#define Z_COMPIER_CPU_INTEGER_FORMAT_8BIT*/
+/*#define Z_COMPIER_CPU_INTEGER_FORMAT_16BIT*/
+/*#define Z_COMPIER_CPU_INTEGER_FORMAT_32BIT*/
+/*#define Z_COMPIER_CPU_INTEGER_FORMAT_64BIT*/
+/*#define Z_COMPIER_CPU_INTEGER_FORMAT_128BIT*/
 
-/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_8BIT*/
-/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_16BIT*/
-/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_32BIT*/
-/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_64BIT*/
-/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_128BIT*/
+/* MARK: - Floating point number format */
+
+#ifdef __LDBL_MANT_DIG__ /* v2.6 */
+
+#	if __LDBL_MANT_DIG__ == 53
+#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_IEEE_754_BINARY64
+
+#	elif __LDBL_MANT_DIG__ == 64
+#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_X87_BINARY80
+
+#	elif __LDBL_MANT_DIG__ == 106
+#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_IBM_DOUBLE_DOUBLE
+
+#	elif __LDBL_MANT_DIG__ == 113
+#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_IEEE_754_BINARY128
+#	endif
+
+#endif
 
 /* MARK: - OS / Platform */
 
@@ -312,6 +330,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_OS Z_OS_WINDOWS
 
+#elif defined(__Ananas__) /* v5.0 */
+#	define Z_OS Z_OS_ANANAS_OS
+
 #elif defined(__Bitrig__) /* v3.2 */
 #	define Z_COMPILER_OS Z_OS_BITRIG
 
@@ -332,6 +353,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__FreeBSD_kernel__) /* v3.4 */
 
 #	define Z_COMPILER_OS Z_OS_FREE_BSD
+
+#elif defined(__Fuchsia__) /* v4.0 */
+#	define Z_COMPILER_OS Z_OS_FUCHSIA
 
 #elif defined(__HAIKU__) /* v2.8 */
 #	define Z_COMPILER_OS Z_OS_HAIKU
@@ -1445,7 +1469,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TYPE_SINT64*/
 /*#define Z_COMPILER_TYPE_UINT128*/
 /*#define Z_COMPILER_TYPE_SINT128*/
+
+
+#ifdef __ARM_FP16_FORMAT_IEEE
 /*#define Z_COMPILER_TYPE_FLOAT16*/
+#endif
+
+
+
+
+
 /*#define Z_COMPILER_TYPE_FLOAT32*/
 /*#define Z_COMPILER_TYPE_FLOAT64*/
 /*#define Z_COMPILER_TYPE_FLOAT128*/

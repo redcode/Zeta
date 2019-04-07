@@ -8,6 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_ABIs_generic_emulation_H
 #define Z_ABIs_generic_emulation_H
 
+#include <Z/macros/language.h>
 #include <Z/macros/type.h>
 
 #define Z_EMULATOR_FUNCTION_POWER		0

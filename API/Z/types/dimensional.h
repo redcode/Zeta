@@ -8,7 +8,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_types_dimensional_H
 #define Z_types_dimensional_H
 
-#include <Z/types/fundamental.h>
+#include <Z/types/integral.h>
+#include <Z/types/real.h>
 
 #define Z_TYPES(Type, type)			\
 typedef struct {z##type x, y;}	     Z2D##Type; \

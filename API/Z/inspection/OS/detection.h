@@ -253,6 +253,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_AMIGA_OS
 
+#elif	/*------.								\
+	| Clang |								\
+	'------*/								\
+	defined(__Ananas__)
+
+#	define Z_OS Z_OS_ANANAS_OS
+
 #elif	/*--.									\
 	| ? |									\
 	'--*/									\
@@ -387,6 +394,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	 defined(__FreeBSD_kernel__))
 
 #	define Z_OS Z_OS_FREE_BSD
+
+#elif	/*------.								\
+	| Clang |								\
+	'------*/								\
+	defined(__Fuchsia__)
+
+#	define Z_OS Z_OS_FUCHSIA
 
 #elif	/*--.									\
 	| ? |									\

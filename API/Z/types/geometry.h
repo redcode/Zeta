@@ -8,7 +8,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_types_geometry_H
 #define Z_types_geometry_H
 
-#include <Z/types/fundamental.h>
+#include <Z/types/integral.h>
+#include <Z/types/real.h>
 
 #define Z_TYPES_SIGNED(Type, type)			  \
 typedef struct {Z2D##Type point, size;} ZRectangle##Type; \

@@ -1,15 +1,14 @@
 /* Z Kit - macros/pasting.h
  _____  _______________
-/_   /_/  -_/_   _/  _ | Kit
- /____/\___/ /__//___/_| ゼータキット
+/_   /_/  -_/_   _/  _ |
+ /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_macros_pasting_H
 #define Z_macros_pasting_H
 
-#define Z_SAME(what) what
-
+#define Z_EXPAND_STRINGIZE(   what) #what
 #define Z_EXPAND_PREFIX_0(    what) 0##what
 #define Z_EXPAND_PREFIX_0x(   what) 0x##what
 #define Z_EXPAND_PREFIX_0b(   what) 0b##what
@@ -42,6 +41,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_EXPAND_SUFFIX_ULL(  what) what##ULL
 #define Z_EXPAND_SUFFIX_W(    what) what##W
 
+#define Z_SAME(	       what) what
+#define Z_STRINGIZE(   what) Z_EXPAND_STRINGIZE	  (what)
 #define Z_PREFIX_	     Z_SAME
 #define Z_PREFIX_0(    what) Z_EXPAND_PREFIX_0	  (what)
 #define Z_PREFIX_0x(   what) Z_EXPAND_PREFIX_0x	  (what)

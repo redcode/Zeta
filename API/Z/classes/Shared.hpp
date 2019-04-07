@@ -9,7 +9,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_classes_Shared_HPP
 #define Z_classes_Shared_HPP
 
-#include <Z/types/fundamental.hpp>
+#include <Z/types/integral.hpp>
+#include <Z/types/pointer.hpp>
 
 
 namespace Zeta {template <class T> struct Shared {

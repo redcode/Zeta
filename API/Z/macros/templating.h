@@ -1,407 +1,322 @@
 /* Z Kit - macros/templating.h
  _____  _______________
-/_   /_/  -_/_   _/  _ | Kit
- /____/\___/ /__//___/_| ゼータキット
+/_   /_/  -_/_   _/  _ |
+ /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_macros_templating_H
 #define Z_macros_templating_H
 
-#define Z_APPEND_UINT8(to)		   to##UINT8
-#define Z_APPEND_UInt8(to)		   to##UInt8
-#define Z_APPEND_uint8(to)		   to##uint8
-#define Z_INSERT_UINT8(left, right)	   left##UINT8##right
-#define Z_INSERT_UInt8(left, right)	   left##UInt8##right
-#define Z_INSERT_uint8(left, right)	   left##uint8##right
+/* MARK: - Standard C types */
 
-#define Z_APPEND_SINT8(to)		   to##SINT8
-#define Z_APPEND_SInt8(to)		   to##SInt8
-#define Z_APPEND_sint8(to)		   to##sint8
-#define Z_INSERT_SINT8(left, right)	   left##SINT8##right
-#define Z_INSERT_SInt8(left, right)	   left##SInt8##right
-#define Z_INSERT_sint8(left, right)	   left##sint8##right
+#define Z_APPEND_TYPE_3(to)	       to##CHAR
+#define Z_APPEND_Type_3(to)	       to##Char
+#define Z_APPEND_type_3(to)	       to##char
+#define Z_INSERT_TYPE_3(left, right)   left##CHAR##right
+#define Z_INSERT_Type_3(left, right)   left##Char##right
+#define Z_INSERT_type_3(left, right)   left##char##right
 
-#define Z_APPEND_UINT16(to)		   to##UINT16
-#define Z_APPEND_UInt16(to)		   to##UInt16
-#define Z_APPEND_uint16(to)		   to##uint16
-#define Z_INSERT_UINT16(left, right)	   left##UINT16##right
-#define Z_INSERT_UInt16(left, right)	   left##UInt16##right
-#define Z_INSERT_uint16(left, right)	   left##uint16##right
+#define Z_APPEND_TYPE_4(to)	       to##UCHAR
+#define Z_APPEND_Type_4(to)	       to##UChar
+#define Z_APPEND_type_4(to)	       to##uchar
+#define Z_INSERT_TYPE_4(left, right)   left##UCHAR##right
+#define Z_INSERT_Type_4(left, right)   left##UChar##right
+#define Z_INSERT_type_4(left, right)   left##uchar##right
 
-#define Z_APPEND_SINT16(to)		   to##SINT16
-#define Z_APPEND_SInt16(to)		   to##SInt16
-#define Z_APPEND_sint16(to)		   to##sint16
-#define Z_INSERT_SINT16(left, right)	   left##SINT16##right
-#define Z_INSERT_SInt16(left, right)	   left##SInt16##right
-#define Z_INSERT_sint16(left, right)	   left##sint16##right
+#define Z_APPEND_TYPE_5(to)	       to##SCHAR
+#define Z_APPEND_Type_5(to)	       to##SChar
+#define Z_APPEND_type_5(to)	       to##schar
+#define Z_INSERT_TYPE_5(left, right)   left##SCHAR##right
+#define Z_INSERT_Type_5(left, right)   left##SChar##right
+#define Z_INSERT_type_5(left, right)   left##schar##right
 
-#define Z_APPEND_UINT32(to)		   to##UINT32
-#define Z_APPEND_UInt32(to)		   to##UInt32
-#define Z_APPEND_uint32(to)		   to##uint32
-#define Z_INSERT_UINT32(left, right)	   left##UINT32##right
-#define Z_INSERT_UInt32(left, right)	   left##UInt32##right
-#define Z_INSERT_uint32(left, right)	   left##uint32##right
+#define Z_APPEND_TYPE_6(to)	       to##USHORT
+#define Z_APPEND_Type_6(to)	       to##UShort
+#define Z_APPEND_type_6(to)	       to##ushort
+#define Z_INSERT_TYPE_6(left, right)   left##USHORT##right
+#define Z_INSERT_Type_6(left, right)   left##UShort##right
+#define Z_INSERT_type_6(left, right)   left##ushort##right
 
-#define Z_APPEND_SINT32(to)		   to##SINT32
-#define Z_APPEND_SInt32(to)		   to##SInt32
-#define Z_APPEND_sint32(to)		   to##sint32
-#define Z_INSERT_SINT32(left, right)	   left##SINT32##right
-#define Z_INSERT_SInt32(left, right)	   left##SInt32##right
-#define Z_INSERT_sint32(left, right)	   left##sint32##right
+#define Z_APPEND_TYPE_7(to)	       to##SSHORT
+#define Z_APPEND_Type_7(to)	       to##SShort
+#define Z_APPEND_type_7(to)	       to##sshort
+#define Z_INSERT_TYPE_7(left, right)   left##SSHORT##right
+#define Z_INSERT_Type_7(left, right)   left##SShort##right
+#define Z_INSERT_type_7(left, right)   left##sshort##right
 
-#define Z_APPEND_UINT64(to)		   to##UINT64
-#define Z_APPEND_UInt64(to)		   to##UInt64
-#define Z_APPEND_uint64(to)		   to##uint64
-#define Z_INSERT_UINT64(left, right)	   left##UINT64##right
-#define Z_INSERT_UInt64(left, right)	   left##UInt64##right
-#define Z_INSERT_uint64(left, right)	   left##uint64##right
+#define Z_APPEND_TYPE_8(to)	       to##UINT
+#define Z_APPEND_Type_8(to)	       to##UInt
+#define Z_APPEND_type_8(to)	       to##uint
+#define Z_INSERT_TYPE_8(left, right)   left##UINT##right
+#define Z_INSERT_Type_8(left, right)   left##UInt##right
+#define Z_INSERT_type_8(left, right)   left##uint##right
 
-#define Z_APPEND_SINT64(to)		   to##SINT64
-#define Z_APPEND_SInt64(to)		   to##SInt64
-#define Z_APPEND_sint64(to)		   to##sint64
-#define Z_INSERT_SINT64(left, right)	   left##SINT64##right
-#define Z_INSERT_SInt64(left, right)	   left##SInt64##right
-#define Z_INSERT_sint64(left, right)	   left##sint64##right
+#define Z_APPEND_TYPE_9(to)	       to##SINT
+#define Z_APPEND_Type_9(to)	       to##SInt
+#define Z_APPEND_type_9(to)	       to##sint
+#define Z_INSERT_TYPE_9(left, right)   left##SINT##right
+#define Z_INSERT_Type_9(left, right)   left##SInt##right
+#define Z_INSERT_type_9(left, right)   left##sint##right
 
-#define Z_APPEND_UINT128(to)		   to##UINT128
-#define Z_APPEND_UInt128(to)		   to##UInt128
-#define Z_APPEND_uint128(to)		   to##uint128
-#define Z_INSERT_UINT128(left, right)	   left##UINT128##right
-#define Z_INSERT_UInt128(left, right)	   left##UInt128##right
-#define Z_INSERT_uint128(left, right)	   left##uint128##right
+#define Z_APPEND_TYPE_10(to)	       to##ULONG
+#define Z_APPEND_Type_10(to)	       to##ULong
+#define Z_APPEND_type_10(to)	       to##ulong
+#define Z_INSERT_TYPE_10(left, right)  left##ULONG##right
+#define Z_INSERT_Type_10(left, right)  left##ULong##right
+#define Z_INSERT_type_10(left, right)  left##ulong##right
 
-#define Z_APPEND_SINT128(to)		   to##SINT128
-#define Z_APPEND_SInt128(to)		   to##SInt128
-#define Z_APPEND_sint128(to)		   to##sint128
-#define Z_INSERT_SINT128(left, right)	   left##SINT128##right
-#define Z_INSERT_SInt128(left, right)	   left##SInt128##right
-#define Z_INSERT_sint128(left, right)	   left##sint128##right
+#define Z_APPEND_TYPE_11(to)	       to##SLONG
+#define Z_APPEND_Type_11(to)	       to##SLong
+#define Z_APPEND_type_11(to)	       to##slong
+#define Z_INSERT_TYPE_11(left, right)  left##SLONG##right
+#define Z_INSERT_Type_11(left, right)  left##SLong##right
+#define Z_INSERT_type_11(left, right)  left##slong##right
 
-#define Z_APPEND_FLOAT16(to)		   to##FLOAT16
-#define Z_APPEND_Float16(to)		   to##Float16
-#define Z_APPEND_float16(to)		   to##float16
-#define Z_INSERT_FLOAT16(left, right)	   left##FLOAT16##right
-#define Z_INSERT_Float16(left, right)	   left##Float16##right
-#define Z_INSERT_float16(left, right)	   left##float16##right
+#define Z_APPEND_TYPE_12(to)	       to##ULLONG
+#define Z_APPEND_Type_12(to)	       to##ULLong
+#define Z_APPEND_type_12(to)	       to##ullong
+#define Z_INSERT_TYPE_12(left, right)  left##ULLONG##right
+#define Z_INSERT_Type_12(left, right)  left##ULLong##right
+#define Z_INSERT_type_12(left, right)  left##ullong##right
 
-#define Z_APPEND_FIXED_TYPE_192		   Z_APPEND_FLOAT16
-#define Z_APPEND_FixedType_192		   Z_APPEND_Float16
-#define Z_APPEND_fixed_type_192		   Z_APPEND_float16
-#define Z_INSERT_FIXED_TYPE_192		   Z_INSERT_FLOAT16
-#define Z_INSERT_FixedType_192		   Z_INSERT_Float16
-#define Z_INSERT_fixed_type_192		   Z_INSERT_float16
+#define Z_APPEND_TYPE_13(to)	       to##SLLONG
+#define Z_APPEND_Type_13(to)	       to##SLLong
+#define Z_APPEND_type_13(to)	       to##sllong
+#define Z_INSERT_TYPE_13(left, right)  left##SLLONG##right
+#define Z_INSERT_Type_13(left, right)  left##SLLong##right
+#define Z_INSERT_type_13(left, right)  left##sllong##right
 
-#define Z_APPEND_FLOAT32(to)		   to##FLOAT32
-#define Z_APPEND_Float32(to)		   to##Float32
-#define Z_APPEND_float32(to)		   to##float32
-#define Z_INSERT_FLOAT32(left, right)	   left##FLOAT32##right
-#define Z_INSERT_Float32(left, right)	   left##Float32##right
-#define Z_INSERT_float32(left, right)	   left##float32##right
+#define Z_APPEND_TYPE_14(to)	       to##FLOAT
+#define Z_APPEND_Type_14(to)	       to##Float
+#define Z_APPEND_type_14(to)	       to##float
+#define Z_INSERT_TYPE_14(left, right)  left##FLOAT##right
+#define Z_INSERT_Type_14(left, right)  left##Float##right
+#define Z_INSERT_type_14(left, right)  left##float##right
 
-#define Z_APPEND_FIXED_TYPE_193		   Z_APPEND_FLOAT32
-#define Z_APPEND_FixedType_193		   Z_APPEND_Float32
-#define Z_APPEND_fixed_type_193		   Z_APPEND_float32
-#define Z_INSERT_FIXED_TYPE_193		   Z_INSERT_FLOAT32
-#define Z_INSERT_FixedType_193		   Z_INSERT_Float32
-#define Z_INSERT_fixed_type_193		   Z_INSERT_float32
+#define Z_APPEND_TYPE_15(to)	       to##DOUBLE
+#define Z_APPEND_Type_15(to)	       to##Double
+#define Z_APPEND_type_15(to)	       to##double
+#define Z_INSERT_TYPE_15(left, right)  left##DOUBLE##right
+#define Z_INSERT_Type_15(left, right)  left##Double##right
+#define Z_INSERT_type_15(left, right)  left##double##right
 
-#define Z_APPEND_FLOAT64(to)		   to##FLOAT64
-#define Z_APPEND_Float64(to)		   to##Float64
-#define Z_APPEND_float64(to)		   to##float64
-#define Z_INSERT_FLOAT64(left, right)	   left##FLOAT64##right
-#define Z_INSERT_Float64(left, right)	   left##Float64##right
-#define Z_INSERT_float64(left, right)	   left##float64##right
+#define Z_APPEND_TYPE_16(to)	       to##LDOUBLE
+#define Z_APPEND_Type_16(to)	       to##LDouble
+#define Z_APPEND_type_16(to)	       to##ldouble
+#define Z_INSERT_TYPE_16(left, right)  left##LDOUBLE##right
+#define Z_INSERT_Type_16(left, right)  left##LDouble##right
+#define Z_INSERT_type_16(left, right)  left##ldouble##right
 
-#define Z_APPEND_FIXED_TYPE_194		   Z_APPEND_FLOAT64
-#define Z_APPEND_FixedType_194		   Z_APPEND_Float64
-#define Z_APPEND_fixed_type_194		   Z_APPEND_float64
-#define Z_INSERT_FIXED_TYPE_194		   Z_INSERT_FLOAT64
-#define Z_INSERT_FixedType_194		   Z_INSERT_Float64
-#define Z_INSERT_fixed_type_194		   Z_INSERT_float64
+#define Z_APPEND_TYPE_17(to)	       to##BOOLEAN
+#define Z_APPEND_Type_17(to)	       to##Boolean
+#define Z_APPEND_type_17(to)	       to##boolean
+#define Z_INSERT_TYPE_17(left, right)  left##BOOLEAN##right
+#define Z_INSERT_Type_17(left, right)  left##Boolean##right
+#define Z_INSERT_type_17(left, right)  left##boolean##right
 
-#define Z_APPEND_FLOAT128(to)		   to##FLOAT128
-#define Z_APPEND_Float128(to)		   to##Float128
-#define Z_APPEND_float128(to)		   to##float128
-#define Z_INSERT_FLOAT128(left, right)	   left##FLOAT128##right
-#define Z_INSERT_Float128(left, right)	   left##Float128##right
-#define Z_INSERT_float128(left, right)	   left##float128##right
+/* MARK: - Fixed width integral types */
 
-#define Z_APPEND_FIXED_TYPE_195		   Z_APPEND_FLOAT128
-#define Z_APPEND_FixedType_195		   Z_APPEND_Float128
-#define Z_APPEND_fixed_type_195		   Z_APPEND_float128
-#define Z_INSERT_FIXED_TYPE_195		   Z_INSERT_FLOAT128
-#define Z_INSERT_FixedType_195		   Z_INSERT_Float128
-#define Z_INSERT_fixed_type_195		   Z_INSERT_float128
+#define Z_APPEND_TYPE_100(to)	       to##UINT8
+#define Z_APPEND_Type_100(to)	       to##UInt8
+#define Z_APPEND_type_100(to)	       to##uint8
+#define Z_INSERT_TYPE_100(left, right) left##UINT8##right
+#define Z_INSERT_Type_100(left, right) left##UInt8##right
+#define Z_INSERT_type_100(left, right) left##uint8##right
 
-#define Z_APPEND_FLOAT80_X87(to)	   to##FLOAT80_X87
-#define Z_APPEND_Float80_x87(to)	   to##Float80_x87
-#define Z_APPEND_float80_x87(to)	   to##float80_x87
-#define Z_INSERT_FLOAT80_X87(left, right)  left##FLOAT80_X87##right
-#define Z_INSERT_Float80_x87(left, right)  left##Float80_x87##right
-#define Z_INSERT_float80_x87(left, right)  left##float80_x87##right
+#define Z_APPEND_TYPE_101(to)	       to##SINT8
+#define Z_APPEND_Type_101(to)	       to##SInt8
+#define Z_APPEND_type_101(to)	       to##sint8
+#define Z_INSERT_TYPE_101(left, right) left##SINT8##right
+#define Z_INSERT_Type_101(left, right) left##SInt8##right
+#define Z_INSERT_type_101(left, right) left##sint8##right
 
-#define Z_APPEND_FIXED_TYPE_196		   Z_APPEND_FLOAT80_X87
-#define Z_APPEND_FixedType_196		   Z_APPEND_Float80_x87
-#define Z_APPEND_fixed_type_196		   Z_APPEND_float80_x87
-#define Z_INSERT_FIXED_TYPE_196		   Z_INSERT_FLOAT80_X87
-#define Z_INSERT_FixedType_196		   Z_INSERT_Float80_x87
-#define Z_INSERT_fixed_type_196		   Z_INSERT_float80_x87
+#define Z_APPEND_TYPE_102(to)	       to##UINT16
+#define Z_APPEND_Type_102(to)	       to##UInt16
+#define Z_APPEND_type_102(to)	       to##uint16
+#define Z_INSERT_TYPE_102(left, right) left##UINT16##right
+#define Z_INSERT_Type_102(left, right) left##UInt16##right
+#define Z_INSERT_type_102(left, right) left##uint16##right
 
-#define Z_APPEND_FLOAT96_X87(to)	   to##FLOAT96_X87
-#define Z_APPEND_Float96_x87(to)	   to##Float96_x87
-#define Z_APPEND_float96_x87(to)	   to##float96_x87
-#define Z_INSERT_FLOAT96_X87(left, right)  left##FLOAT96_X87##right
-#define Z_INSERT_Float96_x87(left, right)  left##Float96_x87##right
-#define Z_INSERT_float96_x87(left, right)  left##float96_x87##right
+#define Z_APPEND_TYPE_103(to)	       to##SINT16
+#define Z_APPEND_Type_103(to)	       to##SInt16
+#define Z_APPEND_type_103(to)	       to##sint16
+#define Z_INSERT_TYPE_103(left, right) left##SINT16##right
+#define Z_INSERT_Type_103(left, right) left##SInt16##right
+#define Z_INSERT_type_103(left, right) left##sint16##right
 
-#define Z_APPEND_FIXED_TYPE_197		   Z_APPEND_FLOAT96_X87
-#define Z_APPEND_FixedType_197		   Z_APPEND_Float96_x87
-#define Z_APPEND_fixed_type_197		   Z_APPEND_float96_x87
-#define Z_INSERT_FIXED_TYPE_197		   Z_INSERT_FLOAT96_X87
-#define Z_INSERT_FixedType_197		   Z_INSERT_Float96_x87
-#define Z_INSERT_fixed_type_197		   Z_INSERT_float96_x87
+#define Z_APPEND_TYPE_104(to)	       to##UINT24
+#define Z_APPEND_Type_104(to)	       to##UInt24
+#define Z_APPEND_type_104(to)	       to##uint24
+#define Z_INSERT_TYPE_104(left, right) left##UINT24##right
+#define Z_INSERT_Type_104(left, right) left##UInt24##right
+#define Z_INSERT_type_104(left, right) left##uint24##right
 
-#define Z_APPEND_FLOAT128_X87(to)	   to##FLOAT128_X87
-#define Z_APPEND_Float128_x87(to)	   to##Float128_x87
-#define Z_APPEND_float128_x87(to)	   to##float128_x87
-#define Z_INSERT_FLOAT128_X87(left, right) left##FLOAT128_X87##right
-#define Z_INSERT_Float128_x87(left, right) left##Float128_x87##right
-#define Z_INSERT_float128_x87(left, right) left##float128_x87##right
+#define Z_APPEND_TYPE_105(to)	       to##SINT24
+#define Z_APPEND_Type_105(to)	       to##SInt24
+#define Z_APPEND_type_105(to)	       to##sint24
+#define Z_INSERT_TYPE_105(left, right) left##SINT24##right
+#define Z_INSERT_Type_105(left, right) left##SInt24##right
+#define Z_INSERT_type_105(left, right) left##sint24##right
 
-#define Z_APPEND_FIXED_TYPE_198		   Z_APPEND_FLOAT128_X87
-#define Z_APPEND_FixedType_198		   Z_APPEND_Float128_x87
-#define Z_APPEND_fixed_type_198		   Z_APPEND_float128_x87
-#define Z_INSERT_FIXED_TYPE_198		   Z_INSERT_FLOAT128_X87
-#define Z_INSERT_FixedType_198		   Z_INSERT_Float128_x87
-#define Z_INSERT_fixed_type_198		   Z_INSERT_float128_x87
+#define Z_APPEND_TYPE_106(to)	       to##UINT32
+#define Z_APPEND_Type_106(to)	       to##UInt32
+#define Z_APPEND_type_106(to)	       to##uint32
+#define Z_INSERT_TYPE_106(left, right) left##UINT32##right
+#define Z_INSERT_Type_106(left, right) left##UInt32##right
+#define Z_INSERT_type_106(left, right) left##uint32##right
 
-#if ('\0' - 1) > 0
-#	define Z_APPEND_CHAR_BITS	Z_JOIN_2(Z_APPEND_NUMBER_, Z_UCHAR_BITS)
-#	define Z_APPEND_CHAR_FIXED_TYPE Z_JOIN_2(Z_APPEND_UINT,	   Z_UCHAR_BITS)
-#	define Z_APPEND_CHAR_FixedType	Z_JOIN_2(Z_APPEND_UInt,	   Z_UCHAR_BITS)
-#	define Z_APPEND_CHAR_fixed_type Z_JOIN_2(Z_APPEND_uint,	   Z_UCHAR_BITS)
-#	define Z_INSERT_CHAR_BITS	Z_JOIN_2(Z_INSERT_NUMBER_, Z_UCHAR_BITS)
-#	define Z_INSERT_CHAR_FIXED_TYPE Z_JOIN_2(Z_INSERT_UINT,	   Z_UCHAR_BITS)
-#	define Z_INSERT_CHAR_FixedType	Z_JOIN_2(Z_INSERT_UInt,	   Z_UCHAR_BITS)
-#	define Z_INSERT_CHAR_fixed_type Z_JOIN_2(Z_INSERT_uint,	   Z_UCHAR_BITS)
-#else
-#	define Z_APPEND_CHAR_BITS	Z_JOIN_2(Z_APPEND_NUMBER_, Z_SCHAR_BITS)
-#	define Z_APPEND_CHAR_FIXED_TYPE Z_JOIN_2(Z_APPEND_SINT,	   Z_SCHAR_BITS)
-#	define Z_APPEND_CHAR_FixedType	Z_JOIN_2(Z_APPEND_SInt,	   Z_SCHAR_BITS)
-#	define Z_APPEND_CHAR_fixed_type Z_JOIN_2(Z_APPEND_sint,	   Z_SCHAR_BITS)
-#	define Z_INSERT_CHAR_BITS	Z_JOIN_2(Z_INSERT_NUMBER_, Z_SCHAR_BITS)
-#	define Z_INSERT_CHAR_FIXED_TYPE Z_JOIN_2(Z_INSERT_SINT,	   Z_SCHAR_BITS)
-#	define Z_INSERT_CHAR_FixedType	Z_JOIN_2(Z_INSERT_SInt,	   Z_SCHAR_BITS)
-#	define Z_INSERT_CHAR_fixed_type Z_JOIN_2(Z_INSERT_sint,	   Z_SCHAR_BITS)
-#endif
+#define Z_APPEND_TYPE_107(to)	       to##SINT32
+#define Z_APPEND_Type_107(to)	       to##SInt32
+#define Z_APPEND_type_107(to)	       to##sint32
+#define Z_INSERT_TYPE_107(left, right) left##SINT32##right
+#define Z_INSERT_Type_107(left, right) left##SInt32##right
+#define Z_INSERT_type_107(left, right) left##sint32##right
 
-#define Z_APPEND_UCHAR_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_UCHAR_BITS)
-#define Z_APPEND_UCHAR_FIXED_TYPE   Z_JOIN_2(Z_APPEND_UINT,    Z_UCHAR_BITS)
-#define Z_APPEND_UCHAR_FixedType    Z_JOIN_2(Z_APPEND_UInt,    Z_UCHAR_BITS)
-#define Z_APPEND_UCHAR_fixed_type   Z_JOIN_2(Z_APPEND_uint,    Z_UCHAR_BITS)
-#define Z_INSERT_UCHAR_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_UCHAR_BITS)
-#define Z_INSERT_UCHAR_FIXED_TYPE   Z_JOIN_2(Z_INSERT_UINT,    Z_UCHAR_BITS)
-#define Z_INSERT_UCHAR_FixedType    Z_JOIN_2(Z_INSERT_UInt,    Z_UCHAR_BITS)
-#define Z_INSERT_UCHAR_fixed_type   Z_JOIN_2(Z_INSERT_uint,    Z_UCHAR_BITS)
+#define Z_APPEND_TYPE_108(to)	       to##UINT40
+#define Z_APPEND_Type_108(to)	       to##UInt40
+#define Z_APPEND_type_108(to)	       to##uint40
+#define Z_INSERT_TYPE_108(left, right) left##UINT40##right
+#define Z_INSERT_Type_108(left, right) left##UInt40##right
+#define Z_INSERT_type_108(left, right) left##uint40##right
 
-#define Z_APPEND_SCHAR_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SCHAR_BITS)
-#define Z_APPEND_SCHAR_FIXED_TYPE   Z_JOIN_2(Z_APPEND_SINT,    Z_SCHAR_BITS)
-#define Z_APPEND_SCHAR_FixedType    Z_JOIN_2(Z_APPEND_SInt,    Z_SCHAR_BITS)
-#define Z_APPEND_SCHAR_fixed_type   Z_JOIN_2(Z_APPEND_sint,    Z_SCHAR_BITS)
-#define Z_INSERT_SCHAR_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_SCHAR_BITS)
-#define Z_INSERT_SCHAR_FIXED_TYPE   Z_JOIN_2(Z_INSERT_SINT,    Z_SCHAR_BITS)
-#define Z_INSERT_SCHAR_FixedType    Z_JOIN_2(Z_INSERT_SInt,    Z_SCHAR_BITS)
-#define Z_INSERT_SCHAR_fixed_type   Z_JOIN_2(Z_INSERT_sint,    Z_SCHAR_BITS)
+#define Z_APPEND_TYPE_109(to)	       to##SINT40
+#define Z_APPEND_Type_109(to)	       to##SInt40
+#define Z_APPEND_type_109(to)	       to##sint40
+#define Z_INSERT_TYPE_109(left, right) left##SINT40##right
+#define Z_INSERT_Type_109(left, right) left##SInt40##right
+#define Z_INSERT_type_109(left, right) left##sint40##right
 
-#define Z_APPEND_USHORT_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_USHORT_BITS)
-#define Z_APPEND_USHORT_FIXED_TYPE  Z_JOIN_2(Z_APPEND_UINT,    Z_USHORT_BITS)
-#define Z_APPEND_USHORT_FixedType   Z_JOIN_2(Z_APPEND_UInt,    Z_USHORT_BITS)
-#define Z_APPEND_USHORT_fixed_type  Z_JOIN_2(Z_APPEND_uint,    Z_USHORT_BITS)
-#define Z_INSERT_USHORT_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_USHORT_BITS)
-#define Z_INSERT_USHORT_FIXED_TYPE  Z_JOIN_2(Z_INSERT_UINT,    Z_USHORT_BITS)
-#define Z_INSERT_USHORT_FixedType   Z_JOIN_2(Z_INSERT_UInt,    Z_USHORT_BITS)
-#define Z_INSERT_USHORT_fixed_type  Z_JOIN_2(Z_INSERT_uint,    Z_USHORT_BITS)
+#define Z_APPEND_TYPE_110(to)	       to##UINT48
+#define Z_APPEND_Type_110(to)	       to##UInt48
+#define Z_APPEND_type_110(to)	       to##uint48
+#define Z_INSERT_TYPE_110(left, right) left##UINT48##right
+#define Z_INSERT_Type_110(left, right) left##UInt48##right
+#define Z_INSERT_type_110(left, right) left##uint48##right
 
-#define Z_APPEND_SSHORT_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SSHORT_BITS)
-#define Z_APPEND_SSHORT_FIXED_TYPE  Z_JOIN_2(Z_APPEND_SINT,    Z_SSHORT_BITS)
-#define Z_APPEND_SSHORT_FixedType   Z_JOIN_2(Z_APPEND_SInt,    Z_SSHORT_BITS)
-#define Z_APPEND_SSHORT_fixed_type  Z_JOIN_2(Z_APPEND_sint,    Z_SSHORT_BITS)
-#define Z_INSERT_SSHORT_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_SSHORT_BITS)
-#define Z_INSERT_SSHORT_FIXED_TYPE  Z_JOIN_2(Z_INSERT_SINT,    Z_SSHORT_BITS)
-#define Z_INSERT_SSHORT_FixedType   Z_JOIN_2(Z_INSERT_SInt,    Z_SSHORT_BITS)
-#define Z_INSERT_SSHORT_fixed_type  Z_JOIN_2(Z_INSERT_sint,    Z_SSHORT_BITS)
+#define Z_APPEND_TYPE_111(to)	       to##SINT48
+#define Z_APPEND_Type_111(to)	       to##SInt48
+#define Z_APPEND_type_111(to)	       to##sint48
+#define Z_INSERT_TYPE_111(left, right) left##SINT48##right
+#define Z_INSERT_Type_111(left, right) left##SInt48##right
+#define Z_INSERT_type_111(left, right) left##sint48##right
 
-#define Z_APPEND_UINT_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_UINT_BITS)
-#define Z_APPEND_UINT_FIXED_TYPE    Z_JOIN_2(Z_APPEND_UINT,    Z_UINT_BITS)
-#define Z_APPEND_UINT_FixedType	    Z_JOIN_2(Z_APPEND_UInt,    Z_UINT_BITS)
-#define Z_APPEND_UINT_fixed_type    Z_JOIN_2(Z_APPEND_uint,    Z_UINT_BITS)
-#define Z_INSERT_UINT_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_UINT_BITS)
-#define Z_INSERT_UINT_FIXED_TYPE    Z_JOIN_2(Z_INSERT_UINT,    Z_UINT_BITS)
-#define Z_INSERT_UINT_FixedType	    Z_JOIN_2(Z_INSERT_UInt,    Z_UINT_BITS)
-#define Z_INSERT_UINT_fixed_type    Z_JOIN_2(Z_INSERT_uint,    Z_UINT_BITS)
+#define Z_APPEND_TYPE_112(to)	       to##UINT56
+#define Z_APPEND_Type_112(to)	       to##UInt56
+#define Z_APPEND_type_112(to)	       to##uint56
+#define Z_INSERT_TYPE_112(left, right) left##UINT56##right
+#define Z_INSERT_Type_112(left, right) left##UInt56##right
+#define Z_INSERT_type_112(left, right) left##uint56##right
 
-#define Z_APPEND_SINT_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SINT_BITS)
-#define Z_APPEND_SINT_FIXED_TYPE    Z_JOIN_2(Z_APPEND_SINT,    Z_SINT_BITS)
-#define Z_APPEND_SINT_FixedType	    Z_JOIN_2(Z_APPEND_SInt,    Z_SINT_BITS)
-#define Z_APPEND_SINT_fixed_type    Z_JOIN_2(Z_APPEND_sint,    Z_SINT_BITS)
-#define Z_INSERT_SINT_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_SINT_BITS)
-#define Z_INSERT_SINT_FIXED_TYPE    Z_JOIN_2(Z_INSERT_SINT,    Z_SINT_BITS)
-#define Z_INSERT_SINT_FixedType	    Z_JOIN_2(Z_INSERT_SInt,    Z_SINT_BITS)
-#define Z_INSERT_SINT_fixed_type    Z_JOIN_2(Z_INSERT_sint,    Z_SINT_BITS)
+#define Z_APPEND_TYPE_113(to)	       to##SINT56
+#define Z_APPEND_Type_113(to)	       to##SInt56
+#define Z_APPEND_type_113(to)	       to##sint56
+#define Z_INSERT_TYPE_113(left, right) left##SINT56##right
+#define Z_INSERT_Type_113(left, right) left##SInt56##right
+#define Z_INSERT_type_113(left, right) left##sint56##right
 
-#define Z_APPEND_ULONG_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_ULONG_BITS)
-#define Z_APPEND_ULONG_FIXED_TYPE   Z_JOIN_2(Z_APPEND_UINT,    Z_ULONG_BITS)
-#define Z_APPEND_ULONG_FixedType    Z_JOIN_2(Z_APPEND_UInt,    Z_ULONG_BITS)
-#define Z_APPEND_ULONG_fixed_type   Z_JOIN_2(Z_APPEND_uint,    Z_ULONG_BITS)
-#define Z_INSERT_ULONG_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_ULONG_BITS)
-#define Z_INSERT_ULONG_FIXED_TYPE   Z_JOIN_2(Z_INSERT_UINT,    Z_ULONG_BITS)
-#define Z_INSERT_ULONG_FixedType    Z_JOIN_2(Z_INSERT_UInt,    Z_ULONG_BITS)
-#define Z_INSERT_ULONG_fixed_type   Z_JOIN_2(Z_INSERT_uint,    Z_ULONG_BITS)
+#define Z_APPEND_TYPE_114(to)	       to##UINT64
+#define Z_APPEND_Type_114(to)	       to##UInt64
+#define Z_APPEND_type_114(to)	       to##uint64
+#define Z_INSERT_TYPE_114(left, right) left##UINT64##right
+#define Z_INSERT_Type_114(left, right) left##UInt64##right
+#define Z_INSERT_type_114(left, right) left##uint64##right
 
-#define Z_APPEND_SLONG_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SLONG_BITS)
-#define Z_APPEND_SLONG_FIXED_TYPE   Z_JOIN_2(Z_APPEND_SINT,    Z_SLONG_BITS)
-#define Z_APPEND_SLONG_FixedType    Z_JOIN_2(Z_APPEND_SInt,    Z_SLONG_BITS)
-#define Z_APPEND_SLONG_fixed_type   Z_JOIN_2(Z_APPEND_sint,    Z_SLONG_BITS)
-#define Z_INSERT_SLONG_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_SLONG_BITS)
-#define Z_INSERT_SLONG_FIXED_TYPE   Z_JOIN_2(Z_INSERT_SINT,    Z_SLONG_BITS)
-#define Z_INSERT_SLONG_FixedType    Z_JOIN_2(Z_INSERT_SInt,    Z_SLONG_BITS)
-#define Z_INSERT_SLONG_fixed_type   Z_JOIN_2(Z_INSERT_sint,    Z_SLONG_BITS)
+#define Z_APPEND_TYPE_115(to)	       to##SINT64
+#define Z_APPEND_Type_115(to)	       to##SInt64
+#define Z_APPEND_type_115(to)	       to##sint64
+#define Z_INSERT_TYPE_115(left, right) left##SINT64##right
+#define Z_INSERT_Type_115(left, right) left##SInt64##right
+#define Z_INSERT_type_115(left, right) left##sint64##right
 
-#define Z_APPEND_ULLONG_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_ULLONG_BITS)
-#define Z_APPEND_ULLONG_FIXED_TYPE  Z_JOIN_2(Z_APPEND_UINT,    Z_ULLONG_BITS)
-#define Z_APPEND_ULLONG_FixedType   Z_JOIN_2(Z_APPEND_UInt,    Z_ULLONG_BITS)
-#define Z_APPEND_ULLONG_fixed_type  Z_JOIN_2(Z_APPEND_uint,    Z_ULLONG_BITS)
-#define Z_INSERT_ULLONG_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_ULLONG_BITS)
-#define Z_INSERT_ULLONG_FIXED_TYPE  Z_JOIN_2(Z_INSERT_UINT,    Z_ULLONG_BITS)
-#define Z_INSERT_ULLONG_FixedType   Z_JOIN_2(Z_INSERT_UInt,    Z_ULLONG_BITS)
-#define Z_INSERT_ULLONG_fixed_type  Z_JOIN_2(Z_INSERT_uint,    Z_ULLONG_BITS)
+#define Z_APPEND_TYPE_116(to)	       to##UINT128
+#define Z_APPEND_Type_116(to)	       to##UInt128
+#define Z_APPEND_type_116(to)	       to##uint128
+#define Z_INSERT_TYPE_116(left, right) left##UINT128##right
+#define Z_INSERT_Type_116(left, right) left##UInt128##right
+#define Z_INSERT_type_116(left, right) left##uint128##right
 
-#define Z_APPEND_SLLONG_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SLLONG_BITS)
-#define Z_APPEND_SLLONG_FIXED_TYPE  Z_JOIN_2(Z_APPEND_SINT,    Z_SLLONG_BITS)
-#define Z_APPEND_SLLONG_FixedType   Z_JOIN_2(Z_APPEND_SInt,    Z_SLLONG_BITS)
-#define Z_APPEND_SLLONG_fixed_type  Z_JOIN_2(Z_APPEND_sint,    Z_SLLONG_BITS)
-#define Z_INSERT_SLLONG_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_SLLONG_BITS)
-#define Z_INSERT_SLLONG_FIXED_TYPE  Z_JOIN_2(Z_INSERT_SINT,    Z_SLLONG_BITS)
-#define Z_INSERT_SLLONG_FixedType   Z_JOIN_2(Z_INSERT_SInt,    Z_SLLONG_BITS)
-#define Z_INSERT_SLLONG_fixed_type  Z_JOIN_2(Z_INSERT_sint,    Z_SLLONG_BITS)
+#define Z_APPEND_TYPE_117(to)	       to##SINT128
+#define Z_APPEND_Type_117(to)	       to##SInt128
+#define Z_APPEND_type_117(to)	       to##sint128
+#define Z_INSERT_TYPE_117(left, right) left##SINT128##right
+#define Z_INSERT_Type_117(left, right) left##SInt128##right
+#define Z_INSERT_type_117(left, right) left##sint128##right
 
-#define Z_APPEND_FLOAT_FIXED_TYPE   Z_JOIN_2(Z_APPEND_FIXED_TYPE_, Z_FLOAT_FIXED_FUNDAMENTAL)
-#define Z_APPEND_FLOAT_FixedType    Z_JOIN_2(Z_APPEND_FixedType_,  Z_FLOAT_FIXED_FUNDAMENTAL)
-#define Z_APPEND_FLOAT_fixed_type   Z_JOIN_2(Z_APPEND_fixed_type_, Z_FLOAT_FIXED_FUNDAMENTAL)
-#define Z_INSERT_FLOAT_FIXED_TYPE   Z_JOIN_2(Z_INSERT_FIXED_TYPE_, Z_FLOAT_FIXED_FUNDAMENTAL)
-#define Z_INSERT_FLOAT_FixedType    Z_JOIN_2(Z_INSERT_FixedType_,  Z_FLOAT_FIXED_FUNDAMENTAL)
-#define Z_INSERT_FLOAT_fixed_type   Z_JOIN_2(Z_INSERT_fixed_type_, Z_FLOAT_FIXED_FUNDAMENTAL)
+/* MARK: - Fixed format floating-point types */
 
-#define Z_APPEND_DOUBLE_FIXED_TYPE  Z_JOIN_2(Z_APPEND_FIXED_TYPE_, Z_DOUBLE_FIXED_FUNDAMENTAL)
-#define Z_APPEND_DOUBLE_FixedType   Z_JOIN_2(Z_APPEND_FixedType_,  Z_DOUBLE_FIXED_FUNDAMENTAL)
-#define Z_APPEND_DOUBLE_fixed_type  Z_JOIN_2(Z_APPEND_fixed_type_, Z_DOUBLE_FIXED_FUNDAMENTAL)
-#define Z_INSERT_DOUBLE_FIXED_TYPE  Z_JOIN_2(Z_INSERT_FIXED_TYPE_, Z_DOUBLE_FIXED_FUNDAMENTAL)
-#define Z_INSERT_DOUBLE_FixedType   Z_JOIN_2(Z_INSERT_FixedType_,  Z_DOUBLE_FIXED_FUNDAMENTAL)
-#define Z_INSERT_DOUBLE_fixed_type  Z_JOIN_2(Z_INSERT_fixed_type_, Z_DOUBLE_FIXED_FUNDAMENTAL)
+#define Z_APPEND_TYPE_150(to)	       to##BFP16
+#define Z_APPEND_Type_150(to)	       to##BFP16
+#define Z_APPEND_type_150(to)	       to##bfp16
+#define Z_INSERT_TYPE_150(left, right) left##BFP16##right
+#define Z_INSERT_Type_150(left, right) left##BFP16##right
+#define Z_INSERT_type_150(left, right) left##bfp16##right
 
-#define Z_APPEND_LDOUBLE_FIXED_TYPE Z_JOIN_2(Z_APPEND_FIXED_TYPE_, Z_LDOUBLE_FIXED_FUNDAMENTAL)
-#define Z_APPEND_LDOUBLE_FixedType  Z_JOIN_2(Z_APPEND_FixedType_,  Z_LDOUBLE_FIXED_FUNDAMENTAL)
-#define Z_APPEND_LDOUBLE_fixed_type Z_JOIN_2(Z_APPEND_fixed_type_, Z_LDOUBLE_FIXED_FUNDAMENTAL)
-#define Z_INSERT_LDOUBLE_FIXED_TYPE Z_JOIN_2(Z_INSERT_FIXED_TYPE_, Z_LDOUBLE_FIXED_FUNDAMENTAL)
-#define Z_INSERT_LDOUBLE_FixedType  Z_JOIN_2(Z_INSERT_FixedType_,  Z_LDOUBLE_FIXED_FUNDAMENTAL)
-#define Z_INSERT_LDOUBLE_fixed_type Z_JOIN_2(Z_INSERT_fixed_type_, Z_LDOUBLE_FIXED_FUNDAMENTAL)
+#define Z_APPEND_TYPE_151(to)	       to##BFP32
+#define Z_APPEND_Type_151(to)	       to##BFP32
+#define Z_APPEND_type_151(to)	       to##bfp32
+#define Z_INSERT_TYPE_151(left, right) left##BFP32##right
+#define Z_INSERT_Type_151(left, right) left##BFP32##right
+#define Z_INSERT_type_151(left, right) left##bfp32##right
 
-#define Z_APPEND_USIZE_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_USIZE_BITS)
-#define Z_APPEND_USIZE_FIXED_TYPE   Z_JOIN_2(Z_APPEND_UINT,    Z_USIZE_BITS)
-#define Z_APPEND_USIZE_FixedType    Z_JOIN_2(Z_APPEND_UInt,    Z_USIZE_BITS)
-#define Z_APPEND_USIZE_fixed_type   Z_JOIN_2(Z_APPEND_uint,    Z_USIZE_BITS)
-#define Z_INSERT_USIZE_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_USIZE_BITS)
-#define Z_INSERT_USIZE_FIXED_TYPE   Z_JOIN_2(Z_INSERT_UINT,    Z_USIZE_BITS)
-#define Z_INSERT_USIZE_FixedType    Z_JOIN_2(Z_INSERT_UInt,    Z_USIZE_BITS)
-#define Z_INSERT_USIZE_fixed_type   Z_JOIN_2(Z_INSERT_uint,    Z_USIZE_BITS)
+#define Z_APPEND_TYPE_152(to)	       to##BFP64
+#define Z_APPEND_Type_152(to)	       to##BFP64
+#define Z_APPEND_type_152(to)	       to##bfp64
+#define Z_INSERT_TYPE_152(left, right) left##BFP64##right
+#define Z_INSERT_Type_152(left, right) left##BFP64##right
+#define Z_INSERT_type_152(left, right) left##bfp64##right
 
-#define Z_APPEND_SSIZE_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SSIZE_BITS)
-#define Z_APPEND_SSIZE_FIXED_TYPE   Z_JOIN_2(Z_APPEND_SINT,    Z_SSIZE_BITS)
-#define Z_APPEND_SSIZE_FixedType    Z_JOIN_2(Z_APPEND_SInt,    Z_SSIZE_BITS)
-#define Z_APPEND_SSIZE_fixed_type   Z_JOIN_2(Z_APPEND_sint,    Z_SSIZE_BITS)
-#define Z_INSERT_SSIZE_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_SSIZE_BITS)
-#define Z_INSERT_SSIZE_FIXED_TYPE   Z_JOIN_2(Z_INSERT_SINT,    Z_SSIZE_BITS)
-#define Z_INSERT_SSIZE_FixedType    Z_JOIN_2(Z_INSERT_SInt,    Z_SSIZE_BITS)
-#define Z_INSERT_SSIZE_fixed_type   Z_JOIN_2(Z_INSERT_sint,    Z_SSIZE_BITS)
+#define Z_APPEND_TYPE_153(to)	       to##BFP128
+#define Z_APPEND_Type_153(to)	       to##BFP128
+#define Z_APPEND_type_153(to)	       to##bfp128
+#define Z_INSERT_TYPE_153(left, right) left##BFP128##right
+#define Z_INSERT_Type_153(left, right) left##BFP128##right
+#define Z_INSERT_type_153(left, right) left##bfp128##right
 
-#define Z_APPEND_UINTMAX_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_UINTMAX_BITS)
-#define Z_APPEND_UINTMAX_FIXED_TYPE Z_JOIN_2(Z_APPEND_UINT,    Z_UINTMAX_BITS)
-#define Z_APPEND_UINTMAX_FixedType  Z_JOIN_2(Z_APPEND_UInt,    Z_UINTMAX_BITS)
-#define Z_APPEND_UINTMAX_fixed_type Z_JOIN_2(Z_APPEND_uint,    Z_UINTMAX_BITS)
-#define Z_INSERT_UINTMAX_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_UINTMAX_BITS)
-#define Z_INSERT_UINTMAX_FIXED_TYPE Z_JOIN_2(Z_INSERT_UINT,    Z_UINTMAX_BITS)
-#define Z_INSERT_UINTMAX_FixedType  Z_JOIN_2(Z_INSERT_UInt,    Z_UINTMAX_BITS)
-#define Z_INSERT_UINTMAX_fixed_type Z_JOIN_2(Z_INSERT_uint,    Z_UINTMAX_BITS)
+#define Z_APPEND_TYPE_154(to)	       to##DFP32
+#define Z_APPEND_Type_154(to)	       to##DFP32
+#define Z_APPEND_type_154(to)	       to##dfp32
+#define Z_INSERT_TYPE_154(left, right) left##DFP32##right
+#define Z_INSERT_Type_154(left, right) left##DFP32##right
+#define Z_INSERT_type_154(left, right) left##dfp32##right
 
-#define Z_APPEND_SINTMAX_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SINTMAX_BITS)
-#define Z_APPEND_SINTMAX_FIXED_TYPE Z_JOIN_2(Z_APPEND_SINT,    Z_SINTMAX_BITS)
-#define Z_APPEND_SINTMAX_FixedType  Z_JOIN_2(Z_APPEND_SInt,    Z_SINTMAX_BITS)
-#define Z_APPEND_SINTMAX_fixed_type Z_JOIN_2(Z_APPEND_sint,    Z_SINTMAX_BITS)
-#define Z_INSERT_SINTMAX_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_SINTMAX_BITS)
-#define Z_INSERT_SINTMAX_FIXED_TYPE Z_JOIN_2(Z_INSERT_SINT,    Z_SINTMAX_BITS)
-#define Z_INSERT_SINTMAX_FixedType  Z_JOIN_2(Z_INSERT_SInt,    Z_SINTMAX_BITS)
-#define Z_INSERT_SINTMAX_fixed_type Z_JOIN_2(Z_INSERT_sint,    Z_SINTMAX_BITS)
+#define Z_APPEND_TYPE_155(to)	       to##DFP64
+#define Z_APPEND_Type_155(to)	       to##DFP64
+#define Z_APPEND_type_155(to)	       to##dfp64
+#define Z_INSERT_TYPE_155(left, right) left##DFP64##right
+#define Z_INSERT_Type_155(left, right) left##DFP64##right
+#define Z_INSERT_type_155(left, right) left##dfp64##right
 
-#define Z_APPEND_UINTPTR_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_UINTPTR_BITS)
-#define Z_APPEND_UINTPTR_FIXED_TYPE Z_JOIN_2(Z_APPEND_UINT,    Z_UINTPTR_BITS)
-#define Z_APPEND_UINTPTR_FixedType  Z_JOIN_2(Z_APPEND_UInt,    Z_UINTPTR_BITS)
-#define Z_APPEND_UINTPTR_fixed_type Z_JOIN_2(Z_APPEND_uint,    Z_UINTPTR_BITS)
-#define Z_INSERT_UINTPTR_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_UINTPTR_BITS)
-#define Z_INSERT_UINTPTR_FIXED_TYPE Z_JOIN_2(Z_INSERT_UINT,    Z_UINTPTR_BITS)
-#define Z_INSERT_UINTPTR_FixedType  Z_JOIN_2(Z_INSERT_UInt,    Z_UINTPTR_BITS)
-#define Z_INSERT_UINTPTR_fixed_type Z_JOIN_2(Z_INSERT_uint,    Z_UINTPTR_BITS)
+#define Z_APPEND_TYPE_156(to)	       to##DFP128
+#define Z_APPEND_Type_156(to)	       to##DFP128
+#define Z_APPEND_type_156(to)	       to##dfp128
+#define Z_INSERT_TYPE_156(left, right) left##DFP128##right
+#define Z_INSERT_Type_156(left, right) left##DFP128##right
+#define Z_INSERT_type_156(left, right) left##dfp128##right
 
-#define Z_APPEND_SINTPTR_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SINTPTR_BITS)
-#define Z_APPEND_SINTPTR_FIXED_TYPE Z_JOIN_2(Z_APPEND_SINT,    Z_SINTPTR_BITS)
-#define Z_APPEND_SINTPTR_FixedType  Z_JOIN_2(Z_APPEND_SInt,    Z_SINTPTR_BITS)
-#define Z_APPEND_SINTPTR_fixed_type Z_JOIN_2(Z_APPEND_sint,    Z_SINTPTR_BITS)
-#define Z_INSERT_SINTPTR_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_SINTPTR_BITS)
-#define Z_INSERT_SINTPTR_FIXED_TYPE Z_JOIN_2(Z_INSERT_SINT,    Z_SINTPTR_BITS)
-#define Z_INSERT_SINTPTR_FixedType  Z_JOIN_2(Z_INSERT_SInt,    Z_SINTPTR_BITS)
-#define Z_INSERT_SINTPTR_fixed_type Z_JOIN_2(Z_INSERT_sint,    Z_SINTPTR_BITS)
+#define Z_INSERT_NUMBER_FORMAT_28(left, right) left##IEEE_754_BINARY16##right
+#define Z_INSERT_NUMBER_FORMAT_29(left, right) left##IEEE_754_BINARY32##right
+#define Z_INSERT_NUMBER_FORMAT_30(left, right) left##IEEE_754_BINARY64##right
+#define Z_INSERT_NUMBER_FORMAT_31(left, right) left##IEEE_754_BINARY128##right
+#define Z_INSERT_NUMBER_FORMAT_32(left, right) left##IEEE_754_DECIMAL32##right
+#define Z_INSERT_NUMBER_FORMAT_33(left, right) left##IEEE_754_DECIMAL64##right
+#define Z_INSERT_NUMBER_FORMAT_34(left, right) left##IEEE_754_DECIMAL128##right
+#define Z_INSERT_NUMBER_FORMAT_35(left, right) left##X87_DOUBLE_EXTENDED##right
 
-#define Z_APPEND_UINTTOP_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_UINTTOP_BITS)
-#define Z_APPEND_UINTTOP_FIXED_TYPE Z_JOIN_2(Z_APPEND_UINT,    Z_UINTTOP_BITS)
-#define Z_APPEND_UINTTOP_FixedType  Z_JOIN_2(Z_APPEND_UInt,    Z_UINTTOP_BITS)
-#define Z_APPEND_UINTTOP_fixed_type Z_JOIN_2(Z_APPEND_uint,    Z_UINTTOP_BITS)
-#define Z_INSERT_UINTTOP_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_UINTTOP_BITS)
-#define Z_INSERT_UINTTOP_FIXED_TYPE Z_JOIN_2(Z_INSERT_UINT,    Z_UINTTOP_BITS)
-#define Z_INSERT_UINTTOP_FixedType  Z_JOIN_2(Z_INSERT_UInt,    Z_UINTTOP_BITS)
-#define Z_INSERT_UINTTOP_fixed_type Z_JOIN_2(Z_INSERT_uint,    Z_UINTTOP_BITS)
+/* MARK: - Macro selectors */
 
-#define Z_APPEND_SINTTOP_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_SINTTOP_BITS)
-#define Z_APPEND_SINTTOP_FIXED_TYPE Z_JOIN_2(Z_APPEND_SINT,    Z_SINTTOP_BITS)
-#define Z_APPEND_SINTTOP_FixedType  Z_JOIN_2(Z_APPEND_SInt,    Z_SINTTOP_BITS)
-#define Z_APPEND_SINTTOP_fixed_type Z_JOIN_2(Z_APPEND_sint,    Z_SINTTOP_BITS)
-#define Z_INSERT_SINTTOP_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_SINTTOP_BITS)
-#define Z_INSERT_SINTTOP_FIXED_TYPE Z_JOIN_2(Z_INSERT_SINT,    Z_SINTTOP_BITS)
-#define Z_INSERT_SINTTOP_FixedType  Z_JOIN_2(Z_INSERT_SInt,    Z_SINTTOP_BITS)
-#define Z_INSERT_SINTTOP_fixed_type Z_JOIN_2(Z_INSERT_sint,    Z_SINTTOP_BITS)
-
-#define Z_APPEND_NATURAL_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_NATURAL_BITS)
-#define Z_APPEND_NATURAL_FIXED_TYPE Z_JOIN_2(Z_APPEND_UINT,    Z_NATURAL_BITS)
-#define Z_APPEND_NATURAL_FixedType  Z_JOIN_2(Z_APPEND_UInt,    Z_NATURAL_BITS)
-#define Z_APPEND_NATURAL_fixed_type Z_JOIN_2(Z_APPEND_uint,    Z_NATURAL_BITS)
-#define Z_INSERT_NATURAL_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_NATURAL_BITS)
-#define Z_INSERT_NATURAL_FIXED_TYPE Z_JOIN_2(Z_INSERT_UINT,    Z_NATURAL_BITS)
-#define Z_INSERT_NATURAL_FixedType  Z_JOIN_2(Z_INSERT_UInt,    Z_NATURAL_BITS)
-#define Z_INSERT_NATURAL_fixed_type Z_JOIN_2(Z_INSERT_uint,    Z_NATURAL_BITS)
-
-#define Z_APPEND_INTEGER_BITS	    Z_JOIN_2(Z_APPEND_NUMBER_, Z_INTEGER_BITS)
-#define Z_APPEND_INTEGER_FIXED_TYPE Z_JOIN_2(Z_APPEND_SINT,    Z_INTEGER_BITS)
-#define Z_APPEND_INTEGER_FixedType  Z_JOIN_2(Z_APPEND_SInt,    Z_INTEGER_BITS)
-#define Z_APPEND_INTEGER_fixed_type Z_JOIN_2(Z_APPEND_sint,    Z_INTEGER_BITS)
-#define Z_INSERT_INTEGER_BITS	    Z_JOIN_2(Z_INSERT_NUMBER_, Z_INTEGER_BITS)
-#define Z_INSERT_INTEGER_FIXED_TYPE Z_JOIN_2(Z_INSERT_SINT,    Z_INTEGER_BITS)
-#define Z_INSERT_INTEGER_FixedType  Z_JOIN_2(Z_INSERT_SInt,    Z_INTEGER_BITS)
-#define Z_INSERT_INTEGER_fixed_type Z_JOIN_2(Z_INSERT_sint,    Z_INTEGER_BITS)
-
-#define Z_APPEND_REAL_FIXED_TYPE    Z_JOIN_2(Z_APPEND_FIXED_TYPE_, Z_REAL_FIXED_FUNDAMENTAL)
-#define Z_APPEND_REAL_FixedType	    Z_JOIN_2(Z_APPEND_FixedType_,  Z_REAL_FIXED_FUNDAMENTAL)
-#define Z_APPEND_REAL_fixed_type    Z_JOIN_2(Z_APPEND_fixed_type_, Z_REAL_FIXED_FUNDAMENTAL)
-#define Z_INSERT_REAL_FIXED_TYPE    Z_JOIN_2(Z_INSERT_FIXED_TYPE_, Z_REAL_FIXED_FUNDAMENTAL)
-#define Z_INSERT_REAL_FixedType	    Z_JOIN_2(Z_INSERT_FixedType_,  Z_REAL_FIXED_FUNDAMENTAL)
-#define Z_INSERT_REAL_fixed_type    Z_JOIN_2(Z_INSERT_fixed_type_, Z_REAL_FIXED_FUNDAMENTAL)
+#define Z_APPEND_BASE_TYPE(    TYPE) Z_JOIN_2(Z_APPEND_TYPE_,	       TYPE##_FUNDAMENTAL      )
+#define Z_APPEND_BaseType(     TYPE) Z_JOIN_2(Z_APPEND_Type_,	       TYPE##_FUNDAMENTAL      )
+#define Z_APPEND_base_type(    TYPE) Z_JOIN_2(Z_APPEND_type_,	       TYPE##_FUNDAMENTAL      )
+#define Z_APPEND_FIXED_TYPE(   TYPE) Z_JOIN_2(Z_APPEND_TYPE_,	       TYPE##_FIXED_FUNDAMENTAL)
+#define Z_APPEND_FixedType(    TYPE) Z_JOIN_2(Z_APPEND_Type_,	       TYPE##_FIXED_FUNDAMENTAL)
+#define Z_APPEND_fixed_type(   TYPE) Z_JOIN_2(Z_APPEND_type_,	       TYPE##_FIXED_FUNDAMENTAL)
+#define Z_INSERT_BASE_TYPE(    TYPE) Z_JOIN_2(Z_INSERT_TYPE_,	       TYPE##_FUNDAMENTAL      )
+#define Z_INSERT_BaseType(     TYPE) Z_JOIN_2(Z_INSERT_Type_,	       TYPE##_FUNDAMENTAL      )
+#define Z_INSERT_base_type(    TYPE) Z_JOIN_2(Z_INSERT_type_,	       TYPE##_FUNDAMENTAL      )
+#define Z_INSERT_FIXED_TYPE(   TYPE) Z_JOIN_2(Z_INSERT_TYPE_,	       TYPE##_FIXED_FUNDAMENTAL)
+#define Z_INSERT_FixedType(    TYPE) Z_JOIN_2(Z_INSERT_Type_,	       TYPE##_FIXED_FUNDAMENTAL)
+#define Z_INSERT_fixed_type(   TYPE) Z_JOIN_2(Z_INSERT_type_,	       TYPE##_FIXED_FUNDAMENTAL)
+#define Z_INSERT_NUMBER_FORMAT(TYPE) Z_JOIN_2(Z_INSERT_NUMBER_FORMAT_, TYPE##_NUMBER_FORMAT    )
 
 #endif /* Z_macros_templating_H */

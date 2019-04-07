@@ -140,6 +140,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_COMPILER == Z_COMPILER_LCC
 #		include <Z/inspection/compiler/modules/LCC.h>
 
+#	elif Z_COMPILER == Z_COMPILER_MCC
+#		include <Z/inspection/compiler/modules/MCC.h>
+
 #	elif Z_COMPILER == Z_COMPILER_METAWARE_HIGH_C_CPP
 #		include <Z/inspection/compiler/modules/MetaWare High C-C++.h>
 
