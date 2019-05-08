@@ -10,40 +10,39 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Standard C/C++ fundamental types */
 
-#define Z_FUNDAMENTAL_VOID	    1
-#define Z_FUNDAMENTAL_POINTER	    2
-#define Z_FUNDAMENTAL_CHAR	    3 /* char				    */
-#define Z_FUNDAMENTAL_UCHAR	    4 /* unsigned char			    */
-#define Z_FUNDAMENTAL_SCHAR	    5 /* signed char			    */
-#define Z_FUNDAMENTAL_USHORT	    6 /* unsigned short int		    */
-#define Z_FUNDAMENTAL_SSHORT	    7 /* signed short int		    */
-#define Z_FUNDAMENTAL_UINT	    8 /* unsigned int			    */
-#define Z_FUNDAMENTAL_SINT	    9 /* signed int			    */
-#define Z_FUNDAMENTAL_ULONG	   10 /* unsigned long int		    */
-#define Z_FUNDAMENTAL_SLONG	   11 /* signed long int		    */
-#define Z_FUNDAMENTAL_ULLONG	   12 /* (C99/C++11) unsigned long long int */
-#define Z_FUNDAMENTAL_SLLONG	   13 /* (C99/C++11) signed long long int   */
-#define Z_FUNDAMENTAL_FLOAT	   14 /* float				    */
-#define Z_FUNDAMENTAL_DOUBLE	   15 /* double				    */
-#define Z_FUNDAMENTAL_LDOUBLE	   16 /* long double			    */
-#define Z_FUNDAMENTAL_BOOL	   17 /* (C99) _Bool / (C++98) bool	    */
-#define Z_FUNDAMENTAL_WCHAR	   18 /* (C++98) wchar_t		    */
-#define Z_FUNDAMENTAL_CHAR8	   19 /* char8_t			    */
-#define Z_FUNDAMENTAL_CHAR16	   20 /* (C++11) char16_t		    */
-#define Z_FUNDAMENTAL_CHAR32	   21 /* (C++11) char32_t		    */
-#define Z_FUNDAMENTAL_FLOAT16	   22 /* _Float16			    */
-#define Z_FUNDAMENTAL_FLOAT32	   23 /* _Float32			    */
-#define Z_FUNDAMENTAL_FLOAT64	   24 /* _Float64			    */
-#define Z_FUNDAMENTAL_FLOAT128	   25 /* _Float128			    */
-#define Z_FUNDAMENTAL_FLOAT32X	   26 /* _Float32x			    */
-#define Z_FUNDAMENTAL_FLOAT64X	   27 /* _Float64x			    */
-#define Z_FUNDAMENTAL_FLOAT128X	   28 /* _Float128x			    */
-#define Z_FUNDAMENTAL_DECIMAL32	   29 /* _Decimal32			    */
-#define Z_FUNDAMENTAL_DECIMAL64	   30 /* _Decimal64			    */
-#define Z_FUNDAMENTAL_DECIMAL128   31 /* _Decimal128			    */
+#define Z_FUNDAMENTAL_VOID	    0
+#define Z_FUNDAMENTAL_CHAR	    1 /* char				    */
+#define Z_FUNDAMENTAL_UCHAR	    2 /* unsigned char			    */
+#define Z_FUNDAMENTAL_SCHAR	    3 /* signed char			    */
+#define Z_FUNDAMENTAL_USHORT	    4 /* unsigned short int		    */
+#define Z_FUNDAMENTAL_SSHORT	    5 /* signed short int		    */
+#define Z_FUNDAMENTAL_UINT	    6 /* unsigned int			    */
+#define Z_FUNDAMENTAL_SINT	    7 /* signed int			    */
+#define Z_FUNDAMENTAL_ULONG	    8 /* unsigned long int		    */
+#define Z_FUNDAMENTAL_SLONG	    9 /* signed long int		    */
+#define Z_FUNDAMENTAL_ULLONG	   10 /* (C99/C++11) unsigned long long int */
+#define Z_FUNDAMENTAL_SLLONG	   11 /* (C99/C++11) signed long long int   */
+#define Z_FUNDAMENTAL_BOOLEAN	   12 /* (C99) _Bool / (C++98) bool	    */
+#define Z_FUNDAMENTAL_WCHAR	   13 /* (C++98) wchar_t		    */
+#define Z_FUNDAMENTAL_CHAR8	   14 /* char8_t			    */
+#define Z_FUNDAMENTAL_CHAR16	   15 /* (C++11) char16_t		    */
+#define Z_FUNDAMENTAL_CHAR32	   16 /* (C++11) char32_t		    */
+#define Z_FUNDAMENTAL_FLOAT	   17 /* float				    */
+#define Z_FUNDAMENTAL_DOUBLE	   18 /* double				    */
+#define Z_FUNDAMENTAL_LDOUBLE	   19 /* long double			    */
+#define Z_FUNDAMENTAL_FLOAT16	   20 /* _Float16			    */
+#define Z_FUNDAMENTAL_FLOAT32	   21 /* _Float32			    */
+#define Z_FUNDAMENTAL_FLOAT64	   22 /* _Float64			    */
+#define Z_FUNDAMENTAL_FLOAT128	   23 /* _Float128			    */
+#define Z_FUNDAMENTAL_FLOAT32X	   24 /* _Float32x			    */
+#define Z_FUNDAMENTAL_FLOAT64X	   25 /* _Float64x			    */
+#define Z_FUNDAMENTAL_FLOAT128X	   26 /* _Float128x			    */
+#define Z_FUNDAMENTAL_DECIMAL32	   27 /* _Decimal32			    */
+#define Z_FUNDAMENTAL_DECIMAL64	   28 /* _Decimal64			    */
+#define Z_FUNDAMENTAL_DECIMAL128   29 /* _Decimal128			    */
 #define Z_FUNDAMENTAL_DECIMAL64X   30 /* _Decimal64x			    */
 #define Z_FUNDAMENTAL_DECIMAL128X  31 /* _Decimal128x			    */
-#define Z_FUNDAMENTAL_NULLPTR	   32 /* (C++11) decltype(nullptr)	    */
+#define Z_FUNDAMENTAL_NULL_POINTER 32 /* (C++11) decltype(nullptr)	    */
 
 /* MARK: - Fixed width integral types */
 
@@ -75,10 +74,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_FUNDAMENTAL_DFP32	  154 /* IEEE 754 decimal32				  */
 #define Z_FUNDAMENTAL_DFP64	  155 /* IEEE 754 decimal64				  */
 #define Z_FUNDAMENTAL_DFP128	  156 /* IEEE 754 decimal128				  */
-#define Z_FUNDAMENTAL_BFLOAT16	  157
-#define Z_FUNDAMENTAL_X87_DE80	  158 /* 80-bit x87 double extended			  */
-#define Z_FUNDAMENTAL_X87_DE96	  159 /* 80-bit x87 double extended (with 16-bit padding) */
-#define Z_FUNDAMENTAL_X87_DE128	  160 /* 80-bit x87 double extended (with 48-bit padding) */
-#define Z_FUNDAMENTAL_ARM_FP16	  161
+#define Z_FUNDAMENTAL_X87_DE80	  157 /* 80-bit x87 double extended			  */
+#define Z_FUNDAMENTAL_X87_DE96	  158 /* 80-bit x87 double extended (with 16-bit padding) */
+#define Z_FUNDAMENTAL_X87_DE128	  159 /* 80-bit x87 double extended (with 48-bit padding) */
 
 #endif /* Z_keys_type_H */

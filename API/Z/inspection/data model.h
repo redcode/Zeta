@@ -35,63 +35,62 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	include <Z/formats/data model/IP16L32.h>
 
-#	define Z_APPEND_DATA_MODEL(to)		to##IP16L32
+#	define Z_DATA_MODEL_NAME		Z_DATA_MODEL_NAME_IP16L32
 #	define Z_INSERT_DATA_MODEL(left, right) left##IP16L32##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_I16LP32
 
 #	include <Z/formats/data model/I16LP32.h>
 
-#	define Z_APPEND_DATA_MODEL(to)		to##I16LP32
+#	define Z_DATA_MODEL_NAME		Z_DATA_MODEL_NAME_I16LP32
 #	define Z_INSERT_DATA_MODEL(left, right) left##I16LP32##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_ILP32
 
 #	include <Z/formats/data model/ILP32.h>
 
-#	define Z_APPEND_DATA_MODEL(to)		to##ILP32
+#	define Z_DATA_MODEL_NAME_		Z_DATA_MODEL_NAME_ILP32
 #	define Z_INSERT_DATA_MODEL(left, right) left##ILP32##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_ILP64
 
 #	include <Z/formats/data model/ILP64.h>
 
-#	define Z_APPEND_DATA_MODEL(to)		to##ILP64
+#	define Z_DATA_MODEL_NAME		Z_DATA_MODEL_NAME_ILP64
 #	define Z_INSERT_DATA_MODEL(left, right) left##ILP64##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LLP64
 
 #	include <Z/formats/data model/LLP64.h>
 
-#	define Z_APPEND_DATA_MODEL(to)		to##LLP64
+#	define Z_DATA_MODEL_NAME		Z_DATA_MODEL_NAME_LLP64
 #	define Z_INSERT_DATA_MODEL(left, right) left##LLP64##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LP32
 
 #	include <Z/formats/data model/LP32.h>
 
-#	define Z_APPEND_DATA_MODEL(to)		to##LP32
+#	define Z_DATA_MODEL_NAME		Z_DATA_MODEL_NAME_LP32
 #	define Z_INSERT_DATA_MODEL(left, right) left##LP32##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LP64
 
 #	include <Z/formats/data model/LP64.h>
 
-#	define Z_APPEND_DATA_MODEL(to)		to##LP64
+#	define Z_DATA_MODEL_NAME		Z_DATA_MODEL_NAME_LP64
 #	define Z_INSERT_DATA_MODEL(left, right) left##LP64##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_SILP64
 
 #	include <Z/formats/data model/SILP64.h>
 
-#	define Z_APPEND_DATA_MODEL(to)		to##SILP64
+#	define Z_DATA_MODEL_NAME		Z_DATA_MODEL_NAME_SILP64
 #	define Z_INSERT_DATA_MODEL(left, right) left##SILP64##right
 
 #else
 #	error "Invalid Z_DATA_MODEL key."
 #endif
 
-#define Z_DATA_MODEL_NAME	       Z_APPEND_DATA_MODEL(Z_DATA_MODEL_NAME_)
 #define Z_DATA_MODEL_HAS_LITERAL(TYPE) Z_DATA_MODEL_HAS_LITERAL_##TYPE
 #define Z_DATA_MODEL_HAS_TYPE(	 TYPE) Z_DATA_MODEL_HAS_TYPE_##TYPE
 #define Z_DATA_MODEL_BITS(	 TYPE) Z_INSERT_DATA_MODEL(Z_, _BITS_##TYPE)
