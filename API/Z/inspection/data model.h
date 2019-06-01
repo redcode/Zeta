@@ -49,7 +49,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	include <Z/formats/data model/ILP32.h>
 
-#	define Z_DATA_MODEL_NAME_		Z_DATA_MODEL_NAME_ILP32
+#	define Z_DATA_MODEL_NAME		Z_DATA_MODEL_NAME_ILP32
 #	define Z_INSERT_DATA_MODEL(left, right) left##ILP32##right
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_ILP64
