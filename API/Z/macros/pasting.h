@@ -191,56 +191,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_PREPEND_TERNARY(boolean) Z_JOIN_2(Z_PREPEND_TERNARY_, boolean)
 
-#define Z_INSERT_NUMBER_0(   left, right) left##0##right
-#define Z_INSERT_NUMBER_1(   left, right) left##1##right
-#define Z_INSERT_NUMBER_2(   left, right) left##2##right
-#define Z_INSERT_NUMBER_3(   left, right) left##3##right
-#define Z_INSERT_NUMBER_4(   left, right) left##4##right
-#define Z_INSERT_NUMBER_5(   left, right) left##5##right
-#define Z_INSERT_NUMBER_6(   left, right) left##6##right
-#define Z_INSERT_NUMBER_7(   left, right) left##7##right
-#define Z_INSERT_NUMBER_8(   left, right) left##8##right
-#define Z_INSERT_NUMBER_9(   left, right) left##9##right
-#define Z_INSERT_NUMBER_10(  left, right) left##10##right
-#define Z_INSERT_NUMBER_11(  left, right) left##11##right
-#define Z_INSERT_NUMBER_12(  left, right) left##12##right
-#define Z_INSERT_NUMBER_13(  left, right) left##13##right
-#define Z_INSERT_NUMBER_14(  left, right) left##14##right
-#define Z_INSERT_NUMBER_15(  left, right) left##15##right
-#define Z_INSERT_NUMBER_16(  left, right) left##16##right
-#define Z_INSERT_NUMBER_17(  left, right) left##17##right
-#define Z_INSERT_NUMBER_18(  left, right) left##18##right
-#define Z_INSERT_NUMBER_19(  left, right) left##19##right
-#define Z_INSERT_NUMBER_20(  left, right) left##20##right
-#define Z_INSERT_NUMBER_21(  left, right) left##21##right
-#define Z_INSERT_NUMBER_22(  left, right) left##22##right
-#define Z_INSERT_NUMBER_23(  left, right) left##23##right
-#define Z_INSERT_NUMBER_24(  left, right) left##24##right
-#define Z_INSERT_NUMBER_25(  left, right) left##25##right
-#define Z_INSERT_NUMBER_26(  left, right) left##26##right
-#define Z_INSERT_NUMBER_27(  left, right) left##27##right
-#define Z_INSERT_NUMBER_28(  left, right) left##28##right
-#define Z_INSERT_NUMBER_29(  left, right) left##29##right
-#define Z_INSERT_NUMBER_30(  left, right) left##30##right
-#define Z_INSERT_NUMBER_31(  left, right) left##31##right
-#define Z_INSERT_NUMBER_32(  left, right) left##32##right
-#define Z_INSERT_NUMBER_48(  left, right) left##48##right
-#define Z_INSERT_NUMBER_64(  left, right) left##64##right
-#define Z_INSERT_NUMBER_72(  left, right) left##72##right
-#define Z_INSERT_NUMBER_80(  left, right) left##80##right
-#define Z_INSERT_NUMBER_96(  left, right) left##96##right
-#define Z_INSERT_NUMBER_128( left, right) left##128##right
-#define Z_INSERT_NUMBER_256( left, right) left##256##right
-#define Z_INSERT_NUMBER_512( left, right) left##512##right
-#define Z_INSERT_NUMBER_1024(left, right) left##1024##right
-
-#define Z_INSERT_TERNARY_1(    left, right, a, b) left##a##right
-#define Z_INSERT_TERNARY_0(    left, right, a, b) left##b##right
-#define Z_INSERT_TERNARY_TRUE( left, right, a, b) left##a##right
-#define Z_INSERT_TERNARY_FALSE(left, right, a, b) left##b##right
-
-#define Z_INSERT_TERNARY(boolean) Z_JOIN_2(Z_INSERT_TERNARY_, boolean)
-
 #define Z_APPEND_NUMBER_0(   to) to##0
 #define Z_APPEND_NUMBER_1(   to) to##1
 #define Z_APPEND_NUMBER_2(   to) to##2
@@ -290,5 +240,55 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_APPEND_TERNARY_FALSE(to, a, b) to##b
 
 #define Z_APPEND_TERNARY(boolean) Z_JOIN_2(Z_APPEND_TERNARY_, boolean)
+
+#define Z_INSERT_NUMBER_0(   left, right) left##0##right
+#define Z_INSERT_NUMBER_1(   left, right) left##1##right
+#define Z_INSERT_NUMBER_2(   left, right) left##2##right
+#define Z_INSERT_NUMBER_3(   left, right) left##3##right
+#define Z_INSERT_NUMBER_4(   left, right) left##4##right
+#define Z_INSERT_NUMBER_5(   left, right) left##5##right
+#define Z_INSERT_NUMBER_6(   left, right) left##6##right
+#define Z_INSERT_NUMBER_7(   left, right) left##7##right
+#define Z_INSERT_NUMBER_8(   left, right) left##8##right
+#define Z_INSERT_NUMBER_9(   left, right) left##9##right
+#define Z_INSERT_NUMBER_10(  left, right) left##10##right
+#define Z_INSERT_NUMBER_11(  left, right) left##11##right
+#define Z_INSERT_NUMBER_12(  left, right) left##12##right
+#define Z_INSERT_NUMBER_13(  left, right) left##13##right
+#define Z_INSERT_NUMBER_14(  left, right) left##14##right
+#define Z_INSERT_NUMBER_15(  left, right) left##15##right
+#define Z_INSERT_NUMBER_16(  left, right) left##16##right
+#define Z_INSERT_NUMBER_17(  left, right) left##17##right
+#define Z_INSERT_NUMBER_18(  left, right) left##18##right
+#define Z_INSERT_NUMBER_19(  left, right) left##19##right
+#define Z_INSERT_NUMBER_20(  left, right) left##20##right
+#define Z_INSERT_NUMBER_21(  left, right) left##21##right
+#define Z_INSERT_NUMBER_22(  left, right) left##22##right
+#define Z_INSERT_NUMBER_23(  left, right) left##23##right
+#define Z_INSERT_NUMBER_24(  left, right) left##24##right
+#define Z_INSERT_NUMBER_25(  left, right) left##25##right
+#define Z_INSERT_NUMBER_26(  left, right) left##26##right
+#define Z_INSERT_NUMBER_27(  left, right) left##27##right
+#define Z_INSERT_NUMBER_28(  left, right) left##28##right
+#define Z_INSERT_NUMBER_29(  left, right) left##29##right
+#define Z_INSERT_NUMBER_30(  left, right) left##30##right
+#define Z_INSERT_NUMBER_31(  left, right) left##31##right
+#define Z_INSERT_NUMBER_32(  left, right) left##32##right
+#define Z_INSERT_NUMBER_48(  left, right) left##48##right
+#define Z_INSERT_NUMBER_64(  left, right) left##64##right
+#define Z_INSERT_NUMBER_72(  left, right) left##72##right
+#define Z_INSERT_NUMBER_80(  left, right) left##80##right
+#define Z_INSERT_NUMBER_96(  left, right) left##96##right
+#define Z_INSERT_NUMBER_128( left, right) left##128##right
+#define Z_INSERT_NUMBER_256( left, right) left##256##right
+#define Z_INSERT_NUMBER_512( left, right) left##512##right
+#define Z_INSERT_NUMBER_1024(left, right) left##1024##right
+
+#define Z_INSERT_TERNARY_1(    left, right, a, b) left##a##right
+#define Z_INSERT_TERNARY_0(    left, right, a, b) left##b##right
+#define Z_INSERT_TERNARY_TRUE( left, right, a, b) left##a##right
+#define Z_INSERT_TERNARY_FALSE(left, right, a, b) left##b##right
+
+#define Z_INSERT_TERNARY(boolean) Z_JOIN_2(Z_INSERT_TERNARY_, boolean)
 
 #endif /* Z_macros_pasting_H */
