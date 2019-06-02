@@ -16,8 +16,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPU_HAS_INTEGRAL_16BIT FALSE
 #endif
 
+#ifndef Z_CPU_HAS_INTEGRAL_24BIT
+#	define Z_CPU_HAS_INTEGRAL_24BIT FALSE
+#endif
+
 #ifndef Z_CPU_HAS_INTEGRAL_32BIT
 #	define Z_CPU_HAS_INTEGRAL_32BIT FALSE
+#endif
+
+#ifndef Z_CPU_HAS_INTEGRAL_40BIT
+#	define Z_CPU_HAS_INTEGRAL_40BIT FALSE
+#endif
+
+#ifndef Z_CPU_HAS_INTEGRAL_48BIT
+#	define Z_CPU_HAS_INTEGRAL_48BIT FALSE
+#endif
+
+#ifndef Z_CPU_HAS_INTEGRAL_56BIT
+#	define Z_CPU_HAS_INTEGRAL_56BIT FALSE
 #endif
 
 #ifndef Z_CPU_HAS_INTEGRAL_64BIT
