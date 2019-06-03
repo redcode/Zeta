@@ -1113,116 +1113,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef void type;
 	};
 
-#	define Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(bits)		      \
-									      \
-	struct UInt##bits : Natural {					      \
-		enum {	fundamental	  = Z_UINT##bits##_FUNDAMENTAL,	      \
-			fixed_fundamental = Z_UINT##bits##_FIXED_FUNDAMENTAL, \
-			number_format	  = Z_UINT##bits##_NUMBER_FORMAT      \
-		};							      \
-		enum {maximum = Z_UINT##bits##_MAXIMUM};		      \
-									      \
-		typedef zuint##bits type;				      \
-		typedef zuint##bits to_unsigned;			      \
-									      \
-		Z_IF(Z_DATA_MODEL_HAS_TYPE(SINT##bits))			      \
-			(typedef zsint##bits to_signed;)		      \
-	};
-
-#	define Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(bits)		      \
-									      \
-	struct SInt##bits : Integer {					      \
-		enum {	fundamental	  = Z_SINT##bits##_FUNDAMENTAL,	      \
-			fixed_fundamental = Z_SINT##bits##_FIXED_FUNDAMENTAL, \
-			number_format	  = Z_SINT##bits##_NUMBER_FORMAT      \
-		};							      \
-		enum {	minimum = Z_SINT##bits##_MINIMUM,		      \
-			maximum = Z_SINT##bits##_MAXIMUM		      \
-		};							      \
-									      \
-		typedef zsint##bits type;				      \
-		typedef zsint##bits to_signed;				      \
-									      \
-		Z_IF(Z_DATA_MODEL_HAS_TYPE(UINT##bits))			      \
-			(typedef zuint##bits to_unsigned;)		      \
-	};
-
-
-#	if defined(Z_UINT8) && Z_UINT8_FUNDAMENTAL == Z_FUNDAMENTAL_UINT8
-		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(8)
-#	endif
-
-#	if defined(Z_SINT8) && Z_SINT8_FUNDAMENTAL == Z_FUNDAMENTAL_SINT8
-		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(8)
-#	endif
-
-#	if defined(Z_UINT16) && Z_UINT16_FUNDAMENTAL == Z_FUNDAMENTAL_UINT16
-		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(16)
-#	endif
-
-#	if defined(Z_SINT16) && Z_SINT16_FUNDAMENTAL == Z_FUNDAMENTAL_SINT16
-		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(16)
-#	endif
-
-#	if defined(Z_UINT24) && Z_UINT24_FUNDAMENTAL == Z_FUNDAMENTAL_UINT24
-		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(24)
-#	endif
-
-#	if defined(Z_SINT24) && Z_SINT24_FUNDAMENTAL == Z_FUNDAMENTAL_SINT24
-		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(24)
-#	endif
-
-#	if defined(Z_UINT32) && Z_UINT32_FUNDAMENTAL == Z_FUNDAMENTAL_UINT32
-		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(32)
-#	endif
-
-#	if defined(Z_SINT32) && Z_SINT32_FUNDAMENTAL == Z_FUNDAMENTAL_SINT32
-		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(32)
-#	endif
-
-#	if defined(Z_UINT40) && Z_UINT40_FUNDAMENTAL == Z_FUNDAMENTAL_UINT40
-		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(40)
-#	endif
-
-#	if defined(Z_SINT40) && Z_SINT40_FUNDAMENTAL == Z_FUNDAMENTAL_SINT40
-		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(40)
-#	endif
-
-#	if defined(Z_UINT48) && Z_UINT48_FUNDAMENTAL == Z_FUNDAMENTAL_UINT48
-		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(48)
-#	endif
-
-#	if defined(Z_SINT48) && Z_SINT48_FUNDAMENTAL == Z_FUNDAMENTAL_SINT48
-		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(48)
-#	endif
-
-#	if defined(Z_UINT56) && Z_UINT56_FUNDAMENTAL == Z_FUNDAMENTAL_UINT56
-		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(56)
-#	endif
-
-#	if defined(Z_SINT56) && Z_SINT56_FUNDAMENTAL == Z_FUNDAMENTAL_SINT56
-		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(56)
-#	endif
-
-#	if defined(Z_UINT64) && Z_UINT64_FUNDAMENTAL == Z_FUNDAMENTAL_UINT64
-		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(64)
-#	endif
-
-#	if defined(Z_SINT64) && Z_SINT64_FUNDAMENTAL == Z_FUNDAMENTAL_SINT64
-		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(64)
-#	endif
-
-#	if defined(Z_UINT128) && Z_UINT128_FUNDAMENTAL == Z_FUNDAMENTAL_UINT128
-		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(128)
-#	endif
-
-#	if defined(Z_SINT128) && Z_SINT128_FUNDAMENTAL == Z_FUNDAMENTAL_SINT128
-		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(128)
-#	endif
-
-#	undef Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL
-#	undef Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER
-
 	struct Char : Z_TERNARY(Z_CHAR_IS_SIGNED)(Integer, Natural) {
 		enum {	fundamental	  = Z_CHAR_FUNDAMENTAL,
 			fixed_fundamental = Z_CHAR_FIXED_FUNDAMENTAL,
@@ -1321,6 +1211,116 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	undef Z_IMPLEMENTATION_FIXED_WIDTH_CHARACTER
 
+#	define Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(bits)		      \
+									      \
+	struct UInt##bits : Natural {					      \
+		enum {	fundamental	  = Z_UINT##bits##_FUNDAMENTAL,	      \
+			fixed_fundamental = Z_UINT##bits##_FIXED_FUNDAMENTAL, \
+			number_format	  = Z_UINT##bits##_NUMBER_FORMAT      \
+		};							      \
+		enum {maximum = Z_UINT##bits##_MAXIMUM};		      \
+									      \
+		typedef zuint##bits type;				      \
+		typedef zuint##bits to_unsigned;			      \
+									      \
+		Z_IF(Z_DATA_MODEL_HAS_TYPE(SINT##bits))			      \
+			(typedef zsint##bits to_signed;)		      \
+	};
+
+#	if defined(Z_UINT8) && Z_UINT8_FUNDAMENTAL == Z_FUNDAMENTAL_UINT8
+		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(8)
+#	endif
+
+#	if defined(Z_UINT16) && Z_UINT16_FUNDAMENTAL == Z_FUNDAMENTAL_UINT16
+		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(16)
+#	endif
+
+#	if defined(Z_UINT24) && Z_UINT24_FUNDAMENTAL == Z_FUNDAMENTAL_UINT24
+		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(24)
+#	endif
+
+#	if defined(Z_UINT32) && Z_UINT32_FUNDAMENTAL == Z_FUNDAMENTAL_UINT32
+		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(32)
+#	endif
+
+#	if defined(Z_UINT40) && Z_UINT40_FUNDAMENTAL == Z_FUNDAMENTAL_UINT40
+		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(40)
+#	endif
+
+#	if defined(Z_UINT48) && Z_UINT48_FUNDAMENTAL == Z_FUNDAMENTAL_UINT48
+		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(48)
+#	endif
+
+#	if defined(Z_UINT56) && Z_UINT56_FUNDAMENTAL == Z_FUNDAMENTAL_UINT56
+		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(56)
+#	endif
+
+#	if defined(Z_UINT64) && Z_UINT64_FUNDAMENTAL == Z_FUNDAMENTAL_UINT64
+		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(64)
+#	endif
+
+#	if defined(Z_UINT128) && Z_UINT128_FUNDAMENTAL == Z_FUNDAMENTAL_UINT128
+		Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL(128)
+#	endif
+
+#	undef Z_IMPLEMENTATION_FIXED_WIDTH_NATURAL
+
+#	define Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(bits)		      \
+									      \
+	struct SInt##bits : Integer {					      \
+		enum {	fundamental	  = Z_SINT##bits##_FUNDAMENTAL,	      \
+			fixed_fundamental = Z_SINT##bits##_FIXED_FUNDAMENTAL, \
+			number_format	  = Z_SINT##bits##_NUMBER_FORMAT      \
+		};							      \
+		enum {	minimum = Z_SINT##bits##_MINIMUM,		      \
+			maximum = Z_SINT##bits##_MAXIMUM		      \
+		};							      \
+									      \
+		typedef zsint##bits type;				      \
+		typedef zsint##bits to_signed;				      \
+									      \
+		Z_IF(Z_DATA_MODEL_HAS_TYPE(UINT##bits))			      \
+			(typedef zuint##bits to_unsigned;)		      \
+	};
+
+#	if defined(Z_SINT8) && Z_SINT8_FUNDAMENTAL == Z_FUNDAMENTAL_SINT8
+		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(8)
+#	endif
+
+#	if defined(Z_SINT16) && Z_SINT16_FUNDAMENTAL == Z_FUNDAMENTAL_SINT16
+		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(16)
+#	endif
+
+#	if defined(Z_SINT24) && Z_SINT24_FUNDAMENTAL == Z_FUNDAMENTAL_SINT24
+		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(24)
+#	endif
+
+#	if defined(Z_SINT32) && Z_SINT32_FUNDAMENTAL == Z_FUNDAMENTAL_SINT32
+		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(32)
+#	endif
+
+#	if defined(Z_SINT40) && Z_SINT40_FUNDAMENTAL == Z_FUNDAMENTAL_SINT40
+		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(40)
+#	endif
+
+#	if defined(Z_SINT48) && Z_SINT48_FUNDAMENTAL == Z_FUNDAMENTAL_SINT48
+		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(48)
+#	endif
+
+#	if defined(Z_SINT56) && Z_SINT56_FUNDAMENTAL == Z_FUNDAMENTAL_SINT56
+		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(56)
+#	endif
+
+#	if defined(Z_SINT64) && Z_SINT64_FUNDAMENTAL == Z_FUNDAMENTAL_SINT64
+		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(64)
+#	endif
+
+#	if defined(Z_SINT128) && Z_SINT128_FUNDAMENTAL == Z_FUNDAMENTAL_SINT128
+		Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER(128)
+#	endif
+
+#	undef Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER
+
 #	define Z_IMPLEMENTATION_FLOATING_POINT(TYPE, Type, type)				    \
 												    \
 	struct Type : FloatingPoint {								    \
@@ -1346,46 +1346,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		typedef z##type type;								    \
 		typedef z##type to_signed;							    \
 	};
-
-#	if defined(Z_BFP16) && Z_BFP16_FUNDAMENTAL == Z_FUNDAMENTAL_BFP16
-		Z_IMPLEMENTATION_FLOATING_POINT(BFP16, BFP16, bfp16)
-#	endif
-
-#	if defined(Z_BFP32) && Z_BFP32_FUNDAMENTAL == Z_FUNDAMENTAL_BFP32
-		Z_IMPLEMENTATION_FLOATING_POINT(BFP32, BFP32, bfp32)
-#	endif
-
-#	if defined(Z_BFP64) && Z_BFP64_FUNDAMENTAL == Z_FUNDAMENTAL_BFP64
-		Z_IMPLEMENTATION_FLOATING_POINT(BFP64, BFP64, bfp64)
-#	endif
-
-#	if defined(Z_BFP128) && Z_BFP128_FUNDAMENTAL == Z_FUNDAMENTAL_BFP128
-		Z_IMPLEMENTATION_FLOATING_POINT(BFP128, BFP128, bfp128)
-#	endif
-
-#	if defined(Z_DFP32) && Z_DFP32_FUNDAMENTAL == Z_FUNDAMENTAL_DFP32
-		Z_IMPLEMENTATION_FLOATING_POINT(DFP32, DFP32, dfp32)
-#	endif
-
-#	if defined(Z_DFP64) && Z_DFP64_FUNDAMENTAL == Z_FUNDAMENTAL_DFP64
-		Z_IMPLEMENTATION_FLOATING_POINT(DFP64, DFP64, dfp64)
-#	endif
-
-#	if defined(Z_DFP128) && Z_DFP128_FUNDAMENTAL == Z_FUNDAMENTAL_DFP128
-		Z_IMPLEMENTATION_FLOATING_POINT(DFP128, DFP128, dfp128)
-#	endif
-
-#	if defined(Z_X87_DE80) && Z_X87_DE80_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE80
-		Z_IMPLEMENTATION_FLOATING_POINT(X87_DE80, x87_DE80, x87_de80)
-#	endif
-
-#	if defined(Z_X87_DE96) && Z_X87_DE96_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE96
-		Z_IMPLEMENTATION_FLOATING_POINT(X87_DE96, x87_DE96, x87_de96)
-#	endif
-
-#	if defined(Z_X87_DE128) && Z_X87_DE128_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE128
-		Z_IMPLEMENTATION_FLOATING_POINT(X87_DE128, x87_DE128, x87_de128)
-#	endif
 
 #	ifdef Z_FLOAT
 		Z_IMPLEMENTATION_FLOATING_POINT(FLOAT, Float, float)
@@ -1445,6 +1405,46 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	ifdef Z_DECIMAL128X
 		Z_IMPLEMENTATION_FLOATING_POINT(DECIMAL128X, Decimal128x, decimal128x)
+#	endif
+
+#	if defined(Z_BFP16) && Z_BFP16_FUNDAMENTAL == Z_FUNDAMENTAL_BFP16
+		Z_IMPLEMENTATION_FLOATING_POINT(BFP16, BFP16, bfp16)
+#	endif
+
+#	if defined(Z_BFP32) && Z_BFP32_FUNDAMENTAL == Z_FUNDAMENTAL_BFP32
+		Z_IMPLEMENTATION_FLOATING_POINT(BFP32, BFP32, bfp32)
+#	endif
+
+#	if defined(Z_BFP64) && Z_BFP64_FUNDAMENTAL == Z_FUNDAMENTAL_BFP64
+		Z_IMPLEMENTATION_FLOATING_POINT(BFP64, BFP64, bfp64)
+#	endif
+
+#	if defined(Z_BFP128) && Z_BFP128_FUNDAMENTAL == Z_FUNDAMENTAL_BFP128
+		Z_IMPLEMENTATION_FLOATING_POINT(BFP128, BFP128, bfp128)
+#	endif
+
+#	if defined(Z_DFP32) && Z_DFP32_FUNDAMENTAL == Z_FUNDAMENTAL_DFP32
+		Z_IMPLEMENTATION_FLOATING_POINT(DFP32, DFP32, dfp32)
+#	endif
+
+#	if defined(Z_DFP64) && Z_DFP64_FUNDAMENTAL == Z_FUNDAMENTAL_DFP64
+		Z_IMPLEMENTATION_FLOATING_POINT(DFP64, DFP64, dfp64)
+#	endif
+
+#	if defined(Z_DFP128) && Z_DFP128_FUNDAMENTAL == Z_FUNDAMENTAL_DFP128
+		Z_IMPLEMENTATION_FLOATING_POINT(DFP128, DFP128, dfp128)
+#	endif
+
+#	if defined(Z_X87_DE80) && Z_X87_DE80_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE80
+		Z_IMPLEMENTATION_FLOATING_POINT(X87_DE80, x87_DE80, x87_de80)
+#	endif
+
+#	if defined(Z_X87_DE96) && Z_X87_DE96_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE96
+		Z_IMPLEMENTATION_FLOATING_POINT(X87_DE96, x87_DE96, x87_de96)
+#	endif
+
+#	if defined(Z_X87_DE128) && Z_X87_DE128_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE128
+		Z_IMPLEMENTATION_FLOATING_POINT(X87_DE128, x87_DE128, x87_de128)
 #	endif
 
 #	undef Z_IMPLEMENTATION_FLOATING_POINT
@@ -2490,7 +2490,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 
 namespace Zeta {namespace Detail {namespace Type {
 
-	// MARK: - Specializations: Enumerations, structures, unions and Objective-C instances
+	// MARK: - Specializations: Enumeration, structure, union and Objective-C instance types
 
 	template <class T> struct Ambiguous {
 
@@ -2547,9 +2547,112 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	template <Boolean E, class T> struct Case : Mixins::Unqualified<Abstract::Kind<E, Ambiguous<T>::kind, T> > {};
 
-	// MARK: - Specializations: Fundamentals
+	// MARK: - Specializations: Standard C/C++ fundamental types
 
-	template <Boolean E> struct Case<E, void> : Mixins::Unqualified<Abstract::Void> {};
+	template <Boolean E> struct Case<E, void  > : Mixins::Unqualified<Abstract::Void  > {};
+	template <Boolean E> struct Case<E, Char  > : Mixins::Unqualified<Abstract::Char  > {};
+	template <Boolean E> struct Case<E, UChar > : Mixins::Unqualified<Abstract::UChar > {};
+	template <Boolean E> struct Case<E, SChar > : Mixins::Unqualified<Abstract::SChar > {};
+	template <Boolean E> struct Case<E, UShort> : Mixins::Unqualified<Abstract::UShort> {};
+	template <Boolean E> struct Case<E, SShort> : Mixins::Unqualified<Abstract::SShort> {};
+	template <Boolean E> struct Case<E, UInt  > : Mixins::Unqualified<Abstract::UInt  > {};
+	template <Boolean E> struct Case<E, SInt  > : Mixins::Unqualified<Abstract::SInt  > {};
+	template <Boolean E> struct Case<E, ULong > : Mixins::Unqualified<Abstract::ULong > {};
+	template <Boolean E> struct Case<E, SLong > : Mixins::Unqualified<Abstract::SLong > {};
+
+#	ifdef Z_ULLONG
+		template <Boolean E> struct Case<E, ULLong> : Mixins::Unqualified<Abstract::ULLong> {};
+#	endif
+
+#	ifdef Z_SLLONG
+		template <Boolean E> struct Case<E, SLLong> : Mixins::Unqualified<Abstract::SLLong> {};
+#	endif
+
+#	if Z_DIALECT_HAS_TYPE(CPP, BOOL) || Z_DIALECT_HAS_TYPE(C, BOOL)
+		template <Boolean E> struct Case<E, Boolean> : Mixins::Unqualified<Abstract::Boolean> {};
+#	endif
+
+#	if Z_DIALECT_HAS_TYPE(CPP, WCHAR_T)
+		template <Boolean E> struct Case<E, WChar> : Mixins::Unqualified<Abstract::WChar> {};
+#	endif
+
+/*#	if Z_DIALECT_HAS_TYPE(CPP, CHAR8_T)
+		template <Boolean E> struct Case<E, Char8> : Mixins::Unqualified<Abstract::Char8> {};
+#	endif*/
+
+#	if Z_DIALECT_HAS_TYPE(CPP, CHAR16_T)
+		template <Boolean E> struct Case<E, Char16> : Mixins::Unqualified<Abstract::Char16> {};
+#	endif
+
+#	if Z_DIALECT_HAS_TYPE(CPP, CHAR32_T)
+		template <Boolean E> struct Case<E, Char32> : Mixins::Unqualified<Abstract::Char32> {};
+#	endif
+
+#	ifdef Z_FLOAT
+		template <Boolean E> struct Case<E, Float> : Mixins::Unqualified<Abstract::Float> {};
+#	endif
+
+#	ifdef Z_DOUBLE
+		template <Boolean E> struct Case<E, Double> : Mixins::Unqualified<Abstract::Double> {};
+#	endif
+
+#	ifdef Z_LDOUBLE
+		template <Boolean E> struct Case<E, LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
+#	endif
+
+#	ifdef Z_FLOAT16
+		template <Boolean E> struct Case<E, Float16> : Mixins::Unqualified<Abstract::Float16> {};
+#	endif
+
+#	ifdef Z_FLOAT32
+		template <Boolean E> struct Case<E, Float32> : Mixins::Unqualified<Abstract::Float32> {};
+#	endif
+
+#	ifdef Z_FLOAT64
+		template <Boolean E> struct Case<E, Float64> : Mixins::Unqualified<Abstract::Float64> {};
+#	endif
+
+#	ifdef Z_FLOAT128
+		template <Boolean E> struct Case<E, Float128> : Mixins::Unqualified<Abstract::Float128> {};
+#	endif
+
+#	ifdef Z_FLOAT32X
+		template <Boolean E> struct Case<E, Float32x> : Mixins::Unqualified<Abstract::Float32x> {};
+#	endif
+
+#	ifdef Z_FLOAT64X
+		template <Boolean E> struct Case<E, Float64x> : Mixins::Unqualified<Abstract::Float64x> {};
+#	endif
+
+#	ifdef Z_FLOAT128X
+		template <Boolean E> struct Case<E, Float128x> : Mixins::Unqualified<Abstract::Float128x> {};
+#	endif
+
+#	ifdef Z_DECIMAL32
+		template <Boolean E> struct Case<E, Decimal32> : Mixins::Unqualified<Abstract::Decimal32> {};
+#	endif
+
+#	ifdef Z_DECIMAL64
+		template <Boolean E> struct Case<E, Decimal64> : Mixins::Unqualified<Abstract::Decimal64> {};
+#	endif
+
+#	ifdef Z_DECIMAL128
+		template <Boolean E> struct Case<E, Decimal128> : Mixins::Unqualified<Abstract::Decimal128> {};
+#	endif
+
+#	ifdef Z_DECIMAL64X
+		template <Boolean E> struct Case<E, Decimal64x> : Mixins::Unqualified<Abstract::Decimal64x> {};
+#	endif
+
+#	ifdef Z_DECIMAL128X
+		template <Boolean E> struct Case<E, Decimal128x> : Mixins::Unqualified<Abstract::Decimal128x> {};
+#	endif
+
+#	if Z_TRAIT_HAS(Type, is_null_pointer)
+		template <Boolean E> struct Case<E, NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
+#	endif
+
+	// MARK: - Specializations: Fixed width integral types
 
 #	if defined(Z_UINT8) && Z_UINT8_FUNDAMENTAL == Z_FUNDAMENTAL_UINT8
 		template <Boolean E> struct Case<E, UInt8> : Mixins::Unqualified<Abstract::UInt8> {};
@@ -2623,43 +2726,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E> struct Case<E, SInt128> : Mixins::Unqualified<Abstract::SInt128> {};
 #	endif
 
-	template <Boolean E> struct Case<E, Char  > : Mixins::Unqualified<Abstract::Char  > {};
-	template <Boolean E> struct Case<E, UChar > : Mixins::Unqualified<Abstract::UChar > {};
-	template <Boolean E> struct Case<E, SChar > : Mixins::Unqualified<Abstract::SChar > {};
-	template <Boolean E> struct Case<E, UShort> : Mixins::Unqualified<Abstract::UShort> {};
-	template <Boolean E> struct Case<E, SShort> : Mixins::Unqualified<Abstract::SShort> {};
-	template <Boolean E> struct Case<E, UInt  > : Mixins::Unqualified<Abstract::UInt  > {};
-	template <Boolean E> struct Case<E, SInt  > : Mixins::Unqualified<Abstract::SInt  > {};
-	template <Boolean E> struct Case<E, ULong > : Mixins::Unqualified<Abstract::ULong > {};
-	template <Boolean E> struct Case<E, SLong > : Mixins::Unqualified<Abstract::SLong > {};
-
-#	ifdef Z_ULLONG
-		template <Boolean E> struct Case<E, ULLong> : Mixins::Unqualified<Abstract::ULLong> {};
-#	endif
-
-#	ifdef Z_SLLONG
-		template <Boolean E> struct Case<E, SLLong> : Mixins::Unqualified<Abstract::SLLong> {};
-#	endif
-
-#	if Z_DIALECT_HAS_TYPE(CPP, BOOL) || Z_DIALECT_HAS_TYPE(C, BOOL)
-		template <Boolean E> struct Case<E, Boolean> : Mixins::Unqualified<Abstract::Boolean> {};
-#	endif
-
-#	if Z_DIALECT_HAS_TYPE(CPP, WCHAR_T)
-		template <Boolean E> struct Case<E, WChar> : Mixins::Unqualified<Abstract::WChar> {};
-#	endif
-
-/*#	if Z_DIALECT_HAS_TYPE(CPP, CHAR8_T)
-		template <Boolean E> struct Case<E, Char8> : Mixins::Unqualified<Abstract::Char8> {};
-#	endif*/
-
-#	if Z_DIALECT_HAS_TYPE(CPP, CHAR16_T)
-		template <Boolean E> struct Case<E, Char16> : Mixins::Unqualified<Abstract::Char16> {};
-#	endif
-
-#	if Z_DIALECT_HAS_TYPE(CPP, CHAR32_T)
-		template <Boolean E> struct Case<E, Char32> : Mixins::Unqualified<Abstract::Char32> {};
-#	endif
+	// MARK: - Specializations: Fixed format real types
 
 #	if defined(Z_BFP16) && Z_BFP16_FUNDAMENTAL == Z_FUNDAMENTAL_BFP16
 		template <Boolean E> struct Case<E, BFP16> : Mixins::Unqualified<Abstract::BFP16> {};
@@ -2701,71 +2768,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		template <Boolean E> struct Case<E, x87_DE128> : Mixins::Unqualified<Abstract::x87_DE128> {};
 #	endif
 
-#	ifdef Z_FLOAT
-		template <Boolean E> struct Case<E, Float> : Mixins::Unqualified<Abstract::Float> {};
-#	endif
-
-#	ifdef Z_DOUBLE
-		template <Boolean E> struct Case<E, Double> : Mixins::Unqualified<Abstract::Double> {};
-#	endif
-
-#	ifdef Z_LDOUBLE
-		template <Boolean E> struct Case<E, LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
-#	endif
-
-#	ifdef Z_FLOAT16
-		template <Boolean E> struct Case<E, Float16> : Mixins::Unqualified<Abstract::Float16> {};
-#	endif
-
-#	ifdef Z_FLOAT32
-		template <Boolean E> struct Case<E, Float32> : Mixins::Unqualified<Abstract::Float32> {};
-#	endif
-
-#	ifdef Z_FLOAT64
-		template <Boolean E> struct Case<E, Float64> : Mixins::Unqualified<Abstract::Float64> {};
-#	endif
-
-#	ifdef Z_FLOAT128
-		template <Boolean E> struct Case<E, Float128> : Mixins::Unqualified<Abstract::Float128> {};
-#	endif
-
-#	ifdef Z_FLOAT32X
-		template <Boolean E> struct Case<E, Float32x> : Mixins::Unqualified<Abstract::Float32x> {};
-#	endif
-
-#	ifdef Z_FLOAT64X
-		template <Boolean E> struct Case<E, Float64x> : Mixins::Unqualified<Abstract::Float64x> {};
-#	endif
-
-#	ifdef Z_FLOAT128X
-		template <Boolean E> struct Case<E, Float128x> : Mixins::Unqualified<Abstract::Float128x> {};
-#	endif
-
-#	ifdef Z_DECIMAL32
-		template <Boolean E> struct Case<E, Decimal32> : Mixins::Unqualified<Abstract::Decimal32> {};
-#	endif
-
-#	ifdef Z_DECIMAL64
-		template <Boolean E> struct Case<E, Decimal64> : Mixins::Unqualified<Abstract::Decimal64> {};
-#	endif
-
-#	ifdef Z_DECIMAL128
-		template <Boolean E> struct Case<E, Decimal128> : Mixins::Unqualified<Abstract::Decimal128> {};
-#	endif
-
-#	ifdef Z_DECIMAL64X
-		template <Boolean E> struct Case<E, Decimal64x> : Mixins::Unqualified<Abstract::Decimal64x> {};
-#	endif
-
-#	ifdef Z_DECIMAL128X
-		template <Boolean E> struct Case<E, Decimal128x> : Mixins::Unqualified<Abstract::Decimal128x> {};
-#	endif
-
-#	if Z_TRAIT_HAS(Type, is_null_pointer)
-		template <Boolean E> struct Case<E, NullPointer> : Mixins::Unqualified<Abstract::NullPointer> {};
-#	endif
-
-	// MARK: - Specializations: Sized arrays
+	// MARK: - Specializations: Sized array types
 
 	template <Boolean E, class T, USize N> struct Case<E, T[N]> : Mixins::Unqualified<Abstract::SizedArray<E, T, N> > {};
 
@@ -2773,7 +2776,7 @@ namespace Zeta {namespace Detail {namespace Type {
 	template <Boolean E, class T, USize N> struct Case<E,	    volatile T[N]> : Mixins::VolatileArray     <Case<E, T[N]> > {};
 	template <Boolean E, class T, USize N> struct Case<E, const volatile T[N]> : Mixins::ConstVolatileArray<Case<E, T[N]> > {};
 
-	// MARK: - Specializations: Flexible arrays
+	// MARK: - Specializations: Flexible array types
 
 	template <Boolean E, class T> struct Case<E, T[]> : Mixins::Unqualified<Abstract::FlexibleArray<E, T> > {};
 
@@ -2781,7 +2784,7 @@ namespace Zeta {namespace Detail {namespace Type {
 	template <Boolean E, class T> struct Case<E, 	   volatile T[]> : Mixins::VolatileArray     <Case<E, T[]> > {};
 	template <Boolean E, class T> struct Case<E, const volatile T[]> : Mixins::ConstVolatileArray<Case<E, T[]> > {};
 
-	// MARK: - Specializations: Pointers
+	// MARK: - Specializations: Pointer types
 
 	template <Boolean E, class T> class Case<E, T*> : public Mixins::Unqualified<Abstract::Pointer<T> > {
 		private:
@@ -2824,7 +2827,7 @@ namespace Zeta {namespace Detail {namespace Type {
 		enum {indirection_level = Pointee::indirection_level + 1};
 	};
 
-	// MARK: - Specializations: References
+	// MARK: - Specializations: Reference types
 
 	template <Boolean E, class T> class Case<E, T&> : public Mixins::Unqualified<Abstract::LValueReference<T> > {
 		private:
@@ -2860,7 +2863,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	endif
 
-	// MARK: - Specializations: Functions
+	// MARK: - Specializations: Function types
 
 #	if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE)
 
@@ -2961,7 +2964,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	endif
 
-	// MARK: - Specializations: Apple blocks
+	// MARK: - Specializations: Block types (Apple extension)
 
 #	if Z_COMPILER_C_HAS(CLOSURE)
 
@@ -2971,20 +2974,20 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	endif
 
-	// MARK: - Specializations: Objective-C
+	// MARK: - Specializations: Objective-C types
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 		template <Boolean E> struct Case<E, TypeRemovePointer<id   >::type> : Mixins::Unqualified<Abstract::ObjectiveCObject> {};
 		template <Boolean E> struct Case<E, TypeRemovePointer<Class>::type> : Mixins::Unqualified<Abstract::ObjectiveCClass > {};
 #	endif
 
-	// MARK: - Specializations: Qualifiers
+	// MARK: - Specializations: Type qualifiers
 
 	template <Boolean E, class T> struct Case<E, const	    T> : Mixins::Const	      <Case<false, T>::is_signed_or_unsigned ? Mixins::SignedOrUnsigned : Mixins::NonSignedOrUnsigned, Case<E, T> > {};
 	template <Boolean E, class T> struct Case<E, const volatile T> : Mixins::ConstVolatile<Case<false, T>::is_signed_or_unsigned ? Mixins::SignedOrUnsigned : Mixins::NonSignedOrUnsigned, Case<E, T> > {};
 	template <Boolean E, class T> struct Case<E, 	   volatile T> : Mixins::Volatile     <Case<false, T>::is_signed_or_unsigned ? Mixins::SignedOrUnsigned : Mixins::NonSignedOrUnsigned, Case<E, T> > {};
 
-	// MARK: - Build detail
+	// MARK: - Detail build
 
 	template <class T, class C = Case<true, T> > struct Build : Mixins::Kind<
 		C::is_storable
