@@ -66,7 +66,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_SINT16_BITS		  16
 #	define Z_SINT16_MAXIMUM_	  32767
 #	define Z_SINT16_MAXIMUM		  Z_SINT16(Z_SINT16_MAXIMUM_)
-#	define Z_SINT16_MINIMUM		  (-Z_SINT16_MAXIMUM -Z_SINT16(1))
+#	define Z_SINT16_MINIMUM		  (-Z_SINT16_MAXIMUM - Z_SINT16(1))
 
 #endif
 
