@@ -28,7 +28,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	elif Z_COMPILER == Z_COMPILER_VISUAL_CPP
 #		include <Z/inspection/compiler/modules/Visual C++.h>
-
+/*
 #	elif Z_COMPILER == Z_COMPILER_ACC
 #		include <Z/inspection/compiler/modules/ACC.h>
 
@@ -52,10 +52,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	elif Z_COMPILER == Z_COMPILER_AZTEC_C
 #		include <Z/inspection/compiler/modules/Aztec C.h>
-
+*/
 #	elif Z_COMPILER == Z_COMPILER_CC65
 #		include <Z/inspection/compiler/modules/cc65.h>
-
+/*
 #	elif Z_COMPILER == Z_COMPILER_CODE_WARRIOR
 #		include <Z/inspection/compiler/modules/CodeWarrior.h>
 
@@ -256,7 +256,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	elif Z_COMPILER == Z_COMPILER_UNKNOWN
 #		include <Z/inspection/compiler/modules/generic.h>
-
+*/
 #	else
 #		error "Invalid Z_COMPILER key."
 #	endif
