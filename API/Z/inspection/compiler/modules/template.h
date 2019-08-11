@@ -606,12 +606,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_ADD_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_AND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_AND_ADD(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_AND_AND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_AND_NAND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_AND_OR(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_AND_SET_IF_EQUAL(value, old_value, new_value)*/
 /*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_AND_SUBTRACT(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_AND_OR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_AND_AND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_AND_XOR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_GET_AND_NAND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_NAND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_OR_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT8_ATOMIC_SET_IF_EQUAL(value, old_value, new_value)*/
@@ -620,12 +620,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_ADD_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_AND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_GET_AND_ADD(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_GET_AND_AND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_GET_AND_NAND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_GET_AND_OR(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_GET_AND_SET_IF_EQUAL(value, old_value, new_value)*/
 /*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_GET_AND_SUBTRACT(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_GET_AND_OR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_GET_AND_AND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_GET_AND_XOR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_GET_AND_NAND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_NAND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_OR_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT8_ATOMIC_SET_IF_EQUAL(value, old_value, new_value)*/
@@ -634,12 +634,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_ADD_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_AND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_AND_ADD(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_AND_AND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_AND_NAND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_AND_OR(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_AND_SET_IF_EQUAL(value, old_value, new_value)*/
 /*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_AND_SUBTRACT(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_AND_OR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_AND_AND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_AND_XOR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_GET_AND_NAND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_NAND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_OR_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT16_ATOMIC_SET_IF_EQUAL(value, old_value, new_value)*/
@@ -648,12 +648,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_ADD_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_AND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_GET_AND_ADD(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_GET_AND_AND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_GET_AND_NAND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_GET_AND_OR(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_GET_AND_SET_IF_EQUAL(value, old_value, new_value)*/
 /*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_GET_AND_SUBTRACT(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_GET_AND_OR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_GET_AND_AND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_GET_AND_XOR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_GET_AND_NAND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_NAND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_OR_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT16_ATOMIC_SET_IF_EQUAL(value, old_value, new_value)*/
@@ -662,12 +662,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_ADD_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_AND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_AND_ADD(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_AND_AND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_AND_NAND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_AND_OR(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_AND_SET_IF_EQUAL(value, old_value, new_value)*/
 /*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_AND_SUBTRACT(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_AND_OR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_AND_AND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_AND_XOR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_GET_AND_NAND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_NAND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_OR_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT32_ATOMIC_SET_IF_EQUAL(value, old_value, new_value)*/
@@ -676,12 +676,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_ADD_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_AND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_GET_AND_ADD(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_GET_AND_AND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_GET_AND_NAND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_GET_AND_OR(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_GET_AND_SET_IF_EQUAL(value, old_value, new_value)*/
 /*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_GET_AND_SUBTRACT(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_GET_AND_OR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_GET_AND_AND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_GET_AND_XOR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_GET_AND_NAND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_NAND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_OR_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT32_ATOMIC_SET_IF_EQUAL(value, old_value, new_value)*/
@@ -690,12 +690,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_ADD_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_AND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_AND_ADD(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_AND_AND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_AND_NAND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_AND_OR(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_AND_SET_IF_EQUAL(value, old_value, new_value)*/
 /*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_AND_SUBTRACT(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_AND_OR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_AND_AND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_AND_XOR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_GET_AND_NAND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_NAND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_OR_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT64_ATOMIC_SET_IF_EQUAL(value, old_value, new_value)*/
@@ -704,12 +704,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_ADD_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_AND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_GET_AND_ADD(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_GET_AND_AND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_GET_AND_NAND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_GET_AND_OR(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_GET_AND_SET_IF_EQUAL(value, old_value, new_value)*/
 /*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_GET_AND_SUBTRACT(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_GET_AND_OR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_GET_AND_AND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_GET_AND_XOR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_GET_AND_NAND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_NAND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_OR_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT64_ATOMIC_SET_IF_EQUAL(value, old_value, new_value)*/
@@ -718,12 +718,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_ADD_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_AND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_GET_AND_ADD(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_GET_AND_AND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_GET_AND_NAND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_GET_AND_OR(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_GET_AND_SET_IF_EQUAL(value, old_value, new_value)*/
 /*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_GET_AND_SUBTRACT(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_GET_AND_OR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_GET_AND_AND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_GET_AND_XOR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_GET_AND_NAND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_NAND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_OR_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_UINT128_ATOMIC_SET_IF_EQUAL(value, old_value, new_value)*/
@@ -732,12 +732,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_ADD_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_AND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_GET_AND_ADD(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_GET_AND_AND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_GET_AND_NAND(value, operand)*/
+/*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_GET_AND_OR(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_GET_AND_SET_IF_EQUAL(value, old_value, new_value)*/
 /*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_GET_AND_SUBTRACT(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_GET_AND_OR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_GET_AND_AND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_GET_AND_XOR(value, operand)*/
-/*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_GET_AND_NAND(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_NAND_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_OR_AND_GET(value, operand)*/
 /*#define Z_COMPILER_FUNCTION_SINT128_ATOMIC_SET_IF_EQUAL(value, old_value, new_value)*/
