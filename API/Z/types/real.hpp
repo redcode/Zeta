@@ -8,8 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_types_real_HPP
 #define Z_types_real_HPP
 
-#include <Z/types/integral.h>
-#include <Z/macros/language.hpp>
+#include <Z/types/real.h>
 
 namespace Zeta {
 

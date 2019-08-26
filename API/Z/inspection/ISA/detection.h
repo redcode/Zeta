@@ -1,12 +1,12 @@
-/* Z Kit - inspection/CPU/detection.h
+/* Z Kit - inspection/ISA/detection.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
  /____/\___/ /__//___/_| Kit
 Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_CPU_detection_H
-#define Z_inspection_CPU_detection_H
+#ifndef Z_inspection_ISA_detection_H
+#define Z_inspection_ISA_detection_H
 
 /* MARK: - x86-64 */
 
@@ -50,7 +50,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_M_AMD64) ||							\
 	defined(_M_X64	)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_64
+#	define Z_ISA Z_ISA_X86_64
 
 /* MARK: - x86-32 */
 
@@ -174,7 +174,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-------------*/							\
 	(defined(_M_IX86) && !defined(__WATCOMC__))
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_32
+#	define Z_ISA Z_ISA_X86_32
 
 /* MARK: - x86-16 */
 
@@ -190,7 +190,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-------------*/							\
 	defined(_M_IX86)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_16
+#	define Z_ISA Z_ISA_X86_16
 
 /* MARK: - AArch64 */
 
@@ -211,7 +211,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'--------------------------------------------------------------*/	\
 	defined(_M_ARM64)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH64
+#	define Z_ISA Z_ISA_AARCH64
 
 /* MARK: - AArch32 */
 
@@ -278,7 +278,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------*/								\
 	defined(_M_THUMB)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH32
+#	define Z_ISA Z_ISA_AARCH32
 
 /* MARK: - 6502 */
 
@@ -302,7 +302,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__TELESTRAT__	) ||						\
 	(defined(__GEOS__) && defined(__C65__))
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_6502
+#	define Z_ISA Z_ISA_6502
 
 /* MARK: - Alpha */
 
@@ -321,7 +321,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-----------*/								\
 	defined(_M_ALPHA)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_ALPHA
+#	define Z_ISA Z_ISA_ALPHA
 
 /* MARK: - Blackfin */
 
@@ -346,7 +346,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(BFIN	)							\
 	defined(bfin	)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_BLACKFIN
+#	define Z_ISA Z_ISA_BLACKFIN
 
 /* MARK: - Convex */
 
@@ -355,7 +355,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'----*/									\
 	defined(__convex__)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_CONVEX
+#	define Z_ISA Z_ISA_CONVEX
 
 /* MARK: - Epiphany */
 
@@ -364,7 +364,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'--*/									\
 	defined(__epiphany__)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_EPIPHANY
+#	define Z_ISA Z_ISA_EPIPHANY
 
 /* MARK: - Hexagon */
 
@@ -380,7 +380,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(hexagon		)						\
 	defined(qdsp6		)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_HEXAGON
+#	define Z_ISA Z_ISA_HEXAGON
 
 /* MARK: - Itanium */
 
@@ -424,7 +424,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'----------*/								\
 	defined(ia64)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_ITANIUM
+#	define Z_ISA Z_ISA_ITANIUM
 
 /* MARK: - Lanai */
 
@@ -433,7 +433,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------*/								\
 	defined(__lanai__)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_LANAI
+#	define Z_ISA Z_ISA_LANAI
 
 /* MARK: -  */
 
@@ -452,7 +452,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------*/								\
 	defined(M68000)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_M68K
+#	define Z_ISA Z_ISA_M68K
 
 /* MARK: - M68K */
 
@@ -478,7 +478,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
  	  (defined(_MIPS_ISA_MIPS4 ) && _MIPS_ISA == _MIPS_ISA_MIPS4 ) ||	\
 	  (defined(_MIPS_ISA_MIPS3 ) && _MIPS_ISA == _MIPS_ISA_MIPS3 )))
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MIPS64
+#	define Z_ISA Z_ISA_MIPS64
 
 /* MARK: - MIPS */
 
@@ -516,7 +516,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------*/								\
 	defined(mips)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MIPS
+#	define Z_ISA Z_ISA_MIPS
 
 /* MARK: - MSP430 */
 
@@ -526,7 +526,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__MSP430__) ||							\
 	defined(MSP430	  )
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MSP430
+#	define Z_ISA Z_ISA_MSP430
 
 /* MARK: - PA-RISC 2.0 */
 
@@ -541,7 +541,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-----------------------*/						\
 	defined(_PA_RISC2_0)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_PA_RISC_2
+#	define Z_ISA Z_ISA_PA_RISC_2
 
 /* MARK: - PA-RISC */
 
@@ -568,7 +568,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-----------------------*/						\
 	defined(_PA_RISC1_1)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_PA_RISC
+#	define Z_ISA Z_ISA_PA_RISC
 
 /* MARK: - PowerPC 64-bit */
 
@@ -593,7 +593,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-----------------*/							\
 	defined(_ARCH_PPC64)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_64BIT
+#	define Z_ISA Z_ISA_POWERPC_64BIT
 
 /* MARK: - PowerPC 32-bit */
 
@@ -657,7 +657,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-----------*/								\
 	defined(_M_PPC)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_32BIT
+#	define Z_ISA Z_ISA_POWERPC_32BIT
 
 /* MARK: - RV64I */
 
@@ -666,7 +666,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------*/								\
 	defined(__riscv_xlen) && __riscv_xlen == 64
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV64I
+#	define Z_ISA Z_ISA_RV64I
 
 /* MARK: - RV32I */
 
@@ -675,7 +675,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------*/								\
 	defined(__riscv_xlen) && __riscv_xlen == 32
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV32I
+#	define Z_ISA Z_ISA_RV32I
 
 /* MARK: - SPARC V9 */
 
@@ -702,7 +702,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------*/								\
 	defined(__sparcv9__)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SPARC_V9
+#	define Z_ISA Z_ISA_SPARC_V9
 
 /* MARK: - SPARC */
 
@@ -736,7 +736,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__sparcv8__) ||							\
 	defined(sparc	   )
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SPARC
+#	define Z_ISA Z_ISA_SPARC
 
 /* MARK: - SuperH 5 */
 
@@ -745,7 +745,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'----*/									\
 	defined(__SH5__) && __SH5__ == 64
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SUPERH_5
+#	define Z_ISA Z_ISA_SUPERH_5
 
 /* MARK: - SuperH */
 
@@ -754,7 +754,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'----*/									\
 	defined(__sh__)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SUPERH
+#	define Z_ISA Z_ISA_SUPERH
 
 /* MARK: - xCORE */
 
@@ -763,7 +763,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------*/								\
 	defined(__XS1B__)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_XCORE
+#	define Z_ISA Z_ISA_XCORE
 
 /* MARK: - z/Architecture */
 
@@ -784,7 +784,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------*/								\
 	defined(__zarch__)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_Z_ARCHITECTURE
+#	define Z_ISA Z_ISA_Z_ARCHITECTURE
 
 /* MARK: - ESA/390 */
 
@@ -793,7 +793,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'----*/									\
 	defined(__s390__)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_ESA_390
+#	define Z_ISA Z_ISA_ESA_390
 
 /* MARK: - ESA/370 */
 
@@ -803,8 +803,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__370__	   ) ||							\
 	defined(__THW_370__)
 
-#	define Z_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_ESA_370
+#	define Z_ISA Z_ISA_ESA_370
 
 #endif
 
-#endif /* Z_inspection_CPU_detection_H */
+#endif /* Z_inspection_ISA_detection_H */

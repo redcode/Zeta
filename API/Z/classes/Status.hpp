@@ -74,8 +74,8 @@ namespace Zeta {struct Status {
 		Z_DEFAULTED({})
 
 
-	Z_CT(CPP11) Status(SInt code) Z_NOTHROW
-	: code(code) {}
+	Z_CT(CPP11) Status(SInt status) Z_NOTHROW
+	: code(status) {}
 
 
 	Z_CT(CPP11) operator SInt() const Z_NOTHROW

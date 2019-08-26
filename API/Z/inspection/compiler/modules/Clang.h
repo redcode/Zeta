@@ -9,42 +9,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_inspection_compiler_modules_Clang_H
 #define Z_inspection_compiler_modules_Clang_H
 
-/* MARK: - Compatibility with old versions */
-
-#ifndef __has_attribute /* v2.9 */
-#	define __has_attribute(which) FALSE
-#endif
-
-#ifndef __has_builtin /* v2.6 */
-#	define __has_builtin(which) FALSE
-#endif
-
-#ifndef __has_cpp_attribute /* v3.6 */
-#	define __has_cpp_attribute(which) FALSE
-#endif
-
-#ifndef __has_extension /* v3.0 */
-#	define __has_extension __has_feature
-#endif
-
 /* MARK: - Private helpers */
 
-#ifdef Z_PERMISSIVE
-#	define Z_HAS_FEATURE(which) (__has_feature(which) || __has_extension(which))
-#else
-#	define Z_HAS_FEATURE(which) __has_feature(which)
-#endif
-
 #ifdef __has_attribute /* v2.9 */
-#	define Z_HAS_ATTRIBUTE __has_attribute
+#	define Z__HAS_ATTRIBUTE __has_attribute
 #else
-#	define Z_HAS_ATTRIBUTE(which) FALSE
+#	define Z__HAS_ATTRIBUTE(which) FALSE
 #endif
 
-#ifndef __has_builtin /* v2.6 */
-#	define Z_HAS_BUILTIN __has_builtin
+#ifdef __has_cpp_attribute /* v3.6 */
+#	define Z__HAS_CPP_ATTRIBUTE __has_cpp_attribute
 #else
-#	define Z_HAS_BUILTIN(which) FALSE
+#	define Z__HAS_CPP_ATTRIBUTE(which) FALSE
+#endif
+
+#ifdef __has_extension /* v3.0 */
+#	define Z__HAS_EXTENSION __has_extension
+#else
+#	define Z__HAS_EXTENSION __has_feature
 #endif
 
 /* MARK: - Identification */
@@ -63,7 +45,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_VERSION_STRING "2.6"
 #endif
 
-/* MARK: - CPU */
+/* MARK: - ISA */
 
 #if	defined(__amd64	  ) /* v2.6 */ || \
 	defined(__amd64__ ) /* v2.6 */ || \
@@ -72,7 +54,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_M_AMD64  ) /* v2.9 */ || \
 	defined(_M_X64	  ) /* v2.7 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_64
+#	define Z_COMPILER_ISA Z_ISA_X86_64
 
 #elif	defined(__INTEL__) /* v2.8 */ || \
 	defined(__i386	 ) /* v2.6 */ || \
@@ -87,13 +69,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_X86_	 ) /* v2.6 */ || \
 	defined(i386	 ) /* v2.6 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_32
+#	define Z_COMPILER_ISA Z_ISA_X86_32
 
 #elif	defined(__aarch64__) /* v3.3 */ || \
 	defined(__arm64	   ) /* v3.5 */ || \
 	defined(__arm64__  ) /* v3.5 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH64
+#	define Z_COMPILER_ISA Z_ISA_AARCH64
 
 #elif	defined(__ARM_ARCH) /* v3.2 */ || \
 	defined(__arm	  ) /* v2.6 */ || \
@@ -105,7 +87,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_M_ARMT	  ) /* v3.5 */ || \
 	defined(_M_THUMB  ) /* v3.5 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_AARCH32
+#	define Z_COMPILER_ISA Z_ISA_AARCH32
 
 #elif	defined(__HEXAGON_ARCH__) /* v3.1 */ \
 	defined(__QDSP6_ARCH__	) /* v3.1 */ \
@@ -116,7 +98,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(hexagon		) /* v3.1 */ \
 	defined(qdsp6		) /* v3.1 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_HEXAGON
+#	define Z_COMPILER_ISA Z_ISA_HEXAGON
 
 #elif	defined(__ADSPBLACKFIN__  ) /* v2.6 */ || \
 	defined(__ADSPLPBLACKFIN__) /* v2.6 */ || \
@@ -127,36 +109,36 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(BFIN		  ) /* v2.6 */ || \
 	defined(bfin		  ) /* v2.6 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_BLACKFIN
+#	define Z_COMPILER_ISA Z_ISA_BLACKFIN
 
 #elif defined(__lanai__)
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_LANAI
+#	define Z_COMPILER_ISA Z_ISA_LANAI
 
 #elif	defined(__mips64  )		  /* v3.2 */ || \
 	defined(__mips64__)		  /* v3.2 */ || \
 	(defined(__mips) && __mips == 64) /* v3.5 */ || \
 	(defined(_MIPS_ISA) && defined(_MIPS_ISA_MIPS64) && _MIPS_ISA == _MIPS_ISA_MIPS64) /* v3.5 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MIPS64
+#	define Z_COMPILER_ISA Z_ISA_MIPS64
 
 #elif	defined(__mips	) /* v2.7 */ || \
 	defined(__mips__) /* v2.7 */ || \
 	defined(_mips	) /* v2.7 */ || \
 	defined(mips	) /* v2.7 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MIPS
+#	define Z_COMPILER_ISA Z_ISA_MIPS
 
 #elif	defined(__MSP430__) /* v2.6 */ || \
 	defined(MSP430	  ) /* v2.6 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_MSP430
+#	define Z_COMPILER_ISA Z_ISA_MSP430
 
 #elif	defined(__PPC64__    ) /* v3.4 */ || \
 	defined(__powerpc64__) /* v2.7 */ || \
 	defined(__ppc64__    ) /* v2.6 */ || \
 	defined(_ARCH_PPC64  ) /* v2.6 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_64BIT
+#	define Z_COMPILER_ISA Z_ISA_POWERPC_64BIT
 
 #elif	defined(__POWERPC__) /* v2.6 */ || \
 	defined(__PPC__	   ) /* v2.8 */ || \
@@ -164,15 +146,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__ppc__	   ) /* v2.6 */ || \
 	defined(_ARCH_PPC  ) /* v2.6 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_POWERPC_32BIT
+#	define Z_COMPILER_ISA Z_ISA_POWERPC_32BIT
 
 #elif defined(__riscv_xlen) /* v7.0 */
 
 #	if __riscv_xlen == 64 /* v7.0 */
-#		define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV64I
+#		define Z_COMPILER_ISA Z_ISA_RV64I
 
 #	elif __riscv_xlen == 32 /* v7.0 */
-#		define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_RV32I
+#		define Z_COMPILER_ISA Z_ISA_RV32I
 #	endif
 
 #elif	defined(__arch64__  ) /* v3.3 */ || \
@@ -181,7 +163,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__sparcv9   ) /* v3.3 */ || \
 	defined(__sparcv9__ ) /* v3.3 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SPARC_V9
+#	define Z_COMPILER_ISA Z_ISA_SPARC_V9
 
 #elif	defined(__sparc	   ) /* v2.6 */ || \
 	defined(__sparc__  ) /* v2.6 */ || \
@@ -189,38 +171,35 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__sparcv8__) /* v3.8 */ || \
 	defined(sparc	   ) /* v2.6 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_SPARC
+#	define Z_COMPILER_ISA Z_ISA_SPARC
 
 #elif defined(__XS1B__) /* v3.4 */
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_XCORE
+#	define Z_COMPILER_ISA Z_ISA_XCORE
 
 #elif   defined(__s390__ ) /* v2.6 */ || \
 	defined(__s390x__) /* v2.6 */ || \
 	defined(__zarch__) /* v3.3 */
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_Z_ARCHITECTURE
+#	define Z_COMPILER_ISA Z_ISA_Z_ARCHITECTURE
 
 #endif
 
-/* MARK: - CPU integral endianness / bit field order */
+/* MARK: - ISA: Integral endianness / Bit field order */
 
 #ifdef __BYTE_ORDER__ /* v3.2 */
 
 #	if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__ /* v3.2 */
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
+#		define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
 #		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_REVERSED
 
 #	elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__ /* v3.2 */
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
+#		define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
 #		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_NORMAL
-
-#	elif __BYTE_ORDER__ == __ORDER_PDP_ENDIAN__ /* v3.2 */
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_PDP
-#		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_NORMAL /* TODO: Test */
 #	endif
 
 #elif	defined(__AARCH64EL__	 ) /* v3.3 */ || \
 	defined(__ARMEL__	 ) /* v2.6 */ || \
+	defined(__ENDIAN_LITTLE__) /* v4.0 */ || \
 	defined(__LITTLE_ENDIAN__) /* v2.6 */ || \
 	defined(__MIPSEL	 ) /* v2.7 */ || \
 	defined(__MIPSEL__	 ) /* v2.7 */ || \
@@ -229,7 +208,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_MIPSEL		 ) /* v2.7 */ || \
 	defined(MIPSEL		 ) /* v2.7 */
 
-#	define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
+#	define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
 #	define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_REVERSED
 
 #elif	defined(__AARCH_BIG_ENDIAN) /* v3.4 */ || \
@@ -243,15 +222,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_MIPSEB		  ) /* v2.7 */ || \
 	defined(MIPSEB		  ) /* v2.7 */
 
-#	define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
+#	define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
 #	define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_NORMAL
 #endif
 
-/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_8BIT*/
-/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_16BIT*/
-/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_32BIT*/
-/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_64BIT*/
-/*#define Z_COMPIER_CPU_INTEGRAL_ENDIANNESS_128BIT*/
+/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_8BIT*/
+/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_16BIT*/
+/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_24BIT*/
+/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_32BIT*/
+/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_40BIT*/
+/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_48BIT*/
+/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_56BIT*/
+/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_64BIT*/
+/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_128BIT*/
 
 /*#define Z_COMPILER_BIT_FIELD_ORDER_8BIT*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_16BIT*/
@@ -259,35 +242,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_BIT_FIELD_ORDER_64BIT*/
 /*#define Z_COMPILER_BIT_FIELD_ORDER_128BIT*/
 
-/* MARK: - CPU integer format */
+/* MARK: - ISA: Integer format */
 
-/*#define Z_COMPIER_CPU_INTEGER_FORMAT_ALL*/
-/*#define Z_COMPIER_CPU_INTEGER_FORMAT_8BIT*/
-/*#define Z_COMPIER_CPU_INTEGER_FORMAT_16BIT*/
-/*#define Z_COMPIER_CPU_INTEGER_FORMAT_32BIT*/
-/*#define Z_COMPIER_CPU_INTEGER_FORMAT_64BIT*/
-/*#define Z_COMPIER_CPU_INTEGER_FORMAT_128BIT*/
+/*#define Z_COMPILER_ISA_INTEGER_FORMAT_ALL*/
+/*#define Z_COMPILER_ISA_INTEGER_FORMAT_8BIT*/
+/*#define Z_COMPILER_ISA_INTEGER_FORMAT_16BIT*/
+/*#define Z_COMPILER_ISA_INTEGER_FORMAT_24BIT*/
+/*#define Z_COMPILER_ISA_INTEGER_FORMAT_32BIT*/
+/*#define Z_COMPILER_ISA_INTEGER_FORMAT_40BIT*/
+/*#define Z_COMPILER_ISA_INTEGER_FORMAT_48BIT*/
+/*#define Z_COMPILER_ISA_INTEGER_FORMAT_56BIT*/
+/*#define Z_COMPILER_ISA_INTEGER_FORMAT_64BIT*/
+/*#define Z_COMPILER_ISA_INTEGER_FORMAT_128BIT*/
 
-/* MARK: - Floating point number format */
-
-#ifdef __LDBL_MANT_DIG__ /* v2.6 */
-
-#	if __LDBL_MANT_DIG__ == 53
-#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_IEEE_754_BINARY64
-
-#	elif __LDBL_MANT_DIG__ == 64
-#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_X87_BINARY80
-
-#	elif __LDBL_MANT_DIG__ == 106
-#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_IBM_DOUBLE_DOUBLE
-
-#	elif __LDBL_MANT_DIG__ == 113
-#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_IEEE_754_BINARY128
-#	endif
-
-#endif
-
-/* MARK: - OS / Platform */
+/* MARK: - Platform / OS */
 
 #if defined(__ANDROID__) /* v3.2 */
 #	define Z_COMPILER_OS Z_OS_ANDROID
@@ -337,8 +305,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_OS Z_OS_BITRIG
 
 #elif defined(__CELLOS_LV2__) /* v2.7 (Revisar, puede que sólo para la PPU) */
-#	define Z_COMPILER_OS	   Z_OS_CELL_OS
 #	define Z_COMPILER_PLATFORM Z_PLATFORM_PS3
+#	define Z_COMPILER_OS	   Z_OS_CELL_OS
 
 #elif	defined(__CYGWIN__  ) /* v2.7 */ || \
 	defined(__CYGWIN32__) /* v2.7 */ || \
@@ -370,15 +338,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_OS Z_OS_OPEN_BSD
 
 #elif defined(__ORBIS__) /* v3.9 */
-#	define Z_COMPILER_OS	   Z_OS_ORBIS_OS
 #	define Z_COMPILER_PLATFORM Z_PLATFORM_PS4
+#	define Z_COMPILER_OS	   Z_OS_ORBIS_OS
 
 #elif	defined(__psp__) /* v2.7 */ || \
 	defined(_PSP   ) /* v2.7 */ || \
 	defined(PSP    ) /* v2.7 */
 
-#	define Z_COMPILER_OS	   Z_OS_PSP_SYSTEM_SOFTWARE
 #	define Z_COMPILER_PLATFORM Z_PLATFORM_PSP
+#	define Z_COMPILER_OS	   Z_OS_PSP_SYSTEM_SOFTWARE
 
 #elif defined(__rtems__) /* v3.0 */
 #	define Z_COMPILER_OS Z_OS_RTEMS
@@ -413,7 +381,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_ILP32
 #endif
 
-/* MARK: - K&R C */
+/* MARK: - Language: K&R C */
 
 #define Z_COMPILER_C_HAS_OLD_STYLE_FUNCTION	TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_OPERATOR_SIZEOF	TRUE /* v2.6 */
@@ -421,12 +389,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_EXTERN	TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_REGISTER TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_STORAGE_CLASS_STATIC	TRUE /* v2.6 */
-#define Z_COMPILER_C_HAS_TYPE_DOUBLE		TRUE /* v2.6 */
-#define Z_COMPILER_C_HAS_TYPE_FLOAT		TRUE /* v2.6 */
 
-/* MARK: - C89 */
+#ifdef __DBL_MAX__ /* v2.6 */
+#	define Z_COMPILER_C_HAS_TYPE_DOUBLE TRUE /* v2.6 */
+#endif
 
-#define Z_COMPILER_C_HAS_C89_RULES_ON_TYPE_CONVERSION		TRUE /* v2.6 */
+#ifdef __FLT_MAX__ /* v2.6 */
+#	define Z_COMPILER_C_HAS_TYPE_FLOAT TRUE /* v2.6 */
+#endif
+
+/* MARK: - Language: C89 */
+
 #define Z_COMPILER_C_HAS_CONSTRUCT_AS_FUNCTION_ARGUMENT		TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_CONSTRUCT_AS_RETURN_TYPE		TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_CONSTRUCT_ASSIGNMENT			TRUE /* v2.6 */
@@ -442,11 +415,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_STRING_LITERAL_CONCATENATION		TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_TRIGRAPHS				TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_UNION_CONSTANT_INITIALIZATION		TRUE /* v2.6 */
+#define Z_COMPILER_C_HAS_VALUE_PRESERVING_UNSIGNED_CONVERSION	TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_ESCAPE_SEQUENCE_ALERT			TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_ESCAPE_SEQUENCE_HEXADECIMAL		TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_ESCAPE_SEQUENCE_VERTICAL_TAB		TRUE /* v2.6 */
-#define Z_COMPILER_C_HAS_LITERAL_FLOAT				TRUE /* v2.6 */
-#define Z_COMPILER_C_HAS_LITERAL_LONG_DOUBLE			TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_LITERAL_UNSIGNED			TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_OPERATOR_UNARY_PLUS			TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_PREPROCESSOR_DIRECTIVE_NULL		TRUE /* v2.6 */
@@ -457,7 +429,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_PREPROCESSOR_OPERATOR_DEFINED		TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_PREPROCESSOR_OPERATOR_PASTING		TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_PREPROCESSOR_OPERATOR_STRINGIZING	TRUE /* v2.6 */
-#define Z_COMPILER_C_HAS_TYPE_LONG_DOUBLE			TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_TYPE_UNSIGNED_CHAR			TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_TYPE_UNSIGNED_LONG			TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_TYPE_UNSIGNED_SHORT			TRUE /* v2.6 */
@@ -467,159 +438,140 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_C_HAS_TYPE_QUALIFIER_CONST			TRUE /* v2.6 */
 #define Z_COMPILER_C_HAS_TYPE_QUALIFIER_VOLATILE		TRUE /* v2.6 */
 
-/* MARK: - C95 */
+#ifdef __FLT_MAX__ /* v2.6 */
+#	define Z_COMPILER_C_HAS_LITERAL_FLOAT TRUE /* v2.6 */
+#endif
+
+#ifdef __LDBL_MAX__ /* v2.6 */
+#	define Z_COMPILER_C_HAS_TYPE_LONG_DOUBLE    TRUE /* v2.6 */
+#endif
+
+/* MARK: - Language: C95 */
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199409L
 #	define Z_COMPILER_C_HAS_DIGRAPHS TRUE /* v2.6 */
 #endif
 
-/* MARK: - C99 */
+/* MARK: - Language: C99 */
 
-/*#define Z_COMPILER_C_HAS_C99_RULES_ON_INTEGER_LITERALS*/
-/*#define Z_COMPILER_C_HAS_C99_RULES_ON_TYPE_COMPATIBILITY*/
-/*#define Z_COMPILER_C_HAS_C99_RULES_ON_TYPE_CONVERSION*/
-/*#define Z_COMPILER_C_HAS_COMPOUND_LITERAL*/
-/*#define Z_COMPILER_C_HAS_CONVERSION_OF_NON_LVALUE_ARRAY_TO_POINTER*/
-/*#define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT*/
-/*#define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER*/
-/*#define Z_COMPILER_C_HAS_EMPTY_MACRO_ARGUMENT*/
-/*#define Z_COMPILER_C_HAS_EXTENDED_IDENTIFIER*/
-/*#define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER*/
-/*#define Z_COMPILER_C_HAS_FOR_WITH_DECLARATION*/
-/*#define Z_COMPILER_C_HAS_IDEMPOTENT_TYPE_QUALIFIERS*/
-/*#define Z_COMPILER_C_HAS_LOCAL_AGGREGATE_NON_CONSTANT_INITIALIZATION*/
-/*#define Z_COMPILER_C_HAS_MIXED_DECLARATIONS_AND_CODE*/
-/*#define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_INTMAX*/
-/*#define Z_COMPILER_C_HAS_RELIABLE_INTEGER_DIVISION*/
-/*#define Z_COMPILER_C_HAS_REMOVAL_OF_ILL_FORMED_RETURN*/
-/*#define Z_COMPILER_C_HAS_REMOVAL_OF_IMPLICIT_FUNCTION_DECLARATION*/
-/*#define Z_COMPILER_C_HAS_REMOVAL_OF_IMPLICIT_INT*/
-/*#define Z_COMPILER_C_HAS_STATIC_AND_TYPE_QUALIFIERS_IN_ARRAY_PARAMETER*/
-/*#define Z_COMPILER_C_HAS_TRAILING_COMMA_ALLOWED_IN_ENUMERATION*/
-/*#define Z_COMPILER_C_HAS_UNIVERSAL_CHARACTER_NAMES*/
-/*#define Z_COMPILER_C_HAS_VARIADIC_MACRO*/
-/*#define Z_COMPILER_C_HAS_VLA*/
-/*#define Z_COMPILER_C_HAS_IDENTIFIER_FUNC*/
-/*#define Z_COMPILER_C_HAS_LITERAL_HEXADECIMAL_FLOATING_POINT*/
-/*#define Z_COMPILER_C_HAS_LITERAL_WCHAR_T_CHARACTER*/
-/*#define Z_COMPILER_C_HAS_LITERAL_WCHAR_T_STRING*/
-/*#define Z_COMPILER_C_HAS_PREPROCESSOR_OPERATOR_PRAGMA*/
-/*#define Z_COMPILER_C_HAS_SPECIFIER_INLINE*/
-/*#define Z_COMPILER_C_HAS_STANDARD_PRAGMA_CX_LIMITED_RANGE*/
-/*#define Z_COMPILER_C_HAS_STANDARD_PRAGMA_FENV_ACCESS*/
-/*#define Z_COMPILER_C_HAS_STANDARD_PRAGMA_FP_CONTRACT*/
-/*#define Z_COMPILER_C_HAS_TYPE_BOOL*/
-/*#define Z_COMPILER_C_HAS_TYPE_DOUBLE_COMPLEX*/
-/*#define Z_COMPILER_C_HAS_TYPE_DOUBLE_IMAGINARY*/
-/*#define Z_COMPILER_C_HAS_TYPE_FLOAT_COMPLEX*/
-/*#define Z_COMPILER_C_HAS_TYPE_FLOAT_IMAGINARY*/
-/*#define Z_COMPILER_C_HAS_TYPE_LONG_DOUBLE_COMPLEX*/
-/*#define Z_COMPILER_C_HAS_TYPE_LONG_DOUBLE_IMAGINARY*/
-/*#define Z_COMPILER_C_HAS_TYPE_LONG_LONG*/
-/*#define Z_COMPILER_C_HAS_TYPE_MODIFIER_COMPLEX*/
-/*#define Z_COMPILER_C_HAS_TYPE_MODIFIER_IMAGINARY*/
-/*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT*/
+#define Z_COMPILER_C_HAS_RELIABLE_INTEGER_DIVISION		  TRUE /* v2.6 */
+#define Z_COMPILER_C_HAS_REMOVAL_OF_ILL_FORMED_RETURN		  TRUE /* v2.6 */
+#define Z_COMPILER_C_HAS_REMOVAL_OF_IMPLICIT_FUNCTION_DECLARATION TRUE /* v2.6 */
+#define Z_COMPILER_C_HAS_REMOVAL_OF_IMPLICIT_INT		  TRUE /* v2.6 */
+#define Z_COMPILER_C_HAS_IDENTIFIER_FUNC			  TRUE /* v2.6 */
+#define Z_COMPILER_C_HAS_LITERAL_WCHAR_T_CHARACTER		  TRUE /* v2.6 */
+#define Z_COMPILER_C_HAS_LITERAL_WCHAR_T_STRING			  TRUE /* v2.6 */
+#define Z_COMPILER_C_HAS_STANDARD_PRAGMA_CX_LIMITED_RANGE	  TRUE /* v2.6 */
+#define Z_COMPILER_C_HAS_STANDARD_PRAGMA_FP_CONTRACT		  TRUE /* v2.6 */
 
-#define Z_COMPILER_C_HAS_IDENTIFIER_FUNC TRUE /* v2.6 */
-
-#if Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0)
-#	define Z_COMPILER_C_HAS_EXTENDED_IDENTIFIER TRUE /* v3.3 */
-#endif
-
-#if	defined(Z_PERMISSIVE) || \
-	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
-
-#	define Z_COMPILER_C_HAS_COMPOUND_LITERAL       TRUE /* v2.6 */
-#	define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER TRUE /* v2.6 */
-#	define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER  TRUE /* v2.6 */
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+#	define Z_COMPILER_C_HAS_COMPOUND_LITERAL			       TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_DESIGNATED_INITIALIZER			       TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_FLEXIBLE_ARRAY_MEMBER			       TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_STATIC_IN_ARRAY_PARAMETER_DECLARATION	       TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_TYPE_QUALIFIERS_IN_ARRAY_PARAMETER_DECLARATION TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT			       TRUE /* v2.6 */
 
 #	ifndef __STDC_NO_VLA__ /* Not found in Clang's sources. */
 #		define Z_COMPILER_C_HAS_VLA TRUE /* v2.6 */
 #	endif
 #endif
 
-#if	defined(Z_PERMISSIVE) || \
-	defined(__cplusplus)  || \
-	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
-
-#	define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT		   TRUE /* v2.6 */
-#	define Z_COMPILER_C_HAS_MIXED_DECLARATIONS_AND_CODE	   TRUE /* v2.6 */
-#	define Z_COMPILER_C_HAS_NON_CONSTANT_AGGREGATE_INITIALIZER TRUE
+#if defined(__cplusplus) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
+#	define Z_COMPILER_C_HAS_CONVERSION_OF_NON_LVALUE_ARRAY_TO_POINTER   TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_CPP_STYLE_COMMENT			    TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_FOR_WITH_DECLARATION			    TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_LOCAL_AGGREGATE_NON_CONSTANT_INITIALIZATION TRUE
+#	define Z_COMPILER_C_HAS_MIXED_DECLARATIONS_AND_CODE		    TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_UNIVERSAL_CHARACTER_NAMES		    TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_SPECIFIER_INLINE			    TRUE /* v2.6 */
 #endif
 
-#if	defined(__cplusplus) || \
-	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
+#if	Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0) && \
+	(defined(__cplusplus) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L))
 
-#	define Z_COMPILER_C_HAS_SPECIFIER_INLINE TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_EXTENDED_IDENTIFIER TRUE /* v3.3 */
 #endif
 
-	/* Not sure, investigate. */
+#if	(defined(__cplusplus	 ) && __cplusplus      >= 201103L) || \
+	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
+
+#	define Z_COMPILER_C_HAS_EMPTY_MACRO_ARGUMENT		      TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_TRAILING_COMMA_ALLOWED_IN_ENUMERATION TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_VARIADIC_MACRO			      TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_TYPE_LONG_LONG			      TRUE /* v2.6 */
+#endif
+
+/* Not sure, investigate / __UINTMAX_MAX__ was not available until v3.5 */
 #if	(defined(__cplusplus	 ) && __cplusplus      >= 201103L	 ) || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L	 ) || \
 	(defined(__UINTMAX_MAX__ ) && 0U - 1U	       == __UINTMAX_MAX__)
 
-#	define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_MAXIMUM_INTEGRAL TRUE
+#	define Z_COMPILER_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_INTMAX TRUE
 #endif
 
-#if	defined(Z_PERMISSIVE)					   || \
-	(defined(__cplusplus	 ) && __cplusplus      >= 201103L) || \
+#if	(defined(__cplusplus	 ) && __cplusplus      >= 201703L) || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
 
-#	define Z_COMPILER_C_HAS_VARIADIC_MACRO TRUE /* v2.6 */
-#	define Z_COMPILER_C_HAS_TYPE_LLONG     TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_LITERAL_HEXADECIMAL_FLOATING_POINT TRUE /* v2.6 */
 #endif
 
-#if	!defined(__cplusplus) || \
-	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
+/*#define Z_COMPILER_C_HAS_PREPROCESSOR_OPERATOR_PRAGMA TRUE*/ /* v2.6 */
 
-#	define Z_COMPILER_C_HAS_TYPE_BOOLEAN TRUE /* v2.6 */
-#endif
+/*----------------------------------------------------.
+| BUG: _Bool is always available in C but not in C++. |
+| In v2.6 and v2.7 was available in C++ by mistake.   |
+'----------------------------------------------------*/
+#if	Z_COMPILER_VERSION == Z_VERSION(2, 6, 0) || \
+	Z_COMPILER_VERSION == Z_VERSION(2, 7, 0) || \
+	!defined(__cplusplus)
 
-#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
-#	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICTED TRUE /* v2.6 */
+#	define Z_COMPILER_C_HAS_TYPE_BOOL TRUE /* v2.6 */
 #endif
 
 #ifndef __STDC_NO_COMPLEX__ /* Not found in Clang's sources. */
-#	define Z_COMPILER_C_HAS_TYPE_SPECIFIER_COMPLEX TRUE /* v2.6 */
-#endif
+#	define Z_COMPILER_C_HAS_TYPE_MODIFIER_COMPLEX TRUE /* v2.6 */
 
-/*#define Z_COMPILER_C_HAS_TYPE_SPECIFIER_IMAGINARY*/
-
-/* MARK: - C11 */
-
-/*#define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE*/
-/*#define Z_COMPILER_C_HAS_ANONYMOUS_UNION*/
-/*#define Z_COMPILER_C_HAS_GENERIC_SELECTION*/
-/*#define Z_COMPILER_C_HAS_STATIC_ASSERTION*/
-/*#define Z_COMPILER_C_HAS_TYPEDEF_REDECLARATION*/
-/*#define Z_COMPILER_C_HAS_LITERAL_CHAR16_T_CHARACTER*/
-/*#define Z_COMPILER_C_HAS_LITERAL_CHAR16_T_STRING*/
-/*#define Z_COMPILER_C_HAS_LITERAL_CHAR32_T_CHARACTER*/
-/*#define Z_COMPILER_C_HAS_LITERAL_CHAR32_T_STRING*/
-/*#define Z_COMPILER_C_HAS_LITERAL_UNICODE_STRING*/
-/*#define Z_COMPILER_C_HAS_OPERATOR_ALIGNOF*/
-/*#define Z_COMPILER_C_HAS_SPECIFIER_ALIGNAS*/
-/*#define Z_COMPILER_C_HAS_SPECIFIER_NORETURN*/
-/*#define Z_COMPILER_C_HAS_STORAGE_CLASS_THREAD_LOCAL*/
-/*#define Z_COMPILER_C_HAS_TYPE_MODIFIER_ATOMIC*/
-/*#define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC*/
-
-#if Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)
-
-#	if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
-#		define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE TRUE
+#	ifdef __DBL_MAX__ /* v2.6 */
+#		define Z_COMPILER_C_HAS_TYPE_DOUBLE_COMPLEX TRUE /* v2.6 */
 #	endif
 
-#	if defined(__cplusplus) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
-#		define Z_COMPILER_C_HAS_ANONYMOUS_UNION TRUE
+#	ifdef __FLT_MAX__ /* v2.6 */
+#		define Z_COMPILER_C_HAS_TYPE_FLOAT_COMPLEX TRUE /* v2.6 */
 #	endif
 
+#	ifdef __LDBL_MAX__ /* v2.6 */
+#		define Z_COMPILER_C_HAS_TYPE_LONG_DOUBLE_COMPLEX TRUE /* v2.6 */
+#	endif
 #endif
 
-#if __has_feature(c_atomic) /* v3.1 */
-#	define Z_COMPILER_C_HAS_ATOMIC_OPERATIONS     TRUE /* v3.0 */
-#	define Z_COMPILER_C_HAS_SPECIFIER_ATOMIC      TRUE /* v3.0 */
-#	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC TRUE /* v3.0 */
+/*-----------------------------------------------------.
+| IDEMPOTENT_TYPE_QUALIFIERS always generate warnings. |
+'-----------------------------------------------------*/
+/*#define Z_COMPILER_C_HAS_IDEMPOTENT_TYPE_QUALIFIERS*/
+
+/*---------------------------------------.
+| FENV_ACCESS ON is not implemented yet. |
+'---------------------------------------*/
+/*#define Z_COMPILER_C_HAS_STANDARD_PRAGMA_FENV_ACCESS*/
+
+/*------------------------------------------------------------.
+| _Imaginary is recognized as a keyword but it is not usable. |
+'------------------------------------------------------------*/
+/*#define Z_COMPILER_C_HAS_TYPE_DOUBLE_IMAGINARY*/
+/*#define Z_COMPILER_C_HAS_TYPE_FLOAT_IMAGINARY*/
+/*#define Z_COMPILER_C_HAS_TYPE_LONG_DOUBLE_IMAGINARY*/
+/*#define Z_COMPILER_C_HAS_TYPE_MODIFIER_IMAGINARY*/
+
+/* MARK: - Language: C11 */
+
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
+#	define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE_AS_MEMBER TRUE /* v2.6? */
+#endif
+
+#if defined(__cplusplus) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
+#	define Z_COMPILER_C_HAS_ANONYMOUS_UNION_AS_MEMBER TRUE /* v2.6? */
+#	define Z_COMPILER_C_HAS_TYPEDEF_REDECLARATION	  TRUE /* v2.6 */
 #endif
 
 #if __has_feature(c_generic_selections) /* v3.0 */
@@ -630,31 +582,66 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_STATIC_ASSERTION TRUE /* v3.0 */
 #endif
 
+#if	(Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0) /* NOT SURE */ && \
+	 defined(__cplusplus) && __cplusplus >= 201103L) || \
+	(Z_COMPILER_VERSION >= Z_VERSION(3, 1, 0)	 && \
+	 defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
+
+#	define Z_COMPILER_C_HAS_LITERAL_CHAR16_T_CHARACTER TRUE /* v3.3 */
+#	define Z_COMPILER_C_HAS_LITERAL_CHAR16_T_STRING	   TRUE /* v3.3 */
+#	define Z_COMPILER_C_HAS_LITERAL_CHAR32_T_CHARACTER TRUE /* v3.3 */
+#	define Z_COMPILER_C_HAS_LITERAL_CHAR32_T_STRING	   TRUE /* v3.3 */
+#	define Z_COMPILER_C_HAS_LITERAL_UTF8_STRING	   TRUE /* v3.3 */
+#endif
+
 #if __has_feature(c_alignof) /* v3.6 */
-#	define Z_COMPILER_C_HAS_OPERATOR_ALIGN_OF TRUE /* v3.2 */
+#	define Z_COMPILER_C_HAS_OPERATOR_ALIGNOF TRUE /* v3.2 */
 #endif
 
-#if __has_feature(c_alignas) /* v3.0 */
-#	define Z_COMPILER_C_HAS_SPECIFIER_ALIGN_AS TRUE /* v3.0 */
-#endif
+#if Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0)
 
-#if	Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0) && \
-	(defined(Z_PERMISSIVE)			 || \
-	 (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L))
-
-#	define Z_COMPILER_C_HAS_SPECIFIER_NO_RETURN TRUE /* v3.3 */
-#endif
-
-#if __has_feature(c_thread_local) /* v3.3 */
+	/*----------------------------------------------------------------------.
+	| BUG?: Since v3.3, __has_feature(c_thread_local) returns TRUE in C11	|
+	| and later, but _Thread_local always works without generating warnings |
+	| in any version of C or C++.						|
+	'----------------------------------------------------------------------*/
 #	define Z_COMPILER_C_HAS_STORAGE_CLASS_THREAD_LOCAL TRUE /* v3.3 */
+
+	/*------------------------------------------------------------------------.
+	| BUG: Since v3.0, __has_extension(c_alignas) ALWAYS returns TRUE, and	  |
+	| __has_feature(c_alignas) returns TRUE in C11 and later. Despite this,   |
+	| any EXPLICIT usage of _Alignas() when declaring an identifier generates |
+	| an error in C++, and the same happens in C between v3.0 and v3.2.	  |
+	| However, using _Alignas() within a type definition seems to be safe.	  |
+	'------------------------------------------------------------------------*/
+#	if __has_feature(c_alignas) /* v3.0 */
+#		define Z_COMPILER_C_HAS_SPECIFIER_ALIGNAS TRUE /* v3.3 */
+#	endif
+
+#	if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
+#		define Z_COMPILER_C_HAS_SPECIFIER_NORETURN TRUE /* v3.3 */
+#	endif
+
+	/*----------------------------------------------------------------.
+	| BUG: Since v3.1, __has_extension(c_atomic) ALWAYS returns TRUE, |
+	| but _Atomic was not supported as a type qualifier until v3.3.	  |
+	'----------------------------------------------------------------*/
+#	if Z__HAS_EXTENSION(c_atomic) /* v3.1 */
+#		define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC TRUE /* v3.3 */
+#	endif
+
 #endif
 
-/* MARK: - Apple C extensions */
+#if Z__HAS_EXTENSION(c_atomic) /* v3.1 */
+#	define Z_COMPILER_C_HAS_TYPE_MODIFIER_ATOMIC TRUE /* v3.0? */
+#endif
 
-#if	__has_extension(blocks) || /* v2.6 */ \
-	defined(__BLOCKS__)	   /* v2.6 */
+/* MARK: - Language: Apple C extensions */
 
-#	define Z_COMPILER_C_HAS_CLOSURE TRUE /* v2.6 */
+#if	Z__HAS_EXTENSION(blocks) || /* v2.6 */ \
+	defined(__BLOCKS__)	    /* v2.6 */
+
+#	define Z_COMPILER_C_HAS_BLOCK_OBJECT TRUE /* v2.6 */
 #endif
 
 #ifdef __cplusplus
@@ -663,62 +650,117 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	| Reference:					       |
 	| <https://clang.llvm.org/cxx_status.html>	       |
 	| <https://en.cppreference.com/w/cpp/compiler_support> |
-	| [Clang sources]/lib/Lex/PPMacroExpansion.cpp	       |
 	'-----------------------------------------------------*/
 
-	/* MARK: - C++98 */
-
-/*#	define Z_COMPILER_CPP_HAS_SFINAE*/
-/*#	define Z_COMPILER_CPP_HAS_TYPE_BOOL*/
-/*#	define Z_COMPILER_CPP_HAS_TYPE_WCHAR_T*/
+	/* MARK: - Language: C++98 */
 
 #	define Z_COMPILER_CPP_HAS_SFINAE       TRUE /* v2.6 */
 #	define Z_COMPILER_CPP_HAS_TYPE_BOOL    TRUE /* v2.6 */
 #	define Z_COMPILER_CPP_HAS_TYPE_WCHAR_T TRUE /* v2.6 */
 
-	/* MARK: - C++03 */
+	/* MARK: - Language: C++03 */
 
-/*#	define Z_COMPILER_CPP_HAS_VALUE_INITIALIZATION*/
+#	define Z_COMPILER_CPP_HAS_VALUE_INITIALIZATION TRUE /* v2.6 */
 
-#	define Z_COMPILER_CPP_HAS_VALUE_INITIALIZATION TRUE
-
-	/* MARK: - C++11 */
+	/* MARK: - Language: C++11 */
 
 /*#	define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR*/
 /*#	define Z_COMPILER_CPP_HAS_CONCURRENT_STATIC_LOCAL_VARIABLE*/
 /*#	define Z_COMPILER_CPP_HAS_CONDITIONALLY_SUPPORTED_BEHAVIOR*/
 /*#	define Z_COMPILER_CPP_HAS_COPY_LIST_INITIALIZATION*/
 /*#	define Z_COMPILER_CPP_HAS_CPP11_RULES_ON_UNIVERSAL_CHARACTER_NAMES*/
-/*#	define Z_COMPILER_CPP_HAS_DEFAULT_MEMBER_INITIALIZER*/
-/*#	define Z_COMPILER_CPP_HAS_DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE*/
+
+#	if	__has_feature(cxx_nonstatic_member_init)	   /* v3.0 */ || \
+		(defined(__cpp_nsdmi) && (__cpp_nsdmi >= 200809L)) /* v3.6 */
+
+#		define Z_COMPILER_CPP_HAS_DEFAULT_MEMBER_INITIALIZER TRUE /* v3.0 */ // RN
+#	endif
+
+#	if __has_feature(cxx_default_function_template_args) /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE TRUE /* v2.9 */
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_DEFAULTED_FUNCTION*/
-/*#	define Z_COMPILER_CPP_HAS_DELEGATING_CONSTRUCTORS*/
-/*#	define Z_COMPILER_CPP_HAS_DELETED_FUNCTION*/
+
+#	if	__has_feature(cxx_delegating_constructors)					     /* v3.0 */ || \
+		(defined(__cpp_delegating_constructors) && __cpp_delegating_constructors >= 200604L) /* v3.6 */
+
+#		define Z_COMPILER_CPP_HAS_DELEGATING_CONSTRUCTORS TRUE /* v3.0 */ // RN
+#	endif
+
+#	if __has_feature(cxx_deleted_functions) /* v2.7 */
+#		define Z_COMPILER_CPP_HAS_DELETED_FUNCTION TRUE /* v2.6? */
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_DIRECT_LIST_INITIALIZATION*/
 /*#	define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE*/
 /*#	define Z_COMPILER_CPP_HAS_EXTENDED_FRIEND_DECLARATION*/
 /*#	define Z_COMPILER_CPP_HAS_EXTERN_TEMPLATE*/
-/*#	define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS*/
+
+#	if	__has_feature(cxx_inheriting_constructors)					     /* v3.3 */ || \
+		(defined(__cpp_inheriting_constructors) && __cpp_inheriting_constructors >= 200802L) /* v3.6 */
+
+#		define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE /* v3.3 */ // RN
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE*/
 /*#	define Z_COMPILER_CPP_HAS_INITIALIZER_LIST*/
-/*#	define Z_COMPILER_CPP_HAS_LAMBDA*/
+
+#	if	__has_feature(cxx_lambdas)			     /* v3.1 */ || \
+		(defined(__cpp_lambdas) && __cpp_lambdas >= 200907L) /* v3.4 */
+
+#		define Z_COMPILER_CPP_HAS_LAMBDA TRUE /* v3.1 */ // RN
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT*/
 /*#	define Z_COMPILER_CPP_HAS_MOVE_SPECIAL_MEMBER_FUNCTIONS*/
 /*#	define Z_COMPILER_CPP_HAS_MULTI_DECLARATOR_AUTO*/
 /*#	define Z_COMPILER_CPP_HAS_OPAQUE_ENUMERATION_DECLARATION*/
-/*#	define Z_COMPILER_CPP_HAS_RANGE_BASED_FOR*/
-/*#	define Z_COMPILER_CPP_HAS_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION*/
+
+#	if	__has_feature(cxx_range_for)					     /* v3.0 */ || \
+		(defined(__cpp_range_based_for) && __cpp_range_based_for >= 200907L) /* v3.6 */
+
+#		define Z_COMPILER_CPP_HAS_RANGE_BASED_FOR TRUE /* v3.0 */ // RN
+#	endif
+
+#	if	__has_feature(cxx_reference_qualified_functions)		 /* v2.9 */ || \
+		defined(__cpp_ref_qualifiers) && __cpp_ref_qualifiers >= 200710L /* v3.6 */
+
+#		define Z_COMPILER_CPP_HAS_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION TRUE /* v2.9 */
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_REMOVAL_OF_AUTO_AS_STORAGE_CLASS*/
 /*#	define Z_COMPILER_CPP_HAS_RIGHT_ANGLE_BRACKETS*/
 /*#	define Z_COMPILER_CPP_HAS_RVALUE_REFERENCE*/
 /*#	define Z_COMPILER_CPP_HAS_STANDARD_LAYOUT*/
 /*#	define Z_COMPILER_CPP_HAS_STANDARDIZED_ATTRIBUTE_SYNTAX*/
-/*#	define Z_COMPILER_CPP_HAS_STATIC_ASSERTION*/
-/*#	define Z_COMPILER_CPP_HAS_STRONGLY_TYPED_ENUMERATION*/
-/*#	define Z_COMPILER_CPP_HAS_TEMPLATE_ALIAS*/
-/*#	define Z_COMPILER_CPP_HAS_TRAILING_RETURN_TYPE*/
+
+#	if	__has_feature(cxx_static_assert)				 /* v2.7 */ || \
+		(defined(__cpp_static_assert) && __cpp_static_assert >= 200410L) /* v3.4 */
+
+#		define Z_COMPILER_CPP_HAS_STATIC_ASSERTION TRUE /* v2.6? */
+#	endif
+
+#	if __has_feature(cxx_strong_enums) /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_STRONGLY_TYPED_ENUMERATION TRUE /* v2.9 */
+#	endif
+
+#	if	__has_feature(cxx_alias_templates)				     /* v3.0 */ || \
+		(defined(__cpp_alias_templates) && __cpp_alias_templates >= 200704L) /* v3.6 */
+
+#		define Z_COMPILER_CPP_HAS_TEMPLATE_ALIAS TRUE /* v3.0 */ // RN
+#	endif
+
+#	if __has_feature(cxx_trailing_return) /* v2.9 */
+#		define Z_COMPILER_CPP_HAS_TRAILING_RETURN_TYPE TRUE /* v2.9 */
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_UNNAMED_TYPE_AS_TEMPLATE_ARGUMENT*/
-/*#	define Z_COMPILER_CPP_HAS_UNRESTRICTED_UNION*/
+
+#	if __has_feature(cxx_unrestricted_unions) /* v3.1 */
+#		define Z_COMPILER_CPP_HAS_UNRESTRICTED_UNION TRUE /* v3.1 */ // RN
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE*/
 /*#	define Z_COMPILER_CPP_HAS_VARIADIC_TEMPLATE_EXTENDED_PARAMETERS*/
 /*#	define Z_COMPILER_CPP_HAS_ATTRIBUTE_CARRIES_DEPENDENCY*/
@@ -728,28 +770,86 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#	define Z_COMPILER_CPP_HAS_LITERAL_CHAR16_T_STRING*/
 /*#	define Z_COMPILER_CPP_HAS_LITERAL_CHAR32_T_CHARACTER*/
 /*#	define Z_COMPILER_CPP_HAS_LITERAL_CHAR32_T_STRING*/
-/*#	define Z_COMPILER_CPP_HAS_LITERAL_NULLPTR*/
+
+#	if __has_feature(cxx_nullptr) /* v3.0 */
+#		define Z_COMPILER_CPP_HAS_LITERAL_NULLPTR TRUE /* v3.0 (v2.6?) */ // RN
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_LITERAL_RAW_STRING*/
-/*#	define Z_COMPILER_CPP_HAS_LITERAL_USER_DEFINED*/
+
+#	if	__has_feature(cxx_user_literals)						 /* v3.1 */ || \
+		(defined(__cpp_user_defined_literals) && __cpp_user_defined_literals >= 200809L) /* v3.4 */
+
+#		define Z_COMPILER_CPP_HAS_LITERAL_USER_DEFINED TRUE /* v3.1 (v3.0?) */ // RN
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_LITERAL_UTF8_STRING*/
 /*#	define Z_COMPILER_CPP_HAS_OPERATOR_ALIGNOF*/
-/*#	define Z_COMPILER_CPP_HAS_OPERATOR_NOEXCEPT*/
+
+#	if __has_feature(cxx_noexcept)
+#		define Z_COMPILER_CPP_HAS_OPERATOR_NOEXCEPT TRUE /* v3.0 */ // RN
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_OPERATOR_CASE_SIZEOF_NON_STATIC_DATA_MEMBER*/
 /*#	define Z_COMPILER_CPP_HAS_OPERATOR_CASE_SIZEOF_PARAMETER_PACK*/
-/*#	define Z_COMPILER_CPP_HAS_SPECIFIER_ALIGNAS*/
-/*#	define Z_COMPILER_CPP_HAS_SPECIFIER_CONSTEXPR*/
-/*#	define Z_COMPILER_CPP_HAS_SPECIFIER_DECLTYPE*/
+
+#	if __has_feature(cxx_alignas)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_ALIGNAS TRUE /* v3.3 */ // RN
+#	endif
+
+#	if __has_feature(cxx_constexpr)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_CONSTEXPR TRUE /* v3.1 */ // RN
+#	endif
+
+#	if __has_feature(cxx_decltype)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_DECLTYPE TRUE /* v2.9 (v2.6?) */
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_SPECIFIER_FINAL*/
-/*#	define Z_COMPILER_CPP_HAS_SPECIFIER_NOEXCEPT*/
+
+#	if __has_feature(cxx_noexcept)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_NOEXCEPT TRUE /* v3.0 */ // RN
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_SPECIFIER_OVERRIDE*/
-/*#	define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_DECLTYPE_INCOMPLETE_RETURN*/
-/*#	define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_EXPLICIT_CONVERSION_FUNCTION*/
-/*#	define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_INLINE_NAMESPACE*/
-/*#	define Z_COMPILER_CPP_HAS_STORAGE_CLASS_THREAD_LOCAL*/
+
+#	if __has_feature(cxx_decltype_incomplete_return_types)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_DECLTYPE_INCOMPLETE_RETURN TRUE /* v3.1 */
+#	endif
+
+#	if __has_feature(cxx_explicit_conversions)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_EXPLICIT_CONVERSION_FUNCTION TRUE /* v3.0 */
+#	endif
+
+#	if __has_feature(cxx_inline_namespaces)
+#		define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_INLINE_NAMESPACE TRUE /* v2.9 */
+#	endif
+
+	/*-----------------------------------------------.
+	| IMPORTANT: STORAGE_CLASS_THREAD_LOCAL requires |
+	| a C++ runtime providing __cxa_thread_atexit.	 |
+	'-----------------------------------------------*/
+#	if __has_feature(cxx_thread_local)
+#		define Z_COMPILER_CPP_HAS_STORAGE_CLASS_THREAD_LOCAL TRUE /* v3.3 */ // RN
+#	endif
+
 /*#	define Z_COMPILER_CPP_HAS_TYPE_AUTO*/
 /*#	define Z_COMPILER_CPP_HAS_TYPE_CHAR16_T*/
 /*#	define Z_COMPILER_CPP_HAS_TYPE_CHAR32_T*/
 /*#	define Z_COMPILER_CPP_HAS_TYPE_LONG_LONG*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #	if Z_COMPILER_VERSION >= Z_VERSION(2, 9, 0)
 #		define Z_COMPILER_CPP_HAS_EXPRESSION_SFINAE	       TRUE /* v2.9 */
@@ -768,12 +868,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_EXTERN_TEMPLATE			   TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE TRUE /* v2.9 */
 #		define Z_COMPILER_CPP_HAS_RIGHT_ANGLE_BRACKETS			   TRUE /* v2.9 */
-#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR16_T_CHARACTER		   TRUE /* v2.9 */
-#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR16_T_STRING		   TRUE /* v2.9 (v2.6?) */
-#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR32_T_CHARACTER		   TRUE /* v2.9 (v2.6?) */
-#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR32_T_STRING		   TRUE /* v2.9 */
-#		define Z_COMPILER_CPP_HAS_TYPE_CHAR16_T				   TRUE /* v2.9 (v2.6?) */
-#		define Z_COMPILER_CPP_HAS_TYPE_CHAR32_T				   TRUE /* v2.9 (v2.6?) */
+//#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR16_T_CHARACTER		   TRUE /* v2.9 */
+//#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR16_T_STRING		   TRUE /* v2.9 (v2.6?) */
+//#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR32_T_CHARACTER		   TRUE /* v2.9 (v2.6?) */
+//#		define Z_COMPILER_CPP_HAS_LITERAL_CHAR32_T_STRING		   TRUE /* v2.9 */
+//#		define Z_COMPILER_CPP_HAS_TYPE_CHAR16_T				   TRUE /* v2.9 (v2.6?) */
+//#		define Z_COMPILER_CPP_HAS_TYPE_CHAR32_T				   TRUE /* v2.9 (v2.6?) */
 #		define Z_COMPILER_CPP_HAS_TYPE_LONG_LONG			   TRUE /* v2.9 */
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0)
@@ -828,77 +928,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_OPERATOR_CASE_SIZEOF_PARAMETER_PACK	TRUE /* v2.9 */
 #	endif
 
-#	if __has_feature(cxx_nonstatic_member_init)
-#		define Z_COMPILER_CPP_HAS_DEFAULT_MEMBER_INITIALIZER TRUE /* v3.0 */
-#	endif
-
-#	if __has_feature(cxx_default_function_template_args)
-#		define Z_COMPILER_CPP_HAS_DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE TRUE /* v2.9 */
-#	endif
-
 #	if	__has_feature(cxx_defaulted_functions)	    || \
 		(__cplusplus >= 201103L			    && \
 		 Z_COMPILER_VERSION >= Z_VERSION(3, 0, 0)   && \
 		 Z_COMPILER_VERSION <  Z_VERSION(3, 1, 0))
 
 #		define Z_COMPILER_CPP_HAS_DEFAULTED_FUNCTION TRUE /* v3.0 */
-#	endif
-
-#	if __has_feature(cxx_delegating_constructors)
-#		define Z_COMPILER_CPP_HAS_DELEGATING_CONSTRUCTORS TRUE /* v3.0 */
-#	endif
-
-#	if __has_feature(cxx_deleted_functions)
-#		define Z_COMPILER_CPP_HAS_DELETED_FUNCTION TRUE /* v2.9 */
-#	endif
-
-#	if __has_feature(cxx_explicit_conversions)
-#		define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_EXPLICIT_CONVERSION_FUNCTION TRUE /* v3.0 */
-#	endif
-
-#	if __has_feature(cxx_inheriting_constructors)
-#		define Z_COMPILER_CPP_HAS_INHERITING_CONSTRUCTORS TRUE /* v3.3 */
-#	endif
-
-#	if __has_feature(cxx_inline_namespaces)
-#		define Z_COMPILER_CPP_HAS_INLINE_NAMESPACE TRUE /* v2.9 */
-#	endif
-
-#	if __has_feature(cxx_lambdas)
-#		define Z_COMPILER_CPP_HAS_LAMBDA TRUE /* v3.1 */
-#	endif
-
-#	if __has_feature(cxx_range_for)
-#		define Z_COMPILER_CPP_HAS_RANGE_BASED_FOR TRUE /* v3.0 */
-#	endif
-
-#	if __has_feature(cxx_reference_qualified_functions)
-#		define Z_COMPILER_CPP_HAS_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION TRUE /* v2.9 */
-#	endif
-
-#	if __has_feature(cxx_static_assert)
-#		define Z_COMPILER_CPP_HAS_STATIC_ASSERTION TRUE /* v2.9 (v2.6?) */
-#	endif
-
-#	if __has_feature(cxx_strong_enums)
-#		define Z_COMPILER_CPP_HAS_STRONGLY_TYPED_ENUMERATION TRUE /* v2.9 */
-#	endif
-
-#	if __has_feature(cxx_alias_templates)
-#		define Z_COMPILER_CPP_HAS_TEMPLATE_ALIAS TRUE /* v3.0 */
-#	endif
-
-#	if __has_feature(cxx_trailing_return)
-#		define Z_COMPILER_CPP_HAS_TRAILING_RETURN_TYPE TRUE /* v2.9 */
-#	endif
-
-#	if __has_feature(cxx_unrestricted_unions)
-#		define Z_COMPILER_CPP_HAS_UNRESTRICTED_UNION TRUE /* v3.1 */
-#	endif
-
-#	if __has_feature(cxx_nullptr)
-		/* TODO: test this, always available */
-#		define Z_COMPILER_CPP_HAS_LITERAL_NULLPTR TRUE /* v3.0 (v2.6?) */
 #	endif
 
 #	if	__has_feature(cxx_raw_string_literals)	  || \
@@ -917,10 +952,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_LITERAL_UNICODE_STRING TRUE /* v3.0 */
 #	endif
 
-#	if __has_feature(cxx_user_literals)
-#		define Z_COMPILER_CPP_HAS_LITERAL_USER_DEFINED TRUE /* v3.1 */
-#	endif
-
 #	if	__has_feature(cxx_alignof)		  || \
 		(__cplusplus >= 201103L			  && \
 		 Z_COMPILER_VERSION >= Z_VERSION(3, 3, 0) && \
@@ -929,44 +960,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_OPERATOR_ALIGNOF TRUE /* v3.3 */
 #	endif
 
-#	if __has_feature(cxx_noexcept)
-#		define Z_COMPILER_CPP_HAS_OPERATOR_NOEXCEPT TRUE /* v3.0 */
-#	endif
-
-#	if __has_feature(cxx_alignas)
-#		define Z_COMPILER_CPP_HAS_SPECIFIER_ALIGNAS TRUE /* v3.3 */
-#	endif
-
-#	if __has_feature(cxx_constexpr)
-#		define Z_COMPILER_CPP_HAS_SPECIFIER_CONSTEXPR TRUE /* v3.1 (v2.6?) */
-#	endif
-
-#	if __has_feature(cxx_decltype)
-#		define Z_COMPILER_CPP_HAS_SPECIFIER_DECLTYPE TRUE /* v2.9 (v2.6?) */
-#	endif
-
-#	if __has_feature(cxx_decltype_incomplete_return_types)
-#		define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_DECLTYPE_INCOMPLETE_RETURN TRUE /* v3.1 */
-#	endif
-
 #	if __has_feature(cxx_override_control)
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_FINAL    TRUE /* v3.0 */
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_OVERRIDE TRUE /* v3.0 */
 #	endif
 
-#	if __has_feature(cxx_noexcept)
-#		define Z_COMPILER_CPP_HAS_SPECIFIER_NOEXCEPT TRUE /* v3.0 */
-#	endif
 
-	/*-----------------------------------------------.
-	| IMPORTANT: STORAGE_CLASS_THREAD_LOCAL requires |
-	| a C++ runtime providing __cxa_thread_atexit.	 |
-	'-----------------------------------------------*/
-#	if __has_feature(cxx_thread_local)
-#		define Z_COMPILER_CPP_HAS_STORAGE_CLASS_THREAD_LOCAL TRUE /* v3.3 (v3.0?) */
-#	endif
 
-	/* MARK: - C++14 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/* MARK: - Language: C++14 */
 
 /*#	define Z_COMPILER_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR*/
 /*#	define Z_COMPILER_CPP_HAS_CPP14_RULES_ON_CONSTEXPR_FUNCTION*/
@@ -1017,12 +1032,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* v3.4 */
 #	endif
 
-	/*-----------------------------------------------------------------------.
-	| IMPORTANT: In Clang v3.7 and later, SIZED_DEALLOCATION is only enabled |
-	| if the user passes the -fsized-deallocation flag. The user must supply |
-	| definitions of the sized deallocation functions, either by providing	 |
-	| them explicitly or by using a C++ standard library that does.		 |
-	'-----------------------------------------------------------------------*/
+	/*---------------------------------------------------------------------.
+	| IMPORTANT: In v3.7 and later, SIZED_DEALLOCATION is only enabled if  |
+	| the user passes the -fsized-deallocation flag. The user must supply  |
+	| definitions of the sized deallocation functions, either by providing |
+	| them explicitly or by using a C++ standard library that does.	       |
+	'---------------------------------------------------------------------*/
 #	if	__cplusplus >= 201402L			 && \
 		Z_COMPILER_VERSION >= Z_VERSION(3, 4, 0) && \
 		Z_COMPILER_VERSION <  Z_VERSION(3, 7, 0)
@@ -1058,7 +1073,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_DECLTYPE_AUTO TRUE /* v3.3 */
 #	endif
 
-	/* MARK: - C++17 */
+	/* MARK: - Language: C++17 */
 
 /*#	define Z_COMPILER_CPP_HAS_AGGREGATE_INITIALIZATION_FOR_DERIVED_CLASS*/
 /*#	define Z_COMPILER_CPP_HAS_ATTRIBUTES_FOR_ENUMERATION*/
@@ -1112,7 +1127,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-/* MARK: - Attributes */
+/* MARK: - Language: Attributes */
 
 #if __has_attribute(alias)
 #	define Z_COMPILER_ATTRIBUTE_ALIAS(name) __attribute__((alias(name))) /* v2.6 */
@@ -1158,7 +1173,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_ATTRIBUTE_WEAK __attribute__((weak)) /* v2.6 */
 #endif
 
-/* MARK: - Padding modifiers */
+/* MARK: - Language: Padding modifiers */
 
 #if __has_attribute(packed)							 /* v2.6 */
 #	define Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_TYPE	    __attribute__((packed))
@@ -2011,10 +2026,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_BASE __is_base_of /* v2.6 */
 #endif
 
-#if __has_extension(is_class)
-#	define Z_COMPILER_TRAIT_TYPE_IS_CLASS __is_class /* v2.6 */
-#endif
-
 #if __has_extension(is_constructible)
 #	define Z_COMPILER_TRAIT_TYPE_IS_CONSTRUCTIBLE __is_constructible /* v3.5 */
 #endif
@@ -2070,6 +2081,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_TRAIT_TYPE_IS_STANDARD_LAYOUT __is_standard_layout /* v3.0 */
 #endif
 
+#if __has_extension(is_class)
+#	define Z_COMPILER_TRAIT_TYPE_IS_STRUCTURE __is_class /* v2.6 */
+#endif
+
 #if __has_extension(is_trivial)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIAL __is_trivial /* v3.0 */
 #endif
@@ -2118,8 +2133,41 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Private helpers clean-up */
 
-#undef Z_HAS_FEATURE
-#undef Z_HAS_ATTRIBUTE
-#undef Z_HAS_BUILTIN
+#undef z__has_attribute
+#undef z__has_builtin
+#undef z__has_cpp_attribute
+#undef z__has_extension
+#undef z__has_feature
+
+
+
+
+
+
+
+
+
+
+
+
+/* MARK: - Floating point number format */
+
+#ifdef __LDBL_MANT_DIG__ /* v2.6 */
+
+#	if __LDBL_MANT_DIG__ == 53
+#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_IEEE_754_BINARY64
+
+#	elif __LDBL_MANT_DIG__ == 64
+#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_X87_BINARY80
+
+#	elif __LDBL_MANT_DIG__ == 106
+#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_IBM_DOUBLE_DOUBLE
+
+#	elif __LDBL_MANT_DIG__ == 113
+#		define Z_COMPILER_FLOATING_POINT_NUMBER_FORMAT_LDOUBLE Z_NUMBER_FORMAT_IEEE_754_BINARY128
+#	endif
+
+#endif
+
 
 #endif /* Z_inspection_compiler_modules_Clang_H */

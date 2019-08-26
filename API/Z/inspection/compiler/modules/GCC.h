@@ -88,7 +88,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #endif
 
-/* MARK: - CPU */
+/* MARK: - ISA */
 
 #if	defined(__amd64	  ) || \
 	defined(__amd64__ ) || \
@@ -97,7 +97,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_M_AMD64  ) || \
 	defined(_M_X64	  )
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_64
+#	define Z_COMPILER_ISA Z_ISA_X86_64
 
 #elif	defined(__386__	) || \
 	defined(__i386	) || \
@@ -105,24 +105,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_M_IX86	) || \
 	defined(i386	)
 
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_32
+#	define Z_COMPILER_ISA Z_ISA_X86_32
 
 #endif
 
-/* MARK: - CPU integral endianness / bit field order */
+/* MARK: - ISA: Integral endianness / Bit field order */
 
 #ifdef __BYTE_ORDER__
 
 #	if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
+#		define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
 #		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_REVERSED
 
 #	elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
+#		define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
 #		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_NORMAL
 
 #	elif __BYTE_ORDER__ == __ORDER_PDP_ENDIAN__
-#		define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_PDP
+#		define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_PDP
 #		define Z_COMPILER_BIT_FIELD_ORDER_ALL	      Z_ORDER_NORMAL
 #	endif
 
@@ -406,9 +406,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	/*------------------------------------------------------------.
 	| See: <http://gcc.gnu.org/ml/gcc-help/2006-08/msg00232.html> |
 	'------------------------------------------------------------*/
-#	if	defined(Z_COMPILER_CPU_ARCHITECTURE)			  && \
-		(Z_COMPILER_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32 || \
-		 Z_COMPILER_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64)
+#	if	defined(Z_COMPILER_ISA)		&& \
+		(Z_COMPILER_ISA == Z_ISA_X86_32 || \
+		 Z_COMPILER_ISA == Z_ISA_X86_64)
 
 #		define Z_COMPILER_ATTRIBUTE_THREAD_LOCAL __thread
 #	endif
@@ -1208,18 +1208,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-in macros: VAL
 .------------------------------------------------------------------------------.
-| GCC has a BIG __BUG__ which breaks the CDECL calling convention on x86-32.   |
-| This makes necessary to always use the GCC's internal built-in macros for    |
-| dealing with variable argument lists.					       |
-|									       |
-| Read the complete story:						       |
-| <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=45249>			       |
-|									       |
-| This should not be a problem, after all the built-in macros work well, but   |
-| some versions of GCC create dependencies with the C standard library under   |
-| certain conditions if they are used. The way to fix this is to use the       |
-| "-fno-builtin" option to make GCC, paradoxically, generate true built-ins.   |
-'-----------------------------------------------------------------------------*/
+| GCC breaks the CDECL calling convention on x86-32, it is necessary to use the GCC's internal built-in macros for dealing with variable argument lists. |
+|									     |
+| Read the complete story:						     |
+| <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=45249>			     |
+|									     |
+| This should not be a problem, after all the built-in macros work well, but |
+| some versions of GCC create dependencies with the C standard library under |
+| certain conditions if they are used. The way to fix this is to use the     |
+| -fno-builtin option to make GCC, paradoxically, generate true built-ins.   |
+'---------------------------------------------------------------------------*/
 
 #define Z_COMPILER_MACRO_VAL_INITIALIZE	__builtin_va_start
 #define Z_COMPILER_MACRO_VAL_FINALIZE	__builtin_va_end

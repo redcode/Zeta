@@ -294,6 +294,29 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_CPP_HAS_TYPE_LONG_LONG FALSE
 #endif
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* MARK: - C++14 */
 
 #ifndef Z_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR

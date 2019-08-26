@@ -10,9 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C/modules/C95.h>
 
-#define Z_C_HAS_C99_RULES_ON_INTEGER_LITERALS		       TRUE
-#define Z_C_HAS_C99_RULES_ON_TYPE_COMPATIBILITY		       TRUE
-#define Z_C_HAS_C99_RULES_ON_TYPE_CONVERSION		       TRUE
 #define Z_C_HAS_COMPOUND_LITERAL			       TRUE
 #define Z_C_HAS_CONVERSION_OF_NON_LVALUE_ARRAY_TO_POINTER      TRUE
 #define Z_C_HAS_CPP_STYLE_COMMENT			       TRUE

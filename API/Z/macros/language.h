@@ -39,9 +39,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_COMPILER_HAS_ATTRIBUTE(API)
-#	define Z_API Z_COMPILER_ATTRIBUTE(API)
+#	define Z_API_IMPORT Z_COMPILER_ATTRIBUTE(API_IMPORT)
 #else
-#	define Z_API
+#	define Z_API_IMPORT
 #endif
 
 #if Z_COMPILER_HAS_ATTRIBUTE(API_EXPORT)

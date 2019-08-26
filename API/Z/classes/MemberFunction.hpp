@@ -37,7 +37,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			template <class M, class E = typename TypeIf<
 				Type<M>::is_member_function_pointer &&
-				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE MemberFunction(M function) Z_NOTHROW
 			: function(reinterpret_cast<R (NaT::*)(P...)>(function)) {}
@@ -49,7 +49,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			template <class M, class E = typename TypeIf<
 				Type<M>::is_member_function_pointer &&
-				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE operator M() const Z_NOTHROW
 				{return reinterpret_cast<M>(function);}
@@ -58,7 +58,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class M>
 			Z_INLINE typename TypeIf<
 				Type<M>::is_member_function_pointer &&
-				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			MemberFunction &>::type
 			operator =(M rhs) Z_NOTHROW
 				{

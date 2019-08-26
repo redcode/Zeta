@@ -14,22 +14,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_VERSION	  Z_VERSION(__MCC_MAJOR__, __MCC_MINOR__, __MCC_MICRO__)
 #define Z_COMPILER_VERSION_STRING __MCC_VERSION__
 
-/* MARK: - CPU */
+/* MARK: - ISA */
 
 #if defined(__x86_32__)
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_32
+#	define Z_COMPILER_ISA Z_ISA_X86_32
 
 #elif defined(__x86_64__)
-#	define Z_COMPILER_CPU_ARCHITECTURE Z_CPU_ARCHITECTURE_X86_64
+#	define Z_COMPILER_ISA Z_ISA_X86_64
 #endif
 
-/* MARK: - CPU integral endianness / bit field order */
+/* MARK: - ISA: Integral endianness / Bit field order */
 
 #if defined(__BIG_ENDIAN__)
-#	define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
+#	define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
 
 #elif defined(__LITTLE_ENDIAN__)
-#	define Z_COMPILER_CPU_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
+#	define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
 #endif
 
 /* MARK: - OS / Platform */

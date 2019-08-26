@@ -10,7 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C/modules/KR C.h>
 
-#define Z_C_HAS_C89_RULES_ON_TYPE_CONVERSION	       TRUE
 #define Z_C_HAS_CONSTRUCT_AS_FUNCTION_ARGUMENT	       TRUE
 #define Z_C_HAS_CONSTRUCT_AS_RETURN_TYPE	       TRUE
 #define Z_C_HAS_CONSTRUCT_ASSIGNMENT		       TRUE
@@ -26,11 +25,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_HAS_STRING_LITERAL_CONCATENATION	       TRUE
 #define Z_C_HAS_TRIGRAPHS			       TRUE
 #define Z_C_HAS_UNION_CONSTANT_INITIALIZATION	       TRUE
+#define Z_C_HAS_VALUE_PRESERVING_UNSIGNED_CONVERSION   TRUE
 #define Z_C_HAS_ESCAPE_SEQUENCE_ALERT		       TRUE
 #define Z_C_HAS_ESCAPE_SEQUENCE_HEXADECIMAL	       TRUE
 #define Z_C_HAS_ESCAPE_SEQUENCE_VERTICAL_TAB	       TRUE
 #define Z_C_HAS_LITERAL_FLOAT			       TRUE
-#define Z_C_HAS_LITERAL_LONG_DOUBLE		       TRUE
 #define Z_C_HAS_LITERAL_UNSIGNED		       TRUE
 #define Z_C_HAS_OPERATOR_UNARY_PLUS		       TRUE
 #define Z_C_HAS_PREPROCESSOR_DIRECTIVE_NULL	       TRUE

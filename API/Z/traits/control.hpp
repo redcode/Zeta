@@ -36,7 +36,7 @@ namespace Zeta {
 
 		template <Boolean B, class T> struct TypeIf {};
 
-		template <class T> struct TypeIf <true, T> {typedef T type;};
+		template <class T> struct TypeIf<true, T> {typedef T type;};
 
 #		if Z_HAS_TRAIT_ALIAS(type_if)
 			template <Boolean B, class T> using type_if = typename TypeIf<B, T>::type;

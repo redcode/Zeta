@@ -44,10 +44,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C89 */
 
-#ifndef Z_C_HAS_C89_RULES_ON_TYPE_CONVERSION
-#	define Z_C_HAS_C89_RULES_ON_TYPE_CONVERSION FALSE
-#endif
-
 #ifndef Z_C_HAS_CONSTRUCT_AS_FUNCTION_ARGUMENT
 #	define Z_C_HAS_CONSTRUCT_AS_FUNCTION_ARGUMENT FALSE
 #endif
@@ -108,6 +104,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_UNION_CONSTANT_INITIALIZATION FALSE
 #endif
 
+#ifndef Z_C_HAS_VALUE_PRESERVING_UNSIGNED_CONVERSION
+#	define Z_C_HAS_VALUE_PRESERVING_UNSIGNED_CONVERSION FALSE
+#endif
+
 #ifndef Z_C_HAS_ESCAPE_SEQUENCE_ALERT
 #	define Z_C_HAS_ESCAPE_SEQUENCE_ALERT FALSE
 #endif
@@ -122,10 +122,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_C_HAS_LITERAL_FLOAT
 #	define Z_C_HAS_LITERAL_FLOAT FALSE
-#endif
-
-#ifndef Z_C_HAS_LITERAL_LONG_DOUBLE
-#	define Z_C_HAS_LITERAL_LONG_DOUBLE FALSE
 #endif
 
 #ifndef Z_C_HAS_LITERAL_UNSIGNED
@@ -211,18 +207,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 /* MARK: - C99 */
-
-#ifndef Z_C_HAS_C99_RULES_ON_INTEGER_LITERALS
-#	define Z_C_HAS_C99_RULES_ON_INTEGER_LITERALS FALSE
-#endif
-
-#ifndef Z_C_HAS_C99_RULES_ON_TYPE_COMPATIBILITY
-#	define Z_C_HAS_C99_RULES_ON_TYPE_COMPATIBILITY FALSE
-#endif
-
-#ifndef Z_C_HAS_C99_RULES_ON_TYPE_CONVERSION
-#	define Z_C_HAS_C99_RULES_ON_TYPE_CONVERSION FALSE
-#endif
 
 #ifndef Z_C_HAS_COMPOUND_LITERAL
 #	define Z_C_HAS_COMPOUND_LITERAL FALSE
@@ -394,12 +378,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C11 */
 
-#ifndef Z_C_HAS_ANONYMOUS_STRUCTURE
-#	define Z_C_HAS_ANONYMOUS_STRUCTURE FALSE
+#ifndef Z_C_HAS_ANONYMOUS_STRUCTURE_AS_MEMBER
+#	define Z_C_HAS_ANONYMOUS_STRUCTURE_AS_MEMBER FALSE
 #endif
 
-#ifndef Z_C_HAS_ANONYMOUS_UNION
-#	define Z_C_HAS_ANONYMOUS_UNION FALSE
+#ifndef Z_C_HAS_ANONYMOUS_UNION_AS_MEMBER
+#	define Z_C_HAS_ANONYMOUS_UNION_AS_MEMBER FALSE
 #endif
 
 #ifndef Z_C_HAS_GENERIC_SELECTION
@@ -430,8 +414,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_LITERAL_CHAR32_T_STRING FALSE
 #endif
 
-#ifndef Z_C_HAS_LITERAL_UNICODE_STRING
-#	define Z_C_HAS_LITERAL_UNICODE_STRING FALSE
+#ifndef Z_C_HAS_LITERAL_UTF8_STRING
+#	define Z_C_HAS_LITERAL_UTF8_STRING FALSE
 #endif
 
 #ifndef Z_C_HAS_OPERATOR_ALIGNOF

@@ -57,8 +57,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				{reinterpret_cast<Call>(objc_msgSend)(object, this->selector, arguments...);}
 
 
-#			if	Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64 || \
-				Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32
+#			if Z_ISA == Z_ISA_X86_64 || Z_ISA == Z_ISA_X86_32
 
 				template <class RR = R>
 				Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_real && !Type<RR>::is_class, RR>::type

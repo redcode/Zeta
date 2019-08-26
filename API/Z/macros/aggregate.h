@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_macros_aggregate_H
 
 #include <Z/keys/order.h>
-#include <Z/inspection/CPU.h>
+#include <Z/inspection/ISA.h>
 #include <Z/inspection/language.h>
 #include <Z/macros/pasting.h>
 
@@ -103,7 +103,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
 #define Z_ENDIANIZED_MEMBERS(bits, member_count)	  \
-	Z_APPEND_TERNARY(Z_CPU_ENDIANNESS(INTEGRAL, bits)) \
+	Z_APPEND_TERNARY(Z_ISA_ENDIANNESS(INTEGRAL, bits)) \
 		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
 #endif /* Z_macros_aggregate_H */

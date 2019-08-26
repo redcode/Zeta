@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_inspection_compiler_completion_H
 #define Z_inspection_compiler_completion_H
 
-/* MARK: - K&R C */
+/* MARK: - Language: K&R C */
 
 #ifndef Z_COMPILER_C_HAS_OLD_STYLE_FUNCTION
 #	define Z_COMPILER_C_HAS_OLD_STYLE_FUNCTION FALSE
@@ -43,11 +43,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_TYPE_FLOAT FALSE
 #endif
 
-/* MARK: - C89 */
-
-#ifndef Z_COMPILER_C_HAS_C89_RULES_ON_TYPE_CONVERSION
-#	define Z_COMPILER_C_HAS_C89_RULES_ON_TYPE_CONVERSION FALSE
-#endif
+/* MARK: - Language: C89 */
 
 #ifndef Z_COMPILER_C_HAS_CONSTRUCT_AS_FUNCTION_ARGUMENT
 #	define Z_COMPILER_C_HAS_CONSTRUCT_AS_FUNCTION_ARGUMENT FALSE
@@ -109,6 +105,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_UNION_CONSTANT_INITIALIZATION FALSE
 #endif
 
+#ifndef Z_COMPILER_C_HAS_VALUE_PRESERVING_UNSIGNED_CONVERSION
+#	define Z_COMPILER_C_HAS_VALUE_PRESERVING_UNSIGNED_CONVERSION FALSE
+#endif
+
 #ifndef Z_COMPILER_C_HAS_ESCAPE_SEQUENCE_ALERT
 #	define Z_COMPILER_C_HAS_ESCAPE_SEQUENCE_ALERT FALSE
 #endif
@@ -123,10 +123,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_COMPILER_C_HAS_LITERAL_FLOAT
 #	define Z_COMPILER_C_HAS_LITERAL_FLOAT FALSE
-#endif
-
-#ifndef Z_COMPILER_C_HAS_LITERAL_LONG_DOUBLE
-#	define Z_COMPILER_C_HAS_LITERAL_LONG_DOUBLE FALSE
 #endif
 
 #ifndef Z_COMPILER_C_HAS_LITERAL_UNSIGNED
@@ -205,25 +201,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_VOLATILE FALSE
 #endif
 
-/* MARK: - C95 */
+/* MARK: - Language: C95 */
 
 #ifndef Z_COMPILER_C_HAS_DIGRAPHS
 #	define Z_COMPILER_C_HAS_DIGRAPHS FALSE
 #endif
 
-/* MARK: - C99 */
-
-#ifndef Z_COMPILER_C_HAS_C99_RULES_ON_INTEGER_LITERALS
-#	define Z_COMPILER_C_HAS_C99_RULES_ON_INTEGER_LITERALS FALSE
-#endif
-
-#ifndef Z_COMPILER_C_HAS_C99_RULES_ON_TYPE_COMPATIBILITY
-#	define Z_COMPILER_C_HAS_C99_RULES_ON_TYPE_COMPATIBILITY FALSE
-#endif
-
-#ifndef Z_COMPILER_C_HAS_C99_RULES_ON_TYPE_CONVERSION
-#	define Z_COMPILER_C_HAS_C99_RULES_ON_TYPE_CONVERSION FALSE
-#endif
+/* MARK: - Language: C99 */
 
 #ifndef Z_COMPILER_C_HAS_COMPOUND_LITERAL
 #	define Z_COMPILER_C_HAS_COMPOUND_LITERAL FALSE
@@ -289,12 +273,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_REMOVAL_OF_IMPLICIT_INT FALSE
 #endif
 
-#ifndef Z_COMPILER_C_HAS_STATIC_AND_TYPE_QUALIFIERS_IN_ARRAY_PARAMETER
-#	define Z_COMPILER_C_HAS_STATIC_AND_TYPE_QUALIFIERS_IN_ARRAY_PARAMETER FALSE
+#ifndef Z_COMPILER_C_HAS_STATIC_IN_ARRAY_PARAMETER_DECLARATION
+#	define Z_COMPILER_C_HAS_STATIC_IN_ARRAY_PARAMETER_DECLARATION FALSE
 #endif
 
 #ifndef Z_COMPILER_C_HAS_TRAILING_COMMA_ALLOWED_IN_ENUMERATION
 #	define Z_COMPILER_C_HAS_TRAILING_COMMA_ALLOWED_IN_ENUMERATION FALSE
+#endif
+
+#ifndef Z_COMPILER_C_HAS_TYPE_QUALIFIERS_IN_ARRAY_PARAMETER_DECLARATION
+#	define Z_COMPILER_C_HAS_TYPE_QUALIFIERS_IN_ARRAY_PARAMETER_DECLARATION FALSE
 #endif
 
 #ifndef Z_COMPILER_C_HAS_UNIVERSAL_CHARACTER_NAMES
@@ -389,14 +377,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT FALSE
 #endif
 
-/* MARK: - C11 */
+/* MARK: - Language: C11 */
 
-#ifndef Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE
-#	define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE FALSE
+#ifndef Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE_AS_MEMBER
+#	define Z_COMPILER_C_HAS_ANONYMOUS_STRUCTURE_AS_MEMBER FALSE
 #endif
 
-#ifndef Z_COMPILER_C_HAS_ANONYMOUS_UNION
-#	define Z_COMPILER_C_HAS_ANONYMOUS_UNION FALSE
+#ifndef Z_COMPILER_C_HAS_ANONYMOUS_UNION_AS_MEMBER
+#	define Z_COMPILER_C_HAS_ANONYMOUS_UNION_AS_MEMBER FALSE
 #endif
 
 #ifndef Z_COMPILER_C_HAS_GENERIC_SELECTION
@@ -427,8 +415,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_LITERAL_CHAR32_T_STRING FALSE
 #endif
 
-#ifndef Z_COMPILER_C_HAS_LITERAL_UNICODE_STRING
-#	define Z_COMPILER_C_HAS_LITERAL_UNICODE_STRING FALSE
+#ifndef Z_COMPILER_C_HAS_LITERAL_UTF8_STRING
+#	define Z_COMPILER_C_HAS_LITERAL_UTF8_STRING FALSE
 #endif
 
 #ifndef Z_COMPILER_C_HAS_OPERATOR_ALIGNOF
@@ -455,15 +443,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_ATOMIC FALSE
 #endif
 
-/* MARK: - Apple C extensions support */
+/* MARK: - Language: Apple C extensions */
 
-#ifndef Z_COMPILER_C_HAS_CLOSURE
-#	define Z_COMPILER_C_HAS_CLOSURE FALSE
+#ifndef Z_COMPILER_C_HAS_BLOCK_OBJECT
+#	define Z_COMPILER_C_HAS_BLOCK_OBJECT FALSE
 #endif
 
 #ifdef __cplusplus
 
-	/* MARK: - C++98 support */
+	/* MARK: - Language: C++98 */
 
 #	ifndef Z_COMPILER_CPP_HAS_SFINAE
 #		define Z_COMPILER_CPP_HAS_SFINAE FALSE
@@ -477,13 +465,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_TYPE_WCHAR_T FALSE
 #	endif
 
-	/* MARK: - C++03 support */
+	/* MARK: - Language: C++03 */
 
 #	ifndef Z_COMPILER_CPP_HAS_VALUE_INITIALIZATION
 #		define Z_COMPILER_CPP_HAS_VALUE_INITIALIZATION FALSE
 #	endif
 
-	/* MARK: - C++11 support */
+	/* MARK: - Language: C++11 */
 
 #	ifndef Z_COMPILER_CPP_HAS_C99_PREPROCESSOR
 #		define Z_COMPILER_CPP_HAS_C99_PREPROCESSOR FALSE
@@ -749,7 +737,42 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_TYPE_LONG_LONG FALSE
 #	endif
 
-	/* MARK: - C++14 support */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/* MARK: - Language: C++14 support */
 
 #	ifndef Z_COMPILER_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR
 #		define Z_COMPILER_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR FALSE
@@ -799,7 +822,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_CPP_HAS_SPECIFIER_CASE_DECLTYPE_AUTO FALSE
 #	endif
 
-	/* MARK: - C++17 support */
+	/* MARK: - Language: C++17 support */
 
 #	ifndef Z_COMPILER_CPP_HAS_AGGREGATE_INITIALIZATION_FOR_DERIVED_CLASS
 #		define Z_COMPILER_CPP_HAS_AGGREGATE_INITIALIZATION_FOR_DERIVED_CLASS FALSE
@@ -966,6 +989,50 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* MARK: - Attributes */
 

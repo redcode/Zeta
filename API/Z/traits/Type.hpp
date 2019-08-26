@@ -14,6 +14,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/traits/TypeList.hpp>
 #include <Z/classes/NaT.hpp>
 #include <Z/macros/aggregate.h>
+#include <Z/macros/control.h>
+#include <Z/types/fundamental.hpp>
 
 #if !Z_HAS_TRAIT(TypeList)
 #	include <Z/traits/control.hpp>
@@ -288,7 +290,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if	Z_COMPILER_HAS_TRAIT(TYPE_IS_DEFAULT_CONSTRUCTIBLE) || \
-	(Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE) && Z_DIALECT_HAS_SPECIFIER(CPP, DECLTYPE))
+	(Z_DIALECT_HAS(CPP, EXPRESSION_SFINAE) && Z_DIALECT_HAS_SPECIFIER(CPP, DECLTYPE)) // No existe TYPE_IS_DEFAULT_CONSTRUCTIBLE
 
 #	define Z_HAS_TRAIT_TypeIsDefaultConstructible	 TRUE
 #	define Z_TRAIT_Type_HAS_is_default_constructible TRUE
@@ -611,8 +613,8 @@ namespace Zeta {namespace Detail {namespace Type {namespace Helpers {
 
 namespace Zeta {
 
-	template <class A, class B> struct TypeAreEqual	      : False {};
-	template <class A	  > struct TypeAreEqual<A, A> : True  {};
+	template <class A, class B> struct TypeIsSame	    : False {};
+	template <class A	  > struct TypeIsSame<A, A> : True  {};
 
 #	if Z_HAS_TRAIT(TypeIsAssignable)
 		template <class T, class from_type> struct TypeIsAssignable {
@@ -746,18 +748,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			can_form_member_pointer	      = false,
 			can_form_pointer	      = false,
 			can_form_reference	      = false,
-			has_const		      = false,
-			has_const_lvalue	      = false,
-			has_const_rvalue	      = false,
-			has_const_volatile	      = false,
-			has_const_volatile_lvalue     = false,
-			has_const_volatile_rvalue     = false,
-			has_lvalue		      = false,
 			has_qualified_indirectee      = false,
-			has_rvalue		      = false,
-			has_volatile		      = false,
-			has_volatile_lvalue	      = false,
-			has_volatile_rvalue	      = false,
 			is_arithmetic		      = false,
 			is_array		      = false,
 			is_boolean		      = false,
@@ -780,7 +771,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_indirection		      = false,
 			is_integer		      = false,
 			is_integral		      = false,
-			is_flexible_array	      = false,
 			is_floating_point	      = false,
 			is_function		      = false,
 			is_function_lvalue_reference  = false,
@@ -794,7 +784,6 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_member_pointer	      = false,
 			is_nat			      = true,
 			is_natural		      = false,
-			is_noexcept		      = false,
 			is_number		      = false,
 			is_objective_c_class	      = false,
 			is_objective_c_class_pointer  = false,
@@ -808,12 +797,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			is_rvalue_reference	      = false,
 			is_scalar		      = false,
 			is_signed		      = false,
-			is_signed_or_unsigned	      = false,
 			is_simple		      = false,
+			is_sized_array		      = false,
 			is_statically_allocatable     = false,
 			is_storable		      = false,
 			is_structure		      = false,
 			is_unsigned		      = false,
+			is_unsized_array	      = false,
 			is_valid		      = false,
 			is_variadic		      = false,
 			is_variadic_function	      = false,
@@ -829,8 +819,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			dimension_count	  = 0,
 			element_count	  = 0,
 			indirection_level = 0,
-			pointer_level	  = 0,
-			size		  = 0
+			pointer_level	  = 0
 		};
 
 		enum {	fixed_fundamental = 0,
@@ -1166,7 +1155,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	undef Z_IMPLEMENTATION_STANDARD_INTEGRAL
 
-#	if Z_DIALECT_HAS_TYPE(CPP, BOOL) || Z_DIALECT_HAS_TYPE(C, BOOL)
+#	if Z_DIALECT_HAS_TYPE(CPP, BOOL) || Z_DIALECT_HAS_TYPE(C, BOOL)
 
 		struct Boolean : Integral {
 			enum {is_boolean = true};
@@ -1178,7 +1167,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	if Z_DIALECT_HAS_TYPE(CPP, WCHAR_T)
 
-		struct WChar : Natural {
+		struct WChar : Natural { // TODO: Can be Integer
 			enum {fundamental = Z_FUNDAMENTAL_WCHAR};
 
 			typedef wchar_t type;
@@ -1195,6 +1184,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 		};								\
 										\
 		typedef char##bits##_t type;					\
+		typedef char##bits##_t to_unsigned;				\
 	};
 
 /*#	if Z_DIALECT_HAS_TYPE(CPP, CHAR8_T)
@@ -1321,30 +1311,30 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 #	undef Z_IMPLEMENTATION_FIXED_WIDTH_INTEGER
 
-#	define Z_IMPLEMENTATION_FLOATING_POINT(TYPE, Type, type)				    \
+#	define Z_IMPLEMENTATION_FLOATING_POINT(NAME, Name, name)				    \
 												    \
-	struct Type : FloatingPoint {								    \
-		enum {	fundamental	  = Z_##TYPE##_FUNDAMENTAL,				    \
-			fixed_fundamental = Z_##TYPE##_FIXED_FUNDAMENTAL,			    \
-			number_format	  = Z_##TYPE##_NUMBER_FORMAT				    \
+	struct Name : FloatingPoint {								    \
+		enum {	fundamental	  = Z_##NAME##_FUNDAMENTAL,				    \
+			fixed_fundamental = Z_##NAME##_FIXED_FUNDAMENTAL,			    \
+			number_format	  = Z_##NAME##_NUMBER_FORMAT				    \
 		};										    \
-		enum {	digits_10	    = Z_##TYPE##_DIGITS_10,				    \
-			maximum_digits_10   = Z_##TYPE##_MAXIMUM_DIGITS_10,			    \
-			radix		    = Z_##TYPE##_RADIX,					    \
-			significand_digits  = Z_##TYPE##_SIGNIFICAND_DIGITS,			    \
-			exponent_maximum    = Z_##TYPE##_EXPONENT_MAXIMUM,			    \
-			exponent_minimum    = Z_##TYPE##_EXPONENT_MINIMUM,			    \
-			exponent_10_maximum = Z_##TYPE##_EXPONENT_10_MAXIMUM,			    \
-			exponent_10_minimum = Z_##TYPE##_EXPONENT_10_MINIMUM			    \
+		enum {	digits_10	    = Z_##NAME##_DIGITS_10,				    \
+			maximum_digits_10   = Z_##NAME##_MAXIMUM_DIGITS_10,			    \
+			radix		    = Z_##NAME##_RADIX,					    \
+			significand_digits  = Z_##NAME##_SIGNIFICAND_DIGITS,			    \
+			exponent_maximum    = Z_##NAME##_EXPONENT_MAXIMUM,			    \
+			exponent_minimum    = Z_##NAME##_EXPONENT_MINIMUM,			    \
+			exponent_10_maximum = Z_##NAME##_EXPONENT_10_MAXIMUM,			    \
+			exponent_10_minimum = Z_##NAME##_EXPONENT_10_MINIMUM			    \
 		};										    \
 												    \
-		static Z_CT(CPP11) z##type epsilon	   () {return Z_##TYPE##_EPSILON;}	    \
-		static Z_CT(CPP11) z##type maximum	   () {return Z_##TYPE##_MAXIMUM;}	    \
-		static Z_CT(CPP11) z##type minimum	   () {return Z_##TYPE##_MINIMUM;}	    \
-		static Z_CT(CPP11) z##type denormal_minimum() {return Z_##TYPE##_DENORMAL_MINIMUM;} \
+		static Z_CT(CPP11) z##name epsilon	   () {return Z_##NAME##_EPSILON;}	    \
+		static Z_CT(CPP11) z##name maximum	   () {return Z_##NAME##_MAXIMUM;}	    \
+		static Z_CT(CPP11) z##name minimum	   () {return Z_##NAME##_MINIMUM;}	    \
+		static Z_CT(CPP11) z##name denormal_minimum() {return Z_##NAME##_DENORMAL_MINIMUM;} \
 												    \
-		typedef z##type type;								    \
-		typedef z##type to_signed;							    \
+		typedef z##name type;								    \
+		typedef z##name to_signed;							    \
 	};
 
 #	ifdef Z_FLOAT
@@ -1474,7 +1464,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 			enum {is_aggregate = true};
 #		endif
 
-#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_DEFAULT_CONSTRUCTIBLE)
+#		if Z_COMPILER_HAS_TRAIT(TYPE_IS_DEFAULT_CONSTRUCTIBLE) // No existe TYPE_IS_DEFAULT_CONSTRUCTIBLE
 			enum {is_default_constructible = Z_COMPILER_TRAIT(TYPE_IS_DEFAULT_CONSTRUCTIBLE)(T)};
 #		elif Z_TRAIT_HAS(Type, is_default_constructible)
 			enum {is_default_constructible = Helpers::IsDefaultConstructible<T, T>::value};
@@ -1507,16 +1497,17 @@ namespace Zeta {namespace Detail {namespace Type {namespace Abstract {
 
 	template <zboolean E, class T, zusize N> struct SizedArray : Array<E, T> {
 		enum {	is_empty		  = (N == 0),
-			is_statically_allocatable = true
+			is_statically_allocatable = true,
+			is_sized_array		  = true
 		};
 		enum {element_count = N};
 
 		typedef T type[N];
 	};
 
-	template <zboolean E, class T> struct FlexibleArray : Array<E, T> {
-		enum {	is_empty	  = true,
-			is_flexible_array = true
+	template <zboolean E, class T> struct UnsizedArray : Array<E, T> {
+		enum {	is_empty	 = true,
+			is_unsized_array = true
 		};
 
 		typedef T type[];
@@ -1919,49 +1910,44 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		enum {is_qualified = true};
 	};
 
-	enum {	NonSignedOrUnsigned,
-		SignedOrUnsigned
+	enum {	NonNumber,
+		Number
 	};
 
 	template <zuint K, class C> struct Const;
 	template <zuint K, class C> struct ConstVolatile;
 	template <zuint K, class C> struct Volatile;
 
-	template <class C> struct Const<NonSignedOrUnsigned, C> : Qualified<C> {
-		enum {	has_const = true,
-			is_const  = true
-		};
+	template <class C> struct Const<NonNumber, C> : Qualified<C> {
+		enum {is_const = true};
 
 		typedef typename C::to_const	      type;
 		typedef typename C::to_const_volatile add_volatile;
 		typedef typename C::to_const	      remove_volatile;
 	};
 
-	template <class C> struct Const<SignedOrUnsigned, C> : Const<NonSignedOrUnsigned, C> {
+	template <class C> struct Const<Number, C> : Const<NonNumber, C> {
 		typedef const typename C::to_signed   to_signed;
 		typedef const typename C::to_unsigned to_unsigned;
 	};
 
-	template <class C> struct Volatile<NonSignedOrUnsigned, C> : Qualified<C> {
-		enum {	has_volatile = true,
-			is_volatile  = true
-		};
+	template <class C> struct Volatile<NonNumber, C> : Qualified<C> {
+		enum {is_volatile = true};
 
 		typedef typename C::to_volatile	      type;
 		typedef typename C::to_const_volatile add_const;
 		typedef typename C::to_volatile	      remove_const;
 	};
 
-	template <class C> struct Volatile<SignedOrUnsigned, C> : Volatile<NonSignedOrUnsigned, C> {
+	template <class C> struct Volatile<Number, C> : Volatile<NonNumber, C> {
 		typedef volatile typename C::to_signed	 to_signed;
 		typedef volatile typename C::to_unsigned to_unsigned;
 	};
 
-	template <class C> struct ConstVolatile<NonSignedOrUnsigned, C> : Qualified<C> {
-		enum {	has_const	   = true,
-			has_const_volatile = true,
-			has_volatile	   = true,
-			is_const_volatile  = true,
+	template <class C> struct ConstVolatile<NonNumber, C> : Qualified<C> {
+		enum {	is_const	  = true,
+			is_const_volatile = true,
+			is_volatile	  = true
 		};
 
 		typedef typename C::to_const_volatile type;
@@ -1971,22 +1957,22 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		typedef typename C::to_const	      remove_volatile;
 	};
 
-	template <class C> struct ConstVolatile<SignedOrUnsigned, C> : ConstVolatile<NonSignedOrUnsigned, C> {
+	template <class C> struct ConstVolatile<Number, C> : ConstVolatile<NonNumber, C> {
 		typedef const volatile typename C::to_signed   to_signed;
 		typedef const volatile typename C::to_unsigned to_unsigned;
 	};
 
 	// MARK: - Mixins: Qualifiers (array)
 
-	template <class C> struct ConstArray : Const<NonSignedOrUnsigned, C> {
+	template <class C> struct ConstArray : Const<NonNumber, C> {
 		typedef const typename C::element_type element_type;
 	};
 
-	template <class C> struct VolatileArray : Volatile<NonSignedOrUnsigned, C> {
+	template <class C> struct VolatileArray : Volatile<NonNumber, C> {
 		typedef volatile typename C::element_type element_type;
 	};
 
-	template <class C> struct ConstVolatileArray : ConstVolatile<NonSignedOrUnsigned, C> {
+	template <class C> struct ConstVolatileArray : ConstVolatile<NonNumber, C> {
 		typedef const volatile typename C::element_type element_type;
 	};
 
@@ -2022,9 +2008,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct ConstFunction : QualifiedFunction<C> {
-		enum {	has_const = true,
-			is_const  = true
-		};
+		enum {is_const = true};
 
 		typedef typename C::to_const	      type;
 		typedef typename C::to_const_volatile add_volatile;
@@ -2041,9 +2025,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct VolatileFunction : QualifiedFunction<C> {
-		enum {	has_volatile = true,
-			is_volatile  = true
-		};
+		enum {is_volatile = true};
 
 		typedef typename C::to_volatile	      type;
 		typedef typename C::to_const_volatile add_const;
@@ -2060,10 +2042,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 	};
 
 	template <class C> struct ConstVolatileFunction : QualifiedFunction<C> {
-		enum {	has_const	   = true,
-			has_const_volatile = true,
-			has_volatile	   = true,
-			is_const_volatile  = true
+		enum {	is_const	  = true,
+			is_const_volatile = true,
+			is_volatile	  = true
 		};
 
 		typedef typename C::to_const_volatile type;
@@ -2088,9 +2069,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 #	if Z_DIALECT_HAS(CPP, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
 		template <class C> struct LValueFunction : QualifiedFunction<C> {
-			enum {	has_lvalue = true,
-				is_lvalue  = true
-			};
+			enum {is_lvalue = true};
 
 			typedef typename C::to_lvalue		     type;
 			typedef typename C::to_const_lvalue	     add_const;
@@ -2102,9 +2081,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		};
 
 		template <class C> struct RValueFunction : QualifiedFunction<C> {
-			enum {	has_rvalue = true,
-				is_rvalue  = true
-			};
+			enum {is_rvalue = true};
 
 			typedef typename C::to_rvalue		     type;
 			typedef typename C::to_const_rvalue	     add_const;
@@ -2116,10 +2093,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		};
 
 		template <class C> struct ConstLValueFunction : QualifiedFunction<C> {
-			enum {	has_const	 = true,
-				has_const_lvalue = true,
-				has_lvalue	 = true,
-				is_const_lvalue	 = true
+			enum {	is_const	= true,
+				is_const_lvalue = true,
+				is_lvalue	= true
 			};
 
 			typedef typename C::to_const_lvalue	     type;
@@ -2138,10 +2114,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		};
 
 		template <class C> struct ConstRValueFunction : QualifiedFunction<C> {
-			enum {	has_const	 = true,
-				has_const_rvalue = true,
-				has_rvalue	 = true,
-				is_const_rvalue	 = true
+			enum {	is_const	= true,
+				is_const_rvalue = true,
+				is_rvalue	= true
 			};
 
 			typedef typename C::to_const_rvalue	     type;
@@ -2160,10 +2135,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		};
 
 		template <class C> struct VolatileLValueFunction : QualifiedFunction<C> {
-			enum {	has_lvalue	    = true,
-				has_volatile	    = true,
-				has_volatile_lvalue = true,
-				is_volatile_lvalue  = true
+			enum {	is_lvalue	   = true,
+				is_volatile	   = true,
+				is_volatile_lvalue = true
 			};
 
 			typedef typename C::to_volatile_lvalue	     type;
@@ -2182,10 +2156,9 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		};
 
 		template <class C> struct VolatileRValueFunction : QualifiedFunction<C> {
-			enum {	has_rvalue	    = true,
-				has_volatile	    = true,
-				has_volatile_rvalue = true,
-				is_volatile_rvalue  = true
+			enum {	is_rvalue	   = true,
+				is_volatile	   = true,
+				is_volatile_rvalue = true
 			};
 
 			typedef typename C::to_volatile_rvalue	     type;
@@ -2204,14 +2177,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		};
 
 		template <class C> struct ConstVolatileLValueFunction : QualifiedFunction<C> {
-			enum {	has_const		  = true,
-				has_const_lvalue	  = true,
-				has_const_volatile	  = true,
-				has_const_volatile_lvalue = true,
-				has_lvalue		  = true,
-				has_volatile		  = true,
-				has_volatile_lvalue	  = true,
-				is_const_volatile_lvalue  = true
+			enum {	is_const		 = true,
+				is_const_lvalue		 = true,
+				is_const_volatile	 = true,
+				is_const_volatile_lvalue = true,
+				is_lvalue		 = true,
+				is_volatile		 = true,
+				is_volatile_lvalue	 = true
 			};
 
 			typedef typename C::to_const_volatile_lvalue type;
@@ -2233,14 +2205,13 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		};
 
 		template <class C> struct ConstVolatileRValueFunction : QualifiedFunction<C> {
-			enum {	has_const		  = true,
-				has_const_rvalue	  = true,
-				has_const_volatile	  = true,
-				has_const_volatile_rvalue = true,
-				has_rvalue		  = true,
-				has_volatile		  = true,
-				has_volatile_rvalue	  = true,
-				is_const_volatile_rvalue  = true
+			enum {	is_const		 = true,
+				is_const_rvalue		 = true,
+				is_const_volatile	 = true,
+				is_const_volatile_rvalue = true,
+				is_rvalue		 = true,
+				is_volatile		 = true,
+				is_volatile_rvalue	 = true
 			};
 
 			typedef typename C::to_const_volatile_rvalue type;
@@ -2277,9 +2248,7 @@ namespace Zeta {namespace Detail {namespace Type {namespace Mixins {
 		Z_DEFINE_PACKED_STRUCTURE({typename C::type value;},      to_wrap  );
 		Z_DEFINE_PACKED_STRUCTURE({UInt8 data[sizeof(to_wrap)];}, to_opaque);
 
-		enum {	size = C::is_empty ? 0 : sizeof(to_wrap),
-			bits = C::is_empty ? 0 : sizeof(to_wrap) * Z_CHAR_BITS
-		};
+		enum {bits = C::is_empty ? 0 : sizeof(to_wrap) * Z_CHAR_BITS};
 	};
 
 	enum {	Void,
@@ -2495,8 +2464,8 @@ namespace Zeta {namespace Detail {namespace Type {
 	template <class T> struct Ambiguous {
 
 		enum {	structure_detected =
-#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_CLASS)
-				Z_COMPILER_TRAIT(TYPE_IS_CLASS)(T)
+#			if Z_COMPILER_HAS_TRAIT(TYPE_IS_STRUCTURE)
+				Z_COMPILER_TRAIT(TYPE_IS_STRUCTURE)(T)
 #			else
 				false
 #			endif
@@ -2776,9 +2745,9 @@ namespace Zeta {namespace Detail {namespace Type {
 	template <Boolean E, class T, USize N> struct Case<E,	    volatile T[N]> : Mixins::VolatileArray     <Case<E, T[N]> > {};
 	template <Boolean E, class T, USize N> struct Case<E, const volatile T[N]> : Mixins::ConstVolatileArray<Case<E, T[N]> > {};
 
-	// MARK: - Specializations: Flexible array types
+	// MARK: - Specializations: Unsized array types
 
-	template <Boolean E, class T> struct Case<E, T[]> : Mixins::Unqualified<Abstract::FlexibleArray<E, T> > {};
+	template <Boolean E, class T> struct Case<E, T[]> : Mixins::Unqualified<Abstract::UnsizedArray<E, T> > {};
 
 	template <Boolean E, class T> struct Case<E, const	    T[]> : Mixins::ConstArray	     <Case<E, T[]> > {};
 	template <Boolean E, class T> struct Case<E, 	   volatile T[]> : Mixins::VolatileArray     <Case<E, T[]> > {};
@@ -2964,7 +2933,7 @@ namespace Zeta {namespace Detail {namespace Type {
 
 #	endif
 
-	// MARK: - Specializations: Block types (Apple extension)
+	// MARK: - Specializations: Block object types (Apple extension)
 
 #	if Z_COMPILER_C_HAS(CLOSURE)
 
@@ -2983,9 +2952,9 @@ namespace Zeta {namespace Detail {namespace Type {
 
 	// MARK: - Specializations: Type qualifiers
 
-	template <Boolean E, class T> struct Case<E, const	    T> : Mixins::Const	      <Case<false, T>::is_signed_or_unsigned ? Mixins::SignedOrUnsigned : Mixins::NonSignedOrUnsigned, Case<E, T> > {};
-	template <Boolean E, class T> struct Case<E, const volatile T> : Mixins::ConstVolatile<Case<false, T>::is_signed_or_unsigned ? Mixins::SignedOrUnsigned : Mixins::NonSignedOrUnsigned, Case<E, T> > {};
-	template <Boolean E, class T> struct Case<E, 	   volatile T> : Mixins::Volatile     <Case<false, T>::is_signed_or_unsigned ? Mixins::SignedOrUnsigned : Mixins::NonSignedOrUnsigned, Case<E, T> > {};
+	template <Boolean E, class T> struct Case<E, const	    T> : Mixins::Const	      <Case<false, T>::is_number, Case<E, T> > {};
+	template <Boolean E, class T> struct Case<E, const volatile T> : Mixins::ConstVolatile<Case<false, T>::is_number, Case<E, T> > {};
+	template <Boolean E, class T> struct Case<E, 	   volatile T> : Mixins::Volatile     <Case<false, T>::is_number, Case<E, T> > {};
 
 	// MARK: - Detail build
 
@@ -3059,18 +3028,7 @@ namespace Zeta {
 				can_form_member_pointer	      = Type::can_form_member_pointer,
 				can_form_pointer	      = Type::can_form_pointer,
 				can_form_reference	      = Type::can_form_reference,
-				has_const		      = Type::has_const,
-				has_const_lvalue	      = Type::has_const_lvalue,
-				has_const_rvalue	      = Type::has_const_rvalue,
-				has_const_volatile	      = Type::has_const_volatile,
-				has_const_volatile_lvalue     = Type::has_const_volatile_lvalue,
-				has_const_volatile_rvalue     = Type::has_const_volatile_rvalue,
-				has_lvalue		      = Type::has_lvalue,
 				has_qualified_indirectee      = Type::has_qualified_indirectee,
-				has_rvalue		      = Type::has_rvalue,
-				has_volatile		      = Type::has_volatile,
-				has_volatile_lvalue	      = Type::has_volatile_lvalue,
-				has_volatile_rvalue	      = Type::has_volatile_rvalue,
 				is_arithmetic		      = Type::is_arithmetic,
 				is_array		      = Type::is_array,
 				is_boolean		      = Type::is_boolean,
@@ -3093,7 +3051,6 @@ namespace Zeta {
 				is_indirection		      = Type::is_indirection,
 				is_integer		      = Type::is_integer,
 				is_integral		      = Type::is_integral,
-				is_flexible_array	      = Type::is_flexible_array,
 				is_floating_point	      = Type::is_floating_point,
 				is_function		      = Type::is_function,
 				is_function_lvalue_reference  = Type::is_function_lvalue_reference,
@@ -3120,12 +3077,13 @@ namespace Zeta {
 				is_rvalue_reference	      = Type::is_rvalue_reference,
 				is_scalar		      = Type::is_scalar,
 				is_signed		      = Type::is_signed,
-				is_signed_or_unsigned	      = Type::is_signed_or_unsigned,
 				is_simple		      = Type::is_simple,
+				is_sized_array		      = Type::is_sized_array,
 				is_statically_allocatable     = Type::is_statically_allocatable,
 				is_storable		      = Type::is_storable,
 				is_structure		      = Type::is_structure,
 				is_unsigned		      = Type::is_unsigned,
+				is_unsized_array	      = Type::is_unsized_array,
 				is_valid		      = Type::is_valid,
 				is_variadic		      = Type::is_variadic,
 				is_variadic_function	      = Type::is_variadic_function,
@@ -3141,8 +3099,7 @@ namespace Zeta {
 				dimension_count	  = Type::dimension_count,
 				element_count	  = Type::element_count,
 				indirection_level = Type::indirection_level,
-				pointer_level	  = Type::pointer_level,
-				size		  = Type::size
+				pointer_level	  = Type::pointer_level
 			};
 
 			enum {	fixed_fundamental = Type::fixed_fundamental,
@@ -3329,24 +3286,15 @@ namespace Zeta {
 	template <class T> struct TypeElementCount		{enum {value = Type<T>::element_count		     };};
 	template <class T> struct TypeFixedFundamental		{enum {value = Type<T>::fixed_fundamental	     };};
 	template <class T> struct TypeFundamental		{enum {value = Type<T>::fundamental		     };};
-	template <class T> struct TypeHasConst			{enum {value = Type<T>::has_const		     };};
-	template <class T> struct TypeHasConstLValue		{enum {value = Type<T>::has_const_lvalue	     };};
-	template <class T> struct TypeHasConstRValue		{enum {value = Type<T>::has_const_rvalue	     };};
-	template <class T> struct TypeHasConstVolatile		{enum {value = Type<T>::has_const_volatile	     };};
-	template <class T> struct TypeHasConstVolatileLValue	{enum {value = Type<T>::has_const_volatile_lvalue    };};
-	template <class T> struct TypeHasConstVolatileRValue	{enum {value = Type<T>::has_const_volatile_rvalue    };};
-	template <class T> struct TypeHasLValue			{enum {value = Type<T>::has_lvalue		     };};
 	template <class T> struct TypeHasQualifiedIndirectee	{enum {value = Type<T>::has_qualified_indirectee     };};
-	template <class T> struct TypeHasRValue			{enum {value = Type<T>::has_rvalue		     };};
-	template <class T> struct TypeHasVolatile		{enum {value = Type<T>::has_volatile		     };};
-	template <class T> struct TypeHasVolatileLValue		{enum {value = Type<T>::has_volatile_lvalue	     };};
-	template <class T> struct TypeHasVolatileRValue		{enum {value = Type<T>::has_volatile_rvalue	     };};
 	template <class T> struct TypeIndirectionLevel		{enum {value = Type<T>::indirection_level	     };};
 	template <class T> struct TypeIsArithmetic		{enum {value = Type<T>::is_arithmetic		     };};
 	template <class T> struct TypeIsArray			{enum {value = Type<T>::is_array		     };};
 	template <class T> struct TypeIsBoolean			{enum {value = Type<T>::is_boolean		     };};
 	template <class T> struct TypeIsClass			{enum {value = Type<T>::is_class		     };};
+
 	template <class T> struct TypeIsClosure			{enum {value = Type<T>::is_closure		     };};
+
 	template <class T> struct TypeIsCompound		{enum {value = Type<T>::is_compound		     };};
 	template <class T> struct TypeIsConst			{enum {value = Type<T>::is_const		     };};
 	template <class T> struct TypeIsConstLValue		{enum {value = Type<T>::is_const_lvalue		     };};
@@ -3364,7 +3312,6 @@ namespace Zeta {
 	template <class T> struct TypeIsIndirection		{enum {value = Type<T>::is_indirection		     };};
 	template <class T> struct TypeIsInteger			{enum {value = Type<T>::is_integer		     };};
 	template <class T> struct TypeIsIntegral		{enum {value = Type<T>::is_integral		     };};
-	template <class T> struct TypeIsFlexibleArray		{enum {value = Type<T>::is_flexible_array	     };};
 	template <class T> struct TypeIsFloatingPoint		{enum {value = Type<T>::is_floating_point	     };};
 	template <class T> struct TypeIsFunction		{enum {value = Type<T>::is_function		     };};
 	template <class T> struct TypeIsFunctionLValueReference {enum {value = Type<T>::is_function_lvalue_reference };};
@@ -3391,12 +3338,13 @@ namespace Zeta {
 	template <class T> struct TypeIsRValueReference		{enum {value = Type<T>::is_rvalue_reference	     };};
 	template <class T> struct TypeIsScalar			{enum {value = Type<T>::is_scalar		     };};
 	template <class T> struct TypeIsSigned			{enum {value = Type<T>::is_signed		     };};
-	template <class T> struct TypeIsSignedOrUnsigned	{enum {value = Type<T>::is_signed_or_unsigned	     };};
 	template <class T> struct TypeIsSimple			{enum {value = Type<T>::is_simple		     };};
+	template <class T> struct TypeIsSizedArray		{enum {value = Type<T>::is_sized_array		     };};
 	template <class T> struct TypeIsStaticallyAllocatable	{enum {value = Type<T>::is_statically_allocatable    };};
 	template <class T> struct TypeIsStorable		{enum {value = Type<T>::is_storable		     };};
 	template <class T> struct TypeIsStructure		{enum {value = Type<T>::is_structure		     };};
 	template <class T> struct TypeIsUnsigned		{enum {value = Type<T>::is_unsigned		     };};
+	template <class T> struct TypeIsUnsizedArray		{enum {value = Type<T>::is_unsized_array	     };};
 	template <class T> struct TypeIsValid			{enum {value = Type<T>::is_valid		     };};
 	template <class T> struct TypeIsVariadic		{enum {value = Type<T>::is_variadic		     };};
 	template <class T> struct TypeIsVariadicFunction	{enum {value = Type<T>::is_variadic_function	     };};
@@ -3408,7 +3356,6 @@ namespace Zeta {
 	template <class T> struct TypeNumberFormat		{enum {value = Type<T>::number_format		     };};
 	template <class T> struct TypeNumberSet			{enum {value = Type<T>::number_set		     };};
 	template <class T> struct TypePointerLevel		{enum {value = Type<T>::pointer_level		     };};
-	template <class T> struct TypeSize			{enum {value = Type<T>::size			     };};
 
 	template <class T> struct TypeAddConst		      {typedef typename Type<T>::add_const		    type;};
 	template <class T> struct TypeAddConstVolatile	      {typedef typename Type<T>::add_const_volatile	    type;};

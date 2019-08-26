@@ -31,7 +31,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			else
 				template <class M, class E = typename TypeIf<
 					Type<M>::is_member_function_pointer &&
-					TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+					TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 				M>::type>
 				Z_INLINE ObjectMemberFunction(M function) Z_NOTHROW
 				: MemberFunction<R(P...)>(function) {}
@@ -49,7 +49,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				 (Type<O>::is_pointer			  &&
 				  Type<O>::flow::pointee_type::is_class)) &&
 				Type<M>::is_member_function_pointer	  &&
-				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE ObjectMemberFunction(O object, M function) Z_NOTHROW
 			: MemberFunction<R(P...)>(function), object(reinterpret_cast<NaT *>(object)) {}
@@ -58,7 +58,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class O, class M, class E = typename TypeIf<
 				Type<O>::is_class		    &&
 				Type<M>::is_member_function_pointer &&
-				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE ObjectMemberFunction(const O &object, M function) Z_NOTHROW
 			: MemberFunction<R(P...)>(function), object(reinterpret_cast<NaT *>(&object)) {}
@@ -90,7 +90,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class M>
 			Z_INLINE typename TypeIf<
 				Type<M>::is_member_function_pointer &&
-				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			ObjectMemberFunction &>::type
 			operator =(M rhs) Z_NOTHROW
 				{
@@ -139,7 +139,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE typename TypeIf<
 				(Type<O>::is_void || Type<O>::is_class) &&
 				Type<M>::is_member_function_pointer	&&
-				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			ObjectMemberFunction &>::type
 			set(O *object, M function) Z_NOTHROW
 				{
@@ -153,7 +153,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			Z_INLINE typename TypeIf<
 				Type<O>::is_class		    &&
 				Type<M>::is_member_function_pointer &&
-				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			ObjectMemberFunction &>::type
 			set(const O &object, M function) Z_NOTHROW
 				{

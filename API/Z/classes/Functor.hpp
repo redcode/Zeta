@@ -106,8 +106,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 						}
 
 
-#					if	Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_64 || \
-						Z_CPU_ARCHITECTURE == Z_CPU_ARCHITECTURE_X86_32
+#					if Z_ISA == Z__X86_64 || Z_ISA == Z__X86_32
 
 						template <class RR = R>
 						static Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_real && !Type<RR>::is_class, Call>::type
@@ -187,7 +186,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class O, class M, class E = typename TypeIf<
 				(Type<O>::is_void || Type<O>::is_class) &&
 				Type<M>::is_member_function_pointer	&&
-				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE Functor(O *object, M function) Z_NOTHROW
 			: call(Callers::object_member_function()), destroy(NULL)
@@ -200,7 +199,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class O, class M, class E = typename TypeIf<
 				Type<O>::is_class		    &&
 				Type<M>::is_member_function_pointer &&
-				TypeAreEqual<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
 			M>::type>
 			Z_INLINE Functor(const O &object, M function) Z_NOTHROW
 			: call(Callers::object_member_function()), destroy(NULL)
