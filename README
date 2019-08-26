@@ -9,8 +9,3 @@
       Released under the terms of the GNU Lesser General Public License v3
 
                                http://www.zeta.st
-
-Z (expressed as the Greek capital letter "zeta") is a header-only multi-platform
-standalone general purpose library written in C/C++, suitable to be used as a
-starting point for low-level projects where the standard libraries are not
-available or not desired.
