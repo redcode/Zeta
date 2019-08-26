@@ -336,7 +336,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_DIALECT_HAS_TYPE(C, LONG_DOUBLE) || Z_DIALECT_HAS_TYPE(CPP, LONG_DOUBLE)
 
-	typedef long double		     zdouble;
+	typedef long double		     zldouble;
 #	define Z_LDOUBLE		     Z_SUFFIX_L
 #	define Z_LDOUBLE_FUNDAMENTAL	     Z_FUNDAMENTAL_LDOUBLE
 #	define Z_LDOUBLE_FIXED_FUNDAMENTAL   Z_FLOATING_POINT_FIXED_FUNDAMENTAL(LDOUBLE)
