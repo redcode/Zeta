@@ -1,8 +1,8 @@
 /* Z Kit - macros/language.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_macros_language_H
@@ -112,6 +112,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Packed constructs */
 
+/*---------------------------.
+| typedef struct {...} type; |
+'---------------------------*/
+
 #define Z_DEFINE_PACKED_STRUCTURE(body, type)			  \
 	Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_TYPEDEF typedef \
 	Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_STRUCT  struct  \
@@ -127,6 +131,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_DEFINE_PACKED_STRUCTURE_END(type)		    \
 	Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_TYPE type \
 	Z_COMPILER_DEFINE_PACKED_STRUCTURE_AFTER_TYPE
+
+/*--------------------------.
+| typedef union {...} type; |
+'--------------------------*/
 
 #define Z_DEFINE_PACKED_UNION(body, type)		      \
 	Z_COMPILER_DEFINE_PACKED_UNION_BEFORE_TYPEDEF typedef \
@@ -144,6 +152,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_COMPILER_DEFINE_PACKED_UNION_BEFORE_TYPE type	\
 	Z_COMPILER_DEFINE_PACKED_UNION_AFTER_TYPE
 
+/*-------------------.
+| struct type {...}; |
+'-------------------*/
+
 #define Z_PACKED_NAMED_STRUCTURE(type, body)		       \
 	Z_COMPILER_PACKED_NAMED_STRUCTURE_BEFORE_STRUCT struct \
 	Z_COMPILER_PACKED_NAMED_STRUCTURE_BEFORE_TYPE	type   \
@@ -157,6 +169,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_PACKED_NAMED_STRUCTURE_END \
 	Z_COMPILER_PACKED_NAMED_STRUCTURE_AFTER_BODY
+
+/*------------------.
+| union type {...}; |
+'------------------*/
 
 #define Z_PACKED_NAMED_UNION(type, body)		 \
 	Z_COMPILER_PACKED_NAMED_UNION_BEFORE_UNION union \
@@ -172,6 +188,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PACKED_NAMED_UNION_END \
 	Z_COMPILER_PACKED_NAMED_UNION_AFTER_BODY
 
+/*-------------------------.
+| struct {...} identifier; |
+'-------------------------*/
+
 #define Z_PACKED_UNNAMED_STRUCTURE(body, identifier)			\
 	Z_COMPILER_PACKED_UNNAMED_STRUTURE_BEFORE_STRUCT     struct	\
 	Z_COMPILER_PACKED_UNNAMED_STRUTURE_BEFORE_BODY	     body	\
@@ -182,9 +202,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_COMPILER_PACKED_UNNAMED_STRUTURE_BEFORE_STRUCT struct	\
 	Z_COMPILER_PACKED_UNNAMED_STRUTURE_BEFORE_BODY
 
-#define Z_PACKED_UNNAMED_STRICTURE_END(identifier)			\
+#define Z_PACKED_UNNAMED_STRUCTURE_END(identifier)			\
 	Z_COMPILER_PACKED_UNNAMED_STRUTURE_BEFORE_IDENTIFIER identifier \
 	Z_COMPILER_PACKED_UNNAMED_STRUTURE_AFTER_IDENTIFIER
+
+/*------------------------.
+| union {...} identifier; |
+'------------------------*/
 
 #define Z_PACKED_UNNAMED_UNION(body, identifier)		     \
 	Z_COMPILER_PACKED_UNNAMED_UNION_BEFORE_STRUCT     union	     \

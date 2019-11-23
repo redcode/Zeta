@@ -1,8 +1,8 @@
 /* Z Kit - inspection/compiler/modules/GCC.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_compiler_modules_GCC_H
@@ -336,7 +336,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #						define Z_COMPILER_CPP_HAS_RANGE_BASED_FOR		TRUE
 #						define Z_COMPILER_CPP_HAS_UNRESTRICTED_UNION		TRUE
 #						define Z_COMPILER_CPP_HAS_MOVE_SPECIAL_MEMBER_FUNCTIONS TRUE
-#						define Z_COMPILER_CPP_HAS_LITERAL_NULL_POINTER		TRUE
+#						define Z_COMPILER_CPP_HAS_LITERAL_NULLPTR		TRUE
 #						define Z_COMPILER_CPP_HAS_OPERATOR_NO_EXCEPTION		TRUE
 #						define Z_COMPILER_CPP_HAS_SPECIFIER_CONSTANT_EXPRESSION TRUE
 #						define Z_COMPILER_CPP_HAS_SPECIFIER_NO_EXCEPTION	TRUE

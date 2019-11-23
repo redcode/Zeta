@@ -1,8 +1,8 @@
 /* Z Kit - macros/character.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_macros_character_H
@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/character set.h>
 
-#if ('\0' - 1) > 0
+#if ('\0' - '\1') > '\0'
 #	define Z_CHARACTER_IS_ASCII(character) \
 		((character) <= 0x7F)
 #else

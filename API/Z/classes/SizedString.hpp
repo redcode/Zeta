@@ -1,8 +1,8 @@
 /* Z Kit - classes/SizedString.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2017 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_SizedString_HPP
@@ -46,6 +46,10 @@ namespace Zeta {
 
 		Z_INLINE operator const Char *() const
 			{return &this->Detail::SizedString::Element<0>::_character;}
+
+
+		Z_INLINE const Char *data() const
+			{return &this->Detail::SizedString::Element<0>::_character;}
 	};
 
 
@@ -58,6 +62,10 @@ namespace Zeta {
 		: _null_character('\0') {}
 
 		Z_INLINE operator const Char *() const
+			{return &_null_character;}
+
+
+		Z_INLINE const Char *data() const
 			{return &_null_character;}
 	};
 }

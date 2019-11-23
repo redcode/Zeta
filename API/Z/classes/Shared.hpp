@@ -1,9 +1,8 @@
 /* Z Kit - classes/Shared.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
-Copyright (C) 2016 r-lyeh.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_Shared_HPP
@@ -47,6 +46,22 @@ namespace Zeta {template <class T> struct Shared {
 		{if (owned && !--owned->owner_count) delete owned;}
 
 
+#	ifdef Z_NULLPTR
+
+		Z_CT(CPP11) Shared(NullPtr) Z_NOTHROW
+		: owned(nullptr) {}
+
+
+		Z_INLINE Shared &operator =(NullPtr)
+			{
+			if (owned && !--owned->owner_count) delete owned;
+			owned = nullptr;
+			return *this;
+			}
+
+#	endif
+
+
 	Z_INLINE Shared &operator =(const Shared &rhs)
 		{
 		if (owned != rhs.owned)
@@ -57,6 +72,23 @@ namespace Zeta {template <class T> struct Shared {
 
 		return *this;
 		}
+
+
+#	if Z_DIALECT_HAS(CPP, RVALUE_REFERENCE)
+
+		Z_INLINE Shared &operator =(Shared &&rhs)
+			{
+			if (owned != rhs.owned)
+				{
+				if (owned && !--owned->owner_count) delete owned;
+				owned = rhs.owned;
+				rhs.owned = NULL;
+				}
+
+			return *this;
+			}
+
+#	endif
 
 
 	Z_INLINE Shared &operator =(T *rhs)
@@ -70,22 +102,6 @@ namespace Zeta {template <class T> struct Shared {
 		owned = rhs ? new Owned(rhs) : NULL;
 		return *this;
 		}
-
-
-#	ifdef Z_NULL_POINTER
-
-		Z_CT(CPP11) Shared(NullPointer) Z_NOTHROW
-		: owned(NULL) {}
-
-
-		Z_INLINE Shared &operator =(NullPointer)
-			{
-			if (owned && !--owned->owner_count) delete owned;
-			owned = NULL;
-			return *this;
-			}
-
-#	endif
 
 
 	Z_INLINE operator Boolean() const Z_NOTHROW

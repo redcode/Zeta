@@ -1,8 +1,8 @@
 /* Z Kit - types/integral.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_types_integral_H
@@ -789,7 +789,7 @@ typedef Z_INTEGER_TYPE(SINT_LEAST8)	zsint_least8;
 
 /* MARK: - Standard integral types */
 
-#if ('\0' - 1) > 0
+#if ('\0' - '\1') > '\0'
 #	define Z_CHAR_FIXED_FUNDAMENTAL Z_NATURAL_TYPE_FIXED_FUNDAMENTAL(CHAR)
 #	define Z_CHAR_IS_SIGNED		FALSE
 #	define Z_CHAR_MINIMUM		0
@@ -807,7 +807,7 @@ typedef char			   zchar;
 #define Z_CHAR_MAXIMUM		   Z_INTEGRAL_TYPE_MAXIMUM(CHAR)
 
 typedef unsigned char		   zuchar;
-#define Z_UCHAR			   Z_SAME
+#define Z_UCHAR			   Z_SUFFIX_U
 #define Z_UCHAR_FUNDAMENTAL	   Z_FUNDAMENTAL_UCHAR
 #define Z_UCHAR_FIXED_FUNDAMENTAL  Z_NATURAL_TYPE_FIXED_FUNDAMENTAL(UCHAR)
 #define Z_UCHAR_NUMBER_FORMAT	   Z_TYPE_NUMBER_FORMAT		   (UCHAR)
@@ -824,7 +824,7 @@ typedef signed char		   zschar;
 #define Z_SCHAR_MINIMUM		   (-Z_SCHAR_MAXIMUM - 1)
 
 typedef unsigned short int	   zushort;
-#define Z_USHORT		   Z_SAME
+#define Z_USHORT		   Z_SUFFIX_U
 #define Z_USHORT_FUNDAMENTAL	   Z_FUNDAMENTAL_USHORT
 #define Z_USHORT_FIXED_FUNDAMENTAL Z_NATURAL_TYPE_FIXED_FUNDAMENTAL(USHORT)
 #define Z_USHORT_NUMBER_FORMAT	   Z_TYPE_NUMBER_FORMAT		   (USHORT)
@@ -1089,23 +1089,25 @@ typedef Z_INTEGER_TYPE(SINTTOP)	    zsinttop;
 
 /* MARK: - Default types */
 
-#ifdef Z_UINT8
+#if defined(__cplusplus) && Z_DIALECT_HAS_TYPE(CPP, BOOL)
 
-	typedef zuint8			   zboolean;
-#	define Z_BOOLEAN_FUNDAMENTAL	   Z_UINT8_FUNDAMENTAL
-#	define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_UINT8_FIXED_FUNDAMENTAL
-#	define Z_BOOLEAN_NUMBER_FORMAT	   Z_UINT8_NUMBER_FORMAT
-#	define Z_BOOLEAN_BITS		   Z_UINT8_BITS
+	typedef bool		     zboolean;
+#	define Z_BOOLEAN_FUNDAMENTAL Z_FUNDAMENTAL_BOOLEAN
+
+#elif Z_DIALECT_HAS_TYPE(C, BOOL)
+
+	typedef _Bool		     zboolean;
+#	define Z_BOOLEAN_FUNDAMENTAL Z_FUNDAMENTAL_BOOLEAN
 
 #else
-
-	typedef zuchar			   zboolean;
-#	define Z_BOOLEAN_FUNDAMENTAL	   Z_UCHAR_FUNDAMENTAL
-#	define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_UCHAR_FIXED_FUNDAMENTAL
-#	define Z_BOOLEAN_NUMBER_FORMAT	   Z_UCHAR_NUMBER_FORMAT
-#	define Z_BOOLEAN_BITS		   Z_UCHAR_BITS
+	typedef zuchar		     zboolean;
+#	define Z_BOOLEAN_FUNDAMENTAL Z_UCHAR_FUNDAMENTAL
 
 #endif
+
+#define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_UCHAR_FIXED_FUNDAMENTAL
+#define Z_BOOLEAN_NUMBER_FORMAT	    Z_UCHAR_NUMBER_FORMAT
+#define Z_BOOLEAN_BITS		    Z_UCHAR_BITS
 
 #ifndef Z_NATURAL_BITS
 #	define Z_NATURAL_BITS Z_ULONG_BITS

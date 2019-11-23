@@ -1,8 +1,8 @@
 /* Z Kit - inspection/C.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_C_H
@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/keys/C.h>
 
 #ifndef Z_C
-#	if !defined(__STDC__)
+#	if !defined(__STDC__) && !defined(__cplusplus)
 #		define Z_C Z_KR_C
 
 #	elif !defined(__STDC_VERSION__)

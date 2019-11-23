@@ -1,8 +1,8 @@
 /* Z Kit - classes/Tuple.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_Tuple_HPP
@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+#if Z_DIALECT_HAS(CPP, EXTENDED_VARIADIC_TEMPLATE_TEMPLATE_PARAMETERS)
 
 #	include <Z/traits/Type.hpp>
 
@@ -78,7 +78,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		};
 
 
-#		if Z_DIALECT_HAS(CPP, INHERITING_CONSTRUCTORS)
+#		if !Z_DIALECT_HAS(CPP, INHERITING_CONSTRUCTORS)
 			using Super::Super;
 
 #		else
@@ -110,9 +110,35 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	};}
 
 
-#	define Z_HAS_CLASS_Tuple TRUE
+//#	if Z_DIALECT_HAS(CPP, STRUCTURED_BINDING)
+
+#		include <tuple>
+#		include <Z/macros/tokens.h>
+
+#		define Z_IMPLEMENTATION(qualifiers)									\
+															\
+		template <class... T>											\
+		struct std::tuple_size<qualifiers Zeta::Tuple<T...> > {							\
+			enum {value = sizeof...(T)};									\
+		};													\
+															\
+		template <size_t I, class... T>										\
+		struct std::tuple_element<I, qualifiers Zeta::Tuple<T...> > {						\
+			typedef typename Zeta::Type<typename Zeta::Tuple<T...>::template At<I>::type>::add_const type;	\
+		};
+
+		Z_IMPLEMENTATION(Z_EMPTY       )
+		Z_IMPLEMENTATION(const	       )
+		Z_IMPLEMENTATION(const volatile)
+		Z_IMPLEMENTATION(      volatile)
+
+#		undef Z_IMPLEMENTATION
+//#	endif
+
+
+#	define Z_DECLARES_Tuple TRUE
 #else
-#	define Z_HAS_CLASS_Tuple FALSE
+#	define Z_DECLARES_Tuple FALSE
 #endif
 
 #endif // Z_classes_Tuple_HPP

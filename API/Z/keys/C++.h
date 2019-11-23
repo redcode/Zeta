@@ -1,8 +1,8 @@
 /* Z Kit - keys/C++.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_keys_CPP_H
@@ -15,6 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP11 5
 #define Z_CPP14 6
 #define Z_CPP17 7
+/*#define Z_CPP20 8*/
 
 #define Z_CPP_NAME_CPP1	 "C++ v1.0"
 #define Z_CPP_NAME_CPP2	 "C++ v2.0"
@@ -23,5 +24,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_NAME_CPP11 "ISO/IEC 14882:2011"
 #define Z_CPP_NAME_CPP14 "ISO/IEC 14882:2014"
 #define Z_CPP_NAME_CPP17 "ISO/IEC 14882:2017"
+/*#define Z_CPP_NAME_CPP20 "ISO/IEC 14882:2020"*/
 
 #endif /* Z_keys_CPP_H */

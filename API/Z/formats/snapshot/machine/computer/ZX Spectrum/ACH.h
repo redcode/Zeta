@@ -1,20 +1,21 @@
 /* Z Kit - formats/snapshot/machine/computer/ZX Spectrum/ACH.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
-.-------------------------------------------------------------------.
-| Extensions: ach, archimedes					    |
-| Endianness: Little						    |
-|   Supports: 48K						    |
-|    Used by: !Speccy (RISC OS)					    |
-|     Author: Witt, Carsten					    |
-|  Reference: <http://rk.nvg.ntnu.no/sinclair/faq/fileform.html>    |
-|	      <http://www.zx-modules.de/fileformats/achformat.html> |
-|	      [MAME sources]/src/mame/machine/spec_snqk.cpp	    |
-'------------------------------------------------------------------*/
+.--------------------------------------------------------------------.
+| Description: ACH - ZX Spectrum snapshot file format		     |
+|  Extensions: .ach, .archimedes				     |
+|  Endianness: Little						     |
+|    Supports: 48K						     |
+|     Used by: !Speccy (RISC OS)				     |
+|      Author: Witt, Carsten					     |
+|   Reference: <http://rk.nvg.ntnu.no/sinclair/faq/fileform.html>    |
+|	       <http://www.zx-modules.de/fileformats/achformat.html> |
+|	       [MAME sources]/src/mame/machine/spec_snqk.cpp	     |
+'-------------------------------------------------------------------*/
 
 #ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H
 #define Z_formats_snapshot_machine_computer_ZX_Spectrum_ACH_H

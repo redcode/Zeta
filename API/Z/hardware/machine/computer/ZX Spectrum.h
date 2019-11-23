@@ -1,14 +1,18 @@
 /* Z Kit - hardware/machine/computer/ZX Spectrum.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ _____ ___  ___   ______                  ___
+/_   / |  |/  /  /  ___/_________________/  /_______ ________
+ /  /__>     <  _\__  \/  _  /  -_/  __/_  __/  _/  /  /     \
+/_____/__/|__| /______/  ___/\___/\____/__/ /__/ \____/__/_/_/
+                     /__/
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_hardware_machine_computer_ZX_Spectrum_H
 #define Z_hardware_machine_computer_ZX_Spectrum_H
 
-#include <Z/types/fundamental.h>
+#include <Z/types/integral.h>
+#include <Z/macros/aggregate.h>
+#include <Z/macros/language.h>
 
 /* MARK: - Memory map
 .-------------------------------------.
@@ -165,88 +169,6 @@ Z_DEFINE_PACKED_STRUCTURE ({Z_BIT_FIELD(8, 4) (
 	zuint8 border_color :3
 )}, ZZXSpectrumULAIO);
 
-#define Z_ZX_SPECTRUM_KEY_ROW_ENTER	      6
-#define Z_ZX_SPECTRUM_KEY_ROW_SHIFT	      0
-#define Z_ZX_SPECTRUM_KEY_ROW_SPACE	      7
-#define Z_ZX_SPECTRUM_KEY_ROW_0		      4
-#define Z_ZX_SPECTRUM_KEY_ROW_1		      3
-#define Z_ZX_SPECTRUM_KEY_ROW_2		      3
-#define Z_ZX_SPECTRUM_KEY_ROW_3		      3
-#define Z_ZX_SPECTRUM_KEY_ROW_4		      3
-#define Z_ZX_SPECTRUM_KEY_ROW_5		      3
-#define Z_ZX_SPECTRUM_KEY_ROW_6		      4
-#define Z_ZX_SPECTRUM_KEY_ROW_7		      4
-#define Z_ZX_SPECTRUM_KEY_ROW_8		      4
-#define Z_ZX_SPECTRUM_KEY_ROW_9		      4
-#define Z_ZX_SPECTRUM_KEY_ROW_A		      1
-#define Z_ZX_SPECTRUM_KEY_ROW_B		      7
-#define Z_ZX_SPECTRUM_KEY_ROW_C		      0
-#define Z_ZX_SPECTRUM_KEY_ROW_D		      1
-#define Z_ZX_SPECTRUM_KEY_ROW_E		      2
-#define Z_ZX_SPECTRUM_KEY_ROW_F		      1
-#define Z_ZX_SPECTRUM_KEY_ROW_G		      1
-#define Z_ZX_SPECTRUM_KEY_ROW_H		      6
-#define Z_ZX_SPECTRUM_KEY_ROW_I		      5
-#define Z_ZX_SPECTRUM_KEY_ROW_J		      6
-#define Z_ZX_SPECTRUM_KEY_ROW_K		      6
-#define Z_ZX_SPECTRUM_KEY_ROW_L		      6
-#define Z_ZX_SPECTRUM_KEY_ROW_M		      7
-#define Z_ZX_SPECTRUM_KEY_ROW_N		      7
-#define Z_ZX_SPECTRUM_KEY_ROW_O		      5
-#define Z_ZX_SPECTRUM_KEY_ROW_P		      5
-#define Z_ZX_SPECTRUM_KEY_ROW_Q		      2
-#define Z_ZX_SPECTRUM_KEY_ROW_R		      2
-#define Z_ZX_SPECTRUM_KEY_ROW_S		      1
-#define Z_ZX_SPECTRUM_KEY_ROW_T		      2
-#define Z_ZX_SPECTRUM_KEY_ROW_U		      5
-#define Z_ZX_SPECTRUM_KEY_ROW_V		      0
-#define Z_ZX_SPECTRUM_KEY_ROW_W		      2
-#define Z_ZX_SPECTRUM_KEY_ROW_X		      0
-#define Z_ZX_SPECTRUM_KEY_ROW_Y		      5
-#define Z_ZX_SPECTRUM_KEY_ROW_Z		      0
-#define Z_ZX_SPECTRUM_KEY_ROW_SYMBOL_SHIFT    7
-
-#define Z_ZX_SPECTRUM_KEY_OFFSET_ENTER	      0
-#define Z_ZX_SPECTRUM_KEY_OFFSET_SHIFT	      0
-#define Z_ZX_SPECTRUM_KEY_OFFSET_SPACE	      0
-#define Z_ZX_SPECTRUM_KEY_OFFSET_0	      0
-#define Z_ZX_SPECTRUM_KEY_OFFSET_1	      0
-#define Z_ZX_SPECTRUM_KEY_OFFSET_2	      1
-#define Z_ZX_SPECTRUM_KEY_OFFSET_3	      2
-#define Z_ZX_SPECTRUM_KEY_OFFSET_4	      3
-#define Z_ZX_SPECTRUM_KEY_OFFSET_5	      4
-#define Z_ZX_SPECTRUM_KEY_OFFSET_6	      4
-#define Z_ZX_SPECTRUM_KEY_OFFSET_7	      3
-#define Z_ZX_SPECTRUM_KEY_OFFSET_8	      2
-#define Z_ZX_SPECTRUM_KEY_OFFSET_9	      1
-#define Z_ZX_SPECTRUM_KEY_OFFSET_A	      0
-#define Z_ZX_SPECTRUM_KEY_OFFSET_B	      4
-#define Z_ZX_SPECTRUM_KEY_OFFSET_C	      3
-#define Z_ZX_SPECTRUM_KEY_OFFSET_D	      2
-#define Z_ZX_SPECTRUM_KEY_OFFSET_E	      2
-#define Z_ZX_SPECTRUM_KEY_OFFSET_F	      3
-#define Z_ZX_SPECTRUM_KEY_OFFSET_G	      4
-#define Z_ZX_SPECTRUM_KEY_OFFSET_H	      4
-#define Z_ZX_SPECTRUM_KEY_OFFSET_I	      2
-#define Z_ZX_SPECTRUM_KEY_OFFSET_J	      3
-#define Z_ZX_SPECTRUM_KEY_OFFSET_K	      2
-#define Z_ZX_SPECTRUM_KEY_OFFSET_L	      1
-#define Z_ZX_SPECTRUM_KEY_OFFSET_M	      2
-#define Z_ZX_SPECTRUM_KEY_OFFSET_N	      3
-#define Z_ZX_SPECTRUM_KEY_OFFSET_O	      1
-#define Z_ZX_SPECTRUM_KEY_OFFSET_P	      0
-#define Z_ZX_SPECTRUM_KEY_OFFSET_Q	      0
-#define Z_ZX_SPECTRUM_KEY_OFFSET_R	      3
-#define Z_ZX_SPECTRUM_KEY_OFFSET_S	      1
-#define Z_ZX_SPECTRUM_KEY_OFFSET_T	      4
-#define Z_ZX_SPECTRUM_KEY_OFFSET_U	      3
-#define Z_ZX_SPECTRUM_KEY_OFFSET_V	      4
-#define Z_ZX_SPECTRUM_KEY_OFFSET_W	      1
-#define Z_ZX_SPECTRUM_KEY_OFFSET_X	      2
-#define Z_ZX_SPECTRUM_KEY_OFFSET_Y	      4
-#define Z_ZX_SPECTRUM_KEY_OFFSET_Z	      1
-#define Z_ZX_SPECTRUM_KEY_OFFSET_SYMBOL_SHIFT 1
-
 /* MARK: - ULA I/O port: input value
 .-----------------.
 | 7 6 5 4 3 2 1 0 |
@@ -324,30 +246,115 @@ Z_DEFINE_PACKED_STRUCTURE ({Z_BIT_FIELD(8, 3) (
 #define Z_ZX_SPECTRUM_KEY_MASK_Z	    0x17
 #define Z_ZX_SPECTRUM_KEY_MASK_SYMBOL_SHIFT 0x17
 
+#define Z_ZX_SPECTRUM_KEY_ROW_ENTER	   6
+#define Z_ZX_SPECTRUM_KEY_ROW_SHIFT	   0
+#define Z_ZX_SPECTRUM_KEY_ROW_SPACE	   7
+#define Z_ZX_SPECTRUM_KEY_ROW_0		   4
+#define Z_ZX_SPECTRUM_KEY_ROW_1		   3
+#define Z_ZX_SPECTRUM_KEY_ROW_2		   3
+#define Z_ZX_SPECTRUM_KEY_ROW_3		   3
+#define Z_ZX_SPECTRUM_KEY_ROW_4		   3
+#define Z_ZX_SPECTRUM_KEY_ROW_5		   3
+#define Z_ZX_SPECTRUM_KEY_ROW_6		   4
+#define Z_ZX_SPECTRUM_KEY_ROW_7		   4
+#define Z_ZX_SPECTRUM_KEY_ROW_8		   4
+#define Z_ZX_SPECTRUM_KEY_ROW_9		   4
+#define Z_ZX_SPECTRUM_KEY_ROW_A		   1
+#define Z_ZX_SPECTRUM_KEY_ROW_B		   7
+#define Z_ZX_SPECTRUM_KEY_ROW_C		   0
+#define Z_ZX_SPECTRUM_KEY_ROW_D		   1
+#define Z_ZX_SPECTRUM_KEY_ROW_E		   2
+#define Z_ZX_SPECTRUM_KEY_ROW_F		   1
+#define Z_ZX_SPECTRUM_KEY_ROW_G		   1
+#define Z_ZX_SPECTRUM_KEY_ROW_H		   6
+#define Z_ZX_SPECTRUM_KEY_ROW_I		   5
+#define Z_ZX_SPECTRUM_KEY_ROW_J		   6
+#define Z_ZX_SPECTRUM_KEY_ROW_K		   6
+#define Z_ZX_SPECTRUM_KEY_ROW_L		   6
+#define Z_ZX_SPECTRUM_KEY_ROW_M		   7
+#define Z_ZX_SPECTRUM_KEY_ROW_N		   7
+#define Z_ZX_SPECTRUM_KEY_ROW_O		   5
+#define Z_ZX_SPECTRUM_KEY_ROW_P		   5
+#define Z_ZX_SPECTRUM_KEY_ROW_Q		   2
+#define Z_ZX_SPECTRUM_KEY_ROW_R		   2
+#define Z_ZX_SPECTRUM_KEY_ROW_S		   1
+#define Z_ZX_SPECTRUM_KEY_ROW_T		   2
+#define Z_ZX_SPECTRUM_KEY_ROW_U		   5
+#define Z_ZX_SPECTRUM_KEY_ROW_V		   0
+#define Z_ZX_SPECTRUM_KEY_ROW_W		   2
+#define Z_ZX_SPECTRUM_KEY_ROW_X		   0
+#define Z_ZX_SPECTRUM_KEY_ROW_Y		   5
+#define Z_ZX_SPECTRUM_KEY_ROW_Z		   0
+#define Z_ZX_SPECTRUM_KEY_ROW_SYMBOL_SHIFT 7
+
+#define Z_ZX_SPECTRUM_KEY_OFFSET_ENTER	      0
+#define Z_ZX_SPECTRUM_KEY_OFFSET_SHIFT	      0
+#define Z_ZX_SPECTRUM_KEY_OFFSET_SPACE	      0
+#define Z_ZX_SPECTRUM_KEY_OFFSET_0	      0
+#define Z_ZX_SPECTRUM_KEY_OFFSET_1	      0
+#define Z_ZX_SPECTRUM_KEY_OFFSET_2	      1
+#define Z_ZX_SPECTRUM_KEY_OFFSET_3	      2
+#define Z_ZX_SPECTRUM_KEY_OFFSET_4	      3
+#define Z_ZX_SPECTRUM_KEY_OFFSET_5	      4
+#define Z_ZX_SPECTRUM_KEY_OFFSET_6	      4
+#define Z_ZX_SPECTRUM_KEY_OFFSET_7	      3
+#define Z_ZX_SPECTRUM_KEY_OFFSET_8	      2
+#define Z_ZX_SPECTRUM_KEY_OFFSET_9	      1
+#define Z_ZX_SPECTRUM_KEY_OFFSET_A	      0
+#define Z_ZX_SPECTRUM_KEY_OFFSET_B	      4
+#define Z_ZX_SPECTRUM_KEY_OFFSET_C	      3
+#define Z_ZX_SPECTRUM_KEY_OFFSET_D	      2
+#define Z_ZX_SPECTRUM_KEY_OFFSET_E	      2
+#define Z_ZX_SPECTRUM_KEY_OFFSET_F	      3
+#define Z_ZX_SPECTRUM_KEY_OFFSET_G	      4
+#define Z_ZX_SPECTRUM_KEY_OFFSET_H	      4
+#define Z_ZX_SPECTRUM_KEY_OFFSET_I	      2
+#define Z_ZX_SPECTRUM_KEY_OFFSET_J	      3
+#define Z_ZX_SPECTRUM_KEY_OFFSET_K	      2
+#define Z_ZX_SPECTRUM_KEY_OFFSET_L	      1
+#define Z_ZX_SPECTRUM_KEY_OFFSET_M	      2
+#define Z_ZX_SPECTRUM_KEY_OFFSET_N	      3
+#define Z_ZX_SPECTRUM_KEY_OFFSET_O	      1
+#define Z_ZX_SPECTRUM_KEY_OFFSET_P	      0
+#define Z_ZX_SPECTRUM_KEY_OFFSET_Q	      0
+#define Z_ZX_SPECTRUM_KEY_OFFSET_R	      3
+#define Z_ZX_SPECTRUM_KEY_OFFSET_S	      1
+#define Z_ZX_SPECTRUM_KEY_OFFSET_T	      4
+#define Z_ZX_SPECTRUM_KEY_OFFSET_U	      3
+#define Z_ZX_SPECTRUM_KEY_OFFSET_V	      4
+#define Z_ZX_SPECTRUM_KEY_OFFSET_W	      1
+#define Z_ZX_SPECTRUM_KEY_OFFSET_X	      2
+#define Z_ZX_SPECTRUM_KEY_OFFSET_Y	      4
+#define Z_ZX_SPECTRUM_KEY_OFFSET_Z	      1
+#define Z_ZX_SPECTRUM_KEY_OFFSET_SYMBOL_SHIFT 1
+
 /* MARK: - Firmware ADC
-.------------------------------------------------------------------------.
-|									 |
-| High   _____	     _____	 _____					 |
-|       |Pulse|     |Pulse|	|Pulse|       Square wave		 |
-|	|     |_____|	  |_____|     |______				 |
-| Low	       Pulse	   Pulse       Pulse				 |
-|									 |
-| 1) Pilot								 |
-|  ______________							 |
-| |	2168	 |     2168      x 8063 times (if block contains header) |
-| |		 |______________ x 3223 times (if block contains data)	 |
-|									 |
-| 2) Sync								 |
-|  _____								 |
-| | 667 |  735								 |
-| |     |_______							 |
-|									 |
-| 3) Pause								 |
-|									 |
-|	     1 second							 |
-| ______________________________					 |
-|									 |
-'-----------------------------------------------------------------------*/
+.--------------------------------------------------------.
+|							 |
+| High  _______		_______				 |
+|      | Pulse | Pulse | Pulse | Pulse      Square wave  |
+|      |       |_______|       |_______ ...		 |
+| Low							 |
+|							 |
+|--------------------------------------------------------|
+| 1) Pilot						 |
+|  ______						 |
+| | 2168 | 2168  x 8063 times (if block contains header) |
+| |	 |______ x 3223 times (if block contains data)	 |
+|							 |
+|--------------------------------------------------------|
+| 2) Sync						 |
+|  _____						 |
+| | 667 |  735						 |
+| |     |_______					 |
+|							 |
+|--------------------------------------------------------|
+| 3) Pause						 |
+|							 |
+|	     1 second					 |
+| ______________________________			 |
+|							 |
+'-------------------------------------------------------*/
 
 #define Z_ZX_SPECTRUM_ADC_PULSES_PER_HEADER_PILOT     8063 /* 5 seconds */
 #define Z_ZX_SPECTRUM_ADC_PULSES_PER_DATA_PILOT	      3223 /* 2 seconds */
@@ -389,5 +396,308 @@ Z_DEFINE_PACKED_STRUCTURE ({
 #define Z_ZX_SPECTRUM_ADC_BLOCK_TYPE_NUMBER_ARRAY    1
 #define Z_ZX_SPECTRUM_ADC_BLOCK_TYPE_CHARACTER_ARRAY 2
 #define Z_ZX_SPECTRUM_ADC_BLOCK_TYPE_CODE_FILE	     3
+
+/* MARK: - ZX Spectrum
+
+.---------------------------------.
+| Model name: ZX Spectrum	  |
+|     Vendor: Sinclair Research	  |
+|   Released: 1982-04-23	  |
+|	 CPU: Zilog Z80 @ 3.5 MHz |
+|	 ROM: 16K		  |
+|	 RAM: 16K / 48K		  |
+|      Sound: Internal speaker	  |
+'---------------------------------'
+ __________________________________________________
+|  ___. __  _	  __ . __			   |
+| __\ ||  ||__|__|--|||				   |
+| ZX Spectrum					   |
+|						   |
+| ________________________________________________ |
+|/________________________________________________\|
+|  _   _   _   _   _   _   _   _   _   _	   |
+| [1] [2] [3] [4] [5] [6] [7] [8] [9] [0]	   |
+|     _   _   _   _   _   _   _   _   _   _	   |
+|    [Q] [W] [E] [R] [T] [Y] [U] [I] [O] [P]	  /|
+|	_   _	_   _	_   _	_   _	_   _____//|
+|      [A] [S] [D] [F] [G] [H] [J] [K] [L] [ENTER]/|
+|  _____   _   _   _   _   _   _   _   __   ___////|
+| [SHIFT] [Z] [X] [C] [V] [B] [N] [M] [SS] [SPACE] |
+|____________________________________________////__|
+(__________________________________________________)
+
+.---------------------------------.
+| Model name: ZX Spectrum +	  |
+|     Vendor: Sinclair Research	  |
+|   Released: 1984-10		  |
+|	 CPU: Zilog Z80 @ 3.5 MHz |
+|	 ROM: 16K		  |
+|	 RAM: 48K		  |
+|      Sound: Internal speaker	  |
+'---------------------------------'
+ ____________________________				  ___________
+|  ___. __  _	  __ . __    '''''''''''''''''''''''''''''	     |
+| __\ ||  ||__|__|--|||						     |
+|--------------------------------------------------------------------|
+| ZX Spectrum +							     |
+|--.-----------------------------------------------------.-----------|
+|  |( )|( )|(1)|(2)|(3)|(4)|(5)|(6)|(7)|(1)|(1)|(1)|(BRK)|	     |
+|--|-----------------------------------------------------|-----------|
+|  |(DEL)|(1)|(Q)|(W)|(E)|(R)|(T)|(Y)|(U)|(I)|(O)|(P)|.-.|	     |
+|--|-------------------------------------------------|| ||-----------|
+|  |(EXT)|(ED)|(A)|(S)|(D)|(F)|(G)|(H)|(J)|(K)|(L)|(____'|	     |
+|--|-----------------------------------------------------|-----------|
+|  |(CAPS S)|( )|(Z)|(X)|(C)|(V)|(B)|(N)|(M)|(.)|(CAPS S)|	     |
+|--|-----------------------------------------------------|-----------|
+|  |( )|(;)|(")|(_)|(_)|(_______________)|(_)|(_)|(,)|(_)|	//// |
+|--'-----------------------------------------------------'-----------|
+|____________________________________________________________________| */
+
+/* MARK: - ZX Spectrum - Memory */
+
+#define Z_ZX_SPECTRUM_SIZE_ROM	      16384 /* 1024 * 16	*/
+#define Z_ZX_SPECTRUM_16K_SIZE_RAM    16384 /* 1024 * 16	*/
+#define Z_ZX_SPECTRUM_16K_SIZE_MEMORY 32768 /* 1024 * (16 + 16)	*/
+#define Z_ZX_SPECTRUM_48K_SIZE_RAM    49152 /* 1024 * 48	*/
+#define Z_ZX_SPECTRUM_48K_SIZE_MEMORY 65536 /* 1024 * (16 + 48) */
+
+/* MARK: - Screen
+				     ---
+       Invisible Top Border	      | 8
+.---------------------------------.  ---   ---
+|	Visible Top Border	  |   | 48  |
+|----.-----------------------.----|  ---    |
+|L   |			     |R   |   |	    |
+|e   |			     |i   |   |	    |
+|f  B|			     |g  B|   |	    |
+|t  o|	       Paper	     |h  o|   | 192 | 296
+|   r|			     |t  r|   |	    |
+|   d|			     |   d|   |	    |
+|   e|			     |   e|   |	    |
+|   r|			     |   r|   |	    |
+|----'-----------------------'----|  ---    |
+|	   Bottom Border	  |   | 56  |
+'---------------------------------'  ---   ---
+
+|----|-----------------------|----|
+  48		256	       48
+|---------------------------------|
+		352			*/
+
+#define Z_ZX_SPECTRUM_SCREEN_FPS 			     50
+#define Z_ZX_SPECTRUM_SCREEN_WIDTH			    352
+#define Z_ZX_SPECTRUM_SCREEN_HEIGHT			    296
+#define Z_ZX_SPECTRUM_SCREEN_PIXELS			 104192 /* 352 * 296 */
+#define Z_ZX_SPECTRUM_SCREEN_PAPER_WIDTH		    256
+#define Z_ZX_SPECTRUM_SCREEN_PAPER_HEIGHT		    192
+#define Z_ZX_SPECTRUM_SCREEN_PAPER_PIXELS		  49152	/* 256 * 192 */
+#define Z_ZX_SPECTRUM_SCREEN_TOP_BORDER_HEIGHT		     56
+#define Z_ZX_SPECTRUM_SCREEN_INVISIBLE_TOP_BORDER_HEIGHT      8
+#define Z_ZX_SPECTRUM_SCREEN_VISIBLE_TOP_BORDER_HEIGHT	     48
+#define Z_ZX_SPECTRUM_SCREEN_BOTTOM_BORDER_HEIGHT	     56
+#define Z_ZX_SPECTRUM_SCREEN_LEFT_BORDER_WIDTH		     48
+#define Z_ZX_SPECTRUM_SCREEN_RIGHT_BORDER_WIDTH		     48
+
+/* MARK: - ZX Spectrum - Timmings */
+
+#define Z_ZX_SPECTRUM_CPU_HZ			     3500000
+#define Z_ZX_SPECTRUM_CYCLES_PER_FRAME		       69888
+#define Z_ZX_SPECTRUM_CYCLES_PER_SCANLINE		 224
+#define Z_ZX_SPECTRUM_CYCLES_PER_HBLANK			  48
+#define Z_ZX_SPECTRUM_CYCLES_PER_VBLANK			1792
+#define Z_ZX_SPECTRUM_CYCLES_PER_TOP_BORDER_LINE	 176
+#define Z_ZX_SPECTRUM_CYCLES_PER_LEFT_BORDER_LINE	  24
+#define Z_ZX_SPECTRUM_CYCLES_PER_RIGHT_BORDER_LINE	  24
+#define Z_ZX_SPECTRUM_CYCLES_PER_BOTTOM_BORDER_LINE	 176
+#define Z_ZX_SPECTRUM_CYCLES_PER_PAPER_LINE		 128
+#define Z_ZX_SPECTRUM_CYCLES_PER_INT			  32
+#define Z_ZX_SPECTRUM_CYCLES_AT_VBLANK			   0
+#define Z_ZX_SPECTRUM_CYCLES_AT_INT			  24
+#define Z_ZX_SPECTRUM_CYCLES_AT_INVISIBLE_TOP_BORDER	1792
+#define Z_ZX_SPECTRUM_CYCLES_AT_VISIBLE_TOP_BORDER	3584
+#define Z_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION	       14336
+#define Z_ZX_SPECTRUM_CYCLES_AT_BOTTOM_BORDER	       57344
+
+/* MARK: - ZX Spectrum + 128K
+
+.------------------------------------------------.
+| Model name: ZX Spectrum + 128K		 |
+|     Vendor: Sinclair Research - Investronica	 |
+|   Released: 1985-09				 |
+|	 CPU: Zilog Z80 @ 3.5469 MHz		 |
+|	 ROM: 48K				 |
+|	 RAM: 128K				 |
+|      Sound: General Instrument AY-3-8912 (PSG) |
+'------------------------------------------------'
+ _____________________________				  ________________
+|  ___. __  __	  __ . __     ''''''''''''''''''''''''''''	     |====|
+| __\ ||  ||__|__|--|||						     |====|
+|--------------------------------------------------------------------|====|
+| ZX Spectrum +							     |====|
+|--.-----------------------------------------------------.-----------|====|
+|  |( )|( )|(1)|(2)|(3)|(4)|(5)|(6)|(7)|(1)|(1)|(1)|(BRK)|	     |====|
+|--|-----------------------------------------------------|-----------|====|
+|  |(DEL)|(1)|(Q)|(W)|(E)|(R)|(T)|(Y)|(U)|(I)|(O)|(P)|.-.|	     |====|
+|--|-------------------------------------------------|| ||-----------|====|
+|  |(EXT)|(ED)|(A)|(S)|(D)|(F)|(G)|(H)|(J)|(K)|(L)|(____'|	     |====|
+|--|-----------------------------------------------------|-----------|====|
+|  |(CAPS S)|( )|(Z)|(X)|(C)|(V)|(B)|(N)|(M)|(.)|(CAPS S)|	     |====|
+|--|-----------------------------------------------------|-----------|====|
+|  |( )|(;)|(")|(_)|(_)|(_______________)|(_)|(_)|(,)|(_)|  128K//// |====|
+|--'-----------------------------------------------------'-----------|====|
+|____________________________________________________________________|====| */
+
+/* MARK: - ZX Spectrum + 128K: Memory
+
+     .-----------------.
+0000 | ROM 0  | ROM 1  | Either ROM may be switched in.
+     |	      |	       |
+     |	      |	       |
+3FFF |	      |	       |
+     |--------+--------'
+4000 | Bank 5 |
+     |	      |
+     |	      |
+7FFF | screen |
+     |--------|
+8000 | Bank 2 |        Any one of these pages may be switched in.
+     |	      |
+     |	      |
+BFFF |	      |
+     |--------+--------------------------------------------------------------.
+C000 | Bank 0 | Bank 1 | Bank 2 | Bank 3 | Bank 4 | Bank 5 | Bank 6 | Bank 7 |
+     |	      |	       |(also at|	 |	  |(also at|	    |	     |
+     |	      |	       | 8000)  |	 |	  | 4000)  |	    |	     |
+FFFF |	      |	       |	|	 |	  | screen |	    | screen |
+     '----------------------------------------------------------------------*/
+
+#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_ROM    32768  /* 1024 * 32		*/
+#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_RAM    131072 /* 1024 * 128	*/
+#define Z_ZX_SPECTRUM_PLUS_128K_SIZE_MEMORY 163840 /* 1024 * (32 + 128) */
+
+/* MARK: - ZX Spectrum + 128K: I/O Ports */
+
+#define Z_ZX_SPECTRUM_PLUS_128K_IO_PORT_BANK_SWITCH 0x7FFD /* Read / Write */
+#define Z_ZX_SPECTRUM_PLUS_128K_IO_PORT_PSG	    0xFFFD /* Read / Write */
+
+/* 7FFD - Bank Switch
+.-----------------.
+| 7 6 5 4 3 2 1 0 |
+'-\_/-|-|-|-\___/-'
+   |  | | |   '---> user (C000h)
+   |  | | '-------> VRAM
+   |  | '---------> ROM
+   |  '-----------> disable
+   '--------------> unused */
+
+Z_DEFINE_PACKED_STRUCTURE ({Z_BIT_FIELD(8, 5) (
+	zuint8 unused  :2,
+	zuint8 disable :1,
+	zuint8 rom     :1,
+	zuint8 vram    :1,
+	zuint8 user    :3
+)}, ZZXSpectrumPlus128KBankSwitch);
+
+/* FFFD - Read/Select */
+
+/* MARK: - ZX Spectrum + 128K: Screen
+				     ---
+       Invisible Top Border	      | 7
+.---------------------------------.  ---   ---
+|	Visible Top Border	  |   | 48  |
+|----.-----------------------.----|  ---    |
+|L   |			     |R	  |   |	    |
+|e   |			     |i	  |   |	    |
+|f  B|			     |g  B|   |	    |
+|t  o|	       Paper	     |h  o|   | 192 | 296
+|   r|			     |t  r|   |	    |
+|   d|			     |	 d|   |	    |
+|   e|			     |	 e|   |	    |
+|   r|			     |	 r|   |	    |
+|----'-----------------------'----|  ---    |
+|	   Bottom Border	  |   | 56  |
+'---------------------------------'  ---   ---
+
+|----|-----------------------|----|
+  48		256	       48
+|---------------------------------|
+		352			*/
+
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_TOP_BORDER_HEIGHT	   55
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_INVISIBLE_TOP_BORDER_HEIGHT  7
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_FPS			   Z_ZX_SPECTRUM_SCREEN_FPS
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_WIDTH			   Z_ZX_SPECTRUM_SCREEN_WIDTH
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_HEIGHT			   Z_ZX_SPECTRUM_SCREEN_HEIGHT
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_PIXELS			   Z_ZX_SPECTRUM_SCREEN_PIXELS
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_PAPER_WIDTH		   Z_ZX_SPECTRUM_SCREEN_PAPER_WIDTH
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_PAPER_HEIGHT		   Z_ZX_SPECTRUM_SCREEN_PAPER_HEIGHT
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_PAPER_PIXELS		   Z_ZX_SPECTRUM_SCREEN_PAPER_PIXELS
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_VISIBLE_TOP_BORDER_HEIGHT   Z_ZX_SPECTRUM_SCREEN_VISIBLE_TOP_BORDER_HEIGHT
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_BOTTOM_BORDER_HEIGHT	   Z_ZX_SPECTRUM_SCREEN_BOTTOM_BORDER_HEIGHT
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_LEFT_BORDER_WIDTH	   Z_ZX_SPECTRUM_SCREEN_LEFT_BORDER_WIDTH
+#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_RIGHT_BORDER_WIDTH	   Z_ZX_SPECTRUM_SCREEN_RIGHT_BORDER_WIDTH
+
+/* MARK: - ZX Spectrum + 128K: Timmings */
+
+#define Z_ZX_SPECTRUM_PLUS_128K_CPU_HZ			       3546900
+#define Z_ZX_SPECTRUM_PLUS_128K_PSG_HZ			       1773400
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_FRAME		 70908
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE		   228
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_HBLANK		    52
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_VBLANK		  1824
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INVISIBLE_TOP_BORDER	  1824
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_VISIBLE_TOP_BORDER	  3420
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_PAPER_REGION		 14364
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_BOTTOM_BORDER		 58140
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_TOP_BORDER_LINE     Z_ZX_SPECTRUM_CYCLES_PER_TOP_BORDER_LINE
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_LEFT_BORDER_LINE    Z_ZX_SPECTRUM_CYCLES_PER_LEFT_BORDER_LINE
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_RIGHT_BORDER_LINE   Z_ZX_SPECTRUM_CYCLES_PER_RIGHT_BORDER_LINE
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_BOTTOM_BORDER_LINE  Z_ZX_SPECTRUM_CYCLES_PER_BOTTOM_BORDER_LINE
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_PAPER_LINE	       Z_ZX_SPECTRUM_CYCLES_PER_PAPER_LINE
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_INT		       Z_ZX_SPECTRUM_CYCLES_PER_INT
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_VBLANK	       Z_ZX_SPECTRUM_CYCLES_AT_VBLANK
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INT		       Z_ZX_SPECTRUM_CYCLES_AT_INT
+
+
+
+
+#define Z_INVES_SPECTRUM_PLUS_SIZE_MEMORY	    (1024 * 16 + 1024 * 48)
+#define Z_INVES_SPECTRUM_PLUS_FIRMWARE_BASE_ADDRESS 0
+#define Z_INVES_SPECTRUM_PLUS_SIZE_FIRMWARE	    (1024 * 16)
+
+/* MARK: - Timmings */
+
+#define Z_INVES_SPECTRUM_PLUS_MASTER_CLOCK_HZ 177345
+#define Z_INVES_SPECTRUM_PLUS_CPU_HZ	      3546900
+
+/* MARK: - Inves Spectrum +
+
+.--------------------------------------.
+| Model name: Inves Spectrum +	       |
+|     Vendor: Investronica	       |
+|   Released: 1986		       |
+|	 CPU: Zilog Z80-A @ 3.5469 MHz |
+|	 ROM: 48K		       |
+|	 RAM: 128K		       |
+|      Sound: Internal speaker	       |
+'--------------------------------------'
+ _____________________________				  ___________
+|    .	 _    _  __	      ''''''''''''''''''''''''''''	     |
+| __/\__| |\/|/__\						     |
+|--------------------------------------------------------------------|
+|	 Spectrum +						     |
+|--.-----------------------------------------------------.-----------|
+|  |( )|( )|(1)|(2)|(3)|(4)|(5)|(6)|(7)|(1)|(1)|(1)|(BRK)|	     |
+|--|-----------------------------------------------------|-----------|
+|  |(DEL)|(1)|(Q)|(W)|(E)|(R)|(T)|(Y)|(U)|(I)|(O)|(P)|.-.|	     |
+|--|-------------------------------------------------|| ||-----------|
+|  |(EXT)|(ED)|(A)|(S)|(D)|(F)|(G)|(H)|(J)|(K)|(L)|(____'|	     |
+|--|-----------------------------------------------------|-----------|
+|  |(  /\  )|( )|(Z)|(X)|(C)|(V)|(B)|(N)|(M)|(.)|(  /\  )|	     |
+|--|-----------------------------------------------------|-----------|
+|  |( )|(;)|(")|(<)|(>)|(_______________)|(A)|(V)|(,)|(_)|	     |
+|--'-----------------------------------------------------'-----------|
+|____________________________________________________________________| */
+
 
 #endif /* Z_hardware_machine_computer_ZX_Spectrum_H */

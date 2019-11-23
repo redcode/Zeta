@@ -1,8 +1,8 @@
 /* Z Kit - inspection/ISA.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_ISA_H
@@ -135,9 +135,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/ISA/completion.h>
 
+#define Z_ISA_BITS(	  OF_WHAT) Z_ISA_BITS_##OF_WHAT
 #define Z_ISA_HAS_INTEGRAL(bits	 ) Z_ISA_HAS_INTEGRAL_##bits##BIT
 #define Z_ISA_HAS_REAL(	  FORMAT ) Z_ISA_HAS_REAL_##FORMAT
-#define Z_ISA_BITS(	  OF_WHAT) Z_ISA_BITS_##OF_WHAT
+#define Z_ISA_IS(	  WHICH	 ) (Z_ISA == Z_ISA_##WHICH)
 
 #if defined(Z_ISA_INTEGRAL_ENDIANNESS_ALL)
 #	define Z_ISA_INTEGRAL_ENDIANNESS(bits) Z_ISA_INTEGRAL_ENDIANNESS_ALL

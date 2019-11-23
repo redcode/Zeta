@@ -1,48 +1,48 @@
 /* Z Kit - keys/ISA.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_keys_ISA_H
 #define Z_keys_ISA_H
 
-#define Z_ISA_UNKNOWN		   0
-#define Z_ISA_6502		   1 /* MOS Technology			   */
-#define Z_ISA_AARCH32		   2 /* Acorn Computers			   */
-#define Z_ISA_AARCH64		   3 /* ARM				   */
-#define Z_ISA_ALPHA		   4 /* DEC				   */
-#define Z_ISA_BLACKFIN		   5 /* Analog Devices			   */
-#define Z_ISA_CONVEX		   6 /* Convex Computer			   */
-#define Z_ISA_EPIPHANY		   7 /* Adapteva			   */
-#define Z_ISA_ESA_370		   8 /* IBM				   */
-#define Z_ISA_ESA_390		   9 /* IBM				   */
-#define Z_ISA_HEXAGON		  10 /* Qualcomm			   */
-#define Z_ISA_ITANIUM		  11 /* Hewlett-Packard / Intel		   */
-#define Z_ISA_LANAI		  12 /* Google (?)			   */
-#define Z_ISA_M68K		  13 /* Motorola			   */
-#define Z_ISA_MIPS		  14 /* MIPS Computer Systems		   */
-#define Z_ISA_MIPS64		  15 /* MIPS Computer Systems		   */
-#define Z_ISA_MSP430		  16 /* Texas Instruments		   */
-#define Z_ISA_PA_RISC		  17 /* Hewlett-Packard			   */
-#define Z_ISA_PA_RISC_2		  18 /* Hewlett-Packard			   */
-#define Z_ISA_POWERPC_32BIT	  19 /* AIM alliance			   */
-#define Z_ISA_POWERPC_64BIT	  20 /* IBM				   */
-#define Z_ISA_RV32E		  21 /* University of California, Berkeley */
-#define Z_ISA_RV32I		  22 /* University of California, Berkeley */
-#define Z_ISA_RV64I		  23 /* University of California, Berkeley */
-#define Z_ISA_RV128I		  24 /* University of California, Berkeley */
-#define Z_ISA_SPARC		  25 /* Sun Microsystems		   */
-#define Z_ISA_SPARC_V9		  26 /* SPARC International		   */
-#define Z_ISA_SUPERH		  27 /* Hitachi				   */
-#define Z_ISA_SUPERH_5		  28 /* Hitachi				   */
-#define Z_ISA_X86_16		  29 /* Intel				   */
-#define Z_ISA_X86_32		  30 /* Intel				   */
-#define Z_ISA_X86_64		  31 /* AMD				   */
-#define Z_ISA_XCORE		  32 /* XMOS				   */
-#define Z_ISA_Z_ARCHITECTURE	  33 /* IBM				   */
-#define Z_ISA_Z80		  34 /* Zilog				   */
+#define Z_ISA_UNKNOWN	      0
+#define Z_ISA_6502	      1 /* MOS Technology		      */
+#define Z_ISA_AARCH32	      2 /* Acorn Computers		      */
+#define Z_ISA_AARCH64	      3 /* ARM				      */
+#define Z_ISA_ALPHA	      4 /* DEC				      */
+#define Z_ISA_BLACKFIN	      5 /* Analog Devices		      */
+#define Z_ISA_CONVEX	      6 /* Convex Computer		      */
+#define Z_ISA_EPIPHANY	      7 /* Adapteva			      */
+#define Z_ISA_ESA_370	      8 /* IBM				      */
+#define Z_ISA_ESA_390	      9 /* IBM				      */
+#define Z_ISA_HEXAGON	     10 /* Qualcomm			      */
+#define Z_ISA_ITANIUM	     11 /* Hewlett-Packard / Intel	      */
+#define Z_ISA_LANAI	     12 /* Google (?)			      */
+#define Z_ISA_M68K	     13 /* Motorola			      */
+#define Z_ISA_MIPS	     14 /* MIPS Computer Systems	      */
+#define Z_ISA_MIPS64	     15 /* MIPS Computer Systems	      */
+#define Z_ISA_MSP430	     16 /* Texas Instruments		      */
+#define Z_ISA_PA_RISC	     17 /* Hewlett-Packard		      */
+#define Z_ISA_PA_RISC_2	     18 /* Hewlett-Packard		      */
+#define Z_ISA_POWERPC_32BIT  19 /* AIM alliance			      */
+#define Z_ISA_POWERPC_64BIT  20 /* IBM				      */
+#define Z_ISA_RV32E	     21 /* University of California, Berkeley */
+#define Z_ISA_RV32I	     22 /* University of California, Berkeley */
+#define Z_ISA_RV64I	     23 /* University of California, Berkeley */
+#define Z_ISA_RV128I	     24 /* University of California, Berkeley */
+#define Z_ISA_SPARC	     25 /* Sun Microsystems		      */
+#define Z_ISA_SPARC_V9	     26 /* SPARC International		      */
+#define Z_ISA_SUPERH	     27 /* Hitachi			      */
+#define Z_ISA_SUPERH_5	     28 /* Hitachi			      */
+#define Z_ISA_X86_16	     29 /* Intel			      */
+#define Z_ISA_X86_32	     30 /* Intel			      */
+#define Z_ISA_X86_64	     31 /* AMD				      */
+#define Z_ISA_XCORE	     32 /* XMOS				      */
+#define Z_ISA_Z_ARCHITECTURE 33 /* IBM				      */
+#define Z_ISA_Z80	     34 /* Zilog			      */
 
 #define Z_ISA_NAME_6502		  "6502"
 #define Z_ISA_NAME_AARCH32	  "AArch32"

@@ -1,8 +1,8 @@
 /* Z Kit - classes/XYZ.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_XYZ_HPP
@@ -13,31 +13,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 
-#define Z_IMPLEMENTATION_COMMON									\
-												\
-typedef typename ZTypeFixedNumber(Z3D, T) Base;							\
-T x, y, z;											\
-												\
-Z_INLINE XYZ() Z_DEFAULTED({})									\
-												\
-Z_CT(CPP11) XYZ(T x, T y, T z)	      : x(x),	    y(y),	z(z)	   {}			\
-Z_CT(CPP11) XYZ(T x, T y)	      : x(x),	    y(y),	z(T(0))	   {}			\
-Z_CT(CPP11) XYZ(T xyz)		      : x(xyz),	    y(xyz),	z(xyz)	   {}			\
-Z_CT(CPP11) XYZ(const XY<T> &xy)      : x(xy.x),    y(xy.y),	z(T(0))	   {}			\
-Z_CT(CPP11) XYZ(const XY<T> &xy, T z) : x(xy.x),    y(xy.y),	z(z)	   {}			\
-Z_CT(CPP11) XYZ(T x, const XY<T> &yz) : x(x),	    y(yz.x),	z(yz.y)	   {}			\
-Z_CT(CPP11) XYZ(const Base &other)    : x(other.x), y(other.y), z(other.z) {}			\
-												\
-Z_CT(CPP11) operator Boolean() const {return x != T(0) || y != T(0) || z != T(0);}		\
-Z_INLINE    operator Base&  () const {return *((Base *)this);}					\
-												\
+#define Z_IMPLEMENTATION_COMMON								\
+											\
+T x, y, z;										\
+											\
+Z_INLINE XYZ() Z_DEFAULTED({})								\
+											\
+Z_CT(CPP11) XYZ(T x, T y, T z)	      : x(x   ), y(y   ), z(z	) {}			\
+Z_CT(CPP11) XYZ(T x, T y)	      : x(x   ), y(y   ), z(T(0)) {}			\
+Z_CT(CPP11) XYZ(T xyz)		      : x(xyz ), y(xyz ), z(xyz ) {}			\
+Z_CT(CPP11) XYZ(const XY<T> &xy)      : x(xy.x), y(xy.y), z(T(0)) {}			\
+Z_CT(CPP11) XYZ(const XY<T> &xy, T z) : x(xy.x), y(xy.y), z(z	) {}			\
+Z_CT(CPP11) XYZ(T x, const XY<T> &yz) : x(x   ), y(yz.x), z(yz.y) {}			\
+											\
+Z_CT(CPP11) operator Boolean() const {return x != T(0) || y != T(0) || z != T(0);}	\
+											\
 Z_CT(CPP11) Boolean operator ==(const XYZ &rhs) const {return x == rhs.x && y == rhs.y && z == rhs.z;}  \
 Z_CT(CPP11) Boolean operator !=(const XYZ &rhs) const {return x != rhs.x || y != rhs.y || z != rhs.z;}  \
 Z_CT(CPP11) Boolean operator <=(const XYZ &rhs) const {return x <= rhs.x && y <= rhs.y && z <= rhs.z;}  \
 Z_CT(CPP11) Boolean operator >=(const XYZ &rhs) const {return x >= rhs.x && y >= rhs.y && z >= rhs.z;}  \
 Z_CT(CPP11) Boolean operator > (const XYZ &rhs) const {return x >  rhs.x && y >	 rhs.y && z >  rhs.z;}  \
 Z_CT(CPP11) Boolean operator < (const XYZ &rhs) const {return x <  rhs.x && y <	 rhs.y && z <  rhs.z;}  \
-												\
+											\
 Z_CT(CPP11) XYZ operator +(const XYZ &rhs) const {return XYZ(x + rhs.x, y + rhs.y, z + rhs.z);} \
 Z_CT(CPP11) XYZ operator -(const XYZ &rhs) const {return XYZ(x - rhs.x, y - rhs.y, z - rhs.z);} \
 Z_CT(CPP11) XYZ operator *(const XYZ &rhs) const {return XYZ(x * rhs.x, y * rhs.y, z * rhs.z);} \
@@ -171,7 +168,7 @@ Z_CT(CPP11) XYZ middle(const XYZ &other) const						\
 	}										\
 											\
 											\
-/*Z_INLINE XYZ rotate_as_axes(XYZ<SInt8> rotation) const					\
+/*Z_INLINE XYZ rotate_as_axes(XYZ<SInt8> rotation) const				\
 	{										\
 	XYZ result = *this;								\
 											\
@@ -183,11 +180,7 @@ Z_CT(CPP11) XYZ middle(const XYZ &other) const						\
 											\
 											\
 Z_CT(CPP11) T squared_length() const							\
-	{return x * x + y * y + z * z;}							\
-											\
-											\
-/*Z_INLINE void swap(XYZ &other)								\
-	{Zeta::swap<Base>(this, &other);}*/
+	{return x * x + y * y + z * z;}
 
 
 #define Z_IMPLEMENTATION_SIGNED								\

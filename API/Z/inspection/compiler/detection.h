@@ -1,8 +1,8 @@
 /* Z Kit - inspection/compiler/detection.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_compiler_detection_H
@@ -209,7 +209,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER Z_COMPILER_TENDRA
 
 #elif defined(__TI_COMPILER_VERSION__) || defined(_TMS320C6X)
-#	define Z_COMPILER Z_COMPILER_TEXAS_INSTRUMENTS_C_CPP_COMPILER
+#	define Z_COMPILER Z_COMPILER_TI_C_CPP_COMPILER
 
 /*#elif defined(THINKC3) || defined(THINKC4)
 #	define Z_COMPILER Z_COMPILER_THINK_C*/
@@ -241,7 +241,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER Z_COMPILER_VOS_STANDARD_C
 
 #elif defined(_MSC_VER)
-#	define Z_COMPILER Z_COMPILER_VISUAL_CPP
+#	if _MSC_VER < 800
+#		define Z_COMPILER Z_COMPILER_MSC
+#	else
+#		define Z_COMPILER Z_COMPILER_MSVC
+#	endif
 
 #elif defined(__WATCOMC__)
 #	define Z_COMPILER Z_COMPILER_WATCOM_C_CPP

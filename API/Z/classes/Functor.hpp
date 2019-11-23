@@ -1,8 +1,8 @@
 /* Z Kit - classes/Functor.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_Functor_HPP
@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/classes/ObjectMemberFunction.hpp>
 
-#if Z_HAS_CLASS(ObjectMemberFunction)
+#if Z_DECLARES(ObjectMemberFunction)
 
 #	ifdef Z_USE_OBJECTIVE_C_RUNTIME
 #		include <Z/classes/ObjectSelector.hpp>
@@ -36,7 +36,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					NaT *object;
 				} object_member_function;
 
-#				if Z_HAS_CLASS(ObjectSelector)
+#				if Z_DECLARES(ObjectSelector)
 					struct {SEL selector;
 						id  object;
 					} object_selector;
@@ -46,49 +46,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			struct Callers {
 
-				template <class RR = R>
-				static Z_INLINE typename TypeIf<Type<RR>::is_void, Call>::type
-				function() Z_NOTHROW
+				static Z_INLINE Call function() Z_NOTHROW
 					{
-					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
-						{functor->target.function(arguments...);};
-					}
-
-
-				template <class RR = R>
-				static Z_INLINE typename TypeIf<!Type<RR>::is_void, Call>::type
-				function() Z_NOTHROW
-					{
-					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments) -> R
 						{return functor->target.function(arguments...);};
 					}
 
 
-				template <class RR = R>
-				static Z_INLINE typename TypeIf<Type<RR>::is_void, Call>::type
-				object_member_function() Z_NOTHROW
+				static Z_INLINE Call object_member_function() Z_NOTHROW
 					{
-					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
+					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments) -> R
 						{
-						(functor->target.object_member_function.object->*functor->target.object_member_function.function)
+						return	(functor->target.object_member_function.object->*functor->target.object_member_function.function)
 							(arguments...);
 						};
 					}
 
 
-				template <class RR = R>
-				static Z_INLINE typename TypeIf<!Type<RR>::is_void, Call>::type
-				object_member_function() Z_NOTHROW
-					{
-					return [](const Functor *functor, typename Type<P>::to_forwardable... arguments)
-						{
-						return (functor->target.object_member_function.object->*functor->target.object_member_function.function)
-							(arguments...);
-						};
-					}
-
-
-#				if Z_HAS_CLASS(ObjectSelector)
+#				if Z_DECLARES(ObjectSelector)
 
 					typedef R (* CallObjectSelector)(id, SEL, P...);
 
@@ -106,7 +81,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 						}
 
 
-#					if Z_ISA == Z__X86_64 || Z_ISA == Z__X86_32
+#					if Z_ISA_IS(X86_64) || Z_ISA_IS(X86_32)
 
 						template <class RR = R>
 						static Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_real && !Type<RR>::is_class, Call>::type
@@ -172,8 +147,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			: call(NULL), destroy(NULL) {}
 
 
-#			ifdef Z_NULL_POINTER
-				Z_CT(CPP11) Functor(NullPointer) Z_NOTHROW
+#			ifdef Z_NULLPTR
+				Z_CT(CPP11) Functor(NullPtr) Z_NOTHROW
 				: call(NULL), destroy(NULL) {}
 #			endif
 
@@ -186,8 +161,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class O, class M, class E = typename TypeIf<
 				(Type<O>::is_void || Type<O>::is_class) &&
 				Type<M>::is_member_function_pointer	&&
-				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
-			M>::type>
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value
+			>::type>
 			Z_INLINE Functor(O *object, M function) Z_NOTHROW
 			: call(Callers::object_member_function()), destroy(NULL)
 				{
@@ -199,8 +174,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class O, class M, class E = typename TypeIf<
 				Type<O>::is_class		    &&
 				Type<M>::is_member_function_pointer &&
-				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
-			M>::type>
+				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value
+			>::type>
 			Z_INLINE Functor(const O &object, M function) Z_NOTHROW
 			: call(Callers::object_member_function()), destroy(NULL)
 				{
@@ -217,12 +192,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				}
 
 
-#			if Z_HAS_TRAIT(TypeIsConvertible)
+#			if Z_DECLARES(TypeIsConvertible)
 
 				template <class O, class E = typename TypeIf<
 					Type<O>::is_class &&
-					TypeIsConvertible<O, R(*)(P...)>::value,
-				O>::type>
+					TypeIsConvertible<O, R(*)(P...)>::value
+				>::type>
 				Z_INLINE Functor(const O &object) Z_NOTHROW
 				: call(Callers::function()), destroy(NULL)
 					{target.function = (R(*)(P...))object;} // TODO: cast
@@ -230,7 +205,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			endif
 
 
-#			if Z_HAS_CLASS(ObjectSelector)
+#			if Z_DECLARES(ObjectSelector)
 
 				Z_INLINE Functor(id object, SEL selector) Z_NOTHROW
 				: call(Callers::object_selector()), destroy(NULL)
@@ -258,23 +233,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				{return call != NULL;}
 
 
-			template <class RR = R>
-			Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
-			operator ()(typename Type<P>::to_forwardable... arguments) const
-				{call(this, arguments...);}
-
-
-			template <class RR = R>
-			Z_INLINE typename TypeIf<!Type<RR>::is_void, RR>::type
-			operator ()(typename Type<P>::to_forwardable... arguments) const
+			Z_INLINE R operator ()(typename Type<P>::to_forwardable... arguments) const
 				{return call(this, arguments...);}
 		};
 	}
 
 
-#	define Z_HAS_CLASS_Functor TRUE
+#	define Z_DECLARES_Functor TRUE
 #else
-#	define Z_HAS_CLASS_Functor FALSE
+#	define Z_DECLARES_Functor FALSE
 #endif
 
 #endif // Z_classes_Functor_HPP

@@ -1,8 +1,8 @@
 /* Z Kit - types/integral.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_types_integral_HPP
@@ -169,13 +169,7 @@ namespace Zeta {
 		typedef zsllong SLLong;
 #	endif
 
-#	if Z_DIALECT_HAS_TYPE(CPP, BOOL)
-		typedef bool Boolean;
-#	elif Z_DIALECT_HAS_TYPE(C, BOOL)
-		typedef _Bool Boolean;
-#	else
-		typedef zboolean Boolean;
-#	endif
+	typedef zboolean Boolean;
 
 #	if Z_DIALECT_HAS_TYPE(CPP, WCHAR_T)
 		typedef wchar_t WChar;

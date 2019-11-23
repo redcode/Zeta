@@ -1,8 +1,8 @@
 /* Z Kit - inspection/C/completion.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_C_completion_H
@@ -44,12 +44,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - C89 */
 
+#ifndef Z_C_HAS_CONSTANT_INITIALIZATION_FOR_LOCAL_AGGREGATE
+#	define Z_C_HAS_CONSTANT_INITIALIZATION_FOR_LOCAL_AGGREGATE FALSE
+#endif
+
+#ifndef Z_C_HAS_CONSTANT_INITIALIZATION_FOR_UNION
+#	define Z_C_HAS_CONSTANT_INITIALIZATION_FOR_UNION FALSE
+#endif
+
 #ifndef Z_C_HAS_CONSTRUCT_AS_FUNCTION_ARGUMENT
 #	define Z_C_HAS_CONSTRUCT_AS_FUNCTION_ARGUMENT FALSE
 #endif
 
-#ifndef Z_C_HAS_CONSTRUCT_AS_RETURN_TYPE
-#	define Z_C_HAS_CONSTRUCT_AS_RETURN_TYPE FALSE
+#ifndef Z_C_HAS_CONSTRUCT_RETURN
+#	define Z_C_HAS_CONSTRUCT_RETURN FALSE
 #endif
 
 #ifndef Z_C_HAS_CONSTRUCT_ASSIGNMENT
@@ -76,10 +84,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_INTEGRAL_SWITCH FALSE
 #endif
 
-#ifndef Z_C_HAS_LOCAL_AGGREGATE_CONSTANT_INITIALZATION
-#	define Z_C_HAS_LOCAL_AGGREGATE_CONSTANT_INITIALZATION FALSE
-#endif
-
 #ifndef Z_C_HAS_PREPROCESSOR_INDENTATION
 #	define Z_C_HAS_PREPROCESSOR_INDENTATION FALSE
 #endif
@@ -98,10 +102,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_C_HAS_TRIGRAPHS
 #	define Z_C_HAS_TRIGRAPHS FALSE
-#endif
-
-#ifndef Z_C_HAS_UNION_CONSTANT_INITIALIZATION
-#	define Z_C_HAS_UNION_CONSTANT_INITIALIZATION FALSE
 #endif
 
 #ifndef Z_C_HAS_VALUE_PRESERVING_UNSIGNED_CONVERSION
@@ -124,8 +124,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_LITERAL_FLOAT FALSE
 #endif
 
+#ifndef Z_C_HAS_LITERAL_LONG_DOUBLE
+#	define Z_C_HAS_LITERAL_LONG_DOUBLE FALSE
+#endif
+
 #ifndef Z_C_HAS_LITERAL_UNSIGNED
 #	define Z_C_HAS_LITERAL_UNSIGNED FALSE
+#endif
+
+#ifndef Z_C_HAS_LITERAL_WCHAR_T_CHARACTER
+#	define Z_C_HAS_LITERAL_WCHAR_T_CHARACTER FALSE
+#endif
+
+#ifndef Z_C_HAS_LITERAL_WCHAR_T_STRING
+#	define Z_C_HAS_LITERAL_WCHAR_T_STRING FALSE
 #endif
 
 #ifndef Z_C_HAS_OPERATOR_UNARY_PLUS
@@ -220,8 +232,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_CPP_STYLE_COMMENT FALSE
 #endif
 
-#ifndef Z_C_HAS_DESIGNATED_INITIALIZER
-#	define Z_C_HAS_DESIGNATED_INITIALIZER FALSE
+#ifndef Z_C_HAS_DESIGNATED_INITIALIZATION
+#	define Z_C_HAS_DESIGNATED_INITIALIZATION FALSE
 #endif
 
 #ifndef Z_C_HAS_EMPTY_MACRO_ARGUMENT
@@ -244,12 +256,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_IDEMPOTENT_TYPE_QUALIFIERS FALSE
 #endif
 
-#ifndef Z_C_HAS_LOCAL_AGGREGATE_NON_CONSTANT_INITIALIZATION
-#	define Z_C_HAS_LOCAL_AGGREGATE_NON_CONSTANT_INITIALIZATION FALSE
-#endif
-
 #ifndef Z_C_HAS_MIXED_DECLARATIONS_AND_CODE
 #	define Z_C_HAS_MIXED_DECLARATIONS_AND_CODE FALSE
+#endif
+
+#ifndef Z_C_HAS_NON_CONSTANT_INITIALIZATION_FOR_LOCAL_AGGREGATE
+#	define Z_C_HAS_NON_CONSTANT_INITIALIZATION_FOR_LOCAL_AGGREGATE FALSE
 #endif
 
 #ifndef Z_C_HAS_PREPROCESSOR_ARITHMETIC_DONE_IN_INTMAX
@@ -284,8 +296,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_TYPE_QUALIFIERS_IN_ARRAY_PARAMETER_DECLARATION FALSE
 #endif
 
-#ifndef Z_C_HAS_UNIVERSAL_CHARACTER_NAMES
-#	define Z_C_HAS_UNIVERSAL_CHARACTER_NAMES FALSE
+#ifndef Z_C_HAS_UNIVERSAL_CHARACTER_NAME
+#	define Z_C_HAS_UNIVERSAL_CHARACTER_NAME FALSE
 #endif
 
 #ifndef Z_C_HAS_VARIADIC_MACRO
@@ -302,14 +314,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_C_HAS_LITERAL_HEXADECIMAL_FLOATING_POINT
 #	define Z_C_HAS_LITERAL_HEXADECIMAL_FLOATING_POINT FALSE
-#endif
-
-#ifndef Z_C_HAS_LITERAL_WCHAR_T_CHARACTER
-#	define Z_C_HAS_LITERAL_WCHAR_T_CHARACTER FALSE
-#endif
-
-#ifndef Z_C_HAS_LITERAL_WCHAR_T_STRING
-#	define Z_C_HAS_LITERAL_WCHAR_T_STRING FALSE
 #endif
 
 #ifndef Z_C_HAS_PREPROCESSOR_OPERATOR_PRAGMA
@@ -364,16 +368,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_HAS_TYPE_LONG_LONG FALSE
 #endif
 
+#ifndef Z_C_HAS_TYPE_QUALIFIER_RESTRICT
+#	define Z_C_HAS_TYPE_QUALIFIER_RESTRICT FALSE
+#endif
+
 #ifndef Z_C_HAS_TYPE_MODIFIER_COMPLEX
 #	define Z_C_HAS_TYPE_MODIFIER_COMPLEX FALSE
 #endif
 
 #ifndef Z_C_HAS_TYPE_MODIFIER_IMAGINARY
 #	define Z_C_HAS_TYPE_MODIFIER_IMAGINARY FALSE
-#endif
-
-#ifndef Z_C_HAS_TYPE_QUALIFIER_RESTRICT
-#	define Z_C_HAS_TYPE_QUALIFIER_RESTRICT FALSE
 #endif
 
 /* MARK: - C11 */

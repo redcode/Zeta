@@ -1,11 +1,11 @@
 /* Z Kit - formats/storage medium image/audio/TZX.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
+ /____/\___/ /__//__/__| Kit
 Copyright (C) Tomaz Kac.
 Copyright (C) Martijn van der Heide.
 Copyright (C) Ramsoft.
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
 .------------------------------------------------------------------------------.
@@ -177,8 +177,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef Z_formats_storage_medium_image_audio_TZX_H
 #define Z_formats_storage_medium_image_audio_TZX_H
 
-#include <Z/types/fundamental.h>
+#include <Z/types/integral.h>
 #include <Z/macros/language.h>
+#include <Z/macros/aggregate.h>
 
 /* MARK: - File Header
 .------------------------------------------------------------------------------.
@@ -573,25 +574,25 @@ Offset	   Value			Description
 | 22 | (0, 855, 855)   | Data symbol definitions		      |
 |    | (0, 1710, 1710) |					      |
 |----+-----------------+----------------------------------------------|
-| 2C | 00000000b (00h) |- Loading flag (00h = header)		      |
-|    | 00000011b (03h) |- Data type (03h = "Bytes:")		      |
-|    | 01001010b (4Ah) |\					      |
-|    | 01010000b (50h) | |					      |
-|    | 01010011b (53h) | |					      |
-|    | 01010000b (50h) | |					      |
-|    | 00100000b (20h) | | File name ("JPSP")			      |
-|    | 00100000b (20h) | |					      |
-|    | 00100000b (20h) | |					      |
-|    | 00100000b (20h) | |					      |
-|    | 00100000b (20h) | |					      |
-|    | 00100000b (20h) |/					      |
-|    | 00000000b (00h) |\ Data length				      |
-|    | 00011011b (1Bh) |/					      |
-|    | 00000000b (00h) |\ Start address				      |
-|    | 01000000b (40h) |/					      |
-|    | 00000000b (00h) |\ Autostart (no meaning here)		      |
-|    | 10000000b (80h) |/					      |
-|    | 11000001b (C1h) |- Checksum				      |
+| 2C | 00000000b (00h) --- Loading flag (00h = header)		      |
+|    | 00000011b (03h) --- Data type (03h = "Bytes:")		      |
+|    | 01001010b (4Ah) -.					      |
+|    | 01010000b (50h)  |					      |
+|    | 01010011b (53h)  |					      |
+|    | 01010000b (50h)  |					      |
+|    | 00100000b (20h)  |- File name ("JPSP")			      |
+|    | 00100000b (20h)  |					      |
+|    | 00100000b (20h)  |					      |
+|    | 00100000b (20h)  |					      |
+|    | 00100000b (20h)  |					      |
+|    | 00100000b (20h) -'					      |
+|    | 00000000b (00h) \__ Data length				      |
+|    | 00011011b (1Bh) / 					      |
+|    | 00000000b (00h) \__ Start address			      |
+|    | 01000000b (40h) /					      |
+|    | 00000000b (00h) \__ Autostart (no meaning here)		      |
+|    | 10000000b (80h) /					      |
+|    | 11000001b (C1h) --- Checksum				      |
 '--------------------------------------------------------------------*/
 
 /* MARK: - ID 20h - Pause (Silence) or 'Stop the Tape' Command

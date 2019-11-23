@@ -1,8 +1,8 @@
 /* Z Kit - classes/Selector.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_Selector_HPP
@@ -43,7 +43,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				{reinterpret_cast<Call>(objc_msgSend)(object, selector, arguments...);}
 
 
-#			if Z_ISA == Z_ISA_X86_64 || Z_ISA == Z_ISA_X86_32
+#			if Z_ISA_IS(X86_64) || Z_ISA_IS(X86_32)
 
 				template <class RR = R>
 				Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_real && !Type<RR>::is_class, RR>::type
@@ -132,9 +132,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	}
 
 
-#	define Z_HAS_CLASS_Selector TRUE
+#	define Z_DECLARES_Selector TRUE
 #else
-#	define z_has_class_Selector FALSE
+#	define Z_DECLARES_Selector FALSE
 #endif
 
 #endif // Z_classes_Selector_HPP

@@ -1,12 +1,12 @@
 /* Z Kit - formats/snapshot/machine/computer/ZX Spectrum/SNA.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
 .------------------------------------------------------------------------.
-| Extensions: sna, snap, snapshot					 |
+| Extensions: .sna, .snap, .snapshot					 |
 | Endianness: Little							 |
 |   Supports: 48K / 128K						 |
 |  Reference: <http://rk.nvg.ntnu.no/sinclair/faq/fileform.html>	 |
@@ -56,7 +56,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	i;
-	Z16Bit	hl_, de_, bc_, af_,
+	Z16Bit	hl_, de_, bc_, af_;
 	Z16Bit	hl,  de,  bc;
 	Z16Bit	iy,  ix;
 
@@ -99,7 +99,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 
 Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	i;
-	Z16Bit	hl_, de_, bc_, af_,
+	Z16Bit	hl_, de_, bc_, af_;
 	Z16Bit	hl,  de,  bc;
 	Z16Bit	iy,  ix;
 

@@ -1,15 +1,14 @@
 /* Z Kit - classes/Range.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_Range_HPP
 #define Z_classes_Range_HPP
 
-#include <Z/macros/type selection.hpp>
-#include <Z/functions/value.hpp>
+#include <Z/functions/mathematics.hpp>
 
 #if defined(Z_USE_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 #	import <Foundation/NSRange.h>
@@ -17,7 +16,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 namespace Zeta {template <class T> struct Range {
-	typedef typename ZTypeFixedNatural(ZRange, T) Base;
 	T index, size;
 
 
@@ -33,61 +31,67 @@ namespace Zeta {template <class T> struct Range {
 	: index(index), size(size) {}
 
 
-	Z_CT(CPP11) Range(const Base &other) Z_NOTHROW
-	: index(other.index), size(other.size) {}
-
-
 	Z_CT(CPP11) operator Boolean() const Z_NOTHROW
 		{return !!size;}
 
 
-	Z_INLINE operator Base&() const Z_NOTHROW
-		{return *reinterpret_cast<Base *>(this);}
+	friend Z_CT(CPP11) Boolean operator ==(const Range &lhs, const Range &rhs) Z_NOTHROW
+		{return lhs.index == rhs.index && lhs.size == rhs.size;}
 
 
-	Z_CT(CPP11) Boolean operator ==(const Range &rhs) const Z_NOTHROW
-		{return index == rhs.index && size == rhs.size;}
+	friend Z_CT(CPP11) Boolean operator !=(const Range &lhs, const Range &rhs) Z_NOTHROW
+		{return lhs.index != rhs.index || lhs.size != rhs.size;}
 
 
-	Z_CT(CPP11) Boolean operator !=(const Range &rhs) const Z_NOTHROW
-		{return index != rhs.index || size != rhs.size;}
-
-
-	Z_CT(CPP14) Range operator &(const Range &rhs) const Z_NOTHROW
+	friend Z_CT(CPP14) Range operator &(const Range &lhs, const Range &rhs) Z_NOTHROW
 		{
-		T index = (this->index > rhs.index) ? this->index : rhs.index;
-		T end	= minimum<T>(end(), rhs.end());
+		T index = (lhs.index > rhs.index) ? lhs.index : rhs.index;
+		T end	= minimum<T>(lhs.end(), rhs.end());
 
 		return end > index ? Range(index, end - index) : Range(0);
 		}
 
 
-	Z_CT(CPP14) Range operator |(const Range &rhs) const Z_NOTHROW
+	friend Z_CT(CPP14) Range operator |(const Range &lhs, const Range &rhs) Z_NOTHROW
 		{
-		T	index = (this->index < rhs.index) ? this->index : rhs.index,
-			a_end = end(),
-			b_end = rhs.end();
+		T index   = (lhs.index < rhs.index) ? lhs.index : rhs.index;
+		T lhs_end = lhs.end();
+		T rhs_end = rhs.end();
 
-		return Range(index, ((a_end > b_end) ? a_end : b_end) - index);
+		return Range(index, ((lhs_end > rhs_end) ? lhs_end : rhs_end) - index);
 		}
 
 
-	Z_INLINE Range &operator &=(const Range &rhs) Z_NOTHROW
-		{return *this = *this & rhs;}
+	friend Z_CT(CPP11) Range operator +(const Range &lhs, T rhs) Z_NOTHROW
+		{return Range(lhs.index, lhs.size + rhs);}
 
 
-	Z_INLINE Range &operator |=(const Range &rhs) Z_NOTHROW
-		{return *this = *this | rhs;}
+	friend Z_CT(CPP11) Range operator +(T lhs, const Range &rhs) Z_NOTHROW
+		{return Range(rhs.index, rhs.size + lhs);}
 
 
-	Z_CT(CPP11) T operator [](T index) const Z_NOTHROW
-		{return this->index + index;}
+	friend Z_CT(CPP11) Range operator -(const Range &lhs, T rhs) Z_NOTHROW
+		{return Range(lhs.index, lhs.size - rhs);}
+
+
+	Z_CT(CPP11) Range operator >>(T rhs) const Z_NOTHROW {return Range(index + rhs, size);}
+	Z_CT(CPP11) Range operator <<(T rhs) const Z_NOTHROW {return Range(index - rhs, size);}
+
+	Z_INLINE Range &operator &=(const Range &rhs) Z_NOTHROW {return *this = *this & rhs;}
+	Z_INLINE Range &operator |=(const Range &rhs) Z_NOTHROW {return *this = *this | rhs;}
+
+	Z_INLINE Range &operator  +=(T rhs) Z_NOTHROW {return *this = *this +  rhs;}
+	Z_INLINE Range &operator  -=(T rhs) Z_NOTHROW {return *this = *this -  rhs;}
+	Z_INLINE Range &operator >>=(T rhs) Z_NOTHROW {return *this = *this >> rhs;}
+	Z_INLINE Range &operator <<=(T rhs) Z_NOTHROW {return *this = *this << rhs;}
+
+	Z_CT(CPP11) T operator [](T index_) const Z_NOTHROW {return index + index_;}
 
 
 #	if defined(Z_USE_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
 		Z_CT(CPP11) Range(const NSRange &range) Z_NOTHROW
-		: index(range.location), size(range.length) {}
+		: index(T(range.location)), size(T(range.length)) {}
 
 
 #		if Z_DIALECT_HAS(CPP, COPY_LIST_INITIALIZATION)

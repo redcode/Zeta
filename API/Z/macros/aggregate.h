@@ -1,8 +1,8 @@
 /* Z Kit - macros/aggregate.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_macros_aggregate_H
@@ -103,7 +103,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
 #define Z_ENDIANIZED_MEMBERS(bits, member_count)	  \
-	Z_APPEND_TERNARY(Z_ISA_ENDIANNESS(INTEGRAL, bits)) \
+	Z_APPEND_TERNARY(Z_ISA_INTEGRAL_ENDIANNESS(bits)) \
 		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
 #endif /* Z_macros_aggregate_H */

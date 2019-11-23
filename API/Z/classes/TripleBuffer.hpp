@@ -1,7 +1,7 @@
 /* Z Kit - classes/TripleBuffer.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
+ /____/\___/ /__//__/__| Kit
 Copyright (C) 2012 Remis.
 Copyright (C) 2014-2018 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
@@ -26,19 +26,19 @@ namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 
 	Z_INLINE void initialize(void *buffers, USize buffer_size) Z_NOTHROW
 		{
-		this->buffers[0] = buffers;
-		this->buffers[1] = (UInt8 *)buffers + buffer_size;
-		this->buffers[2] = (UInt8 *)buffers + buffer_size * 2;
+		this->slots[0] = buffers;
+		this->slots[1] = (UInt8 *)buffers + buffer_size;
+		this->slots[2] = (UInt8 *)buffers + buffer_size * 2;
 		this->flags	 = 6;
 		}
 
 
 	Z_INLINE void *production_buffer() const Z_NOTHROW
-		{return buffers[(flags & 48) >> 4];}
+		{return slots[(flags & 48) >> 4];}
 
 
 	Z_INLINE void *consumption_buffer() const Z_NOTHROW
-		{return buffers[flags & 3];}
+		{return slots[flags & 3];}
 
 
 	Z_INLINE void *produce() Z_NOTHROW
@@ -51,7 +51,7 @@ namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 			}
 		while (!z_uint8_atomic_set_if_equal(&this->flags, flags, new_flags));
 
-		return this->buffers[(new_flags & 48) >> 4];
+		return this->slots[(new_flags & 48) >> 4];
 		}
 
 
@@ -65,7 +65,7 @@ namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
 			}
 		while (!z_uint8_atomic_set_if_equal(&this->flags, flags, new_flags));
 
-		return this->buffers[new_flags & 3];;
+		return this->slots[new_flags & 3];;
 		}
 };}
 

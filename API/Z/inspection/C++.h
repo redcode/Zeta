@@ -1,8 +1,8 @@
 /* Z Kit - inspection/C++.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_CPP_H
@@ -14,6 +14,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifdef __cplusplus
 
 #	ifndef Z_CPP
+/*#		if __cplusplus >=
+#			define Z_CPP Z_CPP20*/
+
 #		if __cplusplus >= 201703L
 #			define Z_CPP Z_CPP17
 
@@ -30,6 +33,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			define Z_CPP Z_CPP1
 #		endif
 #	endif
+
+/*#	if Z_CPP == Z_CPP20
+#		include <Z/inspection/C++/modules/C++20.h>
+#		define Z_CPP_NAME Z_CPP_NAME_CPP20*/
 
 #	if Z_CPP == Z_CPP17
 #		include <Z/inspection/C++/modules/C++17.h>
@@ -65,16 +72,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C++/completion.h>
 
-#define Z_CPP_HAS(			FEATURE		     ) Z_CPP_HAS_##FEATURE
-#define Z_CPP_HAS_ATTRIBUTE(		ATTRIBUTE	     ) Z_CPP_HAS_ATTRIBUTE_##ATTRIBUTE
-#define Z_CPP_HAS_IDENTIFIER(		IDENTIFIER	     ) Z_CPP_HAS_IDENTIFIER_##IDENTIFIER
-#define Z_CPP_HAS_LITERAL(		LITERAL		     ) Z_CPP_HAS_LITERAL_##LITERAL
-#define Z_CPP_HAS_OPERATOR(		OPERATOR	     ) Z_CPP_HAS_OPERATOR_##OPERATOR
-#define Z_CPP_HAS_OPERATOR_CASE(	OPERATOR, CASE	     ) Z_CPP_HAS_OPERATOR_CASE_##OPERATOR##_##CASE
-#define Z_CPP_HAS_PREPROCESSOR_OPERATOR(PREPROCESSOR_OPERATOR) Z_CPP_HAS_PREPROCESSOR_OPERATOR_##PREPROCESSOR_OPERATOR
-#define Z_CPP_HAS_SPECIFIER(		SPECIFIER	     ) Z_CPP_HAS_SPECIFIER_##SPECIFIER
-#define Z_CPP_HAS_SPECIFIER_CASE(	SPECIFIER, CASE	     ) Z_CPP_HAS_SPECIFIER_CASE_##SPECIFIER##_##CASE
-#define Z_CPP_HAS_STORAGE_CLASS(	STORAGE_CLASS	     ) Z_CPP_HAS_STORAGE_CLASS_##STORAGE_CLASS
-#define Z_CPP_HAS_TYPE(			TYPE		     ) Z_CPP_HAS_TYPE_##TYPE
+#define Z_CPP_HAS(			  FEATURE		 ) Z_CPP_HAS_##FEATURE
+#define Z_CPP_HAS_ATTRIBUTE(		  ATTRIBUTE		 ) Z_CPP_HAS_ATTRIBUTE_##ATTRIBUTE
+#define Z_CPP_HAS_IDENTIFIER(		  IDENTIFIER		 ) Z_CPP_HAS_IDENTIFIER_##IDENTIFIER
+#define Z_CPP_HAS_LITERAL(		  LITERAL		 ) Z_CPP_HAS_LITERAL_##LITERAL
+#define Z_CPP_HAS_OPERATOR(		  OPERATOR		 ) Z_CPP_HAS_OPERATOR_##OPERATOR
+#define Z_CPP_HAS_OPERATOR_CASE(	  OPERATOR, CASE	 ) Z_CPP_HAS_OPERATOR_CASE_##OPERATOR##_##CASE
+#define Z_CPP_HAS_PREPROCESSOR_IDENTIFIER(PREPROCESSOR_IDENTIFIER) Z_CPP_HAS_PREPROCESSOR_IDENTIFIER_##PREPROCESSOR_IDENTIFIER
+#define Z_CPP_HAS_PREPROCESSOR_OPERATOR(  PREPROCESSOR_OPERATOR	 ) Z_CPP_HAS_PREPROCESSOR_OPERATOR_##PREPROCESSOR_OPERATOR
+#define Z_CPP_HAS_SPECIFIER(		  SPECIFIER		 ) Z_CPP_HAS_SPECIFIER_##SPECIFIER
+#define Z_CPP_HAS_SPECIFIER_CASE(	  SPECIFIER, CASE	 ) Z_CPP_HAS_SPECIFIER_CASE_##SPECIFIER##_##CASE
+#define Z_CPP_HAS_STORAGE_CLASS(	  STORAGE_CLASS		 ) Z_CPP_HAS_STORAGE_CLASS_##STORAGE_CLASS
+#define Z_CPP_HAS_TYPE(			  TYPE			 ) Z_CPP_HAS_TYPE_##TYPE
 
 #endif /* Z_inspection_CPP_H */

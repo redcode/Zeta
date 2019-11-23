@@ -1,8 +1,8 @@
 /* Z Kit - traits/TypeCount.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_traits_TypeCount_HPP
@@ -36,14 +36,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			class T28 = NaT, class T29 = NaT, class T30 = NaT, class T31 = NaT
 		> struct TypeCount {};
 
-#		define Z_TEMPLATE_SPECIALIZATION(parameter_count)		       \
+#		define Z_IMPLEMENTATION(parameter_count)			       \
 		template <Z_FOR_##parameter_count##_APPEND_INDEX(class T, Z_COMMA)>    \
 		struct TypeCount<Z_FOR_##parameter_count##_APPEND_INDEX(T, Z_COMMA)> { \
 			enum {value = parameter_count};				       \
 		};
 
-		Z_FOR_32_CALL_WITH_INDEX(Z_TEMPLATE_SPECIALIZATION, Z_EMPTY)
-#		undef Z_TEMPLATE_SPECIALIZATION
+		Z_FOR_32_CALL_WITH_INDEX(Z_IMPLEMENTATION, Z_EMPTY)
+#		undef Z_IMPLEMENTATION
 
 	}
 

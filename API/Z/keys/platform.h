@@ -1,14 +1,14 @@
 /* Z Kit - keys/platform.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_keys_platform_H
 #define Z_keys_platform_H
 
-#define Z_PLATFORM_UNKNOWN	         0
+#define Z_PLATFORM_UNKNOWN 0
 
 /* Computers */
 
@@ -58,28 +58,29 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PLATFORM_NEO_GEO	      1015 /* SNK		*/
 #define Z_PLATFORM_NEO_GEO_POCKET     1016 /* SNK		*/
 #define Z_PLATFORM_NES		      1017 /* Nintendo		*/
-#define Z_PLATFORM_NINTENDO_64	      1018 /* Nintendo		*/
-#define Z_PLATFORM_NINTENDO_DS	      1019 /* Nintendo		*/
-#define Z_PLATFORM_NINTENDO_GAME_CUBE 1020 /* Nintendo		*/
-#define Z_PLATFORM_NINTENDO_SWITCH    1021 /* Nintendo		*/
-#define Z_PLATFORM_PC_ENGINE	      1022 /* NEC		*/
-#define Z_PLATFORM_PLAYDIA	      1023 /* Bandai		*/
-#define Z_PLATFORM_PSX		      1024 /* Sony		*/
-#define Z_PLATFORM_PS2		      1025 /* Sony		*/
-#define Z_PLATFORM_PS3		      1026 /* Sony		*/
-#define Z_PLATFORM_PS4		      1027 /* Sony		*/
-#define Z_PLATFORM_PSP		      1028 /* Sony		*/
-#define Z_PLATFORM_PS_VITA	      1029 /* Sony		*/
-#define Z_PLATFORM_SEGA_SATURN	      1030 /* Sega		*/
-#define Z_PLATFORM_SNES		      1031 /* Nintendo		*/
-#define Z_PLATFORM_SUPERVISION	      1032 /* Watara		*/
-#define Z_PLATFORM_VECTREX	      1033 /* MB / GCE		*/
-#define Z_PLATFORM_VIRTUAL_BOY	      1034 /* Nintendo		*/
-#define Z_PLATFORM_WII		      1035 /* Nintendo		*/
-#define Z_PLATFORM_WII_U	      1036 /* Nintendo		*/
-#define Z_PLATFORM_WONDER_SWAN	      1037 /* Bandai		*/
-#define Z_PLATFORM_XBOX		      1038 /* Microsoft		*/
-#define Z_PLATFORM_XBOX_360	      1039 /* Microsoft		*/
-#define Z_PLATFORM_XBOX_ONE	      1040 /* Microsoft		*/
+#define Z_PLATFORM_NINTENDO_3DS	      1018 /* Nintendo		*/
+#define Z_PLATFORM_NINTENDO_64	      1019 /* Nintendo		*/
+#define Z_PLATFORM_NINTENDO_DS	      1020 /* Nintendo		*/
+#define Z_PLATFORM_NINTENDO_GAME_CUBE 1021 /* Nintendo		*/
+#define Z_PLATFORM_NINTENDO_SWITCH    1022 /* Nintendo		*/
+#define Z_PLATFORM_PC_ENGINE	      1023 /* NEC		*/
+#define Z_PLATFORM_PLAYDIA	      1024 /* Bandai		*/
+#define Z_PLATFORM_PSX		      1025 /* Sony		*/
+#define Z_PLATFORM_PS2		      1026 /* Sony		*/
+#define Z_PLATFORM_PS3		      1027 /* Sony		*/
+#define Z_PLATFORM_PS4		      1028 /* Sony		*/
+#define Z_PLATFORM_PSP		      1029 /* Sony		*/
+#define Z_PLATFORM_PS_VITA	      1030 /* Sony		*/
+#define Z_PLATFORM_SEGA_SATURN	      1031 /* Sega		*/
+#define Z_PLATFORM_SNES		      1032 /* Nintendo		*/
+#define Z_PLATFORM_SUPERVISION	      1033 /* Watara		*/
+#define Z_PLATFORM_VECTREX	      1034 /* MB / GCE		*/
+#define Z_PLATFORM_VIRTUAL_BOY	      1035 /* Nintendo		*/
+#define Z_PLATFORM_WII		      1036 /* Nintendo		*/
+#define Z_PLATFORM_WII_U	      1037 /* Nintendo		*/
+#define Z_PLATFORM_WONDER_SWAN	      1038 /* Bandai		*/
+#define Z_PLATFORM_XBOX		      1039 /* Microsoft		*/
+#define Z_PLATFORM_XBOX_360	      1040 /* Microsoft		*/
+#define Z_PLATFORM_XBOX_ONE	      1041 /* Microsoft		*/
 
 #endif /* Z_keys_platform_H */

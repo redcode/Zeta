@@ -1,8 +1,8 @@
 /* Z Kit - traits/TypeList.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_traits_TypeList_HPP
@@ -10,109 +10,109 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
-#	define Z_HAS_TRAIT_TypeList	       TRUE
-#	define Z_HAS_TRAIT_TypeListSize	       TRUE
-#	define Z_HAS_TRAIT_TypeListAppend      TRUE
-#	define Z_HAS_TRAIT_TypeListFirst       TRUE
-#	define Z_HAS_TRAIT_TypeListGet	       TRUE
-#	define Z_HAS_TRAIT_TypeListJoin	       TRUE
-#	define Z_HAS_TRAIT_TypeListLast	       TRUE
-#	define Z_HAS_TRAIT_TypeListPrepend     TRUE
-#	define Z_HAS_TRAIT_TypeListRename      TRUE
-#	define Z_HAS_TRAIT_TypeListRemove      TRUE
-#	define Z_HAS_TRAIT_TypeListRemoveFirst TRUE
-#	define Z_HAS_TRAIT_TypeListRemoveHead  TRUE
-#	define Z_HAS_TRAIT_TypeListRemoveLast  TRUE
-#	define Z_HAS_TRAIT_TypeListRemoveTail  TRUE
-#	define Z_HAS_TRAIT_TypeListReverse     TRUE
-#	define Z_HAS_TRAIT_TypeListRotateLeft  TRUE
-#	define Z_HAS_TRAIT_TypeListRotateRight TRUE
-#	define Z_HAS_TRAIT_TypeListToFunction  TRUE
-#	define Z_HAS_TRAIT_TypeListTransform   TRUE
+#if Z_DIALECT_HAS(CPP, EXTENDED_VARIADIC_TEMPLATE_TEMPLATE_PARAMETERS)
+#	define Z_DECLARES_TypeList	      TRUE
+#	define Z_DECLARES_TypeListSize	      TRUE
+#	define Z_DECLARES_TypeListApply	      TRUE
+#	define Z_DECLARES_TypeListAppend      TRUE
+#	define Z_DECLARES_TypeListFirst	      TRUE
+#	define Z_DECLARES_TypeListGet	      TRUE
+#	define Z_DECLARES_TypeListJoin	      TRUE
+#	define Z_DECLARES_TypeListLast	      TRUE
+#	define Z_DECLARES_TypeListPrepend     TRUE
+#	define Z_DECLARES_TypeListRename      TRUE
+#	define Z_DECLARES_TypeListRemove      TRUE
+#	define Z_DECLARES_TypeListRemoveFirst TRUE
+#	define Z_DECLARES_TypeListRemoveHead  TRUE
+#	define Z_DECLARES_TypeListRemoveLast  TRUE
+#	define Z_DECLARES_TypeListRemoveTail  TRUE
+#	define Z_DECLARES_TypeListReverse     TRUE
+#	define Z_DECLARES_TypeListRotateLeft  TRUE
+#	define Z_DECLARES_TypeListRotateRight TRUE
+#	define Z_DECLARES_TypeListToFunction  TRUE
 #else
-#	define Z_HAS_TRAIT_TypeList	       FALSE
-#	define Z_HAS_TRAIT_TypeListSize	       FALSE
-#	define Z_HAS_TRAIT_TypeListAppend      FALSE
-#	define Z_HAS_TRAIT_TypeListFirst       FALSE
-#	define Z_HAS_TRAIT_TypeListGet	       FALSE
-#	define Z_HAS_TRAIT_TypeListJoin	       FALSE
-#	define Z_HAS_TRAIT_TypeListLast	       FALSE
-#	define Z_HAS_TRAIT_TypeListPrepend     FALSE
-#	define Z_HAS_TRAIT_TypeListRename      FALSE
-#	define Z_HAS_TRAIT_TypeListRemove      FALSE
-#	define Z_HAS_TRAIT_TypeListRemoveFirst FALSE
-#	define Z_HAS_TRAIT_TypeListRemoveHead  FALSE
-#	define Z_HAS_TRAIT_TypeListRemoveLast  FALSE
-#	define Z_HAS_TRAIT_TypeListRemoveTail  FALSE
-#	define Z_HAS_TRAIT_TypeListReverse     FALSE
-#	define Z_HAS_TRAIT_TypeListRotateLeft  FALSE
-#	define Z_HAS_TRAIT_TypeListRotateRight FALSE
-#	define Z_HAS_TRAIT_TypeListToFunction  FALSE
-#	define Z_HAS_TRAIT_TypeListTransform   FALSE
+#	define Z_DECLARES_TypeList	      FALSE
+#	define Z_DECLARES_TypeListSize	      FALSE
+#	define Z_DECLARES_TypeListApply	      FALSE
+#	define Z_DECLARES_TypeListAppend      FALSE
+#	define Z_DECLARES_TypeListFirst	      FALSE
+#	define Z_DECLARES_TypeListGet	      FALSE
+#	define Z_DECLARES_TypeListJoin	      FALSE
+#	define Z_DECLARES_TypeListLast	      FALSE
+#	define Z_DECLARES_TypeListPrepend     FALSE
+#	define Z_DECLARES_TypeListRename      FALSE
+#	define Z_DECLARES_TypeListRemove      FALSE
+#	define Z_DECLARES_TypeListRemoveFirst FALSE
+#	define Z_DECLARES_TypeListRemoveHead  FALSE
+#	define Z_DECLARES_TypeListRemoveLast  FALSE
+#	define Z_DECLARES_TypeListRemoveTail  FALSE
+#	define Z_DECLARES_TypeListReverse     FALSE
+#	define Z_DECLARES_TypeListRotateLeft  FALSE
+#	define Z_DECLARES_TypeListRotateRight FALSE
+#	define Z_DECLARES_TypeListToFunction  FALSE
 #endif
 
-#if	Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS) && \
-	Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
+#if	Z_DIALECT_HAS(CPP, EXTENDED_VARIADIC_TEMPLATE_TEMPLATE_PARAMETERS) && \
+	Z_DIALECT_HAS(CPP, TYPE_ALIAS_TEMPLATE)
 
-#	define Z_TRAIT_TypeList_HAS_append		TRUE
-#	define Z_TRAIT_TypeList_HAS_get			TRUE
-#	define Z_TRAIT_TypeList_HAS_prepend		TRUE
-#	define Z_TRAIT_TypeList_HAS_remove		TRUE
-#	define Z_TRAIT_TypeList_HAS_remove_head		TRUE
-#	define Z_TRAIT_TypeList_HAS_remove_tail		TRUE
-#	define Z_TRAIT_TypeList_HAS_rename		TRUE
-#	define Z_TRAIT_TypeList_HAS_rotate_left		TRUE
-#	define Z_TRAIT_TypeList_HAS_rotate_right	TRUE
-#	define Z_TRAIT_TypeList_HAS_to_function		TRUE
-#	define Z_TRAIT_TypeList_HAS_transform		TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_append	TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_first	TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_get		TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_last		TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_prepend	TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_remove	TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_remove_first TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_remove_head	TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_remove_last	TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_remove_tail	TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_rename	TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_reverse	TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_rotate_left	TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_rotate_right TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_to_function	TRUE
-#	define Z_HAS_TRAIT_ALIAS_type_list_transform	TRUE
+#	define Z_DECLARES_TypeList_MEMBER_apply	       TRUE
+#	define Z_DECLARES_TypeList_MEMBER_append       TRUE
+#	define Z_DECLARES_TypeList_MEMBER_get	       TRUE
+#	define Z_DECLARES_TypeList_MEMBER_prepend      TRUE
+#	define Z_DECLARES_TypeList_MEMBER_remove       TRUE
+#	define Z_DECLARES_TypeList_MEMBER_remove_head  TRUE
+#	define Z_DECLARES_TypeList_MEMBER_remove_tail  TRUE
+#	define Z_DECLARES_TypeList_MEMBER_rename       TRUE
+#	define Z_DECLARES_TypeList_MEMBER_rotate_left  TRUE
+#	define Z_DECLARES_TypeList_MEMBER_rotate_right TRUE
+#	define Z_DECLARES_TypeList_MEMBER_to_function  TRUE
+#	define Z_DECLARES_type_list_apply	       TRUE
+#	define Z_DECLARES_type_list_append	       TRUE
+#	define Z_DECLARES_type_list_first	       TRUE
+#	define Z_DECLARES_type_list_get		       TRUE
+#	define Z_DECLARES_type_list_last	       TRUE
+#	define Z_DECLARES_type_list_prepend	       TRUE
+#	define Z_DECLARES_type_list_remove	       TRUE
+#	define Z_DECLARES_type_list_remove_first       TRUE
+#	define Z_DECLARES_type_list_remove_head	       TRUE
+#	define Z_DECLARES_type_list_remove_last	       TRUE
+#	define Z_DECLARES_type_list_remove_tail	       TRUE
+#	define Z_DECLARES_type_list_rename	       TRUE
+#	define Z_DECLARES_type_list_reverse	       TRUE
+#	define Z_DECLARES_type_list_rotate_left	       TRUE
+#	define Z_DECLARES_type_list_rotate_right       TRUE
+#	define Z_DECLARES_type_list_to_function	       TRUE
 #else
-#	define Z_TRAIT_TypeList_HAS_append		FALSE
-#	define Z_TRAIT_TypeList_HAS_get			FALSE
-#	define Z_TRAIT_TypeList_HAS_prepend		FALSE
-#	define Z_TRAIT_TypeList_HAS_remove		FALSE
-#	define Z_TRAIT_TypeList_HAS_remove_head		FALSE
-#	define Z_TRAIT_TypeList_HAS_remove_tail		FALSE
-#	define Z_TRAIT_TypeList_HAS_rename		FALSE
-#	define Z_TRAIT_TypeList_HAS_rotate_left		FALSE
-#	define Z_TRAIT_TypeList_HAS_rotate_right	FALSE
-#	define Z_TRAIT_TypeList_HAS_to_function		FALSE
-#	define Z_TRAIT_TypeList_HAS_transform		FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_append	FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_first	FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_get		FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_last		FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_prepend	FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_remove	FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_remove_first FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_remove_head	FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_remove_last	FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_remove_tail	FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_rename	FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_reverse	FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_rotate_left	FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_rotate_right FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_to_function	FALSE
-#	define Z_HAS_TRAIT_ALIAS_type_list_transform	FALSE
+#	define Z_DECLARES_TypeList_MEMBER_apply	       FALSE
+#	define Z_DECLARES_TypeList_MEMBER_append       FALSE
+#	define Z_DECLARES_TypeList_MEMBER_get	       FALSE
+#	define Z_DECLARES_TypeList_MEMBER_prepend      FALSE
+#	define Z_DECLARES_TypeList_MEMBER_remove       FALSE
+#	define Z_DECLARES_TypeList_MEMBER_remove_head  FALSE
+#	define Z_DECLARES_TypeList_MEMBER_remove_tail  FALSE
+#	define Z_DECLARES_TypeList_MEMBER_rename       FALSE
+#	define Z_DECLARES_TypeList_MEMBER_rotate_left  FALSE
+#	define Z_DECLARES_TypeList_MEMBER_rotate_right FALSE
+#	define Z_DECLARES_TypeList_MEMBER_to_function  FALSE
+#	define Z_DECLARES_type_list_apply	       FALSE
+#	define Z_DECLARES_type_list_append	       FALSE
+#	define Z_DECLARES_type_list_first	       FALSE
+#	define Z_DECLARES_type_list_get		       FALSE
+#	define Z_DECLARES_type_list_last	       FALSE
+#	define Z_DECLARES_type_list_prepend	       FALSE
+#	define Z_DECLARES_type_list_remove	       FALSE
+#	define Z_DECLARES_type_list_remove_first       FALSE
+#	define Z_DECLARES_type_list_remove_head	       FALSE
+#	define Z_DECLARES_type_list_remove_last	       FALSE
+#	define Z_DECLARES_type_list_remove_tail	       FALSE
+#	define Z_DECLARES_type_list_rename	       FALSE
+#	define Z_DECLARES_type_list_reverse	       FALSE
+#	define Z_DECLARES_type_list_rotate_left	       FALSE
+#	define Z_DECLARES_type_list_rotate_right       FALSE
+#	define Z_DECLARES_type_list_to_function	       FALSE
 #endif
 
-#if Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE_EXTENDED_PARAMETERS)
+#if Z_DIALECT_HAS(CPP, EXTENDED_VARIADIC_TEMPLATE_TEMPLATE_PARAMETERS)
 
 #	include <Z/traits/control.hpp>
 #	include <Z/traits/TypeCount.hpp>
@@ -123,6 +123,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <template <class...> class L, class... A> struct TypeListSize<L<A...> > {
 			enum {value = TypeCount<A...>::value};
+		};
+
+		template <class L, template <class...> class metafunction> struct TypeListApply;
+
+		template <template <class...> class L, template <class...> class M>
+		struct TypeListApply<L<>, M> {
+			typedef L<> type;
+		};
+
+		template <template <class...> class L, class... A, template <class...> class M>
+		struct TypeListApply<L<A...>, M> {
+			typedef L<typename M<A>::type...> type;
 		};
 
 		template <class L, class... types> struct TypeListAppend;
@@ -322,21 +334,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <template <class...> class L, class... A, class R, class... P> struct TypeListToFunction<L<A...>, R(P...)	 volatile &&> {typedef R type(A...)	  volatile &&;};
 #		endif
 
-		template <class L, template <class...> class metafunction> struct TypeListTransform;
-
-		template <template <class...> class L, template <class...> class M>
-		struct TypeListTransform<L<>, M> {
-			typedef L<> type;
-		};
-
-		template <template <class...> class L, class A0, class... A, template <class...> class M>
-		struct TypeListTransform<L<A0, A...>, M> {
-			typedef typename TypeListPrepend<
-				typename TypeListTransform<L<A...>, M>::type,
-				typename M<A0>::type
-			>::type type;
-		};
-
 		template <class... A> struct TypeList {
 			enum {size = TypeCount<A...>::value};
 
@@ -346,10 +343,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef typename TypeListRemoveLast <TypeList>::type remove_last;
 			typedef typename TypeListReverse    <TypeList>::type reverse;
 
-#			if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
-				template <class...		    types	  > using append       = TypeList<A..., types...>;
-				template <UInt			    index	  > using get	       = typename SelectType<index, A...>::type;
-				template <class...		    types	  > using prepend      = TypeList<types..., A...>;
+#			if Z_DIALECT_HAS(CPP, TYPE_ALIAS_TEMPLATE)
+				template <template <class...> class metafunction  > using apply	       = typename TypeListApply	     <TypeList, metafunction  >::type;
+				template <class...		    types	  > using append       = 	  TypeList	     <A...,	types...      >;
+				template <UInt			    index	  > using get	       = typename SelectType	     <index,	A...	      >::type;
+				template <class...		    types	  > using prepend      = 	  TypeList	     <types..., A...	      >;
 				template <UInt			    index	  > using remove       = typename TypeListRemove     <TypeList, index	      >::type;
 				template <UInt			    head_size	  > using remove_head  = typename TypeListRemoveHead <TypeList, head_size     >::type;
 				template <UInt			    tail_size	  > using remove_tail  = typename TypeListRemoveTail <TypeList, tail_size     >::type;
@@ -357,11 +355,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				template <UInt			    rotation	  > using rotate_left  = typename TypeListRotateLeft <TypeList, rotation      >::type;
 				template <UInt			    rotation	  > using rotate_right = typename TypeListRotateRight<TypeList, rotation      >::type;
 				template <class			    function_model> using to_function  = typename TypeListToFunction <TypeList, function_model>::type;
-				template <template <class...> class metafunction  > using transform    = typename TypeListTransform  <TypeList, metafunction  >::type;
 #			endif
 		};
 
-#		if Z_DIALECT_HAS(CPP, TEMPLATE_ALIAS)
+#		if Z_DIALECT_HAS(CPP, TYPE_ALIAS_TEMPLATE)
+			template <class L, template <class...> class metafunction  > using type_list_apply	  = typename TypeListApply	<L, metafunction  >::type;
 			template <class L, class...		     types	   > using type_list_append	  = typename TypeListAppend	<L, types...	  >::type;
 			template <class L					   > using type_list_first	  = typename TypeListFirst	<L		  >::type;
 			template <class L, UInt			     index	   > using type_list_get	  = typename TypeListGet	<L, index	  >::type;
@@ -377,7 +375,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class L, UInt			     rotation	   > using type_list_rotate_left  = typename TypeListRotateLeft	<L, rotation	  >::type;
 			template <class L, UInt			     rotation	   > using type_list_rotate_right = typename TypeListRotateRight<L, rotation	  >::type;
 			template <class L, class		     function_model> using type_list_to_function  = typename TypeListToFunction	<L, function_model>::type;
-			template <class L, template <class...> class metafunction  > using type_list_transform	  = typename TypeListTransform	<L, metafunction  >::type;
 #		endif
 	}
 

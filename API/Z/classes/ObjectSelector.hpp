@@ -1,8 +1,8 @@
 /* Z Kit - classes/ObjectSelector.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_ObjectSelector_HPP
@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/Z.h>
 #include <Z/classes/Selector.hpp>
 
-#if Z_HAS_CLASS(Selector)
+#if Z_DECLARES(Selector)
 
 
 	namespace Zeta {
@@ -57,7 +57,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				{reinterpret_cast<Call>(objc_msgSend)(object, this->selector, arguments...);}
 
 
-#			if Z_ISA == Z_ISA_X86_64 || Z_ISA == Z_ISA_X86_32
+#			if Z_ISA_IS(X86_64) || Z_ISA_IS(X86_32)
 
 				template <class RR = R>
 				Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_real && !Type<RR>::is_class, RR>::type
@@ -205,9 +205,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	}
 
 
-#	define Z_HAS_CLASS_ObjectSelector TRUE
+#	define Z_DECLARES_ObjectSelector TRUE
 #else
-#	define Z_HAS_CLASS_ObjectSelector FALSE
+#	define Z_DECLARES_ObjectSelector FALSE
 #endif
 
 #endif // Z_classes_ObjectSelector_HPP

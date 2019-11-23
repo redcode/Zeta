@@ -1,15 +1,13 @@
 /* Z Kit - classes/XY.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_XY_HPP
 #define Z_classes_XY_HPP
 
-#include <Z/types/dimensional.h>
-#include <Z/macros/type.hpp>
 #include <Z/functions/mathematics.hpp>
 
 
@@ -104,7 +102,6 @@ Z_CT(CPP11) XY(const Prefix##Size  &size ) : x(size.width), y(size.height) {}
 
 #define Z_IMPLEMENTATION_COMMON								\
 											\
-typedef typename ZTypeFixedNumber(Z2D, T) Base;						\
 T x, y;											\
 											\
 Z_INLINE XY() Z_NOTHROW Z_DEFAULTED({})								\
@@ -112,10 +109,8 @@ Z_INLINE XY() Z_NOTHROW Z_DEFAULTED({})								\
 Z_CT(CPP11) XY(T x, T y)	  Z_NOTHROW : x(x),	y(y)	   {}				\
 Z_CT(CPP11) XY(T xy)		  Z_NOTHROW : x(xy),	y(xy)	   {}				\
 Z_CT(CPP11) XY(const XYZ<T> &xy)  Z_NOTHROW : x(xy.x),	y(xy.y)	   {}				\
-Z_CT(CPP11) XY(const Base &other) Z_NOTHROW : x(other.x), y(other.y) {}				\
 											\
 Z_CT(CPP11) operator Boolean() const Z_NOTHROW {return x != T(0) || y != T(0);}			\
-Z_INLINE    operator Base&  () const Z_NOTHROW {return *((Base *)this);}				\
 											\
 Z_CT(CPP11) Boolean operator ==(const XY &rhs) const Z_NOTHROW {return x == rhs.x && y == rhs.y;}	\
 Z_CT(CPP11) Boolean operator !=(const XY &rhs) const Z_NOTHROW {return x != rhs.x || y != rhs.y;}	\
@@ -165,6 +160,10 @@ Z_CT(CPP11) XYZ<T> xny(T n) const Z_NOTHROW {return XYZ<T>(x, n, y);}			\
 Z_CT(CPP11) XYZ<T> xyn(T n) const Z_NOTHROW {return XYZ<T>(x, y, n);}			\
 Z_CT(CPP11) XYZ<T> ynx(T n) const Z_NOTHROW {return XYZ<T>(y, n, x);}			\
 Z_CT(CPP11) XYZ<T> yxn(T n) const Z_NOTHROW {return XYZ<T>(y, x, n);}			\
+											\
+											\
+Z_INLINE XY apply(T (* function)(T)) const Z_NOTHROW					\
+	{return XY(function(x), function(y));}						\
 											\
 											\
 Z_CT(CPP11) XY clamp(const XY &minimum, const XY &maximum) const Z_NOTHROW		\

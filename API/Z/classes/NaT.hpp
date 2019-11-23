@@ -1,18 +1,18 @@
 /* Z Kit - classes/NaT.hpp
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Copyright (C) 2018 Sofía Ortega Sosa.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_NaT_HPP
 #define Z_classes_NaT_HPP
 
-#include <Z/inspection/language.h>
+#include <Z/macros/language.hpp>
 
 
-namespace Zeta {struct NaT {
+namespace Zeta {struct NaT Z_FINAL {
 #	if Z_DIALECT_HAS(CPP, DELETED_FUNCTION)
 		NaT()			     = delete;
 		NaT(const NaT &)	     = delete;

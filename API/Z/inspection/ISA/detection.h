@@ -1,8 +1,8 @@
 /* Z Kit - inspection/ISA/detection.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_ISA_detection_H
@@ -11,14 +11,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - x86-64 */
 
 #if	/*----------------------.						\
-	| Clang			|						\
+	| Clang v2.6		|						\
 	| GCC			|						\
 	| Oracle Solaris Studio |						\
 	'----------------------*/						\
 	defined(__amd64) ||							\
 										\
 	/*----------------------.						\
-	| Clang			|						\
+	| Clang v2.6		|						\
 	| GCC			|						\
 	| Oracle Solaris Studio |						\
 	| PGI C/C++		|						\
@@ -26,7 +26,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__amd64__) ||							\
 										\
 	/*----------------------.						\
-	| Clang			|						\
+	| Clang v2.6		|						\
 	| GCC			|						\
 	| Intel C++		|						\
 	| Oracle Solaris Studio |						\
@@ -34,7 +34,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__x86_64) ||							\
 										\
 	/*----------------------.						\
-	| Clang			|						\
+	| Clang v2.6		|						\
 	| GCC			|						\
 	| Intel C++		|						\
 	| Oracle Solaris Studio |						\
@@ -43,11 +43,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__x86_64__) ||							\
 										\
 	/*-----------.								\
-	| Clang	     |								\
+	| Clang v2.9 |								\
 	| Intel C++  |								\
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(_M_AMD64) ||							\
+										\
+	/*-----------.								\
+	| Clang v2.7 |								\
+	| Intel C++  |								\
+	| Visual C++ |								\
+	'-----------*/								\
 	defined(_M_X64	)
 
 #	define Z_ISA Z_ISA_X86_64
@@ -75,7 +81,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__IA32__) ||							\
 										\
 	/*------------.								\
-	| Clang	      |								\
+	| Clang v2.8  |								\
 	| CodeWarrior |								\
 	'------------*/								\
 	defined(__INTEL__) ||							\
@@ -92,7 +98,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__WINDOWS_386__) ||						\
 										\
 	/*--------------.							\
-	| Clang		|							\
+	| Clang v2.6	|							\
 	| GCC		|							\
 	| Intel C++	|							\
 	| MinGW		|							\
@@ -102,52 +108,52 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'--------------*/							\
 	defined(__i386) ||							\
 										\
-	/*----------.								\
-	| Clang	    |								\
-	| GCC	    |								\
-	| Intel C++ |								\
-	| MinGW	    |								\
-	| PGI C/C++ |								\
-	'----------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	| Intel C++  |								\
+	| MinGW	     |								\
+	| PGI C/C++  |								\
+	'-----------*/								\
 	defined(__i386__) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.0 |								\
+	'-----------*/								\
 	defined(__i486) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.0 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__i486__) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.0 |								\
+	'-----------*/								\
 	defined(__i586) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.0 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__i586__) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.0 |								\
+	'-----------*/								\
 	defined(__i686) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.0 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__i686__) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	| MinGW |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| MinGW	     |								\
+	'-----------*/								\
 	defined(_X86_) ||							\
 										\
 	/*-------------.							\
@@ -156,7 +162,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(M_I386) ||							\
 										\
 	/*----------------------.						\
-	| Clang			|						\
+	| Clang v2.6		|						\
 	| GCC			|						\
 	| Intel C++		|						\
 	| MinGW			|						\
@@ -166,7 +172,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(i386) ||							\
 										\
 	/*-------------.							\
-	| Clang	       |							\
+	| Clang v2.7   |							\
 	| Digital Mars |							\
 	| Intel C++    |							\
 	| Visual C++   |							\
@@ -194,15 +200,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - AArch64 */
 
-#elif	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v3.3 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__aarch64__) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.5 |								\
+	'-----------*/								\
 	defined(__arm64) ||							\
 	defined(__arm64__)							\
 										\
@@ -215,9 +221,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - AArch32 */
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v3.2 |								\
+	'-----------*/								\
 	defined(__ARM_ARCH) ||							\
 										\
 	/*-------------------.							\
@@ -227,20 +233,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__TARGET_ARCH_THUMB) ||						\
 										\
 	/*-------------------.							\
-	| Clang		     |							\
+	| Clang v2.6	     |							\
 	| GCC		     |							\
 	| ARM C/C++ Compiler |							\
 	'-------------------*/							\
 	defined(__arm__) ||							\
 										\
 	/*-----------.								\
-	| Clang	     |								\
+	| Clang v2.6 |								\
 	| Diab C/C++ |								\
 	'-----------*/								\
 	defined(__arm) ||							\
 										\
 	/*-------------------.							\
-	| Clang		     |							\
+	| Clang v2.7	     |							\
 	| GCC		     |							\
 	| ARM C/C++ Compiler |							\
 	'-------------------*/							\
@@ -251,31 +257,31 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-------------*/							\
 	defined(_ARM) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.8 |								\
+	'-----------*/								\
 	defined(_ARM_) ||							\
 										\
 	/*-----------.								\
-	| Clang	     |								\
+	| Clang v3.5 |								\
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(_M_ARM) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.5 |								\
+	'-----------*/								\
 	defined(_M_ARM_NT) ||							\
 										\
 	/*-----------.								\
-	| Clang	     |								\
+	| Clang v3.5 |								\
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(_M_ARMT) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.5 |								\
+	'-----------*/								\
 	defined(_M_THUMB)
 
 #	define Z_ISA Z_ISA_AARCH32
@@ -325,23 +331,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Blackfin */
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v2.6 |								\
+	'-----------*/								\
 	defined(__ADSPBLACKFIN__  )						\
 	defined(__ADSPLPBLACKFIN__)						\
 	defined(__BFIN		  )						\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__BFIN__)							\
 	defined(__bfin	)							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	'-----------*/								\
 	defined(__bfin__)							\
 	defined(BFIN	)							\
 	defined(bfin	)
@@ -368,9 +374,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Hexagon */
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v3.1 |								\
+	'-----------*/								\
 	defined(__HEXAGON_ARCH__)						\
 	defined(__QDSP6_ARCH__	)						\
 	defined(__hexagon	)						\
@@ -435,7 +441,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_ISA Z_ISA_LANAI
 
-/* MARK: -  */
+/* MARK: - M68K */
 
 #elif	/*--------------.							\
 	| Stratus VOS C |							\
@@ -454,11 +460,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_ISA Z_ISA_M68K
 
-/* MARK: - M68K */
+/* MARK: - MIPS64 */
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v3.2 |								\
+	'-----------*/								\
 	defined(__mips64  ) ||							\
 	defined(__mips64__) ||							\
 										\
@@ -469,12 +475,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------------*/								\
 	(defined(__mips) && (__mips == 64 || __mips == 4 || __mips == 3)) ||	\
 										\
-	/*--------.								\
-	| Clang	  |								\
-	| MIPSpro |								\
-	'--------*/								\
+	/*-----------.								\
+	| Clang v3.5 |								\
+	| MIPSpro    |								\
+	'-----------*/								\
 	(defined(_MIPS_ISA) &&							\
 	 ((defined(_MIPS_ISA_MIPS64) && _MIPS_ISA == _MIPS_ISA_MIPS64) ||	\
+										\
+	  /*--------.								\
+	  | MIPSpro |								\
+	  '--------*/								\
  	  (defined(_MIPS_ISA_MIPS4 ) && _MIPS_ISA == _MIPS_ISA_MIPS4 ) ||	\
 	  (defined(_MIPS_ISA_MIPS3 ) && _MIPS_ISA == _MIPS_ISA_MIPS3 )))
 
@@ -487,17 +497,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------------*/								\
 	defined(__MIPS__) ||							\
 										\
-	/*--------.								\
-	| Clang	  |								\
-	| GCC	  |								\
-	| MIPSpro |								\
-	'--------*/								\
+	/*-----------.								\
+	| Clang v2.7 |								\
+	| GCC	     |								\
+	| MIPSpro    |								\
+	'-----------*/								\
 	defined(__mips) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.7 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__mips__) ||							\
 										\
 	/*-----------.								\
@@ -505,24 +515,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-----------*/								\
 	defined(_M_MRX000) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.7 |								\
+	'-----------*/								\
 	defined(_mips) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.7 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(mips)
 
 #	define Z_ISA Z_ISA_MIPS
 
 /* MARK: - MSP430 */
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v2.6 |								\
+	'-----------*/								\
 	defined(__MSP430__) ||							\
 	defined(MSP430	  )
 
@@ -573,21 +583,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - PowerPC 64-bit */
 
 #elif	/*-------------.							\
-	| Clang	       |							\
+	| Clang v3.4   |							\
 	| GCC	       |							\
 	| IBM XL C/C++ |							\
 	'-------------*/							\
 	defined(__PPC64__    ) ||						\
 	defined(__powerpc64__) ||						\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__ppc64__) ||							\
 										\
 	/*-----------------.							\
-	| Clang		   |							\
+	| Clang v2.6	   |							\
 	| GCC		   |							\
 	| IBM XL C/C++ (?) |							\
 	'-----------------*/							\
@@ -597,10 +607,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - PowerPC 32-bit */
 
-#elif	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__POWERPC__) ||							\
 										\
 	/*-------------.							\
@@ -609,7 +619,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__PPC) ||							\
 										\
 	/*-------------.							\
-	| Clang	       |							\
+	| Clang v2.8   |							\
 	| GCC	       |							\
 	| IBM XL C/C++ |							\
 	'-------------*/							\
@@ -628,7 +638,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__powerpc) ||							\
 										\
 	/*-------------.							\
-	| Clang	       |							\
+	| Clang v2.7   |							\
 	| GCC	       |							\
 	| IBM XL C/C++ |							\
 	'-------------*/							\
@@ -639,14 +649,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-----------*/								\
 	defined(__ppc) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__ppc__) ||							\
 										\
 	/*-----------------.							\
-	| Clang		   |							\
+	| Clang v2.6	   |							\
 	| GCC		   |							\
 	| IBM XL C/C++ (?) |							\
 	'-----------------*/							\
@@ -661,45 +671,45 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - RV64I */
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v7.0 |								\
+	'-----------*/								\
 	defined(__riscv_xlen) && __riscv_xlen == 64
 
 #	define Z_ISA Z_ISA_RV64I
 
 /* MARK: - RV32I */
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v7.0 |								\
+	'-----------*/								\
 	defined(__riscv_xlen) && __riscv_xlen == 32
 
 #	define Z_ISA Z_ISA_RV32I
 
 /* MARK: - SPARC V9 */
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v3.3 |								\
+	'-----------*/								\
 	defined(__arch64__  ) ||						\
 	defined(__sparc_v9__) ||						\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.3 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__sparc64__) ||							\
 										\
 	/*-----------.								\
-	| Clang	     |								\
+	| Clang v3.3 |								\
 	| Sun Studio |								\
 	'-----------*/								\
 	defined(__sparcv9) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.3 |								\
+	'-----------*/								\
 	defined(__sparcv9__)
 
 #	define Z_ISA Z_ISA_SPARC_V9
@@ -707,16 +717,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - SPARC */
 
 #elif	/*-----------.								\
-	| Clang	     |								\
+	| Clang v2.6 |								\
 	| GCC	     |								\
 	| Sun Studio |								\
 	'-----------*/								\
 	defined(__sparc) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__sparc__) ||							\
 										\
 	/*----.									\
@@ -725,16 +735,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__sparc_v8__) ||						\
 										\
 	/*-----------.								\
-	| Clang	     |								\
+	| Clang v2.6 |								\
 	| Sun Studio |								\
 	'-----------*/								\
 	defined(__sparcv8) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.8 |								\
+	'-----------*/								\
 	defined(__sparcv8__) ||							\
-	defined(sparc	   )
+										\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	'-----------*/								\
+	defined(sparc)
 
 #	define Z_ISA Z_ISA_SPARC
 
@@ -758,9 +772,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - xCORE */
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v3.4 |								\
+	'-----------*/								\
 	defined(__XS1B__)
 
 #	define Z_ISA Z_ISA_XCORE
@@ -773,15 +787,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-------------------*/							\
 	defined(__SYSC_ZARCH__) ||						\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__s390x__) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.3 |								\
+	'-----------*/								\
 	defined(__zarch__)
 
 #	define Z_ISA Z_ISA_Z_ARCHITECTURE

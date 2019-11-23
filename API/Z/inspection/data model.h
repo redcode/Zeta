@@ -1,8 +1,8 @@
 /* Z Kit - inspection/data model.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_data_model_H
@@ -274,7 +274,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_FUNDAMENTAL_SINT64 Z_FUNDAMENTAL_SLONG
 #	define Z_DATA_MODEL_LITERAL_SINT64     Z_SUFFIX_L
 
-#elif Z_DATA_MODEL_BITS(LLONG) == 64 && (Z_DIALECT_HAS_TYPE(C, LONG_LONG) || Z_DIALECT_HAS_TYPE(CPP, LONG_LONG))
+#elif	Z_DATA_MODEL_BITS(LLONG) == 64 && \
+	(Z_DIALECT_HAS_TYPE(C, LONG_LONG) || Z_DIALECT_HAS_TYPE(CPP, LONG_LONG))
 
 #	define Z_DATA_MODEL_TYPE_UINT64	       unsigned long long int
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT64 Z_FUNDAMENTAL_ULLONG
@@ -308,7 +309,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - 128-bit */
 
-#if Z_DATA_MODEL_BITS(LLONG) == 128 && (Z_DIALECT_HAS_TYPE(C, LONG_LONG) || Z_DIALECT_HAS_TYPE(CPP, LONG_LONG))
+#if	Z_DATA_MODEL_BITS(LLONG) == 128 && \
+	(Z_DIALECT_HAS_TYPE(C, LONG_LONG) || Z_DIALECT_HAS_TYPE(CPP, LONG_LONG))
 
 #	define Z_DATA_MODEL_TYPE_UINT128	unsigned long long int
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT128 Z_FUNDAMENTAL_ULLONG

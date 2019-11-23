@@ -1,16 +1,16 @@
 /* Z Kit - inspection/OS/detection.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_OS_detection_H
 #define Z_inspection_OS_detection_H
 
-#if	/*------.								\
-	| Clang |								\
-	'------*/								\
+#if	/*-----------.								\
+	| Clang v3.2 |								\
+	'-----------*/								\
 	defined(__ANDROID__)
 
 #	define Z_OS Z_OS_ANDROID
@@ -21,7 +21,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__TOS_LINUX__) ||						\
 										\
 	/*----------------------.						\
-	| Clang			|						\
+	| Clang v2.6		|						\
 	| GCC			|						\
 	| Intel C++		|						\
 	| Oracle Solaris Studio |						\
@@ -29,7 +29,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__gnu_linux__) ||						\
 										\
 	/*----------------------.						\
-	| Clang			|						\
+	| Clang v2.6		|						\
 	| GCC			|						\
 	| Intel C++		|						\
 	| Oracle Solaris Studio |						\
@@ -40,7 +40,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__linux__) ||							\
 										\
 	/*----------------------.						\
-	| Clang			|						\
+	| Clang v2.6		|						\
 	| GCC			|						\
 	| Intel C++		|						\
 	| Oracle Solaris Studio |						\
@@ -52,7 +52,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif	/*-----------.								\
 	| Apple LLVM |								\
-	| Clang	     |								\
+	| Clang v2.6 |								\
 	'-----------*/								\
 	defined(__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__)
 
@@ -60,7 +60,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif	/*-----------.								\
 	| Apple LLVM |								\
-	| Clang	     |								\
+	| Clang v2.6 |								\
 	'-----------*/								\
 	defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__)
 
@@ -68,7 +68,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif	/*-----------.								\
 	| Apple LLVM |								\
-	| Clang	     |								\
+	| Clang v3.8 |								\
 	'-----------*/								\
 	defined(__ENVIRONMENT_TV_OS_VERSION_MIN_REQUIRED__)
 
@@ -76,7 +76,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif	/*-----------.								\
 	| Apple LLVM |								\
-	| Clang	     |								\
+	| Clang v3.8 |								\
 	'-----------*/								\
 	defined(__ENVIRONMENT_WATCH_OS_VERSION_MIN_REQUIRED__)
 
@@ -84,7 +84,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif	/*-----------.								\
 	| Apple LLVM |								\
-	| Clang	     |								\
+	| Clang v2.6 |								\
 	'-----------*/								\
 	defined(__APPLE_CC__) ||						\
 										\
@@ -95,7 +95,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 										\
 	/*-----------.								\
 	| Apple LLVM |								\
-	| Clang	     |								\
+	| Clang v2.6 |								\
 	| GCC	     |								\
 	| Intel C++  |								\
 	| PGI C/C++  |								\
@@ -104,6 +104,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	include <TargetConditionals.h>
 
+	/* Review this */
 #	if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
 
 #		if defined(TARGET_OS_TV) && TARGET_OS_TV
@@ -148,15 +149,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'-------------*/							\
 	defined(__TOS_WIN__) ||							\
 										\
-	/*----------.								\
-	| Clang	    |								\
-	| GCC	    |								\
-	| PGI C/C++ |								\
-	'----------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	| PGI C/C++  |								\
+	'-----------*/								\
 	defined(__WIN32) ||							\
 										\
 	/*------------.								\
-	| Clang	      |								\
+	| Clang v2.6  |								\
 	| Borland C++ |								\
 	| Clang	      |								\
 	| GCC	      |								\
@@ -164,11 +165,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------------*/								\
 	defined(__WIN32__) ||							\
 										\
-	/*----------.								\
-	| Clang	    |								\
-	| GCC	    |								\
-	| PGI C/C++ |								\
-	'----------*/								\
+	/*-----------.								\
+	| Clang v2.7 |								\
+	| GCC	     |								\
+	| PGI C/C++  |								\
+	'-----------*/								\
 	defined(__WIN64	 ) ||							\
 	defined(__WIN64__) ||							\
 										\
@@ -178,10 +179,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__WINDOWS__    ) ||						\
 	defined(__WINDOWS_386__) ||						\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__WINNT	 ) ||							\
 	defined(__WINNT__) ||							\
 										\
@@ -191,21 +192,39 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(_WIN16) ||							\
 										\
 	/*-----------.								\
-	| Clang	     |								\
+	| Clang v2.6 |								\
 	| GCC	     |								\
 	| Intel C++  |								\
 	| PGI C/C++  |								\
 	| Visual C++ |								\
 	'-----------*/								\
 	defined(_WIN32) ||							\
+										\
+	/*-----------.								\
+	| Clang v2.7 |								\
+	| GCC	     |								\
+	| Intel C++  |								\
+	| PGI C/C++  |								\
+	| Visual C++ |								\
+	'-----------*/								\
 	defined(_WIN64) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(WIN32) ||							\
+										\
+	/*-----------.								\
+	| Clang v2.7 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(WIN64) ||							\
+										\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(WINNT)
 
 #	define Z_OS Z_OS_WINDOWS
@@ -253,9 +272,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_AMIGA_OS
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v5.0 |								\
+	'-----------*/								\
 	defined(__Ananas__)
 
 #	define Z_OS Z_OS_ANANAS_OS
@@ -267,9 +286,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_BE_OS
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v3.2 |								\
+	'-----------*/								\
 	defined(__Bitrig__)
 
 #	define Z_OS Z_OS_BITRIG
@@ -281,9 +300,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_BSD_386
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v2.7 |								\
+	'-----------*/								\
 	defined(__CELLOS_LV2__)
 
 #	define Z_OS Z_OS_CELL_OS
@@ -323,11 +342,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_CONVEX_UNIX
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v2.7 |								\
+	'-----------*/								\
 	defined(__CYGWIN__  ) ||						\
 	defined(__CYGWIN32__) ||						\
+										\
+	/*-----------.								\
+	| Clang v3.8 |								\
+	'-----------*/								\
 	defined(__CYGWIN64__)
 
 #	define Z_OS Z_OS_CYGWIN
@@ -355,9 +378,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_DOMAIN_OS
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v2.6 |								\
+	'-----------*/								\
 	defined(__DragonFly__)
 
 #	define Z_OS Z_OS_DRAGONFLY_BSD
@@ -382,22 +405,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	'------*/								\
 	!defined(__ORBIS__) &&							\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	(defined(__FreeBSD__) ||						\
 										\
-	/*------.								\
-	| Clang |								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v3.4 |								\
+	'-----------*/								\
 	 defined(__FreeBSD_kernel__))
 
 #	define Z_OS Z_OS_FREE_BSD
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v4.0 |								\
+	'-----------*/								\
 	defined(__Fuchsia__)
 
 #	define Z_OS Z_OS_FUCHSIA
@@ -409,9 +432,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_GNU_HURD
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v2.8 |								\
+	'-----------*/								\
 	defined(__HAIKU__)
 
 #	define Z_OS Z_OS_HAIKU
@@ -472,9 +495,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_MAC_OS
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v2.8 |								\
+	'-----------*/								\
 	defined(__minix)
 
 #	define Z_OS Z_OS_MINIX
@@ -494,10 +517,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_MPE_XL
 
-#elif	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__NetBSD__)
 
 #	define Z_OS Z_OS_NET_BSD
@@ -528,10 +551,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_NUCLEUS_RTOS
 
-#elif	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__OpenBSD__)
 
 #	define Z_OS Z_OS_OPEN_BSD
@@ -544,9 +567,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_OPEN_VMS
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v3.9 |								\
+	'-----------*/								\
 	defined(__ORBIS__)
 
 #	define Z_OS Z_OS_ORBIS_OS
@@ -611,9 +634,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_PLAN_9
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v2.7 |								\
+	'-----------*/								\
 	defined(__psp__) ||							\
 	defined(_PSP   ) ||							\
 	defined(PSP    )
@@ -632,9 +655,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_OS Z_OS_QNX
 
-#elif	/*------.								\
-	| Clang |								\
-	'------*/								\
+#elif	/*-----------.								\
+	| Clang v3.0 |								\
+	'-----------*/								\
 	defined(__rtems__)
 
 #	define Z_OS Z_OS_RTEMS
@@ -660,16 +683,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_OS Z_OS_SINIX
 
 #elif	/*----------------------.						\
-	| Clang			|						\
+	| Clang v2.6		|						\
 	| GCC			|						\
 	| Oracle Solaris Studio |						\
 	'----------------------*/						\
 	defined(__sun) ||							\
 										\
-	/*------.								\
-	| Clang |								\
-	| GCC	|								\
-	'------*/								\
+	/*-----------.								\
+	| Clang v2.6 |								\
+	| GCC	     |								\
+	'-----------*/								\
 	defined(__sun__) ||							\
 										\
 	/*----------------------.						\
@@ -678,20 +701,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(__SunOS) ||							\
 										\
 	/*----------------------.						\
-	| Clang			|						\
+	| Clang v2.6		|						\
 	| GCC			|						\
 	| Oracle Solaris Studio |						\
 	'----------------------*/						\
 	defined(sun)
 
-#	if	/*------.							\
-		| Clang |							\
-		| GCC	|							\
-		'------*/							\
+#	if	/*-----------.							\
+		| Clang v2.6 |							\
+		| GCC	     |							\
+		'-----------*/							\
 		defined(__svr4__) ||						\
 										\
 		/*----------------------.					\
-		| Clang			|					\
+		| Clang v2.6		|					\
 		| GCC			|					\
 		| Oracle Solaris Studio |					\
 		'----------------------*/					\

@@ -1,8 +1,8 @@
 /* Z Kit - functions/mathematics.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_functions_mathematics_H
@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Common implementation */
 
 
-#define Z_IMPLEMENTATION_COMMON(type)						\
+#define Z_IMPLEMENTATION__COMMON(type)						\
 										\
 static Z_INLINE									\
 z##type z_##type##_maximum(z##type a, z##type b)				\
@@ -39,7 +39,7 @@ z##type z_##type##_clamp(z##type value, z##type minimum, z##type maximum)	\
 /* MARK: - Partial implementation for signed types */
 
 
-#define Z_IMPLEMENTATION_SIGNED(type)						\
+#define Z_IMPLEMENTATION__SIGNED(type)						\
 										\
 static Z_INLINE									\
 z##type z_##type##_absolute(z##type value)					\
@@ -58,7 +58,7 @@ z##type z_##type##_sign(z##type value)						\
 /* MARK: - Implementation for real types */
 
 
-#define Z_IMPLEMENTATION_REAL(type, _, epsilon, infinity)			\
+#define Z_IMPLEMENTATION__REAL(type, _, epsilon, infinity)			\
 										\
 static Z_INLINE									\
 zboolean z_##type##_are_almost_equal(z##type a, z##type b)			\
@@ -145,7 +145,7 @@ z##type z_##type##_smoothstep(z##type a, z##type b, z##type t)			\
 /* MARK: - uint8 */
 
 
-Z_IMPLEMENTATION_COMMON(uint8)
+Z_IMPLEMENTATION__COMMON(uint8)
 
 
 static Z_INLINE
@@ -196,8 +196,8 @@ zboolean z_uint8_subtraction_overflows_4(zuint8 a, zuint8 b, zuint8 c, zuint8 d)
 /* MARK: - sint8 */
 
 
-Z_IMPLEMENTATION_COMMON(sint8)
-Z_IMPLEMENTATION_SIGNED(sint8)
+Z_IMPLEMENTATION__COMMON(sint8)
+Z_IMPLEMENTATION__SIGNED(sint8)
 
 
 /*static Z_INLINE
@@ -248,7 +248,7 @@ zboolean z_sint8_subtraction_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
 /* MARK: - uint16 */
 
 
-Z_IMPLEMENTATION_COMMON (uint16)
+Z_IMPLEMENTATION__COMMON (uint16)
 
 
 static Z_INLINE
@@ -299,8 +299,8 @@ zboolean z_uint16_subtraction_overflows_4(zuint16 a, zuint16 b, zuint16 c, zuint
 /* MARK: - sint16 */
 
 
-Z_IMPLEMENTATION_COMMON(sint16)
-Z_IMPLEMENTATION_SIGNED(sint16)
+Z_IMPLEMENTATION__COMMON(sint16)
+Z_IMPLEMENTATION__SIGNED(sint16)
 
 
 /*static Z_INLINE
@@ -351,7 +351,7 @@ zboolean z_sint16_subtraction_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint
 /* MARK: - uint32 */
 
 
-Z_IMPLEMENTATION_COMMON(uint32)
+Z_IMPLEMENTATION__COMMON(uint32)
 
 
 /*static Z_INLINE
@@ -402,8 +402,8 @@ zboolean z_uint32_subtraction_overflows_4(zuint32 a, zuint32 b, zuint32 c, zuint
 /* MARK: - sint32 */
 
 
-Z_IMPLEMENTATION_COMMON(sint32)
-Z_IMPLEMENTATION_SIGNED(sint32)
+Z_IMPLEMENTATION__COMMON(sint32)
+Z_IMPLEMENTATION__SIGNED(sint32)
 
 
 /*static Z_INLINE
@@ -456,7 +456,7 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 #ifdef Z_UINT64
 
-	Z_IMPLEMENTATION_COMMON(uint64)
+	Z_IMPLEMENTATION__COMMON(uint64)
 
 
 	/*static Z_INLINE
@@ -510,8 +510,8 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 #ifdef Z_SINT64
 
-	Z_IMPLEMENTATION_COMMON(sint64)
-	Z_IMPLEMENTATION_SIGNED(sint64)
+	Z_IMPLEMENTATION__COMMON(sint64)
+	Z_IMPLEMENTATION__SIGNED(sint64)
 
 
 	/*static Z_INLINE
@@ -566,7 +566,7 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 #ifdef Z_UINT128
 
-	Z_IMPLEMENTATION_COMMON (uint128)
+	Z_IMPLEMENTATION__COMMON (uint128)
 
 
 	/*static Z_INLINE
@@ -621,8 +621,8 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 #ifdef Z_SINT128
 
-	Z_IMPLEMENTATION_COMMON (sint128)
-	Z_IMPLEMENTATION_SIGNED (sint128)
+	Z_IMPLEMENTATION__COMMON (sint128)
+	Z_IMPLEMENTATION__SIGNED (sint128)
 
 
 	/*static Z_INLINE
@@ -676,9 +676,9 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT16
-	Z_IMPLEMENTATION_COMMON(float16)
-	Z_IMPLEMENTATION_SIGNED(float16)
-	Z_IMPLEMENTATION_REAL  (float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
+	Z_IMPLEMENTATION__COMMON(float16)
+	Z_IMPLEMENTATION__SIGNED(float16)
+	Z_IMPLEMENTATION__REAL	(float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
 #endif
 
 
@@ -686,18 +686,18 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT32
-	Z_IMPLEMENTATION_COMMON(float32)
-	Z_IMPLEMENTATION_SIGNED(float32)
-	Z_IMPLEMENTATION_REAL  (float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
+	Z_IMPLEMENTATION__COMMON(float32)
+	Z_IMPLEMENTATION__SIGNED(float32)
+	Z_IMPLEMENTATION__REAL	(float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
 #endif
 
 /* MARK: - float64 */
 
 
 #ifdef Z_FLOAT64
-	Z_IMPLEMENTATION_COMMON(float64)
-	Z_IMPLEMENTATION_SIGNED(float64)
-	Z_IMPLEMENTATION_REAL  (float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
+	Z_IMPLEMENTATION__COMMON(float64)
+	Z_IMPLEMENTATION__SIGNED(float64)
+	Z_IMPLEMENTATION__REAL	(float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
 #endif
 
 
@@ -705,9 +705,9 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT128
-	Z_IMPLEMENTATION_COMMON(float128)
-	Z_IMPLEMENTATION_SIGNED(float128)
-	Z_IMPLEMENTATION_REAL  (float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
+	Z_IMPLEMENTATION__COMMON(float128)
+	Z_IMPLEMENTATION__SIGNED(float128)
+	Z_IMPLEMENTATION__REAL	(float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
 #endif
 
 
@@ -715,9 +715,9 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT80_X87
-	Z_IMPLEMENTATION_COMMON(float80_x87)
-	Z_IMPLEMENTATION_SIGNED(float80_x87)
-	Z_IMPLEMENTATION_REAL  (float80_x87, Z_FLOAT80_X87, Z_FLOAT80_X87_EPSILON, Z_FLOAT80_X87_INFINITY)
+	Z_IMPLEMENTATION__COMMON(float80_x87)
+	Z_IMPLEMENTATION__SIGNED(float80_x87)
+	Z_IMPLEMENTATION__REAL	(float80_x87, Z_FLOAT80_X87, Z_FLOAT80_X87_EPSILON, Z_FLOAT80_X87_INFINITY)
 #endif
 
 
@@ -725,9 +725,9 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT96_X87
-	Z_IMPLEMENTATION_COMMON(float96_x87)
-	Z_IMPLEMENTATION_SIGNED(float96_x87)
-	Z_IMPLEMENTATION_REAL  (float96_x87, Z_FLOAT96_X87, Z_FLOAT96_X87_EPSILON, Z_FLOAT96_X87_INFINITY)
+	Z_IMPLEMENTATION__COMMON(float96_x87)
+	Z_IMPLEMENTATION__SIGNED(float96_x87)
+	Z_IMPLEMENTATION__REAL	(float96_x87, Z_FLOAT96_X87, Z_FLOAT96_X87_EPSILON, Z_FLOAT96_X87_INFINITY)
 #endif
 
 
@@ -735,18 +735,18 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 #ifdef Z_FLOAT128_X87
-	Z_IMPLEMENTATION_COMMON(float128_x87)
-	Z_IMPLEMENTATION_SIGNED(float128_x87)
-	Z_IMPLEMENTATION_REAL  (float128_x87, Z_FLOAT128_X87, Z_FLOAT128_X87_EPSILON, Z_FLOAT128_X87_INFINITY)
+	Z_IMPLEMENTATION__COMMON(float128_x87)
+	Z_IMPLEMENTATION__SIGNED(float128_x87)
+	Z_IMPLEMENTATION__REAL	(float128_x87, Z_FLOAT128_X87, Z_FLOAT128_X87_EPSILON, Z_FLOAT128_X87_INFINITY)
 #endif
 
 
 /* MARK: - Cleanup */
 
 
-#undef Z_IMPLEMENTATION_COMMON
-#undef Z_IMPLEMENTATION_SIGNED
-#undef Z_IMPLEMENTATION_REAL
+#undef Z_IMPLEMENTATION__COMMON
+#undef Z_IMPLEMENTATION__SIGNED
+#undef Z_IMPLEMENTATION__REAL
 
 
 /* MARK: - Function selectors */

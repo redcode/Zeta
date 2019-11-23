@@ -1,14 +1,14 @@
 /* Z Kit - macros/bitwise.h
  _____  _______________
 /_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2019 Manuel Sainz de Baranda y Goñi.
+ /____/\___/ /__//__/__| Kit
+Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_macros_bitwise_H
 #define Z_macros_bitwise_H
 
-#include <Z/types/fundamental.h>
+#include <Z/types/integral.h>
 
 /* MARK: - 8-bit operations */
 
