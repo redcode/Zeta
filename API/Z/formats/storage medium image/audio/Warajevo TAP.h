@@ -15,8 +15,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef Z_formats_storage_medium_image_audio_Warajevo_TAP_H
 #define Z_formats_storage_medium_image_audio_Warajevo_TAP_H
 
-#include <Z/types/fundamental.h>
-#include <Z/macros/structure.h>
+#include <Z/types/integral.h>
+#include <Z/macros/language.h>
 
 Z_DEFINE_PACKED_STRUCTURE ({
 	zsint32 first_block_offset;
