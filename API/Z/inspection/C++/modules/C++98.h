@@ -8,6 +8,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_inspection_CPP_modules_CPP98_H
 #define Z_inspection_CPP_modules_CPP98_H
 
+				    /* Test macro		       */
+				    /* ------------------------------- */
+#define Z_CPP_HAS_EXCEPTIONS   TRUE /* __cpp_exceptions >= 199711L (!) */
+#define Z_CPP_HAS_RTTI	       TRUE /* __cpp_rtti	>= 199711L (!) */
 #define Z_CPP_HAS_SFINAE       TRUE
 #define Z_CPP_HAS_TYPE_BOOL    TRUE
 #define Z_CPP_HAS_TYPE_WCHAR_T TRUE
