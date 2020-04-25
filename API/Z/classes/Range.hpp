@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/functions/mathematics.hpp>
 
-#if defined(Z_USE_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+#if defined(Z_WITH_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 #	import <Foundation/NSRange.h>
 #endif
 
@@ -23,12 +23,12 @@ namespace Zeta {template <class T> struct Range {
 		Z_DEFAULTED({})
 
 
-	Z_CT(CPP11) Range(T size) Z_NOTHROW
-	: index(0), size(size) {}
+	Z_CT(CPP11) Range(T size_) Z_NOTHROW
+	: index(0), size(size_) {}
 
 
-	Z_CT(CPP11) Range(T index, T size) Z_NOTHROW
-	: index(index), size(size) {}
+	Z_CT(CPP11) Range(T index_, T size_) Z_NOTHROW
+	: index(index_), size(size_) {}
 
 
 	Z_CT(CPP11) operator Boolean() const Z_NOTHROW
@@ -88,32 +88,12 @@ namespace Zeta {template <class T> struct Range {
 	Z_CT(CPP11) T operator [](T index_) const Z_NOTHROW {return index + index_;}
 
 
-#	if defined(Z_USE_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-
-		Z_CT(CPP11) Range(const NSRange &range) Z_NOTHROW
-		: index(T(range.location)), size(T(range.length)) {}
-
-
-#		if Z_DIALECT_HAS(CPP, COPY_LIST_INITIALIZATION)
-			Z_CT(CPP11) operator NSRange() const Z_NOTHROW
-				{return {NSUInteger(index), NSUInteger(size)};}
-#		else
-			Z_CT(CPP14) operator NSRange() const Z_NOTHROW
-				{
-				NSRange result = {NSUInteger(index), NSUInteger(size)};
-				return result;
-				}
-#		endif
-
-#	endif
-
-
 	Z_CT(CPP11) Boolean contains(const Range &other) const Z_NOTHROW
 		{return other.index >= index && other.end() <= end();}
 
 
-	Z_CT(CPP11) Boolean contains(T index) const Z_NOTHROW
-		{return index >= this->index && index < end();}
+	Z_CT(CPP11) Boolean contains(T index_) const Z_NOTHROW
+		{return index_ >= index && index_ < end();}
 
 
 	Z_CT(CPP11) T end() const Z_NOTHROW
@@ -126,6 +106,28 @@ namespace Zeta {template <class T> struct Range {
 
 	Z_CT(CPP11) Boolean is_zero() const Z_NOTHROW
 		{return !index && !size;}
+
+
+#	if defined(Z_WITH_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+
+		Z_CT(CPP11) Range(const NSRange &range) Z_NOTHROW
+		: index(T(range.location)), size(T(range.length)) {}
+
+
+#		if Z_DIALECT_HAS(CPP, COPY_LIST_INITIALIZATION)
+
+			Z_CT(CPP11) operator NSRange() const Z_NOTHROW
+				{return {NSUInteger(index), NSUInteger(size)};}
+
+#		else
+			Z_CT(CPP14) operator NSRange() const Z_NOTHROW
+				{
+				NSRange result = {NSUInteger(index), NSUInteger(size)};
+				return result;
+				}
+#		endif
+
+#	endif
 };}
 
 
