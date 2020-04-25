@@ -30,7 +30,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_HAS_ESCAPE_SEQUENCE_HEXADECIMAL		    TRUE
 #define Z_C_HAS_ESCAPE_SEQUENCE_VERTICAL_TAB		    TRUE
 #define Z_C_HAS_LITERAL_FLOAT				    TRUE
-#define Z_C_HAS_LITERAL_LONG_DOUBLE			    TRUE
 #define Z_C_HAS_LITERAL_UNSIGNED			    TRUE
 #define Z_C_HAS_LITERAL_WCHAR_T_CHARACTER		    TRUE
 #define Z_C_HAS_LITERAL_WCHAR_T_STRING			    TRUE
