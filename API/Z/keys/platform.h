@@ -24,20 +24,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PLATFORM_CPC		      2010 /* Amstrad		   */
 #define Z_PLATFORM_GALAKSIJA	      2011 /* Voja Antonić	   */
 #define Z_PLATFORM_JUPITER_ACE	      2012 /* Jupiter Cantab	   */
-#define Z_PLATFORM_M5		      2013 /* SORD		   */
-#define Z_PLATFORM_MSX		      2014 /* Microsoft and others */
-#define Z_PLATFORM_QL		      2015 /* Sinclair Research	   */
-#define Z_PLATFORM_PET		      2016 /* Commodore		   */
-#define Z_PLATFORM_RX_78	      2017 /* Bandai		   */
-#define Z_PLATFORM_SORCERER	      2018 /* Exidy		   */
-#define Z_PLATFORM_ST		      2019 /* Atari		   */
-#define Z_PLATFORM_VIC_20	      2020 /* Commodore		   */
-#define Z_PLATFORM_X_07		      2021 /* Canon		   */
-#define Z_PLATFORM_X1		      2022 /* Sharp		   */
-#define Z_PLATFORM_Z88		      2023 /* Cambridge Computer   */
-#define Z_PLATFORM_ZX80		      2024 /* Sinclair Research    */
-#define Z_PLATFORM_ZX81		      2025 /* Sinclair Research    */
-#define Z_PLATFORM_ZX_SPECTRUM	      2026 /* Sinclair Research    */
+#define Z_PLATFORM_MACINTOSH	      2013 /* Apple		   */
+#define Z_PLATFORM_M5		      2014 /* SORD		   */
+#define Z_PLATFORM_MSX		      2015 /* Microsoft and others */
+#define Z_PLATFORM_QL		      2016 /* Sinclair Research	   */
+#define Z_PLATFORM_PET		      2017 /* Commodore		   */
+#define Z_PLATFORM_RX_78	      2018 /* Bandai		   */
+#define Z_PLATFORM_SORCERER	      2019 /* Exidy		   */
+#define Z_PLATFORM_ST		      2020 /* Atari		   */
+#define Z_PLATFORM_VIC_20	      2021 /* Commodore		   */
+#define Z_PLATFORM_X_07		      2022 /* Canon		   */
+#define Z_PLATFORM_X1		      2023 /* Sharp		   */
+#define Z_PLATFORM_Z88		      2024 /* Cambridge Computer   */
+#define Z_PLATFORM_ZX80		      2025 /* Sinclair Research    */
+#define Z_PLATFORM_ZX81		      2026 /* Sinclair Research    */
+#define Z_PLATFORM_ZX_SPECTRUM	      2027 /* Sinclair Research    */
 
 /* Video game consoles */
 
