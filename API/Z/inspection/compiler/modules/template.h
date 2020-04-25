@@ -346,12 +346,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Non-standard language: Attributes */
 
 /*#define Z_COMPILER_ATTRIBUTE_ALIAS*/
-/*#define Z_COMPILER_ATTRIBUTE_API_ALIAS*/
 /*#define Z_COMPILER_ATTRIBUTE_API_EXPORT*/
 /*#define Z_COMPILER_ATTRIBUTE_API_IMPORT*/
-/*#define Z_COMPILER_ATTRIBUTE_API_EXPORT_ALIAS*/
-/*#define Z_COMPILER_ATTRIBUTE_API_WEAK_EXPORT*/
-/*#define Z_COMPILER_ATTRIBUTE_EBCO*/
 /*#define Z_COMPILER_ATTRIBUTE_INLINE*/
 /*#define Z_COMPILER_ATTRIBUTE_NO_RETURN*/
 /*#define Z_COMPILER_ATTRIBUTE_NULL_TERMINATED*/
@@ -609,11 +605,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-ins: Macros */
 
-/*#define Z_COMPILER_MACRO_OFFSET_OF(type, member)*/
-/*#define Z_COMPILER_MACRO_VAL_INITIALIZE(object, last_parameter)*/
-/*#define Z_COMPILER_MACRO_VAL_FINALIZE(object)*/
-/*#define Z_COMPILER_MACRO_VAL_READ(object, type)*/
-/*#define Z_COMPILER_MACRO_VAL_COPY(object, output)*/
+/*#define Z_COMPILER_MACRO_MEMBER_OFFSET(type, member)*/
+/*#define Z_COMPILER_MACRO_VAL_INITIALIZE(self, last_parameter)*/
+/*#define Z_COMPILER_MACRO_VAL_FINALIZE(self)*/
+/*#define Z_COMPILER_MACRO_VAL_READ(self, type)*/
+/*#define Z_COMPILER_MACRO_VAL_COPY(self, output)*/
 
 /* MARK: - Built-ins: Functions */
 
