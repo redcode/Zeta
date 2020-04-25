@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C++/modules/C++11.h>			 /* Paper  Test macro					  */
 								 /* -----  ---------------------------------------------- */
-#define Z_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR		    TRUE /* N3781  __cpp_digit_separator	   >= 201309L (?) */
+#define Z_CPP_HAS_APOSTROPHE_AS_DIGIT_SEPARATOR		    TRUE /* N3781  __cpp_digit_separator(s)	   >= 201309L (?) */
 #define Z_CPP_HAS_CPP14_CONSTEXPR_FUNCTION		    TRUE /* N3652  __cpp_constexpr		   >= 201304L (+) */
 #define Z_CPP_HAS_CPP14_CONTEXTUAL_CONVERSION		    TRUE /* N3323						  */
 #define Z_CPP_HAS_DEFAULT_MEMBER_INITIALIZER_FOR_AGGREGATE  TRUE /* N3653  __cpp_aggregate_nsdmi	   >= 201304L (!) */
