@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_keys_status_H
 
 #ifdef Z_OK
-#undef Z_OK /* defined by zlib */
+#	undef Z_OK /* defined by zlib */
 #endif
 
 #define Z_OK			      0
