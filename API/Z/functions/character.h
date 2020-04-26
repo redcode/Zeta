@@ -8,7 +8,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_functions_character_H
 #define Z_functions_character_H
 
-#include <Z/types/fundamental.h>
+#include <Z/types/integral.h>
 #include <Z/macros/character.h>
 
 #define Z_IMPLEMENTATION_CHARACTER(export, prefix, type)										 \
