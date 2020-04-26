@@ -53,8 +53,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_NUMBER_FORMAT_IEEE_754_DECIMAL64	     33
 #define Z_NUMBER_FORMAT_IEEE_754_DECIMAL128	     34
 #define Z_NUMBER_FORMAT_X87_DOUBLE_EXTENDED	     35
-#define Z_NUMBER_FORMAT_POWERPC_DOUBLE_DOUBLE	     36
+#define Z_NUMBER_FORMAT_IBM_EXTENDED_DOUBLE	     36
 #define Z_NUMBER_FORMAT_ARM_FP16_ALTERNATIVE	     37
-#define Z_NUMBER_FORMAT_BFLOAT16		     38
+#define Z_NUMBER_FORMAT_BRAIN_FLOATING_POINT	     38
 
 #endif /* Z_keys_number_H */
