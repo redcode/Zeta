@@ -415,6 +415,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_TYPE_X87_DE80*/
 /*#define Z_COMPILER_TYPE_X87_DE96*/
 /*#define Z_COMPILER_TYPE_X87_DE128*/
+/*#define Z_COMPILER_TYPE_IBM_ED*/
+/*#define Z_COMPILER_TYPE_BFLOAT16*/
 /*#define Z_COMPILER_TYPE_VAL*/
 /*#define Z_COMPILER_LITERAL_UINT8(number)*/
 /*#define Z_COMPILER_LITERAL_SINT8(number)*/
@@ -444,6 +446,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_LITERAL_X87_DE80(number)*/
 /*#define Z_COMPILER_LITERAL_X87_DE96(number)*/
 /*#define Z_COMPILER_LITERAL_X87_DE128(number)*/
+/*#define Z_COMPILER_LITERAL_IBM_ED(number)*/
+/*#define Z_COMPILER_LITERAL_BFLOAT16(number)*/
 
 /* MARK: - Built-ins: Constants */
 
@@ -600,6 +604,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_CONSTANT_X87_DE128_INFINITY*/
 /*#define Z_COMPILER_CONSTANT_X87_DE128_QNAN*/
 /*#define Z_COMPILER_CONSTANT_X87_DE128_SNAN*/
+/*#define Z_COMPILER_CONSTANT_IBM_ED_HUGE*/
+/*#define Z_COMPILER_CONSTANT_IBM_ED_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_IBM_ED_QNAN*/
+/*#define Z_COMPILER_CONSTANT_IBM_ED_SNAN*/
+/*#define Z_COMPILER_CONSTANT_BFLOAT16_HUGE*/
+/*#define Z_COMPILER_CONSTANT_BFLOAT16_INFINITY*/
+/*#define Z_COMPILER_CONSTANT_BFLOAT16_QNAN*/
+/*#define Z_COMPILER_CONSTANT_BFLOAT16_SNAN*/
 /*#define Z_COMPILER_CONSTANT_POINTER_BITS*/
 /*#define Z_COMPILER_CONSTANT_POINTER_SIZE*/
 
