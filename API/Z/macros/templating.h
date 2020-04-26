@@ -420,6 +420,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_Type_159(lht, rht) lht##x87_DE128##rht
 #define Z_INSERT_type_159(lht, rht) lht##x87_de128##rht
 
+#define Z_APPEND_TYPE_160(lht)	    lht##IBM_ED
+#define Z_APPEND_Type_160(lht)	    lht##IBM_ED
+#define Z_APPEND_type_160(lht)	    lht##ibm_ed
+#define Z_INSERT_TYPE_160(lht, rht) lht##IBM_ED##rht
+#define Z_INSERT_Type_160(lht, rht) lht##IBM_ED##rht
+#define Z_INSERT_type_160(lht, rht) lht##ibm_ed##rht
+
+#define Z_APPEND_TYPE_162(lht)	    lht##BFLOAT16
+#define Z_APPEND_Type_162(lht)	    lht##bfloat16
+#define Z_APPEND_type_162(lht)	    lht##bfloat16
+#define Z_INSERT_TYPE_162(lht, rht) lht##BFLOAT16##rht
+#define Z_INSERT_Type_162(lht, rht) lht##bfloat16##rht
+#define Z_INSERT_type_162(lht, rht) lht##bfloat16##rht
+
 /* MARK: - Number format name tokens: Fixed format real types */
 
 #define Z_INSERT_NUMBER_FORMAT_28(lht, rht) lht##IEEE_754_BINARY16##rht
@@ -430,6 +444,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_NUMBER_FORMAT_33(lht, rht) lht##IEEE_754_DECIMAL64##rht
 #define Z_INSERT_NUMBER_FORMAT_34(lht, rht) lht##IEEE_754_DECIMAL128##rht
 #define Z_INSERT_NUMBER_FORMAT_35(lht, rht) lht##X87_DOUBLE_EXTENDED##rht
+#define Z_INSERT_NUMBER_FORMAT_36(lht, rht) lht##IBM_EXTENDED_DOUBLE##rht
+#define Z_INSERT_NUMBER_FORMAT_38(lht, rht) lht##BRAIN_FLOATING_POINT##rht
 
 /* MARK: - Macro selectors */
 
