@@ -289,7 +289,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	if Z_DATA_MODEL_HAS_LITERAL(SINT128)
 #		define Z_SINT128	  Z_DATA_MODEL_LITERAL(SINT128)
 #		define Z_SINT128_MAXIMUM_ 170141183460469231731687303715884105727
-#		define Z_SINT128_MAXIMUM  Z_SINT128(Z_SINT128_MAXIMUM)
+#		define Z_SINT128_MAXIMUM  Z_SINT128(Z_SINT128_MAXIMUM_)
 #		define Z_SINT128_MINIMUM  (-Z_SINT128_MAXIMUM - Z_SINT128(1))
 #	else
 #		define Z_SINT128	  Z_SAME
@@ -905,6 +905,21 @@ typedef long int		   zslong;
 
 #endif
 
+#if Z_DIALECT_HAS_TYPE(CPP, BOOL)
+	typedef bool zbool;
+
+#elif Z_DIALECT_HAS_TYPE(C, BOOL)
+	typedef _Bool zbool;
+#endif
+
+#if Z_DIALECT_HAS_TYPE(C, BOOL) || Z_DIALECT_HAS_TYPE(CPP, BOOL)
+#	define Z_BOOL			Z_SAME
+#	define Z_BOOL_FUNDAMENTAL	Z_FUNDAMENTAL_BOOL
+#	define Z_BOOL_FIXED_FUNDAMENTAL Z_UCHAR_FIXED_FUNDAMENTAL
+#	define Z_BOOL_NUMBER_FORMAT	Z_UCHAR_NUMBER_FORMAT
+#	define Z_BOOL_BITS		Z_UCHAR_BITS
+#endif
+
 /* MARK: - Object size integral types */
 
 #define Z_USIZE_BITS		  Z_DATA_MODEL_BITS(SIZE)
@@ -1089,25 +1104,25 @@ typedef Z_INTEGER_TYPE(SINTTOP)	    zsinttop;
 
 /* MARK: - Default types */
 
-#if defined(__cplusplus) && Z_DIALECT_HAS_TYPE(CPP, BOOL)
+#ifdef Z_BOOL
 
-	typedef bool		     zboolean;
-#	define Z_BOOLEAN_FUNDAMENTAL Z_FUNDAMENTAL_BOOLEAN
-
-#elif Z_DIALECT_HAS_TYPE(C, BOOL)
-
-	typedef _Bool		     zboolean;
-#	define Z_BOOLEAN_FUNDAMENTAL Z_FUNDAMENTAL_BOOLEAN
+	typedef zbool			   zboolean;
+#	define Z_BOOLEAN		   Z_BOOL
+#	define Z_BOOLEAN_FUNDAMENTAL	   Z_BOOL_FUNDAMENTAL
+#	define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_BOOL_FIXED_FUNDAMENTAL
+#	define Z_BOOLEAN_NUMBER_FORMAT	   Z_BOOL_NUMBER_FORMAT
+#	define Z_BOOLEAN_BITS		   Z_BOOL_BITS
 
 #else
-	typedef zuchar		     zboolean;
-#	define Z_BOOLEAN_FUNDAMENTAL Z_UCHAR_FUNDAMENTAL
+
+	typedef zuchar			   zboolean;
+#	define Z_BOOLEAN		   Z_UCHAR
+#	define Z_BOOLEAN_FUNDAMENTAL	   Z_UCHAR_FUNDAMENTAL
+#	define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_UCHAR_FIXED_FUNDAMENTAL
+#	define Z_BOOLEAN_NUMBER_FORMAT	   Z_UCHAR_NUMBER_FORMAT
+#	define Z_BOOLEAN_BITS		   Z_UCHAR_BITS
 
 #endif
-
-#define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_UCHAR_FIXED_FUNDAMENTAL
-#define Z_BOOLEAN_NUMBER_FORMAT	    Z_UCHAR_NUMBER_FORMAT
-#define Z_BOOLEAN_BITS		    Z_UCHAR_BITS
 
 #ifndef Z_NATURAL_BITS
 #	define Z_NATURAL_BITS Z_ULONG_BITS
