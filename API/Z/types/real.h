@@ -571,7 +571,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_DIALECT_HAS_TYPE(C, DECIMAL32)
 
 	typedef _Decimal32		       zdecimal32;
-#	define Z_DECIMAL32		       Z_SUFFIX_DF
+#	define Z_DECIMAL32		       Z_SUFFIX_D32
 #	define Z_DECIMAL32_FUNDAMENTAL	       Z_FUNDAMENTAL_DECIMAL32
 #	define Z_DECIMAL32_FIXED_FUNDAMENTAL   Z_FUNDAMENTAL_DFP32
 #	define Z_DECIMAL32_NUMBER_FORMAT       Z_NUMBER_FORMAT_IEEE_754_DECIMAL32
@@ -594,7 +594,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_DIALECT_HAS_TYPE(C, DECIMAL64)
 
 	typedef _Decimal64		       zdecimal64;
-#	define Z_DECIMAL64		       Z_SUFFIX_DD
+#	define Z_DECIMAL64		       Z_SUFFIX_D64
 #	define Z_DECIMAL64_FUNDAMENTAL	       Z_FUNDAMENTAL_DECIMAL64
 #	define Z_DECIMAL64_FIXED_FUNDAMENTAL   Z_FUNDAMENTAL_DFP64
 #	define Z_DECIMAL64_NUMBER_FORMAT       Z_NUMBER_FORMAT_IEEE_754_DECIMAL64
@@ -617,7 +617,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_DIALECT_HAS_TYPE(C, DECIMAL128)
 
 	typedef _Decimal128			zdecimal128;
-#	define Z_DECIMAL128			Z_SUFFIX_DL
+#	define Z_DECIMAL128			Z_SUFFIX_D128
 #	define Z_DECIMAL128_FUNDAMENTAL		Z_FUNDAMENTAL_DECIMAL128
 #	define Z_DECIMAL128_FIXED_FUNDAMENTAL	Z_FUNDAMENTAL_DFP128
 #	define Z_DECIMAL128_NUMBER_FORMAT	Z_NUMBER_FORMAT_IEEE_754_DECIMAL128
