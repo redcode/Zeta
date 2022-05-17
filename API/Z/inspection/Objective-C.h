@@ -1,15 +1,16 @@
-/* Z Kit - inspection/Objective-C.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/inspection/Objective-C.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_Objective_C_H
 #define Z_inspection_Objective_C_H
 
-#include <Z/constants/base.h>
 #include <Z/keys/Objective-C.h>
+#include <Z/constants/boolean.h>
 
 #ifndef Z_OBJECTIVE_C
 #	if defined(__OBJC2__)
@@ -31,7 +32,5 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 #endif
-
-#include <Z/inspection/Objective-C/completion.h>
 
 #endif /* Z_inspection_Objective_C_H */

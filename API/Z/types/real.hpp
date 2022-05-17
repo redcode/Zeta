@@ -1,8 +1,9 @@
-/* Z Kit - types/real.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/types/real.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_types_real_HPP
@@ -12,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {
 
-	// MARK: - Fixed format real types
+	// MARK: - Fixed-format real types
 
 #	ifdef Z_BFP16
 		typedef zbfp16 BFP16;
@@ -52,6 +53,14 @@ namespace Zeta {
 
 #	ifdef Z_X87_DE128
 		typedef zx87_de128 x87_DE128;
+#	endif
+
+#	ifdef Z_IBM_ED
+		typedef zibm_ed IBM_ED;
+#	endif
+
+#	ifdef Z_BFLOAT16
+		typedef zbfloat16 bfloat16;
 #	endif
 
 	// MARK: - Standard real types
@@ -121,6 +130,6 @@ namespace Zeta {
 #	ifdef Z_REAL
 		typedef zreal Real;
 #	endif
-};
+}
 
 #endif // Z_types_real_HPP

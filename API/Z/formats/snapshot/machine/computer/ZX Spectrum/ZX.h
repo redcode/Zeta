@@ -1,52 +1,60 @@
-/* Z Kit - formats/snapshot/machine/computer/ZX Spectrum/ZX.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
+/* Zeta API - Z/formats/snapshot/machine/computer/ZX Spectrum/ZX.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
 Information contributed by Troels Norgaard.
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
-.-----------------------------------------------------------------------.
-| Extensions: .zx							|
-| Endianness: Big							|
-|   Supports: 48K							|
-|    Used by: KGB (AmigaOS)						|
-|	      <http://www.cybercity.dk/users/ccc14241/home.html>	|
-|     Author: Noerdergard, Troels					|
-|  Reference: <http://rk.nvg.ntnu.no/sinclair/faq/fileform.html>	|
-|	      [MAME sources]/src/mame/machine/spec_snqk.cpp		|
-|									|
-| Thanks to Troels Norgaard for sharing the description of this format. |
-'----------------------------------------------------------------------*/
+ _________________________________________________________________________
+|									  |
+|	 Daft: Public.Snapshot.Computer.ZXSpectrum.ZX			  |
+|      Author: Noerdergard, Troels					  |
+|  Extensions: .zx							  |
+|  Endianness: Big							  |
+|    Supports: ZX Spectrum 48K						  |
+|     Used by: KGB (AmigaOS)						  |
+|	       <http://www.cybercity.dk/users/ccc14241/home.html>	  |
+|									  |
+|  Reference:								  |
+|  http://rk.nvg.ntnu.no/sinclair/faq/fileform.html			  |
+|  [MAME sources]/src/mame/machine/spec_snqk.cpp			  |
+|									  |
+|  Thanks to Troels Norgaard for sharing the description of this format.  |
+|									  |
+'========================================================================*/
 
 #ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H
 #define Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_H
 
 #include <Z/types/bitwise.h>
+#include <Z/hardware/machine/computer/ZX Spectrum.h>
 
 Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	rom_tail[132]; /* last 132 bytes of ROM			    */
-	zuint8	ram[49152];
+	zuint8	ram[Z_ZX_SPECTRUM_48K_SIZE_RAM];
 	zuint8	zero_0[132];
 	zuint16	settings[5];   /* KGB settings, usually = {10, 10, 4, 1, 1} */
 	zuint8	iff;	       /* IFF1 and IFF2				    */
 	zuint8	constants[2];  /* must be {0, 3}			    */
 	zuint8	color_mode;
-	zuint8	zero_1[4];
-	Z16Bit	bc, bc_, de, de_, hl, hl_, ix, iy;
-	zuint8	i;
-	zuint8	r,  zero_2[3];
-	zuint8	a_, zero_3;
-	zuint8	a,  zero_4;
-	zuint8	f_, zero_5;
-	zuint8	f,  zero_6[2];
-	zuint16	pc, zero_7;
-	zuint16	sp;
+	zuint32	zero_1;
+	ZInt16	bc, bc_, de, de_, hl, hl_, ix, iy;
+	zuint8	i, r;
+	zuint16	zero_2;
+	zuint8	zero_3, a_;
+	zuint8	zero_4, a;
+	zuint8	zero_5, f_;
+	zuint8	zero_6, f;
+	ZInt16	zero_7, pc;
+	ZInt16	zero_8, sp;
 	zuint16 sound_mode;
-	zuint16	halt; /* boolean */
+	zuint8  zero_9;
+	zuint8	halt_line; /* boolean */
 	zsint16 im;
-	zuint8	zero_8[10];
-} Z_DEFINE_PACKED_STRUCTURE_END (ZZX);
+	zuint8	zero_10[10];
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_ZX);
 
 #define Z_ZX_COLOR_MODE_BW	 0
 #define Z_ZX_COLOR_MODE_COLOR	 1

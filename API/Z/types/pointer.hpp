@@ -1,9 +1,9 @@
-/* Z Kit - types/pointer.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
-Copyright (C) 2018 Sofía Ortega Sosa.
+/* Zeta API - Z/types/pointer.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_types_pointer_HPP
@@ -11,15 +11,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-namespace Zeta {
+#if	Z_DIALECT_HAS_SPECIFIER(CPP11, DECLTYPE) && \
+	Z_DIALECT_HAS_LITERAL  (CPP11, NULLPTR )
 
-#	if	Z_DIALECT_HAS_SPECIFIER(CPP, DECLTYPE) && \
-		Z_DIALECT_HAS_LITERAL  (CPP, NULLPTR )
-
+	namespace Zeta {
 		typedef decltype(nullptr) NullPtr;
-#		define Z_NULLPTR
-#	endif
-
-};
+#		define Z_NULLPTR	  Z_SAME
+	}
+#endif
 
 #endif // Z_types_pointer_HPP

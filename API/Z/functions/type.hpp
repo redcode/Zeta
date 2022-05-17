@@ -1,8 +1,9 @@
-/* Z Kit - functions/type.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/functions/type.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_functions_type_HPP
@@ -10,51 +11,44 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/classes/SizedString.hpp>
 
-#if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME)
 
-	namespace Zeta {
+namespace Zeta {
 
-#		if	Z_COMPILER == Z_COMPILER_GCC   || \
-			Z_COMPILER == Z_COMPILER_CLANG || \
-			Z_COMPILER == Z_COMPILER_APPLE_LLVM
+#	if Z_COMPILER_IS(GCC) || Z_COMPILER_IS(CLANG) || Z_COMPILER_IS(APPLE_CLANG)
 
+		template <class t>
+		static Z_CT(CPP14) USize type_string_size() Z_NOTHROW
+			{
+			const Char *input = __PRETTY_FUNCTION__;
+			USize size = 0;
+			USize bracket_count = 0;
 
-			template <class T>
-			static Z_CT(CPP14) USize type_string_size() Z_NOTHROW
+			while (*input++ != '=');
+			while (*++input != ']' || bracket_count)
 				{
-				const Char *input = __PRETTY_FUNCTION__;
-				USize size = 0;
-				USize bracket_count = 0;
-
-				while (*input++ != '=');
-				while (*++input != ']' || bracket_count)
-					{
-					if	(*input == '[') bracket_count++;
-					else if (*input == ']') bracket_count--;
-
-					size++;
-					}
-
-				return size;
+				if (*input == '[') bracket_count++; else
+				if (*input == ']') bracket_count--;
+				size++;
 				}
 
-
-			template <class T, USize S = type_string_size<T>()>
-			static Z_CT(CPP14) SizedString<S> type_string() Z_NOTHROW
-				{
-				const Char *input = __PRETTY_FUNCTION__;
-
-				while (*input++ != '=');
-				return SizedString<S>(input + 1);
-				}
+			return size;
+			}
 
 
-#		elif Z_COMPILER == Z_COMPILER_VISUAL_CPP
+		template <class t, USize s = type_string_size<t>() + 1>
+		static Z_CT(CPP14) SizedString<Char, s> type_string() Z_NOTHROW
+			{
+			const Char *input = __PRETTY_FUNCTION__;
 
-#		endif
+			while (*input++ != '=');
+			return SizedString<Char, s>(StringView<Char>(input + 1, s));
+			}
 
-	}
 
-#endif
+#	elif Z_COMPILER_IS(MSVC)
+
+#	endif
+}
+
 
 #endif // Z_functions_type_HPP

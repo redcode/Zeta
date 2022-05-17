@@ -1,8 +1,9 @@
-/* Z Kit - inspection/C/modules/C95.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/inspection/C/modules/C95.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_C_modules_C95_H
@@ -10,6 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C/modules/C89.h>
 
-#define Z_C_HAS_DIGRAPHS TRUE
+#define Z_LANGUAGE_HAS_C95_DIGRAPHS TRUE
 
 #endif /* Z_inspection_C_modules_C95_H */

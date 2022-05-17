@@ -1,43 +1,5 @@
-Sainz de Baranda y Goñi, Manuel <manuel@zxe.io>
+Original author:
+    Sainz de Baranda y Goñi, Manuel <manuel@zxe.io>
 
-  Original author.
-
-Deniau, Laurent <laurent.deniau@cern.ch>
-
-  + L_PP_ARG_N and L_PP_RSEQ_N macros in <Z/macros/variadic.h> (Public domain).
-
-Kac, Tomaz
-
-  + Comments in <Z/formats/storage medium image/audio/TZX.h>, copied from the
-    document "TZX FORMAT" <https://www.worldofspectrum.org/TZXformat.html>.
-
-Kobalicek, Petr <kobalicek.petr@gmail.com>
-
-  + Z_SELECT_<NUMBER> macros in <Z/macros/variadic selection.h>, copied from his
-    project ppmagic <https://github.com/kobalicek/ppmagic> (Public domain).
-
-Ortega Sosa, Sofía <agaxia@zxe.io>
-
-  * Bugs fixes.
-  * Contributions to the language inspection system.
-  * Contributions to the Zeta::Type<T> trait.
-  * Improvements to Zeta::NaT.
-
-Ramsoft
-
-  + Comments in <Z/formats/storage medium image/audio/TZX.h>, copied from the
-    document "TZX FORMAT" <https://www.worldofspectrum.org/TZXformat.html>.
-
-Remis <remis.thoughts@gmail.com>
-
-  + Zeta::TripleBuffer and ZTripleBuffer are based on his code. See:
-    <http://remis-thoughts.blogspot.com/2012/01/triple-buffering-as-concurrency_30.html>
-
-Rodríguez Palomino, Mario (aka r-lyeh)
-
-  * Improvements to the Zeta::Shared<T> class.
-
-van der Heide, Martijn
-
-  + Comments in <Z/formats/storage medium image/audio/TZX.h>, copied from the
-    document "TZX FORMAT" <https://www.worldofspectrum.org/TZXformat.html>.
+Contributors and maintainers:
+    Ortega Sosa, Sofía <agaxia@zxe.io>

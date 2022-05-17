@@ -1,29 +1,30 @@
-/* Z Kit - classes/Pair.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/classes/Pair.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_Pair_HPP
 #define Z_classes_Pair_HPP
 
-#include <Z/types/integral.h>
 #include <Z/macros/language.hpp>
+#include <Z/types/integral.hpp>
 
 
-namespace Zeta {template <class T1, class T2> struct Pair {
-	typedef T1 First;
-	typedef T2 Second;
+namespace Zeta {template <class t1, class t2 = t1> struct Pair {
+	typedef t1 First;
+	typedef t2 Second;
 
-	T1 first;
-	T2 second;
+	t1 first;
+	t2 second;
 
 	Z_INLINE Pair() Z_DEFAULTED({})
 
 	Z_CT(CPP11) Pair(
-		typename Type<T1>::to_forwardable first,
-		typename Type<T2>::to_forwardable second
+		typename Type<t1>::to_forwardable first,
+		typename Type<t2>::to_forwardable second
 	) : first(first), second(second) {}
 
 
@@ -37,9 +38,9 @@ namespace Zeta {template <class T1, class T2> struct Pair {
 
 	/*Z_INLINE void swap(Pair &pair)
 		{
-		Zeta::swap<typename Type<Pair>::to_opaque>
-			(reinterpret_cast<typename Type<Pair>::to_opaque *>(this),
-			 reinterpret_cast<typename Type<Pair>::to_opaque *>(&pair));
+		Zeta::swap<typename Type<Pair>::to_opaque>(
+			reinterpret_cast<typename Type<Pair>::to_opaque *>(this),
+			reinterpret_cast<typename Type<Pair>::to_opaque *>(&pair));
 		}*/
 };}
 

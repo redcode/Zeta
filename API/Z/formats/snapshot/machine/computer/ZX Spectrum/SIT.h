@@ -1,34 +1,40 @@
-/* Z Kit - formats/snapshot/machine/computer/ZX Spectrum/SIT.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/formats/snapshot/machine/computer/ZX Spectrum/SIT.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
-.-------------------------------------------------------------------.
-| Extensions: .sit						    |
-| Endianness: Little						    |
-|   Supports: 48K						    |
-|    Used by: Sinclair (MS-DOS)					    |
-|	      <http://www.ugr.es/~pedrom/sinclair.htm>		    |
-|     Author: Rodríguez Salas, Pedro Manuel <pedrom@goliat.ugr.es>  |
-|  Reference: <http://www.zx-modules.de/fileformats/sitformat.html> |
-|	      [MAME sources]/src/mame/machine/spec_snqk.cpp	    |
-'------------------------------------------------------------------*/
+ ____________________________________________________________________
+|								     |
+|	 Daft: Public.Snapshot.Computer.ZXSpectrum.SIT		     |
+|      Author: Rodríguez Salas, Pedro Manuel <pedrom@goliat.ugr.es>  |
+|  Extensions: .sit						     |
+|  Endianness: Little						     |
+|    Supports: ZX Spectrum 48K					     |
+|     Used by: Sinclair (MS-DOS)				     |
+|	       <http://www.ugr.es/~pedrom/sinclair.htm>		     |
+|								     |
+|  Reference:							     |
+|  http://www.zx-modules.de/fileformats/sitformat.html		     |
+|  [MAME sources]/src/mame/machine/spec_snqk.cpp		     |
+|								     |
+'===================================================================*/
 
 #ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H
 #define Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H
 
 #include <Z/types/bitwise.h>
+#include <Z/hardware/machine/computer/ZX Spectrum.h>
 
 Z_DEFINE_PACKED_STRUCTURE_BEGIN {
-	Z16Bit	bc,  de,  hl,  af,  ix,  iy;
-	zuint16 sp,  pc;
-	zuint8	r,   i;
-	Z16Bit	bc_, de_, hl_, af_;
-	zuint8	im;
-	zuint8	border_color;
-	zuint8	memory[65536];
-} Z_DEFINE_PACKED_STRUCTURE_END (ZSIT);
+	ZInt16 bc, de, hl, af, ix, iy, sp, pc;
+	zuint8 r, i;
+	ZInt16 bc_, de_, hl_, af_;
+	zuint8 im;
+	zuint8 border_color;
+	zuint8 memory[Z_ZX_SPECTRUM_48K_SIZE_MEMORY];
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_SIT);
 
 #endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SIT_H */

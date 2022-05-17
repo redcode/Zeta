@@ -1,8 +1,9 @@
-/* Z Kit - traits/ValueList.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/traits/ValueList.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_traits_ValueList_HPP
@@ -19,7 +20,7 @@ namespace Zeta {
 		typedef typename ValueListRemoveFirst<ValueList>::type remove_last;
 		typedef typename ValueListReverse    <ValueList>::type reverse;
 
-#		if Z_DIALECT_HAS(CPP, VARIABLE_TEMPLATE) && Z_DIALECT_HAS_SPECIFIER(CPP, CONSTEXPR)
+#		if Z_DIALECT_HAS(CPP14, VARIABLE_TEMPLATE) && Z_DIALECT_HAS_SPECIFIER(CPP11, CONSTEXPR)
 
 #		endif
 

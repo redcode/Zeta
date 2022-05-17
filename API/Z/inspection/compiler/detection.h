@@ -1,8 +1,9 @@
-/* Z Kit - inspection/compiler/detection.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/inspection/compiler/detection.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_compiler_detection_H
@@ -10,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if defined(__clang__)
 /*#	if defined(__apple_build_version__)
-#		define Z_COMPILER Z_COMPILER_APPLE_LLVM
+#		define Z_COMPILER Z_COMPILER_APPLE_CLANG
 #	else*/
 #		define Z_COMPILER Z_COMPILER_CLANG
 /*#	endif*/
@@ -35,6 +36,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif defined(AZTEC_C) || defined(__AZTEC_C__)
 #	define Z_COMPILER Z_COMPILER_AZTEC_C
+
+#elif defined(__BCC__)
+#	define Z_COMPILER Z_COMPILER_BCC
 
 #elif defined(__CC65__)
 #	define Z_COMPILER Z_COMPILER_CC65
@@ -99,7 +103,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__IAR_SYSTEMS_ICC__)
 #	define Z_COMPILER Z_COMPILER_IAR_C_CPP
 
-#elif defined(__xlc__) || defined(__xlC__)
+#elif defined(__xlc__) || defined(__xlC__) /* Not sure */
 #	define Z_COMPILER Z_COMPILER_IBM_XL_C_CPP
 
 #elif defined(__IBMC__) || defined(__IBMCPP__)
@@ -137,7 +141,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER Z_COMPILER_METAWARE_HIGH_C_CPP
 
 #elif defined(_MRI)
-#	define Z_COMPILER Z_COMPILER_NAME_MICROTEC_C_CPP
+#	define Z_COMPILER Z_COMPILER_MICROTEC_C_CPP
 
 #elif defined(__MINGW__) || defined(__MINGW32__) || defined(__MINGW64__)
 #	define Z_COMPILER Z_COMPILER_MINGW
@@ -156,6 +160,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif defined(__CC_NORCROFT)
 #	define Z_COMPILER Z_COMPILER_NORCROFT_C
+
+#elif defined(__NVCOMPILER)
+#	define Z_COMPILER Z_COMPILER_NVC
 
 #elif defined(__NWCC__)
 #	define Z_COMPILER Z_COMPILER_NWCC
@@ -208,18 +215,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__TenDRA__)
 #	define Z_COMPILER Z_COMPILER_TENDRA
 
-#elif defined(__TI_COMPILER_VERSION__) || defined(_TMS320C6X)
-#	define Z_COMPILER Z_COMPILER_TI_C_CPP_COMPILER
-
 /*#elif defined(THINKC3) || defined(THINKC4)
 #	define Z_COMPILER Z_COMPILER_THINK_C*/
 
+#elif defined(__TI_COMPILER_VERSION__) || defined(_TMS320C6X)
+#	define Z_COMPILER Z_COMPILER_TI_C_CPP_COMPILER
+
 #elif defined(__TINYC__)
-#	define Z_COMPILER Z_COMPILER_TINY_C
+#	define Z_COMPILER Z_COMPILER_TINY_CC
 
 #elif	defined(__BORLANDC__ ) || \
 	defined(__CODEGEARC__) || \
 	(defined(__TURBOC__) && __TURBOC__ >= 0x295)
+
 #	define Z_COMPILER Z_COMPILER_TURBO_CPP
 
 #elif defined(__TURBOC__)

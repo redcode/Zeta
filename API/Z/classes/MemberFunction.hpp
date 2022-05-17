@@ -1,8 +1,9 @@
-/* Z Kit - classes/MemberFunction.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/classes/MemberFunction.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_MemberFunction_HPP
@@ -10,19 +11,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-#if	Z_DIALECT_HAS(CPP, SFINAE)	      && \
-	Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE) && \
-	Z_DIALECT_HAS(CPP, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE)
+#if	Z_DIALECT_HAS(CPP98, SFINAE)		&& \
+	Z_DIALECT_HAS(CPP11, VARIADIC_TEMPLATE) && \
+	Z_DIALECT_HAS(CPP11, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE)
 
-#	include <Z/traits/Type.hpp>
+#	define Z_HAS_MemberFunction TRUE
+
+#	include <Z/constants/pointer.h>
+#	include <Z/traits/type.hpp>
 
 
 	namespace Zeta {
+		template <class f> struct MemberFunction;
 
-		template <class F> struct MemberFunction;
-
-		template <class R, class... P> struct MemberFunction<R(P...)> {
-			R (NaT::* function)(P...);
+		template <class r, class... p> struct MemberFunction<r(p...)> {
+			r (NaT::* function)(p...);
 
 
 			Z_INLINE MemberFunction() Z_NOTHROW
@@ -31,57 +34,52 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #			ifdef Z_NULLPTR
 				Z_CT(CPP11) MemberFunction(NullPtr) Z_NOTHROW
-				: function(NULL) {};
+				: function(nullptr) {};
 #			endif
 
 
-			template <class M, class E = typename TypeIf<
-				Type<M>::is_member_function_pointer &&
-				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value
+			template <class m, class e = typename TypeIf<
+				Type<m>::is_member_function_pointer &&
+				TypeIsSame<typename Type<m>::flow::to_function::end::to_unqualified, r(p...)>::value
 			>::type>
-			Z_INLINE MemberFunction(M function) Z_NOTHROW
-			: function(reinterpret_cast<R (NaT::*)(P...)>(function)) {}
+			Z_INLINE MemberFunction(m function) Z_NOTHROW
+			: function(reinterpret_cast<r (NaT::*)(p...)>(function)) {}
 
 
 			Z_CT(CPP11) operator Boolean() const Z_NOTHROW
-				{return function != NULL;}
+				{return function != Z_NULL;}
 
 
-			template <class M, class E = typename TypeIf<
-				Type<M>::is_member_function_pointer &&
-				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value
+			template <class m, class e = typename TypeIf<
+				Type<m>::is_member_function_pointer &&
+				TypeIsSame<typename Type<m>::flow::to_function::end::to_unqualified, r(p...)>::value
 			>::type>
-			Z_INLINE operator M() const Z_NOTHROW
-				{return reinterpret_cast<M>(function);}
+			Z_INLINE operator m() const Z_NOTHROW
+				{return reinterpret_cast<m>(function);}
 
 
-			template <class M>
+			template <class m>
 			Z_INLINE typename TypeIf<
-				Type<M>::is_member_function_pointer &&
-				TypeIsSame<typename Type<M>::flow::to_function::end::to_unqualified, R(P...)>::value,
+				Type<m>::is_member_function_pointer &&
+				TypeIsSame<typename Type<m>::flow::to_function::end::to_unqualified, r(p...)>::value,
 			MemberFunction &>::type
-			operator =(M rhs) Z_NOTHROW
+			operator =(m rhs) Z_NOTHROW
 				{
-				function = reinterpret_cast<R (NaT::*)(P...)>(rhs);
+				function = reinterpret_cast<r (NaT::*)(p...)>(rhs);
 				return *this;
 				}
 
 
-			template <class O>
-			Z_INLINE R operator ()(O *object, typename Type<P>::to_forwardable... arguments) const
+			template <class o>
+			Z_INLINE r operator ()(o *object, typename Type<p>::to_forwardable... arguments) const
 				{return (reinterpret_cast<NaT *>(object)->*function)(arguments...);}
 
 
-			template <class O>
-			Z_INLINE R operator ()(const O &object, typename Type<P>::to_forwardable... arguments) const
+			template <class o>
+			Z_INLINE r operator ()(const o &object, typename Type<p>::to_forwardable... arguments) const
 				{return (const_cast<NaT *>(reinterpret_cast<const NaT *>(&object))->*function)(arguments...);}
 		};
 	}
-
-
-#	define Z_DECLARES_MemberFunction TRUE
-#else
-#	define Z_DECLARES_MemberFunction FALSE
 #endif
 
 #endif // Z_classes_MemberFunction_HPP

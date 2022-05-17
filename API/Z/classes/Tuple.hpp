@@ -1,8 +1,9 @@
-/* Z Kit - classes/Tuple.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/classes/Tuple.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_Tuple_HPP
@@ -10,24 +11,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-#if Z_DIALECT_HAS(CPP, EXTENDED_VARIADIC_TEMPLATE_TEMPLATE_PARAMETERS)
+#if Z_DIALECT_HAS(CPP11, EXTENDED_VARIADIC_TEMPLATE_TEMPLATE_PARAMETERS) /* ¿No es necesario, basta con VARIADIC_TEMPLATE? */
+#	include <Z/traits/type.hpp>
 
-#	include <Z/traits/Type.hpp>
+#	define Z_HAS_Tuple TRUE
 
 
-	namespace Zeta {namespace Detail {namespace Tuple {
+	namespace Zeta {namespace ZetaDetail {namespace Tuple {
 
 		template <class type_list> struct Element;
 
 
-		template <class... T> struct Super {
-			typedef Element<typename TypeListRotateRight<TypeList<T...>, 1>::type> type;
+		template <class... t> struct Super {
+			typedef Element<typename TypeListRotateRight<TypeList<t...>, 1>::type> type;
 		};
 
 
-		template <class T0>
-		struct Element<TypeList<T0> > {
-			typedef T0 type;
+		template <class t0>
+		struct Element<TypeList<t0> > {
+			typedef t0 type;
 
 			type value;
 
@@ -35,14 +37,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Z_DEFAULTED({})
 
 
-			Z_CT(CPP11) Element(typename Zeta::Type<T0>::to_forwardable value)
+			Z_CT(CPP11) Element(typename Zeta::Type<t0>::to_forwardable value)
 			: value(value) {}
 		};
 
 
-		template <class TN, class... T>
-		struct Element<TypeList<TN, T...> > : Super<T...>::type {
-			typedef TN type;
+		template <class tn, class... t>
+		struct Element<TypeList<tn, t...> > : Super<t...>::type {
+			typedef tn type;
 
 			type value;
 
@@ -51,34 +53,33 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 			Z_CT(CPP11) Element(
-				typename Zeta::Type<T >::to_forwardable... previous,
-				typename Zeta::Type<TN>::to_forwardable value
-			) : Super<T...>::type(previous...), value(value) {}
+				typename Zeta::Type<t >::to_forwardable... previous,
+				typename Zeta::Type<tn>::to_forwardable value
+			) : Super<t...>::type(previous...), value(value) {}
 		};
 	}}}
 
 
-	namespace Zeta {template <class... T> class Tuple : public Detail::Tuple::Super<T...>::type {
-
+	namespace Zeta {template <class... t> class Tuple : public ZetaDetail::Tuple::Super<t...>::type {
 		private:
-		typedef typename Detail::Tuple::Super<T...>::type Super;
+		typedef typename ZetaDetail::Tuple::Super<t...>::type Super;
 
 		public:
-		template <UInt I> class At {
+		template <UInt i> class At {
 
 			private:
-			enum {tail_size = TypeCount<T...>::value - (I + 1)};
+			enum {tail_size = TypeCount<t...>::value - (i + 1)};
 
 			public:
-			typedef Detail::Tuple::Element<typename TypeListRotateRight<
-				typename TypeListRemoveTail<TypeList<T...>, tail_size>::type, 1
+			typedef ZetaDetail::Tuple::Element<typename TypeListRotateRight<
+				typename TypeListRemoveTail<TypeList<t...>, tail_size>::type, 1
 			>::type> Element;
 
 			typedef typename Element::type type;
 		};
 
 
-#		if !Z_DIALECT_HAS(CPP, INHERITING_CONSTRUCTORS)
+#		if !Z_DIALECT_HAS(CPP11, INHERITING_CONSTRUCTORS)
 			using Super::Super;
 
 #		else
@@ -86,59 +87,54 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Z_DEFAULTED({})
 
 
-			Z_CT(CPP11) Tuple(typename Type<T>::to_forwardable... values)
+			Z_CT(CPP11) Tuple(typename Type<t>::to_forwardable... values)
 			: Super(values...) {}
 #		endif
 
 
-		template <UInt I>
-		Z_INLINE typename At<I>::type &at() Z_NOTHROW
-			{return At<I>::Element::value;}
+		template <UInt index>
+		Z_INLINE typename At<index>::type &at() Z_NOTHROW
+			{return At<index>::Element::value;}
 
 
-		template <UInt I>
-		Z_CT(CPP11) typename Type<typename At<I>::type>::to_forwardable get() const Z_NOTHROW
-			{return At<I>::Element::value;}
+		template <UInt index>
+		Z_CT(CPP11) typename Type<typename At<index>::type>::to_forwardable get() const Z_NOTHROW
+			{return At<index>::Element::value;}
 
 
-		template <UInt I>
-		Z_INLINE Tuple &set(typename Type<typename At<I>::type>::to_forwardable value)
+		template <UInt index>
+		Z_INLINE Tuple &set(typename Type<typename At<index>::type>::to_forwardable value)
 			{
-			At<I>::Element::value = value;
+			At<index>::Element::value = value;
 			return *this;
 			}
 	};}
 
 
-//#	if Z_DIALECT_HAS(CPP, STRUCTURED_BINDING)
+#	if defined(Z_WITH_STD) && Z_DIALECT_HAS(CPP17, STRUCTURED_BINDING) && defined(__has_include) && __has_include(<tuple>)
 
 #		include <tuple>
-#		include <Z/macros/tokens.h>
 
-#		define Z_IMPLEMENTATION(qualifiers)									\
-															\
-		template <class... T>											\
-		struct std::tuple_size<qualifiers Zeta::Tuple<T...> > {							\
-			enum {value = sizeof...(T)};									\
-		};													\
-															\
-		template <size_t I, class... T>										\
-		struct std::tuple_element<I, qualifiers Zeta::Tuple<T...> > {						\
-			typedef typename Zeta::Type<typename Zeta::Tuple<T...>::template At<I>::type>::add_const type;	\
-		};
+#		define Z__IMPLEMENTATION(qualifiers)										\
+																\
+			template <class... t>											\
+			struct std::tuple_size<qualifiers Zeta::Tuple<t...> > {							\
+				enum {value = sizeof...(t)};									\
+			};													\
+																\
+			template <std::size_t i, class... t>									\
+			struct std::tuple_element<i, qualifiers Zeta::Tuple<t...> > {						\
+				typedef typename Zeta::Type<typename Zeta::Tuple<t...>::template At<i>::type>::add_const type;	\
+			};
 
-		Z_IMPLEMENTATION(Z_EMPTY       )
-		Z_IMPLEMENTATION(const	       )
-		Z_IMPLEMENTATION(const volatile)
-		Z_IMPLEMENTATION(      volatile)
+		Z__IMPLEMENTATION(Z_EMPTY	)
+		Z__IMPLEMENTATION(const		)
+		Z__IMPLEMENTATION(const volatile)
+		Z__IMPLEMENTATION(	volatile)
 
-#		undef Z_IMPLEMENTATION
-//#	endif
+#		undef Z__IMPLEMENTATION
+#	endif
 
-
-#	define Z_DECLARES_Tuple TRUE
-#else
-#	define Z_DECLARES_Tuple FALSE
 #endif
 
 #endif // Z_classes_Tuple_HPP

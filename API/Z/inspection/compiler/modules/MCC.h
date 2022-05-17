@@ -1,8 +1,9 @@
-/* Z Kit - inspection/compiler/modules/MCC.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/inspection/compiler/modules/MCC.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_compiler_modules_MCC_H
@@ -10,50 +11,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Identification */
 
+#define Z_COMPILER_IS_MCC	  TRUE
 #define Z_COMPILER_NAME		  Z_COMPILER_NAME_MCC
-#define Z_COMPILER_VERSION	  Z_VERSION(__MCC_MAJOR__, __MCC_MINOR__, __MCC_MICRO__)
+#define Z_COMPILER_VERSION	  Z_VERSION(__MCC_VERSION_MAJOR__, __MCC_VERSION_MINOR__, __MCC_VERSION_MICRO__)
 #define Z_COMPILER_VERSION_STRING __MCC_VERSION__
 
 /* MARK: - ISA */
 
-#if __is_isa(x86-32)
+#if __isa::is("x86-32")
 #	define Z_COMPILER_ISA Z_ISA_X86_32
 
-#elif __is_isa(x86-64)
+#elif __isa::is("x86-64")
 #	define Z_COMPILER_ISA Z_ISA_X86_64
 #endif
 
 /* MARK: - ISA: Integral endianness */
 
-#if __is_endianness(big)
-#	define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_BIG
+#if __integral_endianness::is("big")
+#	define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS Z_ENDIANNESS_BIG
 
-#elif __is_endianness(little)
-#	define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_ALL Z_ENDIANNESS_LITTLE
+#elif __integral_endianness::is("little")
+#	define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS Z_ENDIANNESS_LITTLE
 #endif
-
-/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_8BIT*/
-/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_16BIT*/
-/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_24BIT*/
-/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_32BIT*/
-/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_40BIT*/
-/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_48BIT*/
-/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_56BIT*/
-/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_64BIT*/
-/*#define Z_COMPILER_ISA_INTEGRAL_ENDIANNESS_128BIT*/
-
-/* MARK: - ISA: Integer format */
-
-/*#define Z_COMPILER_ISA_INTEGER_FORMAT_ALL*/
-/*#define Z_COMPILER_ISA_INTEGER_FORMAT_8BIT*/
-/*#define Z_COMPILER_ISA_INTEGER_FORMAT_16BIT*/
-/*#define Z_COMPILER_ISA_INTEGER_FORMAT_24BIT*/
-/*#define Z_COMPILER_ISA_INTEGER_FORMAT_32BIT*/
-/*#define Z_COMPILER_ISA_INTEGER_FORMAT_40BIT*/
-/*#define Z_COMPILER_ISA_INTEGER_FORMAT_48BIT*/
-/*#define Z_COMPILER_ISA_INTEGER_FORMAT_56BIT*/
-/*#define Z_COMPILER_ISA_INTEGER_FORMAT_64BIT*/
-/*#define Z_COMPILER_ISA_INTEGER_FORMAT_128BIT*/
 
 /* MARK: - Platform */
 
@@ -61,13 +40,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - OS */
 
-#if __is_os(Linux)
+#if __os::is("Linux")
 #	define Z_COMPILER_OS Z_OS_LINUX
 
-#elif __is_os(macOS)
+#elif __os::is("macOS")
 #	define Z_COMPILER_OS Z_OS_MAC_OS_X
 
-#elif __is_os(Windows)
+#elif __os::is("Windows")
 #	define Z_COMPILER_OS Z_OS_WINDOWS
 #endif
 
@@ -82,13 +61,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Data model */
 
-#if __is_data_model(ILP32)
+#if __data_model::is("ILP32")
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_ILP32
 
-#elif __is_data_model(LLP64)
+#elif __data_model::is("LLP64")
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_LLP64
 
-#elif __is_data_model(LP64)
+#elif __data_model::is("LP64")
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_LP64
 #endif
 
@@ -203,9 +182,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_LITERAL_HEXADECIMAL_FLOATING_POINT		TRUE
 #	define Z_COMPILER_C_HAS_PREPROCESSOR_OPERATOR_PRAGMA			TRUE
 #	define Z_COMPILER_C_HAS_SPECIFIER_INLINE				TRUE
-#	define Z_COMPILER_C_HAS_STANDARD_PRAGMA_CX_LIMITED_RANGE		TRUE
-#	define Z_COMPILER_C_HAS_STANDARD_PRAGMA_FENV_ACCESS			TRUE
-#	define Z_COMPILER_C_HAS_STANDARD_PRAGMA_FP_CONTRACT			TRUE
+#	define Z_COMPILER_C_HAS_STD_PRAGMA_CX_LIMITED_RANGE			TRUE
+#	define Z_COMPILER_C_HAS_STD_PRAGMA_FENV_ACCESS				TRUE
+#	define Z_COMPILER_C_HAS_STD_PRAGMA_FP_CONTRACT				TRUE
 #	define Z_COMPILER_C_HAS_TYPE_QUALIFIER_RESTRICT				TRUE
 #	define Z_COMPILER_C_HAS_TYPE_MODIFIER_COMPLEX				TRUE
 #	define Z_COMPILER_C_HAS_TYPE_MODIFIER_IMAGINARY				TRUE
@@ -278,84 +257,84 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_ATTRIBUTE_NULL_TERMINATED*/
 /*#define Z_COMPILER_ATTRIBUTE_PRIVATE*/
 /*#define Z_COMPILER_ATTRIBUTE_PUBLIC*/
-/*#define Z_COMPILER_ATTRIBUTE_THREAD_LOCAL*/
+#define Z_COMPILER_ATTRIBUTE_THREAD_LOCAL [[mcc::thread_local]]
 /*#define Z_COMPILER_ATTRIBUTE_WEAK*/
 
 /* MARK: - Built-ins: Constants */
 
-#define Z_COMPILER_CONSTANT_CHAR_BITS	   __bits   (char)
-#define Z_COMPILER_CONSTANT_UCHAR_MAXIMUM  __maximum(unsigned char)
-#define Z_COMPILER_CONSTANT_SCHAR_MAXIMUM  __maximum(char)
-#define Z_COMPILER_CONSTANT_SCHAR_MINIMUM  __minimum(char)
-#define Z_COMPILER_CONSTANT_SHORT_BITS	   __bits   (short)
-#define Z_COMPILER_CONSTANT_SHORT_SIZE	   __size   (short)
-#define Z_COMPILER_CONSTANT_USHORT_MAXIMUM __maximum(unsigned short)
-#define Z_COMPILER_CONSTANT_SSHORT_MAXIMUM __maximum(short)
-#define Z_COMPILER_CONSTANT_SSHORT_MINIMUM __minimum(short)
-#define Z_COMPILER_CONSTANT_INT_BITS	   __bits   (int)
-#define Z_COMPILER_CONSTANT_INT_SIZE	   __size   (int)
-#define Z_COMPILER_CONSTANT_UINT_MAXIMUM   __maximum(unsigned int)
-#define Z_COMPILER_CONSTANT_SINT_MAXIMUM   __maximum(int)
-#define Z_COMPILER_CONSTANT_SINT_MINIMUM   __minimum(int)
-#define Z_COMPILER_CONSTANT_LONG_BITS	   __bits   (long)
-#define Z_COMPILER_CONSTANT_LONG_SIZE	   __size   (long)
-#define Z_COMPILER_CONSTANT_ULONG_MAXIMUM  __maximum(unsigned long)
-#define Z_COMPILER_CONSTANT_SLONG_MAXIMUM  __maximum(long)
-#define Z_COMPILER_CONSTANT_SLONG_MINIMUM  __minimum(long)
+#define Z_COMPILER_CONSTANT_CHAR_BITS	   __type<	   char >::bits
+#define Z_COMPILER_CONSTANT_UCHAR_MAXIMUM  __type<unsigned char >::maximum
+#define Z_COMPILER_CONSTANT_SCHAR_MAXIMUM  __type<  signed char >::maximum
+#define Z_COMPILER_CONSTANT_SCHAR_MINIMUM  __type<  signed char >::minimum
+#define Z_COMPILER_CONSTANT_SHORT_BITS	   __type<	   short>::bits
+#define Z_COMPILER_CONSTANT_SHORT_SIZE	   __type<	   short>::size
+#define Z_COMPILER_CONSTANT_USHORT_MAXIMUM __type<unsigned short>::maximum
+#define Z_COMPILER_CONSTANT_SSHORT_MAXIMUM __type<	   short>::maximum
+#define Z_COMPILER_CONSTANT_SSHORT_MINIMUM __type<	   short>::minimum
+#define Z_COMPILER_CONSTANT_INT_BITS	   __type<	   int	>::bits
+#define Z_COMPILER_CONSTANT_INT_SIZE	   __type<	   int	>::size
+#define Z_COMPILER_CONSTANT_UINT_MAXIMUM   __type<unsigned int	>::maximum
+#define Z_COMPILER_CONSTANT_SINT_MAXIMUM   __type<	   int	>::maximum
+#define Z_COMPILER_CONSTANT_SINT_MINIMUM   __type<	   int	>::minimum
+#define Z_COMPILER_CONSTANT_LONG_BITS	   __type<	   long >::bits
+#define Z_COMPILER_CONSTANT_LONG_SIZE	   __type<	   long >::size
+#define Z_COMPILER_CONSTANT_ULONG_MAXIMUM  __type<unsigned long >::maximum
+#define Z_COMPILER_CONSTANT_SLONG_MAXIMUM  __type<	   long >::maximum
+#define Z_COMPILER_CONSTANT_SLONG_MINIMUM  __type<	   long >::minimum
 
 #if __has_type(long long)
-#	define Z_COMPILER_CONSTANT_LLONG_BITS	  __bits   (long long)
-#	define Z_COMPILER_CONSTANT_LLONG_SIZE	  __size   (long long)
-#	define Z_COMPILER_CONSTANT_ULLONG_MAXIMUM __maximum(unsigned long long)
-#	define Z_COMPILER_CONSTANT_SLLONG_MAXIMUM __maximum(long long)
-#	define Z_COMPILER_CONSTANT_SLLONG_MINIMUM __minimum(long long)
+#	define Z_COMPILER_CONSTANT_LLONG_BITS	  __type<	  long long>::bits
+#	define Z_COMPILER_CONSTANT_LLONG_SIZE	  __type<	  long long>::size
+#	define Z_COMPILER_CONSTANT_ULLONG_MAXIMUM __type<unsigned long long>::maximum
+#	define Z_COMPILER_CONSTANT_SLLONG_MAXIMUM __type<	  long long>::maximum
+#	define Z_COMPILER_CONSTANT_SLLONG_MINIMUM __type<	  long long>::minimum
 #endif
 
-#define Z_COMPILER_CONSTANT_WCHAR_BITS	  __bits   (wchar_t)
-#define Z_COMPILER_CONSTANT_WCHAR_SIZE	  __size   (wchar_t)
-#define Z_COMPILER_CONSTANT_WCHAR_MAXIMUM __maximum(wchar_t)
-#define Z_COMPILER_CONSTANT_WCHAR_MINIMUM __minimum(wchar_t)
+#define Z_COMPILER_CONSTANT_WCHAR_BITS	  __type<wchar_t>::bits
+#define Z_COMPILER_CONSTANT_WCHAR_SIZE	  __type<wchar_t>::size
+#define Z_COMPILER_CONSTANT_WCHAR_MAXIMUM __type<wchar_t>::maximum
+#define Z_COMPILER_CONSTANT_WCHAR_MINIMUM __type<wchar_t>::minimum
 
 #if __has_type(float)
-#	define Z_COMPILER_CONSTANT_FLOAT_BITS	  __bits    (float)
-#	define Z_COMPILER_CONSTANT_FLOAT_SIZE	  __size    (float)
-#	define Z_COMPILER_CONSTANT_FLOAT_INFINITY __infinity(float)
-#	define Z_COMPILER_CONSTANT_FLOAT_QNAN	  __qnan    (float)
-#	define Z_COMPILER_CONSTANT_FLOAT_SNAN	  __snan    (float)
+#	define Z_COMPILER_CONSTANT_FLOAT_BITS	  __type<float>::bits
+#	define Z_COMPILER_CONSTANT_FLOAT_SIZE	  __type<float>::size
+#	define Z_COMPILER_CONSTANT_FLOAT_INFINITY __type<float>::infinity
+#	define Z_COMPILER_CONSTANT_FLOAT_QNAN	  __type<float>::qnan
+#	define Z_COMPILER_CONSTANT_FLOAT_SNAN	  __type<float>::snan
 #endif
 
 #if __has_type(double)
-#	define Z_COMPILER_CONSTANT_DOUBLE_BITS	   __bits    (double)
-#	define Z_COMPILER_CONSTANT_DOUBLE_SIZE	   __size    (double)
-#	define Z_COMPILER_CONSTANT_DOUBLE_INFINITY __infinity(double)
-#	define Z_COMPILER_CONSTANT_DOUBLE_QNAN	   __qnan    (double)
-#	define Z_COMPILER_CONSTANT_DOUBLE_SNAN	   __snan    (double)
+#	define Z_COMPILER_CONSTANT_DOUBLE_BITS	   __type<double>::bits
+#	define Z_COMPILER_CONSTANT_DOUBLE_SIZE	   __type<double>::size
+#	define Z_COMPILER_CONSTANT_DOUBLE_INFINITY __type<double>::infinity
+#	define Z_COMPILER_CONSTANT_DOUBLE_QNAN	   __type<double>::qnan
+#	define Z_COMPILER_CONSTANT_DOUBLE_SNAN	   __type<double>::snan
 #endif
 
 #if __has_type(long double)
-#	define Z_COMPILER_CONSTANT_LDOUBLE_BITS	    __bits    (long double)
-#	define Z_COMPILER_CONSTANT_LDOUBLE_SIZE	    __size    (long double)
-#	define Z_COMPILER_CONSTANT_LDOUBLE_INFINITY __infinity(long double)
-#	define Z_COMPILER_CONSTANT_LDOUBLE_QNAN	    __qnan    (long double)
-#	define Z_COMPILER_CONSTANT_LDOUBLE_SNAN	    __snan    (long double)
+#	define Z_COMPILER_CONSTANT_LDOUBLE_BITS	    __type<long double>::bits
+#	define Z_COMPILER_CONSTANT_LDOUBLE_SIZE	    __type<long double>::size
+#	define Z_COMPILER_CONSTANT_LDOUBLE_INFINITY __type<long double>::infinity
+#	define Z_COMPILER_CONSTANT_LDOUBLE_QNAN	    __type<long double>::qnan
+#	define Z_COMPILER_CONSTANT_LDOUBLE_SNAN	    __type<long double>::snan
 #endif
 
 #if __has_type(_Float16)
-#	define Z_COMPILER_CONSTANT_FLOAT16_INFINITY __infinity(_Float16)
-#	define Z_COMPILER_CONSTANT_FLOAT16_QNAN	    __qnan    (_Float16)
-#	define Z_COMPILER_CONSTANT_FLOAT16_SNAN	    __snan    (_Float16)
+#	define Z_COMPILER_CONSTANT_FLOAT16_INFINITY __type<_Float16>::infinity
+#	define Z_COMPILER_CONSTANT_FLOAT16_QNAN	    __type<_Float16>::qnan
+#	define Z_COMPILER_CONSTANT_FLOAT16_SNAN	    __type<_Float16>::snan
 #endif
 
 #if __has_type(_Float32)
-#	define Z_COMPILER_CONSTANT_FLOAT32_INFINITY __infinity(_Float32)
-#	define Z_COMPILER_CONSTANT_FLOAT32_QNAN	    __qnan    (_Float32)
-#	define Z_COMPILER_CONSTANT_FLOAT32_SNAN	    __snan    (_Float32)
+#	define Z_COMPILER_CONSTANT_FLOAT32_INFINITY __type<_Float32>::infinity
+#	define Z_COMPILER_CONSTANT_FLOAT32_QNAN	    __type<_Float32>::qnan
+#	define Z_COMPILER_CONSTANT_FLOAT32_SNAN	    __type<_Float32>::snan
 #endif
 
 #if __has_type(_Float64)
-#	define Z_COMPILER_CONSTANT_FLOAT64_INFINITY __infinity(_Float64)
-#	define Z_COMPILER_CONSTANT_FLOAT64_QNAN	    __qnan    (_Float64)
-#	define Z_COMPILER_CONSTANT_FLOAT64_SNAN	    __snan    (_Float64)
+#	define Z_COMPILER_CONSTANT_FLOAT64_INFINITY __type<_Float64>::infinity
+#	define Z_COMPILER_CONSTANT_FLOAT64_QNAN	    __type<_Float64>::qnan
+#	define Z_COMPILER_CONSTANT_FLOAT64_SNAN	    __type<_Float64>::snan
 #endif
 
 #define Z_COMPILER_CONSTANT_FLOAT128_INFINITY __FLOAT128_INFINITY

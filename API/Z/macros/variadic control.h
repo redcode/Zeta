@@ -1,9 +1,10 @@
-/* Z Kit - macros/variadic control.h (C99)
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
+/* Zeta API - Z/macros/variadic control.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
 Copyright (C) 2015 Petr Kobalicek <kobalicek.petr@gmail.com>.
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_macros_variadic_control_H
@@ -12,9 +13,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/language.h>
 
 #if	!defined(Z_AVOID_VARIADIC_MACROS) && \
-	(Z_DIALECT_HAS(C, VARIADIC_MACRO) || Z_DIALECT_HAS(CPP, C99_PREPROCESSOR))
+	(Z_DIALECT_HAS(C99, VARIADIC_MACRO) || Z_DIALECT_HAS(CPP11, C99_PREPROCESSOR))
 
-#	include <Z/macros/pasting.h>
+#	include <Z/macros/token.h>
 
 #	define Z_SELECT_0( _0,																			 ...) _0
 #	define Z_SELECT_1( _0, _1,																		 ...) _1

@@ -1,8 +1,9 @@
-/* Z Kit - macros/templating.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyrht (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/macros/templating.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_macros_templating_H
@@ -436,16 +437,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Number format name tokens: Fixed format real types */
 
-#define Z_INSERT_NUMBER_FORMAT_28(lht, rht) lht##IEEE_754_BINARY16##rht
-#define Z_INSERT_NUMBER_FORMAT_29(lht, rht) lht##IEEE_754_BINARY32##rht
-#define Z_INSERT_NUMBER_FORMAT_30(lht, rht) lht##IEEE_754_BINARY64##rht
-#define Z_INSERT_NUMBER_FORMAT_31(lht, rht) lht##IEEE_754_BINARY128##rht
-#define Z_INSERT_NUMBER_FORMAT_32(lht, rht) lht##IEEE_754_DECIMAL32##rht
-#define Z_INSERT_NUMBER_FORMAT_33(lht, rht) lht##IEEE_754_DECIMAL64##rht
-#define Z_INSERT_NUMBER_FORMAT_34(lht, rht) lht##IEEE_754_DECIMAL128##rht
-#define Z_INSERT_NUMBER_FORMAT_35(lht, rht) lht##X87_DOUBLE_EXTENDED##rht
-#define Z_INSERT_NUMBER_FORMAT_36(lht, rht) lht##IBM_EXTENDED_DOUBLE##rht
-#define Z_INSERT_NUMBER_FORMAT_38(lht, rht) lht##BRAIN_FLOATING_POINT##rht
+#define Z_INSERT_NUMBER_FORMAT_37(lht, rht) lht##IEEE_754_BINARY16##rht
+#define Z_INSERT_NUMBER_FORMAT_38(lht, rht) lht##IEEE_754_BINARY32##rht
+#define Z_INSERT_NUMBER_FORMAT_39(lht, rht) lht##IEEE_754_BINARY64##rht
+#define Z_INSERT_NUMBER_FORMAT_40(lht, rht) lht##IEEE_754_BINARY128##rht
+#define Z_INSERT_NUMBER_FORMAT_41(lht, rht) lht##IEEE_754_DECIMAL32##rht
+#define Z_INSERT_NUMBER_FORMAT_42(lht, rht) lht##IEEE_754_DECIMAL64##rht
+#define Z_INSERT_NUMBER_FORMAT_43(lht, rht) lht##IEEE_754_DECIMAL128##rht
+#define Z_INSERT_NUMBER_FORMAT_44(lht, rht) lht##X87_DOUBLE_EXTENDED##rht
+#define Z_INSERT_NUMBER_FORMAT_45(lht, rht) lht##IBM_EXTENDED_DOUBLE##rht
+#define Z_INSERT_NUMBER_FORMAT_47(lht, rht) lht##BRAIN_FLOATING_POINT##rht
 
 /* MARK: - Macro selectors */
 

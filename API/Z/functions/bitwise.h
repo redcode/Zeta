@@ -1,256 +1,171 @@
-/* Z Kit - functions/bitwise.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/functions/bitwise.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_functions_bitwise_H
 #define Z_functions_bitwise_H
 
 #include <Z/macros/bitwise.h>
+#include <Z/macros/language.h>
+
+/*
+
+static Z_INLINE
+zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
+	{return value ^ ((Z_CAST(zuint32)(-Z_CAST(zsint32)(bit)) ^ value) & mask);}
 
 
-#define Z_IMPLEMENTATION__REVERSE(type, bits, level)	      \
-							      \
-static Z_INLINE						      \
-z##type z_##type##_reverse_in_##level##bit(z##type value)     \
-	{						      \
-	return (z##type)Z_##bits##BIT_REVERSE_IN_##level##BIT \
-		((zuint##bits)value);			      \
-	}
+
+static Z_INLINE
+zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
+	{return (value & ~mask) | (Z_CAST(zuint32)(-Z_CAST(zsint32)(bit)) & mask);}
+*/
 
 
-#define Z_IMPLEMENTATION__ROTATE(type, bits)		       \
-							       \
-static Z_INLINE						       \
-z##type z_##type##_rotate_left(z##type value, zuint rotation)  \
-	{						       \
-	return (z##type)Z_##bits##BIT_ROTATE_LEFT	       \
-		((zuint##bits)value, rotation);		       \
-	}						       \
-							       \
-							       \
-static Z_INLINE						       \
-z##type z_##type##_rotate_right(z##type value, zuint rotation) \
-	{						       \
-	return (z##type)Z_##bits##BIT_ROTATE_RIGHT	       \
-		((zuint##bits)value, rotation);		       \
-	}
+#define Z__NATURAL_EXTRACT(bits)							\
+											\
+	static Z_INLINE									\
+	zuint##bits z_uint##bits##_extract(zuint##bits value, zuint offset, zuint size) \
+		{return (value >> offset) & (Z_UINT##bits##_MAXIMUM << offset);}
 
 
-Z_IMPLEMENTATION__REVERSE(uint8, 8, 1)
-Z_IMPLEMENTATION__REVERSE(uint8, 8, 2)
-Z_IMPLEMENTATION__REVERSE(uint8, 8, 4)
-Z_IMPLEMENTATION__ROTATE (uint8, 8)
+#define Z__INTEGER_EXTRACT(bits)									       \
+													       \
+	static Z_INLINE											       \
+	zsint##bits z_sint##bits##_extract(zuint##bits value, zuint offset, zuint size)			       \
+		{											       \
+		zuint##bits mask = Z_UINT##bits(1) << (size - 1U);					       \
+													       \
+		return Z_CAST(zsint##bits)								       \
+			((((value >> offset) & ((Z_UINT##bits(1) << size) - Z_UINT##bits(1))) ^ mask) - mask); \
+		}
 
-#define z_uint8_reverse Z_SAME
 
-Z_IMPLEMENTATION__REVERSE(sint8, 8, 1)
-Z_IMPLEMENTATION__REVERSE(sint8, 8, 2)
-Z_IMPLEMENTATION__REVERSE(sint8, 8, 4)
-Z_IMPLEMENTATION__ROTATE (sint8, 8)
+#define Z__NATURAL_REVERSE(bits)				\
+								\
+	static Z_INLINE						\
+	zuint##bits z_uint##bits##_reverse(zuint##bits value)	\
+		{						\
+		return	Z_JOIN_2(Z_INSERT_NUMBER_, Z_CHAR_BITS)	\
+			(Z_UINT##bits##_REVERSE_IN_, BIT)	\
+				(value);			\
+		}
 
-#define z_sint8_reverse Z_SAME
 
-Z_IMPLEMENTATION__REVERSE(uint16, 16, 1)
-Z_IMPLEMENTATION__REVERSE(uint16, 16, 2)
-Z_IMPLEMENTATION__REVERSE(uint16, 16, 4)
-Z_IMPLEMENTATION__REVERSE(uint16, 16, 8)
-Z_IMPLEMENTATION__ROTATE (uint16, 16)
+#define Z__NATURAL_ROTATE(bits)							   \
+										   \
+	static Z_INLINE								   \
+	zuint##bits z_uint##bits##_rotate_left(zuint##bits value, zuint rotation)  \
+		{return Z_UINT##bits##_ROTATE_LEFT(value, rotation);}		   \
+										   \
+										   \
+	static Z_INLINE								   \
+	zuint##bits z_uint##bits##_rotate_right(zuint##bits value, zuint rotation) \
+		{return Z_UINT##bits##_ROTATE_RIGHT(value, rotation);}
 
-#define z_uint16_reverse z_uint16_reverse_in_8bit
 
-#if Z_UINT16_ENDIANNESS == Z_ENDIANNESS_BIG
+#ifdef Z_UINT8
+	Z__NATURAL_EXTRACT(8)
+	Z__NATURAL_ROTATE (8)
 
-#	define z_uint16_big_endian    Z_SAME
-#	define z_uint16_little_endian z_uint16_reverse
-
-#elif Z_UINT16_ENDIANNESS == Z_ENDIANNESS_LITTLE
-
-#	define z_uint16_big_endian    z_uint16_reverse
-#	define z_uint16_little_endian Z_SAME
-
+#	define z_uint8_reverse Z_SAME
 #endif
 
-Z_IMPLEMENTATION__REVERSE(sint16, 16, 1)
-Z_IMPLEMENTATION__REVERSE(sint16, 16, 2)
-Z_IMPLEMENTATION__REVERSE(sint16, 16, 4)
-Z_IMPLEMENTATION__REVERSE(sint16, 16, 8)
-Z_IMPLEMENTATION__ROTATE (sint16, 16)
-
-#define z_sint16_reverse z_sint16_reverse_in_8bit
-
-#if Z_SINT16_ENDIANNESS == Z_ENDIANNESS_BIG
-
-#	define z_sint16_big_endian    Z_SAME
-#	define z_sint16_little_endian z_sint16_reverse
-
-#elif Z_SINT16_ENDIANNESS == Z_ENDIANNESS_LITTLE
-
-#	define z_sint16_big_endian    z_sint16_reverse
-#	define z_sint16_little_endian Z_SAME
-
+#ifdef Z_SINT8
+	Z__INTEGER_EXTRACT(8)
 #endif
 
-Z_IMPLEMENTATION__REVERSE(uint32, 32,  1)
-Z_IMPLEMENTATION__REVERSE(uint32, 32,  2)
-Z_IMPLEMENTATION__REVERSE(uint32, 32,  4)
-Z_IMPLEMENTATION__REVERSE(uint32, 32,  8)
-Z_IMPLEMENTATION__REVERSE(uint32, 32, 16)
-Z_IMPLEMENTATION__ROTATE (uint32, 32)
+#ifdef Z_UINT16
+	Z__NATURAL_EXTRACT(16)
+	Z__NATURAL_REVERSE(16)
+	Z__NATURAL_ROTATE (16)
 
-#define z_uint32_reverse z_uint32_reverse_in_8bit
+#	if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
+#		define z_uint16_big_endian    Z_SAME
+#		define z_uint16_little_endian z_uint16_reverse
 
-#if Z_UINT32_ENDIANNESS == Z_ENDIANNESS_BIG
-
-#	define z_uint32_big_endian    Z_SAME
-#	define z_uint32_little_endian z_uint32_reverse
-
-#elif Z_UINT32_ENDIANNESS == Z_ENDIANNESS_LITTLE
-
-#	define z_uint32_big_endian    z_uint32_reverse
-#	define z_uint32_little_endian Z_SAME
-
+#	elif Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+#		define z_uint16_big_endian    z_uint16_reverse
+#		define z_uint16_little_endian Z_SAME
+#	endif
 #endif
 
-Z_IMPLEMENTATION__REVERSE(sint32, 32,  1)
-Z_IMPLEMENTATION__REVERSE(sint32, 32,  2)
-Z_IMPLEMENTATION__REVERSE(sint32, 32,  4)
-Z_IMPLEMENTATION__REVERSE(sint32, 32,  8)
-Z_IMPLEMENTATION__REVERSE(sint32, 32, 16)
-Z_IMPLEMENTATION__ROTATE (sint32, 32)
+#ifdef Z_SINT16
+	Z__INTEGER_EXTRACT(16)
+#endif
 
-#define z_sint32_reverse z_sint32_reverse_in_8bit
+#ifdef Z_UINT32
+	Z__NATURAL_EXTRACT(32)
+	Z__NATURAL_REVERSE(32)
+	Z__NATURAL_ROTATE (32)
 
-#if Z_SINT32_ENDIANNESS == Z_ENDIANNESS_BIG
+#	if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
+#		define z_uint32_big_endian    Z_SAME
+#		define z_uint32_little_endian z_uint32_reverse
 
-#	define z_sint32_big_endian    Z_SAME
-#	define z_sint32_little_endian z_sint32_reverse
+#	elif Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+#		define z_uint32_big_endian    z_uint32_reverse
+#		define z_uint32_little_endian Z_SAME
+#	endif
+#endif
 
-#elif Z_SINT32_ENDIANNESS == Z_ENDIANNESS_LITTLE
-
-#	define z_sint32_big_endian    z_sint32_reverse
-#	define z_sint32_little_endian Z_SAME
-
+#ifdef Z_SINT32
+	Z__INTEGER_EXTRACT(32)
 #endif
 
 #ifdef Z_UINT64
+	Z__NATURAL_EXTRACT(64)
+	Z__NATURAL_REVERSE(64)
+	Z__NATURAL_ROTATE (64)
 
-	Z_IMPLEMENTATION__REVERSE(uint64, 64,  1)
-	Z_IMPLEMENTATION__REVERSE(uint64, 64,  2)
-	Z_IMPLEMENTATION__REVERSE(uint64, 64,  4)
-	Z_IMPLEMENTATION__REVERSE(uint64, 64,  8)
-	Z_IMPLEMENTATION__REVERSE(uint64, 64, 16)
-	Z_IMPLEMENTATION__REVERSE(uint64, 64, 32)
-	Z_IMPLEMENTATION__ROTATE (uint64, 64)
-
-#	define z_uint64_reverse z_uint64_reverse_in_8bit
-
-#	if Z_UINT64_ENDIANNESS == Z_ENDIANNESS_BIG
-
+#	if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
 #		define z_uint64_big_endian    Z_SAME
 #		define z_uint64_little_endian z_uint64_reverse
 
-#	elif Z_UINT64_ENDIANNESS == Z_ENDIANNESS_LITTLE
-
+#	elif Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
 #		define z_uint64_big_endian    z_uint64_reverse
 #		define z_uint64_little_endian Z_SAME
-
 #	endif
-
 #endif
 
 #ifdef Z_SINT64
-
-	Z_IMPLEMENTATION__REVERSE(sint64, 64,  1)
-	Z_IMPLEMENTATION__REVERSE(sint64, 64,  2)
-	Z_IMPLEMENTATION__REVERSE(sint64, 64,  4)
-	Z_IMPLEMENTATION__REVERSE(sint64, 64,  8)
-	Z_IMPLEMENTATION__REVERSE(sint64, 64, 16)
-	Z_IMPLEMENTATION__REVERSE(sint64, 64, 32)
-	Z_IMPLEMENTATION__ROTATE (sint64, 64)
-
-#	define z_sint64_reverse z_sint64_reverse_in_8bit
-
-#	if Z_SINT64_ENDIANNESS == Z_ENDIANNESS_BIG
-
-#		define z_sint64_big_endian    Z_SAME
-#		define z_sint64_little_endian z_sint64_reverse
-
-#	elif Z_SINT64_ENDIANNESS == Z_ENDIANNESS_LITTLE
-
-#		define z_sint64_big_endian    z_sint64_reverse
-#		define z_sint64_little_endian Z_SAME
-
-#	endif
-
+	Z__INTEGER_EXTRACT(64)
 #endif
 
 #ifdef Z_UINT128
+	Z__NATURAL_EXTRACT(128)
+	Z__NATURAL_REVERSE(128)
+	Z__NATURAL_ROTATE (128)
 
-	Z_IMPLEMENTATION__REVERSE(uint128, 128,  1)
-	Z_IMPLEMENTATION__REVERSE(uint128, 128,  2)
-	Z_IMPLEMENTATION__REVERSE(uint128, 128,  4)
-	Z_IMPLEMENTATION__REVERSE(uint128, 128,  8)
-	Z_IMPLEMENTATION__REVERSE(uint128, 128, 16)
-	Z_IMPLEMENTATION__REVERSE(uint128, 128, 32)
-	Z_IMPLEMENTATION__REVERSE(uint128, 128, 64)
-	Z_IMPLEMENTATION__ROTATE (uint128, 128)
-
-
-#	define z_uint128_reverse z_uint128_reverse_in_8bit
-
-#	if Z_UINT128_ENDIANNESS == Z_ENDIANNESS_BIG
-
+#	if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
 #		define z_uint128_big_endian    Z_SAME
 #		define z_uint128_little_endian z_uint128_reverse
 
-#	elif Z_UINT128_ENDIANNESS == Z_ENDIANNESS_LITTLE
-
+#	elif Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
 #		define z_uint128_big_endian    z_uint128_reverse
 #		define z_uint128_little_endian Z_SAME
-
 #	endif
-
 #endif
 
 #ifdef Z_SINT128
-
-	Z_IMPLEMENTATION__REVERSE(sint128, 128,  1)
-	Z_IMPLEMENTATION__REVERSE(sint128, 128,  2)
-	Z_IMPLEMENTATION__REVERSE(sint128, 128,  4)
-	Z_IMPLEMENTATION__REVERSE(sint128, 128,  8)
-	Z_IMPLEMENTATION__REVERSE(sint128, 128, 16)
-	Z_IMPLEMENTATION__REVERSE(sint128, 128, 32)
-	Z_IMPLEMENTATION__REVERSE(sint128, 128, 64)
-	Z_IMPLEMENTATION__ROTATE (sint128, 128)
-
-#	define z_sint128_reverse z_sint128_reverse_in_8bit
-
-#	if Z_SINT128_ENDIANNESS == Z_ENDIANNESS_BIG
-
-#		define z_sint128_big_endian    Z_SAME
-#		define z_sint128_little_endian z_sint128_reverse
-
-#	elif Z_SINT128_ENDIANNESS == Z_ENDIANNESS_LITTLE
-
-#		define z_sint128_big_endian    z_sint128_reverse
-#		define z_sint128_little_endian Z_SAME
-
-#	endif
-
+	Z__INTEGER_EXTRACT(128)
 #endif
 
-#undef Z_IMPLEMENTATION__REVERSE
-#undef Z_IMPLEMENTATION__ROTATE
 
-#define z_type_reverse(		    TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _reverse_in_8bit	 )
-#define z_type_rotate_left(	    TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _rotate_left	 )
-#define z_type_rotate_right(	    TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _rotate_right	 )
-#define z_type_big_endian(	    TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _big_endian		 )
-#define z_type_little_endian(	    TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _little_endian	 )
-#define z_type_minimum_storage_size(TYPE) Z_INSERT_fixed_type(Z_##TYPE)(z_, _minimum_storage_size)
+#undef Z__NATURAL_EXTRACT
+#undef Z__INTEGER_EXTRACT
+#undef Z__NATURAL_REVERSE
+#undef Z__NATURAL_ROTATE
 
+
+#define z_type_big_endian(   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _big_endian   )
+#define z_type_little_endian(TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _little_endian)
+#define z_type_reverse(	     TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _reverse	 )
+#define z_type_rotate_left(  TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _rotate_left  )
+#define z_type_rotate_right( TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _rotate_right )
 
 #endif /* Z_functions_bitwise_H */

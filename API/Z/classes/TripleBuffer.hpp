@@ -1,71 +1,94 @@
-/* Z Kit - classes/TripleBuffer.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2012 Remis.
-Copyright (C) 2014-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/classes/TripleBuffer.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_TripleBuffer_HPP
 #define Z_classes_TripleBuffer_HPP
 
-#include <Z/types/fundamental.hpp>
-#include <Z/types/buffering.h>
+#include <Z/constants/pointer.h>
+#include <Z/macros/language.hpp>
+#include <Z/types/buffer.h>
+#include <Z/types/integral.hpp>
 #include <Z/functions/atomic.h>
 
 
-namespace Zeta {struct TripleBuffer : public ZTripleBuffer {
+namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 
 	Z_INLINE TripleBuffer() Z_NOTHROW
 		Z_DEFAULTED({})
 
 
-	Z_INLINE TripleBuffer(void *buffers, USize buffer_size) Z_NOTHROW
-		{initialize(buffers, buffer_size);}
+	Z_INLINE TripleBuffer(void *data_, USize slot_size) Z_NOTHROW
+		{initialize(data_, slot_size);}
 
 
-	Z_INLINE void initialize(void *buffers, USize buffer_size) Z_NOTHROW
+	/// @brief Initializes the object.
+	///
+	/// @param data_ A pointer to a buffer.
+	/// @param slot_size The size of the slot.
+
+	Z_INLINE void initialize(void *data_, USize slot_size) Z_NOTHROW
 		{
-		this->slots[0] = buffers;
-		this->slots[1] = (UInt8 *)buffers + buffer_size;
-		this->slots[2] = (UInt8 *)buffers + buffer_size * 2;
-		this->flags	 = 6;
+		data[0] = data_;
+		data[1] = reinterpret_cast<Char *>(data_) + slot_size;
+		data[2] = reinterpret_cast<Char *>(data_) + slot_size * 2;
+		flags	= 6;
 		}
 
 
-	Z_INLINE void *production_buffer() const Z_NOTHROW
-		{return slots[(flags & 48) >> 4];}
+	/// @brief Gets a pointer to the production slot.
+	///
+	/// @return A pointer to the current production slot.
+
+	Z_INLINE void *production_slot() const Z_NOTHROW
+		{return data[(flags & 48) >> 4];}
 
 
-	Z_INLINE void *consumption_buffer() const Z_NOTHROW
-		{return slots[flags & 3];}
+	/// @brief Gets a pointer to the consumption slot.
+	///
+	/// @return A pointer to the current consumption slot.
 
+	Z_INLINE void *consumption_slot() const Z_NOTHROW
+		{return data[flags & 3];}
+
+
+	/// @brief Marks the the current production slot as produced.
+	///
+	/// @return A pointer to the new production slot.
 
 	Z_INLINE void *produce() Z_NOTHROW
 		{
-		UInt8 flags, new_flags;
+		UChar flags, new_flags;
 
 		do	{
 			flags = this->flags;
-			new_flags = 64 | ((flags & 12) << 2) | ((flags & 48) >> 2) | (flags & 3);
+			new_flags = UChar(64 | ((flags & 12) << 2) | ((flags & 48) >> 2) | (flags & 3));
 			}
-		while (!z_uint8_atomic_set_if_equal(&this->flags, flags, new_flags));
+		while (!z_type_atomic_set_if_equal(UCHAR)(&this->flags, flags, new_flags));
 
-		return this->slots[(new_flags & 48) >> 4];
+		return data[(new_flags & 48) >> 4];
 		}
 
 
+	/// @brief Marks the current consumption slot as consumed.
+	///
+	/// @return A pointer to the new consumption slot.
+
 	Z_INLINE void *consume() Z_NOTHROW
 		{
-		UInt8 flags, new_flags;
+		UChar flags, new_flags;
 
 		do	{
-			if (!((flags = this->flags) & 64)) return NULL;
-			new_flags = (flags & 48) | ((flags & 3) << 2) | ((flags & 12) >> 2);
+			if (!((flags = this->flags) & 64)) return Z_NULL;
+			new_flags = UChar((flags & 48) | ((flags & 3) << 2) | ((flags & 12) >> 2));
 			}
-		while (!z_uint8_atomic_set_if_equal(&this->flags, flags, new_flags));
+		while (!z_type_atomic_set_if_equal(UCHAR)(&this->flags, flags, new_flags));
 
-		return this->slots[new_flags & 3];;
+		return data[new_flags & 3];
 		}
 };}
 

@@ -1,8 +1,9 @@
-/* Z Kit - types/integral.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/types/integral.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_types_integral_HPP
@@ -12,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {
 
-	// MARK: - Fixed width integral types
+	// MARK: - Fixed-width integral types
 
 #	ifdef Z_UINT8
 		typedef zuint8 UInt8;
@@ -169,21 +170,23 @@ namespace Zeta {
 		typedef zsllong SLLong;
 #	endif
 
-	typedef zboolean Boolean;
+#	ifdef Z_BOOL
+		typedef zbool Bool;
+#	endif
 
-#	if Z_DIALECT_HAS_TYPE(CPP, WCHAR_T)
+#	if Z_DIALECT_HAS_TYPE(CPP98, WCHAR_T)
 		typedef wchar_t WChar;
 #	endif
 
-/*#	if Z_DIALECT_HAS_TYPE(CPP, CHAR8_T)
+#	if Z_DIALECT_HAS_TYPE(CPP20, CHAR8_T)
 		typedef char8_t Char8;
-#	endif*/
+#	endif
 
-#	if Z_DIALECT_HAS_TYPE(CPP, CHAR16_T)
+#	if Z_DIALECT_HAS_TYPE(CPP11, CHAR16_T)
 		typedef char16_t Char16;
 #	endif
 
-#	if Z_DIALECT_HAS_TYPE(CPP, CHAR32_T)
+#	if Z_DIALECT_HAS_TYPE(CPP11, CHAR32_T)
 		typedef char32_t Char32;
 #	endif
 
@@ -202,15 +205,15 @@ namespace Zeta {
 	typedef zuintptr UIntPtr;
 	typedef zsintptr SIntPtr;
 
-	// MARK: - Optimum maximum size integral types
+	// MARK: - Pointer difference type
 
-	typedef zuinttop UIntTop;
-	typedef zsinttop SIntTop;
+	typedef zptrdiff PtrDiff;
 
 	// MARK: - Default types
 
+	typedef zboolean Boolean;
 	typedef znatural Natural;
 	typedef zinteger Integer;
-};
+}
 
 #endif // Z_types_integral_HPP

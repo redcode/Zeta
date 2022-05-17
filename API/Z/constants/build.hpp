@@ -1,8 +1,9 @@
-/* Z Kit - constants/build.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/constants/build.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_constants_build_HPP
@@ -10,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-#if Z_DIALECT_HAS_SPECIFIER(CPP, CONSTEXPR)
+#if Z_DIALECT_HAS_SPECIFIER(CPP11, CONSTEXPR)
 
 	namespace Zeta {enum {
 		build_year = (__DATE__[7] - '0') * 1000 + (__DATE__[ 8] - '0') * 100 +

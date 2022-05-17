@@ -1,48 +1,79 @@
-/* Z Kit - inspection/compiler.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/inspection/compiler.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_inspection_compiler_H
 #define Z_inspection_compiler_H
 
-#include <Z/constants/base.h>
 #include <Z/keys/compiler.h>
+#include <Z/constants/boolean.h>
+#include <Z/macros/token.h>
 #include <Z/macros/version.h>
+
+#define Z_COMPILER_IS(COMPILER) Z_IS_TRUE(Z_COMPILER_IS_##COMPILER)
+
+#define Z_COMPILER_DIALECT_HAS(			       LANGUAGE, FEATURE		) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_##FEATURE					 )
+#define Z_COMPILER_DIALECT_HAS_ATTRIBUTE(	       LANGUAGE, ATTRIBUTE		) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_ATTRIBUTE_##ATTRIBUTE				 )
+#define Z_COMPILER_DIALECT_HAS_ESCAPE_SEQUENCE(	       LANGUAGE, ESCAPE_SEQUENCE	) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_ESCAPE_SEQUENCE_##ESCAPE_SEQUENCE		 )
+#define Z_COMPILER_DIALECT_HAS_IDENTIFIER(	       LANGUAGE, IDENTIFIER		) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_IDENTIFIER_##IDENTIFIER				 )
+#define Z_COMPILER_DIALECT_HAS_LITERAL(		       LANGUAGE, LITERAL		) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_LITERAL_##LITERAL				 )
+#define Z_COMPILER_DIALECT_HAS_OPERATOR(	       LANGUAGE, OPERATOR		) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_OPERATOR_##OPERATOR				 )
+#define Z_COMPILER_DIALECT_HAS_OPERATOR_CASE(	       LANGUAGE, OPERATOR, CASE		) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_OPERATOR_CASE_##OPERATOR##_##CASE		 )
+#define Z_COMPILER_DIALECT_HAS_PREPROCESSOR_DIRECTIVE( LANGUAGE, PREPROCESSOR_DIRECTIVE ) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_PREPROCESSOR_DIRECTIVE_##PREPROCESSOR_DIRECTIVE	 )
+#define Z_COMPILER_DIALECT_HAS_PREPROCESSOR_IDENTIFIER(LANGUAGE, PREPROCESSOR_IDENTIFIER) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_PREPROCESSOR_IDENTIFIER_##PREPROCESSOR_IDENTIFIER)
+#define Z_COMPILER_DIALECT_HAS_PREPROCESSOR_OPERATOR(  LANGUAGE, PREPROCESSOR_OPERATOR	) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_PREPROCESSOR_OPERATOR_##PREPROCESSOR_OPERATOR	 )
+#define Z_COMPILER_DIALECT_HAS_SPECIFIER(	       LANGUAGE, SPECIFIER		) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_SPECIFIER_##SPECIFIER				 )
+#define Z_COMPILER_DIALECT_HAS_SPECIFIER_CASE(	       LANGUAGE, SPECIFIER, CASE	) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_SPECIFIER_CASE_##SPECIFIER##_##CASE		 )
+#define Z_COMPILER_DIALECT_HAS_STD_PRAGMA(	       LANGUAGE, STD_PRAGMA		) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_STD_PRAGMA_##STD_PRAGMA				 )
+#define Z_COMPILER_DIALECT_HAS_STORAGE_CLASS(	       LANGUAGE, STORAGE_CLASS		) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_STORAGE_CLASS_##STORAGE_CLASS			 )
+#define Z_COMPILER_DIALECT_HAS_TYPE(		       LANGUAGE, TYPE			) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_TYPE_##TYPE					 )
+#define Z_COMPILER_DIALECT_HAS_TYPE_MODIFIER(	       LANGUAGE, TYPE_MODIFIER		) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_TYPE_MODIFIER_##TYPE_MODIFIER			 )
+#define Z_COMPILER_DIALECT_HAS_TYPE_QUALIFIER(	       LANGUAGE, TYPE_QUALIFIER		) Z_IS_TRUE(Z_COMPILER_HAS_##LANGUAGE##_TYPE_QUALIFIER_##TYPE_QUALIFIER			 )
+
+#define Z_COMPILER_HAS(		      FEATURE	    ) Z_IS_TRUE(Z_COMPILER_HAS_##FEATURE		      )
+#define Z_COMPILER_HAS_ATTRIBUTE(     ATTRIBUTE	    ) Z_IS_TRUE(Z_COMPILER_HAS_ATTRIBUTE_##ATTRIBUTE	      )
+#define Z_COMPILER_HAS_CONSTANT(      CONSTANT	    ) Z_IS_TRUE(Z_COMPILER_HAS_CONSTANT_##CONSTANT	      )
+#define Z_COMPILER_HAS_FUNCTION(      FUNCTION	    ) Z_IS_TRUE(Z_COMPILER_HAS_FUNCTION_##FUNCTION	      )
+#define Z_COMPILER_HAS_LITERAL(	      LITERAL	    ) Z_IS_TRUE(Z_COMPILER_HAS_LITERAL_##LITERAL	      )
+#define Z_COMPILER_HAS_MACRO(	      MACRO	    ) Z_IS_TRUE(Z_COMPILER_HAS_MACRO_##MACRO		      )
+#define Z_COMPILER_HAS_MAGIC_CONSTANT(MAGIC_CONSTANT) Z_IS_TRUE(Z_COMPILER_HAS_MAGIC_CONSTANT_##MAGIC_CONSTANT)
+#define Z_COMPILER_HAS_TRAIT(	      TRAIT	    ) Z_IS_TRUE(Z_COMPILER_HAS_TRAIT_##TRAIT		      )
+#define Z_COMPILER_HAS_TYPE(	      TYPE	    ) Z_IS_TRUE(Z_COMPILER_HAS_TYPE_##TYPE		      )
+#define Z_COMPILER_ATTRIBUTE(	      ATTRIBUTE	    ) Z_COMPILER_ATTRIBUTE_##ATTRIBUTE
+#define Z_COMPILER_CONSTANT(	      CONSTANT	    ) Z_COMPILER_CONSTANT_##CONSTANT
+#define Z_COMPILER_FUNCTION(	      FUNCTION	    ) Z_COMPILER_FUNCTION_##FUNCTION
+#define Z_COMPILER_LITERAL(	      LITERAL	    ) Z_COMPILER_LITERAL_##LITERAL
+#define Z_COMPILER_MACRO(	      MACRO	    ) Z_COMPILER_MACRO_##MACRO
+#define Z_COMPILER_MAGIC_CONSTANT(    MAGIC_CONSTANT) Z_COMPILER_MAGIC_CONSTANT_##MAGIC_CONSTANT
+#define Z_COMPILER_TRAIT(	      TRAIT	    ) Z_COMPILER_TRAIT_##TRAIT
+#define Z_COMPILER_TYPE(	      TYPE	    ) Z_COMPILER_TYPE_##TYPE
 
 #ifdef Z_COMPILER_HEADER
 #	include Z_COMPILER_HEADER
-#else
 
+#else
 #	ifndef Z_COMPILER
 #		include <Z/inspection/compiler/detection.h>
 #	endif
 
-#	if Z_COMPILER == Z_COMPILER_GCC
-#		include <Z/inspection/compiler/modules/GCC.h>
-
-#	elif Z_COMPILER == Z_COMPILER_CLANG
-#		include <Z/inspection/compiler/modules/Clang.h>
-
-#	elif Z_COMPILER == Z_COMPILER_MSVC
-#		include <Z/inspection/compiler/modules/MSVC.h>
-/*
-#	elif Z_COMPILER == Z_COMPILER_ACC
+/*#	if Z_COMPILER == Z_COMPILER_ACC
 #		include <Z/inspection/compiler/modules/ACC.h>
-
-#	elif Z_COMPILER == Z_COMPILER_ALTIUM_MICROBLAZE_C
-#		include <Z/inspection/compiler/modules/Altium MicroBlaze C.h>
 
 #	elif Z_COMPILER == Z_COMPILER_ALTIUM_C_TO_HARDWARE
 #		include <Z/inspection/compiler/modules/Altium C-to-Hardware.h>
 
+#	elif Z_COMPILER == Z_COMPILER_ALTIUM_MICROBLAZE_C
+#		include <Z/inspection/compiler/modules/Altium MicroBlaze C.h>
+
 #	elif Z_COMPILER == Z_COMPILER_AMSTERDAM_COMPILER_KIT
 #		include <Z/inspection/compiler/modules/Amsterdam Compiler Kit.h>
 
-#	elif Z_COMPILER == Z_COMPILER_APPLE_LLVM
-#		include <Z/inspection/compiler/modules/Apple LLVM.h>
+#	elif Z_COMPILER == Z_COMPILER_APPLE_CLANG
+#		include <Z/inspection/compiler/modules/Apple Clang.h>
 
 #	elif Z_COMPILER == Z_COMPILER_ARM_C_CPP_COMPILER
 #		include <Z/inspection/compiler/modules/ARM C-C++ Compiler.h>
@@ -52,11 +83,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	elif Z_COMPILER == Z_COMPILER_AZTEC_C
 #		include <Z/inspection/compiler/modules/Aztec C.h>
-*/
-#	elif Z_COMPILER == Z_COMPILER_CC65
+
+#	elif Z_COMPILER == Z_COMPILER_BCC
+#		include <Z/inspection/compiler/modules/BCC.h>*/
+
+#	if Z_COMPILER == Z_COMPILER_CC65
 #		include <Z/inspection/compiler/modules/cc65.h>
-/*
-#	elif Z_COMPILER == Z_COMPILER_CODE_WARRIOR
+
+#	elif Z_COMPILER == Z_COMPILER_CLANG
+#		include <Z/inspection/compiler/modules/Clang.h>
+
+/*#	elif Z_COMPILER == Z_COMPILER_CODE_WARRIOR
 #		include <Z/inspection/compiler/modules/CodeWarrior.h>
 
 #	elif Z_COMPILER == Z_COMPILER_COMEAU_CPP
@@ -96,9 +133,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/inspection/compiler/modules/EKOPath.h>
 
 #	elif Z_COMPILER == Z_COMPILER_FUJITSU_CPP
-#		include <Z/inspection/compiler/modules/Fujitsu C++.h>
+#		include <Z/inspection/compiler/modules/Fujitsu C++.h>*/
 
-#	elif Z_COMPILER == Z_COMPILER_GREEN_HILL_C_CPP
+#	elif Z_COMPILER == Z_COMPILER_GCC
+#		include <Z/inspection/compiler/modules/GCC.h>
+
+/*#	elif Z_COMPILER == Z_COMPILER_GREEN_HILL_C_CPP
 #		include <Z/inspection/compiler/modules/Green Hill C-C++.h>
 
 #	elif Z_COMPILER == Z_COMPILER_HP_ACPP
@@ -161,11 +201,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_COMPILER == Z_COMPILER_MPW_CPP
 #		include <Z/inspection/compiler/modules/MPW C++.h>
 
-#	elif Z_COMPILER == Z_COMPILER_NDP_C
+#	elif Z_COMPILER == Z_COMPILER_MSC
+#		include <Z/inspection/compiler/modules/MSC.h>*/
+
+#	elif Z_COMPILER == Z_COMPILER_MSVC
+#		include <Z/inspection/compiler/modules/MSVC.h>
+
+/*#	elif Z_COMPILER == Z_COMPILER_NDP_C
 #		include <Z/inspection/compiler/modules/NDP C.h>
 
 #	elif Z_COMPILER == Z_COMPILER_NORCROFT_C
 #		include <Z/inspection/compiler/modules/Norcroft C.h>
+
+#	elif Z_COMPILER == Z_COMPILER_NVC
+#		include <Z/inspection/compiler/modules/NVC.h>
 
 #	elif Z_COMPILER == Z_COMPILER_NWCC
 #		include <Z/inspection/compiler/modules/NWCC.h>
@@ -218,16 +267,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_COMPILER == Z_COMPILER_TENDRA
 #		include <Z/inspection/compiler/modules/TenDRA.h>
 
-#	elif Z_COMPILER == Z_COMPILER_TI_C_CPP_COMPILER
-#		include <Z/inspection/compiler/modules/Texas Instruments C-C++ Compiler.h>
-
 #	elif Z_COMPILER == Z_COMPILER_THINK_C
 #		include <Z/inspection/compiler/modules/THINK C.h>
 
-#	elif Z_COMPILER == Z_COMPILER_TINY_C
-#		include <Z/inspection/compiler/modules/Tiny C.h>
+#	elif Z_COMPILER == Z_COMPILER_TI_C_CPP_COMPILER
+#		include <Z/inspection/compiler/modules/Texas Instruments C-C++ Compiler.h>*/
 
-#	elif Z_COMPILER == Z_COMPILER_TURBO_C
+#	elif Z_COMPILER == Z_COMPILER_TINY_CC
+#		include <Z/inspection/compiler/modules/TinyCC.h>
+
+/*#	elif Z_COMPILER == Z_COMPILER_TURBO_C
 #		include <Z/inspection/compiler/modules/Turbo C.h>
 
 #	elif Z_COMPILER == Z_COMPILER_TURBO_CPP
@@ -252,15 +301,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/inspection/compiler/modules/Watcom C-C++.h>
 
 #	elif Z_COMPILER == Z_COMPILER_ZORTECH_CPP
-#		include <Z/inspection/compiler/modules/Zortech C++.h>
+#		include <Z/inspection/compiler/modules/Zortech C++.h>*/
 
 #	elif Z_COMPILER == Z_COMPILER_UNKNOWN
 #		include <Z/inspection/compiler/modules/generic.h>
-*/
+
 #	else
 #		error "Invalid Z_COMPILER key."
 #	endif
-
 #endif
 
 #include <Z/inspection/compiler/completion.h>
@@ -270,49 +318,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #else
 #	define Z_COMPILER_BIT_FIELD_ORDER(bits) Z_COMPILER_BIT_FIELD_ORDER_##bits##BIT
 #endif
-
-#define Z_COMPILER_C_HAS(			   FEATURE		  ) Z_COMPILER_C_HAS_##FEATURE
-#define Z_COMPILER_C_HAS_ESCAPE_SEQUENCE(	   ESCAPE_SEQUENCE	  ) Z_COMPILER_C_HAS_ESCAPE_SEQUENCE_##ESCAPE_SEQUENCE
-#define Z_COMPILER_C_HAS_IDENTIFIER(		   IDENTIFIER		  ) Z_COMPILER_C_HAS_IDENTIFIER_##IDENTIFIER
-#define Z_COMPILER_C_HAS_LITERAL(		   LITERAL		  ) Z_COMPILER_C_HAS_LITERAL_##LITERAL
-#define Z_COMPILER_C_HAS_OPERATOR(		   OPERATOR		  ) Z_COMPILER_C_HAS_OPERATOR_##OPERATOR
-#define Z_COMPILER_C_HAS_PREPROCESSOR_DIRECTIVE(   PREPROCESSOR_DIRECTIVE ) Z_COMPILER_C_HAS_PREPROCESSOR_DIRECTIVE_##PREPROCESSOR_DIRECTIVE
-#define Z_COMPILER_C_HAS_PREPROCESSOR_OPERATOR(	   PREPROCESSOR_OPERATOR  ) Z_COMPILER_C_HAS_PREPROCESSOR_OPERATOR_##PREPROCESSOR_OPERATOR
-#define Z_COMPILER_C_HAS_SPECIFIER(		   SPECIFIER		  ) Z_COMPILER_C_HAS_SPECIFIER_##SPECIFIER
-#define Z_COMPILER_C_HAS_STANDARD_PRAGMA(	   STANDARD_PRAGMA	  ) Z_COMPILER_C_HAS_STANDARD_PRAGMA_##STANDARD_PRAGMA
-#define Z_COMPILER_C_HAS_STORAGE_CLASS(		   STORAGE_CLASS	  ) Z_COMPILER_C_HAS_STORAGE_CLASS_##STORAGE_CLASS
-#define Z_COMPILER_C_HAS_TYPE(			   TYPE			  ) Z_COMPILER_C_HAS_TYPE_##TYPE
-#define Z_COMPILER_C_HAS_TYPE_MODIFIER(		   TYPE_MODIFIER	  ) Z_COMPILER_C_HAS_TYPE_MODIFIER_##TYPE_MODIFIER
-#define Z_COMPILER_C_HAS_TYPE_QUALIFIER(	   TYPE_QUALIFIER	  ) Z_COMPILER_C_HAS_TYPE_QUALIFIER_##TYPE_QUALIFIER
-#define Z_COMPILER_CPP_HAS(			   FEATURE		  ) Z_COMPILER_CPP_HAS_##FEATURE
-#define Z_COMPILER_CPP_HAS_ATTRIBUTE(		   ATTRIBUTE		  ) Z_COMPILER_CPP_HAS_ATTRIBUTE_##ATTRIBUTE
-#define Z_COMPILER_CPP_HAS_IDENTIFIER(		   IDENTIFIER		  ) Z_COMPILER_CPP_HAS_IDENTIFIER_##IDENTIFIER
-#define Z_COMPILER_CPP_HAS_LITERAL(		   LITERAL		  ) Z_COMPILER_CPP_HAS_LITERAL_##LITERAL
-#define Z_COMPILER_CPP_HAS_OPERATOR(		   OPERATOR		  ) Z_COMPILER_CPP_HAS_OPERATOR_##OPERATOR
-#define Z_COMPILER_CPP_HAS_OPERATOR_CASE(	   OPERATOR, CASE	  ) Z_COMPILER_CPP_HAS_OPERATOR_CASE_##OPERATOR##_##CASE
-#define Z_COMPILER_CPP_HAS_PREPROCESSOR_IDENTIFIER(PREPROCESSOR_IDENTIFIER) Z_COMPILER_CPP_HAS_PREPROCESSOR_IDENTIFIER_##PREPROCESSOR_IDENTIFIER
-#define Z_COMPILER_CPP_HAS_PREPROCESSOR_OPERATOR(  PREPROCESSOR_OPERATOR  ) Z_COMPILER_CPP_HAS_PREPROCESSOR_OPERATOR_##PREPROCESSOR_OPERATOR
-#define Z_COMPILER_CPP_HAS_SPECIFIER(		   SPECIFIER		  ) Z_COMPILER_CPP_HAS_SPECIFIER_##SPECIFIER
-#define Z_COMPILER_CPP_HAS_SPECIFIER_CASE(	   SPECIFIER, CASE	  ) Z_COMPILER_CPP_HAS_SPECIFIER_CASE_##SPECIFIER##_##CASE
-#define Z_COMPILER_CPP_HAS_STORAGE_CLASS(	   STORAGE_CLASS	  ) Z_COMPILER_CPP_HAS_STORAGE_CLASS_##STORAGE_CLASS
-#define Z_COMPILER_CPP_HAS_TYPE(		   TYPE			  ) Z_COMPILER_CPP_HAS_TYPE_##TYPE
-#define Z_COMPILER_HAS(				   FEATURE		  ) Z_COMPILER_HAS_##FEATURE
-#define Z_COMPILER_HAS_ATTRIBUTE(		   ATTRIBUTE		  ) Z_COMPILER_HAS_ATTRIBUTE_##ATTRIBUTE
-#define Z_COMPILER_HAS_CONSTANT(		   CONSTANT		  ) Z_COMPILER_HAS_CONSTANT_##CONSTANT
-#define Z_COMPILER_HAS_FUNCTION(		   FUNCTION		  ) Z_COMPILER_HAS_FUNCTION_##FUNCTION
-#define Z_COMPILER_HAS_LITERAL(			   LITERAL		  ) Z_COMPILER_HAS_LITERAL_##LITERAL
-#define Z_COMPILER_HAS_MACRO(			   MACRO		  ) Z_COMPILER_HAS_MACRO_##MACRO
-#define Z_COMPILER_HAS_MAGIC_CONSTANT(		   MAGIC_CONSTANT	  ) Z_COMPILER_HAS_MAGIC_CONSTANT_##MAGIC_CONSTANT
-#define Z_COMPILER_HAS_TRAIT(			   TRAIT		  ) Z_COMPILER_HAS_TRAIT_##TRAIT
-#define Z_COMPILER_HAS_TYPE(			   TYPE			  ) Z_COMPILER_HAS_TYPE_##TYPE
-#define Z_COMPILER_ATTRIBUTE(			   ATTRIBUTE		  ) Z_COMPILER_ATTRIBUTE_##ATTRIBUTE
-#define Z_COMPILER_CONSTANT(			   CONSTANT		  ) Z_COMPILER_CONSTANT_##CONSTANT
-#define Z_COMPILER_FUNCTION(			   FUNCTION		  ) Z_COMPILER_FUNCTION_##FUNCTION
-#define Z_COMPILER_LITERAL(			   LITERAL		  ) Z_COMPILER_LITERAL_##LITERAL
-#define Z_COMPILER_MACRO(			   MACRO		  ) Z_COMPILER_MACRO_##MACRO
-#define Z_COMPILER_MAGIC_CONSTANT(		   MAGIC_CONSTANT	  ) Z_COMPILER_MAGIC_CONSTANT_##MAGIC_CONSTANT
-#define Z_COMPILER_TRAIT(			   TRAIT		  ) Z_COMPILER_TRAIT_##TRAIT
-#define Z_COMPILER_TYPE(			   TYPE			  ) Z_COMPILER_TYPE_##TYPE
 
 #ifndef Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_TYPEDEF
 #	define Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_TYPEDEF

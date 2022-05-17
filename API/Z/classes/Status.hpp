@@ -1,19 +1,20 @@
-/* Z Kit - classes/Status.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/classes/Status.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_Status_HPP
 #define Z_classes_Status_HPP
 
 #include <Z/keys/status.h>
+#include <Z/macros/language.hpp>
 #include <Z/types/integral.hpp>
 
 
 namespace Zeta {struct Status {
-
 	enum {OK = Z_OK};
 
 	struct Error {enum {
@@ -82,12 +83,28 @@ namespace Zeta {struct Status {
 		{return code;}
 
 
-	Z_CT(CPP11) Boolean operator ==(SInt status) const Z_NOTHROW
-		{return code == status;}
+	friend Z_CT(CPP11) Boolean operator ==(const Status &lhs, const Status &rhs) Z_NOTHROW
+		{return lhs.code == rhs.code;}
 
 
-	Z_CT(CPP11) Boolean operator !=(SInt status) const Z_NOTHROW
-		{return code != status;}
+	friend Z_CT(CPP11) Boolean operator ==(const Status &lhs, UInt64 rhs) Z_NOTHROW
+		{return lhs.code == rhs;}
+
+
+	friend Z_CT(CPP11) Boolean operator ==(UInt64 lhs, const Status &rhs) Z_NOTHROW
+		{return lhs == rhs.code;}
+
+
+	friend Z_CT(CPP11) Boolean operator !=(const Status &lhs, const Status &rhs) Z_NOTHROW
+		{return lhs.code != rhs.code;}
+
+
+	friend Z_CT(CPP11) Boolean operator !=(const Status &lhs, UInt64 rhs) Z_NOTHROW
+		{return lhs.code != rhs;}
+
+
+	friend Z_CT(CPP11) Boolean operator !=(UInt64 lhs, const Status &rhs) Z_NOTHROW
+		{return lhs != rhs.code;}
 
 
 	Z_CT(CPP11) Boolean is_error() const Z_NOTHROW

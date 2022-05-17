@@ -1,8 +1,9 @@
-/* Z Kit - classes/XYZ.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/classes/XYZ.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_XYZ_HPP
@@ -80,28 +81,28 @@ Z_CT(CPP11) XYZ	  zyx() const {return XYZ(z, y, x);}					\
 											\
 Z_CT(CPP11) XYZ clamp(const XYZ &minimum, const XYZ &maximum) const			\
 	{										\
-	return XYZ									\
-		(Zeta::clamp<T>(x, minimum.x, maximum.x),				\
-		 Zeta::clamp<T>(y, minimum.y, maximum.y),				\
-		 Zeta::clamp<T>(z, minimum.z, maximum.z));				\
+	return XYZ(									\
+		Zeta::clamp<T>(x, minimum.x, maximum.x),				\
+		Zeta::clamp<T>(y, minimum.y, maximum.y),				\
+		Zeta::clamp<T>(z, minimum.z, maximum.z));				\
 	}										\
 											\
 											\
 Z_CT(CPP11) XYZ clamp(T minimum, T maximum) const					\
 	{										\
-	return XYZ									\
-		(Zeta::clamp<T>(x, minimum, maximum),					\
-		 Zeta::clamp<T>(y, minimum, maximum),					\
-		 Zeta::clamp<T>(z, minimum, maximum));					\
+	return XYZ(									\
+		Zeta::clamp<T>(x, minimum, maximum),					\
+		Zeta::clamp<T>(y, minimum, maximum),					\
+		Zeta::clamp<T>(z, minimum, maximum));					\
 	}										\
 											\
 											\
 Z_CT(CPP11) XYZ cross_product(const XYZ &other) const					\
 	{										\
-	return XYZ									\
-		(y * other.z - z * other.y,						\
-		 z * other.x - x * other.z,						\
-		 x * other.y - y * other.x);						\
+	return XYZ(									\
+		y * other.z - z * other.y,						\
+		z * other.x - x * other.z,						\
+		x * other.y - y * other.x);						\
 	}										\
 											\
 											\
@@ -143,28 +144,28 @@ Z_CT(CPP11) Boolean is_zero() const							\
 											\
 Z_CT(CPP11) XYZ maximum(const XYZ &other) const						\
 	{										\
-	return XYZ									\
-		(Zeta::maximum<T>(x, other.x),						\
-		 Zeta::maximum<T>(y, other.y),						\
-		 Zeta::maximum<T>(z, other.z));						\
+	return XYZ(									\
+		Zeta::maximum<T>(x, other.x),						\
+		Zeta::maximum<T>(y, other.y),						\
+		Zeta::maximum<T>(z, other.z));						\
 	}										\
 											\
 											\
 Z_CT(CPP11) XYZ minimum(const XYZ &other) const						\
 	{										\
-	return XYZ									\
-		(Zeta::minimum<T>(x, other.x),						\
-		 Zeta::minimum<T>(y, other.y),						\
-		 Zeta::minimum<T>(z, other.z));						\
+	return XYZ(									\
+		Zeta::minimum<T>(x, other.x),						\
+		Zeta::minimum<T>(y, other.y),						\
+		Zeta::minimum<T>(z, other.z));						\
 	}										\
 											\
 											\
 Z_CT(CPP11) XYZ middle(const XYZ &other) const						\
 	{										\
-	return XYZ									\
-		((x + other.x) / T(2),							\
-		 (y + other.y) / T(2),							\
-		 (z + other.z) / T(2));							\
+	return XYZ(									\
+		(x + other.x) / T(2),							\
+		(y + other.y) / T(2),							\
+		(z + other.z) / T(2));							\
 	}										\
 											\
 											\
@@ -187,10 +188,10 @@ Z_CT(CPP11) T squared_length() const							\
 											\
 Z_CT(CPP11) XYZ absolute() const							\
 	{										\
-	return XYZ									\
-		(Zeta::absolute<T>(x),							\
-		 Zeta::absolute<T>(y),							\
-		 Zeta::absolute<T>(z));							\
+	return XYZ(									\
+		Zeta::absolute<T>(x),							\
+		Zeta::absolute<T>(y),							\
+		Zeta::absolute<T>(z));							\
 	}										\
 											\
 											\
@@ -243,10 +244,10 @@ namespace Zeta {
 
 		Z_CT(CPP11) XYZ clamp_01() const
 			{
-			return XYZ
-				(Zeta::clamp_01<T>(x),
-				 Zeta::clamp_01<T>(y),
-				 Zeta::clamp_01<T>(z));
+			return XYZ(
+				Zeta::clamp_01<T>(x),
+				Zeta::clamp_01<T>(y),
+				Zeta::clamp_01<T>(z));
 			}
 
 
@@ -284,10 +285,10 @@ namespace Zeta {
 
 		Z_CT(CPP11) XYZ inverse_lerp(const XYZ &other, T t) const
 			{
-			return XYZ
-				(Zeta::inverse_lerp<T>(x, other.x, t),
-				 Zeta::inverse_lerp<T>(y, other.y, t),
-				 Zeta::inverse_lerp<T>(z, other.z, t));
+			return XYZ(
+				Zeta::inverse_lerp<T>(x, other.x, t),
+				Zeta::inverse_lerp<T>(y, other.y, t),
+				Zeta::inverse_lerp<T>(z, other.z, t));
 			}
 
 
@@ -337,10 +338,10 @@ namespace Zeta {
 
 		Z_CT(CPP11) XYZ lerp(const XYZ &other, T t) const
 			{
-			return XYZ
-				(Zeta::lerp<T>(x, other.x, t),
-				 Zeta::lerp<T>(y, other.y, t),
-				 Zeta::lerp<T>(z, other.z, t));
+			return XYZ(
+				Zeta::lerp<T>(x, other.x, t),
+				Zeta::lerp<T>(y, other.y, t),
+				Zeta::lerp<T>(z, other.z, t));
 			}
 
 

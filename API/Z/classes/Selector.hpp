@@ -1,8 +1,9 @@
-/* Z Kit - classes/Selector.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//__/__| Kit
-Copyright (C) 2006-2020 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/classes/Selector.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_classes_Selector_HPP
@@ -10,131 +11,118 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-#if	Z_DIALECT_HAS(CPP, SFINAE)	      && \
-	Z_DIALECT_HAS(CPP, VARIADIC_TEMPLATE) && \
-	Z_DIALECT_HAS(CPP, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE)
+#if	Z_DIALECT_HAS(CPP98, SFINAE)		&& \
+	Z_DIALECT_HAS(CPP11, VARIADIC_TEMPLATE) && \
+	Z_DIALECT_HAS(CPP11, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE)
 
-#	include <Z/traits/Type.hpp>
-#	include <objc/message.h>
+#	include <Z/traits/type.hpp>
+#	include <Z/functions/Objective-C.hpp>
+
+#	if  Z_DIALECT_HAS(CPP11, RVALUE_REFERENCE)
+#		include <Z/functions/casting.hpp>
+#	endif
+
+#	define Z_HAS_Selector TRUE
 
 
 	namespace Zeta {
+		template <class f> struct Selector;
 
-		template <class F> struct Selector;
 
-		template <class R, class... P> struct Selector<R(P...)> {
-			typedef R (* Call     )(id,		    SEL, P...);
-			typedef R (* CallSuper)(struct objc_super*, SEL, P...);
+		template <class r, class... p>
+		struct Selector<r(p...)> {
+			typedef r (* Send     )(id,	      SEL, p...);
+			typedef r (* SendSuper)(objc_super *, SEL, p...);
 
 			SEL selector;
 
-			Z_INLINE Selector() Z_DEFAULTED({})
 
-			Z_INLINE Selector(SEL selector)
-			: selector(selector) {}
-
-
-			Z_INLINE operator SEL() const Z_NOTHROW {return selector;}
+			Z_INLINE Selector()
+				Z_DEFAULTED({})
 
 
-			template <class RR = R>
-			Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
-			operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-				{reinterpret_cast<Call>(objc_msgSend)(object, selector, arguments...);}
+			Z_INLINE Selector(SEL selector_)
+			: selector(selector_) {}
 
 
-#			if Z_ISA_IS(X86_64) || Z_ISA_IS(X86_32)
-
-				template <class RR = R>
-				Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_real && !Type<RR>::is_class, RR>::type
-				operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-					{return reinterpret_cast<Call>(objc_msgSend)(object, selector, arguments...);}
+			Z_INLINE operator SEL() const Z_NOTHROW
+				{return selector;}
 
 
-				template <class RR = R>
-				Z_INLINE typename TypeIf<Type<RR>::is_real, RR>::type
-				operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-					{return reinterpret_cast<Call>(objc_msgSend_fpret)(object, selector, arguments...);}
-
-#			else
-
-				template <class RR = R>
-				Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_class, RR>::type
-				operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-					{return reinterpret_cast<Call>(objc_msgSend)(object, selector, arguments...);}
-
-#			endif
-
-
-			template <class RR = R>
-			Z_INLINE typename TypeIf<Type<RR>::is_class, RR>::type
-			operator ()(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-				{return reinterpret_cast<Call>(objc_msgSend_stret)(object, selector, arguments...);}
-
-
-			template <class RR = R>
-			Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
-			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
+			Z_INLINE r operator ()(id object, typename Type<p>::to_forwardable... arguments) const Z_NOTHROW
 				{
-				reinterpret_cast<CallSuper>(objc_msgSendSuper)
-					(const_cast<struct objc_super *>(&object_super), selector, arguments...);
+				return (Send(ObjectiveC::send<r>()))
+					(object, selector, arguments...);
 				}
 
 
-			template <class RR = R>
-			Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_class, RR>::type
-			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
+			Z_INLINE r super(id object, typename Type<p>::to_forwardable... arguments) const Z_NOTHROW
 				{
-				return reinterpret_cast<CallSuper>(objc_msgSendSuper)
-					(const_cast<struct objc_super *>(&object_super), selector, arguments...);
+				objc_super object_super = {object, class_getSuperclass(object_getClass(object))};
+
+				return (SendSuper(ObjectiveC::send_super<r>()))
+					(&object_super, selector, arguments...);
 				}
 
 
-			template <class RR = R>
-			Z_INLINE typename TypeIf<Type<RR>::is_class, RR>::type
-			super(const struct objc_super &object_super, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
+			Z_INLINE r super(const objc_super &object_super, typename Type<p>::to_forwardable... arguments) const Z_NOTHROW
 				{
-				return reinterpret_cast<CallSuper>(objc_msgSendSuper_stret)
-					(const_cast<struct objc_super *>(&object_super), selector, arguments...);
+				return (SendSuper(ObjectiveC::send_super<r>()))
+					(const_cast<objc_super *>(&object_super), selector, arguments...);
 				}
-
-
-#			if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-
-				template <class RR = R>
-				Z_INLINE typename TypeIf<Type<RR>::is_void, RR>::type
-				super(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-					{
-					struct objc_super object_super {object, [[object class] superclass]};
-					reinterpret_cast<CallSuper>(objc_msgSendSuper)(&object_super, selector, arguments...);
-					}
-
-
-				template <class RR = R>
-				Z_INLINE typename TypeIf<!Type<RR>::is_void && !Type<RR>::is_class, RR>::type
-				super(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-					{
-					struct objc_super object_super {object, [[object class] superclass]};
-					return reinterpret_cast<CallSuper>(objc_msgSendSuper)(&object_super, selector, arguments...);
-					}
-
-
-				template <class RR = R>
-				Z_INLINE typename TypeIf<Type<RR>::is_class, RR>::type
-				super(id object, typename Type<P>::to_forwardable... arguments) const Z_NOTHROW
-					{
-					struct objc_super object_super {object, [[object class] superclass]};
-					return reinterpret_cast<CallSuper>(objc_msgSendSuper_stret)(&object_super, selector, arguments...);
-					}
-
-#			endif
 		};
+
+
+#		if  Z_DIALECT_HAS(CPP11, RVALUE_REFERENCE)
+			template <class r, class... p>
+			struct Selector<r(p..., ...)> {
+				typedef r (* Send     )(id,	      SEL, p..., ...);
+				typedef r (* SendSuper)(objc_super *, SEL, p..., ...);
+
+				SEL selector;
+
+
+				Z_INLINE Selector()
+					Z_DEFAULTED({})
+
+
+				Z_INLINE Selector(SEL selector)
+				: selector(selector) {}
+
+
+				Z_INLINE operator SEL() const Z_NOTHROW
+					{return selector;}
+
+
+				template <class... pp>
+				Z_INLINE r operator ()(id object, pp&&... arguments) const Z_NOTHROW
+					{
+					return (Send(ObjectiveC::send<r>()))
+						(object, selector, forwardable<pp>(arguments)...);
+					}
+
+
+				template <class... pp>
+				Z_INLINE r super(id object, pp&&... arguments) const Z_NOTHROW
+					{
+					objc_super object_super = {object, class_getSuperclass(object_getClass(object))};
+
+					return (SendSuper(ObjectiveC::send_super<r>()))
+						(&object_super, selector, forwardable<pp>(arguments)...);
+					}
+
+
+				template <class... pp>
+				Z_INLINE r super(const objc_super &object_super, pp&&... arguments) const Z_NOTHROW
+					{
+					return (SendSuper(ObjectiveC::send_super<r>()))
+						(const_cast<objc_super *>(&object_super), selector, forwardable<pp>(arguments)...);
+					}
+			};
+#		endif
 	}
 
 
-#	define Z_DECLARES_Selector TRUE
-#else
-#	define Z_DECLARES_Selector FALSE
 #endif
 
 #endif // Z_classes_Selector_HPP
