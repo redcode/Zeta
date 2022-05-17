@@ -1,12 +1,13 @@
-/* Z Kit - formats/keymap/Z.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/formats/keymap/Z.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_formats_keymap_Z_H_
-#define _Z_formats_keymap_Z_H_
+#ifndef Z_formats_keymap_Z_H
+#define Z_formats_keymap_Z_H
 
 #define Z_KEY_CODE_UP				   0
 #define Z_KEY_CODE_RIGHT			   1
@@ -138,4 +139,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_KEY_CODE_DELETE			 127 /* Similar to ASCII */
 #define Z_KEY_CODE_INVALID			 Z_KEY_CODE_UNUSED_0
 
-#endif /* _Z_formats_keymap_Z_H_ */
+#endif /* Z_formats_keymap_Z_H */

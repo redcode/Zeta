@@ -1,12 +1,13 @@
-/* Z Kit - formats/character set/DOS CP855.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/formats/character set/DOS CP855.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_formats_character_set_DOS_CP855_H_
-#define _Z_formats_character_set_DOS_CP855_H_
+#ifndef Z_formats_character_set_DOS_CP855_H
+#define Z_formats_character_set_DOS_CP855_H
 
 /* From 00h to 7Fh like ASCII */
 #define Z_DOS_CP855_CYRILLIC_SMALL_LETTER_DJE			     0x80
@@ -156,4 +157,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	_(00AD), _(044B), _(042B), _(0437), _(0417), _(0448), _(0428), _(044D), \
 	_(042D), _(0449), _(0429), _(0447), _(0427), _(00A7), _(25A0), _(00A0)
 
-#endif /* _Z_formats_character_set_DOS_CP855_H_ */
+#endif /* Z_formats_character_set_DOS_CP855_H */

@@ -1,20 +1,21 @@
-/* Z Kit - macros/variadic.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
+/* Zeta API - Z/macros/variadic.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
 Copyright (C) 2006 Laurent Deniau <laurent.deniau@cern.ch>.
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_macros_variadic_H_
-#define _Z_macros_variadic_H_
+#ifndef Z_macros_variadic_H
+#define Z_macros_variadic_H
 
 #include <Z/inspection/language.h>
 
 #if	!defined(Z_AVOID_VARIADIC_MACROS) && \
-	(Z_LANGUAGE_HAS(C, VARIADIC_MACRO) || Z_LANGUAGE_HAS(CPP, C99_PREPROCESSOR))
+	(Z_DIALECT_HAS(C99, VARIADIC_MACRO) || Z_DIALECT_HAS(CPP11, C99_PREPROCESSOR))
 
-#	include <Z/macros/pasting.h>
+#	include <Z/macros/token.h>
 
 #	define L_PP_ARG_N( \
 		 _1,  _2,  _3,	_4,  _5,  _6,  _7,  _8, \
@@ -38,9 +39,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		15, 14, 13, 12, 11, 10,  9,  8, \
 		 7,  6,  5,  4,  3,  2,  1,  0
 
-#	define Z_ARGUMENT_COUNT_(...) Z_SAME(L_PP_ARG_N(__VA_ARGS__))
-#	define Z_ARGUMENT_COUNT( ...) Z_ARGUMENT_COUNT_(__VA_ARGS__, L_PP_RSEQ_N())
+#	define Z__ARGUMENT_COUNT(...) \
+		Z_SAME(L_PP_ARG_N(__VA_ARGS__))
+
+#	define Z_ARGUMENT_COUNT(...) \
+		Z__ARGUMENT_COUNT(__VA_ARGS__, L_PP_RSEQ_N())
 
 #endif
 
-#endif /* _Z_macros_variadic_H_ */
+#endif /* Z_macros_variadic_H */

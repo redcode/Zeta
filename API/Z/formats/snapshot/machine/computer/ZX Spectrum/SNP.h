@@ -1,37 +1,45 @@
-/* Z Kit - formats/snapshot/machine/computer/ZX Spectrum/SNP.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/formats/snapshot/machine/computer/ZX Spectrum/SNP.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
-.--------------------------------------------------.
-| Extensions: snp				   |
-| Endianness: Little				   |
-| Created by: Garabik, Radovan - Salanci, Lubomir  |
-|    Used by: Nuclear ZX [DOS]			   |
-|						   |
-| http://korpus.juls.savba.sk/~garabik/old/zx.html |
-'-------------------------------------------------*/
+ ___________________________________________________________________
+|								    |
+|	 Daft: Public.Snapshot.Computer.ZXSpectrum.SNP		    |
+|     Authors: Garabik, Radovan <garabik@melkor.dnp.fmph.uniba.sk>  |
+|	       Salanci, Lubomir <salanci@center.fmph.uniba.sk>	    |
+|  Extensions: .snp						    |
+|  Endianness: Little						    |
+|    Supports: ZX Spectrum 48K					    |
+|     Used by: Nuclear ZX (MS-DOS)				    |
+|	       <http://korpus.juls.savba.sk/~garabik/old/zx.html>   |
+|								    |
+|  Reference:							    |
+|  http://www.zx-modules.de/fileformats/snpformat.html		    |
+|  [MAME sources]/src/mame/machine/spec_snqk.cpp		    |
+|								    |
+'==================================================================*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H
 
-#include <Z/types/base.h>
+#include <Z/types/bitwise.h>
+#include <Z/hardware/machine/computer/ZX Spectrum.h>
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN
-	zuint8	ram[1024 * 48];
-	Z16Bit	af;
-	zuint8	border_color;
-	zuint8	reserved;
-	Z16Bit	bc, de, hl;
-	zuint16	pc, sp;
-	Z16Bit	ix, iy;
-	zuint8	iff2; /* not used actually */
-	zuint8	iff1;
-	zuint8	im;
-	zuint8	r, i;
-	Z16Bit	af_, bc_, de_, hl_;
-Z_DEFINE_STRICT_STRUCTURE_END ZSNP;
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+	zuint8 ram[Z_ZX_SPECTRUM_48K_SIZE_RAM];
+	ZInt16 af;
+	zuint8 border_color;
+	zuint8 zero;
+	ZInt16 bc, de, hl, pc, sp, ix, iy;
+	zuint8 not_iff2; /* Not used (must be 0?) */
+	zuint8 iff1;
+	zuint8 im;
+	zuint8 r, i;
+	ZInt16 af_, bc_, de_, hl_;
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_SNP);
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H_ */
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H */

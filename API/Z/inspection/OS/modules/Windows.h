@@ -1,19 +1,18 @@
-/* Z Kit - inspection/modules/OS/Windows.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/inspection/OS/modules/Windows.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_modules_OS_Windows_H_
-#define _Z_inspection_modules_OS_Windows_H_
+#ifndef Z_inspection_OS_modules_Windows_H
+#define Z_inspection_OS_modules_Windows_H
 
-#define Z_OS_STRING Z_OS_STRING_WINDOWS
-
-#define Z_OS_HAS_NETWORKING TRUE
-#define Z_OS_HAS_TLS	    TRUE
-
+#define Z_OS_IS_WINDOWS		  TRUE
+#define Z_OS_NAME		  Z_OS_NAME_WINDOWS
+#define Z_OS_MODERN_NAME	  Z_OS_NAME_WINDOWS
 #define Z_OS_PATH_SLASH_CHARACTER '\\'
 #define Z_OS_PATH_SLASH_STRING	  "\\"
 
-#endif /* _Z_inspection_modules_OS_Windows_H_ */
+#endif /* Z_inspection_OS_modules_Windows_H */

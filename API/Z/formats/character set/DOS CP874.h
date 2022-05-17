@@ -1,12 +1,13 @@
-/* Z Kit - formats/character set/DOS CP874.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/formats/character set/DOS CP874.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_formats_character_set_DOS_CP874_H_
-#define _Z_formats_character_set_DOS_CP874_H_
+#ifndef Z_formats_character_set_DOS_CP874_H
+#define Z_formats_character_set_DOS_CP874_H
 
 /* From 00h to 7Fh like ASCII */
 #define Z_DOS_CP874_EURO_SIGN			    0x80
@@ -156,4 +157,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	_(0E50),   _(0E51),   _(0E52),	 _(0E53),   _(0E54),   _(0E55),	  _(0E56),   _(0E57),	\
 	_(0E58),   _(0E59),   _(0E5A),	 _(0E5B),   undefined, undefined, undefined, undefined
 
-#endif /* _Z_formats_character_set_DOS_CP874_H_ */
+#endif /* Z_formats_character_set_DOS_CP874_H */

@@ -1,62 +1,85 @@
-/* Z Kit - formats/snapshot/machine/computer/ZX Spectrum/SP.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/formats/snapshot/machine/computer/ZX Spectrum/SP.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
-.----------------------------------------------------------------------------.
-| Extensions: sp							     |
-| Endianness: Little							     |
-| Created by: Gimeno Fortea, Pedro					     |
-|    Used by: VGASpec, Spectrum [DOS]					     |
-|									     |
-| http://www.formauri.es/personal/pgimeno/spec/spec.html		     |
-|									     |
-| From the sources of MESS:						     |
-|									     |
-| "  There are two kinds of .sp files: 'old' and 'new'.			     |
-| The old version is always 49184 bytes long and is created by a leaked copy |
-| of the VGASpec emulator.						     |
-| Subsequently Pedro Gimeno (the author of VGASpec) renamed it to 'Spectrum' |
-| (but it's colloquially known as the 'Spanish Spectrum emulator') and added |
-| a header in the snapshot to break backward compatibility: the new format   |
-| supports both 16K and 48K images and it's 16422 or 49190 bytes long.	"    |
-'---------------------------------------------------------------------------*/
+ ______________________________________________________________________________
+|									       |
+|	 Daft: Public.Snapshot.Computer.ZXSpectrum.SP			       |
+|      Author: Gimeno Fortea, Pedro <parigalo@formauri.es>		       |
+|  Extensions: .sp							       |
+|  Endianness: Little							       |
+|    Supports: ZX Spectrum 48K						       |
+|     Used by: Spectrum / VGASpec (MS-DOS)				       |
+|	       <http://www.formauri.es/personal/pgimeno/spec/spec.html>	       |
+|									       |
+|  Reference:								       |
+|  http://www.zx-modules.de/fileformats/snxformat.html			       |
+|  [MAME sources]/src/mame/machine/spec_snqk.cpp			       |
+|									       |
+|  From the sources of MESS:						       |
+|									       |
+|  There are two kinds of .sp files: 'old' and 'new'.			       |
+|									       |
+|  The old version is always 49184 bytes long and is created by a leaked copy  |
+|  of the VGASpec emulator.						       |
+|									       |
+|  Subsequently Pedro Gimeno (the author of VGASpec) renamed it to 'Spectrum'  |
+|  (but it's colloquially known as the 'Spanish Spectrum emulator') and added  |
+|  a header in the snapshot to break backward compatibility: the new format    |
+|  supports both 16K and 48K images and it's 16422 or 49190 bytes long.	       |
+|									       |
+'=============================================================================*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H
 
-#include <Z/types/base.h>
+#include <Z/types/bitwise.h>
+#include <Z/hardware/machine/computer/ZX Spectrum.h>
 
-Z_DEFINE_STRICT_STRUCTURE (
-	zuint8	signature[2];	  /* 'SP' */
-	zuint16 ram_size;	  /* 1024 * 16 or 1024 * 48 */
-	zuint16 ram_load_address; /* 1024 * 16 */
-) ZSPHeader;
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+	ZInt16	signature;	  /* ['S', 'P']	    */
+	zuint16 ram_size;	  /* 16384 or 49152 */
+	zuint16 ram_load_address; /* 16384	    */
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_SPHeader);
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN
-	Z16Bit	bc,  de,  hl,  af,  ix, iy;
-	Z16Bit	bc_, de_, hl_, af_;
-	zuint8	r,   i;
-	zuint16 sp,  pc;
-	zuint16 zero1; /* reserved for future use */
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+	ZInt16	bc, de, hl, af, ix, iy, bc_, de_, hl_, af_;
+	zuint8	r, i;
+	ZInt16	sp, pc;
+	zuint16 zero_0; /* reserved for future use */
 	zuint8	border_color;
-	zuint8	zero2; /* reserved for future use */
+	zuint8	zero_1; /* reserved for future use */
 
-	struct {Z_BIT_FIELD(8, 7) (
-		zuint8 zero	   :2, /* reserved for internal use */
-		zuint8 flash	   :1, /* boolean */
-		zuint8 int_pending :1,
-		zuint8 im_0	   :1,
-		zuint8 iff2	   :1,
-		zuint8 im	   :1,
-		zuint8 iff1	   :1
-	)} status;
+	union {	zuint8 value;
+		struct {Z_BIT_FIELD(8, 7) (
+			zuint8 zero	:2, /* reserved for internal use */
+			zuint8 flash	:1, /* boolean */
+			zuint8 int_line :1,
+			zuint8 im0	:1,
+			zuint8 iff2	:1, /* Added in v0.99C, always 0 in previous versions. */
+			zuint8 im	:1,
+			zuint8 iff1	:1
+		)} fields;
+	} status;
 
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 ram[];)
-Z_DEFINE_STRICT_STRUCTURE_END ZSPBody;
+	zuint8 zero_2;	   /* reserved for future use */
+	zuint8 ram[Z_ZX_SPECTRUM_16K_SIZE_RAM]; /* 16384 or 49152 */
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_SPSnapshot);
 
-#define Z_SP_BODY_IM(p) (Z_SP_BODY(p)->im_0 ? 0 : ((p)->im ? 2 : 1))
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+	Z_SPHeader   header;
+	Z_SPSnapshot snapshot;
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_SP);
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H_ */
+#define Z_SP_IM(p) ((p)->bits.im0 ? 0 : ((p)->bits.im + 1))
+
+/*	0  1000
+	1  0000
+	2  0010
+*/
+
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SP_H */

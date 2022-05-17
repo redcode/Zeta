@@ -1,12 +1,13 @@
-/* Z Kit - formats/character set/DOS CP864.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/formats/character set/DOS CP864.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_formats_character_set_DOS_CP864_H_
-#define _Z_formats_character_set_DOS_CP864_H_
+#ifndef Z_formats_character_set_DOS_CP864_H
+#define Z_formats_character_set_DOS_CP864_H
 
 /* From 00h to 7Fh like ASCII */
 #define Z_DOS_CP864_DEGREE_SIGN							 0x80
@@ -156,4 +157,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	_(FE7D), _(0651), _(FEE5), _(FEE9),   _(FEEC),	 _(FEF0), _(FEF2),   _(FED0),	\
 	_(FED5), _(FEF5), _(FEF6), _(FEDD),   _(FED9),	 _(FEF1), _(25A0),   undefined
 
-#endif /* _Z_formats_character_set_DOS_CP864_H_ */
+#endif /* Z_formats_character_set_DOS_CP864_H */

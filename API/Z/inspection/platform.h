@@ -1,17 +1,18 @@
-/* Z Kit - inspection/platform.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/inspection/platform.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_platform_H_
-#define _Z_inspection_platform_H_
+#ifndef Z_inspection_platform_H
+#define Z_inspection_platform_H
 
 #include <Z/keys/platform.h>
 
 #ifdef Z_PLATFORM
-#	include <Z/constants/base.h>
+#	include <Z/constants/boolean.h>
 #else
 #	include <Z/inspection/compiler.h>
 
@@ -26,4 +27,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_PLATFORM Z_PLATFORM_UNKNOWN
 #endif
 
-#endif /* _Z_inspection_platform_H_ */
+#define Z_PLATFORM_IS(PLATFORM) (Z_PLATFORM == Z_PLATFORM_##PLATFORM)
+
+#endif /* Z_inspection_platform_H */

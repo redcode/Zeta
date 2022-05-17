@@ -1,12 +1,13 @@
-/* Z Kit - keys/language.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/keys/language.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_keys_language_H_
-#define _Z_keys_language_H_
+#ifndef Z_keys_language_H
+#define Z_keys_language_H
 
 #define Z_LANGUAGE_C		 1
 #define Z_LANGUAGE_CPP		 3
@@ -18,4 +19,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_LANGUAGE_STRING_OBJECTIVE_C	"Objective-C"
 #define Z_LANGUAGE_STRING_OBJECTIVE_CPP "Objective-C++"
 
-#endif /* _Z_keys_language_H_ */
+#endif /* Z_keys_language_H */

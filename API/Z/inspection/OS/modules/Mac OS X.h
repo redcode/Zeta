@@ -1,23 +1,20 @@
-/* Z Kit - inspection/modules/OS/Mac OS X.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/inspection/OS/modules/Mac OS X.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_inspection_modules_OS_Mac_OS_X_H_
-#define _Z_inspection_modules_OS_Mac_OS_X_H_
+#ifndef Z_inspection_OS_modules_Mac_OS_X_H
+#define Z_inspection_OS_modules_Mac_OS_X_H
 
-#define Z_OS_STRING Z_OS_STRING_MAC_OS_X
-
-#define Z_OS_HAS_POSIX_THREADING TRUE
-#define Z_OS_HAS_NETWORKING	 TRUE
-#define Z_OS_IS_POSIX		 TRUE
-#define Z_OS_IS_POSIX_LIKE	 TRUE
-#define Z_OS_IS_UNIX		 TRUE
-#define Z_OS_IS_UNIX_LIKE	 TRUE
-
+#define Z_OS_IS_MAC_OS_X	  TRUE
+#define Z_OS_IS_MACOS		  TRUE
+#define Z_OS_IS_OS_X		  TRUE
+#define Z_OS_NAME		  Z_OS_NAME_MAC_OS_X
+#define Z_OS_MODERN_NAME	  Z_OS_NAME_MACOS
 #define Z_OS_PATH_SLASH_CHARACTER '/'
 #define Z_OS_PATH_SLASH_STRING	  "/"
 
-#endif /* _Z_inspection_modules_OS_Mac_OS_X_H_ */
+#endif /* Z_inspection_OS_modules_Mac_OS_X_H */

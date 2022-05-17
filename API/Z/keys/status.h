@@ -1,22 +1,19 @@
-/* Z Kit - keys/status.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/keys/status.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_keys_status_H_
-#define _Z_keys_status_H_
+#ifndef Z_keys_status_H
+#define Z_keys_status_H
 
 #ifdef Z_OK
-#	undef Z_OK /* zlib */
+#	undef Z_OK /* defined by zlib */
 #endif
 
-#define Z_OK		0
-#define Z_END		1
-#define Z_UPDATED	2
-#define Z_UNIMPLEMENTED	3
-
+#define Z_OK			      0
 #define Z_ERROR_UNKNOWN		     -1
 #define Z_ERROR_ALREADY_EXISTS	     -2
 #define Z_ERROR_ALREADY_IN_USE	     -3
@@ -66,4 +63,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ERROR_UNAUTHORIZED	     -47
 #define Z_ERROR_UNREACHABLE	     -48
 
-#endif /* _Z_keys_status_H_ */
+#endif /* Z_keys_status_H */

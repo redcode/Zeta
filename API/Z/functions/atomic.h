@@ -1,0 +1,651 @@
+/* Zeta API - Z/functions/atomic.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
+Released under the terms of the GNU Lesser General Public License v3. */
+
+#ifndef Z_functions_atomic_H
+#define Z_functions_atomic_H
+
+#include <Z/types/integral.h>
+
+/* MARK: - uint8 */
+
+#ifdef Z_UINT8
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_ADD_AND_GET)
+#		define z_uint8_atomic_add_and_get Z_COMPILER_FUNCTION(UINT8_ATOMIC_ADD_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_AND_AND_GET)
+#		define z_uint8_atomic_and_and_get Z_COMPILER_FUNCTION(UINT8_ATOMIC_AND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_GET_AND_ADD)
+#		define z_uint8_atomic_get_and_add Z_COMPILER_FUNCTION(UINT8_ATOMIC_GET_AND_ADD)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_GET_AND_AND)
+#		define z_uint8_atomic_get_and_and Z_COMPILER_FUNCTION(UINT8_ATOMIC_GET_AND_AND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_GET_AND_NAND)
+#		define z_uint8_atomic_get_and_nand Z_COMPILER_FUNCTION(UINT8_ATOMIC_GET_AND_NAND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_GET_AND_OR)
+#		define z_uint8_atomic_get_and_or Z_COMPILER_FUNCTION(UINT8_ATOMIC_GET_AND_OR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_GET_AND_SET_IF_EQUAL)
+#		define z_uint8_atomic_get_and_set_if_equal Z_COMPILER_FUNCTION(UINT8_ATOMIC_GET_AND_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_GET_AND_SUBTRACT)
+#		define z_uint8_atomic_get_and_subtract Z_COMPILER_FUNCTION(UINT8_ATOMIC_GET_AND_SUBTRACT)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_GET_AND_XOR)
+#		define z_uint8_atomic_get_and_xor Z_COMPILER_FUNCTION(UINT8_ATOMIC_GET_AND_XOR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_NAND_AND_GET)
+#		define z_uint8_atomic_nand_and_get Z_COMPILER_FUNCTION(UINT8_ATOMIC_NAND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_OR_AND_GET)
+#		define z_uint8_atomic_or_and_get Z_COMPILER_FUNCTION(UINT8_ATOMIC_OR_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_SET_IF_EQUAL)
+#		define z_uint8_atomic_set_if_equal Z_COMPILER_FUNCTION(UINT8_ATOMIC_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_SUBTRACT_AND_GET)
+#		define z_uint8_atomic_subtract_and_get Z_COMPILER_FUNCTION(UINT8_ATOMIC_SUBTRACT_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT8_ATOMIC_XOR_AND_GET)
+#		define z_uint8_atomic_xor_and_get Z_COMPILER_FUNCTION(UINT8_ATOMIC_XOR_AND_GET)
+#	endif
+
+#endif
+
+/* MARK: - sint8 */
+
+#ifdef Z_SINT8
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_ADD_AND_GET)
+#		define z_sint8_atomic_add_and_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_ADD_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_AND_AND_GET)
+#		define z_sint8_atomic_and_and_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_AND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_AND_ADD)
+#		define z_sint8_atomic_get_and_add Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_AND_ADD)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_AND_AND)
+#		define z_sint8_atomic_get_and_and Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_AND_AND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_AND_NAND)
+#		define z_sint8_atomic_get_and_nand Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_AND_NAND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_AND_OR)
+#		define z_sint8_atomic_get_and_or Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_AND_OR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_AND_SET_IF_EQUAL)
+#		define z_sint8_atomic_get_and_set_if_equal Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_AND_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_AND_SUBTRACT)
+#		define z_sint8_atomic_get_and_subtract Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_AND_SUBTRACT)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_GET_AND_XOR)
+#		define z_sint8_atomic_get_and_xor Z_COMPILER_FUNCTION(SINT8_ATOMIC_GET_AND_XOR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_NAND_AND_GET)
+#		define z_sint8_atomic_nand_and_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_NAND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_OR_AND_GET)
+#		define z_sint8_atomic_or_and_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_OR_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_SET_IF_EQUAL)
+#		define z_sint8_atomic_set_if_equal Z_COMPILER_FUNCTION(SINT8_ATOMIC_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_SUBTRACT_AND_GET)
+#		define z_sint8_atomic_subtract_and_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_SUBTRACT_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT8_ATOMIC_XOR_AND_GET)
+#		define z_sint8_atomic_xor_and_get Z_COMPILER_FUNCTION(SINT8_ATOMIC_XOR_AND_GET)
+#	endif
+
+#endif
+
+/* MARK: - uint16 */
+
+#ifdef Z_UINT16
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_ADD_AND_GET)
+#		define z_uint16_atomic_add_and_get Z_COMPILER_FUNCTION(UINT16_ATOMIC_ADD_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_AND_AND_GET)
+#		define z_uint16_atomic_and_and_get Z_COMPILER_FUNCTION(UINT16_ATOMIC_AND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_GET_AND_ADD)
+#		define z_uint16_atomic_get_and_add Z_COMPILER_FUNCTION(UINT16_ATOMIC_GET_AND_ADD)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_GET_AND_AND)
+#		define z_uint16_atomic_get_and_and Z_COMPILER_FUNCTION(UINT16_ATOMIC_GET_AND_AND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_GET_AND_NAND)
+#		define z_uint16_atomic_get_and_nand Z_COMPILER_FUNCTION(UINT16_ATOMIC_GET_AND_NAND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_GET_AND_OR)
+#		define z_uint16_atomic_get_and_or Z_COMPILER_FUNCTION(UINT16_ATOMIC_GET_AND_OR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_GET_AND_SET_IF_EQUAL)
+#		define z_uint16_atomic_get_and_set_if_equal Z_COMPILER_FUNCTION(UINT16_ATOMIC_GET_AND_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_GET_AND_SUBTRACT)
+#		define z_uint16_atomic_get_and_subtract Z_COMPILER_FUNCTION(UINT16_ATOMIC_GET_AND_SUBTRACT)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_GET_AND_XOR)
+#		define z_uint16_atomic_get_and_xor Z_COMPILER_FUNCTION(UINT16_ATOMIC_GET_AND_XOR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_NAND_AND_GET)
+#		define z_uint16_atomic_nand_and_get Z_COMPILER_FUNCTION(UINT16_ATOMIC_NAND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_OR_AND_GET)
+#		define z_uint16_atomic_or_and_get Z_COMPILER_FUNCTION(UINT16_ATOMIC_OR_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_SET_IF_EQUAL)
+#		define z_uint16_atomic_set_if_equal Z_COMPILER_FUNCTION(UINT16_ATOMIC_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_SUBTRACT_AND_GET)
+#		define z_uint16_atomic_subtract_and_get Z_COMPILER_FUNCTION(UINT16_ATOMIC_SUBTRACT_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT16_ATOMIC_XOR_AND_GET)
+#		define z_uint16_atomic_xor_and_get Z_COMPILER_FUNCTION(UINT16_ATOMIC_XOR_AND_GET)
+#	endif
+
+#endif
+
+/* MARK: - sint16 */
+
+#ifdef Z_SINT16
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_ADD_AND_GET)
+#		define z_sint16_atomic_add_and_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_ADD_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_AND_AND_GET)
+#		define z_sint16_atomic_and_and_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_AND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_AND_ADD)
+#		define z_sint16_atomic_get_and_add Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_AND_ADD)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_AND_AND)
+#		define z_sint16_atomic_get_and_and Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_AND_AND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_AND_NAND)
+#		define z_sint16_atomic_get_and_nand Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_AND_NAND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_AND_OR)
+#		define z_sint16_atomic_get_and_or Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_AND_OR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_AND_SET_IF_EQUAL)
+#		define z_sint16_atomic_get_and_set_if_equal Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_AND_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_AND_SUBTRACT)
+#		define z_sint16_atomic_get_and_subtract Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_AND_SUBTRACT)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_GET_AND_XOR)
+#		define z_sint16_atomic_get_and_xor Z_COMPILER_FUNCTION(SINT16_ATOMIC_GET_AND_XOR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_NAND_AND_GET)
+#		define z_sint16_atomic_nand_and_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_NAND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_OR_AND_GET)
+#		define z_sint16_atomic_or_and_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_OR_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_SET_IF_EQUAL)
+#		define z_sint16_atomic_set_if_equal Z_COMPILER_FUNCTION(SINT16_ATOMIC_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_SUBTRACT_AND_GET)
+#		define z_sint16_atomic_subtract_and_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_SUBTRACT_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT16_ATOMIC_XOR_AND_GET)
+#		define z_sint16_atomic_xor_and_get Z_COMPILER_FUNCTION(SINT16_ATOMIC_XOR_AND_GET)
+#	endif
+
+#endif
+
+/* MARK: - uint32 */
+
+#ifdef Z_UINT32
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_ADD_AND_GET)
+#		define z_uint32_atomic_add_and_get Z_COMPILER_FUNCTION(UINT32_ATOMIC_ADD_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_AND_AND_GET)
+#		define z_uint32_atomic_and_and_get Z_COMPILER_FUNCTION(UINT32_ATOMIC_AND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_GET_AND_ADD)
+#		define z_uint32_atomic_get_and_add Z_COMPILER_FUNCTION(UINT32_ATOMIC_GET_AND_ADD)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_GET_AND_AND)
+#		define z_uint32_atomic_get_and_and Z_COMPILER_FUNCTION(UINT32_ATOMIC_GET_AND_AND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_GET_AND_NAND)
+#		define z_uint32_atomic_get_and_nand Z_COMPILER_FUNCTION(UINT32_ATOMIC_GET_AND_NAND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_GET_AND_OR)
+#		define z_uint32_atomic_get_and_or Z_COMPILER_FUNCTION(UINT32_ATOMIC_GET_AND_OR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_GET_AND_SET_IF_EQUAL)
+#		define z_uint32_atomic_get_and_set_if_equal Z_COMPILER_FUNCTION(UINT32_ATOMIC_GET_AND_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_GET_AND_SUBTRACT)
+#		define z_uint32_atomic_get_and_subtract Z_COMPILER_FUNCTION(UINT32_ATOMIC_GET_AND_SUBTRACT)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_GET_AND_XOR)
+#		define z_uint32_atomic_get_and_xor Z_COMPILER_FUNCTION(UINT32_ATOMIC_GET_AND_XOR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_NAND_AND_GET)
+#		define z_uint32_atomic_nand_and_get Z_COMPILER_FUNCTION(UINT32_ATOMIC_NAND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_OR_AND_GET)
+#		define z_uint32_atomic_or_and_get Z_COMPILER_FUNCTION(UINT32_ATOMIC_OR_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_SET_IF_EQUAL)
+#		define z_uint32_atomic_set_if_equal Z_COMPILER_FUNCTION(UINT32_ATOMIC_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_SUBTRACT_AND_GET)
+#		define z_uint32_atomic_subtract_and_get Z_COMPILER_FUNCTION(UINT32_ATOMIC_SUBTRACT_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT32_ATOMIC_XOR_AND_GET)
+#		define z_uint32_atomic_xor_and_get Z_COMPILER_FUNCTION(UINT32_ATOMIC_XOR_AND_GET)
+#	endif
+
+#endif
+
+/* MARK: - sint32 */
+
+#ifdef Z_SINT32
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_ADD_AND_GET)
+#		define z_sint32_atomic_add_and_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_ADD_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_AND_AND_GET)
+#		define z_sint32_atomic_and_and_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_AND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_AND_ADD)
+#		define z_sint32_atomic_get_and_add Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_AND_ADD)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_AND_AND)
+#		define z_sint32_atomic_get_and_and Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_AND_AND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_AND_NAND)
+#		define z_sint32_atomic_get_and_nand Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_AND_NAND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_AND_OR)
+#		define z_sint32_atomic_get_and_or Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_AND_OR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_AND_SET_IF_EQUAL)
+#		define z_sint32_atomic_get_and_set_if_equal Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_AND_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_AND_SUBTRACT)
+#		define z_sint32_atomic_get_and_subtract Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_AND_SUBTRACT)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_GET_AND_XOR)
+#		define z_sint32_atomic_get_and_xor Z_COMPILER_FUNCTION(SINT32_ATOMIC_GET_AND_XOR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_NAND_AND_GET)
+#		define z_sint32_atomic_nand_and_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_NAND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_OR_AND_GET)
+#		define z_sint32_atomic_or_and_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_OR_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_SET_IF_EQUAL)
+#		define z_sint32_atomic_set_if_equal Z_COMPILER_FUNCTION(SINT32_ATOMIC_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_SUBTRACT_AND_GET)
+#		define z_sint32_atomic_subtract_and_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_SUBTRACT_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT32_ATOMIC_XOR_AND_GET)
+#		define z_sint32_atomic_xor_and_get Z_COMPILER_FUNCTION(SINT32_ATOMIC_XOR_AND_GET)
+#	endif
+
+#endif
+
+/* MARK: - uint64 */
+
+#ifdef Z_UINT64
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_ADD_AND_GET)
+#		define z_uint64_atomic_add_and_get Z_COMPILER_FUNCTION(UINT64_ATOMIC_ADD_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_AND_AND_GET)
+#		define z_uint64_atomic_and_and_get Z_COMPILER_FUNCTION(UINT64_ATOMIC_AND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_GET_AND_ADD)
+#		define z_uint64_atomic_get_and_add Z_COMPILER_FUNCTION(UINT64_ATOMIC_GET_AND_ADD)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_GET_AND_AND)
+#		define z_uint64_atomic_get_and_and Z_COMPILER_FUNCTION(UINT64_ATOMIC_GET_AND_AND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_GET_AND_NAND)
+#		define z_uint64_atomic_get_and_nand Z_COMPILER_FUNCTION(UINT64_ATOMIC_GET_AND_NAND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_GET_AND_OR)
+#		define z_uint64_atomic_get_and_or Z_COMPILER_FUNCTION(UINT64_ATOMIC_GET_AND_OR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_GET_AND_SET_IF_EQUAL)
+#		define z_uint64_atomic_get_and_set_if_equal Z_COMPILER_FUNCTION(UINT64_ATOMIC_GET_AND_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_GET_AND_SUBTRACT)
+#		define z_uint64_atomic_get_and_subtract Z_COMPILER_FUNCTION(UINT64_ATOMIC_GET_AND_SUBTRACT)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_GET_AND_XOR)
+#		define z_uint64_atomic_get_and_xor Z_COMPILER_FUNCTION(UINT64_ATOMIC_GET_AND_XOR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_NAND_AND_GET)
+#		define z_uint64_atomic_nand_and_get Z_COMPILER_FUNCTION(UINT64_ATOMIC_NAND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_OR_AND_GET)
+#		define z_uint64_atomic_or_and_get Z_COMPILER_FUNCTION(UINT64_ATOMIC_OR_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_SET_IF_EQUAL)
+#		define z_uint64_atomic_set_if_equal Z_COMPILER_FUNCTION(UINT64_ATOMIC_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_SUBTRACT_AND_GET)
+#		define z_uint64_atomic_subtract_and_get Z_COMPILER_FUNCTION(UINT64_ATOMIC_SUBTRACT_AND_GET)
+#	endif
+
+#endif
+
+/* MARK: - sint64 */
+
+#ifdef Z_SINT64
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT64_ATOMIC_XOR_AND_GET)
+#		define z_uint64_atomic_xor_and_get Z_COMPILER_FUNCTION(UINT64_ATOMIC_XOR_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_ADD_AND_GET)
+#		define z_sint64_atomic_add_and_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_ADD_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_AND_AND_GET)
+#		define z_sint64_atomic_and_and_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_AND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_AND_ADD)
+#		define z_sint64_atomic_get_and_add Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_AND_ADD)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_AND_AND)
+#		define z_sint64_atomic_get_and_and Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_AND_AND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_AND_NAND)
+#		define z_sint64_atomic_get_and_nand Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_AND_NAND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_AND_OR)
+#		define z_sint64_atomic_get_and_or Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_AND_OR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_AND_SET_IF_EQUAL)
+#		define z_sint64_atomic_get_and_set_if_equal Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_AND_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_AND_SUBTRACT)
+#		define z_sint64_atomic_get_and_subtract Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_AND_SUBTRACT)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_GET_AND_XOR)
+#		define z_sint64_atomic_get_and_xor Z_COMPILER_FUNCTION(SINT64_ATOMIC_GET_AND_XOR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_NAND_AND_GET)
+#		define z_sint64_atomic_nand_and_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_NAND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_OR_AND_GET)
+#		define z_sint64_atomic_or_and_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_OR_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_SET_IF_EQUAL)
+#		define z_sint64_atomic_set_if_equal Z_COMPILER_FUNCTION(SINT64_ATOMIC_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_SUBTRACT_AND_GET)
+#		define z_sint64_atomic_subtract_and_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_SUBTRACT_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT64_ATOMIC_XOR_AND_GET)
+#		define z_sint64_atomic_xor_and_get Z_COMPILER_FUNCTION(SINT64_ATOMIC_XOR_AND_GET)
+#	endif
+
+#endif
+
+/* MARK: - uint128 */
+
+#ifdef Z_UINT128
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_ADD_AND_GET)
+#		define z_uint128_atomic_add_and_get Z_COMPILER_FUNCTION(UINT128_ATOMIC_ADD_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_AND_AND_GET)
+#		define z_uint128_atomic_and_and_get Z_COMPILER_FUNCTION(UINT128_ATOMIC_AND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_GET_AND_ADD)
+#		define z_uint128_atomic_get_and_add Z_COMPILER_FUNCTION(UINT128_ATOMIC_GET_AND_ADD)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_GET_AND_AND)
+#		define z_uint128_atomic_get_and_and Z_COMPILER_FUNCTION(UINT128_ATOMIC_GET_AND_AND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_GET_AND_NAND)
+#		define z_uint128_atomic_get_and_nand Z_COMPILER_FUNCTION(UINT128_ATOMIC_GET_AND_NAND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_GET_AND_OR)
+#		define z_uint128_atomic_get_and_or Z_COMPILER_FUNCTION(UINT128_ATOMIC_GET_AND_OR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_GET_AND_SET_IF_EQUAL)
+#		define z_uint128_atomic_get_and_set_if_equal Z_COMPILER_FUNCTION(UINT128_ATOMIC_GET_AND_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_GET_AND_SUBTRACT)
+#		define z_uint128_atomic_get_and_subtract Z_COMPILER_FUNCTION(UINT128_ATOMIC_GET_AND_SUBTRACT)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_GET_AND_XOR)
+#		define z_uint128_atomic_get_and_xor Z_COMPILER_FUNCTION(UINT128_ATOMIC_GET_AND_XOR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_NAND_AND_GET)
+#		define z_uint128_atomic_nand_and_get Z_COMPILER_FUNCTION(UINT128_ATOMIC_NAND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_OR_AND_GET)
+#		define z_uint128_atomic_or_and_get Z_COMPILER_FUNCTION(UINT128_ATOMIC_OR_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_SET_IF_EQUAL)
+#		define z_uint128_atomic_set_if_equal Z_COMPILER_FUNCTION(UINT128_ATOMIC_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_SUBTRACT_AND_GET)
+#		define z_uint128_atomic_subtract_and_get Z_COMPILER_FUNCTION(UINT128_ATOMIC_SUBTRACT_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(UINT128_ATOMIC_XOR_AND_GET)
+#		define z_uint128_atomic_xor_and_get Z_COMPILER_FUNCTION(UINT128_ATOMIC_XOR_AND_GET)
+#	endif
+
+#endif
+
+/* MARK: - sint128 */
+
+#ifdef Z_SINT128
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_ADD_AND_GET)
+#		define z_sint128_atomic_add_and_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_ADD_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_AND_AND_GET)
+#		define z_sint128_atomic_and_and_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_AND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_AND_ADD)
+#		define z_sint128_atomic_get_and_add Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_AND_ADD)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_AND_AND)
+#		define z_sint128_atomic_get_and_and Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_AND_AND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_AND_NAND)
+#		define z_sint128_atomic_get_and_nand Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_AND_NAND)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_AND_OR)
+#		define z_sint128_atomic_get_and_or Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_AND_OR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_AND_SET_IF_EQUAL)
+#		define z_sint128_atomic_get_and_set_if_equal Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_AND_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_AND_SUBTRACT)
+#		define z_sint128_atomic_get_and_subtract Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_AND_SUBTRACT)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_GET_AND_XOR)
+#		define z_sint128_atomic_get_and_xor Z_COMPILER_FUNCTION(SINT128_ATOMIC_GET_AND_XOR)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_NAND_AND_GET)
+#		define z_sint128_atomic_nand_and_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_NAND_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_OR_AND_GET)
+#		define z_sint128_atomic_or_and_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_OR_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_SET_IF_EQUAL)
+#		define z_sint128_atomic_set_if_equal Z_COMPILER_FUNCTION(SINT128_ATOMIC_SET_IF_EQUAL)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_SUBTRACT_AND_GET)
+#		define z_sint128_atomic_subtract_and_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_SUBTRACT_AND_GET)
+#	endif
+
+#	if Z_COMPILER_HAS_FUNCTION(SINT128_ATOMIC_XOR_AND_GET)
+#		define z_sint128_atomic_xor_and_get Z_COMPILER_FUNCTION(SINT128_ATOMIC_XOR_AND_GET)
+#	endif
+
+#endif
+
+/* MARK: - Function selectors */
+
+#define z_type_atomic_add_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_add_and_get	     )
+#define z_type_atomic_and_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_and_and_get	     )
+#define z_type_atomic_get_and_add(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_add	     )
+#define z_type_atomic_get_and_and(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_and	     )
+#define z_type_atomic_get_and_nand(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_nand	     )
+#define z_type_atomic_get_and_or(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_or	     )
+#define z_type_atomic_get_and_set_if_equal(TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_set_if_equal)
+#define z_type_atomic_get_and_subtract(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_subtract    )
+#define z_type_atomic_get_and_xor(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_xor	     )
+#define z_type_atomic_nand_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_nand_and_get	     )
+#define z_type_atomic_or_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_or_and_get	     )
+#define z_type_atomic_set_if_equal(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_set_if_equal	     )
+#define z_type_atomic_subtract_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_subtract_and_get    )
+#define z_type_atomic_xor_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_xor_and_get	     )
+
+#endif /* Z_functions_atomic_H */

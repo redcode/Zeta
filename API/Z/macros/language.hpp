@@ -1,26 +1,19 @@
-/* Z Kit - macros/language.hpp
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/macros/language.hpp
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_macros_language_HPP_
-#define _Z_macros_language_HPP_
+#ifndef Z_macros_language_HPP
+#define Z_macros_language_HPP
 
 #include <Z/macros/language.h>
 
-/* MARK: - Attributes */
+// MARK: - Constants
 
-#if Z_COMPILER_HAS_ATTRIBUTE(EBCO)
-#	define Z_EBCO Z_COMPILER_ATTRIBUTE(EBCO)
-#else
-#	define Z_EBCO
-#endif
-
-/* MARK: - Constants */
-
-#if !Z_LANGUAGE_HAS_TYPE(CPP, BOOLEAN)
+#if !Z_DIALECT_HAS_TYPE(CPP98, BOOL)
 #	ifndef true
 #		define true TRUE
 #	endif
@@ -30,17 +23,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 #endif
 
-/* MARK: - Specifiers */
+// MARK: - Specifiers
 
-#if Z_LANGUAGE_HAS_SPECIFIER(CPP, CONSTANT_EXPRESSION)
+#if Z_DIALECT_HAS_SPECIFIER(CPP11, CONSTEXPR)
 #	define Z_CONSTANT constexpr
 #	define Z_CT_CPP11 constexpr
-#else 
-#	define Z_CONSTANT
+#else
+#	define Z_CONSTANT const
 #	define Z_CT_CPP11
 #endif
 
-#if Z_LANGUAGE_HAS(CPP, CPP14_RULES_ON_CONSTANT_EXPRESSION_FUNCTION)
+#if Z_DIALECT_HAS(CPP14, CONSTEXPR_FUNCTION)
 #	define Z_CT_CPP14 constexpr
 #else
 #	define Z_CT_CPP14
@@ -48,34 +41,34 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_CT(CONFORM_TO) Z_CT_##CONFORM_TO Z_INLINE
 
-#if Z_LANGUAGE_HAS_SPECIFIER(CPP, EXPLICIT)
-#	define Z_EXPLICIT explicit
+#if Z_DIALECT_HAS_SPECIFIER(CPP11, FINAL)
+#	define Z_FINAL final
 #else
-#	define Z_EXPLICIT
+#	define Z_FINAL
 #endif
 
-#if Z_LANGUAGE_HAS_SPECIFIER(CPP, NO_EXCEPTION)
-#	define Z_NO_EXCEPTION noexcept
+#if Z_DIALECT_HAS_SPECIFIER(CPP11, NOEXCEPT)
+#	define Z_NOTHROW noexcept
 #else
-#	define Z_NO_EXCEPTION throw()
+#	define Z_NOTHROW throw()
 #endif
 
-/* MARK: - Defaulted functions */
+// MARK: - Defaulted functions
 
 #if	!defined(Z_AVOID_VARIADIC_MACROS) && \
-	(Z_LANGUAGE_HAS(C, VARIADIC_MACRO) || Z_LANGUAGE_HAS(CPP, C99_PREPROCESSOR))
+	(Z_DIALECT_HAS(C99, VARIADIC_MACRO) || Z_DIALECT_HAS(CPP11, C99_PREPROCESSOR))
 
-#	if Z_LANGUAGE_HAS(CPP, DEFAULTED_FUNCTION)
+#	if Z_DIALECT_HAS(CPP11, EXPLICITLY_DEFAULTED_SPECIAL_MEMBER_FUNCTION)
 #		define Z_DEFAULTED(...) = default;
 #	else
 #		define Z_DEFAULTED(...) __VA_ARGS__
 #	endif
 #else
-#	if Z_LANGUAGE_HAS(CPP, DEFAULTED_FUNCTION)
+#	if Z_DIALECT_HAS(CPP11, EXPLICITLY_DEFAULTED_SPECIAL_MEMBER_FUNCTION)
 #		define Z_DEFAULTED(body) = default;
 #	else
 #		define Z_DEFAULTED(body) body
 #	endif
 #endif
 
-#endif // _Z_macros_language_HPP_
+#endif // Z_macros_language_HPP

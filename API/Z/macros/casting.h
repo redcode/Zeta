@@ -1,22 +1,18 @@
-/* Z Kit - macros/casting.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/macros/casting.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef _Z_macros_casting_H_
-#define _Z_macros_casting_H_
+#ifndef Z_macros_casting_H
+#define Z_macros_casting_H
 
-#include <Z/inspection/language.h>
-
-#if	Z_LANGUAGE_HAS(C, ANONYMOUS_UNION	) && \
-	Z_LANGUAGE_HAS(C, COMPOUND_LITERAL	) && \
-	Z_LANGUAGE_HAS(C, DESIGNATED_INITIALIZER)
-
-#	define Z_CAST(to_type, from_type, structure) \
-		((union {to_type to; from_type from;}){.from = structure}).to
-
+#ifdef __cplusplus
+#	define Z_CAST(type) type
+#else
+#	define Z_CAST(type) (type)
 #endif
 
-#endif /* _Z_macros_casting_H_ */
+#endif /* Z_macros_casting_H */

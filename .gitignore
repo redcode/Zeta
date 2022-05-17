@@ -1,4 +1,4 @@
 .directory
 .DS_Store
 Thumbs.db
-documentation
+build/

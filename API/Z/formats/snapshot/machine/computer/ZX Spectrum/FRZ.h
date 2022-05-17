@@ -1,54 +1,68 @@
-/* Z Kit - formats/snapshot/machine/computer/ZX Spectrum/FRZ.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) Dmitriy Zhivilov.
-Copyright (C) Ian Greenway.
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/formats/snapshot/machine/computer/ZX Spectrum/FRZ.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
-.------------------------------.
-| Extensions: frz	       |
-| Endianness: Big	       |
-| Created by: CodeBusters      |
-|    Used by: CBSpeccy [Amiga] |
-'-----------------------------*/
+ _________________________________________________________________
+|								  |
+|	 Daft: Public.Snapshot.Computer.ZXSpectrum.FRZ		  |
+|     Authors: Code Busters (Iwamoto, Max - alias Rst7)		  |
+|  Extensions: .frz						  |
+|  Endianness: Big						  |
+|    Supports: ZX Spectrum + 128K				  |
+|     Used by: CBSpeccy (AmigaOS)				  |
+|	       <http://www.neworder.spb.ru/cbspeccy/>		  |
+|								  |
+|  Reference:							  |
+|  [MAME sources]/src/mame/machine/spec_snqk.cpp		  |
+|								  |
+|  Special thanks to Dmitriy Zhivilov and Ian Greenway, who       |
+|  reverse-engineered and shared the description of this format.  |
+|								  |
+'================================================================*/
 
-#ifndef _Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_
-#define _Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_
+#ifndef Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H
+#define Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H
 
-#include <Z/types/base.h>
+#include <Z/types/bitwise.h>
+#include <Z/hardware/machine/computer/ZX Spectrum.h>
 
-Z_DEFINE_STRICT_STRUCTURE_BEGIN
-	zuint8	zero_0;
-	zuint8	port_7ffd_value;
-	Z16Bit	hl_, hl, de_, de, bc_, bc, af_, af;
-	zuint8	disk_and_t_states[7];
-	zuint8	r;
-	zuint16 pc, sp;
-	zuint8	i;
-	zuint8	reserved; /* Must be FFh */
-	zuint8	zero_1;
-	zuint8	im;
-	zuint8	zero_2[3];
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+	zuint8 zero_0;
 
-	struct {Z_BIT_FIELD(8, 3) (
-		zuint8 unused1 :5,
-		zuint8 iff1    :1,
-		zuint8 unused2 :2
-	)} interrupt;
+	Z_ZXSpectrumPlus128KBankSwitch bank_switch;
 
-	Z16Bit	iy, ix;
+	ZInt16 hl_, hl, de_, de, bc_, bc, af_, af;
+	zuint8 disk_and_t_states[7];
+	zuint8 r;
+	ZInt16 pc, sp;
+	zuint8 i;
+	zuint8 reserved; /* must be FFh */
+	zuint8 zero_1;
+	zuint8 im;
+	zuint8 zero_2[3];
 
-	struct {zuint8 bank_5[1024 * 16];
-		zuint8 bank_2[1024 * 16];
-		zuint8 bank_0[1024 * 16];
-		zuint8 bank_1[1024 * 16];
-		zuint8 bank_3[1024 * 16];
-		zuint8 bank_4[1024 * 16];
-		zuint8 bank_6[1024 * 16];
-		zuint8 bank_7[1024 * 16];
-	} ram;
-Z_DEFINE_STRICT_STRUCTURE_END ZFRZ;
+	union {	zuint8 value;
+		struct {Z_BIT_FIELD(8, 3) (
+			zuint8 unused_1 :5,
+			zuint8 iff1	:1,
+			zuint8 unused_0 :2
+		)} fields;
+	} interrupt;
 
-#endif /* _Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H_ */
+	ZInt16 iy, ix;
+
+	zuint8 ram_bank_5[Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK];
+	zuint8 ram_bank_2[Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK];
+	zuint8 ram_bank_0[Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK];
+	zuint8 ram_bank_1[Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK];
+	zuint8 ram_bank_3[Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK];
+	zuint8 ram_bank_4[Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK];
+	zuint8 ram_bank_6[Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK];
+	zuint8 ram_bank_7[Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK];
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_FRZ);
+
+#endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_FRZ_H */

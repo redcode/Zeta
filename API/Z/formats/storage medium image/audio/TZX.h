@@ -1,22 +1,20 @@
-/* Z Kit - formats/storage medium image/audio/TZX.h
- _____  _______________
-/_   /_/  -_/_   _/  _ |
- /____/\___/ /__//___/_| Kit
-Copyright (C) Tomaz Kac.
-Copyright (C) Martijn van der Heide.
-Copyright (C) Ramsoft.
-Copyright (C) 2006-2018 Manuel Sainz de Baranda y Goñi.
+/* Zeta API - Z/formats/storage medium image/audio/TZX.h
+ ______ ____________  ___
+|__   /|  ___|__  __|/   \
+  /  /_|  __|  |  | /  *  \
+ /_____|_____| |__|/__/ \__\
+Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
 .------------------------------------------------------------------------------.
-| Extensions: tzx, cdt							       |
+| Extensions: .tzx, .cdt						       |
 | Endianness: Little							       |
-| Created by: Tomaz Kac							       |
-|    Used by: Many programs						       |
-|  Reference: http://www.worldofspectrum.org/TZXformat.html		       |
+| Created by: Kac, Tomaz						       |
+|  Reference: <http://www.worldofspectrum.org/TZXformat.html>		       |
 |									       |
-| 1) Introduction							       |
-| ---------------							       |
+|									       |
+| 1. Introduction							       |
+| ===============							       |
 |									       |
 | TZX is a file format designed to preserve all (hopefully) of the tapes with  |
 | turbo or custom loading routines. Even though some of the newer and smarter  |
@@ -34,7 +32,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 | Martijn van der Heide's 'World of Spectrum': http://www.worldofspectrum.org  |
 |									       |
 | The format was first started off by Tomaz Kac who was maintainer until       |
-| revision 1.13, and then passed to Martijn v.d. Heide. After that, Ramsoft    |
+| revision v1.13, and then passed to Martijn v.d. Heide. After that, Ramsoft   |
 | were the maintainers for a brief period during which the v1.20 revision was  |
 | put together. If you have any questions about the format, visit the forums   |
 | at World of Spectrum and ask.						       |
@@ -43,10 +41,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 | change in the future. Amstrad CPC files should use the extension "CDT" to    |
 | distinguish them from the ZX Spectrum files.				       |
 |									       |
-| 2) Rules and definitions						       |
-| ------------------------						       |
 |									       |
-| - Any value requiring more than one byte is stored in little endian-format.  |
+| 2. Rules and definitions						       |
+| ========================						       |
+|									       |
+| - Any value requiring more than one byte is stored in little endian-format   |
+|   (i.e. LSB first).							       |
 |									       |
 | - All unused bits should be set to zero.				       |
 |									       |
@@ -95,8 +95,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 |   not include these 4 bytes). This should enable programs that can only      |
 |   handle older versions to skip that block.				       |
 |									       |
-| 3) Fields common to more than 1 type of block				       |
-| ---------------------------------------------				       |
+|									       |
+| 3. Fields common to more than 1 type of block				       |
+| =============================================				       |
 |									       |
 | block_size								       |
 |   The size (in bytes) of the whole block (without this field).	       |
@@ -124,64 +125,73 @@ Released under the terms of the GNU Lesser General Public License v3.
 |   all bits in the data byte XORed with the value in this field as the start  |
 |   value.								       |
 |									       |
-| 4) Version history							       |
-| ------------------							       |
+|									       |
+| 4. REVISION HISTORY							       |
+| -------------------							       |
 |									       |
 | v1.20 (2006-12-19)							       |
 |									       |
-|   - The following blocks have been deprecated and should not appear in TZX   |
-|     files v1.20 and above: 16h, 17h, 34h, 40h. Their IDs are now reserved.   |
-|     All Custom information (block ID 35h) types standardized up to v1.13 are |
-|     now deprecated.							       |
-|   - The following new blocks have been introduced: 18h, 19h, 2Bh.	       |
-|     Newly added blocks follow the general extension rule.		       |
-|   - Added new entries to the hardware ID list: 00h/1Eh-2Dh, 01h/12h-17h,     |
-|     02h/06h-0Ah, 03h/06h-0Ch, 06h/03h, 0Bh/03h, 10h/00h-03h.		       |
+| Changes:								       |
+| 1. The following blocks have been deprecated and should not appear in TZX    |
+|    files v1.20 and above: 16h, 17h, 34h, 40h. Their IDs are now reserved.    |
+|    All Custom information (block ID 35h) types standardized up to v1.13 are  |
+|    now deprecated.							       |
+| 2. The following new blocks have been introduced: 18h, 19h, 2Bh.	       |
+|    Newly added blocks follow the general extension rule.		       |
+| 3. Added new entries to the hardware ID list: 00h/1Eh-2Dh, 01h/12h-17h,      |
+|    02h/06h-0Ah, 03h/06h-0Ch, 06h/03h, 0Bh/03h, 10h/00h-03h.		       |
 |									       |
 | v1.13 (1998-11-02)							       |
 |									       |
-|   - The following new blocks have been introduced: 16h, 17h.		       |
-|   - Added new entries to the hardware ID list: 00h/1Ch,1Dh.		       |
+| Changes:								       |
+| 1. The following new blocks have been introduced: 16h, 17h.		       |
+| 2. Added new entries to the hardware ID list: 00h/1Ch,1Dh.		       |
 |									       |
 | v1.12									       |
 |									       |
-|   - Added the following fields to the block ID 32h: 05h-08h.		       |
-|   - Added two new types of 'Custom Information' (ID 35h) block:	       |
-|       'ZX-Edit document' - for .ZED files generated by the great ZX-Editor!  |
-|       'Picture' - for .GIF and .JPEG (.JPG) pictures.			       |
-|   - Added new entries to the hardware ID list: 00h/1Ah,1Bh.		       |
+| Changes:								       |
+| 1. Added the following fields to the block ID 32h: 05h-08h.		       |
+| 2. Added two new types of 'Custom Information' (ID 35h) block:	       |
+|     'ZX-Edit document' - for .ZED files generated by the great ZX-Editor!    |
+|     'Picture' - for .GIF and .JPEG (.JPG) pictures.			       |
+| 3. Added new entries to the hardware ID list: 00h/1Ah,1Bh.		       |
 |									       |
 | v1.10									       |
 |									       |
-|   - The following new blocks have been introduced: 24h, 25h, 26h, 27h, 28h,  |
-|     40h.								       |
-|   - Allowed multiple lines in the block ID 32h. Also added field 04h.	       |
-|   - First three types of 'Custom information' (ID 35h) block standardized:   |
-|     'POKEs', 'Instructions' and 'Screen'.				       |
+| Changes:								       |
+| 1. The following new blocks have been introduced: 24h, 25h, 26h, 27h, 28h,   |
+|    40h.								       |
+| 2. Allowed multiple lines in the block ID 32h. Also added field 04h.	       |
+| 3. First three types of 'Custom information' (ID 35h) block standardized:    |
+|    'POKEs', 'Instructions' and 'Screen'.				       |
 |									       |
 | v1.02									       |
 |									       |
-|   - Added new entries to the hardware ID list: 00h/15h-19h.		       |
+| Changes:								       |
+| 1. Added new entries to the hardware ID list: 00h/15h-19h.		       |
 |									       |
 | v1.01									       |
 |									       |
-|   - The Length of ASCII content ID in 'Custom Information' (ID 35h) block    |
-|     should be 16 and not 15 bytes - even Tomaz Kac doesn't remember if it    |
-|     concerns only documentation or also the implementation; to be sure       |
-|     consider the block ID 35h as newly added in v1.01.		       |
+| Changes:								       |
+| 1. The Length of ASCII content ID in 'Custom Information' (ID 35h) block     |
+|    should be 16 and not 15 bytes - even Tomaz Kac doesn't remember if it     |
+|    concerns only documentation or also the implementation; to be sure        |
+|    consider the block ID 35h as newly added in v1.01.			       |
 |									       |
 | v1.00									       |
 |									       |
-|   - Initial version.							       |
-'-----------------------------------------------------------------------------*/
+| Initial version.							       |
+'=============================================================================*/
 
-#ifndef _Z_formats_storage_medium_image_audio_TZX_H_
-#define _Z_formats_storage_medium_image_audio_TZX_H_
+#ifndef Z_formats_storage_medium_image_audio_TZX_H
+#define Z_formats_storage_medium_image_audio_TZX_H
 
-#include <Z/types/base.h>
+#include <Z/macros/language.h>
+#include <Z/macros/aggregate.h>
+#include <Z/types/integral.h>
 
-/* MARK: - File Header
-.------------------------------------------------------------------------------.
+/* MARK: - File Header */
+/*-----------------------------------------------------------------------------.
 | The file is identified with the first 8 bytes being 'ZXTape!' plus the EOF   |
 | byte 26 (1Ah). This is followed by two bytes containing the major and minor  |
 | version numbers.							       |
@@ -193,74 +203,76 @@ Released under the terms of the GNU Lesser General Public License v3.
 |									       |
 | Then the main body of the file follows. It consists of a mixture of blocks,  |
 | each preceded and identified by an ID byte.				       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 signature[7]; /* 'ZXTape!' */
 	zuint8 eof_marker;   /* 1Ah	  */
 	zuint8 major_version;
 	zuint8 minor_version;
-) ZTZXHeader;
+}, Z_TZXHeader);
 
 /* MARK: - Block ID */
 
-typedef zuint8 ZTZXBlockID;
+typedef zuint8 Z_TZXBlockID;
 
-#define Z_TZX_BLOCK_ID_STANDARD_SPEED_DATA   0x10
-#define Z_TZX_BLOCK_ID_TURBO_SPEED_DATA	     0x11
-#define Z_TZX_BLOCK_ID_PURE_TONE	     0x12
-#define Z_TZX_BLOCK_ID_PULSE_SEQUENCE	     0x13
-#define Z_TZX_BLOCK_ID_PURE_DATA	     0x14
-#define Z_TZX_BLOCK_ID_DIRECT_RECORDING	     0x15
-#define Z_TZX_BLOCK_ID_C64_ROM_TYPE_DATA     0x16 /* Added in v1.13, deprecated in v1.20 */
-#define Z_TZX_BLOCK_ID_C64_TURBO_TAPE_DATA   0x17 /* Added in v1.13, deprecated in v1.20 */
-#define Z_TZX_BLOCK_ID_CSW_RECORDING	     0x18 /* Added in v1.20 */
-#define Z_TZX_BLOCK_ID_GENERALIZED_DATA	     0x19 /* Added in v1.20 */
-#define Z_TZX_BLOCK_ID_PAUSE		     0x20
-#define Z_TZX_BLOCK_ID_GROUP_START	     0x21
-#define Z_TZX_BLOCK_ID_GROUP_END	     0x22
-#define Z_TZX_BLOCK_ID_JUMP		     0x23
-#define Z_TZX_BLOCK_ID_LOOP_START	     0x24 /* Added in v1.10 */
-#define Z_TZX_BLOCK_ID_LOOP_END		     0x25 /* Added in v1.10 */
-#define Z_TZX_BLOCK_ID_CALL_SEQUENCE	     0x26 /* Added in v1.10 */
-#define Z_TZX_BLOCK_ID_RETURN		     0x27 /* Added in v1.10 */
-#define Z_TZX_BLOCK_ID_SELECT		     0x28 /* Added in v1.10 */
-#define Z_TZX_BLOCK_ID_STOP_IF_48K	     0x2A
-#define Z_TZX_BLOCK_ID_SET_SIGNAL_LEVEL	     0x2B /* Added in v1.20 */
-#define Z_TZX_BLOCK_ID_SECTION_DESCRIPTION   0x30
-#define Z_TZX_BLOCK_ID_MESSAGE		     0x31
-#define Z_TZX_BLOCK_ID_INFORMATION	     0x32
-#define Z_TZX_BLOCK_ID_HARDWARE_INFORMATION  0x33
-#define Z_TZX_BLOCK_ID_EMULATION_INFORMATION 0x34 /* Deprecated in v1.20 */
-#define Z_TZX_BLOCK_ID_CUSTOM_INFORMATION    0x35 /* "Added" in v1.01, deprecated in v1.20 */
-#define Z_TZX_BLOCK_ID_SNAPSHOT		     0x40 /* Added in v1.10, deprecated in v1.20 */
-#define Z_TZX_BLOCK_ID_GLUE		     0x5A
+#define Z_TZX_BLOCK_ID_STD_SPEED_DATA	   0x10
+#define Z_TZX_BLOCK_ID_TURBO_SPEED_DATA	   0x11
+#define Z_TZX_BLOCK_ID_PURE_TONE	   0x12
+#define Z_TZX_BLOCK_ID_PULSE_SEQUENCE	   0x13
+#define Z_TZX_BLOCK_ID_PURE_DATA	   0x14
+#define Z_TZX_BLOCK_ID_DIRECT_RECORDING	   0x15
+#define Z_TZX_BLOCK_ID_C64_ROM_TYPE_DATA   0x16 /* added in v1.13, deprecated in v1.20 */
+#define Z_TZX_BLOCK_ID_C64_TURBO_TAPE_DATA 0x17 /* added in v1.13, deprecated in v1.20 */
+#define Z_TZX_BLOCK_ID_CSW_RECORDING	   0x18 /* added in v1.20 */
+#define Z_TZX_BLOCK_ID_GENERALIZED_DATA	   0x19 /* added in v1.20 */
+#define Z_TZX_BLOCK_ID_PAUSE		   0x20
+#define Z_TZX_BLOCK_ID_GROUP_START	   0x21
+#define Z_TZX_BLOCK_ID_GROUP_END	   0x22
+#define Z_TZX_BLOCK_ID_JUMP		   0x23
+#define Z_TZX_BLOCK_ID_LOOP_START	   0x24 /* added in v1.10 */
+#define Z_TZX_BLOCK_ID_LOOP_END		   0x25 /* added in v1.10 */
+#define Z_TZX_BLOCK_ID_CALL_SEQUENCE	   0x26 /* added in v1.10 */
+#define Z_TZX_BLOCK_ID_RETURN		   0x27 /* added in v1.10 */
+#define Z_TZX_BLOCK_ID_SELECT		   0x28 /* added in v1.10 */
+#define Z_TZX_BLOCK_ID_STOP_IF_48K	   0x2A
+#define Z_TZX_BLOCK_ID_SET_SIGNAL_LEVEL	   0x2B /* added in v1.20 */
+#define Z_TZX_BLOCK_ID_SECTION_DESCRIPTION 0x30
+#define Z_TZX_BLOCK_ID_MESSAGE		   0x31
+#define Z_TZX_BLOCK_ID_INFO		   0x32
+#define Z_TZX_BLOCK_ID_HARDWARE_INFO	   0x33
+#define Z_TZX_BLOCK_ID_EMULATION_INFO	   0x34 /* deprecated in v1.20 */
+#define Z_TZX_BLOCK_ID_CUSTOM_INFO	   0x35 /* "added" in v1.01, deprecated in v1.20 */
+#define Z_TZX_BLOCK_ID_SNAPSHOT		   0x40 /* added in v1.10, deprecated in v1.20 */
+#define Z_TZX_BLOCK_ID_GLUE		   0x5A
 
-/* MARK: - ID 10h - Standard Speed Data
-.------------------------------------------------------------------------------.
+/* MARK: - ID 10h - Standard Speed Data */
+/*-----------------------------------------------------------------------------.
 | This block must be played using the standard Spectrum ROM timings (see the   |
 | values in curly brackets in block ID 11). The initial pilot tone consists in |
 | 8063 pulses if the first data byte (flag byte) is < 128, 3223 otherwise.     |
 | This block can be used for the ROM loading routines and for custom loading   |
 | routines that use the same timings as ROM ones do.			       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint16 pause_duration_ms;
 	zuint16 data_size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
-) ZTZXStandardSpeedData;
+	Z_FAM(zuint8 data[];)
+}, Z_TZXStdSpeedData);
 
-/* MARK: - ID 11h - Turbo Speed Data
-.------------------------------------------------------------------------------.
+/* MARK: - ID 11h - Turbo Speed Data */
+/*-----------------------------------------------------------------------------.
 | This block is very similar to the normal TAP block but with some additional  |
 | information on the timings and other important differences. The same tape    |
 | encoding is used as for the standard speed data block. If a block should use |
 | some non-standard sync or pilot tones (i.e. all sorts of protection schemes) |
 | then use the next three blocks to describe it.			       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint16 cycles_per_pilot_pulse;	    /* {2168} */
 	zuint16 cycles_per_sync_high_pulse; /* {667}  */
 	zuint16 cycles_per_sync_low_pulse;  /* {735}  */
@@ -270,50 +282,53 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	last_byte_bit_count;
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
-) ZTZXTurboSpeedData;
+	Z_FAM(zuint8 data[];)
+}, Z_TZXTurboSpeedData);
 
-/* MARK: - ID 12h - Pure Tone
-.----------------------------------------------------------------------------.
+/* MARK: - ID 12h - Pure Tone */
+/*---------------------------------------------------------------------------.
 | This will produce a tone which is basically the same as the pilot tone in  |
 | the ID 10, ID 11 blocks. You can define how long the pulse is and how many |
 | pulses are in the tone.						     |
-'---------------------------------------------------------------------------*/
+'===========================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint16 cycles_per_pulse;
 	zuint16 pulse_count;
-) ZTZXPureTone;
+}, Z_TZXPureTone);
 
-/* MARK: - ID 13h - Pulse Sequence
-.------------------------------------------------------------------------------.
+/* MARK: - ID 13h - Pulse Sequence */
+/*-----------------------------------------------------------------------------.
 | This will produce N pulses, each having its own timing. Up to 255 pulses can |
 | be stored in this block; this is useful for non-standard sync tones used by  |
 | some protection schemes.						       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8 block_id;
 	zuint8 pulse_count;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint16 pulse_cycles[];)
-) ZTZXPulseSequence;
+	Z_FAM(zuint16 pulse_cycles[];)
+}, Z_TZXPulseSequence);
 
-/* MARK: - ID 14h - Pure Data
-.------------------------------------------------------------------------------.
+/* MARK: - ID 14h - Pure Data */
+/*-----------------------------------------------------------------------------.
 | This is the same as in the turbo loading data block (ID 11h), except that it |
 | has no pilot or sync pulses.						       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint16 cycles_per_bit_0_pulse;
 	zuint16 cycles_per_bit_1_pulse;
 	zuint8	last_byte_bit_count;
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
-) ZTZXPureData;
+	Z_FAM(zuint8 data[];)
+}, Z_TZXPureData);
 
-/* MARK: - ID 15h - Direct Recording
-.------------------------------------------------------------------------------.
+/* MARK: - ID 15h - Direct Recording */
+/*-----------------------------------------------------------------------------.
 | This block is used for tapes which have some parts in a format such that the |
 | turbo loader block cannot be used. This is not like a VOC file, since the    |
 | information is much more compact. Each sample value is represented by one    |
@@ -328,19 +343,20 @@ Z_DEFINE_STRICT_STRUCTURE (
 | ensure correct playback when using modern soundcards.			       |
 |									       |
 | If you can, don't use other sampling frequencies and only use this block if  |
-| you can not use any other one.					       |
-'-----------------------------------------------------------------------------*/
+| you cannot use any other one.					       |
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint16 cycles_per_pulse;
 	zuint16 pause_duration_ms;
 	zuint8	last_byte_bit_count;
 	zuint8	data_size[3];
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
-) ZTZXDirectRecording;
+	Z_FAM(zuint8 data[];)
+}, Z_TZXDirectRecording);
 
-/* MARK: - ID 16h - C64 ROM Type Data (Added in v1.13, deprecated in v1.20)
-.------------------------------------------------------------------------------.
+/* MARK: - ID 16h - C64 ROM Type Data (added in v1.13, deprecated in v1.20) */
+/*-----------------------------------------------------------------------------.
 | This block was created to support the Commodore 64 standard ROM and similar  |
 | tape blocks. It is made so basically anything that uses two or four pulses   |
 | (which are the same in pairs) per bit can be written with it.		       |
@@ -370,9 +386,10 @@ Z_DEFINE_STRICT_STRUCTURE (
 |									       |
 | - When all the data has finished there is an optional trailing tone, which   |
 |   is standard for the repeated blocks in the Commodore 64 ROM Loader.	       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+	zuint8	block_id;
 	zuint32 block_size;
 	zuint16 cycles_per_pilot_pulse;		   /*  [616] */
 	zuint16 pilot_wave_count;
@@ -398,8 +415,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
-) ZTZXC64ROMTypeData;
+	Z_FAM(zuint8 data[];)
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_TZXC64ROMTypeData);
 
 #define Z_TZX_C64_XOR_CHECKSUM_BIT_START_WITH_0 0x00
 #define Z_TZX_C64_XOR_CHECKSUM_BIT_START_WITH_1 0x01
@@ -408,8 +425,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_C64_DATA_BIT_ORDER_LSB 0 /* LSB first */
 #define Z_TZX_C64_DATA_BIT_ORDER_MSB 1 /* MSB first */
 
-/* MARK: - ID 17h - C64 Turbo Tape Data (Added in v1.13, deprecated in v1.20)
-.------------------------------------------------------------------------------.
+/* MARK: - ID 17h - C64 Turbo Tape Data (added in v1.13, deprecated in v1.20) */
+/*-----------------------------------------------------------------------------.
 | This block is made to support another type of encoding that is commonly used |
 | by the Commodore 64. Most of the commercial software uses this encoding,     |
 | i.e. the pilot tone is not made from one type of wave only, but it is made   |
@@ -427,9 +444,10 @@ Z_DEFINE_STRICT_STRUCTURE (
 |    3) Padding bits (only if padding position is AFTER)		       |
 | 3) Trailing bytes							       |
 | 4) Pause								       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+	zuint8	block_id;
 	zuint32 block_size;
 	zuint16 cycles_per_bit_0_pulse;
 	zuint16 cycles_per_bit_1_pulse;
@@ -454,35 +472,36 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	trailing_byte;
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
-) ZTZXC64TurboTapeData;
+	Z_FAM(zuint8 data[];)
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_TZXC64TurboTapeData);
 
 #define Z_TZX_C64_PADDING_BITS_POSITION_BEFORE 0
 #define Z_TZX_C64_PADDING_BITS_POSITION_AFTER  1
 
-/* MARK: - ID 18h - CSW Recording (Added in v1.20)
-.------------------------------------------------------------------------------.
+/* MARK: - ID 18h - CSW Recording (added in v1.20) */
+/*-----------------------------------------------------------------------------.
 | This block contains a sequence of raw pulses encoded in CSW format v2. See   |
 | details of this format in <Z/formats/audio/CSW.h>			       |
 |									       |
 | The 'current pulse level' after playing this type of block is the last level |
 | played.								       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint32 block_size;
 	zuint16 pause_duration_ms;
 	zuint8	sampling_rate[3];
 	zuint8	compression_type;
 	zuint32 pulse_count; /* After decompression, for validation purposes */
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 csw_data[];)
-) ZTZXCSWRecording;
+	Z_FAM(zuint8 csw_data[];)
+}, Z_TZXCSWRecording);
 
 #define Z_TZX_CSW_COMPRESSION_TYPE_RLE	 1
 #define Z_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
 
-/* MARK: - ID 19h - Generalized Data (Added in v1.20)
-.------------------------------------------------------------------------------.
+/* MARK: - ID 19h - Generalized Data (added in v1.20) */
+/*-----------------------------------------------------------------------------.
 | This block has been specifically developed to represent an extremely wide    |
 | range of data encoding techniques. The basic idea is that each loading       |
 | component (pilot tone, sync, data) is associated to a specific sequence of   |
@@ -500,9 +519,10 @@ Z_DEFINE_STRICT_STRUCTURE (
 | encoding them with four distinct pulse lengths: this loader would have a     |
 | symbols definition table of four symbols, each associated to a specific      |
 | sequence of pulses (wave).						       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint32 block_size;
 	zuint16 pause_duration_ms;
 	zuint32 pilot_sync_symbol_count;
@@ -515,12 +535,12 @@ Z_DEFINE_STRICT_STRUCTURE (
 	/* Pilot/sync stream		       */
 	/* Data symbols definition table       */
 	/* Data stream			       */
-) ZTZXGeneralizedData;
+}, Z_TZXGeneralizedData);
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 polarity;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint16 pulse_durations[];)
-) ZTZXSymbolDefinition;
+	Z_FAM(zuint16 pulse_durations[];)
+}, Z_TZXSymbolDefinition);
 
 #define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_OPPOSITE 0
 #define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT  1
@@ -535,14 +555,16 @@ Z_DEFINE_STRICT_STRUCTURE (
 | Each symbol in the data stream is represented by a string of NB bits of the |
 | block data, where NB = ceil(log2(ASD)). Thus the length of the whole data   |
 | stream in bits is NB * TOTD, or in bytes DS = ceil(NB * TOTD / 8).	      |
-'----------------------------------------------------------------------------*/
+'============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8	symbol;
 	zuint16 repetitions;
-) ZTZXPulseRLE;
+}, Z_TZXPulseRLE);
 
-/* MARK: EXAMPLE
+/* MARK: EXAMPLE */
+
+/*
 A typical Spectrum's standard loading header can be represented like this:
 
 Offset	   Value			Description
@@ -573,40 +595,41 @@ Offset	   Value			Description
 | 22 | (0, 855, 855)   | Data symbol definitions		      |
 |    | (0, 1710, 1710) |					      |
 |----+-----------------+----------------------------------------------|
-| 2C | 00000000b (00h) |- Loading flag (00h = header)		      |
-|    | 00000011b (03h) |- Data type (03h = "Bytes:")		      |
-|    | 01001010b (4Ah) |\					      |
-|    | 01010000b (50h) | |					      |
-|    | 01010011b (53h) | |					      |
-|    | 01010000b (50h) | |					      |
-|    | 00100000b (20h) | | File name ("JPSP")			      |
-|    | 00100000b (20h) | |					      |
-|    | 00100000b (20h) | |					      |
-|    | 00100000b (20h) | |					      |
-|    | 00100000b (20h) | |					      |
-|    | 00100000b (20h) |/					      |
-|    | 00000000b (00h) |\ Data length				      |
-|    | 00011011b (1Bh) |/					      |
-|    | 00000000b (00h) |\ Start address				      |
-|    | 01000000b (40h) |/					      |
-|    | 00000000b (00h) |\ Autostart (no meaning here)		      |
-|    | 10000000b (80h) |/					      |
-|    | 11000001b (C1h) |- Checksum				      |
-'--------------------------------------------------------------------*/
+| 2C | 00000000b (00h) --- Loading flag (00h = header)		      |
+|    | 00000011b (03h) --- Data type (03h = "Bytes:")		      |
+|    | 01001010b (4Ah) -.					      |
+|    | 01010000b (50h)  |					      |
+|    | 01010011b (53h)  |					      |
+|    | 01010000b (50h)  |					      |
+|    | 00100000b (20h)  |- File name ("JPSP")			      |
+|    | 00100000b (20h)  |					      |
+|    | 00100000b (20h)  |					      |
+|    | 00100000b (20h)  |					      |
+|    | 00100000b (20h)  |					      |
+|    | 00100000b (20h) -'					      |
+|    | 00000000b (00h) \__ Data length				      |
+|    | 00011011b (1Bh) /					      |
+|    | 00000000b (00h) \__ Start address			      |
+|    | 01000000b (40h) /					      |
+|    | 00000000b (00h) \__ Autostart (no meaning here)		      |
+|    | 10000000b (80h) /					      |
+|    | 11000001b (C1h) --- Checksum				      |
+'====================================================================*/
 
-/* MARK: - ID 20h - Pause (Silence) or 'Stop the Tape' Command
-.------------------------------------------------------------------------------.
+/* MARK: - ID 20h - Pause (Silence) or 'Stop the Tape' Command */
+/*-----------------------------------------------------------------------------.
 | This will make a silence (LOW pulses) for a given time. If the duration is 0 |
 | then the emulator or utility should (in effect) STOP THE TAPE, i.e. should   |
 | not continue loading until the user or emulator requests it.		       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint16 duration_ms;
-) ZTZXPause;
+}, Z_TZXPause);
 
-/* MARK: - ID 21h - Group Start
-.-----------------------------------------------------------------------------.
+/* MARK: - ID 21h - Group Start */
+/*----------------------------------------------------------------------------.
 | This block marks the start of a group of blocks which are to be treated as  |
 | one single (composite) block. This is very handy for tapes that use lots of |
 | blocks like Bleepload (which may well have over 160 custom loading blocks). |
@@ -616,20 +639,21 @@ Z_DEFINE_STRICT_STRUCTURE (
 | groups is not allowed.						      |
 |									      |
 | Please keep the group name under 30 characters long.			      |
-'----------------------------------------------------------------------------*/
+'============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8 block_id;
 	zuint8 name_size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 name[];)
-) ZTZXGroupStart;
+	Z_FAM(zuint8 name[];)
+}, Z_TZXGroupStart);
 
-/* MARK: - ID 22h - Group End
-.------------------------------------------------------------.
+/* MARK: - ID 22h - Group End */
+/*-----------------------------------------------------------.
 | This indicates the end of a group. This block has no body. |
-'-----------------------------------------------------------*/
+'===========================================================*/
 
-/* MARK: - ID 23h - Jump
-.---------------------------------------------------------------------.
+/* MARK: - ID 23h - Jump */
+/*--------------------------------------------------------------------.
 | This block will enable you to jump from one block to another within |
 | the file. Some examples:					      |
 |								      |
@@ -639,36 +663,38 @@ Z_DEFINE_STRICT_STRUCTURE (
 | Jump -1 = 'Go to the previous block'				      |
 |								      |
 | All blocks are included in the block count!			      |
-'--------------------------------------------------------------------*/
+'====================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zsint16 relative_offset;
-) ZTZXJump;
+}, Z_TZXJump);
 
-/* MARK: - ID 24h - Loop Start (Added in v1.10)
-.------------------------------------------------------------------------------.
+/* MARK: - ID 24h - Loop Start (added in v1.10) */
+/*-----------------------------------------------------------------------------.
 | If you have a sequence of identical blocks or groups of blocks, you can use  |
 | this block to tell how many times they should be repeated. This block is the |
 | same as the FOR statement in BASIC.					       |
 |									       |
 | For simplicity reasons don't nest loop blocks!			       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint16 count; /* Greater than 1 */
-) ZTZXLoopStart;
+}, Z_TZXLoopStart);
 
-/* MARK: - ID 25h - Loop End (Added in v1.10)
-.------------------------------------------------------------------------------.
+/* MARK: - ID 25h - Loop End (added in v1.10) */
+/*-----------------------------------------------------------------------------.
 | This is the same as BASIC's NEXT statement. It means that the utility should |
 | jump back to the start of the loop if it hasn't been run for the specified   |
 | number of times.							       |
 |									       |
 | This block has no body.						       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-/* MARK: - ID 26h - Call Sequence (Added in v1.10)
-.------------------------------------------------------------------------------.
+/* MARK: - ID 26h - Call Sequence (added in v1.10) */
+/*-----------------------------------------------------------------------------.
 | This block is an analogue of the CALL Subroutine statement. It basically     |
 | executes a sequence of blocks that are somewhere else and then goes back to  |
 | the next block. Because more than one call can be normally used you can      |
@@ -678,24 +704,25 @@ Z_DEFINE_STRICT_STRUCTURE (
 | the obvious reasons: so that you can add some blocks in the beginning of the |
 | file without disturbing the call values. Please take a look at block ID 23h  |
 | for reference on the values.						       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint16 count;
-	Z_FLEXIBLE_ARRAY_MEMBER(zsint16 relative_offsets[];)
-) ZTZXCallSequence;
+	Z_FAM(zsint16 relative_offsets[];)
+}, Z_TZXCallSequence);
 
-/* MARK: - ID 27h - Return (Added in v1.10)
-.----------------------------------------------------------------------------.
+/* MARK: - ID 27h - Return (added in v1.10) */
+/*---------------------------------------------------------------------------.
 | This block indicates the end of the Called Sequence. The next block played |
 | will be the block after the last CALL block (or the next Call, if the Call |
 | block had multiple calls).						     |
 |									     |
 | This block has no body.						     |
-'---------------------------------------------------------------------------*/
+'===========================================================================*/
 
-/* MARK: - ID 28h - Select (Added in v1.10)
-.------------------------------------------------------------------------------.
+/* MARK: - ID 28h - Select (added in v1.10) */
+/*-----------------------------------------------------------------------------.
 | This block is useful when the tape consists of two or more separately	       |
 | loadable parts. With this block, you are able to select one of the parts and |
 | the emulator/utility will start loading from that block. For example you can |
@@ -704,51 +731,54 @@ Z_DEFINE_STRICT_STRUCTURE (
 | with the selections when it encounters such a block.			       |
 |									       |
 | Please use single line and maximum of 30 characters for description texts.   |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint32	block_size;
 	zuint8	item_count;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 items[];) /* ZTZXSelectItem */
-) ZTZXSelect;
+	Z_FAM(zuint8 items[];) /* Z_TZXSelectItem */
+}, Z_TZXSelect);
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
 	zsint16 relative_offset;
 	zuint8	description_size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 description[];)
-) ZTZXSelectItem;
+	Z_FAM(zuint8 description[];)
+}, Z_TZXSelectItem);
 
-/* MARK: - ID 2Ah - Stop if 48K
-.------------------------------------------------------------------------------.
+/* MARK: - ID 2Ah - Stop if 48K */
+/*-----------------------------------------------------------------------------.
 | When this block is encountered, the tape will stop ONLY if the machine is a  |
 | 48K ZX Spectrum. This block is to be used for multiloading games that load   |
 | one level at a time in 48K mode, but load the entire tape at once if in 128K |
 | mode.									       |
 |									       |
 | This block has no body of its own, but follows the extension rule.	       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint32 block_size; /* 0 */
-) ZTZXStopIf48K;
+}, Z_TZXStopIf48K);
 
-/* MARK: - ID 2Bh - Set Signal Level (Added in v1.20)
-.----------------------------------------------------------------------.
+/* MARK: - ID 2Bh - Set Signal Level (added in v1.20) */
+/*---------------------------------------------------------------------.
 | This block sets the 'current pulse level' to the specified value     |
 | (HIGH or LOW). It should be used whenever it is necessary to avoid   |
 | any ambiguities, e.g. with custom loaders which are level-sensitive. |
-'---------------------------------------------------------------------*/
+'=====================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint32 block_size;
 	zuint8	level;
-) ZTZXSetSignalLevel;
+}, Z_TZXSetSignalLevel);
 
 #define Z_TZX_SIGNAL_LEVEL_LOW	0
 #define Z_TZX_SIGNAL_LEVEL_HIGH	1
 
-/* MARK: - ID 30h - Section Description
-.------------------------------------------------------------------------------.
+/* MARK: - ID 30h - Section Description */
+/*-----------------------------------------------------------------------------.
 | This is meant to identify parts of the tape, so you know where level 1       |
 | starts, where to rewind to when the game ends, etc. This description is not  |
 | guaranteed to be shown while the tape is playing, but can be read while      |
@@ -758,15 +788,16 @@ Z_DEFINE_STRICT_STRUCTURE (
 | about 30 so the program can show it in one line (where this is appropriate). |
 |									       |
 | Please use block ID 32h for title, authors, publisher, etc.		       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8 block_id;
 	zuint8 text_size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 text[];)
-) ZTZXSectionDescription;
+	Z_FAM(zuint8 text[];)
+}, Z_TZXSectionDescription);
 
-/* MARK: - ID 31h - Message
-.----------------------------------------------------------------------------.
+/* MARK: - ID 31h - Message */
+/*---------------------------------------------------------------------------.
 | This will enable the emulators to display a message for a given time. This |
 | should not stop the tape and it should not make silence. If the time is 0  |
 | then the emulator should wait for the user to press a key.		     |
@@ -778,16 +809,17 @@ Z_DEFINE_STRICT_STRUCTURE (
 |									     |
 | If you do not obey these rules, emulators may display your message in any  |
 | way they like.							     |
-'---------------------------------------------------------------------------*/
+'===========================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8 block_id;
 	zuint8 duration_s; /* Seconds */
 	zuint8 text_size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 text[];)
-) ZTZXMessage;
+	Z_FAM(zuint8 text[];)
+}, Z_TZXMessage);
 
-/* MARK: - ID 32h - Information
-.------------------------------------------------------------------------------.
+/* MARK: - ID 32h - Information */
+/*-----------------------------------------------------------------------------.
 | Use this block at the beginning of the tape to identify the title of the     |
 | game, author, publisher, year of publication, price (including the	       |
 | currency), type of software (arcade adventure, puzzle, word processor, ...), |
@@ -803,33 +835,34 @@ Z_DEFINE_STRICT_STRUCTURE (
 |									       |
 | The information about what hardware the tape uses is in the block ID 33h, so |
 | no need for it here.							       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint32 block_size;
 	zuint8	field_count;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 fields[];) /* ZTZXInformationField */
-) ZTZXInformation;
+	Z_FAM(zuint8 fields[];) /* Z_TZXInfoField */
+}, Z_TZXInfo);
 
-Z_DEFINE_STRICT_STRUCTURE (
-	zuint8 id;
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8 block_id;
 	zuint8 text_size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 text[];)
-) ZTZXInformationField;
+	Z_FAM(zuint8 text[];)
+}, Z_TZXInfoField);
 
-#define Z_TZX_INFORMATION_FIELD_FULL_TITLE 0x00
-#define Z_TZX_INFORMATION_FIELD_PUBLISHER  0x01
-#define Z_TZX_INFORMATION_FIELD_AUTHORS	   0x02
-#define Z_TZX_INFORMATION_FIELD_YEAR	   0x03
-#define Z_TZX_INFORMATION_FIELD_LANGUAGE   0x04 /* Added in v1.10 */
-#define Z_TZX_INFORMATION_FIELD_TYPE	   0x05 /* Added in v1.12 */
-#define Z_TZX_INFORMATION_FIELD_PRICE	   0x06 /* Added in v1.12 */
-#define Z_TZX_INFORMATION_FIELD_LOADER	   0x07 /* Added in v1.12 */
-#define Z_TZX_INFORMATION_FIELD_ORIGIN	   0x08 /* Added in v1.12 */
-#define Z_TZX_INFORMATION_FIELD_COMMENT	   0xFF
+#define Z_TZX_INFO_FIELD_FULL_TITLE 0x00
+#define Z_TZX_INFO_FIELD_PUBLISHER  0x01
+#define Z_TZX_INFO_FIELD_AUTHORS    0x02
+#define Z_TZX_INFO_FIELD_YEAR	    0x03
+#define Z_TZX_INFO_FIELD_LANGUAGE   0x04 /* Added in v1.10 */
+#define Z_TZX_INFO_FIELD_TYPE	    0x05 /* Added in v1.12 */
+#define Z_TZX_INFO_FIELD_PRICE	    0x06 /* Added in v1.12 */
+#define Z_TZX_INFO_FIELD_LOADER	    0x07 /* Added in v1.12 */
+#define Z_TZX_INFO_FIELD_ORIGIN	    0x08 /* Added in v1.12 */
+#define Z_TZX_INFO_FIELD_COMMENT    0xFF
 
-/* MARK: - ID 33h - Hardware Information
-.----------------------------------------------------------------------------.
+/* MARK: - ID 33h - Hardware Information */
+/*---------------------------------------------------------------------------.
 | This blocks contains information about the hardware that the programs on   |
 | this tape use. Please include only machines and hardware for which you are |
 | 100% sure that it either runs (or doesn't run) on or with, or you know it  |
@@ -841,18 +874,19 @@ Z_DEFINE_STRICT_STRUCTURE (
 |									     |
 | If you are not sure or you haven't tested a tape on some particular	     |
 | machine/hardware combination then do not include it in the list.	     |
-'---------------------------------------------------------------------------*/
+'===========================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 type;
 	zuint8 id;
 	zuint8 compatibility;
-) ZTZXHardware;
+}, Z_TZXHardware);
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8 block_id;
 	zuint8 hardware_count;
-	Z_FLEXIBLE_ARRAY_MEMBER(ZTZXHardware hardware[];) /* ZTZXHardware */
-) ZTZXHardwareInformation;
+	Z_FAM(Z_TZXHardware hardware[];) /* Z_TZXHardware */
+}, Z_TZXHardwareInfo);
 
 #define Z_TZX_HARDWARE_TYPE_MACHINE				       0x00
 #define Z_TZX_HARDWARE_TYPE_STORAGE				       0x01
@@ -876,8 +910,8 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_MACHINE_ID_ZX_SPECTRUM_48K_PLUS			       0x01
 #define Z_TZX_MACHINE_ID_ZX_SPECTRUM_48K_ISSUE_1		       0x02
 #define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_128K_SINCLAIR		       0x03
-#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_2			       0x04
-#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_2A_PLUS_3		       0x05
+#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS2			       0x04
+#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS2A_PLUS3		       0x05
 #define Z_TZX_MACHINE_ID_TIMEX_SINCLAIR_2048			       0x06
 #define Z_TZX_MACHINE_ID_TIMEX_SINCLAIR_2068			       0x07
 #define Z_TZX_MACHINE_ID_PENTAGON_128				       0x08
@@ -887,42 +921,42 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_MACHINE_ID_ZX80					       0x0C
 #define Z_TZX_MACHINE_ID_ZX81					       0x0D
 #define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_128K_ES		       0x0E
-#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS_2_AR			       0x0F
+#define Z_TZX_MACHINE_ID_ZX_SPECTRUM_PLUS2_AR			       0x0F
 #define Z_TZX_MACHINE_ID_MICRODIGITAL_TK_90X			       0x10
 #define Z_TZX_MACHINE_ID_MICRODIGITAL_TK_95			       0x11
 #define Z_TZX_MACHINE_ID_BAJT					       0x12
 #define Z_TZX_MACHINE_ID_ELWRO_800_3_JUNIOR			       0x13
 #define Z_TZX_MACHINE_ID_SCORPION_ZS_256			       0x14
-#define Z_TZX_MACHINE_ID_CPC_464				       0x15 /* Added in v1.02 */
-#define Z_TZX_MACHINE_ID_CPC_664				       0x16 /* Added in v1.02 */
-#define Z_TZX_MACHINE_ID_CPC_6128				       0x17 /* Added in v1.02 */
-#define Z_TZX_MACHINE_ID_CPC_464_PLUS				       0x18 /* Added in v1.02 */
-#define Z_TZX_MACHINE_ID_CPC_6128_PLUS				       0x19 /* Added in v1.02 */
-#define Z_TZX_MACHINE_ID_JUPITER_ACE				       0x1A /* Added in v1.12 */
-#define Z_TZX_MACHINE_ID_ENTERPRISE				       0x1B /* Added in v1.12 */
-#define Z_TZX_MACHINE_ID_COMMODORE_64				       0x1C /* Added in v1.13 */
-#define Z_TZX_MACHINE_ID_COMMODORE_128				       0x1D /* Added in v1.13 */
-#define Z_TZX_MACHINE_ID_INVES_SPECTRUM_PLUS			       0x1E /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_PROFI					       0x1F /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_GRANDROMMAX				       0x20 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_KAY_1024				       0x21 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_HC_91					       0x22 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_HC_2000				       0x23 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_MISTRUM				       0x24 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_QUORUM_128				       0x25 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_ATM					       0x26 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_ATM_TURBO_2				       0x27 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_CHROME					       0x28 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_ZX_BADA_LOC				       0x29 /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_TIMEX_SINCLAIR_1500			       0x2A /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_PC_8300				       0x2B /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_TK95					       0x2C /* Added in v1.20 */
-#define Z_TZX_MACHINE_ID_ZX97_LITE				       0x2D /* Added in v1.20 */
+#define Z_TZX_MACHINE_ID_CPC_464				       0x15 /* added in v1.02 */
+#define Z_TZX_MACHINE_ID_CPC_664				       0x16 /* added in v1.02 */
+#define Z_TZX_MACHINE_ID_CPC_6128				       0x17 /* added in v1.02 */
+#define Z_TZX_MACHINE_ID_CPC_464_PLUS				       0x18 /* added in v1.02 */
+#define Z_TZX_MACHINE_ID_CPC_6128_PLUS				       0x19 /* added in v1.02 */
+#define Z_TZX_MACHINE_ID_JUPITER_ACE				       0x1A /* added in v1.12 */
+#define Z_TZX_MACHINE_ID_ENTERPRISE				       0x1B /* added in v1.12 */
+#define Z_TZX_MACHINE_ID_COMMODORE_64				       0x1C /* added in v1.13 */
+#define Z_TZX_MACHINE_ID_COMMODORE_128				       0x1D /* added in v1.13 */
+#define Z_TZX_MACHINE_ID_INVES_SPECTRUM_PLUS			       0x1E /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_PROFI					       0x1F /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_GRANDROMMAX				       0x20 /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_KAY_1024				       0x21 /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_HC_91					       0x22 /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_HC_2000				       0x23 /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_MISTRUM				       0x24 /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_QUORUM_128				       0x25 /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_ATM					       0x26 /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_ATM_TURBO_2				       0x27 /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_CHROME					       0x28 /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_ZX_BADA_LOC				       0x29 /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_TIMEX_SINCLAIR_1500			       0x2A /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_PC_8300				       0x2B /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_TK95					       0x2C /* added in v1.20 */
+#define Z_TZX_MACHINE_ID_ZX97_LITE				       0x2D /* added in v1.20 */
 
 #define Z_TZX_STORAGE_ID_ZX_MICRODRIVE				       0x00
 #define Z_TZX_STORAGE_ID_OPUS_DISCOVERY_1			       0x01
 #define Z_TZX_STORAGE_ID_DISCIPLE				       0x02
-#define Z_TZX_STORAGE_ID_PLUS_D					       0x03
+#define Z_TZX_STORAGE_ID_PLUSD					       0x03
 #define Z_TZX_STORAGE_ID_WAFADRIVE				       0x04
 #define Z_TZX_STORAGE_ID_BETA_DISK_INTERFACE			       0x05
 #define Z_TZX_STORAGE_ID_BYTE_DRIVE_500				       0x06
@@ -931,18 +965,18 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_STORAGE_ID_TRITON_QUICK_DISK			       0x09
 #define Z_TZX_STORAGE_ID_DIDAKTIK_40_80				       0x0A
 #define Z_TZX_STORAGE_ID_MB_02_PLUS				       0x0B
-#define Z_TZX_STORAGE_ID_ZX_SPECTRUM_PLUS_3_DISK_DRIVE		       0x0C
+#define Z_TZX_STORAGE_ID_ZX_SPECTRUM_PLUS3_DISK_DRIVE		       0x0C
 #define Z_TZX_STORAGE_ID_OLIGER_DISK_INTERFACE			       0x0D
 #define Z_TZX_STORAGE_ID_TIMEX_FDD_3000				       0x0E
 #define Z_TZX_STORAGE_ID_ZEBRA_FLOPPY_DISK_DRIVE		       0x0F
 #define Z_TZX_STORAGE_ID_MILLENA_K				       0x10
 #define Z_TZX_STORAGE_ID_LARKEN					       0x11
-#define Z_TZX_STORAGE_ID_KEMPSTON_DISC_INTERFACE		       0x12 /* Added in v1.20 */
-#define Z_TZX_STORAGE_ID_SANDY					       0x13 /* Added in v1.20 */
-#define Z_TZX_STORAGE_ID_ZX_SPECTRUM_PLUS_3E_HDD		       0x14 /* Added in v1.20 */
-#define Z_TZX_STORAGE_ID_ZXATASP				       0x15 /* Added in v1.20 */
-#define Z_TZX_STORAGE_ID_DIVIDE					       0x16 /* Added in v1.20 */
-#define Z_TZX_STORAGE_ID_ZXCF					       0x17 /* Added in v1.20 */
+#define Z_TZX_STORAGE_ID_KEMPSTON_DISC_INTERFACE		       0x12 /* added in v1.20 */
+#define Z_TZX_STORAGE_ID_SANDY					       0x13 /* added in v1.20 */
+#define Z_TZX_STORAGE_ID_ZX_SPECTRUM_PLUS3E_HDD			       0x14 /* added in v1.20 */
+#define Z_TZX_STORAGE_ID_ZXATASP				       0x15 /* added in v1.20 */
+#define Z_TZX_STORAGE_ID_DIVIDE					       0x16 /* added in v1.20 */
+#define Z_TZX_STORAGE_ID_ZXCF					       0x17 /* added in v1.20 */
 
 #define Z_TZX_MEMORY_ID_SAM_RAM					       0x00
 #define Z_TZX_MEMORY_ID_MULTIFACE_ONE				       0x01
@@ -950,11 +984,11 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_MEMORY_ID_MULTIFACE_3				       0x03
 #define Z_TZX_MEMORY_ID_MULTIPRINT				       0x04
 #define Z_TZX_MEMORY_ID_MB_02_PLUS				       0x05
-#define Z_TZX_MEMORY_ID_SOFT_ROM				       0x06 /* Added in v1.20 */
-#define Z_TZX_MEMORY_ID_1K					       0x07 /* Added in v1.20 */
-#define Z_TZX_MEMORY_ID_16K					       0x08 /* Added in v1.20 */
-#define Z_TZX_MEMORY_ID_48K					       0x09 /* Added in v1.20 */
-#define Z_TZX_MEMORY_ID_8K_16K_USED				       0x0A /* Added in v1.20 */
+#define Z_TZX_MEMORY_ID_SOFT_ROM				       0x06 /* added in v1.20 */
+#define Z_TZX_MEMORY_ID_1K					       0x07 /* added in v1.20 */
+#define Z_TZX_MEMORY_ID_16K					       0x08 /* added in v1.20 */
+#define Z_TZX_MEMORY_ID_48K					       0x09 /* added in v1.20 */
+#define Z_TZX_MEMORY_ID_8K_16K_USED				       0x0A /* added in v1.20 */
 
 #define Z_TZX_SOUND_ID_CLASSIC_AY				       0x00 /* (compatible with 128K ZXs) */
 #define Z_TZX_SOUND_ID_FULLER_BOX_AY				       0x01
@@ -962,18 +996,18 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_SOUND_ID_SPECDRUM					       0x03
 #define Z_TZX_SOUND_ID_AY_ACB_STEREO_MELODIK			       0x04
 #define Z_TZX_SOUND_ID_AY_ABC_STEREO				       0x05
-#define Z_TZX_SOUND_ID_MUSIC_MACHINE				       0x06 /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_COVOX					       0x07 /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_GENERAL_SOUND				       0x08 /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_DIGITAL_INTERFACE_B8001			       0x09 /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_ZON_X_AY					       0x0A /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_QUICKSILVA_AY				       0x0B /* Added in v1.20 */
-#define Z_TZX_SOUND_ID_JUPITER_ACE				       0x0C /* Added in v1.20 */
+#define Z_TZX_SOUND_ID_MUSIC_MACHINE				       0x06 /* added in v1.20 */
+#define Z_TZX_SOUND_ID_COVOX					       0x07 /* added in v1.20 */
+#define Z_TZX_SOUND_ID_GENERAL_SOUND				       0x08 /* added in v1.20 */
+#define Z_TZX_SOUND_ID_DIGITAL_INTERFACE_B8001			       0x09 /* added in v1.20 */
+#define Z_TZX_SOUND_ID_ZON_X_AY					       0x0A /* added in v1.20 */
+#define Z_TZX_SOUND_ID_QUICKSILVA_AY				       0x0B /* added in v1.20 */
+#define Z_TZX_SOUND_ID_JUPITER_ACE				       0x0C /* added in v1.20 */
 
 #define Z_TZX_JOYSTICK_ID_KEMPSTON				       0x00
 #define Z_TZX_JOYSTICK_ID_STAR_CURSOR_PROTEK_AGF		       0x01
-#define Z_TZX_JOYSTICK_ID_SINCLAIR_2_LEFT			       0x02
-#define Z_TZX_JOYSTICK_ID_SINCLAIR_1_RIGHT			       0x03
+#define Z_TZX_JOYSTICK_ID_ZX_INTERFACE_2_LEFT			       0x02
+#define Z_TZX_JOYSTICK_ID_ZX_INTERFACE_2_RIGHT			       0x03
 #define Z_TZX_JOYSTICK_ID_FULLER				       0x04
 
 #define Z_TZX_MICE_ID_AMX_MOUSE					       0x00
@@ -982,14 +1016,14 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_HARDWARE_ID_TRICKSTICK				       0x00
 #define Z_TZX_HARDWARE_ID_SINCLAIR_LIGHT_GUN			       0x01
 #define Z_TZX_HARDWARE_ID_ZEBRA_GRAPHICS_TABLET /* correct name? */    0x02
-#define Z_TZX_HARDWARE_ID_DEFENDER_LIGHT_GUN			       0x03 /* Added in v1.20 */
+#define Z_TZX_HARDWARE_ID_DEFENDER_LIGHT_GUN			       0x03 /* added in v1.20 */
 
 #define Z_TZX_SERIAL_PORT_ID_ZX_INTERFACE_1			       0x00
 #define Z_TZX_SERIAL_PORT_ID_ZX_SPECTRUM_PLUS_128K		       0x01
 
 #define Z_TZX_PARALLEL_PORT_ID_KEMPSTON_CENTRONICS_INTERFACE_S	       0x00
 #define Z_TZX_PARALLEL_PORT_ID_KEMPSTON_CENTRONICS_INTERFACE_E	       0x01
-#define Z_TZX_PARALLEL_PORT_ID_ZX_SPECTRUM_PLUS_3		       0x02
+#define Z_TZX_PARALLEL_PORT_ID_ZX_SPECTRUM_PLUS3		       0x02
 #define Z_TZX_PARALLEL_PORT_ID_TASMAN_PARALLEL_PRINTER_INTERFACE       0x03
 #define Z_TZX_PARALLEL_PORT_ID_DKTRONICS_PARALLEL_CENTRONICS_INTERFACE 0x04
 #define Z_TZX_PARALLEL_PORT_ID_HILDERBAY_INTERFACE		       0x05
@@ -997,7 +1031,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_PARALLEL_PORT_ID_ZX_LPRINT_III			       0x07
 #define Z_TZX_PARALLEL_PORT_ID_MULTIPRINT			       0x08
 #define Z_TZX_PARALLEL_PORT_ID_OPUS_DISCOVERY_1			       0x09
-#define Z_TZX_PARALLEL_PORT_ID_STANDARD_8255_IC_WITH_PORTS_31_63_95    0x0A
+#define Z_TZX_PARALLEL_PORT_ID_STD_8255_IC_WITH_PORTS_31_63_95	       0x0A
 
 #define Z_TZX_PRINTER_ID_ZX_PRINTER_COMPATIBLE			       0x00
 #define Z_TZX_PRINTER_ID_GENERIC_PRINTER			       0x01
@@ -1009,7 +1043,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 #define Z_TZX_DIGITIZER_ID_RD_DIGITAL_TRACER			       0x00
 #define Z_TZX_DIGITIZER_ID_DKTRONICS_LIGHT_PEN			       0x01
 #define Z_TZX_DIGITIZER_ID_GRAFPAD				       0x02
-#define Z_TZX_DIGITIZER_ID_VIDEOFACE				       0x03 /* Added in v1.20 */
+#define Z_TZX_DIGITIZER_ID_VIDEOFACE				       0x03 /* added in v1.20 */
 
 #define Z_TZX_NETWORK_ADAPTER_ID_ZX_INTERFACE_1			       0x00
 
@@ -1020,47 +1054,48 @@ Z_DEFINE_STRICT_STRUCTURE (
 
 #define Z_TZX_EPROM_PROGRAMMER_ID_ORME_EPROM_CARD		       0x00
 
-#define Z_TZX_GRAPHICS_ID_WRX_HI_RES /* correct name? */	       0x00 /* Added in v1.20 */
-#define Z_TZX_GRAPHICS_ID_G007					       0x01 /* Added in v1.20 */
-#define Z_TZX_GRAPHICS_ID_MEMOTECH /* Memopak HRG? */		       0x02 /* Added in v1.20 */
-#define Z_TZX_GRAPHICS_ID_LAMBDA_8300				       0x03 /* Added in v1.20 */
+#define Z_TZX_GRAPHICS_ID_WRX_HI_RES /* correct name? */	       0x00 /* added in v1.20 */
+#define Z_TZX_GRAPHICS_ID_G007					       0x01 /* added in v1.20 */
+#define Z_TZX_GRAPHICS_ID_MEMOTECH /* Memopak HRG? */		       0x02 /* added in v1.20 */
+#define Z_TZX_GRAPHICS_ID_LAMBDA_8300				       0x03 /* added in v1.20 */
 
 #define Z_TZX_HARDWARE_COMPATIBILITY_COMPATIBLE			       0
 #define Z_TZX_HARDWARE_COMPATIBILITY_NEEDED			       1
 #define Z_TZX_HARDWARE_COMPATIBILITY_UNNEEDED			       2
 #define Z_TZX_HARDWARE_COMPATIBILITY_INCOMPATIBLE		       3
 
-/* MARK: - ID 34h - Emulation Information (Deprecated in v1.20)
-.------------------------------------------------------------------------------.
+/* MARK: - ID 34h - Emulation Information (deprecated in v1.20) */
+/*-----------------------------------------------------------------------------.
 | This is a special block that would normally be generated only by emulators.  |
 | For now it contains information on everything the authors could find that    |
 | other formats support. Please inform them of any additions/corrections since |
 | this is a very important part for emulators.				       |
 | Those bits that are not used by the emulator that stored the info, should be |
 | left at their DEFAULT values.						       |
-'------------------------------------------------------------------------------'
+'=============================================================================='
 
 Flags (16-bit little-endian):
 
-   loading     featatures
-   ___|____   ______|______
+   loading_   _featatures__
 .-/        \-/             \-.
 | 15..10 9 8 7 6 5 4 3 2 1 0 |
 '-\____/-|-|-|-|-|-\_/-|-|-|-'
-  unused | | | | |  |  | | '-> R register emulation
-	 | | | | |  |  | '---> LDIR instruction emulation
-	 | | | | |  |  '-----> high resolution colour emulation with
+  unused | | | | |  |  | | '-- R register emulation
+	 | | | | |  |  | '---- LDIR instruction emulation
+	 | | | | |  |  '------ high resolution colour emulation with
 	 | | | | |  |	       true interrupt frequency
-	 | | | | |  '--------> video synchronisation
+	 | | | | |  '--------- video synchronisation
 	 | | | | |	       (1 = high, 3 = low, 0 or 2 = normal)
-	 | | | | '-----------> fast loading when ROM load routine is used
-	 | | | '-------------> border emulation
-	 | | '---------------> screen refresh mode (1 = ON, 0 = OFF)
-	 | '-----------------> start playing the tape immediately
-	 '-------------------> auto type LOAD"" or press ENTER when in 128K mode */
+	 | | | | '------------ fast loading when ROM load routine is used
+	 | | | '-------------- border emulation
+	 | | '---------------- screen refresh mode (1 = ON, 0 = OFF)
+	 | '------------------ start playing the tape immediately
+	 '-------------------- auto type LOAD"" or press ENTER when in 128K mode */
 
-Z_DEFINE_STRICT_STRUCTURE (
-	struct {Z_BIT_FIELD(8, 7) (
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+	zuint8 block_id;
+
+	struct {Z_BIT_FIELD(8, 7)(
 		zuint8 screen_refresh_mode     :1,
 		zuint8 screen_border	       :1,
 		zuint8 fast_loading	       :1,
@@ -1070,7 +1105,7 @@ Z_DEFINE_STRICT_STRUCTURE (
 		zuint8 r_register	       :1
 	)} features;
 
-	struct {Z_BIT_FIELD(8, 3) (
+	struct {Z_BIT_FIELD(8, 3)(
 		zuint8 unused				:6,
 		zuint8 type_load_or_press_enter_if_128k :1,
 		zuint8 autoplay				:1
@@ -1079,72 +1114,73 @@ Z_DEFINE_STRICT_STRUCTURE (
 	zuint8	screen_refresh_delay;	/* 1 - 255 */
 	zuint16 interrupt_hz;		/* 0 - 999 */
 	zuint8	reserved[3];
-) ZTZXEmulationInformation;
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_TZXEmulationInfo);
 
-#define Z_TZX_EMULATION_INFORMATION_VSYNC_HIGH   0
-#define Z_TZX_EMULATION_INFORMATION_VSYNC_LOW    1
-#define Z_TZX_EMULATION_INFORMATION_VSYNC_NORMAL 2
+#define Z_TZX_EMULATION_INFO_VSYNC_HIGH   0
+#define Z_TZX_EMULATION_INFO_VSYNC_LOW    1
+#define Z_TZX_EMULATION_INFO_VSYNC_NORMAL 2
 
-/* MARK: - ID 35h - Custom Information ("Added" in v1.01, deprecated in v1.20)
-.------------------------------------------------------------------------------.
+/* MARK: - ID 35h - Custom Information ("added" in v1.01, deprecated in v1.20) */
+/*-----------------------------------------------------------------------------.
 | This block can be used to save any information you want. For example, it     |
 | might contain some information written by a utility, extra settings required |
 | by a particular emulator, or even poke data.				       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8	block_id;
 	zuint8	content_id[16];
 	zuint32	data_size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
-) ZTZXCustomInformation;
+	Z_FAM(zuint8 data[];)
+}, Z_TZXCustomInfo);
 
-#define Z_TZX_CUSTOM_INFORMATION_CONTENT_ID_POKES \
+#define Z_TZX_CUSTOM_INFO_CONTENT_ID_POKES \
 	'P','O','K','E','s',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
 
-#define Z_TZX_CUSTOM_INFORMATION_CONTENT_ID_INSTRUCTIONS \
+#define Z_TZX_CUSTOM_INFO_CONTENT_ID_INSTRUCTIONS \
 	'I','n','s','t','r','u','c','t','i','o','n','s',' ',' ',' ',' '
 
-#define Z_TZX_CUSTOM_INFORMATION_CONTENT_ID_SCREEN \
+#define Z_TZX_CUSTOM_INFO_CONTENT_ID_SCREEN \
 	'S','p','e','c','t','r','u','m',' ','S','c','r','e','e','n',' '
 
-#define Z_TZX_CUSTOM_INFORMATION_CONTENT_ID_ZX_EDIT_DOCUMENT \
+#define Z_TZX_CUSTOM_INFO_CONTENT_ID_ZX_EDIT_DOCUMENT \
 	'Z','X','-','E','d','i','t',' ','d','o','c','u','m','e','n','t'
 
-#define Z_TZX_CUSTOM_INFORMATION_CONTENT_ID_PICTURE \
+#define Z_TZX_CUSTOM_INFO_CONTENT_ID_PICTURE \
 	'P','i','c','t','u','r','e',' ',' ',' ',' ',' ',' ',' ',' ',' '
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8 description_size;
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 description[];)
-) ZTZXPOKEs;
+	Z_FAM(zuint8 description[];)
+}, Z_TZXPOKEs);
 
-Z_DEFINE_STRICT_STRUCTURE (
-) ZTZXTrainer;
+/*Z_DEFINE_PACKED_STRUCTURE ({
+}, Z_TZXTrainer);*/
 
-Z_DEFINE_STRICT_STRUCTURE (
-) ZTZXInstructions;
+/*Z_DEFINE_PACKED_STRUCTURE ({
+}, Z_TZXInstructions);*/
 
-Z_DEFINE_STRICT_STRUCTURE (
-) ZTZXScreen;
+/*Z_DEFINE_PACKED_STRUCTURE ({
+}, Z_TZXScreen);*/
 
-Z_DEFINE_STRICT_STRUCTURE (
-	zuint8	description_size; /* if 0 then handle description as 'Instructions' */
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 description[];)
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8 description_size; /* if 0 then handle description as 'Instructions' */
+	Z_FAM(zuint8 description[];)
 	/* ZX-Editor document (.ZED file) data */
-) ZTZXZXEditDocument;
+}, Z_TZXZXEditDocument);
 
-Z_DEFINE_STRICT_STRUCTURE (
-	zuint8	format;
-	zuint8	description_size; /* if 0 then handle description as 'Inlay Card' */
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 description[];)
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8 format;
+	zuint8 description_size; /* if 0 then handle description as 'Inlay Card' */
+	Z_FAM(zuint8 description[];)
 	/* Picture data */
-) ZTZXPicture;
+}, Z_TZXPicture);
 
 #define Z_TZX_PICTURE_FORMAT_GIF 0x00
 #define Z_TZX_PICTURE_FORMAT_JPG 0x01
 
-/* MARK: - ID 40h - Snapshot (Added in v1.10, deprecated in v1.20)
-.------------------------------------------------------------------------------.
+/* MARK: - ID 40h - Snapshot (added in v1.10, deprecated in v1.20) */
+/*-----------------------------------------------------------------------------.
 | This would enable one to snapshot the prgram at the start and still have all |
 | the tape blocks in the same file. Only .Z80 and .SNA snapshots are supported |
 | for compatibility reasons!						       |
@@ -1152,19 +1188,20 @@ Z_DEFINE_STRICT_STRUCTURE (
 | actual tape loading is taking place (which doesn't do much sense). When an   |
 | emulator encounters the snapshot block it should load it and then continue   |
 | with the next block.							       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8 block_id;
 	zuint8 format;
 	zuint8 size[3];
-	Z_FLEXIBLE_ARRAY_MEMBER(zuint8 data[];)
-) ZTZXSnapshot;
+	Z_FAM(zuint8 data[];)
+}, Z_TZXSnapshot);
 
 #define Z_TZX_SNAPSHOT_FORMAT_Z80 0
 #define Z_TZX_SNAPSHOT_FORMAT_SNA 1
 
-/* MARK: - ID 5Ah - "Glue"
-.------------------------------------------------------------------------------.
+/* MARK: - ID 5Ah - "Glue" */
+/*-----------------------------------------------------------------------------.
 | This block is generated when you merge two ZX Tape files together. It is     |
 | here so that you can easily copy the files together and use them. Of course, |
 | this means that resulting file would be 10 bytes longer than if this block   |
@@ -1173,13 +1210,47 @@ Z_DEFINE_STRICT_STRUCTURE (
 | If you can avoid using this block for this purpose, then do so; it is	       |
 | preferable to use a utility to join the two files and ensure that they are   |
 | both of the higher version number.					       |
-'-----------------------------------------------------------------------------*/
+'=============================================================================*/
 
-Z_DEFINE_STRICT_STRUCTURE (
+Z_DEFINE_PACKED_STRUCTURE ({
+	zuint8 block_id;
 	zuint8 signature[6]; /* 'XTape!' */
 	zuint8 eof_marker;   /* 1Ah	 */
 	zuint8 major_version;
 	zuint8 minor_version;
-) ZTZXGlue;
+}, Z_TZXGlue);
 
-#endif /* _Z_formats_storage_medium_image_audio_TZX_H_ */
+/* MARK: - Block union */
+
+typedef union {
+	zuint8			id;
+	Z_TZXStdSpeedData	std_speed_data;
+	Z_TZXTurboSpeedData	turbo_speed_data;
+	Z_TZXPureTone		pure_tone;
+	Z_TZXPulseSequence	pulse_sequence;
+	Z_TZXPureData		pure_data;
+	Z_TZXDirectRecording	direct_recording;
+	Z_TZXC64ROMTypeData	c64_rom_type_data;
+	Z_TZXC64TurboTapeData	c64_turbo_tape_data;
+	Z_TZXCSWRecording	csw_recording;
+	Z_TZXGeneralizedData	generalized_data;
+	Z_TZXSymbolDefinition	symbol_definition;
+	Z_TZXPause		pause;
+	Z_TZXGroupStart		group_start;
+	Z_TZXJump		jump;
+	Z_TZXLoopStart		loop_start;
+	Z_TZXCallSequence	call_sequence;
+	Z_TZXSelect		select;
+	Z_TZXStopIf48K		stop_if_48k;
+	Z_TZXSetSignalLevel	set_signal_level;
+	Z_TZXSectionDescription section_description;
+	Z_TZXMessage		message;
+	Z_TZXInfo		info;
+	Z_TZXHardwareInfo	hardware_info;
+	Z_TZXEmulationInfo	emulation_info;
+	Z_TZXCustomInfo		custom_info;
+	Z_TZXSnapshot		snapshot;
+	Z_TZXGlue		glue;
+} Z_TZXBlock;
+
+#endif /* Z_formats_storage_medium_image_audio_TZX_H */
