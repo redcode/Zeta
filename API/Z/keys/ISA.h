@@ -40,14 +40,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ISA_SPARC_V9	      28 /* SPARC International		       */
 #define Z_ISA_SUPERH	      29 /* Hitachi			       */
 #define Z_ISA_SUPERH_5	      30 /* Hitachi			       */
-#define Z_ISA_WASM32	      31 /* W3C				       */
-#define Z_ISA_WASM64	      32 /* W3C				       */
-#define Z_ISA_X86_16	      33 /* Intel			       */
-#define Z_ISA_X86_32	      34 /* Intel			       */
-#define Z_ISA_X86_64	      35 /* AMD				       */
-#define Z_ISA_XCORE	      36 /* XMOS			       */
-#define Z_ISA_Z_ARCHITECTURE  37 /* IBM				       */
-#define Z_ISA_Z80	      38 /* Zilog			       */
+#define Z_ISA_VAX	      31 /* DEC				       */
+#define Z_ISA_WASM32	      32 /* W3C				       */
+#define Z_ISA_WASM64	      33 /* W3C				       */
+#define Z_ISA_X86_16	      34 /* Intel			       */
+#define Z_ISA_X86_32	      35 /* Intel			       */
+#define Z_ISA_X86_64	      36 /* AMD				       */
+#define Z_ISA_XCORE	      37 /* XMOS			       */
+#define Z_ISA_Z_ARCHITECTURE  38 /* IBM				       */
+#define Z_ISA_Z80	      39 /* Zilog			       */
 
 #define Z_ISA_NAME_6502		   "6502"
 #define Z_ISA_NAME_AARCH32	   "AArch32"
@@ -79,6 +80,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ISA_NAME_SPARC_V9	   "SPARC V9"
 #define Z_ISA_NAME_SUPERH	   "SuperH"
 #define Z_ISA_NAME_SUPERH_5	   "SuperH 5"
+#define Z_ISA_NAME_VAX		   "VAX"
 #define Z_ISA_NAME_WASM32	   "Wasm32"
 #define Z_ISA_NAME_WASM64	   "Wasm64"
 #define Z_ISA_NAME_X86_16	   "x86-16"
