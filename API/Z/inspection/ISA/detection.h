@@ -244,6 +244,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__sh__)
 #	define Z_ISA Z_ISA_SUPERH
 
+#elif defined(__vax__)
+#	define Z_ISA Z_ISA_VAX
+
 #elif	defined(__wasm64  ) || \
 	defined(__wasm64__)
 

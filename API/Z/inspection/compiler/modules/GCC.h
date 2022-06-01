@@ -43,6 +43,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif defined(__lm32__)
 #	define Z_COMPILER_ISA Z_ISA_LATTICE_MICO_32
+
+#elif defined(__vax__)
+#	define Z_COMPILER_ISA Z_ISA_VAX
 #endif
 
 #ifdef __BYTE_ORDER__

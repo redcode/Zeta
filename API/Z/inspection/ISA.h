@@ -121,6 +121,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_ISA == Z_ISA_SUPERH_5
 #		include <Z/inspection/ISA/modules/SuperH 5.h>
 
+#	elif Z_ISA == Z_ISA_VAX
+#		include <Z/inspection/ISA/modules/VAX.h>
+
 #	elif Z_ISA == Z_ISA_WASM32
 #		include <Z/inspection/ISA/modules/Wasm32.h>
 
