@@ -192,7 +192,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		((value) >> (128 - (rotation)))))
 
 #	define Z_UINT128_ROTATE_RIGHT(value, rotation) \
-		(Z_CAST(zuint128)(		|      \
+		(Z_CAST(zuint128)(		       \
 		((value) >>	   (rotation) ) |      \
 		((value) << (128 - (rotation)))))
 
