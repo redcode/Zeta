@@ -1,5 +1,5 @@
 # FindSphinx.cmake
-# Copyright (C) 2022 Manuel Sainz de Baranda y Goñi.
+# Copyright (C) 2021 Manuel Sainz de Baranda y Goñi.
 # This "find module" is DISTRIBUTED AS PUBLIC DOMAIN. No restrictions apply.
 
 include(FindPackageHandleStandardArgs)
@@ -12,9 +12,9 @@ find_program(
 if(SPHINX_BUILD_EXECUTABLE)
 	execute_process(
 		COMMAND ${SPHINX_BUILD_EXECUTABLE} --version
-		OUTPUT_VARIABLE _OUTPUT)
+		OUTPUT_VARIABLE _output)
 
-	if("${_OUTPUT}" MATCHES ".* ([^\n]+)\n")
+	if("${_output}" MATCHES ".* ([^\n]+)\n")
 		set(SPHINX_BUILD_VERSION "${CMAKE_MATCH_1}")
 	endif()
 endif()
