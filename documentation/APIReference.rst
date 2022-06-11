@@ -18,11 +18,3 @@ API reference
 
 Types
 -----
-.. doxygentypedef:: zuint8
-.. doxygendefine:: Z_UINT8
-.. doxygendefine:: Z_UINT8_FUNDAMENTAL
-.. doxygendefine:: Z_UINT8_FIXED_FUNDAMENTAL
-.. doxygendefine:: Z_UINT8_BITS
-.. doxygendefine:: Z_UINT8_MAXIMUM_
-.. doxygendefine:: Z_UINT8_MAXIMUM
-.. doxygendefine:: Z_UINT_LEAST8_BITS

@@ -6,91 +6,69 @@
 # Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 # # Released under the terms of the GNU Lesser General Public License v3.
 
-find_package(Doxygen REQUIRED)
-find_package(Sphinx  REQUIRED)
-find_package(Breathe REQUIRED)
+find_package(Sphinx REQUIRED)
 
-set(DOXYGEN_INPUT_DIR  "${PROJECT_SOURCE_DIR}/API"		)
-set(DOXYGEN_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/doxygen"	)
-set(_DOXYFILE_IN       "${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in")
-set(_DOXYFILE	       "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile"	)
-set(_SPHINX_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/sphinx"	)
+if(${PROJECT_NAME}_WITH_HTML_DOCUMENTATION)
+	set(_html_documentation_output "${CMAKE_CURRENT_BINARY_DIR}/HTML")
 
-get_target_property(DOXYGEN_INCLUDE_PATH Zeta INTERFACE_INCLUDE_DIRECTORIES)
-
-configure_file(${_DOXYFILE_IN} ${_DOXYFILE} @ONLY)
-
-file(MAKE_DIRECTORY ${DOXYGEN_OUTPUT_DIR})
-file(MAKE_DIRECTORY ${_SPHINX_OUTPUT_DIR})
-
-file(GLOB_RECURSE PUBLIC_HEADERS ${DOXYGEN_INPUT_DIR}/*.h)
-
-set(_DOXYGEN_XML_OUTPUT "${DOXYGEN_OUTPUT_DIR}/xml")
-
-add_custom_command(
-	OUTPUT  ${_DOXYGEN_XML_OUTPUT}
-	DEPENDS ${_PUBLIC_HEADERS}
-	COMMAND ${DOXYGEN_EXECUTABLE} ${_DOXYFILE}
-	MAIN_DEPENDENCY ${_DOXYFILE} ${_DOXYFILE_IN}
-	COMMENT "Extracting API reference")
-
-add_custom_target(Doxygen-XML ALL DEPENDS ${_DOXYGEN_XML_OUTPUT})
-
-if(WITH_HTML_DOCUMENTATION)
-	set(_SPHINX_HTML_OUTPUT "${_SPHINX_OUTPUT_DIR}/html")
+	if(${PROJECT_NAME}_SPHINX_HTML_THEME STREQUAL "")
+		set(_html_theme_option "")
+	else()
+		set(_html_theme_option "-Dhtml_theme=${${PROJECT_NAME}_SPHINX_HTML_THEME}")
+	endif()
 
 	add_custom_command(
-		OUTPUT  ${_SPHINX_HTML_OUTPUT}
+		OUTPUT  ${_html_documentation_output}
 		COMMAND ${SPHINX_BUILD_EXECUTABLE}
 			-b html
-			"-Dbreathe_projects.${PROJECT_NAME}=${_DOXYGEN_XML_OUTPUT}"
+			${_html_theme_option}
 			${CMAKE_CURRENT_SOURCE_DIR}
-			${_SPHINX_HTML_OUTPUT}
-		MAIN_DEPENDENCY ${_DOXYGEN_XML_OUTPUT}
+			${_html_documentation_output}
+		MAIN_DEPENDENCY ${_api_xml_output}
 		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 		COMMENT "Generating documentation in HTML format")
 
-	add_custom_target(Sphinx-HTML ALL DEPENDS ${_SPHINX_HTML_OUTPUT})
-	add_dependencies(Sphinx-HTML Doxygen-XML)
+	add_custom_target(Documentation-HTML ALL DEPENDS ${_html_documentation_output})
 
-	install(DIRECTORY "${_SPHINX_OUTPUT_DIR}/html/"
-		DESTINATION "${CMAKE_INSTALL_DOCDIR}/documentation")
+	install(DIRECTORY "${_html_documentation_output}/"
+		DESTINATION "${CMAKE_INSTALL_DOCDIR}/documentation"
+		COMPONENT "${PROJECT_NAME}_Documentation")
 endif()
 
-if(WITH_PDF_DOCUMENTATION)
+if(${PROJECT_NAME}_WITH_PDF_DOCUMENTATION)
 	find_package(LATEX REQUIRED COMPONENTS PDFLATEX)
 
-	set(_SPHINX_LATEX_OUTPUT "${_SPHINX_OUTPUT_DIR}/latex")
+	set(_latex_documentation_output "${CMAKE_CURRENT_BINARY_DIR}/LaTeX")
 
 	add_custom_command(
-		OUTPUT  ${_SPHINX_LATEX_OUTPUT}
+		OUTPUT  ${_latex_documentation_output}
 		COMMAND ${SPHINX_BUILD_EXECUTABLE}
 			-b latex
-			"-Dbreathe_projects.${PROJECT_NAME}=${_DOXYGEN_XML_OUTPUT}"
 			${CMAKE_CURRENT_SOURCE_DIR}
-			${_SPHINX_LATEX_OUTPUT}
-		MAIN_DEPENDENCY ${_DOXYGEN_XML_OUTPUT}
+			${_latex_documentation_output}
+		MAIN_DEPENDENCY ${_api_xml_output}
 		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 		COMMENT "Generating documentation in LaTeX format")
 
-	add_custom_target(Sphinx-LaTeX ALL DEPENDS ${_SPHINX_LATEX_OUTPUT})
-	add_dependencies(Sphinx-LaTeX Doxygen-XML)
+	add_custom_target(Documentation-LaTeX ALL DEPENDS ${_latex_documentation_output})
 
-	set(_LATEX_PDF_OUTPUT "${_SPHINX_LATEX_OUTPUT}/zeta.pdf")
+	string(TOLOWER ${PROJECT_NAME} _pdf_documentation_output)
+	set(_pdf_documentation_output "${_latex_documentation_output}/${_pdf_documentation_output}.pdf")
 
 	add_custom_command(
-		OUTPUT  ${_LATEX_PDF_OUTPUT}
+		OUTPUT  ${_pdf_documentation_output}
 		COMMAND make
-		MAIN_DEPENDENCY ${_SPHINX_LATEX_OUTPUT}
-		WORKING_DIRECTORY ${_SPHINX_LATEX_OUTPUT}
+		MAIN_DEPENDENCY ${_latex_documentation_output}
+		WORKING_DIRECTORY ${_latex_documentation_output}
 		COMMENT "Converting documentation to PDF format")
 
-	add_custom_target(LaTeX-PDF ALL DEPENDS ${_LATEX_PDF_OUTPUT})
-	add_dependencies(LaTeX-PDF Sphinx-LaTeX)
+	add_custom_target(Documentation-PDF ALL DEPENDS ${_pdf_documentation_output})
+	add_dependencies(Documentation-PDF Documentation-LaTeX)
 
-	install(FILES ${_LATEX_PDF_OUTPUT}
+	install(FILES ${_pdf_documentation_output}
 		DESTINATION ${CMAKE_INSTALL_DOCDIR}
-		RENAME "${PROJECT_NAME} v${PROJECT_VERSION}.pdf")
+		RENAME "${PROJECT_NAME} v${PROJECT_VERSION}.pdf"
+		COMPONENT "${PROJECT_NAME}_Documentation")
 endif()
 
 # documentation/CMakeLists.txt EOF
