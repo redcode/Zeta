@@ -17,11 +17,11 @@ message("${PROJECT_NAME} v${PROJECT_VERSION}")
 include(GNUInstallDirs)
 
 set(${PROJECT_NAME}_INSTALL_CMAKEDIR
-"${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}" CACHE STRING
+"${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake" CACHE STRING
 "Specify the directory in which to install the CMake config-file package.")
 
 set(${PROJECT_NAME}_INSTALL_PKGCONFIGDIR
-"${CMAKE_INSTALL_LIBDIR}/pkgconfig" CACHE STRING
+"${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig" CACHE STRING
 "Specify the directory in which to install the pkg-config file.")
 
 set(${PROJECT_NAME}_SPHINX_HTML_THEME
