@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	((value) < 0 ? -(value) : (value))
 
 #define Z_IS_POWER_OF_2(value) \
-	!((value) & ((value) - 1))
+	(!((value) & ((value) - 1)) && (value) > 1)
 
 #define Z_MAXIMUM(a, b) \
 	((a) > (b) ? (a) : (b))
