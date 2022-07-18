@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_macros_math_H
 
 #define Z_ABSOLUTE(value) \
-	((value) < 0 ? -(value) : (a))
+	((value) < 0 ? -(value) : (value))
 
 #define Z_IS_POWER_OF_2(value) \
 	!((value) & ((value) - 1))
