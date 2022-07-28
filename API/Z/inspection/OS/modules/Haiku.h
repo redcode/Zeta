@@ -14,5 +14,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_MODERN_NAME	  Z_OS_NAME_HAIKU
 #define Z_OS_PATH_SLASH_CHARACTER '/'
 #define Z_OS_PATH_SLASH_STRING	  "/"
+#define Z_OS_HAS_POSIX		  TRUE
 
 #endif /* Z_inspection_OS_modules_Haiku_H */
