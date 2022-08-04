@@ -926,7 +926,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #			define Z_COMPILER_HAS_CPP11_TYPE_AUTO		  TRUE /* v2.7?, v2.9 (S) */
 
 			/*-----------------------------------------------------------------.
-			| BUG: In v3.0 (and possibly earlier versions), using auto as a    |
+			| BUG: In v3.0 (and possibly earlier versions), using `auto` as a  |
 			| storage class generates warnings in C++03 and earlier. This must |
 			| be tolerated to not break compatibility with existing software.  |
 			'=================================================================*/
