@@ -29,7 +29,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <QRect>
 #endif
 
-namespace Zeta{template <class t, UInt T_number_set = Type<t>::number_set> struct XYZ;}
+namespace Zeta {template <class t, UInt T_number_set = Type<t>::number_set> struct XYZ;}
 
 
 namespace Zeta {template <class t> struct XY {
@@ -37,8 +37,8 @@ namespace Zeta {template <class t> struct XY {
 
 	Z_INLINE XY() Z_NOTHROW Z_DEFAULTED({})
 
-	Z_CT(CPP11) XY(t x, t y) Z_NOTHROW
-	: x(x),	y(y) {}
+	Z_CT(CPP11) XY(t x_, t y_) Z_NOTHROW
+	: x(x_), y(y_) {}
 
 
 	Z_CT(CPP11) XY(t xy) Z_NOTHROW
