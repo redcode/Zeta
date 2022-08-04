@@ -62,7 +62,7 @@ namespace Zeta {template <class t> struct XY {
 
 
 	friend Z_CT(CPP11) Boolean operator ==(t lhs, const XY &rhs) Z_NOTHROW
-		{return rhs.x == lhs && rhs.y == lhs;}
+		{return lhs == rhs.x && lhs == rhs.y;}
 
 
 	friend Z_CT(CPP11) Boolean operator !=(const XY &lhs, const XY &rhs) Z_NOTHROW
@@ -74,7 +74,7 @@ namespace Zeta {template <class t> struct XY {
 
 
 	friend Z_CT(CPP11) Boolean operator !=(t lhs, const XY &rhs) Z_NOTHROW
-		{return rhs.x != lhs || rhs.y != lhs;}
+		{return lhs != rhs.x || lhs != rhs.y;}
 
 
 	friend Z_CT(CPP11) Boolean operator >=(const XY &lhs, const XY &rhs) Z_NOTHROW
@@ -134,7 +134,7 @@ namespace Zeta {template <class t> struct XY {
 
 
 	friend Z_CT(CPP11) XY operator +(t lhs, const XY &rhs) Z_NOTHROW
-		{return XY(rhs.x + lhs, rhs.y + lhs);}
+		{return XY(lhs + rhs.x, lhs + rhs.y);}
 
 
 	friend Z_CT(CPP11) XY operator -(const XY &lhs, const XY &rhs) Z_NOTHROW
@@ -154,7 +154,7 @@ namespace Zeta {template <class t> struct XY {
 
 
 	friend Z_CT(CPP11) XY operator *(t lhs, const XY &rhs) Z_NOTHROW
-		{return XY(rhs.x * lhs, rhs.y * lhs);}
+		{return XY(lhs * rhs.x, lhs * rhs.y);}
 
 
 	friend Z_CT(CPP11) XY operator /(const XY &lhs, const XY &rhs) Z_NOTHROW
