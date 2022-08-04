@@ -2973,7 +2973,7 @@ namespace Zeta {
 #			define Z__MEMBER_FUNCTIONS								\
 														\
 				static Z_CT(CPP14) USize string_size()						\
-					{return type_string_size<t>() ;}					\
+					{return type_string_size<t>();}						\
 														\
 				static Z_CT(CPP14) SizedString<Char, string_size() + 1> string()		\
 					{return type_string<t>();}						\
