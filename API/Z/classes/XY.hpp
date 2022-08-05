@@ -29,7 +29,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <QRect>
 #endif
 
-namespace Zeta {template <class t, UInt T_number_set = Type<t>::number_set> struct XYZ;}
+namespace Zeta {template <class t> struct XYZ;}
 
 
 namespace Zeta {template <class t> struct XY {
@@ -57,112 +57,112 @@ namespace Zeta {template <class t> struct XY {
 		{return lhs.x == rhs.x && lhs.y == rhs.y;}
 
 
-	friend Z_CT(CPP11) Boolean operator ==(const XY &lhs, t rhs) Z_NOTHROW
-		{return lhs.x == rhs && lhs.y == rhs;}
-
-
-	friend Z_CT(CPP11) Boolean operator ==(t lhs, const XY &rhs) Z_NOTHROW
-		{return lhs == rhs.x && lhs == rhs.y;}
-
-
 	friend Z_CT(CPP11) Boolean operator !=(const XY &lhs, const XY &rhs) Z_NOTHROW
 		{return lhs.x != rhs.x || lhs.y != rhs.y;}
-
-
-	friend Z_CT(CPP11) Boolean operator !=(const XY &lhs, t rhs) Z_NOTHROW
-		{return lhs.x != rhs || lhs.y != rhs;}
-
-
-	friend Z_CT(CPP11) Boolean operator !=(t lhs, const XY &rhs) Z_NOTHROW
-		{return lhs != rhs.x || lhs != rhs.y;}
 
 
 	friend Z_CT(CPP11) Boolean operator >=(const XY &lhs, const XY &rhs) Z_NOTHROW
 		{return lhs.x >= rhs.x && lhs.y >= rhs.y;}
 
 
-	friend Z_CT(CPP11) Boolean operator >=(const XY &lhs, t rhs) Z_NOTHROW
-		{return lhs.x >= rhs && lhs.y >= rhs;}
-
-
-	friend Z_CT(CPP11) Boolean operator >=(t lhs, const XY &rhs) Z_NOTHROW
-		{return lhs >= rhs.x && lhs >= rhs.y;}
-
-
 	friend Z_CT(CPP11) Boolean operator <=(const XY &lhs, const XY &rhs) Z_NOTHROW
 		{return lhs.x <= rhs.x && lhs.y <= rhs.y;}
-
-
-	friend Z_CT(CPP11) Boolean operator <=(const XY &lhs, t rhs) Z_NOTHROW
-		{return lhs.x <= rhs && lhs.y <= rhs;}
-
-
-	friend Z_CT(CPP11) Boolean operator <=(t lhs, const XY &rhs) Z_NOTHROW
-		{return lhs <= rhs.x && lhs <= rhs.y;}
 
 
 	friend Z_CT(CPP11) Boolean operator >(const XY &lhs, const XY &rhs) Z_NOTHROW
 		{return lhs.x > rhs.x && lhs.y > rhs.y;}
 
 
-	friend Z_CT(CPP11) Boolean operator >(const XY &lhs, t rhs) Z_NOTHROW
-		{return lhs.x > rhs && lhs.y > rhs;}
-
-
-	friend Z_CT(CPP11) Boolean operator >(t lhs, const XY &rhs) Z_NOTHROW
-		{return lhs > rhs.x && lhs > rhs.y;}
-
-
 	friend Z_CT(CPP11) Boolean operator <(const XY &lhs, const XY &rhs) Z_NOTHROW
 		{return lhs.x < rhs.x && lhs.y < rhs.y;}
-
-
-	friend Z_CT(CPP11) Boolean operator <(const XY &lhs, t rhs) Z_NOTHROW
-		{return lhs.x < rhs && lhs.y < rhs;}
-
-
-	friend Z_CT(CPP11) Boolean operator <(t lhs, const XY &rhs) Z_NOTHROW
-		{return lhs < rhs.x && lhs < rhs.y;}
 
 
 	friend Z_CT(CPP11) XY operator +(const XY &lhs, const XY &rhs) Z_NOTHROW
 		{return XY(lhs.x + rhs.x, lhs.y + rhs.y);}
 
 
-	friend Z_CT(CPP11) XY operator +(const XY &lhs, t rhs) Z_NOTHROW
-		{return XY(lhs.x + rhs, lhs.y + rhs);}
-
-
-	friend Z_CT(CPP11) XY operator +(t lhs, const XY &rhs) Z_NOTHROW
-		{return XY(lhs + rhs.x, lhs + rhs.y);}
-
-
 	friend Z_CT(CPP11) XY operator -(const XY &lhs, const XY &rhs) Z_NOTHROW
 		{return XY(lhs.x - rhs.x, lhs.y - rhs.y);}
-
-
-	friend Z_CT(CPP11) XY operator -(const XY &lhs, t rhs) Z_NOTHROW
-		{return XY(lhs.x - rhs, lhs.y - rhs);}
 
 
 	friend Z_CT(CPP11) XY operator *(const XY &lhs, const XY &rhs) Z_NOTHROW
 		{return XY(lhs.x * rhs.x, lhs.y * rhs.y);}
 
 
-	friend Z_CT(CPP11) XY operator *(const XY &lhs, t rhs) Z_NOTHROW
-		{return XY(lhs.x * rhs, lhs.y * rhs);}
-
-
-	friend Z_CT(CPP11) XY operator *(t lhs, const XY &rhs) Z_NOTHROW
-		{return XY(lhs * rhs.x, lhs * rhs.y);}
-
-
 	friend Z_CT(CPP11) XY operator /(const XY &lhs, const XY &rhs) Z_NOTHROW
 		{return XY(lhs.x / rhs.x, lhs.y / rhs.y);}
 
 
+	friend Z_CT(CPP11) Boolean operator ==(const XY &lhs, t rhs) Z_NOTHROW
+		{return lhs.x == rhs && lhs.y == rhs;}
+
+
+	friend Z_CT(CPP11) Boolean operator !=(const XY &lhs, t rhs) Z_NOTHROW
+		{return lhs.x != rhs || lhs.y != rhs;}
+
+
+	friend Z_CT(CPP11) Boolean operator >=(const XY &lhs, t rhs) Z_NOTHROW
+		{return lhs.x >= rhs && lhs.y >= rhs;}
+
+
+	friend Z_CT(CPP11) Boolean operator <=(const XY &lhs, t rhs) Z_NOTHROW
+		{return lhs.x <= rhs && lhs.y <= rhs;}
+
+
+	friend Z_CT(CPP11) Boolean operator >(const XY &lhs, t rhs) Z_NOTHROW
+		{return lhs.x > rhs && lhs.y > rhs;}
+
+
+	friend Z_CT(CPP11) Boolean operator <(const XY &lhs, t rhs) Z_NOTHROW
+		{return lhs.x < rhs && lhs.y < rhs;}
+
+
+	friend Z_CT(CPP11) XY operator +(const XY &lhs, t rhs) Z_NOTHROW
+		{return XY(lhs.x + rhs, lhs.y + rhs);}
+
+
+	friend Z_CT(CPP11) XY operator -(const XY &lhs, t rhs) Z_NOTHROW
+		{return XY(lhs.x - rhs, lhs.y - rhs);}
+
+
+	friend Z_CT(CPP11) XY operator *(const XY &lhs, t rhs) Z_NOTHROW
+		{return XY(lhs.x * rhs, lhs.y * rhs);}
+
+
 	friend Z_CT(CPP11) XY operator /(const XY &lhs, t rhs) Z_NOTHROW
 		{return XY(lhs.x / rhs, lhs.y / rhs);}
+
+
+	friend Z_CT(CPP11) Boolean operator ==(t lhs, const XY &rhs) Z_NOTHROW
+		{return lhs == rhs.x && lhs == rhs.y;}
+
+
+	friend Z_CT(CPP11) Boolean operator !=(t lhs, const XY &rhs) Z_NOTHROW
+		{return lhs != rhs.x || lhs != rhs.y;}
+
+
+	friend Z_CT(CPP11) Boolean operator >=(t lhs, const XY &rhs) Z_NOTHROW
+		{return lhs >= rhs.x && lhs >= rhs.y;}
+
+
+	friend Z_CT(CPP11) Boolean operator <=(t lhs, const XY &rhs) Z_NOTHROW
+		{return lhs <= rhs.x && lhs <= rhs.y;}
+
+
+	friend Z_CT(CPP11) Boolean operator >(t lhs, const XY &rhs) Z_NOTHROW
+		{return lhs > rhs.x && lhs > rhs.y;}
+
+
+	friend Z_CT(CPP11) Boolean operator <(t lhs, const XY &rhs) Z_NOTHROW
+		{return lhs < rhs.x && lhs < rhs.y;}
+
+
+	friend Z_CT(CPP11) XY operator +(t lhs, const XY &rhs) Z_NOTHROW
+		{return XY(lhs + rhs.x, lhs + rhs.y);}
+
+
+	friend Z_CT(CPP11) XY operator *(t lhs, const XY &rhs) Z_NOTHROW
+		{return XY(lhs * rhs.x, lhs * rhs.y);}
 
 
 	Z_INLINE XY &operator +=(const XY &rhs) Z_NOTHROW {return *this = *this + rhs;}
