@@ -16,7 +16,6 @@ namespace Zeta {
 
 #	if Z_DIALECT_HAS(CPP11, TYPE_ALIAS_TEMPLATE)
 #		define Z_HAS_cast TRUE
-
 		template <class to> using cast = to;
 #	endif
 
