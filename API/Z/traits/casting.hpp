@@ -15,19 +15,25 @@ namespace Zeta {
 	template <class to> struct Cast {typedef to type;};
 
 #	if Z_DIALECT_HAS(CPP11, TYPE_ALIAS_TEMPLATE)
+#		define Z_HAS_cast TRUE
+
 		template <class to> using cast = to;
 #	endif
 
-	template <class from> struct auto_cast {
-		const from &value;
+#	if Z_DIALECT_HAS(CPP11, DIRECT_LIST_INITIALIZATION)
+#		define Z_HAS_auto_cast TRUE
 
-		explicit Z_CT(CPP11) auto_cast(const from &value_) Z_NOTHROW
-		: value {value_} {}
+		template <class from> struct auto_cast {
+			const from &value;
 
-		template <class to>
-		Z_CT(CPP11) operator to() const Z_NOTHROW
-			{return to(value);}
-	};
+			explicit Z_CT(CPP11) auto_cast(const from &value_) Z_NOTHROW
+			: value{value_} {}
+
+			template <class to>
+			Z_CT(CPP11) operator to() const Z_NOTHROW
+				{return to(value);}
+		};
+#	endif
 }
 
 #endif // Z_traits_casting_HPP
