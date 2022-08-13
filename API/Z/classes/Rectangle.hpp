@@ -76,6 +76,15 @@ namespace Zeta {template <class t> struct Rectangle {
 	: point(t(0)), size(size_xy) {}
 
 
+#	if	Z_DIALECT_HAS(CPP98, SFINAE) && \
+		Z_DIALECT_HAS(CPP11, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE)
+
+		template <class other_t, class e = typename TypeIf<!TypeIsSame<t, other_t>::value>::type>
+		Z_CT(CPP11) Rectangle(const Rectangle<other_t> &other) Z_NOTHROW
+		: point(other.point), size(other.size) {}
+#	endif
+
+
 	static Z_CT(CPP14) Rectangle from_vertices(const XY<t> &a, const XY<t> &b) Z_NOTHROW
 		{
 		XY<t> minimum = a.minimum(b);

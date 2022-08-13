@@ -49,6 +49,15 @@ namespace Zeta {template <class t> struct XY {
 	: x(xy.x), y(xy.y) {}
 
 
+#	if	Z_DIALECT_HAS(CPP98, SFINAE) && \
+		Z_DIALECT_HAS(CPP11, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE)
+
+		template <class other_t, class e = typename TypeIf<!TypeIsSame<t, other_t>::value>::type>
+		Z_CT(CPP11) XY(const XY<other_t> &other) Z_NOTHROW
+		: x(t(other.x)), y(t(other.y)) {}
+#	endif
+
+
 	Z_CT(CPP11) operator Boolean() const Z_NOTHROW
 		{return x != t(0) || y != t(0);}
 
