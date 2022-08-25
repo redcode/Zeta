@@ -14,6 +14,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/integral.hpp>
 #include <Z/classes/Iterator.hpp>
 
+#ifdef Z_WITH_STDCPP
+#	include <cstring>
+#endif
 
 namespace Zeta {template <class t> struct StringView {
 //	typedef Iterator<t*> const_iterator;
@@ -50,6 +53,28 @@ namespace Zeta {template <class t> struct StringView {
 
 	Z_CT(CPP11) iterator end() const Z_NOTHROW
 		{}*/
+
+
+#	ifdef Z_WITH_STDCPP
+
+		friend Z_INLINE Boolean operator ==(const StringView &lhs, const StringView &rhs) Z_NOTHROW
+			{return lhs.size == rhs.size && !std::memcmp(lhs.data, rhs.data, lhs.size * sizeof(t));}
+
+
+		friend Z_INLINE Boolean operator !=(const StringView &lhs, const StringView &rhs) Z_NOTHROW
+			{return lhs.size != rhs.size || std::memcmp(lhs.data, rhs.data, lhs.size * sizeof(t));}
+
+
+		template <USize s>
+		friend Z_INLINE Boolean operator ==(const StringView &lhs, const t (&rhs)[s]) Z_NOTHROW
+			{return lhs.size == s && !std::memcmp(lhs.data, rhs, s * sizeof(t));}
+
+
+		template <USize s>
+		friend Z_INLINE Boolean operator !=(const StringView &lhs, const t (&rhs)[s]) Z_NOTHROW
+			{return lhs.size != s || std::memcmp(lhs.data, rhs, s * sizeof(t));}
+
+#	endif
 };}
 
 
