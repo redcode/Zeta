@@ -67,12 +67,20 @@ namespace Zeta {template <class t> struct StringView {
 
 		template <USize s>
 		friend Z_INLINE Boolean operator ==(const StringView &lhs, const t (&rhs)[s]) Z_NOTHROW
-			{return lhs.size == s && !std::memcmp(lhs.data, rhs, s * sizeof(t));}
+			{return lhs.size == (s - 1) && !std::memcmp(lhs.data, rhs, (s - 1) * sizeof(t));}
 
 
 		template <USize s>
 		friend Z_INLINE Boolean operator !=(const StringView &lhs, const t (&rhs)[s]) Z_NOTHROW
-			{return lhs.size != s || std::memcmp(lhs.data, rhs, s * sizeof(t));}
+			{return lhs.size != (s - 1) || std::memcmp(lhs.data, rhs, (s - 1) * sizeof(t));}
+
+
+		friend Z_INLINE Boolean operator ==(const StringView &lhs, const t *rhs) Z_NOTHROW
+			{return	lhs.size * sizeof(t) == std::strlen(rhs) && !std::memcmp(lhs.data, rhs, lhs.size * sizeof(t));}
+
+
+		friend Z_INLINE Boolean operator !=(const StringView &lhs, const t *rhs) Z_NOTHROW
+			{return lhs.size * sizeof(t) != std::strlen(rhs) || std::memcmp(lhs.data, rhs, lhs.size * sizeof(t));}
 
 #	endif
 };}
