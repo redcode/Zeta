@@ -19,7 +19,9 @@ namespace Zeta {
 		template <class to> using cast = to;
 #	endif
 
-#	if Z_DIALECT_HAS(CPP11, DIRECT_LIST_INITIALIZATION)
+#	if	Z_DIALECT_HAS(CPP11, DIRECT_LIST_INITIALIZATION) && \
+		Z_DIALECT_HAS(CPP17, DEDUCTION_GUIDES_FOR_CLASS_TEMPLATE)
+
 #		define Z_HAS_auto_cast TRUE
 
 		template <class from> struct auto_cast {
