@@ -34,7 +34,9 @@ Z_DEFINE_PACKED_STRUCTURE ({		/* byte offset */
 	zuint8 device_minor[8];         /* 337 */
 	zuint8 prefix[155];             /* 345 */
 					/* 500 */
-}, Z_TARHeader);
+}, Z_TARPOSIXHeader);
+
+typedef Z_TARPOSIXHeader Z_TARHeader;
 
 #define Z_TAR_ITEM_TYPE_OLD_REGULAR_FILE 0
 #define Z_TAR_ITEM_TYPE_REGULAR_FILE	 0x30
