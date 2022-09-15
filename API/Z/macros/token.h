@@ -26,7 +26,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z__PREFIX_Z_(   rht)  Z_##rht
 #define Z__PREFIX_z(    rht)   z##rht
 #define Z__PREFIX_z_(   rht)  z_##rht
-#define Z__PREFIX_zb_(  rht) zb_##rht
 #define Z__SUFFIX_D32(  lht) lht##D32
 #define Z__SUFFIX_D64(  lht) lht##D64
 #define Z__SUFFIX_D64x( lht) lht##D64x
@@ -61,7 +60,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PREFIX_Z_(   rht) Z__PREFIX_Z_   (rht)
 #define Z_PREFIX_z(    rht) Z__PREFIX_z	   (rht)
 #define Z_PREFIX_z_(   rht) Z__PREFIX_z_   (rht)
-#define Z_PREFIX_zb_(  rht) Z__PREFIX_zb_  (rht)
 #define Z_SUFFIX_	    Z_SAME
 #define Z_SUFFIX_D32(  lht) Z__SUFFIX_D32  (lht)
 #define Z_SUFFIX_D64(  lht) Z__SUFFIX_D64  (lht)
