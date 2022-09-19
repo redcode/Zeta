@@ -9,6 +9,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_inspection_compiler_modules_GCC_H
 #define Z_inspection_compiler_modules_GCC_H
 
+#include <Z/keys/OS.h>
+
 /* MARK: - Identification */
 
 #define Z_COMPILER_IS_GCC	  TRUE
@@ -90,20 +92,44 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - OS */
 
-#define Z_COMPIER_OS Z_OS_LINUX
+#if defined(__ANDROID__)
+#	define Z_COMPILER_OS Z_OS_ANDROID
+
+#elif	defined(__gnu_linux__) || \
+	defined(__linux	     ) || \
+	defined(__linux__    )
+
+#	define Z_COMPILER_OS Z_OS_LINUX
+
+#elif	defined(__WIN32	 ) || \
+	defined(__WIN32__) || \
+	defined(__WIN64	 ) || \
+	defined(__WIN64__) || \
+	defined(__WINNT	 ) || \
+	defined(__WINNT__) || \
+	defined(_WIN32	 ) || \
+	defined(_WIN64	 )
+
+#	define Z_COMPILER_OS Z_OS_WINDOWS
+#endif
 
 /* MARK: - Data model */
 
 #if	defined(__ILP32__) || \
-	defined(_ILP32	 )
+	defined(_ILP32	 ) || \
+	defined(_WIN32	 )
 
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_ILP32
+
+#elif defined(_WIN64)
+#	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_LLP64
 
 #elif	defined(__LP64__) || \
 	defined(_LP64	)
 
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_LP64
 #endif
+
 
 /* MARK: - Floating-point */
 
@@ -936,7 +962,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Built-ins: Functions */
 
-#if __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1
+#ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1
 #	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_ADD_AND_GET	     __sync_add_and_fetch_1
 #	define Z_COMPILER_FUNCTION_SINT8_ATOMIC_ADD_AND_GET	     __sync_add_and_fetch_1
 #	define Z_COMPILER_FUNCTION_UINT8_ATOMIC_AND_AND_GET	     __sync_and_and_fetch_1
@@ -967,7 +993,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_FUNCTION_SINT8_ATOMIC_XOR_AND_GET	     __sync_xor_and_fetch_1
 #endif
 
-#if __GCC_HAVE_SYNC_COMPARE_AND_SWAP_2
+#ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_2
 #	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_ADD_AND_GET	      __sync_add_and_fetch_2
 #	define Z_COMPILER_FUNCTION_SINT16_ATOMIC_ADD_AND_GET	      __sync_add_and_fetch_2
 #	define Z_COMPILER_FUNCTION_UINT16_ATOMIC_AND_AND_GET	      __sync_and_and_fetch_2
@@ -998,7 +1024,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_FUNCTION_SINT16_ATOMIC_XOR_AND_GET	      __sync_xor_and_fetch_2
 #endif
 
-#if __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4
+#ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4
 #	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_ADD_AND_GET	      __sync_add_and_fetch_4
 #	define Z_COMPILER_FUNCTION_SINT32_ATOMIC_ADD_AND_GET	      __sync_add_and_fetch_4
 #	define Z_COMPILER_FUNCTION_UINT32_ATOMIC_AND_AND_GET	      __sync_and_and_fetch_4
@@ -1029,7 +1055,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_FUNCTION_SINT32_ATOMIC_XOR_AND_GET	      __sync_xor_and_fetch_4
 #endif
 
-#if __GCC_HAVE_SYNC_COMPARE_AND_SWAP_8
+#ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_8
 #	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_ADD_AND_GET	      __sync_add_and_fetch_8
 #	define Z_COMPILER_FUNCTION_SINT64_ATOMIC_ADD_AND_GET	      __sync_add_and_fetch_8
 #	define Z_COMPILER_FUNCTION_UINT64_ATOMIC_AND_AND_GET	      __sync_and_and_fetch_8
@@ -1060,7 +1086,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_FUNCTION_SINT64_ATOMIC_XOR_AND_GET	      __sync_xor_and_fetch_8
 #endif
 
-#if __GCC_HAVE_SYNC_COMPARE_AND_SWAP_16
+#ifdef __GCC_HAVE_SYNC_COMPARE_AND_SWAP_16
 #	define Z_COMPILER_FUNCTION_UINT128_ATOMIC_ADD_AND_GET	       __sync_add_and_fetch_16
 #	define Z_COMPILER_FUNCTION_SINT128_ATOMIC_ADD_AND_GET	       __sync_add_and_fetch_16
 #	define Z_COMPILER_FUNCTION_UINT128_ATOMIC_AND_AND_GET	       __sync_and_and_fetch_16
