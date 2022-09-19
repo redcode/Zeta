@@ -493,7 +493,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_ATTRIBUTE_EBCO*/
 /*#define Z_COMPILER_ATTRIBUTE_API_WEAK_EXPORT*/
 
-#if Z_COMPILER_OS == Z_OS_WINDOWS
+#if defined(Z_COMPILER_OS) && Z_COMPILER_OS == Z_OS_WINDOWS
 #	define Z_COMPILER_ATTRIBUTE_MICROSOFT_STD_CALL __attribute__((stdcall)) /* TODO: check version */
 #endif
 
