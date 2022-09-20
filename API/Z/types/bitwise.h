@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_types_bitwise_H
 
 #include <Z/macros/language.h>
-#include <Z/macros/aggregate.h>
+#include <Z/macros/member.h>
 #include <Z/types/integral.h>
 
 #if defined(Z_UINT8) || defined(Z_SINT8)

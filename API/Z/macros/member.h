@@ -1,4 +1,4 @@
-/* Zeta API - Z/macros/aggregate.h
+/* Zeta API - Z/macros/member.h
  ______ ____________  ___
 |__   /|  ___|__  __|/   \
   /  /_|  __|  |  | /  *  \
@@ -6,15 +6,12 @@
 Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_aggregate_H
-#define Z_macros_aggregate_H
+#ifndef Z_macros_member_H
+#define Z_macros_member_H
 
 #include <Z/keys/order.h>
 #include <Z/inspection/ISA.h>
 #include <Z/inspection/language.h>
-
-#define Z_ARRAY_SIZE(array) \
-	(sizeof((array)) / sizeof((array)[0]))
 
 #if Z_COMPILER_HAS_MACRO(MEMBER_OFFSET)
 #	define Z_MEMBER_OFFSET Z_COMPILER_MACRO(MEMBER_OFFSET)
@@ -104,7 +101,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_MEMBERIZE_REVERSED_31(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31)	    _31; _30; _29; _28; _27; _26; _25; _24; _23; _22; _21; _20; _19; _18; _17; _16; _15; _14; _13; _12; _11; _10; _9; _8; _7; _6; _5; _4; _3; _2; _1;
 #define Z_MEMBERIZE_REVERSED_32(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32) _32; _31; _30; _29; _28; _27; _26; _25; _24; _23; _22; _21; _20; _19; _18; _17; _16; _15; _14; _13; _12; _11; _10; _9; _8; _7; _6; _5; _4; _3; _2; _1;
 
-#define Z_BIT_FIELD(bits, member_count)			   \
+#define Z_BIT_FIELD_MEMBERS(bits, member_count)		   \
 	Z_APPEND_TERNARY(Z_COMPILER_BIT_FIELD_ORDER(bits)) \
 		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
@@ -112,4 +109,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_APPEND_TERNARY(Z_ISA_INTEGRAL_ENDIANNESS) \
 		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
-#endif /* Z_macros_aggregate_H */
+#endif /* Z_macros_member_H */

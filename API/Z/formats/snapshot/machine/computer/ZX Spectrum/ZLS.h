@@ -30,7 +30,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	ZInt16 sp, pc;
 
 	union {	zuint8 value;
-		struct {Z_BIT_FIELD(8, 4) (
+		struct {Z_BIT_FIELD_MEMBERS(8, 4) (
 			zuint8 unused :6,
 			zuint8 iff2   :1,
 			zuint8 iff1   :1,

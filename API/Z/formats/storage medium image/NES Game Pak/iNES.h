@@ -32,7 +32,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 /* 4 */ zuint8 prg_rom_page_count;
 /* 5 */ zuint8 chr_rom_page_count;
 
-/* 6 */ struct {Z_BIT_FIELD(8, 5) (
+/* 6 */ struct {Z_BIT_FIELD_MEMBERS(8, 5) (
 		zuint8 mapper_index_low_nibble	:4,
 		zuint8 has_4_screen_vram_layout :1,
 		zuint8 has_trainer		:1,
@@ -41,7 +41,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	)} flags_6;
 
 	union {	struct {
-		/* 7 */ struct {Z_BIT_FIELD(8, 4) (
+		/* 7 */ struct {Z_BIT_FIELD_MEMBERS(8, 4) (
 				zuint8 mapper_index_high_nibble :4,
 				zuint8 rom_image_format		:1,
 				zuint8 is_play_choice_10	:1,
@@ -59,7 +59,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 			| few programs honor yhis field, as virtually |
 			| no ROM images in circulation make use of it.|
 			'============================================*/
-		/* 9 */ struct {Z_BIT_FIELD(8, 2) (
+		/* 9 */ struct {Z_BIT_FIELD_MEMBERS(8, 2) (
 				zuint8 zero   :7,
 				zuint8 is_pal :1
 			)} flags_9;

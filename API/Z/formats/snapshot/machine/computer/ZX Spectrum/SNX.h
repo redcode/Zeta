@@ -36,7 +36,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	emulate_vram_attributes;
 
 	union {	zuint8 value;
-		struct {Z_BIT_FIELD(8, 4) (
+		struct {Z_BIT_FIELD_MEMBERS(8, 4) (
 			zuint8 keyboard	   :1,
 			zuint8 emulate_ula :1,
 			zuint8 unused	   :4,
@@ -45,7 +45,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	} settings_0;
 
 	union {	zuint8 value;
-		struct {Z_BIT_FIELD(8, 3) (
+		struct {Z_BIT_FIELD_MEMBERS(8, 3) (
 			zuint8 ear_mode	 :1,
 			zuint8 unused	 :6,
 			zuint8 emulate_r :1
@@ -56,7 +56,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8 rs232_mode;
 
 	union {	zuint8 value;
-		struct {Z_BIT_FIELD(8, 2) (
+		struct {Z_BIT_FIELD_MEMBERS(8, 2) (
 			zuint8 hz	      :4,
 			zuint8 emulation_mode :1
 		)} fields;

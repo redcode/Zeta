@@ -42,7 +42,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 
 Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	union {	zuint8 value;
-		struct {Z_BIT_FIELD(8, 3) (
+		struct {Z_BIT_FIELD_MEMBERS(8, 3) (
 			zuint8 unused_1 :5,
 			zuint8 iff1	:1,
 			zuint8 unused_0 :2

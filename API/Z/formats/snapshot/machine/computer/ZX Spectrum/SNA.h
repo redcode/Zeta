@@ -69,7 +69,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	ZInt16 hl_, de_, bc_, af_, hl, de, bc, iy, ix;
 
 	union {	zuint8 value;
-		struct {Z_BIT_FIELD(8, 4) (
+		struct {Z_BIT_FIELD_MEMBERS(8, 4) (
 			zuint8 unused_1 :5,
 			zuint8 iff2	:1,
 			zuint8 unused_0 :1,

@@ -55,7 +55,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	zero_1; /* reserved for future use */
 
 	union {	zuint8 value;
-		struct {Z_BIT_FIELD(8, 7) (
+		struct {Z_BIT_FIELD_MEMBERS(8, 7) (
 			zuint8 zero	:2, /* reserved for internal use */
 			zuint8 flash	:1, /* boolean */
 			zuint8 int_line :1,

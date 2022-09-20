@@ -33,7 +33,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	/* Additional info; if the byte= 255, it has to be
 	interpreted as being = 1 */
 	union {	zuint8 value;
-		struct {Z_BIT_FIELD(8, 5) (
+		struct {Z_BIT_FIELD_MEMBERS(8, 5) (
 			zuint8 zero		    :2,
 			zuint8 ram_is_compressed    :1,
 			zuint8 emulate_basic_samrom :1,
@@ -48,7 +48,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8 iff1, iff2;
 
 	union {	zuint8 value;
-		struct {Z_BIT_FIELD(8, 5) (
+		struct {Z_BIT_FIELD_MEMBERS(8, 5) (
 			zuint8 joystick_type	     :2,
 			zuint8 video_synchronization :2,
 			zuint8 double_int_frequency  :1,
@@ -65,7 +65,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	state_0;
 	zuint8	state_1;
 
-	struct {Z_BIT_FIELD(8, 7) (
+	struct {Z_BIT_FIELD_MEMBERS(8, 7) (
 		zuint8 unused_1		     :1,
 		zuint8 modify_hardware	     :1,
 		zuint8 emulate_fuller_box_ay :1,

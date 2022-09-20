@@ -33,7 +33,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/number.h>
 #include <Z/inspection/Z.h>
-#include <Z/macros/aggregate.h>
+#include <Z/macros/member.h> // Needed?
 #include <Z/types/integral.hpp>
 #include <Z/types/real.hpp>
 #include <Z/types/pointer.hpp>

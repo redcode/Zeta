@@ -187,7 +187,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_formats_storage_medium_image_audio_TZX_H
 
 #include <Z/macros/language.h>
-#include <Z/macros/aggregate.h>
+#include <Z/macros/member.h>
 #include <Z/types/integral.h>
 
 /* MARK: - File Header */
@@ -408,7 +408,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint16 trailing_tone_wave_count;
 	zuint8	last_byte_bit_count;
 
-	struct {Z_BIT_FIELD(8, 2) (
+	struct {Z_BIT_FIELD_MEMBERS(8, 2) (
 		zuint8 unused	      :7,
 		zuint8 data_bit_order :1
 	)} general_purpose;
@@ -452,7 +452,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint16 cycles_per_bit_0_pulse;
 	zuint16 cycles_per_bit_1_pulse;
 
-	struct {Z_BIT_FIELD(8, 4) (
+	struct {Z_BIT_FIELD_MEMBERS(8, 4) (
 		zuint8 unused	:3,
 		zuint8 position	:1,
 		zuint8 value	:1,
@@ -463,7 +463,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	pilot_byte;
 	zuint8	last_byte_bit_count;
 
-	struct {Z_BIT_FIELD(8, 2) (
+	struct {Z_BIT_FIELD_MEMBERS(8, 2) (
 		zuint8 unused	      :7,
 		zuint8 data_bit_order :1
 	)} general_purpose;
@@ -1095,7 +1095,7 @@ Flags (16-bit little-endian):
 Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8 block_id;
 
-	struct {Z_BIT_FIELD(8, 7)(
+	struct {Z_BIT_FIELD_MEMBERS(8, 7)(
 		zuint8 screen_refresh_mode     :1,
 		zuint8 screen_border	       :1,
 		zuint8 fast_loading	       :1,
@@ -1105,7 +1105,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 		zuint8 r_register	       :1
 	)} features;
 
-	struct {Z_BIT_FIELD(8, 3)(
+	struct {Z_BIT_FIELD_MEMBERS(8, 3)(
 		zuint8 unused				:6,
 		zuint8 type_load_or_press_enter_if_128k :1,
 		zuint8 autoplay				:1
