@@ -62,7 +62,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_C_NAME Z_C_NAME_C89
 
 #elif Z_C == Z_KR_C
-#	include <Z/inspection/C/modules/KR C.h>
+#	include <Z/inspection/C/modules/C.h>
 #	define Z_C_NAME Z_C_NAME_KR_C
 
 #else
