@@ -10,6 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_inspection_compiler_modules_GCC_H
 
 #include <Z/keys/OS.h>
+#include <Z/keys/ISA.h>
 
 /* MARK: - Identification */
 
