@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_inspection_C_modules_C89_H
 #define Z_inspection_C_modules_C89_H
 
-#include <Z/inspection/C/modules/C.h>
+#include <Z/inspection/C/modules/C78.h>
 
 #define Z_LANGUAGE_HAS_C89_CONSTANT_INITIALIZATION_FOR_LOCAL_AGGREGATE TRUE
 #define Z_LANGUAGE_HAS_C89_CONSTANT_INITIALIZATION_FOR_UNION	       TRUE
