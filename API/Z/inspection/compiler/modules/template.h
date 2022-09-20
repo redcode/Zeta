@@ -53,7 +53,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_FIXED_FUNDAMENTAL_DECIMAL64X*/
 /*#define Z_COMPILER_FIXED_FUNDAMENTAL_DECIMAL128X*/
 
-/* MARK: - Language: K&R C */
+/* MARK: - Language: C78 */
 
 /*#define Z_COMPILER_HAS_C_OLD_STYLE_FUNCTION*/
 /*#define Z_COMPILER_HAS_C_OPERATOR_SIZEOF*/

@@ -92,7 +92,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_DATA_MODEL Z_DATA_MODEL_LP64
 #endif
 
-/* MARK: - Language: K&R C */
+/* MARK: - Language: C78 */
 
 /*#define Z_COMPILER_HAS_C_OLD_STYLE_FUNCTION*/
 #define Z_COMPILER_HAS_C_OPERATOR_SIZEOF	TRUE

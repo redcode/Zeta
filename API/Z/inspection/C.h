@@ -15,7 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifndef Z_C
 #	if !defined(__STDC__) && !defined(__cplusplus)
-#		define Z_C Z_KR_C
+#		define Z_C Z_C78
 
 #	elif !defined(__STDC_VERSION__)
 #		define Z_C Z_C89
@@ -61,9 +61,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/C/modules/C89.h>
 #	define Z_C_NAME Z_C_NAME_C89
 
-#elif Z_C == Z_KR_C
-#	include <Z/inspection/C/modules/C.h>
-#	define Z_C_NAME Z_C_NAME_KR_C
+#elif Z_C == Z_C78
+#	include <Z/inspection/C/modules/C78.h>
+#	define Z_C_NAME Z_C_NAME_C78
 
 #else
 #	error "Invalid Z_C key."

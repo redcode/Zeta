@@ -1,4 +1,4 @@
-/* Zeta API - Z/inspection/C/modules/C.h
+/* Zeta API - Z/inspection/C/modules/C78.h
  ______ ____________  ___
 |__   /|  ___|__  __|/   \
   /  /_|  __|  |  | /  *  \
@@ -6,8 +6,8 @@
 Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_C_modules_C_H
-#define Z_inspection_C_modules_C_H
+#ifndef Z_inspection_C_modules_C78_H
+#define Z_inspection_C_modules_C78_H
 
 #define Z_LANGUAGE_HAS_C_OLD_STYLE_FUNCTION	TRUE
 #define Z_LANGUAGE_HAS_C_OPERATOR_SIZEOF	TRUE
@@ -18,4 +18,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_LANGUAGE_HAS_C_TYPE_DOUBLE		TRUE
 #define Z_LANGUAGE_HAS_C_TYPE_FLOAT		TRUE
 
-#endif /* Z_inspection_C_modules_C_H */
+#endif /* Z_inspection_C_modules_C78_H */
