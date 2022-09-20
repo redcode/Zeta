@@ -100,7 +100,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Informative macros */
 
-#define Z_BLOCK
 #define Z_OUT
 #define Z_INOUT
 #define Z_UNUSED(variable) (void)variable;
