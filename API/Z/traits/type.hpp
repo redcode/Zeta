@@ -2948,7 +2948,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 		enum {is_compound = !Build::is_fundamental};
 
 		typedef typename TernaryType<Build::is_class,
-			typename Build<const typename Build::remove_const_volatile>::add_lvalue_reference,
+			typename Build<const typename Build::remove_const_volatile>::add_lvalue_reference, // TODO: Preserve volatile?
 			t
 		>::type to_forwardable;
 	};
