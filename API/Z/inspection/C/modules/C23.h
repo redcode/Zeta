@@ -1,4 +1,4 @@
-/* Zeta API - Z/inspection/C/modules/C22.h
+/* Zeta API - Z/inspection/C/modules/C23.h
  ______ ____________  ___
 |__   /|  ___|__  __|/   \
   /  /_|  __|  |  | /  *  \
@@ -6,8 +6,8 @@
 Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_inspection_C_modules_C22_H
-#define Z_inspection_C_modules_C22_H
+#ifndef Z_inspection_C_modules_C23_H
+#define Z_inspection_C_modules_C23_H
 
 #include <Z/inspection/C/modules/C11.h>
 
@@ -29,4 +29,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_LANGUAGE_HAS_C23_STORAGE_CLASS_THREAD_LOCAL	     TRUE
 #define Z_LANGUAGE_HAS_C23_TYPE_BOOL			     TRUE
 
-#endif /* Z_inspection_C_modules_C22_H */
+#endif /* Z_inspection_C_modules_C23_H */
