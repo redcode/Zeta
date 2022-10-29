@@ -16,13 +16,4 @@ typedef struct {
 	zuchar volatile flags;
 } ZTripleBuffer;
 
-typedef struct {
-	void*		data;
-	zusize		slot_size;
-	zusize		slot_count;
-	zusize		consumption_index;
-	zusize		production_index;
-	zusize volatile fill_count;
-} ZRingBuffer;
-
 #endif /* Z_types_buffer_H */
