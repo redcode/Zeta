@@ -18,7 +18,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_IEEE_754_BINARY16_EXPONENT_MAXIMUM	  15
 #define Z_IEEE_754_BINARY16_EXPONENT_MINIMUM	  -14
 #define Z_IEEE_754_BINARY16_EXPONENT_10_MAXIMUM	  4
-#define Z_IEEE_754_BINARY16_EXPONENT_10_MINIMUM	  -3 /* correct? */
+#define Z_IEEE_754_BINARY16_EXPONENT_10_MINIMUM	  -3 /* correct? -4? */
 #define Z_IEEE_754_BINARY16_EPSILON		  9.765625e-4 /* correct? */
 #define Z_IEEE_754_BINARY16_MAXIMUM		  65504.0
 #define Z_IEEE_754_BINARY16_MINIMUM		  6.103515625e-5
