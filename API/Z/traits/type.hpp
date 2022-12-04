@@ -3582,7 +3582,7 @@ namespace Zeta {
 		template <class t> static Z_CONSTANT Boolean type_is_objective_c_class		= Type<t>::is_objective_c_class;
 		template <class t> static Z_CONSTANT Boolean type_is_objective_c_class_pointer	= Type<t>::is_objective_c_class_pointer;
 		template <class t> static Z_CONSTANT Boolean type_is_objective_c_object		= Type<t>::is_objective_c_object;
-		template <class t> static Z_CONSTANT Boolean type_is_objective_c_object_pointer	= Type<t>::is_objective_c_object_pointer;
+		template <class t> static Z_CONSTANT Boolean type_is_objective_c_object_pointer = Type<t>::is_objective_c_object_pointer;
 		template <class t> static Z_CONSTANT Boolean type_is_pointer			= Type<t>::is_pointer;
 		template <class t> static Z_CONSTANT Boolean type_is_qualified			= Type<t>::is_qualified;
 		template <class t> static Z_CONSTANT Boolean type_is_real			= Type<t>::is_real;
