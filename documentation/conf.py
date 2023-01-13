@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Zeta'
-copyright = '2006-2022 Manuel Sainz de Baranda y Goñi'
+copyright = '2006-2023 Manuel Sainz de Baranda y Goñi'
 author = 'Manuel Sainz de Baranda y Goñi'
 
 # The full version, including alpha/beta/rc tags
