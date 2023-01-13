@@ -18,15 +18,15 @@ include(GNUInstallDirs)
 
 set(${PROJECT_NAME}_INSTALL_CMAKEDIR
 "${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake" CACHE STRING
-"Specify the directory in which to install the CMake config-file package.")
+"Directory in which to install the CMake config-file package.")
 
 set(${PROJECT_NAME}_INSTALL_PKGCONFIGDIR
 "${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig" CACHE STRING
-"Specify the directory in which to install the pkg-config file.")
+"Directory in which to install the pkg-config file.")
 
 set(${PROJECT_NAME}_SPHINX_HTML_THEME
 "" CACHE STRING
-"Specify the Sphinx theme for the documentation in HTML format.")
+"Sphinx theme for the documentation in HTML format.")
 
 option(${PROJECT_NAME}_WITH_CMAKE_SUPPORT
 "Generate and install the CMake config-file package."
