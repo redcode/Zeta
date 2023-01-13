@@ -209,12 +209,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Macro selectors */
 
-#define Z_TYPE_REVERSE(TYPE)						       \
-	Z_JOIN_2(Z_INSERT_NUMBER_, Z_CHAR_BITS) (			       \
-		Z_INSERT_TYPE(Z_##TYPE##_FIXED_FUNDAMENTAL)(Z_, _REVERSE_IN_), \
+#define Z_T_REVERSE(T)							    \
+	Z_JOIN_2(Z_INSERT_NUMBER_, Z_CHAR_BITS) (			    \
+		Z_INSERT_TYPE(Z_##T##_FIXED_FUNDAMENTAL)(Z_, _REVERSE_IN_), \
 		BIT)
 
-#define Z_TYPE_BIG_ENDIAN(   TYPE) Z_INSERT_TYPE(Z_##TYPE##_FIXED_FUNDAMENTAL)(Z_, _BIG_ENDIAN	 )
-#define Z_TYPE_LITTLE_ENDIAN(TYPE) Z_INSERT_TYPE(Z_##TYPE##_FIXED_FUNDAMENTAL)(Z_, _LITTLE_ENDIAN)
+#define Z_T_BIG_ENDIAN(T) \
+	Z_INSERT_TYPE(Z_##T##_FIXED_FUNDAMENTAL)(Z_, _BIG_ENDIAN)
+
+#define Z_T_LITTLE_ENDIAN(T) \
+	Z_INSERT_TYPE(Z_##T##_FIXED_FUNDAMENTAL)(Z_, _LITTLE_ENDIAN)
 
 #endif /* Z_macros_bitwise_H */

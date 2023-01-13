@@ -1,4 +1,4 @@
-/* Zeta API - Z/keys/type.h
+/* Zeta API - Z/keys/fundamental.h
  ______ ____________  ___
 |__   /|  ___|__  __|/   \
   /  /_|  __|  |  | /  *  \
@@ -6,8 +6,8 @@
 Copyright (C) 2006-2022 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_keys_type_H
-#define Z_keys_type_H
+#ifndef Z_keys_fundamental_H
+#define Z_keys_fundamental_H
 
 /* MARK: - Standard C/C++ fundamental types */
 
@@ -68,17 +68,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Fixed format real types */
 
-#define Z_FUNDAMENTAL_BFP16	150 /* IEEE 754 binary16			 */
-#define Z_FUNDAMENTAL_BFP32	151 /* IEEE 754 binary32			 */
-#define Z_FUNDAMENTAL_BFP64	152 /* IEEE 754 binary64			 */
-#define Z_FUNDAMENTAL_BFP128	153 /* IEEE 754 binary128			 */
-#define Z_FUNDAMENTAL_DFP32	154 /* IEEE 754 decimal32			 */
-#define Z_FUNDAMENTAL_DFP64	155 /* IEEE 754 decimal64			 */
-#define Z_FUNDAMENTAL_DFP128	156 /* IEEE 754 decimal128			 */
-#define Z_FUNDAMENTAL_X87_DE80	157 /* x87 double extended			 */
-#define Z_FUNDAMENTAL_X87_DE96	158 /* x87 double extended (with 16-bit padding) */
-#define Z_FUNDAMENTAL_X87_DE128	159 /* x87 double extended (with 48-bit padding) */
-#define Z_FUNDAMENTAL_IBM_ED	160 /* IBM extended double			 */
-#define Z_FUNDAMENTAL_BFLOAT16	162 /* Brain Floating-Point			 */
+#define Z_FUNDAMENTAL_BFP16	 150 /* IEEE 754 binary16			  */
+#define Z_FUNDAMENTAL_BFP32	 151 /* IEEE 754 binary32			  */
+#define Z_FUNDAMENTAL_BFP64	 152 /* IEEE 754 binary64			  */
+#define Z_FUNDAMENTAL_BFP128	 153 /* IEEE 754 binary128			  */
+#define Z_FUNDAMENTAL_DFP32	 154 /* IEEE 754 decimal32			  */
+#define Z_FUNDAMENTAL_DFP64	 155 /* IEEE 754 decimal64			  */
+#define Z_FUNDAMENTAL_DFP128	 156 /* IEEE 754 decimal128			  */
+#define Z_FUNDAMENTAL_X87_DE80	 157 /* x87 double extended			  */
+#define Z_FUNDAMENTAL_X87_DE96	 158 /* x87 double extended (with 16-bit padding) */
+#define Z_FUNDAMENTAL_X87_DE128	 159 /* x87 double extended (with 48-bit padding) */
+#define Z_FUNDAMENTAL_IBM_ED	 160 /* IBM extended double			  */
+#define Z_FUNDAMENTAL_BFLOAT16	 162 /* Brain Floating-Point			  */
 
-#endif /* Z_keys_type_H */
+#endif /* Z_keys_fundamental_H */

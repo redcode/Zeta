@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_inspection_data_model_H
 
 #include <Z/keys/data model.h>
-#include <Z/keys/type.h>
+#include <Z/keys/fundamental.h>
 #include <Z/inspection/language.h>
 
 #ifndef Z_DATA_MODEL

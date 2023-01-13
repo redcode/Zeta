@@ -633,19 +633,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Function selectors */
 
-#define z_type_atomic_add_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_add_and_get	     )
-#define z_type_atomic_and_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_and_and_get	     )
-#define z_type_atomic_get_and_add(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_add	     )
-#define z_type_atomic_get_and_and(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_and	     )
-#define z_type_atomic_get_and_nand(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_nand	     )
-#define z_type_atomic_get_and_or(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_or	     )
-#define z_type_atomic_get_and_set_if_equal(TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_set_if_equal)
-#define z_type_atomic_get_and_subtract(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_subtract    )
-#define z_type_atomic_get_and_xor(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_xor	     )
-#define z_type_atomic_nand_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_nand_and_get	     )
-#define z_type_atomic_or_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_or_and_get	     )
-#define z_type_atomic_set_if_equal(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_set_if_equal	     )
-#define z_type_atomic_subtract_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_subtract_and_get    )
-#define z_type_atomic_xor_and_get(	   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _atomic_xor_and_get	     )
+#define z_T_atomic_add_and_get(		T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_add_and_get	    )
+#define z_T_atomic_and_and_get(		T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_and_and_get	    )
+#define z_T_atomic_get_and_add(		T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_add	    )
+#define z_T_atomic_get_and_and(		T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_and	    )
+#define z_T_atomic_get_and_nand(	T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_nand	    )
+#define z_T_atomic_get_and_or(		T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_or	    )
+#define z_T_atomic_get_and_set_if_equal(T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_set_if_equal)
+#define z_T_atomic_get_and_subtract(	T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_subtract    )
+#define z_T_atomic_get_and_xor(		T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_get_and_xor	    )
+#define z_T_atomic_nand_and_get(	T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_nand_and_get	    )
+#define z_T_atomic_or_and_get(		T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_or_and_get	    )
+#define z_T_atomic_set_if_equal(	T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_set_if_equal	    )
+#define z_T_atomic_subtract_and_get(	T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_subtract_and_get    )
+#define z_T_atomic_xor_and_get(		T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _atomic_xor_and_get	    )
 
 #endif /* Z_functions_atomic_H */

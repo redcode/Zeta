@@ -162,10 +162,10 @@ zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
 #undef Z__NATURAL_ROTATE
 
 
-#define z_type_big_endian(   TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _big_endian   )
-#define z_type_little_endian(TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _little_endian)
-#define z_type_reverse(	     TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _reverse	 )
-#define z_type_rotate_left(  TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _rotate_left  )
-#define z_type_rotate_right( TYPE) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL)(z_, _rotate_right )
+#define z_T_big_endian(   T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _big_endian   )
+#define z_T_little_endian(T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _little_endian)
+#define z_T_reverse(	  T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _reverse      )
+#define z_T_rotate_left(  T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _rotate_left  )
+#define z_T_rotate_right( T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _rotate_right )
 
 #endif /* Z_functions_bitwise_H */

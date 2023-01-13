@@ -66,9 +66,14 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 
 		do	{
 			flags = this->flags;
-			new_flags = UChar(64 | ((flags & 12) << 2) | ((flags & 48) >> 2) | (flags & 3));
+
+			new_flags = UChar(
+				64		    |
+				((flags & 12) << 2) |
+				((flags & 48) >> 2) |
+				 (flags & 3));
 			}
-		while (!z_type_atomic_set_if_equal(UCHAR)(&this->flags, flags, new_flags));
+		while (!z_T_atomic_set_if_equal(UCHAR)(&this->flags, flags, new_flags));
 
 		return data[(new_flags & 48) >> 4];
 		}
@@ -84,9 +89,13 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 
 		do	{
 			if (!((flags = this->flags) & 64)) return Z_NULL;
-			new_flags = UChar((flags & 48) | ((flags & 3) << 2) | ((flags & 12) >> 2));
+
+			new_flags = UChar(
+				 (flags & 48)	    |
+				((flags &  3) << 2) |
+				((flags & 12) >> 2));
 			}
-		while (!z_type_atomic_set_if_equal(UCHAR)(&this->flags, flags, new_flags));
+		while (!z_T_atomic_set_if_equal(UCHAR)(&this->flags, flags, new_flags));
 
 		return data[new_flags & 3];
 		}

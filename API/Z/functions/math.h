@@ -32,9 +32,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		{return z_##type##_minimum(z_##type##_maximum(value, minimum), maximum);}
 
 
-#define z_type_clamp(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp  )
-#define z_type_maximum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _maximum)
-#define z_type_minimum(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _minimum)
+#define z_T_clamp(  T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _clamp  )
+#define z_T_maximum(T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _maximum)
+#define z_T_minimum(T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _minimum)
 
 
 /* MARK: - Partial implementation for signed types */
@@ -52,8 +52,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		{return value >= (z##type)0 ? (z##type)1 : -(z##type)1;}
 
 
-#define z_type_absolute(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _absolute)
-#define z_type_sign(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign	)
+#define z_T_absolute(T) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL(z_, _absolute)
+#define z_T_sign(    T) Z_INSERT_type(Z_##TYPE##_FIXED_FUNDAMENTAL(z_, _sign	)
 
 
 /* MARK: - Implementation for real types */
@@ -130,17 +130,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		}
 
 
-#define z_type_are_almost_equal(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _are_almost_equal)
-#define z_type_clamp_01(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _clamp_01	)
-#define z_type_inverse_lerp(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _inverse_lerp	)
-#define z_type_is_almost_zero(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_almost_zero	)
-#define z_type_is_finite(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_finite	)
-#define z_type_is_infinity(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_infinity	)
-#define z_type_is_nan(		TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _is_nan		)
-#define z_type_lerp(		TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _lerp		)
-#define z_type_sign_or_zero(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _sign_or_zero	)
-#define z_type_smootherstep(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _smootherstep	)
-#define z_type_smoothstep(	TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _smoothstep	)
+#define z_T_are_almost_equal(T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL(z_, _are_almost_equal)
+#define z_T_clamp_01(	     T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL(z_, _clamp_01	     )
+#define z_T_inverse_lerp(    T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL(z_, _inverse_lerp    )
+#define z_T_is_almost_zero(  T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL(z_, _is_almost_zero  )
+#define z_T_is_finite(	     T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL(z_, _is_finite	     )
+#define z_T_is_infinity(     T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL(z_, _is_infinity     )
+#define z_T_is_nan(	     T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL(z_, _is_nan	     )
+#define z_T_lerp(	     T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL(z_, _lerp	     )
+#define z_T_sign_or_zero(    T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL(z_, _sign_or_zero    )
+#define z_T_smootherstep(    T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL(z_, _smootherstep    )
+#define z_T_smoothstep(	     T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL(z_, _smoothstep	     )
 
 
 /* MARK: - uint8 */
@@ -753,37 +753,37 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 /* MARK: - Function selectors */
 
 
-#define z_type_addition_overflows(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows	 )
-#define z_type_addition_overflows_3(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows_3	 )
-#define z_type_addition_overflows_4(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows_4	 )
-#define z_type_multiplication_overflows(  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows	 )
-#define z_type_multiplication_overflows_3(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows_3	 )
-#define z_type_multiplication_overflows_4(TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _addition_overflows_4	 )
-#define z_type_subtraction_overflows(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _subtraction_overflows	 )
-#define z_type_subtraction_overflows_3(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _subtraction_overflows_3)
-#define z_type_subtraction_overflows_4(	  TYPE) Z_INSERT_##TYPE##_fixed_type(z_, _subtraction_overflows_4)
+#define z_T_addition_overflows(	       TYPE) Z_INSERT_##T##_fixed_type(z_, _addition_overflows     )
+#define z_T_addition_overflows_3(      TYPE) Z_INSERT_##T##_fixed_type(z_, _addition_overflows_3   )
+#define z_T_addition_overflows_4(      TYPE) Z_INSERT_##T##_fixed_type(z_, _addition_overflows_4   )
+#define z_T_multiplication_overflows(  TYPE) Z_INSERT_##T##_fixed_type(z_, _addition_overflows     )
+#define z_T_multiplication_overflows_3(TYPE) Z_INSERT_##T##_fixed_type(z_, _addition_overflows_3   )
+#define z_T_multiplication_overflows_4(TYPE) Z_INSERT_##T##_fixed_type(z_, _addition_overflows_4   )
+#define z_T_subtraction_overflows(     TYPE) Z_INSERT_##T##_fixed_type(z_, _subtraction_overflows  )
+#define z_T_subtraction_overflows_3(   TYPE) Z_INSERT_##T##_fixed_type(z_, _subtraction_overflows_3)
+#define z_T_subtraction_overflows_4(   TYPE) Z_INSERT_##T##_fixed_type(z_, _subtraction_overflows_4)
 
 
 /* MARK: - Default real type definitions */
 
 
 #ifdef Z_REAL
-#	define z_absolute	  z_type_absolute	 (REAL)
-#	define z_are_almost_equal z_type_are_almost_equal(REAL)
-#	define z_clamp		  z_type_clamp		 (REAL)
-#	define z_clamp_01	  z_type_clamp_01	 (REAL)
-#	define z_inverse_lerp	  z_type_inverse_lerp	 (REAL)
-#	define z_is_almost_zero	  z_type_is_almost_zero	 (REAL)
-#	define z_is_finite	  z_type_is_finite	 (REAL)
-#	define z_is_infinity	  z_type_is_infinity	 (REAL)
-#	define z_is_nan		  z_type_is_nan		 (REAL)
-#	define z_lerp		  z_type_lerp		 (REAL)
-#	define z_maximum	  z_type_maximum	 (REAL)
-#	define z_minimum	  z_type_minimum	 (REAL)
-#	define z_sign		  z_type_sign		 (REAL)
-#	define z_sign_or_zero	  z_type_sign_or_zero	 (REAL)
-#	define z_smootherstep	  z_type_smootherstep	 (REAL)
-#	define z_smoothstep	  z_type_smoothstep	 (REAL)
+#	define z_absolute	  z_T_absolute	      (REAL)
+#	define z_are_almost_equal z_T_are_almost_equal(REAL)
+#	define z_clamp		  z_T_clamp	      (REAL)
+#	define z_clamp_01	  z_T_clamp_01	      (REAL)
+#	define z_inverse_lerp	  z_T_inverse_lerp    (REAL)
+#	define z_is_almost_zero	  z_T_is_almost_zero  (REAL)
+#	define z_is_finite	  z_T_is_finite	      (REAL)
+#	define z_is_infinity	  z_T_is_infinity     (REAL)
+#	define z_is_nan		  z_T_is_nan	      (REAL)
+#	define z_lerp		  z_T_lerp	      (REAL)
+#	define z_maximum	  z_T_maximum	      (REAL)
+#	define z_minimum	  z_T_minimum	      (REAL)
+#	define z_sign		  z_T_sign	      (REAL)
+#	define z_sign_or_zero	  z_T_sign_or_zero    (REAL)
+#	define z_smootherstep	  z_T_smootherstep    (REAL)
+#	define z_smoothstep	  z_T_smoothstep      (REAL)
 #endif
 
 

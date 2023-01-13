@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_inspection_floating_point_H
 
 #include <Z/keys/number.h>
-#include <Z/keys/type.h>
+#include <Z/keys/fundamental.h>
 #include <Z/inspection/language.h>
 #include <Z/macros/token.h>
 

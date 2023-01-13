@@ -43,9 +43,13 @@ void *z_triple_buffer_produce(ZTripleBuffer *self)
 
 	do	{
 		flags = self->flags;
-		new_flags = (zuchar)(64 | ((flags & 12) << 2) | ((flags & 48) >> 2) | (flags & 3));
+		new_flags = (zuchar)(
+			64		    |
+			((flags & 12) << 2) |
+			((flags & 48) >> 2) |
+			 (flags & 3));
 		}
-	while (!z_type_atomic_set_if_equal(UCHAR)(&self->flags, flags, new_flags));
+	while (!z_T_atomic_set_if_equal(UCHAR)(&self->flags, flags, new_flags));
 
 	return self->data[(new_flags & 48) >> 4];
 	}
@@ -58,9 +62,13 @@ void *z_triple_buffer_consume(ZTripleBuffer *self)
 
 	do	{
 		if (!((flags = self->flags) & 64)) return Z_NULL;
-		new_flags = (zuchar)((flags & 48) | ((flags & 3) << 2) | ((flags & 12) >> 2));
+
+		new_flags = (zuchar)(
+			 (flags & 48)	    |
+			((flags &  3) << 2) |
+			((flags & 12) >> 2));
 		}
-	while (!z_type_atomic_set_if_equal(UCHAR)(&self->flags, flags, new_flags));
+	while (!z_T_atomic_set_if_equal(UCHAR)(&self->flags, flags, new_flags));
 
 	return self->data[new_flags & 3];
 	}
