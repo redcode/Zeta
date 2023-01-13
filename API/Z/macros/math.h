@@ -9,17 +9,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_macros_math_H
 #define Z_macros_math_H
 
+#define Z_SUM(	   a, b) ((a) + (b))
+#define Z_SUBTRACT(a, b) ((a) - (b))
+#define Z_MULTIPLY(a, b) ((a) * (b))
+#define Z_DIVIDE(  a, b) ((a) / (b))
+#define Z_MODULO(  a, b) ((a) % (b))
+#define Z_MAXIMUM( a, b) ((a) > (b) ? (a) : (b))
+#define Z_MINIMUM( a, b) ((a) < (b) ? (a) : (b))
+
 #define Z_ABSOLUTE(value) \
 	((value) < 0 ? -(value) : (value))
 
 #define Z_IS_POWER_OF_2(value) \
 	(!((value) & ((value) - 1)) && (value) > 1)
-
-#define Z_MAXIMUM(a, b) \
-	((a) > (b) ? (a) : (b))
-
-#define Z_MINIMUM(a, b) \
-	((a) < (b) ? (a) : (b))
 
 #define Z_NEXT_MULTIPLE(value, base) \
 	((value) + (base) - ((value) % (base)))
