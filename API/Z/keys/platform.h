@@ -57,7 +57,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PLATFORM_ATARI_5200	      2003 /* Atari			   */
 #define Z_PLATFORM_ATARI_7800	      2004 /* Atari			   */
 #define Z_PLATFORM_CD_I		      2005 /* Philips			   */
-#define Z_PLATFORM_COLECO_VISION      2006 /* Coleco Industries 	   */
+#define Z_PLATFORM_COLECO_VISION      2006 /* Coleco Industries		   */
 #define Z_PLATFORM_CREATIVISION	      2007 /* VTech			   */
 #define Z_PLATFORM_DREAMCAST	      2008 /* Sega			   */
 #define Z_PLATFORM_GAMATE	      2009 /* Bit Corporation		   */

@@ -204,7 +204,7 @@ namespace Zeta {template <class t> struct XY {
 		{
 		return XY(
 			Zeta::clamp<t>(x, minimum.x, maximum.x),
-		 	Zeta::clamp<t>(y, minimum.y, maximum.y));
+			Zeta::clamp<t>(y, minimum.y, maximum.y));
 		}
 
 
@@ -212,7 +212,7 @@ namespace Zeta {template <class t> struct XY {
 		{
 		return XY(
 			Zeta::clamp<t>(x, minimum, maximum),
-		 	Zeta::clamp<t>(y, minimum, maximum));
+			Zeta::clamp<t>(y, minimum, maximum));
 		}
 
 

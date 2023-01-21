@@ -38,7 +38,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_INTEGRITY		 26 /* Green Hills Software	   <https://www.ghs.com/products/rtos/integrity.html>					      */
 #define Z_OS_IPHONE_OS		 27 /* Apple			   <https://www.apple.com/ios>								      */
 #define Z_OS_IRIX		 28 /* SGI			   <http://www.sgi.com/products/software/irix>						      */
-#define Z_OS_LEMON_OS		 29 /* Roberts-White, J.J. 	   <https://lemonos.org>								      */
+#define Z_OS_LEMON_OS		 29 /* Roberts-White, J.J.	   <https://lemonos.org>								      */
 #define Z_OS_LINUX		 30 /* Torvalds, Linus		   <https://www.kernel.org>								      */
 #define Z_OS_LUNIX		 31 /* Dallmann, Daniel		   <http://lng.sourceforge.net/>							      */
 #define Z_OS_LYNX_OS		 32 /* Lynx Software Technologies  <https://www.lynx.com/products/lynxos-posix-real-time-operating-system-rtos>		      */

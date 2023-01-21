@@ -7,17 +7,17 @@ Copyright (C) 2006-2023 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
  ______________________________________________________________________________
-| 									       |
+|									       |
 |	 Daft: Public.Snapshot.Computer.ZXSpectrum.ZX82			       |
 |      Author: James, William						       |
 |  Extensions: .zx82							       |
 |  Endianness: Big							       |
 |    Supports: ZX Spectrum 48K						       |
 |     Used by: Speculator '97 (AmigaOS)					       |
-| 									       |
+|									       |
 |  Reference:								       |
 |  http://rk.nvg.ntnu.no/sinclair/faq/fileform.html			       |
-| 									       |
+|									       |
 |  IMPORTANT NOTICE: This format is not well known at all, so the types and    |
 |  constants declared here may be useless.				       |
 |									       |
