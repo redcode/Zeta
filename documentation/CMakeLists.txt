@@ -18,19 +18,18 @@ if(${PROJECT_NAME}_WITH_HTML_DOCUMENTATION)
 	endif()
 
 	add_custom_command(
-		OUTPUT  ${_html_documentation_output}
-		COMMAND ${SPHINX_BUILD_EXECUTABLE}
+		OUTPUT  "${_html_documentation_output}"
+		COMMAND "${SPHINX_BUILD_EXECUTABLE}"
 			-b html
 			${_html_theme_option}
-			${CMAKE_CURRENT_SOURCE_DIR}
-			${_html_documentation_output}
-		MAIN_DEPENDENCY ${_api_xml_output}
-		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+			"${CMAKE_CURRENT_SOURCE_DIR}"
+			"${_html_documentation_output}"
+		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
 		COMMENT "Generating documentation in HTML format")
 
 	add_custom_target(
 		${PROJECT_NAME}-Documentation-HTML ALL
-		DEPENDS ${_html_documentation_output})
+		DEPENDS "${_html_documentation_output}")
 
 	install(DIRECTORY "${_html_documentation_output}/"
 		DESTINATION "${CMAKE_INSTALL_DOCDIR}/documentation"
@@ -43,37 +42,36 @@ if(${PROJECT_NAME}_WITH_PDF_DOCUMENTATION)
 	set(_latex_documentation_output "${CMAKE_CURRENT_BINARY_DIR}/LaTeX")
 
 	add_custom_command(
-		OUTPUT  ${_latex_documentation_output}
-		COMMAND ${SPHINX_BUILD_EXECUTABLE}
+		OUTPUT  "${_latex_documentation_output}"
+		COMMAND "${SPHINX_BUILD_EXECUTABLE}"
 			-b latex
-			${CMAKE_CURRENT_SOURCE_DIR}
-			${_latex_documentation_output}
-		MAIN_DEPENDENCY ${_api_xml_output}
-		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+			"${CMAKE_CURRENT_SOURCE_DIR}"
+			"${_latex_documentation_output}"
+		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
 		COMMENT "Generating documentation in LaTeX format")
 
 	add_custom_target(
 		${PROJECT_NAME}-Documentation-LaTeX ALL
-		DEPENDS ${_latex_documentation_output})
+		DEPENDS "${_latex_documentation_output}")
 
 	string(TOLOWER ${PROJECT_NAME} _pdf_documentation_output)
 	set(_pdf_documentation_output "${_latex_documentation_output}/${_pdf_documentation_output}.pdf")
 
 	add_custom_command(
-		OUTPUT  ${_pdf_documentation_output}
+		OUTPUT  "${_pdf_documentation_output}"
 		COMMAND make
-		MAIN_DEPENDENCY ${_latex_documentation_output}
-		WORKING_DIRECTORY ${_latex_documentation_output}
+		MAIN_DEPENDENCY "${_latex_documentation_output}"
+		WORKING_DIRECTORY "${_latex_documentation_output}"
 		COMMENT "Converting documentation to PDF format")
 
 	add_custom_target(
 		${PROJECT_NAME}-Documentation-PDF ALL
-		DEPENDS ${_pdf_documentation_output})
+		DEPENDS "${_pdf_documentation_output}")
 
 	add_dependencies(${PROJECT_NAME}-Documentation-PDF ${PROJECT_NAME}-Documentation-LaTeX)
 
-	install(FILES ${_pdf_documentation_output}
-		DESTINATION ${CMAKE_INSTALL_DOCDIR}
+	install(FILES "${_pdf_documentation_output}"
+		DESTINATION "${CMAKE_INSTALL_DOCDIR}"
 		RENAME "${PROJECT_NAME} v${PROJECT_VERSION}.pdf"
 		COMPONENT "${PROJECT_NAME}_Documentation")
 endif()
