@@ -312,9 +312,11 @@ User	  |  3  |  7  |	 3  |  3  |
 #define Z_ZX_SPECTRUM_SIZE_ATTRIBUTE_VRAM    0x300
 
 #define Z_ZX_SPECTRUM_16K_SIZE_MEMORY	     0x8000  /*  32 KiB */
+#define Z_ZX_SPECTRUM_16K_SIZE_ROM	     0x4000  /*  16 KiB */
 #define Z_ZX_SPECTRUM_16K_SIZE_RAM	     0x4000  /*  16 KiB */
 
 #define Z_ZX_SPECTRUM_48K_SIZE_MEMORY	     0x10000 /*  64 KiB */
+#define Z_ZX_SPECTRUM_48K_SIZE_ROM	     0x4000  /*  16 KiB */
 #define Z_ZX_SPECTRUM_48K_SIZE_RAM	     0xC000  /*  48 KiB */
 
 #define Z_ZX_SPECTRUM_PLUS_128K_SIZE_MEMORY  0x28000 /* 160 KiB */
@@ -323,10 +325,12 @@ User	  |  3  |  7  |	 3  |  3  |
 #define Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK    0x4000  /*  16 KiB */
 
 #define Z_ZX_SPECTRUM_PLUS3_SIZE_MEMORY	     0x30000 /* 160 KiB */
-#define Z_ZX_SPECTRUM_PLUS3_SIZE_ROM	     0x10000
+#define Z_ZX_SPECTRUM_PLUS3_SIZE_RAM	     0x20000 /* 128 KiB */
+#define Z_ZX_SPECTRUM_PLUS3_SIZE_ROM	     0x10000 /*  64 KiB */
 
-#define Z_INVES_SPECTRUM_PLUS_SIZE_MEMORY	(1024 * 16 + 1024 * 48)
-#define Z_INVES_SPECTRUM_PLUS_SIZE_ROM		(1024 * 16)
+#define Z_INVES_SPECTRUM_PLUS_SIZE_MEMORY    0x10000 /*  64 KiB */
+#define Z_INVES_SPECTRUM_PLUS_SIZE_ROM	     0x4000  /*  16 KiB */
+#define Z_INVES_SPECTRUM_PLUS_SIZE_RAM	     0xC000  /*  48 KiB */
 
 /* MARK: - Video: Color Attribute */
 /*----------------.
