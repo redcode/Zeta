@@ -43,6 +43,11 @@ namespace Zeta {template <class t> struct StringView {
 	: data(data_), size(size_) {}
 
 
+	template <USize s>
+	Z_CT(CPP11) StringView(const t (&data_)[s]) Z_NOTHROW
+	: data(data_), size(s - 1) {}
+
+
 	Z_CT(CPP11) const t &operator [](USize index) const Z_NOTHROW
 		{return data[index];}
 
@@ -81,6 +86,24 @@ namespace Zeta {template <class t> struct StringView {
 
 		friend Z_INLINE Boolean operator !=(const StringView &lhs, const t *rhs) Z_NOTHROW
 			{return lhs.size * sizeof(t) != std::strlen(rhs) || std::memcmp(lhs.data, rhs, lhs.size * sizeof(t));}
+
+
+		template <USize s>
+		friend Z_INLINE Boolean operator ==(const t (&lhs)[s], const StringView &rhs) Z_NOTHROW
+			{return rhs.size == (s - 1) && !std::memcmp(rhs.data, lhs, (s - 1) * sizeof(t));}
+
+
+		template <USize s>
+		friend Z_INLINE Boolean operator !=(const t (&lhs)[s], const StringView &rhs) Z_NOTHROW
+			{return rhs.size != (s - 1) || std::memcmp(rhs.data, lhs, (s - 1) * sizeof(t));}
+
+
+		friend Z_INLINE Boolean operator ==(const t *lhs, const StringView &rhs) Z_NOTHROW
+			{return	rhs.size * sizeof(t) == std::strlen(lhs) && !std::memcmp(rhs.data, lhs, rhs.size * sizeof(t));}
+
+
+		friend Z_INLINE Boolean operator !=(const t *lhs, const StringView &rhs) Z_NOTHROW
+			{return rhs.size * sizeof(t) != std::strlen(lhs) || std::memcmp(rhs.data, lhs, rhs.size * sizeof(t));}
 
 #	endif
 };}
