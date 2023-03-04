@@ -6,11 +6,24 @@
 # Copyright (C) 2006-2023 Manuel Sainz de Baranda y Goñi.
 # # Released under the terms of the GNU Lesser General Public License v3.
 
-cmake_minimum_required(VERSION 3.1.3)
+cmake_minimum_required(VERSION 3.12) # project(... HOMEPAGE_URL <url-string>)
+
+if(	CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND
+	NOT CMAKE_BUILD_TYPE				   AND
+	NOT CMAKE_CONFIGURATION_TYPES
+)
+	set(CMAKE_BUILD_TYPE Release)
+endif()
 
 file(READ "${CMAKE_CURRENT_SOURCE_DIR}/API/Z/version.h" _)
 string(REGEX MATCH ".*Z_LIBRARY_VERSION_STRING \"([^\n]*)\".*" _ ${_})
-project(Zeta VERSION ${CMAKE_MATCH_1} LANGUAGES C)
+
+project(Zeta
+	VERSION ${CMAKE_MATCH_1}
+	LANGUAGES C
+	DESCRIPTION "Header-only general purpose library"
+	HOMEPAGE_URL "https://zeta.st")
+
 unset(_)
 message("${PROJECT_NAME} v${PROJECT_VERSION}")
 
@@ -58,7 +71,7 @@ target_include_directories(
 	"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/API>"
 	"$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
 
-install(TARGETS ${PROJECT_NAME} EXPORT "${PROJECT_NAME}_Targets")
+install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}_Targets)
 
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/API/Z"
 	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
@@ -68,7 +81,7 @@ if(${PROJECT_NAME}_WITH_CMAKE_SUPPORT OR ${PROJECT_NAME}_WITH_PKGCONFIG_SUPPORT)
 	include(CMakePackageConfigHelpers)
 
 	if(${PROJECT_NAME}_WITH_CMAKE_SUPPORT)
-		install(EXPORT "${PROJECT_NAME}_Targets"
+		install(EXPORT ${PROJECT_NAME}_Targets
 			DESTINATION "${${PROJECT_NAME}_INSTALL_CMAKEDIR}"
 			FILE ${PROJECT_NAME}Targets.cmake
 			COMPONENT ${PROJECT_NAME}_Development)

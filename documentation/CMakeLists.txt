@@ -25,7 +25,7 @@ if(${PROJECT_NAME}_WITH_HTML_DOCUMENTATION)
 			"${CMAKE_CURRENT_SOURCE_DIR}"
 			"${_html_documentation_output}"
 		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
-		COMMENT "Generating documentation in HTML format")
+		COMMENT "Generating documentation in HTML format for ${PROJECT_NAME}")
 
 	add_custom_target(
 		${PROJECT_NAME}-Documentation-HTML ALL
@@ -48,7 +48,7 @@ if(${PROJECT_NAME}_WITH_PDF_DOCUMENTATION)
 			"${CMAKE_CURRENT_SOURCE_DIR}"
 			"${_latex_documentation_output}"
 		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
-		COMMENT "Generating documentation in LaTeX format")
+		COMMENT "Generating documentation in LaTeX format for ${PROJECT_NAME}")
 
 	add_custom_target(
 		${PROJECT_NAME}-Documentation-LaTeX ALL
@@ -59,10 +59,10 @@ if(${PROJECT_NAME}_WITH_PDF_DOCUMENTATION)
 
 	add_custom_command(
 		OUTPUT  "${_pdf_documentation_output}"
-		COMMAND make
+		COMMAND "${CMAKE_MAKE_PROGRAM}"
 		MAIN_DEPENDENCY "${_latex_documentation_output}"
 		WORKING_DIRECTORY "${_latex_documentation_output}"
-		COMMENT "Converting documentation to PDF format")
+		COMMENT "Generating documentation in PDF format for ${PROJECT_NAME}")
 
 	add_custom_target(
 		${PROJECT_NAME}-Documentation-PDF ALL
