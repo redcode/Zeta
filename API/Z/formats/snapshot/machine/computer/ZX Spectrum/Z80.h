@@ -34,7 +34,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	interpreted as being = 1 */
 	union {	zuint8 value;
 		struct {Z_BIT_FIELD_MEMBERS(8, 5) (
-			zuint8 zero		    :2,
+			zuint8 unused		    :2,
 			zuint8 ram_is_compressed    :1,
 			zuint8 emulate_basic_samrom :1,
 			zuint8 border_color	    :3,
@@ -56,55 +56,65 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 			zuint8 im		     :2
 		)} fields;
 	} flags_1;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v1);
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v1Header);
 
 Z_DEFINE_PACKED_STRUCTURE_BEGIN {
-	zuint16 header_size;
+	zuint16 header_extension_size;
 	zuint16 pc;
 	zuint8	hardware;
 	zuint8	state_0;
 	zuint8	state_1;
 
-	struct {Z_BIT_FIELD_MEMBERS(8, 7) (
-		zuint8 unused_1		     :1,
-		zuint8 modify_hardware	     :1,
-		zuint8 emulate_fuller_box_ay :1,
-		zuint8 unused_0		     :2,
-		zuint8 emulate_psg	     :1,
-		zuint8 emulate_ldir	     :1,
-		zuint8 emulate_r	     :1
-	)} bitfield;
+	union {	zuint8 value;
+		struct {Z_BIT_FIELD_MEMBERS(8, 6) (
+			zuint8 modify_hardware	     :1,
+			zuint8 emulate_fuller_box_ay :1,
+			zuint8 unused		     :3,
+			zuint8 emulate_psg	     :1,
+			zuint8 emulate_ldir	     :1,
+			zuint8 emulate_r	     :1
+		)} fields;
+	} flags;
 
 	zuint8 psg_register_index;
 	zuint8 psg_registers[16];
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v2Extension);
-
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
-	Z_Z80v1		 v1;
-	Z_Z80v2Extension v2;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v2);
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v2HeaderExtension);
 
 Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint16 t_states_low;
 	zuint8	t_states_high;
-	zuint8	zero[3];
+	zuint8	zero;
 	zuint8	mgt_rom_is_paged;
 	zuint8	multiface_rom_is_paged;
 	zuint8	page_0l_memory_type;
 	zuint8	page_0h_memory_type;
-	zuint16	keyboard_mappings[5];
-	zuint16	ascii_values[5];
+	zuint16 keyboard_mappings[5];
+	zuint16 ascii_values[5];
 	zuint8	mgt_type;
 	zuint8	disciple_inhibitor_button_state;
 	zuint8	disciple_inhibitor_flag;
 	zuint8	control;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v3Extension);
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v3HeaderExtension);
 
 Z_DEFINE_PACKED_STRUCTURE_BEGIN {
-	Z_Z80v1		v1;
-	Z_Z80v2Extension v2;
-	Z_Z80v3Extension v3;
+	Z_Z80v1Header v1;
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v1);
+
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+	Z_Z80v1Header	       v1;
+	Z_Z80v2HeaderExtension v2;
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v2);
+
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+	Z_Z80v1Header	       v1;
+	Z_Z80v2HeaderExtension v2;
+	Z_Z80v3HeaderExtension v3;
 } Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v3);
+
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+	zuint16 size;
+	zuint8  page;
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80DataBlockHeader);
 
 /* TODO: Homogeneizar los joysticks con los de TZX. */
 #define Z_Z80_JOYSTICK_TYPE_CURSOR_PROTEK_AGF 0
@@ -152,5 +162,11 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 
 #define Z_Z80_V3_HARDWARE_B_ZX_SPECTRUM_PLUS2_AND_MGT	3
 #define Z_Z80_V3_HARDWARE_B_ZX_SPECTRUM_PLUS2		4
+
+/* EDEDxxyy... 00EDED00 */
+#define Z_Z80_MINIMUM_SIZE (sizeof(Z_Z80v1Header) + ((1024 * 48) / 256) + 4)
+
+#define Z_Z80_DATA_BLOCK_MINIMUM_SIZE (sizeof(Z_Z80DataBlockHeader) + (1024 * 16) / 256)
+
 
 #endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_Z80_H */

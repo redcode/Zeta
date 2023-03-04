@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 |  Extensions: .zx							  |
 |  Endianness: Big							  |
 |    Supports: ZX Spectrum 48K						  |
-|     Used by: KGB (AmigaOS)						  |
+|     Used by: KGB Spectrum Emulator (AmigaOS)				  |
 |	       <http://www.cybercity.dk/users/ccc14241/home.html>	  |
 |									  |
 |  Reference:								  |

@@ -27,6 +27,33 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #include <Z/types/bitwise.h>
 
+#define ZX_STATE_BLOCK_ID_ZXATASP
+#define ZX_STATE_BLOCK_ID_ZXATASP_RAM
+#define ZX_STATE_BLOCK_ID_AY
+#define ZX_STATE_BLOCK_ID_ZXCF
+#define ZX_STATE_BLOCK_ID_ZXCF_RAM
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+#define ZX_STATE_BLOCK_ID_
+
+
+
+
 Z_DEFINE_PACKED_STRUCTURE({
 	zuint8 signature;
 	zuint8 version_major;
@@ -62,15 +89,12 @@ Z_DEFINE_PACKED_STRUCTURE({
 
 
 
-
-
 // ZXATASP jumper settings
 #define ZXSTAF_UPLOADJUMPER     1
 #define ZXSTAF_WRITEPROTECT     2
 
 // ZXATASP IDE interface
-typedef struct _tagZXSTATASP {
-	Z_ZXStateBlockHeader header;
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint16 wFlags;
 	zuint8 chPortA;
 	zuint8 chPortB;
@@ -78,69 +102,49 @@ typedef struct _tagZXSTATASP {
 	zuint8 chControl;
 	zuint8 chNumRamPages;
 	zuint8 chActivePage;
-} ZXSTATASP;
-
-
-
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_ZXStateZXATASP);
 
 
 // Ram pages are compressed using Zlib
 #define ZXSTAF_COMPRESSED       1
 
 // ZXATASP IDE Interface RAM page
-typedef struct _tagZXSTATARAM {
-	Z_ZXStateBlockHeader header;
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint16 wFlags;
 	zuint8 chPageNo;
 	zuint8 chData[1];
-} ZXSTATARAM;
-
-
-
-
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_ZXStateZXATASPRAM);
 
 // AY Block flags
 #define ZXSTAYF_FULLERBOX  1
 #define ZXSTAYF_128AY      2
 
 // AY Block. Contains the AY register values
-typedef struct _tagZXSTAYBLOCK {
-	Z_ZXStateBlockHeader header;
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8 chFlags;
 	zuint8 chCurrentRegister;
 	zuint8 chAyRegs[16];
-} ZXSTAYBLOCK;
-
-
-
-
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_ZXStateAY);
 
 // ZXCF jumper settings
 #define ZXSTCF_UPLOADJUMPER     1
 
 // ZXCF CompactFlash interface
-typedef struct _tagZXSTCF {
-	Z_ZXStateBlockHeader header;
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint16 wFlags;
 	zuint8 chMemCtrl;
 	zuint8 chNumRamPages;
-} ZXSTCF;
-
-
-
-
-
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_ZXStateZXCF);
 
 // Ram pages are compressed using Zlib
 #define ZXSTCRF_COMPRESSED       1
 
 // ZXCF CompactFlash Interface RAM page
-typedef struct _tagZXSTCFRAM {
-	Z_ZXStateBlockHeader header;
+Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint16 wFlags;
 	zuint8 chPageNo;
 	zuint8 chData[1];
-} ZXSTCFRAM;
+} Z_DEFINE_PACKED_STRUCTURE_END (Z_ZXStateZXCFRAM);
 
 
 
@@ -150,7 +154,6 @@ typedef struct _tagZXSTCFRAM {
 
 // Covox state
 typedef struct _tagZXSTCOVOX {
-	Z_ZXStateBlockHeader header;
 	zuint8 chCurrentVolume;
 	zuint8 chReserved[3];
 } ZXSTCOVOX;
@@ -170,7 +173,6 @@ typedef struct _tagZXSTCOVOX {
 #define ZXSTBETAF_COMPRESSED 32
 
 typedef struct _tagZXSTBETA128 {
-	Z_ZXStateBlockHeader header;
 	zuint32 dwFlags;
 	zuint8 chNumDrives;
 	zuint8 chSysReg;
@@ -202,7 +204,6 @@ typedef struct _tagZXSTBETA128 {
 #define ZXSTBDT_UDI         3
 
 typedef struct _tagZXSTBETADISK {
-	Z_ZXStateBlockHeader header;
 	zuint32 dwFlags;
 	zuint8 chDriveNum;
 	zuint8 chCylinder;
@@ -219,7 +220,6 @@ typedef struct _tagZXSTBETADISK {
 
 
 typedef struct _tagZXSTCREATOR {
-	Z_ZXStateBlockHeader header;
 	char szCreator[32];
 	zuint16 chMajorVersion;
 	zuint16 chMinorVersion;
@@ -239,7 +239,6 @@ typedef struct _tagZXSTCREATOR {
 
 // Timex Sinclair DOCK memory
 typedef struct _tagZXSTDOCK {
-	Z_ZXStateBlockHeader header;
 	zuint16 wFlags;
 	zuint8 chPageNo;
 	zuint8 chData[1];
@@ -261,7 +260,6 @@ typedef struct _tagZXSTDOCK {
 #define ZXSTDSKF_SIDEB       4
 
 typedef struct _tagZXSTDSKFILE {
-	Z_ZXStateBlockHeader header;
 	zuint16 wFlags;
 	zuint8 chDriveNum;
 	zuint32 dwUncompressedSize;
@@ -289,7 +287,6 @@ typedef struct _tagZXSTDSKFILE {
 #define ZXSTGSM_512   1
 
 typedef struct _tagZXSTGS {
-	Z_ZXStateBlockHeader header;
 	zuint8 chModel;
 	zuint8 chUpperPage;
 	zuint8 chGsChanVol[4];
@@ -323,7 +320,6 @@ typedef struct _tagZXSTGS {
 
 // 32KB GS Ram page
 typedef struct _tagZXSTGSRAMPAGE {
-	Z_ZXStateBlockHeader header;
 	zuint16 wFlags;
 	zuint8 chPageNo;
 	zuint8 chData[1];
@@ -372,7 +368,6 @@ typedef struct _tagZXSTKEYBOARD {
 #define ZXSTIF1F_PAGED       4
 
 typedef struct _tagZXSTIF1 {
-	Z_ZXStateBlockHeader header;
 	zuint16 wFlags;
 	zuint8 chNumMicrodrives;
 	zuint8  chReserved[3];
@@ -391,7 +386,6 @@ typedef struct _tagZXSTIF1 {
 
 // Loaded Interface II ROM cart
 typedef struct _tagZXSTIF2ROM {
-	Z_ZXStateBlockHeader header;
 	zuint32 dwCartSize;
 	zuint8 chData[1];
 } ZXSTIF2ROM;
@@ -419,7 +413,6 @@ typedef struct _tagZXSTIF2ROM {
 #define ZXSTJT_DISABLED   8
 
 typedef struct _tagZXSTJOYSTICK {
-	Z_ZXStateBlockHeader header;
 	zuint32 dwFlags;
 	zuint8 chTypePlayer1;
 	zuint8 chTypePlayer2;
@@ -439,7 +432,6 @@ typedef struct _tagZXSTJOYSTICK {
 #define ZXSTMDF_EMBEDDED    2
 
 typedef struct _tagZXSTMCART {
-	Z_ZXStateBlockHeader header;
 	zuint16 wFlags;
 	zuint8 chDriveNum;
 	zuint8 fDriveRunning;
@@ -462,7 +454,6 @@ typedef struct _tagZXSTMCART {
 #define ZXSTM_KEMPSTON  2
 
 typedef struct _tagZXSTMOUSE {
-	Z_ZXStateBlockHeader header;
 	zuint8 chType;
 	zuint8 chCtrlA[3];
 	zuint8 chCtrlB[3];
@@ -486,7 +477,6 @@ typedef struct _tagZXSTMOUSE {
 #define ZXSTMFM_128               1
 
 typedef struct _tagZXSTMULTIFACE {
-	Z_ZXStateBlockHeader header;
 	zuint8 ch48kModel;
 	zuint8 chFlags;
 	zuint8 chData[1];
@@ -507,7 +497,6 @@ typedef struct _tagZXSTMULTIFACE {
 
 
 typedef struct _tagZXSTOPUS {
-	Z_ZXStateBlockHeader header;
 	zuint32 dwFlags;
 	zuint32 dwcbRam;
 	zuint32 dwcbRom;
@@ -544,7 +533,6 @@ typedef struct _tagZXSTOPUS {
 #define ZXSTOPDF_WRITEPROTECT  4
 
 typedef struct _tagZXSTOPUSDISK {
-	Z_ZXStateBlockHeader header;
 	zuint32 dwFlags;
 	zuint8 chDriveNum;
 	zuint8 chCylinder;
@@ -563,7 +551,6 @@ typedef struct _tagZXSTOPUSDISK {
 
 // +3 disk drives
 typedef struct _tagZXSTPLUS3DISK {
-	Z_ZXStateBlockHeader header;
 	zuint8 chNumDrives;
 	zuint8 fMotorOn;
 } ZXSTPLUS3;
@@ -584,7 +571,6 @@ typedef struct _tagZXSTPLUS3DISK {
 #define ZXSTPDRT_CUSTOM         2
 
 typedef struct _tagZXSTPLUSD {
-	Z_ZXStateBlockHeader header;
 	zuint32 dwFlags;
 	zuint32 dwcbRam;
 	zuint32 dwcbRom;
@@ -617,7 +603,6 @@ typedef struct _tagZXSTPLUSD {
 #define ZXSTPDDF_WRITEPROTECT  4
 
 typedef struct _tagZXSTPLUSDDISK {
-	Z_ZXStateBlockHeader header;
 	zuint32 dwFlags;
 	zuint8 chDriveNum;
 	zuint8 chCylinder;
@@ -638,7 +623,6 @@ typedef struct _tagZXSTPLUSDDISK {
 
 // Standard 16kb Spectrum RAM page
 typedef struct _tagZXSTRAMPAGE {
-	Z_ZXStateBlockHeader header;
 	zuint16 wFlags;
 	zuint8 chPageNo;
 	zuint8 chData[1];
@@ -653,7 +637,6 @@ typedef struct _tagZXSTRAMPAGE {
 #define ZXSTRF_COMPRESSED   1
 
 typedef struct _tagZXSTROM {
-	Z_ZXStateBlockHeader header;
 	zuint16 wFlags;
 	zuint32 dwUncompressedSize;
 	zuint8 chData[1];
@@ -665,7 +648,6 @@ typedef struct _tagZXSTROM {
 
 // Timex Sinclair memory paging and screen modes
 typedef struct _tagZXSTSCLDREGS {
-	Z_ZXStateBlockHeader header;
 	zuint8 chF4;
 	zuint8 chFf;
 } ZXSTSCLDREGS;
