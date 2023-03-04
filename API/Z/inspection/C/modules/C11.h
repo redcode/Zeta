@@ -51,6 +51,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_LANGUAGE_HAS_C99_TYPE_MODIFIER_IMAGINARY    TRUE
 #endif
 
+/* TODO: Multidimensional arrays may be variably modified in every dimension
+   if VLAs are supported (since C11). */
+
 #ifdef __STDC_NO_VLA__
 #	undef Z_LANGUAGE_HAS_C99_VLA
 #endif
