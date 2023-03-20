@@ -140,7 +140,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 
 Z_DEFINE_PACKED_STRUCTURE ({
 	ZInt32	id;
-	zuint32 data_size;
+	zuint32 body_size;
 
 	union {	ZInt32			  type;
 		Z_ZXSZip		  zip;
@@ -150,7 +150,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 		Z_ZXSZXSpectrumPlus128KIO zx_spectrum_plus_128k_io;
 		Z_ZXSZXSpectrumPlus3IO	  zx_spectrum_plus3_io;
 		Z_ZXSTape		  tape;
-	} data;
+	} body;
 }, Z_ZXSChunk);
 
 #endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZXS_H */
