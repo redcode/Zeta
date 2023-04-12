@@ -18,7 +18,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <cstring>
 #endif
 
-namespace Zeta {template <class t = char> struct StringView {
+namespace Zeta {template <class t = Char> struct StringView {
 //	typedef Iterator<t*> const_iterator;
 //	typedef Iterator<t*> const_reverse_iterator;
 	typedef const t*     const_pointer;
