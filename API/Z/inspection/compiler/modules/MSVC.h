@@ -530,8 +530,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_LITERAL_SINT48(number)*/
 /*#define Z_COMPILER_LITERAL_UINT56(number)*/
 /*#define Z_COMPILER_LITERAL_SINT56(number)*/
-/*#define Z_COMPILER_LITERAL_UINT64(number)*/
-/*#define Z_COMPILER_LITERAL_SINT64(number)*/
+#define Z_COMPILER_LITERAL_UINT64 Z_SUFFIX_Ui64
+#define Z_COMPILER_LITERAL_SINT64 Z_SUFFIX_i64
 /*#define Z_COMPILER_LITERAL_UINT128(number)*/
 /*#define Z_COMPILER_LITERAL_SINT128(number)*/
 /*#define Z_COMPILER_LITERAL_BFP16(number)*/

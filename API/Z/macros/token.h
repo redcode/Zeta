@@ -42,10 +42,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z__SUFFIX_F64x( lht) lht##F64x
 #define Z__SUFFIX_F128( lht) lht##F128
 #define Z__SUFFIX_F128x(lht) lht##F128x
+#define Z__SUFFIX_i32(	lht) lht##i32
+#define Z__SUFFIX_i64(	lht) lht##i64
 #define Z__SUFFIX_L(    lht) lht##L
 #define Z__SUFFIX_LL(   lht) lht##LL
 #define Z__SUFFIX_Q(    lht) lht##Q
 #define Z__SUFFIX_U(    lht) lht##U
+#define Z__SUFFIX_Ui32(	lht) lht##Ui32
+#define Z__SUFFIX_Ui64(	lht) lht##Ui64
 #define Z__SUFFIX_UL(   lht) lht##UL
 #define Z__SUFFIX_ULL(  lht) lht##ULL
 #define Z__SUFFIX_UZ(	lht) lht##UZ
@@ -77,10 +81,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_SUFFIX_F64x( lht) Z__SUFFIX_F64x (lht)
 #define Z_SUFFIX_F128( lht) Z__SUFFIX_F128 (lht)
 #define Z_SUFFIX_F128x(lht) Z__SUFFIX_F128x(lht)
+#define Z_SUFFIX_i32(  lht) Z__SUFFIX_i32  (lht)
+#define Z_SUFFIX_i64(  lht) Z__SUFFIX_i64  (lht)
 #define Z_SUFFIX_L(    lht) Z__SUFFIX_L	   (lht)
 #define Z_SUFFIX_LL(   lht) Z__SUFFIX_LL   (lht)
 #define Z_SUFFIX_Q(    lht) Z__SUFFIX_Q	   (lht)
 #define Z_SUFFIX_U(    lht) Z__SUFFIX_U	   (lht)
+#define Z_SUFFIX_Ui32( lht) Z__SUFFIX_Ui32 (lht)
+#define Z_SUFFIX_Ui64( lht) Z__SUFFIX_Ui64 (lht)
 #define Z_SUFFIX_UL(   lht) Z__SUFFIX_UL   (lht)
 #define Z_SUFFIX_ULL(  lht) Z__SUFFIX_ULL  (lht)
 #define Z_SUFFIX_UZ(   lht) Z__SUFFIX_UZ   (lht)
