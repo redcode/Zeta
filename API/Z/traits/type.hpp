@@ -1489,8 +1489,9 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 				Z__NORMAL_CONVERSIONS	(p... Z_COMMA ...)
 				Z__REFERENCE_CONVERSIONS(p... Z_COMMA ...)
 #		endif
-			enum {	is_function = true,
-				is_variadic = true
+			enum {	is_function	     = true,
+				is_variadic	     = true,
+				is_variadic_function = true
 			};
 			enum {arity = TypeCount<p...>::value};
 
