@@ -343,7 +343,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | ensure correct playback when using modern soundcards.			       |
 |									       |
 | If you can, don't use other sampling frequencies and only use this block if  |
-| you cannot use any other one.					       |
+| you cannot use any other one.						       |
 '=============================================================================*/
 
 Z_DEFINE_PACKED_STRUCTURE ({
