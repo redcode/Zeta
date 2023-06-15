@@ -17,10 +17,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_AT_CONST(type, base, offset) \
 	((type const *)(((zchar const *)(void const *)(base)) + (offset)))
 
-#define Z_INDEX(type, base, pointer) \
-	((zusize)(((zuintptr)pointer - (zuintptr)base) / sizeof(type)))
-
-#define Z_BLOCK_INDEX(base, pointer, block_size) \
-	((zusize)(((zuintptr)pointer - (zuintptr)base) / block_size))
-
 #endif /* Z_macros_pointer_H */
