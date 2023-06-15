@@ -28,13 +28,13 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Z/types/bitwise.h>
 #include <Z/hardware/machine/computer/ZX Spectrum.h>
 
-#define Z_ZXS_MACHINE_DEFAULT	0
-#define Z_ZXS_MACHINE_48K	0x10  // ZX Spectrum 48K (Model 2)
-#define Z_ZXS_MACHINE_PLUS	0x20  // ZX Spectrum +   (Model 3)
-#define Z_ZXS_MACHINE_PLUS_128K 0x30  // ZX Spectrum 128
-#define Z_ZXS_MACHINE_PLUS2	0x40  // ZX Spectrum +2
-#define Z_ZXS_MACHINE_PLUS2A	0x50  // ZX Spectrum +2A
-#define Z_ZXS_MACHINE_PLUS3	0x60  // ZX Spectrum +3
+#define Z_ZXS_MACHINE_DEFAULT	  0
+#define Z_ZXS_MACHINE_48K_ISSUE_2 0x10  // ZX Spectrum 48K (Issue 2)
+#define Z_ZXS_MACHINE_PLUS	  0x20  // ZX Spectrum +   (Model 3)
+#define Z_ZXS_MACHINE_PLUS_128K	  0x30  // ZX Spectrum 128
+#define Z_ZXS_MACHINE_PLUS2	  0x40  // ZX Spectrum +2
+#define Z_ZXS_MACHINE_PLUS2A	  0x50  // ZX Spectrum +2A
+#define Z_ZXS_MACHINE_PLUS3	  0x60  // ZX Spectrum +3
 
 #define ZXH_NONSTANDARD 0x0001  // peripheral hardware
 
@@ -139,10 +139,10 @@ Z_DEFINE_PACKED_STRUCTURE ({
 }, Z_ZXSTape);
 
 Z_DEFINE_PACKED_STRUCTURE ({
-	ZInt32	id;
+	zuint32 id;
 	zuint32 body_size;
 
-	union {	ZInt32			  type;
+	union {	zuint32			  type;
 		Z_ZXSZip		  zip;
 		Z_ZXSFormatInfo		  format_info;
 		Z_ZXSCPU		  cpu;
