@@ -377,25 +377,25 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 #define Z_ZX_SPECTRUM_ATTRIBUTE_SQUARE_WIDTH  8
 #define Z_ZX_SPECTRUM_ATTRIBUTE_SQUARE_HEIGHT 8
 
-#define Z_ZX_SPECTRUM_BRIGHT_COLOR_PALETTE(RGB)	 \
-	RGB(0.0, 0.0, 0.0), /* bright black   */ \
-	RGB(0.0, 0.0, 1.0), /* bright blue    */ \
-	RGB(1.0, 0.0, 0.0), /* bright red     */ \
-	RGB(1.0, 0.0, 1.0), /* bright magenta */ \
-	RGB(0.0, 1.0, 0.0), /* bright green   */ \
-	RGB(0.0, 1.0, 1.0), /* bright cyan    */ \
-	RGB(1.0, 1.0, 0.0), /* bright yellow  */ \
-	RGB(1.0, 1.0, 1.0)  /* bright white   */
+#define Z_ZX_SPECTRUM_BRIGHT_COLOR_PALETTE(rgb)	 \
+	rgb(0.0, 0.0, 0.0), /* bright black   */ \
+	rgb(0.0, 0.0, 1.0), /* bright blue    */ \
+	rgb(1.0, 0.0, 0.0), /* bright red     */ \
+	rgb(1.0, 0.0, 1.0), /* bright magenta */ \
+	rgb(0.0, 1.0, 0.0), /* bright green   */ \
+	rgb(0.0, 1.0, 1.0), /* bright cyan    */ \
+	rgb(1.0, 1.0, 0.0), /* bright yellow  */ \
+	rgb(1.0, 1.0, 1.0)  /* bright white   */
 
-#define Z_ZX_SPECTRUM_BASIC_COLOR_PALETTE(RGB)	   \
-	RGB(0.0,  0.0,	0.0 ), /* black		*/ \
-	RGB(0.0,  0.0,	0.84), /* basic blue	*/ \
-	RGB(0.84, 0.0,	0.0 ), /* basic red	*/ \
-	RGB(0.84, 0.0,	0.84), /* basic magenta */ \
-	RGB(0.0,  0.84, 0.0 ), /* basic green	*/ \
-	RGB(0.0,  0.84, 0.84), /* basic cyan	*/ \
-	RGB(0.84, 0.84, 0.0 ), /* basic yellow	*/ \
-	RGB(0.84, 0.84, 0.84)  /* basic white	*/
+#define Z_ZX_SPECTRUM_BASIC_COLOR_PALETTE(rgb)	   \
+	rgb(0.0,  0.0,	0.0 ), /* black		*/ \
+	rgb(0.0,  0.0,	0.84), /* basic blue	*/ \
+	rgb(0.84, 0.0,	0.0 ), /* basic red	*/ \
+	rgb(0.84, 0.0,	0.84), /* basic magenta */ \
+	rgb(0.0,  0.84, 0.0 ), /* basic green	*/ \
+	rgb(0.0,  0.84, 0.84), /* basic cyan	*/ \
+	rgb(0.84, 0.84, 0.0 ), /* basic yellow	*/ \
+	rgb(0.84, 0.84, 0.84)  /* basic white	*/
 
 Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8			   characters[Z_ZX_SPECTRUM_SIZE_CHARACTER_VRAM];
@@ -719,83 +719,48 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 
 /* MARK: - Screen */
 
+/*-----------------------------------------------------------.
+| References:						     |
+| https://retrocomputing.stackexchange.com/questions/25107   |
+| http://www.zxdesign.info/vidparam.shtml		     |
+| http://zxprojects.com/inves				     |
+'===========================================================*/
+
 /*
-.- - | INT | - - - - - - - - - - - - - -.  ---		     ---
-:	       VBLANK			:   | 8		      |
-:- - - - - - - - - - - - - - - - -.- - -:  ---	       ---    |
-:	Invisible Top Border	  :	:   | 8		|     |
-.---------------------------------.	:  ---   ---	|     |
-|	 Visible Top Border	  |	:   | 48  |	|     |
-|----.-----------------------.----|	:  ---    |	|     |
-|L   |			     |R	  |	:   |	  |	|     |
-|e   |			     |i	  |  H	:   |	  |	|     |
-|f  B|			     |g	 B|  B	:   |	  |	|     |
-|t  o|	       Paper	     |h	 o|  L	:   | 192 | 296 | 304 | 312
-|   r|			     |t	 r|  A	:   |	  |	|     |
-|   d|			     |	 d|  N	:   |	  |	|     |
-|   e|			     |	 e|  K	:   |	  |	|     |
-|   r|			     |	 r|	:   |	  |	|     |
-|----'-----------------------'----|	:  ---    |	|     |
-|	   Bottom Border	  |	:   | 56  |	|     |
-'---------------------------------'- - -'  ---   ---   ---   ---
+.- - <-INT-> - - - - - - - - - - - - - -.  ---	       ---
+:   VBLANK + Invisible Top Border       :   | 16 / 15   |
+.---------------------------------.- - -:  ---   ---	|
+|	    Top Border		  |	:   | 48  |	|
+|----.-----------------------.----|	:  ---    |	|
+|L   |			     |R	  |	:   |	  |	|
+|e   |			     |i	  |  H	:   |	  |	|
+|f  B|			     |g	 B|  B	:   |	  |	|
+|t  o|	       Paper	     |h	 o|  L	:   | 192 | 296 | 312 / 311
+|   r|			     |t	 r|  A	:   |	  |	|
+|   d|			     |	 d|  N	:   |	  |	|
+|   e|			     |	 e|  K	:   |	  |	|
+|   r|			     |	 r|	:   |	  |	|
+|----'-----------------------'----|	:  ---    |	|
+|	   Bottom Border	  |	:   | 56  |	|
+'---------------------------------'- - -'  ---   ---   ---
 
 |----|-----------------------|----|
   48		256	       48
 |---------------------------------|
-		352
+		352					*/
 
-
-.- - | INT | - - - - - - - - - - - - - -.  ---		     ---
-:	       VBLANK			:   |		      |
-:- - - - - - - - - - - - - - - - -.- - -:  ---	       ---    |
-:	Invisible Top Border	  :	:   | 7		|     |
-.---------------------------------.	:  ---   ---	|     |
-|	  Visible Top Border	  |	:   | 48  |	|     |
-|----.-----------------------.----|	:  ---    |	|     |
-|L   |			     |R	  |	:   |	  |	|     |
-|e   |			     |i	  |  H	:   |	  |	|     |
-|f  B|			     |g	 B|  B	:   |	  |	|     |
-|t  o|	       Paper	     |h	 o|  L	:   | 192 | 296 | 303 |
-|   r|			     |t	 r|  A	:   |	  |	|     |
-|   d|			     |	 d|  N	:   |	  |	|     |
-|   e|			     |	 e|  K	:   |	  |	|     |
-|   r|			     |	 r|	:   |	  |	|     |
-|----'-----------------------'----|	:  ---    |	|     |
-|	   Bottom Border	  |	:   | 56  |	|     |
-'---------------------------------'- - -'  ---   ---   ---   ---
-
-|----|-----------------------|----|
-  48		256	       48
-|---------------------------------|
-		352			    */
-
-#define Z_ZX_SPECTRUM_SCREEN_FPS				   50
-#define Z_ZX_SPECTRUM_SCREEN_WIDTH				   352
-#define Z_ZX_SPECTRUM_SCREEN_HEIGHT				   296
-#define Z_ZX_SPECTRUM_SCREEN_PIXELS				   104192 /* 352 * 296 */
-#define Z_ZX_SPECTRUM_SCREEN_PAPER_WIDTH			   256
-#define Z_ZX_SPECTRUM_SCREEN_PAPER_HEIGHT			   192
-#define Z_ZX_SPECTRUM_SCREEN_PAPER_PIXELS			   49152  /* 256 * 192 */
-#define Z_ZX_SPECTRUM_SCREEN_TOP_BORDER_HEIGHT			   56
-#define Z_ZX_SPECTRUM_SCREEN_INVISIBLE_TOP_BORDER_HEIGHT	   8
-#define Z_ZX_SPECTRUM_SCREEN_VISIBLE_TOP_BORDER_HEIGHT		   48
-#define Z_ZX_SPECTRUM_SCREEN_VISIBLE_TOP_BORDER_PIXELS		   16896
-#define Z_ZX_SPECTRUM_SCREEN_BOTTOM_BORDER_HEIGHT		   56
-#define Z_ZX_SPECTRUM_SCREEN_BOTTOM_BORDER_PIXELS		   19712
-#define Z_ZX_SPECTRUM_SCREEN_LATERAL_BORDER_WIDTH		   48
-
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_TOP_BORDER_HEIGHT	   55
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_INVISIBLE_TOP_BORDER_HEIGHT 7
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_FPS			   Z_ZX_SPECTRUM_SCREEN_FPS
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_WIDTH			   Z_ZX_SPECTRUM_SCREEN_WIDTH
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_HEIGHT			   Z_ZX_SPECTRUM_SCREEN_HEIGHT
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_PIXELS			   Z_ZX_SPECTRUM_SCREEN_PIXELS
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_PAPER_WIDTH		   Z_ZX_SPECTRUM_SCREEN_PAPER_WIDTH
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_PAPER_HEIGHT		   Z_ZX_SPECTRUM_SCREEN_PAPER_HEIGHT
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_PAPER_PIXELS		   Z_ZX_SPECTRUM_SCREEN_PAPER_PIXELS
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_VISIBLE_TOP_BORDER_HEIGHT   Z_ZX_SPECTRUM_SCREEN_VISIBLE_TOP_BORDER_HEIGHT
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_BOTTOM_BORDER_HEIGHT	   Z_ZX_SPECTRUM_SCREEN_BOTTOM_BORDER_HEIGHT
-#define Z_ZX_SPECTRUM_PLUS_128K_SCREEN_LATERAL_BORDER_WIDTH	   Z_ZX_SPECTRUM_SCREEN_LATERAL_BORDER_WIDTH
+#define Z_ZX_SPECTRUM_SCREEN_FPS		  50
+#define Z_ZX_SPECTRUM_SCREEN_WIDTH		  352
+#define Z_ZX_SPECTRUM_SCREEN_HEIGHT		  296
+#define Z_ZX_SPECTRUM_SCREEN_PIXELS		  104192 /* 352 * 296 */
+#define Z_ZX_SPECTRUM_SCREEN_PAPER_WIDTH	  256
+#define Z_ZX_SPECTRUM_SCREEN_PAPER_HEIGHT	  192
+#define Z_ZX_SPECTRUM_SCREEN_PAPER_PIXELS	  49152  /* 256 * 192 */
+#define Z_ZX_SPECTRUM_SCREEN_TOP_BORDER_HEIGHT	  48
+#define Z_ZX_SPECTRUM_SCREEN_TOP_BORDER_PIXELS	  16896
+#define Z_ZX_SPECTRUM_SCREEN_BOTTOM_BORDER_HEIGHT 56
+#define Z_ZX_SPECTRUM_SCREEN_BOTTOM_BORDER_PIXELS 19712
+#define Z_ZX_SPECTRUM_SCREEN_LATERAL_BORDER_WIDTH 48
 
 /* MARK: - Timings */
 
@@ -803,7 +768,6 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 #define Z_ZX_SPECTRUM_CYCLES_PER_FRAME			       69888
 #define Z_ZX_SPECTRUM_CYCLES_PER_SCANLINE		       224
 #define Z_ZX_SPECTRUM_CYCLES_PER_HBLANK			       48
-#define Z_ZX_SPECTRUM_CYCLES_PER_VBLANK			       1792
 #define Z_ZX_SPECTRUM_CYCLES_PER_FULL_BORDER_LINE	       176
 #define Z_ZX_SPECTRUM_CYCLES_PER_LATERAL_BORDER_LINE	       24
 #define Z_ZX_SPECTRUM_CYCLES_PER_PAPER_LINE		       128
@@ -811,35 +775,65 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 #define Z_ZX_SPECTRUM_CYCLES_AT_VBLANK			       0
 #define Z_ZX_SPECTRUM_CYCLES_AT_INT			       24
 #define Z_ZX_SPECTRUM_CYCLES_AT_INT_END			       56
-#define Z_ZX_SPECTRUM_CYCLES_AT_INVISIBLE_TOP_BORDER	       1792
-#define Z_ZX_SPECTRUM_CYCLES_AT_VISIBLE_TOP_BORDER	       3584
+#define Z_ZX_SPECTRUM_CYCLES_AT_TOP_BORDER		       3584
 #define Z_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION		       14336
+#define Z_ZX_SPECTRUM_CYCLES_AT_PAPER			       14360
+#define Z_ZX_SPECTRUM_CYCLES_AT_PAPER_END		       57272
 #define Z_ZX_SPECTRUM_CYCLES_AT_BOTTOM_BORDER		       57344
-#define Z_ZX_SPECTRUM_CYCLES_AT_PAPER			       (Z_ZX_SPECTRUM_CYCLES_AT_PAPER_REGION + Z_ZX_SPECTRUM_CYCLES_PER_LATERAL_BORDER_LINE)
-#define Z_ZX_SPECTRUM_CYCLES_AT_PAPER_END		       (Z_ZX_SPECTRUM_CYCLES_AT_BOTTOM_BORDER - Z_ZX_SPECTRUM_CYCLES_PER_LATERAL_BORDER_LINE - Z_ZX_SPECTRUM_CYCLES_PER_HBLANK)
-
 
 #define Z_ZX_SPECTRUM_PLUS_128K_CPU_HZ			       3546900
 #define Z_ZX_SPECTRUM_PLUS_128K_PSG_HZ			       1773400
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_FRAME	       70908
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_SCANLINE	       228
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_HBLANK	       52
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_VBLANK	       1824
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_FULL_BORDER_LINE    Z_ZX_SPECTRUM_CYCLES_PER_FULL_BORDER_LINE
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_LATERAL_BORDER_LINE Z_ZX_SPECTRUM_CYCLES_PER_LATERAL_BORDER_LINE
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_PAPER_LINE	       Z_ZX_SPECTRUM_CYCLES_PER_PAPER_LINE
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_FULL_BORDER_LINE    176
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_LATERAL_BORDER_LINE 24
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_PAPER_LINE	       128
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_INT		       36
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_VBLANK	       Z_ZX_SPECTRUM_CYCLES_AT_VBLANK
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INT		       Z_ZX_SPECTRUM_CYCLES_AT_INT
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INT_END	       Z_ZX_SPECTRUM_CYCLES_AT_INT_END
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INVISIBLE_TOP_BORDER 1824
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_VISIBLE_TOP_BORDER   3420
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_VBLANK	       0
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INT		       24
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_INT_END	       60
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_TOP_BORDER	       3420
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_PAPER_REGION	       14364
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_PAPER		       14388
+#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_PAPER_END	       58064
 #define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_BOTTOM_BORDER	       58140
 
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_PAPER		       (Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_PAPER_REGION + Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_LATERAL_BORDER_LINE)
-#define Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_PAPER_END	       (Z_ZX_SPECTRUM_PLUS_128K_CYCLES_AT_BOTTOM_BORDER - Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_LATERAL_BORDER_LINE - Z_ZX_SPECTRUM_PLUS_128K_CYCLES_PER_HBLANK)
+#define Z_ZX_SPECTRUM_PLUS3_CPU_HZ			       3546900
+#define Z_ZX_SPECTRUM_PLUS3_PSG_HZ			       1773400
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_PER_FRAME		       70908
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_PER_SCANLINE		       228
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_PER_HBLANK		       52
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_PER_FULL_BORDER_LINE	       176
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_PER_LATERAL_BORDER_LINE     24
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_PER_PAPER_LINE	       128
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_PER_INT		       32
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_AT_VBLANK		       0
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_AT_INT		       24
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_AT_INT_END		       56
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_AT_TOP_BORDER	       3420
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_AT_PAPER_REGION	       14364
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_AT_PAPER		       14388
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_AT_PAPER_END		       58064
+#define Z_ZX_SPECTRUM_PLUS3_CYCLES_AT_BOTTOM_BORDER	       58140
 
+#define Z_INVES_SPECTRUM_PLUS_CPU_HZ			       3546900
+#define Z_INVES_SPECTRUM_PLUS_PSG_HZ			       1773400
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_PER_FRAME		       70908
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_PER_SCANLINE	       228
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_PER_HBLANK		       52
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_PER_FULL_BORDER_LINE      176
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_PER_LATERAL_BORDER_LINE   24
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_PER_PAPER_LINE	       128
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_PER_INT		       32
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_AT_VBLANK		       0
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_AT_TOP_BORDER	       3420
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_AT_INT		       14176
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_AT_INT_END		       14208
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_AT_PAPER_REGION	       14364
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_AT_BOTTOM_BORDER	       58140
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_AT_PAPER		       14388
+#define Z_INVES_SPECTRUM_PLUS_CYCLES_AT_PAPER_END	       58064
 
 #define Z_INVES_SPECTRUM_PLUS_MASTER_CLOCK_HZ		       177345
 #define Z_INVES_SPECTRUM_PLUS_CPU_HZ			       3546900
@@ -855,8 +849,7 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 #define Z_DIDAKTIK_M_CYCLES_PER_INT
 #define Z_DIDAKTIK_M_CYCLES_AT_VBLANK
 #define Z_DIDAKTIK_M_CYCLES_AT_INT
-#define Z_DIDAKTIK_M_CYCLES_AT_INVISIBLE_TOP_BORDER
-#define Z_DIDAKTIK_M_CYCLES_AT_VISIBLE_TOP_BORDER
+#define Z_DIDAKTIK_M_CYCLES_AT_TOP_BORDER
 #define Z_DIDAKTIK_M_CYCLES_AT_PAPER_REGION
 #define Z_DIDAKTIK_M_CYCLES_AT_BOTTOM_BORDER
 #define Z_DIDAKTIK_M_CYCLES_AT_PAPER
