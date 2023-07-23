@@ -7,7 +7,7 @@
 # # Released under the terms of the GNU Lesser General Public License v3.
 
 cmake_minimum_required(
-	# project(... HOMEPAGE_URL <url-string>)
+	# 3.12: project(... HOMEPAGE_URL <url-string>)
 	VERSION 3.12...${CMAKE_VERSION})
 
 if(	CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR AND
