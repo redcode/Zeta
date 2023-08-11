@@ -153,10 +153,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 #endif
 
-#define Z_ISA_IS(	   ISA	  ) Z_IS_TRUE(Z_ISA_IS_##ISA		    )
-#define Z_ISA_HAS_INTEGRAL(bits	  ) Z_IS_TRUE(Z_ISA_HAS_INTEGRAL_##bits##BIT)
-#define Z_ISA_HAS_REAL(	   FORMAT ) Z_IS_TRUE(Z_ISA_HAS_REAL_##FORMAT	    )
-#define Z_ISA_BITS(	   OF_WHAT) Z_ISA_BITS_##OF_WHAT
+#define Z_ISA_IS(	   ISA	 ) Z_IS_TRUE(Z_ISA_IS_##ISA		   )
+#define Z_ISA_HAS_INTEGRAL(bits	 ) Z_IS_TRUE(Z_ISA_HAS_INTEGRAL_##bits##BIT)
+#define Z_ISA_HAS_REAL(	   FORMAT) Z_IS_TRUE(Z_ISA_HAS_REAL_##FORMAT	   )
 
 #ifndef Z_ISA_INTEGRAL_ENDIANNESS
 #	ifdef Z_COMPILER_ISA_INTEGRAL_ENDIANNESS

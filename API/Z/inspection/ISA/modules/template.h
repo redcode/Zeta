@@ -21,7 +21,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_ISA_HAS_REAL_IEEE_754_BINARY128*/
 /*#define Z_ISA_INTEGRAL_ENDIANNESS*/
 /*#define Z_ISA_INTEGER_FORMAT*/
-/*#define Z_ISA_BITS_TOP_INTEGRAL*/
-/*#define Z_ISA_BITS_ADDRESSING*/
+/*#define Z_ISA_WIDTH_TOP_INTEGRAL*/
+/*#define Z_ISA_WIDTH_ADDRESSING*/
 
 #endif /* Z_inspection_ISA_modules_template_H */

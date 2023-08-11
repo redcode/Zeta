@@ -15,7 +15,5 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ISA_HAS_INTEGRAL_16BIT  TRUE
 #define Z_ISA_INTEGRAL_ENDIANNESS Z_ENDIANNESS_LITTLE
 #define Z_ISA_INTEGER_FORMAT	  Z_INTEGER_FORMAT_2S_COMPLEMENT
-#define Z_ISA_BITS_TOP_INTEGRAL	  16
-#define Z_ISA_BITS_ADDRESSING	  16
 
 #endif /* Z_inspection_ISA_modules_Z80_H */
