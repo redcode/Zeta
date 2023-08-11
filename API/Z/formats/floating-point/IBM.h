@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_formats_floating_point_IBM_H
 #define Z_formats_floating_point_IBM_H
 
-#define Z_IBM_EXTENDED_DOUBLE_BITS		  128
+#define Z_IBM_EXTENDED_DOUBLE_WIDTH		  128
 #define Z_IBM_EXTENDED_DOUBLE_BIAS
 #define Z_IBM_EXTENDED_DOUBLE_DIGITS_10		  30 /* (?) */
 #define Z_IBM_EXTENDED_DOUBLE_MAXIMUM_DIGITS_10   34 /* (?) */

@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_formats_floating_point_Brain_Floating_Point_H
 #define Z_formats_floating_point_Brain_Floating_Point_H
 
-#define Z_BRAIN_FLOATING_POINT_BITS		   16
+#define Z_BRAIN_FLOATING_POINT_WIDTH		   16
 #define Z_BRAIN_FLOATING_POINT_BIAS		   127
 #define Z_BRAIN_FLOATING_POINT_DIGITS_10
 #define Z_BRAIN_FLOATING_POINT_MAXIMUM_DIGITS_10

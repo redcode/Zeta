@@ -45,14 +45,14 @@ zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
 		}
 
 
-#define Z__NATURAL_REVERSE(bits)				\
-								\
-	static Z_INLINE						\
-	zuint##bits z_uint##bits##_reverse(zuint##bits value)	\
-		{						\
-		return	Z_JOIN_2(Z_INSERT_NUMBER_, Z_CHAR_BITS)	\
-			(Z_UINT##bits##_REVERSE_IN_, BIT)	\
-				(value);			\
+#define Z__NATURAL_REVERSE(bits)				 \
+								 \
+	static Z_INLINE						 \
+	zuint##bits z_uint##bits##_reverse(zuint##bits value)	 \
+		{						 \
+		return	Z_JOIN_2(Z_INSERT_NUMBER_, Z_CHAR_WIDTH) \
+			(Z_UINT##bits##_REVERSE_IN_, BIT)	 \
+				(value);			 \
 		}
 
 

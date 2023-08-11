@@ -719,12 +719,13 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 
 /* MARK: - Screen */
 
-/*-----------------------------------------------------------.
-| References:						     |
-| https://retrocomputing.stackexchange.com/questions/25107   |
-| http://www.zxdesign.info/vidparam.shtml		     |
-| http://zxprojects.com/inves				     |
-'===========================================================*/
+/*-------------------------------------------------------------------.
+| References:							     |
+| https://retrocomputing.stackexchange.com/questions/25107	     |
+| http://www.zxdesign.info/vidparam.shtml			     |
+| http://zxprojects.com/inves					     |
+| https://www.speccy.pl/forum/index.php?topic=1006.msg14258#msg14258 |
+'===================================================================*/
 
 /*
 .- - <-INT-> - - - - - - - - - - - - - -.  ---	       ---

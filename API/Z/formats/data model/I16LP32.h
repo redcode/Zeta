@@ -9,12 +9,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_formats_data_model_I16LP32_H
 #define Z_formats_data_model_I16LP32_H
 
-#define Z_I16LP32_BITS_CHAR	8
-#define Z_I16LP32_BITS_SHORT   16
-#define Z_I16LP32_BITS_INT     16
-#define Z_I16LP32_BITS_LONG    32
-#define Z_I16LP32_BITS_LLONG   32
-#define Z_I16LP32_BITS_SIZE    32
-#define Z_I16LP32_BITS_POINTER 32
+#define Z_I16LP32_WIDTH_CHAR	8
+#define Z_I16LP32_WIDTH_SHORT   16
+#define Z_I16LP32_WIDTH_INT     16
+#define Z_I16LP32_WIDTH_LONG    32
+#define Z_I16LP32_WIDTH_LLONG   32
+#define Z_I16LP32_WIDTH_SIZE    32
+#define Z_I16LP32_WIDTH_POINTER 32
 
 #endif /* Z_formats_data_model_I16LP32_H */

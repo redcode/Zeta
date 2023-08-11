@@ -665,76 +665,74 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Built-ins: Constants */
 
 #if defined(__CHAR_BIT__)
-#	define Z_COMPILER_CONSTANT_CHAR_BITS __CHAR_BIT__
+#	define Z_COMPILER_CONSTANT_CHAR_WIDTH __CHAR_BIT__
 
 #elif defined(__SCHAR_WIDTH__)
-#	define Z_COMPILER_CONSTANT_CHAR_BITS __SCHAR_WIDTH__
+#	define Z_COMPILER_CONSTANT_CHAR_WIDTH __SCHAR_WIDTH__
 #endif
 
 #ifdef __SCHAR_MAX__
 #	define Z_COMPILER_CONSTANT_SCHAR_MAXIMUM __SCHAR_MAX__
 #endif
 
-#ifdef __SHRT_WIDTH__
-#	define Z_COMPILER_CONSTANT_SHORT_BITS __SHRT_WIDTH__
-#endif
-
 #ifdef __SIZEOF_SHORT__
 #	define Z_COMPILER_CONSTANT_SHORT_SIZE __SIZEOF_SHORT__
+#endif
+
+#ifdef __SHRT_WIDTH__
+#	define Z_COMPILER_CONSTANT_SHORT_WIDTH __SHRT_WIDTH__
 #endif
 
 #ifdef __SHRT_MAX__
 #	define Z_COMPILER_CONSTANT_SSHORT_MAXIMUM __SHRT_MAX__
 #endif
 
-#if defined(__INT_WIDTH__)
-#	define Z_COMPILER_CONSTANT_INT_BITS __INT_WIDTH__
-
-#elif defined(_MIPS_SZINT)
-#	define Z_COMPILER_CONSTANT_INT_BITS _MIPS_SZINT
-#endif
-
 #ifdef __SIZEOF_INT__
 #	define Z_COMPILER_CONSTANT_INT_SIZE __SIZEOF_INT__
+#endif
+
+#if defined(__INT_WIDTH__)
+#	define Z_COMPILER_CONSTANT_INT_WIDTH __INT_WIDTH__
+#elif defined(_MIPS_SZINT)
+#	define Z_COMPILER_CONSTANT_INT_WIDTH _MIPS_SZINT
 #endif
 
 #ifdef __INT_MAX__
 #	define Z_COMPILER_CONSTANT_SINT_MAXIMUM __INT_MAX__
 #endif
 
-#if defined(__LONG_WIDTH__)
-#	define Z_COMPILER_CONSTANT_LONG_BITS __LONG_WIDTH__
-
-#elif defined(_MIPS_SZLONG)
-#	define Z_COMPILER_CONSTANT_LONG_BITS _MIPS_SZLONG
-#endif
-
 #ifdef __SIZEOF_LONG__
 #	define Z_COMPILER_CONSTANT_LONG_SIZE __SIZEOF_LONG__
+#endif
+
+#if defined(__LONG_WIDTH__)
+#	define Z_COMPILER_CONSTANT_LONG_WIDTH __LONG_WIDTH__
+#elif defined(_MIPS_SZLONG)
+#	define Z_COMPILER_CONSTANT_LONG_WIDTH _MIPS_SZLONG
 #endif
 
 #ifdef __LONG_MAX__
 #	define Z_COMPILER_CONSTANT_SLONG_MAXIMUM __LONG_MAX__
 #endif
 
-#ifdef __LONG_LONG_WIDTH__
-#	define Z_COMPILER_CONSTANT_LLONG_BITS __LONG_LONG_WIDTH__
-#endif
-
 #ifdef __SIZEOF_LONG_LONG__
 #	define Z_COMPILER_CONSTANT_LLONG_SIZE __SIZEOF_LONG_LONG__
+#endif
+
+#ifdef __LONG_LONG_WIDTH__
+#	define Z_COMPILER_CONSTANT_LLONG_WIDTH __LONG_LONG_WIDTH__
 #endif
 
 #ifdef __LONG_LONG_MAX__
 #	define Z_COMPILER_CONSTANT_SLLONG_MAXIMUM __LONG_LONG_MAX__
 #endif
 
-#ifdef __WCHAR_WIDTH__
-#	define Z_COMPILER_CONSTANT_WCHAR_BITS __WCHAR_WIDTH__
-#endif
-
 #ifdef __SIZEOF_WCHAR_T__
 #	define Z_COMPILER_CONSTANT_WCHAR_SIZE __SIZEOF_WCHAR_T__
+#endif
+
+#ifdef __WCHAR_WIDTH__
+#	define Z_COMPILER_CONSTANT_WCHAR_WIDTH __WCHAR_WIDTH__
 #endif
 
 #ifdef __WCHAR_MAX__
@@ -745,12 +743,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_CONSTANT_WCHAR_MINIMUM __WCHAR_MIN__
 #endif
 
-#ifdef __SIZE_WIDTH__
-#	define Z_COMPILER_CONSTANT_SIZE_BITS __SIZE_WIDTH__
-#endif
-
 #ifdef __SIZEOF_SIZE_T__
 #	define Z_COMPILER_CONSTANT_SIZE_SIZE __SIZEOF_SIZE_T__
+#endif
+
+#ifdef __SIZE_WIDTH__
+#	define Z_COMPILER_CONSTANT_SIZE_WIDTH __SIZE_WIDTH__
 #endif
 
 #ifdef __SIZE_MAX__
@@ -762,7 +760,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #ifdef __INTMAX_WIDTH__
-#	define Z_COMPILER_CONSTANT_SINTMAX_BITS __INTMAX_WIDTH__
+#	define Z_COMPILER_CONSTANT_SINTMAX_WIDTH __INTMAX_WIDTH__
 #endif
 
 #ifdef __INTMAX_MAX__
@@ -774,7 +772,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #ifdef __INTPTR_WIDTH__
-#	define Z_COMPILER_CONSTANT_SINTPTR_BITS __INTPTR_WIDTH__
+#	define Z_COMPILER_CONSTANT_SINTPTR_WIDTH __INTPTR_WIDTH__
 #endif
 
 #ifdef __INTPTR_MAX__
@@ -842,12 +840,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_CONSTANT_DECIMAL128_INFINITY	__builtin_infd128      (  )
 #define Z_COMPILER_CONSTANT_DECIMAL128_QNAN	__builtin_nand128      ("")
 
-#ifdef _MIPS_SZPTR
-#	define Z_COMPILER_CONSTANT_POINTER_BITS _MIPS_SZPTR
-#endif
-
 #ifdef __SIZEOF_POINTER__
 #	define Z_COMPILER_CONSTANT_POINTER_SIZE __SIZEOF_POINTER__
+#endif
+
+#ifdef _MIPS_SZPTR
+#	define Z_COMPILER_CONSTANT_POINTER_WIDTH _MIPS_SZPTR
 #endif
 
 /*#define Z_COMPILER_CONSTANT_UCHAR_MAXIMUM*/
@@ -862,17 +860,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#define Z_COMPILER_CONSTANT_SLLONG_MINIMUM*/
 /*#define Z_COMPILER_CONSTANT_SSIZE_MAXIMUM*/
 /*#define Z_COMPILER_CONSTANT_SSIZE_MINIMUM*/
-/*#define Z_COMPILER_CONSTANT_UINTMAX_BITS*/
 /*#define Z_COMPILER_CONSTANT_UINTMAX_SIZE*/
+/*#define Z_COMPILER_CONSTANT_UINTMAX_WIDTH*/
 /*#define Z_COMPILER_CONSTANT_SINTMAX_SIZE*/
 /*#define Z_COMPILER_CONSTANT_SINTMAX_MINIMUM*/
-/*#define Z_COMPILER_CONSTANT_UINTPTR_BITS*/
 /*#define Z_COMPILER_CONSTANT_UINTPTR_SIZE*/
+/*#define Z_COMPILER_CONSTANT_UINTPTR_WIDTH*/
 /*#define Z_COMPILER_CONSTANT_SINTPTR_SIZE*/
 /*#define Z_COMPILER_CONSTANT_SINTPTR_MINIMUM*/
-/*#define Z_COMPILER_CONSTANT_FLOAT_BITS*/
-/*#define Z_COMPILER_CONSTANT_DOUBLE_BITS*/
-/*#define Z_COMPILER_CONSTANT_LDOUBLE_BITS*/
+/*#define Z_COMPILER_CONSTANT_FLOAT_WIDTH*/
+/*#define Z_COMPILER_CONSTANT_DOUBLE_WIDTH*/
+/*#define Z_COMPILER_CONSTANT_LDOUBLE_WIDTH*/
 /*#define Z_COMPILER_CONSTANT_DECIMAL32_HUGE*/
 /*#define Z_COMPILER_CONSTANT_DECIMAL32_SNAN*/
 /*#define Z_COMPILER_CONSTANT_DECIMAL64_HUGE*/

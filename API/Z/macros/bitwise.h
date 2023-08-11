@@ -210,7 +210,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Macro selectors */
 
 #define Z_T_REVERSE(T)							    \
-	Z_JOIN_2(Z_INSERT_NUMBER_, Z_CHAR_BITS) (			    \
+	Z_JOIN_2(Z_INSERT_NUMBER_, Z_CHAR_WIDTH) (			    \
 		Z_INSERT_TYPE(Z_##T##_FIXED_FUNDAMENTAL)(Z_, _REVERSE_IN_), \
 		BIT)
 

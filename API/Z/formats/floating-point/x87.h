@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_formats_floating_point_x87_H
 #define Z_formats_floating_point_x87_H
 
-#define Z_X87_DOUBLE_EXTENDED_BITS		  80
+#define Z_X87_DOUBLE_EXTENDED_WIDTH		  80
 #define Z_X87_DOUBLE_EXTENDED_BIAS		  16383
 #define Z_X87_DOUBLE_EXTENDED_DIGITS_10		  19 /* 18 (?) */
 #define Z_X87_DOUBLE_EXTENDED_MAXIMUM_DIGITS_10	  21

@@ -94,14 +94,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_DATA_MODEL_IS(	 DATA_MODEL) Z_IS_TRUE(Z_DATA_MODEL_IS_##DATA_MODEL   )
 #define Z_DATA_MODEL_HAS_LITERAL(TYPE	   ) Z_IS_TRUE(Z_DATA_MODEL_HAS_LITERAL_##TYPE)
 #define Z_DATA_MODEL_HAS_TYPE(	 TYPE	   ) Z_IS_TRUE(Z_DATA_MODEL_HAS_TYPE_##TYPE   )
-#define Z_DATA_MODEL_BITS(	 TYPE	   ) Z_INSERT_DATA_MODEL(Z_, _BITS_##TYPE)
+#define Z_DATA_MODEL_WIDTH(	 TYPE	   ) Z_INSERT_DATA_MODEL(Z_, _WIDTH_##TYPE)
 #define Z_DATA_MODEL_FUNDAMENTAL(TYPE	   ) Z_DATA_MODEL_FUNDAMENTAL_##TYPE
 #define Z_DATA_MODEL_LITERAL(	 TYPE	   ) Z_DATA_MODEL_LITERAL_##TYPE
 #define Z_DATA_MODEL_TYPE(	 TYPE	   ) Z_DATA_MODEL_TYPE_##TYPE
 
 /* MARK: - Selection: int8 */
 
-#if Z_DATA_MODEL_BITS(CHAR) == 8
+#if Z_DATA_MODEL_WIDTH(CHAR) == 8
 #	define Z_DATA_MODEL_TYPE_UINT8	      unsigned char
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT8 Z_FUNDAMENTAL_UCHAR
 #	define Z_DATA_MODEL_LITERAL_UINT8     Z_SUFFIX_U
@@ -152,7 +152,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Selection: int16 */
 
-#if Z_DATA_MODEL_BITS(CHAR) == 16
+#if Z_DATA_MODEL_WIDTH(CHAR) == 16
 #	define Z_DATA_MODEL_TYPE_UINT16	       unsigned char
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT16 Z_FUNDAMENTAL_UCHAR
 #	define Z_DATA_MODEL_LITERAL_UINT16     Z_SUFFIX_U
@@ -161,7 +161,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_FUNDAMENTAL_SINT16 Z_FUNDAMENTAL_SCHAR
 #	define Z_DATA_MODEL_LITERAL_SINT16     Z_SAME
 
-#elif Z_DATA_MODEL_BITS(INT) == 16
+#elif Z_DATA_MODEL_WIDTH(INT) == 16
 #	define Z_DATA_MODEL_TYPE_UINT16	       unsigned int
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT16 Z_FUNDAMENTAL_UINT
 #	define Z_DATA_MODEL_LITERAL_UINT16     Z_SUFFIX_U
@@ -170,7 +170,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_FUNDAMENTAL_SINT16 Z_FUNDAMENTAL_SINT
 #	define Z_DATA_MODEL_LITERAL_SINT16     Z_SAME
 
-#elif Z_DATA_MODEL_BITS(SHORT) == 16
+#elif Z_DATA_MODEL_WIDTH(SHORT) == 16
 #	define Z_DATA_MODEL_TYPE_UINT16	       unsigned short int
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT16 Z_FUNDAMENTAL_USHORT
 #	define Z_DATA_MODEL_LITERAL_UINT16     Z_SUFFIX_U
@@ -221,7 +221,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Selection: int32 */
 
-#if Z_DATA_MODEL_BITS(INT) == 32
+#if Z_DATA_MODEL_WIDTH(INT) == 32
 #	define Z_DATA_MODEL_TYPE_UINT32	       unsigned int
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT32 Z_FUNDAMENTAL_UINT
 #	define Z_DATA_MODEL_LITERAL_UINT32     Z_SUFFIX_U
@@ -230,7 +230,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_FUNDAMENTAL_SINT32 Z_FUNDAMENTAL_SINT
 #	define Z_DATA_MODEL_LITERAL_SINT32     Z_SAME
 
-#elif Z_DATA_MODEL_BITS(SHORT) == 32
+#elif Z_DATA_MODEL_WIDTH(SHORT) == 32
 #	define Z_DATA_MODEL_TYPE_UINT32	       unsigned short int
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT32 Z_FUNDAMENTAL_USHORT
 #	define Z_DATA_MODEL_LITERAL_UINT32     Z_SUFFIX_U
@@ -239,7 +239,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_FUNDAMENTAL_SINT32 Z_FUNDAMENTAL_SSHORT
 #	define Z_DATA_MODEL_LITERAL_SINT32     Z_SAME
 
-#elif Z_DATA_MODEL_BITS(LONG) == 32
+#elif Z_DATA_MODEL_WIDTH(LONG) == 32
 #	define Z_DATA_MODEL_TYPE_UINT32	       unsigned long int
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT32 Z_FUNDAMENTAL_ULONG
 #	define Z_DATA_MODEL_LITERAL_UINT32     Z_SUFFIX_UL
@@ -290,7 +290,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Selection: int64 */
 
-#if Z_DATA_MODEL_BITS(INT) == 64
+#if Z_DATA_MODEL_WIDTH(INT) == 64
 #	define Z_DATA_MODEL_TYPE_UINT64	       unsigned int
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT64 Z_FUNDAMENTAL_UINT
 #	define Z_DATA_MODEL_LITERAL_UINT64     Z_SUFFIX_U
@@ -299,7 +299,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_FUNDAMENTAL_SINT64 Z_FUNDAMENTAL_SINT
 #	define Z_DATA_MODEL_LITERAL_SINT64     Z_SAME
 
-#elif Z_DATA_MODEL_BITS(LONG) == 64
+#elif Z_DATA_MODEL_WIDTH(LONG) == 64
 #	define Z_DATA_MODEL_TYPE_UINT64	       unsigned long int
 #	define Z_DATA_MODEL_FUNDAMENTAL_UINT64 Z_FUNDAMENTAL_ULONG
 #	define Z_DATA_MODEL_LITERAL_UINT64     Z_SUFFIX_UL
@@ -308,7 +308,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_DATA_MODEL_FUNDAMENTAL_SINT64 Z_FUNDAMENTAL_SLONG
 #	define Z_DATA_MODEL_LITERAL_SINT64     Z_SUFFIX_L
 
-#elif	Z_DATA_MODEL_BITS(LLONG) == 64 && \
+#elif	Z_DATA_MODEL_WIDTH(LLONG) == 64 && \
 	(Z_DIALECT_HAS_TYPE(C99, LONG_LONG) || Z_DIALECT_HAS_TYPE(CPP11, LONG_LONG))
 
 #	define Z_DATA_MODEL_TYPE_UINT64	       unsigned long long int
@@ -361,7 +361,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Selection: int128 */
 
-#if	Z_DATA_MODEL_BITS(LLONG) == 128 && \
+#if	Z_DATA_MODEL_WIDTH(LLONG) == 128 && \
 	(Z_DIALECT_HAS_TYPE(C99, LONG_LONG) || Z_DIALECT_HAS_TYPE(CPP11, LONG_LONG))
 
 #	define Z_DATA_MODEL_TYPE_UINT128	unsigned long long int
