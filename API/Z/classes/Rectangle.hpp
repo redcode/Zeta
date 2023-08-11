@@ -684,8 +684,7 @@ namespace Zeta {template <class t> struct Rectangle {
 					{					      \
 					CGRect result = {			      \
 						{CGFloat(point.x), CGFloat(point.y)}, \
-						{CGFloat(size.x),  CGFloat(size.y)}   \
-					};					      \
+						{CGFloat(size.x),  CGFloat(size.y)}}; \
 										      \
 					return result;				      \
 					}
