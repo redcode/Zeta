@@ -17,4 +17,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define FALSE 0
 #endif
 
+#ifdef Z_TRUE
+#	undef Z_TRUE
+#endif
+
+#define Z_TRUE 1
+
+#ifdef Z_FALSE
+#	undef Z_FALSE
+#endif
+
+#define Z_FALSE 0
+
 #endif /* Z_constants_boolean_H */
