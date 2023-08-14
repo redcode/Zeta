@@ -10,7 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_inspection_compiler_H
 
 #include <Z/keys/compiler.h>
-#include <Z/constants/boolean.h>
 #include <Z/macros/token.h>
 #include <Z/macros/version.h>
 

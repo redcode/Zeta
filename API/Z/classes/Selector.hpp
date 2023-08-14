@@ -22,7 +22,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/functions/casting.hpp>
 #	endif
 
-#	define Z_HAS_Selector TRUE
+#	define Z_HAS_Selector 1
 
 
 	namespace Zeta {

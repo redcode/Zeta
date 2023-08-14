@@ -15,11 +15,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if !Z_DIALECT_HAS_TYPE(CPP98, BOOL)
 #	ifndef true
-#		define true TRUE
+#		define true 1
 #	endif
 
 #	ifndef false
-#		define false FALSE
+#		define false 0
 #	endif
 #endif
 

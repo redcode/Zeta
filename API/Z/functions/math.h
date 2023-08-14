@@ -171,12 +171,12 @@ zboolean z_uint8_multiplication_overflows(zuint8 a, zuint8 b)
 
 /*static Z_INLINE
 zboolean z_uint8_multiplication_overflows_3(zuint8 a, zuint8 b, zuint8 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_uint8_multiplication_overflows_4(zuint8 a, zuint8 b, zuint8 c, zuint8 d)
-	{return FALSE;}*/
+	{return Z_FALSE;}*/
 
 
 static Z_INLINE
@@ -186,12 +186,12 @@ zboolean z_uint8_subtraction_overflows(zuint8 a, zuint8 b)
 
 /*static Z_INLINE
 zboolean z_uint8_subtraction_overflows_3(zuint8 a, zuint8 b, zuint8 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_uint8_subtraction_overflows_4(zuint8 a, zuint8 b, zuint8 c, zuint8 d)
-	{return FALSE;}*/
+	{return Z_FALSE;}*/
 
 
 /* MARK: - sint8 */
@@ -203,47 +203,47 @@ Z__IMPLEMENTATION_SIGNED(sint8)
 
 /*static Z_INLINE
 zboolean z_sint8_addition_overflows(zsint8 a, zsint8 b)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint8_addition_overflows_3(zsint8 a, zsint8 b, zsint8 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint8_addition_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint8_multiplication_overflows(zsint8 a, zsint8 b)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint8_multiplication_overflows_3(zsint8 a, zsint8 b, zsint8 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint8_multiplication_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint8_subtraction_overflows(zsint8 a, zsint8 b)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint8_subtraction_overflows_3(zsint8 a, zsint8 b, zsint8 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint8_subtraction_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
-	{return FALSE;}*/
+	{return Z_FALSE;}*/
 
 
 /* MARK: - uint16 */
@@ -274,12 +274,12 @@ zboolean z_uint16_multiplication_overflows(zuint16 a, zuint16 b)
 
 /*static Z_INLINE
 zboolean z_uint16_multiplication_overflows_3(zuint16 a, zuint16 b, zuint16 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_uint16_multiplication_overflows_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
-	{return FALSE;}*/
+	{return Z_FALSE;}*/
 
 
 static Z_INLINE
@@ -289,12 +289,12 @@ zboolean z_uint16_subtraction_overflows(zuint16 a, zuint16 b)
 
 /*static Z_INLINE
 zboolean z_uint16_subtraction_overflows_3(zuint16 a, zuint16 b, zuint16 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_uint16_subtraction_overflows_4(zuint16 a, zuint16 b, zuint16 c, zuint16 d)
-	{return FALSE;}*/
+	{return Z_FALSE;}*/
 
 
 /* MARK: - sint16 */
@@ -306,47 +306,47 @@ Z__IMPLEMENTATION_SIGNED(sint16)
 
 /*static Z_INLINE
 zboolean z_sint16_addition_overflows(zsint16 a, zsint16 b)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint16_addition_overflows_3(zsint16 a, zsint16 b, zsint16 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint16_addition_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint16 d)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint16_multiplication_overflows(zsint16 a, zsint16 b)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint16_multiplication_overflows_3(zsint16 a, zsint16 b, zsint16 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint16_multiplication_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint16 d)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint16_subtraction_overflows(zsint16 a, zsint16 b)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint16_subtraction_overflows_3(zsint16 a, zsint16 b, zsint16 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint16_subtraction_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint16 d)
-	{return FALSE;}*/
+	{return Z_FALSE;}*/
 
 
 /* MARK: - uint32 */
@@ -357,32 +357,32 @@ Z__IMPLEMENTATION_COMMON(uint32)
 
 /*static Z_INLINE
 zboolean z_uint32_addition_overflows(zuint32 a, zuint32 b)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_uint32_addition_overflows_3(zuint32 a, zuint32 b, zuint32 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_uint32_addition_overflows_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_uint32_multiplication_overflows(zuint32 a, zuint32 b)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_uint32_multiplication_overflows_3(zuint32 a, zuint32 b, zuint32 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_uint32_multiplication_overflows_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
@@ -392,12 +392,12 @@ zboolean z_uint32_subtraction_overflows(zuint32 a, zuint32 b)
 
 static Z_INLINE
 zboolean z_uint32_subtraction_overflows_3(zuint32 a, zuint32 b, zuint32 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_uint32_subtraction_overflows_4(zuint32 a, zuint32 b, zuint32 c, zuint32 d)
-	{return FALSE;}*/
+	{return Z_FALSE;}*/
 
 
 /* MARK: - sint32 */
@@ -409,47 +409,47 @@ Z__IMPLEMENTATION_SIGNED(sint32)
 
 /*static Z_INLINE
 zboolean z_sint32_addition_overflows(zsint32 a, zsint32 b)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint32_addition_overflows_3(zsint32 a, zsint32 b, zsint32 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint32_addition_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint32 d)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint32_multiplication_overflows(zsint32 a, zsint32 b)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint32_multiplication_overflows_3(zsint32 a, zsint32 b, zsint32 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint32_multiplication_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint32 d)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint32_subtraction_overflows(zsint32 a, zsint32 b)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint32_subtraction_overflows_3(zsint32 a, zsint32 b, zsint32 c)
-	{return FALSE;}
+	{return Z_FALSE;}
 
 
 static Z_INLINE
 zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint32 d)
-	{return FALSE;}*/
+	{return Z_FALSE;}*/
 
 
 /* MARK: - uint64 */
@@ -462,31 +462,31 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 	/*static Z_INLINE
 	zboolean z_uint64_addition_overflows(zuint64 a, zuint64 b)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_uint64_addition_overflows_3(zuint64 a, zuint64 b, zuint64 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_uint64_addition_overflows_4(zuint64 a, zuint64 b, zuint64 c, zuint64 d)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_uint64_multiplication_overflows(zuint64 a, zuint64 b)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 	static Z_INLINE
 	zboolean z_uint64_multiplication_overflows_3(zuint64 a, zuint64 b, zuint64 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_uint64_multiplication_overflows_4(zuint64 a, zuint64 b, zuint64 c, zuint64 d)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
@@ -496,12 +496,12 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 	static Z_INLINE
 	zboolean z_uint64_subtraction_overflows_3(zuint64 a, zuint64 b, zuint64 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_uint64_subtraction_overflows_4(zuint64 a, zuint64 b, zuint64 c, zuint64 d)
-		{return FALSE;}*/
+		{return Z_FALSE;}*/
 
 #endif
 
@@ -517,47 +517,47 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 	/*static Z_INLINE
 	zboolean z_sint64_addition_overflows(zsint64 a, zsint64 b)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint64_addition_overflows_3(zsint64 a, zsint64 b, zsint64 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint64_addition_overflows_4(zsint64 a, zsint64 b, zsint64 c, zsint64 d)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint64_multiplication_overflows(zsint64 a, zsint64 b)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint64_multiplication_overflows_3(zsint64 a, zsint64 b, zsint64 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint64_multiplication_overflows_4(zsint64 a, zsint64 b, zsint64 c, zsint64 d)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint64_subtraction_overflows(zsint64 a, zsint64 b)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint64_subtraction_overflows_3(zsint64 a, zsint64 b, zsint64 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint64_subtraction_overflows_4(zsint64 a, zsint64 b, zsint64 c, zsint64 d)
-		{return FALSE;}*/
+		{return Z_FALSE;}*/
 
 #endif
 
@@ -572,32 +572,32 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 	/*static Z_INLINE
 	zboolean z_uint128_addition_overflows(zuint128 a, zuint128 b)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_uint128_addition_overflows_3(zuint128 a, zuint128 b, zuint128 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_uint128_addition_overflows_4(zuint128 a, zuint128 b, zuint128 c, zuint128 d)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_uint128_multiplication_overflows(zuint128 a, zuint128 b)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_uint128_multiplication_overflows_3(zuint128 a, zuint128 b, zuint128 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_uint128_multiplication_overflows_4(zuint128 a, zuint128 b, zuint128 c, zuint128 d)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
@@ -607,12 +607,12 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 	static Z_INLINE
 	zboolean z_uint128_subtraction_overflows_3(zuint128 a, zuint128 b, zuint128 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_uint128_subtraction_overflows_4(zuint128 a, zuint128 b, zuint128 c, zuint128 d)
-		{return FALSE;}*/
+		{return Z_FALSE;}*/
 
 #endif
 
@@ -628,47 +628,47 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 	/*static Z_INLINE
 	zboolean z_sint128_addition_overflows(zsint128 a, zsint128 b)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint128_addition_overflows_3(zsint128 a, zsint128 b, zsint128 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint128_addition_overflows_4(zsint128 a, zsint128 b, zsint128 c, zsint128 d)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint128_multiplication_overflows(zsint128 a, zsint128 b)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint128_multiplication_overflows_3(zsint128 a, zsint128 b, zsint128 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint128_multiplication_overflows_4(zsint128 a, zsint128 b, zsint128 c, zsint128 d)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint128_subtraction_overflows(zsint128 a, zsint128 b)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint128_subtraction_overflows_3(zsint128 a, zsint128 b, zsint128 c)
-		{return FALSE;}
+		{return Z_FALSE;}
 
 
 	static Z_INLINE
 	zboolean z_sint128_subtraction_overflows_4(zsint128 a, zsint128 b, zsint128 c, zsint128 d)
-		{return FALSE;}*/
+		{return Z_FALSE;}*/
 
 #endif
 

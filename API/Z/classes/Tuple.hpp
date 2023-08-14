@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_DIALECT_HAS(CPP11, EXTENDED_VARIADIC_TEMPLATE_TEMPLATE_PARAMETERS) /* ¿No es necesario, basta con VARIADIC_TEMPLATE? */
 #	include <Z/traits/type.hpp>
 
-#	define Z_HAS_Tuple TRUE
+#	define Z_HAS_Tuple 1
 
 
 	namespace Zeta {namespace ZetaDetail {namespace Tuple {

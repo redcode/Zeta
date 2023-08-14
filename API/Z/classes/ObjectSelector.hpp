@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/classes/Selector.hpp>
 
 #if Z_HAS(Selector)
-#	define Z_HAS_ObjectSelector TRUE
+#	define Z_HAS_ObjectSelector 1
 
 
 	namespace Zeta {

@@ -16,7 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/macros/language.hpp>
 #	include <Z/types/integral.hpp>
 
-#	define Z_HAS_InitializerList TRUE
+#	define Z_HAS_InitializerList 1
 
 
 	namespace Zeta {template <class t> class InitializerList {

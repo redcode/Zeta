@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_inspection_OS_modules_Windows_H
 #define Z_inspection_OS_modules_Windows_H
 
-#define Z_OS_IS_WINDOWS		  TRUE
+#define Z_OS_IS_WINDOWS		  1
 #define Z_OS_NAME		  Z_OS_NAME_WINDOWS
 #define Z_OS_MODERN_NAME	  Z_OS_NAME_WINDOWS
 #define Z_OS_PATH_SLASH_CHARACTER '\\'

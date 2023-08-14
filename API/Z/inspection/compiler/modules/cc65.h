@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Identification */
 
-#define Z_COMPILER_IS_CC65 TRUE
+#define Z_COMPILER_IS_CC65 1
 #define Z_COMPILER_NAME	   Z_COMPILER_NAME_CC65
 
 #define Z_COMPILER_VERSION \

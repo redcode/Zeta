@@ -15,58 +15,58 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/traits/control.hpp>
 #	include <Z/traits/TypeCount.hpp>
 
-#	define Z_HAS_TypeList		 TRUE
-#	define Z_HAS_TypeListSize	 TRUE
-#	define Z_HAS_TypeListApply	 TRUE
-#	define Z_HAS_TypeListAppend	 TRUE
-#	define Z_HAS_TypeListFirst	 TRUE
-#	define Z_HAS_TypeListGet	 TRUE
-#	define Z_HAS_TypeListJoin	 TRUE
-#	define Z_HAS_TypeListLast	 TRUE
-#	define Z_HAS_TypeListPrepend	 TRUE
-#	define Z_HAS_TypeListRename	 TRUE
-#	define Z_HAS_TypeListRemove	 TRUE
-#	define Z_HAS_TypeListRemoveFirst TRUE
-#	define Z_HAS_TypeListRemoveHead	 TRUE
-#	define Z_HAS_TypeListRemoveLast	 TRUE
-#	define Z_HAS_TypeListRemoveTail	 TRUE
-#	define Z_HAS_TypeListReverse	 TRUE
-#	define Z_HAS_TypeListRotateLeft	 TRUE
-#	define Z_HAS_TypeListRotateRight TRUE
-#	define Z_HAS_TypeListToFunction	 TRUE
+#	define Z_HAS_TypeList		 1
+#	define Z_HAS_TypeListSize	 1
+#	define Z_HAS_TypeListApply	 1
+#	define Z_HAS_TypeListAppend	 1
+#	define Z_HAS_TypeListFirst	 1
+#	define Z_HAS_TypeListGet	 1
+#	define Z_HAS_TypeListJoin	 1
+#	define Z_HAS_TypeListLast	 1
+#	define Z_HAS_TypeListPrepend	 1
+#	define Z_HAS_TypeListRename	 1
+#	define Z_HAS_TypeListRemove	 1
+#	define Z_HAS_TypeListRemoveFirst 1
+#	define Z_HAS_TypeListRemoveHead	 1
+#	define Z_HAS_TypeListRemoveLast	 1
+#	define Z_HAS_TypeListRemoveTail	 1
+#	define Z_HAS_TypeListReverse	 1
+#	define Z_HAS_TypeListRotateLeft	 1
+#	define Z_HAS_TypeListRotateRight 1
+#	define Z_HAS_TypeListToFunction	 1
 
 #	if Z_DIALECT_HAS(CPP11, TYPE_ALIAS_TEMPLATE)
-#		define Z_HAS_TypeList_MEMBER_apply	  TRUE
-#		define Z_HAS_TypeList_MEMBER_append	  TRUE
-#		define Z_HAS_TypeList_MEMBER_get	  TRUE
-#		define Z_HAS_TypeList_MEMBER_prepend	  TRUE
-#		define Z_HAS_TypeList_MEMBER_remove	  TRUE
-#		define Z_HAS_TypeList_MEMBER_remove_head  TRUE
-#		define Z_HAS_TypeList_MEMBER_remove_tail  TRUE
-#		define Z_HAS_TypeList_MEMBER_rename	  TRUE
-#		define Z_HAS_TypeList_MEMBER_rotate_left  TRUE
-#		define Z_HAS_TypeList_MEMBER_rotate_right TRUE
-#		define Z_HAS_TypeList_MEMBER_to_function  TRUE
-#		define Z_HAS_type_list_apply		  TRUE
-#		define Z_HAS_type_list_append		  TRUE
-#		define Z_HAS_type_list_first		  TRUE
-#		define Z_HAS_type_list_get		  TRUE
-#		define Z_HAS_type_list_last		  TRUE
-#		define Z_HAS_type_list_prepend		  TRUE
-#		define Z_HAS_type_list_remove		  TRUE
-#		define Z_HAS_type_list_remove_first	  TRUE
-#		define Z_HAS_type_list_remove_head	  TRUE
-#		define Z_HAS_type_list_remove_last	  TRUE
-#		define Z_HAS_type_list_remove_tail	  TRUE
-#		define Z_HAS_type_list_rename		  TRUE
-#		define Z_HAS_type_list_reverse		  TRUE
-#		define Z_HAS_type_list_rotate_left	  TRUE
-#		define Z_HAS_type_list_rotate_right	  TRUE
-#		define Z_HAS_type_list_to_function	  TRUE
+#		define Z_HAS_TypeList_MEMBER_apply	  1
+#		define Z_HAS_TypeList_MEMBER_append	  1
+#		define Z_HAS_TypeList_MEMBER_get	  1
+#		define Z_HAS_TypeList_MEMBER_prepend	  1
+#		define Z_HAS_TypeList_MEMBER_remove	  1
+#		define Z_HAS_TypeList_MEMBER_remove_head  1
+#		define Z_HAS_TypeList_MEMBER_remove_tail  1
+#		define Z_HAS_TypeList_MEMBER_rename	  1
+#		define Z_HAS_TypeList_MEMBER_rotate_left  1
+#		define Z_HAS_TypeList_MEMBER_rotate_right 1
+#		define Z_HAS_TypeList_MEMBER_to_function  1
+#		define Z_HAS_type_list_apply		  1
+#		define Z_HAS_type_list_append		  1
+#		define Z_HAS_type_list_first		  1
+#		define Z_HAS_type_list_get		  1
+#		define Z_HAS_type_list_last		  1
+#		define Z_HAS_type_list_prepend		  1
+#		define Z_HAS_type_list_remove		  1
+#		define Z_HAS_type_list_remove_first	  1
+#		define Z_HAS_type_list_remove_head	  1
+#		define Z_HAS_type_list_remove_last	  1
+#		define Z_HAS_type_list_remove_tail	  1
+#		define Z_HAS_type_list_rename		  1
+#		define Z_HAS_type_list_reverse		  1
+#		define Z_HAS_type_list_rotate_left	  1
+#		define Z_HAS_type_list_rotate_right	  1
+#		define Z_HAS_type_list_to_function	  1
 #	endif
 
 #	if Z_DIALECT_HAS(CPP14, VARIABLE_TEMPLATE) && Z_DIALECT_HAS_SPECIFIER(CPP11, CONSTEXPR)
-#		define Z_HAS_type_list_size TRUE
+#		define Z_HAS_type_list_size 1
 #	endif
 
 	namespace Zeta {

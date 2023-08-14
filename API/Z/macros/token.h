@@ -328,50 +328,38 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_IS_TRUE    Z_IS_1
 #define Z_IS_FALSE   Z_IS_0
 
-#define Z__IF_1(    body) body
-#define Z__IF_0(    body)
-#define Z__IF_TRUE( body) body
-#define Z__IF_FALSE(body)
+#define Z__IF_1(body) body
+#define Z__IF_0(body)
 
 #define Z_IF(booleanizable) \
 	Z_JOIN_2(Z__IF_, Z_BOOLEANIZE(booleanizable))
 
-#define Z__UNLESS_1(	body)
-#define Z__UNLESS_0(	body) body
-#define Z__UNLESS_TRUE( body)
-#define Z__UNLESS_FALSE(body) body
+#define Z__UNLESS_1(body)
+#define Z__UNLESS_0(body) body
 
 #define Z_UNLESS(booleanizable) \
 	Z_JOIN_2(Z__UNLESS_, Z_BOOLEANIZE(booleanizable))
 
-#define Z__TERNARY_1(	 a, b) a
-#define Z__TERNARY_0(	 a, b) b
-#define Z__TERNARY_TRUE( a, b) a
-#define Z__TERNARY_FALSE(a, b) b
+#define Z__TERNARY_1(a, b) a
+#define Z__TERNARY_0(a, b) b
 
 #define Z_TERNARY(booleanizable) \
 	Z_JOIN_2(Z__TERNARY_, Z_BOOLEANIZE(booleanizable))
 
-#define Z__APPEND_TERNARY_1(	lht, a, b) lht##a
-#define Z__APPEND_TERNARY_0(	lht, a, b) lht##b
-#define Z__APPEND_TERNARY_TRUE( lht, a, b) lht##a
-#define Z__APPEND_TERNARY_FALSE(lht, a, b) lht##b
+#define Z__APPEND_TERNARY_1(lht, a, b) lht##a
+#define Z__APPEND_TERNARY_0(lht, a, b) lht##b
 
 #define Z_APPEND_TERNARY(booleanizable) \
 	Z_JOIN_2(Z__APPEND_TERNARY_, Z_BOOLEANIZE(booleanizable))
 
-#define Z__PREPEND_TERNARY_1(	 rht, a, b) a##rht
-#define Z__PREPEND_TERNARY_0(	 rht, a, b) b##rht
-#define Z__PREPEND_TERNARY_TRUE( rht, a, b) a##rht
-#define Z__PREPEND_TERNARY_FALSE(rht, a, b) b##rht
+#define Z__PREPEND_TERNARY_1(rht, a, b) a##rht
+#define Z__PREPEND_TERNARY_0(rht, a, b) b##rht
 
 #define Z_PREPEND_TERNARY(booleanizable) \
 	Z_JOIN_2(Z__PREPEND_TERNARY_, Z_BOOLEANIZE(booleanizable))
 
-#define Z__INSERT_TERNARY_1(	lht, rht, a, b) lht##a##rht
-#define Z__INSERT_TERNARY_0(	lht, rht, a, b) lht##b##rht
-#define Z__INSERT_TERNARY_TRUE( lht, rht, a, b) lht##a##rht
-#define Z__INSERT_TERNARY_FALSE(lht, rht, a, b) lht##b##rht
+#define Z__INSERT_TERNARY_1(lht, rht, a, b) lht##a##rht
+#define Z__INSERT_TERNARY_0(lht, rht, a, b) lht##b##rht
 
 #define Z_INSERT_TERNARY(booleanizable) \
 	Z_JOIN_2(Z__INSERT_TERNARY_, Z_BOOLEANIZE(booleanizable))

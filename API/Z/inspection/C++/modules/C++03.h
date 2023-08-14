@@ -11,6 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C++/modules/C++98.h>
 
-#define Z_LANGUAGE_HAS_CPP03_VALUE_INITIALIZATION TRUE
+#define Z_LANGUAGE_HAS_CPP03_VALUE_INITIALIZATION 1
 
 #endif /* Z_inspection_CPP_modules_CPP03_H */

@@ -15,14 +15,14 @@ namespace Zeta {
 	template <class to> struct Cast {typedef to type;};
 
 #	if Z_DIALECT_HAS(CPP11, TYPE_ALIAS_TEMPLATE)
-#		define Z_HAS_cast TRUE
+#		define Z_HAS_cast 1
 		template <class to> using cast = to;
 #	endif
 
 #	if	Z_DIALECT_HAS(CPP11, DIRECT_LIST_INITIALIZATION) && \
 		Z_DIALECT_HAS(CPP17, DEDUCTION_GUIDES_FOR_CLASS_TEMPLATE)
 
-#		define Z_HAS_auto_cast TRUE
+#		define Z_HAS_auto_cast 1
 
 		template <class from> struct auto_cast {
 			const from &value;

@@ -74,54 +74,54 @@ Released under the terms of the GNU Lesser General Public License v3. */
 '======================================================================*/
 
 #if Z_DIALECT_HAS(CPP11, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-#	define Z_HAS_TypeAddConstLValue			   TRUE
-#	define Z_HAS_TypeAddConstRValue			   TRUE
-#	define Z_HAS_TypeAddConstVolatileLValue		   TRUE
-#	define Z_HAS_TypeAddConstVolatileRValue		   TRUE
-#	define Z_HAS_TypeAddLValue			   TRUE
-#	define Z_HAS_TypeAddRValue			   TRUE
-#	define Z_HAS_TypeAddVolatileLValue		   TRUE
-#	define Z_HAS_TypeAddVolatileRValue		   TRUE
-#	define Z_HAS_TypeToConstLValue			   TRUE
-#	define Z_HAS_TypeToConstRValue			   TRUE
-#	define Z_HAS_TypeToConstVolatileLValue		   TRUE
-#	define Z_HAS_TypeToConstVolatileRValue		   TRUE
-#	define Z_HAS_TypeToLValue			   TRUE
-#	define Z_HAS_TypeToRValue			   TRUE
-#	define Z_HAS_TypeToVolatileLValue		   TRUE
-#	define Z_HAS_TypeToVolatileRValue		   TRUE
-#	define Z_HAS_Type_MEMBER_add_const_lvalue	   TRUE
-#	define Z_HAS_Type_MEMBER_add_const_rvalue	   TRUE
-#	define Z_HAS_Type_MEMBER_add_const_volatile_lvalue TRUE
-#	define Z_HAS_Type_MEMBER_add_const_volatile_rvalue TRUE
-#	define Z_HAS_Type_MEMBER_add_lvalue		   TRUE
-#	define Z_HAS_Type_MEMBER_add_rvalue		   TRUE
-#	define Z_HAS_Type_MEMBER_add_volatile_lvalue	   TRUE
-#	define Z_HAS_Type_MEMBER_add_volatile_rvalue	   TRUE
-#	define Z_HAS_Type_MEMBER_to_const_lvalue	   TRUE
-#	define Z_HAS_Type_MEMBER_to_const_rvalue	   TRUE
-#	define Z_HAS_Type_MEMBER_to_const_volatile_lvalue  TRUE
-#	define Z_HAS_Type_MEMBER_to_const_volatile_rvalue  TRUE
-#	define Z_HAS_Type_MEMBER_to_lvalue		   TRUE
-#	define Z_HAS_Type_MEMBER_to_rvalue		   TRUE
-#	define Z_HAS_Type_MEMBER_to_volatile_lvalue	   TRUE
-#	define Z_HAS_Type_MEMBER_to_volatile_rvalue	   TRUE
+#	define Z_HAS_TypeAddConstLValue			   1
+#	define Z_HAS_TypeAddConstRValue			   1
+#	define Z_HAS_TypeAddConstVolatileLValue		   1
+#	define Z_HAS_TypeAddConstVolatileRValue		   1
+#	define Z_HAS_TypeAddLValue			   1
+#	define Z_HAS_TypeAddRValue			   1
+#	define Z_HAS_TypeAddVolatileLValue		   1
+#	define Z_HAS_TypeAddVolatileRValue		   1
+#	define Z_HAS_TypeToConstLValue			   1
+#	define Z_HAS_TypeToConstRValue			   1
+#	define Z_HAS_TypeToConstVolatileLValue		   1
+#	define Z_HAS_TypeToConstVolatileRValue		   1
+#	define Z_HAS_TypeToLValue			   1
+#	define Z_HAS_TypeToRValue			   1
+#	define Z_HAS_TypeToVolatileLValue		   1
+#	define Z_HAS_TypeToVolatileRValue		   1
+#	define Z_HAS_Type_MEMBER_add_const_lvalue	   1
+#	define Z_HAS_Type_MEMBER_add_const_rvalue	   1
+#	define Z_HAS_Type_MEMBER_add_const_volatile_lvalue 1
+#	define Z_HAS_Type_MEMBER_add_const_volatile_rvalue 1
+#	define Z_HAS_Type_MEMBER_add_lvalue		   1
+#	define Z_HAS_Type_MEMBER_add_rvalue		   1
+#	define Z_HAS_Type_MEMBER_add_volatile_lvalue	   1
+#	define Z_HAS_Type_MEMBER_add_volatile_rvalue	   1
+#	define Z_HAS_Type_MEMBER_to_const_lvalue	   1
+#	define Z_HAS_Type_MEMBER_to_const_rvalue	   1
+#	define Z_HAS_Type_MEMBER_to_const_volatile_lvalue  1
+#	define Z_HAS_Type_MEMBER_to_const_volatile_rvalue  1
+#	define Z_HAS_Type_MEMBER_to_lvalue		   1
+#	define Z_HAS_Type_MEMBER_to_rvalue		   1
+#	define Z_HAS_Type_MEMBER_to_volatile_lvalue	   1
+#	define Z_HAS_Type_MEMBER_to_volatile_rvalue	   1
 #endif
 
 #if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
-#	define Z_Z_HAS_TypeIsNoexcept		   TRUE
-#	define Z_Z_HAS_TypeAddNoexcept		   TRUE
-#	define Z_Z_HAS_TypeRemoveNoexcept	   TRUE
-#	define Z_Z_HAS_Type_MEMBER_is_noexcept	   TRUE
-#	define Z_Z_HAS_Type_MEMBER_add_noexcept	   TRUE
-#	define Z_Z_HAS_Type_MEMBER_remove_noexcept TRUE
+#	define Z_Z_HAS_TypeIsNoexcept		   1
+#	define Z_Z_HAS_TypeAddNoexcept		   1
+#	define Z_Z_HAS_TypeRemoveNoexcept	   1
+#	define Z_Z_HAS_Type_MEMBER_is_noexcept	   1
+#	define Z_Z_HAS_Type_MEMBER_add_noexcept	   1
+#	define Z_Z_HAS_Type_MEMBER_remove_noexcept 1
 #endif
 
 #if Z_DIALECT_HAS(CPP11, RVALUE_REFERENCE)
-#	define Z_HAS_TypeAddRValueReference	      TRUE
-#	define Z_HAS_TypeToRValueReference	      TRUE
-#	define Z_HAS_Type_MEMBER_add_rvalue_reference TRUE
-#	define Z_HAS_Type_MEMBER_to_rvalue_reference  TRUE
+#	define Z_HAS_TypeAddRValueReference	      1
+#	define Z_HAS_TypeToRValueReference	      1
+#	define Z_HAS_Type_MEMBER_add_rvalue_reference 1
+#	define Z_HAS_Type_MEMBER_to_rvalue_reference  1
 #endif
 
 /*--------------------------------------------------------------------.
@@ -130,103 +130,103 @@ Released under the terms of the GNU Lesser General Public License v3. */
 '====================================================================*/
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_HAS_VIRTUAL_DESTRUCTOR)
-#	define Z_HAS_TypeHasVirtualDestructor		TRUE
-#	define Z_HAS_Type_MEMBER_has_virtual_destructor TRUE
+#	define Z_HAS_TypeHasVirtualDestructor		1
+#	define Z_HAS_Type_MEMBER_has_virtual_destructor 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_ABSTRACT)
-#	define Z_HAS_TypeIsAbstract	     TRUE
-#	define Z_HAS_Type_MEMBER_is_abstract TRUE
+#	define Z_HAS_TypeIsAbstract	     1
+#	define Z_HAS_Type_MEMBER_is_abstract 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_AGGREGATE)
-#	define Z_HAS_TypeIsAggregate	      TRUE
-#	define Z_HAS_Type_MEMBER_is_aggregate TRUE
+#	define Z_HAS_TypeIsAggregate	      1
+#	define Z_HAS_Type_MEMBER_is_aggregate 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_ASSIGNABLE)
-#	define Z_HAS_TypeIsAssignable TRUE
+#	define Z_HAS_TypeIsAssignable 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_BASE)
-#	define Z_HAS_TypeIsBase TRUE
+#	define Z_HAS_TypeIsBase 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_CONVERTIBLE)
-#	define Z_HAS_TypeIsConvertible TRUE
+#	define Z_HAS_TypeIsConvertible 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_EMPTY)
-#	define Z_HAS_TypeIsEmpty	  TRUE
-#	define Z_HAS_Type_MEMBER_is_empty TRUE
+#	define Z_HAS_TypeIsEmpty	  1
+#	define Z_HAS_Type_MEMBER_is_empty 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_FINAL)
-#	define Z_HAS_TypeIsFinal	  TRUE
-#	define Z_HAS_Type_MEMBER_is_final TRUE
+#	define Z_HAS_TypeIsFinal	  1
+#	define Z_HAS_Type_MEMBER_is_final 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_INTERFACE_CLASS)
-#	define Z_HAS_TypeIsInterfaceClass	    TRUE
-#	define Z_HAS_Type_MEMBER_is_interface_class TRUE
+#	define Z_HAS_TypeIsInterfaceClass	    1
+#	define Z_HAS_Type_MEMBER_is_interface_class 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_LITERAL)
-#	define Z_HAS_TypeIsLiteral	    TRUE
-#	define Z_HAS_Type_MEMBER_is_literal TRUE
+#	define Z_HAS_TypeIsLiteral	    1
+#	define Z_HAS_Type_MEMBER_is_literal 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_ASSIGNABLE)
-#	define Z_HAS_TypeIsNothrowAssignable TRUE
+#	define Z_HAS_TypeIsNothrowAssignable 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_POD)
-#	define Z_HAS_TypeIsPOD		TRUE
-#	define Z_HAS_Type_MEMBER_is_pod TRUE
+#	define Z_HAS_TypeIsPOD		1
+#	define Z_HAS_Type_MEMBER_is_pod 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_POLYMORPHIC)
-#	define Z_HAS_TypeIsPolymorphic		TRUE
-#	define Z_HAS_Type_MEMBER_is_polymorphic TRUE
+#	define Z_HAS_TypeIsPolymorphic		1
+#	define Z_HAS_Type_MEMBER_is_polymorphic 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_ASSIGNABLE)
-#	define Z_HAS_TypeIsTriviallyAssignable TRUE
+#	define Z_HAS_TypeIsTriviallyAssignable 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPY_ASSIGNABLE)
-#	define Z_HAS_TypeIsTriviallyCopyAssignable	      TRUE
-#	define Z_HAS_Type_MEMBER_is_trivially_copy_assignable TRUE
+#	define Z_HAS_TypeIsTriviallyCopyAssignable	      1
+#	define Z_HAS_Type_MEMBER_is_trivially_copy_assignable 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE)
-#	define Z_HAS_TypeIsTriviallyCopyConstructible		 TRUE
-#	define Z_HAS_Type_MEMBER_is_trivially_copy_constructible TRUE
+#	define Z_HAS_TypeIsTriviallyCopyConstructible		 1
+#	define Z_HAS_Type_MEMBER_is_trivially_copy_constructible 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_COPYABLE)
-#	define Z_HAS_TypeIsTriviallyCopyable	       TRUE
-#	define Z_HAS_Type_MEMBER_is_trivially_copyable TRUE
+#	define Z_HAS_TypeIsTriviallyCopyable	       1
+#	define Z_HAS_Type_MEMBER_is_trivially_copyable 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE)
-#	define Z_HAS_TypeIsTriviallyDefaultConstructible	    TRUE
-#	define Z_HAS_Type_MEMBER_is_trivially_default_constructible TRUE
+#	define Z_HAS_TypeIsTriviallyDefaultConstructible	    1
+#	define Z_HAS_Type_MEMBER_is_trivially_default_constructible 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_DESTRUCTIBLE)
-#	define Z_HAS_TypeIsTriviallyDestructible	   TRUE
-#	define Z_HAS_Type_MEMBER_is_trivially_destructible TRUE
+#	define Z_HAS_TypeIsTriviallyDestructible	   1
+#	define Z_HAS_Type_MEMBER_is_trivially_destructible 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_UNION)
-#	define Z_HAS_TypeIsUnion	  TRUE
-#	define Z_HAS_Type_MEMBER_is_union TRUE
+#	define Z_HAS_TypeIsUnion	  1
+#	define Z_HAS_Type_MEMBER_is_union 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_UNDERLYING_TYPE)
-#	define Z_HAS_TypeUnderlyingType		 TRUE
-#	define Z_HAS_Type_MEMBER_underlying_type TRUE
+#	define Z_HAS_TypeUnderlyingType		 1
+#	define Z_HAS_Type_MEMBER_underlying_type 1
 #endif
 
 /*------------------------------------------------------------------------.
@@ -235,19 +235,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 '========================================================================*/
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_COMPLETE) || Z_DIALECT_HAS(CPP11, EXPRESSION_SFINAE)
-#	define Z_HAS_TypeIsComplete TRUE
+#	define Z_HAS_TypeIsComplete 1
 #endif
 
 #if	Z_COMPILER_HAS_TRAIT(TYPE_IS_DEFAULT_CONSTRUCTIBLE) || \
 	(Z_DIALECT_HAS(CPP11, EXPRESSION_SFINAE) && Z_DIALECT_HAS_SPECIFIER(CPP11, DECLTYPE)) // No existe TYPE_IS_DEFAULT_CONSTRUCTIBLE
 
-#	define Z_HAS_TypeIsDefaultConstructible		  TRUE
-#	define Z_HAS_Type_MEMBER_is_default_constructible TRUE
+#	define Z_HAS_TypeIsDefaultConstructible		  1
+#	define Z_HAS_Type_MEMBER_is_default_constructible 1
 #endif
 
 #if Z_COMPILER_HAS_TRAIT(TYPE_IS_ENUMERATION) || Z_DIALECT_HAS(CPP11, EXPRESSION_SFINAE)
-#	define Z_HAS_TypeIsEnumeration		TRUE
-#	define Z_HAS_Type_MEMBER_is_enumeration TRUE
+#	define Z_HAS_TypeIsEnumeration		1
+#	define Z_HAS_Type_MEMBER_is_enumeration 1
 #endif
 
 /*---------------------------------------------------------------------.
@@ -258,15 +258,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_DIALECT_HAS(CPP11, VARIADIC_TEMPLATE)
 
 #	if Z_COMPILER_HAS_TRAIT(TYPE_IS_CONSTRUCTIBLE)
-#		define Z_HAS_TypeIsConstructible TRUE
+#		define Z_HAS_TypeIsConstructible 1
 #	endif
 
 #	if Z_COMPILER_HAS_TRAIT(TYPE_IS_NOTHROW_CONSTRUCTIBLE)
-#		define Z_HAS_TypeIsNothrowConstructible TRUE
+#		define Z_HAS_TypeIsNothrowConstructible 1
 #	endif
 
 #	if Z_COMPILER_HAS_TRAIT(TYPE_IS_TRIVIALLY_CONSTRUCTIBLE)
-#		define Z_HAS_TypeIsTriviallyConstructible TRUE
+#		define Z_HAS_TypeIsTriviallyConstructible 1
 #	endif
 
 #endif
@@ -276,28 +276,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 '===============================================================*/
 
 #ifdef Z_NULLPTR
-#	define Z_HAS_TypeIsNullPtr	    TRUE
-#	define Z_HAS_Type_MEMBER_is_nullptr TRUE
+#	define Z_HAS_TypeIsNullPtr	    1
+#	define Z_HAS_Type_MEMBER_is_nullptr 1
 #endif
 
 #if Z_DIALECT_HAS(CPP11, EXTENDED_VARIADIC_TEMPLATE_TEMPLATE_PARAMETERS)
-#	define Z_HAS_TypeIsTemplate	     TRUE
-#	define Z_HAS_Type_MEMBER_is_template TRUE
+#	define Z_HAS_TypeIsTemplate	     1
+#	define Z_HAS_Type_MEMBER_is_template 1
 #endif
 
 #if Z_HAS(TypeList)
-#	define Z_HAS_TypeParameter	    TRUE
-#	define Z_HAS_TypeParameters	    TRUE
-#	define Z_HAS_Type_MEMBER_parameters TRUE
+#	define Z_HAS_TypeParameter	    1
+#	define Z_HAS_TypeParameters	    1
+#	define Z_HAS_Type_MEMBER_parameters 1
 #endif
 
 #if Z_DIALECT_HAS(CPP11, TYPE_ALIAS_TEMPLATE)
-#	define Z_HAS_Type_MEMBER_add_member_pointer TRUE
-#	define Z_HAS_Type_MEMBER_to_member_pointer  TRUE
+#	define Z_HAS_Type_MEMBER_add_member_pointer 1
+#	define Z_HAS_Type_MEMBER_to_member_pointer  1
 #endif
 
 #if Z_DIALECT_HAS(CPP11, TYPE_ALIAS_TEMPLATE) && Z_HAS(TypeList)
-#	define Z_HAS_Type_MEMBER_parameter TRUE
+#	define Z_HAS_Type_MEMBER_parameter 1
 #endif
 
 /*-----------------------------------------------.
@@ -308,11 +308,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if	Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && \
 	Z_DIALECT_HAS(CPP14, CONSTEXPR_FUNCTION)
 
-#	define Z_HAS_Type_MEMBER_string	     TRUE
-#	define Z_HAS_Type_MEMBER_string_size TRUE
-#	define Z_HAS_Type_MEMBER_fnv0_64     TRUE
-#	define Z_HAS_Type_MEMBER_fnv1_64     TRUE
-#	define Z_HAS_Type_MEMBER_fnv1a_64    TRUE
+#	define Z_HAS_Type_MEMBER_string	     1
+#	define Z_HAS_Type_MEMBER_string_size 1
+#	define Z_HAS_Type_MEMBER_fnv0_64     1
+#	define Z_HAS_Type_MEMBER_fnv1_64     1
+#	define Z_HAS_Type_MEMBER_fnv1a_64    1
 #endif
 
 /*--------------------------------------------------------.
@@ -321,10 +321,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 '========================================================*/
 
 #if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_DIALECT_HAS(CPP11, EXPRESSION_SFINAE)
-#	define Z_HAS_TypeIsObjectiveCInstance			 TRUE
-#	define Z_HAS_TypeIsObjectiveCInstancePointer		 TRUE
-#	define Z_HAS_Type_MEMBER_is_objective_c_instance	 TRUE
-#	define Z_HAS_Type_MEMBER_is_objective_c_instance_pointer TRUE
+#	define Z_HAS_TypeIsObjectiveCInstance			 1
+#	define Z_HAS_TypeIsObjectiveCInstancePointer		 1
+#	define Z_HAS_Type_MEMBER_is_objective_c_instance	 1
+#	define Z_HAS_Type_MEMBER_is_objective_c_instance_pointer 1
 #endif
 
 /*-------------------------------------------------------------------.
@@ -333,78 +333,78 @@ Released under the terms of the GNU Lesser General Public License v3. */
 '===================================================================*/
 
 #if Z_DIALECT_HAS(CPP11, TYPE_ALIAS_TEMPLATE)
-#	define Z_HAS_type_add_const		     TRUE
-#	define Z_HAS_type_add_const_volatile	     TRUE
-#	define Z_HAS_type_add_lvalue_reference	     TRUE
-#	define Z_HAS_type_add_member_pointer	     TRUE
-#	define Z_HAS_type_add_pointer		     TRUE
-#	define Z_HAS_type_add_volatile		     TRUE
-#	define Z_HAS_type_class_type		     TRUE
-#	define Z_HAS_type_element_type		     TRUE
-#	define Z_HAS_type_indirectee_type	     TRUE
-#	define Z_HAS_type_pointee_type		     TRUE
-#	define Z_HAS_type_referencee_type	     TRUE
-#	define Z_HAS_type_remove_array		     TRUE
-#	define Z_HAS_type_remove_const		     TRUE
-#	define Z_HAS_type_remove_const_this	     TRUE
-#	define Z_HAS_type_remove_const_volatile	     TRUE
-#	define Z_HAS_type_remove_const_volatile_this TRUE
-#	define Z_HAS_type_remove_indirection	     TRUE
-#	define Z_HAS_type_remove_member_pointer	     TRUE
-#	define Z_HAS_type_remove_pointer	     TRUE
-#	define Z_HAS_type_remove_reference	     TRUE
-#	define Z_HAS_type_remove_this		     TRUE
-#	define Z_HAS_type_remove_volatile	     TRUE
-#	define Z_HAS_type_remove_volatile_this	     TRUE
-#	define Z_HAS_type_return_type		     TRUE
-#	define Z_HAS_type_to_const		     TRUE
-#	define Z_HAS_type_to_const_volatile	     TRUE
-#	define Z_HAS_type_to_forwardable	     TRUE
-#	define Z_HAS_type_to_function		     TRUE
-#	define Z_HAS_type_to_lvalue_reference	     TRUE
-#	define Z_HAS_type_to_member_pointer	     TRUE
-#	define Z_HAS_type_to_opaque		     TRUE
-#	define Z_HAS_type_to_pointer		     TRUE
-#	define Z_HAS_type_to_signed		     TRUE
-#	define Z_HAS_type_to_unqualified	     TRUE
-#	define Z_HAS_type_to_unsigned		     TRUE
-#	define Z_HAS_type_to_volatile		     TRUE
-#	define Z_HAS_type_to_wrap		     TRUE
+#	define Z_HAS_type_add_const		     1
+#	define Z_HAS_type_add_const_volatile	     1
+#	define Z_HAS_type_add_lvalue_reference	     1
+#	define Z_HAS_type_add_member_pointer	     1
+#	define Z_HAS_type_add_pointer		     1
+#	define Z_HAS_type_add_volatile		     1
+#	define Z_HAS_type_class_type		     1
+#	define Z_HAS_type_element_type		     1
+#	define Z_HAS_type_indirectee_type	     1
+#	define Z_HAS_type_pointee_type		     1
+#	define Z_HAS_type_referencee_type	     1
+#	define Z_HAS_type_remove_array		     1
+#	define Z_HAS_type_remove_const		     1
+#	define Z_HAS_type_remove_const_this	     1
+#	define Z_HAS_type_remove_const_volatile	     1
+#	define Z_HAS_type_remove_const_volatile_this 1
+#	define Z_HAS_type_remove_indirection	     1
+#	define Z_HAS_type_remove_member_pointer	     1
+#	define Z_HAS_type_remove_pointer	     1
+#	define Z_HAS_type_remove_reference	     1
+#	define Z_HAS_type_remove_this		     1
+#	define Z_HAS_type_remove_volatile	     1
+#	define Z_HAS_type_remove_volatile_this	     1
+#	define Z_HAS_type_return_type		     1
+#	define Z_HAS_type_to_const		     1
+#	define Z_HAS_type_to_const_volatile	     1
+#	define Z_HAS_type_to_forwardable	     1
+#	define Z_HAS_type_to_function		     1
+#	define Z_HAS_type_to_lvalue_reference	     1
+#	define Z_HAS_type_to_member_pointer	     1
+#	define Z_HAS_type_to_opaque		     1
+#	define Z_HAS_type_to_pointer		     1
+#	define Z_HAS_type_to_signed		     1
+#	define Z_HAS_type_to_unqualified	     1
+#	define Z_HAS_type_to_unsigned		     1
+#	define Z_HAS_type_to_volatile		     1
+#	define Z_HAS_type_to_wrap		     1
 
 #	if Z_DIALECT_HAS(CPP11, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-#		define Z_HAS_type_add_const_lvalue	    TRUE
-#		define Z_HAS_type_add_const_rvalue	    TRUE
-#		define Z_HAS_type_add_const_volatile_lvalue TRUE
-#		define Z_HAS_type_add_const_volatile_rvalue TRUE
-#		define Z_HAS_type_add_lvalue		    TRUE
-#		define Z_HAS_type_add_rvalue		    TRUE
-#		define Z_HAS_type_add_volatile_lvalue	    TRUE
-#		define Z_HAS_type_add_volatile_rvalue	    TRUE
-#		define Z_HAS_type_to_const_lvalue	    TRUE
-#		define Z_HAS_type_to_const_rvalue	    TRUE
-#		define Z_HAS_type_to_const_volatile_lvalue  TRUE
-#		define Z_HAS_type_to_const_volatile_rvalue  TRUE
-#		define Z_HAS_type_to_lvalue		    TRUE
-#		define Z_HAS_type_to_rvalue		    TRUE
-#		define Z_HAS_type_to_volatile_lvalue	    TRUE
-#		define Z_HAS_type_to_volatile_rvalue	    TRUE
+#		define Z_HAS_type_add_const_lvalue	    1
+#		define Z_HAS_type_add_const_rvalue	    1
+#		define Z_HAS_type_add_const_volatile_lvalue 1
+#		define Z_HAS_type_add_const_volatile_rvalue 1
+#		define Z_HAS_type_add_lvalue		    1
+#		define Z_HAS_type_add_rvalue		    1
+#		define Z_HAS_type_add_volatile_lvalue	    1
+#		define Z_HAS_type_add_volatile_rvalue	    1
+#		define Z_HAS_type_to_const_lvalue	    1
+#		define Z_HAS_type_to_const_rvalue	    1
+#		define Z_HAS_type_to_const_volatile_lvalue  1
+#		define Z_HAS_type_to_const_volatile_rvalue  1
+#		define Z_HAS_type_to_lvalue		    1
+#		define Z_HAS_type_to_rvalue		    1
+#		define Z_HAS_type_to_volatile_lvalue	    1
+#		define Z_HAS_type_to_volatile_rvalue	    1
 #	endif
 
 #	if Z_DIALECT_HAS(CPP11, RVALUE_REFERENCE)
-#		define Z_HAS_type_add_rvalue_reference TRUE
-#		define Z_HAS_type_to_rvalue_reference  TRUE
+#		define Z_HAS_type_add_rvalue_reference 1
+#		define Z_HAS_type_to_rvalue_reference  1
 #	endif
 
 #	if Z_HAS_MEMBER(Type, parameters)
-#		define Z_HAS_type_parameters TRUE
+#		define Z_HAS_type_parameters 1
 #	endif
 
 #	if Z_HAS_MEMBER(Type, underlying_type)
-#		define Z_HAS_type_underlying_type TRUE
+#		define Z_HAS_type_underlying_type 1
 #	endif
 
 #	if Z_HAS_MEMBER(Type, parameter)
-#		define Z_HAS_type_parameter TRUE
+#		define Z_HAS_type_parameter 1
 #	endif
 #endif
 

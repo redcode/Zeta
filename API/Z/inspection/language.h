@@ -38,13 +38,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_LANGUAGE_INCLUDES(CPP)
 #	define Z_CPP_FLAG(FLAG) Z_IS_TRUE(FLAG)
 #else
-#	define Z_CPP_FLAG(FLAG) FALSE
+#	define Z_CPP_FLAG(FLAG) 0
 #endif
 
 #if Z_LANGUAGE_INCLUDES(OBJECTIVE_C)
 #	define Z_OBJECTIVE_C_FLAG(FLAG) Z_IS_TRUE(FLAG)
 #else
-#	define Z_OBJECTIVE_C_FLAG(FLAG) FALSE
+#	define Z_OBJECTIVE_C_FLAG(FLAG) 0
 #endif
 
 #if defined(Z_USE_LANGUAGE_STD) || Z_COMPILER == Z_COMPILER_UNKNOWN

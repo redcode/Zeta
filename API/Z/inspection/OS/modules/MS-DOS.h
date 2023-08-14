@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_inspection_OS_modules_MS_DOS_H
 #define Z_inspection_OS_modules_MS_DOS_H
 
-#define Z_OS_IS_MS_DOS		  TRUE
+#define Z_OS_IS_MS_DOS		  1
 #define Z_OS_NAME		  Z_OS_NAME_MS_DOS
 #define Z_OS_MODERN_NAME	  Z_OS_NAME_MS_DOS
 #define Z_OS_PATH_SLASH_CHARACTER '\\'

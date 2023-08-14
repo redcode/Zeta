@@ -12,8 +12,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/traits/type.hpp>
 
 #if Z_DIALECT_HAS(CPP11, RVALUE_REFERENCE)
-#	define Z_HAS_forwardable TRUE
-#	define Z_HAS_movable     TRUE
+#	define Z_HAS_forwardable 1
+#	define Z_HAS_movable     1
 
 
 	namespace Zeta {
@@ -38,7 +38,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		include <Z/traits/control.hpp>
 
-#		define Z_HAS_movable_if_nothrow TRUE
+#		define Z_HAS_movable_if_nothrow 1
 
 		namespace Zeta {
 			// TODO: Revisar

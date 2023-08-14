@@ -15,7 +15,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_DIALECT_HAS(CPP11, VARIADIC_TEMPLATE) && \
 	Z_DIALECT_HAS(CPP11, DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE)
 
-#	define Z_HAS_MemberFunction TRUE
+#	define Z_HAS_MemberFunction 1
 
 #	include <Z/constants/pointer.h>
 #	include <Z/traits/type.hpp>

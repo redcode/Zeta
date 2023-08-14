@@ -14,15 +14,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/classes/NaT.hpp>
 
 #if Z_DIALECT_HAS(CPP98, SFINAE)
-#	define Z_HAS_TypeIf TRUE
+#	define Z_HAS_TypeIf 1
 
 #	if Z_DIALECT_HAS(CPP11, TYPE_ALIAS_TEMPLATE)
-#		define Z_HAS_type_if TRUE
+#		define Z_HAS_type_if 1
 #	endif
 #endif
 
 #if Z_DIALECT_HAS(CPP11, VARIADIC_TEMPLATE) && Z_DIALECT_HAS(CPP11, TYPE_ALIAS_TEMPLATE)
-#	define Z_HAS_select_type TRUE
+#	define Z_HAS_select_type 1
 #endif
 
 namespace Zeta {

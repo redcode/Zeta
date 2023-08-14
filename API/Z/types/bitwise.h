@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/integral.h>
 
 #if defined(Z_UINT8) || defined(Z_SINT8)
-#	define Z_HAS_ZInt8 TRUE
+#	define Z_HAS_ZInt8 1
 
 	Z_DEFINE_PACKED_UNION_BEGIN {
 #		ifdef Z_UINT8
@@ -38,7 +38,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if	defined(Z_UINT8 ) || defined(Z_SINT8 ) || \
 	defined(Z_UINT16) || defined(Z_SINT16)
 
-#	define Z_HAS_ZInt16 TRUE
+#	define Z_HAS_ZInt16 1
 
 	Z_DEFINE_PACKED_UNION_BEGIN {
 #		ifdef Z_UINT16
@@ -81,7 +81,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(Z_UINT16) || defined(Z_SINT16) || \
 	defined(Z_UINT32) || defined(Z_SINT32)
 
-#	define Z_HAS_ZInt32 TRUE
+#	define Z_HAS_ZInt32 1
 
 	Z_DEFINE_PACKED_UNION_BEGIN {
 #		ifdef Z_UINT32
@@ -147,7 +147,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(Z_UINT32) || defined(Z_SINT32) || \
 	defined(Z_UINT64) || defined(Z_SINT64)
 
-#	define Z_HAS_ZInt64 TRUE
+#	define Z_HAS_ZInt64 1
 
 	Z_DEFINE_PACKED_UNION_BEGIN {
 #		ifdef Z_UINT64
@@ -244,7 +244,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	defined(Z_UINT64 ) || defined(Z_SINT64 ) || \
 	defined(Z_UINT128) || defined(Z_SINT128)
 
-#	define Z_HAS_ZInt128 TRUE
+#	define Z_HAS_ZInt128 1
 
 	Z_DEFINE_PACKED_UNION_BEGIN {
 #		ifdef Z_UINT128

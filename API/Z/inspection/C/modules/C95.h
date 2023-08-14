@@ -11,6 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/C/modules/C89.h>
 
-#define Z_LANGUAGE_HAS_C95_DIGRAPHS TRUE
+#define Z_LANGUAGE_HAS_C95_DIGRAPHS 1
 
 #endif /* Z_inspection_C_modules_C95_H */

@@ -10,7 +10,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_inspection_Objective_C_H
 
 #include <Z/keys/Objective-C.h>
-#include <Z/constants/boolean.h>
 
 #ifndef Z_OBJECTIVE_C
 #	if defined(__OBJC2__)

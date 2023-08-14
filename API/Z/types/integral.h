@@ -9,6 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_types_integral_H
 #define Z_types_integral_H
 
+#include <Z/constants/boolean.h>
 #include <Z/inspection/data model.h>
 #include <Z/macros/casting.h>
 #include <Z/macros/T.h>
@@ -665,11 +666,11 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if '\0' - '\1' > '\0'
 #	define Z_CHAR_FIXED_FUNDAMENTAL Z_NATURAL_T_FIXED_FUNDAMENTAL(CHAR)
-#	define Z_CHAR_IS_SIGNED		FALSE
+#	define Z_CHAR_IS_SIGNED		0
 #	define Z_CHAR_MINIMUM		0
 #else
 #	define Z_CHAR_FIXED_FUNDAMENTAL Z_INTEGER_T_FIXED_FUNDAMENTAL(CHAR)
-#	define Z_CHAR_IS_SIGNED		TRUE
+#	define Z_CHAR_IS_SIGNED		1
 #	define Z_CHAR_MINIMUM		(-Z_CHAR_MAXIMUM - 1)
 #endif
 

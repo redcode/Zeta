@@ -17,7 +17,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/traits/casting.hpp>
 #	endif
 
-#	define Z_HAS_Functor TRUE
+#	define Z_HAS_Functor 1
 
 
 	namespace Zeta {

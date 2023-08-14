@@ -13,7 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/classes/MemberFunction.hpp>
 
 #if Z_HAS(MemberFunction)
-#	define Z_HAS_ObjectMemberFunction TRUE
+#	define Z_HAS_ObjectMemberFunction 1
 
 
 	namespace Zeta {

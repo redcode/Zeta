@@ -57,7 +57,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /* MARK: - Identification */
 
-#define Z_COMPILER_IS_CLANG TRUE
+#define Z_COMPILER_IS_CLANG 1
 #define Z_COMPILER_NAME	    Z_COMPILER_NAME_CLANG
 
 #if defined(__clang_version__) /* v2.8 */
@@ -78,13 +78,13 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifdef __has_attribute /* v2.9 */
 #	define Z__HAS_ATTRIBUTE __has_attribute
 #else
-#	define Z__HAS_ATTRIBUTE(which) FALSE
+#	define Z__HAS_ATTRIBUTE(which) 0
 #endif
 
 #ifdef __has_cpp_attribute /* v3.6 */
 #	define Z__HAS_CPP_ATTRIBUTE __has_cpp_attribute
 #else
-#	define Z__HAS_CPP_ATTRIBUTE(which) FALSE
+#	define Z__HAS_CPP_ATTRIBUTE(which) 0
 #endif
 
 #ifdef __has_extension /* v3.0 */
@@ -103,9 +103,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 	(Z_COMPILER_VERSION == Z_VERSION(3,0,0) &&  defined(__PRETTY_FUNCTION__)) || \
 	(Z_COMPILER_VERSION <  Z_VERSION(3,0,0) && !defined(__STDC__	       ))
 
-#	define Z__HAS_MSVC_COMPATIBILITY TRUE
+#	define Z__HAS_MSVC_COMPATIBILITY 1
 #else
-#	define Z__HAS_MSVC_COMPATIBILITY FALSE
+#	define Z__HAS_MSVC_COMPATIBILITY 0
 #endif
 
 /*-------------------------------------------------------------------------.
@@ -117,9 +117,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 	((Z_COMPILER_VERSION <  Z_VERSION(3,5,0)) || \
 	 (Z_COMPILER_VERSION >= Z_VERSION(3,5,0) && !Z__HAS_MSVC_COMPATIBILITY))
 
-#	define Z__HAS_GNU_EXTENSIONS TRUE
+#	define Z__HAS_GNU_EXTENSIONS 1
 #else
-#	define Z__HAS_GNU_EXTENSIONS FALSE
+#	define Z__HAS_GNU_EXTENSIONS 0
 #endif
 
 #if Z_COMPILER_VERSION >= Z_VERSION(10,0,0)
@@ -556,76 +556,76 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /* MARK: - Language: C78 */
 
-#define Z_COMPILER_HAS_C_OLD_STYLE_FUNCTION   TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C_OPERATOR_SIZEOF      TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C_STORAGE_CLASS_EXTERN TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C_STORAGE_CLASS_STATIC TRUE /* v2.6 */
+#define Z_COMPILER_HAS_C_OLD_STYLE_FUNCTION   1 /* v2.6 */
+#define Z_COMPILER_HAS_C_OPERATOR_SIZEOF      1 /* v2.6 */
+#define Z_COMPILER_HAS_C_STORAGE_CLASS_EXTERN 1 /* v2.6 */
+#define Z_COMPILER_HAS_C_STORAGE_CLASS_STATIC 1 /* v2.6 */
 
 #if __has_feature(cxx_auto_type) /* v2.7 */
-#	define Z_COMPILER_HAS_C_STORAGE_CLASS_AUTO TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C_STORAGE_CLASS_AUTO 1 /* v2.6 */
 #endif
 
 #if	!defined(__cplusplus) || __cplusplus < 201103L || \
 	Z_COMPILER_VERSION < Z_VERSION(3,4,0)
 
-#	define Z_COMPILER_HAS_C_STORAGE_CLASS_REGISTER TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C_STORAGE_CLASS_REGISTER 1 /* v2.6 */
 #endif
 
 #ifdef __DBL_MAX__ /* v2.6 */
-#	define Z_COMPILER_HAS_C_TYPE_DOUBLE TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C_TYPE_DOUBLE 1 /* v2.6 */
 #endif
 
 #ifdef __FLT_MAX__ /* v2.6 */
-#	define Z_COMPILER_HAS_C_TYPE_FLOAT TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C_TYPE_FLOAT 1 /* v2.6 */
 #endif
 
 /* MARK: - Language: C89 */
 
-#define Z_COMPILER_HAS_C89_CONSTANT_INITIALIZATION_FOR_LOCAL_AGGREGATE TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_CONSTANT_INITIALIZATION_FOR_UNION	       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_CONSTRUCT_AS_FUNCTION_ARGUMENT	       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_CONSTRUCT_RETURN			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_CONSTRUCT_ASSIGNMENT			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_CONSTRUCT_NAMESPACE			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_ENUMERATION				       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_FUNCTION_POINTER_AUTODEREFERENCING	       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_FUNCTION_PROTOTYPE			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_INTEGRAL_SWITCH			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_PREPROCESSOR_INDENTATION		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_REMOVAL_OF_ENTRY_AS_KEYWORD		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_REMOVAL_OF_LONG_FLOAT_AS_TYPE	       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_STRING_LITERAL_CONCATENATION		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_VALUE_PRESERVING_UNSIGNED_CONVERSION	       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_ESCAPE_SEQUENCE_ALERT		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_ESCAPE_SEQUENCE_HEXADECIMAL		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_ESCAPE_SEQUENCE_VERTICAL_TAB		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_LITERAL_UNSIGNED			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_LITERAL_WCHAR_T_CHARACTER		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_LITERAL_WCHAR_T_STRING		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_OPERATOR_UNARY_PLUS			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_PREPROCESSOR_DIRECTIVE_NULL		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_PREPROCESSOR_DIRECTIVE_ELIF		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_PREPROCESSOR_DIRECTIVE_ERROR		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_PREPROCESSOR_DIRECTIVE_LINE		       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_PREPROCESSOR_DIRECTIVE_PRAGMA	       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_PREPROCESSOR_OPERATOR_DEFINED	       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_PREPROCESSOR_OPERATOR_PASTING	       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_PREPROCESSOR_OPERATOR_STRINGIZING	       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_TYPE_UNSIGNED_CHAR			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_TYPE_UNSIGNED_LONG			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_TYPE_UNSIGNED_SHORT			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_TYPE_VOID				       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_TYPE_VOID_POINTER			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_TYPE_MODIFIER_SIGNED			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_TYPE_QUALIFIER_CONST			       TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C89_TYPE_QUALIFIER_VOLATILE		       TRUE /* v2.6 */
+#define Z_COMPILER_HAS_C89_CONSTANT_INITIALIZATION_FOR_LOCAL_AGGREGATE 1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_CONSTANT_INITIALIZATION_FOR_UNION	       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_CONSTRUCT_AS_FUNCTION_ARGUMENT	       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_CONSTRUCT_RETURN			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_CONSTRUCT_ASSIGNMENT			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_CONSTRUCT_NAMESPACE			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_ENUMERATION				       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_FUNCTION_POINTER_AUTODEREFERENCING	       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_FUNCTION_PROTOTYPE			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_INTEGRAL_SWITCH			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_PREPROCESSOR_INDENTATION		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_REMOVAL_OF_ENTRY_AS_KEYWORD		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_REMOVAL_OF_LONG_FLOAT_AS_TYPE	       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_STRING_LITERAL_CONCATENATION		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_VALUE_PRESERVING_UNSIGNED_CONVERSION	       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_ESCAPE_SEQUENCE_ALERT		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_ESCAPE_SEQUENCE_HEXADECIMAL		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_ESCAPE_SEQUENCE_VERTICAL_TAB		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_LITERAL_UNSIGNED			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_LITERAL_WCHAR_T_CHARACTER		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_LITERAL_WCHAR_T_STRING		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_OPERATOR_UNARY_PLUS			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_PREPROCESSOR_DIRECTIVE_NULL		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_PREPROCESSOR_DIRECTIVE_ELIF		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_PREPROCESSOR_DIRECTIVE_ERROR		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_PREPROCESSOR_DIRECTIVE_LINE		       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_PREPROCESSOR_DIRECTIVE_PRAGMA	       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_PREPROCESSOR_OPERATOR_DEFINED	       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_PREPROCESSOR_OPERATOR_PASTING	       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_PREPROCESSOR_OPERATOR_STRINGIZING	       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_TYPE_UNSIGNED_CHAR			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_TYPE_UNSIGNED_LONG			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_TYPE_UNSIGNED_SHORT			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_TYPE_VOID				       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_TYPE_VOID_POINTER			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_TYPE_MODIFIER_SIGNED			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_TYPE_QUALIFIER_CONST			       1 /* v2.6 */
+#define Z_COMPILER_HAS_C89_TYPE_QUALIFIER_VOLATILE		       1 /* v2.6 */
 
 #ifdef __FLT_MAX__ /* v2.6 */
-#	define Z_COMPILER_HAS_C89_LITERAL_FLOAT TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C89_LITERAL_FLOAT 1 /* v2.6 */
 #endif
 
 #ifdef __LDBL_MAX__ /* v2.6 */
-#	define Z_COMPILER_HAS_C89_TYPE_LONG_DOUBLE TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C89_TYPE_LONG_DOUBLE 1 /* v2.6 */
 #endif
 
 /*#define Z_COMPILER_HAS_C89_TRIGRAPHS*/ /* Always generate warnings/errors. */
@@ -636,71 +636,71 @@ Released under the terms of the GNU Lesser General Public License v3.
 	Z__HAS_GNU_EXTENSIONS || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199409L)
 
-#	define Z_COMPILER_HAS_C95_DIGRAPHS TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C95_DIGRAPHS 1 /* v2.6 */
 #endif
 
 /* MARK: - Language: C99 */
 
-#define Z_COMPILER_HAS_C99_PREPROCESSOR_ARITHMETIC_DONE_IN_INTMAX   TRUE /* v2.6? */
-#define Z_COMPILER_HAS_C99_RELIABLE_INTEGER_DIVISION		    TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C99_REMOVAL_OF_ILL_FORMED_RETURN		    TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C99_REMOVAL_OF_IMPLICIT_FUNCTION_DECLARATION TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C99_REMOVAL_OF_IMPLICIT_INT		    TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C99_IDENTIFIER_FUNC			    TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C99_PREPROCESSOR_OPERATOR_PRAGMA		    TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C99_STD_PRAGMA_CX_LIMITED_RANGE		    TRUE /* v2.6 */
-#define Z_COMPILER_HAS_C99_STD_PRAGMA_FP_CONTRACT		    TRUE /* v2.6 */
+#define Z_COMPILER_HAS_C99_PREPROCESSOR_ARITHMETIC_DONE_IN_INTMAX   1 /* v2.6? */
+#define Z_COMPILER_HAS_C99_RELIABLE_INTEGER_DIVISION		    1 /* v2.6 */
+#define Z_COMPILER_HAS_C99_REMOVAL_OF_ILL_FORMED_RETURN		    1 /* v2.6 */
+#define Z_COMPILER_HAS_C99_REMOVAL_OF_IMPLICIT_FUNCTION_DECLARATION 1 /* v2.6 */
+#define Z_COMPILER_HAS_C99_REMOVAL_OF_IMPLICIT_INT		    1 /* v2.6 */
+#define Z_COMPILER_HAS_C99_IDENTIFIER_FUNC			    1 /* v2.6 */
+#define Z_COMPILER_HAS_C99_PREPROCESSOR_OPERATOR_PRAGMA		    1 /* v2.6 */
+#define Z_COMPILER_HAS_C99_STD_PRAGMA_CX_LIMITED_RANGE		    1 /* v2.6 */
+#define Z_COMPILER_HAS_C99_STD_PRAGMA_FP_CONTRACT		    1 /* v2.6 */
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
-#	define Z_COMPILER_HAS_C99_COMPOUND_LITERAL				 TRUE /* v2.6 */
-#	define Z_COMPILER_HAS_C99_DESIGNATED_INITIALIZATION			 TRUE /* v2.6 */
-#	define Z_COMPILER_HAS_C99_FLEXIBLE_ARRAY_MEMBER				 TRUE /* v2.6 */
-#	define Z_COMPILER_HAS_C99_STATIC_IN_ARRAY_PARAMETER_DECLARATION		 TRUE /* v2.6 */
-#	define Z_COMPILER_HAS_C99_TYPE_QUALIFIERS_IN_ARRAY_PARAMETER_DECLARATION TRUE /* v2.6 */
-#	define Z_COMPILER_HAS_C99_TYPE_QUALIFIER_RESTRICT			 TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C99_COMPOUND_LITERAL				 1 /* v2.6 */
+#	define Z_COMPILER_HAS_C99_DESIGNATED_INITIALIZATION			 1 /* v2.6 */
+#	define Z_COMPILER_HAS_C99_FLEXIBLE_ARRAY_MEMBER				 1 /* v2.6 */
+#	define Z_COMPILER_HAS_C99_STATIC_IN_ARRAY_PARAMETER_DECLARATION		 1 /* v2.6 */
+#	define Z_COMPILER_HAS_C99_TYPE_QUALIFIERS_IN_ARRAY_PARAMETER_DECLARATION 1 /* v2.6 */
+#	define Z_COMPILER_HAS_C99_TYPE_QUALIFIER_RESTRICT			 1 /* v2.6 */
 
 #	ifndef __STDC_NO_VLA__ /* Not found in Clang's sources. */
-#		define Z_COMPILER_HAS_C99_VLA TRUE /* v2.6 */
+#		define Z_COMPILER_HAS_C99_VLA 1 /* v2.6 */
 #	endif
 #endif
 
 #if	defined(__cplusplus) || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
 
-#	define Z_COMPILER_HAS_C99_CONVERSION_OF_NON_LVALUE_ARRAY_TO_POINTER	  TRUE /* v2.6 */
-#	define Z_COMPILER_HAS_C99_FOR_WITH_DECLARATION				  TRUE /* v2.6 */
-#	define Z_COMPILER_HAS_C99_MIXED_DECLARATIONS_AND_CODE			  TRUE /* v2.6 */
-#	define Z_COMPILER_HAS_C99_NON_CONSTANT_INITIALIZATION_FOR_LOCAL_AGGREGATE TRUE
-#	define Z_COMPILER_HAS_C99_UNIVERSAL_CHARACTER_NAME			  TRUE /* v2.6 */
-#	define Z_COMPILER_HAS_C99_SPECIFIER_INLINE				  TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C99_CONVERSION_OF_NON_LVALUE_ARRAY_TO_POINTER	  1 /* v2.6 */
+#	define Z_COMPILER_HAS_C99_FOR_WITH_DECLARATION				  1 /* v2.6 */
+#	define Z_COMPILER_HAS_C99_MIXED_DECLARATIONS_AND_CODE			  1 /* v2.6 */
+#	define Z_COMPILER_HAS_C99_NON_CONSTANT_INITIALIZATION_FOR_LOCAL_AGGREGATE 1
+#	define Z_COMPILER_HAS_C99_UNIVERSAL_CHARACTER_NAME			  1 /* v2.6 */
+#	define Z_COMPILER_HAS_C99_SPECIFIER_INLINE				  1 /* v2.6 */
 #endif
 
 #if	defined(__cplusplus)  || \
 	Z__HAS_GNU_EXTENSIONS || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
 
-#	define Z_COMPILER_HAS_C99_CPP_STYLE_COMMENT TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C99_CPP_STYLE_COMMENT 1 /* v2.6 */
 #endif
 
 #if	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) || \
 	(Z_COMPILER_VERSION >= Z_VERSION(2,9,0) &&		      \
 	 defined(__cplusplus) && (__cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)))
 
-#	define Z_COMPILER_HAS_C99_EMPTY_MACRO_ARGUMENT TRUE /* v2.6 (C99), v2.9 (C++11 S) */
-#	define Z_COMPILER_HAS_C99_VARIADIC_MACRO       TRUE /* v2.6 (C99), v2.9 (C++11 S) */
-#	define Z_COMPILER_HAS_C99_TYPE_LONG_LONG       TRUE /* v2.6 (C99), v2.9 (C++11 S) */
+#	define Z_COMPILER_HAS_C99_EMPTY_MACRO_ARGUMENT 1 /* v2.6 (C99), v2.9 (C++11 S) */
+#	define Z_COMPILER_HAS_C99_VARIADIC_MACRO       1 /* v2.6 (C99), v2.9 (C++11 S) */
+#	define Z_COMPILER_HAS_C99_TYPE_LONG_LONG       1 /* v2.6 (C99), v2.9 (C++11 S) */
 #endif
 
 #if	Z_COMPILER_VERSION >= Z_VERSION(3,3,0) && \
 	(defined(__cplusplus) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L))
 
-#	define Z_COMPILER_HAS_C99_EXTENDED_IDENTIFIER TRUE /* v3.3 (RN-T) */
+#	define Z_COMPILER_HAS_C99_EXTENDED_IDENTIFIER 1 /* v3.3 (RN-T) */
 #endif
 
 #if	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) || \
 	(defined(__cplusplus) && (__cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)))
 
-#	define Z_COMPILER_HAS_C99_TRAILING_COMMA_ALLOWED_IN_ENUMERATION TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C99_TRAILING_COMMA_ALLOWED_IN_ENUMERATION 1 /* v2.6 */
 #endif
 
 #if	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)	      || \
@@ -709,7 +709,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 	 Z_COMPILER_VERSION <  Z_VERSION(4,0,0) &&				 \
 	 defined(__cplusplus) && __cplusplus >= 201406L)
 
-#	define Z_COMPILER_HAS_C99_LITERAL_HEXADECIMAL_FLOATING_POINT TRUE /* v2.6 (C99), v3.9 (C++17 T!) */
+#	define Z_COMPILER_HAS_C99_LITERAL_HEXADECIMAL_FLOATING_POINT 1 /* v2.6 (C99), v3.9 (C++17 T!) */
 #endif
 
 /*---------------------------------------------------------------------.
@@ -719,22 +719,22 @@ Released under the terms of the GNU Lesser General Public License v3.
 #if	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L) || \
 	(!defined(__cplusplus) && Z_COMPILER_VERSION <= Z_VERSION(9,1,0))
 
-#	define Z_COMPILER_HAS_C99_TYPE_BOOL TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C99_TYPE_BOOL 1 /* v2.6 */
 #endif
 
 #ifndef __STDC_NO_COMPLEX__ /* Not found in Clang's sources. */
-#	define Z_COMPILER_HAS_C99_TYPE_MODIFIER_COMPLEX TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_C99_TYPE_MODIFIER_COMPLEX 1 /* v2.6 */
 
 #	ifdef __DBL_MAX__ /* v2.6 */
-#		define Z_COMPILER_HAS_C99_TYPE_DOUBLE_COMPLEX TRUE /* v2.6 */
+#		define Z_COMPILER_HAS_C99_TYPE_DOUBLE_COMPLEX 1 /* v2.6 */
 #	endif
 
 #	ifdef __FLT_MAX__ /* v2.6 */
-#		define Z_COMPILER_HAS_C99_TYPE_FLOAT_COMPLEX TRUE /* v2.6 */
+#		define Z_COMPILER_HAS_C99_TYPE_FLOAT_COMPLEX 1 /* v2.6 */
 #	endif
 
 #	ifdef __LDBL_MAX__ /* v2.6 */
-#		define Z_COMPILER_HAS_C99_TYPE_LONG_DOUBLE_COMPLEX TRUE /* v2.6 */
+#		define Z_COMPILER_HAS_C99_TYPE_LONG_DOUBLE_COMPLEX 1 /* v2.6 */
 #	endif
 #endif
 
@@ -749,39 +749,39 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #if Z_COMPILER_VERSION >= Z_VERSION(3,1,0)
 #	if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
-#		define Z_COMPILER_HAS_C11_ANONYMOUS_STRUCTURE_AS_MEMBER TRUE /* v3.1 (N-T!) */
+#		define Z_COMPILER_HAS_C11_ANONYMOUS_STRUCTURE_AS_MEMBER 1 /* v3.1 (N-T!) */
 #	endif
 
 #	if Z_COMPILER_VERSION >= Z_VERSION(3,3,0)
-		/*-----------------------------------------------------------------------------.
-		| NOTE: Since v3.3, __has_feature(c_thread_local) only returns TRUE in C11 and |
-		| later, but _Thread_local compiles without warnings in any version of C/C++.  |
-		'=============================================================================*/
+		/*----------------------------------------------------------------------------.
+		| NOTE: Since v3.3, __has_feature(c_thread_local) only returns 1 in C11 and   |
+		| later, but _Thread_local compiles without warnings in any version of C/C++. |
+		'============================================================================*/
 /*#		if __has_feature(c_thread_local)*/ /* v3.3 */
-#			define Z_COMPILER_HAS_C11_STORAGE_CLASS_THREAD_LOCAL TRUE /* v3.3 (T) */
+#			define Z_COMPILER_HAS_C11_STORAGE_CLASS_THREAD_LOCAL 1 /* v3.3 (T) */
 /*#		endif*/
 
-		/*----------------------------------------------------------------------.
-		| BUG: Since v3.0, __has_extension(c_alignas) always returns TRUE, and	|
-		| __has_feature(c_alignas) returns TRUE in C11 and later. Despite this, |
-		| explicitly using _Alignas() when declaring an identifier generates	|
-		| errors in C++, and the same happens in C between v3.0 and v3.2.	|
-		| However, using _Alignas() within a type definition seems to be safe.	|
+		/*---------------------------------------------------------------------.
+		| BUG: Since v3.0, __has_extension(c_alignas) always returns 1, and    |
+		| __has_feature(c_alignas) returns 1 in C11 and later. Despite this,   |
+		| explicitly using _Alignas() when declaring an identifier generates   |
+		| errors in C++, and the same happens in C between v3.0 and v3.2.      |
+		| However, using _Alignas() within a type definition seems to be safe. |
 		'======================================================================*/
 #		if __has_feature(c_alignas) /* v3.0 */
-#			define Z_COMPILER_HAS_C11_SPECIFIER_ALIGNAS TRUE /* v3.0 (N), v3.3 (T) */
+#			define Z_COMPILER_HAS_C11_SPECIFIER_ALIGNAS 1 /* v3.0 (N), v3.3 (T) */
 #		endif
 
 #		if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
-#			define Z_COMPILER_HAS_C11_SPECIFIER_NORETURN TRUE /* v3.3 (T) */
+#			define Z_COMPILER_HAS_C11_SPECIFIER_NORETURN 1 /* v3.3 (T) */
 #		endif
 
-		/*----------------------------------------------------------------.
-		| BUG: Since v3.1, __has_extension(c_atomic) always returns TRUE, |
-		| but _Atomic was not supported as a type qualifier until v3.3.	  |
-		'================================================================*/
+		/*--------------------------------------------------------------.
+		| BUG: Since v3.1, __has_extension(c_atomic) always returns 1,  |
+		| but _Atomic was not supported as a type qualifier until v3.3.	|
+		'==============================================================*/
 #		if __has_feature(c_atomic) /* v3.1 */
-#			define Z_COMPILER_HAS_C11_TYPE_QUALIFIER_ATOMIC TRUE /* v3.3 (T) */
+#			define Z_COMPILER_HAS_C11_TYPE_QUALIFIER_ATOMIC 1 /* v3.3 (T) */
 #		endif
 #	endif
 #endif
@@ -789,32 +789,32 @@ Released under the terms of the GNU Lesser General Public License v3.
 #if	defined(__cplusplus) || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
 
-#	define Z_COMPILER_HAS_C11_ANONYMOUS_UNION_AS_MEMBER TRUE /* v2.6? (C++), v3.1 (C11 N-T!) */
+#	define Z_COMPILER_HAS_C11_ANONYMOUS_UNION_AS_MEMBER 1 /* v2.6? (C++), v3.1 (C11 N-T!) */
 #endif
 
 #if __has_feature(c_generic_selections) /* v3.0 */
-#	define Z_COMPILER_HAS_C11_GENERIC_SELECTION TRUE /* v3.0 (N-T) */
+#	define Z_COMPILER_HAS_C11_GENERIC_SELECTION 1 /* v3.0 (N-T) */
 #endif
 
 #if __has_feature(c_static_assert) /* v3.0 */
-#	define Z_COMPILER_HAS_C11_STATIC_ASSERTION TRUE /* v3.0 (N-T) */
+#	define Z_COMPILER_HAS_C11_STATIC_ASSERTION 1 /* v3.0 (N-T) */
 #endif
 
 #if	defined(__cplusplus)	  || \
 	Z__HAS_MSVC_COMPATIBILITY || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
 
-#	define Z_COMPILER_HAS_C11_TYPEDEF_REDECLARATION TRUE /* v2.6? (C++, MSVC), v3.1 (C11 T) */
+#	define Z_COMPILER_HAS_C11_TYPEDEF_REDECLARATION 1 /* v2.6? (C++, MSVC), v3.1 (C11 T) */
 #endif
 
 #if	(defined(__cpp_unicode_characters) && __cpp_unicode_characters >= 200704L) /* v3.4 */		     || \
 	(Z_COMPILER_VERSION <  Z_VERSION(3,4,0) && defined(__cplusplus	   ) && __cplusplus	 >= 201103L) || \
 	(Z_COMPILER_VERSION >= Z_VERSION(3,3,0) && defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
 
-#	define Z_COMPILER_HAS_C11_LITERAL_CHAR16_T_CHARACTER TRUE /* v2.9 (C++11 S), v3.0 (C++11 RN), v3.3 (C11 T) */
-#	define Z_COMPILER_HAS_C11_LITERAL_CHAR16_T_STRING    TRUE /* v2.9 (C++11 S), v3.0 (C++11 RN), v3.3 (C11 T) */
-#	define Z_COMPILER_HAS_C11_LITERAL_CHAR32_T_CHARACTER TRUE /* v2.9 (C++11 S), v3.0 (C++11 RN), v3.3 (C11 T) */
-#	define Z_COMPILER_HAS_C11_LITERAL_CHAR32_T_STRING    TRUE /* v2.9 (C++11 S), v3.0 (C++11 RN), v3.3 (C11 T) */
+#	define Z_COMPILER_HAS_C11_LITERAL_CHAR16_T_CHARACTER 1 /* v2.9 (C++11 S), v3.0 (C++11 RN), v3.3 (C11 T) */
+#	define Z_COMPILER_HAS_C11_LITERAL_CHAR16_T_STRING    1 /* v2.9 (C++11 S), v3.0 (C++11 RN), v3.3 (C11 T) */
+#	define Z_COMPILER_HAS_C11_LITERAL_CHAR32_T_CHARACTER 1 /* v2.9 (C++11 S), v3.0 (C++11 RN), v3.3 (C11 T) */
+#	define Z_COMPILER_HAS_C11_LITERAL_CHAR32_T_STRING    1 /* v2.9 (C++11 S), v3.0 (C++11 RN), v3.3 (C11 T) */
 #endif
 
 #if	(Z_COMPILER_VERSION >= Z_VERSION(3,3,0) && defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L) || \
@@ -823,7 +823,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 	 (__has_feature(cxx_unicode_literals) /* v3.1 */ ||							\
 	  (Z_COMPILER_VERSION == Z_VERSION(3,0,0) && __cplusplus >= 201103L)))
 
-#	define Z_COMPILER_HAS_C11_LITERAL_UTF8_STRING TRUE /* v3.0 (C++11 N-S-T), v3.3 (C11 T) */
+#	define Z_COMPILER_HAS_C11_LITERAL_UTF8_STRING 1 /* v3.0 (C++11 N-S-T), v3.3 (C11 T) */
 #endif
 
 #if	__has_feature(c_alignof) /* v3.6 */ ||	   \
@@ -831,11 +831,11 @@ Released under the terms of the GNU Lesser General Public License v3.
 	 Z_COMPILER_VERSION <  Z_VERSION(3,6,0) && \
 	 defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
 
-#	define Z_COMPILER_HAS_C11_OPERATOR_ALIGNOF TRUE /* v3.2 (N-T) */
+#	define Z_COMPILER_HAS_C11_OPERATOR_ALIGNOF 1 /* v3.2 (N-T) */
 #endif
 
 #if __has_feature(c_atomic) /* v3.1 */
-#	define Z_COMPILER_HAS_C11_TYPE_MODIFIER_ATOMIC TRUE /* v3.1 (T) */
+#	define Z_COMPILER_HAS_C11_TYPE_MODIFIER_ATOMIC 1 /* v3.1 (T) */
 #endif
 
 /* MARK: - Language: Apple C extensions */
@@ -843,22 +843,22 @@ Released under the terms of the GNU Lesser General Public License v3.
 #if	Z__HAS_EXTENSION(blocks) /* v2.6 */ || \
 	defined(__BLOCKS__)	 /* v2.6 */
 
-#	define Z_COMPILER_HAS_APPLE_C_BLOCK_OBJECT TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_APPLE_C_BLOCK_OBJECT 1 /* v2.6 */
 #endif
 
 /* MARK: - Language: Clang C extensions */
 
 #if Z_COMPILER_VERSION >= Z_VERSION(2,7,0)
-#	define Z_COMPILER_HAS_CLANG_C_PREPROCESSOR_OPERATOR_HAS_INCLUDE TRUE /* v2.7 */
+#	define Z_COMPILER_HAS_CLANG_C_PREPROCESSOR_OPERATOR_HAS_INCLUDE 1 /* v2.7 */
 #endif
 
 #ifdef __cplusplus
 
 	/* MARK: - Language: C++98 */
 
-#	define Z_COMPILER_HAS_CPP98_SFINAE       TRUE /* v2.6 */
-#	define Z_COMPILER_HAS_CPP98_TYPE_BOOL    TRUE /* v2.6 */
-#	define Z_COMPILER_HAS_CPP98_TYPE_WCHAR_T TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_CPP98_SFINAE       1 /* v2.6 */
+#	define Z_COMPILER_HAS_CPP98_TYPE_BOOL    1 /* v2.6 */
+#	define Z_COMPILER_HAS_CPP98_TYPE_WCHAR_T 1 /* v2.6 */
 
 #	if	defined(_M_IX86	) || /* v2.7 */ \
 		defined(_M_X64	) || /* v2.7 */ \
@@ -869,11 +869,11 @@ Released under the terms of the GNU Lesser General Public License v3.
 		| compatible with the MSVC C++ ABI was not "mostly complete" until v3.9. |
 		'=======================================================================*/
 #		if defined(_CPPUNWIND) /* v2.9 */ && Z_COMPILER_VERSION >= Z_VERSION(3,9,0)
-#			define Z_COMPILER_HAS_CPP98_EXCEPTIONS TRUE /* v3.9 */
+#			define Z_COMPILER_HAS_CPP98_EXCEPTIONS 1 /* v3.9 */
 #		endif
 
 #		ifdef _CPPRTTI /* v3.0 */
-#			define Z_COMPILER_HAS_CPP98_RTTI TRUE /* v3.0? */
+#			define Z_COMPILER_HAS_CPP98_RTTI 1 /* v3.0? */
 #		endif
 
 #	else
@@ -881,85 +881,85 @@ Released under the terms of the GNU Lesser General Public License v3.
 			 __has_feature(cxx_exceptions)				   /* v2.7 */ || \
 			 defined(__EXCEPTIONS)					   /* v2.6 */ /* IMPORTANT: READ 3.5 Release Notes, bevaiour changed. */
 
-#			define Z_COMPILER_HAS_CPP98_EXCEPTIONS TRUE /* v2.6 */
+#			define Z_COMPILER_HAS_CPP98_EXCEPTIONS 1 /* v2.6 */
 #		endif
 
 #		if	defined(__cpp_rtti) && __cpp_rtti >= 199711L /* v3.6 */ || \
 			__has_feature(cxx_rtti)			     /* v2.7 */ || \
 			defined(__GXX_RTTI)			     /* v2.8 */
 
-#			define Z_COMPILER_HAS_CPP98_RTTI TRUE /* v2.7 (S?) */
+#			define Z_COMPILER_HAS_CPP98_RTTI 1 /* v2.7 (S?) */
 #		endif
 #	endif
 
 	/* MARK: - Language: C++03 */
 
-#	define Z_COMPILER_HAS_CPP03_VALUE_INITIALIZATION TRUE /* v2.6 */
+#	define Z_COMPILER_HAS_CPP03_VALUE_INITIALIZATION 1 /* v2.6 */
 
 	/* MARK: - Language: C++11 */
 
-#	define Z_COMPILER_HAS_CPP11_IDENTIFIER_FUNC TRUE /* v2.6?, v2.9 (S) */
+#	define Z_COMPILER_HAS_CPP11_IDENTIFIER_FUNC 1 /* v2.6?, v2.9 (S) */
 
 #	if Z_COMPILER_VERSION >= Z_VERSION(2,9,0)
-#		define Z_COMPILER_HAS_CPP11_EXPRESSION_SFINAE TRUE /* v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_EXPRESSION_SFINAE 1 /* v2.9 (S) */
 
 #		if __cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)
-#			define Z_COMPILER_HAS_CPP11_C99_PREPROCESSOR		TRUE /* v2.9 (S) */
-#			define Z_COMPILER_HAS_CPP11_EXTENDED_FRIEND_DECLARATION TRUE /* v2.9 (S) */
-#			define Z_COMPILER_HAS_CPP11_TYPE_LONG_LONG		TRUE /* v2.9 (S) */
+#			define Z_COMPILER_HAS_CPP11_C99_PREPROCESSOR		1 /* v2.9 (S) */
+#			define Z_COMPILER_HAS_CPP11_EXTENDED_FRIEND_DECLARATION 1 /* v2.9 (S) */
+#			define Z_COMPILER_HAS_CPP11_TYPE_LONG_LONG		1 /* v2.9 (S) */
 
 			/*-----------------------------------------------------------------------------.
 			| NOTE: In v3.0 (and possibly v2.9), extern templates compile without warnings |
 			| in any version of C++. Z only recognizes this feature in C++11 and later.    |
 			'=============================================================================*/
-#			define Z_COMPILER_HAS_CPP11_EXTERN_TEMPLATE TRUE /* v2.9 (S) */
+#			define Z_COMPILER_HAS_CPP11_EXTERN_TEMPLATE 1 /* v2.9 (S) */
 #		endif
 
 #		if	__cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__) || \
 			Z__HAS_MSVC_COMPATIBILITY
 
-#			define Z_COMPILER_HAS_CPP11_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE TRUE /* v2.9 (S) */
+#			define Z_COMPILER_HAS_CPP11_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE 1 /* v2.9 (S) */
 #		endif
 
 #		if __has_feature(cxx_auto_type) /* v2.7 */
-#			define Z_COMPILER_HAS_CPP11_MULTI_DECLARATOR_AUTO TRUE /* v2.7?, v2.9 (S) */
-#			define Z_COMPILER_HAS_CPP11_TYPE_AUTO		  TRUE /* v2.7?, v2.9 (S) */
+#			define Z_COMPILER_HAS_CPP11_MULTI_DECLARATOR_AUTO 1 /* v2.7?, v2.9 (S) */
+#			define Z_COMPILER_HAS_CPP11_TYPE_AUTO		  1 /* v2.7?, v2.9 (S) */
 
 			/*-----------------------------------------------------------------.
 			| BUG: In v3.0 (and possibly earlier versions), using `auto` as a  |
 			| storage class generates warnings in C++03 and earlier. This must |
 			| be tolerated to not break compatibility with existing software.  |
 			'=================================================================*/
-#			define Z_COMPILER_HAS_CPP11_REMOVAL_OF_AUTO_AS_STORAGE_CLASS TRUE /* v2.7?, v2.9 (S) */
+#			define Z_COMPILER_HAS_CPP11_REMOVAL_OF_AUTO_AS_STORAGE_CLASS 1 /* v2.7?, v2.9 (S) */
 #		endif
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(3,0,0)
 #			if __cplusplus >= 201103L
-#				define Z_COMPILER_HAS_CPP11_MOVE_SPECIAL_MEMBER_FUNCTIONS		TRUE /* v3.0 (S-T)	   */
-#				define Z_COMPILER_HAS_CPP11_OPERATOR_CASE_SIZEOF_NON_STATIC_DATA_MEMBER TRUE /* v3.0 (T), v3.1 (S) */
+#				define Z_COMPILER_HAS_CPP11_MOVE_SPECIAL_MEMBER_FUNCTIONS		1 /* v3.0 (S-T)		*/
+#				define Z_COMPILER_HAS_CPP11_OPERATOR_CASE_SIZEOF_NON_STATIC_DATA_MEMBER 1 /* v3.0 (T), v3.1 (S) */
 #			endif
 
 #			if Z_COMPILER_VERSION >= Z_VERSION(3,1,0)
 #				if __cplusplus >= 201103L
-#					define Z_COMPILER_HAS_CPP11_UNIVERSAL_CHARACTER_NAME TRUE /* v3.1 (S-T) */
+#					define Z_COMPILER_HAS_CPP11_UNIVERSAL_CHARACTER_NAME 1 /* v3.1 (S-T) */
 
 					/*------------------------------------------------------------.
 					| BUG: DR1206 14.5.1.4 Enumeration members of class templates |
 					| TODO: Read v3.9 release notes (related?)		      |
 					'============================================================*/
-#					define Z_COMPILER_HAS_CPP11_OPAQUE_ENUMERATION_DECLARATION TRUE /* v3.1 (N-S-T), v3.2 (N) */
+#					define Z_COMPILER_HAS_CPP11_OPAQUE_ENUMERATION_DECLARATION 1 /* v3.1 (N-S-T), v3.2 (N) */
 #				endif
 
 				/*-----------------------------------------------------------------------.
-				| BUG: Since v3.0, __has_feature(cxx_explicit_conversions) returns TRUE	 |
-				| in C++11 and later, but this feature did not work properly until v3.1. |
+				| BUG: Since v3.0, __has_feature(cxx_explicit_conversions) returns 1 in	 |
+				| C++11 and later, but this feature did not work properly until v3.1.	 |
 				'=======================================================================*/
 #				if __has_feature(cxx_explicit_conversions) /* v3.0 */
-#					define Z_COMPILER_HAS_CPP11_EXPLICIT_CONVERSION_OPERATOR TRUE /* v3.0 (S), v3.1 (T) */
+#					define Z_COMPILER_HAS_CPP11_EXPLICIT_CONVERSION_OPERATOR 1 /* v3.0 (S), v3.1 (T) */
 #				endif
 
 #				if Z_COMPILER_VERSION >= Z_VERSION(3,2,0) && __cplusplus >= 201103L
-#					define Z_COMPILER_HAS_CPP11_STD_LAYOUT TRUE /* v3.0 (S), v3.2? (T!?) *//* TODO: More tests. */
+#					define Z_COMPILER_HAS_CPP11_STD_LAYOUT 1 /* v3.0 (S), v3.2? (T!?) *//* TODO: More tests. */
 #				endif
 #			endif
 #		endif
@@ -969,55 +969,55 @@ Released under the terms of the GNU Lesser General Public License v3.
 		(Z_COMPILER_VERSION == Z_VERSION(3,0,0) && __cplusplus >= 201103L) || \
 		(Z_COMPILER_VERSION == Z_VERSION(2,9,0) && defined(__GXX_EXPERIMENTAL_CXX0X__))
 
-#		define Z_COMPILER_HAS_CPP11_ANONYMOUS_TYPE_AS_TEMPLATE_ARGUMENT TRUE /* v2.9 (S) */
-#		define Z_COMPILER_HAS_CPP11_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT	TRUE /* v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_ANONYMOUS_TYPE_AS_TEMPLATE_ARGUMENT 1 /* v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_LOCAL_TYPE_AS_TEMPLATE_ARGUMENT	1 /* v2.9 (S) */
 #	endif
 
 #	if	(defined(__cpp_initializer_lists) && __cpp_initializer_lists >= 200806L) /* v3.6 */ || \
 		__has_feature(cxx_generalized_initializers)				 /* v3.1 */
 
-#		define Z_COMPILER_HAS_CPP11_COPY_LIST_INITIALIZATION   TRUE /* v3.1 (N-S-T) */
-#		define Z_COMPILER_HAS_CPP11_DIRECT_LIST_INITIALIZATION TRUE /* v3.1 (N-S-T) */
-#		define Z_COMPILER_HAS_CPP11_INITIALIZER_LIST	       TRUE /* v3.1 (N-S-T) [No library support until v3.3?] */
+#		define Z_COMPILER_HAS_CPP11_COPY_LIST_INITIALIZATION   1 /* v3.1 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_DIRECT_LIST_INITIALIZATION 1 /* v3.1 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_INITIALIZER_LIST	       1 /* v3.1 (N-S-T) [No library support until v3.3?] */
 #	endif
 
 #	if	(defined(__cpp_nsdmi) && (__cpp_nsdmi >= 200809L)) /* v3.6 */ || \
 		__has_feature(cxx_nonstatic_member_init)	   /* v3.0 */
 
-#		define Z_COMPILER_HAS_CPP11_DEFAULT_MEMBER_INITIALIZER TRUE /* v3.0 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_DEFAULT_MEMBER_INITIALIZER 1 /* v3.0 (N-S-T) */
 #	endif
 
 #	if __has_feature(cxx_default_function_template_args) /* v2.9 */
-#		define Z_COMPILER_HAS_CPP11_DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE TRUE /* v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_DEFAULT_TEMPLATE_ARGUMENTS_FOR_FUNCTION_TEMPLATE 1 /* v2.9 (S) */
 #	endif
 
 #	if	(defined(__cpp_delegating_constructors) && __cpp_delegating_constructors >= 200604L) /* v3.6 */ || \
 		__has_feature(cxx_delegating_constructors)					     /* v3.0 */
 
-#		define Z_COMPILER_HAS_CPP11_DELEGATING_CONSTRUCTORS TRUE /* v3.0 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_DELEGATING_CONSTRUCTORS 1 /* v3.0 (N-S-T) */
 #	endif
 
 #	if __has_feature(cxx_deleted_functions) /* v2.7 */
-#		define Z_COMPILER_HAS_CPP11_DELETED_FUNCTION TRUE /* v2.6 (S), v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_DELETED_FUNCTION 1 /* v2.6 (S), v2.9 (S) */
 #	endif
 
 #	if	__has_feature(cxx_defaulted_functions) /* v3.1 */ || \
 		(Z_COMPILER_VERSION == Z_VERSION(3,0,0) && __cplusplus >= 201103L)
 
-#		define Z_COMPILER_HAS_CPP11_EXPLICITLY_DEFAULTED_SPECIAL_MEMBER_FUNCTION TRUE /* v3.0 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_EXPLICITLY_DEFAULTED_SPECIAL_MEMBER_FUNCTION 1 /* v3.0 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_variadic_templates) && __cpp_variadic_templates >= 200704L) /* v3.4 */ || \
 		__has_feature(cxx_variadic_templates)					   /* v2.9 */
 
-#		define Z_COMPILER_HAS_CPP11_EXTENDED_VARIADIC_TEMPLATE_TEMPLATE_PARAMETERS TRUE /* v2.9 (S)   */
-#		define Z_COMPILER_HAS_CPP11_VARIADIC_TEMPLATE				   TRUE /* v2.9 (N-S) */
-#		define Z_COMPILER_HAS_CPP11_OPERATOR_CASE_SIZEOF_PARAMETER_PACK		   TRUE /* v2.9 (S)   */
+#		define Z_COMPILER_HAS_CPP11_EXTENDED_VARIADIC_TEMPLATE_TEMPLATE_PARAMETERS 1 /* v2.9 (S)   */
+#		define Z_COMPILER_HAS_CPP11_VARIADIC_TEMPLATE				   1 /* v2.9 (N-S) */
+#		define Z_COMPILER_HAS_CPP11_OPERATOR_CASE_SIZEOF_PARAMETER_PACK		   1 /* v2.9 (S)   */
 #	endif
 
 #	if __has_feature(cxx_strong_enums) /* v2.9 */
-#		define Z_COMPILER_HAS_CPP11_FIXED_ENUMERATION  TRUE /* v2.9 (S) */
-#		define Z_COMPILER_HAS_CPP11_SCOPED_ENUMERATION TRUE /* v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_FIXED_ENUMERATION  1 /* v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_SCOPED_ENUMERATION 1 /* v2.9 (S) */
 #	endif
 
 	/*-----------------------------------------------------------------------.
@@ -1028,7 +1028,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #	if	(defined(__cpp_inheriting_constructors) && __cpp_inheriting_constructors >= 200802L) /* v3.6 */ || \
 		__has_feature(cxx_inheriting_constructors)					     /* v3.3 */
 
-#		define Z_COMPILER_HAS_CPP11_INHERITING_CONSTRUCTORS TRUE /* v3.3 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_INHERITING_CONSTRUCTORS 1 /* v3.3 (N-S-T) */
 #	endif
 
 	/*------------------------------------------------------.
@@ -1036,36 +1036,36 @@ Released under the terms of the GNU Lesser General Public License v3.
 	| seem to be implemented since v2.8.			|
 	'======================================================*/
 #	if __has_feature(cxx_inline_namespaces) /* v2.8 */
-#		define Z_COMPILER_HAS_CPP11_INLINE_NAMESPACE TRUE /* v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_INLINE_NAMESPACE 1 /* v2.9 (S) */
 #	endif
 
 #	if	(defined(__cpp_lambdas) && __cpp_lambdas >= 200907L) /* v3.4 */ || \
 		__has_feature(cxx_lambdas)			     /* v3.1 */
 
-#		define Z_COMPILER_HAS_CPP11_LAMBDA TRUE /* v3.1 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_LAMBDA 1 /* v3.1 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_range_based_for) && __cpp_range_based_for >= 200907L) /* v3.6 */ || \
 		__has_feature(cxx_range_for)					     /* v3.0 */
 
-#		define Z_COMPILER_HAS_CPP11_RANGE_BASED_FOR TRUE /* v3.0 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_RANGE_BASED_FOR 1 /* v3.0 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_ref_qualifiers) && __cpp_ref_qualifiers >= 200710L) /* v3.6 */ || \
 		__has_feature(cxx_reference_qualified_functions)		   /* v2.9 */
 
-#		define Z_COMPILER_HAS_CPP11_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION TRUE /* v2.9 (N-S) */
+#		define Z_COMPILER_HAS_CPP11_REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION 1 /* v2.9 (N-S) */
 #	endif
 
 #	if __cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__)
-#		define Z_COMPILER_HAS_CPP11_RIGHT_ANGLE_BRACKETS		  TRUE /* v2.6 (S), v2.9 (S) */
-#		define Z_COMPILER_HAS_CPP11_TRAILING_COMMA_ALLOWED_IN_ENUMERATION TRUE /* v2.6?		     */
+#		define Z_COMPILER_HAS_CPP11_RIGHT_ANGLE_BRACKETS		  1 /* v2.6 (S), v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_TRAILING_COMMA_ALLOWED_IN_ENUMERATION 1 /* v2.6?		  */
 #	endif
 
 #	if	(defined(__cpp_rvalue_references) && __cpp_rvalue_references >= 200610L) /* v3.4 */ || \
 		__has_feature(cxx_rvalue_references)					 /* v2.9 */
 
-#		define Z_COMPILER_HAS_CPP11_RVALUE_REFERENCE TRUE /* v2.9 (N-S) */
+#		define Z_COMPILER_HAS_CPP11_RVALUE_REFERENCE 1 /* v2.9 (N-S) */
 #	endif
 
 	/*----------------------------------------------------------------------------.
@@ -1078,11 +1078,11 @@ Released under the terms of the GNU Lesser General Public License v3.
 #	if	(defined(__cpp_attributes) && __cpp_attributes >= 200809L) /* v3.4 */ || \
 		__has_feature(cxx_attributes)				   /* v2.7 */
 
-#		define Z_COMPILER_HAS_CPP11_STANDARDIZED_ATTRIBUTE_SYNTAX TRUE /* v2.7?, v3.3 (N-S) */
-#		define Z_COMPILER_HAS_CPP11_ATTRIBUTE_NORETURN		  TRUE /* v2.7?, v3.3 (N-S) */
+#		define Z_COMPILER_HAS_CPP11_STANDARDIZED_ATTRIBUTE_SYNTAX 1 /* v2.7?, v3.3 (N-S) */
+#		define Z_COMPILER_HAS_CPP11_ATTRIBUTE_NORETURN		  1 /* v2.7?, v3.3 (N-S) */
 
 #		if Z_COMPILER_VERSION >= Z_VERSION(3,1,0)
-#			define Z_COMPILER_HAS_CPP11_ATTRIBUTE_CARRIES_DEPENDENCY TRUE /* v3.1 (T), v3.3 (N-S) */
+#			define Z_COMPILER_HAS_CPP11_ATTRIBUTE_CARRIES_DEPENDENCY 1 /* v3.1 (T), v3.3 (N-S) */
 #		endif
 #	endif
 
@@ -1095,53 +1095,53 @@ Released under the terms of the GNU Lesser General Public License v3.
 #	if	(defined(__cpp_static_assert) && __cpp_static_assert >= 200410L) /* v3.4 */ || \
 		__has_feature(cxx_static_assert)				 /* v2.7 */
 
-#		define Z_COMPILER_HAS_CPP11_STATIC_ASSERTION TRUE /* v2.6 (S), v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_STATIC_ASSERTION 1 /* v2.6 (S), v2.9 (S) */
 #	endif
 
 	/*-----------------------------------------------------------------------------.
 	| IMPORTANT:
 	'=============================================================================*/
 #	if defined(__cpp_threadsafe_static_init) && __cpp_threadsafe_static_init >= 200806L /* v5.0 */
-#		define Z_COMPILER_HAS_CPP11_THREAD_SAFE_STATIC_INITIALIZATION TRUE /* v2.6?, v2.9 (S*) */
+#		define Z_COMPILER_HAS_CPP11_THREAD_SAFE_STATIC_INITIALIZATION 1 /* v2.6?, v2.9 (S*) */
 #	endif
 
 #	if __has_feature(cxx_trailing_return) /* v2.9 */
-#		define Z_COMPILER_HAS_CPP11_TRAILING_RETURN_TYPE TRUE /* v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_TRAILING_RETURN_TYPE 1 /* v2.9 (S) */
 #	endif
 
 #	if	(defined(__cpp_alias_templates) && __cpp_alias_templates >= 200704L) /* v3.6 */ || \
 		__has_feature(cxx_alias_templates)				     /* v3.0 */
 
-#		define Z_COMPILER_HAS_CPP11_TYPE_ALIAS		TRUE /* v3.0 (N-S-T) */
-#		define Z_COMPILER_HAS_CPP11_TYPE_ALIAS_TEMPLATE TRUE /* v3.0 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_TYPE_ALIAS		1 /* v3.0 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_TYPE_ALIAS_TEMPLATE 1 /* v3.0 (N-S-T) */
 #	endif
 
 #	if __has_feature(cxx_unrestricted_unions) /* v3.1 */
-#		define Z_COMPILER_HAS_CPP11_UNRESTRICTED_UNION TRUE /* v3.0 (T?), v3.1 (N-S) *//* TODO: More tests. */
+#		define Z_COMPILER_HAS_CPP11_UNRESTRICTED_UNION 1 /* v3.0 (T?), v3.1 (N-S) *//* TODO: More tests. */
 #	endif
 
 #	if __has_feature(cxx_nullptr) /* v3.0 */
-#		define Z_COMPILER_HAS_CPP11_LITERAL_NULLPTR TRUE /* v3.0 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_LITERAL_NULLPTR 1 /* v3.0 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_raw_strings) && __cpp_raw_strings >= 200710L) /* v3.4 */ || \
 		__has_feature(cxx_raw_string_literals)			     /* v3.1 */ || \
 		(Z_COMPILER_VERSION == Z_VERSION(3,0,0) && __cplusplus >= 201103L)
 
-#		define Z_COMPILER_HAS_CPP11_LITERAL_RAW_STRING TRUE /* v3.0 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_LITERAL_RAW_STRING 1 /* v3.0 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_user_defined_literals) && __cpp_user_defined_literals >= 200809L) /* v3.4 */ || \
 		__has_feature(cxx_user_literals)						 /* v3.1 */
 
-#		define Z_COMPILER_HAS_CPP11_LITERAL_USER_DEFINED TRUE /* v3.1 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_LITERAL_USER_DEFINED 1 /* v3.1 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_unicode_literals) && __cpp_unicode_literals >= 200710L) /* v3.4 */ || \
 		__has_feature(cxx_unicode_literals)				       /* v3.1 */ || \
 		(Z_COMPILER_VERSION == Z_VERSION(3,0,0) && __cplusplus >= 201103L)
 
-#		define Z_COMPILER_HAS_CPP11_LITERAL_UTF8_STRING TRUE /* v3.0 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_LITERAL_UTF8_STRING 1 /* v3.0 (N-S-T) */
 #	endif
 
 #	if	__has_feature(cxx_alignof) /* v3.6 */ ||   \
@@ -1149,37 +1149,37 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(3,6,0) && \
 		 __cplusplus	    >= 201103L)
 
-#		define Z_COMPILER_HAS_CPP11_OPERATOR_ALIGNOF TRUE /* v3.0 (N-S-T), v3.3 (S) */
+#		define Z_COMPILER_HAS_CPP11_OPERATOR_ALIGNOF 1 /* v3.0 (N-S-T), v3.3 (S) */
 #	endif
 
 #	if __has_feature(cxx_noexcept) /* v3.0 */
-#		define Z_COMPILER_HAS_CPP11_OPERATOR_NOEXCEPT  TRUE /* v2.9 (S), v3.0 (N-S) */
-#		define Z_COMPILER_HAS_CPP11_SPECIFIER_NOEXCEPT TRUE /* v2.9 (S), v3.0 (N-S) */
+#		define Z_COMPILER_HAS_CPP11_OPERATOR_NOEXCEPT  1 /* v2.9 (S), v3.0 (N-S) */
+#		define Z_COMPILER_HAS_CPP11_SPECIFIER_NOEXCEPT 1 /* v2.9 (S), v3.0 (N-S) */
 #	endif
 
 #	if __has_feature(cxx_alignas) /* v3.0 */
-#		define Z_COMPILER_HAS_CPP11_SPECIFIER_ALIGNAS TRUE /* v3.0 (N-S-T), v3.3 (N-S) */
+#		define Z_COMPILER_HAS_CPP11_SPECIFIER_ALIGNAS 1 /* v3.0 (N-S-T), v3.3 (N-S) */
 #	endif
 
 #	if	(defined(__cpp_constexpr) && __cpp_constexpr >= 200704L) /* v3.4 */ || \
 		__has_feature(cxx_constexpr)				 /* v3.1 */
 
-#		define Z_COMPILER_HAS_CPP11_SPECIFIER_CONSTEXPR TRUE /* v3.1 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_SPECIFIER_CONSTEXPR 1 /* v3.1 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_decltype) && __cpp_decltype >= 200707L) /* v3.4 */ || \
 		__has_feature(cxx_decltype)			       /* v2.7 */
 
-#		define Z_COMPILER_HAS_CPP11_SPECIFIER_DECLTYPE TRUE /* v2.6 (S), v2.9 (S) */
+#		define Z_COMPILER_HAS_CPP11_SPECIFIER_DECLTYPE 1 /* v2.6 (S), v2.9 (S) */
 #	endif
 
 #	if __has_feature(cxx_override_control) /* v3.0 */
-#		define Z_COMPILER_HAS_CPP11_SPECIFIER_FINAL    TRUE /* v3.0 (S-T)   */
-#		define Z_COMPILER_HAS_CPP11_SPECIFIER_OVERRIDE TRUE /* v3.0 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_SPECIFIER_FINAL    1 /* v3.0 (S-T)   */
+#		define Z_COMPILER_HAS_CPP11_SPECIFIER_OVERRIDE 1 /* v3.0 (N-S-T) */
 #	endif
 
 #	if __has_feature(cxx_decltype_incomplete_return_types) /* v3.1 */
-#		define Z_COMPILER_HAS_CPP11_SPECIFIER_CASE_DECLTYPE_INCOMPLETE_RETURN_TYPE TRUE /* v3.1 (S-T) */
+#		define Z_COMPILER_HAS_CPP11_SPECIFIER_CASE_DECLTYPE_INCOMPLETE_RETURN_TYPE 1 /* v3.1 (S-T) */
 #	endif
 
 	/*-------------------------------------------------------.
@@ -1187,7 +1187,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 	| library providing the __cxa_thread_atexit function.	 |
 	'=======================================================*/
 #	if __has_feature(cxx_thread_local) /* v3.3 */
-#		define Z_COMPILER_HAS_CPP11_STORAGE_CLASS_THREAD_LOCAL TRUE /* v3.3 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP11_STORAGE_CLASS_THREAD_LOCAL 1 /* v3.3 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_unicode_characters) && __cpp_unicode_characters >= 200704L) /* v3.4 */ || \
@@ -1195,8 +1195,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 		// TODO: Fails with -fms-compatibility on Apple Clang (Z__HAS_MSVC_COMPATIBILITY)
 #		if !Z__HAS_MSVC_COMPATIBILITY
-#			define Z_COMPILER_HAS_CPP11_TYPE_CHAR16_T TRUE /* v2.9 (S), v3.0 (N) */
-#			define Z_COMPILER_HAS_CPP11_TYPE_CHAR32_T TRUE /* v2.9 (S), v3.0 (N) */
+#			define Z_COMPILER_HAS_CPP11_TYPE_CHAR16_T 1 /* v2.9 (S), v3.0 (N) */
+#			define Z_COMPILER_HAS_CPP11_TYPE_CHAR32_T 1 /* v2.9 (S), v3.0 (N) */
 #		endif
 #	endif
 
@@ -1207,35 +1207,35 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(3,6,0) &&					     \
 		 __cplusplus	    >= 201305L)
 
-#		define Z_COMPILER_HAS_CPP14_APOSTROPHE_AS_DIGIT_SEPARATOR TRUE /* v3.4 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP14_APOSTROPHE_AS_DIGIT_SEPARATOR 1 /* v3.4 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_constexpr) && __cpp_constexpr >= 201304L) /* v3.4 */ || \
 		__has_feature(cxx_relaxed_constexpr)			 /* v3.4 */
 
-#		define Z_COMPILER_HAS_CPP14_CONSTEXPR_FUNCTION TRUE /* v3.4 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP14_CONSTEXPR_FUNCTION 1 /* v3.4 (N-S-T) */
 #	endif
 
 #	if __has_feature(cxx_contextual_conversions) /* v3.4 */
-#		define Z_COMPILER_HAS_CPP14_CONTEXTUAL_CONVERSION TRUE /* v3.4 (S-T) */
+#		define Z_COMPILER_HAS_CPP14_CONTEXTUAL_CONVERSION 1 /* v3.4 (S-T) */
 #	endif
 
 #	if	(defined(__cpp_aggregate_nsdmi) && __cpp_aggregate_nsdmi >= 201304L) /* v3.4 */ || \
 		__has_feature(cxx_aggregate_nsdmi)				     /* v3.3 */
 
-#		define Z_COMPILER_HAS_CPP14_DEFAULT_MEMBER_INITIALIZER_FOR_AGGREGATE TRUE /* v3.3 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP14_DEFAULT_MEMBER_INITIALIZER_FOR_AGGREGATE 1 /* v3.3 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_generic_lambdas) && __cpp_generic_lambdas >= 201304L) /* v3.4 */ || \
 		__has_feature(cxx_generic_lambdas)				     /* v3.5 */
 
-#		define Z_COMPILER_HAS_CPP14_GENERIC_LAMBDA TRUE /* v3.4 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP14_GENERIC_LAMBDA 1 /* v3.4 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_init_captures) && __cpp_init_captures >= 201304L) /* v3.4 */ || \
 		__has_feature(cxx_init_captures)				 /* v3.4 */
 
-#		define Z_COMPILER_HAS_CPP14_INITIALIZED_LAMBDA_CAPTURE TRUE /* v3.4 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP14_INITIALIZED_LAMBDA_CAPTURE 1 /* v3.4 (N-S-T) */
 #	endif
 
 	/*-------------------------------------------------------------.
@@ -1247,7 +1247,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 		__has_feature(cxx_return_type_deduction)					 /* v3.4 *//* || \
 		(Z_COMPILER_VERSION == Z_VERSION(3,3,0) && __cplusplus >= 201305L)*/
 
-#		define Z_COMPILER_HAS_CPP14_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION TRUE /* v3.3 (T?), v3.4 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP14_RETURN_TYPE_DEDUCTION_FOR_NORMAL_FUNCTION 1 /* v3.3 (T?), v3.4 (N-S-T) */
 #	endif
 
 	/*---------------------------------------------------------------------.
@@ -1257,7 +1257,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 	| them explicitly or by using a C++ standard library that does.	       |
 	'=====================================================================*/
 #	if defined(__cpp_sized_deallocation) && __cpp_sized_deallocation >= 201309L /* v3.6 */
-#		define Z_COMPILER_HAS_CPP14_SIZED_DEALLOCATION TRUE /* v3.4 (N-S) *//* TODO: Test. */
+#		define Z_COMPILER_HAS_CPP14_SIZED_DEALLOCATION 1 /* v3.4 (N-S) *//* TODO: Test. */
 #	endif
 
 	/*----------------------------------------------------------------------.
@@ -1268,7 +1268,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 		((defined(__cpp_variable_templates) && __cpp_variable_templates >= 201304L) /* v3.4 */ || \
 		 __has_feature(cxx_variable_templates))					    /* v3.4 */
 
-#		define Z_COMPILER_HAS_CPP14_VARIABLE_TEMPLATE TRUE /* v3.4 (N-S-Tw), v3.5 (T!) */
+#		define Z_COMPILER_HAS_CPP14_VARIABLE_TEMPLATE 1 /* v3.4 (N-S-Tw), v3.5 (T!) */
 #	endif
 
 	/*----------------------------------------------------------------------------.
@@ -1281,66 +1281,66 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <= Z_VERSION(3,6,2) &&					      \
 		 __cplusplus >= 201103L)
 
-#		define Z_COMPILER_HAS_CPP14_ATTRIBUTE_DEPRECATED TRUE /* v3.4 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP14_ATTRIBUTE_DEPRECATED 1 /* v3.4 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_binary_literals) && __cpp_binary_literals >= 201304L) /* v3.4 */ || \
 		__has_feature(cxx_binary_literals)				     /* v3.3 */
 
-#		define Z_COMPILER_HAS_CPP14_LITERAL_BINARY_INTEGRAL TRUE /* v2.9 (S), v3.3 (N-T!) */
+#		define Z_COMPILER_HAS_CPP14_LITERAL_BINARY_INTEGRAL 1 /* v2.9 (S), v3.3 (N-T!) */
 #	endif
 
 #	if	(defined(__cpp_decltype_auto) && __cpp_decltype_auto >= 201304L) /* v3.4 */ || \
 		__has_feature(cxx_decltype_auto)				 /* v3.5 */ || \
 		(Z_COMPILER_VERSION == Z_VERSION(3,3,0) && __cplusplus >= 201305L)
 
-#		define Z_COMPILER_HAS_CPP14_SPECIFIER_CASE_DECLTYPE_AUTO TRUE /* v3.3 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP14_SPECIFIER_CASE_DECLTYPE_AUTO 1 /* v3.3 (N-S-T) */
 #	endif
 
 	/* MARK: - Language: C++17 */
 
 #	if __cplusplus >= 201103L
 #		if Z_COMPILER_VERSION >= Z_VERSION(3,8,0)
-#			define Z_COMPILER_HAS_CPP17_AUTO_DEDUCTION_FROM_LIST_INITIALIZATION TRUE /* v3.8 (S-T) */
+#			define Z_COMPILER_HAS_CPP17_AUTO_DEDUCTION_FROM_LIST_INITIALIZATION 1 /* v3.8 (S-T) */
 #		endif
 
 #		if __cplusplus >= 201406L
 #			if Z_COMPILER_VERSION >= Z_VERSION(3,5,0)
-#				define Z_COMPILER_HAS_CPP17_TYPENAME_IN_TEMPLATE_TEMPLATE_PARAMETER TRUE /* v3.5 (N-S-T) */
+#				define Z_COMPILER_HAS_CPP17_TYPENAME_IN_TEMPLATE_TEMPLATE_PARAMETER 1 /* v3.5 (N-S-T) */
 
 #				if Z_COMPILER_VERSION >= Z_VERSION(3,6,0)
-#					define Z_COMPILER_HAS_CPP17_LITERAL_UTF8_CHARACTER TRUE /* v3.6 (N-S-T) */
+#					define Z_COMPILER_HAS_CPP17_LITERAL_UTF8_CHARACTER 1 /* v3.6 (N-S-T) */
 
 #					if Z_COMPILER_VERSION >= Z_VERSION(3,9,0)
-#						define Z_COMPILER_HAS_CPP17_ATTRIBUTE_USING_PREFIX			     TRUE /* v3.9 (S-T)	  */
-#						define Z_COMPILER_HAS_CPP17_DIRECT_LIST_INITIALIZATION_FOR_FIXED_ENUMERATION TRUE /* v3.9 (N-S-T) */
+#						define Z_COMPILER_HAS_CPP17_ATTRIBUTE_USING_PREFIX			     1 /* v3.9 (S-T)   */
+#						define Z_COMPILER_HAS_CPP17_DIRECT_LIST_INITIALIZATION_FOR_FIXED_ENUMERATION 1 /* v3.9 (N-S-T) */
 
 						/*-----------------------------------------------------------------.
 						| NOTE: In v3.9 and v3.9.1, selection statements with initializer  |
 						| do not seem to generate warnings in any version of C++. However, |
 						| Z only recognizes these features in C++17 and later.		   |
 						'=================================================================*/
-#						define Z_COMPILER_HAS_CPP17_IF_WITH_INITIALIZER	    TRUE /* v3.9 (S-T) */
-#						define Z_COMPILER_HAS_CPP17_SWITCH_WITH_INITIALIZER TRUE /* v3.9 (S-T) */
+#						define Z_COMPILER_HAS_CPP17_IF_WITH_INITIALIZER	    1 /* v3.9 (S-T) */
+#						define Z_COMPILER_HAS_CPP17_SWITCH_WITH_INITIALIZER 1 /* v3.9 (S-T) */
 
 #						if Z_COMPILER_VERSION >= Z_VERSION(4,0,0)
-#							define Z_COMPILER_HAS_CPP17_EXPRESSION_EVALUATION_ORDER		       TRUE /* v4.0 (S) *//* TODO: Test. */
-#							define Z_COMPILER_HAS_CPP17_REMOVAL_OF_DYNAMIC_EXCEPTION_SPECIFICATION TRUE /* v4.0 (S-T) */
+#							define Z_COMPILER_HAS_CPP17_EXPRESSION_EVALUATION_ORDER		       1 /* v4.0 (S) *//* TODO: Test. */
+#							define Z_COMPILER_HAS_CPP17_REMOVAL_OF_DYNAMIC_EXCEPTION_SPECIFICATION 1 /* v4.0 (S-T) */
 #						endif
 #					endif
 #				endif
 #			endif
 
 #			if Z__HAS_CPP_ATTRIBUTE(fallthrough) >= 201603L /* v3.9 */
-#				define Z_COMPILER_HAS_CPP17_ATTRIBUTE_FALLTHROUGH TRUE /* v3.9 (N-S-T) */
+#				define Z_COMPILER_HAS_CPP17_ATTRIBUTE_FALLTHROUGH 1 /* v3.9 (N-S-T) */
 #			endif
 
 #			if Z__HAS_CPP_ATTRIBUTE(maybe_unused) >= 201603L /* v3.9 */
-#				define Z_COMPILER_HAS_CPP17_ATTRIBUTE_MAYBE_UNUSED TRUE /* v3.9 (N-S-T) */
+#				define Z_COMPILER_HAS_CPP17_ATTRIBUTE_MAYBE_UNUSED 1 /* v3.9 (N-S-T) */
 #			endif
 
 #			if Z__HAS_CPP_ATTRIBUTE(nodiscard) >= 201603L /* v3.9 */
-#				define Z_COMPILER_HAS_CPP17_ATTRIBUTE_NODISCARD TRUE /* v3.9 (N-S-T) */
+#				define Z_COMPILER_HAS_CPP17_ATTRIBUTE_NODISCARD 1 /* v3.9 (N-S-T) */
 #			endif
 #		endif
 #	endif
@@ -1350,7 +1350,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(4,0,0) &&					   \
 		 __cplusplus	    >= 201406L)
 
-#		define Z_COMPILER_HAS_CPP17_AGGREGATE_INITIALIZATION_FOR_DERIVED_CLASS TRUE /* v3.9 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP17_AGGREGATE_INITIALIZATION_FOR_DERIVED_CLASS 1 /* v3.9 (N-S-T) */
 #	endif
 
 	/*---------------------------------------------------------------.
@@ -1363,7 +1363,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(4,0,0) &&						       \
 		 __cplusplus	    >= 201406L)
 
-#		define Z_COMPILER_HAS_CPP17_ATTRIBUTES_FOR_ENUMERATOR TRUE /* v3.6 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP17_ATTRIBUTES_FOR_ENUMERATOR 1 /* v3.6 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_namespace_attributes) && __cpp_namespace_attributes >= 201411L) /* v4.0 */ || \
@@ -1371,7 +1371,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(4,0,0) &&						     \
 		 __cplusplus	    >= 201406L)
 
-#		define Z_COMPILER_HAS_CPP17_ATTRIBUTES_FOR_NAMESPACE TRUE /* v3.6 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP17_ATTRIBUTES_FOR_NAMESPACE 1 /* v3.6 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_if_constexpr) && __cpp_if_constexpr >= 201606L) /* v4.0 */ || \
@@ -1379,15 +1379,15 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(4,0,0) &&				     \
 		 __cplusplus	    >= 201406L)
 
-#		define Z_COMPILER_HAS_CPP17_CONSTEXPR_IF TRUE /* v3.9 (S-T) */
+#		define Z_COMPILER_HAS_CPP17_CONSTEXPR_IF 1 /* v3.9 (S-T) */
 #	endif
 
 #	if defined(__cpp_constexpr) && __cpp_constexpr >= 201603L /* v5.0 */
-#		define Z_COMPILER_HAS_CPP17_CONSTEXPR_LAMBDA TRUE /* v5.0 (S-T) */
+#		define Z_COMPILER_HAS_CPP17_CONSTEXPR_LAMBDA 1 /* v5.0 (S-T) */
 #	endif
 
 #	if defined(__cpp_deduction_guides) && __cpp_deduction_guides >= 201703L /* TODO: Investigate macro value. */
-#		define Z_COMPILER_HAS_CPP17_DEDUCTION_GUIDES_FOR_CLASS_TEMPLATE TRUE /* TODO: Investigate acceptable version. */
+#		define Z_COMPILER_HAS_CPP17_DEDUCTION_GUIDES_FOR_CLASS_TEMPLATE 1 /* TODO: Investigate acceptable version. */
 #	endif
 
 #	if	(defined(__cpp_range_based_for) && __cpp_range_based_for >= 201603L) /* v4.0 */ || \
@@ -1395,14 +1395,14 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(4,0,0) &&					   \
 		 __cplusplus	    >= 201406L)
 
-#		define Z_COMPILER_HAS_CPP17_DIFFERING_BEGIN_AND_END_TYPES_IN_RANGE_BASED_FOR TRUE /* v3.9 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP17_DIFFERING_BEGIN_AND_END_TYPES_IN_RANGE_BASED_FOR 1 /* v3.9 (N-S-T) */
 #	endif
 
 #	if defined(__cpp_fold_expressions) && __cpp_fold_expressions >= 201411L /* v4.0 */
-#		define Z_COMPILER_HAS_CPP17_FOLD_EXPRESSION TRUE /* v3.6 (N-S) */
+#		define Z_COMPILER_HAS_CPP17_FOLD_EXPRESSION 1 /* v3.6 (N-S) */
 
 #		if __cpp_fold_expressions >= 201603L /* v4.0 */
-#			define Z_COMPILER_HAS_CPP17_SAFE_UNARY_FOLD_EXPRESSION TRUE /* v3.9 (N-S) */
+#			define Z_COMPILER_HAS_CPP17_SAFE_UNARY_FOLD_EXPRESSION 1 /* v3.9 (N-S) */
 #		endif
 #	endif
 
@@ -1411,7 +1411,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(7,0,0) &&							   \
 		 __cplusplus	    >= 201406L)
 
-#		define Z_COMPILER_HAS_CPP17_GUARANTEED_COPY_ELISION TRUE /* v4.0 (S) *//* TODO: Test. */
+#		define Z_COMPILER_HAS_CPP17_GUARANTEED_COPY_ELISION 1 /* v4.0 (S) *//* TODO: Test. */
 #	endif
 
 #	if	(defined(__cpp_inheriting_constructors) && __cpp_inheriting_constructors >= 201511L) /* v4.0 */ || \
@@ -1419,7 +1419,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(4,0,0) &&							   \
 		 __cplusplus	    >= 201103L)
 
-#		define Z_COMPILER_HAS_CPP17_INHERITING_CONSTRUCTORS TRUE /* v3.9 (S-T) */
+#		define Z_COMPILER_HAS_CPP17_INHERITING_CONSTRUCTORS 1 /* v3.9 (S-T) */
 #	endif
 
 #	if	(defined(__cpp_inline_variables) && __cpp_inline_variables >= 201606L) /* v4.0 */ || \
@@ -1427,7 +1427,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(4,0,0) &&					     \
 		 __cplusplus	    >= 201406L)
 
-#		define Z_COMPILER_HAS_CPP17_INLINE_VARIABLE TRUE /* v3.9 (S-T) */
+#		define Z_COMPILER_HAS_CPP17_INLINE_VARIABLE 1 /* v3.9 (S-T) */
 #	endif
 
 #	if	(defined(__cpp_capture_star_this) && __cpp_capture_star_this >= 201603L) /* v4.0 */ || \
@@ -1435,7 +1435,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(4,0,0) &&					       \
 		 __cplusplus	    >= 201406L)
 
-#		define Z_COMPILER_HAS_CPP17_LAMBDA_CAPTURE_OF_STAR_THIS_BY_VALUE TRUE /* v3.9 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP17_LAMBDA_CAPTURE_OF_STAR_THIS_BY_VALUE 1 /* v3.9 (N-S-T) */
 #	endif
 
 #	if	(defined(__cpp_nested_namespace_definitions) && __cpp_nested_namespace_definitions >= 201411L) /* v4.0 */ || \
@@ -1443,11 +1443,11 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(4,0,0) &&								     \
 		 __cplusplus	    >= 201406L)
 
-#		define Z_COMPILER_HAS_CPP17_NESTED_NAMESPACE_DEFINITION TRUE /* v3.6 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP17_NESTED_NAMESPACE_DEFINITION 1 /* v3.6 (N-S-T) */
 #	endif
 
 #	if defined(__cpp_noexcept_function_type) && __cpp_noexcept_function_type >= 201510L /* v4.0 */
-#		define Z_COMPILER_HAS_CPP17_NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE TRUE /* v4.0 (S-T) */
+#		define Z_COMPILER_HAS_CPP17_NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE 1 /* v4.0 (S-T) */
 #	endif
 
 	/*------------------------------------------------------------------.
@@ -1458,27 +1458,27 @@ Released under the terms of the GNU Lesser General Public License v3.
 	| as non-type template arguments until v4.0.			    |
 	'==================================================================*/
 #	if defined(__cpp_nontype_template_args) && __cpp_nontype_template_args >= 201411L /* v4.0 */
-#		define Z_COMPILER_HAS_CPP17_NON_TYPE_TEMPLATE_ARGUMENTS TRUE /* v3.6 (N-S), v4.0 (T) */
+#		define Z_COMPILER_HAS_CPP17_NON_TYPE_TEMPLATE_ARGUMENTS 1 /* v3.6 (N-S), v4.0 (T) */
 #	endif
 
 #	if	(defined(__cpp_nontype_template_parameter_auto) && __cpp_nontype_template_parameter_auto >= 201606L) /* v7.0 */ || \
 		(defined(__cpp_template_auto		      ) && __cpp_template_auto			 >= 201606L) /* v4.0 */
 
-#		define Z_COMPILER_HAS_CPP17_NON_TYPE_TEMPLATE_PARAMETER_WITH_AUTO_TYPE TRUE /* v4.0 (S-T) */
+#		define Z_COMPILER_HAS_CPP17_NON_TYPE_TEMPLATE_PARAMETER_WITH_AUTO_TYPE 1 /* v4.0 (S-T) */
 #	endif
 
 #	if defined(__cpp_aligned_new) && __cpp_aligned_new >= 201606L /* v4.0 */
-#		define Z_COMPILER_HAS_CPP17_OVER_ALIGNED_DYNAMIC_MEMORY_ALLOCATION TRUE /* v4.0 (S) *//* TODO: Test. */
+#		define Z_COMPILER_HAS_CPP17_OVER_ALIGNED_DYNAMIC_MEMORY_ALLOCATION 1 /* v4.0 (S) *//* TODO: Test. */
 #	endif
 
-#	define Z_COMPILER_HAS_CPP17_REMOVAL_OF_BOOL_INCREMENT TRUE /* v3.8 (S-Tr) */
+#	define Z_COMPILER_HAS_CPP17_REMOVAL_OF_BOOL_INCREMENT 1 /* v3.8 (S-Tr) */
 
 #	ifndef Z_COMPILER_HAS_C_STORAGE_CLASS_REGISTER
-#		define Z_COMPILER_HAS_CPP17_REMOVAL_OF_REGISTER_AS_STORAGE_CLASS TRUE /* v3.8 (S-Tr) */
+#		define Z_COMPILER_HAS_CPP17_REMOVAL_OF_REGISTER_AS_STORAGE_CLASS 1 /* v3.8 (S-Tr) */
 #	endif
 
 #	ifndef Z_COMPILER_HAS_C89_TRIGRAPHS
-#		define Z_COMPILER_HAS_CPP17_REMOVAL_OF_TRIGRAPHS TRUE /* v3.5 (N-S-Tr) */
+#		define Z_COMPILER_HAS_CPP17_REMOVAL_OF_TRIGRAPHS 1 /* v3.5 (N-S-Tr) */
 #	endif
 
 #	if	(defined(__cpp_static_assert) && __cpp_static_assert >= 201411L) /* v4.0 */ || \
@@ -1486,27 +1486,27 @@ Released under the terms of the GNU Lesser General Public License v3.
 		 Z_COMPILER_VERSION <  Z_VERSION(4,0,0) &&				       \
 		 __cplusplus	    >= 201406L)
 
-#		define Z_COMPILER_HAS_CPP17_STATIC_ASSERTION_WITH_NO_MESSAGE TRUE /* v3.5 (N-S-T) */
+#		define Z_COMPILER_HAS_CPP17_STATIC_ASSERTION_WITH_NO_MESSAGE 1 /* v3.5 (N-S-T) */
 #	endif
 
 #	if defined(__cpp_structured_bindings) && __cpp_structured_bindings >= 201606L /* v4.0 */
-#		define Z_COMPILER_HAS_CPP17_STRUCTURED_BINDING TRUE /* v4.0 (S) */
+#		define Z_COMPILER_HAS_CPP17_STRUCTURED_BINDING 1 /* v4.0 (S) */
 #	endif
 
 #	if defined(__cpp_template_template_args) && __cpp_template_template_args >= 201611L /* v7.0 */
-#		define Z_COMPILER_HAS_CPP17_TEMPLATE_TEMPLATE_ARGUMENT_MATCHING TRUE
+#		define Z_COMPILER_HAS_CPP17_TEMPLATE_TEMPLATE_ARGUMENT_MATCHING 1
 #	endif
 
 #	if defined(__cpp_variadic_using) && __cpp_variadic_using >= 201611L /* v4.0 */
-#		define Z_COMPILER_HAS_CPP17_VARIADIC_USING TRUE /* v4.0 (S-T) */
+#		define Z_COMPILER_HAS_CPP17_VARIADIC_USING 1 /* v4.0 (S-T) */
 #	endif
 
 #	ifdef Z_COMPILER_HAS_C99_LITERAL_HEXADECIMAL_FLOATING_POINT
-#		define Z_COMPILER_HAS_CPP17_LITERAL_HEXADECIMAL_FLOATING_POINT TRUE /* v3.9 (T!) */
+#		define Z_COMPILER_HAS_CPP17_LITERAL_HEXADECIMAL_FLOATING_POINT 1 /* v3.9 (T!) */
 #	endif
 
 #	ifdef Z_COMPILER_HAS_CLANG_C_PREPROCESSOR_OPERATOR_HAS_INCLUDE
-#		define Z_COMPILER_HAS_CPP17_PREPROCESSOR_OPERATOR_HAS_INCLUDE TRUE /* v2.7 */
+#		define Z_COMPILER_HAS_CPP17_PREPROCESSOR_OPERATOR_HAS_INCLUDE 1 /* v2.7 */
 #	endif
 
 /*#	define Z_COMPILER_HAS_CPP17_IGNORING_OF_UNKNOWN_ATTRIBUTES*/ /* Always generate warnings. */
@@ -1516,7 +1516,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 /* MARK: - Language: Implementation-defined */
 
 #if (~0 >> 1) == ~0
-#	define Z_COMPILER_HAS_ARITHMETIC_RIGHT_SHIFT TRUE
+#	define Z_COMPILER_HAS_ARITHMETIC_RIGHT_SHIFT 1
 #endif
 
 /* MARK: - Non-standard language: Attributes */
@@ -2605,6 +2605,6 @@ Released under the terms of the GNU Lesser General Public License v3.
 #undef Z__HAS_MSVC_COMPATIBILITY
 #undef Z__HAS_TRAIT
 
-#define Z_COMPILER_HAS_MAGIC_CONSTANT_MANGLED_FUNCTION_NAME TRUE
+#define Z_COMPILER_HAS_MAGIC_CONSTANT_MANGLED_FUNCTION_NAME 1
 
 #endif /* Z_inspection_compiler_modules_Clang_H */

@@ -11,9 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/platform.h>
 
-#ifdef Z_PLATFORM
-#	include <Z/constants/boolean.h>
-#else
+#ifndef Z_PLATFORM
 #	include <Z/inspection/compiler.h>
 
 #	ifdef Z_COMPILER_PLATFORM

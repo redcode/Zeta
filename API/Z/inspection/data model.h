@@ -32,56 +32,56 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_DATA_MODEL == Z_DATA_MODEL_IP16L32
 #	include <Z/formats/data model/IP16L32.h>
 
-#	define Z_DATA_MODEL_IS_IP16L32	     TRUE
+#	define Z_DATA_MODEL_IS_IP16L32	     1
 #	define Z_DATA_MODEL_NAME	     Z_DATA_MODEL_NAME_IP16L32
 #	define Z_INSERT_DATA_MODEL(lht, rht) lht##IP16L32##rht
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_I16LP32
 #	include <Z/formats/data model/I16LP32.h>
 
-#	define Z_DATA_MODEL_IS_I16LP32	     TRUE
+#	define Z_DATA_MODEL_IS_I16LP32	     1
 #	define Z_DATA_MODEL_NAME	     Z_DATA_MODEL_NAME_I16LP32
 #	define Z_INSERT_DATA_MODEL(lht, rht) lht##I16LP32##rht
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_ILP32
 #	include <Z/formats/data model/ILP32.h>
 
-#	define Z_DATA_MODEL_IS_ILP32	     TRUE
+#	define Z_DATA_MODEL_IS_ILP32	     1
 #	define Z_DATA_MODEL_NAME	     Z_DATA_MODEL_NAME_ILP32
 #	define Z_INSERT_DATA_MODEL(lht, rht) lht##ILP32##rht
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_ILP64
 #	include <Z/formats/data model/ILP64.h>
 
-#	define Z_DATA_MODEL_IS_ILP64	     TRUE
+#	define Z_DATA_MODEL_IS_ILP64	     1
 #	define Z_DATA_MODEL_NAME	     Z_DATA_MODEL_NAME_ILP64
 #	define Z_INSERT_DATA_MODEL(lht, rht) lht##ILP64##rht
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LLP64
 #	include <Z/formats/data model/LLP64.h>
 
-#	define Z_DATA_MODEL_IS_LLP64	     TRUE
+#	define Z_DATA_MODEL_IS_LLP64	     1
 #	define Z_DATA_MODEL_NAME	     Z_DATA_MODEL_NAME_LLP64
 #	define Z_INSERT_DATA_MODEL(lht, rht) lht##LLP64##rht
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LP32
 #	include <Z/formats/data model/LP32.h>
 
-#	define Z_DATA_MODEL_IS_LP32	     TRUE
+#	define Z_DATA_MODEL_IS_LP32	     1
 #	define Z_DATA_MODEL_NAME	     Z_DATA_MODEL_NAME_LP32
 #	define Z_INSERT_DATA_MODEL(lht, rht) lht##LP32##rht
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_LP64
 #	include <Z/formats/data model/LP64.h>
 
-#	define Z_DATA_MODEL_IS_LP64	     TRUE
+#	define Z_DATA_MODEL_IS_LP64	     1
 #	define Z_DATA_MODEL_NAME	     Z_DATA_MODEL_NAME_LP64
 #	define Z_INSERT_DATA_MODEL(lht, rht) lht##LP64##rht
 
 #elif Z_DATA_MODEL == Z_DATA_MODEL_SILP64
 #	include <Z/formats/data model/SILP64.h>
 
-#	define Z_DATA_MODEL_IS_SILP64	     TRUE
+#	define Z_DATA_MODEL_IS_SILP64	     1
 #	define Z_DATA_MODEL_NAME	     Z_DATA_MODEL_NAME_SILP64
 #	define Z_INSERT_DATA_MODEL(lht, rht) lht##SILP64##rht
 
@@ -131,20 +131,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #ifdef Z_DATA_MODEL_TYPE_UINT8
-#	define Z_DATA_MODEL_HAS_TYPE_UINT8 TRUE
+#	define Z_DATA_MODEL_HAS_TYPE_UINT8 1
 
 #	ifdef Z_DATA_MODEL_LITERAL_UINT8
-#		define Z_DATA_MODEL_HAS_LITERAL_UINT8 TRUE
+#		define Z_DATA_MODEL_HAS_LITERAL_UINT8 1
 #	else
 #		define Z_DATA_MODEL_LITERAL_UINT8 Z_SUFFIX_U
 #	endif
 #endif
 
 #ifdef Z_DATA_MODEL_TYPE_SINT8
-#	define Z_DATA_MODEL_HAS_TYPE_SINT8 TRUE
+#	define Z_DATA_MODEL_HAS_TYPE_SINT8 1
 
 #	ifdef Z_DATA_MODEL_LITERAL_SINT8
-#		define Z_DATA_MODEL_HAS_LITERAL_SINT8 TRUE
+#		define Z_DATA_MODEL_HAS_LITERAL_SINT8 1
 #	else
 #		define Z_DATA_MODEL_LITERAL_SINT8 Z_SAME
 #	endif
@@ -200,20 +200,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #ifdef Z_DATA_MODEL_TYPE_UINT16
-#	define Z_DATA_MODEL_HAS_TYPE_UINT16 TRUE
+#	define Z_DATA_MODEL_HAS_TYPE_UINT16 1
 
 #	ifdef Z_DATA_MODEL_LITERAL_UINT16
-#		define Z_DATA_MODEL_HAS_LITERAL_UINT16 TRUE
+#		define Z_DATA_MODEL_HAS_LITERAL_UINT16 1
 #	else
 #		define Z_DATA_MODEL_LITERAL_UINT16 Z_SUFFIX_U
 #	endif
 #endif
 
 #ifdef Z_DATA_MODEL_TYPE_SINT16
-#	define Z_DATA_MODEL_HAS_TYPE_SINT16 TRUE
+#	define Z_DATA_MODEL_HAS_TYPE_SINT16 1
 
 #	ifdef Z_DATA_MODEL_LITERAL_SINT16
-#		define Z_DATA_MODEL_HAS_LITERAL_SINT16 TRUE
+#		define Z_DATA_MODEL_HAS_LITERAL_SINT16 1
 #	else
 #		define Z_DATA_MODEL_LITERAL_SINT16 Z_SAME
 #	endif
@@ -269,20 +269,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #ifdef Z_DATA_MODEL_TYPE_UINT32
-#	define Z_DATA_MODEL_HAS_TYPE_UINT32 TRUE
+#	define Z_DATA_MODEL_HAS_TYPE_UINT32 1
 
 #	ifdef Z_DATA_MODEL_LITERAL_UINT32
-#		define Z_DATA_MODEL_HAS_LITERAL_UINT32 TRUE
+#		define Z_DATA_MODEL_HAS_LITERAL_UINT32 1
 #	else
 #		define Z_DATA_MODEL_LITERAL_UINT32 Z_SUFFIX_U
 #	endif
 #endif
 
 #ifdef Z_DATA_MODEL_TYPE_SINT32
-#	define Z_DATA_MODEL_HAS_TYPE_SINT32 TRUE
+#	define Z_DATA_MODEL_HAS_TYPE_SINT32 1
 
 #	ifdef Z_DATA_MODEL_LITERAL_SINT32
-#		define Z_DATA_MODEL_HAS_LITERAL_SINT32 TRUE
+#		define Z_DATA_MODEL_HAS_LITERAL_SINT32 1
 #	else
 #		define Z_DATA_MODEL_LITERAL_SINT32 Z_SAME
 #	endif
@@ -340,20 +340,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #ifdef Z_DATA_MODEL_TYPE_UINT64
-#	define Z_DATA_MODEL_HAS_TYPE_UINT64 TRUE
+#	define Z_DATA_MODEL_HAS_TYPE_UINT64 1
 
 #	ifdef Z_DATA_MODEL_LITERAL_UINT64
-#		define Z_DATA_MODEL_HAS_LITERAL_UINT64 TRUE
+#		define Z_DATA_MODEL_HAS_LITERAL_UINT64 1
 #	else
 #		define Z_DATA_MODEL_LITERAL_UINT64 Z_SUFFIX_U
 #	endif
 #endif
 
 #ifdef Z_DATA_MODEL_TYPE_SINT64
-#	define Z_DATA_MODEL_HAS_TYPE_SINT64 TRUE
+#	define Z_DATA_MODEL_HAS_TYPE_SINT64 1
 
 #	ifdef Z_DATA_MODEL_LITERAL_SINT64
-#		define Z_DATA_MODEL_HAS_LITERAL_SINT64 TRUE
+#		define Z_DATA_MODEL_HAS_LITERAL_SINT64 1
 #	else
 #		define Z_DATA_MODEL_LITERAL_SINT64 Z_SAME
 #	endif
@@ -393,20 +393,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #ifdef Z_DATA_MODEL_TYPE_UINT128
-#	define Z_DATA_MODEL_HAS_TYPE_UINT128 TRUE
+#	define Z_DATA_MODEL_HAS_TYPE_UINT128 1
 
 #	ifdef Z_DATA_MODEL_LITERAL_UINT128
-#		define Z_DATA_MODEL_HAS_LITERAL_UINT128 TRUE
+#		define Z_DATA_MODEL_HAS_LITERAL_UINT128 1
 #	else
 #		define Z_DATA_MODEL_LITERAL_UINT128 Z_SUFFIX_U
 #	endif
 #endif
 
 #ifdef Z_DATA_MODEL_TYPE_SINT128
-#	define Z_DATA_MODEL_HAS_TYPE_SINT128 TRUE
+#	define Z_DATA_MODEL_HAS_TYPE_SINT128 1
 
 #	ifdef Z_DATA_MODEL_LITERAL_SINT128
-#		define Z_DATA_MODEL_HAS_LITERAL_SINT128 TRUE
+#		define Z_DATA_MODEL_HAS_LITERAL_SINT128 1
 #	else
 #		define Z_DATA_MODEL_LITERAL_SINT128 Z_SAME
 #	endif

@@ -9,9 +9,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_inspection_ISA_modules_6502_H
 #define Z_inspection_ISA_modules_6502_H
 
-#define Z_ISA_IS_6502		  TRUE
+#define Z_ISA_IS_6502		  1
 #define Z_ISA_NAME		  Z_ISA_NAME_6502
-#define Z_ISA_HAS_INTEGRAL_8BIT	  TRUE
+#define Z_ISA_HAS_INTEGRAL_8BIT	  1
 #define Z_ISA_INTEGRAL_ENDIANNESS Z_ENDIANNESS_LITTLE
 #define Z_ISA_INTEGER_FORMAT_ALL  Z_INTEGER_FORMAT_2S_COMPLEMENT
 #define Z_ISA_WIDTH_TOP_INTEGRAL  8

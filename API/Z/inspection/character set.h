@@ -9,16 +9,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_inspection_character_set_H
 #define Z_inspection_character_set_H
 
-#include <Z/constants/boolean.h>
-
 #if	('0' < '9')						 && \
 	('0' + 1 == '1') && ('1' + 1 == '2') && ('2' + 1 == '3') && \
 	('3' + 1 == '4') && ('4' + 1 == '5') && ('5' + 1 == '6') && \
 	('6' + 1 == '7') && ('7' + 1 == '8') && ('8' + 1 == '9')
 
-#	define Z_CHARACTER_SET_DIGITS_ARE_CONSECUTIVE TRUE
+#	define Z_CHARACTER_SET_DIGITS_ARE_CONSECUTIVE 1
 #else
-#	define Z_CHARACTER_SET_DIGITS_ARE_CONSECUTIVE FALSE
+#	define Z_CHARACTER_SET_DIGITS_ARE_CONSECUTIVE 0
 #endif
 
 #if	('A' < 'Z')						 && \
@@ -32,9 +30,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	('V' + 1 == 'W') && ('W' + 1 == 'X') && ('X' + 1 == 'Y') && \
 	('Y' + 1 == 'Z')
 
-#	define Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE TRUE
+#	define Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE 1
 #else
-#	define Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE FALSE
+#	define Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE 0
 #endif
 
 #if	('a' < 'z')						 && \
@@ -48,9 +46,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	('v' + 1 == 'w') && ('w' + 1 == 'x') && ('x' + 1 == 'y') && \
 	('y' + 1 == 'z')
 
-#	define Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE TRUE
+#	define Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE 1
 #else
-#	define Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE FALSE
+#	define Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE 0
 #endif
 
 #if	(' ' ==  32) && ('!' ==  33) && ('"'  ==  34) && ('#' ==  35) && \
@@ -77,9 +75,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	('w' == 119) && ('x' == 120) && ('y'  == 121) && ('z' == 122) && \
 	('{' == 123) && ('|' == 124) && ('}'  == 125) && ('~' == 126)
 
-#	define Z_CHARACTER_SET_IS_ASCII TRUE
+#	define Z_CHARACTER_SET_IS_ASCII 1
 #else
-#	define Z_CHARACTER_SET_IS_ASCII FALSE
+#	define Z_CHARACTER_SET_IS_ASCII 0
 #endif
 
 #endif /* Z_inspection_character_set_H */
