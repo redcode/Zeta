@@ -20,7 +20,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_C Z_C89
 
 #	elif __STDC_VERSION__ >= 201710L
-#		define Z_C Z_C18
+#		define Z_C Z_C17
 
 #	elif __STDC_VERSION__ >= 201112L
 #		define Z_C Z_C11
