@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 .------------------------------------------------------------------------------.
 |	  Compiler: Clang						       |
 |     Last version: v10.0						       |
-| Language support: C89 - C18, C++98 - C++17				       |
+| Language support: C89 - C17, C++98 - C++17				       |
 |          Options: -pedantic -Wall -Wextra				       |
 |------------------------------------------------------------------------------|
 |									       |
@@ -30,7 +30,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 | __STDC_VERSION__	     | 199409L |  v2.6 | C95			       |
 | __STDC_VERSION__	     | 199901L |  v2.6 | C99			       |
 | __STDC_VERSION__	     | 201112L |  v3.1 | C11			       |
-| __STDC_VERSION__	     | 201710L |  v6.0 | C18			       |
+| __STDC_VERSION__	     | 201710L |  v6.0 | C17			       |
 | __STRICT_ANSI__	     |	     1 |  v2.6 |			       |
 | __GXX_EXPERIMENTAL_CXX0X__ |	     1 |  v2.6 | C++11 (experimental)	       |
 | __cplusplus		     |	     1 |       | GNU++11		       |

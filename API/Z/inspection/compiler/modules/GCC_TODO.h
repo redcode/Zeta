@@ -282,7 +282,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_C_HAS_ANONYMOUS_UNION 1
 #endif
 
-/* MARK: - C18 support */
+/* MARK: - C17 support */
 
 /* MARK: - Apple C extensions support */
 

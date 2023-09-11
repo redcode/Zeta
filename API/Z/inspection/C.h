@@ -36,9 +36,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 #endif
 
-#if Z_C == Z_C18
+#if Z_C == Z_C17
 #	include <Z/inspection/C/modules/C11.h>
-#	define Z_C_NAME Z_C_NAME_C18
+#	define Z_C_NAME Z_C_NAME_C17
 
 #elif Z_C == Z_C11
 #	include <Z/inspection/C/modules/C11.h>
