@@ -11,7 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/functions/math.hpp>
 
-#if defined(Z_WITH_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+#if defined(Z_WITH_FOUNDATION) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 #	import <Foundation/NSRange.h>
 #endif
 
@@ -109,7 +109,7 @@ namespace Zeta {template <class t> struct Range {
 		{return !index && !size;}
 
 
-#	if defined(Z_WITH_NS_RANGE) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+#	if defined(Z_WITH_FOUNDATION) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 
 		Z_CT(CPP11) Range(const NSRange &range) Z_NOTHROW
 		: index(t(range.location)), size(t(range.length)) {}

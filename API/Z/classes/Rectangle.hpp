@@ -15,11 +15,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include "cocos2d.h"
 #endif
 
-#ifdef Z_WITH_CG_GEOMETRY
+#ifdef Z_WITH_CORE_FOUNDATION
 #	include <CoreGraphics/CGGeometry.h>
 #endif
 
-#if defined(Z_WITH_NS_GEOMETRY) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
+#if defined(Z_WITH_FOUNDATION) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
 #	import <Foundation/NSGeometry.h>
 #endif
 
@@ -651,7 +651,7 @@ namespace Zeta {template <class t> struct Rectangle {
 #	endif
 
 
-#	if defined(Z_WITH_CG_GEOMETRY) || defined(Z_WITH_NS_GEOMETRY)
+#	if defined(Z_WITH_CORE_FOUNDATION) || defined(Z_WITH_FOUNDATION)
 
 #		define Z__APPLE_CONSTRUCTORS(Prefix)			     \
 									     \
@@ -691,14 +691,14 @@ namespace Zeta {template <class t> struct Rectangle {
 #		endif
 
 
-#		ifdef Z_WITH_CG_GEOMETRY
+#		ifdef Z_WITH_CORE_FOUNDATION
 			Z__APPLE_CONSTRUCTORS(CG)
 			Z__APPLE_OPERATORS   (CG)
 #		endif
 
-#		if	defined(Z_WITH_NS_GEOMETRY)	   &&		       \
+#		if	defined(Z_WITH_FOUNDATION)	   &&		       \
 			Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) &&		       \
-		       (!defined(Z_WITH_CG_GEOMETRY)			    || \
+		       (!defined(Z_WITH_CORE_FOUNDATION)		    || \
 			!defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 			!NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
