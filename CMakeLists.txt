@@ -32,34 +32,42 @@ include(GNUInstallDirs)
 
 set(${PROJECT_NAME}_INSTALL_CMAKEDIR
 "${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake" CACHE STRING
-"Directory in which to install the CMake config-file package.")
+"${PROJECT_NAME}: \
+Directory in which to install the CMake config-file package.")
 
 set(${PROJECT_NAME}_INSTALL_PKGCONFIGDIR
 "${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig" CACHE STRING
-"Directory in which to install the pkg-config file.")
+"${PROJECT_NAME}: \
+Directory in which to install the pkg-config file.")
 
 set(${PROJECT_NAME}_SPHINX_HTML_THEME
 "" CACHE STRING
-"Sphinx theme for the documentation in HTML format.")
+"${PROJECT_NAME}: \
+Sphinx theme for the documentation in HTML format.")
 
 option(${PROJECT_NAME}_WITH_CMAKE_SUPPORT
-"Generate and install the CMake config-file package."
+"${PROJECT_NAME}: \
+Generate and install the CMake config-file package."
 NO)
 
 option(${PROJECT_NAME}_WITH_HTML_DOCUMENTATION
-"Build and install the documentation in HTML format."
+"${PROJECT_NAME}: \
+Build and install the documentation in HTML format."
 NO)
 
 option(${PROJECT_NAME}_WITH_PDF_DOCUMENTATION
-"Build and install the documentation in PDF format."
+"${PROJECT_NAME}: \
+Build and install the documentation in PDF format."
 NO)
 
 option(${PROJECT_NAME}_WITH_PKGCONFIG_SUPPORT
-"Generate and install the pkg-config file."
+"${PROJECT_NAME}: \
+Generate and install the pkg-config file."
 NO)
 
 option(${PROJECT_NAME}_WITH_STANDARD_DOCUMENTS
-"Install the standard text documents distributed with the package: \
+"${PROJECT_NAME}: \
+Install the standard text documents distributed with the package: \
 AUTHORS, COPYING, COPYING.LESSER, HISTORY, README and THANKS."
 NO)
 
