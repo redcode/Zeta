@@ -1538,6 +1538,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #endif
 
 #if __has_attribute(always_inline)
+#	define Z_COMPILER_ATTRIBUTE_ALWAYS_INLINE __inline__ __attribute__((always_inline)) /* v2.6 */
 #	define Z_COMPILER_ATTRIBUTE_INLINE __inline__ __attribute__((always_inline)) /* v2.6 */
 #else
 #	define Z_COMPILER_ATTRIBUTE_INLINE __inline__ /* v2.6 */

@@ -330,6 +330,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - Non-standard language: Attributes */
 
 /*#define Z_COMPILER_ATTRIBUTE_ALIAS*/
+/*#define Z_COMPILER_ATTRIBUTE_ALWAYS_INLINE*/
 /*#define Z_COMPILER_ATTRIBUTE_API_EXPORT*/
 /*#define Z_COMPILER_ATTRIBUTE_API_IMPORT*/
 /*#define Z_COMPILER_ATTRIBUTE_API_WEAK_EXPORT*/

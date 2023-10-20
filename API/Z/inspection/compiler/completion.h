@@ -16,6 +16,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_COMPILER_HAS_ATTRIBUTE_ALIAS 1
 #endif
 
+#ifdef Z_COMPILER_ATTRIBUTE_ALWAYS_INLINE
+#	define Z_COMPILER_HAS_ATTRIBUTE_ALWAYS_INLINE 1
+#endif
+
 #ifdef Z_COMPILER_ATTRIBUTE_API_ALIAS
 #	define Z_COMPILER_HAS_ATTRIBUTE_API_ALIAS 1
 #endif

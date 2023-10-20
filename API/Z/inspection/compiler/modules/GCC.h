@@ -444,6 +444,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 '==========================================================================*/
 
 #if Z_COMPILER_VERSION >= Z_VERSION(3,1,0)
+#	define Z_COMPILER_ATTRIBUTE_ALWAYS_INLINE __inline__ __attribute__((always_inline))
 #	define Z_COMPILER_ATTRIBUTE_INLINE __inline__ __attribute__((always_inline))
 
 #elif Z_COMPILER_VERSION >= Z_VERSION(1,21,0)

@@ -445,7 +445,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_ATTRIBUTE_API_IMPORT __declspec(dllimport)
 /*#define Z_COMPILER_ATTRIBUTE_API_WEAK_EXPORT*/
 /*#define Z_COMPILER_ATTRIBUTE_EBCO*/
-#define Z_COMPILER_ATTRIBUTE_INLINE __inline
+#define Z_COMPILER_ATTRIBUTE_ALWAYS_INLINE __forceinline /* _forceinline in old versions */
+#define Z_COMPILER_ATTRIBUTE_INLINE __inline /* _inline in old versions */
 #define Z_COMPILER_ATTRIBUTE_MICROSOFT_STD_CALL __stdcall
 /*#define Z_COMPILER_ATTRIBUTE_NO_RETURN*/
 /*#define Z_COMPILER_ATTRIBUTE_NULL_TERMINATED*/

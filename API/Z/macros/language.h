@@ -73,6 +73,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_INLINE
 #endif
 
+#if Z_COMPILER_HAS_ATTRIBUTE(ALWAYS_INLINE)
+#	define Z_ALWAYS_INLINE Z_COMPILER_ATTRIBUTE(ALWAYS_INLINE)
+
+#else
+#	define Z_ALWAYS_INLINE Z_INLINE
+#endif
+
 #if Z_COMPILER_HAS_ATTRIBUTE(NO_RETURN)
 #	define Z_NO_RETURN Z_COMPILER_ATTRIBUTE(NO_RETURN)
 
