@@ -377,11 +377,11 @@ namespace Zeta {template <class t> struct XY {
 #		define Z__APPLE_CONSTRUCTORS(Prefix)			     \
 									     \
 			Z_CT(CPP11) XY(const Prefix##Point &point) Z_NOTHROW \
-			: x(point.x), y(point.y) {}			     \
+			: x(t(point.x)), y(t(point.y)) {}		     \
 									     \
 									     \
 			Z_CT(CPP11) XY(const Prefix##Size &size) Z_NOTHROW   \
-			: x(size.width), y(size.height) {}
+			: x(t(size.width)), y(t(size.height)) {}
 
 
 #		if Z_DIALECT_HAS(CPP11, COPY_LIST_INITIALIZATION)
