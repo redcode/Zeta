@@ -65,30 +65,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_COMPILER_HAS_ATTRIBUTE(INLINE)
 #	define Z_INLINE Z_COMPILER_ATTRIBUTE(INLINE)
-
 #elif defined(__cplusplus) || Z_DIALECT_HAS_SPECIFIER(C99, INLINE)
 #	define Z_INLINE inline
-
 #else
 #	define Z_INLINE
 #endif
 
 #if Z_COMPILER_HAS_ATTRIBUTE(ALWAYS_INLINE)
 #	define Z_ALWAYS_INLINE Z_COMPILER_ATTRIBUTE(ALWAYS_INLINE)
-
 #else
 #	define Z_ALWAYS_INLINE Z_INLINE
 #endif
 
 #if Z_COMPILER_HAS_ATTRIBUTE(NO_RETURN)
 #	define Z_NO_RETURN Z_COMPILER_ATTRIBUTE(NO_RETURN)
-
 #elif Z_DIALECT_HAS_ATTRIBUTE(CPP11, NORETURN)
 #	define Z_NO_RETURN [[noreturn]]
-
 #elif Z_DIALECT_HAS_SPECIFIER(C11, NORETURN)
 #	define Z_NO_RETURN _Noreturn
-
 #else
 #	define Z_NO_RETURN
 #endif
@@ -97,10 +91,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if Z_COMPILER_HAS_ATTRIBUTE(THREAD_LOCAL)
 #	define Z_THREAD_LOCAL Z_COMPILER_ATTRIBUTE(THREAD_LOCAL)
-
 #elif Z_DIALECT_HAS_STORAGE_CLASS(CPP11, THREAD_LOCAL)
 #	define Z_THREAD_LOCAL thread_local
-
 #elif Z_DIALECT_HAS_STORAGE_CLASS(C11, THREAD_LOCAL)
 #	define Z_THREAD_LOCAL _Thread_local
 #endif

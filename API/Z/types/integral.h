@@ -252,28 +252,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #if defined(Z_UINT8)
 #	define Z_UINT_LEAST8_WIDTH 8
-
 #elif defined(Z_UINT16)
 #	define Z_UINT_LEAST8_WIDTH 16
-
 #elif defined(Z_UINT24)
 #	define Z_UINT_LEAST8_WIDTH 24
-
 #elif defined(Z_UINT32)
 #	define Z_UINT_LEAST8_WIDTH 32
-
 #elif defined(Z_UINT40)
 #	define Z_UINT_LEAST8_WIDTH 40
-
 #elif defined(Z_UINT48)
 #	define Z_UINT_LEAST8_WIDTH 48
-
 #elif defined(Z_UINT56)
 #	define Z_UINT_LEAST8_WIDTH 56
-
 #elif defined(Z_UINT64)
 #	define Z_UINT_LEAST8_WIDTH 64
-
 #elif defined(Z_UINT128)
 #	define Z_UINT_LEAST8_WIDTH 128
 #endif
@@ -286,28 +278,20 @@ typedef Z_NATURAL_T_TYPE(UINT_LEAST8)	zuint_least8;
 
 #if defined(Z_SINT8)
 #	define Z_SINT_LEAST8_WIDTH 8
-
 #elif defined(Z_UINT16)
 #	define Z_SINT_LEAST8_WIDTH 16
-
 #elif defined(Z_SINT24)
 #	define Z_SINT_LEAST8_WIDTH 24
-
 #elif defined(Z_SINT32)
 #	define Z_SINT_LEAST8_WIDTH 32
-
 #elif defined(Z_SINT40)
 #	define Z_SINT_LEAST8_WIDTH 40
-
 #elif defined(Z_SINT48)
 #	define Z_SINT_LEAST8_WIDTH 48
-
 #elif defined(Z_SINT56)
 #	define Z_SINT_LEAST8_WIDTH 56
-
 #elif defined(Z_SINT64)
 #	define Z_SINT_LEAST8_WIDTH 64
-
 #elif defined(Z_SINT128)
 #	define Z_SINT_LEAST8_WIDTH 128
 #endif
@@ -321,25 +305,18 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_UINT16)
 #	define Z_UINT_LEAST16_WIDTH 16
-
 #elif defined(Z_UINT24)
 #	define Z_UINT_LEAST16_WIDTH 24
-
 #elif defined(Z_UINT32)
 #	define Z_UINT_LEAST16_WIDTH 32
-
 #elif defined(Z_UINT40)
 #	define Z_UINT_LEAST16_WIDTH 40
-
 #elif defined(Z_UINT48)
 #	define Z_UINT_LEAST16_WIDTH 48
-
 #elif defined(Z_UINT56)
 #	define Z_UINT_LEAST16_WIDTH 56
-
 #elif defined(Z_UINT64)
 #	define Z_UINT_LEAST16_WIDTH 64
-
 #elif defined(Z_UINT128)
 #	define Z_UINT_LEAST16_WIDTH 128
 #endif
@@ -354,25 +331,18 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_SINT16)
 #	define Z_SINT_LEAST16_WIDTH 16
-
 #elif defined(Z_SINT24)
 #	define Z_SINT_LEAST16_WIDTH 24
-
 #elif defined(Z_SINT32)
 #	define Z_SINT_LEAST16_WIDTH 32
-
 #elif defined(Z_SINT40)
 #	define Z_SINT_LEAST16_WIDTH 40
-
 #elif defined(Z_SINT48)
 #	define Z_SINT_LEAST16_WIDTH 48
-
 #elif defined(Z_SINT56)
 #	define Z_SINT_LEAST16_WIDTH 56
-
 #elif defined(Z_SINT64)
 #	define Z_SINT_LEAST16_WIDTH 64
-
 #elif defined(Z_SINT128)
 #	define Z_SINT_LEAST16_WIDTH 128
 #endif
@@ -388,22 +358,16 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_UINT24)
 #	define Z_UINT_LEAST24_WIDTH 24
-
 #elif defined(Z_UINT32)
 #	define Z_UINT_LEAST24_WIDTH 32
-
 #elif defined(Z_UINT40)
 #	define Z_UINT_LEAST24_WIDTH 40
-
 #elif defined(Z_UINT48)
 #	define Z_UINT_LEAST24_WIDTH 48
-
 #elif defined(Z_UINT56)
 #	define Z_UINT_LEAST24_WIDTH 56
-
 #elif defined(Z_UINT64)
 #	define Z_UINT_LEAST24_WIDTH 64
-
 #elif defined(Z_UINT128)
 #	define Z_UINT_LEAST24_WIDTH 128
 #endif
@@ -418,22 +382,16 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_SINT24)
 #	define Z_SINT_LEAST24_WIDTH 24
-
 #elif defined(Z_SINT32)
 #	define Z_SINT_LEAST24_WIDTH 32
-
 #elif defined(Z_SINT40)
 #	define Z_SINT_LEAST24_WIDTH 40
-
 #elif defined(Z_SINT48)
 #	define Z_SINT_LEAST24_WIDTH 48
-
 #elif defined(Z_SINT56)
 #	define Z_SINT_LEAST24_WIDTH 56
-
 #elif defined(Z_SINT64)
 #	define Z_SINT_LEAST24_WIDTH 64
-
 #elif defined(Z_SINT128)
 #	define Z_SINT_LEAST24_WIDTH 128
 #endif
@@ -449,19 +407,14 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_UINT32)
 #	define Z_UINT_LEAST32_WIDTH 32
-
 #elif defined(Z_UINT40)
 #	define Z_UINT_LEAST32_WIDTH 40
-
 #elif defined(Z_UINT48)
 #	define Z_UINT_LEAST32_WIDTH 48
-
 #elif defined(Z_UINT56)
 #	define Z_UINT_LEAST32_WIDTH 56
-
 #elif defined(Z_UINT64)
 #	define Z_UINT_LEAST32_WIDTH 64
-
 #elif defined(Z_UINT128)
 #	define Z_UINT_LEAST32_WIDTH 128
 #endif
@@ -476,19 +429,14 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_SINT32)
 #	define Z_SINT_LEAST32_WIDTH 32
-
 #elif defined(Z_SINT40)
 #	define Z_SINT_LEAST32_WIDTH 40
-
 #elif defined(Z_SINT48)
 #	define Z_SINT_LEAST32_WIDTH 48
-
 #elif defined(Z_SINT56)
 #	define Z_SINT_LEAST32_WIDTH 56
-
 #elif defined(Z_SINT64)
 #	define Z_SINT_LEAST32_WIDTH 64
-
 #elif defined(Z_SINT128)
 #	define Z_SINT_LEAST32_WIDTH 128
 #endif
@@ -504,16 +452,12 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_UINT40)
 #	define Z_UINT_LEAST40_WIDTH 40
-
 #elif defined(Z_UINT48)
 #	define Z_UINT_LEAST40_WIDTH 48
-
 #elif defined(Z_UINT56)
 #	define Z_UINT_LEAST40_WIDTH 56
-
 #elif defined(Z_UINT64)
 #	define Z_UINT_LEAST40_WIDTH 64
-
 #elif defined(Z_UINT128)
 #	define Z_UINT_LEAST40_WIDTH 128
 #endif
@@ -528,16 +472,12 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_SINT40)
 #	define Z_SINT_LEAST40_WIDTH 40
-
 #elif defined(Z_SINT48)
 #	define Z_SINT_LEAST40_WIDTH 48
-
 #elif defined(Z_SINT56)
 #	define Z_SINT_LEAST40_WIDTH 56
-
 #elif defined(Z_SINT64)
 #	define Z_SINT_LEAST40_WIDTH 64
-
 #elif defined(Z_SINT128)
 #	define Z_SINT_LEAST40_WIDTH 128
 #endif
@@ -553,13 +493,10 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_UINT48)
 #	define Z_UINT_LEAST48_WIDTH 48
-
 #elif defined(Z_UINT56)
 #	define Z_UINT_LEAST48_WIDTH 56
-
 #elif defined(Z_UINT64)
 #	define Z_UINT_LEAST48_WIDTH 64
-
 #elif defined(Z_UINT128)
 #	define Z_UINT_LEAST48_WIDTH 128
 #endif
@@ -574,13 +511,10 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_SINT48)
 #	define Z_SINT_LEAST48_WIDTH 48
-
 #elif defined(Z_SINT56)
 #	define Z_SINT_LEAST48_WIDTH 56
-
 #elif defined(Z_SINT64)
 #	define Z_SINT_LEAST48_WIDTH 64
-
 #elif defined(Z_SINT128)
 #	define Z_SINT_LEAST48_WIDTH 128
 #endif
@@ -596,10 +530,8 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_UINT56)
 #	define Z_UINT_LEAST56_WIDTH 56
-
 #elif defined(Z_UINT64)
 #	define Z_UINT_LEAST56_WIDTH 64
-
 #elif defined(Z_UINT128)
 #	define Z_UINT_LEAST56_WIDTH 128
 #endif
@@ -614,10 +546,8 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_SINT56)
 #	define Z_SINT_LEAST56_WIDTH 56
-
 #elif defined(Z_SINT64)
 #	define Z_SINT_LEAST56_WIDTH 64
-
 #elif defined(Z_SINT128)
 #	define Z_SINT_LEAST56_WIDTH 128
 #endif
@@ -633,7 +563,6 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_UINT64)
 #	define Z_UINT_LEAST64_WIDTH 64
-
 #elif defined(Z_UINT128)
 #	define Z_UINT_LEAST64_WIDTH 128
 #endif
@@ -648,7 +577,6 @@ typedef Z_INTEGER_T_TYPE(SINT_LEAST8)	zsint_least8;
 
 #if defined(Z_SINT64)
 #	define Z_SINT_LEAST64_WIDTH 64
-
 #elif defined(Z_SINT128)
 #	define Z_SINT_LEAST64_WIDTH 128
 #endif
@@ -797,13 +725,10 @@ typedef Z_INTEGER_T_TYPE(SSIZE)	  zssize;
 
 #if defined(Z_UINT128)
 #	define Z_UINTMAX_WIDTH 128
-
 #elif defined(Z_UINT64)
 #	define Z_UINTMAX_WIDTH 64
-
 #elif defined(Z_ULLONG)
 #	define Z_UINTMAX_WIDTH Z_ULLONG_WIDTH
-
 #else
 #	define Z_UINTMAX_WIDTH Z_ULONG_WIDTH
 #endif
@@ -816,13 +741,10 @@ typedef Z_NATURAL_T_TYPE(UINTMAX)   zuintmax;
 
 #if defined(Z_SINT128)
 #	define Z_SINTMAX_WIDTH 128
-
 #elif defined(Z_SINT64)
 #	define Z_SINTMAX_WIDTH 64
-
 #elif defined(Z_SLLONG)
 #	define Z_SINTMAX_WIDTH Z_SLLONG_WIDTH
-
 #else
 #	define Z_SINTMAX_WIDTH Z_SLONG_WIDTH
 #endif

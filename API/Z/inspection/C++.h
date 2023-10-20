@@ -17,19 +17,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	ifndef Z_CPP
 #		if __cplusplus >= 202002L
 #			define Z_CPP Z_CPP20
-
 #		elif __cplusplus >= 201703L
 #			define Z_CPP Z_CPP17
-
 #		elif __cplusplus >= 201402L
 #			define Z_CPP Z_CPP14
-
 #		elif __cplusplus >= 201103L
 #			define Z_CPP Z_CPP11
-
 #		elif __cplusplus >= 199711L
 #			define Z_CPP Z_CPP98
-
 #		else
 #			define Z_CPP Z_CPP1
 #		endif
@@ -38,33 +33,25 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	if Z_CPP == Z_CPP20
 #		include <Z/inspection/C++/modules/C++20.h>
 #		define Z_CPP_NAME Z_CPP_NAME_CPP20
-
 #	elif Z_CPP == Z_CPP17
 #		include <Z/inspection/C++/modules/C++17.h>
 #		define Z_CPP_NAME Z_CPP_NAME_CPP17
-
 #	elif Z_CPP == Z_CPP14
 #		include <Z/inspection/C++/modules/C++14.h>
 #		define Z_CPP_NAME Z_CPP_NAME_CPP14
-
 #	elif Z_CPP == Z_CPP11
 #		include <Z/inspection/C++/modules/C++11.h>
 #		define Z_CPP_NAME Z_CPP_NAME_CPP11
-
 #	elif Z_CPP == Z_CPP03
 #		include <Z/inspection/C++/modules/C++03.h>
 #		define Z_CPP_NAME Z_CPP_NAME_CPP03
-
 #	elif Z_CPP == Z_CPP98
 #		include <Z/inspection/C++/modules/C++98.h>
 #		define Z_CPP_NAME Z_CPP_NAME_CPP98
-
 #	elif Z_CPP == Z_CPP2
 #		define Z_CPP_NAME Z_CPP_NAME_CPP2
-
 #	elif Z_CPP == Z_CPP1
 #		define Z_CPP_NAME Z_CPP_NAME_CPP1
-
 #	else
 #		error "Invalid Z_CPP key."
 #	endif

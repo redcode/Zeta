@@ -23,10 +23,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	if Z_OBJECTIVE_C == Z_OBJECTIVE_C_2_0
 #		include <Z/inspection/Objective-C/modules/Objective-C v2.0.h>
+
 #		define Z_OBJECTIVE_C_STRING Z_OBJECTIVE_C_STRING_OBJECTIVE_C_2_0
 
 #	elif Z_OBJECTIVE_C == Z_OBJECTIVE_C_1_0
 #		include <Z/inspection/Objective-C/modules/Objective-C v1.0.h>
+
 #		define Z_OBJECTIVE_C_STRING Z_OBJECTIVE_C_STRING_OBJECTIVE_C_1_0
 #	endif
 

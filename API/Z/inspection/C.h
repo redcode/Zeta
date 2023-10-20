@@ -15,22 +15,16 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_C
 #	if !defined(__STDC__) && !defined(__cplusplus)
 #		define Z_C Z_C78
-
 #	elif !defined(__STDC_VERSION__)
 #		define Z_C Z_C89
-
 #	elif __STDC_VERSION__ >= 201710L
 #		define Z_C Z_C17
-
 #	elif __STDC_VERSION__ >= 201112L
 #		define Z_C Z_C11
-
 #	elif __STDC_VERSION__ >= 199901L
 #		define Z_C Z_C99
-
 #	elif __STDC_VERSION__ >= 199409L
 #		define Z_C Z_C95
-
 #	else
 #		define Z_C Z_C90
 #	endif
@@ -39,31 +33,24 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_C == Z_C17
 #	include <Z/inspection/C/modules/C11.h>
 #	define Z_C_NAME Z_C_NAME_C17
-
 #elif Z_C == Z_C11
 #	include <Z/inspection/C/modules/C11.h>
 #	define Z_C_NAME Z_C_NAME_C11
-
 #elif Z_C == Z_C99
 #	include <Z/inspection/C/modules/C99.h>
 #	define Z_C_NAME Z_C_NAME_C99
-
 #elif Z_C == Z_C95
 #	include <Z/inspection/C/modules/C95.h>
 #	define Z_C_NAME Z_C_NAME_C95
-
 #elif Z_C == Z_C90
 #	include <Z/inspection/C/modules/C89.h>
 #	define Z_C_NAME Z_C_NAME_C90
-
 #elif Z_C == Z_C89
 #	include <Z/inspection/C/modules/C89.h>
 #	define Z_C_NAME Z_C_NAME_C89
-
 #elif Z_C == Z_C78
 #	include <Z/inspection/C/modules/C78.h>
 #	define Z_C_NAME Z_C_NAME_C78
-
 #else
 #	error "Invalid Z_C key."
 #endif
