@@ -14,7 +14,7 @@
 /______/_/  \_\  |______/|  ___/ \____/ \____| |_| |_|  |____,_|_| |_| |_|
                          |_|
 
-Copyright (C) 2006-2023 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
 
