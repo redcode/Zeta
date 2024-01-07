@@ -3,7 +3,7 @@
 |__   /|  ___|__  __|/   \
   /  /_|  __|  |  | /  *  \
  /_____|_____| |__|/__/ \__\
-Copyright (C) 2006-2023 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
 /* TODO:
@@ -310,9 +310,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_HAS_Type_MEMBER_string	     1
 #	define Z_HAS_Type_MEMBER_string_size 1
-#	define Z_HAS_Type_MEMBER_fnv0_64     1
-#	define Z_HAS_Type_MEMBER_fnv1_64     1
-#	define Z_HAS_Type_MEMBER_fnv1a_64    1
+#	define Z_HAS_Type_MEMBER_fnv0_32     1
+#	define Z_HAS_Type_MEMBER_fnv1_32     1
+#	define Z_HAS_Type_MEMBER_fnv1a_32    1
+
+#	ifdef Z_UINT64
+#		define Z_HAS_Type_MEMBER_fnv0_64  1
+#		define Z_HAS_Type_MEMBER_fnv1_64  1
+#		define Z_HAS_Type_MEMBER_fnv1a_64 1
+#	endif
 #endif
 
 /*--------------------------------------------------------.
@@ -2971,22 +2977,29 @@ namespace Zeta {
 
 #		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_DIALECT_HAS(CPP14, CONSTEXPR_FUNCTION)
 
-#			define Z__MEMBER_FUNCTIONS								\
+#			define Z__STRING_MEMBER_FUNCTIONS							\
 														\
 				static Z_CT(CPP14) USize string_size()						\
 					{return type_string_size<t>();}						\
 														\
 				static Z_CT(CPP14) SizedString<Char, string_size() + 1> string()		\
-					{return type_string<t>();}						\
-														\
-				static Z_CT(CPP14) UInt64 fnv0_64 () {return Zeta::fnv0_64 (type_string<t>());} \
-				static Z_CT(CPP14) UInt64 fnv1_64 () {return Zeta::fnv1_64 (type_string<t>());} \
-				static Z_CT(CPP14) UInt64 fnv1a_64() {return Zeta::fnv1a_64(type_string<t>());}
+					{return type_string<t>();}
 
-			Z__MEMBER_FUNCTIONS
+#			define Z__HASH_MEMBER_FUNCTIONS(bits)								    \
+				static Z_CT(CPP14) UInt##bits fnv0_##bits () {return Zeta::fnv0_##bits (type_string<t>());} \
+				static Z_CT(CPP14) UInt##bits fnv1_##bits () {return Zeta::fnv1_##bits (type_string<t>());} \
+				static Z_CT(CPP14) UInt##bits fnv1a_##bits() {return Zeta::fnv1a_##bits(type_string<t>());}
+
+			Z__STRING_MEMBER_FUNCTIONS
+			Z__HASH_MEMBER_FUNCTIONS(32)
+
+#			ifdef Z_UINT64
+				Z__HASH_MEMBER_FUNCTIONS(64)
+#			endif
 
 #		else
-#			define Z__MEMBER_FUNCTIONS
+#			define Z__STRING_MEMBER_FUNCTIONS
+#			define Z__HASH_MEMBER_FUNCTIONS(bits)
 #		endif
 
 		typedef typename TernaryType<Type::is_valid, Type, NaT>::type if_valid;
@@ -3268,10 +3281,16 @@ namespace Zeta {
 				template <zuint index> using parameter = typename Type<typename Type::template parameter<index> >::flow;
 #			endif
 
-			Z__MEMBER_FUNCTIONS
+			Z__STRING_MEMBER_FUNCTIONS
+			Z__HASH_MEMBER_FUNCTIONS(32)
+
+#			ifdef Z_UINT64
+				Z__HASH_MEMBER_FUNCTIONS(64)
+#			endif
 		};
 
-#		undef Z__MEMBER_FUNCTIONS
+#		undef Z__STRING_MEMBER_FUNCTIONS
+#		undef Z__HASH_MEMBER_FUNCTIONS
 	};
 
 	template <class t> struct TypeArity			{enum {value = Type<t>::arity			     };};
