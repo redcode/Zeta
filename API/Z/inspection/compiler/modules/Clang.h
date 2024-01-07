@@ -3,7 +3,7 @@
 |__   /|  ___|__  __|/   \
   /  /_|  __|  |  | /  *  \
  /_____|_____| |__|/__/ \__\
-Copyright (C) 2006-2023 Manuel Sainz de Baranda y Goñi.
+Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
 .------------------------------------------------------------------------------.
@@ -2569,11 +2569,20 @@ Released under the terms of the GNU Lesser General Public License v3.
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_CONSTRUCTIBLE __is_trivially_constructible /* v3.1 */
 #endif
 
-#if Z__HAS_TRAIT(has_trivial_assign)
+/*--------------------------------------------------.
+| See:						    |
+| https://github.com/abseil/abseil-cpp/issues/1201  |
+| https://reviews.llvm.org/D127593		    |
+| https://github.com/llvm/llvm-project/issues/33063 |
+'==================================================*/
+
+#if Z__HAS_TRAIT(has_trivial_assign) && Z_COMPILER_VERSION < Z_VERSION(10,0,0) /* Check version */
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPY_ASSIGNABLE __has_trivial_assign /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(has_trivial_copy)
+#if Z__HAS_TRAIT(is_trivially_copyable)
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE __is_trivially_copyable
+#elif Z__HAS_TRAIT(has_trivial_copy)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE __has_trivial_copy /* v2.6 */
 #endif
 
@@ -2581,11 +2590,15 @@ Released under the terms of the GNU Lesser General Public License v3.
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPYABLE __is_trivially_copyable /* v3.0 */
 #endif
 
-#if Z__HAS_TRAIT(has_trivial_constructor)
+#if Z__HAS_TRAIT(is_trivially_constructible)
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE __is_trivially_constructible
+#elif Z__HAS_TRAIT(has_trivial_constructor)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE __has_trivial_constructor /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(has_trivial_destructor)
+#if Z__HAS_TRAIT(is_trivially_destructible)
+#	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DESTRUCTIBLE __is_trivially_destructible
+#elif Z__HAS_TRAIT(has_trivial_destructor)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DESTRUCTIBLE __has_trivial_destructor /* v2.6 */
 #endif
 
