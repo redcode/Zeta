@@ -39,11 +39,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		15, 14, 13, 12, 11, 10,  9,  8, \
 		 7,  6,  5,  4,  3,  2,  1,  0
 
-#	define Z__ARGUMENT_COUNT(...) \
+#	define Z_z_ARGUMENT_COUNT(...) \
 		Z_SAME(L_PP_ARG_N(__VA_ARGS__))
 
 #	define Z_ARGUMENT_COUNT(...) \
-		Z__ARGUMENT_COUNT(__VA_ARGS__, L_PP_RSEQ_N())
+		Z_z_ARGUMENT_COUNT(__VA_ARGS__, L_PP_RSEQ_N())
 
 #endif
 

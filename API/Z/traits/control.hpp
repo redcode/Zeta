@@ -86,19 +86,19 @@ namespace Zeta {
 			class t28 = NaT, class t29 = NaT, class t30 = NaT, class t31 = NaT
 		> struct SelectType {};
 
-#		define Z__SPECIALIZATION(type_count, index)					  \
+#		define Z_z_SPECIALIZATION(type_count, index)					  \
 			template <Z_FOR_##type_count##_APPEND_INDEX(class t, Z_COMMA)>		  \
 			struct SelectType<index, Z_FOR_##type_count##_APPEND_INDEX(t, Z_COMMA)> { \
 				typedef t##index type;						  \
 			};
 
-#		define Z__SPECIALIZATION_GROUP(type_count) \
-			Z_FOR_##type_count##_CALL_WITH_TOKEN_AND_INDEX(Z__SPECIALIZATION, type_count, Z_EMPTY)
+#		define Z_z_SPECIALIZATION_GROUP(type_count) \
+			Z_FOR_##type_count##_CALL_WITH_TOKEN_AND_INDEX(Z_z_SPECIALIZATION, type_count, Z_EMPTY)
 
-		Z_FOR_32_CALL_WITH_INDEX(Z__SPECIALIZATION_GROUP, Z_EMPTY)
+		Z_FOR_32_CALL_WITH_INDEX(Z_z_SPECIALIZATION_GROUP, Z_EMPTY)
 
-#		undef Z__SPECIALIZATION
-#		undef Z__SPECIALIZATION_GROUP
+#		undef Z_z_SPECIALIZATION
+#		undef Z_z_SPECIALIZATION_GROUP
 	}
 #endif
 

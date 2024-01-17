@@ -266,62 +266,62 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		template <class l, class function_model> struct TypeListToFunction;
 
-#		define Z__NORMAL_SPECIALIZATION_GROUP	       \
-			Z__SPECIALIZATION_PAIR(Z_EMPTY	     ) \
-			Z__SPECIALIZATION_PAIR(const	     ) \
-			Z__SPECIALIZATION_PAIR(const volatile) \
-			Z__SPECIALIZATION_PAIR(	     volatile)
+#		define Z_z_NORMAL_SPECIALIZATION_GROUP		\
+			Z_z_SPECIALIZATION_PAIR(Z_EMPTY	      ) \
+			Z_z_SPECIALIZATION_PAIR(const	      ) \
+			Z_z_SPECIALIZATION_PAIR(const volatile) \
+			Z_z_SPECIALIZATION_PAIR(      volatile)
 
 #		if Z_DIALECT_HAS(CPP11, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-#			define Z__REFERENCE_SPECIALIZATION_GROUP	  \
-				Z__SPECIALIZATION_PAIR(		      & ) \
-				Z__SPECIALIZATION_PAIR(		      &&) \
-				Z__SPECIALIZATION_PAIR(const	      & ) \
-				Z__SPECIALIZATION_PAIR(const	      &&) \
-				Z__SPECIALIZATION_PAIR(const volatile & ) \
-				Z__SPECIALIZATION_PAIR(const volatile &&) \
-				Z__SPECIALIZATION_PAIR(	     volatile & ) \
-				Z__SPECIALIZATION_PAIR(	     volatile &&)
+#			define Z_z_REFERENCE_SPECIALIZATION_GROUP	   \
+				Z_z_SPECIALIZATION_PAIR(	       & ) \
+				Z_z_SPECIALIZATION_PAIR(	       &&) \
+				Z_z_SPECIALIZATION_PAIR(const	       & ) \
+				Z_z_SPECIALIZATION_PAIR(const	       &&) \
+				Z_z_SPECIALIZATION_PAIR(const volatile & ) \
+				Z_z_SPECIALIZATION_PAIR(const volatile &&) \
+				Z_z_SPECIALIZATION_PAIR(      volatile & ) \
+				Z_z_SPECIALIZATION_PAIR(      volatile &&)
 #		else
-#			define Z__REFERENCE_SPECIALIZATION_GROUP
+#			define Z_z_REFERENCE_SPECIALIZATION_GROUP
 #		endif
 
 #		if Z_DIALECT_HAS(GNUPP17, NOEXCEPT_OPERAND_DEDUCTION)
-#			define Z__NOEXCEPT_PARAMETER Boolean x,
-#			define Z__NOEXCEPT_SPECIFIER noexcept(x)
+#			define Z_z_NOEXCEPT_PARAMETER Boolean x,
+#			define Z_z_NOEXCEPT_SPECIFIER noexcept(x)
 #		else
-#			define Z__NOEXCEPT_PARAMETER
-#			define Z__NOEXCEPT_SPECIFIER
+#			define Z_z_NOEXCEPT_PARAMETER
+#			define Z_z_NOEXCEPT_SPECIFIER
 #		endif
 
-#		define Z__SPECIALIZATION_PAIR(qualifiers)							      \
-														      \
-			template <template <class...> class l, class... a, Z__NOEXCEPT_PARAMETER class r, class... p> \
-			struct TypeListToFunction<l<a...>, r(p...) qualifiers Z__NOEXCEPT_SPECIFIER> {		      \
-				typedef r type(a...) qualifiers Z__NOEXCEPT_SPECIFIER;				      \
-			};											      \
-														      \
-			template <template <class...> class l, class... a, Z__NOEXCEPT_PARAMETER class r, class... p> \
-			struct TypeListToFunction<l<a...>, r(p..., ...) qualifiers Z__NOEXCEPT_SPECIFIER> {	      \
-				typedef r type(a..., ...) qualifiers Z__NOEXCEPT_SPECIFIER;			      \
+#		define Z_z_SPECIALIZATION_PAIR(qualifiers)							       \
+														       \
+			template <template <class...> class l, class... a, Z_z_NOEXCEPT_PARAMETER class r, class... p> \
+			struct TypeListToFunction<l<a...>, r(p...) qualifiers Z_z_NOEXCEPT_SPECIFIER> {		       \
+				typedef r type(a...) qualifiers Z_z_NOEXCEPT_SPECIFIER;				       \
+			};											       \
+														       \
+			template <template <class...> class l, class... a, Z_z_NOEXCEPT_PARAMETER class r, class... p> \
+			struct TypeListToFunction<l<a...>, r(p..., ...) qualifiers Z_z_NOEXCEPT_SPECIFIER> {	       \
+				typedef r type(a..., ...) qualifiers Z_z_NOEXCEPT_SPECIFIER;			       \
 			};
 
-		Z__NORMAL_SPECIALIZATION_GROUP
-		Z__REFERENCE_SPECIALIZATION_GROUP
+		Z_z_NORMAL_SPECIALIZATION_GROUP
+		Z_z_REFERENCE_SPECIALIZATION_GROUP
 
 #		if !Z_DIALECT_HAS(GNUPP17, NOEXCEPT_OPERAND_DEDUCTION) && Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
-#			undef  Z__NOEXCEPT_SPECIFIER
-#			define Z__NOEXCEPT_SPECIFIER noexcept
+#			undef  Z_z_NOEXCEPT_SPECIFIER
+#			define Z_z_NOEXCEPT_SPECIFIER noexcept
 
-			Z__NORMAL_SPECIALIZATION_GROUP
-			Z__REFERENCE_SPECIALIZATION_GROUP
+			Z_z_NORMAL_SPECIALIZATION_GROUP
+			Z_z_REFERENCE_SPECIALIZATION_GROUP
 #		endif
 
-#		undef Z__NORMAL_SPECIALIZATION_GROUP
-#		undef Z__REFERENCE_SPECIALIZATION_GROUP
-#		undef Z__NOEXCEPT_PARAMETER
-#		undef Z__NOEXCEPT_SPECIFIER
-#		undef Z__SPECIALIZATION_PAIR
+#		undef Z_z_NORMAL_SPECIALIZATION_GROUP
+#		undef Z_z_REFERENCE_SPECIALIZATION_GROUP
+#		undef Z_z_NOEXCEPT_PARAMETER
+#		undef Z_z_NOEXCEPT_SPECIFIER
+#		undef Z_z_SPECIALIZATION_PAIR
 
 		template <class... a> struct TypeList {
 			enum {size = TypeCount<a...>::value};

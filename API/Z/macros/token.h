@@ -11,89 +11,89 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_COMMA ,
 
-#define Z__EMPTY(dummy)
-#define Z_EMPTY Z__EMPTY(~)
+#define Z_z_EMPTY(dummy)
+#define Z_EMPTY Z_z_EMPTY(~)
 
 #define Z_SAME(token) token
 
-#define Z__STRINGIFY(token) #token
-#define Z_STRINGIFY( token) Z__STRINGIFY(token)
+#define Z_z_STRINGIFY(token) #token
+#define Z_STRINGIFY( token) Z_z_STRINGIFY(token)
 
-#define Z__PREFIX_0(    rht)   0##rht
-#define Z__PREFIX_0x(   rht)  0x##rht
-#define Z__PREFIX_0b(   rht)  0b##rht
-#define Z__PREFIX_Z(    rht)   Z##rht
-#define Z__PREFIX_Z_(   rht)  Z_##rht
-#define Z__PREFIX_z(    rht)   z##rht
-#define Z__PREFIX_z_(   rht)  z_##rht
-#define Z__SUFFIX_D32(  lht) lht##D32
-#define Z__SUFFIX_D64(  lht) lht##D64
-#define Z__SUFFIX_D64x( lht) lht##D64x
-#define Z__SUFFIX_D128( lht) lht##D128
-#define Z__SUFFIX_D128x(lht) lht##D128x
-#define Z__SUFFIX_DD(   lht) lht##DD
-#define Z__SUFFIX_DF(   lht) lht##DF
-#define Z__SUFFIX_DL(   lht) lht##DL
-#define Z__SUFFIX_F(    lht) lht##F
-#define Z__SUFFIX_F16(  lht) lht##F16
-#define Z__SUFFIX_F32(  lht) lht##F32
-#define Z__SUFFIX_F32x( lht) lht##F32x
-#define Z__SUFFIX_F64(  lht) lht##F64
-#define Z__SUFFIX_F64x( lht) lht##F64x
-#define Z__SUFFIX_F128( lht) lht##F128
-#define Z__SUFFIX_F128x(lht) lht##F128x
-#define Z__SUFFIX_i32(	lht) lht##i32
-#define Z__SUFFIX_i64(	lht) lht##i64
-#define Z__SUFFIX_L(    lht) lht##L
-#define Z__SUFFIX_LL(   lht) lht##LL
-#define Z__SUFFIX_Q(    lht) lht##Q
-#define Z__SUFFIX_U(    lht) lht##U
-#define Z__SUFFIX_Ui32(	lht) lht##Ui32
-#define Z__SUFFIX_Ui64(	lht) lht##Ui64
-#define Z__SUFFIX_UL(   lht) lht##UL
-#define Z__SUFFIX_ULL(  lht) lht##ULL
-#define Z__SUFFIX_UZ(	lht) lht##UZ
-#define Z__SUFFIX_W(    lht) lht##W
-#define Z__SUFFIX_Z(	lht) lht##Z
+#define Z_z_PREFIX_0(	 rht)   0##rht
+#define Z_z_PREFIX_0x(	 rht)  0x##rht
+#define Z_z_PREFIX_0b(	 rht)  0b##rht
+#define Z_z_PREFIX_Z(	 rht)   Z##rht
+#define Z_z_PREFIX_Z_(	 rht)  Z_##rht
+#define Z_z_PREFIX_z(	 rht)   z##rht
+#define Z_z_PREFIX_z_(	 rht)  z_##rht
+#define Z_z_SUFFIX_D32(	 lht) lht##D32
+#define Z_z_SUFFIX_D64(	 lht) lht##D64
+#define Z_z_SUFFIX_D64x( lht) lht##D64x
+#define Z_z_SUFFIX_D128( lht) lht##D128
+#define Z_z_SUFFIX_D128x(lht) lht##D128x
+#define Z_z_SUFFIX_DD(	 lht) lht##DD
+#define Z_z_SUFFIX_DF(	 lht) lht##DF
+#define Z_z_SUFFIX_DL(	 lht) lht##DL
+#define Z_z_SUFFIX_F(	 lht) lht##F
+#define Z_z_SUFFIX_F16(	 lht) lht##F16
+#define Z_z_SUFFIX_F32(	 lht) lht##F32
+#define Z_z_SUFFIX_F32x( lht) lht##F32x
+#define Z_z_SUFFIX_F64(	 lht) lht##F64
+#define Z_z_SUFFIX_F64x( lht) lht##F64x
+#define Z_z_SUFFIX_F128( lht) lht##F128
+#define Z_z_SUFFIX_F128x(lht) lht##F128x
+#define Z_z_SUFFIX_i32(	 lht) lht##i32
+#define Z_z_SUFFIX_i64(	 lht) lht##i64
+#define Z_z_SUFFIX_L(	 lht) lht##L
+#define Z_z_SUFFIX_LL(	 lht) lht##LL
+#define Z_z_SUFFIX_Q(	 lht) lht##Q
+#define Z_z_SUFFIX_U(	 lht) lht##U
+#define Z_z_SUFFIX_Ui32( lht) lht##Ui32
+#define Z_z_SUFFIX_Ui64( lht) lht##Ui64
+#define Z_z_SUFFIX_UL(	 lht) lht##UL
+#define Z_z_SUFFIX_ULL(	 lht) lht##ULL
+#define Z_z_SUFFIX_UZ(	 lht) lht##UZ
+#define Z_z_SUFFIX_W(	 lht) lht##W
+#define Z_z_SUFFIX_Z(	 lht) lht##Z
 
 #define Z_PREFIX_	    Z_SAME
-#define Z_PREFIX_0(    rht) Z__PREFIX_0	   (rht)
-#define Z_PREFIX_0x(   rht) Z__PREFIX_0x   (rht)
-#define Z_PREFIX_0b(   rht) Z__PREFIX_0b   (rht)
-#define Z_PREFIX_Z(    rht) Z__PREFIX_Z	   (rht)
-#define Z_PREFIX_Z_(   rht) Z__PREFIX_Z_   (rht)
-#define Z_PREFIX_z(    rht) Z__PREFIX_z	   (rht)
-#define Z_PREFIX_z_(   rht) Z__PREFIX_z_   (rht)
+#define Z_PREFIX_0(    rht) Z_z_PREFIX_0    (rht)
+#define Z_PREFIX_0x(   rht) Z_z_PREFIX_0x   (rht)
+#define Z_PREFIX_0b(   rht) Z_z_PREFIX_0b   (rht)
+#define Z_PREFIX_Z(    rht) Z_z_PREFIX_Z    (rht)
+#define Z_PREFIX_Z_(   rht) Z_z_PREFIX_Z_   (rht)
+#define Z_PREFIX_z(    rht) Z_z_PREFIX_z    (rht)
+#define Z_PREFIX_z_(   rht) Z_z_PREFIX_z_   (rht)
 #define Z_SUFFIX_	    Z_SAME
-#define Z_SUFFIX_D32(  lht) Z__SUFFIX_D32  (lht)
-#define Z_SUFFIX_D64(  lht) Z__SUFFIX_D64  (lht)
-#define Z_SUFFIX_D64x( lht) Z__SUFFIX_D64x (lht)
-#define Z_SUFFIX_D128( lht) Z__SUFFIX_D128 (lht)
-#define Z_SUFFIX_D128x(lht) Z__SUFFIX_D128x(lht)
-#define Z_SUFFIX_DD(   lht) Z__SUFFIX_DD   (lht)
-#define Z_SUFFIX_DF(   lht) Z__SUFFIX_DF   (lht)
-#define Z_SUFFIX_DL(   lht) Z__SUFFIX_DL   (lht)
-#define Z_SUFFIX_F(    lht) Z__SUFFIX_F	   (lht)
-#define Z_SUFFIX_F16(  lht) Z__SUFFIX_F16  (lht)
-#define Z_SUFFIX_F32(  lht) Z__SUFFIX_F32  (lht)
-#define Z_SUFFIX_F32x( lht) Z__SUFFIX_F32x (lht)
-#define Z_SUFFIX_F64(  lht) Z__SUFFIX_F64  (lht)
-#define Z_SUFFIX_F64x( lht) Z__SUFFIX_F64x (lht)
-#define Z_SUFFIX_F128( lht) Z__SUFFIX_F128 (lht)
-#define Z_SUFFIX_F128x(lht) Z__SUFFIX_F128x(lht)
-#define Z_SUFFIX_i32(  lht) Z__SUFFIX_i32  (lht)
-#define Z_SUFFIX_i64(  lht) Z__SUFFIX_i64  (lht)
-#define Z_SUFFIX_L(    lht) Z__SUFFIX_L	   (lht)
-#define Z_SUFFIX_LL(   lht) Z__SUFFIX_LL   (lht)
-#define Z_SUFFIX_Q(    lht) Z__SUFFIX_Q	   (lht)
-#define Z_SUFFIX_U(    lht) Z__SUFFIX_U	   (lht)
-#define Z_SUFFIX_Ui32( lht) Z__SUFFIX_Ui32 (lht)
-#define Z_SUFFIX_Ui64( lht) Z__SUFFIX_Ui64 (lht)
-#define Z_SUFFIX_UL(   lht) Z__SUFFIX_UL   (lht)
-#define Z_SUFFIX_ULL(  lht) Z__SUFFIX_ULL  (lht)
-#define Z_SUFFIX_UZ(   lht) Z__SUFFIX_UZ   (lht)
-#define Z_SUFFIX_W(    lht) Z__SUFFIX_W	   (lht)
-#define Z_SUFFIX_Z(    lht) Z__SUFFIX_Z	   (lht)
+#define Z_SUFFIX_D32(  lht) Z_z_SUFFIX_D32  (lht)
+#define Z_SUFFIX_D64(  lht) Z_z_SUFFIX_D64  (lht)
+#define Z_SUFFIX_D64x( lht) Z_z_SUFFIX_D64x (lht)
+#define Z_SUFFIX_D128( lht) Z_z_SUFFIX_D128 (lht)
+#define Z_SUFFIX_D128x(lht) Z_z_SUFFIX_D128x(lht)
+#define Z_SUFFIX_DD(   lht) Z_z_SUFFIX_DD   (lht)
+#define Z_SUFFIX_DF(   lht) Z_z_SUFFIX_DF   (lht)
+#define Z_SUFFIX_DL(   lht) Z_z_SUFFIX_DL   (lht)
+#define Z_SUFFIX_F(    lht) Z_z_SUFFIX_F    (lht)
+#define Z_SUFFIX_F16(  lht) Z_z_SUFFIX_F16  (lht)
+#define Z_SUFFIX_F32(  lht) Z_z_SUFFIX_F32  (lht)
+#define Z_SUFFIX_F32x( lht) Z_z_SUFFIX_F32x (lht)
+#define Z_SUFFIX_F64(  lht) Z_z_SUFFIX_F64  (lht)
+#define Z_SUFFIX_F64x( lht) Z_z_SUFFIX_F64x (lht)
+#define Z_SUFFIX_F128( lht) Z_z_SUFFIX_F128 (lht)
+#define Z_SUFFIX_F128x(lht) Z_z_SUFFIX_F128x(lht)
+#define Z_SUFFIX_i32(  lht) Z_z_SUFFIX_i32  (lht)
+#define Z_SUFFIX_i64(  lht) Z_z_SUFFIX_i64  (lht)
+#define Z_SUFFIX_L(    lht) Z_z_SUFFIX_L    (lht)
+#define Z_SUFFIX_LL(   lht) Z_z_SUFFIX_LL   (lht)
+#define Z_SUFFIX_Q(    lht) Z_z_SUFFIX_Q    (lht)
+#define Z_SUFFIX_U(    lht) Z_z_SUFFIX_U    (lht)
+#define Z_SUFFIX_Ui32( lht) Z_z_SUFFIX_Ui32 (lht)
+#define Z_SUFFIX_Ui64( lht) Z_z_SUFFIX_Ui64 (lht)
+#define Z_SUFFIX_UL(   lht) Z_z_SUFFIX_UL   (lht)
+#define Z_SUFFIX_ULL(  lht) Z_z_SUFFIX_ULL  (lht)
+#define Z_SUFFIX_UZ(   lht) Z_z_SUFFIX_UZ   (lht)
+#define Z_SUFFIX_W(    lht) Z_z_SUFFIX_W    (lht)
+#define Z_SUFFIX_Z(    lht) Z_z_SUFFIX_Z    (lht)
 
 #define Z_PASTE_2( _1, _2)																		  _1##_2
 #define Z_PASTE_3( _1, _2, _3)																		  _1##_2##_3
@@ -288,80 +288,80 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_INSERT_NUMBER_512( lht, rht) lht##512##rht
 #define Z_INSERT_NUMBER_1024(lht, rht) lht##1024##rht
 
-#define Z__IS_RESULT(padding1, result, padding2, padding3) result
+#define Z_z_IS_RESULT(padding1, result, padding2, padding3) result
 
-#define Z__IS_TEST(split, merge_begin, merge_end) \
-	Z_SAME(Z__IS_RESULT(~ split 1, 0, ~ merge_begin , merge_end ~))
+#define Z_z_IS_TEST(split, merge_begin, merge_end) \
+	Z_SAME(Z_z_IS_RESULT(~ split 1, 0, ~ merge_begin , merge_end ~))
 
-#define Z__IS_NOT_TEST(split, merge_begin, merge_end) \
-	Z_SAME(Z__IS_RESULT(~ split 0, 1, ~ merge_begin , merge_end ~))
+#define Z_z_IS_NOT_TEST(split, merge_begin, merge_end) \
+	Z_SAME(Z_z_IS_RESULT(~ split 0, 1, ~ merge_begin , merge_end ~))
 
-#define Z__IS_0_SPLIT_0       ,
-#define Z__IS_0_MERGE_BEGIN_0 Z_EMPTY (
-#define Z__IS_0_MERGE_END_0   Z_EMPTY )
-#define Z__IS_1_SPLIT_1       ,
-#define Z__IS_1_MERGE_BEGIN_1 Z_EMPTY (
-#define Z__IS_1_MERGE_END_1   Z_EMPTY )
+#define Z_z_IS_0_SPLIT_0       ,
+#define Z_z_IS_0_MERGE_BEGIN_0 Z_EMPTY (
+#define Z_z_IS_0_MERGE_END_0   Z_EMPTY )
+#define Z_z_IS_1_SPLIT_1       ,
+#define Z_z_IS_1_MERGE_BEGIN_1 Z_EMPTY (
+#define Z_z_IS_1_MERGE_END_1   Z_EMPTY )
 
-#define Z_IS_0(token) Z__IS_TEST(	       \
-	Z_JOIN_2(Z__IS_0_SPLIT_,       token), \
-	Z_JOIN_2(Z__IS_0_MERGE_BEGIN_, token), \
-	Z_JOIN_2(Z__IS_0_MERGE_END_,   token))
+#define Z_IS_0(token) Z_z_IS_TEST(		\
+	Z_JOIN_2(Z_z_IS_0_SPLIT_,	token), \
+	Z_JOIN_2(Z_z_IS_0_MERGE_BEGIN_, token), \
+	Z_JOIN_2(Z_z_IS_0_MERGE_END_,	token))
 
-#define Z_IS_1(token) Z__IS_TEST(	       \
-	Z_JOIN_2(Z__IS_1_SPLIT_,       token), \
-	Z_JOIN_2(Z__IS_1_MERGE_BEGIN_, token), \
-	Z_JOIN_2(Z__IS_1_MERGE_END_,   token))
+#define Z_IS_1(token) Z_z_IS_TEST(		\
+	Z_JOIN_2(Z_z_IS_1_SPLIT_,	token), \
+	Z_JOIN_2(Z_z_IS_1_MERGE_BEGIN_, token), \
+	Z_JOIN_2(Z_z_IS_1_MERGE_END_,	token))
 
-#define Z_IS_NOT_0(token) Z__IS_NOT_TEST(      \
-	Z_JOIN_2(Z__IS_0_SPLIT_,       token), \
-	Z_JOIN_2(Z__IS_0_MERGE_BEGIN_, token), \
-	Z_JOIN_2(Z__IS_0_MERGE_END_,   token))
+#define Z_IS_NOT_0(token) Z_z_IS_NOT_TEST(	\
+	Z_JOIN_2(Z_z_IS_0_SPLIT_,	token), \
+	Z_JOIN_2(Z_z_IS_0_MERGE_BEGIN_, token), \
+	Z_JOIN_2(Z_z_IS_0_MERGE_END_,	token))
 
-#define Z_IS_NOT_1(token) Z__IS_NOT_TEST(      \
-	Z_JOIN_2(Z__IS_1_SPLIT_,       token), \
-	Z_JOIN_2(Z__IS_1_MERGE_BEGIN_, token), \
-	Z_JOIN_2(Z__IS_1_MERGE_END_,   token))
+#define Z_IS_NOT_1(token) Z_z_IS_NOT_TEST(	\
+	Z_JOIN_2(Z_z_IS_1_SPLIT_,	token), \
+	Z_JOIN_2(Z_z_IS_1_MERGE_BEGIN_, token), \
+	Z_JOIN_2(Z_z_IS_1_MERGE_END_,	token))
 
 #define Z_BOOLEANIZE Z_IS_NOT_0
 #define Z_NOT	     Z_IS_0
 #define Z_IS_TRUE    Z_IS_1
 #define Z_IS_FALSE   Z_IS_0
 
-#define Z__IF_1(body) body
-#define Z__IF_0(body)
+#define Z_z_IF_1(body) body
+#define Z_z_IF_0(body)
 
 #define Z_IF(booleanizable) \
-	Z_JOIN_2(Z__IF_, Z_BOOLEANIZE(booleanizable))
+	Z_JOIN_2(Z_z_IF_, Z_BOOLEANIZE(booleanizable))
 
-#define Z__UNLESS_1(body)
-#define Z__UNLESS_0(body) body
+#define Z_z_UNLESS_1(body)
+#define Z_z_UNLESS_0(body) body
 
 #define Z_UNLESS(booleanizable) \
-	Z_JOIN_2(Z__UNLESS_, Z_BOOLEANIZE(booleanizable))
+	Z_JOIN_2(Z_z_UNLESS_, Z_BOOLEANIZE(booleanizable))
 
-#define Z__TERNARY_1(a, b) a
-#define Z__TERNARY_0(a, b) b
+#define Z_z_TERNARY_1(a, b) a
+#define Z_z_TERNARY_0(a, b) b
 
 #define Z_TERNARY(booleanizable) \
-	Z_JOIN_2(Z__TERNARY_, Z_BOOLEANIZE(booleanizable))
+	Z_JOIN_2(Z_z_TERNARY_, Z_BOOLEANIZE(booleanizable))
 
-#define Z__APPEND_TERNARY_1(lht, a, b) lht##a
-#define Z__APPEND_TERNARY_0(lht, a, b) lht##b
+#define Z_z_APPEND_TERNARY_1(lht, a, b) lht##a
+#define Z_z_APPEND_TERNARY_0(lht, a, b) lht##b
 
 #define Z_APPEND_TERNARY(booleanizable) \
-	Z_JOIN_2(Z__APPEND_TERNARY_, Z_BOOLEANIZE(booleanizable))
+	Z_JOIN_2(Z_z_APPEND_TERNARY_, Z_BOOLEANIZE(booleanizable))
 
-#define Z__PREPEND_TERNARY_1(rht, a, b) a##rht
-#define Z__PREPEND_TERNARY_0(rht, a, b) b##rht
+#define Z_z_PREPEND_TERNARY_1(rht, a, b) a##rht
+#define Z_z_PREPEND_TERNARY_0(rht, a, b) b##rht
 
 #define Z_PREPEND_TERNARY(booleanizable) \
-	Z_JOIN_2(Z__PREPEND_TERNARY_, Z_BOOLEANIZE(booleanizable))
+	Z_JOIN_2(Z_z_PREPEND_TERNARY_, Z_BOOLEANIZE(booleanizable))
 
-#define Z__INSERT_TERNARY_1(lht, rht, a, b) lht##a##rht
-#define Z__INSERT_TERNARY_0(lht, rht, a, b) lht##b##rht
+#define Z_z_INSERT_TERNARY_1(lht, rht, a, b) lht##a##rht
+#define Z_z_INSERT_TERNARY_0(lht, rht, a, b) lht##b##rht
 
 #define Z_INSERT_TERNARY(booleanizable) \
-	Z_JOIN_2(Z__INSERT_TERNARY_, Z_BOOLEANIZE(booleanizable))
+	Z_JOIN_2(Z_z_INSERT_TERNARY_, Z_BOOLEANIZE(booleanizable))
 
 #endif /* Z_macros_token_H */

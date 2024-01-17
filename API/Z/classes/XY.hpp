@@ -374,7 +374,7 @@ namespace Zeta {template <class t> struct XY {
 
 #	if defined(Z_WITH_CORE_FOUNDATION) || defined(Z_WITH_FOUNDATION)
 
-#		define Z__APPLE_CONSTRUCTORS(Prefix)			     \
+#		define Z_z_APPLE_CONSTRUCTORS(Prefix)			     \
 									     \
 			Z_CT(CPP11) XY(const Prefix##Point &point) Z_NOTHROW \
 			: x(t(point.x)), y(t(point.y)) {}		     \
@@ -386,7 +386,7 @@ namespace Zeta {template <class t> struct XY {
 
 #		if Z_DIALECT_HAS(CPP11, COPY_LIST_INITIALIZATION)
 
-#			define Z__APPLE_OPERATORS(Prefix)				 \
+#			define Z_z_APPLE_OPERATORS(Prefix)				 \
 											 \
 				Z_CT(CPP11) operator Prefix##Point() const Z_NOTHROW	 \
 					{return {CGFloat(x), CGFloat(y)};}		 \
@@ -400,7 +400,7 @@ namespace Zeta {template <class t> struct XY {
 					{return {{0.0, 0.0}, {CGFloat(x), CGFloat(y)}};}
 
 #		else
-#			define Z__APPLE_OPERATORS(Prefix)							\
+#			define Z_z_APPLE_OPERATORS(Prefix)							\
 														\
 				Z_CT(CPP14) operator Prefix##Point() const Z_NOTHROW				\
 					{									\
@@ -425,8 +425,8 @@ namespace Zeta {template <class t> struct XY {
 
 
 #		ifdef Z_WITH_CORE_FOUNDATION
-			Z__APPLE_CONSTRUCTORS(CG)
-			Z__APPLE_OPERATORS   (CG)
+			Z_z_APPLE_CONSTRUCTORS(CG)
+			Z_z_APPLE_OPERATORS   (CG)
 #		endif
 
 #		if	defined(Z_WITH_FOUNDATION)	   &&		       \
@@ -435,12 +435,12 @@ namespace Zeta {template <class t> struct XY {
 			!defined(NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES) || \
 			!NSGEOMETRY_TYPES_SAME_AS_CGGEOMETRY_TYPES)
 
-			Z__APPLE_CONSTRUCTORS(NS)
-			Z__APPLE_OPERATORS   (NS)
+			Z_z_APPLE_CONSTRUCTORS(NS)
+			Z_z_APPLE_OPERATORS   (NS)
 #		endif
 
-#		undef Z__APPLE_CONSTRUCTORS
-#		undef Z__APPLE_OPERATORS
+#		undef Z_z_APPLE_CONSTRUCTORS
+#		undef Z_z_APPLE_OPERATORS
 
 #	endif
 

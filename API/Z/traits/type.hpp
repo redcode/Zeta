@@ -109,12 +109,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
-#	define Z_Z_HAS_TypeIsNoexcept		   1
-#	define Z_Z_HAS_TypeAddNoexcept		   1
-#	define Z_Z_HAS_TypeRemoveNoexcept	   1
-#	define Z_Z_HAS_Type_MEMBER_is_noexcept	   1
-#	define Z_Z_HAS_Type_MEMBER_add_noexcept	   1
-#	define Z_Z_HAS_Type_MEMBER_remove_noexcept 1
+#	define Z_z_HAS_TypeIsNoexcept		   1
+#	define Z_z_HAS_TypeAddNoexcept		   1
+#	define Z_z_HAS_TypeRemoveNoexcept	   1
+#	define Z_z_HAS_Type_MEMBER_is_noexcept	   1
+#	define Z_z_HAS_Type_MEMBER_add_noexcept	   1
+#	define Z_z_HAS_Type_MEMBER_remove_noexcept 1
 #endif
 
 #if Z_DIALECT_HAS(CPP11, RVALUE_REFERENCE)
@@ -444,25 +444,25 @@ namespace Zeta {
 			struct TypeIsCallable<t, r(p..., ...), Maybe<TypeIsSame<r, decltype(fake<t>()(fake<p>()...))>::value> > : True {};
 
 #		else
-#			define Z__ARGUMENT(index) fake<p##index>()
+#			define Z_z_ARGUMENT(index) fake<p##index>()
 
-#			define Z__SPECIALIZATION_PAIR(arity)											\
+#			define Z_z_SPECIALIZATION_PAIR(arity)											\
 																		\
 				template <class t, class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>			\
 				struct TypeIsCallable<												\
 					t, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)),								\
-					Maybe<TypeIsSame<r, decltype(fake<t>()(Z_FOR_##arity##_CALL_WITH_INDEX(Z__ARGUMENT, Z_COMMA)))>::value> \
+					Maybe<TypeIsSame<r, decltype(fake<t>()(Z_FOR_##arity##_CALL_WITH_INDEX(Z_z_ARGUMENT, Z_COMMA)))>::value> \
 				> : True {};													\
 																		\
 				template <class t, class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>			\
 				struct TypeIsCallable<												\
 					t, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...),				\
-					Maybe<TypeIsSame<r, decltype(fake<t>()(Z_FOR_##arity##_CALL_WITH_INDEX(Z__ARGUMENT, Z_COMMA)))>::value> \
+					Maybe<TypeIsSame<r, decltype(fake<t>()(Z_FOR_##arity##_CALL_WITH_INDEX(Z_z_ARGUMENT, Z_COMMA)))>::value> \
 				> : True {};
 
-			Z_FOR_32_CALL_WITH_INDEX(Z__SPECIALIZATION_PAIR, Z_EMPTY)
-#			undef Z__SPECIALIZATION_PAIR
-#			undef Z__ARGUMENT
+			Z_FOR_32_CALL_WITH_INDEX(Z_z_SPECIALIZATION_PAIR, Z_EMPTY)
+#			undef Z_z_SPECIALIZATION_PAIR
+#			undef Z_z_ARGUMENT
 #		endif
 #	endif
 
@@ -970,7 +970,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 		typedef zschar to_signed;
 	};
 
-#	define Z__STD_INTEGRAL(NAME, Name, name)				  \
+#	define Z_z_STD_INTEGRAL(NAME, Name, name)				  \
 										  \
 		struct U##Name : Natural {					  \
 			enum {	fundamental	  = Z_U##NAME##_FUNDAMENTAL,	  \
@@ -996,16 +996,16 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 			typedef zs##name to_signed;				  \
 		};
 
-	Z__STD_INTEGRAL(CHAR,  Char,  char )
-	Z__STD_INTEGRAL(SHORT, Short, short)
-	Z__STD_INTEGRAL(INT,   Int,   int  )
-	Z__STD_INTEGRAL(LONG,  Long,  long )
+	Z_z_STD_INTEGRAL(CHAR,	Char,  char )
+	Z_z_STD_INTEGRAL(SHORT, Short, short)
+	Z_z_STD_INTEGRAL(INT,	Int,   int  )
+	Z_z_STD_INTEGRAL(LONG,	Long,  long )
 
 #	ifdef Z_LLONG
-		Z__STD_INTEGRAL(LLONG, LLong, llong)
+		Z_z_STD_INTEGRAL(LLONG, LLong, llong)
 #	endif
 
-#	undef Z__STD_INTEGRAL
+#	undef Z_z_STD_INTEGRAL
 
 #	ifdef Z_BOOL
 
@@ -1027,7 +1027,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 
 #	endif
 
-#	define Z__STD_FIXED_CHARACTER(bits)				      \
+#	define Z_z_STD_FIXED_CHARACTER(bits)				      \
 		struct Char##bits : Natural {				      \
 			enum {	fundamental	  = Z_FUNDAMENTAL_CHAR##bits, \
 				fixed_fundamental = Z_FUNDAMENTAL_UINT##bits  \
@@ -1038,20 +1038,20 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 		};
 
 #	if Z_DIALECT_HAS_TYPE(CPP20, CHAR8_T)
-		Z__STD_FIXED_CHARACTER(8)
+		Z_z_STD_FIXED_CHARACTER(8)
 #	endif
 
 #	if Z_DIALECT_HAS_TYPE(CPP11, CHAR16_T)
-		Z__STD_FIXED_CHARACTER(16)
+		Z_z_STD_FIXED_CHARACTER(16)
 #	endif
 
 #	if Z_DIALECT_HAS_TYPE(CPP11, CHAR32_T)
-		Z__STD_FIXED_CHARACTER(32)
+		Z_z_STD_FIXED_CHARACTER(32)
 #	endif
 
-#	undef Z__STD_FIXED_CHARACTER
+#	undef Z_z_STD_FIXED_CHARACTER
 
-#	define Z__FIXED_NATURAL(bits)								  \
+#	define Z_z_FIXED_NATURAL(bits)								  \
 		struct UInt##bits : Natural {							  \
 			enum {	fundamental	  = Z_UINT##bits##_FUNDAMENTAL,			  \
 				fixed_fundamental = Z_UINT##bits##_FIXED_FUNDAMENTAL		  \
@@ -1065,7 +1065,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 			static Z_CT(CPP11) zuint##bits minimum() {return Z_UINT##bits(0);}	  \
 		};
 
-#	define Z__FIXED_INTEGER(bits)								  \
+#	define Z_z_FIXED_INTEGER(bits)								  \
 		struct SInt##bits : Integer {							  \
 			enum {	fundamental	  = Z_SINT##bits##_FUNDAMENTAL,			  \
 				fixed_fundamental = Z_SINT##bits##_FIXED_FUNDAMENTAL		  \
@@ -1080,81 +1080,81 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 		};
 
 #	if defined(Z_UINT8) && Z_UINT8_FUNDAMENTAL == Z_FUNDAMENTAL_UINT8
-		Z__FIXED_NATURAL(8)
+		Z_z_FIXED_NATURAL(8)
 #	endif
 
 #	if defined(Z_SINT8) && Z_SINT8_FUNDAMENTAL == Z_FUNDAMENTAL_SINT8
-		Z__FIXED_INTEGER(8)
+		Z_z_FIXED_INTEGER(8)
 #	endif
 
 #	if defined(Z_UINT16) && Z_UINT16_FUNDAMENTAL == Z_FUNDAMENTAL_UINT16
-		Z__FIXED_NATURAL(16)
+		Z_z_FIXED_NATURAL(16)
 #	endif
 
 #	if defined(Z_SINT16) && Z_SINT16_FUNDAMENTAL == Z_FUNDAMENTAL_SINT16
-		Z__FIXED_INTEGER(16)
+		Z_z_FIXED_INTEGER(16)
 #	endif
 
 #	if defined(Z_UINT24) && Z_UINT24_FUNDAMENTAL == Z_FUNDAMENTAL_UINT24
-		Z__FIXED_NATURAL(24)
+		Z_z_FIXED_NATURAL(24)
 #	endif
 
 #	if defined(Z_SINT24) && Z_SINT24_FUNDAMENTAL == Z_FUNDAMENTAL_SINT24
-		Z__FIXED_INTEGER(24)
+		Z_z_FIXED_INTEGER(24)
 #	endif
 
 #	if defined(Z_UINT32) && Z_UINT32_FUNDAMENTAL == Z_FUNDAMENTAL_UINT32
-		Z__FIXED_NATURAL(32)
+		Z_z_FIXED_NATURAL(32)
 #	endif
 
 #	if defined(Z_SINT32) && Z_SINT32_FUNDAMENTAL == Z_FUNDAMENTAL_SINT32
-		Z__FIXED_INTEGER(32)
+		Z_z_FIXED_INTEGER(32)
 #	endif
 
 #	if defined(Z_UINT40) && Z_UINT40_FUNDAMENTAL == Z_FUNDAMENTAL_UINT40
-		Z__FIXED_NATURAL(40)
+		Z_z_FIXED_NATURAL(40)
 #	endif
 
 #	if defined(Z_SINT40) && Z_SINT40_FUNDAMENTAL == Z_FUNDAMENTAL_SINT40
-		Z__FIXED_INTEGER(40)
+		Z_z_FIXED_INTEGER(40)
 #	endif
 
 #	if defined(Z_UINT48) && Z_UINT48_FUNDAMENTAL == Z_FUNDAMENTAL_UINT48
-		Z__FIXED_NATURAL(48)
+		Z_z_FIXED_NATURAL(48)
 #	endif
 
 #	if defined(Z_SINT48) && Z_SINT48_FUNDAMENTAL == Z_FUNDAMENTAL_SINT48
-		Z__FIXED_INTEGER(48)
+		Z_z_FIXED_INTEGER(48)
 #	endif
 
 #	if defined(Z_UINT56) && Z_UINT56_FUNDAMENTAL == Z_FUNDAMENTAL_UINT56
-		Z__FIXED_NATURAL(56)
+		Z_z_FIXED_NATURAL(56)
 #	endif
 
 #	if defined(Z_SINT56) && Z_SINT56_FUNDAMENTAL == Z_FUNDAMENTAL_SINT56
-		Z__FIXED_INTEGER(56)
+		Z_z_FIXED_INTEGER(56)
 #	endif
 
 #	if defined(Z_UINT64) && Z_UINT64_FUNDAMENTAL == Z_FUNDAMENTAL_UINT64
-		Z__FIXED_NATURAL(64)
+		Z_z_FIXED_NATURAL(64)
 #	endif
 
 #	if defined(Z_SINT64) && Z_SINT64_FUNDAMENTAL == Z_FUNDAMENTAL_SINT64
-		Z__FIXED_INTEGER(64)
+		Z_z_FIXED_INTEGER(64)
 #	endif
 
 #	if defined(Z_UINT128) && Z_UINT128_FUNDAMENTAL == Z_FUNDAMENTAL_UINT128
-		Z__FIXED_NATURAL(128)
+		Z_z_FIXED_NATURAL(128)
 #	endif
 
 #	if defined(Z_SINT128) && Z_SINT128_FUNDAMENTAL == Z_FUNDAMENTAL_SINT128
-		Z__FIXED_INTEGER(128)
+		Z_z_FIXED_INTEGER(128)
 #	endif
 
-#	undef Z__FIXED_NATURAL
-#	undef Z__FIXED_INTEGER
+#	undef Z_z_FIXED_NATURAL
+#	undef Z_z_FIXED_INTEGER
 
-#	define Z__REAL(NAME, Name, name)								    \
+#	define Z_z_REAL(NAME, Name, name)								    \
 		struct Name : FloatingPoint {								    \
 			enum {	fundamental	  = Z_##NAME##_FUNDAMENTAL,				    \
 				fixed_fundamental = Z_##NAME##_FIXED_FUNDAMENTAL,			    \
@@ -1180,114 +1180,114 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 		};
 
 #	ifdef Z_FLOAT
-		Z__REAL(FLOAT, Float, float)
+		Z_z_REAL(FLOAT, Float, float)
 #	endif
 
 #	ifdef Z_DOUBLE
-		Z__REAL(DOUBLE, Double, double)
+		Z_z_REAL(DOUBLE, Double, double)
 #	endif
 
 #	ifdef Z_LDOUBLE
-		Z__REAL(LDOUBLE, LDouble, ldouble)
+		Z_z_REAL(LDOUBLE, LDouble, ldouble)
 #	endif
 
 #	ifdef Z_FLOAT16
-		Z__REAL(FLOAT16, Float16, float16)
+		Z_z_REAL(FLOAT16, Float16, float16)
 #	endif
 
 #	ifdef Z_FLOAT32
-		Z__REAL(FLOAT32, Float32, float32)
+		Z_z_REAL(FLOAT32, Float32, float32)
 #	endif
 
 #	ifdef Z_FLOAT64
-		Z__REAL(FLOAT64, Float64, float64)
+		Z_z_REAL(FLOAT64, Float64, float64)
 #	endif
 
 #	ifdef Z_FLOAT128
-		Z__REAL(FLOAT128, Float128, float128)
+		Z_z_REAL(FLOAT128, Float128, float128)
 #	endif
 
 #	ifdef Z_FLOAT32X
-		Z__REAL(FLOAT32X, Float32x, float32x)
+		Z_z_REAL(FLOAT32X, Float32x, float32x)
 #	endif
 
 #	ifdef Z_FLOAT64X
-		Z__REAL(FLOAT64X, Float64x, float64x)
+		Z_z_REAL(FLOAT64X, Float64x, float64x)
 #	endif
 
 #	ifdef Z_FLOAT128X
-		Z__REAL(FLOAT128X, Float128x, float128x)
+		Z_z_REAL(FLOAT128X, Float128x, float128x)
 #	endif
 
 #	ifdef Z_DECIMAL32
-		Z__REAL(DECIMAL32, Decimal32, decimal32)
+		Z_z_REAL(DECIMAL32, Decimal32, decimal32)
 #	endif
 
 #	ifdef Z_DECIMAL64
-		Z__REAL(DECIMAL64, Decimal64, decimal64)
+		Z_z_REAL(DECIMAL64, Decimal64, decimal64)
 #	endif
 
 #	ifdef Z_DECIMAL128
-		Z__REAL(DECIMAL128, Decimal128, decimal128)
+		Z_z_REAL(DECIMAL128, Decimal128, decimal128)
 #	endif
 
 #	ifdef Z_DECIMAL64X
-		Z__REAL(DECIMAL64X, Decimal64x, decimal64x)
+		Z_z_REAL(DECIMAL64X, Decimal64x, decimal64x)
 #	endif
 
 #	ifdef Z_DECIMAL128X
-		Z__REAL(DECIMAL128X, Decimal128x, decimal128x)
+		Z_z_REAL(DECIMAL128X, Decimal128x, decimal128x)
 #	endif
 
 #	if defined(Z_BFP16) && Z_BFP16_FUNDAMENTAL == Z_FUNDAMENTAL_BFP16
-		Z__REAL(BFP16, BFP16, bfp16)
+		Z_z_REAL(BFP16, BFP16, bfp16)
 #	endif
 
 #	if defined(Z_BFP32) && Z_BFP32_FUNDAMENTAL == Z_FUNDAMENTAL_BFP32
-		Z__REAL(BFP32, BFP32, bfp32)
+		Z_z_REAL(BFP32, BFP32, bfp32)
 #	endif
 
 #	if defined(Z_BFP64) && Z_BFP64_FUNDAMENTAL == Z_FUNDAMENTAL_BFP64
-		Z__REAL(BFP64, BFP64, bfp64)
+		Z_z_REAL(BFP64, BFP64, bfp64)
 #	endif
 
 #	if defined(Z_BFP128) && Z_BFP128_FUNDAMENTAL == Z_FUNDAMENTAL_BFP128
-		Z__REAL(BFP128, BFP128, bfp128)
+		Z_z_REAL(BFP128, BFP128, bfp128)
 #	endif
 
 #	if defined(Z_DFP32) && Z_DFP32_FUNDAMENTAL == Z_FUNDAMENTAL_DFP32
-		Z__REAL(DFP32, DFP32, dfp32)
+		Z_z_REAL(DFP32, DFP32, dfp32)
 #	endif
 
 #	if defined(Z_DFP64) && Z_DFP64_FUNDAMENTAL == Z_FUNDAMENTAL_DFP64
-		Z__REAL(DFP64, DFP64, dfp64)
+		Z_z_REAL(DFP64, DFP64, dfp64)
 #	endif
 
 #	if defined(Z_DFP128) && Z_DFP128_FUNDAMENTAL == Z_FUNDAMENTAL_DFP128
-		Z__REAL(DFP128, DFP128, dfp128)
+		Z_z_REAL(DFP128, DFP128, dfp128)
 #	endif
 
 #	if defined(Z_X87_DE80) && Z_X87_DE80_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE80
-		Z__REAL(X87_DE80, x87_DE80, x87_de80)
+		Z_z_REAL(X87_DE80, x87_DE80, x87_de80)
 #	endif
 
 #	if defined(Z_X87_DE96) && Z_X87_DE96_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE96
-		Z__REAL(X87_DE96, x87_DE96, x87_de96)
+		Z_z_REAL(X87_DE96, x87_DE96, x87_de96)
 #	endif
 
 #	if defined(Z_X87_DE128) && Z_X87_DE128_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE128
-		Z__REAL(X87_DE128, x87_DE128, x87_de128)
+		Z_z_REAL(X87_DE128, x87_DE128, x87_de128)
 #	endif
 
 #	if defined(Z_IBM_ED) && Z_IBM_ED_FUNDAMENTAL == Z_FUNDAMENTAL_IBM_ED
-		Z__REAL(IBM_ED, IBM_ED, ibm_ed)
+		Z_z_REAL(IBM_ED, IBM_ED, ibm_ed)
 #	endif
 
 #	if defined(Z_BFLOAT16) && Z_BFLOAT16_FUNDAMENTAL == Z_FUNDAMENTAL_BFLOAT16
-		Z__REAL(BFLOAT16, bfloat16, bfloat16)
+		Z_z_REAL(BFLOAT16, bfloat16, bfloat16)
 #	endif
 
-#	undef Z__REAL
+#	undef Z_z_REAL
 
 #	if Z_HAS_MEMBER(Type, is_nullptr)
 		struct NullPtr : PointerLike {
@@ -1422,45 +1422,45 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 #	if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
 		template <zboolean x, class t, class c = Empty> struct Function;
 
-#		define Z__NOEXCEPT noexcept(x)
+#		define Z_z_NOEXCEPT noexcept(x)
 
 #	else
-#		define Z__NOEXCEPT
+#		define Z_z_NOEXCEPT
 #	endif
 
-#	define Z__NORMAL_CONVERSIONS(parameters)				    \
-		typedef r to_const	   (parameters) const	       Z__NOEXCEPT; \
-		typedef r to_const_volatile(parameters) const volatile Z__NOEXCEPT; \
-		typedef r to_unqualified   (parameters)		       Z__NOEXCEPT; \
-		typedef r to_volatile	   (parameters)	volatile       Z__NOEXCEPT;
+#	define Z_z_NORMAL_CONVERSIONS(parameters)				     \
+		typedef r to_const	   (parameters) const	       Z_z_NOEXCEPT; \
+		typedef r to_const_volatile(parameters) const volatile Z_z_NOEXCEPT; \
+		typedef r to_unqualified   (parameters)		       Z_z_NOEXCEPT; \
+		typedef r to_volatile	   (parameters)	volatile       Z_z_NOEXCEPT;
 
 #	if Z_DIALECT_HAS(CPP11, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
 
-#		define Z__REFERENCE_CONVERSIONS(parameters)					      \
-			typedef r to_const_lvalue	  (parameters) const	      &	 Z__NOEXCEPT; \
-			typedef r to_const_rvalue	  (parameters) const	      && Z__NOEXCEPT; \
-			typedef r to_const_volatile_lvalue(parameters) const volatile &	 Z__NOEXCEPT; \
-			typedef r to_const_volatile_rvalue(parameters) const volatile && Z__NOEXCEPT; \
-			typedef r to_lvalue		  (parameters)		      &	 Z__NOEXCEPT; \
-			typedef r to_rvalue		  (parameters)		      && Z__NOEXCEPT; \
-			typedef r to_volatile_lvalue	  (parameters)	     volatile &	 Z__NOEXCEPT; \
-			typedef r to_volatile_rvalue	  (parameters)	     volatile && Z__NOEXCEPT;
+#		define Z_z_REFERENCE_CONVERSIONS(parameters)					       \
+			typedef r to_const_lvalue	  (parameters) const	      &	 Z_z_NOEXCEPT; \
+			typedef r to_const_rvalue	  (parameters) const	      && Z_z_NOEXCEPT; \
+			typedef r to_const_volatile_lvalue(parameters) const volatile &	 Z_z_NOEXCEPT; \
+			typedef r to_const_volatile_rvalue(parameters) const volatile && Z_z_NOEXCEPT; \
+			typedef r to_lvalue		  (parameters)		      &	 Z_z_NOEXCEPT; \
+			typedef r to_rvalue		  (parameters)		      && Z_z_NOEXCEPT; \
+			typedef r to_volatile_lvalue	  (parameters)	     volatile &	 Z_z_NOEXCEPT; \
+			typedef r to_volatile_rvalue	  (parameters)	     volatile && Z_z_NOEXCEPT;
 
 #	else
-#		define Z__REFERENCE_CONVERSIONS(parameters)
+#		define Z_z_REFERENCE_CONVERSIONS(parameters)
 #	endif
 
 #	if Z_DIALECT_HAS(CPP11, VARIADIC_TEMPLATE)
 
 #		if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
 			template <zboolean x, class r, class... p, class c> struct Function<x, r(p...), c> : c {
-				Z__NORMAL_CONVERSIONS	(p...)
-				Z__REFERENCE_CONVERSIONS(p...)
+				Z_z_NORMAL_CONVERSIONS	 (p...)
+				Z_z_REFERENCE_CONVERSIONS(p...)
 			};
 
 			template <zboolean x, class r, class... p, class c> struct Function<x, r(p..., ...), c> : c {
-				Z__NORMAL_CONVERSIONS	(p... Z_COMMA ...)
-				Z__REFERENCE_CONVERSIONS(p... Z_COMMA ...)
+				Z_z_NORMAL_CONVERSIONS	 (p... Z_COMMA ...)
+				Z_z_REFERENCE_CONVERSIONS(p... Z_COMMA ...)
 			};
 #		endif
 
@@ -1469,8 +1469,8 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 				enum {is_noexcept = x};
 #		else
 			template <class r, class... p> struct NonVariadicFunction : Valid {
-				Z__NORMAL_CONVERSIONS	(p...)
-				Z__REFERENCE_CONVERSIONS(p...)
+				Z_z_NORMAL_CONVERSIONS	 (p...)
+				Z_z_REFERENCE_CONVERSIONS(p...)
 #		endif
 			enum {is_function = true};
 			enum {arity = TypeCount<p...>::value};
@@ -1492,8 +1492,8 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 				enum {is_noexcept = x};
 #		else
 			template <class r, class... p> struct VariadicFunction : Valid {
-				Z__NORMAL_CONVERSIONS	(p... Z_COMMA ...)
-				Z__REFERENCE_CONVERSIONS(p... Z_COMMA ...)
+				Z_z_NORMAL_CONVERSIONS	(p... Z_COMMA ...)
+				Z_z_REFERENCE_CONVERSIONS(p... Z_COMMA ...)
 #		endif
 			enum {	is_function	     = true,
 				is_variadic	     = true,
@@ -1516,18 +1516,18 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 #	else
 #		if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
 
-#			define Z__PSEUDO_SPECIALIZATION_PAIR(arity)									    \
+#			define Z_z_PSEUDO_SPECIALIZATION_PAIR(arity)									    \
 																	    \
 				template <zboolean x, class r, Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA) Z_IF(arity)(Z_COMMA) class c> \
 				struct Function<x, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)), c>					    \
-				: c {	Z__NORMAL_CONVERSIONS	(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))				    \
-					Z__REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))				    \
+				: c {	Z_z_NORMAL_CONVERSIONS	 (Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))				    \
+					Z_z_REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))				    \
 				};													    \
 																	    \
 				template <zboolean x, class r, Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA) Z_IF(arity)(Z_COMMA) class c> \
 				struct Function<x, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...), c>		    \
-				: c {	Z__NORMAL_CONVERSIONS	(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)	    \
-					Z__REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)	    \
+				: c {	Z_z_NORMAL_CONVERSIONS	 (Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)	    \
+					Z_z_REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)	    \
 				};													    \
 																	    \
 				template <zboolean x, class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>	    \
@@ -1556,42 +1556,42 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 				};
 
 #		else
-#			define Z__PSEUDO_SPECIALIZATION_PAIR(arity)								    \
-																    \
-				template <class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>		    \
-				struct NonVariadicFunctionWith##arity##Parameters : Valid {					    \
-					Z__NORMAL_CONVERSIONS	(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))			    \
-					Z__REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))			    \
-																    \
-					enum {is_function = true};								    \
-					enum {Z_PASTE_2(ari,ty) = arity};							    \
-																    \
-					typedef r type(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA));				    \
-					typedef r return_type;									    \
-				};												    \
-																    \
-				template <class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>		    \
-				struct VariadicFunctionWith##arity##Parameters : Valid {					    \
-					Z__NORMAL_CONVERSIONS	(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) \
-					Z__REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) \
-																    \
-					enum {	is_function = true,								    \
-						is_variadic = true								    \
-					};											    \
-					enum {Z_PASTE_2(ari,ty) = arity};							    \
-																    \
-					typedef r type(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...);	    \
-					typedef r return_type;									    \
+#			define Z_z_PSEUDO_SPECIALIZATION_PAIR(arity)								     \
+																     \
+				template <class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>		     \
+				struct NonVariadicFunctionWith##arity##Parameters : Valid {					     \
+					Z_z_NORMAL_CONVERSIONS	 (Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))			     \
+					Z_z_REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))			     \
+																     \
+					enum {is_function = true};								     \
+					enum {Z_PASTE_2(ari,ty) = arity};							     \
+																     \
+					typedef r type(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA));				     \
+					typedef r return_type;									     \
+				};												     \
+																     \
+				template <class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>		     \
+				struct VariadicFunctionWith##arity##Parameters : Valid {					     \
+					Z_z_NORMAL_CONVERSIONS	 (Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) \
+					Z_z_REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) \
+																     \
+					enum {	is_function = true,								     \
+						is_variadic = true								     \
+					};											     \
+					enum {Z_PASTE_2(ari,ty) = arity};							     \
+																     \
+					typedef r type(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...);	     \
+					typedef r return_type;									     \
 				};
 #		endif
 
-		Z_FOR_32_CALL_WITH_INDEX(Z__PSEUDO_SPECIALIZATION_PAIR, Z_EMPTY)
-#		undef Z__PSEUDO_SPECIALIZATION_PAIR
+		Z_FOR_32_CALL_WITH_INDEX(Z_z_PSEUDO_SPECIALIZATION_PAIR, Z_EMPTY)
+#		undef Z_z_PSEUDO_SPECIALIZATION_PAIR
 #	endif
 
-#	undef Z__NOEXCEPT
-#	undef Z__COMMON_CONVERSIONS
-#	undef Z__REFERENCE_CONVERSIONS
+#	undef Z_z_NOEXCEPT
+#	undef Z_z_COMMON_CONVERSIONS
+#	undef Z_z_REFERENCE_CONVERSIONS
 
 	// MARK: - Abstract: Enumeration, structure, union and Objective-C instance types
 
@@ -2807,95 +2807,95 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 
 	// http://www.open-std.org/jtc1/sc22/wg21/docs/cwg_closed.html#2355
 
-#	define Z__NORMAL_SPECIALIZATION_GROUP(arity)			     \
-		Z__SPECIALIZATION_PAIR(arity, Z_EMPTY	    , Unqualified  ) \
-		Z__SPECIALIZATION_PAIR(arity, const	    , Const	   ) \
-		Z__SPECIALIZATION_PAIR(arity, const volatile, ConstVolatile) \
-		Z__SPECIALIZATION_PAIR(arity,	    volatile, Volatile	   )
+#	define Z_z_NORMAL_SPECIALIZATION_GROUP(arity)			      \
+		Z_z_SPECIALIZATION_PAIR(arity, Z_EMPTY	     , Unqualified  ) \
+		Z_z_SPECIALIZATION_PAIR(arity, const	     , Const	    ) \
+		Z_z_SPECIALIZATION_PAIR(arity, const volatile, ConstVolatile) \
+		Z_z_SPECIALIZATION_PAIR(arity,	     volatile, Volatile	    )
 
 #	if Z_DIALECT_HAS(CPP11, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-#		define Z__REFERENCE_SPECIALIZATION_GROUP(arity)				      \
-			Z__SPECIALIZATION_PAIR(arity,		     & , LValue		    ) \
-			Z__SPECIALIZATION_PAIR(arity,		     &&, RValue		    ) \
-			Z__SPECIALIZATION_PAIR(arity, const	     & , ConstLValue	    ) \
-			Z__SPECIALIZATION_PAIR(arity, const	     &&, ConstRValue	    ) \
-			Z__SPECIALIZATION_PAIR(arity, const volatile & , ConstVolatileLValue) \
-			Z__SPECIALIZATION_PAIR(arity, const volatile &&, ConstVolatileRValue) \
-			Z__SPECIALIZATION_PAIR(arity,	    volatile & , VolatileLValue	    ) \
-			Z__SPECIALIZATION_PAIR(arity,	    volatile &&, VolatileRValue	    )
+#		define Z_z_REFERENCE_SPECIALIZATION_GROUP(arity)			       \
+			Z_z_SPECIALIZATION_PAIR(arity,		      & , LValue	     ) \
+			Z_z_SPECIALIZATION_PAIR(arity,		      &&, RValue	     ) \
+			Z_z_SPECIALIZATION_PAIR(arity, const	      & , ConstLValue	     ) \
+			Z_z_SPECIALIZATION_PAIR(arity, const	      &&, ConstRValue	     ) \
+			Z_z_SPECIALIZATION_PAIR(arity, const volatile & , ConstVolatileLValue) \
+			Z_z_SPECIALIZATION_PAIR(arity, const volatile &&, ConstVolatileRValue) \
+			Z_z_SPECIALIZATION_PAIR(arity,	     volatile & , VolatileLValue     ) \
+			Z_z_SPECIALIZATION_PAIR(arity,	     volatile &&, VolatileRValue     )
 #	else
-#		define Z__REFERENCE_SPECIALIZATION_GROUP(arity)
+#		define Z_z_REFERENCE_SPECIALIZATION_GROUP(arity)
 #	endif
 
 #	if Z_DIALECT_HAS(GNUPP17, NOEXCEPT_OPERAND_DEDUCTION)
-#		define Z__NOEXCEPT_PARAMETER Boolean x,
-#		define Z__NOEXCEPT_SPECIFIER noexcept(x)
-#		define Z__NOEXCEPT_ARGUMENT  x,
+#		define Z_z_NOEXCEPT_PARAMETER Boolean x,
+#		define Z_z_NOEXCEPT_SPECIFIER noexcept(x)
+#		define Z_z_NOEXCEPT_ARGUMENT  x,
 #	elif Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
-#		define Z__NOEXCEPT_PARAMETER
-#		define Z__NOEXCEPT_SPECIFIER
-#		define Z__NOEXCEPT_ARGUMENT  false,
+#		define Z_z_NOEXCEPT_PARAMETER
+#		define Z_z_NOEXCEPT_SPECIFIER
+#		define Z_z_NOEXCEPT_ARGUMENT  false,
 #	else
-#		define Z__NOEXCEPT_PARAMETER
-#		define Z__NOEXCEPT_SPECIFIER
-#		define Z__NOEXCEPT_ARGUMENT
+#		define Z_z_NOEXCEPT_PARAMETER
+#		define Z_z_NOEXCEPT_SPECIFIER
+#		define Z_z_NOEXCEPT_ARGUMENT
 #	endif
 
 #	if Z_DIALECT_HAS(CPP11, VARIADIC_TEMPLATE)
 
-#		define Z__SPECIALIZATION_PAIR(dummy, qualifiers, Qualifiers)						 \
-															 \
-			template <Boolean e, Z__NOEXCEPT_PARAMETER class r, class... p>					 \
-			struct Case<e, r(p...) qualifiers Z__NOEXCEPT_SPECIFIER>					 \
-			: Mixins::Qualifiers##Function<Abstract::NonVariadicFunction<Z__NOEXCEPT_ARGUMENT r, p...> > {}; \
-															 \
-			template <Boolean e, Z__NOEXCEPT_PARAMETER class r, class... p>					 \
-			struct Case<e, r(p..., ...) qualifiers Z__NOEXCEPT_SPECIFIER>					 \
-			: Mixins::Qualifiers##Function<Abstract::VariadicFunction<Z__NOEXCEPT_ARGUMENT r, p...> > {};
+#		define Z_z_SPECIALIZATION_PAIR(dummy, qualifiers, Qualifiers)						  \
+															  \
+			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r, class... p>				  \
+			struct Case<e, r(p...) qualifiers Z_z_NOEXCEPT_SPECIFIER>					  \
+			: Mixins::Qualifiers##Function<Abstract::NonVariadicFunction<Z_z_NOEXCEPT_ARGUMENT r, p...> > {}; \
+															  \
+			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r, class... p>				  \
+			struct Case<e, r(p..., ...) qualifiers Z_z_NOEXCEPT_SPECIFIER>					  \
+			: Mixins::Qualifiers##Function<Abstract::VariadicFunction<Z_z_NOEXCEPT_ARGUMENT r, p...> > {};
 
-		Z__NORMAL_SPECIALIZATION_GROUP	 (-)
-		Z__REFERENCE_SPECIALIZATION_GROUP(-)
+		Z_z_NORMAL_SPECIALIZATION_GROUP	  (-)
+		Z_z_REFERENCE_SPECIALIZATION_GROUP(-)
 
 #	else
-#		define Z__SPECIALIZATION_PAIR(arity, qualifiers, Qualifiers)									\
-																		\
-			template <Boolean e, Z__NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)> \
-			struct Case<e, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)) qualifiers Z__NOEXCEPT_SPECIFIER>				\
-			: Mixins::Qualifiers##Function<Abstract::NonVariadicFunctionWith##arity##Parameters<					\
-				Z__NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)				\
-			> > {};															\
-																		\
-			template <Boolean e, Z__NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)> \
-			struct Case<e, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) qualifiers Z__NOEXCEPT_SPECIFIER>   \
-			: Mixins::Qualifiers##Function<Abstract::VariadicFunctionWith##arity##Parameters<					\
-				Z__NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)				\
+#		define Z_z_SPECIALIZATION_PAIR(arity, qualifiers, Qualifiers)									 \
+																		 \
+			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)> \
+			struct Case<e, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)) qualifiers Z_z_NOEXCEPT_SPECIFIER>				 \
+			: Mixins::Qualifiers##Function<Abstract::NonVariadicFunctionWith##arity##Parameters<					 \
+				Z_z_NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)				 \
+			> > {};															 \
+																		 \
+			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)> \
+			struct Case<e, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) qualifiers Z_z_NOEXCEPT_SPECIFIER>   \
+			: Mixins::Qualifiers##Function<Abstract::VariadicFunctionWith##arity##Parameters<					 \
+				Z_z_NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)				 \
 			> > {};
 
-		Z_FOR_32_CALL_WITH_INDEX(Z__NORMAL_SPECIALIZATION_GROUP,    Z_EMPTY)
-		Z_FOR_32_CALL_WITH_INDEX(Z__REFERENCE_SPECIALIZATION_GROUP, Z_EMPTY)
+		Z_FOR_32_CALL_WITH_INDEX(Z_z_NORMAL_SPECIALIZATION_GROUP,    Z_EMPTY)
+		Z_FOR_32_CALL_WITH_INDEX(Z_z_REFERENCE_SPECIALIZATION_GROUP, Z_EMPTY)
 #	endif
 
 #	if !Z_DIALECT_HAS(GNUPP17, NOEXCEPT_OPERAND_DEDUCTION) && Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
-#		undef  Z__NOEXCEPT_SPECIFIER
-#		define Z__NOEXCEPT_SPECIFIER noexcept
-#		undef  Z__NOEXCEPT_ARGUMENT
-#		define Z__NOEXCEPT_ARGUMENT  true,
+#		undef  Z_z_NOEXCEPT_SPECIFIER
+#		define Z_z_NOEXCEPT_SPECIFIER noexcept
+#		undef  Z_z_NOEXCEPT_ARGUMENT
+#		define Z_z_NOEXCEPT_ARGUMENT  true,
 
 #		if Z_DIALECT_HAS(CPP11, VARIADIC_TEMPLATE)
-			Z__NORMAL_SPECIALIZATION_GROUP	 (-)
-			Z__REFERENCE_SPECIALIZATION_GROUP(-)
+			Z_z_NORMAL_SPECIALIZATION_GROUP	  (-)
+			Z_z_REFERENCE_SPECIALIZATION_GROUP(-)
 #		else
-			Z_FOR_32_CALL_WITH_INDEX(Z__NORMAL_SPECIALIZATION_GROUP,    Z_EMPTY)
-			Z_FOR_32_CALL_WITH_INDEX(Z__REFERENCE_SPECIALIZATION_GROUP, Z_EMPTY)
+			Z_FOR_32_CALL_WITH_INDEX(Z_z_NORMAL_SPECIALIZATION_GROUP,    Z_EMPTY)
+			Z_FOR_32_CALL_WITH_INDEX(Z_z_REFERENCE_SPECIALIZATION_GROUP, Z_EMPTY)
 #		endif
 #	endif
 
-#	undef Z__NORMAL_SPECIALIZATION_GROUP
-#	undef Z__REFERENCE_SPECIALIZATION_GROUP
-#	undef Z__NOEXCEPT_PARAMETER
-#	undef Z__NOEXCEPT_SPECIFIER
-#	undef Z__NOEXCEPT_ARGUMENT
-#	undef Z__SPECIALIZATION
+#	undef Z_z_NORMAL_SPECIALIZATION_GROUP
+#	undef Z_z_REFERENCE_SPECIALIZATION_GROUP
+#	undef Z_z_NOEXCEPT_PARAMETER
+#	undef Z_z_NOEXCEPT_SPECIFIER
+#	undef Z_z_NOEXCEPT_ARGUMENT
+#	undef Z_z_SPECIALIZATION
 
 	// MARK: - Specializations: Block object types (Apple extension)
 
@@ -2977,7 +2977,7 @@ namespace Zeta {
 
 #		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_DIALECT_HAS(CPP14, CONSTEXPR_FUNCTION)
 
-#			define Z__STRING_MEMBER_FUNCTIONS							\
+#			define Z_z_STRING_MEMBER_FUNCTIONS							\
 														\
 				static Z_CT(CPP14) USize string_size()						\
 					{return type_string_size<t>();}						\
@@ -2985,21 +2985,21 @@ namespace Zeta {
 				static Z_CT(CPP14) SizedString<Char, string_size() + 1> string()		\
 					{return type_string<t>();}
 
-#			define Z__HASH_MEMBER_FUNCTIONS(bits)								    \
+#			define Z_z_HASH_MEMBER_FUNCTIONS(bits)								    \
 				static Z_CT(CPP14) UInt##bits fnv0_##bits () {return Zeta::fnv0_##bits (type_string<t>());} \
 				static Z_CT(CPP14) UInt##bits fnv1_##bits () {return Zeta::fnv1_##bits (type_string<t>());} \
 				static Z_CT(CPP14) UInt##bits fnv1a_##bits() {return Zeta::fnv1a_##bits(type_string<t>());}
 
-			Z__STRING_MEMBER_FUNCTIONS
-			Z__HASH_MEMBER_FUNCTIONS(32)
+			Z_z_STRING_MEMBER_FUNCTIONS
+			Z_z_HASH_MEMBER_FUNCTIONS(32)
 
 #			ifdef Z_UINT64
-				Z__HASH_MEMBER_FUNCTIONS(64)
+				Z_z_HASH_MEMBER_FUNCTIONS(64)
 #			endif
 
 #		else
-#			define Z__STRING_MEMBER_FUNCTIONS
-#			define Z__HASH_MEMBER_FUNCTIONS(bits)
+#			define Z_z_STRING_MEMBER_FUNCTIONS
+#			define Z_z_HASH_MEMBER_FUNCTIONS(bits)
 #		endif
 
 		typedef typename TernaryType<Type::is_valid, Type, NaT>::type if_valid;
@@ -3281,16 +3281,16 @@ namespace Zeta {
 				template <zuint index> using parameter = typename Type<typename Type::template parameter<index> >::flow;
 #			endif
 
-			Z__STRING_MEMBER_FUNCTIONS
-			Z__HASH_MEMBER_FUNCTIONS(32)
+			Z_z_STRING_MEMBER_FUNCTIONS
+			Z_z_HASH_MEMBER_FUNCTIONS(32)
 
 #			ifdef Z_UINT64
-				Z__HASH_MEMBER_FUNCTIONS(64)
+				Z_z_HASH_MEMBER_FUNCTIONS(64)
 #			endif
 		};
 
-#		undef Z__STRING_MEMBER_FUNCTIONS
-#		undef Z__HASH_MEMBER_FUNCTIONS
+#		undef Z_z_STRING_MEMBER_FUNCTIONS
+#		undef Z_z_HASH_MEMBER_FUNCTIONS
 	};
 
 	template <class t> struct TypeArity			{enum {value = Type<t>::arity			     };};

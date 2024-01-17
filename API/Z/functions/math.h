@@ -14,8 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Common implementation */
 
-
-#define Z__IMPLEMENTATION_COMMON(type)							\
+#define Z_z_IMPLEMENTATION_COMMON(type)							\
 											\
 	static Z_INLINE									\
 	z##type z_##type##_maximum(z##type a, z##type b)				\
@@ -39,8 +38,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Partial implementation for signed types */
 
-
-#define Z__IMPLEMENTATION_SIGNED(type)							\
+#define Z_z_IMPLEMENTATION_SIGNED(type)							\
 											\
 	static Z_INLINE									\
 	z##type z_##type##_absolute(z##type value)					\
@@ -58,8 +56,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Implementation for real types */
 
-
-#define Z__IMPLEMENTATION_REAL(type, _, epsilon, infinity)				\
+#define Z_z_IMPLEMENTATION_REAL(type, _, epsilon, infinity)				\
 											\
 	static Z_INLINE									\
 	zboolean z_##type##_are_almost_equal(z##type a, z##type b)			\
@@ -145,8 +142,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - uint8 */
 
-
-Z__IMPLEMENTATION_COMMON(uint8)
+Z_z_IMPLEMENTATION_COMMON(uint8)
 
 
 static Z_INLINE
@@ -196,9 +192,8 @@ zboolean z_uint8_subtraction_overflows_4(zuint8 a, zuint8 b, zuint8 c, zuint8 d)
 
 /* MARK: - sint8 */
 
-
-Z__IMPLEMENTATION_COMMON(sint8)
-Z__IMPLEMENTATION_SIGNED(sint8)
+Z_z_IMPLEMENTATION_COMMON(sint8)
+Z_z_IMPLEMENTATION_SIGNED(sint8)
 
 
 /*static Z_INLINE
@@ -248,8 +243,7 @@ zboolean z_sint8_subtraction_overflows_4(zsint8 a, zsint8 b, zsint8 c, zsint8 d)
 
 /* MARK: - uint16 */
 
-
-Z__IMPLEMENTATION_COMMON (uint16)
+Z_z_IMPLEMENTATION_COMMON(uint16)
 
 
 static Z_INLINE
@@ -299,9 +293,8 @@ zboolean z_uint16_subtraction_overflows_4(zuint16 a, zuint16 b, zuint16 c, zuint
 
 /* MARK: - sint16 */
 
-
-Z__IMPLEMENTATION_COMMON(sint16)
-Z__IMPLEMENTATION_SIGNED(sint16)
+Z_z_IMPLEMENTATION_COMMON(sint16)
+Z_z_IMPLEMENTATION_SIGNED(sint16)
 
 
 /*static Z_INLINE
@@ -351,8 +344,7 @@ zboolean z_sint16_subtraction_overflows_4(zsint16 a, zsint16 b, zsint16 c, zsint
 
 /* MARK: - uint32 */
 
-
-Z__IMPLEMENTATION_COMMON(uint32)
+Z_z_IMPLEMENTATION_COMMON(uint32)
 
 
 /*static Z_INLINE
@@ -402,9 +394,8 @@ zboolean z_uint32_subtraction_overflows_4(zuint32 a, zuint32 b, zuint32 c, zuint
 
 /* MARK: - sint32 */
 
-
-Z__IMPLEMENTATION_COMMON(sint32)
-Z__IMPLEMENTATION_SIGNED(sint32)
+Z_z_IMPLEMENTATION_COMMON(sint32)
+Z_z_IMPLEMENTATION_SIGNED(sint32)
 
 
 /*static Z_INLINE
@@ -454,10 +445,9 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 /* MARK: - uint64 */
 
-
 #ifdef Z_UINT64
 
-	Z__IMPLEMENTATION_COMMON(uint64)
+	Z_z_IMPLEMENTATION_COMMON(uint64)
 
 
 	/*static Z_INLINE
@@ -508,11 +498,10 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 /* MARK: - sint64 */
 
-
 #ifdef Z_SINT64
 
-	Z__IMPLEMENTATION_COMMON(sint64)
-	Z__IMPLEMENTATION_SIGNED(sint64)
+	Z_z_IMPLEMENTATION_COMMON(sint64)
+	Z_z_IMPLEMENTATION_SIGNED(sint64)
 
 
 	/*static Z_INLINE
@@ -564,10 +553,9 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 /* MARK: - uint128 */
 
-
 #ifdef Z_UINT128
 
-	Z__IMPLEMENTATION_COMMON (uint128)
+	Z_z_IMPLEMENTATION_COMMON (uint128)
 
 
 	/*static Z_INLINE
@@ -619,11 +607,10 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 /* MARK: - sint128 */
 
-
 #ifdef Z_SINT128
 
-	Z__IMPLEMENTATION_COMMON (sint128)
-	Z__IMPLEMENTATION_SIGNED (sint128)
+	Z_z_IMPLEMENTATION_COMMON (sint128)
+	Z_z_IMPLEMENTATION_SIGNED (sint128)
 
 
 	/*static Z_INLINE
@@ -675,79 +662,71 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 /* MARK: - float16 */
 
-
 #ifdef Z_FLOAT16
-	Z__IMPLEMENTATION_COMMON(float16)
-	Z__IMPLEMENTATION_SIGNED(float16)
-	Z__IMPLEMENTATION_REAL	(float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
+	Z_z_IMPLEMENTATION_COMMON(float16)
+	Z_z_IMPLEMENTATION_SIGNED(float16)
+	Z_z_IMPLEMENTATION_REAL	 (float16, Z_FLOAT16, Z_FLOAT16_EPSILON, Z_FLOAT16_INFINITY)
 #endif
 
 
 /* MARK: - float32 */
 
-
 #ifdef Z_FLOAT32
-	Z__IMPLEMENTATION_COMMON(float32)
-	Z__IMPLEMENTATION_SIGNED(float32)
-	Z__IMPLEMENTATION_REAL	(float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
+	Z_z_IMPLEMENTATION_COMMON(float32)
+	Z_z_IMPLEMENTATION_SIGNED(float32)
+	Z_z_IMPLEMENTATION_REAL	 (float32, Z_FLOAT32, Z_FLOAT32_EPSILON, Z_FLOAT32_INFINITY)
 #endif
 
 /* MARK: - float64 */
 
-
 #ifdef Z_FLOAT64
-	Z__IMPLEMENTATION_COMMON(float64)
-	Z__IMPLEMENTATION_SIGNED(float64)
-	Z__IMPLEMENTATION_REAL	(float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
+	Z_z_IMPLEMENTATION_COMMON(float64)
+	Z_z_IMPLEMENTATION_SIGNED(float64)
+	Z_z_IMPLEMENTATION_REAL	 (float64, Z_FLOAT64, Z_FLOAT64_EPSILON, Z_FLOAT64_INFINITY)
 #endif
 
 
 /* MARK: - float128 */
 
-
 #ifdef Z_FLOAT128
-	Z__IMPLEMENTATION_COMMON(float128)
-	Z__IMPLEMENTATION_SIGNED(float128)
-	Z__IMPLEMENTATION_REAL	(float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
+	Z_z_IMPLEMENTATION_COMMON(float128)
+	Z_z_IMPLEMENTATION_SIGNED(float128)
+	Z_z_IMPLEMENTATION_REAL	 (float128, Z_FLOAT128, Z_FLOAT128_EPSILON, Z_FLOAT128_INFINITY)
 #endif
 
 
 /* MARK: - float80_x87 */
 
-
 #ifdef Z_FLOAT80_X87
-	Z__IMPLEMENTATION_COMMON(float80_x87)
-	Z__IMPLEMENTATION_SIGNED(float80_x87)
-	Z__IMPLEMENTATION_REAL	(float80_x87, Z_FLOAT80_X87, Z_FLOAT80_X87_EPSILON, Z_FLOAT80_X87_INFINITY)
+	Z_z_IMPLEMENTATION_COMMON(float80_x87)
+	Z_z_IMPLEMENTATION_SIGNED(float80_x87)
+	Z_z_IMPLEMENTATION_REAL	 (float80_x87, Z_FLOAT80_X87, Z_FLOAT80_X87_EPSILON, Z_FLOAT80_X87_INFINITY)
 #endif
 
 
 /* MARK: - float96_x87 */
 
-
 #ifdef Z_FLOAT96_X87
-	Z__IMPLEMENTATION_COMMON(float96_x87)
-	Z__IMPLEMENTATION_SIGNED(float96_x87)
-	Z__IMPLEMENTATION_REAL	(float96_x87, Z_FLOAT96_X87, Z_FLOAT96_X87_EPSILON, Z_FLOAT96_X87_INFINITY)
+	Z_z_IMPLEMENTATION_COMMON(float96_x87)
+	Z_z_IMPLEMENTATION_SIGNED(float96_x87)
+	Z_z_IMPLEMENTATION_REAL	 (float96_x87, Z_FLOAT96_X87, Z_FLOAT96_X87_EPSILON, Z_FLOAT96_X87_INFINITY)
 #endif
 
 
 /* MARK: - float128_x87 */
 
-
 #ifdef Z_FLOAT128_X87
-	Z__IMPLEMENTATION_COMMON(float128_x87)
-	Z__IMPLEMENTATION_SIGNED(float128_x87)
-	Z__IMPLEMENTATION_REAL	(float128_x87, Z_FLOAT128_X87, Z_FLOAT128_X87_EPSILON, Z_FLOAT128_X87_INFINITY)
+	Z_z_IMPLEMENTATION_COMMON(float128_x87)
+	Z_z_IMPLEMENTATION_SIGNED(float128_x87)
+	Z_z_IMPLEMENTATION_REAL	 (float128_x87, Z_FLOAT128_X87, Z_FLOAT128_X87_EPSILON, Z_FLOAT128_X87_INFINITY)
 #endif
 
 
 /* MARK: - Cleanup */
 
-
-#undef Z__IMPLEMENTATION_COMMON
-#undef Z__IMPLEMENTATION_SIGNED
-#undef Z__IMPLEMENTATION_REAL
+#undef Z_z_IMPLEMENTATION_COMMON
+#undef Z_z_IMPLEMENTATION_SIGNED
+#undef Z_z_IMPLEMENTATION_REAL
 
 
 /* MARK: - Function selectors */
@@ -765,7 +744,6 @@ zboolean z_sint32_subtraction_overflows_4(zsint32 a, zsint32 b, zsint32 c, zsint
 
 
 /* MARK: - Default real type definitions */
-
 
 #ifdef Z_REAL
 #	define z_absolute	  z_T_absolute	      (REAL)

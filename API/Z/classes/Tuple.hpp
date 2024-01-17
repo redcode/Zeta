@@ -115,7 +115,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		include <tuple>
 
-#		define Z__IMPLEMENTATION(qualifiers)										\
+#		define Z_z_IMPLEMENTATION(qualifiers)										\
 																\
 			template <class... t>											\
 			struct std::tuple_size<qualifiers Zeta::Tuple<t...> > {							\
@@ -127,12 +127,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				typedef typename Zeta::Type<typename Zeta::Tuple<t...>::template At<i>::type>::add_const type;	\
 			};
 
-		Z__IMPLEMENTATION(Z_EMPTY	)
-		Z__IMPLEMENTATION(const		)
-		Z__IMPLEMENTATION(const volatile)
-		Z__IMPLEMENTATION(	volatile)
+		Z_z_IMPLEMENTATION(Z_EMPTY	 )
+		Z_z_IMPLEMENTATION(const	 )
+		Z_z_IMPLEMENTATION(const volatile)
+		Z_z_IMPLEMENTATION(	 volatile)
 
-#		undef Z__IMPLEMENTATION
+#		undef Z_z_IMPLEMENTATION
 #	endif
 
 #endif

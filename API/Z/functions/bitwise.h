@@ -26,14 +26,14 @@ zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
 */
 
 
-#define Z__NATURAL_EXTRACT(bits)							\
+#define Z_z_NATURAL_EXTRACT(bits)							\
 											\
 	static Z_INLINE									\
 	zuint##bits z_uint##bits##_extract(zuint##bits value, zuint offset, zuint size) \
 		{return (value >> offset) & (Z_UINT##bits##_MAXIMUM << offset);}
 
 
-#define Z__INTEGER_EXTRACT(bits)									       \
+#define Z_z_INTEGER_EXTRACT(bits)									       \
 													       \
 	static Z_INLINE											       \
 	zsint##bits z_sint##bits##_extract(zuint##bits value, zuint offset, zuint size)			       \
@@ -45,7 +45,7 @@ zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
 		}
 
 
-#define Z__NATURAL_REVERSE(bits)				 \
+#define Z_z_NATURAL_REVERSE(bits)				 \
 								 \
 	static Z_INLINE						 \
 	zuint##bits z_uint##bits##_reverse(zuint##bits value)	 \
@@ -56,7 +56,7 @@ zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
 		}
 
 
-#define Z__NATURAL_ROTATE(bits)							   \
+#define Z_z_NATURAL_ROTATE(bits)							   \
 										   \
 	static Z_INLINE								   \
 	zuint##bits z_uint##bits##_rotate_left(zuint##bits value, zuint rotation)  \
@@ -69,20 +69,20 @@ zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
 
 
 #ifdef Z_UINT8
-	Z__NATURAL_EXTRACT(8)
-	Z__NATURAL_ROTATE (8)
+	Z_z_NATURAL_EXTRACT(8)
+	Z_z_NATURAL_ROTATE (8)
 
 #	define z_uint8_reverse Z_SAME
 #endif
 
 #ifdef Z_SINT8
-	Z__INTEGER_EXTRACT(8)
+	Z_z_INTEGER_EXTRACT(8)
 #endif
 
 #ifdef Z_UINT16
-	Z__NATURAL_EXTRACT(16)
-	Z__NATURAL_REVERSE(16)
-	Z__NATURAL_ROTATE (16)
+	Z_z_NATURAL_EXTRACT(16)
+	Z_z_NATURAL_REVERSE(16)
+	Z_z_NATURAL_ROTATE (16)
 
 #	if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
 #		define z_uint16_big_endian    Z_SAME
@@ -95,13 +95,13 @@ zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
 #endif
 
 #ifdef Z_SINT16
-	Z__INTEGER_EXTRACT(16)
+	Z_z_INTEGER_EXTRACT(16)
 #endif
 
 #ifdef Z_UINT32
-	Z__NATURAL_EXTRACT(32)
-	Z__NATURAL_REVERSE(32)
-	Z__NATURAL_ROTATE (32)
+	Z_z_NATURAL_EXTRACT(32)
+	Z_z_NATURAL_REVERSE(32)
+	Z_z_NATURAL_ROTATE (32)
 
 #	if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
 #		define z_uint32_big_endian    Z_SAME
@@ -114,13 +114,13 @@ zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
 #endif
 
 #ifdef Z_SINT32
-	Z__INTEGER_EXTRACT(32)
+	Z_z_INTEGER_EXTRACT(32)
 #endif
 
 #ifdef Z_UINT64
-	Z__NATURAL_EXTRACT(64)
-	Z__NATURAL_REVERSE(64)
-	Z__NATURAL_ROTATE (64)
+	Z_z_NATURAL_EXTRACT(64)
+	Z_z_NATURAL_REVERSE(64)
+	Z_z_NATURAL_ROTATE (64)
 
 #	if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
 #		define z_uint64_big_endian    Z_SAME
@@ -133,13 +133,13 @@ zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
 #endif
 
 #ifdef Z_SINT64
-	Z__INTEGER_EXTRACT(64)
+	Z_z_INTEGER_EXTRACT(64)
 #endif
 
 #ifdef Z_UINT128
-	Z__NATURAL_EXTRACT(128)
-	Z__NATURAL_REVERSE(128)
-	Z__NATURAL_ROTATE (128)
+	Z_z_NATURAL_EXTRACT(128)
+	Z_z_NATURAL_REVERSE(128)
+	Z_z_NATURAL_ROTATE (128)
 
 #	if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
 #		define z_uint128_big_endian    Z_SAME
@@ -152,14 +152,14 @@ zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
 #endif
 
 #ifdef Z_SINT128
-	Z__INTEGER_EXTRACT(128)
+	Z_z_INTEGER_EXTRACT(128)
 #endif
 
 
-#undef Z__NATURAL_EXTRACT
-#undef Z__INTEGER_EXTRACT
-#undef Z__NATURAL_REVERSE
-#undef Z__NATURAL_ROTATE
+#undef Z_z_NATURAL_EXTRACT
+#undef Z_z_INTEGER_EXTRACT
+#undef Z_z_NATURAL_REVERSE
+#undef Z_z_NATURAL_ROTATE
 
 
 #define z_T_big_endian(   T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _big_endian   )

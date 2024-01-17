@@ -34,14 +34,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			class t28 = NaT, class t29 = NaT, class t30 = NaT, class t31 = NaT
 		> struct TypeCount {};
 
-#		define Z__SPECIALIZATION(arity)					     \
+#		define Z_z_SPECIALIZATION(arity)					     \
 			template <Z_FOR_##arity##_APPEND_INDEX(class t, Z_COMMA)>    \
 			struct TypeCount<Z_FOR_##arity##_APPEND_INDEX(t, Z_COMMA)> { \
 				enum {value = arity};				     \
 			};
 
-		Z_FOR_32_CALL_WITH_INDEX(Z__SPECIALIZATION, Z_EMPTY)
-#		undef Z__SPECIALIZATION
+		Z_FOR_32_CALL_WITH_INDEX(Z_z_SPECIALIZATION, Z_EMPTY)
+#		undef Z_z_SPECIALIZATION
 	}
 #endif
 

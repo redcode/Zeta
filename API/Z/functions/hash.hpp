@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/integral.hpp>
 
 
-#define Z__FNV(type, hash_function, HASH_FUNCTION)				    \
+#define Z_z_FNV(type, hash_function, HASH_FUNCTION)				    \
 										    \
 	Z_CT(CPP14) type hash_function(const Char *string) Z_NOTHROW		    \
 		{								    \
@@ -35,22 +35,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 namespace Zeta {
-	Z__FNV(UInt32, fnv0_32,  FNV0_32)
-	Z__FNV(UInt32, fnv1_32,  FNV1_32)
-	Z__FNV(UInt32, fnv1a_32, FNV1A_32)
+	Z_z_FNV(UInt32, fnv0_32,  FNV0_32)
+	Z_z_FNV(UInt32, fnv1_32,  FNV1_32)
+	Z_z_FNV(UInt32, fnv1a_32, FNV1A_32)
 
 #	ifdef Z_UINT64
 #		define Z_HAS_fnv0_64  1
 #		define Z_HAS_fnv1_64  1
 #		define Z_HAS_fnv1a_64 1
 
-		Z__FNV(UInt64, fnv0_64,  FNV0_64)
-		Z__FNV(UInt64, fnv1_64,  FNV1_64)
-		Z__FNV(UInt64, fnv1a_64, FNV1A_64)
+		Z_z_FNV(UInt64, fnv0_64,  FNV0_64)
+		Z_z_FNV(UInt64, fnv1_64,  FNV1_64)
+		Z_z_FNV(UInt64, fnv1a_64, FNV1A_64)
 #	endif
 }
 
 
-#undef Z__FNV
+#undef Z_z_FNV
 
 #endif // Z_functions_hash_HPP

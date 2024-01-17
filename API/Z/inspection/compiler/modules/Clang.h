@@ -76,21 +76,21 @@ Released under the terms of the GNU Lesser General Public License v3.
 /* MARK: - Private macros */
 
 #ifdef __has_attribute /* v2.9 */
-#	define Z__HAS_ATTRIBUTE __has_attribute
+#	define Z_z_HAS_ATTRIBUTE __has_attribute
 #else
-#	define Z__HAS_ATTRIBUTE(which) 0
+#	define Z_z_HAS_ATTRIBUTE(which) 0
 #endif
 
 #ifdef __has_cpp_attribute /* v3.6 */
-#	define Z__HAS_CPP_ATTRIBUTE __has_cpp_attribute
+#	define Z_z_HAS_CPP_ATTRIBUTE __has_cpp_attribute
 #else
-#	define Z__HAS_CPP_ATTRIBUTE(which) 0
+#	define Z_z_HAS_CPP_ATTRIBUTE(which) 0
 #endif
 
 #ifdef __has_extension /* v3.0 */
-#	define Z__HAS_EXTENSION __has_extension
+#	define Z_z_HAS_EXTENSION __has_extension
 #else
-#	define Z__HAS_EXTENSION __has_feature
+#	define Z_z_HAS_EXTENSION __has_feature
 #endif
 
 /*---------------------------------------------------------------------------.
@@ -103,9 +103,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 	(Z_COMPILER_VERSION == Z_VERSION(3,0,0) &&  defined(__PRETTY_FUNCTION__)) || \
 	(Z_COMPILER_VERSION <  Z_VERSION(3,0,0) && !defined(__STDC__	       ))
 
-#	define Z__HAS_MSVC_COMPATIBILITY 1
+#	define Z_z_HAS_MSVC_COMPATIBILITY 1
 #else
-#	define Z__HAS_MSVC_COMPATIBILITY 0
+#	define Z_z_HAS_MSVC_COMPATIBILITY 0
 #endif
 
 /*-------------------------------------------------------------------------.
@@ -115,23 +115,23 @@ Released under the terms of the GNU Lesser General Public License v3.
 '=========================================================================*/
 #if	!defined(__STRICT_ANSI__) &&		     \
 	((Z_COMPILER_VERSION <  Z_VERSION(3,5,0)) || \
-	 (Z_COMPILER_VERSION >= Z_VERSION(3,5,0) && !Z__HAS_MSVC_COMPATIBILITY))
+	 (Z_COMPILER_VERSION >= Z_VERSION(3,5,0) && !Z_z_HAS_MSVC_COMPATIBILITY))
 
-#	define Z__HAS_GNU_EXTENSIONS 1
+#	define Z_z_HAS_GNU_EXTENSIONS 1
 #else
-#	define Z__HAS_GNU_EXTENSIONS 0
+#	define Z_z_HAS_GNU_EXTENSIONS 0
 #endif
 
 #if Z_COMPILER_VERSION >= Z_VERSION(10,0,0)
-#	define Z__HAS_TRAIT(which) \
+#	define Z_z_HAS_TRAIT(which) \
 	(__has_builtin(__##which) || !__is_identifier(__##which) || __has_extension(which))
 
 #elif Z_COMPILER_VERSION >= Z_VERSION(6,0,0)
-#	define Z__HAS_TRAIT(which) \
+#	define Z_z_HAS_TRAIT(which) \
 	(!__is_identifier(__##which) || __has_extension(which))
 
 #else
-#	define Z__HAS_TRAIT Z__HAS_EXTENSION
+#	define Z_z_HAS_TRAIT Z_z_HAS_EXTENSION
 #endif
 
 /* MARK: - ISA / Bit field order */
@@ -632,8 +632,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /* MARK: - Language: C95 */
 
-#if	defined(__cplusplus)  || \
-	Z__HAS_GNU_EXTENSIONS || \
+#if	defined(__cplusplus)   || \
+	Z_z_HAS_GNU_EXTENSIONS || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199409L)
 
 #	define Z_COMPILER_HAS_C95_DIGRAPHS 1 /* v2.6 */
@@ -675,8 +675,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 #	define Z_COMPILER_HAS_C99_SPECIFIER_INLINE				  1 /* v2.6 */
 #endif
 
-#if	defined(__cplusplus)  || \
-	Z__HAS_GNU_EXTENSIONS || \
+#if	defined(__cplusplus)   || \
+	Z_z_HAS_GNU_EXTENSIONS || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
 
 #	define Z_COMPILER_HAS_C99_CPP_STYLE_COMMENT 1 /* v2.6 */
@@ -800,8 +800,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 #	define Z_COMPILER_HAS_C11_STATIC_ASSERTION 1 /* v3.0 (N-T) */
 #endif
 
-#if	defined(__cplusplus)	  || \
-	Z__HAS_MSVC_COMPATIBILITY || \
+#if	defined(__cplusplus)	   || \
+	Z_z_HAS_MSVC_COMPATIBILITY || \
 	(defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L)
 
 #	define Z_COMPILER_HAS_C11_TYPEDEF_REDECLARATION 1 /* v2.6? (C++, MSVC), v3.1 (C11 T) */
@@ -840,8 +840,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /* MARK: - Language: Apple C extensions */
 
-#if	Z__HAS_EXTENSION(blocks) /* v2.6 */ || \
-	defined(__BLOCKS__)	 /* v2.6 */
+#if	Z_z_HAS_EXTENSION(blocks) /* v2.6 */ || \
+	defined(__BLOCKS__)	  /* v2.6 */
 
 #	define Z_COMPILER_HAS_APPLE_C_BLOCK_OBJECT 1 /* v2.6 */
 #endif
@@ -916,7 +916,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #		endif
 
 #		if	__cplusplus >= 201103L || defined(__GXX_EXPERIMENTAL_CXX0X__) || \
-			Z__HAS_MSVC_COMPATIBILITY
+			Z_z_HAS_MSVC_COMPATIBILITY
 
 #			define Z_COMPILER_HAS_CPP11_INITIALIZATION_OF_CLASS_OBJECT_BY_RVALUE 1 /* v2.9 (S) */
 #		endif
@@ -1193,8 +1193,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 #	if	(defined(__cpp_unicode_characters) && __cpp_unicode_characters >= 200704L) /* v3.4 */ || \
 		(Z_COMPILER_VERSION < Z_VERSION(3,4,0) && __cplusplus >= 201103L)
 
-		// TODO: Fails with -fms-compatibility on Apple Clang (Z__HAS_MSVC_COMPATIBILITY)
-#		if !Z__HAS_MSVC_COMPATIBILITY
+		// TODO: Fails with -fms-compatibility on Apple Clang (Z_z_HAS_MSVC_COMPATIBILITY)
+#		if !Z_z_HAS_MSVC_COMPATIBILITY
 #			define Z_COMPILER_HAS_CPP11_TYPE_CHAR16_T 1 /* v2.9 (S), v3.0 (N) */
 #			define Z_COMPILER_HAS_CPP11_TYPE_CHAR32_T 1 /* v2.9 (S), v3.0 (N) */
 #		endif
@@ -1276,9 +1276,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 	| later, but starting from v3.7 [[deprecated]] generates warnings in C++11.   |
 	| [[deprecated]] compiles without warnings in C++11 between v3.4 and v3.6.2.  |
 	'============================================================================*/
-#	if	(Z__HAS_CPP_ATTRIBUTE(deprecated) >= 201309L /* v3.6 */ && __cplusplus >= 201402L) || \
-		(Z_COMPILER_VERSION >= Z_VERSION(3,4,0) &&					      \
-		 Z_COMPILER_VERSION <= Z_VERSION(3,6,2) &&					      \
+#	if	(Z_z_HAS_CPP_ATTRIBUTE(deprecated) >= 201309L /* v3.6 */ && __cplusplus >= 201402L) || \
+		(Z_COMPILER_VERSION >= Z_VERSION(3,4,0) &&					       \
+		 Z_COMPILER_VERSION <= Z_VERSION(3,6,2) &&					       \
 		 __cplusplus >= 201103L)
 
 #		define Z_COMPILER_HAS_CPP14_ATTRIBUTE_DEPRECATED 1 /* v3.4 (N-S-T) */
@@ -1331,15 +1331,15 @@ Released under the terms of the GNU Lesser General Public License v3.
 #				endif
 #			endif
 
-#			if Z__HAS_CPP_ATTRIBUTE(fallthrough) >= 201603L /* v3.9 */
+#			if Z_z_HAS_CPP_ATTRIBUTE(fallthrough) >= 201603L /* v3.9 */
 #				define Z_COMPILER_HAS_CPP17_ATTRIBUTE_FALLTHROUGH 1 /* v3.9 (N-S-T) */
 #			endif
 
-#			if Z__HAS_CPP_ATTRIBUTE(maybe_unused) >= 201603L /* v3.9 */
+#			if Z_z_HAS_CPP_ATTRIBUTE(maybe_unused) >= 201603L /* v3.9 */
 #				define Z_COMPILER_HAS_CPP17_ATTRIBUTE_MAYBE_UNUSED 1 /* v3.9 (N-S-T) */
 #			endif
 
-#			if Z__HAS_CPP_ATTRIBUTE(nodiscard) >= 201603L /* v3.9 */
+#			if Z_z_HAS_CPP_ATTRIBUTE(nodiscard) >= 201603L /* v3.9 */
 #				define Z_COMPILER_HAS_CPP17_ATTRIBUTE_NODISCARD 1 /* v3.9 (N-S-T) */
 #			endif
 #		endif
@@ -2486,86 +2486,86 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #endif
 
-#if Z__HAS_TRAIT(has_virtual_destructor)
+#if Z_z_HAS_TRAIT(has_virtual_destructor)
 #	define Z_COMPILER_TRAIT_TYPE_HAS_VIRTUAL_DESTRUCTOR __has_virtual_destructor /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_abstract)
+#if Z_z_HAS_TRAIT(is_abstract)
 #	define Z_COMPILER_TRAIT_TYPE_IS_ABSTRACT __is_abstract /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_base_of)
+#if Z_z_HAS_TRAIT(is_base_of)
 #	define Z_COMPILER_TRAIT_TYPE_IS_BASE __is_base_of /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_constructible)
+#if Z_z_HAS_TRAIT(is_constructible)
 #	define Z_COMPILER_TRAIT_TYPE_IS_CONSTRUCTIBLE __is_constructible /* v3.5 */
 #endif
 
-#if Z__HAS_TRAIT(is_convertible_to)
+#if Z_z_HAS_TRAIT(is_convertible_to)
 #	define Z_COMPILER_TRAIT_TYPE_IS_CONVERTIBLE __is_convertible_to /* v2.9 */
 #endif
 
-#if Z__HAS_TRAIT(is_empty)
+#if Z_z_HAS_TRAIT(is_empty)
 #	define Z_COMPILER_TRAIT_TYPE_IS_EMPTY __is_empty /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_enum)
+#if Z_z_HAS_TRAIT(is_enum)
 #	define Z_COMPILER_TRAIT_TYPE_IS_ENUMERATION __is_enum /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_final)
+#if Z_z_HAS_TRAIT(is_final)
 #	define Z_COMPILER_TRAIT_TYPE_IS_FINAL __is_final /* v3.1 */
 #endif
 
-#if Z__HAS_TRAIT(is_interface_class)
+#if Z_z_HAS_TRAIT(is_interface_class)
 #	define Z_COMPILER_TRAIT_TYPE_IS_INTERFACE_CLASS __is_interface_class /* v3.2 (not detectable with __has_extension?) */
 #endif
 
-#if Z__HAS_TRAIT(is_literal)
+#if Z_z_HAS_TRAIT(is_literal)
 #	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal /* v2.7 */
 
 #elif defined(__cplusplus) && Z_COMPILER_VERSION >= Z_VERSION(3,0,0)
 #	define Z_COMPILER_TRAIT_TYPE_IS_LITERAL __is_literal_type /* v3.0 */
 #endif
 
-#if Z__HAS_TRAIT(has_nothrow_assign)
+#if Z_z_HAS_TRAIT(has_nothrow_assign)
 #	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_COPY_ASSIGNABLE __has_nothrow_assign /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(has_nothrow_copy)
+#if Z_z_HAS_TRAIT(has_nothrow_copy)
 #	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_COPY_CONSTRUCTIBLE __has_nothrow_copy /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(has_nothrow_constructor)
+#if Z_z_HAS_TRAIT(has_nothrow_constructor)
 #	define Z_COMPILER_TRAIT_TYPE_IS_NOTHROW_DEFAULT_CONSTRUCTIBLE __has_nothrow_constructor /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_pod)
+#if Z_z_HAS_TRAIT(is_pod)
 #	define Z_COMPILER_TRAIT_TYPE_IS_POD __is_pod /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_polymorphic)
+#if Z_z_HAS_TRAIT(is_polymorphic)
 #	define Z_COMPILER_TRAIT_TYPE_IS_POLYMORPHIC __is_polymorphic /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_std_layout)
+#if Z_z_HAS_TRAIT(is_std_layout)
 #	define Z_COMPILER_TRAIT_TYPE_IS_STD_LAYOUT __is_standard_layout /* v3.0 */
 #endif
 
-#if Z__HAS_TRAIT(is_class)
+#if Z_z_HAS_TRAIT(is_class)
 #	define Z_COMPILER_TRAIT_TYPE_IS_STRUCTURE __is_class /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_trivial)
+#if Z_z_HAS_TRAIT(is_trivial)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIAL __is_trivial /* v3.0 */
 #endif
 
-#if Z__HAS_TRAIT(is_trivially_assignable)
+#if Z_z_HAS_TRAIT(is_trivially_assignable)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_ASSIGNABLE __is_trivially_assignable /* v3.1 */
 #endif
 
-#if Z__HAS_TRAIT(is_trivially_constructible)
+#if Z_z_HAS_TRAIT(is_trivially_constructible)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_CONSTRUCTIBLE __is_trivially_constructible /* v3.1 */
 #endif
 
@@ -2576,48 +2576,48 @@ Released under the terms of the GNU Lesser General Public License v3.
 | https://github.com/llvm/llvm-project/issues/33063 |
 '==================================================*/
 
-#if Z__HAS_TRAIT(has_trivial_assign) && Z_COMPILER_VERSION < Z_VERSION(10,0,0) /* Check version */
+#if Z_z_HAS_TRAIT(has_trivial_assign) && Z_COMPILER_VERSION < Z_VERSION(10,0,0) /* Check version */
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPY_ASSIGNABLE __has_trivial_assign /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_trivially_copyable)
+#if Z_z_HAS_TRAIT(is_trivially_copyable)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE __is_trivially_copyable
-#elif Z__HAS_TRAIT(has_trivial_copy)
+#elif Z_z_HAS_TRAIT(has_trivial_copy)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPY_CONSTRUCTIBLE __has_trivial_copy /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_trivially_copyable)
+#if Z_z_HAS_TRAIT(is_trivially_copyable)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_COPYABLE __is_trivially_copyable /* v3.0 */
 #endif
 
-#if Z__HAS_TRAIT(is_trivially_constructible)
+#if Z_z_HAS_TRAIT(is_trivially_constructible)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE __is_trivially_constructible
-#elif Z__HAS_TRAIT(has_trivial_constructor)
+#elif Z_z_HAS_TRAIT(has_trivial_constructor)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DEFAULT_CONSTRUCTIBLE __has_trivial_constructor /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_trivially_destructible)
+#if Z_z_HAS_TRAIT(is_trivially_destructible)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DESTRUCTIBLE __is_trivially_destructible
-#elif Z__HAS_TRAIT(has_trivial_destructor)
+#elif Z_z_HAS_TRAIT(has_trivial_destructor)
 #	define Z_COMPILER_TRAIT_TYPE_IS_TRIVIALLY_DESTRUCTIBLE __has_trivial_destructor /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(is_union)
+#if Z_z_HAS_TRAIT(is_union)
 #	define Z_COMPILER_TRAIT_TYPE_IS_UNION __is_union /* v2.6 */
 #endif
 
-#if Z__HAS_TRAIT(underlying_type)
+#if Z_z_HAS_TRAIT(underlying_type)
 #	define Z_COMPILER_TRAIT_TYPE_UNDERLYING_TYPE __underlying_type /* v3.0 */
 #endif
 
 /* MARK: - Private macros clean-up */
 
-#undef Z__HAS_ATTRIBUTE
-#undef Z__HAS_CPP_ATTRIBUTE
-#undef Z__HAS_EXTENSION
-#undef Z__HAS_GNU_EXTENSIONS
-#undef Z__HAS_MSVC_COMPATIBILITY
-#undef Z__HAS_TRAIT
+#undef Z_z_HAS_ATTRIBUTE
+#undef Z_z_HAS_CPP_ATTRIBUTE
+#undef Z_z_HAS_EXTENSION
+#undef Z_z_HAS_GNU_EXTENSIONS
+#undef Z_z_HAS_MSVC_COMPATIBILITY
+#undef Z_z_HAS_TRAIT
 
 #define Z_COMPILER_HAS_MAGIC_CONSTANT_MANGLED_FUNCTION_NAME 1
 
