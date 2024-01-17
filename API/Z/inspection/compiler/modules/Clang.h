@@ -2466,7 +2466,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #	if __has_builtin(__type_pack_element) /* v3.9 */
 #		pragma clang diagnostic push
-#		pragma clang diagnostic ignored "-Wvariadic-macros"
+#		pragma clang diagnostic ignored "-Weverything"
 #		define Z_COMPILER_TRAIT_SELECT_TYPE(I, ...) __type_pack_element<I, __VA_ARGS__> /* v3.9 */
 #		pragma clang diagnostic pop
 #	endif
