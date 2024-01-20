@@ -10,7 +10,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_types_integral_H
 
 #include <Z/constants/boolean.h>
-#include <Z/inspection/data model.h>
+#include <Z/inspection/data_model.h>
 #include <Z/macros/casting.h>
 #include <Z/macros/T.h>
 

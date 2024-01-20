@@ -70,11 +70,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_ISA == Z_ISA_PA_RISC
 #		include <Z/inspection/ISA/modules/PA-RISC.h>
 #	elif Z_ISA == Z_ISA_PA_RISC_2
-#		include <Z/inspection/ISA/modules/PA-RISC 2.0.h>
+#		include <Z/inspection/ISA/modules/PA-RISC_2.0.h>
 #	elif Z_ISA == Z_ISA_POWERPC_32BIT
-#		include <Z/inspection/ISA/modules/PowerPC 32-bit.h>
+#		include <Z/inspection/ISA/modules/PowerPC_32-bit.h>
 #	elif Z_ISA == Z_ISA_POWERPC_64BIT
-#		include <Z/inspection/ISA/modules/PowerPC 64-bit.h>
+#		include <Z/inspection/ISA/modules/PowerPC_64-bit.h>
 #	elif Z_ISA == Z_ISA_RV32E
 #		include <Z/inspection/ISA/modules/RV32E.h>
 #	elif Z_ISA == Z_ISA_RV32I
@@ -86,11 +86,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_ISA == Z_ISA_SPARC
 #		include <Z/inspection/ISA/modules/SPARC.h>
 #	elif Z_ISA == Z_ISA_SPARC_V9
-#		include <Z/inspection/ISA/modules/SPARC V9.h>
+#		include <Z/inspection/ISA/modules/SPARC_V9.h>
 #	elif Z_ISA == Z_ISA_SUPERH
 #		include <Z/inspection/ISA/modules/SuperH.h>
 #	elif Z_ISA == Z_ISA_SUPERH_5
-#		include <Z/inspection/ISA/modules/SuperH 5.h>
+#		include <Z/inspection/ISA/modules/SuperH_5.h>
 #	elif Z_ISA == Z_ISA_VAX
 #		include <Z/inspection/ISA/modules/VAX.h>
 #	elif Z_ISA == Z_ISA_WASM32

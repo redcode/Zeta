@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_macros_character_H
 #define Z_macros_character_H
 
-#include <Z/inspection/character set.h>
+#include <Z/inspection/character-set.h>
 
 #if '\0' - '\1' > '\0'
 #	define Z_CHARACTER_IS_ASCII(character) \

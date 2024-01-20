@@ -62,19 +62,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#	if Z_COMPILER == Z_COMPILER_ACC
 #		include <Z/inspection/compiler/modules/ACC.h>
 #	elif Z_COMPILER == Z_COMPILER_ALTIUM_C_TO_HARDWARE
-#		include <Z/inspection/compiler/modules/Altium C-to-Hardware.h>
+#		include <Z/inspection/compiler/modules/Altium_C-to-Hardware.h>
 #	elif Z_COMPILER == Z_COMPILER_ALTIUM_MICROBLAZE_C
-#		include <Z/inspection/compiler/modules/Altium MicroBlaze C.h>
+#		include <Z/inspection/compiler/modules/Altium_MicroBlaze_C.h>
 #	elif Z_COMPILER == Z_COMPILER_AMSTERDAM_COMPILER_KIT
-#		include <Z/inspection/compiler/modules/Amsterdam Compiler Kit.h>
+#		include <Z/inspection/compiler/modules/Amsterdam_Compiler_Kit.h>
 #	elif Z_COMPILER == Z_COMPILER_APPLE_CLANG
-#		include <Z/inspection/compiler/modules/Apple Clang.h>
+#		include <Z/inspection/compiler/modules/Apple_Clang.h>
 #	elif Z_COMPILER == Z_COMPILER_ARM_C_CPP_COMPILER
-#		include <Z/inspection/compiler/modules/ARM C-C++ Compiler.h>
+#		include <Z/inspection/compiler/modules/ARM_C-C++_Compiler.h>
 #	elif Z_COMPILER == Z_COMPILER_ARM_COMPILER
-#		include <Z/inspection/compiler/modules/ARM Compiler.h>
+#		include <Z/inspection/compiler/modules/ARM_Compiler.h>
 #	elif Z_COMPILER == Z_COMPILER_AZTEC_C
-#		include <Z/inspection/compiler/modules/Aztec C.h>
+#		include <Z/inspection/compiler/modules/Aztec_C.h>
 #	elif Z_COMPILER == Z_COMPILER_BCC
 #		include <Z/inspection/compiler/modules/BCC.h>*/
 #	if Z_COMPILER == Z_COMPILER_CC65
@@ -84,83 +84,83 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /*#	elif Z_COMPILER == Z_COMPILER_CODE_WARRIOR
 #		include <Z/inspection/compiler/modules/CodeWarrior.h>
 #	elif Z_COMPILER == Z_COMPILER_COMEAU_CPP
-#		include <Z/inspection/compiler/modules/Comeau C++.h>
+#		include <Z/inspection/compiler/modules/Comeau_C++.h>
 #	elif Z_COMPILER == Z_COMPILER_COMPAQ_C_CPP
-#		include <Z/inspection/compiler/modules/Compaq C-C++.h>
+#		include <Z/inspection/compiler/modules/Compaq_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_COMPCERT
 #		include <Z/inspection/compiler/modules/CompCert.h>
 #	elif Z_COMPILER == Z_COMPILER_CONVEX_C
-#		include <Z/inspection/compiler/modules/Convex C.h>
+#		include <Z/inspection/compiler/modules/Convex_C.h>
 #	elif Z_COMPILER == Z_COMPILER_COVERITY_C_CPP_STATIC_ANALYZER
-#		include <Z/inspection/compiler/modules/Coverity C-C++ Static Analyzer.h>
+#		include <Z/inspection/compiler/modules/Coverity_C-C++_Static_Analyzer.h>
 #	elif Z_COMPILER == Z_COMPILER_CRAY_C
-#		include <Z/inspection/compiler/modules/Cray C.h>
+#		include <Z/inspection/compiler/modules/Cray_C.h>
 #	elif Z_COMPILER == Z_COMPILER_DIAB_C_CPP
-#		include <Z/inspection/compiler/modules/Diab C-C++.h>
+#		include <Z/inspection/compiler/modules/Diab_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_DICE_C
-#		include <Z/inspection/compiler/modules/DICE C.h>
+#		include <Z/inspection/compiler/modules/DICE_C.h>
 #	elif Z_COMPILER == Z_COMPILER_DIGITAL_MARS
-#		include <Z/inspection/compiler/modules/Digital Mars.h>
+#		include <Z/inspection/compiler/modules/Digital_Mars.h>
 #	elif Z_COMPILER == Z_COMPILER_DJGPP
 #		include <Z/inspection/compiler/modules/DJGPP.h>
 #	elif Z_COMPILER == Z_COMPILER_EDG_CPP_FRONTEND
-#		include <Z/inspection/compiler/modules/EDG C++ Frontend.h>
+#		include <Z/inspection/compiler/modules/EDG_C++_Frontend.h>
 #	elif Z_COMPILER == Z_COMPILER_EKOPATH
 #		include <Z/inspection/compiler/modules/EKOPath.h>
 #	elif Z_COMPILER == Z_COMPILER_FUJITSU_CPP
-#		include <Z/inspection/compiler/modules/Fujitsu C++.h>*/
+#		include <Z/inspection/compiler/modules/Fujitsu_C++.h>*/
 #	elif Z_COMPILER == Z_COMPILER_GCC
 #		include <Z/inspection/compiler/modules/GCC.h>
 /*#	elif Z_COMPILER == Z_COMPILER_GREEN_HILL_C_CPP
-#		include <Z/inspection/compiler/modules/Green Hill C-C++.h>
+#		include <Z/inspection/compiler/modules/Green_Hill_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_HP_ACPP
-#		include <Z/inspection/compiler/modules/HP aC++.h>
+#		include <Z/inspection/compiler/modules/HP_aC++.h>
 #	elif Z_COMPILER == Z_COMPILER_HP_ANSI_C
-#		include <Z/inspection/compiler/modules/HP ANSI C.h>
+#		include <Z/inspection/compiler/modules/HP_ANSI_C.h>
 #	elif Z_COMPILER == Z_COMPILER_HP_UPC
-#		include <Z/inspection/compiler/modules/HP UPC.h>
+#		include <Z/inspection/compiler/modules/HP_UPC.h>
 #	elif Z_COMPILER == Z_COMPILER_IAR_C_CPP
-#		include <Z/inspection/compiler/modules/IAR C-C++.h>
+#		include <Z/inspection/compiler/modules/IAR_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_IBM_XL_C_CPP
-#		include <Z/inspection/compiler/modules/IBM XL C-C++.h>
+#		include <Z/inspection/compiler/modules/IBM_XL_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_IBM_Z_OS_C_CPP
-#		include <Z/inspection/compiler/modules/IBM z-OS C-C++.h>
+#		include <Z/inspection/compiler/modules/IBM_z-OS_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_IMAGECRAFT_C
-#		include <Z/inspection/compiler/modules/ImageCraft C.h>
+#		include <Z/inspection/compiler/modules/ImageCraft_C.h>
 #	elif Z_COMPILER == Z_COMPILER_INTEL_CPP
-#		include <Z/inspection/compiler/modules/Intel C++.h>
+#		include <Z/inspection/compiler/modules/Intel_C++.h>
 #	elif Z_COMPILER == Z_COMPILER_KAI_CPP
-#		include <Z/inspection/compiler/modules/KAI C++.h>
+#		include <Z/inspection/compiler/modules/KAI_C++.h>
 #	elif Z_COMPILER == Z_COMPILER_KEIL_C166
-#		include <Z/inspection/compiler/modules/KEIL C166.h>
+#		include <Z/inspection/compiler/modules/KEIL_C166.h>
 #	elif Z_COMPILER == Z_COMPILER_KEIL_C51
-#		include <Z/inspection/compiler/modules/KEIL C51.h>
+#		include <Z/inspection/compiler/modules/KEIL_C51.h>
 #	elif Z_COMPILER == Z_COMPILER_KEIL_CARM
-#		include <Z/inspection/compiler/modules/KEIL CARM.h>
+#		include <Z/inspection/compiler/modules/KEIL_CARM.h>
 #	elif Z_COMPILER == Z_COMPILER_LCC
 #		include <Z/inspection/compiler/modules/LCC.h>
 #	elif Z_COMPILER == Z_COMPILER_MCC
 #		include <Z/inspection/compiler/modules/MCC.h>
 #	elif Z_COMPILER == Z_COMPILER_METAWARE_HIGH_C_CPP
-#		include <Z/inspection/compiler/modules/MetaWare High C-C++.h>
+#		include <Z/inspection/compiler/modules/MetaWare_High_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_MICROTEC_C_CPP
-#		include <Z/inspection/compiler/modules/Microtec C-C++.h>
+#		include <Z/inspection/compiler/modules/Microtec_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_MINGW
 #		include <Z/inspection/compiler/modules/MinGW.h>
 #	elif Z_COMPILER == Z_COMPILER_MIPS_PRO
 #		include <Z/inspection/compiler/modules/MIPSpro.h>
 #	elif Z_COMPILER == Z_COMPILER_MIRACLE_C
-#		include <Z/inspection/compiler/modules/Miracle C.h>
+#		include <Z/inspection/compiler/modules/Miracle_C.h>
 #	elif Z_COMPILER == Z_COMPILER_MPW_CPP
-#		include <Z/inspection/compiler/modules/MPW C++.h>
+#		include <Z/inspection/compiler/modules/MPW_C++.h>
 #	elif Z_COMPILER == Z_COMPILER_MSC
 #		include <Z/inspection/compiler/modules/MSC.h>*/
 #	elif Z_COMPILER == Z_COMPILER_MSVC
 #		include <Z/inspection/compiler/modules/MSVC.h>
 /*#	elif Z_COMPILER == Z_COMPILER_NDP_C
-#		include <Z/inspection/compiler/modules/NDP C.h>
+#		include <Z/inspection/compiler/modules/NDP_C.h>
 #	elif Z_COMPILER == Z_COMPILER_NORCROFT_C
-#		include <Z/inspection/compiler/modules/Norcroft C.h>
+#		include <Z/inspection/compiler/modules/Norcroft_C.h>
 #	elif Z_COMPILER == Z_COMPILER_NVC
 #		include <Z/inspection/compiler/modules/NVC.h>
 #	elif Z_COMPILER == Z_COMPILER_NWCC
@@ -168,21 +168,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_COMPILER == Z_COMPILER_OPEN64
 #		include <Z/inspection/compiler/modules/Open64.h>
 #	elif Z_COMPILER == Z_COMPILER_ORACLE_PRO_C_PRECOMPILER
-#		include <Z/inspection/compiler/modules/Oracle Pro-C Precompiler.h>
+#		include <Z/inspection/compiler/modules/Oracle_Pro-C_Precompiler.h>
 #	elif Z_COMPILER == Z_COMPILER_ORACLE_SOLARIS_STUDIO
-#		include <Z/inspection/compiler/modules/Oracle Solaris Studio.h>
+#		include <Z/inspection/compiler/modules/Oracle_Solaris_Studio.h>
 #	elif Z_COMPILER == Z_COMPILER_PACIFIC_C
-#		include <Z/inspection/compiler/modules/Pacific C.h>
+#		include <Z/inspection/compiler/modules/Pacific_C.h>
 #	elif Z_COMPILER == Z_COMPILER_PALM_C_CPP
-#		include <Z/inspection/compiler/modules/Palm C-C++.h>
+#		include <Z/inspection/compiler/modules/Palm_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_PCC
 #		include <Z/inspection/compiler/modules/PCC.h>
 #	elif Z_COMPILER == Z_COMPILER_PELLES_C
-#		include <Z/inspection/compiler/modules/Pelles C.h>
+#		include <Z/inspection/compiler/modules/Pelles_C.h>
 #	elif Z_COMPILER == Z_COMPILER_PGI_C_CPP
-#		include <Z/inspection/compiler/modules/PGI C-C++.h>
+#		include <Z/inspection/compiler/modules/PGI_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_RENESAS_C_CPP
-#		include <Z/inspection/compiler/modules/Renesas C-C++.h>
+#		include <Z/inspection/compiler/modules/Renesas_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_SAS_C
 #		include <Z/inspection/compiler/modules/SAS-C.h>
 #	elif Z_COMPILER == Z_COMPILER_SCCZ80
@@ -192,35 +192,35 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_COMPILER == Z_COMPILER_SNC
 #		include <Z/inspection/compiler/modules/SNC.h>
 #	elif Z_COMPILER == Z_COMPILER_SYMANTEC_CPP
-#		include <Z/inspection/compiler/modules/Symantec C++.h>
+#		include <Z/inspection/compiler/modules/Symantec_C++.h>
 #	elif Z_COMPILER == Z_COMPILER_SYSTEMS_C
 #		include <Z/inspection/compiler/modules/Systems-C.h>
 #	elif Z_COMPILER == Z_COMPILER_TENDRA
 #		include <Z/inspection/compiler/modules/TenDRA.h>
 #	elif Z_COMPILER == Z_COMPILER_THINK_C
-#		include <Z/inspection/compiler/modules/THINK C.h>
+#		include <Z/inspection/compiler/modules/THINK_C.h>
 #	elif Z_COMPILER == Z_COMPILER_TI_C_CPP_COMPILER
-#		include <Z/inspection/compiler/modules/Texas Instruments C-C++ Compiler.h>*/
+#		include <Z/inspection/compiler/modules/Texas_Instruments_C-C++_Compiler.h>*/
 #	elif Z_COMPILER == Z_COMPILER_TINY_CC
 #		include <Z/inspection/compiler/modules/TinyCC.h>
 /*#	elif Z_COMPILER == Z_COMPILER_TURBO_C
-#		include <Z/inspection/compiler/modules/Turbo C.h>
+#		include <Z/inspection/compiler/modules/Turbo_C.h>
 #	elif Z_COMPILER == Z_COMPILER_TURBO_CPP
-#		include <Z/inspection/compiler/modules/Turbo C++.h>
+#		include <Z/inspection/compiler/modules/Turbo_C++.h>
 #	elif Z_COMPILER == Z_COMPILER_ULTRA_C_CPP
-#		include <Z/inspection/compiler/modules/Ultra C-C++.h>
+#		include <Z/inspection/compiler/modules/Ultra_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_USL
 #		include <Z/inspection/compiler/modules/USL.h>
 #	elif Z_COMPILER == Z_COMPILER_VBCC
 #		include <Z/inspection/compiler/modules/vbcc.h>
 #	elif Z_COMPILER == Z_COMPILER_VOS_C
-#		include <Z/inspection/compiler/modules/VOS C.h>
+#		include <Z/inspection/compiler/modules/VOS_C.h>
 #	elif Z_COMPILER == Z_COMPILER_VOS_STANDARD_C
-#		include <Z/inspection/compiler/modules/VOS Standard C.h>
+#		include <Z/inspection/compiler/modules/VOS_Standard_C.h>
 #	elif Z_COMPILER == Z_COMPILER_WATCOM_C_CPP
-#		include <Z/inspection/compiler/modules/Watcom C-C++.h>
+#		include <Z/inspection/compiler/modules/Watcom_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_ZORTECH_CPP
-#		include <Z/inspection/compiler/modules/Zortech C++.h>*/
+#		include <Z/inspection/compiler/modules/Zortech_C++.h>*/
 #	elif Z_COMPILER == Z_COMPILER_UNKNOWN
 #		include <Z/inspection/compiler/modules/generic.h>
 #	else

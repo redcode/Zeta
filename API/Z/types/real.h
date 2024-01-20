@@ -22,7 +22,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_FLOATING_POINT_HAS_TYPE(DFP64 ) || \
 	Z_FLOATING_POINT_HAS_TYPE(DFP128)
 
-#	include <Z/formats/floating-point/IEEE 754.h>
+#	include <Z/formats/floating-point/IEEE_754.h>
 
 #	if Z_FLOATING_POINT_HAS_TYPE(BFP16)
 #		define Z_BFP16			     Z_FLOATING_POINT_LITERAL	 (BFP16)
@@ -266,7 +266,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_FLOATING_POINT_HAS_TYPE(BFLOAT16)
-#	include <Z/formats/floating-point/Brain Floating-Point.h>
+#	include <Z/formats/floating-point/Brain_Floating-Point.h>
 
 	typedef Z_FLOATING_POINT_TYPE(BFLOAT16)	zbfloat16;
 #	define Z_BFLOAT16			Z_FLOATING_POINT_LITERAL    (BFLOAT16)
