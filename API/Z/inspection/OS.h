@@ -50,7 +50,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_OS == Z_OS_CNK
 #		include <Z/inspection/OS/modules/CNK.h>
 #	elif Z_OS == Z_OS_CONVEX_UNIX
-#		include <Z/inspection/OS/modules/Convex UNIX.h>
+#		include <Z/inspection/OS/modules/Convex_UNIX.h>
 #	elif Z_OS == Z_OS_CYGWIN
 #		include <Z/inspection/OS/modules/Cygwin.h>
 #	elif Z_OS == Z_OS_DC_OSX
@@ -60,7 +60,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_OS == Z_OS_DOMAIN_OS
 #		include <Z/inspection/OS/modules/Domain-OS.h>
 #	elif Z_OS == Z_OS_DRAGONFLY_BSD
-#		include <Z/inspection/OS/modules/DragonFly BSD.h>
+#		include <Z/inspection/OS/modules/DragonFly_BSD.h>
 #	elif Z_OS == Z_OS_DYNIX_PTX
 #		include <Z/inspection/OS/modules/DYNIX-ptx.h>
 #	elif Z_OS == Z_OS_ECOS
@@ -70,7 +70,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_OS == Z_OS_FUCHSIA
 #		include <Z/inspection/OS/modules/Fuchsia.h>
 #	elif Z_OS == Z_OS_GNU_HURD
-#		include <Z/inspection/OS/modules/GNU Hurd.h>
+#		include <Z/inspection/OS/modules/GNU_Hurd.h>
 #	elif Z_OS == Z_OS_HAIKU
 #		include <Z/inspection/OS/modules/Haiku.h>
 #	elif Z_OS == Z_OS_HI_UX_MPP
@@ -80,11 +80,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_OS == Z_OS_INTEGRITY
 #		include <Z/inspection/OS/modules/INTEGRITY.h>
 #	elif Z_OS == Z_OS_IPHONE_OS
-#		include <Z/inspection/OS/modules/iPhone OS.h>
+#		include <Z/inspection/OS/modules/iPhone_OS.h>
 #	elif Z_OS == Z_OS_IRIX
 #		include <Z/inspection/OS/modules/IRIX.h>
 #	elif Z_OS == Z_OS_LEMON_OS
-#		include <Z/inspection/OS/modules/Lemon OS.h>
+#		include <Z/inspection/OS/modules/Lemon_OS.h>
 #	elif Z_OS == Z_OS_LINUX
 #		include <Z/inspection/OS/modules/Linux.h>
 #	elif Z_OS == Z_OS_LUNIX
@@ -92,15 +92,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_OS == Z_OS_LYNX_OS
 #		include <Z/inspection/OS/modules/LynxOS.h>
 #	elif Z_OS == Z_OS_MAC_OS
-#		include <Z/inspection/OS/modules/Mac OS.h>
+#		include <Z/inspection/OS/modules/Mac_OS.h>
 #	elif Z_OS == Z_OS_MAC_OS_X
-#		include <Z/inspection/OS/modules/Mac OS X.h>
+#		include <Z/inspection/OS/modules/Mac_OS_X.h>
 #	elif Z_OS == Z_OS_MINIX
 #		include <Z/inspection/OS/modules/MINIX.h>
 #	elif Z_OS == Z_OS_MORPH_OS
 #		include <Z/inspection/OS/modules/MorphOS.h>
 #	elif Z_OS == Z_OS_MPE_XL
-#		include <Z/inspection/OS/modules/MPE XL.h>
+#		include <Z/inspection/OS/modules/MPE_XL.h>
 #	elif Z_OS == Z_OS_MS_DOS
 #		include <Z/inspection/OS/modules/MS-DOS.h>
 #	elif Z_OS == Z_OS_NET_BSD
@@ -108,15 +108,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_OS == Z_OS_NETWARE
 #		include <Z/inspection/OS/modules/NetWare.h>
 #	elif Z_OS == Z_OS_NON_STOP_OS
-#		include <Z/inspection/OS/modules/NonStop OS.h>
+#		include <Z/inspection/OS/modules/NonStop_OS.h>
 #	elif Z_OS == Z_OS_NUCLEUS_RTOS
-#		include <Z/inspection/OS/modules/Nucleus RTOS.h>
+#		include <Z/inspection/OS/modules/Nucleus_RTOS.h>
 #	elif Z_OS == Z_OS_OPEN_BSD
 #		include <Z/inspection/OS/modules/OpenBSD.h>
 #	elif Z_OS == Z_OS_OPEN_VMS
 #		include <Z/inspection/OS/modules/OpenVMS.h>
 #	elif Z_OS == Z_OS_ORBIS_OS
-#		include <Z/inspection/OS/modules/Orbis OS.h>
+#		include <Z/inspection/OS/modules/Orbis_OS.h>
 #	elif Z_OS == Z_OS_OS_2
 #		include <Z/inspection/OS/modules/OS-2.h>
 #	elif Z_OS == Z_OS_OS_9
@@ -126,17 +126,17 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_OS == Z_OS_OSF_1
 #		include <Z/inspection/OS/modules/OSF-1.h>
 #	elif Z_OS == Z_OS_PALM_OS
-#		include <Z/inspection/OS/modules/Palm OS.h>
+#		include <Z/inspection/OS/modules/Palm_OS.h>
 #	elif Z_OS == Z_OS_PLAN_9
-#		include <Z/inspection/OS/modules/Plan 9.h>
+#		include <Z/inspection/OS/modules/Plan_9.h>
 #	elif Z_OS == Z_OS_PSP_SYSTEM_SOFTWARE
-#		include <Z/inspection/OS/modules/PSP System Software.h>
+#		include <Z/inspection/OS/modules/PSP_System_Software.h>
 #	elif Z_OS == Z_OS_QNX
 #		include <Z/inspection/OS/modules/QNX.h>
 #	elif Z_OS == Z_OS_RTEMS
 #		include <Z/inspection/OS/modules/RTEMS.h>
 #	elif Z_OS == Z_OS_SCO_UNIX_SYSTEM_V
-#		include <Z/inspection/OS/modules/SCO UNIX System V.h>
+#		include <Z/inspection/OS/modules/SCO_UNIX_System_V.h>
 #	elif Z_OS == Z_OS_SERENITY_OS
 #		include <Z/inspection/OS/modules/SerenityOS.h>
 #	elif Z_OS == Z_OS_SINIX
@@ -166,11 +166,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_OS == Z_OS_VX_WORKS
 #		include <Z/inspection/OS/modules/VxWorks.h>
 #	elif Z_OS == Z_OS_WATCH_OS
-#		include <Z/inspection/OS/modules/Watch OS.h>
+#		include <Z/inspection/OS/modules/Watch_OS.h>
 #	elif Z_OS == Z_OS_WINDOWS
 #		include <Z/inspection/OS/modules/Windows.h>
 #	elif Z_OS == Z_OS_WINDOWS_CE
-#		include <Z/inspection/OS/modules/Windows CE.h>
+#		include <Z/inspection/OS/modules/Windows_CE.h>
 #	elif Z_OS == Z_OS_Z_OS
 #		include <Z/inspection/OS/modules/z-OS.h>
 #	elif Z_OS == Z_OS_ZETA

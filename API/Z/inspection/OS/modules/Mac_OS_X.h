@@ -1,4 +1,4 @@
-/* Zeta API - Z/inspection/OS/modules/Mac OS X.h
+/* Zeta API - Z/inspection/OS/modules/Mac_OS_X.h
  ______ ____________  ___
 |__   /|  ___|__  __|/   \
   /  /_|  __|  |  | /  *  \
