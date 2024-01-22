@@ -12,7 +12,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifdef __cplusplus
 #	define Z_CAST(type) type
 #else
-#	define Z_CAST(type) (type)
+#	define Z_CAST
 #endif
 
 #endif /* Z_macros_casting_H */
