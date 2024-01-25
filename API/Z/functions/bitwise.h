@@ -56,7 +56,7 @@ zuint32 z_uint32_alter_bits(zuint32 value, zuint32 mask, zboolean bit)
 		}
 
 
-#define Z_z_NATURAL_ROTATE(bits)							   \
+#define Z_z_NATURAL_ROTATE(bits)						   \
 										   \
 	static Z_INLINE								   \
 	zuint##bits z_uint##bits##_rotate_left(zuint##bits value, zuint rotation)  \
