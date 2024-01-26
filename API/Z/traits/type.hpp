@@ -109,12 +109,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 #if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
-#	define Z_z_HAS_TypeIsNoexcept		   1
-#	define Z_z_HAS_TypeAddNoexcept		   1
-#	define Z_z_HAS_TypeRemoveNoexcept	   1
-#	define Z_z_HAS_Type_MEMBER_is_noexcept	   1
-#	define Z_z_HAS_Type_MEMBER_add_noexcept	   1
-#	define Z_z_HAS_Type_MEMBER_remove_noexcept 1
+#	define Z_HAS_TypeIsNoexcept		 1
+#	define Z_HAS_TypeAddNoexcept		 1
+#	define Z_HAS_TypeRemoveNoexcept		 1
+#	define Z_HAS_Type_MEMBER_is_noexcept	 1
+#	define Z_HAS_Type_MEMBER_add_noexcept	 1
+#	define Z_HAS_Type_MEMBER_remove_noexcept 1
 #endif
 
 #if Z_DIALECT_HAS(CPP11, RVALUE_REFERENCE)
