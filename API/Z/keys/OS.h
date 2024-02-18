@@ -40,7 +40,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_IRIX		 28 /* SGI			   <http://www.sgi.com/products/software/irix>						      */
 #define Z_OS_LEMON_OS		 29 /* Roberts-White, J.J.	   <https://lemonos.org>								      */
 #define Z_OS_LINUX		 30 /* Torvalds, Linus		   <https://www.kernel.org>								      */
-#define Z_OS_LUNIX		 31 /* Dallmann, Daniel		   <http://lng.sourceforge.net/>							      */
+#define Z_OS_LUNIX		 31 /* Dallmann, Daniel		   <http://lng.sourceforge.net>							      */
 #define Z_OS_LYNX_OS		 32 /* Lynx Software Technologies  <https://www.lynx.com/products/lynxos-posix-real-time-operating-system-rtos>		      */
 #define Z_OS_MAC_OS		 33 /* Apple Computer		   <http://apple.com/macos>								      */
 #define Z_OS_MAC_OS_X		 34 /* Apple Computer		   <https://www.apple.com/macos>							      */
@@ -83,8 +83,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_WATCH_OS		 71 /* Apple			   <https://www.apple.com/watchos>							      */
 #define Z_OS_WINDOWS		 72 /* Microsoft		   <https://www.microsoft.com/windows>							      */
 #define Z_OS_WINDOWS_CE		 73 /* Microsoft		   <http://msdn.microsoft.com/embedded>							      */
-#define Z_OS_Z_OS		 74 /* IBM			   <https://www.ibm.com/it-infrastructure/z/zos>					      */
-#define Z_OS_ZETA		 75 /* yellowTAB		   <http://http://www.zeta-os.com>							      */
+#define Z_OS_XENIX		 74 /* Microsoft													      */
+#define Z_OS_Z_OS		 75 /* IBM			   <https://www.ibm.com/it-infrastructure/z/zos>					      */
+#define Z_OS_ZETA		 76 /* yellowTAB		   <http://http://www.zeta-os.com>							      */
 
 #define Z_OS_NAME_UNKNOWN	      "unknown OS"
 #define Z_OS_NAME_AEGIS		      "AEGIS"
@@ -160,6 +161,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_NAME_WATCH_OS	      "Watch OS"
 #define Z_OS_NAME_WINDOWS	      "Windows"
 #define Z_OS_NAME_WINDOWS_CE	      "Windows CE"
+#define Z_OS_NAME_XENIX		      "XENIX"
 #define Z_OS_NAME_Z_OS		      "z/OS"
 #define Z_OS_NAME_ZETA		      "ZETA"
 
