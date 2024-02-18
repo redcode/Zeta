@@ -50,6 +50,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ISA_Z_ARCHITECTURE  38 /* IBM				       */
 #define Z_ISA_Z80	      39 /* Zilog			       */
 
+#define Z_ISA_NAME_UNKNOWN	   "unknown ISA"
 #define Z_ISA_NAME_6502		   "6502"
 #define Z_ISA_NAME_AARCH32	   "AArch32"
 #define Z_ISA_NAME_AARCH64	   "AArch64"

@@ -50,41 +50,43 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_MS_DOS		 38 /* Microsoft													      */
 #define Z_OS_NET_BSD		 39 /* NetBSD Foundation, The	   <http://www.netbsd.org>								      */
 #define Z_OS_NETWARE		 40 /* Novell			   <http://www.novell.com/products/netware>						      */
-#define Z_OS_NON_STOP_OS	 41 /* Hewlett-Packard		   <http://hpe.com/info/nonstop>							      */
-#define Z_OS_NUCLEUS_RTOS	 42 /* Mentor Graphics		   <https://www.mentor.com/embedded-software/nucleus>					      */
-#define Z_OS_OPEN_BSD		 43 /* de Raadt, Theo		   <http://www.openbsd.org>								      */
-#define Z_OS_OPEN_VMS		 44 /* DEC			   <http://www.vmssoftware.com>								      */
-#define Z_OS_ORBIS_OS		 45 /* Sony (PS4)													      */
-#define Z_OS_OS_2		 46 /* IBM / Microsoft		   <http://www-306.ibm.com/software/os/warp>						      */
-#define Z_OS_OS_9		 47 /* Microware Systems	   <http://www.microware.com>								      */
-#define Z_OS_OS_400		 48 /* IBM			   <https://www.ibm.com/it-infrastructure/power/os/ibm-i>				      */
-#define Z_OS_OSF_1		 49 /* DEC			   <http://h30097.www3.hp.com>								      */
-#define Z_OS_PALM_OS		 50 /* Palm			   <http://www.access-company.com/products/platforms/garnet>				      */
-#define Z_OS_PLAN_9		 51 /* Bell Labs		   <http://plan9.bell-labs.com>								      */
-#define Z_OS_PSP_SYSTEM_SOFTWARE 52 /* Sony (PSP)													      */
-#define Z_OS_QNX		 53 /* Quantum Software Systems	   <http://www.qnx.com>									      */
-#define Z_OS_RTEMS		 54 /* OAR Corporation (?)	   <https://www.rtems.org>								      */
-#define Z_OS_SCO_UNIX_SYSTEM_V	 55 /* SCO			   <https://www.xinuos.com/menu-products/openserver-10>					      */
-#define Z_OS_SERENITY_OS	 56 /* Kling, Andreas		   <http://serenityos.org>								      */
-#define Z_OS_SINIX		 57 /* Siemens Nixdorf													      */
-#define Z_OS_SOLARIS		 58 /* Sun Microsystems		   <https://www.oracle.com/solaris>							      */
-#define Z_OS_SUN_OS		 59 /* Sun Microsystems													      */
-#define Z_OS_SYLLABLE		 60 /*				   <http://www.syllable.org>								      */
-#define Z_OS_SYMBIAN		 61 /* Symbian			   <http://symbian.nokia.com>								      */
-#define Z_OS_TVOS		 62 /* Apple			   <https://developer.apple.com/tvos>							      */
-#define Z_OS_ULTRIX		 63 /* DEC														      */
-#define Z_OS_UNICOS		 64 /* Cray														      */
-#define Z_OS_UNICOS_MP		 65 /* SGI (?)														      */
-#define Z_OS_UNIXWARE		 66 /* Univel			   <https://www.xinuos.com/menu-products/unixware-2018>					      */
-#define Z_OS_UTS		 67 /* Amdahl														      */
-#define Z_OS_VOS		 68 /* Stratus Technologies	   <https://www.stratus.com/solutions/platforms/v-series-continuum-openvos/operating-systems> */
-#define Z_OS_VX_WORKS		 69 /* Wind River Systems	   <https://www.windriver.com/products/vxworks>						      */
-#define Z_OS_WATCH_OS		 70 /* Apple			   <https://www.apple.com/watchos>							      */
-#define Z_OS_WINDOWS		 71 /* Microsoft		   <https://www.microsoft.com/windows>							      */
-#define Z_OS_WINDOWS_CE		 72 /* Microsoft		   <http://msdn.microsoft.com/embedded>							      */
-#define Z_OS_Z_OS		 73 /* IBM			   <https://www.ibm.com/it-infrastructure/z/zos>					      */
-#define Z_OS_ZETA		 74 /* yellowTAB		   <http://http://www.zeta-os.com>							      */
+#define Z_OS_NEXTSTEP		 41 /* NeXT			   <http://next.com>									      */
+#define Z_OS_NON_STOP_OS	 42 /* Hewlett-Packard		   <http://hpe.com/info/nonstop>							      */
+#define Z_OS_NUCLEUS_RTOS	 43 /* Mentor Graphics		   <https://www.mentor.com/embedded-software/nucleus>					      */
+#define Z_OS_OPEN_BSD		 44 /* de Raadt, Theo		   <http://www.openbsd.org>								      */
+#define Z_OS_OPEN_VMS		 45 /* DEC			   <http://www.vmssoftware.com>								      */
+#define Z_OS_ORBIS_OS		 46 /* Sony (PS4)													      */
+#define Z_OS_OS_2		 47 /* IBM / Microsoft		   <http://www-306.ibm.com/software/os/warp>						      */
+#define Z_OS_OS_9		 48 /* Microware Systems	   <http://www.microware.com>								      */
+#define Z_OS_OS_400		 49 /* IBM			   <https://www.ibm.com/it-infrastructure/power/os/ibm-i>				      */
+#define Z_OS_OSF_1		 50 /* DEC			   <http://h30097.www3.hp.com>								      */
+#define Z_OS_PALM_OS		 51 /* Palm			   <http://www.access-company.com/products/platforms/garnet>				      */
+#define Z_OS_PLAN_9		 52 /* Bell Labs		   <http://plan9.bell-labs.com>								      */
+#define Z_OS_PSP_SYSTEM_SOFTWARE 53 /* Sony (PSP)													      */
+#define Z_OS_QNX		 54 /* Quantum Software Systems	   <http://www.qnx.com>									      */
+#define Z_OS_RTEMS		 55 /* OAR Corporation (?)	   <https://www.rtems.org>								      */
+#define Z_OS_SCO_UNIX_SYSTEM_V	 56 /* SCO			   <https://www.xinuos.com/menu-products/openserver-10>					      */
+#define Z_OS_SERENITY_OS	 57 /* Kling, Andreas		   <http://serenityos.org>								      */
+#define Z_OS_SINIX		 58 /* Siemens Nixdorf													      */
+#define Z_OS_SOLARIS		 59 /* Sun Microsystems		   <https://www.oracle.com/solaris>							      */
+#define Z_OS_SUN_OS		 60 /* Sun Microsystems													      */
+#define Z_OS_SYLLABLE		 61 /*				   <http://www.syllable.org>								      */
+#define Z_OS_SYMBIAN		 62 /* Symbian			   <http://symbian.nokia.com>								      */
+#define Z_OS_TVOS		 63 /* Apple			   <https://developer.apple.com/tvos>							      */
+#define Z_OS_ULTRIX		 64 /* DEC														      */
+#define Z_OS_UNICOS		 65 /* Cray														      */
+#define Z_OS_UNICOS_MP		 66 /* SGI (?)														      */
+#define Z_OS_UNIXWARE		 67 /* Univel			   <https://www.xinuos.com/menu-products/unixware-2018>					      */
+#define Z_OS_UTS		 68 /* Amdahl														      */
+#define Z_OS_VOS		 69 /* Stratus Technologies	   <https://www.stratus.com/solutions/platforms/v-series-continuum-openvos/operating-systems> */
+#define Z_OS_VX_WORKS		 70 /* Wind River Systems	   <https://www.windriver.com/products/vxworks>						      */
+#define Z_OS_WATCH_OS		 71 /* Apple			   <https://www.apple.com/watchos>							      */
+#define Z_OS_WINDOWS		 72 /* Microsoft		   <https://www.microsoft.com/windows>							      */
+#define Z_OS_WINDOWS_CE		 73 /* Microsoft		   <http://msdn.microsoft.com/embedded>							      */
+#define Z_OS_Z_OS		 74 /* IBM			   <https://www.ibm.com/it-infrastructure/z/zos>					      */
+#define Z_OS_ZETA		 75 /* yellowTAB		   <http://http://www.zeta-os.com>							      */
 
+#define Z_OS_NAME_UNKNOWN	      "unknown OS"
 #define Z_OS_NAME_AEGIS		      "AEGIS"
 #define Z_OS_NAME_AIX		      "AIX"
 #define Z_OS_NAME_AMIGA_OS	      "AmigaOS"
@@ -125,6 +127,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_NAME_MS_DOS	      "MS-DOS"
 #define Z_OS_NAME_NET_BSD	      "NetBSD"
 #define Z_OS_NAME_NETWARE	      "NetWare"
+#define Z_OS_NAME_NEXTSTEP	      "NeXTSTEP"
 #define Z_OS_NAME_NON_STOP_OS	      "NonStop OS"
 #define Z_OS_NAME_NUCLEUS_RTOS	      "Nucleus RTOS"
 #define Z_OS_NAME_OPEN_BSD	      "OpenBSD"
