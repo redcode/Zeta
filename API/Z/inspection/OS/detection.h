@@ -295,7 +295,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #elif	defined(_SCO_DS) ||			    \
 	defined(M_I386 ) || /* TODO: Investigate */ \
-	defined(M_XENIX)
+	defined(M_XENIX)    /* TODO: Investigate */
 
 #	define Z_OS Z_OS_SCO_UNIX_SYSTEM_V
 
