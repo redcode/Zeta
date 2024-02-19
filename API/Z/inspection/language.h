@@ -13,14 +13,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/inspection/C.h>
 #include <Z/inspection/compiler.h>
 
-#if defined(__cplusplus) && (defined(__OBJC__) || defined(__OBJC2__))
-#	include <Z/inspection/C++.h>
-#	include <Z/inspection/Objective-C.h>
-#	define Z_LANGUAGE Z_LANGUAGE_OBJECTIVE_CPP
-
-#elif defined(__OBJC__) || defined(__OBJC2__)
-#	include <Z/inspection/Objective-C.h>
-#	define Z_LANGUAGE Z_LANGUAGE_OBJECTIVE_C
+#if defined(__OBJC__) || defined(__OBJC2__)
+#	ifdef __cplusplus
+#		include <Z/inspection/C++.h>
+#		define Z_LANGUAGE Z_LANGUAGE_OBJECTIVE_CPP
+#	else
+#		define Z_LANGUAGE Z_LANGUAGE_OBJECTIVE_C
+#	endif
 
 #elif defined(__cplusplus)
 #	include <Z/inspection/C++.h>
