@@ -135,4 +135,8 @@ if(${PROJECT_NAME}_WITH_HTML_DOCUMENTATION OR ${PROJECT_NAME}_WITH_PDF_DOCUMENTA
 	add_subdirectory(documentation)
 endif()
 
+if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+	message("${PROJECT_NAME} END")
+endif()
+
 # CMakeLists.txt EOF
