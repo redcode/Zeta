@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/snapshot/machine/computer/ZX_Spectrum/SP.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______ ______________  ___
+|__   /|  ___|___  ___|/   \
+  /  /_|  __|   |  |  /  -  \
+ /_____|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -17,7 +17,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 |	       <http://www.formauri.es/personal/pgimeno/spec/spec.html>	       |
 |									       |
 |  Reference:								       |
-|  http://www.zx-modules.de/fileformats/snxformat.html			       |
+|  http://www.zx-modules.de/fileformats/spformat.html			       |
 |  [MAME sources]/src/mame/machine/spec_snqk.cpp			       |
 |									       |
 |  From the sources of MESS:						       |
