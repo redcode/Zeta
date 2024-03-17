@@ -1,8 +1,8 @@
 /* Zeta API - Z/functions/buffer.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______ ______________  ___
+|__   /|  ___|___  ___|/   \
+  /  /_|  __|   |  |  /  -  \
+ /_____|_____|  |__| /__/ \__\
 Copyright (C) 2012 Remis.
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
@@ -17,23 +17,28 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 static Z_INLINE
-void z_triple_buffer_initialize(ZTripleBuffer* self, void *data, zusize slot_size)
+void z_triple_buffer_initialize(
+	ZTripleBuffer* self,
+	void*	       slot_0,
+	void*	       slot_1,
+	void*	       slot_2
+)
 	{
-	self->data[0] = (zchar *)data;
-	self->data[1] = (zchar *)data + slot_size;
-	self->data[2] = (zchar *)data + slot_size * 2;
-	self->flags   = 6;
+	self->slots[0] = slot_0;
+	self->slots[1] = slot_1;
+	self->slots[2] = slot_2;
+	self->flags    = 6;
 	}
 
 
 static Z_INLINE
 void *z_triple_buffer_production_slot(ZTripleBuffer const *self)
-	{return self->data[(self->flags & 48) >> 4];}
+	{return self->slots[(self->flags & 48) >> 4];}
 
 
 static Z_INLINE
 void *z_triple_buffer_consumption_slot(ZTripleBuffer const *self)
-	{return self->data[self->flags & 3];}
+	{return self->slots[self->flags & 3];}
 
 
 static Z_INLINE
@@ -45,13 +50,13 @@ void *z_triple_buffer_produce(ZTripleBuffer *self)
 		flags = self->flags;
 		new_flags = (zuchar)(
 			64		    |
-			((flags & 12) << 2) |
 			((flags & 48) >> 2) |
+			((flags & 12) << 2) |
 			 (flags & 3));
 		}
 	while (!z_T_atomic_set_if_equal(UCHAR)(&self->flags, flags, new_flags));
 
-	return self->data[(new_flags & 48) >> 4];
+	return self->slots[(new_flags & 48) >> 4];
 	}
 
 
@@ -65,12 +70,12 @@ void *z_triple_buffer_consume(ZTripleBuffer *self)
 
 		new_flags = (zuchar)(
 			 (flags & 48)	    |
-			((flags &  3) << 2) |
-			((flags & 12) >> 2));
+			((flags & 12) >> 2) |
+			((flags &  3) << 2));
 		}
 	while (!z_T_atomic_set_if_equal(UCHAR)(&self->flags, flags, new_flags));
 
-	return self->data[new_flags & 3];
+	return self->slots[new_flags & 3];
 	}
 
 

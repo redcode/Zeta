@@ -1,8 +1,8 @@
 /* Zeta API - Z/classes/TripleBuffer.hpp
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______ ______________  ___
+|__   /|  ___|___  ___|/   \
+  /  /_|  __|   |  |  /  -  \
+ /_____|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -22,21 +22,16 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 		Z_DEFAULTED({})
 
 
-	Z_INLINE TripleBuffer(void *data_, USize slot_size) Z_NOTHROW
-		{initialize(data_, slot_size);}
+	Z_INLINE TripleBuffer(void *slot_0, void *slot_1, void *slot_2) Z_NOTHROW
+		{initialize(slot_0, slot_1, slot_2);}
 
 
-	/// @brief Initializes the object.
-	///
-	/// @param data_ A pointer to a buffer.
-	/// @param slot_size The size of the slot.
-
-	Z_INLINE void initialize(void *data_, USize slot_size) Z_NOTHROW
+	Z_INLINE void initialize(void *slot_0, void *slot_1, void *slot_2) Z_NOTHROW
 		{
-		data[0] = data_;
-		data[1] = reinterpret_cast<Char *>(data_) + slot_size;
-		data[2] = reinterpret_cast<Char *>(data_) + slot_size * 2;
-		flags	= 6;
+		slots[0] = slot_0;
+		slots[1] = slot_1;
+		slots[2] = slot_2;
+		flags	 = 6;
 		}
 
 
@@ -45,7 +40,7 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 	/// @return A pointer to the current production slot.
 
 	Z_INLINE void *production_slot() const Z_NOTHROW
-		{return data[(flags & 48) >> 4];}
+		{return slots[(flags & 48) >> 4];}
 
 
 	/// @brief Gets a pointer to the consumption slot.
@@ -53,7 +48,7 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 	/// @return A pointer to the current consumption slot.
 
 	Z_INLINE void *consumption_slot() const Z_NOTHROW
-		{return data[flags & 3];}
+		{return slots[flags & 3];}
 
 
 	/// @brief Marks the the current production slot as produced.
@@ -75,7 +70,7 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 			}
 		while (!z_T_atomic_set_if_equal(UCHAR)(&this->flags, flags, new_flags));
 
-		return data[(new_flags & 48) >> 4];
+		return slots[(new_flags & 48) >> 4];
 		}
 
 
@@ -97,7 +92,7 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 			}
 		while (!z_T_atomic_set_if_equal(UCHAR)(&this->flags, flags, new_flags));
 
-		return data[new_flags & 3];
+		return slots[new_flags & 3];
 		}
 };}
 
