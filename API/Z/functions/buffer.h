@@ -1,8 +1,8 @@
 /* Zeta API - Z/functions/buffer.h
- ______ ______________  ___
-|__   /|  ___|___  ___|/   \
-  /  /_|  __|   |  |  /  -  \
- /_____|_____|  |__| /__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2012 Remis.
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
@@ -27,56 +27,58 @@ void z_triple_buffer_initialize(
 	self->slots[0] = slot_0;
 	self->slots[1] = slot_1;
 	self->slots[2] = slot_2;
-	self->flags    = 6;
-	}
-
-
-static Z_INLINE
-void *z_triple_buffer_production_slot(ZTripleBuffer const *self)
-	{return self->slots[(self->flags & 48) >> 4];}
-
-
-static Z_INLINE
-void *z_triple_buffer_consumption_slot(ZTripleBuffer const *self)
-	{return self->slots[self->flags & 3];}
-
-
-static Z_INLINE
-void *z_triple_buffer_produce(ZTripleBuffer *self)
-	{
-	zuchar flags, new_flags;
-
-	do	{
-		flags = self->flags;
-		new_flags = (zuchar)(
-			64		    |
-			((flags & 48) >> 2) |
-			((flags & 12) << 2) |
-			 (flags & 3));
-		}
-	while (!z_T_atomic_set_if_equal(UCHAR)(&self->flags, flags, new_flags));
-
-	return self->slots[(new_flags & 48) >> 4];
+	self->f	       = 6;
 	}
 
 
 static Z_INLINE
 void *z_triple_buffer_consume(ZTripleBuffer *self)
 	{
-	zuchar flags, new_flags;
+	zuchar fi, fo;
 
 	do	{
-		if (!((flags = self->flags) & 64)) return Z_NULL;
-
-		new_flags = (zuchar)(
-			 (flags & 48)	    |
-			((flags & 12) >> 2) |
-			((flags &  3) << 2));
+		if (!((fi = self->f) & 64)) return Z_NULL;
+		fo = (zuchar)((fi & 48) | ((fi & 12) >> 2) | ((fi & 3) << 2));
 		}
-	while (!z_T_atomic_set_if_equal(UCHAR)(&self->flags, flags, new_flags));
+	while (!z_T_atomic_set_if_equal(UCHAR)(&self->f, fi, fo));
 
-	return self->slots[new_flags & 3];
+	return self->slots[fo & 3];
 	}
+
+
+static Z_INLINE
+void *z_triple_buffer_consumption_slot(ZTripleBuffer const *self)
+	{return self->slots[self->f & 3];}
+
+
+static Z_INLINE
+zuchar z_triple_buffer_consumption_slot_index(ZTripleBuffer const *self)
+	{return (self->f & 48) >> 4;}
+
+
+static Z_INLINE
+void *z_triple_buffer_produce(ZTripleBuffer *self)
+	{
+	zuchar fi, fo;
+
+	do	{
+		fi = self->f;
+		fo = (zuchar)(64 | ((fi & 48) >> 2) | ((fi & 12) << 2) | (fi & 3));
+		}
+	while (!z_T_atomic_set_if_equal(UCHAR)(&self->f, fi, fo));
+
+	return self->slots[(fo & 48) >> 4];
+	}
+
+
+static Z_INLINE
+void *z_triple_buffer_production_slot(ZTripleBuffer const *self)
+	{return self->slots[(self->f & 48) >> 4];}
+
+
+static Z_INLINE
+zuchar z_triple_buffer_production_slot_index(ZTripleBuffer const *self)
+	{return (self->f & 48) >> 4;}
 
 
 #endif /* Z_functions_buffer_H */
