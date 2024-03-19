@@ -53,7 +53,7 @@ void *z_triple_buffer_consumption_slot(ZTripleBuffer const *self)
 
 static Z_INLINE
 zuchar z_triple_buffer_consumption_slot_index(ZTripleBuffer const *self)
-	{return (self->f & 48) >> 4;}
+	{return self->f & 3;}
 
 
 static Z_INLINE
