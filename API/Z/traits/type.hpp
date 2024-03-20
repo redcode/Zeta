@@ -1,8 +1,8 @@
 /* Zeta API - Z/traits/type.hpp
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -446,21 +446,21 @@ namespace Zeta {
 #		else
 #			define Z_z_ARGUMENT(index) fake<p##index>()
 
-#			define Z_z_SPECIALIZATION_PAIR(arity)											\
-																		\
-				template <class t, class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>			\
-				struct TypeIsCallable<												\
-					t, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)),								\
-					Maybe<TypeIsSame<r, decltype(fake<t>()(Z_FOR_##arity##_CALL_WITH_INDEX(Z_z_ARGUMENT, Z_COMMA)))>::value> \
-				> : True {};													\
-																		\
-				template <class t, class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>			\
-				struct TypeIsCallable<												\
-					t, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...),				\
-					Maybe<TypeIsSame<r, decltype(fake<t>()(Z_FOR_##arity##_CALL_WITH_INDEX(Z_z_ARGUMENT, Z_COMMA)))>::value> \
+#			define Z_z_SPECIALIZATION_PAIR(arity)										       \
+																	       \
+				template <class t, class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>		       \
+				struct TypeIsCallable<											       \
+					t, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)),							       \
+					Maybe<TypeIsSame<r, decltype(fake<t>()(Z_CALL_WITH_INDEX_FOR_##arity(Z_z_ARGUMENT, Z_COMMA)))>::value> \
+				> : True {};												       \
+																	       \
+				template <class t, class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>		       \
+				struct TypeIsCallable<											       \
+					t, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...),				       \
+					Maybe<TypeIsSame<r, decltype(fake<t>()(Z_CALL_WITH_INDEX_FOR_##arity(Z_z_ARGUMENT, Z_COMMA)))>::value> \
 				> : True {};
 
-			Z_FOR_32_CALL_WITH_INDEX(Z_z_SPECIALIZATION_PAIR, Z_EMPTY)
+			Z_CALL_WITH_INDEX_FOR_32(Z_z_SPECIALIZATION_PAIR, Z_EMPTY)
 #			undef Z_z_SPECIALIZATION_PAIR
 #			undef Z_z_ARGUMENT
 #		endif
@@ -1516,76 +1516,76 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 #	else
 #		if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
 
-#			define Z_z_PSEUDO_SPECIALIZATION_PAIR(arity)									    \
-																	    \
-				template <zboolean x, class r, Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA) Z_IF(arity)(Z_COMMA) class c> \
-				struct Function<x, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)), c>					    \
-				: c {	Z_z_NORMAL_CONVERSIONS	 (Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))				    \
-					Z_z_REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))				    \
-				};													    \
-																	    \
-				template <zboolean x, class r, Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA) Z_IF(arity)(Z_COMMA) class c> \
-				struct Function<x, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...), c>		    \
-				: c {	Z_z_NORMAL_CONVERSIONS	 (Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)	    \
-					Z_z_REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)	    \
-				};													    \
-																	    \
-				template <zboolean x, class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>	    \
-				struct NonVariadicFunctionWith##arity##Parameters							    \
-				: Function<x, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)), Valid> {					    \
-					enum {	is_function = true,									    \
-						is_noexcept = x										    \
-					};												    \
-					enum {Z_PASTE_2(ari,ty) = arity};								    \
-																	    \
-					typedef r type(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA));					    \
-					typedef r return_type;										    \
-				};													    \
-																	    \
-				template <zboolean x, class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>	    \
-				struct VariadicFunctionWith##arity##Parameters								    \
-				: Function<x, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...), Valid> {		    \
-					enum {	is_function = true,									    \
-						is_noexcept = x,									    \
-						is_variadic = true									    \
-					};												    \
-					enum {Z_PASTE_2(ari,ty) = arity};								    \
-																	    \
-					typedef r type(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...);		    \
-					typedef r return_type;										    \
+#			define Z_z_PSEUDO_SPECIALIZATION_PAIR(arity)									  \
+																	  \
+				template <zboolean x, class r, Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA) Z_IF(arity)(Z_COMMA) class c> \
+				struct Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)), c>					  \
+				: c {	Z_z_NORMAL_CONVERSIONS	 (Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA))				  \
+					Z_z_REFERENCE_CONVERSIONS(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA))				  \
+				};													  \
+																	  \
+				template <zboolean x, class r, Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA) Z_IF(arity)(Z_COMMA) class c> \
+				struct Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...), c>		  \
+				: c {	Z_z_NORMAL_CONVERSIONS	 (Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)	  \
+					Z_z_REFERENCE_CONVERSIONS(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)	  \
+				};													  \
+																	  \
+				template <zboolean x, class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>	  \
+				struct NonVariadicFunctionWith##arity##Parameters							  \
+				: Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)), Valid> {					  \
+					enum {	is_function = true,									  \
+						is_noexcept = x										  \
+					};												  \
+					enum {Z_PASTE_2(ari,ty) = arity};								  \
+																	  \
+					typedef r type(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA));						  \
+					typedef r return_type;										  \
+				};													  \
+																	  \
+				template <zboolean x, class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>	  \
+				struct VariadicFunctionWith##arity##Parameters								  \
+				: Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...), Valid> {		  \
+					enum {	is_function = true,									  \
+						is_noexcept = x,									  \
+						is_variadic = true									  \
+					};												  \
+					enum {Z_PASTE_2(ari,ty) = arity};								  \
+																	  \
+					typedef r type(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...);		  \
+					typedef r return_type;										  \
 				};
 
 #		else
-#			define Z_z_PSEUDO_SPECIALIZATION_PAIR(arity)								     \
-																     \
-				template <class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>		     \
-				struct NonVariadicFunctionWith##arity##Parameters : Valid {					     \
-					Z_z_NORMAL_CONVERSIONS	 (Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))			     \
-					Z_z_REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA))			     \
-																     \
-					enum {is_function = true};								     \
-					enum {Z_PASTE_2(ari,ty) = arity};							     \
-																     \
-					typedef r type(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA));				     \
-					typedef r return_type;									     \
-				};												     \
-																     \
-				template <class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)>		     \
-				struct VariadicFunctionWith##arity##Parameters : Valid {					     \
-					Z_z_NORMAL_CONVERSIONS	 (Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) \
-					Z_z_REFERENCE_CONVERSIONS(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) \
-																     \
-					enum {	is_function = true,								     \
-						is_variadic = true								     \
-					};											     \
-					enum {Z_PASTE_2(ari,ty) = arity};							     \
-																     \
-					typedef r type(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...);	     \
-					typedef r return_type;									     \
+#			define Z_z_PSEUDO_SPECIALIZATION_PAIR(arity)								   \
+																   \
+				template <class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>		   \
+				struct NonVariadicFunctionWith##arity##Parameters : Valid {					   \
+					Z_z_NORMAL_CONVERSIONS	 (Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA))			   \
+					Z_z_REFERENCE_CONVERSIONS(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA))			   \
+																   \
+					enum {is_function = true};								   \
+					enum {Z_PASTE_2(ari,ty) = arity};							   \
+																   \
+					typedef r type(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA));					   \
+					typedef r return_type;									   \
+				};												   \
+																   \
+				template <class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>		   \
+				struct VariadicFunctionWith##arity##Parameters : Valid {					   \
+					Z_z_NORMAL_CONVERSIONS	 (Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) \
+					Z_z_REFERENCE_CONVERSIONS(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) \
+																   \
+					enum {	is_function = true,								   \
+						is_variadic = true								   \
+					};											   \
+					enum {Z_PASTE_2(ari,ty) = arity};							   \
+																   \
+					typedef r type(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...);	   \
+					typedef r return_type;									   \
 				};
 #		endif
 
-		Z_FOR_32_CALL_WITH_INDEX(Z_z_PSEUDO_SPECIALIZATION_PAIR, Z_EMPTY)
+		Z_CALL_WITH_INDEX_FOR_32(Z_z_PSEUDO_SPECIALIZATION_PAIR, Z_EMPTY)
 #		undef Z_z_PSEUDO_SPECIALIZATION_PAIR
 #	endif
 
@@ -2202,8 +2202,13 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Mixins {
 			typedef typename c::type&& add_rvalue_reference;
 #		endif
 
-		Z_DEFINE_PACKED_STRUCTURE({typename c::type value;},	  to_wrap  );
-		Z_DEFINE_PACKED_STRUCTURE({zchar data[sizeof(to_wrap)];}, to_opaque);
+		typedef Z_PACKED_STRUCTURE_BEGIN {
+			typename c::type value;
+		} Z_PACKED_STRUCTURE_END to_wrap;
+
+		typedef Z_PACKED_STRUCTURE_BEGIN {
+			zchar data[sizeof(to_wrap)];
+		} Z_PACKED_STRUCTURE_END to_opaque;
 	};
 
 	enum {	Void,
@@ -2857,22 +2862,22 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 		Z_z_REFERENCE_SPECIALIZATION_GROUP(-)
 
 #	else
-#		define Z_z_SPECIALIZATION_PAIR(arity, qualifiers, Qualifiers)									 \
-																		 \
-			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)> \
-			struct Case<e, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)) qualifiers Z_z_NOEXCEPT_SPECIFIER>				 \
-			: Mixins::Qualifiers##Function<Abstract::NonVariadicFunctionWith##arity##Parameters<					 \
-				Z_z_NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)				 \
-			> > {};															 \
-																		 \
-			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(class p, Z_COMMA)> \
-			struct Case<e, r(Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) qualifiers Z_z_NOEXCEPT_SPECIFIER>   \
-			: Mixins::Qualifiers##Function<Abstract::VariadicFunctionWith##arity##Parameters<					 \
-				Z_z_NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_FOR_##arity##_APPEND_INDEX(p, Z_COMMA)				 \
+#		define Z_z_SPECIALIZATION_PAIR(arity, qualifiers, Qualifiers)								       \
+																	       \
+			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)> \
+			struct Case<e, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)) qualifiers Z_z_NOEXCEPT_SPECIFIER>			       \
+			: Mixins::Qualifiers##Function<Abstract::NonVariadicFunctionWith##arity##Parameters<				       \
+				Z_z_NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)			       \
+			> > {};														       \
+																	       \
+			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)> \
+			struct Case<e, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) qualifiers Z_z_NOEXCEPT_SPECIFIER>   \
+			: Mixins::Qualifiers##Function<Abstract::VariadicFunctionWith##arity##Parameters<				       \
+				Z_z_NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)			       \
 			> > {};
 
-		Z_FOR_32_CALL_WITH_INDEX(Z_z_NORMAL_SPECIALIZATION_GROUP,    Z_EMPTY)
-		Z_FOR_32_CALL_WITH_INDEX(Z_z_REFERENCE_SPECIALIZATION_GROUP, Z_EMPTY)
+		Z_CALL_WITH_INDEX_FOR_32(Z_z_NORMAL_SPECIALIZATION_GROUP,    Z_EMPTY)
+		Z_CALL_WITH_INDEX_FOR_32(Z_z_REFERENCE_SPECIALIZATION_GROUP, Z_EMPTY)
 #	endif
 
 #	if !Z_DIALECT_HAS(GNUPP17, NOEXCEPT_OPERAND_DEDUCTION) && Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
@@ -2885,8 +2890,8 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 			Z_z_NORMAL_SPECIALIZATION_GROUP	  (-)
 			Z_z_REFERENCE_SPECIALIZATION_GROUP(-)
 #		else
-			Z_FOR_32_CALL_WITH_INDEX(Z_z_NORMAL_SPECIALIZATION_GROUP,    Z_EMPTY)
-			Z_FOR_32_CALL_WITH_INDEX(Z_z_REFERENCE_SPECIALIZATION_GROUP, Z_EMPTY)
+			Z_CALL_WITH_INDEX_FOR_32(Z_z_NORMAL_SPECIALIZATION_GROUP,    Z_EMPTY)
+			Z_CALL_WITH_INDEX_FOR_32(Z_z_REFERENCE_SPECIALIZATION_GROUP, Z_EMPTY)
 #		endif
 #	endif
 

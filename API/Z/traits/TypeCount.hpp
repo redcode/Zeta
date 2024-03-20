@@ -1,8 +1,8 @@
 /* Zeta API - Z/traits/TypeCount.hpp
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -34,13 +34,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			class t28 = NaT, class t29 = NaT, class t30 = NaT, class t31 = NaT
 		> struct TypeCount {};
 
-#		define Z_z_SPECIALIZATION(arity)					     \
-			template <Z_FOR_##arity##_APPEND_INDEX(class t, Z_COMMA)>    \
-			struct TypeCount<Z_FOR_##arity##_APPEND_INDEX(t, Z_COMMA)> { \
-				enum {value = arity};				     \
+#		define Z_z_SPECIALIZATION(arity)				   \
+			template <Z_APPEND_INDEX_FOR_##arity(class t, Z_COMMA)>    \
+			struct TypeCount<Z_APPEND_INDEX_FOR_##arity(t, Z_COMMA)> { \
+				enum {value = arity};				   \
 			};
 
-		Z_FOR_32_CALL_WITH_INDEX(Z_z_SPECIALIZATION, Z_EMPTY)
+		Z_CALL_WITH_INDEX_FOR_32(Z_z_SPECIALIZATION, Z_EMPTY)
 #		undef Z_z_SPECIALIZATION
 	}
 #endif

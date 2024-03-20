@@ -1,8 +1,8 @@
 /* Zeta API - Z/traits/control.hpp
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -87,15 +87,15 @@ namespace Zeta {
 		> struct SelectType {};
 
 #		define Z_z_SPECIALIZATION(type_count, index)					  \
-			template <Z_FOR_##type_count##_APPEND_INDEX(class t, Z_COMMA)>		  \
-			struct SelectType<index, Z_FOR_##type_count##_APPEND_INDEX(t, Z_COMMA)> { \
+			template <Z_APPEND_INDEX_FOR_##type_count(class t, Z_COMMA)>		  \
+			struct SelectType<index, Z_APPEND_INDEX_FOR_##type_count(t, Z_COMMA)> { \
 				typedef t##index type;						  \
 			};
 
 #		define Z_z_SPECIALIZATION_GROUP(type_count) \
-			Z_FOR_##type_count##_CALL_WITH_TOKEN_AND_INDEX(Z_z_SPECIALIZATION, type_count, Z_EMPTY)
+			Z_CALL_WITH_TOKEN_AND_INDEX_FOR_##type_count(Z_z_SPECIALIZATION, type_count, Z_EMPTY)
 
-		Z_FOR_32_CALL_WITH_INDEX(Z_z_SPECIALIZATION_GROUP, Z_EMPTY)
+		Z_CALL_WITH_INDEX_FOR_32(Z_z_SPECIALIZATION_GROUP, Z_EMPTY)
 
 #		undef Z_z_SPECIALIZATION
 #		undef Z_z_SPECIALIZATION_GROUP
