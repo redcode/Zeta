@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/snapshot/machine/computer/ZX_Spectrum/SNX.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -27,7 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #include <Z/formats/snapshot/machine/computer/ZX_Spectrum/SNA.h>
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	ZInt32	signature;   /* 'XSNA'	       */
 	zuint16 header_size; /* 37, big endian */
 	Z_SNA	sna;
@@ -64,7 +64,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 
 	zuint8 border_emulation_mode;
 	zuint8 im2_pointer;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_SNX);
+} Z_PACKED_STRUCTURE_END Z_SNX;
 
 #define Z_SNX_RS232_REDIRECTION_RS232	   0
 #define Z_SNX_RS232_REDIRECTION_CENTRONICS 1

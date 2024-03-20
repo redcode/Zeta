@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/snapshot/machine/computer/ZX_Spectrum/Z80.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -25,7 +25,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	ZInt16 af; /* big endian */
 	ZInt16 bc, hl, pc, sp;
 	zuint8 i, r;
@@ -56,9 +56,9 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 			zuint8 im		     :2
 		)} fields;
 	} flags_1;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v1Header);
+} Z_PACKED_STRUCTURE_END Z_Z80v1Header;
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint16 header_extension_size;
 	zuint16 pc;
 	zuint8	hardware;
@@ -78,9 +78,9 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 
 	zuint8 psg_register_index;
 	zuint8 psg_registers[16];
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v2HeaderExtension);
+} Z_PACKED_STRUCTURE_END Z_Z80v2HeaderExtension;
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint16 t_states_low;
 	zuint8	t_states_high;
 	zuint8	zero;
@@ -94,27 +94,27 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	disciple_inhibitor_button_state;
 	zuint8	disciple_inhibitor_flag;
 	zuint8	control;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v3HeaderExtension);
+} Z_PACKED_STRUCTURE_END Z_Z80v3HeaderExtension;
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	Z_Z80v1Header v1;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v1);
+} Z_PACKED_STRUCTURE_END Z_Z80v1;
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	Z_Z80v1Header	       v1;
 	Z_Z80v2HeaderExtension v2;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v2);
+} Z_PACKED_STRUCTURE_END Z_Z80v2;
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	Z_Z80v1Header	       v1;
 	Z_Z80v2HeaderExtension v2;
 	Z_Z80v3HeaderExtension v3;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80v3);
+} Z_PACKED_STRUCTURE_END Z_Z80v3;
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint16 size;
 	zuint8  page;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_Z80DataBlockHeader);
+} Z_PACKED_STRUCTURE_END Z_Z80DataBlockHeader;
 
 /* TODO: Homogeneizar los joysticks con los de TZX. */
 #define Z_Z80_JOYSTICK_TYPE_CURSOR_PROTEK_AGF 0

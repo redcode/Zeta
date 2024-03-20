@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/snapshot/machine/computer/ZX_Spectrum/ZLS.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Information contributed by Troels Norgaard.
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
@@ -23,7 +23,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	ZInt64 signature; /* 'ZX-Live!' */
 	ZInt16 af, bc, de, hl, ix, iy, af_, bc_, de_, hl_;
 	zuint8 i, r;
@@ -39,6 +39,6 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	} interrupt;
 
 	zuint8 halt_line;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_ZLS);
+} Z_PACKED_STRUCTURE_END Z_ZLS;
 
 #endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZLS_H */

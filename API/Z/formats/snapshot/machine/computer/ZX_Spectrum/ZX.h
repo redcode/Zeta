@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/snapshot/machine/computer/ZX_Spectrum/ZX.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Information contributed by Troels Norgaard.
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
@@ -31,7 +31,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Z/types/bitwise.h>
 #include <Z/hardware/machine/computer/ZX_Spectrum.h>
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	rom_tail[132]; /* last 132 bytes of ROM			    */
 	zuint8	ram[Z_ZX_SPECTRUM_48K_SIZE_RAM];
 	zuint8	zero_0[132];
@@ -54,7 +54,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	halt_line; /* boolean */
 	zsint16 im;
 	zuint8	zero_10[10];
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_ZX);
+} Z_PACKED_STRUCTURE_END Z_ZX;
 
 #define Z_ZX_COLOR_MODE_BW	 0
 #define Z_ZX_COLOR_MODE_COLOR	 1

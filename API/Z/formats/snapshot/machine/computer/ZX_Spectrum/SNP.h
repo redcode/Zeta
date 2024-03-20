@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/snapshot/machine/computer/ZX_Spectrum/SNP.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -29,7 +29,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Z/types/bitwise.h>
 #include <Z/hardware/machine/computer/ZX_Spectrum.h>
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 ram[Z_ZX_SPECTRUM_48K_SIZE_RAM];
 	ZInt16 af;
 	zuint8 border_color;
@@ -40,6 +40,6 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8 im;
 	zuint8 r, i;
 	ZInt16 af_, bc_, de_, hl_;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_SNP);
+} Z_PACKED_STRUCTURE_END Z_SNP;
 
 #endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SNP_H */

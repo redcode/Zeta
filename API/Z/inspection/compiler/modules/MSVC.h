@@ -1,8 +1,8 @@
 /* Zeta API - Z/inspection/compiler/modules/Clang.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -457,33 +457,20 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Non-standard language: Structure padding */
 
-#define Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_STRUCT     __pragma(pack(push, 1))
-#define Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_TYPE	     __pragma(pack(pop))
-#define Z_COMPILER_DEFINE_PACKED_UNION_BEFORE_UNION	     __pragma(pack(push, 1))
-#define Z_COMPILER_DEFINE_PACKED_UNION_BEFORE_TYPE	     __pragma(pack(pop))
-#define Z_COMPILER_PACKED_NAMED_STRUCTURE_BEFORE_STRUCT	     __pragma(pack(push, 1))
-#define Z_COMPILER_PACKED_NAMED_STRUCTURE_BEFORE_BODY	     __pragma(pack(pop))
-#define Z_COMPILER_PACKED_NAMED_UNION_BEFORE_UNION	     __pragma(pack(push, 1))
-#define Z_COMPILER_PACKED_NAMED_UNION_AFTER_BODY	     __pragma(pack(pop))
-#define Z_COMPILER_PACKED_UNNAMED_STRUTURE_BEFORE_STRUCT     __pragma(pack(push, 1))
-#define Z_COMPILER_PACKED_UNNAMED_STRUTURE_BEFORE_IDENTIFIER __pragma(pack(pop))
-
-/*#define Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_TYPEDEF*/
-/*#define Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_BODY*/
-/*#define Z_COMPILER_DEFINE_PACKED_STRUCTURE_AFTER_TYPE*/
-/*#define Z_COMPILER_DEFINE_PACKED_UNION_BEFORE_TYPEDEF*/
-/*#define Z_COMPILER_DEFINE_PACKED_UNION_BEFORE_BODY*/
-/*#define Z_COMPILER_DEFINE_PACKED_UNION_AFTER_TYPE*/
+#define Z_COMPILER_PACKED_NAMED_STRUCTURE_BEFORE_STRUCT __pragma(pack(push, 1))
 /*#define Z_COMPILER_PACKED_NAMED_STRUCTURE_BEFORE_TYPE*/
-/*#define Z_COMPILER_PACKED_NAMED_STRUCTURE_AFTER_BODY*/
+/*#define Z_COMPILER_PACKED_NAMED_STRUCTURE_BEFORE_BODY*/
+#define Z_COMPILER_PACKED_NAMED_STRUCTURE_AFTER_BODY	__pragma(pack(pop))
+#define Z_COMPILER_PACKED_NAMED_UNION_BEFORE_UNION	__pragma(pack(push, 1))
 /*#define Z_COMPILER_PACKED_NAMED_UNION_BEFORE_TYPE*/
 /*#define Z_COMPILER_PACKED_NAMED_UNION_BEFORE_BODY*/
-/*#define Z_COMPILER_PACKED_UNNAMED_STRUTURE_BEFORE_BODY*/
-/*#define Z_COMPILER_PACKED_UNNAMED_STRUTURE_AFTER_IDENTIFIER*/
-/*#define Z_COMPILER_PACKED_UNNAMED_UNION_BEFORE_STRUCT*/
-/*#define Z_COMPILER_PACKED_UNNAMED_UNION_BEFORE_BODY*/
-/*#define Z_COMPILER_PACKED_UNNAMED_UNION_BEFORE_IDENTIFIER*/
-/*#define Z_COMPILER_PACKED_UNNAMED_UNION_AFTER_IDENTIFIER*/
+#define Z_COMPILER_PACKED_NAMED_UNION_AFTER_BODY	__pragma(pack(pop))
+#define Z_COMPILER_PACKED_STRUCTURE_BEFORE_STRUCT	__pragma(pack(push, 1))
+/*#define Z_COMPILER_PACKED_STRUCTURE_BEFORE_BODY*/
+#define Z_COMPILER_PACKED_STRUCTURE_AFTER_BODY		__pragma(pack(pop))
+#define Z_COMPILER_PACKED_UNION_BEFORE_UNION		__pragma(pack(push, 1))
+/*#define Z_COMPILER_PACKED_UNION_BEFORE_BODY*/
+#define Z_COMPILER_PACKED_UNION_AFTER_BODY		__pragma(pack(pop))
 
 /* MARK: - Built-ins: Types and literal suffixes */
 

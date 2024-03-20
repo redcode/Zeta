@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/snapshot/machine/computer/ZX_Spectrum/SEM.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -27,7 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Z/types/bitwise.h>
 #include <Z/hardware/machine/computer/ZX_Spectrum.h>
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 signature_size; /* 5	  */
 	zuint8 signature[5];   /* 'SPEC1' */
 	zuint8 ram[Z_ZX_SPECTRUM_48K_SIZE_RAM];
@@ -37,18 +37,18 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8 iff1, zero_2;
 	zuint8 iff2, zero_3;
 	zuint8 im,   zero_4;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_SEMSnapshot);
+} Z_PACKED_STRUCTURE_END Z_SEMSnapshot;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint16 address;
 	zuint8	value;
 	zuint8	unused;
-}, Z_SEMPoke);
+} Z_PACKED_STRUCTURE_END Z_SEMPoke;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	Z_SEMSnapshot snapshot;
 	Z_SEMPoke     poke;	    /* Optional */
 	zuint16	      speed_factor; /* Optional (only if poke included) */
-}, Z_SEM);
+} Z_PACKED_STRUCTURE_END Z_SEM;
 
 #endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SEM_H */

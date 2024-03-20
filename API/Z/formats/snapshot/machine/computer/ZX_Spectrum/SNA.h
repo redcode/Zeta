@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/snapshot/machine/computer/ZX_Spectrum/SNA.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -64,7 +64,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #define Z_SNA_V48K_PC_VALUE 0x72
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 i;
 	ZInt16 hl_, de_, bc_, af_, hl, de, bc, iy, ix;
 
@@ -81,12 +81,12 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	ZInt16 af, sp;
 	zuint8 im;
 	zuint8 border_color;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_SNA);
+} Z_PACKED_STRUCTURE_END Z_SNA;
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	Z_SNA  sna;
 	zuint8 ram[Z_ZX_SPECTRUM_48K_SIZE_RAM];
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_SNAv48K);
+} Z_PACKED_STRUCTURE_END Z_SNAv48K;
 
 /* v128K
  ______________________________________________________________________________
@@ -115,7 +115,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 |									       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	Z_SNA  sna;
 	zuint8 ram_bank_5[Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK];
 	zuint8 ram_bank_2[Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK];
@@ -126,6 +126,6 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 
 	zuint8 tr_dos_rom_is_paged; /* boolean */
 	zuint8 remaining_ram_banks[5][Z_ZX_SPECTRUM_PLUS_128K_SIZE_BANK];
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_SNAv128K);
+} Z_PACKED_STRUCTURE_END Z_SNAv128K;
 
 #endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_SNA_H */

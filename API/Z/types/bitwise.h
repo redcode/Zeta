@@ -1,8 +1,8 @@
 /* Zeta API - Z/types/bitwise.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -16,7 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if defined(Z_UINT8) || defined(Z_SINT8)
 #	define Z_HAS_ZInt8 1
 
-	Z_DEFINE_PACKED_UNION_BEGIN {
+	typedef Z_PACKED_UNION_BEGIN {
 #		ifdef Z_UINT8
 			zuint8 uint8_value;
 			zuint8 uint8_array[1];
@@ -32,7 +32,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			struct {zsint8 at_0;
 			} sint8_values;
 #		endif
-	} Z_DEFINE_PACKED_UNION_END (ZInt8);
+	} Z_PACKED_UNION_END ZInt8;
 #endif
 
 #if	defined(Z_UINT8 ) || defined(Z_SINT8 ) || \
@@ -40,7 +40,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_HAS_ZInt16 1
 
-	Z_DEFINE_PACKED_UNION_BEGIN {
+	typedef Z_PACKED_UNION_BEGIN {
 #		ifdef Z_UINT16
 			zuint16 uint16_value;
 			zuint16 uint16_array[1];
@@ -74,7 +74,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				zsint8 at_0
 			)} sint8_values;
 #		endif
-	} Z_DEFINE_PACKED_UNION_END (ZInt16);
+	} Z_PACKED_UNION_END ZInt16;
 #endif
 
 #if	defined(Z_UINT8 ) || defined(Z_SINT8 ) || \
@@ -83,7 +83,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_HAS_ZInt32 1
 
-	Z_DEFINE_PACKED_UNION_BEGIN {
+	typedef Z_PACKED_UNION_BEGIN {
 #		ifdef Z_UINT32
 			zuint32 uint32_value;
 			zuint32 uint32_array[1];
@@ -139,7 +139,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				zsint8 at_0
 			)} sint8_values;
 #		endif
-	} Z_DEFINE_PACKED_UNION_END (ZInt32);
+	} Z_PACKED_UNION_END ZInt32;
 #endif
 
 #if	defined(Z_UINT8 ) || defined(Z_SINT8 ) || \
@@ -149,7 +149,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_HAS_ZInt64 1
 
-	Z_DEFINE_PACKED_UNION_BEGIN {
+	typedef Z_PACKED_UNION_BEGIN {
 #		ifdef Z_UINT64
 			zuint64 uint64_value;
 			zuint64 uint64_array[1];
@@ -235,7 +235,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				zsint8 at_0
 			)} sint8_values;
 #		endif
-	} Z_DEFINE_PACKED_UNION_END (ZInt64);
+	} Z_PACKED_UNION_END ZInt64;
 #endif
 
 #if	defined(Z_UINT8	 ) || defined(Z_SINT8  ) || \
@@ -246,7 +246,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_HAS_ZInt128 1
 
-	Z_DEFINE_PACKED_UNION_BEGIN {
+	typedef Z_PACKED_UNION_BEGIN {
 #		ifdef Z_UINT128
 			zuint128 uint128_value;
 			zuint128 uint128_array[1];
@@ -378,7 +378,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				zsint8 at_0
 			)} sint8_values;
 #		endif
-	} Z_DEFINE_PACKED_UNION_END (ZInt128);
+	} Z_PACKED_UNION_END ZInt128;
 #endif
 
 #endif /* Z_types_bitwise_H */

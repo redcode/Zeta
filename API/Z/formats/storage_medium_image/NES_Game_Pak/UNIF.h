@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/storage_medium_image/NES_Game_Pak/UNIF.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -21,11 +21,11 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	ZInt32	signature; /* 55h, 4Eh, 49h, 46h ('UNIF') */
 	zuint32 minimum_version_required;
 	zuint8	zero[24];
-}, Z_UNIFHeader);
+} Z_PACKED_STRUCTURE_END Z_UNIFHeader;
 
 #if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
 #	define Z_UNIF_SIGNATURE 0x46494E55

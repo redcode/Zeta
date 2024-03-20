@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/snapshot/machine/computer/ZX_Spectrum/PRG.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -27,7 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Z/formats/snapshot/machine/computer/ZX_Spectrum/+D.h>
 #include <Z/hardware/machine/computer/ZX_Spectrum.h>
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	   file_type;	      /* 05h */
 	zuint8	   program_name[10];
 	zuint16	   file_sector_count; /* big endian */
@@ -38,9 +38,9 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	Z_PlusDCPU cpu;
 	zuint8	   zero_1[14];
 	zuint8	   ram[Z_ZX_SPECTRUM_48K_SIZE_RAM];
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_PRG);
+} Z_PACKED_STRUCTURE_END Z_PRG;
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	union {	zuint8 value;
 		struct {Z_BIT_FIELD_MEMBERS(8, 3) (
 			zuint8 unused_1 :5,
@@ -52,7 +52,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	r;
 	ZInt16	af;
 	zuint16 pc;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_PRGStack);
+} Z_PACKED_STRUCTURE_END Z_PRGStack;
 
 #define Z_PRG_FILE_TYPE_48K 0x05
 

@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/snapshot/machine/computer/ZX_Spectrum/ZX82.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -49,14 +49,14 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	signature[4];	 /* {'Z', 'X', '8', '2'} */
 	zuint8	data_type;
 	zuint8	data_compressed; /* boolean */
 	zuint16 data_size;	 /* file length up to 64k (ELINE-PROG for BASIC) */
 	zuint16 start_address;	 /* start address for code (AUTOSTART for BASIC) */
 	zuint16 program_size;
-}, Z_ZX82Header);
+} Z_PACKED_STRUCTURE_END Z_ZX82Header;
 
 #define Z_ZX82_DATA_TYPE_BASIC	  0
 #define Z_ZX82_DATA_TYPE_NUMERIC  1
@@ -64,7 +64,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 #define Z_ZX82_DATA_TYPE_CODE	  3
 #define Z_ZX82_DATA_TYPE_SNAPSHOT 4
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 border_color;
 	zuint8 im; /* (0 = use I register, 1 = IM 1 and 2 = IM 2) (?) */
 	ZInt16 iy, ix, de, bc, hl, af, de_, bc_, hl_, af_, sp;
@@ -72,6 +72,6 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8 zero_1, r;
 	ZInt16 pc;
 	Z_FAM(zuint8 memory[];)
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_ZX82Snapshot);
+} Z_PACKED_STRUCTURE_END Z_ZX82Snapshot;
 
 #endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX82_H */

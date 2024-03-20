@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/archive/TAR.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -16,7 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #define Z_TAR_BLOCK_SIZE 512
 
-Z_DEFINE_PACKED_STRUCTURE ({		/* byte offset */
+typedef Z_PACKED_STRUCTURE_BEGIN {	/* byte offset */
 	zuint8 name[100];               /*   0 */
 	zuint8 mode[8];                 /* 100 */
 	zuint8 uid[8];                  /* 108 */
@@ -34,7 +34,7 @@ Z_DEFINE_PACKED_STRUCTURE ({		/* byte offset */
 	zuint8 device_minor[8];         /* 337 */
 	zuint8 prefix[155];             /* 345 */
 					/* 500 */
-}, Z_TARPOSIXHeader);
+} Z_PACKED_STRUCTURE_END Z_TARPOSIXHeader;
 
 typedef Z_TARPOSIXHeader Z_TARHeader;
 

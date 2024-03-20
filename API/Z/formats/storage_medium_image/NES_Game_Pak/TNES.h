@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/storage_medium_image/NES_Game_Pak/TNES.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -21,7 +21,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 /* 0 */ ZInt32 signature; /* 54h, 4Eh, 45h, 53h ('TNES') */
 /* 4 */ zuint8 mapper;
 /* 5 */ zuint8 prg_rom_size;
@@ -31,7 +31,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 /* 9 */ zuint8 has_battery;
 /* A */ zuint8 unknown[2];
 /* C */ zuint8 zero[4];
-}, Z_TNESHeader);
+} Z_PACKED_STRUCTURE_END Z_TNESHeader;
 
 #if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
 #	define Z_TNES_SIGNATURE 0x53454E54

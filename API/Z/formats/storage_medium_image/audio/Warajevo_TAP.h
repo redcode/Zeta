@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/storage_medium_image/audio/Warajevo TAP.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -19,16 +19,16 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Z/types/integral.h>
 #include <Z/macros/language.h>
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zsint32 first_block_offset;
 	zsint32 last_block_offset;
 	zuint32 eof_marker;
-}, Z_WarajevoTAPHeader);
+} Z_PACKED_STRUCTURE_END Z_WarajevoTAPHeader;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zsint32 previous_block_offset;
 	zsint32 next_block_offset;
 	zuint16 data_size;
-}, Z_WarajevoTAPBlockHeader);
+} Z_PACKED_STRUCTURE_END Z_WarajevoTAPBlockHeader;
 
 #endif /* Z_formats_storage_medium_image_audio_Warajevo_TAP_H */

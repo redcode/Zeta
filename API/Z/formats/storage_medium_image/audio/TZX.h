@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/storage_medium_image/audio/TZX.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -205,12 +205,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 | each preceded and identified by an ID byte.				       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 signature[7]; /* 'ZXTape!' */
 	zuint8 eof_marker;   /* 1Ah	  */
 	zuint8 major_version;
 	zuint8 minor_version;
-}, Z_TZXHeader);
+} Z_PACKED_STRUCTURE_END Z_TZXHeader;
 
 /* MARK: - Block ID */
 
@@ -255,12 +255,12 @@ typedef zuint8 Z_TZXBlockID;
 | routines that use the same timings as ROM ones do.			       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint16 pause_duration_ms;
 	zuint16 data_size;
 	Z_FAM(zuint8 data[];)
-}, Z_TZXStdSpeedData);
+} Z_PACKED_STRUCTURE_END Z_TZXStdSpeedData;
 
 /* MARK: - ID 11h - Turbo Speed Data */
 /*-----------------------------------------------------------------------------.
@@ -271,7 +271,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | then use the next three blocks to describe it.			       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN{
 	zuint8	block_id;
 	zuint16 cycles_per_pilot_pulse;	    /* {2168} */
 	zuint16 cycles_per_sync_high_pulse; /* {667}  */
@@ -283,7 +283,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
 	Z_FAM(zuint8 data[];)
-}, Z_TZXTurboSpeedData);
+} Z_PACKED_STRUCTURE_END Z_TZXTurboSpeedData;
 
 /* MARK: - ID 12h - Pure Tone */
 /*---------------------------------------------------------------------------.
@@ -292,11 +292,11 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | pulses are in the tone.						     |
 '===========================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint16 cycles_per_pulse;
 	zuint16 pulse_count;
-}, Z_TZXPureTone);
+} Z_PACKED_STRUCTURE_END Z_TZXPureTone;
 
 /* MARK: - ID 13h - Pulse Sequence */
 /*-----------------------------------------------------------------------------.
@@ -305,11 +305,11 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | some protection schemes.						       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 block_id;
 	zuint8 pulse_count;
 	Z_FAM(zuint16 pulse_cycles[];)
-}, Z_TZXPulseSequence);
+} Z_PACKED_STRUCTURE_END Z_TZXPulseSequence;
 
 /* MARK: - ID 14h - Pure Data */
 /*-----------------------------------------------------------------------------.
@@ -317,7 +317,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | has no pilot or sync pulses.						       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint16 cycles_per_bit_0_pulse;
 	zuint16 cycles_per_bit_1_pulse;
@@ -325,7 +325,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
 	Z_FAM(zuint8 data[];)
-}, Z_TZXPureData);
+} Z_PACKED_STRUCTURE_END Z_TZXPureData;
 
 /* MARK: - ID 15h - Direct Recording */
 /*-----------------------------------------------------------------------------.
@@ -346,14 +346,14 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | you cannot use any other one.						       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint16 cycles_per_pulse;
 	zuint16 pause_duration_ms;
 	zuint8	last_byte_bit_count;
 	zuint8	data_size[3];
 	Z_FAM(zuint8 data[];)
-}, Z_TZXDirectRecording);
+} Z_PACKED_STRUCTURE_END Z_TZXDirectRecording;
 
 /* MARK: - ID 16h - C64 ROM Type Data (added in v1.13, deprecated in v1.20) */
 /*-----------------------------------------------------------------------------.
@@ -388,7 +388,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 |   is standard for the repeated blocks in the Commodore 64 ROM Loader.	       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint32 block_size;
 	zuint16 cycles_per_pilot_pulse;		   /*  [616] */
@@ -416,7 +416,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
 	Z_FAM(zuint8 data[];)
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_TZXC64ROMTypeData);
+} Z_PACKED_STRUCTURE_END Z_TZXC64ROMTypeData;
 
 #define Z_TZX_C64_XOR_CHECKSUM_BIT_START_WITH_0 0x00
 #define Z_TZX_C64_XOR_CHECKSUM_BIT_START_WITH_1 0x01
@@ -446,7 +446,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 | 4) Pause								       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint32 block_size;
 	zuint16 cycles_per_bit_0_pulse;
@@ -473,7 +473,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint16 pause_duration_ms;
 	zuint8	data_size[3];
 	Z_FAM(zuint8 data[];)
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_TZXC64TurboTapeData);
+} Z_PACKED_STRUCTURE_END Z_TZXC64TurboTapeData;
 
 #define Z_TZX_C64_PADDING_BITS_POSITION_BEFORE 0
 #define Z_TZX_C64_PADDING_BITS_POSITION_AFTER  1
@@ -487,7 +487,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 | played.								       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint32 block_size;
 	zuint16 pause_duration_ms;
@@ -495,7 +495,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 	zuint8	compression_type;
 	zuint32 pulse_count; /* After decompression, for validation purposes */
 	Z_FAM(zuint8 csw_data[];)
-}, Z_TZXCSWRecording);
+} Z_PACKED_STRUCTURE_END Z_TZXCSWRecording;
 
 #define Z_TZX_CSW_COMPRESSION_TYPE_RLE	 1
 #define Z_TZX_CSW_COMPRESSION_TYPE_Z_RLE 2
@@ -521,7 +521,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | sequence of pulses (wave).						       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint32 block_size;
 	zuint16 pause_duration_ms;
@@ -535,12 +535,12 @@ Z_DEFINE_PACKED_STRUCTURE ({
 	/* Pilot/sync stream		       */
 	/* Data symbols definition table       */
 	/* Data stream			       */
-}, Z_TZXGeneralizedData);
+} Z_PACKED_STRUCTURE_END Z_TZXGeneralizedData;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 polarity;
 	Z_FAM(zuint16 pulse_durations[];)
-}, Z_TZXSymbolDefinition);
+} Z_PACKED_STRUCTURE_END Z_TZXSymbolDefinition;
 
 #define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_OPPOSITE 0
 #define Z_TZX_SYMBOL_DEFINITION_FLAG_POLARITY_CURRENT  1
@@ -557,10 +557,10 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | stream in bits is NB * TOTD, or in bytes DS = ceil(NB * TOTD / 8).	      |
 '============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	symbol;
 	zuint16 repetitions;
-}, Z_TZXPulseRLE);
+} Z_PACKED_STRUCTURE_END Z_TZXPulseRLE;
 
 /* MARK: EXAMPLE */
 
@@ -623,10 +623,10 @@ Offset	   Value			Description
 | not continue loading until the user or emulator requests it.		       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint16 duration_ms;
-}, Z_TZXPause);
+} Z_PACKED_STRUCTURE_END Z_TZXPause;
 
 /* MARK: - ID 21h - Group Start */
 /*----------------------------------------------------------------------------.
@@ -641,11 +641,11 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | Please keep the group name under 30 characters long.			      |
 '============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 block_id;
 	zuint8 name_size;
 	Z_FAM(zuint8 name[];)
-}, Z_TZXGroupStart);
+} Z_PACKED_STRUCTURE_END Z_TZXGroupStart;
 
 /* MARK: - ID 22h - Group End */
 /*-----------------------------------------------------------.
@@ -665,10 +665,10 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | All blocks are included in the block count!			      |
 '====================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zsint16 relative_offset;
-}, Z_TZXJump);
+} Z_PACKED_STRUCTURE_END Z_TZXJump;
 
 /* MARK: - ID 24h - Loop Start (added in v1.10) */
 /*-----------------------------------------------------------------------------.
@@ -679,10 +679,10 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | For simplicity reasons don't nest loop blocks!			       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint16 count; /* Greater than 1 */
-}, Z_TZXLoopStart);
+} Z_PACKED_STRUCTURE_END Z_TZXLoopStart;
 
 /* MARK: - ID 25h - Loop End (added in v1.10) */
 /*-----------------------------------------------------------------------------.
@@ -706,11 +706,11 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | for reference on the values.						       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint16 count;
 	Z_FAM(zsint16 relative_offsets[];)
-}, Z_TZXCallSequence);
+} Z_PACKED_STRUCTURE_END Z_TZXCallSequence;
 
 /* MARK: - ID 27h - Return (added in v1.10) */
 /*---------------------------------------------------------------------------.
@@ -733,18 +733,18 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | Please use single line and maximum of 30 characters for description texts.   |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint32	block_size;
 	zuint8	item_count;
 	Z_FAM(zuint8 items[];) /* Z_TZXSelectItem */
-}, Z_TZXSelect);
+} Z_PACKED_STRUCTURE_END Z_TZXSelect;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zsint16 relative_offset;
 	zuint8	description_size;
 	Z_FAM(zuint8 description[];)
-}, Z_TZXSelectItem);
+} Z_PACKED_STRUCTURE_END Z_TZXSelectItem;
 
 /* MARK: - ID 2Ah - Stop if 48K */
 /*-----------------------------------------------------------------------------.
@@ -756,10 +756,10 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | This block has no body of its own, but follows the extension rule.	       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint32 block_size; /* 0 */
-}, Z_TZXStopIf48K);
+} Z_PACKED_STRUCTURE_END Z_TZXStopIf48K;
 
 /* MARK: - ID 2Bh - Set Signal Level (added in v1.20) */
 /*---------------------------------------------------------------------.
@@ -768,11 +768,11 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | any ambiguities, e.g. with custom loaders which are level-sensitive. |
 '=====================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint32 block_size;
 	zuint8	level;
-}, Z_TZXSetSignalLevel);
+} Z_PACKED_STRUCTURE_END Z_TZXSetSignalLevel;
 
 #define Z_TZX_SIGNAL_LEVEL_LOW	0
 #define Z_TZX_SIGNAL_LEVEL_HIGH	1
@@ -790,11 +790,11 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | Please use block ID 32h for title, authors, publisher, etc.		       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 block_id;
 	zuint8 text_size;
 	Z_FAM(zuint8 text[];)
-}, Z_TZXSectionDescription);
+} Z_PACKED_STRUCTURE_END Z_TZXSectionDescription;
 
 /* MARK: - ID 31h - Message */
 /*---------------------------------------------------------------------------.
@@ -811,12 +811,12 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | way they like.							     |
 '===========================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 block_id;
 	zuint8 duration_s; /* Seconds */
 	zuint8 text_size;
 	Z_FAM(zuint8 text[];)
-}, Z_TZXMessage);
+} Z_PACKED_STRUCTURE_END Z_TZXMessage;
 
 /* MARK: - ID 32h - Information */
 /*-----------------------------------------------------------------------------.
@@ -837,18 +837,18 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | no need for it here.							       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint32 block_size;
 	zuint8	field_count;
 	Z_FAM(zuint8 fields[];) /* Z_TZXInfoField */
-}, Z_TZXInfo);
+} Z_PACKED_STRUCTURE_END Z_TZXInfo;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 block_id;
 	zuint8 text_size;
 	Z_FAM(zuint8 text[];)
-}, Z_TZXInfoField);
+} Z_PACKED_STRUCTURE_END Z_TZXInfoField;
 
 #define Z_TZX_INFO_FIELD_FULL_TITLE 0x00
 #define Z_TZX_INFO_FIELD_PUBLISHER  0x01
@@ -876,17 +876,17 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | machine/hardware combination then do not include it in the list.	     |
 '===========================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 type;
 	zuint8 id;
 	zuint8 compatibility;
-}, Z_TZXHardware);
+} Z_PACKED_STRUCTURE_END Z_TZXHardware;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 block_id;
 	zuint8 hardware_count;
 	Z_FAM(Z_TZXHardware hardware[];) /* Z_TZXHardware */
-}, Z_TZXHardwareInfo);
+} Z_PACKED_STRUCTURE_END Z_TZXHardwareInfo;
 
 #define Z_TZX_HARDWARE_TYPE_MACHINE				       0x00
 #define Z_TZX_HARDWARE_TYPE_STORAGE				       0x01
@@ -1092,7 +1092,7 @@ Flags (16-bit little-endian):
 	 | '------------------ start playing the tape immediately
 	 '-------------------- auto type LOAD"" or press ENTER when in 128K mode */
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 block_id;
 
 	struct {Z_BIT_FIELD_MEMBERS(8, 7)(
@@ -1114,7 +1114,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	screen_refresh_delay;	/* 1 - 255 */
 	zuint16 interrupt_hz;		/* 0 - 999 */
 	zuint8	reserved[3];
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_TZXEmulationInfo);
+} Z_PACKED_STRUCTURE_END Z_TZXEmulationInfo;
 
 #define Z_TZX_EMULATION_INFO_VSYNC_HIGH   0
 #define Z_TZX_EMULATION_INFO_VSYNC_LOW    1
@@ -1127,12 +1127,12 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 | by a particular emulator, or even poke data.				       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	block_id;
 	zuint8	content_id[16];
 	zuint32	data_size;
 	Z_FAM(zuint8 data[];)
-}, Z_TZXCustomInfo);
+} Z_PACKED_STRUCTURE_END Z_TZXCustomInfo;
 
 #define Z_TZX_CUSTOM_INFO_CONTENT_ID_POKES \
 	'P','O','K','E','s',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
@@ -1149,32 +1149,32 @@ Z_DEFINE_PACKED_STRUCTURE ({
 #define Z_TZX_CUSTOM_INFO_CONTENT_ID_PICTURE \
 	'P','i','c','t','u','r','e',' ',' ',' ',' ',' ',' ',' ',' ',' '
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 description_size;
 	Z_FAM(zuint8 description[];)
-}, Z_TZXPOKEs);
+} Z_PACKED_STRUCTURE_END Z_TZXPOKEs;
 
-/*Z_DEFINE_PACKED_STRUCTURE ({
-}, Z_TZXTrainer);*/
+/*typedef Z_PACKED_STRUCTURE_BEGIN {
+} Z_PACKED_STRUCTURE_END Z_TZXTrainer;*/
 
-/*Z_DEFINE_PACKED_STRUCTURE ({
-}, Z_TZXInstructions);*/
+/*typedef Z_PACKED_STRUCTURE_BEGIN {
+} Z_PACKED_STRUCTURE_END Z_TZXInstructions;*/
 
-/*Z_DEFINE_PACKED_STRUCTURE ({
-}, Z_TZXScreen);*/
+/*typedef Z_PACKED_STRUCTURE_BEGIN {
+} Z_PACKED_STRUCTURE_END Z_TZXScreen;*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 description_size; /* if 0 then handle description as 'Instructions' */
 	Z_FAM(zuint8 description[];)
 	/* ZX-Editor document (.ZED file) data */
-}, Z_TZXZXEditDocument);
+} Z_PACKED_STRUCTURE_END Z_TZXZXEditDocument;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 format;
 	zuint8 description_size; /* if 0 then handle description as 'Inlay Card' */
 	Z_FAM(zuint8 description[];)
 	/* Picture data */
-}, Z_TZXPicture);
+} Z_PACKED_STRUCTURE_END Z_TZXPicture;
 
 #define Z_TZX_PICTURE_FORMAT_GIF 0x00
 #define Z_TZX_PICTURE_FORMAT_JPG 0x01
@@ -1190,12 +1190,12 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | with the next block.							       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 block_id;
 	zuint8 format;
 	zuint8 size[3];
 	Z_FAM(zuint8 data[];)
-}, Z_TZXSnapshot);
+} Z_PACKED_STRUCTURE_END Z_TZXSnapshot;
 
 #define Z_TZX_SNAPSHOT_FORMAT_Z80 0
 #define Z_TZX_SNAPSHOT_FORMAT_SNA 1
@@ -1212,13 +1212,13 @@ Z_DEFINE_PACKED_STRUCTURE ({
 | both of the higher version number.					       |
 '=============================================================================*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 block_id;
 	zuint8 signature[6]; /* 'XTape!' */
 	zuint8 eof_marker;   /* 1Ah	 */
 	zuint8 major_version;
 	zuint8 minor_version;
-}, Z_TZXGlue);
+} Z_PACKED_STRUCTURE_END Z_TZXGlue;
 
 /* MARK: - Block union */
 

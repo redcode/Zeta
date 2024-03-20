@@ -202,14 +202,14 @@ Released under the terms of the GNU Lesser General Public License v3.
 |=======================================================================================|
 |								 |			|
 |______.---.---.---.---.---.---.---.---.---.---.---.---.-----.___|_ __________________ _|
-|      |TRV|INV| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | BRK |	 | |	   _  _       | |
+|      |TRV|INV| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | BRK |	 | |	   _  _	      | |
 |______.-----.---.---.---.---.---.---.---.---.---.---.---.---.___|_|	/|' ](_)|_/   |_|
 |      | DEL | GR| Q | W | E | R | T | Y | U | I | O | P |   |	 | |	 | /_(_)| \   | |
 |______.------.---.---.---.---.---.---.---.---.---.---.--'   |___|_|		      |_|
 |      |  EXT | ED| A | S | D | F | G | H | J | K | L | ENTER|	 | |		      | |
 |______.--------.---.---.---.---.---.---.---.---.---.--------.___|_|		      |_|
 |      | C SHIFT| CL| Z | X | C | V | B | N | M | . | C SHIFT|	 | |		      | |
-|______.---.---.---.---.---.-----------------.---.---.---.---.___|_|____ _  _   _ ____|_|
+|______.---.---.---.---.---.-----------------.---.---.---.---.___|_|____ _  _	_ ____|_|
 |      | SS| ; | " | < | > |		     | /\| \/| , | SS|	 | |____|- |_) |_)____| |
 |______|---|---|---|---|---|-----------------|---|---|---|---|___|_| FLOPPY DISC DRIVE|_|
 |      '-----------------------------------------------------'	 | '------------------' |
@@ -269,34 +269,34 @@ Released under the terms of the GNU Lesser General Public License v3.
 '=================================================='
 
 
-          .-----------.
-0000-3FFF | ROM | ROM |
-Firmware  |  0	|  1  |
-	  |-----+====='
-4000-7FFF | RAM |
-Screen 1  |  5  |
-	  |-----|
-8000-BFFF | RAM |
-	  |  2  |				    Screen 2
-	  |-----+--------------------------------------|--.
-C000-FFFF | RAM | RAM | RAM | RAM | RAM | RAM | RAM | RAM |
-User	  |  0  |  1  |	 2  |  3  |  4	|  5  |  6  |  7  |
-	  '==============================================='
+.-----------------------.
+| 0000-3FFF | ROM | ROM |
+| Firmware  |  0  |  1  |
+|-----------|-----+====='
+| 4000-7FFF | RAM |
+| Screen 1  |  5  |
+|-----------|-----|
+| 8000-BFFF | RAM |
+|	    |  2  |				    Screen 2
+|-----------|-----+--------------------------------------|--.
+| C000-FFFF | RAM | RAM | RAM | RAM | RAM | RAM | RAM | RAM |
+| User	    |  0  |  1	|  2  |  3  |  4  |  5	|  6  |  7  |
+'==========================================================='
 
 
-	  .-----------------------.
-0000-3FFF | RAM | RAM | RAM | RAM |
-User	  |  0  |  4  |	 4  |  4  |
-	  |-----+-----+-----+-----|
-4000-7FFF | RAM | RAM | RAM | RAM |
-User	  |  1  |  5  |	 5  |  7  |
-	  |-----+-----+-----+-----|
-8000-BFFF | RAM | RAM | RAM | RAM |
-User	  |  2  |  6  |	 6  |  6  |
-	  |-----+-----+-----+-----|
-C000-FFFF | RAM | RAM | RAM | RAM |
-User	  |  3  |  7  |	 3  |  3  |
-	  '======================='
+.-----------------------------------.
+| 0000-3FFF | RAM | RAM | RAM | RAM |
+| User	    |  0  |  4	|  4  |  4  |
+|-----------|-----+-----+-----+-----|
+| 4000-7FFF | RAM | RAM | RAM | RAM |
+| User	    |  1  |  5	|  5  |  7  |
+|-----------|-----+-----+-----+-----|
+| 8000-BFFF | RAM | RAM | RAM | RAM |
+| User	    |  2  |  6	|  6  |  6  |
+|-----------|-----+-----+-----+-----|
+| C000-FFFF | RAM | RAM | RAM | RAM |
+| User	    |  3  |  7	|  3  |  3  |
+'==================================='
 */
 
 #define Z_ZX_SPECTRUM_ADDRESS_ROM	     0x0000
@@ -332,6 +332,14 @@ User	  |  3  |  7  |	 3  |  3  |
 #define Z_INVES_SPECTRUM_PLUS_SIZE_ROM	     0x4000  /*  16 KiB */
 #define Z_INVES_SPECTRUM_PLUS_SIZE_RAM	     0xC000  /*  48 KiB */
 
+#define Z_TIMEX_SINCLAIR_2068_SIZE_MEMORY    0x12000 /*  72 KiB */
+#define Z_TIMEX_SINCLAIR_2068_SIZE_ROM	     0x6000  /*  24 KiB */
+#define Z_TIMEX_SINCLAIR_2068_SIZE_RAM	     0xC000  /*  48 KiB */
+
+#define Z_TIMEX_COMPUTER_2048_SIZE_MEMORY    0x10000 /*  64 KiB */
+#define Z_TIMEX_COMPUTER_2048_SIZE_ROM	     0x4000  /*  16 KiB */
+#define Z_TIMEX_COMPUTER_2048_SIZE_RAM	     0xC000  /*  48 KiB */
+
 /* MARK: - Video: Color Attribute */
 /*----------------.
 | 7 6 5 4 3 2 1 0 |
@@ -364,7 +372,7 @@ User	  |  3  |  7  |	 3  |  3  |
 #define Z_ZX_SPECTRUM_COLOR_YELLOW  6
 #define Z_ZX_SPECTRUM_COLOR_WHITE   7
 
-Z_DEFINE_PACKED_UNION_BEGIN {
+typedef Z_PACKED_UNION_BEGIN {
 	zuint8 value;
 	struct {Z_BIT_FIELD_MEMBERS(8, 4) (
 		zuint8 flash  :1,
@@ -372,7 +380,7 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 		zuint8 paper  :3,
 		zuint8 ink    :3
 	)} fields;
-} Z_DEFINE_PACKED_UNION_END (Z_ZXSpectrumColorAttribute);
+} Z_PACKED_UNION_END Z_ZXSpectrumColorAttribute;
 
 #define Z_ZX_SPECTRUM_ATTRIBUTE_SQUARE_WIDTH  8
 #define Z_ZX_SPECTRUM_ATTRIBUTE_SQUARE_HEIGHT 8
@@ -397,10 +405,10 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 	rgb(0.84, 0.84, 0.0 ), /* basic yellow	*/ \
 	rgb(0.84, 0.84, 0.84)  /* basic white	*/
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8			   characters[Z_ZX_SPECTRUM_SIZE_CHARACTER_VRAM];
 	Z_ZXSpectrumColorAttribute attributes[Z_ZX_SPECTRUM_SIZE_ATTRIBUTE_VRAM];
-}, Z_ZXSpectrumVRAM);
+} Z_PACKED_STRUCTURE_END Z_ZXSpectrumVRAM;
 
 /* MARK: - I/O ports */
 
@@ -468,7 +476,7 @@ Z_DEFINE_PACKED_STRUCTURE ({
 	    |_______________________/ / /_____________________////__|
 	    (_______________________\/	\___________________________) */
 
-Z_DEFINE_PACKED_UNION_BEGIN {
+typedef Z_PACKED_UNION_BEGIN {
 	zuint8 value;
 	struct {Z_BIT_FIELD_MEMBERS(8, 4) (
 		zuint8 unused	    :3,
@@ -476,7 +484,7 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 		zuint8 ear	    :1,
 		zuint8 border_color :3
 	)} fields;
-} Z_DEFINE_PACKED_UNION_END (Z_ZXSpectrumULAIO);
+} Z_PACKED_UNION_END Z_ZXSpectrumULAIO;
 
 /* MARK: - ULA I/O port: input value */
 
@@ -507,14 +515,14 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 | "	      = SYMBOL SHIFT + P     |
 '===================================*/
 
-Z_DEFINE_PACKED_UNION_BEGIN {
+typedef Z_PACKED_UNION_BEGIN {
 	zuint8 value;
 	struct {Z_BIT_FIELD_MEMBERS(8, 3) (
 		zuint8 one	:1,
 		zuint8 ear	:1,
 		zuint8 key_mask :6
 	)} fields;
-} Z_DEFINE_PACKED_UNION_END (Z_ZXSpectrumULAInput);
+} Z_PACKED_UNION_END Z_ZXSpectrumULAInput;
 
 #define Z_ZX_SPECTRUM_KEY_MASK_ENTER	    0x0F
 #define Z_ZX_SPECTRUM_KEY_MASK_SHIFT	    0x0F
@@ -649,7 +657,7 @@ unused| | |   '---- user (C000h)
       | '---------- ROM
       '------------ disable */
 
-Z_DEFINE_PACKED_UNION_BEGIN {
+typedef Z_PACKED_UNION_BEGIN {
 	zuint8 value;
 	struct {Z_BIT_FIELD_MEMBERS(8, 5) (
 		zuint8 unused  :2,
@@ -658,7 +666,7 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 		zuint8 vram    :1,
 		zuint8 user    :3
 	)} fields;
-} Z_DEFINE_PACKED_UNION_END (Z_ZXSpectrumPlus128KBankSwitch);
+} Z_PACKED_UNION_END Z_ZXSpectrumPlus128KBankSwitch;
 
 /* MARK: - 0x1FFD - ZX Spectrum +3 - Control */
 
@@ -670,7 +678,7 @@ Z_DEFINE_PACKED_UNION_BEGIN {
         | '--------
 	'---------- */
 
-Z_DEFINE_PACKED_UNION_BEGIN {
+typedef Z_PACKED_UNION_BEGIN {
 	zuint8 value;
 	struct {Z_BIT_FIELD_MEMBERS(8, 5) (
 		zuint8 unused		     :3,
@@ -679,7 +687,7 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 		zuint8 bank_map		     :2,
 		zuint8 use_extended_banking  :1
 	)} fields;
-} Z_DEFINE_PACKED_UNION_END (Z_ZXSpectrumPlus3Control);
+} Z_PACKED_UNION_END Z_ZXSpectrumPlus3Control;
 
 /* MARK: - 2FFDh - ZX Spectrum +3 - FDD Status */
 
@@ -692,11 +700,11 @@ Z_DEFINE_PACKED_UNION_BEGIN {
         | '--------
 	'---------- */
 
-/*Z_DEFINE_PACKED_UNION_BEGIN {
+/*typedef Z_PACKED_UNION_BEGIN {
 	zuint8 value;
 	struct {Z_BIT_FIELD_MEMBERS(8, 6) (
 	)} fields;
-} Z_DEFINE_PACKED_UNION_END (Z_ZXSpectrumPlus3FDDStatus);*/
+} Z_PACKED_UNION_END Z_ZXSpectrumPlus3FDDStatus;*/
 
 /* MARK: - 3FFDh - ZX Spectrum +3 - FDD Data */
 
@@ -710,11 +718,11 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 	'---------- */
 
 
-/*Z_DEFINE_PACKED_UNION_BEGIN {
+/*typedef Z_PACKED_UNION_BEGIN {
 	zuint8 value;
 	struct {Z_BIT_FIELD_MEMBERS(8, 6) (
 	)} fields;
-} Z_DEFINE_PACKED_UNION_END (Z_ZXSpectrumPlus3FDDStatus);*/
+} Z_PACKED_UNION_END Z_ZXSpectrumPlus3FDDStatus;*/
 
 
 /* MARK: - Screen */
@@ -889,7 +897,7 @@ Z_DEFINE_PACKED_UNION_BEGIN {
 #define Z_ZX_SPECTRUM_ADC_BLOCK_CONTENT_HEADER	     0
 #define Z_ZX_SPECTRUM_ADC_BLOCK_CONTENT_DATA	     255
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8  file_type;
 	zuint8	file_name[10];
 	zuint16	data_size;
@@ -907,7 +915,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 			zuint16 unused;
 		} code_file;
 	} parameters;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_ZXSpectrumHeaderBlock);
+} Z_PACKED_STRUCTURE_END Z_ZXSpectrumHeaderBlock;
 
 #define Z_ZX_SPECTRUM_FILE_TYPE_PROGRAM		0
 #define Z_ZX_SPECTRUM_FILE_TYPE_NUMBER_ARRAY    1

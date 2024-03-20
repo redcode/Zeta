@@ -1,8 +1,8 @@
 /* Zeta API - Z/inspection/compiler/modules/GCC.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -501,33 +501,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Padding specifiers */
 
-#define Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_TYPE	     __attribute__((packed))
-#define Z_COMPILER_DEFINE_PACKED_UNION_BEFORE_TYPE	     __attribute__((packed))
-#define Z_COMPILER_PACKED_NAMED_STRUCTURE_BEFORE_TYPE	     __attribute__((packed))
-#define Z_COMPILER_PACKED_NAMED_UNION_BEFORE_TYPE	     __attribute__((packed))
-#define Z_COMPILER_PACKED_UNNAMED_STRUTURE_BEFORE_IDENTIFIER __attribute__((packed))
-#define Z_COMPILER_PACKED_UNNAMED_UNION_BEFORE_IDENTIFIER    __attribute__((packed))
+#define Z_COMPILER_PACKED_NAMED_STRUCTURE_BEFORE_TYPE __attribute__((packed))
+#define Z_COMPILER_PACKED_NAMED_UNION_BEFORE_TYPE     __attribute__((packed))
+#define Z_COMPILER_PACKED_STRUCTURE_AFTER_BODY	      __attribute__((packed))
+#define Z_COMPILER_PACKED_UNION_AFTER_BODY	      __attribute__((packed))
 
-/*#define Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_TYPEDEF*/
-/*#define Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_STRUCT*/
-/*#define Z_COMPILER_DEFINE_PACKED_STRUCTURE_BEFORE_BODY*/
-/*#define Z_COMPILER_DEFINE_PACKED_STRUCTURE_AFTER_TYPE*/
-/*#define Z_COMPILER_DEFINE_PACKED_UNION_BEFORE_TYPEDEF*/
-/*#define Z_COMPILER_DEFINE_PACKED_UNION_BEFORE_UNION*/
-/*#define Z_COMPILER_DEFINE_PACKED_UNION_BEFORE_BODY*/
-/*#define Z_COMPILER_DEFINE_PACKED_UNION_AFTER_TYPE*/
 /*#define Z_COMPILER_PACKED_NAMED_STRUCTURE_BEFORE_STRUCT*/
 /*#define Z_COMPILER_PACKED_NAMED_STRUCTURE_BEFORE_BODY*/
 /*#define Z_COMPILER_PACKED_NAMED_STRUCTURE_AFTER_BODY*/
 /*#define Z_COMPILER_PACKED_NAMED_UNION_BEFORE_UNION*/
 /*#define Z_COMPILER_PACKED_NAMED_UNION_BEFORE_BODY*/
 /*#define Z_COMPILER_PACKED_NAMED_UNION_AFTER_BODY*/
-/*#define Z_COMPILER_PACKED_UNNAMED_STRUTURE_BEFORE_STRUCT*/
-/*#define Z_COMPILER_PACKED_UNNAMED_STRUTURE_BEFORE_BODY*/
-/*#define Z_COMPILER_PACKED_UNNAMED_STRUTURE_AFTER_IDENTIFIER*/
-/*#define Z_COMPILER_PACKED_UNNAMED_UNION_BEFORE_STRUCT*/
-/*#define Z_COMPILER_PACKED_UNNAMED_UNION_BEFORE_BODY*/
-/*#define Z_COMPILER_PACKED_UNNAMED_UNION_AFTER_IDENTIFIER*/
+/*#define Z_COMPILER_PACKED_STRUCTURE_BEFORE_STRUCT*/
+/*#define Z_COMPILER_PACKED_STRUCTURE_BEFORE_BODY*/
+/*#define Z_COMPILER_PACKED_UNION_BEFORE_UNION*/
+/*#define Z_COMPILER_PACKED_UNION_BEFORE_BODY*/
 
 /* MARK: - Built-ins: types and literal suffixes */
 

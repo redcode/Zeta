@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/storage_medium_image/NES_Game_Pak/iNES.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -27,7 +27,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #include <Z/types/bitwise.h>
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 /* 0 */ ZInt32 signature; /* 4Eh, 45h, 53h, 1Ah ('NES' + MS-DOS EOF) */
 /* 4 */ zuint8 prg_rom_page_count;
 /* 5 */ zuint8 chr_rom_page_count;
@@ -70,7 +70,7 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 		struct {
 		} v2;
 	} as;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_iNESHeader);
+} Z_PACKED_STRUCTURE_END Z_iNESHeader;
 
 #if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
 #	define Z_INES_SIGNATURE 0x1A53454E

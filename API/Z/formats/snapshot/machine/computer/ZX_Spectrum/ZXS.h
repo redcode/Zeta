@@ -1,8 +1,8 @@
 /* Zeta API - Z/formats/snapshot/machine/computer/ZX_Spectrum/ZXS.h
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3.
 
@@ -91,21 +91,21 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_ZXS_CHUNK_ID_ZX32			Z_UINT32_STRING('z','x','3','2')
 
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint32 structure_size;     // structure size
 	zuint32 crc32;   // crc
 	zuint32 uncompressed_size;  // uncompressed size
 	zuint8	data[1];
-}, Z_ZXSZip);
+} Z_PACKED_STRUCTURE_END Z_ZXSZip;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint16 version;
 	zuint16 machine_model;
 	zuint16 machine_flags;
 	zuint16 zip_method;
-}, Z_ZXSFormatInfo);
+} Z_PACKED_STRUCTURE_END Z_ZXSFormatInfo;
 
-Z_DEFINE_PACKED_STRUCTURE_BEGIN {
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	ZInt16	af; /* big endian */
 	ZInt16  bc, de, hl;
 	ZInt16	af_; /* big endian */
@@ -114,31 +114,31 @@ Z_DEFINE_PACKED_STRUCTURE_BEGIN {
 	zuint8	iff1, iff2;
 	zuint8	im;
 	zuint32 t_states;
-} Z_DEFINE_PACKED_STRUCTURE_END (Z_ZXSCPU);
+} Z_PACKED_STRUCTURE_END Z_ZXSCPU;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	Z_ZXSpectrumULAIO ula_io;
 	ZInt64		  keyboard;
-}, Z_ZXSZXSpectrum48KIO);
+} Z_PACKED_STRUCTURE_END Z_ZXSZXSpectrum48KIO;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	Z_ZXSpectrumPlus128KBankSwitch bank_switch;
 	zuint8			       port_fffd;
 	zuint8			       psg[16];
-}, Z_ZXSZXSpectrumPlus128KIO);
+} Z_PACKED_STRUCTURE_END Z_ZXSZXSpectrumPlus128KIO;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	port_1ffd;
-}, Z_ZXSZXSpectrumPlus3IO);
+} Z_PACKED_STRUCTURE_END Z_ZXSZXSpectrumPlus3IO;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint32 current_position;
 	zuint32 remain_block_size;
 	zuint32 data_size;
 	zuint8	data[1];
-}, Z_ZXSTape);
+} Z_PACKED_STRUCTURE_END Z_ZXSTape;
 
-Z_DEFINE_PACKED_STRUCTURE ({
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint32 id;
 	zuint32 body_size;
 
@@ -151,6 +151,6 @@ Z_DEFINE_PACKED_STRUCTURE ({
 		Z_ZXSZXSpectrumPlus3IO	  zx_spectrum_plus3_io;
 		Z_ZXSTape		  tape;
 	} body;
-}, Z_ZXSChunk);
+} Z_PACKED_STRUCTURE_END Z_ZXSChunk;
 
 #endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZXS_H */
