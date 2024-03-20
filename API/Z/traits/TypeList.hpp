@@ -1,8 +1,8 @@
 /* Zeta API - Z/traits/TypeList.hpp
- ______ ____________  ___
-|__   /|  ___|__  __|/   \
-  /  /_|  __|  |  | /  *  \
- /_____|_____| |__|/__/ \__\
+ ______  ______________  ___
+|__   / |  ___|___  ___|/   \
+  /  /__|  __|   |  |  /  -  \
+ /______|_____|  |__| /__/ \__\
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
@@ -309,7 +309,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		Z_z_NORMAL_SPECIALIZATION_GROUP
 		Z_z_REFERENCE_SPECIALIZATION_GROUP
 
-#		if !Z_DIALECT_HAS(GNUPP17, NOEXCEPT_OPERAND_DEDUCTION) && Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
+#		if	!Z_DIALECT_HAS(GNUPP17, NOEXCEPT_OPERAND_DEDUCTION) && \
+			Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
+
 #			undef  Z_z_NOEXCEPT_SPECIFIER
 #			define Z_z_NOEXCEPT_SPECIFIER noexcept
 
