@@ -57,7 +57,7 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 	///
 	/// @return A pointer to the current consumption slot.
 
-	Z_CT(CPP11) void *consumption_slot() const Z_NOTHROW
+	Z_CT(CPP11) void *consumption() const Z_NOTHROW
 		{return slots[f & 3];}
 
 
@@ -65,7 +65,7 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 	///
 	/// @return The index of the current consumption slot.
 
-	Z_CT(CPP11) UChar consumption_slot_index() const Z_NOTHROW
+	Z_CT(CPP11) UChar consumption_index() const Z_NOTHROW
 		{return f & 3;}
 
 
@@ -91,7 +91,7 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 	///
 	/// @return A pointer to the current production slot.
 
-	Z_CT(CPP11) void *production_slot() const Z_NOTHROW
+	Z_CT(CPP11) void *production() const Z_NOTHROW
 		{return slots[(f & 48) >> 4];}
 
 
@@ -99,7 +99,7 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 	///
 	/// @return The index of the current production slot.
 
-	Z_CT(CPP11) UChar production_slot_index() const Z_NOTHROW
+	Z_CT(CPP11) UChar production_index() const Z_NOTHROW
 		{return (f & 48) >> 4;}
 };}
 

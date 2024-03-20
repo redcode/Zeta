@@ -47,12 +47,12 @@ void *z_triple_buffer_consume(ZTripleBuffer *self)
 
 
 static Z_INLINE
-void *z_triple_buffer_consumption_slot(ZTripleBuffer const *self)
+void *z_triple_buffer_consumption(ZTripleBuffer const *self)
 	{return self->slots[self->f & 3];}
 
 
 static Z_INLINE
-zuchar z_triple_buffer_consumption_slot_index(ZTripleBuffer const *self)
+zuchar z_triple_buffer_consumption_index(ZTripleBuffer const *self)
 	{return self->f & 3;}
 
 
@@ -72,12 +72,12 @@ void *z_triple_buffer_produce(ZTripleBuffer *self)
 
 
 static Z_INLINE
-void *z_triple_buffer_production_slot(ZTripleBuffer const *self)
+void *z_triple_buffer_production(ZTripleBuffer const *self)
 	{return self->slots[(self->f & 48) >> 4];}
 
 
 static Z_INLINE
-zuchar z_triple_buffer_production_slot_index(ZTripleBuffer const *self)
+zuchar z_triple_buffer_production_index(ZTripleBuffer const *self)
 	{return (self->f & 48) >> 4;}
 
 
