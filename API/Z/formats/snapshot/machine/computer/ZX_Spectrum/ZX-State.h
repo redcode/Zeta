@@ -504,8 +504,8 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 
 /* https://worldofspectrum.org/zxplus3e/interface.html#simple */
 
-typedef Z_PACKED_STRUCTURE_BEGIN {
-} Z_PACKED_STRUCTURE_END Z_ZXStateSimple8BitInterface;
+/*typedef Z_PACKED_STRUCTURE_BEGIN {
+} Z_PACKED_STRUCTURE_END Z_ZXStateSimple8BitInterface;*/
 
 /* MARK: - ID {'D', 'R', 'U', 'M'} - SpecDrum */
 
@@ -597,7 +597,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 		Z_ZXStatePlusDDisk		  plusd_disk;
 		Z_ZXStateRAMPage		  ram_page;
 		Z_ZXStateTimex			  timex;
-		Z_ZXStateSimple8BitInterface	  simple_8bit_interface;
+		/*Z_ZXStateSimple8BitInterface	  simple_8bit_interface;*/
 		Z_ZXStateSpecDrum		  specdrum;
 		Z_ZXStateZXSpectrum		  zx_spectrum;
 		Z_ZXStateTape			  zx_tape;
