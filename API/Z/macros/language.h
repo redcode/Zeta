@@ -9,6 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_macros_language_H
 #define Z_macros_language_H
 
+#include <Z/macros/casting.h>
 #include <Z/inspection/language.h>
 
 /* MARK: - Attributes */
