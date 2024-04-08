@@ -2040,7 +2040,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #if	Z_COMPILER_VERSION >= Z_VERSION(3,1,0) && \
 	Z_COMPILER_VERSION <= Z_VERSION(5,0,2)
 
-	// Multi-level: offsetof(Type, member.field.field); Fails in 3.0
+	/* Multi-level: offsetof(Type, member.field.field); Fails in 3.0 */
 #	pragma clang diagnostic ignored "-Wextended-offsetof"
 #endif
 

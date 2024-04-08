@@ -9,7 +9,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_constants_pointer_H
 #define Z_constants_pointer_H
 
-#ifdef Z_NULL /* defined by zlib */
+#ifdef Z_NULL
 #	undef Z_NULL
 #endif
 
