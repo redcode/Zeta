@@ -652,6 +652,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 | This indicates the end of a group. This block has no body. |
 '===========================================================*/
 
+typedef Z_PACKED_STRUCTURE_BEGIN {
+	zuint8 block_id;
+} Z_PACKED_STRUCTURE_END Z_TZXGroupEnd;
+
 /* MARK: - ID 23h - Jump */
 /*--------------------------------------------------------------------.
 | This block will enable you to jump from one block to another within |
@@ -693,6 +697,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 | This block has no body.						       |
 '=============================================================================*/
 
+typedef Z_PACKED_STRUCTURE_BEGIN {
+	zuint8 block_id;
+} Z_PACKED_STRUCTURE_END Z_TZXLoopEnd;
+
 /* MARK: - ID 26h - Call Sequence (added in v1.10) */
 /*-----------------------------------------------------------------------------.
 | This block is an analogue of the CALL Subroutine statement. It basically     |
@@ -720,6 +728,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 |									     |
 | This block has no body.						     |
 '===========================================================================*/
+
+typedef Z_PACKED_STRUCTURE_BEGIN {
+	zuint8 block_id;
+} Z_PACKED_STRUCTURE_END Z_TZXReturn;
 
 /* MARK: - ID 28h - Select (added in v1.10) */
 /*-----------------------------------------------------------------------------.
@@ -845,7 +857,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 } Z_PACKED_STRUCTURE_END Z_TZXInfo;
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
-	zuint8 block_id;
+	zuint8 field_id;
 	zuint8 text_size;
 	Z_FAM(zuint8 text[];)
 } Z_PACKED_STRUCTURE_END Z_TZXInfoField;
@@ -1220,6 +1232,11 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 minor_version;
 } Z_PACKED_STRUCTURE_END Z_TZXGlue;
 
+typedef Z_PACKED_STRUCTURE_BEGIN {
+	zuint8  block_id;
+	zuint32 block_size;
+} Z_PACKED_STRUCTURE_END Z_TZXUnknown;
+
 /* MARK: - Block union */
 
 typedef union {
@@ -1251,6 +1268,7 @@ typedef union {
 	Z_TZXCustomInfo		custom_info;
 	Z_TZXSnapshot		snapshot;
 	Z_TZXGlue		glue;
+	Z_TZXUnknown		unknown;
 } Z_TZXBlock;
 
 #endif /* Z_formats_storage_medium_image_audio_TZX_H */
