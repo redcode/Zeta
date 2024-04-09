@@ -566,12 +566,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_COMPILER_TYPE_UINT64 __typeof(__extension__ (unsigned __INT64_TYPE__)1)
 #	endif
 #endif
-
+/*
 #ifdef __SIZEOF_INT128__
 #	define Z_COMPILER_TYPE_UINT128 unsigned __int128
 #	define Z_COMPILER_TYPE_SINT128		__int128
 #endif
-
+*/
 #ifdef __UINT8_C
 #	define Z_COMPILER_LITERAL_UINT8(number) (__extension__ __UINT8_C(number))
 #endif
