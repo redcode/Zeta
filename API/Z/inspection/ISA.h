@@ -112,6 +112,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif Z_ISA == Z_ISA_RV32I
 #	define Z_ISA_IS_RV32I		1
 #	define Z_ISA_NAME		Z_ISA_NAME_RV32I
+#elif Z_ISA == Z_ISA_RV64E
+#	define Z_ISA_IS_RV64E		1
+#	define Z_ISA_NAME		Z_ISA_NAME_RV64E
 #elif Z_ISA == Z_ISA_RV64I
 #	define Z_ISA_IS_RV64I		1
 #	define Z_ISA_NAME		Z_ISA_NAME_RV64I
@@ -178,6 +181,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		Z_ISA == Z_ISA_MSP430	|| \
 		Z_ISA == Z_ISA_RV32E	|| \
 		Z_ISA == Z_ISA_RV32I	|| \
+		Z_ISA == Z_ISA_RV64E	|| \
 		Z_ISA == Z_ISA_RV64I	|| \
 		Z_ISA == Z_ISA_RV128I	|| \
 		Z_ISA == Z_ISA_VAX	|| \

@@ -221,11 +221,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_ISA Z_ISA_POWERPC_32BIT
 
-#elif defined(__riscv_xlen) && __riscv_xlen == 64
-#	define Z_ISA Z_ISA_RV64I
+#elif defined(__riscv_32e)
+#	define Z_ISA Z_ISA_RV32E
 
 #elif defined(__riscv_xlen) && __riscv_xlen == 32
 #	define Z_ISA Z_ISA_RV32I
+
+#elif defined(__riscv_xlen) && __riscv_xlen == 64
+#	define Z_ISA Z_ISA_RV64I
 
 #elif	defined(__arch64__  ) || \
 	defined(__sparc_v9__) || \

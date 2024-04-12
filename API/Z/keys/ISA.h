@@ -37,21 +37,22 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ISA_POWERPC_64BIT   25 /* IBM				       */
 #define Z_ISA_RV32E	      26 /* University of California, Berkeley */
 #define Z_ISA_RV32I	      27 /* University of California, Berkeley */
-#define Z_ISA_RV64I	      28 /* University of California, Berkeley */
-#define Z_ISA_RV128I	      29 /* University of California, Berkeley */
-#define Z_ISA_SPARC	      30 /* Sun Microsystems		       */
-#define Z_ISA_SPARC_V9	      31 /* SPARC International		       */
-#define Z_ISA_SUPERH	      32 /* Hitachi			       */
-#define Z_ISA_SUPERH_5	      33 /* Hitachi			       */
-#define Z_ISA_VAX	      34 /* DEC				       */
-#define Z_ISA_WASM32	      35 /* W3C				       */
-#define Z_ISA_WASM64	      36 /* W3C				       */
-#define Z_ISA_X86_16	      37 /* Intel			       */
-#define Z_ISA_X86_32	      38 /* Intel			       */
-#define Z_ISA_X86_64	      39 /* AMD				       */
-#define Z_ISA_XCORE	      40 /* XMOS			       */
-#define Z_ISA_Z_ARCHITECTURE  41 /* IBM				       */
-#define Z_ISA_Z80	      42 /* Zilog			       */
+#define Z_ISA_RV64E	      28 /* University of California, Berkeley */
+#define Z_ISA_RV64I	      29 /* University of California, Berkeley */
+#define Z_ISA_RV128I	      30 /* University of California, Berkeley */
+#define Z_ISA_SPARC	      31 /* Sun Microsystems		       */
+#define Z_ISA_SPARC_V9	      32 /* SPARC International		       */
+#define Z_ISA_SUPERH	      33 /* Hitachi			       */
+#define Z_ISA_SUPERH_5	      34 /* Hitachi			       */
+#define Z_ISA_VAX	      35 /* DEC				       */
+#define Z_ISA_WASM32	      36 /* W3C				       */
+#define Z_ISA_WASM64	      37 /* W3C				       */
+#define Z_ISA_X86_16	      38 /* Intel			       */
+#define Z_ISA_X86_32	      39 /* Intel			       */
+#define Z_ISA_X86_64	      40 /* AMD				       */
+#define Z_ISA_XCORE	      41 /* XMOS			       */
+#define Z_ISA_Z_ARCHITECTURE  42 /* IBM				       */
+#define Z_ISA_Z80	      43 /* Zilog			       */
 
 #define Z_ISA_NAME_UNKNOWN	   "unknown ISA"
 #define Z_ISA_NAME_6502		   "6502"
@@ -81,6 +82,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ISA_NAME_POWERPC_64BIT   "PowerPC 64-bit"
 #define Z_ISA_NAME_RV32E	   "RV32E"
 #define Z_ISA_NAME_RV32I	   "RV32I"
+#define Z_ISA_NAME_RV64E	   "RV64E"
 #define Z_ISA_NAME_RV64I	   "RV64I"
 #define Z_ISA_NAME_RV128I	   "RV128I"
 #define Z_ISA_NAME_SPARC	   "SPARC"
