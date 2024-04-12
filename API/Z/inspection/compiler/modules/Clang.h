@@ -205,6 +205,12 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #	define Z_COMPILER_ISA Z_ISA_BLACKFIN
 
+#elif defined(__loongarch64) /* v16.0 */
+#	define Z_COMPILER_ISA Z_ISA_LA64
+
+#elif defined(__loongarch__) /* v16.0 */
+#	define Z_COMPILER_ISA Z_ISA_LA32S
+
 #elif defined(__lanai__) /* v3.9 */
 #	define Z_COMPILER_ISA Z_ISA_LANAI
 

@@ -144,6 +144,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_ISA Z_ISA_IA_64
 
+#elif defined(__loongarch64)
+#	define Z_ISA Z_ISA_LA64
+
+#elif defined(__loongarch__)
+#	define Z_ISA Z_ISA_LA32S
+
 #elif defined(__lanai__)
 #	define Z_ISA Z_ISA_LANAI
 

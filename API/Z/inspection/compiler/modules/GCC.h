@@ -44,6 +44,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_COMPILER_ISA Z_ISA_AARCH32
 
+#elif defined(__loongarch64)
+#	define Z_COMPILER_ISA Z_ISA_LA64
+
+#elif defined(__loongarch__)
+#	define Z_COMPILER_ISA Z_ISA_LA32S
+
 #elif defined(__lm32__)
 #	define Z_COMPILER_ISA Z_ISA_LATTICE_MICO_32
 

@@ -67,6 +67,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif Z_ISA == Z_ISA_IA_64
 #	define Z_ISA_IS_IA_64		1
 #	define Z_ISA_NAME		Z_ISA_NAME_IA_64
+#elif Z_ISA == Z_ISA_LA32R
+#	define Z_ISA_IS_LA32R		1
+#	define Z_ISA_NAME		Z_ISA_NAME_LA32R
+#elif Z_ISA == Z_ISA_LA32S
+#	define Z_ISA_IS_LA32S		1
+#	define Z_ISA_NAME		Z_ISA_NAME_LA32S
+#elif Z_ISA == Z_ISA_LA64
+#	define Z_ISA_IS_LA64		1
+#	define Z_ISA_NAME		Z_ISA_NAME_LA64
 #elif Z_ISA == Z_ISA_LANAI
 #	define Z_ISA_IS_LANAI		1
 #	define Z_ISA_NAME		Z_ISA_NAME_LANAI
@@ -163,6 +172,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		Z_ISA == Z_ISA_BLACKFIN || \
 		Z_ISA == Z_ISA_EPIPHANY || \
 		Z_ISA == Z_ISA_HEXAGON	|| \
+		Z_ISA == Z_ISA_LA32R	|| \
+		Z_ISA == Z_ISA_LA32S	|| \
+		Z_ISA == Z_ISA_LA64	|| \
 		Z_ISA == Z_ISA_MSP430	|| \
 		Z_ISA == Z_ISA_RV32E	|| \
 		Z_ISA == Z_ISA_RV32I	|| \

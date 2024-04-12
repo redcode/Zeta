@@ -22,33 +22,36 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ISA_ESA_390	      10 /* IBM				       */
 #define Z_ISA_HEXAGON	      11 /* Qualcomm			       */
 #define Z_ISA_IA_64	      12 /* Hewlett-Packard / Intel	       */
-#define Z_ISA_LANAI	      13 /* Myricom / Google (?)	       */ /* See: https://q3k.org/lanai.html */
-#define Z_ISA_LATTICE_MICO_32 14 /* Lattice Semiconductor	       */
-#define Z_ISA_M68K	      15 /* Motorola			       */
-#define Z_ISA_MIPS	      16 /* MIPS Computer Systems	       */
-#define Z_ISA_MIPS64	      17 /* MIPS Computer Systems	       */
-#define Z_ISA_MSP430	      18 /* Texas Instruments		       */
-#define Z_ISA_PA_RISC	      19 /* Hewlett-Packard		       */
-#define Z_ISA_PA_RISC_2	      20 /* Hewlett-Packard		       */
-#define Z_ISA_POWERPC_32BIT   21 /* AIM alliance		       */
-#define Z_ISA_POWERPC_64BIT   22 /* IBM				       */
-#define Z_ISA_RV32E	      23 /* University of California, Berkeley */
-#define Z_ISA_RV32I	      24 /* University of California, Berkeley */
-#define Z_ISA_RV64I	      25 /* University of California, Berkeley */
-#define Z_ISA_RV128I	      26 /* University of California, Berkeley */
-#define Z_ISA_SPARC	      27 /* Sun Microsystems		       */
-#define Z_ISA_SPARC_V9	      28 /* SPARC International		       */
-#define Z_ISA_SUPERH	      29 /* Hitachi			       */
-#define Z_ISA_SUPERH_5	      30 /* Hitachi			       */
-#define Z_ISA_VAX	      31 /* DEC				       */
-#define Z_ISA_WASM32	      32 /* W3C				       */
-#define Z_ISA_WASM64	      33 /* W3C				       */
-#define Z_ISA_X86_16	      34 /* Intel			       */
-#define Z_ISA_X86_32	      35 /* Intel			       */
-#define Z_ISA_X86_64	      36 /* AMD				       */
-#define Z_ISA_XCORE	      37 /* XMOS			       */
-#define Z_ISA_Z_ARCHITECTURE  38 /* IBM				       */
-#define Z_ISA_Z80	      39 /* Zilog			       */
+#define Z_ISA_LA32R	      13 /* Loongson Technology		       */
+#define Z_ISA_LA32S	      14 /* Loongson Technology		       */
+#define Z_ISA_LA64	      15 /* Loongson Technology		       */
+#define Z_ISA_LANAI	      16 /* Myricom / Google (?)	       */ /* See: https://q3k.org/lanai.html */
+#define Z_ISA_LATTICE_MICO_32 17 /* Lattice Semiconductor	       */
+#define Z_ISA_M68K	      18 /* Motorola			       */
+#define Z_ISA_MIPS	      19 /* MIPS Computer Systems	       */
+#define Z_ISA_MIPS64	      20 /* MIPS Computer Systems	       */
+#define Z_ISA_MSP430	      21 /* Texas Instruments		       */
+#define Z_ISA_PA_RISC	      22 /* Hewlett-Packard		       */
+#define Z_ISA_PA_RISC_2	      23 /* Hewlett-Packard		       */
+#define Z_ISA_POWERPC_32BIT   24 /* AIM alliance		       */
+#define Z_ISA_POWERPC_64BIT   25 /* IBM				       */
+#define Z_ISA_RV32E	      26 /* University of California, Berkeley */
+#define Z_ISA_RV32I	      27 /* University of California, Berkeley */
+#define Z_ISA_RV64I	      28 /* University of California, Berkeley */
+#define Z_ISA_RV128I	      29 /* University of California, Berkeley */
+#define Z_ISA_SPARC	      30 /* Sun Microsystems		       */
+#define Z_ISA_SPARC_V9	      31 /* SPARC International		       */
+#define Z_ISA_SUPERH	      32 /* Hitachi			       */
+#define Z_ISA_SUPERH_5	      33 /* Hitachi			       */
+#define Z_ISA_VAX	      34 /* DEC				       */
+#define Z_ISA_WASM32	      35 /* W3C				       */
+#define Z_ISA_WASM64	      36 /* W3C				       */
+#define Z_ISA_X86_16	      37 /* Intel			       */
+#define Z_ISA_X86_32	      38 /* Intel			       */
+#define Z_ISA_X86_64	      39 /* AMD				       */
+#define Z_ISA_XCORE	      40 /* XMOS			       */
+#define Z_ISA_Z_ARCHITECTURE  41 /* IBM				       */
+#define Z_ISA_Z80	      42 /* Zilog			       */
 
 #define Z_ISA_NAME_UNKNOWN	   "unknown ISA"
 #define Z_ISA_NAME_6502		   "6502"
@@ -63,6 +66,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_ISA_NAME_ESA_390	   "ESA/390"
 #define Z_ISA_NAME_HEXAGON	   "Hexagon"
 #define Z_ISA_NAME_IA_64	   "IA-64"
+#define Z_ISA_NAME_LA32R	   "LA32R"
+#define Z_ISA_NAME_LA32S	   "LA32S"
+#define Z_ISA_NAME_LA64		   "LA64"
 #define Z_ISA_NAME_LANAI	   "Lanai"
 #define Z_ISA_NAME_LATTICE_MICO_32 "LatticeMico32"
 #define Z_ISA_NAME_M68K		   "M68K"
