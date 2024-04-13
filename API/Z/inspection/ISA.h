@@ -11,7 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/keys/ISA.h>
 #include <Z/keys/endianness.h>
-#include <Z/keys/number.h>
 
 #ifndef Z_ISA
 #	include <Z/inspection/compiler.h>
@@ -20,10 +19,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_ISA Z_COMPILER_ISA
 #	else
 #		include <Z/inspection/ISA/detection.h>
-
-#		ifndef Z_ISA
-#			error "Z_ISA not defined."
-#		endif
 #	endif
 #endif
 
@@ -164,9 +159,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	error "Invalid Z_ISA key."
 #endif
 
-#define Z_ISA_IS(	   ISA ) Z_IS_TRUE(Z_ISA_IS_##ISA		 )
-#define Z_ISA_HAS_INTEGRAL(bits) Z_IS_TRUE(Z_ISA_HAS_INTEGRAL_##bits##BIT)
-
 #ifndef Z_ISA_INTEGRAL_ENDIANNESS
 #	ifdef Z_COMPILER_ISA_INTEGRAL_ENDIANNESS
 #		define Z_ISA_INTEGRAL_ENDIANNESS Z_COMPILER_ISA_INTEGRAL_ENDIANNESS
@@ -227,5 +219,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		error "It is necessary to define `Z_ISA_INTEGRAL_ENDIANNESS` for unknown ISAs."
 #	endif
 #endif
+
+#define Z_ISA_IS(	   ISA ) Z_IS_TRUE(Z_ISA_IS_##ISA		 )
+#define Z_ISA_HAS_INTEGRAL(bits) Z_IS_TRUE(Z_ISA_HAS_INTEGRAL_##bits##BIT)
 
 #endif /* Z_inspection_ISA_H */
