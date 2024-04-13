@@ -198,25 +198,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		define Z_ISA_INTEGRAL_ENDIANNESS Z_ENDIANNESS_BIG
 
-#	elif	Z_ISA == Z_ISA_AARCH32	     || \
-		Z_ISA == Z_ISA_AARCH64	     || \
-		Z_ISA == Z_ISA_ALPHA	     || \
-		Z_ISA == Z_ISA_ARC	     || \
-		Z_ISA == Z_ISA_IA_64	     || \
-		Z_ISA == Z_ISA_MIPS	     || \
-		Z_ISA == Z_ISA_MIPS64	     || \
-		Z_ISA == Z_ISA_PA_RISC	     || \
-		Z_ISA == Z_ISA_PA_RISC_2     || \
-		Z_ISA == Z_ISA_POWERPC_32BIT || \
-		Z_ISA == Z_ISA_POWERPC_64BIT || \
-		Z_ISA == Z_ISA_SPARC_V9	     || \
-		Z_ISA == Z_ISA_SUPERH	     || \
-		Z_ISA == Z_ISA_SUPERH_5
-
-#		error "It is necessary to define `Z_ISA_INTEGRAL_ENDIANNESS` for bi-endian ISAs not recognized by the compiler driver."
-
-#	else
+#	elif Z_ISA == Z_ISA_UNKNOWN
 #		error "It is necessary to define `Z_ISA_INTEGRAL_ENDIANNESS` for unknown ISAs."
+#	else
+#		error "It is necessary to define `Z_ISA_INTEGRAL_ENDIANNESS` for bi-endian ISAs not handled by the compiler driver."
 #	endif
 #endif
 
