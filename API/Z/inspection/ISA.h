@@ -171,11 +171,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		Z_ISA == Z_ISA_LA32S	|| \
 		Z_ISA == Z_ISA_LA64	|| \
 		Z_ISA == Z_ISA_MSP430	|| \
-		Z_ISA == Z_ISA_RV32E	|| \
-		Z_ISA == Z_ISA_RV32I	|| \
-		Z_ISA == Z_ISA_RV64E	|| \
-		Z_ISA == Z_ISA_RV64I	|| \
-		Z_ISA == Z_ISA_RV128I	|| \
 		Z_ISA == Z_ISA_VAX	|| \
 		Z_ISA == Z_ISA_WASM32	|| \
 		Z_ISA == Z_ISA_WASM64	|| \
