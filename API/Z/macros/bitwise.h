@@ -138,7 +138,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #ifdef Z_UINT128
 
-#	define Z_UINT129_FLIP_8(value) (Z_CAST(zuint128)(  \
+#	define Z_UINT128_FLIP_8(value) (Z_CAST(zuint128)(  \
 		((value << 8) & (			   \
 			(Z_CAST(zuint128)(255) << 120) |   \
 			(Z_CAST(zuint128)(255) << 104) |   \
