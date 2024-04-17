@@ -9,9 +9,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_types_bitwise_H
 #define Z_types_bitwise_H
 
+#include <Z/inspection/ISA.h>
 #include <Z/macros/language.h>
-#include <Z/macros/member.h>
 #include <Z/types/integral.h>
+#include <Z/macros/structure.h> /* For backward compatibility. To be removed. */
 
 #if defined(Z_UINT8) || defined(Z_SINT8)
 #	define Z_HAS_ZInt8 1
@@ -60,19 +61,29 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		ifdef Z_UINT8
 			zuint8 uint8_array[2];
 
-			struct {Z_ENDIANIZED_MEMBERS(2) (
-				zuint8 at_1,
-				zuint8 at_0
-			)} uint8_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS != Z_ENDIANNESS_BIG
+					zuint8 at_0;
+					zuint8 at_1;
+#				else
+					zuint8 at_1;
+					zuint8 at_0;
+#				endif
+			} uint8_values;
 #		endif
 
 #		ifdef Z_SINT8
 			zsint8 sint8_array[2];
 
-			struct {Z_ENDIANIZED_MEMBERS(2) (
-				zsint8 at_1,
-				zsint8 at_0
-			)} sint8_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS != Z_ENDIANNESS_BIG
+					zsint8 at_0;
+					zsint8 at_1;
+#				else
+					zsint8 at_1;
+					zsint8 at_0;
+#				endif
+			} sint8_values;
 #		endif
 	} Z_PACKED_UNION_END ZInt16;
 #endif
@@ -103,41 +114,75 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		ifdef Z_UINT16
 			zuint16 uint16_array[2];
 
-			struct {Z_ENDIANIZED_MEMBERS(2) (
-				zuint16 at_1,
-				zuint16 at_0
-			)} uint16_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zuint16 at_0;
+					zuint16 at_1;
+#				else
+					zuint16 at_1;
+					zuint16 at_0;
+#				endif
+			} uint16_values;
 #		endif
 
 #		ifdef Z_SINT16
 			zsint16 sint16_array[2];
 
-			struct {Z_ENDIANIZED_MEMBERS(2) (
-				zsint16 at_1,
-				zsint16 at_0
-			)} sint16_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zsint16 at_0;
+					zsint16 at_1;
+#				else
+					zsint16 at_1;
+					zsint16 at_0;
+#				endif
+			} sint16_values;
 #		endif
 
 #		ifdef Z_UINT8
 			zuint8 uint8_array[4];
 
-			struct {Z_ENDIANIZED_MEMBERS(4) (
-				zuint8 at_3,
-				zuint8 at_2,
-				zuint8 at_1,
-				zuint8 at_0
-			)} uint8_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zuint8 at_0;
+					zuint8 at_1;
+					zuint8 at_2;
+					zuint8 at_3;
+#				elif Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
+					zuint8 at_3;
+					zuint8 at_2;
+					zuint8 at_1;
+					zuint8 at_0;
+#				else
+					zuint8 at_2;
+					zuint8 at_3;
+					zuint8 at_0;
+					zuint8 at_1;
+#				endif
+			} uint8_values;
 #		endif
 
 #		ifdef Z_SINT8
 			zsint8 sint8_array[4];
 
-			struct {Z_ENDIANIZED_MEMBERS(4) (
-				zsint8 at_3,
-				zsint8 at_2,
-				zsint8 at_1,
-				zsint8 at_0
-			)} sint8_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zsint8 at_0;
+					zsint8 at_1;
+					zsint8 at_2;
+					zsint8 at_3;
+#				elif Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
+					zsint8 at_3
+					zsint8 at_2;
+					zsint8 at_1;
+					zsint8 at_0;
+#				else
+					zsint8 at_2;
+					zsint8 at_3;
+					zsint8 at_0;
+					zsint8 at_1;
+#				endif
+			} sint8_values;
 #		endif
 	} Z_PACKED_UNION_END ZInt32;
 #endif
@@ -169,71 +214,135 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		ifdef Z_UINT32
 			zuint32 uint32_array[2];
 
-			struct {Z_ENDIANIZED_MEMBERS(2) (
-				zuint32 at_1,
-				zuint32 at_0
-			)} uint32_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zuint32 at_0;
+					zuint32 at_1;
+#				else
+					zuint32 at_1;
+					zuint32 at_0;
+#				endif
+			} uint32_values;
 #		endif
 
 #		ifdef Z_SINT32
 			zsint32 sint32_array[2];
 
-			struct {Z_ENDIANIZED_MEMBERS(2) (
-				zsint32 at_1,
-				zsint32 at_0
-			)} sint32_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zsint32 at_0;
+					zsint32 at_1;
+#				else
+					zsint32 at_1;
+					zsint32 at_0;
+#				endif
+			} sint32_values;
 #		endif
 
 #		ifdef Z_UINT16
 			zuint16 uint16_array[4];
 
-			struct {Z_ENDIANIZED_MEMBERS(4) (
-				zuint16 at_3,
-				zuint16 at_2,
-				zuint16 at_1,
-				zuint16 at_0
-			)} uint16_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zuint16 at_0;
+					zuint16 at_1;
+					zuint16 at_2;
+					zuint16 at_3;
+#				else
+					zuint16 at_3;
+					zuint16 at_2;
+					zuint16 at_1;
+					zuint16 at_0;
+#				endif
+			} uint16_values;
 #		endif
 
 #		ifdef Z_SINT16
 			zsint16 sint16_array[4];
 
-			struct {Z_ENDIANIZED_MEMBERS(4) (
-				zsint16 at_3,
-				zsint16 at_2,
-				zsint16 at_1,
-				zsint16 at_0
-			)} sint16_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zsint16 at_0;
+					zsint16 at_1;
+					zsint16 at_2;
+					zsint16 at_3;
+#				else
+					zsint16 at_3;
+					zsint16 at_2;
+					zsint16 at_1;
+					zsint16 at_0;
+#				endif
+			} sint16_values;
 #		endif
 
 #		ifdef Z_UINT8
 			zuint8 uint8_array[8];
 
-			struct {Z_ENDIANIZED_MEMBERS(8) (
-				zuint8 at_7,
-				zuint8 at_6,
-				zuint8 at_5,
-				zuint8 at_4,
-				zuint8 at_3,
-				zuint8 at_2,
-				zuint8 at_1,
-				zuint8 at_0
-			)} uint8_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zuint8 at_0;
+					zuint8 at_1;
+					zuint8 at_2;
+					zuint8 at_3;
+					zuint8 at_4;
+					zuint8 at_5;
+					zuint8 at_6;
+					zuint8 at_7;
+#				elif Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
+					zuint8 at_7;
+					zuint8 at_6;
+					zuint8 at_5;
+					zuint8 at_4;
+					zuint8 at_3;
+					zuint8 at_2;
+					zuint8 at_1;
+					zuint8 at_0;
+#				else
+					zuint8 at_6;
+					zuint8 at_7;
+					zuint8 at_4;
+					zuint8 at_5;
+					zuint8 at_2;
+					zuint8 at_3;
+					zuint8 at_0;
+					zuint8 at_1;
+#				endif
+			} uint8_values;
 #		endif
 
 #		ifdef Z_SINT8
 			zsint8 sint8_array[8];
 
-			struct {Z_ENDIANIZED_MEMBERS(8) (
-				zsint8 at_7,
-				zsint8 at_6,
-				zsint8 at_5,
-				zsint8 at_4,
-				zsint8 at_3,
-				zsint8 at_2,
-				zsint8 at_1,
-				zsint8 at_0
-			)} sint8_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zsint8 at_0;
+					zsint8 at_1;
+					zsint8 at_2;
+					zsint8 at_3;
+					zsint8 at_4;
+					zsint8 at_5;
+					zsint8 at_6;
+					zsint8 at_7;
+#				elif Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
+					zsint8 at_7;
+					zsint8 at_6;
+					zsint8 at_5;
+					zsint8 at_4;
+					zsint8 at_3;
+					zsint8 at_2;
+					zsint8 at_1;
+					zsint8 at_0;
+#				else
+					zsint8 at_6;
+					zsint8 at_7;
+					zsint8 at_4;
+					zsint8 at_5;
+					zsint8 at_2;
+					zsint8 at_3;
+					zsint8 at_0;
+					zsint8 at_1;
+#				endif
+			} sint8_values;
 #		endif
 	} Z_PACKED_UNION_END ZInt64;
 #endif
@@ -266,117 +375,235 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		ifdef Z_UINT64
 			zuint64 uint64_array[2];
 
-			struct {Z_ENDIANIZED_MEMBERS(2) (
-				zuint64 at_1,
-				zuint64 at_0
-			)} uint64_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zuint64 at_0;
+					zuint64 at_1;
+#				else
+					zuint64 at_1;
+					zuint64 at_0;
+#				endif
+			} uint64_values;
 #		endif
 
 #		ifdef Z_SINT64
 			zsint64 sint64_array[2];
 
-			struct {Z_ENDIANIZED_MEMBERS(2) (
-				zsint64 at_1,
-				zsint64 at_0
-			)} sint64_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zsint64 at_0;
+					zsint64 at_1;
+#				else
+					zsint64 at_1;
+					zsint64 at_0;
+#				endif
+			} sint64_values;
 #		endif
 
 #		ifdef Z_UINT32
 			zuint32 uint32_array[4];
 
-			struct {Z_ENDIANIZED_MEMBERS(4) (
-				zuint32 at_3,
-				zuint32 at_2,
-				zuint32 at_1,
-				zuint32 at_0
-			)} uint32_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zuint32 at_0;
+					zuint32 at_1;
+					zuint32 at_2;
+					zuint32 at_3;
+#				else
+					zuint32 at_3;
+					zuint32 at_2;
+					zuint32 at_1;
+					zuint32 at_0;
+#				endif
+			} uint32_values;
 #		endif
 
 #		ifdef Z_SINT32
 			zsint32 sint32_array[4];
 
-			struct {Z_ENDIANIZED_MEMBERS(4) (
-				zsint32 at_3,
-				zsint32 at_2,
-				zsint32 at_1,
-				zsint32 at_0
-			)} sint32_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zsint32 at_0;
+					zsint32 at_1;
+					zsint32 at_2;
+					zsint32 at_3;
+#				else
+					zsint32 at_3;
+					zsint32 at_2;
+					zsint32 at_1;
+					zsint32 at_0;
+#				endif
+			} sint32_values;
 #		endif
 
 #		ifdef Z_UINT16
 			zuint16 uint16_array[8];
 
-			struct {Z_ENDIANIZED_MEMBERS(8) (
-				zuint16 at_7,
-				zuint16 at_6,
-				zuint16 at_5,
-				zuint16 at_4,
-				zuint16 at_3,
-				zuint16 at_2,
-				zuint16 at_1,
-				zuint16 at_0
-			)} uint16_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zuint16 at_0;
+					zuint16 at_1;
+					zuint16 at_2;
+					zuint16 at_3;
+					zuint16 at_4;
+					zuint16 at_5;
+					zuint16 at_6;
+					zuint16 at_7;
+#				else
+					zuint16 at_7;
+					zuint16 at_6;
+					zuint16 at_5;
+					zuint16 at_4;
+					zuint16 at_3;
+					zuint16 at_2;
+					zuint16 at_1;
+					zuint16 at_0;
+#				endif
+			} uint16_values;
 #		endif
 
 #		ifdef Z_SINT16
 			zsint16 sint16_array[8];
 
-			struct {Z_ENDIANIZED_MEMBERS(8) (
-				zsint16 at_7,
-				zsint16 at_6,
-				zsint16 at_5,
-				zsint16 at_4,
-				zsint16 at_3,
-				zsint16 at_2,
-				zsint16 at_1,
-				zsint16 at_0
-			)} sint16_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zsint16 at_0;
+					zsint16 at_1;
+					zsint16 at_2;
+					zsint16 at_3;
+					zsint16 at_4;
+					zsint16 at_5;
+					zsint16 at_6;
+					zsint16 at_7;
+#				else
+					zsint16 at_7;
+					zsint16 at_6;
+					zsint16 at_5;
+					zsint16 at_4;
+					zsint16 at_3;
+					zsint16 at_2;
+					zsint16 at_1;
+					zsint16 at_0;
+#				endif
+			} sint16_values;
 #		endif
 
 #		ifdef Z_UINT8
 			zuint8 uint8_array[16];
 
-			struct {Z_ENDIANIZED_MEMBERS(16) (
-				zuint8 at_15,
-				zuint8 at_14,
-				zuint8 at_13,
-				zuint8 at_12,
-				zuint8 at_11,
-				zuint8 at_10,
-				zuint8 at_9,
-				zuint8 at_8,
-				zuint8 at_7,
-				zuint8 at_6,
-				zuint8 at_5,
-				zuint8 at_4,
-				zuint8 at_3,
-				zuint8 at_2,
-				zuint8 at_1,
-				zuint8 at_0
-			)} uint8_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zuint8 at_0;
+					zuint8 at_1;
+					zuint8 at_2;
+					zuint8 at_3;
+					zuint8 at_4;
+					zuint8 at_5;
+					zuint8 at_6;
+					zuint8 at_7;
+					zuint8 at_8;
+					zuint8 at_9;
+					zuint8 at_10;
+					zuint8 at_11;
+					zuint8 at_12;
+					zuint8 at_13;
+					zuint8 at_14;
+					zuint8 at_15;
+#				elif Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
+					zuint8 at_15;
+					zuint8 at_14;
+					zuint8 at_13;
+					zuint8 at_12;
+					zuint8 at_11;
+					zuint8 at_10;
+					zuint8 at_9;
+					zuint8 at_8;
+					zuint8 at_7;
+					zuint8 at_6;
+					zuint8 at_5;
+					zuint8 at_4;
+					zuint8 at_3;
+					zuint8 at_2;
+					zuint8 at_1;
+					zuint8 at_0;
+#				else
+					zuint8 at_14;
+					zuint8 at_15;
+					zuint8 at_12;
+					zuint8 at_13;
+					zuint8 at_10;
+					zuint8 at_11;
+					zuint8 at_8;
+					zuint8 at_9;
+					zuint8 at_6;
+					zuint8 at_7;
+					zuint8 at_4;
+					zuint8 at_5;
+					zuint8 at_2;
+					zuint8 at_3;
+					zuint8 at_0;
+					zuint8 at_1;
+#				endif
+			} uint8_values;
 #		endif
 
 #		ifdef Z_SINT8
 			zsint8 sint8_array[16];
 
-			struct {Z_ENDIANIZED_MEMBERS(16) (
-				zsint8 at_15,
-				zsint8 at_14,
-				zsint8 at_13,
-				zsint8 at_12,
-				zsint8 at_11,
-				zsint8 at_10,
-				zsint8 at_9,
-				zsint8 at_8,
-				zsint8 at_7,
-				zsint8 at_6,
-				zsint8 at_5,
-				zsint8 at_4,
-				zsint8 at_3,
-				zsint8 at_2,
-				zsint8 at_1,
-				zsint8 at_0
-			)} sint8_values;
+			struct {
+#				if Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_LITTLE
+					zsint8 at_0;
+					zsint8 at_1;
+					zsint8 at_2;
+					zsint8 at_3;
+					zsint8 at_4;
+					zsint8 at_5;
+					zsint8 at_6;
+					zsint8 at_7;
+					zsint8 at_8;
+					zsint8 at_9;
+					zsint8 at_10;
+					zsint8 at_11;
+					zsint8 at_12;
+					zsint8 at_13;
+					zsint8 at_14;
+					zsint8 at_15;
+#				elif Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
+					zsint8 at_15;
+					zsint8 at_14;
+					zsint8 at_13;
+					zsint8 at_12;
+					zsint8 at_11;
+					zsint8 at_10;
+					zsint8 at_9;
+					zsint8 at_8;
+					zsint8 at_7;
+					zsint8 at_6;
+					zsint8 at_5;
+					zsint8 at_4;
+					zsint8 at_3;
+					zsint8 at_2;
+					zsint8 at_1;
+					zsint8 at_0;
+#				else
+					zsint8 at_14;
+					zsint8 at_15;
+					zsint8 at_12;
+					zsint8 at_13;
+					zsint8 at_10;
+					zsint8 at_11;
+					zsint8 at_8;
+					zsint8 at_9;
+					zsint8 at_6;
+					zsint8 at_7;
+					zsint8 at_4;
+					zsint8 at_5;
+					zsint8 at_2;
+					zsint8 at_3;
+					zsint8 at_0;
+					zsint8 at_1;
+#				endif
+			} sint8_values;
 #		endif
 	} Z_PACKED_UNION_END ZInt128;
 #endif

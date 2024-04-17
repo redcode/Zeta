@@ -186,8 +186,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef Z_formats_storage_medium_image_audio_TZX_H
 #define Z_formats_storage_medium_image_audio_TZX_H
 
+#include <Z/macros/bit-field.h>
 #include <Z/macros/language.h>
-#include <Z/macros/member.h>
 #include <Z/types/integral.h>
 
 /* MARK: - File Header */

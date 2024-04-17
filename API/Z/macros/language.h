@@ -156,4 +156,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PACKED_UNION_END \
 	Z_COMPILER_PACKED_UNION_AFTER_BODY
 
+/* FAM */
+
+#if Z_DIALECT_HAS(C99, FLEXIBLE_ARRAY_MEMBER)
+#	define Z_FAM(member) member
+#else
+#	define Z_FAM(member)
+#endif
+
 #endif /* Z_macros_language_H */

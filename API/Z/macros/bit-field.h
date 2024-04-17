@@ -1,4 +1,4 @@
-/* Zeta API - Z/macros/member.h
+/* Zeta API - Z/macros/bit-field.h
  ______  ______________  ___
 |__   / |  ___|___  ___|/   \
   /  /__|  __|   |  |  /  -  \
@@ -6,36 +6,11 @@
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_macros_member_H
-#define Z_macros_member_H
+#ifndef Z_macros_bit_field_H
+#define Z_macros_bit_field_H
 
 #include <Z/keys/order.h>
-#include <Z/inspection/ISA.h>
-#include <Z/inspection/language.h>
-
-#if Z_COMPILER_HAS_MACRO(MEMBER_OFFSET)
-#	define Z_MEMBER_OFFSET Z_COMPILER_MACRO(MEMBER_OFFSET)
-
-#else
-#	include <Z/types/integral.h>
-
-#	ifdef __cplusplus
-#		include <Z/constants/pointer.h>
-
-#		define Z_MEMBER_OFFSET(type, member) \
-			zusize(zuintptr(&(static_cast<type *>(Z_NULL))->member))
-
-#	else
-#		define Z_MEMBER_OFFSET(type, member) \
-			((zusize)(zuintptr)&((type *)(0))->member)
-#	endif
-#endif
-
-#if Z_DIALECT_HAS(C99, FLEXIBLE_ARRAY_MEMBER)
-#	define Z_FAM(member) member
-#else
-#	define Z_FAM(member)
-#endif
+#include <Z/inspection/compiler.h>
 
 #define Z_MEMBERIZE_2( _1, _2)																		      _1; _2;
 #define Z_MEMBERIZE_3( _1, _2, _3)																	      _1; _2; _3;
@@ -105,8 +80,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 	Z_APPEND_TERNARY(Z_COMPILER_BIT_FIELD_ORDER(bits)) \
 		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
 
-#define Z_ENDIANIZED_MEMBERS(member_count)	    \
-	Z_APPEND_TERNARY(Z_ISA_INTEGRAL_ENDIANNESS) \
-		(Z_MEMBERIZE_, REVERSED_##member_count, member_count)
-
-#endif /* Z_macros_member_H */
+#endif /* Z_macros_bit_field_H */

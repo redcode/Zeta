@@ -251,8 +251,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 #ifndef Z_hardware_machine_computer_ZX_Spectrum_H
 #define Z_hardware_machine_computer_ZX_Spectrum_H
 
+#include <Z/macros/bit-field.h>
 #include <Z/macros/language.h>
-#include <Z/macros/member.h>
 #include <Z/types/integral.h>
 
 /* MARK: - Memory map */
