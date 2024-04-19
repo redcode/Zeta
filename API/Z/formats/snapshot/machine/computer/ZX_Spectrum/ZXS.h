@@ -72,11 +72,13 @@ Released under the terms of the GNU Lesser General Public License v3.
 #endif
 
 #define Z_ZXS_FORM_TYPE				Z_UINT32_STRING('S','N','A','P')
+#define Z_ZXS_CHUNK_ID_DISK_0			Z_UINT32_STRING('d','s','k','0')
+#define Z_ZXS_CHUNK_ID_DISK_1			Z_UINT32_STRING('d','s','k','1')
 #define Z_ZXS_CHUNK_ID_FORMAT_INFO		Z_UINT32_STRING('f','m','t','z')
 #define Z_ZXS_CHUNK_ID_CPU			Z_UINT32_STRING('r','Z','8','0')
+#define Z_ZXS_CHUNK_ID_ZX_SPECTRUM_PLUS3_IO	Z_UINT32_STRING('r','+','3',' ')
 #define Z_ZXS_CHUNK_ID_ZX_SPECTRUM_48K_IO	Z_UINT32_STRING('r','0','4','8')
 #define Z_ZXS_CHUNK_ID_ZX_SPECTRUM_PLUS_128K_IO Z_UINT32_STRING('r','1','2','8')
-#define Z_ZXS_CHUNK_ID_ZX_SPECTRUM_PLUS3_IO	Z_UINT32_STRING('r','+','3',' ')
 #define Z_ZXS_CHUNK_ID_RAM_0			Z_UINT32_STRING('r','a','m','0')
 #define Z_ZXS_CHUNK_ID_RAM_1			Z_UINT32_STRING('r','a','m','1')
 #define Z_ZXS_CHUNK_ID_RAM_2			Z_UINT32_STRING('r','a','m','2')
@@ -86,10 +88,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_ZXS_CHUNK_ID_RAM_6			Z_UINT32_STRING('r','a','m','6')
 #define Z_ZXS_CHUNK_ID_RAM_7			Z_UINT32_STRING('r','a','m','7')
 #define Z_ZXS_CHUNK_ID_TAPE			Z_UINT32_STRING('t','a','p','e')
-#define Z_ZXS_CHUNK_ID_DISK_0			Z_UINT32_STRING('d','s','k','0')
-#define Z_ZXS_CHUNK_ID_DISK_1			Z_UINT32_STRING('d','s','k','1')
 #define Z_ZXS_CHUNK_ID_ZX32			Z_UINT32_STRING('z','x','3','2')
-
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint32 structure_size;     // structure size
@@ -117,6 +116,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 } Z_PACKED_STRUCTURE_END Z_ZXSCPU;
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	zuint8	port_1ffd;
+} Z_PACKED_STRUCTURE_END Z_ZXSZXSpectrumPlus3IO;
+
+typedef Z_PACKED_STRUCTURE_BEGIN {
 	Z_ZXSpectrumULAIO ula_io;
 	ZInt64		  keyboard;
 } Z_PACKED_STRUCTURE_END Z_ZXSZXSpectrum48KIO;
@@ -126,10 +129,6 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8			       port_fffd;
 	zuint8			       psg[16];
 } Z_PACKED_STRUCTURE_END Z_ZXSZXSpectrumPlus128KIO;
-
-typedef Z_PACKED_STRUCTURE_BEGIN {
-	zuint8	port_1ffd;
-} Z_PACKED_STRUCTURE_END Z_ZXSZXSpectrumPlus3IO;
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint32 current_position;
@@ -143,13 +142,13 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint32 body_size;
 
 	union {	zuint32			  type;
-		Z_ZXSZip		  zip;
-		Z_ZXSFormatInfo		  format_info;
 		Z_ZXSCPU		  cpu;
+		Z_ZXSFormatInfo		  format_info;
+		Z_ZXSTape		  tape;
+		Z_ZXSZip		  zip;
 		Z_ZXSZXSpectrum48KIO	  zx_spectrum_48k_io;
 		Z_ZXSZXSpectrumPlus128KIO zx_spectrum_plus_128k_io;
 		Z_ZXSZXSpectrumPlus3IO	  zx_spectrum_plus3_io;
-		Z_ZXSTape		  tape;
 	} body;
 } Z_PACKED_STRUCTURE_END Z_ZXSChunk;
 
