@@ -653,17 +653,17 @@ namespace Zeta {template <class t> struct Rectangle {
 
 #	if defined(Z_WITH_CORE_FOUNDATION) || defined(Z_WITH_FOUNDATION)
 
-#		define Z_z_APPLE_CONSTRUCTORS(Prefix)			     \
-									     \
-			Z_CT(CPP11) Rectangle(const Prefix##Rect &rectangle) \
-			: point(rectangle.origin), size(rectangle.size) {}   \
-									     \
-									     \
-			Z_CT(CPP11) Rectangle(const Prefix##Point &point_)   \
-			: point(t(0)), size(point_) {}			     \
-									     \
-									     \
-			Z_CT(CPP11) Rectangle(const Prefix##Size &size_)     \
+#		define Z_z_APPLE_CONSTRUCTORS(Prefix)				       \
+										       \
+			Z_CT(CPP11) Rectangle(const Prefix##Rect &rectangle) Z_NOTHROW \
+			: point(rectangle.origin), size(rectangle.size) {}	       \
+										       \
+										       \
+			Z_CT(CPP11) Rectangle(const Prefix##Point &point_) Z_NOTHROW   \
+			: point(t(0)), size(point_) {}				       \
+										       \
+										       \
+			Z_CT(CPP11) Rectangle(const Prefix##Size &size_) Z_NOTHROW     \
 			: point(t(0)), size(size_) {}
 
 
@@ -671,7 +671,7 @@ namespace Zeta {template <class t> struct Rectangle {
 
 #			define Z_z_APPLE_OPERATORS(Prefix)			      \
 										      \
-				Z_CT(CPP11) operator Prefix##Rect() const	      \
+				Z_CT(CPP11) operator Prefix##Rect() const Z_NOTHROW   \
 					{					      \
 					return {{CGFloat(point.x), CGFloat(point.y)}, \
 						{CGFloat(size.x),  CGFloat(size.y)}}; \
@@ -680,9 +680,9 @@ namespace Zeta {template <class t> struct Rectangle {
 #		else
 #			define Z_z_APPLE_OPERATORS(Prefix)			      \
 										      \
-				Z_CT(CPP14) operator Prefix##Rect() const	      \
+				Z_CT(CPP14) operator Prefix##Rect() const Z_NOTHROW   \
 					{					      \
-					CGRect result = {			      \
+					Prefix##Rect result = {			      \
 						{CGFloat(point.x), CGFloat(point.y)}, \
 						{CGFloat(size.x),  CGFloat(size.y)}}; \
 										      \
