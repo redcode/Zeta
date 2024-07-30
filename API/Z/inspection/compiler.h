@@ -61,6 +61,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /*#	if Z_COMPILER == Z_COMPILER_ACC
 #		include <Z/inspection/compiler/modules/ACC.h>
+#	elif Z_COMPILER == Z_COMPILER_ADAPTIVE_CPP
+#		include <Z/inspection/compiler/modules/AdaptiveCpp.h>
 #	elif Z_COMPILER == Z_COMPILER_ALTIUM_C_TO_HARDWARE
 #		include <Z/inspection/compiler/modules/Altium_C-to-Hardware.h>
 #	elif Z_COMPILER == Z_COMPILER_ALTIUM_MICROBLAZE_C

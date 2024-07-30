@@ -19,6 +19,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(_ACC_)
 #	define Z_COMPILER Z_COMPILER_ACC
 
+#elif defined(__ACPP__) || defined(__ADAPTIVECPP__)
+#	define Z_COMPILER Z_COMPILER_ADAPTIVE_CPP
+
 #elif defined(__CMB__)
 #	define Z_COMPILER Z_COMPILER_ALTIUM_MICROBLAZE_C
 
