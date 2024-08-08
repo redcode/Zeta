@@ -94,7 +94,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_ZORTECH_CPP			  82 /*													   */
 
 #define Z_COMPILER_NAME_ACC			       "ACC"
-#define Z_COMPILER_ADAPTIVE_CPP			       "AdaptiveCpp"
+#define Z_COMPILER_NAME_ADAPTIVE_CPP		       "AdaptiveCpp"
 #define Z_COMPILER_NAME_ALTIUM_C_TO_HARDWARE	       "Altium C-to-Hardware"
 #define Z_COMPILER_NAME_ALTIUM_MICROBLAZE_C	       "Altium MicroBlaze C"
 #define Z_COMPILER_NAME_AMSTERDAM_COMPILER_KIT	       "Amsterdam Compiler Kit"
