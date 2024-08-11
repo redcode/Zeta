@@ -368,7 +368,7 @@ namespace Zeta {template <class t> struct Rectangle {
 		}
 
 
-	Z_CT(CPP14) Rectangle fit_in_bottom_center(const XY<t> &size_) const Z_NOTHROW
+	Z_CT(CPP14) Rectangle fit_bottom(const XY<t> &size_) const Z_NOTHROW
 		{
 		XY<t> fitting_size = size_.fit(size);
 
@@ -376,11 +376,11 @@ namespace Zeta {template <class t> struct Rectangle {
 		}
 
 
-	Z_CT(CPP11) Rectangle fit_in_bottom_left(const XY<t> &size_) const Z_NOTHROW
+	Z_CT(CPP11) Rectangle fit_bottom_left(const XY<t> &size_) const Z_NOTHROW
 		{return Rectangle(point, size_.fit(size));}
 
 
-	Z_CT(CPP14) Rectangle fit_in_bottom_right(const XY<t> &size_) const Z_NOTHROW
+	Z_CT(CPP14) Rectangle fit_bottom_right(const XY<t> &size_) const Z_NOTHROW
 		{
 		XY<t> fitting_size = size_.fit(size);
 
@@ -388,7 +388,7 @@ namespace Zeta {template <class t> struct Rectangle {
 		}
 
 
-	Z_CT(CPP14) Rectangle fit_in_center(const XY<t> &size_) const Z_NOTHROW
+	Z_CT(CPP14) Rectangle fit(const XY<t> &size_) const Z_NOTHROW
 		{
 		XY<t> fitting_size = size_.fit(size);
 
@@ -396,7 +396,7 @@ namespace Zeta {template <class t> struct Rectangle {
 		}
 
 
-	Z_CT(CPP14) Rectangle fit_in_center_left(const XY<t> &size_) const Z_NOTHROW
+	Z_CT(CPP14) Rectangle fit_left(const XY<t> &size_) const Z_NOTHROW
 		{
 		XY<t> fitting_size = size_.fit(size);
 
@@ -404,7 +404,7 @@ namespace Zeta {template <class t> struct Rectangle {
 		}
 
 
-	Z_CT(CPP14) Rectangle fit_in_center_right(const XY<t> &size_) const Z_NOTHROW
+	Z_CT(CPP14) Rectangle fit_right(const XY<t> &size_) const Z_NOTHROW
 		{
 		XY<t> fitting_size = size_.fit(size);
 
@@ -415,7 +415,7 @@ namespace Zeta {template <class t> struct Rectangle {
 		}
 
 
-	Z_CT(CPP14) Rectangle fit_in_top_center(const XY<t> &size_) const Z_NOTHROW
+	Z_CT(CPP14) Rectangle fit_top(const XY<t> &size_) const Z_NOTHROW
 		{
 		XY<t> fitting_size = size_.fit(size);
 
@@ -426,7 +426,7 @@ namespace Zeta {template <class t> struct Rectangle {
 		}
 
 
-	Z_CT(CPP14) Rectangle fit_in_top_left(const XY<t> &size_) const Z_NOTHROW
+	Z_CT(CPP14) Rectangle fit_top_left(const XY<t> &size_) const Z_NOTHROW
 		{
 		XY<t> fitting_size = size_.fit(size);
 
@@ -434,7 +434,7 @@ namespace Zeta {template <class t> struct Rectangle {
 		}
 
 
-	Z_CT(CPP14) Rectangle fit_in_top_right(const XY<t> &size_) const Z_NOTHROW
+	Z_CT(CPP14) Rectangle fit_top_right(const XY<t> &size_) const Z_NOTHROW
 		{
 		XY<t> fitting_size = size_.fit(size);
 
