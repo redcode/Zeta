@@ -29,7 +29,9 @@ namespace Zeta {template <class t> struct Shared {
 		Z_INLINE ~Owned()
 			{delete data;}
 
-	} *owned;
+	};
+
+	Owned *owned;
 
 
 	Z_CT(CPP11) Shared() Z_NOTHROW
