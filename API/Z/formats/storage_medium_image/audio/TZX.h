@@ -208,8 +208,8 @@ Released under the terms of the GNU Lesser General Public License v3.
 typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 signature[7]; /* 'ZXTape!' */
 	zuint8 eof_marker;   /* 1Ah	  */
-	zuint8 major_version;
-	zuint8 minor_version;
+	zuint8 version_major;
+	zuint8 version_minor;
 } Z_PACKED_STRUCTURE_END Z_TZXHeader;
 
 /* MARK: - Block ID */
@@ -1228,8 +1228,8 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8 block_id;
 	zuint8 signature[6]; /* 'XTape!' */
 	zuint8 eof_marker;   /* 1Ah	 */
-	zuint8 major_version;
-	zuint8 minor_version;
+	zuint8 version_major;
+	zuint8 version_minor;
 } Z_PACKED_STRUCTURE_END Z_TZXGlue;
 
 typedef Z_PACKED_STRUCTURE_BEGIN {

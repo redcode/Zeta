@@ -202,8 +202,8 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
 	char	name[32];
-	zuint16 major_version;
-	zuint16 minor_version;
+	zuint16 version_major;
+	zuint16 version_minor;
 	zuint8	data[1];
 } Z_PACKED_STRUCTURE_END Z_ZXStateCreator;
 
