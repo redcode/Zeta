@@ -105,16 +105,18 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'+', '3', 0, 0} - ZX Spectrum +3 */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
-	zuint8 drive_count;
-	zuint8 motor_is_on;
+	Z_ZXStateBlockHeader header;
+	zuint8	drive_count;
+	zuint8	motor_is_on;
 } Z_PACKED_STRUCTURE_END Z_ZXStateZXSpectrumPlus3;
 
 /* MARK: - ID {'A', 'M', 'X', 'M'} - Mouse */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
-	zuint8 type;
-	zuint8 ctrl_a_registers[3];
-	zuint8 ctrl_b_registers[3];
+	Z_ZXStateBlockHeader header;
+	zuint8	type;
+	zuint8	ctrl_a_registers[3];
+	zuint8	ctrl_b_registers[3];
 } Z_PACKED_STRUCTURE_END Z_ZXStateMouse;
 
 #define Z_ZX_STATE_MOUSE_TYPE_NONE     0
@@ -124,9 +126,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'A', 'T', 'R', 'P'} - ZXATASP RAM (added in v1.3) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
-	zuint8  page_index;
-	zuint8  data[1];
+	zuint8	page_index;
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateZXATASPRAM;
 
 #define Z_ZX_STATE_ZXATASP_RAM_FLAG_COMPRESSED 1
@@ -134,9 +137,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'A', 'Y', 0, 0} - AY chip */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
-	zuint8 flags;
-	zuint8 current_register;
-	zuint8 registers[16];
+	Z_ZXStateBlockHeader header;
+	zuint8	flags;
+	zuint8	current_register;
+	zuint8	registers[16];
 } Z_PACKED_STRUCTURE_END Z_ZXStateAY;
 
 #define Z_ZX_STATE_AY_FLAG_FULLER_BOX 1
@@ -145,6 +149,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'B', '1', '2', '8'} - Beta 128 Disk Interface (added in v1.2) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint32 flags;
 	zuint8	drive_count;
 	zuint8	system_register;
@@ -152,7 +157,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	sector_register;
 	zuint8	data_register;
 	zuint8	satus_register;
-	zuint8	rom_data[1];
+	Z_FAM(zuint8 rom_data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateBeta128DiskInterface;
 
 #define Z_ZX_STATE_BETA_128_DISK_INTERFACE_FLAG_CONNECTED  1
@@ -165,11 +170,12 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'B', 'D', 'S', 'K'} - Beta Disk (added in v1.2) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint32 flags;
 	zuint8	drive_index;
 	zuint8	cylinder;
 	zuint8	format;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateBeta128DiskInterfaceDisk;
 
 #define Z_ZX_STATE_BETA_128_DISK_INTERFACE_DISK_FLAG_EMBEDDED	   1
@@ -184,9 +190,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'C', 'F', 'R', 'P'} - ZXCF RAM (added in v1.3) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint8	page_index;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateZXCFRAM;
 
 #define Z_ZX_STATE_ZXCF_RAM_FLAG_COMPRESSED 1
@@ -194,6 +201,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'C', 'O', 'V', 'X'} - Covox (added in v1.2) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint8 volume;
 	zuint8 reserved[3];
 } Z_PACKED_STRUCTURE_END Z_ZXStateCovox;
@@ -201,18 +209,20 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'C', 'R', 'T', 'R'} - Beta Disk (added in v1.1) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	char	name[32];
 	zuint16 version_major;
 	zuint16 version_minor;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateCreator;
 
 /* MARK: - ID {'D', 'O', 'C', 'K'} - Dock (added in v1.3) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint8	page_index;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateDock;
 
 #define Z_ZX_STATE_DOCK_FLAG_COMPRESSED	 1
@@ -222,16 +232,18 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'D', 'R', 'U', 'M'} - SpecDrum */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint8 volume;
 } Z_PACKED_STRUCTURE_END Z_ZXStateSpecDrum;
 
 /* MARK: - ID {'D', 'S', 'K', 0} - Disk */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint8	drive_index;
 	zuint32 size_uncompressed;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateDisk;
 
 #define Z_ZX_STATE_DISK_FLAG_COMPRESSED 1
@@ -241,6 +253,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'G', 'S', 0, 0'} - General Sound (added in v1.2) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint8	model;
 	zuint8	uppper_page_index;
 	zuint8	volume_level[4];
@@ -256,7 +269,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint32 cycles_start;
 	zuint8	hold_int_cycles;
 	zuint8	memptrl;
-	zuint8	rom[1];
+	Z_FAM(zuint8 rom[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateGeneralSound;
 
 #define Z_ZX_STATE_GENERAL_SOUND_FLAG_EI_LAST	     1
@@ -270,9 +283,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'G', 'S', 'R', 'P'} - General Sound RAM Page (added in v1.2) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint8	index;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateGeneralSoundRAMPage;
 
 #define Z_ZXS_TATE_GENERAL_SOUND_RAM_PAGE_FLAG_COMPRESSED 1
@@ -280,12 +294,13 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'I', 'F', '1', 0} - ZX Interface 1 */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint8	microdrive_count;
 	zuint8	reserved_1[3];
 	zuint32 reserved_2[8];
 	zuint16 rom_size;
-	zuint8	rom[1];
+	Z_FAM(zuint8 rom[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateZXInterface1;
 
 #define Z_ZX_STATE_ZX_INTERFACE_1_FLAG_ENABLED	  1
@@ -295,13 +310,15 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'I', 'F', '2', 'R'} - ZX Interface 2 ROM */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint32 rom_size;
-	zuint8	rom[1];
+	Z_FAM(zuint8 rom[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateZXInterface2ROM;
 
 /* MARK: - ID {'J', 'O', 'Y', 0} - Joystick (added in v1.1) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint32 flags;
 	zuint8	type_player_1;
 	zuint8	type_player_2;
@@ -322,6 +339,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'K', 'E', 'Y', 'B'} - Keyboard */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint32 flags;
 	zuint8	joystick; /* added in v1.1 */
 } Z_PACKED_STRUCTURE_END Z_ZXStateKeyboard;
@@ -343,9 +361,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'L', 'C', 'R','P'} - LEC Memory Extension RAM Page (added in v1.5) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint8	index;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateLECMemoryExtensionRAMPage;
 
 #define Z_ZX_STATE_LEC_MEMORY_EXTENSION_RAM_PAGE_FLAG_COMPRESSED 1
@@ -353,6 +372,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'L', 'E', 'C', 0} - LEC Memory Extension  (added in v1.5) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint8	page_index;
 	zuint8	ram_page_count;
@@ -363,13 +383,14 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'M', 'D', 'R', 'V'} - ZX Microdrive Tape */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint8	drive_index;
 	zuint8	drive_is_running;
 	zuint16 drive_position;
 	zuint16 preamble;
 	zuint32 size_uncompressed;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateZXMicrodriveTape;
 
 #define Z_ZX_STATE_ZX_MICRODRIVE_TAPE_FLAG_COMPRESSED 1
@@ -378,9 +399,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'M', 'F', 'C', 'E'} - Multiface */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint8 model_48k;
 	zuint8 flags;
-	zuint8 data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateMultiface;
 
 #define Z_ZX_STATE_MULTIFACE_FLAG_PAGEDIN	      0x01
@@ -396,11 +418,12 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'O', 'D', 'S', 'K'} - Opus Discovery 1 Disk (added in v1.4) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint32 flags;
 	zuint8	drive_index;
 	zuint8	cylinder;
 	zuint8	type;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateOpusDiscovery1Disk;
 
 #define Z_ZX_STATE_OPUS_DISCOVERY_1_DISK_TYPE_OPD      0
@@ -415,6 +438,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'O', 'P', 'U', 'S'} - Opus Discovery 1 (added in v1.4) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint32 flags;
 	zuint32 ram_size;
 	zuint32 rom_size;
@@ -429,7 +453,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	sector_register;
 	zuint8	data_register;
 	zuint8	status_register;
-	zuint8	ram[1];
+	Z_FAM(zuint8 ram[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateOpusDiscovery1;
 
 #define Z_ZX_STATE_OPUS_DISCOVERY_1_FLAG_PAGED	    1
@@ -440,11 +464,12 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'P', 'D', 'S', 'K'} - +D Disk (added in v1.3) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint32 flags;
 	zuint8	drive_index;
 	zuint8	cylinder;
 	zuint8	type;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStatePlusDDisk;
 
 #define Z_ZX_STATE_PLUSD_DISK_TYPE_MGT	    0
@@ -459,6 +484,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'P', 'L', 'S', 'D'} - +D (added in v1.3) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint32 flags;
 	zuint32 ram_size;
 	zuint32 rom_size;
@@ -469,7 +495,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	sector_register;
 	zuint8	data_register;
 	zuint8	status_register;
-	zuint8	ram[1];
+	Z_FAM(zuint8 ram[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStatePlusD;
 
 #define Z_ZX_STATE_PLUSD_FLAG_PAGED	 1
@@ -483,9 +509,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'R', 'A', 'M', 'P'} - RAM Page */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint8	index;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateRAMPage;
 
 #define Z_ZX_STATE_RAM_PAGE_FLAG_COMPRESSED 1
@@ -493,9 +520,10 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'R', 'O', 'M', 0} - ROM */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint32 size_uncompressed;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END ZXSTROM;
 
 #define Z_ZX_STATE_ROM_FLAG_COMPRESSED 1
@@ -503,6 +531,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'S', 'C', 'L', 'D'} - Timex (added in v1.2) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint8 port_f4;
 	zuint8 port_ff;
 } Z_PACKED_STRUCTURE_END Z_ZXStateTimex;
@@ -512,15 +541,17 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* https://worldofspectrum.org/zxplus3e/interface.html#simple */
 
 /*typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 } Z_PACKED_STRUCTURE_END Z_ZXStateSimple8BitInterface;*/
 
 /* MARK: - ID {'S','N','E','F'} - Spectranet Flash Page (added in v1.5) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint8	flags;
 	zuint32 unused;
 	zuint32 data_size;
-	zuint8  data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateSpectranetFlashPage;
 
 #define Z_ZX_STATE_SPECTRANET_FLASH_PAGE_FLAG_COMPRESSED 1
@@ -528,10 +559,11 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'S','N','E','R'} - Spectranet RAM Page (added in v1.5) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint8	flags;
 	zuint32 unused;
 	zuint32 data_size;
-	zuint8  data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateSpectranetRAMPage;
 
 #define Z_ZX_STATE_SPECTRANET_RAM_PAGE_FLAG_COMPRESSED 1
@@ -539,6 +571,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'S', 'N', 'E', 'T'} - Spectranet (added in v1.5) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint32 flags;
 	zuint8	page_a;
 	zuint8	page_b;
@@ -558,6 +591,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'S', 'P', 'C', 'R'} - ZX Spectrum */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint8 border_color;
 	zuint8 port_7ffd;
 	zuint8 port_1ffd_eff7; /* EFF7h added in v1.3 */
@@ -568,12 +602,13 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'T', 'A', 'P', 'E'} - Tape */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 block_index;
 	zuint16 flags;
 	zuint32 size_uncompressed;
 	zuint32 size_compressed;
 	char	file_extension[16];
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXStateTape;
 
 #define Z_ZX_STATE_TAPE_FLAG_EMBEDDED   1
@@ -582,12 +617,14 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'U', 'S', 'P', 'E'} - Currah μSpeech */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint8 rom_is_paged_in;
 } Z_PACKED_STRUCTURE_END Z_ZXStateCurrahMicroSpeech;
 
 /* MARK: - ID {'Z', '8', '0', 'R'} - Z80 */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	ZInt16	af, bc, de, hl, af_, bc_, de_, hl_, ix, iy, sp, pc;
 	zuint8	i, r;
 	zuint8	iff1, iff2;
@@ -605,6 +642,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'Z', 'X', 'A', 'T'} - ZXATASP (added in v1.3) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint8	port_a;
 	zuint8	port_b;
@@ -620,6 +658,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'Z', 'X', 'C', 'F'} - ZXCF (added in v1.3) */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 	zuint8	memory_control_register;
 	zuint8	ram_page_count;
@@ -630,54 +669,53 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 /* MARK: - ID {'Z', 'X', 'P', 'R'} - ZX Printer */
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
+	Z_ZXStateBlockHeader header;
 	zuint16 flags;
 } Z_PACKED_STRUCTURE_END Z_ZXStateZXPrinter;
 
 #define Z_ZX_STATE_ZX_PRINTER_FLAG_ENABLED 1
 
-typedef Z_PACKED_STRUCTURE_BEGIN {
-	Z_ZXStateBlockHeader header;
-
-	union {	Z_ZXStateAY			   ay;
-		Z_ZXStateBeta128DiskInterface	   beta_128_disk_interface;
-		Z_ZXStateBeta128DiskInterfaceDisk  beta_128_disk_interface_disk;
-		Z_ZXStateCovox			   covox;
-		Z_ZXStateCreator		   creator;
-		Z_ZXStateCurrahMicroSpeech	   currah_microspeech;
-		Z_ZXStateDisk			   disk;
-		Z_ZXStateDock			   dock;
-		Z_ZXStateGeneralSound		   general_sound;
-		Z_ZXStateGeneralSoundRAMPage	   general_sound_ram_page;
-		Z_ZXStateJoystick		   joystick;
-		Z_ZXStateKeyboard		   keyboard;
-		Z_ZXStateLECMemoryExtension	   lec_memory_extension;
-		Z_ZXStateLECMemoryExtensionRAMPage lec_memory_extension_page;
-		Z_ZXStateMouse			   mouse;
-		Z_ZXStateMultiface		   multiface;
-		Z_ZXStateOpusDiscovery1		   opus_discovery_1;
-		Z_ZXStateOpusDiscovery1Disk	   opus_discovery_1_disk;
-		Z_ZXStatePlusD			   plusd;
-		Z_ZXStatePlusDDisk		   plusd_disk;
-		Z_ZXStateRAMPage		   ram_page;
-		/*Z_ZXStateSimple8BitInterface	   simple_8bit_interface;*/
-		Z_ZXStateSpecDrum		   specdrum;
-		Z_ZXStateSpectranet		   spectranet;
-		Z_ZXStateSpectranetFlashPage	   spectranet_flash_page;
-		Z_ZXStateSpectranetRAMPage	   spectranet_ram_page;
-		Z_ZXStateTape			   zx_tape;
-		Z_ZXStateTimex			   timex;
-		Z_ZXStateZ80			   z80;
-		Z_ZXStateZXATASP		   zxatasp;
-		Z_ZXStateZXATASPRAM		   zxatasp_ram;
-		Z_ZXStateZXCF			   zxcf;
-		Z_ZXStateZXCFRAM		   zxcf_ram;
-		Z_ZXStateZXInterface1		   zx_interface_1;
-		Z_ZXStateZXInterface2ROM	   zx_interface_2_rom;
-		Z_ZXStateZXMicrodriveTape	   zx_microdrive_tape;
-		Z_ZXStateZXPrinter		   zx_printer;
-		Z_ZXStateZXSpectrum		   zx_spectrum;
-		Z_ZXStateZXSpectrumPlus3	   zx_spectrum_plus3;
-	} body;
-} Z_PACKED_STRUCTURE_END Z_ZXStateBlock;
+typedef union {
+	Z_ZXStateBlockHeader		   header;
+	Z_ZXStateAY			   ay;
+	Z_ZXStateBeta128DiskInterface	   beta_128_disk_interface;
+	Z_ZXStateBeta128DiskInterfaceDisk  beta_128_disk_interface_disk;
+	Z_ZXStateCovox			   covox;
+	Z_ZXStateCreator		   creator;
+	Z_ZXStateCurrahMicroSpeech	   currah_microspeech;
+	Z_ZXStateDisk			   disk;
+	Z_ZXStateDock			   dock;
+	Z_ZXStateGeneralSound		   general_sound;
+	Z_ZXStateGeneralSoundRAMPage	   general_sound_ram_page;
+	Z_ZXStateJoystick		   joystick;
+	Z_ZXStateKeyboard		   keyboard;
+	Z_ZXStateLECMemoryExtension	   lec_memory_extension;
+	Z_ZXStateLECMemoryExtensionRAMPage lec_memory_extension_page;
+	Z_ZXStateMouse			   mouse;
+	Z_ZXStateMultiface		   multiface;
+	Z_ZXStateOpusDiscovery1		   opus_discovery_1;
+	Z_ZXStateOpusDiscovery1Disk	   opus_discovery_1_disk;
+	Z_ZXStatePlusD			   plusd;
+	Z_ZXStatePlusDDisk		   plusd_disk;
+	Z_ZXStateRAMPage		   ram_page;
+	/*Z_ZXStateSimple8BitInterface	   simple_8bit_interface;*/
+	Z_ZXStateSpecDrum		   specdrum;
+	Z_ZXStateSpectranet		   spectranet;
+	Z_ZXStateSpectranetFlashPage	   spectranet_flash_page;
+	Z_ZXStateSpectranetRAMPage	   spectranet_ram_page;
+	Z_ZXStateTape			   zx_tape;
+	Z_ZXStateTimex			   timex;
+	Z_ZXStateZ80			   z80;
+	Z_ZXStateZXATASP		   zxatasp;
+	Z_ZXStateZXATASPRAM		   zxatasp_ram;
+	Z_ZXStateZXCF			   zxcf;
+	Z_ZXStateZXCFRAM		   zxcf_ram;
+	Z_ZXStateZXInterface1		   zx_interface_1;
+	Z_ZXStateZXInterface2ROM	   zx_interface_2_rom;
+	Z_ZXStateZXMicrodriveTape	   zx_microdrive_tape;
+	Z_ZXStateZXPrinter		   zx_printer;
+	Z_ZXStateZXSpectrum		   zx_spectrum;
+	Z_ZXStateZXSpectrumPlus3	   zx_spectrum_plus3;
+} Z_ZXStateBlock;
 
 #endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_State_H */
