@@ -28,17 +28,17 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Z/types/bitwise.h>
 #include <Z/hardware/machine/computer/ZX_Spectrum.h>
 
-#define Z_ZXS_MACHINE_DEFAULT	  0
-#define Z_ZXS_MACHINE_48K_ISSUE_2 0x10  // ZX Spectrum 48K (Issue 2)
-#define Z_ZXS_MACHINE_PLUS	  0x20  // ZX Spectrum +   (Model 3)
-#define Z_ZXS_MACHINE_PLUS_128K	  0x30  // ZX Spectrum 128
-#define Z_ZXS_MACHINE_PLUS2	  0x40  // ZX Spectrum +2
-#define Z_ZXS_MACHINE_PLUS2A	  0x50  // ZX Spectrum +2A
-#define Z_ZXS_MACHINE_PLUS3	  0x60  // ZX Spectrum +3
+#define Z_ZXS_MACHINE_DEFAULT		      0x00
+#define Z_ZXS_MACHINE_ZX_SPECTRUM_48K_ISSUE_2 0x10  /* ZX Spectrum 48K (Issue 2) */
+#define Z_ZXS_MACHINE_ZX_SPECTRUM_PLUS	      0x20  /* ZX Spectrum +   (Model 3) */
+#define Z_ZXS_MACHINE_ZX_SPECTRUM_PLUS_128K   0x30  /* ZX Spectrum 128 */
+#define Z_ZXS_MACHINE_ZX_SPECTRUM_PLUS2	      0x40  /* ZX Spectrum +2 */
+#define Z_ZXS_MACHINE_ZX_SPECTRUM_PLUS2A      0x50  /* ZX Spectrum +2A */
+#define Z_ZXS_MACHINE_ZX_SPECTRUM_PLUS3	      0x60  /* ZX Spectrum +3 */
 
-#define ZXH_NONSTANDARD 0x0001  // peripheral hardware
+#define ZXH_NONSTANDARD 0x0001  /* peripheral hardware */
 
-#define Z_ZXS_ZIP_METHOD_STORE    0       // compression methods
+#define Z_ZXS_ZIP_METHOD_STORE    0       /* compression methods */
 #define Z_ZXS_ZIP_METHOD_SHRINK   0x0001
 #define Z_ZXS_ZIP_METHOD_REDUCE_1 0x0002
 #define Z_ZXS_ZIP_METHOD_REDUCE_2 0x0003
@@ -91,9 +91,9 @@ Released under the terms of the GNU Lesser General Public License v3.
 #define Z_ZXS_CHUNK_ID_ZX32			Z_UINT32_STRING('z','x','3','2')
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
-	zuint32 structure_size;     // structure size
-	zuint32 crc32;   // crc
-	zuint32 uncompressed_size;  // uncompressed size
+	zuint32 structure_size;
+	zuint32 crc32;
+	zuint32 size_uncompressed;
 	zuint8	data[1];
 } Z_PACKED_STRUCTURE_END Z_ZXSZip;
 

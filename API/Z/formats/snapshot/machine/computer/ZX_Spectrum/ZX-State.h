@@ -230,7 +230,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint16 flags;
 	zuint8	drive_index;
-	zuint32 uncompressed_size;
+	zuint32 size_uncompressed;
 	zuint8	data[1];
 } Z_PACKED_STRUCTURE_END Z_ZXStateDisk;
 
@@ -368,7 +368,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint8	drive_is_running;
 	zuint16 drive_position;
 	zuint16 preamble;
-	zuint32 uncompressed_size;
+	zuint32 size_uncompressed;
 	zuint8	data[1];
 } Z_PACKED_STRUCTURE_END Z_ZXStateZXMicrodriveTape;
 
@@ -494,7 +494,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint16 flags;
-	zuint32 uncompressed_size;
+	zuint32 size_uncompressed;
 	zuint8	data[1];
 } Z_PACKED_STRUCTURE_END ZXSTROM;
 
@@ -570,8 +570,8 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint16 block_index;
 	zuint16 flags;
-	zuint32 uncompressed_size;
-	zuint32 compressed_size;
+	zuint32 size_uncompressed;
+	zuint32 size_compressed;
 	char	file_extension[16];
 	zuint8	data[1];
 } Z_PACKED_STRUCTURE_END Z_ZXStateTape;
