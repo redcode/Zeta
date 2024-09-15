@@ -28,13 +28,13 @@ Released under the terms of the GNU Lesser General Public License v3.
 #include <Z/types/bitwise.h>
 #include <Z/hardware/machine/computer/ZX_Spectrum.h>
 
-#define Z_ZXS_MACHINE_DEFAULT		      0x00
-#define Z_ZXS_MACHINE_ZX_SPECTRUM_48K_ISSUE_2 0x10  /* ZX Spectrum 48K (Issue 2) */
-#define Z_ZXS_MACHINE_ZX_SPECTRUM_PLUS	      0x20  /* ZX Spectrum +   (Model 3) */
-#define Z_ZXS_MACHINE_ZX_SPECTRUM_PLUS_128K   0x30  /* ZX Spectrum 128 */
-#define Z_ZXS_MACHINE_ZX_SPECTRUM_PLUS2	      0x40  /* ZX Spectrum +2 */
-#define Z_ZXS_MACHINE_ZX_SPECTRUM_PLUS2A      0x50  /* ZX Spectrum +2A */
-#define Z_ZXS_MACHINE_ZX_SPECTRUM_PLUS3	      0x60  /* ZX Spectrum +3 */
+#define Z_ZXS_MACHINE_MODEL_DEFAULT		    0x00
+#define Z_ZXS_MACHINE_MODEL_ZX_SPECTRUM_48K_ISSUE_2 0x10  /* ZX Spectrum 48K (Issue 2) */
+#define Z_ZXS_MACHINE_MODEL_ZX_SPECTRUM_PLUS	    0x20  /* ZX Spectrum +   (Model 3) */
+#define Z_ZXS_MACHINE_MODEL_ZX_SPECTRUM_PLUS_128K   0x30  /* ZX Spectrum 128 */
+#define Z_ZXS_MACHINE_MODEL_ZX_SPECTRUM_PLUS2	    0x40  /* ZX Spectrum +2 */
+#define Z_ZXS_MACHINE_MODEL_ZX_SPECTRUM_PLUS2A      0x50  /* ZX Spectrum +2A */
+#define Z_ZXS_MACHINE_MODEL_ZX_SPECTRUM_PLUS3	    0x60  /* ZX Spectrum +3 */
 
 #define ZXH_NONSTANDARD 0x0001  /* peripheral hardware */
 
