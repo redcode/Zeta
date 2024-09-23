@@ -1,4 +1,4 @@
-/* Zeta API - Z/constants/version.h
+/* Zeta API - Z/version.h
  ______  ______________  ___
 |__   / |  ___|___  ___|/   \
   /  /__|  __|   |  |  /  -  \
@@ -6,8 +6,8 @@
 Copyright (C) 2006-2024 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU Lesser General Public License v3. */
 
-#ifndef Z_constants_version_H
-#define Z_constants_version_H
+#ifndef Z_version_H
+#define Z_version_H
 
 #include <Z/macros/version.h>
 
@@ -17,4 +17,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_LIBRARY_VERSION_MICRO 0
 #define Z_LIBRARY_VERSION_STRING "0.1"
 
-#endif /* Z_constants_version_H */
+#endif /* Z_version_H */
