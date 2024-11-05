@@ -18,10 +18,14 @@ if(${PROJECT_NAME}_WITH_HTML_DOCUMENTATION)
 	endif()
 
 	add_custom_command(
-		OUTPUT  "${_html_documentation_output}"
-		COMMAND "${SPHINX_BUILD_EXECUTABLE}"
+		OUTPUT "${_html_documentation_output}"
+		COMMAND "${Sphinx_BUILD_EXECUTABLE}"
 			-b html
+			"-Dproject=${PROJECT_NAME}"
+			"-Dversion=${PROJECT_VERSION}"
+			"-Drelease=${PROJECT_VERSION}"
 			${_html_theme_option}
+			"-Dhtml_title=${PROJECT_NAME} Documentation"
 			"${CMAKE_CURRENT_SOURCE_DIR}"
 			"${_html_documentation_output}"
 		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
@@ -42,9 +46,12 @@ if(${PROJECT_NAME}_WITH_PDF_DOCUMENTATION)
 	set(_latex_documentation_output "${CMAKE_CURRENT_BINARY_DIR}/LaTeX")
 
 	add_custom_command(
-		OUTPUT  "${_latex_documentation_output}"
-		COMMAND "${SPHINX_BUILD_EXECUTABLE}"
+		OUTPUT "${_latex_documentation_output}"
+		COMMAND "${Sphinx_BUILD_EXECUTABLE}"
 			-b latex
+			"-Dproject=${PROJECT_NAME}"
+			"-Dversion=${PROJECT_VERSION}"
+			"-Drelease=${PROJECT_VERSION}"
 			"${CMAKE_CURRENT_SOURCE_DIR}"
 			"${_latex_documentation_output}"
 		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
@@ -58,7 +65,7 @@ if(${PROJECT_NAME}_WITH_PDF_DOCUMENTATION)
 	set(_pdf_documentation_output "${_latex_documentation_output}/${_pdf_documentation_output}.pdf")
 
 	add_custom_command(
-		OUTPUT  "${_pdf_documentation_output}"
+		OUTPUT "${_pdf_documentation_output}"
 		COMMAND "${CMAKE_MAKE_PROGRAM}"
 		MAIN_DEPENDENCY "${_latex_documentation_output}"
 		WORKING_DIRECTORY "${_latex_documentation_output}"
@@ -72,7 +79,7 @@ if(${PROJECT_NAME}_WITH_PDF_DOCUMENTATION)
 
 	install(FILES "${_pdf_documentation_output}"
 		DESTINATION "${CMAKE_INSTALL_DOCDIR}"
-		RENAME "${PROJECT_NAME} v${PROJECT_VERSION}.pdf"
+		RENAME "${PROJECT_NAME}-${PROJECT_VERSION}-documentation.pdf"
 		COMPONENT ${PROJECT_NAME}_Documentation)
 endif()
 

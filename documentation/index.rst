@@ -3,21 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Z's documentation!
-=============================
+========
+Contents
+========
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-   CodingStyle
-   NamingConvention
-   APIReference
-   Contributing
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   installation
+   integration
+   naming-convention
+   contributing
