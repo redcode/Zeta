@@ -40,7 +40,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_OS_IRIX		 28 /* SGI			   <http://www.sgi.com/products/software/irix>						      */
 #define Z_OS_LEMON_OS		 29 /* Roberts-White, J.J.	   <https://lemonos.org>								      */
 #define Z_OS_LINUX		 30 /* Torvalds, Linus		   <https://www.kernel.org>								      */
-#define Z_OS_LUNIX		 31 /* Dallmann, Daniel		   <http://lng.sourceforge.net>							      */
+#define Z_OS_LUNIX		 31 /* Dallmann, Daniel		   <http://lng.sourceforge.net>								      */
 #define Z_OS_LYNX_OS		 32 /* Lynx Software Technologies  <https://www.lynx.com/products/lynxos-posix-real-time-operating-system-rtos>		      */
 #define Z_OS_MAC_OS		 33 /* Apple Computer		   <http://apple.com/macos>								      */
 #define Z_OS_MAC_OS_X		 34 /* Apple Computer		   <https://www.apple.com/macos>							      */
