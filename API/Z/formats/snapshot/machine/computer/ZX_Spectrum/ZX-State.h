@@ -524,7 +524,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint16 flags;
 	zuint32 size_uncompressed;
 	Z_FAM(zuint8 data[];)
-} Z_PACKED_STRUCTURE_END ZXSTROM;
+} Z_PACKED_STRUCTURE_END Z_ZXStateROM;
 
 #define Z_ZX_STATE_ROM_FLAG_COMPRESSED 1
 
@@ -698,6 +698,7 @@ typedef union {
 	Z_ZXStatePlusD			   plusd;
 	Z_ZXStatePlusDDisk		   plusd_disk;
 	Z_ZXStateRAMPage		   ram_page;
+	Z_ZXStateROM			   rom;
 	/*Z_ZXStateSimple8BitInterface	   simple_8bit_interface;*/
 	Z_ZXStateSpecDrum		   specdrum;
 	Z_ZXStateSpectranet		   spectranet;
