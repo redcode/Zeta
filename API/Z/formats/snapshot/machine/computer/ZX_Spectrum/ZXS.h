@@ -94,7 +94,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint32 structure_size;
 	zuint32 crc32;
 	zuint32 size_uncompressed;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXSZip;
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
@@ -134,7 +134,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 	zuint32 current_position;
 	zuint32 remain_block_size;
 	zuint32 data_size;
-	zuint8	data[1];
+	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_ZXSTape;
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
