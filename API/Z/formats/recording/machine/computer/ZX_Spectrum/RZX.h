@@ -25,8 +25,8 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 #define Z_RZX_BLOCK_ID_INPUT_RECORDING	  0x80
 
 typedef Z_PACKED_STRUCTURE_BEGIN {
-	zuint8	block_id;
-	zuint32 block_size;
+	zuint8	id;
+	zuint32 size;
 } Z_PACKED_STRUCTURE_END Z_RZXBlockHeader;
 
 /* MARK: - ID 10h - Creator Information */
@@ -59,7 +59,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 typedef Z_PACKED_STRUCTURE_BEGIN {
 	Z_RZXBlockHeader header;
 	zuint32 flags;
-	ZInt32  filename_extension;
+	ZInt32  file_extension;
 	zuint32 size_uncompressed;
 	Z_FAM(zuint8 data[];)
 } Z_PACKED_STRUCTURE_END Z_RZXSnapshot;
