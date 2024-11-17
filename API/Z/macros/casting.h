@@ -10,9 +10,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_macros_casting_H
 
 #ifdef __cplusplus
-#	define Z_CAST(type) type
+#	define Z_CAST(		  type)			 type
+#	define Z_CONST_CAST(	  type) const_cast	<type>
+#	define Z_REINTERPRET_CAST(type) reinterpret_cast<type>
+#	define Z_STATIC_CAST(	  type) static_cast	<type>
 #else
 #	define Z_CAST
+#	define Z_CONST_CAST
+#	define Z_REINTERPRET_CAST
+#	define Z_STATIC_CAST
 #endif
 
 #endif /* Z_macros_casting_H */
