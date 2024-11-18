@@ -110,7 +110,7 @@ install the package:
 
 ```shell
 cmake --build . [--config (Debug|Release|RelWithDebInfo|MinSizeRel)]
-cmake --install . [--config <configuration>] [--strip]
+cmake --install . [--config <configuration>]
 ```
 
 ## License
