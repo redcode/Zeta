@@ -17,6 +17,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_C Z_C78
 #	elif !defined(__STDC_VERSION__)
 #		define Z_C Z_C89
+#	elif __STDC_VERSION__ >= 202311L
+#		define Z_C Z_C23
 #	elif __STDC_VERSION__ >= 201710L
 #		define Z_C Z_C17
 #	elif __STDC_VERSION__ >= 201112L
@@ -30,7 +32,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 #endif
 
-#if Z_C == Z_C17
+#if Z_C == Z_C23
+#	include <Z/inspection/C/modules/C23.h>
+#	define Z_C_NAME Z_C_NAME_C23
+#elif Z_C == Z_C17
 #	include <Z/inspection/C/modules/C11.h>
 #	define Z_C_NAME Z_C_NAME_C17
 #elif Z_C == Z_C11

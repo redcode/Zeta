@@ -16,6 +16,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C99 5
 #define Z_C11 6
 #define Z_C17 7
+#define Z_C23 8
 
 #define Z_C_NAME_C78 "K&R C"
 #define Z_C_NAME_C89 "ANSI X3.159-1989"
@@ -24,5 +25,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_C_NAME_C99 "ISO/IEC 9899:1999"
 #define Z_C_NAME_C11 "ISO/IEC 9899:2011"
 #define Z_C_NAME_C17 "ISO/IEC 9899:2018"
+#define Z_C_NAME_C23 "ISO/IEC 9899:2024"
 
 #endif /* Z_keys_C_H */
