@@ -93,17 +93,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		(value) == 'Z')
 #endif
 
-#define Z_CHAR_IS_BASE_16_LOWERCASE_DIGIT(value) (   \
-	Z_CHAR_IS_BASE_10_DIGIT		  (value) || \
-	Z_CHAR_IS_BASE_16_LOWERCASE_LETTER(value))
+#define Z_CHAR_IS_BASE_16_LOWERCASE_DIGIT(value) \
+	(Z_CHAR_IS_BASE_10_DIGIT(value) || Z_CHAR_IS_BASE_16_LOWERCASE_LETTER(value))
 
-#define Z_CHAR_IS_BASE_16_UPPERCASE_DIGIT(value) (   \
-	Z_CHAR_IS_BASE_10_DIGIT		  (value) || \
-	Z_CHAR_IS_BASE_16_UPPERCASE_LETTER(value))
+#define Z_CHAR_IS_BASE_16_UPPERCASE_DIGIT(value) \
+	(Z_CHAR_IS_BASE_10_DIGIT(value) || Z_CHAR_IS_BASE_16_UPPERCASE_LETTER(value))
 
 #if Z_CHARACTER_SET_IS_ASCII
 #	define Z_CHAR_IS_CONTROL(value) \
-	(((value) & 0xE0) == 0 || (value) == 0x7F)
+		(((value) & 0xE0) == 0 || (value) == 0x7F)
 
 #	define Z_CHAR_IS_GRAPHICAL(value) \
 		((value) >= '!' && (value) <= '~')
@@ -124,23 +122,21 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		Z_CHAR_IS_BASE_16_LOWERCASE_LETTER(value) || \
 		Z_CHAR_IS_BASE_16_UPPERCASE_LETTER(value))
 
-#	define Z_CHAR_IS_LETTER(value) (	     \
-		Z_CHAR_IS_LOWERCASE_LETTER(value) || \
-		Z_CHAR_IS_UPPERCASE_LETTER(value))
+#	define Z_CHAR_IS_LETTER(value) \
+		(Z_CHAR_IS_LOWERCASE_LETTER(value) || Z_CHAR_IS_UPPERCASE_LETTER(value))
 #endif
 
 #if	Z_CHARACTER_SET_UPPERCASE_LETTERS_ARE_CONSECUTIVE && \
 	Z_CHARACTER_SET_LOWERCASE_LETTERS_ARE_CONSECUTIVE
 
 #	define Z_CHAR_LOWERCASE(value) \
-	((value) >= 'A' && (value) <= 'Z' ? (value) - 'A' + 'a' : (value))
+		((value) >= 'A' && (value) <= 'Z' ? (value) - 'A' + 'a' : (value))
 
 #	define Z_CHAR_UPPERCASE(value) \
-	((value) >= 'a' && (value) <= 'z' ? (value) - 'a' + 'A' : (value))
+		((value) >= 'a' && (value) <= 'z' ? (value) - 'a' + 'A' : (value))
 #endif
 
-#define Z_CHAR_IS_ALPHANUMERIC(value) (   \
-	Z_CHAR_IS_BASE_10_DIGIT(value) || \
-	Z_CHAR_IS_LETTER       (value))
+#define Z_CHAR_IS_ALPHANUMERIC(value) \
+	(Z_CHAR_IS_BASE_10_DIGIT(value) || Z_CHAR_IS_LETTER(value))
 
 #endif /* Z_macros_character_H */
