@@ -14,7 +14,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/zxe-arc
 sudo apt update
 ```
 
-Next, install the package:
+Then install the package:
 
 ```shell
 sudo apt install libzeta-dev
@@ -39,6 +39,78 @@ emerge dev-libs/zeta
 
 ```shell
 brew install redcode/zxe/zeta
+```
+
+## Installation from sources
+
+You will need [CMake](https://cmake.org) v3.12 or later to install the package and, optionally, a recent version of [Sphinx](https://www.sphinx-doc.org) to compile the documentation. Also, make sure that you have [LaTeX](https://www.latex-project.org) with PDF support installed on your system if you want to generate the documentation in PDF format.
+
+Once the prerequisites are met, create a directory and run `cmake` from there to prepare the build system:
+
+```shell
+mkdir build
+cd build
+cmake [options] <Zeta-project-directory>
+```
+
+The resulting build files can be configured by passing options to `cmake`. To show a complete list of those available along with their current settings, type the following:
+
+```shell
+cmake -LAH -N -B .
+```
+
+If in doubt, read the [CMake documentation](https://cmake.org/documentation/) for more information on configuration options. The following two standard CMake options are relevant:
+
+* <span id="cmake_option_cmake_build_type">**<code>-D[CMAKE_BUILD_TYPE](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html)=(Debug|Release|RelWithDebInfo|MinSizeRel)</code>**</span>  
+	Choose the type of build (configuration) to generate.  
+	The default is `Release`.
+
+* <span id="cmake_option_cmake_install_prefix">**<code>-D[CMAKE_INSTALL_PREFIX](https://cmake.org/cmake/help/latest/variable/CMAKE_INSTALL_PREFIX.html)="\<path\>"</code>**</span>  
+	Specify the installation prefix.  
+	The default is `"/usr/local"` (on [UNIX](https://en.wikipedia.org/wiki/Unix) and [UNIX-like](https://en.wikipedia.org/wiki/Unix-like) operating systems).
+
+<span id="cmake_package_options">Package-specific options</span> are prefixed with `Zeta_` and are as follows:
+
+* <span id="cmake_option_zeta_install_cmakedir">**`-DZeta_INSTALL_CMAKEDIR="<path>"`**</span>  
+	Specify the directory in which to install the CMake [config-file package](https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#config-file-packages).  
+	The default is <code>"${[CMAKE_INSTALL_DATAROOTDIR](https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html)}/Zeta/cmake"</code>.
+
+* <span id="cmake_option_zeta_install_pkgconfigdir">**`-DZeta_INSTALL_PKGCONFIGDIR="<path>"`**</span>  
+	Specify the directory in which to install the [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config) [file](https://people.freedesktop.org/~dbn/pkg-config-guide.html).  
+	The default is <code>"${[CMAKE_INSTALL_LIBDIR](https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html)}/pkgconfig"</code>.
+
+* <span id="cmake_option_zeta_sphinx_html_theme">**`-DZeta_SPHINX_HTML_THEME="[<name>]"`**</span>  
+	Specify the Sphinx theme for the documentation in HTML format.  
+	The default is `""` (use the default theme).
+
+* <span id="cmake_option_zeta_with_cmake_support">**`-DZeta_WITH_CMAKE_SUPPORT=(YES|NO)`**</span>  
+	Generate and install the CMake [config-file package](https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#config-file-packages).  
+	The default is `NO`.
+
+* <span id="cmake_option_zeta_with_html_documentation">**`-DZeta_WITH_HTML_DOCUMENTATION=(YES|NO)`**</span>  
+	Build and install the documentation in HTML format.  
+	It requires Sphinx.  
+	The default is `NO`.
+
+* <span id="cmake_option_zeta_with_pdf_documentation">**`-DZeta_WITH_PDF_DOCUMENTATION=(YES|NO)`**</span>  
+	Build and install the documentation in PDF format.
+	It requires Sphinx and LaTeX with PDF support.
+	The default is `NO`.
+
+* <span id="cmake_option_zeta_with_pkgconfig_support">**`-DZeta_WITH_PKGCONFIG_SUPPORT=(YES|NO)`**</span>  
+	Generate and install the [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config) [file](https://people.freedesktop.org/~dbn/pkg-config-guide.html).  
+	The default is `NO`.
+
+* <span id="cmake_option_zeta_with_standard_documents">**`-DZeta_WITH_STANDARD_DOCUMENTS=(YES|NO)`**</span>  
+	Install the standard text documents distributed with the package: [`AUTHORS`](AUTHORS), [`COPYING`](COPYING), [`COPYING.LESSER`](COPYING.LESSER), [`HISTORY`](HISTORY) and [`README`](README).  
+	The default is `NO`.
+
+Finally, once the build system is configured according to your needs, build and
+install the package:
+
+```shell
+cmake --build . [--config (Debug|Release|RelWithDebInfo|MinSizeRel)]
+cmake --install . [--config <configuration>] [--strip]
 ```
 
 ## License
