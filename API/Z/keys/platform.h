@@ -96,5 +96,4 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_PLATFORM_XBOX_360	      2042 /* Microsoft			   */
 #define Z_PLATFORM_XBOX_ONE	      2043 /* Microsoft			   */
 
-
 #endif /* Z_keys_platform_H */
