@@ -146,7 +146,14 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(_MRI)
 #	define Z_COMPILER Z_COMPILER_MICROTEC_C_CPP
 
-#elif defined(__MINGW__) || defined(__MINGW32__) || defined(__MINGW64__)
+/*------------------------------------------------------------.
+| TODO: There seems to be no way to distinguish between MinGW |
+| and MinGW-w64 32-bit. Investigate.			      |
+'============================================================*/
+#elif defined(__MINGW64__)
+#	define Z_COMPILER Z_COMPILER_MINGW_W64
+
+#elif defined(__MINGW32__)
 #	define Z_COMPILER Z_COMPILER_MINGW
 
 #elif defined(__sgi) || defined(sgi)
