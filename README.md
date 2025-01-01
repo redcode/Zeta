@@ -115,7 +115,7 @@ cmake --install . [--config <configuration>]
 
 ## License
 
-Copyright © 2006-2024 Manuel Sainz de Baranda y Goñi.
+Copyright © 2006-2025 Manuel Sainz de Baranda y Goñi.
 
 <img src="https://zxe.io/software/Zeta/assets/images/lgplv3.svg" width="160" align="right">
 
