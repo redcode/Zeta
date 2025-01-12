@@ -125,11 +125,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_RISC_V_CSR_HGATP	    0x680
 
 /* Debug/Trace Registers */
-#define Z_RISC_V_CSR_hcontext	    0x6A8
+#define Z_RISC_V_CSR_HCONTEXT	    0x6A8
 
 /* Hypervisor Counter/Timer Virtualization Registers */
-#define Z_RISC_V_CSR_htimedelta	    0x605
-#define Z_RISC_V_CSR_htimedeltah    0x615
+#define Z_RISC_V_CSR_HTIMEDELTA	    0x605
+#define Z_RISC_V_CSR_HTIMEDELTAH    0x615
 
 /* Virtual Supervisor Registers */
 #define Z_RISC_V_CSR_VSSTATUS	    0x200
