@@ -25,6 +25,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_PLATFORM Z_PLATFORM_UNKNOWN
 #endif
 
-#define Z_PLATFORM_IS(PLATFORM) (Z_PLATFORM == Z_PLATFORM_##PLATFORM)
+#define Z_PLATFORM_IS(PLATFORM) \
+	(Z_PLATFORM == Z_PLATFORM_##PLATFORM)
 
 #endif /* Z_inspection_platform_H */

@@ -334,7 +334,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Getters */
 
-#define Z_OS_IS( OS  ) Z_IS_TRUE(Z_OS_IS_##OS   )
-#define Z_OS_HAS(WHAT) Z_IS_TRUE(Z_OS_HAS_##WHAT)
+#define Z_OS_IS(OS) \
+	Z_IS_TRUE(Z_OS_IS_##OS)
+
+#define Z_OS_HAS(WHAT) \
+	Z_IS_TRUE(Z_OS_HAS_##WHAT)
 
 #endif /* Z_inspection_OS_H */

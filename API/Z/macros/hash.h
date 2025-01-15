@@ -14,11 +14,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - FNV-0 */
 
 #define Z_FNV0_32_INITIALIZER 0
-#define Z_FNV0_32_UPDATE(hash, value) (((hash) * Z_UINT32(0x01000193)) ^ (value))
+
+#define Z_FNV0_32_UPDATE(hash, value) \
+	(((hash) * Z_UINT32(0x01000193)) ^ (value))
 
 #ifdef Z_UINT64
 #	define Z_FNV0_64_INITIALIZER 0
-#	define Z_FNV0_64_UPDATE(hash, value) (((hash) * Z_UINT64(0x00000100000001B3)) ^ (value))
+
+#	define Z_FNV0_64_UPDATE(hash, value) \
+		(((hash) * Z_UINT64(0x00000100000001B3)) ^ (value))
 #endif
 
 /* MARK: - FNV-1 */
@@ -34,11 +38,15 @@ Released under the terms of the GNU Lesser General Public License v3. */
 /* MARK: - FNV-1a */
 
 #define Z_FNV1A_32_INITIALIZER Z_FNV1_32_INITIALIZER
-#define Z_FNV1A_32_UPDATE(hash, value) (((hash) ^ (value)) * Z_UINT32(0x01000193))
+
+#define Z_FNV1A_32_UPDATE(hash, value) \
+	(((hash) ^ (value)) * Z_UINT32(0x01000193))
 
 #ifdef Z_UINT64
 #	define Z_FNV1A_64_INITIALIZER Z_FNV1_64_INITIALIZER
-#	define Z_FNV1A_64_UPDATE(hash, value) (((hash) ^ (value)) * Z_UINT64(0x00000100000001B3))
+
+#	define Z_FNV1A_64_UPDATE(hash, value) \
+		(((hash) ^ (value)) * Z_UINT64(0x00000100000001B3))
 #endif
 
 #endif /* Z_macros_hash_H */

@@ -200,7 +200,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 #endif
 
-#define Z_ISA_IS(	   ISA ) Z_IS_TRUE(Z_ISA_IS_##ISA		 )
-#define Z_ISA_HAS_INTEGRAL(bits) Z_IS_TRUE(Z_ISA_HAS_INTEGRAL_##bits##BIT)
+#define Z_ISA_IS(ISA) \
+	Z_IS_TRUE(Z_ISA_IS_##ISA)
+
+#define Z_ISA_HAS_INTEGRAL(bits) \
+	Z_IS_TRUE(Z_ISA_HAS_INTEGRAL_##bits##BIT)
 
 #endif /* Z_inspection_ISA_H */

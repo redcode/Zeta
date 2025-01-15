@@ -135,10 +135,19 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #undef Z_z_NATURAL_REVERSE
 #undef Z_z_NATURAL_ROTATE
 
-#define z_T_little_endian(T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _little_endian)
-#define z_T_big_endian(	  T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _big_endian	)
-#define z_T_pdp_endian(	  T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _pdp_endian	)
-#define z_T_rotate_left(  T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _rotate_left	)
-#define z_T_rotate_right( T) Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _rotate_right )
+#define z_T_little_endian(T) \
+	Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _little_endian)
+
+#define z_T_big_endian(T) \
+	Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _big_endian)
+
+#define z_T_pdp_endian(T) \
+	Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _pdp_endian)
+
+#define z_T_rotate_left(T) \
+	Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _rotate_left)
+
+#define z_T_rotate_right(T) \
+	Z_INSERT_type(Z_##T##_FIXED_FUNDAMENTAL)(z_, _rotate_right)
 
 #endif /* Z_functions_bitwise_H */
