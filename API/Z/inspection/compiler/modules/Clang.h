@@ -1788,6 +1788,10 @@ Released under the terms of the GNU Lesser General Public License v3.
 #	define Z_COMPILER_CONSTANT_SLLONG_MAXIMUM __LONG_LONG_MAX__
 #endif
 
+#ifdef __BOOL_WIDTH__
+#	define Z_COMPILER_CONSTANT_BOOL_WIDTH __BOOL_WIDTH__
+#endif
+
 #ifdef __SIZEOF_WCHAR_T__ /* v2.8 */
 #	define Z_COMPILER_CONSTANT_WCHAR_SIZE __SIZEOF_WCHAR_T__
 #endif
@@ -1932,6 +1936,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 /*#define Z_COMPILER_CONSTANT_LLONG_WIDTH*/
 /*#define Z_COMPILER_CONSTANT_ULLONG_MAXIMUM*/
 /*#define Z_COMPILER_CONSTANT_SLLONG_MINIMUM*/
+/*#define Z_COMPILER_CONSTANT_BOOL_SIZE*/
 /*#define Z_COMPILER_CONSTANT_WCHAR_MINIMUM*/
 /*#define Z_COMPILER_CONSTANT_SSIZE_MAXIMUM*/
 /*#define Z_COMPILER_CONSTANT_SSIZE_MINIMUM*/

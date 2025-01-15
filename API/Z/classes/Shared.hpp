@@ -50,8 +50,8 @@ namespace Zeta {template <class t> struct Shared {
 		{if (owned && !--owned->owner_count) delete owned;}
 
 
-	Z_INLINE operator Boolean() const Z_NOTHROW
-		{return Boolean(owned);}
+	Z_INLINE operator Bool() const Z_NOTHROW
+		{return Bool(owned);}
 
 
 	Z_INLINE Shared &operator =(const Shared &rhs)
@@ -79,11 +79,11 @@ namespace Zeta {template <class t> struct Shared {
 		}
 
 
-	friend Z_INLINE Boolean operator ==(const Shared &lhs, const Shared &rhs) Z_NOTHROW
+	friend Z_INLINE Bool operator ==(const Shared &lhs, const Shared &rhs) Z_NOTHROW
 		{return lhs.owned == rhs.owned;}
 
 
-	friend Z_INLINE Boolean operator !=(const Shared &lhs, const Shared &rhs) Z_NOTHROW
+	friend Z_INLINE Bool operator !=(const Shared &lhs, const Shared &rhs) Z_NOTHROW
 		{return lhs.owned != rhs.owned;}
 
 
@@ -133,19 +133,19 @@ namespace Zeta {template <class t> struct Shared {
 			}
 
 
-		friend Z_INLINE Boolean operator ==(const Shared &lhs, NullPtr) Z_NOTHROW
+		friend Z_INLINE Bool operator ==(const Shared &lhs, NullPtr) Z_NOTHROW
 			{return !lhs.owned;}
 
 
-		friend Z_INLINE Boolean operator ==(NullPtr, const Shared &rhs) Z_NOTHROW
+		friend Z_INLINE Bool operator ==(NullPtr, const Shared &rhs) Z_NOTHROW
 			{return !rhs.owned;}
 
 
-		friend Z_INLINE Boolean operator !=(const Shared &lhs, NullPtr) Z_NOTHROW
+		friend Z_INLINE Bool operator !=(const Shared &lhs, NullPtr) Z_NOTHROW
 			{return !!lhs.owned;}
 
 
-		friend Z_INLINE Boolean operator !=(NullPtr, const Shared &rhs) Z_NOTHROW
+		friend Z_INLINE Bool operator !=(NullPtr, const Shared &rhs) Z_NOTHROW
 			{return !!rhs.owned;}
 
 #	endif

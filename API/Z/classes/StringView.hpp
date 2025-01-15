@@ -62,47 +62,47 @@ namespace Zeta {template <class t = Char> struct StringView {
 
 #	ifdef Z_WITH_STDCPP
 
-		friend Z_INLINE Boolean operator ==(const StringView &lhs, const StringView &rhs) Z_NOTHROW
+		friend Z_INLINE Bool operator ==(const StringView &lhs, const StringView &rhs) Z_NOTHROW
 			{return lhs.size == rhs.size && !std::memcmp(lhs.data, rhs.data, lhs.size * sizeof(t));}
 
 
-		friend Z_INLINE Boolean operator !=(const StringView &lhs, const StringView &rhs) Z_NOTHROW
+		friend Z_INLINE Bool operator !=(const StringView &lhs, const StringView &rhs) Z_NOTHROW
 			{return lhs.size != rhs.size || std::memcmp(lhs.data, rhs.data, lhs.size * sizeof(t));}
 
 
 		template <USize s>
-		friend Z_INLINE Boolean operator ==(const StringView &lhs, const t (&rhs)[s]) Z_NOTHROW
+		friend Z_INLINE Bool operator ==(const StringView &lhs, const t (&rhs)[s]) Z_NOTHROW
 			{return lhs.size == (s - 1) && !std::memcmp(lhs.data, rhs, (s - 1) * sizeof(t));}
 
 
 		template <USize s>
-		friend Z_INLINE Boolean operator !=(const StringView &lhs, const t (&rhs)[s]) Z_NOTHROW
+		friend Z_INLINE Bool operator !=(const StringView &lhs, const t (&rhs)[s]) Z_NOTHROW
 			{return lhs.size != (s - 1) || std::memcmp(lhs.data, rhs, (s - 1) * sizeof(t));}
 
 
-		friend Z_INLINE Boolean operator ==(const StringView &lhs, const t *rhs) Z_NOTHROW
+		friend Z_INLINE Bool operator ==(const StringView &lhs, const t *rhs) Z_NOTHROW
 			{return	lhs.size * sizeof(t) == std::strlen(rhs) && !std::memcmp(lhs.data, rhs, lhs.size * sizeof(t));}
 
 
-		friend Z_INLINE Boolean operator !=(const StringView &lhs, const t *rhs) Z_NOTHROW
+		friend Z_INLINE Bool operator !=(const StringView &lhs, const t *rhs) Z_NOTHROW
 			{return lhs.size * sizeof(t) != std::strlen(rhs) || std::memcmp(lhs.data, rhs, lhs.size * sizeof(t));}
 
 
 		template <USize s>
-		friend Z_INLINE Boolean operator ==(const t (&lhs)[s], const StringView &rhs) Z_NOTHROW
+		friend Z_INLINE Bool operator ==(const t (&lhs)[s], const StringView &rhs) Z_NOTHROW
 			{return rhs.size == (s - 1) && !std::memcmp(rhs.data, lhs, (s - 1) * sizeof(t));}
 
 
 		template <USize s>
-		friend Z_INLINE Boolean operator !=(const t (&lhs)[s], const StringView &rhs) Z_NOTHROW
+		friend Z_INLINE Bool operator !=(const t (&lhs)[s], const StringView &rhs) Z_NOTHROW
 			{return rhs.size != (s - 1) || std::memcmp(rhs.data, lhs, (s - 1) * sizeof(t));}
 
 
-		friend Z_INLINE Boolean operator ==(const t *lhs, const StringView &rhs) Z_NOTHROW
+		friend Z_INLINE Bool operator ==(const t *lhs, const StringView &rhs) Z_NOTHROW
 			{return	rhs.size * sizeof(t) == std::strlen(lhs) && !std::memcmp(rhs.data, lhs, rhs.size * sizeof(t));}
 
 
-		friend Z_INLINE Boolean operator !=(const t *lhs, const StringView &rhs) Z_NOTHROW
+		friend Z_INLINE Bool operator !=(const t *lhs, const StringView &rhs) Z_NOTHROW
 			{return rhs.size * sizeof(t) != std::strlen(lhs) || std::memcmp(rhs.data, lhs, rhs.size * sizeof(t));}
 
 #	endif

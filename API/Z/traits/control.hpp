@@ -26,18 +26,18 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #endif
 
 namespace Zeta {
-	template <Boolean condition, class if_true, class if_false> struct TernaryType;
+	template <Bool condition, class if_true, class if_false> struct TernaryType;
 
 	template <class t, class f> struct TernaryType<true,  t, f> {typedef t type;};
 	template <class t, class f> struct TernaryType<false, t, f> {typedef f type;};
 
 #	if Z_HAS(TypeIf)
-		template <Boolean condition, class t = void> struct TypeIf {};
+		template <Bool condition, class t = void> struct TypeIf {};
 
 		template <class t> struct TypeIf<true, t> {typedef t type;};
 
 #		if Z_HAS(type_if)
-			template <Boolean condition, class t = void>
+			template <Bool condition, class t = void>
 			using type_if = typename TypeIf<condition, t>::type;
 #		endif
 #	endif

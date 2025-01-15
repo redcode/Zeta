@@ -14,7 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 static Z_INLINE
-boolean z_gregorian_year_is_leap(zulong year)
+zbool z_gregorian_year_is_leap(zulong year)
 	{return Z_GREGORIAN_YEAR_IS_LEAP(year);}
 
 
@@ -29,7 +29,7 @@ zuint8 z_gregorian_year_days_in_month(zulong year, zuint8 month)
 
 
 static Z_INLINE
-boolean z_julian_year_is_leap(zulong year)
+zbool z_julian_year_is_leap(zulong year)
 	{return Z_JULIAN_YEAR_IS_LEAP(year);}
 
 

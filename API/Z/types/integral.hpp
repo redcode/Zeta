@@ -170,9 +170,7 @@ namespace Zeta {
 		typedef zsllong SLLong;
 #	endif
 
-#	ifdef Z_BOOL
-		typedef zbool Bool;
-#	endif
+	typedef zbool Bool;
 
 #	if Z_DIALECT_HAS_TYPE(CPP98, WCHAR_T)
 		typedef wchar_t WChar;
@@ -208,12 +206,6 @@ namespace Zeta {
 	// MARK: - Pointer difference type
 
 	typedef zptrdiff PtrDiff;
-
-	// MARK: - Default types
-
-	typedef zboolean Boolean;
-	typedef znatural Natural;
-	typedef zinteger Integer;
 }
 
 #endif // Z_types_integral_HPP

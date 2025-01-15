@@ -15,7 +15,7 @@ namespace Zeta {
 	struct True  {enum {value = true };};
 	struct False {enum {value = false};};
 
-	template <Boolean = true> struct Maybe {};
+	template <Bool = true> struct Maybe {};
 }
 
 #endif // Z_traits_constants_HPP

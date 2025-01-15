@@ -93,15 +93,15 @@ namespace Zeta {template <class t> struct Rectangle {
 		}
 
 
-	Z_CT(CPP11) operator Boolean() const Z_NOTHROW
+	Z_CT(CPP11) operator Bool() const Z_NOTHROW
 		{return point || size;}
 
 
-	friend Z_CT(CPP11) Boolean operator ==(const Rectangle &lhs, const Rectangle &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator ==(const Rectangle &lhs, const Rectangle &rhs) Z_NOTHROW
 		{return lhs.point == rhs.point && lhs.size == rhs.size;}
 
 
-	friend Z_CT(CPP11) Boolean operator !=(const Rectangle &lhs, const Rectangle &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator !=(const Rectangle &lhs, const Rectangle &rhs) Z_NOTHROW
 		{return lhs.point != rhs.point || lhs.size != rhs.size;}
 
 
@@ -348,7 +348,7 @@ namespace Zeta {template <class t> struct Rectangle {
 
 
 
-	Z_CT(CPP11) Boolean contains(const Rectangle &other) const Z_NOTHROW
+	Z_CT(CPP11) Bool contains(const Rectangle &other) const Z_NOTHROW
 		{
 		return	!other.size.has_zero()		  &&
 			other.point		 >= point &&
@@ -356,7 +356,7 @@ namespace Zeta {template <class t> struct Rectangle {
 		}
 
 
-	Z_CT(CPP11) Boolean contains(const XY<t> &point_) const Z_NOTHROW
+	Z_CT(CPP11) Bool contains(const XY<t> &point_) const Z_NOTHROW
 		{return point_ >= point && point_ < point + size;}
 
 
@@ -502,7 +502,7 @@ namespace Zeta {template <class t> struct Rectangle {
 		{return Rectangle(point.x, point.y - delta, size.x, size.y + delta);}
 
 
-	Z_CT(CPP11) Boolean intersects(const Rectangle &other) const Z_NOTHROW
+	Z_CT(CPP11) Bool intersects(const Rectangle &other) const Z_NOTHROW
 		{
 		return	!size.has_zero()		 &&
 			!other.size.has_zero()		 &&
@@ -511,7 +511,7 @@ namespace Zeta {template <class t> struct Rectangle {
 		}
 
 
-	Z_CT(CPP11) Boolean is_zero() const Z_NOTHROW
+	Z_CT(CPP11) Bool is_zero() const Z_NOTHROW
 		{return point.is_zero() && size.is_zero();}
 
 

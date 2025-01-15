@@ -46,7 +46,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			: function(reinterpret_cast<r (NaT::*)(p...)>(function)) {}
 
 
-			Z_CT(CPP11) operator Boolean() const Z_NOTHROW
+			Z_CT(CPP11) operator Bool() const Z_NOTHROW
 				{return function != Z_NULL;}
 
 

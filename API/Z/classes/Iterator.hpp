@@ -19,7 +19,7 @@ namespace Zeta{template <class t> struct Iterator {
 	: data_source(data_source_), index(index_) {}
 
 
-	friend Z_CT(CPP11) Boolean operator !=(const Iterator &lhs, const Iterator &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator !=(const Iterator &lhs, const Iterator &rhs) Z_NOTHROW
 		{return lhs.index != rhs.index;}
 
 

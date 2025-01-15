@@ -287,7 +287,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 #		if Z_DIALECT_HAS(GNUPP17, NOEXCEPT_OPERAND_DEDUCTION)
-#			define Z_z_NOEXCEPT_PARAMETER Boolean x,
+#			define Z_z_NOEXCEPT_PARAMETER Bool x,
 #			define Z_z_NOEXCEPT_SPECIFIER noexcept(x)
 #		else
 #			define Z_z_NOEXCEPT_PARAMETER

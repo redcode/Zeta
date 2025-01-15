@@ -28,11 +28,11 @@ namespace Zeta {template <class t1, class t2 = t1> struct Pair {
 	) : first(first), second(second) {}
 
 
-	Z_CT(CPP11) Boolean operator ==(const Pair &pair) const
+	Z_CT(CPP11) Bool operator ==(const Pair &pair) const
 		{return first == pair.first && second == pair.second;}
 
 
-	Z_CT(CPP11) Boolean operator !=(const Pair &pair) const
+	Z_CT(CPP11) Bool operator !=(const Pair &pair) const
 		{return first != pair.first || second != pair.second;}
 
 

@@ -53,31 +53,31 @@ namespace Zeta {template <class t> struct XYZ {
 #	endif
 
 
-	Z_CT(CPP11) operator Boolean() const Z_NOTHROW
+	Z_CT(CPP11) operator Bool() const Z_NOTHROW
 		{return x != t(0) || y != t(0) || z != t(0);}
 
 
-	friend Z_CT(CPP11) Boolean operator ==(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator ==(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator !=(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator !=(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator >=(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator >=(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x >= rhs.x && lhs.y >= rhs.y && lhs.z >= rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator <=(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator <=(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x <= rhs.x && lhs.y <= rhs.y && lhs.z <= rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator >(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator >(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x > rhs.x && lhs.y > rhs.y && lhs.z > rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator <(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator <(const XYZ &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x < rhs.x && lhs.y < rhs.y && lhs.z < rhs.z;}
 
 
@@ -97,27 +97,27 @@ namespace Zeta {template <class t> struct XYZ {
 		{return XYZ(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z);}
 
 
-	friend Z_CT(CPP11) Boolean operator ==(const XYZ &lhs, t rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator ==(const XYZ &lhs, t rhs) Z_NOTHROW
 		{return lhs.x == rhs && lhs.y == rhs && lhs.z == rhs;}
 
 
-	friend Z_CT(CPP11) Boolean operator !=(const XYZ &lhs, t rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator !=(const XYZ &lhs, t rhs) Z_NOTHROW
 		{return lhs.x != rhs || lhs.y != rhs || lhs.z != rhs;}
 
 
-	friend Z_CT(CPP11) Boolean operator >=(const XYZ &lhs, t rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator >=(const XYZ &lhs, t rhs) Z_NOTHROW
 		{return lhs.x >= rhs && lhs.y >= rhs && lhs.z >= rhs;}
 
 
-	friend Z_CT(CPP11) Boolean operator <=(const XYZ &lhs, t rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator <=(const XYZ &lhs, t rhs) Z_NOTHROW
 		{return lhs.x <= rhs && lhs.y <= rhs && lhs.z <= rhs;}
 
 
-	friend Z_CT(CPP11) Boolean operator >(const XYZ &lhs, t rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator >(const XYZ &lhs, t rhs) Z_NOTHROW
 		{return lhs.x > rhs && lhs.y > rhs && lhs.z > rhs;}
 
 
-	friend Z_CT(CPP11) Boolean operator <(const XYZ &lhs, t rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator <(const XYZ &lhs, t rhs) Z_NOTHROW
 		{return lhs.x < rhs && lhs.y < rhs && lhs.z < rhs;}
 
 
@@ -137,27 +137,27 @@ namespace Zeta {template <class t> struct XYZ {
 		{return XYZ(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs);}
 
 
-	friend Z_CT(CPP11) Boolean operator ==(t lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator ==(t lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs == rhs.x && lhs == rhs.y && lhs == rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator !=(t lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator !=(t lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs != rhs.x || lhs != rhs.y || lhs != rhs.y;}
 
 
-	friend Z_CT(CPP11) Boolean operator >=(t lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator >=(t lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs >= rhs.x && lhs >= rhs.y && lhs >= rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator <=(t lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator <=(t lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs <= rhs.x && lhs <= rhs.y && lhs <= rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator >(t lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator >(t lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs > rhs.x && lhs > rhs.y && lhs > rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator <(t lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator <(t lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs < rhs.x && lhs < rhs.y && lhs < rhs.z;}
 
 
@@ -169,27 +169,27 @@ namespace Zeta {template <class t> struct XYZ {
 		{return XYZ(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z);}
 
 
-	friend Z_CT(CPP11) Boolean operator ==(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator ==(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
 		{return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == t(0);}
 
 
-	friend Z_CT(CPP11) Boolean operator !=(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator !=(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
 		{return lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != t(0);}
 
 
-	friend Z_CT(CPP11) Boolean operator >=(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator >=(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
 		{return lhs.x >= rhs.x && lhs.y >= rhs.y && lhs.z >= t(0);}
 
 
-	friend Z_CT(CPP11) Boolean operator <=(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator <=(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
 		{return lhs.x <= rhs.x && lhs.y <= rhs.y && lhs.z <= t(0);}
 
 
-	friend Z_CT(CPP11) Boolean operator >(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator >(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
 		{return lhs.x > rhs.x && lhs.y > rhs.y && lhs.z > t(0);}
 
 
-	friend Z_CT(CPP11) Boolean operator <(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator <(const XYZ &lhs, const XY<t> &rhs) Z_NOTHROW
 		{return lhs.x < rhs.x && lhs.y < rhs.y && lhs.z < t(0);}
 
 
@@ -205,27 +205,27 @@ namespace Zeta {template <class t> struct XYZ {
 		{return XYZ(lhs.x * rhs.x, lhs.y * rhs.y, lhs.z, t(0));}
 
 
-	friend Z_CT(CPP11) Boolean operator ==(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator ==(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x == rhs.x && lhs.y == rhs.y && rhs.z == t(0);}
 
 
-	friend Z_CT(CPP11) Boolean operator !=(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator !=(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x != rhs.x || lhs.y != rhs.y || rhs.z != t(0);}
 
 
-	friend Z_CT(CPP11) Boolean operator >=(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator >=(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x >= rhs.x && lhs.y >= rhs.y && t(0) >= rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator <=(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator <=(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x <= rhs.x && lhs.y <= rhs.y && t(0) <= rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator >(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator >(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x > rhs.x && lhs.y > rhs.y && t(0) > rhs.z;}
 
 
-	friend Z_CT(CPP11) Boolean operator <(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator <(const XY<t> &lhs, const XYZ &rhs) Z_NOTHROW
 		{return lhs.x < rhs.x && lhs.y < rhs.y && t(0) < rhs.z;}
 
 
@@ -306,7 +306,7 @@ namespace Zeta {template <class t> struct XYZ {
 		{return XYZ(t(0));} /* TODO */
 
 
-	Z_CT(CPP11) Boolean has_zero() const Z_NOTHROW
+	Z_CT(CPP11) Bool has_zero() const Z_NOTHROW
 		{return x == t(0) || y == t(0) || z == t(0);}
 
 
@@ -330,7 +330,7 @@ namespace Zeta {template <class t> struct XYZ {
 		{return x + y + z;}
 
 
-	Z_CT(CPP11) Boolean is_zero() const Z_NOTHROW
+	Z_CT(CPP11) Bool is_zero() const Z_NOTHROW
 		{return x == t(0) && y == t(0) && z == t(0);}
 
 
@@ -388,11 +388,11 @@ namespace Zeta {template <class t> struct XYZ {
 		}
 
 
-	Z_CT(CPP11) Boolean has_negative() const Z_NOTHROW
+	Z_CT(CPP11) Bool has_negative() const Z_NOTHROW
 		{return x < t(0) || y < t(0) || z < t(0);}
 
 
-	Z_CT(CPP11) Boolean is_negative() const Z_NOTHROW
+	Z_CT(CPP11) Bool is_negative() const Z_NOTHROW
 		{return x < t(0) && y < t(0) && z < t(0);}
 
 
@@ -403,7 +403,7 @@ namespace Zeta {template <class t> struct XYZ {
 	// MARK: - Integer
 
 
-	//Z_CT(CPP11) Boolean is_perpendicular(const XYZ &other) const
+	//Z_CT(CPP11) Bool is_perpendicular(const XYZ &other) const
 	//	{return !Zeta::absolute<t>(dot_product(other));}
 
 
@@ -419,7 +419,7 @@ namespace Zeta {template <class t> struct XYZ {
 		}
 
 
-	Z_CT(CPP11) Boolean has_almost_zero() const Z_NOTHROW
+	Z_CT(CPP11) Bool has_almost_zero() const Z_NOTHROW
 		{
 		return	Zeta::is_almost_zero<t>(x) ||
 			Zeta::is_almost_zero<t>(y) ||
@@ -427,7 +427,7 @@ namespace Zeta {template <class t> struct XYZ {
 		}
 
 
-	Z_CT(CPP11) Boolean has_finite() const Z_NOTHROW
+	Z_CT(CPP11) Bool has_finite() const Z_NOTHROW
 		{
 		return	Zeta::is_finite<t>(x) ||
 			Zeta::is_finite<t>(y) ||
@@ -435,7 +435,7 @@ namespace Zeta {template <class t> struct XYZ {
 		}
 
 
-	Z_CT(CPP11) Boolean has_infinity() const Z_NOTHROW
+	Z_CT(CPP11) Bool has_infinity() const Z_NOTHROW
 		{
 		return	Zeta::is_infinity<t>(x) ||
 			Zeta::is_infinity<t>(y) ||
@@ -443,7 +443,7 @@ namespace Zeta {template <class t> struct XYZ {
 		}
 
 
-	Z_CT(CPP11) Boolean has_nan() const Z_NOTHROW
+	Z_CT(CPP11) Bool has_nan() const Z_NOTHROW
 		{
 		return	Zeta::is_nan<t>(x) ||
 			Zeta::is_nan<t>(y) ||
@@ -460,7 +460,7 @@ namespace Zeta {template <class t> struct XYZ {
 		}
 
 
-	Z_CT(CPP11) Boolean is_almost_equal(const XYZ &other) const Z_NOTHROW
+	Z_CT(CPP11) Bool is_almost_equal(const XYZ &other) const Z_NOTHROW
 		{
 		return	Zeta::are_almost_equal<t>(x, other.x) &&
 			Zeta::are_almost_equal<t>(y, other.y) &&
@@ -468,7 +468,7 @@ namespace Zeta {template <class t> struct XYZ {
 		}
 
 
-	Z_CT(CPP11) Boolean is_almost_zero() const Z_NOTHROW
+	Z_CT(CPP11) Bool is_almost_zero() const Z_NOTHROW
 		{
 		return	Zeta::is_almost_zero<t>(x) &&
 			Zeta::is_almost_zero<t>(y) &&
@@ -476,7 +476,7 @@ namespace Zeta {template <class t> struct XYZ {
 		}
 
 
-	Z_CT(CPP11) Boolean is_finite() const Z_NOTHROW
+	Z_CT(CPP11) Bool is_finite() const Z_NOTHROW
 		{
 		return	Zeta::is_finite<t>(x) &&
 			Zeta::is_finite<t>(y) &&
@@ -484,7 +484,7 @@ namespace Zeta {template <class t> struct XYZ {
 		}
 
 
-	Z_CT(CPP11) Boolean is_infinity() const Z_NOTHROW
+	Z_CT(CPP11) Bool is_infinity() const Z_NOTHROW
 		{
 		return	Zeta::is_infinity<t>(x) &&
 			Zeta::is_infinity<t>(y) &&
@@ -492,7 +492,7 @@ namespace Zeta {template <class t> struct XYZ {
 		}
 
 
-	Z_CT(CPP11) Boolean is_nan() const Z_NOTHROW
+	Z_CT(CPP11) Bool is_nan() const Z_NOTHROW
 		{
 		return	Zeta::is_nan<t>(x) &&
 			Zeta::is_nan<t>(y) &&
@@ -500,7 +500,7 @@ namespace Zeta {template <class t> struct XYZ {
 		}
 
 
-	Z_CT(CPP11) Boolean is_perpendicular(const XYZ &other) const Z_NOTHROW
+	Z_CT(CPP11) Bool is_perpendicular(const XYZ &other) const Z_NOTHROW
 		{return Zeta::absolute<t>(dot_product(other)) <= Type<t>::epsilon();}
 
 

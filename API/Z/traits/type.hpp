@@ -1300,7 +1300,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 
 	// MARK: - Abstract: Array types
 
-	template <zboolean e, class t> struct Array;
+	template <zbool e, class t> struct Array;
 
 	template <class t> struct Array<false, t> : Storable {
 		enum {is_array = true};
@@ -1345,7 +1345,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 #		endif
 	};
 
-	template <zboolean e, class t, zusize n> struct SizedArray : Array<e, t> {
+	template <zbool e, class t, zusize n> struct SizedArray : Array<e, t> {
 		enum {	is_statically_allocatable = true,
 			is_sized_array		  = true
 		};
@@ -1358,7 +1358,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 		typedef t type[n];
 	};
 
-	template <zboolean e, class t> struct UnsizedArray : Array<e, t> {
+	template <zbool e, class t> struct UnsizedArray : Array<e, t> {
 		enum {is_unsized_array = true};
 
 #		if Z_HAS_MEMBER(Type, is_empty)
@@ -1419,7 +1419,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 	// MARK: - Abstract: Function types
 
 #	if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
-		template <zboolean x, class t, class c = Empty> struct Function;
+		template <zbool x, class t, class c = Empty> struct Function;
 
 #		define Z_z_NOEXCEPT noexcept(x)
 
@@ -1452,19 +1452,19 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 #	if Z_DIALECT_HAS(CPP11, VARIADIC_TEMPLATE)
 
 #		if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
-			template <zboolean x, class r, class... p, class c> struct Function<x, r(p...), c> : c {
+			template <zbool x, class r, class... p, class c> struct Function<x, r(p...), c> : c {
 				Z_z_NORMAL_CONVERSIONS	 (p...)
 				Z_z_REFERENCE_CONVERSIONS(p...)
 			};
 
-			template <zboolean x, class r, class... p, class c> struct Function<x, r(p..., ...), c> : c {
+			template <zbool x, class r, class... p, class c> struct Function<x, r(p..., ...), c> : c {
 				Z_z_NORMAL_CONVERSIONS	 (p... Z_COMMA ...)
 				Z_z_REFERENCE_CONVERSIONS(p... Z_COMMA ...)
 			};
 #		endif
 
 #		if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
-			template <zboolean x, class r, class... p> struct NonVariadicFunction : Function<x, r(p...), Valid> {
+			template <zbool x, class r, class... p> struct NonVariadicFunction : Function<x, r(p...), Valid> {
 				enum {is_noexcept = x};
 #		else
 			template <class r, class... p> struct NonVariadicFunction : Valid {
@@ -1487,7 +1487,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 		};
 
 #		if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
-			template <zboolean x, class r, class... p> struct VariadicFunction : Function<x, r(p..., ...), Valid> {
+			template <zbool x, class r, class... p> struct VariadicFunction : Function<x, r(p..., ...), Valid> {
 				enum {is_noexcept = x};
 #		else
 			template <class r, class... p> struct VariadicFunction : Valid {
@@ -1515,43 +1515,43 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 #	else
 #		if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
 
-#			define Z_z_PSEUDO_SPECIALIZATION_PAIR(arity)									  \
-																	  \
-				template <zboolean x, class r, Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA) Z_IF(arity)(Z_COMMA) class c> \
-				struct Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)), c>					  \
-				: c {	Z_z_NORMAL_CONVERSIONS	 (Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA))				  \
-					Z_z_REFERENCE_CONVERSIONS(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA))				  \
-				};													  \
-																	  \
-				template <zboolean x, class r, Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA) Z_IF(arity)(Z_COMMA) class c> \
-				struct Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...), c>		  \
-				: c {	Z_z_NORMAL_CONVERSIONS	 (Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)	  \
-					Z_z_REFERENCE_CONVERSIONS(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)	  \
-				};													  \
-																	  \
-				template <zboolean x, class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>	  \
-				struct NonVariadicFunctionWith##arity##Parameters							  \
-				: Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)), Valid> {					  \
-					enum {	is_function = true,									  \
-						is_noexcept = x										  \
-					};												  \
-					enum {Z_PASTE_2(ari,ty) = arity};								  \
-																	  \
-					typedef r type(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA));						  \
-					typedef r return_type;										  \
-				};													  \
-																	  \
-				template <zboolean x, class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>	  \
-				struct VariadicFunctionWith##arity##Parameters								  \
-				: Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...), Valid> {		  \
-					enum {	is_function = true,									  \
-						is_noexcept = x,									  \
-						is_variadic = true									  \
-					};												  \
-					enum {Z_PASTE_2(ari,ty) = arity};								  \
-																	  \
-					typedef r type(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...);		  \
-					typedef r return_type;										  \
+#			define Z_z_PSEUDO_SPECIALIZATION_PAIR(arity)								       \
+																       \
+				template <zbool x, class r, Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA) Z_IF(arity)(Z_COMMA) class c> \
+				struct Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)), c>				       \
+				: c {	Z_z_NORMAL_CONVERSIONS	 (Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA))			       \
+					Z_z_REFERENCE_CONVERSIONS(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA))			       \
+				};												       \
+																       \
+				template <zbool x, class r, Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA) Z_IF(arity)(Z_COMMA) class c> \
+				struct Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...), c>	       \
+				: c {	Z_z_NORMAL_CONVERSIONS	 (Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)     \
+					Z_z_REFERENCE_CONVERSIONS(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...)     \
+				};												       \
+																       \
+				template <zbool x, class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>	       \
+				struct NonVariadicFunctionWith##arity##Parameters						       \
+				: Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)), Valid> {				       \
+					enum {	is_function = true,								       \
+						is_noexcept = x									       \
+					};											       \
+					enum {Z_PASTE_2(ari,ty) = arity};							       \
+																       \
+					typedef r type(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA));					       \
+					typedef r return_type;									       \
+				};												       \
+																       \
+				template <zbool x, class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>	       \
+				struct VariadicFunctionWith##arity##Parameters							       \
+				: Function<x, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...), Valid> {	       \
+					enum {	is_function = true,								       \
+						is_noexcept = x,								       \
+						is_variadic = true								       \
+					};											       \
+					enum {Z_PASTE_2(ari,ty) = arity};							       \
+																       \
+					typedef r type(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...);	       \
+					typedef r return_type;									       \
 				};
 
 #		else
@@ -1601,7 +1601,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 		ObjectiveCInstance
 	};
 
-	template <zboolean e, zuint k, class t> struct Kind;
+	template <zbool e, zuint k, class t> struct Kind;
 
 #	if Z_HAS_MEMBER(Type, is_enumeration)
 
@@ -1625,7 +1625,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 
 #	endif
 
-	template <zboolean e, class t> struct Construct;
+	template <zbool e, class t> struct Construct;
 
 	template <class t> struct Construct<false, t> : Storable {
 		enum {	is_class		  = true,
@@ -1680,10 +1680,10 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 #		endif
 	};
 
-	template <zboolean e, class t> struct Kind<e, PossibleTemplate, t> : Construct<e, t> {};
+	template <zbool e, class t> struct Kind<e, PossibleTemplate, t> : Construct<e, t> {};
 
 #	if Z_HAS_MEMBER(Type, is_template)
-		template <zboolean e, template <class...> class t, class... a>
+		template <zbool e, template <class...> class t, class... a>
 		struct Kind<e, PossibleTemplate, t<a...> > : Construct<e, t<a...> > {
 			enum {is_template = true};
 			enum {arity = TypeCount<a...>::value};
@@ -1725,7 +1725,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 	};
 
 #	if Z_HAS_MEMBER(Type, is_union)
-		template <zboolean e, class t> struct Kind<e, Union, t> : Kind<e, PossibleTemplate, t> {
+		template <zbool e, class t> struct Kind<e, Union, t> : Kind<e, PossibleTemplate, t> {
 			enum {is_union = true};
 		};
 #	endif
@@ -1745,7 +1745,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 		};
 
 #		if Z_HAS_MEMBER(Type, is_objective_c_instance)
-			template <zboolean e, class t> struct Kind<e, ObjectiveCInstance, t> : ObjectiveCObject {
+			template <zbool e, class t> struct Kind<e, ObjectiveCInstance, t> : ObjectiveCObject {
 				enum {is_objective_c_instance = true};
 
 				typedef t type;
@@ -2489,252 +2489,252 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 		};
 	};
 
-	template <Boolean e, class t> struct Case : Mixins::Unqualified<Abstract::Kind<e, Ambiguous<t>::kind, t> > {};
+	template <Bool e, class t> struct Case : Mixins::Unqualified<Abstract::Kind<e, Ambiguous<t>::kind, t> > {};
 
 	// MARK: - Specializations: Standard C/C++ fundamental types
 
-	template <Boolean e> struct Case<e, void  > : Mixins::Unqualified<Abstract::Void  > {};
-	template <Boolean e> struct Case<e, Char  > : Mixins::Unqualified<Abstract::Char  > {};
-	template <Boolean e> struct Case<e, UChar > : Mixins::Unqualified<Abstract::UChar > {};
-	template <Boolean e> struct Case<e, SChar > : Mixins::Unqualified<Abstract::SChar > {};
-	template <Boolean e> struct Case<e, UShort> : Mixins::Unqualified<Abstract::UShort> {};
-	template <Boolean e> struct Case<e, SShort> : Mixins::Unqualified<Abstract::SShort> {};
-	template <Boolean e> struct Case<e, UInt  > : Mixins::Unqualified<Abstract::UInt  > {};
-	template <Boolean e> struct Case<e, SInt  > : Mixins::Unqualified<Abstract::SInt  > {};
-	template <Boolean e> struct Case<e, ULong > : Mixins::Unqualified<Abstract::ULong > {};
-	template <Boolean e> struct Case<e, SLong > : Mixins::Unqualified<Abstract::SLong > {};
+	template <Bool e> struct Case<e, void  > : Mixins::Unqualified<Abstract::Void  > {};
+	template <Bool e> struct Case<e, Char  > : Mixins::Unqualified<Abstract::Char  > {};
+	template <Bool e> struct Case<e, UChar > : Mixins::Unqualified<Abstract::UChar > {};
+	template <Bool e> struct Case<e, SChar > : Mixins::Unqualified<Abstract::SChar > {};
+	template <Bool e> struct Case<e, UShort> : Mixins::Unqualified<Abstract::UShort> {};
+	template <Bool e> struct Case<e, SShort> : Mixins::Unqualified<Abstract::SShort> {};
+	template <Bool e> struct Case<e, UInt  > : Mixins::Unqualified<Abstract::UInt  > {};
+	template <Bool e> struct Case<e, SInt  > : Mixins::Unqualified<Abstract::SInt  > {};
+	template <Bool e> struct Case<e, ULong > : Mixins::Unqualified<Abstract::ULong > {};
+	template <Bool e> struct Case<e, SLong > : Mixins::Unqualified<Abstract::SLong > {};
 
 #	ifdef Z_ULLONG
-		template <Boolean e> struct Case<e, ULLong> : Mixins::Unqualified<Abstract::ULLong> {};
+		template <Bool e> struct Case<e, ULLong> : Mixins::Unqualified<Abstract::ULLong> {};
 #	endif
 
 #	ifdef Z_SLLONG
-		template <Boolean e> struct Case<e, SLLong> : Mixins::Unqualified<Abstract::SLLong> {};
+		template <Bool e> struct Case<e, SLLong> : Mixins::Unqualified<Abstract::SLLong> {};
 #	endif
 
-#	ifdef Z_BOOL
-		template <Boolean e> struct Case<e, Bool> : Mixins::Unqualified<Abstract::Bool> {};
+#	if Z_DIALECT_HAS_TYPE(CPP98, BOOL) || Z_DIALECT_HAS_TYPE(C99, BOOL)
+		template <Bool e> struct Case<e, Bool> : Mixins::Unqualified<Abstract::Bool> {};
 #	endif
 
 #	if Z_DIALECT_HAS_TYPE(CPP98, WCHAR_T)
-		template <Boolean e> struct Case<e, WChar> : Mixins::Unqualified<Abstract::WChar> {};
+		template <Bool e> struct Case<e, WChar> : Mixins::Unqualified<Abstract::WChar> {};
 #	endif
 
 #	if Z_DIALECT_HAS_TYPE(CPP20, CHAR8_T)
-		template <Boolean e> struct Case<e, Char8> : Mixins::Unqualified<Abstract::Char8> {};
+		template <Bool e> struct Case<e, Char8> : Mixins::Unqualified<Abstract::Char8> {};
 #	endif
 
 #	if Z_DIALECT_HAS_TYPE(CPP11, CHAR16_T)
-		template <Boolean e> struct Case<e, Char16> : Mixins::Unqualified<Abstract::Char16> {};
+		template <Bool e> struct Case<e, Char16> : Mixins::Unqualified<Abstract::Char16> {};
 #	endif
 
 #	if Z_DIALECT_HAS_TYPE(CPP11, CHAR32_T)
-		template <Boolean e> struct Case<e, Char32> : Mixins::Unqualified<Abstract::Char32> {};
+		template <Bool e> struct Case<e, Char32> : Mixins::Unqualified<Abstract::Char32> {};
 #	endif
 
 #	ifdef Z_FLOAT
-		template <Boolean e> struct Case<e, Float> : Mixins::Unqualified<Abstract::Float> {};
+		template <Bool e> struct Case<e, Float> : Mixins::Unqualified<Abstract::Float> {};
 #	endif
 
 #	ifdef Z_DOUBLE
-		template <Boolean e> struct Case<e, Double> : Mixins::Unqualified<Abstract::Double> {};
+		template <Bool e> struct Case<e, Double> : Mixins::Unqualified<Abstract::Double> {};
 #	endif
 
 #	ifdef Z_LDOUBLE
-		template <Boolean e> struct Case<e, LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
+		template <Bool e> struct Case<e, LDouble> : Mixins::Unqualified<Abstract::LDouble> {};
 #	endif
 
 #	ifdef Z_FLOAT16
-		template <Boolean e> struct Case<e, Float16> : Mixins::Unqualified<Abstract::Float16> {};
+		template <Bool e> struct Case<e, Float16> : Mixins::Unqualified<Abstract::Float16> {};
 #	endif
 
 #	ifdef Z_FLOAT32
-		template <Boolean e> struct Case<e, Float32> : Mixins::Unqualified<Abstract::Float32> {};
+		template <Bool e> struct Case<e, Float32> : Mixins::Unqualified<Abstract::Float32> {};
 #	endif
 
 #	ifdef Z_FLOAT64
-		template <Boolean e> struct Case<e, Float64> : Mixins::Unqualified<Abstract::Float64> {};
+		template <Bool e> struct Case<e, Float64> : Mixins::Unqualified<Abstract::Float64> {};
 #	endif
 
 #	ifdef Z_FLOAT128
-		template <Boolean e> struct Case<e, Float128> : Mixins::Unqualified<Abstract::Float128> {};
+		template <Bool e> struct Case<e, Float128> : Mixins::Unqualified<Abstract::Float128> {};
 #	endif
 
 #	ifdef Z_FLOAT32X
-		template <Boolean e> struct Case<e, Float32x> : Mixins::Unqualified<Abstract::Float32x> {};
+		template <Bool e> struct Case<e, Float32x> : Mixins::Unqualified<Abstract::Float32x> {};
 #	endif
 
 #	ifdef Z_FLOAT64X
-		template <Boolean e> struct Case<e, Float64x> : Mixins::Unqualified<Abstract::Float64x> {};
+		template <Bool e> struct Case<e, Float64x> : Mixins::Unqualified<Abstract::Float64x> {};
 #	endif
 
 #	ifdef Z_FLOAT128X
-		template <Boolean e> struct Case<e, Float128x> : Mixins::Unqualified<Abstract::Float128x> {};
+		template <Bool e> struct Case<e, Float128x> : Mixins::Unqualified<Abstract::Float128x> {};
 #	endif
 
 #	ifdef Z_DECIMAL32
-		template <Boolean e> struct Case<e, Decimal32> : Mixins::Unqualified<Abstract::Decimal32> {};
+		template <Bool e> struct Case<e, Decimal32> : Mixins::Unqualified<Abstract::Decimal32> {};
 #	endif
 
 #	ifdef Z_DECIMAL64
-		template <Boolean e> struct Case<e, Decimal64> : Mixins::Unqualified<Abstract::Decimal64> {};
+		template <Bool e> struct Case<e, Decimal64> : Mixins::Unqualified<Abstract::Decimal64> {};
 #	endif
 
 #	ifdef Z_DECIMAL128
-		template <Boolean e> struct Case<e, Decimal128> : Mixins::Unqualified<Abstract::Decimal128> {};
+		template <Bool e> struct Case<e, Decimal128> : Mixins::Unqualified<Abstract::Decimal128> {};
 #	endif
 
 #	ifdef Z_DECIMAL64X
-		template <Boolean e> struct Case<e, Decimal64x> : Mixins::Unqualified<Abstract::Decimal64x> {};
+		template <Bool e> struct Case<e, Decimal64x> : Mixins::Unqualified<Abstract::Decimal64x> {};
 #	endif
 
 #	ifdef Z_DECIMAL128X
-		template <Boolean e> struct Case<e, Decimal128x> : Mixins::Unqualified<Abstract::Decimal128x> {};
+		template <Bool e> struct Case<e, Decimal128x> : Mixins::Unqualified<Abstract::Decimal128x> {};
 #	endif
 
 #	if Z_HAS_MEMBER(Type, is_nullptr)
-		template <Boolean e> struct Case<e, NullPtr> : Mixins::Unqualified<Abstract::NullPtr> {};
+		template <Bool e> struct Case<e, NullPtr> : Mixins::Unqualified<Abstract::NullPtr> {};
 #	endif
 
 	// MARK: - Specializations: Fixed-width integral types
 
 #	if defined(Z_UINT8) && Z_UINT8_FUNDAMENTAL == Z_FUNDAMENTAL_UINT8
-		template <Boolean e> struct Case<e, UInt8> : Mixins::Unqualified<Abstract::UInt8> {};
+		template <Bool e> struct Case<e, UInt8> : Mixins::Unqualified<Abstract::UInt8> {};
 #	endif
 
 #	if defined(Z_SINT8) && Z_SINT8_FUNDAMENTAL == Z_FUNDAMENTAL_SINT8
-		template <Boolean e> struct Case<e, SInt8> : Mixins::Unqualified<Abstract::SInt8> {};
+		template <Bool e> struct Case<e, SInt8> : Mixins::Unqualified<Abstract::SInt8> {};
 #	endif
 
 #	if defined(Z_UINT16) && Z_UINT16_FUNDAMENTAL == Z_FUNDAMENTAL_UINT16
-		template <Boolean e> struct Case<e, UInt16> : Mixins::Unqualified<Abstract::UInt16> {};
+		template <Bool e> struct Case<e, UInt16> : Mixins::Unqualified<Abstract::UInt16> {};
 #	endif
 
 #	if defined(Z_SINT16) && Z_SINT16_FUNDAMENTAL == Z_FUNDAMENTAL_SINT16
-		template <Boolean e> struct Case<e, SInt16> : Mixins::Unqualified<Abstract::SInt16> {};
+		template <Bool e> struct Case<e, SInt16> : Mixins::Unqualified<Abstract::SInt16> {};
 #	endif
 
 #	if defined(Z_UINT24) && Z_UINT24_FUNDAMENTAL == Z_FUNDAMENTAL_UINT24
-		template <Boolean e> struct Case<e, UInt24> : Mixins::Unqualified<Abstract::UInt24> {};
+		template <Bool e> struct Case<e, UInt24> : Mixins::Unqualified<Abstract::UInt24> {};
 #	endif
 
 #	if defined(Z_SINT24) && Z_SINT24_FUNDAMENTAL == Z_FUNDAMENTAL_SINT24
-		template <Boolean e> struct Case<e, SInt24> : Mixins::Unqualified<Abstract::SInt24> {};
+		template <Bool e> struct Case<e, SInt24> : Mixins::Unqualified<Abstract::SInt24> {};
 #	endif
 
 #	if defined(Z_UINT32) && Z_UINT32_FUNDAMENTAL == Z_FUNDAMENTAL_UINT32
-		template <Boolean e> struct Case<e, UInt32> : Mixins::Unqualified<Abstract::UInt32> {};
+		template <Bool e> struct Case<e, UInt32> : Mixins::Unqualified<Abstract::UInt32> {};
 #	endif
 
 #	if defined(Z_SINT32) && Z_SINT32_FUNDAMENTAL == Z_FUNDAMENTAL_SINT32
-		template <Boolean e> struct Case<e, SInt32> : Mixins::Unqualified<Abstract::SInt32> {};
+		template <Bool e> struct Case<e, SInt32> : Mixins::Unqualified<Abstract::SInt32> {};
 #	endif
 
 #	if defined(Z_UINT40) && Z_UINT40_FUNDAMENTAL == Z_FUNDAMENTAL_UINT40
-		template <Boolean e> struct Case<e, UInt40> : Mixins::Unqualified<Abstract::UInt40> {};
+		template <Bool e> struct Case<e, UInt40> : Mixins::Unqualified<Abstract::UInt40> {};
 #	endif
 
 #	if defined(Z_SINT40) && Z_SINT40_FUNDAMENTAL == Z_FUNDAMENTAL_SINT40
-		template <Boolean e> struct Case<e, SInt40> : Mixins::Unqualified<Abstract::SInt40> {};
+		template <Bool e> struct Case<e, SInt40> : Mixins::Unqualified<Abstract::SInt40> {};
 #	endif
 
 #	if defined(Z_UINT48) && Z_UINT48_FUNDAMENTAL == Z_FUNDAMENTAL_UINT48
-		template <Boolean e> struct Case<e, UInt48> : Mixins::Unqualified<Abstract::UInt48> {};
+		template <Bool e> struct Case<e, UInt48> : Mixins::Unqualified<Abstract::UInt48> {};
 #	endif
 
 #	if defined(Z_SINT48) && Z_SINT48_FUNDAMENTAL == Z_FUNDAMENTAL_SINT48
-		template <Boolean e> struct Case<e, SInt48> : Mixins::Unqualified<Abstract::SInt48> {};
+		template <Bool e> struct Case<e, SInt48> : Mixins::Unqualified<Abstract::SInt48> {};
 #	endif
 
 #	if defined(Z_UINT56) && Z_UINT56_FUNDAMENTAL == Z_FUNDAMENTAL_UINT56
-		template <Boolean e> struct Case<e, UInt56> : Mixins::Unqualified<Abstract::UInt56> {};
+		template <Bool e> struct Case<e, UInt56> : Mixins::Unqualified<Abstract::UInt56> {};
 #	endif
 
 #	if defined(Z_SINT56) && Z_SINT56_FUNDAMENTAL == Z_FUNDAMENTAL_SINT56
-		template <Boolean e> struct Case<e, SInt56> : Mixins::Unqualified<Abstract::SInt56> {};
+		template <Bool e> struct Case<e, SInt56> : Mixins::Unqualified<Abstract::SInt56> {};
 #	endif
 
 #	if defined(Z_UINT64) && Z_UINT64_FUNDAMENTAL == Z_FUNDAMENTAL_UINT64
-		template <Boolean e> struct Case<e, UInt64> : Mixins::Unqualified<Abstract::UInt64> {};
+		template <Bool e> struct Case<e, UInt64> : Mixins::Unqualified<Abstract::UInt64> {};
 #	endif
 
 #	if defined(Z_SINT64) && Z_SINT64_FUNDAMENTAL == Z_FUNDAMENTAL_SINT64
-		template <Boolean e> struct Case<e, SInt64> : Mixins::Unqualified<Abstract::SInt64> {};
+		template <Bool e> struct Case<e, SInt64> : Mixins::Unqualified<Abstract::SInt64> {};
 #	endif
 
 #	if defined(Z_UINT128) && Z_UINT128_FUNDAMENTAL == Z_FUNDAMENTAL_UINT128
-		template <Boolean e> struct Case<e, UInt128> : Mixins::Unqualified<Abstract::UInt128> {};
+		template <Bool e> struct Case<e, UInt128> : Mixins::Unqualified<Abstract::UInt128> {};
 #	endif
 
 #	if defined(Z_SINT128) && Z_SINT128_FUNDAMENTAL == Z_FUNDAMENTAL_SINT128
-		template <Boolean e> struct Case<e, SInt128> : Mixins::Unqualified<Abstract::SInt128> {};
+		template <Bool e> struct Case<e, SInt128> : Mixins::Unqualified<Abstract::SInt128> {};
 #	endif
 
 	// MARK: - Specializations: Fixed-format real types
 
 #	if defined(Z_BFP16) && Z_BFP16_FUNDAMENTAL == Z_FUNDAMENTAL_BFP16
-		template <Boolean e> struct Case<e, BFP16> : Mixins::Unqualified<Abstract::BFP16> {};
+		template <Bool e> struct Case<e, BFP16> : Mixins::Unqualified<Abstract::BFP16> {};
 #	endif
 
 #	if defined(Z_BFP32) && Z_BFP32_FUNDAMENTAL == Z_FUNDAMENTAL_BFP32
-		template <Boolean e> struct Case<e, BFP32> : Mixins::Unqualified<Abstract::BFP32> {};
+		template <Bool e> struct Case<e, BFP32> : Mixins::Unqualified<Abstract::BFP32> {};
 #	endif
 
 #	if defined(Z_BFP64) && Z_BFP64_FUNDAMENTAL == Z_FUNDAMENTAL_BFP64
-		template <Boolean e> struct Case<e, BFP64> : Mixins::Unqualified<Abstract::BFP64> {};
+		template <Bool e> struct Case<e, BFP64> : Mixins::Unqualified<Abstract::BFP64> {};
 #	endif
 
 #	if defined(Z_BFP128) && Z_BFP128_FUNDAMENTAL == Z_FUNDAMENTAL_BFP128
-		template <Boolean e> struct Case<e, BFP128> : Mixins::Unqualified<Abstract::BFP128> {};
+		template <Bool e> struct Case<e, BFP128> : Mixins::Unqualified<Abstract::BFP128> {};
 #	endif
 
 #	if defined(Z_DFP32) && Z_DFP32_FUNDAMENTAL == Z_FUNDAMENTAL_DFP32
-		template <Boolean e> struct Case<e, DFP32> : Mixins::Unqualified<Abstract::DFP32> {};
+		template <Bool e> struct Case<e, DFP32> : Mixins::Unqualified<Abstract::DFP32> {};
 #	endif
 
 #	if defined(Z_DFP64) && Z_DFP64_FUNDAMENTAL == Z_FUNDAMENTAL_DFP64
-		template <Boolean e> struct Case<e, DFP64> : Mixins::Unqualified<Abstract::DFP64> {};
+		template <Bool e> struct Case<e, DFP64> : Mixins::Unqualified<Abstract::DFP64> {};
 #	endif
 
 #	if defined(Z_DFP128) && Z_DFP128_FUNDAMENTAL == Z_FUNDAMENTAL_DFP128
-		template <Boolean e> struct Case<e, DFP128> : Mixins::Unqualified<Abstract::DFP128> {};
+		template <Bool e> struct Case<e, DFP128> : Mixins::Unqualified<Abstract::DFP128> {};
 #	endif
 
 #	if defined(Z_X87_DE80) && Z_X87_DE80_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE80
-		template <Boolean e> struct Case<e, x87_DE80> : Mixins::Unqualified<Abstract::x87_DE80> {};
+		template <Bool e> struct Case<e, x87_DE80> : Mixins::Unqualified<Abstract::x87_DE80> {};
 #	endif
 
 #	if defined(Z_X87_DE96) && Z_X87_DE96_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE96
-		template <Boolean e> struct Case<e, x87_DE96> : Mixins::Unqualified<Abstract::x87_DE96> {};
+		template <Bool e> struct Case<e, x87_DE96> : Mixins::Unqualified<Abstract::x87_DE96> {};
 #	endif
 
 #	if defined(Z_X87_DE128) && Z_X87_DE128_FUNDAMENTAL == Z_FUNDAMENTAL_X87_DE128
-		template <Boolean e> struct Case<e, x87_DE128> : Mixins::Unqualified<Abstract::x87_DE128> {};
+		template <Bool e> struct Case<e, x87_DE128> : Mixins::Unqualified<Abstract::x87_DE128> {};
 #	endif
 
 #	if defined(Z_IBM_ED) && Z_IBM_ED_FUNDAMENTAL == Z_FUNDAMENTAL_IBM_ED
-		template <Boolean e> struct Case<e, IBM_ED> : Mixins::Unqualified<Abstract::IBM_ED> {};
+		template <Bool e> struct Case<e, IBM_ED> : Mixins::Unqualified<Abstract::IBM_ED> {};
 #	endif
 
 #	if defined(Z_BFLOAT16) && Z_BFLOAT16_FUNDAMENTAL == Z_FUNDAMENTAL_BFLOAT16
-		template <Boolean e> struct Case<e, bfloat16> : Mixins::Unqualified<Abstract::bfloat16> {};
+		template <Bool e> struct Case<e, bfloat16> : Mixins::Unqualified<Abstract::bfloat16> {};
 #	endif
 
 	// MARK: - Specializations: Array types
 
-	template <Boolean e, class t, USize n> struct Case<e,		     t[n]> : Mixins::Unqualified       <Abstract::SizedArray<e, t, n> > {};
-	template <Boolean e, class t, USize n> struct Case<e, const	     t[n]> : Mixins::ConstArray	       <Abstract::SizedArray<e, t, n> > {};
-	template <Boolean e, class t, USize n> struct Case<e,	    volatile t[n]> : Mixins::VolatileArray     <Abstract::SizedArray<e, t, n> > {};
-	template <Boolean e, class t, USize n> struct Case<e, const volatile t[n]> : Mixins::ConstVolatileArray<Abstract::SizedArray<e, t, n> > {};
+	template <Bool e, class t, USize n> struct Case<e,		  t[n]> : Mixins::Unqualified	    <Abstract::SizedArray<e, t, n> > {};
+	template <Bool e, class t, USize n> struct Case<e, const	  t[n]> : Mixins::ConstArray	    <Abstract::SizedArray<e, t, n> > {};
+	template <Bool e, class t, USize n> struct Case<e,	 volatile t[n]> : Mixins::VolatileArray	    <Abstract::SizedArray<e, t, n> > {};
+	template <Bool e, class t, USize n> struct Case<e, const volatile t[n]> : Mixins::ConstVolatileArray<Abstract::SizedArray<e, t, n> > {};
 
-	template <Boolean e, class t> struct Case<e,		    t[]> : Mixins::Unqualified	     <Abstract::UnsizedArray<e, t> > {};
-	template <Boolean e, class t> struct Case<e, const	    t[]> : Mixins::ConstArray	     <Abstract::UnsizedArray<e, t> > {};
-	template <Boolean e, class t> struct Case<e,	   volatile t[]> : Mixins::VolatileArray     <Abstract::UnsizedArray<e, t> > {};
-	template <Boolean e, class t> struct Case<e, const volatile t[]> : Mixins::ConstVolatileArray<Abstract::UnsizedArray<e, t> > {};
+	template <Bool e, class t> struct Case<e,		 t[]> : Mixins::Unqualified	  <Abstract::UnsizedArray<e, t> > {};
+	template <Bool e, class t> struct Case<e, const		 t[]> : Mixins::ConstArray	  <Abstract::UnsizedArray<e, t> > {};
+	template <Bool e, class t> struct Case<e,	volatile t[]> : Mixins::VolatileArray	  <Abstract::UnsizedArray<e, t> > {};
+	template <Bool e, class t> struct Case<e, const volatile t[]> : Mixins::ConstVolatileArray<Abstract::UnsizedArray<e, t> > {};
 
 	// MARK: - Specializations: Pointer types
 
-	template <Boolean e, class t> class Case<e, t*> : public Mixins::Unqualified<Abstract::Pointer<t> > {
+	template <Bool e, class t> class Case<e, t*> : public Mixins::Unqualified<Abstract::Pointer<t> > {
 		private:
 		typedef Case<false, t> Pointee;
 
@@ -2760,7 +2760,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 		};
 	};
 
-	template <Boolean e, class c, class m> class Case<e, m c::*> : public Mixins::Unqualified<Abstract::MemberPointer<m c::*, c, m> > {
+	template <Bool e, class c, class m> class Case<e, m c::*> : public Mixins::Unqualified<Abstract::MemberPointer<m c::*, c, m> > {
 		private:
 		typedef Case<false, m> Pointee;
 
@@ -2775,7 +2775,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 
 	// MARK: - Specializations: Reference types
 
-	template <Boolean e, class t> class Case<e, t&> : public Mixins::Unqualified<Abstract::LValueReference<t> > {
+	template <Bool e, class t> class Case<e, t&> : public Mixins::Unqualified<Abstract::LValueReference<t> > {
 		private:
 		typedef Case<false, t> Referencee;
 
@@ -2791,7 +2791,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 	};
 
 #	if Z_DIALECT_HAS(CPP11, RVALUE_REFERENCE)
-		template <Boolean e, class t> class Case<e, t&&> : public Mixins::Unqualified<Abstract::RValueReference<t> > {
+		template <Bool e, class t> class Case<e, t&&> : public Mixins::Unqualified<Abstract::RValueReference<t> > {
 			private:
 			typedef Case<false, t> Referencee;
 
@@ -2832,7 +2832,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 #	endif
 
 #	if Z_DIALECT_HAS(GNUPP17, NOEXCEPT_OPERAND_DEDUCTION)
-#		define Z_z_NOEXCEPT_PARAMETER Boolean x,
+#		define Z_z_NOEXCEPT_PARAMETER Bool x,
 #		define Z_z_NOEXCEPT_SPECIFIER noexcept(x)
 #		define Z_z_NOEXCEPT_ARGUMENT  x,
 #	elif Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
@@ -2849,11 +2849,11 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 
 #		define Z_z_SPECIALIZATION_PAIR(dummy, qualifiers, Qualifiers)						  \
 															  \
-			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r, class... p>				  \
+			template <Bool e, Z_z_NOEXCEPT_PARAMETER class r, class... p>				  \
 			struct Case<e, r(p...) qualifiers Z_z_NOEXCEPT_SPECIFIER>					  \
 			: Mixins::Qualifiers##Function<Abstract::NonVariadicFunction<Z_z_NOEXCEPT_ARGUMENT r, p...> > {}; \
 															  \
-			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r, class... p>				  \
+			template <Bool e, Z_z_NOEXCEPT_PARAMETER class r, class... p>				  \
 			struct Case<e, r(p..., ...) qualifiers Z_z_NOEXCEPT_SPECIFIER>					  \
 			: Mixins::Qualifiers##Function<Abstract::VariadicFunction<Z_z_NOEXCEPT_ARGUMENT r, p...> > {};
 
@@ -2861,18 +2861,18 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 		Z_z_REFERENCE_SPECIALIZATION_GROUP(-)
 
 #	else
-#		define Z_z_SPECIALIZATION_PAIR(arity, qualifiers, Qualifiers)								       \
-																	       \
-			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)> \
-			struct Case<e, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)) qualifiers Z_z_NOEXCEPT_SPECIFIER>			       \
-			: Mixins::Qualifiers##Function<Abstract::NonVariadicFunctionWith##arity##Parameters<				       \
-				Z_z_NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)			       \
-			> > {};														       \
-																	       \
-			template <Boolean e, Z_z_NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)> \
-			struct Case<e, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) qualifiers Z_z_NOEXCEPT_SPECIFIER>   \
-			: Mixins::Qualifiers##Function<Abstract::VariadicFunctionWith##arity##Parameters<				       \
-				Z_z_NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)			       \
+#		define Z_z_SPECIALIZATION_PAIR(arity, qualifiers, Qualifiers)								     \
+																	     \
+			template <Bool e, Z_z_NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>  \
+			struct Case<e, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)) qualifiers Z_z_NOEXCEPT_SPECIFIER>			     \
+			: Mixins::Qualifiers##Function<Abstract::NonVariadicFunctionWith##arity##Parameters<				     \
+				Z_z_NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)			     \
+			> > {};														     \
+																	     \
+			template <Bool e, Z_z_NOEXCEPT_PARAMETER class r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA)>  \
+			struct Case<e, r(Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA) Z_IF(arity)(Z_COMMA) ...) qualifiers Z_z_NOEXCEPT_SPECIFIER> \
+			: Mixins::Qualifiers##Function<Abstract::VariadicFunctionWith##arity##Parameters<				     \
+				Z_z_NOEXCEPT_ARGUMENT r Z_IF(arity)(Z_COMMA) Z_APPEND_INDEX_FOR_##arity(p, Z_COMMA)			     \
 			> > {};
 
 		Z_CALL_WITH_INDEX_FOR_32(Z_z_NORMAL_SPECIALIZATION_GROUP,    Z_EMPTY)
@@ -2905,7 +2905,7 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 
 #	if Z_DIALECT_HAS(APPLE_C, BLOCK_OBJECT)
 #		if Z_DIALECT_HAS(CPP11, VARIADIC_TEMPLATE)
-			template <Boolean e, class r, class... p> struct Case<e, r(^)(p...)> : Abstract::Valid {
+			template <Bool e, class r, class... p> struct Case<e, r(^)(p...)> : Abstract::Valid {
 				enum {is_block_object = true};
 			};
 
@@ -2917,15 +2917,15 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 	// MARK: - Specializations: Objective-C types
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-		template <Boolean e> struct Case<e, TypeRemovePointer<id   >::type> : Mixins::Unqualified<Abstract::ObjectiveCObject> {};
-		template <Boolean e> struct Case<e, TypeRemovePointer<Class>::type> : Mixins::Unqualified<Abstract::ObjectiveCClass > {};
+		template <Bool e> struct Case<e, TypeRemovePointer<id   >::type> : Mixins::Unqualified<Abstract::ObjectiveCObject> {};
+		template <Bool e> struct Case<e, TypeRemovePointer<Class>::type> : Mixins::Unqualified<Abstract::ObjectiveCClass > {};
 #	endif
 
 	// MARK: - Specializations: Type qualifiers
 
-	template <Boolean e, class t> struct Case<e, const	    t> : Mixins::Const	      <Case<false, t>::is_number, Case<e, t> > {};
-	template <Boolean e, class t> struct Case<e, const volatile t> : Mixins::ConstVolatile<Case<false, t>::is_number, Case<e, t> > {};
-	template <Boolean e, class t> struct Case<e,	   volatile t> : Mixins::Volatile     <Case<false, t>::is_number, Case<e, t> > {};
+	template <Bool e, class t> struct Case<e, const		 t> : Mixins::Const	   <Case<false, t>::is_number, Case<e, t> > {};
+	template <Bool e, class t> struct Case<e, const volatile t> : Mixins::ConstVolatile<Case<false, t>::is_number, Case<e, t> > {};
+	template <Bool e, class t> struct Case<e,	volatile t> : Mixins::Volatile	   <Case<false, t>::is_number, Case<e, t> > {};
 
 	// MARK: - Detail build
 
@@ -3554,215 +3554,215 @@ namespace Zeta {
 #	endif
 
 #	if Z_DIALECT_HAS(CPP14, VARIABLE_TEMPLATE) && Z_DIALECT_HAS_SPECIFIER(CPP11, CONSTEXPR)
-		template <class t> static Z_CONSTANT USize   type_arity				= Type<t>::arity;
-		template <class t> static Z_CONSTANT Boolean type_can_decorate_function		= Type<t>::can_decorate_function;
-		template <class t> static Z_CONSTANT Boolean type_can_decorate_member_pointer	= Type<t>::can_decorate_member_pointer;
-		template <class t> static Z_CONSTANT Boolean type_can_decorate_pointer		= Type<t>::can_decorate_pointer;
-		template <class t> static Z_CONSTANT Boolean type_can_decorate_reference	= Type<t>::can_decorate_reference;
-		template <class t> static Z_CONSTANT Boolean type_can_form_member_pointer	= Type<t>::can_form_member_pointer;
-		template <class t> static Z_CONSTANT Boolean type_can_form_pointer		= Type<t>::can_form_pointer;
-		template <class t> static Z_CONSTANT Boolean type_can_form_reference		= Type<t>::can_form_reference;
-		template <class t> static Z_CONSTANT USize   type_dimension_count		= Type<t>::dimension_count;
-		template <class t> static Z_CONSTANT USize   type_element_count			= Type<t>::element_count;
-		template <class t> static Z_CONSTANT UInt8   type_fixed_fundamental		= Type<t>::fixed_fundamental;
-		template <class t> static Z_CONSTANT UInt8   type_fundamental			= Type<t>::fundamental;
-		template <class t> static Z_CONSTANT Boolean type_has_qualified_indirectee	= Type<t>::has_qualified_indirectee;
-		template <class t> static Z_CONSTANT UInt    type_indirection_level		= Type<t>::indirection_level;
-		template <class t> static Z_CONSTANT Boolean type_is_arithmetic			= Type<t>::is_arithmetic;
-		template <class t> static Z_CONSTANT Boolean type_is_array			= Type<t>::is_array;
-		template <class t> static Z_CONSTANT Boolean type_is_block_object		= Type<t>::is_block_object;
-		template <class t> static Z_CONSTANT Boolean type_is_bool			= Type<t>::is_bool;
-		template <class t> static Z_CONSTANT Boolean type_is_class			= Type<t>::is_class;
-		template <class t> static Z_CONSTANT Boolean type_is_compound			= Type<t>::is_compound;
-		template <class t> static Z_CONSTANT Boolean type_is_const			= Type<t>::is_const;
-		template <class t> static Z_CONSTANT Boolean type_is_const_lvalue		= Type<t>::is_const_lvalue;
-		template <class t> static Z_CONSTANT Boolean type_is_const_rvalue		= Type<t>::is_const_rvalue;
-		template <class t> static Z_CONSTANT Boolean type_is_const_volatile		= Type<t>::is_const_volatile;
-		template <class t> static Z_CONSTANT Boolean type_is_const_volatile_lvalue	= Type<t>::is_const_volatile_lvalue;
-		template <class t> static Z_CONSTANT Boolean type_is_const_volatile_rvalue	= Type<t>::is_const_volatile_rvalue;
-		template <class t> static Z_CONSTANT Boolean type_is_data_lvalue_reference	= Type<t>::is_data_lvalue_reference;
-		template <class t> static Z_CONSTANT Boolean type_is_data_member_pointer	= Type<t>::is_data_member_pointer;
-		template <class t> static Z_CONSTANT Boolean type_is_data_pointer		= Type<t>::is_data_pointer;
-		template <class t> static Z_CONSTANT Boolean type_is_data_reference		= Type<t>::is_data_reference;
-		template <class t> static Z_CONSTANT Boolean type_is_data_rvalue_reference	= Type<t>::is_data_rvalue_reference;
-		template <class t> static Z_CONSTANT Boolean type_is_exact			= Type<t>::is_exact;
-		template <class t> static Z_CONSTANT Boolean type_is_indirection		= Type<t>::is_indirection;
-		template <class t> static Z_CONSTANT Boolean type_is_integer			= Type<t>::is_integer;
-		template <class t> static Z_CONSTANT Boolean type_is_integral			= Type<t>::is_integral;
-		template <class t> static Z_CONSTANT Boolean type_is_floating_point		= Type<t>::is_floating_point;
-		template <class t> static Z_CONSTANT Boolean type_is_function			= Type<t>::is_function;
-		template <class t> static Z_CONSTANT Boolean type_is_function_lvalue_reference	= Type<t>::is_function_lvalue_reference;
-		template <class t> static Z_CONSTANT Boolean type_is_function_pointer		= Type<t>::is_function_pointer;
-		template <class t> static Z_CONSTANT Boolean type_is_function_reference		= Type<t>::is_function_reference;
-		template <class t> static Z_CONSTANT Boolean type_is_function_rvalue_reference	= Type<t>::is_function_rvalue_reference;
-		template <class t> static Z_CONSTANT Boolean type_is_fundamental		= Type<t>::is_fundamental;
-		template <class t> static Z_CONSTANT Boolean type_is_lvalue			= Type<t>::is_lvalue;
-		template <class t> static Z_CONSTANT Boolean type_is_lvalue_reference		= Type<t>::is_lvalue_reference;
-		template <class t> static Z_CONSTANT Boolean type_is_member_function_pointer	= Type<t>::is_member_function_pointer;
-		template <class t> static Z_CONSTANT Boolean type_is_member_pointer		= Type<t>::is_member_pointer;
-		template <class t> static Z_CONSTANT Boolean type_is_nat			= Type<t>::is_nat;
-		template <class t> static Z_CONSTANT Boolean type_is_natural			= Type<t>::is_natural;
-		template <class t> static Z_CONSTANT Boolean type_is_number			= Type<t>::is_number;
-		template <class t> static Z_CONSTANT Boolean type_is_objective_c_class		= Type<t>::is_objective_c_class;
-		template <class t> static Z_CONSTANT Boolean type_is_objective_c_class_pointer	= Type<t>::is_objective_c_class_pointer;
-		template <class t> static Z_CONSTANT Boolean type_is_objective_c_object		= Type<t>::is_objective_c_object;
-		template <class t> static Z_CONSTANT Boolean type_is_objective_c_object_pointer = Type<t>::is_objective_c_object_pointer;
-		template <class t> static Z_CONSTANT Boolean type_is_pointer			= Type<t>::is_pointer;
-		template <class t> static Z_CONSTANT Boolean type_is_qualified			= Type<t>::is_qualified;
-		template <class t> static Z_CONSTANT Boolean type_is_real			= Type<t>::is_real;
-		template <class t> static Z_CONSTANT Boolean type_is_reference			= Type<t>::is_reference;
-		template <class t> static Z_CONSTANT Boolean type_is_rvalue			= Type<t>::is_rvalue;
-		template <class t> static Z_CONSTANT Boolean type_is_rvalue_reference		= Type<t>::is_rvalue_reference;
-		template <class t> static Z_CONSTANT Boolean type_is_scalar			= Type<t>::is_scalar;
-		template <class t> static Z_CONSTANT Boolean type_is_signed			= Type<t>::is_signed;
-		template <class t> static Z_CONSTANT Boolean type_is_simple			= Type<t>::is_simple;
-		template <class t> static Z_CONSTANT Boolean type_is_sized_array		= Type<t>::is_sized_array;
-		template <class t> static Z_CONSTANT Boolean type_is_statically_allocatable	= Type<t>::is_statically_allocatable;
-		template <class t> static Z_CONSTANT Boolean type_is_storable			= Type<t>::is_storable;
-		template <class t> static Z_CONSTANT Boolean type_is_structure			= Type<t>::is_structure;
-		template <class t> static Z_CONSTANT Boolean type_is_unsigned			= Type<t>::is_unsigned;
-		template <class t> static Z_CONSTANT Boolean type_is_unsized_array		= Type<t>::is_unsized_array;
-		template <class t> static Z_CONSTANT Boolean type_is_valid			= Type<t>::is_valid;
-		template <class t> static Z_CONSTANT Boolean type_is_variadic			= Type<t>::is_variadic;
-		template <class t> static Z_CONSTANT Boolean type_is_variadic_function		= Type<t>::is_variadic_function;
-		template <class t> static Z_CONSTANT Boolean type_is_void			= Type<t>::is_void;
-		template <class t> static Z_CONSTANT Boolean type_is_void_pointer		= Type<t>::is_void_pointer;
-		template <class t> static Z_CONSTANT Boolean type_is_volatile			= Type<t>::is_volatile;
-		template <class t> static Z_CONSTANT Boolean type_is_volatile_lvalue		= Type<t>::is_volatile_lvalue;
-		template <class t> static Z_CONSTANT Boolean type_is_volatile_rvalue		= Type<t>::is_volatile_rvalue;
-		template <class t> static Z_CONSTANT Boolean type_iss_const			= Type<t>::iss_const;
-		template <class t> static Z_CONSTANT Boolean type_iss_const_lvalue		= Type<t>::iss_const_lvalue;
-		template <class t> static Z_CONSTANT Boolean type_iss_const_rvalue		= Type<t>::iss_const_rvalue;
-		template <class t> static Z_CONSTANT Boolean type_iss_const_volatile		= Type<t>::iss_const_volatile;
-		template <class t> static Z_CONSTANT Boolean type_iss_lvalue			= Type<t>::iss_lvalue;
-		template <class t> static Z_CONSTANT Boolean type_iss_rvalue			= Type<t>::iss_rvalue;
-		template <class t> static Z_CONSTANT Boolean type_iss_volatile			= Type<t>::iss_volatile;
-		template <class t> static Z_CONSTANT Boolean type_iss_volatile_lvalue		= Type<t>::iss_volatile_lvalue;
-		template <class t> static Z_CONSTANT Boolean type_iss_volatile_rvalue		= Type<t>::iss_volatile_rvalue;
-		template <class t> static Z_CONSTANT UInt    type_number_format			= Type<t>::number_format;
-		template <class t> static Z_CONSTANT UInt    type_number_set			= Type<t>::number_set;
-		template <class t> static Z_CONSTANT UInt    type_pointer_level			= Type<t>::pointer_level;
+		template <class t> static Z_CONSTANT USize type_arity			      = Type<t>::arity;
+		template <class t> static Z_CONSTANT Bool  type_can_decorate_function	      = Type<t>::can_decorate_function;
+		template <class t> static Z_CONSTANT Bool  type_can_decorate_member_pointer   = Type<t>::can_decorate_member_pointer;
+		template <class t> static Z_CONSTANT Bool  type_can_decorate_pointer	      = Type<t>::can_decorate_pointer;
+		template <class t> static Z_CONSTANT Bool  type_can_decorate_reference	      = Type<t>::can_decorate_reference;
+		template <class t> static Z_CONSTANT Bool  type_can_form_member_pointer	      = Type<t>::can_form_member_pointer;
+		template <class t> static Z_CONSTANT Bool  type_can_form_pointer	      = Type<t>::can_form_pointer;
+		template <class t> static Z_CONSTANT Bool  type_can_form_reference	      = Type<t>::can_form_reference;
+		template <class t> static Z_CONSTANT USize type_dimension_count		      = Type<t>::dimension_count;
+		template <class t> static Z_CONSTANT USize type_element_count		      = Type<t>::element_count;
+		template <class t> static Z_CONSTANT UInt8 type_fixed_fundamental	      = Type<t>::fixed_fundamental;
+		template <class t> static Z_CONSTANT UInt8 type_fundamental		      = Type<t>::fundamental;
+		template <class t> static Z_CONSTANT Bool  type_has_qualified_indirectee      = Type<t>::has_qualified_indirectee;
+		template <class t> static Z_CONSTANT UInt  type_indirection_level	      = Type<t>::indirection_level;
+		template <class t> static Z_CONSTANT Bool  type_is_arithmetic		      = Type<t>::is_arithmetic;
+		template <class t> static Z_CONSTANT Bool  type_is_array		      = Type<t>::is_array;
+		template <class t> static Z_CONSTANT Bool  type_is_block_object		      = Type<t>::is_block_object;
+		template <class t> static Z_CONSTANT Bool  type_is_bool			      = Type<t>::is_bool;
+		template <class t> static Z_CONSTANT Bool  type_is_class		      = Type<t>::is_class;
+		template <class t> static Z_CONSTANT Bool  type_is_compound		      = Type<t>::is_compound;
+		template <class t> static Z_CONSTANT Bool  type_is_const		      = Type<t>::is_const;
+		template <class t> static Z_CONSTANT Bool  type_is_const_lvalue		      = Type<t>::is_const_lvalue;
+		template <class t> static Z_CONSTANT Bool  type_is_const_rvalue		      = Type<t>::is_const_rvalue;
+		template <class t> static Z_CONSTANT Bool  type_is_const_volatile	      = Type<t>::is_const_volatile;
+		template <class t> static Z_CONSTANT Bool  type_is_const_volatile_lvalue      = Type<t>::is_const_volatile_lvalue;
+		template <class t> static Z_CONSTANT Bool  type_is_const_volatile_rvalue      = Type<t>::is_const_volatile_rvalue;
+		template <class t> static Z_CONSTANT Bool  type_is_data_lvalue_reference      = Type<t>::is_data_lvalue_reference;
+		template <class t> static Z_CONSTANT Bool  type_is_data_member_pointer	      = Type<t>::is_data_member_pointer;
+		template <class t> static Z_CONSTANT Bool  type_is_data_pointer		      = Type<t>::is_data_pointer;
+		template <class t> static Z_CONSTANT Bool  type_is_data_reference	      = Type<t>::is_data_reference;
+		template <class t> static Z_CONSTANT Bool  type_is_data_rvalue_reference      = Type<t>::is_data_rvalue_reference;
+		template <class t> static Z_CONSTANT Bool  type_is_exact		      = Type<t>::is_exact;
+		template <class t> static Z_CONSTANT Bool  type_is_indirection		      = Type<t>::is_indirection;
+		template <class t> static Z_CONSTANT Bool  type_is_integer		      = Type<t>::is_integer;
+		template <class t> static Z_CONSTANT Bool  type_is_integral		      = Type<t>::is_integral;
+		template <class t> static Z_CONSTANT Bool  type_is_floating_point	      = Type<t>::is_floating_point;
+		template <class t> static Z_CONSTANT Bool  type_is_function		      = Type<t>::is_function;
+		template <class t> static Z_CONSTANT Bool  type_is_function_lvalue_reference  = Type<t>::is_function_lvalue_reference;
+		template <class t> static Z_CONSTANT Bool  type_is_function_pointer	      = Type<t>::is_function_pointer;
+		template <class t> static Z_CONSTANT Bool  type_is_function_reference	      = Type<t>::is_function_reference;
+		template <class t> static Z_CONSTANT Bool  type_is_function_rvalue_reference  = Type<t>::is_function_rvalue_reference;
+		template <class t> static Z_CONSTANT Bool  type_is_fundamental		      = Type<t>::is_fundamental;
+		template <class t> static Z_CONSTANT Bool  type_is_lvalue		      = Type<t>::is_lvalue;
+		template <class t> static Z_CONSTANT Bool  type_is_lvalue_reference	      = Type<t>::is_lvalue_reference;
+		template <class t> static Z_CONSTANT Bool  type_is_member_function_pointer    = Type<t>::is_member_function_pointer;
+		template <class t> static Z_CONSTANT Bool  type_is_member_pointer	      = Type<t>::is_member_pointer;
+		template <class t> static Z_CONSTANT Bool  type_is_nat			      = Type<t>::is_nat;
+		template <class t> static Z_CONSTANT Bool  type_is_natural		      = Type<t>::is_natural;
+		template <class t> static Z_CONSTANT Bool  type_is_number		      = Type<t>::is_number;
+		template <class t> static Z_CONSTANT Bool  type_is_objective_c_class	      = Type<t>::is_objective_c_class;
+		template <class t> static Z_CONSTANT Bool  type_is_objective_c_class_pointer  = Type<t>::is_objective_c_class_pointer;
+		template <class t> static Z_CONSTANT Bool  type_is_objective_c_object	      = Type<t>::is_objective_c_object;
+		template <class t> static Z_CONSTANT Bool  type_is_objective_c_object_pointer = Type<t>::is_objective_c_object_pointer;
+		template <class t> static Z_CONSTANT Bool  type_is_pointer		      = Type<t>::is_pointer;
+		template <class t> static Z_CONSTANT Bool  type_is_qualified		      = Type<t>::is_qualified;
+		template <class t> static Z_CONSTANT Bool  type_is_real			      = Type<t>::is_real;
+		template <class t> static Z_CONSTANT Bool  type_is_reference		      = Type<t>::is_reference;
+		template <class t> static Z_CONSTANT Bool  type_is_rvalue		      = Type<t>::is_rvalue;
+		template <class t> static Z_CONSTANT Bool  type_is_rvalue_reference	      = Type<t>::is_rvalue_reference;
+		template <class t> static Z_CONSTANT Bool  type_is_scalar		      = Type<t>::is_scalar;
+		template <class t> static Z_CONSTANT Bool  type_is_signed		      = Type<t>::is_signed;
+		template <class t> static Z_CONSTANT Bool  type_is_simple		      = Type<t>::is_simple;
+		template <class t> static Z_CONSTANT Bool  type_is_sized_array		      = Type<t>::is_sized_array;
+		template <class t> static Z_CONSTANT Bool  type_is_statically_allocatable     = Type<t>::is_statically_allocatable;
+		template <class t> static Z_CONSTANT Bool  type_is_storable		      = Type<t>::is_storable;
+		template <class t> static Z_CONSTANT Bool  type_is_structure		      = Type<t>::is_structure;
+		template <class t> static Z_CONSTANT Bool  type_is_unsigned		      = Type<t>::is_unsigned;
+		template <class t> static Z_CONSTANT Bool  type_is_unsized_array	      = Type<t>::is_unsized_array;
+		template <class t> static Z_CONSTANT Bool  type_is_valid		      = Type<t>::is_valid;
+		template <class t> static Z_CONSTANT Bool  type_is_variadic		      = Type<t>::is_variadic;
+		template <class t> static Z_CONSTANT Bool  type_is_variadic_function	      = Type<t>::is_variadic_function;
+		template <class t> static Z_CONSTANT Bool  type_is_void			      = Type<t>::is_void;
+		template <class t> static Z_CONSTANT Bool  type_is_void_pointer		      = Type<t>::is_void_pointer;
+		template <class t> static Z_CONSTANT Bool  type_is_volatile		      = Type<t>::is_volatile;
+		template <class t> static Z_CONSTANT Bool  type_is_volatile_lvalue	      = Type<t>::is_volatile_lvalue;
+		template <class t> static Z_CONSTANT Bool  type_is_volatile_rvalue	      = Type<t>::is_volatile_rvalue;
+		template <class t> static Z_CONSTANT Bool  type_iss_const		      = Type<t>::iss_const;
+		template <class t> static Z_CONSTANT Bool  type_iss_const_lvalue	      = Type<t>::iss_const_lvalue;
+		template <class t> static Z_CONSTANT Bool  type_iss_const_rvalue	      = Type<t>::iss_const_rvalue;
+		template <class t> static Z_CONSTANT Bool  type_iss_const_volatile	      = Type<t>::iss_const_volatile;
+		template <class t> static Z_CONSTANT Bool  type_iss_lvalue		      = Type<t>::iss_lvalue;
+		template <class t> static Z_CONSTANT Bool  type_iss_rvalue		      = Type<t>::iss_rvalue;
+		template <class t> static Z_CONSTANT Bool  type_iss_volatile		      = Type<t>::iss_volatile;
+		template <class t> static Z_CONSTANT Bool  type_iss_volatile_lvalue	      = Type<t>::iss_volatile_lvalue;
+		template <class t> static Z_CONSTANT Bool  type_iss_volatile_rvalue	      = Type<t>::iss_volatile_rvalue;
+		template <class t> static Z_CONSTANT UInt  type_number_format		      = Type<t>::number_format;
+		template <class t> static Z_CONSTANT UInt  type_number_set		      = Type<t>::number_set;
+		template <class t> static Z_CONSTANT UInt  type_pointer_level		      = Type<t>::pointer_level;
 
-		template <class a, class b> static Z_CONSTANT Boolean type_is_same = TypeIsSame<a, b>::value;
+		template <class a, class b> static Z_CONSTANT Bool type_is_same = TypeIsSame<a, b>::value;
 
 #		if Z_HAS(TypeIsBase)
 			template <class t, class of_type>
-			static Z_CONSTANT Boolean type_is_base = TypeIsBase<t, of_type>::value;
+			static Z_CONSTANT Bool type_is_base = TypeIsBase<t, of_type>::value;
 #		endif
 
 #		if Z_HAS(TypeIsConvertible)
 			template <class t, class to_type>
-			static Z_CONSTANT Boolean type_is_convertible = TypeIsConvertible<t, to_type>::value;
+			static Z_CONSTANT Bool type_is_convertible = TypeIsConvertible<t, to_type>::value;
 #		endif
 
 #		if Z_HAS(TypeIsConstructible)
 			template <class t, class... parameters>
-			static Z_CONSTANT Boolean type_is_constructible = TypeIsConstructible<t, parameters...>::value;
+			static Z_CONSTANT Bool type_is_constructible = TypeIsConstructible<t, parameters...>::value;
 #		endif
 
 #		if Z_HAS(TypeIsNothrowAssignable)
 			template <class t, class from_type>
-			static Z_CONSTANT Boolean type_is_nothrow_assignable = TypeIsNothrowAssignable<t, from_type>::value;
+			static Z_CONSTANT Bool type_is_nothrow_assignable = TypeIsNothrowAssignable<t, from_type>::value;
 #		endif
 
 #		if Z_HAS(TypeIsNothrowConstructible)
 			template <class t, class... parameters>
-			static Z_CONSTANT Boolean type_is_nothrow_constructible = TypeIsNothrowConstructible<t, parameters...>::value;
+			static Z_CONSTANT Bool type_is_nothrow_constructible = TypeIsNothrowConstructible<t, parameters...>::value;
 #		endif
 
 #		if Z_HAS(TypeIsTriviallyAssignable)
 			template <class t, class from_type>
-			static Z_CONSTANT Boolean type_is_trivially_assignable = TypeIsTriviallyAssignable<t, from_type>::value;
+			static Z_CONSTANT Bool type_is_trivially_assignable = TypeIsTriviallyAssignable<t, from_type>::value;
 #		endif
 
 #		if Z_HAS(TypeIsTriviallyConstructible)
 			template <class t, class... parameters>
-			static Z_CONSTANT Boolean type_is_trivially_constructible = TypeIsTriviallyConstructible<t, parameters...>::value;
+			static Z_CONSTANT Bool type_is_trivially_constructible = TypeIsTriviallyConstructible<t, parameters...>::value;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, has_virtual_destructor)
-			template <class t> static Z_CONSTANT Boolean type_has_virtual_destructor = Type<t>::has_virtual_destructor;
+			template <class t> static Z_CONSTANT Bool type_has_virtual_destructor = Type<t>::has_virtual_destructor;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_abstract)
-			template <class t> static Z_CONSTANT Boolean type_is_abstract = Type<t>::is_abstract;
+			template <class t> static Z_CONSTANT Bool type_is_abstract = Type<t>::is_abstract;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_aggregate)
-			template <class t> static Z_CONSTANT Boolean type_is_aggregate = Type<t>::is_aggregate;
+			template <class t> static Z_CONSTANT Bool type_is_aggregate = Type<t>::is_aggregate;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_default_constructible)
-			template <class t> static Z_CONSTANT Boolean type_is_default_constructible = Type<t>::is_default_constructible;
+			template <class t> static Z_CONSTANT Bool type_is_default_constructible = Type<t>::is_default_constructible;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_empty)
-			template <class t> static Z_CONSTANT Boolean type_is_empty = Type<t>::is_empty;
+			template <class t> static Z_CONSTANT Bool type_is_empty = Type<t>::is_empty;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_enumeration)
-			template <class t> static Z_CONSTANT Boolean type_is_enumeration = Type<t>::is_enumeration;
+			template <class t> static Z_CONSTANT Bool type_is_enumeration = Type<t>::is_enumeration;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_final)
-			template <class t> static Z_CONSTANT Boolean type_is_final = Type<t>::is_final;
+			template <class t> static Z_CONSTANT Bool type_is_final = Type<t>::is_final;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_interface_class)
-			template <class t> static Z_CONSTANT Boolean type_is_interface_class = Type<t>::is_interface_class;
+			template <class t> static Z_CONSTANT Bool type_is_interface_class = Type<t>::is_interface_class;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_literal)
-			template <class t> static Z_CONSTANT Boolean type_is_literal = Type<t>::is_literal;
+			template <class t> static Z_CONSTANT Bool type_is_literal = Type<t>::is_literal;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_noexcept)
-			template <class t> static Z_CONSTANT Boolean type_is_noexcept = Type<t>::is_noexcept;
+			template <class t> static Z_CONSTANT Bool type_is_noexcept = Type<t>::is_noexcept;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_nullptr)
-			template <class t> static Z_CONSTANT Boolean type_is_nullptr = Type<t>::is_nullptr;
+			template <class t> static Z_CONSTANT Bool type_is_nullptr = Type<t>::is_nullptr;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_pod)
-			template <class t> static Z_CONSTANT Boolean type_is_pod = Type<t>::is_pod;
+			template <class t> static Z_CONSTANT Bool type_is_pod = Type<t>::is_pod;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_polymorphic)
-			template <class t> static Z_CONSTANT Boolean type_is_polymorphic = Type<t>::is_polymorphic;
+			template <class t> static Z_CONSTANT Bool type_is_polymorphic = Type<t>::is_polymorphic;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_template)
-			template <class t> static Z_CONSTANT Boolean type_is_template = Type<t>::is_template;
+			template <class t> static Z_CONSTANT Bool type_is_template = Type<t>::is_template;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_trivially_copy_assignable)
-			template <class t> static Z_CONSTANT Boolean type_is_trivially_copy_assignable = Type<t>::is_trivially_copy_assignable;
+			template <class t> static Z_CONSTANT Bool type_is_trivially_copy_assignable = Type<t>::is_trivially_copy_assignable;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_trivially_copy_constructible)
-			template <class t> static Z_CONSTANT Boolean type_is_trivially_copy_constructible = Type<t>::is_trivially_copy_constructible;
+			template <class t> static Z_CONSTANT Bool type_is_trivially_copy_constructible = Type<t>::is_trivially_copy_constructible;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_trivially_copyable)
-			template <class t> static Z_CONSTANT Boolean type_is_trivially_copyable = Type<t>::is_trivially_copyable;
+			template <class t> static Z_CONSTANT Bool type_is_trivially_copyable = Type<t>::is_trivially_copyable;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_trivially_default_constructible)
-			template <class t> static Z_CONSTANT Boolean type_is_trivially_default_constructible = Type<t>::is_trivially_default_constructible;
+			template <class t> static Z_CONSTANT Bool type_is_trivially_default_constructible = Type<t>::is_trivially_default_constructible;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_trivially_destructible)
-			template <class t> static Z_CONSTANT Boolean type_is_trivially_destructible = Type<t>::is_trivially_destructible;
+			template <class t> static Z_CONSTANT Bool type_is_trivially_destructible = Type<t>::is_trivially_destructible;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_union)
-			template <class t> static Z_CONSTANT Boolean type_is_union = Type<t>::is_union;
+			template <class t> static Z_CONSTANT Bool type_is_union = Type<t>::is_union;
 #		endif
 
 #		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_DIALECT_HAS(CPP11, EXPRESSION_SFINAE)
-			template <class t> static Z_CONSTANT Boolean type_is_objective_c_instance	  = Type<t>::is_objective_c_instance;
-			template <class t> static Z_CONSTANT Boolean type_is_objective_c_instance_pointer = Type<t>::is_objective_c_instance_pointer;
+			template <class t> static Z_CONSTANT Bool type_is_objective_c_instance	       = Type<t>::is_objective_c_instance;
+			template <class t> static Z_CONSTANT Bool type_is_objective_c_instance_pointer = Type<t>::is_objective_c_instance_pointer;
 #		endif
 #	endif
 
@@ -3852,218 +3852,216 @@ namespace Zeta {
 
 
 
-
-
 #	if Z_DIALECT_HAS(CPP14, VARIABLE_TEMPLATE) && Z_DIALECT_HAS_SPECIFIER(CPP11, CONSTEXPR)
-		template <class t> static Z_CONSTANT USize   arity			   = Type<t>::arity;
-		template <class t> static Z_CONSTANT Boolean can_decorate_function	   = Type<t>::can_decorate_function;
-		template <class t> static Z_CONSTANT Boolean can_decorate_member_pointer   = Type<t>::can_decorate_member_pointer;
-		template <class t> static Z_CONSTANT Boolean can_decorate_pointer	   = Type<t>::can_decorate_pointer;
-		template <class t> static Z_CONSTANT Boolean can_decorate_reference	   = Type<t>::can_decorate_reference;
-		template <class t> static Z_CONSTANT Boolean can_form_member_pointer	   = Type<t>::can_form_member_pointer;
-		template <class t> static Z_CONSTANT Boolean can_form_pointer		   = Type<t>::can_form_pointer;
-		template <class t> static Z_CONSTANT Boolean can_form_reference		   = Type<t>::can_form_reference;
-		template <class t> static Z_CONSTANT USize   dimension_count		   = Type<t>::dimension_count;
-		template <class t> static Z_CONSTANT USize   element_count		   = Type<t>::element_count;
-		template <class t> static Z_CONSTANT UInt8   fixed_fundamental		   = Type<t>::fixed_fundamental;
-		template <class t> static Z_CONSTANT UInt8   fundamental		   = Type<t>::fundamental;
-		template <class t> static Z_CONSTANT Boolean has_qualified_indirectee	   = Type<t>::has_qualified_indirectee;
-		template <class t> static Z_CONSTANT UInt    indirection_level		   = Type<t>::indirection_level;
-		template <class t> static Z_CONSTANT Boolean is_arithmetic		   = Type<t>::is_arithmetic;
-		template <class t> static Z_CONSTANT Boolean is_array			   = Type<t>::is_array;
-		template <class t> static Z_CONSTANT Boolean is_block_object		   = Type<t>::is_block_object;
-		template <class t> static Z_CONSTANT Boolean is_bool			   = Type<t>::is_bool;
-		template <class t> static Z_CONSTANT Boolean is_class			   = Type<t>::is_class;
-		template <class t> static Z_CONSTANT Boolean is_compound		   = Type<t>::is_compound;
-		template <class t> static Z_CONSTANT Boolean is_const			   = Type<t>::is_const;
-		template <class t> static Z_CONSTANT Boolean is_const_lvalue		   = Type<t>::is_const_lvalue;
-		template <class t> static Z_CONSTANT Boolean is_const_rvalue		   = Type<t>::is_const_rvalue;
-		template <class t> static Z_CONSTANT Boolean is_const_volatile		   = Type<t>::is_const_volatile;
-		template <class t> static Z_CONSTANT Boolean is_const_volatile_lvalue	   = Type<t>::is_const_volatile_lvalue;
-		template <class t> static Z_CONSTANT Boolean is_const_volatile_rvalue	   = Type<t>::is_const_volatile_rvalue;
-		template <class t> static Z_CONSTANT Boolean is_data_lvalue_reference	   = Type<t>::is_data_lvalue_reference;
-		template <class t> static Z_CONSTANT Boolean is_data_member_pointer	   = Type<t>::is_data_member_pointer;
-		template <class t> static Z_CONSTANT Boolean is_data_pointer		   = Type<t>::is_data_pointer;
-		template <class t> static Z_CONSTANT Boolean is_data_reference		   = Type<t>::is_data_reference;
-		template <class t> static Z_CONSTANT Boolean is_data_rvalue_reference	   = Type<t>::is_data_rvalue_reference;
-		template <class t> static Z_CONSTANT Boolean is_exact			   = Type<t>::is_exact;
-		template <class t> static Z_CONSTANT Boolean is_indirection		   = Type<t>::is_indirection;
-		template <class t> static Z_CONSTANT Boolean is_integer			   = Type<t>::is_integer;
-		template <class t> static Z_CONSTANT Boolean is_integral		   = Type<t>::is_integral;
-		template <class t> static Z_CONSTANT Boolean is_floating_point		   = Type<t>::is_floating_point;
-		template <class t> static Z_CONSTANT Boolean is_function		   = Type<t>::is_function;
-		template <class t> static Z_CONSTANT Boolean is_function_lvalue_reference  = Type<t>::is_function_lvalue_reference;
-		template <class t> static Z_CONSTANT Boolean is_function_pointer	   = Type<t>::is_function_pointer;
-		template <class t> static Z_CONSTANT Boolean is_function_reference	   = Type<t>::is_function_reference;
-		template <class t> static Z_CONSTANT Boolean is_function_rvalue_reference  = Type<t>::is_function_rvalue_reference;
-		template <class t> static Z_CONSTANT Boolean is_fundamental		   = Type<t>::is_fundamental;
-		template <class t> static Z_CONSTANT Boolean is_lvalue			   = Type<t>::is_lvalue;
-		template <class t> static Z_CONSTANT Boolean is_lvalue_reference	   = Type<t>::is_lvalue_reference;
-		template <class t> static Z_CONSTANT Boolean is_member_function_pointer	   = Type<t>::is_member_function_pointer;
-		template <class t> static Z_CONSTANT Boolean is_member_pointer		   = Type<t>::is_member_pointer;
-		template <class t> static Z_CONSTANT Boolean is_nat			   = Type<t>::is_nat;
-		template <class t> static Z_CONSTANT Boolean is_natural			   = Type<t>::is_natural;
-		template <class t> static Z_CONSTANT Boolean is_number			   = Type<t>::is_number;
-		template <class t> static Z_CONSTANT Boolean is_objective_c_class	   = Type<t>::is_objective_c_class;
-		template <class t> static Z_CONSTANT Boolean is_objective_c_class_pointer  = Type<t>::is_objective_c_class_pointer;
-		template <class t> static Z_CONSTANT Boolean is_objective_c_object	   = Type<t>::is_objective_c_object;
-		template <class t> static Z_CONSTANT Boolean is_objective_c_object_pointer = Type<t>::is_objective_c_object_pointer;
-		template <class t> static Z_CONSTANT Boolean is_pointer			   = Type<t>::is_pointer;
-		template <class t> static Z_CONSTANT Boolean is_qualified		   = Type<t>::is_qualified;
-		template <class t> static Z_CONSTANT Boolean is_real			   = Type<t>::is_real;
-		template <class t> static Z_CONSTANT Boolean is_reference		   = Type<t>::is_reference;
-		template <class t> static Z_CONSTANT Boolean is_rvalue			   = Type<t>::is_rvalue;
-		template <class t> static Z_CONSTANT Boolean is_rvalue_reference	   = Type<t>::is_rvalue_reference;
-		template <class t> static Z_CONSTANT Boolean is_scalar			   = Type<t>::is_scalar;
-		template <class t> static Z_CONSTANT Boolean is_signed			   = Type<t>::is_signed;
-		template <class t> static Z_CONSTANT Boolean is_simple			   = Type<t>::is_simple;
-		template <class t> static Z_CONSTANT Boolean is_sized_array		   = Type<t>::is_sized_array;
-		template <class t> static Z_CONSTANT Boolean is_statically_allocatable	   = Type<t>::is_statically_allocatable;
-		template <class t> static Z_CONSTANT Boolean is_storable		   = Type<t>::is_storable;
-		template <class t> static Z_CONSTANT Boolean is_structure		   = Type<t>::is_structure;
-		template <class t> static Z_CONSTANT Boolean is_unsigned		   = Type<t>::is_unsigned;
-		template <class t> static Z_CONSTANT Boolean is_unsized_array		   = Type<t>::is_unsized_array;
-		template <class t> static Z_CONSTANT Boolean is_valid			   = Type<t>::is_valid;
-		template <class t> static Z_CONSTANT Boolean is_variadic		   = Type<t>::is_variadic;
-		template <class t> static Z_CONSTANT Boolean is_variadic_function	   = Type<t>::is_variadic_function;
-		template <class t> static Z_CONSTANT Boolean is_void			   = Type<t>::is_void;
-		template <class t> static Z_CONSTANT Boolean is_void_pointer		   = Type<t>::is_void_pointer;
-		template <class t> static Z_CONSTANT Boolean is_volatile		   = Type<t>::is_volatile;
-		template <class t> static Z_CONSTANT Boolean is_volatile_lvalue		   = Type<t>::is_volatile_lvalue;
-		template <class t> static Z_CONSTANT Boolean is_volatile_rvalue		   = Type<t>::is_volatile_rvalue;
-		template <class t> static Z_CONSTANT Boolean iss_const			   = Type<t>::iss_const;
-		template <class t> static Z_CONSTANT Boolean iss_const_lvalue		   = Type<t>::iss_const_lvalue;
-		template <class t> static Z_CONSTANT Boolean iss_const_rvalue		   = Type<t>::iss_const_rvalue;
-		template <class t> static Z_CONSTANT Boolean iss_const_volatile		   = Type<t>::iss_const_volatile;
-		template <class t> static Z_CONSTANT Boolean iss_lvalue			   = Type<t>::iss_lvalue;
-		template <class t> static Z_CONSTANT Boolean iss_rvalue			   = Type<t>::iss_rvalue;
-		template <class t> static Z_CONSTANT Boolean iss_volatile		   = Type<t>::iss_volatile;
-		template <class t> static Z_CONSTANT Boolean iss_volatile_lvalue	   = Type<t>::iss_volatile_lvalue;
-		template <class t> static Z_CONSTANT Boolean iss_volatile_rvalue	   = Type<t>::iss_volatile_rvalue;
-		template <class t> static Z_CONSTANT UInt    number_format		   = Type<t>::number_format;
-		template <class t> static Z_CONSTANT UInt    number_set			   = Type<t>::number_set;
-		template <class t> static Z_CONSTANT UInt    pointer_level		   = Type<t>::pointer_level;
+		template <class t> static Z_CONSTANT USize arity			 = Type<t>::arity;
+		template <class t> static Z_CONSTANT Bool  can_decorate_function	 = Type<t>::can_decorate_function;
+		template <class t> static Z_CONSTANT Bool  can_decorate_member_pointer	 = Type<t>::can_decorate_member_pointer;
+		template <class t> static Z_CONSTANT Bool  can_decorate_pointer		 = Type<t>::can_decorate_pointer;
+		template <class t> static Z_CONSTANT Bool  can_decorate_reference	 = Type<t>::can_decorate_reference;
+		template <class t> static Z_CONSTANT Bool  can_form_member_pointer	 = Type<t>::can_form_member_pointer;
+		template <class t> static Z_CONSTANT Bool  can_form_pointer		 = Type<t>::can_form_pointer;
+		template <class t> static Z_CONSTANT Bool  can_form_reference		 = Type<t>::can_form_reference;
+		template <class t> static Z_CONSTANT USize dimension_count		 = Type<t>::dimension_count;
+		template <class t> static Z_CONSTANT USize element_count		 = Type<t>::element_count;
+		template <class t> static Z_CONSTANT UInt8 fixed_fundamental		 = Type<t>::fixed_fundamental;
+		template <class t> static Z_CONSTANT UInt8 fundamental			 = Type<t>::fundamental;
+		template <class t> static Z_CONSTANT Bool  has_qualified_indirectee	 = Type<t>::has_qualified_indirectee;
+		template <class t> static Z_CONSTANT UInt  indirection_level		 = Type<t>::indirection_level;
+		template <class t> static Z_CONSTANT Bool  is_arithmetic		 = Type<t>::is_arithmetic;
+		template <class t> static Z_CONSTANT Bool  is_array			 = Type<t>::is_array;
+		template <class t> static Z_CONSTANT Bool  is_block_object		 = Type<t>::is_block_object;
+		template <class t> static Z_CONSTANT Bool  is_bool			 = Type<t>::is_bool;
+		template <class t> static Z_CONSTANT Bool  is_class			 = Type<t>::is_class;
+		template <class t> static Z_CONSTANT Bool  is_compound			 = Type<t>::is_compound;
+		template <class t> static Z_CONSTANT Bool  is_const			 = Type<t>::is_const;
+		template <class t> static Z_CONSTANT Bool  is_const_lvalue		 = Type<t>::is_const_lvalue;
+		template <class t> static Z_CONSTANT Bool  is_const_rvalue		 = Type<t>::is_const_rvalue;
+		template <class t> static Z_CONSTANT Bool  is_const_volatile		 = Type<t>::is_const_volatile;
+		template <class t> static Z_CONSTANT Bool  is_const_volatile_lvalue	 = Type<t>::is_const_volatile_lvalue;
+		template <class t> static Z_CONSTANT Bool  is_const_volatile_rvalue	 = Type<t>::is_const_volatile_rvalue;
+		template <class t> static Z_CONSTANT Bool  is_data_lvalue_reference	 = Type<t>::is_data_lvalue_reference;
+		template <class t> static Z_CONSTANT Bool  is_data_member_pointer	 = Type<t>::is_data_member_pointer;
+		template <class t> static Z_CONSTANT Bool  is_data_pointer		 = Type<t>::is_data_pointer;
+		template <class t> static Z_CONSTANT Bool  is_data_reference		 = Type<t>::is_data_reference;
+		template <class t> static Z_CONSTANT Bool  is_data_rvalue_reference	 = Type<t>::is_data_rvalue_reference;
+		template <class t> static Z_CONSTANT Bool  is_exact			 = Type<t>::is_exact;
+		template <class t> static Z_CONSTANT Bool  is_indirection		 = Type<t>::is_indirection;
+		template <class t> static Z_CONSTANT Bool  is_integer			 = Type<t>::is_integer;
+		template <class t> static Z_CONSTANT Bool  is_integral			 = Type<t>::is_integral;
+		template <class t> static Z_CONSTANT Bool  is_floating_point		 = Type<t>::is_floating_point;
+		template <class t> static Z_CONSTANT Bool  is_function			 = Type<t>::is_function;
+		template <class t> static Z_CONSTANT Bool  is_function_lvalue_reference	 = Type<t>::is_function_lvalue_reference;
+		template <class t> static Z_CONSTANT Bool  is_function_pointer		 = Type<t>::is_function_pointer;
+		template <class t> static Z_CONSTANT Bool  is_function_reference	 = Type<t>::is_function_reference;
+		template <class t> static Z_CONSTANT Bool  is_function_rvalue_reference	 = Type<t>::is_function_rvalue_reference;
+		template <class t> static Z_CONSTANT Bool  is_fundamental		 = Type<t>::is_fundamental;
+		template <class t> static Z_CONSTANT Bool  is_lvalue			 = Type<t>::is_lvalue;
+		template <class t> static Z_CONSTANT Bool  is_lvalue_reference		 = Type<t>::is_lvalue_reference;
+		template <class t> static Z_CONSTANT Bool  is_member_function_pointer	 = Type<t>::is_member_function_pointer;
+		template <class t> static Z_CONSTANT Bool  is_member_pointer		 = Type<t>::is_member_pointer;
+		template <class t> static Z_CONSTANT Bool  is_nat			 = Type<t>::is_nat;
+		template <class t> static Z_CONSTANT Bool  is_natural			 = Type<t>::is_natural;
+		template <class t> static Z_CONSTANT Bool  is_number			 = Type<t>::is_number;
+		template <class t> static Z_CONSTANT Bool  is_objective_c_class		 = Type<t>::is_objective_c_class;
+		template <class t> static Z_CONSTANT Bool  is_objective_c_class_pointer  = Type<t>::is_objective_c_class_pointer;
+		template <class t> static Z_CONSTANT Bool  is_objective_c_object	 = Type<t>::is_objective_c_object;
+		template <class t> static Z_CONSTANT Bool  is_objective_c_object_pointer = Type<t>::is_objective_c_object_pointer;
+		template <class t> static Z_CONSTANT Bool  is_pointer			 = Type<t>::is_pointer;
+		template <class t> static Z_CONSTANT Bool  is_qualified			 = Type<t>::is_qualified;
+		template <class t> static Z_CONSTANT Bool  is_real			 = Type<t>::is_real;
+		template <class t> static Z_CONSTANT Bool  is_reference			 = Type<t>::is_reference;
+		template <class t> static Z_CONSTANT Bool  is_rvalue			 = Type<t>::is_rvalue;
+		template <class t> static Z_CONSTANT Bool  is_rvalue_reference		 = Type<t>::is_rvalue_reference;
+		template <class t> static Z_CONSTANT Bool  is_scalar			 = Type<t>::is_scalar;
+		template <class t> static Z_CONSTANT Bool  is_signed			 = Type<t>::is_signed;
+		template <class t> static Z_CONSTANT Bool  is_simple			 = Type<t>::is_simple;
+		template <class t> static Z_CONSTANT Bool  is_sized_array		 = Type<t>::is_sized_array;
+		template <class t> static Z_CONSTANT Bool  is_statically_allocatable	 = Type<t>::is_statically_allocatable;
+		template <class t> static Z_CONSTANT Bool  is_storable			 = Type<t>::is_storable;
+		template <class t> static Z_CONSTANT Bool  is_structure			 = Type<t>::is_structure;
+		template <class t> static Z_CONSTANT Bool  is_unsigned			 = Type<t>::is_unsigned;
+		template <class t> static Z_CONSTANT Bool  is_unsized_array		 = Type<t>::is_unsized_array;
+		template <class t> static Z_CONSTANT Bool  is_valid			 = Type<t>::is_valid;
+		template <class t> static Z_CONSTANT Bool  is_variadic			 = Type<t>::is_variadic;
+		template <class t> static Z_CONSTANT Bool  is_variadic_function		 = Type<t>::is_variadic_function;
+		template <class t> static Z_CONSTANT Bool  is_void			 = Type<t>::is_void;
+		template <class t> static Z_CONSTANT Bool  is_void_pointer		 = Type<t>::is_void_pointer;
+		template <class t> static Z_CONSTANT Bool  is_volatile			 = Type<t>::is_volatile;
+		template <class t> static Z_CONSTANT Bool  is_volatile_lvalue		 = Type<t>::is_volatile_lvalue;
+		template <class t> static Z_CONSTANT Bool  is_volatile_rvalue		 = Type<t>::is_volatile_rvalue;
+		template <class t> static Z_CONSTANT Bool  iss_const			 = Type<t>::iss_const;
+		template <class t> static Z_CONSTANT Bool  iss_const_lvalue		 = Type<t>::iss_const_lvalue;
+		template <class t> static Z_CONSTANT Bool  iss_const_rvalue		 = Type<t>::iss_const_rvalue;
+		template <class t> static Z_CONSTANT Bool  iss_const_volatile		 = Type<t>::iss_const_volatile;
+		template <class t> static Z_CONSTANT Bool  iss_lvalue			 = Type<t>::iss_lvalue;
+		template <class t> static Z_CONSTANT Bool  iss_rvalue			 = Type<t>::iss_rvalue;
+		template <class t> static Z_CONSTANT Bool  iss_volatile			 = Type<t>::iss_volatile;
+		template <class t> static Z_CONSTANT Bool  iss_volatile_lvalue		 = Type<t>::iss_volatile_lvalue;
+		template <class t> static Z_CONSTANT Bool  iss_volatile_rvalue		 = Type<t>::iss_volatile_rvalue;
+		template <class t> static Z_CONSTANT UInt  number_format		 = Type<t>::number_format;
+		template <class t> static Z_CONSTANT UInt  number_set			 = Type<t>::number_set;
+		template <class t> static Z_CONSTANT UInt  pointer_level		 = Type<t>::pointer_level;
 
-		template <class a, class b> static Z_CONSTANT Boolean is_same = TypeIsSame<a, b>::value;
+		template <class a, class b> static Z_CONSTANT Bool is_same = TypeIsSame<a, b>::value;
 
 #		if Z_HAS(TypeIsBase)
 			template <class t, class of_type>
-			static Z_CONSTANT Boolean is_base = TypeIsBase<t, of_type>::value;
+			static Z_CONSTANT Bool is_base = TypeIsBase<t, of_type>::value;
 #		endif
 
 #		if Z_HAS(TypeIsConvertible)
 			template <class t, class to_type>
-			static Z_CONSTANT Boolean is_convertible = TypeIsConvertible<t, to_type>::value;
+			static Z_CONSTANT Bool is_convertible = TypeIsConvertible<t, to_type>::value;
 #		endif
 
 #		if Z_HAS(TypeIsConstructible)
 			template <class t, class... parameters>
-			static Z_CONSTANT Boolean is_constructible = TypeIsConstructible<t, parameters...>::value;
+			static Z_CONSTANT Bool is_constructible = TypeIsConstructible<t, parameters...>::value;
 #		endif
 
 #		if Z_HAS(TypeIsNothrowAssignable)
 			template <class t, class from_type>
-			static Z_CONSTANT Boolean is_nothrow_assignable = TypeIsNothrowAssignable<t, from_type>::value;
+			static Z_CONSTANT Bool is_nothrow_assignable = TypeIsNothrowAssignable<t, from_type>::value;
 #		endif
 
 #		if Z_HAS(TypeIsNothrowConstructible)
 			template <class t, class... parameters>
-			static Z_CONSTANT Boolean is_nothrow_constructible = TypeIsNothrowConstructible<t, parameters...>::value;
+			static Z_CONSTANT Bool is_nothrow_constructible = TypeIsNothrowConstructible<t, parameters...>::value;
 #		endif
 
 #		if Z_HAS(TypeIsTriviallyAssignable)
 			template <class t, class from_type>
-			static Z_CONSTANT Boolean is_trivially_assignable = TypeIsTriviallyAssignable<t, from_type>::value;
+			static Z_CONSTANT Bool is_trivially_assignable = TypeIsTriviallyAssignable<t, from_type>::value;
 #		endif
 
 #		if Z_HAS(TypeIsTriviallyConstructible)
 			template <class t, class... parameters>
-			static Z_CONSTANT Boolean is_trivially_constructible = TypeIsTriviallyConstructible<t, parameters...>::value;
+			static Z_CONSTANT Bool is_trivially_constructible = TypeIsTriviallyConstructible<t, parameters...>::value;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, has_virtual_destructor)
-			template <class t> static Z_CONSTANT Boolean has_virtual_destructor = Type<t>::has_virtual_destructor;
+			template <class t> static Z_CONSTANT Bool has_virtual_destructor = Type<t>::has_virtual_destructor;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_abstract)
-			template <class t> static Z_CONSTANT Boolean is_abstract = Type<t>::is_abstract;
+			template <class t> static Z_CONSTANT Bool is_abstract = Type<t>::is_abstract;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_aggregate)
-			template <class t> static Z_CONSTANT Boolean is_aggregate = Type<t>::is_aggregate;
+			template <class t> static Z_CONSTANT Bool is_aggregate = Type<t>::is_aggregate;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_default_constructible)
-			template <class t> static Z_CONSTANT Boolean is_default_constructible = Type<t>::is_default_constructible;
+			template <class t> static Z_CONSTANT Bool is_default_constructible = Type<t>::is_default_constructible;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_empty)
-			template <class t> static Z_CONSTANT Boolean is_empty = Type<t>::is_empty;
+			template <class t> static Z_CONSTANT Bool is_empty = Type<t>::is_empty;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_enumeration)
-			template <class t> static Z_CONSTANT Boolean is_enumeration = Type<t>::is_enumeration;
+			template <class t> static Z_CONSTANT Bool is_enumeration = Type<t>::is_enumeration;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_final)
-			template <class t> static Z_CONSTANT Boolean is_final = Type<t>::is_final;
+			template <class t> static Z_CONSTANT Bool is_final = Type<t>::is_final;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_interface_class)
-			template <class t> static Z_CONSTANT Boolean is_interface_class = Type<t>::is_interface_class;
+			template <class t> static Z_CONSTANT Bool is_interface_class = Type<t>::is_interface_class;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_literal)
-			template <class t> static Z_CONSTANT Boolean is_literal = Type<t>::is_literal;
+			template <class t> static Z_CONSTANT Bool is_literal = Type<t>::is_literal;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_noexcept)
-			template <class t> static Z_CONSTANT Boolean is_noexcept = Type<t>::is_noexcept;
+			template <class t> static Z_CONSTANT Bool is_noexcept = Type<t>::is_noexcept;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_nullptr)
-			template <class t> static Z_CONSTANT Boolean is_nullptr = Type<t>::is_nullptr;
+			template <class t> static Z_CONSTANT Bool is_nullptr = Type<t>::is_nullptr;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_pod)
-			template <class t> static Z_CONSTANT Boolean is_pod = Type<t>::is_pod;
+			template <class t> static Z_CONSTANT Bool is_pod = Type<t>::is_pod;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_polymorphic)
-			template <class t> static Z_CONSTANT Boolean is_polymorphic = Type<t>::is_polymorphic;
+			template <class t> static Z_CONSTANT Bool is_polymorphic = Type<t>::is_polymorphic;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_template)
-			template <class t> static Z_CONSTANT Boolean is_template = Type<t>::is_template;
+			template <class t> static Z_CONSTANT Bool is_template = Type<t>::is_template;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_trivially_copy_assignable)
-			template <class t> static Z_CONSTANT Boolean is_trivially_copy_assignable = Type<t>::is_trivially_copy_assignable;
+			template <class t> static Z_CONSTANT Bool is_trivially_copy_assignable = Type<t>::is_trivially_copy_assignable;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_trivially_copy_constructible)
-			template <class t> static Z_CONSTANT Boolean is_trivially_copy_constructible = Type<t>::is_trivially_copy_constructible;
+			template <class t> static Z_CONSTANT Bool is_trivially_copy_constructible = Type<t>::is_trivially_copy_constructible;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_trivially_copyable)
-			template <class t> static Z_CONSTANT Boolean is_trivially_copyable = Type<t>::is_trivially_copyable;
+			template <class t> static Z_CONSTANT Bool is_trivially_copyable = Type<t>::is_trivially_copyable;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_trivially_default_constructible)
-			template <class t> static Z_CONSTANT Boolean is_trivially_default_constructible = Type<t>::is_trivially_default_constructible;
+			template <class t> static Z_CONSTANT Bool is_trivially_default_constructible = Type<t>::is_trivially_default_constructible;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_trivially_destructible)
-			template <class t> static Z_CONSTANT Boolean is_trivially_destructible = Type<t>::is_trivially_destructible;
+			template <class t> static Z_CONSTANT Bool is_trivially_destructible = Type<t>::is_trivially_destructible;
 #		endif
 
 #		if Z_HAS_MEMBER(Type, is_union)
-			template <class t> static Z_CONSTANT Boolean is_union = Type<t>::is_union;
+			template <class t> static Z_CONSTANT Bool is_union = Type<t>::is_union;
 #		endif
 
 #		if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP) && Z_DIALECT_HAS(CPP11, EXPRESSION_SFINAE)
-			template <class t> static Z_CONSTANT Boolean is_objective_c_instance	     = Type<t>::is_objective_c_instance;
-			template <class t> static Z_CONSTANT Boolean is_objective_c_instance_pointer = Type<t>::is_objective_c_instance_pointer;
+			template <class t> static Z_CONSTANT Bool is_objective_c_instance	  = Type<t>::is_objective_c_instance;
+			template <class t> static Z_CONSTANT Bool is_objective_c_instance_pointer = Type<t>::is_objective_c_instance_pointer;
 #		endif
 #	endif
 

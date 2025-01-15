@@ -32,15 +32,15 @@ namespace Zeta {template <class t> struct Range {
 	: index(index_), size(size_) {}
 
 
-	Z_CT(CPP11) operator Boolean() const Z_NOTHROW
+	Z_CT(CPP11) operator Bool() const Z_NOTHROW
 		{return !!size;}
 
 
-	friend Z_CT(CPP11) Boolean operator ==(const Range &lhs, const Range &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator ==(const Range &lhs, const Range &rhs) Z_NOTHROW
 		{return lhs.index == rhs.index && lhs.size == rhs.size;}
 
 
-	friend Z_CT(CPP11) Boolean operator !=(const Range &lhs, const Range &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator !=(const Range &lhs, const Range &rhs) Z_NOTHROW
 		{return lhs.index != rhs.index || lhs.size != rhs.size;}
 
 
@@ -89,11 +89,11 @@ namespace Zeta {template <class t> struct Range {
 	Z_CT(CPP11) t operator [](t index_) const Z_NOTHROW {return index + index_;}
 
 
-	Z_CT(CPP11) Boolean contains(const Range &other) const Z_NOTHROW
+	Z_CT(CPP11) Bool contains(const Range &other) const Z_NOTHROW
 		{return other.index >= index && other.end() <= end();}
 
 
-	Z_CT(CPP11) Boolean contains(t index_) const Z_NOTHROW
+	Z_CT(CPP11) Bool contains(t index_) const Z_NOTHROW
 		{return index_ >= index && index_ < end();}
 
 
@@ -101,11 +101,11 @@ namespace Zeta {template <class t> struct Range {
 		{return index + size;}
 
 
-	Z_CT(CPP11) Boolean intersects(const Range &other) const Z_NOTHROW
+	Z_CT(CPP11) Bool intersects(const Range &other) const Z_NOTHROW
 		{return	index < other.end() && other.index < end();}
 
 
-	Z_CT(CPP11) Boolean is_zero() const Z_NOTHROW
+	Z_CT(CPP11) Bool is_zero() const Z_NOTHROW
 		{return !index && !size;}
 
 

@@ -32,27 +32,27 @@ namespace Zeta {struct Strid {
 		{return hash;}
 
 
-	friend Z_CT(CPP11) Boolean operator ==(const Strid &lhs, const Strid &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator ==(const Strid &lhs, const Strid &rhs) Z_NOTHROW
 		{return lhs.hash == rhs.hash;}
 
 
-	friend Z_CT(CPP11) Boolean operator ==(const Strid &lhs, UInt64 rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator ==(const Strid &lhs, UInt64 rhs) Z_NOTHROW
 		{return lhs.hash == rhs;}
 
 
-	friend Z_CT(CPP11) Boolean operator ==(UInt64 lhs, const Strid &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator ==(UInt64 lhs, const Strid &rhs) Z_NOTHROW
 		{return lhs == rhs.hash;}
 
 
-	friend Z_CT(CPP11) Boolean operator !=(const Strid &lhs, const Strid &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator !=(const Strid &lhs, const Strid &rhs) Z_NOTHROW
 		{return lhs.hash != rhs.hash;}
 
 
-	friend Z_CT(CPP11) Boolean operator !=(const Strid &lhs, UInt64 rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator !=(const Strid &lhs, UInt64 rhs) Z_NOTHROW
 		{return lhs.hash != rhs;}
 
 
-	friend Z_CT(CPP11) Boolean operator !=(UInt64 lhs, const Strid &rhs) Z_NOTHROW
+	friend Z_CT(CPP11) Bool operator !=(UInt64 lhs, const Strid &rhs) Z_NOTHROW
 		{return lhs != rhs.hash;}
 };}
 

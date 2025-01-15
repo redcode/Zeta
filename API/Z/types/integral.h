@@ -700,19 +700,23 @@ typedef long int		   zslong;
 #	define Z_LLONG
 #endif
 
+/* TODO: Handle cases where sizeof(_Bool) != sizeof(unsigned char) */
+
 #if Z_DIALECT_HAS_TYPE(CPP98, BOOL)
-	typedef bool zbool;
-
+	typedef bool		  zbool;
+#	define Z_BOOL_FUNDAMENTAL Z_FUNDAMENTAL_BOOL
 #elif Z_DIALECT_HAS_TYPE(C99, BOOL)
-	typedef _Bool zbool;
+	typedef _Bool		  zbool;
+#	define Z_BOOL_FUNDAMENTAL Z_FUNDAMENTAL_BOOL
+#else
+	typedef unsigned char	  zbool;
+#	define Z_BOOL_FUNDAMENTAL Z_FUNDAMENTAL_UCHAR
 #endif
 
-#if Z_DIALECT_HAS_TYPE(C99, BOOL) || Z_DIALECT_HAS_TYPE(CPP98, BOOL)
-#	define Z_BOOL			Z_SAME
-#	define Z_BOOL_FUNDAMENTAL	Z_FUNDAMENTAL_BOOL
-#	define Z_BOOL_FIXED_FUNDAMENTAL Z_UCHAR_FIXED_FUNDAMENTAL
-#	define Z_BOOL_WIDTH		Z_UCHAR_WIDTH
-#endif
+#define Z_BOOL			 Z_SAME
+#define Z_BOOL_FIXED_FUNDAMENTAL Z_UCHAR_FIXED_FUNDAMENTAL
+#define Z_BOOL_WIDTH		 Z_UCHAR_WIDTH
+typedef zbool			 zboolean; /* For backward compatibility. */
 
 /* MARK: - Object size integral types */
 
@@ -843,26 +847,5 @@ typedef Z_INTEGER_T_TYPE(SINTPTR)   zsintptr;
 #	define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_UCHAR_FIXED_FUNDAMENTAL
 #	define Z_BOOLEAN_WIDTH		   Z_UCHAR_WIDTH
 #endif
-
-#ifndef Z_NATURAL_WIDTH
-#	define Z_NATURAL_WIDTH Z_ULONG_WIDTH
-#endif
-
-typedef Z_NATURAL_T_TYPE(NATURAL)   znatural;
-#define Z_NATURAL		    Z_INTEGRAL_T_LITERAL	 (NATURAL)
-#define Z_NATURAL_FUNDAMENTAL	    Z_INTEGRAL_T_FUNDAMENTAL	 (NATURAL)
-#define Z_NATURAL_FIXED_FUNDAMENTAL Z_NATURAL_T_FIXED_FUNDAMENTAL(NATURAL)
-#define Z_NATURAL_MAXIMUM	    Z_INTEGRAL_T_MAXIMUM	 (NATURAL)
-
-#ifndef Z_INTEGER_WIDTH
-#	define Z_INTEGER_WIDTH Z_SLONG_WIDTH
-#endif
-
-typedef Z_INTEGER_T_TYPE(INTEGER)   zinteger;
-#define Z_INTEGER		    Z_INTEGRAL_T_LITERAL	 (INTEGER)
-#define Z_INTEGER_FUNDAMENTAL	    Z_INTEGRAL_T_FUNDAMENTAL	 (INTEGER)
-#define Z_INTEGER_FIXED_FUNDAMENTAL Z_INTEGER_T_FIXED_FUNDAMENTAL(INTEGER)
-#define Z_INTEGER_MAXIMUM	    Z_INTEGRAL_T_MAXIMUM	 (INTEGER)
-#define Z_INTEGER_MINIMUM	    (-Z_INTEGER_MAXIMUM - Z_INTEGER(1))
 
 #endif /* Z_types_integral_H */

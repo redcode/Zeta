@@ -46,7 +46,7 @@ namespace Zeta {
 
 
 	template <class t>
-	static Z_CT(CPP11) Boolean are_almost_equal(t a, t b) Z_NOTHROW
+	static Z_CT(CPP11) Bool are_almost_equal(t a, t b) Z_NOTHROW
 		{return absolute(a - b) <= Type<t>::epsilon();}
 
 
@@ -61,12 +61,12 @@ namespace Zeta {
 
 
 	template <class t>
-	static Z_CT(CPP11) Boolean is_almost_zero(t value) Z_NOTHROW
+	static Z_CT(CPP11) Bool is_almost_zero(t value) Z_NOTHROW
 		{return absolute<t>(value) <= Type<t>::epsilon();}
 
 
 	template <class t>
-	static Z_CT(CPP11) Boolean is_finite(t value) Z_NOTHROW
+	static Z_CT(CPP11) Bool is_finite(t value) Z_NOTHROW
 		{
 		return	value ==  value		      &&
 			value !=  Type<t>::infinity() &&
@@ -75,14 +75,14 @@ namespace Zeta {
 
 
 	template <class t>
-	static Z_CT(CPP11) Boolean is_infinity(t value) Z_NOTHROW
+	static Z_CT(CPP11) Bool is_infinity(t value) Z_NOTHROW
 		{
 		return	value ==  Type<t>::infinity() ||
 			value == -Type<t>::infinity();}
 
 
 	template <class t>
-	static Z_CT(CPP11) Boolean is_nan(t value) Z_NOTHROW
+	static Z_CT(CPP11) Bool is_nan(t value) Z_NOTHROW
 		{return !(value == value);}
 
 
