@@ -17,6 +17,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP14 6
 #define Z_CPP17 7
 #define Z_CPP20 8
+#define Z_CPP23 9
 
 #define Z_CPP_NAME_CPP1	 "C++ v1.0"
 #define Z_CPP_NAME_CPP2	 "C++ v2.0"
@@ -26,5 +27,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_CPP_NAME_CPP14 "ISO/IEC 14882:2014"
 #define Z_CPP_NAME_CPP17 "ISO/IEC 14882:2017"
 #define Z_CPP_NAME_CPP20 "ISO/IEC 14882:2020"
+#define Z_CPP_NAME_CPP23 "ISO/IEC 14882:2024"
 
 #endif /* Z_keys_CPP_H */
