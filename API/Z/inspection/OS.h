@@ -271,7 +271,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_OS_IS_ZETA		   1
 #	define Z_OS_NAME		   Z_OS_NAME_ZETA
 #elif
-#	error "Invalid Z_OS key."
+#	error "Invalid `Z_OS` key."
 #endif
 
 #if	Z_OS == Z_OS_AIX	       || \

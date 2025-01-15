@@ -23,7 +23,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #			include <Z/inspection/data_model/deduction.h>
 
 #			ifndef Z_DATA_MODEL
-#				error "Z_DATA_MODEL not defined."
+#				error "`Z_DATA_MODEL` key not defined."
 #			endif
 #		endif
 #	endif
@@ -86,7 +86,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_INSERT_DATA_MODEL(lht, rht) lht##SILP64##rht
 
 #else
-#	error "Invalid Z_DATA_MODEL key."
+#	error "Invalid `Z_DATA_MODEL` key."
 #endif
 
 /* MARK: - Getters */

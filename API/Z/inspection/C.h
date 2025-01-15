@@ -57,7 +57,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/inspection/C/modules/C78.h>
 #	define Z_C_NAME Z_C_NAME_C78
 #else
-#	error "Invalid Z_C key."
+#	error "Invalid `Z_C` key."
 #endif
 
 /* MARK: - Getters */

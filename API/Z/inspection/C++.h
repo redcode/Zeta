@@ -13,9 +13,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/token.h>
 
 #ifdef __cplusplus
-
 #	ifndef Z_CPP
-#		if __cplusplus >= 202002L
+#		if __cplusplus >= 202302L
+#			define Z_CPP Z_CPP23
+#		elif __cplusplus >= 202002L
 #			define Z_CPP Z_CPP20
 #		elif __cplusplus >= 201703L
 #			define Z_CPP Z_CPP17
@@ -30,7 +31,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 #	endif
 
-#	if Z_CPP == Z_CPP20
+#	if Z_CPP == Z_CPP23
+#		include <Z/inspection/C++/modules/C++23.h>
+#		define Z_CPP_NAME Z_CPP_NAME_CPP23
+#	elif Z_CPP == Z_CPP20
 #		include <Z/inspection/C++/modules/C++20.h>
 #		define Z_CPP_NAME Z_CPP_NAME_CPP20
 #	elif Z_CPP == Z_CPP17
@@ -53,9 +57,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_CPP == Z_CPP1
 #		define Z_CPP_NAME Z_CPP_NAME_CPP1
 #	else
-#		error "Invalid Z_CPP key."
+#		error "Invalid `Z_CPP` key."
 #	endif
-
 #endif
 
 /* MARK: - Getters */

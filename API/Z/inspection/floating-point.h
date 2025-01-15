@@ -34,7 +34,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_FLOATING_POINT_LITERAL_DFP64	   Z_SAME
 
 #	else
-#		error "Invalid Z_FLOATING_POINT_FIXED_FUNDAMENTAL_DOUBLE key."
+#		error "Invalid `Z_FLOATING_POINT_FIXED_FUNDAMENTAL_DOUBLE` key."
 #	endif
 #endif
 
@@ -62,7 +62,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		endif
 
 #	else
-#		error "Invalid Z_FLOATING_POINT_FIXED_FUNDAMENTAL_FLOAT key."
+#		error "Invalid `Z_FLOATING_POINT_FIXED_FUNDAMENTAL_FLOAT` key."
 #	endif
 #endif
 
@@ -120,7 +120,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_FLOATING_POINT_LITERAL_IBM_ED	      Z_SUFFIX_L
 
 #	else
-#		error "Invalid Z_FLOATING_POINT_FIXED_FUNDAMENTAL_LDOUBLE key."
+#		error "Invalid `Z_FLOATING_POINT_FIXED_FUNDAMENTAL_LDOUBLE` key."
 #	endif
 #endif
 
@@ -303,7 +303,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	ifdef Z_COMPILER_FIXED_FUNDAMENTAL_FLOAT128X
 #		define Z_FLOATING_POINT_FIXED_FUNDAMENTAL_FLOAT128X Z_COMPILER_FIXED_FUNDAMENTAL_FLOAT128X
 #	else
-#		error "Z_FLOATING_POINT_FIXED_FUNDAMENTAL_FLOAT128X not defined."
+#		error "`Z_FLOATING_POINT_FIXED_FUNDAMENTAL_FLOAT128X` key not defined."
 #	endif
 #endif
 
@@ -319,7 +319,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	ifdef Z_COMPILER_FIXED_FUNDAMENTAL_DECIMAL128X
 #		define Z_FLOATING_POINT_FIXED_FUNDAMENTAL_DECIMAL128X Z_COMPILER_FIXED_FUNDAMENTAL_DECIMAL128X
 #	else
-#		error "Z_FLOATING_POINT_FIXED_FUNDAMENTAL_DECIMAL128X not defined."
+#		error "`Z_FLOATING_POINT_FIXED_FUNDAMENTAL_DECIMAL128X` key not defined."
 #	endif
 #endif
 

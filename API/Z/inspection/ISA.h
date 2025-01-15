@@ -156,7 +156,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	define Z_ISA_IS_Z80		1
 #	define Z_ISA_NAME		Z_ISA_NAME_Z80
 #else
-#	error "Invalid Z_ISA key."
+#	error "Invalid `Z_ISA` key."
 #endif
 
 #ifndef Z_ISA_INTEGRAL_ENDIANNESS
@@ -194,9 +194,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		define Z_ISA_INTEGRAL_ENDIANNESS Z_ENDIANNESS_BIG
 
 #	elif Z_ISA == Z_ISA_UNKNOWN
-#		error "It is necessary to define `Z_ISA_INTEGRAL_ENDIANNESS` for unknown ISAs."
+#		error "It is necessary to predefine `Z_ISA_INTEGRAL_ENDIANNESS` for unknown ISAs."
 #	else
-#		error "It is necessary to define `Z_ISA_INTEGRAL_ENDIANNESS` for bi-endian ISAs not handled by the compiler driver."
+#		error "It is necessary to predefine `Z_ISA_INTEGRAL_ENDIANNESS` for bi-endian ISAs not handled by the compiler driver."
 #	endif
 #endif
 

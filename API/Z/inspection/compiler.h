@@ -226,7 +226,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	elif Z_COMPILER == Z_COMPILER_UNKNOWN
 #		include <Z/inspection/compiler/modules/generic.h>
 #	else
-#		error "Invalid Z_COMPILER key."
+#		error "Invalid `Z_COMPILER` key."
 #	endif
 #endif
 
