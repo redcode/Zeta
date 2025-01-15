@@ -700,9 +700,9 @@ typedef long int		   zslong;
 #	define Z_LLONG
 #endif
 
-/* TODO: Handle cases where sizeof(_Bool) != sizeof(unsigned char) */
+/* TODO: Handle cases where sizeof(_Bool) != sizeof(unsigned char). */
 
-#if Z_DIALECT_HAS_TYPE(CPP98, BOOL)
+#if Z_DIALECT_HAS_TYPE(CPP98, BOOL) || Z_DIALECT_HAS_TYPE(C23, BOOL)
 	typedef bool		  zbool;
 #	define Z_BOOL_FUNDAMENTAL Z_FUNDAMENTAL_BOOL
 #elif Z_DIALECT_HAS_TYPE(C99, BOOL)
@@ -830,22 +830,6 @@ typedef Z_INTEGER_T_TYPE(SINTPTR)   zsintptr;
 #	define Z_PTRDIFF_WIDTH		   Z_SINTPTR_WIDTH
 #	define Z_PTRDIFF_MAXIMUM	   Z_SINTPTR_MAXIMUM
 #	define Z_PTRDIFF_MINIMUM	   Z_SINTPTR_MINIMUM
-#endif
-
-/* MARK: - Default types */
-
-#ifdef Z_BOOL
-	typedef zbool			   zboolean;
-#	define Z_BOOLEAN		   Z_BOOL
-#	define Z_BOOLEAN_FUNDAMENTAL	   Z_BOOL_FUNDAMENTAL
-#	define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_BOOL_FIXED_FUNDAMENTAL
-#	define Z_BOOLEAN_WIDTH		   Z_BOOL_WIDTH
-#else
-	typedef zuchar			   zboolean;
-#	define Z_BOOLEAN		   Z_UCHAR
-#	define Z_BOOLEAN_FUNDAMENTAL	   Z_UCHAR_FUNDAMENTAL
-#	define Z_BOOLEAN_FIXED_FUNDAMENTAL Z_UCHAR_FIXED_FUNDAMENTAL
-#	define Z_BOOLEAN_WIDTH		   Z_UCHAR_WIDTH
 #endif
 
 #endif /* Z_types_integral_H */
