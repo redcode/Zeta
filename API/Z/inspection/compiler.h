@@ -215,6 +215,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/inspection/compiler/modules/Microtec_C-C++.h>
 #	elif Z_COMPILER == Z_COMPILER_MINGW
 #		include <Z/inspection/compiler/modules/MinGW.h>
+#	elif Z_COMPILER == Z_COMPILER_MINGW_W64
+#		include <Z/inspection/compiler/modules/MinGW-w64.h>
 #	elif Z_COMPILER == Z_COMPILER_MIPS_PRO
 #		include <Z/inspection/compiler/modules/MIPSpro.h>
 #	elif Z_COMPILER == Z_COMPILER_MIRACLE_C
