@@ -675,7 +675,7 @@ typedef Z_PACKED_STRUCTURE_BEGIN {
 
 #define Z_ZX_STATE_ZX_PRINTER_FLAG_ENABLED 1
 
-typedef union {
+typedef Z_PACKED_UNION_BEGIN {
 	Z_ZXStateBlockHeader		   header;
 	Z_ZXStateAY			   ay;
 	Z_ZXStateBeta128DiskInterface	   beta_128_disk_interface;
@@ -717,6 +717,6 @@ typedef union {
 	Z_ZXStateZXPrinter		   zx_printer;
 	Z_ZXStateZXSpectrum		   zx_spectrum;
 	Z_ZXStateZXSpectrumPlus3	   zx_spectrum_plus3;
-} Z_ZXStateBlock;
+} Z_PACKED_UNION_END Z_ZXStateBlock;
 
 #endif /* Z_formats_snapshot_machine_computer_ZX_Spectrum_ZX_State_H */
