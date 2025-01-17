@@ -13,15 +13,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	undef Z_NULL
 #endif
 
-#ifdef __cplusplus
-#	include <Z/inspection/language.h>
+#include <Z/inspection/language.h>
 
-#	if Z_DIALECT_HAS_LITERAL(CPP11, NULLPTR)
-#		define Z_NULL nullptr
-#	else
-#		define Z_NULL 0
-#	endif
-
+#if Z_DIALECT_HAS_LITERAL(CPP11, NULLPTR) || Z_DIALECT_HAS_LITERAL(C23, NULLPTR)
+#	define Z_NULL nullptr
+#elif defined(__cplusplus)
+#	define Z_NULL 0
 #else
 #	define Z_NULL ((void *)0)
 #endif
