@@ -15,7 +15,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	import <Foundation/NSRange.h>
 #endif
 
-
 namespace Zeta {template <class t> struct Range {
 	t index, size;
 
@@ -110,16 +109,13 @@ namespace Zeta {template <class t> struct Range {
 
 
 #	if defined(Z_WITH_FOUNDATION) && Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-
 		Z_CT(CPP11) Range(const NSRange &range) Z_NOTHROW
 		: index(t(range.location)), size(t(range.length)) {}
 
 
 #		if Z_DIALECT_HAS(CPP11, COPY_LIST_INITIALIZATION)
-
 			Z_CT(CPP11) operator NSRange() const Z_NOTHROW
 				{return {NSUInteger(index), NSUInteger(size)};}
-
 #		else
 			Z_CT(CPP14) operator NSRange() const Z_NOTHROW
 				{
@@ -127,8 +123,9 @@ namespace Zeta {template <class t> struct Range {
 				return result;
 				}
 #		endif
-
 #	endif
+
+
 };}
 
 

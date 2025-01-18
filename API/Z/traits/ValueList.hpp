@@ -11,9 +11,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/inspection/language.h>
 
-
 namespace Zeta {
-
 	template <class T, T... values> struct {
 
 		typedef typename ValueListRemoveFirst<ValueList>::type remove_first;
@@ -25,8 +23,6 @@ namespace Zeta {
 #		endif
 
 	};
-
 }
-
 
 #endif // Z_traits_ValueList_HPP

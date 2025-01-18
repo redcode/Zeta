@@ -19,13 +19,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_HAS_Functor 1
 
-
 	namespace Zeta {
-
 		template <class f> class Functor;
 
 		template <class r, class... p> class Functor<r(p...)> {
-
 			private:
 			typedef r (* Call)(const Functor *, typename Type<p>::to_forwardable...);
 			typedef void (* Destroy)(Functor *);
@@ -46,8 +43,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #				endif
 			} target;
 
-
 			struct Callers {
+
 
 				static Z_INLINE Call function() Z_NOTHROW
 					{
@@ -79,10 +76,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 							};
 						}
 #				endif
+
+
 			};
 
-
 			public:
+
 
 			Z_CT(CPP11) Functor() Z_NOTHROW
 			: call(Z_NULL), destroy(Z_NULL) {}
@@ -134,7 +133,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 #			if Z_HAS(TypeIsConvertible)
-
 				template <class o, class e = typename TypeIf<
 					Type<o>::is_class &&
 					TypeIsConvertible<o, r(*)(p...)>::value
@@ -142,12 +140,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				Z_INLINE Functor(const o &object) Z_NOTHROW
 				: call(Callers::function()), destroy(Z_NULL)
 					{target.function = (r(*)(p...))object;} // TODO: cast
-
 #			endif
 
 
 #			if Z_HAS(ObjectSelector)
-
 				Z_INLINE Functor(id object, SEL selector) Z_NOTHROW
 				: call(Callers::object_selector()), destroy(Z_NULL)
 					{
@@ -162,7 +158,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					target.object_selector.selector = object_selector.selector;
 					target.object_selector.object	= object_selector.object;
 					}
-
 #			endif
 
 
@@ -176,10 +171,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			Z_INLINE r operator ()(typename Type<p>::to_forwardable... arguments) const
 				{return call(this, arguments...);}
+
+
 		};
 	}
-
-
 #endif
 
 #endif // Z_classes_Functor_HPP

@@ -9,7 +9,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #ifndef Z_classes_Iterator_HPP
 #define Z_classes_Iterator_HPP
 
-
 namespace Zeta{template <class t> struct Iterator {
 	t&		      data_source;
 	typename t::size_type index;
@@ -32,7 +31,8 @@ namespace Zeta{template <class t> struct Iterator {
 		index++;
 		return *this;
 		}
-};}
 
+
+};}
 
 #endif // Z_classes_Iterator_HPP

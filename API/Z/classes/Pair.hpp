@@ -12,7 +12,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/macros/language.hpp>
 #include <Z/types/integral.hpp>
 
-
 namespace Zeta {template <class t1, class t2 = t1> struct Pair {
 	typedef t1 First;
 	typedef t2 Second;
@@ -20,7 +19,9 @@ namespace Zeta {template <class t1, class t2 = t1> struct Pair {
 	t1 first;
 	t2 second;
 
+
 	Z_INLINE Pair() Z_DEFAULTED({})
+
 
 	Z_CT(CPP11) Pair(
 		typename Type<t1>::to_forwardable first,
@@ -42,7 +43,8 @@ namespace Zeta {template <class t1, class t2 = t1> struct Pair {
 			reinterpret_cast<typename Type<Pair>::to_opaque *>(this),
 			reinterpret_cast<typename Type<Pair>::to_opaque *>(&pair));
 		}*/
-};}
 
+
+};}
 
 #endif // Z_classes_Pair_HPP

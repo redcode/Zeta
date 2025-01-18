@@ -16,16 +16,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_HAS_Tuple 1
 
-
 	namespace Zeta {namespace ZetaDetail {namespace Tuple {
-
 		template <class type_list> struct Element;
-
 
 		template <class... t> struct Super {
 			typedef Element<typename TypeListRotateRight<TypeList<t...>, 1>::type> type;
 		};
-
 
 		template <class t0>
 		struct Element<TypeList<t0> > {
@@ -33,20 +29,23 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 			type value;
 
+
 			Z_INLINE Element()
 				Z_DEFAULTED({})
 
 
 			Z_CT(CPP11) Element(typename Zeta::Type<t0>::to_forwardable value)
 			: value(value) {}
-		};
 
+
+		};
 
 		template <class tn, class... t>
 		struct Element<TypeList<tn, t...> > : Super<t...>::type {
 			typedef tn type;
 
 			type value;
+
 
 			Z_INLINE Element()
 				Z_DEFAULTED({})
@@ -56,9 +55,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				typename Zeta::Type<t >::to_forwardable... previous,
 				typename Zeta::Type<tn>::to_forwardable value
 			) : Super<t...>::type(previous...), value(value) {}
+
+
 		};
 	}}}
-
 
 	namespace Zeta {template <class... t> class Tuple : public ZetaDetail::Tuple::Super<t...>::type {
 		private:
@@ -66,7 +66,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 		public:
 		template <UInt i> class At {
-
 			private:
 			enum {tail_size = TypeCount<t...>::value - (i + 1)};
 
@@ -78,9 +77,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			typedef typename Element::type type;
 		};
 
-
 #		if !Z_DIALECT_HAS(CPP11, INHERITING_CONSTRUCTORS)
 			using Super::Super;
+
 
 #		else
 			Z_INLINE Tuple()
@@ -108,8 +107,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			At<index>::Element::value = value;
 			return *this;
 			}
-	};}
 
+
+	};}
 
 #	if	defined(Z_WITH_STD)			 && \
 		Z_DIALECT_HAS(CPP17, STRUCTURED_BINDING) && \
@@ -117,6 +117,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 		__has_include(<tuple>)
 
 #		include <tuple>
+
 
 #		define Z_z_IMPLEMENTATION(qualifiers)										\
 																\
@@ -130,6 +131,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				typedef typename Zeta::Type<typename Zeta::Tuple<t...>::template At<i>::type>::add_const type;	\
 			};
 
+
 		Z_z_IMPLEMENTATION(Z_EMPTY	 )
 		Z_z_IMPLEMENTATION(const	 )
 		Z_z_IMPLEMENTATION(const volatile)
@@ -137,7 +139,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		undef Z_z_IMPLEMENTATION
 #	endif
-
 #endif
 
 #endif // Z_classes_Tuple_HPP

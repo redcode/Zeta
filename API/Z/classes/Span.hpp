@@ -13,7 +13,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/classes/Range.hpp>
 #include <Z/classes/Iterator.hpp>
 
-
 namespace Zeta {template <class t> struct Span {
 	typedef const t*				const_pointer;
 	typedef const t&				const_reference;
@@ -72,7 +71,8 @@ namespace Zeta {template <class t> struct Span {
 
 	Z_CT(CPP11) Iterator<Span> end() const Z_NOTHROW
 		{return Iterator<Span>(*this, size);}*/
-};}
 
+
+};}
 
 #endif // Z_classes_Span_HPP

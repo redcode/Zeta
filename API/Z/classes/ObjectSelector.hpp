@@ -15,7 +15,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_HAS(Selector)
 #	define Z_HAS_ObjectSelector 1
 
-
 	namespace Zeta {
 		template <class f> struct ObjectSelector;
 
@@ -87,6 +86,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				this->object   = object;
 				return *this;
 				}
+
+
 		};
 	}
 #endif

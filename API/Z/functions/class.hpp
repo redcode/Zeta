@@ -13,6 +13,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/integral.hpp>
 #include <Z/traits/type.hpp>
 #include <new>
+
 namespace Zeta {
 
 
@@ -31,7 +32,6 @@ namespace Zeta {
 
 
 #	if Z_DIALECT_HAS(CPP11, LAMBDA)
-
 		template <class t>
 		static Z_CT(CPP11) typename TypeIf<
 			Type<t>::is_class && Type<t>::is_default_constructible,
@@ -76,8 +76,9 @@ namespace Zeta {
 		template <class t>
 		static Z_CT(CPP11) Deleter deleter() Z_NOTHROW
 			{return [](void *object) -> void {delete reinterpret_cast<t *>(object);};}
-
 #	endif
+
+
 }
 
 #endif // Z_functions_class_HPP

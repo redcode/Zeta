@@ -14,9 +14,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/integral.hpp>
 #include <Z/types/pointer.hpp>
 
-
 namespace Zeta {template <class t> struct Shared {
-
 	struct Owned {
 		t*    data;
 		USize owner_count;
@@ -28,6 +26,7 @@ namespace Zeta {template <class t> struct Shared {
 
 		Z_INLINE ~Owned()
 			{delete data;}
+
 
 	};
 
@@ -120,7 +119,6 @@ namespace Zeta {template <class t> struct Shared {
 
 
 #	ifdef Z_NULLPTR
-
 		Z_CT(CPP11) Shared(NullPtr) Z_NOTHROW
 		: owned(nullptr) {}
 
@@ -147,12 +145,10 @@ namespace Zeta {template <class t> struct Shared {
 
 		friend Z_INLINE Bool operator !=(NullPtr, const Shared &rhs) Z_NOTHROW
 			{return !!rhs.owned;}
-
 #	endif
 
 
 #	if Z_DIALECT_HAS(CPP11, RVALUE_REFERENCE)
-
 		Z_INLINE Shared(Shared &&other) Z_NOTHROW
 		: owned(other.owned)
 			{other.owned = Z_NULL;}
@@ -169,9 +165,9 @@ namespace Zeta {template <class t> struct Shared {
 
 			return *this;
 			}
-
 #	endif
-};}
 
+
+};}
 
 #endif // Z_classes_Shared_HPP

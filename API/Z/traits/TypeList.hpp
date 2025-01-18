@@ -70,7 +70,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	endif
 
 	namespace Zeta {
-
 		template <class l> struct TypeListSize;
 
 		template <template <class...> class l, class... a>

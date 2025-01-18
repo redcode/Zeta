@@ -61,7 +61,6 @@ namespace Zeta {template <class t = Char> struct StringView {
 
 
 #	ifdef Z_WITH_STDCPP
-
 		friend Z_INLINE Bool operator ==(const StringView &lhs, const StringView &rhs) Z_NOTHROW
 			{return lhs.size == rhs.size && !std::memcmp(lhs.data, rhs.data, lhs.size * sizeof(t));}
 
@@ -104,9 +103,9 @@ namespace Zeta {template <class t = Char> struct StringView {
 
 		friend Z_INLINE Bool operator !=(const t *lhs, const StringView &rhs) Z_NOTHROW
 			{return rhs.size * sizeof(t) != std::strlen(lhs) || std::memcmp(rhs.data, lhs, rhs.size * sizeof(t));}
-
 #	endif
-};}
 
+
+};}
 
 #endif // Z_classes_StringView_HPP

@@ -27,7 +27,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <QRect>
 #endif
 
-
 namespace Zeta {template <class t> struct Rectangle {
 	XY<t> point, size;
 
@@ -638,21 +637,17 @@ namespace Zeta {template <class t> struct Rectangle {
 		{return point + point_ * size;}
 
 
-
 #	ifdef Z_WITH_COCOS2D_X
-
 		Z_INLINE Rectangle(const cocos2d::Rect &rectangle)
 		: point(rectangle.origin), size(rectangle.size) {}
 
 
 		Z_INLINE operator cocos2d::Rect() const
 			{return cocos2d::Rect(float(point.x), float(point.y), float(size.x),  float(size.y));}
-
 #	endif
 
 
 #	if defined(Z_WITH_CORE_FOUNDATION) || defined(Z_WITH_FOUNDATION)
-
 #		define Z_z_APPLE_CONSTRUCTORS(Prefix)				       \
 										       \
 			Z_CT(CPP11) Rectangle(const Prefix##Rect &rectangle) Z_NOTHROW \
@@ -708,12 +703,10 @@ namespace Zeta {template <class t> struct Rectangle {
 
 #		undef Z_z_APPLE_CONSTRUCTORS
 #		undef Z_z_APPLE_OPERATORS
-
 #	endif
 
 
 #	ifdef Z_WITH_QT
-
 		Z_CT(CPP11) Rectangle(const QRect &rectangle) Z_NOTHROW
 		: point(rectangle.topLeft()), size(rectangle.size()) {}
 
@@ -728,9 +721,9 @@ namespace Zeta {template <class t> struct Rectangle {
 
 		Z_CT(CPP11) operator QRect() const Z_NOTHROW
 			{return QRect(int(point.x), int(point.y), int(size.x), int(size.y));}
-
 #	endif
-};}
 
+
+};}
 
 #endif // Z_classes_Rectangle_HPP

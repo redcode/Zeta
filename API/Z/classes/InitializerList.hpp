@@ -18,7 +18,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_HAS_InitializerList 1
 
-
 	namespace Zeta {template <class t> class InitializerList {
 		public:
 		typedef t	 value_type;

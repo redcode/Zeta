@@ -20,7 +20,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/constants/pointer.h>
 #	include <Z/traits/type.hpp>
 
-
 	namespace Zeta {
 		template <class f> struct MemberFunction;
 
@@ -78,6 +77,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 			template <class o>
 			Z_INLINE r operator ()(const o &object, typename Type<p>::to_forwardable... arguments) const
 				{return (const_cast<NaT *>(reinterpret_cast<const NaT *>(&object))->*function)(arguments...);}
+
+
 		};
 	}
 #endif

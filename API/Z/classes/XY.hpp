@@ -31,11 +31,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 namespace Zeta {template <class t> struct XYZ;}
 
-
 namespace Zeta {template <class t> struct XY {
 	t x, y;
 
+
 	Z_INLINE XY() Z_NOTHROW Z_DEFAULTED({})
+
 
 	Z_CT(CPP11) XY(t x_, t y_) Z_NOTHROW
 	: x(x_), y(y_) {}
@@ -278,7 +279,6 @@ namespace Zeta {template <class t> struct XY {
 
 	// MARK: - Signed
 
-
 	Z_CT(CPP11) XY absolute() const Z_NOTHROW
 		{return XY(Zeta::absolute<t>(x), Zeta::absolute<t>(y));}
 
@@ -297,13 +297,11 @@ namespace Zeta {template <class t> struct XY {
 
 	// MARK: - Integer
 
-
 //	Z_CT(CPP11) Bool is_perpendicular(const XY &other) const Z_NOTHROW
 //		{return !Zeta::absolute<t>(dot_product(other));}
 
 
 	// MARK: - Real
-
 
 	Z_CT(CPP11) XY clamp_01() const Z_NOTHROW
 		{return XY(Zeta::clamp_01<t>(x), Zeta::clamp_01<t>(y));}
@@ -373,7 +371,6 @@ namespace Zeta {template <class t> struct XY {
 
 
 #	if defined(Z_WITH_CORE_FOUNDATION) || defined(Z_WITH_FOUNDATION)
-
 #		define Z_z_APPLE_CONSTRUCTORS(Prefix)			     \
 									     \
 			Z_CT(CPP11) XY(const Prefix##Point &point) Z_NOTHROW \
@@ -385,7 +382,6 @@ namespace Zeta {template <class t> struct XY {
 
 
 #		if Z_DIALECT_HAS(CPP11, COPY_LIST_INITIALIZATION)
-
 #			define Z_z_APPLE_OPERATORS(Prefix)				 \
 											 \
 				Z_CT(CPP11) operator Prefix##Point() const Z_NOTHROW	 \
@@ -398,6 +394,7 @@ namespace Zeta {template <class t> struct XY {
 											 \
 				Z_CT(CPP11) operator Prefix##Rect() const Z_NOTHROW	 \
 					{return {{0.0, 0.0}, {CGFloat(x), CGFloat(y)}};}
+
 
 #		else
 #			define Z_z_APPLE_OPERATORS(Prefix)							\
@@ -441,12 +438,10 @@ namespace Zeta {template <class t> struct XY {
 
 #		undef Z_z_APPLE_CONSTRUCTORS
 #		undef Z_z_APPLE_OPERATORS
-
 #	endif
 
 
 #	ifdef Z_WITH_COCOS2D_X
-
 		Z_CT(CPP11) XY(const cocos2d::Vec2 &point) Z_NOTHROW
 		: x(point.x), y(point.y) {}
 
@@ -465,12 +460,10 @@ namespace Zeta {template <class t> struct XY {
 
 		Z_INLINE operator cocos2d::Rect() const Z_NOTHROW
 			{return cocos2d::Rect(0.0f, 0.0f, float(x), float(y));}
-
 #	endif
 
 
 #	ifdef Z_WITH_QT
-
 		Z_CT(CPP11) XY(const QPoint &point) Z_NOTHROW
 		: x(t(point.x())), y(t(point.y())) {}
 
@@ -489,10 +482,10 @@ namespace Zeta {template <class t> struct XY {
 
 		Z_CT(CPP11) operator QRect() const Z_NOTHROW
 			{return QRect(0, 0, int(x), int(y));}
-
 #	endif
-};}
 
+
+};}
 
 #ifndef Z_classes_XYZ_HPP
 #	include <Z/classes/XYZ.hpp>

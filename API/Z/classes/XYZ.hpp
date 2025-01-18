@@ -13,12 +13,12 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <Z/classes/XY.hpp>
 #endif
 
-
 namespace Zeta {template <class t> struct XYZ {
 	t x, y, z;
 
 
 	Z_INLINE XYZ() Z_NOTHROW Z_DEFAULTED({})
+
 
 	Z_CT(CPP11) XYZ(t x_, t y_, t z_) Z_NOTHROW
 	: x(x_), y(y_), z(z_) {}
@@ -378,7 +378,6 @@ namespace Zeta {template <class t> struct XYZ {
 
 	// MARK: - Signed
 
-
 	Z_CT(CPP11) XYZ absolute() const Z_NOTHROW
 		{
 		return XYZ(
@@ -402,13 +401,11 @@ namespace Zeta {template <class t> struct XYZ {
 
 	// MARK: - Integer
 
-
 	//Z_CT(CPP11) Bool is_perpendicular(const XYZ &other) const
 	//	{return !Zeta::absolute<t>(dot_product(other));}
 
 
 	// MARK: - Real
-
 
 	Z_CT(CPP11) XYZ clamp_01() const Z_NOTHROW
 		{
@@ -515,8 +512,8 @@ namespace Zeta {template <class t> struct XYZ {
 
 	Z_CT(CPP11) XYZ reciprocal() const Z_NOTHROW
 		{return XYZ(t(1) / x, t(1) / y, t(1) / z);}
-	};
-}
 
+
+};}
 
 #endif // Z_classes_XYZ_HPP

@@ -11,11 +11,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/classes/SizedString.hpp>
 
-
 namespace Zeta {
 
-#	if Z_COMPILER_IS(GCC) || Z_COMPILER_IS(CLANG) || Z_COMPILER_IS(APPLE_CLANG)
 
+#	if Z_COMPILER_IS(GCC) || Z_COMPILER_IS(CLANG) || Z_COMPILER_IS(APPLE_CLANG)
 		template <class t>
 		static Z_CT(CPP14) USize type_string_size() Z_NOTHROW
 			{
@@ -46,9 +45,9 @@ namespace Zeta {
 
 
 #	elif Z_COMPILER_IS(MSVC)
-
 #	endif
-}
 
+
+}
 
 #endif // Z_functions_type_HPP

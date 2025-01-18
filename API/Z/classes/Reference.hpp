@@ -11,7 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/macros/language.hpp>
 
-
 namespace Zeta {template <class t> struct Reference {
 	typedef t type;
 
@@ -33,7 +32,8 @@ namespace Zeta {template <class t> struct Reference {
 
 	Z_CT(CPP11) t &get() const Z_NOTHROW
 		{return *value;}
-};}
 
+
+};}
 
 #endif // Z_classes_Span_HPP

@@ -27,12 +27,16 @@ namespace Zeta {
 		template <class from> struct auto_cast {
 			const from &value;
 
+
 			explicit Z_CT(CPP11) auto_cast(const from &value_) Z_NOTHROW
 			: value{value_} {}
+
 
 			template <class to>
 			Z_CT(CPP11) operator to() const Z_NOTHROW
 				{return to(value);}
+
+
 		};
 #	endif
 }

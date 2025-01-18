@@ -11,7 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/macros/language.hpp>
 
-
 namespace Zeta {struct NaT Z_FINAL {
 #	if Z_DIALECT_HAS(CPP11, DELETED_FUNCTION)
 		NaT()			     = delete;
@@ -25,6 +24,5 @@ namespace Zeta {struct NaT Z_FINAL {
 #		endif
 #	endif
 };}
-
 
 #endif // Z_classes_NaT_HPP

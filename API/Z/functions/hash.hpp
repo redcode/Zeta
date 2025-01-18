@@ -50,7 +50,6 @@ namespace Zeta {
 #	endif
 }
 
-
 #undef Z_z_FNV
 
 #endif // Z_functions_hash_HPP

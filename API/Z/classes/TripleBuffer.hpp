@@ -15,8 +15,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #include <Z/types/integral.hpp>
 #include <Z/functions/atomic.h>
 
-
 namespace Zeta {struct TripleBuffer : ZTripleBuffer {
+
 
 	Z_INLINE TripleBuffer() Z_NOTHROW
 		Z_DEFAULTED({})
@@ -101,7 +101,8 @@ namespace Zeta {struct TripleBuffer : ZTripleBuffer {
 
 	Z_CT(CPP11) UChar production_index() const Z_NOTHROW
 		{return (f & 48) >> 4;}
-};}
 
+
+};}
 
 #endif // Z_classes_TripleBuffer_HPP

@@ -11,8 +11,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/traits/type.hpp>
 
-
 namespace Zeta {
+
 
 	template <class t>
 	static Z_CT(CPP11) t maximum(t a, t b) Z_NOTHROW
@@ -31,7 +31,6 @@ namespace Zeta {
 
 	// MARK: - Functions for signed types
 
-
 	template <class t>
 	static Z_CT(CPP11) t absolute(t value) Z_NOTHROW
 		{return value < t(0) ? -value : value;}
@@ -43,7 +42,6 @@ namespace Zeta {
 
 
 	// MARK: - Functions for real types
-
 
 	template <class t>
 	static Z_CT(CPP11) Bool are_almost_equal(t a, t b) Z_NOTHROW
@@ -118,7 +116,8 @@ namespace Zeta {
 		x = (x - a) / (b - a);
 		return x * x * (t(3.0) - t(2.0) * x);
 		}
-}
 
+
+}
 
 #endif // Z_functions_math_HPP

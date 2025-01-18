@@ -11,7 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/classes/NaT.hpp>
 
-
 namespace Zeta {struct OpaqueMemberFunctionPointer {
 	void (NaT::* value)();
 
@@ -24,7 +23,8 @@ namespace Zeta {struct OpaqueMemberFunctionPointer {
 	template <class m>
 	Z_INLINE operator m() const Z_NOTHROW
 		{return reinterpret_cast<m>(value);}
-};}
 
+
+};}
 
 #endif // Z_classes_OpaqueMemberFunctionPointer_HPP

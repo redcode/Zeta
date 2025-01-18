@@ -1434,7 +1434,6 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 		typedef r to_volatile	   (parameters)	volatile       Z_z_NOEXCEPT;
 
 #	if Z_DIALECT_HAS(CPP11, REFERENCE_QUALIFIED_NON_STATIC_MEMBER_FUNCTION)
-
 #		define Z_z_REFERENCE_CONVERSIONS(parameters)					       \
 			typedef r to_const_lvalue	  (parameters) const	      &	 Z_z_NOEXCEPT; \
 			typedef r to_const_rvalue	  (parameters) const	      && Z_z_NOEXCEPT; \
@@ -1450,7 +1449,6 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 #	endif
 
 #	if Z_DIALECT_HAS(CPP11, VARIADIC_TEMPLATE)
-
 #		if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
 			template <zbool x, class r, class... p, class c> struct Function<x, r(p...), c> : c {
 				Z_z_NORMAL_CONVERSIONS	 (p...)
@@ -1514,7 +1512,6 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 
 #	else
 #		if Z_DIALECT_HAS(CPP17, NOEXCEPT_AS_PART_OF_THE_FUNCTION_TYPE)
-
 #			define Z_z_PSEUDO_SPECIALIZATION_PAIR(arity)								       \
 																       \
 				template <zbool x, class r, Z_APPEND_INDEX_FOR_##arity(class p, Z_COMMA) Z_IF(arity)(Z_COMMA) class c> \
@@ -1604,7 +1601,6 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 	template <zbool e, zuint k, class t> struct Kind;
 
 #	if Z_HAS_MEMBER(Type, is_enumeration)
-
 		template <class t> struct Kind<false, Enumeration, t> : Simple {
 			enum {	is_enumeration = true,
 				is_scalar      = true
@@ -1622,7 +1618,6 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 				typedef Z_COMPILER_TRAIT(TYPE_UNDERLYING_TYPE)(t) underlying_type;
 #			endif
 		};
-
 #	endif
 
 	template <zbool e, class t> struct Construct;
@@ -1636,7 +1631,6 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 	};
 
 	template <class t> struct Construct<true, t> : Construct<false, t> {
-
 #		if Z_HAS_MEMBER(Type, is_aggregate)
 			enum {is_aggregate = Z_COMPILER_TRAIT(TYPE_IS_AGGREGATE)(t)};
 #		endif
@@ -1731,7 +1725,6 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 #	endif
 
 #	if Z_LANGUAGE_INCLUDES(OBJECTIVE_CPP)
-
 		struct ObjectiveCObject : Storable {
 			enum {is_objective_c_object = true};
 
@@ -1751,7 +1744,6 @@ namespace Zeta {namespace ZetaDetail {namespace Type {namespace Abstract {
 				typedef t type;
 			};
 #		endif
-
 #	endif
 }}}}
 
@@ -2421,7 +2413,6 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 	// MARK: - Specializations: Enumeration, structure, union and Objective-C instance types
 
 	template <class t> struct Ambiguous {
-
 #		if Z_DIALECT_HAS(CPP11, EXPRESSION_SFINAE)
 			template <class tt = t, class = Maybe<> > struct IsClass : False {};
 
@@ -2971,15 +2962,14 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 }}}
 
 namespace Zeta {
-
 	template <class t> struct Type : ZetaDetail::Type::Build<t> {
-
 #		if Z_DIALECT_HAS(CPP11, TYPE_ALIAS_TEMPLATE)
 			template <class klass> using add_member_pointer = typename TypeAddMemberPointer<t,				   klass>::type;
 			template <class klass> using to_member_pointer	= typename TypeAddMemberPointer<typename Type::remove_indirection, klass>::type;
 #		endif
 
 #		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_DIALECT_HAS(CPP14, CONSTEXPR_FUNCTION)
+
 
 #			define Z_z_STRING_MEMBER_FUNCTIONS							\
 														\
@@ -2989,10 +2979,12 @@ namespace Zeta {
 				static Z_CT(CPP14) SizedString<Char, string_size() + 1> string()		\
 					{return type_string<t>();}
 
+
 #			define Z_z_HASH_MEMBER_FUNCTIONS(bits)								    \
 				static Z_CT(CPP14) UInt##bits fnv0_##bits () {return Zeta::fnv0_##bits (type_string<t>());} \
 				static Z_CT(CPP14) UInt##bits fnv1_##bits () {return Zeta::fnv1_##bits (type_string<t>());} \
 				static Z_CT(CPP14) UInt##bits fnv1a_##bits() {return Zeta::fnv1a_##bits(type_string<t>());}
+
 
 			Z_z_STRING_MEMBER_FUNCTIONS
 			Z_z_HASH_MEMBER_FUNCTIONS(32)
@@ -3000,7 +2992,6 @@ namespace Zeta {
 #			ifdef Z_UINT64
 				Z_z_HASH_MEMBER_FUNCTIONS(64)
 #			endif
-
 #		else
 #			define Z_z_STRING_MEMBER_FUNCTIONS
 #			define Z_z_HASH_MEMBER_FUNCTIONS(bits)

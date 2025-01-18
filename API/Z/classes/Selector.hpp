@@ -24,10 +24,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_HAS_Selector 1
 
-
 	namespace Zeta {
 		template <class f> struct Selector;
-
 
 		template <class r, class... p>
 		struct Selector<r(p...)> {
@@ -70,8 +68,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				return (SendSuper(ObjectiveC::send_super<r>()))
 					(const_cast<objc_super *>(&object_super), selector, arguments...);
 				}
-		};
 
+
+		};
 
 #		if  Z_DIALECT_HAS(CPP11, RVALUE_REFERENCE)
 			template <class r, class... p>
@@ -118,11 +117,11 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					return (SendSuper(ObjectiveC::send_super<r>()))
 						(const_cast<objc_super *>(&object_super), selector, forwardable<pp>(arguments)...);
 					}
+
+
 			};
 #		endif
 	}
-
-
 #endif
 
 #endif // Z_classes_Selector_HPP

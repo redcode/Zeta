@@ -15,7 +15,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #if Z_HAS(MemberFunction)
 #	define Z_HAS_ObjectMemberFunction 1
 
-
 	namespace Zeta {
 		template <class f> struct ObjectMemberFunction;
 
@@ -141,6 +140,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 				this->object   = const_cast<NaT *>(reinterpret_cast<const NaT *>(&object));
 				return *this;
 				}
+
+
 		};
 	}
 #endif

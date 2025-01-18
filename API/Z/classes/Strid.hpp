@@ -11,7 +11,6 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #include <Z/functions/hash.hpp>
 
-
 namespace Zeta {struct Strid {
 	UInt64 hash;
 
@@ -54,7 +53,8 @@ namespace Zeta {struct Strid {
 
 	friend Z_CT(CPP11) Bool operator !=(UInt64 lhs, const Strid &rhs) Z_NOTHROW
 		{return lhs != rhs.hash;}
-};}
 
+
+};}
 
 #endif // Z_classes_Strid_HPP
