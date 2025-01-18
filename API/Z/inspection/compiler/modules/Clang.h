@@ -333,7 +333,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #	define Z_COMPILER_BIT_FIELD_ORDER_ALL	  Z_ORDER_NORMAL
 
 #else
-#	error "Clang module: Can not detect the endianness of the integral types."
+#	error "Clang driver: Cannot detect the endianness of integral types."
 #endif
 
 /*#define Z_COMPILER_BIT_FIELD_ORDER_8BIT*/
@@ -489,7 +489,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #		define Z_COMPILER_FIXED_FUNDAMENTAL_FLOAT Z_FUNDAMENTAL_BFP64
 
 #	elif
-#		error "Clang module: Can not detect the format of the float type."
+#		error "Clang driver: Can not detect the format of the `float` type."
 #	endif
 #endif
 
@@ -504,7 +504,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #		define Z_COMPILER_FIXED_FUNDAMENTAL_DOUBLE Z_FUNDAMENTAL_BFP64
 
 #	else
-#		error "Clang module: Can not detect the format of the double type."
+#		error "Clang driver: Cannot detect the format of the `double` type."
 #	endif
 #endif
 
@@ -539,7 +539,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #			elif defined(Z_COMPILER_ISA) && Z_COMPILER_ISA == Z_ISA_X86_32
 #				define Z_COMPILER_FIXED_FUNDAMENTAL_LDOUBLE Z_FUNDAMENTAL_X87_DE96
 #			else
-#				error "Clang module: Can not detect the format of the long double type."
+#				error "Clang driver: Cannot detect the format of the `long double` type."
 #			endif
 #		endif
 
@@ -550,7 +550,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 #		define Z_COMPILER_FIXED_FUNDAMENTAL_LDOUBLE Z_FUNDAMENTAL_BFP128
 
 #	else
-#		error "Clang module: Can not detect the format of the long double type."
+#		error "Clang driver: Cannot detect the format of the `long double` type."
 #	endif
 #endif
 

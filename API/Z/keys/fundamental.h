@@ -23,7 +23,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_FUNDAMENTAL_SLONG	   9 /* signed long int			   */
 #define Z_FUNDAMENTAL_ULLONG	  10 /* (C99/C++11) unsigned long long int */
 #define Z_FUNDAMENTAL_SLLONG	  11 /* (C99/C++11) signed long long int   */
-#define Z_FUNDAMENTAL_BOOL	  12 /* (C99) _Bool / (C++98) bool	   */
+#define Z_FUNDAMENTAL_BOOL	  12 /* (C99) _Bool / (C23/C++98) bool     */
 #define Z_FUNDAMENTAL_WCHAR	  13 /* (C++98) wchar_t			   */
 #define Z_FUNDAMENTAL_CHAR8	  14 /* (C++20) char8_t			   */
 #define Z_FUNDAMENTAL_CHAR16	  15 /* (C++11) char16_t		   */
