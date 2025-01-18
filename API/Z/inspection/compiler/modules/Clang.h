@@ -1651,47 +1651,6 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 #define Z_COMPILER_TYPE_VAL __builtin_va_list /* v2.6 */
 
-/*-------------------------------------------------------------------.
-| IMPORTANT: It is best not to use Clang suffix macros, as they will |
-| produce errors if the user defines literal suffixes as macros.     |
-'===================================================================*/
-
-#ifdef __UINT8_C_SUFFIX__ /* v3.5 */
-#	define Z_COMPILER_LITERAL_UINT8(number) (__extension__ Z_JOIN_2(number, __UINT8_C_SUFFIX__))
-#endif
-
-#ifdef __INT8_C_SUFFIX__ /* v3.5 */
-#	define Z_COMPILER_LITERAL_SINT8(number) (__extension__ Z_JOIN_2(number, __INT8_C_SUFFIX__))
-#endif
-
-#ifdef __UINT16_C_SUFFIX__ /* v3.5 */
-#	define Z_COMPILER_LITERAL_UINT16(number) (__extension__ Z_JOIN_2(number, __UINT16_C_SUFFIX__))
-#endif
-
-#ifdef __INT16_C_SUFFIX__ /* v3.5 */
-#	define Z_COMPILER_LITERAL_SINT16(number) (__extension__ Z_JOIN_2(number, __INT16_C_SUFFIX__))
-#endif
-
-#ifdef __UINT32_C_SUFFIX__ /* v3.5 */
-#	define Z_COMPILER_LITERAL_UINT32(number) (__extension__ Z_JOIN_2(number, __UINT32_C_SUFFIX__))
-#endif
-
-#ifdef __INT32_C_SUFFIX__ /* v3.5 */
-#	define Z_COMPILER_LITERAL_SINT32(number) (__extension__ Z_JOIN_2(number, __INT32_C_SUFFIX__))
-#endif
-
-#ifdef __UINT64_C_SUFFIX__ /* v3.5 */
-#	define Z_COMPILER_LITERAL_UINT64(number) (__extension__ Z_JOIN_2(number, __UINT64_C_SUFFIX__))
-#endif
-
-#ifdef __INT64_C_SUFFIX__ /* v2.7 */ /* TODO: check in v2.7 */
-#	define Z_COMPILER_LITERAL_SINT64(number) (__extension__ Z_JOIN_2(number, __INT64_C_SUFFIX__))
-
-#	ifndef __UINT64_C_SUFFIX__
-#		define Z_COMPILER_LITERAL_SINT64(number) (__extension__ Z_JOIN_2(Z_SUFFIX_U(number), __INT64_C_SUFFIX__))
-#	endif
-#endif
-
 /*#define Z_COMPILER_TYPE_UINT24*/
 /*#define Z_COMPILER_TYPE_SINT24*/
 /*#define Z_COMPILER_TYPE_UINT40*/
@@ -1712,14 +1671,22 @@ Released under the terms of the GNU Lesser General Public License v3.
 /*#define Z_COMPILER_TYPE_X87_DE128*/
 /*#define Z_COMPILER_TYPE_IBM_ED*/
 /*#define Z_COMPILER_TYPE_BFLOAT16*/
+/*#define Z_COMPILER_LITERAL_UINT8(number)*/
+/*#define Z_COMPILER_LITERAL_SINT8(number)*/
+/*#define Z_COMPILER_LITERAL_UINT16(number)*/
+/*#define Z_COMPILER_LITERAL_SINT16(number)*/
 /*#define Z_COMPILER_LITERAL_UINT24(number)*/
 /*#define Z_COMPILER_LITERAL_SINT24(number)*/
+/*#define Z_COMPILER_LITERAL_UINT32(number)*/
+/*#define Z_COMPILER_LITERAL_SINT32(number)*/
 /*#define Z_COMPILER_LITERAL_UINT40(number)*/
 /*#define Z_COMPILER_LITERAL_SINT40(number)*/
 /*#define Z_COMPILER_LITERAL_UINT48(number)*/
 /*#define Z_COMPILER_LITERAL_SINT48(number)*/
 /*#define Z_COMPILER_LITERAL_UINT56(number)*/
 /*#define Z_COMPILER_LITERAL_SINT56(number)*/
+/*#define Z_COMPILER_LITERAL_UINT64(number)*/
+/*#define Z_COMPILER_LITERAL_SINT64(number)*/
 /*#define Z_COMPILER_LITERAL_UINT128(number)*/
 /*#define Z_COMPILER_LITERAL_SINT128(number)*/
 /*#define Z_COMPILER_LITERAL_BFP16(number)*/
