@@ -1653,7 +1653,7 @@ Released under the terms of the GNU Lesser General Public License v3.
 
 /*-------------------------------------------------------------------.
 | IMPORTANT: It is best not to use Clang suffix macros, as they will |
-| produce errors if the user defines literal C suffixes as macros.   |
+| produce errors if the user defines literal suffixes as macros.     |
 '===================================================================*/
 
 #ifdef __UINT8_C_SUFFIX__ /* v3.5 */
