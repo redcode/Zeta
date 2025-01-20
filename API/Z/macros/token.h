@@ -17,7 +17,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_SAME(token) token
 
 #define Z_z_STRINGIFY(token) #token
-#define Z_STRINGIFY( token) Z_z_STRINGIFY(token)
+#define Z_STRINGIFY(  token) Z_z_STRINGIFY(token)
 
 #define Z_z_PREFIX_0(	 rht)   0##rht
 #define Z_z_PREFIX_0x(	 rht)  0x##rht

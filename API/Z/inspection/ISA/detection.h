@@ -162,13 +162,13 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #	define Z_ISA Z_ISA_M68K
 
-#elif	defined(__mips64  ) ||						     \
-	defined(__mips64__) ||						     \
-	(defined(__mips) && (__mips == 64 || __mips == 4 || __mips == 3)) || \
-	(defined(_MIPS_ISA) &&						     \
-	 ((defined(_MIPS_ISA_MIPS64) && _MIPS_ISA == _MIPS_ISA_MIPS64) ||    \
-	  (defined(_MIPS_ISA_MIPS4 ) && _MIPS_ISA == _MIPS_ISA_MIPS4 ) ||    \
-	  (defined(_MIPS_ISA_MIPS3 ) && _MIPS_ISA == _MIPS_ISA_MIPS3 )))
+#elif	defined(__mips64  ) ||							\
+	defined(__mips64__) ||							\
+	(defined(__mips) && (__mips == 64 || __mips == 4 || __mips == 3)) ||	\
+	(defined(_MIPS_ISA) && (						\
+		(defined(_MIPS_ISA_MIPS64) && _MIPS_ISA == _MIPS_ISA_MIPS64) || \
+		(defined(_MIPS_ISA_MIPS4 ) && _MIPS_ISA == _MIPS_ISA_MIPS4 ) || \
+		(defined(_MIPS_ISA_MIPS3 ) && _MIPS_ISA == _MIPS_ISA_MIPS3 )))
 
 #	define Z_ISA Z_ISA_MIPS64
 
