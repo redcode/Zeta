@@ -77,7 +77,7 @@ If in doubt, read the [CMake documentation](https://cmake.org/documentation/) fo
 
 * <span id="cmake_option_zeta_install_pkgconfigdir">**`-DZeta_INSTALL_PKGCONFIGDIR="<path>"`**</span>  
 	Specify the directory in which to install the [pkg-config](https://www.freedesktop.org/wiki/Software/pkg-config) [file](https://people.freedesktop.org/~dbn/pkg-config-guide.html).  
-	The default is <code>"${[CMAKE_INSTALL_LIBDIR](https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html)}/pkgconfig"</code>.
+	The default is <code>"${[CMAKE_INSTALL_DATAROOTDIR](https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html)}/pkgconfig"</code>.
 
 * <span id="cmake_option_zeta_sphinx_html_theme">**`-DZeta_SPHINX_HTML_THEME="[<name>]"`**</span>  
 	Specify the Sphinx theme for the documentation in HTML format.  
