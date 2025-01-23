@@ -41,9 +41,13 @@ emerge dev-libs/zeta
 brew install redcode/zxe/zeta
 ```
 
-## Installation from sources
+## Installation from source code
+
+### Prerequisites
 
 You will need [CMake](https://cmake.org) v3.12 or later to install the package and, optionally, a recent version of [Sphinx](https://www.sphinx-doc.org) to compile the documentation. Also, make sure that you have [LaTeX](https://www.latex-project.org) with PDF support installed on your system if you want to generate the documentation in PDF format.
+
+### Configure
 
 Once the prerequisites are met, create a directory and run `cmake` from there to prepare the build system:
 
@@ -105,13 +109,16 @@ If in doubt, read the [CMake documentation](https://cmake.org/documentation/) fo
 	Install the standard text documents distributed with the package: [`AUTHORS`](AUTHORS), [`COPYING`](COPYING), [`COPYING.LESSER`](COPYING.LESSER), [`HISTORY`](HISTORY) and [`README`](README).  
 	The default is `NO`.
 
-Finally, once the build system is configured according to your needs, build and
-install the package:
+### Build and install
+
+Finally, once the build system is configured according to your needs, build and install the package:
 
 ```shell
 cmake --build . [--config (Debug|Release|RelWithDebInfo|MinSizeRel)]
 cmake --install . [--config <configuration>]
 ```
+
+The [`--config`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-build-config) option is only necessary for those [CMake generators](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html) that ignore [`CMAKE_BUILD_TYPE`](#cmake_option_cmake_build_type) (e.g., Xcode and Visual Studio).
 
 ## License
 

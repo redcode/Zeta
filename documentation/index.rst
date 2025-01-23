@@ -10,7 +10,7 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   installation
+   installation-from-source-code
    integration
    naming-convention
-   contributing
+   license
