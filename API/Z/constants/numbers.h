@@ -962,7 +962,10 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 /* MARK: - Integer numbers */
 
-#define Z_CARMACK_NUMBER 0x5F3759DF
-#define Z_LOMONT_NUMBER	 0x5F375A86
+#define Z_CARMACK_NUMBER    0x5F3759DF
+#define Z_LOMONT_NUMBER	    0x5F375A86
+
+/* Kaprekar's constant */
+#define Z_KAPREKAR_CONSTANT 6174
 
 #endif /* Z_constants_numbers_H */
