@@ -28,7 +28,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		ifdef Z_SINT8
 			zsint8 sint8_value;
-			zsint8 sint8_array;
+			zsint8 sint8_array[1];
 
 			struct {zsint8 at_0;
 			} sint8_values;
@@ -52,7 +52,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		ifdef Z_SINT16
 			zsint16 sint16_value;
-			zsint16 sint16_array;
+			zsint16 sint16_array[1];
 
 			struct {zsint16 at_0;
 			} sint16_values;
@@ -105,7 +105,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		ifdef Z_SINT32
 			zsint32 sint32_value;
-			zsint32 sint32_array;
+			zsint32 sint32_array[1];
 
 			struct {zsint32 at_0;
 			} sint32_values;
@@ -205,7 +205,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		ifdef Z_SINT64
 			zsint64 sint64_value;
-			zsint64 sint64_array;
+			zsint64 sint64_array[1];
 
 			struct {zsint64 at_0;
 			} sint64_values;
@@ -366,7 +366,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 #		ifdef Z_SINT128
 			zsint128 sint128_value;
-			zsint128 sint128_array;
+			zsint128 sint128_array[1];
 
 			struct {zsint128 at_0;
 			} sint128_values;
