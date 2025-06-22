@@ -197,6 +197,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/inspection/compiler/modules/ImageCraft_C.h>
 #	elif Z_COMPILER == Z_COMPILER_INTEL_CPP
 #		include <Z/inspection/compiler/modules/Intel_C++.h>
+#	elif Z_COMPILER == Z_COMPILER_JCC
+#		include <Z/inspection/compiler/modules/JCC.h>
 #	elif Z_COMPILER == Z_COMPILER_KAI_CPP
 #		include <Z/inspection/compiler/modules/KAI_C++.h>
 #	elif Z_COMPILER == Z_COMPILER_KEIL_C166

@@ -46,53 +46,54 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_IBM_Z_OS_C_CPP		  34 /*													   */
 #define Z_COMPILER_IMAGECRAFT_C			  35 /*													   */
 #define Z_COMPILER_INTEL_CPP			  36 /* Intel												   */
-#define Z_COMPILER_KAI_CPP			  37 /* Kuck & Associates										   */
-#define Z_COMPILER_KEIL_C166			  38 /*													   */
-#define Z_COMPILER_KEIL_C51			  39 /*													   */
-#define Z_COMPILER_KEIL_CARM			  40 /*													   */
-#define Z_COMPILER_LCC				  41 /* Fraser, Christopher W. - Hanson, David R.  <https://sites.google.com/site/lccretargetablecompiler> */
-#define Z_COMPILER_MCC				  42 /* Sainz de Baranda y Goñi, Manuel									   */
-#define Z_COMPILER_METAWARE_HIGH_C_CPP		  43 /*													   */
-#define Z_COMPILER_MICROTEC_C_CPP		  44 /*													   */
-#define Z_COMPILER_MINGW			  45 /* Peters, Colin				   <http://www.mingw.org>				   */
-#define Z_COMPILER_MINGW_W64			  46 /* OneVision Software			   <https://mingw-w64.org>				   */
-#define Z_COMPILER_MIPS_PRO			  47 /*													   */
-#define Z_COMPILER_MIRACLE_C			  48 /*													   */
-#define Z_COMPILER_MPW_CPP			  49 /*													   */
-#define Z_COMPILER_MSC				  50 /* Microsoft											   */
-#define Z_COMPILER_MSVC				  51 /* Microsoft				   <https://visualstudio.microsoft.com>			   */
-#define Z_COMPILER_NDP_C			  52 /* Microway											   */
-#define Z_COMPILER_NORCROFT_C			  53 /*													   */
-#define Z_COMPILER_NVC				  54 /* NVIDIA					   <https://developer.nvidia.com/hpc-sdk>		   */
-#define Z_COMPILER_NWCC				  55 /*													   */
-#define Z_COMPILER_OPEN64			  56 /*													   */
-#define Z_COMPILER_ORACLE_PRO_C_PRECOMPILER	  57 /*													   */
-#define Z_COMPILER_ORACLE_SOLARIS_STUDIO	  58 /*													   */
-#define Z_COMPILER_PACIFIC_C			  59 /*													   */
-#define Z_COMPILER_PALM_C_CPP			  60 /*													   */
-#define Z_COMPILER_PCC				  61 /* Johnson, Stephen C.			   <http://pcc.ludd.ltu.se>				   */
-#define Z_COMPILER_PELLES_C			  62 /* Orinius, Pelle				   <http://www.smorgasbordet.com/pellesc>		   */
-#define Z_COMPILER_PGI_C_CPP			  63 /*													   */
-#define Z_COMPILER_RENESAS_C_CPP		  64 /*													   */
-#define Z_COMPILER_SAS_C			  65 /*													   */
-#define Z_COMPILER_SCCZ80			  66 /* Z88DK					   <https://www.z88dk.org>				   */
-#define Z_COMPILER_SDCC				  67 /*													   */
-#define Z_COMPILER_SNC				  68 /* SN Systems											   */
-#define Z_COMPILER_SYMANTEC_CPP			  69 /*													   */
-#define Z_COMPILER_SYSTEMS_C			  70 /* Dignus					   <http://www.dignus.com/dcc>				   */
-#define Z_COMPILER_TENDRA			  71 /* DERA												   */
-#define Z_COMPILER_THINK_C			  72 /*													   */
-#define Z_COMPILER_TI_C_CPP_COMPILER		  73 /*													   */
-#define Z_COMPILER_TINY_CC			  74 /* Bellard, Fabrice			   <https://bellard.org/tcc>				   */
-#define Z_COMPILER_TURBO_C			  75 /* Borland												   */
-#define Z_COMPILER_TURBO_CPP			  76 /* Borland												   */
-#define Z_COMPILER_ULTRA_C_CPP			  77 /* Microware Systems										   */
-#define Z_COMPILER_USL				  78 /*													   */
-#define Z_COMPILER_VBCC				  79 /* Barthelmann, Volker			   <http://www.compilers.de/vbcc.html>			   */
-#define Z_COMPILER_VOS_C			  80 /* Stratus Technologies										   */
-#define Z_COMPILER_VOS_STANDARD_C		  81 /* Stratus Technologies										   */
-#define Z_COMPILER_WATCOM_C_CPP			  82 /* Watcom International			   <http://openwatcom.org>				   */
-#define Z_COMPILER_ZORTECH_CPP			  83 /*													   */
+#define Z_COMPILER_JCC				  37 /* Kelly, John											   */
+#define Z_COMPILER_KAI_CPP			  38 /* Kuck & Associates										   */
+#define Z_COMPILER_KEIL_C166			  39 /*													   */
+#define Z_COMPILER_KEIL_C51			  40 /*													   */
+#define Z_COMPILER_KEIL_CARM			  41 /*													   */
+#define Z_COMPILER_LCC				  42 /* Fraser, Christopher W. - Hanson, David R.  <https://sites.google.com/site/lccretargetablecompiler> */
+#define Z_COMPILER_MCC				  43 /* Sainz de Baranda y Goñi, Manuel									   */
+#define Z_COMPILER_METAWARE_HIGH_C_CPP		  44 /*													   */
+#define Z_COMPILER_MICROTEC_C_CPP		  45 /*													   */
+#define Z_COMPILER_MINGW			  46 /* Peters, Colin				   <http://www.mingw.org>				   */
+#define Z_COMPILER_MINGW_W64			  47 /* OneVision Software			   <https://mingw-w64.org>				   */
+#define Z_COMPILER_MIPS_PRO			  48 /*													   */
+#define Z_COMPILER_MIRACLE_C			  49 /*													   */
+#define Z_COMPILER_MPW_CPP			  50 /*													   */
+#define Z_COMPILER_MSC				  51 /* Microsoft											   */
+#define Z_COMPILER_MSVC				  52 /* Microsoft				   <https://visualstudio.microsoft.com>			   */
+#define Z_COMPILER_NDP_C			  53 /* Microway											   */
+#define Z_COMPILER_NORCROFT_C			  54 /*													   */
+#define Z_COMPILER_NVC				  55 /* NVIDIA					   <https://developer.nvidia.com/hpc-sdk>		   */
+#define Z_COMPILER_NWCC				  56 /*													   */
+#define Z_COMPILER_OPEN64			  57 /*													   */
+#define Z_COMPILER_ORACLE_PRO_C_PRECOMPILER	  58 /*													   */
+#define Z_COMPILER_ORACLE_SOLARIS_STUDIO	  59 /*													   */
+#define Z_COMPILER_PACIFIC_C			  60 /*													   */
+#define Z_COMPILER_PALM_C_CPP			  61 /*													   */
+#define Z_COMPILER_PCC				  62 /* Johnson, Stephen C.			   <http://pcc.ludd.ltu.se>				   */
+#define Z_COMPILER_PELLES_C			  63 /* Orinius, Pelle				   <http://www.smorgasbordet.com/pellesc>		   */
+#define Z_COMPILER_PGI_C_CPP			  64 /*													   */
+#define Z_COMPILER_RENESAS_C_CPP		  65 /*													   */
+#define Z_COMPILER_SAS_C			  66 /*													   */
+#define Z_COMPILER_SCCZ80			  67 /* Z88DK					   <https://www.z88dk.org>				   */
+#define Z_COMPILER_SDCC				  68 /*													   */
+#define Z_COMPILER_SNC				  69 /* SN Systems											   */
+#define Z_COMPILER_SYMANTEC_CPP			  70 /*													   */
+#define Z_COMPILER_SYSTEMS_C			  71 /* Dignus					   <http://www.dignus.com/dcc>				   */
+#define Z_COMPILER_TENDRA			  72 /* DERA												   */
+#define Z_COMPILER_THINK_C			  73 /*													   */
+#define Z_COMPILER_TI_C_CPP_COMPILER		  74 /*													   */
+#define Z_COMPILER_TINY_CC			  75 /* Bellard, Fabrice			   <https://bellard.org/tcc>				   */
+#define Z_COMPILER_TURBO_C			  76 /* Borland												   */
+#define Z_COMPILER_TURBO_CPP			  77 /* Borland												   */
+#define Z_COMPILER_ULTRA_C_CPP			  78 /* Microware Systems										   */
+#define Z_COMPILER_USL				  79 /*													   */
+#define Z_COMPILER_VBCC				  80 /* Barthelmann, Volker			   <http://www.compilers.de/vbcc.html>			   */
+#define Z_COMPILER_VOS_C			  81 /* Stratus Technologies										   */
+#define Z_COMPILER_VOS_STANDARD_C		  82 /* Stratus Technologies										   */
+#define Z_COMPILER_WATCOM_C_CPP			  83 /* Watcom International			   <http://openwatcom.org>				   */
+#define Z_COMPILER_ZORTECH_CPP			  84 /*													   */
 
 #define Z_COMPILER_NAME_ACC			       "ACC"
 #define Z_COMPILER_NAME_ADAPTIVE_CPP		       "AdaptiveCpp"
@@ -130,6 +131,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_NAME_IBM_Z_OS_C_CPP		       "IBM z/OS C/C++"
 #define Z_COMPILER_NAME_IMAGECRAFT_C		       "ImageCraft C"
 #define Z_COMPILER_NAME_INTEL_CPP		       "Intel C++"
+#define Z_COMPILER_NAME_JCC			       "JCC"
 #define Z_COMPILER_NAME_KAI_CPP			       "KAI C++"
 #define Z_COMPILER_NAME_KEIL_C166		       "KEIL C166"
 #define Z_COMPILER_NAME_KEIL_C51		       "KEIL C51"

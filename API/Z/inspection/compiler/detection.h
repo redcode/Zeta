@@ -122,6 +122,9 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #elif defined(__INTEL_COMPILER)	|| defined(__ICC) || defined(__ECC) || defined(__ICL)
 #	define Z_COMPILER Z_COMPILER_INTEL_CPP
 
+#elif defined(__JCC__) || defined(__jcc__)
+#	define Z_COMPILER Z_COMPILER_JCC
+
 #elif defined(__KCC)
 #	define Z_COMPILER Z_COMPILER_KAI_CPP
 
