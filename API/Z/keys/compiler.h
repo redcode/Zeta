@@ -46,7 +46,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #define Z_COMPILER_IBM_Z_OS_C_CPP		  34 /*													   */
 #define Z_COMPILER_IMAGECRAFT_C			  35 /*													   */
 #define Z_COMPILER_INTEL_CPP			  36 /* Intel												   */
-#define Z_COMPILER_JCC				  37 /* Kelly, John											   */
+#define Z_COMPILER_JCC				  37 /* Kelly, John				   <https://jcc.johnk.dev>				   */
 #define Z_COMPILER_KAI_CPP			  38 /* Kuck & Associates										   */
 #define Z_COMPILER_KEIL_C166			  39 /*													   */
 #define Z_COMPILER_KEIL_C51			  40 /*													   */
