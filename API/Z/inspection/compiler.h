@@ -177,7 +177,8 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #		include <Z/inspection/compiler/modules/EKOPath.h>
 #	elif Z_COMPILER == Z_COMPILER_FUJITSU_CPP
 #		include <Z/inspection/compiler/modules/Fujitsu_C++.h>*/
-#	elif Z_COMPILER == Z_COMPILER_GCC
+/*#	elif Z_COMPILER == Z_COMPILER_GCC*/
+#	elif Z_COMPILER == Z_COMPILER_GCC || Z_COMPILER == Z_COMPILER_MINGW_W64 || Z_COMPILER == Z_COMPILER_MINGW
 #		include <Z/inspection/compiler/modules/GCC.h>
 /*#	elif Z_COMPILER == Z_COMPILER_GREEN_HILL_C_CPP
 #		include <Z/inspection/compiler/modules/Green_Hill_C-C++.h>
