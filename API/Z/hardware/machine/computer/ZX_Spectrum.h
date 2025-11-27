@@ -274,10 +274,10 @@ Released under the terms of the GNU Lesser General Public License v3.
 | Firmware  |  0  |  1  |
 |-----------|-----+====='
 | 4000-7FFF | RAM |
-| Screen 1  |  5  |
+| Screen 0  |  5  |
 |-----------|-----|
 | 8000-BFFF | RAM |
-|	    |  2  |				    Screen 2
+|	    |  2  |				    Screen 1
 |-----------|-----+--------------------------------------|--.
 | C000-FFFF | RAM | RAM | RAM | RAM | RAM | RAM | RAM | RAM |
 | User	    |  0  |  1	|  2  |  3  |  4  |  5	|  6  |  7  |
@@ -652,7 +652,7 @@ typedef Z_PACKED_UNION_BEGIN {
 /*----------------.
 | 7 6 5 4 3 2 1 0 |
 '-\_/-|-|-|-\___/-'
-unused| | |   '---- user (C000h)
+unused| | |   '---- user (C000h-FFFFh)
       | | '-------- VRAM
       | '---------- ROM
       '------------ disable */
