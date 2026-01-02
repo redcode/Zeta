@@ -26,7 +26,10 @@ project(Zeta
 	HOMEPAGE_URL "https://zeta.st")
 
 unset(_)
-message("${PROJECT_NAME} v${PROJECT_VERSION}")
+
+execute_process(
+	COMMAND ${CMAKE_COMMAND} -E echo
+		"${PROJECT_NAME} v${PROJECT_VERSION}")
 
 include(GNUInstallDirs)
 
@@ -134,7 +137,9 @@ if(${PROJECT_NAME}_WITH_HTML_DOCUMENTATION OR ${PROJECT_NAME}_WITH_PDF_DOCUMENTA
 endif()
 
 if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-	message("${PROJECT_NAME} END")
+	execute_process(
+		COMMAND ${CMAKE_COMMAND} -E echo
+			"${PROJECT_NAME} v${PROJECT_VERSION} END")
 endif()
 
 # CMakeLists.txt EOF
