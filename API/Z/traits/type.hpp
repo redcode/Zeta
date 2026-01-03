@@ -2840,11 +2840,11 @@ namespace Zeta {namespace ZetaDetail {namespace Type {
 
 #		define Z_z_SPECIALIZATION_PAIR(dummy, qualifiers, Qualifiers)						  \
 															  \
-			template <Bool e, Z_z_NOEXCEPT_PARAMETER class r, class... p>				  \
+			template <Bool e, Z_z_NOEXCEPT_PARAMETER class r, class... p>					  \
 			struct Case<e, r(p...) qualifiers Z_z_NOEXCEPT_SPECIFIER>					  \
 			: Mixins::Qualifiers##Function<Abstract::NonVariadicFunction<Z_z_NOEXCEPT_ARGUMENT r, p...> > {}; \
 															  \
-			template <Bool e, Z_z_NOEXCEPT_PARAMETER class r, class... p>				  \
+			template <Bool e, Z_z_NOEXCEPT_PARAMETER class r, class... p>					  \
 			struct Case<e, r(p..., ...) qualifiers Z_z_NOEXCEPT_SPECIFIER>					  \
 			: Mixins::Qualifiers##Function<Abstract::VariadicFunction<Z_z_NOEXCEPT_ARGUMENT r, p...> > {};
 
@@ -2971,12 +2971,12 @@ namespace Zeta {
 #		if Z_COMPILER_HAS_MAGIC_CONSTANT(MANGLED_FUNCTION_NAME) && Z_DIALECT_HAS(CPP14, CONSTEXPR_FUNCTION)
 
 
-#			define Z_z_STRING_MEMBER_FUNCTIONS							\
-														\
-				static Z_CT(CPP14) USize string_size()						\
-					{return type_string_size<t>();}						\
-														\
-				static Z_CT(CPP14) SizedString<Char, string_size() + 1> string()		\
+#			define Z_z_STRING_MEMBER_FUNCTIONS					 \
+												 \
+				static Z_CT(CPP14) USize string_size()				 \
+					{return type_string_size<t>();}				 \
+												 \
+				static Z_CT(CPP14) SizedString<Char, string_size() + 1> string() \
 					{return type_string<t>();}
 
 
