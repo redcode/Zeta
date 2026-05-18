@@ -172,7 +172,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 					zsint8 at_2;
 					zsint8 at_3;
 #				elif Z_ISA_INTEGRAL_ENDIANNESS == Z_ENDIANNESS_BIG
-					zsint8 at_3
+					zsint8 at_3;
 					zsint8 at_2;
 					zsint8 at_1;
 					zsint8 at_0;
